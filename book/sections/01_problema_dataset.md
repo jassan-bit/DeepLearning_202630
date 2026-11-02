@@ -26,7 +26,7 @@ La siguiente tabla permite localizar las respuestas solicitadas en la guía. Las
 
 Se propone evaluar si el historial de rendimientos logarítmicos derivados del cierre de Bitcoin contiene información útil para pronosticar su volatilidad futura. El interés aplicado es estimar incertidumbre del activo, no predecir directamente su precio ni recomendar operaciones financieras.
 
-El estudio de Huang, Sangiorgi y Urquhart (2024) examina pronósticos de volatilidad de Bitcoin con datos de alta frecuencia y redes neuronales; respalda la pertinencia de investigar este problema. Su definición de volatilidad, datos y horizontes no son automáticamente equivalentes a los de este proyecto: sus resultados no se trasladan como resultados propios. Véase la [referencia primaria](referencias.md).
+El estudio de Huang, Sangiorgi y Urquhart examina pronósticos de volatilidad de Bitcoin con datos de alta frecuencia y redes neuronales; respalda la pertinencia de investigar este problema {cite:p}`huang2024`. Su definición de volatilidad, datos y horizontes no son automáticamente equivalentes a los de este proyecto: sus resultados no se trasladan como resultados propios. La revisión documental y las treinta referencias se desarrollan en el capítulo 3 y en [Referencias](referencias.md).
 
 **Estado:** BTCUSDT, modelado diario a partir de velas de un minuto, entradas de 7/14/21/28 días y horizonte principal de un día están confirmados. Se exploran ventanas de volatilidad de 7/14/21/28 días; falta cerrar las configuraciones de evaluación y las demás decisiones experimentales.
 

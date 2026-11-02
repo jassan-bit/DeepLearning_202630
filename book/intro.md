@@ -15,7 +15,7 @@ Este es un borrador metodológico, no un protocolo congelado ni un experimento t
 
 - [Problema y dataset](sections/01_problema_dataset.md): formulación matemática, hipótesis propuesta, métricas y ficha técnica.
 - [Análisis exploratorio de datos](sections/02_eda.md): adquisición directa desde Binance Spot BTCUSDT y análisis de calidad, precios y retornos de desarrollo.
-- [Estado del arte](sections/03_estado_arte.md): estrategia de búsqueda y procedimiento para seleccionar tres modelos base; revisión y selección pendientes de ejecución.
+- [Estado del arte](sections/03_estado_arte.md): bibliografía de treinta referencias con citas y síntesis crítica; cribado sistemático y selección final de modelos pendientes.
 - [Diseño experimental y piloto](sections/04_implementacion_evaluacion.md): pipeline, repeticiones, potencia y preregistro; entrenamiento y piloto pendientes.
 - [Benchmark y baseline](sections/05_benchmark.md): tablas, ranking, diferencias y umbral de mejora; benchmark pendiente de ejecución.
 - [Procedimiento de series de tiempo](sections/06_procedimiento.md): aplicación de la ruta 6.3 de la guía al proyecto y correspondencia con la evidencia disponible.
