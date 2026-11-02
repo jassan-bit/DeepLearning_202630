@@ -243,3 +243,101 @@ Antes del piloto se fijará el entorno de entrenamiento con versiones compatible
 | Piloto y repeticiones definitivas | No ejecutado | No ejecutado | No ejecutado |
 
 Los datos y las particiones disponibles son prerrequisitos completados; no sustituyen la implementación ni la evaluación de estos tres modelos.
+
+## 4.3. Requisitos Experimentales
+
+Estos requisitos se aplicarán conjuntamente a los tres modelos, respetando el diseño temporal y el dimensionamiento de §4.1. La ejecución del EDA y la generación de folds no acreditan que el entrenamiento, los intervalos de confianza o la evaluación de test ya estén realizados.
+
+### 4.3.1. Control de semillas y determinismo
+
+Cada corrida conservará un identificador y las semillas de los generadores utilizados: Python, NumPy, framework de Deep Learning y operaciones del dispositivo que correspondan. Se registrarán también el orden de lotes, los workers de carga y cualquier otra fuente estocástica del pipeline.
+
+Se declarará si se exige **determinismo estricto**, qué opciones del framework se activan y qué operaciones o condiciones de hardware pueden impedirlo. Fijar una sola semilla no demuestra reproducibilidad exacta. El framework y las opciones concretas se fijarán antes del piloto; no se atribuyen ahora configuraciones a un software de entrenamiento aún no elegido.
+
+Las semillas previstas del piloto son comunes entre modelos. Cada repetición parte de una inicialización nueva; una repetición idéntica usada para comprobar determinismo no cuenta como otra semilla independiente.
+
+### 4.3.2. Repetición de experimentos y tamaño definitivo
+
+Cada modelo tendrá al menos **cinco ejecuciones independientes y documentadas**, o **seis si se usan pruebas por rangos**, y el número aumentará cuando lo exija el análisis de potencia. El tamaño definitivo no se fija por conveniencia ni por haber completado el mínimo.
+
+Cuando sea posible se combinarán semillas distintas con orígenes de validación distintos, manteniendo el orden temporal. No se introducirán particiones aleatorias de la serie para aumentar artificialmente el número de resultados. Todos los modelos deberán compartir las fechas y configuraciones comparadas.
+
+Se distinguirán explícitamente:
+
+| Unidad | Qué representa | Qué no representa |
+|---|---|---|
+| Semilla de una ejecución | Variabilidad de inicialización y entrenamiento bajo el protocolo fijado | Un mercado nuevo o una nueva realización independiente de la serie |
+| Fold diario | Un origen temporal de validación | Una repetición independiente para dimensionar el número de semillas |
+| Configuración | Una combinación de entrada, objetivo e hiperparámetros | Otra réplica del mismo experimento |
+
+Los 366 folds y las 5.856 filas del manifiesto no se contarán como ejecuciones independientes. Si se presentan resultados con varios niveles —semillas, configuraciones y fechas—, se declarará su estructura y no se agruparán todas las filas como observaciones i.i.d.
+
+### 4.3.3. Media, desviación estándar e intervalos de confianza
+
+Por modelo y configuración se reportarán número de ejecuciones válidas, media, **desviación estándar muestral** e **intervalo de confianza del 95 %** de las métricas pertinentes. La métrica de una ejecución se calcula sobre sus predicciones agregadas según §4.1.4, no promediando incorrectamente las RMSE de folds unitarios.
+
+Cada intervalo indicará método, unidad de remuestreo o repetición, tamaño muestral, nivel y supuestos. Para un intervalo de la media entre semillas puede emplearse una aproximación t de Student si sus condiciones se justifican, o un procedimiento de remuestreo adecuado. Un intervalo entre semillas sobre el mismo test mide incertidumbre del entrenamiento condicionada a ese conjunto; no cuantifica por sí solo toda la incertidumbre temporal del mercado.
+
+Para incertidumbre asociada a fechas dependientes se justificará un bootstrap por bloques u otro método temporal, con longitud de bloque y sensibilidad documentadas. Los métodos exploratorios de bloques usados en el EDA no se convierten automáticamente en el método definitivo de inferencia del benchmark.
+
+Las comparaciones entre modelos usarán diferencias pareadas en las mismas fechas y semillas, con los controles de multiplicidad preregistrados. Un p-value no sustituye el intervalo de confianza, el tamaño del efecto ni su relevancia frente a $\delta$.
+
+### 4.3.4. Uso de GPU y registro del entorno
+
+Si se utiliza GPU, se documentarán modelo, memoria, driver, runtime y versiones relevantes del framework, precisión numérica y opciones de determinismo. También se registrarán CPU, memoria, número de hilos y sistema operativo, aunque no se use acelerador.
+
+Los tiempos de entrenamiento e inferencia se medirán con unidades y procedimiento claros; en GPU se considerará la ejecución asíncrona para no reportar solo el tiempo de lanzamiento de operaciones. Se declararán calentamiento, tamaño de lote y si se incluye preprocesamiento.
+
+Los modelos se compararán bajo condiciones de hardware consistentes o se explicarán las diferencias. **No se han ejecutado entrenamientos de las redes ni mediciones de GPU**, y no se asignan cifras de tiempo o memoria no observadas.
+
+### 4.3.5. Empaquetado reproducible de extremo a extremo
+
+El paquete final deberá permitir reconstruir datos derivados, particiones, entrenamiento y evaluación a partir de instrucciones y versiones fijadas. Conservará:
+
+1. Dependencias y versiones del entorno de entrenamiento, además de los entornos ya registrados para EDA y particiones.
+2. Scripts o cuadernos ejecutables con directorios de trabajo y parámetros completos.
+3. Manifiestos de datos, muestras, folds y hashes, junto con reglas de exclusión.
+4. Configuración de cada corrida, semillas, arquitectura, hiperparámetros, código y hardware.
+5. Logs, curvas, checkpoints, predicciones, métricas, incidencias y vínculo entre sus identificadores.
+6. Preregistro fechado, historial de cambios y procedimiento de generación de tablas y figuras.
+
+Actualmente se pueden reproducir la adquisición oficial, el EDA y los folds mediante los scripts del repositorio. **La reproducción de extremo a extremo del benchmark todavía está pendiente**, porque no existen implementaciones entrenadas de los tres modelos. Los ZIP brutos no se incluyen en el sitio: sus URLs y hashes permiten adquirirlos y verificarlos respetando las condiciones del proveedor.
+
+### 4.3.6. Prevención de data leakage
+
+| Control obligatorio | Aplicación en BTCUSDT | Estado o evidencia |
+|---|---|---|
+| Separación de entrenamiento, validación y test | Fechas de desarrollo y test identificadas; ninguna etiqueta futura puede entrar en el entrenamiento del origen evaluado | Folds de desarrollo materializados; test supervisado final pendiente de congelación |
+| Transformaciones solo en train | Escalado, imputación permitida y selección se ajustan dentro del entrenamiento admitido de cada fold | Regla documentada; integración con modelos pendiente |
+| Orden temporal | No se barajan periodos; se comprueba disponibilidad de etiquetas y continuidad de las ventanas | Controles ejecutados en el manifiesto de forward chaining |
+| Mismo protocolo entre modelos | Mismas muestras, horizonte, covariables disponibles, semillas y criterio de selección | Requisito fijado; comparación todavía no ejecutada |
+| Early stopping sin consultar la salida futura evaluada | Validación interna pasada, distinta del día externo que se pretende pronosticar | Regla documentada; implementación pendiente |
+| Test reservado | No participa en EDA de desarrollo, piloto ni hiperparámetros | Scripts de EDA y partición no abren archivos de test |
+| Integridad y trazabilidad | Brutos intactos, hashes y exclusiones documentadas | Adquisición y derivados de desarrollo registrados |
+
+La separación se refiere al papel de cada objetivo y a su disponibilidad temporal. Una entrada de validación puede reutilizar historia pasada ya observable, como requiere forward chaining; esto no autoriza compartir etiquetas futuras ni ajustar transformaciones con validación o test.
+
+Los controles espaciales, semánticos de NLP o de agrupamiento de imágenes de la guía general no corresponden al alcance actual de una serie financiera única sin esas modalidades. Si se incorporan noticias u otros datos agrupados, deberán añadirse sus controles de disponibilidad, duplicados y dependencia antes de utilizarlos.
+
+### 4.3.7. Evaluación única del test por corrida
+
+El conjunto de prueba se evaluará **una sola vez por corrida**, con modelo, pesos, hiperparámetros y decisiones ya fijados. El preregistro identificará cuándo se considera cerrada una corrida y qué artefactos se conservan.
+
+Las predicciones guardadas permitirán calcular métricas, residuos y figuras sin volver a consultar test para elegir otra configuración. No se reentrenará ni se seleccionará una semilla según su desempeño en test. Si ocurre una falla técnica, se registrará el incidente y el tratamiento previsto; no se ocultará una evaluación desfavorable como si nunca hubiera ocurrido.
+
+Se reportarán 2025 y 2026 por separado dentro del calendario fijado. Disponer de más archivos descargados no amplía automáticamente el conjunto de prueba ni valida una nueva selección después de observar resultados.
+
+### 4.3.8. Estado de cumplimiento
+
+| Requisito | Estado actual |
+|---|---|
+| Hashes, datos derivados y exclusiones de desarrollo | Registrados |
+| Folds temporales y comprobación de disponibilidad | Ejecutados |
+| Dependencias y scripts de EDA/partición | Disponibles y verificados |
+| Configuración de semillas y determinismo del entrenamiento | Prevista; framework y opciones pendientes |
+| Repeticiones, media, desviación e intervalos de modelos | No ejecutados |
+| GPU, tiempos y hardware de entrenamiento medidos | No ejecutados |
+| Paquete de entrenamiento y evaluación de extremo a extremo | Pendiente |
+| Test supervisado congelado y evaluación final | Pendientes |
+
+Esta lista distingue requisitos establecidos de controles ejecutados. No se presenta el benchmark como reproducible o completo hasta verificar también las implementaciones y sus resultados.
