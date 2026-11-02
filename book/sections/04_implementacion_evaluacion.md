@@ -140,3 +140,106 @@ Antes del piloto se cerrará el protocolo inicial. Después se incorporarán sus
 | Entrenamiento definitivo y test | No ejecutados |
 
 La presencia de esta sección no sustituye las implementaciones y evaluaciones posteriores del Entregable 1.
+
+## 4.2. Implementación de los Tres Modelos Base
+
+Los modelos deberán ser exactamente los tres seleccionados en §3.2, con la configuración reportada en la literatura o una configuración mínima justificada mediante evidencia. **Todavía no se han seleccionado ni implementado esas tres arquitecturas.** Los apartados siguientes definen las condiciones verificables que debe cumplir su implementación; no son resultados de entrenamiento.
+
+### 4.2.1. Arquitecturas y contrato común
+
+Cada modelo tendrá un identificador, referencias y una descripción reproducible de capas, unidades, activaciones, conexiones y salida no negativa. La arquitectura se enlazará con las ecuaciones y el análisis de complejidad de §3.3. Si la literatura no ofrece detalles suficientes, se seguirá la regla de búsqueda de arquitectura de §3.2.7; no se completarán por preferencia personal.
+
+| Componente | Condición común para los tres modelos |
+|---|---|
+| Datos | Mismos derivados diarios de BTCUSDT y mismos hashes |
+| Entradas | Mismas covariables disponibles y días de historia dentro de cada configuración |
+| Representación | Tensor diario o vista aplanada según la arquitectura, sin añadir información a un modelo |
+| Objetivo | Misma definición de volatilidad y horizonte de un día dentro de cada comparación |
+| Partición | Mismos orígenes y exclusiones del manifiesto de forward chaining |
+| Preprocesamiento | Misma política causal y ajuste limitado al entrenamiento de cada fold |
+| Semillas | Mismo conjunto predefinido por fase; inicialización nueva por repetición |
+| Selección | Misma métrica primaria, regla de agregación y esfuerzo de búsqueda |
+
+Se conservarán identificadores de las muestras para comprobar la igualdad de los conjuntos evaluados. Un modelo que falle o pierda muestras no se comparará ocultando ese cambio de cobertura.
+
+### 4.2.2. Hiperparámetros y configuración seleccionada
+
+Para cada arquitectura se registrarán el espacio de búsqueda declarado antes de entrenar y el valor finalmente seleccionado. Esta ficha está pendiente de completar con las arquitecturas reales:
+
+| Campo obligatorio | Espacio por declarar | Valor seleccionado |
+|---|---|---|
+| Learning rate inicial | Pendiente | No seleccionado |
+| Planificador de learning rate y sus parámetros, o ausencia explícita | Pendiente | No seleccionado |
+| Número de capas y unidades o filtros por capa | Según evidencia y reglas de §3.2 | No seleccionado |
+| Activaciones y configuración de la salida | Según arquitectura y salida no negativa | No seleccionado |
+| Batch size | Pendiente | No seleccionado |
+| Optimizador y sus parámetros | Pendiente | No seleccionado |
+| Dropout y ubicación, si aplica | Pendiente; declarar también si no se usa | No seleccionado |
+| Decaimiento de pesos u otra regularización | Pendiente | No seleccionado |
+| Función de pérdida | MSE propuesta en §4.1; cierre antes de comparar | No congelada |
+| Épocas máximas y criterio de parada | Pendiente | No seleccionado |
+
+Los campos no se rellenarán con valores supuestamente “habituales” atribuidos a artículos que no los reportan. Cualquier desviación respecto a una fuente se justificará y versionará antes del experimento pertinente.
+
+### 4.2.3. Estrategia de entrenamiento y early stopping
+
+Cada ajuste comenzará con pesos nuevos y su semilla registrada. Se fijarán el número máximo de épocas, orden de lotes, tamaño de lote, precisión numérica y cualquier configuración estocástica relevante. El entrenamiento conservará la relación causal entre muestras y etiquetas aunque se utilicen lotes para optimizar.
+
+El early stopping deberá registrar métrica monitoreada, dirección de mejora, `patience`, `min_delta`, frecuencia de evaluación y política de restauración de pesos. Su conjunto de validación será **interno y anterior al origen evaluado**, con separación suficiente para que sus etiquetas estén disponibles. El único objetivo futuro de cada fold externo no se utilizará para decidir cuándo detener su propio entrenamiento.
+
+La validación externa de 2024 servirá para comparar configuraciones bajo el protocolo predefinido. No se usarán etiquetas de test para seleccionar épocas, arquitectura, transformaciones ni hiperparámetros. El procedimiento de ajuste final y su parada se fijarán con desarrollo antes de evaluar test.
+
+### 4.2.4. Semillas, reinicios y reproducibilidad
+
+Las semillas previstas para el piloto constan en el preregistro; todavía no representan corridas ejecutadas. El conjunto definitivo se dimensionará con el piloto y se compartirá entre los tres modelos. Se registrarán semillas del generador, framework y operaciones estocásticas que correspondan, además de las limitaciones de determinismo de hardware y kernels.
+
+Las transformaciones y el modelo se ajustarán de nuevo en cada fold según su entrenamiento permitido. No se reutilizarán pesos de un fold posterior ni escaladores ajustados con toda la validación. Cualquier entrenamiento incremental o warm start requerirá una regla causal predefinida y comparable; no se presupone en este diseño.
+
+Las fallas, reintentos y corridas interrumpidas quedarán registrados. No se reemplazará una semilla por otra para mejorar el resultado. Si se repite una corrida por un problema técnico, se conservarán la causa y su relación con el intento original.
+
+### 4.2.5. Registros de cada implementación y corrida
+
+| Registro | Contenido mínimo |
+|---|---|
+| Configuración | Modelo, referencias, arquitectura, hiperparámetros, fase, semilla y versión de código |
+| Datos y partición | Hashes, configuración de entrada/volatilidad, fold y fechas elegibles |
+| Curvas | Pérdida y métricas de entrenamiento y validación interna por época, con conjuntos identificados |
+| Parada | Época de parada, mejor época, motivo y checkpoint restaurado |
+| Parámetros | Total de parámetros entrenables y no entrenables; contraste con la expresión analítica de §3.3 |
+| Predicciones | Fecha de emisión, día objetivo, valor real, predicción y horizonte |
+| Costo | Duración de ajuste y de inferencia, unidad de medición, batch size y calentamiento declarado |
+| Entorno | Sistema, versión de Python, framework, bibliotecas, CPU/GPU, memoria y precisión numérica |
+| Incidencias | Fallas, reintentos, advertencias y muestras no evaluadas |
+
+Las curvas gráficas se generarán a partir de logs reales, identificando modelo, configuración, fold y semilla. No se dibujan curvas ilustrativas como si fueran entrenamientos ejecutados. Para RMSE por repetición se mantiene la agregación de predicciones fuera de entrenamiento de §4.1.4.
+
+### 4.2.6. Equidad en la búsqueda de hiperparámetros
+
+Los tres modelos recibirán el **mismo método de búsqueda**, el **mismo presupuesto de evaluaciones** y espacios comparables en amplitud y esfuerzo. Comparable no significa obligar a arquitecturas diferentes a tener exactamente los mismos hiperparámetros: cada espacio deberá justificarse por su familia y complejidad.
+
+Antes de buscar se declararán número de candidatos o trials, semillas de búsqueda, configuraciones y folds por evaluar, regla de selección, desempates y tratamiento de fallas. El presupuesto se contabilizará con una unidad explícita; no se comparará un trial que evalúa un fold con otro que recorre todos los folds como si costaran lo mismo.
+
+Se registrarán todos los candidatos evaluados, sus métricas, costo y estado, no solo el ganador. Cualquier ampliación de presupuesto deberá documentarse y respetar la equidad entre modelos. Las ventanas de entrada y volatilidad también forman parte del alcance de selección y no se explorarán con un esfuerzo mayor para favorecer a una arquitectura.
+
+El costo real puede variar entre modelos aun con el mismo número de evaluaciones; se reportará como parte del resultado. No se fijan tiempos de entrenamiento antes de medir las implementaciones en el hardware disponible.
+
+### 4.2.7. Bibliotecas y versiones
+
+Se podrá implementar desde cero o utilizar un framework justificado, conservando versión, procedencia y configuración. La elección del framework de Deep Learning sigue pendiente junto con las arquitecturas; no se afirma que ya exista una implementación validada.
+
+Actualmente están verificados el entorno de EDA de `requirements-eda.lock.txt` y el entorno de partición de `requirements-cv.txt`. `timeseries-cv` genera particiones y **no entrena las redes**. Su dependencia de NumPy menor que 2 se mantiene aislada del entorno del EDA, según §2.4.1.
+
+Antes del piloto se fijará el entorno de entrenamiento con versiones compatibles y se comprobará una ejecución funcional de cada modelo con la misma interfaz de datos. No se declarará reproducibilidad solo por disponer de una lista de dependencias.
+
+### 4.2.8. Estado de implementación
+
+| Producto | Modelo 1 | Modelo 2 | Modelo 3 |
+|---|---|---|---|
+| Identidad y arquitectura extraídas de literatura | Pendiente | Pendiente | Pendiente |
+| Código y prueba funcional | Pendiente | Pendiente | Pendiente |
+| Espacio de búsqueda y presupuesto comparable | Pendiente | Pendiente | Pendiente |
+| Hiperparámetros elegidos y regla de parada | Pendiente | Pendiente | Pendiente |
+| Curvas, parámetros, tiempos y entorno medidos | No ejecutado | No ejecutado | No ejecutado |
+| Piloto y repeticiones definitivas | No ejecutado | No ejecutado | No ejecutado |
+
+Los datos y las particiones disponibles son prerrequisitos completados; no sustituyen la implementación ni la evaluación de estos tres modelos.
