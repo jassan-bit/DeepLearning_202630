@@ -55,19 +55,70 @@ Se conservarán archivos brutos inmutables con SHA-256, fuente, fecha de adquisi
 
 El pipeline de desarrollo no cargará los archivos de test. La evaluación definitiva verificará los hashes antes de leerlos y registrará la versión de código y del protocolo utilizado. Cualquier cambio posterior deberá declararse como una nueva versión del experimento.
 
-## 2.2. Evidencias necesarias para completar la sección
+## 2.2. EDA específico: series de tiempo
 
-| Producto reproducible | Estado |
+Se aplica exclusivamente el bloque **B. Series de Tiempo** del Entregable 1: se pronostica una magnitud futura utilizando historia temporal de Bitcoin. No hay imágenes, texto, coordenadas espaciales ni múltiples modalidades que requieran los otros bloques. Los apartados siguientes son un protocolo pendiente de ejecución, no resultados empíricos.
+
+### 2.2.1. Visualización, descomposición y cambios de régimen
+
+Se graficarán cierres, log-precios, retornos y el objetivo de volatilidad una vez definido, mostrando fechas UTC, unidades, huecos y límites de desarrollo. Se aplicará STL o una descomposición equivalente con periodos justificados por el muestreo y la evidencia de desarrollo. Si se usa una agregación para visualización, se declarará sin confundirla con la frecuencia de entrenamiento. Los cambios de régimen se investigarán con estadísticas móviles y un procedimiento de detección de quiebres con parámetros documentados.
+
+- **Decisión de preprocesamiento:** evaluar transformaciones y componentes estacionales con entrenamiento; ninguna descomposición centrada que utilice observaciones futuras podrá convertirse en una característica predictora.
+- **Impacto en la arquitectura:** fundamentar la necesidad de contexto corto, ciclos más largos o tratamiento de regímenes; los gráficos no seleccionan por sí solos una arquitectura.
+- **Riesgos identificados:** suavizado con datos futuros, selección retrospectiva de quiebres e inspección del test para decidir ventanas.
+
+### 2.2.2. Estacionariedad: ADF y KPSS
+
+Se aplicarán conjuntamente ADF y KPSS a las series de desarrollo pertinentes. Se registrarán periodo, transformación, tamaño de muestra, términos deterministas, regla de selección de rezagos y nivel de significación. Sus resultados dependen de esa especificación y no deben interpretarse como una propiedad universal del mercado.
+
+| Resultado a un nivel de significación declarado | Interpretación condicionada a la especificación |
 |---|---|
-| Fuente, términos de uso, archivo y manifiesto de adquisición | Binance Spot BTCUSDT identificado; descarga, condiciones y hashes pendientes |
-| Frecuencia, horizonte, ventana de entrada y cadencia definidos | Pendiente |
-| Código o notebook de auditoría y EDA de desarrollo | Pendiente de adquisición directa |
-| Tablas, figuras e interpretación vinculadas a decisiones | Pendientes de ejecución sobre brutos verificados |
-| Recuentos y límites exactos de particiones y folds | Pendiente de datos |
-| Manifiesto y hashes del test congelado | Pendiente de adquisición |
+| ADF rechaza raíz unitaria; KPSS no rechaza estacionariedad | Evidencia compatible con estacionariedad |
+| ADF no rechaza; KPSS rechaza | Evidencia compatible con no estacionariedad |
+| Ambas rechazan | Conflicto: investigar quiebres, especificación y otras formas de no estacionariedad |
+| Ninguna rechaza | Resultado inconcluso; considerar potencia y tamaño de muestra |
 
-Esta sección cubre los requisitos generales mostrados en las imágenes. No sustituye los requisitos específicos para series de tiempo de la guía completa ni presenta el EDA como terminado.
+- **Decisión de preprocesamiento:** justificar diferenciación, logaritmos, transformaciones de potencia o normalización por ventana sin aplicarlos automáticamente. Los retornos ya transforman diferencias de log-precios; una diferenciación adicional requiere evidencia.
+- **Impacto en la arquitectura:** definir qué representación recibe la red y si necesita contexto de nivel o de variabilidad; no atribuir a una red la capacidad de resolver cualquier cambio de distribución.
+- **Riesgos identificados:** estimar transformaciones con toda la serie, repetir pruebas hasta obtener un resultado deseado y trasladar conclusiones de precios directamente al objetivo.
 
+### 2.2.3. Dependencia temporal y elección de rezagos
+
+Se calcularán ACF y PACF con bandas de confianza y un periodograma o análisis espectral para las series pertinentes. Se documentarán estimador, rezagos, frecuencia, tratamiento de tendencia y supuestos de las bandas. Se examinarán también retornos al cuadrado o absolutos para explorar persistencia de variabilidad. No se concatenarán tramos separados por huecos como si fueran contiguos.
+
+La heterocedasticidad se evaluará, por ejemplo, mediante ARCH-LM sobre una serie o residuos con especificación justificada. ARCH no es una prueba general de toda no linealidad: esta se examinará mediante un diagnóstico específico y documentado cuando corresponda, respetando la dependencia temporal y sus supuestos.
+
+- **Decisión de preprocesamiento:** proponer longitudes de ventana a partir de rezagos y periodicidades de desarrollo y contrastarlas con validación temporal.
+- **Impacto en la arquitectura:** relacionar la ventana con la entrada de una MLP sobre rezagos, el campo receptivo de una CNN 1D o el contexto de una red recurrente. Son familias candidatas; la elección de exactamente tres modelos debe justificarse con literatura.
+- **Riesgos identificados:** multiplicidad de pruebas, bandas interpretadas bajo independencia inadecuada, correlaciones espurias y selección de rezagos mirando test.
+
+### 2.2.4. Frecuencia, granularidad y faltantes
+
+Se verificarán el intervalo de un minuto, orden, unicidad y unidad de los timestamps, así como duración y localización de huecos. Se distinguirán la frecuencia de las velas, la de los retornos usados para etiquetar y la cadencia de emisión del pronóstico. No se supondrá que esas tres frecuencias son iguales sin definirlo.
+
+El alcance actual contiene una sola serie BTCUSDT. El contraste entre modelos locales, globales o multivariados de múltiples activos no aplica mientras no se amplíe ese alcance.
+
+- **Decisión de preprocesamiento:** definir elegibilidad de ventanas y, si se justifica imputación, una política causal ajustada con pasado, con indicadores y límites explícitos. No calcular retornos de un minuto atravesando huecos.
+- **Impacto en la arquitectura:** fijar longitud y forma de la entrada; justificar máscaras o variables de ausencia si se incorporan.
+- **Riesgos identificados:** interpolación con futuro, confundir microsegundos y milisegundos, ventanas de duración irregular y cierre de vela aún no observable.
+
+### 2.2.5. Outliers y anomalías
+
+Se definirán criterios robustos de detección sobre desarrollo y se inspeccionarán los intervalos señalados junto con la coherencia OHLC y los archivos brutos. Un movimiento extremo de mercado no es necesariamente un error del proveedor. Su efecto sobre el error del pronóstico se estudiará con el modelo de referencia una vez implementado, separando periodos ordinarios y extremos sin ajustar reglas al test.
+
+- **Decisión de preprocesamiento:** corregir errores verificables y conservar eventos reales; cualquier clipping o transformación requiere justificación, parámetros de entrenamiento y análisis de sensibilidad.
+- **Impacto en la arquitectura:** evaluar estabilidad de entrenamiento y alternativas de pérdida dentro de las restricciones del protocolo; no aumentar complejidad solo por observar extremos.
+- **Riesgos identificados:** borrar precisamente los episodios de volatilidad que se pretende pronosticar o elegir umbrales a partir del desempeño de test.
+
+### 2.2.6. Horizonte, estrategia de pronóstico y validación
+
+Antes de construir etiquetas se fijarán el horizonte físico, la ventana de entrada y la cadencia. El horizonte de agregación de volatilidad de §1.3 no equivale automáticamente al número de salidas futuras de la red. Si se pronostican varios objetivos futuros, se declarará explícitamente una estrategia directa, recursiva o multi-salida y su evaluación por horizonte.
+
+Se implementará una partición cronológica estricta y validación con origen móvil, manteniendo las mismas muestras elegibles para los tres modelos. La biblioteca `timeseries-cv` puede asistir en la construcción de ventanas, pero deberán verificarse sus índices frente al calendario, la disponibilidad de etiquetas y el horizonte de agregación; su uso no sustituye esos controles.
+
+- **Decisión de preprocesamiento:** ajustar escalado y otras transformaciones solo con el pasado permitido de cada fold; excluir etiquetas que crucen sus límites.
+- **Impacto en la arquitectura:** fijar entrada y salida coherentes con la estrategia de pronóstico y comparar exactamente tres modelos simples seleccionados desde la literatura.
+- **Riesgos identificados:** fuga temporal por etiquetas solapadas, transformaciones globales, early stopping con test o selección de hiperparámetros usando observaciones futuras.
 
 ## 2.3. Adquisición directa desde Binance Spot
 
@@ -102,3 +153,17 @@ El EDA se ejecutará sobre los archivos oficiales verificados y siguiendo los re
 4. Auditar timestamps, unidades, duplicados, huecos, cierres y coherencia OHLC antes de crear retornos.
 5. Fijar horizonte, frecuencia de los retornos objetivo, longitud de entrada y cadencia conforme al Entregable 1.
 6. Ejecutar el EDA general y el específico de series de tiempo; vincular cada resultado a una decisión de modelado o validación.
+
+
+## 2.4. Evidencias necesarias para completar la sección
+
+| Producto reproducible | Estado |
+|---|---|
+| Fuente, términos de uso, archivo y manifiesto de adquisición | Binance Spot BTCUSDT identificado; descarga, condiciones y hashes pendientes |
+| Frecuencia, horizonte, ventana de entrada y cadencia definidos | Pendiente |
+| Código o notebook de auditoría y EDA de desarrollo | Pendiente de adquisición directa |
+| Tablas, figuras e interpretación vinculadas a decisiones | Pendientes de ejecución sobre brutos verificados |
+| Recuentos y límites exactos de particiones y folds | Pendiente de datos |
+| Manifiesto y hashes del test congelado | Pendiente de adquisición |
+
+Las secciones 2.1 y 2.2 documentan los requisitos generales y los específicos de series de tiempo del Entregable 1. Sus análisis están pendientes de ejecución; el protocolo escrito no equivale a un EDA terminado.
