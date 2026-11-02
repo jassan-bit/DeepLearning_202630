@@ -15,6 +15,7 @@ Este es un borrador metodológico, no un protocolo congelado ni un experimento t
 
 - [Problema y dataset](sections/01_problema_dataset.md): formulación matemática, hipótesis propuesta, métricas y ficha técnica.
 - [Análisis exploratorio de datos](sections/02_eda.md): protocolo de EDA y adquisición directa desde Binance Spot BTCUSDT.
+- [Estado del arte](sections/03_estado_arte.md): estrategia de búsqueda y selección documentada de tres modelos base; revisión pendiente de ejecución.
 - [Decisiones pendientes](sections/protocolo_pendiente.md): requisitos para cerrar la sección sin inventar información.
 - [Referencias y materiales](sections/referencias.md): guía del curso y antecedente científico.
 
