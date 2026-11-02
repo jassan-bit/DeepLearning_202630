@@ -137,7 +137,7 @@ Las ventanas de entrada y las etiquetas futuras pueden solaparse. Ni las filas, 
 
 ## 1.5. Dataset: pertinencia y ficha técnica
 
-**No se ha seleccionado ni descargado un dataset.** Por ello, esta sección especifica qué debe verificarse y no atribuye licencia, volumen, calidad ni procedencia a datos inexistentes.
+**Actualización:** el usuario indicó el dataset del proyecto de Machine Learning. Se identificó y auditó su artefacto procesado BTCUSDT de Binance; los resultados y límites constan en §2.3 del [EDA](02_eda.md). La ficha siguiente conserva las decisiones pendientes del diseño original y no debe confundirse con la ficha final del artefacto. Falta verificar licencia, adquirir brutos y completar la cobertura de 2026.
 
 Un conjunto de cierres de Bitcoin con marcas de tiempo y resolución suficiente permitiría construir entradas y etiquetas de manera trazable. Su idoneidad dependerá de cubrir suficientes regímenes y de contar con continuidad, procedencia y condiciones de uso verificables. Acceso público no equivale a licencia abierta ni a permiso de redistribución.
 
