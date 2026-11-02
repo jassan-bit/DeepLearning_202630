@@ -21,7 +21,7 @@ La guía contiene requisitos detallados adicionales. Esta lista no los reemplaza
 | Decisión | Estado al 2026-11-02 |
 |---|---|
 | Activo | Confirmado: Bitcoin |
-| Entregable inmediato | Entregable 1: secciones 1–4 en desarrollo; EDA ejecutado y diseño experimental documentado |
+| Entregable inmediato | Entregable 1: secciones 1–5 documentadas como avance; EDA y folds ejecutados, modelos y benchmark pendientes |
 | Repositorio | Confirmado: DeepLearning_202630, público por decisión del usuario |
 | Uso de cierre para volatilidad | Confirmado |
 | Pronóstico y objetivo | Diario, un día adelante; cuatro ventanas de volatilidad exploradas; configuraciones finales del benchmark pendientes |
