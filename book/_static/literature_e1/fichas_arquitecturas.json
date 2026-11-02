@@ -1,0 +1,236 @@
+{
+  "scope": "documentary_evidence_only_no_training_no_own_prediction_metrics",
+  "references": [
+    {
+      "study_id": "S1",
+      "authors": [
+        "Akbiyik, M. E.",
+        "Erkul, M.",
+        "Kämpf, K.",
+        "Vasiliauskaite, V.",
+        "Antulov-Fantulin, N."
+      ],
+      "year": 2023,
+      "title": "Ask “Who”, Not “What”: Bitcoin Volatility Forecasting with Twitter Data",
+      "venue": "WSDM 2023",
+      "doi": "10.1145/3539597.3570387",
+      "url": "https://github.com/meakbiyik/ask-who-not-what/blob/bcc0e4e89213da2ca3ed968574aa2d08cee39c44/paper.pdf",
+      "support": "LSTM, GRU and TCN comparative baselines; Eq(5), Figure1, Table2; hpo.py parameter search space",
+      "full_text_read": true
+    },
+    {
+      "study_id": "S2",
+      "authors": [
+        "Zeri, Tommaso"
+      ],
+      "year": 2026,
+      "month": "October",
+      "title": "Forecasting High-Frequency Bitcoin Volatility: Neural Networks, Market Microstructure and On-Chain Data",
+      "venue": "Public independent-researcher manuscript; peer review not established",
+      "doi": null,
+      "url": "https://github.com/tommasozeri/Forecasting-High-Frequency-Bitcoin-Volatility-Neural-Networks/blob/d69f951f2ced7273bdc4c3e5a8a4cb220c2ee5ce/paper_en/manuscript.tex",
+      "support": "Transformer encoder generic comparator; lines179–189 and395–409; notebookcell21,23,27",
+      "full_text_read": true
+    },
+    {
+      "study_id": "S5",
+      "authors": [
+        "Gao, Minghong",
+        "Li, Qingchen",
+        "Tao, Zheng"
+      ],
+      "year": 2023,
+      "year_status": "manuscript date; external editorial year not independently verified",
+      "title": "Comparing the Predictive Power of Five Models on Bitcoin Volatility",
+      "venue": "Author manuscript; declared Springer Learning and Analytics in Intelligent Systems32:473–486",
+      "doi": "10.1007/978-3-031-38074-7_41",
+      "doi_status": "declared in author repository; resolver not accessed",
+      "url": "https://github.com/ga0m1/bitcoin-volatility-models/blob/f19551ca4cca768354eb7e2b7c1dd5c912bd0d41/M2259.docx",
+      "support": "LSTM one layer20units and Table4; notebookcell111",
+      "full_text_read": true
+    }
+  ],
+  "selected_families": [
+    "LSTM",
+    "TCN",
+    "Transformer encoder"
+  ],
+  "selection_status": "bounded_documentary_selection; own architecture adaptation not frozen",
+  "frequency_notes": {
+    "LSTM_family": {
+      "studies": [
+        "S1",
+        "S2",
+        "S5"
+      ],
+      "frequency": "3/3",
+      "includes_bidirectional_variant": true
+    },
+    "LSTM_unidirectional": {
+      "studies": [
+        "S1",
+        "S5"
+      ],
+      "frequency": "2/3"
+    },
+    "TCN": {
+      "studies": [
+        "S1"
+      ],
+      "frequency": "1/3"
+    },
+    "Transformer_encoder": {
+      "studies": [
+        "S2"
+      ],
+      "frequency": "1/3",
+      "peer_review_confirmed": false
+    }
+  },
+  "architecture_evidence": {
+    "LSTM": {
+      "source": "S5",
+      "input_features": 1,
+      "sequence_length": 14,
+      "layers": 1,
+      "hidden": 20,
+      "head_outputs": 1,
+      "source_loss": "MSE",
+      "source_optimizer": "Adam",
+      "parameter_count_reported": null,
+      "parameter_count_analytical": 1781,
+      "project_5feature_analytical_one_bias": 2101,
+      "project_5feature_analytical_two_bias": 2181,
+      "formulas": {
+        "one_bias": "4H(p+H+1)+Hq+q",
+        "two_bias": "4H(p+H+2)+Hq+q"
+      },
+      "own_experiment": false
+    },
+    "TCN": {
+      "source": "S1",
+      "dilation_levels": 6,
+      "dilation_base_search": [
+        2,
+        3,
+        4
+      ],
+      "channels_search": [
+        32,
+        512
+      ],
+      "kernel_search": [
+        2,
+        6
+      ],
+      "source_inputs": [
+        96,
+        1
+      ],
+      "source_outputs": [
+        96,
+        1
+      ],
+      "winning_hyperparameters_reported": false,
+      "dependency_version_fixed": false,
+      "convolutions_per_block": "two only under standard residual-block assumption; not a textual reported count",
+      "parameter_formula_assumptions": "J residualblocks of2convs; fixedF; p!=F; one initial projection; no trainable normalization",
+      "parameter_formula": "(k+1)pF+(2J-1)kF^2+(2J+1)F+Fq+q",
+      "analytical_example_source_space": {
+        "J": 6,
+        "F": 32,
+        "k": 2,
+        "p": 1,
+        "q": 96,
+        "count": 26208,
+        "not_a_reported_winner": true
+      },
+      "project_example_p5_q1": {
+        "count": 23457,
+        "not_frozen": true
+      },
+      "own_experiment": false
+    },
+    "Transformer_encoder": {
+      "source": "S2_runB",
+      "input_features_declared": 41,
+      "input_bars": 48,
+      "bar_minutes": 5,
+      "forecast_bars": 6,
+      "encoder_layers": 2,
+      "heads": 4,
+      "model_dim": 48,
+      "ff_dim": 96,
+      "max_position_length": 96,
+      "pre_layer_norm": true,
+      "encoder_activation": "ReLU default",
+      "head": "Dropout->Dense(2d,d)->GELU->Dense(d,1)",
+      "dropout": 0.21,
+      "learning_rate": 0.0003,
+      "weight_decay": 0.0014,
+      "input_noise": 0.12,
+      "parameter_count_reported": null,
+      "parameter_formula": "18d^2+(F+M+25)d+1",
+      "parameter_count_analytical": 49249,
+      "reported_result_aggregation": "mean predictions from3seeds42/43/44 before metric calculation",
+      "own_experiment": false
+    }
+  },
+  "reported_metrics": [
+    {
+      "source": "S1_Table2",
+      "model": "LSTM",
+      "metric": "RMSE",
+      "mean": 2.37,
+      "sd": 0.19,
+      "runs": 20,
+      "own_experiment": false
+    },
+    {
+      "source": "S1_Table2",
+      "model": "TCN",
+      "metric": "RMSE",
+      "mean": 2.58,
+      "sd": 0.07,
+      "runs": 20,
+      "own_experiment": false
+    },
+    {
+      "source": "S1_Table2",
+      "model": "TCN",
+      "metric": "MAPE",
+      "mean": 0.23,
+      "sd": 0.01,
+      "runs": 20,
+      "own_experiment": false
+    },
+    {
+      "source": "S5_Table4",
+      "model": "LSTM20",
+      "metric": "RMSE",
+      "value": 0.074071,
+      "sd": null,
+      "evaluation": "validation_scaled",
+      "own_experiment": false
+    },
+    {
+      "source": "S2_RunB_TableResults",
+      "model": "SELF-ATT",
+      "metric": "R2_training_mean",
+      "value": 0.6,
+      "aggregation": "prediction average3seeds",
+      "sd": null,
+      "own_experiment": false
+    },
+    {
+      "source": "S2_RunB_TableResults",
+      "model": "SELF-ATT",
+      "metric": "QLIKE",
+      "value": 0.562,
+      "aggregation": "prediction average3seeds",
+      "sd": null,
+      "own_experiment": false
+    }
+  ],
+  "file_sha256": "ffd92e361478947e3c7908b6e57fd7f0f3c1cfde9fbe9b7acf1a44b0e30e2980"
+}

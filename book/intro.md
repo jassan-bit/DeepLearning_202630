@@ -5,27 +5,29 @@
 **Autor:** Jassan Arteta  
 **Avance:** Entregable 1 · Secciones 1–7 · 2 de noviembre de 2026
 
-Este libro desarrolla el **Entregable 1 de Deep Learning** para el pronóstico de volatilidad de **Bitcoin**, utilizando precios de cierre obtenidos directamente de **Binance Spot (BTCUSDT)**. La estructura, el EDA, la revisión de literatura y el protocolo experimental se rigen por la guía del Entregable 1.
+Este libro desarrolla el **Entregable 1 de Deep Learning** para el pronóstico de volatilidad de **Bitcoin**, utilizando precios de cierre obtenidos directamente de **Binance Spot (BTCUSDT)**. La revisión se contrasta con la guía del Entregable 1. El alcance autorizado aquí es documental y de EDA; el usuario reservó la ejecución de modelos para E2. Esa instrucción de trabajo se distingue de la guía escrita, que sí incorpora ejecución en sus secciones 4–5.
 
 ```{important}
-Este es un borrador metodológico, no un protocolo congelado ni un experimento terminado. La fuente seleccionada es Binance Spot BTCUSDT. Se descargaron y verificaron los archivos oficiales del 01/01/2023 al 30/10/2026 inclusive UTC. El EDA de calidad, precios y retornos de desarrollo está ejecutado y documentado en la sección 2; se analizaron cuatro ventanas de volatilidad diaria como candidatas; la configuración final se fijará antes del benchmark. La adquisición verificada no equivale a un experimento terminado. No se han entrenado modelos de Deep Learning. Las decisiones no confirmadas están identificadas como **pendientes** o **propuestas**.
+La adquisición y el EDA de desarrollo están ejecutados. El proyecto fija volatilidad de siete retornos diarios, horizonte de un día, entradas OHLCV de 7/14/21/28 días, RMSE y mejora operativa relativa del 5 % frente a persistencia. La revisión aporta búsqueda complementaria, cribado, matriz de tres textos, fichas y selección documental LSTM–TCN–encoder Transformer. La cobertura es acotada y el apoyo de atención procede de un manuscrito gris. No se incorporan resultados experimentales propios a este E1 documental.
 ```
 
 ## Qué contiene este avance
 
 - [Problema y dataset](sections/01_problema_dataset.md): formulación matemática, hipótesis propuesta, métricas y ficha técnica.
 - [Análisis exploratorio de datos](sections/02_eda.md): adquisición directa desde Binance Spot BTCUSDT y análisis de calidad, precios y retornos de desarrollo.
-- [Estado del arte](sections/03_estado_arte.md): bibliografía de treinta referencias con citas y síntesis crítica; cribado sistemático y selección final de modelos pendientes.
-- [Diseño experimental y piloto](sections/04_implementacion_evaluacion.md): pipeline, repeticiones, potencia y preregistro; entrenamiento y piloto pendientes.
-- [Benchmark y baseline](sections/05_benchmark.md): tablas, ranking, diferencias y umbral de mejora; benchmark pendiente de ejecución.
-- [Procedimiento de series de tiempo](sections/06_procedimiento.md): aplicación de la ruta 6.3 de la guía al proyecto y correspondencia con la evidencia disponible.
+- [Estado del arte](sections/03_estado_arte.md): búsqueda y cribado trazables, matriz, frecuencias, tres fichas y comparación crítica; selección de trabajo condicionada al corpus.
+- [Diseño de la etapa E2](sections/04_implementacion_evaluacion.md): criterios de implementación, validación y piloto previstos, sin ejecución propia en esta revisión.
+- [Criterios del benchmark para E2](sections/05_benchmark.md): métricas, tablas futuras, inferencia y reglas de interpretación.
+- [Procedimiento temporal](sections/06_procedimiento.md): ruta 6.4 de regresión temporal y disponibilidad causal de covariables.
 - [Limitaciones y entregables](sections/07_limitaciones_entregables.md): potencia, límites inferenciales, rúbrica y estado verificable de los productos exigidos.
-- [Decisiones pendientes](sections/protocolo_pendiente.md): requisitos para cerrar la sección sin inventar información.
-- [Referencias y materiales](sections/referencias.md): guía del curso y antecedente científico.
+- [Decisiones y estado documental](sections/protocolo_pendiente.md): cambios ejecutados, limitaciones de acceso y proyección a E2.
+- [Referencias y materiales](sections/referencias.md): catálogo bibliográfico inicial y fuentes adicionales de las fichas.
 
 ## Alcance del proyecto
 
-El Entregable 1 completo exige EDA reproducible, revisión de literatura, selección justificada de **tres modelos simples de Deep Learning**, piloto y evaluación estadística. El análisis de calidad, precios y retornos de desarrollo está ejecutado y documentado en la sección 2. La definición final del objetivo, la revisión y selección de modelos, el piloto, el entrenamiento y la evaluación estadística permanecen pendientes. MLP, CNN1D y RNN simple son candidatos provisionales, no modelos seleccionados. Las familias observadas en clase son MLP, CNN, RNN, autoencoders y Transformer.
+El PDF solicita EDA, literatura, tres referencias DL e implementación experimental; sus requisitos empíricos permanecen identificados. Por instrucción del usuario, esta intervención cierra productos documentales y reserva entrenamiento, tuning, piloto y benchmark propios para E2. No se atribuye al docente una modificación que no se ha aportado ni se declara cumplimiento total del PDF original.
+
+La elección documental de familias prioriza diversidad entre memoria, convolución y atención. No equivale al ranking de frecuencia pura: GRU es más frecuente que TCN y Transformer en el pequeño corpus. Las configuraciones concretas y la suficiencia académica de la fuente gris de atención deben revisarse antes de implementar. Las treinta referencias iniciales se conservan y se añaden tres fuentes para las fichas, dando 33 entradas citadas.
 
 Solo se considera Bitcoin. Otras criptomonedas son una posible ampliación futura. Los documentos completos de los entregables 2 y 3 aún no se han recibido; no se inventan sus requisitos.
 

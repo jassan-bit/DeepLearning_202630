@@ -1,0 +1,76 @@
+{
+  "checked_at_utc": "2026-11-02T22:39:20.670688+00:00",
+  "scope": "documentary inspection only; no model code, notebook, weights or market arrays executed",
+  "conclusion": "No sufficient new evidence to count an independent nonlinear MLP as a comparative baseline published in the checked Bitcoin studies.",
+  "guo2018": {
+    "reference": "Guo, T.; Bifet, A.; Antulov-Fantulin, N. (2018). Bitcoin Volatility Forecasting with a Glimpse into Buy and Sell Orders. ICDM,989–994.",
+    "repository": "https://github.com/weilai0980/mixture_models_crypto",
+    "commit": "7aeaf66bb4438d022ae0cf2af2ffec317a8d068f",
+    "association_evidence": "Repository README identifies the exact paper and supplies its BibTeX.",
+    "paper_fulltext_recovered": false,
+    "independent_nonlinear_MLP_class_present": true,
+    "class_evidence": "mixture_neural.py lines922–1018, class neural_plain_mlp; distinct from neural_mixture_dense.",
+    "architecture_details": {
+      "input": "flat concatenated features, dimension dim_x",
+      "hidden_widths": "hidden_dims supplied externally; no fixed winning architecture confirmed",
+      "activation": "ReLU, lines932 and949",
+      "dropout": "line936",
+      "residual": "h=ReLU(hW+b)+previous_h in additional hidden layers, line949; equal hidden widths are implicitly required",
+      "regularization": "mixed L1/L2 on hidden weights and L2 output; lines933,951,960",
+      "output": "single linear scalar, lines953–957",
+      "loss": "MSE plus regularization, lines997–1000",
+      "optimizer": "Adam, line1000"
+    },
+    "baseline_use_verified": false,
+    "reason": "No invocation of neural_plain_mlp found in inspected training drivers or code cells; train_mixture_neural.py lines101–126 routes only lstm-concat and lstm-mixture. A class declaration does not establish a published comparator.",
+    "published_MLP_metrics_verified": false,
+    "treatment": "Primary author code context/architecture candidate; do not add to frequency of published baselines or claim use in the paper.",
+    "source_manifest": "primary_sources/guo_source_manifest.json",
+    "additional_checks": "primary_sources/guo_other_source_checks.json"
+  },
+  "herremans_low2025": {
+    "repository": "https://github.com/dorienh/bitcoin_synthesizer",
+    "commit": "8570f4e8bdcfe1dd609e5f094d3d5b0059a810dc",
+    "independent_MLP_baseline_verified": false,
+    "evidence": [
+      "model_training/kw_lstm.py lines26–30 and45–55: LSTM followed by linear output head.",
+      "model_training/kw_transformer.py lines11–31 and40–53: Transformer encoder with Synthesizer attention variants and linear decoder.",
+      "Saved models/dense,fac_dense,mix_dense name Synthesizer variants; their names are not independent feedforward-comparator evidence."
+    ],
+    "treatment": "Do not count transformer feedforward blocks, attention modules or output heads as an independently compared MLP.",
+    "sources": [
+      {
+        "url": "https://raw.githubusercontent.com/dorienh/bitcoin_synthesizer/8570f4e8bdcfe1dd609e5f094d3d5b0059a810dc/README.md",
+        "sha256": "422b73d03f47446e4871056f4086becec56328c6343668c5f76928b11305a40c",
+        "bytes": 2900
+      },
+      {
+        "url": "https://raw.githubusercontent.com/dorienh/bitcoin_synthesizer/8570f4e8bdcfe1dd609e5f094d3d5b0059a810dc/model_training/kw_lstm.py",
+        "sha256": "ca34638eb46cc244557ebf225964da2b45c556901ce70bfcad8b440d55256b8d",
+        "bytes": 5035
+      },
+      {
+        "url": "https://raw.githubusercontent.com/dorienh/bitcoin_synthesizer/8570f4e8bdcfe1dd609e5f094d3d5b0059a810dc/model_training/kw_transformer.py",
+        "sha256": "d44a15c0d9fbb27febcd8b15b27696e9b1887478b0dfca9aa41bee3152d52abb",
+        "bytes": 5050
+      },
+      {
+        "url": "https://raw.githubusercontent.com/dorienh/bitcoin_synthesizer/8570f4e8bdcfe1dd609e5f094d3d5b0059a810dc/model_training/kw_TransformerEncoderLayer.py",
+        "sha256": "0b538a8b4db8a77a1037373886296a24cc316a131c25c9d34b872cf87fdc1e10",
+        "bytes": 5220
+      }
+    ]
+  },
+  "searches": {
+    "count": 11,
+    "sanitized_log": "primary_sources/sanitized_search_log.json",
+    "new_candidate_inspected": "weilai0980/mixture_models_crypto",
+    "full_text_studies_added_to_review": 0
+  },
+  "limitations": [
+    "Search limited to permitted public GitHub sources; no exhaustive bibliographic-database claim.",
+    "Not finding an invocation in inspected files is not proof that the paper never evaluated MLP.",
+    "Guo2018 lies outside the previously declared 2019–2026 calendar scope; any inclusion requires an explicit antecedent exception.",
+    "No metrics, training results or model weights were computed in this inspection."
+  ]
+}

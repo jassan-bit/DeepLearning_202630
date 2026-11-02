@@ -1,9 +1,9 @@
-# 4. Implementación y Evaluación de los Tres Modelos Base
+# 4. Diseño de implementación y evaluación para la etapa E2
 
-Los tres modelos extraídos de la literatura deberán implementarse, compararse bajo el **mismo entorno experimental** y evaluarse con un protocolo común. Esta sección documenta el diseño y los requisitos del piloto; no presenta entrenamientos ni resultados que aún no existen.
+La selección documental de §3 identifica LSTM, TCN y encoder Transformer, con las limitaciones de cobertura y calidad allí declaradas. Este capítulo conserva el diseño necesario para trasladar esas familias a una evaluación futura. No contiene resultados propios de entrenamiento.
 
 ```{important}
-Los datos y el EDA de desarrollo están disponibles y los folds de validación se materializaron con `timeseries-cv`. Todavía faltan la selección bibliográfica de los tres modelos, el margen práctico y el cierre de configuraciones. El piloto, el dimensionamiento y el benchmark no se han ejecutado.
+Por instrucción de alcance del usuario, los experimentos, el tuning, el piloto y el benchmark se reservan para E2. La guía escrita del curso sí los incluye en sus secciones 4–5 de E1: esta proyección documental no equivale a haber cumplido esos requisitos empíricos ni acredita una modificación formal del docente. En E1 se fijan n=7, horizonte de un día, RMSE y mejora relativa del 5 %; la configuración implementada y su ejecución quedan para E2.
 ```
 
 ## 4.1. Diseño Experimental
@@ -18,11 +18,11 @@ Las ventanas no se forman atravesando días incompletos. Los ZIP originales perm
 
 ### 4.1.2. Variable objetivo y horizonte
 
-Se exploran cuatro definiciones de volatilidad histórica poblacional de **retornos diarios**, con $n=7,14,21,28$ y divisor $n$, sin anualizar. Esta ventana es distinta de $D$, la longitud de entrada.
+La definición principal fijada es volatilidad histórica poblacional de **siete retornos diarios** ($n=7$), sin anualizar. Las ventanas $n=14,21,28$ se conservan como sensibilidad de objetivos distintos. La longitud de entrada sigue siendo $D=7,14,21,28$, sin elegir una D principal.
 
-Se mantiene el horizonte principal de **un día adelante** y la convención de §1.3: el pronóstico se emite al inicio del día $t$, usando información hasta $t-1$, para una volatilidad que incorpora el retorno todavía desconocido del día $t$. La salida es escalar y no negativa. Los análisis de EDA no han seleccionado una definición ganadora ni autorizado horizontes adicionales.
+Se mantiene el horizonte principal de **un día adelante** y la convención de §1.3: el pronóstico se emite al inicio del día $t$, usando información hasta $t-1$, para una volatilidad que incorpora el retorno todavía desconocido del día $t$. La salida es escalar y no negativa. El usuario fijó n=7; esa decisión no procede de elegir un ganador por los gráficos ni autoriza horizontes adicionales.
 
-La configuración inicial propone **MSE como pérdida** y **RMSE como métrica primaria**. El reporte incluirá MAPE, MAE, RMSE y MSE, con MASE adicional según la guía de series de tiempo. Antes del entrenamiento deben cerrarse la política de ceros de MAPE y el rezago del denominador MASE; no se usarán resultados de test para elegirlos.
+El diseño prevé **MSE como pérdida** y fija **RMSE como métrica primaria**. El reporte incluirá MAPE, MAE, RMSE y MSE, con MASE adicional según la guía de series de tiempo. MAPE usa objetivos positivos con cobertura explícita; MASE emplea rezago de un día de calendario y escala ajustada solo con entrenamiento. Estas políticas ya están definidas sin consultar test.
 
 ### 4.1.3. Partición, proporciones y validación
 
@@ -78,7 +78,7 @@ Las semillas describen variabilidad del entrenamiento sobre un mercado observado
 
 ### 4.1.6. Diferencia mínima de interés y diferencias pareadas
 
-El margen práctico $\delta>0$ debe fijarse antes del piloto, sin elegirlo para acomodar sus resultados, con justificación en las unidades de la RMSE y coherencia con §1.4. Sigue pendiente; no se inventa un valor para producir un tamaño muestral.
+El margen práctico aceptado es una **reducción relativa del 5 % de RMSE frente a persistencia**, con las mismas fechas de evaluación. Es un criterio operativo y no una utilidad financiera calibrada. Para planificar en unidades absolutas en E2 se aplicará la regla $\delta_{\mathrm{plan}}=0{,}05\,\mathrm{RMSE}_{\mathrm{pers,desarrollo}}$ antes de observar el piloto, sin escoger retrospectivamente un valor favorable.
 
 Para un contraste predefinido entre modelos $A$ y $B$, sobre las mismas fechas y semillas:
 
@@ -106,7 +106,7 @@ El factor de cuantiles es aproximadamente **7,85** para esos valores. El número
 
 Se documentarán los supuestos y la incertidumbre de estimar dispersión con pocas repeticiones. La aproximación no resuelve por sí sola dependencia temporal o multiplicidad; si se planifican varias afirmaciones, se registrará el ajuste y se revisará la potencia correspondiente. Si la normalidad no es defendible, se justificará una alternativa o simulación de potencia que respete el diseño, sin escogerla según los resultados de test.
 
-Una dispersión piloto estimada como cero requiere investigar redondeo, determinismo o piloto insuficiente; no justifica concluir que no hacen falta ejecuciones. **No hay un valor calculado de $R$ todavía**, porque faltan $\delta$ y las diferencias observadas del piloto.
+Una dispersión piloto estimada como cero requiere investigar redondeo, determinismo o piloto insuficiente; no justifica concluir que no hacen falta ejecuciones. **No hay un valor calculado de $R$ todavía**, porque la conversión del margen a escala de planificación y la dispersión del piloto se calcularán en E2.
 
 ### 4.1.8. Diferencia mínima detectable
 
@@ -121,9 +121,9 @@ Si MDE es mayor que $\delta$, se ampliará el diseño o se declarará esa limita
 
 ### 4.1.9. Preregistro fechado y trazabilidad
 
-Se creó el [borrador de preregistro](../_static/experiments/preregistro_piloto.json), conservado en `experiments/preregistro_piloto.json`, fechado el **2 de noviembre de 2026**, con configuración conocida, semillas previstas y campos por cerrar. Su estado es **borrador no congelado**, no un preregistro experimental completo. La [plantilla CSV de resultados](../_static/experiments/piloto_resultados_plantilla.csv) contiene solo encabezados y no representa ejecuciones realizadas.
+Se conserva como antecedente para E2 el [borrador de preregistro](../_static/experiments/preregistro_piloto.json), conservado en `experiments/preregistro_piloto.json`, fechado el **2 de noviembre de 2026**, con configuración conocida, semillas previstas y campos por cerrar. Su estado es **borrador no congelado**, no un preregistro experimental completo. La [plantilla CSV de resultados](../_static/experiments/piloto_resultados_plantilla.csv) contiene solo encabezados y no representa ejecuciones realizadas.
 
-Antes del piloto se cerrará el protocolo inicial. Después se incorporarán sus resultados y el dimensionamiento en una versión fechada y congelada **antes de la ejecución definitiva**, conservando el historial de cambios. El registro debe identificar los modelos, datos y hashes, código, folds, objetivos, comparaciones, transformaciones, reglas de parada, $\delta$, métrica, supuestos y número final de ejecuciones.
+El [registro de decisiones documentales de E1](../_static/e1/decisiones.json) contiene el criterio vigente; el borrador histórico no lo reemplaza. Antes del piloto de E2 se cerrará su protocolo experimental inicial. Después se incorporarán sus resultados y el dimensionamiento en una versión fechada y congelada **antes de la ejecución definitiva**, conservando el historial de cambios. El registro debe identificar los modelos, datos y hashes, código, folds, objetivos, comparaciones, transformaciones, reglas de parada, $\delta$, métrica, supuestos y número final de ejecuciones.
 
 ### 4.1.10. Estado del diseño y del piloto
 
@@ -131,23 +131,24 @@ Antes del piloto se cerrará el protocolo inicial. Después se incorporarán sus
 |---|---|
 | Datos y EDA de desarrollo | Ejecutados y documentados |
 | Folds de validación de 2024 | Materializados con `timeseries-cv` |
-| Selección bibliográfica de tres modelos | Pendiente |
-| Configuraciones, contrastes, margen práctico y política de métricas | Pendientes de cierre |
+| Selección bibliográfica de tres familias | LSTM, TCN y encoder Transformer; selección documental acotada en §3 |
+| Métrica principal, margen y políticas de métricas | RMSE, mejora relativa del 5 %, MAPE sobre objetivos positivos y MASE con rezago de un día fijados |
+| Configuraciones y protocolo final de contrastes | Pendientes de cierre en E2 |
 | Preregistro | Borrador fechado; no congelado |
 | Cinco ejecuciones piloto por modelo | No ejecutadas |
 | Media, desviación, CV y diferencias pareadas | Sin resultados todavía |
-| $R$ requerido y MDE | Pendientes de piloto y $\delta$ |
+| $R$ requerido y MDE | Cálculo futuro de E2; margen relativo ya fijado |
 | Entrenamiento definitivo y test | No ejecutados |
 
-La presencia de esta sección no sustituye las implementaciones y evaluaciones posteriores del Entregable 1.
+La presencia de esta sección no sustituye las implementaciones y evaluaciones reservadas para E2 en el alcance solicitado.
 
 ## 4.2. Implementación de los Tres Modelos Base
 
-Los modelos deberán ser exactamente los tres seleccionados en §3.2, con la configuración reportada en la literatura o una configuración mínima justificada mediante evidencia. **Todavía no se han seleccionado ni implementado esas tres arquitecturas.** Los apartados siguientes definen las condiciones verificables que debe cumplir su implementación; no son resultados de entrenamiento.
+Los modelos deberán pertenecer a las tres familias seleccionadas en §3.2, con la configuración reportada en la literatura o una configuración mínima justificada mediante evidencia. **LSTM, TCN y encoder Transformer constituyen una selección documental de trabajo, con los límites de §3; sus configuraciones implementadas y ejecuciones quedan para E2.** Los apartados siguientes definen las condiciones verificables que debe cumplir su implementación; no son resultados de entrenamiento.
 
 ### 4.2.1. Arquitecturas y contrato común
 
-Cada modelo tendrá un identificador, referencias y una descripción reproducible de capas, unidades, activaciones, conexiones y salida no negativa. La arquitectura se enlazará con las ecuaciones y el análisis de complejidad de §3.3. Si la literatura no ofrece detalles suficientes, se seguirá la regla de búsqueda de arquitectura de §3.2.7; no se completarán por preferencia personal.
+Cada modelo tendrá un identificador, referencias y una descripción reproducible de capas, unidades, activaciones, conexiones y salida no negativa. La arquitectura se enlazará con las ecuaciones y el análisis de complejidad de §3.3. Si la literatura no ofrece detalles suficientes, se seguirá la regla de selección y ampliación de evidencia de §3.2.3; no se completarán por preferencia personal.
 
 | Componente | Condición común para los tres modelos |
 |---|---|
@@ -225,7 +226,7 @@ El costo real puede variar entre modelos aun con el mismo número de evaluacione
 
 ### 4.2.7. Bibliotecas y versiones
 
-Se podrá implementar desde cero o utilizar un framework justificado, conservando versión, procedencia y configuración. La elección del framework de Deep Learning sigue pendiente junto con las arquitecturas; no se afirma que ya exista una implementación validada.
+Se podrá implementar desde cero o utilizar un framework justificado, conservando versión, procedencia y configuración. La elección del framework y de las configuraciones concretas queda para E2; las familias documentales ya están seleccionadas; no se afirma que ya exista una implementación validada.
 
 Actualmente están verificados el entorno de EDA de `requirements-eda.lock.txt` y el entorno de partición de `requirements-cv.txt`. `timeseries-cv` genera particiones y **no entrena las redes**. Su dependencia de NumPy menor que 2 se mantiene aislada del entorno del EDA, según §2.4.1.
 
@@ -235,7 +236,8 @@ Antes del piloto se fijará el entorno de entrenamiento con versiones compatible
 
 | Producto | Modelo 1 | Modelo 2 | Modelo 3 |
 |---|---|---|---|
-| Identidad y arquitectura extraídas de literatura | Pendiente | Pendiente | Pendiente |
+| Identidad y ficha documental | LSTM, §3.3.1 | TCN, §3.3.2 | Encoder Transformer, §3.3.3 |
+| Configuración de implementación propia | Pendiente en E2 | Pendiente en E2 | Pendiente en E2 |
 | Código y prueba funcional | Pendiente | Pendiente | Pendiente |
 | Espacio de búsqueda y presupuesto comparable | Pendiente | Pendiente | Pendiente |
 | Hiperparámetros elegidos y regla de parada | Pendiente | Pendiente | Pendiente |
@@ -344,7 +346,7 @@ Esta lista distingue requisitos establecidos de controles ejecutados. No se pres
 
 ## 4.4. Evaluación
 
-El proyecto corresponde a **series de tiempo con objetivo continuo**. Se aplican las métricas de regresión y los diagnósticos temporales de la guía. Las métricas de clasificación, segmentación, texto o localización espacial no se incorporan a este problema de volatilidad de Bitcoin.
+El proyecto corresponde a **regresión temporal con objetivo continuo, ruta 6.4 de la guía**, porque las entradas OHLCV no incluyen rezagos explícitos del objetivo. Se aplican las métricas de regresión y los diagnósticos temporales pertinentes. Las métricas de clasificación, segmentación, texto o localización espacial no se incorporan a este problema de volatilidad de Bitcoin.
 
 ```{important}
 Esta sección define la evaluación que se ejecutará. Todavía no hay predicciones de los tres modelos ni resultados de test; no se presentan valores de desempeño, curvas de redes o p-values de residuos inexistentes.
@@ -352,7 +354,7 @@ Esta sección define la evaluación que se ejecutará. Todavía no hay prediccio
 
 ### 4.4.1. Métrica principal y métricas secundarias
 
-Se propone **RMSE como métrica principal**, coherente con la pérdida MSE, y se reportarán **MAE, MSE, R², MAPE y MASE**, atendiendo tanto a las indicaciones específicas recibidas como a la guía general. sMAPE es una alternativa complementaria si se registra antes de evaluar; no se elegirá después para favorecer un resultado.
+Se fija **RMSE como métrica principal**, coherente con la pérdida MSE prevista, y se reportarán **MAE, MSE, R², MAPE y MASE**, atendiendo tanto a las indicaciones específicas recibidas como a la guía general. sMAPE es una alternativa complementaria si se registra antes de evaluar; no se elegirá después para favorecer un resultado.
 
 Para objetivos $Y_t$, predicciones $\widehat Y_t$ y $N$ pares elegibles del mismo modelo, configuración, semilla y horizonte, se define $e_t=Y_t-\widehat Y_t$:
 
@@ -382,7 +384,7 @@ Si hay $Y_t=0$, esa expresión no está definida sobre el conjunto completo. Se 
 
 Si se adopta sMAPE, se registrará su convención exacta, incluido el factor de escala y el tratamiento del caso $Y_t=\widehat Y_t=0$. Que sea simétrica no elimina todos los problemas cerca de cero.
 
-Para MASE se fijará un rezago de referencia $s$ usando exclusivamente desarrollo y se calculará, en el entrenamiento permitido de cada fold:
+Para MASE se fija el rezago de referencia $s=1$ día de calendario y se calculará, en el entrenamiento permitido de cada fold:
 
 $$
 a_{\mathrm{train},s}
@@ -393,7 +395,7 @@ q_t=\frac{|Y_t-\widehat Y_t|}{a_{\mathrm{train}(t),s}},
 \mathrm{MASE}=\frac1N\sum_t q_t.
 $$
 
-$\mathcal J_s$ contiene pares de etiquetas válidas separados por **$s$ días de calendario**, completamente observables en ese entrenamiento. No se comprimen huecos para fingir consecutividad. El denominador es común a los modelos comparados dentro de cada fold; puede variar al crecer el entrenamiento. Si vale cero o no hay pares suficientes, MASE se marca no definida para esos casos y se reporta su cobertura. El valor de $s$ sigue pendiente de cierre, sin escogerlo mirando test.
+$\mathcal J_s$ contiene pares de etiquetas válidas separados por **$s$ días de calendario**, completamente observables en ese entrenamiento. No se comprimen huecos para fingir consecutividad. El denominador es común a los modelos comparados dentro de cada fold; puede variar al crecer el entrenamiento. Si vale cero o no hay pares suficientes, MASE se marca no definida para esos casos y se reporta su cobertura. Se fija $s=1$ día como referencia no estacional de persistencia, sin escogerlo mirando test.
 
 ### 4.4.3. Evaluación por horizonte y referencias ingenuas
 
@@ -449,7 +451,7 @@ Los huecos y el solapamiento de objetivos móviles se considerarán al elegir tr
 
 | Producto de evaluación | Estado |
 |---|---|
-| Métricas, escalas y agregación documentadas | Protocolo disponible; políticas de MAPE/MASE pendientes de cierre |
+| Métricas, escalas y agregación documentadas | Criterios y políticas de MAPE/MASE fijados; ejecución futura en E2 |
 | Predicciones de los tres modelos por fecha y semilla | No generadas |
 | Tablas por configuración, horizonte y referencia ingenua | Sin resultados todavía |
 | Media, desviación, intervalos y comparación pareada | Pendientes de corridas |

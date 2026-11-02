@@ -3,7 +3,7 @@
 Un benchmark con tres modelos y pocas ejecuciones puede tener **potencia muy baja**. El Entregable 1 exige reconocerlo y cuantificarlo, en lugar de interpretar los p-values como si cualquier diseño pudiera detectar diferencias pequeñas.
 
 ```{important}
-Las limitaciones siguientes son propiedades y riesgos del diseño; no resultados observados de los tres modelos. Sus implementaciones, piloto y comparaciones aún están pendientes. Un resultado inconcluso bien sustentado es aceptable; no se buscará significación a cualquier costo.
+Las limitaciones siguientes son propiedades teóricas del diseño; no resultados observados del proyecto. Su implementación, piloto y comparaciones se reservan para E2 según el alcance indicado por el usuario. La guía escrita los exige en E1, diferencia que permanece explícita. Un resultado inconcluso bien sustentado es aceptable; no se buscará significación a cualquier costo.
 ```
 
 ## 7.1. Potencia, tamaño de muestra y multiplicidad
@@ -78,17 +78,17 @@ No se cambiarán retrospectivamente la métrica, los pares, las semillas, los pe
 
 Todavía no se ha medido la potencia ni la superioridad entre los modelos del proyecto. Las advertencias teóricas de este capítulo no constituyen pruebas ejecutadas sobre sus resultados.
 
-## 7.4. Entregables y estado real
+## 7.4. Entregables y estado documental real
 
-| Producto exigido | Evidencia disponible | Trabajo pendiente |
+| Producto | Evidencia de esta revisión E1 | Proyección o límite |
 |---|---|---|
-| Informe en Jupyter Book | Capítulos y navegación publicados; EDA con figuras | Completar productos experimentales y conclusiones sustentadas |
-| Código completo de extremo a extremo | Scripts de adquisición, EDA y partición | Tres modelos, entrenamiento, evaluación y análisis estadístico ejecutables |
-| Dataset o instrucciones exactas de adquisición | Archivos oficiales, URLs, checksums, manifiesto y descargador | Conservar trazabilidad de derivados finales y test supervisado |
-| Síntesis de literatura y flujo de búsqueda | Estrategia y plantillas de la sección 3 | Búsquedas, conteos, cribado, matriz real y diagrama de flujo |
-| Tabla comparativa, baseline e inferencia | Protocolo y tablas previstas en la sección 5 | Predicciones, métricas, intervalos, efectos, contrastes y baseline medido |
-| Dependencias, semillas y configuración de cada corrida | Entornos de EDA/partición y borrador de preregistro | Entorno de entrenamiento, registros y artefactos de las corridas |
-| Declaraciones a priori de métrica, margen, unidad y partición | RMSE propuesta, calendario, unidades discutidas y preregistro fechado como borrador | Fijar $\delta$, plan inferencial y configuración final antes de ejecutar |
+| Informe en Jupyter Book | Problema, EDA y revisión documental con citas y evidencia | No certifica cumplimiento del bloque empírico del PDF |
+| Datos y código de EDA | Adquisición, checksums, análisis de desarrollo y partición | Se conserva exclusión estricta y no se evalúa test |
+| Búsqueda y cribado | Registros reales, flujo y decisiones de una vía complementaria | Bases académicas bloqueadas; cobertura no exhaustiva |
+| Matriz y calidad de literatura | Tres textos completos, métricas de autores y evaluación de calidad | No mezcla objetivos o escalas ni inventa resultados propios |
+| Selección y tres fichas | LSTM, TCN y encoder Transformer, con ecuaciones, diagramas y complejidad | Corpus acotado; una fuente de atención sin revisión por pares acreditada |
+| Criterios a priori | n7, h1, cuatro entradas D, RMSE, margen relativo del 5 %, MAPE y MASE | Variantes y parámetros experimentales se fijarán en E2 |
+| Benchmark e inferencia propia | Marco metodológico y tablas señaladas como futuras | Ejecución reservada para E2; el PDF la sitúa originalmente en E1 |
 
 La disponibilidad del libro no acredita que todos los productos estén completos. Los resultados inexistentes no se reemplazarán por ejemplos, tablas vacías presentadas como mediciones o conclusiones de literatura atribuidas al experimento propio.
 
@@ -108,7 +108,7 @@ Estos valores son **pesos de evaluación**, no porcentajes de avance ni una cali
 
 ## 7.6. Buenas prácticas y cierre
 
-El cierre del Entregable 1 deberá comprobar que:
+El cierre experimental que describe el PDF —reservado aquí a E2 por instrucción del usuario— deberá comprobar que:
 
 1. Se realizaron múltiples ejecuciones, con el mínimo aplicable y el número que exija la potencia.
 2. Se reportaron media, desviación muestral, IC del 95 % y tamaños de efecto con unidades identificadas.
@@ -118,4 +118,4 @@ El cierre del Entregable 1 deberá comprobar que:
 6. La métrica principal, $\delta$, la unidad inferencial y el protocolo quedaron fijados antes de la evaluación pertinente.
 7. El baseline y el margen exigible a modelos avanzados se concluyeron desde resultados verificables, distinguiendo significación y relevancia práctica.
 
-El análisis esperado es exhaustivo y reconoce la potencia limitada de comparar solo tres modelos. En el estado actual, este cierre es una lista de comprobación pendiente de completar con la revisión, implementaciones, piloto y benchmark; no una declaración de cumplimiento total.
+El análisis esperado es exhaustivo y reconoce la potencia limitada de comparar solo tres modelos. La revisión documental y el EDA se evalúan mediante sus artefactos. Esta lista experimental corresponde a la etapa posterior solicitada y no se utiliza para afirmar cumplimiento total del PDF original.

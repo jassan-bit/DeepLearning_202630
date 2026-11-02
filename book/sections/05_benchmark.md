@@ -1,9 +1,9 @@
-# 5. Benchmark de los Modelos Base y Definición del Baseline
+# 5. Criterios del benchmark y baseline previstos para E2
 
 El benchmark comparará conjuntamente los **tres modelos de Deep Learning seleccionados desde la literatura**, bajo condiciones reproducibles, justas y comparables. Su resultado será identificar una referencia mínima de desempeño que un modelo avanzado deberá superar con evidencia estadística y relevancia práctica.
 
 ```{important}
-Este capítulo establece el protocolo y las tablas requeridas. Todavía no hay tres modelos seleccionados y entrenados ni resultados de test: no existe un ganador o baseline experimental medido. La persistencia es una referencia contextual y no sustituye uno de los tres modelos obligatorios.
+Este capítulo contiene criterios y plantillas para la etapa experimental E2 según el alcance solicitado. Las familias seleccionadas documentalmente son LSTM, TCN y encoder Transformer, con evidencia acotada; no hay resultados experimentales propios incorporados ni baseline medido. La persistencia sigue siendo contexto. La guía original exige ejecución en E1; esta separación operativa no altera esa exigencia escrita.
 ```
 
 ## 5.1. Comparación Tabular
@@ -18,13 +18,13 @@ El horizonte principal es un día; se reportarán 2025 y 2026 por separado en el
 
 ### 5.1.2. Tabla obligatoria de desempeño y costo
 
-La tabla siguiente es una **plantilla pendiente de resultados**, no una comparación ejecutada. M1, M2 y M3 son identificadores provisionales, no arquitecturas seleccionadas:
+La tabla siguiente es una **plantilla pendiente de resultados**, no una comparación ejecutada. M1, M2 y M3 identifican las tres familias documentales, con configuraciones concretas por fijar en E2:
 
 | Modelo base | Ejecuciones válidas | RMSE, media ± DE | MAE, media ± DE | Otras métricas | IC 95 % y método | Tiempo de entrenamiento | Tiempo de inferencia | Parámetros |
 |---|---|---|---|---|---|---|---|---|
-| M1 — por seleccionar | Pendiente | Pendiente | Pendiente | Pendiente | Pendiente | No medido | No medido | No implementado |
-| M2 — por seleccionar | Pendiente | Pendiente | Pendiente | Pendiente | Pendiente | No medido | No medido | No implementado |
-| M3 — por seleccionar | Pendiente | Pendiente | Pendiente | Pendiente | Pendiente | No medido | No medido | No implementado |
+| M1 — LSTM | Pendiente | Pendiente | Pendiente | Pendiente | Pendiente | No medido | No medido | No implementado |
+| M2 — TCN | Pendiente | Pendiente | Pendiente | Pendiente | Pendiente | No medido | No medido | No implementado |
+| M3 — encoder Transformer | Pendiente | Pendiente | Pendiente | Pendiente | Pendiente | No medido | No medido | No implementado |
 
 Se conservará un formato largo con un intervalo por cada métrica que lo requiera; la columna resumida de intervalos no se interpretará como un único IC aplicable a todas las métricas. Las métricas adicionales incluyen MAPE, MSE, R² y MASE, con los casos no definidos y la cobertura documentados según §4.4.
 
@@ -105,7 +105,7 @@ No se ha ejecutado inferencia entre modelos: no hay predicciones ni repeticiones
 Se distinguirán dos cantidades:
 
 - **Mejora mínima detectable:** depende del diseño, la variabilidad pareada y la potencia; se estima con el procedimiento de §4.1, respetando sus supuestos.
-- **Margen de relevancia práctica:** cambio que importa para la aplicación, justificado y fijado sin acomodarlo al resultado del test. El $\delta$ del proyecto todavía debe cerrarse.
+- **Margen de relevancia práctica:** cambio que importa para la aplicación, justificado y fijado sin acomodarlo al resultado del test. La regla aceptada es reducción relativa del 5 % frente a persistencia; su conversión a unidades de planificación se calculará en E2, sin redefinir el porcentaje.
 
 La desviación entre corridas o la anchura de un IC por sí solas no bastan para declarar una mejora detectable: se necesitan contraste, potencia, emparejamiento y variabilidad de las diferencias. Si la mejora detectable supera $\delta$, se ampliará el diseño o se explicitará esa limitación.
 
@@ -129,7 +129,8 @@ La conclusión final deberá distinguir significación estadística de relevanci
 | Métricas, tiempos y parámetros medidos | Pendientes |
 | Diferencias relativas y tamaños de efecto | Pendientes de resultados |
 | Inferencia pareada, intervalos y corrección | No ejecutada |
-| Margen práctico y mejora detectable | Pendientes de cierre del protocolo y piloto |
+| Margen práctico relativo | Fijado en 5 % de mejora de RMSE frente a persistencia |
+| Mejora mínima detectable | Dimensionamiento futuro de E2 con el piloto |
 | Baseline experimental definitivo | No establecido |
 
 Este capítulo deja preparado el producto final exigido, sin presentar el protocolo como un benchmark ya realizado.
@@ -184,7 +185,7 @@ Cada contraste se acompañará de la potencia planificada o de la **diferencia m
 
 ### 5.4.5. Diebold–Mariano por horizonte
 
-La precisión predictiva temporal se comparará con **Diebold–Mariano**, por horizonte y sobre fechas comunes. Como RMSE es la métrica primaria propuesta, se usará una pérdida cuadrática coherente:
+La precisión predictiva temporal se comparará con **Diebold–Mariano**, por horizonte y sobre fechas comunes. Como RMSE es la métrica primaria fijada, se usará una pérdida cuadrática coherente:
 
 $$
 e_{A,t}=Y_t-\widehat Y_{A,t},\qquad
@@ -262,7 +263,7 @@ El capítulo no atribuye significación ni equivalencia a modelos aún no evalua
 La discusión responderá a las preguntas del entregable mediante resultados del benchmark, literatura verificable e inferencia adecuada. **No se aceptan conclusiones basadas únicamente en descripciones o promedios:** cada afirmación debe indicar su evidencia, alcance e incertidumbre.
 
 ```{important}
-La adquisición, el EDA de desarrollo y los folds están ejecutados. Los tres modelos todavía no están seleccionados y entrenados; por tanto, no es posible concluir cuál funciona o generaliza mejor, establecer un baseline medido ni cuantificar su brecha predictiva. Esta sección identifica las preguntas, evidencias y limitaciones que deberá abordar la discusión final.
+La adquisición, el EDA de desarrollo y los folds están ejecutados. Las tres familias están seleccionadas documentalmente, pero su ejecución se reserva para E2; por tanto, no es posible concluir cuál funciona o generaliza mejor, establecer un baseline medido ni cuantificar su brecha predictiva. Esta sección identifica las preguntas, evidencias y limitaciones que deberá abordar la discusión final.
 ```
 
 ### 5.5.1. Desempeño y explicación de las diferencias
@@ -319,7 +320,7 @@ Se discutirá la credibilidad de la brecha considerando intervalos, variabilidad
 | Externa | Un activo, un proveedor, una cotización | Delimitar BTCUSDT Spot y evitar afirmaciones sobre otros mercados | Sin evaluación externa de otros datasets |
 | Externa | Regímenes y periodos de duración diferente | Resultados por periodo y segmentos fijados, con incertidumbre | Test todavía no evaluado |
 | De construcción | Volatilidad como proxy y definición de ventanas | Fórmula, escala y sensibilidad a las cuatro ventanas documentadas | No mide volatilidad latente sin error |
-| De construcción | Métricas sensibles a ceros o colas | Política previa de MAPE/MASE y métricas complementarias | Políticas finales pendientes de cierre |
+| De construcción | Métricas sensibles a ceros o colas | Política previa de MAPE/MASE y métricas complementarias | Políticas de MAPE/MASE fijadas; evaluación posterior en E2 |
 | De conclusión estadística | Dependencia, pocos modelos y pocas semillas | Efectos, IC, multiplicidad, potencia/MDE y unidades justificadas | No hay inferencia entre modelos todavía |
 
 Los controles no se describirán como garantía absoluta: cada afirmación de validez deberá identificar qué se verificó realmente y qué permanece como supuesto o limitación.
@@ -328,7 +329,7 @@ Los controles no se describirán como garantía absoluta: cada afirmación de va
 
 Las limitaciones observadas incluyen el alcance de un solo mercado, un día incompleto de desarrollo, objetivos móviles con retornos compartidos y la distinción entre variabilidad de semillas y variabilidad temporal. Se conservaron los brutos; excluir un día de los derivados no demuestra que no existan otros problemas económicos de calidad.
 
-El estado actual añade limitaciones de ejecución: revisión bibliográfica sin completar, arquitecturas no seleccionadas, margen práctico pendiente, modelos no entrenados y test supervisado sin congelación final. Estas son tareas pendientes y no hallazgos de desempeño.
+El estado actual añade limitaciones de ejecución: cobertura bibliográfica limitada y respaldo de atención en un manuscrito gris; configuraciones, entrenamiento y evaluación propios reservados para E2. Las familias de trabajo, RMSE y el margen relativo del 5 % ya están documentados. Estas son tareas pendientes y no hallazgos de desempeño.
 
 Las recomendaciones se derivarán de esas limitaciones y de los resultados que se obtengan: completar evidencia bibliográfica, cerrar el protocolo, ejecutar el piloto, dimensionar corridas y evaluar de manera comparable. Extensiones a noticias, otros mercados o arquitecturas avanzadas requerirán nueva justificación, fuentes y validación; no se presentan como mejoras garantizadas ni como experimentos ya ejecutados.
 

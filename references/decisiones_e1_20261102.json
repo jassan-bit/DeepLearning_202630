@@ -1,0 +1,50 @@
+{
+  "recorded_at": "2026-11-02T17:46:25.959736-05:00",
+  "scope": "Documentary E1 update; own model training, tuning, pilot and benchmark reserved for E2 by user instruction. Original PDF contains empirical requirements in E1; this record does not certify a formal instructor exception.",
+  "target": {
+    "volatility_returns_days": 7,
+    "population_ddof": 0,
+    "annualized": false,
+    "forecast_days": 1,
+    "definition": "next value of historical rolling daily log-return standard deviation, not seven entirely future days"
+  },
+  "inputs": {
+    "variables": [
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume"
+    ],
+    "history_days": [
+      7,
+      14,
+      21,
+      28
+    ],
+    "principal_history_chosen": false,
+    "explicit_target_lags": false
+  },
+  "guide_route": "temporal_regression_6.4",
+  "metric": "RMSE",
+  "practical_relative_margin": 0.05,
+  "margin_reference": "persistence on the same evaluation dates; operational criterion accepted by user, not calibrated financial utility",
+  "metric_policies": {
+    "mape": "positive true targets only; report coverage and zero exclusions; no arbitrary epsilon",
+    "mase": "lag1 calendar day; denominator from permitted training only; undefined if zero/no valid pairs"
+  },
+  "independence": "Temporal dependence; preserve paired dates and calendar. Final block length and seed design belong to E2.",
+  "missingness_policy": "strict exclusion of incomplete daily OHLCV; no imputation; preserve missing calendar positions",
+  "documentary_selection": [
+    "LSTM",
+    "TCN",
+    "Transformer encoder"
+  ],
+  "selection_status": "bounded corpus; attention support in a single grey manuscript; not minimum global complexity or final implementation widths",
+  "unresolved": [
+    "academic database access and coverage",
+    "academic adequacy of grey attention source",
+    "exact winner configurations absent in some source repositories",
+    "final sample and experimental execution plan in E2"
+  ]
+}

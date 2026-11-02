@@ -1,6 +1,6 @@
 # 2. Análisis Exploratorio de Datos (EDA)
 
-El análisis se ejecutó con los archivos oficiales de **Binance Spot BTCUSDT**, utilizando **entrenamiento de 2023** y **validación de 2024**. La frecuencia de adquisición es un minuto; la configuración de modelado es **diaria, con cierre UTC**, entradas de **7, 14, 21 o 28 días** y horizonte principal de **un día**.
+El análisis se ejecutó con los archivos oficiales de **Binance Spot BTCUSDT**, utilizando **entrenamiento de 2023** y **validación de 2024**. La frecuencia de adquisición es un minuto; la configuración de modelado es **diaria, con cierre UTC**, entradas de **7, 14, 21 o 28 días** y horizonte principal de **un día**. La clasificación documental actual es **regresión temporal**, conforme a la ruta 6.4 de la guía: las redes reciben covariables OHLCV pasadas, sin rezagos explícitos de la volatilidad objetivo. El objetivo principal es la volatilidad de siete retornos diarios; las ventanas 14/21/28 se conservan como sensibilidad de su definición.
 
 ```{important}
 Este capítulo ya contiene resultados, tablas y gráficas reproducibles. El análisis abarca calidad, precios, retornos, cuatro ventanas candidatas de volatilidad, relaciones y estructura temporal. No se han entrenado los tres modelos ni calculado métricas de predicción o BDS de sus residuos. El EDA no abre archivos de test de 2025–2026.
@@ -126,9 +126,9 @@ Los ZIP tienen hashes de adquisición, pero aún no se ha congelado el **test su
 - **Impacto en la arquitectura:** comparar modelos y decisiones ya fijados, sin adaptar arquitecturas al resultado de test.
 - **Riesgos identificados:** asumir que un hash demuestra ausencia de consulta o que descargar equivale a evaluar. La congelación del benchmark permanece pendiente.
 
-## 2.2. EDA específico: series de tiempo
+## 2.2. Diagnósticos temporales complementarios
 
-Se aplica el bloque B del Entregable 1. Las observaciones de modelado son **diarias**; los diagnósticos horarios y de minuto se muestran como complementos con unidades explícitas.
+Se conservan los diagnósticos del bloque B de la guía como complementos pertinentes para dependencia temporal. La correspondencia específica con el **bloque C de regresión temporal** se desarrolla en §2.5. Las observaciones de modelado son **diarias**; los diagnósticos horarios y de minuto mantienen sus unidades explícitas. Esta reclasificación documental no cambia los datos, el reloj de predicción ni la política de exclusión.
 
 ### 2.2.1. Visualización, descomposición y cambios de régimen
 
@@ -271,7 +271,7 @@ El EDA de desarrollo de este capítulo se ejecutó sobre los 24 archivos mensual
 3. Adquisición y checksums del rango solicitado: completados; brutos y manifiesto conservados. Derivados diarios de desarrollo y EDA ejecutados; ventanas finales por modelo y benchmark pendientes.
 4. Auditar timestamps, unidades, duplicados, huecos, cierres y coherencia OHLC antes de crear retornos.
 5. Cerrar las configuraciones y reglas definitivas de entrenamiento, conservando el modelado diario, horizonte principal de un día y ventanas candidatas ya documentadas.
-6. Ejecutar el EDA general y el específico de series de tiempo; vincular cada resultado a una decisión de modelado o validación.
+6. EDA general y diagnósticos temporales ejecutados; la correspondencia del bloque C para regresión temporal y su relación con las decisiones se documenta en §2.5.
 
 
 ### 2.3.4. Condiciones de uso y atribución
@@ -338,3 +338,62 @@ El ejemplo oficial 4/3/2 es ilustrativo; no cambia el horizonte principal de Bit
 | Modelos, predicciones y MAPE/MAE/RMSE/MSE/MASE/BDS | Pendientes de entrenamiento y evaluación |
 
 Las gráficas publicadas son evidencia de EDA de desarrollo. No acreditan que la revisión bibliográfica, los modelos ni el Entregable 1 completo estén terminados.
+
+## 2.5. EDA descriptivo de covariables para regresión temporal
+
+Esta sección completa la correspondencia documental con el bloque C de la guía mediante los **CSV de desarrollo 2023–2024 ya existentes**. Se conserva la cuadrícula de 731 días, el día incompleto del 24/03/2023 permanece ausente y no se imputan valores ni se recuperan observaciones mediante otra fuente. No se ajusta un modelo, no se ejecutan contrastes de hipótesis y no se abren archivos de test. El entrenamiento, el análisis de residuos de modelos y la comparación experimental quedan reservados al Entregable 2 según el alcance solicitado por el usuario.
+
+### 2.5.1. Frecuencia, desfases y disponibilidad
+
+Cada fila OHLCV resume un día UTC. Apertura, máximo, mínimo, cierre y volumen del día completo se consideran disponibles **al comenzar el día siguiente**. Para un resultado del día $d$, la red utiliza días hasta $d-1$; el objetivo $\sigma_7(d)$ incorpora el retorno de $d$ y solo se conoce al terminarlo. Esta notación de día de resultado corresponde a $Y_t=\sigma_{t+1}$ en la convención de §1.3.
+
+| Elemento | Momento de disponibilidad | Uso admisible al inicio de $d$ |
+|---|---|---|
+| OHLCV completo de $d-1$ | Inicio UTC de $d$ | Entrada conocida |
+| OHLCV completo de $d$ | Inicio UTC de $d+1$ | No admisible como entrada del pronóstico de $d$ |
+| Covariable de $d-k$, con $k\ge1$ | Inicio UTC de $d-k+1$ | Pasado observable |
+| Volatilidad que incluye el retorno de $d$ | Inicio UTC de $d+1$ | Etiqueta futura, no entrada |
+
+La irregularidad intradiaria ya documentada —80 minutos ausentes y una fila con cierre temporal no elegible— se traduce en un día OHLCV excluido bajo la política estricta. Conservar su posición evita convertir dos fechas no consecutivas en un retorno diario o en un rezago de un día. El patrón observado no identifica por sí solo un mecanismo MCAR, MAR o MNAR.
+
+### 2.5.2. Relaciones covariables–objetivo con rezagos
+
+Se calcularon Pearson y Spearman entre $\log(O)$, $\log(H)$, $\log(L)$, $\log(C)$ o $\log(1+V)$ del día $d-k$ y el objetivo principal del día $d$, para **$k=1,\ldots,28$ días de calendario**, utilizando únicamente 2023. Son transformaciones descriptivas fijas, sin un scaler estimado. No constituyen una selección de variables ni del tamaño de entrada.
+
+![Correlaciones descriptivas con rezagos de uno a veintiocho días, solo en entrenamiento 2023](../_static/eda_doc/covariables_rezagos_descriptivos.png)
+
+La tabla contiene **140 combinaciones de covariable y rezago**, con entre 328 y 350 pares válidos por combinación. Las diferencias de cobertura se conservan en lugar de comprimir fechas o imputar. Para el rezago de un día, el perfil es:
+
+| Covariable del día anterior | Pares 2023 | Pearson 2023 | Spearman 2023 | Pares 2024 | Pearson 2024 | Spearman 2024 |
+|---|---:|---:|---:|---:|---:|---:|
+| $\log(O)$ | 350 | -0,0489 | -0,0886 | 366 | 0,0415 | 0,0247 |
+| $\log(H)$ | 350 | -0,0102 | -0,0563 | 366 | 0,0689 | 0,0600 |
+| $\log(L)$ | 350 | -0,0651 | -0,1148 | 366 | 0,0198 | -0,0184 |
+| $\log(C)$ | 350 | -0,0304 | -0,0810 | 366 | 0,0499 | 0,0343 |
+| $\log(1+V)$ | 350 | 0,4694 | 0,4326 | 366 | 0,3730 | 0,3723 |
+
+En este perfil, las asociaciones lineales y de rango de los niveles de precio son pequeñas y cambian de signo entre años; el volumen presenta una asociación positiva mayor. Son **descripciones del desarrollo**, sin contraste de igualdad entre años ni causalidad. Los niveles de precios pueden generar correlaciones espurias; además, el objetivo móvil comparte retornos con su historia. Una asociación con ese objetivo no demuestra capacidad de pronosticar su componente aún desconocido.
+
+### 2.5.3. Relación móvil y posibles cambios descriptivos
+
+Se calculó la correlación de Pearson entre cada covariable de $d-1$ y $\sigma_7(d)$ en ventanas retrospectivas de **60 días de calendario**, con al menos **50 pares válidos**. Se muestran 2023 y 2024 como desarrollo; las posiciones ausentes permanecen en la cuadrícula. Cuatro curvas de precio casi coincidentes reflejan su fuerte relación entre sí, no cuatro fuentes independientes de evidencia.
+
+![Correlación móvil de sesenta días entre covariables del día anterior y volatilidad objetivo en desarrollo](../_static/eda_doc/relacion_movil_covariables_objetivo.png)
+
+La trayectoria describe cómo cambia la asociación observada dentro del desarrollo. Las ventanas consecutivas se solapan y no son réplicas independientes. No se atribuyen rupturas significativas ni causas de mercado por inspección de la gráfica. La correlación del día $d$ se conoce **después de observar su objetivo**: es un diagnóstico retrospectivo y no una característica predictiva disponible sin desplazamiento en el origen de ese mismo día.
+
+El diagnóstico de residuos de una regresión de referencia requiere ajustar un modelo. Ese componente del bloque C permanece para E2 en el alcance operativo solicitado; no se presenta como ejecutado a partir de estas correlaciones.
+
+### 2.5.4. Reproducibilidad, decisiones y límites
+
+El script `scripts/eda_covariates_documental.py` reutiliza únicamente `daily_market_development.csv` y `daily_volatility_development.csv`. Verifica la cuadrícula UTC completa de 2023–2024, tres alineaciones por fecha y rezago calculadas de forma independiente y la preservación del hueco al desplazar covariables. Sus resultados y hashes están en `results/eda_covariates_documental/`.
+
+```bash
+/workspace/.venvs/deeplearning-eda/bin/python scripts/eda_covariates_documental.py
+```
+
+Se publican las [correlaciones por rezago](../_static/eda_doc/lagged_correlations_train.csv), las [correlaciones móviles](../_static/eda_doc/rolling_60d_correlations_development.csv), sus [conteos de pares](../_static/eda_doc/rolling_60d_pair_counts.csv), el [perfil 2023–2024](../_static/eda_doc/relationship_profiles_2023_2024.csv) y el [resumen con controles y límites](../_static/eda_doc/summary.json).
+
+- **Decisión de preprocesamiento:** conservar el calendario, las ausencias y la disponibilidad causal de OHLCV; mantener las cinco covariables acordadas sin escoger un subconjunto por estas gráficas.
+- **Impacto en la arquitectura:** conservar una entrada $D\times5$ para las historias confirmadas y el mismo objetivo de siete retornos diarios. Las correlaciones no fijan el ancho, la profundidad, el rezago ganador ni un modelo superior.
+- **Riesgos identificados:** correlaciones espurias de niveles, objetivo y ventanas solapados, selección retrospectiva por inspección, fechas comprimidas y uso indebido de una correlación diagnóstica como predictor contemporáneo. No se extraen conclusiones de test ni resultados de entrenamiento.

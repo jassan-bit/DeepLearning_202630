@@ -1,32 +1,57 @@
-# Decisiones pendientes y control de alcance
+# Decisiones, evidencia y cierre documental de E1
 
-## Antes de cerrar la Sección 1
+Esta página registra el alcance autorizado: **definición del problema, EDA y revisión documental**. El entrenamiento, tuning, piloto, benchmark y pruebas de modelos propios se reservan para E2 por instrucción del usuario. El PDF adjunto sí ubica ejecución en E1; esta organización de trabajo no modifica la guía ni acredita una excepción formal del docente.
 
-1. **Configuración confirmada:** modelado diario, horizonte principal de un día y entradas de 7/14/21/28 días; brutos de un minuto.
-2. **Objetivos explorados:** volatilidad de retornos diarios con ventanas de 7/14/21/28 días y divisor poblacional. Fijar las configuraciones que se entrenarán y el protocolo para compararlas; no se eligió una ganadora por test.
-3. **Covariables:** OHLCV diario auditado. Selección final y transformaciones pendientes; noticias no adquiridas ni incorporadas.
-4. **Adquisición y EDA:** 75 ZIP verificados; EDA ejecutado exclusivamente en desarrollo 2023–2024. Conservar los brutos y manifiestos y materializar muestras supervisadas.
-5. **Ventanas y validación:** folds de validación2024 implementados con `timeseries-cv`; mantener exclusiones y disponibilidad por fechas. Entrenamiento y test supervisado final pendientes.
-6. **Preregistro:** congelar métricas y política de ceros para MAPE, rezago MASE, margen $\delta$, bloques inferenciales y test supervisado antes de evaluar modelos.
-7. **Horizontes adicionales:** el principal confirmado es un día; cualquier salida adicional requiere declaración explícita.
+## Decisiones incorporadas
 
-## Más adelante, dentro del Entregable 1
-
-El EDA de calidad, precios y retornos de desarrollo está ejecutado y documentado en la sección 2. Siguen **pendientes** el cierre de configuraciones de la variable objetivo, la búsqueda y síntesis de literatura, la selección de exactamente tres modelos simples, el piloto de al menos cinco semillas por modelo, el cálculo de potencia y número de corridas definitivas, y el entrenamiento, comparación e inferencia.
-
-La guía contiene requisitos detallados adicionales. Esta lista no los reemplaza ni afirma cumplirlos. No se estima tiempo de entrenamiento sin datos, arquitectura, hardware y piloto medido.
-
-## Registro de decisiones
-
-| Decisión | Estado al 2026-11-02 |
+| Elemento | Criterio documental vigente |
 |---|---|
-| Activo | Confirmado: Bitcoin |
-| Entregable inmediato | Entregable 1: secciones 1–7 documentadas como avance; EDA y folds ejecutados, modelos y benchmark pendientes |
-| Repositorio | Confirmado: DeepLearning_202630, público por decisión del usuario |
-| Uso de cierre para volatilidad | Confirmado |
-| Pronóstico y objetivo | Diario, un día adelante; cuatro ventanas de volatilidad exploradas; configuraciones finales del benchmark pendientes |
-| Calendario | Historia 2023; validación 2024; ajuste final elegible 2023–2024; test 01/01/2025–31/08/2026, reportando cada año por separado |
-| Modelos finales | No seleccionados |
-| Extensión a otras criptomonedas | No autorizada en el alcance actual |
-| Datos, EDA y entrenamiento | Descarga oficial verificada; EDA de desarrollo ejecutado; objetivo definitivo y entrenamiento pendientes |
-| Sitio público / GitHub Pages | HTML publicado en `gh-pages`; el usuario confirmó la activación de Pages. Verificación HTTP externa bloqueada por la red del entorno |
+| Activo y fuente | Bitcoin, Binance Spot BTCUSDT, archivos oficiales de un minuto |
+| Modelado | Diario UTC, cinco covariables OHLCV |
+| Categoría literal de la guía | Regresión temporal, ruta 6.4; no hay rezagos explícitos de volatilidad como entrada |
+| Historia de entrada | D=7/14/21/28 días; no se eligió una D principal |
+| Objetivo principal | Desviación poblacional de n=7 retornos logarítmicos diarios; sin anualizar |
+| Horizonte | Un día; próximo valor de volatilidad histórica móvil, no siete días enteramente futuros |
+| Sensibilidad del objetivo | n=14/21/28, manteniendo separadas las definiciones y sus escalas |
+| Pérdida prevista y métrica | MSE y RMSE principal; MAE/MSE/MAPE/R²/MASE complementarias |
+| Relevancia operativa | Reducción relativa mínima del 5 % de RMSE frente a persistencia de las mismas fechas |
+| Política de MAPE | Solo objetivos positivos; informar cobertura, ceros excluidos y casos no definidos; sin epsilon arbitrario |
+| Política de MASE | Rezago de un día de calendario; escala calculada solo con entrenamiento; no definida si no hay pares válidos o el denominador es cero |
+| Independencia | Dependencia temporal y ventanas solapadas; no tratar filas o semillas como nuevos mercados independientes |
+| Longitud de bloques | Debe justificarse antes de la inferencia de E2; no se inventa con resultados ajenos al E1 |
+| Faltantes | Exclusión estricta del día incompleto en los derivados actuales, sin interpolar ni comprimir el calendario |
+| Calendario | Historia de 2023, validación de 2024 y test previsto del 01/01/2025 al 31/08/2026; septiembre–octubre no se asignan automáticamente |
+| Familias documentales | LSTM unidireccional, TCN y encoder Transformer, condicionadas al corpus y sus límites |
+
+El margen del 5 % es un criterio operativo aceptado, no una utilidad financiera calibrada. La conversión a escala absoluta para dimensionamiento se hará en la etapa experimental mediante una regla registrada, sin cambiar retrospectivamente el porcentaje. El [registro de decisiones](../_static/e1/decisiones.json) separa lo fijado de lo que requiere E2.
+
+## Estado de los siete cambios solicitados
+
+| Prioridad | Producto | Estado verificable |
+|---|---|---|
+| 1 | Búsqueda trazable | Consultas complementarias registradas; fuentes académicas bloqueadas diferenciadas de cero resultados |
+| 2 | Cribado y flujo | 118 ocurrencias, 12 duplicadas, 106 repositorios, 14 inspeccionados, 5 textos completos y 3 incluidos; unidades diferenciadas |
+| 3 | Matriz de literatura | Tres textos incluidos, 42 valores publicados y evaluación de calidad con ubicaciones |
+| 4 | Selección de tres familias | LSTM–TCN–encoder Transformer; diversidad antes de frecuencia, con compromiso y fuente gris de atención explícitos |
+| 5 | Fichas técnicas | Ecuaciones, diagramas, parámetros analíticos, configuraciones fuente, resultados publicados, fortalezas y límites |
+| 6 | Comparación crítica | Objetivos/mercados/escalas comparados, riesgos y brecha limitada al corpus |
+| 7 | Definición y coherencia | n=7, h=1, cuatro longitudes de entrada, RMSE, 5 %, MAPE/MASE, ruta 6.4 y procedencia sincronizados |
+
+Las frecuencias se calculan sobre tres textos completos: familia LSTM 3/3 incluyendo BiLSTM, variante unidireccional 2/3, GRU 2/3, TCN 1/3 y encoder Transformer 1/3. La selección no se presenta como los tres modelos más frecuentes de toda la literatura ni como mínima complejidad absoluta. MLP independiente y CNN1D simple no tienen respaldo comparativo suficiente en este corpus.
+
+## Límites que permanecen abiertos
+
+- **Cobertura académica:** no se ejecutaron consultas bibliográficas en WoS/Scopus/IEEE/arXiv cuando su interfaz quedó bloqueada. La revisión complementaria no es exhaustiva.
+- **Fuente de atención:** el único apoyo aplicado recuperado es un manuscrito sin revisión por pares acreditada. Si el criterio académico exige solo artículos revisados por pares, esa parte de la selección debe ampliarse.
+- **Configuraciones originales:** no se recuperaron todos los hiperparámetros ganadores; las fichas separan parámetros derivados de configuraciones publicadas y de adaptaciones futuras.
+- **Datos y ejecución:** quedan para E2 las muestras definitivas de entrenamiento/test, configuración implementada, recursos, número de semillas, piloto y benchmark. No se presentan como resultados inexistentes de E1.
+
+## Proyección a E2
+
+E2 deberá fijar el procedimiento experimental y el esfuerzo comparable entre modelos, ajustar transformaciones con pasado, registrar semillas/fallos y proteger test. Las longitudes de bloque, potencia y tamaños definitivos requerirán justificación propia. El criterio y las decisiones de E1 se heredan mediante versiones; cambios posteriores se declaran como enmiendas.
+
+El plan documentado en noviembre de 2026 es posterior a los periodos de mercado considerados: su evaluación futura será un backtest con reserva, no un pronóstico emitido prospectivamente en 2025. Reutilizar el mismo test para diseñar nuevos modelos en entregables posteriores no constituye confirmación independiente.
+
+## Evidencia y reproducción
+
+La evidencia documental está en `references/literature_e1/`, el registro bibliográfico inicial en `references/bibliography/`, el EDA en `results/eda_development/` y el complemento descriptivo en `results/eda_covariates_documental/`. No se incorporan entrenamientos, predicciones ni métricas propias del trabajo separado fuera de E1. Construir HTML comprueba presentación y enlaces, no superioridad estadística ni cumplimiento académico total.
