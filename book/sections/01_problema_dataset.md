@@ -1,5 +1,27 @@
 # 1. Definición del Problema y Dataset
 
+## Respuestas a los requisitos de las páginas 2–3
+
+La siguiente tabla permite localizar las respuestas solicitadas en la guía. Las fórmulas y elecciones metodológicas son propuestas de trabajo; los campos empíricos pendientes no se presentan como hechos comprobados.
+
+| Requisito del entregable | Respuesta y ubicación |
+|---|---|
+| Espacios de entrada y salida, función y pérdida | §1.3: ventana de retornos, salida no negativa, predictor supervisado y MSE |
+| Tipo de problema admitido | §1.2: series de tiempo; se usa el pasado de la propia serie |
+| Pregunta de investigación e hipótesis operativa | §1.4: comparar el error de pronóstico con persistencia |
+| Métricas primaria y secundarias | §1.4: RMSE, MAE y propuesta de MASE con condiciones explícitas |
+| Margen práctico e independencia | §1.4: margen pendiente de fijar y bloques temporales pendientes de dimensionar; las ventanas no son independientes |
+| Relevancia científica o aplicada | §1.1: pronóstico de incertidumbre de Bitcoin y antecedente científico |
+| Disponibilidad, licencia y procedencia | §1.5: requisitos de selección; falta verificar una fuente concreta |
+| Uso previo del dataset en literatura | §1.5: no verificado; el artículo citado es antecedente del problema |
+| Tamaño, dimensionalidad y almacenamiento | §1.5: esquema propuesto y fórmula de elegibilidad; falta adquirir datos y medir tamaño |
+| Tipo de datos y unidad de observación | §1.2 y §1.5: precios temporales y origen de pronóstico |
+| Etiquetado y ruido esperado | §1.3 y §1.5: cálculo automático de dispersión futura y fuentes de ruido |
+| Dependencia entre observaciones | §1.4–§1.6: solapamiento temporal, partición cronológica y prevención de fuga |
+| Versión y hash del dataset | §1.5: pendientes de adquisición; los hashes de material del curso no identifican datos de mercado |
+
+**Límite de este avance:** estas respuestas cubren la definición propuesta. Para completar los requisitos empíricos se necesita seleccionar y adquirir el dataset, verificar sus términos y registrar mediciones y hashes. No se afirma que el Entregable 1 completo esté terminado.
+
 ## 1.1. Motivación y alcance
 
 Se propone evaluar si el historial de rendimientos logarítmicos derivados del cierre de Bitcoin contiene información útil para pronosticar su volatilidad futura. El interés aplicado es estimar incertidumbre del activo, no predecir directamente su precio ni recomendar operaciones financieras.

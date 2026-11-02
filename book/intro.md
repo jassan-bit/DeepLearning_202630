@@ -24,4 +24,4 @@ Solo se considera Bitcoin. Otras criptomonedas son una posible ampliación futur
 
 ## Reproducibilidad y privacidad
 
-Las instrucciones están en `BUILD.md` en la raíz del repositorio. El libro usa Jupyter Book 1 con dependencias fijadas; se genera HTML localmente sin ejecutar notebooks. El repositorio permanece privado: este avance **no configura GitHub Pages ni publica un sitio web abierto**.
+Las instrucciones están en `BUILD.md` en la raíz del repositorio. El libro usa Jupyter Book 1 con dependencias fijadas; se genera HTML localmente sin ejecutar notebooks. La publicación del libro utiliza únicamente el HTML generado en `book/_build/html`, en la rama `gh-pages`. Los documentos originales del curso y los archivos internos del repositorio no se incorporan a esa rama. La visibilidad del repositorio fuente no se modifica. La disponibilidad pública depende de que GitHub Pages esté habilitado para esa rama.

@@ -29,4 +29,4 @@ La guía contiene requisitos detallados adicionales. Esta lista no los reemplaza
 | Modelos finales | No seleccionados |
 | Extensión a otras criptomonedas | No autorizada en el alcance actual |
 | Datos, EDA y entrenamiento | No ejecutados |
-| Sitio público / GitHub Pages | No desplegado |
+| Sitio público / GitHub Pages | Publicación del HTML preparada en `gh-pages`; activación y disponibilidad pública pendientes de verificar |

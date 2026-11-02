@@ -35,4 +35,4 @@ Los hashes corresponden a **materiales del curso**, no al dataset de Bitcoin, qu
 
 ## Privacidad
 
-No hay workflow de despliegue ni configuración de GitHub Pages. Construir no publica el sitio ni cambia la visibilidad del repositorio. El README y .gitignore originales se conservan sin modificación. Los generados se excluyen mediante `book/.gitignore`.
+El workflow `.github/workflows/publish-book.yml` construye y comprueba el libro y actualiza la rama `gh-pages` al recibir cambios en `main`. En Settings → Pages debe seleccionarse Deploy from a branch, rama `gh-pages`, carpeta `/ (root)`. Esto requiere permisos de administración y un plan compatible si el repositorio es privado. Construir localmente no publica ni cambia la visibilidad del repositorio. El README y .gitignore originales se conservan sin modificación. Los generados se excluyen mediante `book/.gitignore`.
