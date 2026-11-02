@@ -1,10 +1,11 @@
 # Bitcoin: pronóstico de volatilidad
 
 **Proyecto de Deep Learning · 2026-30**  
+**Profesor:** Dr. Lihki Rubio  
 **Autor:** Jassan Arteta  
 **Avance:** Entregable 1 · Sección 1 · 2 de noviembre de 2026
 
-Este libro documenta la definición inicial de un problema de pronóstico de volatilidad de **Bitcoin**, calculada a partir de precios de cierre. El alcance actual es desarrollar la **Sección 1: Definición del Problema y Dataset**, paso a paso.
+Este libro documenta la definición inicial de un problema de pronóstico de volatilidad de **Bitcoin**, calculada a partir de precios de cierre. El alcance actual es desarrollar la **Sección 1: Definición del Problema y Dataset**.
 
 ```{important}
 Este es un borrador metodológico, no un protocolo congelado ni un experimento terminado. No se han adquirido datos, ejecutado EDA, entrenado modelos ni calculado resultados. Las decisiones no confirmadas están identificadas como **pendientes** o **propuestas**.
