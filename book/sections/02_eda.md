@@ -1,4 +1,4 @@
-# 2. Análisis Exploratorio de Datos (EDA) Mejorado
+# 2. Análisis Exploratorio de Datos (EDA)
 
 El EDA de este proyecto debe ser reproducible y orientar decisiones de modelado, preprocesamiento y validación. Cada resultado deberá acompañarse de una interpretación técnica y una decisión justificable.
 
