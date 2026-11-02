@@ -5,7 +5,7 @@
 **Autor:** Jassan Arteta  
 **Avance:** Entregable 1 · Sección 1 · 2 de noviembre de 2026
 
-Este libro documenta la definición inicial de un problema de pronóstico de volatilidad de **Bitcoin**, calculada a partir de precios de cierre. El alcance actual es desarrollar la **Sección 1: Definición del Problema y Dataset**.
+Este libro desarrolla el **Entregable 1 de Deep Learning** para el pronóstico de volatilidad de **Bitcoin**, utilizando precios de cierre obtenidos directamente de **Binance Spot (BTCUSDT)**. La estructura, el EDA, la revisión de literatura y el protocolo experimental se rigen por la guía del Entregable 1.
 
 ```{important}
 Este es un borrador metodológico, no un protocolo congelado ni un experimento terminado. La fuente seleccionada es Binance Spot BTCUSDT. La adquisición directa verificada y la ejecución del EDA están pendientes. No se han entrenado modelos de Deep Learning. Las decisiones no confirmadas están identificadas como **pendientes** o **propuestas**.

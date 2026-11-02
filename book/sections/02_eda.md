@@ -73,6 +73,8 @@ Esta sección cubre los requisitos generales mostrados en las imágenes. No sust
 
 ### 2.3.1. Fuente y alcance
 
+El dataset se adquirirá directamente de Binance Spot y se preparará para este Entregable 1. No se utilizarán repositorios intermediarios, archivos procesados ajenos ni resultados de otros proyectos.
+
 La fuente del proyecto es **Binance Spot**, par **BTCUSDT**, mediante los [archivos públicos oficiales](https://data.binance.vision/?prefix=data/spot/monthly/klines/BTCUSDT/1m/). Se utilizarán velas de un minuto y el precio de cierre; USDT es la moneda de cotización. La documentación técnica está en [Binance Public Data](https://github.com/binance/binance-public-data).
 
 El patrón de adquisición es:
@@ -90,7 +92,7 @@ El calendario objetivo sigue siendo desarrollo 2023–2024 y test 2025–agosto 
 
 **La adquisición directa aún no se ha completado.** El intento de acceder al checksum oficial fue bloqueado por el proxy del entorno con HTTP 403. Hace falta permitir `data.binance.vision` en la configuración de red del entorno. Este bloqueo no demuestra que Binance haya rechazado el acceso.
 
-Las estadísticas y la figura calculadas anteriormente a partir de un archivo intermediario se retiraron de este avance. No se presentan como resultados obtenidos directamente del proveedor. El EDA se ejecutará de nuevo sobre los archivos oficiales verificados, sin inventar resultados ni reutilizar etiquetas de otro estudio.
+El EDA se ejecutará sobre los archivos oficiales verificados y siguiendo los requisitos del Entregable 1. Las tablas y figuras solo se incorporarán después de ejecutar y verificar sus cálculos sobre esos archivos.
 
 ### 2.3.3. Condiciones para ejecutar el EDA
 
