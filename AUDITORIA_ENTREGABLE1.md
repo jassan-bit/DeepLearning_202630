@@ -4,6 +4,10 @@ Fecha: 2 de noviembre de 2026. Alcance: contenido, requisitos, evidencia, numera
 
 Versiones auditadas: fuente `701dfd559c986aaef44dfa5cb39d44595e3494d6` y rama publicada `1013b4fc357ed1a269aab3f962af8a9f04c6df7e`.
 
+## Actualización posterior
+
+Tras esta auditoría se implementó el EDA de desarrollo, se generaron figuras y tablas y se corrigieron estados editoriales. El capítulo 2 y `results/eda_development/summary.json` documentan la nueva ejecución. El dictamen siguiente describe exclusivamente las versiones auditadas indicadas arriba: la ausencia de gráficas ya no describe la nueva versión. Siguen pendientes revisión bibliográfica, entrenamiento y benchmark; esta nota no declara cumplimiento total.
+
 ## Dictamen
 
 **El libro tiene estructura y protocolos redactados, y una adquisición de datos comprobada. No tiene un EDA ejecutado ni gráficas de EDA. Tampoco constituye todavía el Entregable 1 completo.**

@@ -17,7 +17,7 @@ Estos materiales se conservan como referencia académica suministrada por el usu
 
 Huang, Z.-C., Sangiorgi, I. y Urquhart, A. (2024). *Forecasting Bitcoin volatility using machine learning techniques*. Journal of International Financial Markets, Institutions & Money, 97, 102064. [DOI](https://doi.org/10.1016/j.intfin.2024.102064) · [Texto primario en University of Birmingham](https://pure-oai.bham.ac.uk/ws/portalfiles/portal/246755355/1-s2.0-S1042443124001306-main.pdf).
 
-Este trabajo compara redes LSTM y CNN–LSTM para volatilidad de Bitcoin con alternativas econométricas. Se utiliza aquí únicamente como antecedente del problema. No acredita uso previo del dataset aún no seleccionado, no selecciona los tres modelos del proyecto y no demuestra una superioridad universal. No se copian sus resultados como mediciones propias.
+Este trabajo compara redes LSTM y CNN–LSTM para volatilidad de Bitcoin con alternativas econométricas. Se utiliza aquí únicamente como antecedente del problema. No acredita uso del mismo conjunto de archivos Binance Spot BTCUSDT seleccionado para este proyecto, no selecciona sus tres modelos base y no demuestra una superioridad universal. No se copian sus resultados como mediciones propias.
 
 ## Herramientas
 
@@ -27,6 +27,6 @@ Consulta de las fuentes externas: 2 de noviembre de 2026.
 
 ## Fuente directa de datos
 
-[Binance Spot: archivos públicos de BTCUSDT de un minuto](https://data.binance.vision/?prefix=data/spot/monthly/klines/BTCUSDT/1m/) y [documentación oficial Binance Public Data](https://github.com/binance/binance-public-data). Fuente directa utilizada: descarga y checksums de 75 ZIP verificados para el 01/01/2023–30/10/2026 inclusive UTC. Auditoría de adquisición en §2.3.2; EDA pendiente.
+[Binance Spot: archivos públicos de BTCUSDT de un minuto](https://data.binance.vision/?prefix=data/spot/monthly/klines/BTCUSDT/1m/) y [documentación oficial Binance Public Data](https://github.com/binance/binance-public-data). Fuente directa utilizada: descarga y checksums de 75 ZIP verificados para el 01/01/2023–30/10/2026 inclusive UTC. Auditoría de adquisición en §2.3.2; EDA de calidad, precios y retornos de desarrollo en ejecución. El análisis de la variable objetivo queda pendiente de cerrar su definición.
 
 [Binance Vision Dataset Terms](https://github.com/binance/binance-public-data/blob/master/TERMS_AND_CONDITIONS.md), versión 1.0, actualizados el 26 de agosto de 2026; consultados el 2 de noviembre de 2026. Declaran CC BY-NC-SA 4.0 salvo designación específica y condiciones adicionales. Véase §2.3.4 del [EDA](02_eda.md) para el registro de condiciones y atribución.

@@ -2,17 +2,17 @@
 
 ## Antes de cerrar la Sección 1
 
-1. **Confirmar objetivo y horizonte:** próxima hora, próximas 24 horas u otro intervalo. Son opciones, no elecciones realizadas.
-2. **Resolver frecuencia:** la imagen dice 1 minuto, pero su leyenda dice días. Confirmar la unidad temporal.
-3. **Aprobar proxy e indexación:** dispersión de retornos futuros con divisor poblacional, sin anualización; distinguirlo de la ventana histórica de la guía.
-4. **Verificar Binance Spot BTCUSDT y cobertura del calendario recibido:** adquirir los archivos oficiales y verificar condiciones de uso, procedencia y antecedentes del dataset exacto.
-5. **Documentar adquisición y trazabilidad:** tamaño real, esquema, versión y SHA-256. Se descargaron y verificaron 75 ZIP de Binance Spot, del 01/01/2023 al 30/10/2026 inclusive UTC; faltan derivados y ventanas supervisadas.
-6. **Fijar $L$, cadencia de predicción y protocolo temporal:** mediante evidencia del desarrollo, nunca mirando el test.
-7. **Preregistrar métricas, rezago MASE, $\delta$, bloques de independencia y particiones.**
+1. **Configuración confirmada:** modelado diario, horizonte principal de un día y entradas de 7/14/21/28 días; brutos de un minuto.
+2. **Objetivos explorados:** volatilidad de retornos diarios con ventanas de 7/14/21/28 días y divisor poblacional. Fijar las configuraciones que se entrenarán y el protocolo para compararlas; no se eligió una ganadora por test.
+3. **Covariables:** OHLCV diario auditado. Selección final y transformaciones pendientes; noticias no adquiridas ni incorporadas.
+4. **Adquisición y EDA:** 75 ZIP verificados; EDA ejecutado exclusivamente en desarrollo 2023–2024. Conservar los brutos y manifiestos y materializar muestras supervisadas.
+5. **Ventanas y validación:** implementar folds y muestras elegibles para cada tamaño diario; no unir días a través de huecos.
+6. **Preregistro:** congelar métricas y política de ceros para MAPE, rezago MASE, margen $\delta$, bloques inferenciales y test supervisado antes de evaluar modelos.
+7. **Horizontes adicionales:** el principal confirmado es un día; cualquier salida adicional requiere declaración explícita.
 
 ## Más adelante, dentro del Entregable 1
 
-Estas tareas están **pendientes y no ejecutadas**: EDA reproducible; búsqueda y síntesis de literatura; selección de exactamente tres modelos simples; piloto de al menos cinco semillas por modelo; cálculo de potencia y número de corridas definitivas; entrenamiento, comparación e inferencia.
+El EDA de calidad, precios y retornos de desarrollo está ejecutado y documentado en la sección 2. Siguen **pendientes** el cierre de configuraciones de la variable objetivo, la búsqueda y síntesis de literatura, la selección de exactamente tres modelos simples, el piloto de al menos cinco semillas por modelo, el cálculo de potencia y número de corridas definitivas, y el entrenamiento, comparación e inferencia.
 
 La guía contiene requisitos detallados adicionales. Esta lista no los reemplaza ni afirma cumplirlos. No se estima tiempo de entrenamiento sin datos, arquitectura, hardware y piloto medido.
 
@@ -21,12 +21,12 @@ La guía contiene requisitos detallados adicionales. Esta lista no los reemplaza
 | Decisión | Estado al 2026-11-02 |
 |---|---|
 | Activo | Confirmado: Bitcoin |
-| Entregable inmediato | Confirmado: Entregable 1, Sección 1 |
+| Entregable inmediato | Entregable 1: secciones 1–3 en desarrollo, con prioridad en ejecutar el EDA |
 | Repositorio | Confirmado: DeepLearning_202630, público por decisión del usuario |
 | Uso de cierre para volatilidad | Confirmado |
-| Pronóstico y definición exacta futura | Propuesta, pendiente de aprobación |
+| Pronóstico y objetivo | Diario, un día adelante; cuatro ventanas de volatilidad exploradas; configuraciones finales del benchmark pendientes |
 | Calendario | Historia 2023; validación 2024; ajuste final elegible 2023–2024; test 01/01/2025–31/08/2026, reportando cada año por separado |
 | Modelos finales | No seleccionados |
 | Extensión a otras criptomonedas | No autorizada en el alcance actual |
-| Datos, EDA y entrenamiento | Descarga oficial verificada; EDA y entrenamiento pendientes |
+| Datos, EDA y entrenamiento | Descarga oficial verificada; EDA de desarrollo ejecutado; objetivo definitivo y entrenamiento pendientes |
 | Sitio público / GitHub Pages | HTML publicado en `gh-pages`; el usuario confirmó la activación de Pages. Verificación HTTP externa bloqueada por la red del entorno |
