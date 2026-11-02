@@ -2,10 +2,6 @@
 
 El benchmark comparará conjuntamente los **tres modelos de Deep Learning seleccionados desde la literatura**, bajo condiciones reproducibles, justas y comparables. Su resultado será identificar una referencia mínima de desempeño que un modelo avanzado deberá superar con evidencia estadística y relevancia práctica.
 
-```{important}
-Este capítulo contiene criterios y plantillas para la etapa experimental E2 según el alcance solicitado. Las familias seleccionadas documentalmente son LSTM, TCN y encoder Transformer, con evidencia acotada; no hay resultados experimentales propios incorporados ni baseline medido. La persistencia sigue siendo contexto. La guía original exige ejecución en E1; esta separación operativa no altera esa exigencia escrita.
-```
-
 ## 5.1. Comparación Tabular
 
 ### 5.1.1. Alcance y unidad de comparación
@@ -139,10 +135,6 @@ Este capítulo deja preparado el producto final exigido, sin presentar el protoc
 
 Se requieren contrastes formales para evaluar diferencias entre los tres modelos: **no bastan las métricas promedio**. El análisis distinguirá resultados entre semillas, diferencias de pérdidas por fecha y diagnósticos de residuos, porque corresponden a preguntas y unidades estadísticas distintas.
 
-```{important}
-Esta sección establece el protocolo estadístico. Todavía no hay predicciones ni residuos de los tres modelos; no se han ejecutado estas pruebas y no existen p-values de comparación que reportar. Los diagnósticos del EDA no sustituyen la inferencia del benchmark.
-```
-
 ### 5.4.1. Hipótesis, unidad de análisis y supuestos
 
 Antes de evaluar se registrarán métrica principal, configuraciones, contrastes, dirección bilateral o unilateral justificada, nivel de significación **$\alpha=0{,}05$** y familia de comparaciones. Las diferencias pareadas deberán corresponder a **las mismas semillas, fechas, particiones o bloques**, según la pregunta planteada.
@@ -261,10 +253,6 @@ El capítulo no atribuye significación ni equivalencia a modelos aún no evalua
 ## 5.5. Discusión Crítica
 
 La discusión responderá a las preguntas del entregable mediante resultados del benchmark, literatura verificable e inferencia adecuada. **No se aceptan conclusiones basadas únicamente en descripciones o promedios:** cada afirmación debe indicar su evidencia, alcance e incertidumbre.
-
-```{important}
-La adquisición, el EDA de desarrollo y los folds están ejecutados. Las tres familias están seleccionadas documentalmente, pero su ejecución se reserva para E2; por tanto, no es posible concluir cuál funciona o generaliza mejor, establecer un baseline medido ni cuantificar su brecha predictiva. Esta sección identifica las preguntas, evidencias y limitaciones que deberá abordar la discusión final.
-```
 
 ### 5.5.1. Desempeño y explicación de las diferencias
 

@@ -2,10 +2,6 @@
 
 Un benchmark con tres modelos y pocas ejecuciones puede tener **potencia muy baja**. El Entregable 1 exige reconocerlo y cuantificarlo, en lugar de interpretar los p-values como si cualquier diseño pudiera detectar diferencias pequeñas.
 
-```{important}
-Las limitaciones siguientes son propiedades teóricas del diseño; no resultados observados del proyecto. Su implementación, piloto y comparaciones se reservan para E2 según el alcance indicado por el usuario. La guía escrita los exige en E1, diferencia que permanece explícita. Un resultado inconcluso bien sustentado es aceptable; no se buscará significación a cualquier costo.
-```
-
 ## 7.1. Potencia, tamaño de muestra y multiplicidad
 
 ### 7.1.1. Friedman con tres modelos y cinco bloques

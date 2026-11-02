@@ -2,10 +2,6 @@
 
 La selección documental de §3 identifica LSTM, TCN y encoder Transformer, con las limitaciones de cobertura y calidad allí declaradas. Este capítulo conserva el diseño necesario para trasladar esas familias a una evaluación futura. No contiene resultados propios de entrenamiento.
 
-```{important}
-Por instrucción de alcance del usuario, los experimentos, el tuning, el piloto y el benchmark se reservan para E2. La guía escrita del curso sí los incluye en sus secciones 4–5 de E1: esta proyección documental no equivale a haber cumplido esos requisitos empíricos ni acredita una modificación formal del docente. En E1 se fijan n=7, horizonte de un día, RMSE y mejora relativa del 5 %; la configuración implementada y su ejecución quedan para E2.
-```
-
 ## 4.1. Diseño Experimental
 
 ### 4.1.1. Variables de entrada y representación
@@ -347,10 +343,6 @@ Esta lista distingue requisitos establecidos de controles ejecutados. No se pres
 ## 4.4. Evaluación
 
 El proyecto corresponde a **regresión temporal con objetivo continuo, ruta 6.4 de la guía**, porque las entradas OHLCV no incluyen rezagos explícitos del objetivo. Se aplican las métricas de regresión y los diagnósticos temporales pertinentes. Las métricas de clasificación, segmentación, texto o localización espacial no se incorporan a este problema de volatilidad de Bitcoin.
-
-```{important}
-Esta sección define la evaluación que se ejecutará. Todavía no hay predicciones de los tres modelos ni resultados de test; no se presentan valores de desempeño, curvas de redes o p-values de residuos inexistentes.
-```
 
 ### 4.4.1. Métrica principal y métricas secundarias
 

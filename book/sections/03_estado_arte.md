@@ -2,10 +2,6 @@
 
 Este capítulo presenta una revisión complementaria trazable y una **selección documental de trabajo: LSTM, TCN y encoder Transformer**. La elección identifica memoria recurrente, convolución temporal y atención, respectivamente. Su validez se limita al corpus accesible y a la regla explícita de diversidad; no demuestra que sean las tres arquitecturas de menor complejidad o mayor frecuencia de toda la literatura.
 
-```{important}
-El alcance autorizado para esta actualización de E1 comprende literatura, fichas técnicas, EDA descriptivo y diseño metodológico. El entrenamiento, el tuning, el piloto y el benchmark propio se reservan para E2 por indicación del usuario. Todos los números de este capítulo son **resultados publicados por terceros o cálculos analíticos identificados**, no experimentos del proyecto. La guía escrita ubica también ejecución en E1; esta separación de trabajo no modifica el texto original ni acredita una excepción formal del docente.
-```
-
 ## 3.1. Búsqueda, cribado y calidad de la evidencia
 
 ### 3.1.1. Estrategia y consultas registradas

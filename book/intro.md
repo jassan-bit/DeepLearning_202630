@@ -7,10 +7,6 @@
 
 Este libro desarrolla el **Entregable 1 de Deep Learning** para el pronóstico de volatilidad de **Bitcoin**, utilizando precios de cierre obtenidos directamente de **Binance Spot (BTCUSDT)**. La revisión se contrasta con la guía del Entregable 1. El alcance autorizado aquí es documental y de EDA; el usuario reservó la ejecución de modelos para E2. Esa instrucción de trabajo se distingue de la guía escrita, que sí incorpora ejecución en sus secciones 4–5.
 
-```{important}
-La adquisición y el EDA de desarrollo están ejecutados. El proyecto fija volatilidad de siete retornos diarios, horizonte de un día, entradas OHLCV de 7/14/21/28 días, RMSE y mejora operativa relativa del 5 % frente a persistencia. La revisión aporta búsqueda complementaria, cribado, matriz de tres textos, fichas y selección documental LSTM–TCN–encoder Transformer. La cobertura es acotada y el apoyo de atención procede de un manuscrito gris. No se incorporan resultados experimentales propios a este E1 documental.
-```
-
 ## Qué contiene este avance
 
 - [Problema y dataset](sections/01_problema_dataset.md): formulación matemática, hipótesis propuesta, métricas y ficha técnica.

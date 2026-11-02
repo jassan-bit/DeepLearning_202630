@@ -4,10 +4,6 @@ La formulación actual sigue la ruta de **Regresión Temporal del apartado 6.4 d
 
 La numeración de este capítulo es continua dentro del libro. La referencia 6.4 identifica la ruta de la guía original; no obliga a reproducir las rutas de otras modalidades.
 
-```{important}
-El alcance autorizado de este trabajo es documental: definición, EDA existente, búsqueda y extracción bibliográfica, fichas y comparación crítica. El usuario reservó entrenamiento, ajuste de hiperparámetros, piloto y benchmark propio para E2. El PDF suministrado ubica implementación y evaluación de tres bases en sus secciones 4–5 de E1; se conserva explícita esa diferencia, sin presentar la organización solicitada como una excepción escrita por el docente. Este capítulo describe el procedimiento posterior y no declara experimentos ejecutados.
-```
-
 ## 6.1. Ruta aplicable: regresión temporal
 
 ### 6.1.1. Partición cronológica y origen móvil

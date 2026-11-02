@@ -2,10 +2,6 @@
 
 El análisis se ejecutó con los archivos oficiales de **Binance Spot BTCUSDT**, utilizando **entrenamiento de 2023** y **validación de 2024**. La frecuencia de adquisición es un minuto; la configuración de modelado es **diaria, con cierre UTC**, entradas de **7, 14, 21 o 28 días** y horizonte principal de **un día**. La clasificación documental actual es **regresión temporal**, conforme a la ruta 6.4 de la guía: las redes reciben covariables OHLCV pasadas, sin rezagos explícitos de la volatilidad objetivo. El objetivo principal es la volatilidad de siete retornos diarios; las ventanas 14/21/28 se conservan como sensibilidad de su definición.
 
-```{important}
-Este capítulo ya contiene resultados, tablas y gráficas reproducibles. El análisis abarca calidad, precios, retornos, cuatro ventanas candidatas de volatilidad, relaciones y estructura temporal. No se han entrenado los tres modelos ni calculado métricas de predicción o BDS de sus residuos. El EDA no abre archivos de test de 2025–2026.
-```
-
 Se distinguen las ventanas de entrada $D$ de las ventanas de volatilidad $n$: ambas se exploran en 7, 14, 21 y 28 **días**, pero tienen funciones diferentes. No se selecciona un ganador a partir de estos gráficos. La escala de cálculo usa retornos logarítmicos sin anualizar; las figuras que muestran porcentajes multiplican por 100 y lo indican en sus ejes.
 
 ## 2.1. EDA general
