@@ -133,3 +133,126 @@ La conclusión final deberá distinguir significación estadística de relevanci
 | Baseline experimental definitivo | No establecido |
 
 Este capítulo deja preparado el producto final exigido, sin presentar el protocolo como un benchmark ya realizado.
+
+## 5.4. Análisis Estadístico y Pruebas de Hipótesis
+
+Se requieren contrastes formales para evaluar diferencias entre los tres modelos: **no bastan las métricas promedio**. El análisis distinguirá resultados entre semillas, diferencias de pérdidas por fecha y diagnósticos de residuos, porque corresponden a preguntas y unidades estadísticas distintas.
+
+```{important}
+Esta sección establece el protocolo estadístico. Todavía no hay predicciones ni residuos de los tres modelos; no se han ejecutado estas pruebas y no existen p-values de comparación que reportar. Los diagnósticos del EDA no sustituyen la inferencia del benchmark.
+```
+
+### 5.4.1. Hipótesis, unidad de análisis y supuestos
+
+Antes de evaluar se registrarán métrica principal, configuraciones, contrastes, dirección bilateral o unilateral justificada, nivel de significación **$\alpha=0{,}05$** y familia de comparaciones. Las diferencias pareadas deberán corresponder a **las mismas semillas, fechas, particiones o bloques**, según la pregunta planteada.
+
+| Pregunta | Unidad de análisis que debe declararse |
+|---|---|
+| Variación de desempeño por entrenamiento | Métrica agregada por ejecución y diferencia entre modelos sobre las mismas semillas |
+| Precisión predictiva a lo largo del tiempo | Diferencia de pérdidas en las mismas fechas y horizonte |
+| Estructura remanente de errores | Residuos fuera de entrenamiento, ordenados temporalmente |
+
+Se examinarán normalidad de las **diferencias pareadas** mediante Shapiro–Wilk y gráficos Q–Q, dependencia, valores extremos y supuestos de varianza o covarianza pertinentes al contraste. Con pocas semillas, no rechazar normalidad no demuestra que sea cierta. La homogeneidad de varianzas entre grupos independientes no se impondrá como requisito genérico de todo contraste pareado; se verificará lo que realmente exige el diseño elegido.
+
+Las 366 fechas y las 5.856 filas configuración–fold no se tratarán como réplicas i.i.d. Las semillas sobre un mismo test representan variabilidad del entrenamiento condicionada a ese mercado y no nuevos mercados independientes. Los supuestos y limitaciones deberán acompañar cada conclusión.
+
+### 5.4.2. Comparaciones pareadas: t y Wilcoxon
+
+Para diferencias de métricas por ejecución se considerará **t-test pareado** cuando el diseño y la distribución de diferencias lo justifiquen. Se reportarán hipótesis, número de pares, diferencia media, estadístico, grados de libertad, IC y p-value.
+
+La alternativa **Wilcoxon signed-rank** requiere justificar su uso y declarar el tratamiento de ceros y empates. No es una prueba sin supuestos: para interpretaciones de desplazamiento se considerará la simetría de las diferencias y su unidad de independencia. Se distinguirá el cálculo exacto del aproximado cuando haya empates o limitaciones del software.
+
+La elección entre pruebas se justificará desde el diseño y los diagnósticos; no se escogerá la que produzca el p-value más pequeño. Si se usan rangos se respetará el mínimo de seis ejecuciones de la guía, o el número mayor exigido por potencia. Con cinco pares sin ceros ni empates, el menor p-value bilateral exacto de Wilcoxon es $2/2^5=0{,}0625$; con seis es $0{,}03125$, todavía mayor que el primer umbral de Holm para tres pares ($0{,}05/3$). Cumplir el mínimo de semillas no garantiza detectar una diferencia.
+
+### 5.4.3. Comparación conjunta de tres modelos y post-hoc
+
+Se considerará **ANOVA de medidas repetidas** si se justifican sus supuestos, incluida la estructura de covarianza o esfericidad cuando corresponda y sus correcciones. **Friedman** es la alternativa recomendada por la guía para bloques emparejados, con la advertencia sobre potencia de su sección 7.
+
+Los bloques deberán representar unidades defendibles del diseño. Repetir el mismo test con varias semillas no permite asumir automáticamente independencia de mercados. Si se usan bloques temporales, su definición y dependencia residual se documentarán.
+
+Los análisis post-hoc podrán incluir Nemenyi u otras comparaciones pareadas con **Holm o Bonferroni**, según el plan registrado. Se declararán procedimiento, familia de hipótesis y ajustes aplicados; no se combinarán correcciones sin explicar qué controla cada una. La familia incluirá las configuraciones u horizontes sobre los que se realicen afirmaciones, no solo los tres pares de una tabla aislada.
+
+Un omnibus no significativo no prueba igualdad entre modelos, y un análisis post-hoc no convierte un diseño de baja potencia en evidencia concluyente. Se interpretará junto con efectos, intervalos y MDE.
+
+### 5.4.4. Intervalos de confianza, tamaños de efecto y potencia
+
+Las diferencias se acompañarán de **IC del 95 %** y tamaños de efecto. Un bootstrap pareado conservará la correspondencia entre los modelos; si la unidad es temporal, se emplearán bloques u otro procedimiento que respete la dependencia. No se remuestrearán por separado los errores de cada modelo destruyendo el emparejamiento.
+
+Para diferencias entre ejecuciones podrá usarse $d_z$ de §5.3.3, u otra medida justificada como una medida basada en rangos. Se identificarán signo, denominador, empates, límites e incertidumbre. No se sustituirá una medida pareada por una de grupos independientes sin justificación.
+
+Cada contraste se acompañará de la potencia planificada o de la **diferencia mínima detectable del diseño**, con los supuestos de §4.1. No se utilizará una potencia retrospectiva calculada solo a partir del efecto observado como prueba de que el estudio fue suficiente. La muestra pequeña y los objetivos móviles solapados deben reconocerse.
+
+### 5.4.5. Diebold–Mariano por horizonte
+
+La precisión predictiva temporal se comparará con **Diebold–Mariano**, por horizonte y sobre fechas comunes. Como RMSE es la métrica primaria propuesta, se usará una pérdida cuadrática coherente:
+
+$$
+e_{A,t}=Y_t-\widehat Y_{A,t},\qquad
+e_{B,t}=Y_t-\widehat Y_{B,t},\qquad
+d_t=e_{A,t}^2-e_{B,t}^2.
+$$
+
+La hipótesis de igualdad de precisión es $H_0:\mathbb E[d_t]=0$. Con este signo, una media negativa favorece a $A$ en pérdida cuadrática. La prueba se aplica a **diferencias de pérdidas por observación**, no a una lista de RMSE globales presentada como si fuera una serie diaria de errores.
+
+Se declararán estimación de varianza de largo plazo, kernel, rezagos y tamaño de muestra, y se utilizará la **corrección de Harvey–Leybourne–Newbold para muestras pequeñas** solicitada por la guía, documentando su implementación y alcance. El horizonte principal es un día, pero las etiquetas de volatilidad comparten retornos entre fechas: **$h=1$ no garantiza ausencia de autocorrelación en $d_t$**. Los controles de dependencia no se reducirán automáticamente a cero rezagos por ese motivo.
+
+El ajuste de muestra pequeña no corrige por sí solo todas las formas de no estacionariedad, selección de modelos o dependencia. Los huecos, etiquetas solapadas y posibles cambios de régimen se considerarán al elegir tramos y métodos. No se concatenarán segmentos discontinuos como si no hubiese interrupciones.
+
+Las semillas se tratarán según un plan previo: no se concatenarán todas las fechas de todas las semillas como una única serie temporal más larga. Si se comparan predicciones agregadas entre semillas, esa agregación deberá registrarse como parte del método, no inventarse después de ver los resultados.
+
+### 5.4.6. BDS sobre residuos
+
+Se aplicará **BDS —Brock–Dechert–Scheinkman—** a residuos fuera de entrenamiento, incluido el primer horizonte exigido en el material recibido. Se documentarán tramo, número de observaciones, dimensiones de inmersión, radio o regla de escala, tratamiento de valores ausentes y versión del software.
+
+BDS contrasta una hipótesis de comportamiento i.i.d. bajo sus condiciones. Un rechazo puede reflejar dependencia u otras desviaciones y **no demuestra por sí solo no linealidad estructural**. Un no rechazo tampoco acredita independencia absoluta ni que se haya agotado toda capacidad predictiva.
+
+Los residuos se ordenarán y se evaluarán sobre tramos temporalmente válidos; no se sustituirán por retornos crudos del EDA. Las pruebas de diferentes dimensiones, modelos o configuraciones se incluirán en la política de multiplicidad cuando sustenten afirmaciones confirmatorias.
+
+### 5.4.7. Ljung–Box e interpretación de residuos
+
+Se usará **Ljung–Box** para estudiar autocorrelación residual en varios rezagos predefinidos. Se registrarán tamaño de muestra, rezagos, hipótesis, estadístico, p-values y tratamiento de grados de libertad.
+
+La corrección de grados de libertad se justificará según el modelo y los parámetros de la prueba: **no se restará automáticamente el número de pesos de una red neuronal** como si fueran los parámetros ARMA de una fórmula clásica. También podrá examinarse la dependencia de residuos al cuadrado con una finalidad explícita, diferenciándola de la autocorrelación lineal.
+
+Sesgo, autocorrelación o estructura no explicada pueden motivar investigar mejoras, pero no prueban que un modelo avanzado concreto vaya a aprovecharlas. La interpretación incorporará heterocedasticidad, cambios de régimen, especificación del objetivo y los límites de cada contraste.
+
+### 5.4.8. Ausencia de significación y equivalencia
+
+**No rechazar una diferencia no demuestra equivalencia.** Si se desea afirmar equivalencia entre modelos, se planteará un análisis separado, por ejemplo **TOST** con margen práctico predefinido. Una alternativa bayesiana con **ROPE** deberá declarar modelo, distribución posterior y regla de decisión; no se presentará como si fuera la misma prueba frecuentista.
+
+El margen de equivalencia debe fijarse con sentido aplicado y unidades claras, coherente con el registro de $\delta$. No se ensanchará después para conseguir equivalencia. Se distinguirán ausencia de evidencia, evidencia de diferencia y evidencia de equivalencia bajo el diseño correspondiente.
+
+### 5.4.9. Reporte y buenas prácticas estadísticas
+
+Cada contraste tendrá un registro con:
+
+| Campo | Contenido obligatorio |
+|---|---|
+| Comparación | Modelos, configuración, horizonte y periodo |
+| Hipótesis | Nula, alternativa y dirección fijadas previamente |
+| Unidad y tamaño | Semillas, fechas o bloques; cantidad de pares válidos y exclusiones |
+| Supuestos | Diagnósticos, limitaciones y justificación del método |
+| Método | Prueba, versión, estadístico, grados de libertad o parámetros pertinentes |
+| Evidencia | Diferencia o efecto, IC del 95 %, p-value calculado y tamaño de efecto |
+| Multiplicidad | Familia, corrección y p-value ajustado y sin ajustar |
+| Potencia | Potencia planificada o MDE y su relación con $\delta$ |
+| Interpretación | Significación estadística, relevancia práctica y restricciones de generalización |
+
+Los p-values se reportarán con precisión numérica suficiente, no solo como `p < 0,05`. Se distinguirá un procedimiento exacto de una aproximación y se explicitarán límites numéricos si el software devuelve cero por redondeo o subdesbordamiento. No se seleccionarán únicamente los contrastes favorables ni se multiplicarán análisis sin identificarlos como exploratorios.
+
+Las pruebas de DeLong, McNemar, segmentación o análisis de lenguaje del catálogo general no corresponden a este objetivo continuo de una serie financiera. Su ausencia no se reemplaza con métricas ajenas al problema.
+
+### 5.4.10. Estado del análisis estadístico
+
+| Producto | Estado |
+|---|---|
+| Protocolo general y pruebas temporales | Documentados |
+| Modelos, predicciones y residuos | Pendientes de implementación y entrenamiento |
+| Familia de contrastes y parámetros definitivos | Pendientes de congelación |
+| Shapiro–Wilk, Q–Q y verificación de supuestos del benchmark | No ejecutados |
+| t/Wilcoxon, ANOVA/Friedman y post-hoc | No ejecutados |
+| Diebold–Mariano con corrección, BDS y Ljung–Box | No ejecutados |
+| Intervalos, efectos, p-values y conclusiones de comparación | No disponibles todavía |
+| Equivalencia, si se plantea | Análisis separado y preregistrado; no ejecutado |
+
+El capítulo no atribuye significación ni equivalencia a modelos aún no evaluados. Las conclusiones requerirán predicciones y registros verificables bajo el protocolo congelado.
