@@ -1,6 +1,6 @@
 # Construir el Jupyter Book
 
-Alcance: Sección 1 en español, borrador de protocolo. No descarga datos ni entrena modelos.
+El libro documenta el Entregable 1 y el estado real de sus evidencias. Construir el HTML no descarga datos ni entrena modelos. La adquisición directa de Binance se reproduce con `scripts/download_binance_spot.py`; véase `data/README.md`.
 
 ## Entorno probado
 
@@ -31,7 +31,7 @@ cd references/course
 sha256sum -c SHA256SUMS.txt
 ```
 
-Los hashes corresponden a **materiales del curso**, no al dataset de Bitcoin, que aún no se ha adquirido.
+Los hashes corresponden a **materiales del curso**, no a los datos de Bitcoin. Los SHA-256 de los ZIP de Binance se conservan en el manifiesto de `data/manifests/`.
 
 ## Privacidad
 

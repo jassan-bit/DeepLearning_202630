@@ -6,7 +6,7 @@
 2. **Resolver frecuencia:** la imagen dice 1 minuto, pero su leyenda dice días. Confirmar la unidad temporal.
 3. **Aprobar proxy e indexación:** dispersión de retornos futuros con divisor poblacional, sin anualización; distinguirlo de la ventana histórica de la guía.
 4. **Verificar Binance Spot BTCUSDT y cobertura del calendario recibido:** adquirir los archivos oficiales y verificar condiciones de uso, procedencia y antecedentes del dataset exacto.
-5. **Documentar adquisición y trazabilidad:** tamaño real, esquema, versión y SHA-256. No hay datos descargados.
+5. **Documentar adquisición y trazabilidad:** tamaño real, esquema, versión y SHA-256. Se descargaron y verificaron 75 ZIP de Binance Spot, del 01/01/2023 al 30/10/2026 inclusive UTC; faltan derivados y ventanas supervisadas.
 6. **Fijar $L$, cadencia de predicción y protocolo temporal:** mediante evidencia del desarrollo, nunca mirando el test.
 7. **Preregistrar métricas, rezago MASE, $\delta$, bloques de independencia y particiones.**
 
@@ -28,5 +28,5 @@ La guía contiene requisitos detallados adicionales. Esta lista no los reemplaza
 | Calendario | Historia 2023; validación 2024; ajuste final elegible 2023–2024; test 01/01/2025–31/08/2026, reportando cada año por separado |
 | Modelos finales | No seleccionados |
 | Extensión a otras criptomonedas | No autorizada en el alcance actual |
-| Datos, EDA y entrenamiento | No ejecutados |
+| Datos, EDA y entrenamiento | Descarga oficial verificada; EDA y entrenamiento pendientes |
 | Sitio público / GitHub Pages | HTML publicado en `gh-pages`; el usuario confirmó la activación de Pages. Verificación HTTP externa bloqueada por la red del entorno |

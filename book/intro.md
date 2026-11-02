@@ -8,7 +8,7 @@
 Este libro desarrolla el **Entregable 1 de Deep Learning** para el pronóstico de volatilidad de **Bitcoin**, utilizando precios de cierre obtenidos directamente de **Binance Spot (BTCUSDT)**. La estructura, el EDA, la revisión de literatura y el protocolo experimental se rigen por la guía del Entregable 1.
 
 ```{important}
-Este es un borrador metodológico, no un protocolo congelado ni un experimento terminado. La fuente seleccionada es Binance Spot BTCUSDT. La adquisición directa verificada y la ejecución del EDA están pendientes. No se han entrenado modelos de Deep Learning. Las decisiones no confirmadas están identificadas como **pendientes** o **propuestas**.
+Este es un borrador metodológico, no un protocolo congelado ni un experimento terminado. La fuente seleccionada es Binance Spot BTCUSDT. Se descargaron y verificaron los archivos oficiales del 01/01/2023 al 30/10/2026 inclusive UTC. El EDA sigue pendiente; la descarga no equivale a un experimento terminado. No se han entrenado modelos de Deep Learning. Las decisiones no confirmadas están identificadas como **pendientes** o **propuestas**.
 ```
 
 ## Qué contiene este avance

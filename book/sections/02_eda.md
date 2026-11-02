@@ -3,7 +3,7 @@
 El EDA de este proyecto debe ser reproducible y orientar decisiones de modelado, preprocesamiento y validación. Cada resultado deberá acompañarse de una interpretación técnica y una decisión justificable.
 
 ```{important}
-Esta sección establece el protocolo de análisis. La fuente será Binance Spot directamente, según §2.3. La adquisición verificada y los resultados del EDA siguen pendientes. La fuente, el horizonte y la frecuencia deben concretarse según la sección 1 antes de construir las etiquetas.
+Esta sección establece el protocolo de análisis. La fuente es Binance Spot directamente, según §2.3. La adquisición del 01/01/2023 al 30/10/2026 inclusive UTC está verificada. Los resultados del EDA siguen pendientes. La fuente, el horizonte y la frecuencia deben concretarse según la sección 1 antes de construir las etiquetas.
 ```
 
 ## 2.1. EDA general
@@ -141,15 +141,33 @@ El calendario objetivo sigue siendo desarrollo 2023–2024 y test 2025–agosto 
 
 ### 2.3.2. Estado de adquisición y resultados
 
-**La adquisición directa aún no se ha completado.** El intento de acceder al checksum oficial fue bloqueado por el proxy del entorno con HTTP 403. Hace falta permitir `data.binance.vision` en la configuración de red del entorno. Este bloqueo no demuestra que Binance haya rechazado el acceso.
+**Adquisición directa completada para el rango solicitado:** del **1 de enero de 2023, 00:00 UTC**, al **30 de octubre de 2026, 23:59 UTC** (apertura de la última vela). Se conservaron los ZIP y checksums oficiales, sin imputación ni modificación de sus filas.
+
+| Control de adquisición | Resultado verificado |
+|---|---:|
+| Archivos mensuales, enero de 2023–septiembre de 2026 | 45 |
+| Archivos diarios, 1–30 de octubre de 2026 | 30 |
+| Total de ZIP con SHA-256 correcto | 75 de 75 |
+| Tamaño total de esos ZIP | 97.442.605 bytes |
+| Filas CSV brutas | 2.014.480 |
+| Minutos esperados en el calendario solicitado | 2.014.560 |
+| Minutos ausentes en los archivos verificados | 80 |
+| Timestamps de apertura duplicados, fuera de rango o desalineados | 0 |
+| Timestamps de cierre que no coinciden con el fin esperado de vela | 1 |
+
+Los 80 minutos ausentes y el cierre inesperado pertenecen a marzo de 2023. La verificación de integridad **no significa que los datos no tengan huecos o anomalías**. Se conservarán para su análisis posterior; estos controles no validan precios ni ejecutan el EDA del objetivo.
+
+El [manifiesto de adquisición](../_static/data/binance_spot_BTCUSDT_1m_20230101_20261030.json) registra URLs, SHA-256, bytes, fechas de verificación, unidades y conteos por archivo. El script reproducible es `scripts/download_binance_spot.py`, documentado en `data/README.md`. Los brutos están en `/workspace/binance-spot-data/`, fuera del repositorio y del sitio público.
+
+Los archivos históricos respondieron HTTP 200. La API respondió HTTP 451 por restricción de ubicación; no se utilizó para adquirir los datos. Las particiones previstas en §1.6 se mantienen: disponer de septiembre–octubre de 2026 no asigna automáticamente esos meses al test.
 
 El EDA se ejecutará sobre los archivos oficiales verificados y siguiendo los requisitos del Entregable 1. Las tablas y figuras solo se incorporarán después de ejecutar y verificar sus cálculos sobre esos archivos.
 
 ### 2.3.3. Condiciones para ejecutar el EDA
 
-1. Habilitar acceso al dominio oficial y comprobar una descarga con verificación TLS.
+1. Acceso a archivos oficiales y verificación TLS: comprobados. La API no es necesaria.
 2. Conservar la versión de las condiciones aplicables a la adquisición y comprobar cualquier designación específica del dataset; las condiciones consultadas se resumen en §2.3.4.
-3. Descargar y verificar los archivos de desarrollo, conservar los brutos y generar el manifiesto.
+3. Adquisición y checksums del rango solicitado: completados; brutos y manifiesto conservados. Falta preparar los derivados de desarrollo.
 4. Auditar timestamps, unidades, duplicados, huecos, cierres y coherencia OHLC antes de crear retornos.
 5. Fijar horizonte, frecuencia de los retornos objetivo, longitud de entrada y cadencia conforme al Entregable 1.
 6. Ejecutar el EDA general y el específico de series de tiempo; vincular cada resultado a una decisión de modelado o validación.
@@ -169,15 +187,15 @@ Se consultaron los [Binance Vision Dataset Terms oficiales](https://github.com/b
 
 La atribución de los futuros productos derivados identificará **Binance Vision — Binance Spot, BTCUSDT**, enlazará la fuente y las condiciones, indicará los cambios realizados y la licencia aplicable. Los materiales del curso y artículos citados conservan sus propios derechos.
 
-Los términos se conservarán con fecha y hash al adquirir los datos. Su revisión no sustituye los checksums de cada archivo de mercado ni elimina el bloqueo de descarga actual. El repositorio oficial permite consultar documentación, mientras los ZIP se sirven desde `data.binance.vision`.
+Los términos se conservarán con fecha y hash al adquirir los datos. Su revisión no sustituye los checksums de cada archivo de mercado, que se verificaron individualmente durante la adquisición. El repositorio oficial permite consultar documentación, mientras los ZIP se sirven desde `data.binance.vision`.
 
 ## 2.4. Evidencias necesarias para completar la sección
 
 | Producto reproducible | Estado |
 |---|---|
-| Fuente, términos de uso, archivo y manifiesto de adquisición | Binance Spot BTCUSDT y términos v1.0 documentados; descarga y hashes de datos pendientes |
+| Fuente, términos de uso, archivo y manifiesto de adquisición | Binance Spot BTCUSDT: 75 ZIP y hashes verificados, manifiesto disponible; términos v1.0 documentados |
 | Frecuencia, horizonte, ventana de entrada y cadencia definidos | Pendiente |
-| Código o notebook de auditoría y EDA de desarrollo | Pendiente de adquisición directa |
+| Código o notebook de auditoría y EDA de desarrollo | Auditoría de adquisición ejecutada; EDA y derivados de desarrollo pendientes |
 | Tablas, figuras e interpretación vinculadas a decisiones | Pendientes de ejecución sobre brutos verificados |
 | Recuentos y límites exactos de particiones y folds | Pendiente de datos |
 | Manifiesto y hashes del test congelado | Pendiente de adquisición |

@@ -137,7 +137,7 @@ Las ventanas de entrada y las etiquetas futuras pueden solaparse. Ni las filas, 
 
 ## 1.5. Dataset: pertinencia y ficha técnica
 
-**Fuente seleccionada:** Binance Spot, par BTCUSDT, velas de un minuto adquiridas directamente de los archivos públicos oficiales. La adquisición, verificación y auditoría se describen en §2.3 del [EDA](02_eda.md). Aún no se han verificado los archivos brutos ni la cobertura completa; tamaño, calidad y hashes permanecen pendientes.
+**Fuente seleccionada:** Binance Spot, par BTCUSDT, velas de un minuto adquiridas directamente de los archivos públicos oficiales. La adquisición, verificación y auditoría se describen en §2.3 del [EDA](02_eda.md). Se verificaron 75 ZIP oficiales para el periodo 01/01/2023–30/10/2026 inclusive UTC: 2.014.480 filas. El manifiesto contiene los SHA-256 y la auditoría de timestamps; faltan el EDA de precios y objetivo y la construcción de ventanas supervisadas.
 
 Un conjunto de cierres de Bitcoin con marcas de tiempo y resolución suficiente permitiría construir entradas y etiquetas de manera trazable. Su idoneidad dependerá de cubrir suficientes regímenes y de contar con continuidad, procedencia y condiciones de uso verificables. Acceso público no equivale a licencia abierta ni a permiso de redistribución.
 
@@ -145,19 +145,19 @@ Un conjunto de cierres de Bitcoin con marcas de tiempo y resolución suficiente 
 |---|---|
 | Nombre y proveedor | Binance Spot; archivos públicos oficiales de velas de un minuto |
 | Activo y par | Bitcoin, cotizado en USDT; par BTCUSDT |
-| Disponibilidad pública | Archivos oficiales en data.binance.vision; acceso desde el entorno bloqueado por su proxy |
+| Disponibilidad pública | Archivos oficiales accesibles y descargados desde data.binance.vision; la API devuelve HTTP 451 por ubicación y no se utiliza |
 | Licencia y redistribución | Binance Vision Dataset Terms v1.0, actualizados el 26/08/2026: CC BY-NC-SA 4.0 salvo indicación específica, con condiciones adicionales; ver §2.3.4 |
 | Procedencia | Pendiente: documentar generación de velas, cierre y agregación por proveedor |
 | Uso previo del mismo dataset | No verificado; el antecedente temático no demuestra igualdad de dataset |
-| Periodo temporal y zona horaria | Calendario confirmado en §1.6; zona horaria y convención de apertura/cierre pendientes |
+| Periodo temporal y zona horaria | Descarga: 01/01/2023–30/10/2026 inclusive UTC; timestamps de apertura en milisegundos antes de 2025 y microsegundos desde 2025. Calendario experimental en §1.6 |
 | Frecuencia | Velas de un minuto; frecuencia del objetivo e interpretación de la leyenda diaria pendientes de fijar |
-| Tamaño | Pendiente: filas brutas, cierres válidos y ventanas finales; no se estima como medido |
+| Tamaño | 75 ZIP, 97.442.605 bytes comprimidos y 2.014.480 filas brutas; cierres válidos y ventanas finales pendientes |
 | Estructura mínima propuesta | Marca temporal única y cierre positivo; $X$ con forma $(N,L,1)$, $Y$ con forma $(N,)$ |
-| Formato de almacenamiento | Pendiente; CSV o Parquet son opciones, no archivos adquiridos |
+| Formato de almacenamiento | CSV oficiales de 12 columnas dentro de ZIP; timestamps normalizados solo para auditar cobertura, brutos intactos |
 | Etiquetas | Cálculo automático de $Y_t$ según fórmula aprobada; sin anotación manual |
 | Dependencia | Temporal, ventanas solapadas y cambios de régimen; se verificará en EDA |
-| Versión / fecha de extracción | Pendiente de adquisición |
-| Hash de datos | Pendiente: SHA-256 de cada archivo bruto y manifiesto de transformaciones |
+| Versión / fecha de extracción | Instantánea verificada el 02/11/2026; versión identificada por el manifiesto y SHA-256 individuales |
+| Hash de datos | SHA-256 de los 75 ZIP contrastados con checksums oficiales; manifiesto enlazado en §2.3.2. Transformaciones y etiquetas pendientes |
 
 Con $T$ cierres consecutivos válidos y sin pérdidas por partición, usar simultáneamente una entrada de $L$ retornos y el baseline de $h$ retornos permite como máximo $T-\max(L,h)-h$ orígenes. Es una relación teórica, **no el tamaño real**; huecos, filtros y separación entre particiones pueden reducirlo.
 
@@ -191,7 +191,7 @@ Se reportarán **2025 y 2026 por separado**; el segundo año solo cubre hasta el
 
 **Regla operativa propuesta, pendiente de concretar con $h$ y timestamps:** asignar una etiqueta a una etapa solo si todo su intervalo futuro está contenido en ella. Una etiqueta que cruce del 31 de diciembre de 2024 a 2025 no puede usarse para ajuste final. La historia de entrada anterior al inicio de una etapa sí puede utilizarse si ya era observable. El entrenamiento en cada origen de validación solo incluirá etiquetas totalmente conocidas en ese instante. La política de actualización durante test todavía debe preregistrarse: no se presupone reentrenamiento con sus etiquetas.
 
-Los días indicados son límites de calendario, no timestamps exactos ni garantía de disponibilidad del proveedor. La zona horaria, inclusividad de límites, cadencia y datos elegibles se fijarán antes de construir ventanas. No se han contado muestras ni accedido al test.
+Los días indicados son límites de calendario, no timestamps exactos ni garantía de disponibilidad del proveedor. La zona horaria, inclusividad de límites, cadencia y datos elegibles se fijarán antes de construir ventanas. Se contaron filas y timestamps brutos para auditar adquisición; no se han construido muestras supervisadas ni explorado precios o resultados de test. La descarga adicional de septiembre–octubre de 2026 no cambia automáticamente el calendario experimental.
 
 ## 1.7. Estado de cierre
 
