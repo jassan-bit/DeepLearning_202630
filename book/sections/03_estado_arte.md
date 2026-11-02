@@ -178,3 +178,58 @@ La sección 14 debe consultarse antes de ejecutar ese procedimiento; aquí no se
 | Justificación comparativa y arquitecturas reproducibles | Pendientes |
 
 Esta sección documenta el procedimiento exigido; no afirma haber ejecutado la revisión, seleccionado los modelos ni entrenado redes.
+
+## 3.3. Análisis Detallado por Modelo Base
+
+Cada uno de los tres modelos seleccionados en §3.2 tendrá una ficha independiente con los requisitos siguientes. **Las fichas no están completadas:** no se asignan arquitecturas ni resultados antes de extraer la evidencia bibliográfica.
+
+### 3.3.1. Referencias y papel como línea base
+
+Se registrarán las referencias académicas completas, con DOI cuando exista, de los artículos que utilizan el modelo como referencia comparativa. Cada afirmación tendrá una ubicación verificable en el texto, tabla o figura del artículo. Si no existe DOI, se conservará el identificador persistente disponible, sin inventarlo.
+
+Se distinguirá el artículo que introduce una arquitectura del que respalda su uso como baseline para pronóstico de volatilidad de Bitcoin. Una referencia general sobre una red no demuestra su empleo como línea base en este problema.
+
+### 3.3.2. Arquitectura y descripción técnica
+
+La ficha identificará la familia y variante concreta, sus componentes, profundidad, ancho, conexiones, activaciones y dimensiones de entrada y salida. Incluirá las ecuaciones de las capas y un diagrama del flujo de datos, con notación coherente con el objetivo del proyecto.
+
+También explicará los supuestos de modelado y el sesgo inductivo, la pérdida y el procedimiento habitual de optimización según las fuentes. Se separará la configuración reportada por los artículos de la configuración propia que se implemente. Si faltan detalles arquitectónicos, se aplicará la regla de §3.2.7, sin completarlos por preferencia personal.
+
+### 3.3.3. Problema, datasets y resultados de literatura
+
+Para cada artículo se describirán el problema abordado, activo, proveedor, periodo, frecuencia, definición de volatilidad, horizonte y partición. La descripción permitirá establecer qué resultados son comparables con el proyecto y cuáles solo aportan contexto.
+
+| Referencia y evidencia | Dataset y problema | Configuración del modelo | Métrica, unidad y horizonte | Valor reportado | Dispersión y repeticiones |
+|---|---|---|---|---|---|
+| Pendiente de extracción | Pendiente | Pendiente | Pendiente | Pendiente | Pendiente |
+
+Esta fila es una plantilla, no un resultado. Se especificará si el artículo reporta media, desviación estándar, intervalo de confianza u otra medida, junto con el número de repeticiones cuando esté disponible. Una medida ausente se marcará **no reportada**; no se inferirá de un valor puntual. Las cifras de literatura no se presentarán como mediciones propias.
+
+### 3.3.4. Fortalezas y limitaciones
+
+Las fortalezas se evaluarán en términos de simplicidad, eficiencia y facilidad de reproducción. Las limitaciones cubrirán capacidad de representación, sobreajuste y sensibilidad a hiperparámetros, conectándolas con la longitud de entrada, el tamaño de desarrollo, los cambios de régimen y la definición del objetivo.
+
+Se distinguirán propiedades derivadas de la arquitectura, observaciones empíricas de artículos y comportamientos todavía no medidos en este proyecto. No se atribuirá superioridad universal a un modelo por una comparación publicada.
+
+### 3.3.5. Complejidad computacional
+
+Cada ficha incluirá una expresión analítica del número de parámetros en función de los hiperparámetros y su evaluación para la arquitectura concreta. Se definirán los símbolos y se contarán pesos, sesgos y componentes entrenables; el total se contrastará con el framework al implementar el modelo.
+
+Se declarará el orden de complejidad del entrenamiento y de la inferencia, indicando qué representa un paso: minibatch con retropropagación o una predicción. El análisis especificará tamaño de lote, longitud de secuencia, dimensiones internas y número de salidas cuando correspondan. Se distinguirá costo por paso de costo total por épocas y corridas.
+
+Los tiempos reales, memoria y hardware solo se reportarán después de medirlos. Un orden asintótico no demuestra por sí solo cuál implementación será más rápida. Las expresiones, diagramas y valores concretos se completarán para los tres modelos finales, no para candidatos presentados como si ya estuvieran seleccionados.
+
+### 3.3.6. Control de completitud de las tres fichas
+
+| Requisito | Modelo base 1 | Modelo base 2 | Modelo base 3 |
+|---|---|---|---|
+| Identidad y selección justificadas en §3.2 | Pendiente | Pendiente | Pendiente |
+| Referencias completas y DOI o identificador | Pendiente | Pendiente | Pendiente |
+| Arquitectura, ecuaciones y diagrama | Pendiente | Pendiente | Pendiente |
+| Supuestos, sesgo inductivo, pérdida y optimización | Pendiente | Pendiente | Pendiente |
+| Problema y datasets de los artículos | Pendiente | Pendiente | Pendiente |
+| Métricas, valores y estado de la dispersión | Pendiente | Pendiente | Pendiente |
+| Fortalezas y limitaciones sustentadas | Pendiente | Pendiente | Pendiente |
+| Parámetros y costos de entrenamiento e inferencia | Pendiente | Pendiente | Pendiente |
+
+Esta matriz verifica los productos exigidos y no sustituye el análisis individual de cada uno de los tres modelos.
