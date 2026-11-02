@@ -3,7 +3,7 @@
 **Proyecto de Deep Learning · 2026-30**  
 **Profesor:** Dr. Lihki Rubio  
 **Autor:** Jassan Arteta  
-**Avance:** Entregable 1 · Secciones 1–3 · 2 de noviembre de 2026
+**Avance:** Entregable 1 · Secciones 1–4 · 2 de noviembre de 2026
 
 Este libro desarrolla el **Entregable 1 de Deep Learning** para el pronóstico de volatilidad de **Bitcoin**, utilizando precios de cierre obtenidos directamente de **Binance Spot (BTCUSDT)**. La estructura, el EDA, la revisión de literatura y el protocolo experimental se rigen por la guía del Entregable 1.
 
@@ -16,6 +16,7 @@ Este es un borrador metodológico, no un protocolo congelado ni un experimento t
 - [Problema y dataset](sections/01_problema_dataset.md): formulación matemática, hipótesis propuesta, métricas y ficha técnica.
 - [Análisis exploratorio de datos](sections/02_eda.md): adquisición directa desde Binance Spot BTCUSDT y análisis de calidad, precios y retornos de desarrollo.
 - [Estado del arte](sections/03_estado_arte.md): estrategia de búsqueda y procedimiento para seleccionar tres modelos base; revisión y selección pendientes de ejecución.
+- [Diseño experimental y piloto](sections/04_implementacion_evaluacion.md): pipeline, repeticiones, potencia y preregistro; entrenamiento y piloto pendientes.
 - [Decisiones pendientes](sections/protocolo_pendiente.md): requisitos para cerrar la sección sin inventar información.
 - [Referencias y materiales](sections/referencias.md): guía del curso y antecedente científico.
 
