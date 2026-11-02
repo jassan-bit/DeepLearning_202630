@@ -341,3 +341,120 @@ Se reportarán 2025 y 2026 por separado dentro del calendario fijado. Disponer d
 | Test supervisado congelado y evaluación final | Pendientes |
 
 Esta lista distingue requisitos establecidos de controles ejecutados. No se presenta el benchmark como reproducible o completo hasta verificar también las implementaciones y sus resultados.
+
+## 4.4. Evaluación
+
+El proyecto corresponde a **series de tiempo con objetivo continuo**. Se aplican las métricas de regresión y los diagnósticos temporales de la guía. Las métricas de clasificación, segmentación, texto o localización espacial no se incorporan a este problema de volatilidad de Bitcoin.
+
+```{important}
+Esta sección define la evaluación que se ejecutará. Todavía no hay predicciones de los tres modelos ni resultados de test; no se presentan valores de desempeño, curvas de redes o p-values de residuos inexistentes.
+```
+
+### 4.4.1. Métrica principal y métricas secundarias
+
+Se propone **RMSE como métrica principal**, coherente con la pérdida MSE, y se reportarán **MAE, MSE, R², MAPE y MASE**, atendiendo tanto a las indicaciones específicas recibidas como a la guía general. sMAPE es una alternativa complementaria si se registra antes de evaluar; no se elegirá después para favorecer un resultado.
+
+Para objetivos $Y_t$, predicciones $\widehat Y_t$ y $N$ pares elegibles del mismo modelo, configuración, semilla y horizonte, se define $e_t=Y_t-\widehat Y_t$:
+
+$$
+\mathrm{MSE}=\frac1N\sum_t e_t^2,\qquad
+\mathrm{RMSE}=\sqrt{\frac1N\sum_t e_t^2},\qquad
+\mathrm{MAE}=\frac1N\sum_t|e_t|.
+$$
+
+$$
+R^2=1-\frac{\sum_t e_t^2}{\sum_t(Y_t-\bar Y)^2}.
+$$
+
+R² puede ser negativo. Si el objetivo evaluado es constante, su denominador es cero y se reportará como no definido, junto con el contexto; no se sustituirá silenciosamente por un valor favorable. Con un único resultado por fold, R² por fold no está definido: se calculará sobre la colección de predicciones fuera de entrenamiento, no promediando R² diarios.
+
+Las métricas se calcularán en la **escala original de la volatilidad**, después de invertir transformaciones de la etiqueta. Se declarará si se muestran unidades de retorno logarítmico o puntos porcentuales. Multiplicar la etiqueta por 100 multiplica RMSE y MAE por 100 y MSE por 10.000; los resultados de distintas escalas no se mezclarán.
+
+### 4.4.2. Errores relativos y escalados
+
+Para MAPE se requiere una política previa sobre ceros y valores cercanos a cero:
+
+$$
+\mathrm{MAPE}=\frac{100}{N}\sum_t\left|\frac{e_t}{Y_t}\right|.
+$$
+
+Si hay $Y_t=0$, esa expresión no está definida sobre el conjunto completo. Se informará la cantidad de casos y la política preregistrada; si se reporta una versión sobre un subconjunto válido, se identificará su denominador y cobertura. No se añadirán epsilons arbitrarios ni se ocultarán casos excluidos. Valores positivos muy pequeños pueden dominar MAPE y requieren interpretación conjunta con MAE y RMSE.
+
+Si se adopta sMAPE, se registrará su convención exacta, incluido el factor de escala y el tratamiento del caso $Y_t=\widehat Y_t=0$. Que sea simétrica no elimina todos los problemas cerca de cero.
+
+Para MASE se fijará un rezago de referencia $s$ usando exclusivamente desarrollo y se calculará, en el entrenamiento permitido de cada fold:
+
+$$
+a_{\mathrm{train},s}
+=\frac1{|\mathcal J_s|}\sum_{j\in\mathcal J_s}|Y_j-Y_{j-s}|,
+\qquad
+q_t=\frac{|Y_t-\widehat Y_t|}{a_{\mathrm{train}(t),s}},
+\qquad
+\mathrm{MASE}=\frac1N\sum_t q_t.
+$$
+
+$\mathcal J_s$ contiene pares de etiquetas válidas separados por **$s$ días de calendario**, completamente observables en ese entrenamiento. No se comprimen huecos para fingir consecutividad. El denominador es común a los modelos comparados dentro de cada fold; puede variar al crecer el entrenamiento. Si vale cero o no hay pares suficientes, MASE se marca no definida para esos casos y se reporta su cobertura. El valor de $s$ sigue pendiente de cierre, sin escogerlo mirando test.
+
+### 4.4.3. Evaluación por horizonte y referencias ingenuas
+
+El horizonte principal confirmado es **un día**. Las métricas se reportarán para cada combinación de longitud de entrada $D$ y ventana de volatilidad $n$, manteniéndolas separadas porque definen configuraciones y objetivos distintos. Si se añaden horizontes, se registrarán y se informarán métricas por horizonte antes de cualquier promedio global.
+
+La referencia contextual principal será **persistencia de la volatilidad histórica disponible** al pronosticar. Se evaluará también un ingenuo estacional cuando se justifique un periodo $s$ con desarrollo y su información sea observable. Por ejemplo, el periodo semanal debe justificarse y fijarse; no se adopta automáticamente porque el EDA muestre un STL con periodo siete.
+
+Las referencias se evaluarán en las mismas fechas, escala y etiquetas que los modelos. Si una referencia necesita más historia, se declarará la cobertura común y la exclusión correspondiente. Ningún método ingenuo ocupa uno de los tres puestos obligatorios de modelos de Deep Learning.
+
+En los folds diarios actuales, RMSE se calcula agrupando las predicciones de una ejecución según §4.1.4. El promedio de errores RMSE de folds con un solo punto equivale a MAE y no se presentará como RMSE global.
+
+### 4.4.4. Comparación justa entre los tres modelos
+
+Antes de comparar se comprobará igualdad de datos, particiones, orígenes, etiquetas, preprocesamiento permitido, semillas y configuración de evaluación. Las arquitecturas pueden organizar la misma información de forma diferente, pero no recibir atributos o fechas adicionales sin declarar otro experimento.
+
+Se mantendrán las mismas definiciones de métricas y reglas sobre ceros, inversas de transformaciones, valores no finitos y fallas. Una predicción no finita no se omitirá silenciosamente del promedio. Se conservarán el número previsto de casos, el evaluado y el motivo de cualquier diferencia de cobertura.
+
+Se usará el mismo presupuesto de búsqueda documentado en §4.2.6. Las comparaciones no mezclarán el mejor resultado de una única semilla para un modelo con la media de todas las semillas de otro.
+
+### 4.4.5. Análisis de resultados y variabilidad
+
+Se reportarán **media, desviación estándar muestral e intervalo de confianza** por modelo y configuración, con el número de ejecuciones y el método de construcción. Se distinguirán métricas de selección en validación de la evaluación final del test, y se conservarán las fechas de cada predicción.
+
+La variabilidad por semilla se examinará dentro de cada modelo y configuración. Las diferencias entre modelos se examinarán sobre las mismas semillas y fechas. Se presentarán distribuciones de métricas por corrida y diferencias pareadas; si se realiza una descomposición formal de varianza, se declararán el modelo estadístico y sus supuestos, sin mezclar configuraciones o días dependientes como réplicas independientes.
+
+La variabilidad temporal se analizará por bloques o segmentos predefinidos y con métodos adecuados a su dependencia. Los intervalos entre semillas sobre el mismo mercado no se interpretarán como toda la incertidumbre de generalización. Las pruebas y tamaños de efecto se interpretarán junto con $\delta$, no solo por significación estadística.
+
+### 4.4.6. Robustez, sobreajuste y segmentos relevantes
+
+La robustez se estudiará con segmentos y, si se incorporan, perturbaciones controladas fijadas antes de la evaluación correspondiente. En desarrollo pueden definirse niveles de volatilidad con umbrales estimados solo en entrenamiento; esos umbrales se congelarán antes de trasladarlos a validación o test.
+
+| Análisis | Evidencia que deberá conservarse | Cautela |
+|---|---|---|
+| Periodos y regímenes | Métricas por bloque temporal y cantidad de casos | No seleccionar retrospectivamente solo los periodos favorables |
+| Magnitud de volatilidad | Errores por rango del objetivo con umbrales documentados | No ajustar umbrales con test |
+| Sensibilidad a ruido o faltantes simulados | Tipo, intensidad, semilla y momento de la perturbación | No contaminar etiquetas ni cambiar inadvertidamente el problema |
+| Tamaño de entrada | Resultados separados para 7/14/21/28 días | No confundir historia de entrada con ventana de volatilidad |
+| Curvas y brecha train–validation | Pérdida y métricas por época y conjunto, con escalas comparables | Una brecha pequeña por sí sola no descarta underfitting |
+
+Las curvas de aprendizaje y las brechas entre entrenamiento y validación se usarán para diagnosticar overfitting o underfitting, considerando también el nivel de error y el comportamiento de la referencia ingenua. No se dibujarán curvas sintéticas como si fueran resultados observados. Las evaluaciones de robustez de test deberán estar predefinidas y reutilizar las predicciones guardadas cuando corresponda, sin reabrir selección de modelos.
+
+### 4.4.7. Análisis cualitativo de predicciones y residuos
+
+Se generarán gráficas de valores reales frente a predicciones en el tiempo y diagramas real–predicho, identificando modelo, semilla, configuración, horizonte y periodo. Los casos difíciles y errores sistemáticos se seleccionarán con una regla trazable y se contextualizarán sin atribuir causas económicas no verificadas.
+
+Los residuos conservarán fecha y signo. Con $e_t=Y_t-\widehat Y_t$, una media positiva indica subestimación de volatilidad. Se examinarán sesgo, distribución, relación con nivel pronosticado, estructura temporal y heterocedasticidad; se mostrarán ACF de residuos y de sus cuadrados cuando correspondan.
+
+Para series de tiempo se documentarán diagnósticos como **Ljung–Box** y **BDS**, con rezagos, parámetros, tamaño muestral, supuestos y multiplicidad. El BDS requerido sobre residuos del primer horizonte se ejecutará cuando existan predicciones: una prueba sobre retornos crudos del EDA no lo sustituye. Un rechazo o no rechazo no demuestra por sí solo capacidad predictiva ni independencia absoluta.
+
+Los huecos y el solapamiento de objetivos móviles se considerarán al elegir tramos y métodos. No se concatenarán fechas separadas como si fueran observaciones consecutivas ni se usarán residuos de entrenamiento para aparentar un diagnóstico fuera de muestra.
+
+### 4.4.8. Productos y estado de ejecución
+
+| Producto de evaluación | Estado |
+|---|---|
+| Métricas, escalas y agregación documentadas | Protocolo disponible; políticas de MAPE/MASE pendientes de cierre |
+| Predicciones de los tres modelos por fecha y semilla | No generadas |
+| Tablas por configuración, horizonte y referencia ingenua | Sin resultados todavía |
+| Media, desviación, intervalos y comparación pareada | Pendientes de corridas |
+| Robustez, curvas y análisis por segmentos | Pendientes de modelos entrenados |
+| Predicciones frente a reales y diagnóstico de residuos | Pendientes |
+| Evaluación definitiva de test | No ejecutada |
+
+Las tablas y gráficas de este apartado se incorporarán desde predicciones verificables, sin reutilizar estadísticas descriptivas del EDA como si fueran métricas de pronóstico.
