@@ -28,3 +28,5 @@ Consulta de las fuentes externas: 2 de noviembre de 2026.
 ## Fuente directa de datos
 
 [Binance Spot: archivos públicos de BTCUSDT de un minuto](https://data.binance.vision/?prefix=data/spot/monthly/klines/BTCUSDT/1m/) y [documentación oficial Binance Public Data](https://github.com/binance/binance-public-data). Fuente seleccionada; descarga y auditoría pendientes de acceso al proveedor desde el entorno.
+
+[Binance Vision Dataset Terms](https://github.com/binance/binance-public-data/blob/master/TERMS_AND_CONDITIONS.md), versión 1.0, actualizados el 26 de agosto de 2026; consultados el 2 de noviembre de 2026. Declaran CC BY-NC-SA 4.0 salvo designación específica y condiciones adicionales. Véase §2.3.4 del [EDA](02_eda.md) para el registro de condiciones y atribución.

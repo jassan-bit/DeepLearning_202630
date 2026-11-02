@@ -146,7 +146,7 @@ Un conjunto de cierres de Bitcoin con marcas de tiempo y resolución suficiente 
 | Nombre y proveedor | Binance Spot; archivos públicos oficiales de velas de un minuto |
 | Activo y par | Bitcoin, cotizado en USDT; par BTCUSDT |
 | Disponibilidad pública | Archivos oficiales en data.binance.vision; acceso desde el entorno bloqueado por su proxy |
-| Licencia y redistribución | Pendiente: registrar términos/versiones y permiso para conservar/publicar datos |
+| Licencia y redistribución | Binance Vision Dataset Terms v1.0, actualizados el 26/08/2026: CC BY-NC-SA 4.0 salvo indicación específica, con condiciones adicionales; ver §2.3.4 |
 | Procedencia | Pendiente: documentar generación de velas, cierre y agregación por proveedor |
 | Uso previo del mismo dataset | No verificado; el antecedente temático no demuestra igualdad de dataset |
 | Periodo temporal y zona horaria | Calendario confirmado en §1.6; zona horaria y convención de apertura/cierre pendientes |

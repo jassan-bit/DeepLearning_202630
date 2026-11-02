@@ -148,18 +148,34 @@ El EDA se ejecutará sobre los archivos oficiales verificados y siguiendo los re
 ### 2.3.3. Condiciones para ejecutar el EDA
 
 1. Habilitar acceso al dominio oficial y comprobar una descarga con verificación TLS.
-2. Documentar las condiciones de uso y redistribución aplicables; acceso público no equivale a licencia abierta de datos de mercado.
+2. Conservar la versión de las condiciones aplicables a la adquisición y comprobar cualquier designación específica del dataset; las condiciones consultadas se resumen en §2.3.4.
 3. Descargar y verificar los archivos de desarrollo, conservar los brutos y generar el manifiesto.
 4. Auditar timestamps, unidades, duplicados, huecos, cierres y coherencia OHLC antes de crear retornos.
 5. Fijar horizonte, frecuencia de los retornos objetivo, longitud de entrada y cadencia conforme al Entregable 1.
 6. Ejecutar el EDA general y el específico de series de tiempo; vincular cada resultado a una decisión de modelado o validación.
 
 
+### 2.3.4. Condiciones de uso y atribución
+
+Se consultaron los [Binance Vision Dataset Terms oficiales](https://github.com/binance/binance-public-data/blob/master/TERMS_AND_CONDITIONS.md) el **2 de noviembre de 2026**. El documento declara **versión 1.0**, con última actualización **26 de agosto de 2026**. Esta consulta verifica la documentación disponible; no demuestra que los datos se hayan descargado.
+
+| Cláusula | Condición declarada por el proveedor | Aplicación al proyecto |
+|---|---|---|
+| 3.1–3.4 | CC BY-NC-SA 4.0, salvo designación específica; uso comercial requiere un acuerdo separado | Investigación académica no comercial; comprobar condiciones específicas y conservar la versión aplicable |
+| 4.1 y 4.5 | Contempla investigación académica y proyectos educativos abiertos no monetizados; atribución y misma licencia para obras derivadas redistribuidas | Identificar Binance Vision como fuente y documentar transformaciones; incorporar el aviso de licencia aplicable al publicar derivados |
+| 2.4 y 5 | Las condiciones abarcan datos derivados, gráficos, modelos e indicadores; puede haber derechos de terceros | Revisar las condiciones del contenido concreto antes de redistribuirlo; no atribuir una licencia global a materiales ajenos |
+| 7 | Respetar límites y protocolos de descarga | Usar archivos oficiales y no eludir restricciones de acceso |
+| 8 y 10 | No implicar respaldo de Binance; datos sin garantías de integridad o exactitud | Declarar autoría independiente y auditar calidad y cobertura |
+
+La atribución de los futuros productos derivados identificará **Binance Vision — Binance Spot, BTCUSDT**, enlazará la fuente y las condiciones, indicará los cambios realizados y la licencia aplicable. Los materiales del curso y artículos citados conservan sus propios derechos.
+
+Los términos se conservarán con fecha y hash al adquirir los datos. Su revisión no sustituye los checksums de cada archivo de mercado ni elimina el bloqueo de descarga actual. El repositorio oficial permite consultar documentación, mientras los ZIP se sirven desde `data.binance.vision`.
+
 ## 2.4. Evidencias necesarias para completar la sección
 
 | Producto reproducible | Estado |
 |---|---|
-| Fuente, términos de uso, archivo y manifiesto de adquisición | Binance Spot BTCUSDT identificado; descarga, condiciones y hashes pendientes |
+| Fuente, términos de uso, archivo y manifiesto de adquisición | Binance Spot BTCUSDT y términos v1.0 documentados; descarga y hashes de datos pendientes |
 | Frecuencia, horizonte, ventana de entrada y cadencia definidos | Pendiente |
 | Código o notebook de auditoría y EDA de desarrollo | Pendiente de adquisición directa |
 | Tablas, figuras e interpretación vinculadas a decisiones | Pendientes de ejecución sobre brutos verificados |
