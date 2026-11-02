@@ -1,0 +1,821 @@
+{
+  "package": "timeseries-cv",
+  "version": "0.1.5",
+  "function": "split_train_val_forwardChaining",
+  "signature": "(sequence, numInputs, numOutputs, numJumps)",
+  "illustration": {
+    "notebook_url": "https://raw.githubusercontent.com/DidierRLopes/timeseries-cv/8e9137c2774e92a6d7a80446e4022c27ca1b7991/example.ipynb",
+    "source_commit": "8e9137c2774e92a6d7a80446e4022c27ca1b7991",
+    "sha256": "de6c7fff71c7fc0c76261508925b13d2ca5f6b31217cda80ed0f958249c80781",
+    "license": "MIT",
+    "copyright": "2021 DidierRLopes",
+    "credit": "timeseries-cv; coauthorship Filipe R. Ramos, 2021",
+    "role": "official synthetic example; not Bitcoin dates or a trained model"
+  },
+  "example": {
+    "length": 27,
+    "input": 4,
+    "forecast": 3,
+    "jump": 2,
+    "folds": [
+      {
+        "fold": 1,
+        "X": [
+          [
+            0,
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            4,
+            5
+          ]
+        ],
+        "y": [
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            6,
+            7,
+            8
+          ]
+        ],
+        "Xcv": [
+          [
+            6,
+            7,
+            8,
+            9
+          ]
+        ],
+        "ycv": [
+          [
+            10,
+            11,
+            12
+          ]
+        ]
+      },
+      {
+        "fold": 2,
+        "X": [
+          [
+            0,
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            4,
+            5
+          ],
+          [
+            4,
+            5,
+            6,
+            7
+          ]
+        ],
+        "y": [
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            6,
+            7,
+            8
+          ],
+          [
+            8,
+            9,
+            10
+          ]
+        ],
+        "Xcv": [
+          [
+            8,
+            9,
+            10,
+            11
+          ]
+        ],
+        "ycv": [
+          [
+            12,
+            13,
+            14
+          ]
+        ]
+      },
+      {
+        "fold": 3,
+        "X": [
+          [
+            0,
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            4,
+            5
+          ],
+          [
+            4,
+            5,
+            6,
+            7
+          ],
+          [
+            6,
+            7,
+            8,
+            9
+          ]
+        ],
+        "y": [
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            6,
+            7,
+            8
+          ],
+          [
+            8,
+            9,
+            10
+          ],
+          [
+            10,
+            11,
+            12
+          ]
+        ],
+        "Xcv": [
+          [
+            10,
+            11,
+            12,
+            13
+          ]
+        ],
+        "ycv": [
+          [
+            14,
+            15,
+            16
+          ]
+        ]
+      },
+      {
+        "fold": 4,
+        "X": [
+          [
+            0,
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            4,
+            5
+          ],
+          [
+            4,
+            5,
+            6,
+            7
+          ],
+          [
+            6,
+            7,
+            8,
+            9
+          ],
+          [
+            8,
+            9,
+            10,
+            11
+          ]
+        ],
+        "y": [
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            6,
+            7,
+            8
+          ],
+          [
+            8,
+            9,
+            10
+          ],
+          [
+            10,
+            11,
+            12
+          ],
+          [
+            12,
+            13,
+            14
+          ]
+        ],
+        "Xcv": [
+          [
+            12,
+            13,
+            14,
+            15
+          ]
+        ],
+        "ycv": [
+          [
+            16,
+            17,
+            18
+          ]
+        ]
+      },
+      {
+        "fold": 5,
+        "X": [
+          [
+            0,
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            4,
+            5
+          ],
+          [
+            4,
+            5,
+            6,
+            7
+          ],
+          [
+            6,
+            7,
+            8,
+            9
+          ],
+          [
+            8,
+            9,
+            10,
+            11
+          ],
+          [
+            10,
+            11,
+            12,
+            13
+          ]
+        ],
+        "y": [
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            6,
+            7,
+            8
+          ],
+          [
+            8,
+            9,
+            10
+          ],
+          [
+            10,
+            11,
+            12
+          ],
+          [
+            12,
+            13,
+            14
+          ],
+          [
+            14,
+            15,
+            16
+          ]
+        ],
+        "Xcv": [
+          [
+            14,
+            15,
+            16,
+            17
+          ]
+        ],
+        "ycv": [
+          [
+            18,
+            19,
+            20
+          ]
+        ]
+      },
+      {
+        "fold": 6,
+        "X": [
+          [
+            0,
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            4,
+            5
+          ],
+          [
+            4,
+            5,
+            6,
+            7
+          ],
+          [
+            6,
+            7,
+            8,
+            9
+          ],
+          [
+            8,
+            9,
+            10,
+            11
+          ],
+          [
+            10,
+            11,
+            12,
+            13
+          ],
+          [
+            12,
+            13,
+            14,
+            15
+          ]
+        ],
+        "y": [
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            6,
+            7,
+            8
+          ],
+          [
+            8,
+            9,
+            10
+          ],
+          [
+            10,
+            11,
+            12
+          ],
+          [
+            12,
+            13,
+            14
+          ],
+          [
+            14,
+            15,
+            16
+          ],
+          [
+            16,
+            17,
+            18
+          ]
+        ],
+        "Xcv": [
+          [
+            16,
+            17,
+            18,
+            19
+          ]
+        ],
+        "ycv": [
+          [
+            20,
+            21,
+            22
+          ]
+        ]
+      },
+      {
+        "fold": 7,
+        "X": [
+          [
+            0,
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            4,
+            5
+          ],
+          [
+            4,
+            5,
+            6,
+            7
+          ],
+          [
+            6,
+            7,
+            8,
+            9
+          ],
+          [
+            8,
+            9,
+            10,
+            11
+          ],
+          [
+            10,
+            11,
+            12,
+            13
+          ],
+          [
+            12,
+            13,
+            14,
+            15
+          ],
+          [
+            14,
+            15,
+            16,
+            17
+          ]
+        ],
+        "y": [
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            6,
+            7,
+            8
+          ],
+          [
+            8,
+            9,
+            10
+          ],
+          [
+            10,
+            11,
+            12
+          ],
+          [
+            12,
+            13,
+            14
+          ],
+          [
+            14,
+            15,
+            16
+          ],
+          [
+            16,
+            17,
+            18
+          ],
+          [
+            18,
+            19,
+            20
+          ]
+        ],
+        "Xcv": [
+          [
+            18,
+            19,
+            20,
+            21
+          ]
+        ],
+        "ycv": [
+          [
+            22,
+            23,
+            24
+          ]
+        ]
+      },
+      {
+        "fold": 8,
+        "X": [
+          [
+            0,
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            4,
+            5
+          ],
+          [
+            4,
+            5,
+            6,
+            7
+          ],
+          [
+            6,
+            7,
+            8,
+            9
+          ],
+          [
+            8,
+            9,
+            10,
+            11
+          ],
+          [
+            10,
+            11,
+            12,
+            13
+          ],
+          [
+            12,
+            13,
+            14,
+            15
+          ],
+          [
+            14,
+            15,
+            16,
+            17
+          ],
+          [
+            16,
+            17,
+            18,
+            19
+          ]
+        ],
+        "y": [
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            6,
+            7,
+            8
+          ],
+          [
+            8,
+            9,
+            10
+          ],
+          [
+            10,
+            11,
+            12
+          ],
+          [
+            12,
+            13,
+            14
+          ],
+          [
+            14,
+            15,
+            16
+          ],
+          [
+            16,
+            17,
+            18
+          ],
+          [
+            18,
+            19,
+            20
+          ],
+          [
+            20,
+            21,
+            22
+          ]
+        ],
+        "Xcv": [
+          [
+            20,
+            21,
+            22,
+            23
+          ]
+        ],
+        "ycv": [
+          [
+            24,
+            25,
+            26
+          ]
+        ]
+      }
+    ]
+  },
+  "project": {
+    "source_csv_sha256": "bf6bb5160af924aef6a15c3684aeae932df3017e8639888bb7e91ce787900171",
+    "volatility_csv_sha256": "20b96374a659eb87dadfa68aa3d6b6b5fb6bea5b10eebe6f2c186ad69861844a",
+    "frequency": "daily UTC",
+    "input_days": [
+      7,
+      14,
+      21,
+      28
+    ],
+    "volatility_days": [
+      7,
+      14,
+      21,
+      28
+    ],
+    "forecast_days": 1,
+    "jump_days": 1,
+    "validation_year": 2024,
+    "test_archives_opened": 0,
+    "models_trained": 0
+  },
+  "configurations": [
+    {
+      "input_days": 7,
+      "volatility_days": 7,
+      "validation_folds": 366,
+      "min_train_samples": 344,
+      "max_train_samples": 709
+    },
+    {
+      "input_days": 7,
+      "volatility_days": 14,
+      "validation_folds": 366,
+      "min_train_samples": 330,
+      "max_train_samples": 695
+    },
+    {
+      "input_days": 7,
+      "volatility_days": 21,
+      "validation_folds": 366,
+      "min_train_samples": 316,
+      "max_train_samples": 681
+    },
+    {
+      "input_days": 7,
+      "volatility_days": 28,
+      "validation_folds": 366,
+      "min_train_samples": 302,
+      "max_train_samples": 667
+    },
+    {
+      "input_days": 14,
+      "volatility_days": 7,
+      "validation_folds": 366,
+      "min_train_samples": 323,
+      "max_train_samples": 688
+    },
+    {
+      "input_days": 14,
+      "volatility_days": 14,
+      "validation_folds": 366,
+      "min_train_samples": 323,
+      "max_train_samples": 688
+    },
+    {
+      "input_days": 14,
+      "volatility_days": 21,
+      "validation_folds": 366,
+      "min_train_samples": 309,
+      "max_train_samples": 674
+    },
+    {
+      "input_days": 14,
+      "volatility_days": 28,
+      "validation_folds": 366,
+      "min_train_samples": 295,
+      "max_train_samples": 660
+    },
+    {
+      "input_days": 21,
+      "volatility_days": 7,
+      "validation_folds": 366,
+      "min_train_samples": 302,
+      "max_train_samples": 667
+    },
+    {
+      "input_days": 21,
+      "volatility_days": 14,
+      "validation_folds": 366,
+      "min_train_samples": 302,
+      "max_train_samples": 667
+    },
+    {
+      "input_days": 21,
+      "volatility_days": 21,
+      "validation_folds": 366,
+      "min_train_samples": 302,
+      "max_train_samples": 667
+    },
+    {
+      "input_days": 21,
+      "volatility_days": 28,
+      "validation_folds": 366,
+      "min_train_samples": 288,
+      "max_train_samples": 653
+    },
+    {
+      "input_days": 28,
+      "volatility_days": 7,
+      "validation_folds": 366,
+      "min_train_samples": 281,
+      "max_train_samples": 646
+    },
+    {
+      "input_days": 28,
+      "volatility_days": 14,
+      "validation_folds": 366,
+      "min_train_samples": 281,
+      "max_train_samples": 646
+    },
+    {
+      "input_days": 28,
+      "volatility_days": 21,
+      "validation_folds": 366,
+      "min_train_samples": 281,
+      "max_train_samples": 646
+    },
+    {
+      "input_days": 28,
+      "volatility_days": 28,
+      "validation_folds": 366,
+      "min_train_samples": 281,
+      "max_train_samples": 646
+    }
+  ],
+  "total_configuration_folds": 5856,
+  "folds_csv_sha256": "dbe66b20b72f28b7e477c79d8b1887fc80b96957fa3fbaab0e211f2a5b398dc5"
+}

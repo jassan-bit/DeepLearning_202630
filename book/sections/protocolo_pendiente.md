@@ -6,7 +6,7 @@
 2. **Objetivos explorados:** volatilidad de retornos diarios con ventanas de 7/14/21/28 días y divisor poblacional. Fijar las configuraciones que se entrenarán y el protocolo para compararlas; no se eligió una ganadora por test.
 3. **Covariables:** OHLCV diario auditado. Selección final y transformaciones pendientes; noticias no adquiridas ni incorporadas.
 4. **Adquisición y EDA:** 75 ZIP verificados; EDA ejecutado exclusivamente en desarrollo 2023–2024. Conservar los brutos y manifiestos y materializar muestras supervisadas.
-5. **Ventanas y validación:** implementar folds y muestras elegibles para cada tamaño diario; no unir días a través de huecos.
+5. **Ventanas y validación:** folds de validación2024 implementados con `timeseries-cv`; mantener exclusiones y disponibilidad por fechas. Entrenamiento y test supervisado final pendientes.
 6. **Preregistro:** congelar métricas y política de ceros para MAPE, rezago MASE, margen $\delta$, bloques inferenciales y test supervisado antes de evaluar modelos.
 7. **Horizontes adicionales:** el principal confirmado es un día; cualquier salida adicional requiere declaración explícita.
 

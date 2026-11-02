@@ -92,11 +92,29 @@ Los dos primeros componentes explican **99.78 %** de la varianza estandarizada d
 
 Se mantiene entrenamiento inicial 2023, validación forward chaining en 2024, ajuste final con desarrollo y test previsto 2025–agosto de 2026. Septiembre–octubre de 2026 se adquirieron, pero no se asignan automáticamente al test.
 
-![Calendario propuesto con entrenamiento, validación, test y reserva](../_static/eda/08_particion_temporal.png)
+![Forward Chaining: figura original del ejemplo de timeseries-cv](../_static/eda/08_forward_chaining_tsxv.png)
 
-El diagrama representa el calendario: no acredita que los folds de entrenamiento ya estén implementados. Los 364/366 días elegibles de desarrollo no equivalen a cantidades finales de muestras; estas dependen de entrada, ventana de volatilidad y continuidad. La división cronológica no necesita semilla de barajado; el bootstrap exploratorio registra su semilla.
+**Figura:** ejemplo oficial de `split_train_val_forwardChaining`, extraído sin modificar del [notebook de timeseries-cv](https://github.com/DidierRLopes/timeseries-cv/blob/8e9137c2774e92a6d7a80446e4022c27ca1b7991/example.ipynb). Proyecto de DidierRLopes, desarrollado con coautoría de Filipe R. Ramos. Se conserva su [licencia MIT y aviso de copyright](../_static/licenses/timeseries-cv-LICENSE.txt). La figura representa la serie sintética `0,…,26`, con entrada 4, salida 3 y salto 2; sus ocho filas son folds del ejemplo, no años ni resultados de Bitcoin.
 
-- **Decisión de preprocesamiento:** materializar orígenes, exclusiones y proporciones para cada configuración; ajustar transformaciones solo con etiquetas ya observadas.
+```python
+import numpy as np
+from tsxv.splitTrainVal import split_train_val_forwardChaining
+
+timeSeries = np.arange(27)
+X, y, Xcv, ycv = split_train_val_forwardChaining(
+    timeSeries, numInputs=4, numOutputs=3, numJumps=2
+)
+```
+
+La versión publicada **0.1.5** usa la firma `sequence, numInputs, numOutputs, numJumps`. Los nombres `n_steps_input`, `n_steps_forecast` y `n_steps_jump` del README no coinciden con esa firma y generan `TypeError` en esa versión. La llamada anterior y su equivalente posicional `(timeSeries, 4, 3, 2)` fueron ejecutadas y verificadas. `X`, `y`, `Xcv` e `ycv` son diccionarios por fold, no un único arreglo global.
+
+**Aplicación a BTCUSDT:** se ejecutó esa función sobre índices del calendario diario de desarrollo, con entradas de **7/14/21/28 días**, salida de **un día** y salto de **un día**. Las entradas se mapean a OHLCV y las salidas a volatilidad por separado: pasar OHLCV directamente a la función produciría salidas OHLCV, no la etiqueta de volatilidad del proyecto.
+
+Se conservaron los folds cuyo día de resultado cae en **2024**, se excluyeron ventanas con valores no elegibles y se comprobó que todas las etiquetas de entrenamiento estaban disponibles antes del pronóstico de validación. Hay **366 folds por configuración**, para las 16 combinaciones de ventana de entrada y ventana de volatilidad: **5.856 filas de configuración-fold** en el manifiesto. No equivalen a 5.856 días independientes ni a modelos entrenados.
+
+El código es `scripts/prepare_forward_chaining.py`. Se publican el [resumen y verificación del ejemplo](../_static/cv_forward_chaining/summary.json) y el [manifiesto de folds](../_static/cv_forward_chaining/folds.csv), con fechas, cantidades de muestras y hashes de los índices de entrenamiento. El entrenamiento es creciente e incluye únicamente historia permitida; no se abren archivos de test. La división no necesita semilla de barajado.
+
+- **Decisión de preprocesamiento:** usar los orígenes y exclusiones materializados con `split_train_val_forwardChaining`; ajustar transformaciones solo con el entrenamiento permitido de cada fold.
 - **Impacto en la arquitectura:** los modelos deben evaluarse con el mismo calendario y muestras comparables dentro de cada configuración.
 - **Riesgos identificados:** etiquetas que crucen cortes, confundir días con muestras y elegir el tamaño de entrada usando test.
 
@@ -197,7 +215,7 @@ En los retornos de un minuto de entrenamiento, la asimetría es **-0.674028** y 
 
 Las entradas confirmadas son 7/14/21/28 días de historia; el horizonte principal es un día. Se exploraron cuatro definiciones de volatilidad histórica, sin confundirlas con la longitud de entrada. Cualquier horizonte adicional al principal debe registrarse antes del entrenamiento y de la evaluación.
 
-La implementación de folds y el entrenamiento de los tres modelos siguen pendientes. `timeseries-cv` puede asistir con ventanas, pero no sustituye los controles de fechas, observabilidad y continuidad. El BDS exigido para residuos del primer horizonte solo procede después de generar predicciones fuera de entrenamiento.
+Los folds se materializaron con `timeseries-cv` 0.1.5 y controles explícitos de fechas, observabilidad y continuidad. El entrenamiento de los tres modelos sigue pendiente. La función no garantiza por sí sola ausencia de fuga para cualquier combinación de longitudes: los controles de disponibilidad se aplican antes de admitir cada muestra. El BDS exigido para residuos del primer horizonte solo procede después de generar predicciones fuera de entrenamiento.
 
 - **Decisión de preprocesamiento:** fijar las configuraciones de objetivos y orígenes, producir manifiestos de muestras y ajustar transformaciones solo con pasado.
 - **Impacto en la arquitectura:** entrada diaria con dimensión explícita; salida principal escalar no negativa; cualquier salida adicional debe registrarse.
@@ -288,7 +306,19 @@ OPENBLAS_NUM_THREADS=2 OMP_NUM_THREADS=2 /workspace/.venvs/deeplearning-eda/bin/
 
 Los archivos raw deben existir bajo `/workspace/binance-spot-data/`, reproducibles con el descargador documentado en `data/README.md`. El build del libro incluye las figuras guardadas; no vuelve a ejecutar automáticamente el EDA.
 
-Los datos y derivados se atribuyen a **Binance Vision / Binance Spot**; procesamiento y gráficas por **Jassan Arteta**. Se documentan las transformaciones y se comparten los derivados publicados bajo [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) y las condiciones aplicables del proveedor. Esto no altera los derechos de materiales del curso o artículos citados.
+Los datos y derivados se atribuyen a **Binance Vision / Binance Spot**; procesamiento y gráficas del EDA por **Jassan Arteta**. La figura oficial de `timeseries-cv` tiene su propia atribución y licencia MIT, indicadas en §2.1.4. Se documentan las transformaciones y se comparten los derivados publicados bajo [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) y las condiciones aplicables del proveedor. Esto no altera los derechos de la figura de `timeseries-cv`, los materiales del curso o los artículos citados.
+
+
+
+Para reproducir los folds, se utiliza un entorno independiente: `timeseries-cv` 0.1.5 requiere NumPy menor que 2, mientras el EDA conserva su entorno ya verificado.
+
+```bash
+python3.12 -m venv /workspace/.venvs/timeseries-cv
+/workspace/.venvs/timeseries-cv/bin/python -m pip install -r requirements-cv.txt
+/workspace/.venvs/timeseries-cv/bin/python scripts/prepare_forward_chaining.py
+```
+
+El ejemplo oficial 4/3/2 es ilustrativo; no cambia el horizonte principal de Bitcoin a tres días. El script puede recuperar la misma figura desde el notebook oficial fijado a un commit usando `--refresh-illustration`, y verifica su SHA-256.
 
 ### 2.4.2. Evidencias y pendientes
 
@@ -303,7 +333,8 @@ Los datos y derivados se atribuyen a **Binance Vision / Binance Spot**; procesam
 | Disponibilidad temporal y ausencia de consulta de test en este script | Restricción verificada; cero ZIP de test abiertos |
 | Selección de covariables, transformaciones y ventana ganadora | Pendiente de validación y protocolo final |
 | Información mutua, VIF y efecto de anomalías sobre error de modelos | No ejecutados |
-| Folds, manifiesto de muestras supervisadas y test congelado | Pendientes |
+| Folds de validación 2024 | Implementados con `timeseries-cv`: 366 por configuración; fechas y exclusiones verificadas |
+| Test supervisado congelado y entrenamiento | Pendientes |
 | Modelos, predicciones y MAPE/MAE/RMSE/MSE/MASE/BDS | Pendientes de entrenamiento y evaluación |
 
 Las gráficas publicadas son evidencia de EDA de desarrollo. No acreditan que la revisión bibliográfica, los modelos ni el Entregable 1 completo estén terminados.

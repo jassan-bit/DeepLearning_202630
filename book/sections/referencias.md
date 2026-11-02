@@ -30,3 +30,10 @@ Consulta de las fuentes externas: 2 de noviembre de 2026.
 [Binance Spot: archivos públicos de BTCUSDT de un minuto](https://data.binance.vision/?prefix=data/spot/monthly/klines/BTCUSDT/1m/) y [documentación oficial Binance Public Data](https://github.com/binance/binance-public-data). Fuente directa utilizada: descarga y checksums de 75 ZIP verificados para el 01/01/2023–30/10/2026 inclusive UTC. Auditoría de adquisición en §2.3.2; EDA de calidad, precios y retornos de desarrollo en ejecución. El análisis de la variable objetivo queda pendiente de cerrar su definición.
 
 [Binance Vision Dataset Terms](https://github.com/binance/binance-public-data/blob/master/TERMS_AND_CONDITIONS.md), versión 1.0, actualizados el 26 de agosto de 2026; consultados el 2 de noviembre de 2026. Declaran CC BY-NC-SA 4.0 salvo designación específica y condiciones adicionales. Véase §2.3.4 del [EDA](02_eda.md) para el registro de condiciones y atribución.
+
+
+## Validación temporal con timeseries-cv
+
+[Timeseries-cv en PyPI](https://pypi.org/project/timeseries-cv/), versión 0.1.5. Proyecto [DidierRLopes/timeseries-cv](https://github.com/DidierRLopes/timeseries-cv), desarrollado con coautoría de Filipe Roberto Ramos. Código y documentación bajo MIT; copyright 2021 DidierRLopes. La figura de forward chaining se conserva desde el notebook oficial, commit `8e9137c2774e92a6d7a80446e4022c27ca1b7991`, con su aviso de licencia.
+
+Ramos, F. R. (2021). *Data Science na Modelação e Previsão de Séries Económico-financeiras: das Metodologias Clássicas ao Deep Learning*. Tesis doctoral, Instituto Universitário de Lisboa — ISCTE Business School. Referencia de la tesis indicada por la documentación de la biblioteca.
