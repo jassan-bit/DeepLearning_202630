@@ -270,7 +270,7 @@ El EDA de desarrollo de este capítulo se ejecutó sobre los 24 archivos mensual
 2. Conservar la versión de las condiciones aplicables a la adquisición y comprobar cualquier designación específica del dataset; las condiciones consultadas se resumen en §2.3.4.
 3. Adquisición y checksums del rango solicitado: completados; brutos y manifiesto conservados. Derivados diarios de desarrollo y EDA ejecutados; ventanas finales por modelo y benchmark pendientes.
 4. Auditar timestamps, unidades, duplicados, huecos, cierres y coherencia OHLC antes de crear retornos.
-5. Fijar horizonte, frecuencia de los retornos objetivo, longitud de entrada y cadencia conforme al Entregable 1.
+5. Cerrar las configuraciones y reglas definitivas de entrenamiento, conservando el modelado diario, horizonte principal de un día y ventanas candidatas ya documentadas.
 6. Ejecutar el EDA general y el específico de series de tiempo; vincular cada resultado a una decisión de modelado o validación.
 
 
