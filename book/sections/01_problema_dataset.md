@@ -1,6 +1,6 @@
 # 1. Definición del Problema y Dataset
 
-## Respuestas a los requisitos de las páginas 2–3
+**Correspondencia con los requisitos de las páginas 2–3**
 
 La siguiente tabla permite localizar las respuestas solicitadas en la guía. Las fórmulas y elecciones metodológicas son propuestas de trabajo; los campos empíricos pendientes no se presentan como hechos comprobados.
 
@@ -48,7 +48,7 @@ El fragmento suministrado indica frecuencia de **1 minuto**, pero su leyenda uti
 
 Sean $L\geq1$ la longitud de entrada y $h\geq2$ el número de retornos futuros usados en el objetivo. El horizonte físico es $H=h\Delta$. Ambos valores están pendientes.
 
-### Entrada, salida y función objetivo
+### 1.3.1. Entrada, salida y función objetivo
 
 $$
 \mathcal X=\mathbb R^{L\times1},\qquad
@@ -73,7 +73,7 @@ $Y_t$ es la desviación estándar poblacional de los retornos del intervalo futu
 
 La salida no negativa deberá garantizarse en la implementación futura. Las etiquetas solo se conocen al llegar a $t+h$, nunca en el momento del pronóstico.
 
-### Pérdida propuesta
+### 1.3.2. Pérdida propuesta
 
 Para el conjunto de orígenes de entrenamiento $\mathcal T_{\mathrm{train}}$:
 
@@ -85,7 +85,7 @@ $$
 
 Se propone minimizar **MSE**. Las transformaciones que se decidan se ajustarán exclusivamente con entrenamiento. Las métricas se reportarán en la escala original del objetivo, invirtiendo cualquier transformación.
 
-### Relación con la fórmula recibida
+### 1.3.3. Relación con la fórmula recibida
 
 La imagen del curso presenta $\sigma_t$ con retornos $r_{t-1},\ldots,r_{t-n}$, que excluyen $r_t$. Esa fórmula describe una ventana histórica. La definición propuesta de $Y_t$ usa explícitamente los retornos futuros $r_{t+1},\ldots,r_{t+h}$ para distinguir **estimar volatilidad pasada** de **pronosticar volatilidad futura**. No se afirma que la imagen ya haya fijado este objetivo.
 
@@ -161,13 +161,13 @@ Un conjunto de cierres de Bitcoin con marcas de tiempo y resolución suficiente 
 
 Con $T$ cierres consecutivos válidos y sin pérdidas por partición, usar simultáneamente una entrada de $L$ retornos y el baseline de $h$ retornos permite como máximo $T-\max(L,h)-h$ orígenes. Es una relación teórica, **no el tamaño real**; huecos, filtros y separación entre particiones pueden reducirlo.
 
-### Etiquetado, ruido y controles previstos
+### 1.5.1. Etiquetado, ruido y controles previstos
 
 El objetivo se derivará de precios observados, por lo que puede reflejar errores del proveedor, precios anómalos, cambios de liquidez y ruido de microestructura. El tamaño finito de la ventana y la definición elegida introducen incertidumbre como proxy. No se ha medido todavía la magnitud de estos efectos.
 
 Antes de construir etiquetas se comprobarán orden temporal, duplicados, cierres no positivos, huecos, frecuencia real y significado del timestamp. No se rellenarán huecos ni se eliminarán extremos sin justificarlo; un retorno que cruza un hueco no debe confundirse con un retorno regular de un minuto.
 
-### Separación temporal y prevención de fuga
+### 1.5.2. Separación temporal y prevención de fuga
 
 - Fijar entrenamiento, validación y test por tiempo; no mezclar aleatoriamente ventanas.
 - Excluir del entrenamiento todo origen cuya etiqueta alcance validación o test.
