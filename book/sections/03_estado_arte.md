@@ -20,15 +20,32 @@ Los registros proceden de búsquedas reales del **2 de noviembre de 2026** y se 
 
 ### 3.1.2. Fuentes, periodo y acceso
 
-| Fuente | Estado documentado | Tratamiento |
-|---|---|---|
-| GitHub y repositorios públicos de autores | Consultas y lectura de fuentes ejecutadas, con URLs por commit y hashes | Vía complementaria acotada; no sustituye índices bibliográficos |
-| Web of Science | Acceso bloqueado; consulta bibliográfica no ejecutada | Sin conteo de resultados; no se sustituye por cero |
-| Scopus | Acceso bloqueado; consulta bibliográfica no ejecutada | Limitación de cobertura |
-| IEEE Xplore | Acceso directo bloqueado; parte del código de autores accesible | Identificar artículo y código no equivale a leer su texto completo |
-| arXiv y Birmingham | Acceso directo bloqueado en las comprobaciones | Se conserva la fuente alternativa o el estado de acceso pendiente |
+La tabla separa la **modalidad de acceso de cada fuente**, la **conexión comprobada desde el entorno de trabajo** y la **evidencia bibliográfica recuperada**. Una restricción de esta red no demuestra que el portal esté caído o que todos sus documentos requieran pago.
 
-El [registro de acceso](../_static/literature_e1/access_checks.json) contiene los errores observados. El periodo preferente es 2019–2026, hasta la fecha de búsqueda; los fundamentos anteriores se justifican aparte. No se asignan cuartiles sin verificarlos por año, categoría y sistema. Los manuscritos públicos no se presentan como artículos revisados por pares.
+| Fuente y acceso oficial | Modalidad y ruta de acceso | Comprobación del 02/11/2026 | Consulta y evidencia acreditadas |
+|---|---|---|---|
+| [GitHub: búsqueda de repositorios](https://github.com/search?q=bitcoin+volatility+forecasting&type=repositories&p=1) | Repositorios públicos; documentos y código según disponibilidad y licencia del autor | HTTP 200 en la nueva comprobación | Búsquedas y lectura de fuentes ejecutadas previamente; consultas, URLs por commit y hashes conservados. Vía complementaria, distinta de un índice bibliográfico |
+| [Web of Science: búsqueda básica](https://www.webofscience.com/wos/woscc/basic-search) | Acceso a la base normalmente mediante suscripción institucional, desde el portal de la biblioteca y su autenticación autorizada | Conexión rechazada por el túnel de la red de trabajo (403); no se llegó a comprobar una sesión institucional | Consulta bibliográfica pendiente; conteo no disponible. Identificar un registro tampoco acredita acceso al texto editorial |
+| [Scopus: búsqueda de documentos](https://www.scopus.com/search/form.uri?display=basic) | Acceso a la base mediante suscripción institucional; las funciones públicas limitadas no equivalen a una sesión de búsqueda completa | Conexión rechazada por el túnel (403); acceso institucional no comprobado | Consulta bibliográfica pendiente; conteo no disponible. Se requiere conservar la exportación de la consulta ejecutada |
+| [IEEE Xplore: búsqueda prevista](https://ieeexplore.ieee.org/search/searchresult.jsp?queryText=bitcoin%20volatility%20deep%20learning) | Búsqueda y metadatos públicos; texto completo abierto o mediante suscripción según el artículo | Conexión directa rechazada por el túnel (403) | Búsqueda directa pendiente. Para S3 se recuperaron código y resumen de autores por GitHub; no su texto completo |
+| [arXiv: búsqueda prevista](https://arxiv.org/search/?query=bitcoin+volatility&searchtype=all) | Búsqueda, metadatos y preprints de acceso público; no requiere suscripción institucional | Conexión rechazada por el túnel (403), pese a ser una fuente abierta | Consulta directa pendiente. Un preprint se identifica como tal y no se presupone revisión por pares |
+| [Birmingham: PDF de Huang y colaboradores](https://pure-oai.bham.ac.uk/ws/portalfiles/portal/246755355/1-s2.0-S1042443124001306-main.pdf) | Enlace a un documento del repositorio institucional; debe comprobarse su disponibilidad y versión | Descarga rechazada por el túnel (403); PDF no recuperado en esta comprobación | Se conserva el antecedente bibliográfico S4. Es una recuperación documental prevista, no una base consultada ni un estudio añadido al denominador |
+
+Los intentos originales se conservan en el [registro histórico de acceso](../_static/literature_e1/access_checks.json). La [nueva comprobación fechada](../_static/literature_e1/access_checks_20261102_update.json) registra URL, hora, respuesta y nivel del fallo; en los cinco accesos restringidos el 403 procede del túnel, antes de obtener una respuesta del portal. Las [rutas y consultas preparadas en CSV](../_static/literature_e1/access_routes.csv) permiten continuar el trabajo sin sustituir los intentos fallidos por búsquedas ejecutadas o por cero resultados.
+
+**Periodo y filtros.** El intervalo preferente es del 01/01/2019 al 02/11/2026, fecha de búsqueda y verificación. Los fundamentos anteriores se justifican aparte. Los filtros se registrarán tal como los permita cada interfaz, junto con cualquier restricción de idioma o tipo documental; no se atribuyen filtros aplicados a una consulta que no pudo ejecutarse. No se asignan cuartiles sin verificarlos por año, categoría y sistema.
+
+**Consultas preparadas para el acceso institucional.** En Web of Science se propone el campo de tema `TS`; en Scopus, título, resumen y palabras clave mediante `TITLE-ABS-KEY`. Las cadenas conservan los mismos conceptos de §3.1.1:
+
+```text
+Web of Science:
+TS=((Bitcoin OR BTC) AND ("volatility forecasting" OR "volatility prediction" OR "realized volatility") AND ("deep learning" OR "neural network" OR "neural networks"))
+
+Scopus:
+TITLE-ABS-KEY((Bitcoin OR BTC) AND ("volatility forecasting" OR "volatility prediction" OR "realized volatility") AND ("deep learning" OR "neural network" OR "neural networks"))
+```
+
+Estas cadenas están **preparadas y pendientes de ejecución**; su sintaxis final se comprobará en la interfaz disponible. Al ejecutar cada consulta se conservarán fecha, base y colección, cadena final, campos, filtros, número de resultados, límite de exportación y archivo exportado con identificadores bibliográficos. Los registros nuevos se deduplicarán antes de actualizar el cribado. Abrir un portal, recuperar metadatos y leer un texto completo se registrarán como acciones diferentes. Esta actualización de accesos mantiene los conteos del flujo existente.
 
 ### 3.1.3. Criterios de inclusión y unidad de conteo
 
