@@ -256,3 +256,92 @@ Las pruebas de DeLong, McNemar, segmentación o análisis de lenguaje del catál
 | Equivalencia, si se plantea | Análisis separado y preregistrado; no ejecutado |
 
 El capítulo no atribuye significación ni equivalencia a modelos aún no evaluados. Las conclusiones requerirán predicciones y registros verificables bajo el protocolo congelado.
+
+## 5.5. Discusión Crítica
+
+La discusión responderá a las preguntas del entregable mediante resultados del benchmark, literatura verificable e inferencia adecuada. **No se aceptan conclusiones basadas únicamente en descripciones o promedios:** cada afirmación debe indicar su evidencia, alcance e incertidumbre.
+
+```{important}
+La adquisición, el EDA de desarrollo y los folds están ejecutados. Los tres modelos todavía no están seleccionados y entrenados; por tanto, no es posible concluir cuál funciona o generaliza mejor, establecer un baseline medido ni cuantificar su brecha predictiva. Esta sección identifica las preguntas, evidencias y limitaciones que deberá abordar la discusión final.
+```
+
+### 5.5.1. Desempeño y explicación de las diferencias
+
+Para cada configuración comparable se identificará qué modelo obtiene menor error y qué diferencias están respaldadas por intervalos, efectos y contrastes. Se distinguirán el modelo seleccionado con desarrollo y el orden descriptivo de la evaluación final, sin reabrir la selección al observar test.
+
+La interpretación relacionará los resultados con **sesgo inductivo, capacidad y regularización** de las arquitecturas realmente implementadas. Una explicación causal sobre por qué un componente mejora el resultado necesitará evidencia adicional, por ejemplo una comparación controlada; no basta con atribuir a posteriori una ventaja a una propiedad conocida de la familia.
+
+No se afirmará que una red recurrente, convolucional o MLP es superior por su nombre, por una sola semilla o por un artículo con datos y objetivos distintos. Las explicaciones se contrastarán con errores por periodo, curvas, sensibilidad y resultados repetidos.
+
+### 5.5.2. Generalización y estabilidad
+
+Se estudiará qué modelo mantiene mejor desempeño entre desarrollo y test, entre 2025 y el tramo evaluado de 2026 y entre los segmentos predefinidos. Se mostrarán cantidades de casos, incertidumbre y posibles cambios de distribución, no solo un valor agregado.
+
+El test de 2026 cubre hasta agosto dentro del calendario actual, no el año completo. No se compararán periodos de distinta duración como si representaran las mismas condiciones sin discutirlo. La información descargada de septiembre–octubre no se incorporará retrospectivamente para mejorar una conclusión.
+
+La estabilidad temporal en BTCUSDT de Binance Spot no demuestra generalización a otros exchanges, pares, activos o mercados. Tampoco garantiza estabilidad futura en el mismo activo. Las semillas adicionales aportan evidencia sobre entrenamiento y no reemplazan una validación externa.
+
+### 5.5.3. Significación estadística y relevancia práctica
+
+La discusión presentará juntas **diferencia estimada, IC, tamaño de efecto, p-value ajustado y relación con $\delta$**. Una diferencia pequeña puede ser estadísticamente distinguible sin aportar utilidad práctica; una diferencia no significativa puede deberse a incertidumbre o baja potencia.
+
+La falta de significación no se interpretará como igualdad o equivalencia. Si se plantea equivalencia, se seguirá el análisis separado de §5.4.8. Se conservarán resultados desfavorables, contrastes no significativos y limitaciones, evitando seleccionar solo las comparaciones que favorezcan a un modelo.
+
+### 5.5.4. Desempeño frente a costo y complejidad
+
+Se discutirá si el cambio de error justifica el incremento de parámetros, tiempo de ajuste, latencia de inferencia y recursos. Los costos se compararán bajo condiciones de medición explícitas y en relación con la frecuencia diaria del uso previsto, no con exigencias operativas inventadas.
+
+Un modelo más simple podrá resultar preferible bajo una regla previamente declarada si la mejora de otro no compensa su costo; esa decisión no equivale automáticamente a demostrar equivalencia estadística. Se explicarán los compromisos y las soluciones no dominadas sin convertir un único indicador en una conclusión universal.
+
+### 5.5.5. Baseline y umbral para un modelo avanzado
+
+La conclusión final deberá nombrar el **modelo de referencia, configuración, objetivo, horizonte, alcance y desempeño con incertidumbre**. También deberá indicar qué mejora detectable y qué margen práctico tendría que superar una propuesta avanzada bajo condiciones comparables.
+
+Se usará la distinción de §5.3.5 entre sensibilidad del diseño y relevancia aplicada. El umbral no será simplemente el límite de un IC del baseline ni un porcentaje elegido después de observar el resultado. Si la incertidumbre no permite discriminar modelos, se declarará la insuficiencia y su consecuencia para el baseline, sin proclamar un ganador definitivo.
+
+Actualmente ese baseline y su umbral empírico **no están establecidos**; no se sustituyen con persistencia ni con resultados de literatura.
+
+### 5.5.6. Brecha con la literatura y margen de mejora potencial
+
+La brecha entre modelos avanzados publicados y las referencias básicas se examinará con los estudios incluidos en la revisión. Se comprobarán definición de volatilidad, escala, frecuencia, horizonte, activo, proveedor, periodos, particiones, selección y número de repeticiones.
+
+Solo bajo comparabilidad suficiente se cuantificará una diferencia directa. Si los estudios usan otros datos o protocolos, se presentarán como contexto y se explicará por qué no permiten calcular un margen numérico trasladable al experimento propio. No se restará una RMSE publicada de la RMSE local sin verificar primero unidades y condiciones.
+
+Se discutirá la credibilidad de la brecha considerando intervalos, variabilidad, sesgos de publicación y calidad metodológica. Una mejora publicada no constituye una garantía de que otra arquitectura la reproduzca en BTCUSDT bajo este calendario.
+
+### 5.5.7. Amenazas a la validez
+
+| Dimensión | Riesgo pertinente | Control o evidencia requerida | Límite actual |
+|---|---|---|---|
+| Interna | Fuga temporal por etiquetas, escalado o parada | Fechas, disponibilidad, transformaciones solo en train y validación interna pasada | Integración con modelos pendiente |
+| Interna | Optimización desigual o selección de semillas | Presupuesto común, espacios justificados, logs completos y protocolo previo | Búsqueda y corridas no ejecutadas |
+| Interna | Cambios de cobertura entre modelos | Mismos orígenes y exclusiones, con recuentos verificables | Datos/folds registrados; comparación pendiente |
+| Externa | Un activo, un proveedor, una cotización | Delimitar BTCUSDT Spot y evitar afirmaciones sobre otros mercados | Sin evaluación externa de otros datasets |
+| Externa | Regímenes y periodos de duración diferente | Resultados por periodo y segmentos fijados, con incertidumbre | Test todavía no evaluado |
+| De construcción | Volatilidad como proxy y definición de ventanas | Fórmula, escala y sensibilidad a las cuatro ventanas documentadas | No mide volatilidad latente sin error |
+| De construcción | Métricas sensibles a ceros o colas | Política previa de MAPE/MASE y métricas complementarias | Políticas finales pendientes de cierre |
+| De conclusión estadística | Dependencia, pocos modelos y pocas semillas | Efectos, IC, multiplicidad, potencia/MDE y unidades justificadas | No hay inferencia entre modelos todavía |
+
+Los controles no se describirán como garantía absoluta: cada afirmación de validez deberá identificar qué se verificó realmente y qué permanece como supuesto o limitación.
+
+### 5.5.8. Limitaciones y recomendaciones futuras
+
+Las limitaciones observadas incluyen el alcance de un solo mercado, un día incompleto de desarrollo, objetivos móviles con retornos compartidos y la distinción entre variabilidad de semillas y variabilidad temporal. Se conservaron los brutos; excluir un día de los derivados no demuestra que no existan otros problemas económicos de calidad.
+
+El estado actual añade limitaciones de ejecución: revisión bibliográfica sin completar, arquitecturas no seleccionadas, margen práctico pendiente, modelos no entrenados y test supervisado sin congelación final. Estas son tareas pendientes y no hallazgos de desempeño.
+
+Las recomendaciones se derivarán de esas limitaciones y de los resultados que se obtengan: completar evidencia bibliográfica, cerrar el protocolo, ejecutar el piloto, dimensionar corridas y evaluar de manera comparable. Extensiones a noticias, otros mercados o arquitecturas avanzadas requerirán nueva justificación, fuentes y validación; no se presentan como mejoras garantizadas ni como experimentos ya ejecutados.
+
+### 5.5.9. Matriz de conclusiones y evidencia pendiente
+
+| Pregunta de la discusión | Evidencia necesaria | Respuesta actual |
+|---|---|---|
+| ¿Qué modelo funciona mejor y por qué? | Métricas, incertidumbre, contrastes y arquitectura | No determinable sin entrenamientos |
+| ¿Cuál generaliza mejor? | Desarrollo/test y periodos comparables con errores segmentados | Pendiente |
+| ¿La diferencia es significativa y relevante? | Comparación pareada, corrección, IC, efecto y $\delta$ | Pendiente |
+| ¿Compensa el costo o la complejidad? | Medidas de error, tiempos, hardware y parámetros | Pendiente |
+| ¿Cuál es el baseline y su umbral de mejora? | Selección cerrada, evaluación y dimensionamiento | No establecido |
+| ¿Qué margen sugiere la literatura? | Revisión de estudios comparables y variabilidad reportada | No cuantificado |
+| ¿Qué limita las conclusiones? | Registro de validez y alcance de la evidencia | Limitaciones de datos/diseño identificadas; validación experimental pendiente |
+
+La discusión final reemplazará estas respuestas pendientes por conclusiones sustentadas, sin convertir una descripción del protocolo en evidencia de superioridad.
