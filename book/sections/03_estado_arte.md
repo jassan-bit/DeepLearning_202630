@@ -88,8 +88,93 @@ Para cada estudio incluido se evaluarán los siguientes aspectos con estados **d
 
 La ausencia aparente de fuga no demuestra su ausencia real; la falta de información se reportará como incertidumbre. La calidad se tendrá en cuenta al justificar las tres referencias y no se reemplazará por el cuartil de la revista.
 
-## 3.2. Estado de la selección de modelos
+## 3.2. Identificación de los Tres Modelos Base de Deep Learning
 
-**Todavía no hay tres modelos seleccionados.** Las familias candidatas mencionadas en el libro no constituyen una selección definitiva. Después de la revisión se incorporará una matriz estudio–modelo con arquitectura, papel como baseline, datos, objetivo, métricas, protocolo, evidencia bibliográfica y limitaciones.
+Los tres modelos se extraerán de las referencias comparativas empleadas por los estudios incluidos. Su función será establecer un nivel mínimo de desempeño para el pronóstico de volatilidad de Bitcoin y permitir evaluar mejoras de modelos posteriores. **Todavía no hay tres modelos seleccionados:** las familias candidatas no constituyen una selección final.
 
-El antecedente de Huang, Sangiorgi y Urquhart (2024), listado en [Referencias](referencias.md), deberá pasar los mismos criterios y evaluación de calidad antes de incluirse en el conjunto final de estudios.
+### 3.2.1. Procedimiento de extracción
+
+1. Identificar en cada estudio incluido cuáles modelos de Deep Learning se usan realmente como baseline, distinguiéndolos del modelo novedoso propuesto por sus autores.
+2. Registrar arquitectura, profundidad, ancho, regularización, configuración de entrenamiento y ubicación exacta de la evidencia.
+3. Construir una tabla de frecuencia por modelo y variante arquitectónica. Un mismo estudio cuenta como máximo una vez para cada candidato; versiones duplicadas de un estudio no suman evidencia independiente.
+4. Comparar frecuencia, profundidad y número de parámetros. Si falta información para calcular parámetros, registrar **no reportado**, sin inventar dimensiones.
+5. Seleccionar exactamente tres referencias recurrentes y de baja complejidad, justificando los compromisos entre frecuencia, reproducibilidad y simplicidad.
+6. Verificar diversidad del sesgo inductivo y capacidad de utilizar el mismo pipeline, calendario, objetivo y muestras elegibles.
+
+La selección no se resolverá por preferencia personal ni solo por el mejor resultado publicado. Los conteos y las decisiones deberán poder reconstruirse desde las fichas de los estudios.
+
+### 3.2.2. Ficha de arquitectura por estudio
+
+| Campo | Información que se extraerá |
+|---|---|
+| Identificación | Referencia, DOI o identificador y página, tabla o sección |
+| Papel experimental | Evidencia de uso como baseline o referencia comparativa |
+| Entrada y salida | Variables, frecuencia, ventana, horizonte, dimensiones y estrategia de pronóstico |
+| Arquitectura | Familia, capas, unidades o filtros, kernels, dilataciones, conexiones y activaciones |
+| Complejidad | Profundidad y número de parámetros reportados o calculados con dimensiones explícitas |
+| Regularización | Dropout, penalizaciones, restricciones y otros mecanismos declarados |
+| Entrenamiento | Pérdida, optimizador, learning rate, batch size, épocas y early stopping |
+| Reproducibilidad | Código, semillas, repeticiones e información faltante |
+| Evaluación | Particiones, métricas, valores y tratamiento de incertidumbre |
+
+Un valor calculado por nosotros se distinguirá de uno reportado por el artículo. La ausencia de detalles no se interpretará como ausencia de regularización ni como una configuración predeterminada.
+
+### 3.2.3. Tabla de síntesis obligatoria
+
+La tabla final tendrá las columnas exigidas por el Entregable 1:
+
+| Referencia | Problema | Dataset | Modelos de Deep Learning básicos utilizados como referencia | Métricas reportadas | Valores obtenidos |
+|---|---|---|---|---|---|
+| Pendiente de revisión y extracción | Pendiente | Pendiente | Pendiente | Pendiente | Pendiente |
+
+Esta fila indica el estado del producto y **no cuenta como un estudio incluido**. Cada valor se acompañará de unidades, horizonte, partición y localización en el artículo. No se compararán directamente cifras de objetivos, escalas o datasets diferentes ni se presentarán como resultados propios.
+
+El antecedente de Huang, Sangiorgi y Urquhart (2024), listado en [Referencias](referencias.md), deberá pasar los criterios de inclusión y la evaluación de calidad antes de formar parte de esta tabla.
+
+### 3.2.4. Frecuencia y complejidad de candidatos
+
+Para series de tiempo, la guía propone las familias siguientes como orientación. Su presencia aquí no acredita frecuencia observada ni selecciona modelos.
+
+| Familia candidata | Estudios que la usan como referencia | Frecuencia | Profundidad y parámetros de variantes documentadas | Estado |
+|---|---|---|---|---|
+| MLP sobre ventana de rezagos | Pendiente | No calculada | Por extraer | Candidata |
+| RNN simple | Pendiente | No calculada | Por extraer | Candidata |
+| LSTM de una capa | Pendiente | No calculada | Por extraer | Candidata |
+| GRU de una capa | Pendiente | No calculada | Por extraer | Candidata |
+| CNN 1D o TCN poco profunda | Pendiente | No calculada | Por extraer | Candidata |
+
+CNN y TCN, así como LSTM y GRU, se desagregarán cuando las variantes documentadas lo requieran; no se fusionarán conteos de forma arbitraria. Se definirá el conjunto de estudios elegibles que sirve como denominador de las frecuencias relativas.
+
+La tabla ordenada y la justificación final mostrarán cómo se equilibran recurrencia y complejidad. Si empatan candidatos, se documentará la decisión considerando la calidad de la evidencia, la reproducibilidad y la diversidad de sesgos inductivos.
+
+### 3.2.5. Criterios de selección y no redundancia
+
+Cada modelo seleccionado deberá ser de Deep Learning, tener arquitectura simple y reproducible, aparecer como comparación en literatura pertinente y poder entrenarse bajo las mismas condiciones de evaluación que los otros dos.
+
+La diversidad se justificará por los mecanismos que incorporan los modelos: una MLP procesa una ventana explícita de rezagos; una red recurrente incorpora un estado compartido en el tiempo; una convolucional incorpora filtros locales y compartición de pesos. Estas diferencias ilustran el criterio, **sin fijar de antemano ese trío**. Elegir dos variantes recurrentes requeriría justificar por qué su diferencia aporta diversidad suficiente para el problema.
+
+Persistencia y otros modelos clásicos solo podrán actuar como referencias de contexto: no ocuparán ninguno de los tres puestos obligatorios.
+
+### 3.2.6. Equivalencia con las referencias clásicas
+
+Para este objetivo continuo, la comparación conceptual pertinente es el papel de una SVR con núcleo lineal como referencia sencilla en regresión. La equivalencia requerida es de **propósito comparativo**, no de identidad matemática ni de capacidad de representación.
+
+La justificación de cada modelo final explicará su capacidad, sus supuestos, su sesgo inductivo y su complejidad, y por qué constituye una referencia mínima razonable frente a arquitecturas avanzadas. Se distinguirán los supuestos de linealidad de una referencia clásica de la representación no lineal y temporal de las redes seleccionadas. Esta justificación se completará después de seleccionar las arquitecturas concretas.
+
+### 3.2.7. Arquitecturas insuficientemente descritas
+
+Si un estudio reporta únicamente una familia, por ejemplo «MLP», no se elegirá una arquitectura por criterio personal. Conforme al Entregable 1, se aplicará el procedimiento de búsqueda de arquitectura de la sección 14 del Entregable 2, declarando el espacio antes de entrenar.
+
+La sección 14 debe consultarse antes de ejecutar ese procedimiento; aquí no se inventan sus reglas. Se registrarán la información faltante, el espacio predefinido, el criterio de selección y su evaluación exclusivamente en desarrollo.
+
+### 3.2.8. Estado de cierre
+
+| Producto | Estado |
+|---|---|
+| Estudios incluidos y fichas de extracción | Pendientes |
+| Tabla de síntesis con métricas y valores verificables | Pendiente |
+| Frecuencia, profundidad y parámetros de candidatos | Pendientes |
+| Selección de exactamente tres modelos no redundantes | Pendiente |
+| Justificación comparativa y arquitecturas reproducibles | Pendientes |
+
+Esta sección documenta el procedimiento exigido; no afirma haber ejecutado la revisión, seleccionado los modelos ni entrenado redes.
