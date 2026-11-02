@@ -22,11 +22,11 @@ La guía contiene requisitos detallados adicionales. Esta lista no los reemplaza
 |---|---|
 | Activo | Confirmado: Bitcoin |
 | Entregable inmediato | Confirmado: Entregable 1, Sección 1 |
-| Repositorio | Confirmado: DeepLearning_202630, privado |
+| Repositorio | Confirmado: DeepLearning_202630, público por decisión del usuario |
 | Uso de cierre para volatilidad | Confirmado |
 | Pronóstico y definición exacta futura | Propuesta, pendiente de aprobación |
 | Calendario | Historia 2023; validación 2024; ajuste final elegible 2023–2024; test 01/01/2025–31/08/2026, reportando cada año por separado |
 | Modelos finales | No seleccionados |
 | Extensión a otras criptomonedas | No autorizada en el alcance actual |
 | Datos, EDA y entrenamiento | No ejecutados |
-| Sitio público / GitHub Pages | Publicación del HTML preparada en `gh-pages`; activación y disponibilidad pública pendientes de verificar |
+| Sitio público / GitHub Pages | HTML publicado en `gh-pages`; el usuario confirmó la activación de Pages. Verificación HTTP externa bloqueada por la red del entorno |

@@ -2,7 +2,7 @@
 
 ## Guía y materiales recibidos
 
-Los originales se conservan en `references/course/` del repositorio privado, con sus hashes en `SHA256SUMS.txt`.
+Los originales se conservan en `references/course/` del repositorio fuente, con sus hashes en `SHA256SUMS.txt`.
 
 - **Entregable1DeepLearningProject.pdf:** guía de 34 páginas. La Sección 1 aparece en páginas 2–3. Es la fuente de requisitos, no una fuente de datos de mercado.
 - **entregable1_texto.txt:** texto pegado de la misma guía; no es el Entregable 2.
@@ -11,7 +11,7 @@ Los originales se conservan en `references/course/` del repositorio privado, con
 - **periodos_anteriores.png** y **calendario_aclarado.png:** referencia previa y calendario aclarado por el usuario; la última fija test hasta el 31/08/2026.
 - **modelos_clase.png:** familias de modelos mostradas en clase.
 
-Estos materiales se conservan como referencia académica suministrada por el usuario. No se les atribuye licencia abierta ni autorización de distribución pública. El repositorio debe permanecer privado.
+Estos materiales se conservan como referencia académica suministrada por el usuario. No se les atribuye licencia abierta ni autorización de distribución pública. El usuario decidió hacer público el repositorio fuente para habilitar GitHub Pages; esa visibilidad no modifica los derechos de los materiales originales.
 
 ## Antecedente científico verificado
 
