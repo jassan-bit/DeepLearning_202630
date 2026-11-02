@@ -3,7 +3,7 @@
 El EDA de este proyecto debe ser reproducible y orientar decisiones de modelado, preprocesamiento y validación. Cada resultado deberá acompañarse de una interpretación técnica y una decisión justificable.
 
 ```{important}
-Esta sección establece el protocolo de análisis. Se ejecutó una auditoría inicial de precios y retornos de desarrollo, descrita en §2.3. El EDA de la variable objetivo, las pruebas de desplazamiento y la congelación del test siguen pendientes. La fuente, el horizonte y la frecuencia deben concretarse según la sección 1 antes de construir las etiquetas.
+Esta sección establece el protocolo de análisis. La fuente será Binance Spot directamente, según §2.3. La adquisición verificada y los resultados del EDA siguen pendientes. La fuente, el horizonte y la frecuencia deben concretarse según la sección 1 antes de construir las etiquetas.
 ```
 
 ## 2.1. EDA general
@@ -59,62 +59,44 @@ El pipeline de desarrollo no cargará los archivos de test. La evaluación defin
 
 | Producto reproducible | Estado |
 |---|---|
-| Fuente, términos de uso, archivo y manifiesto de adquisición | Artefacto BTCUSDT y hash identificados; licencia y adquisición de brutos pendientes |
+| Fuente, términos de uso, archivo y manifiesto de adquisición | Binance Spot BTCUSDT identificado; descarga, condiciones y hashes pendientes |
 | Frecuencia, horizonte, ventana de entrada y cadencia definidos | Pendiente |
-| Código o notebook de auditoría y EDA de desarrollo | Auditoría inicial ejecutada; ver §2.3 |
-| Tablas, figuras e interpretación vinculadas a decisiones | Precios y retornos ejecutados; objetivo y desplazamiento pendientes |
+| Código o notebook de auditoría y EDA de desarrollo | Pendiente de adquisición directa |
+| Tablas, figuras e interpretación vinculadas a decisiones | Pendientes de ejecución sobre brutos verificados |
 | Recuentos y límites exactos de particiones y folds | Pendiente de datos |
 | Manifiesto y hashes del test congelado | Pendiente de adquisición |
 
 Esta sección cubre los requisitos generales mostrados en las imágenes. No sustituye los requisitos específicos para series de tiempo de la guía completa ni presenta el EDA como terminado.
 
 
-## 2.3. Auditoría ejecutada sobre la fuente indicada
+## 2.3. Adquisición directa desde Binance Spot
 
-### 2.3.1. Procedencia y alcance
+### 2.3.1. Fuente y alcance
 
-El usuario indicó el [proyecto de Machine Learning](https://jassan-bit.github.io/MachineLearning_202630/) como referencia del dataset. Se consultó su repositorio en el commit `b449f988d53a6591ff32412a2abd6625231f5081` y se verificó el SHA-256 del archivo `data/processed/minute_2023_2025/BTCUSDT.npy` contra `results/minute_2023_2025/data_manifest.json`:
+La fuente del proyecto es **Binance Spot**, par **BTCUSDT**, mediante los [archivos públicos oficiales](https://data.binance.vision/?prefix=data/spot/monthly/klines/BTCUSDT/1m/). Se utilizarán velas de un minuto y el precio de cierre; USDT es la moneda de cotización. La documentación técnica está en [Binance Public Data](https://github.com/binance/binance-public-data).
+
+El patrón de adquisición es:
 
 ```text
-a18c60c8622442e7cb11d80f03d25600840548773fc136fc1d772ce27bd0a32d
+https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-AAAA-MM.zip
+https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-AAAA-MM.zip.CHECKSUM
 ```
 
-Su código identifica Binance Spot, par BTCUSDT, archivos mensuales de velas de un minuto y una cuadrícula UTC. Se verificó la integridad del artefacto procesado frente al manifiesto; no se volvieron a descargar los archivos brutos ni se verificó independientemente su procedencia o licencia. No se redistribuye el archivo de precios en este repositorio.
+Se descargarán los archivos y sus checksums directamente del proveedor, se verificará SHA-256 antes de procesarlos y se registrarán URL, fecha de adquisición, tamaño, hash, esquema y unidades temporales. No se asumirá que todos los archivos usan la misma unidad de timestamp: se verificará la documentación y cada periodo, incluida la transición a microsegundos.
 
-La auditoría utiliza únicamente el tramo 2023–2024. El hash identifica el archivo completo, pero no se inspeccionaron los valores de test de 2025. El artefacto termina antes de 2026: **no cubre el calendario completo hasta agosto de 2026**.
+El calendario objetivo sigue siendo desarrollo 2023–2024 y test 2025–agosto de 2026. La cobertura real se comprobará con los archivos adquiridos. El test se conservará por separado y no se explorará para elegir preprocesamiento o hiperparámetros.
 
-### 2.3.2. Resultados de precios y retornos
+### 2.3.2. Estado de adquisición y resultados
 
-| Comprobación | Resultado medido en desarrollo |
-|---|---:|
-| Posiciones de la cuadrícula de un minuto | 1.052.640 |
-| Precios finitos y positivos | 1.052.559 |
-| Precios no finitos | 81 |
-| Precios finitos no positivos | 0 |
-| Retornos entre minutos adyacentes válidos | 1.052.557 |
-| Media del retorno logarítmico | 0,00000165149 |
-| Desviación estándar poblacional del retorno | 0,000673562 |
-| Asimetría por momentos | −0,72609 |
-| Exceso de curtosis por momentos | 84,74746 |
-| Cuantil 1 % del retorno | −0,00184986 |
-| Mediana del retorno | 0 |
-| Cuantil 99 % del retorno | 0,00185783 |
+**La adquisición directa aún no se ha completado.** El intento de acceder al checksum oficial fue bloqueado por el proxy del entorno con HTTP 403. Hace falta permitir `data.binance.vision` en la configuración de red del entorno. Este bloqueo no demuestra que Binance haya rechazado el acceso.
 
-![Precios y distribución de retornos de desarrollo](../_static/eda_development.png)
+Las estadísticas y la figura calculadas anteriormente a partir de un archivo intermediario se retiraron de este avance. No se presentan como resultados obtenidos directamente del proveedor. El EDA se ejecutará de nuevo sobre los archivos oficiales verificados, sin inventar resultados ni reutilizar etiquetas de otro estudio.
 
-Los retornos son adimensionales, sin multiplicar por 100 ni anualizar. La desviación estándar de esta tabla describe todos los retornos válidos de desarrollo; **no es una etiqueta de volatilidad futura**. El gráfico de precios toma el último minuto de cada día y no reemplaza la auditoría de días completos.
+### 2.3.3. Condiciones para ejecutar el EDA
 
-**Interpretación y decisiones:** los 81 valores no finitos impiden utilizar algunas ventanas y no se rellenaron. Los retornos solo se calcularon entre minutos adyacentes válidos, sin saltar huecos. La elevada curtosis describe colas pesadas y justifica examinar errores por regímenes y alternativas robustas en validación; no demuestra qué modelo o pérdida ganará ni justifica eliminar extremos. El mecanismo de ausencia, los duplicados de origen y la corrección de timestamps requieren inspeccionar los archivos brutos: el array procesado no conserva esas evidencias.
-
-### 2.3.3. Reproducción y decisiones abiertas
-
-El script `scripts/eda_bitcoin_development.py` verifica el hash antes de analizar exclusivamente desarrollo. Genera `results/eda_development/audit.json` y la figura de esta sección.
-
-```bash
-python -m pip install -r requirements-eda.txt
-python scripts/eda_bitcoin_development.py /ruta/a/BTCUSDT.npy
-```
-
-El archivo se obtiene del repositorio de referencia en el commit indicado; su hash debe coincidir. No se atribuyen a este proyecto los resultados de modelos del proyecto anterior.
-
-La configuración `experiment_minute.json` de Machine Learning usa entradas de un minuto, orígenes diarios, retornos objetivo diarios, ventanas de volatilidad de 7, 14, 21 y 28 días, escala 100 y siete salidas futuras. Esto **no equivale** a la etiqueta de §1.3. Antes de producir histogramas del objetivo y comparar particiones se debe fijar si se mantiene la formulación de Deep Learning o se adopta explícitamente otra. Tampoco puede considerarse el test de 2025 completamente desconocido a nivel de investigación si sus resultados ya fueron examinados en el proyecto anterior; esa limitación deberá declararse.
+1. Habilitar acceso al dominio oficial y comprobar una descarga con verificación TLS.
+2. Documentar las condiciones de uso y redistribución aplicables; acceso público no equivale a licencia abierta de datos de mercado.
+3. Descargar y verificar los archivos de desarrollo, conservar los brutos y generar el manifiesto.
+4. Auditar timestamps, unidades, duplicados, huecos, cierres y coherencia OHLC antes de crear retornos.
+5. Fijar horizonte, frecuencia de los retornos objetivo, longitud de entrada y cadencia conforme al Entregable 1.
+6. Ejecutar el EDA general y el específico de series de tiempo; vincular cada resultado a una decisión de modelado o validación.

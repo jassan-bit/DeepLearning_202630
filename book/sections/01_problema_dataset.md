@@ -137,20 +137,20 @@ Las ventanas de entrada y las etiquetas futuras pueden solaparse. Ni las filas, 
 
 ## 1.5. Dataset: pertinencia y ficha técnica
 
-**Actualización:** el usuario indicó el dataset del proyecto de Machine Learning. Se identificó y auditó su artefacto procesado BTCUSDT de Binance; los resultados y límites constan en §2.3 del [EDA](02_eda.md). La ficha siguiente conserva las decisiones pendientes del diseño original y no debe confundirse con la ficha final del artefacto. Falta verificar licencia, adquirir brutos y completar la cobertura de 2026.
+**Fuente seleccionada:** Binance Spot, par BTCUSDT, velas de un minuto adquiridas directamente de los archivos públicos oficiales. La adquisición, verificación y auditoría se describen en §2.3 del [EDA](02_eda.md). Aún no se han verificado los archivos brutos ni la cobertura completa; tamaño, calidad y hashes permanecen pendientes.
 
 Un conjunto de cierres de Bitcoin con marcas de tiempo y resolución suficiente permitiría construir entradas y etiquetas de manera trazable. Su idoneidad dependerá de cubrir suficientes regímenes y de contar con continuidad, procedencia y condiciones de uso verificables. Acceso público no equivale a licencia abierta ni a permiso de redistribución.
 
 | Campo exigido | Estado y criterio de cierre |
 |---|---|
-| Nombre y proveedor | Pendiente: elegir fuente exacta y mercado/exchange |
-| Activo y par | Bitcoin confirmado; moneda de cotización y par pendientes |
-| Disponibilidad pública | Pendiente: verificar URL/API y condiciones de acceso |
+| Nombre y proveedor | Binance Spot; archivos públicos oficiales de velas de un minuto |
+| Activo y par | Bitcoin, cotizado en USDT; par BTCUSDT |
+| Disponibilidad pública | Archivos oficiales en data.binance.vision; acceso desde el entorno bloqueado por su proxy |
 | Licencia y redistribución | Pendiente: registrar términos/versiones y permiso para conservar/publicar datos |
 | Procedencia | Pendiente: documentar generación de velas, cierre y agregación por proveedor |
 | Uso previo del mismo dataset | No verificado; el antecedente temático no demuestra igualdad de dataset |
 | Periodo temporal y zona horaria | Calendario confirmado en §1.6; zona horaria y convención de apertura/cierre pendientes |
-| Frecuencia | 1 minuto sugerido por imagen; confirmar coherencia con leyenda diaria |
+| Frecuencia | Velas de un minuto; frecuencia del objetivo e interpretación de la leyenda diaria pendientes de fijar |
 | Tamaño | Pendiente: filas brutas, cierres válidos y ventanas finales; no se estima como medido |
 | Estructura mínima propuesta | Marca temporal única y cierre positivo; $X$ con forma $(N,L,1)$, $Y$ con forma $(N,)$ |
 | Formato de almacenamiento | Pendiente; CSV o Parquet son opciones, no archivos adquiridos |

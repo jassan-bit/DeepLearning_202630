@@ -24,3 +24,7 @@ Este trabajo compara redes LSTM y CNN–LSTM para volatilidad de Bitcoin con alt
 [Jupyter Book 1: construcción HTML](https://jupyter-book.readthedocs.io/v1/start/build.html). Se fija la versión 1.0.4.post1 por compatibilidad con la configuración `_config.yml`/`_toc.yml`. Es la línea v1 en mantenimiento, no la versión más reciente del producto.
 
 Consulta de las fuentes externas: 2 de noviembre de 2026.
+
+## Fuente directa de datos
+
+[Binance Spot: archivos públicos de BTCUSDT de un minuto](https://data.binance.vision/?prefix=data/spot/monthly/klines/BTCUSDT/1m/) y [documentación oficial Binance Public Data](https://github.com/binance/binance-public-data). Fuente seleccionada; descarga y auditoría pendientes de acceso al proveedor desde el entorno.

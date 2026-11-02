@@ -8,13 +8,13 @@
 Este libro documenta la definición inicial de un problema de pronóstico de volatilidad de **Bitcoin**, calculada a partir de precios de cierre. El alcance actual es desarrollar la **Sección 1: Definición del Problema y Dataset**.
 
 ```{important}
-Este es un borrador metodológico, no un protocolo congelado ni un experimento terminado. Se auditó un artefacto de precios y retornos de desarrollo del proyecto de Machine Learning; el EDA del objetivo sigue pendiente. No se han entrenado modelos de Deep Learning. Las decisiones no confirmadas están identificadas como **pendientes** o **propuestas**.
+Este es un borrador metodológico, no un protocolo congelado ni un experimento terminado. La fuente seleccionada es Binance Spot BTCUSDT. La adquisición directa verificada y la ejecución del EDA están pendientes. No se han entrenado modelos de Deep Learning. Las decisiones no confirmadas están identificadas como **pendientes** o **propuestas**.
 ```
 
 ## Qué contiene este avance
 
 - [Problema y dataset](sections/01_problema_dataset.md): formulación matemática, hipótesis propuesta, métricas y ficha técnica.
-- [Análisis exploratorio de datos](sections/02_eda.md): protocolo de EDA y auditoría inicial reproducible de precios y retornos BTCUSDT.
+- [Análisis exploratorio de datos](sections/02_eda.md): protocolo de EDA y adquisición directa desde Binance Spot BTCUSDT.
 - [Decisiones pendientes](sections/protocolo_pendiente.md): requisitos para cerrar la sección sin inventar información.
 - [Referencias y materiales](sections/referencias.md): guía del curso y antecedente científico.
 

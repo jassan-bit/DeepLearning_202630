@@ -5,7 +5,7 @@
 1. **Confirmar objetivo y horizonte:** próxima hora, próximas 24 horas u otro intervalo. Son opciones, no elecciones realizadas.
 2. **Resolver frecuencia:** la imagen dice 1 minuto, pero su leyenda dice días. Confirmar la unidad temporal.
 3. **Aprobar proxy e indexación:** dispersión de retornos futuros con divisor poblacional, sin anualización; distinguirlo de la ventana histórica de la guía.
-4. **Elegir fuente y par; verificar cobertura del calendario recibido:** verificar disponibilidad, licencia, procedencia y antecedentes del dataset exacto.
+4. **Verificar Binance Spot BTCUSDT y cobertura del calendario recibido:** adquirir los archivos oficiales y verificar condiciones de uso, procedencia y antecedentes del dataset exacto.
 5. **Documentar adquisición y trazabilidad:** tamaño real, esquema, versión y SHA-256. No hay datos descargados.
 6. **Fijar $L$, cadencia de predicción y protocolo temporal:** mediante evidencia del desarrollo, nunca mirando el test.
 7. **Preregistrar métricas, rezago MASE, $\delta$, bloques de independencia y particiones.**
