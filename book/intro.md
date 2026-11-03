@@ -10,7 +10,7 @@ Este libro desarrolla el **Entregable 1 de Deep Learning** para el pronóstico d
 ## Qué contiene este avance
 
 - [Problema y dataset](sections/01_problema_dataset.md): formulación matemática, hipótesis propuesta, métricas y ficha técnica.
-- [Análisis exploratorio de datos](sections/02_eda.md): adquisición directa desde Binance Spot BTCUSDT y análisis de calidad, precios y retornos de desarrollo.
+- [Análisis exploratorio de datos](sections/02_eda.md): adquisición Binance Spot BTCUSDT, perfiles y colas del objetivo, calidad y reconstrucción de etiquetas, desplazamiento marginal por bloques y decisiones de modelado con desarrollo.
 - [Estado del arte](sections/03_estado_arte.md): tabla de las 33 referencias citadas, búsqueda y cribado trazables, matriz, frecuencias, tres fichas y comparación crítica; candidatos de trabajo y extracción definitiva pendiente.
 - [Diseño de la etapa E2](sections/04_implementacion_evaluacion.md): criterios de implementación, validación y piloto previstos, sin ejecución propia en esta revisión.
 - [Criterios del benchmark para E2](sections/05_benchmark.md): métricas, tablas futuras, inferencia y reglas de interpretación.

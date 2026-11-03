@@ -8,6 +8,8 @@ La métrica principal y el criterio operativo ya fijados en §1.4 son **RMSE** y
 
 ## 2.1. EDA general
 
+La revisión de este bloque se recoge punto por punto en el {download}`informe de EDA general <../_static/e1/revision_eda_general_20261103.md>` y su [matriz JSON](../_static/e1/revision_eda_general_20261103.json). Los criterios de clasificación se adaptan al objetivo continuo y los diagnósticos estadísticos se distinguen de la evaluación de modelos.
+
 ### 2.1.1. Análisis de la variable objetivo
 
 Se calculó la desviación estándar poblacional móvil (`ddof=0`) de los retornos **diarios**, con ventanas $n=7,14,21,28$. El valor asociado a un día de resultado solo se conoce al cerrar ese día. Para pronosticarlo, las entradas deben terminar en el día anterior; la indexación formal de §1.3 mantiene esta disponibilidad. No se confundió volatilidad intradía con el objetivo diario.
@@ -29,10 +31,23 @@ La tabla usa entrenamiento 2023. Los valores están en unidades de retorno logar
 
 ![Volatilidad diaria de 28 días: trayectoria, histograma, ECDF y comparación 2023–2024](../_static/eda/13_volatilidad_28_dias.png)
 
+El complemento de EDA general cuantifica el objetivo principal en ambos periodos de desarrollo. Los valores siguientes conservan la escala original de retorno logarítmico:
+
+| Periodo | Etiquetas válidas n=7 | Media | Desviación poblacional | Mediana | Percentil 95 | Percentil 99 |
+|---|---:|---:|---:|---:|---:|---:|
+| 2023 | 350 | 0,018797 | 0,008890 | 0,017567 | 0,036130 | 0,042511 |
+| 2024 | 366 | 0,023661 | 0,009767 | 0,021989 | 0,041092 | 0,056175 |
+
+La asimetría y el exceso de curtosis de n=7 pasan de **0,802 y 0,496 en 2023** a **1,180 y 1,843 en 2024**. Se observa mayor concentración empírica en la cola derecha de validación; estos momentos no demuestran por sí solos una ley de colas extremas. Como regla descriptiva se calcula únicamente con 2023 el límite superior $Q_{0,75}+1{,}5\,IQR=0{,}04370768$: lo superan **3/350 días de 2023 (0,86 %)** y **14/366 de 2024 (3,83 %)**. No se eliminan ni se recortan esas etiquetas por rebasar el umbral.
+
+![Percentiles y cola empírica de la volatilidad principal en desarrollo](../_static/eda_general_quality/objetivo_7_percentiles_colas.png)
+
+El [perfil completo de objetivos](../_static/eda_general_quality/target_profiles.csv) incluye las ocho combinaciones año–ventana, sus cuantiles, ceros y marcas IQR con referencia fija de entrenamiento. Una etiqueta grande no es automáticamente un error del proveedor ni un residuo grande de un modelo. Se conserva **MSE/RMSE** como diseño aceptado; ponderaciones, Huber o transformaciones del objetivo no se introducen por inspección de estas gráficas.
+
 La ventana de siete días presenta mayor variación temporal; aumentar la ventana suaviza la medida, pero cambia el objetivo y no demuestra que un modelo pronostique mejor. No aparecen etiquetas cero en estos derivados de desarrollo. Esto no garantiza que nunca aparezcan: se mantiene la política de MAPE ya fijada en §1.4, con etiquetas positivas, cobertura declarada y sin epsilon arbitrario. Al ser un objetivo continuo, los recuentos de clases, la entropía de clases y el balance entre clases de la guía no son aplicables.
 
-- **Decisión de preprocesamiento:** conservar las cuatro definiciones separadas y requerir retornos diarios consecutivos; no rellenar las etiquetas afectadas por huecos.
-- **Impacto en la arquitectura:** cada combinación de entrada y objetivo debe identificar sus dimensiones; las cuatro ventanas no se mezclan como si fueran la misma etiqueta.
+- **Decisión de preprocesamiento:** conservar las cuatro definiciones separadas y requerir retornos diarios consecutivos; no rellenar las etiquetas afectadas por huecos ni eliminar automáticamente los valores que superan el umbral IQR.
+- **Impacto en la arquitectura:** cada combinación de entrada y objetivo debe identificar sus dimensiones y conservar una salida escalar no negativa; la cola observada no fija por sí sola la profundidad o el ancho de la red. Las cuatro ventanas no se mezclan como si fueran la misma etiqueta.
 - **Riesgos identificados:** solapamiento de etiquetas, confusión entre ventana y horizonte y selección de una definición por desempeño de test. Los gráficos no prueban superioridad predictiva.
 
 ### 2.1.2. Calidad del dataset
@@ -44,6 +59,26 @@ El **24/03/2023** faltan 80 minutos de apertura, desde **12:40 hasta 13:59 UTC**
 La agregación diaria requiere 1.440 minutos elegibles: hay **364 días completos en 2023** y **366 en 2024**. El **24/03/2023 permanece excluido**, conforme a la decisión vigente; los retornos diarios y las ventanas no se calculan atravesando ese día. La posición de la fecha se conserva en el calendario.
 
 Se verificaron la unicidad y el orden de los timestamps de apertura. Dos minutos con el mismo precio no se consideran por ello registros duplicados. Las etiquetas se calculan automáticamente con cierres válidos; no requieren acuerdo entre anotadores. La auditoría detecta inconsistencias temporales, pero no estima de forma independiente el error de los precios del proveedor ni el ruido de la volatilidad como aproximación a la incertidumbre del mercado.
+
+La auditoría de los derivados diarios complementa los controles de los archivos originales:
+
+| Control diario | 2023 | 2024 | Interpretación |
+|---|---:|---:|---|
+| Días de calendario | 365 | 366 | Cuadrícula conservada |
+| Días OHLCV completos | 364 | 366 | Un día excluido en 2023 |
+| Retornos diarios válidos | 362 | 366 | En 2023 faltan el retorno inicial y los dos que dependen del cierre excluido |
+| Etiquetas válidas n=7 | 350 | 366 | Incluyen calentamiento y propagación del hueco a la ventana |
+| Claves de fecha duplicadas | 0 | 0 | Un registro por día UTC |
+| Filas con OHLCV completo idéntico repetido | 0 | 0 | Comprobación de valores; su repetición no justificaría por sí sola borrado |
+| Incoherencias OHLC, precios no positivos o volumen negativo | 0 | 0 | Sobre los días completos observados |
+
+Para verificar el etiquetado automático se reconstruyeron independientemente las **2.924 posiciones año–día–ventana**, usando cierres y aritmética por fechas, sin reutilizar el cálculo móvil de pandas. Se obtuvieron **2.780 etiquetas válidas**, **cero discrepancias de elegibilidad** y una diferencia numérica máxima de **1,027×10⁻¹⁵** frente a los CSV existentes. Esta comprobación detectaría desalineación, retornos a través de huecos o errores de cálculo; no mide el error de los precios de Binance ni el ruido económico del proxy de volatilidad.
+
+El cierre ausente invalida los retornos del 24 y 25 de marzo. Los primeros objetivos nuevamente válidos son el **01/04, 08/04, 15/04 y 22/04/2023** para n=7/14/21/28, respectivamente. La historia de entrada también importa: para n=7, antes del embargo, los orígenes elegibles de 2023 son **350, 336, 322 y 308** para D=7/14/21/28; en 2024 son 366 por cada D. Son máscaras de datos, diferentes de las muestras permitidas para ajustar en cada fold.
+
+![Máscaras de calendario, retornos, etiquetas y ventanas de desarrollo](../_static/eda_general_quality/mascaras_calendario_desarrollo.png)
+
+Se conservan las [máscaras diarias](../_static/eda_general_quality/calendar_masks.csv), los [controles de calidad por año](../_static/eda_general_quality/quality_by_year.csv), la [reconstrucción de etiquetas](../_static/eda_general_quality/label_reconstruction.csv) y la [elegibilidad por ventana](../_static/eda_general_quality/window_eligibility.csv). El [registro de faltantes](../_static/eda_general_quality/missingness_evidence.json) distingue el episodio intradiario, el día excluido y su propagación; el mecanismo MCAR/MAR/MNAR permanece no identificado con esta fuente y este único episodio. La ausencia de acuerdo entre anotadores no es un defecto aplicable a etiquetas calculadas automáticamente; la incertidumbre externa del proveedor y del proxy permanece sin estimación independiente.
 
 ![Cobertura mensual y minutos no elegibles por día en desarrollo](../_static/eda/01_calidad_cobertura.png)
 
@@ -68,7 +103,11 @@ La figura compara una ECDF y la media diaria de magnitudes de retornos de un min
 | 7 días | 0.000137639 | [8.99012e-05, 0.000183894] |
 | 14 días | 0.000137639 | [7.83572e-05, 0.000192761] |
 
-Es un diagnóstico condicionado a la estabilidad y representatividad de bloques; no es una prueba general de igualdad de distribuciones. Se conserva la posición de días incompletos y se omiten sus valores al promediar. Los bloques exploratorios no fijan todavía la unidad inferencial del benchmark. Este resultado no completa por sí solo el análisis de desplazamiento de todas las covariables OHLCV y del objetivo entre particiones; las comparaciones restantes de este capítulo son descriptivas.
+Es un diagnóstico condicionado a la estabilidad y representatividad de bloques; no es una prueba general de igualdad de distribuciones. Se conserva la posición de días incompletos y se omiten sus valores al promediar. Los bloques exploratorios no fijan la unidad inferencial del benchmark. El contraste de las cinco covariables y del objetivo principal se presenta por separado en §2.1.3.3.
+
+- **Decisión de preprocesamiento:** conservar el calendario y no igualar artificialmente los años; este diagnóstico de magnitudes intradiarias no transforma las etiquetas diarias.
+- **Impacto en la arquitectura:** exigir evaluación cronológica de modelos compactos antes de aumentar capacidad; una diferencia de actividad entre años no demuestra que una arquitectura concreta la aproveche.
+- **Riesgos identificados:** tratar días dependientes como i.i.d., confundir el proxy intradiario con el objetivo y transferir estos bloques al benchmark sin justificarlo.
 
 #### 2.1.3.1. Correlaciones con objetivos del día siguiente
 
@@ -77,6 +116,10 @@ Las matrices se calcularon **solo con 2023**, alineando OHLCV del día anterior 
 ![Pearson y Spearman entre OHLCV previo y volatilidad del día de resultado](../_static/eda/14_correlaciones.png)
 
 Las relaciones son descriptivas. Los niveles OHLC comparten una gran parte de su información y las volatilidades móviles comparten retornos; una correlación no demuestra causalidad ni mejora respecto a persistencia.
+
+- **Decisión de preprocesamiento:** mantener los desfases causales y contrastar las relaciones en el tiempo; no eliminar covariables ni añadir rezagos del objetivo por una correlación aislada.
+- **Impacto en la arquitectura:** conservar las cinco entradas acordadas y comprobar regularización con el mismo conjunto de información, sin equiparar cuatro precios correlacionados a cuatro señales independientes.
+- **Riesgos identificados:** asociación espuria con niveles de precio, información del retorno aún desconocido y confusión entre relación descriptiva y capacidad predictiva.
 
 #### 2.1.3.2. Exploración multivariada
 
@@ -90,9 +133,49 @@ Los dos primeros componentes explican **99.78 %** de la varianza estandarizada d
 - **Impacto en la arquitectura:** comparar representaciones diarias con dimensiones explícitas, evitando añadir complejidad solo por colinealidad o drift descriptivo.
 - **Riesgos identificados:** correlaciones espurias de niveles, ventanas objetivo solapadas, PCA ajustado globalmente y consultas de test para seleccionar atributos. No se han ejecutado aún información mutua ni VIF; no se presentan como productos completados.
 
+#### 2.1.3.3. Desplazamiento de covariables y objetivo principal
+
+La comparación utiliza un **perfil causal de un día de rezago**: OHLCV de $d-1$ y volatilidad de siete retornos del día $d$. Las seis variables comparten **350 casos completos en 2023 y 366 en 2024**; se conserva la cuadrícula de 731 días y sus posiciones ausentes. Este perfil no equivale a la distribución conjunta de todas las ventanas D ni a un conjunto de predicciones de modelos.
+
+Se calcula la distancia marginal de Kolmogórov–Smirnov $D_{\mathrm{KS}}=\sup_x|F_{2023}(x)-F_{2024}(x)|$. Para tener una referencia temporal exploratoria se usan bloques calendarios completos de **14 y 28 días**, **2.000 permutaciones por longitud** y **semilla 42**. Solo se intercambian bloques plenamente observados, conservando cuántos pertenecen a cada periodo. Las colas anuales de uno y dos días y los bloques que contienen ausencias permanecen fijos; no se imputan ni se comprimen fechas. Cada permutación conserva los tamaños 350/366.
+
+| Variable del perfil causal | Mediana 2023 | Mediana 2024 | Distancia KS | Referencia ajustada Holm, bloque 14 días | Referencia ajustada Holm, bloque 28 días |
+|---|---:|---:|---:|---:|---:|
+| Apertura de d−1 (USDT) | 27808,42 | 64062,61 | 0,923 | 0,0060 | 0,0060 |
+| Máximo de d−1 (USDT) | 28313,21 | 65548,07 | 0,920 | 0,0060 | 0,0060 |
+| Mínimo de d−1 (USDT) | 27247,50 | 62768,57 | 0,924 | 0,0060 | 0,0060 |
+| Cierre de d−1 (USDT) | 27808,42 | 64115,77 | 0,920 | 0,0060 | 0,0060 |
+| Volumen de d−1 (BTC) | 40446,80 | 29716,60 | 0,233 | 0,0855 | 0,2174 |
+| Volatilidad n=7 del día d | 0,017567 | 0,021989 | 0,241 | 0,0620 | 0,0940 |
+
+La referencia Monte Carlo se calcula como $p_{\mathrm{MC}}=(1+\#\{D_r^*\ge D_{\mathrm{obs}}\})/(2000+1)$; se aplica **Holm a la familia conjunta de doce contrastes** —seis variables por dos longitudes— con nivel 0,05. No se usan los p-values i.i.d. habituales de KS para tratar estos días como independientes. La permutación solo construye una referencia del EDA: la partición cronológica real permanece intacta.
+
+La hipótesis de referencia es **intercambiabilidad de los bloques completos entre años, condicionada a las partes fijas**. Con bloques de 14 días hay 23 bloques de entrenamiento y 26 de validación permutables; con 28 días, 10 y 13. Permanecen fijos 28/350 o 70/350 valores de entrenamiento, respectivamente, y 2/366 de validación. Cambiar de 14 a 28 días también cambia el conjunto permutable; la comparación no aísla exclusivamente la longitud del bloque. Tendencias, cambios de régimen y dependencia entre bloques impiden presentar estos resultados como inferencia exacta o confirmatoria; Holm corrige multiplicidad, no la calibración temporal.
+
+![Distribuciones marginales del perfil causal OHLCV previo y volatilidad principal](../_static/eda_general_shift/marginales_causales_2023_2024.png)
+
+Los niveles OHLC muestran una separación marginal amplia, con distancias KS de 0,920–0,924 y referencia ajustada aproximada 0,0060 para ambas longitudes. La mediana del cierre previo pasa de 27.808,43 a 64.115,77 USDT. El volumen y el objetivo también presentan diferencias descriptivas, pero sus referencias ajustadas superan 0,05; **no rechazar ese escenario no demuestra igualdad ni ausencia de desplazamiento**. En particular, el aumento observado de la mediana o de la cola de volatilidad no equivale a una ruptura confirmada bajo cualquier diseño temporal.
+
+El [perfil descriptivo por periodo](../_static/eda_general_shift/descriptive_by_period.csv), las [distancias y tamaños de diferencia](../_static/eda_general_shift/marginal_distribution_differences.csv), los [contrastes condicionales](../_static/eda_general_shift/conditional_block_permutation.csv), los [bloques y sus máscaras](../_static/eda_general_shift/calendar_blocks.csv) y el [resumen reproducible](../_static/eda_general_shift/summary.json) conservan los resultados y supuestos. No se abrió test para hacer estas comparaciones.
+
+- **Decisión de preprocesamiento:** ajustar escalas solo con el pasado permitido, preservar los regímenes en la evaluación cronológica y no transformar validación para hacerla coincidir artificialmente con entrenamiento. Estos bloques no fijan la longitud de remuestreo del benchmark.
+- **Impacto en la arquitectura:** exigir comparación con referencias simples y evaluación temporal antes de atribuir una mejora a mayor capacidad; una diferencia entre distribuciones no selecciona una red ni autoriza cambiar las cinco covariables.
+- **Riesgos identificados:** no estacionariedad, bloques no independientes, interpretación causal de un cambio marginal y selección de variables, pérdidas o ventanas por los p-values. La revisión cubre seis marginales del perfil lag1, no igualdad conjunta ni todos los rezagos D.
+
 ### 2.1.4. Partición del dataset
 
 Se mantiene entrenamiento inicial 2023, validación forward chaining en 2024, ajuste final con desarrollo y test previsto 2025–agosto de 2026. Septiembre–octubre de 2026 se adquirieron, pero no se asignan automáticamente al test.
+
+Las proporciones siguientes usan **1.339 días de calendario asignados** al protocolo, del 01/01/2023 al 31/08/2026. No son proporciones de ventanas supervisadas ni de filas de un minuto:
+
+| Función del periodo | Fechas UTC | Días de calendario | Porcentaje del calendario asignado | Regla y semilla de partición |
+|---|---|---:|---:|---|
+| Historia inicial de ajuste | 01/01/2023–31/12/2023 | 365 | 27,26 % | Cronológica y determinista; semilla no aplicable |
+| Orígenes de validación | 01/01/2024–31/12/2024 | 366 | 27,33 % | Origen móvil y embargo D; semilla no aplicable |
+| Reserva de prueba | 01/01/2025–31/08/2026 | 608 | 45,41 % | Periodo reservado; semilla no aplicable |
+| Total asignado | 01/01/2023–31/08/2026 | 1.339 | 100 % | Sin barajar fechas |
+
+Los 60 días adquiridos entre el 01/09/2026 y el 30/10/2026 quedan fuera de este denominador y de las etapas definidas. El ajuste final previsto utiliza desarrollo 2023–2024, por lo que no es una cuarta partición independiente. Dentro de la validación, la historia de ajuste puede crecer con el pasado permitido; el número efectivo de muestras depende de D, n, el embargo y las exclusiones. Las semillas de los remuestreos exploratorios se registran por separado y no sustituyen una semilla de división.
 
 ![Forward Chaining: figura original del ejemplo de timeseries-cv](../_static/eda/08_forward_chaining_tsxv.png)
 
@@ -339,6 +422,15 @@ python3.12 -m venv /workspace/.venvs/timeseries-cv
 
 El ejemplo oficial 4/3/2 es ilustrativo; no cambia el horizonte principal de Bitcoin a tres días. El script puede recuperar la misma figura desde el notebook oficial fijado a un commit usando `--refresh-illustration`, y verifica su SHA-256.
 
+La ampliación del EDA general utiliza exclusivamente los CSV diarios ya existentes, con hashes verificados; no vuelve a abrir ZIP ni ajusta modelos:
+
+```bash
+/workspace/.venvs/deeplearning-eda/bin/python scripts/eda_general_quality.py
+/workspace/.venvs/deeplearning-eda/bin/python scripts/eda_general_shift.py
+```
+
+El primer script genera perfiles de objetivos, calidad, máscaras y reconstrucción independiente de etiquetas en `results/eda_general_quality/`. El segundo genera el perfil causal, distancias marginales y referencia de permutación por bloques en `results/eda_general_shift/`. Se conservan sus [controles y límites de calidad](../_static/eda_general_quality/summary.json) y [método de desplazamiento](../_static/eda_general_shift/summary.json), con software, semillas cuando aplican y fuentes. Ambos registran **cero modelos ajustados y cero archivos de test abiertos**. Los resultados numéricos de estos diagnósticos no sustituyen predicciones fuera de entrenamiento ni el análisis de residuos del benchmark.
+
 ### 2.4.2. Evidencias y pendientes
 
 | Producto | Estado real |
@@ -346,8 +438,10 @@ El ejemplo oficial 4/3/2 es ilustrativo; no cambia el horizonte principal de Bit
 | Adquisición directa y SHA-256 | 75 ZIP oficiales verificados |
 | Calidad de precios y OHLCV de desarrollo | Ejecutada; un día incompleto excluido de derivados |
 | Modelado diario y entradas 7/14/21/28 días | Documentados según aclaraciones recibidas |
-| Distribuciones de cuatro ventanas de volatilidad diaria | Ejecutadas sobre desarrollo |
-| Figuras de series, huecos, correlaciones, PCA y estructura temporal | Generadas y enlazadas en este capítulo |
+| Distribuciones de cuatro ventanas de volatilidad diaria | Ocho perfiles año–ventana, cuantiles, colas e IQR de referencia 2023 ejecutados |
+| Figuras de series, huecos, correlaciones, PCA y estructura temporal | Generadas y enlazadas; ampliadas con cola empírica, máscaras y seis ECDF causales |
+| Consistencia del etiquetado | 2.924 posiciones comprobadas; 2.780 válidas reconstruidas y cero discrepancias de elegibilidad; no mide ruido externo |
+| Desplazamiento de covariables y objetivo | Seis marginales del perfil causal; referencia condicional por bloques 14/28 y Holm sobre doce contrastes; alcance exploratorio |
 | ADF/KPSS, ARCH y diagnóstico polinómico | Ejecutados con especificaciones y límites declarados |
 | Disponibilidad temporal y ausencia de consulta de test en este script | Restricción verificada; cero ZIP de test abiertos |
 | Covariables, transformaciones y selección de configuración | Cinco covariables OHLCV conservadas; escalado y selección entre historias pendientes del protocolo final |
@@ -422,10 +516,11 @@ Se publican las [correlaciones por rezago](../_static/eda_doc/lagged_correlation
 
 | Requisito aplicable de la guía | Evidencia actual | Estado y límite |
 |---|---|---|
-| Distribución y colas del objetivo continuo | §2.1.1, estadísticas y figuras de las cuatro definiciones de volatilidad | Ejecutado en desarrollo; balance y recuentos de clases no aplican |
-| Calidad, duplicados y faltantes | Unicidad temporal, 80 minutos ausentes, un cierre no elegible y exclusión del día afectado | Verificado en desarrollo; el patrón observado no identifica MCAR, MAR o MNAR |
-| Ruido de etiqueta | Etiquetado automático con cierres válidos y discusión de su carácter de aproximación | Magnitud del error del proveedor y del proxy no estimada de forma independiente |
-| Desplazamiento entre particiones | Diagnóstico por bloques de magnitudes de retornos de un minuto; comparación de objetivos, PCA y relaciones 2023–2024 | Cobertura parcial; no es una prueba conjunta de igualdad de todas las covariables y del objetivo |
+| Distribución y colas del objetivo continuo | §2.1.1, ocho perfiles año–ventana, cuantiles, figuras y umbral IQR fijado en 2023 | Ejecutado en desarrollo; balance, entropía y recuentos de clases no aplican |
+| Calidad, duplicados y faltantes | Unicidad temporal, auditoría OHLCV, máscaras y propagación del hueco a retornos/etiquetas/ventanas | Caracterización ejecutada; 80 minutos ausentes y un cierre no elegible. MCAR/MAR/MNAR no identificable con esta evidencia |
+| Ruido de etiqueta | Reconstrucción independiente de 2.924 posiciones; 2.780 etiquetas válidas y cero discrepancias de elegibilidad | Consistencia numérica verificada; error del proveedor y del proxy no estimado de forma independiente. Acuerdo entre anotadores no aplica |
+| Desplazamiento entre particiones | Seis distancias KS y doce contrastes condicionales por bloques/Holm para OHLCV previo y σ7, más diagnósticos complementarios | Exploratorio bajo intercambiabilidad de bloques; cubre seis marginales lag1, no igualdad conjunta, todos los rezagos D ni test |
+| Proporciones y semilla de partición | 365/366/608 días sobre 1.339 asignados; 27,26/27,33/45,41 % | División cronológica determinista; semilla no aplicable, distinta de las semillas de remuestreo |
 | Partición cronológica con embargo | Manifiesto versión 2: $D$ días de resultado omitidos y $u\le t-D-1$ | Aplicado a los 5.856 índices; no implica independencia de etiquetas solapadas ni entrenamiento ejecutado |
 | Frecuencia, desfases y disponibilidad de covariables | §2.5.1 y controles de alineación causal | Documentados para OHLCV diario y horizonte de un día |
 | Relaciones con rezagos de covariables | 140 combinaciones Pearson/Spearman, con rezagos de 1 a 28 días en 2023 | Descriptivo ejecutado; no selecciona una ventana por desempeño |

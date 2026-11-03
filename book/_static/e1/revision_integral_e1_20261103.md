@@ -1,8 +1,6 @@
 # Revisión integral del Entregable 1 — 03/11/2026
 
-Se contrastaron las secciones 1–7 del libro con las 34 páginas de la guía original. Se corrigieron la formulación, los estados de evidencia, la preparación de índices temporales y la trazabilidad. El proyecto corresponde al tipo 4, regresión temporal, ruta 6.4. La revisión no declara cumplimiento total de E1.
-
-La guía sí exige implementar y evaluar tres modelos dentro de E1. La instrucción vigente del usuario reserva entrenamiento, ajuste, piloto y benchmark para E2; se conserva esa diferencia sin atribuir una excepción al docente. No se ejecutaron modelos ni se abrieron archivos brutos de test durante esta revisión.
+Se contrastaron las secciones 1–7 del libro con la guía original de 34 páginas. Esta versión incorpora la ampliación del EDA general y conserva explícitos los pendientes. La guía exige ejecución en E1; el usuario reserva los modelos, el piloto y el benchmark para E2. No se declara cumplimiento total de E1.
 
 | ID | Requisito y páginas de la guía | Estado | Corrección o evidencia | Pendiente o límite |
 |---|---|---|---|---|
@@ -13,10 +11,10 @@ La guía sí exige implementar y evaluar tres modelos dentro de E1. La instrucci
 | R05 | Procedencia, tamaño, versión y hash del dataset (pp. 3) | Documentado | 75 ZIP oficiales, 2.014.480 filas; 731 días de desarrollo y 730 completos; manifiesto y hashes verificados. | Las muestras supervisadas definitivas se materializarán en el protocolo posterior. |
 | R06 | Licencia y condiciones de uso (pp. 3) | Corregido y trazable | Snapshot de términos versión 1.0, actualizado 26/08/2026; copia y SHA conservados. | Mantener atribución y condiciones aplicables; no confundir acceso público con uso irrestricto. |
 | R07 | Uso previo del mismo dataset en literatura (pp. 3) | No acreditado | La matriz diferencia datasets, frecuencias y objetivos de los artículos. | Hace falta evidencia del uso del mismo mercado, fuente, intervalo y granularidad; pertinencia temática no basta. |
-| R08 | EDA general e interpretación técnica (pp. 4–5) | Parcial | Distribución, calidad, sesgos, diagnósticos y decisiones documentados; 24/03/2023 excluido sin imputar. | Mecanismo de faltantes y ruido de etiqueta no cuantificados; desplazamiento completo pendiente. |
+| R08 | EDA general e interpretación técnica (pp. 4–5) | Ampliado; límites externos explícitos | Ocho perfiles objetivo, colas IQR, máscaras, reconstrucción de etiquetas y seis marginales causales con permutación condicional por bloques y Holm 12. | El mecanismo de faltantes y el ruido externo no son identificables con esta evidencia; el diagnóstico de desplazamiento no es confirmatorio ni conjunto. |
 | R09 | EDA específico de regresión temporal (pp. 6–7) | Parcial | Disponibilidad de covariables, rezagos y relaciones móviles descritos con evidencia existente. | Falta ajuste de referencia lineal regularizada y diagnóstico de sus residuos; reservado para E2 por el usuario. |
-| R10 | Partición cronológica con embargo máximo rezago (pp. 29) | Corregido en índices | Regla E_D=D: se omiten [t-D,t-1], u≤t-D-1. Conserva 5.856 registros, 366 por configuración. | El embargo no acredita independencia: 2.196 filas de sensibilidad comparten retornos objetivo; la inferencia debe considerarlo. |
-| R11 | Reserva y congelación del test (pp. 5) | Reserva bruta documentada; supervisado pendiente | 20 ZIP de enero2025 a agosto2026 identificados con hashes desde metadatos existentes, sin abrirlos en esta revisión. | No equivale a congelar máscara supervisada, transformaciones, cadencia ni protocolo experimental. |
+| R10 | Partición cronológica con embargo máximo rezago (pp. 29) | Corregido en índices | Regla E_D=D: se omiten [t-D, t-1], u≤t-D-1. Conserva 5.856 registros, 366 por configuración. | El embargo no acredita independencia: 2.196 filas de sensibilidad comparten retornos objetivo; la inferencia debe considerarlo. |
+| R11 | Reserva y congelación del test (pp. 5) | Reserva bruta documentada; supervisado pendiente | 20 ZIP de enero 2025 a agosto 2026 identificados con hashes desde metadatos existentes, sin abrirlos en esta revisión. | No equivale a congelar máscara supervisada, transformaciones, cadencia ni protocolo experimental. |
 | R12 | Búsqueda bibliográfica obligatoria y trazabilidad (pp. 12–13) | Parcial | Consultas complementarias, flujo, cribado y 33 citas diferenciadas de tres textos aplicados. | No constan consultas ejecutadas en WoS/Scopus/IEEE; hace falta completar cobertura y exportaciones verificables. |
 | R13 | Selección de exactamente tres modelos básicos (pp. 13–14) | No cerrada | LSTM, TCN y encoder Transformer conservados como candidatos documentales con frecuencias y límites. | La diversidad no acredita por sí sola frecuencia y mínima complejidad; Transformer tiene respaldo gris y faltan detalles de TCN. |
 | R14 | Fichas y comparación crítica (pp. 15–16) | Documentado con límites de fuente | Ecuaciones, diagramas, parámetros analíticos, supuestos, resultados publicados y comparación cualitativa avanzado/base. | No son configuraciones propias implementadas; costes medidos comparables y algunos hiperparámetros fuente no están disponibles. |
@@ -25,10 +23,6 @@ La guía sí exige implementar y evaluar tres modelos dentro de E1. La instrucci
 | R17 | Reproducibilidad y productos exigidos (pp. 33–34) | Parcial | Código EDA/CV, datos y hashes, dependencias, semillas propuestas históricas y libro versionado. | Entorno/configuraciones finales de entrenamiento, artefactos de corridas y decisiones de inferencia siguen pendientes. |
 | R18 | Limitaciones y cumplimiento global (pp. 1, 32–34) | Dictamen explícito | Reconocida la diferencia entre alcance documental autorizado y requisitos empíricos originales; no se declara E1 completo. | La rúbrica conserva 40 % para implementación/benchmark: la revisión documental no sustituye esas evidencias. |
 
-## Verificación de artefactos
+## Verificación
 
-- Folds corregidos: `d46153075ce18231f24ff43b6f80dba555003b963dc5d1c4bd4d8ade90148571`. La convención omite D días completos de resultado antes de cada origen; se retiró una muestra de ajuste por fila respecto de la versión anterior.
-- Reserva bruta de test: `d2eb4e84fff85ee957e6b02890cead3cec37fd593ec2a8db487dbe137d2d3a10`. Se reproduce con `python scripts/reserve_test_raw_manifest.py`, usando solo el manifiesto de adquisición existente.
-- Desarrollo: se mantienen los hashes de los CSV de mercado y volatilidad, la exclusión del 24/03/2023 y las figuras del EDA.
-- Bibliografía: 33 entradas y tabla de cuatro columnas; sin nuevas búsquedas ni cambios de candidatos por preferencia personal.
-- Los índices temporales, la identidad bruta del test y la documentación no equivalen a experimentos ni a resultados predictivos.
+Se mantienen los datos de desarrollo, las 33 referencias, el embargo D en los índices y la reserva bruta del test. El complemento del EDA reconstruye etiquetas y compara marginales de desarrollo; no entrena modelos predictivos ni abre test. Las hipótesis de la permutación por bloques y los límites de identificación se documentan en la revisión específica del EDA.

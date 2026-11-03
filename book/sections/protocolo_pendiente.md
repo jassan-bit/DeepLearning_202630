@@ -38,11 +38,13 @@ La revisión del **03/11/2026** contrasta 18 requisitos de las secciones 1–7 d
 | Independencia y margen | Una serie; dependencia entre fechas y semillas diferenciada; 5 % limitado a persistencia |
 | Particiones | Folds corregidos con embargo explícito D; 5.856 filas, 366 por configuración; una muestra de ajuste adicional retirada en cada fila |
 | Datos y trazabilidad | Fuente y hashes conservados; copia de términos y reserva bruta de 20 ZIP de test documentadas sin abrir esos ZIP |
-| EDA | Evidencia descriptiva conservada; mecanismo de faltantes, ruido y residuos de referencia identificados como parciales o pendientes |
+| EDA | Ocho perfiles objetivo, colas, máscaras y reconstrucción numérica ampliados; seis marginales causales con referencia condicional por bloques/Holm. Mecanismo de faltantes y ruido externo no identificados; residuos de referencia pendientes |
 | Literatura | 33 citas separadas de tres textos aplicados; candidatos de trabajo distinguidos de los tres básicos definitivos exigidos |
 | Implementación y benchmark | No ejecutados por el alcance vigente; la guía original sí los exige en E1 y esta diferencia sigue abierta |
 
 El cumplimiento global del Entregable 1 **no se declara cerrado**. Corregir la redacción y los índices no sustituye las evidencias bibliográficas o experimentales que faltan.
+
+La ampliación específica de la sección 2.1 está en el {download}`informe de EDA general <../_static/e1/revision_eda_general_20261103.md>` y su [matriz de 18 puntos](../_static/e1/revision_eda_general_20261103.json). Se ejecutaron diagnósticos sobre desarrollo, sin modelos predictivos ni archivos de test. La consistencia del cálculo de etiquetas se separa del ruido externo, y la referencia de permutación por bloques se mantiene exploratoria y condicional.
 
 ## Estado de los siete cambios solicitados
 

@@ -1,6 +1,6 @@
 {
   "review_date": "2026-11-03",
-  "scope": "Full documentary review against original Entregable 1; corrections include data-partition preparation only. User instruction reserves own model training, tuning, pilot and benchmark for E2.",
+  "scope": "Full E1 documentary review with development-only EDA diagnostics and data-partition preparation. Predictive model training, tuning, pilot and benchmark remain reserved for E2 by user instruction.",
   "guide_path": "references/course/Entregable1DeepLearningProject.pdf",
   "guide_pages": 34,
   "guide_sha256": "56cffb2e0e23bbdfd28815b7c7515d2663bf501ed5d6e0656a37a76fc45e43eb",
@@ -66,9 +66,9 @@
       "id": "R08",
       "requirement": "EDA general e interpretación técnica",
       "guide_pages": "4–5",
-      "status": "Parcial",
-      "evidence_or_correction": "Distribución, calidad, sesgos, diagnósticos y decisiones documentados; 24/03/2023 excluido sin imputar.",
-      "remaining_work": "Mecanismo de faltantes y ruido de etiqueta no cuantificados; desplazamiento completo pendiente."
+      "status": "Ampliado; límites externos explícitos",
+      "evidence_or_correction": "Ocho perfiles objetivo, colas IQR, máscaras, reconstrucción de etiquetas y seis marginales causales con permutación condicional por bloques y Holm 12.",
+      "remaining_work": "El mecanismo de faltantes y el ruido externo no son identificables con esta evidencia; el diagnóstico de desplazamiento no es confirmatorio ni conjunto."
     },
     {
       "id": "R09",
@@ -83,7 +83,7 @@
       "requirement": "Partición cronológica con embargo máximo rezago",
       "guide_pages": "29",
       "status": "Corregido en índices",
-      "evidence_or_correction": "Regla E_D=D: se omiten [t-D,t-1], u≤t-D-1. Conserva 5.856 registros, 366 por configuración.",
+      "evidence_or_correction": "Regla E_D=D: se omiten [t-D, t-1], u≤t-D-1. Conserva 5.856 registros, 366 por configuración.",
       "remaining_work": "El embargo no acredita independencia: 2.196 filas de sensibilidad comparten retornos objetivo; la inferencia debe considerarlo."
     },
     {
@@ -91,7 +91,7 @@
       "requirement": "Reserva y congelación del test",
       "guide_pages": "5",
       "status": "Reserva bruta documentada; supervisado pendiente",
-      "evidence_or_correction": "20 ZIP de enero2025 a agosto2026 identificados con hashes desde metadatos existentes, sin abrirlos en esta revisión.",
+      "evidence_or_correction": "20 ZIP de enero 2025 a agosto 2026 identificados con hashes desde metadatos existentes, sin abrirlos en esta revisión.",
       "remaining_work": "No equivale a congelar máscara supervisada, transformaciones, cadencia ni protocolo experimental."
     },
     {
@@ -159,5 +159,6 @@
     "test_raw_reserve_manifest_sha256": "d2eb4e84fff85ee957e6b02890cead3cec37fd593ec2a8db487dbe137d2d3a10",
     "reference_count": 33,
     "reference_table_columns": 4
-  }
+  },
+  "latest_eda_general_review": "references/audits/revision_eda_general_20261103.json"
 }

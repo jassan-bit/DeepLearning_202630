@@ -1,0 +1,332 @@
+{
+  "scope": "development_general_EDA_marginal_shift_only_no_fitted_model",
+  "source_files": [
+    {
+      "path": "results/eda_development/daily_market_development.csv",
+      "sha256": "bf6bb5160af924aef6a15c3684aeae932df3017e8639888bb7e91ce787900171"
+    },
+    {
+      "path": "results/eda_development/daily_volatility_development.csv",
+      "sha256": "20b96374a659eb87dadfa68aa3d6b6b5fb6bea5b10eebe6f2c186ad69861844a"
+    }
+  ],
+  "script_sha256": "f1ccd659ae1877a946b0179bfef153daa228e7727ce8c53125d8b869567cc3e8",
+  "software": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "scipy": "1.17.0",
+    "matplotlib": "3.10.8"
+  },
+  "calendar": {
+    "start": "2023-01-01",
+    "end_inclusive": "2024-12-31",
+    "days": 731,
+    "missing_daily_market_day": "2023-03-24"
+  },
+  "alignment": "OHLCV from calendar day d-1; sigma7 labelled by outcome day d; no target lag is a model input",
+  "variables": [
+    "open",
+    "high",
+    "low",
+    "close",
+    "volume",
+    "sigma_7"
+  ],
+  "scale": "untransformed original units; no scaler fitted",
+  "common_complete_case_days": {
+    "2023": 350,
+    "2024": 366
+  },
+  "masked_calendar_days": {
+    "2023": 15,
+    "2024": 0
+  },
+  "descriptive_standardized_mean_difference": "(mean_validation-mean_train)/sqrt((sample_variance_train+sample_variance_validation)/2)",
+  "seed": 42,
+  "rng": "numpy.default_rng / PCG64; common assignments for the six variables per replicate",
+  "permutations_per_block_length": 2000,
+  "block_days": [
+    14,
+    28
+  ],
+  "block_permutation": [
+    {
+      "block_days": 14,
+      "permutable_blocks_total": 49,
+      "permutable_blocks_original_train": 23,
+      "permutable_blocks_original_validation": 26,
+      "fixed_valid_days_train": 28,
+      "fixed_valid_days_validation": 2,
+      "fixed_valid_fraction_train": 0.08,
+      "fixed_valid_fraction_validation": 0.00546448087431694,
+      "sample_size_train_every_permutation": 350,
+      "sample_size_validation_every_permutation": 366,
+      "short_tails_calendar_days": {
+        "2023": 1,
+        "2024": 2
+      },
+      "complete_but_masked_blocks_held_fixed": 3,
+      "grid_lengths": {
+        "open": 716,
+        "high": 709,
+        "low": 710,
+        "close": 716,
+        "volume": 716,
+        "sigma_7": 716
+      },
+      "original_assignment_recovers_observed_KS": true,
+      "pvalue_mc_formula": "(1 + count(D_permutation >= D_observed)) / (2000 + 1)",
+      "floating_comparison_tolerance": 1e-15
+    },
+    {
+      "block_days": 28,
+      "permutable_blocks_total": 23,
+      "permutable_blocks_original_train": 10,
+      "permutable_blocks_original_validation": 13,
+      "fixed_valid_days_train": 70,
+      "fixed_valid_days_validation": 2,
+      "fixed_valid_fraction_train": 0.2,
+      "fixed_valid_fraction_validation": 0.00546448087431694,
+      "sample_size_train_every_permutation": 350,
+      "sample_size_validation_every_permutation": 366,
+      "short_tails_calendar_days": {
+        "2023": 1,
+        "2024": 2
+      },
+      "complete_but_masked_blocks_held_fixed": 3,
+      "grid_lengths": {
+        "open": 716,
+        "high": 709,
+        "low": 710,
+        "close": 716,
+        "volume": 716,
+        "sigma_7": 716
+      },
+      "original_assignment_recovers_observed_KS": true,
+      "pvalue_mc_formula": "(1 + count(D_permutation >= D_observed)) / (2000 + 1)",
+      "floating_comparison_tolerance": 1e-15
+    }
+  ],
+  "multiplicity": {
+    "method": "Holm",
+    "family_size": 12,
+    "alpha": 0.05,
+    "family": "six marginal KS comparisons times two exploratory block lengths",
+    "minimum_unadjusted_mc_value": 0.0004997501249375312
+  },
+  "contrasts": [
+    {
+      "feature": "open",
+      "block_days": 14,
+      "n_train": 350,
+      "n_validation": 366,
+      "KS_observed": 0.9228571428571428,
+      "permutations": 2000,
+      "exceedances": 0,
+      "conditional_p_mc": 0.0004997501249375312,
+      "reference_KS_q50": 0.18371584699453553,
+      "reference_KS_q95": 0.3479156908665105,
+      "reference_KS_q99": 0.42621639344262285,
+      "reference_status": "exploratory_conditional_not_confirmatory",
+      "conditional_p_holm_12": 0.005997001499250375,
+      "below_alpha_under_conditional_reference": true
+    },
+    {
+      "feature": "high",
+      "block_days": 14,
+      "n_train": 350,
+      "n_validation": 366,
+      "KS_observed": 0.9201249024199843,
+      "permutations": 2000,
+      "exceedances": 0,
+      "conditional_p_mc": 0.0004997501249375312,
+      "reference_KS_q50": 0.18246682279469162,
+      "reference_KS_q95": 0.35077283372365337,
+      "reference_KS_q99": 0.42902419984387197,
+      "reference_status": "exploratory_conditional_not_confirmatory",
+      "conditional_p_holm_12": 0.005997001499250375,
+      "below_alpha_under_conditional_reference": true
+    },
+    {
+      "feature": "low",
+      "block_days": 14,
+      "n_train": 350,
+      "n_validation": 366,
+      "KS_observed": 0.9244808743169398,
+      "permutations": 2000,
+      "exceedances": 0,
+      "conditional_p_mc": 0.0004997501249375312,
+      "reference_KS_q50": 0.18323185011709603,
+      "reference_KS_q95": 0.34539110070257617,
+      "reference_KS_q99": 0.41809523809523813,
+      "reference_status": "exploratory_conditional_not_confirmatory",
+      "conditional_p_holm_12": 0.005997001499250375,
+      "below_alpha_under_conditional_reference": true
+    },
+    {
+      "feature": "close",
+      "block_days": 14,
+      "n_train": 350,
+      "n_validation": 366,
+      "KS_observed": 0.92,
+      "permutations": 2000,
+      "exceedances": 0,
+      "conditional_p_mc": 0.0004997501249375312,
+      "reference_KS_q50": 0.18246682279469165,
+      "reference_KS_q95": 0.3450585480093677,
+      "reference_KS_q99": 0.4233099141295862,
+      "reference_status": "exploratory_conditional_not_confirmatory",
+      "conditional_p_holm_12": 0.005997001499250375,
+      "below_alpha_under_conditional_reference": true
+    },
+    {
+      "feature": "volume",
+      "block_days": 14,
+      "n_train": 350,
+      "n_validation": 366,
+      "KS_observed": 0.2331928181108509,
+      "permutations": 2000,
+      "exceedances": 56,
+      "conditional_p_mc": 0.02848575712143928,
+      "reference_KS_q50": 0.10429352068696329,
+      "reference_KS_q95": 0.2143364558938329,
+      "reference_KS_q99": 0.2585703356752537,
+      "reference_status": "exploratory_conditional_not_confirmatory",
+      "conditional_p_holm_12": 0.08545727136431784,
+      "below_alpha_under_conditional_reference": false
+    },
+    {
+      "feature": "sigma_7",
+      "block_days": 14,
+      "n_train": 350,
+      "n_validation": 366,
+      "KS_observed": 0.2405152224824356,
+      "permutations": 2000,
+      "exceedances": 30,
+      "conditional_p_mc": 0.015492253873063468,
+      "reference_KS_q50": 0.11357533177205309,
+      "reference_KS_q95": 0.21017096018735362,
+      "reference_KS_q99": 0.24819999999999998,
+      "reference_status": "exploratory_conditional_not_confirmatory",
+      "conditional_p_holm_12": 0.06196901549225387,
+      "below_alpha_under_conditional_reference": false
+    },
+    {
+      "feature": "open",
+      "block_days": 28,
+      "n_train": 350,
+      "n_validation": 366,
+      "KS_observed": 0.9228571428571428,
+      "permutations": 2000,
+      "exceedances": 0,
+      "conditional_p_mc": 0.0004997501249375312,
+      "reference_KS_q50": 0.2602654176424669,
+      "reference_KS_q95": 0.5185480093676815,
+      "reference_KS_q99": 0.6041373926619829,
+      "reference_status": "exploratory_conditional_not_confirmatory",
+      "conditional_p_holm_12": 0.005997001499250375,
+      "below_alpha_under_conditional_reference": true
+    },
+    {
+      "feature": "high",
+      "block_days": 28,
+      "n_train": 350,
+      "n_validation": 366,
+      "KS_observed": 0.9201249024199843,
+      "permutations": 2000,
+      "exceedances": 0,
+      "conditional_p_mc": 0.0004997501249375312,
+      "reference_KS_q50": 0.26149882903981264,
+      "reference_KS_q95": 0.5155659640905543,
+      "reference_KS_q99": 0.60711943793911,
+      "reference_status": "exploratory_conditional_not_confirmatory",
+      "conditional_p_holm_12": 0.005997001499250375,
+      "below_alpha_under_conditional_reference": true
+    },
+    {
+      "feature": "low",
+      "block_days": 28,
+      "n_train": 350,
+      "n_validation": 366,
+      "KS_observed": 0.9244808743169398,
+      "permutations": 2000,
+      "exceedances": 0,
+      "conditional_p_mc": 0.0004997501249375312,
+      "reference_KS_q50": 0.2619672131147541,
+      "reference_KS_q95": 0.5241373926619828,
+      "reference_KS_q99": 0.6041373926619829,
+      "reference_status": "exploratory_conditional_not_confirmatory",
+      "conditional_p_holm_12": 0.005997001499250375,
+      "below_alpha_under_conditional_reference": true
+    },
+    {
+      "feature": "close",
+      "block_days": 28,
+      "n_train": 350,
+      "n_validation": 366,
+      "KS_observed": 0.92,
+      "permutations": 2000,
+      "exceedances": 0,
+      "conditional_p_mc": 0.0004997501249375312,
+      "reference_KS_q50": 0.26187353629976584,
+      "reference_KS_q95": 0.5212802498048399,
+      "reference_KS_q99": 0.6041373926619829,
+      "reference_status": "exploratory_conditional_not_confirmatory",
+      "conditional_p_holm_12": 0.005997001499250375,
+      "below_alpha_under_conditional_reference": true
+    },
+    {
+      "feature": "volume",
+      "block_days": 28,
+      "n_train": 350,
+      "n_validation": 366,
+      "KS_observed": 0.2331928181108509,
+      "permutations": 2000,
+      "exceedances": 434,
+      "conditional_p_mc": 0.21739130434782608,
+      "reference_KS_q50": 0.17745511319281815,
+      "reference_KS_q95": 0.30015534738485566,
+      "reference_KS_q99": 0.3428946135831381,
+      "reference_status": "exploratory_conditional_not_confirmatory",
+      "conditional_p_holm_12": 0.21739130434782608,
+      "below_alpha_under_conditional_reference": false
+    },
+    {
+      "feature": "sigma_7",
+      "block_days": 28,
+      "n_train": 350,
+      "n_validation": 366,
+      "KS_observed": 0.2405152224824356,
+      "permutations": 2000,
+      "exceedances": 93,
+      "conditional_p_mc": 0.04697651174412794,
+      "reference_KS_q50": 0.1232552693208431,
+      "reference_KS_q95": 0.23703278688524593,
+      "reference_KS_q99": 0.29042529274004686,
+      "reference_status": "exploratory_conditional_not_confirmatory",
+      "conditional_p_holm_12": 0.09395302348825588,
+      "below_alpha_under_conditional_reference": false
+    }
+  ],
+  "meaningful_checks": {
+    "KS_vs_SciPy_fixtures_and_all_six_observed_samples": true,
+    "identity_assignment_recovers_all_observed_KS": true,
+    "sample_counts_constant_across_permutations": true,
+    "calendar_and_missing_day_preserved": true
+  },
+  "models_fitted": 0,
+  "hypothesis_reference": "exploratory conditional block randomization, not a model benchmark",
+  "test_files_opened": 0,
+  "limitations": [
+    "Las seis comparaciones son marginales de OHLCV(d−1) y sigma7(d), no una prueba de igualdad conjunta ni de todas las ventanas D.",
+    "La referencia permutada presupone intercambiabilidad aproximada de bloques plenamente observados, condicionada a colas y bloques con máscaras fijados. Ese supuesto no está demostrado.",
+    "Los niveles de precios presentan tendencias/regímenes y puede persistir dependencia entre bloques. Los valores p son diagnósticos condicionales exploratorios; no se presentan como pruebas exactas ni confirmatorias de drift.",
+    "La corrección de Holm controla la familia de 12 comparaciones solo si las calibraciones marginales son adecuadas; no corrige supuestos de intercambiabilidad o serialidad.",
+    "Mantener fijos bloques con huecos y colas conserva las máscaras y todos los casos observados, pero limita la variación de referencia a los bloques plenamente observados.",
+    "La hipótesis condicional no es igualdad incondicional de todas las distribuciones de los años: las diferencias en las partes fijadas se condicionan, no se aleatorizan. Con 14 días quedan fijos 28/350 valores de entrenamiento (8 %); con 28 días, 70/350 (20 %). En validación quedan fijos 2/366 en ambos casos. La sensibilidad cambia también el conjunto permutable, no solo la longitud de bloque.",
+    "Los largos 14/28, 2000 permutaciones y semilla42 se fijan antes de esta ejecución exploratoria; no son un prerregistro previo al EDA del estudio ni la longitud definitiva de inferencia en E2.",
+    "No se seleccionan variables, transformaciones, ventanas ni modelos con estos p-values. No se igualan artificialmente las distribuciones entre periodos.",
+    "El test 2025–2026 no se consulta: su reserva impide usarlo para diseñar el preprocesamiento."
+  ]
+}
