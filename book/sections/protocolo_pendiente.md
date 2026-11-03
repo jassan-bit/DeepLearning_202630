@@ -40,7 +40,7 @@ La revisión del **03/11/2026** contrasta 18 requisitos de las secciones 1–7 d
 | Particiones | Folds corregidos con embargo explícito D; 5.856 filas, 366 por configuración; una muestra de ajuste adicional retirada en cada fila |
 | Datos y trazabilidad | Fuente y hashes conservados; copia de términos y reserva bruta de 20 ZIP de test documentadas sin abrir esos ZIP |
 | EDA | Ocho perfiles objetivo, colas, máscaras, reconstrucción numérica y seis marginales por bloques/Holm; bloque C con disponibilidad causal, correlaciones en cohorte común, relaciones móviles y 1.464 residuos de cuatro Ridge. Mecanismo de faltantes y ruido externo no identificados |
-| Literatura | 33 citas separadas de tres textos aplicados; candidatos de trabajo distinguidos de los tres básicos definitivos exigidos |
+| Literatura | 35 referencias separadas de cinco textos aplicados exploratorios; candidatos de trabajo distinguidos de los tres básicos definitivos exigidos |
 | Implementación de las tres redes y benchmark | No ejecutados por el alcance vigente; los cuatro ajustes lineales son diagnósticos de EDA y no cubren estos requisitos de la guía original |
 
 El cumplimiento global del Entregable 1 **no se declara cerrado**. Corregir la redacción y los índices no sustituye las evidencias bibliográficas o experimentales que faltan.
@@ -53,7 +53,7 @@ El bloque C aplicable se desarrolla en §2.2 con dos módulos adicionales: el [E
 
 | Prioridad | Producto | Estado verificable |
 |---|---|---|
-| 1 | Fuentes y búsqueda trazable | Tabla de las 33 referencias citadas, con enlaces y nivel de evidencia; consultas complementarias e historial de acceso conservados |
+| 1 | Fuentes y búsqueda trazable | Tabla de las 35 referencias citadas, con enlaces y nivel de evidencia; consultas complementarias e historial de acceso conservados |
 | 2 | Cribado y flujo | 118 ocurrencias, 12 duplicadas, 106 repositorios, 14 inspeccionados, 5 textos completos y 3 incluidos; unidades diferenciadas |
 | 3 | Matriz de literatura | Tres textos incluidos, 42 valores publicados y evaluación de calidad con ubicaciones |
 | 4 | Candidatos para tres modelos básicos | LSTM–TCN–encoder Transformer documentados; la selección definitiva por frecuencia y mínima complejidad permanece parcial |
@@ -61,15 +61,15 @@ El bloque C aplicable se desarrolla en §2.2 con dos módulos adicionales: el [E
 | 6 | Comparación crítica | Objetivos/mercados/escalas comparados, riesgos y brecha limitada al corpus |
 | 7 | Definición y coherencia | n=7, h=1, cuatro longitudes de entrada, RMSE, 5 %, MAPE/MASE, ruta 6.4 y procedencia sincronizados |
 
-Las frecuencias se calculan sobre tres textos completos: familia LSTM 3/3 incluyendo BiLSTM, variante unidireccional 2/3, GRU 2/3, TCN 1/3 y encoder Transformer 1/3. La selección no se presenta como los tres modelos más frecuentes de toda la literatura ni como mínima complejidad absoluta. MLP independiente y CNN1D simple no tienen respaldo comparativo suficiente en este corpus.
+Las frecuencias se calculan sobre cinco textos completos: familia LSTM 4/5 incluyendo BiLSTM, variante unidireccional 3/5, GRU 2/5, TCN 1/5 y encoder Transformer 2/5. Se conserva el corte original y la sensibilidad sin el estudio sin fecha. La selección no se presenta como los tres modelos más frecuentes de toda la literatura ni como mínima complejidad absoluta. MLP independiente y CNN1D simple no tienen respaldo comparativo suficiente en este corpus.
 
 ## Límites que permanecen abiertos
 
 - **Cobertura académica:** no se ejecutaron consultas bibliográficas en WoS/Scopus/IEEE/arXiv cuando su interfaz quedó bloqueada. La revisión complementaria no es exhaustiva.
-- **Fuente de atención:** el único apoyo aplicado recuperado es un manuscrito sin revisión por pares acreditada. Si el criterio académico exige solo artículos revisados por pares, esa parte de la selección debe ampliarse.
-- **Extracción de los tres básicos:** la guía pide recurrencia, sencillez y diversidad; priorizar únicamente diversidad en tres textos no cierra conjuntamente esos criterios.
+- **Fuente de atención:** los dos apoyos aplicados recuperados son manuscritos sin revisión por pares acreditada; uno no acredita fecha editorial. Si el criterio académico exige solo artículos revisados por pares, esa parte de la selección debe ampliarse.
+- **Extracción de los tres básicos:** la guía pide recurrencia, sencillez y diversidad; priorizar únicamente diversidad en un corpus pequeño no cierra conjuntamente esos criterios.
 - **EDA y referencia de contexto:** el diagnóstico de cuatro Ridge y sus residuos está ejecutado; queda justificar la especificación y el tratamiento de la dependencia para el experimento de E2. La autocorrelación residual no reclasifica automáticamente el problema. No se han identificado el mecanismo de faltantes ni el ruido externo de etiquetas con evidencia suficiente.
-- **Configuraciones originales:** no se recuperaron todos los hiperparámetros ganadores; las fichas separan parámetros derivados de configuraciones publicadas y de adaptaciones futuras.
+- **Configuraciones originales:** los ganadores de S1 sí están publicados y se corrigió su omisión; quedan sin fijar la versión de `keras-tcn`, algunos detalles de S6 y las configuraciones OHLCV propias. Las fichas separan fuente, cálculo analítico y adaptación futura.
 - **Datos y ejecución:** quedan para E2 las muestras definitivas de entrenamiento/test, configuración implementada, recursos, número de semillas, piloto y benchmark. No se presentan como resultados inexistentes de E1.
 
 ## Proyección a E2
@@ -80,4 +80,4 @@ El plan documentado en noviembre de 2026 es posterior a los periodos de mercado 
 
 ## Evidencia y reproducción
 
-La evidencia documental está en `references/literature_e1/`, el registro bibliográfico inicial en `references/bibliography/`, el EDA en `results/eda_development/` y el complemento descriptivo en `results/eda_covariates_documental/`. Los módulos del bloque C se reproducen con `scripts/eda_temporal_specific.py` y `scripts/eda_temporal_reference.py`, con resultados en sus directorios homónimos bajo `results/`; conservan los CSV fuente, la exclusión del 24/03/2023 y el calendario. La [tabla consolidada de referencias](../_static/literature_e1/references_access_33.csv) distingue las 33 citas del libro de los tres textos incluidos en la matriz aplicada; su reorganización no modifica el cribado ni las frecuencias. El [resumen de partición vigente](../_static/cv_forward_chaining/summary.json) identifica el generador, la regla de embargo y los hashes. La [reserva bruta del test](../_static/data/test_raw_reserve_20250101_20260831.json) se reproduce con `scripts/reserve_test_raw_manifest.py`. El preregistro piloto anterior se conserva como borrador histórico, sin sustituir las decisiones documentales actuales ni un futuro protocolo congelado. Las predicciones lineales incorporadas corresponden exclusivamente al diagnóstico autorizado de EDA; no se incorporan resultados de redes del trabajo separado fuera de E1. Construir HTML comprueba presentación y enlaces, no superioridad estadística ni cumplimiento académico total.
+La evidencia documental está en `references/literature_e1/`, el registro bibliográfico inicial en `references/bibliography/`, el EDA en `results/eda_development/` y el complemento descriptivo en `results/eda_covariates_documental/`. Los módulos del bloque C se reproducen con `scripts/eda_temporal_specific.py` y `scripts/eda_temporal_reference.py`, con resultados en sus directorios homónimos bajo `results/`; conservan los CSV fuente, la exclusión del 24/03/2023 y el calendario. La [tabla consolidada de referencias](../_static/literature_e1/references_access_35.csv) distingue las 35 referencias de los cinco textos del corpus exploratorio. La revisión del 03/11/2026 inspeccionó seis repositorios adicionales, añadió dos textos grises y actualizó el flujo, las frecuencias y sus sensibilidades. El [resumen de partición vigente](../_static/cv_forward_chaining/summary.json) identifica el generador, la regla de embargo y los hashes. La [reserva bruta del test](../_static/data/test_raw_reserve_20250101_20260831.json) se reproduce con `scripts/reserve_test_raw_manifest.py`. El preregistro piloto anterior se conserva como borrador histórico, sin sustituir las decisiones documentales actuales ni un futuro protocolo congelado. Las predicciones lineales incorporadas corresponden exclusivamente al diagnóstico autorizado de EDA; no se incorporan resultados de redes del trabajo separado fuera de E1. Construir HTML comprueba presentación y enlaces, no superioridad estadística ni cumplimiento académico total.

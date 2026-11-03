@@ -83,8 +83,8 @@ Todavía no se ha medido la potencia ni la superioridad entre los modelos del pr
 | Bloque C y referencia residual | Disponibilidad causal, 140 relaciones con rezagos sobre una cohorte común de 308 días y cuatro Ridge con 366 residuos de validación por historia | Diagnóstico de EDA ejecutado; no selecciona una red ni sustituye el benchmark. Se mantiene tipo 4 sin rezagos del objetivo |
 | Reserva de test | Identidad y hashes de 20 ZIP mensuales en manifiesto separado | Construido desde metadatos sin abrir ZIP; muestras supervisadas y evaluación pendientes |
 | Búsqueda y cribado | Registros reales, flujo y decisiones de una vía complementaria | Bases académicas bloqueadas; cobertura no exhaustiva |
-| Matriz y calidad de literatura | Tres textos completos, métricas de autores y evaluación de calidad | No mezcla objetivos o escalas ni inventa resultados propios |
-| Selección y tres fichas | LSTM, TCN y encoder Transformer, con ecuaciones, diagramas y complejidad | Selección documental condicionada; no acredita los tres modelos más básicos y recurrentes; atención respaldada por una fuente sin revisión por pares acreditada |
+| Matriz y calidad de literatura | Cinco textos completos, 81 valores transcritos y evaluación de calidad por estudio | No mezcla objetivos o escalas ni inventa resultados propios |
+| Selección y tres fichas | LSTM, TCN y encoder Transformer, con ecuaciones, diagramas y complejidad | Selección documental condicionada; no acredita los tres modelos más básicos y recurrentes; atención respaldada por dos manuscritos sin revisión por pares acreditada |
 | Criterios a priori | n7, h1, cuatro entradas D, RMSE, margen relativo del 5 %, MAPE y MASE | Variantes y parámetros experimentales se fijarán en E2 |
 | Benchmark e inferencia propia | Marco metodológico y tablas señaladas como futuras | Ejecución reservada para E2; el PDF la sitúa originalmente en E1 |
 

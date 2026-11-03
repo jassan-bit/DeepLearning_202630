@@ -1,0 +1,444 @@
+{
+  "review_date": "2026-11-03",
+  "scope": "Auditoría de §3.1, corrección local de motivos y recuperación dirigida real de seis registros existentes el03/11/2026. Sin nuevas cadenas de búsqueda, modelos o datos propios de mercado/test.",
+  "search_execution_date_preserved": "2026-11-02",
+  "sources": [
+    {
+      "path": "references/literature_e1/search_log.json",
+      "sha256": "fb28f43234ff28fbc748e2827efbd470d69df304110dbceb9dc986a2b628fee7"
+    },
+    {
+      "path": "references/literature_e1/screening_20261102_original.csv",
+      "sha256": "b6cb9a5a367083f6872899be3418211caf127a8ad602a537cf9a806531c17dd3"
+    },
+    {
+      "path": "references/literature_e1/history_20261102/review_summary.json",
+      "sha256": "cd3a5daa9cfd8a1c145b40acaa85cc20ed3ee503cd1fec17527b6032cf7f3027"
+    },
+    {
+      "path": "references/literature_e1/history_20261102/quality_assessment.json",
+      "sha256": "775ce6971a883ced9cc0b81cdd99409e04d5cd1c79eb7baacc7c84c0f9b85fae"
+    },
+    {
+      "path": "references/literature_e1/access_checks.json",
+      "sha256": "f375607c17ca46cbaa8a25267ee9987cc673ca97aa5630da8de887d163b546bb"
+    },
+    {
+      "path": "references/literature_e1/primary_check.json",
+      "sha256": "2a85bc069c6dae921fd8ee1905a0e0031e0e3a427e269b8a1d5b7032164a6131"
+    }
+  ],
+  "items": [
+    {
+      "id": "L01",
+      "requirement": "Cadena completa, sinónimos y variantes",
+      "status": "Parcial",
+      "evidence": "Cadena general y diez consultas GitHub preservadas. Falta ejecutar cadenas adaptadas a cada base, con filtros y exportaciones.",
+      "limit_or_correction": "No se presenta la cadena académica propuesta como consulta realizada."
+    },
+    {
+      "id": "L02",
+      "requirement": "Fecha y número de resultados por cadena",
+      "status": "Corregible con registros locales",
+      "evidence": "Agregados de diez consultas recalculados desde las dieciocho entradas del log.",
+      "limit_or_correction": "Estimaciones de índice no se suman ni se confunden con registros recuperados."
+    },
+    {
+      "id": "L03",
+      "requirement": "WoS, Scopus, IEEE Xplore y arXiv complementario",
+      "status": "Bloqueado/no acreditado",
+      "evidence": "Los comprobantes existentes registran consultas no ejecutadas y conteos null.",
+      "limit_or_correction": "Un enlace, autenticación prevista o código de autores no equivale a buscar la base."
+    },
+    {
+      "id": "L04",
+      "requirement": "Periodo preferente de cinco a ocho años",
+      "status": "Parcial",
+      "evidence": "2019–2026 es ventana de elegibilidad declarada. GitHub no tiene filtro verificable de año de publicación en las consultas.",
+      "limit_or_correction": "Distinguir fecha de publicación científica de fecha de creación/actualización de repositorio; fundamentos clásicos separados."
+    },
+    {
+      "id": "L05",
+      "requirement": "Inclusión y exclusión a nivel de estudio",
+      "status": "Parcial",
+      "evidence": "Volatilidad de Bitcoin, DL comparativo, métricas verificables, identidad y protocolo identificables. S6/S7 se incluyen exploratoriamente bajo la misma política gris que S2; no se excluyen por su género documental.",
+      "limit_or_correction": "Cinco textos completos incluidos, tres grises; no se acredita Q1 ni selección final de tres modelos básicos."
+    },
+    {
+      "id": "L06",
+      "requirement": "Cribado y exclusiones justificadas",
+      "status": "Corregido y ampliado con recuperación dirigida",
+      "evidence": "106 registros;20 repositorios inspeccionados;7 textos completos evaluados;5 incluidos. Se preservaron decisiones previas y se corrigieron motivos de los92 no inspeccionados inicialmente.",
+      "limit_or_correction": "Once candidatos de metadatos continúan sin inspección. Cuatro nuevos repositorios inspeccionados no aportaron documento completo identificable; no añaden frecuencias."
+    },
+    {
+      "id": "L07",
+      "requirement": "Flujo reproducible y deduplicación",
+      "status": "Documentado con límite",
+      "evidence": "118−12=106;20+86=106;7=5+2; corte previo14+92 y5=3+2 conservado.",
+      "limit_or_correction": "Se deduplican repositorios, no queda acreditada deduplicación sistemática por DOI/título/autores entre bases no consultadas."
+    },
+    {
+      "id": "L08",
+      "requirement": "Quién seleccionó y resolvió desacuerdos",
+      "status": "Parcial",
+      "evidence": "Cribado asistido por Codex para Jassan Arteta; no se acredita segundo revisor humano.",
+      "limit_or_correction": "No inventar consenso o kappa. Dudas y cambios deben quedar en un registro con fecha, motivo y decisión responsable."
+    },
+    {
+      "id": "L09",
+      "requirement": "Calidad experimental por estudio",
+      "status": "Documentado por dimensiones, con límites",
+      "evidence": "Los CSV y JSON de calidad cubren datos, partición, arquitectura, repeticiones, inferencia y reproducibilidad.",
+      "limit_or_correction": "No sumar puntuación arbitraria; ausencia de descripción no acredita ausencia de fuga. Veinte corridas de S1 no equivalen a mercados independientes."
+    },
+    {
+      "id": "L10",
+      "requirement": "Literatura reciente y preferenciaQ1",
+      "status": "No acreditado globalmente",
+      "evidence": "Cinco textos completos aplicados; S2/S6/S7 son grises; S6 sin fecha de publicación acreditada y año editorial de S5 pendiente de corroboración.",
+      "limit_or_correction": "Para reclamarQ1 registrar índice, revista, año, categoría y fuente. No equiparar congreso,repo,DOI y cuartil de revista."
+    }
+  ],
+  "query_summary": [
+    {
+      "id": "G1",
+      "source": "GitHub repository search",
+      "query": "bitcoin volatility forecasting",
+      "fields": "repository metadata indexed by GitHub, default relevance order",
+      "executed_first": "2026-11-02T14:28:57.820931-05:00",
+      "executed_last": "2026-11-02T14:29:00.249471-05:00",
+      "attempts": 3,
+      "successful_pages": 3,
+      "retrieved_record_occurrences": 30,
+      "unique_repositories_within_query": 30,
+      "index_estimate_on_successful_pages": [
+        148
+      ],
+      "failures": 0,
+      "filters_applied": "relevance order; metadata search and requested pages only; no verified publication-date, peer-review or quartile filter"
+    },
+    {
+      "id": "G2",
+      "source": "GitHub repository search",
+      "query": "cryptocurrency volatility deep learning",
+      "fields": "repository metadata indexed by GitHub, default relevance order",
+      "executed_first": "2026-11-02T14:29:01.219821-05:00",
+      "executed_last": "2026-11-02T14:29:02.485274-05:00",
+      "attempts": 2,
+      "successful_pages": 2,
+      "retrieved_record_occurrences": 20,
+      "unique_repositories_within_query": 20,
+      "index_estimate_on_successful_pages": [
+        33
+      ],
+      "failures": 0,
+      "filters_applied": "relevance order; metadata search and requested pages only; no verified publication-date, peer-review or quartile filter"
+    },
+    {
+      "id": "G3",
+      "source": "GitHub repository search",
+      "query": "bitcoin realized volatility neural",
+      "fields": "repository metadata indexed by GitHub, default relevance order",
+      "executed_first": "2026-11-02T14:29:03.386383-05:00",
+      "executed_last": "2026-11-02T14:31:39.563513-05:00",
+      "attempts": 2,
+      "successful_pages": 2,
+      "retrieved_record_occurrences": 1,
+      "unique_repositories_within_query": 1,
+      "index_estimate_on_successful_pages": [
+        1
+      ],
+      "failures": 0,
+      "filters_applied": "relevance order; metadata search and requested pages only; no verified publication-date, peer-review or quartile filter"
+    },
+    {
+      "id": "G4",
+      "source": "GitHub repository search",
+      "query": "bitcoin volatility MLP in:readme",
+      "fields": "repository metadata indexed by GitHub, default relevance order",
+      "executed_first": "2026-11-02T14:29:03.985319-05:00",
+      "executed_last": "2026-11-02T14:29:03.985319-05:00",
+      "attempts": 1,
+      "successful_pages": 1,
+      "retrieved_record_occurrences": 10,
+      "unique_repositories_within_query": 10,
+      "index_estimate_on_successful_pages": [
+        241
+      ],
+      "failures": 0,
+      "filters_applied": "relevance order; metadata search and requested pages only; no verified publication-date, peer-review or quartile filter"
+    },
+    {
+      "id": "G5",
+      "source": "GitHub repository search",
+      "query": "bitcoin volatility feedforward in:readme",
+      "fields": "repository metadata indexed by GitHub, default relevance order",
+      "executed_first": "2026-11-02T14:29:05.017740-05:00",
+      "executed_last": "2026-11-02T14:29:05.017740-05:00",
+      "attempts": 1,
+      "successful_pages": 1,
+      "retrieved_record_occurrences": 10,
+      "unique_repositories_within_query": 10,
+      "index_estimate_on_successful_pages": [
+        103
+      ],
+      "failures": 0,
+      "filters_applied": "relevance order; metadata search and requested pages only; no verified publication-date, peer-review or quartile filter"
+    },
+    {
+      "id": "G6",
+      "source": "GitHub repository search",
+      "query": "bitcoin volatility paper in:description",
+      "fields": "repository metadata indexed by GitHub, default relevance order",
+      "executed_first": "2026-11-02T14:29:05.910919-05:00",
+      "executed_last": "2026-11-02T14:29:05.910919-05:00",
+      "attempts": 1,
+      "successful_pages": 1,
+      "retrieved_record_occurrences": 7,
+      "unique_repositories_within_query": 7,
+      "index_estimate_on_successful_pages": [
+        7
+      ],
+      "failures": 0,
+      "filters_applied": "relevance order; metadata search and requested pages only; no verified publication-date, peer-review or quartile filter"
+    },
+    {
+      "id": "G7",
+      "source": "GitHub repository search",
+      "query": "\"bitcoin volatility\" \"neural network\" in:readme",
+      "fields": "repository metadata indexed by GitHub, default relevance order",
+      "executed_first": "2026-11-02T14:29:06.575049-05:00",
+      "executed_last": "2026-11-02T14:31:40.130286-05:00",
+      "attempts": 2,
+      "successful_pages": 1,
+      "retrieved_record_occurrences": 10,
+      "unique_repositories_within_query": 10,
+      "index_estimate_on_successful_pages": [
+        45
+      ],
+      "failures": 1,
+      "filters_applied": "relevance order; metadata search and requested pages only; no verified publication-date, peer-review or quartile filter"
+    },
+    {
+      "id": "G8",
+      "source": "GitHub repository search",
+      "query": "\"realized volatility\" \"MLP\" \"Bitcoin\" in:readme",
+      "fields": "repository metadata indexed by GitHub, default relevance order",
+      "executed_first": "2026-11-02T14:29:07.435064-05:00",
+      "executed_last": "2026-11-02T14:31:41.427211-05:00",
+      "attempts": 2,
+      "successful_pages": 1,
+      "retrieved_record_occurrences": 10,
+      "unique_repositories_within_query": 10,
+      "index_estimate_on_successful_pages": [
+        24
+      ],
+      "failures": 1,
+      "filters_applied": "relevance order; metadata search and requested pages only; no verified publication-date, peer-review or quartile filter"
+    },
+    {
+      "id": "G9",
+      "source": "GitHub repository search",
+      "query": "\"volatility\" \"ANN\" \"bitcoin\" in:readme",
+      "fields": "repository metadata indexed by GitHub, default relevance order",
+      "executed_first": "2026-11-02T14:29:08.072853-05:00",
+      "executed_last": "2026-11-02T14:31:42.558560-05:00",
+      "attempts": 2,
+      "successful_pages": 1,
+      "retrieved_record_occurrences": 10,
+      "unique_repositories_within_query": 10,
+      "index_estimate_on_successful_pages": [
+        192
+      ],
+      "failures": 1,
+      "filters_applied": "relevance order; metadata search and requested pages only; no verified publication-date, peer-review or quartile filter"
+    },
+    {
+      "id": "G10",
+      "source": "GitHub repository search",
+      "query": "\"bitcoin volatility\" \"CNN\" in:readme",
+      "fields": "repository metadata indexed by GitHub, default relevance order",
+      "executed_first": "2026-11-02T14:29:08.946854-05:00",
+      "executed_last": "2026-11-02T14:31:43.700747-05:00",
+      "attempts": 2,
+      "successful_pages": 1,
+      "retrieved_record_occurrences": 10,
+      "unique_repositories_within_query": 10,
+      "index_estimate_on_successful_pages": [
+        21
+      ],
+      "failures": 1,
+      "filters_applied": "relevance order; metadata search and requested pages only; no verified publication-date, peer-review or quartile filter"
+    }
+  ],
+  "metadata_followups": [
+    {
+      "record_id": "R025",
+      "repository": "Utuub/bitcoin-volatility-forecasting",
+      "historical_decision": "not_pursued_after_metadata_screen",
+      "historical_reason": "Metadatos de métodos clásicos o sin evidencia identificable de comparación DL; no se llevó a recuperación completa.",
+      "observed_metadata": "Forecasting Bitcoin realized volatility: XGBoost and LSTM vs GARCH(1,1) across 1-day, 1-week, and 1-month horizons",
+      "issue": "Contradicción: el metadato declara LSTM para volatilidad de Bitcoin y el motivo invoca métodos clásicos o ausencia de comparación DL.",
+      "recommended_action": "Reabrir recuperación dirigida; no determinar elegibilidad solo por la descripción.",
+      "new_eligibility_decision_made": true,
+      "subsequent_recovery": "Repositorio inspeccionado el03/11/2026; no se recuperó artículo identificable. Contexto de software, sin nueva frecuencia."
+    },
+    {
+      "record_id": "R039",
+      "repository": "AkshithReddyAk/Time-Series-Analysis-and-Deep-Learning-for-Cryptocurrency-Forecasting",
+      "historical_decision": "not_pursued_after_metadata_screen",
+      "historical_reason": "Metadatos de métodos clásicos o sin evidencia identificable de comparación DL; no se llevó a recuperación completa.",
+      "observed_metadata": "Developed a cryptocurrency forecasting system using Time Series Analysis and Deep Learning models such as LSTM and ARIMA for predicting p…",
+      "issue": "La descripción truncada menciona LSTM; no respalda afirmar ausencia de DL.",
+      "recommended_action": "Conservar como no priorizado por información insuficiente o revisar texto; no inferir ausencia DL.",
+      "new_eligibility_decision_made": false
+    },
+    {
+      "record_id": "R043",
+      "repository": "dengathitu/crypto-volatility-prediction-lstm",
+      "historical_decision": "not_pursued_after_metadata_screen",
+      "historical_reason": "No se identificó en título/descripción un manuscrito científico verificable suficiente para priorizar recuperación; no demuestra que no exista.",
+      "observed_metadata": "This research centers on developing and evaluating deep learning models for forecasting short-term price volatility in major cryptocurren…",
+      "issue": "Tema de volatilidad y DL declarado, sin inspección de repositorio.",
+      "recommended_action": "Candidato a recuperación dirigida; ausencia de manuscrito no demostrada por metadatos truncados.",
+      "new_eligibility_decision_made": false
+    },
+    {
+      "record_id": "R083",
+      "repository": "Error-Makes-Clever/Bitcoin-Forecasting-Statistical-vs-Neural-Networks",
+      "historical_decision": "not_pursued_after_metadata_screen",
+      "historical_reason": "Metadatos centrados en precio/trading/opciones; no se identificó estudio específico de pronóstico de volatilidad para evaluación completa.",
+      "observed_metadata": "Comparative study of statistical (GARCH, TARCH) and deep learning (LSTM) models for Bitcoin volatility and price forecasting.",
+      "issue": "La descripción declara volatilidad y precio con GARCH/TARCH/LSTM; el motivo solo precio no justifica descartar la componente de volatilidad.",
+      "recommended_action": "Reabrir recuperación dirigida y separar tareas; comprobar manuscrito/protocolo y resultados.",
+      "new_eligibility_decision_made": true,
+      "subsequent_recovery": "Repositorio inspeccionado el03/11/2026; no se recuperó artículo identificable. Contexto de software, sin nueva frecuencia."
+    },
+    {
+      "record_id": "R099",
+      "repository": "sagartade/Research_Project",
+      "historical_decision": "not_pursued_after_metadata_screen",
+      "historical_reason": "Metadatos de métodos clásicos o sin evidencia identificable de comparación DL; no se llevó a recuperación completa.",
+      "observed_metadata": "This repository will consists of prediction of volatility for Ethereum by using hybrid techniques of GARCH and Artificial Neural Network.…",
+      "issue": "La descripción menciona ANN, pero el activo es Ethereum.",
+      "recommended_action": "Si el alcance sigue exclusivamente Bitcoin, usar activo fuera de alcance como motivo; no ausencia de DL.",
+      "new_eligibility_decision_made": false
+    },
+    {
+      "record_id": "R102",
+      "repository": "Aurelien7877/Deep-Attention-BTC",
+      "historical_decision": "not_pursued_after_metadata_screen",
+      "historical_reason": "No se identificó en título/descripción un manuscrito científico verificable suficiente para priorizar recuperación; no demuestra que no exista.",
+      "observed_metadata": "Deep Learning & Attention Mechanisms for Bitcoin Volatility.",
+      "issue": "Tema de volatilidad Bitcoin y atención declarado, sin inspección de repositorio.",
+      "recommended_action": "Candidato a recuperación dirigida; no interpretar no priorización como inelegibilidad.",
+      "new_eligibility_decision_made": false
+    }
+  ],
+  "database_counts": {
+    "Web of Science": null,
+    "Scopus": null,
+    "IEEE Xplore": null,
+    "arXiv": null
+  },
+  "count_warning": "Null means not executed/unavailable, not zero results. GitHub index estimates overlap and are not article counts.",
+  "reviewer_status": "Codex-assisted documentary audit; no independent second human reviewer or disagreement resolution claimed.",
+  "new_bibliographic_queries": 0,
+  "new_full_text_studies": 2,
+  "models_fitted": 0,
+  "test_files_opened": 0,
+  "required_database_coverage_complete": false,
+  "final_model_selection_complete": false,
+  "current_screening": {
+    "path": "references/literature_e1/screening.csv",
+    "sha256": "bc47aedaa1855e985c25a46e847154abeb6aabb909cac1c19c850146e73a4172",
+    "metadata_revision_log": "references/literature_e1/screening_revision_20261103.json",
+    "recovery_stage": "references/literature_e1/screening_recovery_stage_20261103.json",
+    "metadata_candidates_pending_retrieval_without_inspection": 11
+  },
+  "historical_screening_flow": {
+    "record_occurrences": 118,
+    "duplicate_repository_occurrences": 12,
+    "unique_repositories": 106,
+    "repository_inspections": 14,
+    "not_prioritized_after_metadata": 92,
+    "full_texts_assessed": 5,
+    "full_texts_included": 3,
+    "full_texts_excluded": 2,
+    "unit_change_explicit": true,
+    "historical_counts_not_new_search": true
+  },
+  "screening_flow": {
+    "record_occurrences": 118,
+    "duplicate_repository_occurrences": 12,
+    "unique_repositories": 106,
+    "repository_inspections": 20,
+    "repository_records_without_inspection": 86,
+    "full_texts_assessed": 7,
+    "full_texts_included": 5,
+    "full_texts_excluded": 2,
+    "unit_change_explicit": true,
+    "current_cut": "2026-11-03",
+    "new_queries": 0,
+    "new_repository_inspections": 6,
+    "new_full_texts_assessed": 2,
+    "new_full_texts_included": 2
+  },
+  "new_repository_inspections": 6,
+  "included_study_ids": [
+    "S1",
+    "S2",
+    "S5",
+    "S6",
+    "S7"
+  ],
+  "grey_study_ids": [
+    "S2",
+    "S6",
+    "S7"
+  ],
+  "publication_date_unknown_study_ids": [
+    "S6"
+  ],
+  "posthoc_grey_literature_policy": "Se incluyen S6 y S7 en el corpus exploratorio aplicando los mismos requisitos básicos que S2/S5. No se excluye por ser borrador o informe académico. Riesgos graves y fecha desconocida se mantienen explícitos; se reportan sensibilidades sin S6/S7 y sin documentos de fecha no acreditada. No se afirma Q1, indexación o revisión por pares.",
+  "current_sources": [
+    {
+      "path": "references/literature_e1/screening.csv",
+      "sha256": "bc47aedaa1855e985c25a46e847154abeb6aabb909cac1c19c850146e73a4172"
+    },
+    {
+      "path": "references/literature_e1/flow.svg",
+      "sha256": "e6bbf45c4a912a4eacb41b9ba7c9b979e91752a7d37ab4ef20bd86365275dfff"
+    },
+    {
+      "path": "references/literature_e1/review_summary.json",
+      "sha256": "d1399d1b95d750918b57b60320b2dcfedb88f54d92555399144b8d3744866cf4"
+    },
+    {
+      "path": "references/literature_e1/studies.json",
+      "sha256": "af6047bf4e0a5ca777f28e5235086bd03a9f9948d3b6dc01383eb8326cde74a0"
+    },
+    {
+      "path": "references/literature_e1/study_synthesis.csv",
+      "sha256": "7d1f06e610cb701d1ef0ddd8630482354150a464f8bf7623d4609dab680e1139"
+    },
+    {
+      "path": "references/literature_e1/evidence_matrix.csv",
+      "sha256": "8dd4be1cc1972c1b7d887505c1231bc0066c36ce1b9fe7321dbd1444358b37eb"
+    },
+    {
+      "path": "references/literature_e1/reported_metrics.csv",
+      "sha256": "d9354b2cae743e9bc7ecceede4b08a6dd9a5efe74ea89f804f0ec3772a1d0676"
+    },
+    {
+      "path": "references/literature_e1/screening_recovery_stage_20261103.json",
+      "sha256": "e7404c99034799407ca7ffc6f1e15d7db6691a314a3de06866324dc5d576838a"
+    },
+    {
+      "path": "references/literature_e1/directed_recovery_20261103/source_manifest.json",
+      "sha256": "ee82badff686e72c6e96298243e1b740e4caa1bb0ba5a583a41a19d6db12de46"
+    }
+  ],
+  "source_hash_scope": "sources identifies the historical/local-audit inputs; current_sources identifies the cumulative recovery artifacts. The expanded per-study quality assessment is maintained separately."
+}

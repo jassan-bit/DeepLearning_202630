@@ -15,7 +15,7 @@
       "venue": "WSDM 2023",
       "doi": "10.1145/3539597.3570387",
       "url": "https://github.com/meakbiyik/ask-who-not-what/blob/bcc0e4e89213da2ca3ed968574aa2d08cee39c44/paper.pdf",
-      "support": "LSTM, GRU and TCN comparative baselines; Eq(5), Figure1, Table2; hpo.py parameter search space",
+      "support": "LSTM, GRU and TCN comparative baselines; Eq(5), Figure1, Table2; Appendix C Tables5–6 report winning hyperparameters; hpo.py search implementation",
       "full_text_read": true
     },
     {
@@ -48,6 +48,38 @@
       "url": "https://github.com/ga0m1/bitcoin-volatility-models/blob/f19551ca4cca768354eb7e2b7c1dd5c912bd0d41/M2259.docx",
       "support": "LSTM one layer20units and Table4; notebookcell111",
       "full_text_read": true
+    },
+    {
+      "study_id": "S6",
+      "authors": [
+        "Wang, Yafei",
+        "Yu, Qiujin",
+        "Peng, Jiangchuan",
+        "Yang, Bokai",
+        "Chen, Ziqing"
+      ],
+      "year": null,
+      "year_status": "Editorial year unknown; repository version available in2026 is not publication year",
+      "title": "A comparative analysis of volatility predictions via EGARCH, Transformer and hybrid EGARCH-Transformer models: changes in forecasting ability after introducing sentiment factors",
+      "venue": "Public grey manuscript; peer review not established",
+      "doi": null,
+      "url": "https://github.com/cathyw111/bitcoin-volatility-forecasting/blob/61feeec81d695e19eac9c819be41d704e6279547/research-draft.pdf",
+      "support": "Additional Transformer encoder comparator family, model1 OHLCV; Tables1–2 pp6–7; resultsTable4 p10; partial architecture and contradictory metrics",
+      "full_text_read": true
+    },
+    {
+      "study_id": "S7",
+      "authors": [
+        "Alakhouch Idriss"
+      ],
+      "year": 2026,
+      "date_declared": "2026-06-02",
+      "title": "Bitcoin Volatility Forecasting: Econometric and Machine Learning Approaches Applied to Daily Price Data (July2010–February2024)",
+      "venue": "Supervised research report; grey literature; peer review not established",
+      "doi": null,
+      "url": "https://github.com/idrissalk/Bitcoin-Volatility-Forecasting/blob/a98099e4125e1f80a094a46889d97bc31abfe30b/Repport/Asset-volatility-Forecasting.pdf",
+      "support": "Additional unidirectional LSTM family support; two layers64/32+Dense16ReLU; PDF§3.5.3 andTable4.5; code8inputs versus PDF12 and apparent global scaling leakage",
+      "full_text_read": true
     }
   ],
   "selected_families": [
@@ -61,31 +93,43 @@
       "studies": [
         "S1",
         "S2",
-        "S5"
+        "S5",
+        "S7"
       ],
-      "frequency": "3/3",
+      "frequency": "4/5",
       "includes_bidirectional_variant": true
     },
     "LSTM_unidirectional": {
       "studies": [
         "S1",
-        "S5"
+        "S5",
+        "S7"
       ],
-      "frequency": "2/3"
+      "frequency": "3/5",
+      "not_same_concrete_architecture": true
+    },
+    "GRU": {
+      "studies": [
+        "S1",
+        "S2"
+      ],
+      "frequency": "2/5"
     },
     "TCN": {
       "studies": [
         "S1"
       ],
-      "frequency": "1/3"
+      "frequency": "1/5"
     },
     "Transformer_encoder": {
       "studies": [
-        "S2"
+        "S2",
+        "S6"
       ],
-      "frequency": "1/3",
+      "frequency": "2/5",
       "peer_review_confirmed": false
-    }
+    },
+    "corpus_scope": "Five exploratory full texts; S6/S7 grey and quality-limited. Frequency describes observed families, not final eligible baseline ranking."
   },
   "architecture_evidence": {
     "LSTM": {
@@ -105,7 +149,51 @@
         "one_bias": "4H(p+H+1)+Hq+q",
         "two_bias": "4H(p+H+2)+Hq+q"
       },
-      "own_experiment": false
+      "own_experiment": false,
+      "additional_source_S1": {
+        "source": "S1 Appendix C Table5",
+        "sequence_length": 96,
+        "input_features": 1,
+        "head_outputs": 96,
+        "winning_hyperparameters": {
+          "hidden": 261,
+          "dropout": 0.0237,
+          "loss_epsilon": 0.0364,
+          "learning_rate": 0.00521,
+          "weight_decay": 9.25e-07
+        },
+        "parameter_count_analytical_one_bias": 299724,
+        "parameter_count_reported": null,
+        "not_a_project_configuration": true
+      },
+      "additional_support_S7": {
+        "source": "S7 PDF3.5.3/Table4.5 and Python/Python.py366–415",
+        "family": "unidirectional stacked LSTM",
+        "history_days": 60,
+        "units": [
+          64,
+          32
+        ],
+        "dropout": 0.2,
+        "head": "Dense16ReLU -> Dense1linear",
+        "input_features_pdf": 12,
+        "input_features_code": 8,
+        "source_loss": "MSE",
+        "source_optimizer": "Adam",
+        "learning_rate": 0.001,
+        "batch_size": 32,
+        "max_epochs": 200,
+        "early_stopping_patience": 15,
+        "parameter_count_reported": null,
+        "parameter_count_derived_here": null,
+        "quality_flags": [
+          "X and y MinMaxScaler fitted on all df_garch before chronological split",
+          "report12 features versus code8",
+          "validation MAE text versus val_loss code",
+          "reported3849+1006=4855 versus4955 total"
+        ],
+        "not_a_project_configuration": true
+      }
     },
     "TCN": {
       "source": "S1",
@@ -131,7 +219,7 @@
         96,
         1
       ],
-      "winning_hyperparameters_reported": false,
+      "winning_hyperparameters_reported": true,
       "dependency_version_fixed": false,
       "convolutions_per_block": "two only under standard residual-block assumption; not a textual reported count",
       "parameter_formula_assumptions": "J residualblocks of2convs; fixedF; p!=F; one initial projection; no trainable normalization",
@@ -149,7 +237,33 @@
         "count": 23457,
         "not_frozen": true
       },
-      "own_experiment": false
+      "own_experiment": false,
+      "winning_hyperparameters_source": "S1 Appendix C Table6",
+      "winning_hyperparameters": {
+        "channels": 287,
+        "dropout": 0.217,
+        "loss_epsilon": 0.0913,
+        "learning_rate": 6.49e-05,
+        "weight_decay": 5.93e-06,
+        "kernel_size": 5,
+        "dilation_base": 4,
+        "skip_connections": true,
+        "normalization": "None"
+      },
+      "analytical_winner_conditional": {
+        "J": 6,
+        "F": 287,
+        "k": 5,
+        "p": 1,
+        "q": 96,
+        "stacks": 1,
+        "convolutions_per_block": 2,
+        "count": 4563396,
+        "receptive_field": 10921,
+        "reported_total": false,
+        "implementation_measured": false,
+        "dependency_version_unfixed": true
+      }
     },
     "Transformer_encoder": {
       "source": "S2_runB",
@@ -173,7 +287,40 @@
       "parameter_formula": "18d^2+(F+M+25)d+1",
       "parameter_count_analytical": 49249,
       "reported_result_aggregation": "mean predictions from3seeds42/43/44 before metric calculation",
-      "own_experiment": false
+      "own_experiment": false,
+      "additional_support_S6": {
+        "source": "S6§3.4/Tables1–2 andTable4",
+        "baseline": "model1 OHLCV only",
+        "history_days": 20,
+        "model_dim": 32,
+        "attention_heads": 4,
+        "encoder_layers": 2,
+        "dropout": 0.1,
+        "output_activation": "Softplus",
+        "source_loss": "MSE",
+        "source_optimizer": "Adam",
+        "learning_rate": 0.001,
+        "batch_size": 32,
+        "max_epochs": 100,
+        "early_stopping_patience": 10,
+        "seed": 42,
+        "unreported": [
+          "feedforward width",
+          "pooling/readout",
+          "normalization ordering",
+          "implementation version"
+        ],
+        "parameter_count_reported": null,
+        "parameter_count_derived_here": null,
+        "quality_flags": [
+          "No editorial year, DOI or peer review established",
+          "70/30 Transformer split unreconciled with203day EGARCH test",
+          "model9 best-MAE claim contradicts table model1 lower MAE",
+          "RMSE/R2 common-cohort consistency unresolved",
+          "DM explicitly not executed; no training code or data to verify availability"
+        ],
+        "not_a_project_configuration": true
+      }
     }
   },
   "reported_metrics": [
@@ -232,5 +379,16 @@
       "own_experiment": false
     }
   ],
-  "file_sha256": "ffd92e361478947e3c7908b6e57fd7f0f3c1cfde9fbe9b7acf1a44b0e30e2980"
+  "file_sha256": "a5c948b8b655dfd3bee26628a7695c3b467f1553104ad297325c34b5cc67f96f",
+  "review_date": "2026-11-03",
+  "extraction_corrections_20261103": [
+    {
+      "source": "S1 Appendix C Tables5–6",
+      "correction": "Winning LSTM/GRU/TCN hyperparameters are reported; earlier extraction omitted appendices. Library version remains unfixed."
+    },
+    {
+      "source": "S2 Appendix table Selected hyperparameters of the networks, run B",
+      "correction": "SELF-ATT winning configuration is explicitly reported; no source-reported total parameter count."
+    }
+  ]
 }

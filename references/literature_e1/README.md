@@ -1,23 +1,27 @@
-# Evidencia documental para el Entregable 1
+# Evidencia documental del Entregable 1
 
-Este directorio incorpora exclusivamente registros bibliográficos y resultados publicados por terceros, conservados de las consultas reales del 2 de noviembre de 2026. No se importaron entrenamientos, predicciones ni métricas propias del trabajo separado para E2. `provenance.json` documenta origen y hashes y distingue la importación de una nueva búsqueda.
+La versión del 03/11/2026 conserva las consultas originales del 02/11/2026 y añade recuperación dirigida, correcciones de cribado y extracción de los apéndices de S1. No ejecuta redes ni utiliza datos de mercado o test del proyecto.
 
-## Conteos y unidades
+## Conteos y cortes
 
-Diez consultas complementarias produjeron 118 ocurrencias, 12 duplicadas y 106 repositorios únicos. Se inspeccionaron 14 repositorios; 92 no se priorizaron tras el cribado de metadatos, lo que no demuestra ausencia de artículos. Se evaluaron cinco textos completos y se incluyeron tres. Los dos textos excluidos tienen un motivo en `screening.csv`. Un repositorio no es un artículo: el flujo identifica ese cambio de unidad. El catálogo vigente de 33 referencias —30 iniciales y tres incorporaciones— es diferente del corpus de tres textos incluidos; no constituye 33 estudios elegibles.
+Las diez consultas complementarias contienen 18 intentos, 14 páginas recuperadas y 118 ocurrencias, deduplicadas a 106 repositorios. El corte inicial inspeccionó 14 y evaluó cinco textos, con tres incluidos. La revisión corrigió motivos que excedían los metadatos y examinó seis repositorios adicionales: ahora son **20 inspeccionados y 86 sin inspección; siete textos evaluados, cinco incluidos y dos excluidos**. No hubo nuevas cadenas el 03/11/2026.
 
-WoS, Scopus, IEEE y arXiv no se cuentan como consultados cuando su interfaz quedó bloqueada. Los fallos tienen estado propio, no cero resultados de una búsqueda. El alcance es una revisión complementaria de fuentes accesibles; no acredita exhaustividad ni prevalencia global.
+El corpus exploratorio es S1/S2/S5/S6/S7. S2/S6/S7 son literatura gris y S6 no acredita fecha editorial. La inclusión no certifica la validez de sus resultados: calidad y recuperabilidad se documentan separadamente. El catálogo de **35 referencias**, con 11 aplicaciones, ocho fundamentos neuronales y 16 metodológicos, no constituye 35 estudios elegibles. Los 33 registros anteriores se mantienen intactos en su catálogo histórico.
 
-## Productos
+WoS, Scopus, IEEE y arXiv no se presentan como bases consultadas. Sus conteos son desconocidos, no cero. Tampoco se acredita Q1 por tener DOI, un manuscrito o una copia en GitHub.
 
-- `search_log.json`, `access_checks.json`, `discovery_records.json`, `screening.csv` y `flow.svg`: consultas, acceso, registros, decisiones y flujo.
-- `references_access_33.json` y `.csv`: catálogo consolidado de las mismas 33 referencias citadas en el libro, con enlaces bibliográficos, fuentes efectivamente consultadas, nivel de evidencia y aporte al proyecto. Reutiliza los registros existentes; no representa una nueva búsqueda ni lectura de todos los originales.
-- `access_checks_20261102_update.json`, `access_routes.csv` y `access_uninorte_wos_20261102.json`: historial de conexión, enlaces de portales y consultas preparadas, conservado como antecedente. La tabla visible de §3.1.2 se basa ahora en las referencias del documento. Estos intentos no añaden estudios ni consultas ejecutadas al flujo anterior.
-- `studies.json`, `study_synthesis.csv` y `evidence_matrix.csv`: cinco fuentes identificadas y matriz de los tres textos incluidos. S3 y S4 son contexto con acceso pendiente y no suman al denominador.
-- `reported_metrics.csv`: 42 valores publicados por los autores, con ubicación. El campo `own_experiment` es falso en todas las filas. No se recalculan resultados ni se traducen sus escalas a las del proyecto.
-- `quality_assessment.csv` y `.json`: valoración por dimensión con evidencia y limitaciones, sin una puntuación agregada inventada.
-- `family_frequencies.csv`: frecuencias de las familias en el corpus de tres textos, con variantes y clasificación lineal explícitas.
-- `selection_evidence.json`: regla y compromisos de la selección documental de trabajo. LSTM, TCN y Transformer priorizan diversidad; no representan el ranking de frecuencia pura ni una prueba de menor costo. La selección está acotada al corpus accesible y el respaldo aplicado del Transformer procede de literatura gris.
-- `source_manifest.json`: URLs por commit y hashes de 25 fuentes. Los originales de autores no se redistribuyen.
+## Productos actuales
 
-S1, S2 y S5 responden a diferentes objetivos, mercados, escalas y particiones. No debe construirse un ranking cruzando sus RMSE o R² ni presentarse sus valores como resultados propios.
+- `search_log.json`, `query_summary_20261103.csv`, `discovery_records.json`: cadenas, fechas, páginas, conteos, límites y hashes originales.
+- `screening.csv`, `screening_revision_20261103.json`, `screening_recovery_stage_20261103.json` y `flow.svg`: motivos corregidos, nueva recuperación y flujo acumulado con unidades diferenciadas.
+- `history_20261102/`, `history_20261103_metadata_revision/` y `screening_20261102_original.csv`: cortes históricos. No se reescribe la fecha de la búsqueda al revisar una decisión.
+- `directed_recovery_20261103/`: manifiestos de fuentes nuevas, informes de inspección y transcripción de Tabla 4 de S6. Se conservan enlaces por commit, hashes y fechas; los originales de autores no se redistribuyen aquí.
+- `source_manifest.json`: fuentes del corte inicial; `primary_recheck_20261103.json`: comprobación nueva de las tres copias de autores iniciales, sin alterar sus hashes ni sumar estudios.
+- `references_access_35.json/csv`: catálogo vigente. `references_access_33.json/csv` conserva el anterior; `additional_references_20261103.json` identifica las dos incorporaciones.
+- `studies.json`, `study_synthesis.csv`, `evidence_matrix.csv`: cinco fuentes completas y dos antecedentes con texto pendiente. `reported_metrics.csv` conserva **81 cifras de autores**, 42 anteriores y 39 nuevas, todas con `own_experiment=False`; no son resultados propios.
+- `quality_assessment.csv/json`: cinco estudios valorados por dimensiones y evidencia, sin puntuación agregada. Se mantienen contradicciones y riesgos aparentes; no se corrigen suponiendo resultados.
+- `family_frequencies.csv`, `model_extraction_review_20261103.csv`, `model_complexity_review_20261103.csv`, `model_frequency_review_20261103.json`: variantes, roles, frecuencias y parámetros analíticos. El script `scripts/audit_literature_models.py --check` reproduce esos productos sin frameworks ni modelos.
+- `selection_evidence.json`: selección final pendiente, con fichas candidatas separadas. La frecuencia ampliada es LSTM4/5, GRU2/5, TCN1/5 y encoder2/5; las sensibilidades conservan el corte original, el corpus sin S6 y el corpus sin las fuentes explícitamente grises.
+- `fichas_arquitecturas.md/json`: fichas, diagramas y fuentes. S1 sí publica los ganadores de LSTM/GRU/TCN en apéndice C, Tablas5–6. La versión de `keras-tcn`, la especificación parcial de S6 y las configuraciones propias siguen abiertas.
+
+Las fuentes difieren en objetivo, datos, horizonte, escala y protocolo. No se construye un ranking mezclando sus RMSE/R² ni se considera que diversidad, frecuencia aislada o cantidad de citas cierre la selección definitiva de tres modelos básicos. Los experimentos de las tres redes, piloto, benchmark y evaluación de test permanecen reservados para E2.

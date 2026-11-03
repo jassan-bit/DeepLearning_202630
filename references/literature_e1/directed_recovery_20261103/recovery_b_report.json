@@ -1,0 +1,91 @@
+{
+  "reviewed_at": "2026-11-03T02:10:19.080246+00:00",
+  "scope": "Targeted recovery of existing records; no new search query and no model code execution. No project market/test files opened.",
+  "repositories_newly_inspected": 3,
+  "full_text_documents_newly_recovered": 1,
+  "studies_added_to_main_included_corpus": 0,
+  "records": [
+    {
+      "record_id": "R020",
+      "repository": "idrissalk/Bitcoin-Volatility-Forecasting",
+      "commit": "a98099e4125e1f80a094a46889d97bc31abfe30b",
+      "repository_inspected": true,
+      "full_text_recovered": true,
+      "identity": {
+        "authors": [
+          "Alakhouch Idriss"
+        ],
+        "title": "Bitcoin Volatility Forecasting: Econometric and Machine Learning Approaches Applied to Daily Price Data (July 2010 – February 2024)",
+        "date_declared": "2026-06-02",
+        "type": "supervised research report; grey literature",
+        "supervisor": "Pr. Alj Abdelkamel",
+        "doi": null,
+        "peer_review_verified": false
+      },
+      "evidence_url": "https://github.com/idrissalk/Bitcoin-Volatility-Forecasting/blob/a98099e4125e1f80a094a46889d97bc31abfe30b/Repport/Asset-volatility-Forecasting.pdf",
+      "architecture_reported": "PDF §3.5.3: LSTM64(return_sequences)→LSTM32→Dense16ReLU→Dense1; dropout0.2, window60, declared p12; Adam1e-3,batch32,max200,patience15.",
+      "comparative_role": "Standalone LSTM compared to ARCH/GARCH, RF and XGBoost; hybrid EGARCH+XGBoost is proposed advanced model.",
+      "published_by_author_values": {
+        "location": "PDF Table4.5, printed p34",
+        "LSTM_RMSE": 0.0358,
+        "LSTM_MAE": 0.0254,
+        "LSTM_MAPE_percent": 13.5,
+        "GARCH_RMSE": 0.0418,
+        "EGARCH_XGBoost_RMSE": 0.0341,
+        "own_experiment": false
+      },
+      "quality_flags": [
+        "No journal/conference/DOI or peer-review evidence identified in report/repository.",
+        "Code Python/Python.py lines366–369 defines8 features, whereas PDF§3.5.3 declares12.",
+        "Code lines371–374 fits MinMaxScaler to full df_garch features and full target before split at2021-02-01; apparent future-information leakage in scaling.",
+        "Code lines69–70 defines target as std30.shift(-30)*sqrt365; not our sigma7daily task.",
+        "PDF training statement3849 plus test1006 equals4855, not declared4955; cohort reconciliation is required.",
+        "Report says early stopping on validationMAE; supplied code monitors val_loss."
+      ],
+      "suggested_status": "New full-text report recovered and assessed; academic/quality eligibility unresolved. Do not add to frequency automatically."
+    },
+    {
+      "record_id": "R025",
+      "repository": "Utuub/bitcoin-volatility-forecasting",
+      "commit": "1106ed17db70985548cae58d3a89e6d5a8e7f860",
+      "repository_inspected": true,
+      "full_text_recovered": false,
+      "identity": {
+        "title": "Bitcoin Volatility Forecasting",
+        "type": "CSCI424 Big Data Mining course project, as declared in README",
+        "scientific_byline_or_article": null,
+        "doi": null,
+        "peer_review_verified": false
+      },
+      "evidence_url": "https://github.com/Utuub/bitcoin-volatility-forecasting/blob/1106ed17db70985548cae58d3a89e6d5a8e7f860/README.md",
+      "evidence": "README, btcvol/models/lstm.py and results/metrics_summary.csv retrieved; repository tree contains no standalone PDF/TeX article.",
+      "architecture_reported": "Code: LSTM32→Dropout.2→LSTM16→Dropout.2→Dense16ReLU→Dense1;72hour windows; trained against XGBoost/GARCH/persistence.",
+      "suggested_status": "Software/course-project context; not included scientific full-text study. Metadata clearly contains DL volatility evidence, so original no-DL reason was wrong.",
+      "own_experiment": false
+    },
+    {
+      "record_id": "R083",
+      "repository": "Error-Makes-Clever/Bitcoin-Forecasting-Statistical-vs-Neural-Networks",
+      "commit": "e4d9ab754001e7d1c73645100b546556ff087cee",
+      "repository_inspected": true,
+      "full_text_recovered": false,
+      "identity": {
+        "title": "Bitcoin-Forecasting-Statistical-vs-Neural-Networks",
+        "type": "software notebook repository",
+        "scientific_byline_or_article": null,
+        "doi": null,
+        "peer_review_verified": false
+      },
+      "evidence_url": "https://github.com/Error-Makes-Clever/Bitcoin-Forecasting-Statistical-vs-Neural-Networks/blob/e4d9ab754001e7d1c73645100b546556ff087cee/garch_tarch_lstm_comparison.ipynb",
+      "evidence": "README179bytes and complete notebook inspected as JSON/text only. Tree has no standalone PDF/TeX article. No scientific author/title/DOI found in notebook cells.",
+      "architecture_reported": "Notebookcell143: window14→LSTM20→Dense1;cell151BiLSTM32/16;cell159Conv1D32k4→BiLSTM32/16;cell136Flatten→Dense1linear.",
+      "suggested_status": "Software context pending identifiable scientific paper. Same small LSTM architecture as S5 is not enough to establish independent study or deduplicate; do not count extra study/families without byline/source.",
+      "own_experiment": false
+    }
+  ],
+  "manifests": [
+    "/workspace/e1_literature_revision_20261103/recovery_b/R020_manifest.json",
+    "/workspace/e1_literature_revision_20261103/recovery_b/R025_manifest.json",
+    "/workspace/e1_literature_revision_20261103/recovery_b/R083_manifest.json"
+  ]
+}

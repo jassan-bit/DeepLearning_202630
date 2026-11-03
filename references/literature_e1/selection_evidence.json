@@ -1,58 +1,172 @@
 {
+  "schema_version": 2,
   "status": "provisional_documentary_candidates_not_final_guide_selection",
-  "scope": "Three included full-text studies in an explicitly bounded accessible corpus; not global prevalence.",
+  "review_date": "2026-11-03",
+  "scope": "Five reviewer-included full-text studies in an explicitly bounded exploratory corpus; not global prevalence, completed index searches, or five peer-reviewed articles.",
+  "cohort": [
+    "S1",
+    "S2",
+    "S5",
+    "S6",
+    "S7"
+  ],
+  "cohort_change": "Targeted recovery of existing discovery records R015 and R020, not new search queries. S6 is an undated grey draft retained as an explicit exploratory/date-unknown exception; S7 is a dated supervised grey report.",
   "family_frequency": {
-    "LSTM_including_BiLSTM": 3,
+    "LSTM_including_BiLSTM": 4,
+    "LSTM_unidirectional": 3,
+    "BiLSTM": 1,
     "GRU": 2,
     "TCN": 1,
-    "Transformer_encoder": 1,
+    "Transformer_encoder": 2,
     "independent_nonlinear_MLP": 0,
     "simple_independent_CNN1D": 0
   },
-  "denominator": 3,
+  "denominator": 5,
+  "counting_unit": "One included full-text study per independently evaluated comparative neural family; variants, repeated seeds, feature runs and ensembles do not create additional studies.",
+  "sensitivity_strata": {
+    "original_full_text_cohort": {
+      "studies": [
+        "S1",
+        "S2",
+        "S5"
+      ],
+      "denominator": 3,
+      "family_counts": {
+        "LSTM": 3,
+        "GRU": 2,
+        "TCN": 1,
+        "Transformer encoder": 1
+      },
+      "note": "Subset sensitivity, not proof of indexing, Q1 or peer review of remaining studies"
+    },
+    "expanded_without_undated_S6": {
+      "studies": [
+        "S1",
+        "S2",
+        "S5",
+        "S7"
+      ],
+      "denominator": 4,
+      "family_counts": {
+        "LSTM": 4,
+        "GRU": 2,
+        "TCN": 1,
+        "Transformer encoder": 1
+      },
+      "note": "Subset sensitivity, not proof of indexing, Q1 or peer review of remaining studies"
+    },
+    "expanded_without_explicit_grey_S2_S6_S7": {
+      "studies": [
+        "S1",
+        "S5"
+      ],
+      "denominator": 2,
+      "family_counts": {
+        "LSTM": 2,
+        "GRU": 1,
+        "TCN": 1,
+        "Transformer encoder": 0
+      },
+      "note": "Subset sensitivity, not proof of indexing, Q1 or peer review of remaining studies"
+    }
+  },
   "rule_order": [
-    "filter verified use as comparative neural reference",
-    "separate variants and linear-only models",
-    "select at most one representative per distinct inductive family if diversity is prioritised",
-    "within each family prefer observed recurrence and reproducibility",
-    "do not claim minimal measured parameter count when winner configurations are missing"
+    "Record exact application, admissibility, publication/date status, comparative role and full-text evidence before counting; generic architecture references and author-code classes alone do not count as applied baseline studies.",
+    "Separate independent nonlinear neural baselines from proposed hybrids, forecast ensembles, linear-only networks and heads embedded inside another model; preserve unidirectional and bidirectional variants.",
+    "Count each family once per included study; report the original, expanded, date-known and explicit-grey sensitivity strata without retrospectively calling the expansion a preregistered systematic review.",
+    "Rank recurrence observed within the declared cohort; compare source depth and analytical parameter counts under common p5/q1 with source widths, bias conventions and remaining unknowns explicit.",
+    "Review simplicity, reproducibility and nonredundancy jointly after ranking; LSTM and GRU share recurrence but are not identical, so GRU must not be excluded automatically for a more diverse-looking trio.",
+    "Retain exactly three final DL baselines only if the evidence supports all guide criteria; otherwise keep documentary profiles provisional and expand/corroborate the evidence rather than force a third architecture."
   ],
-  "recommended_families": [
+  "rank_by_family_frequency": [
+    {
+      "rank_group": 1,
+      "family": "LSTM_including_BiLSTM",
+      "count": 4,
+      "variant_caution": "The chosen unidirectional variant appears3/5, not4/5."
+    },
+    {
+      "rank_group": 2,
+      "family": "GRU",
+      "count": 2
+    },
+    {
+      "rank_group": 2,
+      "family": "Transformer_encoder",
+      "count": 2,
+      "source_caution": "Both supporting full texts are grey; S6 undated and architecture incomplete."
+    },
+    {
+      "rank_group": 3,
+      "family": "TCN",
+      "count": 1,
+      "source_caution": "The published tuned S1 configuration is large and library version is unpinned."
+    }
+  ],
+  "candidate_families": [
+    "LSTM",
+    "GRU",
+    "TCN",
+    "Transformer encoder"
+  ],
+  "documentary_working_families": [
     "LSTM",
     "TCN",
     "Transformer encoder"
   ],
+  "selected_families": [],
+  "selected_families_meaning": "No final experimental trio is frozen. The three documentary working profiles are retained for review, not a frequency/minimum-complexity certification.",
+  "recommended_families": [],
   "evidence": {
     "LSTM": [
+      "S1_unidirectional",
+      "S2_BiLSTM",
+      "S5_unidirectional",
+      "S7_unidirectional_stacked"
+    ],
+    "GRU": [
       "S1",
-      "S2_BiLSTM_variant",
-      "S5"
+      "S2"
     ],
     "TCN": [
-      "S1"
+      "S1_single_branch_not_proposed_DTCN"
     ],
     "Transformer encoder": [
-      "S2"
+      "S2_generic_encoder",
+      "S6_pure_OHLCV_Model1"
     ]
   },
-  "omitted_higher_frequency_candidate": {
+  "working_profile_omitted_candidate": {
     "family": "GRU",
     "count": 2,
-    "reason": "Both LSTM and GRU are recurrent gated-state models; choosing only one makes the three-family diversity rule explicit. This is a trade-off, not proof that GRU is less useful."
+    "reason": "The earlier three-profile set prioritized recurrent/convolutional/attention diversity. That post-inspection choice does not prove frequency/minimum complexity or justify omitting GRU, which ties attention and exceeds TCN in the expanded corpus."
+  },
+  "complexity_evidence": {
+    "comparison_csv": "references/literature_e1/model_complexity_review_20261103.csv",
+    "source_hyperparameter_correction": "S1 Appendix C Tables5-6 PDF pages10-11 contain LSTM261,GRU43 and TCN287/k5/base4 winners; winners are not missing.",
+    "LSTM_source_small_variant": "S5 LSTM20 yields1781 source parameters and2101/2181 under p5/q1 for one/two-bias conventions; these are analytical, not instantiated.",
+    "GRU_vs_LSTM": "At S1 tuned widths, GRU43 has fewer parameters than LSTM261; that does not establish a family-wide ordering against the smaller S5 LSTM20.",
+    "TCN": "Conditional six-block two-convolution one-stack no-norm count; source receptive field10921. No claim that this winner is a shallow minimal CNN1D.",
+    "S6": "No exact parameter total; feedforward width, pooling/readout, positional and normalization details missing.",
+    "S7": "Two LSTM layers64/32 plus Dense16ReLU and Dense1; p12 in report versus p8 in code gives32673 versus31649 analytical one-bias parameters. These are alternatives, not one certified replicated total."
   },
   "limitations": [
-    "Transformer support is a single grey manuscript; no verified peer-reviewed status.",
-    "This trio is not the three most frequent models under frequency alone: GRU is more frequent than TCN/Transformer.",
-    "A Transformer encoder has a different asymptotic cost and its simplicity cannot be assumed from frequency.",
-    "No exact compact project widths/layers should be invented as if published winners.",
-    "No own performance or experimental superiority established."
+    "WoS/Scopus/IEEE queries remain unexecuted unless supported by new exports; GitHub author-copy recovery does not establish indexing or journal quartile.",
+    "LSTM3/5 unidirectional, family4/5; GRU2/5; TCN1/5; encoder2/5 apply only to this exploratory cohort.",
+    "S2/S6/S7 are grey literature; S6 has no publication year, and S5 editorial year remains externally uncorroborated.",
+    "S6 nine feature specifications are one study; S7 Dense16 is part of LSTM, not an independent MLP baseline.",
+    "None of the supporting studies establishes the identical OHLCV Spot daily sigma7/h1 project contract.",
+    "Source tuned winners need not be basic/minimal; analytical examples do not select a project width, depth or architecture.",
+    "No own DL performance, pilot, benchmark, test evaluation or statistical superiority is established."
   ],
-  "selected_families": [
-    "LSTM",
-    "TCN",
-    "Transformer encoder"
-  ],
-  "decision_recorded_at": "2026-11-02T17:46:25.959296-05:00",
-  "decision_timing": "Rule and trade-offs documented after corpus inspection; not a retrospective claim of preregistration.",
-  "guide_frequency_and_minimum_complexity_requirement_closed": false
+  "guide_frequency_and_minimum_complexity_requirement_closed": false,
+  "decision_timing": "The expansion and corrected rule are documented after corpus inspection; not a retrospective claim of preregistration.",
+  "previous_selection_record": "references/literature_e1/selection_evidence_20261102_original.json",
+  "generator": "scripts/audit_literature_models.py",
+  "frequency_summary": "references/literature_e1/model_frequency_review_20261103.json",
+  "source_extraction_sha256": "8a7e5f81b860595d62442677cd85436683625470d47e0c02d5cb756051b4bc84",
+  "own_deep_learning_models_trained": 0,
+  "own_market_files_opened": 0,
+  "own_test_files_opened": 0,
+  "historical_csv_archive_note": "Original N3 CSV content preserved with CRLF normalized to LF; the original byte-for-byte version remains in git history."
 }
