@@ -1,4 +1,4 @@
-# 3. Revisión del Estado del Arte y Extracción de Modelos Base
+# 3. Revisión del Estado del Arte y Extracción de los Tres Modelos Base
 
 La revisión debe identificar exactamente tres modelos DL básicos usados como referencias comparativas en la literatura de volatilidad de Bitcoin. Este capítulo reúne **35 referencias bibliográficas y un corpus exploratorio de cinco textos completos**; son unidades distintas. Las fichas de LSTM, TCN y encoder Transformer siguen siendo candidatas de trabajo: la selección final por recurrencia, mínima complejidad y no redundancia todavía no está acreditada.
 
@@ -6,53 +6,79 @@ La revisión del **03/11/2026** corrigió motivos de cribado, recuperó dos text
 
 El problema propio es **regresión temporal, tipo 4, ruta 6.4**: OHLCV rezagadas sin historia explícita de la volatilidad objetivo. Las tareas de las fuentes no coinciden automáticamente con ese contrato. La revisión punto por punto está en el {download}`informe del capítulo 3 <../_static/e1/revision_estado_arte_20261103.md>` y su [matriz de requisitos](../_static/e1/revision_estado_arte_20261103.json).
 
-## 3.1. Búsqueda, cribado y calidad de la evidencia
+La actualización de 3 y 3.1 incorpora cadenas nativas para WoS, Scopus, IEEE Xplore y arXiv, junto con cuatro intentos de acceso del 03/11/2026. Los cuatro fueron rechazados por el proxy antes de alcanzar las plataformas: **las búsquedas académicas y sus exportaciones siguen pendientes**. El corpus, sus frecuencias y las 35 referencias se conservan; un intento de acceso no añade estudios. La revisión se orienta a literatura reciente y a referencias comparativas sencillas; la preferencia Q1 solo se acreditará mediante índice, revista, año y categoría verificables.
 
-### 3.1.1. Estrategia, cadenas y ejecución verificable
+## 3.1. Estrategia de Búsqueda (Obligatoria)
+
+### 3.1.1. Cadena de búsqueda
 
 La revisión pregunta qué arquitecturas DL sencillas se usan como referencias comparativas para pronosticar volatilidad de Bitcoin. Se separan tres unidades: **registro de descubrimiento**, **documento científico** y **familia de arquitectura**. Un repositorio puede localizar un documento, pero no acredita por sí solo publicación, revisión por pares o uso comparativo de todas sus clases de código.
 
-La cadena académica de referencia conservada en el plan es:
+El protocolo actual distingue **B1, búsqueda general DL**, **B2, sensibilidad sin exigir DL en los metadatos**, y cuatro búsquedas F opcionales por familias: feedforward, recurrentes, convolucionales y atención. Así se contemplan Bitcoin/BTC/BTCUSDT, variantes realized/realised y pronóstico/predicción sin decidir previamente las tres familias finales. No se excluyen automáticamente trabajos que también mencionen precio, GARCH o modelos híbridos.
+
+Las cadenas B1 preparadas para cada fuente son las siguientes. **No se acredita su ejecución ni aceptación por el motor**: los intentos actuales se bloquearon antes de llegar a las plataformas. Campos, expansión de términos y filtros requieren confirmación en la respuesta real.
+
+**Web of Science — TS: Topic (database-defined title, abstract and keyword fields)**
 
 ```text
-("Bitcoin" OR "BTC")
-AND ("volatility forecasting" OR "volatility prediction" OR "realized volatility")
-AND ("deep learning" OR "neural network" OR "neural networks")
+TS=(Bitcoin OR BTC OR BTCUSDT)
+AND TS=(volatil* OR "realized variance" OR "realised variance")
+AND TS=(forecast* OR predict*)
+AND TS=("deep learning" OR "neural network" OR "neural networks")
+AND PY=(2019-2026)
 ```
 
-Esta cadena **no consta ejecutada en las bases académicas**. Para completar su cobertura deberán contemplarse además `BTCUSDT`, la variante británica `realised volatility`, `realized/realised variance`, pronóstico/predicción y términos de las familias, manteniendo una búsqueda general separada de las búsquedas dirigidas a MLP, recurrencia, convolución y atención. La sintaxis de campos y filtros se conservará por plataforma cuando se ejecute; no se presume equivalente una búsqueda de metadatos de repositorios a una de títulos, resúmenes y palabras clave de artículos.
+**Scopus — TITLE-ABS-KEY**
 
-| Fuente prevista | Estado acreditado por los comprobantes conservados | Conteo de resultados de una consulta bibliográfica |
-|---|---|---|
-| Web of Science | Consulta no ejecutada; el enlace institucional identificado no acredita una sesión de búsqueda | No disponible (`null`), no cero |
-| Scopus | Consulta no ejecutada | No disponible (`null`), no cero |
-| IEEE Xplore | Consulta no ejecutada; código o resumen de autores recuperados por otra vía no equivalen a buscar la base | No disponible (`null`), no cero |
-| arXiv, complemento reciente | Consulta no ejecutada | No disponible (`null`), no cero |
-| GitHub, vía complementaria | Diez cadenas, dieciocho intentos y catorce páginas recuperadas el 02/11/2026 | 118 ocurrencias de repositorios, no artículos |
+```text
+TITLE-ABS-KEY(Bitcoin OR BTC OR BTCUSDT)
+AND TITLE-ABS-KEY(volatil* OR "realized variance" OR "realised variance")
+AND TITLE-ABS-KEY(forecast* OR predict*)
+AND TITLE-ABS-KEY("deep learning" OR "neural network" OR "neural networks")
+AND PUBYEAR > 2018
+AND PUBYEAR < 2027
+```
 
-El [registro exacto de consultas](../_static/literature_e1/search_log.json) conserva URL, campo, página, fecha con zona horaria, respuesta y hash. La tabla siguiente se reconstruyó desde ese registro; no es una nueva búsqueda. Todos sus intentos corresponden al **02/11/2026**; las horas de cada intento se conservan en el [resumen por cadena](../_static/literature_e1/query_summary_20261103.csv).
+**IEEE Xplore — All Metadata, Command Search**
 
-| ID | Consulta literal | Intentos / páginas recuperadas | Ocurrencias recuperadas | Repositorios distintos dentro de la consulta | Estimación del índice |
-|---|---|---:|---:|---:|---:|
-| G1 | `bitcoin volatility forecasting` | 3 / 3 | 30 | 30 | 148 |
-| G2 | `cryptocurrency volatility deep learning` | 2 / 2 | 20 | 20 | 33 |
-| G3 | `bitcoin realized volatility neural` | 2 / 2 | 1 | 1 | 1 |
-| G4 | `bitcoin volatility MLP in:readme` | 1 / 1 | 10 | 10 | 241 |
-| G5 | `bitcoin volatility feedforward in:readme` | 1 / 1 | 10 | 10 | 103 |
-| G6 | `bitcoin volatility paper in:description` | 1 / 1 | 7 | 7 | 7 |
-| G7 | `"bitcoin volatility" "neural network" in:readme` | 2 / 1 | 10 | 10 | 45 |
-| G8 | `"realized volatility" "MLP" "Bitcoin" in:readme` | 2 / 1 | 10 | 10 | 24 |
-| G9 | `"volatility" "ANN" "bitcoin" in:readme` | 2 / 1 | 10 | 10 | 192 |
-| G10 | `"bitcoin volatility" "CNN" in:readme` | 2 / 1 | 10 | 10 | 21 |
+```text
+("All Metadata":Bitcoin OR "All Metadata":BTC OR "All Metadata":BTCUSDT)
+AND ("All Metadata":volatil* OR "All Metadata":"realized variance" OR "All Metadata":"realised variance")
+AND ("All Metadata":forecast* OR "All Metadata":predict*)
+AND ("All Metadata":"deep learning" OR "All Metadata":"neural network" OR "All Metadata":"neural networks")
+```
 
-La estimación del índice es la cifra mostrada por GitHub en las páginas recuperadas. **No se suman esas estimaciones**: las consultas se solapan. Las 118 ocurrencias efectivamente recuperadas se deduplican a 106 repositorios. Hubo cuatro intentos limitados por el servidor y sus reintentos están en el registro; no son cuatro cadenas adicionales. G3 incluye una segunda página vacía: cuenta como respuesta recuperada, no como un registro nuevo.
+**arXiv — ti and abs, API/advanced search**
 
-El orden fue la relevancia predeterminada y los límites variaron entre una y tres páginas por cadena. No se aplicó un filtro verificable por fecha de publicación, revisión por pares o cuartil. Las consultas dirigidas a MLP/ANN/CNN y las búsquedas truncadas por página introducen sesgo de descubrimiento; por ello, sus resultados no estiman prevalencia de arquitecturas en la literatura.
+```text
+(ti:Bitcoin OR abs:Bitcoin OR ti:BTC OR abs:BTC OR ti:BTCUSDT OR abs:BTCUSDT)
+AND (ti:volatility OR abs:volatility OR ti:"realized volatility" OR abs:"realized volatility" OR ti:"realised volatility" OR abs:"realised volatility" OR ti:"realized variance" OR abs:"realized variance" OR ti:"realised variance" OR abs:"realised variance")
+AND (ti:forecast OR abs:forecast OR ti:forecasting OR abs:forecasting OR ti:prediction OR abs:prediction OR ti:predicting OR abs:predicting OR ti:predictive OR abs:predictive)
+AND (ti:"deep learning" OR abs:"deep learning" OR ti:"neural network" OR abs:"neural network" OR ti:"neural networks" OR abs:"neural networks")
+AND submittedDate:[201901010000 TO 202611032359]
+```
 
-La [procedencia](../_static/literature_e1/provenance.json) registra la importación de comprobantes previos y distingue la fecha original de búsqueda de la revisión del 03/11/2026. Las comprobaciones de Guo y Herremans se documentan aparte. La recuperación dirigida de seis registros del 03/11/2026 amplía las inspecciones y los textos evaluados, pero no las cadenas ni las ocurrencias iniciales. Ninguna clase de código se convierte automáticamente en comparador publicado.
+En IEEE Xplore se solicita además el filtro Publication Year 2019–2026; su aplicación no está verificada. En arXiv, submittedDate corresponde a envío, no a año editorial. Los comodines y campos no se presumen equivalentes entre motores.
+
+Las **24 cadenas completas**, incluidas B2 y las dieciséis dirigidas opcionales, están en el {download}`protocolo de búsqueda <../_static/literature_e1/academic_search_20261103/protocol.md>` y el [plan JSON](../_static/literature_e1/academic_search_20261103/query_plan.json). Son consultas preparadas, no 24 búsquedas ejecutadas. El identificador B1 de consulta se distingue del cuartil Q1 de una revista.
 
 (tabla-referencias-e1)=
-### 3.1.2. Fuentes, periodo y acceso
+### 3.1.2. Bases de datos consultadas
+
+Las cuatro fuentes solicitadas tuvieron un intento de acceso actual. La tabla distingue ese intento de una consulta bibliográfica realizada; sus resultados permanecen desconocidos. El [registro de acceso](../_static/literature_e1/academic_search_20261103/access_attempts.json) y el {download}`informe legible <../_static/literature_e1/academic_search_20261103/access_report.md>` conservan fecha, ruta, cadena candidata y capa del fallo.
+
+| Fuente | Estado del intento del 03/11/2026 | Conteo de resultados de búsqueda |
+|---|---|---|
+| Web of Science, Core Collection prevista | Portal de entrada bloqueado por el proxy antes de poder enviar la cadena | Desconocido (`null`), no cero |
+| Scopus | Solicitud con cadena candidata bloqueada antes de alcanzar la plataforma | Desconocido (`null`), no cero |
+| IEEE Xplore | Solicitud con cadena candidata bloqueada antes de alcanzar la plataforma | Desconocido (`null`), no cero |
+| arXiv, complemento reciente | Solicitud a la API Atom con cadena candidata bloqueada antes de alcanzar la plataforma | Desconocido (`null`), no cero |
+
+Los cuatro rechazos fueron **403 al establecer el túnel del proxy**; no son respuestas HTTP de los buscadores. No permiten atribuir el impedimento a una suscripción, CAPTCHA, clave API o autenticación. La configuración de red requerida quedó guardada como borrador pendiente de aplicar y publicar; eso no acredita acceso en la instancia activa.
+
+El historial de acceso a portales se conserva como antecedente en las [comprobaciones registradas](../_static/literature_e1/access_checks_20261102_update.json), las [rutas preparadas](../_static/literature_e1/access_routes.csv) y el [intento institucional mediante Uninorte](../_static/literature_e1/access_uninorte_wos_20261102.json).
+
+**Catálogo bibliográfico conservado.** El siguiente catálogo identifica las fuentes previas; esta revisión de acceso no acredita nuevas lecturas, resolución de DOI, indexación o cuartiles.
 
 La tabla reúne las **35 referencias del documento** y organiza sus enlaces, la evidencia disponible y el aporte de cada una al proyecto. Comprende once aplicaciones a Bitcoin, ocho fundamentos de redes neuronales y dieciséis referencias de volatilidad, diagnóstico y evaluación. Se conservan las treinta referencias iniciales, las tres incorporadas para las fichas y los dos textos recuperados en esta revisión. El catálogo anterior de 33 entradas permanece como corte histórico.
 
@@ -110,12 +136,15 @@ El **enlace bibliográfico** identifica el trabajo, su DOI, su preprint o el reg
 
 La tabla se puede descargar en [CSV](../_static/literature_e1/references_access_35.csv) y [JSON](../_static/literature_e1/references_access_35.json), con las fuentes y limitaciones de cada entrada. Las referencias completas se presentan en la [bibliografía del libro](referencias.md).
 
+### 3.1.3. Periodo de búsqueda
+
+El intervalo preferente preparado es **01/01/2019–03/11/2026**, ocho años calendario hasta la fecha de esta revisión. Es coherente con la preferencia de cinco a ocho años de la guía, sin afirmar ocho años completos de tiempo transcurrido. Los trabajos anteriores se justifican como antecedentes o fundamentos.
+
+WoS/Scopus usan campos de publicación; IEEE requiere el filtro de años correspondiente y arXiv la fecha de envío indicada. Se registrarán fecha editorial, primera disponibilidad y versiones cuando existan. Los filtros solicitados siguen **sin aplicación verificada**, y una fecha de commit no sustituye al año de un documento.
+
 **Periodo y alcance.** La búsqueda inicial del 02/11/2026 usa 2019–2026 como intervalo preferente, sin un filtro de fecha de publicación verificable en GitHub. La recuperación dirigida del 03/11/2026 añade S6 y S7; S6 no declara fecha editorial y no acredita recencia. Se informa la sensibilidad sin ese estudio. Los trabajos anteriores a 2019 son fundamentos justificados. El catálogo no equivale a 35 originales leídos ni a 35 estudios aplicados: el denominador de extracción ampliado es cinco.
 
-
-El historial de acceso a portales se conserva como antecedente en las [comprobaciones registradas](../_static/literature_e1/access_checks_20261102_update.json), las [rutas preparadas](../_static/literature_e1/access_routes.csv) y el [intento institucional mediante Uninorte](../_static/literature_e1/access_uninorte_wos_20261102.json).
-
-### 3.1.3. Criterios de inclusión, exclusión y unidad de conteo
+### 3.1.4. Criterios de inclusión y exclusión
 
 Los criterios siguientes se hicieron explícitos al revisar el corpus; no se presentan como prerregistrados antes de las búsquedas del 02/11/2026.
 
@@ -126,13 +155,44 @@ Los criterios siguientes se hicieron explícitos al revisar el corpus; no se pre
 | Resultados verificables | Métrica, valor, escala y tabla/sección de origen; dispersión si se reporta | Sin resultados recuperados no se añaden cifras ni frecuencias verificadas |
 | Arquitectura y protocolo | Información suficiente para identificar el tipo de referencia y su papel independiente; partición, objetivo y evaluación identificables | Distinguir falta de evidencia del comparador de hiperparámetros no reportados. No completar una configuración por preferencia personal; registrar lo no reportado y la búsqueda de arquitectura requerida por E2 |
 | Identidad y publicación | Autoría, título y documento localizable; fecha declarada o desconocida de forma explícita; DOI si existe | Código o README sin texto suficiente es contexto. Un informe o borrador no se excluye solo por su género; la literatura gris se identifica y no acredita revisión por pares |
-| Periodo | Preferencia 2019–2026 hasta la consulta del 02/11/2026 | Los anteriores se justifican como antecedentes/fundamentos; los sin fecha no acreditan recencia y requieren sensibilidad. La actualización de un repositorio no sustituye al año del documento |
+| Periodo | Preferencia 01/01/2019–03/11/2026 en el plan actual; filtros sin ejecución verificada | Los anteriores se justifican como antecedentes/fundamentos; los sin fecha no acreditan recencia y requieren sensibilidad. La actualización de un repositorio no sustituye al año del documento |
 
 Se distinguen pertinencia, recuperabilidad y calidad. Que un texto esté incluido para extracción exploratoria no certifica su validez ni basta para sostener que respalda uno de los tres modelos básicos definitivos. La preferencia Q1 requiere verificar índice, revista, año y categoría; no se deduce de que exista un DOI o un repositorio, ni se traslada automáticamente a congresos.
 
 Un estudio cuenta como máximo una vez por familia. Preprint, artículo y código del mismo estudio no deben duplicarse; la deduplicación bibliográfica entre bases deberá usar DOI y, cuando falte, título/autores/año. La deduplicación del flujo actual solo acredita repositorios repetidos en la búsqueda complementaria. El catálogo de trabajos citados y los cinco textos aplicados con extracción completa cumplen funciones distintas.
 
-### 3.1.4. Flujo histórico y recuperación dirigida
+Para el nuevo flujo académico se normalizarán DOI; se agruparán identificadores arXiv sin versión y vínculos preprint–artículo comprobados; cuando falten identificadores se revisarán título, autores y año. Las coincidencias ambiguas se resolverán conservando el motivo. Esta deduplicación documental no se presenta como ejecutada mientras no existan exportaciones. La literatura gris se identifica y requiere sensibilidad; no se transforma en evidencia revisada por pares.
+
+### 3.1.5. Trazabilidad del proceso
+
+**Intento académico actual.** Se registran cuatro GET y ninguna consulta bibliográfica verificada. Los totales de coincidencias y registros de cada base son `null`; los accesos bloqueados no constituyen artículos identificados, excluidos ni una búsqueda válida con cero resultados. No se añade un diagrama académico con cifras inventadas. La bitácora actual permanece separada del flujo complementario histórico. El [manifiesto de los archivos de registro](../_static/literature_e1/academic_search_20261103/manifest.json) conserva sus SHA-256; no son hashes de exportaciones bibliográficas inexistentes.
+
+Cuando exista acceso, se conservarán las exportaciones originales RIS/BibTeX/CSV/Atom y sus hashes antes de deduplicar. Se registrarán cadena literal, colección, filtros realmente aplicados, fecha/hora y zona, orden, páginas, tamaño de página, regla de parada y recuperación parcial. El flujo distinguirá registros identificados por fuente, duplicados, documentos cribados, textos evaluados, incluidos y motivos de exclusión.
+
+**Consultas complementarias históricas de GitHub.**
+
+El [registro histórico de consultas complementarias](../_static/literature_e1/search_log.json) conserva URL, campo, página, fecha con zona horaria, respuesta y hash. La tabla siguiente se reconstruyó desde ese registro; no es una nueva búsqueda. Todos sus intentos corresponden al **02/11/2026**; las horas de cada intento se conservan en el [resumen por cadena](../_static/literature_e1/query_summary_20261103.csv).
+
+| ID | Consulta literal | Intentos / páginas recuperadas | Ocurrencias recuperadas | Repositorios distintos dentro de la consulta | Estimación del índice |
+|---|---|---:|---:|---:|---:|
+| G1 | `bitcoin volatility forecasting` | 3 / 3 | 30 | 30 | 148 |
+| G2 | `cryptocurrency volatility deep learning` | 2 / 2 | 20 | 20 | 33 |
+| G3 | `bitcoin realized volatility neural` | 2 / 2 | 1 | 1 | 1 |
+| G4 | `bitcoin volatility MLP in:readme` | 1 / 1 | 10 | 10 | 241 |
+| G5 | `bitcoin volatility feedforward in:readme` | 1 / 1 | 10 | 10 | 103 |
+| G6 | `bitcoin volatility paper in:description` | 1 / 1 | 7 | 7 | 7 |
+| G7 | `"bitcoin volatility" "neural network" in:readme` | 2 / 1 | 10 | 10 | 45 |
+| G8 | `"realized volatility" "MLP" "Bitcoin" in:readme` | 2 / 1 | 10 | 10 | 24 |
+| G9 | `"volatility" "ANN" "bitcoin" in:readme` | 2 / 1 | 10 | 10 | 192 |
+| G10 | `"bitcoin volatility" "CNN" in:readme` | 2 / 1 | 10 | 10 | 21 |
+
+La estimación del índice es la cifra mostrada por GitHub en las páginas recuperadas. **No se suman esas estimaciones**: las consultas se solapan. Las 118 ocurrencias efectivamente recuperadas se deduplican a 106 repositorios. Hubo cuatro intentos limitados por el servidor y sus reintentos están en el registro; no son cuatro cadenas adicionales. G3 incluye una segunda página vacía: cuenta como respuesta recuperada, no como un registro nuevo.
+
+El orden fue la relevancia predeterminada y los límites variaron entre una y tres páginas por cadena. No se aplicó un filtro verificable por fecha de publicación, revisión por pares o cuartil. Las consultas dirigidas a MLP/ANN/CNN y las búsquedas truncadas por página introducen sesgo de descubrimiento; por ello, sus resultados no estiman prevalencia de arquitecturas en la literatura.
+
+La [procedencia](../_static/literature_e1/provenance.json) registra la importación de comprobantes previos y distingue la fecha original de búsqueda de la revisión del 03/11/2026. Las comprobaciones de Guo y Herremans se documentan aparte. La recuperación dirigida de seis registros del 03/11/2026 amplía las inspecciones y los textos evaluados, pero no las cadenas ni las ocurrencias iniciales. Ninguna clase de código se convierte automáticamente en comparador publicado.
+
+**Flujo histórico y recuperación dirigida.**
 
 La identificación original corresponde al **02/11/2026**; la ampliación del **03/11/2026** recupera seis repositorios ya presentes en esos registros, sin ejecutar cadenas nuevas.
 
@@ -158,7 +218,9 @@ Se preservan el [cribado original](../_static/literature_e1/screening_20261102_o
 
 El cribado fue asistido por Codex para el autor responsable, Jassan Arteta. No se acredita segundo revisor humano, consenso previo ni acuerdo entre revisores; las decisiones y dudas quedan registradas con su evidencia y fecha. El flujo comunica una revisión complementaria, no exhaustividad PRISMA ni consultas en las bases que permanecen sin búsqueda acreditada.
 
-### 3.1.5. Evaluación de calidad de los estudios extraídos
+La frase histórica «sin ejecutar cadenas nuevas» describe aquella recuperación de seis repositorios. El intento académico de esta actualización es otra fase y no altera 118 ocurrencias, 106 repositorios, 20 inspeccionados, siete textos evaluados, cinco incluidos ni 81 cifras publicadas por sus autores.
+
+### 3.1.6. Evaluación de la calidad de los estudios
 
 La evaluación usa dimensiones y ubicaciones de evidencia, sin una puntuación agregada arbitraria. Distingue lo declarado por el texto, lo comprobado en el código de autor y lo no recuperado; no certifica ausencia de fuga ni reproducción de resultados.
 
@@ -171,6 +233,8 @@ La evaluación usa dimensiones y ubicaciones de evidencia, sin una puntuación a
 | S7. Alakhouch Idriss (2026) | LSTM64→LSTM32→Dense16→Dense1 declarada; doce atributos en PDF frente a ocho en código | Sin varias semillas o dispersión acreditadas | Aparente fuga al ajustar escaladores antes del split; objetivo30 días/anualizado distinto; recuentos y early stopping del informe/código no reconciliados |
 
 Se conserva la [valoración por dimensión](../_static/literature_e1/quality_assessment.csv) y su [JSON](../_static/literature_e1/quality_assessment.json). Ausencia de descripción no equivale a ausencia del defecto; una prueba publicada tampoco garantiza calibración, comparabilidad o control de multiplicidad. Los detalles y la repercusión sobre la selección se desarrollan en §§3.2–3.4.
+
+La consulta de una base devuelve registros; la inclusión exige recuperar y valorar documentos. Para la nueva búsqueda se mantendrá la evaluación de arquitectura/comparador, protocolo, partición y fuga aparente, repeticiones, dispersión e inferencia. Indexación y cuartil se comprobarán por fuente, revista, año y categoría: no se deducen de un DOI ni se atribuyen automáticamente a congresos o preprints.
 
 ## 3.2. Extracción, frecuencia y selección de tres familias
 

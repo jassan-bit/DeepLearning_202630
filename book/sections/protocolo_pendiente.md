@@ -73,7 +73,7 @@ Las frecuencias se calculan sobre cinco textos completos: familia LSTM 4/5 inclu
 
 ## Límites que permanecen abiertos
 
-- **Cobertura académica:** no se ejecutaron consultas bibliográficas en WoS/Scopus/IEEE/arXiv cuando su interfaz quedó bloqueada. La revisión complementaria no es exhaustiva.
+- **Cobertura académica:** las 24 cadenas nativas y el registro del 03/11/2026 están en §3.1. Los cuatro intentos fueron bloqueados por el proxy antes de alcanzar WoS/Scopus/IEEE/arXiv; ejecución y exportaciones siguen pendientes. Guardar una configuración de red no demuestra que ya esté aplicada. La recuperación complementaria no acredita esa cobertura.
 - **Fuente de atención:** los dos apoyos aplicados recuperados son manuscritos sin revisión por pares acreditada; uno no acredita fecha editorial. Si el criterio académico exige solo artículos revisados por pares, esa parte de la selección debe ampliarse.
 - **Extracción de los tres básicos:** la guía pide recurrencia, sencillez y diversidad; priorizar únicamente diversidad en un corpus pequeño no cierra conjuntamente esos criterios.
 - **EDA y referencia de contexto:** el diagnóstico de cuatro Ridge y sus residuos está ejecutado; queda justificar la especificación y el tratamiento de la dependencia para el experimento de E2. La autocorrelación residual no reclasifica automáticamente el problema. No se han identificado el mecanismo de faltantes ni el ruido externo de etiquetas con evidencia suficiente.
