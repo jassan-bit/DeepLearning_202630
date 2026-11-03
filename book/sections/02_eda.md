@@ -212,7 +212,7 @@ Son recuentos de índices elegibles para $n=7$, no corridas de entrenamiento. El
 
 El embargo de covariables no implica independencia de las etiquetas móviles. El manifiesto registra **2.196 filas de seis configuraciones de sensibilidad con $n>D+1$** donde la última etiqueta de ajuste y la de validación comparten retornos. Esa dependencia debe conservarse en el diseño de inferencia posterior; los folds no se contarán como réplicas independientes.
 
-El código es `scripts/prepare_forward_chaining.py`. Se publican el [resumen y verificación del ejemplo](../_static/cv_forward_chaining/summary.json) y el [manifiesto de folds](../_static/cv_forward_chaining/folds.csv), con fechas, cantidades de muestras y hashes de los índices de entrenamiento. La historia elegible de ajuste crece en estos índices e incluye únicamente pasado permitido; la referencia residual de §2.2.4 conserva pesos fijos y no utiliza todas esas ampliaciones. No se abren archivos de test. La división no necesita semilla de barajado.
+El código es `scripts/prepare_forward_chaining.py`. Se publican el [resumen y verificación del ejemplo](../_static/cv_forward_chaining/summary.json) y el [manifiesto de folds](../_static/cv_forward_chaining/folds.csv), con fechas, cantidades de muestras y hashes de los índices de entrenamiento. La historia elegible de ajuste crece en estos índices e incluye únicamente pasado permitido; la referencia residual de §2.2.3.2.3 conserva pesos fijos y no utiliza todas esas ampliaciones. No se abren archivos de test. La división no necesita semilla de barajado.
 
 - **Decisión de preprocesamiento:** utilizar los índices corregidos de la versión 2, con embargo explícito de $D$ días y soportes de etiqueta registrados; ajustar transformaciones solo con el entrenamiento permitido de cada fold y conservar esos controles en la ejecución posterior.
 - **Impacto en la arquitectura:** los modelos deben evaluarse con el mismo calendario y muestras comparables dentro de cada configuración.
@@ -228,21 +228,104 @@ Esta reserva fija la identidad de los archivos brutos; aún no se ha congelado e
 - **Impacto en la arquitectura:** comparar modelos y decisiones ya fijados, sin adaptar arquitecturas al resultado de test.
 - **Riesgos identificados:** asumir que un hash demuestra ausencia de consulta o que descargar equivale a evaluar. La congelación del benchmark permanece pendiente.
 
-## 2.2. EDA específico: regresión temporal (bloque C)
+## 2.2. EDA Específico por Tipo de Problema
+
+Se presentan los diez bloques A–J de la guía, con todos sus incisos y una justificación de aplicabilidad. El desarrollo específico del contrato actual corresponde a **regresión temporal, bloque C (§2.2.3)**. Los controles numéricos del bloque A y los diagnósticos temporales del bloque B que resultan pertinentes se relacionan con su evidencia existente; los bloques de otras modalidades explican por qué no corresponden a las entradas y al objetivo definidos.
+
+La inclusión de un inciso no acredita su ejecución. Cada bloque termina con decisión de preprocesamiento, impacto en la arquitectura y riesgos identificados. Esta organización conserva la evidencia de desarrollo y distingue los análisis ya realizados de los requisitos no aplicables o pendientes.
+
+| Apartado | Aplicabilidad al contrato actual | Motivo |
+|---|---|---|
+| 2.2.1. Clasificación y Regresión | Controles compartidos; no es la ruta principal | Objetivo continuo y evaluación temporal; los controles numéricos se conservan sin adoptar una partición aleatoria. |
+| 2.2.2. Series de Tiempo | Diagnósticos de apoyo; no es la ruta principal | No hay rezagos explícitos del objetivo como entrada; los diagnósticos temporales de §2.5 sí son pertinentes. |
+| 2.2.3. Regresión Temporal | Sí aplica | Covariables OHLCV rezagadas, salida continua, disponibilidad causal y partición cronológica. |
+| 2.2.4. Regresión Espacial | No aplica | No hay coordenadas o unidades espaciales de predicción. |
+| 2.2.5. Regresión Espacio-Temporal | No aplica | No hay ubicaciones múltiples, rejilla geográfica ni red de sensores. |
+| 2.2.6. Clasificación de Imágenes | No aplica | No hay imágenes de entrada ni clases visuales. |
+| 2.2.7. Segmentación de Imágenes | No aplica | No hay pares imagen–máscara ni etiquetas por píxel. |
+| 2.2.8. Clasificación de Texto | No aplica | No hay un corpus textual de entrada ni clases documentales. |
+| 2.2.9. Etiquetado Secuencial | No aplica | No se asignan etiquetas por token o elemento de entrada. |
+| 2.2.10. Aprendizaje Secuencia a Secuencia | No aplica | La salida principal es una volatilidad escalar a un día, no una secuencia destino. |
+
+### 2.2.1. Clasificación y Regresión
+
+**Aplicabilidad al proyecto:** no se adopta el bloque A como ruta principal. Las cinco covariables OHLCV pueden almacenarse en una tabla, pero su uso para anticipar una volatilidad diaria exige el reloj causal, la dependencia y la partición temporal del bloque C (§2.2.3). La clasificación no aplica porque el objetivo es continuo y no se han definido clases. Los controles de atributos y de regresión que se comparten con este bloque sí son pertinentes; se relacionan a continuación con la evidencia existente.
+
+#### 2.2.1.1. Estructura de atributos
+
+- **Tipificación, cardinalidad y escalas:** O/H/L/C y volumen son atributos numéricos continuos; los precios se expresan en USDT y el volumen en BTC. Las entradas acordadas conservan D×5 valores, con D=7/14/21/28 días. No hay categorías nominales u ordinales ni identificadores de entidades que requieran estudiar cardinalidad categórica.
+- **Distribuciones, asimetría y valores atípicos:** los perfiles, distribuciones y extremos de desarrollo se conservan en §2.1 y §2.5. La regla IQR descrita para la volatilidad pertenece al objetivo; no se atribuye a todas las covariables ni se inventa una distancia de Mahalanobis calculada. Un valor extremo no se elimina sin comprobar si es un error o una observación válida.
+- **Implicación de transformación y codificación:** cualquier escalado aprendido debe ajustarse solo al entrenamiento permitido. El escalado robusto es una opción de la guía cuya adopción no queda fijada en esta reorganización. Los logaritmos de los análisis descriptivos no constituyen una transformación ya seleccionada para las redes. One-hot y embeddings de entidades no aplican a este contrato sin variables categóricas; no se añade esa modalidad durante la reorganización.
+
+#### 2.2.1.2. Relación entre atributos y objetivo
+
+- **Correlaciones lineales, de rango y relaciones no lineales:** Pearson y Spearman se documentan en §2.1.3.1 y en el análisis temporal de §2.2.3, respetando el desfase entre covariable y objetivo. Información mutua no se presenta como ejecutada. Ninguna correlación por sí sola demuestra causalidad o capacidad para anticipar la parte aún desconocida del objetivo.
+- **Multicolinealidad:** el PCA de §2.1.3.2 describe la redundancia de los niveles OHLC. No sustituye un VIF ni un número de condición documentado, y no autoriza eliminar covariables o seleccionar una red por esa sola evidencia.
+- **Fuga hacia el objetivo:** el OHLCV completo del día de resultado y cualquier atributo conocido después del origen no pueden ser entradas de ese pronóstico. Los controles de disponibilidad se desarrollan en §2.2.3; el test permanece fuera de la selección.
+
+#### 2.2.1.3. Complejidad de la tarea
+
+La referencia lineal regularizada solicitada para una primera aproximación ya existe como **cuatro Ridge diagnósticas**, una por historia de entrada, ajustadas exclusivamente con muestras permitidas de 2023 y evaluadas descriptivamente en 2024. Su desarrollo se conserva en §2.2.3. La separabilidad entre clases no aplica a este objetivo continuo. La dependencia de sus residuos señala límites de esa referencia, pero no cuantifica automáticamente una ganancia alcanzable por una red ni prueba que la relación completa sea lineal o no lineal.
+
+No se transforma este diagnóstico en un ranking de historias o en un baseline DL medido. El margen operativo del 5 % corresponde únicamente a persistencia, según §1.1.4.
+
+#### 2.2.1.4. Implicaciones clave
+
+La profundidad, el ancho y la regularización de una posible MLP requieren evidencia y protocolo propios; no están fijados por este bloque. Se conservan MSE como pérdida prevista, RMSE primaria y una salida escalar de volatilidad. Entropía cruzada ponderada y balance de clases no aplican sin un objetivo de clasificación; Huber es una opción de la guía que no se adopta por esta reorganización. La partición debe seguir siendo cronológica con embargo; la representación en tabla no permite barajar fechas.
+
+- **Decisión de preprocesamiento:** conservar OHLCV numérico, desfases causales y escalado aprendido solo con pasado; no introducir codificaciones categóricas o transformaciones nuevas.
+- **Impacto en la arquitectura:** mantener D×5 y el mismo objetivo entre modelos; las referencias lineales son diagnósticos de EDA y la selección de las tres redes continúa pendiente.
+- **Riesgos identificados:** tratar ventanas temporales como filas independientes, confundir PCA/correlación con utilidad predictiva, usar información posterior al origen o presentar el bloque tabular como sustituto del análisis temporal.
+
+### 2.2.2. Series de Tiempo
+
+**Aplicabilidad al proyecto:** el bloque B no es la ruta principal mientras el contrato de entrada conserve OHLCV rezagadas sin rezagos explícitos de la volatilidad objetivo. Se mantiene el tipo 4 y el bloque C (§2.2.3). Eso no implica independencia o exogeneidad de OHLCV: los precios contienen información histórica y participan en la construcción de retornos. Los diagnósticos temporales pertinentes ya existentes se conservan como apoyo en §2.5 y se relacionan con todos los incisos de la guía.
+
+#### 2.2.2.1. Visualización y descomposición
+
+Las gráficas de cierre, retorno y volumen diarios, la descomposición STL y el candidato exploratorio de cambio de régimen se documentan en §2.5.1. La STL describe tendencia, componente estacional y residuo en un tramo continuo de entrenamiento; el periodo semanal impuesto no demuestra estacionalidad ni estima automáticamente estacionalidades múltiples. El candidato de CUSUM no constituye una ruptura confirmada ni identifica una causa de mercado. No se reutiliza un suavizado centrado como predictor causal.
+
+#### 2.2.2.2. Estacionariedad
+
+ADF y KPSS se interpretan conjuntamente con las especificaciones y resultados de §2.5.2. Los cuatro escenarios se distinguen: ADF rechaza y KPSS no rechaza es compatible con estacionariedad bajo sus modelos; ADF no rechaza y KPSS rechaza es compatible con no estacionariedad; ambos rechazan exige revisar la discrepancia y la especificación; ninguno rechaza es inconcluso. Un no rechazo no demuestra el supuesto correspondiente, y las conclusiones de un tramo no garantizan estabilidad futura.
+
+Diferenciación, transformación logarítmica o de potencia y normalización por ventana son alternativas que requieren justificación propia. No se aplican automáticamente para forzar una prueba favorable; cualquier parámetro aprendido debe usar únicamente el pasado permitido. Las definiciones n=7 y h=1 no cambian.
+
+#### 2.2.2.3. Dependencia temporal
+
+ACF, PACF con bandas aproximadas y periodograma se conservan en §2.5.3, con la unidad y el tramo de cada diagnóstico explícitos. Se examinan rezagos y periodicidades como descripciones, sin elegir una D ganadora por el mayor pico observado. Los resultados diarios, horarios y de minuto no se tratan como intercambiables.
+
+La heterocedasticidad se estudió con ARCH-LM; esa prueba no es un diagnóstico general de no linealidad. El análisis de términos polinómicos con covarianza HAC examina otra hipótesis bajo su especificación y tampoco cubre toda forma de no linealidad. Son diagnósticos exploratorios, distintos del análisis de residuos predictivos de la referencia de §2.2.3 y de las redes aún no entrenadas.
+
+#### 2.2.2.4. Frecuencia, granularidad y datos faltantes
+
+Se mantiene adquisición de un minuto y modelado diario UTC. La frecuencia, regularidad, episodio de minutos faltantes y día excluido se documentan en §2.1.2 y §2.5.4. La política vigente preserva el calendario, excluye el día incompleto y las ventanas afectadas y no imputa; no se calcula un retorno diario atravesando un hueco ni se emplea información futura.
+
+La decisión entre modelos locales y globales para varias series no aplica a un alcance con un único par BTCUSDT y una sola serie de respuesta. El uso conjunto de cinco covariables OHLCV sí corresponde a una entrada multivariante; no crea por sí solo varios mercados independientes.
+
+#### 2.2.2.5. Outliers y anomalías
+
+Las distribuciones y criterios descriptivos de extremos existentes se conservan en §2.1.1 y §2.5.5. Se distinguen errores verificables de episodios reales; no se aplica clipping ni se atribuye una causa económica sin evidencia. El efecto de esos episodios sobre el error de pronóstico requiere resultados de modelos y permanece pendiente: sus colas o su posición en una gráfica no lo cuantifican.
+
+#### 2.2.2.6. Implicaciones clave
+
+El horizonte principal es **h=1** y la historia de entrada sigue siendo **D=7/14/21/28** días. Las estrategias multi-paso recursiva, directa o multi-salida son opciones para un alcance con varios horizontes; no se implementan como ampliación de este pronóstico escalar. La partición cronológica, la validación de origen móvil y el escalado con pasado se mantienen en §2.1.4 y §2.2.3.
+
+Añadir rezagos explícitos de volatilidad exigiría versionar antes el contrato de entrada y revisar la ruta como tipo 3. La autocorrelación por sí sola no introduce ese cambio, no autoriza usar el objetivo futuro y no demuestra superioridad de una arquitectura.
+
+- **Decisión de preprocesamiento:** conservar el calendario diario, la exclusión estricta, las cinco covariables y el ajuste causal de transformaciones; los diagnósticos de §2.5 permanecen como evidencia de apoyo.
+- **Impacto en la arquitectura:** mantener entrada D×5 y salida escalar para h=1; la elección de familia, dimensiones y política de actualización pertenece al cierre experimental, no a un pico de ACF o una prueba aislada.
+- **Riesgos identificados:** fuga temporal, ventanas y objetivos solapados, confusión de frecuencias o de hipótesis estadísticas, extrapolación de un tramo de desarrollo y conversión de diagnósticos retrospectivos en señales disponibles al origen.
+
+### 2.2.3. Regresión Temporal
+
+**Aplicabilidad: sí; es el bloque específico principal del proyecto.**
 
 Se aplica el **bloque C de la guía: regresión temporal**, porque las entradas son covariables OHLCV rezagadas y no incluyen historia explícita de la volatilidad objetivo. Se utilizan los CSV de desarrollo 2023–2024, se conserva la cuadrícula de 731 días y el 24/03/2023 permanece excluido, sin imputación. El bloque incluye una referencia lineal regularizada para diagnosticar residuos. Ese ajuste de EDA se distingue de los tres modelos DL, el piloto y el benchmark reservados para E2; no utiliza test.
 
 La revisión punto por punto se conserva en el {download}`informe del bloque C <../_static/e1/revision_eda_temporal_20261103.md>` y su [matriz de evidencias](../_static/e1/revision_eda_temporal_20261103.json).
 
-| Bloque de la guía 2.2 | Aplicabilidad al contrato actual | Tratamiento en este libro |
-|---|---|---|
-| C. Regresión temporal | Aplicable: covariables observadas en el tiempo y objetivo continuo sin rezagos propios como entrada | Es el bloque específico desarrollado aquí |
-| A. Clasificación/regresión tabular | No es la ruta principal del problema temporal definido | No se exige completar otro bloque ni crear clases artificiales |
-| B. Series de tiempo | No es la ruta principal mientras no se añadan rezagos del objetivo | Los diagnósticos temporales ya existentes se conservan como apoyo en §2.5 |
-| D–J. Espacial, espacio-temporal, imágenes, texto y secuencias | No corresponden a los datos ni al objetivo de este proyecto | No se ejecutan bloques de otras modalidades |
-
-
-### 2.2.1. Frecuencia, desfases y disponibilidad
+#### 2.2.3.1. Estructura temporal de las covariables
 
 Cada fila OHLCV resume un día UTC. Apertura, máximo, mínimo, cierre y volumen del día completo se consideran disponibles **al comenzar el día siguiente**. Para un resultado del día $d$, la red utiliza días hasta $d-1$; el objetivo $\sigma_7(d)$ incorpora el retorno de $d$ y solo se conoce al terminarlo. Esta notación de día de resultado corresponde a $Y_t=\sigma_{t+1}$ en la convención de §1.1.1.
 
@@ -261,7 +344,9 @@ La irregularidad intradiaria ya documentada —80 minutos ausentes y una fila co
 - **Impacto en la arquitectura:** mantener D×5 valores como contrato común; aplanarlos para una referencia lineal no cambia los datos que reciben las redes.
 - **Riesgos identificados:** convertir cierres posteriores en atributos contemporáneos, comprimir huecos o confundir el instante de apertura de una vela con la disponibilidad del OHLCV completo.
 
-### 2.2.2. Relaciones covariables–objetivo con rezagos
+#### 2.2.3.2. Relación covariables–objetivo en el tiempo
+
+##### 2.2.3.2.1. Relaciones covariables–objetivo con rezagos
 
 Se calculan Pearson y Spearman entre log(O/H/L/C) o log(1+V) del día d−k y σ7 del día d, con k=1,…,28. Para comparar los rezagos sobre la misma información se usa una **cohorte común de 308 días de 2023**, con los 28 rezagos de las cinco covariables y el objetivo disponibles. Hay **140 combinaciones covariable–rezago** con N constante; las transformaciones son fijas y no contienen un escalador aprendido con validación.
 
@@ -297,7 +382,7 @@ En este perfil, las asociaciones lineales y de rango de los niveles de precio so
 - **Impacto en la arquitectura:** la longitud D determina qué rezagos puede representar cada modelo, mientras el aplanado o la secuencia deben conservar el mismo conjunto de información.
 - **Riesgos identificados:** máximos por búsqueda múltiple, muestras distintas entre rezagos, niveles de precio espurios y asociación con la parte ya conocida de una volatilidad móvil.
 
-### 2.2.3. Relación móvil y posibles cambios descriptivos
+##### 2.2.3.2.2. Relación móvil y posibles cambios descriptivos
 
 Se calculó la correlación de Pearson entre cada covariable de $d-1$ y $\sigma_7(d)$ en ventanas retrospectivas de **60 días de calendario**, con al menos **50 pares válidos**. Se muestran 2023 y 2024 como desarrollo; las posiciones ausentes permanecen en la cuadrícula. Cuatro curvas de precio casi coincidentes reflejan su fuerte relación entre sí, no cuatro fuentes independientes de evidencia.
 
@@ -311,9 +396,9 @@ El resumen de las curvas contiene **309 ventanas definidas en 2023 y 366 en 2024
 - **Impacto en la arquitectura:** evaluar capacidad temporal bajo las mismas ventanas y datos, sin añadir capas por una oscilación gráfica ni inferir un modelo superior por el signo del coeficiente.
 - **Riesgos identificados:** ventanas solapadas, interpretación retrospectiva como señal anticipable y confusión entre cambio marginal, deriva de la relación y ruptura estadísticamente confirmada.
 
-### 2.2.4. Residuos de una referencia lineal regularizada
+##### 2.2.3.2.3. Residuos de una referencia lineal regularizada
 
-Se ajustaron **cuatro referencias Ridge diagnósticas**, una por D=7/14/21/28, con las mismas cinco covariables de cada ventana, aplanadas a 5D atributos. Se usan valores OHLCV en su escala original antes de estandarizarlos; los logaritmos de §2.2.2 pertenecen al análisis descriptivo de correlaciones. La regularización **α=1** se fijó para este diagnóstico, sin búsqueda de hiperparámetros ni selección de una historia ganadora. Se minimiza la suma de errores cuadrados más α por la norma cuadrada de los coeficientes, con intercepto no penalizado; el valor de α corresponde a esa convención de suma, no a otra escala de penalización.
+Se ajustaron **cuatro referencias Ridge diagnósticas**, una por D=7/14/21/28, con las mismas cinco covariables de cada ventana, aplanadas a 5D atributos. Se usan valores OHLCV en su escala original antes de estandarizarlos; los logaritmos de §2.2.3.2.1 pertenecen al análisis descriptivo de correlaciones. La regularización **α=1** se fijó para este diagnóstico, sin búsqueda de hiperparámetros ni selección de una historia ganadora. Se minimiza la suma de errores cuadrados más α por la norma cuadrada de los coeficientes, con intercepto no penalizado; el valor de α corresponde a esa convención de suma, no a otra escala de penalización.
 
 Cada columna se estandariza con media y desviación poblacional calculadas únicamente en el ajuste permitido de 2023; una columna constante tendría escala uno. La implementación utiliza NumPy/SciPy y solución de Cholesky. Los parámetros exportados reproducen las predicciones y una solución independiente por sistema aumentado las verifica con diferencia máxima de **2,46×10⁻¹⁴**. No se transforma ni recorta el objetivo y no se recortan las predicciones.
 
@@ -342,7 +427,11 @@ Se publican las [configuraciones y cortes](../_static/eda_temporal_reference/ref
 - **Impacto en la arquitectura:** contrastar posteriormente representaciones temporales con la misma información; el error de una referencia lineal no selecciona por sí solo LSTM, TCN o atención ni fija sus tamaños.
 - **Riesgos identificados:** dependencia por etiquetas solapadas, extrapolación y deriva con pesos estáticos, p-values asintóticos sobreinterpretados y reutilización de este diagnóstico como benchmark final o evidencia de desempeño en test.
 
-### 2.2.5. Reproducibilidad, decisiones y límites
+#### 2.2.3.3. Implicaciones clave
+
+Las historias de las covariables son D=7/14/21/28 días. La partición cronológica con embargo D, el escalado ajustado solo con el pasado permitido y el control de disponibilidad responden al riesgo de fuga temporal. Se conserva n=7 y h=1; las referencias diagnósticas no seleccionan una arquitectura ni sustituyen el benchmark posterior.
+
+##### 2.2.3.3.1. Reproducibilidad, decisiones y límites
 
 Los tres módulos reutilizan CSV de desarrollo y comprueban sus hashes. El módulo descriptivo original conserva los perfiles marginales y las curvas móviles; su contador de cero modelos corresponde a ese módulo. La ampliación específica añade disponibilidad, cohorte común y comprobaciones independientes de veinte ventanas móviles. El tercer módulo ajusta exclusivamente las cuatro referencias Ridge y comprueba sus índices contra el primer origen del manifiesto de folds. Ninguno abre ZIP ni archivos de test.
 
@@ -354,26 +443,226 @@ Los tres módulos reutilizan CSV de desarrollo y comprueban sus hashes. El módu
 
 Los resultados están en `results/eda_covariates_documental/`, `results/eda_temporal_specific/` y `results/eda_temporal_reference/`, con copias descargables en el libro. Se conservan las [correlaciones marginales originales](../_static/eda_doc/lagged_correlations_train.csv), las [curvas móviles](../_static/eda_doc/rolling_60d_correlations_development.csv), sus [conteos de pares](../_static/eda_doc/rolling_60d_pair_counts.csv) y el [perfil entre años](../_static/eda_doc/relationship_profiles_2023_2024.csv). Los resúmenes de [descriptivos originales](../_static/eda_doc/summary.json), [bloque C específico](../_static/eda_temporal_specific/summary.json) y [referencia residual](../_static/eda_temporal_reference/summary.json) registran fuentes, software, controles y límites. La reconstrucción lineal es determinista y no requiere semilla de entrenamiento.
 
-- **Decisión de preprocesamiento:** conservar el calendario, las ausencias y la disponibilidad causal de OHLCV; mantener las cinco covariables acordadas sin escoger un subconjunto por estas gráficas.
-- **Impacto en la arquitectura:** conservar una entrada $D\times5$ para las historias confirmadas y el mismo objetivo de siete retornos diarios. Las correlaciones y los residuos lineales no fijan el ancho, la profundidad, el rezago ganador ni una red superior.
-- **Riesgos identificados:** correlaciones espurias de niveles, objetivo y ventanas solapados, selección retrospectiva por inspección, fechas comprimidas y uso indebido de una correlación diagnóstica como predictor contemporáneo. Las cuatro referencias son ajustes de EDA; no se extraen conclusiones de test ni resultados de entrenamiento de redes.
-
-### 2.2.6. Correspondencia con los requisitos del bloque C
+##### 2.2.3.3.2. Correspondencia con los requisitos del bloque C
 
 | Requisito aplicable de la guía | Evidencia actual | Estado y límite |
 |---|---|---|
-| Frecuencia, regularidad y huecos | §2.2.1: cinco covariables diarias UTC, 731 posiciones y 730 días OHLCV completos | Ejecutado; 24/03/2023 excluido, sin imputación ni compresión del calendario |
+| Frecuencia, regularidad y huecos | §2.2.3.1: cinco covariables diarias UTC, 731 posiciones y 730 días OHLCV completos | Ejecutado; 24/03/2023 excluido, sin imputación ni compresión del calendario |
 | Desfases y disponibilidad al pronosticar | Contrato de disponibilidad y revisión k=1,…,28 | Cero violaciones; OHLCV del día de resultado y su etiqueta no son entradas |
-| Correlaciones cruzadas con rezagos | §2.2.2: 140 pares covariable–rezago, Pearson y Spearman sobre los mismos 308 días de 2023 | Ejecutado; máximos descriptivos, sin selección de D ni causalidad |
-| Deriva de la relación covariables–objetivo | §2.2.3: ventanas de 60 días, mínimo 50 pares; 309/366 ventanas definidas por covariable y año | Ejecutado como diagnóstico retrospectivo; no confirma rupturas estadísticas |
-| Residuos de un modelo de referencia | §2.2.4: cuatro Ridge estáticos, 366 residuos de 2024 por D; ACF y doce Ljung–Box/Holm | Ejecutado; fuerte dependencia residual con interpretación exploratoria y límites asintóticos |
+| Correlaciones cruzadas con rezagos | §2.2.3.2.1: 140 pares covariable–rezago, Pearson y Spearman sobre los mismos 308 días de 2023 | Ejecutado; máximos descriptivos, sin selección de D ni causalidad |
+| Deriva de la relación covariables–objetivo | §2.2.3.2.2: ventanas de 60 días, mínimo 50 pares; 309/366 ventanas definidas por covariable y año | Ejecutado como diagnóstico retrospectivo; no confirma rupturas estadísticas |
+| Residuos de un modelo de referencia | §2.2.3.2.3: cuatro Ridge estáticos, 366 residuos de 2024 por D; ACF y doce Ljung–Box/Holm | Ejecutado; fuerte dependencia residual con interpretación exploratoria y límites asintóticos |
 | Decisión sobre la historia del objetivo | Entrada OHLCV sin rezagos de volatilidad; revisión explícita a la luz de los residuos | Se mantiene tipo 4. Añadir historia del objetivo requeriría registrar tipo 3 antes de ejecutarlo |
 | Ventanas, partición y embargo | D=7/14/21/28; manifiesto versión 2 y corte $u\le t-D-1$ verificado para las referencias | Aplicado al diagnóstico; pesos fijos en 2024, sin fijar la política del benchmark posterior |
 | Escalado ajustado solo con el pasado | Media y desviación de las muestras permitidas de 2023 para cada Ridge | Ejecutado en la referencia; escaladores de las redes aún no ajustados |
 | Riesgo de fuga temporal y protección de test | Fechas, hashes, índices y ausencia de apertura de test comprobados | Cero archivos de test; la reserva bruta no sustituye la congelación supervisada final |
-| Interpretación técnica de cada análisis | Decisión de preprocesamiento, efecto sobre arquitectura y riesgos en §§2.2.1–2.2.5 | Incluida; no se atribuye superioridad a una arquitectura sin evaluación |
+| Interpretación técnica de cada análisis | Decisión de preprocesamiento, efecto sobre arquitectura y riesgos en §§2.2.3.1–2.2.3.3 | Incluida; no se atribuye superioridad a una arquitectura sin evaluación |
 
-Los requisitos generales de distribución, calidad y partición se desarrollan en §2.1. Los diagnósticos de retornos de §2.5 complementan la revisión; el análisis de residuos específico del bloque C está en §2.2.4. Completar este diagnóstico no completa la selección bibliográfica ni el benchmark de los tres modelos DL.
+Los requisitos generales de distribución, calidad y partición se desarrollan en §2.1. Los diagnósticos de retornos de §2.5 complementan la revisión; el análisis de residuos específico del bloque C está en §2.2.3.2.3. Completar este diagnóstico no completa la selección bibliográfica ni el benchmark de los tres modelos DL.
+
+- **Decisión de preprocesamiento:** conservar el calendario, las ausencias y la disponibilidad causal de OHLCV; mantener las cinco covariables acordadas sin escoger un subconjunto por estas gráficas.
+- **Impacto en la arquitectura:** conservar una entrada $D\times5$ para las historias confirmadas y el mismo objetivo de siete retornos diarios. Las correlaciones y los residuos lineales no fijan el ancho, la profundidad, el rezago ganador ni una red superior.
+- **Riesgos identificados:** correlaciones espurias de niveles, objetivo y ventanas solapados, selección retrospectiva por inspección, fechas comprimidas y uso indebido de una correlación diagnóstica como predictor contemporáneo. Las cuatro referencias son ajustes de EDA; no se extraen conclusiones de test ni resultados de entrenamiento de redes.
+
+### 2.2.4. Regresión Espacial
+
+**No aplica.** Cada muestra representa un origen temporal de BTCUSDT, sin coordenadas, regiones o ubicaciones de predicción. La distancia entre fechas no es distancia geográfica.
+
+#### 2.2.4.1. Estructura geográfica
+
+**No aplica:** no hay ubicaciones para construir un mapa del objetivo, evaluar cobertura y densidad de muestreo espacial, identificar agrupamientos o vacíos, ni declarar un sistema de coordenadas y una proyección. Los timestamps describen tiempo, no posición geográfica.
+
+#### 2.2.4.2. Autocorrelación espacial
+
+**No aplica:** sin ubicaciones y vecindad espacial no se definen una matriz de pesos, I de Moran global o local (LISA), C de Geary ni un semivariograma con rango, sill y efecto nugget. Tampoco se estima una distancia de decorrelación para dimensionar bloques espaciales. La autocorrelación temporal se trata en el bloque pertinente.
+
+#### 2.2.4.3. Covariables
+
+**No aplica el diagnóstico por ubicación:** no existen unidades espaciales para estudiar estacionariedad o heterogeneidad espacial de las relaciones, multicolinealidad por región o calidad por sitio. La redundancia entre OHLCV y sus cambios temporales tienen su análisis propio; no se presentan como evidencia geográfica.
+
+#### 2.2.4.4. Implicaciones clave
+
+**No aplica:** no corresponde representar coordenadas, embeddings posicionales geográficos o grafos de vecindad, ni separar bloques mediante un buffer superior al rango de un semivariograma inexistente. La advertencia de la guía sobre fuga espacial y desempeño inflado con particiones aleatorias no se convierte en un diagnóstico geográfico para estos datos. Un índice temporal o una codificación de la posición en la ventana no convierten la tarea en regresión espacial.
+
+- **Decisión de preprocesamiento:** conservar fechas y ventanas OHLCV; no incorporar coordenadas ni una partición espacial.
+- **Impacto en la arquitectura:** este bloque no justifica módulos geográficos o grafos espaciales.
+- **Riesgos identificados:** confundir distancia temporal con espacial o atribuir independencia geográfica a muestras de una misma serie.
+
+### 2.2.5. Regresión Espacio-Temporal
+
+**No aplica.** El contrato tiene un único mercado y una secuencia temporal, sin nodos, celdas, sensores distribuidos o ubicaciones múltiples. Las cinco columnas OHLCV son atributos de cada día, no cinco lugares.
+
+#### 2.2.5.1. Estructura conjunta
+
+**No aplica:** no existe un tensor nodos o celdas × tiempo × atributos, una rejilla geográfica o una red de sensores. Por ello no se analizan perfiles temporales por ubicación ni mapas por instante. La estructura D×5 de la entrada conserva únicamente tiempo y covariables.
+
+#### 2.2.5.2. Dependencia espacio-temporal
+
+**No aplica:** no hay vecinos geográficos para calcular Moran espacio-temporal, correlaciones cruzadas entre ubicaciones o variogramas espacio-temporales. Tampoco procede estudiar separabilidad, estacionariedad espacial conjunta, propagación o difusión entre sitios. Los rezagos temporales de OHLCV se mantienen en el bloque de regresión temporal.
+
+#### 2.2.5.3. Datos faltantes y heterogeneidad
+
+**No aplica el análisis por sensor y ubicación:** no hay sensores ni sitios para comparar patrones de faltantes o dinámicas locales atípicas. Los faltantes de minutos y días de la serie sí se conservan en el EDA general y temporal, con exclusión estricta y sin reinterpretarlos como ausencia espacial.
+
+#### 2.2.5.4. Implicaciones clave
+
+**No aplica la componente espacial:** no se construye un grafo por distancia, adyacencia o correlación entre ubicaciones, ni se selecciona una arquitectura conjunta espacial y temporal por este inciso. La partición cronológica permanece exigida por el problema; los bloques espaciales para generalización a ubicaciones nuevas no corresponden a este contrato. El riesgo combinado de fuga temporal y espacial de esta modalidad no se evalúa como tal, porque falta una componente espacial; la prevención de fuga temporal sigue vigente.
+
+- **Decisión de preprocesamiento:** mantener la cuadrícula temporal y los controles de disponibilidad; no crear ubicaciones o sensores a partir de las columnas OHLCV.
+- **Impacto en la arquitectura:** no se añaden componentes espaciales por la existencia de ventanas temporales.
+- **Riesgos identificados:** tratar atributos como nodos geográficos o declarar generalización a ubicaciones que no se observan.
+
+### 2.2.6. Clasificación de Imágenes
+
+**No aplica.** Las entradas son valores OHLCV y el objetivo es continuo; no hay imágenes de entrada ni clases visuales. Las figuras del informe son visualizaciones de resultados, no observaciones que recibe el modelo.
+
+#### 2.2.6.1. Inspección visual
+
+**No aplica:** no existe una colección de imágenes por clase para inspeccionar muestras estratificadas, ruido, artefactos, marcas de agua o errores de etiquetado. Tampoco se evalúan fondos, bordes o metadatos como atajos visuales asociados con una clase inexistente.
+
+#### 2.2.6.2. Dimensionalidad y formato
+
+**No aplica:** no hay alto, ancho, relación de aspecto, canales o profundidad de bits de imágenes para decidir resizing, recorte, padding o normalización visual. D días y cinco covariables describen una ventana numérica, no una resolución visual.
+
+#### 2.2.6.3. Estadísticos de intensidad
+
+**No aplica:** no existen píxeles para calcular histogramas y medias o desviaciones por canal ajustadas solo con entrenamiento, ni para diagnosticar saturación, contraste o diferencias de adquisición entre clases. El escalado causal de OHLCV no se confunde con normalización de intensidad de imágenes.
+
+#### 2.2.6.4. Balance y duplicados
+
+**No aplica el análisis visual:** no hay conteos por clase que determinen aumento de datos, ponderación de clases o muestreo balanceado, ni imágenes para detectar duplicados o casi duplicados entre particiones mediante hashing perceptual o similitud de embeddings. Las comprobaciones de duplicados temporales del dataset permanecen en el EDA general.
+
+#### 2.2.6.5. Estructura de agrupamiento
+
+**No aplica:** no existen imágenes repetidas por sujeto, paciente, sitio o secuencia visual que requieran una partición agrupada de esa modalidad. Varias gráficas del mismo mercado no constituyen sujetos independientes ni nuevas muestras de entrada.
+
+#### 2.2.6.6. Implicaciones clave
+
+**No aplica:** no corresponde fijar resolución de imagen, augmentations que preserven clases visuales o profundidad de una CNN de imágenes. Una convolución temporal candidata, si se justifica en otra sección, no convierte el problema en clasificación visual.
+
+- **Decisión de preprocesamiento:** mantener las entradas numéricas acordadas; no convertir gráficas del informe en imágenes de entrenamiento.
+- **Impacto en la arquitectura:** este bloque no selecciona una CNN de imágenes ni un clasificador visual.
+- **Riesgos identificados:** cambiar la modalidad mediante capturas de gráficos, introducir información futura en esas imágenes o crear clases no definidas en el objetivo.
+
+### 2.2.7. Segmentación de Imágenes
+
+**No aplica.** No hay pares imagen–máscara, etiquetas por píxel o regiones que delimitar. El objetivo es una volatilidad escalar por origen temporal.
+
+#### 2.2.7.1. Inspección visual de imágenes y máscaras
+
+**No aplica:** no se pueden superponer máscaras inexistentes ni revisar alineación, bordes, consistencia entre anotadores o máscaras vacías, ruidosas e inconsistentes. El etiquetado automático de volatilidad tiene controles propios y no equivale a anotación de regiones.
+
+#### 2.2.7.2. Distribución de clases a nivel de píxel
+
+**No aplica:** no hay frecuencias de píxeles por clase, fondo, clases visuales raras ni componentes conexas cuyo número, tamaño, forma o proporción respecto a la imagen deban medirse. Por ello no se derivan pérdidas Dice o Tversky, focal o ponderadas, ni muestreo de parches centrados en clases raras.
+
+#### 2.2.7.3. Dimensionalidad y formato
+
+**No aplica:** no existen resoluciones y canales de imágenes, consistencia de resolución imagen–máscara o necesidad de recortes en parches (tiling). Las dimensiones de OHLCV pertenecen a otro tipo de entrada.
+
+#### 2.2.7.4. Estadísticos de intensidad
+
+**No aplica:** sin imágenes ni clases por píxel no se calculan histogramas por canal y por clase, ni estadísticas de entrenamiento para normalizar intensidades. Las reglas de escalado de las covariables se conservan en el procedimiento temporal.
+
+#### 2.2.7.5. Duplicados y agrupamiento
+
+**No aplica:** no hay imágenes repetidas, mosaicos o recortes solapados de una misma escena que deban mantenerse juntos entre particiones. Tampoco hay sujetos o sitios visuales por los que agrupar. Esto no elimina los controles temporales de duplicados, solapamiento y disponibilidad del proyecto.
+
+#### 2.2.7.6. Implicaciones clave
+
+**No aplica:** no corresponde escoger profundidad de un codificador–decodificador de segmentación, resolución de entrada o métricas por clase visual. En una tarea con máscaras, las transformaciones geométricas se coordinarían entre imagen y máscara y las fotométricas afectarían la imagen preservando las etiquetas; ninguna se incorpora aquí.
+
+- **Decisión de preprocesamiento:** no generar máscaras, parches o clases por píxel a partir de las gráficas.
+- **Impacto en la arquitectura:** este bloque no justifica una FCN, U-Net o un decodificador de segmentación.
+- **Riesgos identificados:** confundir una curva del informe con una región a segmentar o aplicar operaciones visuales que cambien el contrato numérico.
+
+### 2.2.8. Clasificación de Texto
+
+**No aplica.** Las cinco covariables son numéricas; no se han incorporado documentos, noticias o publicaciones textuales como entradas. Los nombres de columnas y los metadatos de adquisición no forman un corpus de lenguaje natural.
+
+#### 2.2.8.1. Longitud de textos
+
+**No aplica:** no hay documentos para medir palabras, tokens de subpalabra o percentiles 90, 95 y 99, ni para derivar longitud máxima, truncamiento o padding textual. D mide días de historia, no longitud de texto.
+
+#### 2.2.8.2. Análisis léxico
+
+**No aplica:** no existe vocabulario documental para estudiar frecuencias, ley de Zipf, términos discriminantes mediante información mutua o log-odds, o atajos por nombres propios, fuentes y plantillas. Las asociaciones temporales entre variables numéricas no son un análisis léxico.
+
+#### 2.2.8.3. Tokenización y vocabulario
+
+**No aplica:** no se define vocabulario por palabras o subpalabras, tasa de palabras fuera de vocabulario ni cobertura de embeddings preentrenados. Los valores OHLCV no necesitan una tokenización de lenguaje natural.
+
+#### 2.2.8.4. Ruido y calidad
+
+**No aplica:** caracteres especiales, URLs, mayúsculas, emojis, stopwords, idiomas mixtos y errores ortográficos no son atributos del contrato predictivo. No se decide limpieza textual ni qué información de formato preservar en documentos inexistentes; la calidad de precios, tiempos y etiquetas se audita por separado.
+
+#### 2.2.8.5. Balance, duplicados y fuga semántica
+
+**No aplica:** no hay etiquetas textuales discretas para medir desbalance, documentos para detectar duplicados o casi duplicados mediante n-gramas o embeddings, ni autores, fuentes o hilos por los que agrupar. La fuente Binance identifica procedencia de mercado, no autoría de textos; las particiones temporales y la revisión de fuga mantienen su propio tratamiento.
+
+#### 2.2.8.6. Implicaciones clave
+
+**No aplica:** no se eligen embeddings estáticos de palabra o subpalabra, longitud de secuencia textual o una CNN de texto, RNN, LSTM o GRU para clasificar documentos. Usar una red recurrente con datos numéricos, si se justifica, no añade una modalidad textual.
+
+- **Decisión de preprocesamiento:** conservar OHLCV sin limpieza, vocabulario o tokenización de texto; cualquier incorporación futura de noticias requeriría otro contrato y disponibilidad verificable.
+- **Impacto en la arquitectura:** este bloque no selecciona un clasificador de texto ni embeddings lingüísticos.
+- **Riesgos identificados:** presentar metadatos como documentos, asumir que citar estudios con noticias añade ese insumo o introducir textos publicados después del pronóstico.
+
+### 2.2.9. Etiquetado Secuencial
+
+**No aplica.** No se asignan etiquetas categóricas a tokens o entidades de una secuencia. Cada ventana OHLCV tiene como salida una volatilidad continua, no una secuencia BIO o BIOES.
+
+#### 2.2.9.1. Esquema de etiquetas
+
+**No aplica:** no existen etiquetas BIO/BIOES, frecuencia de etiquetas, proporción de la clase O, transiciones inválidas o restricciones de decodificación de entidades. En ese esquema O significa fuera de entidad, no dato faltante. Las métricas de entidad frente a token pertenecen a una tarea distinta del objetivo numérico.
+
+#### 2.2.9.2. Estructura de las secuencias
+
+**No aplica el análisis de secuencias anotadas:** no hay oraciones, segmentos etiquetados (spans), tokens fuera de vocabulario o tokens con múltiples etiquetas. La longitud D y sus rezagos siguen siendo relevantes para el problema temporal, pero no son longitudes de entidades lingüísticas.
+
+#### 2.2.9.3. Dependencias entre etiquetas
+
+**No aplica:** no existe una secuencia de etiquetas discretas consecutivas para estimar una matriz de transición o justificar un decodificador estructurado, como CRF. La dependencia de volatilidades móviles se estudia en el análisis temporal y no se sustituye por transiciones de categorías.
+
+#### 2.2.9.4. Calidad de anotación, duplicados y fuga
+
+**No aplica la anotación documental:** no hay anotadores de tokens, oraciones repetidas o documentos que obliguen a agrupar por documento en vez de oración. Las etiquetas se calculan de precios y fechas; sus controles de cálculo, duplicados y disponibilidad son los del dataset numérico.
+
+#### 2.2.9.5. Implicaciones clave
+
+**No aplica:** no se selecciona representación por palabra, carácter o subpalabra, una RNN, LSTM o GRU de etiquetado por token con o sin CRF, ni manejo de desbalance de O. La posible utilización de una LSTM para ventanas OHLCV no convierte su salida escalar en etiquetado secuencial.
+
+- **Decisión de preprocesamiento:** mantener el objetivo continuo, sin fabricar etiquetas BIO/BIOES o entidades.
+- **Impacto en la arquitectura:** no se añade un clasificador por token ni un decodificador estructurado por este bloque.
+- **Riesgos identificados:** confundir historia temporal de entrada con una secuencia de etiquetas o tratar O como una regla de imputación.
+
+### 2.2.10. Aprendizaje Secuencia a Secuencia
+
+**No aplica.** La entrada tiene D días, pero la salida principal es un único valor de volatilidad con h=1. No hay una secuencia destino generada ni pares de textos origen–destino.
+
+#### 2.2.10.1. Longitudes de origen y destino
+
+**No aplica el análisis de pares de secuencias:** no se estudian longitudes de origen y destino lingüísticos, su razón o correlación, ni se derivan longitudes máximas, bucketing o límites de decodificación. La ventana histórica y el horizonte escalar se definen en el contrato temporal; una entrada secuencial no exige una salida secuencial.
+
+#### 2.2.10.2. Vocabularios
+
+**No aplica:** no existen vocabularios de origen y destino, tasas de palabras fuera de vocabulario, coberturas o una decisión de tokenización compartida o separada. Las cinco covariables numéricas no se convierten en diccionarios lingüísticos.
+
+#### 2.2.10.3. Calidad del alineamiento entre pares
+
+**No aplica el alineamiento lingüístico:** no hay pares de textos desalineados, ruidosos, truncados, duplicados o casi duplicados entre particiones. Sí debe conservarse la alineación causal entre ventana OHLCV y etiqueta futura, ya documentada para regresión temporal; se trata de un requisito diferente y permanece vigente.
+
+#### 2.2.10.4. Distribución de contenido
+
+**No aplica:** no hay dominios, temas o estilos de un corpus de generación ni desplazamiento textual entre particiones. Los cambios de distribución del mercado se examinan en el EDA general y temporal, sin atribuirles significado de dominio lingüístico.
+
+#### 2.2.10.5. Implicaciones clave
+
+**No aplica:** no se adopta un codificador–decodificador generativo, teacher forcing, decodificación voraz o por haz, ni métricas de generación por este inciso. Una partición por pares o documentos para evitar fuga de un corpus generativo tampoco corresponde a estos datos. Un encoder o una red recurrente candidata para una salida escalar no prueba que el problema sea secuencia a secuencia; cualquier cambio de salidas requiere registrar otro alcance.
+
+- **Decisión de preprocesamiento:** mantener h=1 y la alineación ventana–objetivo; no crear secuencias destino, vocabularios o pares textuales.
+- **Impacto en la arquitectura:** no se añade un decodificador generativo por recibir una ventana temporal.
+- **Riesgos identificados:** confundir D con longitud de salida, un encoder con un sistema generativo o resultados de generación con error de volatilidad.
 
 ## 2.3. Adquisición directa desde Binance Spot
 
@@ -425,7 +714,7 @@ El EDA de desarrollo de este capítulo se ejecutó sobre los 24 archivos mensual
 3. Adquisición y checksums del rango solicitado: completados; brutos y manifiesto conservados. Derivados diarios de desarrollo y EDA ejecutados; ventanas finales por modelo y benchmark pendientes.
 4. Timestamps, unidades, unicidad, huecos, cierres y coherencia OHLC auditados antes de crear los retornos de desarrollo; estos controles deberán mantenerse en la preparación posterior.
 5. Cerrar las configuraciones y reglas definitivas de entrenamiento, conservando el modelado diario, horizonte principal de un día y ventanas candidatas ya documentadas.
-6. EDA general y diagnósticos temporales ejecutados; la correspondencia del bloque C para regresión temporal y su relación con las decisiones se documenta en §2.2.
+6. EDA general y diagnósticos temporales ejecutados; la correspondencia del bloque C para regresión temporal y su relación con las decisiones se documenta en §2.2.3.
 
 
 ### 2.3.4. Condiciones de uso y atribución
@@ -509,7 +798,7 @@ Las gráficas y las cuatro referencias lineales son evidencia de EDA de desarrol
 
 ## 2.5. Diagnósticos temporales complementarios
 
-Se conservan los diagnósticos del bloque B de la guía como complementos pertinentes para dependencia temporal. La correspondencia específica con el **bloque C de regresión temporal** se desarrolla en §2.2. Las observaciones de modelado son **diarias**; los diagnósticos horarios y de minuto mantienen sus unidades explícitas. Esta reclasificación documental no cambia los datos, el reloj de predicción ni la política de exclusión.
+Se conservan los diagnósticos del bloque B de la guía como complementos pertinentes para dependencia temporal. La correspondencia específica con el **bloque C de regresión temporal** se desarrolla en §2.2.3. Las observaciones de modelado son **diarias**; los diagnósticos horarios y de minuto mantienen sus unidades explícitas. Esta reclasificación documental no cambia los datos, el reloj de predicción ni la política de exclusión.
 
 ### 2.5.1. Visualización, descomposición y cambios de régimen
 

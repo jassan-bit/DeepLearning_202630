@@ -142,7 +142,7 @@ Esta matriz distingue **reglas fijadas**, **evidencia ejecutada** y **productos 
 
 | Componente de la ruta | Evidencia o decisión actual | Pendiente para la ejecución |
 |---|---|---|
-| Tipo y reloj | Tipo 4; OHLCV diaria, origen al inicio UTC y etiqueta al terminar el día; §1 y §2.2 | Conservar identificadores y disponibilidad en las muestras definitivas. |
+| Tipo y reloj | Tipo 4; OHLCV diaria, origen al inicio UTC y etiqueta al terminar el día; §1 y §2.2.3.1 | Conservar identificadores y disponibilidad en las muestras definitivas. |
 | Calidad y faltantes | Exclusión estricta del 24/03/2023 y ventanas afectadas, sin comprimir calendario | Mantener máscaras y cobertura comunes entre métodos. |
 | Objetivo e historias | n7/h1; D7/14/21/28 sin D principal; otros n como sensibilidad | Regla global de D solo si se plantea y se registra en desarrollo. |
 | Partición y embargo | Manifiesto v2, E_D=D, 5.856 filas y soporte compartido identificado | Cadencia y política de actualización; el test supervisado no está congelado. |

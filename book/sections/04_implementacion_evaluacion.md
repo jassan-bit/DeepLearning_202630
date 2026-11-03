@@ -469,7 +469,7 @@ Si la escala cambia con el entrenamiento creciente, se promedian **errores escal
 
 El horizonte principal confirmado es **un día**. Las métricas se reportarán para cada combinación de longitud de entrada $D$ y ventana de volatilidad $n$, manteniéndolas separadas porque definen configuraciones y objetivos distintos. Si se añaden horizontes, se registrarán y se informarán métricas por horizonte antes de cualquier promedio global.
 
-La ruta 6.4 incluye como referencia de contexto una **regresión lineal regularizada con las mismas covariables rezagadas**. Su representación aplanada conservará los $5D$ valores disponibles para las redes y su ajuste respetará el mismo protocolo temporal; no ocupa un puesto del trío DL. La versión diagnóstica estática ya ejecutada se documenta en §2.2.4; su configuración no se transfiere automáticamente al benchmark.
+La ruta 6.4 incluye como referencia de contexto una **regresión lineal regularizada con las mismas covariables rezagadas**. Su representación aplanada conservará los $5D$ valores disponibles para las redes y su ajuste respetará el mismo protocolo temporal; no ocupa un puesto del trío DL. La versión diagnóstica estática ya ejecutada se documenta en §2.2.3.2.3; su configuración no se transfiere automáticamente al benchmark.
 
 Se conserva además **persistencia de la volatilidad histórica disponible** al pronosticar como referencia del margen operativo del 5 %. Se evaluará también un ingenuo estacional cuando se justifique un periodo $s$ con desarrollo y su información sea observable. Por ejemplo, el periodo semanal debe justificarse y fijarse; no se adopta automáticamente porque el EDA muestre un STL con periodo siete.
 
@@ -542,7 +542,7 @@ Los residuos se ordenarán por calendario **dentro de cada modelo, configuració
 | Tablas por configuración, horizonte y referencia ingenua | Sin resultados todavía |
 | Media, desviación, intervalos y comparación pareada | Pendientes de corridas |
 | Robustez, curvas y análisis por segmentos | Pendientes de modelos entrenados |
-| Predicciones frente a reales y diagnóstico de residuos de las tres redes | Pendientes; las referencias lineales del EDA están en §2.2.4 |
+| Predicciones frente a reales y diagnóstico de residuos de las tres redes | Pendientes; las referencias lineales del EDA están en §2.2.3.2.3 |
 | Evaluación definitiva de test | No ejecutada |
 
 Las tablas y gráficas de este apartado se incorporarán desde predicciones verificables, sin reutilizar estadísticas descriptivas del EDA como si fueran métricas de pronóstico.
