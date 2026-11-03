@@ -130,7 +130,7 @@ Los orígenes son las observaciones del problema predictivo; la **unidad de infe
 
 Las σ7 consecutivas comparten seis retornos. Ni h=1 obliga a HAC de rezago cero ni ese solapamiento fija un máximo universal de seis; la regla y sensibilidad se justifican conforme a §5.4.5. HLN utiliza h real y no convierte la aproximación en exacta ante cualquier deriva, dependencia o política de actualización.
 
-Se registrarán hipótesis, estimando, fase, dirección, familia y α nominal 0,05 antes de analizar resultados, con IC del 95 %, efecto pareado y p-values ajustados y sin ajustar bajo la calibración declarada. La potencia por semillas y la MDE respecto de cero tienen el alcance de §4.1.6–§4.1.8; no prueban por sí solas ganancia superior al 5 %, potencia temporal o equivalencia. El 5 % aceptado corresponde exclusivamente a persistencia.
+Se registrarán hipótesis, estimando, fase, dirección, familia y α nominal 0,05 antes de analizar resultados, con IC del 95 %, efecto pareado y p-values ajustados y sin ajustar bajo la calibración declarada. La potencia por semillas y la MDE respecto de cero tienen el alcance de §4.1.5–§4.1.7; no prueban por sí solas ganancia superior al 5 %, potencia temporal o equivalencia. El 5 % aceptado corresponde exclusivamente a persistencia.
 
 En el bloque C ya se calcularon 112 valores ACF y 12 diagnósticos Ljung–Box sobre las cuatro Ridge, con Holm en la familia completa. Bajo la referencia asintótica utilizada, los 12 rechazan a α=0,05. Son evidencia exploratoria de dependencia en una referencia limitada, no contrastes del benchmark DL ni prueba de causalidad, no linealidad exclusiva o mejora avanzada. Los diagnósticos de retornos tampoco sustituyen residuos predictivos.
 

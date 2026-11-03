@@ -4,7 +4,7 @@ Se contrastaron los apartados 4.1–4.4 de la guía (pp. 16–21). La revisión 
 
 | ID | Requisito | Estado documental o de ejecución | Evidencia | Límite o pendiente |
 |---|---|---|---|---|
-| 4.1.01 | Entrada, representación y disponibilidad | Documentado | §4.1.1–4.1.2: OHLCV diario, N×D×5, D7/14/21/28, reloj UTC e identificadores de origen/resultado/disponibilidad. | No añade rezagos explícitos del objetivo ni nuevas variables. |
+| 4.1.01 | Entrada, representación y disponibilidad | Documentado | §4.1.1.1–4.1.1.2: OHLCV diario, N×D×5, D7/14/21/28, reloj UTC e identificadores de origen/resultado/disponibilidad. | No añade rezagos explícitos del objetivo ni nuevas variables. |
 | 4.1.02 | Objetivo y horizonte | Fijado documentalmente | n7, h1, ddof0, sin anualizar; n14/21/28 son sensibilidad de otros objetivos. | No hay D principal seleccionada ni métricas comparables entre objetivos distintos. |
 | 4.1.03 | Partición, proporciones, semilla y dependencia | Documentado; índices existentes | 365/366/608 días;27,26/27,33/45,41%;cronología determinista, sin semilla de barajado. | Son proporciones de calendario; muestras definitivas y test supervisado pendientes. |
 | 4.1.04 | Validación para seleccionar hiperparámetros | Distinción corregida | 2024 usado para seleccionar se reporta como selección; evaluación externa de un selector requeriría anidación temporal completa. | Cortes internos, método de selección, presupuesto y cadencia aún abiertos. |
@@ -42,3 +42,9 @@ Se contrastaron los apartados 4.1–4.4 de la guía (pp. 16–21). La revisión 
 La fórmula bilateral de la guía detecta diferencias frente a cero. Demostrar superación del 5 % necesita una frontera y alternativa distintas; ambos cálculos por semillas son condicionales al calendario y no reemplazan incertidumbre temporal. Se conservan los mínimos de cinco/seis ejecuciones, sin atribuirles potencia suficiente.
 
 La nueva especificación está en `experiments/protocolo_e2_documental_20261103.json`, sin campos de aprobación: no es ejecutable por sus decisiones y configuraciones aún incompletas. El borrador histórico no se alteró. No se ejecutaron modelos, simulaciones, piloto, benchmark o test; los únicos números derivados son cuantiles y contabilidad algebraica de escenarios.
+
+## Organización de 4.1 — 3 de noviembre de 2026
+
+La sección tiene los nueve incisos solicitados: definición clara de entradas/objetivo; división del dataset; pipeline; piloto; diferencia mínima de interés; tamaño de muestra; diferencia mínima detectable; relación con E2; y registro. Entradas y objetivo se numeran 4.1.1.1–4.1.1.2; división incluye sus dos subincisos y pipeline sus tres etapas. El estado del diseño/piloto se conserva como 4.1.9.2, dentro del registro.
+
+La relación con E2 explicita el uso preliminar de la dispersión de diferencias pareadas para planificar semillas; no aporta una estimación ni un tamaño calculado. Se conservan siete ecuaciones, cuatro tablas y cinco enlaces de 4.1, además de los contratos y pendientes. Las referencias de los capítulos 4–7 se sincronizan. Los IDs de requisitos 4.1.01–4.1.14 y los hashes del corte anterior permanecen como historial; no son números de subsección vigentes. No hubo entrenamiento, piloto, benchmark, cálculo de potencia/MDE ni lectura del test.

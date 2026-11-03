@@ -9,7 +9,7 @@
       "id": "4.1.01",
       "requirement": "Entrada, representación y disponibilidad",
       "status": "Documentado",
-      "evidence": "§4.1.1–4.1.2: OHLCV diario, N×D×5, D7/14/21/28, reloj UTC e identificadores de origen/resultado/disponibilidad.",
+      "evidence": "§4.1.1.1–4.1.1.2: OHLCV diario, N×D×5, D7/14/21/28, reloj UTC e identificadores de origen/resultado/disponibilidad.",
       "remaining_or_limit": "No añade rezagos explícitos del objetivo ni nuevas variables."
     },
     {
@@ -282,5 +282,50 @@
       "path": "references/literature_e1/selection_evidence.json",
       "sha256": "e4b587a03ea1c886df09f7f25415cb913c49cad5efc2537ed15333061b121d15"
     }
-  ]
+  ],
+  "structure_review_4_1": {
+    "date": "2026-11-03",
+    "timezone": "America/Bogota",
+    "scope": "Editorial hierarchy and cross references only; no project data access, training, pilot or numerical power/MDE calculation.",
+    "previous_source_commit": "63e510aee7652b25472ad4c0cc08aa781674e0e7",
+    "headings": [
+      "4.1.1. Definición clara de:",
+      "4.1.2. División del dataset",
+      "4.1.3. Definición de pipeline",
+      "4.1.4. Piloto",
+      "4.1.5. Diferencia mínima de interés",
+      "4.1.6. Tamaño de muestra",
+      "4.1.7. Diferencia mínima detectable",
+      "4.1.8. Relación con el Entregable 2",
+      "4.1.9. Registro"
+    ],
+    "old_to_new": {
+      "4.1.1": "4.1.1.1",
+      "4.1.2": "4.1.1.2",
+      "4.1.3": "4.1.2",
+      "4.1.4": "4.1.3",
+      "4.1.5": "4.1.4",
+      "4.1.6": "4.1.5",
+      "4.1.7": "4.1.6",
+      "4.1.8": "4.1.7 and explicit E2 relation in 4.1.8",
+      "4.1.9": "4.1.9.1",
+      "4.1.10": "4.1.9.2"
+    },
+    "preserved": {
+      "display_equations": 7,
+      "tables": 4,
+      "local_links": 5,
+      "final_model_trio_closed": false,
+      "pilot_runs": 0,
+      "numerical_required_seeds_or_mde_calculated": false
+    },
+    "cross_references_updated_in": [
+      "book/sections/04_implementacion_evaluacion.md",
+      "book/sections/05_benchmark.md",
+      "book/sections/06_procedimiento.md",
+      "book/sections/07_limitaciones_entregables.md"
+    ],
+    "chapter4_source_sha256": "0ff381cb5eb7cb654aaf9ee64bf0ea9986af22bc38aaa599c5ed17e275124858",
+    "historical_artifacts_note": "The pre-existing artifacts list belongs to the earlier review snapshot; its hashes and audit requirement IDs remain unchanged."
+  }
 }

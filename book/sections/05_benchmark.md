@@ -48,7 +48,7 @@ Se separarán duración por ajuste, costo total de la corrida y costo de búsque
 
 Cada fila se vinculará a configuraciones, código, manifiestos, logs y predicciones. Se reportarán media, desviación estándar **muestral**, número de ejecuciones e IC del 95 %, con método y supuestos explícitos.
 
-Se diferenciará incertidumbre entre semillas sobre el mismo conjunto de evaluación de incertidumbre temporal por bloques. Los 366 folds no se tratarán como semillas independientes. Para RMSE y R² se usará la agregación de predicciones de §4.1.4 y §4.4; no un promedio inadecuado de métricas de folds unitarios.
+Se diferenciará incertidumbre entre semillas sobre el mismo conjunto de evaluación de incertidumbre temporal por bloques. Los 366 folds no se tratarán como semillas independientes. Para RMSE y R² se usará la agregación de predicciones de §4.1.3 y §4.4; no un promedio inadecuado de métricas de folds unitarios.
 
 ## 5.2. Ranking de Modelos Base
 
@@ -159,7 +159,7 @@ Se distinguirá alcanzar el 5 % en la estimación puntual de aportar evidencia d
 
 Antes de comparar un modelo avanzado con el baseline DL se deberá registrar un margen referido a ese baseline, con sentido aplicado y escala clara. El actual 5 % frente a persistencia no fija ese margen adicional. Los futuros modelos deberán compararse bajo condiciones equivalentes y contrastes predefinidos. No basta con superar una cifra puntual redondeada ni con obtener un p-value pequeño.
 
-Se mantendrá la distinción de §4.1.6–§4.1.8: detectar un efecto frente a cero es distinto de demostrar que supera un margen práctico. La MDE por semillas es condicional al calendario y no acredita por sí sola potencia temporal ni potencia conjunta de toda una familia. El umbral avanzado no se define sumando una DE al baseline o tomando un extremo de su IC.
+Se mantendrá la distinción de §4.1.5–§4.1.7: detectar un efecto frente a cero es distinto de demostrar que supera un margen práctico. La MDE por semillas es condicional al calendario y no acredita por sí sola potencia temporal ni potencia conjunta de toda una familia. El umbral avanzado no se define sumando una DE al baseline o tomando un extremo de su IC.
 
 ### 5.3.6. Cota de referencia e interpretación
 
@@ -274,7 +274,7 @@ Con h=1, el factor HLN es $\sqrt{(T-1)/T}$; no representa la dependencia adicion
 
 La interpretación requiere condiciones defendibles del proceso de pérdidas, incluidos momentos y dependencia adecuados para estimar su varianza de largo plazo. Se revisarán la actualización recursiva, los pares anidados y la selección previa de modelos: la distribución estándar no se presume válida en todos esos diseños. Los tramos y periodos principales se fijarán antes de estudiar las diferencias; no se concatenarán huecos ni se seleccionarán segmentos por producir significación. Si deriva o falta de observaciones impide sostener una calibración, se declarará la limitación o el método alternativo registrado.
 
-Rechazar igualdad de pérdidas no demuestra que la mejora supere el **5 % frente a persistencia**, y no establece un margen para un modelo avanzado frente al baseline DL. Esas afirmaciones necesitan su frontera nula, efecto y procedimiento propios, conforme a §4.1.6–§4.1.8 y §5.3.5.
+Rechazar igualdad de pérdidas no demuestra que la mejora supere el **5 % frente a persistencia**, y no establece un margen para un modelo avanzado frente al baseline DL. Esas afirmaciones necesitan su frontera nula, efecto y procedimiento propios, conforme a §4.1.5–§4.1.7 y §5.3.5.
 
 ### 5.4.6. BDS sobre residuos
 

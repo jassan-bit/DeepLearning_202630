@@ -63,7 +63,7 @@ Los índices de origen móvil no son repeticiones de una evaluación completa. L
 
 Se reportará la **MDE con el número de ejecuciones disponible**, su relación con el margen del contraste correspondiente y los supuestos del dimensionamiento de §4.1. El margen aceptado del 5 % frente a persistencia no establece por sí solo un margen entre dos redes. Si el estudio no puede distinguir una diferencia de interés práctico, se ampliará el diseño o se explicitará esa limitación.
 
-La MDE respecto de cero y la potencia para superar el umbral práctico son preguntas distintas, como precisa §4.1.6–§4.1.8. El número de semillas dimensiona variación del entrenamiento condicionada al calendario; no dimensiona por sí solo la incertidumbre temporal ni el número de días de test.
+La MDE respecto de cero y la potencia para superar el umbral práctico son preguntas distintas, como precisa §4.1.5–§4.1.7. El número de semillas dimensiona variación del entrenamiento condicionada al calendario; no dimensiona por sí solo la incertidumbre temporal ni el número de días de test.
 
 Las comparaciones incluirán tamaños de efecto e intervalos de confianza, conservando el emparejamiento. Los intervalos temporales deberán respetar bloques cuando proceda; no se remuestrearán días dependientes como si fueran i.i.d.
 
