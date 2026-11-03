@@ -215,9 +215,15 @@ La presencia de esta sección no sustituye las implementaciones y evaluaciones r
 
 La implementación comenzará una vez se cierre la selección de **exactamente tres arquitecturas**, con configuración publicada o una variante mínima respaldada. **LSTM, TCN y encoder Transformer tienen fichas candidatas; GRU no está descartada y el trío final no está congelado.** Sus implementaciones y ejecuciones quedan para E2. Estos apartados definen condiciones verificables y no acreditan que ya exista código de las redes.
 
-### 4.2.1. Arquitecturas y contrato común
+### 4.2.1. Implementación de los tres modelos base
+
+Se implementarán los tres modelos finalmente identificados en §3.2 con la configuración reportada en la literatura o con una configuración mínima justificada. La implementación propia distinguirá la configuración de fuente de cualquier adaptación al contrato del proyecto.
 
 Cada modelo tendrá un identificador, referencias y una descripción reproducible de capas, unidades, activaciones, conexiones y salida no negativa. La arquitectura se enlazará con las ecuaciones y el análisis de complejidad de §3.3. Si la literatura no ofrece detalles suficientes, se seguirá la regla de selección y ampliación de evidencia de §3.2.5; no se completarán por preferencia personal.
+
+### 4.2.2. Entrenamiento con el mismo pipeline, partición y semillas
+
+#### 4.2.2.1. Pipeline, partición e información comunes
 
 | Componente | Condición común para los tres modelos |
 |---|---|
@@ -232,7 +238,17 @@ Cada modelo tendrá un identificador, referencias y una descripción reproducibl
 
 Se conservarán identificadores de las muestras para comprobar la igualdad de los conjuntos evaluados. Un modelo que falle o pierda muestras no se comparará ocultando ese cambio de cobertura.
 
-### 4.2.2. Hiperparámetros y configuración seleccionada
+#### 4.2.2.2. Semillas, reinicios y reproducibilidad
+
+El antecedente histórico propone una lista de semillas, pero no existe lista operativa congelada ni corridas ejecutadas. La especificación actual mantiene abiertas las listas por fase y su posible reutilización. El conjunto definitivo se dimensionará con el piloto y se compartirá entre los tres modelos finalmente elegidos. Se registrarán semillas del generador, framework y operaciones estocásticas, junto con las limitaciones de determinismo de hardware y kernels.
+
+Las transformaciones y el modelo se ajustarán en los orígenes previstos por la cadencia registrada, utilizando solo el entrenamiento permitido en cada ajuste. El calendario de folds no obliga por sí mismo a reentrenar todos los días. No se reutilizarán pesos de un origen posterior ni escaladores ajustados con toda la validación. Cualquier entrenamiento incremental o warm start requerirá una regla causal predefinida y comparable; no se presupone en este diseño.
+
+Si se conserva un checkpoint entre orígenes, su identificador y el de su escalador permanecerán vinculados. Reajustar un escalador cambia la representación recibida por los pesos; la política deberá explicar su compatibilidad con el estado conservado, en lugar de mezclar automáticamente pesos antiguos con una escala nueva.
+
+Las fallas, reintentos y corridas interrumpidas quedarán registrados. No se reemplazará una semilla por otra para mejorar el resultado. Si se repite una corrida por un problema técnico, se conservarán la causa y su relación con el intento original.
+
+### 4.2.3. Definición de hiperparámetros
 
 Para cada arquitectura se registrarán el espacio de búsqueda declarado antes de entrenar y el valor finalmente seleccionado. Las fichas documentales ya están en §3.3; la tabla siguiente corresponde a las configuraciones de implementación propias, todavía pendientes:
 
@@ -249,13 +265,31 @@ Para cada arquitectura se registrarán el espacio de búsqueda declarado antes d
 | Función de pérdida | MSE fijada documentalmente en §4.1 | Implementación y escala de entrenamiento pendientes |
 | Épocas máximas y criterio de parada | Pendiente | No seleccionado |
 
+#### 4.2.3.1. Learning rate y planificador
+
+Se declararán la tasa de aprendizaje inicial, el planificador y sus parámetros, o su ausencia explícita. Tanto el espacio de búsqueda como el valor seleccionado permanecen pendientes, según la matriz anterior.
+
+#### 4.2.3.2. Número de capas y unidades
+
 Los campos no se rellenarán con valores supuestamente “habituales” atribuidos a artículos que no los reportan. Los ganadores de S1 sí constan en sus Tablas 5–6 y el SELF-ATT de S2 tiene configuración descrita: recuperarlos no obliga a adoptarlos para OHLCV diario ni cierra el trío. La versión de `keras-tcn` y los detalles incompletos de S6 se mantienen diferenciados. Cualquier desviación respecto a una fuente se justificará y versionará antes del experimento pertinente.
+
+#### 4.2.3.3. Batch size
+
+El tamaño de lote formará parte de la configuración registrada por modelo y ajuste. Su espacio de búsqueda y su valor seleccionado todavía no están fijados.
+
+#### 4.2.3.4. Optimizador, regularización y función de pérdida
+
+Se registrarán el optimizador y sus parámetros, la ubicación y tasa de dropout cuando aplique, el decaimiento de pesos y cualquier otra regularización. MSE es la pérdida fijada documentalmente; su implementación y escala de entrenamiento siguen pendientes.
 
 Las transformaciones aprendidas de X o Y, si se adoptan, se ajustarán solo con el subentrenamiento correspondiente. Estandarizar Y de forma afín requiere invertir esa transformación antes de evaluar; aplicar logaritmos a Y cambia la pérdida que se optimiza en su escala original y no se introduce como si fuera la misma MSE ya acordada. El mecanismo de salida no negativa deberá declararse sin atribuir a los artículos una activación que no utilizan.
 
-### 4.2.3. Estrategia de entrenamiento y early stopping
+### 4.2.4. Estrategia de entrenamiento
+
+#### 4.2.4.1. Número máximo de épocas
 
 Cada repetición comenzará con pesos nuevos y su semilla registrada. Se fijarán el número máximo de épocas, orden de lotes, tamaño de lote, precisión numérica y fuentes estocásticas. Si la política elegida reinicia en cada origen, cada reajuste vuelve a inicializarse; un eventual warm start utilizará únicamente un checkpoint anterior permitido y una regla registrada. No se presupone ninguna de las dos políticas. El entrenamiento conservará la relación causal entre muestras y etiquetas aunque se utilicen lotes para optimizar.
+
+#### 4.2.4.2. Early stopping y validación interna
 
 El early stopping deberá registrar métrica monitoreada, dirección de mejora, `patience`, `min_delta`, frecuencia de evaluación y política de restauración de pesos. Su conjunto de validación será **interno y anterior al origen evaluado**, con separación suficiente para que sus etiquetas estén disponibles. El único objetivo futuro de cada fold externo no se utilizará para decidir cuándo detener su propio entrenamiento.
 
@@ -263,17 +297,7 @@ Para un origen de resultado t, el bloque interno termina como máximo en t−D�
 
 Después de elegir una duración mediante esa parada, cualquier reajuste sobre más historia permitida tendrá una regla de épocas y preprocesamiento ya fijada; no podrá consultar la etiqueta externa. La validación de selección de 2024 comparará configuraciones bajo el protocolo de §4.1.2. El procedimiento de ajuste final se cerrará con desarrollo antes de test. Sus resultados no modificarán la arquitectura, los hiperparámetros ni la regla de parada. El uso de etiquetas pasadas ya disponibles dentro de una eventual actualización, incluida su parada registrada, deberá quedar resuelto en el protocolo de §4.3.7.
 
-### 4.2.4. Semillas, reinicios y reproducibilidad
-
-El antecedente histórico propone una lista de semillas, pero no existe lista operativa congelada ni corridas ejecutadas. La especificación actual mantiene abiertas las listas por fase y su posible reutilización. El conjunto definitivo se dimensionará con el piloto y se compartirá entre los tres modelos finalmente elegidos. Se registrarán semillas del generador, framework y operaciones estocásticas, junto con las limitaciones de determinismo de hardware y kernels.
-
-Las transformaciones y el modelo se ajustarán en los orígenes previstos por la cadencia registrada, utilizando solo el entrenamiento permitido en cada ajuste. El calendario de folds no obliga por sí mismo a reentrenar todos los días. No se reutilizarán pesos de un origen posterior ni escaladores ajustados con toda la validación. Cualquier entrenamiento incremental o warm start requerirá una regla causal predefinida y comparable; no se presupone en este diseño.
-
-Si se conserva un checkpoint entre orígenes, su identificador y el de su escalador permanecerán vinculados. Reajustar un escalador cambia la representación recibida por los pesos; la política deberá explicar su compatibilidad con el estado conservado, en lugar de mezclar automáticamente pesos antiguos con una escala nueva.
-
-Las fallas, reintentos y corridas interrumpidas quedarán registrados. No se reemplazará una semilla por otra para mejorar el resultado. Si se repite una corrida por un problema técnico, se conservarán la causa y su relación con el intento original.
-
-### 4.2.5. Registros de cada implementación y corrida
+### 4.2.5. Registro
 
 Una **corrida** identifica modelo, configuración, fase, repetición y versión de protocolo, y reúne su secuencia completa de pronósticos. Cada **ajuste** dentro de ella conserva además origen, partición interna, checkpoint y número de intento. Cinco semillas son cinco corridas por modelo y configuración; los posibles cientos de ajustes de una corrida no aumentan ese número de repeticiones.
 
@@ -289,9 +313,19 @@ Una **corrida** identifica modelo, configuración, fase, repetición y versión 
 | Entorno | Sistema, versión de Python, framework, bibliotecas, CPU/GPU, memoria y precisión numérica |
 | Incidencias | Fallas, reintentos, advertencias y muestras no evaluadas |
 
+#### 4.2.5.1. Curvas de entrenamiento y validación
+
 Las curvas gráficas se generarán a partir de logs reales, identificando modelo, configuración, fold y semilla. No se dibujan curvas ilustrativas como si fueran entrenamientos ejecutados. Para RMSE por repetición se mantiene la agregación de predicciones fuera de entrenamiento de §4.1.3.
 
-### 4.2.6. Equidad en la búsqueda de hiperparámetros
+#### 4.2.5.2. Número de parámetros
+
+Cada implementación registrará sus parámetros entrenables y no entrenables y contrastará el total con la expresión analítica de §3.3. Los conteos documentales condicionados no se presentarán como mediciones de una implementación todavía no ejecutada.
+
+#### 4.2.5.3. Tiempo computacional y hardware empleado
+
+Se registrarán por separado la duración de cada ajuste y de la inferencia, con unidad, batch size y calentamiento declarados. El registro identificará CPU/GPU, memoria, precisión numérica y versiones del entorno. Estas mediciones propias permanecen pendientes.
+
+### 4.2.6. Equidad en la optimización
 
 Los tres modelos recibirán el **mismo método de búsqueda**, el **mismo presupuesto de evaluaciones** y espacios comparables en amplitud y esfuerzo. Comparable no significa obligar a arquitecturas diferentes a tener exactamente los mismos hiperparámetros: cada espacio deberá justificarse por su familia y complejidad.
 
@@ -301,7 +335,9 @@ Se registrarán todos los candidatos evaluados, sus métricas, costo y estado, n
 
 El costo real puede variar entre modelos aun con el mismo número de evaluaciones; se reportará como parte del resultado. No se fijan tiempos de entrenamiento antes de medir las implementaciones en el hardware disponible.
 
-### 4.2.7. Bibliotecas y versiones
+### 4.2.7. Implementación desde cero o uso de librerías justificadas
+
+#### 4.2.7.1. Implementación y entorno de software
 
 Se podrá implementar desde cero o utilizar un framework justificado, conservando versión, procedencia y configuración. El cierre del trío y sus configuraciones sigue pendiente según §3; el framework y el entorno de entrenamiento se fijarán antes de ejecutar E2. Las fichas candidatas no acreditan una implementación validada.
 
@@ -309,7 +345,7 @@ Actualmente están verificados el entorno de EDA de `requirements-eda.lock.txt` 
 
 Antes del piloto se fijará el entorno de entrenamiento con versiones compatibles y se comprobará una ejecución funcional de cada modelo con la misma interfaz de datos. No se declarará reproducibilidad solo por disponer de una lista de dependencias.
 
-### 4.2.8. Estado de implementación
+#### 4.2.7.2. Estado de implementación
 
 | Producto | Modelo 1 | Modelo 2 | Modelo 3 |
 |---|---|---|---|

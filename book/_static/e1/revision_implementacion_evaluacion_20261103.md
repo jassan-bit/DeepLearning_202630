@@ -48,3 +48,11 @@ La nueva especificación está en `experiments/protocolo_e2_documental_20261103.
 La sección tiene los nueve incisos solicitados: definición clara de entradas/objetivo; división del dataset; pipeline; piloto; diferencia mínima de interés; tamaño de muestra; diferencia mínima detectable; relación con E2; y registro. Entradas y objetivo se numeran 4.1.1.1–4.1.1.2; división incluye sus dos subincisos y pipeline sus tres etapas. El estado del diseño/piloto se conserva como 4.1.9.2, dentro del registro.
 
 La relación con E2 explicita el uso preliminar de la dispersión de diferencias pareadas para planificar semillas; no aporta una estimación ni un tamaño calculado. Se conservan siete ecuaciones, cuatro tablas y cinco enlaces de 4.1, además de los contratos y pendientes. Las referencias de los capítulos 4–7 se sincronizan. Los IDs de requisitos 4.1.01–4.1.14 y los hashes del corte anterior permanecen como historial; no son números de subsección vigentes. No hubo entrenamiento, piloto, benchmark, cálculo de potencia/MDE ni lectura del test.
+
+## Organización de 4.2 — 3 de noviembre de 2026
+
+La sección sigue siete apartados: implementación de los modelos de la literatura o de una configuración mínima justificada; entrenamiento con pipeline/partición/semillas comunes; hiperparámetros; estrategia de entrenamiento; registro; equidad del ajuste; e implementación desde cero o con librerías justificadas.
+
+Los cuatro campos de hiperparámetros, las dos condiciones de entrenamiento y los tres campos de registro tienen numeración propia. El contrato común y las semillas se reúnen en 4.2.2; el estado de implementación se conserva en 4.2.7.2. Se mantienen las cuatro matrices y todas sus filas. Dos referencias del capítulo 6 a la parada temprana se actualizan a 4.2.4; la equidad continúa en 4.2.6.
+
+La reorganización no fija hiperparámetros ni acredita código, curvas, conteos medidos, tiempos, hardware o ejecuciones. El trío definitivo, el piloto y el benchmark permanecen pendientes en el alcance de E2. Los identificadores de requisitos 4.2.01–4.2.08 y los hashes previos se conservan como historial.

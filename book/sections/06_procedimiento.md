@@ -63,7 +63,7 @@ La reconsideración se documenta en esta revisión del **3 de noviembre de 2026*
 
 Las transformaciones aprendidas se ajustarán con entrenamiento permitido de cada fold. La etiqueta futura del origen evaluado no servirá para detener su propio ajuste. Las medias y componentes de PCA del EDA no se transferirán automáticamente a un modelo sin volver a respetar el corte temporal.
 
-En la parada interna del origen t, el bloque de validación interna termina como máximo en t−D−1. Si v es su primer día de resultado, el subentrenamiento usa u≤v−D−1, además de calidad y disponibilidad. Escaladores, selección de atributos y transformaciones de Y se ajustan **solo al subentrenamiento**, no a su unión con la validación de parada. El tamaño de ese bloque y la regla de reajuste final permanecen abiertos en §4.2.3.
+En la parada interna del origen t, el bloque de validación interna termina como máximo en t−D−1. Si v es su primer día de resultado, el subentrenamiento usa u≤v−D−1, además de calidad y disponibilidad. Escaladores, selección de atributos y transformaciones de Y se ajustan **solo al subentrenamiento**, no a su unión con la validación de parada. El tamaño de ese bloque y la regla de reajuste final permanecen abiertos en §4.2.4.
 
 Si las métricas de 2024 intervienen en elegir hiperparámetros o D, son **resultados de selección**. Una evaluación externa de todo el procedimiento requeriría selección anidada en el pasado de cada origen; una parada causal por sí sola no corrige la selección hecha con todo ese año. La evaluación reservada no elegirá las reglas después de observar sus resultados.
 
@@ -146,7 +146,7 @@ Esta matriz distingue **reglas fijadas**, **evidencia ejecutada** y **productos 
 | Calidad y faltantes | Exclusión estricta del 24/03/2023 y ventanas afectadas, sin comprimir calendario | Mantener máscaras y cobertura comunes entre métodos. |
 | Objetivo e historias | n7/h1; D7/14/21/28 sin D principal; otros n como sensibilidad | Regla global de D solo si se plantea y se registra en desarrollo. |
 | Partición y embargo | Manifiesto v2, E_D=D, 5.856 filas y soporte compartido identificado | Cadencia y política de actualización; el test supervisado no está congelado. |
-| Corte interno y escalado | Separación y embargo internos de §4.2.3; transformaciones solo en subentrenamiento | Longitud/posición interna, escaladores, parada y tratamiento de checkpoints. |
+| Corte interno y escalado | Separación y embargo internos de §4.2.4; transformaciones solo en subentrenamiento | Longitud/posición interna, escaladores, parada y tratamiento de checkpoints. |
 | Arquitecturas | Familias típicas de la guía y fichas candidatas de §3; trío abierto | Cerrar exactamente tres identidades y sus configuraciones respaldadas. |
 | Pérdida y salida | MSE, salida escalar no negativa y RMSE primaria | Implementación de salida, escala y entrenamiento concretos. |
 | Métricas | RMSE por corrida y media entre semillas; MAPE/MASE con cobertura y casos indefinidos | Predicciones, métricas e intervalos medidos por periodo. |
