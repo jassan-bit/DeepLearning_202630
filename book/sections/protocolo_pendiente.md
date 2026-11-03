@@ -29,7 +29,7 @@ El margen del 5 % es un criterio operativo aceptado, no una utilidad financiera 
 
 | Prioridad | Producto | Estado verificable |
 |---|---|---|
-| 1 | Búsqueda trazable | Consultas complementarias registradas; fuentes académicas bloqueadas diferenciadas de cero resultados |
+| 1 | Fuentes y búsqueda trazable | Tabla de las 33 referencias citadas, con enlaces y nivel de evidencia; consultas complementarias e historial de acceso conservados |
 | 2 | Cribado y flujo | 118 ocurrencias, 12 duplicadas, 106 repositorios, 14 inspeccionados, 5 textos completos y 3 incluidos; unidades diferenciadas |
 | 3 | Matriz de literatura | Tres textos incluidos, 42 valores publicados y evaluación de calidad con ubicaciones |
 | 4 | Selección de tres familias | LSTM–TCN–encoder Transformer; diversidad antes de frecuencia, con compromiso y fuente gris de atención explícitos |
@@ -54,4 +54,4 @@ El plan documentado en noviembre de 2026 es posterior a los periodos de mercado 
 
 ## Evidencia y reproducción
 
-La evidencia documental está en `references/literature_e1/`, el registro bibliográfico inicial en `references/bibliography/`, el EDA en `results/eda_development/` y el complemento descriptivo en `results/eda_covariates_documental/`. No se incorporan entrenamientos, predicciones ni métricas propias del trabajo separado fuera de E1. Construir HTML comprueba presentación y enlaces, no superioridad estadística ni cumplimiento académico total.
+La evidencia documental está en `references/literature_e1/`, el registro bibliográfico inicial en `references/bibliography/`, el EDA en `results/eda_development/` y el complemento descriptivo en `results/eda_covariates_documental/`. La [tabla consolidada de referencias](../_static/literature_e1/references_access_33.csv) distingue las 33 citas del libro de los tres textos incluidos en la matriz aplicada; su reorganización no modifica el cribado ni las frecuencias. No se incorporan entrenamientos, predicciones ni métricas propias del trabajo separado fuera de E1. Construir HTML comprueba presentación y enlaces, no superioridad estadística ni cumplimiento académico total.
