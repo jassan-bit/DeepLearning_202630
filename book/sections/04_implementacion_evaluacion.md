@@ -1,6 +1,10 @@
-# 4. Diseño de implementación y evaluación para la etapa E2
+# 4. Implementación y evaluación: diseño y estado de ejecución
 
-La selección documental de §3 identifica LSTM, TCN y encoder Transformer, con las limitaciones de cobertura y calidad allí declaradas. Este capítulo conserva el diseño necesario para trasladar esas familias a una evaluación futura. No contiene resultados de entrenamiento de esas redes. Las cuatro referencias Ridge ajustadas para el diagnóstico de residuos del EDA se presentan por separado en §2.2.4 y no fijan el protocolo de este capítulo.
+Este capítulo contrasta el diseño con los apartados 4.1–4.4 de la guía. **La selección definitiva de tres arquitecturas todavía está abierta**: LSTM, TCN y encoder Transformer tienen fichas candidatas, y GRU continúa en evaluación según §3.2. No se asignan esos nombres a tres puestos experimentales ya congelados.
+
+La guía exige implementación, piloto y evaluación dentro de E1. El alcance de trabajo acordado reserva la ejecución de las tres redes y el test para E2; esta revisión corrige su documentación y mantiene visible lo que falta. Las cuatro Ridge del bloque C son diagnósticos de EDA, no los tres modelos DL ni un piloto de este capítulo.
+
+La revisión punto por punto está en el {download}`informe de implementación y evaluación <../_static/e1/revision_implementacion_evaluacion_20261103.md>` y su [matriz de requisitos](../_static/e1/revision_implementacion_evaluacion_20261103.json). La [especificación documental actual](../_static/experiments/protocolo_e2_documental_20261103.json) reúne decisiones aceptadas, campos abiertos y productos no ejecutados; no es una configuración experimental congelada.
 
 ## 4.1. Diseño Experimental
 
@@ -17,6 +21,8 @@ Las ventanas no se forman atravesando días incompletos. Los ZIP originales perm
 La definición principal fijada es volatilidad histórica poblacional de **siete retornos diarios** ($n=7$), sin anualizar. Las ventanas $n=14,21,28$ se conservan como sensibilidad de objetivos distintos. La longitud de entrada sigue siendo $D=7,14,21,28$, sin elegir una D principal.
 
 Se mantiene el horizonte principal de **un día adelante** y la convención de §1.3: el pronóstico se emite al inicio del día $t$, usando información hasta $t-1$, para una volatilidad que incorpora el retorno todavía desconocido del día $t$. La salida es escalar y no negativa. El usuario fijó n=7; esa decisión no procede de elegir un ganador por los gráficos ni autoriza horizontes adicionales.
+
+Para evitar confundir el subíndice de la volatilidad con su fecha, cada muestra conservará **día de resultado, origen de pronóstico y disponibilidad de la etiqueta**. En notación de calendario, para el resultado del día $d$: $X_d=(z_{d-D},\ldots,z_{d-1})$, $z=(O,H,L,C,V)$ y $y_d=\sigma_7(d)$, conocida al terminar $d$. Corresponde a $Y_t=\sigma_{t+1}$ de §1.3 cuando $t$ designa ese día de resultado; no incorpora siete días enteramente futuros.
 
 El diseño fija **MSE como pérdida** y **RMSE como métrica primaria**. La ruta 6.4 requiere RMSE, MAE y R²; el reporte conserva además MSE, MAPE y MASE como métricas complementarias aceptadas para este estudio. MAPE usa objetivos positivos con cobertura explícita; MASE emplea rezago de un día de calendario y escala ajustada solo con entrenamiento. Estas políticas ya están definidas sin consultar test.
 
@@ -42,12 +48,14 @@ El embargo por covariables no demuestra independencia de las etiquetas de volati
 
 La cronología es determinista y no necesita semilla para barajar. Las semillas sí se registrarán para inicialización, optimización y otras operaciones estocásticas. La selección de hiperparámetros utilizará exclusivamente desarrollo y el mismo calendario, presupuesto y criterio entre modelos; no se ha ejecutado aún esa búsqueda. Si se informa desempeño de 2024 después de usarlo para seleccionar configuraciones, se identificará como desempeño de selección, no como estimación de test independiente.
 
+Los orígenes de **2024 son validación de selección** si intervienen en elegir hiperparámetros o D. Una parada temprana con pasado permitido no elimina el optimismo de seleccionar con todo ese año. Para presentar un origen de 2024 como evaluación externa de un procedimiento de selección, toda la búsqueda y la parada tendrían que estar anidadas en su pasado. La estrategia definitiva —selección con 2024 y test reservado, o evaluación temporal anidada— y los cortes internos se registrarán antes del piloto. Las proporciones de calendario anteriores no fijan esos cortes ni obligan a reajustar diariamente.
+
 ### 4.1.4. Pipeline común y controles de fuga
 
 1. **Construcción de datos:** comprobar hashes y disponibilidad; agregar días completos; formar entradas y etiquetas alineadas; aplicar las mismas exclusiones para los tres modelos dentro de cada configuración.
 2. **Preprocesamiento:** conservar la exclusión estricta de días incompletos, sin imputar; ajustar escalado y selección de variables solo con el entrenamiento admitido de cada ajuste. Los parámetros exploratorios de PCA no se transfieren automáticamente al experimento.
-3. **Entrenamiento:** inicialización nueva por semilla; arquitectura, optimizador, pérdida, batch size, épocas máximas y regla de parada registrados antes de comparar resultados.
-4. **Early stopping:** utilizar datos pasados de ajuste interno, sin consultar el objetivo futuro del fold evaluado. El test no puede intervenir en la parada ni en decisiones de entrenamiento.
+3. **Entrenamiento:** inicialización nueva por repetición; arquitectura, optimizador, pérdida, batch size, épocas máximas y regla de parada registrados antes de comparar resultados. Los reajustes dentro de una repetición seguirán su política causal declarada, sin presumir reinicios diarios o entrenamiento incremental.
+4. **Early stopping:** utilizar datos pasados de ajuste interno, sin consultar el objetivo futuro del fold evaluado. La etiqueta externa futura y los resultados de test no seleccionarán la regla de parada ni los hiperparámetros. Un eventual ajuste secuencial seguirá solo el pasado permitido y la política registrada de §4.3.7.
 5. **Validación:** conservar predicciones, objetivos, fechas, configuración, semilla y duración por fold. Calcular las métricas con la agregación predefinida.
 6. **Evaluación definitiva:** congelar selección y manifiestos antes de test; aplicar el procedimiento una vez fijado y reportar 2025 y 2026 por separado.
 
@@ -74,60 +82,95 @@ $$
 
 CV puede mostrarse como porcentaje multiplicando por 100; si la media es cero, no está definido. Se conservarán ejecuciones fallidas y su diagnóstico; no se descartarán semillas por obtener resultados desfavorables.
 
-La selección de configuraciones y folds incluidos en el piloto se cerrará antes de ejecutarlo. Si se reentrenara desde cero en cada origen, cubrir las 16 configuraciones con tres modelos, cinco semillas y 366 folds supondría **87.840 ajustes de modelo**. Es un escenario de costo condicionado a esa cadencia, no el número de ajustes ya elegido, trabajo ejecutado ni estimación de tiempo. La cadencia sigue pendiente de definición. El alcance y los recursos deben fijarse antes de lanzar esa carga, sin reducirlos retrospectivamente para favorecer un resultado.
+La selección de configuraciones y orígenes del piloto se cerrará antes de ejecutarlo. La tabla muestra una contabilidad algebraica para tres modelos y cinco semillas; **ninguna de estas cadencias está elegida o ejecutada**:
+
+| Alcance hipotético | Configuraciones | Un ajuste fijo inicial por configuración y semilla | Reinicio y ajuste en cada uno de 366 orígenes |
+|---|---:|---:|---:|
+| Objetivo principal n=7, cuatro historias D | 4 | 60 | 21.960 |
+| Principal y sensibilidad: cuatro n × cuatro D | 16 | 240 | 87.840 |
+
+Se usa $3\times5\times C\times F$, con $F=1$ o $366$. No se incluyen búsqueda de hiperparámetros, posibles reajustes posteriores a la selección interna, fallas o repeticiones técnicas. Son escenarios de cantidad de ajustes, no tiempos, memoria o presupuesto adoptado. Las doce configuraciones con n≠7 responden a otros objetivos y no se promedian con la tarea principal.
 
 Las semillas describen variabilidad del entrenamiento sobre un mercado observado. **Las 366 fechas y las 5.856 filas configuración–fold no son $R$ repeticiones independientes**, y distintas semillas tampoco constituyen mercados independientes.
 
-### 4.1.6. Diferencia mínima de interés y diferencias pareadas
+La media de métricas entre semillas describe el entrenamiento aleatorio bajo ese calendario; no es la RMSE de un ensemble de sus predicciones. Antes del piloto se declarará si sus corridas se usan solo para calibración o si podrán integrarse al análisis definitivo, con justificación de cualquier reestimación del tamaño. No se reutilizarán automáticamente tras adaptar R ni se añadirán semillas hasta conseguir significación.
 
-El margen práctico aceptado es una **reducción relativa del 5 % de RMSE frente a persistencia**, con las mismas fechas de evaluación. Es un criterio operativo y no una utilidad financiera calibrada. Para planificar en unidades absolutas en E2 se aplicará la regla $\delta_{\mathrm{plan}}=0{,}05\,\mathrm{RMSE}_{\mathrm{pers,desarrollo}}$ antes de observar el piloto, sin escoger retrospectivamente un valor favorable.
+### 4.1.6. Margen práctico, contraste y unidad de repetición
 
-El margen relativo del 5 % corresponde a cada modelo frente a **persistencia**. No determina automáticamente un margen de equivalencia ni la diferencia mínima relevante entre dos redes. Para cada contraste $A$ frente a $B$ se registrará la cantidad de interés y su margen absoluto $\delta_{AB}$ antes del dimensionamiento, con referencia y unidades claras. Cuando $B$ sea persistencia, $\delta_{\mathrm{plan}}$ aporta la conversión de desarrollo indicada; para otros pares su pertinencia deberá justificarse.
-
-Para un contraste predefinido, sobre las mismas fechas y semillas:
+El criterio aceptado es una **reducción relativa del 5 % de RMSE frente a persistencia**, sobre las mismas fechas. Para una configuración y calendario comunes, sean $b$ la RMSE de persistencia y $m_{A,s}$ la de una red en la semilla $s$:
 
 $$
-d_s=m_{A,s}-m_{B,s},\qquad
-\widehat\sigma_d=
-\sqrt{\frac1{R-1}\sum_{s=1}^R(d_s-\bar d)^2},\qquad
-\text{efecto mínimo estandarizado}=\frac{\delta_{AB}}{\widehat\sigma_d}.
+G_s=b-m_{A,s},\qquad Q_s=1-\frac{m_{A,s}}{b},\quad b>0.
 $$
 
-La dispersión relevante es la de las **diferencias pareadas**, no la desviación de un modelo aislado ni el error entre días tratado como independiente. Se fijarán los contrastes principales y el tratamiento de multiplicidad antes del dimensionamiento.
+Una ganancia positiva favorece a la red. Si $b=0$, la reducción relativa es indefinida; no se introduce un denominador artificial. Para planificar en unidades absolutas se conserva la regla $\delta_{\mathrm{plan}}=0{,}05\,b_{\mathrm{desarrollo}}$, con fechas y cobertura fijadas antes del piloto. Esa referencia todavía no se ha medido para el piloto: la conversión y su valor numérico siguen pendientes de E2.
 
-### 4.1.7. Dimensionamiento de ejecuciones y potencia
+| Pregunta | Referencia nula | Cantidad necesaria para planificar |
+|---|---|---|
+| Detectar una diferencia de tamaño práctico frente a cero | Ausencia de diferencia | Efecto alternativo de magnitud $\delta_{AB}$, o $\delta_{\mathrm{plan}}$ frente a persistencia |
+| Aportar evidencia de que se supera el umbral práctico | Ganancia relativa ≤0,05 | Ganancia alternativa mayor que 0,05 y su distancia a esa frontera |
 
-La guía requiere potencia $1-\beta\ge0{,}80$ y nivel $\alpha=0{,}05$. Bajo la aproximación normal bilateral para las diferencias pareadas:
+**Detectar una mejora de tamaño 5 % frente a cero no demuestra que exceda el 5 %.** La conversión de desarrollo tampoco convierte la RMSE de persistencia en una constante poblacional conocida. El criterio relativo se volverá a expresar con la referencia del periodo realmente evaluado y la incertidumbre correspondiente.
+
+Entre dos redes se utilizarán diferencias pareadas $d_s=m_{A,s}-m_{B,s}$ y un margen $\delta_{AB}$ específico, todavía por justificar. El 5 % frente a persistencia no se traslada automáticamente a esos pares, a equivalencia o a una propuesta avanzada frente al baseline DL. La dispersión de planificación es:
 
 $$
-R_{\mathrm{req}}\approx
-\left\lceil
-\frac{\left(z_{1-\alpha/2}+z_{1-\beta}\right)^2\widehat\sigma_d^2}{\delta_{AB}^2}
-\right\rceil.
+\widehat\sigma_d=\sqrt{\frac1{R-1}\sum_{s=1}^R(d_s-\bar d)^2},
+\qquad \text{efecto mínimo estandarizado}=\frac{\delta_{AB}}{\widehat\sigma_d}.
 $$
 
-El factor de cuantiles es aproximadamente **7,85** para esos valores. El número definitivo respetará el mínimo aplicable y el mayor requerimiento de los contrastes preespecificados. Si se utilizan pruebas por rangos, se atenderá además el mínimo de **seis ejecuciones** indicado en §4.3 de la guía; cinco es el mínimo del piloto, no un tamaño definitivo garantizado.
+No se sustituye por la desviación de una red aislada ni por la dispersión de días tratados como independientes. Cada contraste registrará escala, dirección, familia de hipótesis y unidad. Aquí $R$ cuenta **semillas bajo datos y procedimiento fijados**; no cuenta mercados, folds o configuraciones.
 
-Se documentarán los supuestos y la incertidumbre de estimar dispersión con pocas repeticiones. La aproximación no resuelve por sí sola dependencia temporal o multiplicidad; si se planifican varias afirmaciones, se registrará el ajuste y se revisará la potencia correspondiente. Si la normalidad no es defendible, se justificará una alternativa o simulación de potencia que respete el diseño, sin escogerla según los resultados de test.
+### 4.1.7. Dimensionamiento y alcance de la potencia
 
-Una dispersión piloto estimada como cero requiere investigar redondeo, determinismo o piloto insuficiente; no justifica concluir que no hacen falta ejecuciones. **No hay un valor calculado de $R$ todavía**, porque la conversión del margen a escala de planificación y la dispersión del piloto se calcularán en E2.
+La guía requiere potencia $1-\beta\ge0{,}80$ y nivel $\alpha=0{,}05$. Para **detectar una diferencia respecto de cero**, la aproximación normal bilateral de la guía es:
+
+$$
+R_{\mathrm{semillas}}\approx
+\left\lceil\frac{(z_{1-\alpha/2}+z_{1-\beta})^2\widehat\sigma_d^2}
+{\delta_{AB}^2}\right\rceil.
+$$
+
+El factor de cuantiles es aproximadamente **7,85**, sin ajuste por multiplicidad. Esta fórmula dimensiona variación del entrenamiento condicionada al calendario y a la configuración; no dimensiona fechas de test ni acredita potencia temporal sobre nuevos periodos. Con pocas semillas, estimar la dispersión tiene incertidumbre considerable: se justificará la aproximación y el tamaño definitivo, mediante un método adecuado al diseño cuando sea necesario. No rechazar normalidad con un piloto pequeño no demuestra ese supuesto.
+
+Si la pregunta es **superar el umbral práctico**, se puede planificar directamente con $Q_s$. Para $H_0:\mu_Q\le0{,}05$ frente a $H_1:\mu_Q>0{,}05$, hace falta una alternativa $q_{\mathrm{alt}}>0{,}05$ fijada antes del dimensionamiento:
+
+$$
+R_{\mathrm{semillas}}\approx
+\left\lceil\frac{(z_{1-\alpha_*}+z_{1-\beta})^2\widehat\sigma_Q^2}
+{(q_{\mathrm{alt}}-0{,}05)^2}\right\rceil.
+$$
+
+Esta es una aproximación **unilateral contra una frontera distinta de cero**, condicionada al mismo calendario. La ganancia alternativa, dispersión y nivel de planificación están pendientes; no se inventa una mejora esperada para obtener un número de semillas. En escala absoluta la distancia equivalente sería $g_{\mathrm{alt}}-0{,}05b_{\mathrm{desarrollo}}$, con su dispersión en las mismas unidades.
+
+El nivel $\alpha_*$ deberá derivarse del plan de multiplicidad. No se asigna automáticamente 0,05 a cada contraste ni se interpreta Holm como un único nivel fijo por comparación. Se distinguirá potencia marginal del contraste principal de potencia conjunta de toda una familia; obtener 0,80 en cada cálculo marginal no demuestra 0,80 conjunta. La familia debe contemplar las afirmaciones frente a persistencia, entre redes y entre configuraciones que finalmente se declaren confirmatorias.
+
+El tamaño definitivo respetará el mayor requerimiento de los contrastes registrados y los mínimos aplicables: **cinco ejecuciones por modelo y seis si se usan pruebas por rangos**. Seis tampoco garantiza significación tras correcciones ni potencia suficiente, como explica §7.1. Si las diferencias no satisfacen los supuestos, se justificará la alternativa sin escogerla por los resultados de test.
+
+Una dispersión estimada como cero exige revisar redondeo, determinismo o un piloto insuficiente; no prueba que sobren ejecuciones. **No existe todavía un R calculado**, ni un estudio de potencia ejecutado. La inferencia temporal de una ganancia relativa deberá conservar el emparejamiento y recalcular conjuntamente ambas RMSE, incluido el denominador de persistencia, al aplicar el método temporal justificado.
 
 ### 4.1.8. Diferencia mínima detectable
 
-Para las ejecuciones efectivamente disponibles se reportará la aproximación:
+Para las ejecuciones realmente disponibles, la aproximación bilateral es:
 
 $$
-\mathrm{MDE}(R)\approx
-\frac{\left(z_{1-\alpha/2}+z_{1-\beta}\right)\widehat\sigma_d}{\sqrt R}.
+\mathrm{MDE}_0(R)\approx
+\frac{(z_{1-\alpha/2}+z_{1-\beta})\widehat\sigma_d}{\sqrt R}.
 $$
 
-La MDE se expresa en las mismas unidades que las diferencias pareadas del contraste. Si es mayor que su margen $\delta_{AB}$, se ampliará el diseño o se declarará esa limitación explícitamente. No se afirmará potencia suficiente por haber completado cinco semillas. El valor $\widehat\sigma_d$ servirá como punto de partida para el dimensionamiento del Entregable 2, sin considerarlo definitivo.
+El subíndice cero explicita la referencia: es una diferencia detectable **respecto de cero**, en unidades del contraste. Si supera su margen $\delta_{AB}$, se ampliará el diseño o se declarará la limitación. Para demostrar superación de un umbral se necesita, en cambio, distancia detectable **respecto de ese umbral**, conforme a §4.1.7; no basta comparar MDE₀ con 5 % y afirmar que se ha demostrado una mejora superior al criterio.
+
+Se reportarán contraste, configuración, R, dispersión, supuestos y multiplicidad. El estimador piloto será un punto de partida para E2, no un valor definitivo. No se utilizará potencia retrospectiva calculada con el efecto observado como certificación de suficiencia. R y MDE numéricos permanecen pendientes de ejecución.
 
 ### 4.1.9. Preregistro fechado y trazabilidad
+
+La [especificación documental del 03/11/2026](../_static/experiments/protocolo_e2_documental_20261103.json) es la referencia actual de preparación: conserva n=7, h=1, las cuatro historias, métricas, exclusión estricta y hash del manifiesto corregido. Distingue tres identidades finales sin cerrar, candidatas, decisiones de ejecución pendientes y cantidades de potencia aún desconocidas. **No es ejecutable ni está congelada**: faltan decisiones metodológicas y configuraciones de entrenamiento.
 
 Se conserva como antecedente para E2 el [borrador de preregistro](../_static/experiments/preregistro_piloto.json), conservado en `experiments/preregistro_piloto.json`, fechado el **2 de noviembre de 2026**, con configuración conocida, semillas previstas y campos por cerrar. Su estado es **borrador no congelado**, no un preregistro experimental completo. La [plantilla CSV de resultados](../_static/experiments/piloto_resultados_plantilla.csv) contiene solo encabezados y no representa ejecuciones realizadas.
 
 El [registro de decisiones documentales de E1](../_static/e1/decisiones.json) contiene el criterio vigente; el borrador histórico no lo reemplaza. Los campos de métrica, márgenes y manifiesto de ese borrador histórico preceden a las decisiones y correcciones actuales, incluido el embargo explícito; deberán sincronizarse antes del piloto y no se usarán como configuración operativa vigente. Antes del piloto de E2 se cerrará su protocolo experimental inicial. Después se incorporarán sus resultados y el dimensionamiento en una versión fechada y congelada **antes de la ejecución definitiva**, conservando el historial de cambios. El registro debe identificar los modelos, datos y hashes, código, folds, objetivos, comparaciones, transformaciones, reglas de parada, $\delta$, métrica, supuestos y número final de ejecuciones.
+
+Este plan se documenta después de los periodos de mercado adquiridos y del EDA. Que preceda a las redes y al piloto no lo convierte en un registro anterior a la observación de todos los datos del estudio. Las fechas de cambios, su motivo y los resultados ya conocidos permanecerán identificados.
 
 ### 4.1.10. Estado del diseño y del piloto
 
@@ -135,10 +178,10 @@ El [registro de decisiones documentales de E1](../_static/e1/decisiones.json) co
 |---|---|
 | Datos y EDA de desarrollo | Ejecutados y documentados |
 | Folds de validación de 2024 | Materializados con `timeseries-cv` y filtro explícito de embargo $D$; validaciones de disponibilidad conservadas |
-| Selección bibliográfica de tres familias | LSTM, TCN y encoder Transformer; selección documental acotada en §3 |
+| Selección bibliográfica de tres arquitecturas | Pendiente; tres fichas candidatas y GRU aún evaluable, según §3.2 |
 | Métrica principal, margen y políticas de métricas | RMSE, mejora relativa del 5 %, MAPE sobre objetivos positivos y MASE con rezago de un día fijados |
 | Configuraciones y protocolo final de contrastes | Pendientes de cierre en E2 |
-| Preregistro | Borrador fechado; no congelado |
+| Preregistro | Especificación documental actual y antecedente histórico diferenciados; ambos sin congelación experimental |
 | Cinco ejecuciones piloto por modelo | No ejecutadas |
 | Media, desviación, CV y diferencias pareadas | Sin resultados todavía |
 | $R$ requerido y MDE | Cálculo futuro de E2; margen relativo ya fijado |
@@ -148,7 +191,7 @@ La presencia de esta sección no sustituye las implementaciones y evaluaciones r
 
 ## 4.2. Implementación de los Tres Modelos Base
 
-Los modelos deberán pertenecer a las tres familias seleccionadas en §3.2, con la configuración reportada en la literatura o una configuración mínima justificada mediante evidencia. **LSTM, TCN y encoder Transformer constituyen una selección documental de trabajo, con los límites de §3; sus configuraciones implementadas y ejecuciones quedan para E2.** Los apartados siguientes definen las condiciones verificables que debe cumplir su implementación; no son resultados de entrenamiento.
+La implementación comenzará una vez se cierre la selección de **exactamente tres arquitecturas**, con configuración publicada o una variante mínima respaldada. **LSTM, TCN y encoder Transformer tienen fichas candidatas; GRU no está descartada y el trío final no está congelado.** Sus implementaciones y ejecuciones quedan para E2. Estos apartados definen condiciones verificables y no acreditan que ya exista código de las redes.
 
 ### 4.2.1. Arquitecturas y contrato común
 
@@ -184,25 +227,33 @@ Para cada arquitectura se registrarán el espacio de búsqueda declarado antes d
 | Función de pérdida | MSE fijada documentalmente en §4.1 | Implementación y escala de entrenamiento pendientes |
 | Épocas máximas y criterio de parada | Pendiente | No seleccionado |
 
-Los campos no se rellenarán con valores supuestamente “habituales” atribuidos a artículos que no los reportan. Cualquier desviación respecto a una fuente se justificará y versionará antes del experimento pertinente.
+Los campos no se rellenarán con valores supuestamente “habituales” atribuidos a artículos que no los reportan. Los ganadores de S1 sí constan en sus Tablas 5–6 y el SELF-ATT de S2 tiene configuración descrita: recuperarlos no obliga a adoptarlos para OHLCV diario ni cierra el trío. La versión de `keras-tcn` y los detalles incompletos de S6 se mantienen diferenciados. Cualquier desviación respecto a una fuente se justificará y versionará antes del experimento pertinente.
+
+Las transformaciones aprendidas de X o Y, si se adoptan, se ajustarán solo con el subentrenamiento correspondiente. Estandarizar Y de forma afín requiere invertir esa transformación antes de evaluar; aplicar logaritmos a Y cambia la pérdida que se optimiza en su escala original y no se introduce como si fuera la misma MSE ya acordada. El mecanismo de salida no negativa deberá declararse sin atribuir a los artículos una activación que no utilizan.
 
 ### 4.2.3. Estrategia de entrenamiento y early stopping
 
-Cada ajuste comenzará con pesos nuevos y su semilla registrada. Se fijarán el número máximo de épocas, orden de lotes, tamaño de lote, precisión numérica y cualquier configuración estocástica relevante. El entrenamiento conservará la relación causal entre muestras y etiquetas aunque se utilicen lotes para optimizar.
+Cada repetición comenzará con pesos nuevos y su semilla registrada. Se fijarán el número máximo de épocas, orden de lotes, tamaño de lote, precisión numérica y fuentes estocásticas. Si la política elegida reinicia en cada origen, cada reajuste vuelve a inicializarse; un eventual warm start utilizará únicamente un checkpoint anterior permitido y una regla registrada. No se presupone ninguna de las dos políticas. El entrenamiento conservará la relación causal entre muestras y etiquetas aunque se utilicen lotes para optimizar.
 
 El early stopping deberá registrar métrica monitoreada, dirección de mejora, `patience`, `min_delta`, frecuencia de evaluación y política de restauración de pesos. Su conjunto de validación será **interno y anterior al origen evaluado**, con separación suficiente para que sus etiquetas estén disponibles. El único objetivo futuro de cada fold externo no se utilizará para decidir cuándo detener su propio entrenamiento.
 
-La validación externa de 2024 servirá para comparar configuraciones bajo el protocolo predefinido. No se usarán etiquetas de test para seleccionar épocas, arquitectura, transformaciones ni hiperparámetros. El procedimiento de ajuste final y su parada se fijarán con desarrollo antes de evaluar test.
+Para un origen de resultado t, el bloque interno termina como máximo en t−D−1. Si v es su primer día de validación interna, el subentrenamiento usa resultados u≤v−D−1, además de calidad y disponibilidad: se aplica el embargo D también al corte interno. El tamaño del bloque y la regla para situarlo siguen pendientes. **Escaladores, selección de atributos y transformaciones de Y se ajustan al subentrenamiento**, no a su unión con los días usados para decidir la parada. Se conservan identificadores y hashes de ambos subconjuntos.
+
+Después de elegir una duración mediante esa parada, cualquier reajuste sobre más historia permitida tendrá una regla de épocas y preprocesamiento ya fijada; no podrá consultar la etiqueta externa. La validación de selección de 2024 comparará configuraciones bajo el protocolo de §4.1.3. El procedimiento de ajuste final se cerrará con desarrollo antes de test. Sus resultados no modificarán la arquitectura, los hiperparámetros ni la regla de parada. El uso de etiquetas pasadas ya disponibles dentro de una eventual actualización, incluida su parada registrada, deberá quedar resuelto en el protocolo de §4.3.7.
 
 ### 4.2.4. Semillas, reinicios y reproducibilidad
 
-Las semillas previstas para el piloto constan en el preregistro; todavía no representan corridas ejecutadas. El conjunto definitivo se dimensionará con el piloto y se compartirá entre los tres modelos. Se registrarán semillas del generador, framework y operaciones estocásticas que correspondan, además de las limitaciones de determinismo de hardware y kernels.
+El antecedente histórico propone una lista de semillas, pero no existe lista operativa congelada ni corridas ejecutadas. La especificación actual mantiene abiertas las listas por fase y su posible reutilización. El conjunto definitivo se dimensionará con el piloto y se compartirá entre los tres modelos finalmente elegidos. Se registrarán semillas del generador, framework y operaciones estocásticas, junto con las limitaciones de determinismo de hardware y kernels.
 
 Las transformaciones y el modelo se ajustarán en los orígenes previstos por la cadencia registrada, utilizando solo el entrenamiento permitido en cada ajuste. El calendario de folds no obliga por sí mismo a reentrenar todos los días. No se reutilizarán pesos de un origen posterior ni escaladores ajustados con toda la validación. Cualquier entrenamiento incremental o warm start requerirá una regla causal predefinida y comparable; no se presupone en este diseño.
+
+Si se conserva un checkpoint entre orígenes, su identificador y el de su escalador permanecerán vinculados. Reajustar un escalador cambia la representación recibida por los pesos; la política deberá explicar su compatibilidad con el estado conservado, en lugar de mezclar automáticamente pesos antiguos con una escala nueva.
 
 Las fallas, reintentos y corridas interrumpidas quedarán registrados. No se reemplazará una semilla por otra para mejorar el resultado. Si se repite una corrida por un problema técnico, se conservarán la causa y su relación con el intento original.
 
 ### 4.2.5. Registros de cada implementación y corrida
+
+Una **corrida** identifica modelo, configuración, fase, repetición y versión de protocolo, y reúne su secuencia completa de pronósticos. Cada **ajuste** dentro de ella conserva además origen, partición interna, checkpoint y número de intento. Cinco semillas son cinco corridas por modelo y configuración; los posibles cientos de ajustes de una corrida no aumentan ese número de repeticiones.
 
 | Registro | Contenido mínimo |
 |---|---|
@@ -230,7 +281,7 @@ El costo real puede variar entre modelos aun con el mismo número de evaluacione
 
 ### 4.2.7. Bibliotecas y versiones
 
-Se podrá implementar desde cero o utilizar un framework justificado, conservando versión, procedencia y configuración. La elección del framework y de las configuraciones concretas queda para E2; las familias documentales ya están seleccionadas; no se afirma que ya exista una implementación validada.
+Se podrá implementar desde cero o utilizar un framework justificado, conservando versión, procedencia y configuración. El cierre del trío y sus configuraciones sigue pendiente según §3; el framework y el entorno de entrenamiento se fijarán antes de ejecutar E2. Las fichas candidatas no acreditan una implementación validada.
 
 Actualmente están verificados el entorno de EDA de `requirements-eda.lock.txt` y el entorno de partición de `requirements-cv.txt`. `timeseries-cv` genera particiones y **no entrena las redes**. Su dependencia de NumPy menor que 2 se mantiene aislada del entorno del EDA, según §2.4.1.
 
@@ -240,7 +291,7 @@ Antes del piloto se fijará el entorno de entrenamiento con versiones compatible
 
 | Producto | Modelo 1 | Modelo 2 | Modelo 3 |
 |---|---|---|---|
-| Identidad y ficha documental | LSTM, §3.3.1 | TCN, §3.3.2 | Encoder Transformer, §3.3.3 |
+| Identidad final | Pendiente | Pendiente | Pendiente |
 | Configuración de implementación propia | Pendiente en E2 | Pendiente en E2 | Pendiente en E2 |
 | Código y prueba funcional | Pendiente | Pendiente | Pendiente |
 | Espacio de búsqueda y presupuesto comparable | Pendiente | Pendiente | Pendiente |
@@ -248,7 +299,7 @@ Antes del piloto se fijará el entorno de entrenamiento con versiones compatible
 | Curvas, parámetros, tiempos y entorno medidos | No ejecutado | No ejecutado | No ejecutado |
 | Piloto y repeticiones definitivas | No ejecutado | No ejecutado | No ejecutado |
 
-Los datos y las particiones disponibles son prerrequisitos completados; no sustituyen la implementación ni la evaluación de estos tres modelos.
+Los tres puestos experimentales permanecen sin asignación definitiva. Las fichas LSTM/TCN/encoder de §3.3 y la evaluación de GRU en §3.2 son antecedentes para cerrar esa decisión. Los datos y las particiones disponibles son prerrequisitos completados; no sustituyen la implementación ni la evaluación.
 
 ## 4.3. Requisitos Experimentales
 
@@ -260,7 +311,7 @@ Cada corrida conservará un identificador y las semillas de los generadores util
 
 Se declarará si se exige **determinismo estricto**, qué opciones del framework se activan y qué operaciones o condiciones de hardware pueden impedirlo. Fijar una sola semilla no demuestra reproducibilidad exacta. El framework y las opciones concretas se fijarán antes del piloto; no se atribuyen ahora configuraciones a un software de entrenamiento aún no elegido.
 
-Las semillas previstas del piloto son comunes entre modelos. Cada repetición parte de una inicialización nueva; una repetición idéntica usada para comprobar determinismo no cuenta como otra semilla independiente.
+La lista operativa de semillas será común entre modelos. Una misma etiqueta de semilla permite registrar repeticiones y controles compartidos, pero no produce los mismos pesos o trayectorias aleatorias en arquitecturas distintas ni garantiza reducción de varianza. Cada repetición parte de una inicialización nueva; una repetición idéntica usada para comprobar determinismo no cuenta como otra semilla independiente.
 
 ### 4.3.2. Repetición de experimentos y tamaño definitivo
 
@@ -328,7 +379,7 @@ Los controles espaciales, semánticos de NLP o de agrupamiento de imágenes de l
 
 ### 4.3.7. Evaluación única del test por corrida
 
-El protocolo de prueba se ejecutará **una sola vez por corrida**, con arquitectura, hiperparámetros, reglas de actualización y decisiones ya fijados. El preregistro identificará cuándo se considera cerrada una corrida y qué artefactos se conservan. Si el procedimiento elegido actualiza pesos durante test, cada ajuste usará exclusivamente información ya disponible, respetará el embargo de ese origen y seguirá la cadencia congelada; esta regla no impone ahora un modelo estático ni un reajuste diario.
+El protocolo de prueba realizará **una sola pasada cronológica de evaluación por corrida**, con arquitectura, hiperparámetros, reglas de actualización y decisiones ya fijados. El preregistro identificará cuándo se considera cerrada una corrida y qué artefactos se conservan. Si el procedimiento elegido actualiza pesos durante test, cada pronóstico se emitirá antes de observar su etiqueta y cada ajuste usará únicamente pasado disponible con su embargo. Esta evaluación secuencial debe declararse previamente y se distingue de evaluar pesos estáticos; ninguna de las dos políticas está elegida aquí.
 
 Las predicciones guardadas permitirán calcular métricas, residuos y figuras sin volver a consultar test para elegir otra configuración. No se cambiará la regla de reentrenamiento ni se seleccionará una semilla según su desempeño en test. Si ocurre una falla técnica, se registrará el incidente y el tratamiento previsto; no se ocultará una evaluación desfavorable como si nunca hubiera ocurrido.
 
@@ -372,6 +423,8 @@ $$
 
 R² puede ser negativo. Si el objetivo evaluado es constante, su denominador es cero y se reportará como no definido, junto con el contexto; no se sustituirá silenciosamente por un valor favorable. Con un único resultado por fold, R² por fold no está definido: se calculará sobre la colección de predicciones fuera de entrenamiento, no promediando R² diarios.
 
+La media de Y del periodo evaluado aparece solo en la **definición de R²**. No autoriza usarla para entrenar ni como pronóstico disponible en el origen. Un R² frente a media train, si se informa, tendrá nombre distinto del R² convencional.
+
 Las métricas se calcularán en la **escala original de la volatilidad**, después de invertir transformaciones de la etiqueta. Se declarará si se muestran unidades de retorno logarítmico o puntos porcentuales. Multiplicar la etiqueta por 100 multiplica RMSE y MAE por 100 y MSE por 10.000; los resultados de distintas escalas no se mezclarán.
 
 ### 4.4.2. Errores relativos y escalados
@@ -391,13 +444,26 @@ Para MASE se fija el rezago de referencia $s=1$ día de calendario y se calcular
 $$
 a_{\mathrm{train},s}
 =\frac1{|\mathcal J_s|}\sum_{j\in\mathcal J_s}|Y_j-Y_{j-s}|,
-\qquad
-q_t=\frac{|Y_t-\widehat Y_t|}{a_{\mathrm{train}(t),s}},
-\qquad
-\mathrm{MASE}=\frac1N\sum_t q_t.
+\qquad |\mathcal J_s|>0.
 $$
 
-$\mathcal J_s$ contiene pares de etiquetas válidas separados por **$s$ días de calendario**, completamente observables en ese entrenamiento. No se comprimen huecos para fingir consecutividad. El denominador es común a los modelos comparados dentro de cada fold; puede variar al crecer el entrenamiento. Si vale cero o no hay pares suficientes, MASE se marca no definida para esos casos y se reporta su cobertura. Se fija $s=1$ día como referencia no estacional de persistencia, sin escogerlo mirando test.
+$\mathcal J_s$ contiene pares de etiquetas válidas separados por **$s$ días de calendario**, ambos pertenecientes a la historia de entrenamiento permitida. No se comprimen huecos. La escala se calcula en unidades originales del objetivo y es común a los métodos comparados en ese origen, con identificador de su conjunto de referencia.
+
+Se define la máscara de escalas admisibles y su tamaño:
+
+$$
+\mathcal I_M=\{t\in\mathcal V:a_{\mathrm{train}(t),1}>0\text{ y escala definida}\},
+\qquad N_M=|\mathcal I_M|,
+$$
+
+$$
+\mathrm{MASE}=\frac1{N_M}\sum_{t\in\mathcal I_M}
+\frac{|Y_t-\widehat Y_t|}{a_{\mathrm{train}(t),1}},\qquad N_M>0.
+$$
+
+Si no hay pares válidos o la escala es cero, se conserva el caso como no definido y su motivo. Se reportan $N_M$, el total esperado y cobertura $N_M/N$; si $N_M=0$, la métrica completa es indefinida. La máscara proviene del entrenamiento y es común entre métodos, sin excluir fechas por su error. Una predicción no finita sigue la política de incidentes, no se oculta como exclusión de MASE.
+
+Si la escala cambia con el entrenamiento creciente, se promedian **errores escalados por origen**; no se divide la MAE global por una escala elegida después. MASE<1 compara esos errores con la variación ingenua estimada en entrenamiento, no demuestra por sí sola que el modelo supere a persistencia durante la evaluación. El rezago s=1 permanece fijado sin mirar test.
 
 ### 4.4.3. Evaluación por horizonte y referencias ingenuas
 
@@ -409,6 +475,8 @@ Se conserva además **persistencia de la volatilidad histórica disponible** al 
 
 Las referencias se evaluarán en las mismas fechas, escala y etiquetas que los modelos. Si una referencia necesita más historia, se declarará la cobertura común y la exclusión correspondiente. Ningún método ingenuo ocupa uno de los tres puestos obligatorios de modelos de Deep Learning.
 
+Se conservarán cobertura disponible por método e intersección elegible para la comparación pareada, con fechas y soportes históricos identificados. Una falla técnica de predicción no se convierte automáticamente en una nueva exclusión por calidad de datos ni se utiliza para eliminar días difíciles del conjunto común.
+
 En los folds diarios actuales, RMSE se calcula agrupando las predicciones de una ejecución según §4.1.4. El promedio de errores RMSE de folds con un solo punto equivale a MAE y no se presentará como RMSE global.
 
 ### 4.4.4. Comparación justa entre los tres modelos
@@ -419,17 +487,23 @@ Se mantendrán las mismas definiciones de métricas y reglas sobre ceros, invers
 
 Se usará el mismo presupuesto de búsqueda documentado en §4.2.6. Las comparaciones no mezclarán el mejor resultado de una única semilla para un modelo con la media de todas las semillas de otro.
 
+La ganancia relativa será $Q=1-\mathrm{RMSE}_{\mathrm{modelo}}/\mathrm{RMSE}_{\mathrm{persistencia}}$ sobre el mismo calendario, cuando el denominador sea positivo. Un valor puntual $Q\ge0{,}05$ alcanza el criterio puntual; sostener que se **supera** requiere el intervalo o contraste correspondiente respecto a 0,05, además del alcance de inferencia declarado en §4.1.7. Rechazar ausencia de mejora frente a cero no basta. Para incertidumbre temporal, el remuestreo pareado recalculará ambas RMSE y la razón sobre los mismos bloques; no tratará el denominador estimado como exacto.
+
 ### 4.4.5. Análisis de resultados y variabilidad
 
 Se reportarán **media, desviación estándar muestral e intervalo de confianza** por modelo y configuración, con el número de ejecuciones y el método de construcción. Se distinguirán métricas de selección en validación de la evaluación final del test, y se conservarán las fechas de cada predicción.
 
 La variabilidad por semilla se examinará dentro de cada modelo y configuración. Las diferencias entre modelos se examinarán sobre las mismas semillas y fechas. Se presentarán distribuciones de métricas por corrida y diferencias pareadas; si se realiza una descomposición formal de varianza, se declararán el modelo estadístico y sus supuestos, sin mezclar configuraciones o días dependientes como réplicas independientes.
 
+Las arquitecturas son **niveles elegidos**, no una muestra aleatoria de todas las redes DL. La varianza de tres medias no estima una variabilidad universal entre arquitecturas. Una descomposición formal declarará efectos fijos o aleatorios, interacciones, emparejamiento y covarianza. Se conservarán métricas por corrida: promediar predicciones entre semillas define un método agregado adicional, que no sustituye la media y DE de las métricas individuales.
+
 La variabilidad temporal se analizará por bloques o segmentos predefinidos y con métodos adecuados a su dependencia. Los intervalos entre semillas sobre el mismo mercado no se interpretarán como toda la incertidumbre de generalización. Las pruebas y tamaños de efecto se interpretarán junto con $\delta$, no solo por significación estadística.
 
 ### 4.4.6. Robustez, sobreajuste y segmentos relevantes
 
 La robustez se estudiará con segmentos y, si se incorporan, perturbaciones controladas fijadas antes de la evaluación correspondiente. En desarrollo pueden definirse niveles de volatilidad con umbrales estimados solo en entrenamiento; esos umbrales se congelarán antes de trasladarlos a validación o test.
+
+Las fechas de bloques y los umbrales se registrarán antes de examinar sus errores, indicando si los umbrales quedan fijos desde el entrenamiento inicial o se actualizan causalmente por origen. Los rangos del objetivo observado sirven para análisis **retrospectivo** de errores, no como covariables disponibles antes de conocer ese objetivo. Se reportarán cantidades y cobertura de cada segmento; los pequeños se identificarán con sus límites de precisión.
 
 | Análisis | Evidencia que deberá conservarse | Cautela |
 |---|---|---|
@@ -439,7 +513,13 @@ La robustez se estudiará con segmentos y, si se incorporan, perturbaciones cont
 | Tamaño de entrada | Resultados separados para 7/14/21/28 días | No confundir historia de entrada con ventana de volatilidad |
 | Curvas y brecha train–validation | Pérdida y métricas por época y conjunto, con escalas comparables | Una brecha pequeña por sí sola no descarta underfitting |
 
+Si se simula **ruido de observación**, se perturban solo covariables históricas disponibles y se conserva la etiqueta original. La ley, intensidad y semilla se registrarán con desarrollo. Deben mantenerse precios positivos, volumen no negativo, $H\ge\max(O,C)$, $L\le\min(O,C)$ y $H\ge L$; ruido independiente sin esos controles puede fabricar velas imposibles. No se elige aquí una intensidad o distribución.
+
+Modificar la trayectoria que define Y y recalcular su volatilidad constituye otra simulación o tarea, que se reportaría separadamente. Los faltantes simulados siguen la exclusión estricta, sin imputar ni comprimir fechas, con máscara de perturbación común y ventanas perdidas documentadas. Una mejora aparente tras retirar días difíciles no acredita por sí sola robustez.
+
 Las curvas de aprendizaje y las brechas entre entrenamiento y validación se usarán para diagnosticar overfitting o underfitting, considerando también el nivel de error y el comportamiento de la referencia ingenua. No se dibujarán curvas sintéticas como si fueran resultados observados. Las evaluaciones de robustez de test deberán estar predefinidas y reutilizar las predicciones guardadas cuando corresponda, sin reabrir selección de modelos.
+
+Las curvas usadas para detener se identificarán como **validación interna de parada**, con conjuntos y escala comparables a su entrenamiento. La etiqueta externa no se consulta por época. Una curva de selección con 2024 se denomina de selección, no test independiente; una brecha pequeña tampoco descarta un error absoluto alto.
 
 ### 4.4.7. Análisis cualitativo de predicciones y residuos
 
@@ -450,6 +530,8 @@ Los residuos conservarán fecha y signo. Con $e_t=Y_t-\widehat Y_t$, una media p
 Para esta regresión temporal se documentarán **Ljung–Box** y el diagnóstico **BDS** previsto en el apartado específico de series de tiempo y regresión temporal de la guía, con rezagos, parámetros, tamaño muestral, supuestos y multiplicidad. El BDS requerido sobre residuos del primer horizonte se ejecutará cuando existan predicciones de las redes: una prueba sobre retornos crudos del EDA no lo sustituye. Un rechazo o no rechazo no demuestra por sí solo capacidad predictiva ni independencia absoluta.
 
 Los huecos y el solapamiento de objetivos móviles se considerarán al elegir tramos y métodos. No se concatenarán fechas separadas como si fueran observaciones consecutivas ni se usarán residuos de entrenamiento para aparentar un diagnóstico fuera de muestra.
+
+Los residuos se ordenarán por calendario **dentro de cada modelo, configuración y semilla**; no se concatenan semillas o tramos separados para crear una serie ficticia. σ7 consecutivas comparten seis retornos, por lo que h=1 no implica errores independientes. Se distinguirán ACF de errores y de errores al cuadrado, y no se restará automáticamente el número de pesos de la red a los grados de libertad de Ljung–Box. Antes de afirmaciones confirmatorias se registrarán tramos, rezagos, dimensiones/radios de BDS, software, supuestos y multiplicidad; un ajuste de p-values no repara una referencia estadística mal calibrada.
 
 ### 4.4.8. Productos y estado de ejecución
 

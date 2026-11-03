@@ -1,6 +1,6 @@
 # 5. Criterios del benchmark y baseline previstos para E2
 
-El benchmark comparará conjuntamente las **tres familias documentales de Deep Learning —LSTM, TCN y encoder Transformer—**, con configuraciones propias y suficiencia bibliográfica pendientes de cierre según §3, bajo condiciones reproducibles, justas y comparables. Su resultado será identificar una referencia mínima de desempeño que un modelo avanzado deberá superar con evidencia estadística y relevancia práctica.
+El benchmark comparará **exactamente tres arquitecturas DL una vez se cierre la selección de §3**. Las fichas LSTM, TCN y encoder Transformer siguen como candidatas y GRU continúa evaluable; no fijan todavía los tres puestos experimentales. La comparación usará configuraciones respaldadas y el protocolo común de §4. Su resultado será identificar una referencia mínima de desempeño que un modelo avanzado deberá superar con evidencia estadística y relevancia práctica.
 
 ## 5.1. Comparación Tabular
 
@@ -14,13 +14,13 @@ El horizonte principal es un día; se reportarán 2025 y 2026 por separado en el
 
 ### 5.1.2. Tabla obligatoria de desempeño y costo
 
-La tabla siguiente es una **plantilla pendiente de resultados**, no una comparación ejecutada. M1, M2 y M3 identifican las tres familias documentales, con configuraciones concretas por fijar en E2:
+La tabla siguiente es una **plantilla pendiente de resultados**, no una comparación ejecutada. M1, M2 y M3 son puestos experimentales sin arquitectura final asignada, con configuraciones por cerrar en E2:
 
 | Modelo base | Ejecuciones válidas | RMSE, media ± DE | MAE, media ± DE | Otras métricas | IC 95 % y método | Tiempo de entrenamiento | Tiempo de inferencia | Parámetros |
 |---|---|---|---|---|---|---|---|---|
-| M1 — LSTM | Pendiente | Pendiente | Pendiente | Pendiente | Pendiente | No medido | No medido | No implementado |
-| M2 — TCN | Pendiente | Pendiente | Pendiente | Pendiente | Pendiente | No medido | No medido | No implementado |
-| M3 — encoder Transformer | Pendiente | Pendiente | Pendiente | Pendiente | Pendiente | No medido | No medido | No implementado |
+| M1 — arquitectura por cerrar | Pendiente | Pendiente | Pendiente | Pendiente | Pendiente | No medido | No medido | No implementado |
+| M2 — arquitectura por cerrar | Pendiente | Pendiente | Pendiente | Pendiente | Pendiente | No medido | No medido | No implementado |
+| M3 — arquitectura por cerrar | Pendiente | Pendiente | Pendiente | Pendiente | Pendiente | No medido | No medido | No implementado |
 
 Se conservará un formato largo con un intervalo por cada métrica que lo requiera; la columna resumida de intervalos no se interpretará como un único IC aplicable a todas las métricas. Las métricas adicionales incluyen MAPE, MSE, R² y MASE, con los casos no definidos y la cobertura documentados según §4.4.
 
@@ -319,7 +319,7 @@ Los controles no se describirán como garantía absoluta: cada afirmación de va
 
 Las limitaciones observadas incluyen el alcance de un solo mercado, un día incompleto de desarrollo, objetivos móviles con retornos compartidos y la distinción entre variabilidad de semillas y variabilidad temporal. Se conservaron los brutos; excluir un día de los derivados no demuestra que no existan otros problemas económicos de calidad.
 
-El estado actual añade limitaciones de ejecución: cobertura bibliográfica limitada y respaldo de atención en un manuscrito gris; configuraciones, entrenamiento y evaluación propios reservados para E2. Las familias de trabajo, RMSE y el margen relativo del 5 % ya están documentados. Estas son tareas pendientes y no hallazgos de desempeño.
+El estado actual añade limitaciones de ejecución: cobertura bibliográfica limitada y respaldo de atención en dos manuscritos grises; configuraciones, entrenamiento y evaluación propios reservados para E2. Las familias de trabajo, RMSE y el margen relativo del 5 % ya están documentados. Estas son tareas pendientes y no hallazgos de desempeño.
 
 Las recomendaciones se derivarán de esas limitaciones y de los resultados que se obtengan: completar evidencia bibliográfica, cerrar el protocolo, ejecutar el piloto, dimensionar corridas y evaluar de manera comparable. Extensiones a noticias, otros mercados o arquitecturas avanzadas requerirán nueva justificación, fuentes y validación; no se presentan como mejoras garantizadas ni como experimentos ya ejecutados.
 

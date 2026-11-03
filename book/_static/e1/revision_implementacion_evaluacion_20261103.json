@@ -1,0 +1,286 @@
+{
+  "review_date": "2026-11-03",
+  "timezone": "America/Bogota",
+  "guide_sections": "4.1–4.4, pp.16–21",
+  "scope": "Documentary correction only. DL implementations, pilot, benchmark and test execution remain reserved for E2 under the user scope.",
+  "base_code_commit": "e0e8a2f474fdaf9bc3d5f20b9d9730281b65803f",
+  "requirements": [
+    {
+      "id": "4.1.01",
+      "requirement": "Entrada, representación y disponibilidad",
+      "status": "Documentado",
+      "evidence": "§4.1.1–4.1.2: OHLCV diario, N×D×5, D7/14/21/28, reloj UTC e identificadores de origen/resultado/disponibilidad.",
+      "remaining_or_limit": "No añade rezagos explícitos del objetivo ni nuevas variables."
+    },
+    {
+      "id": "4.1.02",
+      "requirement": "Objetivo y horizonte",
+      "status": "Fijado documentalmente",
+      "evidence": "n7, h1, ddof0, sin anualizar; n14/21/28 son sensibilidad de otros objetivos.",
+      "remaining_or_limit": "No hay D principal seleccionada ni métricas comparables entre objetivos distintos."
+    },
+    {
+      "id": "4.1.03",
+      "requirement": "Partición, proporciones, semilla y dependencia",
+      "status": "Documentado; índices existentes",
+      "evidence": "365/366/608 días;27,26/27,33/45,41%;cronología determinista, sin semilla de barajado.",
+      "remaining_or_limit": "Son proporciones de calendario; muestras definitivas y test supervisado pendientes."
+    },
+    {
+      "id": "4.1.04",
+      "requirement": "Validación para seleccionar hiperparámetros",
+      "status": "Distinción corregida",
+      "evidence": "2024 usado para seleccionar se reporta como selección; evaluación externa de un selector requeriría anidación temporal completa.",
+      "remaining_or_limit": "Cortes internos, método de selección, presupuesto y cadencia aún abiertos."
+    },
+    {
+      "id": "4.1.05",
+      "requirement": "Pipeline y preprocesamiento ajustado solo en train",
+      "status": "Reglas precisadas",
+      "evidence": "Escalas y transformaciones en subentrenamiento; embargo D también en corte interno; exclusión estricta.",
+      "remaining_or_limit": "Integración con las redes y política final de transformaciones pendientes."
+    },
+    {
+      "id": "4.1.06",
+      "requirement": "Entrenamiento, evaluación y unidad de corrida",
+      "status": "Documentado",
+      "evidence": "Una corrida reúne la secuencia de pronósticos por modelo/configuración/semilla; ajustes por origen tienen identidad propia.",
+      "remaining_or_limit": "Cantidad de ajustes no aumenta R de semillas ni crea mercados independientes."
+    },
+    {
+      "id": "4.1.07",
+      "requirement": "Piloto de al menos cinco ejecuciones por modelo",
+      "status": "Previsto; no ejecutado",
+      "evidence": "Mínimo cinco semillas nuevas por modelo final, con alcance y reglas de reutilización por registrar.",
+      "remaining_or_limit": "No existen métricas piloto, media, DE, CV, costos o dispersiones medidas."
+    },
+    {
+      "id": "4.1.08",
+      "requirement": "Media, DE y coeficiente de variación del piloto",
+      "status": "Fórmulas documentadas",
+      "evidence": "Media y desviación muestral por corrida; CV=DE/media con caso media cero indefinido.",
+      "remaining_or_limit": "No se sustituyen por cifras de autores, Ridge EDA o valores simulados."
+    },
+    {
+      "id": "4.1.09",
+      "requirement": "Diferencia mínima de interés y efecto estandarizado",
+      "status": "Alcance corregido",
+      "evidence": "5% frente a persistencia; conversión de planificación por medir; diferencias pareadas y márgenes específicos entre redes.",
+      "remaining_or_limit": "No fija margen de equivalencia o de propuesta avanzada frente a baseline DL."
+    },
+    {
+      "id": "4.1.10",
+      "requirement": "Potencia y tamaño para diferencia frente a cero",
+      "status": "Aproximación delimitada",
+      "evidence": "Fórmula bilateral de la guía con factor≈7,85, condicionada a semillas/calendario y sin multiplicidad automática.",
+      "remaining_or_limit": "No representa potencia temporal ni calcula R sin dispersión y efecto registrados."
+    },
+    {
+      "id": "4.1.11",
+      "requirement": "Evidencia de superar el margen práctico",
+      "status": "Pregunta separada",
+      "evidence": "Contraste respecto a0,05; planificación requiere alternativa mayor al umbral y distancia q_alt−0,05.",
+      "remaining_or_limit": "No basta rechazar diferencia cero; alternativa, dispersión, familia y R siguen sin valor numérico."
+    },
+    {
+      "id": "4.1.12",
+      "requirement": "MDE y relación con E2",
+      "status": "Definición precisada",
+      "evidence": "MDE respecto de cero identificada; distancia a umbral separada; estimador piloto sirve de punto de partida.",
+      "remaining_or_limit": "MDE numérica y suficiencia del diseño no calculadas."
+    },
+    {
+      "id": "4.1.13",
+      "requirement": "Preregistro fechado",
+      "status": "Versiones separadas",
+      "evidence": "Especificación documental03Nov vigente y borrador histórico02Nov intacto; congelaciones de piloto/definitiva aún nulas.",
+      "remaining_or_limit": "Plan posterior a periodos de mercado/EDA; no se presenta como prerregistro completo previo a observar datos."
+    },
+    {
+      "id": "4.1.14",
+      "requirement": "Viabilidad y costo del piloto",
+      "status": "Contabilidad algebraica",
+      "evidence": "Con3modelos/5semillas: principal60 o21.960 ajustes; las16configuraciones240 o87.840, según cadencia hipotética.",
+      "remaining_or_limit": "No es presupuesto adoptado ni medición de tiempo/RAM/GPU; no incluye HPO, posibles reajustes internos o fallas."
+    },
+    {
+      "id": "4.2.01",
+      "requirement": "Implementar exactamente tres modelos de la literatura",
+      "status": "Pendiente",
+      "evidence": "Tres puestos finales sin asignar; LSTM/TCN/encoder son fichas candidatas y GRU sigue evaluable.",
+      "remaining_or_limit": "La selección final no está cerrada; documentación no satisface implementación empírica de E1."
+    },
+    {
+      "id": "4.2.02",
+      "requirement": "Mismo pipeline, partición, información y semillas",
+      "status": "Requisito fijado",
+      "evidence": "Coberturas e identificadores comunes dentro de cada configuración, con presupuesto comparable.",
+      "remaining_or_limit": "Las comparaciones propias todavía no existen."
+    },
+    {
+      "id": "4.2.03",
+      "requirement": "Hiperparámetros completos",
+      "status": "Campos definidos; valores pendientes",
+      "evidence": "LR/planificador, capas/unidades, activaciones, batch, optimizador, regularización, pérdida, épocas y parada registrados como campos requeridos.",
+      "remaining_or_limit": "Ganadores S1/S2 no se transfieren automáticamente a OHLCV ni completan detalles faltantes de S6."
+    },
+    {
+      "id": "4.2.04",
+      "requirement": "Parada temprana",
+      "status": "Diseño precisado",
+      "evidence": "Validación interna pasada; u≤v−D−1 antes de primer resultado interno v; escalado solo en subentrenamiento.",
+      "remaining_or_limit": "Tamaño/regla de corte, paciencia, min_delta, restauración y reajuste final pendientes."
+    },
+    {
+      "id": "4.2.05",
+      "requirement": "Curvas y registros por corrida",
+      "status": "Especificación documentada",
+      "evidence": "Logs de entrenamiento/validación interna, checkpoints, épocas, predicciones, configuración e incidencias.",
+      "remaining_or_limit": "No se publican curvas ilustrativas como resultados ejecutados."
+    },
+    {
+      "id": "4.2.06",
+      "requirement": "Parámetros, tiempos y hardware",
+      "status": "Registro previsto",
+      "evidence": "Entrenables/no entrenables frente a fórmula; duración de ajuste/inferencia y hardware con medición definida.",
+      "remaining_or_limit": "Sin mediciones propias; sincronización GPU y calentamiento deberán declararse."
+    },
+    {
+      "id": "4.2.07",
+      "requirement": "Equidad de optimización",
+      "status": "Regla documentada",
+      "evidence": "Mismo método y presupuesto con unidad explícita, espacios justificados, registro de todos los trials y fallas.",
+      "remaining_or_limit": "Presupuesto y espacios operativos aún sin cerrar; no equiparar trial de1origen con uno de366."
+    },
+    {
+      "id": "4.2.08",
+      "requirement": "Bibliotecas y versiones",
+      "status": "Parcial",
+      "evidence": "Entornos EDA y CV verificados; entorno de entrenamiento y justificación de implementación como campos pendientes.",
+      "remaining_or_limit": "Sin framework elegido ni lockfile de entrenamiento compatible confirmado."
+    },
+    {
+      "id": "4.3.01",
+      "requirement": "Semillas y determinismo",
+      "status": "Política pendiente; requisitos claros",
+      "evidence": "Registrar generadores, workers, lotes y dispositivos; misma etiqueta de semilla no implica pesos/ruido equivalentes entre redes.",
+      "remaining_or_limit": "No afirmar determinismo estricto sin opciones/software/hardware verificados."
+    },
+    {
+      "id": "4.3.02",
+      "requirement": "Repeticiones mínimas y potencia",
+      "status": "Mínimos delimitados",
+      "evidence": "Cinco generales, seis si pruebas por rangos; número mayor cuando lo requiera potencia registrada.",
+      "remaining_or_limit": "Mínimos no garantizan significación ni potencia; no contar fechas o fits como semillas."
+    },
+    {
+      "id": "4.3.03",
+      "requirement": "Media, DE e IC95%",
+      "status": "Alcances separados",
+      "evidence": "Entre semillas condicionado a fechas; incertidumbre temporal con método pareado y dependencia justificada.",
+      "remaining_or_limit": "No son IC completos de nuevos mercados ni se mezclan arquitecturas como muestra aleatoria de todas las redes."
+    },
+    {
+      "id": "4.3.04",
+      "requirement": "GPU y empaquetado reproducible",
+      "status": "Requisitos documentados",
+      "evidence": "Dependencias, scripts, configuración, hashes, logs, checkpoints, predicciones, versiones y equipo requeridos.",
+      "remaining_or_limit": "Paquete de benchmark extremo a extremo y mediciones aún no existen."
+    },
+    {
+      "id": "4.3.05",
+      "requirement": "Prevención de leakage",
+      "status": "Controles temporales precisados",
+      "evidence": "Embargo, disponibilidad, transformaciones internas, test reservado y modalidades ajenas marcadas no aplicables.",
+      "remaining_or_limit": "Implementación de controles en las redes pendiente; etiquetas solapadas no se vuelven independientes por embargo."
+    },
+    {
+      "id": "4.3.06",
+      "requirement": "Test una sola vez por corrida",
+      "status": "Procedimiento delimitado",
+      "evidence": "Una pasada cronológica congelada; predicción antes de etiqueta; eventual actualización pasada solo si se registra previamente.",
+      "remaining_or_limit": "No usar resultados para seleccionar reglas; uso de pasado test, cadencia y parada de actualizaciones aún sin elegir."
+    },
+    {
+      "id": "4.4.01",
+      "requirement": "Métricas de regresión y escalas",
+      "status": "Documentado",
+      "evidence": "RMSE primaria, MAE/MSE/R²/MAPE/MASE; escala original; RMSE agrupada, no promedio de RMSE diarias.",
+      "remaining_or_limit": "Casos R² constante/unipunto, MAPE sin positivos y denominadores cero explícitos."
+    },
+    {
+      "id": "4.4.02",
+      "requirement": "MASE y cobertura",
+      "status": "Máscara formalizada",
+      "evidence": "I_M de escalas train positivas y definidas, N_M, cobertura y media de errores escalados por origen.",
+      "remaining_or_limit": "No dividir MAE global por escala elegida después ni convertir incidentes en exclusiones favorables."
+    },
+    {
+      "id": "4.4.03",
+      "requirement": "Referencias y comparación justa",
+      "status": "Reglas precisadas",
+      "evidence": "Persistencia, Ridge contextual y redes en fechas/objetivos comunes; ingenuo estacional solo con periodo justificado.",
+      "remaining_or_limit": "Cuatro Ridge EDA no son el benchmark ni fijan su cadencia o penalización."
+    },
+    {
+      "id": "4.4.04",
+      "requirement": "Análisis de variabilidad",
+      "status": "Interpretación precisada",
+      "evidence": "Arquitecturas como niveles elegidos, repeticiones dentro de nivel y modelo de varianza/supuestos explícitos.",
+      "remaining_or_limit": "Promediar predicciones crea ensemble; no sustituye distribución de métricas individuales."
+    },
+    {
+      "id": "4.4.05",
+      "requirement": "Robustez, curvas y errores por segmentos",
+      "status": "Diseño precisado",
+      "evidence": "Ruido solo en X histórico con semántica OHLCV y Y original; faltantes por exclusión; umbrales de train y curvas internas de parada.",
+      "remaining_or_limit": "No se ejecutaron perturbaciones, curvas o análisis de errores; retirar días difíciles cambia cobertura."
+    },
+    {
+      "id": "4.4.06",
+      "requirement": "Análisis cualitativo y residuos",
+      "status": "Requisitos documentados",
+      "evidence": "Predicción-real, sesgo, heterocedasticidad, ACF/BDS con tramos y parámetros; series separadas por semilla.",
+      "remaining_or_limit": "σ7 comparte seis retornos; no concatenar semillas/huecos ni interpretar diagnósticos Ridge como resultados de redes."
+    }
+  ],
+  "current_documentary_protocol": "experiments/protocolo_e2_documental_20261103.json",
+  "executable_configuration": false,
+  "final_trio_closed": false,
+  "new_dl_models_implemented": 0,
+  "new_dl_models_trained": 0,
+  "pilot_runs": 0,
+  "benchmark_runs": 0,
+  "new_reference_models_fitted": 0,
+  "project_test_files_opened": 0,
+  "existing_eda_references_preserved": 4,
+  "algebra_only_checks": {
+    "normal_bilateral_alpha": 0.05,
+    "power": 0.8,
+    "squared_quantile_factor": 7.848879734349086,
+    "primary_static_fit_count": 60,
+    "primary_daily_cold_fit_count": 21960,
+    "all_configs_static_fit_count": 240,
+    "all_configs_daily_cold_fit_count": 87840,
+    "numeric_required_seed_count_calculated": false,
+    "numeric_mde_calculated": false
+  },
+  "artifacts": [
+    {
+      "path": "experiments/protocolo_e2_documental_20261103.json",
+      "sha256": "a651fcb67febe7a9b68b571375edb8e8a641d5c1f65a5bbd3bf200cdcdac3c22"
+    },
+    {
+      "path": "book/sections/04_implementacion_evaluacion.md",
+      "sha256": "0b803c09d270d326380381908e2d76286cc9ce632bdf66074c9bd48deb56b059"
+    },
+    {
+      "path": "experiments/preregistro_piloto.json",
+      "sha256": "428a5ce0780690939a16d8c5125e789e66b917ab99d440fe6151415a83ba4eaa"
+    },
+    {
+      "path": "references/literature_e1/selection_evidence.json",
+      "sha256": "e4b587a03ea1c886df09f7f25415cb913c49cad5efc2537ed15333061b121d15"
+    }
+  ]
+}

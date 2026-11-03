@@ -49,6 +49,8 @@ La ampliación específica de la sección 2.1 está en el {download}`informe de 
 
 El bloque C aplicable se desarrolla en §2.2 con dos módulos adicionales: el [EDA específico](../_static/eda_temporal_specific/summary.json), que usa las mismas 308 fechas elegibles de 2023 para los 140 pares covariable–rezago, y la [referencia lineal diagnóstica](../_static/eda_temporal_reference/summary.json). Esta última conserva cuatro ajustes estáticos de 2023 y 366 residuos de 2024 por D. Los 12 diagnósticos Ljung–Box en rezagos 7/14/28 rechazan con ajuste Holm bajo su referencia asintótica; la dependencia del objetivo móvil y la limitación de la referencia impiden atribuir ese rechazo exclusivamente a una falta de rezagos del objetivo. Se mantiene el tipo 4 y no se usaron archivos de test. El ajuste estático y $\alpha=1$ describen este diagnóstico, sin congelar el experimento posterior.
 
+La revisión del capítulo 4 se conserva en el {download}`informe de implementación y evaluación <../_static/e1/revision_implementacion_evaluacion_20261103.md>` y su [matriz](../_static/e1/revision_implementacion_evaluacion_20261103.json). La [especificación documental actual](../_static/experiments/protocolo_e2_documental_20261103.json) sincroniza decisiones aceptadas y campos abiertos sin sustituir el borrador histórico. Se distinguen detección frente a cero y superación del 5 %, corridas y ajustes, selección de 2024 y validación interna, escalado del subentrenamiento y máscara de MASE. No se calcularon R/MDE ni se ejecutaron redes, piloto, benchmark o test.
+
 ## Estado de los siete cambios solicitados
 
 | Prioridad | Producto | Estado verificable |

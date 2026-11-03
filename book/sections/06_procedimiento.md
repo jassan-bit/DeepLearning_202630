@@ -91,7 +91,7 @@ Las etiquetas móviles de validación consecutivas comparten $n-1$ retornos aunq
 | Calidad y faltantes | EDA 2023–2024, exclusión estricta y calendario conservado | Mantener reglas al formar muestras y registrar enmiendas |
 | Objetivo y ventanas | $n=7$, $h=1$, cuatro historias D; otras n como sensibilidad | Sin seleccionar objetivos mediante RMSE de test |
 | Partición y origen móvil | Manifiesto versión 2 con $E_D=D$ aplicado; 5.856 filas verificadas y hashes actualizados | Cerrar política de reajuste, test supervisado y tratamiento inferencial del soporte compartido |
-| Arquitecturas | Evidencia, selección y fichas documentales en §3 | Implementar configuraciones justificadas en E2 |
+| Arquitecturas | Evidencia y fichas candidatas en §3; trío definitivo abierto | Cerrar tres identidades y después implementar configuraciones justificadas en E2 |
 | Pérdida y métricas | MSE/RMSE, MAPE y MASE definidas en §1.4 | Calcular predicciones y métricas sin consultar test para seleccionar |
 | Margen de relevancia | Regla relativa del 5 % frente a persistencia | Separar relevancia, incertidumbre y significación |
 | Referencia lineal y clasificación | Cuatro Ridge diagnósticos con $\alpha=1$; 1.464 predicciones de 2024 y autocorrelación residual documentada; tipo 4 vigente por contrato | Definir la referencia del benchmark y su reajuste; revisar el tipo si se añaden rezagos del objetivo |

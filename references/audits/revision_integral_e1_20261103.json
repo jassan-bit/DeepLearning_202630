@@ -122,8 +122,8 @@
       "id": "R15",
       "requirement": "Implementaciones, piloto y dimensionamiento",
       "guide_pages": "16–20",
-      "status": "No ejecutado en este alcance",
-      "evidence_or_correction": "No se han implementado o entrenado las tres redes ni ejecutado piloto. Los cuatro Ridge ajustados pertenecen exclusivamente al diagnóstico EDA y no satisfacen esa implementación DL.",
+      "status": "Diseño corregido; ejecución pendiente",
+      "evidence_or_correction": "Capítulo4 revisado: trío final abierto, protocolo documental actual, separación de potencia frente a cero/superación del5%, inner split y escala, corridas frente a ajustes. No se implementaron redes ni se ejecutó piloto.",
       "remaining_work": "La guía exige estos productos en E1; el usuario los reserva para E2. Esa decisión no acredita una excepción del docente."
     },
     {
@@ -131,7 +131,7 @@
       "requirement": "Benchmark, baseline medido e inferencia",
       "guide_pages": "21–26",
       "status": "No ejecutado en este alcance",
-      "evidence_or_correction": "Se distinguen mejora puntual, incertidumbre temporal, variabilidad por semillas, multiplicidad y relevancia práctica.",
+      "evidence_or_correction": "Criterios de métricas y cobertura, MASE con máscara común, incertidumbre entre semillas/temporal, robustez OHLCV y residuos documentados; sin comparación empírica DL.",
       "remaining_work": "Faltan predicciones comparables de las tres redes y persistencia, métricas, costes, intervalos, potencia y baseline DL medido. Las referencias Ridge EDA y los números de autores no sustituyen esas evidencias."
     },
     {
@@ -139,7 +139,7 @@
       "requirement": "Reproducibilidad y productos exigidos",
       "guide_pages": "33–34",
       "status": "Parcial",
-      "evidence_or_correction": "Código EDA/CV, datos y hashes, cuatro referencias lineales con parámetros y predicciones auditables, dependencias, semillas propuestas históricas y libro versionado.",
+      "evidence_or_correction": "Código EDA/CV, datos y hashes, cuatro referencias lineales con parámetros y predicciones auditables, dependencias, semillas propuestas históricas y libro versionado. Especificación documental actual de E2 con decisiones fijadas y campos abiertos, diferenciada del borrador histórico.",
       "remaining_work": "Entorno/configuraciones finales de entrenamiento, artefactos de corridas y decisiones de inferencia siguen pendientes."
     },
     {
@@ -169,9 +169,12 @@
     "temporal_eda_summary": "results/eda_temporal_reference/summary.json",
     "temporal_eda_summary_sha256": "ec8087cc54454e64b90ad2d25c443f81ac96efd75004f9fd2e8478fc9ed37d47",
     "included_full_text_studies": 5,
-    "literature_model_training_in_this_review": 0
+    "literature_model_training_in_this_review": 0,
+    "chapter4_documentary_models_fitted": 0,
+    "chapter4_pilot_or_test_runs": 0
   },
   "latest_eda_general_review": "references/audits/revision_eda_general_20261103.json",
   "latest_eda_temporal_review": "references/audits/revision_eda_temporal_20261103.json",
-  "latest_literature_review": "references/audits/revision_estado_arte_20261103.json"
+  "latest_literature_review": "references/audits/revision_estado_arte_20261103.json",
+  "latest_implementation_evaluation_review": "references/audits/revision_implementacion_evaluacion_20261103.json"
 }
