@@ -1,8 +1,10 @@
 # 2. Análisis Exploratorio de Datos (EDA)
 
-El análisis se ejecutó con los archivos oficiales de **Binance Spot BTCUSDT**, utilizando **entrenamiento de 2023** y **validación de 2024**. La frecuencia de adquisición es un minuto; la configuración de modelado es **diaria, con cierre UTC**, entradas de **7, 14, 21 o 28 días** y horizonte principal de **un día**. La clasificación documental actual es **regresión temporal**, conforme a la ruta 6.4 de la guía: las redes reciben covariables OHLCV pasadas, sin rezagos explícitos de la volatilidad objetivo. El objetivo principal es la volatilidad de siete retornos diarios; las ventanas 14/21/28 se conservan como sensibilidad de su definición.
+El análisis se ejecutó con los archivos oficiales de **Binance Spot BTCUSDT**, utilizando **entrenamiento de 2023** y **validación de 2024**. La frecuencia de adquisición es un minuto; la configuración de modelado es **diaria, con cierre UTC**, entradas de **7, 14, 21 o 28 días** y horizonte principal de **un día**. La clasificación documental actual es **tipo 4, regresión temporal**, conforme a la ruta 6.4 de la guía: las redes reciben covariables OHLCV pasadas, sin rezagos explícitos de la volatilidad objetivo. El objetivo principal es la volatilidad de siete retornos diarios; las ventanas 14/21/28 se conservan como sensibilidad de su definición.
 
 Se distinguen las ventanas de entrada $D$ de las ventanas de volatilidad $n$: ambas se exploran en 7, 14, 21 y 28 **días**, pero tienen funciones diferentes. No se selecciona un ganador a partir de estos gráficos. La escala de cálculo usa retornos logarítmicos sin anualizar; las figuras que muestran porcentajes multiplican por 100 y lo indican en sus ejes.
+
+La métrica principal y el criterio operativo ya fijados en §1.4 son **RMSE** y una mejora relativa mínima del **5 % frente a persistencia**. Las decisiones del EDA preparan esa evaluación; el desempeño de las redes se medirá en la etapa experimental posterior.
 
 ## 2.1. EDA general
 
@@ -27,7 +29,7 @@ La tabla usa entrenamiento 2023. Los valores están en unidades de retorno logar
 
 ![Volatilidad diaria de 28 días: trayectoria, histograma, ECDF y comparación 2023–2024](../_static/eda/13_volatilidad_28_dias.png)
 
-La ventana de siete días presenta mayor variación temporal; aumentar la ventana suaviza la medida, pero cambia el objetivo y no demuestra que un modelo pronostique mejor. No aparecen etiquetas cero en estos derivados de desarrollo. Esto no garantiza que nunca aparezcan: la política de MAPE debe registrarse antes de test.
+La ventana de siete días presenta mayor variación temporal; aumentar la ventana suaviza la medida, pero cambia el objetivo y no demuestra que un modelo pronostique mejor. No aparecen etiquetas cero en estos derivados de desarrollo. Esto no garantiza que nunca aparezcan: se mantiene la política de MAPE ya fijada en §1.4, con etiquetas positivas, cobertura declarada y sin epsilon arbitrario. Al ser un objetivo continuo, los recuentos de clases, la entropía de clases y el balance entre clases de la guía no son aplicables.
 
 - **Decisión de preprocesamiento:** conservar las cuatro definiciones separadas y requerir retornos diarios consecutivos; no rellenar las etiquetas afectadas por huecos.
 - **Impacto en la arquitectura:** cada combinación de entrada y objetivo debe identificar sus dimensiones; las cuatro ventanas no se mezclan como si fueran la misma etiqueta.
@@ -39,9 +41,13 @@ El EDA abrió exclusivamente los **24 ZIP mensuales de 2023–2024**, verificand
 
 El **24/03/2023** faltan 80 minutos de apertura, desde **12:40 hasta 13:59 UTC**, inclusive. La fila con apertura **12:39 UTC** tiene un cierre temporal que no coincide con el fin esperado de la vela. Se conserva en el bruto y se marca no elegible para este análisis. Así hay 81 posiciones sin cierre elegible, no 81 filas ausentes del archivo.
 
-La agregación diaria requiere 1.440 minutos elegibles: hay **364 días completos en 2023** y **366 en 2024**. Los retornos diarios no se calculan atravesando el día incompleto.
+La agregación diaria requiere 1.440 minutos elegibles: hay **364 días completos en 2023** y **366 en 2024**. El **24/03/2023 permanece excluido**, conforme a la decisión vigente; los retornos diarios y las ventanas no se calculan atravesando ese día. La posición de la fecha se conserva en el calendario.
+
+Se verificaron la unicidad y el orden de los timestamps de apertura. Dos minutos con el mismo precio no se consideran por ello registros duplicados. Las etiquetas se calculan automáticamente con cierres válidos; no requieren acuerdo entre anotadores. La auditoría detecta inconsistencias temporales, pero no estima de forma independiente el error de los precios del proveedor ni el ruido de la volatilidad como aproximación a la incertidumbre del mercado.
 
 ![Cobertura mensual y minutos no elegibles por día en desarrollo](../_static/eda/01_calidad_cobertura.png)
+
+La barra de marzo de 2023 representa **44.559 cierres elegibles de 44.640 esperados: 99,82 %**. El eje vertical comienza en 99,70 % y amplía la diferencia frente a los meses completos. La gráfica conserva el hueco original como evidencia de calidad, aunque el día afectado se excluya del modelado.
 
 La concentración del hueco en un episodio temporal está observada, pero no basta para identificar MCAR, MAR o MNAR. Su causa necesita documentación del proveedor; no se atribuye una causa concreta sin evidencia. Los precios repetidos en minutos distintos no se tratan como duplicados erróneos.
 
@@ -55,14 +61,14 @@ El alcance contiene un activo, un exchange y una cotización en USDT. No represe
 
 ![Comparación 2023–2024 de magnitudes de retornos de un minuto](../_static/eda/04_desplazamiento_desarrollo.png)
 
-La figura compara una ECDF y la media diaria de magnitudes de retornos de un minuto, **no el objetivo de volatilidad futura**. Un bootstrap móvil de 2.000 réplicas, semilla 42 y bloques de 7 y 14 días estima el cambio de esa media entre validación y entrenamiento:
+La figura compara una ECDF y la media diaria de magnitudes de retornos de un minuto. Esta magnitud es un diagnóstico histórico distinto del objetivo diario de volatilidad. Un bootstrap móvil de 2.000 réplicas, semilla 42 y bloques de 7 y 14 días estima el cambio de esa media entre validación y entrenamiento:
 
 | Bloque | Diferencia 2024 − 2023 | Intervalo percentil 95 % |
 |---|---:|---|
 | 7 días | 0.000137639 | [8.99012e-05, 0.000183894] |
 | 14 días | 0.000137639 | [7.83572e-05, 0.000192761] |
 
-Es un diagnóstico condicionado a la estabilidad y representatividad de bloques; no es una prueba general de igualdad de distribuciones. Se conserva la posición de días incompletos y se omiten sus valores al promediar. Los bloques exploratorios no fijan todavía la unidad inferencial del benchmark.
+Es un diagnóstico condicionado a la estabilidad y representatividad de bloques; no es una prueba general de igualdad de distribuciones. Se conserva la posición de días incompletos y se omiten sus valores al promediar. Los bloques exploratorios no fijan todavía la unidad inferencial del benchmark. Este resultado no completa por sí solo el análisis de desplazamiento de todas las covariables OHLCV y del objetivo entre particiones; las comparaciones restantes de este capítulo son descriptivas.
 
 #### 2.1.3.1. Correlaciones con objetivos del día siguiente
 
@@ -106,17 +112,34 @@ La versión publicada **0.1.5** usa la firma `sequence, numInputs, numOutputs, n
 
 **Aplicación a BTCUSDT:** se ejecutó esa función sobre índices del calendario diario de desarrollo, con entradas de **7/14/21/28 días**, salida de **un día** y salto de **un día**. Las entradas se mapean a OHLCV y las salidas a volatilidad por separado: pasar OHLCV directamente a la función produciría salidas OHLCV, no la etiqueta de volatilidad del proyecto.
 
-Se conservaron los folds cuyo día de resultado cae en **2024**, se excluyeron ventanas con valores no elegibles y se comprobó que todas las etiquetas de entrenamiento estaban disponibles antes del pronóstico de validación. Hay **366 folds por configuración**, para las 16 combinaciones de ventana de entrada y ventana de volatilidad: **5.856 filas de configuración-fold** en el manifiesto. No equivalen a 5.856 días independientes ni a modelos entrenados.
+Se conservaron los folds cuyo día de resultado cae en **2024**, se excluyeron ventanas con valores no elegibles y se comprobó que todas las etiquetas de entrenamiento estaban disponibles antes del pronóstico de validación. Hay **366 folds por configuración**, para las 16 combinaciones de ventana de entrada y ventana de volatilidad: **5.856 filas de configuración-fold** en el manifiesto. Son índices de preparación, no 5.856 días independientes ni modelos entrenados. Las cuatro configuraciones con $n=7$ corresponden al objetivo principal; las doce restantes corresponden a sensibilidad de la definición del objetivo.
+
+En la revisión del **03/11/2026** se hizo explícita y se aplicó la convención de embargo de la ruta 6.4: para evaluar el día $t$, se omiten del ajuste los **$D$ días de resultado completos $[t-D,t-1]$**. Una muestra de ajuste con día de resultado $u$ debe cumplir **$u\le t-D-1$**, además de los controles de disponibilidad y calidad. La distancia mínima entre su día de resultado y el de validación es, por tanto, $D+1$ días. El máximo rezago de las covariables de $X_t=(z_{t-D},\ldots,z_{t-1})$ es $D$.
+
+La versión 2 del manifiesto corrige la frontera anterior $u=t-D$, que omitía solo $D-1$ días de resultado interiores. La regeneración conservó los **5.856 orígenes de configuración-fold** y eliminó una muestra de ajuste por fila; no modificó OHLCV, etiquetas, figuras ni datos de test. Para el objetivo principal, los índices actuales contienen:
+
+| Historia de entrada $D$ | Folds de validación de 2024 | Mínimo de muestras de ajuste | Máximo de muestras de ajuste |
+|---|---:|---:|---:|
+| 7 días | 366 | 343 | 708 |
+| 14 días | 366 | 322 | 687 |
+| 21 días | 366 | 301 | 666 |
+| 28 días | 366 | 280 | 645 |
+
+Son recuentos de índices elegibles para $n=7$, no corridas de entrenamiento. El resumen descargable conserva los recuentos de las dieciséis configuraciones. El SHA-256 del CSV corregido es `d46153075ce18231f24ff43b6f80dba555003b963dc5d1c4bd4d8ade90148571`.
+
+El embargo de covariables no implica independencia de las etiquetas móviles. El manifiesto registra **2.196 filas de seis configuraciones de sensibilidad con $n>D+1$** donde la última etiqueta de ajuste y la de validación comparten retornos. Esa dependencia debe conservarse en el diseño de inferencia posterior; los folds no se contarán como réplicas independientes.
 
 El código es `scripts/prepare_forward_chaining.py`. Se publican el [resumen y verificación del ejemplo](../_static/cv_forward_chaining/summary.json) y el [manifiesto de folds](../_static/cv_forward_chaining/folds.csv), con fechas, cantidades de muestras y hashes de los índices de entrenamiento. El entrenamiento es creciente e incluye únicamente historia permitida; no se abren archivos de test. La división no necesita semilla de barajado.
 
-- **Decisión de preprocesamiento:** usar los orígenes y exclusiones materializados con `split_train_val_forwardChaining`; ajustar transformaciones solo con el entrenamiento permitido de cada fold.
+- **Decisión de preprocesamiento:** utilizar los índices corregidos de la versión 2, con embargo explícito de $D$ días y soportes de etiqueta registrados; ajustar transformaciones solo con el entrenamiento permitido de cada fold y conservar esos controles en la ejecución posterior.
 - **Impacto en la arquitectura:** los modelos deben evaluarse con el mismo calendario y muestras comparables dentro de cada configuración.
 - **Riesgos identificados:** etiquetas que crucen cortes, confundir días con muestras y elegir el tamaño de entrada usando test.
 
 ### 2.1.5. Congelación del conjunto de prueba
 
-Los ZIP tienen hashes de adquisición, pero aún no se ha congelado el **test supervisado**: faltan manifiesto de orígenes y etiquetas y reglas finales de ventanas. El script del EDA filtra los archivos antes de abrirlos y registra `test_archives_opened: 0`.
+Los ZIP tienen hashes de adquisición. En la revisión del **03/11/2026** se conservó además el [manifiesto de reserva de test bruto](../_static/data/test_raw_reserve_20250101_20260831.json), que identifica **20 ZIP mensuales** para 01/01/2025–31/08/2026: **608 días de calendario y 875.520 filas reportadas por el manifiesto de adquisición**. La reserva se construyó seleccionando metadatos existentes, sin abrir los ZIP de test. Su SHA-256 es `d2eb4e84fff85ee957e6b02890cead3cec37fd593ec2a8db487dbe137d2d3a10`.
+
+Esta reserva fija la identidad de los archivos brutos; aún no se ha congelado el **test supervisado**, para el que faltan el manifiesto de orígenes y etiquetas y las reglas finales de ventanas. Los recuentos anteriores no son cantidades de muestras elegibles. El script del EDA filtra los archivos antes de abrirlos y registra `test_archives_opened: 0`.
 
 - **Decisión de preprocesamiento:** congelar código, reglas y manifiesto de muestras antes de evaluar test; verificar después los hashes.
 - **Impacto en la arquitectura:** comparar modelos y decisiones ya fijados, sin adaptar arquitecturas al resultado de test.
@@ -211,7 +234,7 @@ En los retornos de un minuto de entrenamiento, la asimetría es **-0.674028** y 
 
 Las entradas confirmadas son 7/14/21/28 días de historia; el horizonte principal es un día. Se exploraron cuatro definiciones de volatilidad histórica, sin confundirlas con la longitud de entrada. Cualquier horizonte adicional al principal debe registrarse antes del entrenamiento y de la evaluación.
 
-Los folds se materializaron con `timeseries-cv` 0.1.5 y controles explícitos de fechas, observabilidad y continuidad. El entrenamiento de los tres modelos sigue pendiente. La función no garantiza por sí sola ausencia de fuga para cualquier combinación de longitudes: los controles de disponibilidad se aplican antes de admitir cada muestra. El BDS exigido para residuos del primer horizonte solo procede después de generar predicciones fuera de entrenamiento.
+Los folds se materializaron con `timeseries-cv` 0.1.5 y controles explícitos de fechas, observabilidad y continuidad. El entrenamiento de los tres modelos sigue pendiente. La función no garantiza por sí sola ausencia de fuga para cualquier combinación de longitudes: los controles de disponibilidad se aplican antes de admitir cada muestra y la convención del embargo se declara en §2.1.4. El BDS solicitado por el material específico para residuos del primer horizonte es un diagnóstico complementario; solo procede después de generar predicciones fuera de entrenamiento y no reemplaza el análisis de autocorrelación de residuos exigido en la ruta 6.4.
 
 - **Decisión de preprocesamiento:** fijar las configuraciones de objetivos y orígenes, producir manifiestos de muestras y ajustar transformaciones solo con pasado.
 - **Impacto en la arquitectura:** entrada diaria con dimensión explícita; salida principal escalar no negativa; cualquier salida adicional debe registrarse.
@@ -221,9 +244,9 @@ Los folds se materializaron con `timeseries-cv` 0.1.5 y controles explícitos de
 
 ### 2.3.1. Fuente y alcance
 
-El dataset se adquirió directamente de Binance Spot y se preparó un derivado de desarrollo para este Entregable 1. No se utilizarán repositorios intermediarios, archivos procesados ajenos ni resultados de otros proyectos.
+El dataset se adquirió directamente de Binance Spot y se preparó un derivado de desarrollo para este Entregable 1. No se usaron repositorios intermediarios, archivos procesados ajenos ni resultados de otros proyectos para construir los datos de mercado.
 
-La fuente del proyecto es **Binance Spot**, par **BTCUSDT**, mediante los [archivos públicos oficiales](https://data.binance.vision/?prefix=data/spot/monthly/klines/BTCUSDT/1m/). Se utilizarán velas de un minuto y el precio de cierre; USDT es la moneda de cotización. La documentación técnica está en [Binance Public Data](https://github.com/binance/binance-public-data).
+La fuente del proyecto es **Binance Spot**, par **BTCUSDT**, mediante los [archivos públicos oficiales](https://data.binance.vision/?prefix=data/spot/monthly/klines/BTCUSDT/1m/). Se adquirieron velas de un minuto; los cierres se usaron para calcular retornos y etiquetas, y OHLCV se agregó a días UTC. USDT es la moneda de cotización. La documentación técnica está en [Binance Public Data](https://github.com/binance/binance-public-data).
 
 El patrón de adquisición es:
 
@@ -232,9 +255,9 @@ https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-AAAA-
 https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-AAAA-MM.zip.CHECKSUM
 ```
 
-Se descargaron los archivos y sus checksums directamente del proveedor, se verificó SHA-256 antes de procesarlos y se registraron URL, fecha de adquisición, tamaño, hash, esquema y unidades temporales. No se asumirá que todos los archivos usan la misma unidad de timestamp: se verificará la documentación y cada periodo, incluida la transición a microsegundos.
+Se descargaron los archivos y sus checksums directamente del proveedor, se verificó SHA-256 antes de procesarlos y se registraron URL, fecha de adquisición, tamaño, hash, esquema y unidades temporales. La auditoría distinguió timestamps en milisegundos antes de 2025 y microsegundos desde 2025; los archivos brutos permanecen intactos.
 
-El calendario objetivo sigue siendo desarrollo 2023–2024 y test 2025–agosto de 2026. La cobertura real se comprobará con los archivos adquiridos. El test se conservará por separado y no se explorará para elegir preprocesamiento o hiperparámetros.
+El calendario objetivo sigue siendo desarrollo 2023–2024 y test 2025–agosto de 2026. La cobertura de adquisición está verificada en §2.3.2; la cobertura elegible del desarrollo se detalla en §2.1.2. El test se conserva por separado y no se explora para elegir preprocesamiento o hiperparámetros.
 
 ### 2.3.2. Estado de adquisición y resultados
 
@@ -252,7 +275,7 @@ El calendario objetivo sigue siendo desarrollo 2023–2024 y test 2025–agosto 
 | Timestamps de apertura duplicados, fuera de rango o desalineados | 0 |
 | Timestamps de cierre que no coinciden con el fin esperado de vela | 1 |
 
-Los 80 minutos ausentes y el cierre inesperado pertenecen a marzo de 2023. La verificación de integridad **no significa que los datos no tengan huecos o anomalías**. Se conservarán para su análisis posterior; estos controles no validan precios ni ejecutan el EDA del objetivo.
+Los 80 minutos ausentes y el cierre inesperado pertenecen a marzo de 2023. La verificación de integridad no garantiza continuidad ni exactitud de precios. Ambos hallazgos se conservaron en la auditoría y motivan la exclusión del día en los derivados. Los controles de adquisición se distinguen de la validación de precios y del EDA de desarrollo ya documentados en §§2.1–2.2.
 
 El [manifiesto de adquisición](../_static/data/binance_spot_BTCUSDT_1m_20230101_20261030.json) registra URLs, SHA-256, bytes, fechas de verificación, unidades y conteos por archivo. El script reproducible es `scripts/download_binance_spot.py`, documentado en `data/README.md`. Los brutos están en `/workspace/binance-spot-data/`, fuera del repositorio y del sitio público.
 
@@ -260,19 +283,19 @@ Los archivos históricos respondieron HTTP 200. La API respondió HTTP 451 por r
 
 El EDA de desarrollo de este capítulo se ejecutó sobre los 24 archivos mensuales de 2023–2024, verificados otra vez antes de leerlos. No se abrieron ZIP de 2025–2026 para generar las figuras.
 
-### 2.3.3. Condiciones para ejecutar el EDA
+### 2.3.3. Estado de las condiciones de preparación
 
 1. Acceso a archivos oficiales y verificación TLS: comprobados. La API no es necesaria.
 2. Conservar la versión de las condiciones aplicables a la adquisición y comprobar cualquier designación específica del dataset; las condiciones consultadas se resumen en §2.3.4.
 3. Adquisición y checksums del rango solicitado: completados; brutos y manifiesto conservados. Derivados diarios de desarrollo y EDA ejecutados; ventanas finales por modelo y benchmark pendientes.
-4. Auditar timestamps, unidades, duplicados, huecos, cierres y coherencia OHLC antes de crear retornos.
+4. Timestamps, unidades, unicidad, huecos, cierres y coherencia OHLC auditados antes de crear los retornos de desarrollo; estos controles deberán mantenerse en la preparación posterior.
 5. Cerrar las configuraciones y reglas definitivas de entrenamiento, conservando el modelado diario, horizonte principal de un día y ventanas candidatas ya documentadas.
 6. EDA general y diagnósticos temporales ejecutados; la correspondencia del bloque C para regresión temporal y su relación con las decisiones se documenta en §2.5.
 
 
 ### 2.3.4. Condiciones de uso y atribución
 
-Se consultaron los [Binance Vision Dataset Terms oficiales](https://github.com/binance/binance-public-data/blob/master/TERMS_AND_CONDITIONS.md) el **2 de noviembre de 2026**. El documento declara **versión 1.0**, con última actualización **26 de agosto de 2026**. Esta consulta verifica la documentación disponible; no demuestra que los datos se hayan descargado.
+La consulta de los [Binance Vision Dataset Terms oficiales](https://github.com/binance/binance-public-data/blob/master/TERMS_AND_CONDITIONS.md) registrada el **2 de noviembre de 2026** se complementó con una **copia conservada en la revisión del 03/11/2026**. El documento declara **versión 1.0**, con última actualización **26 de agosto de 2026**. Se publican la {download}`copia de los términos <../_static/data_source/TERMS_AND_CONDITIONS.md>` y su [registro de procedencia](../_static/data_source/terms_snapshot.json); el SHA-256 de la copia es `99c4921dbe023cd68c1a447775707d621453cc78aec6ac0bfe2e6c06a5114ee0`. Esta fecha corresponde a la conservación de las condiciones, no a la adquisición original de los ZIP.
 
 | Cláusula | Condición declarada por el proveedor | Aplicación al proyecto |
 |---|---|---|
@@ -284,7 +307,7 @@ Se consultaron los [Binance Vision Dataset Terms oficiales](https://github.com/b
 
 La atribución de los futuros productos derivados identificará **Binance Vision — Binance Spot, BTCUSDT**, enlazará la fuente y las condiciones, indicará los cambios realizados y la licencia aplicable. Los materiales del curso y artículos citados conservan sus propios derechos.
 
-Los términos se conservarán con fecha y hash al adquirir los datos. Su revisión no sustituye los checksums de cada archivo de mercado, que se verificaron individualmente durante la adquisición. El repositorio oficial permite consultar documentación, mientras los ZIP se sirven desde `data.binance.vision`.
+La copia fechada permite revisar las condiciones conservadas para esta versión del proyecto. Su revisión no sustituye los checksums de cada archivo de mercado, que se verificaron individualmente durante la adquisición. El repositorio oficial permite consultar documentación, mientras los ZIP se sirven desde `data.binance.vision`.
 
 
 ## 2.4. Reproducibilidad y estado de cierre
@@ -327,17 +350,18 @@ El ejemplo oficial 4/3/2 es ilustrativo; no cambia el horizonte principal de Bit
 | Figuras de series, huecos, correlaciones, PCA y estructura temporal | Generadas y enlazadas en este capítulo |
 | ADF/KPSS, ARCH y diagnóstico polinómico | Ejecutados con especificaciones y límites declarados |
 | Disponibilidad temporal y ausencia de consulta de test en este script | Restricción verificada; cero ZIP de test abiertos |
-| Selección de covariables, transformaciones y ventana ganadora | Pendiente de validación y protocolo final |
+| Covariables, transformaciones y selección de configuración | Cinco covariables OHLCV conservadas; escalado y selección entre historias pendientes del protocolo final |
 | Información mutua, VIF y efecto de anomalías sobre error de modelos | No ejecutados |
-| Folds de validación 2024 | Implementados con `timeseries-cv`: 366 por configuración; fechas y exclusiones verificadas |
-| Test supervisado congelado y entrenamiento | Pendientes |
+| Folds de validación 2024 | Versión 2 materializada: 366 por configuración; embargo de $D$ días aplicado y solapamiento de retornos de etiquetas registrado |
+| Reserva de test bruto | Manifiesto de 20 ZIP y su hash conservados; sin apertura de test en esta revisión |
+| Test supervisado congelado y entrenamiento | Pendientes; la reserva bruta no acredita elegibilidad de muestras ni evaluación |
 | Modelos, predicciones y MAPE/MAE/RMSE/MSE/MASE/BDS | Pendientes de entrenamiento y evaluación |
 
-Las gráficas publicadas son evidencia de EDA de desarrollo. No acreditan que la revisión bibliográfica, los modelos ni el Entregable 1 completo estén terminados.
+Las gráficas publicadas son evidencia de EDA de desarrollo. El estado de la revisión bibliográfica se documenta por separado en el capítulo 3. El diagnóstico de residuos, la congelación supervisada de test y el protocolo experimental definitivo siguen pendientes; las gráficas no sustituyen esos productos.
 
 ## 2.5. EDA descriptivo de covariables para regresión temporal
 
-Esta sección completa la correspondencia documental con el bloque C de la guía mediante los **CSV de desarrollo 2023–2024 ya existentes**. Se conserva la cuadrícula de 731 días, el día incompleto del 24/03/2023 permanece ausente y no se imputan valores ni se recuperan observaciones mediante otra fuente. No se ajusta un modelo, no se ejecutan contrastes de hipótesis y no se abren archivos de test. El entrenamiento, el análisis de residuos de modelos y la comparación experimental quedan reservados al Entregable 2 según el alcance solicitado por el usuario.
+Esta sección cubre los componentes descriptivos del **bloque C de regresión temporal** mediante los **CSV de desarrollo 2023–2024 ya existentes**. Se conserva la cuadrícula de 731 días, el día incompleto del 24/03/2023 permanece ausente y no se imputan valores ni se recuperan observaciones mediante otra fuente. Este complemento no ajusta un modelo, no ejecuta contrastes de hipótesis y no abre archivos de test. El diagnóstico de residuos de una referencia aún falta para completar ese bloque; el entrenamiento, ese diagnóstico y la comparación experimental se reservan a E2 en el alcance operativo indicado por el usuario.
 
 ### 2.5.1. Frecuencia, desfases y disponibilidad
 
@@ -378,7 +402,7 @@ Se calculó la correlación de Pearson entre cada covariable de $d-1$ y $\sigma_
 
 La trayectoria describe cómo cambia la asociación observada dentro del desarrollo. Las ventanas consecutivas se solapan y no son réplicas independientes. No se atribuyen rupturas significativas ni causas de mercado por inspección de la gráfica. La correlación del día $d$ se conoce **después de observar su objetivo**: es un diagnóstico retrospectivo y no una característica predictiva disponible sin desplazamiento en el origen de ese mismo día.
 
-El diagnóstico de residuos de una regresión de referencia requiere ajustar un modelo. Ese componente del bloque C permanece para E2 en el alcance operativo solicitado; no se presenta como ejecutado a partir de estas correlaciones.
+El diagnóstico de residuos de una regresión de referencia requiere ajustar un modelo. La ruta 6.4 propone una **regresión lineal regularizada con las mismas covariables rezagadas**; su autocorrelación residual permitiría valorar si hacen falta rezagos del objetivo y, con ellos, una reclasificación como series de tiempo. Ese componente del bloque C permanece para E2 en el alcance operativo solicitado; no se presenta como ejecutado a partir de estas correlaciones.
 
 ### 2.5.4. Reproducibilidad, decisiones y límites
 
@@ -393,3 +417,21 @@ Se publican las [correlaciones por rezago](../_static/eda_doc/lagged_correlation
 - **Decisión de preprocesamiento:** conservar el calendario, las ausencias y la disponibilidad causal de OHLCV; mantener las cinco covariables acordadas sin escoger un subconjunto por estas gráficas.
 - **Impacto en la arquitectura:** conservar una entrada $D\times5$ para las historias confirmadas y el mismo objetivo de siete retornos diarios. Las correlaciones no fijan el ancho, la profundidad, el rezago ganador ni un modelo superior.
 - **Riesgos identificados:** correlaciones espurias de niveles, objetivo y ventanas solapados, selección retrospectiva por inspección, fechas comprimidas y uso indebido de una correlación diagnóstica como predictor contemporáneo. No se extraen conclusiones de test ni resultados de entrenamiento.
+
+### 2.5.5. Correspondencia con los requisitos del EDA
+
+| Requisito aplicable de la guía | Evidencia actual | Estado y límite |
+|---|---|---|
+| Distribución y colas del objetivo continuo | §2.1.1, estadísticas y figuras de las cuatro definiciones de volatilidad | Ejecutado en desarrollo; balance y recuentos de clases no aplican |
+| Calidad, duplicados y faltantes | Unicidad temporal, 80 minutos ausentes, un cierre no elegible y exclusión del día afectado | Verificado en desarrollo; el patrón observado no identifica MCAR, MAR o MNAR |
+| Ruido de etiqueta | Etiquetado automático con cierres válidos y discusión de su carácter de aproximación | Magnitud del error del proveedor y del proxy no estimada de forma independiente |
+| Desplazamiento entre particiones | Diagnóstico por bloques de magnitudes de retornos de un minuto; comparación de objetivos, PCA y relaciones 2023–2024 | Cobertura parcial; no es una prueba conjunta de igualdad de todas las covariables y del objetivo |
+| Partición cronológica con embargo | Manifiesto versión 2: $D$ días de resultado omitidos y $u\le t-D-1$ | Aplicado a los 5.856 índices; no implica independencia de etiquetas solapadas ni entrenamiento ejecutado |
+| Frecuencia, desfases y disponibilidad de covariables | §2.5.1 y controles de alineación causal | Documentados para OHLCV diario y horizonte de un día |
+| Relaciones con rezagos de covariables | 140 combinaciones Pearson/Spearman, con rezagos de 1 a 28 días en 2023 | Descriptivo ejecutado; no selecciona una ventana por desempeño |
+| Relaciones variables en el tiempo | Correlaciones retrospectivas de 60 días y al menos 50 pares | Descriptivo ejecutado; sin declaración de ruptura significativa |
+| Autocorrelación de residuos de una referencia | Regresión lineal regularizada prevista con las mismas covariables rezagadas | Pendiente de ajuste y predicciones fuera de entrenamiento en E2, según el alcance operativo solicitado |
+| Escalado solo con el pasado | PCA exploratorio ajustado en 2023 y regla de ajuste por entrenamiento de cada fold | Regla fijada; las transformaciones del entrenamiento de redes aún no se han ejecutado |
+| Congelación del test | Manifiesto de reserva de 20 ZIP con hashes y ausencia de apertura de test en los scripts de EDA | Reserva bruta documentada; falta el manifiesto supervisado final con orígenes, etiquetas y exclusiones |
+
+Esta correspondencia mantiene separados los análisis ejecutados, las decisiones metodológicas y los productos todavía pendientes. En particular, los diagnósticos de retornos de §2.2 no sustituyen el diagnóstico de residuos que exige el bloque C para revisar si la formulación necesita historia del objetivo.

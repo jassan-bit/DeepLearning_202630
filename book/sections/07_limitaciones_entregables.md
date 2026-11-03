@@ -42,7 +42,7 @@ Cuando corresponda se utilizará remuestreo temporal por bloques, con definició
 
 ### 7.2.2. Diferencia mínima detectable y tamaños de efecto
 
-Se reportará la **MDE con el número de ejecuciones disponible**, su relación con $\delta$ y los supuestos del dimensionamiento de §4.1. Si el estudio no puede distinguir una diferencia de interés práctico, se ampliará el diseño o se explicitará esa limitación.
+Se reportará la **MDE con el número de ejecuciones disponible**, su relación con el margen del contraste correspondiente y los supuestos del dimensionamiento de §4.1. El margen aceptado del 5 % frente a persistencia no establece por sí solo un margen entre dos redes. Si el estudio no puede distinguir una diferencia de interés práctico, se ampliará el diseño o se explicitará esa limitación.
 
 Las comparaciones incluirán tamaños de efecto e intervalos de confianza, conservando el emparejamiento. Los intervalos temporales deberán respetar bloques cuando proceda; no se remuestrearán días dependientes como si fueran i.i.d.
 
@@ -62,7 +62,7 @@ Se reportarán unidad, tratamiento de empates, tamaño e incertidumbre. Esta pro
 
 ### 7.2.4. Equivalencia requiere un análisis separado
 
-Para sostener equivalencia se utilizará un procedimiento predefinido, como **TOST** con margen aplicado o un análisis bayesiano con **ROPE**, con sus supuestos y reglas respectivos. El margen no se elegirá después de ver los resultados y la ausencia de significación no lo sustituye.
+Para sostener equivalencia se utilizará un procedimiento predefinido, como **TOST** con una banda de equivalencia predefinida o un análisis bayesiano con **ROPE**, con sus supuestos y reglas respectivos. El margen de mejora del 5 % frente a persistencia no es automáticamente esa banda de equivalencia. El margen no se elegirá después de ver los resultados y la ausencia de significación no lo sustituye.
 
 El análisis distinguirá tres situaciones: evidencia de diferencia, evidencia de equivalencia bajo un margen definido y resultado inconcluso. No se forzará a todos los resultados a encajar en “gana” o “empata”.
 
@@ -79,10 +79,11 @@ Todavía no se ha medido la potencia ni la superioridad entre los modelos del pr
 | Producto | Evidencia de esta revisión E1 | Proyección o límite |
 |---|---|---|
 | Informe en Jupyter Book | Problema, EDA y revisión documental con citas y evidencia | No certifica cumplimiento del bloque empírico del PDF |
-| Datos y código de EDA | Adquisición, checksums, análisis de desarrollo y partición | Se conserva exclusión estricta y no se evalúa test |
+| Datos y código de EDA | Adquisición, checksums, análisis de desarrollo y partición con embargo explícito $D$ | Exclusión estricta; test sin evaluar; embargo no implica independencia de etiquetas móviles |
+| Reserva de test | Identidad y hashes de 20 ZIP mensuales en manifiesto separado | Construido desde metadatos sin abrir ZIP; muestras supervisadas y evaluación pendientes |
 | Búsqueda y cribado | Registros reales, flujo y decisiones de una vía complementaria | Bases académicas bloqueadas; cobertura no exhaustiva |
 | Matriz y calidad de literatura | Tres textos completos, métricas de autores y evaluación de calidad | No mezcla objetivos o escalas ni inventa resultados propios |
-| Selección y tres fichas | LSTM, TCN y encoder Transformer, con ecuaciones, diagramas y complejidad | Corpus acotado; una fuente de atención sin revisión por pares acreditada |
+| Selección y tres fichas | LSTM, TCN y encoder Transformer, con ecuaciones, diagramas y complejidad | Selección documental condicionada; no acredita los tres modelos más básicos y recurrentes; atención respaldada por una fuente sin revisión por pares acreditada |
 | Criterios a priori | n7, h1, cuatro entradas D, RMSE, margen relativo del 5 %, MAPE y MASE | Variantes y parámetros experimentales se fijarán en E2 |
 | Benchmark e inferencia propia | Marco metodológico y tablas señaladas como futuras | Ejecución reservada para E2; el PDF la sitúa originalmente en E1 |
 

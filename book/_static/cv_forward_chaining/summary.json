@@ -1,4 +1,8 @@
 {
+  "manifest_rule_version": 2,
+  "supersedes_fold_manifest_sha256": "dbe66b20b72f28b7e477c79d8b1887fc80b96957fa3fbaab0e211f2a5b398dc5",
+  "previous_manifest_location": "Git history before explicit embargo rule version 2",
+  "generator_script_sha256": "d9d5d9f2fcc5101fdb3dd466a9faf3cc2a54fad1ab893ed9aa06227b2bfe0054",
   "package": "timeseries-cv",
   "version": "0.1.5",
   "function": "split_train_val_forwardChaining",
@@ -700,122 +704,177 @@
     "jump_days": 1,
     "validation_year": 2024,
     "test_archives_opened": 0,
-    "models_trained": 0
+    "test_files_opened": 0,
+    "models_trained": 0,
+    "data_preparation_only": true,
+    "missing_market_days_preserved": [
+      "2023-03-24"
+    ],
+    "embargo": {
+      "guide_route": "6.4 temporal regression",
+      "days": "D = maximum covariate lag in calendar days = input_days",
+      "excluded_training_outcome_interval": "[t-D, t-1] inclusive",
+      "last_allowed_training_outcome": "t-D-1",
+      "minimum_distance_between_training_and_validation_outcomes_days": "D+1",
+      "additional_filters": "label availability, finite complete OHLCV windows and finite labels",
+      "target_support": "Y_t uses returns from t-n+1 through t inclusive",
+      "limitation": "An embargo of D does not guarantee disjoint target return support when n>D+1; shared returns are recorded and dependence must be addressed in later inference."
+    }
   },
   "configurations": [
     {
       "input_days": 7,
       "volatility_days": 7,
       "validation_folds": 366,
-      "min_train_samples": 344,
-      "max_train_samples": 709
+      "min_train_samples": 343,
+      "max_train_samples": 708,
+      "embargo_days": 7,
+      "latest_train_validation_shared_return_days": 0
     },
     {
       "input_days": 7,
       "volatility_days": 14,
       "validation_folds": 366,
-      "min_train_samples": 330,
-      "max_train_samples": 695
+      "min_train_samples": 329,
+      "max_train_samples": 694,
+      "embargo_days": 7,
+      "latest_train_validation_shared_return_days": 6
     },
     {
       "input_days": 7,
       "volatility_days": 21,
       "validation_folds": 366,
-      "min_train_samples": 316,
-      "max_train_samples": 681
+      "min_train_samples": 315,
+      "max_train_samples": 680,
+      "embargo_days": 7,
+      "latest_train_validation_shared_return_days": 13
     },
     {
       "input_days": 7,
       "volatility_days": 28,
       "validation_folds": 366,
-      "min_train_samples": 302,
-      "max_train_samples": 667
+      "min_train_samples": 301,
+      "max_train_samples": 666,
+      "embargo_days": 7,
+      "latest_train_validation_shared_return_days": 20
     },
     {
       "input_days": 14,
       "volatility_days": 7,
       "validation_folds": 366,
-      "min_train_samples": 323,
-      "max_train_samples": 688
+      "min_train_samples": 322,
+      "max_train_samples": 687,
+      "embargo_days": 14,
+      "latest_train_validation_shared_return_days": 0
     },
     {
       "input_days": 14,
       "volatility_days": 14,
       "validation_folds": 366,
-      "min_train_samples": 323,
-      "max_train_samples": 688
+      "min_train_samples": 322,
+      "max_train_samples": 687,
+      "embargo_days": 14,
+      "latest_train_validation_shared_return_days": 0
     },
     {
       "input_days": 14,
       "volatility_days": 21,
       "validation_folds": 366,
-      "min_train_samples": 309,
-      "max_train_samples": 674
+      "min_train_samples": 308,
+      "max_train_samples": 673,
+      "embargo_days": 14,
+      "latest_train_validation_shared_return_days": 6
     },
     {
       "input_days": 14,
       "volatility_days": 28,
       "validation_folds": 366,
-      "min_train_samples": 295,
-      "max_train_samples": 660
+      "min_train_samples": 294,
+      "max_train_samples": 659,
+      "embargo_days": 14,
+      "latest_train_validation_shared_return_days": 13
     },
     {
       "input_days": 21,
       "volatility_days": 7,
       "validation_folds": 366,
-      "min_train_samples": 302,
-      "max_train_samples": 667
+      "min_train_samples": 301,
+      "max_train_samples": 666,
+      "embargo_days": 21,
+      "latest_train_validation_shared_return_days": 0
     },
     {
       "input_days": 21,
       "volatility_days": 14,
       "validation_folds": 366,
-      "min_train_samples": 302,
-      "max_train_samples": 667
+      "min_train_samples": 301,
+      "max_train_samples": 666,
+      "embargo_days": 21,
+      "latest_train_validation_shared_return_days": 0
     },
     {
       "input_days": 21,
       "volatility_days": 21,
       "validation_folds": 366,
-      "min_train_samples": 302,
-      "max_train_samples": 667
+      "min_train_samples": 301,
+      "max_train_samples": 666,
+      "embargo_days": 21,
+      "latest_train_validation_shared_return_days": 0
     },
     {
       "input_days": 21,
       "volatility_days": 28,
       "validation_folds": 366,
-      "min_train_samples": 288,
-      "max_train_samples": 653
+      "min_train_samples": 287,
+      "max_train_samples": 652,
+      "embargo_days": 21,
+      "latest_train_validation_shared_return_days": 6
     },
     {
       "input_days": 28,
       "volatility_days": 7,
       "validation_folds": 366,
-      "min_train_samples": 281,
-      "max_train_samples": 646
+      "min_train_samples": 280,
+      "max_train_samples": 645,
+      "embargo_days": 28,
+      "latest_train_validation_shared_return_days": 0
     },
     {
       "input_days": 28,
       "volatility_days": 14,
       "validation_folds": 366,
-      "min_train_samples": 281,
-      "max_train_samples": 646
+      "min_train_samples": 280,
+      "max_train_samples": 645,
+      "embargo_days": 28,
+      "latest_train_validation_shared_return_days": 0
     },
     {
       "input_days": 28,
       "volatility_days": 21,
       "validation_folds": 366,
-      "min_train_samples": 281,
-      "max_train_samples": 646
+      "min_train_samples": 280,
+      "max_train_samples": 645,
+      "embargo_days": 28,
+      "latest_train_validation_shared_return_days": 0
     },
     {
       "input_days": 28,
       "volatility_days": 28,
       "validation_folds": 366,
-      "min_train_samples": 281,
-      "max_train_samples": 646
+      "min_train_samples": 280,
+      "max_train_samples": 645,
+      "embargo_days": 28,
+      "latest_train_validation_shared_return_days": 0
     }
   ],
   "total_configuration_folds": 5856,
-  "folds_csv_sha256": "dbe66b20b72f28b7e477c79d8b1887fc80b96957fa3fbaab0e211f2a5b398dc5"
+  "folds_csv_sha256": "d46153075ce18231f24ff43b6f80dba555003b963dc5d1c4bd4d8ade90148571",
+  "checks": {
+    "all_folds_respect_explicit_embargo": true,
+    "all_expected_validation_origins_preserved": true,
+    "total_embargo_removed_eligible_samples_across_folds": 5856,
+    "folds_with_shared_target_returns": 2196,
+    "source_csv_unchanged_during_generation": true,
+    "volatility_csv_unchanged_during_generation": true
+  }
 }

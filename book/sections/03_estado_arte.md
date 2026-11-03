@@ -1,6 +1,8 @@
 # 3. Revisión del Estado del Arte y Selección Documental de Modelos
 
-Este capítulo presenta una revisión complementaria trazable y una **selección documental de trabajo: LSTM, TCN y encoder Transformer**. La elección identifica memoria recurrente, convolución temporal y atención, respectivamente. Su validez se limita al corpus accesible y a la regla explícita de diversidad; no demuestra que sean las tres arquitecturas de menor complejidad o mayor frecuencia de toda la literatura.
+Este capítulo presenta una revisión complementaria trazable y tres **familias candidatas de trabajo: LSTM, TCN y encoder Transformer**. La elección identifica memoria recurrente, convolución temporal y atención, respectivamente. Su validez se limita al corpus accesible y a la regla explícita de diversidad. La identificación definitiva de los tres modelos básicos exigidos por la guía permanece parcial: todavía no se acredita una ordenación conjunta suficiente por frecuencia, profundidad y número de parámetros.
+
+El problema del proyecto es **regresión temporal —tipo 4, ruta 6.4—**: las entradas son covariables OHLCV rezagadas, sin rezagos explícitos de la volatilidad objetivo. Los estudios recuperados abordan variantes de pronóstico de volatilidad con entradas y objetivos diferentes; documentar una arquitectura en esas fuentes no demuestra que su configuración ya esté validada para este contrato.
 
 ## 3.1. Búsqueda, cribado y calidad de la evidencia
 
@@ -143,26 +145,45 @@ Las [frecuencias descargables](../_static/literature_e1/family_frequencies.csv) 
 
 ### 3.2.3. Regla y selección documental
 
-La regla aplicada es: comprobar uso comparativo en una fuente identificada; separar modelos lineales y variantes; priorizar tres mecanismos no redundantes; preferir recurrencia y reproducibilidad dentro de cada mecanismo; distinguir complejidad analítica de costo medido. La regla se registra después de inspeccionar el corpus: no se presenta como un prerregistro anterior a esa inspección.
+La guía exige ordenar los candidatos por **frecuencia de uso y complejidad —profundidad y parámetros—**, escoger tres referencias sencillas y verificar que sus sesgos inductivos no sean redundantes. La regla de trabajo aplicada aquí comprueba uso comparativo, separa variantes y prioriza tres mecanismos distintos. Esa prioridad de diversidad es una decisión exploratoria posterior a la inspección del corpus; no sustituye la ordenación exigida ni se presenta como un prerregistro.
 
-| Identificador | Familia elegida | Justificación documental | Condición antes de implementar en E2 |
+| Identificador | Familia candidata de trabajo | Justificación documental | Condición antes de implementar en E2 |
 |---|---|---|---|
 | M1 | LSTM unidireccional | Familia recurrente más observada; S5 aporta una arquitectura pequeña identificable | Adaptar entradas/salida sin trasladar cifras ni confundir LSTM con BiLSTM |
 | M2 | TCN causal dilatada | Filtros locales compartidos y contexto multiescala; comparador separado de D-TCN en S1 | Fijar ancho, kernel, normalización y versión; el ganador no está recuperado |
 | M3 | Encoder Transformer | Atención entre posiciones; tercer mecanismo distinto en S2 | Validar suficiencia académica de una fuente gris y cerrar su configuración compacta |
 
-Se eligen **LSTM, TCN y encoder Transformer** como familias de trabajo para el análisis documental. GRU se excluye del trío para evitar dos mecanismos recurrentes con compuertas; no porque sea menos útil ni menos frecuente. De hecho, GRU tiene mayor frecuencia que TCN y Transformer. La regla prioriza diversidad frente a frecuencia pura y deja visible ese compromiso.
+Se mantienen **LSTM, TCN y encoder Transformer** como candidatas para las fichas y la comparación documental. GRU queda fuera de ese trío de trabajo por la prioridad de diversidad, aunque su frecuencia es mayor que la de TCN y Transformer. Esta decisión no demuestra que LSTM y GRU sean modelos idénticos ni basta para descartar a GRU en la selección final solicitada por la guía.
 
-La selección no demuestra mínima complejidad absoluta: el Transformer de S2 tiene más parámetros que la LSTM pequeña de S5. TCN y atención solo tienen un estudio de respaldo cada una en este corpus. Si el criterio académico exige exclusivamente fuentes revisadas por pares o tres modelos mínimos en sentido estricto, esa parte del cierre sigue condicionada a ampliar evidencia. El [registro de selección](../_static/literature_e1/selection_evidence.json) conserva los criterios y las limitaciones. No se impone una MLP o CNN1D sin evidencia solo para completar tres nombres.
+La candidatura no demuestra mínima complejidad: el encoder de S2 tiene más parámetros que la LSTM pequeña de S5, pero sus conteos corresponden a entradas y salidas distintas. TCN y atención tienen un solo texto de respaldo cada una; para TCN no se recuperó la configuración ganadora y para atención la evidencia aplicada es un manuscrito sin revisión por pares acreditada. La guía propone MLP sobre covariables rezagadas, LSTM o GRU y CNN1D poco profunda como familias orientativas de regresión temporal. Su presencia en esa lista no autoriza a inventar uso publicado, arquitectura o resultados.
+
+| Requisito de selección de la guía | Evidencia disponible | Estado del requisito |
+|---|---|---|
+| Uso comparativo verificable | S1, S2 y S5; variantes distinguidas | Documentado dentro del corpus exploratorio |
+| Recurrencia en literatura del problema | Frecuencias sobre tres textos; dos de las candidatas aparecen una sola vez | Cobertura insuficiente para acreditar uso frecuente de las tres |
+| Ordenación por profundidad y parámetros | Fórmulas y ejemplos derivados; ganador de TCN ausente y tareas de origen distintas | Parcial; falta una comparación de configuraciones sencillas bajo dimensiones comunes |
+| Tres mecanismos no redundantes | Recurrencia, convolución y atención | Diversidad documentada; no reemplaza los requisitos anteriores |
+| Configuración reproducible y pertinente a regresión temporal | Fichas fuente y adaptaciones identificadas; ninguna usa exactamente OHLCV diario y nuestro objetivo | Pendiente el cierre de la configuración propia y su respaldo |
+
+El [registro de selección](../_static/literature_e1/selection_evidence.json) conserva la decisión exploratoria y sus limitaciones. El cierre requiere ampliar o corroborar la evidencia y revisar el orden de candidatos antes de congelar la implementación. Esta revisión conserva las tres familias de trabajo y no declara cumplida la extracción definitiva de los tres modelos más básicos.
 
 ### 3.2.4. Papel de las referencias clásicas
 
-La analogía con regresión lineal o SVR lineal es de propósito comparativo: referencias reproducibles frente a mayor complejidad. No se afirma igualdad de capacidad matemática entre redes y modelos lineales. Persistencia, GARCH y otros clásicos aportan contexto, pero no ocupan los tres puestos DL. La comparación propia se ejecutará únicamente en la etapa experimental autorizada para E2.
+En este problema continuo, la comparación clásica pertinente de la guía es SVR con núcleo lineal; el modelo logístico corresponde al ejemplo de clasificación. La equivalencia solicitada se interpreta en su **función de referencia comparativa**, conservando las diferencias de capacidad y supuestos:
+
+| Referencia | Capacidad y supuestos de representación | Papel comparativo |
+|---|---|---|
+| SVR lineal | Relación afín sobre covariables representadas en un vector; regularización y pérdida ε-insensible | Referencia clásica de capacidad restringida; no cuenta como modelo DL |
+| LSTM | Estado recurrente con compuertas y transformaciones no lineales sobre la secuencia de covariables | Candidata DL de memoria secuencial; su capacidad depende del ancho y la profundidad |
+| TCN | Filtros temporales compartidos, causalidad y campo receptivo finito definido por kernel y dilataciones | Candidata DL convolucional; su complejidad debe acotarse y justificarse |
+| Encoder Transformer | Atención dependiente del contenido y posiciones en una ventana completamente observable | Candidata DL de atención; no se presupone que sea una referencia mínima |
+
+Las redes no comparten la clase de funciones ni los supuestos lineales del SVR; tampoco garantizan una mejora por ser no lineales. Su posible papel de referencia exige capacidad controlada, datos y partición comunes y esfuerzo de ajuste comparable. Persistencia y GARCH aportan contexto, sin ocupar los tres puestos DL. La comparación propia se reserva para la ejecución posterior de E2 según el alcance solicitado.
 
 
-## 3.3. Fichas documentales de las tres familias seleccionadas
+## 3.3. Fichas documentales de las tres familias de trabajo
 
-Las tres familias siguientes representan memoria recurrente, convolución causal y atención. Su selección es **documental y acotada al corpus recuperado**, no una demostración de que sean las tres arquitecturas más simples de toda la literatura ni un resultado experimental propio. Se distinguen: arquitectura reportada por la fuente, cálculo analítico derivado de su descripción y adaptación que necesitaría el proyecto. No se ejecutó código de Deep Learning, no se calcularon predicciones y no se procesaron datos de mercado.
+Las tres familias siguientes representan memoria recurrente, convolución causal y atención. Su candidatura es **documental y acotada al corpus recuperado**, sin acreditar todavía la selección final exigida por la guía. Se distinguen arquitectura reportada por la fuente, cálculo analítico derivado de su descripción y adaptación que necesitaría el proyecto. La elaboración de estas fichas no ejecutó código de Deep Learning ni produjo predicciones o resultados nuevos con datos de mercado; el EDA ya realizado se documenta por separado en el capítulo 2.
 
 La frecuencia 3/3 corresponde a la **familia LSTM** e incluye la BiLSTM de S2. La variante unidireccional concreta está documentada en S1 y S5, 2/3. TCN y Transformer encoder aparecen en un texto cada uno. El Transformer depende de un manuscrito sin revisión por pares acreditada. La selección requiere revisar estas limitaciones al ampliar las fuentes; una referencia general de una arquitectura no cuenta como un nuevo estudio aplicado de Bitcoin.
 
@@ -238,7 +259,7 @@ Por ventana, el costo dominante de inferencia es O(D·H(p+H)+Hq). Un minibatch d
 | S1, Tabla 2, test de 48 días | LSTM RMSE 2,37; MAE 1,70; MAPE 0,30; MSLE 0,09 | DE 0,19 / 0,26 / 0,08 / 0,01, respectivamente, entre veinte corridas; RV = 100·sqrt(sum(r_15min²)); MAPE como fracción |
 | S5, Tabla 4, comparación de validación | LSTM(20) RMSE 0,074071; RMSPE 0,406084 | Sin dispersión entre semillas; comparación sobre valores escalados y objetivo de treinta días desplazado siete días |
 
-No se ordenan estos RMSE como si midieran el mismo problema. S1 predice retornos intradiarios y después agrega volatilidad; S5 emplea volatilidad pasada como entrada y no centra los retornos al construir su medida. En el proyecto se propone OHLCV diario y desviación poblacional centrada de siete retornos. La pérdida MSE propuesta para el proyecto coincide nominalmente con S5, pero no con la pérdida ε-insensible de S1; que una pérdida comparta nombre tampoco iguala escalas y objetivos.
+No se ordenan estos RMSE como si midieran el mismo problema. S1 predice retornos intradiarios y después agrega volatilidad; S5 emplea volatilidad pasada como entrada y no centra los retornos al construir su medida. El contrato del proyecto conserva OHLCV diario y desviación poblacional centrada de siete retornos. La pérdida MSE fijada para el diseño coincide nominalmente con S5, pero no con la pérdida ε-insensible de S1; que una pérdida comparta nombre tampoco iguala escalas y objetivos.
 
 **Fortalezas:** comparador recurrente reconocido en dos fuentes unidireccionales, arquitectura pequeña completamente identificable en S5 y número de parámetros independiente de D. **Límites:** S5 contiene fechas inconsistentes y carece de repeticiones e inferencia; S1 dispone de veinte corridas, pero solo 48 días de test. La variante, transformación, activación de salida y configuración propia deben distinguirse de la réplica de cada fuente. No se atribuye a las fuentes una salida `softplus`: sus cabezas descritas son lineales.
 
@@ -400,17 +421,20 @@ La fuente tiene salida lineal para log-RV estandarizado. Adaptarla a OHLCV diari
 | Frecuencia del corpus | Familia3/3; unidireccional2/3 | 1/3 | 1/3 |
 | Profundidad identificada | S5 una capa, H20 | Seis niveles; convoluciones por bloque dependen de biblioteca no fijada | Dos encoder, cuatro cabezas |
 | Parámetros fuente | 1.781 derivados para S5 | Ganador no reportado; fórmula con hipótesis explícitas | 49.249 derivados para Run B |
+| Tiempo de entrenamiento comparable en la extracción | No disponible | No disponible | No disponible |
 | Datos/objetivo idénticos a E1 | No | No | No |
 | Configuración OHLCV propia congelada | No; adaptación distinguida | No; falta variante y protocolo aplicable | No; cambio de frecuencia, dimensión y salida distinguido |
 
-Las fichas completan evidencia, ecuaciones, diagramas, resultados publicados y análisis de complejidad. No completan una búsqueda de hiperparámetros propia ni convierten una fuente en treinta estudios. La diversidad de las familias es defendible; la afirmación de ser las tres referencias de mínima complejidad y mayor recurrencia debe limitarse a la regla y al corpus, y revisarse si se amplían las fuentes. Si el criterio académico exige exclusivamente estudios revisados por pares, el uso de S2 y, por tanto, la selección de tres familias quedan abiertos.
+Las fichas aportan ecuaciones, diagramas, resultados publicados y complejidad, con los campos no recuperados identificados. La diversidad de las familias está descrita; la mayor recurrencia y menor complejidad de las tres todavía no están acreditadas. Las fichas no constituyen una búsqueda de hiperparámetros propia ni convierten una fuente en varios estudios. La suficiencia de S2 como respaldo aplicado y la elección final del trío requieren la revisión indicada en §3.2.3.
 
 
-## 3.4. Comparación crítica de las familias seleccionadas
+## 3.4. Comparación crítica de las familias de trabajo
 
 ### 3.4.1. Desempeño publicado y comparabilidad
 
 S1 permite una comparación dentro de su protocolo: LSTM tiene RMSE puntual menor que TCN, mientras TCN tiene MAE puntual menor. El tuning de S1 selecciona por MAPE y no convierte cualquiera de esos órdenes en una superioridad universal. S5 aporta una LSTM pequeña y resultados de validación en otra escala; no se mezclan sus valores con los de S1. El SELF-ATT de S2 se evalúa en un objetivo y mercado diferentes; su R² y QLIKE no pueden convertirse en un ranking contra las RMSE de S1/S5.
+
+**Contexto de la brecha entre una propuesta avanzada y su referencia.** S1, §§6.2–6.3 y Tabla 4, compara la TCN de una rama con D-TCN de dos ramas y atributos de Twitter {cite:p}`akbiyik2023`. Las variantes con información de usuarios o tweets mejoran varias métricas frente a TCN; las variantes de conteos o sentimiento VADER por separado no muestran esa mejora general. El protocolo reporta cuarenta corridas de D-TCN frente a las veinte de la comparación TCN anterior y no repite una búsqueda independiente de hiperparámetros para cada variante avanzada. La diferencia combina arquitectura y nueva información social; no identifica el efecto aislado de aumentar complejidad. La brecha publicada es contexto de ese estudio y no determina el margen del 5 % adoptado aquí ni acredita mejoras en nuestro objetivo diario con OHLCV.
 
 El proyecto trabaja con cinco covariables diarias de Binance Spot, desviación poblacional centrada de siete retornos y horizonte de un día. S1 agrega retornos intradiarios; S2 estudia un perpetuo y log-RV de treinta minutos; S5 usa una ventana de treinta días desplazada siete. Ninguna cifra publicada es un resultado propio ni acredita el desempeño futuro de estas familias bajo nuestro contrato.
 
@@ -444,10 +468,10 @@ Resolver esa brecha permitiría evaluar si los mecanismos de memoria, filtros y 
 |---|---|
 | Búsqueda trazable y flujo | Completados para la vía complementaria; bases académicas bloqueadas |
 | Matriz de estudios, resultados y calidad | Tres textos completos con evidencia y valores publicados |
-| Frecuencias y regla | Calculadas sobre ese corpus, con variantes y compromiso diversidad/frecuencia |
-| Tres fichas técnicas | Completadas con ecuaciones, diagramas y complejidad; configuración propia aún no congelada |
+| Frecuencias y regla | Frecuencias locales calculadas; ordenación conjunta por frecuencia y complejidad aún parcial |
+| Tres fichas técnicas | Documentadas con ecuaciones, diagramas y complejidad; campos fuente no recuperados y configuración propia identificados como pendientes |
 | Comparación crítica y brecha | Formuladas con límites de comparabilidad y calidad |
-| Selección de familias | LSTM, TCN y encoder Transformer, condicionada a cobertura y suficiencia académica |
+| Selección de familias | LSTM, TCN y encoder Transformer como candidatas de trabajo; extracción definitiva de los tres básicos aún no acreditada |
 | Experimentos y baseline medido | Fuera de esta intervención documental; reservados a E2 por instrucción del usuario |
 
 
@@ -509,4 +533,4 @@ Holm aporta un procedimiento secuencial para comparaciones múltiples {cite:p}`h
 
 La herramienta descrita por Haddaway y colaboradores facilita producir diagramas de flujo PRISMA 2020 {cite:p}`haddaway2022`. Se cita como apoyo para documentar el proceso, sin atribuirle la declaración original ni afirmar cumplimiento de una revisión sistemática solo por dibujar un flujo. Los conteos de búsquedas, duplicados y exclusiones deben corresponder a registros reales.
 
-Las 33 referencias amplían el soporte documental del Entregable 1 y permiten distinguir problema financiero, arquitectura y método de evaluación. No equivalen a 33 experimentos ni a 33 estudios elegibles de modelos base de Bitcoin. Los textos de fundamentos no se suman a una frecuencia de uso en el problema aplicado. Las fichas y la comparación de las tres familias están documentadas en §§3.3–3.4; permanecen abiertas la ampliación y validación de su evidencia y las configuraciones propias de E2. La cantidad de citas no acredita por sí sola la suficiencia de esa selección.
+Las 33 referencias amplían el soporte documental del Entregable 1 y permiten distinguir problema financiero, arquitectura y método de evaluación. No equivalen a 33 experimentos ni a 33 estudios elegibles de modelos base de Bitcoin. Los textos de fundamentos no se suman a una frecuencia de uso en el problema aplicado. Las fichas y la comparación de las tres candidatas están documentadas en §§3.3–3.4. Permanecen abiertos la cobertura bibliográfica, el orden de los candidatos por frecuencia y complejidad y el respaldo de las configuraciones propias de E2. La cantidad de citas no acredita por sí sola la identificación definitiva exigida por la guía.

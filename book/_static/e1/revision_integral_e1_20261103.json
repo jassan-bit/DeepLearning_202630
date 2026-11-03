@@ -1,0 +1,163 @@
+{
+  "review_date": "2026-11-03",
+  "scope": "Full documentary review against original Entregable 1; corrections include data-partition preparation only. User instruction reserves own model training, tuning, pilot and benchmark for E2.",
+  "guide_path": "references/course/Entregable1DeepLearningProject.pdf",
+  "guide_pages": 34,
+  "guide_sha256": "56cffb2e0e23bbdfd28815b7c7515d2663bf501ed5d6e0656a37a76fc45e43eb",
+  "base_commit": "59cf345b22f3903656263ad21ea0bd58b1db7780",
+  "items": [
+    {
+      "id": "R01",
+      "requirement": "Definición matemática y tipo de problema",
+      "guide_pages": "2–3",
+      "status": "Corregido documentalmente",
+      "evidence_or_correction": "§1.2–1.3: tipo 4, X_D de covariables OHLCV, Y_t=σ_(t+1), pérdida MSE.",
+      "remaining_work": "Mantener el contrato; incorporar rezagos del objetivo requeriría revisar tipo y ruta."
+    },
+    {
+      "id": "R02",
+      "requirement": "Pregunta e hipótesis operativa",
+      "guide_pages": "3",
+      "status": "Corregido documentalmente",
+      "evidence_or_correction": "§1.4: comparación cronológica y mejora relativa mínima del 5 % frente a persistencia.",
+      "remaining_work": "La hipótesis no está contrastada; selección y multiplicidad deben fijarse antes de evaluar."
+    },
+    {
+      "id": "R03",
+      "requirement": "Métrica primaria, secundarias y alcance de δ",
+      "guide_pages": "3",
+      "status": "Definido con límites",
+      "evidence_or_correction": "RMSE principal, MAE/MSE/R²/MAPE/MASE; reglas de ceros y escala; 5 % solo frente a persistencia.",
+      "remaining_work": "No están fijados márgenes entre redes, equivalencia o avanzado frente a baseline DL."
+    },
+    {
+      "id": "R04",
+      "requirement": "Unidad de independencia y dependencia temporal",
+      "guide_pages": "3",
+      "status": "Parcial",
+      "evidence_or_correction": "Una serie BTCUSDT, Nseries=1; origen diario como observación; bloques y semillas distinguidos.",
+      "remaining_work": "Longitud/unidad inferencial temporal y supuestos por justificar; no afirmar independencia por número de filas."
+    },
+    {
+      "id": "R05",
+      "requirement": "Procedencia, tamaño, versión y hash del dataset",
+      "guide_pages": "3",
+      "status": "Documentado",
+      "evidence_or_correction": "75 ZIP oficiales, 2.014.480 filas; 731 días de desarrollo y 730 completos; manifiesto y hashes verificados.",
+      "remaining_work": "Las muestras supervisadas definitivas se materializarán en el protocolo posterior."
+    },
+    {
+      "id": "R06",
+      "requirement": "Licencia y condiciones de uso",
+      "guide_pages": "3",
+      "status": "Corregido y trazable",
+      "evidence_or_correction": "Snapshot de términos versión 1.0, actualizado 26/08/2026; copia y SHA conservados.",
+      "remaining_work": "Mantener atribución y condiciones aplicables; no confundir acceso público con uso irrestricto."
+    },
+    {
+      "id": "R07",
+      "requirement": "Uso previo del mismo dataset en literatura",
+      "guide_pages": "3",
+      "status": "No acreditado",
+      "evidence_or_correction": "La matriz diferencia datasets, frecuencias y objetivos de los artículos.",
+      "remaining_work": "Hace falta evidencia del uso del mismo mercado, fuente, intervalo y granularidad; pertinencia temática no basta."
+    },
+    {
+      "id": "R08",
+      "requirement": "EDA general e interpretación técnica",
+      "guide_pages": "4–5",
+      "status": "Parcial",
+      "evidence_or_correction": "Distribución, calidad, sesgos, diagnósticos y decisiones documentados; 24/03/2023 excluido sin imputar.",
+      "remaining_work": "Mecanismo de faltantes y ruido de etiqueta no cuantificados; desplazamiento completo pendiente."
+    },
+    {
+      "id": "R09",
+      "requirement": "EDA específico de regresión temporal",
+      "guide_pages": "6–7",
+      "status": "Parcial",
+      "evidence_or_correction": "Disponibilidad de covariables, rezagos y relaciones móviles descritos con evidencia existente.",
+      "remaining_work": "Falta ajuste de referencia lineal regularizada y diagnóstico de sus residuos; reservado para E2 por el usuario."
+    },
+    {
+      "id": "R10",
+      "requirement": "Partición cronológica con embargo máximo rezago",
+      "guide_pages": "29",
+      "status": "Corregido en índices",
+      "evidence_or_correction": "Regla E_D=D: se omiten [t-D,t-1], u≤t-D-1. Conserva 5.856 registros, 366 por configuración.",
+      "remaining_work": "El embargo no acredita independencia: 2.196 filas de sensibilidad comparten retornos objetivo; la inferencia debe considerarlo."
+    },
+    {
+      "id": "R11",
+      "requirement": "Reserva y congelación del test",
+      "guide_pages": "5",
+      "status": "Reserva bruta documentada; supervisado pendiente",
+      "evidence_or_correction": "20 ZIP de enero2025 a agosto2026 identificados con hashes desde metadatos existentes, sin abrirlos en esta revisión.",
+      "remaining_work": "No equivale a congelar máscara supervisada, transformaciones, cadencia ni protocolo experimental."
+    },
+    {
+      "id": "R12",
+      "requirement": "Búsqueda bibliográfica obligatoria y trazabilidad",
+      "guide_pages": "12–13",
+      "status": "Parcial",
+      "evidence_or_correction": "Consultas complementarias, flujo, cribado y 33 citas diferenciadas de tres textos aplicados.",
+      "remaining_work": "No constan consultas ejecutadas en WoS/Scopus/IEEE; hace falta completar cobertura y exportaciones verificables."
+    },
+    {
+      "id": "R13",
+      "requirement": "Selección de exactamente tres modelos básicos",
+      "guide_pages": "13–14",
+      "status": "No cerrada",
+      "evidence_or_correction": "LSTM, TCN y encoder Transformer conservados como candidatos documentales con frecuencias y límites.",
+      "remaining_work": "La diversidad no acredita por sí sola frecuencia y mínima complejidad; Transformer tiene respaldo gris y faltan detalles de TCN."
+    },
+    {
+      "id": "R14",
+      "requirement": "Fichas y comparación crítica",
+      "guide_pages": "15–16",
+      "status": "Documentado con límites de fuente",
+      "evidence_or_correction": "Ecuaciones, diagramas, parámetros analíticos, supuestos, resultados publicados y comparación cualitativa avanzado/base.",
+      "remaining_work": "No son configuraciones propias implementadas; costes medidos comparables y algunos hiperparámetros fuente no están disponibles."
+    },
+    {
+      "id": "R15",
+      "requirement": "Implementaciones, piloto y dimensionamiento",
+      "guide_pages": "16–20",
+      "status": "No ejecutado en este alcance",
+      "evidence_or_correction": "El diseño distingue decisiones documentales vigentes y borrador histórico incompleto; no hay corridas propias incorporadas.",
+      "remaining_work": "La guía exige estos productos en E1; el usuario los reserva para E2. Esa decisión no acredita una excepción del docente."
+    },
+    {
+      "id": "R16",
+      "requirement": "Benchmark, baseline medido e inferencia",
+      "guide_pages": "21–26",
+      "status": "No ejecutado en este alcance",
+      "evidence_or_correction": "Se distinguen mejora puntual, incertidumbre temporal, variabilidad por semillas, multiplicidad y relevancia práctica.",
+      "remaining_work": "Faltan predicciones, métricas, costes, intervalos, potencia y baseline medido. No sustituidos por números de autores."
+    },
+    {
+      "id": "R17",
+      "requirement": "Reproducibilidad y productos exigidos",
+      "guide_pages": "33–34",
+      "status": "Parcial",
+      "evidence_or_correction": "Código EDA/CV, datos y hashes, dependencias, semillas propuestas históricas y libro versionado.",
+      "remaining_work": "Entorno/configuraciones finales de entrenamiento, artefactos de corridas y decisiones de inferencia siguen pendientes."
+    },
+    {
+      "id": "R18",
+      "requirement": "Limitaciones y cumplimiento global",
+      "guide_pages": "1, 32–34",
+      "status": "Dictamen explícito",
+      "evidence_or_correction": "Reconocida la diferencia entre alcance documental autorizado y requisitos empíricos originales; no se declara E1 completo.",
+      "remaining_work": "La rúbrica conserva 40 % para implementación/benchmark: la revisión documental no sustituye esas evidencias."
+    }
+  ],
+  "verification": {
+    "own_models_trained_in_this_review": 0,
+    "raw_test_archives_opened_in_this_review": 0,
+    "fold_rows": 5856,
+    "cv_manifest_sha256": "d46153075ce18231f24ff43b6f80dba555003b963dc5d1c4bd4d8ade90148571",
+    "test_raw_reserve_manifest_sha256": "d2eb4e84fff85ee957e6b02890cead3cec37fd593ec2a8db487dbe137d2d3a10",
+    "reference_count": 33,
+    "reference_table_columns": 4
+  }
+}

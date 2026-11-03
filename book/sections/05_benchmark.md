@@ -1,6 +1,6 @@
 # 5. Criterios del benchmark y baseline previstos para E2
 
-El benchmark comparará conjuntamente los **tres modelos de Deep Learning seleccionados desde la literatura**, bajo condiciones reproducibles, justas y comparables. Su resultado será identificar una referencia mínima de desempeño que un modelo avanzado deberá superar con evidencia estadística y relevancia práctica.
+El benchmark comparará conjuntamente las **tres familias documentales de Deep Learning —LSTM, TCN y encoder Transformer—**, con configuraciones propias y suficiencia bibliográfica pendientes de cierre según §3, bajo condiciones reproducibles, justas y comparables. Su resultado será identificar una referencia mínima de desempeño que un modelo avanzado deberá superar con evidencia estadística y relevancia práctica.
 
 ## 5.1. Comparación Tabular
 
@@ -36,7 +36,7 @@ Se diferenciará incertidumbre entre semillas sobre el mismo conjunto de evaluac
 
 ### 5.2.1. Criterio principal y cierre de selección
 
-El criterio propuesto es **menor RMSE media**, con métricas secundarias y costo como información complementaria. Se fijarán antes del test las reglas de selección y desempate; no se elegirá una regla después de observar qué modelo favorece.
+El criterio principal fijado es **menor RMSE media**, con métricas secundarias y costo como información complementaria. Se fijarán antes del test las reglas de selección y desempate; no se elegirá una regla después de observar qué modelo favorece.
 
 El modelo de referencia operativo se seleccionará con validación de desarrollo y se congelará antes de test. La tabla final puede ordenar de forma descriptiva el desempeño de los tres modelos en test, pero ese orden no autoriza reabrir la selección. Si difiere del orden de validación, se reportarán ambos y esa discrepancia, sin reemplazar silenciosamente la referencia congelada.
 
@@ -56,7 +56,7 @@ La complejidad y el tiempo no se confunden: menos parámetros no garantiza menor
 
 Se identificará explícitamente el modelo seleccionado mediante desarrollo, su configuración, alcance y desempeño final con **media, desviación estándar e IC del 95 %**. Se documentará también el orden descriptivo de los tres modelos en la evaluación final y cualquier diferencia respecto a la selección inicial.
 
-El baseline no es solo el nombre de una familia: incluye datos, objetivo, horizonte, pipeline, restricciones, configuración y protocolo de evaluación. Con los resultados actuales no puede afirmarse que MLP, RNN, LSTM, GRU o CNN sea el baseline ganador.
+El baseline no es solo el nombre de una familia: incluye datos, objetivo, horizonte, pipeline, restricciones, configuración y protocolo de evaluación. Todavía no existen resultados propios que permitan ordenar LSTM, TCN y encoder Transformer o identificar un baseline ganador. La selección documental no satisface por sí sola la exigencia de desempeño medido.
 
 ### 5.3.2. Diferencias relativas de RMSE y MAE
 
@@ -90,9 +90,9 @@ El efecto entre semillas mide esa variabilidad condicionada a los mismos datos. 
 
 Se realizarán comparaciones pareadas entre los tres modelos, con contrastes fijados previamente. Se reportarán **diferencia media, IC del 95 %, estadístico y p-value numérico**, tanto sin ajustar como ajustado por comparaciones múltiples cuando proceda.
 
-Se declarará la familia de comparaciones y la corrección, por ejemplo **Holm o Bonferroni**, antes de realizar afirmaciones confirmatorias. Tres modelos producen tres pares por configuración; si se extienden las conclusiones a varios objetivos, entradas u horizontes, se declarará esa ampliación y su tratamiento, sin presentar cada prueba como si fuera la única.
+Se declarará la familia de comparaciones y su corrección —por ejemplo **Holm**— antes de realizar afirmaciones confirmatorias; Bonferroni u otro procedimiento requieren justificación previa. Tres modelos producen tres pares por configuración; si se extienden las conclusiones a varios objetivos, entradas u horizontes, se declarará esa ampliación y su tratamiento, sin presentar cada prueba como si fuera la única.
 
-El test empleado y la construcción de intervalos respetarán el emparejamiento y la dependencia pertinente. Un p-value obtenido con una aproximación se identificará como tal; “p-value exacto” en la tabla no se usará para afirmar que una distribución asintótica es una prueba exacta. Se evitará mostrar solo `p < 0,05`; se conservará el valor calculado con precisión suficiente y sus límites numéricos.
+El test empleado y la construcción de intervalos respetarán el emparejamiento y la dependencia pertinente. Se identificará si los IC del 95 % son marginales para cada diferencia o simultáneos para una familia; un ajuste de p-values no convierte por sí solo los intervalos marginales en intervalos simultáneos. Un p-value obtenido con una aproximación se identificará como tal; “p-value exacto” en la tabla no se usará para afirmar que una distribución asintótica es una prueba exacta. Se evitará mostrar solo `p < 0,05`; se conservará el valor calculado con precisión suficiente y sus límites numéricos.
 
 No se ha ejecutado inferencia entre modelos: no hay predicciones ni repeticiones disponibles. Los p-values del EDA no constituyen evidencia de diferencias entre los tres modelos.
 
@@ -101,13 +101,15 @@ No se ha ejecutado inferencia entre modelos: no hay predicciones ni repeticiones
 Se distinguirán dos cantidades:
 
 - **Mejora mínima detectable:** depende del diseño, la variabilidad pareada y la potencia; se estima con el procedimiento de §4.1, respetando sus supuestos.
-- **Margen de relevancia práctica:** cambio que importa para la aplicación, justificado y fijado sin acomodarlo al resultado del test. La regla aceptada es reducción relativa del 5 % frente a persistencia; su conversión a unidades de planificación se calculará en E2, sin redefinir el porcentaje.
+- **Margen de relevancia práctica:** cambio que importa para la aplicación, justificado y fijado sin acomodarlo al resultado del test. La regla aceptada para este estudio es reducción relativa del 5 % frente a persistencia; su conversión a unidades de planificación se calculará en E2, sin redefinir el porcentaje. Este margen no se traslada automáticamente a una comparación entre dos redes ni a un modelo avanzado frente al baseline DL.
 
-La desviación entre corridas o la anchura de un IC por sí solas no bastan para declarar una mejora detectable: se necesitan contraste, potencia, emparejamiento y variabilidad de las diferencias. Si la mejora detectable supera $\delta$, se ampliará el diseño o se explicitará esa limitación.
+La desviación entre corridas o la anchura de un IC por sí solas no bastan para declarar una mejora detectable: se necesitan contraste, potencia, emparejamiento y variabilidad de las diferencias. Si la mejora detectable supera el margen registrado para el contraste correspondiente, se ampliará el diseño o se explicitará esa limitación.
 
 Si se comunica el margen como reducción relativa del error, se declarará la referencia y cómo se convierte a las unidades de RMSE. La conversión se fijará con información de desarrollo o una referencia congelada, no se escogerá después para favorecer al modelo avanzado.
 
-Los futuros modelos deberán compararse con el baseline bajo condiciones equivalentes y contrastes predefinidos. No basta con superar una cifra puntual redondeada ni con obtener un p-value pequeño.
+Se distinguirá alcanzar el 5 % en la estimación puntual de aportar evidencia de que la mejora alcanza ese margen. La regla inferencial sobre el margen y su incertidumbre se registrará antes de evaluar; un contraste de igualdad de errores no contrasta automáticamente la superación del 5 %.
+
+Antes de comparar un modelo avanzado con el baseline DL se deberá registrar un margen referido a ese baseline, con sentido aplicado y escala clara. El actual 5 % frente a persistencia no fija ese margen adicional. Los futuros modelos deberán compararse bajo condiciones equivalentes y contrastes predefinidos. No basta con superar una cifra puntual redondeada ni con obtener un p-value pequeño.
 
 ### 5.3.6. Cota de referencia e interpretación
 
@@ -213,7 +215,7 @@ Sesgo, autocorrelación o estructura no explicada pueden motivar investigar mejo
 
 **No rechazar una diferencia no demuestra equivalencia.** Si se desea afirmar equivalencia entre modelos, se planteará un análisis separado, por ejemplo **TOST** con margen práctico predefinido. Una alternativa bayesiana con **ROPE** deberá declarar modelo, distribución posterior y regla de decisión; no se presentará como si fuera la misma prueba frecuentista.
 
-El margen de equivalencia debe fijarse con sentido aplicado y unidades claras, coherente con el registro de $\delta$. No se ensanchará después para conseguir equivalencia. Se distinguirán ausencia de evidencia, evidencia de diferencia y evidencia de equivalencia bajo el diseño correspondiente.
+El margen de equivalencia debe fijarse con sentido aplicado, escala, referencia y unidades claras. El 5 % de mejora frente a persistencia es un criterio de superioridad práctica y no define automáticamente una banda de equivalencia entre dos modelos. No se ensanchará después para conseguir equivalencia. Se distinguirán ausencia de evidencia, evidencia de diferencia y evidencia de equivalencia bajo el diseño correspondiente.
 
 ### 5.4.9. Reporte y buenas prácticas estadísticas
 
@@ -288,7 +290,7 @@ La conclusión final deberá nombrar el **modelo de referencia, configuración, 
 
 Se usará la distinción de §5.3.5 entre sensibilidad del diseño y relevancia aplicada. El umbral no será simplemente el límite de un IC del baseline ni un porcentaje elegido después de observar el resultado. Si la incertidumbre no permite discriminar modelos, se declarará la insuficiencia y su consecuencia para el baseline, sin proclamar un ganador definitivo.
 
-Actualmente ese baseline y su umbral empírico **no están establecidos**; no se sustituyen con persistencia ni con resultados de literatura.
+Actualmente ese baseline DL y el umbral para comparaciones avanzadas **no están establecidos**. El margen operativo del 5 % frente a persistencia sí está definido, pero responde a otra comparación; los valores de literatura no sustituyen la evaluación propia.
 
 ### 5.5.6. Brecha con la literatura y margen de mejora potencial
 

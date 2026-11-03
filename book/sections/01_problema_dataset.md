@@ -7,32 +7,32 @@ La siguiente tabla permite localizar las respuestas solicitadas en la guía. La 
 | Requisito del entregable | Respuesta y ubicación |
 |---|---|
 | Espacios de entrada y salida, función y pérdida | §1.3: ventana OHLCV diaria, salida no negativa, predictor supervisado y MSE |
-| Tipo de problema admitido | §1.2: regresión temporal, ruta 6.4 de la guía; entrada OHLCV sin rezagos explícitos de volatilidad |
+| Tipo de problema admitido | §1.2: tipo 4, regresión temporal; ruta 6.4 de la guía, con entrada OHLCV sin rezagos explícitos de volatilidad |
 | Pregunta de investigación e hipótesis operativa | §1.4: comparar el error de pronóstico con persistencia |
-| Métricas primaria y secundarias | §1.4: RMSE, MAE, MAPE y MSE; MASE adicional con condiciones explícitas |
+| Métricas primaria y secundarias | §1.4: RMSE principal; MAE, MSE, R², MAPE y MASE complementarias, con sus condiciones explícitas |
 | Margen práctico e independencia | §1.4: mejora relativa mínima del 5 % frente a persistencia; unidades temporales dependientes y bloques por justificar antes de la inferencia |
 | Relevancia científica o aplicada | §1.1: pronóstico de incertidumbre de Bitcoin y antecedente científico |
 | Disponibilidad, licencia y procedencia | §1.5: Binance Spot BTCUSDT, archivos oficiales, términos y reglas de agregación diaria documentados |
 | Uso previo del dataset en literatura | §1.5: no verificado; el artículo citado es antecedente del problema |
 | Tamaño, dimensionalidad y almacenamiento | §1.5: 75 ZIP, 2.014.480 filas CSV de 12 columnas y esquema de entrada definido; ventanas supervisadas pendientes |
-| Tipo de datos y unidad de observación | §1.2 y §1.5: precios temporales y origen de pronóstico |
-| Etiquetado y ruido esperado | §1.3 y §1.5: cálculo automático de dispersión futura y fuentes de ruido |
+| Tipo de datos y unidad de observación | §1.2 y §1.5: vela de un minuto en los brutos, día UTC en los derivados y origen temporal en las muestras supervisadas |
+| Etiquetado y ruido esperado | §1.3 y §1.5: cálculo automático del siguiente valor de volatilidad histórica móvil y fuentes de ruido |
 | Dependencia entre observaciones | §1.4–§1.6: solapamiento temporal, partición cronológica y prevención de fuga |
-| Versión y hash del dataset | §1.5: instantánea del 02/11/2026, manifiesto y SHA-256 de los 75 ZIP verificados; etiquetas y derivados supervisados pendientes |
+| Versión y hash del dataset | §1.5: instantánea del 02/11/2026, manifiesto y SHA-256 de los 75 ZIP; derivados de desarrollo disponibles y manifiestos supervisados definitivos pendientes |
 
 **Alcance de esta actualización:** la fuente, adquisición y EDA están documentados; la definición principal queda fijada en volatilidad de siete retornos diarios y horizonte de un día. Por instrucción del usuario, este trabajo completa la parte documental de E1 y reserva entrenamiento, ajuste de hiperparámetros, piloto y evaluación experimental para E2. El PDF de la guía incluye esos bloques dentro de E1 en sus secciones 4–5: se registra la diferencia de alcance sin atribuir al documento una excepción que no contiene. Las muestras y decisiones de ejecución pendientes se trasladan al plan posterior; no se presentan resultados propios de modelos.
 
 ## 1.1. Motivación y alcance
 
-Se propone evaluar si el historial de rendimientos logarítmicos derivados del cierre de Bitcoin contiene información útil para pronosticar su volatilidad futura. El interés aplicado es estimar incertidumbre del activo, no predecir directamente su precio ni recomendar operaciones financieras.
+Se propone evaluar si el historial de covariables OHLCV diarias de Bitcoin contiene información útil para pronosticar el siguiente valor de su volatilidad histórica móvil. Los retornos logarítmicos de cierre se utilizan para construir el objetivo; las entradas definidas son las covariables OHLCV. El interés aplicado es estimar incertidumbre del activo, no predecir directamente su precio ni recomendar operaciones financieras.
 
-El estudio de Huang, Sangiorgi y Urquhart examina pronósticos de volatilidad de Bitcoin con datos de alta frecuencia y redes neuronales; respalda la pertinencia de investigar este problema {cite:p}`huang2024`. Su definición de volatilidad, datos y horizontes no son automáticamente equivalentes a los de este proyecto: sus resultados no se trasladan como resultados propios. La revisión documental y las treinta referencias se desarrollan en el capítulo 3 y en [Referencias](referencias.md).
+El estudio de Huang, Sangiorgi y Urquhart examina pronósticos de volatilidad de Bitcoin con datos de alta frecuencia y redes neuronales; respalda la pertinencia de investigar este problema {cite:p}`huang2024`. Su definición de volatilidad, datos y horizontes no son automáticamente equivalentes a los de este proyecto: sus resultados no se trasladan como resultados propios. La revisión documental y las 33 referencias vigentes se desarrollan en el capítulo 3 y en [Referencias](referencias.md).
 
 **Decisiones confirmadas:** BTCUSDT, modelado diario desde velas de un minuto, entradas de 7/14/21/28 días, objetivo principal de volatilidad de **siete retornos diarios**, horizonte **de un día** y RMSE como métrica primaria. Las volatilidades de 14/21/28 retornos se conservan como sensibilidad del objetivo. No se fija una longitud de entrada ganadora ni se elige $D=7$ como única configuración principal.
 
 ## 1.2. Tipo de problema y reloj de información
 
-**Tipo según la definición de la guía: regresión temporal, ruta 6.4**, con salida continua y aprendizaje supervisado. La entrada definida es una secuencia de covariables OHLCV; no incluye rezagos explícitos de la volatilidad objetivo. El problema sigue siendo un pronóstico temporal y exige disponibilidad causal, partición cronológica y validación de origen móvil. Añadir rezagos de volatilidad sería un cambio del contrato de entrada que debe justificarse y registrarse, no una consecuencia automática de esta clasificación.
+**Tipo admitido número 4: regresión temporal; ruta 6.4 de la guía**, con salida continua y aprendizaje supervisado. La entrada definida es una secuencia de covariables OHLCV; no incluye rezagos explícitos de la volatilidad objetivo. El problema sigue siendo un pronóstico temporal y exige disponibilidad causal, partición cronológica con embargo y validación de origen móvil. La clasificación depende del contrato de entrada y no de usar LSTM, TCN o atención. Si se incorporasen rezagos del objetivo como entrada, correspondería revisar la clasificación como series de tiempo, tipo 3, y registrar el cambio antes de ejecutarlo.
 
 Se distingue **adquisición a un minuto** de **modelado diario**. Los archivos oficiales BTCUSDT se agregan en días UTC completos. Cada observación diaria contiene apertura, máximo, mínimo, cierre y volumen (OHLCV); un día incompleto se marca no elegible en los derivados, sin modificar los ZIP originales.
 
@@ -66,7 +66,7 @@ $$
 X_t=(z_{t-D},\ldots,z_{t-1})^\top.
 $$
 
-Cualquier transformación o variable derivada debe calcularse causalmente. El EDA no ha seleccionado todavía un subconjunto final de covariables ni su escalado; las comparaciones deberán mantener el mismo pipeline entre modelos.
+Cualquier transformación o variable derivada debe calcularse causalmente. El contrato de entrada conserva las cinco covariables OHLCV; el EDA descriptivo no autoriza cambiar ese conjunto mirando el test. El escalado y las transformaciones del entrenamiento se fijarán en el protocolo posterior, manteniendo el mismo conjunto de información entre modelos.
 
 ### 1.3.2. Volatilidad histórica y objetivo de un día adelante
 
@@ -103,13 +103,17 @@ $$
 
 La referencia de persistencia para el mismo horizonte será $\widehat Y_t^{\mathrm{pers}}=\sigma_t$, calculada únicamente con el pasado. No ocupa uno de los tres puestos de modelos de Deep Learning. Se comparará en los mismos orígenes elegibles para cada tamaño de entrada. Para $n=7$ resume ocho cierres; una entrada de siete días OHLCV no incorpora explícitamente esa misma estadística. La comparación entre redes conservará entradas idénticas, mientras persistencia se identificará como referencia contextual con información histórica disponible.
 
-Escalado, imputación permitida y cualquier transformación se ajustarán solo con el entrenamiento de cada fold. Las métricas finales se expresarán en la escala original del objetivo y la salida no negativa se garantizará al implementar las redes.
+La ruta 6.4 exige además una **regresión lineal regularizada con las mismas covariables rezagadas**. Para cada $D$ utilizará las $5D$ covariables de la misma ventana y los mismos orígenes elegibles, con transformaciones aprendidas solo del ajuste permitido. Esa referencia y sus residuos todavía no se han calculado. No ocupa uno de los tres puestos DL; persistencia conserva el papel adicional de referencia para el margen operativo aceptado del 5 %.
+
+Escalado y cualquier transformación aprendida se ajustarán solo con el entrenamiento permitido de cada fold. La política vigente excluye los días incompletos y sus ventanas afectadas, sin imputación. Las métricas finales se expresarán en la escala original del objetivo y la salida no negativa se garantizará al implementar las redes.
 
 ## 1.4. Pregunta, hipótesis y evaluación a priori
 
-**Pregunta de investigación:** ¿pueden tres modelos simples de Deep Learning, seleccionados desde la literatura y usando 7, 14, 21 o 28 días de información OHLCV, pronosticar el siguiente valor de la volatilidad histórica de siete retornos diarios con menor RMSE que persistencia bajo evaluación cronológica?
+**Pregunta de investigación:** ¿pueden tres modelos básicos de Deep Learning, cuya selección debe acreditarse en la literatura y usando 7, 14, 21 o 28 días de información OHLCV, pronosticar el siguiente valor de la volatilidad histórica de siete retornos diarios con menor RMSE que persistencia bajo evaluación cronológica con embargo?
 
-Para cada modelo $m$ se distinguen diferencia absoluta y mejora relativa:
+**Hipótesis operativa de diseño:** al menos una configuración seleccionada exclusivamente con desarrollo alcanzará una reducción relativa de RMSE de al menos el 5 % frente a persistencia, sobre las mismas fechas elegibles del periodo de evaluación. La evidencia disponible todavía no contrasta esta hipótesis: las familias de §3 son candidatas de trabajo, sin predicciones propias evaluadas.
+
+Para cada modelo $m$, con historia $D$ y configuración fijadas, se distinguen diferencia absoluta y mejora relativa; el subíndice $m$ abrevia esa configuración y los resultados de distintas ventanas se mantienen separados:
 
 $$
 \Delta_m=\mathrm{RMSE}_{\mathrm{pers}}-\mathrm{RMSE}_m,
@@ -120,6 +124,8 @@ g_m=\frac{\mathrm{RMSE}_{\mathrm{pers}}-\mathrm{RMSE}_m}
 $$
 
 El criterio operativo aceptado es **$g_m\ge0{,}05$**, es decir, al menos un **5 % de reducción relativa de RMSE frente a persistencia**, en las mismas fechas y con el mismo objetivo. Es un margen de comparación del estudio; no representa una utilidad financiera calibrada ni una garantía de rentabilidad. La diferencia estadística y la relevancia operativa se evaluarán por separado en la fase experimental posterior. Si la RMSE de persistencia es cero, la mejora relativa queda no definida y se reportará; no se introduce un epsilon.
+
+Alcanzar el 5 % con una estimación puntual y demostrar una mejora de ese tamaño son afirmaciones diferentes. Para sostener la segunda se necesitará incertidumbre temporal compatible con superar el margen, además de las reglas de multiplicidad y selección fijadas antes del test. Este porcentaje se refiere únicamente a la comparación con persistencia: no determina automáticamente el margen entre dos redes, una banda de equivalencia ni el umbral futuro de un modelo avanzado frente al baseline DL.
 
 El margen relativo queda fijado antes de ejecutar esa fase. Para dimensionar un experimento podrá convertirse a unidades absolutas con una referencia de desarrollo identificada: $\delta_{\mathrm{plan}}=0{,}05\,\mathrm{RMSE}_{\mathrm{pers,desarrollo}}$. Aquí no se calcula un valor a partir de corridas archivadas ni se presenta esa conversión como un umbral universal para otros periodos.
 
@@ -135,8 +141,9 @@ El margen relativo queda fijado antes de ejecutar esa fase. Para dimensionar un 
 | Nivel de significación del plan | $\alpha=0{,}05$; familia y multiplicidad se registrarán antes de la inferencia |
 | Partición | Historia inicial 2023; validación 2024; test 01/01/2025–31/08/2026 |
 | Unidad observacional | Origen temporal $t$ con entrada histórica y etiqueta futura |
-| Unidad inferencial | Unidades o bloques temporales justificados; longitud y supuestos pendientes del protocolo posterior |
-| Referencia contextual | Persistencia de volatilidad histórica ya observable |
+| Unidad de independencia entre mercados | Una sola serie BTCUSDT de Binance Spot; $N_{\mathrm{series}}=1$, sin réplicas independientes de otros mercados |
+| Unidad inferencial dentro de la serie | Bloques temporales o diseño dependiente por justificar; longitud y supuestos no se consideran cerrados |
+| Referencias de contexto | Regresión lineal regularizada con las mismas covariables, exigida por la ruta 6.4; persistencia adicional para el margen del 5 % |
 | Selección de modelos | Registro documental, evidencia y estado de cierre en §3 |
 
 Para $N$ predicciones evaluables:
@@ -162,9 +169,13 @@ $\mathcal J_t$ contiene pares de etiquetas válidas separados por un día de cal
 
 Las ventanas y las volatilidades móviles comparten información. Una fecha, una inicialización y un bloque temporal representan fuentes diferentes de variabilidad. Las ventanas solapadas y las semillas sobre un mismo mercado no se contarán como mercados independientes. La longitud de bloque y su sensibilidad se justificarán antes de los contrastes posteriores; no se importan longitudes obtenidas de experimentos fuera del alcance de E1. Un único activo limita la generalización a otros mercados.
 
+Así se declara la dependencia conocida a priori, pero no se presenta como resuelto el requisito de una unidad inferencial independiente: ningún número de filas, folds o semillas convierte esta única serie en varios mercados. La inferencia temporal requerirá supuestos y una unidad de remuestreo justificados en el protocolo experimental.
+
 ## 1.5. Dataset: pertinencia y ficha técnica
 
 **Fuente seleccionada:** Binance Spot, par BTCUSDT, velas de un minuto adquiridas directamente de los archivos públicos oficiales. La adquisición, verificación y auditoría se describen en §2.3 del [EDA](02_eda.md). Se verificaron 75 ZIP oficiales para el periodo 01/01/2023–30/10/2026 inclusive UTC: 2.014.480 filas. El manifiesto contiene los SHA-256 y la auditoría de timestamps. El EDA de calidad, precios, retornos y cuatro definiciones de volatilidad de desarrollo está ejecutado y documentado en la sección 2. La definición principal ya es $n=7$; la materialización definitiva de muestras y su uso para entrenamiento pertenecen al plan posterior.
+
+La cuadrícula de desarrollo 2023–2024 contiene 731 días UTC y 730 días OHLCV completos; el 24/03/2023 se mantiene como posición ausente. Son recuentos de días, diferentes de las filas de un minuto y de las muestras supervisadas. El SHA-256 del [manifiesto de adquisición](../_static/data/binance_spot_BTCUSDT_1m_20230101_20261030.json) es `af723bcca2caffcbe44ae5243e2863bbcdcd39ae8cd42df491af0a2857926bb2`; cada ZIP conserva además su huella individual.
 
 Un conjunto de cierres de Bitcoin con marcas de tiempo y resolución suficiente permitiría construir entradas y etiquetas de manera trazable. Su idoneidad dependerá de cubrir suficientes regímenes y de contar con continuidad, procedencia y condiciones de uso verificables. Acceso público no equivale a licencia abierta ni a permiso de redistribución.
 
@@ -173,7 +184,7 @@ Un conjunto de cierres de Bitcoin con marcas de tiempo y resolución suficiente 
 | Nombre y proveedor | Binance Spot; archivos públicos oficiales de velas de un minuto |
 | Activo y par | Bitcoin, cotizado en USDT; par BTCUSDT |
 | Disponibilidad pública | Archivos oficiales accesibles y descargados desde data.binance.vision; la API devuelve HTTP 451 por ubicación y no se utiliza |
-| Licencia y redistribución | Binance Vision Dataset Terms v1.0, actualizados el 26/08/2026: CC BY-NC-SA 4.0 salvo indicación específica, con condiciones adicionales; ver §2.3.4 |
+| Licencia y redistribución | Binance Vision Dataset Terms v1.0, actualizados el 26/08/2026: CC BY-NC-SA 4.0 salvo indicación específica, con condiciones adicionales; copia y hash conservados en la revisión, ver §2.3.4 |
 | Procedencia | Archivos oficiales de klines del mercado Spot BTCUSDT; esquema temporal y agregación diaria descritos debajo |
 | Uso previo del mismo dataset | No verificado; el antecedente temático no demuestra igualdad de dataset |
 | Periodo temporal y zona horaria | Descarga: 01/01/2023–30/10/2026 inclusive UTC; timestamps de apertura en milisegundos antes de 2025 y microsegundos desde 2025. Calendario experimental en §1.6 |
@@ -192,7 +203,9 @@ La agregación usada por el proyecto agrupa por día UTC: toma la primera apertu
 
 La regla actual exige 1.440 minutos elegibles para acreditar un OHLCV diario completo. Los **80 minutos ausentes del 24/03/2023** y la fila con cierre temporal no estándar se conservan en el bruto, y el derivado diario afectado queda ausente. Se mantienen las posiciones de calendario y se excluyen las ventanas que necesiten esos datos, sin interpolar, rellenar volumen con cero ni fabricar etiquetas. Esta es la política vigente de E1; cualquier recuperación desde otra granularidad o cambio de imputación requiere documentar por separado fuente, validación y versión antes de usarla.
 
-Con $T$ días OHLCV consecutivos válidos y sin pérdidas por partición, construir entradas de $D$ días y una etiqueta con $n$ retornos diarios permite como máximo $T-\max(D,n+1)$ orígenes de un día adelante, con historia suficiente para la referencia contextual. Es una relación teórica, **no el tamaño real**; huecos, filtros y separación entre particiones pueden reducirlo.
+Los términos de uso se conservan como {download}`copia documental <../_static/data_source/TERMS_AND_CONDITIONS.md>`, con su [registro de procedencia y SHA-256](../_static/data_source/terms_snapshot.json). Esta captura de la revisión del 03/11/2026 se distingue de la fecha de adquisición y de la consulta anterior; la disponibilidad pública se interpreta junto a esas condiciones.
+
+Con $T$ días OHLCV consecutivos válidos y sin pérdidas por partición, construir entradas de $D$ días y una etiqueta con $n$ retornos diarios permite como máximo $\max\{0,T-\max(D,n+1)\}$ orígenes de un día adelante, incluyendo la historia necesaria para persistencia. Es una relación teórica, **no el tamaño real**; huecos, filtros y separación entre particiones pueden reducirlo.
 
 ### 1.5.1. Etiquetado, ruido y controles de calidad
 
@@ -204,7 +217,7 @@ El EDA ya comprobó orden temporal, duplicados, cierres no positivos, huecos, fr
 
 - Fijar entrenamiento, validación y test por tiempo; no mezclar aleatoriamente ventanas.
 - En cada origen, excluir del ajuste toda etiqueta que todavía no esté disponible; reservar el test para la evaluación posterior y no utilizarlo para selección.
-- Ajustar escalamiento, imputación, selección de ventanas y otras decisiones solo con datos de desarrollo permitidos.
+- Ajustar escalamiento, selección de ventanas y otras decisiones solo con datos de desarrollo permitidos; mantener la exclusión vigente sin imputación.
 - Una ventana de validación/test puede usar historia previa ya observable; nunca retornos posteriores al origen.
 - Implementar validación forward chaining con los objetivos de 2024 y separación temporal coherentes con $D$, $n$ y la disponibilidad de etiquetas.
 - Congelar y verificar el test por hash antes de evaluación definitiva; no usarlo para elegir arquitectura, hiperparámetros o preprocesamiento.
@@ -226,7 +239,13 @@ Se reportarán **2025 y 2026 por separado**; el segundo año solo cubre hasta el
 
 La historia previa al inicio de validación o test puede formar parte de sus entradas cuando ya sea observable. La frecuencia de reajuste y la política durante test se definirán en E2: **no se fija en esta revisión un reajuste mensual, diario o estático**. Los folds existentes documentan orígenes y controles de disponibilidad; no son corridas de entrenamiento ni obligan a reentrenar en cada origen.
 
+La preparación corregida explicita el embargo de la ruta 6.4: para $X_t=(z_{t-D},\ldots,z_{t-1})$, el máximo rezago es $D$ días. Se omiten los días de resultado $t-D,\ldots,t-1$ del ajuste y se admiten candidatos $u\le t-D-1$, sujetos además a disponibilidad y calidad. Los 5.856 registros de partición —366 por cada una de las 16 configuraciones— aplican esa regla. El embargo no elimina toda la dependencia entre etiquetas móviles cuando $n>D+1$, que deberá conservarse en la inferencia.
+
 Los intervalos se expresan en días UTC. El calendario contiene 365 días iniciales de 2023, 366 de validación de 2024 y **608 de test** hasta agosto de 2026; son días de calendario, no recuentos definitivos de muestras elegibles. Los huecos y la historia requerida reducen esa elegibilidad. Los manifiestos supervisados y la congelación experimental se materializarán antes de la ejecución posterior. Septiembre–octubre de 2026 se adquirieron, pero no se asignan automáticamente a otra etapa ni cambian el calendario confirmado.
+
+La identidad de los brutos de test queda fijada en un [manifiesto de reserva de 20 ZIP mensuales](../_static/data/test_raw_reserve_20250101_20260831.json), construido únicamente a partir de los metadatos de adquisición existentes, sin abrir esos ZIP en esta revisión. Su SHA-256 es `d2eb4e84fff85ee957e6b02890cead3cec37fd593ec2a8db487dbe137d2d3a10`. Esta reserva de archivos y calendario no equivale a congelar las muestras supervisadas, máscaras, transformaciones o procedimiento experimental, que siguen pendientes.
+
+La evaluación prevista es un backtest histórico documentado después del periodo de mercado considerado. La reserva organiza el uso posterior de los datos; no se presenta como un pronóstico que se hubiera emitido en tiempo real durante 2025–2026.
 
 ## 1.7. Estado de cierre
 

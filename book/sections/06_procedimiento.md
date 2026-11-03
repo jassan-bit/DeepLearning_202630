@@ -1,6 +1,6 @@
 # 6. Guía de Procedimiento por Tipo de Problema
 
-La formulación actual sigue la ruta de **Regresión Temporal del apartado 6.4 de la guía del Entregable 1**. Las redes reciben ventanas de covariables OHLCV y no rezagos explícitos de la volatilidad objetivo. Se conserva una tarea de pronóstico cronológico: esta clasificación no convierte las fechas en observaciones independientes ni permite barajar el tiempo.
+La formulación actual corresponde al **tipo 4: regresión temporal**, con la ruta del **apartado 6.4 de la guía del Entregable 1**. Las redes reciben ventanas de covariables OHLCV y no rezagos explícitos de la volatilidad objetivo. La clasificación describe el contrato de entrada vigente; los diagnósticos de residuos necesarios para revisarlo todavía requieren el ajuste de una referencia. El orden cronológico y la dependencia entre fechas se conservan en la partición y la inferencia.
 
 La numeración de este capítulo es continua dentro del libro. La referencia 6.4 identifica la ruta de la guía original; no obliga a reproducir las rutas de otras modalidades.
 
@@ -12,7 +12,18 @@ Se respeta **entrenamiento < validación < prueba** por disponibilidad de inform
 
 Los orígenes de validación se materializaron con `split_train_val_forwardChaining` y los controles descritos en la [sección 2](02_eda.md). Son calendarios e índices de preparación, no corridas de entrenamiento. Su existencia no fija si las redes se reajustarán diariamente, mensualmente o con otra cadencia; esa política se declarará en E2 antes de ejecutarla.
 
-La historia observable anterior a validación o test puede formar parte de sus entradas. Incorporar una etiqueta pasada de 2024, cuando ya se conoce, es diferente de consultar la etiqueta futura que se evalúa. El protocolo posterior deberá explicitar el embargo indicado en la ruta 6.4 y verificar por separado los intervalos de disponibilidad de entradas y etiquetas; un máximo rezago, por sí solo, no acredita todos esos controles.
+La ruta 6.4 exige un **embargo igual al máximo rezago de las covariables**. Para $X_t=(z_{t-D},\ldots,z_{t-1})^\top$, los rezagos son de uno a $D$ días de calendario y se fija $E_D=D$. Se define embargo como el número de días de resultado inmediatamente anteriores a $t$ que se omiten del ajuste: $t-D,\ldots,t-1$. Así, los candidatos de entrenamiento deben cumplir $u\le t-D-1$, además de tener entradas válidas y etiquetas conocidas al emitir el pronóstico. Esta convención deja verificable la diferencia entre días omitidos y distancia entre dos fechas.
+
+| Historia de covariables $D$ | Máximo rezago y embargo $E_D$ | Último día de resultado admisible en el ajuste del origen $t$ |
+|---|---|---|
+| 7 días | 7 días de calendario omitidos | $t-8$ |
+| 14 días | 14 días de calendario omitidos | $t-15$ |
+| 21 días | 21 días de calendario omitidos | $t-22$ |
+| 28 días | 28 días de calendario omitidos | $t-29$ |
+
+**Preparación corregida.** La versión 2 de `results/cv_forward_chaining/folds.csv` aplica esta convención y conserva **5.856 filas: 366 orígenes por cada una de las 16 configuraciones**. El último día de resultado del ajuste es $t-D-1$ en todas las filas. Se retiró una muestra de ajuste adicional por fila respecto de la versión anterior, que terminaba en $t-D$ y omitía $D-1$ días intermedios. Los índices, fechas y hashes se comprobaron mediante una reconstrucción independiente; los CSV de desarrollo y la exclusión del 24/03/2023 permanecen intactos. El [manifiesto vigente](../_static/cv_forward_chaining/folds.csv) y su [resumen de verificación](../_static/cv_forward_chaining/summary.json) documentan la regla, el hash y los recuentos corregidos. Esta preparación no entrena modelos ni abre archivos de test.
+
+La historia observable anterior a validación o test puede formar parte de sus entradas, incluidos los días cuyo resultado se omite del ajuste por embargo. Se revisan por separado el soporte temporal y la disponibilidad de entradas y etiquetas. El embargo de covariables no elimina automáticamente el solapamiento entre volatilidades móviles: con la convención actual, si $n>D+1$, la última etiqueta de ajuste y la de validación comparten $n-D-1$ retornos. Esto ocurre en **2.196 filas de seis configuraciones de sensibilidad** del manifiesto; se registra como dependencia, no como consulta del retorno futuro. Esa dependencia debe conservarse en el diseño inferencial. Incorporar una etiqueta pasada de 2024, cuando ya se conoce y cumple los filtros del entrenamiento permitido, es diferente de consultar la etiqueta futura que se evalúa.
 
 ### 6.1.2. Ventanas y preprocesamiento causal
 
@@ -20,15 +31,17 @@ La adquisición es de un minuto y el modelado es **diario UTC**. La entrada cons
 
 La ruta de regresión temporal requiere estudiar frecuencia, desfases y disponibilidad de covariables, su relación con el objetivo, cambios de régimen y autocorrelación de los errores de una referencia. Los diagnósticos de ACF/PACF y estacionariedad ya presentes en el EDA son información temporal complementaria; no constituyen por sí solos una selección de ventana o un resultado de modelos. La correspondencia de los requisitos específicos y la evidencia debe mantenerse explícita en el capítulo 2.
 
+El bloque C de la guía exige diagnosticar residuos de una referencia y reconsiderar el planteamiento si queda autocorrelación importante. Ese diagnóstico requiere predicciones fuera de entrenamiento de la regresión lineal regularizada definida en §6.1.5 y permanece pendiente en el alcance solicitado. Si la revisión conduce a introducir rezagos de la volatilidad como entradas, el proyecto pasaría al tipo 3 y habría que actualizar su ruta metodológica; un diagnóstico sobre retornos crudos no decide ese cambio por sí solo.
+
 Las transformaciones aprendidas se ajustarán con entrenamiento permitido de cada fold. La validación externa no servirá para detener el ajuste sobre su propia etiqueta futura. Las medias y componentes de PCA del EDA no se transferirán automáticamente a un modelo sin volver a respetar el corte temporal.
 
 La política vigente preserva los ZIP y el calendario completo: un día sin 1.440 minutos elegibles queda ausente, no se calculan retornos a través de huecos y se excluyen ventanas afectadas. Los 80 minutos ausentes y la fila de cierre no estándar del 24/03/2023 permanecen documentados. En esta revisión no se introduce una recuperación de otra granularidad ni una imputación nueva.
 
 ### 6.1.3. Familias de referencia y selección documental
 
-La guía propone para regresión temporal MLP sobre covariables rezagadas, LSTM o GRU sobre secuencias de covariables y CNN1D poco profunda. Estas familias son orientativas: la selección documental debe identificar el papel de comparación que cada estudio les asigna, su frecuencia, arquitectura reproducible y diversidad de sesgos inductivos.
+La guía propone para regresión temporal MLP sobre covariables rezagadas, LSTM o GRU sobre secuencias de covariables y CNN1D poco profunda. Estas familias son orientativas, pero la selección final debe provenir de la frecuencia observada en la literatura revisada y justificar simplicidad y propósito comparativo. También debe identificar la arquitectura reproducible y los supuestos de cada alternativa.
 
-El registro de evidencia, las tres fichas y el estado de la selección se mantienen en la [sección 3](03_estado_arte.md). Una referencia general de arquitectura no se cuenta como prueba de uso frecuente en volatilidad de Bitcoin. Tampoco se equipara automáticamente una TCN con una CNN1D simple o una red lineal con una MLP de capas ocultas.
+El registro de evidencia, las tres fichas y el estado de la selección se mantienen en la [sección 3](03_estado_arte.md). El trío documental LSTM–TCN–encoder Transformer prioriza diversidad y sigue condicionado a su evidencia: GRU es más frecuente que TCN y Transformer en ese corpus, y la atención depende de una fuente gris. Esa elección de trabajo no acredita por sí sola el requisito de los tres modelos básicos más empleados. Una referencia general de arquitectura tampoco demuestra uso frecuente en volatilidad de Bitcoin; TCN no se equipara automáticamente con una CNN1D simple ni una red lineal con una MLP de capas ocultas.
 
 Sea cual sea el trío respaldado, el diseño propio conservará las mismas covariables, etiquetas y orígenes entre modelos. Aplanar una ventana para una MLP o conservar su eje temporal para otra red no permite cambiar el conjunto de información disponible.
 
@@ -46,7 +59,9 @@ Se reportarán RMSE, MAE, MSE, R², MAPE y MASE sobre predicciones agrupadas por
 
 El margen aceptado es **5 % de reducción relativa de RMSE frente a persistencia**, con el mismo objetivo y fechas. Se registró como criterio operativo del estudio y no como utilidad financiera. La relevancia y el contraste estadístico se interpretarán por separado en E2.
 
-Persistencia no ocupa uno de los tres puestos DL. Para $n=7$ resume ocho cierres, mientras una ventana de siete días OHLCV no incluye explícitamente esa misma estadística: la comparación contextual debe conservar esa diferencia de información. La ruta de regresión temporal también propone una referencia lineal regularizada con las mismas covariables; su ajuste y resultados pertenecen a la ejecución posterior. Un ingenuo estacional necesita justificar y declarar su periodo antes de evaluarlo.
+La **referencia de contexto de la ruta 6.4 es una regresión lineal regularizada con las mismas covariables rezagadas**. Utilizará la representación de $5D$ valores de la ventana OHLCV, el mismo objetivo, las mismas fechas elegibles y transformaciones ajustadas únicamente con el entrenamiento permitido. La penalización y su selección se registrarán con desarrollo antes de evaluar test. Su ajuste, predicciones y diagnóstico de residuos pertenecen a la ejecución posterior; aún no constituyen evidencia empírica de E1.
+
+Persistencia se conserva como referencia adicional para el margen operativo aceptado del 5 % y no ocupa uno de los tres puestos DL. Para $n=7$ resume ocho cierres, mientras una ventana de siete días OHLCV no incluye explícitamente esa misma estadística: la comparación contextual debe conservar esa diferencia de información. Un ingenuo estacional necesita justificar y declarar su periodo antes de evaluarlo.
 
 Con un origen de una sola salida, promediar su RMSE entre días equivale a promediar errores absolutos; no produce la RMSE global. R² por origen unitario no está definido. El reporte de 2025 y 2026 será separado y agregado, aclarando que 2026 termina el 31 de agosto.
 
@@ -54,15 +69,15 @@ Con un origen de una sola salida, promediar su RMSE entre días equivale a prome
 
 | Herramienta | Pregunta y unidad pertinente |
 |---|---|
-| Diebold–Mariano | Diferencia de precisión mediante pérdidas por las mismas fechas, con varianza de largo plazo y corrección de muestra pequeña justificadas |
+| Diebold–Mariano | Diferencia de precisión mediante pérdidas por las mismas fechas y horizonte, coherentes con RMSE, con varianza de largo plazo y corrección Harvey–Leybourne–Newbold justificadas |
 | Ljung–Box | Autocorrelación de residuos en tramos con tamaño suficiente y rezagos documentados |
 | t pareado o Wilcoxon | Diferencias entre ejecuciones bajo emparejamiento y supuestos declarados |
 | Friedman y post-hoc | Comparación conjunta con bloques defendibles, multiplicidad y limitaciones de potencia |
-| BDS, complemento del material específico | Hipótesis i.i.d. en residuos del primer horizonte, sin interpretar rechazo como prueba exclusiva de no linealidad |
+| BDS, exigido en §5.4 de la guía y en el material específico | Hipótesis i.i.d. en residuos del primer horizonte, sin interpretar rechazo como prueba exclusiva de no linealidad |
 
 La guía de regresión temporal y el material específico recibido motivan estos procedimientos. El [capítulo 5](05_benchmark.md) conserva su planteamiento; la ejecución y sus resultados se reservan a E2. Un diagnóstico sobre retornos del EDA no sustituye una prueba sobre errores predictivos.
 
-Las etiquetas móviles se solapan aunque el horizonte sea un día. La unidad observacional es el origen temporal; la inferencia deberá conservar dependencia mediante bloques u otro diseño justificado. La longitud de bloque y su sensibilidad se fijarán antes de contrastar, sin importar decisiones de corridas ajenas a esta revisión. Semillas, fechas y folds no se suman como observaciones independientes del mismo tipo.
+Las etiquetas móviles de validación consecutivas comparten $n-1$ retornos aunque el horizonte sea un día. La ausencia de retornos compartidos entre ajuste y validación tampoco demuestra independencia entre fechas. La unidad observacional es el origen temporal; la inferencia deberá conservar dependencia mediante bloques u otro diseño justificado. La longitud de bloque y su sensibilidad se fijarán antes de contrastar, sin importar decisiones de corridas ajenas a esta revisión. Semillas, fechas y folds no se suman como observaciones independientes del mismo tipo.
 
 ## 6.2. Correspondencia entre procedimiento y evidencia
 
@@ -71,14 +86,15 @@ Las etiquetas móviles se solapan aunque el horizonte sea un día. La unidad obs
 | Fuente, frecuencia y reloj | Secciones 1.2–1.5 y 2.3 | Conservar procedencia y comprobar disponibilidad por muestra |
 | Calidad y faltantes | EDA 2023–2024, exclusión estricta y calendario conservado | Mantener reglas al formar muestras y registrar enmiendas |
 | Objetivo y ventanas | $n=7$, $h=1$, cuatro historias D; otras n como sensibilidad | Sin seleccionar objetivos mediante RMSE de test |
-| Partición y origen móvil | Calendario y manifiestos existentes de `timeseries-cv` | Cerrar muestras definitivas, embargo y cadencia de reajuste |
+| Partición y origen móvil | Manifiesto versión 2 con $E_D=D$ aplicado; 5.856 filas verificadas y hashes actualizados | Cerrar política de reajuste, test supervisado y tratamiento inferencial del soporte compartido |
 | Arquitecturas | Evidencia, selección y fichas documentales en §3 | Implementar configuraciones justificadas en E2 |
 | Pérdida y métricas | MSE/RMSE, MAPE y MASE definidas en §1.4 | Calcular predicciones y métricas sin consultar test para seleccionar |
 | Margen de relevancia | Regla relativa del 5 % frente a persistencia | Separar relevancia, incertidumbre y significación |
+| Referencia lineal y clasificación | Referencia regularizada con las mismas covariables definida; tipo 4 vigente por contrato | Ajustar la referencia, diagnosticar autocorrelación residual y revisar el tipo si se añaden rezagos del objetivo |
 | Inferencia | Unidades, supuestos y riesgo de dependencia descritos | Dimensionar, ejecutar y reportar IC/efectos/contrastes en E2 |
 
 ## 6.3. Condiciones para la ejecución posterior
 
-Antes de E2 deben revisarse el cierre bibliográfico y los detalles arquitectónicos que permanezcan sin reportar; las muestras finales, transformaciones, embargo y cadencia de actualización; la familia de comparaciones y el dimensionamiento del piloto. Las decisiones ya aceptadas —objetivo de siete retornos, horizonte de un día, RMSE y margen del 5 %— no figuran como elecciones nuevamente pendientes.
+Antes de E2 deben revisarse el cierre bibliográfico y los detalles arquitectónicos que permanezcan sin reportar; cerrar transformaciones, test supervisado y cadencia de actualización; definir la familia de comparaciones, tratar la dependencia de etiquetas y dimensionar el piloto. El embargo $E_D=D$ ya está aplicado y verificado en los índices de desarrollo. La referencia lineal regularizada y su diagnóstico de residuos siguen sin ejecutar. Las decisiones ya aceptadas —objetivo de siete retornos, horizonte de un día, RMSE y margen del 5 %— no figuran como elecciones nuevamente pendientes.
 
 Los resultados de literatura se identifican como publicados por otros autores. Este capítulo no aporta entrenamientos, tiempos o métricas propios. La documentación del procedimiento permite revisarlo antes de la fase experimental y conserva la diferencia entre el alcance pedido por el usuario y la distribución literal de requisitos del PDF.
