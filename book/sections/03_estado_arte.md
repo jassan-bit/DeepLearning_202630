@@ -8,11 +8,17 @@ El problema propio es **regresión temporal, tipo 4, ruta 6.4**: OHLCV rezagadas
 
 La estrategia actual sigue la solicitud del usuario: **búsqueda web pública y verificación posterior de procedencia e indexación**. Se ejecutaron doce consultas públicas, se recuperaron fuentes de autores y se contrastaron cinco revistas por título e ISSN en copias públicas secundarias de listas WoS/Scopus. Los identificadores corroborados, los enlaces declarados y la indexación individual pendiente se distinguen expresamente. Esta fase conserva las 35 referencias y el corpus de cinco textos; no acredita búsquedas internas en esas bases ni completa por sí sola la extracción de los tres modelos.
 
+La numeración mantiene los seis incisos de búsqueda (§3.1.1–3.1.6). La identificación de modelos (§3.2) separa procedimiento, criterios, síntesis, equivalencia, arquitecturas incompletas y familias orientativas. Cada ficha de §3.3 presenta los nueve campos de la guía; §3.4 distingue comparación, validez, brecha de desempeño y brecha de investigación.
+
 ## 3.1. Estrategia de Búsqueda (Obligatoria)
 
 ### 3.1.1. Cadena de búsqueda
 
+#### 3.1.1.1. Pregunta y unidades de búsqueda
+
 La pregunta es qué arquitecturas DL sencillas se utilizan como comparadores independientes para pronosticar volatilidad de Bitcoin. Primero se localizan documentos, repositorios de autores y recursos públicos; después se comprueba identidad, publicación y posible indexación. **Descubrimiento web, documento científico y familia de arquitectura son unidades distintas.**
+
+#### 3.1.1.2. Cadenas de descubrimiento ejecutadas
 
 Las consultas se ejecutaron en el buscador web público de GitHub, con `in:readme`, primera página y relevancia predeterminada. No se utilizó Google ni se presenta este recorrido acotado como una búsqueda exhaustiva de Internet o una consulta interna en WoS/Scopus. Las cuatro cadenas de descubrimiento fueron:
 
@@ -23,16 +29,17 @@ Las consultas se ejecutaron en el buscador web público de GitHub, con `in:readm
 | W3 | `bitcoin realised volatility neural in:readme` | 45 | 10 |
 | W4 | `"bitcoin volatility" arxiv in:readme` | 10 | 10 |
 
+#### 3.1.1.3. Consultas dirigidas y antecedentes
+
 Hubo además cuatro consultas de títulos/identificadores y cuatro de recursos de indexación. Las **doce cadenas**, URLs, fecha/hora, página y hashes de respuesta están en la [bitácora pública](../_static/literature_e1/public_web_verification_20261103/search_log.json). Se recuperaron 40 ocurrencias de repositorios y 36 repositorios distintos en el descubrimiento; esas cifras no son artículos, estudios incluidos ni frecuencias de arquitecturas. No se suman los totales del índice de consultas solapadas.
 
 Las 24 cadenas nativas preparadas anteriormente se conservan como [antecedente no ejecutado](../_static/literature_e1/academic_search_20261103/query_plan.json). El método aplicado en esta fase es recuperación pública más comprobación posterior; no se cambia retrospectivamente el nombre del motor o sus campos para simular una búsqueda dentro de las bases.
 
-(tabla-referencias-e1)=
 ### 3.1.2. Fuentes consultadas y verificación de procedencia e indexación
 
 **WoS y Scopus son índices**, IEEE Xplore es una biblioteca digital y arXiv un repositorio de preprints. Un documento puede estar asociado a varias fuentes a la vez. Se verifica por separado: identidad del trabajo; publicación o identificador; presencia de la revista en un listado; registro individual del artículo; y cuartil del año/categoría. Un DOI, el nombre de una editorial o un resultado web no prueban todos esos niveles.
 
-**Documentos y enlaces públicos comprobados.**
+#### 3.1.2.1. Documentos y enlaces públicos comprobados
 
 | Trabajo | Fuente pública comprobada | Hallazgo | Alcance de la comprobación |
 |---|---|---|---|
@@ -40,7 +47,9 @@ Las 24 cadenas nativas preparadas anteriormente se conservan como [antecedente n
 | Herremans y Low (2025) | [README de autores](https://github.com/dorienh/bitcoin_synthesizer/blob/8570f4e8bdcfe1dd609e5f094d3d5b0059a810dc/README.md#L3-L7) | IEEE Access 13, 117788–117807; [registro Xplore 11058926](https://ieeexplore.ieee.org/document/11058926/) | Enlace de registro declarado por autores; la página de Xplore no se abrió. |
 | Guo et al. (2018) | [README de autores](https://github.com/weilai0980/mixture_models_crypto/blob/7aeaf66bb4438d022ae0cf2af2ffec317a8d068f/README.md#L7-L15) | IEEE ICDM 2018, pp. 989–994 | Publicación declarada por autores; registro Xplore específico no corroborado en el material nuevo. |
 
-**Revistas: coincidencias en copias públicas de listas WoS/Scopus.** Se inspeccionó [wosaide/wosaide-journal-lists](https://github.com/wosaide/wosaide-journal-lists/tree/4d0b1a32915b04180c37e6f697a7da04a6f05de6), repositorio independiente que declara copias WoS de agosto de 2026 y Scopus de julio de 2026. No está avalado por sus proveedores. Los títulos e ISSN de estas cinco revistas coinciden en ambas listas:
+#### 3.1.2.2. Revistas: coincidencias en copias públicas de listas WoS/Scopus
+
+Se inspeccionó [wosaide/wosaide-journal-lists](https://github.com/wosaide/wosaide-journal-lists/tree/4d0b1a32915b04180c37e6f697a7da04a6f05de6), repositorio independiente que declara copias WoS de agosto de 2026 y Scopus de julio de 2026. No está avalado por sus proveedores. Los títulos e ISSN de estas cinco revistas coinciden en ambas listas:
 
 | Referencia | Revista declarada e ISSN | Colección WoS en la copia de 2026 | SourceID y cobertura Scopus declarada |
 |---|---|---|---|
@@ -54,15 +63,20 @@ Esta es **evidencia secundaria de revista**. No confirma el registro individual 
 
 La [matriz de las once referencias aplicadas](../_static/literature_e1/public_web_verification_20261103/document_platform_matrix.json) conserva estados por documento; los [extractos de filas, ISSN, cobertura y fuentes](../_static/literature_e1/public_web_verification_20261103/secondary_journal_evidence.json) identifican URLs fijadas, commits y hashes. La [procedencia documental](../_static/literature_e1/public_web_verification_20261103/publication_provenance.json) recoge los identificadores y las asociaciones rechazadas. El {download}`informe de verificación <../_static/literature_e1/public_web_verification_20261103/report.md>` permite revisar el recorrido completo.
 
-**Control de identidad.** Un mirror atribuía a Herremans un PDF y el ID arXiv:2211.00759; al leer la portada se comprobó que era otro trabajo, de Reijnen y colaboradores. Se descartó esa asociación. La pista secundaria 2211.08281 permanece sin corroboración oficial. La concordancia de título, autores, DOI y portada prevalece sobre el nombre de un archivo o una etiqueta del buscador.
+#### 3.1.2.3. Control de identidad
 
-**Catálogo bibliográfico previo conservado.** Las cuatro columnas siguientes mantienen el contenido de las 35 referencias y sus comprobantes originales. La comprobación pública posterior está en las tablas y matrices anteriores; no se sustituyen silenciosamente sus fechas o niveles de lectura.
+Un mirror atribuía a Herremans un PDF y el ID arXiv:2211.00759; al leer la portada se comprobó que era otro trabajo, de Reijnen y colaboradores. Se descartó esa asociación. La pista secundaria 2211.08281 permanece sin corroboración oficial. La concordancia de título, autores, DOI y portada prevalece sobre el nombre de un archivo o una etiqueta del buscador.
+
+(tabla-referencias-e1)=
+#### 3.1.2.4. Catálogo bibliográfico conservado: 35 referencias
+
+Las cuatro columnas siguientes mantienen el contenido de las 35 referencias y sus comprobantes originales. La comprobación pública posterior está en las tablas y matrices anteriores; no se sustituyen silenciosamente sus fechas o niveles de lectura.
 
 La tabla reúne las **35 referencias del documento** y organiza sus enlaces, la evidencia disponible y el aporte de cada una al proyecto. Comprende once aplicaciones a Bitcoin, ocho fundamentos de redes neuronales y dieciséis referencias de volatilidad, diagnóstico y evaluación. Se conservan las treinta referencias iniciales, las tres incorporadas para las fichas y los dos textos recuperados en esta revisión. El catálogo anterior de 33 entradas permanece como corte histórico.
 
 El **enlace bibliográfico** identifica el trabajo, su DOI, su preprint o el registro donde se documentó la referencia. La columna **Fuente y evidencia consultada** indica qué material se utilizó realmente: texto completo de autores, código, documentación o una referencia localizada en otra bibliografía. Un DOI registrado no acredita su resolución directa ni la lectura del artículo original. Los manuscritos de Zeri y Gao conservan las precisiones sobre revisión por pares y año editorial recogidas en sus fichas.
 
-**Aplicaciones a Bitcoin (11 referencias).**
+##### 3.1.2.4.1. Aplicaciones a Bitcoin (11 referencias)
 
 | Referencia citada | Documento y enlace bibliográfico | Fuente y evidencia consultada | Aporte al proyecto |
 |---|---|---|---|
@@ -78,7 +92,7 @@ El **enlace bibliográfico** identifica el trabajo, su DOI, su preprint o el reg
 | {cite:p}`wangnd` | *A comparative analysis of volatility predictions via EGARCH, Transformer and hybrid EGARCH-Transformer models: changes in forecasting ability after introducing sentiment factors* · [Documento de autores](https://github.com/cathyw111/bitcoin-volatility-forecasting/blob/61feeec81d695e19eac9c819be41d704e6279547/research-draft.pdf) | [Texto completo y procedencia](https://github.com/cathyw111/bitcoin-volatility-forecasting/blob/61feeec81d695e19eac9c819be41d704e6279547/research-draft.pdf): Texto completo de literatura gris; sin fecha editorial, DOI o revisión por pares acreditados. | Transformer puro con OHLCV diario como comparador de EGARCH e híbridos; arquitectura y resultados publicados en el borrador, con inconsistencias de evaluación explícitas. |
 | {cite:p}`alakhouch2026` | *Bitcoin Volatility Forecasting: Econometric and Machine Learning Approaches Applied to Daily Price Data (July 2010–February 2024)* · [Documento de autores](https://github.com/idrissalk/Bitcoin-Volatility-Forecasting/blob/a98099e4125e1f80a094a46889d97bc31abfe30b/Repport/Asset-volatility-Forecasting.pdf) | [Texto completo y procedencia](https://github.com/idrissalk/Bitcoin-Volatility-Forecasting/blob/a98099e4125e1f80a094a46889d97bc31abfe30b/Repport/Asset-volatility-Forecasting.pdf): Informe académico y código consultados; sin DOI, revista o revisión por pares acreditados. | LSTM apilada como comparador de GARCH, RF y XGBoost para volatilidad diaria; aporta evidencia de uso con riesgos de fuga y discrepancias entre informe y código. |
 
-**Fundamentos de redes neuronales (8 referencias).**
+##### 3.1.2.4.2. Fundamentos de redes neuronales (8 referencias)
 
 | Referencia citada | Documento y enlace bibliográfico | Fuente y evidencia consultada | Aporte al proyecto |
 |---|---|---|---|
@@ -91,7 +105,7 @@ El **enlace bibliográfico** identifica el trabajo, su DOI, su preprint o el reg
 | {cite:p}`kingma2014` | *Adam: A method for stochastic optimization* · [Ficha del preprint](https://arxiv.org/abs/1412.6980) | [D2L: bibliografía y Adam](https://raw.githubusercontent.com/d2l-ai/d2l-en/master/d2l.bib): Metadatos y explicación en fuente secundaria; lectura del original no acreditada. | Optimización adaptativa mediante estimaciones de momentos. |
 | {cite:p}`vaswani2017` | *Attention is all you need* · [Ficha del preprint](https://arxiv.org/abs/1706.03762) | [Bibliografía de D2L](https://raw.githubusercontent.com/d2l-ai/d2l-en/master/d2l.bib): Metadatos en bibliografía de D2L; original no leído. | Fundamento de atención y de la arquitectura Transformer. |
 
-**Fundamentos de volatilidad, diagnóstico y evaluación (16 referencias).**
+##### 3.1.2.4.3. Fundamentos de volatilidad, diagnóstico y evaluación (16 referencias)
 
 | Referencia citada | Documento y enlace bibliográfico | Fuente y evidencia consultada | Aporte al proyecto |
 |---|---|---|---|
@@ -143,7 +157,9 @@ Para la verificación posterior se registra evidencia primaria de autores/docume
 
 ### 3.1.5. Trazabilidad del proceso
 
-**Fase pública actual.** Las doce consultas devolvieron respuestas de búsqueda verificables. Sus unidades y funciones se conservan separadas:
+#### 3.1.5.1. Fase pública actual
+
+Las doce consultas devolvieron respuestas de búsqueda verificables. Sus unidades y funciones se conservan separadas:
 
 | Función | Consultas | Ocurrencias recuperadas | Repositorios distintos dentro de esa función |
 |---|---:|---:|---:|
@@ -157,7 +173,7 @@ Se inspeccionaron además cinco README de candidatos localizados en el descubrim
 
 Los intentos directos anteriores y sus cuatro fallos de acceso se conservan únicamente como [antecedente](../_static/literature_e1/academic_search_20261103/access_attempts.json); no se confunden con esta búsqueda pública ejecutada. El recorrido actual se realizó con recursos abiertos y sin sesiones de acceso a las cuatro plataformas.
 
-**Consultas complementarias históricas de GitHub.**
+#### 3.1.5.2. Consultas complementarias históricas de GitHub
 
 El [registro histórico de consultas complementarias](../_static/literature_e1/search_log.json) conserva URL, campo, página, fecha con zona horaria, respuesta y hash. La tabla siguiente se reconstruyó desde ese registro; no es una nueva búsqueda. Todos sus intentos corresponden al **02/11/2026**; las horas de cada intento se conservan en el [resumen por cadena](../_static/literature_e1/query_summary_20261103.csv).
 
@@ -180,7 +196,7 @@ El orden fue la relevancia predeterminada y los límites variaron entre una y tr
 
 La [procedencia](../_static/literature_e1/provenance.json) registra la importación de comprobantes previos y distingue la fecha original de búsqueda de la revisión del 03/11/2026. Las comprobaciones de Guo y Herremans se documentan aparte. La recuperación dirigida de seis registros del 03/11/2026 amplía las inspecciones y los textos evaluados, pero no las cadenas ni las ocurrencias iniciales. Ninguna clase de código se convierte automáticamente en comparador publicado.
 
-**Flujo histórico y recuperación dirigida.**
+#### 3.1.5.3. Flujo histórico y recuperación dirigida
 
 La identificación original corresponde al **02/11/2026**; la ampliación del **03/11/2026** recupera seis repositorios ya presentes en esos registros, sin ejecutar cadenas nuevas.
 
@@ -226,25 +242,22 @@ La consulta de una base devuelve registros; la inclusión exige recuperar y valo
 
 La verificación de procedencia añadida en esta fase no avala la calidad experimental. Un identificador correcto o una revista presente en una lista no sustituyen revisión de fugas, particiones, repeticiones, dispersión y comparabilidad. El cuartil Q1 permanece pendiente de evidencia específica por índice, año y categoría; no se deduce de las coincidencias secundarias de 2026.
 
-## 3.2. Extracción, frecuencia y selección de tres familias
-
-### 3.2.1. Matriz de extracción de los estudios incluidos
+## 3.2. Identificación de los tres modelos base de Deep Learning
 
 El corpus exploratorio ampliado contiene **cinco textos completos**, S1, S2, S5, S6 y S7. Incluirlos permite extraer lo que sus autores describen; no certifica la validez de sus resultados. S6 y S7 son incorporaciones de la revisión dirigida del 03/11/2026 y conservan sus limitaciones editoriales, temporales y metodológicas.
 
-| Estudio y referencia | Dataset, problema y objetivo | Referencias DL verificadas | Métricas y valores de autores | Límite de interpretación |
-|---|---|---|---|---|
-| S1. Akbiyik et al. (2023), Tabla 2 {cite:p}`akbiyik2023` | Bitcoin a 15 minutos y Twitter; RV del día siguiente agregada de 96 retornos | LSTM, GRU y TCN; D-TCN es la propuesta avanzada | LSTM RMSE 2,37±0,19; GRU 4,23±5,61; TCN 2,58±0,07; veinte corridas | RV×100; información, frecuencia y objetivo diferentes de E1 |
-| S2. Zeri (2026), Run B {cite:p}`zeri2026` | BTCUSDT perpetuo, Crypto Lake; log-RV futura de 30 minutos | GRU, BiLSTM y encoder Transformer | SELF-ATT R² frente a media train 0,600/QLIKE 0,562; BiLSTM 0,586/0,582; GRU 0,582/0,564 | Tres semillas promediadas en predicciones; literatura gris; no es el R² convencional ni el objetivo diario Spot |
-| S5. Gao et al. (manuscrito 2023), Tabla 4 {cite:p}`gao2023` | Yahoo BTC-USD diario; medida móvil de 30 días desplazada siete días | LSTM de una capa y H=20; la densa lineal es contexto | LSTM RMSE 0,074071 y RMSPE 0,406084 | Evaluación de validación sobre valores escalados; sin dispersión entre semillas |
-| S6. Wang et al. (s. f.), Tabla 4 {cite:p}`wangnd` | Bitcoin diario; volatilidad diaria denominada RV, sin fórmula suficiente para equipararla a σ7 | Transformer OHLCV independiente; EGARCH–Transformer es híbrido | Modelo 1: RMSE 1,4738; MAE 0,4369; QLIKE 0,4369; R² −0,7347, transcritos tal como aparecen | Borrador sin fecha editorial; inconsistencias de MAE y particiones no reconciliadas; cifras no validadas por esta revisión |
-| S7. Alakhouch Idriss (2026), Tabla 4.5 {cite:p}`alakhouch2026` | Bitcoin diario; medida futura de 30 días anualizada en el código | LSTM 64→32 con cabeza Dense16→1; no una MLP independiente | RMSE 0,0358; MAE 0,0254; MAPE 13,5 % | Informe académico; PDF declara 12 entradas y código 8; escalado global anterior al corte y recuentos inconsistentes |
+### 3.2.1. Procedimiento de extracción
 
-La [matriz completa](../_static/literature_e1/evidence_matrix.csv) conserva problema, dataset, arquitectura, resultados y localización. El [registro de métricas](../_static/literature_e1/reported_metrics.csv) distingue los 42 valores del corte original y los 39 transcritos de S6/S7: **81 valores de autores**, no 81 resultados independientes ni experimentos propios. No se corrigen silenciosamente cifras impresas inconsistentes ni se trasladan a la escala de E1.
+La guía exige recurrencia, sencillez, reproducibilidad y tres modelos no redundantes. La siguiente regla de revisión documental se registró **después** de inspeccionar las fuentes; no se presenta como un protocolo preregistrado:
 
-S3 —Herremans y Low— y S4 —Huang et al.— siguen como fuentes identificadas con texto completo pendiente. El código de autores de S3 no aumenta la frecuencia hasta verificar en el artículo qué redes se compararon. Las nuevas inspecciones de repositorios sin documento identificable también permanecen fuera del denominador.
+1. **Revisar los comparadores de cada estudio incluido.** Exigir un texto identificable que muestre el uso independiente del modelo DL; separar propuestas avanzadas, híbridos, componentes internos y modelos lineales.
+2. **Registrar la configuración por variante.** Extraer entrada, salida, tipo de arquitectura, profundidad, ancho, regularización, pérdida, optimización, entrenamiento y localización. Un campo no reportado permanece desconocido; no se completa por preferencia.
+3. **Construir la tabla de frecuencias.** Contar un estudio por familia utilizada como referencia independiente, conservando sus variantes. La recurrencia de una familia no acredita el uso de una configuración concreta en todos esos estudios.
+4. **Ordenar los candidatos por frecuencia y complejidad.** Comparar profundidad y parámetros con sus hipótesis, mostrando tanto el tamaño de origen como una representación común p=5, q=1. No utilizar RMSE de tareas distintas como desempate.
+5. **Seleccionar exactamente tres modelos cuando la evidencia lo permita.** Justificar conjuntamente recurrencia, sencillez, reproducibilidad y suficiencia de fuentes. Antes de implementar deben cerrarse tres arquitecturas con respaldo; si falta evidencia, mantener la selección pendiente sin omitir un candidato por preferencia.
+6. **Verificar sesgo inductivo y no redundancia del trío.** Explicar qué diferencias de representación son relevantes para el problema. Si los tres candidatos no satisfacen conjuntamente los criterios, ampliar la evidencia y conservar el cierre pendiente. Cuando falta una arquitectura concreta, aplica el procedimiento de §3.2.5 y la búsqueda del Entregable 2 antes de entrenar; un espacio supuesto no es una configuración publicada.
 
-### 3.2.2. Frecuencia, variantes y sensibilidad del corpus
+#### 3.2.1.1. Frecuencias, variantes y sensibilidad del corpus
 
 La unidad es **un estudio por familia utilizada como referencia independiente**. No se cuentan la propuesta novedosa, una capa interna, una variante repetida del mismo experimento o el promedio de varias semillas como estudios adicionales.
 
@@ -261,16 +274,7 @@ Las [frecuencias](../_static/literature_e1/family_frequencies.csv), la [extracci
 
 La inspección previa de Guo encontró una clase MLP con ReLU, pero no acreditó su uso publicado como comparador. En Herremans, los nombres `dense` forman parte de Synthesizer Transformer. Ninguno de esos hallazgos incrementa el conteo de MLP autónoma.
 
-### 3.2.3. Regla reproducible y estado de la selección
-
-La guía exige recurrencia, sencillez, reproducibilidad y tres modelos no redundantes. Se aplica la siguiente regla de revisión documental, registrada **después** de inspeccionar las fuentes:
-
-1. Exigir un texto identificable que muestre el uso independiente del comparador DL; separar propuestas avanzadas, híbridos, componentes internos y modelos lineales.
-2. Registrar por variante entrada, salida, capas, ancho, regularización, pérdida, optimización y localización. Un campo no reportado permanece desconocido; no se completa por preferencia.
-3. Ordenar por número de estudios y conservar las variantes: la recurrencia de una familia no acredita el uso de una configuración concreta en todos esos estudios.
-4. Comparar profundidad y parámetros con sus hipótesis. Mostrar tanto el tamaño de origen como una representación común p=5, q=1; no utilizar RMSE de tareas distintas como desempate.
-5. Revisar sesgo inductivo y suficiencia de fuentes. Si los tres primeros no satisfacen conjuntamente sencillez y no redundancia, declarar la selección pendiente y ampliar evidencia, en vez de omitir un candidato sin explicación.
-6. Antes de implementar, cerrar exactamente tres arquitecturas con su respaldo. Cuando falta una arquitectura concreta, declarar en E2 su espacio de búsqueda antes de entrenar, conforme a la guía; esto no convierte un espacio supuesto en configuración publicada.
+#### 3.2.1.2. Complejidad de las configuraciones documentadas
 
 La corrección del apéndice C de S1 cambia la valoración de complejidad: sus ganadores **sí están publicados**. La tabla muestra cálculos de capas descritas, sin instanciar redes:
 
@@ -286,6 +290,8 @@ Los [escenarios analíticos](../_static/literature_e1/model_complexity_review_20
 
 Los conteos comunes controlan dimensiones de entrada/salida, pero no igualan capacidad, datos o cómputo. GRU tiene menos pesos que la LSTM H261 de S1, mientras la LSTM H20 de S5 es menor que esa GRU. La TCN ganadora no es una CNN1D pequeña: su campo receptivo condicional es 10.921 frente a 96 pasos observados. Reducirla a otra red sería una adaptación que debe justificarse, no una réplica del ganador.
 
+#### 3.2.1.3. Estado de la selección
+
 | Estado | Familia | Justificación actual | Condición pendiente |
 |---|---|---|---|
 | M1, candidata de trabajo | LSTM unidireccional | Mayor recurrencia familiar y arquitectura pequeña identificable en S5 | Justificar variante y adaptación a OHLCV sin transferir resultados |
@@ -294,6 +300,37 @@ Los conteos comunes controlan dimensiones de entrada/salida, pero no igualan cap
 | Candidata que debe seguir evaluándose | GRU | 2/5 y menor complejidad que algunas variantes recurrentes | No descartarla solo porque LSTM también sea recurrente; justificar no redundancia y criterios del trío final |
 
 El [registro de selección](../_static/literature_e1/selection_evidence.json) mantiene las tres fichas como **candidatas provisionales**, no como los tres básicos definitivamente extraídos. La frecuencia por sí sola ordena LSTM, luego GRU y Transformer empatados, y después TCN. La elección anterior de LSTM–TCN–Transformer priorizaba diversidad; no satisface por sí sola la regla conjunta de la guía. La revisión no presenta ese compromiso como una selección cerrada ni fija modelos nuevos sin respaldo.
+
+### 3.2.2. Criterios que debe cumplir cada modelo base
+
+Los cuatro criterios de la guía se evalúan por modelo, junto con la suficiencia de las fuentes. Disponer de una ficha no implica haberlos satisfecho:
+
+| Criterio | Evidencia disponible | Estado y límite |
+|---|---|---|
+| Arquitectura simple, reproducible y ampliamente documentada | S5 identifica una LSTM pequeña; S1 y S2 describen configuraciones y las fichas separan fuente, cálculo y adaptación | La TCN ganadora de S1 es grande; falta su versión de biblioteca y S6 no permite reconstruir un total exacto. La configuración propia sigue pendiente. |
+| Uso frecuente como referencia en la literatura del problema | Frecuencias por estudio y sensibilidades de §3.2.1.1 | LSTM 4/5, GRU 2/5, encoder 2/5 y TCN 1/5 describen este corpus, sin demostrar recurrencia global. GRU continúa elegible. |
+| Capacidad de entrenarse bajo el mismo pipeline y partición que los otros modelos base | El contrato propio fija información OHLCV, objetivo, horizonte y evaluación cronológica | Deben justificarse representaciones compatibles con cada arquitectura y el esfuerzo de ajuste común. Implementación, presupuesto y configuraciones de las tres redes permanecen reservados para E2. |
+| Ser un modelo de Deep Learning independiente | Se identifican comparadores LSTM, GRU, TCN y encoder; se separan propuestas e híbridos | Una Dense1 lineal, una cabeza interna, persistencia, SVR, Ridge o GARCH no ocupan un puesto de los tres modelos DL. |
+
+El mismo pipeline exige las mismas reglas de información disponible, partición, preprocesamiento y evaluación, con transformaciones ajustadas solo sobre entrenamiento. No obliga a que una representación vectorizada y una secuencial tengan idéntica forma de tensor. Ninguna de estas condiciones equivale a una validación experimental ya ejecutada.
+
+### 3.2.3. Producto obligatorio: síntesis de los estudios incluidos
+
+| Referencia | Problema | Dataset | Modelos DL | Métricas | Valores |
+|---|---|---|---|---|---|
+| S1. Akbiyik et al. (2023), Tabla 2 {cite:p}`akbiyik2023` | RV del día siguiente agregada de 96 retornos intradiarios | Bitcoin a 15 minutos y Twitter | LSTM, GRU y TCN; D-TCN es la propuesta avanzada | RMSE; media ± DE de veinte corridas | LSTM 2,37±0,19; GRU 4,23±5,61; TCN 2,58±0,07 |
+| S2. Zeri (2026), Run B {cite:p}`zeri2026` | Log-RV futura de 30 minutos | BTCUSDT perpetuo, Crypto Lake | GRU, BiLSTM y encoder Transformer SELF-ATT | R² frente a media train y QLIKE | SELF-ATT 0,600/0,562; BiLSTM 0,586/0,582; GRU 0,582/0,564, respectivamente |
+| S5. Gao et al. (manuscrito 2023), Tabla 4 {cite:p}`gao2023` | Medida móvil de 30 días desplazada siete días | Yahoo BTC-USD diario | LSTM de una capa y H=20; la densa lineal es contexto | RMSE y RMSPE | LSTM 0,074071 y 0,406084, respectivamente |
+| S6. Wang et al. (s. f.), Tabla 4 {cite:p}`wangnd` | Volatilidad diaria denominada RV, sin fórmula suficiente para equipararla a σ7 | Bitcoin diario | Transformer OHLCV independiente; EGARCH–Transformer es híbrido | RMSE, MAE, QLIKE y R² del Modelo 1 | 1,4738; 0,4369; 0,4369; −0,7347, respectivamente, transcritos tal como aparecen |
+| S7. Alakhouch Idriss (2026), Tabla 4.5 {cite:p}`alakhouch2026` | Medida futura de 30 días anualizada en el código | Bitcoin diario | LSTM 64→32 con cabeza Dense16→1; no una MLP independiente | RMSE, MAE y MAPE | 0,0358; 0,0254; 13,5 %, respectivamente |
+
+**Límites de interpretación de las cinco filas.** S1 usa RV×100, información, frecuencia y objetivo diferentes de E1. S2 es literatura gris: sus tres semillas se promedian en predicciones; no se informa aquí una media y dispersión de métricas, el R² usa la media train y el objetivo no es diario Spot. S5 evalúa validación sobre valores escalados y no acredita dispersión entre semillas. S6 es un borrador sin fecha editorial, con inconsistencias de MAE y particiones no reconciliadas; esta revisión no valida sus cifras. S7 es un informe académico: PDF declara 12 entradas y código 8; hay escalado global anterior al corte y recuentos inconsistentes. Estas diferencias impiden construir un ranking común de los valores.
+
+La síntesis de seis columnas se puede descargar en [CSV](../_static/literature_e1/study_synthesis_six_columns_20261103.csv); el catálogo bibliográfico de 35 referencias conserva sus cuatro columnas y permanece separado de este producto.
+
+La [matriz completa](../_static/literature_e1/evidence_matrix.csv) conserva problema, dataset, arquitectura, resultados y localización. El [registro de métricas](../_static/literature_e1/reported_metrics.csv) distingue los 42 valores del corte original y los 39 transcritos de S6/S7: **81 valores de autores**, no 81 resultados independientes ni experimentos propios. No se corrigen silenciosamente cifras impresas inconsistentes ni se trasladan a la escala de E1.
+
+S3 —Herremans y Low— y S4 —Huang et al.— siguen como fuentes identificadas con texto completo pendiente. El código de autores de S3 no aumenta la frecuencia hasta verificar en el artículo qué redes se compararon. Las nuevas inspecciones de repositorios sin documento identificable también permanecen fuera del denominador.
 
 ### 3.2.4. Equivalencia funcional con referencias clásicas
 
@@ -308,7 +345,34 @@ En este problema continuo, el ejemplo clásico pertinente de la guía es **SVR l
 
 Su comparación exige información, partición, objetivo y esfuerzo de ajuste comunes. Persistencia, Ridge y GARCH aportan contexto y no sustituyen los tres modelos DL. Los cuatro Ridge del bloque C son diagnósticos de EDA; el benchmark propio de redes continúa reservado para E2.
 
-## 3.3. Fichas documentales de las tres familias candidatas
+### 3.2.5. Arquitecturas no especificadas y búsqueda posterior
+
+La guía exige que, si la literatura no define una arquitectura concreta —por ejemplo, informa solo «un MLP»—, no se elija por criterio personal: se debe aplicar la búsqueda de arquitectura del **Entregable 2, sección 14**, declarando el espacio antes de entrenar. Esa referencia corresponde a la guía suministrada; no afirma que este capítulo haya ejecutado la búsqueda ni fijado ya un espacio propio.
+
+En la extracción se identifica primero qué componente no está reportado y qué fuente o código lo respalda. Si continúa desconocido, se conserva como tal y se documenta la decisión pendiente. S6 no especifica lo necesario para un conteo exacto; S7 presenta discrepancias entre PDF y código. Estas lagunas no se resuelven imputando valores por preferencia.
+
+Los ganadores de S1 **sí están publicados**: no procede tratar su ancho o profundidad como una arquitectura ausente. La versión de biblioteca pendiente y los supuestos del cálculo permanecen explícitos en §3.2.1.2 y en las fichas. Reducir la TCN de seis niveles y F=287 sería una adaptación que exige justificación, no una réplica del ganador ni una forma de completar un dato omitido. No se inventa en esta revisión un espacio de búsqueda actual; el trío y sus configuraciones siguen pendientes.
+
+### 3.2.6. Familias de arquitecturas orientativas por tipo de problema
+
+Las siguientes familias son una orientación de la guía, no resultados de frecuencia ni una selección automática. La elección final debe proceder de la literatura del problema y cumplir los criterios anteriores. El contrato actual usa covariables OHLCV temporales y una salida continua escalar:
+
+| Tipo de problema | Familias orientativas | Aplicabilidad al proyecto y motivo |
+|---|---|---|
+| Clasificación y regresión tabular | MLP superficial, MLP profundo regularizado y red residual tabular | No es la ruta principal: aunque los atributos son numéricos, la disponibilidad y dependencia temporal condicionan la partición. No se acredita una MLP no lineal independiente en el corpus. |
+| Series de tiempo | MLP sobre rezagos, RNN simple, LSTM o GRU de una capa, CNN 1D/TCN poco profunda | Sus diagnósticos temporales son pertinentes. No se adopta como ruta principal porque el contrato actual construye rezagos de covariables, sin usar rezagos explícitos de la variable objetivo. |
+| Regresión temporal | MLP sobre covariables rezagadas, LSTM o GRU sobre sus secuencias y CNN 1D poco profunda | Es la ruta aplicable. La lista orienta la revisión, sin cerrar el trío ni convertir la TCN ganadora de S1 en una red pequeña. |
+| Regresión espacial | MLP con coordenadas y variables, MLP con embeddings posicionales y CNN sobre rejilla de vecindad | No aplica: no hay posiciones geográficas ni unidades espaciales que definan vecindad. |
+| Regresión espacio-temporal | LSTM o GRU global sobre ventanas, ConvLSTM y convolución sobre grafo o rejilla poco profunda | No aplica: existe orden temporal, pero no múltiples ubicaciones ni una estructura espacial del objetivo. |
+| Clasificación de imágenes | CNN poco profunda estilo LeNet/VGG reducida, CNN pequeña con normalización por lotes y ResNet de baja profundidad | No aplica: el contrato no recibe imágenes ni predice clases visuales. |
+| Segmentación de imágenes | FCN sencilla, codificador–decodificador convolucional básico y U-Net reducida | No aplica: no hay máscaras ni etiquetas por píxel. |
+| Clasificación de texto | MLP sobre embeddings promediados (tipo fastText con red), CNN de texto y LSTM o GRU uni/bidireccional de una capa | No aplica: el contrato propio no incluye un corpus textual de entrada. El uso de Twitter por S1 es contexto bibliográfico. |
+| Etiquetado secuencial | LSTM o GRU bidireccional con clasificación por token, la misma con CRF y CNN dilatada | No aplica: no se asigna una etiqueta a cada token o elemento de entrada. |
+| Aprendizaje secuencia a secuencia | Codificador–decodificador GRU o LSTM, la misma arquitectura con atención aditiva y codificador–decodificador convolucional sencillo | No aplica: la salida del proyecto es una volatilidad escalar, no una secuencia destino. |
+
+Un encoder no convierte por sí solo el problema en secuencia a secuencia; una convolución temporal tampoco implica imágenes. Las orientaciones no aplicables se conservan con su justificación y no añaden experimentos ni puestos al trío.
+
+## 3.3. Análisis detallado por modelo base: fichas candidatas
 
 Las tres familias siguientes representan memoria recurrente, convolución causal y atención. Su candidatura es **documental y acotada al corpus recuperado**; todavía no acredita la selección definitiva por recurrencia y mínima complejidad exigida por la guía. Se distinguen: arquitectura reportada por la fuente, cálculo analítico derivado de su descripción y adaptación que necesitaría el proyecto. La elaboración de estas fichas no ejecutó código de Deep Learning ni generó predicciones o resultados nuevos con datos de mercado; las referencias Ridge del EDA se documentan por separado en el capítulo 2.
 
@@ -318,27 +382,33 @@ El contrato del proyecto conserva cinco covariables OHLCV diarias, entradas de D
 
 ### 3.3.1. LSTM unidireccional
 
-#### Referencias y papel comparativo
+#### 3.3.1.1. Referencias completas y papel comparativo
 
 **S1.** Akbiyik, M. E., Erkul, M., Kämpf, K., Vasiliauskaite, V. y Antulov-Fantulin, N. (2023). *Ask “Who”, Not “What”: Bitcoin Volatility Forecasting with Twitter Data*. WSDM 2023. DOI: [10.1145/3539597.3570387](https://doi.org/10.1145/3539597.3570387). El artículo compara LSTM, GRU y TCN antes de proponer D-TCN. La LSTM es un comparador y no el modelo novedoso del trabajo. Evidencia: PDF pp. 4–6, §§5.2–5.4, Fig. 1 y Tabla 2; código `scripts/hpo.py`, líneas 151–235.
 
 **S5.** Gao, M., Li, Q. y Tao, Z. *Comparing the Predictive Power of Five Models on Bitcoin Volatility*. Manuscrito de 2023 y código del primer autor; referencia editorial declarada a Springer, *Learning and Analytics in Intelligent Systems*, vol. 32, pp. 473–486, DOI declarado [10.1007/978-3-031-38074-7_41](https://doi.org/10.1007/978-3-031-38074-7_41). Año editorial externo pendiente de corroboración; no se infiere de la fecha del DOCX. El texto compara media, random walk, GARCH, una red densa lineal y LSTM. La arquitectura sencilla de una capa y veinte unidades está descrita en Tabla 4 y en la celda 111 del [notebook fijado](https://github.com/ga0m1/bitcoin-volatility-models/blob/f19551ca4cca768354eb7e2b7c1dd5c912bd0d41/BTC_USD.ipynb).
 
-#### Arquitecturas efectivamente descritas
+**S7.** Alakhouch Idriss (2026). *Bitcoin Volatility Forecasting: Econometric and Machine Learning Approaches Applied to Daily Price Data (July 2010–February 2024)*. Informe fechado 02/06/2026, sin DOI ni revisión por pares acreditados. [Informe y versión de autor](https://github.com/idrissalk/Bitcoin-Volatility-Forecasting/blob/a98099e4125e1f80a094a46889d97bc31abfe30b/Repport/Asset-volatility-Forecasting.pdf), §3.5.3 y Tabla 4.5, p. 34 impresa; [código](https://github.com/idrissalk/Bitcoin-Volatility-Forecasting/blob/a98099e4125e1f80a094a46889d97bc31abfe30b/Python/Python.py), líneas 366–415.
+
+#### 3.3.1.2. Tipo de arquitectura
+
+Red recurrente LSTM con memoria y compuertas, seguida de una cabeza densa. La ficha concreta toma la variante unidireccional de una capa y H=20 de S5. S1 y S7 aportan comparadores de la misma familia con configuraciones y tareas diferentes; no son réplicas de S5 ni tres estudios de una arquitectura idéntica.
+
+#### 3.3.1.3. Descripción técnica
+
+**Arquitecturas y entrenamiento efectivamente descritos.**
 
 S5 utiliza catorce observaciones de volatilidad como entrada, una LSTM de veinte unidades y una salida Dense(1). No incorpora una segunda capa recurrente. El notebook compila con MSE y Adam, batch 64, máximo 200 épocas, paciencia 20 y restauración de pesos elegidos según `val_rmspe`. El callback de checkpoint monitoriza `loss`, un criterio distinto: esta diferencia debe conservarse al interpretar el procedimiento y no se sustituye por un protocolo supuesto. No se reportan varias semillas ni dispersión entre corridas.
 
 S1 utiliza un día de 96 retornos de quince minutos como entrada y produce 96 retornos del día siguiente mediante una cabeza densa. Su búsqueda varía unidades recurrentes entre 32 y 512, dropout entre 0 y 0,5, learning rate entre 10⁻⁷ y 10⁻², weight decay entre 10⁻⁹ y 10⁻² y ε entre 10⁻² y 10⁻¹. Usa AdamW y pérdida cuadrática ε-insensible, 250 configuraciones por red, treinta épocas y veinte corridas para la comparación. El apéndice C, Tabla 5, sí reporta la configuración ganadora de S1: H=261, dropout 0,0237, ε=0,0364, learning rate 0,00521 y weight decay 9,25×10⁻⁷. La revisión anterior omitía esta tabla; se corrige esa extracción. Estos valores de autores no son una configuración del proyecto.
 
-#### Apoyo adicional de la familia LSTM: S7
-
-**S7.** Alakhouch Idriss (2026). *Bitcoin Volatility Forecasting: Econometric and Machine Learning Approaches Applied to Daily Price Data (July 2010–February 2024)*. Informe fechado 02/06/2026, sin DOI ni revisión por pares acreditados. [Informe y versión de autor](https://github.com/idrissalk/Bitcoin-Volatility-Forecasting/blob/a98099e4125e1f80a094a46889d97bc31abfe30b/Repport/Asset-volatility-Forecasting.pdf), §3.5.3 y Tabla 4.5, p. 34 impresa; [código](https://github.com/idrissalk/Bitcoin-Volatility-Forecasting/blob/a98099e4125e1f80a094a46889d97bc31abfe30b/Python/Python.py), líneas 366–415.
+**Variante adicional de S7.**
 
 El informe compara una LSTM independiente con GARCH, Random Forest y XGBoost, y presenta una propuesta EGARCH+XGBoost. Declara ventana de 60 días, dos capas LSTM de 64/32 unidades, dropout 0,2, Dense(16, ReLU) y salida lineal escalar; usa Adam 10⁻³, batch 32, máximo 200 épocas y paciencia 15. Es una variante más profunda que la ficha concreta de S5. El PDF declara doce atributos, mientras el código enumera ocho, incluida varianza condicional EGARCH; no se trata de las cinco OHLCV del proyecto. El objetivo del código es desviación móvil futura de treinta retornos, anualizada, no σ7 diario.
 
-Tabla 4.5 reporta LSTM RMSE 0,0358, MAE 0,0254 y MAPE 13,5 %, sin dispersión entre semillas; son valores del autor, no verificados mediante reproducción. El código ajusta MinMaxScaler de entradas y objetivo sobre todo `df_garch` antes del corte temporal, riesgo aparente de fuga de información. También monitoriza `val_loss`, frente a MAE descrita en el informe, y los recuentos declarados 3.849+1.006=4.855 no reconcilian el total 4.955. Estas discrepancias impiden usar la fuente para acreditar superioridad o una réplica exacta y no se corrigen inventando resultados o dimensiones. Se cuenta una sola vez como apoyo exploratorio de familia.
+La extracción documental de S7 identifica MSE como pérdida y Adam como optimizador. Es información de esa fuente; no fija la configuración de las redes del proyecto.
 
-#### Ecuaciones, flujo y sesgo inductivo
+**Componentes, ecuaciones, flujo y sesgo inductivo.**
 
 Para x_j∈R^p, h_j,c_j∈R^H y activación logística s:
 
@@ -365,7 +435,44 @@ Cabeza densa H → q
 
 Las compuertas controlan el almacenamiento y olvido del estado; su memoria ofrece un mecanismo diferente al de filtros locales o atención directa. Esto no garantiza aprender dependencias largas en una muestra pequeña ni acredita superioridad predictiva. El orden de los datos y la disponibilidad de las entradas siguen siendo parte del contrato causal.
 
-#### Parámetros y costo analítico
+#### 3.3.1.4. Tipo de problema que aborda
+
+Las fuentes tratan pronósticos continuos de Bitcoin con definiciones distintas: S1 predice una secuencia de 96 retornos del día siguiente y después agrega RV diaria; S5 pronostica una medida móvil de treinta días desplazada siete días; el código de S7 utiliza una medida futura de treinta retornos anualizada. La variante del proyecto se define por su propio contrato OHLCV diario, n=7 y h=1, sin trasladar esas tareas o resultados como si fueran equivalentes.
+
+#### 3.3.1.5. Datasets utilizados en las fuentes
+
+| Fuente | Dataset documentado | Unidad y separación relevantes |
+|---|---|---|
+| S1 | Bitcoin, precios cada quince minutos; 144 días declarados | 96 días de desarrollo, separados en 72/24, y 48 días de test. El estudio también incorpora Twitter en su propuesta D-TCN; la LSTM comparativa descrita usa retornos. |
+| S5 | Yahoo Finance BTC-USD diario; 2.607 registros declarados | Las fechas finales no se reconcilian entre las partes de la fuente; el notebook distingue validación de 365 días y test final de treinta. |
+| S7 | BTC/USD diario de Investing.com/Kaggle, según el informe; 18/07/2010–09/02/2024 | 4.955 observaciones declaradas; número de atributos, recuentos y particiones del informe/código requieren conciliación. |
+
+La procedencia de estas fuentes se toma de la extracción documental conservada en `studies.json`; no se han adquirido o reconstruido sus datasets en esta revisión.
+
+#### 3.3.1.6. Métricas y valores publicados
+
+| Fuente y evaluación | Resultado publicado | Dispersión y escala |
+|---|---|---|
+| S1, Tabla 2, test de 48 días | LSTM RMSE 2,37; MAE 1,70; MAPE 0,30; MSLE 0,09 | DE 0,19 / 0,26 / 0,08 / 0,01, respectivamente, entre veinte corridas; RV = 100·sqrt(sum(r_15min²)); MAPE como fracción |
+| S5, Tabla 4, comparación de validación | LSTM(20) RMSE 0,074071; RMSPE 0,406084 | Sin dispersión entre semillas; comparación sobre valores escalados y objetivo de treinta días desplazado siete días |
+
+No se ordenan estos RMSE como si midieran el mismo problema. S1 predice retornos intradiarios y después agrega volatilidad; S5 emplea volatilidad pasada como entrada y no centra los retornos al construir su medida. El contrato del proyecto conserva OHLCV diario y desviación poblacional centrada de siete retornos. La pérdida MSE fijada para el diseño del proyecto coincide nominalmente con S5, pero no con la pérdida ε-insensible de S1; que una pérdida comparta nombre tampoco iguala escalas y objetivos.
+
+**S7: valores publicados y condiciones de interpretación.**
+
+Tabla 4.5 reporta LSTM RMSE 0,0358, MAE 0,0254 y MAPE 13,5 %, sin dispersión entre semillas; son valores del autor, no verificados mediante reproducción. El código ajusta MinMaxScaler de entradas y objetivo sobre todo `df_garch` antes del corte temporal, riesgo aparente de fuga de información. También monitoriza `val_loss`, frente a MAE descrita en el informe, y los recuentos declarados 3.849+1.006=4.855 no reconcilian el total 4.955. Estas discrepancias impiden usar la fuente para acreditar superioridad o una réplica exacta y no se corrigen inventando resultados o dimensiones. Se cuenta una sola vez como apoyo exploratorio de familia.
+
+#### 3.3.1.7. Fortalezas
+
+**Fortalezas:** comparador recurrente documentado en tres fuentes unidireccionales, con variantes distintas, arquitectura pequeña completamente identificable en S5 y número de parámetros independiente de D.
+
+#### 3.3.1.8. Limitaciones
+
+**Límites:** S5 contiene fechas inconsistentes y carece de repeticiones e inferencia; S1 dispone de veinte corridas, pero solo 48 días de test. La variante, transformación, activación de salida y configuración propia deben distinguirse de la réplica de cada fuente. No se atribuye a las fuentes una salida `softplus`: sus cabezas descritas son lineales.
+
+Las discrepancias de entrada, etiquetado y escalado de S7 se conservan junto a sus cifras en §3.3.1.6. Su inclusión exploratoria no acredita una réplica, ausencia de fuga o una mejora transferible al proyecto.
+
+#### 3.3.1.9. Complejidad computacional
 
 Una LSTM con un vector de sesgo por compuerta y cabeza de q salidas tiene:
 
@@ -383,32 +490,33 @@ Para la configuración de S5, p=1,H=20,q=1, la primera expresión da **1.781 par
 
 Por ventana, el costo dominante de inferencia es O(D·H(p+H)+Hq). Un minibatch de B ventanas multiplica ese costo por B; la retropropagación mantiene el mismo orden, con mayor constante y almacenamiento de estados O(BDH). La recurrencia impone dependencia secuencial entre pasos. No se infiere tiempo real ni consumo de GPU a partir de esta expresión.
 
-#### Resultados publicados y límites de comparabilidad
-
-| Fuente y evaluación | Resultado publicado | Dispersión y escala |
-|---|---|---|
-| S1, Tabla 2, test de 48 días | LSTM RMSE 2,37; MAE 1,70; MAPE 0,30; MSLE 0,09 | DE 0,19 / 0,26 / 0,08 / 0,01, respectivamente, entre veinte corridas; RV = 100·sqrt(sum(r_15min²)); MAPE como fracción |
-| S5, Tabla 4, comparación de validación | LSTM(20) RMSE 0,074071; RMSPE 0,406084 | Sin dispersión entre semillas; comparación sobre valores escalados y objetivo de treinta días desplazado siete días |
-
-No se ordenan estos RMSE como si midieran el mismo problema. S1 predice retornos intradiarios y después agrega volatilidad; S5 emplea volatilidad pasada como entrada y no centra los retornos al construir su medida. El contrato del proyecto conserva OHLCV diario y desviación poblacional centrada de siete retornos. La pérdida MSE fijada para el diseño del proyecto coincide nominalmente con S5, pero no con la pérdida ε-insensible de S1; que una pérdida comparta nombre tampoco iguala escalas y objetivos.
-
-**Fortalezas:** comparador recurrente documentado en tres fuentes unidireccionales, con variantes distintas, arquitectura pequeña completamente identificable en S5 y número de parámetros independiente de D. **Límites:** S5 contiene fechas inconsistentes y carece de repeticiones e inferencia; S1 dispone de veinte corridas, pero solo 48 días de test. La variante, transformación, activación de salida y configuración propia deben distinguirse de la réplica de cada fuente. No se atribuye a las fuentes una salida `softplus`: sus cabezas descritas son lineales.
+**Tiempo de entrenamiento e inferencia:** esta ficha no dispone de un tiempo de reloj recuperado y comparable entre S1/S5/S7. Épocas, paciencia y batch describen presupuesto de entrenamiento, no duración. No se ha medido un tiempo propio ni se deduce uno a partir del conteo de parámetros.
 
 ### 3.3.2. TCN: convolución temporal causal y dilatada
 
-#### Referencias y papel comparativo
+#### 3.3.2.1. Referencias completas y papel comparativo
+
+**S1.** Akbiyik, M. E., Erkul, M., Kämpf, K., Vasiliauskaite, V. y Antulov-Fantulin, N. (2023). *Ask “Who”, Not “What”: Bitcoin Volatility Forecasting with Twitter Data*. WSDM 2023. DOI: [10.1145/3539597.3570387](https://doi.org/10.1145/3539597.3570387).
 
 S1 documenta una **TCN única** como comparador de LSTM, GRU, AR-RV y GARCH. Luego propone una **D-TCN de dos ramas**, una para retornos y otra para señales de Twitter. La ficha selecciona la TCN comparativa, no la D-TCN novedosa. La base conceptual de convoluciones causales y dilatadas está descrita por Bai, Kolter y Koltun (2018), referencia de fundamentos del libro; ese trabajo genérico no se cuenta como otro estudio de Bitcoin.
 
 Fuentes: S1, Fig. 1, §§5.2–5.4 y Tabla 2; [hpo.py por commit](https://github.com/meakbiyik/ask-who-not-what/blob/bcc0e4e89213da2ca3ed968574aa2d08cee39c44/scripts/hpo.py), líneas 151–235. `dtcn.py` corresponde a la extensión propuesta y no debe utilizarse como si describiera la base de una sola rama.
 
-#### Arquitectura y entrenamiento publicados
+**Fundamento arquitectónico.** Bai, S., Kolter, J. Z. y Koltun, V. (2018). *An Empirical Evaluation of Generic Convolutional and Recurrent Networks for Sequence Modeling*. Prepublicación [arXiv:1803.01271](https://arxiv.org/abs/1803.01271); sin DOI identificado en la referencia local. Sustenta el mecanismo general, no una nueva observación de uso en Bitcoin.
+
+#### 3.3.2.2. Tipo de arquitectura
+
+Red convolucional temporal 1D con causalidad, dilataciones y conexiones residuales. S1 usa una TCN comparativa de una rama y distingue la D-TCN propuesta de dos ramas. La relación con una CNN1D no permite identificar automáticamente esta configuración con una CNN poco profunda.
+
+#### 3.3.2.3. Descripción técnica
+
+**Arquitectura y entrenamiento publicados.**
 
 El código invoca `TCN` de `keras-tcn` con seis niveles de dilatación `(a⁰,a¹,a²,a³,a⁴,a⁵)`, a∈{2,3,4}, kernel k∈{2,…,6}, canales F∈{32,…,512}, dropout en [0,0,5], skip connections activadas o no y alternativas de normalización batch/weight/layer/ninguna. Después se aplica Dense(96) y reshape a 96×1 retornos futuros. Entrada fuente: 96×1 retornos observados. El artículo compara modelos con información financiera de precios antes de introducir las ramas de Twitter.
 
 La selección utiliza 250 configuraciones, treinta épocas por configuración, AdamW y pérdida cuadrática ε-insensible sobre retornos. Los rangos de learning rate, weight decay y ε son los mismos de la ficha LSTM. Los veinte reinicios de la comparación final se evalúan después de agregar los 96 retornos predichos a RV diaria. El apéndice C, Tabla 6 del artículo, sí publica los hiperparámetros ganadores: F=287 filtros, kernel k=5, base de dilatación a=4, dropout 0,217, ε=0,0913, learning rate 6,49×10⁻⁵, weight decay 5,93×10⁻⁶, skip connections activadas y ninguna normalización. Se corrige la omisión de esa tabla en la extracción anterior. Sigue sin estar fijada la versión de `keras-tcn`, por lo que los detalles internos de sus bloques deben verificarse antes de una réplica.
 
-#### Ecuaciones y diagrama
+**Componentes, ecuaciones, flujo y sesgo inductivo.**
 
 Para una convolución causal con dilatación d_b:
 
@@ -434,7 +542,29 @@ Cabeza densa F → q
 
 El sesgo inductivo es localidad temporal con pesos compartidos y contexto ampliado mediante dilataciones. Se diferencia de almacenar una memoria recurrente y de relacionar todas las posiciones mediante atención. Atender una ventana pasada no elimina el requisito de que las variables originales y sus transformaciones fueran observables en cada origen.
 
-#### Parámetros, profundidad y complejidad: hipótesis explícitas
+#### 3.3.2.4. Tipo de problema que aborda
+
+En S1, la TCN predice 96 retornos intradiarios del día siguiente y su evaluación agrega una medida de volatilidad realizada diaria. Es un pronóstico continuo de secuencia; no es la salida escalar σ7 del contrato OHLCV diario del proyecto. La ficha corresponde al comparador financiero de una rama.
+
+#### 3.3.2.5. Dataset utilizado en la fuente
+
+S1 documenta precios de Bitcoin cada quince minutos durante 144 días: 96 de desarrollo, separados en 72/24, y 48 de test. La entrada de la TCN comparativa es una ventana de 96 retornos; las señales de Twitter se introducen en la propuesta D-TCN, cuya segunda rama no se atribuye a esta referencia. No se presenta ese dataset como idéntico a Binance Spot diario del proyecto.
+
+#### 3.3.2.6. Métricas y valores publicados
+
+S1, Tabla 2, informa **TCN RMSE 2,58±0,07; MAE 1,63±0,06; MAPE 0,23±0,01; MSLE 0,11±0,01**, veinte corridas, test de 48 días y la misma escala RV de la ficha LSTM. En ese estudio, TCN tiene mejor MAPE/MAE que LSTM, mientras LSTM tiene menor RMSE/MSLE. El orden depende de la métrica; no se comunica un ganador universal. Los contrastes del artículo son unilaterales respecto a AR-RV y no implican automáticamente un contraste directo entre las redes ni control de toda la multiplicidad.
+
+#### 3.3.2.7. Fortalezas
+
+**Fortalezas:** comparador separado de la propuesta híbrida, filtros compartidos y contexto multiescala con cálculo paralelo.
+
+#### 3.3.2.8. Limitaciones
+
+**Límites:** frecuencia 1/5 en el corpus exploratorio, detalles internos dependientes de una biblioteca sin versión fijada y test corto. La fuente respalda TCN y no acredita una CNN1D de una sola capa como réplica exacta. «Base comparativa» no significa mínima profundidad absoluta.
+
+Para el proyecto, pasar de retornos intradiarios a cinco OHLCV diarios y de 96 salidas a una volatilidad escalar sería una adaptación. Su profundidad, dilataciones, normalización y salida deben registrarse antes de implementar en E2. Si falta detalle de arquitectura, corresponde consultar el protocolo de E2 §14 citado por la guía; esta ficha no inventa sus reglas.
+
+#### 3.3.2.9. Complejidad computacional
 
 La evidencia directa fija **seis niveles de dilatación**. El número de convoluciones por bloque depende de la implementación residual de la biblioteca. El esquema habitual de dos convoluciones por bloque daría doce convoluciones, pero este conteo **no aparece como total textual del artículo ni sustituye la versión ausente de la dependencia**.
 
@@ -456,39 +586,35 @@ Ejemplo **analítico dentro del espacio descrito**, no configuración ganadora: 
 
 El costo dominante por ventana es O(D·Σ_l k_l C_(l−1)C_l+Fq), aproximadamente O(DJkF²) en la parte de ancho constante. Para minibatch B, se multiplica por B. El entrenamiento añade almacenamiento de activaciones y retropropagación del mismo orden. Las operaciones pueden paralelizarse dentro de la ventana; esto no demuestra menor latencia real que LSTM. Si D es de 7–28 días, un campo receptivo formal mayor que D no crea historia observada adicional: parte del contexto correspondería a padding.
 
-#### Resultados publicados, fortalezas y limitaciones
-
-S1, Tabla 2, informa **TCN RMSE 2,58±0,07; MAE 1,63±0,06; MAPE 0,23±0,01; MSLE 0,11±0,01**, veinte corridas, test de 48 días y la misma escala RV de la ficha LSTM. En ese estudio, TCN tiene mejor MAPE/MAE que LSTM, mientras LSTM tiene menor RMSE/MSLE. El orden depende de la métrica; no se comunica un ganador universal. Los contrastes del artículo son unilaterales respecto a AR-RV y no implican automáticamente un contraste directo entre las redes ni control de toda la multiplicidad.
-
-**Fortalezas:** comparador separado de la propuesta híbrida, filtros compartidos y contexto multiescala con cálculo paralelo. **Límites:** frecuencia 1/5 en el corpus exploratorio, detalles internos dependientes de una biblioteca sin versión fijada y test corto. La fuente respalda TCN y no acredita una CNN1D de una sola capa como réplica exacta. «Base comparativa» no significa mínima profundidad absoluta.
-
-Para el proyecto, pasar de retornos intradiarios a cinco OHLCV diarios y de 96 salidas a una volatilidad escalar sería una adaptación. Su profundidad, dilataciones, normalización y salida deben registrarse antes de implementar en E2. Si falta detalle de arquitectura, corresponde consultar el protocolo de E2 §14 citado por la guía; esta ficha no inventa sus reglas.
+**Tiempo de entrenamiento e inferencia:** no se dispone en la extracción de una medición de reloj comparable para esta ficha. Treinta épocas y veinte reinicios son cantidades del procedimiento, no una duración. La paralelización descrita no acredita velocidad medida, GPU o memoria observadas.
 
 ### 3.3.3. Transformer encoder compacto, comparador SELF-ATT
 
-#### Referencia, estado y papel experimental
+#### 3.3.3.1. Referencias completas y papel comparativo
 
 **S2.** Zeri, T. (octubre de 2026). *Forecasting High-Frequency Bitcoin Volatility: Neural Networks, Market Microstructure and On-Chain Data*. Manuscrito público de investigador independiente, sin DOI ni revisión por pares acreditados. [Fuente TeX fijada](https://github.com/tommasozeri/Forecasting-High-Frequency-Bitcoin-Volatility-Neural-Networks/blob/d69f951f2ced7273bdc4c3e5a8a4cb220c2ee5ce/paper_en/manuscript.tex), §§Models/Training, líneas 179–189, tabla de resultados y apéndice, líneas 395–409. Arquitectura leída en celda 21 del notebook `modelli_btc_hf.ipynb`, mismo commit.
 
 SELF-ATT es uno de los tres comparadores neuronales genéricos —junto a GRU y BiLSTM— del estudio; la contribución se centra en pipeline, comparación y ablación de atributos, no en declarar una nueva arquitectura de atención. La ficha concreta describe S2. El encoder aparece además en S6, con una configuración distinta: **2/5 textos del corpus exploratorio**, ambos sin revisión por pares acreditada; esto no prueba recurrencia en toda la literatura. Es compacto frente a grandes Transformers, pero tiene más parámetros que la LSTM simple de S5; no se le atribuye mínima complejidad absoluta.
 
-#### Arquitectura y protocolo documentados
+**S6.** Wang, Y., Yu, Q., Peng, J., Yang, B. y Chen, Z. (s.f.). *A comparative analysis of volatility predictions via EGARCH, Transformer and hybrid EGARCH-Transformer models: changes in forecasting ability after introducing sentiment factors*. [Borrador de autores](https://github.com/cathyw111/bitcoin-volatility-forecasting/blob/61feeec81d695e19eac9c819be41d704e6279547/research-draft.pdf), §3.4 y Tablas 1–2, pp. 6–7, y Tabla 4, p. 10. La versión del repositorio está disponible en 2026; la fecha de commit no se presenta como año editorial. No se acreditan DOI ni revisión por pares.
 
-Run B utiliza 48 barras de cinco minutos y 41 atributos de Binance Futures BTCUSDT perpetuo mediante Crypto Lake. El objetivo es log-RV de los siguientes treinta minutos, seis barras, a partir del precio medio del libro de órdenes; no es desviación móvil diaria de siete retornos. Hay 31.524 predicciones de test, correspondientes al 13/09–31/12/2025. La tabla publica métricas de predicciones promediadas entre tres semillas, no media y desviación de tres métricas.
+#### 3.3.3.2. Tipo de arquitectura
+
+Encoder Transformer de atención multihead sobre una ventana histórica, con cabeza de regresión. La ficha concreta es SELF-ATT de S2, con dos bloques pre-LayerNorm, d=48 y cuatro cabezas. S6 documenta otro encoder con d=32 y salida Softplus, cuya especificación parcial permanece separada. Recibir una secuencia y producir un escalar no convierte por sí solo esta tarea en aprendizaje secuencia a secuencia.
+
+#### 3.3.3.3. Descripción técnica
+
+**Arquitectura y entrenamiento de S2.**
 
 La arquitectura contiene proyección lineal F→d, posiciones aprendidas de longitud máxima M, dos bloques encoder pre-LayerNorm y cuatro cabezas. Cada bloque incluye atención multihead, dos conexiones residuales y feedforward de ancho 2d. El código no especifica la activación del encoder, por lo que usa ReLU por defecto; la cabeza sí usa GELU. La cabeza concatena último token y media de tokens y aplica dropout→Dense(2d,d)→GELU→Dense(d,1).
 
 La configuración elegida reportada para SELF-ATT en Run B es d=48, dropout 0,21, learning rate 3·10⁻⁴, weight decay 1,4·10⁻³, ruido de entrada 0,12 y ventana L=48. El código conserva M=96 posiciones, aunque la ventana elegida sea menor. La pérdida es MSE sobre el objetivo log-RV estandarizado, según la línea 119 del manuscrito y `loss_fn` en la celda 23. Se declara AdamW, batch 512, máximo cuarenta épocas, paciencia seis, clipping 1 y semillas 42/43/44; cada red recibe veinte trials de búsqueda. Las predicciones finales se promedian entre semillas antes del cálculo de métricas.
 
-#### Apoyo adicional de encoder Transformer: S6
-
-**S6.** Wang, Y., Yu, Q., Peng, J., Yang, B. y Chen, Z. (s.f.). *A comparative analysis of volatility predictions via EGARCH, Transformer and hybrid EGARCH-Transformer models: changes in forecasting ability after introducing sentiment factors*. [Borrador de autores](https://github.com/cathyw111/bitcoin-volatility-forecasting/blob/61feeec81d695e19eac9c819be41d704e6279547/research-draft.pdf), §3.4 y Tablas 1–2, pp. 6–7, y Tabla 4, p. 10. La versión del repositorio está disponible en 2026; la fecha de commit no se presenta como año editorial. No se acreditan DOI ni revisión por pares.
+**Variante adicional de S6.**
 
 Su comparador `model1` es un encoder Transformer sobre OHLCV diario de Bitcoin, con historia de 20 días, d=32, cuatro cabezas, dos capas, dropout 0,1 y salida Softplus. Declara MSE, Adam 0,001, batch 32, máximo 100 épocas, paciencia 10 y semilla 42. El periodo es 25/03/2021–30/12/2024 y el objetivo declarado RV1D, cuya construcción exacta no quedó suficientemente especificada. Faltan ancho feedforward, pooling/lectura, orden de normalización y versión de implementación; por ello no se inventa un total de parámetros ni se traslada el conteo 49.249 de S2 a S6.
 
-Tabla 4 informa para `model1` RMSE 1,4738, R² −0,7347, QLIKE 0,4369 y MAE 0,4369, sin dispersión. Se conservan literalmente, sin tratarlos como cifras validadas: el texto llama mejor al MAE 0,7399 de `model9` aunque 0,4369 es menor; la combinación RMSE/R² no permite reconciliar una cohorte común con la definición convencional, y el corte 70/30 de Transformer no está reconciliado con los 203 días de test EGARCH. No se ejecutó DM por costo computacional, según §6.2. Sin datos o código de entrenamiento no puede verificarse disponibilidad, escalado ni el origen de esas diferencias. La fuente respalda la presencia de un comparador de atención con información OHLCV, pero no acredita una mejora reproducida ni cierra su especificación.
-
-#### Ecuaciones, flujo y causalidad
+**Componentes, ecuaciones, flujo y causalidad.**
 
 Las ecuaciones siguientes describen **SELF-ATT de S2**, con d=48 y la cabeza GELU documentada. La configuración parcial de S6, d=32 y salida Softplus, permanece diferenciada y no se completa con componentes supuestos de S2.
 
@@ -516,7 +642,42 @@ Dropout → Dense(2d,d) → GELU → Dense(d,1)
 
 El sesgo inductivo permite relacionar posiciones distantes mediante atención dependiente del contenido, sin recurrencia ni una vecindad local fija. El encoder se llama sin máscara causal: es compatible con pronóstico si toda su ventana está disponible antes del origen. Atender posiciones posteriores dentro de una ventana enteramente pasada no implica por sí solo utilizar el futuro. La construcción causal de cada atributo debe verificarse por separado.
 
-#### Complejidad y número de parámetros derivado
+#### 3.3.3.4. Tipo de problema que aborda
+
+SELF-ATT pronostica el logaritmo de RV de los próximos treinta minutos. S6 declara pronóstico de RV1D del día siguiente, pero la fórmula del proxy no quedó suficientemente especificada. Ambas salidas continuas difieren de la desviación poblacional centrada de siete retornos diarios que define el proyecto.
+
+#### 3.3.3.5. Datasets utilizados en las fuentes
+
+Run B utiliza 48 barras de cinco minutos y 41 atributos de Binance Futures BTCUSDT perpetuo mediante Crypto Lake. El objetivo es log-RV de los siguientes treinta minutos, seis barras, a partir del precio medio del libro de órdenes; no es desviación móvil diaria de siete retornos. Hay 31.524 predicciones de test, correspondientes al 13/09–31/12/2025. La tabla publica métricas de predicciones promediadas entre tres semillas, no media y desviación de tres métricas.
+
+S2 utiliza Binance Futures BTCUSDT perpetuo de Crypto Lake, con datos de operaciones, libro, financiación, interés abierto, liquidaciones y atributos on-chain de 2024–2025. Es una fuente licenciada y multivariante, con 41 atributos declarados en Run B. S6 declara Bitcoin diario del 25/03/2021 al 30/12/2024 y 1.376 retornos, pero la procedencia bruta no quedó suficientemente identificada. Ninguna de estas fuentes se presenta como el mismo dataset del proyecto.
+
+#### 3.3.3.6. Métricas y valores publicados
+
+| Modelo de S2, Run B | R² respecto a media train | R² respecto a media test | QLIKE | Spearman |
+|---|---:|---:|---:|---:|
+| SELF-ATT | 0,600 | 0,566 | 0,562 | 0,749 |
+| BiLSTM | 0,586 | 0,550 | 0,582 | 0,742 |
+| GRU | 0,582 | 0,546 | 0,564 | 0,743 |
+| HAR | 0,508 | 0,466 | 0,773 | 0,676 |
+
+El manuscrito reporta DM de SELF-ATT frente a HAR de 19,7, p unilateral <10⁻¹⁵ y HAC de cinco rezagos por solapamiento. No es un contraste directo SELF-ATT contra BiLSTM ni una prueba ejecutada por este proyecto. R² respecto a media train no equivale al R² convencional respecto a media test. No hay en esa tabla desviación ni IC entre las tres semillas: se evalúa su promedio de predicciones.
+
+**S6: cifras literales y condiciones de interpretación.**
+
+Tabla 4 informa para `model1` RMSE 1,4738, R² −0,7347, QLIKE 0,4369 y MAE 0,4369, sin dispersión. Se conservan literalmente, sin tratarlos como cifras validadas: el texto llama mejor al MAE 0,7399 de `model9` aunque 0,4369 es menor; la combinación RMSE/R² no permite reconciliar una cohorte común con la definición convencional, y el corte 70/30 de Transformer no está reconciliado con los 203 días de test EGARCH. No se ejecutó DM por costo computacional, según §6.2. Sin datos o código de entrenamiento no puede verificarse disponibilidad, escalado ni el origen de esas diferencias. La fuente respalda la presencia de un comparador de atención con información OHLCV, pero no acredita una mejora reproducida ni cierra su especificación.
+
+#### 3.3.3.7. Fortalezas
+
+**Fortalezas:** mecanismo distinto, encoder/cabeza descritos y configuración acotada; relaciones directas entre posiciones de la ventana.
+
+#### 3.3.3.8. Limitaciones
+
+**Límites:** los dos apoyos aplicados de encoder son literatura gris; S6 tiene especificación parcial y métricas inconsistentes. La ficha concreta de S2 utiliza datos licenciados, una ventana de evaluación y costo cuadrático, con resultados no reproducidos aquí. Además, las redes utilizan 24–48 barras mientras los referentes lineal y LightGBM usan solo la última: la comparación no aísla completamente arquitectura de historia informativa. El desglose de atributos de libro tiene una discrepancia de enumeración; se conserva F=41 como dimensión declarada, con esa salvedad.
+
+La fuente tiene salida lineal para log-RV estandarizado. Adaptarla a OHLCV diario y volatilidad no negativa requiere un contrato propio; añadir `softplus` o reducir capas no sería una descripción de la arquitectura publicada. No se fijan esas modificaciones a partir de cifras de otro objetivo.
+
+#### 3.3.3.9. Complejidad computacional
 
 Para feedforward m=2d, F atributos y M posiciones aprendidas, cada bloque encoder aporta:
 
@@ -534,22 +695,9 @@ F=41,M=96,d=48 da **49.249 parámetros**: 2.016 de proyección, 4.608 de posicio
 
 El costo por bloque y minibatch B es O(B(L²d+Ld²)), más proyección O(BLFd) y cabeza O(Bd²). El almacenamiento de atención es cuadrático en L por cabeza. La retropropagación conserva el orden con mayor constante. Estas expresiones no prueban eficiencia ni escalabilidad medida frente a otras redes.
 
-#### Valores publicados y crítica
+**Tiempo de entrenamiento e inferencia:** no se dispone en esta ficha de una duración recuperada y comparable con las otras familias. El máximo de cuarenta épocas o los veinte trials de S2 no se convierten en tiempo de reloj; no hay medición propia de entrenamiento, inferencia o memoria.
 
-| Modelo de S2, Run B | R² respecto a media train | R² respecto a media test | QLIKE | Spearman |
-|---|---:|---:|---:|---:|
-| SELF-ATT | 0,600 | 0,566 | 0,562 | 0,749 |
-| BiLSTM | 0,586 | 0,550 | 0,582 | 0,742 |
-| GRU | 0,582 | 0,546 | 0,564 | 0,743 |
-| HAR | 0,508 | 0,466 | 0,773 | 0,676 |
-
-El manuscrito reporta DM de SELF-ATT frente a HAR de 19,7, p unilateral <10⁻¹⁵ y HAC de cinco rezagos por solapamiento. No es un contraste directo SELF-ATT contra BiLSTM ni una prueba ejecutada por este proyecto. R² respecto a media train no equivale al R² convencional respecto a media test. No hay en esa tabla desviación ni IC entre las tres semillas: se evalúa su promedio de predicciones.
-
-**Fortalezas:** mecanismo distinto, encoder/cabeza descritos y configuración acotada; relaciones directas entre posiciones de la ventana. **Límites:** los dos apoyos aplicados de encoder son literatura gris; S6 tiene especificación parcial y métricas inconsistentes. La ficha concreta de S2 utiliza datos licenciados, una ventana de evaluación y costo cuadrático, con resultados no reproducidos aquí. Además, las redes utilizan 24–48 barras mientras los referentes lineal y LightGBM usan solo la última: la comparación no aísla completamente arquitectura de historia informativa. El desglose de atributos de libro tiene una discrepancia de enumeración; se conserva F=41 como dimensión declarada, con esa salvedad.
-
-La fuente tiene salida lineal para log-RV estandarizado. Adaptarla a OHLCV diario y volatilidad no negativa requiere un contrato propio; añadir `softplus` o reducir capas no sería una descripción de la arquitectura publicada. No se fijan esas modificaciones a partir de cifras de otro objetivo.
-
-### 3.3.4. Comparación documental y cobertura de las fichas
+### 3.3.4. Cobertura y comparación documental de las tres fichas
 
 | Dimensión | LSTM | TCN | Transformer encoder |
 |---|---|---|---|
@@ -563,13 +711,63 @@ La fuente tiene salida lineal para log-RV estandarizado. Adaptarla a OHLCV diari
 
 Las fichas aportan evidencia, ecuaciones, diagramas, resultados publicados y análisis de complejidad, con los límites y detalles no verificados identificados. No completan una búsqueda de hiperparámetros propia ni convierten una fuente en treinta estudios. La diversidad de mecanismos no acredita por sí sola mayor recurrencia y mínima complejidad; la selección definitiva sigue pendiente. Si el criterio académico exige exclusivamente estudios revisados por pares, S2/S6 no acreditan todavía el respaldo del encoder y S7 tampoco cumple ese filtro. La extracción definitiva de tres familias permanece abierta.
 
+La numeración de cada ficha sigue los nueve incisos de la guía: referencias; tipo de arquitectura; descripción técnica; tipo de problema; datasets; métricas/valores; fortalezas; limitaciones; y complejidad. Un DOI ausente o un tiempo no recuperado se declara, y un conteo analítico condicionado no se presenta como tamaño medido por una implementación.
+
 ## 3.4. Comparación crítica de las familias de trabajo
 
-### 3.4.1. Desempeño publicado y comparabilidad
+### 3.4.1. Comparación estructurada entre las familias candidatas
+
+#### 3.4.1.1. Desempeño publicado y comparabilidad
 
 S1 permite comparar LSTM, GRU y TCN dentro de un protocolo: LSTM tiene menor RMSE puntual que TCN, mientras TCN tiene menor MAE. El tuning selecciona por MAPE; ningún orden aislado acredita superioridad en todas las métricas. S5 aporta validación en una escala diferente. S2 evalúa log-RV intradiaria y promedia predicciones entre semillas. Sus métricas no forman un ranking común con las de S1/S5.
 
 S6 y S7 amplían la evidencia de uso, pero **no mejoran automáticamente su calidad**. S6 publica una afirmación sobre el mejor MAE que contradice su propia Tabla 4; además, no se reconciliaron las particiones ni las definiciones de las métricas. S7 presenta discrepancias de atributos, muestras y selección de pesos entre informe y código, además de un escalado global previo al corte. Sus cifras se conservan como resultados declarados, sin validarlas ni usarlas para decidir el trío final.
+
+El proyecto conserva OHLCV diario de Binance Spot, desviación poblacional centrada de siete retornos y horizonte de un día. S1 agrega retornos intradiarios; S2 usa un perpetuo y log-RV de treinta minutos; S5 desplaza siete días una medida de treinta; S6 no permite equiparar su RV a nuestro objetivo y S7 construye una medida futura de treinta días anualizada. Ninguna cifra anterior es un resultado propio con ese contrato.
+
+#### 3.4.1.2. Robustez y evidencia disponible
+
+La comparación documental siguiente no constituye una medición propia de robustez bajo el contrato de E1. Se conservan las tres fichas de trabajo y sus límites, sin retirar a GRU de la evaluación para el trío final.
+
+| Dimensión | LSTM | TCN | Encoder Transformer |
+|---|---|---|---|
+| Uso documentado | Familia en S1/S2/S5/S7; S2 es BiLSTM | S1 | S2 y S6, literatura gris |
+| Repeticiones | S1: veinte corridas; S5/S7 sin dispersión entre semillas acreditada | S1: veinte corridas | S2: promedio de predicciones de tres semillas; S6 una semilla declarada |
+| Riesgo de partición | S5: posible cruce de etiquetas futuras; S7: escalado global anterior al corte | Solo 48 días de test en S1; no prueban robustez entre mercados | S2: información histórica distinta de referencias lineales; S6: particiones y selección de EGARCH no reconciliadas |
+| Inferencia publicada | No confundir pruebas de otros modelos de S7 con evidencia sobre LSTM | Contrastes unilaterales contra AR-RV, no automáticamente entre redes | S2: DM contra HAR, no contra todas las redes; S6 declara DM no ejecutado |
+| Conclusión permitida | Referencia recurrente documentada con calidad heterogénea | Comparador convolucional documentado, sin configuración mínima acreditada | Comparador de atención documentado; respaldo editorial y métricas requieren cautela |
+
+#### 3.4.1.3. Escalabilidad y simplicidad
+
+| Aspecto | LSTM | TCN | Encoder Transformer |
+|---|---|---|---|
+| Cómputo dominante por ventana | O(D·H(p+H)) para una capa | O(D·Σ k_l C_(l−1)C_l) | O(D²d+Dd²) por encoder, con ancho feedforward proporcional a d |
+| Ejecución temporal | Dependencia secuencial entre estados | Filtros paralelizables en la ventana | Interacciones entre pares de posiciones |
+| Memoria de activaciones en entrenamiento | Crece con D y H | Crece con D, ancho y profundidad | Atención completa añade almacenamiento cuadrático en D |
+| Evidencia de sencillez | S5 identifica una LSTM pequeña; S1 y S7 son mayores | El ganador S1 es ancho y de seis niveles; no equivale a CNN1D poco profunda | Dos encoder documentados; menos pesos que la TCN bajo las hipótesis, sin garantizar menor tiempo |
+| Medición comparable propia de tiempo/GPU/RAM | No ejecutada | No ejecutada | No ejecutada |
+
+Las fórmulas y los conteos de §3.2.1.2 y §3.3 controlan sus hipótesis, pero no miden eficiencia. Entrenamiento e inferencia dependen también de implementación, hardware, batch, precisión y presupuesto. Las épocas descritas por S2 no equivalen a tiempos de reloj comparables. Los tamaños de ventanas y salidas de las fuentes son distintos; el conteo con p=5,q=1 no valida esos modelos bajo OHLCV diario.
+
+### 3.4.2. Análisis de validez de los estudios revisados
+
+La evaluación distingue amenazas internas, externas, de constructo y de conclusión estadística. Son riesgos documentales con evidencia y desconocidos; no resultados de una reproducción ejecutada:
+
+| Dimensión de validez | Evidencia o riesgo identificado | Consecuencia para la interpretación |
+|---|---|---|
+| Interna | Riesgos de fuga y selección: objetivo futuro sin purga identificada en S5, escalado global en S7 y cortes/selección de EGARCH no reconciliados en S6 | No atribuir diferencias solo a la arquitectura ni asumir ausencia de fuga por disponer de código. |
+| Externa | Un activo, fuentes y frecuencias distintas; S1 limita su test a 48 días | No está demostrada la generalización a Binance Spot diario ni a otros regímenes o mercados. |
+| De constructo | Distintas definiciones de RV, log-RV, desplazamiento, anualización, escala e información disponible | RMSE, MAE y R² de estudios diferentes no forman un ranking común ni miden necesariamente el objetivo de E1. |
+| De conclusión estadística | Inicializaciones con observaciones de test compartidas, promedios de predicciones, una semilla o ausencia de dispersión, según la fuente | Diferenciar variabilidad del entrenamiento, muestreo temporal, tamaño del efecto, precisión y familia de contrastes. |
+| Procedencia editorial | Literatura gris, año editorial desconocido y coincidencias secundarias de revista en listas de 2026 | La procedencia no certifica el protocolo experimental ni el registro individual, el cuartil o la cobertura del año de publicación. |
+
+Las veinte inicializaciones de S1 no son veinte mercados independientes y su test de 48 días limita la generalización. La selección por una métrica y los contrastes unilaterales requieren una familia de hipótesis explícita. En S5, el objetivo desplazado usa información posterior a la fila sin una purga identificada en el corte: se registra riesgo aparente, sin afirmar una reproducción que no se ejecutó.
+
+En S2, las redes usan ventanas de 24/48 barras mientras ciertas referencias ven solo la última barra; la ganancia no aísla exclusivamente no linealidad. Sus tres predicciones promediadas tampoco aportan una desviación entre métricas de semillas. En S6, la fecha de una versión del repositorio no prueba año editorial; las incongruencias de la tabla no deben corregirse suponiendo una fórmula alternativa. En S7, la función DM del código compara otros modelos y no trata adecuadamente la dependencia temporal del objetivo móvil; no valida por sí sola la LSTM ni las cifras del informe.
+
+Se conserva la evaluación por dimensión, con evidencia y desconocidos, sin una puntuación inventada. Disponer de código no certifica ausencia de fuga, y un artículo incluido con riesgo alto no constituye respaldo suficiente para adoptar su configuración o su desempeño como baseline.
+
+### 3.4.3. Brecha entre propuestas avanzadas y modelos base
 
 **Brecha cuantificada entre una propuesta avanzada y su referencia.** S1, Tabla 4 (PDF p. 8), permite examinar las cuatro variantes D-TCN con un único grupo de información social, manteniendo también las que empeoran:
 
@@ -583,36 +781,6 @@ S6 y S7 amplían la evidencia de uso, pero **no mejoran automáticamente su cali
 
 La reducción se deriva como `100·(RMSE_TCN−RMSE_variante)/RMSE_TCN` a partir de medias redondeadas de autores; un valor negativo indica empeoramiento. Es una transformación descriptiva, sin nuevo experimento, intervalo ni contraste pareado. D-TCN usa cuarenta reinicios frente a los veinte del comparador; la fila TCN de Tabla 4 repite los resultados base. Cambian conjuntamente arquitectura e información social y no se repite una búsqueda independiente para cada variante. Las brechas no aíslan el efecto de complejidad ni calibran el margen del 5 % adoptado para E1 frente a persistencia.
 
-El proyecto conserva OHLCV diario de Binance Spot, desviación poblacional centrada de siete retornos y horizonte de un día. S1 agrega retornos intradiarios; S2 usa un perpetuo y log-RV de treinta minutos; S5 desplaza siete días una medida de treinta; S6 no permite equiparar su RV a nuestro objetivo y S7 construye una medida futura de treinta días anualizada. Ninguna cifra anterior es un resultado propio con ese contrato.
-
-### 3.4.2. Robustez, calidad y fuentes de sesgo
-
-| Dimensión | LSTM | TCN | Encoder Transformer |
-|---|---|---|---|
-| Uso documentado | Familia en S1/S2/S5/S7; S2 es BiLSTM | S1 | S2 y S6, literatura gris |
-| Repeticiones | S1: veinte corridas; S5/S7 sin dispersión entre semillas acreditada | S1: veinte corridas | S2: promedio de predicciones de tres semillas; S6 una semilla declarada |
-| Riesgo de partición | S5: posible cruce de etiquetas futuras; S7: escalado global anterior al corte | Solo 48 días de test en S1; no prueban robustez entre mercados | S2: información histórica distinta de referencias lineales; S6: particiones y selección de EGARCH no reconciliadas |
-| Inferencia publicada | No confundir pruebas de otros modelos de S7 con evidencia sobre LSTM | Contrastes unilaterales contra AR-RV, no automáticamente entre redes | S2: DM contra HAR, no contra todas las redes; S6 declara DM no ejecutado |
-| Conclusión permitida | Referencia recurrente documentada con calidad heterogénea | Comparador convolucional documentado, sin configuración mínima acreditada | Comparador de atención documentado; respaldo editorial y métricas requieren cautela |
-
-Las veinte inicializaciones de S1 no son veinte mercados independientes y su test de 48 días limita la generalización. La selección por una métrica y los contrastes unilaterales requieren una familia de hipótesis explícita. En S5, el objetivo desplazado usa información posterior a la fila sin una purga identificada en el corte: se registra riesgo aparente, sin afirmar una reproducción que no se ejecutó.
-
-En S2, las redes usan ventanas de 24/48 barras mientras ciertas referencias ven solo la última barra; la ganancia no aísla exclusivamente no linealidad. Sus tres predicciones promediadas tampoco aportan una desviación entre métricas de semillas. En S6, la fecha de una versión del repositorio no prueba año editorial; las incongruencias de la tabla no deben corregirse suponiendo una fórmula alternativa. En S7, la función DM del código compara otros modelos y no trata adecuadamente la dependencia temporal del objetivo móvil; no valida por sí sola la LSTM ni las cifras del informe.
-
-Se conserva la evaluación por dimensión, con evidencia y desconocidos, sin una puntuación inventada. Disponer de código no certifica ausencia de fuga, y un artículo incluido con riesgo alto no constituye respaldo suficiente para adoptar su configuración o su desempeño como baseline.
-
-### 3.4.3. Escalabilidad y simplicidad
-
-| Aspecto | LSTM | TCN | Encoder Transformer |
-|---|---|---|---|
-| Cómputo dominante por ventana | O(D·H(p+H)) para una capa | O(D·Σ k_l C_(l−1)C_l) | O(D²d+Dd²) por encoder |
-| Ejecución temporal | Dependencia secuencial entre estados | Filtros paralelizables en la ventana | Interacciones entre pares de posiciones |
-| Memoria de activaciones en entrenamiento | Crece con D y H | Crece con D, ancho y profundidad | Atención completa añade almacenamiento cuadrático en D |
-| Evidencia de sencillez | S5 identifica una LSTM pequeña; S1 y S7 son mayores | El ganador S1 es ancho y de seis niveles; no equivale a CNN1D poco profunda | Dos encoder documentados; menos pesos que la TCN bajo las hipótesis, sin garantizar menor tiempo |
-| Medición comparable propia de tiempo/GPU/RAM | No ejecutada | No ejecutada | No ejecutada |
-
-Las fórmulas y los conteos de §3.2.3/§3.3 controlan sus hipótesis, pero no miden eficiencia. Entrenamiento e inferencia dependen también de implementación, hardware, batch, precisión y presupuesto. Las épocas descritas por S2 no equivalen a tiempos de reloj comparables. Los tamaños de ventanas y salidas de las fuentes son distintos; el conteo con p=5,q=1 no valida esos modelos bajo OHLCV diario.
-
 ### 3.4.4. Brecha verificable y proyección
 
 **Brecha limitada a los cinco textos incluidos:** ninguno compara conjuntamente LSTM, TCN y encoder Transformer con el mismo OHLCV diario de Binance Spot, desviación poblacional de siete retornos, horizonte de un día, protocolo cronológico común y tratamiento explícito de incertidumbre y multiplicidad. La afirmación se contrasta en la matriz; no demuestra una ausencia universal ni originalidad mundial. Tampoco convierte esas tres candidatas en la selección definitiva que sigue pendiente.
@@ -623,9 +791,10 @@ La contribución evaluable sería establecer referencias DL de capacidad control
 
 | Requisito de la guía | Evidencia de esta revisión | Estado y límite |
 |---|---|---|
-| Cadenas completas, fechas y resultados | Diez consultas literales, intentos, páginas, ocurrencias y hashes | Trazable para la vía complementaria; no equivale a consulta de índices científicos |
-| WoS, Scopus, IEEE y arXiv complementario | Rutas e intentos diferenciados de consultas ejecutadas | Cobertura bibliográfica obligatoria pendiente; no se asignan conteos cero ni cuartiles no verificados |
-| Inclusión, exclusión, flujo y responsable | Criterios retrospectivos, cribado histórico y revisado; 20 repositorios inspeccionados, siete textos evaluados y cinco incluidos | Revisión exploratoria asistida; no exhaustividad ni segundo revisor humano acreditados |
+| Cadenas completas, fechas y resultados actuales | Doce búsquedas web públicas: cuatro de descubrimiento, cuatro dirigidas a títulos/identificadores y cuatro de recursos de indexación; 67 ocurrencias con repeticiones, registro de respuestas y hashes | Son búsquedas ejecutadas sobre recursos públicos, con una página por cadena; no son 67 artículos ni consultas nativas WoS/Scopus |
+| Historial complementario conservado | Diez consultas G1–G10 del 02/11/2026, intentos, páginas, 118 ocurrencias y 106 repositorios distintos; comprobantes de acceso posteriores separados | Se preserva como corte histórico, sin sumarlo al flujo público actual ni tratar los cuatro fallos directos como cobertura científica |
+| Procedencia WoS/Scopus y publicaciones IEEE/arXiv | Cinco revistas con coincidencias secundarias de título e ISSN en copias públicas WoS/Scopus de 2026; arXiv 2110.14317v2 corroborado en portada de autores; enlace Xplore 11058926 declarado por autores | Evidencia de revista e identidad documental, no verificación individual de artículos en los índices, consulta nativa, cobertura histórica WoS ni Q1; páginas arXiv/Xplore en vivo no consultadas |
+| Inclusión, exclusión, flujo y responsable | Criterios retrospectivos, cribado histórico y revisado: 20 repositorios inspeccionados, siete textos evaluados y cinco incluidos; cinco README adicionales del descubrimiento actual como pistas | El flujo histórico y las nuevas pistas se distinguen; corpus sin nuevas inclusiones automáticas, sin exhaustividad ni segundo revisor humano acreditados |
 | Matriz y evaluación de calidad | Cinco textos, resultados con ubicación y riesgos por dimensión | La inclusión no certifica validez; dos incorporaciones y S2 son literatura gris |
 | Frecuencia y complejidad | Variantes, frecuencias ampliadas/sensibilidades, ganadores de S1 y conteos analíticos reproducibles | Corregido; no demuestra mínima complejidad global ni uso frecuente en todos los índices |
 | Exactamente tres modelos básicos no redundantes | Tres fichas candidatas y GRU mantenida en evaluación | Selección final pendiente; no se descarta GRU por preferencia ni se adopta TCN grande como básica automáticamente |
@@ -633,13 +802,17 @@ La contribución evaluable sería establecer referencias DL de capacidad control
 | Comparación crítica y brecha | Desempeño separado por protocolo, robustez, escalabilidad y brecha avanzada/base cuantificada | Documentada sin ranking entre tareas, inferencia propia ni afirmación de novedad universal |
 | Experimentos y baseline medido | Diseño futuro y separación del diagnóstico Ridge de EDA | Tres redes, piloto, benchmark y test siguen reservados para E2 |
 
+La fase actual sigue la búsqueda pública y la comprobación posterior de procedencia descritas en §3.1. Las cinco coincidencias secundarias corresponden a *Journal of International Financial Markets, Institutions and Money*, *Frontiers in Physics*, *Economics Letters*, *Finance Research Letters* e *IEEE Access*. No sustituyen la verificación individual de los artículos ni certifican Q1. Las listas inspeccionadas no permiten juzgar actas de congresos: la ausencia de WSDM/ICDM en ellas no prueba falta de indexación.
+
+Los comprobantes se conservan en el [registro público de resultados](../_static/literature_e1/public_web_verification_20261103/discovery_records.json), el [flujo de la fase actual](../_static/literature_e1/public_web_verification_20261103/flow_summary.json), la [evidencia secundaria de revistas](../_static/literature_e1/public_web_verification_20261103/secondary_journal_evidence.json) y la [procedencia documental](../_static/literature_e1/public_web_verification_20261103/publication_provenance.json). Las asociaciones rechazadas y las pistas pendientes no se convierten en textos incluidos. Permanecen cinco estudios, 81 valores de autores y el trío final pendiente.
+
 ## 3.5. Fundamentos bibliográficos y contexto de la revisión
 
 ### 3.5.1. Búsqueda documental efectuada y alcance de las citas
 
 La consulta del **2 de noviembre de 2026** incorporó treinta referencias: siete sobre Bitcoin, siete de fundamentos de redes neuronales y dieciséis de volatilidad, diagnóstico y evaluación. Se consultaron repositorios públicos de autores, documentación de software académico y bibliografías de artículos y libros. Para cada entrada se conservan el enlace consultado, los campos corroborados y el nivel de acceso en el [registro de verificación](../_static/bibliografia/verification_30.csv) y el [catálogo detallado](../_static/bibliografia/references_30.json).
 
-El catálogo vigente conserva las treinta referencias iniciales y las tres fuentes de las fichas, y añade S6/S7 recuperadas el 03/11/2026: 35 referencias en la tabla de §3.1.2 y su [versión CSV](../_static/literature_e1/references_access_35.csv). La nueva etapa es recuperación dirigida de registros ya localizados, no una búsqueda ejecutada en WoS o Scopus.
+El catálogo vigente conserva las treinta referencias iniciales y las tres fuentes de las fichas, y añade S6/S7 recuperadas el 03/11/2026: 35 referencias en la tabla de §3.1.2.4 y su [versión CSV](../_static/literature_e1/references_access_35.csv). La recuperación dirigida de registros previos amplió el corpus a cinco textos. La fase pública posterior de §3.1 ejecutó doce consultas web y comprobaciones de procedencia e indexación secundaria, sin incorporar otros estudios ni consultar internamente WoS o Scopus.
 
 La red del entorno bloqueó el acceso directo a Crossref y arXiv. Por ello no se afirma haber consultado sus interfaces ni leído treinta originales completos. La entrada de Huang y colaboradores conserva su verificación previa; su acceso directo actual también está limitado. Las verificaciones nuevas de las otras referencias proceden de las fuentes accesibles indicadas en el registro. Una referencia identificada en otra bibliografía se distingue de un artículo original leído.
 

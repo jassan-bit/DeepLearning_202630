@@ -195,7 +195,7 @@ La implementación comenzará una vez se cierre la selección de **exactamente t
 
 ### 4.2.1. Arquitecturas y contrato común
 
-Cada modelo tendrá un identificador, referencias y una descripción reproducible de capas, unidades, activaciones, conexiones y salida no negativa. La arquitectura se enlazará con las ecuaciones y el análisis de complejidad de §3.3. Si la literatura no ofrece detalles suficientes, se seguirá la regla de selección y ampliación de evidencia de §3.2.3; no se completarán por preferencia personal.
+Cada modelo tendrá un identificador, referencias y una descripción reproducible de capas, unidades, activaciones, conexiones y salida no negativa. La arquitectura se enlazará con las ecuaciones y el análisis de complejidad de §3.3. Si la literatura no ofrece detalles suficientes, se seguirá la regla de selección y ampliación de evidencia de §3.2.5; no se completarán por preferencia personal.
 
 | Componente | Condición común para los tres modelos |
 |---|---|

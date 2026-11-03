@@ -24,3 +24,14 @@ Se contrastaron los requisitos de la guía, se corrigió la extracción de S1 y 
 | 3.4.c. Gap concreto y verificable | Delimitado al corpus | Ninguno de cinco textos compara las tres candidatas bajo OHLCVSpotdiario,n7,h1 y protocolo común con incertidumbre/multiplicidad. | No ausencia universal ni originalidad mundial; selección del trío aún abierta. |
 
 Los registros anteriores se conservan. La bibliografía no certifica indexación, cuartil o calidad de resultados. La recuperación nueva amplía el corpus, no completa las búsquedas obligatorias en bases científicas. Los cuatro Ridge del EDA no se alteraron; las tres redes DL, el piloto, el benchmark y el test siguen fuera de esta intervención.
+
+## Adenda de organización de §§3.1–3.4 — 03/11/2026
+
+Esta adenda registra la reorganización documental posterior; conserva las filas y comprobantes de los cortes anteriores. No añade búsquedas, textos incluidos, ejecuciones de modelos o resultados empíricos.
+
+- **3.1:** seis incisos principales consecutivos; cadenas, procedencia, catálogo y trazabilidad con subincisos numerados. El rótulo de la tabla bibliográfica apunta a §3.1.2.4.
+- **3.2:** seis incisos de guía: procedimiento de seis pasos, cuatro criterios, síntesis de seis columnas, equivalencia funcional, arquitecturas no especificadas y diez familias orientativas con aplicabilidad justificada. La síntesis tiene cinco filas y su CSV propio.
+- **3.3:** tres fichas candidatas con nueve campos numerados por modelo (27 en total); ecuaciones, diagramas, cifras y limitaciones preservados. La comparación transversal no es una cuarta ficha.
+- **3.4:** comparación estructurada (desempeño, robustez y escalabilidad), validez, brecha avanzada/base y brecha verificable; el cierre adicional distingue doce búsquedas públicas actuales de G1–G10 históricas y limita la verificación de indexación a la evidencia disponible.
+
+Se conservan 35 referencias, catálogo de cuatro columnas, cinco textos completos y 81 cifras de autores. Las frecuencias y la selección no cambian: `selected_families=[]`, GRU sigue evaluable y el trío definitivo permanece abierto. Las referencias cruzadas de los capítulos 4 y 5 y la página bibliográfica se sincronizan con la nueva organización. La fase pública queda documentada en `references/literature_e1/public_web_verification_20261103/flow_summary.json`; no se atribuyen consultas nativas a las bases ni Q1 sin prueba.

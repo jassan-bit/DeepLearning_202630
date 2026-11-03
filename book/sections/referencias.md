@@ -15,13 +15,13 @@ Estos materiales se conservan como referencia académica suministrada por el usu
 
 ## Bibliografía académica: catálogo inicial y fuentes de las fichas
 
-El catálogo inicial de treinta referencias respalda los fundamentos y la motivación: siete aplicaciones a Bitcoin, siete fundamentos de redes neuronales y dieciséis fundamentos de volatilidad, diagnóstico y evaluación. Para completar las fichas se incorporan además el manuscrito de Gao, el manuscrito de Zeri y el trabajo original de atención de Vaswani y colaboradores: **33 entradas bibliográficas en total**. Las tres incorporaciones y sus fuentes están en el [registro de ampliación](../_static/literature_e1/additional_references.json). La {ref}`tabla de fuentes del capítulo 3 <tabla-referencias-e1>` reúne esas mismas 33 referencias, sus enlaces, el nivel de evidencia disponible y su aporte al proyecto. Los trabajos fundacionales anteriores al periodo reciente se incluyen expresamente como antecedentes metodológicos; no se contabilizan como evidencia de frecuencia de modelos base en Bitcoin.
+El catálogo inicial de treinta referencias respalda los fundamentos y la motivación: siete aplicaciones a Bitcoin, siete fundamentos de redes neuronales y dieciséis fundamentos de volatilidad, diagnóstico y evaluación. Para completar las fichas se incorporan además el manuscrito de Gao, el manuscrito de Zeri y el trabajo original de atención de Vaswani y colaboradores. Ese corte de 33 entradas se amplió el 03/11/2026 con los textos de Wang y Alakhouch Idriss: **35 entradas bibliográficas en total**. El [registro de ampliación inicial](../_static/literature_e1/additional_references.json) conserva las tres incorporaciones anteriores. La {ref}`tabla de fuentes del capítulo 3 <tabla-referencias-e1>` reúne las 35 referencias actuales, sus enlaces, el nivel de evidencia disponible y su aporte al proyecto. Los trabajos fundacionales anteriores al periodo reciente se incluyen expresamente como antecedentes metodológicos; no se contabilizan como evidencia de frecuencia de modelos base en Bitcoin.
 
-La consulta de fuentes en internet se realizó el **2 de noviembre de 2026**. El [registro de verificación](../_static/bibliografia/verification_30.csv) identifica qué fuente se consultó y si se accedió a un original, a documentación de autores o a metadatos en otra bibliografía. Los [detalles por referencia](../_static/bibliografia/references_30.json) conservan enlaces, ubicaciones de evidencia y limitaciones. No se afirma lectura de treinta textos originales completos, consulta efectiva de bases bloqueadas ni clasificación Q1 sin verificar.
+La consulta inicial de fuentes en internet se realizó el **2 de noviembre de 2026** y se amplió el **3 de noviembre de 2026**, como documenta §3.1. El [registro de verificación](../_static/bibliografia/verification_30.csv) identifica qué fuente se consultó y si se accedió a un original, a documentación de autores o a metadatos en otra bibliografía. Los [detalles por referencia](../_static/bibliografia/references_30.json) conservan enlaces, ubicaciones de evidencia y limitaciones. No se afirma lectura de treinta textos originales completos, consulta efectiva de bases bloqueadas ni clasificación Q1 sin verificar.
 
 Se incluye DOI cuando se dispone de un identificador corroborado o consignado en la ficha bibliográfica; su resolución directa no se presenta como comprobada si la red la bloqueó. Cuando no se corroboró el DOI, se enlaza la fuente donde se verificó la identidad bibliográfica, que puede ser distinta del texto original. El antecedente de Huang y colaboradores conserva su verificación previa en el proyecto. No se inventan DOI ni paginación para completar campos.
 
-[Catálogo inicial de 30 referencias en PDF](../_static/bibliografia/bibliografia_30.pdf) · [Bibliografía completa actual en BibTeX](../_static/literature_e1/references_e1.bib) · [Tabla actual de 33 referencias en CSV](../_static/literature_e1/references_access_33.csv).
+[Catálogo inicial de 30 referencias en PDF](../_static/bibliografia/bibliografia_30.pdf) · [Bibliografía completa actual en BibTeX](../_static/literature_e1/references_e1.bib) · [Tabla actual de 35 referencias en CSV](../_static/literature_e1/references_access_35.csv).
 
 ```{bibliography}
 :all:
@@ -32,7 +32,7 @@ Se incluye DOI cuando se dispone de un identificador corroborado o consignado en
 
 [Jupyter Book 1: construcción HTML](https://jupyter-book.readthedocs.io/v1/start/build.html). Se fija la versión 1.0.4.post1 por compatibilidad con la configuración `_config.yml`/`_toc.yml`. Es la línea v1 en mantenimiento, no la versión más reciente del producto.
 
-Consulta de las fuentes externas: 2 de noviembre de 2026.
+Consulta bibliográfica inicial: 2 de noviembre de 2026; ampliación y verificación pública: 3 de noviembre de 2026.
 
 ## Fuente directa de datos
 

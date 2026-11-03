@@ -395,7 +395,7 @@ Solo bajo comparabilidad suficiente se cuantificará una diferencia directa. Si 
 
 Se discutirá la credibilidad de la brecha considerando intervalos, variabilidad, sesgos de publicación y calidad metodológica. Una mejora publicada no constituye una garantía de que otra arquitectura la reproduzca en BTCUSDT bajo este calendario.
 
-En §3.4.1 ya se cuantificaron las reducciones puntuales de RMSE de D-TCN frente a TCN en S1: **User 8,53 %, Tweet 5,04 %, VADER −4,65 % y Count −26,74 %**. Proceden de medias redondeadas; cambian arquitectura e información social, con cuarenta reinicios frente a veinte del comparador. Son contexto bibliográfico, no un margen numérico transferible a OHLCV diario, n7/h1 o al baseline propio todavía no medido.
+En §3.4.3 ya se cuantificaron las reducciones puntuales de RMSE de D-TCN frente a TCN en S1: **User 8,53 %, Tweet 5,04 %, VADER −4,65 % y Count −26,74 %**. Proceden de medias redondeadas; cambian arquitectura e información social, con cuarenta reinicios frente a veinte del comparador. Son contexto bibliográfico, no un margen numérico transferible a OHLCV diario, n7/h1 o al baseline propio todavía no medido.
 
 ### 5.5.7. Amenazas a la validez
 
@@ -429,7 +429,7 @@ Las recomendaciones se derivarán de esas limitaciones y de los resultados que s
 | ¿La diferencia es significativa y relevante? | Comparación pareada, corrección, IC, efecto y $\delta$ | Pendiente |
 | ¿Compensa el costo o la complejidad? | Medidas de error, tiempos, hardware y parámetros | Pendiente |
 | ¿Cuál es el baseline y su umbral de mejora? | Selección cerrada, evaluación y dimensionamiento | No establecido |
-| ¿Qué margen sugiere la literatura? | Revisión de estudios, información, protocolo y variabilidad | Brechas publicadas cuantificadas en §3.4.1; margen numérico transferible al proyecto aún no establecido |
+| ¿Qué margen sugiere la literatura? | Revisión de estudios, información, protocolo y variabilidad | Brechas publicadas cuantificadas en §3.4.3; margen numérico transferible al proyecto aún no establecido |
 | ¿Qué limita las conclusiones? | Registro de validez y alcance de la evidencia | Limitaciones de datos/diseño identificadas; validación experimental pendiente |
 
 La discusión final reemplazará estas respuestas pendientes por conclusiones sustentadas, sin convertir una descripción del protocolo en evidencia de superioridad.
