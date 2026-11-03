@@ -242,11 +242,11 @@ Las pruebas de DeLong, McNemar, segmentación o análisis de lenguaje del catál
 | Producto | Estado |
 |---|---|
 | Protocolo general y pruebas temporales | Documentados |
-| Modelos, predicciones y residuos | Pendientes de implementación y entrenamiento |
+| Tres modelos DL, predicciones y residuos del benchmark | Pendientes de implementación y entrenamiento |
 | Familia de contrastes y parámetros definitivos | Pendientes de congelación |
 | Shapiro–Wilk, Q–Q y verificación de supuestos del benchmark | No ejecutados |
 | t/Wilcoxon, ANOVA/Friedman y post-hoc | No ejecutados |
-| Diebold–Mariano con corrección, BDS y Ljung–Box | No ejecutados |
+| Diebold–Mariano con corrección, BDS y Ljung–Box del benchmark | No ejecutados; el Ljung–Box exploratorio de la referencia EDA está en §2.2.4 |
 | Intervalos, efectos, p-values y conclusiones de comparación | No disponibles todavía |
 | Equivalencia, si se plantea | Análisis separado y preregistrado; no ejecutado |
 

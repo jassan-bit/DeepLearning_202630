@@ -80,6 +80,7 @@ Todavía no se ha medido la potencia ni la superioridad entre los modelos del pr
 |---|---|---|
 | Informe en Jupyter Book | Problema, EDA y revisión documental con citas y evidencia | No certifica cumplimiento del bloque empírico del PDF |
 | Datos y código de EDA | Adquisición, checksums, análisis de desarrollo y partición con embargo explícito $D$ | Exclusión estricta; test sin evaluar; embargo no implica independencia de etiquetas móviles |
+| Bloque C y referencia residual | Disponibilidad causal, 140 relaciones con rezagos sobre una cohorte común de 308 días y cuatro Ridge con 366 residuos de validación por historia | Diagnóstico de EDA ejecutado; no selecciona una red ni sustituye el benchmark. Se mantiene tipo 4 sin rezagos del objetivo |
 | Reserva de test | Identidad y hashes de 20 ZIP mensuales en manifiesto separado | Construido desde metadatos sin abrir ZIP; muestras supervisadas y evaluación pendientes |
 | Búsqueda y cribado | Registros reales, flujo y decisiones de una vía complementaria | Bases académicas bloqueadas; cobertura no exhaustiva |
 | Matriz y calidad de literatura | Tres textos completos, métricas de autores y evaluación de calidad | No mezcla objetivos o escalas ni inventa resultados propios |

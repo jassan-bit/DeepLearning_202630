@@ -1,10 +1,10 @@
 # Decisiones, revisión y pendientes de E1
 
-Esta página registra el alcance autorizado: **definición del problema, EDA y revisión documental**. El entrenamiento, tuning, piloto, benchmark y pruebas de modelos propios se reservan para E2 por instrucción del usuario. El PDF adjunto sí ubica ejecución en E1; esta organización de trabajo no modifica la guía ni acredita una excepción formal del docente.
+Esta página registra el alcance autorizado: **definición del problema, EDA y revisión documental**, incluido el desarrollo del bloque C con una referencia lineal regularizada autorizado por el usuario. Se ejecutaron cuatro referencias Ridge para diagnosticar residuos de desarrollo. El entrenamiento de las tres redes, tuning, piloto, benchmark y evaluación de test se reservan para E2. El PDF adjunto sí ubica ejecución en E1; esta organización de trabajo no modifica la guía ni acredita una excepción formal del docente.
 
 ## Decisiones incorporadas
 
-| Elemento | Criterio documental vigente |
+| Elemento | Criterio o evidencia vigente |
 |---|---|
 | Activo y fuente | Bitcoin, Binance Spot BTCUSDT, archivos oficiales de un minuto |
 | Modelado | Diario UTC, cinco covariables OHLCV |
@@ -23,6 +23,7 @@ Esta página registra el alcance autorizado: **definición del problema, EDA y r
 | Embargo aplicado en los índices | D días omitidos antes del origen t; candidatos de ajuste u≤t−D−1, además de calidad y disponibilidad |
 | Calendario | Historia de 2023, validación de 2024 y test previsto del 01/01/2025 al 31/08/2026; septiembre–octubre no se asignan automáticamente |
 | Reserva bruta de test | 20 ZIP mensuales identificados mediante metadatos y hashes; el test supervisado y su protocolo aún no están congelados |
+| Referencia diagnóstica del bloque C | Cuatro Ridge con intercepto libre y $\alpha=1$ fijo, una por D; ajuste permitido de 2023, 366 predicciones de 2024 por referencia; sin tuning ni selección de D |
 | Familias candidatas documentales | LSTM unidireccional, TCN y encoder Transformer; selección final por recurrencia y mínima complejidad todavía no acreditada |
 
 El margen del 5 % es un criterio operativo aceptado frente a persistencia, no una utilidad financiera calibrada ni un margen ya fijado entre redes, para equivalencia o para modelos avanzados. Alcanzarlo puntualmente no equivale a demostrarlo con un intervalo de incertidumbre. La conversión a escala absoluta para dimensionamiento se hará en la etapa experimental mediante una regla registrada, sin cambiar retrospectivamente el porcentaje. El [registro de decisiones](../_static/e1/decisiones.json) separa lo fijado de lo que requiere E2.
@@ -38,13 +39,15 @@ La revisión del **03/11/2026** contrasta 18 requisitos de las secciones 1–7 d
 | Independencia y margen | Una serie; dependencia entre fechas y semillas diferenciada; 5 % limitado a persistencia |
 | Particiones | Folds corregidos con embargo explícito D; 5.856 filas, 366 por configuración; una muestra de ajuste adicional retirada en cada fila |
 | Datos y trazabilidad | Fuente y hashes conservados; copia de términos y reserva bruta de 20 ZIP de test documentadas sin abrir esos ZIP |
-| EDA | Ocho perfiles objetivo, colas, máscaras y reconstrucción numérica ampliados; seis marginales causales con referencia condicional por bloques/Holm. Mecanismo de faltantes y ruido externo no identificados; residuos de referencia pendientes |
+| EDA | Ocho perfiles objetivo, colas, máscaras, reconstrucción numérica y seis marginales por bloques/Holm; bloque C con disponibilidad causal, correlaciones en cohorte común, relaciones móviles y 1.464 residuos de cuatro Ridge. Mecanismo de faltantes y ruido externo no identificados |
 | Literatura | 33 citas separadas de tres textos aplicados; candidatos de trabajo distinguidos de los tres básicos definitivos exigidos |
-| Implementación y benchmark | No ejecutados por el alcance vigente; la guía original sí los exige en E1 y esta diferencia sigue abierta |
+| Implementación de las tres redes y benchmark | No ejecutados por el alcance vigente; los cuatro ajustes lineales son diagnósticos de EDA y no cubren estos requisitos de la guía original |
 
 El cumplimiento global del Entregable 1 **no se declara cerrado**. Corregir la redacción y los índices no sustituye las evidencias bibliográficas o experimentales que faltan.
 
 La ampliación específica de la sección 2.1 está en el {download}`informe de EDA general <../_static/e1/revision_eda_general_20261103.md>` y su [matriz de 18 puntos](../_static/e1/revision_eda_general_20261103.json). Se ejecutaron diagnósticos sobre desarrollo, sin modelos predictivos ni archivos de test. La consistencia del cálculo de etiquetas se separa del ruido externo, y la referencia de permutación por bloques se mantiene exploratoria y condicional.
+
+El bloque C aplicable se desarrolla en §2.2 con dos módulos adicionales: el [EDA específico](../_static/eda_temporal_specific/summary.json), que usa las mismas 308 fechas elegibles de 2023 para los 140 pares covariable–rezago, y la [referencia lineal diagnóstica](../_static/eda_temporal_reference/summary.json). Esta última conserva cuatro ajustes estáticos de 2023 y 366 residuos de 2024 por D. Los 12 diagnósticos Ljung–Box en rezagos 7/14/28 rechazan con ajuste Holm bajo su referencia asintótica; la dependencia del objetivo móvil y la limitación de la referencia impiden atribuir ese rechazo exclusivamente a una falta de rezagos del objetivo. Se mantiene el tipo 4 y no se usaron archivos de test. El ajuste estático y $\alpha=1$ describen este diagnóstico, sin congelar el experimento posterior.
 
 ## Estado de los siete cambios solicitados
 
@@ -65,7 +68,7 @@ Las frecuencias se calculan sobre tres textos completos: familia LSTM 3/3 incluy
 - **Cobertura académica:** no se ejecutaron consultas bibliográficas en WoS/Scopus/IEEE/arXiv cuando su interfaz quedó bloqueada. La revisión complementaria no es exhaustiva.
 - **Fuente de atención:** el único apoyo aplicado recuperado es un manuscrito sin revisión por pares acreditada. Si el criterio académico exige solo artículos revisados por pares, esa parte de la selección debe ampliarse.
 - **Extracción de los tres básicos:** la guía pide recurrencia, sencillez y diversidad; priorizar únicamente diversidad en tres textos no cierra conjuntamente esos criterios.
-- **EDA y referencia de contexto:** faltan el ajuste de la regresión lineal regularizada exigida por la ruta 6.4 y el análisis de sus residuos, además de evidencias de mecanismo de faltantes y ruido de etiquetas.
+- **EDA y referencia de contexto:** el diagnóstico de cuatro Ridge y sus residuos está ejecutado; queda justificar la especificación y el tratamiento de la dependencia para el experimento de E2. La autocorrelación residual no reclasifica automáticamente el problema. No se han identificado el mecanismo de faltantes ni el ruido externo de etiquetas con evidencia suficiente.
 - **Configuraciones originales:** no se recuperaron todos los hiperparámetros ganadores; las fichas separan parámetros derivados de configuraciones publicadas y de adaptaciones futuras.
 - **Datos y ejecución:** quedan para E2 las muestras definitivas de entrenamiento/test, configuración implementada, recursos, número de semillas, piloto y benchmark. No se presentan como resultados inexistentes de E1.
 
@@ -77,4 +80,4 @@ El plan documentado en noviembre de 2026 es posterior a los periodos de mercado 
 
 ## Evidencia y reproducción
 
-La evidencia documental está en `references/literature_e1/`, el registro bibliográfico inicial en `references/bibliography/`, el EDA en `results/eda_development/` y el complemento descriptivo en `results/eda_covariates_documental/`. La [tabla consolidada de referencias](../_static/literature_e1/references_access_33.csv) distingue las 33 citas del libro de los tres textos incluidos en la matriz aplicada; su reorganización no modifica el cribado ni las frecuencias. El [resumen de partición vigente](../_static/cv_forward_chaining/summary.json) identifica el generador, la regla de embargo y los hashes. La [reserva bruta del test](../_static/data/test_raw_reserve_20250101_20260831.json) se reproduce con `scripts/reserve_test_raw_manifest.py`. El preregistro piloto anterior se conserva como borrador histórico, sin sustituir las decisiones documentales actuales ni un futuro protocolo congelado. No se incorporan entrenamientos, predicciones ni métricas propias del trabajo separado fuera de E1. Construir HTML comprueba presentación y enlaces, no superioridad estadística ni cumplimiento académico total.
+La evidencia documental está en `references/literature_e1/`, el registro bibliográfico inicial en `references/bibliography/`, el EDA en `results/eda_development/` y el complemento descriptivo en `results/eda_covariates_documental/`. Los módulos del bloque C se reproducen con `scripts/eda_temporal_specific.py` y `scripts/eda_temporal_reference.py`, con resultados en sus directorios homónimos bajo `results/`; conservan los CSV fuente, la exclusión del 24/03/2023 y el calendario. La [tabla consolidada de referencias](../_static/literature_e1/references_access_33.csv) distingue las 33 citas del libro de los tres textos incluidos en la matriz aplicada; su reorganización no modifica el cribado ni las frecuencias. El [resumen de partición vigente](../_static/cv_forward_chaining/summary.json) identifica el generador, la regla de embargo y los hashes. La [reserva bruta del test](../_static/data/test_raw_reserve_20250101_20260831.json) se reproduce con `scripts/reserve_test_raw_manifest.py`. El preregistro piloto anterior se conserva como borrador histórico, sin sustituir las decisiones documentales actuales ni un futuro protocolo congelado. Las predicciones lineales incorporadas corresponden exclusivamente al diagnóstico autorizado de EDA; no se incorporan resultados de redes del trabajo separado fuera de E1. Construir HTML comprueba presentación y enlaces, no superioridad estadística ni cumplimiento académico total.

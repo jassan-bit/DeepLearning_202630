@@ -1,6 +1,6 @@
 {
   "recorded_at": "2026-11-02T17:46:25.959736-05:00",
-  "scope": "E1 documentation, development EDA diagnostics and fold-index preparation; own predictive training, tuning, pilot and benchmark remain reserved for E2 by user instruction. The original guide includes empirical requirements in E1.",
+  "scope": "E1 documentation, development EDA diagnostics and fold-index preparation; four static regularized linear references were specifically authorized for block-C residual EDA. DL training, tuning, pilot and benchmark remain reserved for E2 by user instruction; the original guide includes empirical requirements in E1.",
   "target": {
     "volatility_returns_days": 7,
     "population_ddof": 0,
@@ -46,7 +46,6 @@
     "final extraction of three recurrent minimal-complexity DL baselines",
     "academic adequacy of grey attention source and missing source hyperparameters",
     "use of exact dataset in prior literature",
-    "residual diagnostics of regularized linear reference",
     "label-noise and missingness-mechanism evidence",
     "temporal inference unit and block length",
     "implemented configurations, refit policy, pilot and benchmark in E2 user scope",
@@ -93,5 +92,40 @@
     "marginal_shift_reference": "conditional complete-block permutation;14/28calendar days;2000permutations perlength;seed42;Holm12;not confirmatory or a joint distribution test",
     "predictive_models_fitted": 0,
     "test_files_opened": 0
+  },
+  "eda_temporal_extension": {
+    "audit": "references/audits/revision_eda_temporal_20261103.json",
+    "descriptive_summary": "results/eda_temporal_specific/summary.json",
+    "descriptive_summary_sha256": "3b66392246c972ada4b7e22c104582e86bbea05a52d4b8443722e81a57a0f0f5",
+    "reference_summary": "results/eda_temporal_reference/summary.json",
+    "reference_summary_sha256": "ec8087cc54454e64b90ad2d25c443f81ac96efd75004f9fd2e8478fc9ed37d47",
+    "common_cohort_2023": 308,
+    "variable_lag_pairs": 140,
+    "input_history_days": [
+      7,
+      14,
+      21,
+      28
+    ],
+    "reference_models_fitted": 4,
+    "descriptive_module_models_fitted": 0,
+    "deep_learning_models_trained": 0,
+    "pilot_runs": 0,
+    "benchmark_comparisons": 0,
+    "test_files_opened": 0,
+    "raw_archives_opened": 0,
+    "ridge_alpha_fixed_for_diagnostic": 1.0,
+    "training_samples_by_history": {
+      "7": 343,
+      "14": 322,
+      "21": 301,
+      "28": 280
+    },
+    "validation_predictions": 1464,
+    "no_refit_on_2024_labels": true,
+    "scalers_train_only": true,
+    "missingness_policy": "strict exclusion; no imputation; calendar preserved",
+    "residual_diagnostic_scope": "Exploratory ACF and Ljung-Box/Holm12; overlapping sigma7 targets, linear misspecification and drift can produce dependence; no automatic type change or lag/alpha/window selection.",
+    "not_an_e2_protocol": "Static fitting and alpha are diagnostic choices, not frozen DL or benchmark configuration."
   }
 }

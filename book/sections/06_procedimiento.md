@@ -1,6 +1,6 @@
 # 6. Guía de Procedimiento por Tipo de Problema
 
-La formulación actual corresponde al **tipo 4: regresión temporal**, con la ruta del **apartado 6.4 de la guía del Entregable 1**. Las redes reciben ventanas de covariables OHLCV y no rezagos explícitos de la volatilidad objetivo. La clasificación describe el contrato de entrada vigente; los diagnósticos de residuos necesarios para revisarlo todavía requieren el ajuste de una referencia. El orden cronológico y la dependencia entre fechas se conservan en la partición y la inferencia.
+La formulación actual corresponde al **tipo 4: regresión temporal**, con la ruta del **apartado 6.4 de la guía del Entregable 1**. Las redes reciben ventanas de covariables OHLCV y no rezagos explícitos de la volatilidad objetivo. La clasificación describe el contrato de entrada vigente; el diagnóstico de cuatro referencias Ridge ejecutado en el bloque C encuentra dependencia residual, sin cambiar automáticamente ese contrato. El orden cronológico y la dependencia entre fechas se conservan en la partición y la inferencia.
 
 La numeración de este capítulo es continua dentro del libro. La referencia 6.4 identifica la ruta de la guía original; no obliga a reproducir las rutas de otras modalidades.
 
@@ -31,7 +31,9 @@ La adquisición es de un minuto y el modelado es **diario UTC**. La entrada cons
 
 La ruta de regresión temporal requiere estudiar frecuencia, desfases y disponibilidad de covariables, su relación con el objetivo, cambios de régimen y autocorrelación de los errores de una referencia. Los diagnósticos de ACF/PACF y estacionariedad ya presentes en el EDA son información temporal complementaria; no constituyen por sí solos una selección de ventana o un resultado de modelos. La correspondencia de los requisitos específicos y la evidencia debe mantenerse explícita en el capítulo 2.
 
-El bloque C de la guía exige diagnosticar residuos de una referencia y reconsiderar el planteamiento si queda autocorrelación importante. Ese diagnóstico requiere predicciones fuera de entrenamiento de la regresión lineal regularizada definida en §6.1.5 y permanece pendiente en el alcance solicitado. Si la revisión conduce a introducir rezagos de la volatilidad como entradas, el proyecto pasaría al tipo 3 y habría que actualizar su ruta metodológica; un diagnóstico sobre retornos crudos no decide ese cambio por sí solo.
+El bloque C de la guía exige diagnosticar residuos de una referencia y reconsiderar el planteamiento si queda autocorrelación importante. La sección 2.2 aporta el contrato de disponibilidad, correlaciones cruzadas de las cinco covariables con 28 rezagos sobre las mismas 308 fechas elegibles de 2023, relaciones móviles de 60 días con al menos 50 pares y residuos fuera de entrenamiento de la referencia definida en §6.1.5. Los máximos de correlación y las variaciones móviles son descriptivos: no seleccionan una historia de entrada ni demuestran cambios de régimen.
+
+Los errores de las cuatro referencias muestran autocorrelación. Las etiquetas consecutivas de volatilidad de siete retornos comparten seis retornos; la especificación lineal y el ajuste estático también limitan la interpretación. Esta evidencia exige conservar la dependencia en la evaluación y revisar la especificación, pero no establece por sí sola que el problema necesite autorregresión del objetivo. Si se introducen rezagos de la volatilidad como entradas, el proyecto pasaría al tipo 3 y habría que actualizar su ruta metodológica.
 
 Las transformaciones aprendidas se ajustarán con entrenamiento permitido de cada fold. La validación externa no servirá para detener el ajuste sobre su propia etiqueta futura. Las medias y componentes de PCA del EDA no se transferirán automáticamente a un modelo sin volver a respetar el corte temporal.
 
@@ -47,7 +49,7 @@ Sea cual sea el trío respaldado, el diseño propio conservará las mismas covar
 
 ### 6.1.4. Pérdida y estrategia de pronóstico
 
-Se fijan **MSE como pérdida del diseño y RMSE como métrica primaria**. Su ejecución se reserva a E2. Cualquier cambio posterior de pérdida o criterio de selección quedará registrado antes del uso del test, con presupuesto comparable entre modelos.
+Se fijan **MSE como pérdida del diseño y RMSE como métrica primaria** para la comparación de redes de E2. La referencia lineal de EDA minimiza una suma de errores cuadrados con penalización Ridge para estudiar residuos; no se utiliza para elegir una configuración ganadora. Cualquier cambio posterior de pérdida o criterio de selección quedará registrado antes del uso del test, con presupuesto comparable entre modelos.
 
 La salida principal es una volatilidad escalar no negativa de **un día adelante**. Se emite al inicio del día de resultado, con OHLCV hasta el día previo, y se observa al cierre. Es el siguiente valor de una medida histórica móvil; sus ventanas comparten retornos y no representan siete días enteramente futuros.
 
@@ -59,7 +61,9 @@ Se reportarán RMSE, MAE, MSE, R², MAPE y MASE sobre predicciones agrupadas por
 
 El margen aceptado es **5 % de reducción relativa de RMSE frente a persistencia**, con el mismo objetivo y fechas. Se registró como criterio operativo del estudio y no como utilidad financiera. La relevancia y el contraste estadístico se interpretarán por separado en E2.
 
-La **referencia de contexto de la ruta 6.4 es una regresión lineal regularizada con las mismas covariables rezagadas**. Utilizará la representación de $5D$ valores de la ventana OHLCV, el mismo objetivo, las mismas fechas elegibles y transformaciones ajustadas únicamente con el entrenamiento permitido. La penalización y su selección se registrarán con desarrollo antes de evaluar test. Su ajuste, predicciones y diagnóstico de residuos pertenecen a la ejecución posterior; aún no constituyen evidencia empírica de E1.
+La **referencia de contexto de la ruta 6.4 es una regresión lineal regularizada con las mismas covariables rezagadas**. El diagnóstico autorizado ajustó cuatro Ridge con intercepto libre, penalización fija $\alpha=1$ y $5D$ entradas OHLCV estandarizadas exclusivamente con la media y desviación poblacional de su ajuste permitido de 2023. El objetivo es $n=7$, $h=1$, sin transformar su escala. Se minimiza $\sum_i(y_i-b-z_i^\top\beta)^2+\alpha\lVert\beta\rVert_2^2$, sin dividir por el tamaño muestral y sin penalizar el intercepto; la solución determinista se obtuvo con SciPy. Se conservaron las predicciones sin truncarlas y no hubo predicciones negativas.
+
+Cada $D$ utiliza un ajuste estático, sin incorporar etiquetas de 2024: 343, 322, 301 y 280 muestras para $D=7,14,21,28$, respectivamente. En el primer origen de validación se respeta $u\le t-D-1$, y el corte permanece válido en los posteriores. Cada referencia aporta 366 predicciones de 2024, **1.464 en total**. El [resumen y controles](../_static/eda_temporal_reference/summary.json) y las [predicciones con residuos](../_static/eda_temporal_reference/validation_predictions_residuals.csv) permiten auditar el diagnóstico. No hubo tuning, selección de una D, entrenamiento de redes, piloto, benchmark ni acceso a test. Esta elección diagnóstica no congela la penalización, implementación o cadencia de reajuste del experimento de E2.
 
 Persistencia se conserva como referencia adicional para el margen operativo aceptado del 5 % y no ocupa uno de los tres puestos DL. Para $n=7$ resume ocho cierres, mientras una ventana de siete días OHLCV no incluye explícitamente esa misma estadística: la comparación contextual debe conservar esa diferencia de información. Un ingenuo estacional necesita justificar y declarar su periodo antes de evaluarlo.
 
@@ -75,13 +79,13 @@ Con un origen de una sola salida, promediar su RMSE entre días equivale a prome
 | Friedman y post-hoc | Comparación conjunta con bloques defendibles, multiplicidad y limitaciones de potencia |
 | BDS, exigido en §5.4 de la guía y en el material específico | Hipótesis i.i.d. en residuos del primer horizonte, sin interpretar rechazo como prueba exclusiva de no linealidad |
 
-La guía de regresión temporal y el material específico recibido motivan estos procedimientos. El [capítulo 5](05_benchmark.md) conserva su planteamiento; la ejecución y sus resultados se reservan a E2. Un diagnóstico sobre retornos del EDA no sustituye una prueba sobre errores predictivos.
+La guía de regresión temporal y el material específico recibido motivan estos procedimientos. El [capítulo 5](05_benchmark.md) conserva su planteamiento para E2. En el bloque C ya se calcularon ACF de los errores de validación y 12 diagnósticos Ljung–Box: rezagos 7/14/28 para cada una de las cuatro referencias, con ajuste Holm conjunto. Los 12 rechazan bajo la referencia asintótica utilizada. Las bandas de ACF son aproximaciones puntuales de ruido blanco; Holm controla la multiplicidad de esa familia, sin corregir una calibración inadecuada. Estos resultados señalan dependencia en los errores de una referencia limitada y no prueban causalidad, no linealidad exclusiva o superioridad de una red. BDS y los contrastes comparativos de modelos siguen previstos para E2. Un diagnóstico sobre retornos crudos no sustituye una prueba sobre errores predictivos.
 
 Las etiquetas móviles de validación consecutivas comparten $n-1$ retornos aunque el horizonte sea un día. La ausencia de retornos compartidos entre ajuste y validación tampoco demuestra independencia entre fechas. La unidad observacional es el origen temporal; la inferencia deberá conservar dependencia mediante bloques u otro diseño justificado. La longitud de bloque y su sensibilidad se fijarán antes de contrastar, sin importar decisiones de corridas ajenas a esta revisión. Semillas, fechas y folds no se suman como observaciones independientes del mismo tipo.
 
 ## 6.2. Correspondencia entre procedimiento y evidencia
 
-| Componente | Evidencia o decisión en E1 documental | Ejecución posterior |
+| Componente | Evidencia o decisión en E1 | Ejecución posterior |
 |---|---|---|
 | Fuente, frecuencia y reloj | Secciones 1.2–1.5 y 2.3 | Conservar procedencia y comprobar disponibilidad por muestra |
 | Calidad y faltantes | EDA 2023–2024, exclusión estricta y calendario conservado | Mantener reglas al formar muestras y registrar enmiendas |
@@ -90,11 +94,11 @@ Las etiquetas móviles de validación consecutivas comparten $n-1$ retornos aunq
 | Arquitecturas | Evidencia, selección y fichas documentales en §3 | Implementar configuraciones justificadas en E2 |
 | Pérdida y métricas | MSE/RMSE, MAPE y MASE definidas en §1.4 | Calcular predicciones y métricas sin consultar test para seleccionar |
 | Margen de relevancia | Regla relativa del 5 % frente a persistencia | Separar relevancia, incertidumbre y significación |
-| Referencia lineal y clasificación | Referencia regularizada con las mismas covariables definida; tipo 4 vigente por contrato | Ajustar la referencia, diagnosticar autocorrelación residual y revisar el tipo si se añaden rezagos del objetivo |
+| Referencia lineal y clasificación | Cuatro Ridge diagnósticos con $\alpha=1$; 1.464 predicciones de 2024 y autocorrelación residual documentada; tipo 4 vigente por contrato | Definir la referencia del benchmark y su reajuste; revisar el tipo si se añaden rezagos del objetivo |
 | Inferencia | Unidades, supuestos y riesgo de dependencia descritos | Dimensionar, ejecutar y reportar IC/efectos/contrastes en E2 |
 
 ## 6.3. Condiciones para la ejecución posterior
 
-Antes de E2 deben revisarse el cierre bibliográfico y los detalles arquitectónicos que permanezcan sin reportar; cerrar transformaciones, test supervisado y cadencia de actualización; definir la familia de comparaciones, tratar la dependencia de etiquetas y dimensionar el piloto. El embargo $E_D=D$ ya está aplicado y verificado en los índices de desarrollo. La referencia lineal regularizada y su diagnóstico de residuos siguen sin ejecutar. Las decisiones ya aceptadas —objetivo de siete retornos, horizonte de un día, RMSE y margen del 5 %— no figuran como elecciones nuevamente pendientes.
+Antes de E2 deben revisarse el cierre bibliográfico y los detalles arquitectónicos que permanezcan sin reportar; cerrar transformaciones, test supervisado y cadencia de actualización; definir la familia de comparaciones, tratar la dependencia de etiquetas y dimensionar el piloto. El embargo $E_D=D$ ya está aplicado y verificado en los índices de desarrollo. El diagnóstico lineal de EDA está ejecutado; su dependencia residual informa estos pendientes, sin resolver el benchmark ni fijar el reajuste de las redes. Las decisiones ya aceptadas —objetivo de siete retornos, horizonte de un día, RMSE y margen del 5 %— no figuran como elecciones nuevamente pendientes.
 
-Los resultados de literatura se identifican como publicados por otros autores. Este capítulo no aporta entrenamientos, tiempos o métricas propios. La documentación del procedimiento permite revisarlo antes de la fase experimental y conserva la diferencia entre el alcance pedido por el usuario y la distribución literal de requisitos del PDF.
+Los resultados de literatura se identifican como publicados por otros autores. La evidencia propia incorporada aquí se limita al diagnóstico lineal de EDA; no hay resultados comparativos de las tres redes ni mediciones del piloto o test. La documentación del procedimiento permite revisar la fase experimental posterior y conserva la diferencia entre el alcance pedido por el usuario y la distribución literal de requisitos del PDF.

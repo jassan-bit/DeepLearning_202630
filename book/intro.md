@@ -5,12 +5,12 @@
 **Autor:** Jassan Arteta  
 **Avance:** Entregable 1 · Secciones 1–7 · Revisión del 3 de noviembre de 2026
 
-Este libro desarrolla el **Entregable 1 de Deep Learning** para el pronóstico de volatilidad de **Bitcoin**, utilizando datos obtenidos directamente de **Binance Spot (BTCUSDT)**. El problema corresponde al **tipo 4: regresión temporal**, con covariables OHLCV diarias y sin rezagos explícitos de la volatilidad objetivo; el precio de cierre permite calcular los retornos y las etiquetas. La revisión se contrasta con la guía del Entregable 1. El alcance autorizado aquí comprende documentación, EDA y preparación de particiones; el usuario reservó la ejecución de modelos para E2. Esa instrucción de trabajo se distingue de la guía escrita, que sí incorpora ejecución en sus secciones 4–5.
+Este libro desarrolla el **Entregable 1 de Deep Learning** para el pronóstico de volatilidad de **Bitcoin**, utilizando datos obtenidos directamente de **Binance Spot (BTCUSDT)**. El problema corresponde al **tipo 4: regresión temporal**, con covariables OHLCV diarias y sin rezagos explícitos de la volatilidad objetivo; el precio de cierre permite calcular los retornos y las etiquetas. La revisión se contrasta con la guía del Entregable 1. El alcance autorizado comprende documentación, EDA, preparación de particiones y, para el bloque C, cuatro referencias lineales Ridge con diagnóstico de residuos de desarrollo. El usuario reservó el entrenamiento de las tres redes, piloto y benchmark para E2. Esa instrucción de trabajo se distingue de la guía escrita, que sí incorpora ejecución en sus secciones 4–5.
 
 ## Qué contiene este avance
 
 - [Problema y dataset](sections/01_problema_dataset.md): formulación matemática, hipótesis propuesta, métricas y ficha técnica.
-- [Análisis exploratorio de datos](sections/02_eda.md): adquisición Binance Spot BTCUSDT, perfiles y colas del objetivo, calidad y reconstrucción de etiquetas, desplazamiento marginal por bloques y decisiones de modelado con desarrollo.
+- [Análisis exploratorio de datos](sections/02_eda.md): adquisición Binance Spot BTCUSDT, perfiles y colas del objetivo, calidad, reconstrucción de etiquetas y desplazamiento marginal; bloque C con disponibilidad, relaciones temporales y residuos de cuatro referencias lineales.
 - [Estado del arte](sections/03_estado_arte.md): tabla de las 33 referencias citadas, búsqueda y cribado trazables, matriz, frecuencias, tres fichas y comparación crítica; candidatos de trabajo y extracción definitiva pendiente.
 - [Diseño de la etapa E2](sections/04_implementacion_evaluacion.md): criterios de implementación, validación y piloto previstos, sin ejecución propia en esta revisión.
 - [Criterios del benchmark para E2](sections/05_benchmark.md): métricas, tablas futuras, inferencia y reglas de interpretación.
@@ -21,11 +21,11 @@ Este libro desarrolla el **Entregable 1 de Deep Learning** para el pronóstico d
 
 ## Alcance del proyecto
 
-El PDF solicita EDA, literatura, tres referencias DL e implementación experimental; sus requisitos empíricos permanecen identificados. Por instrucción del usuario, esta intervención corrige y documenta los avances y reserva entrenamiento, tuning, piloto y benchmark propios para E2. No se atribuye al docente una modificación que no se ha aportado ni se declara cumplimiento total del PDF original.
+El PDF solicita EDA, literatura, tres referencias DL e implementación experimental; sus requisitos empíricos permanecen identificados. Por instrucción del usuario, esta intervención corrige y documenta los avances y reserva el entrenamiento de las tres redes, tuning, piloto y benchmark para E2. La autorización posterior para desarrollar el bloque C incorporó solo una referencia lineal regularizada de EDA: cuatro ajustes con $\alpha=1$ fijo, uno por historia de entrada, sin tuning ni selección de una ganadora. No se atribuye al docente una modificación que no se ha aportado ni se declara cumplimiento total del PDF original.
 
 La elección documental de familias prioriza diversidad entre memoria, convolución y atención. No equivale al ranking de frecuencia pura: GRU es más frecuente que TCN y Transformer en el pequeño corpus. La guía exige además recurrencia y mínima complejidad; la extracción definitiva de tres modelos básicos sigue parcial. Las configuraciones concretas y la suficiencia académica de la fuente gris de atención deben revisarse antes de implementar. Las treinta referencias iniciales se conservan y se añaden tres fuentes para las fichas, dando 33 entradas citadas.
 
-La revisión corrigió los índices de validación con un embargo explícito de D días, conservó la exclusión del 24/03/2023 y documentó una reserva bruta de test mediante metadatos. Estos productos preparan la evaluación posterior; no son resultados de modelos. El [estado por requisito](sections/protocolo_pendiente.md) identifica lo documentado, lo parcial y lo pendiente.
+La revisión corrigió los índices de validación con un embargo explícito de D días, conservó la exclusión del 24/03/2023 y documentó una reserva bruta de test mediante metadatos. El diagnóstico lineal usa exclusivamente ajustes admisibles de 2023 y aporta 366 predicciones de 2024 por historia, 1.464 en total; encuentra dependencia residual y conserva el tipo 4 por su contrato de entrada. No se entrenaron redes ni se ejecutaron piloto, benchmark o consultas a test. El [estado por requisito](sections/protocolo_pendiente.md) identifica lo documentado, lo parcial y lo pendiente.
 
 Solo se considera Bitcoin. Otras criptomonedas son una posible ampliación futura. Los documentos completos de los entregables 2 y 3 aún no se han recibido; no se inventan sus requisitos.
 

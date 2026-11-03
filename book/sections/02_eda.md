@@ -212,7 +212,7 @@ Son recuentos de índices elegibles para $n=7$, no corridas de entrenamiento. El
 
 El embargo de covariables no implica independencia de las etiquetas móviles. El manifiesto registra **2.196 filas de seis configuraciones de sensibilidad con $n>D+1$** donde la última etiqueta de ajuste y la de validación comparten retornos. Esa dependencia debe conservarse en el diseño de inferencia posterior; los folds no se contarán como réplicas independientes.
 
-El código es `scripts/prepare_forward_chaining.py`. Se publican el [resumen y verificación del ejemplo](../_static/cv_forward_chaining/summary.json) y el [manifiesto de folds](../_static/cv_forward_chaining/folds.csv), con fechas, cantidades de muestras y hashes de los índices de entrenamiento. El entrenamiento es creciente e incluye únicamente historia permitida; no se abren archivos de test. La división no necesita semilla de barajado.
+El código es `scripts/prepare_forward_chaining.py`. Se publican el [resumen y verificación del ejemplo](../_static/cv_forward_chaining/summary.json) y el [manifiesto de folds](../_static/cv_forward_chaining/folds.csv), con fechas, cantidades de muestras y hashes de los índices de entrenamiento. La historia elegible de ajuste crece en estos índices e incluye únicamente pasado permitido; la referencia residual de §2.2.4 conserva pesos fijos y no utiliza todas esas ampliaciones. No se abren archivos de test. La división no necesita semilla de barajado.
 
 - **Decisión de preprocesamiento:** utilizar los índices corregidos de la versión 2, con embargo explícito de $D$ días y soportes de etiqueta registrados; ajustar transformaciones solo con el entrenamiento permitido de cada fold y conservar esos controles en la ejecución posterior.
 - **Impacto en la arquitectura:** los modelos deben evaluarse con el mismo calendario y muestras comparables dentro de cada configuración.
@@ -228,100 +228,152 @@ Esta reserva fija la identidad de los archivos brutos; aún no se ha congelado e
 - **Impacto en la arquitectura:** comparar modelos y decisiones ya fijados, sin adaptar arquitecturas al resultado de test.
 - **Riesgos identificados:** asumir que un hash demuestra ausencia de consulta o que descargar equivale a evaluar. La congelación del benchmark permanece pendiente.
 
-## 2.2. Diagnósticos temporales complementarios
+## 2.2. EDA específico: regresión temporal (bloque C)
 
-Se conservan los diagnósticos del bloque B de la guía como complementos pertinentes para dependencia temporal. La correspondencia específica con el **bloque C de regresión temporal** se desarrolla en §2.5. Las observaciones de modelado son **diarias**; los diagnósticos horarios y de minuto mantienen sus unidades explícitas. Esta reclasificación documental no cambia los datos, el reloj de predicción ni la política de exclusión.
+Se aplica el **bloque C de la guía: regresión temporal**, porque las entradas son covariables OHLCV rezagadas y no incluyen historia explícita de la volatilidad objetivo. Se utilizan los CSV de desarrollo 2023–2024, se conserva la cuadrícula de 731 días y el 24/03/2023 permanece excluido, sin imputación. El bloque incluye una referencia lineal regularizada para diagnosticar residuos. Ese ajuste de EDA se distingue de los tres modelos DL, el piloto y el benchmark reservados para E2; no utiliza test.
 
-### 2.2.1. Visualización, descomposición y cambios de régimen
+La revisión punto por punto se conserva en el {download}`informe del bloque C <../_static/e1/revision_eda_temporal_20261103.md>` y su [matriz de evidencias](../_static/e1/revision_eda_temporal_20261103.json).
 
-![Cierre, retorno y volumen diarios UTC de desarrollo](../_static/eda/11_modelado_diario.png)
-![STL semanal de log-cierres diarios en el tramo continuo de entrenamiento](../_static/eda/12_descomposicion_diaria.png)
+| Bloque de la guía 2.2 | Aplicabilidad al contrato actual | Tratamiento en este libro |
+|---|---|---|
+| C. Regresión temporal | Aplicable: covariables observadas en el tiempo y objetivo continuo sin rezagos propios como entrada | Es el bloque específico desarrollado aquí |
+| A. Clasificación/regresión tabular | No es la ruta principal del problema temporal definido | No se exige completar otro bloque ni crear clases artificiales |
+| B. Series de tiempo | No es la ruta principal mientras no se añadan rezagos del objetivo | Los diagnósticos temporales ya existentes se conservan como apoyo en §2.5 |
+| D–J. Espacial, espacio-temporal, imágenes, texto y secuencias | No corresponden a los datos ni al objetivo de este proyecto | No se ejecutan bloques de otras modalidades |
 
-La descomposición STL usa el mayor tramo diario continuo de entrenamiento, **25/03/2023–31/12/2023**, con periodo semanal de siete días y ajuste robusto. Es exploratoria: imponer un periodo en STL no demuestra que exista estacionalidad significativa ni habilita usar su suavizado centrado como característica causal.
 
-![Extremos de retornos diarios y candidato de cambio de régimen en entrenamiento](../_static/eda/16_anomalias_regimen_diario.png)
+### 2.2.1. Frecuencia, desfases y disponibilidad
 
-El máximo absoluto de un CUSUM estandarizado sobre magnitudes de retornos diarios, excluyendo 28 días en cada extremo del tramo, señala **2023-10-15** como candidato exploratorio. No se ejecutó una prueba de significación para confirmar una ruptura; tampoco se atribuye una causa de mercado sin documentación.
+Cada fila OHLCV resume un día UTC. Apertura, máximo, mínimo, cierre y volumen del día completo se consideran disponibles **al comenzar el día siguiente**. Para un resultado del día $d$, la red utiliza días hasta $d-1$; el objetivo $\sigma_7(d)$ incorpora el retorno de $d$ y solo se conoce al terminarlo. Esta notación de día de resultado corresponde a $Y_t=\sigma_{t+1}$ en la convención de §1.3.
 
-- **Decisión de preprocesamiento:** mantener escalas diferenciadas, continuidad y transformaciones causales; no usar STL centrado como predictor.
-- **Impacto en la arquitectura:** contrastar las cuatro longitudes diarias confirmadas mediante validación, sin elegir una por una ruptura identificada retrospectivamente.
-- **Riesgos identificados:** cambio de régimen retrospectivo, agregaciones mal etiquetadas e interpretación de patrones visuales como evidencia de capacidad predictiva.
+| Elemento | Momento de disponibilidad | Uso admisible al inicio de $d$ |
+|---|---|---|
+| OHLCV completo de $d-1$ | Inicio UTC de $d$ | Entrada conocida |
+| OHLCV completo de $d$ | Inicio UTC de $d+1$ | No admisible como entrada del pronóstico de $d$ |
+| Covariable de $d-k$, con $k\ge1$ | Inicio UTC de $d-k+1$ | Pasado observable |
+| Volatilidad que incluye el retorno de $d$ | Inicio UTC de $d+1$ | Etiqueta futura, no entrada |
 
-### 2.2.2. Estacionariedad: ADF y KPSS
+Las cinco covariables son numéricas continuas: O/H/L/C se expresan en USDT y V en BTC. Tienen 730 días observados sobre 731 posiciones de calendario. La frecuencia de modelado es diaria UTC; la adquisición intradiaria no convierte la entrada de D días en D×1.440 pasos para la red. El [perfil temporal de covariables](../_static/eda_temporal_specific/covariate_structure.csv) y la [auditoría por rezago](../_static/eda_temporal_specific/availability_by_lag.csv) comprueban k=1,…,28 sin violaciones de disponibilidad. La falta de historia anterior al inicio del desarrollo se conserva como ausencia, no se rellena con datos posteriores.
 
-Las pruebas principales se ejecutaron en los mayores tramos **diarios continuos de entrenamiento**. ADF usa constante y siete rezagos fijos, sin selección automática; KPSS usa constante y rezagos automáticos. Se interpreta conjuntamente a nivel exploratorio de 0,05, sin corrección por multiplicidad.
+La irregularidad intradiaria ya documentada —80 minutos ausentes y una fila con cierre temporal no elegible— se traduce en un día OHLCV excluido bajo la política estricta. Conservar su posición evita convertir dos fechas no consecutivas en un retorno diario o en un rezago de un día. El patrón observado no identifica por sí solo un mecanismo MCAR, MAR o MNAR.
 
-| Serie diaria | N | p ADF | p KPSS | Interpretación conjunta |
-|---|---:|---:|---:|---|
-| log_close_daily | 282 | 0.945954 | <0,01 | Compatible con no estacionariedad |
-| return_daily | 281 | 2.75372e-07 | >0,10 | Compatible con estacionariedad |
-| abs_return_daily | 281 | 1.17163e-06 | >0,10 | Compatible con estacionariedad |
-| sigma_7 | 275 | 0.00242274 | >0,10 | Compatible con estacionariedad |
-| sigma_14 | 268 | 0.00138616 | >0,10 | Compatible con estacionariedad |
-| sigma_21 | 261 | 0.0633405 | >0,10 | Inconcluso: ninguna rechaza |
-| sigma_28 | 254 | 0.219837 | >0,10 | Inconcluso: ninguna rechaza |
+- **Decisión de preprocesamiento:** construir rezagos por días de calendario, exigir ventanas completas y usar solo covariables ya disponibles; el OHLCV completo del día de resultado y su volatilidad quedan fuera de las entradas.
+- **Impacto en la arquitectura:** mantener D×5 valores como contrato común; aplanarlos para una referencia lineal no cambia los datos que reciben las redes.
+- **Riesgos identificados:** convertir cierres posteriores en atributos contemporáneos, comprimir huecos o confundir el instante de apertura de una vela con la disponibilidad del OHLCV completo.
 
-Los extremos tabulados de KPSS se informan como desigualdades, no como p-values exactos. Los resultados son específicos del tramo y la especificación: la compatibilidad de retornos con estacionariedad no garantiza estabilidad futura; las ventanas 21/28 producen resultados inconclusos bajo estas pruebas. Los periodos exactos y rezagos efectivos están en los CSV de resultados.
+### 2.2.2. Relaciones covariables–objetivo con rezagos
 
-- **Decisión de preprocesamiento:** justificar transformaciones y escalado desde entrenamiento; no diferenciar automáticamente todas las series para forzar un resultado.
-- **Impacto en la arquitectura:** usar representaciones con significado temporal claro y evaluar su estabilidad dentro de los folds.
-- **Riesgos identificados:** pruebas repetidas sin control, confundir no rechazo con prueba de verdad y trasladar propiedades de precios a volatilidad.
+Se calculan Pearson y Spearman entre log(O/H/L/C) o log(1+V) del día d−k y σ7 del día d, con k=1,…,28. Para comparar los rezagos sobre la misma información se usa una **cohorte común de 308 días de 2023**, con los 28 rezagos de las cinco covariables y el objetivo disponibles. Hay **140 combinaciones covariable–rezago** con N constante; las transformaciones son fijas y no contienen un escalador aprendido con validación.
 
-### 2.2.3. Dependencia temporal y elección de rezagos
+![Correlaciones con 1–28 rezagos en una cohorte común de entrenamiento](../_static/eda_temporal_specific/correlaciones_rezagos_cohorte_comun.png)
 
-![ACF, PACF, ACF de cuadrados y periodograma diarios de entrenamiento](../_static/eda/10_dependencia_diaria.png)
+Los mayores valores absolutos observados en esa cohorte son referencias descriptivas:
 
-Se usó el tramo continuo de retornos diarios **26/03/2023–31/12/2023**, con 281 observaciones. ACF y PACF muestran 28 rezagos; sus bandas al 95 % son aproximadas, no correcciones simultáneas por todos los rezagos. El periodograma incluye una referencia semanal, sin declarar un pico significativo por inspección visual.
+| Covariable | Rezago Pearson (días) | Pearson | Rezago Spearman (días) | Spearman |
+|---|---:|---:|---:|---:|
+| Apertura | 9 | -0,1833 | 10 | -0,1962 |
+| Máximo | 11 | -0,1812 | 11 | -0,1961 |
+| Mínimo | 10 | -0,1888 | 12 | -0,1939 |
+| Cierre | 10 | -0,1833 | 11 | -0,1962 |
+| Volumen | 1 | 0,5045 | 1 | 0,4531 |
 
-| Diagnóstico diario | Especificación | Estadístico | p-value exploratorio |
-|---|---|---:|---:|
-| ARCH-LM | Media constante; 7 rezagos | 7.90557 | 0.340994 |
-| Wald con covarianza HAC | Términos cuadrático y cúbico del retorno de un día de rezago; HAC 7 | 7.95233 | 0.0187574 |
+Los picos de precios se sitúan entre 9 y 12 días, con asociaciones negativas de magnitud moderada o pequeña; volumen presenta su mayor asociación en el día anterior. Una historia D=7 incluye ese rezago del volumen, mientras D=14/21/28 también representa los rezagos de precio señalados. Esto describe el contenido de cada ventana, **no selecciona un rezago óptimo ni una D ganadora**. Se inspeccionan muchas asociaciones dependientes y el objetivo contiene retornos históricos compartidos: una correlación no demuestra causalidad ni anticipación del componente aún desconocido.
 
-ARCH-LM no rechaza bajo esta especificación diaria; esto no prueba ausencia de heterocedasticidad. El Wald detecta asociación polinómica bajo su modelo y supuestos HAC, no toda forma de no linealidad ni rentabilidad predictiva. Ambos son exploratorios, con muestra limitada y sin ajuste por multiplicidad. No son pruebas sobre residuos de una red todavía no entrenada.
+El análisis marginal anterior utilizaba entre 328 y 350 pares según el rezago. Se conserva como antecedente y se distingue de la cohorte común; sus máximos no se mezclan como si usaran las mismas fechas. Las [140 correlaciones comunes](../_static/eda_temporal_specific/lag_correlations_common_train.csv), sus [picos descriptivos](../_static/eda_temporal_specific/lag_peak_summary.csv) y la [comparación de cohortes](../_static/eda_temporal_specific/cohort_comparison.csv) documentan esa diferencia.
 
-Como contraste de escala se ejecutaron los diagnósticos sobre datos de un minuto y agregados horarios:
+Como perfil de un único rezago, la comparación d−1 entre años conserva su propia máscara: 350 pares de 2023 y 366 de 2024.
 
-![Dependencia de retornos de un minuto en entrenamiento](../_static/eda/09_dependencia_un_minuto.png)
-![Diagnósticos horarios complementarios de entrenamiento](../_static/eda/05_dependencia_temporal.png)
+| Covariable del día anterior | Pares 2023 | Pearson 2023 | Spearman 2023 | Pares 2024 | Pearson 2024 | Spearman 2024 |
+|---|---:|---:|---:|---:|---:|---:|
+| $\log(O)$ | 350 | -0,0489 | -0,0886 | 366 | 0,0415 | 0,0247 |
+| $\log(H)$ | 350 | -0,0102 | -0,0563 | 366 | 0,0689 | 0,0600 |
+| $\log(L)$ | 350 | -0,0651 | -0,1148 | 366 | 0,0198 | -0,0184 |
+| $\log(C)$ | 350 | -0,0304 | -0,0810 | 366 | 0,0499 | 0,0343 |
+| $\log(1+V)$ | 350 | 0,4694 | 0,4326 | 366 | 0,3730 | 0,3723 |
 
-La ACF/PACF de un minuto usa los últimos 30 días de entrenamiento; la ACF de cuadrados hasta 28 días usa el mayor tramo continuo de entrenamiento y se representa cada 60 minutos. No se unen observaciones a ambos lados de huecos. Las pruebas horarias no se presentan como evidencia intercambiable con las diarias.
+En este perfil, las asociaciones lineales y de rango de los niveles de precio son pequeñas y cambian de signo entre años; el volumen presenta una asociación positiva mayor. Son **descripciones del desarrollo**, sin contraste de igualdad entre años ni causalidad. Los niveles de precios pueden generar correlaciones espurias; además, el objetivo móvil comparte retornos con su historia. Una asociación con ese objetivo no demuestra capacidad de pronosticar su componente aún desconocido.
 
-- **Decisión de preprocesamiento:** mantener como candidatas las entradas de 7/14/21/28 días; elegir por validación y registrar sensibilidad, sin seleccionar rezagos por test.
-- **Impacto en la arquitectura:** las ventanas diarias fijan pasos temporales de MLP, recurrentes o convolucionales; la familia final depende de literatura y evaluación, no de una correlación aislada.
-- **Riesgos identificados:** dependencia de etiquetas móviles, bandas aproximadas, múltiples pruebas y confusión de frecuencias.
+- **Decisión de preprocesamiento:** comparar rezagos con una máscara común, conservar las cinco covariables y mantener D=7/14/21/28 como configuraciones acordadas; no escoger atributos por el mayor coeficiente observado.
+- **Impacto en la arquitectura:** la longitud D determina qué rezagos puede representar cada modelo, mientras el aplanado o la secuencia deben conservar el mismo conjunto de información.
+- **Riesgos identificados:** máximos por búsqueda múltiple, muestras distintas entre rezagos, niveles de precio espurios y asociación con la parte ya conocida de una volatilidad móvil.
 
-### 2.2.4. Frecuencia, granularidad y faltantes
+### 2.2.3. Relación móvil y posibles cambios descriptivos
 
-La auditoría distingue 80 minutos ausentes del CSV y un minuto con cierre temporal no elegible. Ninguno se interpola. Se agregan OHLCV por días UTC completos; un retorno diario que necesite un día inválido permanece ausente. El par único no requiere un modelo global entre activos.
+Se calculó la correlación de Pearson entre cada covariable de $d-1$ y $\sigma_7(d)$ en ventanas retrospectivas de **60 días de calendario**, con al menos **50 pares válidos**. Se muestran 2023 y 2024 como desarrollo; las posiciones ausentes permanecen en la cuadrícula. Cuatro curvas de precio casi coincidentes reflejan su fuerte relación entre sí, no cuatro fuentes independientes de evidencia.
 
-![Cierres de días completos y envolvente de retornos de un minuto](../_static/eda/02_precios_retornos.png)
+![Correlación móvil de sesenta días entre covariables del día anterior y volatilidad objetivo en desarrollo](../_static/eda_doc/relacion_movil_covariables_objetivo.png)
 
-La envolvente representa extremos horarios de retornos de un minuto para visualizar todos los episodios; no son retornos horarios. La etiqueta temporal de un cierre agregado indica cuándo se vuelve observable.
+La trayectoria describe cómo cambia la asociación observada dentro del desarrollo. Las ventanas consecutivas se solapan y no son réplicas independientes. No se atribuyen rupturas significativas ni causas de mercado por inspección de la gráfica. La correlación del día $d$ se conoce **después de observar su objetivo**: es un diagnóstico retrospectivo y no una característica predictiva disponible sin desplazamiento en el origen de ese mismo día.
 
-- **Decisión de preprocesamiento:** construir secuencias sobre una cuadrícula diaria regular y rechazar ventanas afectadas por días incompletos.
-- **Impacto en la arquitectura:** los modelos reciben D pasos diarios; no 1.440 pasos por día salvo un experimento distinto expresamente declarado.
-- **Riesgos identificados:** confundir la fecha de apertura con disponibilidad del cierre, unidades ms/us y retornos calculados atravesando huecos.
+El resumen de las curvas contiene **309 ventanas definidas en 2023 y 366 en 2024 por covariable**. Para volumen, la mediana de Pearson móvil pasa de **0,3395 a 0,3157**, con signo positivo en **99,03 % y 100 %** de las ventanas definidas. Los precios presentan cambios de signo y rangos amplios; por ejemplo, apertura recorre aproximadamente −0,724 a 0,632 en 2023. Son estimaciones retrospectivas solapadas, no pruebas independientes de cambios de régimen. El [resumen anual de relaciones móviles](../_static/eda_temporal_specific/rolling_relationship_summary.csv) conserva cobertura, cuantiles y signos; veinte ventanas se reconstruyeron independientemente para verificar el cálculo.
 
-### 2.2.5. Outliers y anomalías
+- **Decisión de preprocesamiento:** estudiar la estabilidad de las relaciones solo con pasado y mantener la separación cronológica; una correlación móvil del día d no se usa como predictor de ese mismo día.
+- **Impacto en la arquitectura:** evaluar capacidad temporal bajo las mismas ventanas y datos, sin añadir capas por una oscilación gráfica ni inferir un modelo superior por el signo del coeficiente.
+- **Riesgos identificados:** ventanas solapadas, interpretación retrospectiva como señal anticipable y confusión entre cambio marginal, deriva de la relación y ruptura estadísticamente confirmada.
 
-![Distribución completa y zoom de retornos de un minuto de entrenamiento](../_static/eda/03_distribucion_retornos.png)
+### 2.2.4. Residuos de una referencia lineal regularizada
 
-En los retornos de un minuto de entrenamiento, la asimetría es **-0.674028** y el exceso de curtosis **132.006**. No se presupone una distribución normal. El zoom de la figura no elimina colas del dataset. Para retornos diarios, el criterio exploratorio fuera de q1 %–q99 % de entrenamiento marca **8 días de 2023** y **15 de 2024** con umbrales fijos de train; no se eliminó ninguno por ser extremo.
+Se ajustaron **cuatro referencias Ridge diagnósticas**, una por D=7/14/21/28, con las mismas cinco covariables de cada ventana, aplanadas a 5D atributos. Se usan valores OHLCV en su escala original antes de estandarizarlos; los logaritmos de §2.2.2 pertenecen al análisis descriptivo de correlaciones. La regularización **α=1** se fijó para este diagnóstico, sin búsqueda de hiperparámetros ni selección de una historia ganadora. Se minimiza la suma de errores cuadrados más α por la norma cuadrada de los coeficientes, con intercepto no penalizado; el valor de α corresponde a esa convención de suma, no a otra escala de penalización.
 
-- **Decisión de preprocesamiento:** distinguir errores verificables de eventos reales y conservar extremos. No se aplica clipping ni se cambia la pérdida sin validación.
-- **Impacto en la arquitectura:** controlar estabilidad de entrenamiento y comparar pérdidas/métricas bajo el mismo protocolo; las colas no justifican automáticamente mayor complejidad.
-- **Riesgos identificados:** borrar episodios de interés y elegir umbrales con información futura. El impacto sobre error de pronóstico y la causa de eventos quedan pendientes de modelos y evidencia adicional.
+Cada columna se estandariza con media y desviación poblacional calculadas únicamente en el ajuste permitido de 2023; una columna constante tendría escala uno. La implementación utiliza NumPy/SciPy y solución de Cholesky. Los parámetros exportados reproducen las predicciones y una solución independiente por sistema aumentado las verifica con diferencia máxima de **2,46×10⁻¹⁴**. No se transforma ni recorta el objetivo y no se recortan las predicciones.
 
-### 2.2.6. Horizonte, estrategia de pronóstico y validación
+El primer origen es el 01/01/2024. Su embargo D limita los resultados admisibles del ajuste a u≤t−D−1, además de ventanas y etiquetas válidas. Los modelos y sus escalas quedan **fijos durante todo 2024**: no utilizan etiquetas de validación para reajustarse. Esta política estática pertenece a la referencia diagnóstica del EDA; no fija la cadencia de actualización de las redes o del benchmark de E2.
 
-Las entradas confirmadas son 7/14/21/28 días de historia; el horizonte principal es un día. Se exploraron cuatro definiciones de volatilidad histórica, sin confundirlas con la longitud de entrada. Cualquier horizonte adicional al principal debe registrarse antes del entrenamiento y de la evaluación.
+| Historia D | Muestras de ajuste 2023 | Último resultado permitido de ajuste | Residuos fuera del ajuste en 2024 | ACF de rezago 1 | Referencia Ljung–Box a 7 rezagos, ajustada Holm12 |
+|---|---:|---|---:|---:|---:|
+| 7 | 343 | 2023-12-24 | 366 | 0,7665 | 2.09312e-155 |
+| 14 | 322 | 2023-12-17 | 366 | 0,7322 | 2.921e-77 |
+| 21 | 301 | 2023-12-10 | 366 | 0,7625 | 1.00396e-92 |
+| 28 | 280 | 2023-12-03 | 366 | 0,7623 | 4.75881e-100 |
 
-Los folds se materializaron con `timeseries-cv` 0.1.5 y controles explícitos de fechas, observabilidad y continuidad. El entrenamiento de los tres modelos sigue pendiente. La función no garantiza por sí sola ausencia de fuga para cualquier combinación de longitudes: los controles de disponibilidad se aplican antes de admitir cada muestra y la convención del embargo se declara en §2.1.4. El BDS solicitado por el material específico para residuos del primer horizonte es un diagnóstico complementario; solo procede después de generar predicciones fuera de entrenamiento y no reemplaza el análisis de autocorrelación de residuos exigido en la ruta 6.4.
+Hay **1.464 predicciones de validación**, 366 por referencia, y **cero predicciones negativas** en este diagnóstico sin recorte. El residuo se define como observado menos pronosticado: un valor negativo indica sobreestimación de volatilidad. Son cuatro referencias sobre las mismas fechas, no cuatro mercados independientes ni ejecuciones de los tres modelos DL. No se construye un ranking de desempeño ni se contrasta aquí el margen del 5 % frente a persistencia.
 
-- **Decisión de preprocesamiento:** fijar las configuraciones de objetivos y orígenes, producir manifiestos de muestras y ajustar transformaciones solo con pasado.
-- **Impacto en la arquitectura:** entrada diaria con dimensión explícita; salida principal escalar no negativa; cualquier salida adicional debe registrarse.
-- **Riesgos identificados:** leakage por etiqueta conocida, transformaciones globales y supuestos de independencia entre volatilidades solapadas.
+![Residuos de validación y ACF de las cuatro referencias lineales regularizadas](../_static/eda_temporal_reference/referencia_lineal_residuos_acf.png)
+
+Se calculó ACF de los residuos de 2024 en rezagos 1–28 y Ljung–Box en 7, 14 y 28, con **Holm sobre los doce contrastes**. Se usa model_df=0 porque no se estima un orden ARMA sobre estos errores de validación; no se resta 5D a los grados de libertad de los rezagos. Las bandas ACF ±1,96/√366 son referencias puntuales aproximadas de ruido blanco, no bandas simultáneas ni robustas a cualquier dependencia. Los valores Ljung–Box son referencias asintóticas exploratorias, no probabilidades exactas en muestras finitas o ante cualquier cambio de régimen.
+
+La ACF(1) de **0,732–0,766** y los doce valores ajustados —entre **3,85×10⁻²¹¹ y 2,92×10⁻⁷⁷**— muestran incompatibilidad con el escenario de ausencia de autocorrelación bajo esa referencia. Esto señala dinámica que el ajuste lineal estático no explica. Las etiquetas consecutivas comparten seis retornos, y también pueden influir la deriva, la especificación lineal, la regularización o la ausencia de reajuste; el diagnóstico no identifica una causa única ni mide el ruido externo de los precios.
+
+**Revisión del tipo de problema.** Se mantiene el tipo 4 mientras la entrada contenga solo OHLCV rezagadas. La autocorrelación obliga a estudiar cómo representar mejor esa dinámica y cómo hacer inferencia con dependencia; no incorpora automáticamente la historia del objetivo. Si se deciden añadir rezagos de volatilidad, se deberá registrar el nuevo contrato y revisar la ruta como tipo 3 antes de ejecutarlo. El ajuste presente no demuestra que esa modificación sea necesaria ni que una red ya la haya resuelto.
+
+Se publican las [configuraciones y cortes](../_static/eda_temporal_reference/reference_configurations.csv), las [predicciones y residuos](../_static/eda_temporal_reference/validation_predictions_residuals.csv), las [ACF](../_static/eda_temporal_reference/residual_acf.csv), los [doce Ljung–Box](../_static/eda_temporal_reference/ljung_box_holm.csv), los [parámetros de las referencias](../_static/eda_temporal_reference/model_parameters.csv) y el [resumen reproducible](../_static/eda_temporal_reference/summary.json). Se verificaron las fechas, el embargo, los hashes de entrenamiento y el escalado sin información futura. **No se abrió test ni se entrenaron redes DL, piloto o benchmark**.
+
+- **Decisión de preprocesamiento:** conservar los desfases OHLCV y el embargo, ajustar escalas solo con el pasado y no añadir rezagos del objetivo sin registrar el cambio de problema.
+- **Impacto en la arquitectura:** contrastar posteriormente representaciones temporales con la misma información; el error de una referencia lineal no selecciona por sí solo LSTM, TCN o atención ni fija sus tamaños.
+- **Riesgos identificados:** dependencia por etiquetas solapadas, extrapolación y deriva con pesos estáticos, p-values asintóticos sobreinterpretados y reutilización de este diagnóstico como benchmark final o evidencia de desempeño en test.
+
+### 2.2.5. Reproducibilidad, decisiones y límites
+
+Los tres módulos reutilizan CSV de desarrollo y comprueban sus hashes. El módulo descriptivo original conserva los perfiles marginales y las curvas móviles; su contador de cero modelos corresponde a ese módulo. La ampliación específica añade disponibilidad, cohorte común y comprobaciones independientes de veinte ventanas móviles. El tercer módulo ajusta exclusivamente las cuatro referencias Ridge y comprueba sus índices contra el primer origen del manifiesto de folds. Ninguno abre ZIP ni archivos de test.
+
+```bash
+/workspace/.venvs/deeplearning-eda/bin/python scripts/eda_covariates_documental.py
+/workspace/.venvs/deeplearning-eda/bin/python scripts/eda_temporal_specific.py
+/workspace/.venvs/deeplearning-eda/bin/python scripts/eda_temporal_reference.py
+```
+
+Los resultados están en `results/eda_covariates_documental/`, `results/eda_temporal_specific/` y `results/eda_temporal_reference/`, con copias descargables en el libro. Se conservan las [correlaciones marginales originales](../_static/eda_doc/lagged_correlations_train.csv), las [curvas móviles](../_static/eda_doc/rolling_60d_correlations_development.csv), sus [conteos de pares](../_static/eda_doc/rolling_60d_pair_counts.csv) y el [perfil entre años](../_static/eda_doc/relationship_profiles_2023_2024.csv). Los resúmenes de [descriptivos originales](../_static/eda_doc/summary.json), [bloque C específico](../_static/eda_temporal_specific/summary.json) y [referencia residual](../_static/eda_temporal_reference/summary.json) registran fuentes, software, controles y límites. La reconstrucción lineal es determinista y no requiere semilla de entrenamiento.
+
+- **Decisión de preprocesamiento:** conservar el calendario, las ausencias y la disponibilidad causal de OHLCV; mantener las cinco covariables acordadas sin escoger un subconjunto por estas gráficas.
+- **Impacto en la arquitectura:** conservar una entrada $D\times5$ para las historias confirmadas y el mismo objetivo de siete retornos diarios. Las correlaciones y los residuos lineales no fijan el ancho, la profundidad, el rezago ganador ni una red superior.
+- **Riesgos identificados:** correlaciones espurias de niveles, objetivo y ventanas solapados, selección retrospectiva por inspección, fechas comprimidas y uso indebido de una correlación diagnóstica como predictor contemporáneo. Las cuatro referencias son ajustes de EDA; no se extraen conclusiones de test ni resultados de entrenamiento de redes.
+
+### 2.2.6. Correspondencia con los requisitos del bloque C
+
+| Requisito aplicable de la guía | Evidencia actual | Estado y límite |
+|---|---|---|
+| Frecuencia, regularidad y huecos | §2.2.1: cinco covariables diarias UTC, 731 posiciones y 730 días OHLCV completos | Ejecutado; 24/03/2023 excluido, sin imputación ni compresión del calendario |
+| Desfases y disponibilidad al pronosticar | Contrato de disponibilidad y revisión k=1,…,28 | Cero violaciones; OHLCV del día de resultado y su etiqueta no son entradas |
+| Correlaciones cruzadas con rezagos | §2.2.2: 140 pares covariable–rezago, Pearson y Spearman sobre los mismos 308 días de 2023 | Ejecutado; máximos descriptivos, sin selección de D ni causalidad |
+| Deriva de la relación covariables–objetivo | §2.2.3: ventanas de 60 días, mínimo 50 pares; 309/366 ventanas definidas por covariable y año | Ejecutado como diagnóstico retrospectivo; no confirma rupturas estadísticas |
+| Residuos de un modelo de referencia | §2.2.4: cuatro Ridge estáticos, 366 residuos de 2024 por D; ACF y doce Ljung–Box/Holm | Ejecutado; fuerte dependencia residual con interpretación exploratoria y límites asintóticos |
+| Decisión sobre la historia del objetivo | Entrada OHLCV sin rezagos de volatilidad; revisión explícita a la luz de los residuos | Se mantiene tipo 4. Añadir historia del objetivo requeriría registrar tipo 3 antes de ejecutarlo |
+| Ventanas, partición y embargo | D=7/14/21/28; manifiesto versión 2 y corte $u\le t-D-1$ verificado para las referencias | Aplicado al diagnóstico; pesos fijos en 2024, sin fijar la política del benchmark posterior |
+| Escalado ajustado solo con el pasado | Media y desviación de las muestras permitidas de 2023 para cada Ridge | Ejecutado en la referencia; escaladores de las redes aún no ajustados |
+| Riesgo de fuga temporal y protección de test | Fechas, hashes, índices y ausencia de apertura de test comprobados | Cero archivos de test; la reserva bruta no sustituye la congelación supervisada final |
+| Interpretación técnica de cada análisis | Decisión de preprocesamiento, efecto sobre arquitectura y riesgos en §§2.2.1–2.2.5 | Incluida; no se atribuye superioridad a una arquitectura sin evaluación |
+
+Los requisitos generales de distribución, calidad y partición se desarrollan en §2.1. Los diagnósticos de retornos de §2.5 complementan la revisión; el análisis de residuos específico del bloque C está en §2.2.4. Completar este diagnóstico no completa la selección bibliográfica ni el benchmark de los tres modelos DL.
 
 ## 2.3. Adquisición directa desde Binance Spot
 
@@ -373,7 +425,7 @@ El EDA de desarrollo de este capítulo se ejecutó sobre los 24 archivos mensual
 3. Adquisición y checksums del rango solicitado: completados; brutos y manifiesto conservados. Derivados diarios de desarrollo y EDA ejecutados; ventanas finales por modelo y benchmark pendientes.
 4. Timestamps, unidades, unicidad, huecos, cierres y coherencia OHLC auditados antes de crear los retornos de desarrollo; estos controles deberán mantenerse en la preparación posterior.
 5. Cerrar las configuraciones y reglas definitivas de entrenamiento, conservando el modelado diario, horizonte principal de un día y ventanas candidatas ya documentadas.
-6. EDA general y diagnósticos temporales ejecutados; la correspondencia del bloque C para regresión temporal y su relación con las decisiones se documenta en §2.5.
+6. EDA general y diagnósticos temporales ejecutados; la correspondencia del bloque C para regresión temporal y su relación con las decisiones se documenta en §2.2.
 
 
 ### 2.3.4. Condiciones de uso y atribución
@@ -444,89 +496,108 @@ El primer script genera perfiles de objetivos, calidad, máscaras y reconstrucci
 | Desplazamiento de covariables y objetivo | Seis marginales del perfil causal; referencia condicional por bloques 14/28 y Holm sobre doce contrastes; alcance exploratorio |
 | ADF/KPSS, ARCH y diagnóstico polinómico | Ejecutados con especificaciones y límites declarados |
 | Disponibilidad temporal y ausencia de consulta de test en este script | Restricción verificada; cero ZIP de test abiertos |
-| Covariables, transformaciones y selección de configuración | Cinco covariables OHLCV conservadas; escalado y selección entre historias pendientes del protocolo final |
+| Bloque C: disponibilidad y relaciones con rezagos | Ejecutado; 140 pares sobre cohorte común de 308 días, resúmenes móviles y controles causales |
+| Referencia lineal y residuos fuera del ajuste | Cuatro Ridge diagnósticos con escalas de 2023; 1.464 predicciones de 2024, ACF y doce Ljung–Box/Holm |
+| Covariables, transformaciones y selección de configuración | Cinco covariables OHLCV conservadas; escalado ejecutado solo para las referencias EDA, sin elegir D para las redes |
 | Información mutua, VIF y efecto de anomalías sobre error de modelos | No ejecutados |
 | Folds de validación 2024 | Versión 2 materializada: 366 por configuración; embargo de $D$ días aplicado y solapamiento de retornos de etiquetas registrado |
 | Reserva de test bruto | Manifiesto de 20 ZIP y su hash conservados; sin apertura de test en esta revisión |
-| Test supervisado congelado y entrenamiento | Pendientes; la reserva bruta no acredita elegibilidad de muestras ni evaluación |
-| Modelos, predicciones y MAPE/MAE/RMSE/MSE/MASE/BDS | Pendientes de entrenamiento y evaluación |
+| Test supervisado congelado y entrenamiento de redes | Pendientes; la reserva bruta no acredita elegibilidad de muestras ni evaluación |
+| Tres modelos DL, predicciones y MAPE/MAE/RMSE/MSE/MASE/BDS | Pendientes de entrenamiento y evaluación; las referencias Ridge no los sustituyen |
 
-Las gráficas publicadas son evidencia de EDA de desarrollo. El estado de la revisión bibliográfica se documenta por separado en el capítulo 3. El diagnóstico de residuos, la congelación supervisada de test y el protocolo experimental definitivo siguen pendientes; las gráficas no sustituyen esos productos.
+Las gráficas y las cuatro referencias lineales son evidencia de EDA de desarrollo. El estado de la revisión bibliográfica se documenta por separado en el capítulo 3. La congelación supervisada de test, el protocolo experimental definitivo y la evaluación de los tres modelos DL siguen pendientes; el diagnóstico de residuos no sustituye esos productos.
 
-## 2.5. EDA descriptivo de covariables para regresión temporal
+## 2.5. Diagnósticos temporales complementarios
 
-Esta sección cubre los componentes descriptivos del **bloque C de regresión temporal** mediante los **CSV de desarrollo 2023–2024 ya existentes**. Se conserva la cuadrícula de 731 días, el día incompleto del 24/03/2023 permanece ausente y no se imputan valores ni se recuperan observaciones mediante otra fuente. Este complemento no ajusta un modelo, no ejecuta contrastes de hipótesis y no abre archivos de test. El diagnóstico de residuos de una referencia aún falta para completar ese bloque; el entrenamiento, ese diagnóstico y la comparación experimental se reservan a E2 en el alcance operativo indicado por el usuario.
+Se conservan los diagnósticos del bloque B de la guía como complementos pertinentes para dependencia temporal. La correspondencia específica con el **bloque C de regresión temporal** se desarrolla en §2.2. Las observaciones de modelado son **diarias**; los diagnósticos horarios y de minuto mantienen sus unidades explícitas. Esta reclasificación documental no cambia los datos, el reloj de predicción ni la política de exclusión.
 
-### 2.5.1. Frecuencia, desfases y disponibilidad
+### 2.5.1. Visualización, descomposición y cambios de régimen
 
-Cada fila OHLCV resume un día UTC. Apertura, máximo, mínimo, cierre y volumen del día completo se consideran disponibles **al comenzar el día siguiente**. Para un resultado del día $d$, la red utiliza días hasta $d-1$; el objetivo $\sigma_7(d)$ incorpora el retorno de $d$ y solo se conoce al terminarlo. Esta notación de día de resultado corresponde a $Y_t=\sigma_{t+1}$ en la convención de §1.3.
+![Cierre, retorno y volumen diarios UTC de desarrollo](../_static/eda/11_modelado_diario.png)
+![STL semanal de log-cierres diarios en el tramo continuo de entrenamiento](../_static/eda/12_descomposicion_diaria.png)
 
-| Elemento | Momento de disponibilidad | Uso admisible al inicio de $d$ |
-|---|---|---|
-| OHLCV completo de $d-1$ | Inicio UTC de $d$ | Entrada conocida |
-| OHLCV completo de $d$ | Inicio UTC de $d+1$ | No admisible como entrada del pronóstico de $d$ |
-| Covariable de $d-k$, con $k\ge1$ | Inicio UTC de $d-k+1$ | Pasado observable |
-| Volatilidad que incluye el retorno de $d$ | Inicio UTC de $d+1$ | Etiqueta futura, no entrada |
+La descomposición STL usa el mayor tramo diario continuo de entrenamiento, **25/03/2023–31/12/2023**, con periodo semanal de siete días y ajuste robusto. Es exploratoria: imponer un periodo en STL no demuestra que exista estacionalidad significativa ni habilita usar su suavizado centrado como característica causal.
 
-La irregularidad intradiaria ya documentada —80 minutos ausentes y una fila con cierre temporal no elegible— se traduce en un día OHLCV excluido bajo la política estricta. Conservar su posición evita convertir dos fechas no consecutivas en un retorno diario o en un rezago de un día. El patrón observado no identifica por sí solo un mecanismo MCAR, MAR o MNAR.
+![Extremos de retornos diarios y candidato de cambio de régimen en entrenamiento](../_static/eda/16_anomalias_regimen_diario.png)
 
-### 2.5.2. Relaciones covariables–objetivo con rezagos
+El máximo absoluto de un CUSUM estandarizado sobre magnitudes de retornos diarios, excluyendo 28 días en cada extremo del tramo, señala **2023-10-15** como candidato exploratorio. No se ejecutó una prueba de significación para confirmar una ruptura; tampoco se atribuye una causa de mercado sin documentación.
 
-Se calcularon Pearson y Spearman entre $\log(O)$, $\log(H)$, $\log(L)$, $\log(C)$ o $\log(1+V)$ del día $d-k$ y el objetivo principal del día $d$, para **$k=1,\ldots,28$ días de calendario**, utilizando únicamente 2023. Son transformaciones descriptivas fijas, sin un scaler estimado. No constituyen una selección de variables ni del tamaño de entrada.
+- **Decisión de preprocesamiento:** mantener escalas diferenciadas, continuidad y transformaciones causales; no usar STL centrado como predictor.
+- **Impacto en la arquitectura:** contrastar las cuatro longitudes diarias confirmadas mediante validación, sin elegir una por una ruptura identificada retrospectivamente.
+- **Riesgos identificados:** cambio de régimen retrospectivo, agregaciones mal etiquetadas e interpretación de patrones visuales como evidencia de capacidad predictiva.
 
-![Correlaciones descriptivas con rezagos de uno a veintiocho días, solo en entrenamiento 2023](../_static/eda_doc/covariables_rezagos_descriptivos.png)
+### 2.5.2. Estacionariedad: ADF y KPSS
 
-La tabla contiene **140 combinaciones de covariable y rezago**, con entre 328 y 350 pares válidos por combinación. Las diferencias de cobertura se conservan en lugar de comprimir fechas o imputar. Para el rezago de un día, el perfil es:
+Las pruebas principales se ejecutaron en los mayores tramos **diarios continuos de entrenamiento**. ADF usa constante y siete rezagos fijos, sin selección automática; KPSS usa constante y rezagos automáticos. Se interpreta conjuntamente a nivel exploratorio de 0,05, sin corrección por multiplicidad.
 
-| Covariable del día anterior | Pares 2023 | Pearson 2023 | Spearman 2023 | Pares 2024 | Pearson 2024 | Spearman 2024 |
-|---|---:|---:|---:|---:|---:|---:|
-| $\log(O)$ | 350 | -0,0489 | -0,0886 | 366 | 0,0415 | 0,0247 |
-| $\log(H)$ | 350 | -0,0102 | -0,0563 | 366 | 0,0689 | 0,0600 |
-| $\log(L)$ | 350 | -0,0651 | -0,1148 | 366 | 0,0198 | -0,0184 |
-| $\log(C)$ | 350 | -0,0304 | -0,0810 | 366 | 0,0499 | 0,0343 |
-| $\log(1+V)$ | 350 | 0,4694 | 0,4326 | 366 | 0,3730 | 0,3723 |
+| Serie diaria | N | p ADF | p KPSS | Interpretación conjunta |
+|---|---:|---:|---:|---|
+| log_close_daily | 282 | 0.945954 | <0,01 | Compatible con no estacionariedad |
+| return_daily | 281 | 2.75372e-07 | >0,10 | Compatible con estacionariedad |
+| abs_return_daily | 281 | 1.17163e-06 | >0,10 | Compatible con estacionariedad |
+| sigma_7 | 275 | 0.00242274 | >0,10 | Compatible con estacionariedad |
+| sigma_14 | 268 | 0.00138616 | >0,10 | Compatible con estacionariedad |
+| sigma_21 | 261 | 0.0633405 | >0,10 | Inconcluso: ninguna rechaza |
+| sigma_28 | 254 | 0.219837 | >0,10 | Inconcluso: ninguna rechaza |
 
-En este perfil, las asociaciones lineales y de rango de los niveles de precio son pequeñas y cambian de signo entre años; el volumen presenta una asociación positiva mayor. Son **descripciones del desarrollo**, sin contraste de igualdad entre años ni causalidad. Los niveles de precios pueden generar correlaciones espurias; además, el objetivo móvil comparte retornos con su historia. Una asociación con ese objetivo no demuestra capacidad de pronosticar su componente aún desconocido.
+Los extremos tabulados de KPSS se informan como desigualdades, no como p-values exactos. Los resultados son específicos del tramo y la especificación: la compatibilidad de retornos con estacionariedad no garantiza estabilidad futura; las ventanas 21/28 producen resultados inconclusos bajo estas pruebas. Los periodos exactos y rezagos efectivos están en los CSV de resultados.
 
-### 2.5.3. Relación móvil y posibles cambios descriptivos
+- **Decisión de preprocesamiento:** justificar transformaciones y escalado desde entrenamiento; no diferenciar automáticamente todas las series para forzar un resultado.
+- **Impacto en la arquitectura:** usar representaciones con significado temporal claro y evaluar su estabilidad dentro de los folds.
+- **Riesgos identificados:** pruebas repetidas sin control, confundir no rechazo con prueba de verdad y trasladar propiedades de precios a volatilidad.
 
-Se calculó la correlación de Pearson entre cada covariable de $d-1$ y $\sigma_7(d)$ en ventanas retrospectivas de **60 días de calendario**, con al menos **50 pares válidos**. Se muestran 2023 y 2024 como desarrollo; las posiciones ausentes permanecen en la cuadrícula. Cuatro curvas de precio casi coincidentes reflejan su fuerte relación entre sí, no cuatro fuentes independientes de evidencia.
+### 2.5.3. Dependencia temporal y elección de rezagos
 
-![Correlación móvil de sesenta días entre covariables del día anterior y volatilidad objetivo en desarrollo](../_static/eda_doc/relacion_movil_covariables_objetivo.png)
+![ACF, PACF, ACF de cuadrados y periodograma diarios de entrenamiento](../_static/eda/10_dependencia_diaria.png)
 
-La trayectoria describe cómo cambia la asociación observada dentro del desarrollo. Las ventanas consecutivas se solapan y no son réplicas independientes. No se atribuyen rupturas significativas ni causas de mercado por inspección de la gráfica. La correlación del día $d$ se conoce **después de observar su objetivo**: es un diagnóstico retrospectivo y no una característica predictiva disponible sin desplazamiento en el origen de ese mismo día.
+Se usó el tramo continuo de retornos diarios **26/03/2023–31/12/2023**, con 281 observaciones. ACF y PACF muestran 28 rezagos; sus bandas al 95 % son aproximadas, no correcciones simultáneas por todos los rezagos. El periodograma incluye una referencia semanal, sin declarar un pico significativo por inspección visual.
 
-El diagnóstico de residuos de una regresión de referencia requiere ajustar un modelo. La ruta 6.4 propone una **regresión lineal regularizada con las mismas covariables rezagadas**; su autocorrelación residual permitiría valorar si hacen falta rezagos del objetivo y, con ellos, una reclasificación como series de tiempo. Ese componente del bloque C permanece para E2 en el alcance operativo solicitado; no se presenta como ejecutado a partir de estas correlaciones.
+| Diagnóstico diario | Especificación | Estadístico | p-value exploratorio |
+|---|---|---:|---:|
+| ARCH-LM | Media constante; 7 rezagos | 7.90557 | 0.340994 |
+| Wald con covarianza HAC | Términos cuadrático y cúbico del retorno de un día de rezago; HAC 7 | 7.95233 | 0.0187574 |
 
-### 2.5.4. Reproducibilidad, decisiones y límites
+ARCH-LM no rechaza bajo esta especificación diaria; esto no prueba ausencia de heterocedasticidad. El Wald detecta asociación polinómica bajo su modelo y supuestos HAC, no toda forma de no linealidad ni rentabilidad predictiva. Ambos son exploratorios, con muestra limitada y sin ajuste por multiplicidad. No son pruebas sobre residuos de una red todavía no entrenada.
 
-El script `scripts/eda_covariates_documental.py` reutiliza únicamente `daily_market_development.csv` y `daily_volatility_development.csv`. Verifica la cuadrícula UTC completa de 2023–2024, tres alineaciones por fecha y rezago calculadas de forma independiente y la preservación del hueco al desplazar covariables. Sus resultados y hashes están en `results/eda_covariates_documental/`.
+Como contraste de escala se ejecutaron los diagnósticos sobre datos de un minuto y agregados horarios:
 
-```bash
-/workspace/.venvs/deeplearning-eda/bin/python scripts/eda_covariates_documental.py
-```
+![Dependencia de retornos de un minuto en entrenamiento](../_static/eda/09_dependencia_un_minuto.png)
+![Diagnósticos horarios complementarios de entrenamiento](../_static/eda/05_dependencia_temporal.png)
 
-Se publican las [correlaciones por rezago](../_static/eda_doc/lagged_correlations_train.csv), las [correlaciones móviles](../_static/eda_doc/rolling_60d_correlations_development.csv), sus [conteos de pares](../_static/eda_doc/rolling_60d_pair_counts.csv), el [perfil 2023–2024](../_static/eda_doc/relationship_profiles_2023_2024.csv) y el [resumen con controles y límites](../_static/eda_doc/summary.json).
+La ACF/PACF de un minuto usa los últimos 30 días de entrenamiento; la ACF de cuadrados hasta 28 días usa el mayor tramo continuo de entrenamiento y se representa cada 60 minutos. No se unen observaciones a ambos lados de huecos. Las pruebas horarias no se presentan como evidencia intercambiable con las diarias.
 
-- **Decisión de preprocesamiento:** conservar el calendario, las ausencias y la disponibilidad causal de OHLCV; mantener las cinco covariables acordadas sin escoger un subconjunto por estas gráficas.
-- **Impacto en la arquitectura:** conservar una entrada $D\times5$ para las historias confirmadas y el mismo objetivo de siete retornos diarios. Las correlaciones no fijan el ancho, la profundidad, el rezago ganador ni un modelo superior.
-- **Riesgos identificados:** correlaciones espurias de niveles, objetivo y ventanas solapados, selección retrospectiva por inspección, fechas comprimidas y uso indebido de una correlación diagnóstica como predictor contemporáneo. No se extraen conclusiones de test ni resultados de entrenamiento.
+- **Decisión de preprocesamiento:** mantener como candidatas las entradas de 7/14/21/28 días; elegir por validación y registrar sensibilidad, sin seleccionar rezagos por test.
+- **Impacto en la arquitectura:** las ventanas diarias fijan pasos temporales de MLP, recurrentes o convolucionales; la familia final depende de literatura y evaluación, no de una correlación aislada.
+- **Riesgos identificados:** dependencia de etiquetas móviles, bandas aproximadas, múltiples pruebas y confusión de frecuencias.
 
-### 2.5.5. Correspondencia con los requisitos del EDA
+### 2.5.4. Frecuencia, granularidad y faltantes
 
-| Requisito aplicable de la guía | Evidencia actual | Estado y límite |
-|---|---|---|
-| Distribución y colas del objetivo continuo | §2.1.1, ocho perfiles año–ventana, cuantiles, figuras y umbral IQR fijado en 2023 | Ejecutado en desarrollo; balance, entropía y recuentos de clases no aplican |
-| Calidad, duplicados y faltantes | Unicidad temporal, auditoría OHLCV, máscaras y propagación del hueco a retornos/etiquetas/ventanas | Caracterización ejecutada; 80 minutos ausentes y un cierre no elegible. MCAR/MAR/MNAR no identificable con esta evidencia |
-| Ruido de etiqueta | Reconstrucción independiente de 2.924 posiciones; 2.780 etiquetas válidas y cero discrepancias de elegibilidad | Consistencia numérica verificada; error del proveedor y del proxy no estimado de forma independiente. Acuerdo entre anotadores no aplica |
-| Desplazamiento entre particiones | Seis distancias KS y doce contrastes condicionales por bloques/Holm para OHLCV previo y σ7, más diagnósticos complementarios | Exploratorio bajo intercambiabilidad de bloques; cubre seis marginales lag1, no igualdad conjunta, todos los rezagos D ni test |
-| Proporciones y semilla de partición | 365/366/608 días sobre 1.339 asignados; 27,26/27,33/45,41 % | División cronológica determinista; semilla no aplicable, distinta de las semillas de remuestreo |
-| Partición cronológica con embargo | Manifiesto versión 2: $D$ días de resultado omitidos y $u\le t-D-1$ | Aplicado a los 5.856 índices; no implica independencia de etiquetas solapadas ni entrenamiento ejecutado |
-| Frecuencia, desfases y disponibilidad de covariables | §2.5.1 y controles de alineación causal | Documentados para OHLCV diario y horizonte de un día |
-| Relaciones con rezagos de covariables | 140 combinaciones Pearson/Spearman, con rezagos de 1 a 28 días en 2023 | Descriptivo ejecutado; no selecciona una ventana por desempeño |
-| Relaciones variables en el tiempo | Correlaciones retrospectivas de 60 días y al menos 50 pares | Descriptivo ejecutado; sin declaración de ruptura significativa |
-| Autocorrelación de residuos de una referencia | Regresión lineal regularizada prevista con las mismas covariables rezagadas | Pendiente de ajuste y predicciones fuera de entrenamiento en E2, según el alcance operativo solicitado |
-| Escalado solo con el pasado | PCA exploratorio ajustado en 2023 y regla de ajuste por entrenamiento de cada fold | Regla fijada; las transformaciones del entrenamiento de redes aún no se han ejecutado |
-| Congelación del test | Manifiesto de reserva de 20 ZIP con hashes y ausencia de apertura de test en los scripts de EDA | Reserva bruta documentada; falta el manifiesto supervisado final con orígenes, etiquetas y exclusiones |
+La auditoría distingue 80 minutos ausentes del CSV y un minuto con cierre temporal no elegible. Ninguno se interpola. Se agregan OHLCV por días UTC completos; un retorno diario que necesite un día inválido permanece ausente. El par único no requiere un modelo global entre activos.
 
-Esta correspondencia mantiene separados los análisis ejecutados, las decisiones metodológicas y los productos todavía pendientes. En particular, los diagnósticos de retornos de §2.2 no sustituyen el diagnóstico de residuos que exige el bloque C para revisar si la formulación necesita historia del objetivo.
+![Cierres de días completos y envolvente de retornos de un minuto](../_static/eda/02_precios_retornos.png)
+
+La envolvente representa extremos horarios de retornos de un minuto para visualizar todos los episodios; no son retornos horarios. La etiqueta temporal de un cierre agregado indica cuándo se vuelve observable.
+
+- **Decisión de preprocesamiento:** construir secuencias sobre una cuadrícula diaria regular y rechazar ventanas afectadas por días incompletos.
+- **Impacto en la arquitectura:** los modelos reciben D pasos diarios; no 1.440 pasos por día salvo un experimento distinto expresamente declarado.
+- **Riesgos identificados:** confundir la fecha de apertura con disponibilidad del cierre, unidades ms/us y retornos calculados atravesando huecos.
+
+### 2.5.5. Outliers y anomalías
+
+![Distribución completa y zoom de retornos de un minuto de entrenamiento](../_static/eda/03_distribucion_retornos.png)
+
+En los retornos de un minuto de entrenamiento, la asimetría es **-0.674028** y el exceso de curtosis **132.006**. No se presupone una distribución normal. El zoom de la figura no elimina colas del dataset. Para retornos diarios, el criterio exploratorio fuera de q1 %–q99 % de entrenamiento marca **8 días de 2023** y **15 de 2024** con umbrales fijos de train; no se eliminó ninguno por ser extremo.
+
+- **Decisión de preprocesamiento:** distinguir errores verificables de eventos reales y conservar extremos. No se aplica clipping ni se cambia la pérdida sin validación.
+- **Impacto en la arquitectura:** controlar estabilidad de entrenamiento y comparar pérdidas/métricas bajo el mismo protocolo; las colas no justifican automáticamente mayor complejidad.
+- **Riesgos identificados:** borrar episodios de interés y elegir umbrales con información futura. El impacto sobre error de pronóstico y la causa de eventos quedan pendientes de modelos y evidencia adicional.
+
+### 2.5.6. Horizonte, estrategia de pronóstico y validación
+
+Las entradas confirmadas son 7/14/21/28 días de historia; el horizonte principal es un día. Se exploraron cuatro definiciones de volatilidad histórica, sin confundirlas con la longitud de entrada. Cualquier horizonte adicional al principal debe registrarse antes del entrenamiento y de la evaluación.
+
+Los folds se materializaron con `timeseries-cv` 0.1.5 y controles explícitos de fechas, observabilidad y continuidad. El entrenamiento de los tres modelos sigue pendiente. La función no garantiza por sí sola ausencia de fuga para cualquier combinación de longitudes: los controles de disponibilidad se aplican antes de admitir cada muestra y la convención del embargo se declara en §2.1.4. El BDS solicitado por el material específico para residuos del primer horizonte es un diagnóstico complementario; queda previsto para las predicciones de las redes fuera de entrenamiento y no reemplaza el análisis de autocorrelación de residuos exigido en la ruta 6.4.
+
+- **Decisión de preprocesamiento:** fijar las configuraciones de objetivos y orígenes, producir manifiestos de muestras y ajustar transformaciones solo con pasado.
+- **Impacto en la arquitectura:** entrada diaria con dimensión explícita; salida principal escalar no negativa; cualquier salida adicional debe registrarse.
+- **Riesgos identificados:** leakage por etiqueta conocida, transformaciones globales y supuestos de independencia entre volatilidades solapadas.

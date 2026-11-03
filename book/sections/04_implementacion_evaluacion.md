@@ -1,6 +1,6 @@
 # 4. Diseño de implementación y evaluación para la etapa E2
 
-La selección documental de §3 identifica LSTM, TCN y encoder Transformer, con las limitaciones de cobertura y calidad allí declaradas. Este capítulo conserva el diseño necesario para trasladar esas familias a una evaluación futura. No contiene resultados propios de entrenamiento.
+La selección documental de §3 identifica LSTM, TCN y encoder Transformer, con las limitaciones de cobertura y calidad allí declaradas. Este capítulo conserva el diseño necesario para trasladar esas familias a una evaluación futura. No contiene resultados de entrenamiento de esas redes. Las cuatro referencias Ridge ajustadas para el diagnóstico de residuos del EDA se presentan por separado en §2.2.4 y no fijan el protocolo de este capítulo.
 
 ## 4.1. Diseño Experimental
 
@@ -403,7 +403,7 @@ $\mathcal J_s$ contiene pares de etiquetas válidas separados por **$s$ días de
 
 El horizonte principal confirmado es **un día**. Las métricas se reportarán para cada combinación de longitud de entrada $D$ y ventana de volatilidad $n$, manteniéndolas separadas porque definen configuraciones y objetivos distintos. Si se añaden horizontes, se registrarán y se informarán métricas por horizonte antes de cualquier promedio global.
 
-La ruta 6.4 incluye como referencia de contexto una **regresión lineal regularizada con las mismas covariables rezagadas**. Su representación aplanada conservará los $5D$ valores disponibles para las redes y su ajuste respetará el mismo protocolo temporal; no ocupa un puesto del trío DL.
+La ruta 6.4 incluye como referencia de contexto una **regresión lineal regularizada con las mismas covariables rezagadas**. Su representación aplanada conservará los $5D$ valores disponibles para las redes y su ajuste respetará el mismo protocolo temporal; no ocupa un puesto del trío DL. La versión diagnóstica estática ya ejecutada se documenta en §2.2.4; su configuración no se transfiere automáticamente al benchmark.
 
 Se conserva además **persistencia de la volatilidad histórica disponible** al pronosticar como referencia del margen operativo del 5 %. Se evaluará también un ingenuo estacional cuando se justifique un periodo $s$ con desarrollo y su información sea observable. Por ejemplo, el periodo semanal debe justificarse y fijarse; no se adopta automáticamente porque el EDA muestre un STL con periodo siete.
 
@@ -447,7 +447,7 @@ Se generarán gráficas de valores reales frente a predicciones en el tiempo y d
 
 Los residuos conservarán fecha y signo. Con $e_t=Y_t-\widehat Y_t$, una media positiva indica subestimación de volatilidad. Se examinarán sesgo, distribución, relación con nivel pronosticado, estructura temporal y heterocedasticidad; se mostrarán ACF de residuos y de sus cuadrados cuando correspondan.
 
-Para esta regresión temporal se documentarán **Ljung–Box** y el diagnóstico **BDS** previsto en el apartado específico de series de tiempo y regresión temporal de la guía, con rezagos, parámetros, tamaño muestral, supuestos y multiplicidad. El BDS requerido sobre residuos del primer horizonte se ejecutará cuando existan predicciones: una prueba sobre retornos crudos del EDA no lo sustituye. Un rechazo o no rechazo no demuestra por sí solo capacidad predictiva ni independencia absoluta.
+Para esta regresión temporal se documentarán **Ljung–Box** y el diagnóstico **BDS** previsto en el apartado específico de series de tiempo y regresión temporal de la guía, con rezagos, parámetros, tamaño muestral, supuestos y multiplicidad. El BDS requerido sobre residuos del primer horizonte se ejecutará cuando existan predicciones de las redes: una prueba sobre retornos crudos del EDA no lo sustituye. Un rechazo o no rechazo no demuestra por sí solo capacidad predictiva ni independencia absoluta.
 
 Los huecos y el solapamiento de objetivos móviles se considerarán al elegir tramos y métodos. No se concatenarán fechas separadas como si fueran observaciones consecutivas ni se usarán residuos de entrenamiento para aparentar un diagnóstico fuera de muestra.
 
@@ -460,7 +460,7 @@ Los huecos y el solapamiento de objetivos móviles se considerarán al elegir tr
 | Tablas por configuración, horizonte y referencia ingenua | Sin resultados todavía |
 | Media, desviación, intervalos y comparación pareada | Pendientes de corridas |
 | Robustez, curvas y análisis por segmentos | Pendientes de modelos entrenados |
-| Predicciones frente a reales y diagnóstico de residuos | Pendientes |
+| Predicciones frente a reales y diagnóstico de residuos de las tres redes | Pendientes; las referencias lineales del EDA están en §2.2.4 |
 | Evaluación definitiva de test | No ejecutada |
 
 Las tablas y gráficas de este apartado se incorporarán desde predicciones verificables, sin reutilizar estadísticas descriptivas del EDA como si fueran métricas de pronóstico.

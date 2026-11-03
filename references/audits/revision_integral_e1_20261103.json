@@ -1,6 +1,6 @@
 {
   "review_date": "2026-11-03",
-  "scope": "Full E1 documentary review with development-only EDA diagnostics and data-partition preparation. Predictive model training, tuning, pilot and benchmark remain reserved for E2 by user instruction.",
+  "scope": "Full E1 documentary review with development-only EDA diagnostics and data-partition preparation; four static Ridge references authorized specifically for block-C residual EDA. DL training, tuning, pilot and benchmark remain reserved for E2 by user instruction; E1 is not declared complete.",
   "guide_path": "references/course/Entregable1DeepLearningProject.pdf",
   "guide_pages": 34,
   "guide_sha256": "56cffb2e0e23bbdfd28815b7c7515d2663bf501ed5d6e0656a37a76fc45e43eb",
@@ -74,9 +74,9 @@
       "id": "R09",
       "requirement": "EDA específico de regresión temporal",
       "guide_pages": "6–7",
-      "status": "Parcial",
-      "evidence_or_correction": "Disponibilidad de covariables, rezagos y relaciones móviles descritos con evidencia existente.",
-      "remaining_work": "Falta ajuste de referencia lineal regularizada y diagnóstico de sus residuos; reservado para E2 por el usuario."
+      "status": "Desarrollado en alcance EDA; límites explícitos",
+      "evidence_or_correction": "Disponibilidad causal, 140 pares variable–rezago en cohorte común de 308 fechas, relaciones móviles y cuatro Ridge estáticos de 2023 con 1464 residuos fuera del ajuste en 2024; ACF y Ljung–Box/Holm 12.",
+      "remaining_work": "Los diagnósticos son exploratorios: solapamiento del objetivo, limitaciones lineales y deriva pueden producir dependencia; no seleccionan D o α ni cambian automáticamente el tipo 4. No sustituyen el benchmark DL."
     },
     {
       "id": "R10",
@@ -123,7 +123,7 @@
       "requirement": "Implementaciones, piloto y dimensionamiento",
       "guide_pages": "16–20",
       "status": "No ejecutado en este alcance",
-      "evidence_or_correction": "El diseño distingue decisiones documentales vigentes y borrador histórico incompleto; no hay corridas propias incorporadas.",
+      "evidence_or_correction": "No se han implementado o entrenado las tres redes ni ejecutado piloto. Los cuatro Ridge ajustados pertenecen exclusivamente al diagnóstico EDA y no satisfacen esa implementación DL.",
       "remaining_work": "La guía exige estos productos en E1; el usuario los reserva para E2. Esa decisión no acredita una excepción del docente."
     },
     {
@@ -132,14 +132,14 @@
       "guide_pages": "21–26",
       "status": "No ejecutado en este alcance",
       "evidence_or_correction": "Se distinguen mejora puntual, incertidumbre temporal, variabilidad por semillas, multiplicidad y relevancia práctica.",
-      "remaining_work": "Faltan predicciones, métricas, costes, intervalos, potencia y baseline medido. No sustituidos por números de autores."
+      "remaining_work": "Faltan predicciones comparables de las tres redes y persistencia, métricas, costes, intervalos, potencia y baseline DL medido. Las referencias Ridge EDA y los números de autores no sustituyen esas evidencias."
     },
     {
       "id": "R17",
       "requirement": "Reproducibilidad y productos exigidos",
       "guide_pages": "33–34",
       "status": "Parcial",
-      "evidence_or_correction": "Código EDA/CV, datos y hashes, dependencias, semillas propuestas históricas y libro versionado.",
+      "evidence_or_correction": "Código EDA/CV, datos y hashes, cuatro referencias lineales con parámetros y predicciones auditables, dependencias, semillas propuestas históricas y libro versionado.",
       "remaining_work": "Entorno/configuraciones finales de entrenamiento, artefactos de corridas y decisiones de inferencia siguen pendientes."
     },
     {
@@ -152,13 +152,23 @@
     }
   ],
   "verification": {
-    "own_models_trained_in_this_review": 0,
+    "own_models_trained_in_this_review": 4,
     "raw_test_archives_opened_in_this_review": 0,
     "fold_rows": 5856,
     "cv_manifest_sha256": "d46153075ce18231f24ff43b6f80dba555003b963dc5d1c4bd4d8ade90148571",
     "test_raw_reserve_manifest_sha256": "d2eb4e84fff85ee957e6b02890cead3cec37fd593ec2a8db487dbe137d2d3a10",
     "reference_count": 33,
-    "reference_table_columns": 4
+    "reference_table_columns": 4,
+    "own_reference_models_fitted_in_this_review": 4,
+    "own_deep_learning_models_trained_in_this_review": 0,
+    "pilot_runs_in_this_review": 0,
+    "benchmark_comparisons_in_this_review": 0,
+    "test_files_opened_in_this_review": 0,
+    "own_model_count_scope": "Four static Ridge references authorized only for EDA; no DL baselines or benchmark models trained.",
+    "temporal_eda_predictions": 1464,
+    "temporal_eda_summary": "results/eda_temporal_reference/summary.json",
+    "temporal_eda_summary_sha256": "ec8087cc54454e64b90ad2d25c443f81ac96efd75004f9fd2e8478fc9ed37d47"
   },
-  "latest_eda_general_review": "references/audits/revision_eda_general_20261103.json"
+  "latest_eda_general_review": "references/audits/revision_eda_general_20261103.json",
+  "latest_eda_temporal_review": "references/audits/revision_eda_temporal_20261103.json"
 }
