@@ -55,13 +55,15 @@ La revisión del capítulo 5 está en el {download}`informe de benchmark y basel
 
 La revisión del capítulo 6 está en el {download}`informe del procedimiento <../_static/e1/revision_procedimiento_20261103.md>` y su [matriz](../_static/e1/revision_procedimiento_20261103.json). Se aplica únicamente la ruta 6.4, con reconsideración documentada tras los residuos de Ridge y sin añadir historia explícita del objetivo. El capítulo consolida reloj, embargo, escalado interno, métricas e inferencia y ordena los hitos pendientes; las especificaciones de diseño y benchmark conservan su contenido y sus campos abiertos.
 
+La revisión del capítulo 7 está en el {download}`informe de limitaciones y entregables <../_static/e1/revision_limitaciones_entregables_20261103.md>` y su [matriz](../_static/e1/revision_limitaciones_entregables_20261103.json). Se precisa el límite exacto bilateral de Wilcoxon bajo Holm para tres comparaciones, sin elegir siete semillas; se distinguen diferencia frente a cero y equivalencia práctica. Los siete productos, las dependencias/configuraciones y la cronología del registro quedan explícitos, sin autocalificar la rúbrica ni ejecutar nuevos experimentos. Las filas de cribado y literatura siguientes muestran el corte acumulado vigente.
+
 ## Estado de los siete cambios solicitados
 
 | Prioridad | Producto | Estado verificable |
 |---|---|---|
 | 1 | Fuentes y búsqueda trazable | Tabla de las 35 referencias citadas, con enlaces y nivel de evidencia; consultas complementarias e historial de acceso conservados |
-| 2 | Cribado y flujo | 118 ocurrencias, 12 duplicadas, 106 repositorios, 14 inspeccionados, 5 textos completos y 3 incluidos; unidades diferenciadas |
-| 3 | Matriz de literatura | Tres textos incluidos, 42 valores publicados y evaluación de calidad con ubicaciones |
+| 2 | Cribado y flujo | 118 ocurrencias, 12 duplicadas, 106 repositorios, 20 inspeccionados, 7 textos evaluados y 5 incluidos; recuperación acumulada y corte histórico diferenciados |
+| 3 | Matriz de literatura | Cinco textos incluidos, 81 cifras publicadas y evaluación de calidad con ubicaciones; cifras de autores, no resultados propios |
 | 4 | Candidatos para tres modelos básicos | LSTM–TCN–encoder Transformer documentados; la selección definitiva por frecuencia y mínima complejidad permanece parcial |
 | 5 | Fichas técnicas | Ecuaciones, diagramas, parámetros analíticos, configuraciones fuente, resultados publicados, fortalezas y límites |
 | 6 | Comparación crítica | Objetivos/mercados/escalas comparados, riesgos y brecha limitada al corpus |

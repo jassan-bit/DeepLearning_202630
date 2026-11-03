@@ -15,7 +15,7 @@ Este libro desarrolla el **Entregable 1 de Deep Learning** para el pronóstico d
 - [Implementación y evaluación](sections/04_implementacion_evaluacion.md): diseño revisado, especificación documental actual, piloto y potencia pendientes; sin ejecutar las redes ni el test.
 - [Benchmark y baseline](sections/05_benchmark.md): ranking, selección con desarrollo, inferencia y contrato documental revisados; resultados empíricos pendientes.
 - [Procedimiento temporal](sections/06_procedimiento.md): aplicabilidad de las once rutas, desarrollo de la 6.4 y secuencia de cierre coherente con los protocolos actuales.
-- [Limitaciones y entregables](sections/07_limitaciones_entregables.md): potencia, límites inferenciales, rúbrica y estado verificable de los productos exigidos.
+- [Limitaciones y entregables](sections/07_limitaciones_entregables.md): límites exactos de Wilcoxon/Holm, potencia, equivalencia y matriz de los siete productos; rúbrica sin autocalificación y ejecución pendiente.
 - [Decisiones, revisión y pendientes](sections/protocolo_pendiente.md): matriz de requisitos, correcciones ejecutadas, evidencia parcial y proyección a E2.
 - [Referencias y materiales](sections/referencias.md): catálogo bibliográfico inicial y fuentes adicionales de las fichas.
 
