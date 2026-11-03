@@ -53,6 +53,8 @@ La revisión del capítulo 4 se conserva en el {download}`informe de implementac
 
 La revisión del capítulo 5 está en el {download}`informe de benchmark y baseline <../_static/e1/revision_benchmark_baseline_20261103.md>` y su [matriz](../_static/e1/revision_benchmark_baseline_20261103.json). El [contrato documental del benchmark](../_static/experiments/benchmark_documental_20261103.json) fija agregación descriptiva y roles de referencia, con inferencia final y resultados pendientes. Se distingue el baseline seleccionado en desarrollo del ranking descriptivo de test, y la media de RMSE entre semillas de la pérdida temporal examinada por DM.
 
+La revisión del capítulo 6 está en el {download}`informe del procedimiento <../_static/e1/revision_procedimiento_20261103.md>` y su [matriz](../_static/e1/revision_procedimiento_20261103.json). Se aplica únicamente la ruta 6.4, con reconsideración documentada tras los residuos de Ridge y sin añadir historia explícita del objetivo. El capítulo consolida reloj, embargo, escalado interno, métricas e inferencia y ordena los hitos pendientes; las especificaciones de diseño y benchmark conservan su contenido y sus campos abiertos.
+
 ## Estado de los siete cambios solicitados
 
 | Prioridad | Producto | Estado verificable |
