@@ -51,6 +51,8 @@ El bloque C aplicable se desarrolla en §2.2 con dos módulos adicionales: el [E
 
 La revisión del capítulo 4 se conserva en el {download}`informe de implementación y evaluación <../_static/e1/revision_implementacion_evaluacion_20261103.md>` y su [matriz](../_static/e1/revision_implementacion_evaluacion_20261103.json). La [especificación documental actual](../_static/experiments/protocolo_e2_documental_20261103.json) sincroniza decisiones aceptadas y campos abiertos sin sustituir el borrador histórico. Se distinguen detección frente a cero y superación del 5 %, corridas y ajustes, selección de 2024 y validación interna, escalado del subentrenamiento y máscara de MASE. No se calcularon R/MDE ni se ejecutaron redes, piloto, benchmark o test.
 
+La revisión del capítulo 5 está en el {download}`informe de benchmark y baseline <../_static/e1/revision_benchmark_baseline_20261103.md>` y su [matriz](../_static/e1/revision_benchmark_baseline_20261103.json). El [contrato documental del benchmark](../_static/experiments/benchmark_documental_20261103.json) fija agregación descriptiva y roles de referencia, con inferencia final y resultados pendientes. Se distingue el baseline seleccionado en desarrollo del ranking descriptivo de test, y la media de RMSE entre semillas de la pérdida temporal examinada por DM.
+
 ## Estado de los siete cambios solicitados
 
 | Prioridad | Producto | Estado verificable |

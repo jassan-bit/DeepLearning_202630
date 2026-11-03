@@ -1,12 +1,26 @@
-# 5. Criterios del benchmark y baseline previstos para E2
+# 5. Benchmark y baseline: protocolo y estado de ejecución
 
 El benchmark comparará **exactamente tres arquitecturas DL una vez se cierre la selección de §3**. Las fichas LSTM, TCN y encoder Transformer siguen como candidatas y GRU continúa evaluable; no fijan todavía los tres puestos experimentales. La comparación usará configuraciones respaldadas y el protocolo común de §4. Su resultado será identificar una referencia mínima de desempeño que un modelo avanzado deberá superar con evidencia estadística y relevancia práctica.
+
+La guía exige un benchmark medido en E1; el alcance acordado mantiene su ejecución para E2. Este capítulo revisa los apartados 5.1–5.5 y distingue el protocolo de sus resultados aún inexistentes. Las cuatro Ridge del EDA y los valores de autores no constituyen ese benchmark ni permiten elegir un ganador DL.
+
+La revisión está en el {download}`informe de benchmark y baseline <../_static/e1/revision_benchmark_baseline_20261103.md>` y su [matriz de requisitos](../_static/e1/revision_benchmark_baseline_20261103.json). El [contrato documental del benchmark](../_static/experiments/benchmark_documental_20261103.json) complementa la especificación de §4; conserva reglas de reporte y decisiones abiertas, sin ser una configuración ejecutable o congelada.
 
 ## 5.1. Comparación Tabular
 
 ### 5.1.1. Alcance y unidad de comparación
 
 Se elaborará una tabla por configuración comparable: ventana de entrada $D$, ventana de volatilidad $n$, horizonte, periodo y conjunto de evaluación. Se mantendrán las mismas muestras, exclusiones, semillas y definición de métricas entre modelos.
+
+La configuración $c$ identifica $(n,D,h)$ y versiones de datos/protocolo. Cada tabla añade fase, periodo y cohorte elegible. Para esa tabla, con orígenes comunes $\mathcal V_c$ y repeticiones $\mathcal S_c$, la métrica de una corrida y la puntuación principal serán:
+
+$$
+m_{m,s,c}=\sqrt{\frac1{N_c}\sum_{t\in\mathcal V_c}
+(Y_t-\widehat Y_{m,s,t})^2},\qquad
+S_{m,c}=\frac1{R_c}\sum_{s\in\mathcal S_c}m_{m,s,c}.
+$$
+
+Se ordena por **media de RMSE calculadas por corrida**, con DE muestral entre ellas. No equivale a calcular una única RMSE sobre todas las filas semilla×fecha ni a usar el promedio de predicciones: este último define un ensemble adicional. Si hay fallas, se registrarán intentos, repeticiones completas y cobertura conforme a la regla previa; no se elegirán corridas válidas por favorecer a un modelo ni se declarará completo un diseño que no cumpla su regla de comparación.
 
 Las ventanas de volatilidad definen objetivos diferentes. No se elegirá un supuesto mejor modelo comparando directamente la RMSE de una volatilidad de siete días con la RMSE de otra de veintiocho días. El ranking y las diferencias se calcularán dentro de cada comparación bien definida.
 
@@ -24,7 +38,11 @@ La tabla siguiente es una **plantilla pendiente de resultados**, no una comparac
 
 Se conservará un formato largo con un intervalo por cada métrica que lo requiera; la columna resumida de intervalos no se interpretará como un único IC aplicable a todas las métricas. Las métricas adicionales incluyen MAPE, MSE, R² y MASE, con los casos no definidos y la cobertura documentados según §4.4.
 
+Las plantillas de [tabla de resultados](../_static/experiments/tabla_benchmark_plantilla.csv) y [registro de contrastes](../_static/experiments/contrastes_benchmark_plantilla.csv) contienen **solo encabezados**. No son filas de mediciones realizadas. Cada resultado futuro conservará fase —selección o test—, periodo, modelo, configuración, versión, máscara de casos y alcance del intervalo.
+
 Los tiempos indicarán unidad, hardware, tamaño de lote, calentamiento y si incluyen preprocesamiento. El número de parámetros distinguirá entrenables y no entrenables. No se sustituirá una medición por una estimación teórica no identificada como tal.
+
+Se separarán duración por ajuste, costo total de la corrida y costo de búsqueda de hiperparámetros, además de latencia y throughput de inferencia cuando procedan. No se comparará tiempo de un único ajuste con el total de cientos de reajustes. El uso de GPU, precisión, sincronización y condiciones de medición seguirán §4.3.4.
 
 ### 5.1.3. Incertidumbre y trazabilidad
 
@@ -36,11 +54,15 @@ Se diferenciará incertidumbre entre semillas sobre el mismo conjunto de evaluac
 
 ### 5.2.1. Criterio principal y cierre de selección
 
-El criterio principal fijado es **menor RMSE media**, con métricas secundarias y costo como información complementaria. Se fijarán antes del test las reglas de selección y desempate; no se elegirá una regla después de observar qué modelo favorece.
+El criterio principal fijado es **menor $S_{m,c}$**, con métricas secundarias y costo como información complementaria. Las reglas de selección, viabilidad y desempate se cerrarán con desarrollo antes de test, usando valores sin redondear. Un empate exacto conservará sus identificadores hasta aplicar esa regla; una diferencia pequeña o dos IC solapados no definen equivalencia.
 
 El modelo de referencia operativo se seleccionará con validación de desarrollo y se congelará antes de test. La tabla final puede ordenar de forma descriptiva el desempeño de los tres modelos en test, pero ese orden no autoriza reabrir la selección. Si difiere del orden de validación, se reportarán ambos y esa discrepancia, sin reemplazar silenciosamente la referencia congelada.
 
+Como no hay una D principal elegida, se definirá una referencia **$B_c$ por configuración**. Obtener una única referencia entre historias requeriría una regla global de D y una población comparable cerradas en desarrollo; no se introduce esa regla promediando filas después de evaluar. El mismo identificador seleccionado se conserva al reportar 2025 y 2026, junto con su política de actualización: no se elige retrospectivamente un baseline distinto en cada año.
+
 Todavía no se asignan posiciones: los modelos no han sido entrenados. Un intervalo solapado o una diferencia pequeña no define por sí solo un empate formal; se requiere la comparación pareada y la interpretación de relevancia práctica.
+
+La selección con desarrollo puede identificar una referencia operativa aunque no se demuestre superioridad estadística sobre todas las alternativas. Se comunica entonces la regla, su incertidumbre y el resultado inconcluso; no se exige obtener significación para poder nombrar una referencia. Los extremos elegidos después de ver test son dependientes de esos datos: sus comparaciones no se presentan como contrastes de referencia fijada a priori sin tratar esa selección.
 
 ### 5.2.2. Precisión, costo y complejidad
 
@@ -50,6 +72,8 @@ Una menor RMSE no se presentará automáticamente como la mejor decisión operac
 
 La complejidad y el tiempo no se confunden: menos parámetros no garantiza menor latencia. No se dibujarán curvas o diagramas de Pareto ficticios mientras falten mediciones.
 
+Se distinguirán los frentes error–tiempo y error–parámetros, o se declarará una comparación multidimensional. La dominancia sobre medias es **descriptiva de esas estimaciones**; no demuestra dominancia poblacional ante incertidumbre. Una recomendación de despliegue por costo puede diferir del líder de RMSE, pero se identificará como otra decisión. No sustituye el baseline del criterio principal salvo que la restricción de recursos y su regla hubieran quedado fijadas antes del test.
+
 ## 5.3. Definición del Baseline y Margen de Mejora Disponible
 
 ### 5.3.1. Baseline de referencia
@@ -58,21 +82,32 @@ Se identificará explícitamente el modelo seleccionado mediante desarrollo, su 
 
 El baseline no es solo el nombre de una familia: incluye datos, objetivo, horizonte, pipeline, restricciones, configuración y protocolo de evaluación. Todavía no existen resultados propios que permitan ordenar LSTM, TCN y encoder Transformer o identificar un baseline ganador. La selección documental no satisface por sí sola la exigencia de desempeño medido.
 
+Es una **referencia empírica bajo condiciones definidas**, no una cota universal de error mínimo. La congelación identifica arquitectura, hiperparámetros, transformaciones y reglas de entrenamiento/actualización; los checkpoints y predicciones quedan ligados a su corrida y calendario. Si en una futura comparación se usan fechas nuevas, la referencia seguirá el procedimiento congelado aplicable a esas fechas, sin volver a seleccionar la arquitectura.
+
 ### 5.3.2. Diferencias relativas de RMSE y MAE
 
-Para un error de referencia positivo se calculará:
+Para la métrica de error k se usarán sus medias por corrida $\bar M_{m,k,c}$ sobre repeticiones y fechas comparables. Los extremos descriptivos se identifican **por métrica**:
 
 $$
-\Delta_{\mathrm{RMSE}}(m;\mathrm{ref})=
-\frac{\mathrm{RMSE}_{\mathrm{ref}}-\mathrm{RMSE}_{m}}
-{\mathrm{RMSE}_{\mathrm{ref}}}\times100\%.
+r^{\mathrm{mejor}}_{k,c}=\arg\min_m\bar M_{m,k,c},\qquad
+r^{\mathrm{peor}}_{k,c}=\arg\max_m\bar M_{m,k,c}.
 $$
 
-Se usará una expresión equivalente para MAE. Un valor positivo indica reducción del error frente a la referencia, cero igualdad y un valor negativo mayor error. Si el error de referencia es cero, el porcentaje no está definido y no se reemplazará su denominador por un epsilon.
+El mejor o peor por RMSE no tiene por qué serlo por MAE. Las tablas identificarán qué referente se usa para cada porcentaje. Si se calcula MAE frente a los identificadores elegidos por RMSE como análisis complementario, se rotulará así y no se los llamará extremos MAE. Los empates conservarán sus identificadores según §5.2.1.
 
-El benchmark informará las diferencias respecto al **peor** y al **mejor** modelo de la misma tabla comparable. Frente al mejor error, los otros modelos tendrán mejoras negativas o nulas: no se cambiará el signo para aparentar ganancias. Esas referencias descriptivas se distinguirán del baseline operativo congelado antes de test.
+La reducción relativa descriptiva se calculará **sobre las medias por corrida**:
 
-Se declarará si el porcentaje se calcula sobre errores agregados o como media de porcentajes pareados; son operaciones diferentes. Las comparaciones estadísticas utilizarán las métricas por corrida y las predicciones correspondientes, no solo cifras redondeadas de una tabla.
+$$
+\Delta_k(m;r,c)=100\,
+\frac{\bar M_{r,k,c}-\bar M_{m,k,c}}{\bar M_{r,k,c}},
+\qquad \bar M_{r,k,c}>0.
+$$
+
+Un valor positivo favorece al modelo m frente a r; negativo indica mayor error. Respecto al mejor error de esa métrica, las otras filas tendrán reducciones no positivas. Si el referente vale cero, el porcentaje es indefinido, sin epsilon. Se publicarán también diferencias en unidades originales, con signo y referentes identificados.
+
+La razón de medias no equivale a la media de porcentajes por semilla. Esta última sería otro estimando; no se mezcla con el principal de la tabla. Las comparaciones pareadas usan las métricas individuales y las predicciones, sin sustituirlas por cifras redondeadas. Para un IC de la razón se recalculan numerador y denominador conjuntamente bajo la unidad de inferencia registrada.
+
+Los extremos observados en test se mantienen como referencias descriptivas, separadas de $B_c$ congelado con desarrollo. La selección del mínimo o máximo en ese mismo test debe tratarse si se desean afirmaciones inferenciales sobre ellos; aplicar después un IC de referencia fija no elimina el efecto de haberlos escogido.
 
 ### 5.3.3. Tamaño de efecto
 
@@ -86,6 +121,8 @@ con signo, denominador y unidad de emparejamiento identificados. Si $s_d=0$, el 
 
 El efecto entre semillas mide esa variabilidad condicionada a los mismos datos. Para efectos sobre errores temporalmente dependientes se justificará el método de bloques o diseño correspondiente. No se atribuirá independencia a todos los días por disponer de muchas predicciones.
 
+Con $d_s=m_{A,s}-m_{B,s}$, un $d_z$ negativo favorece a A; la reducción porcentual anterior usa el signo opuesto, positiva cuando mejora m. Se rotularán ambas convenciones. El d_z pareado no se calcula con una desviación marginal o combinada de grupos independientes. Tampoco se sustituye automáticamente por el delta de Cliff basado en todos los cruces A×B: eso perdería el emparejamiento. El efecto de rangos elegido deberá conservar las parejas y su convención de ceros/empates. Los umbrales convencionales de efecto pequeño o grande no reemplazan el margen práctico.
+
 ### 5.3.4. Inferencia sobre diferencias y multiplicidad
 
 Se realizarán comparaciones pareadas entre los tres modelos, con contrastes fijados previamente. Se reportarán **diferencia media, IC del 95 %, estadístico y p-value numérico**, tanto sin ajustar como ajustado por comparaciones múltiples cuando proceda.
@@ -96,6 +133,8 @@ El test empleado y la construcción de intervalos respetarán el emparejamiento 
 
 No se ha ejecutado inferencia entre modelos: no hay predicciones ni repeticiones disponibles. Los p-values del EDA no constituyen evidencia de diferencias entre los tres modelos.
 
+Las métricas de 2024 utilizadas para seleccionar hiperparámetros, arquitectura o D son evidencia de selección. Un contraste posterior sobre esos mismos errores no adquiere nivel confirmatorio nominal por añadir Holm. Una evaluación externa del procedimiento requeriría selección anidada en su pasado o una evaluación reservada no usada para diseñarlo. La familia y la fase del contraste se declararán antes de estudiar sus resultados.
+
 ### 5.3.5. Umbral para futuros modelos avanzados
 
 Se distinguirán dos cantidades:
@@ -105,11 +144,22 @@ Se distinguirán dos cantidades:
 
 La desviación entre corridas o la anchura de un IC por sí solas no bastan para declarar una mejora detectable: se necesitan contraste, potencia, emparejamiento y variabilidad de las diferencias. Si la mejora detectable supera el margen registrado para el contraste correspondiente, se ampliará el diseño o se explicitará esa limitación.
 
+Para una propuesta avanzada A frente a un baseline B, en la misma unidad pareada:
+
+$$
+\operatorname{Var}(m_A-m_B)=\operatorname{Var}(m_A)
++\operatorname{Var}(m_B)-2\operatorname{Cov}(m_A,m_B).
+$$
+
+La DE o el IC de B aislado no identifica esa varianza ni una MDE verificable de A−B. Se necesitan estimando, política de entrenamiento o referencia fija, emparejamiento y datos de planificación o supuestos justificados sobre ambas cantidades. No existe aún una MDE numérica para propuestas avanzadas.
+
 Si se comunica el margen como reducción relativa del error, se declarará la referencia y cómo se convierte a las unidades de RMSE. La conversión se fijará con información de desarrollo o una referencia congelada, no se escogerá después para favorecer al modelo avanzado.
 
 Se distinguirá alcanzar el 5 % en la estimación puntual de aportar evidencia de que la mejora alcanza ese margen. La regla inferencial sobre el margen y su incertidumbre se registrará antes de evaluar; un contraste de igualdad de errores no contrasta automáticamente la superación del 5 %.
 
 Antes de comparar un modelo avanzado con el baseline DL se deberá registrar un margen referido a ese baseline, con sentido aplicado y escala clara. El actual 5 % frente a persistencia no fija ese margen adicional. Los futuros modelos deberán compararse bajo condiciones equivalentes y contrastes predefinidos. No basta con superar una cifra puntual redondeada ni con obtener un p-value pequeño.
+
+Se mantendrá la distinción de §4.1.6–§4.1.8: detectar un efecto frente a cero es distinto de demostrar que supera un margen práctico. La MDE por semillas es condicional al calendario y no acredita por sí sola potencia temporal ni potencia conjunta de toda una familia. El umbral avanzado no se define sumando una DE al baseline o tomando un extremo de su IC.
 
 ### 5.3.6. Cota de referencia e interpretación
 
@@ -151,11 +201,17 @@ Se examinarán normalidad de las **diferencias pareadas** mediante Shapiro–Wil
 
 Las 366 fechas y las 5.856 filas configuración–fold no se tratarán como réplicas i.i.d. Las semillas sobre un mismo test representan variabilidad del entrenamiento condicionada a ese mercado y no nuevos mercados independientes. Los supuestos y limitaciones deberán acompañar cada conclusión.
 
+Cada análisis identificará su **estimando y fase**: media de métricas entre entrenamientos, pérdida temporal, razón de errores o diagnóstico residual. La evidencia confirmatoria principal, las sensibilidades y los diagnósticos exploratorios se distinguirán desde el plan. Varias pruebas sobre las mismas predicciones no son confirmaciones independientes; tampoco se dividirán familias después de observar sus p-values.
+
 ### 5.4.2. Comparaciones pareadas: t y Wilcoxon
 
 Para diferencias de métricas por ejecución se considerará **t-test pareado** cuando el diseño y la distribución de diferencias lo justifiquen. Se reportarán hipótesis, número de pares, diferencia media, estadístico, grados de libertad, IC y p-value.
 
+La t pareada contrasta la **media de las diferencias**. Sus condiciones corresponden a esas diferencias y a la independencia entre pares bajo el alcance registrado, no a normalidad de las métricas crudas de cada red ni a igualdad de sus varianzas marginales.
+
 La alternativa **Wilcoxon signed-rank** requiere justificar su uso y declarar el tratamiento de ceros y empates. No es una prueba sin supuestos: para interpretaciones de desplazamiento se considerará la simetría de las diferencias y su unidad de independencia. Se distinguirá el cálculo exacto del aproximado cuando haya empates o limitaciones del software.
+
+Wilcoxon no reemplaza automáticamente una prueba de la misma media cuando falta normalidad: su interpretación de desplazamiento y sus condiciones deben corresponder a la pregunta. Shapiro–Wilk y Q–Q son diagnósticos; no se adoptará después una regla mecánica de elegir t o Wilcoxon según qué p-value resulte favorable. El análisis principal y las sensibilidades se definirán previamente, conservando el estimando o admitiendo una conclusión limitada cuando sus supuestos no sean defendibles.
 
 La elección entre pruebas se justificará desde el diseño y los diagnósticos; no se escogerá la que produzca el p-value más pequeño. Si se usan rangos se respetará el mínimo de seis ejecuciones de la guía, o el número mayor exigido por potencia. Con cinco pares sin ceros ni empates, el menor p-value bilateral exacto de Wilcoxon es $2/2^5=0{,}0625$; con seis es $0{,}03125$, todavía mayor que el primer umbral de Holm para tres pares ($0{,}05/3$). Cumplir el mínimo de semillas no garantiza detectar una diferencia.
 
@@ -165,7 +221,11 @@ Se considerará **ANOVA de medidas repetidas** si se justifican sus supuestos, i
 
 Los bloques deberán representar unidades defendibles del diseño. Repetir el mismo test con varias semillas no permite asumir automáticamente independencia de mercados. Si se usan bloques temporales, su definición y dependencia residual se documentarán.
 
+Un bloque completo reúne los tres resultados bajo la misma unidad. Las configuraciones n/D no se convierten en bloques intercambiables y los faltantes o fallas se reportan sin imputar resultados o eliminar pares silenciosamente. Si los bloques son semillas, la afirmación es condicional al calendario; si son temporales, agrupar días no demuestra independencia. Friedman requiere condiciones de diseño y tratamiento de empates, aunque no sea paramétrico.
+
 Los análisis post-hoc podrán incluir Nemenyi u otras comparaciones pareadas con **Holm o Bonferroni**, según el plan registrado. Se declararán procedimiento, familia de hipótesis y ajustes aplicados; no se combinarán correcciones sin explicar qué controla cada una. La familia incluirá las configuraciones u horizontes sobre los que se realicen afirmaciones, no solo los tres pares de una tabla aislada.
+
+Se registrará si el omnibus actúa como requisito previo para los post-hoc o si existen contrastes pareados principales ya planificados. Nemenyi incorpora control simultáneo para su familia; no se le añade automáticamente Holm/Bonferroni como una segunda corrección equivalente. Un control adicional debe responder a otra familia o nivel justificado. Con muestras pequeñas se declarará también si la referencia utilizada es exacta, aproximada o de permutación y qué condiciones la sostienen.
 
 Un omnibus no significativo no prueba igualdad entre modelos, y un análisis post-hoc no convierte un diseño de baja potencia en evidencia concluyente. Se interpretará junto con efectos, intervalos y MDE.
 
@@ -177,23 +237,44 @@ Para diferencias entre ejecuciones podrá usarse $d_z$ de §5.3.3, u otra medida
 
 Cada contraste se acompañará de la potencia planificada o de la **diferencia mínima detectable del diseño**, con los supuestos de §4.1. No se utilizará una potencia retrospectiva calculada solo a partir del efecto observado como prueba de que el estudio fue suficiente. La muestra pequeña y los objetivos móviles solapados deben reconocerse.
 
-### 5.4.5. Diebold–Mariano por horizonte
+Un remuestreo de predicciones guardadas mide variación de evaluación condicionada a los entrenamientos realizados. Incorporar además incertidumbre del entrenamiento exige declarar cómo se combinan ambos niveles; no basta agrupar semillas×fechas como casos intercambiables. En cada réplica se conservarán conjuntamente etiquetas y predicciones de los métodos y se recalculará la diferencia o razón de RMSE. El IC de diferencias de pérdidas cuadráticas no se reutiliza directamente como IC de diferencias de RMSE.
 
-La precisión predictiva temporal se comparará con **Diebold–Mariano**, por horizonte y sobre fechas comunes. Como RMSE es la métrica primaria fijada, se usará una pérdida cuadrática coherente:
+### 5.4.5. Diebold–Mariano: pérdida, semillas y dependencia
+
+La comparación temporal se realizará sobre las mismas fechas y horizonte, con pérdida cuadrática coherente con RMSE. Para dos procedimientos A y B, una corrida y errores $e_{A,t}=Y_t-\widehat Y_{A,t}$ y $e_{B,t}=Y_t-\widehat Y_{B,t}$:
 
 $$
-e_{A,t}=Y_t-\widehat Y_{A,t},\qquad
-e_{B,t}=Y_t-\widehat Y_{B,t},\qquad
-d_t=e_{A,t}^2-e_{B,t}^2.
+d_t=e_{A,t}^2-e_{B,t}^2,\qquad H_0:\mathbb E[d_t]=0.
 $$
 
-La hipótesis de igualdad de precisión es $H_0:\mathbb E[d_t]=0$. Con este signo, una media negativa favorece a $A$ en pérdida cuadrática. La prueba se aplica a **diferencias de pérdidas por observación**, no a una lista de RMSE globales presentada como si fuera una serie diaria de errores.
+Una media negativa favorece A en pérdida cuadrática. Para la misma corrida y calendario, menor MSE equivale a menor RMSE, pero la prueba no toma como observaciones las RMSE globales. Tampoco contrasta directamente la **media de RMSE entre semillas** usada para el ranking: promediar raíces y tomar raíz de una pérdida media son operaciones diferentes. El resultado se identificará como evidencia sobre la cantidad realmente contrastada, junto con las métricas y sus intervalos correspondientes.
 
-Se declararán estimación de varianza de largo plazo, kernel, rezagos y tamaño de muestra, y se utilizará la **corrección de Harvey–Leybourne–Newbold para muestras pequeñas** solicitada por la guía, documentando su implementación y alcance. El horizonte principal es un día, pero las etiquetas de volatilidad comparten retornos entre fechas: **$h=1$ no garantiza ausencia de autocorrelación en $d_t$**. Los controles de dependencia no se reducirán automáticamente a cero rezagos por ese motivo.
+Antes de evaluar se fijará una de las políticas de semillas y su relación con la afirmación:
 
-El ajuste de muestra pequeña no corrige por sí solo todas las formas de no estacionariedad, selección de modelos o dependencia. Los huecos, etiquetas solapadas y posibles cambios de régimen se considerarán al elegir tramos y métodos. No se concatenarán segmentos discontinuos como si no hubiese interrupciones.
+| Política | Serie temporal contrastada | Alcance |
+|---|---|---|
+| Contraste por corrida preespecificada | $d_{s,t}=e_{A,s,t}^2-e_{B,s,t}^2$ | Condicionado a esa corrida; si se informan varias semillas confirmatoriamente, se registra su familia y agregación de conclusiones |
+| Pérdidas promediadas entre semillas | $\bar d_t=R^{-1}\sum_s(e_{A,s,t}^2-e_{B,s,t}^2)$ | Promedio de pérdidas de los entrenamientos observados, con variabilidad temporal; no sustituye el análisis entre semillas |
+| Ensemble de predicciones registrado | Pérdidas del pronóstico agregado definido previamente | Método agregado adicional; no es la pérdida media de las corridas individuales |
 
-Las semillas se tratarán según un plan previo: no se concatenarán todas las fechas de todas las semillas como una única serie temporal más larga. Si se comparan predicciones agregadas entre semillas, esa agregación deberá registrarse como parte del método, no inventarse después de ver los resultados.
+No se elegirá una semilla tras ver su error o p-value ni se concatenarán todas las semillas como una serie N×R. Los residuos y predicciones de cada corrida conservarán sus identificadores. El análisis de semillas del capítulo 4 permanece diferenciado de esta inferencia temporal.
+
+Se registrará el estimador de varianza de largo plazo de la serie de diferencias, su kernel, ancho de banda/regla de selección y tamaño efectivo. **h=1 no implica independencia**: σ7 comparte seis retornos entre etiquetas consecutivas y puede existir dependencia adicional. Seis tampoco es un límite superior universal del ancho de banda. La regla y su sensibilidad se fijarán con desarrollo o mediante un procedimiento justificado antes de interpretar los resultados, sin buscar el rezago que minimice el p-value. Una varianza de largo plazo nula o no admisible no se transforma en evidencia favorable: se registra la prueba como no calculable y su causa.
+
+Se documentará la corrección **Harvey–Leybourne–Newbold** requerida por la guía, usando el horizonte real h. No se sustituirá h por la ventana n del objetivo ni por la longitud D de entrada para representar dependencia adicional. El ajuste clásico de muestra pequeña no es una calibración general para cualquier HAC, cambio de régimen o proceso de estimación: se explicarán la implementación, sus condiciones y, cuando proceda, un análisis temporal de sensibilidad justificado. Los p-values se identificarán como aproximados cuando lo sean.
+
+Para T fechas consecutivas y varianza de largo plazo admisible $\widehat\Omega_d>0$, las expresiones usuales son:
+
+$$
+DM=\frac{\sqrt T\,\bar d}{\sqrt{\widehat\Omega_d}},\qquad
+DM_{\mathrm{HLN}}=DM\sqrt{\frac{T+1-2h+h(h-1)/T}{T}}.
+$$
+
+Con h=1, el factor HLN es $\sqrt{(T-1)/T}$; no representa la dependencia adicional por σ7. Se conservarán el estimador HAC y la distribución de referencia justificados para el diseño. Escribir este factor no convierte el p-value resultante en exacto ni garantiza calibración fuera de sus condiciones.
+
+La interpretación requiere condiciones defendibles del proceso de pérdidas, incluidos momentos y dependencia adecuados para estimar su varianza de largo plazo. Se revisarán la actualización recursiva, los pares anidados y la selección previa de modelos: la distribución estándar no se presume válida en todos esos diseños. Los tramos y periodos principales se fijarán antes de estudiar las diferencias; no se concatenarán huecos ni se seleccionarán segmentos por producir significación. Si deriva o falta de observaciones impide sostener una calibración, se declarará la limitación o el método alternativo registrado.
+
+Rechazar igualdad de pérdidas no demuestra que la mejora supere el **5 % frente a persistencia**, y no establece un margen para un modelo avanzado frente al baseline DL. Esas afirmaciones necesitan su frontera nula, efecto y procedimiento propios, conforme a §4.1.6–§4.1.8 y §5.3.5.
 
 ### 5.4.6. BDS sobre residuos
 
@@ -203,6 +284,8 @@ BDS contrasta una hipótesis de comportamiento i.i.d. bajo sus condiciones. Un r
 
 Los residuos se ordenarán y se evaluarán sobre tramos temporalmente válidos; no se sustituirán por retornos crudos del EDA. Las pruebas de diferentes dimensiones, modelos o configuraciones se incluirán en la política de multiplicidad cuando sustenten afirmaciones confirmatorias.
 
+Se registrará cuántos vectores de inmersión quedan disponibles para cada dimensión y cómo se fija el radio respecto a la escala. Un prefiltrado o estandarización define otra serie: se declararán transformación, datos de ajuste e hipótesis sobre esa nueva serie. Modelos estimados, deriva, heterocedasticidad y etiquetas solapadas afectan la interpretación o calibración; no se agrupan semillas ni se omiten parametrizaciones desfavorables.
+
 ### 5.4.7. Ljung–Box e interpretación de residuos
 
 Se usará **Ljung–Box** para estudiar autocorrelación residual en varios rezagos predefinidos. Se registrarán tamaño de muestra, rezagos, hipótesis, estadístico, p-values y tratamiento de grados de libertad.
@@ -211,11 +294,17 @@ La corrección de grados de libertad se justificará según el modelo y los par�
 
 Sesgo, autocorrelación o estructura no explicada pueden motivar investigar mejoras, pero no prueban que un modelo avanzado concreto vaya a aprovecharlas. La interpretación incorporará heterocedasticidad, cambios de régimen, especificación del objetivo y los límites de cada contraste.
 
+El p-value se identificará como referencia asintótica bajo sus condiciones. Se registrará `model_df` y se comprobarán grados de libertad positivos para los rezagos elegidos; el valor usado en las Ridge del EDA no se hereda automáticamente a las redes. Holm controla multiplicidad de p-values válidos, pero no repara una calibración inválida ni convierte diagnósticos correlacionados en confirmaciones independientes.
+
 ### 5.4.8. Ausencia de significación y equivalencia
 
 **No rechazar una diferencia no demuestra equivalencia.** Si se desea afirmar equivalencia entre modelos, se planteará un análisis separado, por ejemplo **TOST** con margen práctico predefinido. Una alternativa bayesiana con **ROPE** deberá declarar modelo, distribución posterior y regla de decisión; no se presentará como si fuera la misma prueba frecuentista.
 
 El margen de equivalencia debe fijarse con sentido aplicado, escala, referencia y unidades claras. El 5 % de mejora frente a persistencia es un criterio de superioridad práctica y no define automáticamente una banda de equivalencia entre dos modelos. No se ensanchará después para conseguir equivalencia. Se distinguirán ausencia de evidencia, evidencia de diferencia y evidencia de equivalencia bajo el diseño correspondiente.
+
+En un TOST al nivel 0,05, bajo el método y la calibración aplicables, ambas pruebas unilaterales deben rechazar; su regla usual corresponde al **IC del 90 % completamente dentro de la banda**. Se distinguirá ese intervalo de decisión del IC del 95 % requerido para el reporte general. Si cambia el nivel por comparación debido a multiplicidad, el intervalo de decisión debe corresponder al procedimiento realmente utilizado.
+
+Las dos unilaterales de un TOST forman una prueba de intersección–unión; no se les aplica por defecto Bonferroni como si fueran dos afirmaciones independientes. Las equivalencias entre varios pares o configuraciones sí requieren su tratamiento de familia. Para ROPE se registrarán también dependencia, priors, posterior y criterio de decisión, sin inventar ahora sus valores.
 
 ### 5.4.9. Reporte y buenas prácticas estadísticas
 
@@ -232,6 +321,8 @@ Cada contraste tendrá un registro con:
 | Multiplicidad | Familia, corrección y p-value ajustado y sin ajustar |
 | Potencia | Potencia planificada o MDE y su relación con $\delta$ |
 | Interpretación | Significación estadística, relevancia práctica y restricciones de generalización |
+
+El registro conservará además estimando y agregación de semillas, hash de la cohorte, fase de selección/evaluación, parámetros HAC/HLN o de los diagnósticos, política de estadísticos indefinidos y naturaleza exacta o aproximada del p-value. Las familias de desempeño y de diagnóstico se declararán según las afirmaciones previstas; no se dividirán después para reducir la corrección. Los IC marginales y simultáneos mantendrán su identificación.
 
 Los p-values se reportarán con precisión numérica suficiente, no solo como `p < 0,05`. Se distinguirá un procedimiento exacto de una aproximación y se explicitarán límites numéricos si el software devuelve cero por redondeo o subdesbordamiento. No se seleccionarán únicamente los contrastes favorables ni se multiplicarán análisis sin identificarlos como exploratorios.
 
@@ -272,6 +363,8 @@ El test de 2026 cubre hasta agosto dentro del calendario actual, no el año comp
 
 La estabilidad temporal en BTCUSDT de Binance Spot no demuestra generalización a otros exchanges, pares, activos o mercados. Tampoco garantiza estabilidad futura en el mismo activo. Las semillas adicionales aportan evidencia sobre entrenamiento y no reemplazan una validación externa.
 
+Las conclusiones se limitan a los orígenes con entradas, etiquetas e historia elegibles. No se extrapolan automáticamente a días excluidos; el mecanismo de faltantes no identificado y las máscaras pueden afectar representatividad. La brecha entre selección de 2024 y test puede mezclar optimismo de selección, deriva y diferencias de historia o reajuste: no identifica por sí sola sobreajuste de una arquitectura.
+
 ### 5.5.3. Significación estadística y relevancia práctica
 
 La discusión presentará juntas **diferencia estimada, IC, tamaño de efecto, p-value ajustado y relación con $\delta$**. Una diferencia pequeña puede ser estadísticamente distinguible sin aportar utilidad práctica; una diferencia no significativa puede deberse a incertidumbre o baja potencia.
@@ -292,6 +385,8 @@ Se usará la distinción de §5.3.5 entre sensibilidad del diseño y relevancia 
 
 Actualmente ese baseline DL y el umbral para comparaciones avanzadas **no están establecidos**. El margen operativo del 5 % frente a persistencia sí está definido, pero responde a otra comparación; los valores de literatura no sustituyen la evaluación propia.
 
+Si los resultados de test del benchmark orientan el diseño o selección de una propuesta avanzada, ese test deja de ser su confirmación independiente. Se necesitará evaluación no utilizada o un esquema externo que hubiera aislado previamente todo el procedimiento de selección; una anidación retrospectiva no elimina la exposición. El baseline congelado deberá evaluarse también en las mismas nuevas fechas. Esta condición no reasigna hoy septiembre–octubre de 2026 ni otro periodo como nuevo test. Si avanzado y contraste ya estuvieran fijados antes de ver test, se declararía ese caso y su plan de inferencia.
+
 ### 5.5.6. Brecha con la literatura y margen de mejora potencial
 
 La brecha entre modelos avanzados publicados y las referencias básicas se examinará con los estudios incluidos en la revisión. Se comprobarán definición de volatilidad, escala, frecuencia, horizonte, activo, proveedor, periodos, particiones, selección y número de repeticiones.
@@ -299,6 +394,8 @@ La brecha entre modelos avanzados publicados y las referencias básicas se exami
 Solo bajo comparabilidad suficiente se cuantificará una diferencia directa. Si los estudios usan otros datos o protocolos, se presentarán como contexto y se explicará por qué no permiten calcular un margen numérico trasladable al experimento propio. No se restará una RMSE publicada de la RMSE local sin verificar primero unidades y condiciones.
 
 Se discutirá la credibilidad de la brecha considerando intervalos, variabilidad, sesgos de publicación y calidad metodológica. Una mejora publicada no constituye una garantía de que otra arquitectura la reproduzca en BTCUSDT bajo este calendario.
+
+En §3.4.1 ya se cuantificaron las reducciones puntuales de RMSE de D-TCN frente a TCN en S1: **User 8,53 %, Tweet 5,04 %, VADER −4,65 % y Count −26,74 %**. Proceden de medias redondeadas; cambian arquitectura e información social, con cuarenta reinicios frente a veinte del comparador. Son contexto bibliográfico, no un margen numérico transferible a OHLCV diario, n7/h1 o al baseline propio todavía no medido.
 
 ### 5.5.7. Amenazas a la validez
 
@@ -332,7 +429,7 @@ Las recomendaciones se derivarán de esas limitaciones y de los resultados que s
 | ¿La diferencia es significativa y relevante? | Comparación pareada, corrección, IC, efecto y $\delta$ | Pendiente |
 | ¿Compensa el costo o la complejidad? | Medidas de error, tiempos, hardware y parámetros | Pendiente |
 | ¿Cuál es el baseline y su umbral de mejora? | Selección cerrada, evaluación y dimensionamiento | No establecido |
-| ¿Qué margen sugiere la literatura? | Revisión de estudios comparables y variabilidad reportada | No cuantificado |
+| ¿Qué margen sugiere la literatura? | Revisión de estudios, información, protocolo y variabilidad | Brechas publicadas cuantificadas en §3.4.1; margen numérico transferible al proyecto aún no establecido |
 | ¿Qué limita las conclusiones? | Registro de validez y alcance de la evidencia | Limitaciones de datos/diseño identificadas; validación experimental pendiente |
 
 La discusión final reemplazará estas respuestas pendientes por conclusiones sustentadas, sin convertir una descripción del protocolo en evidencia de superioridad.

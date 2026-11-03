@@ -13,7 +13,7 @@ Este libro desarrolla el **Entregable 1 de Deep Learning** para el pronóstico d
 - [Análisis exploratorio de datos](sections/02_eda.md): adquisición Binance Spot BTCUSDT, perfiles y colas del objetivo, calidad, reconstrucción de etiquetas y desplazamiento marginal; bloque C con disponibilidad, relaciones temporales y residuos de cuatro referencias lineales.
 - [Estado del arte](sections/03_estado_arte.md): tabla de las 35 referencias citadas, búsqueda y cribado trazables, matriz, frecuencias, tres fichas y comparación crítica; candidatos de trabajo y extracción definitiva pendiente.
 - [Implementación y evaluación](sections/04_implementacion_evaluacion.md): diseño revisado, especificación documental actual, piloto y potencia pendientes; sin ejecutar las redes ni el test.
-- [Criterios del benchmark para E2](sections/05_benchmark.md): métricas, tablas futuras, inferencia y reglas de interpretación.
+- [Benchmark y baseline](sections/05_benchmark.md): ranking, selección con desarrollo, inferencia y contrato documental revisados; resultados empíricos pendientes.
 - [Procedimiento temporal](sections/06_procedimiento.md): ruta 6.4 de regresión temporal y disponibilidad causal de covariables.
 - [Limitaciones y entregables](sections/07_limitaciones_entregables.md): potencia, límites inferenciales, rúbrica y estado verificable de los productos exigidos.
 - [Decisiones, revisión y pendientes](sections/protocolo_pendiente.md): matriz de requisitos, correcciones ejecutadas, evidencia parcial y proyección a E2.
