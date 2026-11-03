@@ -9,7 +9,7 @@ Este libro desarrolla el **Entregable 1 de Deep Learning** para el pronóstico d
 
 ## Qué contiene este avance
 
-- [Problema y dataset](sections/01_problema_dataset.md): formulación matemática, hipótesis propuesta, métricas y ficha técnica.
+- [Problema y dataset](sections/01_problema_dataset.md): definición del problema, justificación del dataset y descripción de la técnica, con sus ítems numerados.
 - [Análisis exploratorio de datos](sections/02_eda.md): adquisición Binance Spot BTCUSDT, perfiles y colas del objetivo, calidad, reconstrucción de etiquetas y desplazamiento marginal; bloque C con disponibilidad, relaciones temporales y residuos de cuatro referencias lineales.
 - [Estado del arte](sections/03_estado_arte.md): tabla de las 35 referencias citadas, búsqueda y cribado trazables, matriz, frecuencias, tres fichas y comparación crítica; candidatos de trabajo y extracción definitiva pendiente.
 - [Implementación y evaluación](sections/04_implementacion_evaluacion.md): diseño revisado, especificación documental actual, piloto y potencia pendientes; sin ejecutar las redes ni el test.

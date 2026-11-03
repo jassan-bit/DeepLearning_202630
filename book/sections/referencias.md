@@ -6,7 +6,7 @@ Los originales se conservan en `references/course/` del repositorio fuente, con 
 
 - **Entregable1DeepLearningProject.pdf:** guía de 34 páginas. La Sección 1 aparece en páginas 2–3. Es la fuente de requisitos, no una fuente de datos de mercado.
 - **entregable1_texto.txt:** texto pegado de la misma guía; no es el Entregable 2.
-- **volatilidad_fragmento.png:** definición histórica y frecuencia sugerida en el material recibido. La convención adoptada —adquisición a un minuto, modelado diario, siete retornos para la volatilidad principal y horizonte de un día— se explicita en §§1.2–1.3; no es el Entregable 3.
+- **volatilidad_fragmento.png:** definición histórica y frecuencia sugerida en el material recibido. La convención adoptada —adquisición a un minuto, modelado diario, siete retornos para la volatilidad principal y horizonte de un día— se explicita en §§1.1.1 y 1.3.2; no es el Entregable 3.
 - **seccion1_pagina1.png**, **seccion1_pagina2.png**, **seccion1_pagina3.png:** capturas de alcance recibidas.
 - **periodos_anteriores.png** y **calendario_aclarado.png:** referencia previa y calendario aclarado por el usuario; la última fija test hasta el 31/08/2026.
 - **modelos_clase.png:** familias de modelos mostradas en clase.

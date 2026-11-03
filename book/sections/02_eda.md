@@ -4,7 +4,7 @@ El análisis se ejecutó con los archivos oficiales de **Binance Spot BTCUSDT**,
 
 Se distinguen las ventanas de entrada $D$ de las ventanas de volatilidad $n$: ambas se exploran en 7, 14, 21 y 28 **días**, pero tienen funciones diferentes. No se selecciona un ganador a partir de estos gráficos. La escala de cálculo usa retornos logarítmicos sin anualizar; las figuras que muestran porcentajes multiplican por 100 y lo indican en sus ejes.
 
-La métrica principal y el criterio operativo ya fijados en §1.4 son **RMSE** y una mejora relativa mínima del **5 % frente a persistencia**. Las decisiones del EDA preparan esa evaluación; el desempeño de las redes se medirá en la etapa experimental posterior.
+La métrica principal y el criterio operativo ya fijados en §1.1.4 son **RMSE** y una mejora relativa mínima del **5 % frente a persistencia**. Las decisiones del EDA preparan esa evaluación; el desempeño de las redes se medirá en la etapa experimental posterior.
 
 ## 2.1. EDA general
 
@@ -12,7 +12,7 @@ La revisión de este bloque se recoge punto por punto en el {download}`informe d
 
 ### 2.1.1. Análisis de la variable objetivo
 
-Se calculó la desviación estándar poblacional móvil (`ddof=0`) de los retornos **diarios**, con ventanas $n=7,14,21,28$. El valor asociado a un día de resultado solo se conoce al cerrar ese día. Para pronosticarlo, las entradas deben terminar en el día anterior; la indexación formal de §1.3 mantiene esta disponibilidad. No se confundió volatilidad intradía con el objetivo diario.
+Se calculó la desviación estándar poblacional móvil (`ddof=0`) de los retornos **diarios**, con ventanas $n=7,14,21,28$. El valor asociado a un día de resultado solo se conoce al cerrar ese día. Para pronosticarlo, las entradas deben terminar en el día anterior; la indexación formal de §1.1.1 mantiene esta disponibilidad. No se confundió volatilidad intradía con el objetivo diario.
 
 La tabla usa entrenamiento 2023. Los valores están en unidades de retorno logarítmico, sin multiplicar por 100. Los recuentos difieren por la historia requerida y el día incompleto; no son cantidades de ventanas de entrenamiento ya materializadas.
 
@@ -44,7 +44,7 @@ La asimetría y el exceso de curtosis de n=7 pasan de **0,802 y 0,496 en 2023** 
 
 El [perfil completo de objetivos](../_static/eda_general_quality/target_profiles.csv) incluye las ocho combinaciones año–ventana, sus cuantiles, ceros y marcas IQR con referencia fija de entrenamiento. Una etiqueta grande no es automáticamente un error del proveedor ni un residuo grande de un modelo. Se conserva **MSE/RMSE** como diseño aceptado; ponderaciones, Huber o transformaciones del objetivo no se introducen por inspección de estas gráficas.
 
-La ventana de siete días presenta mayor variación temporal; aumentar la ventana suaviza la medida, pero cambia el objetivo y no demuestra que un modelo pronostique mejor. No aparecen etiquetas cero en estos derivados de desarrollo. Esto no garantiza que nunca aparezcan: se mantiene la política de MAPE ya fijada en §1.4, con etiquetas positivas, cobertura declarada y sin epsilon arbitrario. Al ser un objetivo continuo, los recuentos de clases, la entropía de clases y el balance entre clases de la guía no son aplicables.
+La ventana de siete días presenta mayor variación temporal; aumentar la ventana suaviza la medida, pero cambia el objetivo y no demuestra que un modelo pronostique mejor. No aparecen etiquetas cero en estos derivados de desarrollo. Esto no garantiza que nunca aparezcan: se mantiene la política de MAPE ya fijada en §1.1.4, con etiquetas positivas, cobertura declarada y sin epsilon arbitrario. Al ser un objetivo continuo, los recuentos de clases, la entropía de clases y el balance entre clases de la guía no son aplicables.
 
 - **Decisión de preprocesamiento:** conservar las cuatro definiciones separadas y requerir retornos diarios consecutivos; no rellenar las etiquetas afectadas por huecos ni eliminar automáticamente los valores que superan el umbral IQR.
 - **Impacto en la arquitectura:** cada combinación de entrada y objetivo debe identificar sus dimensiones y conservar una salida escalar no negativa; la cola observada no fija por sí sola la profundidad o el ancho de la red. Las cuatro ventanas no se mezclan como si fueran la misma etiqueta.
@@ -244,7 +244,7 @@ La revisión punto por punto se conserva en el {download}`informe del bloque C <
 
 ### 2.2.1. Frecuencia, desfases y disponibilidad
 
-Cada fila OHLCV resume un día UTC. Apertura, máximo, mínimo, cierre y volumen del día completo se consideran disponibles **al comenzar el día siguiente**. Para un resultado del día $d$, la red utiliza días hasta $d-1$; el objetivo $\sigma_7(d)$ incorpora el retorno de $d$ y solo se conoce al terminarlo. Esta notación de día de resultado corresponde a $Y_t=\sigma_{t+1}$ en la convención de §1.3.
+Cada fila OHLCV resume un día UTC. Apertura, máximo, mínimo, cierre y volumen del día completo se consideran disponibles **al comenzar el día siguiente**. Para un resultado del día $d$, la red utiliza días hasta $d-1$; el objetivo $\sigma_7(d)$ incorpora el retorno de $d$ y solo se conoce al terminarlo. Esta notación de día de resultado corresponde a $Y_t=\sigma_{t+1}$ en la convención de §1.1.1.
 
 | Elemento | Momento de disponibilidad | Uso admisible al inicio de $d$ |
 |---|---|---|
@@ -414,7 +414,7 @@ Los 80 minutos ausentes y el cierre inesperado pertenecen a marzo de 2023. La ve
 
 El [manifiesto de adquisición](../_static/data/binance_spot_BTCUSDT_1m_20230101_20261030.json) registra URLs, SHA-256, bytes, fechas de verificación, unidades y conteos por archivo. El script reproducible es `scripts/download_binance_spot.py`, documentado en `data/README.md`. Los brutos están en `/workspace/binance-spot-data/`, fuera del repositorio y del sitio público.
 
-Los archivos históricos respondieron HTTP 200. La API respondió HTTP 451 por restricción de ubicación; no se utilizó para adquirir los datos. Las particiones previstas en §1.6 se mantienen: disponer de septiembre–octubre de 2026 no asigna automáticamente esos meses al test.
+Los archivos históricos respondieron HTTP 200. La API respondió HTTP 451 por restricción de ubicación; no se utilizó para adquirir los datos. Las particiones previstas en §1.3.4 se mantienen: disponer de septiembre–octubre de 2026 no asigna automáticamente esos meses al test.
 
 El EDA de desarrollo de este capítulo se ejecutó sobre los 24 archivos mensuales de 2023–2024, verificados otra vez antes de leerlos. No se abrieron ZIP de 2025–2026 para generar las figuras.
 
