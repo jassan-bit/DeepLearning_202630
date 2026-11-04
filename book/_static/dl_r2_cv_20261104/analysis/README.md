@@ -1,0 +1,5 @@
+# Comparación exploratoria de R² con CV mensual
+
+Exploratory development comparison designed after observing V1. Training-seed inference is conditional on the shared historical calendar. No reserved-test confirmation or guaranteed planning power is established.
+
+Las métricas anuales usan las mismas366fechas de2024 para los dos procedimientos CV. El resumen H2 se limita a184fechas comunes y mantiene V1 como contexto con30semillas distintas frentea10deCV; no hay contrastes pareados contraV1. Los tres contrastes primarios RMSE comparan los dos procedimientos CV con las mismas semillas y ajusteHolm3. Los IC95% son marginales, condicionados al calendario; no representan incertidumbre temporal. Las métricas por fold conservan29/30/31fechas segúnel mes y R² indefinido si nohay varianza o solohayun caso. Persistencia es un único pronóstico determinista; MASE depende de la escala histórica registrada por fecha. No se entrena ni se consulta test; V1 no se modifica. Los tiempos seriales V1 no son comparables con la ejecución concurrente CV.

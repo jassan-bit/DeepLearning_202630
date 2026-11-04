@@ -65,3 +65,36 @@ mv results/dl_benchmark_20261104 results/dl_benchmark_20261104_published_snapsho
 `--phase all` ejecuta búsqueda, piloto y comparación. Es una replicación con nuevos registros de ejecución, no un nuevo preregistro histórico. El entrenador comprueba las fuentes y la firma de sus scripts y entorno; ante una firma diferente no reutiliza artefactos previos. No deben sobrescribirse los resultados publicados ni editarse los scripts firmados para mezclar otro diseño con este experimento. Un cambio de arquitectura o protocolo requiere una versión explícita nueva.
 
 Las 25 pruebas verifican modelos, particiones/preprocesamiento y cálculos estadísticos sobre casos controlados. Los resultados propios proceden de las corridas registradas, no de esas pruebas. La comparación usa calendario de desarrollo ya expuesto al piloto; 30 semillas no aportan 30 mercados independientes. El límite registrado de 30 no alcanzó el dimensionamiento del efecto pequeño planificado. El test de 2025–2026 permanece pendiente.
+
+## Forward chaining efectivo y revisión de R²
+
+El nuevo ciclo está en [results/dl_r2_cv_20261104/README.md](results/dl_r2_cv_20261104/README.md). El generador usa `timeseries-cv` 0.1.5; el entrenador consume sus índices para ajustar de nuevo cada modelo en doce bloques mensuales de 2024. Mantener entornos separados porque la librería CV requiere NumPy menor que 2:
+
+```bash
+python3.12 -m venv .venv-cv
+.venv-cv/bin/python -m pip install -r requirements-cv.txt
+.venv-cv/bin/python -m unittest discover -s tests -p 'test_dl_r2_cv.py'
+.venv-cv/bin/python scripts/prepare_dl_r2_cv.py --output-dir /tmp/dl-r2-cv-index-check
+.venv-training/bin/python -m unittest discover -s tests -p 'test_dl_*.py'
+tar -xzf results/dl_r2_cv_20261104/run_artifacts.tar.gz -C results/dl_r2_cv_20261104
+.venv-training/bin/python scripts/verify_dl_r2_cv.py
+.venv-training/bin/python scripts/analyze_dl_r2_v2.py
+.venv-training/bin/python scripts/plot_dl_cv_folds.py
+```
+
+Pasaron 41 pruebas en el entorno de entrenamiento y las tres de CV en su entorno propio. El descubrimiento de entrenamiento omite explícitamente esas tres; no las presenta como verificadas allí. El generador no ajusta modelos: las 1.440 optimizaciones registradas proceden del entrenador.
+
+Los manifiestos publicados son entradas firmadas: su timestamp influye en el hash. Para comprobar la librería, generar índices en `/tmp` como arriba y comparar las listas de train/inner/validation del nuevo JSON con las del versionado. Para replicar los ajustes, usar un **checkout separado** y conservar primero la instantánea completa:
+
+```bash
+mv results/dl_r2_cv_20261104 results/dl_r2_cv_20261104_published_snapshot
+mkdir results/dl_r2_cv_20261104
+cp results/dl_r2_cv_20261104_published_snapshot/folds.json results/dl_r2_cv_20261104/folds.json
+cp results/dl_r2_cv_20261104_published_snapshot/folds.csv results/dl_r2_cv_20261104/folds.csv
+.venv-training/bin/python scripts/train_dl_r2_cv.py --phase validate
+.venv-training/bin/python scripts/train_dl_r2_cv.py --phase run
+.venv-training/bin/python scripts/analyze_dl_r2_v2.py
+.venv-training/bin/python scripts/plot_dl_cv_folds.py
+```
+
+Esto repite el diseño documentado con nuevos registros de ejecución; no convierte un backtest en un experimento prospectivo. Se conserva V1 y la errata descriptiva del nuevo protocolo, sin editar scripts o índices firmados para reutilizar resultados incompatibles. El ajuste final de desarrollo y la evaluación de enero de 2025–agosto de 2026 siguen pendientes; septiembre–octubre de 2026 permanece sin asignar al test.

@@ -1,0 +1,111 @@
+{
+  "created_at_utc": "2026-11-04T15:30:58.498407+00:00",
+  "scope": "Exploratory development comparison designed after observing V1. Training-seed inference is conditional on the shared historical calendar. No reserved-test confirmation or guaranteed planning power is established.",
+  "CV_variants": [
+    "absolute_log",
+    "relative_window"
+  ],
+  "descriptive_context_variant": "original_static",
+  "models": [
+    "MLP",
+    "LSTM",
+    "CNN1D"
+  ],
+  "CV_seeds": [
+    4101,
+    4102,
+    4103,
+    4104,
+    4105,
+    4106,
+    4107,
+    4108,
+    4109,
+    4110
+  ],
+  "CV_n_seeds": 10,
+  "V1_context_seeds": [
+    1001,
+    1002,
+    1003,
+    1004,
+    1005,
+    1006,
+    1007,
+    1008,
+    1009,
+    1010,
+    1011,
+    1012,
+    1013,
+    1014,
+    1015,
+    1016,
+    1017,
+    1018,
+    1019,
+    1020,
+    1021,
+    1022,
+    1023,
+    1024,
+    1025,
+    1026,
+    1027,
+    1028,
+    1029,
+    1030
+  ],
+  "V1_context_n_seeds": 30,
+  "CV_first_day": "2024-01-01",
+  "CV_last_day": "2024-12-31",
+  "CV_n_dates": 366,
+  "common_H2_first_day": "2024-07-01",
+  "common_H2_last_day": "2024-12-31",
+  "common_H2_n_dates": 184,
+  "CV_monthly_folds": 12,
+  "CV_prediction_rows": 21960,
+  "CV_run_rows": 60,
+  "CV_fold_metric_rows": 720,
+  "paired_RMSE_family_size": 3,
+  "multiplicity": "Holm over all declared within-model CV-variant pairs; V1 excluded",
+  "V1_comparison": "descriptive only on the common184dates; seeds and fitting policy differ; no paired V1 p-values",
+  "R2": "Recalculated as1-MSE/population variance on the shared cohort; undefined for zero-variance or singleton fold",
+  "R2_inference": "secondary descriptive paired intervals only; no separately selected R2 significance tests",
+  "interval_scope": "marginal Student t across training seeds on fixed dates; not temporal confidence intervals",
+  "persistence": "one deterministic forecast; MASE is specific to the training-scale policy",
+  "timing": "V1 serial versus CV concurrent workers; cross-version speed comparisons are not controlled",
+  "reserved_test_evaluated": false,
+  "raw_market_files_opened": 0,
+  "new_model_fits_in_analysis": 0,
+  "V1_overwritten": false,
+  "operational_reference_reselected": false,
+  "planning_power_0_8_established": false,
+  "sources": [
+    {
+      "path": "/workspace/DeepLearning_202630/results/dl_r2_cv_20261104/predictions.csv",
+      "sha256": "9b91d6a1299cdb6e21330894ad7566bc247be86282f2810f9a80c77875d9058f"
+    },
+    {
+      "path": "/workspace/DeepLearning_202630/results/dl_r2_cv_20261104/runs.csv",
+      "sha256": "178d2a7e404a3401f3f08e05d8b1b93df7835ab8f8fab8dfdeb3343f8521f0e7"
+    },
+    {
+      "path": "/workspace/DeepLearning_202630/results/dl_benchmark_20261104/predictions/development_benchmark.csv",
+      "sha256": "c10796ac22b72ec4e704fd083ce77acf4d5b31b3bf9e7f93950d766165995dc1"
+    },
+    {
+      "path": "/workspace/DeepLearning_202630/results/dl_benchmark_20261104/runs.csv",
+      "sha256": "5f430c4c294240ccb811f70bbd86efc3bb5351c7aeb6439d8d87bf9cfa27417e"
+    }
+  ],
+  "analysis_script_sha256": "df33515bf1511871421d4fb4c40012da0474323938442f08ecf8b9ebcd82e496",
+  "inherited_statistical_helpers_sha256": "8288afd4b889f3b0cc50100b0f3bd2608f1d9eb19101be1e431a7e621c77d4f6",
+  "limitations": [
+    "CV changes were motivated by observed V1 failure and exposed development data; no independent confirmation.",
+    "Ten seeds are a resource-bounded diagnostic, not a pilot dimensioning result or evidence of0.8power.",
+    "Training seeds do not create independent market trajectories; fold/date dependence remains.",
+    "Fold identifiers verify prediction membership; actual model fitting is evidenced separately by runner artifacts.",
+    "Bias decomposition is descriptive and does not isolate a unique causal explanation."
+  ]
+}

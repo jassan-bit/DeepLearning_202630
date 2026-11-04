@@ -193,7 +193,7 @@ X, y, Xcv, ycv = split_train_val_forwardChaining(
 
 La versión publicada **0.1.5** usa la firma `sequence, numInputs, numOutputs, numJumps`. Los nombres `n_steps_input`, `n_steps_forecast` y `n_steps_jump` del README no coinciden con esa firma y generan `TypeError` en esa versión. La llamada anterior y su equivalente posicional `(timeSeries, 4, 3, 2)` fueron ejecutadas y verificadas. `X`, `y`, `Xcv` e `ycv` son diccionarios por fold, no un único arreglo global.
 
-**Aplicación a BTCUSDT:** se ejecutó esa función sobre índices del calendario diario de desarrollo, con entradas de **7/14/21/28 días**, salida de **un día** y salto de **un día**. Las entradas se mapean a OHLCV y las salidas a volatilidad por separado: pasar OHLCV directamente a la función produciría salidas OHLCV, no la etiqueta de volatilidad del proyecto.
+**Preparación histórica de BTCUSDT:** se ejecutó esa función sobre índices del calendario diario de desarrollo, con entradas de **7/14/21/28 días**, salida de **un día** y salto de **un día**. Las entradas se mapean a OHLCV y las salidas a volatilidad por separado: pasar OHLCV directamente a la función produciría salidas OHLCV, no la etiqueta de volatilidad del proyecto.
 
 Se conservaron los folds cuyo día de resultado cae en **2024**, se excluyeron ventanas con valores no elegibles y se comprobó que todas las etiquetas de entrenamiento estaban disponibles antes del pronóstico de validación. Hay **366 folds por configuración**, para las 16 combinaciones de ventana de entrada y ventana de volatilidad: **5.856 filas de configuración-fold** en el manifiesto. Son índices de preparación, no 5.856 días independientes ni modelos entrenados. Las cuatro configuraciones con $n=7$ corresponden al objetivo principal; las doce restantes corresponden a sensibilidad de la definición del objetivo. El experimento DL posterior completó **201 corridas y 402 ajustes internos/refits**, registrados en un [resumen independiente](../_static/dl_benchmark_20261104/execution_summary.json): no son ejecuciones de las 5.856 filas ni 366 reajustes por modelo. Las sensibilidades del objetivo n=14/21/28 permanecen sin entrenamiento DL.
 
@@ -214,7 +214,27 @@ El embargo de covariables no implica independencia de las etiquetas móviles. El
 
 El código es `scripts/prepare_forward_chaining.py`. Se publican el [resumen y verificación del ejemplo](../_static/cv_forward_chaining/summary.json) y el [manifiesto de folds](../_static/cv_forward_chaining/folds.csv), con fechas, cantidades de muestras y hashes de los índices de entrenamiento. La historia elegible de ajuste crece en estos índices e incluye únicamente pasado permitido; la referencia residual de §2.2.3.2.3 conserva pesos fijos y no utiliza todas esas ampliaciones. El primer ciclo de las tres redes también conservó pesos fijos ajustados con 2023; el detalle del corte interno y del refit se registra en §4.2. No se abren archivos de test. La división no necesita semilla de barajado.
 
-- **Decisión de preprocesamiento:** utilizar los índices corregidos de la versión 2, con embargo explícito de $D$ días y soportes de etiqueta registrados; ajustar transformaciones solo con el entrenamiento permitido de cada fold y conservar esos controles en las ejecuciones. El ciclo DL de desarrollo ya los aplicó con un ajuste estático de 2023, sin usar todas las ampliaciones del manifiesto.
+**Ciclo CV con entrenamiento real de las tres redes.** `scripts/prepare_dl_r2_cv.py` ejecuta la función real de `timeseries-cv` 0.1.5 con los parámetros de Bitcoin:
+
+```python
+X, y, Xcv, ycv = split_train_val_forwardChaining(
+    np.arange(731), numInputs=7, numOutputs=1, numJumps=1
+)
+```
+
+Los orígenes diarios de validación de 2024 se agrupan en **doce bloques mensuales**. Esta adaptación usa los candidatos de entrenamiento del primer origen del mes, aplica el embargo adicional y la máscara de calidad, y reúne las ventanas de validación diarias de ese mes; la librería no tiene una API mensual nativa. `scripts/train_dl_r2_cv.py` consume exactamente esos índices para ajustar pesos y escaladores. En cada corte se selecciona duración internamente y se reajusta una red desde cero. Los pesos quedan fijos durante el bloque y cada predicción sigue siendo h=1 con información disponible hasta el día anterior. No son 366 reajustes ni un pronóstico del mes entero emitido desde su primer día.
+
+El entrenamiento inicial usa 2023 y después incorpora solo el pasado admisible de 2024. Con D=7 se exige u≤t−8 en el comienzo mensual t. La validación interna toma los últimos 90 días de calendario, hasta el corte externo permitido, y conserva su propio embargo: son **83 etiquetas** por mes. Enero utiliza 343 ejemplos para el reajuste, 253 para el subentrenamiento y validación interna del 03/10 al 24/12/2023. Los [folds JSON](../_static/dl_r2_cv_20261104/folds.json) y su [tabla CSV](../_static/dl_r2_cv_20261104/folds.csv) conservan índices, fechas, hashes y procedencia de la función.
+
+Se comparan `absolute_log` y `relative_window` con las mismas tres redes, D=7 y configuraciones V1 fijas; diez semillas 4101–4110 compartidas y las mismas **366 fechas**. La [ejecución](../_static/dl_r2_cv_20261104/execution_summary.json) completó **60 trayectorias, 720 modelos mensuales en total y 1.440 ajustes internos/reajustes**, con 21.960 predicciones. R² y RMSE anual se calculan agrupando las predicciones de cada trayectoria, sin promediar R² de orígenes unitarios.
+
+![Bloques mensuales reales de entrenamiento y validación CV de Bitcoin](../_static/dl_r2_cv_20261104/analysis/figures/cv_folds_actual.png)
+
+**Figura:** adaptación propia de los índices de `timeseries-cv` para BTCUSDT, con los doce bloques mensuales utilizados para entrenar. El ejemplo oficial anterior permanece sin modificar, con su atribución y licencia MIT.
+
+Este ciclo es **exploratorio**: los hiperparámetros V1 ya se eligieron con enero–junio de 2024. No es validación anidada de la selección ni confirmación en test. La comparación con V1 se presenta aparte sobre las mismas 184 fechas de julio–diciembre, con 30 semillas antiguas frente a diez nuevas y alcance descriptivo. El ajuste final con desarrollo 2023–2024 y el test enero de 2025–agosto de 2026 siguen pendientes.
+
+- **Decisión de preprocesamiento:** utilizar los índices corregidos de la versión 2, con embargo explícito de $D$ días y soportes de etiqueta registrados; ajustar transformaciones solo con el entrenamiento permitido de cada fold y conservar esos controles en las ejecuciones. V1 los aplicó con un ajuste estático de 2023; el ciclo CV posterior emplea cohortes mensuales crecientes y registra los índices realmente utilizados por cada ajuste.
 - **Impacto en la arquitectura:** los modelos deben evaluarse con el mismo calendario y muestras comparables dentro de cada configuración.
 - **Riesgos identificados:** etiquetas que crucen cortes, confundir días con muestras y elegir el tamaño de entrada usando test.
 
@@ -759,7 +779,10 @@ Para reproducir los folds, se utiliza un entorno independiente: `timeseries-cv` 
 python3.12 -m venv /workspace/.venvs/timeseries-cv
 /workspace/.venvs/timeseries-cv/bin/python -m pip install -r requirements-cv.txt
 /workspace/.venvs/timeseries-cv/bin/python scripts/prepare_forward_chaining.py
+/workspace/.venvs/timeseries-cv/bin/python scripts/prepare_dl_r2_cv.py
 ```
+
+El segundo comando genera los índices del ciclo CV. El entrenamiento posterior usa `scripts/train_dl_r2_cv.py` en el entorno PyTorch separado y consume esos folds. Las instrucciones completas figuran en `BUILD.md`.
 
 El ejemplo oficial 4/3/2 es ilustrativo; no cambia el horizonte principal de Bitcoin a tres días. El script puede recuperar la misma figura desde el notebook oficial fijado a un commit usando `--refresh-illustration`, y verifica su SHA-256.
 
@@ -789,7 +812,7 @@ El primer script genera perfiles de objetivos, calidad, máscaras y reconstrucci
 | Referencia lineal y residuos fuera del ajuste | Cuatro Ridge diagnósticos con escalas de 2023; 1.464 predicciones de 2024, ACF y doce Ljung–Box/Holm |
 | Covariables, transformaciones y selección de configuración | Cinco covariables OHLCV conservadas; escalado propio de las referencias EDA. El ciclo DL posterior aprendió escalas solo con entrenamiento y eligió D=7 mediante su búsqueda registrada |
 | Información mutua, VIF y efecto de anomalías sobre error de modelos | No ejecutados |
-| Folds de validación 2024 | Versión 2 materializada: 366 por configuración; embargo de $D$ días aplicado y solapamiento de retornos de etiquetas registrado |
+| Folds de validación 2024 | Manifiesto histórico v2 de 366 orígenes por configuración; ciclo CV D7 con doce bloques mensuales de Filipe utilizados para entrenar y predecir las 366 fechas |
 | Reserva de test bruto | Manifiesto de 20 ZIP y su hash conservados; sin apertura de test en esta revisión |
 | Test supervisado congelado | Pendiente; la reserva bruta no acredita elegibilidad de muestras ni evaluación |
 | Tres modelos DL, predicciones y MAPE/MAE/RMSE/MSE/MASE/BDS | Ejecutados en desarrollo el 04/11/2026 y documentados en los capítulos 4–5; las referencias Ridge son diagnósticos distintos y el test no se ha evaluado |
@@ -885,7 +908,7 @@ En los retornos de un minuto de entrenamiento, la asimetría es **-0.674028** y 
 
 Las entradas confirmadas son 7/14/21/28 días de historia; el horizonte principal es un día. Se exploraron cuatro definiciones de volatilidad histórica, sin confundirlas con la longitud de entrada. Cualquier horizonte adicional al principal debe registrarse antes del entrenamiento y de la evaluación.
 
-Los folds se materializaron con `timeseries-cv` 0.1.5 y controles explícitos de fechas, observabilidad y continuidad. Después se ejecutó el primer ciclo de MLP, LSTM y CNN1D con entrenamiento estático de 2023 y predicciones de desarrollo de 2024. La función no garantiza por sí sola ausencia de fuga para cualquier combinación de longitudes: los controles de disponibilidad se aplican antes de admitir cada muestra y la convención del embargo se declara en §2.1.4. El BDS solicitado por el material específico se ejecutó sobre residuos del primer horizonte de las redes, con la semilla designada 1001 y parámetros en §5.4.10; no reemplaza el análisis de autocorrelación de residuos exigido en la ruta 6.4 ni constituye evaluación de test.
+Los folds se materializaron con `timeseries-cv` 0.1.5 y controles de fechas, observabilidad y continuidad. V1 mantuvo ajustes estáticos de 2023. El ciclo CV posterior consume los índices de Filipe para entrenar modelos en doce comienzos mensuales de 2024 y producir pronósticos diarios h=1. Objetivo y calendario se conservan; métricas y periodos se identifican por ciclo. La función no garantiza por sí sola ausencia de fuga para cualquier combinación de longitudes: los controles de disponibilidad se aplican antes de admitir cada muestra y la convención del embargo se declara en §2.1.4. El BDS solicitado por el material específico se ejecutó **en V1**, sobre residuos del primer horizonte de las redes, con la semilla designada 1001 y parámetros en §5.4.10; no reemplaza el análisis de autocorrelación de residuos exigido en la ruta 6.4 ni constituye evaluación de test.
 
 - **Decisión de preprocesamiento:** fijar las configuraciones de objetivos y orígenes, producir manifiestos de muestras y ajustar transformaciones solo con pasado.
 - **Impacto en la arquitectura:** entrada diaria con dimensión explícita; salida principal escalar no negativa; cualquier salida adicional debe registrarse.
