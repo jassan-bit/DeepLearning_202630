@@ -1,0 +1,48 @@
+{
+  "registered_before_first_extension_fit_at_utc": "2026-11-04T19:32:08.068032+00:00",
+  "source_commit": "517b0a5b8548ad1f3b5d9f697d76db9eeb922daf",
+  "protocol_sha256": "54a0ea0d6053c227a79a9864edc3bf969933b8ce4f6963f4bb2a83583489f9ec",
+  "code_sha256": {
+    "scripts/prepare_filipe_multihistory.py": "b3f6a510d2c4f07451abc619625e0b5fe0b276fe339f76f5ed52d74bd5d92aad",
+    "scripts/train_filipe_multihistory.py": "c3a96f60142ef6bbd5faf1dac7855f38f03e51859529adf6861ffdfb8e58d064",
+    "scripts/dl_data.py": "8ea726a1d8ca7b9fa9bfcb26ee6e565b516c40a3ad1cd40e0f639c43b7f429ce",
+    "scripts/dl_data_v2.py": "bbf0ad8646afcd792b3961d0e5e5bcf9318f0fbe4377732a965c58f9557c33cb",
+    "scripts/dl_models.py": "e24110b57aeee201e1e9ab53519eb6b05967927ac54102fe23d3908c3fc57d69",
+    "scripts/train_dl_benchmark.py": "b78e2c66f55b07567601065f411881fa7170fe931784b1f59305283fdd292679"
+  },
+  "code_signature": "b0ef924839bbafb53c68a9409f395831a5e12a7786cba685ff6db5c9717a25c4",
+  "runtime": {
+    "at_utc": "2026-11-04T19:32:08.066320+00:00",
+    "python": "3.12.14",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "versions": {
+      "torch": "2.15.0+cpu",
+      "numpy": "2.5.4",
+      "pandas": "3.1.0",
+      "scipy": "1.18.1",
+      "statsmodels": "0.15.0",
+      "matplotlib": "3.11.2"
+    },
+    "device": "cpu",
+    "cuda_available": false,
+    "cpu_count": 5,
+    "cpu_affinity_count": 5,
+    "cgroup_cpu_max": "400000 100000",
+    "cgroup_memory_max": "34359738368",
+    "torch_threads_per_worker": 1,
+    "torch_interop_threads": 1,
+    "deterministic_algorithms": true,
+    "mkldnn_enabled": true,
+    "timing_scope": "Wall time under registered concurrent CPU workers; no serial latency claim",
+    "forward_cv_library": {
+      "distribution": "timeseries-cv",
+      "version": "0.1.5",
+      "numpy_version": "1.26.4",
+      "function": "tsxv.splitTrainVal.split_train_val_forwardChaining",
+      "signature": "(sequence, numInputs, numOutputs, numJumps)",
+      "function_source_sha256": "ae84a05795b81475c4ca7aaa849a6b5af6c947b2de347cf433ab12ce1e0c04d4",
+      "module_source_sha256": "4532587db2289f01e5b7eab6388e88b9b774f17247c35b6231e74d2848c4a173"
+    }
+  },
+  "test_files_opened": 0
+}
