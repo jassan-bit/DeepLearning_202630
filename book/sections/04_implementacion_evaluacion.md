@@ -66,7 +66,7 @@ Los orígenes de **2024 son validación de selección** si intervienen en elegir
 #### 4.1.3.2. Entrenamiento y parada temprana
 
 - **Entrenamiento:** inicialización nueva por repetición; arquitectura, optimizador, pérdida, batch size, épocas máximas y regla de parada registrados antes de comparar resultados. Los reajustes dentro de una repetición seguirán su política causal declarada, sin presumir reinicios diarios o entrenamiento incremental.
-- **Early stopping:** utilizar datos pasados de ajuste interno, sin consultar el objetivo futuro del fold evaluado. La etiqueta externa futura y los resultados de test no seleccionarán la regla de parada ni los hiperparámetros. Un eventual ajuste secuencial seguirá solo el pasado permitido y la política registrada de §4.3.7.
+- **Early stopping:** utilizar datos pasados de ajuste interno, sin consultar el objetivo futuro del fold evaluado. La etiqueta externa futura y los resultados de test no seleccionarán la regla de parada ni los hiperparámetros. Un eventual ajuste secuencial seguirá solo el pasado permitido y la política registrada de §4.3.6.3.
 
 #### 4.1.3.3. Evaluación y agregación de métricas
 
@@ -295,7 +295,7 @@ El early stopping deberá registrar métrica monitoreada, dirección de mejora, 
 
 Para un origen de resultado t, el bloque interno termina como máximo en t−D−1. Si v es su primer día de validación interna, el subentrenamiento usa resultados u≤v−D−1, además de calidad y disponibilidad: se aplica el embargo D también al corte interno. El tamaño del bloque y la regla para situarlo siguen pendientes. **Escaladores, selección de atributos y transformaciones de Y se ajustan al subentrenamiento**, no a su unión con los días usados para decidir la parada. Se conservan identificadores y hashes de ambos subconjuntos.
 
-Después de elegir una duración mediante esa parada, cualquier reajuste sobre más historia permitida tendrá una regla de épocas y preprocesamiento ya fijada; no podrá consultar la etiqueta externa. La validación de selección de 2024 comparará configuraciones bajo el protocolo de §4.1.2. El procedimiento de ajuste final se cerrará con desarrollo antes de test. Sus resultados no modificarán la arquitectura, los hiperparámetros ni la regla de parada. El uso de etiquetas pasadas ya disponibles dentro de una eventual actualización, incluida su parada registrada, deberá quedar resuelto en el protocolo de §4.3.7.
+Después de elegir una duración mediante esa parada, cualquier reajuste sobre más historia permitida tendrá una regla de épocas y preprocesamiento ya fijada; no podrá consultar la etiqueta externa. La validación de selección de 2024 comparará configuraciones bajo el protocolo de §4.1.2. El procedimiento de ajuste final se cerrará con desarrollo antes de test. Sus resultados no modificarán la arquitectura, los hiperparámetros ni la regla de parada. El uso de etiquetas pasadas ya disponibles dentro de una eventual actualización, incluida su parada registrada, deberá quedar resuelto en el protocolo de §4.3.6.3.
 
 ### 4.2.5. Registro
 
@@ -363,7 +363,7 @@ Los tres puestos experimentales permanecen sin asignación definitiva. Las ficha
 
 Estos requisitos se aplicarán conjuntamente a los tres modelos, respetando el diseño temporal y el dimensionamiento de §4.1. La ejecución del EDA y la generación de folds no acreditan que el entrenamiento, los intervalos de confianza o la evaluación de test ya estén realizados.
 
-### 4.3.1. Control de semillas y determinismo
+### 4.3.1. Control de semillas aleatorias
 
 Cada corrida conservará un identificador y las semillas de los generadores utilizados: Python, NumPy, framework de Deep Learning y operaciones del dispositivo que correspondan. Se registrarán también el orden de lotes, los workers de carga y cualquier otra fuente estocástica del pipeline.
 
@@ -371,9 +371,11 @@ Se declarará si se exige **determinismo estricto**, qué opciones del framework
 
 La lista operativa de semillas será común entre modelos. Una misma etiqueta de semilla permite registrar repeticiones y controles compartidos, pero no produce los mismos pesos o trayectorias aleatorias en arquitecturas distintas ni garantiza reducción de varianza. Cada repetición parte de una inicialización nueva; una repetición idéntica usada para comprobar determinismo no cuenta como otra semilla independiente.
 
-### 4.3.2. Repetición de experimentos y tamaño definitivo
+### 4.3.2. Repetición de experimentos
 
 Cada modelo tendrá al menos **cinco ejecuciones independientes y documentadas**, o **seis si se usan pruebas por rangos**, y el número aumentará cuando lo exija el análisis de potencia. El tamaño definitivo no se fija por conveniencia ni por haber completado el mínimo.
+
+El número definitivo se ajustará al estudio piloto de §4.1.4 y al dimensionamiento de §4.1.6. Los mínimos no garantizan potencia suficiente ni rechazo tras correcciones por multiplicidad, como explica §7.1.
 
 Cuando sea posible se combinarán semillas distintas con orígenes de validación distintos, manteniendo el orden temporal. No se introducirán particiones aleatorias de la serie para aumentar artificialmente el número de resultados. Todos los modelos deberán compartir las fechas y configuraciones comparadas.
 
@@ -387,7 +389,7 @@ Se distinguirán explícitamente:
 
 Los 366 folds y las 5.856 filas del manifiesto no se contarán como ejecuciones independientes. Si se presentan resultados con varios niveles —semillas, configuraciones y fechas—, se declarará su estructura y no se agruparán todas las filas como observaciones i.i.d.
 
-### 4.3.3. Media, desviación estándar e intervalos de confianza
+### 4.3.3. Reporte de media, desviación estándar e intervalos de confianza
 
 Por modelo y configuración se reportarán número de ejecuciones válidas, media, **desviación estándar muestral** e **intervalo de confianza del 95 %** de las métricas pertinentes. La métrica de una ejecución se calcula sobre sus predicciones agregadas según §4.1.3, no promediando incorrectamente las RMSE de folds unitarios.
 
@@ -397,7 +399,7 @@ Para incertidumbre asociada a fechas dependientes se justificará un bootstrap p
 
 Las comparaciones entre modelos usarán diferencias pareadas en las mismas fechas y semillas, con los controles de multiplicidad preregistrados. Un p-value no sustituye el intervalo de confianza, el tamaño del efecto ni su relevancia frente a $\delta$.
 
-### 4.3.4. Uso de GPU y registro del entorno
+### 4.3.4. Uso de GPU
 
 Si se utiliza GPU, se documentarán modelo, memoria, driver, runtime y versiones relevantes del framework, precisión numérica y opciones de determinismo. También se registrarán CPU, memoria, número de hilos y sistema operativo, aunque no se use acelerador.
 
@@ -405,20 +407,30 @@ Los tiempos de entrenamiento e inferencia se medirán con unidades y procedimien
 
 Los modelos se compararán bajo condiciones de hardware consistentes o se explicarán las diferencias. **No se han ejecutado entrenamientos de las redes ni mediciones de GPU**, y no se asignan cifras de tiempo o memoria no observadas.
 
-### 4.3.5. Empaquetado reproducible de extremo a extremo
+### 4.3.5. Empaquetado reproducible
 
 El paquete final deberá permitir reconstruir datos derivados, particiones, entrenamiento y evaluación a partir de instrucciones y versiones fijadas. Conservará:
 
-1. Dependencias y versiones del entorno de entrenamiento, además de los entornos ya registrados para EDA y particiones.
-2. Scripts o cuadernos ejecutables con directorios de trabajo y parámetros completos.
-3. Manifiestos de datos, muestras, folds y hashes, junto con reglas de exclusión.
-4. Configuración de cada corrida, semillas, arquitectura, hiperparámetros, código y hardware.
-5. Logs, curvas, checkpoints, predicciones, métricas, incidencias y vínculo entre sus identificadores.
-6. Preregistro fechado, historial de cambios y procedimiento de generación de tablas y figuras.
+#### 4.3.5.1. Archivo de dependencias
+
+- Dependencias y versiones del entorno de entrenamiento, además de los entornos ya registrados para EDA y particiones.
+
+#### 4.3.5.2. Scripts o cuadernos ejecutables de extremo a extremo
+
+- Scripts o cuadernos ejecutables con directorios de trabajo y parámetros completos.
+- Manifiestos de datos, muestras, folds y hashes, junto con reglas de exclusión.
+
+#### 4.3.5.3. Registro de configuración y artefactos de cada corrida
+
+- Configuración de cada corrida, semillas, arquitectura, hiperparámetros, código y hardware.
+- Logs, curvas, checkpoints, predicciones, métricas, incidencias y vínculo entre sus identificadores.
+- Preregistro fechado, historial de cambios y procedimiento de generación de tablas y figuras.
 
 Actualmente se pueden reproducir la adquisición oficial, el EDA y los folds mediante los scripts del repositorio. **La reproducción de extremo a extremo del benchmark todavía está pendiente**, porque no existen implementaciones entrenadas de los tres modelos. Los ZIP brutos no se incluyen en el sitio: sus URLs y hashes permiten adquirirlos y verificarlos respetando las condiciones del proveedor.
 
-### 4.3.6. Prevención de data leakage
+### 4.3.6. Buenas Prácticas Obligatorias
+
+#### 4.3.6.1. Prevención de data leakage (crítico)
 
 | Control obligatorio | Aplicación en BTCUSDT | Estado o evidencia |
 |---|---|---|
@@ -431,11 +443,37 @@ Actualmente se pueden reproducir la adquisición oficial, el EDA y los folds med
 | Test reservado | No participa en EDA de desarrollo, piloto ni hiperparámetros | Scripts de EDA y partición no abren archivos de test |
 | Integridad y trazabilidad | Brutos intactos, hashes y exclusiones documentadas | Adquisición y derivados de desarrollo registrados |
 
-La separación se refiere al papel de cada objetivo y a su disponibilidad temporal. Una entrada de validación puede reutilizar historia pasada ya observable, como requiere forward chaining; esto no autoriza compartir etiquetas futuras ni ajustar transformaciones con validación o test.
-
 Los controles espaciales, semánticos de NLP o de agrupamiento de imágenes de la guía general no corresponden al alcance actual de una serie financiera única sin esas modalidades. Si se incorporan noticias u otros datos agrupados, deberán añadirse sus controles de disponibilidad, duplicados y dependencia antes de utilizarlos.
 
-### 4.3.7. Evaluación única del test por corrida
+##### 4.3.6.1.1. Separación de entrenamiento, validación y prueba
+
+La separación se refiere al papel de cada objetivo y a su disponibilidad temporal. Una entrada de validación puede reutilizar historia pasada ya observable, como requiere forward chaining; esto no autoriza compartir etiquetas futuras ni ajustar transformaciones con validación o test.
+
+##### 4.3.6.1.2. Transformaciones ajustadas solo en train
+
+Aplica al escalado y a cualquier selección de atributos o transformación aprendida que se adopte: el ajuste usará únicamente el entrenamiento permitido de cada fold y, para la parada temprana, su subentrenamiento. Se mantiene la exclusión estricta de días incompletos, sin imputación. Codificación categórica y vocabulario no aplican al contrato actual de cinco covariables numéricas sin texto.
+
+##### 4.3.6.1.3. Prevención de mezcla temporal
+
+Aplica: se conservan el orden cronológico, la disponibilidad de cada covariable y etiqueta, y el embargo de la ruta 6.4. La validación interna se sitúa en el pasado permitido según §4.2.4.2. El embargo no convierte por sí solo las etiquetas móviles ni los días de mercado en observaciones independientes.
+
+##### 4.3.6.1.4. Prevención de fuga espacial
+
+El control exige validar por bloques con separación mayor al rango de autocorrelación espacial. **No aplica al proyecto actual:** se modela una sola serie financiera sin coordenadas, unidades geográficas ni una estructura de vecindad espacial. No se presentan bloques o rangos espaciales como controles ejecutados.
+
+##### 4.3.6.1.5. Prevención de fuga semántica en NLP
+
+El control exige evitar duplicados y casi duplicados entre particiones y respetar el agrupamiento por autor o documento cuando exista. **No aplica al proyecto actual:** las entradas son OHLCV y no incluyen corpus textual, autores o documentos. Los datos de Twitter de una fuente bibliográfica no forman parte del dataset propio.
+
+##### 4.3.6.1.6. Prevención de fuga por agrupamiento en imágenes
+
+El control exige mantener las imágenes del mismo sujeto, sitio o escena en una sola partición. **No aplica al proyecto actual:** no hay imágenes de entrada ni unidades de agrupamiento de esa modalidad. Los gráficos del EDA son salidas de análisis, no observaciones visuales usadas para entrenar los modelos.
+
+#### 4.3.6.2. Validación consistente entre los tres modelos base
+
+Aplica: se conservarán las mismas muestras elegibles, particiones, horizonte, información disponible y semillas operativas dentro de cada comparación, según §4.2.2. Se mantendrán la métrica y su agregación, el presupuesto de selección y los controles causales comunes. Las diferencias de cobertura o las fallas quedarán registradas; esta regla aún no acredita una comparación ejecutada de las tres redes.
+
+#### 4.3.6.3. Evaluación única del test por corrida
 
 El protocolo de prueba realizará **una sola pasada cronológica de evaluación por corrida**, con arquitectura, hiperparámetros, reglas de actualización y decisiones ya fijados. El preregistro identificará cuándo se considera cerrada una corrida y qué artefactos se conservan. Si el procedimiento elegido actualiza pesos durante test, cada pronóstico se emitirá antes de observar su etiqueta y cada ajuste usará únicamente pasado disponible con su embargo. Esta evaluación secuencial debe declararse previamente y se distingue de evaluar pesos estáticos; ninguna de las dos políticas está elegida aquí.
 
@@ -443,7 +481,7 @@ Las predicciones guardadas permitirán calcular métricas, residuos y figuras si
 
 Se reportarán 2025 y 2026 por separado dentro del calendario fijado. Disponer de más archivos descargados no amplía automáticamente el conjunto de prueba ni valida una nueva selección después de observar resultados.
 
-### 4.3.8. Estado de cumplimiento
+#### 4.3.6.4. Estado de cumplimiento
 
 | Requisito | Estado actual |
 |---|---|

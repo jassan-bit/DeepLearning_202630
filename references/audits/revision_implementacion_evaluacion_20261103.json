@@ -370,5 +370,57 @@
     ],
     "chapter4_source_sha256": "9d9314f1489d155be920073d1e46876739cdd188002ee8424f60169ef905f386",
     "historical_artifacts_note": "Previous review hashes and requirement IDs are preserved as snapshots; they are not current heading numbers."
+  },
+  "structure_review_4_3": {
+    "date": "2026-11-03",
+    "timezone": "America/Bogota",
+    "scope": "Editorial organization and explicit applicability of required experimental controls; no data reads, model implementation or training, benchmark, pilot or measured results.",
+    "previous_source_commit": "3eba1c0d1a56161ff0ff4b9039fdeb8ad5282def",
+    "headings": [
+      "4.3.1. Control de semillas aleatorias",
+      "4.3.2. Repetición de experimentos",
+      "4.3.3. Reporte de media, desviación estándar e intervalos de confianza",
+      "4.3.4. Uso de GPU",
+      "4.3.5. Empaquetado reproducible",
+      "4.3.6. Buenas Prácticas Obligatorias"
+    ],
+    "numbered_children": {
+      "4.3.5": 3,
+      "4.3.6": 4,
+      "4.3.6.1": 6
+    },
+    "old_to_new": {
+      "4.3.1": "4.3.1",
+      "4.3.2": "4.3.2",
+      "4.3.3": "4.3.3",
+      "4.3.4": "4.3.4",
+      "4.3.5": "4.3.5 (six package items grouped under three numbered fields)",
+      "4.3.6": "4.3.6.1 with explicit control/applicability subsections",
+      "4.3.7": "4.3.6.3",
+      "4.3.8": "4.3.6.4"
+    },
+    "control_applicability": {
+      "train_validation_test_separation": "Applicable; supervised test freeze still pending",
+      "transformations_only_in_train": "Applicable; strict exclusion without imputation; categorical encoding/vocabulary not applicable to current numeric OHLCV contract",
+      "temporal_order": "Applicable with causal availability, embargo and internal validation",
+      "spatial_blocks": "Not applicable: no geographic units or spatial neighborhood",
+      "NLP_duplicates_author_document": "Not applicable: no text corpus or author/document inputs",
+      "image_subject_site_scene": "Not applicable: no input images or image groups",
+      "consistent_validation": "Applicable; shared comparison design, own DL execution pending",
+      "single_test_evaluation_per_run": "Applicable; fixed prior rules and one chronological pass, not executed"
+    },
+    "preserved": {
+      "tables": 3,
+      "original_table_lines": 26,
+      "original_package_items": 6,
+      "final_model_trio_closed": false,
+      "project_test_files_opened": 0,
+      "new_empirical_results": 0
+    },
+    "cross_references_updated": [
+      "Two test-evaluation references in chapter 4: 4.3.7 -> 4.3.6.3; GPU reference in chapter 5 remains 4.3.4"
+    ],
+    "chapter4_source_sha256": "382a5e673955cef22b82b3ca92fec819e9619fae1c3e67366dcf0d1f19d50af3",
+    "historical_artifacts_note": "Previous review hashes and requirement IDs remain historical snapshots; audit IDs 4.3.01–4.3.06 are not current subsection numbers."
   }
 }

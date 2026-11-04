@@ -56,3 +56,11 @@ La sección sigue siete apartados: implementación de los modelos de la literatu
 Los cuatro campos de hiperparámetros, las dos condiciones de entrenamiento y los tres campos de registro tienen numeración propia. El contrato común y las semillas se reúnen en 4.2.2; el estado de implementación se conserva en 4.2.7.2. Se mantienen las cuatro matrices y todas sus filas. Dos referencias del capítulo 6 a la parada temprana se actualizan a 4.2.4; la equidad continúa en 4.2.6.
 
 La reorganización no fija hiperparámetros ni acredita código, curvas, conteos medidos, tiempos, hardware o ejecuciones. El trío definitivo, el piloto y el benchmark permanecen pendientes en el alcance de E2. Los identificadores de requisitos 4.2.01–4.2.08 y los hashes previos se conservan como historial.
+
+## Organización de 4.3 — 3 de noviembre de 2026
+
+Se mantienen seis apartados: semillas aleatorias; repetición de experimentos; media, desviación e intervalos; GPU; empaquetado reproducible; y buenas prácticas obligatorias. Los seis componentes originales del empaquetado se conservan agrupados en dependencias, ejecución de extremo a extremo y registro de configuración/artefactos.
+
+En 4.3.6, la prevención de fuga incluye seis controles numerados: separación de particiones, transformaciones solo en train, orden temporal, fuga espacial, fuga semántica de NLP y agrupamiento de imágenes. Los tres últimos no aplican al contrato actual y cada motivo queda explícito. La validación consistente ocupa 4.3.6.2, la evaluación única del test 4.3.6.3 y el estado de cumplimiento 4.3.6.4. Dos referencias internas se sincronizan con el test; GPU permanece en 4.3.4.
+
+Se conservan las tres tablas y sus 26 líneas, los seis componentes del paquete y el contenido científico previo. La repetición remite al piloto y al dimensionamiento de 4.1; los mínimos de cinco/seis ejecuciones no acreditan potencia ni rechazo tras multiplicidad. No hay controles espaciales/NLP/imágenes ejecutados, entrenamientos, piloto, benchmark o nuevos resultados. Los IDs de auditoría 4.3.01–4.3.06 y los hashes anteriores se conservan como historial.
