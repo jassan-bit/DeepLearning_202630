@@ -134,6 +134,7 @@ El ciclo inicial D7 y su complemento Holm-12, Friedman, DM/HAC/HLN y bootstrap m
 
 ## 7.4. Entregables y estado documental real
 
+La [sección 8](08_entregables.md) desarrolla los siete productos, con enlaces directos, catálogos descargables y una declaración cronológica. La tabla siguiente conserva el resumen de su estado y límites.
 
 Los siete productos de la página 33 se identifican por separado. Ejecutar las tres redes y el test no completa los límites bibliográficos, de potencia o de definición de márgenes.
 

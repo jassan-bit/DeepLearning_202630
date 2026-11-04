@@ -20,6 +20,7 @@ El capítulo 5 presenta las **tablas completas de CV y de test para cada entrada
 - [Benchmark y baseline](sections/05_benchmark.md): CV 2024, tablas finales del test 2025–agosto de 2026 y diagnósticos por bloque.
 - [Procedimiento temporal](sections/06_procedimiento.md): ruta 6.4, selección con Filipe y evaluación final sin reajustes durante test.
 - [Limitaciones y entregables](sections/07_limitaciones_entregables.md): dependencia, potencia, equivalencia y estado de los productos.
+- [Entregables del proyecto](sections/08_entregables.md): los siete productos desarrollados, sus tablas, declaraciones, configuraciones y evidencias de entrega.
 - [Decisiones y pendientes](sections/protocolo_pendiente.md): acuerdos, evidencia verificable y trabajo aún abierto.
 
 ## Alcance del proyecto

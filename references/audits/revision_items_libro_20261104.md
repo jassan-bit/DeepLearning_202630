@@ -1,6 +1,6 @@
 # Revisión integral de ítems del libro — cuatro entradas y test final
 
-Se revisaron **390 subsecciones numeradas** de los capítulos 1–7 y se conservó exactamente su jerarquía. El inventario CSV/JSON identifica cada ítem, título, archivo y línea. «Revisado» no declara cierre de todos los requisitos científicos.
+Se conservaron las **390 subsecciones numeradas** de los capítulos 1–7 y su jerarquía. La sección 8 desarrolla los siete productos solicitados en **8.1–8.7**, para un total de **397 incisos**. El inventario CSV/JSON identifica cada ítem, título, archivo y línea. «Revisado» no declara cierre de todos los requisitos científicos.
 
 La CV de Filipe evalúa D=7,14,21,28 días con objetivo σ7 y horizonte diario h=1. D7 conserva sus treinta trayectorias originales; se añadieron noventa trayectorias y 2.160 ajustes de desarrollo. La configuración se cerró con 2024 antes del ajuste final de 120 modelos y de abrir los veinte archivos del test enero2025–agosto2026.
 

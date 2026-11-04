@@ -1,0 +1,149 @@
+{
+  "document_role": "Versioned declaration compiled from existing records; not a new preregistration",
+  "compiled_at_bogota": "2026-11-04T18:03:04.356728-05:00",
+  "problem": {
+    "type": 4,
+    "input_features": [
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume"
+    ],
+    "input_history_days": [
+      7,
+      14,
+      21,
+      28
+    ],
+    "target_return_days": 7,
+    "target_ddof": 0,
+    "forecast_horizon_days": 1
+  },
+  "primary_metric": {
+    "name": "RMSE",
+    "scale": "Original unannualized sigma7 units after inverse target scaling",
+    "aggregation": "Pooled evaluation dates per model/history/seed, then mean and sample SD across seeds"
+  },
+  "secondary_metrics": [
+    "MAE",
+    "MSE",
+    "R2",
+    "MAPE with strictly positive targets and reported coverage",
+    "MASE with permitted-training calendar lag1 scale"
+  ],
+  "original_operational_margin": {
+    "relative_RMSE_gain": 0.05,
+    "reference": "Deterministic persistence on the same eligible dates",
+    "timing": "Documented before the first project DL fit and reserved-test evaluation, after development EDA",
+    "limit": "Not a validated financial tolerance; not power for proving a gain above5percent; not automatically a margin between two networks"
+  },
+  "future_academic_margin": {
+    "relative_RMSE_gain": 0.05,
+    "references": [
+      "Frozen neural baseline MLP/D7",
+      "Deterministic persistence"
+    ],
+    "estimand": "1 - E[seed RMSE advanced]/E[seed RMSE reference]; boundary difference=.95*RMSEreference-RMSEadvanced",
+    "timing": "Defined after the current test, for future independent comparisons only",
+    "financial_utility_claim": false,
+    "policy_source": "experiments/e1_audit_improvements_20261104/academic_margin_policy.json"
+  },
+  "units": {
+    "observation": "Daily UTC outcome; adjacent sigma7 labels share six returns",
+    "training_randomness": "Ten paired training seeds4101..4110, conditional on the observed calendar",
+    "independent_market_series": 1,
+    "market": "Binance Spot BTCUSDT",
+    "temporal_uncertainty": "Shared chronological dates and temporal blocks; days/months/seeds do not create independent markets"
+  },
+  "partition": {
+    "initial_training": "2023-01-01..2023-12-31",
+    "forward_validation": "2024-01-01..2024-12-31",
+    "final_development_fit": "Permitted2023-2024 outcomes with D-day purge before test",
+    "evaluated_test": "2025-01-01..2026-08-31",
+    "unassigned": "September-October2026",
+    "calendar_days": {
+      "initial": 365,
+      "validation": 366,
+      "test": 608,
+      "total": 1339
+    },
+    "calendar_percentages": {
+      "initial": 27.26,
+      "validation": 27.33,
+      "test": 45.41
+    },
+    "split_rule": "Chronological deterministic, no shuffled partition; no partition seed applies",
+    "embargo": "Equal to maximum covariate lag D under guide6.4",
+    "CV": "Actual timeseries-cv daily forward indices grouped into twelve monthly training/validation blocks",
+    "test": "120 models frozen before first modeling access; twenty reporting months, zero refits"
+  },
+  "baseline_selection": {
+    "model": "MLP",
+    "history_days": 7,
+    "parameters": 593,
+    "cv_rmse_mean": 0.006049073777079856,
+    "cv_rmse_sample_sd": 0.00027796291525602774,
+    "seeds": 10
+  },
+  "chronology": [
+    {
+      "event": "Primer protocolo de implementación; posterior al EDA",
+      "timestamp_utc": "2026-11-04T14:28:17.350067+00:00",
+      "timestamp_bogota": "2026-11-04T09:28:17.350067-05:00",
+      "source": "experiments/dl_benchmark_20261104/protocol_initial.json",
+      "source_sha256": "7cbda15bd55b8a9fe4bd73b199e2b2af7ca9942e01521ddaa275c6181d43ce4f"
+    },
+    {
+      "event": "Extensión de cuatro entradas registrada",
+      "timestamp_utc": "2026-11-04T19:31:02.794253+00:00",
+      "timestamp_bogota": "2026-11-04T14:31:02.794253-05:00",
+      "source": "experiments/filipe_multihistory_20261104/protocol.json",
+      "source_sha256": "54a0ea0d6053c227a79a9864edc3bf969933b8ce4f6963f4bb2a83583489f9ec"
+    },
+    {
+      "event": "Selección y épocas cerradas antes del test",
+      "timestamp_utc": "2026-11-04T19:42:49.950364+00:00",
+      "timestamp_bogota": "2026-11-04T14:42:49.950364-05:00",
+      "source": "experiments/filipe_multihistory_20261104/freeze.json",
+      "source_sha256": "7c789040819598a4339b60c7be56e104b82ef94dbba6b70ae904128387f47837"
+    },
+    {
+      "event": "Primer acceso de modelado a los ZIP de test",
+      "timestamp_utc": "2026-11-04T19:44:21.460413+00:00",
+      "timestamp_bogota": "2026-11-04T14:44:21.460413-05:00",
+      "source": "results/filipe_multihistory_20261104/test/raw_test_audit.json",
+      "source_sha256": "4f2ea5591ed83970ec1644aa9d8410fbf3817b05bc23721e13ad8e03b827c29c"
+    },
+    {
+      "event": "Suplemento inferencial posterior a inspeccionar test",
+      "timestamp_utc": "2026-11-04T20:44:20.903533+00:00",
+      "timestamp_bogota": "2026-11-04T15:44:20.903533-05:00",
+      "source": "experiments/e1_audit_improvements_20261104/protocol.json",
+      "source_sha256": "e6319edf4c320707d51fc987b59f62967538784718ffe369d5a0e5b468576442"
+    },
+    {
+      "event": "Criterio académico futuro; posterior al test actual",
+      "timestamp_utc": "2026-11-04T21:03:18.778471+00:00",
+      "timestamp_bogota": "2026-11-04T16:03:18.778471-05:00",
+      "source": "experiments/e1_audit_improvements_20261104/academic_margin_policy.json",
+      "source_sha256": "765a845cbc59c115787d1279b6456e2f45a69bd456cd16ee81a02f1b6216ace6"
+    }
+  ],
+  "limits": [
+    "No claim of registration before EDA or before the historical market periods",
+    "The final supplement is post-hoc, not prospective confirmation",
+    "The future academic criterion was not predeclared for the completed test",
+    "A prospective pilot and new evaluation remain pending for a future study"
+  ],
+  "inherited_next_delivery": "Keep source, target, metric and dependence definitions explicit; any new model designed from this test needs another independent evaluation.",
+  "source_sha256": {
+    "experiments/filipe_multihistory_20261104/freeze.json": "7c789040819598a4339b60c7be56e104b82ef94dbba6b70ae904128387f47837",
+    "experiments/filipe_multihistory_20261104/protocol.json": "54a0ea0d6053c227a79a9864edc3bf969933b8ce4f6963f4bb2a83583489f9ec",
+    "experiments/e1_audit_improvements_20261104/academic_margin_policy.json": "765a845cbc59c115787d1279b6456e2f45a69bd456cd16ee81a02f1b6216ace6",
+    "experiments/dl_benchmark_20261104/protocol_initial.json": "7cbda15bd55b8a9fe4bd73b199e2b2af7ca9942e01521ddaa275c6181d43ce4f",
+    "results/filipe_multihistory_20261104/test/raw_test_audit.json": "4f2ea5591ed83970ec1644aa9d8410fbf3817b05bc23721e13ad8e03b827c29c",
+    "experiments/e1_audit_improvements_20261104/protocol.json": "e6319edf4c320707d51fc987b59f62967538784718ffe369d5a0e5b468576442",
+    "references/decisiones_e1_20261102.json": "1d0149568acb265b0aadbba396faaaab4b7c76f7b3caf9bf46f8259b4ac95eaf"
+  }
+}
