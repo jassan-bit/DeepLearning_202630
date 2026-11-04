@@ -1,6 +1,6 @@
 # 3. Revisión del Estado del Arte y Extracción de los Tres Modelos Base
 
-La revisión debe identificar exactamente tres modelos DL básicos usados como referencias comparativas en la literatura de volatilidad de Bitcoin. Este capítulo reúne **35 referencias bibliográficas y un corpus exploratorio de cinco textos completos**; son unidades distintas. Las fichas de LSTM, TCN y encoder Transformer siguen siendo candidatas de trabajo: la selección final por recurrencia, mínima complejidad y no redundancia todavía no está acreditada.
+La revisión debe identificar exactamente tres modelos DL básicos usados como referencias comparativas en la literatura de volatilidad de Bitcoin. Este capítulo reúne **35 referencias bibliográficas y un corpus exploratorio de cinco textos completos**; son unidades distintas. La propuesta del proyecto sigue la guía 6.4: **MLP, LSTM y CNN1D poco profunda**, con GRU como alternativa recurrente. Las fichas de LSTM, TCN y encoder Transformer se conservan como perfiles documentales de las fuentes; no son el trío propuesto. La extracción aplicada y las configuraciones finales de MLP/CNN1D todavía requieren respaldo.
 
 La revisión del **03/11/2026** corrigió motivos de cribado, recuperó dos textos adicionales y completó la extracción de los hiperparámetros ganadores de S1, que sí aparecen en su apéndice. Se conservan los cortes anteriores y se explicitan fuentes grises, parámetros desconocidos y límites de las métricas. No se entrenaron redes ni se consultaron datos de test del proyecto.
 
@@ -292,14 +292,26 @@ Los conteos comunes controlan dimensiones de entrada/salida, pero no igualan cap
 
 #### 3.2.1.3. Estado de la selección
 
+**Propuesta de diseño alineada con la guía 6.4:**
+
+| Puesto propuesto | Familia | Entrada y papel | Evidencia pendiente |
+|---|---|---|---|
+| P1 | MLP sencilla | Las mismas covariables OHLCV rezagadas, aplanadas en 5D componentes; referencia no lineal sin estado recurrente | No hay MLP independiente no lineal acreditada en el corpus; faltan referencias aplicadas y ficha propia. |
+| P2 | LSTM unidireccional | Secuencia D×5 de las mismas covariables; referencia con memoria recurrente | La variante unidireccional está documentada en 3/5 textos, con tareas distintas. Falta justificar la adaptación y cerrar la configuración; GRU es alternativa para este puesto. |
+| P3 | CNN1D poco profunda | La misma secuencia de covariables; referencia convolucional temporal | No hay CNN1D simple independiente acreditada en el corpus. La TCN ganadora de S1 no satisface por sí sola esta especificación. |
+
+El [registro de propuesta](../_static/literature_e1/guide_aligned_proposal_20261104.json) identifica la procedencia curricular y las lagunas. Elegir LSTM para el puesto recurrente se apoya en su mayor recurrencia observada y en una variante pequeña descrita; no afirma que prediga mejor que GRU. Ninguna arquitectura, ancho o configuración experimental queda congelada.
+
+**Perfiles documentales conservados de la revisión previa:**
+
 | Estado | Familia | Justificación actual | Condición pendiente |
 |---|---|---|---|
-| M1, candidata de trabajo | LSTM unidireccional | Mayor recurrencia familiar y arquitectura pequeña identificable en S5 | Justificar variante y adaptación a OHLCV sin transferir resultados |
-| M2, candidata de trabajo | TCN causal dilatada | Comparador independiente con filtros compartidos y dilatación | Justificar una configuración básica; verificar versión de biblioteca y distinguir réplica de simplificación |
-| M3, candidata de trabajo | Encoder Transformer | Mecanismo de atención distinto, documentado en S2 y S6 | Corroborar suficiencia académica de fuentes grises y sencillez de la variante propia |
-| Candidata que debe seguir evaluándose | GRU | 2/5 y menor complejidad que algunas variantes recurrentes | No descartarla solo porque LSTM también sea recurrente; justificar no redundancia y criterios del trío final |
+| Perfil documental recurrente | LSTM unidireccional | Mayor recurrencia familiar y arquitectura pequeña identificable en S5 | Justificar variante y adaptación a OHLCV sin transferir resultados |
+| Perfil documental convolucional | TCN causal dilatada | Comparador independiente con filtros compartidos y dilatación | Verificar versión de biblioteca y supuestos de la fuente; no es la CNN1D simple propuesta |
+| Perfil documental de atención | Encoder Transformer | Mecanismo de atención distinto, documentado en S2 y S6 | Corroborar procedencia y detalles de fuentes grises como antecedente suplementario |
+| Alternativa del puesto recurrente | GRU | 2/5 y menor complejidad que algunas variantes recurrentes | No descartarla solo porque LSTM también sea recurrente; justificar no redundancia y criterios del trío final |
 
-El [registro de selección](../_static/literature_e1/selection_evidence.json) mantiene las tres fichas como **candidatas provisionales**, no como los tres básicos definitivamente extraídos. La frecuencia por sí sola ordena LSTM, luego GRU y Transformer empatados, y después TCN. La elección anterior de LSTM–TCN–Transformer priorizaba diversidad; no satisface por sí sola la regla conjunta de la guía. La revisión no presenta ese compromiso como una selección cerrada ni fija modelos nuevos sin respaldo.
+El [registro de selección](../_static/literature_e1/selection_evidence.json) conserva los perfiles como evidencia documental y registra por separado la propuesta MLP–LSTM–CNN1D; la selección experimental final sigue sin congelarse. La frecuencia por sí sola ordena LSTM, luego GRU y Transformer empatados, y después TCN. La elección anterior de LSTM–TCN–Transformer priorizaba diversidad; no satisface por sí sola la regla conjunta de la guía. La propuesta actual se alinea con las tres familias de la guía; completar su respaldo aplicado y las configuraciones reproducibles sigue siendo necesario para satisfacer la extracción de tres básicos.
 
 ### 3.2.2. Criterios que debe cumplir cada modelo base
 
@@ -339,9 +351,11 @@ En este problema continuo, el ejemplo clásico pertinente de la guía es **SVR l
 | Referencia | Capacidad y supuestos | Papel comparativo |
 |---|---|---|
 | SVR lineal | Función afín sobre covariables vectorizadas, regularización y pérdida ε-insensible | Referencia clásica; no ocupa un puesto DL |
+| MLP propuesta | Función no lineal sobre covariables con rezagos aplanadas | Referencia feedforward de capacidad controlada; respaldo aplicado pendiente |
 | LSTM | Estado recurrente, memoria y transformaciones no lineales con compuertas | Referencia DL secuencial si se controla su capacidad y presupuesto |
-| TCN | Filtros causales compartidos y campo receptivo definido | Referencia DL convolucional si se justifica una variante básica |
-| Encoder Transformer | Interacciones por contenido y posiciones en una ventana observable | Candidata DL de atención; su carácter mínimo no se presupone |
+| CNN1D propuesta | Filtros temporales compartidos sobre la historia observable | Referencia convolucional poco profunda; respaldo aplicado pendiente |
+| TCN | Filtros causales compartidos y campo receptivo definido | Antecedente documental; no se equipara a la CNN1D poco profunda propuesta |
+| Encoder Transformer | Interacciones por contenido y posiciones en una ventana observable | Antecedente documental de atención, fuera de la propuesta actual de tres básicos |
 
 Su comparación exige información, partición, objetivo y esfuerzo de ajuste comunes. Persistencia, Ridge y GARCH aportan contexto y no sustituyen los tres modelos DL. Los cuatro Ridge del bloque C son diagnósticos de EDA; el benchmark propio de redes continúa reservado para E2.
 
@@ -372,9 +386,9 @@ Las siguientes familias son una orientación de la guía, no resultados de frecu
 
 Un encoder no convierte por sí solo el problema en secuencia a secuencia; una convolución temporal tampoco implica imágenes. Las orientaciones no aplicables se conservan con su justificación y no añaden experimentos ni puestos al trío.
 
-## 3.3. Análisis detallado por modelo base: fichas candidatas
+## 3.3. Análisis documental de las arquitecturas recuperadas
 
-Las tres familias siguientes representan memoria recurrente, convolución causal y atención. Su candidatura es **documental y acotada al corpus recuperado**; todavía no acredita la selección definitiva por recurrencia y mínima complejidad exigida por la guía. Se distinguen: arquitectura reportada por la fuente, cálculo analítico derivado de su descripción y adaptación que necesitaría el proyecto. La elaboración de estas fichas no ejecutó código de Deep Learning ni generó predicciones o resultados nuevos con datos de mercado; las referencias Ridge del EDA se documentan por separado en el capítulo 2.
+Las fichas siguientes documentan LSTM, TCN y encoder Transformer tal como aparecen en las fuentes recuperadas. **No corresponden al trío propuesto MLP–LSTM–CNN1D poco profunda.** La ficha LSTM aporta un antecedente para el puesto recurrente; las fichas TCN y encoder se conservan para trazabilidad y comparación de literatura. Faltan las fichas aplicadas de MLP y CNN1D simple, y las configuraciones propias todavía no están cerradas. Se distinguen: arquitectura reportada por la fuente, cálculo analítico derivado de su descripción y adaptación que necesitaría el proyecto. La elaboración de estas fichas no ejecutó código de Deep Learning ni generó predicciones o resultados nuevos con datos de mercado; las referencias Ridge del EDA se documentan por separado en el capítulo 2.
 
 Tras la recuperación dirigida, el corpus exploratorio contiene **cinco textos completos**: S1, S2, S5, S6 y S7. La **familia LSTM aparece en 4/5**, incluida la BiLSTM de S2; sus variantes unidireccionales están en S1/S5/S7, **3/5**. GRU aparece en **2/5**, TCN en **1/5** y encoder Transformer en **2/5**, S2/S6. S6 y S7 se incorporan como literatura gris con riesgos explícitos; una mayor cantidad de textos no acredita revisión por pares, mínima complejidad o comparabilidad de sus resultados. Las fichas concretas se mantienen apoyadas en LSTM de S5, TCN de S1 y SELF-ATT de S2. S6/S7 amplían evidencia de las familias, no definen réplicas idénticas de esas configuraciones. Una referencia general de arquitectura no cuenta como estudio aplicado adicional.
 
@@ -713,9 +727,11 @@ Las fichas aportan evidencia, ecuaciones, diagramas, resultados publicados y an�
 
 La numeración de cada ficha sigue los nueve incisos de la guía: referencias; tipo de arquitectura; descripción técnica; tipo de problema; datasets; métricas/valores; fortalezas; limitaciones; y complejidad. Un DOI ausente o un tiempo no recuperado se declara, y un conteo analítico condicionado no se presenta como tamaño medido por una implementación.
 
-## 3.4. Comparación crítica de las familias de trabajo
+## 3.4. Comparación crítica de la evidencia recuperada
 
-### 3.4.1. Comparación estructurada entre las familias candidatas
+Las tablas siguientes preservan resultados y configuraciones de las fuentes LSTM/TCN/encoder. Su función es documental; no sustituyen la comparación futura de MLP, LSTM y CNN1D poco profunda ni acreditan las fichas que aún faltan.
+
+### 3.4.1. Comparación estructurada entre las arquitecturas documentadas
 
 #### 3.4.1.1. Desempeño publicado y comparabilidad
 
@@ -783,7 +799,7 @@ La reducción se deriva como `100·(RMSE_TCN−RMSE_variante)/RMSE_TCN` a partir
 
 ### 3.4.4. Brecha verificable y proyección
 
-**Brecha limitada a los cinco textos incluidos:** ninguno compara conjuntamente LSTM, TCN y encoder Transformer con el mismo OHLCV diario de Binance Spot, desviación poblacional de siete retornos, horizonte de un día, protocolo cronológico común y tratamiento explícito de incertidumbre y multiplicidad. La afirmación se contrasta en la matriz; no demuestra una ausencia universal ni originalidad mundial. Tampoco convierte esas tres candidatas en la selección definitiva que sigue pendiente.
+**Límite del corpus respecto a la propuesta actual:** ninguno de los cinco textos incluidos acredita una comparación conjunta de MLP, LSTM y CNN1D poco profunda con el contrato OHLCV diario de Binance Spot, n=7 y h=1. En particular, MLP independiente y CNN1D simple tienen 0/5 apoyos verificados en este corpus. Esta es una laguna de cobertura de la revisión accesible, no prueba de ausencia mundial ni de originalidad. Debe completarse la evidencia aplicada antes de presentar el trío como extraído y justificado por la literatura.
 
 La contribución evaluable sería establecer referencias DL de capacidad controlada, bajo la misma información y presupuesto, y cuantificar qué mejora debe superar un modelo avanzado. Antes de ejecutarla hace falta cerrar el trío con evidencia suficiente y registrar sus configuraciones. Se mantienen RMSE, el margen operativo del 5 % frente a persistencia y la protección del test. No se promete que una red supere esa referencia.
 
@@ -797,8 +813,8 @@ La contribución evaluable sería establecer referencias DL de capacidad control
 | Inclusión, exclusión, flujo y responsable | Criterios retrospectivos, cribado histórico y revisado: 20 repositorios inspeccionados, siete textos evaluados y cinco incluidos; cinco README adicionales del descubrimiento actual como pistas | El flujo histórico y las nuevas pistas se distinguen; corpus sin nuevas inclusiones automáticas, sin exhaustividad ni segundo revisor humano acreditados |
 | Matriz y evaluación de calidad | Cinco textos, resultados con ubicación y riesgos por dimensión | La inclusión no certifica validez; dos incorporaciones y S2 son literatura gris |
 | Frecuencia y complejidad | Variantes, frecuencias ampliadas/sensibilidades, ganadores de S1 y conteos analíticos reproducibles | Corregido; no demuestra mínima complejidad global ni uso frecuente en todos los índices |
-| Exactamente tres modelos básicos no redundantes | Tres fichas candidatas y GRU mantenida en evaluación | Selección final pendiente; no se descarta GRU por preferencia ni se adopta TCN grande como básica automáticamente |
-| Fichas técnicas completas | Referencias, ecuaciones, diagramas, objetivos, pérdidas, entrenamiento, parámetros y costos | Ganadores fuente recuperados; versión de biblioteca y adaptación propia aún requieren cierre |
+| Exactamente tres modelos básicos no redundantes | Propuesta MLP–LSTM–CNN1D poco profunda según guía 6.4; GRU alternativa recurrente | Extracción aplicada y configuraciones pendientes; no se presenta la TCN grande como CNN simple |
+| Fichas técnicas del trío propuesto | Perfiles de fuente LSTM/TCN/encoder con referencias y análisis conservados | Faltan fichas aplicadas de MLP/CNN1D simple y configuraciones propias; las fichas fuente no las sustituyen |
 | Comparación crítica y brecha | Desempeño separado por protocolo, robustez, escalabilidad y brecha avanzada/base cuantificada | Documentada sin ranking entre tareas, inferencia propia ni afirmación de novedad universal |
 | Experimentos y baseline medido | Diseño futuro y separación del diagnóstico Ridge de EDA | Tres redes, piloto, benchmark y test siguen reservados para E2 |
 
@@ -832,7 +848,7 @@ ARCH formaliza varianza condicional cambiante y GARCH amplía esa estructura inc
 
 La literatura de volatilidad realizada y de modelos HAR estudia construcciones y dependencias a distintas escalas {cite:p}`andersen2003,corsi2009`. Es necesario conservar la distinción entre varianza condicional, volatilidad realizada construida con alta frecuencia y desviación estándar móvil de retornos diarios. La medida definida en este proyecto no se convierte en cualquiera de las anteriores por compartir la palabra «volatilidad». Cambiar ventana, frecuencia o anualización también cambia la escala de las métricas.
 
-### 3.5.4. Fundamentos de las familias neuronales candidatas
+### 3.5.4. Fundamentos de las familias neuronales y perfiles fuente
 
 El resultado de aproximación de redes feedforward y la exposición general de aprendizaje profundo fundamentan el uso de MLP como familia candidata {cite:p}`cybenko1989,goodfellow2016`. La capacidad de aproximar funciones no garantiza generalización ni acredita que una MLP sea una referencia frecuente para Bitcoin. Esa frecuencia requiere evidencia en estudios aplicados incluidos.
 
@@ -864,4 +880,4 @@ Holm aporta un procedimiento secuencial para comparaciones múltiples {cite:p}`h
 
 La herramienta descrita por Haddaway y colaboradores facilita producir diagramas de flujo PRISMA 2020 {cite:p}`haddaway2022`. Se cita como apoyo para documentar el proceso, sin atribuirle la declaración original ni afirmar cumplimiento de una revisión sistemática solo por dibujar un flujo. Los conteos de búsquedas, duplicados y exclusiones deben corresponder a registros reales.
 
-Las 35 referencias amplían el soporte documental del Entregable 1 y permiten distinguir problema financiero, arquitectura y método de evaluación. No equivalen a 35 experimentos ni a 35 estudios elegibles de modelos base de Bitcoin. Los textos de fundamentos no se suman a una frecuencia de uso en el problema aplicado. Las cinco fuentes completas se distinguen por calidad y procedencia. Las fichas y la comparación de las tres candidatas están documentadas en §§3.3–3.4. Permanecen abiertos la cobertura bibliográfica, el orden de los candidatos por frecuencia y complejidad y el respaldo de las configuraciones propias de E2. La cantidad de citas no acredita por sí sola la identificación definitiva exigida por la guía.
+Las 35 referencias amplían el soporte documental del Entregable 1 y permiten distinguir problema financiero, arquitectura y método de evaluación. No equivalen a 35 experimentos ni a 35 estudios elegibles de modelos base de Bitcoin. Los textos de fundamentos no se suman a una frecuencia de uso en el problema aplicado. Las cinco fuentes completas se distinguen por calidad y procedencia. Los perfiles fuente y su comparación están documentados en §§3.3–3.4. Las fichas aplicadas de MLP y CNN1D simple de la propuesta actual aún deben completarse. Permanecen abiertos la cobertura bibliográfica, el orden de los candidatos por frecuencia y complejidad y el respaldo de las configuraciones propias de E2. La cantidad de citas no acredita por sí sola la identificación definitiva exigida por la guía.

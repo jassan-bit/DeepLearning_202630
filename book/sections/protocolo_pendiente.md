@@ -24,7 +24,8 @@ Esta página registra el alcance autorizado: **definición del problema, EDA y r
 | Calendario | Historia de 2023, validación de 2024 y test previsto del 01/01/2025 al 31/08/2026; septiembre–octubre no se asignan automáticamente |
 | Reserva bruta de test | 20 ZIP mensuales identificados mediante metadatos y hashes; el test supervisado y su protocolo aún no están congelados |
 | Referencia diagnóstica del bloque C | Cuatro Ridge con intercepto libre y $\alpha=1$ fijo, una por D; ajuste permitido de 2023, 366 predicciones de 2024 por referencia; sin tuning ni selección de D |
-| Familias candidatas documentales | LSTM unidireccional, TCN y encoder Transformer; selección final por recurrencia y mínima complejidad todavía no acreditada |
+| Propuesta de familias según guía 6.4 | MLP, LSTM y CNN1D poco profunda; GRU alternativa recurrente. Faltan respaldo aplicado de MLP/CNN1D simple y configuraciones finales. |
+| Perfiles de fuentes conservados | LSTM, TCN y encoder Transformer, separados de la propuesta del proyecto. |
 
 El margen del 5 % es un criterio operativo aceptado frente a persistencia, no una utilidad financiera calibrada ni un margen ya fijado entre redes, para equivalencia o para modelos avanzados. Alcanzarlo puntualmente no equivale a demostrarlo con un intervalo de incertidumbre. La conversión a escala absoluta para dimensionamiento se hará en la etapa experimental mediante una regla registrada, sin cambiar retrospectivamente el porcentaje. El [registro de decisiones](../_static/e1/decisiones.json) separa lo fijado de lo que requiere E2.
 
@@ -40,7 +41,7 @@ La revisión del **03/11/2026** contrasta 18 requisitos de las secciones 1–7 d
 | Particiones | Folds corregidos con embargo explícito D; 5.856 filas, 366 por configuración; una muestra de ajuste adicional retirada en cada fila |
 | Datos y trazabilidad | Fuente y hashes conservados; copia de términos y reserva bruta de 20 ZIP de test documentadas sin abrir esos ZIP |
 | EDA | Ocho perfiles objetivo, colas, máscaras, reconstrucción numérica y seis marginales por bloques/Holm; bloque C con disponibilidad causal, correlaciones en cohorte común, relaciones móviles y 1.464 residuos de cuatro Ridge. Mecanismo de faltantes y ruido externo no identificados |
-| Literatura | 35 referencias separadas de cinco textos aplicados exploratorios; candidatos de trabajo distinguidos de los tres básicos definitivos exigidos |
+| Literatura | 35 referencias separadas de cinco textos aplicados exploratorios; propuesta curricular MLP–LSTM–CNN1D diferenciada de perfiles fuente y configuraciones finales pendientes |
 | Implementación de las tres redes y benchmark | No ejecutados por el alcance vigente; los cuatro ajustes lineales son diagnósticos de EDA y no cubren estos requisitos de la guía original |
 
 El cumplimiento global del Entregable 1 **no se declara cerrado**. Corregir la redacción y los índices no sustituye las evidencias bibliográficas o experimentales que faltan.
@@ -64,8 +65,8 @@ La revisión del capítulo 7 está en el {download}`informe de limitaciones y en
 | 1 | Fuentes y búsqueda trazable | Tabla de las 35 referencias citadas, con enlaces y nivel de evidencia; consultas complementarias e historial de acceso conservados |
 | 2 | Cribado y flujo | 118 ocurrencias, 12 duplicadas, 106 repositorios, 20 inspeccionados, 7 textos evaluados y 5 incluidos; recuperación acumulada y corte histórico diferenciados |
 | 3 | Matriz de literatura | Cinco textos incluidos, 81 cifras publicadas y evaluación de calidad con ubicaciones; cifras de autores, no resultados propios |
-| 4 | Candidatos para tres modelos básicos | LSTM–TCN–encoder Transformer documentados; la selección definitiva por frecuencia y mínima complejidad permanece parcial |
-| 5 | Fichas técnicas | Ecuaciones, diagramas, parámetros analíticos, configuraciones fuente, resultados publicados, fortalezas y límites |
+| 4 | Propuesta de tres modelos básicos | MLP–LSTM–CNN1D poco profunda según guía 6.4; extracción aplicada y configuración final pendientes |
+| 5 | Fichas técnicas | Perfiles fuente LSTM/TCN/encoder conservados; faltan las fichas de MLP/CNN1D simple con respaldo aplicado |
 | 6 | Comparación crítica | Objetivos/mercados/escalas comparados, riesgos y brecha limitada al corpus |
 | 7 | Definición y coherencia | n=7, h=1, cuatro longitudes de entrada, RMSE, 5 %, MAPE/MASE, ruta 6.4 y procedencia sincronizados |
 
@@ -74,7 +75,7 @@ Las frecuencias se calculan sobre cinco textos completos: familia LSTM 4/5 inclu
 ## Límites que permanecen abiertos
 
 - **Cobertura académica:** §3.1 documenta doce consultas públicas ejecutadas y verificación posterior de procedencia. Cinco revistas coinciden por título/ISSN en copias secundarias de listas WoS/Scopus de 2026; Akbiyik tiene identificador arXiv corroborado en PDF de autores y Herremans un enlace Xplore declarado por autores. No se acreditan búsquedas internas en las bases, registro individual WoS/Scopus ni cuartil Q1; la recuperación pública es acotada y la extracción definitiva sigue abierta.
-- **Fuente de atención:** los dos apoyos aplicados recuperados son manuscritos sin revisión por pares acreditada; uno no acredita fecha editorial. Si el criterio académico exige solo artículos revisados por pares, esa parte de la selección debe ampliarse.
+- **Perfiles suplementarios de atención:** los dos apoyos recuperados son manuscritos sin revisión por pares acreditada; uno carece de fecha editorial corroborada. Es un límite de esos antecedentes y no condiciona el cierre de la propuesta MLP–LSTM–CNN1D. La brecha activa del proyecto es el respaldo aplicado de MLP/CNN1D simple y sus configuraciones.
 - **Extracción de los tres básicos:** la guía pide recurrencia, sencillez y diversidad; priorizar únicamente diversidad en un corpus pequeño no cierra conjuntamente esos criterios.
 - **EDA y referencia de contexto:** el diagnóstico de cuatro Ridge y sus residuos está ejecutado; queda justificar la especificación y el tratamiento de la dependencia para el experimento de E2. La autocorrelación residual no reclasifica automáticamente el problema. No se han identificado el mecanismo de faltantes ni el ruido externo de etiquetas con evidencia suficiente.
 - **Configuraciones originales:** los ganadores de S1 sí están publicados y se corrigió su omisión; quedan sin fijar la versión de `keras-tcn`, algunos detalles de S6 y las configuraciones OHLCV propias. Las fichas separan fuente, cálculo analítico y adaptación futura.

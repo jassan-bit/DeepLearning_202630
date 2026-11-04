@@ -73,16 +73,18 @@ La política vigente preserva los ZIP y el calendario completo: un día sin 1.44
 
 La guía propone para regresión temporal MLP sobre covariables rezagadas, LSTM o GRU sobre secuencias de covariables y CNN1D poco profunda. Estas familias son orientativas, pero la selección final debe provenir de la frecuencia observada en la literatura revisada y justificar simplicidad y propósito comparativo. También debe identificar la arquitectura reproducible y los supuestos de cada alternativa.
 
-El registro de evidencia, las tres fichas y el estado de la selección se mantienen en la [sección 3](03_estado_arte.md). El trío documental LSTM–TCN–encoder Transformer prioriza diversidad y sigue condicionado a su evidencia: GRU y encoder Transformer aparecen en 2/5 y TCN en 1/5; los dos apoyos de atención son literatura gris. Los ganadores de S1 están publicados en su apéndice y su TCN no acredita una configuración pequeña. Esa elección de trabajo no acredita por sí sola el requisito de los tres modelos básicos más empleados. Una referencia general de arquitectura tampoco demuestra uso frecuente en volatilidad de Bitcoin; TCN no se equipara automáticamente con una CNN1D simple ni una red lineal con una MLP de capas ocultas.
+La propuesta de diseño del proyecto es **MLP sobre covariables rezagadas, LSTM sobre secuencias de covariables y CNN1D poco profunda**. GRU es alternativa para el puesto recurrente. El [registro de propuesta](../_static/literature_e1/guide_aligned_proposal_20261104.json) diferencia estas familias curriculares del cierre experimental pendiente.
+
+Los perfiles LSTM–TCN–encoder de la [sección 3](03_estado_arte.md) son fuentes documentales recuperadas, no el trío propuesto. La TCN ganadora de S1 es ancha y de seis niveles; no acredita una CNN1D simple. El encoder queda fuera de la propuesta de tres básicos. Los conteos de los cinco textos se conservan sin inventar apoyo para MLP/CNN1D simple. Una red lineal o una cabeza densa interna tampoco sustituyen una MLP no lineal independiente.
 
 | Orientación de la guía 6.4 | Evidencia disponible | Decisión metodológica |
 |---|---|---|
-| MLP sobre covariables con rezagos | No hay MLP independiente no lineal acreditada en los cinco textos incluidos | Ampliar evidencia si se propone; la densa lineal de S5 y la cabeza de S7 no la sustituyen. |
-| LSTM o GRU sobre covariables | Familia LSTM 4/5, unidireccional 3/5 y GRU 2/5, con variantes distintas | Cerrar variante y configuración; GRU continúa evaluable. |
-| CNN1D poco profunda | TCN aparece en S1, pero su ganadora es ancha y de seis niveles; no hay CNN1D simple independiente acreditada | Una simplificación necesita justificación; no se presenta como réplica de una CNN pequeña. |
-| Encoder Transformer, fuera de la lista típica | Dos apoyos grises, S2/S6 | La lista orientativa no lo prohíbe ni demuestra que sea básico; deben acreditarse sencillez y suficiencia de evidencia. |
+| MLP sobre covariables con rezagos | No hay MLP independiente no lineal acreditada en los cinco textos incluidos | Propuesta P1; completar referencias aplicadas y ficha. La densa lineal de S5 y la cabeza de S7 no la sustituyen. |
+| LSTM o GRU sobre covariables | Familia LSTM 4/5, unidireccional 3/5 y GRU 2/5, con variantes distintas | Propuesta P2: LSTM unidireccional; GRU alternativa. Cerrar adaptación y configuración sin atribuir superioridad a la frecuencia. |
+| CNN1D poco profunda | TCN aparece en S1, pero su ganadora es ancha y de seis niveles; no hay CNN1D simple independiente acreditada | Propuesta P3: CNN1D poco profunda. Completar evidencia independiente y configuración; no copiar la TCN grande como si fuera simple. |
+| Encoder Transformer, fuera de la lista típica | Dos apoyos grises, S2/S6 | Antecedente documental; no ocupa un puesto de la propuesta actual de tres modelos base. |
 
-Los tres puestos experimentales siguen sin identidad final. Estas familias orientativas y fichas candidatas no cierran la selección por recurrencia, complejidad y no redundancia de §3.2.
+La propuesta de familias no congela las configuraciones ni acredita el requisito de extracción aplicada de §3.2. Los apoyos MLP/CNN1D simple y sus fichas siguen pendientes; no se reemplazan por los perfiles de otras arquitecturas.
 
 Sea cual sea el trío respaldado, el diseño propio conservará las mismas covariables, etiquetas y orígenes entre modelos. Aplanar una ventana para una MLP o conservar su eje temporal para otra red no permite cambiar el conjunto de información disponible.
 
@@ -147,7 +149,7 @@ Esta matriz distingue **reglas fijadas**, **evidencia ejecutada** y **productos 
 | Objetivo e historias | n7/h1; D7/14/21/28 sin D principal; otros n como sensibilidad | Regla global de D solo si se plantea y se registra en desarrollo. |
 | Partición y embargo | Manifiesto v2, E_D=D, 5.856 filas y soporte compartido identificado | Cadencia y política de actualización; el test supervisado no está congelado. |
 | Corte interno y escalado | Separación y embargo internos de §4.2.4; transformaciones solo en subentrenamiento | Longitud/posición interna, escaladores, parada y tratamiento de checkpoints. |
-| Arquitecturas | Familias típicas de la guía y fichas candidatas de §3; trío abierto | Cerrar exactamente tres identidades y sus configuraciones respaldadas. |
+| Arquitecturas | Propuesta MLP–LSTM–CNN1D poco profunda de §3; perfiles fuente separados | Completar respaldo aplicado de MLP/CNN1D y cerrar configuraciones reproducibles. |
 | Pérdida y salida | MSE, salida escalar no negativa y RMSE primaria | Implementación de salida, escala y entrenamiento concretos. |
 | Métricas | RMSE por corrida y media entre semillas; MAPE/MASE con cobertura y casos indefinidos | Predicciones, métricas e intervalos medidos por periodo. |
 | Referencia regularizada | Cuatro Ridge diagnósticas, α=1 y 1.464 predicciones fuera del ajuste | Referencia contextual del benchmark y su política, sin heredar automáticamente la configuración de EDA. |

@@ -1,6 +1,6 @@
 # 5. Benchmark de los Modelos Base y Definición del Baseline
 
-El benchmark debe ser reproducible, justo y comparable, e incluir conjuntamente los tres modelos base. El benchmark comparará **exactamente tres arquitecturas DL una vez se cierre la selección de §3**. Las fichas LSTM, TCN y encoder Transformer siguen como candidatas y GRU continúa evaluable; no fijan todavía los tres puestos experimentales. La comparación usará configuraciones respaldadas y el protocolo común de §4. Su resultado será identificar una referencia mínima de desempeño que un modelo avanzado deberá superar con evidencia estadística y relevancia práctica.
+El benchmark debe ser reproducible, justo y comparable, e incluir conjuntamente los tres modelos base. El benchmark comparará **exactamente tres arquitecturas DL una vez se cierre la selección de §3**. La propuesta de familias es MLP, LSTM y CNN1D poco profunda; GRU es una alternativa recurrente. Los perfiles documentales LSTM/TCN/encoder no fijan los puestos del benchmark. Las configuraciones y el respaldo aplicado pendiente no se presentan como cerrados. La comparación usará configuraciones respaldadas y el protocolo común de §4. Su resultado será identificar una referencia mínima de desempeño que un modelo avanzado deberá superar con evidencia estadística y relevancia práctica.
 
 La guía exige un benchmark medido en E1; el alcance acordado mantiene su ejecución para E2. Este capítulo revisa los apartados 5.1–5.5 y distingue el protocolo de sus resultados aún inexistentes. Las cuatro Ridge del EDA y los valores de autores no constituyen ese benchmark ni permiten elegir un ganador DL.
 
@@ -98,7 +98,7 @@ El objetivo central es identificar el mejor modelo base bajo el protocolo defini
 
 La referencia se seleccionará por menor media de RMSE por corrida, bajo la regla y el cierre de desarrollo de §5.2.1.
 
-El baseline no es solo el nombre de una familia: incluye datos, objetivo, horizonte, pipeline, restricciones, configuración y protocolo de evaluación. Todavía no existen resultados propios que permitan ordenar LSTM, TCN y encoder Transformer o identificar un baseline ganador. La selección documental no satisface por sí sola la exigencia de desempeño medido.
+El baseline no es solo el nombre de una familia: incluye datos, objetivo, horizonte, pipeline, restricciones, configuración y protocolo de evaluación. Todavía no existen resultados propios que permitan ordenar MLP, LSTM y CNN1D poco profunda o identificar un baseline ganador. La selección documental no satisface por sí sola la exigencia de desempeño medido.
 
 Es una **referencia empírica bajo condiciones definidas**, no una cota universal de error mínimo. La congelación identifica arquitectura, hiperparámetros, transformaciones y reglas de entrenamiento/actualización; los checkpoints y predicciones quedan ligados a su corrida y calendario. Si en una futura comparación se usan fechas nuevas, la referencia seguirá el procedimiento congelado aplicable a esas fechas, sin volver a seleccionar la arquitectura.
 
@@ -581,7 +581,7 @@ Los controles no se describirán como garantía absoluta: cada afirmación de va
 
 Las limitaciones observadas incluyen el alcance de un solo mercado, un día incompleto de desarrollo, objetivos móviles con retornos compartidos y la distinción entre variabilidad de semillas y variabilidad temporal. Se conservaron los brutos; excluir un día de los derivados no demuestra que no existan otros problemas económicos de calidad.
 
-El estado actual añade limitaciones de ejecución: cobertura bibliográfica limitada y respaldo de atención en dos manuscritos grises; configuraciones, entrenamiento y evaluación propios reservados para E2. Las familias de trabajo, RMSE y el margen relativo del 5 % ya están documentados. Estas son tareas pendientes y no hallazgos de desempeño.
+El estado actual añade limitaciones de ejecución: falta respaldo aplicado para MLP y CNN1D simple y sus fichas; configuraciones, entrenamiento y evaluación propios permanecen reservados para E2. La propuesta MLP–LSTM–CNN1D, RMSE y el margen relativo del 5 % están documentados. La calidad de las fuentes suplementarias de atención es un límite de la revisión y no condiciona el cierre de la propuesta MLP–LSTM–CNN1D. Estas son tareas pendientes y no hallazgos de desempeño.
 
 ### 5.5.9. Recomendaciones futuras
 

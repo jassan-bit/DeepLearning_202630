@@ -1,0 +1,64 @@
+{
+  "date": "2026-11-04",
+  "timezone": "America/Bogota",
+  "status": "guide_aligned_design_proposal_not_frozen_experimental_selection",
+  "basis": "User clarification and E1 guide section6.4: MLP on lagged covariates; LSTM or GRU on covariate sequences; shallow CNN1D on covariates.",
+  "proposed_families": [
+    "MLP",
+    "LSTM",
+    "CNN1D poco profunda"
+  ],
+  "models": [
+    {
+      "proposal_id": "P1",
+      "family": "MLP",
+      "input": "Same OHLCV history flattened into 5D values",
+      "role": "Feedforward nonlinear reference without recurrent state",
+      "applied_evidence_in_current_five_study_corpus": 0,
+      "architecture_configuration": null,
+      "remaining": "Recover applied comparator references and justify a reproducible simple architecture."
+    },
+    {
+      "proposal_id": "P2",
+      "family": "LSTM",
+      "input": "Same OHLCV history as D by5 covariate sequence",
+      "role": "Recurrent memory reference",
+      "alternative_for_same_slot": "GRU",
+      "proposal_rationale": "LSTM family4/5, unidirectional3/5 versus GRU2/5 in the bounded corpus; S5 documents a small LSTM, with a different source task. This is not evidence of project predictive superiority.",
+      "architecture_configuration": null,
+      "remaining": "Justify the unidirectional covariate-input variant and source-to-project adaptation."
+    },
+    {
+      "proposal_id": "P3",
+      "family": "CNN1D poco profunda",
+      "input": "Same OHLCV history as D by5 covariate sequence",
+      "role": "Shallow temporal convolution reference",
+      "applied_evidence_in_current_five_study_corpus": 0,
+      "architecture_configuration": null,
+      "remaining": "Recover independent shallow CNN1D comparator evidence; the wide six-level S1 TCN is not an equivalent implementation."
+    }
+  ],
+  "retained_source_profiles": [
+    "LSTM",
+    "TCN",
+    "Transformer encoder"
+  ],
+  "retained_source_profiles_role": "Prior literature profiles remain source evidence; they are not the current three-model project proposal.",
+  "excluded_from_current_proposed_trio": [
+    "TCN source winner",
+    "Transformer encoder"
+  ],
+  "formal_selected_families": [],
+  "experimental_protocol_frozen": false,
+  "guide_frequency_and_minimum_complexity_requirement_closed": false,
+  "corpus_unchanged": {
+    "reference_count": 35,
+    "included_full_texts": 5,
+    "author_metric_values": 81,
+    "independent_nonlinear_MLP": 0,
+    "simple_independent_CNN1D": 0
+  },
+  "new_models_trained": 0,
+  "project_market_files_opened": 0,
+  "project_test_files_opened": 0
+}

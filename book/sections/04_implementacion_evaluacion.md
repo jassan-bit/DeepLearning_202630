@@ -1,6 +1,6 @@
 # 4. Implementación y evaluación: diseño y estado de ejecución
 
-Este capítulo contrasta el diseño con los apartados 4.1–4.4 de la guía. **La selección definitiva de tres arquitecturas todavía está abierta**: LSTM, TCN y encoder Transformer tienen fichas candidatas, y GRU continúa en evaluación según §3.2. No se asignan esos nombres a tres puestos experimentales ya congelados.
+Este capítulo contrasta el diseño con los apartados 4.1–4.4 de la guía. **La propuesta de familias es MLP, LSTM y CNN1D poco profunda**, alineada con la guía 6.4; GRU es alternativa para el puesto recurrente. Las configuraciones y la selección experimental final todavía no están congeladas. Los perfiles LSTM/TCN/encoder de §3.3 son antecedentes documentales, no el trío del proyecto.
 
 La guía exige implementación, piloto y evaluación dentro de E1. El alcance de trabajo acordado reserva la ejecución de las tres redes y el test para E2; esta revisión corrige su documentación y mantiene visible lo que falta. Las cuatro Ridge del bloque C son diagnósticos de EDA, no los tres modelos DL ni un piloto de este capítulo.
 
@@ -200,7 +200,7 @@ Este plan se documenta después de los periodos de mercado adquiridos y del EDA.
 |---|---|
 | Datos y EDA de desarrollo | Ejecutados y documentados |
 | Folds de validación de 2024 | Materializados con `timeseries-cv` y filtro explícito de embargo $D$; validaciones de disponibilidad conservadas |
-| Selección bibliográfica de tres arquitecturas | Pendiente; tres fichas candidatas y GRU aún evaluable, según §3.2 |
+| Selección bibliográfica de tres arquitecturas | Propuesta MLP–LSTM–CNN1D; faltan fichas aplicadas de MLP/CNN1D y configuraciones finales, según §3.2 |
 | Métrica principal, margen y políticas de métricas | RMSE, mejora relativa del 5 %, MAPE sobre objetivos positivos y MASE con rezago de un día fijados |
 | Configuraciones y protocolo final de contrastes | Pendientes de cierre en E2 |
 | Preregistro | Especificación documental actual y antecedente histórico diferenciados; ambos sin congelación experimental |
@@ -213,7 +213,7 @@ La presencia de esta sección no sustituye las implementaciones y evaluaciones r
 
 ## 4.2. Implementación de los Tres Modelos Base
 
-La implementación comenzará una vez se cierre la selección de **exactamente tres arquitecturas**, con configuración publicada o una variante mínima respaldada. **LSTM, TCN y encoder Transformer tienen fichas candidatas; GRU no está descartada y el trío final no está congelado.** Sus implementaciones y ejecuciones quedan para E2. Estos apartados definen condiciones verificables y no acreditan que ya exista código de las redes.
+La implementación comenzará una vez se cierre la selección de **exactamente tres arquitecturas**, con configuración publicada o una variante mínima respaldada. **El diseño propuesto es MLP–LSTM–CNN1D poco profunda; GRU puede sustituir a LSTM.** Faltan respaldo aplicado y fichas de MLP/CNN1D simple, además de las configuraciones finales. Los perfiles TCN y encoder no ocupan puestos en esta propuesta. Sus implementaciones y ejecuciones quedan para E2. Estos apartados definen condiciones verificables y no acreditan que ya exista código de las redes.
 
 ### 4.2.1. Implementación de los tres modelos base
 
@@ -339,7 +339,7 @@ El costo real puede variar entre modelos aun con el mismo número de evaluacione
 
 #### 4.2.7.1. Implementación y entorno de software
 
-Se podrá implementar desde cero o utilizar un framework justificado, conservando versión, procedencia y configuración. El cierre del trío y sus configuraciones sigue pendiente según §3; el framework y el entorno de entrenamiento se fijarán antes de ejecutar E2. Las fichas candidatas no acreditan una implementación validada.
+Se podrá implementar desde cero o utilizar un framework justificado, conservando versión, procedencia y configuración. El cierre del trío y sus configuraciones sigue pendiente según §3; el framework y el entorno de entrenamiento se fijarán antes de ejecutar E2. Los perfiles fuente no acreditan una implementación validada de la propuesta del proyecto.
 
 Actualmente están verificados el entorno de EDA de `requirements-eda.lock.txt` y el entorno de partición de `requirements-cv.txt`. `timeseries-cv` genera particiones y **no entrena las redes**. Su dependencia de NumPy menor que 2 se mantiene aislada del entorno del EDA, según §2.4.1.
 
@@ -357,7 +357,7 @@ Antes del piloto se fijará el entorno de entrenamiento con versiones compatible
 | Curvas, parámetros, tiempos y entorno medidos | No ejecutado | No ejecutado | No ejecutado |
 | Piloto y repeticiones definitivas | No ejecutado | No ejecutado | No ejecutado |
 
-Los tres puestos experimentales permanecen sin asignación definitiva. Las fichas LSTM/TCN/encoder de §3.3 y la evaluación de GRU en §3.2 son antecedentes para cerrar esa decisión. Los datos y las particiones disponibles son prerrequisitos completados; no sustituyen la implementación ni la evaluación.
+La propuesta curricular MLP–LSTM–CNN1D se distingue de los puestos experimentales todavía sin configuración definitiva. Los perfiles fuente de §3.3 y los conteos de §3.2 son antecedentes; faltan las fichas aplicadas de MLP y CNN1D simple. GRU es una alternativa para el puesto recurrente. Los datos y las particiones disponibles son prerrequisitos completados; no sustituyen la implementación ni la evaluación.
 
 ## 4.3. Requisitos Experimentales
 
