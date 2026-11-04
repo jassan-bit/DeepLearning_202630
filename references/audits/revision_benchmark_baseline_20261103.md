@@ -48,3 +48,13 @@ Se contrastaron los apartados 5.1–5.5 de la guía (pp. 21–27). El capítulo 
 | 5.5.08 | Limitaciones y recomendaciones | Estado de evidencia | Cierre de bibliografía/trío/protocolo, piloto y benchmark; recomendaciones derivadas de límites y futuros resultados. | No hay nuevos modelos, métricas, rankings, contrastes o resultados de test en esta revisión. |
 
 Los artefactos actuales son `experiments/benchmark_documental_20261103.json` y dos plantillas CSV con solo encabezados. La especificación de diseño del capítulo 4 y los datos permanecen intactos. La referencia se elegirá con desarrollo, se congelará antes de test y no se reemplazará por el ganador observado después. Un resultado inconcluso es compatible con registrar una referencia operativa; no se fuerza significación.
+
+## Organización de 5.1–5.3 — 4 de noviembre de 2026
+
+El capítulo adopta el título «Benchmark de los Modelos Base y Definición del Baseline». 5.1 contiene un apartado de tabla con cinco campos numerados: modelo, métricas, IC95/método, tiempos y parámetros. 5.2 conserva ranking y trade-off, con precisión frente a costo y frente a complejidad. 5.3 contiene cinco apartados: selección; diferencias y efectos; inferencia; umbral avanzado y cota; e interpretación. Son ocho H3 y 22 H4 en el tramo reorganizado.
+
+Se mantienen las cinco ecuaciones y las dos tablas (16 líneas) anteriores a 5.4. Se añaden dos definiciones de diferencias de puntuaciones mayores-mejores para modalidades no aplicables, con signo, escala, denominador cero y emparejamiento declarados. El tamaño de efecto pareado pasa a 5.3.2.4; la inferencia a 5.3.3; la MDE, el margen práctico y la cota a 5.3.4; y la conclusión/estado a 5.3.5. Tres referencias de 5.4/5.5 se sincronizan sin alterar su contenido científico.
+
+El ranking continúa condicionado a configuraciones comparables y la referencia se selecciona con desarrollo antes de test. Los extremos de test son descriptivos y no reemplazan esa referencia. El margen del 5 % sigue referido solo a persistencia; el IC/DE del baseline aislado no determina una MDE avanzada. No hay ranking medido, baseline ganador, margen avanzado estimado ni resultados nuevos. La ejecución permanece reservada para E2.
+
+Los IDs de requisitos y hashes previos se conservan. El snapshot revision_baseline_ranking mantiene sus referencias en el commit auditado; el mapa actual está en la nueva adenda JSON.

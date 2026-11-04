@@ -336,5 +336,80 @@
       "path": "experiments/protocolo_e2_documental_20261103.json",
       "sha256": "a651fcb67febe7a9b68b571375edb8e8a641d5c1f65a5bbd3bf200cdcdac3c22"
     }
-  ]
+  ],
+  "structure_review_5_1_to_5_3_20261104": {
+    "date": "2026-11-04",
+    "timezone": "America/Bogota",
+    "scope": "Documentary reorganization of chapter title and sections 5.1–5.3; no data access, model fitting, pilot, benchmark, ranking or measured effects.",
+    "previous_source_commit": "eac5410021744e52b809ad0b746e9d3dad60b3a5",
+    "chapter_title": "5. Benchmark de los Modelos Base y Definición del Baseline",
+    "h3_headings": {
+      "5.1": [
+        "5.1.1. Tabla de comparación de los tres modelos base"
+      ],
+      "5.2": [
+        "5.2.1. Orden de los tres modelos según la métrica principal",
+        "5.2.2. Análisis del trade-off"
+      ],
+      "5.3": [
+        "5.3.1. Selección del baseline de referencia",
+        "5.3.2. Cuantificación de las diferencias entre modelos base",
+        "5.3.3. Inferencia sobre las diferencias",
+        "5.3.4. Umbral de mejora para modelos avanzados",
+        "5.3.5. Interpretación"
+      ]
+    },
+    "numbered_children": {
+      "5.1.1": 5,
+      "5.2.2": 2,
+      "5.3.1": 2,
+      "5.3.2": 4,
+      "5.3.3": 2,
+      "5.3.4": 3,
+      "5.3.5": 4
+    },
+    "old_to_new": {
+      "5.1.1/5.1.2/5.1.3": "5.1.1, including scope and five required table fields",
+      "5.2.1": "5.2.1",
+      "5.2.2": "5.2.2 with two numbered trade-offs",
+      "5.3.1": "5.3.1",
+      "5.3.2": "5.3.2.1",
+      "5.3.3": "5.3.2.4",
+      "5.3.4": "5.3.3",
+      "5.3.5": "5.3.4.1–2",
+      "5.3.6": "Reference bound in 5.3.4.3 and interpretation in 5.3.5",
+      "5.3.7": "5.3.5.4"
+    },
+    "preserved": {
+      "original_equations_before_5_4": 5,
+      "original_whole_chapter_equations": 7,
+      "tables_before_5_4": 2,
+      "table_lines_before_5_4": 16,
+      "whole_chapter_tables": 8,
+      "whole_chapter_table_lines": 66,
+      "RMSE_primary": true,
+      "baseline_selection_with_development_then_freeze": true,
+      "test_extremes_are_descriptive": true,
+      "five_percent_margin_only_against_persistence": true,
+      "advanced_MDE_and_practical_margin_not_measured": true,
+      "new_empirical_results": 0
+    },
+    "non_applicable_score_modalities": [
+      "classification: no class target",
+      "sequential tagging: no token/entity labels",
+      "segmentation: no images or masks",
+      "sequence generation: scalar continuous output"
+    ],
+    "new_definition_equations": [
+      "Absolute score difference = model mean score minus reference mean score; signed metric units",
+      "Relative score improvement = 100*(model-reference)/reference for positive reference"
+    ],
+    "cross_references_updated": [
+      "Chapter 5 paired effect: 5.3.3 -> 5.3.2.4",
+      "Two chapter 5 advanced-threshold references: 5.3.5 -> 5.3.4"
+    ],
+    "navigation_title_updated": "book/intro.md",
+    "chapter5_source_sha256": "b7b432269f681052cc448f0c7a988f4c43b78d31ea2837f2a52f1d18671b39f1",
+    "historical_artifacts_note": "Previous artifact hashes, audit requirement IDs, and revision_baseline_ranking snapshot references remain historical; they are not current heading numbering."
+  }
 }
