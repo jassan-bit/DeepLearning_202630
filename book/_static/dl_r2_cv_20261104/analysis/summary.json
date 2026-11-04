@@ -1,17 +1,17 @@
 {
-  "created_at_utc": "2026-11-04T15:30:58.498407+00:00",
-  "scope": "Exploratory development comparison designed after observing V1. Training-seed inference is conditional on the shared historical calendar. No reserved-test confirmation or guaranteed planning power is established.",
-  "CV_variants": [
+  "exported_at_utc": "2026-11-04T16:02:13.351336+00:00",
+  "kind": "Vista editorial derivada de resultados registrados de CV de Filipe",
+  "scope": "CV mensual exploratoria de desarrollo en 2024. Inferencia entre semillas condicionada al calendario compartido; sin confirmación en test reservado.",
+  "variants": [
     "absolute_log",
     "relative_window"
   ],
-  "descriptive_context_variant": "original_static",
   "models": [
     "MLP",
     "LSTM",
     "CNN1D"
   ],
-  "CV_seeds": [
+  "seeds": [
     4101,
     4102,
     4103,
@@ -23,89 +23,45 @@
     4109,
     4110
   ],
-  "CV_n_seeds": 10,
-  "V1_context_seeds": [
-    1001,
-    1002,
-    1003,
-    1004,
-    1005,
-    1006,
-    1007,
-    1008,
-    1009,
-    1010,
-    1011,
-    1012,
-    1013,
-    1014,
-    1015,
-    1016,
-    1017,
-    1018,
-    1019,
-    1020,
-    1021,
-    1022,
-    1023,
-    1024,
-    1025,
-    1026,
-    1027,
-    1028,
-    1029,
-    1030
-  ],
-  "V1_context_n_seeds": 30,
-  "CV_first_day": "2024-01-01",
-  "CV_last_day": "2024-12-31",
-  "CV_n_dates": 366,
-  "common_H2_first_day": "2024-07-01",
-  "common_H2_last_day": "2024-12-31",
-  "common_H2_n_dates": 184,
-  "CV_monthly_folds": 12,
-  "CV_prediction_rows": 21960,
-  "CV_run_rows": 60,
-  "CV_fold_metric_rows": 720,
-  "paired_RMSE_family_size": 3,
-  "multiplicity": "Holm over all declared within-model CV-variant pairs; V1 excluded",
-  "V1_comparison": "descriptive only on the common184dates; seeds and fitting policy differ; no paired V1 p-values",
-  "R2": "Recalculated as1-MSE/population variance on the shared cohort; undefined for zero-variance or singleton fold",
-  "R2_inference": "secondary descriptive paired intervals only; no separately selected R2 significance tests",
-  "interval_scope": "marginal Student t across training seeds on fixed dates; not temporal confidence intervals",
-  "persistence": "one deterministic forecast; MASE is specific to the training-scale policy",
-  "timing": "V1 serial versus CV concurrent workers; cross-version speed comparisons are not controlled",
-  "reserved_test_evaluated": false,
-  "raw_market_files_opened": 0,
-  "new_model_fits_in_analysis": 0,
-  "V1_overwritten": false,
-  "operational_reference_reselected": false,
+  "monthly_folds": 12,
+  "annual_dates": 366,
+  "second_semester_dates": 184,
+  "stored_prediction_rows": 21960,
+  "annual_numeric_values_preserved": true,
+  "controlled_comparison_numeric_values_preserved": true,
+  "annual_trajectory_metrics_recomputed_and_verified": 60,
+  "persistence_H2_mase": 1.0692602222845107,
+  "mase_policy": "Denominador del entrenamiento mensual de cada fecha; mismo criterio para redes y persistencia",
+  "inference": "Tres contrastes RMSE por semillas emparejadas, Holm-3; IC marginales condicionados al calendario",
+  "temporal_tests_executed": false,
+  "CV_specific_pilot_completed": false,
   "planning_power_0_8_established": false,
-  "sources": [
-    {
-      "path": "/workspace/DeepLearning_202630/results/dl_r2_cv_20261104/predictions.csv",
-      "sha256": "9b91d6a1299cdb6e21330894ad7566bc247be86282f2810f9a80c77875d9058f"
-    },
-    {
-      "path": "/workspace/DeepLearning_202630/results/dl_r2_cv_20261104/runs.csv",
-      "sha256": "178d2a7e404a3401f3f08e05d8b1b93df7835ab8f8fab8dfdeb3343f8521f0e7"
-    },
-    {
-      "path": "/workspace/DeepLearning_202630/results/dl_benchmark_20261104/predictions/development_benchmark.csv",
-      "sha256": "c10796ac22b72ec4e704fd083ce77acf4d5b31b3bf9e7f93950d766165995dc1"
-    },
-    {
-      "path": "/workspace/DeepLearning_202630/results/dl_benchmark_20261104/runs.csv",
-      "sha256": "5f430c4c294240ccb811f70bbd86efc3bb5351c7aeb6439d8d87bf9cfa27417e"
-    }
-  ],
-  "analysis_script_sha256": "df33515bf1511871421d4fb4c40012da0474323938442f08ecf8b9ebcd82e496",
-  "inherited_statistical_helpers_sha256": "8288afd4b889f3b0cc50100b0f3bd2608f1d9eb19101be1e431a7e621c77d4f6",
+  "reserved_test_evaluated": false,
+  "new_fits_in_export": 0,
+  "raw_market_files_opened_in_export": 0,
   "limitations": [
-    "CV changes were motivated by observed V1 failure and exposed development data; no independent confirmation.",
-    "Ten seeds are a resource-bounded diagnostic, not a pilot dimensioning result or evidence of0.8power.",
-    "Training seeds do not create independent market trajectories; fold/date dependence remains.",
-    "Fold identifiers verify prediction membership; actual model fitting is evidenced separately by runner artifacts.",
-    "Bias decomposition is descriptive and does not isolate a unique causal explanation."
-  ]
+    "Configuraciones seleccionadas usando desarrollo ya expuesto; CV exploratoria, sin selección anidada independiente.",
+    "Diez semillas no constituyen un dimensionamiento de potencia ni mercados independientes.",
+    "No se atribuyen a estas predicciones pruebas temporales o de residuos que no se han ejecutado."
+  ],
+  "sources_sha256": {
+    "results/dl_r2_cv_20261104/predictions.csv": "9b91d6a1299cdb6e21330894ad7566bc247be86282f2810f9a80c77875d9058f",
+    "results/dl_r2_cv_20261104/runs.csv": "178d2a7e404a3401f3f08e05d8b1b93df7835ab8f8fab8dfdeb3343f8521f0e7",
+    "results/dl_r2_cv_20261104/analysis/metrics_summary.csv": "27a9d8a9ea743faa83cea0823e0a18ec3ef49b299edbafb3db45f948d80067fd",
+    "results/dl_r2_cv_20261104/analysis/comparisons.csv": "7df9036fd9020cfd10cd39d730ace73783dfdfaaea0c16a7266d4cc8b329aff8"
+  },
+  "exporter_sha256": "1bc29610432d4b07f760cb4e6a98bc2f9e3c3c62adb8f46ad9f543f0c94296bb",
+  "outputs_sha256": {
+    "metrics_summary.csv": "920263a8940fe796f88583aecdd4e50b8464f5500648c0ab846396c62d1c32ac",
+    "metrics_common_h2_cv_only.csv": "5cbe3d61a6f20102f3ac7c2d9678f67be2d34cae373ee997c47786d56cebe2a9",
+    "comparisons.csv": "bbdd0938f937eb725e71ee8f7176025b5ed96da35a6d1fd3e4eda17aba15faf7",
+    "fold_metrics.csv": "ff82972b6621c34e7e1064d3e28349cdd38cfe4434627a362a66a329a23e3d7a",
+    "run_metrics_recomputed.csv": "f4d88e887fd761bbad064874a6874eb651aefa80b6658f2dc9b1e91b5c2c56b0",
+    "bias_decomposition.csv": "cf8611a00e10de4c2b390a90d3fb54fdc768dd7b73a3a9879f94beb618bc7bf0",
+    "figures/r2_cv_full2024.png": "534a6f540414b1236928e8abbbfc6d7710c2e81252cee9645363a8dc75c463e2",
+    "figures/r2_common_h2_cv_only.png": "a4f56aaba03a89af28d4d0234ede53d0a66db7a56aa6ca7e19d9215ad545130a",
+    "figures/bias_cv_full2024.png": "28f65cf054a1494adb77de000503b1c133f0343a5180ac99bfa19b181aff912f",
+    "figures/predictions_designated_seed.png": "ef95941b5187f06d0aee08f911e6f610f05b2984ffb497cd8add754f9ad7be57",
+    "figures/cv_folds_actual.png": "44c4ed370586d1e1f63d480e0aca7b25b134e20ef3836258e5abe30cad523890"
+  }
 }

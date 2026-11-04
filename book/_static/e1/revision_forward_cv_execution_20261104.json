@@ -1,23 +1,8 @@
 {
   "date": "2026-11-04",
-  "status": "monthly_forward_cv_completed_exploratory",
-  "experiment": "results/dl_r2_cv_20261104",
-  "initial_training": "2023",
-  "forward_validation": "2024",
-  "final_development_fit_performed": false,
-  "reserved_test": "2025-01-01..2026-08-31",
-  "test_files_opened_in_this_cycle": 0,
-  "September_October2026_assigned_to_test": false,
-  "calendar_days": {
-    "initial_training": 365,
-    "forward_validation": 366,
-    "reserved_test": 608,
-    "total": 1339
-  },
-  "library": "timeseries-cv0.1.5, DidierRLopes project with Filipe R. Ramos coauthorship",
-  "library_call": "split_train_val_forwardChaining(np.arange(731),7,1,1)",
-  "adaptation": "Daily library validation origins assembled into12monthlyblocks. All model/scaler optimization consumes their recorded indices; refit once each month, daily h1 predictions. Not366dailyrefits.",
-  "pre_fit_commit": "1f0ed23aa40c8160f3a04ae66094aee037fb0128",
+  "method": "CV forward chaining de Filipe R. Ramos / timeseries-cv",
+  "scope": "CV exploration on development2024 only",
+  "configuration": "../dl_r2_cv_20261104/configuration.json",
   "execution": {
     "completed_at_utc": "2026-11-04T15:26:13.134314+00:00",
     "trajectories": 60,
@@ -33,71 +18,28 @@
     "test_files_opened": 0,
     "scope": "Exploratory forward validation on previously exposed development2024, not reserved-test confirmation"
   },
-  "variants": [
-    "absolute_log",
-    "relative_window"
-  ],
-  "training_seeds": [
-    4101,
-    4102,
-    4103,
-    4104,
-    4105,
-    4106,
-    4107,
-    4108,
-    4109,
-    4110
-  ],
-  "controlled_comparison": "same model/config/folds/tenseeds, relative versus absolute preprocessing; Holm3 paired meanRMSE differences conditional on calendar",
-  "V1_comparison": "same184Jul-Decdates, descriptive only; different30vs10seeds and training policies; no paired V1 hypothesis test",
-  "relative_R2_full2024": {
-    "MLP": 0.61566952664163,
-    "LSTM": 0.5788924737011492,
-    "CNN1D": 0.5920875331154134
+  "metric": "RMSE primary; R2/MAE/MSE/MAPE/MASE secondary",
+  "practical_margin": {
+    "value": 0.05,
+    "reference": "relative RMSE gain vs persistence",
+    "demonstrated": false
   },
-  "relative_R2_commonH2": {
-    "MLP": 0.6578081888619475,
-    "LSTM": 0.6092977904796086,
-    "CNN1D": 0.6898481499820367
-  },
-  "persistence_R2": {
-    "full2024": 0.7595710965115683,
-    "commonH2": 0.6699952794658537
-  },
-  "CNN1D_H2_relative_RMSE_gain_over_persistence": 0.030953591462139052,
-  "five_percent_gain_demonstrated": false,
-  "annual_best_context": "Persistencia",
-  "annual_descriptive_best_neural_relative": "MLP",
-  "V1_operational_reference_identity_preserved": "MLP; same family identity does not make V1static and V2CV the same pipeline",
-  "power_scope": "Ten resource-bounded diagnostic seeds, no pilot-derived0.8power claim; V1pilotcap30is historical and not inherited",
-  "selection_scope": "Fixed H/LR/D were selected withV1Jan-Jun2024; all2024was exposed toEDA. This is remediation after observingV1, not nested independent validation.",
-  "metric_calculation": "R2=1-SSE/SST over pooled366dailyoutcomes pertrajectory, then mean acrossseeds. No clipping, no average of single-date R2.",
-  "guardrails": "Same OHLCV and sigma7/h1/ddof0, no extra volatilitylags; no missing-day imputation; monthly train and inner purges D7; no2025+input reads.",
-  "literature_unchanged": {
-    "references": 35,
-    "full_texts": 5,
+  "literature": {
+    "reference_count": 35,
+    "included_full_texts": 5,
     "author_values": 81,
     "independent_MLP_studies": 0,
     "simple_CNN1D_studies": 0
   },
-  "verification": {
-    "training_tests_passed": 41,
-    "dedicated_CV_tests_passed": 3,
-    "trajectory_R2_RMSE_independently_checked": 60,
-    "Holm3_independently_recomputed": true,
-    "artifact_audit": "references/audits/revision_dl_r2_cv_20261104.json"
-  },
-  "protocol_erratum": "Descriptive inherited training.refit string corrected separately; signed protocol preserved and numerical monthly training indices were always correct",
-  "source_sha256": {
-    "results/dl_r2_cv_20261104/protocol.json": "e8da0f0098acd24a58664b83d0ba499b43aa9d597a36c52da6b3325c2c3c7bec",
-    "results/dl_r2_cv_20261104/protocol_erratum.json": "e768070b9db1837ac78a9ef8aaa2e1e5e74f5236a44c86a85aadaf025665d9f2",
-    "results/dl_r2_cv_20261104/folds.json": "3851de7cbb388d791a0f2b3d8e9fdd8d1002e44a300927c2adc8001b8a3916c6",
-    "results/dl_r2_cv_20261104/runs.csv": "178d2a7e404a3401f3f08e05d8b1b93df7835ab8f8fab8dfdeb3343f8521f0e7",
-    "results/dl_r2_cv_20261104/predictions.csv": "9b91d6a1299cdb6e21330894ad7566bc247be86282f2810f9a80c77875d9058f",
-    "results/dl_r2_cv_20261104/analysis/metrics_summary.csv": "27a9d8a9ea743faa83cea0823e0a18ec3ef49b299edbafb3db45f948d80067fd",
-    "results/dl_r2_cv_20261104/analysis/metrics_common_h2.csv": "231f0198aaaa201e721dce757913d3c66e0c0c88edf59555e6f8b949c89dec3a",
-    "results/dl_r2_cv_20261104/analysis/comparisons.csv": "7df9036fd9020cfd10cd39d730ace73783dfdfaaea0c16a7266d4cc8b329aff8",
-    "results/dl_r2_cv_20261104/run_artifacts.tar.gz": "99fb21cacc305c6a7b89e67ce6d1362ea9a9bae6294bb0e7860a5a122fe174c5"
-  }
+  "seed_intervals": "conditional on fixed calendar; not temporal generalization",
+  "current_only_contrasts": "Holm3, relative vs absolute, ten paired training seeds per model",
+  "pending": [
+    "CV-specific pilot and power/MDE sizing",
+    "temporal diagnostics on CV predictions",
+    "advanced-model and equivalence margins",
+    "final development fit",
+    "reserved test evaluation",
+    "applied MLP/CNN1D references"
+  ],
+  "test_files_opened_in_training_analysis": 0
 }

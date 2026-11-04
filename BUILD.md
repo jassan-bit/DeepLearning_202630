@@ -37,54 +37,32 @@ Los hashes corresponden a **materiales del curso**, no a los datos de Bitcoin. L
 
 El workflow `.github/workflows/publish-book.yml` construye y comprueba el libro y actualiza la rama `gh-pages` al recibir cambios en `main`. En Settings → Pages debe seleccionarse Deploy from a branch, rama `gh-pages`, carpeta `/ (root)`. Construir localmente no publica ni cambia la visibilidad del repositorio. Los generados se excluyen mediante `book/.gitignore`; los archivos individuales de corridas se conservan juntos en un comprimido versionado.
 
-## Entrenamiento y análisis de desarrollo
+## Entrenamiento y validación forward chaining
 
-El experimento real del 04/11/2026 está en [results/dl_benchmark_20261104/README.md](results/dl_benchmark_20261104/README.md). Entorno CPU probado: Python 3.12.14, PyTorch 2.15.0+cpu y versiones completas registradas en `runtime.json`. Usa un entorno separado del libro:
+El procedimiento publicado utiliza `timeseries-cv` 0.1.5, proyecto de DidierRLopes con coautoría de Filipe R. Ramos. Sus índices diarios se agrupan en doce bloques mensuales de 2024. Cada red se ajusta de nuevo al comenzar el mes con el pasado permitido, embargo de siete días y parada interna cronológica. El horizonte sigue siendo diario.
 
-```bash
-python3.12 -m venv .venv-training
-.venv-training/bin/python -m pip install -r requirements-training.lock.txt
-.venv-training/bin/python -m unittest discover -s tests -p 'test_dl_*.py'
-tar -xzf results/dl_benchmark_20261104/run_artifacts.tar.gz -C results/dl_benchmark_20261104
-.venv-training/bin/python scripts/verify_dl_artifacts.py
-.venv-training/bin/python scripts/analyze_dl_benchmark.py --results-dir results/dl_benchmark_20261104
-.venv-training/bin/python scripts/verify_dl_analysis.py
-```
-
-El análisis anterior no entrena. La restauración permite inspeccionar los 105 checkpoints y las curvas/configuraciones de las 201 corridas. El manifiesto incluye hashes de los 1.512 archivos. Las otras 96 corridas de búsqueda no guardan pesos.
-
-Para replicar los ajustes, usar un **checkout separado** y conservar el resultado publicado antes de iniciar. Los dos CSV diarios de desarrollo ya están versionados; no hace falta abrir ZIP ni descargar test:
-
-```bash
-mv results/dl_benchmark_20261104 results/dl_benchmark_20261104_published_snapshot
-.venv-training/bin/python scripts/train_dl_benchmark.py --phase validate
-.venv-training/bin/python scripts/train_dl_benchmark.py --phase all
-.venv-training/bin/python scripts/analyze_dl_benchmark.py --results-dir results/dl_benchmark_20261104
-```
-
-`--phase all` ejecuta búsqueda, piloto y comparación. Es una replicación con nuevos registros de ejecución, no un nuevo preregistro histórico. El entrenador comprueba las fuentes y la firma de sus scripts y entorno; ante una firma diferente no reutiliza artefactos previos. No deben sobrescribirse los resultados publicados ni editarse los scripts firmados para mezclar otro diseño con este experimento. Un cambio de arquitectura o protocolo requiere una versión explícita nueva.
-
-Las 25 pruebas verifican modelos, particiones/preprocesamiento y cálculos estadísticos sobre casos controlados. Los resultados propios proceden de las corridas registradas, no de esas pruebas. La comparación usa calendario de desarrollo ya expuesto al piloto; 30 semillas no aportan 30 mercados independientes. El límite registrado de 30 no alcanzó el dimensionamiento del efecto pequeño planificado. El test de 2025–2026 permanece pendiente.
-
-## Forward chaining efectivo y revisión de R²
-
-El nuevo ciclo está en [results/dl_r2_cv_20261104/README.md](results/dl_r2_cv_20261104/README.md). El generador usa `timeseries-cv` 0.1.5; el entrenador consume sus índices para ajustar de nuevo cada modelo en doce bloques mensuales de 2024. Mantener entornos separados porque la librería CV requiere NumPy menor que 2:
+El generador CV requiere NumPy menor que 2; utilizar un entorno separado del entrenamiento PyTorch:
 
 ```bash
 python3.12 -m venv .venv-cv
 .venv-cv/bin/python -m pip install -r requirements-cv.txt
+python3.12 -m venv .venv-training
+.venv-training/bin/python -m pip install -r requirements-training.lock.txt
 .venv-cv/bin/python -m unittest discover -s tests -p 'test_dl_r2_cv.py'
-.venv-cv/bin/python scripts/prepare_dl_r2_cv.py --output-dir /tmp/dl-r2-cv-index-check
+.venv-cv/bin/python scripts/prepare_dl_r2_cv.py --output-dir /tmp/dl-cv-index-check
 .venv-training/bin/python -m unittest discover -s tests -p 'test_dl_*.py'
 tar -xzf results/dl_r2_cv_20261104/run_artifacts.tar.gz -C results/dl_r2_cv_20261104
 .venv-training/bin/python scripts/verify_dl_r2_cv.py
-.venv-training/bin/python scripts/analyze_dl_r2_v2.py
-.venv-training/bin/python scripts/plot_dl_cv_folds.py
+.venv-training/bin/python scripts/export_filipe_book.py
 ```
 
-Pasaron 41 pruebas en el entorno de entrenamiento y las tres de CV en su entorno propio. El descubrimiento de entrenamiento omite explícitamente esas tres; no las presenta como verificadas allí. El generador no ajusta modelos: las 1.440 optimizaciones registradas proceden del entrenador.
+El generador invoca `split_train_val_forwardChaining(np.arange(731),7,1,1)`. Su adaptación conserva 366 predicciones diarias y doce procedimientos mensuales por trayectoria. Los índices de entrenamiento, validación interna y evaluación alimentan directamente el ajuste de pesos y escaladores.
 
-Los manifiestos publicados son entradas firmadas: su timestamp influye en el hash. Para comprobar la librería, generar índices en `/tmp` como arriba y comparar las listas de train/inner/validation del nuevo JSON con las del versionado. Para replicar los ajustes, usar un **checkout separado** y conservar primero la instantánea completa:
+La exportación usa únicamente las predicciones y registros de CV, verifica sus cifras y genera los CSV y gráficos que muestra el libro. No entrena modelos. Los archivos publicados se limitan a esta metodología; las instantáneas de investigación se conservan en el repositorio como trazabilidad.
+
+## Replicar los ajustes
+
+Usar un checkout separado y conservar la instantánea publicada antes de iniciar. El manifiesto versionado es una entrada firmada: su timestamp forma parte del hash. Para comprobar la librería se generan los índices en otro directorio, como arriba, y se comparan las listas de índices, sin sobrescribir la entrada firmada.
 
 ```bash
 mv results/dl_r2_cv_20261104 results/dl_r2_cv_20261104_published_snapshot
@@ -93,8 +71,9 @@ cp results/dl_r2_cv_20261104_published_snapshot/folds.json results/dl_r2_cv_2026
 cp results/dl_r2_cv_20261104_published_snapshot/folds.csv results/dl_r2_cv_20261104/folds.csv
 .venv-training/bin/python scripts/train_dl_r2_cv.py --phase validate
 .venv-training/bin/python scripts/train_dl_r2_cv.py --phase run
-.venv-training/bin/python scripts/analyze_dl_r2_v2.py
-.venv-training/bin/python scripts/plot_dl_cv_folds.py
+.venv-training/bin/python scripts/export_filipe_book.py
 ```
 
-Esto repite el diseño documentado con nuevos registros de ejecución; no convierte un backtest en un experimento prospectivo. Se conserva V1 y la errata descriptiva del nuevo protocolo, sin editar scripts o índices firmados para reutilizar resultados incompatibles. El ajuste final de desarrollo y la evaluación de enero de 2025–agosto de 2026 siguen pendientes; septiembre–octubre de 2026 permanece sin asignar al test.
+Se registraron diez semillas por modelo y representación, 60 trayectorias, 720 segmentos modelo–fold y 1.440 ajustes efectivos. Los 720 checkpoints, escaladores, máscaras y curvas están en el paquete de artefactos con hashes. Las semillas describen aleatoriedad de entrenamiento condicionada a 2024; no constituyen mercados independientes ni un dimensionamiento de potencia 0,80.
+
+La evaluación sigue siendo exploratoria sobre desarrollo previamente examinado. El ajuste final con desarrollo 2023–2024 y el test previsto de enero de 2025–agosto de 2026 permanecen pendientes. Septiembre–octubre de 2026 queda sin asignar al test.

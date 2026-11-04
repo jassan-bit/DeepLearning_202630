@@ -1,7 +1,7 @@
 {
   "date": "2026-11-04",
   "timezone": "America/Bogota",
-  "status": "guide_aligned_project_trio_executed_in_development_applied_literature_closure_pending",
+  "status": "documentary_evidence_with_current_forward_cv_project_execution",
   "basis": "User clarification and E1 guide section6.4: MLP on lagged covariates; LSTM or GRU on covariate sequences; shallow CNN1D on covariates.",
   "proposed_families": [
     "MLP",
@@ -15,7 +15,11 @@
       "input": "Same OHLCV history flattened into 5D values",
       "role": "Feedforward nonlinear reference without recurrent state",
       "applied_evidence_in_current_five_study_corpus": 0,
-      "architecture_configuration": null,
+      "architecture_configuration": {
+        "width": 16,
+        "learning_rate": 0.001,
+        "parameters": 593
+      },
       "remaining": "Recover applied comparator references and bibliographic source profile; the own simple architecture is implemented and executed in development.",
       "current_development_configuration": {
         "model": "MLP",
@@ -27,7 +31,8 @@
         "selection_rmse_sd": 0.0026393855608665834,
         "n_seeds": 2,
         "parameters": 593
-      }
+      },
+      "configuration_scope": "Implemented project CV, not architecture values extracted from a paper"
     },
     {
       "proposal_id": "P2",
@@ -36,7 +41,11 @@
       "role": "Recurrent memory reference",
       "alternative_for_same_slot": "GRU",
       "proposal_rationale": "LSTM family4/5, unidirectional3/5 versus GRU2/5 in the bounded corpus; S5 documents a small LSTM, with a different source task. This is not evidence of project predictive superiority.",
-      "architecture_configuration": null,
+      "architecture_configuration": {
+        "width": 32,
+        "learning_rate": 0.003,
+        "parameters": 5025
+      },
       "remaining": "Complete source-to-project justification; the own unidirectional covariate-input configuration is implemented and executed in development.",
       "current_development_configuration": {
         "model": "LSTM",
@@ -48,7 +57,8 @@
         "selection_rmse_sd": 0.00014038890012960518,
         "n_seeds": 2,
         "parameters": 5025
-      }
+      },
+      "configuration_scope": "Implemented project CV, not architecture values extracted from a paper"
     },
     {
       "proposal_id": "P3",
@@ -56,7 +66,11 @@
       "input": "Same OHLCV history as D by5 covariate sequence",
       "role": "Shallow temporal convolution reference",
       "applied_evidence_in_current_five_study_corpus": 0,
-      "architecture_configuration": null,
+      "architecture_configuration": {
+        "width": 16,
+        "learning_rate": 0.001,
+        "parameters": 1057
+      },
       "remaining": "Recover independent shallow CNN1D comparator evidence; the implemented two-convolution network is not a replica of the wide six-level S1 TCN.",
       "current_development_configuration": {
         "model": "CNN1D",
@@ -68,7 +82,8 @@
         "selection_rmse_sd": 0.0007925618562833807,
         "n_seeds": 2,
         "parameters": 1057
-      }
+      },
+      "configuration_scope": "Implemented project CV, not architecture values extracted from a paper"
     }
   ],
   "retained_source_profiles": [
@@ -82,7 +97,6 @@
     "Transformer encoder"
   ],
   "formal_selected_families": [],
-  "experimental_protocol_frozen": false,
   "guide_frequency_and_minimum_complexity_requirement_closed": false,
   "corpus_unchanged": {
     "reference_count": 35,
@@ -91,99 +105,22 @@
     "independent_nonlinear_MLP": 0,
     "simple_independent_CNN1D": 0
   },
-  "new_models_trained": 0,
-  "project_market_files_opened": 0,
-  "project_test_files_opened": 0,
   "initial_proposal_snapshot_note": "Original zero execution/file counts and null architecture_configuration below describe the documentary proposal operation, not the current project execution state. The current_execution object supersedes those counts for the development experiment.",
   "formal_selected_families_meaning": "Empty refers to closure of the guide literature-extraction requirement; the experimentally selected development trio is recorded in current_execution.",
   "experimental_protocol_frozen_meaning": "Original proposal flag; the subsequent development plan is frozen in current_execution.protocol_final, while the final held-out test protocol is not frozen.",
-  "current_execution": {
-    "experiment_id": "dl_benchmark_20261104",
-    "authorized_on": "2026-11-04",
-    "scope": "Executed first DEVELOPMENT experiment; not held-out-test evidence or closure of the applied-literature requirement.",
-    "protocol_initial": "experiments/dl_benchmark_20261104/protocol_initial.json",
-    "protocol_initial_sha256": "7cbda15bd55b8a9fe4bd73b199e2b2af7ca9942e01521ddaa275c6181d43ce4f",
-    "pre_fit_registration_commit": "3c3c481",
-    "decision_timing": "Architectures and search space registered before first fit; selected D/configurations frozen after search before pilot; development benchmark plan frozen after pilot before fresh-seed runs.",
-    "selected_configuration": "results/dl_benchmark_20261104/selected_configuration.json",
-    "protocol_final": "results/dl_benchmark_20261104/protocol_final.json",
-    "results": "results/dl_benchmark_20261104",
-    "executed_families": [
+  "current_project_execution": {
+    "method": "timeseries-cv monthlyforwardCV",
+    "path": "results/dl_r2_cv_20261104",
+    "models": [
       "MLP",
       "LSTM",
       "CNN1D"
     ],
-    "history_days": 7,
-    "model_configurations": {
-      "MLP": {
-        "model": "MLP",
-        "history_days": 7,
-        "config_id": "w16_lr1000",
-        "width": 16,
-        "learning_rate": 0.001,
-        "selection_rmse": 0.010523827191620113,
-        "selection_rmse_sd": 0.0026393855608665834,
-        "n_seeds": 2,
-        "parameters": 593
-      },
-      "LSTM": {
-        "model": "LSTM",
-        "history_days": 7,
-        "config_id": "w32_lr3000",
-        "width": 32,
-        "learning_rate": 0.003,
-        "selection_rmse": 0.010775132423729867,
-        "selection_rmse_sd": 0.00014038890012960518,
-        "n_seeds": 2,
-        "parameters": 5025
-      },
-      "CNN1D": {
-        "model": "CNN1D",
-        "history_days": 7,
-        "config_id": "w16_lr1000",
-        "width": 16,
-        "learning_rate": 0.001,
-        "selection_rmse": 0.0134807764134899,
-        "selection_rmse_sd": 0.0007925618562833807,
-        "n_seeds": 2,
-        "parameters": 1057
-      }
-    },
-    "run_counts": {
-      "search": 96,
-      "pilot": 15,
-      "development_benchmark": 90
-    },
-    "completed_runs": 201,
-    "completed_project_fits": 402,
-    "benchmark_seeds_per_model": 30,
-    "training_calendar": "2023 admissible outcomes only; static refit",
-    "search_calendar": "2024-01-01 through 2024-06-30",
-    "pilot_and_benchmark_calendar": "2024-07-01 through 2024-12-31; reused development/calibration dates, not held-out confirmation",
-    "operational_baseline_family_from_search": "MLP",
-    "descriptive_lowest_benchmark_mean_RMSE_neural_family": "LSTM",
-    "all_neural_families_have_higher_benchmark_RMSE_than_persistence": true,
-    "power_limitation": "Pilot planning maximum required R=1212; registered first-cycle cap R=30 used. Not evidence of 80% power for a 5% gain versus zero.",
-    "applied_literature_support_unchanged": {
-      "independent_nonlinear_MLP": 0,
-      "simple_independent_CNN1D": 0,
-      "denominator": 5
-    },
-    "guide_frequency_and_minimum_complexity_requirement_closed": false,
-    "test_files_opened": 0,
-    "final_test_protocol_frozen": false
-  },
-  "latest_forward_validation": {
-    "experiment": "results/dl_r2_cv_20261104",
-    "record": "references/audits/revision_forward_cv_execution_20261104.json",
-    "same_three_families": [
-      "MLP",
-      "LSTM",
-      "CNN1D"
-    ],
-    "actual_monthly_folds": 12,
+    "folds": 12,
+    "training_seeds_per_variant_model": 10,
     "effective_fits": 1440,
     "applied_literature_counts_unchanged": true,
-    "test_files_opened": 0
-  }
+    "final_test_evaluated": false
+  },
+  "final_test_protocol_frozen": false
 }

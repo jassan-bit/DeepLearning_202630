@@ -1,0 +1,112 @@
+{
+  "name": "CV forward chaining de Filipe R. Ramos / timeseries-cv",
+  "library": "timeseries-cv0.1.5",
+  "function": "tsxv.splitTrainVal.split_train_val_forwardChaining",
+  "call": {
+    "sequence_length": 731,
+    "numInputs": 7,
+    "numOutputs": 1,
+    "numJumps": 1
+  },
+  "adaptation": "Daily library validation origins grouped into12calendar-month blocks; actual models/scalers fitted once per month, dailyh1 predictions.",
+  "calendar": {
+    "initial_training": "2023-01-01..2023-12-31",
+    "forward_validation": "2024-01-01..2024-12-31",
+    "final_fit_after_configuration_closure": "development2023-2024, not performed by this CV runner",
+    "reserved_test": "2025-01-01..2026-08-31, not opened by this cycle",
+    "unassigned": "September-October2026"
+  },
+  "calendar_days": {
+    "initial2023": 365,
+    "validation2024": 366,
+    "reserved_test": 608,
+    "total": 1339
+  },
+  "history_days": 7,
+  "target": "sigma7, population daily log-return SD, ddof0, unannualized",
+  "input_features": [
+    "open",
+    "high",
+    "low",
+    "close",
+    "volume"
+  ],
+  "target_lags_added": false,
+  "primary_preprocessing": "relative_window",
+  "control_preprocessing": "absolute_log",
+  "training_rule": "Allowed outcomes u<=monthstart-8; growing history from2023 and available past2024; recent90calendar inner stopping,83eligible validation labels. Fresh full permitted monthly refit.",
+  "models": {
+    "MLP": {
+      "width": 16,
+      "learning_rate": 0.001,
+      "parameters": 593
+    },
+    "LSTM": {
+      "width": 32,
+      "learning_rate": 0.003,
+      "parameters": 5025
+    },
+    "CNN1D": {
+      "width": 16,
+      "learning_rate": 0.001,
+      "parameters": 1057
+    }
+  },
+  "training": {
+    "optimizer": "AdamW",
+    "weight_decay": 0.0001,
+    "dropout": 0.1,
+    "batch_size": 32,
+    "max_epochs": 100,
+    "gradient_clip_norm": 1.0,
+    "early_stopping": "Minimum inner-validation scaledMSE",
+    "patience": 12,
+    "min_delta": 1e-05,
+    "refit": "Fresh model on full permitted monthly training cohort, including already observed past2024; fixed selected inner epoch count; no warm start",
+    "inner_seed": "runseed",
+    "refit_seed": "runseed+10000000",
+    "batch_order": "Deterministic generator seeded with stage seed+17; shuffled windows, chronology of sample construction remains intact",
+    "device": "cpu",
+    "torch_threads": 1,
+    "torch_interop_threads": 1,
+    "strict_deterministic_algorithms": true
+  },
+  "seeds": [
+    4101,
+    4102,
+    4103,
+    4104,
+    4105,
+    4106,
+    4107,
+    4108,
+    4109,
+    4110
+  ],
+  "workers": 3,
+  "execution": {
+    "completed_at_utc": "2026-11-04T15:26:13.134314+00:00",
+    "trajectories": 60,
+    "fold_model_segments": 720,
+    "completed_project_fits": 1440,
+    "actual_cv_folds": 12,
+    "prediction_dates_per_trajectory": 366,
+    "seeds_per_variant_model": 10,
+    "variants": [
+      "absolute_log",
+      "relative_window"
+    ],
+    "test_files_opened": 0,
+    "scope": "Exploratory forward validation on previously exposed development2024, not reserved-test confirmation"
+  },
+  "inference": "Three paired meanRMSE tests relative-minus-absolute, Holm3; marginal t95 seed intervals conditional on fixed calendar.",
+  "temporal_diagnostics": "DM, BDS, Ljung-Box and temporal bootstrap not yet executed for these CV predictions.",
+  "pilot_and_power": "CV-specific pilot and power/MDE dimensioning pending; ten seeds resource-bounded, no0.8power claim.",
+  "selection_scope": "Configurations fixed using already exposed development; not nested independent validation.",
+  "future_work": "Close pipeline, final development fit, then separately reserved test; no test evaluation performed.",
+  "signed_source_record": {
+    "path": "experiments/dl_r2_cv_20261104/protocol.json",
+    "sha256": "e8da0f0098acd24a58664b83d0ba499b43aa9d597a36c52da6b3325c2c3c7bec"
+  },
+  "raw_market_test_files_opened": 0
+}
