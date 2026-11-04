@@ -1,11 +1,11 @@
-# Revisión integral de ítems del libro — 04/11/2026
+# Revisión integral de ítems del libro — cuatro entradas y test final
 
-Se revisaron **390 subsecciones numeradas** de los capítulos 1–7 y se conservó su jerarquía. El inventario CSV/JSON identifica cada ítem, título, archivo y línea. “Revisado” describe el trabajo editorial y de verificación, sin declarar cierre científico de todos los requisitos.
+Se revisaron **390 subsecciones numeradas** de los capítulos 1–7 y se conservó exactamente su jerarquía. El inventario CSV/JSON identifica cada ítem, título, archivo y línea. «Revisado» no declara cierre de todos los requisitos científicos.
 
-Se alinearon las fichas técnicas con MLP, LSTM y CNN1D; las ventanas ejecutadas con D7; metadatos con diez semillas; reproducción, tablas, figuras y conclusiones con la CV real de Filipe. Las predicciones, pesos y particiones originales no cambiaron.
+La CV de Filipe evalúa D=7,14,21,28 días con objetivo σ7 y horizonte diario h=1. D7 conserva sus treinta trayectorias originales; se añadieron noventa trayectorias y 2.160 ajustes de desarrollo. La configuración se cerró con 2024 antes del ajuste final de 120 modelos y de abrir los veinte archivos del test enero2025–agosto2026.
 
-Se registró y ejecutó un complemento exploratorio con los datos de desarrollo ya examinados: Holm global-12 por semillas, seis DM principales, quince diagnósticos BDS/Ljung–Box, bootstrap temporal y sensibilidad de diseño. La auditoría independiente recalculó sus resultados sin entrenar ni consultar test.
+El test tiene 608 fechas elegibles comunes y 72,960 pronósticos. Sus veinte meses son intervalos de reporte de pesos congelados, sin reajustes ni selección por desempeño del test. MAPE, MAE, RMSE y MSE, además de R² y MASE, se publican por entrada, modelo, semilla y mes.
 
-No se distinguieron los tres modelos neuronales con Holm-12; ninguno de los seis DM primarios rechazó con Holm-6. Los contrastes por semillas y los intervalos temporales marginales tienen alcances diferentes. La sensibilidad MDE/R no acredita un piloto previo o potencia prospectiva.
+BDS se calculó por fold y semilla: 2880 hipótesis previstas en CV y 4800 en test. Las medias de p-valores son descriptivas; la referencia asintótica en meses cortos tiene limitaciones. El suplemento anual previo de D7/2024 conserva su alcance histórico.
 
-Permanecen abiertos: respaldo aplicado MLP/CNN1D, piloto prospectivo y potencia definitiva, márgenes de equivalencia/avanzado, ajuste final, evaluación reservada y evidencia externa de ruido/faltantes. No se asigna una nota ni un porcentaje de cumplimiento.
+Permanecen abiertos el respaldo aplicado de MLP/CNN1D, el piloto prospectivo y potencia definitiva, los márgenes de equivalencia/modelo avanzado y las mediciones externas de ruido/faltantes. No se asigna nota ni porcentaje de cumplimiento.

@@ -300,17 +300,17 @@ Los conteos comunes controlan dimensiones de entrada/salida, pero no igualan cap
 | P2 | LSTM unidireccional | Secuencia D×5 de las mismas covariables; referencia con memoria recurrente | La variante unidireccional está documentada en 3/5 textos, con tareas distintas. La adaptación propia unidireccional y su configuración se documentan en §4.2; GRU se conserva como alternativa no ejecutada. |
 | P3 | CNN1D poco profunda | La misma secuencia de covariables; referencia convolucional temporal | No hay CNN1D simple independiente acreditada en el corpus. La TCN ganadora de S1 no satisface por sí sola esta especificación. |
 
-El [registro de propuesta](../_static/literature_e1/guide_aligned_proposal_20261104.json) identifica la procedencia curricular y las lagunas. Elegir LSTM para el puesto recurrente se apoya en su recurrencia observada y en una variante pequeña descrita; no afirma que prediga mejor que GRU. Las configuraciones propias se fijaron con desarrollo y se mantienen comunes a los doce bloques mensuales de CV de Filipe. La exposición previa de 2024 impide presentar esta evaluación como validación anidada independiente. El protocolo final de test sigue pendiente.
+El [registro de propuesta](../_static/literature_e1/guide_aligned_proposal_20261104.json) identifica la procedencia curricular y las lagunas. Elegir LSTM para el puesto recurrente se apoya en su recurrencia observada y en una variante pequeña descrita; no afirma que prediga mejor que GRU. Las configuraciones se mantienen comunes a los doce bloques mensuales de CV de Filipe. La exposición previa de 2024 impide presentar esa selección como validación anidada independiente. El protocolo final se cerró antes de ajustar y firmar los modelos finales y abrir el test; su evaluación no completa el respaldo aplicado pendiente.
 
-Las configuraciones ejecutadas usan siete días y cinco covariables, objetivo σ7, horizonte de un día y salida Softplus:
+Las configuraciones ejecutadas usan D=7/14/21/28 días y cinco covariables, objetivo fijo σ7, horizonte de un día y salida Softplus:
 
 | Modelo propio | Arquitectura ejecutada | Learning rate | Parámetros entrenables |
 |---|---|---:|---:|
-| MLP | Aplanado 7×5 → Dense16/ReLU/dropout 0,1 → Dense1 | 0,001 | 593 |
+| MLP | Aplanado D×5 → Dense16/ReLU/dropout 0,1 → Dense1 | 0,001 | 593/1.153/1.713/2.273 para D7/14/21/28 |
 | LSTM | Una capa unidireccional H=32 → último estado/dropout 0,1 → Dense1; dos sesgos por compuerta PyTorch | 0,003 | 5.025 |
 | CNN1D poco profunda | Dos convoluciones causales de 16 canales, kernel 3, sin dilatación ni residuales → media temporal → Dense1 | 0,001 | 1.057 |
 
-La CNN1D tiene campo receptivo local de cinco posiciones antes de la media temporal; no reproduce la TCN de S1. Los [folds](../_static/dl_r2_cv_20261104/folds.json) y la [ejecución](../_static/dl_r2_cv_20261104/execution_summary.json) acreditan entrenamiento inicial de 2023 y actualización mensual con pasado permitido de 2024: 60 trayectorias, 720 segmentos modelo–fold y 1.440 ajustes, sin evaluar test. Las corridas no añaden estudios al corpus ni elevan los conteos 0/5 de MLP y CNN1D simple.
+La CNN1D tiene campo receptivo local de cinco posiciones antes de la media temporal; no reproduce la TCN de S1. El [método y la ejecución](../_static/filipe_multihistory_20261104/method.json) acreditan 120 trayectorias CV principales de cuatro historias, 1.440 segmentos y 2.880 ajustes, incluidos los relativos D7 reutilizados. El cierre posterior y los 120 modelos finales se distinguen de esa selección. Las corridas no añaden estudios al corpus ni elevan los conteos 0/5 de MLP y CNN1D simple.
 
 **Perfiles documentales conservados de la revisión previa:**
 
@@ -321,9 +321,9 @@ La CNN1D tiene campo receptivo local de cinco posiciones antes de la media tempo
 | Perfil documental de atención | Encoder Transformer | Mecanismo de atención distinto, documentado en S2 y S6 | Corroborar procedencia y detalles de fuentes grises como antecedente suplementario |
 | Alternativa del puesto recurrente | GRU | 2/5 y menor complejidad que algunas variantes recurrentes | No descartarla solo porque LSTM también sea recurrente; justificar no redundancia y criterios del trío final |
 
-El [registro de selección](../_static/literature_e1/selection_evidence.json) conserva los perfiles como evidencia documental y registra por separado la propuesta MLP–LSTM–CNN1D; las configuraciones de las tres redes se documentan junto a los folds de CV en el capítulo 4. El protocolo final de test permanece abierto. La frecuencia por sí sola ordena LSTM, luego GRU y Transformer empatados, y después TCN. La elección anterior de LSTM–TCN–Transformer priorizaba diversidad; no satisface por sí sola la regla conjunta de la guía. La propuesta actual se alinea con las tres familias de la guía; completar su respaldo aplicado sigue siendo necesario para satisfacer la extracción de tres básicos. Las configuraciones reproducibles propias ya se ejecutaron; no se atribuyen a los autores revisados.
+El [registro de selección](../_static/literature_e1/selection_evidence.json) conserva los perfiles como evidencia documental y registra por separado MLP–LSTM–CNN1D, la CV y la selección cerrada antes de test. La frecuencia por sí sola ordena LSTM, luego GRU y Transformer empatados, y después TCN. La elección anterior de perfiles LSTM–TCN–Transformer priorizaba diversidad; no satisface por sí sola la regla conjunta de la guía. El trío actual se alinea con las familias curriculares; completar su respaldo aplicado sigue siendo necesario para satisfacer la extracción de tres básicos. Las configuraciones reproducibles propias se ejecutaron y no se atribuyen a los autores revisados.
 
-La validación propia utiliza los índices reales de `timeseries-cv`, con doce bloques mensuales de 2024 y diez semillas por modelo y representación. Los [resultados](../_static/dl_r2_cv_20261104/analysis/metrics_summary.csv) son evidencia de desarrollo, separada de las cifras de autores. La representación relativa mejora el RMSE frente al control absoluto dentro de cada red; la mejora no cierra las lagunas bibliográficas ni demuestra generalización externa.
+La validación principal utiliza índices reales de `timeseries-cv`, doce bloques mensuales de 2024 y diez semillas por modelo e historia. Los [resultados de cuatro entradas](../_static/filipe_multihistory_20261104/analysis_cv/metrics_summary.csv) son evidencia propia de desarrollo, separada de cifras de autores y de test. El control relativo–absoluto inicial D7 conserva su alcance: mejorar esa representación no cierra las lagunas bibliográficas ni demuestra generalización universal.
 
 ### 3.2.2. Criterios que debe cumplir cada modelo base
 
@@ -369,7 +369,7 @@ En este problema continuo, el ejemplo clásico pertinente de la guía es **SVR l
 | TCN | Filtros causales compartidos y campo receptivo definido | Antecedente documental; no se equipara a la CNN1D poco profunda propuesta |
 | Encoder Transformer | Interacciones por contenido y posiciones en una ventana observable | Antecedente documental de atención, fuera de la propuesta actual de tres básicos |
 
-Su comparación exige información, partición, objetivo y esfuerzo de ajuste comunes. Persistencia, Ridge y GARCH aportan contexto y no sustituyen los tres modelos DL. Los cuatro Ridge del bloque C son diagnósticos de EDA; el primer benchmark propio de redes ya se ejecutó en desarrollo y se informa en el capítulo 5. El test reservado continúa sin consulta.
+Su comparación exige información, partición, objetivo y esfuerzo de ajuste comunes. Persistencia, Ridge y GARCH aportan contexto y no sustituyen los tres modelos DL. Los cuatro Ridge del bloque C son diagnósticos de EDA; el benchmark propio de redes y su evaluación final se informan en el capítulo 5. Los resultados de test no se usaron para elegir la configuración.
 
 ### 3.2.5. Arquitecturas no especificadas y búsqueda posterior
 
@@ -402,9 +402,9 @@ Un encoder no convierte por sí solo el problema en secuencia a secuencia; una c
 
 Las fichas corresponden a **MLP, LSTM y CNN1D poco profunda**, las tres redes ejecutadas con CV forward chaining de Filipe. Cada una desarrolla los nueve incisos de la guía: referencias, arquitectura, descripción técnica, problema, dataset, métricas, fortalezas, limitaciones y complejidad. Se distingue el fundamento general de la familia, su evidencia aplicada en el corpus y la configuración propia realmente implementada.
 
-El contrato común es **D=7 días × p=5 canales OHLCV**, objetivo σ7 poblacional de retornos logarítmicos, `ddof=0`, salida escalar y horizonte diario h=1. La representación principal resta al logaritmo de cada OHLC el logaritmo del último cierre observable de la ventana; aplica `log1p` al volumen y escala cada canal usando solo el entrenamiento. Y se divide por su media positiva de entrenamiento y se invierte antes de evaluar. La variante absoluta es un control bajo los mismos folds y semillas (§4.2).
+El contrato común contempla **D∈{7,14,21,28} días × p=5 canales OHLCV**, con objetivo σ7 poblacional de retornos logarítmicos, `ddof=0`, salida escalar y horizonte diario h=1. Cambiar D modifica la historia de entrada, no la definición del objetivo n=7. La representación principal resta al logaritmo de cada OHLC el logaritmo del último cierre observable de la ventana; aplica `log1p` al volumen y escala cada canal usando solo el entrenamiento. Y se divide por su media positiva de entrenamiento y se invierte antes de evaluar. La variante absoluta se conserva como control del ciclo inicial D7 (§4.2).
 
-Los doce cortes mensuales usan pasado permitido de 2023 y 2024, purga de siete días y parada interna cronológica. En cada segmento se descarta el modelo interno y se reajusta una red nueva durante el número de épocas seleccionado. Las tres redes utilizan **AdamW, dropout 0,1, weight decay 0,0001, batch 32, clipping de norma 1, máximo interno de 100 épocas y paciencia 12**, sin planificador. Las configuraciones no se atribuyen a los autores de las referencias fundacionales.
+Los doce cortes mensuales usan pasado permitido de 2023 y 2024, embargo de D días y parada interna cronológica. En cada segmento se descarta el modelo interno y se reajusta una red nueva durante el número de épocas seleccionado. Las tres redes utilizan **AdamW, dropout 0,1, weight decay 0,0001, batch 32, clipping de norma 1, máximo interno de 100 épocas y paciencia 12**, sin planificador. Las configuraciones no se atribuyen a los autores de las referencias fundacionales.
 
 Los perfiles documentales íntegros de LSTM/TCN/encoder de las fuentes, con sus valores y ecuaciones, permanecen en el [archivo de fuentes del repositorio](https://github.com/jassan-bit/DeepLearning_202630/blob/main/references/literature_e1/source_profiles_archive_20261104.md). Una ficha de implementación completa **no cierra el respaldo aplicado**: MLP independiente no lineal y CNN1D simple siguen con 0/5 apoyos verificados en el corpus, mientras LSTM unidireccional aparece en 3/5 (familia incluida BiLSTM, 4/5).
 
@@ -418,11 +418,11 @@ Los perfiles documentales íntegros de LSTM/TCN/encoder de las fuentes, con sus 
 
 #### 3.3.1.2. Tipo de arquitectura
 
-MLP con **una capa oculta de 16 unidades ReLU**, dropout 0,1 y cabeza escalar Softplus. Aplana los mismos 7×5 valores que reciben las otras redes, conservando el orden de días y canales. No incluye estado recurrente, convoluciones ni entradas adicionales.
+MLP con **una capa oculta de 16 unidades ReLU**, dropout 0,1 y cabeza escalar Softplus. Aplana los mismos D×5 valores que reciben las otras redes, conservando el orden de días y canales. No incluye estado recurrente, convoluciones ni entradas adicionales.
 
 #### 3.3.1.3. Descripción técnica
 
-Para X∈R^(7×5), x=vec(X)∈R^35, W₁∈R^(16×35) y w₂∈R^16:
+Para X∈R^(D×5), x=vec(X)∈R^(5D), W₁∈R^(16×5D) y w₂∈R^16:
 
 $$
 h=\operatorname{ReLU}(W_1x+b_1),\qquad
@@ -434,7 +434,7 @@ $$
 \widehat y=\bar y_{\mathrm{train}}\,\widehat y^{\mathrm{esc}}.
 $$
 
-Flujo: **(B,7,5) → aplanado (B,35) → Dense16/ReLU → dropout → Dense1/Softplus → (B)**. Cada posición temporal tiene pesos propios; la red puede aprender relaciones no lineales de la ventana, pero no impone filtros compartidos o memoria entre pasos. Se entrena con MSE de Y escalada y **learning rate 0,001**, con los controles comunes descritos arriba. El código ejecutado es `SmallMLP` en [dl_models.py](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/dl_models.py).
+Flujo: **(B,D,5) → aplanado (B,5D) → Dense16/ReLU → dropout → Dense1/Softplus → (B)**. Cada posición temporal tiene pesos propios; la red puede aprender relaciones no lineales de la ventana, pero no impone filtros compartidos o memoria entre pasos. Se entrena con MSE de Y escalada y **learning rate 0,001**, con los controles comunes descritos arriba. El código ejecutado es `SmallMLP` en [dl_models.py](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/dl_models.py).
 
 #### 3.3.1.4. Tipo de problema que aborda
 
@@ -442,39 +442,40 @@ Regresión temporal supervisada del siguiente valor de σ7 a partir de OHLCV ant
 
 #### 3.3.1.5. Dataset y unidad de observación
 
-Binance Spot BTCUSDT, agregado diario UTC desde velas de un minuto. Entrenamiento inicial de 2023 y doce bloques mensuales de validación de 2024, con cohortes crecientes y purgas. Se evalúan las mismas **366 fechas** y diez semillas 4101–4110; no se imputa el día incompleto del 24/03/2023 ni se comprimen los huecos. Los [folds completos](../_static/dl_r2_cv_20261104/folds.json) y el [método](../_static/dl_r2_cv_20261104/method.json) identifican las muestras. No se evaluó el test reservado de 2025–agosto de 2026.
+
+Binance Spot BTCUSDT, agregado diario UTC desde velas de un minuto. Las entradas D=7/14/21/28 conservan cinco canales y el mismo objetivo sigma7/h1. Los doce bloques de validación de 2024 usan cohortes crecientes de 2023 y pasado permitido de 2024; las diez semillas son comunes. Tras congelar decisiones se ajustó una red final por historia y semilla, con desarrollo permitido y embargo D, y se evaluó la cohorte común del 01/01/2025 al 31/08/2026. No se comprimen huecos ni se imputa el 24/03/2023. Los [reglas, fechas y hashes públicos](../_static/filipe_multihistory_20261104/method.json) distinguen ambos periodos y las fuentes documentales no se presentan como el dataset propio.
 
 #### 3.3.1.6. Métricas y valores propios de validación
 
-MLP con **precios relativos**, sobre todo 2024:
 
-| Métrica anual propia | Media ± DE, diez semillas | IC marginal 95 % de la media |
-|---|---:|---|
-| RMSE | 0,0060491 ± 0,0002780 | [0,0058502; 0,0062479] |
-| MAE | 0,0043804 ± 0,0002110 | [0,0042294; 0,0045313] |
-| R² | 0,6156695 ± 0,0355439 | [0,5902429; 0,6410961] |
+Resultados propios en escala original para las cuatro historias, con n=7 y h=1. Cada valor anual reúne primero las 366 predicciones de una trayectoria; la media y la DE describen diez semillas del mismo calendario, no diez mercados independientes.
 
-Son métricas propias, en unidades originales, calculadas por trayectoria después de reunir las 366 predicciones. Los IC t entre semillas condicionan al calendario y configuración, sin representar generalización temporal. Fuente: [métricas de CV](../_static/dl_r2_cv_20261104/analysis/metrics_summary.csv). No se atribuyen estos valores a Cybenko o Goodfellow ni se sustituyen por cifras de otra tarea.
+```{include} ../_static/filipe_multihistory_20261104/tables/cv_MLP.md
+```
+
+La evaluación final de estas mismas cuatro entradas se conserva en §5 y en [las tablas de test](../_static/filipe_multihistory_20261104/test/analysis/metrics_summary.csv). La configuración de referencia se eligió con desarrollo antes de abrir test; sus métricas posteriores no se usan para reseleccionar. Las cifras son propias, no resultados de los autores de las referencias fundacionales.
 
 #### 3.3.1.7. Fortalezas
 
-Es la implementación de menor tamaño del trío, con **593 parámetros** y un flujo sencillo de verificar. Representa interacciones no lineales entre covariables y posiciones sin mantener estado oculto. En la CV anual presenta el menor RMSE medio **entre las tres redes relativas**; esa comparación es descriptiva del procedimiento y no una superioridad universal de MLP.
+Tiene un flujo sencillo de verificar y **593/1.153/1.713/2.273 parámetros para D=7/14/21/28**. Es la menor del trío solo para D7; CNN1D tiene menos parámetros con las historias mayores. Representa interacciones no lineales entre covariables y posiciones sin mantener estado oculto. Su desempeño por historia está documentado en las tablas de CV; la capacidad feedforward no garantiza superioridad predictiva frente a recurrencia, convolución o persistencia.
 
 #### 3.3.1.8. Limitaciones
 
-El aplanado exige pesos distintos por posición y su número de parámetros crece con D. No impone invariancia temporal ni memoria recurrente. El resultado depende de representación, regularización y configuración; el desarrollo ya había sido explorado, por lo que no hay validación anidada independiente. Persistencia tiene menor error anual. Continúa faltando respaldo aplicado de una MLP independiente en el corpus y no se ha probado el modelo en el test reservado.
+El aplanado exige pesos distintos por posición y su número de parámetros crece con D. No impone invariancia temporal ni memoria recurrente. El resultado depende de representación, regularización y configuración; el desarrollo ya había sido explorado, por lo que no hay validación anidada independiente. La comparación con persistencia se reporta por periodo e historia. Continúa faltando respaldo aplicado de una MLP independiente en el corpus; evaluar el test no completa esa evidencia documental.
 
 #### 3.3.1.9. Complejidad computacional
 
-Con p=5, D=7 y H=16, contando los sesgos de ambas capas:
+Con p=5 y H=16, contando los sesgos de ambas capas:
 
 $$
-P_{\mathrm{MLP}}=(pD)H+H+H+1=pDH+2H+1=593.
+P_{\mathrm{MLP}}=(pD)H+H+H+1=pDH+2H+1=80D+33.
 $$
+
+Para D=7/14/21/28, el total es **593/1.153/1.713/2.273 parámetros**, respectivamente. El ancho oculto se mantiene en 16; aumentar la historia incrementa los pesos de la primera capa.
 
 El costo dominante por ejemplo es O(pDH+H); el aplanado no introduce parámetros. Las activaciones de la capa oculta crecen como O(H), además de la entrada O(Dp). No se confunde ese orden con tiempo de reloj.
 
-La suma de tiempos de los dos ajustes por mes, sobre los doce meses, es **21,352 ± 1,234 s por trayectoria**; la suma de tiempos medios de inferencia de los doce bloques es **0,623 ± 0,041 ms**. Son medias ± DE entre diez semillas, medidas en CPU bajo tres trabajadores concurrentes. Excluyen preprocesamiento y escritura de artefactos según §4.2.5; no son latencias individuales de producción ni picos de memoria.
+**Medición del ciclo inicial D7.** La suma de tiempos de los dos ajustes por mes, sobre los doce meses, es **21,352 ± 1,234 s por trayectoria**; la suma de tiempos medios de inferencia de los doce bloques es **0,623 ± 0,041 ms**. Son medias ± DE entre diez semillas, medidas en CPU bajo tres trabajadores concurrentes. Excluyen preprocesamiento y escritura de artefactos según §4.2.5; no son latencias individuales de producción ni picos de memoria.
 
 ### 3.3.2. LSTM unidireccional
 
@@ -502,10 +503,10 @@ $$
 $$
 c_j=f_j\odot c_{j-1}+i_j\odot g_j,\qquad
 h_j=o_j\odot\tanh(c_j),\qquad
-\widehat y^{\mathrm{esc}}=\operatorname{Softplus}\!\left(w^\top\operatorname{Dropout}_{0,1}(h_7)+b\right).
+\widehat y^{\mathrm{esc}}=\operatorname{Softplus}\!\left(w^\top\operatorname{Dropout}_{0,1}(h_D)+b\right).
 $$
 
-Cada b resume los **dos vectores de sesgo por compuerta de PyTorch**, uno de entrada y otro recurrente; ambos se cuentan por separado en los parámetros. Flujo: **(B,7,5) → LSTM32 → último estado (B,32) → dropout → Dense1/Softplus → (B)**. El estado recurrente representa dependencias ordenadas dentro de la ventana. Se optimiza la MSE del objetivo escalado con **learning rate 0,003**. Código ejecutado: `SingleLayerLSTM` en [dl_models.py](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/dl_models.py).
+Cada b resume los **dos vectores de sesgo por compuerta de PyTorch**, uno de entrada y otro recurrente; ambos se cuentan por separado en los parámetros. Flujo: **(B,D,5) → LSTM32 → último estado (B,32) → dropout → Dense1/Softplus → (B)**. El estado recurrente representa dependencias ordenadas dentro de la ventana. Se optimiza la MSE del objetivo escalado con **learning rate 0,003**. Código ejecutado: `SingleLayerLSTM` en [dl_models.py](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/dl_models.py).
 
 #### 3.3.2.4. Tipo de problema que aborda
 
@@ -513,19 +514,18 @@ Regresión temporal de una volatilidad escalar futura a partir de secuencias OHL
 
 #### 3.3.2.5. Dataset y unidad de observación
 
-El mismo BTCUSDT diario, cinco canales, D7, objetivo n7 y doce folds mensuales de 2024 que MLP/CNN1D. Cada bloque ajusta sus escaladores con el entrenamiento admitido, incorporando únicamente pasado permitido de 2023 y 2024. Las diez semillas y 366 fechas son comunes a ambas representaciones. Los datos de S1 intradiarios, las entradas de volatilidad de S5 y la medida futura anualizada de S7 son antecedentes diferentes; no se presentan como el dataset del proyecto.
+
+Binance Spot BTCUSDT, agregado diario UTC desde velas de un minuto. Las entradas D=7/14/21/28 conservan cinco canales y el mismo objetivo sigma7/h1. Los doce bloques de validación de 2024 usan cohortes crecientes de 2023 y pasado permitido de 2024; las diez semillas son comunes. Tras congelar decisiones se ajustó una red final por historia y semilla, con desarrollo permitido y embargo D, y se evaluó la cohorte común del 01/01/2025 al 31/08/2026. No se comprimen huecos ni se imputa el 24/03/2023. Los [reglas, fechas y hashes públicos](../_static/filipe_multihistory_20261104/method.json) distinguen ambos periodos y las fuentes documentales no se presentan como el dataset propio.
 
 #### 3.3.2.6. Métricas y valores propios de validación
 
-LSTM con **precios relativos**, sobre todo 2024:
 
-| Métrica anual propia | Media ± DE, diez semillas | IC marginal 95 % de la media |
-|---|---:|---|
-| RMSE | 0,0063354 ± 0,0001870 | [0,0062016; 0,0064692] |
-| MAE | 0,0047263 ± 0,0001245 | [0,0046373; 0,0048154] |
-| R² | 0,5788925 ± 0,0248069 | [0,5611467; 0,5966383] |
+Resultados propios en escala original para las cuatro historias, con n=7 y h=1. Cada valor anual reúne primero las 366 predicciones de una trayectoria; la media y la DE describen diez semillas del mismo calendario, no diez mercados independientes.
 
-Son resultados propios de las diez trayectorias, no cifras del artículo de 1997 ni de S1/S5/S7. Los IC marginales por semillas no incorporan toda la incertidumbre de fechas o de selección. No se evaluó generalización sobre 2025–2026.
+```{include} ../_static/filipe_multihistory_20261104/tables/cv_LSTM.md
+```
+
+La evaluación final de estas mismas cuatro entradas se conserva en §5 y en [las tablas de test](../_static/filipe_multihistory_20261104/test/analysis/metrics_summary.csv). La configuración de referencia se eligió con desarrollo antes de abrir test; sus métricas posteriores no se usan para reseleccionar. Las cifras son propias, no resultados de los autores de las referencias fundacionales.
 
 #### 3.3.2.7. Fortalezas
 
@@ -533,7 +533,7 @@ La recurrencia y las compuertas representan relaciones ordenadas sin asignar una
 
 #### 3.3.2.8. Limitaciones
 
-Tiene más parámetros que las otras dos redes y ejecución recurrente secuencial. Memoria con compuertas no garantiza un aprendizaje útil de volatilidad; los resultados dependen del preprocesamiento y de la parada. Su RMSE anual relativo supera al de MLP y al de persistencia. Los antecedentes de S1/S5/S7 no comparten exactamente σ7/h1/OHLCV diario, y sus riesgos documentales no desaparecen por disponer de código. La evaluación propia sigue siendo exploratoria sobre desarrollo expuesto.
+Tiene más parámetros que las otras dos redes y ejecución recurrente secuencial. Memoria con compuertas no garantiza un aprendizaje útil de volatilidad; los resultados dependen del preprocesamiento y de la parada. Su posición en RMSE depende de la historia y del periodo; se conserva la comparación explícita de §5. Los antecedentes de S1/S5/S7 no comparten exactamente σ7/h1/OHLCV diario, y sus riesgos documentales no desaparecen por disponer de código. La evaluación propia sigue siendo exploratoria sobre desarrollo expuesto.
 
 #### 3.3.2.9. Complejidad computacional
 
@@ -545,7 +545,7 @@ $$
 
 El costo dominante por ejemplo es O(4DH(p+H)); las activaciones de entrenamiento crecen como O(DH), además de la entrada. El cómputo de estados depende del orden temporal, aunque las operaciones dentro de cada paso se vectorizan.
 
-Los doce procedimientos mensuales requieren **18,505 ± 2,305 s por trayectoria** y la suma de tiempos medios de inferencia de los doce bloques es **3,212 ± 0,362 ms**, medias ± DE entre diez semillas bajo la concurrencia registrada. Su menor tiempo de entrenamiento observado no acredita eficiencia intrínseca frente a MLP: el número de épocas seleccionado también cambia. El alcance de medición está en §4.2.5.
+**Medición del ciclo inicial D7.** Los doce procedimientos mensuales requieren **18,505 ± 2,305 s por trayectoria** y la suma de tiempos medios de inferencia de los doce bloques es **3,212 ± 0,362 ms**, medias ± DE entre diez semillas bajo la concurrencia registrada. Su menor tiempo de entrenamiento observado no acredita eficiencia intrínseca frente a MLP: el número de épocas seleccionado también cambia. El alcance de medición está en §4.2.5.
 
 ### 3.3.3. CNN1D temporal poco profunda
 
@@ -576,7 +576,7 @@ $$
 R=1+2(3-1)=5.
 $$
 
-Flujo: **(B,7,5) → transposición (B,5,7) → Conv1D16/k3/ReLU/dropout → Conv1D16/k3/ReLU/dropout → media temporal (B,16) → Dense1/Softplus → (B)**. El campo receptivo **local** de cada posición antes del promedio es cinco; el promedio reúne todas las posiciones de la ventana observable. La normalización puede usar su último cierre porque ya se conoce al origen, sin utilizar datos posteriores al pronóstico.
+Flujo: **(B,D,5) → transposición (B,5,D) → Conv1D16/k3/ReLU/dropout → Conv1D16/k3/ReLU/dropout → media temporal (B,16) → Dense1/Softplus → (B)**. El campo receptivo **local** de cada posición antes del promedio es cinco; el promedio reúne todas las posiciones de la ventana observable. La normalización puede usar su último cierre porque ya se conoce al origen, sin utilizar datos posteriores al pronóstico.
 
 Los filtros comparten pesos a lo largo del tiempo y capturan patrones locales repetidos; no representan el mecanismo recurrente de LSTM ni pesos por posición de MLP. Se entrena con MSE del objetivo escalado y **learning rate 0,001**. Código: `ShallowCausalCNN1D` en [dl_models.py](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/dl_models.py).
 
@@ -586,27 +586,26 @@ Regresión temporal sobre secuencias numéricas OHLCV. La convolución opera sob
 
 #### 3.3.3.5. Dataset y unidad de observación
 
-Se usan exactamente los mismos datos, ventanas admisibles, folds y semillas del resto del trío: BTCUSDT diario UTC, entrenamiento creciente desde 2023 y validación mensual de 2024. La variante relativa conserva cinco canales y cada escala se aprende solo con entrenamiento. La TCN fuente de S1 utiliza retornos intradiarios y otra salida; sus métricas no se transfieren a estas 366 etiquetas diarias.
+
+Binance Spot BTCUSDT, agregado diario UTC desde velas de un minuto. Las entradas D=7/14/21/28 conservan cinco canales y el mismo objetivo sigma7/h1. Los doce bloques de validación de 2024 usan cohortes crecientes de 2023 y pasado permitido de 2024; las diez semillas son comunes. Tras congelar decisiones se ajustó una red final por historia y semilla, con desarrollo permitido y embargo D, y se evaluó la cohorte común del 01/01/2025 al 31/08/2026. No se comprimen huecos ni se imputa el 24/03/2023. Los [reglas, fechas y hashes públicos](../_static/filipe_multihistory_20261104/method.json) distinguen ambos periodos y las fuentes documentales no se presentan como el dataset propio.
 
 #### 3.3.3.6. Métricas y valores propios de validación
 
-CNN1D con **precios relativos**, sobre todo 2024:
 
-| Métrica anual propia | Media ± DE, diez semillas | IC marginal 95 % de la media |
-|---|---:|---|
-| RMSE | 0,0062296 ± 0,0003373 | [0,0059883; 0,0064709] |
-| MAE | 0,0046780 ± 0,0002212 | [0,0045197; 0,0048362] |
-| R² | 0,5920875 ± 0,0426871 | [0,5615510; 0,6226240] |
+Resultados propios en escala original para las cuatro historias, con n=7 y h=1. Cada valor anual reúne primero las 366 predicciones de una trayectoria; la media y la DE describen diez semillas del mismo calendario, no diez mercados independientes.
 
-En julio–diciembre obtiene una reducción **puntual** de RMSE de aproximadamente **3,10 % frente a persistencia**, inferior al margen del 5 %. El resultado semestral no sustituye el anual ni acredita superioridad temporal confirmada. Los datos y unidades de la tabla son propios y no son métricas publicadas por LeCun, Bai o la TCN de S1.
+```{include} ../_static/filipe_multihistory_20261104/tables/cv_CNN1D.md
+```
+
+La evaluación final de estas mismas cuatro entradas se conserva en §5 y en [las tablas de test](../_static/filipe_multihistory_20261104/test/analysis/metrics_summary.csv). La configuración de referencia se eligió con desarrollo antes de abrir test; sus métricas posteriores no se usan para reseleccionar. Las cifras son propias, no resultados de los autores de las referencias fundacionales.
 
 #### 3.3.3.7. Fortalezas
 
-Comparte filtros entre posiciones con **1.057 parámetros**, un tamaño intermedio entre MLP y LSTM. Permite cómputo paralelo sobre la ventana, representa patrones locales y mantiene una arquitectura pequeña con conteo exacto. Su resultado relativo anual supera descriptivamente al de LSTM, pero queda por detrás de MLP y persistencia bajo la métrica primaria.
+Comparte filtros entre posiciones con **1.057 parámetros**, independientes de D; tiene menos pesos que LSTM y que MLP con D≥14. Permite cómputo paralelo sobre la ventana, representa patrones locales y mantiene una arquitectura pequeña con conteo exacto. La comparación observada se reporta por D y periodo, sin atribuir superioridad a la familia únicamente por compartir filtros.
 
 #### 3.3.3.8. Limitaciones
 
-El campo local es corto y la media temporal puede perder información sobre la posición de un patrón. El padding y el preprocesamiento afectan las representaciones; una convolución causal no elimina por sí sola riesgos de construcción de datos. No es una réplica de TCN ni está respaldada por un comparador simple independiente en el corpus aplicado. La ganancia semestral sobre persistencia es pequeña y no se generaliza al año completo o al test reservado.
+El campo local es corto y la media temporal puede perder información sobre la posición de un patrón. El padding y el preprocesamiento afectan las representaciones; una convolución causal no elimina por sí sola riesgos de construcción de datos. No es una réplica de TCN ni está respaldada por un comparador simple independiente en el corpus aplicado. La ganancia semestral inicial D7 no se extrapola a otras historias ni sustituye la evaluación final independiente de la selección.
 
 #### 3.3.3.9. Complejidad computacional
 
@@ -619,17 +618,17 @@ $$
 
 Las convoluciones requieren O(D(kpH+kH²)) por ejemplo y la media/cabeza O(DH+H). Las activaciones crecen como O(DH) para profundidad fija. No se infiere menor tiempo solo por paralelizar posiciones o reducir parámetros.
 
-Los doce procedimientos mensuales requieren **44,350 ± 2,425 s por trayectoria** y la suma de tiempos medios de inferencia de los doce bloques es **3,691 ± 0,235 ms**, medias ± DE entre diez semillas en la CPU registrada. Estos valores describen la implementación y no los tiempos de LeCun/Bai/S1; la memoria pico no fue medida.
+**Medición del ciclo inicial D7.** Los doce procedimientos mensuales requieren **44,350 ± 2,425 s por trayectoria** y la suma de tiempos medios de inferencia de los doce bloques es **3,691 ± 0,235 ms**, medias ± DE entre diez semillas en la CPU registrada. Estos valores describen la implementación y no los tiempos de LeCun/Bai/S1; la memoria pico no fue medida.
 
 ### 3.3.4. Cobertura y comparación de las tres fichas
 
 | Campo | MLP | LSTM | CNN1D poco profunda |
 |---|---|---|---|
 | Ficha de implementación con nueve incisos | Completa | Completa | Completa |
-| Entrada / salida propias | (7,5) → escalar no negativo | (7,5) → escalar no negativo | (7,5) → escalar no negativo |
+| Entrada / salida propias | (D,5) → escalar, D=7/14/21/28 | Mismas cuatro entradas y salida | Mismas cuatro entradas y salida |
 | Sesgo inductivo principal | Pesos por posición e interacciones feedforward | Memoria recurrente con compuertas | Filtros locales compartidos y promedio temporal |
 | Configuración propia | Una capa H16 | Una capa unidireccional H32 | Dos capas H16/k3, sin dilataciones |
-| Parámetros medidos por código | 593 | 5.025 | 1.057 |
+| Parámetros medidos por código | 593/1.153/1.713/2.273 para D7/14/21/28 | 5.025 | 1.057 |
 | Apoyo aplicado independiente en el corpus | 0/5 | Unidireccional 3/5; familia 4/5 con BiLSTM | 0/5 |
 | Datos/objetivo de fuentes idénticos al proyecto | No acreditado | No acreditado | No acreditado |
 | Cumplimiento del respaldo bibliográfico del trío | Pendiente | Antecedentes identificados con límites | Pendiente |
@@ -644,43 +643,33 @@ La comparación propia enfrenta **MLP, LSTM y CNN1D** bajo el contrato y CV comu
 
 #### 3.4.1.1. Desempeño de CV y comparabilidad
 
-Los tres modelos relativos utilizan las mismas 366 fechas de 2024, diez semillas 4101–4110, D7/n7/h1 y reglas mensuales de entrenamiento. La puntuación principal es la media de RMSE por trayectoria; no es RMSE de un ensemble ni una media de R² mensuales.
 
-| Modelo relativo | RMSE, media ± DE | R², media ± DE | Parámetros |
-|---|---:|---:|---:|
-| MLP | 0,0060491 ± 0,0002780 | 0,615670 ± 0,035544 | 593 |
-| LSTM | 0,0063354 ± 0,0001870 | 0,578892 ± 0,024807 | 5.025 |
-| CNN1D | 0,0062296 ± 0,0003373 | 0,592088 ± 0,042687 | 1.057 |
-| Persistencia, referencia contextual | 0,0047890; sin DE de inicialización | 0,759571 | 0 |
+La comparación principal reúne las cuatro historias D=7/14/21/28, n=7/h=1, cinco covariables y diez semillas. Cada puntuación anual reúne primero las 366 fechas de una trayectoria; no es la RMSE de un ensemble ni una media de R² mensuales.
 
-Fuente: [métricas actuales](../_static/dl_r2_cv_20261104/analysis/metrics_summary.csv); los IC exactos y la inferencia se desarrollan en §5. La tabla permite un ranking **descriptivo anual**: MLP es la mejor red, mientras persistencia conserva menor error. Persistencia requiere ocho cierres para calcular σ7 previa; las redes reciben siete días OHLCV. Esa diferencia de información debe acompañar su comparación.
+```{include} ../_static/filipe_multihistory_20261104/tables/cv_models.md
+```
 
-Los resultados de S1/S2/S5/S6/S7 usan otras frecuencias, objetivos o escalas; no forman un ranking cuantitativo común con esta tabla. Las configuraciones propias se fijaron con desarrollo ya observado, por lo que la CV no es validación anidada independiente del proceso completo de selección.
+```{include} ../_static/filipe_multihistory_20261104/tables/selected_configuration.md
+```
+
+El test final de §5 conserva esa selección previa. Persistencia resume ocho cierres para sigma7 previa: es más historia de cierre que D7 y menos días que las entradas D14/21/28; la información no se presenta como idéntica. Las fuentes aplicadas usan otros objetivos y escalas y no forman un ranking cuantitativo común con estas métricas propias. La CV de desarrollo expuesto no es selección anidada independiente.
 
 #### 3.4.1.2. Robustez y evidencia disponible
 
-| Aspecto | MLP relativa | LSTM relativa | CNN1D relativa |
-|---|---|---|---|
-| Repeticiones propias | Diez trayectorias | Diez trayectorias | Diez trayectorias |
-| Evaluación temporal común | Doce bloques mensuales, 366 fechas | Mismos bloques y fechas | Mismos bloques y fechas |
-| Control de representación | Variante absoluta con iguales folds y semillas | Variante absoluta con iguales folds y semillas | Variante absoluta con iguales folds y semillas |
-| Apoyo aplicado en la revisión | MLP independiente no acreditada (0/5) | LSTM unidireccional en 3/5; tareas distintas | CNN1D simple independiente no acreditada (0/5) |
-| Conclusión propia permitida | Menor RMSE neuronal anual observado | Resultado positivo, sin liderar RMSE anual | Mejor RMSE neuronal solo en el semestre julio–diciembre |
 
-Las tablas y curvas permiten analizar variación entre inicializaciones y meses; los IC de semillas condicionan al calendario. No se han ejecutado pruebas de estrés controladas, perturbaciones o generalización a otros activos/proveedores. El orden de un subperiodo y un R² medio positivo no prueban robustez universal. La hipótesis de mejora frente a persistencia y la evidencia estadística deben interpretarse con los estimandos y las familias declaradas en §5.
+Las tres redes usan las mismas cuatro historias y diez semillas, con 366 fechas de CV y una cohorte común de test. El control absoluto se ejecutó exclusivamente en el ciclo inicial D7. Los veinte meses de test permiten describir estabilidad temporal de los modelos finales, sin reajustarlos ni contarlos como réplicas de mercados.
+
+El respaldo aplicado continúa siendo MLP independiente 0/5, LSTM unidireccional 3/5 y CNN1D simple 0/5 en el corpus acotado. No se ejecutaron pruebas de estrés con ruido controlado, otros activos o proveedores. Ni un orden mensual favorable ni R² positivo prueban robustez universal. Los p-valores BDS mensuales tienen referencia aproximada y sus promedios son descriptivos, no una prueba combinada.
 
 #### 3.4.1.3. Escalabilidad y simplicidad
 
-| Aspecto | MLP | LSTM | CNN1D |
-|---|---|---|---|
-| Costo dominante por ventana | O(DpH) | O(4DH(p+H)) | O(D(kpH+kH²)) |
-| Organización temporal | Pesos distintos por posición | Estado secuencial con compuertas | Filtros compartidos sobre posiciones |
-| Dependencia de parámetros respecto a D | Lineal | Independiente de D, H fijo | Independiente de D con promedio temporal |
-| Parámetros propios | 593 | 5.025 | 1.057 |
-| Entrenamiento por trayectoria, media ± DE | 21,352 ± 1,234 s | 18,505 ± 2,305 s | 44,350 ± 2,425 s |
-| Inferencia de doce bloques, media ± DE | 0,623 ± 0,041 ms | 3,212 ± 0,362 ms | 3,691 ± 0,235 ms |
 
-Los tiempos medidos incluyen los dos ajustes de cada uno de los doce meses y, por separado, la suma de sus inferencias por lotes, según §4.2.5. Se obtuvieron bajo tres trabajadores CPU concurrentes y dependen de épocas seleccionadas e implementación. Más parámetros no implican mayor tiempo de entrenamiento: LSTM tiene más pesos, pero menor duración media observada. La memoria pico y el desempeño de despliegue no fueron medidos. Las fórmulas exactas de §3.3 y los registros permiten revisar simplicidad técnica, sin demostrar mínima complejidad global o frecuencia aplicada.
+El costo dominante por ventana es O(DpH) para MLP, O(4DH(p+H)) para LSTM y O(D(kpH+kH²)) para CNN1D. MLP asigna pesos por posición; LSTM comparte las compuertas y CNN comparte filtros. El conteo de pesos por entrada es:
+
+```{include} ../_static/filipe_multihistory_20261104/tables/parameters.md
+```
+
+Los costos medidos de CV se conservan por historia, modelo, semilla y fold; el [ajuste final](../_static/filipe_multihistory_20261104/final_fit_summary.csv) registra sus tiempos por corrida. El aumento de D modifica la entrada y el costo, pero no los pesos recurrentes o convolucionales con ancho fijo. Los tiempos dependen de épocas y concurrencia CPU; no son latencias garantizadas de producción. Los tiempos iniciales D7 siguen disponibles en sus registros y no se extrapolan a D14/21/28. No se midió memoria pico.
 
 ### 3.4.2. Análisis de validez de los estudios revisados
 
@@ -718,7 +707,7 @@ La reducción se deriva como `100·(RMSE_TCN−RMSE_variante)/RMSE_TCN` a partir
 
 **Límite del corpus respecto a la propuesta actual:** ninguno de los cinco textos incluidos acredita una comparación conjunta de MLP, LSTM y CNN1D poco profunda con el contrato OHLCV diario de Binance Spot, n=7 y h=1. En particular, MLP independiente y CNN1D simple tienen 0/5 apoyos verificados en este corpus. Esta es una laguna de cobertura de la revisión accesible, no prueba de ausencia mundial ni de originalidad. Debe completarse la evidencia aplicada antes de presentar el trío como extraído y justificado por la literatura.
 
-La CV de Filipe establece referencias DL propias de capacidad controlada bajo información y reglas comunes. MLP con precios relativos tiene el menor RMSE anual entre las redes, mientras persistencia mantiene menor error en todo 2024. CNN1D relativa reduce puntualmente el RMSE semestral un 3,10 % frente a persistencia, por debajo del margen operativo del 5 %. Estos resultados exploratorios no fijan todavía un umbral validado para un modelo avanzado ni completan el respaldo bibliográfico.
+La CV de Filipe establece referencias DL propias bajo información y reglas comunes, ahora con las cuatro historias. El baseline neuronal cerrado antes de test es **MLP con D=7**; el [registro de selección](../_static/filipe_multihistory_20261104/freeze.json) conserva la decisión. Los resultados finales se interpretan en §5 sin reseleccionar por test. La brecha avanzada/base de autores no fija automáticamente un margen de mejora validado ni completa el respaldo aplicado de MLP/CNN1D.
 
 ### 3.4.5. Correspondencia y estado de cierre
 
@@ -733,7 +722,7 @@ La CV de Filipe establece referencias DL propias de capacidad controlada bajo in
 | Exactamente tres modelos básicos no redundantes | Propuesta MLP–LSTM–CNN1D poco profunda según guía 6.4; GRU alternativa recurrente | Extracción aplicada pendiente; configuraciones propias de desarrollo ejecutadas y registradas; no se presenta la TCN grande como CNN simple |
 | Fichas técnicas del trío implementado | Nueve campos para MLP, LSTM y CNN1D en §3.3, con ecuaciones, flujos, configuraciones, métricas y complejidad propias | Fichas de implementación completas; el respaldo bibliográfico aplicado MLP/CNN1D sigue pendiente. Los perfiles de fuentes se conservan en el archivo documental |
 | Comparación crítica y brecha | Comparación propia anual MLP/LSTM/CNN1D; validez de estudios y brecha avanzada/base de S1 separadas | Ranking propio descriptivo; sin mezclar tareas, atribuir causalidad única o declarar novedad universal |
-| Experimentos y baseline medido | CV mensual de Filipe: 60 trayectorias, 720 segmentos modelo–fold y 1.440 ajustes; separado del diagnóstico Ridge | Diez semillas por red/representación y test sin evaluar; resultados de desarrollo sin confirmación externa |
+| Experimentos y baseline medido | CV principal de cuatro historias: 120 trayectorias, 1.440 segmentos modelo–fold y 2.880 ajustes, con D7 reutilizado; ajuste final y test separados del diagnóstico Ridge | Diez semillas por red/historia; test posterior a congelación, un solo activo y sin selección mediante sus métricas |
 
 La fase actual sigue la búsqueda pública y la comprobación posterior de procedencia descritas en §3.1. Las cinco coincidencias secundarias corresponden a *Journal of International Financial Markets, Institutions and Money*, *Frontiers in Physics*, *Economics Letters*, *Finance Research Letters* e *IEEE Access*. No sustituyen la verificación individual de los artículos ni certifican Q1. Las listas inspeccionadas no permiten juzgar actas de congresos: la ausencia de WSDM/ICDM en ellas no prueba falta de indexación.
 

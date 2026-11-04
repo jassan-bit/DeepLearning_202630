@@ -1,0 +1,74 @@
+{
+  "completed_at_utc": "2026-11-04T19:45:05.031586+00:00",
+  "phase": "test",
+  "histories": [
+    7,
+    14,
+    21,
+    28
+  ],
+  "models": [
+    "MLP",
+    "LSTM",
+    "CNN1D"
+  ],
+  "seeds": [
+    4101,
+    4102,
+    4103,
+    4104,
+    4105,
+    4106,
+    4107,
+    4108,
+    4109,
+    4110
+  ],
+  "target": "sigma7 population SD of daily log returns, unannualized",
+  "horizon_days": 1,
+  "preprocessing": "relative_window",
+  "outcome_days": 608,
+  "calendar_days": 608,
+  "coverage": 1.0,
+  "neural_forecasts": 72960,
+  "monthly_reporting_blocks": 20,
+  "monthly_blocks_are": "reporting periods of frozen final models; no test refitting",
+  "bds": {
+    "planned_hypotheses": 4800,
+    "defined": 4800,
+    "dimensions": [
+      2,
+      3
+    ],
+    "epsilon_sample_sd_multiplier": 1.5,
+    "family": "all_predeclared_test_monthly_BDS_dimensions_histories_models_seeds",
+    "raw_p_value_averages": "descriptive only, never combined tests",
+    "sample_size_min": 28,
+    "sample_size_max": 31,
+    "limitation": "Approximate BDS iid diagnostic on short monthly blocks; overlapping volatility labels and estimated networks can affect its reference distribution. A p-value average is descriptive, never a combined hypothesis test."
+  },
+  "source_sha256": {
+    "results/filipe_multihistory_20261104/test/predictions.csv": "fc54a556a617d396952d92750e2fdb817505d8665f3fa6de98a602effddcc2a0",
+    "results/filipe_multihistory_20261104/test/cohort_manifest.json": "44c1d8a439b9a1e10023374ad427e70f823c73514234e5404bdf714c745acd3e"
+  },
+  "analysis_code_sha256": "f52fe070e6aad85cab4b2c2a7e989aa38988fe2c39618852cbfb1251e1684926",
+  "output_sha256": {
+    "bds_by_fold.csv": "f0eaa7f3c7d9b76c8fd72a0f4b951778b65d9a816ecf8e5297db5e7aa629b8d4",
+    "bds_by_fold_summary.csv": "1f7f9368f4182ec3cd3cee7e81ef0c3aefeaccd5575baf20487a34809efe3e11",
+    "bds_mean_across_folds_descriptive.csv": "8ae791403491a88320763d376610b4630b34b00ee103487db1c48c7df2636b0b",
+    "bds_pvalues_descriptive_summary.csv": "0e9b30cca797ebcadde960ba9756fbe2e99a7758bfb98e071b572f1752536bbd",
+    "between_fold_spread_descriptive.csv": "9d633699a322fa2a2628b5e938a58df503ba79cc2a6335d294d88a5f9cecf399",
+    "fold_metrics.csv": "b86a31912ce973986a4bf1627cd287e49e8f79cf7d918f8f3169e12d15a0cd0d",
+    "fold_metrics_summary.csv": "d24d85199bfa86a7e5c6275b4c4fa68d2ca9b28aceb55d2f2277a591ae7cae21",
+    "metrics_by_input_history.png": "0aaca81b8fbe0706db3aab837cf1bc970d83e46b831154e7e27537aa226d8995",
+    "metrics_summary.csv": "bec7b27217b392cb472b5fbaeab9c5b190b960192da71009aa8c8a6621213275",
+    "run_metrics.csv": "65a9125a0df29914432bd3aff468f4fbdd780ec69f0d63f0318f63dcd3c3495b",
+    "tables.md": "eb94b644a1761ee235aa68bd99c88e17982ebb8899efc5d82a023962da0efcdf"
+  },
+  "new_model_fits": 0,
+  "scope": "Descriptive, calendar-conditional multi-history analysis; test never selects settings; no independent-market or guaranteed-power claim.",
+  "publication_scope": "aggregate summaries only; referenced prediction vectors retained locally",
+  "individual_predictions_retained_local": true,
+  "source_summary_sha256": "c587d9139cc4d676d6e852b30a4392f17d6d01db57baed62153d3efcfe5f085b",
+  "derived_summary": true
+}

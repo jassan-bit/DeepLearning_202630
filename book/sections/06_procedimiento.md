@@ -22,21 +22,21 @@ La guía contiene **once rutas numeradas, de 6.1 a 6.11**. Su lista inicial agru
 
 Usar LSTM o Transformer y una entrada D×5 no cambia por sí solo el tipo de tarea. La clasificación como tipo 4 tampoco afirma independencia o exogeneidad de OHLCV respecto a la volatilidad: los precios intervienen en construir retornos y pueden aportar información sobre volatilidad pasada. La distinción operativa de la guía se aplica a las entradas explícitas registradas.
 
-El procedimiento ejecutado utiliza validación forward chaining de `timeseries-cv`, con coautoría de Filipe R. Ramos: doce bloques mensuales de 2024, dos representaciones OHLCV y las mismas tres redes. Sus [folds](../_static/dl_r2_cv_20261104/folds.json), [método de CV](../_static/dl_r2_cv_20261104/method.json) y [ejecución](../_static/dl_r2_cv_20261104/execution_summary.json) acreditan 60 trayectorias, 720 segmentos modelo–mes, 1.440 ajustes y 21.960 predicciones, sin aperturas de test por este procedimiento.
+El procedimiento principal utiliza validación forward chaining de `timeseries-cv`, con coautoría de Filipe R. Ramos, y las mismas tres redes MLP/LSTM/CNN1D para D=7/14/21/28. Los doce bloques mensuales de 2024 generan 120 trayectorias primarias y 43.920 predicciones; D7 se reutiliza de su registro relativo inicial. El [método vigente](../_static/filipe_multihistory_20261104/method.json) distingue esos ajustes de los 120 modelos finales y de su evaluación posterior sobre test, sin reabrir decisiones con sus resultados.
 
 ## 6.1. Aplicación de la ruta 6.4 de la guía: regresión temporal
 
 ### 6.1.1. Partición cronológica y origen móvil
 
-Se respeta **entrenamiento < validación < prueba** por disponibilidad de información. La historia inicial es 2023; los orígenes de validación son los días de 2024; el test previsto comprende 01/01/2025–31/08/2026. Cada entrada termina antes del día de resultado y cada etiqueta usada para ajustar debe estar completamente observada al emitir el pronóstico evaluado.
+Se respeta **entrenamiento < validación < prueba** por disponibilidad de información. La historia inicial es 2023; los orígenes de validación son los días de 2024; el test final comprende 01/01/2025–31/08/2026. Cada entrada termina antes del día de resultado y cada etiqueta usada para ajustar debe estar completamente observada al emitir el pronóstico evaluado.
 
 En notación de calendario, para el resultado del día d se emite al inicio UTC de d, se usa OHLCV de d−D,…,d−1 y se predice σ7(d), conocida al terminar d. Corresponde a $Y_t=\sigma_{t+1}$ de §1.1.1 cuando t identifica ese día de resultado. El OHLCV completo de d no es entrada disponible al comenzar d. Origen, día de resultado y disponibilidad de etiqueta se conservan como campos distintos.
 
-Se mantiene **2023 como entrenamiento inicial, 2024 como validación forward chaining y 2023–2024 para el ajuste final tras cerrar las configuraciones**. El test previsto comprende enero de 2025–agosto de 2026; septiembre–octubre de 2026 permanece sin asignación automática.
+Se mantiene **2023 como entrenamiento inicial, 2024 como validación forward chaining y 2023–2024 para el ajuste final tras cerrar las configuraciones**. El test evaluado comprende enero de 2025–agosto de 2026; septiembre–octubre de 2026 permanece sin asignación automática.
 
-Se utiliza la función real `split_train_val_forwardChaining(np.arange(731),7,1,1)` de `timeseries-cv` 0.1.5. Sus orígenes diarios se reúnen en **doce bloques mensuales**: para cada red, variante y semilla se entrena al inicio de cada mes con los índices generados por la función y filtrados por embargo/calidad. Los pesos quedan fijos dentro del mes y se emite un pronóstico h=1 por día con OHLCV hasta el día anterior. La agrupación mensual es una adaptación explícita, no una API nativa ni 366 reajustes.
+Se utiliza la función real `split_train_val_forwardChaining(np.arange(731),D,1,1)` de `timeseries-cv` 0.1.5 para D=7/14/21/28. Sus orígenes diarios se reúnen en **doce bloques mensuales**: cada red, historia y semilla se ajusta al comienzo del mes con índices de la función filtrados por embargo y calidad. Los pesos quedan fijos dentro del mes y cada pronóstico h=1 usa OHLCV hasta el día anterior. La agrupación mensual es una adaptación explícita, no una API nativa ni 366 reajustes.
 
-Las cohortes crecen con el pasado permitido de 2024. El [manifiesto CV](../_static/dl_r2_cv_20261104/folds.csv) identifica los bloques y la [figura de cortes reales](../_static/dl_r2_cv_20261104/analysis/figures/cv_folds_actual.png) muestra entrenamiento, embargo y validación. Las 366 predicciones por trayectoria se agrupan para RMSE/R² anual; julio–diciembre se presenta aparte como desglose semestral de esa misma CV. Todo 2024 estuvo expuesto al EDA y las configuraciones se eligieron con desarrollo: el resultado es exploratorio, sin validación anidada ni confirmación reservada.
+Las cohortes crecen con el pasado permitido de 2024. Los manifiestos por historia y las tablas de CV conservan los índices realmente usados. Se reúnen las 366 predicciones por trayectoria para RMSE/R² anual; no se promedian R² de orígenes unitarios. La selección de historia y familia usa ese desarrollo ya expuesto: no es validación anidada independiente de todo el procedimiento.
 
 La ruta 6.4 exige un **embargo igual al máximo rezago de las covariables**. Para $X_t=(z_{t-D},\ldots,z_{t-1})^\top$, los rezagos son de uno a $D$ días de calendario y se fija $E_D=D$. Se define embargo como el número de días de resultado inmediatamente anteriores a $t$ que se omiten del ajuste: $t-D,\ldots,t-1$. Así, los candidatos de entrenamiento deben cumplir $u\le t-D-1$, además de tener entradas válidas y etiquetas conocidas al emitir el pronóstico. Esta convención deja verificable la diferencia entre días omitidos y distancia entre dos fechas.
 
@@ -55,7 +55,7 @@ La historia observable anterior a validación o test puede formar parte de sus e
 
 ### 6.1.2. Ventanas y preprocesamiento causal
 
-La adquisición es de un minuto y el modelado es **diario UTC**. La CV ejecutada utiliza cinco variables OHLCV con **D=7 días**. Las historias D=14/21/28 aparecen en el EDA y no se presentan como comparaciones de redes ya realizadas. El objetivo principal es la desviación poblacional de **$n=7$ retornos diarios**, pronosticada un día adelante. Las volatilidades de 14/21/28 retornos constituyen sensibilidad del objetivo; sus RMSE no se ordenan para elegir una supuesta mejor definición.
+La adquisición es de un minuto y el modelado es **diario UTC**. La CV y el test comparan cinco covariables OHLCV con **D=7/14/21/28 días**, manteniendo la desviación poblacional de **n=7 retornos diarios** y horizonte h=1. Las volatilidades n=14/21/28 son sensibilidad del objetivo explorada en EDA, no objetivos entrenados del benchmark.
 
 La ruta de regresión temporal requiere estudiar frecuencia, desfases y disponibilidad de covariables, su relación con el objetivo, cambios de régimen y autocorrelación de los errores de una referencia. Los diagnósticos de ACF/PACF y estacionariedad ya presentes en el EDA son información temporal complementaria; no constituyen por sí solos una selección de ventana o un resultado de modelos. La correspondencia de los requisitos específicos y la evidencia debe mantenerse explícita en el capítulo 2.
 
@@ -65,9 +65,9 @@ Los errores de las cuatro referencias muestran autocorrelación. Las etiquetas c
 
 La reconsideración se documenta en esta revisión del **3 de noviembre de 2026**: se mantiene el tipo 4 porque continúa el contrato OHLCV sin historia explícita de σ como entrada. Se reconoce la dependencia residual y no se atribuye a una causa única. Si se decide añadir σ rezagada, antes de ejecutarlo se versionarán entrada, formulación, disponibilidad, partición y comparación bajo la ruta 6.3; el diagnóstico actual no demuestra que ese cambio sea necesario ni que ya haya ocurrido.
 
-La representación principal `relative_window` resta a los cuatro logaritmos OHLC el logaritmo del último cierre de la propia ventana, conocido en d−1; conserva log1p del volumen y calcula escalas sobre posiciones de ventanas de entrenamiento. Bajo los mismos folds se evalúa el control `absolute_log`, con log(OHLC), log1p(V) y escalas calculadas sobre días únicos de entrenamiento. Ambas mantienen cinco canales, D7, n7 y h1, sin añadir σ rezagada. Y se divide por su media positiva de entrenamiento, sin centrar, y se invierte para evaluar. No se transfieren medias ni componentes de PCA del EDA.
+La representación principal `relative_window` resta a los cuatro logaritmos OHLC el logaritmo del último cierre de la propia ventana, conocido en d−1; conserva log1p del volumen y aprende escalas con posiciones de ventanas de entrenamiento. El control `absolute_log` se conserva solo en el ciclo inicial D7. El objetivo se divide por su media positiva de entrenamiento y se invierte para evaluar; no se transfieren estadísticas ni PCA globales del EDA.
 
-En la parada interna del origen t, el bloque de validación interna termina como máximo en t−D−1. Si v es su primer día de resultado, el subentrenamiento usa u≤v−D−1, además de calidad y disponibilidad. Escaladores, selección de atributos y transformaciones de Y se ajustan **solo al subentrenamiento**, no a su unión con la validación de parada. Se toman los últimos 90 días de calendario del origen mensual, hasta el corte externo permitido, con embargo antes del primer resultado interno: quedan 83 etiquetas por mes. En enero, el periodo interno es 03/10–24/12/2023. Tras elegir duración por MSE se descartan los pesos internos y se entrena una red nueva sobre toda la cohorte mensual admisible. Los [índices por bloque](../_static/dl_r2_cv_20261104/folds.json) y los artefactos de §4.2 conservan cada escalador y corte.
+En la parada interna del origen t, el bloque de validación termina como máximo en t−D−1. Si v es su primer resultado, el subentrenamiento usa u≤v−D−1. Escaladores y escala de Y se ajustan **solo al subentrenamiento**; la cohorte interna reciente de 90 días deja **90−D etiquetas**, es decir 83/76/69/62. Después de elegir duración se descartan los pesos internos y se reajusta una red nueva con todo el entrenamiento mensual permitido. La etapa final toma la duración ya seleccionada en el último corte de CV, usa desarrollo permitido y congela sus pesos antes de abrir test.
 
 Si las métricas de 2024 intervienen en elegir hiperparámetros o D, son **resultados de selección**. Una evaluación externa de todo el procedimiento requeriría selección anidada en el pasado de cada origen; una parada causal por sí sola no corrige la selección hecha con todo ese año. La evaluación reservada no elegirá las reglas después de observar sus resultados.
 
@@ -77,7 +77,7 @@ La política vigente preserva los ZIP y el calendario completo: un día sin 1.44
 
 La guía propone para regresión temporal MLP sobre covariables rezagadas, LSTM o GRU sobre secuencias de covariables y CNN1D poco profunda. Estas familias son orientativas, pero la selección final debe provenir de la frecuencia observada en la literatura revisada y justificar simplicidad y propósito comparativo. También debe identificar la arquitectura reproducible y los supuestos de cada alternativa.
 
-El trío implementado es **MLP sobre covariables rezagadas, LSTM sobre secuencias de covariables y CNN1D poco profunda**. GRU es alternativa para el puesto recurrente. El [registro de propuesta](../_static/literature_e1/guide_aligned_proposal_20261104.json) distingue estas familias curriculares de su respaldo aplicado. El [método de CV](../_static/dl_r2_cv_20261104/method.json) fija D=7 común, MLP de ancho 16, LSTM de ancho 32 y CNN1D de ancho 16, con 593, 5.025 y 1.057 parámetros respectivamente.
+El trío implementado es **MLP sobre covariables rezagadas, LSTM sobre secuencias de covariables y CNN1D poco profunda**. GRU sigue como alternativa documental. El [registro de propuesta](../_static/literature_e1/guide_aligned_proposal_20261104.json) distingue respaldo curricular, bibliografía y ejecución. MLP usa ancho 16 y 80D+33 parámetros; LSTM ancho 32 y 5.025; CNN1D dos capas de ancho 16 y 1.057. H y learning rate se mantienen al ampliar la historia.
 
 Las fichas de la [sección 3](03_estado_arte.md) documentan las implementaciones propias **MLP, LSTM y CNN1D**, con referencias, ecuaciones, flujo, datos, resultados y complejidad. Los perfiles de TCN y encoder se conservan como antecedentes en el [archivo documental de fuentes](https://github.com/jassan-bit/DeepLearning_202630/blob/main/references/literature_e1/source_profiles_archive_20261104.md). No acreditan una CNN1D simple ni completan el respaldo aplicado de MLP. Una red lineal o una cabeza densa interna tampoco sustituyen una MLP no lineal independiente; los conteos de los cinco textos permanecen separados de la evidencia propia.
 
@@ -118,13 +118,13 @@ Persistencia se conserva como referencia adicional para el margen operativo acep
 
 Con un origen de una sola salida, promediar su RMSE entre días equivale a promediar errores absolutos; no produce la RMSE global. Para ordenar modelos se usa la **media de RMSE calculadas por corrida**, no una RMSE sobre semillas×fechas ni la de un ensemble. El reporte de 2025 y 2026 será separado, aclarando que 2026 termina el 31 de agosto. Cualquier agregado adicional requiere una regla de cobertura y ponderación registrada y se recalculará desde predicciones; no será un promedio de RMSE anuales.
 
-Con la representación relativa, **MLP presenta el menor RMSE anual medio entre las redes**: aproximadamente 0,006049, frente a 0,006335 de LSTM y 0,006230 de CNN1D. Persistencia obtiene 0,004789 y conserva el menor error anual. CNN1D relativa lidera solo el semestre julio–diciembre, con una reducción puntual de RMSE cercana al 3,10 % frente a persistencia, inferior al 5 %. Los [resultados de CV](../_static/dl_r2_cv_20261104/analysis/metrics_summary.csv) y el [desglose semestral](../_static/dl_r2_cv_20261104/analysis/metrics_common_h2_cv_only.csv) identifican periodo y alcance; no constituyen evaluación del test.
+Las cuatro historias y el baseline elegido con desarrollo se reportan en §5. La selección previa al test quedó cerrada como **MLP con D=7**; no se reemplaza por la combinación que tenga mejor puntuación en test. Persistencia se reporta como referencia determinista, con ocho cierres para sigma7 previa: ese soporte difiere de siete días OHLCV y de las ventanas mayores.
 
 ### 6.1.6. Inferencia y diagnóstico: pregunta, unidad y estado
 
-El [complemento estadístico](../_static/filipe_statistics_20261104/summary.json) se calculó sobre las predicciones guardadas de la CV, sin nuevos ajustes ni acceso a test. Su [enmienda de análisis](../_static/filipe_statistics_20261104/protocol.json) se registró **después de examinar los resultados descriptivos de 2024 y antes de estos cálculos**: conserva alcance exploratorio, sin atribuirle registro previo a toda observación.
+El [complemento estadístico inicial D7](../_static/filipe_statistics_20261104/summary.json) se calculó sobre las predicciones guardadas de la CV, sin nuevos ajustes ni acceso a test. Su [enmienda de análisis](../_static/filipe_statistics_20261104/protocol.json) se registró **después de examinar los resultados descriptivos de 2024 y antes de estos cálculos**: conserva alcance exploratorio, sin atribuirle registro previo a toda observación.
 
-La familia global de **doce contrastes por semillas** reúne tres pares entre redes relativas, tres comparaciones de redes frente a persistencia, tres pruebas unilaterales de mejora relativa superior al 5 % y tres controles relativa–absoluta. Se reportan diferencia media, IC t marginal, tamaño de efecto, p sin ajustar y **Holm-12** en [global_seed_tests.csv](../_static/filipe_statistics_20261104/global_seed_tests.csv). Las familias de nueve contrastes del complemento y tres controles se conservan como trazabilidad; no son pruebas independientes de corroboración.
+En el ciclo inicial **D7**, la familia global de **doce contrastes por semillas** reúne tres pares entre redes relativas, tres comparaciones de redes frente a persistencia, tres pruebas unilaterales de mejora relativa superior al 5 % y tres controles relativa–absoluta. Se reportan diferencia media, IC t marginal, tamaño de efecto, p sin ajustar y **Holm-12** en [global_seed_tests.csv](../_static/filipe_statistics_20261104/global_seed_tests.csv). Las familias de nueve contrastes del complemento y tres controles se conservan como trazabilidad; no son pruebas independientes de corroboración.
 
 | Herramienta ejecutada | Unidad, especificación y alcance |
 |---|---|
@@ -140,48 +140,46 @@ Los [contrastes DM](../_static/filipe_statistics_20261104/temporal_dm.csv), [dia
 
 Ninguna comparación DM principal rechaza al 5 % tras Holm-6, mientras los contrastes condicionales entre semillas sí distinguen las tres redes de persistencia en dirección de mayor error. Los IC bootstrap marginales de esas diferencias son positivos. DM compara medias de pérdidas cuadradas y el bootstrap compara medias de RMSE por semilla; además difieren sus referencias y ajustes. Esta combinación se comunica con cada estimando, sin elegir el procedimiento que produzca la conclusión preferida ni interpretar falta de rechazo como equivalencia. Los IC marginales no son simultáneos por ajustar p-valores.
 
-Los quince diagnósticos de residuos rechazan sus hipótesis bajo las referencias usadas. La estructura residual puede proceder del solapamiento del objetivo, la actualización mensual, deriva o capacidad limitada; no cuantifica automáticamente una mejora futura. Las [curvas de parada interna de diciembre, semilla 4101](../_static/filipe_statistics_20261104/figures/internal_epoch_curves_december_seed4101.png) provienen de registros reales, no son curvas de test ni de tamaño de muestra.
+Los quince diagnósticos iniciales D7 rechazan sus hipótesis bajo las referencias usadas. La estructura residual puede proceder del solapamiento del objetivo, la actualización mensual, deriva o capacidad limitada; no cuantifica automáticamente una mejora futura. Las [curvas de parada interna de diciembre, semilla 4101](../_static/filipe_statistics_20261104/figures/internal_epoch_curves_december_seed4101.png) provienen de registros reales, no son curvas de test ni de tamaño de muestra.
+
+La ampliación calcula BDS sobre los residuos de **cada mes y cada semilla** para las cuatro historias y tres redes. Son **2.880 hipótesis en CV** y **4.800 en test**, dimensiones 2/3 y radio 1,5 DE muestral, con Holm en familias separadas por fase. Los bloques de test son reportes de pesos finales fijos, no reajustes. Los valores no definidos se conservan con su estado; media y DE de p-valores son descriptivas y no constituyen un contraste combinado. Los meses de 28–31 resultados son muestras pequeñas para la referencia asintótica; no se atribuye a BDS no linealidad exclusivamente aprovechable.
 
 El EDA conserva por separado los 112 valores ACF y doce Ljung–Box de las cuatro Ridge, con Holm en su propia familia. Sus rechazos no se mezclan con los diagnósticos de redes ni prueban causalidad. Ni las fechas, ni los doce folds, ni las semillas crean mercados independientes. Los márgenes de equivalencia y de una propuesta avanzada continúan sin definirse; no se fabrican TOST o ROPE.
 
 ## 6.2. Correspondencia entre procedimiento y evidencia
 
-Esta matriz distingue **reglas fijadas**, **evidencia ejecutada** y **productos pendientes**. Un índice de validación, una fórmula de inferencia o una ficha de arquitectura no constituye una corrida de red.
 
-| Componente de la ruta | Evidencia o decisión actual | Pendiente o límite |
+Esta matriz distingue reglas, ejecuciones y límites. La comparación de cuatro historias mantiene un mismo objetivo; sus resultados no completan por sí solos los requisitos bibliográficos o de potencia.
+
+| Componente | Evidencia vigente | Límite |
 |---|---|---|
-| Tipo y reloj | Tipo 4; OHLCV diaria, origen UTC y etiqueta al terminar el día | Mantener disponibilidad causal en test. |
-| Calidad | Exclusión del 24/03/2023 y ventanas afectadas, sin comprimir calendario | Mecanismo de faltantes no identificado. |
-| Objetivo e historia | n7/h1/D7 comunes | Sensibilidades n14/21/28 no entrenadas con las redes. |
-| Partición y embargo | Doce bloques mensuales de Filipe; entrenamiento creciente y u≤inicio del mes−8 | Ajuste final y test supervisado pendientes; septiembre–octubre de 2026 sin asignación. |
-| Corte interno | 90 días de calendario, 83 etiquetas tras embargo; escalado solo con subentrenamiento | Configuraciones elegidas con desarrollo expuesto; sin evaluación anidada independiente. |
-| Arquitecturas | MLP–LSTM–CNN1D implementadas, mismos datos y folds | Completar respaldo aplicado de MLP/CNN1D simple. |
-| Pérdida y salida | MSE escalada, Softplus e inversión para métricas | Conservar la definición del objetivo. |
-| Métricas | 366 fechas de CV y desglose julio–diciembre; MASE con escala mensual train | No promediar R² unitarios ni mezclar periodos. |
-| Referencia regularizada de EDA | Cuatro Ridge, α=1 y 1.464 predicciones | Diagnóstico de EDA; comparación bajo protocolo DL no ejecutada. |
-| Dependencia residual | Quince diagnósticos de redes: Ljung–Box/BDS con Holm-15, semilla 4101; ACF y curvas internas reales | Referencias aproximadas; un rechazo i.i.d. no demuestra no linealidad exclusivamente aprovechable. |
-| Inferencia | Doce contrastes por semillas con Holm-12, Friedman, seis DM principales y bootstrap temporal pareado | Desarrollo expuesto, estimandos distintos e IC marginales; sin confirmación reservada. |
-| Margen práctico | 5 % frente a persistencia; sensibilidad retrospectiva MDE/R calculada | No hay piloto previo o potencia 0,80 acreditada; márgenes DL/avanzado/equivalencia abiertos. |
-| Baseline | MLP relativa tiene menor RMSE anual neuronal; persistencia tiene menor error global | Cierre del pipeline definitivo y evaluación reservada pendientes. |
-| Documentos | [Protocolo](../_static/dl_r2_cv_20261104/method.json), [folds](../_static/dl_r2_cv_20261104/folds.json), [corridas](../_static/dl_r2_cv_20261104/runs.csv), [ejecución](../_static/dl_r2_cv_20261104/execution_summary.json) | No acreditan por sí solos cierre total de la guía. |
+| Tipo y frecuencia | Tipo 4, OHLCV diaria UTC desde fuente de un minuto | No son modelos entrenados por minuto. |
+| Objetivo y entrada | n=7, h=1; D=7/14/21/28 | n=14/21/28 no entrenados. |
+| CV de Filipe | Doce meses reales, entrenamiento creciente y u≤origen−D−1 | 2024 expuesto; selección exploratoria, sin anidamiento independiente. |
+| Validación interna | 90−D etiquetas y embargo propio; escalado solo train | Las épocas se eligen con desarrollo, no con test. |
+| Ejecución principal | 120 trayectorias, 1.440 segmentos, 2.880 ajustes y 43.920 predicciones | Incluye D7 relativo reutilizado; control absoluto solo D7. |
+| Cierre final | Congelación con hashes, selección y 120 épocas por corrida; 120 modelos firmados | Las últimas D etiquetas de desarrollo se omiten por embargo. |
+| Prueba | 608 fechas comunes del 01/01/2025 al 31/08/2026; 72960 predicciones | Sin reajustes, reescalado o selección durante test; veinte meses de reporte. |
+| Métricas | MAPE/MAE/RMSE/MSE/R²/MASE por D, modelo, semilla y periodo, con coberturas | IC entre semillas condicionados al calendario. |
+| BDS por bloque | CV y test, todas las semillas, dimensiones 2/3 y familias Holm separadas | Aproximación mensual de muestra pequeña; promedio p solo descriptivo. |
+| Inferencia inicial D7 | Holm-12, DM-6, LB/BDS-15 y bootstrap registrados | No se trasladan como inferencia de otras D o del test. |
+| Referencia regularizada | Cuatro Ridge diagnósticas de EDA y 1.464 residuos de 2024 | No son un cuarto modelo DL ni nuevos competidores del test. |
+| Literatura y potencia | Corpus y limitaciones preservados, diez semillas | Respaldo aplicado MLP/CNN1D y piloto/potencia definitiva pendientes. |
+
+El [método vigente](../_static/filipe_multihistory_20261104/method.json), la [congelación](../_static/filipe_multihistory_20261104/freeze.json), la [auditoría de test](../_static/filipe_multihistory_20261104/test/raw_test_audit.json) y el [manifiesto de cohorte](../_static/filipe_multihistory_20261104/test/cohort_manifest.json) vinculan esas etapas.
 
 ## 6.3. Secuencia de cierre y ejecución posterior
 
-La validación forward chaining se ejecutó el 04/11/2026 con n7/h1, D7, OHLCV, MSE/RMSE y exclusión estricta. El protocolo está registrado antes de los ajustes CV, pero después de observar desarrollo y elegir configuraciones; no es un registro previo a toda observación de los datos.
 
-| Hito | Evidencia del procedimiento | Estado o siguiente dependencia |
-|---|---|---|
-| Diseño | Tres redes, CPU determinista, escalado y cortes registrados | Configuraciones elegidas con desarrollo; respaldo aplicado aún parcial. |
-| Índices de Filipe | Función real 7/1/1, doce bloques mensuales y embargo | Utilizados efectivamente en los ajustes. |
-| Entrenamiento y validación | Dos representaciones, diez semillas por red y doce meses | 60 trayectorias, 720 segmentos modelo–mes y 1.440 ajustes; 21.960 predicciones. |
-| Comparación | Métricas anuales/semestrales y familia global de doce contrastes por semillas | Desarrollo exploratorio, sin selección anidada ni superioridad neuronal anual confirmada. |
-| Piloto y dimensionamiento | Calibración retrospectiva de dispersión: MDE y R orientativo disponibles | Piloto previo y dimensionamiento definitivo pendientes; no se certifica potencia 0,80. |
-| Diagnósticos temporales de redes | DM/HAC/HLN, Ljung–Box/BDS, ACF y bootstrap por fechas calculados | Aproximaciones exploratorias, sin tratar los procedimientos como confirmaciones independientes. |
-| Ajuste final y test | Ajuste con desarrollo 2023–2024 tras cerrar configuraciones; test 01/01/2025–31/08/2026 | Ambos pendientes; septiembre–octubre de 2026 sin asignación automática. |
-| Informe | Resultados, incertidumbre, costos y límites de CV en §4–§5 | Sin resultados de test ni margen avanzado definitivo. |
+El registro de noviembre de 2026 es posterior a los periodos de mercado y al EDA de desarrollo; la evaluación es un **backtest histórico**, no predicciones emitidas prospectivamente en 2025–2026.
 
-El piloto puede servir como calibración preliminar, pero su dispersión no se transfiere automáticamente si después cambian arquitectura, hiperparámetros, cohortes o política de ajuste. El dimensionamiento definitivo debe corresponder al procedimiento que se evaluará, con revisión y versiones documentadas. La misma cautela se aplica al uso de resultados de test para diseñar una propuesta avanzada, conforme a §5.5.5.
+1. Se conservaron las trayectorias D7 relativas y se ejecutaron D14/21/28 bajo los índices reales de Filipe y las configuraciones comunes.
+2. Las tablas y BDS por fold de 2024 se calcularon desde las predicciones guardadas. El criterio RMSE de desarrollo eligió una historia por familia y un baseline neuronal.
+3. Antes de abrir test se cerraron las doce combinaciones que se reportarían, la selección, las épocas finales, las semillas, el preprocesamiento, el embargo, la política de calidad y la ausencia de actualización durante test.
+4. Se ajustaron y firmaron los 120 modelos finales con datos permitidos de 2023–2024. La cronología conserva las firmas previas a la primera lectura de los veinte ZIP reservados.
+5. Se agregaron y auditaron esos ZIP y se construyó la cohorte común por reglas cerradas, sin usar los errores para excluir fechas. Cada modelo produjo su trayectoria final una vez; los análisis posteriores reutilizan sus predicciones.
+6. Se publicaron métricas globales, por año y mes, y BDS mensual de h=1 con estados, multiplicidad y resúmenes descriptivos. No se reabrió la selección al observar test ni se incorporó septiembre–octubre de 2026.
 
-La evidencia propia incluye cuatro referencias Ridge de EDA, la CV con índices de Filipe utilizados en ajustes mensuales reales —60 trayectorias y 21.960 predicciones— y el complemento estadístico calculado sin entrenamientos nuevos. Adquisición, EDA y experimentos mantienen registros independientes. La CV no abrió test para modelado o evaluación. La ejecución no cierra por sí sola la extracción bibliográfica, el dimensionamiento de potencia ni el margen para modelos avanzados.
+La [congelación](../_static/filipe_multihistory_20261104/freeze.json) conserva el baseline **MLP con D=7** elegido con CV. El test no cierra la extracción bibliográfica de MLP/CNN1D, el piloto prospectivo, la potencia definitiva ni los márgenes entre redes, de equivalencia o de un modelo avanzado. Si se usa este test para diseñar una propuesta posterior, se necesitará otra evaluación independiente.
 
-La guía E1 anuncia que la ruta completa del benchmark de diez modelos se desarrolla en E2. Los documentos completos de E2/E3 no se han aportado en esta revisión. El detalle de ese alcance se definirá con sus guías y el protocolo correspondiente; la mención de diez modelos no constituye una selección de arquitecturas, configuraciones o presupuesto ya realizada.
+La guía E1 anuncia que el benchmark de diez modelos se desarrolla en E2. Sus documentos completos y los de E3 no se han aportado; no se inventa una selección de diez arquitecturas o presupuesto a partir de esa mención.

@@ -1,22 +1,227 @@
 {
   "date": "2026-11-04",
   "method": "CV forward chaining de Filipe R. Ramos / timeseries-cv",
-  "scope": "CV exploration on development2024 only",
-  "configuration": "../dl_r2_cv_20261104/configuration.json",
+  "scope": "Four input histories, exposed2024 development selection, then configuration-closed reserved test",
+  "configuration": "../filipe_multihistory_20261104/freeze.json",
   "execution": {
-    "completed_at_utc": "2026-11-04T15:26:13.134314+00:00",
-    "trajectories": 60,
-    "fold_model_segments": 720,
-    "completed_project_fits": 1440,
-    "actual_cv_folds": 12,
-    "prediction_dates_per_trajectory": 366,
-    "seeds_per_variant_model": 10,
-    "variants": [
-      "absolute_log",
-      "relative_window"
+    "method": "timeseries-cv monthly forward chaining, then closed development refits and reserved test",
+    "path": "results/filipe_multihistory_20261104",
+    "models": [
+      "MLP",
+      "LSTM",
+      "CNN1D"
     ],
-    "test_files_opened": 0,
-    "scope": "Exploratory forward validation on previously exposed development2024, not reserved-test confirmation"
+    "input_histories_days": [
+      7,
+      14,
+      21,
+      28
+    ],
+    "target_volatility_returns": 7,
+    "forecast_horizon_days": 1,
+    "primary_preprocessing": "relative_window",
+    "folds": 12,
+    "training_seeds_per_history_model": 10,
+    "primary_cv_trajectories": 120,
+    "primary_cv_fold_model_segments": 1440,
+    "primary_cv_effective_fits": 2880,
+    "primary_cv_prediction_rows": 43920,
+    "new_D14_D21_D28_execution": {
+      "completed_at_utc": "2026-11-04T19:41:13.030028+00:00",
+      "trajectories": 90,
+      "planned_new_trajectories": 90,
+      "all_registered_trajectories_complete": true,
+      "fold_model_segments": 1080,
+      "completed_project_fits": 2160,
+      "actual_cv_folds": 12,
+      "prediction_dates_per_trajectory": 366,
+      "seeds_per_history_model": 10,
+      "histories": [
+        14,
+        21,
+        28
+      ],
+      "variants": [
+        "relative_window"
+      ],
+      "test_files_opened": 0,
+      "D7_reuse": "Original signed relative_window results are not retrained or overwritten",
+      "scope": "Development2024 forward validation, no reserved-test confirmation"
+    },
+    "D7_relative_source_reused": "results/dl_r2_cv_20261104",
+    "final_development_fits": 120,
+    "test_execution": {
+      "completed_at_utc": "2026-11-04T19:44:26.315584+00:00",
+      "freeze_sha256": "7c789040819598a4339b60c7be56e104b82ef94dbba6b70ae904128387f47837",
+      "final_models_manifest_sha256": "c6a1397f7f4f7f93aef36215beb12e421f535667d1ceae9b88b8c97d8a3baf95",
+      "model_runs": 120,
+      "histories": [
+        7,
+        14,
+        21,
+        28
+      ],
+      "seeds": 10,
+      "horizon_days": 1,
+      "common_prediction_dates": 608,
+      "predictions": 72960,
+      "calendar_days": 608,
+      "monthly_reporting_blocks": 20,
+      "test_period_model_refits": 0,
+      "actual_checkpoint_forward_calls": 120,
+      "raw_archives_opened": 20,
+      "test_used_for_configuration_selection": false,
+      "scope": "Reserved test evaluation after development configuration closure; monthly groups are reporting periods, not additional refit folds"
+    },
+    "final_test_evaluated": true,
+    "test_selection_allowed": false,
+    "configuration_freeze_sha256": "7c789040819598a4339b60c7be56e104b82ef94dbba6b70ae904128387f47837",
+    "selection": {
+      "rule": {
+        "primary_metric": "mean across ten seeds of annual pooled-date RMSE in CV2024",
+        "within_model": "Choose D with minimum mean RMSE; numerical ties absolute tolerance1e-12 use smaller D, then parameters.",
+        "neural_baseline": "Choose lowest mean CVRMSE among the twelve predeclared model/D settings; same tie rules, then model name lexicographic. Persistence reported separately as deterministic reference.",
+        "reserved_test": "Report all twelve settings, but never select D, epochs, or baseline using their test metrics."
+      },
+      "selected_by_model": {
+        "MLP": {
+          "model": "MLP",
+          "history_days": 7,
+          "parameters": 593,
+          "cv_rmse_mean": 0.006049073777079856,
+          "cv_rmse_sample_sd": 0.00027796291525602774,
+          "seeds": 10
+        },
+        "LSTM": {
+          "model": "LSTM",
+          "history_days": 7,
+          "parameters": 5025,
+          "cv_rmse_mean": 0.006335414343838751,
+          "cv_rmse_sample_sd": 0.00018700981704530587,
+          "seeds": 10
+        },
+        "CNN1D": {
+          "model": "CNN1D",
+          "history_days": 7,
+          "parameters": 1057,
+          "cv_rmse_mean": 0.006229598715369592,
+          "cv_rmse_sample_sd": 0.0003372915023040807,
+          "seeds": 10
+        }
+      },
+      "baseline": {
+        "model": "MLP",
+        "history_days": 7,
+        "parameters": 593,
+        "cv_rmse_mean": 0.006049073777079856,
+        "cv_rmse_sample_sd": 0.00027796291525602774,
+        "seeds": 10
+      },
+      "all_settings": [
+        {
+          "model": "MLP",
+          "history_days": 7,
+          "parameters": 593,
+          "cv_rmse_mean": 0.006049073777079856,
+          "cv_rmse_sample_sd": 0.00027796291525602774,
+          "seeds": 10
+        },
+        {
+          "model": "LSTM",
+          "history_days": 7,
+          "parameters": 5025,
+          "cv_rmse_mean": 0.006335414343838751,
+          "cv_rmse_sample_sd": 0.00018700981704530587,
+          "seeds": 10
+        },
+        {
+          "model": "CNN1D",
+          "history_days": 7,
+          "parameters": 1057,
+          "cv_rmse_mean": 0.006229598715369592,
+          "cv_rmse_sample_sd": 0.0003372915023040807,
+          "seeds": 10
+        },
+        {
+          "model": "MLP",
+          "history_days": 14,
+          "parameters": 1153,
+          "cv_rmse_mean": 0.006951019262736798,
+          "cv_rmse_sample_sd": 0.0005341037419520123,
+          "seeds": 10
+        },
+        {
+          "model": "LSTM",
+          "history_days": 14,
+          "parameters": 5025,
+          "cv_rmse_mean": 0.007701834615017572,
+          "cv_rmse_sample_sd": 0.00019989296453493062,
+          "seeds": 10
+        },
+        {
+          "model": "CNN1D",
+          "history_days": 14,
+          "parameters": 1057,
+          "cv_rmse_mean": 0.00926961772500978,
+          "cv_rmse_sample_sd": 0.0003186914704237299,
+          "seeds": 10
+        },
+        {
+          "model": "MLP",
+          "history_days": 21,
+          "parameters": 1713,
+          "cv_rmse_mean": 0.008382489737878808,
+          "cv_rmse_sample_sd": 0.0004626450918692768,
+          "seeds": 10
+        },
+        {
+          "model": "LSTM",
+          "history_days": 21,
+          "parameters": 5025,
+          "cv_rmse_mean": 0.008779609501729173,
+          "cv_rmse_sample_sd": 0.0003523752265232851,
+          "seeds": 10
+        },
+        {
+          "model": "CNN1D",
+          "history_days": 21,
+          "parameters": 1057,
+          "cv_rmse_mean": 0.009823081371828328,
+          "cv_rmse_sample_sd": 0.00022688060017467032,
+          "seeds": 10
+        },
+        {
+          "model": "MLP",
+          "history_days": 28,
+          "parameters": 2273,
+          "cv_rmse_mean": 0.009386033371366849,
+          "cv_rmse_sample_sd": 0.000819519410971673,
+          "seeds": 10
+        },
+        {
+          "model": "LSTM",
+          "history_days": 28,
+          "parameters": 5025,
+          "cv_rmse_mean": 0.009312857494545928,
+          "cv_rmse_sample_sd": 0.00025885086370659407,
+          "seeds": 10
+        },
+        {
+          "model": "CNN1D",
+          "history_days": 28,
+          "parameters": 1057,
+          "cv_rmse_mean": 0.00990659736635766,
+          "cv_rmse_sample_sd": 0.00023041325811712336,
+          "seeds": 10
+        }
+      ],
+      "persistence_cv_rmse": 0.004788969571929121
+    },
+    "applied_literature_counts_unchanged": true,
+    "publication_scope": "aggregate summaries and non-market metadata only",
+    "individual_predictions_retained_local": true,
+    "market_derivatives_retained_local": true,
+    "weights_and_archives_retained_local": true
   },
   "metric": "RMSE primary; R2/MAE/MSE/MAPE/MASE secondary",
   "practical_margin": {
@@ -32,17 +237,34 @@
     "simple_CNN1D_studies": 0
   },
   "seed_intervals": "conditional on fixed calendar; not temporal generalization",
-  "current_only_contrasts": "GlobalHolm12 bytrainingseeds; primaryDMHolm6; residualdiagnosticsHolm15; paired datebootstrap marginalintervals, distinct estimands.",
+  "current_only_contrasts": "Per-month/seed BDS families for CV andtest; p-value averages descriptive. InitialD7 Holm12/DM6/LB-BDS15 remain separately scoped.",
   "pending": [
     "prospective pilot and definitive power planning",
     "equivalence and advanced-model practical margins",
-    "final development fit",
-    "reserved test evaluation",
     "applied MLP/CNN1D literature evidence",
     "external price/label-noise and missingness-mechanism evidence"
   ],
-  "test_files_opened_in_training_analysis": 0,
   "design_calibration": "Retrospective MDE0 and indicative R using observedseeddispersion, not a pre-fitpilot or attainedpower.",
   "technical_profiles": "27 numbered fields for implemented MLP/LSTM/shallowCNN1D",
-  "statistical_supplement": "6b59777e029d9b03bae50093914497a8844d1534461c3ac0ce3f37b4316b3308"
+  "statistical_supplement": "6b59777e029d9b03bae50093914497a8844d1534461c3ac0ce3f37b4316b3308",
+  "initial_D7_execution": {
+    "completed_at_utc": "2026-11-04T15:26:13.134314+00:00",
+    "trajectories": 60,
+    "fold_model_segments": 720,
+    "completed_project_fits": 1440,
+    "actual_cv_folds": 12,
+    "prediction_dates_per_trajectory": 366,
+    "seeds_per_variant_model": 10,
+    "variants": [
+      "absolute_log",
+      "relative_window"
+    ],
+    "test_files_opened": 0,
+    "scope": "Exploratory forward validation on previously exposed development2024, not reserved-test confirmation"
+  },
+  "initial_D7_contrasts": "GlobalHolm12 bytrainingseeds; primaryDMHolm6; residualdiagnosticsHolm15; paired datebootstrap marginalintervals, distinct estimands.",
+  "reserved_test_evaluated": true,
+  "test_used_for_selection": false,
+  "test_quality_audit": "../filipe_multihistory_20261104/test/raw_test_audit.json",
+  "test_sample_manifest": "../filipe_multihistory_20261104/test/cohort_manifest.json"
 }

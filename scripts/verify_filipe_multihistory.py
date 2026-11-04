@@ -363,6 +363,12 @@ class Audit:
         for model in MODELS:
             selected = choose([row for row in rows if row["model"] == model])
             self.require(freeze["selection"]["selected_by_model"][model]["history_days"] == selected["history_days"], "D was not selected using development RMSE")
+        independent_scores = {(row["history_days"], row["model"]): row for row in rows}
+        self.require(len(freeze["selection"]["all_settings"]) == 12, "The freeze must retain all twelve development scores")
+        for stored in freeze["selection"]["all_settings"]:
+            expected_score = independent_scores[(stored["history_days"], stored["model"])]
+            for field in ("cv_rmse_mean", "cv_rmse_sample_sd", "parameters"):
+                self.near(stored[field], expected_score[field], "A closed development selection score differs")
         candidate = choose(rows)
         frozen = freeze["selection"]["baseline"]
         self.require((frozen["model"], frozen["history_days"]) == (candidate["model"], candidate["history_days"]), "The neural baseline was selected outside the closed CV rule")
@@ -389,6 +395,8 @@ class Audit:
         market, targets = self.development_market, self.development_targets
         features = market.loc[:, list(FEATURES)].to_numpy(float)
         frozen_jobs = {(j["history_days"], j["model"], j["seed"]): j for j in self.freeze["final_jobs"]}
+        actual_final_jobs = {(j["history_days"], j["model"], j["seed"]) for j in models["jobs"]}
+        self.require(actual_final_jobs == set(frozen_jobs), "Final fit manifest omits or duplicates a closed job")
         for job in models["jobs"]:
             history, model, seed = int(job["history_days"]), job["model"], int(job["seed"])
             directory = NEW / "final_fit" / job["run_id"]
@@ -401,6 +409,11 @@ class Audit:
                          and config["freeze_sha256"] == freeze_hash and config["initialization_seed"] == seed+10000000
                          and config["test_files_opened"] == 0, "Final training settings differ from the closed jobs")
             self.preprocessing(read_json(directory / "preprocessing.json"), train, history, market, targets, (history, "final"))
+            admitted = np.zeros(len(market), dtype=bool); admitted[train] = True
+            adjacent = admitted[1:] & admitted[:-1] & np.isfinite(targets[1:]) & np.isfinite(targets[:-1])
+            independent_scale = np.mean(np.abs(targets[1:]-targets[:-1])[adjacent])
+            self.near(config["mase_train_scale"], independent_scale, "Final MASE denominator is not training-only")
+            self.near(job["mase_train_scale"], independent_scale, "Final manifest MASE denominator differs")
             self.count("final_models_checked")
         audit = read_json(NEW / "test/raw_test_audit.json")
         reserve = read_json(ROOT / "data/manifests/test_raw_reserve_20250101_20260831.json")
@@ -414,6 +427,11 @@ class Audit:
         self.require(closed < min(pd.Timestamp(j["started_at_utc"]) for j in models["jobs"])
                      and max(final_times) <= pd.Timestamp(models["completed_at_utc"]) < first_test,
                      "Test access preceded configuration/model closure")
+        access_marker = read_json(NEW / "test/raw_access_started.json")
+        self.require(access_marker["freeze_sha256"] == freeze_hash
+                     and access_marker["final_models_manifest_sha256"] == self.digest(NEW / "final_models_manifest.json")
+                     and pd.Timestamp(models["completed_at_utc"]) < pd.Timestamp(access_marker["at_utc"]) <= first_test,
+                     "Durable first-access marker does not follow frozen models")
         self.require(len(audit["quality_by_month"]) == 20, "Test quality audit does not cover all twenty archives")
         for recorded, reserved in zip(audit["quality_by_month"], reserve["archives"]):
             self.require(recorded["sha256"] == reserved["sha256"] and recorded["csv_rows"] == reserved["csv_rows"]
@@ -460,6 +478,8 @@ class Audit:
         events = [json.loads(line) for line in (NEW / "final_test_events.jsonl").read_text().splitlines() if line]
         scored = [event for event in events if event["event"] == "test_run_scored_once"]
         self.require(len(scored) == 120 and len({event["run_id"] for event in scored}) == 120, "Event log does not show exactly one evaluation per checkpoint")
+        opened = [event["archive"] for event in events if event["event"] == "reserved_archive_aggregated"]
+        self.require(opened == [row["archive"] for row in reserve["archives"]], "Test event log includes an unreserved or repeated archive")
         self.require(not any(pd.Timestamp(event["at_utc"]) >= first_test and event["event"] == "final_fit_started_after_configuration_freeze" for event in events),
                      "A final training stage started after test access")
         self.verify_analysis(frame, "test")

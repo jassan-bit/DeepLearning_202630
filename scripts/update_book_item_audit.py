@@ -43,6 +43,9 @@ def main():
     independent = ROOT / "references/audits/revision_filipe_multihistory_20261104.json"
     if not independent.exists() or cv["neural_forecasts"] != 43920 or execution["model_runs"] != 120:
         raise ValueError("Finish the full experiment and its independent audit first")
+    independent_report = json.loads(independent.read_text())
+    if independent_report.get("status") != "PASS" or independent_report.get("phase") != "test":
+        raise ValueError("The independent final-test audit must pass before refreshing the book inventory")
     report = {"reviewed_at_utc": datetime.now(timezone.utc).isoformat(),
               "scope": "Revisión de todos los incisos del libro con CV de Filipe para cuatro entradas y evaluación del test tras cierre de configuración.",
               "reviewed_numbered_items": 390, "numbering_preserved": True, "chapter_counts": counts,
