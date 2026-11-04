@@ -1,6 +1,6 @@
 # Decisiones, revisión y pendientes de E1
 
-Esta página registra el alcance autorizado: **definición del problema, EDA y revisión documental**, incluido el desarrollo del bloque C con una referencia lineal regularizada autorizado por el usuario. Se ejecutaron cuatro referencias Ridge para diagnosticar residuos de desarrollo. El entrenamiento de las tres redes, tuning, piloto, benchmark y evaluación de test se reservan para E2. El PDF adjunto sí ubica ejecución en E1; esta organización de trabajo no modifica la guía ni acredita una excepción formal del docente.
+El **04/11/2026**, el usuario autorizó correr los tres modelos e incorporar sus resultados al libro del Entregable 1. Esa instrucción amplía el alcance anterior de documentación y EDA: ya se ejecutaron **MLP, LSTM y CNN1D poco profunda**, con búsqueda, piloto y comparación de desarrollo. El test previsto de 2025–2026 continúa reservado; el ciclo DL registró **cero archivos de test abiertos**, aparte de los controles previos de timestamps/esquema/conteos durante la adquisición. No se declara cerrado el cumplimiento global de la guía.
 
 ## Decisiones incorporadas
 
@@ -8,85 +8,87 @@ Esta página registra el alcance autorizado: **definición del problema, EDA y r
 |---|---|
 | Activo y fuente | Bitcoin, Binance Spot BTCUSDT, archivos oficiales de un minuto |
 | Modelado | Diario UTC, cinco covariables OHLCV |
-| Categoría literal de la guía | Tipo 4: regresión temporal, ruta 6.4; no hay rezagos explícitos de volatilidad como entrada |
-| Historia de entrada | D=7/14/21/28 días; no se eligió una D principal |
+| Categoría literal de la guía | Tipo 4: regresión temporal, ruta 6.4; sin rezagos explícitos de volatilidad como entrada |
+| Historia de entrada | Se compararon D=7/14/21/28; la regla global registrada seleccionó **D=7 común** para el primer ciclo |
 | Objetivo principal | Desviación poblacional de n=7 retornos logarítmicos diarios; sin anualizar |
 | Horizonte | Un día; próximo valor de volatilidad histórica móvil, no siete días enteramente futuros |
-| Sensibilidad del objetivo | n=14/21/28, manteniendo separadas las definiciones y sus escalas |
-| Pérdida prevista y métrica | MSE y RMSE principal; MAE/MSE/MAPE/R²/MASE complementarias |
-| Relevancia operativa | Reducción relativa mínima del 5 % de RMSE frente a persistencia de las mismas fechas |
-| Política de MAPE | Solo objetivos positivos; informar cobertura, ceros excluidos y casos no definidos; sin epsilon arbitrario |
-| Política de MASE | Rezago de un día de calendario; escala calculada solo con entrenamiento; no definida si no hay pares válidos o el denominador es cero |
-| Independencia | Una serie BTCUSDT, Nseries=1; dependencia temporal y ventanas solapadas; filas y semillas no son mercados independientes |
-| Longitud de bloques | Debe justificarse antes de la inferencia de E2; no se inventa con resultados ajenos al E1 |
-| Faltantes | Exclusión estricta del día incompleto en los derivados actuales, sin interpolar ni comprimir el calendario |
-| Embargo aplicado en los índices | D días omitidos antes del origen t; candidatos de ajuste u≤t−D−1, además de calidad y disponibilidad |
-| Calendario | Historia de 2023, validación de 2024 y test previsto del 01/01/2025 al 31/08/2026; septiembre–octubre no se asignan automáticamente |
-| Reserva bruta de test | 20 ZIP mensuales identificados mediante metadatos y hashes; el test supervisado y su protocolo aún no están congelados |
-| Referencia diagnóstica del bloque C | Cuatro Ridge con intercepto libre y $\alpha=1$ fijo, una por D; ajuste permitido de 2023, 366 predicciones de 2024 por referencia; sin tuning ni selección de D |
-| Propuesta de familias según guía 6.4 | MLP, LSTM y CNN1D poco profunda; GRU alternativa recurrente. Faltan respaldo aplicado de MLP/CNN1D simple y configuraciones finales. |
-| Perfiles de fuentes conservados | LSTM, TCN y encoder Transformer, separados de la propuesta del proyecto. |
+| Sensibilidad del objetivo | n=14/21/28 conservados como sensibilidad; no entrenados en este ciclo |
+| Pérdida y métrica | MSE y RMSE principal; MAE/MSE/MAPE/R²/MASE complementarias |
+| Relevancia operativa | Reducción relativa mínima del 5 % de RMSE frente a persistencia de las mismas fechas; no se alcanzó en desarrollo |
+| Política de MAPE | Solo objetivos positivos; cobertura y ceros excluidos; sin epsilon arbitrario |
+| Política de MASE | Rezago de un día de calendario; denominador del entrenamiento permitido, sin comprimir huecos; no definido si no hay escala positiva |
+| Independencia | Una serie BTCUSDT; semillas condicionadas al calendario, fechas dependientes y ventanas solapadas; no son nuevos mercados |
+| Longitud de bloques | Bootstrap circular pareado L=14, sensibilidad 7/28; 2.000 réplicas, semilla 20261104; predicciones guardadas sin reentrenar ni remuestrear semillas |
+| Faltantes | Exclusión estricta del 24/03/2023 y ventanas afectadas, sin interpolar ni comprimir calendario |
+| Embargo | D días omitidos antes del origen t; candidatos de ajuste u≤t−D−1, además de calidad y disponibilidad |
+| Calendario ejecutado | Ajuste estático con 2023 permitido; selección enero–junio de 2024; piloto y comparación con semillas nuevas en julio–diciembre de 2024 |
+| Reserva bruta de test | 20 ZIP mensuales previstos del 01/01/2025 al 31/08/2026, identificados por metadatos y hashes; muestras supervisadas y protocolo final pendientes |
+| Referencia diagnóstica del bloque C | Cuatro Ridge con intercepto libre y α=1 fijo; 366 predicciones de 2024 por D, sin tuning; evidencia histórica separada del ciclo DL |
+| Familias implementadas | MLP de ancho 16 y 593 parámetros; LSTM unidireccional de ancho 32 y 5.025 parámetros; CNN1D causal de dos capas, ancho 16 y 1.057 parámetros |
+| Selección operacional | La búsqueda eligió **MLP**; su identidad no se reemplazó tras observar el piloto o la comparación posterior |
+| Resultado descriptivo posterior | LSTM tiene menor RMSE entre las redes en julio–diciembre; persistencia supera a las tres |
+| Perfiles de fuentes conservados | LSTM, TCN y encoder Transformer son perfiles documentales; no sustituyen las implementaciones propias ni el respaldo aplicado pendiente de MLP/CNN1D simple |
 
-El margen del 5 % es un criterio operativo aceptado frente a persistencia, no una utilidad financiera calibrada ni un margen ya fijado entre redes, para equivalencia o para modelos avanzados. Alcanzarlo puntualmente no equivale a demostrarlo con un intervalo de incertidumbre. La conversión a escala absoluta para dimensionamiento se hará en la etapa experimental mediante una regla registrada, sin cambiar retrospectivamente el porcentaje. El [registro de decisiones](../_static/e1/decisiones.json) separa lo fijado de lo que requiere E2.
+El margen del 5 % es un criterio operativo frente a persistencia, no utilidad financiera calibrada ni margen entre redes, de equivalencia o para modelos avanzados. El piloto lo convirtió a **0,000241124 unidades de RMSE** para planificar la detección de una diferencia frente a cero. Ese cálculo no demuestra una mejora superior al 5 %. El [registro de decisiones](../_static/e1/decisiones.json) conserva la cronología y separa los análisis históricos del ciclo actual.
 
 ## Revisión integral contra la guía
 
-La revisión del **03/11/2026** contrasta 18 requisitos de las secciones 1–7 de la guía con evidencia del libro y sus archivos. La matriz completa está disponible como {download}`informe de revisión <../_static/e1/revision_integral_e1_20261103.md>` y [registro JSON](../_static/e1/revision_integral_e1_20261103.json).
+La revisión del **03/11/2026** contrastó 18 requisitos de las secciones 1–7 con la evidencia entonces disponible. Su {download}`informe <../_static/e1/revision_integral_e1_20261103.md>` y [registro JSON](../_static/e1/revision_integral_e1_20261103.json) se conservan como antecedentes fechados; las afirmaciones de cero ajustes DL de esos cortes no describen la ejecución posterior.
 
-| Punto revisado | Corrección o estado vigente |
+| Punto revisado | Evidencia actual o límite |
 |---|---|
-| Definición y categoría | Tipo 4, entradas OHLCV, salida continua, pérdida MSE e hipótesis operativa explícitos |
-| Ventanas y temporalidad | D de entrada, n del objetivo y h de pronóstico diferenciados; evaluación como backtest histórico |
-| Independencia y margen | Una serie; dependencia entre fechas y semillas diferenciada; 5 % limitado a persistencia |
-| Particiones | Folds corregidos con embargo explícito D; 5.856 filas, 366 por configuración; una muestra de ajuste adicional retirada en cada fila |
-| Datos y trazabilidad | Fuente y hashes conservados; copia de términos y reserva bruta de 20 ZIP de test documentadas sin abrir esos ZIP |
-| EDA | Ocho perfiles objetivo, colas, máscaras, reconstrucción numérica y seis marginales por bloques/Holm; bloque C con disponibilidad causal, correlaciones en cohorte común, relaciones móviles y 1.464 residuos de cuatro Ridge. Mecanismo de faltantes y ruido externo no identificados |
-| Literatura | 35 referencias separadas de cinco textos aplicados exploratorios; propuesta curricular MLP–LSTM–CNN1D diferenciada de perfiles fuente y configuraciones finales pendientes |
-| Implementación de las tres redes y benchmark | No ejecutados por el alcance vigente; los cuatro ajustes lineales son diagnósticos de EDA y no cubren estos requisitos de la guía original |
+| Definición y categoría | Tipo 4, entradas OHLCV, salida continua, MSE y RMSE explícitos |
+| Ventanas y temporalidad | D de entrada, n del objetivo y h de pronóstico diferenciados; primer ciclo D7/n7/h1, evaluación histórica |
+| Independencia y margen | Una serie; inferencia por semillas y por fechas diferenciada; 5 % limitado a persistencia |
+| Particiones | Manifiesto v2 con embargo D; el ciclo DL usa cortes de 2023 y ajuste estático, sin 366 reentrenamientos |
+| Datos y trazabilidad | CSV de desarrollo y hashes conservados; reserva bruta de 20 ZIP de test intacta |
+| EDA | Perfiles, calidad, etiquetas, desplazamiento marginal y bloque C con 1.464 residuos Ridge; mecanismo de faltantes y ruido externo no identificados |
+| Literatura | 35 referencias, cinco textos aplicados exploratorios y 81 cifras de sus autores; respaldo de MLP/CNN1D simple todavía 0/5 en el corpus |
+| Implementación | Tres redes ejecutadas; 96 corridas de búsqueda, 15 de piloto y 90 de comparación: **201 corridas y 402 ajustes** |
+| Comparación e inferencia | 30 semillas nuevas por red; métricas, costos, IC, contrastes y figuras de julio–diciembre de 2024; no es test independiente |
+| Potencia | Piloto calculó R requerido máximo 1.212; se ejecutó el límite registrado de 30. La insuficiencia para el efecto pequeño se declara, no se presenta como potencia 0,80 |
 
-El cumplimiento global del Entregable 1 **no se declara cerrado**. Corregir la redacción y los índices no sustituye las evidencias bibliográficas o experimentales que faltan.
+El cumplimiento global del Entregable 1 **no se declara cerrado**. Ejecutar las redes no completa el respaldo bibliográfico, la potencia requerida, la evaluación reservada ni el margen para modelos avanzados.
 
-La ampliación específica de la sección 2.1 está en el {download}`informe de EDA general <../_static/e1/revision_eda_general_20261103.md>` y su [matriz de 18 puntos](../_static/e1/revision_eda_general_20261103.json). Se ejecutaron diagnósticos sobre desarrollo, sin modelos predictivos ni archivos de test. La consistencia del cálculo de etiquetas se separa del ruido externo, y la referencia de permutación por bloques se mantiene exploratoria y condicional.
+Los módulos previos conservan sus evidencias: [EDA general](../_static/e1/revision_eda_general_20261103.json), [EDA específico](../_static/eda_temporal_specific/summary.json), [referencia Ridge](../_static/eda_temporal_reference/summary.json) y [partición temporal](../_static/cv_forward_chaining/summary.json). Los 12 diagnósticos Ljung–Box/Holm del módulo Ridge son exploratorios y no se mezclan con la familia diagnóstica de las redes. La dependencia residual no añade automáticamente rezagos de volatilidad ni cambia el tipo 4.
 
-El bloque C aplicable se desarrolla en §2.2.3 con dos módulos adicionales: el [EDA específico](../_static/eda_temporal_specific/summary.json), que usa las mismas 308 fechas elegibles de 2023 para los 140 pares covariable–rezago, y la [referencia lineal diagnóstica](../_static/eda_temporal_reference/summary.json). Esta última conserva cuatro ajustes estáticos de 2023 y 366 residuos de 2024 por D. Los 12 diagnósticos Ljung–Box en rezagos 7/14/28 rechazan con ajuste Holm bajo su referencia asintótica; la dependencia del objetivo móvil y la limitación de la referencia impiden atribuir ese rechazo exclusivamente a una falta de rezagos del objetivo. Se mantiene el tipo 4 y no se usaron archivos de test. El ajuste estático y $\alpha=1$ describen este diagnóstico, sin congelar el experimento posterior.
+El ciclo actual está documentado mediante [protocolo inicial](../_static/dl_benchmark_20261104/protocol_initial.json), [selección](../_static/dl_benchmark_20261104/selected_configuration.json), [piloto](../_static/dl_benchmark_20261104/pilot_summary.json), [plan de comparación posterior al piloto](../_static/dl_benchmark_20261104/protocol_final.json) y [resumen de ejecución](../_static/dl_benchmark_20261104/execution_summary.json). El registro precedió al primer ajuste DL, pero fue posterior al EDA y al periodo histórico; no se presenta como registro previo a observar todos los datos.
 
-La revisión del capítulo 4 se conserva en el {download}`informe de implementación y evaluación <../_static/e1/revision_implementacion_evaluacion_20261103.md>` y su [matriz](../_static/e1/revision_implementacion_evaluacion_20261103.json). La [especificación documental actual](../_static/experiments/protocolo_e2_documental_20261103.json) sincroniza decisiones aceptadas y campos abiertos sin sustituir el borrador histórico. Se distinguen detección frente a cero y superación del 5 %, corridas y ajustes, selección de 2024 y validación interna, escalado del subentrenamiento y máscara de MASE. No se calcularon R/MDE ni se ejecutaron redes, piloto, benchmark o test.
-
-La revisión del capítulo 5 está en el {download}`informe de benchmark y baseline <../_static/e1/revision_benchmark_baseline_20261103.md>` y su [matriz](../_static/e1/revision_benchmark_baseline_20261103.json). El [contrato documental del benchmark](../_static/experiments/benchmark_documental_20261103.json) fija agregación descriptiva y roles de referencia, con inferencia final y resultados pendientes. Se distingue el baseline seleccionado en desarrollo del ranking descriptivo de test, y la media de RMSE entre semillas de la pérdida temporal examinada por DM.
-
-La revisión del capítulo 6 está en el {download}`informe del procedimiento <../_static/e1/revision_procedimiento_20261103.md>` y su [matriz](../_static/e1/revision_procedimiento_20261103.json). Se aplica únicamente la ruta 6.4, con reconsideración documentada tras los residuos de Ridge y sin añadir historia explícita del objetivo. El capítulo consolida reloj, embargo, escalado interno, métricas e inferencia y ordena los hitos pendientes; las especificaciones de diseño y benchmark conservan su contenido y sus campos abiertos.
-
-La revisión del capítulo 7 está en el {download}`informe de limitaciones y entregables <../_static/e1/revision_limitaciones_entregables_20261103.md>` y su [matriz](../_static/e1/revision_limitaciones_entregables_20261103.json). Se precisa el límite exacto bilateral de Wilcoxon bajo Holm para tres comparaciones, sin elegir siete semillas; se distinguen diferencia frente a cero y equivalencia práctica. Los siete productos, las dependencias/configuraciones y la cronología del registro quedan explícitos, sin autocalificar la rúbrica ni ejecutar nuevos experimentos. Las filas de cribado y literatura siguientes muestran el corte acumulado vigente.
+Los borradores [de diseño](../_static/experiments/protocolo_e2_documental_20261103.json) y [de benchmark](../_static/experiments/benchmark_documental_20261103.json), y los informes del 03/11 de [implementación](../_static/e1/revision_implementacion_evaluacion_20261103.json), [benchmark](../_static/e1/revision_benchmark_baseline_20261103.json), [procedimiento](../_static/e1/revision_procedimiento_20261103.json) y [limitaciones](../_static/e1/revision_limitaciones_entregables_20261103.json), permanecen como antecedentes. Sus plantillas vacías no sustituyen las [métricas actuales](../_static/dl_benchmark_20261104/analysis/metrics_summary.csv) ni se rellenan retrospectivamente como si hubieran sido mediciones del 03/11.
 
 ## Estado de los siete cambios solicitados
 
 | Prioridad | Producto | Estado verificable |
 |---|---|---|
-| 1 | Fuentes y búsqueda trazable | Tabla de las 35 referencias citadas, con enlaces y nivel de evidencia; consultas complementarias e historial de acceso conservados |
-| 2 | Cribado y flujo | 118 ocurrencias, 12 duplicadas, 106 repositorios, 20 inspeccionados, 7 textos evaluados y 5 incluidos; recuperación acumulada y corte histórico diferenciados |
-| 3 | Matriz de literatura | Cinco textos incluidos, 81 cifras publicadas y evaluación de calidad con ubicaciones; cifras de autores, no resultados propios |
-| 4 | Propuesta de tres modelos básicos | MLP–LSTM–CNN1D poco profunda según guía 6.4; extracción aplicada y configuración final pendientes |
-| 5 | Fichas técnicas | Perfiles fuente LSTM/TCN/encoder conservados; faltan las fichas de MLP/CNN1D simple con respaldo aplicado |
-| 6 | Comparación crítica | Objetivos/mercados/escalas comparados, riesgos y brecha limitada al corpus |
-| 7 | Definición y coherencia | n=7, h=1, cuatro longitudes de entrada, RMSE, 5 %, MAPE/MASE, ruta 6.4 y procedencia sincronizados |
+| 1 | Fuentes y búsqueda trazable | Tabla de las 35 referencias, enlaces y nivel de evidencia; consultas públicas e historial de acceso conservados |
+| 2 | Cribado y flujo | 118 ocurrencias, 12 duplicadas, 106 repositorios, 20 inspeccionados, siete textos evaluados y cinco incluidos |
+| 3 | Matriz de literatura | Cinco textos, 81 cifras publicadas y evaluación de calidad con ubicaciones; resultados de autores, no propios |
+| 4 | Tres modelos básicos | MLP–LSTM–CNN1D implementados con configuraciones de desarrollo; la extracción aplicada MLP/CNN1D simple sigue incompleta |
+| 5 | Fichas técnicas | Perfiles fuente LSTM/TCN/encoder conservados; implementaciones propias en §4; faltan apoyos aplicados independientes para MLP/CNN1D simple |
+| 6 | Comparación crítica | Diferencias de objetivo/mercado/escala en literatura y resultados propios de desarrollo con límites separados |
+| 7 | Definición y coherencia | n7/h1, D7 seleccionada bajo regla común, RMSE, 5 % frente a persistencia, MAPE/MASE, ruta 6.4 y procedencia sincronizados |
 
-Las frecuencias se calculan sobre cinco textos completos: familia LSTM 4/5 incluyendo BiLSTM, variante unidireccional 3/5, GRU 2/5, TCN 1/5 y encoder Transformer 2/5. Se conserva el corte original y la sensibilidad sin el estudio sin fecha. La selección no se presenta como los tres modelos más frecuentes de toda la literatura ni como mínima complejidad absoluta. MLP independiente y CNN1D simple no tienen respaldo comparativo suficiente en este corpus.
+Las frecuencias sobre cinco textos completos se conservan: familia LSTM 4/5 incluyendo BiLSTM, unidireccional 3/5, GRU 2/5, TCN 1/5 y encoder Transformer 2/5. MLP independiente y CNN1D simple no tienen apoyo acreditado en ese corpus. La elección curricular y su implementación no se presentan como los tres modelos más frecuentes de toda la literatura ni como complejidad mínima absoluta.
 
 ## Límites que permanecen abiertos
 
-- **Cobertura académica:** §3.1 documenta doce consultas públicas ejecutadas y verificación posterior de procedencia. Cinco revistas coinciden por título/ISSN en copias secundarias de listas WoS/Scopus de 2026; Akbiyik tiene identificador arXiv corroborado en PDF de autores y Herremans un enlace Xplore declarado por autores. No se acreditan búsquedas internas en las bases, registro individual WoS/Scopus ni cuartil Q1; la recuperación pública es acotada y la extracción definitiva sigue abierta.
-- **Perfiles suplementarios de atención:** los dos apoyos recuperados son manuscritos sin revisión por pares acreditada; uno carece de fecha editorial corroborada. Es un límite de esos antecedentes y no condiciona el cierre de la propuesta MLP–LSTM–CNN1D. La brecha activa del proyecto es el respaldo aplicado de MLP/CNN1D simple y sus configuraciones.
-- **Extracción de los tres básicos:** la guía pide recurrencia, sencillez y diversidad; priorizar únicamente diversidad en un corpus pequeño no cierra conjuntamente esos criterios.
-- **EDA y referencia de contexto:** el diagnóstico de cuatro Ridge y sus residuos está ejecutado; queda justificar la especificación y el tratamiento de la dependencia para el experimento de E2. La autocorrelación residual no reclasifica automáticamente el problema. No se han identificado el mecanismo de faltantes ni el ruido externo de etiquetas con evidencia suficiente.
-- **Configuraciones originales:** los ganadores de S1 sí están publicados y se corrigió su omisión; quedan sin fijar la versión de `keras-tcn`, algunos detalles de S6 y las configuraciones OHLCV propias. Las fichas separan fuente, cálculo analítico y adaptación futura.
-- **Datos y ejecución:** quedan para E2 las muestras definitivas de entrenamiento/test, configuración implementada, recursos, número de semillas, piloto y benchmark. No se presentan como resultados inexistentes de E1.
+- **Cobertura académica:** las doce consultas públicas ejecutadas y la verificación posterior no acreditan búsquedas internas en WoS/Scopus, indexación individual completa ni cuartil Q1. La recuperación es acotada y falta respaldar MLP/CNN1D simple.
+- **Perfiles suplementarios de atención:** dos apoyos son manuscritos sin revisión por pares acreditada y uno carece de fecha editorial corroborada. Son límites de esos antecedentes, separados del trío implementado.
+- **Extracción de los tres básicos:** la guía pide recurrencia, sencillez y diversidad; el corpus actual no cierra esos criterios conjuntamente para el trío curricular.
+- **EDA y referencia contextual:** el diagnóstico Ridge está ejecutado; no se ha incorporado como otro competidor bajo el protocolo DL. El mecanismo de faltantes y el ruido externo de etiquetas siguen sin identificarse.
+- **Configuraciones de fuentes:** permanecen límites documentales de `keras-tcn` y S6, sin atribuirlos a las implementaciones PyTorch propias. Los ganadores de S1 sí están recuperados.
+- **Potencia:** el máximo de 30 semillas por red es menor que los 1.212/172/724 estimados por el piloto. La MDE y el supuesto condicional se publican; no se afirma suficiencia para una mejora pequeña del 5 %.
+- **Generalización:** julio–diciembre de 2024 fue expuesto al EDA y a la calibración del piloto. Semillas nuevas no lo convierten en test. El test supervisado 2025–2026 y su protocolo final permanecen pendientes.
+- **Baseline y margen avanzado:** MLP conserva la identidad operacional de búsqueda; LSTM lidera descriptivamente entre redes después, y persistencia tiene menor error que todas. No se ha fijado un margen de equivalencia ni de mejora para modelos avanzados.
 
 ## Proyección a E2
 
-E2 deberá fijar el procedimiento experimental y el esfuerzo comparable entre modelos, ajustar transformaciones con pasado, registrar semillas/fallos y proteger test. Las longitudes de bloque, potencia y tamaños definitivos requerirán justificación propia. El criterio y las decisiones de E1 se heredan mediante versiones; cambios posteriores se declaran como enmiendas.
+Las futuras etapas heredan código, configuraciones, resultados y limitaciones mediante versiones. Cualquier cambio de arquitectura, entradas, esfuerzo de búsqueda o cadencia requerirá una enmienda identificable; el resultado desfavorable frente a persistencia no justifica ocultar este ciclo o elegir retrospectivamente otra referencia.
 
-El plan documentado en noviembre de 2026 es posterior a los periodos de mercado considerados: su evaluación futura será un backtest con reserva, no un pronóstico emitido prospectivamente en 2025. Reutilizar el mismo test para diseñar nuevos modelos en entregables posteriores no constituye confirmación independiente.
+Antes de consultar la reserva se deben cerrar sus muestras supervisadas, reglas de actualización, análisis y comparaciones. Las guías completas de E2/E3 no se han aportado; no se inventan requisitos adicionales. El diseño de noviembre de 2026 es posterior a los periodos de mercado: una evaluación de 2025–2026 será un backtest con reserva, no un pronóstico emitido prospectivamente. Si se usa ese test para diseñar un modelo posterior, hará falta otra evaluación independiente para confirmarlo.
 
 ## Evidencia y reproducción
 
-La evidencia documental está en `references/literature_e1/`, el registro bibliográfico inicial en `references/bibliography/`, el EDA en `results/eda_development/` y el complemento descriptivo en `results/eda_covariates_documental/`. Los módulos del bloque C se reproducen con `scripts/eda_temporal_specific.py` y `scripts/eda_temporal_reference.py`, con resultados en sus directorios homónimos bajo `results/`; conservan los CSV fuente, la exclusión del 24/03/2023 y el calendario. La [tabla consolidada de referencias](../_static/literature_e1/references_access_35.csv) distingue las 35 referencias de los cinco textos del corpus exploratorio. La revisión del 03/11/2026 inspeccionó seis repositorios adicionales, añadió dos textos grises y actualizó el flujo, las frecuencias y sus sensibilidades. El [resumen de partición vigente](../_static/cv_forward_chaining/summary.json) identifica el generador, la regla de embargo y los hashes. La [reserva bruta del test](../_static/data/test_raw_reserve_20250101_20260831.json) se reproduce con `scripts/reserve_test_raw_manifest.py`. El preregistro piloto anterior se conserva como borrador histórico, sin sustituir las decisiones documentales actuales ni un futuro protocolo congelado. Las predicciones lineales incorporadas corresponden exclusivamente al diagnóstico autorizado de EDA; no se incorporan resultados de redes del trabajo separado fuera de E1. Construir HTML comprueba presentación y enlaces, no superioridad estadística ni cumplimiento académico total.
+Los scripts `scripts/dl_data.py`, `scripts/dl_models.py`, `scripts/train_dl_benchmark.py` y `scripts/analyze_dl_benchmark.py` reproducen el ciclo bajo el entorno fijado en `requirements-training.lock.txt`. Los resultados originales están en `results/dl_benchmark_20261104/`: protocolos fechados, runtime, hashes, registros por corrida, configuraciones, escaladores, curvas y predicciones; se conservaron checkpoints de piloto y comparación. Los [registros agregados](../_static/dl_benchmark_20261104/runs.csv) y el [runtime observado](../_static/dl_benchmark_20261104/runtime.json) permiten identificar las ejecuciones, sin contar como réplicas independientes los dos ajustes internos de cada corrida.
+
+El análisis separa IC t por semillas sobre calendario fijo, nueve contrastes pareados/Holm, seis DM principales/Holm y 15 diagnósticos/Holm de la semilla 1001. El bootstrap remuestrea fechas, no reentrena. Las curvas graficadas son registros reales de parada interna y no curvas de test. Las instrucciones completas están en `BUILD.md`; construir HTML valida presentación y enlaces, sin volver a ajustar las redes ni certificar superioridad o cumplimiento académico total.

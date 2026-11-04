@@ -2,7 +2,7 @@
 
 **Correspondencia con los requisitos de las páginas 2–3**
 
-La siguiente tabla permite localizar las respuestas solicitadas en la guía. La formulación incorpora las decisiones ya aceptadas por el usuario. Los campos que requieren ejecución futura se distinguen de la evidencia documental y del EDA disponible.
+La siguiente tabla permite localizar las respuestas solicitadas en la guía. La formulación incorpora las decisiones ya aceptadas por el usuario. La evidencia documental, el EDA y el primer experimento de desarrollo ejecutado el 04/11/2026 se distinguen de la evaluación final aún pendiente.
 
 | Requisito del entregable | Respuesta y ubicación |
 |---|---|
@@ -10,17 +10,17 @@ La siguiente tabla permite localizar las respuestas solicitadas en la guía. La 
 | Tipo de problema admitido | §1.1.2: tipo 4, regresión temporal; ruta 6.4 de la guía, con entrada OHLCV sin rezagos explícitos de volatilidad |
 | Pregunta de investigación e hipótesis operativa | §1.1.3: comparar el error de pronóstico con persistencia |
 | Métricas primaria y secundarias | §1.1.4: RMSE principal; MAE, MSE, R², MAPE y MASE complementarias, con sus condiciones explícitas |
-| Margen práctico e independencia | §1.1.4: mejora relativa mínima del 5 % frente a persistencia; unidades temporales dependientes y bloques por justificar antes de la inferencia |
+| Margen práctico e independencia | §1.1.4: mejora relativa mínima del 5 % frente a persistencia; inferencia entre semillas condicionada al calendario y remuestreo temporal por bloques registrado para desarrollo |
 | Relevancia científica o aplicada | §1.2.1: pronóstico de incertidumbre de Bitcoin y antecedente científico |
 | Disponibilidad, licencia y procedencia | §1.2.2 y §1.3.2: Binance Spot BTCUSDT, archivos oficiales, términos y reglas de agregación diaria documentados |
 | Uso previo del dataset en literatura | §1.2.3: no verificado; el artículo citado es antecedente del problema |
-| Tamaño, dimensionalidad y almacenamiento | §1.3.1: 75 ZIP, 2.014.480 filas CSV de 12 columnas y esquema de entrada definido; ventanas supervisadas pendientes |
+| Tamaño, dimensionalidad y almacenamiento | §1.3.1: 75 ZIP, 2.014.480 filas CSV de 12 columnas y esquema de entrada definido; muestras de desarrollo materializadas, test supervisado pendiente |
 | Tipo de datos y unidad de observación | §1.3.2: vela de un minuto en los brutos, día UTC en los derivados y origen temporal en las muestras supervisadas |
 | Etiquetado y ruido esperado | §1.3.3, con fórmula en §1.1.1: cálculo automático del siguiente valor de volatilidad histórica móvil y fuentes de ruido |
 | Dependencia entre observaciones | §1.3.4, con unidad declarada en §1.1.4: solapamiento temporal, partición cronológica y prevención de fuga |
-| Versión y hash del dataset | §1.3.5: instantánea del 02/11/2026, manifiesto y SHA-256 de los 75 ZIP; derivados de desarrollo disponibles y manifiestos supervisados definitivos pendientes |
+| Versión y hash del dataset | §1.3.5: instantánea del 02/11/2026, manifiesto y SHA-256 de los 75 ZIP; derivados e índices de desarrollo disponibles; manifiestos supervisados definitivos de test pendientes |
 
-**Alcance de esta actualización:** la fuente, adquisición y EDA están documentados; la definición principal queda fijada en volatilidad de siete retornos diarios y horizonte de un día. El usuario autorizó además desarrollar el bloque C con una referencia lineal regularizada para diagnosticar residuos en desarrollo. Se ajustaron cuatro referencias Ridge, una por historia de entrada, sin seleccionar una ganadora. El entrenamiento de las tres redes, ajuste de hiperparámetros, piloto y benchmark se reservan para E2. El PDF de la guía incluye esos bloques dentro de E1 en sus secciones 4–5: se registra la diferencia de alcance sin atribuir al documento una excepción que no contiene. Las muestras y decisiones del experimento final siguen en el plan posterior; el diagnóstico lineal no acredita su ejecución.
+**Alcance de esta actualización:** la fuente, adquisición y EDA están documentados; el objetivo principal es volatilidad de siete retornos diarios y horizonte de un día. Las cuatro referencias Ridge del bloque C se conservan como diagnósticos de EDA. El 04/11/2026 el usuario autorizó correr MLP, LSTM y CNN1D poco profunda y actualizar E1, ampliando el alcance previo. El primer ciclo completó búsqueda, piloto y comparación de desarrollo con D=7 seleccionado, bajo el [protocolo registrado](../_static/dl_benchmark_20261104/protocol_initial.json). Sus resultados se documentan en los capítulos 4–5; el test reservado y su protocolo final permanecen pendientes. Esta ejecución no completa por sí sola todos los requisitos de la guía, incluida la cobertura bibliográfica aplicada.
 
 ## 1.1. Definición del problema
 
@@ -54,7 +54,7 @@ $$
 X_t=(z_{t-D},\ldots,z_{t-1})^\top.
 $$
 
-Cualquier transformación o variable derivada debe calcularse causalmente. El contrato de entrada conserva las cinco covariables OHLCV; el EDA descriptivo no autoriza cambiar ese conjunto mirando el test. El escalado y las transformaciones del entrenamiento se fijarán en el protocolo posterior, manteniendo el mismo conjunto de información entre modelos.
+Cualquier transformación o variable derivada debe calcularse causalmente. El contrato de entrada conserva las cinco covariables OHLCV; el EDA descriptivo no autoriza cambiar ese conjunto mirando el test. El primer ciclo registró transformaciones fijas log(O/H/L/C), log(1+V), escalas de entrada aprendidas solo con los días admisibles de entrenamiento y escala positiva del objetivo obtenida del mismo entrenamiento. Las tres redes usan el mismo conjunto de información; los detalles reproducibles figuran en §4.2.
 
 **Volatilidad histórica y objetivo de un día adelante**
 
@@ -82,7 +82,7 @@ El objetivo es el siguiente valor de una **volatilidad histórica móvil**. Las 
 
 **Pérdida y referencia contextual**
 
-Se fija MSE como pérdida del diseño supervisado posterior, sobre los orígenes elegibles de entrenamiento:
+Se fija MSE como pérdida supervisada, sobre los orígenes elegibles de entrenamiento:
 
 $$
 \mathcal L(\theta)=\frac1{|\mathcal T_{\mathrm{train}}|}
@@ -95,7 +95,7 @@ La ruta 6.4 exige además una **regresión lineal regularizada con las mismas co
 
 La autocorrelación residual detectada exige reconocer la insuficiencia de esta referencia y la dependencia del objetivo móvil; no demuestra por sí sola que deban añadirse rezagos de volatilidad. El contrato vigente sigue siendo tipo 4. Añadir esos rezagos requeriría actualizarlo al tipo 3 y revisar la ruta. La referencia lineal no ocupa uno de los tres puestos DL ni congela la política de reajuste del benchmark posterior; persistencia conserva el papel adicional de referencia para el margen operativo aceptado del 5 %.
 
-Escalado y cualquier transformación aprendida se ajustarán solo con el entrenamiento permitido de cada fold. La política vigente excluye los días incompletos y sus ventanas afectadas, sin imputación. Las métricas finales se expresarán en la escala original del objetivo y la salida no negativa se garantizará al implementar las redes.
+Escalado y cualquier transformación aprendida se ajustan solo con el entrenamiento permitido. El primer ciclo aplicó cortes internos para parada y un ajuste nuevo con el entrenamiento admisible de 2023, sin actualizar pesos en 2024. La política vigente excluye los días incompletos y sus ventanas afectadas, sin imputación. Las métricas propias se expresan en la escala original del objetivo y las tres redes implementan salida Softplus no negativa.
 
 ### 1.1.2. Tipo de problema admitido
 
@@ -105,7 +105,7 @@ Escalado y cualquier transformación aprendida se ajustarán solo con el entrena
 
 **Pregunta de investigación:** ¿pueden tres modelos básicos de Deep Learning, cuya selección debe acreditarse en la literatura y usando 7, 14, 21 o 28 días de información OHLCV, pronosticar el siguiente valor de la volatilidad histórica de siete retornos diarios con menor RMSE que persistencia bajo evaluación cronológica con embargo?
 
-**Hipótesis operativa de diseño:** al menos una configuración seleccionada exclusivamente con desarrollo alcanzará una reducción relativa de RMSE de al menos el 5 % frente a persistencia, sobre las mismas fechas elegibles del periodo de evaluación. La evidencia disponible todavía no contrasta esta hipótesis: las familias de §3 son candidatas de trabajo, sin predicciones propias evaluadas.
+**Hipótesis operativa de diseño:** al menos una configuración seleccionada exclusivamente con desarrollo alcanzará una reducción relativa de RMSE de al menos el 5 % frente a persistencia, sobre las mismas fechas elegibles del periodo de evaluación. La primera comparación de desarrollo no apoya esta hipótesis: en las 184 fechas de julio–diciembre de 2024 las tres redes tienen mayor RMSE que persistencia. Los contrastes de mejora superior al 5 % se reportan en §5.4 con su alcance condicional; no constituyen confirmación en test. LSTM es líder descriptivo entre redes en ese tramo, mientras MLP conserva la identidad de referencia elegida con enero–junio.
 
 ### 1.1.4. Métricas, margen práctico y unidad de independencia
 
@@ -119,28 +119,28 @@ g_m=\frac{\mathrm{RMSE}_{\mathrm{pers}}-\mathrm{RMSE}_m}
 \quad \mathrm{RMSE}_{\mathrm{pers}}>0.
 $$
 
-El criterio operativo aceptado es **$g_m\ge0{,}05$**, es decir, al menos un **5 % de reducción relativa de RMSE frente a persistencia**, en las mismas fechas y con el mismo objetivo. Es un margen de comparación del estudio; no representa una utilidad financiera calibrada ni una garantía de rentabilidad. La diferencia estadística y la relevancia operativa se evaluarán por separado en la fase experimental posterior. Si la RMSE de persistencia es cero, la mejora relativa queda no definida y se reportará; no se introduce un epsilon.
+El criterio operativo aceptado es **$g_m\ge0{,}05$**, es decir, al menos un **5 % de reducción relativa de RMSE frente a persistencia**, en las mismas fechas y con el mismo objetivo. Es un margen de comparación del estudio; no representa una utilidad financiera calibrada ni una garantía de rentabilidad. La diferencia estadística y la relevancia operativa se reportan por separado para el primer ciclo de desarrollo y deberán conservar esa distinción en la futura evaluación final. Si la RMSE de persistencia es cero, la mejora relativa queda no definida y se reportará; no se introduce un epsilon.
 
 Alcanzar el 5 % con una estimación puntual y demostrar una mejora de ese tamaño son afirmaciones diferentes. Para sostener la segunda se necesitará incertidumbre temporal compatible con superar el margen, además de las reglas de multiplicidad y selección fijadas antes del test. Este porcentaje se refiere únicamente a la comparación con persistencia: no determina automáticamente el margen entre dos redes, una banda de equivalencia ni el umbral futuro de un modelo avanzado frente al baseline DL.
 
-El margen relativo queda fijado antes de ejecutar esa fase. Para dimensionar un experimento podrá convertirse a unidades absolutas con una referencia de desarrollo identificada: $\delta_{\mathrm{plan}}=0{,}05\,\mathrm{RMSE}_{\mathrm{pers,desarrollo}}$. Aquí no se calcula un valor a partir de corridas archivadas ni se presenta esa conversión como un umbral universal para otros periodos.
+El margen relativo quedó fijado antes del primer experimento DL. Para dimensionarlo se registró la conversión $\delta_{\mathrm{plan}}=0{,}05\,\mathrm{RMSE}_{\mathrm{pers,desarrollo}}$. Con persistencia en julio–diciembre de 2024, el piloto obtuvo $\delta_{\mathrm{plan}}=0{,}00024112394$; esta referencia de calibración y sus supuestos constan en el [informe del piloto](../_static/dl_benchmark_20261104/pilot_summary.json). Es planificación para detectar frente a cero un efecto de tamaño 5 %, una pregunta distinta de demostrar que se supera el margen del 5 %. El máximo requerido fue R=1.212 y el ciclo usó el límite previamente registrado de R=30; se declara la insuficiencia para ese objetivo de planificación. La conversión no es un umbral universal para otros periodos.
 
 | Elemento | Decisión y alcance |
 |---|---|
 | Objetivo principal | Desviación poblacional de siete retornos diarios; próximo valor de la medida móvil |
 | Horizonte | Un día |
-| Historias de entrada | $D=7,14,21,28$ días OHLCV; sin longitud ganadora fijada |
+| Historias de entrada | Candidatas $D=7,14,21,28$ días OHLCV; D=7 seleccionada como historia común del primer ciclo |
 | Métrica primaria | RMSE en la escala original del objetivo |
-| Pérdida prevista | MSE |
+| Pérdida implementada | MSE; escala positiva del objetivo ajustada solo con entrenamiento e inversión para evaluar |
 | Métricas complementarias | MAE, MSE, MAPE, R² y MASE, con cobertura y casos no definidos |
 | Margen operativo relativo | $\delta_{\mathrm{rel}}=0{,}05$ frente a persistencia de las mismas fechas |
-| Nivel de significación del plan | $\alpha=0{,}05$; familia y multiplicidad se registrarán antes de la inferencia |
+| Nivel de significación del plan | $\alpha=0{,}05$; familias y correcciones registradas: nueve hipótesis entre semillas, seis comparaciones DM principales y quince diagnósticos residuales |
 | Partición | Historia inicial 2023; validación 2024; test 01/01/2025–31/08/2026 |
 | Unidad observacional | Origen temporal $t$ con entrada histórica y etiqueta futura |
 | Unidad de independencia entre mercados | Una sola serie BTCUSDT de Binance Spot; $N_{\mathrm{series}}=1$, sin réplicas independientes de otros mercados |
-| Unidad inferencial dentro de la serie | Bloques temporales o diseño dependiente por justificar; longitud y supuestos no se consideran cerrados |
+| Unidad inferencial dentro de la serie | Semillas para variabilidad del entrenamiento condicionada a las mismas fechas; bootstrap circular de fechas con bloques de 14 días y sensibilidad 7/28 para ajustes guardados, bajo supuestos temporales explícitos; no son mercados independientes |
 | Referencias de contexto | Regresión lineal regularizada con las mismas covariables, exigida por la ruta 6.4; persistencia adicional para el margen del 5 % |
-| Selección de modelos | Registro documental, evidencia y estado de cierre en §3 |
+| Selección de modelos | MLP, LSTM y CNN1D poco profunda ejecutadas en desarrollo; configuración congelada por fase en §4. La acreditación bibliográfica de §3 continúa parcial |
 
 Para $N$ predicciones evaluables:
 
@@ -165,17 +165,17 @@ $\mathcal J_t$ contiene pares de etiquetas válidas separados por un día de cal
 
 **Reporte exigido por cada tamaño de entrada**
 
-El plan posterior de E2 contempla reportar resultados de test para 7, 14, 21 y 28 días de entrada, idealmente por fold y con media y desviación estándar: **MAPE, MAE, RMSE y MSE**, por horizonte y agregados cuando corresponda. Se añadirá MASE como referencia escalada pertinente al pronóstico temporal, con el rezago diario fijado en §1.1.4. La configuración principal tiene un horizonte de un día; no se inventan salidas adicionales.
+La futura evaluación de test deberá reportar por separado las historias de 7, 14, 21 y 28 días que se autoricen en su protocolo, con **MAPE, MAE, RMSE y MSE**, media y desviación entre ejecuciones, y MASE con el rezago diario de §1.1.4. El primer ciclo ya calculó estas métricas de desarrollo para el objetivo n=7: buscó las cuatro historias con el mismo presupuesto y fijó D=7 para piloto y comparación con 30 semillas nuevas por red. Esto no completa una comparación final de test por historia ni entrena las sensibilidades del objetivo n=14/21/28. La configuración principal mantiene un horizonte de un día; no se inventan salidas adicionales.
 
-El **BDS** se prevé como diagnóstico complementario de los residuos del primer horizonte, conforme al material específico recibido. Requiere tramos con suficientes residuos fuera de entrenamiento; no se calculará sobre un fold de una sola observación. Se documentarán dimensiones, radios, tamaño y supuestos en la fase posterior. BDS sobre retornos crudos del EDA no sustituye un diagnóstico de errores predictivos.
+El **BDS** se ejecutó como diagnóstico complementario de los residuos del primer horizonte en desarrollo, conforme al material específico recibido. Se usó la semilla designada 1001, dimensiones 2/3 y radio 1,5 veces la desviación muestral del tramo, con parámetros, tamaño y límites en §5.4.10; no se trató un fold de una sola observación como una serie de residuos. BDS sobre retornos crudos del EDA no sustituye estos errores predictivos ni constituye un diagnóstico del test reservado.
 
-La política de MAPE ya queda definida en §1.1.4: etiquetas positivas, sin epsilon y con cobertura y ceros informados. Las tablas de desempeño propio permanecen reservadas para la ejecución posterior; esa ausencia no se cubre con valores publicados por otros autores.
+La política de MAPE ya queda definida en §1.1.4: etiquetas positivas, sin epsilon y con cobertura y ceros informados. Las tablas de desempeño propio de desarrollo ya están en §5.1 y se distinguen tanto del test pendiente como de los valores publicados por otros autores.
 
 **Estado de cierre**
 
-La definición documental principal queda fijada en $n=7$, $h=1$, cuatro tamaños de entrada, RMSE y margen relativo del 5 %. Procedencia, reloj de información, política vigente de faltantes y reglas de métricas están descritos. La [lista de decisiones y pendientes](protocolo_pendiente.md) distinguirá esos acuerdos de la selección bibliográfica y de los trabajos posteriores que requieren ejecución. El uso previo del mismo conjunto exacto de archivos en la literatura no se ha acreditado; la pertinencia temática de un artículo no se presenta como equivalencia de dataset.
+La definición documental principal queda fijada en $n=7$, $h=1$, cuatro tamaños de entrada, RMSE y margen relativo del 5 %. Procedencia, reloj de información, política vigente de faltantes y reglas de métricas están descritos. La [lista de decisiones y pendientes](protocolo_pendiente.md) distingue esos acuerdos, la ejecución propia de desarrollo, la selección bibliográfica aún parcial y los trabajos posteriores. El uso previo del mismo conjunto exacto de archivos en la literatura no se ha acreditado; la pertinencia temática de un artículo no se presenta como equivalencia de dataset.
 
-Por alcance de esta intervención, las tablas comparativas de las tres redes, el piloto y el benchmark corresponden a E2. La referencia Ridge autorizada aporta evidencia diagnóstica de EDA, sin entrenar redes ni evaluar test. Esta organización sigue la instrucción del usuario y no modifica lo que exige literalmente el PDF de la guía.
+El primer ciclo autorizado incorpora tablas comparativas, piloto y benchmark de desarrollo al libro de E1. El diagnóstico Ridge conserva su propósito exploratorio, separado de las redes. Ningún resultado de desarrollo se presenta como evaluación del test reservado ni como cumplimiento total de la guía.
 
 ## 1.2. Justificación del Dataset
 
@@ -185,13 +185,13 @@ Se propone evaluar si el historial de covariables OHLCV diarias de Bitcoin conti
 
 El estudio de Huang, Sangiorgi y Urquhart examina pronósticos de volatilidad de Bitcoin con datos de alta frecuencia y redes neuronales; respalda la pertinencia de investigar este problema {cite:p}`huang2024`. Su definición de volatilidad, datos y horizontes no son automáticamente equivalentes a los de este proyecto: sus resultados no se trasladan como resultados propios. La revisión documental y las 35 referencias vigentes se desarrollan en el capítulo 3 y en [Referencias](referencias.md).
 
-**Decisiones confirmadas:** BTCUSDT, modelado diario desde velas de un minuto, entradas de 7/14/21/28 días, objetivo principal de volatilidad de **siete retornos diarios**, horizonte **de un día** y RMSE como métrica primaria. Las volatilidades de 14/21/28 retornos se conservan como sensibilidad del objetivo. No se fija una longitud de entrada ganadora ni se elige $D=7$ como única configuración principal.
+**Decisiones confirmadas:** BTCUSDT, modelado diario desde velas de un minuto, entradas de 7/14/21/28 días, objetivo principal de volatilidad de **siete retornos diarios**, horizonte **de un día** y RMSE como métrica primaria. Las volatilidades de 14/21/28 retornos se conservan como sensibilidad del objetivo. La búsqueda propia del primer ciclo eligió $D=7$ como historia común para piloto y comparación; las otras historias conservan sus resultados de búsqueda. Las sensibilidades del objetivo n=14/21/28 siguen sin entrenarse con las redes.
 
 Un conjunto de cierres de Bitcoin con marcas de tiempo y resolución suficiente permitiría construir entradas y etiquetas de manera trazable. Su idoneidad dependerá de cubrir suficientes regímenes y de contar con continuidad, procedencia y condiciones de uso verificables. Acceso público no equivale a licencia abierta ni a permiso de redistribución.
 
 ### 1.2.2. Disponibilidad pública, licencia y procedencia
 
-**Fuente seleccionada:** Binance Spot, par BTCUSDT, velas de un minuto adquiridas directamente de los archivos públicos oficiales. La adquisición, verificación y auditoría se describen en §2.3 del [EDA](02_eda.md). Se verificaron 75 ZIP oficiales para el periodo 01/01/2023–30/10/2026 inclusive UTC: 2.014.480 filas. El manifiesto contiene los SHA-256 y la auditoría de timestamps. El EDA de calidad, precios, retornos y cuatro definiciones de volatilidad de desarrollo está ejecutado y documentado en la sección 2. La definición principal ya es $n=7$; la materialización definitiva de muestras y su uso para entrenamiento pertenecen al plan posterior.
+**Fuente seleccionada:** Binance Spot, par BTCUSDT, velas de un minuto adquiridas directamente de los archivos públicos oficiales. La adquisición, verificación y auditoría se describen en §2.3 del [EDA](02_eda.md). Se verificaron 75 ZIP oficiales para el periodo 01/01/2023–30/10/2026 inclusive UTC: 2.014.480 filas. El manifiesto contiene los SHA-256 y la auditoría de timestamps. El EDA de calidad, precios, retornos y cuatro definiciones de volatilidad de desarrollo está ejecutado y documentado en la sección 2. La definición principal ya es $n=7$; sus muestras de desarrollo y su uso para entrenamiento están materializados en el [registro del primer ciclo](../_static/dl_benchmark_20261104/data_audit.json). Las muestras supervisadas finales de test permanecen pendientes.
 
 | Campo exigido | Estado y criterio de cierre |
 |---|---|
@@ -217,7 +217,7 @@ La cuadrícula de desarrollo 2023–2024 contiene 731 días UTC y 730 días OHLC
 
 | Campo exigido | Estado y criterio de cierre |
 |---|---|
-| Tamaño | 75 ZIP, 97.442.605 bytes comprimidos y 2.014.480 filas brutas; cierres válidos y ventanas finales pendientes |
+| Tamaño | 75 ZIP, 97.442.605 bytes comprimidos y 2.014.480 filas brutas; ventanas de desarrollo materializadas, ventanas finales de test pendientes |
 | Estructura de modelado | OHLCV diario; entradas $(N,D,5)$ para $D=7,14,21,28$; salida escalar de volatilidad de un día adelante |
 | Formato de almacenamiento | CSV oficiales de 12 columnas dentro de ZIP; timestamps normalizados solo para auditar cobertura, brutos intactos |
 
@@ -242,7 +242,7 @@ La configuración aportada establece modelado diario, cierre UTC y horizonte pri
 
 **Etiquetas:** Cálculo automático de $Y_t$ según fórmula aprobada; sin anotación manual.
 
-El objetivo se derivará de precios observados, por lo que puede reflejar errores del proveedor, precios anómalos, cambios de liquidez y ruido de microestructura. El tamaño finito de la ventana y la definición elegida introducen incertidumbre como proxy. No se ha medido todavía la magnitud de estos efectos.
+El objetivo se deriva de precios observados, por lo que puede reflejar errores del proveedor, precios anómalos, cambios de liquidez y ruido de microestructura. El tamaño finito de la ventana y la definición elegida introducen incertidumbre como proxy. No se ha medido todavía la magnitud de estos efectos.
 
 El EDA ya comprobó orden temporal, duplicados, cierres no positivos, huecos, frecuencia y significado del timestamp sobre desarrollo; sus hallazgos y límites figuran en §2. En la construcción definitiva se conservarán esos controles. Un retorno calculado a través de un día ausente no se tratará como retorno diario consecutivo; tampoco se confunde un salto entre minutos separados con un retorno regular de un minuto.
 
@@ -252,9 +252,9 @@ La regla actual exige 1.440 minutos elegibles para acreditar un OHLCV diario com
 
 **Dependencia:** Temporal y por ventanas solapadas; diagnósticos de desarrollo documentados en §2, sin presuponer independencia.
 
-Las ventanas y las volatilidades móviles comparten información. Una fecha, una inicialización y un bloque temporal representan fuentes diferentes de variabilidad. Las ventanas solapadas y las semillas sobre un mismo mercado no se contarán como mercados independientes. La longitud de bloque y su sensibilidad se justificarán antes de los contrastes posteriores; no se importan longitudes obtenidas de experimentos fuera del alcance de E1. Un único activo limita la generalización a otros mercados.
+Las ventanas y las volatilidades móviles comparten información. Una fecha, una inicialización y un bloque temporal representan fuentes diferentes de variabilidad. Las ventanas solapadas y las semillas sobre un mismo mercado no se contarán como mercados independientes. El protocolo del primer ciclo registró bloques temporales de 14 días y sensibilidad de 7/28, coherentes con etiquetas σ7 solapadas y acompañados de sus límites. Este remuestreo evalúa modelos guardados sobre fechas de desarrollo; no vuelve a entrenarlos ni remuestrea semillas. Un único activo limita la generalización a otros mercados.
 
-Así se declara la dependencia conocida a priori, pero no se presenta como resuelto el requisito de una unidad inferencial independiente: ningún número de filas, folds o semillas convierte esta única serie en varios mercados. La inferencia temporal requerirá supuestos y una unidad de remuestreo justificados en el protocolo experimental.
+Así se declara la dependencia conocida a priori, pero no se presenta como resuelto el requisito de una unidad inferencial independiente: ningún número de filas, folds o semillas convierte esta única serie en varios mercados. La inferencia temporal del primer ciclo conserva los supuestos de bloques y estabilidad local de su protocolo; la evaluación final requerirá justificar de nuevo su diseño, sin dar por resuelta la independencia.
 
 **Separación temporal y prevención de fuga**
 
@@ -278,13 +278,15 @@ La captura aclaratoria suministrada por el usuario especifica este calendario, q
 
 Se reportarán **2025 y 2026 por separado**; el segundo año solo cubre hasta el 31 de agosto, no el año completo.
 
+En el primer ciclo ejecutado, 2024 se separó en **enero–junio para búsqueda** y **julio–diciembre para piloto y comparación con semillas nuevas**. Ambos tramos ya estaban disponibles en el EDA; el segundo también sirvió para dimensionar repeticiones. Sus resultados son desarrollo/calibración expuesto, no una evaluación independiente final. El ajuste con desarrollo 2023–2024 para test que aparece en la tabla todavía no se ha realizado.
+
 **Regla de disponibilidad para la preparación posterior:** cada muestra se asigna al periodo de su día de resultado $t$. La entrada termina en $t-1$ y el objetivo se conoce al cerrar $t$. Una etiqueta solo puede utilizarse para ajustar un modelo cuando su instante de disponibilidad es anterior o igual al origen que se pretende evaluar. Si necesita retornos de 2025, no pertenece al ajuste con desarrollo 2023–2024. Una etiqueta del 31/12/2024, ya observable al comienzo del 01/01/2025, se juzga por esa disponibilidad y no se excluye solo por la escritura $\sigma_{t+1}$.
 
-La historia previa al inicio de validación o test puede formar parte de sus entradas cuando ya sea observable. La frecuencia de reajuste de las redes y la política durante test se definirán en E2: **no se fija para ese experimento un reajuste mensual, diario o estático**. Los folds existentes documentan orígenes y controles de disponibilidad; no son corridas de entrenamiento ni obligan a reentrenar en cada origen. El ajuste estático de las cuatro referencias Ridge de EDA es una decisión diagnóstica local y no se traslada automáticamente a E2.
+La historia previa al inicio de validación o test puede formar parte de sus entradas cuando ya sea observable. El primer ciclo DL registró una política **estática**: tras elegir duración con un corte interno cronológico, cada corrida se ajustó de nuevo con las muestras admisibles de 2023 y mantuvo pesos y escalas fijos durante 2024. No hubo reajustes diarios ni uso de etiquetas de 2024 para actualizar esos pesos. Los folds existentes documentan orígenes y controles de disponibilidad; no son corridas de entrenamiento ni obligan a reentrenar en cada origen. La política durante el test futuro sigue pendiente y no hereda automáticamente esta decisión ni la política estática de Ridge.
 
 La preparación corregida explicita el embargo de la ruta 6.4: para $X_t=(z_{t-D},\ldots,z_{t-1})$, el máximo rezago es $D$ días. Se omiten los días de resultado $t-D,\ldots,t-1$ del ajuste y se admiten candidatos $u\le t-D-1$, sujetos además a disponibilidad y calidad. Los 5.856 registros de partición —366 por cada una de las 16 configuraciones— aplican esa regla. El embargo no elimina toda la dependencia entre etiquetas móviles cuando $n>D+1$, que deberá conservarse en la inferencia.
 
-Los intervalos se expresan en días UTC. El calendario contiene 365 días iniciales de 2023, 366 de validación de 2024 y **608 de test** hasta agosto de 2026; son días de calendario, no recuentos definitivos de muestras elegibles. Los huecos y la historia requerida reducen esa elegibilidad. Los manifiestos supervisados y la congelación experimental se materializarán antes de la ejecución posterior. Septiembre–octubre de 2026 se adquirieron, pero no se asignan automáticamente a otra etapa ni cambian el calendario confirmado.
+Los intervalos se expresan en días UTC. El calendario contiene 365 días iniciales de 2023, 366 de validación de 2024 y **608 de test** hasta agosto de 2026; son días de calendario, no recuentos definitivos de muestras elegibles. Los huecos y la historia requerida reducen esa elegibilidad. Los índices, transformaciones y configuraciones de desarrollo se conservaron por corrida; las muestras supervisadas y el protocolo definitivo de test aún deben congelarse antes de esa evaluación. Septiembre–octubre de 2026 se adquirieron, pero no se asignan automáticamente a otra etapa ni cambian el calendario confirmado.
 
 La evaluación prevista es un backtest histórico documentado después del periodo de mercado considerado. La reserva organiza el uso posterior de los datos; no se presenta como un pronóstico que se hubiera emitido en tiempo real durante 2025–2026.
 
@@ -293,8 +295,8 @@ La evaluación prevista es un backtest histórico documentado después del perio
 | Campo exigido | Estado y criterio de cierre |
 |---|---|
 | Versión / fecha de extracción | Instantánea verificada el 02/11/2026; versión identificada por el manifiesto y SHA-256 individuales |
-| Hash de datos | SHA-256 de los 75 ZIP contrastados con checksums oficiales; manifiesto enlazado en §2.3.2. Derivados y etiquetas de desarrollo documentados en §2; configuraciones y manifiestos supervisados finales pendientes |
+| Hash de datos | SHA-256 de los 75 ZIP contrastados con checksums oficiales; manifiesto enlazado en §2.3.2. Derivados y etiquetas de desarrollo documentados en §2; configuraciones e índices de desarrollo conservados en §4; manifiestos supervisados finales de test pendientes |
 
 El SHA-256 del [manifiesto de adquisición](../_static/data/binance_spot_BTCUSDT_1m_20230101_20261030.json) es `af723bcca2caffcbe44ae5243e2863bbcdcd39ae8cd42df491af0a2857926bb2`; cada ZIP conserva además su huella individual.
 
-La identidad de los brutos de test queda fijada en un [manifiesto de reserva de 20 ZIP mensuales](../_static/data/test_raw_reserve_20250101_20260831.json), construido únicamente a partir de los metadatos de adquisición existentes, sin abrir esos ZIP en esta revisión. Su SHA-256 es `d2eb4e84fff85ee957e6b02890cead3cec37fd593ec2a8db487dbe137d2d3a10`. Esta reserva de archivos y calendario no equivale a congelar las muestras supervisadas, máscaras, transformaciones o procedimiento experimental, que siguen pendientes.
+La identidad de los brutos de test queda fijada en un [manifiesto de reserva de 20 ZIP mensuales](../_static/data/test_raw_reserve_20250101_20260831.json), construido únicamente a partir de los metadatos de adquisición existentes, sin abrir esos ZIP en esta revisión. Su SHA-256 es `d2eb4e84fff85ee957e6b02890cead3cec37fd593ec2a8db487dbe137d2d3a10`. Esta reserva de archivos y calendario no equivale a congelar las muestras supervisadas, máscaras, transformaciones o procedimiento del test, que siguen pendientes. Las configuraciones y los índices del ciclo de desarrollo del 04/11/2026 se conservan por separado.

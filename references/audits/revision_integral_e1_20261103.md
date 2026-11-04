@@ -1,5 +1,7 @@
 # Revisión integral del Entregable 1 — 03/11/2026
 
+> **Actualización 04/11/2026:** este informe conserva el corte documental anterior. Su aplazamiento de redes fue superado por la autorización del usuario y la primera ejecución de desarrollo: 201 corridas y 402 ajustes, con test intacto. El estado vigente está en [la revisión de ejecución](revision_dl_development_20261104.json). Las filas pendientes de entrenamiento que siguen son históricas; no describen el avance actual.
+
 Se contrastaron las secciones 1–7 del libro con la guía original de 34 páginas. Esta versión incorpora la ampliación del EDA general y del bloque C de regresión temporal, incluidas cuatro referencias Ridge autorizadas exclusivamente para diagnosticar residuos. Se conservan explícitos los pendientes: la guía exige ejecución en E1 y el usuario reserva las redes DL, el piloto y el benchmark para E2. No se declara cumplimiento total de E1.
 
 | ID | Requisito y páginas de la guía | Estado | Corrección o evidencia | Pendiente o límite |

@@ -1,0 +1,99 @@
+{
+  "review_date": "2026-11-04",
+  "status": "first_development_experiment_completed_not_final_test",
+  "authorization": "User requested running models and updating Entregable1, superseding prior training deferral for this development cycle.",
+  "experiment": "results/dl_benchmark_20261104",
+  "initial_protocol": "experiments/dl_benchmark_20261104/protocol_initial.json",
+  "pre_fit_commit": "3c3c481b8b3f543064ffa7d616ef6c739cb2a783",
+  "code_signature": "74dc4b3f4e43ab88c10e6e7d66331b82cc1e0f41287162504cf692f97790a9fc",
+  "executed_families": [
+    "MLP",
+    "LSTM",
+    "CNN1D"
+  ],
+  "phase_run_counts": {
+    "development_benchmark": 90,
+    "pilot": 15,
+    "search": 96
+  },
+  "completed_runs": 201,
+  "completed_project_model_fits": 402,
+  "benchmark_seeds_per_family": 30,
+  "selected_history_days": 7,
+  "target_days": 7,
+  "forecast_days": 1,
+  "fit_scope": "Static admissible2023; inner stopping and fresh full-cohort refit per run; no fitting on2024 labels",
+  "selection_dates": [
+    "2024-01-01",
+    "2024-06-30"
+  ],
+  "pilot_and_comparison_dates": [
+    "2024-07-01",
+    "2024-12-31"
+  ],
+  "comparison_dates_count": 184,
+  "operational_reference_family_from_search": "MLP",
+  "subsequent_descriptive_neural_leader": "LSTM",
+  "best_context_forecast": "Persistencia",
+  "mean_development_rmse": {
+    "MLP": 0.015990309227832393,
+    "LSTM": 0.008903462902420467,
+    "CNN1D": 0.017586689076379183,
+    "Persistencia": 0.0048224787524133545
+  },
+  "power": {
+    "pilot_max_required_R": 1212,
+    "actual_R": 30,
+    "cap_limits_power": true,
+    "target_power_established_for_planned_effect": false,
+    "planning_null": "zero difference, effect equals5percent persistence RMSE; distinct from demonstrating gain above5percent"
+  },
+  "analysis": {
+    "seed_level_hypotheses_holm": 9,
+    "primary_temporal_dm_hypotheses_holm": 6,
+    "residual_hypotheses_holm": 15,
+    "diagnostic_seed": 1001,
+    "bootstrap_replicates": 2000,
+    "primary_date_block_length": 14,
+    "sensitivity_date_block_lengths": [
+      7,
+      28
+    ],
+    "bootstrap_scope": "paired dates conditional on stored models, no refitting or seed resampling"
+  },
+  "literature": {
+    "references": 35,
+    "included_full_texts": 5,
+    "author_values": 81,
+    "independent_nonlinear_MLP_studies": 0,
+    "simple_independent_CNN1D_studies": 0,
+    "extraction_requirement_closed": false
+  },
+  "test_files_opened": 0,
+  "overall_E1_declared_complete": false,
+  "remaining": [
+    "applied comparator literature for MLP and shallow CNN1D",
+    "planned small-effect power target not met at cap30",
+    "final supervised heldout samples/protocol/evaluation",
+    "equivalence margin and advanced-vs-DL practical margin"
+  ],
+  "artifact_audit": "references/audits/revision_dl_artifacts_20261104.json",
+  "analysis_audit": "references/audits/revision_dl_analysis_20261104.json",
+  "unit_tests": {
+    "meaningful_tests_passed": 25,
+    "new_project_fits_in_tests": 0
+  },
+  "source_sha256": {
+    "results/dl_benchmark_20261104/protocol_initial.json": "7cbda15bd55b8a9fe4bd73b199e2b2af7ca9942e01521ddaa275c6181d43ce4f",
+    "results/dl_benchmark_20261104/selected_configuration.json": "5341317cb61c6d01419cfbcfcbdc1d58c72c6af51c7c5fdd11cfed2ebe088574",
+    "results/dl_benchmark_20261104/pilot_summary.json": "c4e4407d79a884ba3ffc80dd7a86b9aad6006581309e4774553c059d38b9f13d",
+    "results/dl_benchmark_20261104/protocol_final.json": "6263df303b61c88b145e5d181b682d24c6244845121456bbfb4371a1b0991b2d",
+    "results/dl_benchmark_20261104/runs.csv": "5f430c4c294240ccb811f70bbd86efc3bb5351c7aeb6439d8d87bf9cfa27417e",
+    "results/dl_benchmark_20261104/analysis/metrics_summary.csv": "b4a63561578c2ab68369ee1802178cab54462d9ff087685ba5efee0ce0351b39",
+    "results/dl_benchmark_20261104/analysis/paired_tests.csv": "f8ae046979ed044ef01f9c84e9841d2308b464a3f0ffffdef5d8b58106c79e6e",
+    "results/dl_benchmark_20261104/analysis/temporal_dm.csv": "65ba40bae68dda1059072d32a5c87f501561543770c9a9c768f4b6594110d7af",
+    "results/dl_benchmark_20261104/analysis/diagnostics.csv": "ee2deb9cabbf5b053f5edb04e9f93e534fcd4241700965b6708e1e4bfdbefa0f",
+    "results/dl_benchmark_20261104/run_artifacts.tar.gz": "3350dc555664ca712c0fd44fcfa43a7f064c5eaac14415f48b2ace791499d66b",
+    "data/manifests/test_raw_reserve_20250101_20260831.json": "d2eb4e84fff85ee957e6b02890cead3cec37fd593ec2a8db487dbe137d2d3a10"
+  }
+}

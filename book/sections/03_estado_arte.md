@@ -1,8 +1,8 @@
 # 3. Revisión del Estado del Arte y Extracción de los Tres Modelos Base
 
-La revisión debe identificar exactamente tres modelos DL básicos usados como referencias comparativas en la literatura de volatilidad de Bitcoin. Este capítulo reúne **35 referencias bibliográficas y un corpus exploratorio de cinco textos completos**; son unidades distintas. La propuesta del proyecto sigue la guía 6.4: **MLP, LSTM y CNN1D poco profunda**, con GRU como alternativa recurrente. Las fichas de LSTM, TCN y encoder Transformer se conservan como perfiles documentales de las fuentes; no son el trío propuesto. La extracción aplicada y las configuraciones finales de MLP/CNN1D todavía requieren respaldo.
+La revisión debe identificar exactamente tres modelos DL básicos usados como referencias comparativas en la literatura de volatilidad de Bitcoin. Este capítulo reúne **35 referencias bibliográficas y un corpus exploratorio de cinco textos completos**; son unidades distintas. La propuesta del proyecto sigue la guía 6.4: **MLP, LSTM y CNN1D poco profunda**, con GRU como alternativa recurrente. Las fichas de LSTM, TCN y encoder Transformer se conservan como perfiles documentales de las fuentes; no son el trío propuesto. El 04/11/2026 se ejecutó el primer experimento de desarrollo con MLP, LSTM y CNN1D poco profunda, autorizado por el usuario. Sus configuraciones propias y resultados están en los capítulos 4–5; la extracción aplicada de MLP/CNN1D todavía requiere respaldo bibliográfico.
 
-La revisión del **03/11/2026** corrigió motivos de cribado, recuperó dos textos adicionales y completó la extracción de los hiperparámetros ganadores de S1, que sí aparecen en su apéndice. Se conservan los cortes anteriores y se explicitan fuentes grises, parámetros desconocidos y límites de las métricas. No se entrenaron redes ni se consultaron datos de test del proyecto.
+La revisión del **03/11/2026** corrigió motivos de cribado, recuperó dos textos adicionales y completó la extracción de los hiperparámetros ganadores de S1, que sí aparecen en su apéndice. Se conservan los cortes anteriores y se explicitan fuentes grises, parámetros desconocidos y límites de las métricas. Aquella revisión documental del 03/11/2026 no entrenó redes ni consultó test; la ejecución posterior de desarrollo se registra por separado.
 
 El problema propio es **regresión temporal, tipo 4, ruta 6.4**: OHLCV rezagadas sin historia explícita de la volatilidad objetivo. Las tareas de las fuentes no coinciden automáticamente con ese contrato. La revisión punto por punto está en el {download}`informe del capítulo 3 <../_static/e1/revision_estado_arte_20261103.md>` y su [matriz de requisitos](../_static/e1/revision_estado_arte_20261103.json).
 
@@ -254,8 +254,8 @@ La guía exige recurrencia, sencillez, reproducibilidad y tres modelos no redund
 2. **Registrar la configuración por variante.** Extraer entrada, salida, tipo de arquitectura, profundidad, ancho, regularización, pérdida, optimización, entrenamiento y localización. Un campo no reportado permanece desconocido; no se completa por preferencia.
 3. **Construir la tabla de frecuencias.** Contar un estudio por familia utilizada como referencia independiente, conservando sus variantes. La recurrencia de una familia no acredita el uso de una configuración concreta en todos esos estudios.
 4. **Ordenar los candidatos por frecuencia y complejidad.** Comparar profundidad y parámetros con sus hipótesis, mostrando tanto el tamaño de origen como una representación común p=5, q=1. No utilizar RMSE de tareas distintas como desempate.
-5. **Seleccionar exactamente tres modelos cuando la evidencia lo permita.** Justificar conjuntamente recurrencia, sencillez, reproducibilidad y suficiencia de fuentes. Antes de implementar deben cerrarse tres arquitecturas con respaldo; si falta evidencia, mantener la selección pendiente sin omitir un candidato por preferencia.
-6. **Verificar sesgo inductivo y no redundancia del trío.** Explicar qué diferencias de representación son relevantes para el problema. Si los tres candidatos no satisfacen conjuntamente los criterios, ampliar la evidencia y conservar el cierre pendiente. Cuando falta una arquitectura concreta, aplica el procedimiento de §3.2.5 y la búsqueda del Entregable 2 antes de entrenar; un espacio supuesto no es una configuración publicada.
+5. **Seleccionar exactamente tres modelos cuando la evidencia lo permita.** Justificar conjuntamente recurrencia, sencillez, reproducibilidad y suficiencia de fuentes. Para acreditar el cierre bibliográfico deben justificarse tres arquitecturas con respaldo; si falta evidencia, mantener esa acreditación pendiente sin omitir un candidato por preferencia. La ejecución propia autorizada no completa por sí sola ese requisito.
+6. **Verificar sesgo inductivo y no redundancia del trío.** Explicar qué diferencias de representación son relevantes para el problema. Si los tres candidatos no satisfacen conjuntamente los criterios, ampliar la evidencia y conservar el cierre pendiente. Cuando falta una arquitectura concreta, la guía remite al procedimiento de §3.2.5 y a la búsqueda del Entregable 2; una adaptación propia registrada no se convierte en una configuración publicada.
 
 #### 3.2.1.1. Frecuencias, variantes y sensibilidad del corpus
 
@@ -292,15 +292,25 @@ Los conteos comunes controlan dimensiones de entrada/salida, pero no igualan cap
 
 #### 3.2.1.3. Estado de la selección
 
-**Propuesta de diseño alineada con la guía 6.4:**
+**Trío ejecutado en desarrollo, alineado con la guía 6.4:**
 
-| Puesto propuesto | Familia | Entrada y papel | Evidencia pendiente |
+| Puesto | Familia | Entrada y papel | Evidencia pendiente |
 |---|---|---|---|
-| P1 | MLP sencilla | Las mismas covariables OHLCV rezagadas, aplanadas en 5D componentes; referencia no lineal sin estado recurrente | No hay MLP independiente no lineal acreditada en el corpus; faltan referencias aplicadas y ficha propia. |
-| P2 | LSTM unidireccional | Secuencia D×5 de las mismas covariables; referencia con memoria recurrente | La variante unidireccional está documentada en 3/5 textos, con tareas distintas. Falta justificar la adaptación y cerrar la configuración; GRU es alternativa para este puesto. |
+| P1 | MLP sencilla | Las mismas covariables OHLCV rezagadas, aplanadas en 5D componentes; referencia no lineal sin estado recurrente | No hay MLP independiente no lineal acreditada en el corpus; faltan referencias aplicadas; su implementación propia se documenta en §4.2. |
+| P2 | LSTM unidireccional | Secuencia D×5 de las mismas covariables; referencia con memoria recurrente | La variante unidireccional está documentada en 3/5 textos, con tareas distintas. La adaptación propia unidireccional y su configuración se documentan en §4.2; GRU se conserva como alternativa no ejecutada. |
 | P3 | CNN1D poco profunda | La misma secuencia de covariables; referencia convolucional temporal | No hay CNN1D simple independiente acreditada en el corpus. La TCN ganadora de S1 no satisface por sí sola esta especificación. |
 
-El [registro de propuesta](../_static/literature_e1/guide_aligned_proposal_20261104.json) identifica la procedencia curricular y las lagunas. Elegir LSTM para el puesto recurrente se apoya en su mayor recurrencia observada y en una variante pequeña descrita; no afirma que prediga mejor que GRU. Ninguna arquitectura, ancho o configuración experimental queda congelada.
+El [registro de propuesta](../_static/literature_e1/guide_aligned_proposal_20261104.json) identifica la procedencia curricular y las lagunas. Elegir LSTM para el puesto recurrente se apoya en su mayor recurrencia observada y en una variante pequeña descrita; no afirma que prediga mejor que GRU. El protocolo inicial fijó las tres arquitecturas y el espacio de búsqueda antes del primer ajuste, en el commit `3c3c481`. La selección posterior de desarrollo fijó D=7, ancho y learning rate antes del piloto; el plan de 30 semillas quedó congelado después del piloto y antes de la comparación. Este registro no congela un protocolo de test.
+
+La [selección ejecutada](../_static/dl_benchmark_20261104/selected_configuration.json) identifica las siguientes configuraciones propias. Todas usan la misma historia de siete días y cinco covariables, objetivo σ7, horizonte de un día y salida Softplus no negativa:
+
+| Modelo propio | Arquitectura ejecutada | Learning rate | Parámetros entrenables |
+|---|---|---:|---:|
+| MLP | Aplanado 7×5 → Dense16/ReLU/dropout 0,1 → Dense1 | 0,001 | 593 |
+| LSTM | Una capa unidireccional H=32 → último estado/dropout 0,1 → Dense1; dos sesgos por compuerta de PyTorch | 0,003 | 5.025 |
+| CNN1D poco profunda | Dos convoluciones causales ordinarias de 16 canales, kernel 3, sin dilatación ni residuales → media temporal → Dense1 | 0,001 | 1.057 |
+
+La CNN1D tiene campo receptivo local de cinco posiciones antes de la media temporal; no es una réplica de la TCN S1. Se entrenó solo con datos admisibles de 2023. La búsqueda usó enero–junio de 2024; el piloto y la comparación con semillas nuevas usaron julio–diciembre de 2024. Este segundo tramo es desarrollo/calibración expuesto, no test independiente. El [registro de ejecución](../_static/dl_benchmark_20261104/execution_summary.json) acredita 201 corridas y 402 ajustes internos/refits, con cero archivos de test abiertos. Las corridas no añaden estudios al corpus ni elevan los conteos 0/5 de MLP y CNN1D simple.
 
 **Perfiles documentales conservados de la revisión previa:**
 
@@ -311,7 +321,7 @@ El [registro de propuesta](../_static/literature_e1/guide_aligned_proposal_20261
 | Perfil documental de atención | Encoder Transformer | Mecanismo de atención distinto, documentado en S2 y S6 | Corroborar procedencia y detalles de fuentes grises como antecedente suplementario |
 | Alternativa del puesto recurrente | GRU | 2/5 y menor complejidad que algunas variantes recurrentes | No descartarla solo porque LSTM también sea recurrente; justificar no redundancia y criterios del trío final |
 
-El [registro de selección](../_static/literature_e1/selection_evidence.json) conserva los perfiles como evidencia documental y registra por separado la propuesta MLP–LSTM–CNN1D; la selección experimental final sigue sin congelarse. La frecuencia por sí sola ordena LSTM, luego GRU y Transformer empatados, y después TCN. La elección anterior de LSTM–TCN–Transformer priorizaba diversidad; no satisface por sí sola la regla conjunta de la guía. La propuesta actual se alinea con las tres familias de la guía; completar su respaldo aplicado y las configuraciones reproducibles sigue siendo necesario para satisfacer la extracción de tres básicos.
+El [registro de selección](../_static/literature_e1/selection_evidence.json) conserva los perfiles como evidencia documental y registra por separado la propuesta MLP–LSTM–CNN1D; el trío y sus configuraciones para el primer ciclo de desarrollo están congelados en registros separados. El protocolo final de test permanece abierto. La frecuencia por sí sola ordena LSTM, luego GRU y Transformer empatados, y después TCN. La elección anterior de LSTM–TCN–Transformer priorizaba diversidad; no satisface por sí sola la regla conjunta de la guía. La propuesta actual se alinea con las tres familias de la guía; completar su respaldo aplicado sigue siendo necesario para satisfacer la extracción de tres básicos. Las configuraciones reproducibles propias ya se ejecutaron; no se atribuyen a los autores revisados.
 
 ### 3.2.2. Criterios que debe cumplir cada modelo base
 
@@ -319,12 +329,12 @@ Los cuatro criterios de la guía se evalúan por modelo, junto con la suficienci
 
 | Criterio | Evidencia disponible | Estado y límite |
 |---|---|---|
-| Arquitectura simple, reproducible y ampliamente documentada | S5 identifica una LSTM pequeña; S1 y S2 describen configuraciones y las fichas separan fuente, cálculo y adaptación | La TCN ganadora de S1 es grande; falta su versión de biblioteca y S6 no permite reconstruir un total exacto. La configuración propia sigue pendiente. |
+| Arquitectura simple, reproducible y ampliamente documentada | S5 identifica una LSTM pequeña; S1 y S2 describen configuraciones y las fichas separan fuente, cálculo y adaptación | La TCN ganadora de S1 es grande; falta su versión de biblioteca y S6 no permite reconstruir un total exacto. Las configuraciones propias de desarrollo están implementadas y contadas en §4.2; no reproducen automáticamente los ganadores de estas fuentes. |
 | Uso frecuente como referencia en la literatura del problema | Frecuencias por estudio y sensibilidades de §3.2.1.1 | LSTM 4/5, GRU 2/5, encoder 2/5 y TCN 1/5 describen este corpus, sin demostrar recurrencia global. GRU continúa elegible. |
-| Capacidad de entrenarse bajo el mismo pipeline y partición que los otros modelos base | El contrato propio fija información OHLCV, objetivo, horizonte y evaluación cronológica | Deben justificarse representaciones compatibles con cada arquitectura y el esfuerzo de ajuste común. Implementación, presupuesto y configuraciones de las tres redes permanecen reservados para E2. |
+| Capacidad de entrenarse bajo el mismo pipeline y partición que los otros modelos base | El contrato propio fija información OHLCV, objetivo, horizonte y evaluación cronológica | Las tres redes se ejecutaron con las mismas ventanas OHLCV, cortes temporales, transformaciones y semillas; cada familia recibió cuatro configuraciones por D y dos semillas de búsqueda. Las diferencias de representación y el presupuesto se registran en §4.2. |
 | Ser un modelo de Deep Learning independiente | Se identifican comparadores LSTM, GRU, TCN y encoder; se separan propuestas e híbridos | Una Dense1 lineal, una cabeza interna, persistencia, SVR, Ridge o GARCH no ocupan un puesto de los tres modelos DL. |
 
-El mismo pipeline exige las mismas reglas de información disponible, partición, preprocesamiento y evaluación, con transformaciones ajustadas solo sobre entrenamiento. No obliga a que una representación vectorizada y una secuencial tengan idéntica forma de tensor. Ninguna de estas condiciones equivale a una validación experimental ya ejecutada.
+El mismo pipeline exige las mismas reglas de información disponible, partición, preprocesamiento y evaluación, con transformaciones ajustadas solo sobre entrenamiento. No obliga a que una representación vectorizada y una secuencial tengan idéntica forma de tensor. La ejecución de desarrollo aporta evidencia de compatibilidad técnica; no demuestra generalización fuera de 2024 ni cierra la suficiencia bibliográfica.
 
 ### 3.2.3. Producto obligatorio: síntesis de los estudios incluidos
 
@@ -357,15 +367,15 @@ En este problema continuo, el ejemplo clásico pertinente de la guía es **SVR l
 | TCN | Filtros causales compartidos y campo receptivo definido | Antecedente documental; no se equipara a la CNN1D poco profunda propuesta |
 | Encoder Transformer | Interacciones por contenido y posiciones en una ventana observable | Antecedente documental de atención, fuera de la propuesta actual de tres básicos |
 
-Su comparación exige información, partición, objetivo y esfuerzo de ajuste comunes. Persistencia, Ridge y GARCH aportan contexto y no sustituyen los tres modelos DL. Los cuatro Ridge del bloque C son diagnósticos de EDA; el benchmark propio de redes continúa reservado para E2.
+Su comparación exige información, partición, objetivo y esfuerzo de ajuste comunes. Persistencia, Ridge y GARCH aportan contexto y no sustituyen los tres modelos DL. Los cuatro Ridge del bloque C son diagnósticos de EDA; el primer benchmark propio de redes ya se ejecutó en desarrollo y se informa en el capítulo 5. El test reservado continúa sin consulta.
 
 ### 3.2.5. Arquitecturas no especificadas y búsqueda posterior
 
-La guía exige que, si la literatura no define una arquitectura concreta —por ejemplo, informa solo «un MLP»—, no se elija por criterio personal: se debe aplicar la búsqueda de arquitectura del **Entregable 2, sección 14**, declarando el espacio antes de entrenar. Esa referencia corresponde a la guía suministrada; no afirma que este capítulo haya ejecutado la búsqueda ni fijado ya un espacio propio.
+La guía exige que, si la literatura no define una arquitectura concreta —por ejemplo, informa solo «un MLP»—, no se elija por criterio personal: se debe aplicar la búsqueda de arquitectura del **Entregable 2, sección 14**, declarando el espacio antes de entrenar. Esa referencia corresponde a la guía suministrada. El experimento propio posterior declaró y ejecutó un espacio acotado, documentado en §4.2; no se presenta como cumplimiento del procedimiento completo de E2 §14, cuyo documento no se ha aportado.
 
 En la extracción se identifica primero qué componente no está reportado y qué fuente o código lo respalda. Si continúa desconocido, se conserva como tal y se documenta la decisión pendiente. S6 no especifica lo necesario para un conteo exacto; S7 presenta discrepancias entre PDF y código. Estas lagunas no se resuelven imputando valores por preferencia.
 
-Los ganadores de S1 **sí están publicados**: no procede tratar su ancho o profundidad como una arquitectura ausente. La versión de biblioteca pendiente y los supuestos del cálculo permanecen explícitos en §3.2.1.2 y en las fichas. Reducir la TCN de seis niveles y F=287 sería una adaptación que exige justificación, no una réplica del ganador ni una forma de completar un dato omitido. No se inventa en esta revisión un espacio de búsqueda actual; el trío y sus configuraciones siguen pendientes.
+Los ganadores de S1 **sí están publicados**: no procede tratar su ancho o profundidad como una arquitectura ausente. La versión de biblioteca pendiente y los supuestos del cálculo permanecen explícitos en §3.2.1.2 y en las fichas. Reducir la TCN de seis niveles y F=287 sería una adaptación que exige justificación, no una réplica del ganador ni una forma de completar un dato omitido. El espacio de búsqueda propio consta en el [protocolo inicial](../_static/dl_benchmark_20261104/protocol_initial.json) registrado antes del primer ajuste. Sus anchos 16/32 son decisiones de un experimento sencillo y acotado, no valores recuperados de S1 ni prueba de mínima complejidad global.
 
 ### 3.2.6. Familias de arquitecturas orientativas por tipo de problema
 
@@ -388,11 +398,11 @@ Un encoder no convierte por sí solo el problema en secuencia a secuencia; una c
 
 ## 3.3. Análisis documental de las arquitecturas recuperadas
 
-Las fichas siguientes documentan LSTM, TCN y encoder Transformer tal como aparecen en las fuentes recuperadas. **No corresponden al trío propuesto MLP–LSTM–CNN1D poco profunda.** La ficha LSTM aporta un antecedente para el puesto recurrente; las fichas TCN y encoder se conservan para trazabilidad y comparación de literatura. Faltan las fichas aplicadas de MLP y CNN1D simple, y las configuraciones propias todavía no están cerradas. Se distinguen: arquitectura reportada por la fuente, cálculo analítico derivado de su descripción y adaptación que necesitaría el proyecto. La elaboración de estas fichas no ejecutó código de Deep Learning ni generó predicciones o resultados nuevos con datos de mercado; las referencias Ridge del EDA se documentan por separado en el capítulo 2.
+Las fichas siguientes documentan LSTM, TCN y encoder Transformer tal como aparecen en las fuentes recuperadas. **No corresponden al trío propuesto MLP–LSTM–CNN1D poco profunda.** La ficha LSTM aporta un antecedente para el puesto recurrente; las fichas TCN y encoder se conservan para trazabilidad y comparación de literatura. Faltan las fichas bibliográficas aplicadas de MLP y CNN1D simple; las configuraciones propias del primer ciclo ya se implementaron y ejecutaron en §4.2. Se distinguen: arquitectura reportada por la fuente, cálculo analítico derivado de su descripción y adaptación que necesitaría el proyecto. La elaboración documental de estas fichas no ejecutó código de Deep Learning ni generó predicciones. Esa operación histórica se distingue del experimento propio del 04/11/2026, documentado en los capítulos 4–5, y de las referencias Ridge del EDA del capítulo 2.
 
 Tras la recuperación dirigida, el corpus exploratorio contiene **cinco textos completos**: S1, S2, S5, S6 y S7. La **familia LSTM aparece en 4/5**, incluida la BiLSTM de S2; sus variantes unidireccionales están en S1/S5/S7, **3/5**. GRU aparece en **2/5**, TCN en **1/5** y encoder Transformer en **2/5**, S2/S6. S6 y S7 se incorporan como literatura gris con riesgos explícitos; una mayor cantidad de textos no acredita revisión por pares, mínima complejidad o comparabilidad de sus resultados. Las fichas concretas se mantienen apoyadas en LSTM de S5, TCN de S1 y SELF-ATT de S2. S6/S7 amplían evidencia de las familias, no definen réplicas idénticas de esas configuraciones. Una referencia general de arquitectura no cuenta como estudio aplicado adicional.
 
-El contrato del proyecto conserva cinco covariables OHLCV diarias, entradas de D=7/14/21/28 días, volatilidad histórica de n=7 retornos diarios y horizonte h=1. Al inicio de t se conoce información hasta t−1 y se pronostica Y_t=σ_(t+1), que incorpora r_t. Este objetivo no es volatilidad realizada de siete días enteramente futuros. Ninguno de los cinco textos utiliza exactamente este contrato.
+El contrato del proyecto conserva cinco covariables OHLCV diarias, entradas candidatas de D=7/14/21/28 días, volatilidad histórica de n=7 retornos diarios y horizonte h=1; el primer ciclo eligió D=7. Con la convención `outcome_day=d` del código, al inicio de d se conoce información hasta d−1 y se pronostica σ7(d), la desviación de los siete retornos que terminan en r_d; la etiqueta queda disponible al cierre de d. Este objetivo no es volatilidad realizada de siete días enteramente futuros. Ninguno de los cinco textos utiliza exactamente este contrato.
 
 ### 3.3.1. LSTM unidireccional
 
@@ -504,7 +514,7 @@ Para la configuración de S5, p=1,H=20,q=1, la primera expresión da **1.781 par
 
 Por ventana, el costo dominante de inferencia es O(D·H(p+H)+Hq). Un minibatch de B ventanas multiplica ese costo por B; la retropropagación mantiene el mismo orden, con mayor constante y almacenamiento de estados O(BDH). La recurrencia impone dependencia secuencial entre pasos. No se infiere tiempo real ni consumo de GPU a partir de esta expresión.
 
-**Tiempo de entrenamiento e inferencia:** esta ficha no dispone de un tiempo de reloj recuperado y comparable entre S1/S5/S7. Épocas, paciencia y batch describen presupuesto de entrenamiento, no duración. No se ha medido un tiempo propio ni se deduce uno a partir del conteo de parámetros.
+**Tiempo de entrenamiento e inferencia:** esta ficha no dispone de un tiempo de reloj recuperado y comparable entre S1/S5/S7. Épocas, paciencia y batch describen presupuesto de entrenamiento, no duración. No se ha medido un tiempo propio de réplicas exactas de esas configuraciones fuente ni se deduce uno a partir del conteo de parámetros. La LSTM propia adaptada de desarrollo sí tiene tiempos registrados, con su configuración distinta, en los capítulos 4–5.
 
 ### 3.3.2. TCN: convolución temporal causal y dilatada
 
@@ -576,7 +586,7 @@ S1, Tabla 2, informa **TCN RMSE 2,58±0,07; MAE 1,63±0,06; MAPE 0,23±0,01; MSL
 
 **Límites:** frecuencia 1/5 en el corpus exploratorio, detalles internos dependientes de una biblioteca sin versión fijada y test corto. La fuente respalda TCN y no acredita una CNN1D de una sola capa como réplica exacta. «Base comparativa» no significa mínima profundidad absoluta.
 
-Para el proyecto, pasar de retornos intradiarios a cinco OHLCV diarios y de 96 salidas a una volatilidad escalar sería una adaptación. Su profundidad, dilataciones, normalización y salida deben registrarse antes de implementar en E2. Si falta detalle de arquitectura, corresponde consultar el protocolo de E2 §14 citado por la guía; esta ficha no inventa sus reglas.
+Para el proyecto, pasar de retornos intradiarios a cinco OHLCV diarios y de 96 salidas a una volatilidad escalar sería una adaptación. Su profundidad, dilataciones, normalización y salida tendrían que registrarse antes de una futura réplica de TCN; esa réplica no forma parte del trío ya ejecutado. Si falta detalle de arquitectura, corresponde consultar el protocolo de E2 §14 citado por la guía; esta ficha no inventa sus reglas.
 
 #### 3.3.2.9. Complejidad computacional
 
@@ -721,15 +731,15 @@ El costo por bloque y minibatch B es O(B(L²d+Ld²)), más proyección O(BLFd) y
 | Profundidad identificada | S5 una capa, H20; S1 H261 | Seis niveles, F287, k5 y base4; convoluciones por bloque dependen de biblioteca no fijada | Dos encoder, cuatro cabezas |
 | Parámetros fuente | 1.781 derivados para S5; 299.724 para S1 con un sesgo | 4.563.396 condicionados al bloque residual de dos convoluciones y un stack | 49.249 derivados para Run B |
 | Datos/objetivo idénticos a E1 | No | No | No |
-| Configuración OHLCV propia congelada | No; adaptación distinguida | No; falta variante y protocolo aplicable | No; cambio de frecuencia, dimensión y salida distinguido |
+| Réplica exacta de la configuración fuente congelada para OHLCV | No; la LSTM propia adaptada y congelada de §4.2 tiene otra configuración | No; no se ejecutó una réplica de TCN, sino una CNN1D poco profunda distinta | No; no se ejecutó encoder en el trío propio |
 
-Las fichas aportan evidencia, ecuaciones, diagramas, resultados publicados y análisis de complejidad, con los límites y detalles no verificados identificados. No completan una búsqueda de hiperparámetros propia ni convierten una fuente en treinta estudios. La diversidad de mecanismos no acredita por sí sola mayor recurrencia y mínima complejidad; la selección definitiva sigue pendiente. Si el criterio académico exige exclusivamente estudios revisados por pares, S2/S6 no acreditan todavía el respaldo del encoder y S7 tampoco cumple ese filtro. La extracción definitiva de tres familias permanece abierta.
+Las fichas aportan evidencia, ecuaciones, diagramas, resultados publicados y análisis de complejidad, con los límites y detalles no verificados identificados. No completan una búsqueda de hiperparámetros propia ni convierten una fuente en treinta estudios. La diversidad de mecanismos no acredita por sí sola mayor recurrencia y mínima complejidad; la acreditación bibliográfica definitiva sigue pendiente. Si el criterio académico exige exclusivamente estudios revisados por pares, S2/S6 no acreditan todavía el respaldo del encoder y S7 tampoco cumple ese filtro. La extracción definitiva de tres familias permanece abierta.
 
 La numeración de cada ficha sigue los nueve incisos de la guía: referencias; tipo de arquitectura; descripción técnica; tipo de problema; datasets; métricas/valores; fortalezas; limitaciones; y complejidad. Un DOI ausente o un tiempo no recuperado se declara, y un conteo analítico condicionado no se presenta como tamaño medido por una implementación.
 
 ## 3.4. Comparación crítica de la evidencia recuperada
 
-Las tablas siguientes preservan resultados y configuraciones de las fuentes LSTM/TCN/encoder. Su función es documental; no sustituyen la comparación futura de MLP, LSTM y CNN1D poco profunda ni acreditan las fichas que aún faltan.
+Las tablas siguientes preservan resultados y configuraciones de las fuentes LSTM/TCN/encoder. Su función es documental; no sustituyen la comparación propia de MLP, LSTM y CNN1D poco profunda del capítulo 5 ni acreditan las fichas bibliográficas aplicadas que aún faltan.
 
 ### 3.4.1. Comparación estructurada entre las arquitecturas documentadas
 
@@ -761,9 +771,9 @@ La comparación documental siguiente no constituye una medición propia de robus
 | Ejecución temporal | Dependencia secuencial entre estados | Filtros paralelizables en la ventana | Interacciones entre pares de posiciones |
 | Memoria de activaciones en entrenamiento | Crece con D y H | Crece con D, ancho y profundidad | Atención completa añade almacenamiento cuadrático en D |
 | Evidencia de sencillez | S5 identifica una LSTM pequeña; S1 y S7 son mayores | El ganador S1 es ancho y de seis niveles; no equivale a CNN1D poco profunda | Dos encoder documentados; menos pesos que la TCN bajo las hipótesis, sin garantizar menor tiempo |
-| Medición comparable propia de tiempo/GPU/RAM | No ejecutada | No ejecutada | No ejecutada |
+| Medición propia comparable entre las tres configuraciones fuente | No se ejecutaron réplicas de fuente | No se ejecutaron réplicas de fuente | No se ejecutaron réplicas de fuente |
 
-Las fórmulas y los conteos de §3.2.1.2 y §3.3 controlan sus hipótesis, pero no miden eficiencia. Entrenamiento e inferencia dependen también de implementación, hardware, batch, precisión y presupuesto. Las épocas descritas por S2 no equivalen a tiempos de reloj comparables. Los tamaños de ventanas y salidas de las fuentes son distintos; el conteo con p=5,q=1 no valida esos modelos bajo OHLCV diario.
+Los tiempos medidos en CPU para MLP, LSTM y CNN1D propias se presentan en §5.1; no son mediciones de las tres configuraciones fuente de esta tabla. Las fórmulas y los conteos de §3.2.1.2 y §3.3 controlan sus hipótesis, pero no miden eficiencia. Entrenamiento e inferencia dependen también de implementación, hardware, batch, precisión y presupuesto. Las épocas descritas por S2 no equivalen a tiempos de reloj comparables. Los tamaños de ventanas y salidas de las fuentes son distintos; el conteo con p=5,q=1 no valida esos modelos bajo OHLCV diario.
 
 ### 3.4.2. Análisis de validez de los estudios revisados
 
@@ -801,7 +811,7 @@ La reducción se deriva como `100·(RMSE_TCN−RMSE_variante)/RMSE_TCN` a partir
 
 **Límite del corpus respecto a la propuesta actual:** ninguno de los cinco textos incluidos acredita una comparación conjunta de MLP, LSTM y CNN1D poco profunda con el contrato OHLCV diario de Binance Spot, n=7 y h=1. En particular, MLP independiente y CNN1D simple tienen 0/5 apoyos verificados en este corpus. Esta es una laguna de cobertura de la revisión accesible, no prueba de ausencia mundial ni de originalidad. Debe completarse la evidencia aplicada antes de presentar el trío como extraído y justificado por la literatura.
 
-La contribución evaluable sería establecer referencias DL de capacidad controlada, bajo la misma información y presupuesto, y cuantificar qué mejora debe superar un modelo avanzado. Antes de ejecutarla hace falta cerrar el trío con evidencia suficiente y registrar sus configuraciones. Se mantienen RMSE, el margen operativo del 5 % frente a persistencia y la protección del test. No se promete que una red supere esa referencia.
+El primer ciclo establece referencias DL propias de capacidad controlada bajo información y presupuesto comunes, con configuraciones registradas antes de cada fase. En julio–diciembre de 2024 ninguna red supera a persistencia; LSTM tiene el menor RMSE entre las redes, mientras la referencia seleccionada con enero–junio sigue siendo MLP. Este cambio de orden limita la estabilidad de la selección. No cuantifica todavía un umbral validado para un modelo avanzado. Se mantienen RMSE, el margen operativo del 5 % frente a persistencia y la protección del test; la evidencia bibliográfica aplicada insuficiente permanece como limitación.
 
 ### 3.4.5. Correspondencia y estado de cierre
 
@@ -813,14 +823,14 @@ La contribución evaluable sería establecer referencias DL de capacidad control
 | Inclusión, exclusión, flujo y responsable | Criterios retrospectivos, cribado histórico y revisado: 20 repositorios inspeccionados, siete textos evaluados y cinco incluidos; cinco README adicionales del descubrimiento actual como pistas | El flujo histórico y las nuevas pistas se distinguen; corpus sin nuevas inclusiones automáticas, sin exhaustividad ni segundo revisor humano acreditados |
 | Matriz y evaluación de calidad | Cinco textos, resultados con ubicación y riesgos por dimensión | La inclusión no certifica validez; dos incorporaciones y S2 son literatura gris |
 | Frecuencia y complejidad | Variantes, frecuencias ampliadas/sensibilidades, ganadores de S1 y conteos analíticos reproducibles | Corregido; no demuestra mínima complejidad global ni uso frecuente en todos los índices |
-| Exactamente tres modelos básicos no redundantes | Propuesta MLP–LSTM–CNN1D poco profunda según guía 6.4; GRU alternativa recurrente | Extracción aplicada y configuraciones pendientes; no se presenta la TCN grande como CNN simple |
-| Fichas técnicas del trío propuesto | Perfiles de fuente LSTM/TCN/encoder con referencias y análisis conservados | Faltan fichas aplicadas de MLP/CNN1D simple y configuraciones propias; las fichas fuente no las sustituyen |
+| Exactamente tres modelos básicos no redundantes | Propuesta MLP–LSTM–CNN1D poco profunda según guía 6.4; GRU alternativa recurrente | Extracción aplicada pendiente; configuraciones propias de desarrollo ejecutadas y registradas; no se presenta la TCN grande como CNN simple |
+| Fichas técnicas del trío propuesto | Perfiles de fuente LSTM/TCN/encoder con referencias y análisis conservados | Faltan fichas bibliográficas aplicadas de MLP/CNN1D simple; las configuraciones propias están en §4.2 y las fichas fuente no las sustituyen |
 | Comparación crítica y brecha | Desempeño separado por protocolo, robustez, escalabilidad y brecha avanzada/base cuantificada | Documentada sin ranking entre tareas, inferencia propia ni afirmación de novedad universal |
-| Experimentos y baseline medido | Diseño futuro y separación del diagnóstico Ridge de EDA | Tres redes, piloto, benchmark y test siguen reservados para E2 |
+| Experimentos y baseline medido | Primer ciclo propio: 96 corridas de búsqueda, 15 de piloto y 90 de comparación de desarrollo; separado del diagnóstico Ridge | 30 semillas por red, test sin consultar; resultados de desarrollo no acreditan baseline final ni completan la cobertura bibliográfica |
 
 La fase actual sigue la búsqueda pública y la comprobación posterior de procedencia descritas en §3.1. Las cinco coincidencias secundarias corresponden a *Journal of International Financial Markets, Institutions and Money*, *Frontiers in Physics*, *Economics Letters*, *Finance Research Letters* e *IEEE Access*. No sustituyen la verificación individual de los artículos ni certifican Q1. Las listas inspeccionadas no permiten juzgar actas de congresos: la ausencia de WSDM/ICDM en ellas no prueba falta de indexación.
 
-Los comprobantes se conservan en el [registro público de resultados](../_static/literature_e1/public_web_verification_20261103/discovery_records.json), el [flujo de la fase actual](../_static/literature_e1/public_web_verification_20261103/flow_summary.json), la [evidencia secundaria de revistas](../_static/literature_e1/public_web_verification_20261103/secondary_journal_evidence.json) y la [procedencia documental](../_static/literature_e1/public_web_verification_20261103/publication_provenance.json). Las asociaciones rechazadas y las pistas pendientes no se convierten en textos incluidos. Permanecen cinco estudios, 81 valores de autores y el trío final pendiente.
+Los comprobantes se conservan en el [registro público de resultados](../_static/literature_e1/public_web_verification_20261103/discovery_records.json), el [flujo de la fase actual](../_static/literature_e1/public_web_verification_20261103/flow_summary.json), la [evidencia secundaria de revistas](../_static/literature_e1/public_web_verification_20261103/secondary_journal_evidence.json) y la [procedencia documental](../_static/literature_e1/public_web_verification_20261103/publication_provenance.json). Las asociaciones rechazadas y las pistas pendientes no se convierten en textos incluidos. Permanecen cinco estudios y 81 valores de autores. La extracción bibliográfica definitiva sigue pendiente aunque el trío propio de desarrollo ya se ejecutó.
 
 ## 3.5. Fundamentos bibliográficos y contexto de la revisión
 
@@ -880,4 +890,4 @@ Holm aporta un procedimiento secuencial para comparaciones múltiples {cite:p}`h
 
 La herramienta descrita por Haddaway y colaboradores facilita producir diagramas de flujo PRISMA 2020 {cite:p}`haddaway2022`. Se cita como apoyo para documentar el proceso, sin atribuirle la declaración original ni afirmar cumplimiento de una revisión sistemática solo por dibujar un flujo. Los conteos de búsquedas, duplicados y exclusiones deben corresponder a registros reales.
 
-Las 35 referencias amplían el soporte documental del Entregable 1 y permiten distinguir problema financiero, arquitectura y método de evaluación. No equivalen a 35 experimentos ni a 35 estudios elegibles de modelos base de Bitcoin. Los textos de fundamentos no se suman a una frecuencia de uso en el problema aplicado. Las cinco fuentes completas se distinguen por calidad y procedencia. Los perfiles fuente y su comparación están documentados en §§3.3–3.4. Las fichas aplicadas de MLP y CNN1D simple de la propuesta actual aún deben completarse. Permanecen abiertos la cobertura bibliográfica, el orden de los candidatos por frecuencia y complejidad y el respaldo de las configuraciones propias de E2. La cantidad de citas no acredita por sí sola la identificación definitiva exigida por la guía.
+Las 35 referencias amplían el soporte documental del Entregable 1 y permiten distinguir problema financiero, arquitectura y método de evaluación. No equivalen a 35 experimentos ni a 35 estudios elegibles de modelos base de Bitcoin. Los textos de fundamentos no se suman a una frecuencia de uso en el problema aplicado. Las cinco fuentes completas se distinguen por calidad y procedencia. Los perfiles fuente y su comparación están documentados en §§3.3–3.4. Las fichas aplicadas de MLP y CNN1D simple de la propuesta actual aún deben completarse. Permanecen abiertos la cobertura bibliográfica, el orden de los candidatos por frecuencia y complejidad y el respaldo aplicado de las configuraciones propias ejecutadas en desarrollo. La cantidad de citas no acredita por sí sola la identificación definitiva exigida por la guía.

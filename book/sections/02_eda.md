@@ -4,7 +4,7 @@ El análisis se ejecutó con los archivos oficiales de **Binance Spot BTCUSDT**,
 
 Se distinguen las ventanas de entrada $D$ de las ventanas de volatilidad $n$: ambas se exploran en 7, 14, 21 y 28 **días**, pero tienen funciones diferentes. No se selecciona un ganador a partir de estos gráficos. La escala de cálculo usa retornos logarítmicos sin anualizar; las figuras que muestran porcentajes multiplican por 100 y lo indican en sus ejes.
 
-La métrica principal y el criterio operativo ya fijados en §1.1.4 son **RMSE** y una mejora relativa mínima del **5 % frente a persistencia**. Las decisiones del EDA preparan esa evaluación; el desempeño de las redes se medirá en la etapa experimental posterior.
+La métrica principal y el criterio operativo ya fijados en §1.1.4 son **RMSE** y una mejora relativa mínima del **5 % frente a persistencia**. Las decisiones del EDA prepararon esa evaluación. El primer ciclo DL ya ejecutado y sus resultados de desarrollo se documentan en los capítulos 4–5: eligió D=7 entre las cuatro historias, conserva n=7 y no apoya la mejora del 5 % frente a persistencia. Las sensibilidades del objetivo n=14/21/28 aún no se han entrenado.
 
 ## 2.1. EDA general
 
@@ -195,7 +195,7 @@ La versión publicada **0.1.5** usa la firma `sequence, numInputs, numOutputs, n
 
 **Aplicación a BTCUSDT:** se ejecutó esa función sobre índices del calendario diario de desarrollo, con entradas de **7/14/21/28 días**, salida de **un día** y salto de **un día**. Las entradas se mapean a OHLCV y las salidas a volatilidad por separado: pasar OHLCV directamente a la función produciría salidas OHLCV, no la etiqueta de volatilidad del proyecto.
 
-Se conservaron los folds cuyo día de resultado cae en **2024**, se excluyeron ventanas con valores no elegibles y se comprobó que todas las etiquetas de entrenamiento estaban disponibles antes del pronóstico de validación. Hay **366 folds por configuración**, para las 16 combinaciones de ventana de entrada y ventana de volatilidad: **5.856 filas de configuración-fold** en el manifiesto. Son índices de preparación, no 5.856 días independientes ni modelos entrenados. Las cuatro configuraciones con $n=7$ corresponden al objetivo principal; las doce restantes corresponden a sensibilidad de la definición del objetivo.
+Se conservaron los folds cuyo día de resultado cae en **2024**, se excluyeron ventanas con valores no elegibles y se comprobó que todas las etiquetas de entrenamiento estaban disponibles antes del pronóstico de validación. Hay **366 folds por configuración**, para las 16 combinaciones de ventana de entrada y ventana de volatilidad: **5.856 filas de configuración-fold** en el manifiesto. Son índices de preparación, no 5.856 días independientes ni modelos entrenados. Las cuatro configuraciones con $n=7$ corresponden al objetivo principal; las doce restantes corresponden a sensibilidad de la definición del objetivo. El experimento DL posterior completó **201 corridas y 402 ajustes internos/refits**, registrados en un [resumen independiente](../_static/dl_benchmark_20261104/execution_summary.json): no son ejecuciones de las 5.856 filas ni 366 reajustes por modelo. Las sensibilidades del objetivo n=14/21/28 permanecen sin entrenamiento DL.
 
 En la revisión del **03/11/2026** se hizo explícita y se aplicó la convención de embargo de la ruta 6.4: para evaluar el día $t$, se omiten del ajuste los **$D$ días de resultado completos $[t-D,t-1]$**. Una muestra de ajuste con día de resultado $u$ debe cumplir **$u\le t-D-1$**, además de los controles de disponibilidad y calidad. La distancia mínima entre su día de resultado y el de validación es, por tanto, $D+1$ días. El máximo rezago de las covariables de $X_t=(z_{t-D},\ldots,z_{t-1})$ es $D$.
 
@@ -212,9 +212,9 @@ Son recuentos de índices elegibles para $n=7$, no corridas de entrenamiento. El
 
 El embargo de covariables no implica independencia de las etiquetas móviles. El manifiesto registra **2.196 filas de seis configuraciones de sensibilidad con $n>D+1$** donde la última etiqueta de ajuste y la de validación comparten retornos. Esa dependencia debe conservarse en el diseño de inferencia posterior; los folds no se contarán como réplicas independientes.
 
-El código es `scripts/prepare_forward_chaining.py`. Se publican el [resumen y verificación del ejemplo](../_static/cv_forward_chaining/summary.json) y el [manifiesto de folds](../_static/cv_forward_chaining/folds.csv), con fechas, cantidades de muestras y hashes de los índices de entrenamiento. La historia elegible de ajuste crece en estos índices e incluye únicamente pasado permitido; la referencia residual de §2.2.3.2.3 conserva pesos fijos y no utiliza todas esas ampliaciones. No se abren archivos de test. La división no necesita semilla de barajado.
+El código es `scripts/prepare_forward_chaining.py`. Se publican el [resumen y verificación del ejemplo](../_static/cv_forward_chaining/summary.json) y el [manifiesto de folds](../_static/cv_forward_chaining/folds.csv), con fechas, cantidades de muestras y hashes de los índices de entrenamiento. La historia elegible de ajuste crece en estos índices e incluye únicamente pasado permitido; la referencia residual de §2.2.3.2.3 conserva pesos fijos y no utiliza todas esas ampliaciones. El primer ciclo de las tres redes también conservó pesos fijos ajustados con 2023; el detalle del corte interno y del refit se registra en §4.2. No se abren archivos de test. La división no necesita semilla de barajado.
 
-- **Decisión de preprocesamiento:** utilizar los índices corregidos de la versión 2, con embargo explícito de $D$ días y soportes de etiqueta registrados; ajustar transformaciones solo con el entrenamiento permitido de cada fold y conservar esos controles en la ejecución posterior.
+- **Decisión de preprocesamiento:** utilizar los índices corregidos de la versión 2, con embargo explícito de $D$ días y soportes de etiqueta registrados; ajustar transformaciones solo con el entrenamiento permitido de cada fold y conservar esos controles en las ejecuciones. El ciclo DL de desarrollo ya los aplicó con un ajuste estático de 2023, sin usar todas las ampliaciones del manifiesto.
 - **Impacto en la arquitectura:** los modelos deben evaluarse con el mismo calendario y muestras comparables dentro de cada configuración.
 - **Riesgos identificados:** etiquetas que crucen cortes, confundir días con muestras y elegir el tamaño de entrada usando test.
 
@@ -226,7 +226,7 @@ Esta reserva fija la identidad de los archivos brutos; aún no se ha congelado e
 
 - **Decisión de preprocesamiento:** congelar código, reglas y manifiesto de muestras antes de evaluar test; verificar después los hashes.
 - **Impacto en la arquitectura:** comparar modelos y decisiones ya fijados, sin adaptar arquitecturas al resultado de test.
-- **Riesgos identificados:** asumir que un hash demuestra ausencia de consulta o que descargar equivale a evaluar. La congelación del benchmark permanece pendiente.
+- **Riesgos identificados:** asumir que un hash demuestra ausencia de consulta o que descargar equivale a evaluar. El plan de comparación de desarrollo quedó congelado por fase; la congelación del protocolo y muestras de test permanece pendiente.
 
 ## 2.2. EDA Específico por Tipo de Problema
 
@@ -274,7 +274,7 @@ No se transforma este diagnóstico en un ranking de historias o en un baseline D
 La profundidad, el ancho y la regularización de una posible MLP requieren evidencia y protocolo propios; no están fijados por este bloque. Se conservan MSE como pérdida prevista, RMSE primaria y una salida escalar de volatilidad. Entropía cruzada ponderada y balance de clases no aplican sin un objetivo de clasificación; Huber es una opción de la guía que no se adopta por esta reorganización. La partición debe seguir siendo cronológica con embargo; la representación en tabla no permite barajar fechas.
 
 - **Decisión de preprocesamiento:** conservar OHLCV numérico, desfases causales y escalado aprendido solo con pasado; no introducir codificaciones categóricas o transformaciones nuevas.
-- **Impacto en la arquitectura:** mantener D×5 y el mismo objetivo entre modelos; las referencias lineales son diagnósticos de EDA y la selección de las tres redes continúa pendiente.
+- **Impacto en la arquitectura:** mantener D×5 y el mismo objetivo entre modelos; las referencias lineales son diagnósticos de EDA y las tres redes MLP/LSTM/CNN1D se ejecutaron por separado en los capítulos 4–5. La extracción bibliográfica aplicada continúa parcial.
 - **Riesgos identificados:** tratar ventanas temporales como filas independientes, confundir PCA/correlación con utilidad predictiva, usar información posterior al origen o presentar el bloque tabular como sustituto del análisis temporal.
 
 ### 2.2.2. Series de Tiempo
@@ -295,7 +295,7 @@ Diferenciación, transformación logarítmica o de potencia y normalización por
 
 ACF, PACF con bandas aproximadas y periodograma se conservan en §2.5.3, con la unidad y el tramo de cada diagnóstico explícitos. Se examinan rezagos y periodicidades como descripciones, sin elegir una D ganadora por el mayor pico observado. Los resultados diarios, horarios y de minuto no se tratan como intercambiables.
 
-La heterocedasticidad se estudió con ARCH-LM; esa prueba no es un diagnóstico general de no linealidad. El análisis de términos polinómicos con covarianza HAC examina otra hipótesis bajo su especificación y tampoco cubre toda forma de no linealidad. Son diagnósticos exploratorios, distintos del análisis de residuos predictivos de la referencia de §2.2.3 y de las redes aún no entrenadas.
+La heterocedasticidad se estudió con ARCH-LM; esa prueba no es un diagnóstico general de no linealidad. El análisis de términos polinómicos con covarianza HAC examina otra hipótesis bajo su especificación y tampoco cubre toda forma de no linealidad. Son diagnósticos exploratorios, distintos del análisis de residuos predictivos de la referencia de §2.2.3 y de las redes del experimento propio de los capítulos 4–5.
 
 #### 2.2.2.4. Frecuencia, granularidad y datos faltantes
 
@@ -321,7 +321,7 @@ Añadir rezagos explícitos de volatilidad exigiría versionar antes el contrato
 
 **Aplicabilidad: sí; es el bloque específico principal del proyecto.**
 
-Se aplica el **bloque C de la guía: regresión temporal**, porque las entradas son covariables OHLCV rezagadas y no incluyen historia explícita de la volatilidad objetivo. Se utilizan los CSV de desarrollo 2023–2024, se conserva la cuadrícula de 731 días y el 24/03/2023 permanece excluido, sin imputación. El bloque incluye una referencia lineal regularizada para diagnosticar residuos. Ese ajuste de EDA se distingue de los tres modelos DL, el piloto y el benchmark reservados para E2; no utiliza test.
+Se aplica el **bloque C de la guía: regresión temporal**, porque las entradas son covariables OHLCV rezagadas y no incluyen historia explícita de la volatilidad objetivo. Se utilizan los CSV de desarrollo 2023–2024, se conserva la cuadrícula de 731 días y el 24/03/2023 permanece excluido, sin imputación. El bloque incluye una referencia lineal regularizada para diagnosticar residuos. Ese ajuste de EDA se distingue de MLP, LSTM y CNN1D poco profunda, del piloto y del benchmark de desarrollo ejecutados el 04/11/2026 y documentados en los capítulos 4–5; ninguno utiliza test.
 
 La revisión punto por punto se conserva en el {download}`informe del bloque C <../_static/e1/revision_eda_temporal_20261103.md>` y su [matriz de evidencias](../_static/e1/revision_eda_temporal_20261103.json).
 
@@ -402,7 +402,7 @@ Se ajustaron **cuatro referencias Ridge diagnósticas**, una por D=7/14/21/28, c
 
 Cada columna se estandariza con media y desviación poblacional calculadas únicamente en el ajuste permitido de 2023; una columna constante tendría escala uno. La implementación utiliza NumPy/SciPy y solución de Cholesky. Los parámetros exportados reproducen las predicciones y una solución independiente por sistema aumentado las verifica con diferencia máxima de **2,46×10⁻¹⁴**. No se transforma ni recorta el objetivo y no se recortan las predicciones.
 
-El primer origen es el 01/01/2024. Su embargo D limita los resultados admisibles del ajuste a u≤t−D−1, además de ventanas y etiquetas válidas. Los modelos y sus escalas quedan **fijos durante todo 2024**: no utilizan etiquetas de validación para reajustarse. Esta política estática pertenece a la referencia diagnóstica del EDA; no fija la cadencia de actualización de las redes o del benchmark de E2.
+El primer origen es el 01/01/2024. Su embargo D limita los resultados admisibles del ajuste a u≤t−D−1, además de ventanas y etiquetas válidas. Los modelos y sus escalas quedan **fijos durante todo 2024**: no utilizan etiquetas de validación para reajustarse. Esta política estática se eligió para la referencia diagnóstica del EDA. El primer ciclo DL registró por separado una política también estática con ajuste admisible de 2023; esto no congela la política futura de test.
 
 | Historia D | Muestras de ajuste 2023 | Último resultado permitido de ajuste | Residuos fuera del ajuste en 2024 | ACF de rezago 1 | Referencia Ljung–Box a 7 rezagos, ajustada Holm12 |
 |---|---:|---|---:|---:|---:|
@@ -421,7 +421,7 @@ La ACF(1) de **0,732–0,766** y los doce valores ajustados —entre **3,85×10�
 
 **Revisión del tipo de problema.** Se mantiene el tipo 4 mientras la entrada contenga solo OHLCV rezagadas. La autocorrelación obliga a estudiar cómo representar mejor esa dinámica y cómo hacer inferencia con dependencia; no incorpora automáticamente la historia del objetivo. Si se deciden añadir rezagos de volatilidad, se deberá registrar el nuevo contrato y revisar la ruta como tipo 3 antes de ejecutarlo. El ajuste presente no demuestra que esa modificación sea necesaria ni que una red ya la haya resuelto.
 
-Se publican las [configuraciones y cortes](../_static/eda_temporal_reference/reference_configurations.csv), las [predicciones y residuos](../_static/eda_temporal_reference/validation_predictions_residuals.csv), las [ACF](../_static/eda_temporal_reference/residual_acf.csv), los [doce Ljung–Box](../_static/eda_temporal_reference/ljung_box_holm.csv), los [parámetros de las referencias](../_static/eda_temporal_reference/model_parameters.csv) y el [resumen reproducible](../_static/eda_temporal_reference/summary.json). Se verificaron las fechas, el embargo, los hashes de entrenamiento y el escalado sin información futura. **No se abrió test ni se entrenaron redes DL, piloto o benchmark**.
+Se publican las [configuraciones y cortes](../_static/eda_temporal_reference/reference_configurations.csv), las [predicciones y residuos](../_static/eda_temporal_reference/validation_predictions_residuals.csv), las [ACF](../_static/eda_temporal_reference/residual_acf.csv), los [doce Ljung–Box](../_static/eda_temporal_reference/ljung_box_holm.csv), los [parámetros de las referencias](../_static/eda_temporal_reference/model_parameters.csv) y el [resumen reproducible](../_static/eda_temporal_reference/summary.json). Se verificaron las fechas, el embargo, los hashes de entrenamiento y el escalado sin información futura. **Esta operación de diagnóstico Ridge no abrió test ni entrenó redes DL, piloto o benchmark**. Las redes y sus resultados posteriores se registran por separado en los capítulos 4–5.
 
 - **Decisión de preprocesamiento:** conservar los desfases OHLCV y el embargo, ajustar escalas solo con el pasado y no añadir rezagos del objetivo sin registrar el cambio de problema.
 - **Impacto en la arquitectura:** contrastar posteriormente representaciones temporales con la misma información; el error de una referencia lineal no selecciona por sí solo LSTM, TCN o atención ni fija sus tamaños.
@@ -453,8 +453,8 @@ Los resultados están en `results/eda_covariates_documental/`, `results/eda_temp
 | Deriva de la relación covariables–objetivo | §2.2.3.2.2: ventanas de 60 días, mínimo 50 pares; 309/366 ventanas definidas por covariable y año | Ejecutado como diagnóstico retrospectivo; no confirma rupturas estadísticas |
 | Residuos de un modelo de referencia | §2.2.3.2.3: cuatro Ridge estáticos, 366 residuos de 2024 por D; ACF y doce Ljung–Box/Holm | Ejecutado; fuerte dependencia residual con interpretación exploratoria y límites asintóticos |
 | Decisión sobre la historia del objetivo | Entrada OHLCV sin rezagos de volatilidad; revisión explícita a la luz de los residuos | Se mantiene tipo 4. Añadir historia del objetivo requeriría registrar tipo 3 antes de ejecutarlo |
-| Ventanas, partición y embargo | D=7/14/21/28; manifiesto versión 2 y corte $u\le t-D-1$ verificado para las referencias | Aplicado al diagnóstico; pesos fijos en 2024, sin fijar la política del benchmark posterior |
-| Escalado ajustado solo con el pasado | Media y desviación de las muestras permitidas de 2023 para cada Ridge | Ejecutado en la referencia; escaladores de las redes aún no ajustados |
+| Ventanas, partición y embargo | D=7/14/21/28; manifiesto versión 2 y corte $u\le t-D-1$ verificado para las referencias | Aplicado al diagnóstico; pesos fijos en 2024. El primer ciclo DL también mantuvo pesos fijos por decisión registrada separadamente |
+| Escalado ajustado solo con el pasado | Media y desviación de las muestras permitidas de 2023 para cada Ridge | Ejecutado en la referencia; las redes ajustaron sus propios escaladores solo con entrenamiento en §4.2, sin reutilizar los de Ridge |
 | Riesgo de fuga temporal y protección de test | Fechas, hashes, índices y ausencia de apertura de test comprobados | Cero archivos de test; la reserva bruta no sustituye la congelación supervisada final |
 | Interpretación técnica de cada análisis | Decisión de preprocesamiento, efecto sobre arquitectura y riesgos en §§2.2.3.1–2.2.3.3 | Incluida; no se atribuye superioridad a una arquitectura sin evaluación |
 
@@ -711,9 +711,9 @@ El EDA de desarrollo de este capítulo se ejecutó sobre los 24 archivos mensual
 
 1. Acceso a archivos oficiales y verificación TLS: comprobados. La API no es necesaria.
 2. Conservar la versión de las condiciones aplicables a la adquisición y comprobar cualquier designación específica del dataset; las condiciones consultadas se resumen en §2.3.4.
-3. Adquisición y checksums del rango solicitado: completados; brutos y manifiesto conservados. Derivados diarios de desarrollo y EDA ejecutados; ventanas finales por modelo y benchmark pendientes.
+3. Adquisición y checksums del rango solicitado: completados; brutos y manifiesto conservados. Derivados diarios de desarrollo y EDA ejecutados; ventanas y benchmark del primer ciclo DL de desarrollo materializados; muestras finales de test pendientes.
 4. Timestamps, unidades, unicidad, huecos, cierres y coherencia OHLC auditados antes de crear los retornos de desarrollo; estos controles deberán mantenerse en la preparación posterior.
-5. Cerrar las configuraciones y reglas definitivas de entrenamiento, conservando el modelado diario, horizonte principal de un día y ventanas candidatas ya documentadas.
+5. Configuraciones y reglas del primer ciclo de desarrollo registradas y ejecutadas, conservando modelado diario, horizonte principal de un día y búsqueda en las cuatro historias candidatas. El protocolo final de test sigue pendiente.
 6. EDA general y diagnósticos temporales ejecutados; la correspondencia del bloque C para regresión temporal y su relación con las decisiones se documenta en §2.2.3.
 
 
@@ -787,14 +787,14 @@ El primer script genera perfiles de objetivos, calidad, máscaras y reconstrucci
 | Disponibilidad temporal y ausencia de consulta de test en este script | Restricción verificada; cero ZIP de test abiertos |
 | Bloque C: disponibilidad y relaciones con rezagos | Ejecutado; 140 pares sobre cohorte común de 308 días, resúmenes móviles y controles causales |
 | Referencia lineal y residuos fuera del ajuste | Cuatro Ridge diagnósticos con escalas de 2023; 1.464 predicciones de 2024, ACF y doce Ljung–Box/Holm |
-| Covariables, transformaciones y selección de configuración | Cinco covariables OHLCV conservadas; escalado ejecutado solo para las referencias EDA, sin elegir D para las redes |
+| Covariables, transformaciones y selección de configuración | Cinco covariables OHLCV conservadas; escalado propio de las referencias EDA. El ciclo DL posterior aprendió escalas solo con entrenamiento y eligió D=7 mediante su búsqueda registrada |
 | Información mutua, VIF y efecto de anomalías sobre error de modelos | No ejecutados |
 | Folds de validación 2024 | Versión 2 materializada: 366 por configuración; embargo de $D$ días aplicado y solapamiento de retornos de etiquetas registrado |
 | Reserva de test bruto | Manifiesto de 20 ZIP y su hash conservados; sin apertura de test en esta revisión |
-| Test supervisado congelado y entrenamiento de redes | Pendientes; la reserva bruta no acredita elegibilidad de muestras ni evaluación |
-| Tres modelos DL, predicciones y MAPE/MAE/RMSE/MSE/MASE/BDS | Pendientes de entrenamiento y evaluación; las referencias Ridge no los sustituyen |
+| Test supervisado congelado | Pendiente; la reserva bruta no acredita elegibilidad de muestras ni evaluación |
+| Tres modelos DL, predicciones y MAPE/MAE/RMSE/MSE/MASE/BDS | Ejecutados en desarrollo el 04/11/2026 y documentados en los capítulos 4–5; las referencias Ridge son diagnósticos distintos y el test no se ha evaluado |
 
-Las gráficas y las cuatro referencias lineales son evidencia de EDA de desarrollo. El estado de la revisión bibliográfica se documenta por separado en el capítulo 3. La congelación supervisada de test, el protocolo experimental definitivo y la evaluación de los tres modelos DL siguen pendientes; el diagnóstico de residuos no sustituye esos productos.
+Las gráficas y las cuatro referencias lineales son evidencia de EDA de desarrollo. El estado de la revisión bibliográfica se documenta por separado en el capítulo 3. El primer ciclo de las tres redes ya está ejecutado y registrado por separado; la congelación supervisada, el protocolo definitivo y la evaluación de test siguen pendientes. El diagnóstico de residuos lineales no sustituye esos productos.
 
 ## 2.5. Diagnósticos temporales complementarios
 
@@ -846,7 +846,7 @@ Se usó el tramo continuo de retornos diarios **26/03/2023–31/12/2023**, con 2
 | ARCH-LM | Media constante; 7 rezagos | 7.90557 | 0.340994 |
 | Wald con covarianza HAC | Términos cuadrático y cúbico del retorno de un día de rezago; HAC 7 | 7.95233 | 0.0187574 |
 
-ARCH-LM no rechaza bajo esta especificación diaria; esto no prueba ausencia de heterocedasticidad. El Wald detecta asociación polinómica bajo su modelo y supuestos HAC, no toda forma de no linealidad ni rentabilidad predictiva. Ambos son exploratorios, con muestra limitada y sin ajuste por multiplicidad. No son pruebas sobre residuos de una red todavía no entrenada.
+ARCH-LM no rechaza bajo esta especificación diaria; esto no prueba ausencia de heterocedasticidad. El Wald detecta asociación polinómica bajo su modelo y supuestos HAC, no toda forma de no linealidad ni rentabilidad predictiva. Ambos son exploratorios, con muestra limitada y sin ajuste por multiplicidad. No son pruebas sobre residuos de redes; los diagnósticos de los errores predictivos DL propios se presentan por separado en §5.4.
 
 Como contraste de escala se ejecutaron los diagnósticos sobre datos de un minuto y agregados horarios:
 
@@ -856,7 +856,7 @@ Como contraste de escala se ejecutaron los diagnósticos sobre datos de un minut
 La ACF/PACF de un minuto usa los últimos 30 días de entrenamiento; la ACF de cuadrados hasta 28 días usa el mayor tramo continuo de entrenamiento y se representa cada 60 minutos. No se unen observaciones a ambos lados de huecos. Las pruebas horarias no se presentan como evidencia intercambiable con las diarias.
 
 - **Decisión de preprocesamiento:** mantener como candidatas las entradas de 7/14/21/28 días; elegir por validación y registrar sensibilidad, sin seleccionar rezagos por test.
-- **Impacto en la arquitectura:** las ventanas diarias fijan pasos temporales de MLP, recurrentes o convolucionales; la familia final depende de literatura y evaluación, no de una correlación aislada.
+- **Impacto en la arquitectura:** las ventanas diarias fijan pasos temporales de MLP, recurrentes o convolucionales; las tres familias ejecutadas y D=7 se documentan con su selección propia en §4.2, sin atribuir esa elección a una correlación aislada. La suficiencia bibliográfica sigue abierta.
 - **Riesgos identificados:** dependencia de etiquetas móviles, bandas aproximadas, múltiples pruebas y confusión de frecuencias.
 
 ### 2.5.4. Frecuencia, granularidad y faltantes
@@ -879,13 +879,13 @@ En los retornos de un minuto de entrenamiento, la asimetría es **-0.674028** y 
 
 - **Decisión de preprocesamiento:** distinguir errores verificables de eventos reales y conservar extremos. No se aplica clipping ni se cambia la pérdida sin validación.
 - **Impacto en la arquitectura:** controlar estabilidad de entrenamiento y comparar pérdidas/métricas bajo el mismo protocolo; las colas no justifican automáticamente mayor complejidad.
-- **Riesgos identificados:** borrar episodios de interés y elegir umbrales con información futura. El impacto sobre error de pronóstico y la causa de eventos quedan pendientes de modelos y evidencia adicional.
+- **Riesgos identificados:** borrar episodios de interés y elegir umbrales con información futura. El efecto específico de estos episodios sobre el error de las redes y la causa de los eventos requieren un análisis segmentado adicional; las métricas globales de desarrollo del capítulo 5 no aíslan ese efecto.
 
 ### 2.5.6. Horizonte, estrategia de pronóstico y validación
 
 Las entradas confirmadas son 7/14/21/28 días de historia; el horizonte principal es un día. Se exploraron cuatro definiciones de volatilidad histórica, sin confundirlas con la longitud de entrada. Cualquier horizonte adicional al principal debe registrarse antes del entrenamiento y de la evaluación.
 
-Los folds se materializaron con `timeseries-cv` 0.1.5 y controles explícitos de fechas, observabilidad y continuidad. El entrenamiento de los tres modelos sigue pendiente. La función no garantiza por sí sola ausencia de fuga para cualquier combinación de longitudes: los controles de disponibilidad se aplican antes de admitir cada muestra y la convención del embargo se declara en §2.1.4. El BDS solicitado por el material específico para residuos del primer horizonte es un diagnóstico complementario; queda previsto para las predicciones de las redes fuera de entrenamiento y no reemplaza el análisis de autocorrelación de residuos exigido en la ruta 6.4.
+Los folds se materializaron con `timeseries-cv` 0.1.5 y controles explícitos de fechas, observabilidad y continuidad. Después se ejecutó el primer ciclo de MLP, LSTM y CNN1D con entrenamiento estático de 2023 y predicciones de desarrollo de 2024. La función no garantiza por sí sola ausencia de fuga para cualquier combinación de longitudes: los controles de disponibilidad se aplican antes de admitir cada muestra y la convención del embargo se declara en §2.1.4. El BDS solicitado por el material específico se ejecutó sobre residuos del primer horizonte de las redes, con la semilla designada 1001 y parámetros en §5.4.10; no reemplaza el análisis de autocorrelación de residuos exigido en la ruta 6.4 ni constituye evaluación de test.
 
 - **Decisión de preprocesamiento:** fijar las configuraciones de objetivos y orígenes, producir manifiestos de muestras y ajustar transformaciones solo con pasado.
 - **Impacto en la arquitectura:** entrada diaria con dimensión explícita; salida principal escalar no negativa; cualquier salida adicional debe registrarse.
