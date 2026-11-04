@@ -1,0 +1,396 @@
+{
+  "updated_at_utc": "2026-11-04T21:13:32.858754+00:00",
+  "original_book_commit": "c8ec07a81cbac0dea053bc120a1b5975496d16de",
+  "guide": {
+    "name": "Entregable1DeepLearningProject.pdf",
+    "sha256": "56cffb2e0e23bbdfd28815b7c7515d2663bf501ed5d6e0656a37a76fc45e43eb",
+    "pages": 34
+  },
+  "audit_baseline_sha256": "39912d1c3910d3b8839019a03bc3cf23270c0f98194193cd93b3d3244c122ee0",
+  "scope": "Concrete documentation and saved-forecast analysis improvements; no new training, forecast or raw-market read.",
+  "new_model_fits": 0,
+  "new_checkpoint_forward_calls": 0,
+  "raw_market_archive_reads": 0,
+  "statistical_scope": "Exploratory post-hoc supplement, not prospective confirmation; MLP/D7 baseline unchanged.",
+  "main_open_requirements": [
+    "Applied full-text support for the MLP/CNN1D baselines",
+    "Prospective pilot/dimensioning and independent evaluation for a future study"
+  ],
+  "academic_operational_criterion": "Future improvement above5percent versus frozen MLP/D7 and persistence; recorded after the current test, with scenario planning and no financial utility claim.",
+  "conditional_not_required": "Equivalence/TOST/ROPE is not required without an equivalence claim.",
+  "public_scope": "Aggregates and metadata only; complete restoration package remains private.",
+  "findings": [
+    {
+      "id": "A01",
+      "priority": "Alta",
+      "criterion_type": "Requisito",
+      "title": "Extracción bibliográfica de los tres modelos base",
+      "previous_status": "Parcial",
+      "current_status": "Parcial",
+      "concrete_change": "Se amplió la recuperación dirigida; faltan manuscritos aplicados completos de MLP y CNN1D.",
+      "evidence": "references/literature_e1/recovery_20261104/summary.json",
+      "evidence_sha256": "a133f1c1d60fa4c119a2c5df3473bd27998b5a38d8bd6761707191c34a24ee1c",
+      "remaining_acceptance": "Matriz fuente→modelo para los tres integrantes, frecuencias actualizadas y justificación explícita de sencillez, recurrencia y no redundancia.",
+      "pdf_pages": [
+        12,
+        13,
+        14,
+        15
+      ]
+    },
+    {
+      "id": "A02",
+      "priority": "Alta",
+      "criterion_type": "Requisito",
+      "title": "Margen práctico y mejora mínima detectable frente al baseline",
+      "previous_status": "Pendiente",
+      "current_status": "Criterio académico futuro definido",
+      "concrete_change": "5 % frente a MLP/D7 y persistencia; 36 sensibilidades iniciales y 27 escenarios de frontera práctica. No es margen previo al test actual ni utilidad financiera.",
+      "evidence": "experiments/e1_audit_improvements_20261104/academic_margin_policy.json",
+      "evidence_sha256": "765a845cbc59c115787d1279b6456e2f45a69bd456cd16ee81a02f1b6216ace6",
+      "remaining_acceptance": "Umbral numérico en escala original o reducción relativa, justificación aplicada y MDE/escenarios con α, potencia y supuestos. No hace falta entrenar ya un modelo avanzado ni fingir que el margen era previo.",
+      "pdf_pages": [
+        3,
+        23,
+        27,
+        33,
+        34
+      ]
+    },
+    {
+      "id": "A03",
+      "priority": "Alta",
+      "criterion_type": "Requisito",
+      "title": "Inferencia del benchmark final y efectos con incertidumbre temporal",
+      "previous_status": "Parcial",
+      "current_status": "Análisis completado con límites",
+      "concrete_change": "Comparaciones, efectos, IC, DM/Ljung–Box y bootstrap finales calculados y verificados como suplemento post-hoc.",
+      "evidence": "references/audits/revision_e1_final_inference_20261104.json",
+      "evidence_sha256": "7f47d3714060d6fe40d3d53aa51185147065492e232f1afb4eaccb896df41d6c",
+      "remaining_acceptance": "Tabla principal con estimando/unidad, diferencias, IC, efectos y p ajustados/sin ajustar; remuestreo temporal y sensibilidad justificados. No exigir automáticamente 66 pares entre las doce configuraciones ni llamar confirmatorio al análisis añadido.",
+      "pdf_pages": [
+        22,
+        23,
+        24,
+        25,
+        26,
+        29,
+        33,
+        34
+      ]
+    },
+    {
+      "id": "A04",
+      "priority": "Alta",
+      "criterion_type": "Requisito",
+      "title": "Piloto y dimensionamiento prospectivos del protocolo vigente",
+      "previous_status": "Pendiente para el procedimiento vigente",
+      "current_status": "Pendiente prospectivo",
+      "concrete_change": "El piloto histórico se conserva; la plantilla del nuevo estudio es un borrador no registrado ni ejecutado.",
+      "evidence": "experiments/e1_next_study_pilot_template.json",
+      "evidence_sha256": "72e3a3637ba5a5a1d57219d83447a3fdcadcc780fda9d8d95efb294bc910832c",
+      "remaining_acceptance": "Registro fechado antes de la nueva ejecución, al menos cinco semillas piloto por base, media/DE/CV, δ/σd, cálculo de R y MDE. No reescribir retrospectivamente la historia del experimento actual.",
+      "pdf_pages": [
+        17,
+        18,
+        19
+      ]
+    },
+    {
+      "id": "A05",
+      "priority": "Alta",
+      "criterion_type": "Requisito",
+      "title": "Reproducción externa y manual vigente",
+      "previous_status": "Parcial",
+      "current_status": "Ruta privada implementada y verificada",
+      "concrete_change": "BUILD vigente; paquete y restauración aislada con auditoría PASS, sin repetir ajuste o pronósticos.",
+      "evidence": "results/e1_audit_improvements_20261104/reproducibility/summary.json",
+      "evidence_sha256": "778e8148f5cb7249dbdffc56f1a54da59b340405043245f031f3e42aeafc40e8",
+      "remaining_acceptance": "Un evaluador puede verificar/reproducir en un directorio limpio siguiendo instrucciones exactas, con dependencias y acceso documentado a los insumos. No se exige publicar los archivos privados ni borrar marcadores del registro original.",
+      "pdf_pages": [
+        18,
+        19,
+        33
+      ]
+    },
+    {
+      "id": "A06",
+      "priority": "Media",
+      "criterion_type": "Requisito",
+      "title": "Procedencia y transferencia de configuraciones e hiperparámetros",
+      "previous_status": "Parcial",
+      "current_status": "Trazabilidad documentada",
+      "concrete_change": "Se documentó la búsqueda histórica de 96 corridas y la transferencia de recetas; no se reoptimizó usando test.",
+      "evidence": "book/sections/04_implementacion_evaluacion.md",
+      "evidence_sha256": "7954a7063fa7fe8e34a74d4acfc179048206acf01943fd75fb9f042d2e098ff0",
+      "remaining_acceptance": "Tabla auditable de espacios/presupuestos y valores elegidos por familia, con alcance histórico y vigente separados; no afirmar que nunca existió HPO.",
+      "pdf_pages": [
+        14,
+        18
+      ]
+    },
+    {
+      "id": "A07",
+      "priority": "Media",
+      "criterion_type": "Requisito con alcance",
+      "title": "Cobertura de búsqueda y procedencia individual de fuentes",
+      "previous_status": "Parcial",
+      "current_status": "Recuperación ampliada; cobertura parcial",
+      "concrete_change": "13 cadenas y 18 páginas; candidatos de código identificados sin convertirlos en textos científicos incluidos.",
+      "evidence": "references/literature_e1/recovery_20261104/search_log.json",
+      "evidence_sha256": "351a861b30bc00b26d94ee4f4c818d94e455d0bca4274421cc0655f7a15321d3",
+      "remaining_acceptance": "Registro reproducible actualizado, deduplicación y flujo coherentes; fuentes de cada modelo verificadas. No se exige acceso institucional ni se convierte la preferencia por Q1 en obligación absoluta.",
+      "pdf_pages": [
+        12,
+        13
+      ]
+    },
+    {
+      "id": "A08",
+      "priority": "Media",
+      "criterion_type": "Requisito",
+      "title": "Comparabilidad del dataset con estudios previos",
+      "previous_status": "Parcial",
+      "current_status": "Comparabilidad documentada; coincidencia no acreditada",
+      "concrete_change": "Matriz de siete fuentes distingue Spot/Futures, frecuencia y objetivo; ninguna acredita igualdad con la versión σ7.",
+      "evidence": "references/literature_e1/recovery_20261104/dataset_comparability.csv",
+      "evidence_sha256": "42504bbc1c797b40fee26c18da45bfb1c727b2349b21e83844f39615d8d1a6d7",
+      "remaining_acceptance": "Conclusión sustentada sobre qué comparaciones son legítimas; si la versión histórica es nueva, declararlo sin presentar métricas de otros datasets como directamente comparables.",
+      "pdf_pages": [
+        3
+      ]
+    },
+    {
+      "id": "A09",
+      "priority": "Media",
+      "criterion_type": "Requisito",
+      "title": "Evidencia sobre el mecanismo de faltantes",
+      "previous_status": "Parcial con límite de identificación",
+      "current_status": "Límite abierto",
+      "concrete_change": "El mecanismo de faltantes no puede clasificarse sin evidencia; exclusiones y consecuencias permanecen documentadas.",
+      "evidence": "book/sections/02_eda.md",
+      "evidence_sha256": "1e15731f78eac1a34798cb76b886966c5cceb791e667366b29f388fbed2107c9",
+      "remaining_acceptance": "Evidencia y análisis de sensibilidad razonado; no asignar una categoría de faltantes sin sustento ni prometer que los datos observados permiten demostrarla.",
+      "pdf_pages": [
+        4
+      ]
+    },
+    {
+      "id": "A10",
+      "priority": "Media",
+      "criterion_type": "Requisito",
+      "title": "Distribuciones del test después del cierre",
+      "previous_status": "Parcial",
+      "current_status": "Descriptivo completado post-hoc",
+      "concrete_change": "Distribuciones por 2023/2024/2025/2026 parcial calculadas, sin cambiar preprocesamiento o selección.",
+      "evidence": "results/e1_audit_improvements_20261104/descriptive/distribution_by_period.csv",
+      "evidence_sha256": "60dd1a4fb48f3239752988115985e6cdb14d22f194ecf713de5344b54375ab7c",
+      "remaining_acceptance": "Resumen por fase/periodo y conclusión de desplazamiento con límites; no usar esa inspección para retocar el modelo y volver a presentar el mismo test como independiente.",
+      "pdf_pages": [
+        4
+      ]
+    },
+    {
+      "id": "A11",
+      "priority": "Media",
+      "criterion_type": "Requisito",
+      "title": "Descomposición cuantitativa de la variabilidad",
+      "previous_status": "Parcial",
+      "current_status": "Descomposición descriptiva completada",
+      "concrete_change": "Componentes por modelo, semilla, mes e interacciones calculados; no se atribuye causalidad ni independencia de mercados.",
+      "evidence": "results/e1_audit_improvements_20261104/descriptive/variance_components.csv",
+      "evidence_sha256": "5577f42e77cc7b9f8bfcfda865134f8c612261da4c8027d7397c22ac9f9746fa",
+      "remaining_acceptance": "Producto cuantitativo reproducible e interpretación de sus unidades; el PDF no obliga a una ANOVA particular ni autoriza tratar meses como iid.",
+      "pdf_pages": [
+        21
+      ]
+    },
+    {
+      "id": "A12",
+      "priority": "Media",
+      "criterion_type": "Requisito",
+      "title": "Diagnóstico y explicación de los errores finales",
+      "previous_status": "Parcial",
+      "current_status": "Diagnóstico descriptivo completado",
+      "concrete_change": "Bins de residuos, sesgo, dispersión y meses difíciles; celdas con menos de diez fechas suprimidas.",
+      "evidence": "results/e1_audit_improvements_20261104/descriptive/residual_bins_summary.csv",
+      "evidence_sha256": "110db746a327573d5a975821f9d228ce6b9783e8012fa287e3d017d61ea4d368",
+      "remaining_acceptance": "Figuras/tablas interpretadas del procedimiento final. Una prueba ARCH no es la única forma obligatoria de analizar heterocedasticidad; usar agregados públicos o material privado según el alcance de entrega.",
+      "pdf_pages": [
+        21
+      ]
+    },
+    {
+      "id": "A13",
+      "priority": "Media",
+      "criterion_type": "Requisito",
+      "title": "Diferencias relativas de MAE",
+      "previous_status": "Parcial",
+      "current_status": "Diferencias calculadas",
+      "concrete_change": "Diferencias absolutas y relativas de RMSE/MAE con referencias y signos explícitos.",
+      "evidence": "results/e1_audit_improvements_20261104/inference/relative_differences.csv",
+      "evidence_sha256": "7c013b2f74e66f2921d3ce71c2588b6938c403544a0a1804a51175f6c5fb10da",
+      "remaining_acceptance": "Tabla con signo, denominador, periodo y alcance, enlazada a las diferencias/IC del análisis principal cuando estén disponibles.",
+      "pdf_pages": [
+        22
+      ]
+    },
+    {
+      "id": "A14",
+      "priority": "Media",
+      "criterion_type": "Coherencia editorial",
+      "title": "Reporte anual anunciado pero no publicado",
+      "previous_status": "Inconsistencia verificable",
+      "current_status": "Tablas anuales completadas",
+      "concrete_change": "2025:365 fechas; enero–agosto2026:243. R² usa denominador propio de cada periodo.",
+      "evidence": "results/e1_audit_improvements_20261104/descriptive/annual_metrics_summary.csv",
+      "evidence_sha256": "6139d2a4b618bfe069333cc7765021f7636ff8b7d840c1b25c1850aa6f562db8",
+      "remaining_acceptance": "Afirmaciones y productos existentes coinciden; cada tabla anual identifica su periodo y número de fechas.",
+      "pdf_pages": [
+        3
+      ]
+    },
+    {
+      "id": "A15",
+      "priority": "Baja",
+      "criterion_type": "Coherencia editorial",
+      "title": "Alcance de las dos representaciones",
+      "previous_status": "Ambigüedad editorial",
+      "current_status": "Corregido",
+      "concrete_change": "Se distingue el control de dos representaciones D7 de la representación relativa principal en cuatro historias.",
+      "evidence": "book/sections/03_estado_arte.md",
+      "evidence_sha256": "f7adb78a3e5134ae0d6bef13623dcc0b122424ae12b6efd3e9f9918c62ac1d5a",
+      "remaining_acceptance": "La fila no permite interpretar que se entrenó absolute_log para D14/21/28.",
+      "pdf_pages": [
+        18
+      ]
+    },
+    {
+      "id": "A16",
+      "priority": "Baja",
+      "criterion_type": "Coherencia editorial",
+      "title": "Metadatos históricos y vigentes",
+      "previous_status": "Mejora",
+      "current_status": "Alcances históricos diferenciados",
+      "concrete_change": "Snapshots y configuración vigente se identifican por experimento; diez semillas actuales no se mezclan con dos históricas.",
+      "evidence": "book/sections/03_estado_arte.md",
+      "evidence_sha256": "f7adb78a3e5134ae0d6bef13623dcc0b122424ae12b6efd3e9f9918c62ac1d5a",
+      "remaining_acceptance": "Historia preservada y trazable sin presentar snapshots de dos semillas como configuración actual de diez.",
+      "pdf_pages": [
+        13,
+        15
+      ]
+    },
+    {
+      "id": "A17",
+      "priority": "Baja",
+      "criterion_type": "Recomendación",
+      "title": "Diagramas de las arquitecturas",
+      "previous_status": "Mejora",
+      "current_status": "Diagramas realizados",
+      "concrete_change": "Tres SVG muestran dimensiones, capas y parámetros coherentes con los modelos existentes.",
+      "evidence": "book/_static/e1_architectures_20261104/mlp.svg",
+      "evidence_sha256": "acc18cb85225f7d59ba35b19fdfb6caa37d89ff07b13f4dcf38a107438bd64b9",
+      "remaining_acceptance": "Los diagramas coinciden con el código y distinguen D de n; no se inventa una obligación de estilo gráfico determinada.",
+      "pdf_pages": [
+        15
+      ]
+    },
+    {
+      "id": "A18",
+      "priority": "Media",
+      "criterion_type": "Recomendación metodológica",
+      "title": "Interpretación y calibración del BDS mensual",
+      "previous_status": "Mejora",
+      "current_status": "Interpretación reforzada; calibración adicional no realizada",
+      "concrete_change": "BDS mensual sigue exploratorio; nuevos DM/LB y diagnóstico agregado no demuestran calibración finita del BDS.",
+      "evidence": "book/sections/05_benchmark.md",
+      "evidence_sha256": "96106aaaf0faf1a7fe1f675f8f475221082bd4cb335c2ef27c9bffc10a927f51",
+      "remaining_acceptance": "Supuestos, tamaño de muestra y nulo explícitos; nunca usar el promedio de p como test combinado ni BDS como prueba de superioridad predictiva.",
+      "pdf_pages": [
+        25,
+        34
+      ]
+    },
+    {
+      "id": "A19",
+      "priority": "Media",
+      "criterion_type": "Recomendación metodológica",
+      "title": "Épocas finales tomadas de un único mes",
+      "previous_status": "Mejora",
+      "current_status": "Política descrita; alternativa no entrenada",
+      "concrete_change": "Épocas de los doce cortes resumidas, con comparación de diciembre; no se cambió la regla por resultados de test.",
+      "evidence": "results/e1_audit_improvements_20261104/traceability/epoch_policy_summary.csv",
+      "evidence_sha256": "e9baad340647e08bb2497ec283df157b8f28212ca3f70752340cc6a116828945",
+      "remaining_acceptance": "Regla justificada y registrada antes de la evaluación nueva; no reajustar épocas porque ya se observaron los resultados de este test.",
+      "pdf_pages": [
+        18,
+        21
+      ]
+    },
+    {
+      "id": "A20",
+      "priority": "Media",
+      "criterion_type": "Recomendación",
+      "title": "Robustez adicional y sensibilidad del proxy de etiqueta",
+      "previous_status": "Mejora",
+      "current_status": "Segmentación y estabilidad calculadas",
+      "concrete_change": "Errores por rangos y meses analizados; perturbaciones y ruido externo siguen como mejoras opcionales no ejecutadas.",
+      "evidence": "results/e1_audit_improvements_20261104/descriptive/severity_metrics_summary.csv",
+      "evidence_sha256": "e8f219da491360b6891a4599f898566e4513b30ecd7af90458cdf0217eaa04a6",
+      "remaining_acceptance": "Evidencia adicional interpretada. La guía no exige simultáneamente todos los análisis de ruido, perturbación y subgrupos ni una estimación ficticia de volatilidad latente.",
+      "pdf_pages": [
+        3,
+        4,
+        21
+      ]
+    },
+    {
+      "id": "A21",
+      "priority": "Media",
+      "criterion_type": "Recomendación",
+      "title": "Referencia lineal con protocolo comparable",
+      "previous_status": "Mejora",
+      "current_status": "Referencia contextual conservada",
+      "concrete_change": "Ridge sigue como diagnóstico EDA; no se presenta como una comparación final homogénea no ejecutada.",
+      "evidence": "book/sections/06_procedimiento.md",
+      "evidence_sha256": "bbf350945db72ef72f5659644e6be1f0692934f6d828b9b2de6457b5f07fc71f",
+      "remaining_acceptance": "Comparación con alcance homogéneo o explicación explícita de por qué el diagnóstico EDA no constituye otro competidor final; no se exige reemplazar una de las tres redes por Ridge.",
+      "pdf_pages": [
+        29
+      ]
+    },
+    {
+      "id": "A22",
+      "priority": "Baja",
+      "criterion_type": "Recomendación de claridad",
+      "title": "Calendario y figura de la CV realmente ejecutada",
+      "previous_status": "Mejora",
+      "current_status": "Calendario real dibujado",
+      "concrete_change": "SVG de doce cortes por D, historia inicial, purga y test, separado del ejemplo oficial de la librería.",
+      "evidence": "book/_static/e1_cv_calendar_20261104/cv_calendar.svg",
+      "evidence_sha256": "6e5367beb135802b266a8c78d8ff3184b8deef524c6cb5057d6e920f43799a12",
+      "remaining_acceptance": "Se distingue el ejemplo oficial de la ejecución y las proporciones de calendario de las proporciones de muestras por fold.",
+      "pdf_pages": [
+        4,
+        29
+      ]
+    },
+    {
+      "id": "A23",
+      "priority": "Baja",
+      "criterion_type": "Aclaración de alcance",
+      "title": "Equivalencia: TOST/ROPE no es un pendiente automático",
+      "previous_status": "Condicional / no exigible sin afirmación",
+      "current_status": "Condicional; no pendiente obligatorio",
+      "concrete_change": "TOST/ROPE solo corresponde si se afirma equivalencia; no se usa ausencia de significancia para afirmarla.",
+      "evidence": "book/sections/07_limitaciones_entregables.md",
+      "evidence_sha256": "b5e9bffa484be3264c7359e1ab2ad2fdbf9fa2c3b06564c33a9dfc3fa85b0cfc",
+      "remaining_acceptance": "Sin afirmación de equivalencia no se exige esa prueba; ausencia de significancia nunca se presenta como equivalencia.",
+      "pdf_pages": [
+        24,
+        33
+      ]
+    }
+  ]
+}

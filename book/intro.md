@@ -9,7 +9,7 @@ Este libro desarrolla el **Entregable 1 de Deep Learning** para el pronóstico d
 
 La selección usa **`split_train_val_forwardChaining` de `timeseries-cv`**, proyecto de DidierRLopes con coautoría de **Filipe R. Ramos**. Sus orígenes diarios se agrupan en doce bloques mensuales de 2024. Cada ajuste y escalador usa únicamente el pasado permitido, con embargo de D días y validación interna cronológica. Las redes principales usan precios relativos al último cierre observable de su ventana, diez semillas comunes y las mismas 366 fechas.
 
-El capítulo 5 presenta las **tablas completas de CV y de test para cada entrada**, con MAPE, MAE, RMSE, MSE, R² y MASE; media, DE e IC entre semillas; y BDS por bloque mensual de residuos de horizonte h=1. Los promedios de p-valores se identifican como descriptivos, sin convertirlos en un contraste combinado.
+El capítulo 5 presenta las **tablas completas de CV y de test para cada entrada**, con MAPE, MAE, RMSE, MSE, R² y MASE; media, DE e IC entre semillas; y BDS por bloque mensual de residuos de horizonte h=1. La mejora posterior a la auditoría añade resultados **separados de 2025 y enero–agosto de 2026**, variabilidad cuantitativa, diagnóstico agregado de errores y un **suplemento inferencial post-hoc** de las tres configuraciones D7 seleccionadas. Los promedios de p-valores BDS son descriptivos; los nuevos contrastes no reabren la selección ni se presentan como confirmación prospectiva.
 
 ## Qué contiene este avance
 
@@ -32,7 +32,7 @@ La elección previa al test y sus hashes están en [la congelación](_static/fil
 
 Las decisiones de desarrollo usaron 2024 ya expuesto: la CV es exploratoria y no validación anidada independiente. Diez semillas no acreditan potencia 0,80. Los contrastes Holm-12, DM y bootstrap del ciclo inicial D7 conservan su alcance; no se trasladan automáticamente a las cuatro historias o al test. El BDS mensual tiene una referencia asintótica aproximada ante bloques cortos y etiquetas solapadas.
 
-Permanecen **35 referencias, cinco textos completos y 81 valores de sus autores**. El respaldo aplicado de MLP no lineal independiente y CNN1D simple sigue incompleto; también permanecen abiertos el piloto prospectivo, el dimensionamiento definitivo y los márgenes de equivalencia y mejora avanzada. Solo se considera Bitcoin. No se inventan requisitos de documentos completos de E2/E3 que no se han recibido.
+La [matriz de cierre](sections/protocolo_pendiente.md) distingue requisitos todavía abiertos y mejoras ejecutadas a partir de la auditoría del PDF. El respaldo aplicado de MLP no lineal independiente y CNN1D simple y el piloto/dimensionamiento prospectivo conservan su estado explícito. Para comparaciones futuras se define un criterio académico de mejora superior al 5 % frente a MLP/D7 y persistencia, acompañado de sensibilidad; su potencia real y una nueva evaluación siguen pendientes. TOST/ROPE solo será exigible si se afirma equivalencia. Solo se considera Bitcoin; no se inventan requisitos de documentos completos de E2/E3 que no se han recibido.
 
 ## Reproducibilidad y privacidad
 

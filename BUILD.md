@@ -1,10 +1,26 @@
-# Construir el Jupyter Book
+# Construcción y reproducción del Entregable 1
 
-El libro documenta el Entregable 1 y el estado real de sus evidencias. Construir el HTML no descarga datos ni entrena modelos. La adquisición directa de Binance se reproduce con `scripts/download_binance_spot.py`; véase `data/README.md`.
+El libro vigente evalúa **MLP, LSTM y CNN1D con entradas D=7/14/21/28**, objetivo **σ7 poblacional** y horizonte **h=1 día**. Usa la validación forward chaining de `timeseries-cv` 0.1.5, proyecto de DidierRLopes con coautoría de Filipe R. Ramos. Los índices diarios se agrupan explícitamente en doce bloques mensuales de 2024; el embargo es D y cada escalador se ajusta solo con el entrenamiento admitido.
 
-## Entorno probado
+La configuración se cerró antes del test. El ajuste final y la evaluación **ya se completaron**:
 
-Python 3.12, Jupyter Book 1.0.4.post1. Esta configuración usa Jupyter Book **v1**, no v2.
+| Etapa | Evidencia vigente |
+|---|---|
+| Historia inicial | 2023 |
+| Validación forward | Doce bloques mensuales de 2024; diez semillas por modelo/historia |
+| CV principal conjunta | 120 trayectorias, 1.440 segmentos mensuales, 2.880 ajustes y 43.920 predicciones |
+| Reutilización D7 | Treinta trayectorias de la representación relativa original |
+| Nueva CV D14/21/28 | Noventa trayectorias y 2.160 ajustes |
+| Ajuste final | 120 modelos entrenados solo con desarrollo permitido de 2023–2024 |
+| Test | 01/01/2025–31/08/2026; 608 fechas comunes y 72.960 predicciones |
+| Actualización durante test | Ninguna; sus veinte meses son intervalos de reporte de los mismos pesos |
+| Fuera del experimento | Septiembre–octubre de 2026 no se asigna automáticamente al test |
+
+Las configuraciones y las épocas finales se fijaron usando desarrollo. MLP/D7 permanece como selección previa; el ranking observado en test no modifica esa elección. Los registros firmados están en `experiments/filipe_multihistory_20261104/protocol.json` y `freeze.json`.
+
+## Construir el HTML público
+
+Construir el libro usa los resúmenes y figuras guardados. No descarga datos, ajusta pesos ni ejecuta pronósticos. Entorno probado: Python 3.12 y Jupyter Book 1.0.4.post1 (**v1**, no v2).
 
 ```bash
 python3.12 -m venv .venv
@@ -15,84 +31,104 @@ python scripts/check_book_links.py
 python -m http.server 8000 --directory book/_build/html
 ```
 
-Abrir http://localhost:8000. En Windows, activar con `.venv\Scripts\activate`.
-El HTML también está disponible en `book/_build/html/index.html`.
+Abrir <http://localhost:8000>. En Windows, activar con `.venv\Scripts\activate`. El HTML se escribe en `book/_build/html/`. El build trata advertencias como errores y el comprobador verifica enlaces locales y anclas. Las fórmulas usan MathJax desde CDN.
 
-`requirements-book.txt` fija la dependencia directa; `requirements-book.lock.txt` fija el entorno completo probado. Recrear el lock solo tras comprobar un build limpio. La descarga de dependencias necesita internet; MathJax usa CDN para renderizar fórmulas en el navegador.
+## Entornos experimentales separados
 
-## Verificación
-
-El build trata advertencias como errores. El comprobador valida enlaces locales y anclas en el HTML generado, sin solicitar URLs externas. La validación experimental se ejecuta por separado.
-
-Los archivos originales del curso están en `references/course/`; verificar con:
-
-```bash
-cd references/course
-sha256sum -c SHA256SUMS.txt
-```
-
-Los hashes corresponden a **materiales del curso**, no a los datos de Bitcoin. Los SHA-256 de los ZIP de Binance se conservan en el manifiesto de `data/manifests/`.
-
-## Privacidad
-
-El workflow `.github/workflows/publish-book.yml` construye y comprueba el libro y actualiza la rama `gh-pages` al recibir cambios en `main`. En Settings → Pages debe seleccionarse Deploy from a branch, rama `gh-pages`, carpeta `/ (root)`. Construir localmente no publica ni cambia la visibilidad del repositorio. Los generados se excluyen mediante `book/.gitignore`; los archivos individuales de corridas se conservan juntos en un comprimido versionado.
-
-## Entrenamiento y validación forward chaining
-
-El procedimiento publicado utiliza `timeseries-cv` 0.1.5, proyecto de DidierRLopes con coautoría de Filipe R. Ramos. Sus índices diarios se agrupan en doce bloques mensuales de 2024. Cada red se ajusta de nuevo al comenzar el mes con el pasado permitido, embargo de siete días y parada interna cronológica. El horizonte sigue siendo diario.
-
-El generador CV requiere NumPy menor que 2; utilizar un entorno separado del entrenamiento PyTorch:
+La librería CV requiere NumPy menor que 2; el entrenamiento y los análisis usan su propio entorno fijado. No mezclar los locks:
 
 ```bash
 python3.12 -m venv .venv-cv
 .venv-cv/bin/python -m pip install -r requirements-cv.txt
 python3.12 -m venv .venv-training
 .venv-training/bin/python -m pip install -r requirements-training.lock.txt
+```
+
+Los locks registran las versiones concretas; no se sustituyen por «la última versión» al verificar la ejecución. La adquisición de Binance está documentada en `data/README.md`, con script y manifiestos SHA-256. Los brutos de un minuto están fuera del checkout y **no son necesarios para verificar los resultados guardados**.
+
+Las pruebas de índices se ejecutan en CV; las demás, en entrenamiento:
+
+```bash
 .venv-cv/bin/python -m unittest discover -s tests -p 'test_dl_r2_cv.py'
-.venv-cv/bin/python scripts/prepare_dl_r2_cv.py --output-dir /tmp/dl-cv-index-check
-.venv-training/bin/python -m unittest discover -s tests -p 'test_dl_*.py'
-tar -xzf results/dl_r2_cv_20261104/run_artifacts.tar.gz -C results/dl_r2_cv_20261104
-.venv-training/bin/python scripts/verify_dl_r2_cv.py
-.venv-training/bin/python scripts/analyze_filipe_statistics.py
-.venv-training/bin/python scripts/verify_filipe_statistics.py
-.venv-training/bin/python scripts/export_filipe_book.py
+.venv-cv/bin/python -m unittest discover -s tests -p 'test_filipe_multihistory_cv.py'
+.venv-training/bin/python -m unittest discover -s tests
 ```
 
-El generador invoca `split_train_val_forwardChaining(np.arange(731),7,1,1)`. Su adaptación conserva 366 predicciones diarias y doce procedimientos mensuales por trayectoria. Los índices de entrenamiento, validación interna y evaluación alimentan directamente el ajuste de pesos y escaladores.
-
-La exportación usa únicamente las predicciones y registros de CV, verifica sus cifras y genera los CSV y gráficos que muestra el libro. No entrena modelos. Los archivos publicados se limitan a esta metodología; las instantáneas de investigación se conservan en el repositorio como trazabilidad.
-
-## Replicar los ajustes
-
-Usar un checkout separado y conservar la instantánea publicada antes de iniciar. El manifiesto versionado es una entrada firmada: su timestamp forma parte del hash. Para comprobar la librería se generan los índices en otro directorio, como arriba, y se comparan las listas de índices, sin sobrescribir la entrada firmada.
+Los tests de CV se omiten deliberadamente cuando falta esa dependencia en entrenamiento; se ejecutan en el entorno dedicado, como arriba. Los folds firmados ya están versionados. Para reconstruir índices con llamadas reales a la librería, escribir en un directorio **distinto** y comparar los índices:
 
 ```bash
-mv results/dl_r2_cv_20261104 results/dl_r2_cv_20261104_published_snapshot
-mkdir results/dl_r2_cv_20261104
-cp results/dl_r2_cv_20261104_published_snapshot/folds.json results/dl_r2_cv_20261104/folds.json
-cp results/dl_r2_cv_20261104_published_snapshot/folds.csv results/dl_r2_cv_20261104/folds.csv
-.venv-training/bin/python scripts/train_dl_r2_cv.py --phase validate
-.venv-training/bin/python scripts/train_dl_r2_cv.py --phase run
-.venv-training/bin/python scripts/export_filipe_book.py
+.venv-cv/bin/python scripts/prepare_filipe_multihistory.py --histories 14 21 28 --output-dir /tmp/e1-filipe-index-check
 ```
 
-Se registraron diez semillas por modelo y representación, 60 trayectorias, 720 segmentos modelo–fold y 1.440 ajustes efectivos. Los 720 checkpoints, escaladores, máscaras y curvas están en el paquete de artefactos con hashes. Las semillas describen aleatoriedad de entrenamiento condicionada a 2024; no constituyen mercados independientes ni un dimensionamiento de potencia 0,80.
+No sobrescribir los manifiestos firmados: el timestamp documental también forma parte de sus hashes. La llamada efectiva es `split_train_val_forwardChaining(np.arange(731), D, 1, 1)`; la agrupación mensual es una adaptación explícita del proyecto, no una API mensual nativa ni 366 reajustes.
 
-La evaluación sigue siendo exploratoria sobre desarrollo previamente examinado. El ajuste final con desarrollo 2023–2024 y el test previsto de enero de 2025–agosto de 2026 permanecen pendientes. Septiembre–octubre de 2026 queda sin asignar al test.
+## Evidencia pública y entrega privada
 
-## Revisión de todos los ítems y estadística complementaria
+La vista pública `book/_static/filipe_multihistory_20261104/` contiene **resúmenes agregados**, BDS por mes/semilla, código, fechas, calidad y firmas. `public_allowlist_manifest.json` identifica los archivos permitidos. No contiene los nuevos vectores individuales, series diarias, escaladores, checkpoints o archivos TAR completos.
 
-`experiments/filipe_statistics_20261104/protocol.json` registra una enmienda exploratoria posterior a los descriptivos de 2024 y anterior al cálculo complementario. No es un preregistro anterior al entrenamiento ni una confirmación en datos desconocidos. El analizador utiliza las predicciones guardadas y las curvas internas del corte de diciembre con semilla 4101; restaurar primero los archivos por corrida mediante el tar indicado arriba.
+La evidencia completa se conserva localmente. Un evaluador necesita el **paquete privado de evidencia** para recalcular las métricas y verificar los pesos guardados; un clon con solo resúmenes no basta. El paquete se entrega por un canal privado autorizado, acompañado de su manifiesto SHA-256. No es necesario publicar esos archivos para que la evaluación sea reproducible.
+
+Se conservan seis archivos de corridas: el TAR original D7 y cinco de la ampliación (CV D14, D21, D28, ajuste final y predicciones por corrida). El paquete incluye derivados diarios y predicciones ya existentes, no los ZIP brutos de Binance, credenciales o `.git`.
+
+## Crear una entrega privada y verificar una réplica aislada
+
+`scripts/restore_e1_private_artifacts.py` tiene modos `bundle` y `restore`. Rechaza un destino no vacío o dentro del origen y preserva los registros originales. Verifica SHA-256 de los seis TAR, rutas, tipos, duplicados y hashes de cada miembro antes de restaurarlos; no usa `extractall`.
+
+Desde el checkout local **completo**, crear una entrega privada en otro directorio:
 
 ```bash
-.venv-training/bin/python -m unittest discover -s tests -p 'test_filipe_statistics.py'
-.venv-training/bin/python scripts/analyze_filipe_statistics.py
-.venv-training/bin/python scripts/verify_filipe_statistics.py
-.venv-training/bin/python scripts/export_filipe_book.py
-jupyter-book build book --all --warningiserror --keep-going
-python scripts/check_book_links.py
+.venv-training/bin/python scripts/restore_e1_private_artifacts.py \
+  --source-root . \
+  --output-dir /ruta/privada/e1-entrega \
+  --mode bundle
 ```
 
-El suplemento ejecuta nueve contrastes de redes/referencia/margen, incorpora los tres controles de representación en Holm global-12, seis DM principales con sensibilidades HAC, quince diagnósticos BDS/Ljung–Box, bootstrap pareado de fechas y sensibilidad retrospectiva de diseño. No ajusta pesos, remuestrea semillas ni evalúa el test. Los IC por semillas, pérdidas temporales y bootstrap responden preguntas distintas. El verificador independiente reconstruye los cálculos desde las predicciones sin importar el analizador numérico principal.
+Se copia solo el código, locks, metadatos e insumos necesarios y los seis TAR verificados. `private_e1_bundle_manifest.json` registra nombres, bytes y SHA-256. Compartir ese directorio privadamente, conservando su estructura; no incorporarlo a `book/_static`, al repositorio público ni a `gh-pages`.
 
-El inventario de la revisión identifica 390 subsecciones numeradas. Revisar y actualizar sus contenidos no equivale a declarar todos los requisitos científicamente completos: el piloto prospectivo, los márgenes pendientes, el ajuste final, el test y el respaldo aplicado faltante siguen identificados.
+El evaluador crea el entorno con el lock incluido y ejecuta:
+
+```bash
+python3.12 -m venv /ruta/privada/e1-entorno
+/ruta/privada/e1-entorno/bin/python -m pip install -r /ruta/privada/e1-entrega/requirements-training.lock.txt
+/ruta/privada/e1-entorno/bin/python /ruta/privada/e1-entrega/scripts/restore_e1_private_artifacts.py \
+  --source-root /ruta/privada/e1-entrega \
+  --output-dir /ruta/privada/e1-replica \
+  --mode restore --verify
+```
+
+La réplica conserva los mismos archivos firmados y su marcador de primer acceso. El auditor independiente se ejecuta **dentro de la copia** y escribe `verification/independent_saved_result_audit.json` y `.md`. `replication_receipt.json` contiene resultado, cantidades y hashes; puede compartirse sin incluir vectores ni pesos.
+
+La comprobación reconstruye σ7 con fechas, escalado de entrenamiento, cohortes y purgas, selección previa, épocas de diciembre, métricas y BDS, y verifica que los 120 modelos finales preceden al test. No abre ZIP de mercado, ajusta redes ni ejecuta nuevos pronósticos. Verificar este backtest guardado no lo convierte en una evaluación nueva desconocida.
+
+Para repetir únicamente la auditoría de una réplica ya restaurada:
+
+```bash
+/ruta/privada/e1-entorno/bin/python /ruta/privada/e1-replica/scripts/verify_filipe_multihistory.py \
+  --phase test \
+  --report /ruta/privada/e1-replica/verification/recheck.json
+```
+
+Si faltan insumos privados, un TAR no coincide con su manifiesto o el destino contiene evidencia, la restauración falla. No se deben borrar marcadores ni sobrescribir resultados para forzarla.
+
+## Análisis y exportación desde la evidencia completa
+
+Los analizadores consumen predicciones guardadas; su salida se distingue de ejecutar los modelos:
+
+```bash
+.venv-training/bin/python scripts/analyze_filipe_multihistory.py --phase cv
+.venv-training/bin/python scripts/analyze_filipe_multihistory.py --phase test
+.venv-training/bin/python scripts/verify_filipe_multihistory.py --phase test --report /ruta/privada/auditoria.json
+.venv-training/bin/python scripts/export_filipe_multihistory_book.py --phase complete
+```
+
+Para conservar byte a byte la instantánea firmada, ejecutar los análisis en una copia restaurada o verificar primero la salida existente; no sobrescribir originales para cambiar decisiones. La exportación pública usa una lista explícita de resúmenes y no publica los archivos privados.
+
+El suplemento inicial `filipe_statistics_20261104` conserva su alcance **D7/2024**, con Holm-12, DM y bootstrap de desarrollo. No se traslada automáticamente a otras historias ni al test. Las ampliaciones estadísticas posteriores al examen de test se identifican como suplementos exploratorios, no como preregistros anteriores al entrenamiento.
+
+## Nuevos entrenamientos
+
+Los ejecutores originales conservan rutas y firmas del experimento cerrado. El ejecutor final bloquea `--phase fit` después del primer acceso al test: es una protección del registro, no un error que deba evitarse borrando `raw_access_started.json`.
+
+Para evaluar cambios de arquitectura, hiperparámetros o selección se necesita una **versión nueva**, con directorio y protocolo propios, piloto y evaluación independiente según corresponda. La réplica de evidencia no reentrena, no abre otra fase experimental ni reasigna septiembre–octubre de 2026.
+
+Las semillas miden variación de entrenamiento condicionada al calendario; no acreditan por sí solas potencia 0,80 ni independencia entre mercados. Siguen documentados los pendientes bibliográficos y de dimensionamiento prospectivo; el ajuste final y el test de las cuatro entradas no son tareas pendientes.

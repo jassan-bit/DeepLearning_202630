@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="565" viewBox="0 0 1040 565" role="img" aria-label="CNN1D implementada: dos convoluciones causales poco profundas">
+<defs><marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0 L10 4 L0 8Z" fill="#476783"/></marker></defs>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="35" y="37" text-anchor="start" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#17324d">CNN1D implementada: dos convoluciones causales poco profundas</text>
+<text x="35" y="72" text-anchor="start" font-family="Arial, sans-serif" font-size="19" font-weight="normal" fill="#17324d">Entrada causal: OHLCV observado de d−D a d−1; D = 7, 14, 21 o 28 días.</text>
+<text x="35" y="99" text-anchor="start" font-family="Arial, sans-serif" font-size="19" font-weight="normal" fill="#17324d">Objetivo fijo: volatilidad de siete retornos diarios σ₇. Horizonte: h = 1 día.</text>
+<rect x="35.0" y="136" width="296.6666666666667" height="118" rx="10" fill="#e8f0f8" stroke="#38678f" stroke-width="2"/>
+<text x="183.33333333333334" y="165" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#17324d">1. Ventana</text>
+<text x="183.33333333333334" y="192" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="normal" fill="#17324d">N × D × 5</text>
+<text x="183.33333333333334" y="219" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="normal" fill="#17324d">Transpose: N × 5 × D</text>
+<line x1="334.6666666666667" y1="195" x2="366.6666666666667" y2="195" stroke="#476783" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="371.6666666666667" y="136" width="296.6666666666667" height="118" rx="10" fill="#e8f0f8" stroke="#38678f" stroke-width="2"/>
+<text x="520.0" y="165" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#17324d">2. Conv1D causal</text>
+<text x="520.0" y="192" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="normal" fill="#17324d">5 → 16 · k = 3</text>
+<text x="520.0" y="219" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="normal" fill="#17324d">ReLU · Dropout 0,1</text>
+<line x1="671.3333333333334" y1="195" x2="703.3333333333334" y2="195" stroke="#476783" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="708.3333333333334" y="136" width="296.6666666666667" height="118" rx="10" fill="#e8f0f8" stroke="#38678f" stroke-width="2"/>
+<text x="856.6666666666667" y="165" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#17324d">3. Conv1D causal</text>
+<text x="856.6666666666667" y="192" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="normal" fill="#17324d">16 → 16 · k = 3</text>
+<text x="856.6666666666667" y="219" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="normal" fill="#17324d">ReLU · Dropout 0,1</text>
+<path d="M1008.0 195 H1023 V355 H1010.0" fill="none" stroke="#476783" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="708.3333333333334" y="296" width="296.6666666666667" height="118" rx="10" fill="#e8f0f8" stroke="#38678f" stroke-width="2"/>
+<text x="856.6666666666667" y="325" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#17324d">4. Media temporal</text>
+<text x="856.6666666666667" y="352" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="normal" fill="#17324d">Sobre las D posiciones</text>
+<text x="856.6666666666667" y="379" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="normal" fill="#17324d">N × 16</text>
+<line x1="705.3333333333334" y1="355" x2="673.3333333333334" y2="355" stroke="#476783" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="371.6666666666667" y="296" width="296.6666666666667" height="118" rx="10" fill="#e8f0f8" stroke="#38678f" stroke-width="2"/>
+<text x="520.0" y="325" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#17324d">5. Salida</text>
+<text x="520.0" y="352" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="normal" fill="#17324d">Linear(16, 1)</text>
+<text x="520.0" y="379" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="normal" fill="#17324d">Softplus</text>
+<line x1="368.6666666666667" y1="355" x2="336.6666666666667" y2="355" stroke="#476783" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="35.0" y="296" width="296.6666666666667" height="118" rx="10" fill="#e7f4ec" stroke="#26734b" stroke-width="2"/>
+<text x="183.33333333333334" y="334" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#17324d">6. Pronóstico</text>
+<text x="183.33333333333334" y="361" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="normal" fill="#17324d">σ̂₇(d) ≥ 0</text>
+<text x="35" y="454" text-anchor="start" font-family="Arial, sans-serif" font-size="19" font-weight="bold" fill="#17324d">Parámetros: (16·5·3 + 16) + (16·16·3 + 16) + (16 + 1) = 1.057, constantes para los cuatro D.</text>
+<text x="35" y="519" text-anchor="start" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#17324d">Padding solo a la izquierda; campo receptivo local de cinco posiciones. La media usa toda la ventana pasada</text>
+<text x="35" y="543" text-anchor="start" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#17324d">observada.</text>
+</svg>

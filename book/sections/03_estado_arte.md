@@ -128,6 +128,10 @@ El **enlace bibliográfico** identifica el trabajo, su DOI, su preprint o el reg
 
 La tabla se puede descargar en [CSV](../_static/literature_e1/references_access_35.csv) y [JSON](../_static/literature_e1/references_access_35.json), con las fuentes y limitaciones de cada entrada. Las referencias completas se presentan en la [bibliografía del libro](referencias.md).
 
+**Recuperación dirigida posterior a la auditoría del 04/11/2026.** Se ejecutó otra etapa de descubrimiento público, separada del flujo original: **13 cadenas literales, 18 páginas y 113 ocurrencias en 92 repositorios únicos**; se inspeccionaron nueve raíces/README y siete archivos de código/notebook sin ejecutarlos. El [registro de consultas](../_static/e1_audit_improvements_20261104/literature/search_log.json) y la [evaluación de candidatos](../_static/e1_audit_improvements_20261104/literature/candidate_assessment.csv) documentan este recorrido. No se suman estas ocurrencias al PRISMA original sin una deduplicación conjunta: son dos etapas con denominadores propios.
+
+Se verificaron pistas de una CNN1D independiente y una MLP TS-only, pero **no se recuperó ningún manuscrito científico completo nuevo**. Un README de autores que declara «bajo revisión» no acredita publicación, indexación o Q1. Por ello se mantienen **35 referencias, cinco textos incluidos y los apoyos MLP/CNN1D simple en 0/5**. El avance cierra documentación de búsqueda y comparabilidad, no la extracción bibliográfica A01. La [matriz de siete fuentes](../_static/e1_audit_improvements_20261104/literature/dataset_comparability.csv) distingue Spot/Futures, frecuencia, objetivo y horizonte; ninguna demuestra igualdad de la versión Binance Spot/σ7 propia. El {download}`informe de esta recuperación <../_static/e1_audit_improvements_20261104/literature/report.md>` separa código inspeccionado, artículo pendiente y exclusión.
+
 ### 3.1.3. Periodo de búsqueda
 
 El intervalo preferente de publicación es **01/01/2019–03/11/2026**, ocho años calendario. Las consultas web actuales no aplicaron un filtro verificable de año editorial: ese criterio se revisa durante la identificación documental. La fecha de actualización de un repositorio no se utiliza como fecha de publicación. Los trabajos anteriores, como Guo (2018), Katsiampa (2017) y Dyhrberg (2016), conservan su papel de antecedentes/contexto.
@@ -333,7 +337,7 @@ Los cuatro criterios de la guía se evalúan por modelo, junto con la suficienci
 |---|---|---|
 | Arquitectura simple, reproducible y ampliamente documentada | S5 identifica una LSTM pequeña; S1 y S2 describen configuraciones y las fichas separan fuente, cálculo y adaptación | La TCN ganadora de S1 es grande; falta su versión de biblioteca y S6 no permite reconstruir un total exacto. Las configuraciones propias de desarrollo están implementadas y contadas en §4.2; no reproducen automáticamente los ganadores de estas fuentes. |
 | Uso frecuente como referencia en la literatura del problema | Frecuencias por estudio y sensibilidades de §3.2.1.1 | LSTM 4/5, GRU 2/5, encoder 2/5 y TCN 1/5 describen este corpus, sin demostrar recurrencia global. GRU continúa elegible. |
-| Capacidad de entrenarse bajo el mismo pipeline y partición que los otros modelos base | El contrato propio fija información OHLCV, objetivo, horizonte y evaluación cronológica | Las tres redes se ejecutaron con las mismas ventanas OHLCV, cortes temporales, transformaciones y semillas; cada familia se evaluó con diez semillas y dos representaciones bajo los mismos doce bloques mensuales. Las configuraciones se registran en §4.2. |
+| Capacidad de entrenarse bajo el mismo pipeline y partición que los otros modelos base | El contrato propio fija información OHLCV, objetivo, horizonte y evaluación cronológica | Las cuatro historias D=7/14/21/28 comparten ventanas OHLCV, cortes, reglas causales, representación principal `relative_window` y diez semillas por familia. Solo el ciclo inicial D7 incluyó el control `absolute_log`; no se ejecutaron dos representaciones para las cuatro historias. Las configuraciones se registran en §4.2. |
 | Ser un modelo de Deep Learning independiente | Se identifican comparadores LSTM, GRU, TCN y encoder; se separan propuestas e híbridos | Una Dense1 lineal, una cabeza interna, persistencia, SVR, Ridge o GARCH no ocupan un puesto de los tres modelos DL. |
 
 El mismo pipeline exige las mismas reglas de información disponible, partición, preprocesamiento y evaluación, con transformaciones ajustadas solo sobre entrenamiento. No obliga a que una representación vectorizada y una secuencial tengan idéntica forma de tensor. La ejecución de desarrollo aporta evidencia de compatibilidad técnica; no demuestra generalización fuera de 2024 ni cierra la suficiencia bibliográfica.
@@ -379,6 +383,18 @@ En la extracción se identifica primero qué componente no está reportado y qu�
 
 Los ganadores de S1 **sí están publicados**: no procede tratar su ancho o profundidad como una arquitectura ausente. La versión de biblioteca pendiente y los supuestos del cálculo permanecen explícitos en §3.2.1.2 y en los perfiles fuente archivados. Reducir la TCN de seis niveles y F=287 sería una adaptación que exige justificación, no una réplica del ganador ni una forma de completar un dato omitido. La configuración propia se recoge en el [método de CV](../_static/dl_r2_cv_20261104/method.json): ancho 16 para MLP/CNN1D y 32 para LSTM. Son decisiones del proyecto, sin atribuirlas a S1 ni presentarlas como prueba de mínima complejidad global.
 
+**Trazabilidad del ajuste de hiperparámetros.** La [búsqueda histórica registrada](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/dl_benchmark_20261104/protocol_initial.json) recorrió dos anchos (16/32), dos learning rates (0,001/0,003), cuatro D y dos semillas (101/202) en cada una de las tres familias: **3×4×2×2×2=96 corridas**, con el mismo número de evaluaciones por familia. Su [tabla de selección](https://github.com/jassan-bit/DeepLearning_202630/blob/main/results/dl_benchmark_20261104/search_configurations.csv) contiene 48 configuraciones agregadas sobre esas dos semillas. Ese recuento no describe las diez repeticiones de la CV vigente.
+
+| Familia | Receta histórica D7 transferida | Decisión vigente antes de test | Alcance de la transferencia |
+|---|---|---|---|
+| MLP | Ancho 16; learning rate 0,001 | Mismos H/LR para las cuatro D; MLP D7 elegida como baseline neuronal con CV | La representación relativa y el entrenamiento creciente modifican el procedimiento respecto a la búsqueda histórica. |
+| LSTM | Ancho 32; learning rate 0,003 | Mismos H/LR para las cuatro D; historia D7 seleccionada con CV | No se atribuye un espacio HPO nuevo a cada mes ni una validación anidada que no se ejecutó. |
+| CNN1D | Canales 16; learning rate 0,001 | Mismos H/LR para las cuatro D; historia D7 seleccionada con CV | El control absoluto es solo D7; la ampliación conserva la receta relativa fijada. |
+
+La [extensión registrada](../_static/filipe_multihistory_20261104/protocol.json) mantuvo estas recetas, las diez semillas 4101–4110 y el mismo máximo de épocas y criterio de parada. No hubo una nueva búsqueda de H/LR en la ampliación D14/21/28: la decisión que se comparó fue la longitud D. Compartir un espacio histórico de igual presupuesto acredita esa etapa; no demuestra que los hiperparámetros sigan siendo óptimos bajo precios relativos, ni que cada familia reciba una capacidad equivalente. La transferencia queda **documentada con ese límite**; cualquier reoptimización posterior necesita otra versión, reglas previas y evaluación independiente. Tampoco sustituye el respaldo aplicado de las arquitecturas exigido en A01.
+
+Los metadatos se leen por su identificador de experimento: `dl_benchmark_20261104` conserva la búsqueda/piloto históricos, `dl_r2_cv_20261104` el primer ciclo de Filipe D7 y `filipe_multihistory_20261104` la extensión de cuatro entradas y test final. Los campos históricos de dos semillas no se actualizan para fingir diez; el manifiesto vigente enumera las diez semillas y los outputs que realmente usa.
+
 ### 3.2.6. Familias de arquitecturas orientativas por tipo de problema
 
 Las siguientes familias son una orientación de la guía, no resultados de frecuencia ni una selección automática. La elección final debe proceder de la literatura del problema y cumplir los criterios anteriores. El contrato actual usa covariables OHLCV temporales y una salida continua escalar:
@@ -421,6 +437,10 @@ Los perfiles documentales íntegros de LSTM/TCN/encoder de las fuentes, con sus 
 MLP con **una capa oculta de 16 unidades ReLU**, dropout 0,1 y cabeza escalar Softplus. Aplana los mismos D×5 valores que reciben las otras redes, conservando el orden de días y canales. No incluye estado recurrente, convoluciones ni entradas adicionales.
 
 #### 3.3.1.3. Descripción técnica
+
+![Arquitectura propia MLP](../_static/e1_architectures_20261104/mlp.svg)
+
+MLP: aplanado de D×5, capa oculta de 16 unidades y cabeza Softplus; el número de parámetros crece con D. El diagrama corresponde a la implementación del proyecto y conserva n=7/h=1.
 
 Para X∈R^(D×5), x=vec(X)∈R^(5D), W₁∈R^(16×5D) y w₂∈R^16:
 
@@ -493,6 +513,10 @@ Una **capa LSTM unidireccional de 32 unidades**, con estado inicial nulo, dropou
 
 #### 3.3.2.3. Descripción técnica
 
+![Arquitectura propia LSTM](../_static/e1_architectures_20261104/lstm.svg)
+
+LSTM: una capa recurrente unidireccional de 32 unidades; la salida usa el último estado de la ventana observable. El diagrama corresponde a la implementación del proyecto y conserva n=7/h=1.
+
 Para xⱼ∈R^5, hⱼ,cⱼ∈R^32 y s la función logística, la celda calcula:
 
 $$
@@ -562,6 +586,10 @@ En el corpus de cinco textos **no se acreditó una CNN1D simple independiente** 
 Dos convoluciones temporales 1D ordinarias, **16 canales por capa, kernel 3, stride 1 y dilatación 1**, con padding exclusivamente izquierdo, ReLU y dropout 0,1 después de cada capa. La cabeza aplica promedio temporal y Dense1/Softplus. No contiene bloques residuales ni atención.
 
 #### 3.3.3.3. Descripción técnica
+
+![Arquitectura propia CNN1D](../_static/e1_architectures_20261104/cnn1d.svg)
+
+CNN1D: dos convoluciones causales ordinarias de 16 canales y media temporal; campo receptivo local de cinco días. El diagrama corresponde a la implementación del proyecto y conserva n=7/h=1.
 
 Para a⁽⁰⁾=X, cada capa l∈{1,2} y posición j calcula, con ceros en posiciones anteriores al comienzo de la ventana:
 

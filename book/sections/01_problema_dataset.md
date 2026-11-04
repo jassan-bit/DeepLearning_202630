@@ -119,11 +119,15 @@ g_m=\frac{\mathrm{RMSE}_{\mathrm{pers}}-\mathrm{RMSE}_m}
 \quad \mathrm{RMSE}_{\mathrm{pers}}>0.
 $$
 
-El criterio operativo aceptado es **$g_m\ge0{,}05$**, es decir, al menos un **5 % de reducción relativa de RMSE frente a persistencia**, en las mismas fechas y con el mismo objetivo. Es un margen de comparación del estudio; no representa una utilidad financiera calibrada ni una garantía de rentabilidad. La diferencia estadística y la relevancia operativa se reportan por separado para la CV de desarrollo y para la evaluación final reservada. Si la RMSE de persistencia es cero, la mejora relativa queda no definida y se reportará; no se introduce un epsilon.
+El criterio operativo **del estudio ya ejecutado** es **$g_m\ge0{,}05$**, es decir, al menos un **5 % de reducción relativa de RMSE frente a persistencia**, en las mismas fechas y con el mismo objetivo. Es un margen de comparación del estudio; no representa una utilidad financiera calibrada ni una garantía de rentabilidad. La diferencia estadística y la relevancia operativa se reportan por separado para la CV de desarrollo y para la evaluación final reservada. Si la RMSE de persistencia es cero, la mejora relativa queda no definida y se reportará; no se introduce un epsilon.
 
-Alcanzar el 5 % con una estimación puntual y demostrar una mejora de ese tamaño son afirmaciones diferentes. Para sostener la segunda se necesitará incertidumbre temporal compatible con superar el margen, además de las reglas de multiplicidad y selección fijadas antes del test. Este porcentaje se refiere únicamente a la comparación con persistencia: no determina automáticamente el margen entre dos redes, una banda de equivalencia ni el umbral futuro de un modelo avanzado frente al baseline DL.
+Alcanzar el 5 % con una estimación puntual y demostrar una mejora de ese tamaño son afirmaciones diferentes. Para sostener la segunda se necesitará incertidumbre temporal compatible con superar el margen, además de las reglas de multiplicidad y selección fijadas antes del test. En ese protocolo el porcentaje se refiere únicamente a persistencia: no fijaba un margen entre dos redes, una banda de equivalencia ni el criterio de una propuesta avanzada. La definición académica futura que sigue se registra después de observar este test y no se atribuye retroactivamente al estudio completado.
 
-El margen relativo del 5 % corresponde solo a persistencia. Para planificar repeticiones puede expresarse como $\delta_{\mathrm{plan}}=0{,}05\,\mathrm{RMSE}_{\mathrm{pers,desarrollo}}$, fijando la cohorte y los supuestos. Detectar frente a cero un efecto de ese tamaño es distinto de demostrar una mejora superior al 5 %. La CV utiliza diez semillas por modelo/variante como presupuesto exploratorio; no dispone de un piloto propio que acredite potencia 0,80. El [análisis de sensibilidad](../_static/filipe_statistics_20261104/design_sensitivity.csv) utiliza retrospectivamente la dispersión de las diez semillas: orienta el diseño frente a cero, pero no sustituye un piloto previo ni demuestra potencia lograda. El dimensionamiento prospectivo definitivo permanece pendiente.
+El margen relativo original del 5 % corresponde solo a persistencia. Para planificar repeticiones puede expresarse como $\delta_{\mathrm{plan}}=0{,}05\,\mathrm{RMSE}_{\mathrm{pers,desarrollo}}$, fijando la cohorte y los supuestos. Detectar frente a cero un efecto de ese tamaño es distinto de demostrar una mejora superior al 5 %. La CV utiliza diez semillas por modelo/variante como presupuesto exploratorio; no dispone de un piloto propio que acredite potencia 0,80. El [análisis de sensibilidad](../_static/filipe_statistics_20261104/design_sensitivity.csv) utiliza retrospectivamente la dispersión de las diez semillas: orienta el diseño frente a cero, pero no sustituye un piloto previo ni demuestra potencia lograda. El dimensionamiento prospectivo definitivo permanece pendiente.
+
+**Criterio académico para una propuesta futura.** Se define como convención operativa una reducción relativa de RMSE **superior al 5 % frente a cada una de dos referencias: MLP/D7 y persistencia**, sobre las mismas fechas de una nueva evaluación independiente. Es una decisión de protocolo transparente, coherente con el criterio previo contra persistencia y examinada mediante sensibilidad; no se presenta como tolerancia financiera validada ni como una condición anterior al test ya observado. El promedio por sí solo no acredita el cumplimiento: se deben declarar incertidumbre y las dos comparaciones. El {download}`criterio académico y su alcance <../_static/e1_audit_improvements_20261104/planning/academic_margin_README.md>` conserva fecha, referencias y regla.
+
+Se mantienen los [36 escenarios de sensibilidad](../_static/e1_audit_improvements_20261104/planning/advanced_margin_scenarios.csv) de 1/2,5/5/10 % para detectar diferencias frente a cero. Se añaden [27 escenarios de planificación conjunta](../_static/e1_audit_improvements_20261104/planning/academic_joint_power_scenarios.csv) para superar la frontera práctica del 5 %: un mismo promedio avanzado hipotético, 7,5/10/15 % menor que persistencia, tres dispersiones futuras y tres correlaciones pareadas con el baseline. Cada contraste unilateral planifica α=0,025 y potencia 0,90; bajo los supuestos, la cota de la unión proporciona potencia conjunta al menos 0,80 sin suponer independencia entre ambos contrastes. Se impone un mínimo de cinco ejecuciones; usar pruebas de rangos exige además su propio mínimo y dimensionamiento. Los R son escenarios de diferencias normales, no potencia alcanzada: faltan un piloto con variabilidad real y una evaluación nueva. No se ha entrenado aquí un modelo avanzado.
 
 | Elemento | Decisión y alcance |
 |---|---|
@@ -173,7 +177,7 @@ El **BDS de residuos de h=1 se calculó por bloque y semilla** para las tres red
 
 La definición principal queda fijada en **n=7, h=1 y D=7/14/21/28**, RMSE y margen operativo del 5 % frente a persistencia. La [congelación](../_static/filipe_multihistory_20261104/freeze.json) registra la selección de desarrollo y la política de pesos finales fijos. La prueba se evaluó después de firmar los modelos; sus veinte meses se usan para reportar errores, no para seleccionar o reajustar.
 
-La CV mensual y el control absoluto inicial D7 conservan su cronología. Las decisiones ya habían usado desarrollo expuesto y no constituyen selección anidada ni potencia 0,80 acreditada. El diagnóstico Ridge permanece separado. La [lista de pendientes](protocolo_pendiente.md) conserva las limitaciones bibliográficas, de potencia, equivalencia y margen avanzado que la evaluación final no resuelve por sí sola.
+La CV mensual y el control absoluto inicial D7 conservan su cronología. Las decisiones ya habían usado desarrollo expuesto y no constituyen selección anidada ni potencia 0,80 acreditada. El diagnóstico Ridge permanece separado. La [matriz de cierre](protocolo_pendiente.md) conserva las limitaciones bibliográficas y de dimensionamiento prospectivo. El criterio académico avanzado ya está definido para el futuro; su potencia real y su evaluación permanecen abiertas. La equivalencia y su margen son condicionales a que se quiera sostener esa afirmación; no se declaran como otro requisito obligatorio pendiente de este estudio.
 
 ## 1.2. Justificación del Dataset
 
@@ -205,7 +209,19 @@ Los términos de uso se conservan como {download}`copia documental <../_static/d
 
 ### 1.2.3. Uso previo del dataset en la literatura
 
-**Uso previo del mismo dataset:** No verificado; el antecedente temático no demuestra igualdad de dataset.
+**Uso previo y comparabilidad:** la revisión ahora identifica explícitamente los datos y objetivos de siete fuentes en la [matriz de comparabilidad](../_static/e1_audit_improvements_20261104/literature/dataset_comparability.csv). No se acreditó todavía que una publicación use la misma versión histórica Binance Spot/σ7. La documentación concreta de diferencias sustituye la afirmación genérica «No verificado», sin declarar equivalencia entre datasets.
+
+| Fuente | Datos y mercado documentados | Objetivo/horizonte y límite para comparar |
+|---|---|---|
+| S1 · Akbiyik et al. | Bitcoin cada 15 minutos y Twitter | RV del próximo día agregada de 96 retornos intradiarios; cambia definición, escala, información y periodo. |
+| S2 · Zeri | Binance Futures BTCUSDT perpetuo, vía CryptoLake | Log RV futura de 30 minutos; futuros no es Spot y su microestructura no coincide con OHLCV diario. |
+| S3 · Herremans/Low | CryptoQuant y whale-alert/Twitter | Picos del día siguiente según autores; fórmula exacta pendiente de artículo completo y covariables diferentes. |
+| S4 · Huang et al. | Proveedor y datos no extraídos de texto completo en esta revisión | Definición/horizonte pendientes; el antecedente temático no acredita igualdad numérica. |
+| S5 · Gao et al. | Yahoo Finance BTC-USD diario | Ventana de 30 días sin centrar y desplazamiento de siete días; cambia proveedor, par, normalización y horizonte. |
+| S6 · Wang et al. | OHLCV de Bitcoin diario; proveedor insuficientemente especificado | RV1D sin fórmula suficientemente recuperada; no se equipara a σ7. |
+| S7 · Alakhouch | BTC/USD diario de Investing.com/Kaggle, según manuscrito/código | Código de volatilidad futura de 30 días anualizada; no es la etiqueta móvil σ7/h1 del proyecto. |
+
+La recuperación también encontró software que declara Binance Spot/BTCUSDT a un minuto, pero con dispersión futura de diez minutos y sin un artículo verificable: aporta una pista de procedencia, no uso científico acreditado del dataset propio. Las cifras de las fuentes siguen siendo contexto; no se ordenan junto a las métricas propias como si procedieran del mismo experimento. El {download}`informe de recuperación <../_static/e1_audit_improvements_20261104/literature/report.md>` conserva ubicaciones, calidad y limitaciones. La igualdad de la versión exacta sigue abierta; la **matriz de diferencias ya está documentada**.
 
 ## 1.3. Descripción de la técnica
 
@@ -252,7 +268,7 @@ La regla actual exige 1.440 minutos elegibles para acreditar un OHLCV diario com
 
 Las ventanas y las volatilidades móviles comparten información. Una fecha, una inicialización y un bloque temporal representan fuentes diferentes de variabilidad. Las semillas y los doce folds mensuales sobre un mercado no se contarán como mercados independientes. Los IC por semillas condicionan al calendario observado; el bootstrap temporal inicial D7 se conserva como análisis exploratorio condicionado a sus modelos guardados, sin extrapolarlo a las otras entradas. Un único activo limita la generalización a otros mercados.
 
-Así se declara la dependencia conocida, sin presentar como resuelto el requisito de independencia: ningún número de filas, folds o semillas convierte una serie en varios mercados. La inferencia temporal requerirá justificar sus supuestos, longitud de bloque y estabilidad en el procedimiento que se evalúe.
+Así se declara la dependencia conocida, sin presentar como resuelto el requisito de independencia: ningún número de filas, folds o semillas convierte una serie en varios mercados. La inferencia temporal debe justificar sus supuestos, longitud de bloque y estabilidad en el procedimiento que se evalúa. El suplemento final conserva longitud principal 14 y sensibilidades 7/28, con alcance post-hoc y condicionado a sus modelos guardados.
 
 **Separación temporal y prevención de fuga**
 
@@ -274,7 +290,7 @@ El calendario confirmado del proyecto es el siguiente:
 | Ajuste final | Datos elegibles de 2023–2024 | Reajustar la configuración seleccionada |
 | Test externo | 01/01/2025–31/08/2026 | Evaluar sin seleccionar configuraciones a partir del test |
 
-Se reportarán **2025 y 2026 por separado**; el segundo año solo cubre hasta el 31 de agosto, no el año completo.
+Se reportan **2025 y enero–agosto de 2026 por separado**, con 365 y 243 fechas, respectivamente. La [tabla anual](../_static/e1_audit_improvements_20261104/descriptive/annual_metrics_summary.csv) calcula cada métrica sobre sus fechas y luego resume semillas; 2026 no representa el año completo ni se obtiene la RMSE global promediando dos RMSE anuales.
 
 Los 366 días de 2024 se evalúan mediante doce bloques mensuales de forward chaining, utilizando solo el pasado permitido para cada ajuste. Ese año ya estuvo disponible en el EDA y en la elección de configuraciones, por lo que sus resultados son desarrollo exploratorio. El ajuste final se realizó sobre el desarrollo permitido de 2023–2024, excluyendo los últimos D resultados antes de enero de 2025 por embargo; las épocas se fijaron con la validación interna de diciembre de 2024.
 

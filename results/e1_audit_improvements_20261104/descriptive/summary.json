@@ -1,0 +1,68 @@
+{
+  "completed_at_utc": "2026-11-04T20:46:58.943940+00:00",
+  "analysis": "post_evaluation_descriptive_audit_improvements",
+  "source_sha256": {
+    "results/filipe_multihistory_20261104/test/predictions.csv": "fc54a556a617d396952d92750e2fdb817505d8665f3fa6de98a602effddcc2a0",
+    "results/filipe_multihistory_20261104/test/runs.csv": "13560298f4a1146047d56a381910a7b43de4337a4ef801a5979285d5e5839be9",
+    "results/filipe_multihistory_20261104/predictions.csv": "b408fc33bc7a3873b2336e2f84420ef9b287a3f0f500a2912acedcb2420759ff",
+    "results/dl_r2_cv_20261104/predictions.csv": "9b91d6a1299cdb6e21330894ad7566bc247be86282f2810f9a80c77875d9058f",
+    "results/eda_development/daily_market_development.csv": "bf6bb5160af924aef6a15c3684aeae932df3017e8639888bb7e91ce787900171",
+    "results/eda_development/daily_volatility_development.csv": "20b96374a659eb87dadfa68aa3d6b6b5fb6bea5b10eebe6f2c186ad69861844a",
+    "experiments/filipe_multihistory_20261104/freeze.json": "7c789040819598a4339b60c7be56e104b82ef94dbba6b70ae904128387f47837",
+    "results/filipe_multihistory_20261104/test/cohort_manifest.json": "44c1d8a439b9a1e10023374ad427e70f823c73514234e5404bdf714c745acd3e",
+    "results/filipe_multihistory_20261104/test/daily_market_test.csv": "c81215f88dfc7fe9b8b579596c958f27da5bedb7580bb4a935808b23a414baf1",
+    "results/filipe_multihistory_20261104/test/daily_volatility_test.csv": "ff16f2e966cb45072811ca3bfcfacefbda91600b121d5941e30358fc329defcd"
+  },
+  "protocol_sha256": "e6319edf4c320707d51fc987b59f62967538784718ffe369d5a0e5b468576442",
+  "analysis_code_sha256": "3f60677dc280fafe24a12cf1e12b7bd5210c658fb166bced6afed124944f7d81",
+  "new_model_fits": 0,
+  "new_checkpoint_forward_calls": 0,
+  "raw_archives_opened": 0,
+  "period_days": {
+    "2025": 365,
+    "2026_Jan_Aug": 243
+  },
+  "training_bin_thresholds": {
+    "common_training_last_outcome_day": "2024-12-03",
+    "target": "sigma7",
+    "quantile_method": "numpy linear",
+    "training_nonmissing_targets": 646,
+    "q25": 0.014110124135907447,
+    "q50": 0.019933612722439223,
+    "q75": 0.02662696476312075,
+    "input_eligibility": "All28previousOHLCVdays finite; same common admitted D28 final-training outcomes, no gap bridging",
+    "scope": "Boundaries use pre-test development only; segmentation is retrospective diagnosis, not a new selection rule."
+  },
+  "counts": {
+    "annual_run_metrics.csv": 248,
+    "annual_metrics_summary.csv": 192,
+    "variance_components.csv": 104,
+    "severity_run_metrics.csv": 744,
+    "severity_metrics_summary.csv": 576,
+    "residual_bins_by_seed.csv": 496,
+    "residual_bins_summary.csv": 64,
+    "monthly_prediction_aggregates.csv": 512,
+    "difficult_months.csv": 48,
+    "distribution_by_period.csv": 32
+  },
+  "scope": "Descriptive supplement after test inspection; fixed model selection and forecasts remain unchanged. Only aggregates/bins/period summaries are outputs.",
+  "output_sha256": {
+    "README.md": "00d0a968e3a88571c321bbb9b290d8339112049e1cc35645817c14555d464f85",
+    "annual_metrics_summary.csv": "6139d2a4b618bfe069333cc7765021f7636ff8b7d840c1b25c1850aa6f562db8",
+    "annual_rmse.png": "3598a151d7cf0be9e671642d95d6e1611f4d5befe43a0af9f4f34f261f828e06",
+    "annual_run_metrics.csv": "d95e35b2479a29e2e2c2d0dabc584c20416dca91921326f678ba880fecccb773",
+    "code_manifest_before_analysis.json": "3cb13a036959621a07d744d7378e74d69aaa25d8b9569ad769af2e622b4f5f2e",
+    "development_bin_thresholds.json": "5eaefb820208c29df2a66a5c057e1044ed3f11540688d1d6ee07165280162165",
+    "difficult_months.csv": "5e52b0339221feed5c75b7190dd7cb45b1c166b665757e68e9c04825a9c5178f",
+    "distribution_by_period.csv": "60dd1a4fb48f3239752988115985e6cdb14d22f194ecf713de5344b54375ab7c",
+    "monthly_prediction_aggregates.csv": "d40e955162f6eb9c46b53b4ea793df108ce8dcadf3010979ccf082d4e7c95e0a",
+    "monthly_predictions_D7.png": "3a405e96a5d158f5bde187af6731f4fb76615857693baca69fe32aab0fd0630b",
+    "residual_bins_by_seed.csv": "b84cc70fed1a811167e3c98d24289f68d201c4d3623289c3897a3eec6d76b6e9",
+    "residual_bins_summary.csv": "110db746a327573d5a975821f9d228ce6b9783e8012fa287e3d017d61ea4d368",
+    "residual_variance_D7.png": "ff6e7a76c8ef995ef83b2adba829650f32a4f6e5d129c54f2c386175f55f3b91",
+    "severity_metrics_summary.csv": "e8f219da491360b6891a4599f898566e4513b30ecd7af90458cdf0217eaa04a6",
+    "severity_run_metrics.csv": "ce52246d13a4be4ebcc53db7d14dd5661f48ae31da1410022f5ca016f8951636",
+    "variance_components.csv": "5577f42e77cc7b9f8bfcfda865134f8c612261da4c8027d7397c22ac9f9746fa",
+    "variance_components.png": "67e68b680b574744340e80b7d891f03e65f644d68b46f43600e44a270438cd0e"
+  }
+}

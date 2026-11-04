@@ -1,0 +1,980 @@
+{
+  "audit_id": "e1_pdf_audit_20261104",
+  "audited_at_bogota": "2026-11-04T15:34:13.305475-05:00",
+  "book_source_commit": "c8ec07a81cbac0dea053bc120a1b5975496d16de",
+  "guide": {
+    "name": "Entregable1DeepLearningProject.pdf",
+    "sha256": "56cffb2e0e23bbdfd28815b7c7515d2663bf501ed5d6e0656a37a76fc45e43eb",
+    "pages": 34
+  },
+  "scope": "Criterios de contraste de la guía; hallazgos previos a las mejoras. No se publica el PDF original.",
+  "findings": [
+    {
+      "id": "A01",
+      "priority": "Alta",
+      "status": "Parcial",
+      "criterion_type": "Requisito",
+      "title": "Extracción bibliográfica de los tres modelos base",
+      "source_findings": [
+        "LIT-01"
+      ],
+      "pdf_pages": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "pdf_sections": [
+        "3",
+        "3.2",
+        "3.3"
+      ],
+      "observation": "El corpus incluido respalda LSTM, pero mantiene MLP no lineal independiente y CNN1D simple en 0/5 estudios. Las familias sugeridas por la guía y las corridas propias no sustituyen la extracción aplicada.",
+      "action": "Recuperar fuentes completas verificables de MLP y CNN1D como comparadores independientes de volatilidad; registrar arquitectura, rol, dataset, métricas y páginas/tablas. Si cambia el trío, separar la nueva versión experimental.",
+      "acceptance": "Matriz fuente→modelo para los tres integrantes, frecuencias actualizadas y justificación explícita de sencillez, recurrencia y no redundancia.",
+      "evidence": [
+        {
+          "file": "book/sections/03_estado_arte.md",
+          "lines": [
+            264,
+            270,
+            271,
+            299,
+            301,
+            409,
+            632,
+            636
+          ],
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "A02",
+      "priority": "Alta",
+      "status": "Pendiente",
+      "criterion_type": "Requisito",
+      "title": "Margen práctico y mejora mínima detectable frente al baseline",
+      "source_findings": [
+        "ST-02",
+        "PE-03"
+      ],
+      "pdf_pages": [
+        3,
+        23,
+        27,
+        33,
+        34
+      ],
+      "pdf_sections": [
+        "5.3 Umbral de mejora",
+        "5.5 Discusión",
+        "Observación final",
+        "1. Definición formal; 5.3. Umbral de mejora"
+      ],
+      "observation": "El 5 % actual se refiere a persistencia. La mejora práctica y la MDE frente al baseline neuronal se siguen aplazando, aunque son parte del objetivo central de E1.",
+      "action": "Justificar un δ para la aplicación y su referencia; presentar escenarios de dispersión y correlación para dimensionar una mejora frente al baseline. Declarar lo desconocido y la fecha real de definición.",
+      "acceptance": "Umbral numérico en escala original o reducción relativa, justificación aplicada y MDE/escenarios con α, potencia y supuestos. No hace falta entrenar ya un modelo avanzado ni fingir que el margen era previo.",
+      "evidence": [
+        {
+          "file": "book/sections/05_benchmark.md",
+          "lines": [
+            325,
+            337,
+            339,
+            343,
+            345,
+            750,
+            752
+          ],
+          "detail": "Se difieren expresamente MDE y margen avanzado; el 5 % vigente se refiere a persistencia y no al baseline neuronal."
+        },
+        {
+          "file": "book/sections/07_limitaciones_entregables.md",
+          "lines": [
+            75,
+            81,
+            83
+          ],
+          "detail": "La sensibilidad retrospectiva usa δ=5 % del RMSE de persistencia; para pares neuronales no hay margen práctico propio."
+        },
+        {
+          "file": "book/sections/01_problema_dataset.md",
+          "lines": 122,
+          "detail": ""
+        },
+        {
+          "file": "book/sections/01_problema_dataset.md",
+          "lines": 124,
+          "detail": ""
+        },
+        {
+          "file": "book/sections/01_problema_dataset.md",
+          "lines": 126,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "A03",
+      "priority": "Alta",
+      "status": "Parcial",
+      "criterion_type": "Requisito",
+      "title": "Inferencia del benchmark final y efectos con incertidumbre temporal",
+      "source_findings": [
+        "ST-01",
+        "ST-03",
+        "ST-04"
+      ],
+      "pdf_pages": [
+        22,
+        23,
+        24,
+        25,
+        26,
+        29,
+        33,
+        34
+      ],
+      "pdf_sections": [
+        "5.3 Inferencia sobre diferencias",
+        "5.4 Análisis estadístico",
+        "6.4 Regresión temporal",
+        "5.4 Intervalos y efecto",
+        "7 Qué hacer",
+        "Buenas prácticas",
+        "5.4 Caso Series de tiempo y regresión temporal",
+        "6.4 Inferencia"
+      ],
+      "observation": "La inferencia comparativa actual pertenece a D7/2024; el test final presenta medias e IC marginales por semilla y BDS. BDS contrasta iid residual, no precisión relativa entre redes.",
+      "action": "Completar, con pronósticos guardados, un suplemento de las tres configuraciones D7 seleccionadas: pares principales, diferencias RMSE/MAE, IC pareados, efectos, multiplicidad, DM por h=1 y Ljung–Box. Registrar antes de calcularlo su carácter posterior a la inspección del test.",
+      "acceptance": "Tabla principal con estimando/unidad, diferencias, IC, efectos y p ajustados/sin ajustar; remuestreo temporal y sensibilidad justificados. No exigir automáticamente 66 pares entre las doce configuraciones ni llamar confirmatorio al análisis añadido.",
+      "evidence": [
+        {
+          "file": "book/sections/05_benchmark.md",
+          "lines": [
+            258,
+            270,
+            274,
+            278,
+            655,
+            696
+          ],
+          "detail": "Los tamaños de efecto y contrastes RMSE se limitan al suplemento D7/2024; el propio libro reconoce que no se generó una nueva familia de comparaciones de precisión para el test."
+        },
+        {
+          "file": "results/filipe_multihistory_20261104/test/analysis/",
+          "lines": null,
+          "detail": "Los productos actuales son métricas marginales, BDS por mes y resúmenes; no hay tabla de diferencias pareadas con IC/p ajustado/efecto del test."
+        },
+        {
+          "file": "book/sections/05_benchmark.md",
+          "lines": [
+            113,
+            123,
+            419,
+            425,
+            442,
+            655,
+            657
+          ],
+          "detail": "El bootstrap de fechas solo corresponde a D7/2024. Las tablas finales usan IC t de métricas entre diez semillas; los d_z antiguos no cubren el test y no se presentan IC bootstrap de los nuevos efectos."
+        },
+        {
+          "file": "book/sections/05_benchmark.md",
+          "lines": [
+            504,
+            506,
+            508,
+            593,
+            595,
+            597,
+            605,
+            611
+          ],
+          "detail": "DM/HAC/HLN y Ljung–Box corresponden a las 366 fechas de D7/2024, una semilla designada para residuos; el libro aclara que no se ejecutaron para otras D o test final."
+        }
+      ]
+    },
+    {
+      "id": "A04",
+      "priority": "Alta",
+      "status": "Pendiente para el procedimiento vigente",
+      "criterion_type": "Requisito",
+      "title": "Piloto y dimensionamiento prospectivos del protocolo vigente",
+      "source_findings": [
+        "EXP-01"
+      ],
+      "pdf_pages": [
+        17,
+        18,
+        19
+      ],
+      "pdf_sections": [
+        "4.1 estudio piloto, tamaño de muestra y registro",
+        "4.3 repeticiones"
+      ],
+      "observation": "Existe un piloto histórico con cinco semillas y cálculo de R para otro procedimiento. El forward chaining relativo actual usa diez semillas como presupuesto exploratorio; su MDE retrospectiva no sustituye el piloto prospectivo de esta evaluación.",
+      "action": "Conservar el estudio actual con su límite y preparar, antes de una nueva evaluación definitiva, un piloto del procedimiento que se vaya a usar, dispersión pareada y dimensionamiento ajustado a las comparaciones de interés.",
+      "acceptance": "Registro fechado antes de la nueva ejecución, al menos cinco semillas piloto por base, media/DE/CV, δ/σd, cálculo de R y MDE. No reescribir retrospectivamente la historia del experimento actual.",
+      "evidence": [
+        {
+          "file": "book/sections/04_implementacion_evaluacion.md",
+          "lines": "97–113,127–152,160–179",
+          "detail": "Admite que diez semillas son presupuesto exploratorio, sin piloto prospectivo de esta CV y sin suficiencia de potencia."
+        },
+        {
+          "file": "results/dl_benchmark_20261104/pilot_summary.json",
+          "lines": null,
+          "detail": "Existe piloto histórico de otro protocolo; no demuestra dimensionamiento para el entrenamiento forward/relativo actual."
+        }
+      ]
+    },
+    {
+      "id": "A05",
+      "priority": "Alta",
+      "status": "Parcial",
+      "criterion_type": "Requisito",
+      "title": "Reproducción externa y manual vigente",
+      "source_findings": [
+        "EXP-03"
+      ],
+      "pdf_pages": [
+        18,
+        19,
+        33
+      ],
+      "pdf_sections": [
+        "4.2 versiones registradas",
+        "4.3 empaquetado reproducible"
+      ],
+      "observation": "BUILD.md:81 y :98 todavía anuncian ajuste final y test pendientes. El manual reproduce el ciclo D7. Además, el checkout publicado conserva el marcador que bloquea fit y no contiene los nuevos pesos y vectores completos que permitirían la verificación local.",
+      "action": "Actualizar BUILD.md para el ciclo de cuatro entradas y añadir una ruta de réplica aislada o una entrega privada al evaluador, con hashes y restauración de artefactos; separar reproducción de una nueva decisión científica.",
+      "acceptance": "Un evaluador puede verificar/reproducir en un directorio limpio siguiendo instrucciones exactas, con dependencias y acceso documentado a los insumos. No se exige publicar los archivos privados ni borrar marcadores del registro original.",
+      "evidence": [
+        {
+          "file": "BUILD.md",
+          "lines": "79–81,98",
+          "detail": "Manual aún D7/60 trayectorias y dice que ajuste final/test permanecen pendientes, contrario a la ejecución vigente."
+        },
+        {
+          "file": "book/sections/04_implementacion_evaluacion.md",
+          "lines": "374–392",
+          "detail": "El informe aclara que vectores, pesos y paquetes nuevos están conservados localmente, mientras la publicación ofrece resúmenes."
+        },
+        {
+          "file": "scripts/final_fit_filipe_multihistory.py",
+          "lines": "136–140",
+          "detail": "fit_all rechaza ejecución si existe raw_test_audit.json o raw_access_started.json."
+        },
+        {
+          "file": "results/filipe_multihistory_20261104/test/raw_access_started.json",
+          "lines": null,
+          "detail": "El marcador está versionado, pero vectores y pesos completos de test no lo están; fresh clone no dispone del material privado para verificar métricas ni puede correr fit por la ruta fija publicada."
+        }
+      ]
+    },
+    {
+      "id": "A06",
+      "priority": "Media",
+      "status": "Parcial",
+      "criterion_type": "Requisito",
+      "title": "Procedencia y transferencia de configuraciones e hiperparámetros",
+      "source_findings": [
+        "EXP-02",
+        "LIT-02"
+      ],
+      "pdf_pages": [
+        14,
+        18
+      ],
+      "pdf_sections": [
+        "4.2 equidad en la optimización",
+        "3.2",
+        "4.2"
+      ],
+      "observation": "Sí hubo una búsqueda histórica igualada de 96 corridas. Falta conectar sus decisiones y configuraciones mínimas con la CV relativa y las cuatro entradas actuales; no hay evidencia para afirmar una desigualdad de ajuste deliberada.",
+      "action": "Documentar fuente→configuración→selección→transferencia, espacios, presupuestos y motivos de ancho/LR. Justificar congelar recetas heredadas o diseñar un ajuste comparable en una versión nueva.",
+      "acceptance": "Tabla auditable de espacios/presupuestos y valores elegidos por familia, con alcance histórico y vigente separados; no afirmar que nunca existió HPO.",
+      "evidence": [
+        {
+          "file": "book/sections/04_implementacion_evaluacion.md",
+          "lines": "224–246,315–319",
+          "detail": "La CV actual usa H/LR heredados y cuatro D, sin nueva búsqueda ni espacio HPO equivalente descrito en el apartado."
+        },
+        {
+          "file": "experiments/dl_benchmark_20261104/protocol_initial.json",
+          "lines": null,
+          "detail": "La búsqueda histórica sí registra H∈{16,32}, LR∈{.001,.003}, dos semillas y cuatro D:96 corridas igualadas; no es correcto afirmar que nunca hubo búsqueda equitativa."
+        },
+        {
+          "file": "results/dl_benchmark_20261104/search_configurations.csv",
+          "lines": null,
+          "detail": "48 configuraciones familiares/D agregadas, dos semillas cada una."
+        },
+        {
+          "file": "book/sections/03_estado_arte.md",
+          "lines": [
+            303,
+            309,
+            310,
+            311,
+            374,
+            376,
+            380,
+            407
+          ],
+          "detail": ""
+        },
+        {
+          "file": "book/sections/04_implementacion_evaluacion.md",
+          "lines": [
+            226,
+            250,
+            317
+          ],
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "A07",
+      "priority": "Media",
+      "status": "Parcial",
+      "criterion_type": "Requisito con alcance",
+      "title": "Cobertura de búsqueda y procedencia individual de fuentes",
+      "source_findings": [
+        "LIT-03",
+        "LIT-04"
+      ],
+      "pdf_pages": [
+        12,
+        13
+      ],
+      "pdf_sections": [
+        "3.1",
+        "3"
+      ],
+      "observation": "La búsqueda pública es trazable, pero acotada a recuperación web/GitHub y con verificaciones individuales de procedencia/indexación incompletas.",
+      "action": "Ampliar recuperación dirigida a fuentes útiles para el trío y completar DOI, venue, año, acceso y comprobante individual. Mantener distintos búsqueda web, plataforma editorial e indexación.",
+      "acceptance": "Registro reproducible actualizado, deduplicación y flujo coherentes; fuentes de cada modelo verificadas. No se exige acceso institucional ni se convierte la preferencia por Q1 en obligación absoluta.",
+      "evidence": [
+        {
+          "file": "book/sections/03_estado_arte.md",
+          "lines": [
+            23,
+            25,
+            34,
+            36,
+            152,
+            154,
+            170,
+            172,
+            195,
+            217,
+            223,
+            225
+          ],
+          "detail": ""
+        },
+        {
+          "file": "book/sections/03_estado_arte.md",
+          "lines": [
+            9,
+            40,
+            46,
+            47,
+            52,
+            62,
+            64,
+            68,
+            174,
+            243,
+            718,
+            727
+          ],
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "A08",
+      "priority": "Media",
+      "status": "Parcial",
+      "criterion_type": "Requisito",
+      "title": "Comparabilidad del dataset con estudios previos",
+      "source_findings": [
+        "PE-01"
+      ],
+      "pdf_pages": [
+        3
+      ],
+      "pdf_sections": [
+        "1. Justificación del dataset"
+      ],
+      "observation": "El libro declara que el uso previo del mismo dataset no está verificado. Una fuente Binance trazada no garantiza que las cifras de otros periodos u objetivos sean comparables.",
+      "action": "Añadir tabla artículo→proveedor/par/frecuencia/periodo/objetivo/partición; justificar coincidencias y diferencias de la versión elegida.",
+      "acceptance": "Conclusión sustentada sobre qué comparaciones son legítimas; si la versión histórica es nueva, declararlo sin presentar métricas de otros datasets como directamente comparables.",
+      "evidence": [
+        {
+          "file": "book/sections/01_problema_dataset.md",
+          "lines": 206,
+          "detail": ""
+        },
+        {
+          "file": "book/sections/01_problema_dataset.md",
+          "lines": 208,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "A09",
+      "priority": "Media",
+      "status": "Parcial con límite de identificación",
+      "criterion_type": "Requisito",
+      "title": "Evidencia sobre el mecanismo de faltantes",
+      "source_findings": [
+        "PE-02"
+      ],
+      "pdf_pages": [
+        4
+      ],
+      "pdf_sections": [
+        "2.1. Calidad del dataset"
+      ],
+      "observation": "La cuantificación y propagación de huecos están implementadas, pero MCAR/MAR/MNAR sigue sin identificarse.",
+      "action": "Reunir evidencia del incidente de proveedor o metadatos y evaluar sensibilidad de la política de exclusión. Si el mecanismo no es identificable, explicitar el límite y sus consecuencias.",
+      "acceptance": "Evidencia y análisis de sensibilidad razonado; no asignar una categoría de faltantes sin sustento ni prometer que los datos observados permiten demostrarla.",
+      "evidence": [
+        {
+          "file": "book/sections/02_eda.md",
+          "lines": 81,
+          "detail": ""
+        },
+        {
+          "file": "book/sections/02_eda.md",
+          "lines": 87,
+          "detail": ""
+        },
+        {
+          "file": "results/eda_general_quality/missingness_evidence.json",
+          "lines": 1,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "A10",
+      "priority": "Media",
+      "status": "Parcial",
+      "criterion_type": "Requisito",
+      "title": "Distribuciones del test después del cierre",
+      "source_findings": [
+        "PE-04"
+      ],
+      "pdf_pages": [
+        4
+      ],
+      "pdf_sections": [
+        "2.1. Sesgos/desplazamiento y partición"
+      ],
+      "observation": "Las comparaciones de distribución documentadas se concentran en 2023/2024. El test ya evaluado no tiene una descripción equivalente de objetivo/covariables para 2025 y enero–agosto de 2026.",
+      "action": "Añadir un diagnóstico post-hoc de distribución/cobertura de la evaluación final, conservando las decisiones del pipeline y la selección.",
+      "acceptance": "Resumen por fase/periodo y conclusión de desplazamiento con límites; no usar esa inspección para retocar el modelo y volver a presentar el mismo test como independiente.",
+      "evidence": [
+        {
+          "file": "book/sections/02_eda.md",
+          "lines": 138,
+          "detail": ""
+        },
+        {
+          "file": "book/sections/02_eda.md",
+          "lines": 159,
+          "detail": ""
+        },
+        {
+          "file": "book/sections/02_eda.md",
+          "lines": 245,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "A11",
+      "priority": "Media",
+      "status": "Parcial",
+      "criterion_type": "Requisito",
+      "title": "Descomposición cuantitativa de la variabilidad",
+      "source_findings": [
+        "EXP-04"
+      ],
+      "pdf_pages": [
+        21
+      ],
+      "pdf_sections": [
+        "4.4 análisis de resultados"
+      ],
+      "observation": "Se reporta DE entre semillas y estabilidad mensual, pero falta una descomposición numérica clara que distinga esos factores de las diferencias entre modelos.",
+      "action": "Añadir tabla o descomposición descriptiva de variabilidad por semilla, mes, arquitectura e historia, con factores y dependencias explícitos.",
+      "acceptance": "Producto cuantitativo reproducible e interpretación de sus unidades; el PDF no obliga a una ANOVA particular ni autoriza tratar meses como iid.",
+      "evidence": [
+        {
+          "file": "book/sections/04_implementacion_evaluacion.md",
+          "lines": "704–708",
+          "detail": "Da DE por semillas y explica diferencia temporal, pero no descompone cuantitativamente los componentes solicitados."
+        }
+      ]
+    },
+    {
+      "id": "A12",
+      "priority": "Media",
+      "status": "Parcial",
+      "criterion_type": "Requisito",
+      "title": "Diagnóstico y explicación de los errores finales",
+      "source_findings": [
+        "EXP-05",
+        "EXP-06"
+      ],
+      "pdf_pages": [
+        21
+      ],
+      "pdf_sections": [
+        "4.4 análisis cualitativo: estructura, sesgo y heterocedasticidad",
+        "4.4 análisis cualitativo"
+      ],
+      "observation": "Faltan diagnóstico específico de heterocedasticidad y un relato apoyado en visualizaciones/casos difíciles de la evaluación final; buena parte del material residual y curvas corresponde al D7 previo.",
+      "action": "Completar residuos frente a predicción/tiempo, dispersión y sesgo por rangos relevantes, casos difíciles y comparación visual entre valores y pronósticos; separar claramente CV y test.",
+      "acceptance": "Figuras/tablas interpretadas del procedimiento final. Una prueba ARCH no es la única forma obligatoria de analizar heterocedasticidad; usar agregados públicos o material privado según el alcance de entrega.",
+      "evidence": [
+        {
+          "file": "book/sections/04_implementacion_evaluacion.md",
+          "lines": "760–768",
+          "detail": "La ampliación añade BDS por mes, pero reconoce que no hay análisis nuevo específico de heterocedasticidad condicional."
+        },
+        {
+          "file": "book/sections/05_benchmark.md",
+          "lines": "605–611",
+          "detail": "El Ljung–Box y ACF anual corresponden aD7/2024 y no hay ARCH ni contraste sobre residuos al cuadrado."
+        },
+        {
+          "file": "book/sections/04_implementacion_evaluacion.md",
+          "lines": "738–758",
+          "detail": "Se preserva un gráficoD7/2024/semilla4101; tablas mensuales de test disponibles, pero no hay visualización final ni episodios concretos de error discutidos."
+        }
+      ]
+    },
+    {
+      "id": "A13",
+      "priority": "Media",
+      "status": "Parcial",
+      "criterion_type": "Requisito",
+      "title": "Diferencias relativas de MAE",
+      "source_findings": [
+        "ST-05"
+      ],
+      "pdf_pages": [
+        22
+      ],
+      "pdf_sections": [
+        "5.3 Cuantificación de diferencias"
+      ],
+      "observation": "Las tablas muestran MAE, pero falta el equivalente numérico de las reducciones de RMSE exigido en la guía.",
+      "action": "Añadir ΔMAE absoluto y relativo frente a referencias claramente identificadas, al menos en las tres configuraciones principales.",
+      "acceptance": "Tabla con signo, denominador, periodo y alcance, enlazada a las diferencias/IC del análisis principal cuando estén disponibles.",
+      "evidence": [
+        {
+          "file": "book/sections/05_benchmark.md",
+          "lines": [
+            214,
+            224,
+            237,
+            239
+          ],
+          "detail": "La tabla numérica presenta reducciones de RMSE. MAE aparece como métrica marginal en §5.1, pero falta su tabla de diferencias/reducciones equivalentes."
+        }
+      ]
+    },
+    {
+      "id": "A14",
+      "priority": "Media",
+      "status": "Inconsistencia verificable",
+      "criterion_type": "Coherencia editorial",
+      "title": "Reporte anual anunciado pero no publicado",
+      "source_findings": [
+        "PE-05"
+      ],
+      "pdf_pages": [
+        3
+      ],
+      "pdf_sections": [
+        "Exhaustividad y reproducibilidad; precisión de la evidencia (criterio editorial adicional)"
+      ],
+      "observation": "El capítulo 6 afirma que se publicaron métricas globales, por año y mes. El analizador actual produce trayectoria completa y meses, sin tabla separada de 2025 y enero–agosto de 2026.",
+      "action": "Generar la tabla anual desde las predicciones guardadas, sin ejecutar nuevos pronósticos ni entrenamientos, o corregir la promesa del texto.",
+      "acceptance": "Afirmaciones y productos existentes coinciden; cada tabla anual identifica su periodo y número de fechas.",
+      "evidence": [
+        {
+          "file": "book/sections/06_procedimiento.md",
+          "lines": 119,
+          "detail": ""
+        },
+        {
+          "file": "book/sections/06_procedimiento.md",
+          "lines": 181,
+          "detail": ""
+        },
+        {
+          "file": "scripts/analyze_filipe_multihistory.py",
+          "lines": 173,
+          "detail": ""
+        },
+        {
+          "file": "scripts/analyze_filipe_multihistory.py",
+          "lines": 426,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "A15",
+      "priority": "Baja",
+      "status": "Ambigüedad editorial",
+      "criterion_type": "Coherencia editorial",
+      "title": "Alcance de las dos representaciones",
+      "source_findings": [
+        "LIT-05"
+      ],
+      "pdf_pages": [
+        18
+      ],
+      "pdf_sections": [
+        "4.2"
+      ],
+      "observation": "Una celda de §3.2.2 sugiere dos representaciones para toda la comparación. El control absolute_log solo se ejecutó en el ciclo inicial D7.",
+      "action": "Rotular explícitamente relative_window para cuatro D y el control de dos representaciones como antecedente exclusivo D7.",
+      "acceptance": "La fila no permite interpretar que se entrenó absolute_log para D14/21/28.",
+      "evidence": [
+        {
+          "file": "book/sections/03_estado_arte.md",
+          "lines": [
+            336,
+            405,
+            660
+          ],
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "A16",
+      "priority": "Baja",
+      "status": "Mejora",
+      "criterion_type": "Coherencia editorial",
+      "title": "Metadatos históricos y vigentes",
+      "source_findings": [
+        "LIT-07"
+      ],
+      "pdf_pages": [
+        13,
+        15
+      ],
+      "pdf_sections": [
+        "3.1",
+        "3.3"
+      ],
+      "observation": "Se conservan snapshots con cantidades de semillas y configuraciones históricas, cuyo nombre puede confundirse con el estado actual.",
+      "action": "Etiquetar claramente fecha, experimento y alcance, y destacar un manifiesto vigente de referencia.",
+      "acceptance": "Historia preservada y trazable sin presentar snapshots de dos semillas como configuración actual de diez.",
+      "evidence": [
+        {
+          "file": "references/literature_e1/guide_aligned_proposal_20261104.json",
+          "lines": [
+            20,
+            26,
+            28,
+            41,
+            47,
+            49
+          ],
+          "detail": ""
+        },
+        {
+          "file": "book/_static/literature_e1/guide_aligned_proposal_20261104.json",
+          "lines": [
+            30,
+            36,
+            174,
+            180
+          ],
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "A17",
+      "priority": "Baja",
+      "status": "Mejora",
+      "criterion_type": "Recomendación",
+      "title": "Diagramas de las arquitecturas",
+      "source_findings": [
+        "LIT-06"
+      ],
+      "pdf_pages": [
+        15
+      ],
+      "pdf_sections": [
+        "3.3"
+      ],
+      "observation": "Los flujos textuales son auditables, pero se puede mejorar la lectura de capas, dimensiones y transformaciones.",
+      "action": "Añadir diagramas claros de MLP/LSTM/CNN1D con entradas D×5, salida positiva y recuento de parámetros.",
+      "acceptance": "Los diagramas coinciden con el código y distinguen D de n; no se inventa una obligación de estilo gráfico determinada.",
+      "evidence": [
+        {
+          "file": "book/sections/03_estado_arte.md",
+          "lines": [
+            437,
+            509,
+            579
+          ],
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "A18",
+      "priority": "Media",
+      "status": "Mejora",
+      "criterion_type": "Recomendación metodológica",
+      "title": "Interpretación y calibración del BDS mensual",
+      "source_findings": [
+        "ST-06"
+      ],
+      "pdf_pages": [
+        25,
+        34
+      ],
+      "pdf_sections": [
+        "5.4 BDS",
+        "Buenas prácticas"
+      ],
+      "observation": "El BDS por mes está calculado y sus límites se declaran, pero 28–31 residuos proporcionan una referencia asintótica frágil; corregir multiplicidad no corrige una mala calibración.",
+      "action": "Mantener el carácter exploratorio y complementar con bloques más largos, diagnóstico global y sensibilidad/calibración apropiada si se desean afirmaciones fuertes.",
+      "acceptance": "Supuestos, tamaño de muestra y nulo explícitos; nunca usar el promedio de p como test combinado ni BDS como prueba de superioridad predictiva.",
+      "evidence": [
+        {
+          "file": "book/sections/05_benchmark.md",
+          "lines": [
+            550,
+            554,
+            589,
+            591,
+            661
+          ],
+          "detail": "Se ejecutaron 2.880/4.800 BDS con T mensual de 28–31, dimensiones2/3, radio1,5 DE y Holm. El libro ya reconoce referencia asintótica frágil y promedio de p descriptivo."
+        }
+      ]
+    },
+    {
+      "id": "A19",
+      "priority": "Media",
+      "status": "Mejora",
+      "criterion_type": "Recomendación metodológica",
+      "title": "Épocas finales tomadas de un único mes",
+      "source_findings": [
+        "EXP-08"
+      ],
+      "pdf_pages": [
+        18,
+        21
+      ],
+      "pdf_sections": [
+        "4.2 estrategia de entrenamiento",
+        "4.4 sobreajuste/subajuste"
+      ],
+      "observation": "La regla es previa al test y reproducible, pero la duración elegida en diciembre puede ser poco representativa del desarrollo completo; cambia mucho entre historias.",
+      "action": "Analizar su sensibilidad solo en desarrollo y justificar la política. Para otra ejecución, predefinir una regla agregada o validación interna final con datos de desarrollo.",
+      "acceptance": "Regla justificada y registrada antes de la evaluación nueva; no reajustar épocas porque ya se observaron los resultados de este test.",
+      "evidence": [
+        {
+          "file": "book/sections/04_implementacion_evaluacion.md",
+          "lines": "83–85,266–274,716–736",
+          "detail": "Se elige best_epoch de diciembre2024 y luego reajusta con otra inicialización; la visualización detallada es soloD7/semilla4101."
+        },
+        {
+          "file": "experiments/filipe_multihistory_20261104/freeze.json",
+          "lines": null,
+          "detail": "D7CNN épocas24–99, mediana81.5; D28CNN1–34, mediana2.5; D28LSTM1–30, mediana3. Todas duraciones se congelaron antes de test."
+        }
+      ]
+    },
+    {
+      "id": "A20",
+      "priority": "Media",
+      "status": "Mejora",
+      "criterion_type": "Recomendación",
+      "title": "Robustez adicional y sensibilidad del proxy de etiqueta",
+      "source_findings": [
+        "EXP-07",
+        "PE-08"
+      ],
+      "pdf_pages": [
+        3,
+        4,
+        21
+      ],
+      "pdf_sections": [
+        "4.4 robustez y errores por segmentos",
+        "1.3. Ruido esperado; 2.1. Calidad"
+      ],
+      "observation": "Los meses ya aportan un análisis de estabilidad. Puede ampliarse por regímenes, rangos de volatilidad o perturbaciones y distinguir ruido del proveedor de incertidumbre del proxy.",
+      "action": "Definir segmentos/perturbaciones razonados y resumir el cambio de errores; dejar claro qué aspectos del ruido no se miden.",
+      "acceptance": "Evidencia adicional interpretada. La guía no exige simultáneamente todos los análisis de ruido, perturbación y subgrupos ni una estimación ficticia de volatilidad latente.",
+      "evidence": [
+        {
+          "file": "book/sections/04_implementacion_evaluacion.md",
+          "lines": "710–714,738–742",
+          "detail": "Sí existen tablas mensuales y comparación deD; no hay segmentación por rangos de volatilidad ni perturbaciones controladas."
+        },
+        {
+          "file": "book/sections/01_problema_dataset.md",
+          "lines": 243,
+          "detail": ""
+        },
+        {
+          "file": "book/sections/02_eda.md",
+          "lines": 75,
+          "detail": ""
+        },
+        {
+          "file": "book/sections/02_eda.md",
+          "lines": 81,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "A21",
+      "priority": "Media",
+      "status": "Mejora",
+      "criterion_type": "Recomendación",
+      "title": "Referencia lineal con protocolo comparable",
+      "source_findings": [
+        "PE-06"
+      ],
+      "pdf_pages": [
+        29
+      ],
+      "pdf_sections": [
+        "6.4. Referencia de contexto"
+      ],
+      "observation": "Las cuatro Ridge diagnósticas de EDA existen, pero no siguen exactamente todo el procedimiento de refit/CV y evaluación final de las redes.",
+      "action": "Si se pretende una comparación cuantitativa con Ridge, usar el mismo calendario, purga, escalado y criterio, manteniéndola como referencia contextual.",
+      "acceptance": "Comparación con alcance homogéneo o explicación explícita de por qué el diagnóstico EDA no constituye otro competidor final; no se exige reemplazar una de las tres redes por Ridge.",
+      "evidence": [
+        {
+          "file": "book/sections/02_eda.md",
+          "lines": 421,
+          "detail": ""
+        },
+        {
+          "file": "book/sections/02_eda.md",
+          "lines": 425,
+          "detail": ""
+        },
+        {
+          "file": "book/sections/06_procedimiento.md",
+          "lines": 113,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "A22",
+      "priority": "Baja",
+      "status": "Mejora",
+      "criterion_type": "Recomendación de claridad",
+      "title": "Calendario y figura de la CV realmente ejecutada",
+      "source_findings": [
+        "PE-07"
+      ],
+      "pdf_pages": [
+        4,
+        29
+      ],
+      "pdf_sections": [
+        "2.1. Partición; 6.4. Partición"
+      ],
+      "observation": "Los porcentajes son correctos como duración de periodos; el ejemplo oficial de la librería no es la figura del experimento Bitcoin.",
+      "action": "Añadir una figura del calendario de los doce bloques reales, historia creciente, purga D y test, junto con una justificación de las duraciones.",
+      "acceptance": "Se distingue el ejemplo oficial de la ejecución y las proporciones de calendario de las proporciones de muestras por fold.",
+      "evidence": [
+        {
+          "file": "book/sections/02_eda.md",
+          "lines": 169,
+          "detail": ""
+        },
+        {
+          "file": "book/sections/02_eda.md",
+          "lines": 198,
+          "detail": ""
+        },
+        {
+          "file": "book/sections/02_eda.md",
+          "lines": 211,
+          "detail": ""
+        },
+        {
+          "file": "book/sections/02_eda.md",
+          "lines": 225,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "A23",
+      "priority": "Baja",
+      "status": "Condicional / no exigible sin afirmación",
+      "criterion_type": "Aclaración de alcance",
+      "title": "Equivalencia: TOST/ROPE no es un pendiente automático",
+      "source_findings": [
+        "ST-07"
+      ],
+      "pdf_pages": [
+        24,
+        33
+      ],
+      "pdf_sections": [
+        "5.4 Ausencia de significancia",
+        "7 Equivalencia"
+      ],
+      "observation": "Algunas listas agrupan márgenes de equivalencia con pendientes obligatorios, aunque el informe no afirma equivalencia.",
+      "action": "Marcar TOST/ROPE y su margen como análisis condicional. Mantener separado el margen práctico de mejora avanzada, que sí exige el objetivo de E1.",
+      "acceptance": "Sin afirmación de equivalencia no se exige esa prueba; ausencia de significancia nunca se presenta como equivalencia.",
+      "evidence": [
+        {
+          "file": "book/sections/05_benchmark.md",
+          "lines": [
+            498,
+            500,
+            502,
+            716,
+            775
+          ],
+          "detail": "El desarrollo explica correctamente que no se afirma equivalencia, pero los listados finales mezclan margen de equivalencia con pendientes generales."
+        },
+        {
+          "file": "book/sections/07_limitaciones_entregables.md",
+          "lines": [
+            112,
+            114,
+            116,
+            118
+          ],
+          "detail": "Las condiciones y reglas TOST/ROPE están correctamente descritas; no se ejecutaron."
+        }
+      ]
+    }
+  ],
+  "original_private_audit_sha256": "5140ac455c198090745267ff2e506f436d23a920e3e383da6a3268811018f0e1"
+}

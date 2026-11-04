@@ -8,4 +8,6 @@ El test tiene 608 fechas elegibles comunes y 72,960 pronósticos. Sus veinte mes
 
 BDS se calculó por fold y semilla: 2880 hipótesis previstas en CV y 4800 en test. Las medias de p-valores son descriptivas; la referencia asintótica en meses cortos tiene limitaciones. El suplemento anual previo de D7/2024 conserva su alcance histórico.
 
-Permanecen abiertos el respaldo aplicado de MLP/CNN1D, el piloto prospectivo y potencia definitiva, los márgenes de equivalencia/modelo avanzado y las mediciones externas de ruido/faltantes. No se asigna nota ni porcentaje de cumplimiento.
+Se añadieron tablas anuales, descomposición descriptiva de variabilidad, segmentos y residuos, inferencia final explícitamente post-hoc, diagramas y una ruta de restauración privada verificada. El criterio operativo académico futuro es una mejora superior al5% frente a MLP/D7 y persistencia; no se presenta como definido antes del test ya conocido ni como utilidad financiera.
+
+Permanecen abiertos el respaldo aplicado de MLP/CNN1D, el piloto/dimensionamiento prospectivo de una evaluación futura y las mediciones externas de ruido/faltantes. TOST/ROPE es condicional a una afirmación de equivalencia, no un pendiente obligatorio. No se asigna nota ni porcentaje de cumplimiento.

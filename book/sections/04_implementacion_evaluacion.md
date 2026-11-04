@@ -10,6 +10,8 @@ Después del cierre se realizaron **120 ajustes finales** con desarrollo permiti
 
 La selección con desarrollo ya examinado sigue siendo exploratoria y no es una búsqueda anidada. El test mide el procedimiento cerrado; después de consultarlo no queda como reserva desconocida para diseñar otro modelo. Las referencias aplicadas de MLP/CNN1D, el piloto prospectivo y otros márgenes pendientes se mantienen explícitos.
 
+La auditoría se completa con tablas anuales, variabilidad, segmentos y diagnósticos finales calculados desde los resultados guardados; su registro está en el [protocolo del complemento](../_static/e1_audit_improvements_20261104/protocol.json), [resumen inferencial](../_static/e1_audit_improvements_20261104/inference/summary.json) y [resumen descriptivo](../_static/e1_audit_improvements_20261104/descriptive/summary.json). El complemento se registró **después de inspeccionar el test**, antes de estos cálculos. Es un análisis **post-hoc/exploratorio** de las predicciones guardadas de las tres configuraciones **D7 elegidas con CV**, más persistencia determinista. No es una confirmación prospectiva, no cambia la selección MLP/D7 y no ejecuta nuevos pronósticos ni entrenamientos.
+
 ## 4.1. Diseño Experimental
 
 
@@ -51,7 +53,7 @@ La [reserva original](../_static/data/test_raw_reserve_20250101_20260831.json) c
 
 Se ejecutó la función real `tsxv.splitTrainVal.split_train_val_forwardChaining(np.arange(731),D,1,1)` de **timeseries-cv 0.1.5**, en el entorno separado con NumPy 1.26.4, para cada D. Se agrupan los orígenes diarios de 2024 en **doce meses**, tomando los candidatos de entrenamiento del primer origen de cada mes. Los filtros de calidad y purga se aplican sobre los índices reales de la biblioteca, que utiliza el entrenador.
 
-Para el comienzo mensual t se admiten resultados **u≤t−D−1**. Con inicio interno v=t−90, el subentrenamiento admite u≤v−D−1 y la validación interna abarca v,…,t−D−1. Quedan **83, 76, 69 y 62 etiquetas internas** para D=7,14,21,28 cuando no hay faltantes. Los cortes excluyen las ventanas no elegibles.
+La **sección 6.4 de la guía E1, página 29, exige embargo igual al máximo rezago de las covariables**. Por eso, en este proyecto se usa embargo D: 7, 14, 21 o 28 días. Es una regla del protocolo exigida por la guía, no una proporción o separación impuesta automáticamente por la API de Filipe. Para el comienzo mensual t se admiten resultados **u≤t−D−1**. Con inicio interno v=t−90, el subentrenamiento admite u≤v−D−1 y la validación interna abarca v,…,t−D−1. Quedan **83, 76, 69 y 62 etiquetas internas** para D=7,14,21,28 cuando no hay faltantes. Los cortes excluyen las ventanas no elegibles.
 
 Los tamaños efectivos registrados son:
 
@@ -98,6 +100,8 @@ R² se calcula con la media y sumas de cuadrados del mismo periodo agrupado. Lue
 
 **Alcance histórico D7/2024:** la calibración del suplemento inicial se conserva a continuación y no acredita potencia para las nuevas entradas o el test.
 
+El [registro histórico de piloto](https://github.com/jassan-bit/DeepLearning_202630/blob/main/results/dl_benchmark_20261104/pilot_summary.json) conserva cinco semillas por familia y cálculos de dispersión y dimensionamiento de otro procedimiento. Ese antecedente existe, pero no acredita por transferencia automática un piloto del forward chaining relativo vigente.
+
 No se ejecutó un **piloto prospectivo previo para dimensionar las repeticiones de esta CV**. Las diez semillas por modelo y variante fueron un presupuesto exploratorio. Su dispersión ya observada puede calibrar escenarios de una evaluación futura, pero no convierte las corridas existentes en un piloto registrado antes de entrenar.
 
 El suplemento estadístico utiliza las diez diferencias de RMSE red–persistencia para calcular **sensibilidad de planificación retrospectiva y condicional al calendario**. Se declara α de planificación 0,05/12, objetivo hipotético de potencia 0,80 y margen de referencia 5 % del RMSE anual de persistencia. No se calcula potencia con el efecto observado ni se acredita suficiencia de las diez semillas.
@@ -114,21 +118,27 @@ Ni los doce bloques mensuales, ni los dos ajustes internos, ni las fechas consti
 
 ### 4.1.5. Diferencia mínima de interés
 
-El margen operativo es una **reducción relativa del 5 % de RMSE frente a persistencia**, sobre las mismas fechas y objetivo. Si $b>0$ es el RMSE determinista de persistencia y $m_{A,s}$ el de una red:
+El benchmark ya evaluado conserva su criterio histórico de **5 % de reducción relativa de RMSE frente a persistencia**. No se cambia para reinterpretar favorablemente los resultados del test.
+
+Para **futuros modelos del benchmark académico**, se define ahora una regla operativa explícita: reducción relativa de RMSE **superior al 5 % frente a MLP/D7 y frente a persistencia**, sobre las mismas fechas de una nueva evaluación independiente. MLP/D7 conserva su selección previa por CV. El 5 % es una convención académica transparente, coherente con el criterio anterior y examinada con sensibilidades de 1/2,5/5/10 %; no afirma rentabilidad o utilidad financiera.
+
+La [política académica](../_static/e1_audit_improvements_20261104/academic_margin_policy.json) se registra después de observar el test actual, antes de entrenar o evaluar una propuesta avanzada. **No es un margen declarado a priori para las corridas ya realizadas.** Para referencia j, la diferencia por semilla centrada en la frontera práctica es:
 
 $$
-G_s=b-m_{A,s},\qquad Q_s=1-\frac{m_{A,s}}b.
+D_{j,s}=0{,}95\,m_{j,s}-m_{A,s},\qquad j\in\{\mathrm{MLP/D7},\mathrm{persistencia}\}.
 $$
 
-El año 2024 de referencia tiene $b=0{,}00478897$ y, por tanto, $\delta_{\rm plan}=0{,}05b\approx0{,}000239449$. Esta conversión se usa únicamente como escenario para detectar frente a cero una diferencia de esa magnitud. No define un margen entre redes, de equivalencia o para una propuesta avanzada.
+El estimando relativo es una **razón de medias de RMSE por semilla**, $Q_j=1-\mathbb E[m_A]/\mathbb E[m_j]$. Como la referencia tiene media positiva, $Q_j>0{,}05$ equivale a $\mathbb E[0{,}95m_j-m_A]>0$. No se sustituye por $\mathbb E[1-m_{A,s}/m_{j,s}]$, que es otro estimando cuando la referencia neuronal varía entre semillas. Para persistencia determinista coinciden.
 
-**Detectar frente a cero un efecto del tamaño del 5 % no demuestra que la ganancia supere el 5 %.** El suplemento contrasta por separado $H_0:\mu_Q\le0{,}05$ frente a ganancia mayor; su dimensionamiento prospectivo requeriría una alternativa $q_{\rm alt}>0{,}05$, que no se ha fijado. La calibración de dispersión no resuelve esa planificación ni convierte las fechas examinadas en confirmación externa.
+Una mejora superior al 5 % exige diferencia media positiva frente a **ambas** referencias, con incertidumbre y multiplicidad declaradas; dos promedios favorables no bastan. La planificación de §5.3.4 usa alternativas por encima de esa frontera. Su dispersión real y el R definitivo quedan sujetos a un piloto prospectivo del procedimiento futuro.
 
 ### 4.1.6. Tamaño de muestra
 
 Se mantienen **diez semillas por D y familia**, 4101–4110: 120 trayectorias de CV primaria y 120 corridas finales, sin elegir ni descartar semillas según su error. Cada combinación tiene R=10, no R=120 ni R=1.440.
 
 La ampliación de D no constituye un piloto prospectivo ni demuestra potencia 0,80. La sensibilidad MDE₀ y el R orientativo del suplemento inicial D7 siguen siendo calibraciones retrospectivas para ese estimando y calendario, con α de planificación 0,05/12. No se extrapolan a las nuevas entradas o al test. Un dimensionamiento definitivo requiere su propio piloto, margen y alternativa.
+
+En una ejecución futura, el tamaño calculado por una aproximación de potencia no sustituye el mínimo de la guía: **R de ejecución ≥ max(5, R calculado)**, o **max(6, R calculado)** si se emplean pruebas por rangos. Las diez semillas actuales superan ese mínimo numérico, sin que ello certifique potencia 0,80.
 
 ### 4.1.7. Diferencia mínima detectable
 
@@ -141,7 +151,7 @@ $$
 \alpha_{\rm plan}=0{,}05/12.
 $$
 
-El denominador se refiere a pares de inicializaciones condicionados al mismo calendario. La MDE no utiliza el efecto medio observado para calcular una supuesta potencia alcanzada. Tampoco es el umbral que debe superar una propuesta avanzada: falta su varianza pareada y un margen aplicado propio.
+El denominador se refiere a pares de inicializaciones condicionados al mismo calendario. La MDE no utiliza el efecto medio observado para calcular una supuesta potencia alcanzada. Tampoco es el contraste de superar la frontera académica del 5 % de una propuesta avanzada: la regla futura ya está definida, pero su varianza pareada real requiere un piloto propio.
 
 | Red relativa − persistencia | DE de diferencia RMSE | MDE₀ orientativa, R=10 | δ de referencia frente a cero | R orientativo normal |
 |---|---:|---:|---:|---:|
@@ -149,13 +159,13 @@ El denominador se refiere a pares de inicializaciones condicionados al mismo cal
 | LSTM | 0,000187010 | 0,000219216 | 0,000239448 | 9 |
 | CNN1D | 0,000337292 | 0,000395379 | 0,000239448 | 28 |
 
-El escenario de LSTM arroja R orientativo 9 y los de MLP/CNN1D 19/28; que un número sea menor o mayor que diez no certifica potencia alcanzada: se usó una aproximación normal y una dispersión estimada con pocas semillas. Los [escenarios](../_static/filipe_statistics_20261104/design_sensitivity.csv) separan la MDE₀, el margen de referencia y el R orientativo. Son información de planificación futura, no un piloto anterior a la CV ni evidencia de potencia real 0,80. El dimensionamiento prospectivo y la planificación para demostrar ganancia mayor de 5 % permanecen abiertos.
+El escenario de LSTM arroja R orientativo 9 y los de MLP/CNN1D 19/28; que un número sea menor o mayor que diez no certifica potencia alcanzada: se usó una aproximación normal y una dispersión estimada con pocas semillas. Los [escenarios](../_static/filipe_statistics_20261104/design_sensitivity.csv) separan la MDE₀, el margen de referencia y el R orientativo. Son información de planificación futura, no un piloto anterior a la CV ni evidencia de potencia real 0,80. El dimensionamiento prospectivo sigue pendiente. La planificación condicional para demostrar una ganancia superior al 5 % frente a ambas referencias se publica separada en §5.3.4.
 
 ### 4.1.8. Relación con el Entregable 2
 
-La implementación entrega las cuatro entradas requeridas, CV efectiva, BDS por fold y evaluación final con configuración cerrada. El test de 2025–agosto de 2026 ya fue consultado; sus predicciones se reutilizan para tablas y diagnósticos sin volver a ajustar o reseleccionar configuraciones.
+La implementación entrega las cuatro entradas, CV efectiva, BDS por fold y evaluación final con configuración cerrada. El test de 2025–agosto de 2026 ya fue consultado; sus predicciones se reutilizan para tablas y diagnósticos sin ejecutar nuevos pronósticos ni entrenamientos.
 
-Una propuesta avanzada que utilice estos resultados para decidir su arquitectura necesitará una evaluación independiente posterior. Permanecen pendientes el respaldo aplicado de MLP/CNN1D, el piloto prospectivo, el dimensionamiento definitivo y márgenes de equivalencia o de una propuesta avanzada.
+La política para un modelo avanzado queda **definida en contexto académico**: superar el 5 % frente a MLP/D7 y persistencia en una evaluación nueva. Se conservan sensibilidades y planificación condicional, sin certificar potencia lograda. Permanecen pendientes el respaldo aplicado suficiente de las familias, el piloto prospectivo y el dimensionamiento definitivo. TOST/ROPE y su banda solo serán necesarios si se quiere afirmar equivalencia.
 
 ### 4.1.9. Registro
 
@@ -166,6 +176,8 @@ Una propuesta avanzada que utilice estos resultados para decidir su arquitectura
 El [protocolo ampliado](../_static/filipe_multihistory_20261104/protocol.json) registra entradas, objetivo, semillas, purgas, reglas de selección y análisis. El [cierre](../_static/filipe_multihistory_20261104/freeze.json) fija el baseline, las 120 configuraciones/épocas finales y hashes de código y fuentes **antes de la primera lectura del test**. Los manifiestos de modelos y eventos conservan el orden ajuste final → firma de pesos → apertura de test → puntuación.
 
 El D7 reutilizado conserva su firma original; el suplemento de [D7 inicial](../_static/filipe_statistics_20261104/protocol.json) conserva su fecha y alcance. El desarrollo ya había sido examinado, por lo que la CV no se presenta como validación anidada confirmatoria. El cierre permite comprobar que test no seleccionó el procedimiento evaluado.
+
+El [registro del complemento de auditoría](../_static/e1_audit_improvements_20261104/protocol.json) es posterior a observar las métricas de test y previo a sus nuevos cálculos. No se presenta como preregistro del entrenamiento o del test original. Se conservan separados la selección previa, la evaluación ya cerrada y este análisis adicional.
 
 #### 4.1.9.2. Estado del diseño y del piloto
 
@@ -195,6 +207,14 @@ Las tres redes reciben D días de las mismas cinco covariables y producen un esc
 | CNN1D | Conv causal k=3, 5→H → ReLU/Dropout → Conv causal k=3, H→H → ReLU/Dropout → media temporal → Linear(H,1) → Softplus | 16 |
 
 CNN1D usa padding solo a la izquierda; carece de dilatación, conexiones residuales y atención. El dropout es 0,1 después de cada convolución. LSTM usa los dos vectores de sesgo por puerta de PyTorch. Son implementaciones del proyecto; las ecuaciones y configuraciones de artículos de §3.3 se conservan con su atribución original.
+
+Los diagramas corresponden al código implementado, con D variable y objetivo n=7 fijo:
+
+![MLP implementada: dimensiones, capas y parámetros](../_static/e1_architectures_20261104/mlp.svg)
+
+![LSTM implementada: estado final, salida y parámetros](../_static/e1_architectures_20261104/lstm.svg)
+
+![CNN1D implementada: convoluciones causales, media temporal y parámetros](../_static/e1_architectures_20261104/cnn1d.svg)
 
 ### 4.2.2. Entrenamiento con el mismo pipeline, partición y semillas
 
@@ -267,6 +287,25 @@ Los escaladores de X e Y se estiman de nuevo con el entrenamiento admitido de ca
 
 El ajuste interno de cada fold permite hasta **100 épocas**, CPU/float32. El reajuste mensual nuevo ejecuta exactamente la mejor época interna. El reajuste final utiliza la duración fijada con diciembre de 2024 de esa combinación, sin early stopping con test y sin cambiar el máximo después de observarlo.
 
+Se completó la trazabilidad de esa regla usando solo registros de parada ya guardados:
+
+| D | Red | Mediana de época en toda la CV | Mediana de diciembre | Rango de diciembre |
+|---|---|---|---|---|
+| 7 | MLP | 86,0 | 52,5 | 17–99 |
+| 7 | LSTM | 28,0 | 19,0 | 7–30 |
+| 7 | CNN1D | 85,5 | 81,5 | 24–99 |
+| 14 | MLP | 67,5 | 53,0 | 17–68 |
+| 14 | LSTM | 20,0 | 16,0 | 4–32 |
+| 14 | CNN1D | 11,5 | 19,0 | 7–77 |
+| 21 | MLP | 51,5 | 44,5 | 6–81 |
+| 21 | LSTM | 14,0 | 13,0 | 3–36 |
+| 21 | CNN1D | 5,0 | 3,5 | 1–23 |
+| 28 | MLP | 41,0 | 7,5 | 3–10 |
+| 28 | LSTM | 12,5 | 3,0 | 1–30 |
+| 28 | CNN1D | 5,0 | 2,5 | 1–34 |
+
+El [resumen de duración](../_static/e1_audit_improvements_20261104/traceability/epoch_policy_summary.csv) y el [desglose mensual](../_static/e1_audit_improvements_20261104/traceability/epoch_summary_by_month.csv) muestran variación entre meses y semillas. CNN1D/D28 tiene mediana de diciembre 2,5, frente a 81,5 en D7. Es una descripción de las épocas seleccionadas, **no prueba de que otra duración habría mejorado el test**. La regla original se conserva. Si se estudia otra política, se definirá con desarrollo y se evaluará en una versión independiente.
+
 #### 4.2.4.2. Early stopping y validación interna
 
 La selección interna minimiza la MSE escalada, con `patience=12` y `min_delta=1e-5`. Se guarda la mejor época, se descartan los pesos internos y se reajusta una red nueva por esa duración.
@@ -314,9 +353,21 @@ Las [métricas CV por semilla](../_static/filipe_multihistory_20261104/analysis_
 
 ### 4.2.6. Equidad en la optimización
 
-Cada familia recibe las mismas cuatro historias, diez semillas y política de validación/parada. Se mantienen H, learning rate y demás valores de desarrollo; la ampliación compara D y no introduce otra búsqueda de hiperparámetros por red. La duración puede variar por la misma regla de parada, lo cual se registra.
+La [búsqueda histórica registrada](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/dl_benchmark_20261104/protocol_initial.json) sí exploró el mismo número de configuraciones e inicializaciones en las tres familias:
 
-La elección por menor RMSE media de CV se cerró antes de test. No se optimizaron hiperparámetros, D o épocas con sus resultados. El protocolo no convierte esta exploración en una búsqueda anidada ni garantiza potencia o convergencia.
+| Elemento | Presupuesto histórico por familia | Transferencia al procedimiento vigente |
+|---|---|---|
+| Historias de entrada | D=7/14/21/28 | Se conservan las cuatro historias |
+| Ancho oculto | H∈{16,32} | MLP=16, LSTM=32, CNN1D=16 |
+| Learning rate | {0,001; 0,003} | MLP/CNN1D=0,001; LSTM=0,003 |
+| Inicializaciones por configuración | Dos semillas | Diez semillas por combinación D–familia en CV |
+| Total de búsqueda | 4 D × 2 H × 2 LR × 2 semillas = **32 corridas por familia** | **96 corridas históricas** entre las tres familias; no una búsqueda nueva dentro de cada fold |
+
+Los [resultados agregados históricos](https://github.com/jassan-bit/DeepLearning_202630/blob/main/results/dl_benchmark_20261104/search_configurations.csv) mantienen las 48 configuraciones familiares/D, cada una resumida sobre dos semillas. La CV relativa hereda las recetas de familia: misma regla de parada, máximo de épocas, dropout, optimizador y presupuesto de semillas para cada D. Cambiar D modifica información, purga y, en MLP, parámetros; no aísla un único efecto causal.
+
+La trazabilidad del presupuesto resuelve la ambigüedad documental; **no demuestra que la receta heredada sea óptima bajo otra representación o un nuevo calendario**. No se ejecutó otra búsqueda anidada en esta CV. Cualquier reajuste posterior requiere un protocolo nuevo y una evaluación independiente si utiliza estos resultados para diseñarse.
+
+La elección por menor RMSE media de CV se cerró antes de test. No se optimizaron hiperparámetros, D o épocas con los resultados finales. Las duraciones pueden variar por la misma regla de parada; eso se registra y no acredita potencia o convergencia.
 
 ### 4.2.7. Implementación desde cero o uso de librerías justificadas
 
@@ -701,17 +752,45 @@ La selección cerrada de desarrollo es **MLP, D=7, `relative_window`**, RMSE **0
 
 Los IC son marginales entre semillas y condicionados al mismo calendario; no estiman toda la incertidumbre temporal. La persistencia tiene un único resultado determinista por D/cohorte. R² usa las sumas de cuadrados de todo el periodo, sin promediar R² mensuales.
 
+**Desglose anual real del test, D7:**
+
+| Periodo UTC | Modelo D7 | Fechas | RMSE, media ± DE | R², media ± DE |
+|---|---|---|---|---|
+| 2025 | MLP | 365 | 0,0046416 ± 0,0002831 | 0,721799 ± 0,035761 |
+| 2025 | LSTM | 365 | 0,0047791 ± 0,0001940 | 0,705625 ± 0,023410 |
+| 2025 | CNN1D | 365 | 0,0044285 ± 0,0004096 | 0,745659 ± 0,048297 |
+| 2025 | Persistencia | 365 | 0,0038649 (determinista) | 0,807759 (determinista) |
+| Enero–agosto de 2026 | MLP | 243 | 0,0050073 ± 0,0005764 | 0,801709 ± 0,049573 |
+| Enero–agosto de 2026 | LSTM | 243 | 0,0053780 ± 0,0004416 | 0,772590 ± 0,037541 |
+| Enero–agosto de 2026 | CNN1D | 243 | 0,0044593 ± 0,0003332 | 0,843810 ± 0,024196 |
+| Enero–agosto de 2026 | Persistencia | 243 | 0,0043963 (determinista) | 0,848949 (determinista) |
+
+
+Las [tablas anuales completas](../_static/e1_audit_improvements_20261104/descriptive/annual_metrics_summary.csv) incluyen los cuatro D y las seis métricas, IC, cobertura y número de semillas. Cada R² se recalcula con el promedio del objetivo del periodo correspondiente. RMSE y R² de dos periodos no se comparan como si midieran el mismo régimen; por ejemplo, CNN1D mantiene una RMSE próxima en ambos años mientras R² cambia por la distinta dispersión del objetivo. No se promedian estas dos RMSE para obtener la RMSE de las 608 fechas.
+
 #### 4.4.9.2. Variabilidad por semilla frente a diferencias entre modelos
 
-La DE entre diez semillas cuantifica variación de entrenamiento sobre los mismos datos y fechas. La dispersión entre meses es un diagnóstico temporal separado; los meses comparten entrenamiento/objetivo y no se usan como diez o doce mercados independientes. No se estimó un modelo formal de componentes de varianza universal entre arquitecturas.
+Se calculó una **descomposición descriptiva** de la varianza poblacional de las celdas de RMSE mensual, en un panel balanceado arquitectura×semilla×mes por D. Los efectos principales se obtienen de las medias marginales; el resto recoge interacciones. La identidad suma al total, pero no es una ANOVA inferencial ni estima efectos causales o independencia de los meses.
 
-El suplemento estadístico inicial D7 comparó modelos, representación y persistencia sobre 2024 con Holm-12, Friedman y remuestreo. Esa inferencia mantiene su alcance y no se reutiliza como evidencia de los nuevos D o test. Las nuevas tablas por D no convierten el ranking de medias en una victoria estadísticamente demostrada.
+| Panel D7 | Arquitectura | Semilla | Mes | Interacciones |
+|---|---|---|---|---|
+| CV2024 | 0,353 % | 0,345 % | 79,137 % | 20,165 % |
+| Test2025–agosto2026 | 1,849 % | 1,729 % | 74,591 % | 21,831 % |
+
+
+En D7/test, el mes representa el 74,591 % de la dispersión entre celdas y la arquitectura el 1,849 %. Esto describe este panel de errores mensuales; **no significa que el mes explique ese porcentaje de la varianza del objetivo o de cada residuo**. Tampoco elimina el valor de diferencias pareadas entre modelos sobre las mismas fechas.
+
+![Descomposición descriptiva de variabilidad mensual](../_static/e1_audit_improvements_20261104/descriptive/variance_components.png)
+
+El [CSV de componentes](../_static/e1_audit_improvements_20261104/descriptive/variance_components.csv) conserva los cuatro D, CV/test y paneles semilla×mes dentro de cada red. Los IC principales continúan resumiendo la variabilidad de inicialización condicionada al calendario; la incertidumbre temporal se estudia por separado con remuestreo pareado de fechas en §5.4.5.
 
 #### 4.4.9.3. Robustez por subgrupos, ruido y perturbaciones
 
-Se publican los resultados por mes para examinar estabilidad entre periodos, y las cuatro historias bajo objetivo n=7 común. No se ejecutaron perturbaciones controladas, faltantes simulados, otros activos o proveedores ni objetivos n=14/21/28.
+La robustez observada se examina por mes, periodo anual y rangos de σ7, además de comparar cuatro historias bajo el mismo objetivo. Los límites bajo/medio/alto se calcularon únicamente con resultados elegibles del desarrollo común hasta **03/12/2024**, manteniendo la purga D28; el test no selecciona esos límites ni modifica el pipeline.
 
-El control inicial D7 relativo/absoluto cambia representación y ponderación del escalado. Su mejora no demuestra robustez universal. Un estudio de ruido requiere reglas e intensidad fijadas, continuidad y coherencia OHLCV; no se diseña usando el test ya examinado como si fuera desconocido.
+Los [descriptivos por periodo](../_static/e1_audit_improvements_20261104/descriptive/distribution_by_period.csv) muestran 2023, 2024, 2025 y enero–agosto de 2026, con cobertura, cuantiles y desplazamiento de medias/distancias escaladas. Son diagnósticos posteriores al cierre, no una nueva selección del preprocesamiento ni p-valores de deriva.
+
+No se ejecutaron perturbaciones controladas, faltantes simulados, otros proveedores/activos ni objetivos n=14/21/28. Son posibles extensiones, no experimentos que se declaren ejecutados por disponer de tablas mensuales.
 
 #### 4.4.9.4. Diagnóstico de overfitting y underfitting
 
@@ -737,9 +816,16 @@ La ampliación conserva también las curvas de los demás D. Las épocas del aju
 
 #### 4.4.9.5. Análisis de errores por segmentos relevantes
 
-Los CSV de [CV por fold](../_static/filipe_multihistory_20261104/analysis_cv/fold_metrics_summary.csv) y [test por mes](../_static/filipe_multihistory_20261104/test/analysis/fold_metrics_summary.csv) conservan D, modelo, tamaño, métrica, media y DE entre semillas. Las tablas mensuales son diagnósticas; no reemplazan las métricas globales agrupadas.
+Se completó el desglose por rangos de volatilidad con límites comunes calculados en desarrollo: **q25≈0,0141101** y **q75≈0,0266270**. Las 608 fechas de test quedan en 221 casos bajos, 301 medios y 86 altos. La asignación usa el objetivo observado solo para diagnosticar errores después de cerrar la evaluación; no alimenta el pronóstico ni escoge una configuración.
 
-No se completó un estudio por rangos de volatilidad con umbrales fijados de antemano. Segmentar por el objetivo observado sería diagnóstico retrospectivo. Clase, ubicación y longitud textual no aplican.
+| Segmento de σ7 | Fechas | MLP: RMSE ± DE | LSTM: RMSE ± DE | CNN1D: RMSE ± DE | Persistencia: RMSE |
+|---|---|---|---|---|---|
+| Bajo | 221 | 0,0033868 ± 0,0001561 | 0,0045176 ± 0,0010338 | 0,0041613 ± 0,0005235 | 0,0029282 (determinista) |
+| Medio | 301 | 0,0043679 ± 0,0001211 | 0,0043740 ± 0,0003178 | 0,0038171 ± 0,0004149 | 0,0037365 (determinista) |
+| Alto | 86 | 0,0080440 ± 0,0016258 | 0,0073886 ± 0,0016699 | 0,0065743 ± 0,0007111 | 0,0068637 (determinista) |
+
+
+Los [resultados por segmento](../_static/e1_audit_improvements_20261104/descriptive/severity_metrics_summary.csv) conservan los cuatro D, CV/test, seis métricas, tamaños y dispersión entre semillas. Comparar una RMSE de un segmento con otra no aísla una causa: también cambian nivel y variabilidad de σ7. Clase, ubicación, token o máscara no aplican a esta salida escalar.
 
 ### 4.4.10. Análisis cualitativo
 
@@ -747,15 +833,27 @@ No se completó un estudio por rangos de volatilidad con umbrales fijados de ant
 
 #### 4.4.10.1. Visualización de predicciones frente a valores reales
 
-Los CSV locales conservan observado, predicho, fecha, origen, D, modelo y semilla en CV y test. La publicación ampliada contiene sus métricas agregadas y diagnósticos; los vectores individuales permanecen locales. El gráfico inicial D7/semilla4101, ya publicado, se mantiene como ejemplo de la CV, sin escoger una semilla por su menor error:
+Se añadieron medias mensuales de valores observados y pronósticos de las tres redes D7 y persistencia, manteniendo pesos finales fijos.
 
-![Predicciones de la CV inicial D7, semilla 4101](../_static/dl_r2_cv_20261104/analysis/figures/predictions_designated_seed.png)
+![Observado y pronosticado: agregados mensuales de D7](../_static/e1_audit_improvements_20261104/descriptive/monthly_predictions_D7.png)
 
-Las comparaciones globales de las cuatro entradas se muestran en §5.1; no se mezclan los modelos mensuales de CV con los pesos finales de test. Ground truth de máscaras no aplica al objetivo de volatilidad.
+Cada punto resume al menos 28 fechas; no es un pronóstico individual ni una nueva predicción ensemble. Las métricas del libro siguen calculadas a partir de errores diarios por semilla, no de la distancia entre estas curvas suavizadas. El [CSV de agregados](../_static/e1_audit_improvements_20261104/descriptive/monthly_prediction_aggregates.csv) incluye CV/test y las cuatro historias.
 
 #### 4.4.10.2. Errores sistemáticos y casos difíciles
 
-Los errores se examinan por D, familia, semilla y mes, conservando episodios desfavorables. Una menor media no elimina sesgos o meses de R² negativo. Las diferencias entre CV y test incorporan periodo, tamaño del entrenamiento y política de actualización distintos; no se atribuyen causalmente a la longitud D sin otros controles.
+Se identificaron intervalos difíciles a partir de los errores mensuales ya guardados. Para cada procedimiento D7, el peor mes es:
+
+| Modelo D7 | Mes de mayor RMSE | Fechas | RMSE media | Residuo medio y−ŷ |
+|---|---|---|---|---|
+| MLP | 2026-02 | 28 | 0,0097613 | 0,0037766 |
+| LSTM | 2026-02 | 28 | 0,0103240 | 0,0028945 |
+| CNN1D | 2026-02 | 28 | 0,0077566 | 0,0011004 |
+| Persistencia | 2026-02 | 28 | 0,0097321 | 0,0000022 |
+
+
+Febrero de 2026 concentra el mayor RMSE mensual en las cuatro referencias. La coincidencia es un diagnóstico de este tramo, no una causa comprobada del error o evidencia de que una arquitectura resolvería el régimen. El residuo medio es y−ŷ: positivo indica subestimación media.
+
+Los [meses difíciles](../_static/e1_audit_improvements_20261104/descriptive/difficult_months.csv) conservan tres intervalos por configuración, sus tamaños y métricas. No se eliminan estos meses ni se cambia la selección usando sus resultados.
 
 #### 4.4.10.3. Residuos: estructura, sesgo y heterocedasticidad
 
@@ -765,17 +863,24 @@ Se publican [BDS por fold de CV](../_static/filipe_multihistory_20261104/analysi
 
 Los meses tienen 28–31 residuos; la referencia asintótica BDS es **exploratoria y frágil con estas muestras pequeñas**, solapamiento y posible no estacionariedad. La media/DE de p-valores solicitada es únicamente descriptiva: **no es un p-valor combinado ni una prueba de independencia global**. BDS no identifica exclusivamente no linealidad aprovechable ni mide una ganancia futura.
 
-Los Ljung–Box y DM/HAC/HLN del suplemento inicial siguen refiriéndose a D7/2024, no a los nuevos D o test. No se añadió una prueba específica de heterocedasticidad condicional al análisis nuevo.
+El complemento final añade Ljung–Box y DM/HAC/HLN de las tres configuraciones seleccionadas D7 sobre las 608 fechas (§5.4.9–§5.4.12); el estudio inicial D7/2024 conserva su alcance histórico.
+
+Se analizan **sesgo y dispersión por intervalos de predicción**, definidos con cuantiles de σ7 de desarrollo. Se retienen los casos con menos de diez fechas como no definidos para evitar mostrar una agregación inestable. Los intervalos de predicción pueden contener distintas fechas entre semillas; no son cohortes intercambiables.
+
+![Dispersión de residuos por intervalos de predicción](../_static/e1_audit_improvements_20261104/descriptive/residual_variance_D7.png)
+
+El [resumen por intervalos](../_static/e1_audit_improvements_20261104/descriptive/residual_bins_summary.csv) permite examinar heterogeneidad de la varianza residual. **No es una nueva prueba formal de heterocedasticidad** ni se atribuye una causa solo por variar las barras. No se ejecutó ARCH sobre estos nuevos residuos.
 
 #### 4.4.10.4. Productos y estado de ejecución
 
-| Producto | Estado |
+| Producto | Estado verificable |
 |---|---|
-| Cuatro entradas | Ejecutadas, objetivo n=7/h=1 sin cambios |
-| CV primaria | 120 trayectorias; 43.920 predicciones de 2024 |
-| Cierre y ajuste final | Decisiones firmadas antes de test; 120 modelos finales |
-| Test | 608 fechas por corrida, una puntuación por checkpoint |
-| Métricas requeridas | MAPE/MAE/RMSE/MSE, más R²/MASE, globales y por mes |
-| BDS por fold | Todos los D/modelos/semillas; resumen de p solo descriptivo |
-| Otros diagnósticos iniciales | Holm-12/DM/Ljung–Box/bootstrap exclusivamente D7/2024 |
-| Pendientes reales | Bibliografía aplicada, piloto/potencia prospectivos, márgenes futuros; otros objetivos y ruido no ejecutados |
+| Cuatro entradas, CV y test | D7/14/21/28; 120 trayectorias CV y 120 modelos finales; pesos/selección originales intactos |
+| Métricas requeridas | Globales, por mes y por año: 2025 (365 fechas), enero–agosto de 2026 (243) |
+| Variabilidad y segmentos | Descomposición descriptiva; rangos con límites de desarrollo; meses difíciles |
+| Residuos y precisión comparativa | BDS por fold existente; suplemento final D7 con pares/IC/efectos, DM y Ljung–Box |
+| Reproducción | Manual actualizado y restauración/verificación aislada con los archivos privados; publicar resúmenes no exige exponerlos |
+| Pendiente de cierre académico | Literatura aplicada de las dos familias y piloto/dimensionamiento prospectivos; la regla futura académica del 5 % ya está definida |
+| Análisis condicional | TOST/ROPE solo si se quiere afirmar equivalencia; no se afirma aquí |
+
+Los [protocolo del complemento](../_static/e1_audit_improvements_20261104/protocol.json), [resumen inferencial](../_static/e1_audit_improvements_20261104/inference/summary.json) y [resumen descriptivo](../_static/e1_audit_improvements_20261104/descriptive/summary.json) conservan fechas, fuentes y hashes. El complemento se registró **después de inspeccionar el test**, antes de estos cálculos. Es un análisis **post-hoc/exploratorio** de las predicciones guardadas de las tres configuraciones **D7 elegidas con CV**, más persistencia determinista. No es una confirmación prospectiva, no cambia la selección MLP/D7 y no ejecuta nuevos pronósticos ni entrenamientos.

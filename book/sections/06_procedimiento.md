@@ -94,7 +94,7 @@ Sea cual sea el trío respaldado, el diseño propio conservará las mismas covar
 
 ### 6.1.4. Pérdida y estrategia de pronóstico
 
-Se conservan **MSE como pérdida y RMSE como métrica primaria** en el ciclo de desarrollo ejecutado. La referencia lineal de EDA minimiza una suma de errores cuadrados con penalización Ridge para estudiar residuos; no se utiliza para elegir una configuración ganadora. Cualquier cambio posterior de pérdida o criterio de selección quedará registrado antes del uso del test, con presupuesto comparable entre modelos.
+Se conservan **MSE como pérdida y RMSE como métrica primaria** en el ciclo de desarrollo ejecutado. La referencia lineal de EDA minimiza una suma de errores cuadrados con penalización Ridge para estudiar residuos; no se utiliza para elegir una configuración ganadora. Cualquier cambio posterior de pérdida o criterio se registrará antes de una **nueva evaluación independiente**, con presupuesto comparable entre modelos. El test de 2025–agosto de 2026 ya fue observado y no vuelve a ser una reserva desconocida para diseñar cambios.
 
 La ruta 6.4 enumera error cuadrático, absoluto o Huber como opciones; no exige probarlas todas. Se conserva MSE ya acordada. La implementación usa Y dividida por la media de entrenamiento y salida Softplus; todas las métricas se calculan después de invertir la escala. Son decisiones propias registradas, sin atribuirlas a una fuente que no las usa.
 
@@ -108,7 +108,9 @@ Se reportarán RMSE, MAE, MSE, R², MAPE y MASE sobre predicciones agrupadas por
 
 Para MASE, la máscara común $\mathcal I_M$ contiene orígenes con escala train definida y positiva; se promedian sus errores escalados con $N_M=|\mathcal I_M|$ y se informa cobertura $N_M/N$. La máscara proviene del entrenamiento, no del error observado. Si cambia la escala por origen, no se divide una MAE global por una escala elegida después. R² se calcula sobre varios resultados con denominador admisible; por origen unitario es indefinido. Las definiciones completas están en §4.4.
 
-El margen aceptado es **5 % de reducción relativa de RMSE frente a persistencia**, con el mismo objetivo y fechas. Es un criterio operativo, no utilidad financiera. Detectar frente a cero un efecto de ese tamaño y demostrar una ganancia superior al margen son preguntas distintas. La CV utiliza diez semillas como presupuesto exploratorio. El complemento cuantifica sensibilidad del diseño con su dispersión observada, sin convertirla en un piloto previo ni acreditar potencia 0,80. El dimensionamiento definitivo requiere un procedimiento y una alternativa completamente definidos.
+El margen del estudio ejecutado es **5 % de reducción relativa de RMSE frente a persistencia**, con el mismo objetivo y fechas. Detectar frente a cero un efecto de ese tamaño y demostrar una ganancia superior al margen son preguntas distintas. La CV utiliza diez semillas como presupuesto exploratorio; la sensibilidad retrospectiva no la convierte en un piloto previo ni acredita potencia 0,80.
+
+Para un modelo avanzado futuro se fija un **criterio académico superior al 5 % frente a MLP/D7 y frente a persistencia**, con incertidumbre y multiplicidad declaradas. La elección operativa consta después de observar el test actual, antes de entrenar una propuesta nueva. Los [27 escenarios conjuntos](../_static/e1_audit_improvements_20261104/planning/academic_joint_power_scenarios.csv) usan α unilateral 0,025 y potencia marginal 0,90 por referencia, alternativas comunes de 7,5/10/15 % por debajo de persistencia y dispersión/correlación hipotéticas. La cota conjunta 0,80 depende de esos supuestos; faltan el piloto y la evaluación independiente reales. No se afirma utilidad financiera ni se reasigna un periodo de test.
 
 La **referencia de contexto de la ruta 6.4 es una regresión lineal regularizada con las mismas covariables rezagadas**. El diagnóstico autorizado ajustó cuatro Ridge con intercepto libre, penalización fija $\alpha=1$ y $5D$ entradas OHLCV estandarizadas exclusivamente con la media y desviación poblacional de su ajuste permitido de 2023. El objetivo es $n=7$, $h=1$, sin transformar su escala. Se minimiza $\sum_i(y_i-b-z_i^\top\beta)^2+\alpha\lVert\beta\rVert_2^2$, sin dividir por el tamaño muestral y sin penalizar el intercepto; la solución determinista se obtuvo con SciPy. Se conservaron las predicciones sin truncarlas y no hubo predicciones negativas.
 
@@ -116,11 +118,26 @@ Cada referencia Ridge del EDA se ajustó una vez con muestras admisibles de 2023
 
 Persistencia se conserva como referencia adicional para el margen operativo aceptado del 5 % y no ocupa uno de los tres puestos DL. Para $n=7$ resume ocho cierres, mientras una ventana de siete días OHLCV no incluye explícitamente esa misma estadística: la comparación contextual debe conservar esa diferencia de información. Un ingenuo estacional necesita justificar y declarar su periodo antes de evaluarlo.
 
-Con un origen de una sola salida, promediar su RMSE entre días equivale a promediar errores absolutos; no produce la RMSE global. Para ordenar modelos se usa la **media de RMSE calculadas por corrida**, no una RMSE sobre semillas×fechas ni la de un ensemble. El reporte de 2025 y 2026 será separado, aclarando que 2026 termina el 31 de agosto. Cualquier agregado adicional requiere una regla de cobertura y ponderación registrada y se recalculará desde predicciones; no será un promedio de RMSE anuales.
+Con un origen de una sola salida, promediar su RMSE entre días equivale a promediar errores absolutos; no produce la RMSE global. Para ordenar modelos se usa la **media de RMSE calculadas por corrida**, no una RMSE sobre semillas×fechas ni la de un ensemble. El [reporte anual](../_static/e1_audit_improvements_20261104/descriptive/annual_metrics_summary.csv) separa 2025, con 365 fechas, y enero–agosto de 2026, con 243. Cada RMSE se recalcula sobre su periodo y después se resumen semillas; el valor global no se obtiene promediando RMSE anuales.
 
 Las cuatro historias y el baseline elegido con desarrollo se reportan en §5. La selección previa al test quedó cerrada como **MLP con D=7**; no se reemplaza por la combinación que tenga mejor puntuación en test. Persistencia se reporta como referencia determinista, con ocho cierres para sigma7 previa: ese soporte difiere de siete días OHLCV y de las ventanas mayores.
 
 ### 6.1.6. Inferencia y diagnóstico: pregunta, unidad y estado
+
+El [suplemento de la evaluación final](../_static/e1_audit_improvements_20261104/inference/summary.json) se registró **después de inspeccionar el test y antes de calcular sus nuevas comparaciones**. Reutiliza los 608 pronósticos por semilla de las tres configuraciones D7 elegidas con CV, más persistencia contextual; no entrena, abre ZIP ni ejecuta nuevos pronósticos. Conserva MLP/D7 como selección previa.
+
+| Producto del suplemento final | Unidad y regla | Evidencia |
+|---|---|---|
+| Seis contrastes pareados de RMSE | Diez pares de semillas; tres pares neuronales y tres frente a persistencia; t e IC marginales bajo supuestos, Holm-6 y sensibilidad Wilcoxon separada | [Diferencias, IC y d_z](../_static/e1_audit_improvements_20261104/inference/paired_comparisons.csv) |
+| Seis DM principales | Media por fecha de pérdidas cuadradas de las diez semillas, h=1, HAC14/HLN; sensibilidades HAC7/28 no son nuevas confirmaciones | [DM y familias](../_static/e1_audit_improvements_20261104/inference/dm_tests.csv) |
+| Nueve Ljung–Box | Residuos de semilla designada 4101, rezagos 7/14/28, model_df=0 y Holm-9 | [Diagnóstico residual](../_static/e1_audit_improvements_20261104/inference/ljung_box.csv) |
+| Bootstrap temporal pareado | 2.000 remuestras circulares de fechas por L=14 principal y 7/28 sensibilidad; recalcula RMSE/MAE por semilla y su media | [Diferencias e IC](../_static/e1_audit_improvements_20261104/inference/date_bootstrap.csv) |
+| Magnitud y planificación | ΔRMSE/ΔMAE absolutas y relativas y MDE retrospectiva; sin declarar potencia lograda; criterio académico futuro separado del test ya observado | [Diferencias relativas](../_static/e1_audit_improvements_20261104/inference/relative_differences.csv) |
+
+Bajo las referencias condicionales declaradas, **cinco de seis** pares por semillas rechazan con Holm-6 y **tres de seis** DM principales rechazan con Holm-6; los nueve Ljung–Box rechazan bajo su referencia asintótica aproximada. Son preguntas distintas: aleatoriedad del ajuste frente a pérdidas en el calendario. La normalidad tiene una bandera Shapiro y se conserva la sensibilidad no paramétrica sin elegir el contraste más favorable. Los IC marginales, incluidos los bootstrap, no son simultáneos solo por ajustar los p-valores. Los detalles e interpretación de cada par están en §5.
+
+**Antecedente separado: CV inicial D7/2024.** El bloque que sigue conserva el análisis de desarrollo anterior y sus familias propias; no se suman sus rechazos ni p-values a los del test final.
+
 
 El [complemento estadístico inicial D7](../_static/filipe_statistics_20261104/summary.json) se calculó sobre las predicciones guardadas de la CV, sin nuevos ajustes ni acceso a test. Su [enmienda de análisis](../_static/filipe_statistics_20261104/protocol.json) se registró **después de examinar los resultados descriptivos de 2024 y antes de estos cálculos**: conserva alcance exploratorio, sin atribuirle registro previo a toda observación.
 
@@ -144,7 +161,7 @@ Los quince diagnósticos iniciales D7 rechazan sus hipótesis bajo las referenci
 
 La ampliación calcula BDS sobre los residuos de **cada mes y cada semilla** para las cuatro historias y tres redes. Son **2.880 hipótesis en CV** y **4.800 en test**, dimensiones 2/3 y radio 1,5 DE muestral, con Holm en familias separadas por fase. Los bloques de test son reportes de pesos finales fijos, no reajustes. Los valores no definidos se conservan con su estado; media y DE de p-valores son descriptivas y no constituyen un contraste combinado. Los meses de 28–31 resultados son muestras pequeñas para la referencia asintótica; no se atribuye a BDS no linealidad exclusivamente aprovechable.
 
-El EDA conserva por separado los 112 valores ACF y doce Ljung–Box de las cuatro Ridge, con Holm en su propia familia. Sus rechazos no se mezclan con los diagnósticos de redes ni prueban causalidad. Ni las fechas, ni los doce folds, ni las semillas crean mercados independientes. Los márgenes de equivalencia y de una propuesta avanzada continúan sin definirse; no se fabrican TOST o ROPE.
+El EDA conserva por separado los 112 valores ACF y doce Ljung–Box de las cuatro Ridge, con Holm en su propia familia. Sus rechazos no se mezclan con los diagnósticos de redes ni prueban causalidad. Ni las fechas, ni los doce folds, ni las semillas crean mercados independientes. No se afirma equivalencia: TOST/ROPE y su margen solo se requieren si se propone esa afirmación. El criterio académico avanzado ya se define para una comparación futura frente a ambas referencias; su dimensionamiento real y la nueva evaluación siguen pendientes. Esta definición posterior no cambia el margen histórico contra persistencia ni el registro del test completado.
 
 ## 6.2. Correspondencia entre procedimiento y evidencia
 
@@ -162,7 +179,9 @@ Esta matriz distingue reglas, ejecuciones y límites. La comparación de cuatro 
 | Prueba | 608 fechas comunes del 01/01/2025 al 31/08/2026; 72960 predicciones | Sin reajustes, reescalado o selección durante test; veinte meses de reporte. |
 | Métricas | MAPE/MAE/RMSE/MSE/R²/MASE por D, modelo, semilla y periodo, con coberturas | IC entre semillas condicionados al calendario. |
 | BDS por bloque | CV y test, todas las semillas, dimensiones 2/3 y familias Holm separadas | Aproximación mensual de muestra pequeña; promedio p solo descriptivo. |
-| Inferencia inicial D7 | Holm-12, DM-6, LB/BDS-15 y bootstrap registrados | No se trasladan como inferencia de otras D o del test. |
+| Inferencia inicial D7 | Holm-12, DM-6, LB/BDS-15 y bootstrap de CV2024 | Se mantiene como antecedente separado. |
+| Suplemento final post-hoc | Seis pares RMSE, DM-6, LB-9 y bootstrap temporal de RMSE/MAE | Registrado después de ver test; no confirma prospectivamente ni reselecciona el baseline. |
+| Mejoras descriptivas | Tablas anuales, distribución, descomposición de variación y diagnóstico por segmentos | Agregados calculados sobre predicciones guardadas; sin nuevos pronósticos. |
 | Referencia regularizada | Cuatro Ridge diagnósticas de EDA y 1.464 residuos de 2024 | No son un cuarto modelo DL ni nuevos competidores del test. |
 | Literatura y potencia | Corpus y limitaciones preservados, diez semillas | Respaldo aplicado MLP/CNN1D y piloto/potencia definitiva pendientes. |
 
@@ -178,8 +197,8 @@ El registro de noviembre de 2026 es posterior a los periodos de mercado y al EDA
 3. Antes de abrir test se cerraron las doce combinaciones que se reportarían, la selección, las épocas finales, las semillas, el preprocesamiento, el embargo, la política de calidad y la ausencia de actualización durante test.
 4. Se ajustaron y firmaron los 120 modelos finales con datos permitidos de 2023–2024. La cronología conserva las firmas previas a la primera lectura de los veinte ZIP reservados.
 5. Se agregaron y auditaron esos ZIP y se construyó la cohorte común por reglas cerradas, sin usar los errores para excluir fechas. Cada modelo produjo su trayectoria final una vez; los análisis posteriores reutilizan sus predicciones.
-6. Se publicaron métricas globales, por año y mes, y BDS mensual de h=1 con estados, multiplicidad y resúmenes descriptivos. No se reabrió la selección al observar test ni se incorporó septiembre–octubre de 2026.
+6. La mejora posterior a la auditoría materializó las métricas por año —2025 y enero–agosto de 2026—, además de las globales y mensuales; documentó variación, segmentos y residuos, y calculó el suplemento inferencial final explícitamente post-hoc. No se reabrió la selección, no se volvió a puntuar el modelo ni se incorporó septiembre–octubre de 2026.
 
-La [congelación](../_static/filipe_multihistory_20261104/freeze.json) conserva el baseline **MLP con D=7** elegido con CV. El test no cierra la extracción bibliográfica de MLP/CNN1D, el piloto prospectivo, la potencia definitiva ni los márgenes entre redes, de equivalencia o de un modelo avanzado. Si se usa este test para diseñar una propuesta posterior, se necesitará otra evaluación independiente.
+La [congelación](../_static/filipe_multihistory_20261104/freeze.json) conserva el baseline **MLP con D=7** elegido con CV. El test no cierra la extracción bibliográfica de MLP/CNN1D ni el piloto y la potencia reales de una propuesta futura. El criterio académico avanzado se define por separado para ese futuro; la equivalencia es condicional a afirmar que dos procedimientos son equivalentes. Si se usa este test para diseñar una propuesta posterior, se necesitará otra evaluación independiente.
 
 La guía E1 anuncia que el benchmark de diez modelos se desarrolla en E2. Sus documentos completos y los de E3 no se han aportado; no se inventa una selección de diez arquitecturas o presupuesto a partir de esa mención.

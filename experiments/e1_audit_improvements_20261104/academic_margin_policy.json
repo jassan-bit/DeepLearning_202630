@@ -1,0 +1,43 @@
+{
+  "status": "academic_operational_criterion_for_future_comparisons",
+  "recorded_at_utc": "2026-11-04T21:03:18.778471+00:00",
+  "user_context": "Benchmark académico: presentar márgenes operativos y análisis de sensibilidad, sin afirmar utilidad financiera.",
+  "timing": "Defined after inspection of the current test, before any proposed advanced model is trained or evaluated. It is not a pre-test margin for the completed study.",
+  "metric": "RMSE of unannualized sigma7 at h1 on the same independently evaluated dates",
+  "minimum_relative_improvement": 0.05,
+  "justification": "Transparent academic operating convention, consistent with the project existing5percent persistence criterion and examined against1/2.5/5/10percent sensitivities. Not an economically validated minimum.",
+  "references": [
+    "Frozen neural baseline MLP/D7",
+    "Deterministic sigma7 persistence"
+  ],
+  "decision_rule": "For a future meaningful improvement claim, the advanced method must exceed5percent relative RMSE reduction versus each reference on a new independent evaluation, with declared multiplicity and uncertainty. Point estimates alone do not establish the claim.",
+  "hypotheses": "Two directional comparisons of reference-adjusted improvement; future pilot estimates differences centered at the5percent boundary.",
+  "planning_alpha_each": 0.025,
+  "planning_alpha_global": 0.05,
+  "planning_power_each": 0.9,
+  "joint_power_lower_bound_under_assumptions": 0.8,
+  "planning_note": "Bonferroni conservative planning for two comparisons; beta<=.10 each bounds joint false-negative probability by .20. These are hypothetical normal paired-seed assumptions, not achieved power.",
+  "illustrative_alternative_gain_vs_persistence": [
+    0.075,
+    0.1,
+    0.15
+  ],
+  "advanced_sd_to_neural_baseline_sd": [
+    0.5,
+    1.0,
+    2.0
+  ],
+  "correlations_with_neural_baseline": [
+    0.0,
+    0.5,
+    0.9
+  ],
+  "power_model": "For each scenario set one common advanced mean=(1-q_alternative)*persistence_CV_RMSE. Mean boundary difference_j=(1-.05)*reference_j_mean-advanced_mean. Variance versus neural baseline uses (1-.05)^2 sigmaB^2+sigmaA^2-2(1-.05)rho sigmaA sigmaB; persistence is deterministic over training seeds.",
+  "execution_floor": 5,
+  "rank_test_floor_note": "Use at least six for rank tests; the normal t-based power calculation does not establish rank-test power.",
+  "frozen_source": "experiments/filipe_multihistory_20261104/freeze.json",
+  "new_evaluation_period_assigned": false,
+  "new_models_trained": 0,
+  "new_forecasts": 0,
+  "financial_utility_claim": false
+}

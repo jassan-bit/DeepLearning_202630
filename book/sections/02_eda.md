@@ -162,7 +162,23 @@ El [perfil descriptivo por periodo](../_static/eda_general_shift/descriptive_by_
 - **Impacto en la arquitectura:** exigir comparación con referencias simples y evaluación temporal antes de atribuir una mejora a mayor capacidad; una diferencia entre distribuciones no selecciona una red ni autoriza cambiar las cinco covariables.
 - **Riesgos identificados:** no estacionariedad, bloques no independientes, interpretación causal de un cambio marginal y selección de variables, pérdidas o ventanas por los p-values. La revisión cubre seis marginales del perfil lag1, no igualdad conjunta ni todos los rezagos D.
 
+**Descripción posterior a la evaluación final.** Tras congelar y puntuar los modelos, se amplió el perfil descriptivo a 2025 y enero–agosto de 2026 usando únicamente derivados y pronósticos ya guardados. Este análisis documenta desplazamiento y cobertura; no cambia escalas, hiperparámetros o fechas elegibles del test.
+
+| Periodo UTC | Etiquetas σ7 observadas | Media σ7 | Mediana σ7 | W₁ / DE de referencia |
+|---|---:|---:|---:|---:|
+| 2023 | 350 | 0,018797 | 0,017567 | 0,250065 |
+| 2024 | 366 | 0,023661 | 0,021989 | 0,245177 |
+| 2025 | 365 | 0,018536 | 0,016714 | 0,280043 |
+| Enero–agosto de 2026 | 243 | 0,019390 | 0,016681 | 0,314100 |
+
+El [perfil completo](../_static/e1_audit_improvements_20261104/descriptive/distribution_by_period.csv) reúne OHLCV, log1p del volumen, retorno logarítmico y σ7 para los cuatro periodos. W₁ es la distancia de Wasserstein normalizada por la DE del desarrollo observado hasta el 03/12/2024; no es un p-value ni una prueba de igualdad. El año 2023 conserva menos etiquetas por la historia inicial y el día excluido. El test conserva 365+243=608 fechas. Una diferencia de distribución no se atribuye causalmente a un factor ni autoriza retocar el pipeline con resultados del test.
+
 ### 2.1.4. Partición del dataset
+
+![Calendario y doce cortes reales de la CV de Filipe para cada historia](../_static/e1_cv_calendar_20261104/cv_calendar.svg)
+
+**Figura de la ejecución real.** Los 48 bloques dibujados son doce cortes por cada D, compartidos por las tres redes y las diez semillas. Las barras azules delimitan el periodo del entrenamiento mensual permitido; los huecos y sus ventanas se excluyen. El embargo naranja retira etiquetas del ajuste, sin impedir usar como entrada el OHLCV de esos días ya observados. El test morado corresponde a pesos finales congelados, sin reajustes durante sus veinte meses. El diagrama se reconstruye únicamente desde los manifiestos de índices mediante [draw_e1_cv_calendar.py](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/draw_e1_cv_calendar.py).
+
 
 Se mantiene entrenamiento inicial 2023, validación forward chaining en 2024, ajuste final con desarrollo permitido y test 2025–agosto de 2026. El ciclo final fue ejecutado después de cerrar configuraciones, con registro separado del EDA de desarrollo. Septiembre–octubre de 2026 se adquirieron, pero no se asignan automáticamente al test.
 
@@ -341,7 +357,7 @@ Añadir rezagos explícitos de volatilidad exigiría versionar antes el contrato
 
 **Aplicabilidad: sí; es el bloque específico principal del proyecto.**
 
-Se aplica el **bloque C de la guía: regresión temporal**, porque las entradas son covariables OHLCV rezagadas y no incluyen historia explícita de la volatilidad objetivo. Se utilizan los CSV de desarrollo 2023–2024, se conserva la cuadrícula de 731 días y el 24/03/2023 permanece excluido, sin imputación. El bloque incluye una referencia lineal regularizada para diagnosticar residuos. Ese ajuste de EDA se distingue de MLP, LSTM y CNN1D poco profunda, del piloto y del benchmark de desarrollo ejecutados el 04/11/2026 y documentados en los capítulos 4–5; ninguno utiliza test.
+Se aplica el **bloque C de la guía: regresión temporal**, porque las entradas son covariables OHLCV rezagadas y no incluyen historia explícita de la volatilidad objetivo. Se utilizan los CSV de desarrollo 2023–2024, se conserva la cuadrícula de 731 días y el 24/03/2023 permanece excluido, sin imputación. El bloque incluye una referencia lineal regularizada para diagnosticar residuos. Ese ajuste de EDA se distingue de MLP, LSTM y CNN1D poco profunda, del piloto y del benchmark de desarrollo ejecutados el 04/11/2026 y documentados en los capítulos 4–5. Esas operaciones de desarrollo no utilizaron test; la evaluación final de las redes y su descripción posterior tienen registros separados.
 
 La revisión punto por punto se conserva en el {download}`informe del bloque C <../_static/e1/revision_eda_temporal_20261103.md>` y su [matriz de evidencias](../_static/e1/revision_eda_temporal_20261103.json).
 

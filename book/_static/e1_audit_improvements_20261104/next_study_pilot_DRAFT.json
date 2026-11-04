@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "status": "draft_not_registered_not_executed",
+  "created_at_utc": "2026-11-04T20:54:31.739906+00:00",
+  "purpose": "Plantilla para un nuevo piloto prospectivo; no subsana retroactivamente el estudio ya realizado.",
+  "current_study_preserved": "filipe_multihistory_20261104; test2025-01-01..2026-08-31 ya examinado",
+  "must_complete_before_registration": {
+    "future_evaluation_calendar_or_dataset": null,
+    "independence_justification": null,
+    "applied_decision_or_academic_objective": "Benchmark académico; no utilidad financiera inferida.",
+    "practical_margin_and_reference": "Criterio operativo futuro: reducción relativa de RMSE superior al5% frente a MLP/D7 y persistencia; academic_margin_policy.json, con incertidumbre/multiplicidad y evaluación nueva.",
+    "paired_estimand_and_hypothesis_family": null,
+    "HPO_spaces_method_and_budget": null,
+    "final_epoch_selection_rule": null,
+    "compute_budget_and_cap_policy": null
+  },
+  "proposal": {
+    "models": [
+      "MLP",
+      "LSTM",
+      "CNN1D"
+    ],
+    "input_days": [
+      7
+    ],
+    "target_return_days": 7,
+    "forecast_horizon_days": 1,
+    "pilot_seeds": [
+      5101,
+      5102,
+      5103,
+      5104,
+      5105
+    ],
+    "split": "Cronológica, índices forward de Filipe, embargo igual al máximo rezago. Fechas y cortes por completar antes de registrar.",
+    "preprocessing": "Ajustar cada transformación exclusivamente con el pasado admitido de cada corte; excluir ventanas incompletas conservando calendario.",
+    "pilot_outputs": [
+      "media RMSE",
+      "DE muestral",
+      "coeficiente de variación",
+      "diferencias pareadas",
+      "DE de diferencias",
+      "δ/σd",
+      "supuestos y gráficos",
+      "R necesario",
+      "MDE al R previsto"
+    ],
+    "dimensioning": "α global=.05 y potencia objetivo>=.80; usar dispersión piloto y control de multiplicidad declarado. Si se quiere demostrar ganancia>δ, declarar una alternativa por encima de δ.",
+    "underpowered_policy": "Ampliar según presupuesto o declarar el límite; no cambiar margen o métrica para obtener significancia.",
+    "freeze": "Firmar protocolo, código, hiperparámetros y regla de épocas antes de la evaluación definitiva nueva."
+  },
+  "not_authorized_by_template": [
+    "Asignar automáticamente septiembre-octubre2026",
+    "Reabrir o reetiquetar como desconocido el test ya visto",
+    "Afirmar potencia lograda antes del piloto",
+    "Publicar predicciones, series o pesos completos"
+  ],
+  "execution_performed": false,
+  "new_model_fits": 0,
+  "new_test_accesses": 0,
+  "academic_policy": "experiments/e1_audit_improvements_20261104/academic_margin_policy.json"
+}

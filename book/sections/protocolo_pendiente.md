@@ -13,7 +13,8 @@ El procedimiento vigente utiliza **CV forward chaining de Filipe con D=7/14/21/2
 | Preprocesamiento | `relative_window`: logOHLC respecto al último cierre observable, log1pV y escalas aprendidas solo con train |
 | Control histórico | `absolute_log` se ejecutó únicamente en el ciclo inicial D7, no en las otras tres entradas |
 | Pérdida y métricas | MSE; RMSE primaria; MAE/MSE/MAPE/R²/MASE complementarias, en escala original y con cobertura |
-| Margen operativo | 5 % de reducción relativa de RMSE frente a persistencia, no margen entre redes, de equivalencia o avanzado |
+| Margen del estudio ejecutado | 5 % de reducción relativa de RMSE frente a persistencia; conserva su fecha y alcance original |
+| Criterio académico futuro | Mejora superior al 5 % frente a MLP/D7 y persistencia sobre la misma evaluación nueva, con incertidumbre y dos comparaciones; definido después del test actual |
 | MAPE y MASE | MAPE sobre etiquetas positivas sin epsilon; MASE con diferencias de un día de calendario conocidas en train |
 | Calidad y embargo | Calendario íntegro, exclusión estricta del día incompleto y ventanas afectadas, sin imputación; u≤origen−D−1 |
 | CV | Historia inicial 2023, doce bloques mensuales de 2024 con entrenamiento creciente, pesos fijos dentro del mes y diez semillas |
@@ -39,27 +40,47 @@ Se conservan **390 incisos numerados** de los capítulos 1–7. El [inventario](
 
 La revisión bibliográfica permanece en **35 referencias, cinco textos completos y 81 valores de autores**. LSTM unidireccional 3/5, familia LSTM 4/5, GRU 2/5, TCN 1/5 y encoder 2/5 describen el corpus acotado. MLP independiente y CNN1D simple continúan 0/5: más corridas propias no completan apoyo aplicado independiente ni acreditan consulta nativa WoS/Scopus o cuartil Q1.
 
-## Estado de los siete cambios solicitados
+## Matriz de cierre derivada de la auditoría
 
-| Prioridad | Producto | Estado verificable |
+La auditoría del **PDF de 34 páginas** distingue requisitos explícitos, observaciones de coherencia y mejoras. Los identificadores A01–A23 permiten seguir el trabajo sin convertir el recuento de hallazgos en una nota o porcentaje de cumplimiento. Los cinco cierres prioritarios son:
+
+| Prioridad | Requisito y origen | Estado actual | Evidencia o criterio de cierre |
+|---|---|---|---|
+| **A01 · Alta** | Extraer los tres baselines de literatura aplicada; PDF §§3–3.3, pp. 12–15 | **Parcial**: LSTM acreditada en el corpus; MLP no lineal independiente y CNN1D simple siguen sin respaldo suficiente | Matriz fuente→modelo, rol comparativo, arquitectura, dataset y cifras con ubicación verificable. Entrenar el trío no sustituye esa extracción. |
+| **A02 · Alta** | Margen y planificación frente al baseline; PDF §5.3, p. 23 | **Criterio académico definido para modelos futuros; sensibilidad y planificación calculadas** | Mejora >5 % frente a MLP/D7 y persistencia; 36 sensibilidades y 27 escenarios conjuntos de frontera práctica. Faltan piloto de dispersión real, potencia real y una evaluación nueva; no se atribuye este criterio al test ya realizado. |
+| **A03 · Alta** | Comparación formal del benchmark final; PDF §§5.3–5.4 y 6.4 | **Ejecutado como suplemento post-hoc**; [resultados](../_static/e1_audit_improvements_20261104/inference/summary.json) | Tres pares entre las configuraciones D7 seleccionadas, diferencias/IC/efectos, multiplicidad y diagnóstico temporal. Se declarará posterior a observar test; no requiere otros entrenamientos o pronósticos. |
+| **A04 · Alta** | Piloto y dimensionamiento previos del procedimiento vigente; PDF §§4.1–4.3, pp. 17–19 | **Pendiente para una nueva evaluación**; borrador preparado | [Plantilla prospectiva DRAFT](../_static/e1_audit_improvements_20261104/next_study_pilot_DRAFT.json) con al menos cinco semillas por base, media/DE/CV, δ/σd y R/MDE antes de ejecutar. No es un piloto realizado ni un registro completo; el piloto histórico pertenece a otro procedimiento. |
+| **A05 · Alta** | Entrega reproducible de extremo a extremo; PDF §§4.2–4.3 y entregables p. 33 | **Ruta privada de restauración y auditoría validada**; [recibo](../_static/e1_audit_improvements_20261104/reproducibility/summary.json) | Un evaluador restaura o replica en una carpeta limpia siguiendo instrucciones exactas y verifica hashes sin borrar el marcador del estudio original. Los paquetes completos pueden entregarse privadamente. |
+
+
+La ruta A05 valida una **réplica de evidencia**, no una repetición nueva de los 120 entrenamientos: conserva 113 entradas, seis TAR y 16.890 miembros verificados en una copia aislada, con auditoría de métricas/firmas y cero ajustes, nuevos pronósticos o lecturas de ZIP de mercado. [BUILD.md](https://github.com/jassan-bit/DeepLearning_202630/blob/main/BUILD.md) distingue el sitio de resúmenes del paquete privado para un evaluador. El registro original y su marcador de test se mantienen intactos.
+
+El suplemento A03 se calculó después de observar test; ese momento queda declarado. Los seis pares RMSE, seis DM principales, nueve Ljung–Box y bootstrap temporal tienen unidades/familias distintas. Las tablas completan evidencia del benchmark, sin volver retrospectivamente prospectivo el experimento ni reemplazar MLP/D7 por otro ganador de test.
+
+**Aclaración sobre la partición:** el embargo D está exigido por la ruta 6.4 de la guía, página 29, porque D es el máximo rezago de covariables. No es una condición nativa de la API `timeseries-cv`. Los porcentajes 27,26/27,33/45,41 son duraciones del calendario elegido, no proporciones impuestas por Filipe.
+
+## Mejoras concretas y evidencia de cierre
+
+| Identificadores | Acción | Estado verificable |
 |---|---|---|
-| 1 | Búsqueda trazable | Consultas web públicas y comprobantes; límites de cobertura e indexación explícitos |
-| 2 | Cribado y flujo | 118 ocurrencias, 12 duplicadas, 106 repositorios, 20 inspeccionados, 7 textos evaluados y 5 incluidos |
-| 3 | Matriz de literatura | Cinco textos, 81 cifras publicadas y evaluación con ubicaciones y riesgos |
-| 4 | Tres modelos básicos | MLP/LSTM/CNN1D ejecutados para cuatro entradas; respaldo aplicado de MLP/CNN incompleto |
-| 5 | Fichas técnicas | 27 campos numerados del trío, con fórmulas dependientes de D y resultados propios por historia |
-| 6 | Comparación crítica | Literatura y resultados propios separados; CV, cierre y test con periodos y límites |
-| 7 | Coherencia | n=7, h=1, D=7/14/21/28, RMSE, 5 % frente a persistencia, MAPE/MASE, ruta 6.4 y procedencia sincronizados |
+| A06 · HPO y procedencia | Conectar búsqueda histórica, receta elegida y transferencia a la CV relativa | **Documentado en §3.2.5**: 96 corridas históricas igualadas, anchos 16/32 y LR 0,001/0,003; las diez semillas actuales son otra etapa. No se afirma que nunca hubo HPO ni que la transferencia garantiza optimalidad. |
+| A07–A08 · Literatura/dataset | Ampliar recuperación y contrastar proveedor, par, frecuencia, periodo y objetivo de cada estudio | **Documentación ampliada**: 13 cadenas/18 páginas, 92 repositorios y matriz de siete fuentes; cero manuscritos nuevos incluidos. La igualdad del dataset propio y la extracción A01 siguen parciales. |
+| A09 · Faltantes | Mantener exclusión causal y aportar evidencia del mecanismo | **Parcial**: conteos, calendario y ventanas afectadas verificados; MCAR/MAR/MNAR no identificado. No se asigna una categoría sin evidencia. |
+| A10–A14 · Resultados y diagnóstico | Añadir resultados anuales, variabilidad cuantitativa, residuos/segmentos finales y diferencias de MAE | **Ejecutado**: [tablas anuales](../_static/e1_audit_improvements_20261104/descriptive/annual_metrics_summary.csv), [descomposición](../_static/e1_audit_improvements_20261104/descriptive/variance_components.csv), [distribuciones](../_static/e1_audit_improvements_20261104/descriptive/distribution_by_period.csv), residuos por bins y diferencias MAE/RMSE. Usa predicciones guardadas, sin volver a puntuar modelos. |
+| A15–A16 · Coherencia | Separar el control absoluto D7 de las cuatro historias y distinguir snapshots históricos | **Corregido en §3.2.2 y §3.2.5**; los registros históricos conservan su contenido y su identificador. |
+| A17 · Diagramas | Mostrar formas de tensor, capas y parámetros reales | **Ejecutado en §3.3 y §4.2.1**: SVG de MLP16, LSTM32 y CNN16, entradas D×5, cabeza positiva y parámetros verificados contra la implementación. |
+| A18–A21 · Robustez | Interpretar BDS corto, justificar épocas finales y añadir diagnóstico agregado por periodo | **Mejoras con alcance**: BDS mensual es exploratorio; las épocas vienen del último corte de desarrollo; no se reoptimizan mirando test. Ridge bajo otro procedimiento sigue siendo diagnóstico contextual. |
+| A22 · Calendario real | Separar el ejemplo sintético de la ejecución y los porcentajes de calendario de las muestras | **Ejecutado en §2.1.4**: figura reconstruida desde manifiestos con doce bloques mensuales por D, embargo y test de pesos finales fijos; no dibuja 366 reajustes diarios. |
+| A23 · Equivalencia | Separar requisito obligatorio de análisis condicional | **Aclarado**: TOST/ROPE y su margen solo se requieren si se quiere afirmar equivalencia. Ausencia de significancia no prueba equivalencia. |
 
 ## Límites que permanecen abiertos
 
-- **Cobertura académica:** búsqueda pública acotada; faltan apoyos aplicados independientes de MLP/CNN1D simple, corroboración individual de indexación y extracción definitiva por los criterios de la guía.
-- **Calidad documental:** tres fuentes grises y una sin año editorial corroborado; los perfiles suplementarios no sustituyen la evidencia del trío.
-- **Potencia y piloto:** diez semillas y MDE/R retrospectivo no acreditan piloto prospectivo ni potencia 0,80; no se inventa un registro anterior a observar desarrollo.
-- **Equivalencia y modelo avanzado:** los márgenes específicos siguen sin fijarse; 5 % frente a persistencia no los reemplaza y no se fabrica TOST/ROPE.
-- **Generalización:** un activo y proveedor, desarrollo 2024 expuesto y un backtest histórico final; sin validación anidada de toda la selección, otros mercados o estrés controlado.
-- **Diagnósticos:** BDS mensual asintótico con muestras cortas, dependencia de sigma7 y posible deriva; promediar p no es combinar evidencia ni prueba exclusiva de no linealidad aprovechable.
-- **Calidad externa:** mecanismo MCAR/MAR/MNAR y ruido externo de precio/etiqueta no identificados; la reconstrucción exacta de sigma7 no mide esos errores.
+- **Respaldo aplicado:** completar MLP/CNN1D simple y la comparabilidad de datos. No se acredita un registro individual WoS/Scopus o Q1 a partir de un DOI o del nombre de una editorial. La preferencia por Q1 no es una obligación universal ni se inventa un mínimo de papers.
+- **Diseño prospectivo:** hubo piloto histórico de cinco semillas por familia; diez semillas y sensibilidad retrospectiva del procedimiento actual no lo convierten en un piloto previo de esta CV. Se necesita un registro nuevo antes de la evaluación futura.
+- **Criterio académico avanzado:** queda definido para el futuro como mejora >5 % frente a MLP/D7 y persistencia, con incertidumbre y dos comparaciones. Los escenarios conjuntos son ilustrativos; siguen pendientes el piloto con dispersión real, la potencia real y una evaluación nueva. No se afirma utilidad financiera y la equivalencia sigue siendo condicional.
+- **Generalización:** un activo/proveedor y desarrollo 2024 expuesto; las semillas, historias y meses no son mercados independientes. Usar este test para diseñar otra propuesta exige una nueva evaluación independiente.
+- **Calibración:** BDS mensual con 28–31 residuos y etiquetas solapadas tiene referencia asintótica limitada; promediar p-valores no combina evidencia ni identifica exclusivamente no linealidad aprovechable.
+- **Calidad externa:** mecanismo MCAR/MAR/MNAR y ruido externo de precio/etiqueta no identificados. La reconstrucción exacta de σ7 acredita implementación de la etiqueta, no ausencia de error en su proxy.
 
 ## Proyección a E2
 
