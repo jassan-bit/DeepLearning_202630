@@ -1,0 +1,93 @@
+{
+  "analysis_id": "filipe_statistics_20261104",
+  "registered_at_utc": "2026-11-04T16:43:27.546520+00:00",
+  "authorization": "Review the whole book and update all items; calculate feasible statistical items using stored Filipe-CV predictions only.",
+  "scope": "Exploratory supplement registered after descriptive inspection of exposed2024 development, before executing these supplemental calculations. Not a confirmation on unseen data or a pre-training preregistration.",
+  "source_sha256": {
+    "results/dl_r2_cv_20261104/predictions.csv": "9b91d6a1299cdb6e21330894ad7566bc247be86282f2810f9a80c77875d9058f",
+    "results/dl_r2_cv_20261104/runs.csv": "178d2a7e404a3401f3f08e05d8b1b93df7835ab8f8fab8dfdeb3343f8521f0e7",
+    "results/dl_r2_cv_20261104/analysis/comparisons.csv": "7df9036fd9020cfd10cd39d730ace73783dfdfaaea0c16a7266d4cc8b329aff8",
+    "results/dl_r2_cv_20261104/runs/relative_window_CNN1D_s4101_2a535b6ffd/2024-12/history_inner.csv": "2239b58b5516288fa558421656264de01737ca1ae04f0c058d3907eeacce6d7a",
+    "results/dl_r2_cv_20261104/runs/relative_window_CNN1D_s4101_2a535b6ffd/2024-12/configuration.json": "d526ec8f327a3aefd424471f43341b9680183cdd22deeef5caf92cf2820988c0",
+    "results/dl_r2_cv_20261104/runs/relative_window_LSTM_s4101_2a535b6ffd/2024-12/history_inner.csv": "0924b4a707aa0fb509b6f163920d958259b3d6ac36b7e128bfe0fb9977819032",
+    "results/dl_r2_cv_20261104/runs/relative_window_LSTM_s4101_2a535b6ffd/2024-12/configuration.json": "c2698b21d7dece7f11e7273a4602296082be73afeb79b0011df362699bba2a62",
+    "results/dl_r2_cv_20261104/runs/relative_window_MLP_s4101_2a535b6ffd/2024-12/history_inner.csv": "cfe7ec6db37b5be8aeec98ea043dd729e8f54d8f12412dccd748552470c52479",
+    "results/dl_r2_cv_20261104/runs/relative_window_MLP_s4101_2a535b6ffd/2024-12/configuration.json": "d2fcda3ea33e48b749ad1483534053143d88c64c8ad0ed99840cfe7599a9ecbd"
+  },
+  "primary_variant": "relative_window",
+  "models": [
+    "MLP",
+    "LSTM",
+    "CNN1D"
+  ],
+  "seeds": [
+    4101,
+    4102,
+    4103,
+    4104,
+    4105,
+    4106,
+    4107,
+    4108,
+    4109,
+    4110
+  ],
+  "calendar": "2024-01-01..2024-12-31,366paired daily outcomes,12monthly fits pertrajectory",
+  "planned": {
+    "paired_family": 9,
+    "global_family": 12,
+    "dm_primary_lag": 14,
+    "dm_sensitivity_lags": [
+      7,
+      28
+    ],
+    "forecast_horizon": 1,
+    "diagnostic_seed": 4101,
+    "diagnostic_fold": "2024-12",
+    "lb_lags": [
+      7,
+      14,
+      28
+    ],
+    "lb_model_df": 0,
+    "bds_dimensions": [
+      2,
+      3
+    ],
+    "bds_epsilon_sd": 1.5,
+    "bootstrap_replicates": 2000,
+    "bootstrap_lengths": [
+      14,
+      7,
+      28
+    ],
+    "bootstrap_seed": 20261104,
+    "design_sensitivity_R": 10,
+    "design_sensitivity_alpha": 0.004166666666666667,
+    "design_sensitivity_power_target": 0.8,
+    "design_sensitivity_reference_margin": 0.05
+  },
+  "paired_estimands": [
+    "three two-sided meanseedRMSE model differences",
+    "three two-sided meanseedRMSE networks-minus-persistence differences",
+    "three one-sided mean relativeRMSE gains above0.05"
+  ],
+  "global_multiplicity": "GlobalHolm12 includes the nine primary-model/reference/gain contrasts plus three already-defined within-model preprocessing controls. Also retain component Holm9 and original controlHolm3 as traceability, not independent confirmations.",
+  "temporal_estimand": "Date-wise mean across ten seeds of squared prediction errors, not squared mean prediction or mean seedRMSE; sixpairs incldeterministicP, BartlettHAC14 primary7/28sens, HLNh1.",
+  "residual_estimand": "Designated seed4101,relative primary,full366contiguous outcomes,three networks; residual y_true-y_pred. BDS tests iid departures, not exclusive or exploitable nonlinearity.",
+  "bootstrap_estimand": "Paired circular date blocks,commonindicesallmodelsandP; recompute per-seed RMSE and then itsmean; no seed resampling or refitting; marginalCI conditional onstoredtrainedmodels.",
+  "power_scope": "Retrospective dispersion-based normal-approximation design sensitivity and oriented R. No observed-effect power, no claim of a pre-fit pilot, no dimensioning of power for provinggain>0.05 without q_alt.",
+  "superiority_scope": "Descriptive paired training-seed wins/ties on fixedcalendar. Exactbinomial95CI onlywhen no ties; not a universal probability acrossmarkets.",
+  "curve_scope": "Real inner-stopping histories for predesignated finalmonthlyfold December2024 seed4101, not evaluation/test loss curves or sample-size learning curves.",
+  "interpretation_limits": [
+    "2024 previously exposed toEDA and configurationchoices",
+    "monthly model changes and overlapping targets may violate stationary asymptotic assumptions",
+    "marginalintervals are not simultaneous simply because pvalues are Holm-adjusted",
+    "seed uncertainty, temporal losses and date-block resampling answer different questions",
+    "no future-model or equivalence margins introduced"
+  ],
+  "reserved_test": "2025-01-01..2026-08-31 remains unevaluated; September-October2026 unassigned",
+  "test_evaluation_allowed": false,
+  "new_training_allowed": false,
+  "raw_market_reads_allowed": false
+}
