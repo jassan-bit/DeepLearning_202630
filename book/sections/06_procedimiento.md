@@ -128,7 +128,7 @@ El procedimiento inferencial se aplicará a la pregunta y fase declaradas; sus d
 
 Los orígenes son las observaciones del problema predictivo; la **unidad de inferencia** puede ser la corrida por semilla, una diferencia de pérdidas por fecha o un bloque temporal, según la pregunta. No se mezclan esas unidades ni se concatenan semillas o huecos como una serie más larga. Las semillas describen variación del entrenamiento condicionada a los mismos datos; no son nuevos mercados.
 
-Las σ7 consecutivas comparten seis retornos. Ni h=1 obliga a HAC de rezago cero ni ese solapamiento fija un máximo universal de seis; la regla y sensibilidad se justifican conforme a §5.4.5. HLN utiliza h real y no convierte la aproximación en exacta ante cualquier deriva, dependencia o política de actualización.
+Las σ7 consecutivas comparten seis retornos. Ni h=1 obliga a HAC de rezago cero ni ese solapamiento fija un máximo universal de seis; la regla y sensibilidad se justifican conforme a §5.4.9. HLN utiliza h real y no convierte la aproximación en exacta ante cualquier deriva, dependencia o política de actualización.
 
 Se registrarán hipótesis, estimando, fase, dirección, familia y α nominal 0,05 antes de analizar resultados, con IC del 95 %, efecto pareado y p-values ajustados y sin ajustar bajo la calibración declarada. La potencia por semillas y la MDE respecto de cero tienen el alcance de §4.1.5–§4.1.7; no prueban por sí solas ganancia superior al 5 %, potencia temporal o equivalencia. El 5 % aceptado corresponde exclusivamente a persistencia.
 

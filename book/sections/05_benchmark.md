@@ -296,7 +296,7 @@ Wilcoxon no reemplaza automáticamente una prueba de la misma media cuando falta
 
 La elección entre pruebas se justificará desde el diseño y los diagnósticos; no se escogerá la que produzca el p-value más pequeño. Si se usan rangos se respetará el mínimo de seis ejecuciones de la guía, o el número mayor exigido por potencia. Con cinco pares sin ceros ni empates, el menor p-value bilateral exacto de Wilcoxon es $2/2^5=0{,}0625$; con seis es $0{,}03125$, todavía mayor que el primer umbral de Holm para tres pares ($0{,}05/3$). Cumplir el mínimo de semillas no garantiza detectar una diferencia.
 
-### 5.4.3. Comparación conjunta de tres modelos y post-hoc
+### 5.4.3. Comparación conjunta de tres modelos
 
 Se considerará **ANOVA de medidas repetidas** si se justifican sus supuestos, incluida la estructura de covarianza o esfericidad cuando corresponda y sus correcciones. **Friedman** es la alternativa recomendada por la guía para bloques emparejados, con la advertencia sobre potencia de su sección 7.
 
@@ -304,23 +304,65 @@ Los bloques deberán representar unidades defendibles del diseño. Repetir el mi
 
 Un bloque completo reúne los tres resultados bajo la misma unidad. Las configuraciones n/D no se convierten en bloques intercambiables y los faltantes o fallas se reportan sin imputar resultados o eliminar pares silenciosamente. Si los bloques son semillas, la afirmación es condicional al calendario; si son temporales, agrupar días no demuestra independencia. Friedman requiere condiciones de diseño y tratamiento de empates, aunque no sea paramétrico.
 
+### 5.4.4. Comparaciones post-hoc y corrección por multiplicidad
+
 Los análisis post-hoc podrán incluir Nemenyi u otras comparaciones pareadas con **Holm o Bonferroni**, según el plan registrado. Se declararán procedimiento, familia de hipótesis y ajustes aplicados; no se combinarán correcciones sin explicar qué controla cada una. La familia incluirá las configuraciones u horizontes sobre los que se realicen afirmaciones, no solo los tres pares de una tabla aislada.
 
 Se registrará si el omnibus actúa como requisito previo para los post-hoc o si existen contrastes pareados principales ya planificados. Nemenyi incorpora control simultáneo para su familia; no se le añade automáticamente Holm/Bonferroni como una segunda corrección equivalente. Un control adicional debe responder a otra familia o nivel justificado. Con muestras pequeñas se declarará también si la referencia utilizada es exacta, aproximada o de permutación y qué condiciones la sostienen.
 
 Un omnibus no significativo no prueba igualdad entre modelos, y un análisis post-hoc no convierte un diseño de baja potencia en evidencia concluyente. Se interpretará junto con efectos, intervalos y MDE.
 
-### 5.4.4. Intervalos de confianza, tamaños de efecto y potencia
+### 5.4.5. Intervalos de confianza y tamaño de efecto
+
+#### 5.4.5.1. Bootstrap de las diferencias pareadas
 
 Las diferencias se acompañarán de **IC del 95 %** y tamaños de efecto. Un bootstrap pareado conservará la correspondencia entre los modelos; si la unidad es temporal, se emplearán bloques u otro procedimiento que respete la dependencia. No se remuestrearán por separado los errores de cada modelo destruyendo el emparejamiento.
 
+Un remuestreo de predicciones guardadas mide variación de evaluación condicionada a los entrenamientos realizados. Incorporar además incertidumbre del entrenamiento exige declarar cómo se combinan ambos niveles; no basta agrupar semillas×fechas como casos intercambiables. En cada réplica se conservarán conjuntamente etiquetas y predicciones de los métodos y se recalculará la diferencia o razón de RMSE. El IC de diferencias de pérdidas cuadráticas no se reutiliza directamente como IC de diferencias de RMSE.
+
+#### 5.4.5.2. Tamaño de efecto junto con el p-value
+
 Para diferencias entre ejecuciones podrá usarse $d_z$ de §5.3.2.4, u otra medida justificada como una medida basada en rangos. Se identificarán signo, denominador, empates, límites e incertidumbre. No se sustituirá una medida pareada por una de grupos independientes sin justificación.
+
+El tamaño de efecto se reportará siempre junto con el p-value de cada comparación. Para diferencias pareadas de error puede utilizarse d de Cohen pareada (d_z), o una correlación rango-biserial pareada si se justifica. El delta de Cliff clásico compara todos los cruces entre grupos y no sustituye automáticamente una medida pareada; su uso requeriría justificar otro estimando y su diseño. Las convenciones y el margen práctico se conservan según §5.3.2.4.
+
+### 5.4.6. Advertencia sobre independencia
+
+#### 5.4.6.1. Ejecuciones que comparten el conjunto de prueba
+
+Las ejecuciones sobre el mismo test no representan realizaciones independientes del mercado. Las inicializaciones pueden ser independientes condicionadas a los datos y al procedimiento, pero eso no incorpora la incertidumbre de compartir el conjunto evaluado. El alcance entre semillas se declarará como variación del entrenamiento bajo ese calendario; no se afirmará independencia de mercados por aumentar semillas o filas.
+
+Se reconocerá la dependencia de fechas, objetivos móviles y particiones reutilizadas. Las parejas entre modelos, las semillas, las fechas y las configuraciones mantendrán sus identificadores; no se agruparán como observaciones i.i.d.
+
+#### 5.4.6.2. Validación repetida y remuestreo por bloques
+
+Cuando el diseño lo permita, la validación cruzada repetida deberá acompañarse de una corrección de varianza adecuada a la reutilización de datos y a la unidad inferencial. En esta serie financiera se conserva la cronología: no se adopta K-fold aleatorio ni se traslada automáticamente una corrección derivada para otro diseño a los orígenes móviles.
+
+El remuestreo por bloques temporales u otro procedimiento que respete la dependencia requerirá justificar longitud, tramos y sensibilidad, conservando el emparejamiento. Los controles de §5.4.5 distinguen incertidumbre temporal de variabilidad del entrenamiento. Ninguna de estas alternativas se presenta como ejecutada o como garantía automática de independencia.
+
+### 5.4.7. Reporte de potencia y diferencia mínima detectable
 
 Cada contraste se acompañará de la potencia planificada o de la **diferencia mínima detectable del diseño**, con los supuestos de §4.1. No se utilizará una potencia retrospectiva calculada solo a partir del efecto observado como prueba de que el estudio fue suficiente. La muestra pequeña y los objetivos móviles solapados deben reconocerse.
 
-Un remuestreo de predicciones guardadas mide variación de evaluación condicionada a los entrenamientos realizados. Incorporar además incertidumbre del entrenamiento exige declarar cómo se combinan ambos niveles; no basta agrupar semillas×fechas como casos intercambiables. En cada réplica se conservarán conjuntamente etiquetas y predicciones de los métodos y se recalculará la diferencia o razón de RMSE. El IC de diferencias de pérdidas cuadráticas no se reutiliza directamente como IC de diferencias de RMSE.
+Se declararán contraste y frontera nula, unidad inferencial, tamaño disponible, efecto alternativo, dispersión de planificación, nivel de significación, tratamiento de multiplicidad y potencia objetivo. El dimensionamiento por semillas de §4.1 no se reutiliza como si dimensionara automáticamente fechas dependientes o diagnósticos residuales.
 
-### 5.4.5. Diebold–Mariano: pérdida, semillas y dependencia
+Detectar una diferencia respecto de cero y demostrar que supera un margen práctico requieren planificaciones distintas. El 5 % fijado frente a persistencia no define márgenes entre redes ni para comparar un modelo avanzado con el baseline DL. Sin piloto y sin predicciones del benchmark no hay una potencia ni una MDE numéricas que reportar; los campos permanecerán pendientes para E2.
+
+### 5.4.8. Ausencia de significación y equivalencia
+
+**No rechazar una diferencia no demuestra equivalencia.** Si se desea afirmar equivalencia entre modelos, se planteará un análisis separado, por ejemplo **TOST** con margen práctico predefinido. Una alternativa bayesiana con **ROPE** deberá declarar modelo, distribución posterior y regla de decisión; no se presentará como si fuera la misma prueba frecuentista.
+
+El margen de equivalencia debe fijarse con sentido aplicado, escala, referencia y unidades claras. El 5 % de mejora frente a persistencia es un criterio de superioridad práctica y no define automáticamente una banda de equivalencia entre dos modelos. No se ensanchará después para conseguir equivalencia. Se distinguirán ausencia de evidencia, evidencia de diferencia y evidencia de equivalencia bajo el diseño correspondiente.
+
+En un TOST al nivel 0,05, bajo el método y la calibración aplicables, ambas pruebas unilaterales deben rechazar; su regla usual corresponde al **IC del 90 % completamente dentro de la banda**. Se distinguirá ese intervalo de decisión del IC del 95 % requerido para el reporte general. Si cambia el nivel por comparación debido a multiplicidad, el intervalo de decisión debe corresponder al procedimiento realmente utilizado.
+
+Las dos unilaterales de un TOST forman una prueba de intersección–unión; no se les aplica por defecto Bonferroni como si fueran dos afirmaciones independientes. Las equivalencias entre varios pares o configuraciones sí requieren su tratamiento de familia. Para ROPE se registrarán también dependencia, priors, posterior y criterio de decisión, sin inventar ahora sus valores.
+
+### 5.4.9. Test de Diebold–Mariano
+
+#### 5.4.9.1. Comparación de precisión predictiva por horizonte
+
+Se reportará la comparación para cada horizonte registrado. El contrato principal mantiene h=1; añadir horizontes exige fijarlos antes de evaluar y tratarlos en la familia de comparaciones correspondiente.
 
 La comparación temporal se realizará sobre las mismas fechas y horizonte, con pérdida cuadrática coherente con RMSE. Para dos procedimientos A y B, una corrida y errores $e_{A,t}=Y_t-\widehat Y_{A,t}$ y $e_{B,t}=Y_t-\widehat Y_{B,t}$:
 
@@ -340,6 +382,8 @@ Antes de evaluar se fijará una de las políticas de semillas y su relación con
 
 No se elegirá una semilla tras ver su error o p-value ni se concatenarán todas las semillas como una serie N×R. Los residuos y predicciones de cada corrida conservarán sus identificadores. El análisis de semillas del capítulo 4 permanece diferenciado de esta inferencia temporal.
 
+#### 5.4.9.2. Corrección Harvey–Leybourne–Newbold y pérdida coherente
+
 Se registrará el estimador de varianza de largo plazo de la serie de diferencias, su kernel, ancho de banda/regla de selección y tamaño efectivo. **h=1 no implica independencia**: σ7 comparte seis retornos entre etiquetas consecutivas y puede existir dependencia adicional. Seis tampoco es un límite superior universal del ancho de banda. La regla y su sensibilidad se fijarán con desarrollo o mediante un procedimiento justificado antes de interpretar los resultados, sin buscar el rezago que minimice el p-value. Una varianza de largo plazo nula o no admisible no se transforma en evidencia favorable: se registra la prueba como no calculable y su causa.
 
 Se documentará la corrección **Harvey–Leybourne–Newbold** requerida por la guía, usando el horizonte real h. No se sustituirá h por la ventana n del objetivo ni por la longitud D de entrada para representar dependencia adicional. El ajuste clásico de muestra pequeña no es una calibración general para cualquier HAC, cambio de régimen o proceso de estimación: se explicarán la implementación, sus condiciones y, cuando proceda, un análisis temporal de sensibilidad justificado. Los p-values se identificarán como aproximados cuando lo sean.
@@ -357,7 +401,7 @@ La interpretación requiere condiciones defendibles del proceso de pérdidas, in
 
 Rechazar igualdad de pérdidas no demuestra que la mejora supere el **5 % frente a persistencia**, y no establece un margen para un modelo avanzado frente al baseline DL. Esas afirmaciones necesitan su frontera nula, efecto y procedimiento propios, conforme a §4.1.5–§4.1.7 y §5.3.4.
 
-### 5.4.6. BDS sobre residuos
+### 5.4.10. Test BDS (Brock–Dechert–Scheinkman)
 
 Se aplicará **BDS —Brock–Dechert–Scheinkman—** a residuos fuera de entrenamiento, incluido el primer horizonte exigido en el material recibido. Se documentarán tramo, número de observaciones, dimensiones de inmersión, radio o regla de escala, tratamiento de valores ausentes y versión del software.
 
@@ -367,27 +411,25 @@ Los residuos se ordenarán y se evaluarán sobre tramos temporalmente válidos; 
 
 Se registrará cuántos vectores de inmersión quedan disponibles para cada dimensión y cómo se fija el radio respecto a la escala. Un prefiltrado o estandarización define otra serie: se declararán transformación, datos de ajuste e hipótesis sobre esa nueva serie. Modelos estimados, deriva, heterocedasticidad y etiquetas solapadas afectan la interpretación o calibración; no se agrupan semillas ni se omiten parametrizaciones desfavorables.
 
-### 5.4.7. Ljung–Box e interpretación de residuos
+### 5.4.11. Test de Ljung–Box
 
 Se usará **Ljung–Box** para estudiar autocorrelación residual en varios rezagos predefinidos. Se registrarán tamaño de muestra, rezagos, hipótesis, estadístico, p-values y tratamiento de grados de libertad.
 
 La corrección de grados de libertad se justificará según el modelo y los parámetros de la prueba: **no se restará automáticamente el número de pesos de una red neuronal** como si fueran los parámetros ARMA de una fórmula clásica. También podrá examinarse la dependencia de residuos al cuadrado con una finalidad explícita, diferenciándola de la autocorrelación lineal.
 
-Sesgo, autocorrelación o estructura no explicada pueden motivar investigar mejoras, pero no prueban que un modelo avanzado concreto vaya a aprovecharlas. La interpretación incorporará heterocedasticidad, cambios de régimen, especificación del objetivo y los límites de cada contraste.
-
 El p-value se identificará como referencia asintótica bajo sus condiciones. Se registrará `model_df` y se comprobarán grados de libertad positivos para los rezagos elegidos; el valor usado en las Ridge del EDA no se hereda automáticamente a las redes. Holm controla multiplicidad de p-values válidos, pero no repara una calibración inválida ni convierte diagnósticos correlacionados en confirmaciones independientes.
 
-### 5.4.8. Ausencia de significación y equivalencia
+### 5.4.12. Interpretación de los residuos
 
-**No rechazar una diferencia no demuestra equivalencia.** Si se desea afirmar equivalencia entre modelos, se planteará un análisis separado, por ejemplo **TOST** con margen práctico predefinido. Una alternativa bayesiana con **ROPE** deberá declarar modelo, distribución posterior y regla de decisión; no se presentará como si fuera la misma prueba frecuentista.
+#### 5.4.12.1. Estructura residual y posible margen de mejora
 
-El margen de equivalencia debe fijarse con sentido aplicado, escala, referencia y unidades claras. El 5 % de mejora frente a persistencia es un criterio de superioridad práctica y no define automáticamente una banda de equivalencia entre dos modelos. No se ensanchará después para conseguir equivalencia. Se distinguirán ausencia de evidencia, evidencia de diferencia y evidencia de equivalencia bajo el diseño correspondiente.
+Sesgo, autocorrelación o estructura no explicada pueden motivar investigar mejoras, pero no prueban que un modelo avanzado concreto vaya a aprovecharlas. La interpretación incorporará heterocedasticidad, cambios de régimen, especificación del objetivo y los límites de cada contraste.
 
-En un TOST al nivel 0,05, bajo el método y la calibración aplicables, ambas pruebas unilaterales deben rechazar; su regla usual corresponde al **IC del 90 % completamente dentro de la banda**. Se distinguirá ese intervalo de decisión del IC del 95 % requerido para el reporte general. Si cambia el nivel por comparación debido a multiplicidad, el intervalo de decisión debe corresponder al procedimiento realmente utilizado.
+La autocorrelación remanente o las desviaciones compatibles con no linealidad motivan explorar mejoras estructurales. BDS puede rechazar por distintas desviaciones de i.i.d.; su resultado no identifica por sí solo no linealidad aprovechable. El solapamiento de σ7, la heterocedasticidad y la deriva deben distinguirse de limitaciones de representación del modelo.
 
-Las dos unilaterales de un TOST forman una prueba de intersección–unión; no se les aplica por defecto Bonferroni como si fueran dos afirmaciones independientes. Las equivalencias entre varios pares o configuraciones sí requieren su tratamiento de familia. Para ROPE se registrarán también dependencia, priors, posterior y criterio de decisión, sin inventar ahora sus valores.
+El posible margen sugerido por los residuos no es una reducción de RMSE cuantificada ni una MDE. Su aprovechamiento por una propuesta avanzada requerirá predicciones fuera de entrenamiento y una comparación justa con efectos, intervalos y contrastes predefinidos. Los diagnósticos de las Ridge del EDA no sustituyen los resultados requeridos de las tres redes, todavía pendientes.
 
-### 5.4.9. Reporte y buenas prácticas estadísticas
+#### 5.4.12.2. Reporte y buenas prácticas estadísticas
 
 Cada contraste tendrá un registro con:
 
@@ -409,7 +451,7 @@ Los p-values se reportarán con precisión numérica suficiente, no solo como `p
 
 Las pruebas de DeLong, McNemar, segmentación o análisis de lenguaje del catálogo general no corresponden a este objetivo continuo de una serie financiera. Su ausencia no se reemplaza con métricas ajenas al problema.
 
-### 5.4.10. Estado del análisis estadístico
+#### 5.4.12.3. Estado del análisis estadístico
 
 | Producto | Estado |
 |---|---|

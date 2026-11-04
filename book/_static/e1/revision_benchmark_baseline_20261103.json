@@ -411,5 +411,59 @@
     "navigation_title_updated": "book/intro.md",
     "chapter5_source_sha256": "b7b432269f681052cc448f0c7a988f4c43b78d31ea2837f2a52f1d18671b39f1",
     "historical_artifacts_note": "Previous artifact hashes, audit requirement IDs, and revision_baseline_ranking snapshot references remain historical; they are not current heading numbering."
+  },
+  "structure_review_5_4_20261104": {
+    "date": "2026-11-04",
+    "timezone": "America/Bogota",
+    "scope": "Documentary reorganization responding to both requests for 5.4.5–8 and 5.4.9–12; no model training, predictions, pilot, benchmark or new statistical results.",
+    "previous_source_commit": "8d3ac340d237ebfee7de1cab188d9900a38d700a",
+    "headings": [
+      "5.4.1. Hipótesis, unidad de análisis y supuestos",
+      "5.4.2. Comparaciones pareadas: t y Wilcoxon",
+      "5.4.3. Comparación conjunta de tres modelos",
+      "5.4.4. Comparaciones post-hoc y corrección por multiplicidad",
+      "5.4.5. Intervalos de confianza y tamaño de efecto",
+      "5.4.6. Advertencia sobre independencia",
+      "5.4.7. Reporte de potencia y diferencia mínima detectable",
+      "5.4.8. Ausencia de significación y equivalencia",
+      "5.4.9. Test de Diebold–Mariano",
+      "5.4.10. Test BDS (Brock–Dechert–Scheinkman)",
+      "5.4.11. Test de Ljung–Box",
+      "5.4.12. Interpretación de los residuos"
+    ],
+    "numbered_children": {
+      "5.4.5": 2,
+      "5.4.6": 2,
+      "5.4.9": 2,
+      "5.4.12": 3
+    },
+    "old_to_new": {
+      "5.4.1": "5.4.1",
+      "5.4.2": "5.4.2",
+      "5.4.3": "Omnibus in 5.4.3, post-hoc in 5.4.4",
+      "5.4.4": "Intervals/effects in 5.4.5, power/MDE in 5.4.7",
+      "5.4.5": "5.4.9",
+      "5.4.6": "5.4.10",
+      "5.4.7": "Ljung–Box in 5.4.11, interpretation in 5.4.12.1",
+      "5.4.8": "5.4.8",
+      "5.4.9": "5.4.12.2",
+      "5.4.10": "5.4.12.3"
+    },
+    "preserved": {
+      "display_equations_in_5_4": 2,
+      "tables_in_5_4": 4,
+      "table_lines_in_5_4": 31,
+      "TOST_decision_90_percent_vs_general_report_95_percent": true,
+      "DM_squared_loss_vs_mean_seed_RMSE_distinction": true,
+      "HLN_real_horizon_h1": true,
+      "BDS_rejection_not_exclusive_evidence_of_nonlinearity": true,
+      "Ljung_Box_df_not_NN_weight_count": true,
+      "numeric_MDE_or_power_computed": false,
+      "new_empirical_results": 0
+    },
+    "independence_clarification": "Training randomization can be independent conditional on fixed data; sharing test does not create independent market realizations or measure all temporal uncertainty. Repeated-CV variance correction must match design; no random K-fold is adopted for this temporal series.",
+    "cross_reference_updated": "book/sections/06_procedimiento.md: temporal variance/HLN reference 5.4.5 -> 5.4.9",
+    "chapter5_source_sha256": "51167cd86e00eb217707d35173822c7b741434cb280646997ed0917c7bd73dd5",
+    "historical_artifacts_note": "Prior artifact hashes, requirement IDs and dated audit snapshots remain unchanged as history."
   }
 }

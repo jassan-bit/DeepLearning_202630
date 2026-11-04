@@ -58,3 +58,13 @@ Se mantienen las cinco ecuaciones y las dos tablas (16 líneas) anteriores a 5.4
 El ranking continúa condicionado a configuraciones comparables y la referencia se selecciona con desarrollo antes de test. Los extremos de test son descriptivos y no reemplazan esa referencia. El margen del 5 % sigue referido solo a persistencia; el IC/DE del baseline aislado no determina una MDE avanzada. No hay ranking medido, baseline ganador, margen avanzado estimado ni resultados nuevos. La ejecución permanece reservada para E2.
 
 Los IDs de requisitos y hashes previos se conservan. El snapshot revision_baseline_ranking mantiene sus referencias en el commit auditado; el mapa actual está en la nueva adenda JSON.
+
+## Organización de 5.4.5–5.4.12 — 4 de noviembre de 2026
+
+Se atienden conjuntamente las dos instrucciones: 5.4.5 intervalos y efecto; 5.4.6 independencia; 5.4.7 potencia/MDE; 5.4.8 ausencia de significación/equivalencia; 5.4.9 Diebold–Mariano; 5.4.10 BDS; 5.4.11 Ljung–Box; y 5.4.12 interpretación residual. Para evitar duplicar el antiguo 5.4.4, la comparación conjunta queda en 5.4.3 y su post-hoc en 5.4.4.
+
+Se conserva todo el contenido previo, incluidas dos ecuaciones, cuatro tablas y 31 líneas de tabla de 5.4. Los intervalos conservan emparejamiento y dependencia; el efecto acompaña al p-value. Se diferencia la independencia condicional de inicializaciones de disponer de mercados independientes; la validación repetida requiere corrección de varianza acorde al diseño y no autoriza K-fold aleatorio. Potencia/MDE permanecen vinculadas a la unidad, estimando y frontera nula, sin valores nuevos.
+
+Equivalencia conserva TOST/ROPE separados y el IC usual de decisión del 90 % frente al reporte general del 95 %. DM mantiene horizonte real, pérdida cuadrática, HAC y HLN con sus condiciones; BDS no identifica exclusivamente no linealidad aprovechable; Ljung–Box no resta automáticamente pesos neuronales. Los residuos sugieren investigar un posible margen, sin demostrar una ganancia avanzada. Reporte y estado se conservan dentro de 5.4.12. Se actualiza la referencia temporal del capítulo 6 a 5.4.9.
+
+El trío final, el piloto, los contrastes y el benchmark siguen pendientes de E2. No hubo acceso a datos, entrenamiento o nuevas mediciones. Los IDs y hashes anteriores se mantienen como historial.
