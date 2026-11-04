@@ -42,7 +42,7 @@ Se contrastaron los apartados 5.1–5.5 de la guía (pp. 21–27). El capítulo 
 | 5.5.02 | Generalización y estabilidad | Alcance precisado | 2025 y tramo de 2026 hasta agosto; misma referencia congelada; población elegible y cambios de distribución identificados. | Brecha selección/test no identifica por sí sola sobreajuste ni generalización a otros mercados. |
 | 5.5.03 | Significación y relevancia | Preguntas diferenciadas | Diferencias, IC, efectos, p ajustados y margen juntos; resultados inconclusos permitidos. | No rechazo no es equivalencia ni falta de relevancia demostrada. |
 | 5.5.04 | Costo/precisión y umbral avanzado | Discusión delimitada | Condiciones de medición, frente descriptivo y referencia empírica con incertidumbre. | No convertir un extremo de IC o una DE del baseline en umbral avanzado. |
-| 5.5.05 | Brecha publicada y credibilidad | Estado desfasado corregido | S1 D-TCN/TCN: 8,53 %, 5,04 %, −4,65 % y −26,74 % como contexto de §3.4.1. | No traslado a objetivo local: cambian información/arquitectura y cuarenta frente a veinte reinicios. |
+| 5.5.05 | Brecha publicada y credibilidad | Estado desfasado corregido | S1 D-TCN/TCN: 8,53 %, 5,04 %, −4,65 % y −26,74 % como contexto de §3.4.3. | No traslado a objetivo local: cambian información/arquitectura y cuarenta frente a veinte reinicios. |
 | 5.5.06 | Validez interna, externa y constructo | Amenazas documentadas | Fuga, optimización, cobertura, proxy, métricas, dependencia, selección y evidencia editorial. | Controles no son garantías; mecanismo de faltantes y error irreducible no identificados. |
 | 5.5.07 | Uso futuro de test para diseñar avanzado | Condición explícita | Si el test orienta ese diseño, no es confirmación independiente; requiere evaluación previamente no utilizada. | No se reasignan septiembre/octubre de 2026 automáticamente; anidación retrospectiva no borra exposición. |
 | 5.5.08 | Limitaciones y recomendaciones | Estado de evidencia | Cierre de bibliografía/trío/protocolo, piloto y benchmark; recomendaciones derivadas de límites y futuros resultados. | No hay nuevos modelos, métricas, rankings, contrastes o resultados de test en esta revisión. |
@@ -68,3 +68,13 @@ Se conserva todo el contenido previo, incluidas dos ecuaciones, cuatro tablas y 
 Equivalencia conserva TOST/ROPE separados y el IC usual de decisión del 90 % frente al reporte general del 95 %. DM mantiene horizonte real, pérdida cuadrática, HAC y HLN con sus condiciones; BDS no identifica exclusivamente no linealidad aprovechable; Ljung–Box no resta automáticamente pesos neuronales. Los residuos sugieren investigar un posible margen, sin demostrar una ganancia avanzada. Reporte y estado se conservan dentro de 5.4.12. Se actualiza la referencia temporal del capítulo 6 a 5.4.9.
 
 El trío final, el piloto, los contrastes y el benchmark siguen pendientes de E2. No hubo acceso a datos, entrenamiento o nuevas mediciones. Los IDs y hashes anteriores se mantienen como historial.
+
+## Organización de 5.4.13–5.4.14 y 5.5 — 4 de noviembre de 2026
+
+5.4.13 reúne los seis requisitos de buenas prácticas, con un séptimo subinciso que conserva el registro detallado de contrastes. Se declara alfa nominal 0,05 antes de resultados; valores p numéricos ajustados/sin ajustar; IC y efectos; supuestos; repeticiones mínimas sujetas a potencia; y métrica/comparaciones previas. La exactitud numérica del p-valor se distingue de una referencia estadística exacta. Los mínimos de cinco/seis ejecuciones no garantizan potencia ni rechazo.
+
+5.4.14 separa significación, relevancia práctica y conclusiones más allá de promedios, y conserva el estado del análisis como 5.4.14.4. El contenido residual permanece en 5.4.12.1. No se declaran pruebas, equivalencias o ganadores sin los resultados aún pendientes.
+
+5.5 contiene nueve apartados que corresponden a las preguntas del usuario. El contenido científico de 5.5.1–7 permanece intacto. Limitaciones y recomendaciones se separan en 5.5.8/9; la matriz de conclusiones pendiente se conserva en 5.5.9.2. La exigencia de evidencia estadística rigurosa se hace explícita sin fabricar conclusiones. Se mantienen cuatro tablas y 40 líneas de tabla del tramo editado; no se añaden ecuaciones ni métricas propias. El enlace de la brecha bibliográfica en la evidencia de auditoría se sincroniza con 3.4.3.
+
+No se requieren cambios en referencias externas activas. Los IDs y hashes anteriores son historial; el trío, el piloto, el benchmark y la elección de baseline permanecen pendientes dentro del alcance de E2.

@@ -429,7 +429,35 @@ La autocorrelación remanente o las desviaciones compatibles con no linealidad m
 
 El posible margen sugerido por los residuos no es una reducción de RMSE cuantificada ni una MDE. Su aprovechamiento por una propuesta avanzada requerirá predicciones fuera de entrenamiento y una comparación justa con efectos, intervalos y contrastes predefinidos. Los diagnósticos de las Ridge del EDA no sustituyen los resultados requeridos de las tres redes, todavía pendientes.
 
-#### 5.4.12.2. Reporte y buenas prácticas estadísticas
+### 5.4.13. Buenas Prácticas Estadísticas
+
+#### 5.4.13.1. Nivel de significancia declarado antes de analizar resultados
+
+Se declarará el nivel nominal $\alpha=0{,}05$ antes de analizar los resultados, junto con la familia de hipótesis, la dirección del contraste y el tratamiento de multiplicidad. El nivel nominal no se asignará automáticamente a cada comparación sin considerar su corrección.
+
+#### 5.4.13.2. P-valores numéricos, ajustados y sin ajustar
+
+Se reportarán el p-valor calculado sin ajustar y el ajustado, con el procedimiento y la familia de corrección identificados. «Exacto» en el reporte numérico no significa que una distribución asintótica sea una prueba exacta.
+
+Los p-values se reportarán con precisión numérica suficiente, no solo como `p < 0,05`. Se distinguirá un procedimiento exacto de una aproximación y se explicitarán límites numéricos si el software devuelve cero por redondeo o subdesbordamiento. No se seleccionarán únicamente los contrastes favorables ni se multiplicarán análisis sin identificarlos como exploratorios.
+
+#### 5.4.13.3. Intervalos de confianza y tamaños de efecto
+
+Cada diferencia se acompañará de un IC del 95 %, método de construcción, unidad y supuestos, además de su tamaño de efecto y convención de signo. Se conservará el emparejamiento y la dependencia pertinente según §5.4.5; el intervalo de decisión de equivalencia se identificará por separado según §5.4.8.
+
+#### 5.4.13.4. Verificación de supuestos
+
+Se verificarán los supuestos pertinentes al diseño: normalidad de las diferencias pareadas, independencia o dependencia entre unidades, valores extremos y estructura de varianza/covarianza. Los diagnósticos y sus límites se documentarán conforme a §§5.4.1 y 5.4.6; no se elegirá retrospectivamente la prueba que produzca el resultado favorable.
+
+#### 5.4.13.5. Múltiples ejecuciones documentadas
+
+El plan exige al menos cinco ejecuciones por modelo, seis si se usan pruebas por rangos, y el número mayor que demande el dimensionamiento del piloto. Se registrarán las semillas y las inicializaciones nuevas según §4.3.2. Los mínimos no garantizan potencia suficiente ni significación tras correcciones; los folds y fechas no aumentan el número de semillas independientes.
+
+#### 5.4.13.6. Métrica principal y comparaciones declaradas con antelación
+
+Se fijarán antes de analizar resultados la métrica principal —RMSE en este proyecto—, las comparaciones de interés, configuraciones, horizontes, fase y familias de hipótesis. Se conservarán todos los análisis previstos y sus resultados, con cambios y exploraciones posteriores identificados. La selección de 2024 y la evaluación reservada mantendrán sus papeles diferenciados para evitar exploración selectiva y afirmaciones confirmatorias no justificadas.
+
+#### 5.4.13.7. Registro y trazabilidad de cada contraste
 
 Cada contraste tendrá un registro con:
 
@@ -447,11 +475,23 @@ Cada contraste tendrá un registro con:
 
 El registro conservará además estimando y agregación de semillas, hash de la cohorte, fase de selección/evaluación, parámetros HAC/HLN o de los diagnósticos, política de estadísticos indefinidos y naturaleza exacta o aproximada del p-value. Las familias de desempeño y de diagnóstico se declararán según las afirmaciones previstas; no se dividirán después para reducir la corrección. Los IC marginales y simultáneos mantendrán su identificación.
 
-Los p-values se reportarán con precisión numérica suficiente, no solo como `p < 0,05`. Se distinguirá un procedimiento exacto de una aproximación y se explicitarán límites numéricos si el software devuelve cero por redondeo o subdesbordamiento. No se seleccionarán únicamente los contrastes favorables ni se multiplicarán análisis sin identificarlos como exploratorios.
-
 Las pruebas de DeLong, McNemar, segmentación o análisis de lenguaje del catálogo general no corresponden a este objetivo continuo de una serie financiera. Su ausencia no se reemplaza con métricas ajenas al problema.
 
-#### 5.4.12.3. Estado del análisis estadístico
+### 5.4.14. Interpretación
+
+#### 5.4.14.1. Diferencias estadísticamente significativas
+
+Se determinará si las diferencias entre modelos son estadísticamente distinguibles bajo los contrastes y supuestos registrados, considerando p-valores ajustados, estimaciones e intervalos. Se identificarán la fase y el alcance de la evidencia: un análisis de selección no se convierte en confirmatorio por añadir una corrección de multiplicidad.
+
+#### 5.4.14.2. Significancia estadística y relevancia práctica
+
+La significancia estadística se distinguirá de la relevancia práctica mediante el efecto y el margen justificado para la comparación. El 5 % frente a persistencia no se trasladará a pares de redes, equivalencia o propuestas avanzadas. Un resultado no significativo puede ser inconcluso; la equivalencia requiere el análisis separado de §5.4.8.
+
+#### 5.4.14.3. Conclusiones respaldadas por diferencias, incertidumbre y efectos
+
+Las conclusiones no se basarán solo en métricas promedio: se presentarán repeticiones, dispersión, diferencias pareadas, IC, efectos, p-valores y potencia/MDE con sus límites. Las explicaciones sobre generalización o ventajas arquitectónicas deberán corresponder a la evidencia disponible, sin sustituirla por propiedades conocidas de una familia de redes.
+
+#### 5.4.14.4. Estado del análisis estadístico
 
 | Producto | Estado |
 |---|---|
@@ -469,6 +509,8 @@ El capítulo no atribuye significación ni equivalencia a modelos aún no evalua
 ## 5.5. Discusión Crítica
 
 La discusión responderá a las preguntas del entregable mediante resultados del benchmark, literatura verificable e inferencia adecuada. **No se aceptan conclusiones basadas únicamente en descripciones o promedios:** cada afirmación debe indicar su evidencia, alcance e incertidumbre.
+
+**No se aceptan conclusiones descriptivas.** Toda afirmación de comparación de desempeño deberá estar respaldada por evidencia estadística rigurosa, con tamaño de efecto, incertidumbre y un alcance defendible. Las hipótesis explicativas no comprobadas se identificarán como tales.
 
 ### 5.5.1. Desempeño y explicación de las diferencias
 
@@ -535,15 +577,19 @@ En §3.4.3 ya se cuantificaron las reducciones puntuales de RMSE de D-TCN frente
 
 Los controles no se describirán como garantía absoluta: cada afirmación de validez deberá identificar qué se verificó realmente y qué permanece como supuesto o limitación.
 
-### 5.5.8. Limitaciones y recomendaciones futuras
+### 5.5.8. Limitaciones del estudio
 
 Las limitaciones observadas incluyen el alcance de un solo mercado, un día incompleto de desarrollo, objetivos móviles con retornos compartidos y la distinción entre variabilidad de semillas y variabilidad temporal. Se conservaron los brutos; excluir un día de los derivados no demuestra que no existan otros problemas económicos de calidad.
 
 El estado actual añade limitaciones de ejecución: cobertura bibliográfica limitada y respaldo de atención en dos manuscritos grises; configuraciones, entrenamiento y evaluación propios reservados para E2. Las familias de trabajo, RMSE y el margen relativo del 5 % ya están documentados. Estas son tareas pendientes y no hallazgos de desempeño.
 
+### 5.5.9. Recomendaciones futuras
+
+#### 5.5.9.1. Recomendaciones derivadas de las limitaciones
+
 Las recomendaciones se derivarán de esas limitaciones y de los resultados que se obtengan: completar evidencia bibliográfica, cerrar el protocolo, ejecutar el piloto, dimensionar corridas y evaluar de manera comparable. Extensiones a noticias, otros mercados o arquitecturas avanzadas requerirán nueva justificación, fuentes y validación; no se presentan como mejoras garantizadas ni como experimentos ya ejecutados.
 
-### 5.5.9. Matriz de conclusiones y evidencia pendiente
+#### 5.5.9.2. Matriz de conclusiones y evidencia pendiente
 
 | Pregunta de la discusión | Evidencia necesaria | Respuesta actual |
 |---|---|---|
