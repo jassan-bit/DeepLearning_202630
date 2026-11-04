@@ -406,6 +406,8 @@ El [CSV global](../_static/filipe_statistics_20261104/global_seed_tests.csv) con
 
 El suplemento calcula además IC temporales marginales mediante **2.000 remuestreos circulares pareados de fechas**, bloque principal de 14 días y sensibilidad 7/28. En cada remuestreo se recalcula RMSE por semilla y después su media; no se reentrena ni se remuestrean semillas. Estos IC condicionan a los modelos guardados y no se vuelven simultáneos por aplicar Holm a otros p-valores.
 
+El diagnóstico de normalidad de las diferencias CNN1D−persistencia tiene Shapiro–Wilk p=0,025073 sin ajustar. Sus inferencias t se mantienen como aproximaciones condicionadas al diseño; no se cambia de prueba para buscar significación.
+
 ### 4.3.4. Uso de GPU
 
 **Se entrenó en CPU; no se utilizó GPU.** El [runtime](../_static/dl_r2_cv_20261104/runtime.json) registra `cuda_available=false`, Linux x86_64, float32, determinismo, versiones y límites cgroup. Se utilizaron tres workers de trayectorias, con un hilo PyTorch y uno de interoperabilidad por worker.

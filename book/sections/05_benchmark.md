@@ -548,7 +548,7 @@ Se reportan IC t marginales y d_z de las diferencias por semillas, IC secundario
 
 #### 5.4.13.4. Verificación de supuestos
 
-Se verificaron índices, continuidad, cobertura, escaladores y métricas. Shapiro–Wilk se guarda para cada diferencia por semillas y no actúa como selector de pruebas. La ausencia de rechazo no demuestra normalidad; diez pares ofrecen poca resolución para diagnosticar distribuciones.
+Se verificaron índices, continuidad, cobertura, escaladores y métricas. Shapiro–Wilk se guarda para cada diferencia por semillas y no actúa como selector de pruebas. La ausencia de rechazo no demuestra normalidad; diez pares ofrecen poca resolución para diagnosticar distribuciones. En CNN1D frente a persistencia, Shapiro–Wilk da p=0,025073 sin ajuste; la misma señal aparece en su ganancia relativa, una transformación lineal. Por ello, los p-valores e IC t correspondientes se interpretan bajo una aproximación sensible a esa desviación, sin sustituir retrospectivamente la prueba ni considerarlos confirmación independiente.
 
 Ljung–Box y BDS de la semilla 4101 detectan dependencia residual con Holm-15, y las ACF se publican. Sus referencias son aproximadas ante σ7 solapada y cambios mensuales. Los [gráficos Q–Q](../_static/filipe_statistics_20261104/figures/paired_seed_qq.png) son diagnósticos del diseño por semillas, no garantía de independencia temporal. Ninguna semilla, métrica o prueba se escoge por favorecer la conclusión.
 
