@@ -501,9 +501,45 @@ Esta lista distingue requisitos establecidos de controles ejecutados. No se pres
 
 El proyecto corresponde a **regresión temporal con objetivo continuo, ruta 6.4 de la guía**, porque las entradas OHLCV no incluyen rezagos explícitos del objetivo. Se aplican las métricas de regresión y los diagnósticos temporales pertinentes. Las métricas de clasificación, segmentación, texto o localización espacial no se incorporan a este problema de volatilidad de Bitcoin.
 
-### 4.4.1. Métrica principal y métricas secundarias
+### 4.4.1. Métrica principal, métricas secundarias y clasificación
 
 Se fija **RMSE como métrica principal**, coherente con la pérdida MSE prevista, y se reportarán **MAE, MSE, R², MAPE y MASE**, atendiendo tanto a las indicaciones específicas recibidas como a la guía general. sMAPE es una alternativa complementaria si se registra antes de evaluar; no se elegirá después para favorecer un resultado.
+
+**Clasificación tabular, de imágenes y de texto: no aplica al proyecto actual.** El objetivo es una volatilidad continua; no se predicen clases ni probabilidades de clase. Se conservan los criterios de la guía para documentar su alcance, sin convertirlos en métricas propias calculadas.
+
+#### 4.4.1.1. Accuracy
+
+Proporción de observaciones correctamente clasificadas. Debe acompañarse del soporte por clase, pues el desbalance puede hacer que una exactitud elevada oculte errores en clases minoritarias.
+
+#### 4.4.1.2. Precision y Recall
+
+Reportar precisión y exhaustividad por clase, identificando la clase positiva, el umbral de decisión y el criterio de agregación cuando corresponda. Los umbrales se fijan con desarrollo y no se seleccionan mediante test.
+
+#### 4.4.1.3. F1-score macro, ponderado y por clase
+
+Informar F1 por clase, promedio macro y promedio ponderado por soporte. Declarar el tratamiento de clases ausentes o denominadores nulos; los promedios no sustituyen el desglose por clase.
+
+#### 4.4.1.4. AUC-ROC
+
+Calcular el área bajo la curva ROC a partir de puntuaciones o probabilidades, no solo de etiquetas finales. En multiclase se declararán la estrategia uno contra el resto o uno contra uno y el promedio utilizado.
+
+#### 4.4.1.5. AUC-PR
+
+Reportar el área bajo la curva precisión–recall, recomendada especialmente con desbalance, junto con la prevalencia de la clase positiva. Declarar la convención de cálculo y distinguir el área de PR de average precision cuando la implementación no las haga equivalentes.
+
+#### 4.4.1.6. Coeficiente de correlación de Matthews
+
+Reportar MCC, especificando su variante binaria o multiclase y el tratamiento de los casos no definidos. Complementa las métricas anteriores; no reemplaza el análisis de errores por clase.
+
+#### 4.4.1.7. Calibración
+
+Evaluar el error de calibración esperado (ECE) y presentar un diagrama de fiabilidad. Declarar el número y la regla de los intervalos de probabilidad, sus soportes y el procedimiento multiclase utilizado. Discriminación y calibración responden a propiedades distintas de las probabilidades.
+
+### 4.4.2. Regresión y series de tiempo: métricas de error
+
+Este bloque **aplica al proyecto de regresión temporal**. Las métricas se reportarán por configuración y ejecución bajo el contrato de volatilidad ya fijado.
+
+#### 4.4.2.1. MSE, RMSE y MAE
 
 Para objetivos $Y_t$, predicciones $\widehat Y_t$ y $N$ pares elegibles del mismo modelo, configuración, semilla y horizonte, se define $e_t=Y_t-\widehat Y_t$:
 
@@ -513,6 +549,8 @@ $$
 \mathrm{MAE}=\frac1N\sum_t|e_t|.
 $$
 
+#### 4.4.2.2. Coeficiente de determinación R²
+
 $$
 R^2=1-\frac{\sum_t e_t^2}{\sum_t(Y_t-\bar Y)^2}.
 $$
@@ -521,9 +559,11 @@ R² puede ser negativo. Si el objetivo evaluado es constante, su denominador es 
 
 La media de Y del periodo evaluado aparece solo en la **definición de R²**. No autoriza usarla para entrenar ni como pronóstico disponible en el origen. Un R² frente a media train, si se informa, tendrá nombre distinto del R² convencional.
 
+#### 4.4.2.3. Escala original y transformaciones del objetivo
+
 Las métricas se calcularán en la **escala original de la volatilidad**, después de invertir transformaciones de la etiqueta. Se declarará si se muestran unidades de retorno logarítmico o puntos porcentuales. Multiplicar la etiqueta por 100 multiplica RMSE y MAE por 100 y MSE por 10.000; los resultados de distintas escalas no se mezclarán.
 
-### 4.4.2. Errores relativos y escalados
+#### 4.4.2.4. MAPE y cobertura de objetivos positivos
 
 La política de MAPE ya está fijada: se utiliza exclusivamente el subconjunto de objetivos positivos, $\mathcal I_+=\{t:Y_t>0\}$, con $N_+=|\mathcal I_+|$:
 
@@ -533,7 +573,11 @@ $$
 
 Se informarán el número de ceros, los casos incluidos y la cobertura $N_+/N$. Si no hay objetivos positivos, MAPE se marca no definida. No se añadirán epsilons arbitrarios ni se ocultarán casos excluidos. Valores positivos muy pequeños pueden dominar MAPE y requieren interpretación conjunta con MAE y RMSE.
 
+#### 4.4.2.5. sMAPE: convención y valores cercanos a cero
+
 Si se adopta sMAPE, se registrará su convención exacta, incluido el factor de escala y el tratamiento del caso $Y_t=\widehat Y_t=0$. Que sea simétrica no elimina todos los problemas cerca de cero.
+
+#### 4.4.2.6. MASE y escala de entrenamiento
 
 Para MASE se fija el rezago de referencia $s=1$ día de calendario y se calculará, en el entrenamiento permitido de cada fold:
 
@@ -561,7 +605,7 @@ Si no hay pares válidos o la escala es cero, se conserva el caso como no defini
 
 Si la escala cambia con el entrenamiento creciente, se promedian **errores escalados por origen**; no se divide la MAE global por una escala elegida después. MASE<1 compara esos errores con la variación ingenua estimada en entrenamiento, no demuestra por sí sola que el modelo supere a persistencia durante la evaluación. El rezago s=1 permanece fijado sin mirar test.
 
-### 4.4.3. Evaluación por horizonte y referencias ingenuas
+### 4.4.3. Series de tiempo: error por horizonte y referencias ingenuas
 
 El horizonte principal confirmado es **un día**. Las métricas se reportarán para cada combinación de longitud de entrada $D$ y ventana de volatilidad $n$, manteniéndolas separadas porque definen configuraciones y objetivos distintos. Si se añaden horizontes, se registrarán y se informarán métricas por horizonte antes de cualquier promedio global.
 
@@ -575,9 +619,89 @@ Se conservarán cobertura disponible por método e intersección elegible para l
 
 En los folds diarios actuales, RMSE se calcula agrupando las predicciones de una ejecución según §4.1.3. El promedio de errores RMSE de folds con un solo punto equivale a MAE y no se presentará como RMSE global.
 
-### 4.4.4. Comparación justa entre los tres modelos
+### 4.4.4. Regresión espacial y espacio-temporal
+
+**No aplica al proyecto actual:** existe una única serie financiera temporal sin ubicaciones, regiones ni una estructura geográfica de vecindad. Los requisitos siguientes se documentan sin presentar mapas o diagnósticos espaciales ejecutados.
+
+#### 4.4.4.1. Errores globales y por ubicación o región
+
+Reportar métricas globales y desglosadas por ubicación o región, junto con cobertura y número de observaciones. Declarar cómo se agregan ubicaciones y periodos para que las unidades con más registros no determinen inadvertidamente todo el resultado.
+
+#### 4.4.4.2. Autocorrelación espacial de los residuos
+
+Aplicar el I de Moran sobre **residuos del modelo**, con matriz de pesos espaciales, criterio de vecindad y procedimiento de inferencia documentados. La autocorrelación del objetivo no sustituye este diagnóstico residual. Este control es distinto de la autocorrelación temporal examinada para BTCUSDT.
+
+### 4.4.5. Etiquetado secuencial
+
+**No aplica al proyecto actual:** se predice una volatilidad escalar por origen y no etiquetas por token ni entidades delimitadas en una secuencia.
+
+#### 4.4.5.1. Precisión, exhaustividad y F1 a nivel de entidad
+
+Reportar precisión, exhaustividad y F1 con coincidencia exacta de spans y tipo de entidad. Documentar el esquema de etiquetas y el tratamiento de secuencias inválidas; un acierto parcial de un span no cuenta como una entidad exacta.
+
+#### 4.4.5.2. Exactitud a nivel de token
+
+Reportar adicionalmente la proporción de tokens correctamente etiquetados, excluyendo padding y posiciones ignoradas según una regla declarada. Esta exactitud complementa las métricas de entidad y no las sustituye.
+
+### 4.4.6. Aprendizaje secuencia a secuencia
+
+**No aplica al proyecto actual:** la salida es una volatilidad continua escalar, no una secuencia generada ni una referencia textual.
+
+#### 4.4.6.1. Métricas de generación acordes a la tarea
+
+Seleccionar BLEU, ROUGE, chrF o exactitud de secuencia completa según el objetivo de generación y declarar la métrica principal. Estas métricas no se trasladan a errores de volatilidad.
+
+#### 4.4.6.2. Configuración exacta del cálculo
+
+Registrar tokenización y normalización, versión de la implementación, referencias utilizadas, parámetros de la métrica y agregación por ejemplo o corpus. Documentar también la decodificación empleada para generar las secuencias; cambios de configuración no se presentan como mejoras del modelo bajo una evaluación idéntica.
+
+### 4.4.7. Segmentación de imágenes
+
+**No aplica al proyecto actual:** no existen imágenes de entrada, máscaras ni etiquetas por píxel. Las expresiones siguientes documentan la guía y no representan resultados de segmentación del proyecto.
+
+#### 4.4.7.1. Intersection over Union (IoU)
+
+Para una clase, TP, FP y FN son verdaderos positivos, falsos positivos y falsos negativos a nivel de píxel:
+
+$$
+\mathrm{IoU}=\frac{TP}{TP+FP+FN}.
+$$
+
+Se declarará el tratamiento de clases o imágenes con denominador cero, sin asignarles silenciosamente un valor favorable.
+
+#### 4.4.7.2. Dice Coefficient
+
+El coeficiente Dice, equivalente al F1 binario de píxeles para la clase evaluada, se define como:
+
+$$
+\mathrm{Dice}=\frac{2TP}{2TP+FP+FN}.
+$$
+
+Se mantendrán las mismas convenciones de clases, máscaras y casos no definidos al comparar modelos.
+
+#### 4.4.7.3. Pixel Accuracy
+
+Proporción de píxeles evaluables correctamente clasificados. Declarar las posiciones ignoradas y el tratamiento del fondo; un fondo dominante puede ocultar errores en objetos pequeños.
+
+#### 4.4.7.4. Mean IoU (mIoU)
+
+Promedio de IoU sobre las clases incluidas en la evaluación. Especificar si se incluye el fondo, cómo se tratan las clases ausentes y si se agregan primero conteos del corpus o métricas por imagen. Esas convenciones producen estimandos distintos y deben mantenerse comunes entre modelos.
+
+#### 4.4.7.5. Métricas de borde (opcionales)
+
+Cuando la precisión espacial de los contornos sea crítica, documentar la métrica de borde, tolerancia, unidades y resolución espacial. La unidad de análisis y remuestreo será la imagen o el grupo independiente correspondiente; los píxeles de una imagen no se tratarán como réplicas independientes.
+
+### 4.4.8. Comparación justa entre modelos base
+
+#### 4.4.8.1. Mismo dataset y partición
 
 Antes de comparar se comprobará igualdad de datos, particiones, orígenes, etiquetas, preprocesamiento permitido, semillas y configuración de evaluación. Las arquitecturas pueden organizar la misma información de forma diferente, pero no recibir atributos o fechas adicionales sin declarar otro experimento.
+
+#### 4.4.8.2. Mismo pipeline de preprocesamiento
+
+Se aplicará la misma política causal de construcción de muestras y preprocesamiento, con parámetros ajustados solo al entrenamiento permitido y al subentrenamiento de parada cuando corresponda. La forma del tensor puede responder a cada arquitectura, conservando la misma información disponible, exclusiones y cobertura de comparación.
+
+#### 4.4.8.3. Misma configuración de evaluación
 
 Se mantendrán las mismas definiciones de métricas y reglas sobre ceros, inversas de transformaciones, valores no finitos y fallas. Una predicción no finita no se omitirá silenciosamente del promedio. Se conservarán el número previsto de casos, el evaluado y el motivo de cualquier diferencia de cobertura.
 
@@ -585,9 +709,13 @@ Se usará el mismo presupuesto de búsqueda documentado en §4.2.6. Las comparac
 
 La ganancia relativa será $Q=1-\mathrm{RMSE}_{\mathrm{modelo}}/\mathrm{RMSE}_{\mathrm{persistencia}}$ sobre el mismo calendario, cuando el denominador sea positivo. Un valor puntual $Q\ge0{,}05$ alcanza el criterio puntual; sostener que se **supera** requiere el intervalo o contraste correspondiente respecto a 0,05, además del alcance de inferencia declarado en §4.1.6. Rechazar ausencia de mejora frente a cero no basta. Para incertidumbre temporal, el remuestreo pareado recalculará ambas RMSE y la razón sobre los mismos bloques; no tratará el denominador estimado como exacto.
 
-### 4.4.5. Análisis de resultados y variabilidad
+### 4.4.9. Análisis de resultados
+
+#### 4.4.9.1. Media, desviación estándar e intervalo de confianza
 
 Se reportarán **media, desviación estándar muestral e intervalo de confianza** por modelo y configuración, con el número de ejecuciones y el método de construcción. Se distinguirán métricas de selección en validación de la evaluación final del test, y se conservarán las fechas de cada predicción.
+
+#### 4.4.9.2. Variabilidad por semilla frente a diferencias entre modelos
 
 La variabilidad por semilla se examinará dentro de cada modelo y configuración. Las diferencias entre modelos se examinarán sobre las mismas semillas y fechas. Se presentarán distribuciones de métricas por corrida y diferencias pareadas; si se realiza una descomposición formal de varianza, se declararán el modelo estadístico y sus supuestos, sin mezclar configuraciones o días dependientes como réplicas independientes.
 
@@ -595,9 +723,23 @@ Las arquitecturas son **niveles elegidos**, no una muestra aleatoria de todas la
 
 La variabilidad temporal se analizará por bloques o segmentos predefinidos y con métodos adecuados a su dependencia. Los intervalos entre semillas sobre el mismo mercado no se interpretarán como toda la incertidumbre de generalización. Las pruebas y tamaños de efecto se interpretarán junto con $\delta$, no solo por significación estadística.
 
-### 4.4.6. Robustez, sobreajuste y segmentos relevantes
+#### 4.4.9.3. Robustez por subgrupos, ruido y perturbaciones
 
 La robustez se estudiará con segmentos y, si se incorporan, perturbaciones controladas fijadas antes de la evaluación correspondiente. En desarrollo pueden definirse niveles de volatilidad con umbrales estimados solo en entrenamiento; esos umbrales se congelarán antes de trasladarlos a validación o test.
+
+Si se simula **ruido de observación**, se perturban solo covariables históricas disponibles y se conserva la etiqueta original. La ley, intensidad y semilla se registrarán con desarrollo. Deben mantenerse precios positivos, volumen no negativo, $H\ge\max(O,C)$, $L\le\min(O,C)$ y $H\ge L$; ruido independiente sin esos controles puede fabricar velas imposibles. No se elige aquí una intensidad o distribución.
+
+Modificar la trayectoria que define Y y recalcular su volatilidad constituye otra simulación o tarea, que se reportaría separadamente. Los faltantes simulados siguen la exclusión estricta, sin imputar ni comprimir fechas, con máscara de perturbación común y ventanas perdidas documentadas. Una mejora aparente tras retirar días difíciles no acredita por sí sola robustez.
+
+Los segmentos y sus reglas de definición se documentan en §4.4.9.5.
+
+#### 4.4.9.4. Diagnóstico de overfitting y underfitting
+
+Las curvas de aprendizaje y las brechas entre entrenamiento y validación se usarán para diagnosticar overfitting o underfitting, considerando también el nivel de error y el comportamiento de la referencia ingenua. No se dibujarán curvas sintéticas como si fueran resultados observados. Las evaluaciones de robustez de test deberán estar predefinidas y reutilizar las predicciones guardadas cuando corresponda, sin reabrir selección de modelos.
+
+Las curvas usadas para detener se identificarán como **validación interna de parada**, con conjuntos y escala comparables a su entrenamiento. La etiqueta externa no se consulta por época. Una curva de selección con 2024 se denomina de selección, no test independiente; una brecha pequeña tampoco descarta un error absoluto alto.
+
+#### 4.4.9.5. Análisis de errores por segmentos relevantes
 
 Las fechas de bloques y los umbrales se registrarán antes de examinar sus errores, indicando si los umbrales quedan fijos desde el entrenamiento inicial o se actualizan causalmente por origen. Los rangos del objetivo observado sirven para análisis **retrospectivo** de errores, no como covariables disponibles antes de conocer ese objetivo. Se reportarán cantidades y cobertura de cada segmento; los pequeños se identificarán con sus límites de precisión.
 
@@ -609,17 +751,21 @@ Las fechas de bloques y los umbrales se registrarán antes de examinar sus error
 | Tamaño de entrada | Resultados separados para 7/14/21/28 días | No confundir historia de entrada con ventana de volatilidad |
 | Curvas y brecha train–validation | Pérdida y métricas por época y conjunto, con escalas comparables | Una brecha pequeña por sí sola no descarta underfitting |
 
-Si se simula **ruido de observación**, se perturban solo covariables históricas disponibles y se conserva la etiqueta original. La ley, intensidad y semilla se registrarán con desarrollo. Deben mantenerse precios positivos, volumen no negativo, $H\ge\max(O,C)$, $L\le\min(O,C)$ y $H\ge L$; ruido independiente sin esos controles puede fabricar velas imposibles. No se elige aquí una intensidad o distribución.
+En este proyecto se desglosarán los periodos y rangos del objetivo, manteniendo separadas las configuraciones D y n y el horizonte principal h=1. La longitud de entrada corresponde a D=7/14/21/28, no a longitud de texto generado. Los segmentos por clase, ubicación o longitud de secuencia textual no aplican porque el contrato no incluye clases, unidades geográficas ni secuencias de texto. Cualquier horizonte adicional requerirá registro previo según §4.4.3.
 
-Modificar la trayectoria que define Y y recalcular su volatilidad constituye otra simulación o tarea, que se reportaría separadamente. Los faltantes simulados siguen la exclusión estricta, sin imputar ni comprimir fechas, con máscara de perturbación común y ventanas perdidas documentadas. Una mejora aparente tras retirar días difíciles no acredita por sí sola robustez.
+### 4.4.10. Análisis cualitativo
 
-Las curvas de aprendizaje y las brechas entre entrenamiento y validación se usarán para diagnosticar overfitting o underfitting, considerando también el nivel de error y el comportamiento de la referencia ingenua. No se dibujarán curvas sintéticas como si fueran resultados observados. Las evaluaciones de robustez de test deberán estar predefinidas y reutilizar las predicciones guardadas cuando corresponda, sin reabrir selección de modelos.
+#### 4.4.10.1. Visualización de predicciones frente a valores reales
 
-Las curvas usadas para detener se identificarán como **validación interna de parada**, con conjuntos y escala comparables a su entrenamiento. La etiqueta externa no se consulta por época. Una curva de selección con 2024 se denomina de selección, no test independiente; una brecha pequeña tampoco descarta un error absoluto alto.
+Se generarán gráficas de valores reales frente a predicciones en el tiempo y diagramas real–predicho, identificando modelo, semilla, configuración, horizonte y periodo.
 
-### 4.4.7. Análisis cualitativo de predicciones y residuos
+La comparación visual con máscaras ground truth de segmentación no aplica al proyecto actual por el motivo documentado en §4.4.7.
 
-Se generarán gráficas de valores reales frente a predicciones en el tiempo y diagramas real–predicho, identificando modelo, semilla, configuración, horizonte y periodo. Los casos difíciles y errores sistemáticos se seleccionarán con una regla trazable y se contextualizarán sin atribuir causas económicas no verificadas.
+#### 4.4.10.2. Errores sistemáticos y casos difíciles
+
+Los casos difíciles y errores sistemáticos se seleccionarán con una regla trazable y se contextualizarán sin atribuir causas económicas no verificadas.
+
+#### 4.4.10.3. Residuos: estructura, sesgo y heterocedasticidad
 
 Los residuos conservarán fecha y signo. Con $e_t=Y_t-\widehat Y_t$, una media positiva indica subestimación de volatilidad. Se examinarán sesgo, distribución, relación con nivel pronosticado, estructura temporal y heterocedasticidad; se mostrarán ACF de residuos y de sus cuadrados cuando correspondan.
 
@@ -629,7 +775,7 @@ Los huecos y el solapamiento de objetivos móviles se considerarán al elegir tr
 
 Los residuos se ordenarán por calendario **dentro de cada modelo, configuración y semilla**; no se concatenan semillas o tramos separados para crear una serie ficticia. σ7 consecutivas comparten seis retornos, por lo que h=1 no implica errores independientes. Se distinguirán ACF de errores y de errores al cuadrado, y no se restará automáticamente el número de pesos de la red a los grados de libertad de Ljung–Box. Antes de afirmaciones confirmatorias se registrarán tramos, rezagos, dimensiones/radios de BDS, software, supuestos y multiplicidad; un ajuste de p-values no repara una referencia estadística mal calibrada.
 
-### 4.4.8. Productos y estado de ejecución
+#### 4.4.10.4. Productos y estado de ejecución
 
 | Producto de evaluación | Estado |
 |---|---|

@@ -64,3 +64,13 @@ Se mantienen seis apartados: semillas aleatorias; repetición de experimentos; m
 En 4.3.6, la prevención de fuga incluye seis controles numerados: separación de particiones, transformaciones solo en train, orden temporal, fuga espacial, fuga semántica de NLP y agrupamiento de imágenes. Los tres últimos no aplican al contrato actual y cada motivo queda explícito. La validación consistente ocupa 4.3.6.2, la evaluación única del test 4.3.6.3 y el estado de cumplimiento 4.3.6.4. Dos referencias internas se sincronizan con el test; GPU permanece en 4.3.4.
 
 Se conservan las tres tablas y sus 26 líneas, los seis componentes del paquete y el contenido científico previo. La repetición remite al piloto y al dimensionamiento de 4.1; los mínimos de cinco/seis ejecuciones no acreditan potencia ni rechazo tras multiplicidad. No hay controles espaciales/NLP/imágenes ejecutados, entrenamientos, piloto, benchmark o nuevos resultados. Los IDs de auditoría 4.3.01–4.3.06 y los hashes anteriores se conservan como historial.
+
+## Organización de 4.4 — 3 de noviembre de 2026
+
+Se incorporan los diez apartados solicitados y 36 subincisos numerados. Las métricas de clasificación, regresión, horizontes, evaluación espacial, etiquetado, generación y segmentación quedan separadas. Clasificación, espacial/espacio-temporal, etiquetado, secuencia a secuencia y segmentación se declaran no aplicables con su motivo; sus requisitos documentan la guía sin introducir tareas o resultados del proyecto.
+
+RMSE continúa como métrica principal. Las seis ecuaciones originales y las políticas de R², escalas, MAPE y MASE se conservan en 4.4.2. Se añaden únicamente dos ecuaciones de definición, IoU y Dice, al bloque no aplicable de segmentación; sus cinco incisos incluyen Pixel Accuracy, mIoU y bordes opcionales.
+
+La comparación justa ocupa 4.4.8 con dataset/partición, preprocesamiento y configuración de evaluación. Resultados se organiza en 4.4.9 con media/DE/IC, variabilidad por semillas/modelos, robustez, curvas y errores por segmentos. El análisis cualitativo ocupa 4.4.10, con visualización, errores sistemáticos, residuos y estado de ejecución. Se conservan las dos tablas y sus 16 líneas; no se requieren cambios en las referencias generales a 4.4.
+
+La organización no aporta redes, predicciones, curvas, diagnósticos o mediciones propias nuevos. El trío final, el piloto y el benchmark siguen pendientes en el alcance de E2. Los IDs de requisitos y los hashes de revisiones anteriores se conservan como historial.

@@ -422,5 +422,69 @@
     ],
     "chapter4_source_sha256": "382a5e673955cef22b82b3ca92fec819e9619fae1c3e67366dcf0d1f19d50af3",
     "historical_artifacts_note": "Previous review hashes and requirement IDs remain historical snapshots; audit IDs 4.3.01–4.3.06 are not current subsection numbers."
+  },
+  "structure_review_4_4": {
+    "date": "2026-11-03",
+    "timezone": "America/Bogota",
+    "scope": "Editorial organization and coverage of the evaluation guide; no data reads, new searches, fitted models, predictions, pilot, benchmark or calculated performance.",
+    "previous_source_commit": "19b053fff5929d63cd1df70a4a15528f085a5364",
+    "headings": [
+      "4.4.1. Métrica principal, métricas secundarias y clasificación",
+      "4.4.2. Regresión y series de tiempo: métricas de error",
+      "4.4.3. Series de tiempo: error por horizonte y referencias ingenuas",
+      "4.4.4. Regresión espacial y espacio-temporal",
+      "4.4.5. Etiquetado secuencial",
+      "4.4.6. Aprendizaje secuencia a secuencia",
+      "4.4.7. Segmentación de imágenes",
+      "4.4.8. Comparación justa entre modelos base",
+      "4.4.9. Análisis de resultados",
+      "4.4.10. Análisis cualitativo"
+    ],
+    "numbered_children": {
+      "4.4.1": 7,
+      "4.4.2": 6,
+      "4.4.4": 2,
+      "4.4.5": 2,
+      "4.4.6": 2,
+      "4.4.7": 5,
+      "4.4.8": 3,
+      "4.4.9": 5,
+      "4.4.10": 4
+    },
+    "old_to_new": {
+      "4.4.1": "Primary-metric policy in 4.4.1; regression definitions in 4.4.2.1–3",
+      "4.4.2": "4.4.2.4–6",
+      "4.4.3": "4.4.3",
+      "4.4.4": "4.4.8",
+      "4.4.5": "4.4.9.1–2",
+      "4.4.6": "4.4.9.3–5",
+      "4.4.7": "4.4.10.1–3",
+      "4.4.8": "4.4.10.4"
+    },
+    "not_applicable_modalities": {
+      "classification": "Continuous scalar target, no classes/probabilities",
+      "spatial_spatiotemporal": "No locations or geographic neighborhood",
+      "sequential_tagging": "No token labels or entity spans",
+      "sequence_to_sequence": "No generated output sequence",
+      "segmentation": "No input images, masks or pixel labels"
+    },
+    "preserved": {
+      "original_display_equations": 6,
+      "tables": 2,
+      "original_table_lines": 16,
+      "RMSE_primary": true,
+      "MSE_loss": true,
+      "MAPE_positive_target_policy": true,
+      "MASE_calendar_lag_1_train_only": true,
+      "n7_h1_contract": true,
+      "new_empirical_results": 0
+    },
+    "new_definition_equations": [
+      "IoU = TP/(TP+FP+FN)",
+      "Dice = 2TP/(2TP+FP+FN)"
+    ],
+    "cross_references": "No specific external 4.4.x references or direct anchors require edits; general references to 4.4 remain valid.",
+    "chapter4_source_sha256": "9e869d1d94c6fcf0c0de5bca2cc750fa4bdb36d06db112edfa680cfa1eef3c09",
+    "historical_artifacts_note": "Prior artifact hashes and requirement IDs 4.4.01–4.4.06 remain historical snapshots, not current subsection numbers."
   }
 }
