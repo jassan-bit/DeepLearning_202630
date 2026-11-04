@@ -226,6 +226,33 @@ def main():
     if len(clean_comparisons) != 3 or not clean_comparisons.n_pairs.eq(10).all():
         raise ValueError("Exactly three paired preprocessing comparisons required")
     clean_comparisons.to_csv(OUTPUT/"comparisons.csv", index=False)
+    supplement_source = ROOT/"results/filipe_statistics_20261104"
+    supplement_report = None
+    if (supplement_source/"summary.json").exists():
+        supplement_report = json.loads((supplement_source/"summary.json").read_text())
+        for item in supplement_report["sources"]:
+            recorded = Path(item["path"])
+            relative = recorded.parts[recorded.parts.index("results"):]
+            if sha(ROOT.joinpath(*relative)) != item["sha256"]:
+                raise ValueError("Statistical supplement has stale CV inputs")
+        for name, expected in supplement_report["outputs"].items():
+            if sha(supplement_source/name) != expected:
+                raise ValueError("Statistical supplement output changed: "+name)
+        protocol = ROOT/"experiments/filipe_statistics_20261104/protocol.json"
+        if sha(protocol) != supplement_report["protocol"]["sha256"]:
+            raise ValueError("Supplement protocol digest differs")
+        destination = ROOT/"book/_static/filipe_statistics_20261104"
+        if destination.exists():
+            shutil.rmtree(destination)
+        shutil.copytree(supplement_source, destination)
+        shutil.copyfile(protocol, destination/"protocol.json")
+        global_tests = pd.read_csv(supplement_source/"global_seed_tests.csv")
+        controls = global_tests.loc[
+            global_tests.component_family.eq("representation_controls_three")].set_index("model")
+        for column in ["p_holm", "log_p_holm", "p_holm_display"]:
+            clean_comparisons[column+"_global12"] = clean_comparisons.model.map(controls[column])
+        clean_comparisons["family_size_global"] = 12
+        clean_comparisons.to_csv(OUTPUT/"comparisons.csv", index=False)
     for name in ["fold_metrics.csv", "run_metrics_recomputed.csv", "bias_decomposition.csv"]:
         frame = pd.read_csv(SOURCE/"analysis"/name)
         if "variant" in frame and not set(frame.variant).issubset(set(VARIANTS)):
@@ -261,16 +288,36 @@ def main():
             + [figures/name for name in ["r2_cv_full2024.png", "r2_common_h2_cv_only.png", "bias_cv_full2024.png",
                                          "predictions_designated_seed.png", "cv_folds_actual.png"]]},
     }
+    if supplement_report is not None:
+        report["inference"] = "Familia conjunta Holm-12: nueve contrastes de redes/referencia/margen y tres controles de representación; IC por semillas marginales"
+        report["temporal_tests_executed"] = True
+        report["statistical_supplement"] = {
+            "path": "../filipe_statistics_20261104/summary.json",
+            "source_sha256": sha(supplement_source/"summary.json"),
+            "scope": supplement_report["scope"],
+            "global_seed_family": 12, "temporal_primary_family": 6,
+            "residual_family": 15, "bootstrap_replicates": 2000,
+            "pilot_scope": "Sensibilidad retrospectiva; no piloto previo ni potencia acreditada",
+        }
+        report["limitations"][-1] = "Pruebas temporales exploratorias con supuestos y funcionales distintos; no confirmación independiente."
     (OUTPUT/"summary.json").write_text(json.dumps(report, ensure_ascii=False, indent=2)+"\n")
+    note = (
+        "Los contrastes dentro de cada red conservan su familia original de tres en p_holm; "
+        "p_holm_global12 aplica la revisión conjunta. El complemento estadístico contiene "
+        "comparaciones entre redes y persistencia, DM/HAC/HLN, diagnósticos residuales, "
+        "bootstrap de fechas y sensibilidad de planificación. Sus alcances se distinguen "
+        "y no certifican potencia ni generalización. No hubo ajustes nuevos ni evaluación del test."
+        if supplement_report is not None else
+        "Los tres contrastes/Holm comparan únicamente preprocesamientos dentro de cada red. "
+        "Las pruebas temporales y los diagnósticos residuales todavía no se han ejecutado."
+    )
     (OUTPUT/"README.md").write_text(
         "# Resultados de CV mensual de Filipe\n\n"+SCOPE+"\n\n"
         "Las dos representaciones se ajustan con los mismos doce cortes mensuales y diez semillas. "
         "La tabla anual reúne366fechas; la tabla semestral184fechas. Los R² se calculan agrupando "
         "las predicciones de cada trayectoria, no promediando los R² de meses aislados. "
         "Persistencia es una única trayectoria determinista; MASE usa la escala mensual registrada "
-        "en cada fecha. Los tres contrastes/Holm corresponden exclusivamente a la diferencia entre "
-        "los dos preprocesamientos dentro de cada red. No se ejecutaron aquí pruebas temporales, "
-        "diagnósticos residuales, ajustes nuevos ni evaluación del test.\n\n"
+        "en cada fecha. "+note+"\n\n"
         "Esta carpeta es una vista editorial derivada: no modifica los archivos registrados de entrenamiento.\n")
     allowed = {"metrics_summary.csv", "metrics_common_h2_cv_only.csv", "comparisons.csv",
                "fold_metrics.csv", "run_metrics_recomputed.csv", "bias_decomposition.csv", "summary.json", "README.md",

@@ -1,0 +1,252 @@
+{
+  "created_at_utc": "2026-11-04T16:49:55.092223+00:00",
+  "scope": "Complemento exploratorio de CV mensual de Filipe sobre desarrollo2024 ya examinado. Inferencia por semillas condicionada al calendario; sin confirmación independiente ni evaluación del test reservado.",
+  "protocol": {
+    "path": "/workspace/DeepLearning_202630/experiments/filipe_statistics_20261104/protocol.json",
+    "sha256": "8386cb8a569339d95482d43effc3b7071b63fac4a059edb98689a3ff5c7412d4",
+    "record": {
+      "analysis_id": "filipe_statistics_20261104",
+      "registered_at_utc": "2026-11-04T16:43:27.546520+00:00",
+      "authorization": "Review the whole book and update all items; calculate feasible statistical items using stored Filipe-CV predictions only.",
+      "scope": "Exploratory supplement registered after descriptive inspection of exposed2024 development, before executing these supplemental calculations. Not a confirmation on unseen data or a pre-training preregistration.",
+      "source_sha256": {
+        "results/dl_r2_cv_20261104/predictions.csv": "9b91d6a1299cdb6e21330894ad7566bc247be86282f2810f9a80c77875d9058f",
+        "results/dl_r2_cv_20261104/runs.csv": "178d2a7e404a3401f3f08e05d8b1b93df7835ab8f8fab8dfdeb3343f8521f0e7",
+        "results/dl_r2_cv_20261104/analysis/comparisons.csv": "7df9036fd9020cfd10cd39d730ace73783dfdfaaea0c16a7266d4cc8b329aff8",
+        "results/dl_r2_cv_20261104/runs/relative_window_CNN1D_s4101_2a535b6ffd/2024-12/history_inner.csv": "2239b58b5516288fa558421656264de01737ca1ae04f0c058d3907eeacce6d7a",
+        "results/dl_r2_cv_20261104/runs/relative_window_CNN1D_s4101_2a535b6ffd/2024-12/configuration.json": "d526ec8f327a3aefd424471f43341b9680183cdd22deeef5caf92cf2820988c0",
+        "results/dl_r2_cv_20261104/runs/relative_window_LSTM_s4101_2a535b6ffd/2024-12/history_inner.csv": "0924b4a707aa0fb509b6f163920d958259b3d6ac36b7e128bfe0fb9977819032",
+        "results/dl_r2_cv_20261104/runs/relative_window_LSTM_s4101_2a535b6ffd/2024-12/configuration.json": "c2698b21d7dece7f11e7273a4602296082be73afeb79b0011df362699bba2a62",
+        "results/dl_r2_cv_20261104/runs/relative_window_MLP_s4101_2a535b6ffd/2024-12/history_inner.csv": "cfe7ec6db37b5be8aeec98ea043dd729e8f54d8f12412dccd748552470c52479",
+        "results/dl_r2_cv_20261104/runs/relative_window_MLP_s4101_2a535b6ffd/2024-12/configuration.json": "d2fcda3ea33e48b749ad1483534053143d88c64c8ad0ed99840cfe7599a9ecbd"
+      },
+      "primary_variant": "relative_window",
+      "models": [
+        "MLP",
+        "LSTM",
+        "CNN1D"
+      ],
+      "seeds": [
+        4101,
+        4102,
+        4103,
+        4104,
+        4105,
+        4106,
+        4107,
+        4108,
+        4109,
+        4110
+      ],
+      "calendar": "2024-01-01..2024-12-31,366paired daily outcomes,12monthly fits pertrajectory",
+      "planned": {
+        "paired_family": 9,
+        "global_family": 12,
+        "dm_primary_lag": 14,
+        "dm_sensitivity_lags": [
+          7,
+          28
+        ],
+        "forecast_horizon": 1,
+        "diagnostic_seed": 4101,
+        "diagnostic_fold": "2024-12",
+        "lb_lags": [
+          7,
+          14,
+          28
+        ],
+        "lb_model_df": 0,
+        "bds_dimensions": [
+          2,
+          3
+        ],
+        "bds_epsilon_sd": 1.5,
+        "bootstrap_replicates": 2000,
+        "bootstrap_lengths": [
+          14,
+          7,
+          28
+        ],
+        "bootstrap_seed": 20261104,
+        "design_sensitivity_R": 10,
+        "design_sensitivity_alpha": 0.004166666666666667,
+        "design_sensitivity_power_target": 0.8,
+        "design_sensitivity_reference_margin": 0.05
+      },
+      "paired_estimands": [
+        "three two-sided meanseedRMSE model differences",
+        "three two-sided meanseedRMSE networks-minus-persistence differences",
+        "three one-sided mean relativeRMSE gains above0.05"
+      ],
+      "global_multiplicity": "GlobalHolm12 includes the nine primary-model/reference/gain contrasts plus three already-defined within-model preprocessing controls. Also retain component Holm9 and original controlHolm3 as traceability, not independent confirmations.",
+      "temporal_estimand": "Date-wise mean across ten seeds of squared prediction errors, not squared mean prediction or mean seedRMSE; sixpairs incldeterministicP, BartlettHAC14 primary7/28sens, HLNh1.",
+      "residual_estimand": "Designated seed4101,relative primary,full366contiguous outcomes,three networks; residual y_true-y_pred. BDS tests iid departures, not exclusive or exploitable nonlinearity.",
+      "bootstrap_estimand": "Paired circular date blocks,commonindicesallmodelsandP; recompute per-seed RMSE and then itsmean; no seed resampling or refitting; marginalCI conditional onstoredtrainedmodels.",
+      "power_scope": "Retrospective dispersion-based normal-approximation design sensitivity and oriented R. No observed-effect power, no claim of a pre-fit pilot, no dimensioning of power for provinggain>0.05 without q_alt.",
+      "superiority_scope": "Descriptive paired training-seed wins/ties on fixedcalendar. Exactbinomial95CI onlywhen no ties; not a universal probability acrossmarkets.",
+      "curve_scope": "Real inner-stopping histories for predesignated finalmonthlyfold December2024 seed4101, not evaluation/test loss curves or sample-size learning curves.",
+      "interpretation_limits": [
+        "2024 previously exposed toEDA and configurationchoices",
+        "monthly model changes and overlapping targets may violate stationary asymptotic assumptions",
+        "marginalintervals are not simultaneous simply because pvalues are Holm-adjusted",
+        "seed uncertainty, temporal losses and date-block resampling answer different questions",
+        "no future-model or equivalence margins introduced"
+      ],
+      "reserved_test": "2025-01-01..2026-08-31 remains unevaluated; September-October2026 unassigned",
+      "test_evaluation_allowed": false,
+      "new_training_allowed": false,
+      "raw_market_reads_allowed": false
+    }
+  },
+  "analysis_script_sha256": "6b59777e029d9b03bae50093914497a8844d1534461c3ac0ce3f37b4316b3308",
+  "numeric_helper_source": "/workspace/DeepLearning_202630/scripts/analyze_dl_benchmark.py",
+  "numeric_helper_sha256": "8288afd4b889f3b0cc50100b0f3bd2608f1d9eb19101be1e431a7e621c77d4f6",
+  "versions": {
+    "numpy": "2.5.4",
+    "pandas": "3.1.0",
+    "scipy": "1.18.1",
+    "statsmodels": "0.15.0"
+  },
+  "primary_representation": "relative_window",
+  "methods": [
+    "MLP",
+    "LSTM",
+    "CNN1D",
+    "Persistencia"
+  ],
+  "seeds": [
+    4101,
+    4102,
+    4103,
+    4104,
+    4105,
+    4106,
+    4107,
+    4108,
+    4109,
+    4110
+  ],
+  "n_dates": 366,
+  "date_start": "2024-01-01",
+  "date_end": "2024-12-31",
+  "paired_supplement_family_size": 9,
+  "global_training_seed_family_size": 12,
+  "prior_representation_controls": 3,
+  "temporal_primary_family_size": 6,
+  "residual_family_size": 15,
+  "designated_diagnostic_seed": 4101,
+  "bootstrap": {
+    "replicates": 2000,
+    "primary_block_length": 14,
+    "sensitivity_lengths": [
+      7,
+      28
+    ],
+    "seed": 20261104,
+    "scope": "paired dates, stored models, no seed resampling or refitting"
+  },
+  "friedman": {
+    "status": "calculated_approximate",
+    "n_seed_blocks": 10,
+    "models": [
+      "MLP",
+      "LSTM",
+      "CNN1D"
+    ],
+    "statistic": 4.200000000000003,
+    "p_value": 0.12245642825298172,
+    "reference": "asymptotic chi-square2; exploratory, not paired-test gate",
+    "mean_ranks": {
+      "MLP": 1.5,
+      "LSTM": 2.4,
+      "CNN1D": 2.1
+    },
+    "scope": "Complemento exploratorio de CV mensual de Filipe sobre desarrollo2024 ya examinado. Inferencia por semillas condicionada al calendario; sin confirmación independiente ni evaluación del test reservado.",
+    "independent_market_count": 1
+  },
+  "epoch_curves": {
+    "status": "plotted",
+    "scope": "Curvas por época; no curvas de aprendizaje frente a tamaño muestral ni curvas de test",
+    "sources": [
+      {
+        "model": "MLP",
+        "seed": 4101,
+        "fold": "2024-12",
+        "epochs_logged": 37,
+        "best_epoch": 25,
+        "history_path": "/workspace/DeepLearning_202630/results/dl_r2_cv_20261104/runs/relative_window_MLP_s4101_2a535b6ffd/2024-12/history_inner.csv",
+        "history_sha256": "cfe7ec6db37b5be8aeec98ea043dd729e8f54d8f12412dccd748552470c52479",
+        "configuration_path": "/workspace/DeepLearning_202630/results/dl_r2_cv_20261104/runs/relative_window_MLP_s4101_2a535b6ffd/2024-12/configuration.json",
+        "configuration_sha256": "d2fcda3ea33e48b749ad1483534053143d88c64c8ad0ed99840cfe7599a9ecbd"
+      },
+      {
+        "model": "LSTM",
+        "seed": 4101,
+        "fold": "2024-12",
+        "epochs_logged": 36,
+        "best_epoch": 24,
+        "history_path": "/workspace/DeepLearning_202630/results/dl_r2_cv_20261104/runs/relative_window_LSTM_s4101_2a535b6ffd/2024-12/history_inner.csv",
+        "history_sha256": "0924b4a707aa0fb509b6f163920d958259b3d6ac36b7e128bfe0fb9977819032",
+        "configuration_path": "/workspace/DeepLearning_202630/results/dl_r2_cv_20261104/runs/relative_window_LSTM_s4101_2a535b6ffd/2024-12/configuration.json",
+        "configuration_sha256": "c2698b21d7dece7f11e7273a4602296082be73afeb79b0011df362699bba2a62"
+      },
+      {
+        "model": "CNN1D",
+        "seed": 4101,
+        "fold": "2024-12",
+        "epochs_logged": 100,
+        "best_epoch": 99,
+        "history_path": "/workspace/DeepLearning_202630/results/dl_r2_cv_20261104/runs/relative_window_CNN1D_s4101_2a535b6ffd/2024-12/history_inner.csv",
+        "history_sha256": "2239b58b5516288fa558421656264de01737ca1ae04f0c058d3907eeacce6d7a",
+        "configuration_path": "/workspace/DeepLearning_202630/results/dl_r2_cv_20261104/runs/relative_window_CNN1D_s4101_2a535b6ffd/2024-12/configuration.json",
+        "configuration_sha256": "d526ec8f327a3aefd424471f43341b9680183cdd22deeef5caf92cf2820988c0"
+      }
+    ]
+  },
+  "design_sensitivity": "Retrospective dispersion calibration, not a prior pilot or proof of0.8power; no observed-effect power.",
+  "sources": [
+    {
+      "path": "/workspace/DeepLearning_202630/results/dl_r2_cv_20261104/predictions.csv",
+      "sha256": "9b91d6a1299cdb6e21330894ad7566bc247be86282f2810f9a80c77875d9058f"
+    },
+    {
+      "path": "/workspace/DeepLearning_202630/results/dl_r2_cv_20261104/runs.csv",
+      "sha256": "178d2a7e404a3401f3f08e05d8b1b93df7835ab8f8fab8dfdeb3343f8521f0e7"
+    },
+    {
+      "path": "/workspace/DeepLearning_202630/results/dl_r2_cv_20261104/analysis/comparisons.csv",
+      "sha256": "7df9036fd9020cfd10cd39d730ace73783dfdfaaea0c16a7266d4cc8b329aff8"
+    }
+  ],
+  "new_model_fits": 0,
+  "raw_market_files_opened": 0,
+  "reserved_test_evaluated": false,
+  "limitations": [
+    "All2024was already exposed to development and selection; this is exploratory.",
+    "Seed intervals condition on one shared calendar; neither ten seeds nor twelve monthly folds create new markets.",
+    "Global Holm12 covers declared seed comparisons, not all temporal/diagnostic research as one family.",
+    "DM/HAC/HLN, BDS and Ljung-Box references are approximate under regime changes, overlapping targets and monthly model changes.",
+    "BDS rejects i.i.d., not exclusively exploitable nonlinearity; residual structure does not quantify future achievable gain.",
+    "Date bootstrap assumes an appropriate dependence/local stability representation and conditions on stored model paths.",
+    "Marginal95% intervals are not simultaneous merely because p-values were multiplicity adjusted.",
+    "No equivalence or advanced-model margin has been defined; no TOST or ROPE is fabricated."
+  ],
+  "outputs": {
+    "README.md": "64166ba998aecdcf1fdca54911374cb74497718f843a1f03d17393097a417287",
+    "paired_tests.csv": "2126c4fc5f78dbe28728581b4adfa891a4543dd39ce8422cd11b04e0ac4f1075",
+    "temporal_dm.csv": "a69cc17273949434985177c0708d110b0de9a13c44648ddfde4a6dcc3621b936",
+    "residual_summary.csv": "22cac1317a6890ebb477275b32b767e0046524ab0d83b4824a8fce9c7b24d623",
+    "block_bootstrap.csv": "51fb78eb756fd81175fd8713ea6898334927e48676819d0af655365644e84d97",
+    "acf.csv": "72d41b117a38322dcacbcad5ec1b24e33285b97247238d75d9bab822607c0514",
+    "ranking_bootstrap.csv": "155090c8ba7dfb244b32ec5f87e1c347eb4129169ef8faa002b2d64edab9c0d7",
+    "design_sensitivity.csv": "6f286936ae9474b7dce7caf10e92ba3f0471061e48310a10cc0f85c5117f068a",
+    "probability_superiority.csv": "6bb545237cceab3a9f2f7b68316c0a759f94408cea6e429237e16e96e1077833",
+    "diagnostics.csv": "ea8b1e554aad1493c3151810afec788f8bf33f0dfc84631ba7409b0dd9266939",
+    "global_seed_tests.csv": "d1ffa452da07b95e8ca112571d94263e49b9e3fffab9f677ab9cecff6fd9deab",
+    "figures/residual_distribution_seed4101.png": "4ebb06ce85bb60a25640c80eb452f390f1769bd7576e57d5b093434d7b86d9e5",
+    "figures/temporal_bootstrap_intervals.png": "87eb1e061402c77e748270999877ea6305c3d946c2c7daa1b84d4f66dfe48407",
+    "figures/residual_acf_seed4101.png": "337c091b7d9f5645a53696a47fed79f4a64211e362fedd9bc7e4a02ed919e185",
+    "figures/internal_epoch_curves_december_seed4101.png": "2205700516dd8f954e2bedbe2521d9fae937ac7ac74e38a882e209e4d600e33b",
+    "figures/paired_seed_qq.png": "9597347a08058ffd9fa7b4cd6c1d722e4efee6eb246d817c5b241f883ffecf25"
+  }
+}

@@ -53,6 +53,8 @@ python3.12 -m venv .venv-training
 .venv-training/bin/python -m unittest discover -s tests -p 'test_dl_*.py'
 tar -xzf results/dl_r2_cv_20261104/run_artifacts.tar.gz -C results/dl_r2_cv_20261104
 .venv-training/bin/python scripts/verify_dl_r2_cv.py
+.venv-training/bin/python scripts/analyze_filipe_statistics.py
+.venv-training/bin/python scripts/verify_filipe_statistics.py
 .venv-training/bin/python scripts/export_filipe_book.py
 ```
 
@@ -77,3 +79,20 @@ cp results/dl_r2_cv_20261104_published_snapshot/folds.csv results/dl_r2_cv_20261
 Se registraron diez semillas por modelo y representación, 60 trayectorias, 720 segmentos modelo–fold y 1.440 ajustes efectivos. Los 720 checkpoints, escaladores, máscaras y curvas están en el paquete de artefactos con hashes. Las semillas describen aleatoriedad de entrenamiento condicionada a 2024; no constituyen mercados independientes ni un dimensionamiento de potencia 0,80.
 
 La evaluación sigue siendo exploratoria sobre desarrollo previamente examinado. El ajuste final con desarrollo 2023–2024 y el test previsto de enero de 2025–agosto de 2026 permanecen pendientes. Septiembre–octubre de 2026 queda sin asignar al test.
+
+## Revisión de todos los ítems y estadística complementaria
+
+`experiments/filipe_statistics_20261104/protocol.json` registra una enmienda exploratoria posterior a los descriptivos de 2024 y anterior al cálculo complementario. No es un preregistro anterior al entrenamiento ni una confirmación en datos desconocidos. El analizador utiliza las predicciones guardadas y las curvas internas del corte de diciembre con semilla 4101; restaurar primero los archivos por corrida mediante el tar indicado arriba.
+
+```bash
+.venv-training/bin/python -m unittest discover -s tests -p 'test_filipe_statistics.py'
+.venv-training/bin/python scripts/analyze_filipe_statistics.py
+.venv-training/bin/python scripts/verify_filipe_statistics.py
+.venv-training/bin/python scripts/export_filipe_book.py
+jupyter-book build book --all --warningiserror --keep-going
+python scripts/check_book_links.py
+```
+
+El suplemento ejecuta nueve contrastes de redes/referencia/margen, incorpora los tres controles de representación en Holm global-12, seis DM principales con sensibilidades HAC, quince diagnósticos BDS/Ljung–Box, bootstrap pareado de fechas y sensibilidad retrospectiva de diseño. No ajusta pesos, remuestrea semillas ni evalúa el test. Los IC por semillas, pérdidas temporales y bootstrap responden preguntas distintas. El verificador independiente reconstruye los cálculos desde las predicciones sin importar el analizador numérico principal.
+
+El inventario de la revisión identifica 390 subsecciones numeradas. Revisar y actualizar sus contenidos no equivale a declarar todos los requisitos científicamente completos: el piloto prospectivo, los márgenes pendientes, el ajuste final, el test y el respaldo aplicado faltante siguen identificados.

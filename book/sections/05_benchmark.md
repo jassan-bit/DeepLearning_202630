@@ -6,6 +6,8 @@ Se ejecutaron **doce bloques mensuales de 2024**, con entrenamiento inicial de 2
 
 El [método de CV](../_static/dl_r2_cv_20261104/method.json) y las [configuraciones](../_static/dl_r2_cv_20261104/configuration.json), los [folds](../_static/dl_r2_cv_20261104/folds.csv) y las [corridas](../_static/dl_r2_cv_20261104/runs.csv) permiten comprobar el procedimiento. La configuración se fijó usando desarrollo ya explorado: la evaluación de 2024 es **exploratoria**, sin selección anidada ni confirmación externa. El ajuste final con desarrollo completo y el test de enero de 2025–agosto de 2026 siguen pendientes; septiembre–octubre de 2026 permanece sin asignar al test.
 
+El [complemento estadístico registrado](../_static/filipe_statistics_20261104/protocol.json) completa las comparaciones, los diagnósticos y el remuestreo sobre estas mismas predicciones. Se definió después de examinar los resultados descriptivos de desarrollo y antes de calcular el complemento; mantiene alcance **exploratorio**, con cero entrenamientos nuevos y sin consultar test.
+
 **Resultado anual:** MLP relativo tiene la menor RMSE entre las redes y las tres redes relativas obtienen R² medio positivo. **Persistencia conserva menor error en todo 2024.** Las cifras siguientes identifican periodo, representación y unidad de incertidumbre.
 
 ## 5.1. Comparación Tabular
@@ -91,9 +93,9 @@ $$
 \bar m\pm t_{0{,}975;9}\frac{s_m}{\sqrt{10}}.
 $$
 
-Describen la media de desempeño del procedimiento de entrenamiento condicionada a los datos, configuración y fechas observadas. Los IC de modelos aislados no sustituyen el IC de su diferencia emparejada. Aplicar Holm a p-valores tampoco convierte estos IC en intervalos simultáneos.
+Describen la media de desempeño del procedimiento de entrenamiento condicionada a datos, configuración y calendario. Para comparar métodos se calcula además el IC de la diferencia pareada, sin inferirlo del solapamiento de IC aislados.
 
-El bootstrap temporal por bloques y los contrastes de pérdidas por fecha **no se han ejecutado** para estas predicciones. Su diseño requiere unidad, longitud de bloque, sensibilidad y supuestos apropiados (§5.4); los intervalos entre semillas no los reemplazan.
+Se ejecutó también bootstrap circular pareado de fechas: **2.000 réplicas, bloque principal de 14 días y sensibilidad de 7/28**, recalculando la RMSE de cada semilla y después su media. Este intervalo temporal condiciona a los modelos guardados; no remuestrea semillas ni reentrena. Los IC publicados son marginales: ajustar p-valores con Holm no los convierte en bandas simultáneas. Métodos y resultados se detallan en §5.4.5.
 
 #### 5.1.1.4. Tiempo de entrenamiento y de inferencia
 
@@ -122,9 +124,24 @@ El ranking se define por la media de RMSE por trayectoria, con representación y
 
 ### 5.2.1. Orden de los tres modelos según la métrica principal
 
-En **todo 2024**, el orden dentro de `relative_window` es **MLP, CNN1D, LSTM**. En `absolute_log` es LSTM, MLP, CNN1D. La persistencia anual tiene menor RMSE que las seis combinaciones.
+En **todo 2024**, el orden dentro de `relative_window` es **MLP, CNN1D, LSTM**. En `absolute_log` es LSTM, MLP, CNN1D. Persistencia tiene menor RMSE que las seis combinaciones. En julio–diciembre el orden relativo es CNN1D, MLP, LSTM; cada ranking conserva su periodo.
 
-En julio–diciembre, el orden relativo es CNN1D, MLP, LSTM; esta diferencia respecto al año exige identificar el periodo. No se ejecutaron contrastes entre las tres arquitecturas para certificar el ranking. Los tres contrastes disponibles comparan representaciones dentro de cada red. No se interpreta un IC solapado como equivalencia ni una posición descriptiva como un ganador del test.
+Las comparaciones de RMSE entre las tres redes relativas **no rechazan igualdad de media** con Holm global-12 (§5.3.3), y Friedman tampoco rechaza su hipótesis con diez bloques-semilla (p=0,12245643). Esto no demuestra equivalencia. MLP es el líder por media anual observada y el candidato neuronal, sin superioridad confirmada sobre las otras redes.
+
+El [bootstrap de ranking](../_static/filipe_statistics_20261104/ranking_bootstrap.csv), con L14, asigna frecuencias de menor RMSE de **0,6670 a MLP, 0,0485 a LSTM y 0,2845 a CNN1D** dentro del trío. Al incluir persistencia, su frecuencia es **0,9930**. Son frecuencias de remuestreo condicionadas a estos modelos y fechas, no probabilidades posteriores ni de ganar en otro mercado.
+
+La [superioridad empírica por semillas](../_static/filipe_statistics_20261104/probability_superiority.csv) cuenta menor RMSE en cada par sobre el mismo calendario:
+
+| Primer método frente a segundo | Victorias estrictas | Proporción | IC 95 % condicional |
+| --- | --- | --- | --- |
+| MLP frente a LSTM | 9/10 | 0,900 | [0,555; 0,997] |
+| MLP frente a CNN1D | 6/10 | 0,600 | [0,262; 0,878] |
+| MLP frente a Persistencia | 0/10 | 0,000 | [0,000; 0,308] |
+| LSTM frente a CNN1D | 5/10 | 0,500 | [0,187; 0,813] |
+| LSTM frente a Persistencia | 0/10 | 0,000 | [0,000; 0,308] |
+| CNN1D frente a Persistencia | 0/10 | 0,000 | [0,000; 0,308] |
+
+No hubo empates; los intervalos Clopper–Pearson son marginales y suponen pares de aleatorizaciones de entrenamiento independientes bajo este calendario. Un 0/10 no prueba probabilidad universal cero, y un 9/10 no acredita superioridad tras toda la multiplicidad. La frecuencia de victorias y la diferencia media de RMSE son estimandos distintos. La proporción no describe otros mercados o periodos.
 
 ### 5.2.2. Análisis del trade-off
 
@@ -203,45 +220,60 @@ La diferencia en unidades conserva signo; si S se expresa en porcentaje, se dist
 
 #### 5.3.2.4. Tamaño de efecto de cada diferencia
 
-Para diferencias pareadas por semilla $d_s=m_{{\rm rel},s}-m_{{\rm abs},s}$ se reporta:
+Para diferencias pareadas de RMSE por semilla $d_s=m_{A,s}-m_{B,s}$ se reporta:
 
 $$
 d_z=\frac{\bar d}{s_d}.
 $$
 
-Un valor negativo favorece la representación relativa; el denominador es la DE de las diferencias, sin sustituirla por una DE marginal. Si $s_d=0$, el efecto estandarizado queda indefinido. El tamaño de efecto entre inicializaciones condiciona el mismo calendario; no mide variación entre mercados ni reemplaza el margen aplicado. Los efectos de los tres contrastes están en §5.3.3.
+Δ<0 favorece al primer procedimiento cuando se compara error. El denominador es la DE de las diferencias, no una DE marginal. Con dispersión nula se deja indefinido. Los efectos estandarizados y sus diferencias en unidades originales se conservan para las seis comparaciones entre redes y persistencia y para los tres controles de representación.
+
+Los contrastes de ganancia relativa emplean $g_s=1-m_{A,s}/m_{\rm pers}$; allí un valor positivo favorece a la red y la frontera práctica es 0,05. La distancia estandarizada a esa frontera no se confunde con el efecto respecto a cero. Estas medidas describen variación entre inicializaciones sobre un calendario fijo; no sustituyen el margen aplicado ni cuantifican variación entre mercados.
 
 ### 5.3.3. Inferencia sobre las diferencias
 
-La inferencia ejecutada evalúa únicamente el cambio de preprocesamiento dentro de cada arquitectura bajo el mismo forward chaining.
+El análisis reúne comparaciones de las tres redes relativas, persistencia, la frontera práctica del 5 % y los controles de representación. La [familia global](../_static/filipe_statistics_20261104/global_seed_tests.csv) contiene **doce hipótesis por semillas**; Holm global-12 es el ajuste principal de las tablas. Los registros conservan los ajustes de componentes para trazabilidad, sin tratarlos como corroboraciones independientes.
 
 #### 5.3.3.1. Comparaciones pareadas y corrección por multiplicidad
 
-Se ejecutaron **tres contrastes bilaterales**, uno por red, de RMSE(`relative_window`)−RMSE(`absolute_log`), con las diez mismas semillas base y las mismas 366 fechas. La corrección Holm se aplica conjuntamente a los tres, sin dividir por signo o resultado.
+La familia de doce incluye tres diferencias bilaterales entre redes relativas, tres bilaterales de red frente a persistencia, tres pruebas unilaterales de ganancia relativa superior a 0,05 y los tres controles bilaterales relativa−absoluta. Se utilizan diez pares de semillas base y las mismas 366 fechas. Para persistencia, la puntuación fija se resta de cada ejecución de la red; repetirla algebraicamente no crea diez realizaciones de la referencia.
 
-No se ejecutaron pruebas entre arquitecturas ni contra persistencia. La exposición del desarrollo y el diseño exploratorio limitan el alcance: causalidad temporal de cada fold no convierte toda la selección en confirmación independiente.
+El complemento y su multiplicidad se registraron antes de calcular estas pruebas, pero después de examinar resultados descriptivos del desarrollo. La t conserva nueve grados de libertad y las comparaciones son exploratorias; no acreditan una selección anidada ni confirmación en datos nuevos.
 
 #### 5.3.3.2. Diferencia media, IC del 95 % y p-value ajustado y sin ajustar
 
-Δ<0 favorece `relative_window`. La t y los IC marginales se refieren a diez diferencias de RMSE por trayectoria, con nueve grados de libertad:
+Diferencias de **RMSE anual media por semilla**, con Δ=primer procedimiento−segundo; Δ<0 favorece al primero. IC del 95 % marginales, t(9):
 
-| Red | Δ RMSE relativa − absoluta | IC 95 % marginal | t(9) | d_z | p sin ajustar | p Holm, familia 3 |
-| --- | --- | --- | --- | --- | --- | --- |
-| MLP | -0,00439825 | [-0,00469839; -0,00409810] | -33,14874 | -10,48255 | 1.019002e-10 | 3.057005e-10 |
-| LSTM | -0,00331851 | [-0,00361490; -0,00302213] | -25,32833 | -8,00952 | 1.121134e-09 | 2.242268e-09 |
-| CNN1D | -0,00446676 | [-0,00506264; -0,00387089] | -16,95733 | -5,36238 | 3.871572e-08 | 3.871572e-08 |
+| Comparación | Δ RMSE | IC 95 % de Δ | d_z | p sin ajustar | p Holm global-12 |
+| --- | --- | --- | --- | --- | --- |
+| MLP − LSTM | -0,0002863 | [-0,0005087; -0,0000640] | -0,9212 | 0,017225365 | 0,10335219 |
+| MLP − CNN1D | -0,0001805 | [-0,0004783; 0,0001173] | -0,4336 | 0,20351666 | 1 |
+| MLP − Persistencia | 0,0012601 | [0,0010613; 0,0014589] | 4,5334 | 1,670790e-07 | 1,336632e-06 |
+| LSTM − CNN1D | 0,0001058 | [-0,0002203; 0,0004320] | 0,2321 | 0,48167197 | 1 |
+| LSTM − Persistencia | 0,0015464 | [0,0014127; 0,0016802] | 8,2693 | 8,441270e-10 | 9,285398e-09 |
+| CNN1D − Persistencia | 0,0014406 | [0,0011993; 0,0016819] | 4,2712 | 2,794885e-07 | 1,956420e-06 |
 
-Los tres contrastes favorecen la representación relativa bajo esa referencia y su alcance condicionado al calendario. Shapiro–Wilk sobre las diferencias produce p=0,425763, 0,237020 y 0,573491 para MLP, LSTM y CNN1D; no rechazarlo no demuestra normalidad. Los efectos grandes describen variación entre estas inicializaciones, sin acreditar utilidad financiera.
+La persistencia tiene menor error en los diez recorridos de cada red y sus diferencias rechazan cero bajo la referencia condicional por semillas. Ninguna pareja de redes rechaza con Holm-12. Los IC marginales no se interpretan como intervalos simultáneos; en particular, un IC marginal puede excluir cero mientras su p ajustado no rechaza.
 
-El cambio de R² se informa como intervalo secundario descriptivo, sin otra familia de pruebas seleccionada por esa métrica:
+**Controles de preprocesamiento bajo la misma CV**, integrados en la misma familia global:
 
-| Red | Δ R² relativa − absoluta | IC 95 % marginal descriptivo |
-| --- | --- | --- |
-| MLP | 0,763286 | [0,687570; 0,839002] |
-| LSTM | 0,557666 | [0,498273; 0,617059] |
-| CNN1D | 0,798333 | [0,665593; 0,931073] |
+| Comparación | Δ RMSE | IC 95 % marginal | d_z | p sin ajustar | p Holm global-12 |
+| --- | --- | --- | --- | --- | --- |
+| MLP: relativa − absoluta | -0,0043982 | [-0,0046984; -0,0040981] | -10,4826 | 1,019002e-10 | 1,222802e-09 |
+| LSTM: relativa − absoluta | -0,0033185 | [-0,0036149; -0,0030221] | -8,0095 | 1,121134e-09 | 1,121134e-08 |
+| CNN1D: relativa − absoluta | -0,0044668 | [-0,0050626; -0,0038709] | -5,3624 | 3,871572e-08 | 3,484415e-07 |
 
-Fuente: [comparisons.csv](../_static/dl_r2_cv_20261104/analysis/comparisons.csv). Los cambios de representación y ponderación de escalas se estudian conjuntamente. Estos contrastes no demuestran superar el 5 % frente a persistencia ni generalización temporal.
+Las tres representaciones relativas reducen la RMSE frente a su control absoluto con el ajuste global. El cambio combina representación y ponderación del escalado; no aísla una causa única.
+
+**Pruebas unilaterales de superar el margen práctico**, $H_0:\mathbb E[g_s]\le0,05$ frente a $H_1:\mathbb E[g_s]>0,05$:
+
+| Red | Ganancia media vs persistencia | IC 95 % marginal de ganancia | p sin ajustar | p Holm global-12 |
+| --- | --- | --- | --- | --- |
+| MLP | -26,313 % | [-30,465; -22,161] % | 0,99999998 | 1 |
+| LSTM | -32,292 % | [-35,085; -29,498] % | 1 | 1 |
+| CNN1D | -30,082 % | [-35,121; -25,044] % | 0,99999996 | 1 |
+
+Las ganancias anuales son negativas y no se demuestra una mejora superior al 5 %. Los IC anteriores describen la ganancia media; no son por sí solos un procedimiento de equivalencia. Los [resultados completos](../_static/filipe_statistics_20261104/global_seed_tests.csv) incluyen estadísticos t, grados de libertad, Shapiro, precisión numérica y familias. Los IC de ΔR² relativa−absoluta siguen siendo secundarios descriptivos en el [control de representación](../_static/dl_r2_cv_20261104/analysis/comparisons.csv).
 
 ### 5.3.4. Umbral de mejora para modelos avanzados
 
@@ -249,13 +281,15 @@ El margen práctico y la diferencia mínima detectable son cantidades distintas;
 
 #### 5.3.4.1. Mejora mínima detectable frente al baseline
 
-La MDE depende del contraste, potencia objetivo, emparejamiento y variabilidad de las diferencias. Para una propuesta avanzada A frente al baseline B:
+La MDE depende del contraste, potencia objetivo, emparejamiento y dispersión de las diferencias. Para una propuesta avanzada A frente al baseline B:
 
 $$
 \operatorname{Var}(m_A-m_B)=\operatorname{Var}(m_A)+\operatorname{Var}(m_B)-2\operatorname{Cov}(m_A,m_B).
 $$
 
-La DE o el IC de B aislado no identifican esa varianza. **No existe una MDE numérica dimensionada para la CV actual o para una propuesta avanzada aún no evaluada.** Se requiere un piloto apropiado al procedimiento creciente y al estimando, o supuestos de planificación justificados; no se obtiene el umbral sumando una DE al baseline.
+La DE o el IC de B aislado no identifican esa varianza. **No se ha dimensionado una MDE de un modelo avanzado que aún no se ha evaluado**, ni se obtiene sumando una DE al candidato MLP.
+
+Para los métodos ya ejecutados, §5.4.7 sí calcula sensibilidad orientativa frente a cero usando la dispersión observada entre diez pares. Es una calibración retrospectiva y condicionada al calendario, no un piloto anterior al entrenamiento ni una garantía de potencia. Sus valores no se trasladan a una nueva arquitectura o a la pregunta de superar el 5 % sin definir una alternativa apropiada.
 
 #### 5.3.4.2. Margen de relevancia práctica
 
@@ -275,7 +309,9 @@ Las conclusiones combinan magnitud de error, incertidumbre, costo y alcance del 
 
 #### 5.3.5.1. Significación estadística y relevancia práctica
 
-Los tres contrastes relativa–absoluta son significativos bajo Holm-3 y la referencia t utilizada. Esa evidencia condiciona el calendario e inicializaciones; no demuestra superioridad temporal de una red sobre otra ni cumplimiento del margen práctico frente a persistencia.
+Las tres mejoras relativa−absoluta rechazan bajo Holm global-12. Las diferencias de las redes relativas frente a persistencia también rechazan por semillas, con signo de mayor error neuronal; entre redes no hay rechazo con ese ajuste.
+
+La inferencia temporal da una lectura distinta: los seis DM primarios no rechazan después de Holm-6. El bootstrap L14 produce IC marginales de diferencias de RMSE, condicionado a los modelos guardados. No se selecciona la prueba con conclusión favorable: fecha, semilla, pérdida cuadrática y media de RMSE son alcances y funcionales distintos. Ningún resultado demuestra la mejora práctica del 5 % o generalización externa.
 
 #### 5.3.5.2. Desempeño frente a complejidad, parámetros y costo
 
@@ -289,51 +325,70 @@ El procedimiento final y el margen de una propuesta avanzada quedan por cerrar. 
 
 #### 5.3.5.4. Estado del benchmark
 
-Se dispone de tres redes implementadas, dos preprocesamientos comparables, diez trayectorias por combinación, 366 fechas, costos, parámetros, IC marginales y tres contrastes emparejados. Los [registros agregados](../_static/dl_r2_cv_20261104/runs.csv) y las [predicciones](../_static/dl_r2_cv_20261104/predictions.csv) enlazan los 720 segmentos mensuales.
+Se dispone de tres redes, dos preprocesamientos comparables, diez trayectorias por combinación, 366 fechas, costos y parámetros. El [complemento](../_static/filipe_statistics_20261104/summary.json) añade doce comparaciones por semillas con Holm global, Friedman, seis DM principales con sensibilidad HAC, quince diagnósticos residuales, bootstrap temporal, superioridad empírica, sensibilidad MDE y curvas internas guardadas. Todo se calcula desde la CV existente: **cero ajustes nuevos y cero archivos de test consultados**.
 
-Permanecen pendientes el dimensionamiento específico, la inferencia temporal, el cierre del procedimiento y margen avanzado, el ajuste final y el test. La ejecución no completa el respaldo bibliográfico aplicado de MLP/CNN1D simple.
+Persisten pendientes genuinos: piloto prospectivo y dimensionamiento definitivo, banda de equivalencia, margen para una propuesta avanzada, cierre del procedimiento final, ajuste final con desarrollo y test. El respaldo bibliográfico aplicado de MLP/CNN1D simple tampoco se completa mediante estos cálculos.
 
 ## 5.4. Análisis Estadístico y Pruebas de Hipótesis
 
-El análisis ejecutado consiste en IC t por semillas y tres contrastes pareados de RMSE relativa–absoluta con Holm. Los demás procedimientos de los incisos siguientes se documentan como métodos y pendientes, sin atribuirles resultados inexistentes de esta CV.
+Los procedimientos siguientes están ejecutados sobre las predicciones de la CV de Filipe, salvo las excepciones identificadas explícitamente. El [protocolo del complemento](../_static/filipe_statistics_20261104/protocol.json) se registró antes de sus cálculos y después de la revisión descriptiva de 2024. Las inferencias son **exploratorias y condicionadas al desarrollo ya examinado**; no se añaden entrenamientos ni confirmación reservada.
+
+Se separan la familia global de **12 contrastes por semillas**, la familia de **6 DM temporales primarios** y los **15 diagnósticos de residuos**. Estos grupos responden preguntas distintas y no constituyen corroboraciones independientes. El ajuste por familias no se presenta como control global de todas las pruebas del capítulo.
 
 ### 5.4.1. Hipótesis, unidad de análisis y supuestos
 
-Para cada arquitectura, con diez pares de trayectorias, $d_s=\mathrm{RMSE}_{{\rm rel},s}-\mathrm{RMSE}_{{\rm abs},s}$, se contrasta bilateralmente $H_0:\mathbb E[d_s]=0$. Un valor negativo favorece el procedimiento relativo.
+Para error, $d_s=\mathrm{RMSE}_{A,s}-\mathrm{RMSE}_{B,s}$ y la hipótesis bilateral es $H_0:\mathbb E[d_s]=0$; Δ<0 favorece a A. Para mejora práctica, $g_s=1-\mathrm{RMSE}_{{\rm red},s}/\mathrm{RMSE}_{\rm pers}$ y se contrasta unilateralmente superar la frontera 0,05. Los controles de representación conservan el orden relativa−absoluta.
 
-La unidad inferencial es la aleatorización de entrenamiento condicionada al calendario y configuración compartidos. Las doce particiones mensuales son dependientes y no son doce series independientes. Las condiciones de la t incluyen un diseño de semillas defendible y una distribución de diferencias apropiada; la normalidad no se declara probada por un diagnóstico aislado.
+La unidad de las pruebas por semillas es la aleatorización de entrenamiento condicionada a datos, configuración y calendario compartidos. Las doce particiones mensuales son dependientes y no crean doce mercados. La t exige un diseño de pares defendible y una distribución apropiada de sus diferencias; Shapiro es un diagnóstico, sin escoger retrospectivamente la prueba que produzca significación.
 
 ### 5.4.2. Comparaciones pareadas: t y Wilcoxon
 
-La t pareada fue el procedimiento utilizado, con nueve grados de libertad y sin cambiar de prueba según el p-valor observado. Wilcoxon no se ejecutó. Si se usa después, deberán fijarse hipótesis, tratamiento de ceros/empates, referencia exacta o aproximada y supuestos, incluida simetría para una interpretación de desplazamiento.
+La t pareada utiliza diez diferencias y nueve grados de libertad. Se conservan estadístico, IC marginal, p sin ajustar y p Holm global-12. No se sustituyó por otra prueba según el resultado observado.
 
-Wilcoxon no contrasta automáticamente la misma media que la t. Ni su resolución discreta ni disponer de diez semillas garantizan potencia suficiente.
+Wilcoxon no se ejecutó. Su eventual aplicación debe fijar hipótesis, ceros, empates, referencia exacta o aproximada y supuestos; no contrasta automáticamente la misma media que la t. Su resolución discreta y diez semillas no garantizan potencia suficiente.
 
 ### 5.4.3. Comparación conjunta de tres modelos
 
-No se ejecutó un contraste conjunto entre MLP, LSTM y CNN1D. El ranking anual de §5.2 es descriptivo.
+Se ejecutó **Friedman sobre diez bloques-semilla completos** de las tres redes relativas, condicionado al calendario de 2024. Se obtuvo estadístico **4,2000**, con referencia asintótica χ² de dos grados de libertad y **p=0,12245643**. Los rangos medios fueron MLP=1,5, LSTM=2,4 y CNN1D=2,1.
 
-Si se aplica Friedman, cada bloque debe contener resultados comparables de las tres redes bajo una unidad defendible. Debe identificarse la referencia exacta, de permutación o aproximada y respetarse la dependencia. Un contraste sobre semillas condicionaría el calendario; no aportaría mercados nuevos ni resolvería por sí solo la incertidumbre temporal.
+No se rechaza su hipótesis a α=0,05; esto no demuestra equivalencia ni igualdad de desempeño fuera de desarrollo. Se declara la referencia aproximada y el número reducido de bloques. El contraste global no se utilizó como filtro para ejecutar las comparaciones pareadas registradas. Fuente: [summary.json](../_static/filipe_statistics_20261104/summary.json).
 
 ### 5.4.4. Comparaciones post-hoc y corrección por multiplicidad
 
-La familia ejecutada contiene las tres comparaciones de representaciones dentro de arquitectura y usa **Holm con α=0,05**. No se realizó Nemenyi, ANOVA ni post-hoc entre las redes.
+Holm global-12 ajusta conjuntamente los seis contrastes bilaterales entre métodos relativos/persistencia, los tres unilaterales de ganancia >5 % y los tres controles de representación. La tabla principal utiliza ese ajuste; los CSV retienen los ajustes de componentes para trazabilidad, sin convertirlos en pruebas adicionales independientes.
 
-Si se añaden hipótesis de arquitecturas, variantes, periodos o horizontes, la familia y su procedimiento deberán definirse antes del análisis correspondiente. No se dividirán familias para conservar significación ni se añadirá Holm automáticamente como segunda corrección de un post-hoc ya simultáneo.
+No se ejecutó Nemenyi ni ANOVA. Las comparaciones pareadas estaban especificadas en el complemento y no quedaron condicionadas al rechazo de Friedman. DM utiliza su familia primaria de seis comparaciones de pérdidas por fecha, y los diagnósticos su familia de quince; no se mezclan sus estimandos ni se exige una segunda corrección equivalente sobre un post-hoc ya simultáneo.
 
 ### 5.4.5. Intervalos de confianza y tamaño de efecto
 
-Los intervalos por semillas y los efectos pareados disponibles se presentan con sus supuestos. La incertidumbre temporal requiere un diseño separado.
+Se reportan IC t de diferencias entre semillas y percentiles de un bootstrap temporal de fechas. Ambos son marginales y condicionan aspectos diferentes del procedimiento. Las diferencias en unidades de RMSE se priorizan frente a estandarizaciones aisladas; para cada resultado se identifica el signo y la unidad.
 
 #### 5.4.5.1. Bootstrap de las diferencias pareadas
 
-**Pendiente para estas predicciones.** Un bootstrap temporal deberá remuestrear fechas o bloques conjuntamente entre los procedimientos y recalcular métricas y razones con los mismos índices, respetando calendario y dependencia. La longitud, las sensibilidades, las réplicas y la semilla se justificarán y registrarán.
+Se aplicó **bootstrap circular pareado de fechas**, 2.000 réplicas, L=14 principal y sensibilidad L=7/28, semilla 20261104. Los índices de cada réplica son comunes a los cuatro procedimientos. Se recalcula RMSE por semilla y luego su media, y la razón de mejora usa el mismo denominador remuestreado. No se concatena semilla×fecha como observaciones independientes.
 
-Remuestrear predicciones almacenadas condiciona a los modelos realizados: no reproduce automáticamente la variación de reentrenar sobre historias remuestreadas. Tampoco se mezclarán días dependientes como si fueran i.i.d. o se elegirá la longitud por su resultado favorable.
+IC percentiles marginales del 95 % con L14:
+
+| Comparación | IC de diferencia RMSE | IC de ganancia relativa |
+| --- | --- | --- |
+| MLP − LSTM | [-0,0006277; 0,0000720] | [-1,291; 9,828] % |
+| MLP − CNN1D | [-0,0008532; 0,0003781] | [-6,368; 13,062] % |
+| MLP − Persistencia | [0,0003343; 0,0022573] | [-50,797; -6,548] % |
+| LSTM − CNN1D | [-0,0007565; 0,0007734] | [-13,093; 11,627] % |
+| LSTM − Persistencia | [0,0005281; 0,0026421] | [-59,589; -10,508] % |
+| CNN1D − Persistencia | [0,0003919; 0,0024583] | [-56,008; -7,287] % |
+
+Los IC entre redes incluyen cero. Los IC marginales red−persistencia excluyen cero con signo de mayor error de la red. Estos IC no están ajustados por multiplicidad y su funcional es la media de RMSE; DM/Holm-6 contrasta otra pregunta, sobre pérdidas cuadráticas y una familia simultánea (§5.4.9).
+
+![Intervalos temporales de diferencias de RMSE](../_static/filipe_statistics_20261104/figures/temporal_bootstrap_intervals.png)
+
+Los [18 intervalos](../_static/filipe_statistics_20261104/block_bootstrap.csv) conservan las tres longitudes, sin elegir la favorable. El remuestreo condiciona a los modelos guardados: **no remuestrea semillas ni reentrena** sobre historias nuevas. Su calibración depende de una representación adecuada de dependencia y estabilidad local; las etiquetas solapadas y cambios mensuales de red limitan una lectura universal.
 
 #### 5.4.5.2. Tamaño de efecto junto con el p-value
 
-Los tres contrastes informan diferencias en unidades originales, IC t marginales y d_z pareado (§5.3.3). Se mantiene el signo relativa−absoluta y la DE de las diferencias. No se calculó delta de Cliff ni rango-biserial; una medida alternativa deberá conservar el emparejamiento y declarar ceros/empates.
+Las diferencias de RMSE, IC t marginales y d_z se reportan para los pares de métodos y controles de representación (§5.3.3). El signo sigue primer método−segundo para error; una ganancia relativa mantiene su dirección propia. La DE es la de diferencias emparejadas.
+
+No se calculó delta de Cliff ni rango-biserial; no se presentan como equivalentes automáticos a d_z. Los tamaños grandes entre inicializaciones no describen variabilidad entre mercados ni garantizan relevancia económica.
 
 ### 5.4.6. Advertencia sobre independencia
 
@@ -347,21 +402,35 @@ Las σ7 consecutivas comparten seis retornos. Las predicciones mantienen fecha, 
 
 #### 5.4.6.2. Validación repetida y remuestreo por bloques
 
-Se ejecutó forward chaining creciente con **doce bloques mensuales**, pesos constantes dentro de cada mes y horizonte diario. No se utilizó K-fold aleatorio ni se ejecutaron múltiples particiones aleatorias repetidas.
+Se ejecutó forward chaining creciente con doce bloques mensuales y horizonte diario, manteniendo pesos dentro de cada mes. No se utilizó K-fold aleatorio ni múltiples particiones aleatorias repetidas.
 
-El remuestreo por bloques y una corrección de varianza requieren adecuación al diseño creciente y al solapamiento del objetivo. No se aplica una corrección derivada para otro esquema como si garantizara independencia. El bootstrap temporal sigue pendiente.
+El bootstrap de fechas usa bloques L14 y sensibilidad L7/L28. Aun así, no reproduce volver a entrenar sobre otras trayectorias de mercado. No se aplica una corrección de varianza derivada de otro diseño como si reparara selección, dependencia o fuga de información. Las 366 fechas, diez semillas y doce bloques conservan sus significados distintos.
 
 ### 5.4.7. Reporte de potencia y diferencia mínima detectable
 
-Las diez semillas son un **presupuesto exploratorio**, sin un piloto específico que acredite potencia 0,80. No se publica una MDE o potencia retrospectiva calculada con el efecto observado para certificar suficiencia.
+Las diez semillas constituyen un presupuesto exploratorio. Se calcula ahora **sensibilidad de planificación con dispersión retrospectiva**, condicionada al calendario, para mostrar lo que ese tamaño puede distinguir bajo una aproximación normal. No se presenta como piloto anterior al entrenamiento, potencia observada a partir del efecto obtenido o certificado de suficiencia.
 
-Un futuro dimensionamiento pareado deberá fijar efecto alternativo $\delta$, α, multiplicidad y unidad, y podría partir, si son adecuados sus supuestos, de:
+Para $\alpha_{\rm plan}=0,05/12$ y objetivo hipotético $1-\beta=0,80$:
 
 $$
-R\approx\frac{(z_{1-\alpha/2}+z_{1-\beta})^2\widehat\sigma_d^2}{\delta^2}.
+\operatorname{MDE}_0\approx
+\frac{(z_{1-\alpha_{\rm plan}/2}+z_{0,80})\widehat\sigma_d}{\sqrt R},\qquad
+R_{\rm orient}=\left\lceil
+\frac{(z_{1-\alpha_{\rm plan}/2}+z_{0,80})^2\widehat\sigma_d^2}{\delta_{\rm plan}^2}
+\right\rceil.
 $$
 
-Se evaluarán la incertidumbre de la dispersión piloto y una alternativa apropiada si la aproximación no procede. Detectar frente a cero un efecto del tamaño de un margen no equivale a demostrar que se supera ese margen. Dimensionar semillas tampoco dimensiona automáticamente las fechas dependientes o las pruebas temporales.
+Para red frente a persistencia, $\delta_{\rm plan}=0,05\,\mathrm{RMSE}_{\rm pers}=0,0002394485$ es el efecto a detectar **frente a cero**, sin afirmar que se supera el 5 %:
+
+| Red vs persistencia | DE de diferencia | MDE0 con R=10 | δplan frente a cero | R orientativo |
+| --- | --- | --- | --- | --- |
+| MLP | 0,0002780 | 0,0003258 | 0,0002394485 | 19 |
+| LSTM | 0,0001870 | 0,0002192 | 0,0002394485 | 9 |
+| CNN1D | 0,0003373 | 0,0003954 | 0,0002394485 | 28 |
+
+Bajo estos supuestos y esta calibración, diez pares quedan por debajo del R orientativo de MLP y CNN1D; el valor orientativo de LSTM no acredita un piloto prospectivo ni potencia exacta. La dispersión se estima con solo diez pares y tiene incertidumbre. Para pares entre redes se publican MDE0, pero no R orientativo porque no se definió su margen propio.
+
+Fuente: [design_sensitivity.csv](../_static/filipe_statistics_20261104/design_sensitivity.csv). No se dimensiona aquí demostrar ganancia >5 % sin una alternativa $q_{\rm alt}>0,05$, ni un modelo avanzado aún inexistente. Dimensionar aleatorizaciones de entrenamiento tampoco dimensiona la incertidumbre temporal o las fechas del test.
 
 ### 5.4.8. Ausencia de significación y equivalencia
 
@@ -371,80 +440,103 @@ TOST requiere una banda práctica predefinida y ambas pruebas unilaterales; con 
 
 ### 5.4.9. Test de Diebold–Mariano
 
-**Pendiente para las predicciones de esta CV.** El método se conserva como requisito de evaluación temporal, sin estadísticos o p-valores atribuidos a estos modelos.
+Se ejecutó Diebold–Mariano para las **seis parejas** de las tres redes relativas y persistencia, sobre las mismas 366 fechas. El estimando y la corrección se fijaron en el complemento exploratorio. Fuente: [temporal_dm.csv](../_static/filipe_statistics_20261104/temporal_dm.csv).
 
 #### 5.4.9.1. Comparación de precisión predictiva por horizonte
 
-Para h=1 y una política de agregación de semillas previamente fijada, podría compararse la serie de diferencias de pérdida cuadrática:
+Para h=1 se contrasta la media de diferencias de pérdida cuadrática por fecha:
 
 $$
 d_t=\frac1R\sum_{s=1}^{R}\left(e_{A,s,t}^2-e_{B,s,t}^2\right),\qquad H_0:\mathbb E[d_t]=0.
 $$
 
-Esta serie no es la pérdida de un ensemble ni concatena semilla×fecha como observaciones independientes. Tampoco contrasta directamente la media de RMSE por trayectoria: promediar raíces difiere de promediar pérdidas. Los cambios mensuales de modelo, la dependencia y posibles cambios de régimen deben entrar en la justificación. No se elegirá la semilla de menor error para contrastar.
+Persistencia aporta una trayectoria determinista; las redes aportan la media de pérdidas de las diez semillas. No es la pérdida de un ensemble ni la media de RMSE por trayectoria: promediar raíces difiere de promediar pérdidas. Tampoco se elige la semilla de menor error.
+
+El signo negativo favorece al primer método en pérdida cuadrática. Los cambios mensuales de parámetros, etiquetas solapadas y posibles cambios de régimen limitan las referencias estacionarias de la prueba; se conservan como evidencia exploratoria de este calendario.
 
 #### 5.4.9.2. Corrección Harvey–Leybourne–Newbold y pérdida coherente
 
-Antes de ejecutarlo se deberán registrar pérdida, estimación HAC de largo plazo, kernel, rezagos, hipótesis, familia de comparaciones y sensibilidades. Para $\widehat\Omega_d>0$:
+Se utilizó HAC de Bartlett con **rezago 14 principal** y sensibilidades 7/28, horizonte h=1 y corrección Harvey–Leybourne–Newbold. Para varianza de largo plazo positiva:
 
 $$
 DM=\frac{\sqrt T\,\bar d}{\sqrt{\widehat\Omega_d}},\qquad
 DM_{\rm HLN}=DM\sqrt{\frac{T+1-2h+h(h-1)/T}{T}}.
 $$
 
-Con h=1, el factor HLN es $\sqrt{(T-1)/T}$; h no se sustituye por n=7 o D=7. La corrección para muestras pequeñas no resuelve por sí sola dependencia, no estacionariedad o selección. Su referencia y los grados de libertad serán identificados como exactos o aproximados según corresponda. Ninguna especificación HAC está ejecutada aquí.
+Aquí T=366 y el factor HLN es $\sqrt{(T-1)/T}$; h no se sustituye por n=7 o D=7. Se usa referencia t de Student con 365 grados de libertad, aproximada, y Holm sobre las seis comparaciones principales:
+
+| Comparación | DM HLN, HAC14 | p sin ajustar | p Holm-6 |
+| --- | --- | --- | --- |
+| MLP − LSTM | -1,53375 | 0,12595787 | 0,37787361 |
+| MLP − CNN1D | -0,59704 | 0,55084908 | 1 |
+| MLP − Persistencia | 2,39216 | 0,017254737 | 0,069018947 |
+| LSTM − CNN1D | 0,24639 | 0,80551675 | 1 |
+| LSTM − Persistencia | 2,64512 | 0,0085190747 | 0,051114448 |
+| CNN1D − Persistencia | 2,55372 | 0,011063495 | 0,055317477 |
+
+**Ninguna pareja rechaza tras Holm-6 a α=0,05.** Aunque las tres comparaciones red−persistencia presentan p nominales inferiores a 0,05, sus valores ajustados son superiores. No se sustituye el ajuste por el resultado nominal ni se elige otra banda HAC para lograr rechazo.
+
+Las sensibilidades HAC7/28 se conservan descriptivamente en el CSV; no reabren la selección del análisis principal. La corrección HLN no resuelve por sí sola no estacionariedad, selección o todas las formas de dependencia.
 
 ### 5.4.10. Test BDS (Brock–Dechert–Scheinkman)
 
-**Pendiente.** BDS puede examinar desviaciones de i.i.d. en una serie residual, con dimensiones, radio, tamaño útil, política de semillas y referencia definidos antes del contraste. No se atribuyen estadísticos BDS a las predicciones actuales.
+Se evaluaron residuos $e_t=Y_t-\widehat Y_t$ de la **semilla designada 4101**, representación relativa, 366 días continuos, dimensiones 2/3 y radio **1,5 veces la DE muestral residual** de cada red. Los seis BDS integran, junto con nueve Ljung–Box, una familia de quince diagnósticos con Holm:
 
-Un eventual rechazo no identifica exclusivamente no linealidad aprovechable: dependencia lineal, heterocedasticidad, deriva, estimación de modelos y etiquetas móviles también afectan la interpretación. La multiplicidad no repara sus supuestos ni convierte un diagnóstico en una ganancia predictiva demostrada.
+| Red | BDS dimensión 2 | p Holm-15 | BDS dimensión 3 | p Holm-15 |
+| --- | --- | --- | --- | --- |
+| MLP | 15,87586 | 2,793724e-56 | 16,98187 | 4,474445e-64 |
+| LSTM | 13,48015 | 2,046800e-41 | 13,66246 | 3,402977e-42 |
+| CNN1D | 17,93968 | 4,045146e-71 | 17,95778 | 3,337250e-71 |
+
+Se rechazan las seis hipótesis de i.i.d. bajo la referencia aproximada utilizada. BDS **no identifica exclusivamente no linealidad aprovechable**: dependencia lineal, heterocedasticidad, deriva, etiquetas móviles y estimación mensual también afectan sus resultados. Los radios exactos, estadísticos y p sin ajustar están en [diagnostics.csv](../_static/filipe_statistics_20261104/diagnostics.csv). No se transforma ese rechazo en una ganancia futura cuantificada.
 
 ### 5.4.11. Test de Ljung–Box
 
-**Pendiente.** Ljung–Box evalúa ausencia conjunta de autocorrelación hasta rezagos definidos, por ejemplo mediante:
+Se ejecutó Ljung–Box sobre los mismos residuos de la semilla 4101, con rezagos **7, 14 y 28** y `model_df=0`. No se descuentan 593, 5.025 o 1.057 pesos como si fueran órdenes ARMA. Las referencias χ² son aproximadas para errores externos de redes reajustadas mensualmente.
 
-$$
-Q=T(T+2)\sum_{k=1}^{K}\frac{\widehat\rho_k^2}{T-k}.
-$$
+| Red | p Holm-15, rezago 7 | p Holm-15, rezago 14 | p Holm-15, rezago 28 |
+| --- | --- | --- | --- |
+| MLP | 4,242223e-92 | 1,153786e-89 | 2,008099e-101 |
+| LSTM | 6,532286e-71 | 1,724077e-66 | 3,641182e-81 |
+| CNN1D | 2,076805e-88 | 4,728694e-86 | 3,017740e-100 |
 
-Los rezagos, el tramo continuo, la agregación de semillas, los grados de libertad y la familia deberán justificarse. El descuento de grados de libertad no se igualará al número de pesos de una red como si fueran parámetros ARMA. Un análisis de residuos al cuadrado responde otra pregunta y se declarará aparte. No hay resultados Ljung–Box calculados para esta CV.
+Los nueve contrastes rechazan ausencia conjunta de autocorrelación hasta sus rezagos. Se conservan estadísticos Q, grados de libertad y p sin ajustar en el CSV. La evidencia no distingue por sí sola entre solapamiento de σ7, errores de especificación, cambios de régimen u otras fuentes. No se realizó aquí una prueba ARCH ni un contraste separado sobre residuos al cuadrado.
 
 ### 5.4.12. Interpretación de los residuos
 
-El diagnóstico descriptivo está disponible; la inferencia temporal formal sobre sus residuos sigue pendiente.
+La descripción residual y los quince diagnósticos formales están ejecutados. La fuerte dependencia remanente limita una lectura i.i.d. de los errores, mientras la diferencia entre incertidumbre por semillas y por fechas impide basar las conclusiones solo en los promedios.
 
 #### 5.4.12.1. Estructura residual y posible margen de mejora
 
-Se examinó la descomposición por trayectoria:
+Para la semilla designada, con signo residual **observado−predicho**:
 
-$$
-\mathrm{MSE}=\overline e^{\,2}+\operatorname{Var}_{\rm pobl}(e).
-$$
+| Red relativa | Media residual | DE residual | RMSE de esta semilla |
+| --- | --- | --- | --- |
+| MLP | 0,0010027 | 0,0064693 | 0,0065378 |
+| LSTM | -0,0006784 | 0,0065510 | 0,0065772 |
+| CNN1D | 0,0003229 | 0,0063742 | 0,0063736 |
 
-En este diagnóstico, $e_t=\widehat Y_t-Y_t$: sesgo negativo indica subestimación y positivo sobreestimación. Los siguientes promedios resumen las diez trayectorias relativas anuales; la correlación es descriptiva:
+Estas cifras corresponden a una sola inicialización, no a las medias anuales de diez semillas de §5.1. La descomposición por todas las trayectorias continúa disponible en [bias_decomposition.csv](../_static/dl_r2_cv_20261104/analysis/bias_decomposition.csv); allí el sesgo se define como predicho−observado, con signo opuesto al residuo usado en esta tabla.
 
-| Red relativa | Sesgo medio | DE de predicción | DE del objetivo | Correlación media |
-| --- | --- | --- | --- | --- |
-| MLP | -0,0004849 | 0,008404 | 0,009767 | 0,7900 |
-| LSTM | 0,0004575 | 0,008048 | 0,009767 | 0,7657 |
-| CNN1D | 0,0001687 | 0,008042 | 0,009767 | 0,7725 |
+![Autocorrelación residual, semilla 4101](../_static/filipe_statistics_20261104/figures/residual_acf_seed4101.png)
 
-Fuente: [bias_decomposition.csv](../_static/dl_r2_cv_20261104/analysis/bias_decomposition.csv). No son un contraste de autocorrelación o i.i.d. La figura utiliza la semilla designada 4101 y no una inicialización elegida por menor error:
+![Distribución de residuos, semilla 4101](../_static/filipe_statistics_20261104/figures/residual_distribution_seed4101.png)
 
-![Predicciones diarias de las dos representaciones CV, semilla 4101](../_static/dl_r2_cv_20261104/analysis/figures/predictions_designated_seed.png)
+ACF, Ljung–Box y BDS muestran estructura remanente, pero **no cuantifican una mejora futura alcanzable** ni prueban una causa arquitectónica. Los modelos avanzados deben demostrar su aprovechamiento con un diseño posterior y una evaluación separada.
 
-![Descomposición descriptiva del sesgo en las trayectorias CV anuales](../_static/dl_r2_cv_20261104/analysis/figures/bias_cv_full2024.png)
+![Curvas internas reales del último bloque mensual](../_static/filipe_statistics_20261104/figures/internal_epoch_curves_december_seed4101.png)
 
-La estructura residual podría reflejar etiquetas solapadas, deriva, heterocedasticidad o capacidad del modelo. No se cuantifica una mejora futura por observarla; una propuesta avanzada deberá demostrar su aprovechamiento con una evaluación separada.
+El ejemplo de parada corresponde a diciembre de 2024, fijado en el complemento, semilla 4101: mejores épocas **25/24/99** de MLP/LSTM/CNN1D, con **37/36/100** épocas registradas. CNN1D llega al máximo de 100 en ese corte; no se declara convergencia garantizada. Son curvas por época en subentrenamiento y validación interna, no curvas frente a tamaño muestral ni pérdidas del test. La inversión de escala permite comparar entrenamiento y validación dentro de cada ajuste.
 
 ### 5.4.13. Buenas Prácticas Estadísticas
 
-Las reglas siguientes mantienen separados resultados ejecutados, diagnósticos descriptivos y procedimientos aún pendientes.
+Se conservan el registro temporal del análisis, resultados completos, unidades de incertidumbre y los procedimientos que aún requieren decisiones futuras. Los cálculos complementarios usan las predicciones ya guardadas; no alteran arquitectura, pesos, cohortes o métricas base.
 
 #### 5.4.13.1. Nivel de significancia declarado antes de analizar resultados
 
-Se utiliza α=0,05 para la familia de tres contrastes relativa–absoluta, con ajuste Holm. El protocolo se registró antes de sus ajustes, pero la configuración y el desarrollo ya habían sido explorados; ese registro no se presenta como anterior a todo contacto con los datos.
+Se utiliza α=0,05. La familia global de doce hipótesis por semillas usa Holm; DM ajusta sus seis comparaciones principales y los diagnósticos sus quince hipótesis. Estas familias no se presentan como confirmaciones independientes ni como un único control simultáneo de toda la investigación.
+
+El complemento se registró antes de calcular sus estadísticos, **después** de la revisión descriptiva de desarrollo. Ese orden no se declara anterior a observar 2024 o a elegir las configuraciones. El análisis sigue siendo exploratorio.
 
 #### 5.4.13.2. P-valores numéricos, ajustados y sin ajustar
 
@@ -452,11 +544,13 @@ Los CSV publican p-valores numéricos ajustados y sin ajustar, estadísticos, gr
 
 #### 5.4.13.3. Intervalos de confianza y tamaños de efecto
 
-Se reportan IC t marginales y d_z pareados para las tres diferencias de RMSE. Los IC secundarios de ΔR² son descriptivos. No se calcula una banda simultánea por el hecho de ajustar p-valores ni un IC de equivalencia que no se haya definido.
+Se reportan IC t marginales y d_z de las diferencias por semillas, IC secundarios descriptivos de ΔR² e intervalos percentiles de bloques para diferencias de RMSE. Cada resultado identifica qué se remuestrea o varía. Holm en p-valores no convierte los IC marginales en simultáneos; no se fabrica una banda de equivalencia.
 
 #### 5.4.13.4. Verificación de supuestos
 
-Los índices, continuidad, cobertura, escaladores y métricas fueron verificados. Shapiro–Wilk de las diferencias no rechaza sus tres hipótesis a 0,05; eso no prueba normalidad ni independencia global. ACF, Ljung–Box y BDS de las nuevas series residuales siguen pendientes. No se selecciona una prueba o semilla para favorecer el resultado.
+Se verificaron índices, continuidad, cobertura, escaladores y métricas. Shapiro–Wilk se guarda para cada diferencia por semillas y no actúa como selector de pruebas. La ausencia de rechazo no demuestra normalidad; diez pares ofrecen poca resolución para diagnosticar distribuciones.
+
+Ljung–Box y BDS de la semilla 4101 detectan dependencia residual con Holm-15, y las ACF se publican. Sus referencias son aproximadas ante σ7 solapada y cambios mensuales. Los [gráficos Q–Q](../_static/filipe_statistics_20261104/figures/paired_seed_qq.png) son diagnósticos del diseño por semillas, no garantía de independencia temporal. Ninguna semilla, métrica o prueba se escoge por favorecer la conclusión.
 
 #### 5.4.13.5. Múltiples ejecuciones documentadas
 
@@ -466,42 +560,55 @@ Los 720 segmentos mensuales y los 1.440 ajustes no son 720 o 1.440 semillas inde
 
 #### 5.4.13.6. Métrica principal y comparaciones declaradas con antelación
 
-RMSE principal, σ7/ddof0, D7, h1, dos representaciones, diez semillas y tres contrastes emparejados constan en el protocolo. No hubo una nueva búsqueda anidada de hiperparámetros. La exposición del desarrollo se declara y las nuevas comparaciones requerirán su propia definición de familia, sin elegir ventanas o métricas por sus p-valores.
+RMSE es principal; σ7/ddof0, D7, h1, dos representaciones y diez semillas describen la ejecución CV. El complemento fijó antes de sus cálculos las nueve comparaciones adicionales, su integración global con los tres controles, HAC14 y sensibilidades, quince diagnósticos y bootstrap L14/7/28.
+
+Esas decisiones analíticas son posteriores al examen descriptivo de desarrollo y no constituyen una nueva búsqueda anidada. No se sustituye el año por un subperiodo favorable, no se cambia el margen del 5 % para conseguir un resultado ni se atribuye al complemento un preregistro anterior al entrenamiento.
 
 #### 5.4.13.7. Registro y trazabilidad de cada contraste
 
 | Registro | Contenido verificable |
 |---|---|
-| [folds.json](../_static/dl_r2_cv_20261104/folds.json) | Índices reales de la función de Filipe, adaptación mensual, purgas, fechas y hashes |
-| [runs.csv](../_static/dl_r2_cv_20261104/runs.csv) | Sesenta trayectorias, configuración, semilla, métricas, segmentos y costos |
-| [comparisons.csv](../_static/dl_r2_cv_20261104/analysis/comparisons.csv) | Diez pares por red, Δ RMSE, t(9), IC, d_z, Shapiro y Holm-3; IC descriptivo de ΔR² |
-| [fold_metrics.csv](../_static/dl_r2_cv_20261104/analysis/fold_metrics.csv) | 720 métricas mensuales, cohortes y cantidades por fold |
-| [bias_decomposition.csv](../_static/dl_r2_cv_20261104/analysis/bias_decomposition.csv) | Descomposición descriptiva por trayectoria anual |
-| [summary.json](../_static/dl_r2_cv_20261104/analysis/summary.json) | Fuentes, hashes, recuentos, métodos y alcance de desarrollo |
+| [folds.json](../_static/dl_r2_cv_20261104/folds.json) | Índices reales de Filipe, adaptación mensual, purgas y hashes |
+| [runs.csv](../_static/dl_r2_cv_20261104/runs.csv) | Sesenta trayectorias, semillas, configuraciones, métricas y costos |
+| [Protocolo complementario](../_static/filipe_statistics_20261104/protocol.json) | Hipótesis, familias, HAC, diagnósticos y remuestreo registrados antes del cálculo |
+| [global_seed_tests.csv](../_static/filipe_statistics_20261104/global_seed_tests.csv) | Doce hipótesis, IC, t, d_z, Shapiro, p sin ajustar y Holm global-12 |
+| [paired_tests.csv](../_static/filipe_statistics_20261104/paired_tests.csv) | Nueve contrastes de redes/persistencia/frontera y ajustes de componente |
+| [temporal_dm.csv](../_static/filipe_statistics_20261104/temporal_dm.csv) | Seis DM principales y doce sensibilidades HAC |
+| [diagnostics.csv](../_static/filipe_statistics_20261104/diagnostics.csv) | Quince Ljung–Box/BDS de la semilla 4101, estadísticos y p-valores |
+| [block_bootstrap.csv](../_static/filipe_statistics_20261104/block_bootstrap.csv) | Dieciocho intervalos de bloques, funcional, réplicas y semillas |
+| [design_sensitivity.csv](../_static/filipe_statistics_20261104/design_sensitivity.csv) | MDE0 y R orientativo, con calibración retrospectiva explícita |
+| [probability_superiority.csv](../_static/filipe_statistics_20261104/probability_superiority.csv) | Victorias, empates e IC condicionados a pares de semillas |
+| [summary.json](../_static/filipe_statistics_20261104/summary.json) | Fuentes, hashes, versiones, Friedman, curvas, conteos y límites |
 
-No hay tablas de resultados para DM, BDS, Ljung–Box, bootstrap temporal, Friedman, Wilcoxon, Nemenyi, TOST o ROPE de esta CV. DeLong, McNemar, segmentación y generación de lenguaje no aplican a la volatilidad continua de este proyecto.
+Wilcoxon, Nemenyi, TOST y ROPE no se ejecutaron; sus ausencias no se sustituyen por tablas inventadas. DeLong, McNemar, segmentación y generación de lenguaje no aplican al objetivo continuo de este proyecto.
 
 ### 5.4.14. Interpretación
 
-La interpretación separa diferencias dentro del mismo procedimiento CV, ranking descriptivo y preguntas que exigen inferencia temporal o evaluación externa.
+La interpretación combina la incertidumbre entre inicializaciones, el análisis de pérdidas por fechas y el remuestreo temporal, manteniendo sus estimandos y ajustes. El candidato neuronal sigue siendo descriptivo de desarrollo; no se confunde significación con confirmación externa.
 
 #### 5.4.14.1. Diferencias estadísticamente significativas
 
-La representación relativa reduce la media de RMSE de cada red frente a la absoluta con los tres p-valores Holm inferiores a 0,05. La inferencia condiciona el mismo calendario y diseño de semillas; no hay una prueba ejecutada de superioridad entre redes o contra persistencia.
+Con Holm global-12 se rechazan las tres diferencias de representación y las tres diferencias red−persistencia, estas últimas con signo de **mayor error de las redes**. No se rechaza ninguna comparación entre redes relativas ni ninguna prueba de ganancia anual superior al 5 %. Friedman tampoco rechaza.
+
+Los seis DM principales no rechazan después de Holm-6. Los quince diagnósticos residuales rechazan sus hipótesis bajo referencias aproximadas. Estos resultados no se reducen a un único «ganador significativo»: cada familia estudia una pregunta y una fuente de variación distinta.
 
 #### 5.4.14.2. Significancia estadística y relevancia práctica
 
-La significación de relativa–absoluta no demuestra una mejora de al menos 5 % sobre persistencia. El referente anual conserva menor error y la ventaja puntual semestral de CNN1D relativa es 3,095 %. No se afirma utilidad económica o equivalencia.
+Reducir error frente al control absoluto no demuestra mejorar persistencia ni utilidad económica. La ganancia media anual de cada red respecto a persistencia es negativa; las pruebas de superar la frontera 0,05 no rechazan.
+
+La ventaja puntual de CNN1D en julio–diciembre es 3,095 %, menor al margen del 5 %. Los contrastes principales se refieren al año completo y no se trasladan retrospectivamente a ese semestre. Tampoco una ausencia de diferencia demuestra equivalencia: su banda práctica sigue sin definirse.
 
 #### 5.4.14.3. Conclusiones respaldadas por diferencias, incertidumbre y efectos
 
-Se consideran diferencias, IC, tamaños de efecto, cobertura y variación por meses, sin basarse únicamente en promedios. Los d_z grandes entre inicializaciones no se extrapolan a variabilidad entre mercados. El resultado favorable de un subperiodo no sustituye el anual.
+La persistencia tiene menor error anual observado; la variación entre semillas distingue esa diferencia dentro del calendario, mientras DM/Holm-6 conserva incertidumbre temporal suficiente para no rechazar. Los IC de bloques muestran diferencias marginales condicionadas a modelos guardados, con otro funcional y sin ajuste simultáneo. Se reportan todas estas lecturas, sin escoger la más favorable.
+
+MLP mantiene la menor media neuronal, pero las parejas entre redes no se distinguen con Holm global-12 y los IC temporales entre redes incluyen cero. Los tamaños de efecto de semillas, frecuencias de bootstrap y diez recorridos no se extrapolan a mercados independientes.
 
 #### 5.4.14.4. Estado del análisis estadístico
 
-**Ejecutado:** métricas por trayectoria y mes, IC t por semillas, tres contrastes pareados relativa–absoluta con Holm, IC descriptivos de ΔR² y descomposición de sesgo.
+**Ejecutado:** métricas por trayectoria/mes, IC t, familia global de doce comparaciones por semillas, Friedman, DM/HAC/HLN y sensibilidades, quince diagnósticos, ACF, bootstrap temporal, probabilidad de superioridad descriptiva, sensibilidad MDE y curvas internas reales. El complemento no entrenó modelos nuevos ni abrió el test.
 
-**Pendiente:** inferencia temporal, comparaciones inferenciales entre arquitecturas o contra persistencia, dimensionamiento de potencia, equivalencia, margen avanzado, ajuste final con desarrollo y test. No se acredita potencia 0,80 con las diez semillas.
+**Pendiente:** piloto prospectivo y dimensionamiento definitivo, margen de equivalencia o de modelo avanzado, cierre del procedimiento, ajuste final con desarrollo y evaluación reservada. La sensibilidad retrospectiva no certifica potencia 0,80 ni resuelve la dependencia entre fechas.
 
 ## 5.5. Discusión Crítica
 
@@ -509,9 +616,9 @@ La discusión responde a las preguntas del entregable con evidencia de la CV efe
 
 ### 5.5.1. Desempeño y explicación de las diferencias
 
-MLP relativa tiene menor RMSE neuronal anual; CNN1D relativa lidera el semestre julio–diciembre. MLP opera sobre la historia aplanada, LSTM incorpora estado recurrente y CNN1D filtros temporales compartidos. Estos sesgos inductivos son descripciones de arquitectura y no una explicación causal demostrada del orden observado.
+MLP relativa tiene menor RMSE neuronal anual; CNN1D relativa lidera julio–diciembre. La comparación de tres redes no rechaza con Holm global-12 ni con Friedman, por lo que el orden por medias no se convierte en superioridad confirmada entre arquitecturas. MLP aplana la historia, LSTM incorpora estado recurrente y CNN1D comparte filtros temporales; estos sesgos son descripciones, sin un mecanismo causal de victoria demostrado.
 
-El contraste de representación muestra mejora relativa–absoluta en cada red bajo folds y semillas comunes. También cambia la ponderación del escalado, por lo que no identifica un mecanismo único. No se atribuye toda diferencia a profundidad o capacidad.
+La representación relativa mejora frente a la absoluta en cada red bajo los mismos folds y semillas, con el ajuste global. Cambian conjuntamente representación y ponderación del escalado. Las curvas del último bloque muestran que CNN1D llega al límite de épocas; ese caso limita una afirmación de convergencia, sin justificar aumentar épocas hasta obtener el resultado deseado.
 
 ### 5.5.2. Generalización y estabilidad
 
@@ -521,7 +628,9 @@ La estabilidad mensual es limitada: el R² medio entre semillas es negativo en *
 
 ### 5.5.3. Significación estadística y relevancia práctica
 
-La mejora de preprocesamiento está respaldada por diferencias de RMSE, IC y Holm-3 condicionados a las semillas. La relevancia frente a persistencia permanece sin demostración del margen del 5 %. Un menor promedio semestral no sustituye una comparación temporal registrada ni confirma el desempeño fuera de desarrollo.
+Los controles de representación rechazan con Holm global-12. En las redes relativas, persistencia conserva menor error anual y las diferencias por semillas la favorecen; ninguna pareja neuronal rechaza con el mismo ajuste. Las pruebas anuales de ganancia superior al 5 % no rechazan.
+
+DM/Holm-6 no establece diferencias temporales significativas al 0,05, y los IC de bootstrap son marginales condicionados a modelos guardados. La evidencia por semillas y por fechas se presenta completa y por separado. Ningún resultado confirma desempeño fuera de desarrollo o cambia el hecho de que el 3,095 % semestral de CNN1D es inferior al margen operativo.
 
 ### 5.5.4. Desempeño frente a costo y complejidad
 
@@ -541,18 +650,20 @@ Las diferencias publicadas en la literatura sirven como contexto cuando se decla
 
 | Amenaza | Evidencia y control | Límite |
 |---|---|---|
-| Interna | Folds de Filipe, filtros de disponibilidad, purga, escaladores de train y configuración por segmento | La exploración y elección de configuración usan desarrollo ya conocido; no hay selección anidada |
-| Externa | Año completo y subperiodo identificados, predicciones por fecha | Un activo, proveedor y periodo; test no evaluado |
-| De construcción | σ7/ddof0 y RMSE/R² definidos; persistencia observable | Proxy móvil con ruido y solapamiento; no es volatilidad latente observada sin error |
-| De conclusión estadística | IC marginales, pares de semillas y Holm-3 | Dependencia temporal, diez trayectorias y potencia no dimensionada; pruebas temporales pendientes |
+| Interna | Folds de Filipe, disponibilidad, purga, escaladores train y configuración por segmento | Desarrollo conocido y configuración elegida con él; sin selección anidada |
+| Externa | Año completo, semestre y fecha de cada predicción identificados | Un activo/proveedor/periodo; test no evaluado |
+| De construcción | σ7/ddof0 y métricas explícitas; persistencia observable | Proxy con ruido y solapamiento; información histórica de persistencia incluye un cierre más |
+| De conclusión estadística | Holm global-12, DM6, diagnósticos15, IC marginales y bloques | Referencias aproximadas; familias distintas; dependencia, no estacionariedad y diez semillas |
 
-Los bloques mensuales crecen y comparten historia de entrenamiento; no son independientes entre sí. La comparación de representaciones mantiene folds y semillas, pero cambia representación y ponderación del escalado. La información histórica de persistencia difiere en un cierre adicional.
+Los bloques mensuales crecen y comparten entrenamiento; no son independientes entre sí. La selección de configuraciones y la definición del complemento son posteriores a observar desarrollo. Registrar los cálculos evita cambiar el análisis para favorecer resultados, pero no restaura una evaluación desconocida. El bootstrap usa modelos guardados y la sensibilidad MDE estima dispersión a posteriori: ninguno sustituye un piloto prospectivo o una reserva externa.
 
 ### 5.5.8. Limitaciones del estudio
 
-El estudio comprende un activo y proveedor, objetivo móvil solapado, configuraciones fijas y diez semillas por combinación. Se ejecutan dos representaciones sin una nueva búsqueda anidada; 2024 estaba expuesto al EDA y a decisiones de configuración. Los meses con R² negativo persisten y las pruebas temporales no se han realizado.
+El estudio comprende un activo, proveedor, objetivo móvil, configuraciones fijas y diez semillas por combinación. Los meses con R² negativo persisten. Ljung–Box/BDS detectan dependencia residual; los supuestos de las referencias HAC, diagnósticos y bloques siguen siendo aproximados ante solapamiento y cambios mensuales.
 
-La referencia anual de menor error es persistencia. La ventaja puntual de CNN1D relativa en el semestre es inferior al 5 % y no confirma mejora financiera ni generalización. El respaldo bibliográfico aplicado, dimensionamiento, margen avanzado, ajuste final y test permanecen pendientes.
+Persistencia tiene menor error anual. La incertidumbre por semillas la distingue del error de las redes, mientras los seis DM ajustados no rechazan; esos alcances no se intercambian. La ventaja puntual semestral de CNN1D no alcanza el 5 % ni confirma utilidad financiera. Los intervalos publicados son marginales, las frecuencias de remuestreo no son posteriores y la sensibilidad MDE no prueba suficiencia del diseño.
+
+El respaldo aplicado, piloto prospectivo, margen avanzado/equivalencia, cierre final, ajuste con desarrollo y test permanecen pendientes. No se alteró el objetivo, la fórmula de R² o las fechas para mejorar las métricas.
 
 ### 5.5.9. Recomendaciones futuras
 
@@ -560,19 +671,20 @@ Las siguientes acciones derivan de fallos y límites observados; no se promete o
 
 #### 5.5.9.1. Recomendaciones derivadas de las limitaciones
 
-Cerrar representación, configuración, reglas de actualización y márgenes antes del ajuste final y del test. Completar el respaldo aplicado de MLP/CNN1D simple y un piloto de variabilidad coherente con el procedimiento creciente.
+Cerrar representación, configuración, actualización y márgenes antes del ajuste final y del test. Completar el respaldo aplicado de MLP/CNN1D y un piloto prospectivo de variabilidad coherente con el procedimiento creciente; utilizar la calibración de dispersión publicada solo como orientación inicial.
 
-Examinar los meses de R² negativo, la estructura residual y diferencias de información con persistencia. Registrar inferencia temporal apropiada y comparar propuestas con presupuesto justo. Más semillas no sustituyen periodos externos independientes ni permiten usar el test para diseñar sin reservar otra evaluación confirmatoria.
+Investigar meses de R² negativo y estructura residual con hipótesis registradas y comparar información disponible frente a persistencia. La dependencia detectada no indica automáticamente añadir rezagos de volatilidad, cambiar de tipo de problema o una ganancia futura determinada. Más semillas no sustituyen periodos externos; el test no se empleará para diseñar otra propuesta sin una confirmación independiente posterior.
 
 #### 5.5.9.2. Matriz de conclusiones y evidencia pendiente
 
 | Pregunta | Evidencia disponible | Conclusión o pendiente |
 |---|---|---|
-| ¿Qué red funciona mejor? | RMSE anual de diez trayectorias por representación | MLP relativa tiene menor error neuronal anual; el ranking semestral cambia |
-| ¿Qué R² se obtuvo? | Métricas anuales y de julio–diciembre de la misma CV | Medias relativas positivas en las tres redes, con meses negativos restantes |
-| ¿Se supera persistencia? | Referencia determinista en las mismas fechas | Persistencia es mejor anual; CNN1D mejora 3,095 % puntual en el semestre, por debajo del 5 % |
-| ¿Qué diferencia está contrastada? | Tres pares de representaciones con Holm-3 | Mejora relativa–absoluta dentro de cada red; no hay pruebas temporales ni entre arquitecturas |
-| ¿Compensa la complejidad? | Parámetros y costos de la CV | MLP relativa combina menor error anual y menos pesos; no se acredita utilidad de despliegue |
-| ¿Cuál es el baseline y margen avanzado? | Candidato MLP relativo y protocolo de desarrollo | Cierre del procedimiento, margen aplicado y dimensionamiento pendientes |
-| ¿Se puede extrapolar al test? | Test reservado sin evaluación | No; falta ajuste final y evaluación bajo protocolo cerrado |
-| ¿Qué falta de la revisión? | Corpus aplicado con lagunas MLP/CNN1D simple | La implementación propia no sustituye sus referencias bibliográficas |
+| ¿Qué red funciona mejor? | Media anual, Holm global-12, Friedman y bloques | MLP lidera por media; no se confirma diferencia entre las tres redes |
+| ¿Qué R² se obtuvo? | Año y julio–diciembre de la misma CV | Medias relativas positivas; persisten meses negativos |
+| ¿Se supera persistencia? | Métricas, pruebas por semillas, DM y bloques | Menor error anual de persistencia; no se demuestra ganancia >5 % ni diferencia temporal con DM ajustado |
+| ¿Qué estructura queda? | ACF, nueve Ljung–Box y seis BDS, semilla 4101 | Dependencia residual; no prueba exclusiva de no linealidad aprovechable |
+| ¿Compensa la complejidad? | Parámetros, costos y curvas internas | MLP combina menor media neuronal y menos pesos; no se acredita utilidad de despliegue |
+| ¿Cuál es el baseline y margen avanzado? | Candidato MLP relativo y sensibilidad MDE de métodos ejecutados | Cierre y margen avanzado pendientes; no se transfiere una MDE a un modelo inexistente |
+| ¿Cuántas repeticiones? | Diez pares y calibración de dispersión | R orientativo 19/9/28 frente a cero para MLP/LSTM/CNN; no es piloto previo ni potencia certificada |
+| ¿Se puede extrapolar al test? | Reserva sin evaluación | Falta ajuste final y evaluación con protocolo cerrado |
+| ¿Qué falta de la revisión? | Corpus aplicado y fichas técnicas propias | Las fichas y los resultados no sustituyen las referencias aplicadas faltantes |

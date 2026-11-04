@@ -815,7 +815,7 @@ El primer script genera perfiles de objetivos, calidad, máscaras y reconstrucci
 | Folds de validación 2024 | Preparación de 366 orígenes por configuración; CV D7 con doce bloques mensuales de Filipe utilizados para entrenar y predecir las 366 fechas |
 | Reserva de test bruto | Manifiesto de 20 ZIP y su hash conservados; sin apertura de test en esta revisión |
 | Test supervisado congelado | Pendiente; la reserva bruta no acredita elegibilidad de muestras ni evaluación |
-| Tres modelos DL, predicciones y MAPE/MAE/RMSE/MSE/MASE | Ejecutados mediante CV de Filipe y documentados en los capítulos 4–5; BDS de los residuos CV pendiente, referencias Ridge como EDA y test sin evaluar |
+| Tres modelos DL, predicciones y MAPE/MAE/RMSE/MSE/MASE | Ejecutados mediante CV de Filipe y documentados en los capítulos 4–5; BDS/Ljung–Box de los residuos CV ejecutados en el suplemento; referencias Ridge como EDA y test sin evaluar |
 
 Las gráficas y las cuatro referencias lineales son evidencia de EDA de desarrollo. El estado de la revisión bibliográfica se documenta por separado en el capítulo 3. La CV de las tres redes está ejecutada y registrada por separado; la congelación supervisada, el protocolo definitivo y la evaluación de test siguen pendientes. El diagnóstico de residuos lineales no sustituye esos productos.
 
@@ -908,7 +908,7 @@ En los retornos de un minuto de entrenamiento, la asimetría es **-0.674028** y 
 
 Las entradas confirmadas son 7/14/21/28 días de historia; el horizonte principal es un día. Se exploraron cuatro definiciones de volatilidad histórica, sin confundirlas con la longitud de entrada. Cualquier horizonte adicional al principal debe registrarse antes del entrenamiento y de la evaluación.
 
-Los folds se materializaron con `timeseries-cv` 0.1.5 y controles de fechas, observabilidad y continuidad. Sus índices se consumen para entrenar las redes en doce comienzos mensuales de 2024 y producir pronósticos diarios h=1. La función no garantiza por sí sola ausencia de fuga: los controles de disponibilidad y el embargo de §2.1.4 se aplican antes de admitir muestras. BDS y los diagnósticos residuales específicos de las nuevas predicciones CV permanecen pendientes; el análisis de autocorrelación de las referencias lineales del EDA conserva su alcance propio, sin acreditar evaluación de test.
+Los folds se materializaron con `timeseries-cv` 0.1.5 y controles de fechas, observabilidad y continuidad. Sus índices se consumen para entrenar las redes en doce comienzos mensuales de 2024 y producir pronósticos diarios h=1. La función no garantiza por sí sola ausencia de fuga: los controles de disponibilidad y el embargo de §2.1.4 se aplican antes de admitir muestras. BDS, Ljung–Box y ACF de los residuos CV se ejecutaron para la semilla designada 4101 en las 366 fechas de 2024, con Holm para quince hipótesis; BDS contrasta i.i.d. y no prueba exclusivamente no linealidad. El [suplemento](../_static/filipe_statistics_20261104/diagnostics.csv) mantiene el alcance exploratorio; el análisis de autocorrelación de las referencias lineales del EDA conserva su alcance propio, sin acreditar evaluación de test.
 
 - **Decisión de preprocesamiento:** fijar las configuraciones de objetivos y orígenes, producir manifiestos de muestras y ajustar transformaciones solo con pasado.
 - **Impacto en la arquitectura:** entrada diaria con dimensión explícita; salida principal escalar no negativa; cualquier salida adicional debe registrarse.

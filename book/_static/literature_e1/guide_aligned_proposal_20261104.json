@@ -20,17 +20,20 @@
         "learning_rate": 0.001,
         "parameters": 593
       },
-      "remaining": "Recover applied comparator references and bibliographic source profile; the own simple architecture is implemented and executed in development.",
+      "remaining": "Recover independent applied comparator references; the project implementation and its technical profile are documented in section3.3.",
       "current_development_configuration": {
-        "model": "MLP",
-        "history_days": 7,
-        "config_id": "w16_lr1000",
         "width": 16,
         "learning_rate": 0.001,
-        "selection_rmse": 0.010523827191620113,
-        "selection_rmse_sd": 0.0026393855608665834,
-        "n_seeds": 2,
-        "parameters": 593
+        "parameters": 593,
+        "model": "MLP",
+        "history_days": 7,
+        "n_seeds": 10,
+        "monthly_cv_folds": 12,
+        "primary_preprocessing": "relative_window",
+        "cv_rmse_mean": 0.0060490737770798,
+        "cv_rmse_sd": 0.000277962915256,
+        "cv_r2_mean": 0.61566952664163,
+        "cv_r2_sd": 0.0355439418963484
       },
       "configuration_scope": "Implemented project CV, not architecture values extracted from a paper"
     },
@@ -46,17 +49,20 @@
         "learning_rate": 0.003,
         "parameters": 5025
       },
-      "remaining": "Complete source-to-project justification; the own unidirectional covariate-input configuration is implemented and executed in development.",
+      "remaining": "Applied antecedents documented; source-to-project adaptation is explicit in section3.3 and is not an exact source replication.",
       "current_development_configuration": {
-        "model": "LSTM",
-        "history_days": 7,
-        "config_id": "w32_lr3000",
         "width": 32,
         "learning_rate": 0.003,
-        "selection_rmse": 0.010775132423729867,
-        "selection_rmse_sd": 0.00014038890012960518,
-        "n_seeds": 2,
-        "parameters": 5025
+        "parameters": 5025,
+        "model": "LSTM",
+        "history_days": 7,
+        "n_seeds": 10,
+        "monthly_cv_folds": 12,
+        "primary_preprocessing": "relative_window",
+        "cv_rmse_mean": 0.0063354143438387,
+        "cv_rmse_sd": 0.0001870098170453,
+        "cv_r2_mean": 0.5788924737011492,
+        "cv_r2_sd": 0.0248069033766924
       },
       "configuration_scope": "Implemented project CV, not architecture values extracted from a paper"
     },
@@ -71,17 +77,20 @@
         "learning_rate": 0.001,
         "parameters": 1057
       },
-      "remaining": "Recover independent shallow CNN1D comparator evidence; the implemented two-convolution network is not a replica of the wide six-level S1 TCN.",
+      "remaining": "Recover independent applied comparator references; the project implementation and its technical profile are documented in section3.3.",
       "current_development_configuration": {
-        "model": "CNN1D",
-        "history_days": 7,
-        "config_id": "w16_lr1000",
         "width": 16,
         "learning_rate": 0.001,
-        "selection_rmse": 0.0134807764134899,
-        "selection_rmse_sd": 0.0007925618562833807,
-        "n_seeds": 2,
-        "parameters": 1057
+        "parameters": 1057,
+        "model": "CNN1D",
+        "history_days": 7,
+        "n_seeds": 10,
+        "monthly_cv_folds": 12,
+        "primary_preprocessing": "relative_window",
+        "cv_rmse_mean": 0.0062295987153695,
+        "cv_rmse_sd": 0.000337291502304,
+        "cv_r2_mean": 0.5920875331154134,
+        "cv_r2_sd": 0.0426870992080376
       },
       "configuration_scope": "Implemented project CV, not architecture values extracted from a paper"
     }
@@ -105,9 +114,8 @@
     "independent_nonlinear_MLP": 0,
     "simple_independent_CNN1D": 0
   },
-  "initial_proposal_snapshot_note": "Original zero execution/file counts and null architecture_configuration below describe the documentary proposal operation, not the current project execution state. The current_execution object supersedes those counts for the development experiment.",
-  "formal_selected_families_meaning": "Empty refers to closure of the guide literature-extraction requirement; the experimentally selected development trio is recorded in current_execution.",
-  "experimental_protocol_frozen_meaning": "Original proposal flag; the subsequent development plan is frozen in current_execution.protocol_final, while the final held-out test protocol is not frozen.",
+  "initial_proposal_snapshot_note": "La evidencia curricular y bibliográfica se distingue de la implementación actual en current_project_execution y de las configuraciones documentadas en las fichas propias.",
+  "formal_selected_families_meaning": "Empty refers to closure of the guide literature-extraction requirement; the experimentally selected development trio is recorded in current_project_execution.",
   "current_project_execution": {
     "method": "timeseries-cv monthlyforwardCV",
     "path": "results/dl_r2_cv_20261104",
@@ -122,5 +130,17 @@
     "applied_literature_counts_unchanged": true,
     "final_test_evaluated": false
   },
-  "final_test_protocol_frozen": false
+  "final_test_protocol_frozen": false,
+  "limitations": [],
+  "project_technical_profiles": {
+    "section": "3.3",
+    "families": [
+      "MLP",
+      "LSTM",
+      "CNN1D"
+    ],
+    "numbered_fields": 27,
+    "source_profiles_archive": "references/literature_e1/source_profiles_archive_20261104.md"
+  },
+  "final_test_protocol_scope": "El procedimiento final de test no está cerrado. La CV ejecutada y su complemento exploratorio tienen registros separados."
 }

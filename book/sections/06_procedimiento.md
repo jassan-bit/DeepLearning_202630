@@ -55,7 +55,7 @@ La historia observable anterior a validación o test puede formar parte de sus e
 
 ### 6.1.2. Ventanas y preprocesamiento causal
 
-La adquisición es de un minuto y el modelado es **diario UTC**. La entrada conserva cinco variables OHLCV de $D=7,14,21,28$ días. El objetivo principal es la desviación poblacional de **$n=7$ retornos diarios**, pronosticada un día adelante. Las volatilidades de 14/21/28 retornos constituyen sensibilidad del objetivo; sus RMSE no se ordenan para elegir una supuesta mejor definición.
+La adquisición es de un minuto y el modelado es **diario UTC**. La CV ejecutada utiliza cinco variables OHLCV con **D=7 días**. Las historias D=14/21/28 aparecen en el EDA y no se presentan como comparaciones de redes ya realizadas. El objetivo principal es la desviación poblacional de **$n=7$ retornos diarios**, pronosticada un día adelante. Las volatilidades de 14/21/28 retornos constituyen sensibilidad del objetivo; sus RMSE no se ordenan para elegir una supuesta mejor definición.
 
 La ruta de regresión temporal requiere estudiar frecuencia, desfases y disponibilidad de covariables, su relación con el objetivo, cambios de régimen y autocorrelación de los errores de una referencia. Los diagnósticos de ACF/PACF y estacionariedad ya presentes en el EDA son información temporal complementaria; no constituyen por sí solos una selección de ventana o un resultado de modelos. La correspondencia de los requisitos específicos y la evidencia debe mantenerse explícita en el capítulo 2.
 
@@ -79,7 +79,7 @@ La guía propone para regresión temporal MLP sobre covariables rezagadas, LSTM 
 
 El trío implementado es **MLP sobre covariables rezagadas, LSTM sobre secuencias de covariables y CNN1D poco profunda**. GRU es alternativa para el puesto recurrente. El [registro de propuesta](../_static/literature_e1/guide_aligned_proposal_20261104.json) distingue estas familias curriculares de su respaldo aplicado. El [método de CV](../_static/dl_r2_cv_20261104/method.json) fija D=7 común, MLP de ancho 16, LSTM de ancho 32 y CNN1D de ancho 16, con 593, 5.025 y 1.057 parámetros respectivamente.
 
-Los perfiles LSTM–TCN–encoder de la [sección 3](03_estado_arte.md) son fuentes documentales recuperadas, no el trío propuesto. La TCN ganadora de S1 es ancha y de seis niveles; no acredita una CNN1D simple. El encoder queda fuera de la propuesta de tres básicos. Los conteos de los cinco textos se conservan sin inventar apoyo para MLP/CNN1D simple. Una red lineal o una cabeza densa interna tampoco sustituyen una MLP no lineal independiente.
+Las fichas de la [sección 3](03_estado_arte.md) documentan las implementaciones propias **MLP, LSTM y CNN1D**, con referencias, ecuaciones, flujo, datos, resultados y complejidad. Los perfiles de TCN y encoder se conservan como antecedentes en el [archivo documental de fuentes](https://github.com/jassan-bit/DeepLearning_202630/blob/main/references/literature_e1/source_profiles_archive_20261104.md). No acreditan una CNN1D simple ni completan el respaldo aplicado de MLP. Una red lineal o una cabeza densa interna tampoco sustituyen una MLP no lineal independiente; los conteos de los cinco textos permanecen separados de la evidencia propia.
 
 | Orientación de la guía 6.4 | Evidencia disponible | Decisión metodológica |
 |---|---|---|
@@ -108,7 +108,7 @@ Se reportarán RMSE, MAE, MSE, R², MAPE y MASE sobre predicciones agrupadas por
 
 Para MASE, la máscara común $\mathcal I_M$ contiene orígenes con escala train definida y positiva; se promedian sus errores escalados con $N_M=|\mathcal I_M|$ y se informa cobertura $N_M/N$. La máscara proviene del entrenamiento, no del error observado. Si cambia la escala por origen, no se divide una MAE global por una escala elegida después. R² se calcula sobre varios resultados con denominador admisible; por origen unitario es indefinido. Las definiciones completas están en §4.4.
 
-El margen aceptado es **5 % de reducción relativa de RMSE frente a persistencia**, con el mismo objetivo y fechas. Es un criterio operativo, no utilidad financiera. Detectar frente a cero un efecto de ese tamaño y demostrar una ganancia superior al margen son preguntas distintas. La CV utiliza diez semillas como presupuesto exploratorio, sin un piloto propio que acredite potencia 0,80; el dimensionamiento específico permanece pendiente.
+El margen aceptado es **5 % de reducción relativa de RMSE frente a persistencia**, con el mismo objetivo y fechas. Es un criterio operativo, no utilidad financiera. Detectar frente a cero un efecto de ese tamaño y demostrar una ganancia superior al margen son preguntas distintas. La CV utiliza diez semillas como presupuesto exploratorio. El complemento cuantifica sensibilidad del diseño con su dispersión observada, sin convertirla en un piloto previo ni acreditar potencia 0,80. El dimensionamiento definitivo requiere un procedimiento y una alternativa completamente definidos.
 
 La **referencia de contexto de la ruta 6.4 es una regresión lineal regularizada con las mismas covariables rezagadas**. El diagnóstico autorizado ajustó cuatro Ridge con intercepto libre, penalización fija $\alpha=1$ y $5D$ entradas OHLCV estandarizadas exclusivamente con la media y desviación poblacional de su ajuste permitido de 2023. El objetivo es $n=7$, $h=1$, sin transformar su escala. Se minimiza $\sum_i(y_i-b-z_i^\top\beta)^2+\alpha\lVert\beta\rVert_2^2$, sin dividir por el tamaño muestral y sin penalizar el intercepto; la solución determinista se obtuvo con SciPy. Se conservaron las predicciones sin truncarlas y no hubo predicciones negativas.
 
@@ -122,25 +122,27 @@ Con la representación relativa, **MLP presenta el menor RMSE anual medio entre 
 
 ### 6.1.6. Inferencia y diagnóstico: pregunta, unidad y estado
 
-La inferencia ejecutada compara las representaciones relativa y absoluta dentro de cada red con diez semillas emparejadas sobre el mismo calendario de CV. Se calculan IC t marginales del 95 %, diferencias medias, tamaños de efecto y tres contrastes de RMSE con Holm. Los [contrastes](../_static/dl_r2_cv_20261104/analysis/comparisons.csv) condicionan a los datos y folds observados; no confirman generalización en test ni superioridad temporal entre modelos.
+El [complemento estadístico](../_static/filipe_statistics_20261104/summary.json) se calculó sobre las predicciones guardadas de la CV, sin nuevos ajustes ni acceso a test. Su [enmienda de análisis](../_static/filipe_statistics_20261104/protocol.json) se registró **después de examinar los resultados descriptivos de 2024 y antes de estos cálculos**: conserva alcance exploratorio, sin atribuirle registro previo a toda observación.
 
-| Herramienta | Pregunta, unidad y condición de aplicación |
+La familia global de **doce contrastes por semillas** reúne tres pares entre redes relativas, tres comparaciones de redes frente a persistencia, tres pruebas unilaterales de mejora relativa superior al 5 % y tres controles relativa–absoluta. Se reportan diferencia media, IC t marginal, tamaño de efecto, p sin ajustar y **Holm-12** en [global_seed_tests.csv](../_static/filipe_statistics_20261104/global_seed_tests.csv). Las familias de nueve contrastes del complemento y tres controles se conservan como trazabilidad; no son pruebas independientes de corroboración.
+
+| Herramienta ejecutada | Unidad, especificación y alcance |
 |---|---|
-| Diebold–Mariano y HLN | Diferencia de pérdida cuadrática por las mismas fechas y horizonte; política de semillas, varianza de largo plazo y calibración registradas. No contrasta automáticamente la media de RMSE entre semillas ni superar el 5 %. |
-| Ljung–Box | Autocorrelación de residuos fuera de entrenamiento, por modelo/configuración/semilla y tramo válido; rezagos y `model_df` justificados, sin restar todos los pesos neuronales. |
-| t pareada / Wilcoxon | Diferencias de métricas por ejecuciones emparejadas, con alcance condicionado al calendario. La t se refiere a una media; Wilcoxon requiere sus propias condiciones y no es un reemplazo automático del mismo estimando. |
-| Friedman / post-hoc | Comparación de tres modelos en bloques completos defendibles, con tratamiento de empates, dependencia, multiplicidad y potencia. Configuraciones n/D no crean réplicas intercambiables. |
-| BDS, complemento de §5.4 de la guía | Hipótesis i.i.d. en residuos del horizonte evaluado; dimensiones, radios, escala y tamaño útil registrados. Un rechazo no identifica exclusivamente no linealidad aprovechable. |
+| t pareada y Holm-12 | Diez pares de semillas por contraste, condicionados a fechas y configuración. La comparación de ganancia superior al 5 % responde una hipótesis distinta de diferencia frente a cero. |
+| Friedman exploratorio | Tres redes relativas en diez bloques-semilla; referencia χ² aproximada. Resultado χ²=4,2 y p=0,122456; no se usó como puerta para los contrastes pareados registrados ni se ejecutó Nemenyi. |
+| Diebold–Mariano y HLN | Pérdida cuadrática media de las diez semillas en cada fecha; seis pares entre redes y persistencia. Bartlett HAC14 principal, sensibilidad 7/28 y HLN con h=1; Holm-6 principal. |
+| Ljung–Box | Residuos de la semilla designada 4101, 366 fechas continuas, rezagos 7/14/28 y `model_df=0`, sin restar los pesos de una red como parámetros ARMA. |
+| BDS | Residuos de la misma semilla, dimensiones 2/3 y radio 1,5 veces su desviación muestral. Holm sobre los quince diagnósticos conjuntos. Contrasta i.i.d., no no linealidad aprovechable exclusivamente. |
+| Bootstrap temporal | Dos mil réplicas de fechas emparejadas en bloques circulares; longitud principal 14 y sensibilidades 7/28. Recalcula la RMSE por semilla y luego su media, sin remuestrear semillas ni reentrenar. |
+| Superioridad y sensibilidad | Fracción de semillas con menor RMSE y su IC binomial condicionado; MDE frente a cero y R orientativo derivados retrospectivamente de la dispersión. No certifican generalización o potencia. |
 
-Los orígenes son las observaciones del problema predictivo; la **unidad de inferencia** puede ser la corrida por semilla, una diferencia de pérdidas por fecha o un bloque temporal, según la pregunta. No se mezclan esas unidades ni se concatenan semillas o huecos como una serie más larga. Las semillas describen variación del entrenamiento condicionada a los mismos datos; no son nuevos mercados.
+Los [contrastes DM](../_static/filipe_statistics_20261104/temporal_dm.csv), [diagnósticos](../_static/filipe_statistics_20261104/diagnostics.csv), [intervalos temporales](../_static/filipe_statistics_20261104/block_bootstrap.csv) y [sensibilidad](../_static/filipe_statistics_20261104/design_sensitivity.csv) responden preguntas diferentes. Las σ7 consecutivas comparten seis retornos y los modelos cambian por mes. HAC, HLN y los diagnósticos tienen referencias aproximadas ante esa dependencia y posibles cambios de régimen; el bootstrap requiere una representación defendible de dependencia y estabilidad local.
 
-Las σ7 consecutivas comparten seis retornos. Ni h=1 obliga a HAC de rezago cero ni ese solapamiento fija un máximo universal de seis; la regla y sensibilidad se justifican conforme a §5.4.9. HLN utiliza h real y no convierte la aproximación en exacta ante cualquier deriva, dependencia o política de actualización.
+Ninguna comparación DM principal rechaza al 5 % tras Holm-6, mientras los contrastes condicionales entre semillas sí distinguen las tres redes de persistencia en dirección de mayor error. Los IC bootstrap marginales de esas diferencias son positivos. DM compara medias de pérdidas cuadradas y el bootstrap compara medias de RMSE por semilla; además difieren sus referencias y ajustes. Esta combinación se comunica con cada estimando, sin elegir el procedimiento que produzca la conclusión preferida ni interpretar falta de rechazo como equivalencia. Los IC marginales no son simultáneos por ajustar p-valores.
 
-Se declara α nominal 0,05, familia de tres comparaciones relativa–absoluta, dirección y estimando de diferencia media de RMSE por trayectoria. Los IC son marginales; Holm ajusta p-values y no los transforma en intervalos simultáneos. Potencia, MDE y tamaño de muestra requieren planificación específica de esta CV. El margen del 5 % corresponde exclusivamente a persistencia, sin establecer equivalencia o margen avanzado.
+Los quince diagnósticos de residuos rechazan sus hipótesis bajo las referencias usadas. La estructura residual puede proceder del solapamiento del objetivo, la actualización mensual, deriva o capacidad limitada; no cuantifica automáticamente una mejora futura. Las [curvas de parada interna de diciembre, semilla 4101](../_static/filipe_statistics_20261104/figures/internal_epoch_curves_december_seed4101.png) provienen de registros reales, no son curvas de test ni de tamaño de muestra.
 
-En el bloque C ya se calcularon 112 valores ACF y 12 diagnósticos Ljung–Box sobre las cuatro Ridge, con Holm en la familia completa. Bajo la referencia asintótica utilizada, los 12 rechazan a α=0,05. Son evidencia exploratoria de dependencia en una referencia limitada, no contrastes del benchmark DL ni prueba de causalidad, no linealidad exclusiva o mejora avanzada. Los diagnósticos de retornos tampoco sustituyen residuos predictivos.
-
-BDS procede del apartado 5.4 común a series de tiempo/regresión temporal y del material específico; no se atribuye a la lista textual de 6.4. Su aplicación a los residuos de las redes de CV, junto con Ljung–Box y DM, permanece pendiente. Deberán fijarse semilla o política de pérdidas, tramos, rezagos, dimensiones, radios, calibración y multiplicidad. Un bootstrap temporal también requiere declarar sus bloques y alcance; no ha sido ejecutado sobre estas predicciones. Los tres contrastes relativa–absoluta por semillas no sustituyen esos diagnósticos ni acreditan independencia temporal.
+El EDA conserva por separado los 112 valores ACF y doce Ljung–Box de las cuatro Ridge, con Holm en su propia familia. Sus rechazos no se mezclan con los diagnósticos de redes ni prueban causalidad. Ni las fechas, ni los doce folds, ni las semillas crean mercados independientes. Los márgenes de equivalencia y de una propuesta avanzada continúan sin definirse; no se fabrican TOST o ROPE.
 
 ## 6.2. Correspondencia entre procedimiento y evidencia
 
@@ -157,9 +159,9 @@ Esta matriz distingue **reglas fijadas**, **evidencia ejecutada** y **productos 
 | Pérdida y salida | MSE escalada, Softplus e inversión para métricas | Conservar la definición del objetivo. |
 | Métricas | 366 fechas de CV y desglose julio–diciembre; MASE con escala mensual train | No promediar R² unitarios ni mezclar periodos. |
 | Referencia regularizada de EDA | Cuatro Ridge, α=1 y 1.464 predicciones | Diagnóstico de EDA; comparación bajo protocolo DL no ejecutada. |
-| Dependencia residual | Doce Ljung–Box/Holm de las referencias Ridge | Diagnósticos específicos de los residuos CV de redes pendientes. |
-| Inferencia | Diez semillas emparejadas y t/Holm3 para relativa–absoluta | Sin DM, BDS, Ljung–Box o bootstrap temporal sobre la CV. |
-| Margen práctico | 5 % frente a persistencia | Diez semillas sin piloto propio ni potencia 0,80 acreditada; márgenes DL/avanzado/equivalencia abiertos. |
+| Dependencia residual | Quince diagnósticos de redes: Ljung–Box/BDS con Holm-15, semilla 4101; ACF y curvas internas reales | Referencias aproximadas; un rechazo i.i.d. no demuestra no linealidad exclusivamente aprovechable. |
+| Inferencia | Doce contrastes por semillas con Holm-12, Friedman, seis DM principales y bootstrap temporal pareado | Desarrollo expuesto, estimandos distintos e IC marginales; sin confirmación reservada. |
+| Margen práctico | 5 % frente a persistencia; sensibilidad retrospectiva MDE/R calculada | No hay piloto previo o potencia 0,80 acreditada; márgenes DL/avanzado/equivalencia abiertos. |
 | Baseline | MLP relativa tiene menor RMSE anual neuronal; persistencia tiene menor error global | Cierre del pipeline definitivo y evaluación reservada pendientes. |
 | Documentos | [Protocolo](../_static/dl_r2_cv_20261104/method.json), [folds](../_static/dl_r2_cv_20261104/folds.json), [corridas](../_static/dl_r2_cv_20261104/runs.csv), [ejecución](../_static/dl_r2_cv_20261104/execution_summary.json) | No acreditan por sí solos cierre total de la guía. |
 
@@ -172,14 +174,14 @@ La validación forward chaining se ejecutó el 04/11/2026 con n7/h1, D7, OHLCV, 
 | Diseño | Tres redes, CPU determinista, escalado y cortes registrados | Configuraciones elegidas con desarrollo; respaldo aplicado aún parcial. |
 | Índices de Filipe | Función real 7/1/1, doce bloques mensuales y embargo | Utilizados efectivamente en los ajustes. |
 | Entrenamiento y validación | Dos representaciones, diez semillas por red y doce meses | 60 trayectorias, 720 segmentos modelo–mes y 1.440 ajustes; 21.960 predicciones. |
-| Comparación | Métricas anuales, desglose semestral y tres contrastes emparejados de representaciones | Desarrollo exploratorio, sin nueva selección anidada. |
-| Piloto y dimensionamiento | Requieren el mismo procedimiento CV que se evaluará | Pendientes; diez semillas no acreditan potencia 0,80. |
-| Diagnósticos temporales de redes | Métodos de §5.4 con unidades y supuestos definidos | DM, BDS, Ljung–Box y bootstrap de CV pendientes. |
+| Comparación | Métricas anuales/semestrales y familia global de doce contrastes por semillas | Desarrollo exploratorio, sin selección anidada ni superioridad neuronal anual confirmada. |
+| Piloto y dimensionamiento | Calibración retrospectiva de dispersión: MDE y R orientativo disponibles | Piloto previo y dimensionamiento definitivo pendientes; no se certifica potencia 0,80. |
+| Diagnósticos temporales de redes | DM/HAC/HLN, Ljung–Box/BDS, ACF y bootstrap por fechas calculados | Aproximaciones exploratorias, sin tratar los procedimientos como confirmaciones independientes. |
 | Ajuste final y test | Ajuste con desarrollo 2023–2024 tras cerrar configuraciones; test 01/01/2025–31/08/2026 | Ambos pendientes; septiembre–octubre de 2026 sin asignación automática. |
 | Informe | Resultados, incertidumbre, costos y límites de CV en §4–§5 | Sin resultados de test ni margen avanzado definitivo. |
 
 El piloto puede servir como calibración preliminar, pero su dispersión no se transfiere automáticamente si después cambian arquitectura, hiperparámetros, cohortes o política de ajuste. El dimensionamiento definitivo debe corresponder al procedimiento que se evaluará, con revisión y versiones documentadas. La misma cautela se aplica al uso de resultados de test para diseñar una propuesta avanzada, conforme a §5.5.5.
 
-La evidencia propia incluye cuatro referencias Ridge de EDA y la CV con índices de Filipe utilizados en ajustes mensuales reales: 60 trayectorias y 21.960 predicciones. Adquisición, EDA y experimentos mantienen registros independientes. La CV no abrió test para modelado o evaluación. La ejecución no cierra por sí sola la extracción bibliográfica, el dimensionamiento de potencia ni el margen para modelos avanzados.
+La evidencia propia incluye cuatro referencias Ridge de EDA, la CV con índices de Filipe utilizados en ajustes mensuales reales —60 trayectorias y 21.960 predicciones— y el complemento estadístico calculado sin entrenamientos nuevos. Adquisición, EDA y experimentos mantienen registros independientes. La CV no abrió test para modelado o evaluación. La ejecución no cierra por sí sola la extracción bibliográfica, el dimensionamiento de potencia ni el margen para modelos avanzados.
 
 La guía E1 anuncia que la ruta completa del benchmark de diez modelos se desarrolla en E2. Los documentos completos de E2/E3 no se han aportado en esta revisión. El detalle de ese alcance se definirá con sus guías y el protocolo correspondiente; la mención de diez modelos no constituye una selección de arquitecturas, configuraciones o presupuesto ya realizada.

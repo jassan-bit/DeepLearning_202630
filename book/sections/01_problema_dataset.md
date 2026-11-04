@@ -10,7 +10,7 @@ La siguiente tabla permite localizar las respuestas solicitadas en la guía. La 
 | Tipo de problema admitido | §1.1.2: tipo 4, regresión temporal; ruta 6.4 de la guía, con entrada OHLCV sin rezagos explícitos de volatilidad |
 | Pregunta de investigación e hipótesis operativa | §1.1.3: comparar el error de pronóstico con persistencia |
 | Métricas primaria y secundarias | §1.1.4: RMSE principal; MAE, MSE, R², MAPE y MASE complementarias, con sus condiciones explícitas |
-| Margen práctico e independencia | §1.1.4: mejora relativa mínima del 5 % frente a persistencia; inferencia entre semillas condicionada al calendario; remuestreo temporal de CV pendiente de planificación |
+| Margen práctico e independencia | §1.1.4: mejora relativa mínima del 5 % frente a persistencia; inferencia entre semillas condicionada al calendario; bootstrap temporal de fechas ejecutado, condicionado a los modelos guardados |
 | Relevancia científica o aplicada | §1.2.1: pronóstico de incertidumbre de Bitcoin y antecedente científico |
 | Disponibilidad, licencia y procedencia | §1.2.2 y §1.3.2: Binance Spot BTCUSDT, archivos oficiales, términos y reglas de agregación diaria documentados |
 | Uso previo del dataset en literatura | §1.2.3: no verificado; el artículo citado es antecedente del problema |
@@ -36,9 +36,9 @@ $$
 
 El pronóstico del día $t$ se emite **después del cierre del día $t-1$ y antes de observar el cierre del día $t$**. En ese momento solo están disponibles OHLCV y retornos de días con índice menor o igual a $t-1$. Un OHLCV diario no está disponible al comenzar ese mismo día.
 
-**Entradas: 7, 14, 21 y 28 días de historia**
+**Historia de entrada ejecutada y sensibilidades de EDA**
 
-El usuario confirmó que los tamaños representan **días**, no siete o veintiocho minutos. Se consideran $D\in\{7,14,21,28\}$ observaciones diarias consecutivas:
+El usuario confirmó que los tamaños representan **días**, no siete o veintiocho minutos. El EDA considera $D\in\{7,14,21,28\}$ observaciones diarias consecutivas; la CV de las tres redes ejecutada en este libro utiliza **D=7 exclusivamente**. Las demás historias no son resultados de esta CV:
 
 | Historia $D$ | Velas de un minuto que originan esos días | Observaciones de entrada al modelo diario |
 |---|---:|---:|
@@ -103,7 +103,7 @@ Escalado y cualquier transformación aprendida se ajustan solo con el entrenamie
 
 ### 1.1.3. Pregunta de investigación e hipótesis operativa
 
-**Pregunta de investigación:** ¿pueden tres modelos básicos de Deep Learning, cuya selección debe acreditarse en la literatura y usando 7, 14, 21 o 28 días de información OHLCV, pronosticar el siguiente valor de la volatilidad histórica de siete retornos diarios con menor RMSE que persistencia bajo evaluación cronológica con embargo?
+**Pregunta de investigación:** ¿pueden tres modelos básicos de Deep Learning, cuya selección debe acreditarse en la literatura y usando los últimos siete días de información OHLCV, pronosticar el siguiente valor de la volatilidad histórica de siete retornos diarios con menor RMSE que persistencia bajo evaluación cronológica con embargo?
 
 **Hipótesis operativa de diseño:** al menos una configuración elegida exclusivamente con desarrollo alcanzará una reducción relativa de RMSE de al menos el 5 % frente a persistencia, sobre las mismas fechas elegibles. En la CV anual de 2024 ninguna red supera a persistencia. En julio–diciembre, CNN1D relativa presenta una reducción puntual de aproximadamente 3,10 %, inferior al margen del 5 %. No se ha demostrado esa hipótesis ni generalización sobre el test reservado.
 
@@ -123,7 +123,7 @@ El criterio operativo aceptado es **$g_m\ge0{,}05$**, es decir, al menos un **5 
 
 Alcanzar el 5 % con una estimación puntual y demostrar una mejora de ese tamaño son afirmaciones diferentes. Para sostener la segunda se necesitará incertidumbre temporal compatible con superar el margen, además de las reglas de multiplicidad y selección fijadas antes del test. Este porcentaje se refiere únicamente a la comparación con persistencia: no determina automáticamente el margen entre dos redes, una banda de equivalencia ni el umbral futuro de un modelo avanzado frente al baseline DL.
 
-El margen relativo del 5 % corresponde solo a persistencia. Para planificar repeticiones puede expresarse como $\delta_{\mathrm{plan}}=0{,}05\,\mathrm{RMSE}_{\mathrm{pers,desarrollo}}$, fijando la cohorte y los supuestos. Detectar frente a cero un efecto de ese tamaño es distinto de demostrar una mejora superior al 5 %. La CV utiliza diez semillas por modelo/variante como presupuesto exploratorio; no dispone de un piloto propio que acredite potencia 0,80. Su dimensionamiento específico permanece pendiente.
+El margen relativo del 5 % corresponde solo a persistencia. Para planificar repeticiones puede expresarse como $\delta_{\mathrm{plan}}=0{,}05\,\mathrm{RMSE}_{\mathrm{pers,desarrollo}}$, fijando la cohorte y los supuestos. Detectar frente a cero un efecto de ese tamaño es distinto de demostrar una mejora superior al 5 %. La CV utiliza diez semillas por modelo/variante como presupuesto exploratorio; no dispone de un piloto propio que acredite potencia 0,80. El [análisis de sensibilidad](../_static/filipe_statistics_20261104/design_sensitivity.csv) utiliza retrospectivamente la dispersión de las diez semillas: orienta el diseño frente a cero, pero no sustituye un piloto previo ni demuestra potencia lograda. El dimensionamiento prospectivo definitivo permanece pendiente.
 
 | Elemento | Decisión y alcance |
 |---|---|
@@ -134,7 +134,7 @@ El margen relativo del 5 % corresponde solo a persistencia. Para planificar repe
 | Pérdida implementada | MSE; escala positiva del objetivo ajustada solo con entrenamiento e inversión para evaluar |
 | Métricas complementarias | MAE, MSE, MAPE, R² y MASE, con cobertura y casos no definidos |
 | Margen operativo relativo | $\delta_{\mathrm{rel}}=0{,}05$ frente a persistencia de las mismas fechas |
-| Nivel de significación del plan | $\alpha=0{,}05$; tres contrastes pareados de RMSE relativa–absoluta, uno por red, con corrección de Holm |
+| Nivel de significación del plan | $\alpha=0{,}05$; familia conjunta de doce contrastes por semillas con Holm; seis comparaciones DM y quince diagnósticos residuales en sus familias declaradas |
 | Partición | Historia inicial 2023; validación 2024; test 01/01/2025–31/08/2026 |
 | Unidad observacional | Origen temporal $t$ con entrada histórica y etiqueta futura |
 | Unidad de independencia entre mercados | Una sola serie BTCUSDT de Binance Spot; $N_{\mathrm{series}}=1$, sin réplicas independientes de otros mercados |
@@ -150,7 +150,7 @@ $$
 \mathrm{MAE}=\frac1N\sum_t|Y_t-\widehat Y_t|.
 $$
 
-**MAPE:** se calculará únicamente sobre etiquetas estrictamente positivas, informando cantidad de ceros, número de casos incluidos y cobertura respecto al total. No se añade epsilon ni se eliminan casos sin declararlo. Si no hay etiquetas positivas, la métrica se marca no definida. La posible sensibilidad a valores positivos pequeños se discutirá junto a RMSE y MAE.
+**MAPE:** se calculó sobre etiquetas estrictamente positivas, con 366 casos y cobertura del 100 % en 2024; no hubo ceros en esta cohorte. La política informa cantidad de ceros, casos incluidos y cobertura en cualquier otra evaluación. No se añade epsilon ni se eliminan casos sin declararlo. Si no hay etiquetas positivas, la métrica se marca no definida. La posible sensibilidad a valores positivos pequeños se discutirá junto a RMSE y MAE.
 
 **MASE:** se fija un rezago de referencia de **un día de calendario**, coherente con persistencia diaria y sin imponer una estacionalidad no demostrada. Para el entrenamiento permitido en el origen $t$:
 
@@ -167,7 +167,7 @@ $\mathcal J_t$ contiene pares de etiquetas válidas separados por un día de cal
 
 La futura evaluación de test deberá reportar por separado las historias de 7, 14, 21 y 28 días que se autoricen en su protocolo, con **MAPE, MAE, RMSE y MSE**, media y desviación entre ejecuciones, y MASE con el rezago diario de §1.1.4. La CV ejecutada mantiene D=7 para los tres modelos y calcula las métricas sobre las 366 fechas de 2024. Esto no completa una comparación final de test por historia ni entrena las sensibilidades del objetivo n=14/21/28. El horizonte principal es de un día.
 
-El **BDS** está previsto como diagnóstico complementario de residuos de la CV, conforme al material específico recibido. Su ejecución sobre las nuevas predicciones permanece pendiente; dimensiones, radio, semilla, tramo y multiplicidad deberán declararse como explica §5.4.10. Los diagnósticos BDS de retornos crudos del EDA no sustituyen errores predictivos ni acreditan evaluación del test reservado.
+El **BDS** se ejecutó sobre los residuos de las tres redes relativas en 2024, con semilla 4101, dimensiones 2/3, radio 1,5 veces la desviación muestral y Holm dentro de quince diagnósticos BDS/Ljung–Box. El [suplemento](../_static/filipe_statistics_20261104/diagnostics.csv) conserva parámetros y resultados: rechazar i.i.d. no demuestra exclusivamente no linealidad aprovechable. Los diagnósticos de retornos crudos del EDA no sustituyen estos errores predictivos ni acreditan evaluación del test reservado.
 
 La política de MAPE ya queda definida en §1.1.4: etiquetas positivas, sin epsilon y con cobertura y ceros informados. Las tablas de desempeño propio de desarrollo ya están en §5.1 y se distinguen tanto del test pendiente como de los valores publicados por otros autores.
 
@@ -218,7 +218,7 @@ La cuadrícula de desarrollo 2023–2024 contiene 731 días UTC y 730 días OHLC
 | Campo exigido | Estado y criterio de cierre |
 |---|---|
 | Tamaño | 75 ZIP, 97.442.605 bytes comprimidos y 2.014.480 filas brutas; ventanas de desarrollo materializadas, ventanas finales de test pendientes |
-| Estructura de modelado | OHLCV diario; entradas $(N,D,5)$ para $D=7,14,21,28$; salida escalar de volatilidad de un día adelante |
+| Estructura de modelado | OHLCV diario; CV ejecutada con entradas $(N,7,5)$ y salida escalar de volatilidad de un día adelante; D=14/21/28 corresponde a EDA o ampliación pendiente |
 | Formato de almacenamiento | CSV oficiales de 12 columnas dentro de ZIP; timestamps normalizados solo para auditar cobertura, brutos intactos |
 
 Con $T$ días OHLCV consecutivos válidos y sin pérdidas por partición, construir entradas de $D$ días y una etiqueta con $n$ retornos diarios permite como máximo $\max\{0,T-\max(D,n+1)\}$ orígenes de un día adelante, incluyendo la historia necesaria para persistencia. Es una relación teórica, **no el tamaño real**; huecos, filtros y separación entre particiones pueden reducirlo.

@@ -99,14 +99,58 @@
     "test_files_opened": 0,
     "scope": "Exploratory forward validation on previously exposed development2024, not reserved-test confirmation"
   },
-  "inference": "Three paired meanRMSE tests relative-minus-absolute, Holm3; marginal t95 seed intervals conditional on fixed calendar.",
-  "temporal_diagnostics": "DM, BDS, Ljung-Box and temporal bootstrap not yet executed for these CV predictions.",
-  "pilot_and_power": "CV-specific pilot and power/MDE dimensioning pending; ten seeds resource-bounded, no0.8power claim.",
+  "inference": "Twelve training-seed hypotheses, globalHolm12; nine primary model/reference/practical-boundary contrasts plus three preprocessing controls; marginalt95CIs.",
+  "temporal_diagnostics": {
+    "executed": true,
+    "DM": {
+      "primary_bandwidth": 14,
+      "sensitivities": [
+        7,
+        28
+      ],
+      "HLN_horizon": 1,
+      "primary_family_Holm": 6,
+      "loss": "mean squared error across ten seeds perdate"
+    },
+    "residuals": {
+      "seed": 4101,
+      "T": 366,
+      "LjungBox_lags": [
+        7,
+        14,
+        28
+      ],
+      "BDS_dimensions": [
+        2,
+        3
+      ],
+      "BDS_radius_sample_SD": 1.5,
+      "family_Holm": 15
+    },
+    "date_bootstrap": {
+      "replicates": 2000,
+      "primary_block": 14,
+      "sensitivities": [
+        7,
+        28
+      ],
+      "resamples_seeds": false,
+      "refits": false
+    }
+  },
+  "pilot_and_power": "Retrospective dispersion-based MDE0 and indicativeR calculated using10seeds andBonferroni planningalpha.05/12; no pre-fit pilot or achievedpower certificate. Definitive prospective dimensioning pending.",
   "selection_scope": "Configurations fixed using already exposed development; not nested independent validation.",
   "future_work": "Close pipeline, final development fit, then separately reserved test; no test evaluation performed.",
   "signed_source_record": {
     "path": "experiments/dl_r2_cv_20261104/protocol.json",
     "sha256": "e8da0f0098acd24a58664b83d0ba499b43aa9d597a36c52da6b3325c2c3c7bec"
   },
-  "raw_market_test_files_opened": 0
+  "raw_market_test_files_opened": 0,
+  "analysis_supplement": {
+    "path": "../filipe_statistics_20261104/summary.json",
+    "registered_at_utc": "2026-11-04T16:43:27.546520+00:00",
+    "completed_at_utc": "2026-11-04T16:49:55.092223+00:00",
+    "scope": "Complemento exploratorio de CV mensual de Filipe sobre desarrollo2024 ya examinado. Inferencia por semillas condicionada al calendario; sin confirmación independiente ni evaluación del test reservado.",
+    "new_model_fits": 0
+  }
 }
