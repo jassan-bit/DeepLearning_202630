@@ -1,5 +1,7 @@
 # Descargas del Entregable 1
 
+[Descargar directamente desde la unidad 8 del Jupyter Book](https://jassan-bit.github.io/DeepLearning_202630/sections/08_entregables.html#descargar-entregable-1).
+
 [Descargar los siete entregables juntos (ZIP)](https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/entregables/entregable1_completo.zip) · [Ver carpeta de descargas](https://github.com/jassan-bit/DeepLearning_202630/tree/entregables)
 
 Estos archivos se descargan directamente desde GitHub y se utilizan fuera del Jupyter Book.
@@ -30,4 +32,4 @@ La [versión y el inventario de los paquetes](https://raw.githubusercontent.com/
 sha256sum --ignore-missing -c SHA256SUMS.txt
 ```
 
-La entrega conserva los límites documentados: respaldo aplicado parcial de MLP/CNN1D y criterio académico para modelos futuros definido después del test actual.
+La revisión incorpora el texto completo de Miura, Pichl y Kaizoji (2019), que evalúa MLP y CNN independientes para RV de Bitcoin. La síntesis vigente de seis estudios y las tablas de extracción están en `book/_static/literature_e1/recovery_20261105/` dentro del ZIP de literatura. La CNN del artículo no declara dimensionalidad ni todos sus hiperparámetros; las redes del proyecto son adaptaciones propias, no réplicas exactas. La revisión es posterior al benchmark y no cambia sus resultados. El criterio académico avanzado conserva su definición posterior al test y su alcance futuro.
