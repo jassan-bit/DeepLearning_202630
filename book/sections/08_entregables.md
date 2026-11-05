@@ -2,15 +2,19 @@
 
 Este capítulo reúne los **siete productos del Entregable 1** y permite localizar el informe, el código, los datos, las tablas y las declaraciones utilizadas. Cada apartado desarrolla el producto con evidencia verificable. La disponibilidad de un archivo y el cierre académico de todos sus requisitos se identifican por separado: el respaldo aplicado de MLP/CNN1D y el alcance temporal de los registros conservan sus límites.
 
-| Ítem | Producto desarrollado | Estado de la entrega |
-|---|---|---|
-| {ref}`8.1 <entrega-8-1>` | Informe en Jupyter Book | Publicado, con capítulos, figuras y archivos de respaldo |
-| {ref}`8.2 <entrega-8-2>` | Código EDA, tres modelos y análisis estadístico | Versionado; restauración y verificación privada aislada comprobadas |
-| {ref}`8.3 <entrega-8-3>` | Dataset o instrucciones y scripts exactos | Fuente, descargador, calendario y hashes documentados |
-| {ref}`8.4 <entrega-8-4>` | Síntesis de literatura y flujo de búsqueda | Tabla y diagrama disponibles; respaldo aplicado del trío todavía parcial |
-| {ref}`8.5 <entrega-8-5>` | Comparación, baseline e inferencia | Métricas y suplemento inferencial entregados, con alcance exploratorio |
-| {ref}`8.6 <entrega-8-6>` | Dependencias, semillas y configuraciones | Locks, recetas y registros de las corridas identificados |
-| {ref}`8.7 <entrega-8-7>` | Declaración de métrica, margen, independencia y partición | Documentada por versión y fecha; no se atribuye al pasado una decisión posterior |
+**Descarga independiente del libro:** [paquete completo del Entregable 1 (ZIP)](https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/entregables/entregable1_completo.zip). También puedes descargar cada producto por separado en la tabla. Los archivos están en la [carpeta de entregables de GitHub](https://github.com/jassan-bit/DeepLearning_202630/tree/entregables), con [sumas SHA-256](https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/entregables/SHA256SUMS.txt) y [catálogo de la versión](https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/entregables/catalogo.json).
+
+| Ítem | Producto desarrollado | Estado de la entrega | Descarga independiente |
+|---|---|---|---|
+| {ref}`8.1 <entrega-8-1>` | Informe en Jupyter Book | Publicado, con capítulos, figuras y archivos de respaldo | [Informe HTML · ZIP](https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/entregables/8_1_informe_html.zip) |
+| {ref}`8.2 <entrega-8-2>` | Código EDA, tres modelos y análisis estadístico | Versionado; restauración y verificación privada aislada comprobadas | [Código · ZIP](https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/entregables/8_2_codigo.zip) |
+| {ref}`8.3 <entrega-8-3>` | Dataset o instrucciones y scripts exactos | Fuente, descargador, calendario y hashes documentados | [Obtención del dataset · ZIP](https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/entregables/8_3_dataset_instrucciones.zip) |
+| {ref}`8.4 <entrega-8-4>` | Síntesis de literatura y flujo de búsqueda | Tabla y diagrama disponibles; respaldo aplicado del trío todavía parcial | [Literatura y flujo · ZIP](https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/entregables/8_4_literatura.zip) |
+| {ref}`8.5 <entrega-8-5>` | Comparación, baseline e inferencia | Métricas y suplemento inferencial entregados, con alcance exploratorio | [Benchmark e inferencia · ZIP](https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/entregables/8_5_benchmark.zip) |
+| {ref}`8.6 <entrega-8-6>` | Dependencias, semillas y configuraciones | Locks, recetas y registros de las corridas identificados | [Configuraciones · ZIP](https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/entregables/8_6_configuraciones.zip) |
+| {ref}`8.7 <entrega-8-7>` | Declaración de métrica, margen, independencia y partición | Documentada por versión y fecha; no se atribuye al pasado una decisión posterior | [Declaración · ZIP](https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/entregables/8_7_declaracion.zip) |
+
+Descomprime el ZIP antes de usarlo. Para leer el informe abre `informe/intro.html`; si el navegador restringe sus recursos locales, ejecuta `python -m http.server 8000 --directory informe` desde la carpeta extraída y abre `http://localhost:8000`. Las fórmulas MathJax y los enlaces a fuentes externas pueden requerir internet. El paquete de código incluye scripts, pruebas, dependencias y el manual `BUILD.md`; recalcular los resultados individuales originales requiere además la evidencia privada allí descrita. El paquete de datos contiene instrucciones, el descargador oficial y manifiestos. Los ZIP públicos entregan tablas agregadas y metadatos; las predicciones individuales y los pesos permanecen en la entrega privada.
 
 El [manifiesto de los siete productos](../_static/e1_deliverables_20261104/delivery_manifest.json), también disponible [como tabla CSV](../_static/e1_deliverables_20261104/delivery_manifest.csv), identifica sus evidencias. El [inventario de archivos de esta entrega](../_static/e1_deliverables_20261104/public_manifest.json) conserva sus hashes. La [matriz de cierre de la auditoría](../_static/e1_audit_improvements_20261104/cierre_auditoria_e1_20261104.csv) conserva el trabajo que requiere evidencia adicional.
 
