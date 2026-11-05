@@ -69,7 +69,7 @@ def main():
                                           "scope": "Holm12/DM6/bootstrap y diagnósticos anuales pertenecen exclusivamente a la CV inicial D7/2024; no se trasladan a los demás D o al test."},
               "outstanding": {"prospective_pilot_and_definitive_power": "Nuevo piloto registrado antes de60 trayectorias/1440 ajustes sobre2024; R futuro calculado. Repeticiones definitivas, potencia real y evaluación temporal independiente no ejecutadas; no repara el benchmark histórico.",
                               "applied_comparator_literature": "Miura2019 verifica MLP/CNN independientes en1/6 textos; dimensionalidad CNN, recetas exactas y recurrencia amplia siguen sin acreditarse. Revisión posterior al benchmark.",
-                              "future_prospective_validation": "Criterio académico operativo del5% definido ahora para comparaciones futuras; no registrado antes del test ya observado. Falta piloto y evaluación independiente nuevos.",
+                              "future_prospective_validation": "E1 exige definir margen/MDE y sus límites a partir del baseline. El criterio futuro del5% cumple ese propósito documental sin ser margen previo del test histórico. El piloto propio de un avanzado y otra evaluación independiente son condiciones si después se implementa esa propuesta, no entrenamientos obligatorios de E1.",
                               "external_measurements": "Ruido externo de precios/etiquetas y mecanismo MCAR/MAR/MNAR no identificados."},
               "new_execution_in_this_extension": {"CV_fits": 2160, "final_fits": 120,
                                                    "raw_test_archives_opened": execution["raw_archives_opened"],
