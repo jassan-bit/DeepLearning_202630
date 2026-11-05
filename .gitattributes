@@ -1,3 +1,9 @@
 
 # Preserve original signed source records byte-for-byte, including final newlines.
 experiments/gru_lstm_tcn_20261105/original_registration/** -text whitespace=-blank-at-eof
+
+# Matplotlib SVG path lines retain generator spacing so recorded hashes reproduce.
+book_e2/_static/eda_decisions/*.svg whitespace=-blank-at-eol
+book_e2/_static/eda_known_shift/*.svg whitespace=-blank-at-eol
+results/e2_eda_decisions_20261105/*.svg whitespace=-blank-at-eol
+results/e2_known_shift_20261105/*.svg whitespace=-blank-at-eol

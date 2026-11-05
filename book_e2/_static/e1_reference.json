@@ -68,7 +68,16 @@
     "e2_model_selected": false,
     "e2_experiments_executed": false,
     "e2_new_unseen_test_available": false,
-    "historical_results_may_be_labeled_confirmatory_for_e2": false
+    "historical_results_may_be_labeled_confirmatory_for_e2": false,
+    "e2_experiments_executed_scope": "Benchmark de diez modelos DL; el EDA y la referencia diagnóstica se registran por separado",
+    "e2_eda_executed": true,
+    "e2_diagnostic_ridge_fitted": true,
+    "e2_diagnostic_ridge_scope": "Diagnóstico forward chaining en desarrollo, sin selección ni entrenamiento de modelos DL de E2",
+    "new_deep_learning_fits": 0,
+    "eda_changes_inherited_data_contract": false,
+    "known_test_distribution_analysis_is_posthoc_exploratory": true,
+    "target_lags_added_by_eda": false,
+    "route_diagnosis_closed": false
   },
   "updated_on_colombia": "2026-11-05",
   "administrative_timezone": "America/Bogota",
@@ -221,5 +230,13 @@
     "new_unseen_e2_test_assigned": false,
     "new_dates_acquired_for_e2": false,
     "e2_evaluation_scope": "La herencia mantiene el calendario; los periodos ya conocidos solo permiten nuevas comparaciones exploratorias. No se declara un test confirmatorio independiente."
+  },
+  "eda_extension_scope": {
+    "guide_fragments": "Sección 2, EDA general, bloque C regresión temporal y requisito de cierre hallazgo–decisión",
+    "source_record": "guia_e2_recibida.json",
+    "chapter": "sections/02_eda.md",
+    "preprocessing_decision": "Transformaciones y similitud de ventanas se diagnostican en desarrollo; no sustituyen la representación heredada ni autorizan selección con test",
+    "route_alert": "La alta autocorrelación residual requiere discutir la ruta alternativa de series de tiempo, sin inferir que añadir rezagos del objetivo garantiza mejora",
+    "contract_policy": "Métrica, δ, unidad, partición, D7×5 y objetivo permanecen sin modificación; no se introduce un nuevo periodo de prueba"
   }
 }

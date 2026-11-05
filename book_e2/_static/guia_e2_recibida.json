@@ -1,8 +1,8 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "received_date_colombia": "2026-11-05",
   "administrative_timezone": "America/Bogota",
-  "source_type": "Tres imágenes aportadas directamente por el usuario en la conversación",
+  "source_type": "Imágenes aportadas directamente por el usuario: tres imágenes iniciales y cinco capturas posteriores con fragmentos de la sección 2",
   "document_title": "Proyecto Final de Deep Learning: Entregable 2",
   "received_page_numbers": [
     1,
@@ -13,7 +13,10 @@
   "scope_received": [
     "Portada, objetivo, estándar de calidad y cómo leer el documento",
     "Relación con los otros entregables",
-    "Sección 1: Definición del problema, preguntas de investigación y dataset"
+    "Sección 1: Definición del problema, preguntas de investigación y dataset",
+    "Sección 2: objetivo del EDA orientado a decisiones y bloque 2.1 EDA General",
+    "Encabezado 2.2 y bloque C de Regresión Temporal; no se recibieron las otras rutas específicas",
+    "Requisito obligatorio: decisión de preprocesamiento, impacto en arquitectura/protocolo, riesgos y tabla de trazabilidad hallazgo–decisión"
   ],
   "objective": {
     "systematic_literature_review": true,
@@ -30,7 +33,7 @@
       "Gap de investigación con hipótesis contrastable"
     ]
   },
-  "precedence": "Cuando una sección posterior precisa una anterior, prevalece la más restrictiva; el texto de esas secciones posteriores aún no ha sido aportado",
+  "precedence": "Cuando una sección posterior precisa una anterior, prevalece la más restrictiva; se recibieron fragmentos de sección 2, pero las secciones 3–14 y los apéndices siguen sin aportarse",
   "inheritance": {
     "from_deliverable": 1,
     "inherited_without_modification": [
@@ -112,7 +115,7 @@
     }
   ],
   "implementation_status": {
-    "chapter_1_documentation": "Desarrollada a partir de las páginas recibidas; no acredita ejecución de E2",
+    "chapter_1_documentation": "Desarrollada a partir de las páginas recibidas; no acredita ejecución del benchmark DL de E2",
     "inherited_contract_recorded": true,
     "dataset_card_recorded": true,
     "manifest_copy_metadata_only": true,
@@ -121,12 +124,153 @@
     "new_sealed_test_available": false,
     "inherited_test_limitation": "Los calendarios de prueba de E1 ya se conocen. Las nuevas comparaciones en ellos se clasifican exploratorias; no se inventa una nueva prueba sellada ni se cambia unilateralmente la partición.",
     "e2_sample_size_determined": false,
-    "sample_size_note": "R=465 corresponde a las comparaciones y piloto de E1; no se traslada automáticamente a diez modelos o hipótesis nuevas"
+    "sample_size_note": "R=465 corresponde a las comparaciones y piloto de E1; no se traslada automáticamente a diez modelos o hipótesis nuevas",
+    "chapter_2_documentation": "EDA de E1 ampliado con análisis propios de E2 y cierre hallazgo–decisión; evidencia y límites en sections/02_eda.md",
+    "e2_experiments_executed_scope": "Este indicador se refiere al benchmark de diez modelos de Deep Learning; no niega el EDA ni el ajuste de una referencia Ridge diagnóstica",
+    "e2_eda_executed": true,
+    "e2_diagnostic_ridge_fitted": true,
+    "e2_diagnostic_ridge_scope": "Referencia de desarrollo con forward chaining para diagnosticar residuos; no es uno de los diez modelos DL ni un benchmark final",
+    "new_deep_learning_fits": 0,
+    "e2_eda_known_test_shift_scope": "Análisis posterior y exploratorio de distribuciones de periodos ya evaluados; no permite reajustar el pipeline ni afirmar un test nuevo sellado",
+    "inherited_contract_unchanged_by_eda": true,
+    "route_diagnosis_closed": false,
+    "route_diagnosis_note": "Autocorrelación alta exige discutir la indicación de la guía y contrastar la ruta de series de tiempo. No demuestra por sí sola mejora con rezagos del objetivo. Cualquier extensión debe validarse en desarrollo y versionarse antes de modificar el contrato heredado",
+    "external_provider_or_proxy_noise_independently_quantified": false,
+    "label_noise_note": "Recalculabilidad, sensibilidad del proxy y ruido económico son conceptos distintos; no se declara un techo de desempeño identificado"
   },
   "pending_source_material": {
-    "later_sections": "Texto completo de secciones 2–14 y apéndices",
+    "later_sections": "Texto completo de secciones 3–14 y apéndices",
+    "other_section_2_routes": "Solo se recibió el bloque específico C de regresión temporal; la ruta de series de tiempo no se ha aportado completa",
     "benchmark_composition": "No resolver como 3+7 o diez adicionales sin leer el requisito completo",
-    "compliance_scope": "No declarar cumplimiento de apartados cuyo texto aún no se ha recibido"
+    "compliance_scope": "No declarar cumplimiento de apartados cuyo texto aún no se ha recibido ni dar por resuelta la clausura de la ruta mediante la sola ACF"
   },
-  "source_caution": "Este registro transcribe y estructura requisitos visibles de imágenes; no representa lectura de un PDF completo ni una evaluación cerrada del entregable."
+  "source_caution": "Este registro conserva las páginas iniciales 1–3 y los fragmentos posteriores de sección 2. No se asignan números de página a capturas sin numeración visible; no representa lectura de un PDF completo ni evaluación cerrada del entregable.",
+  "received_fragments": [
+    {
+      "submission": "initial",
+      "visible_page_numbers": [
+        1,
+        2,
+        3
+      ],
+      "scope": "Objetivo, organización, herencia y sección 1",
+      "full_pdf_received": false
+    },
+    {
+      "submission": "section_2",
+      "capture_sequence": 1,
+      "visible_page_number": 3,
+      "scope": "Inicio de sección 2 y EDA general de la variable objetivo"
+    },
+    {
+      "submission": "section_2",
+      "capture_sequence": 2,
+      "visible_page_number": null,
+      "scope": "Continuación del EDA general: implicaciones, calidad, sesgos, partición y cambio de distribución"
+    },
+    {
+      "submission": "section_2",
+      "capture_sequence": 3,
+      "visible_page_number": null,
+      "scope": "Encabezado 2.2: EDA específico por tipo de problema"
+    },
+    {
+      "submission": "section_2",
+      "capture_sequence": 4,
+      "visible_page_number": null,
+      "scope": "Bloque C: regresión temporal"
+    },
+    {
+      "submission": "section_2",
+      "capture_sequence": 5,
+      "visible_page_number": null,
+      "scope": "Requisito obligatorio de cierre y trazabilidad hallazgo–decisión"
+    }
+  ],
+  "section_2_requirements": [
+    {
+      "id": "2.eda.scope",
+      "requirement": "Ampliar el EDA de E1 sin descartarlo; análisis exhaustivo, reproducible y orientado explícitamente al diseño del modelo, preprocesamiento y validación"
+    },
+    {
+      "id": "2.1.target.distribution",
+      "requirement": "Distribución de la variable objetivo mediante histogramas, densidades o conteos según el tipo de tarea"
+    },
+    {
+      "id": "2.1.target.class_balance",
+      "requirement": "Si aplica clasificación: desbalance, clases raras, entropía e implicaciones de remuestreo, pérdidas ponderadas y métricas; no crear clases artificiales para este objetivo continuo"
+    },
+    {
+      "id": "2.1.target.continuous",
+      "requirement": "Para objetivos continuos: asimetría, curtosis, colas y posible transformación log, Box–Cox o Yeo–Johnson"
+    },
+    {
+      "id": "2.1.quality.integrity",
+      "requirement": "Faltantes, datos corruptos o inconsistentes y duplicados exactos y casi duplicados"
+    },
+    {
+      "id": "2.1.quality.label_noise",
+      "requirement": "Estimar o delimitar el ruido de etiquetas con un método adecuado a la tarea y explicar sus límites sobre el techo de desempeño; la reconstrucción numérica no mide ruido externo del proveedor o del proxy"
+    },
+    {
+      "id": "2.1.bias",
+      "requirement": "Sesgos de representación, temporales, semánticos y de adquisición; posibles correlaciones espurias o atajos y sus decisiones de modelado/validación"
+    },
+    {
+      "id": "2.1.partition.definition",
+      "requirement": "Explicitar entrenamiento, validación y prueba, estrategia justificada y semilla de partición cuando aplique"
+    },
+    {
+      "id": "2.1.partition.leakage_audit",
+      "requirement": "Verificación empírica de solapamientos entre particiones y disponibilidad causal; distinguir solapamiento temporal de fuga de información"
+    },
+    {
+      "id": "2.1.partition.seal",
+      "requirement": "Sellar test y almacenar su hash antes del entrenamiento; registrar que la reserva heredada ya conocida no puede volverse desconocida mediante un hash posterior"
+    },
+    {
+      "id": "2.1.shift",
+      "requirement": "Comparar distribuciones de entrenamiento, validación y test mediante diagnósticos adecuados a la dependencia, con implicaciones de adaptación o escenarios fuera de distribución"
+    },
+    {
+      "id": "2.2.applicability",
+      "requirement": "Desarrollar la ruta del problema elegido y las modalidades adicionales que realmente apliquen"
+    },
+    {
+      "id": "2.2.C.temporal_structure",
+      "requirement": "Frecuencia, regularidad, huecos y desfases temporales entre covariables y objetivo"
+    },
+    {
+      "id": "2.2.C.availability",
+      "requirement": "Cada covariable debe estar disponible en el origen de predicción; información posterior al evento constituye fuga"
+    },
+    {
+      "id": "2.2.C.relationship",
+      "requirement": "Correlaciones cruzadas con rezagos de covariables y deriva de la relación mediante estimaciones en ventanas móviles"
+    },
+    {
+      "id": "2.2.C.residual_route",
+      "requirement": "Diagnosticar autocorrelación de residuos de una referencia y discutir la indicación de la guía sobre rezagos del objetivo y ruta de series de tiempo, sin convertir autocorrelación en prueba de utilidad de esos rezagos"
+    },
+    {
+      "id": "2.2.C.implications",
+      "requirement": "Justificar la ventana de rezagos y una partición cronológica estricta con embargo, identificando el riesgo temporal"
+    },
+    {
+      "id": "2.closure.preprocessing",
+      "requirement": "Cerrar cada análisis con una decisión explícita de preprocesamiento derivada"
+    },
+    {
+      "id": "2.closure.architecture_protocol",
+      "requirement": "Cerrar cada análisis con su impacto en arquitectura y protocolo de validación"
+    },
+    {
+      "id": "2.closure.risks",
+      "requirement": "Cerrar cada análisis con riesgos identificados, incluidas posibles fuentes de data leakage"
+    },
+    {
+      "id": "2.closure.traceability",
+      "requirement": "Registrar cada hallazgo en la tabla hallazgo–decisión; no presentar un mero inventario descriptivo como análisis terminado"
+    }
+  ]
 }

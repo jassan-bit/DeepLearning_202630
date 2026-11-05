@@ -1,6 +1,6 @@
-# Página de trabajo 2 · Catálogo y propuesta
+# Página de trabajo · Catálogo y propuesta
 
-**Estado: catálogo pendiente de la guía completa y la revisión sistemática.** La numeración de esta página es provisional; no desarrolla la sección 2 oficial, cuyo contenido aún no se ha recibido.
+**Estado: catálogo pendiente de la guía completa y la revisión sistemática.** Esta página es provisional; la sección 2 oficial ya se desarrolla en el [capítulo de EDA](02_eda.md).
 
 El objetivo recibido es un **benchmark de diez modelos**. Se heredan las referencias GRU-c03, LSTM-c02 y TCN-c02 de E1; la composición exacta del catálogo de diez y sus reglas se cerrarán con el documento completo. No se supone todavía una estructura de «tres más siete» ni se seleccionan arquitecturas por anticipado.
 
@@ -14,3 +14,5 @@ La [sección 1](01_punto_partida.md) ya precisa problema, disponibilidad causal,
 | Métrica primaria y margen práctico | RMSE y δ absoluto heredados sin modificar |
 
 La comparación deberá distinguir mejoras en la métrica primaria, relevancia práctica y coste. Las conclusiones de E1 no prueban que una propuesta aún no implementada vaya a superar persistencia o las redes base.
+
+El EDA ampliado aporta una alerta sobre dependencia residual y ruta metodológica. Esa evidencia debe incorporarse al cierre del diseño sin añadir rezagos del objetivo ni cambiar las referencias heredadas sin una decisión explícita.

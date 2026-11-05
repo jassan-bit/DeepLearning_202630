@@ -1,9 +1,10 @@
 # 1. Definición del Problema, Preguntas de Investigación y Dataset
 
-Esta sección desarrolla los requisitos visibles en las páginas 2–3 de la guía. La formulación y la ficha de datos están documentadas; las preguntas son propuestas exploratorias. **No contiene resultados experimentales nuevos de E2 ni un preregistro cerrado.**
+Esta sección desarrolla los requisitos visibles en las páginas 2–3 de la guía. La formulación y la ficha de datos están documentadas; las preguntas son propuestas exploratorias. **No contiene un benchmark nuevo de E2 ni un preregistro cerrado.** Los diagnósticos propios del EDA se presentan en la [sección 2](02_eda.md).
 
 ## 1.1 Definición formal del problema
 
+(e2-contrato-heredado)=
 ### 1.1.1 Contrato heredado y versión de referencia
 
 Se adopta explícitamente la **fase II D7** del [Entregable 1, commit `94a4b03`](https://github.com/jassan-bit/DeepLearning_202630/tree/94a4b0324e93361e8928d708fdfeb50110e3686f). El [contrato descargable](../_static/e1_reference.json) identifica sus artefactos. No se mezclan sus recetas con las redes de la fase I.
@@ -85,7 +86,7 @@ $\widehat\mu_m$ es la métrica primaria. No se reemplaza por la RMSE de un ensam
 
 ### 1.1.4 Tipo de tarea y relevancia
 
-La tarea es **regresión temporal**, una de las categorías de la guía. Corresponde seguir su sección 7; la subruta y las pruebas obligatorias se verificarán al disponer de esa sección completa.
+La formulación heredada es **regresión temporal**, una de las categorías de la guía. El {ref}`diagnóstico residual de §2.2.3 <e2-diagnostico-forward>` registra una alerta para revisar también la ruta de series de tiempo indicada en las nuevas capturas. La clasificación no se da por cerrada solo por excluir rezagos de Y. No se modifica aquí el contrato; la ruta completa y sus pruebas se verificarán al disponer de la sección 7 y del apartado específico restante.
 
 Tres trabajos respaldan la relevancia científica del pronóstico de volatilidad en criptomonedas: Miura, Pichl y Kaizoji estudian redes neuronales para volatilidad realizada {cite:p}`miura2019`; Guo, Bifet y Antulov-Fantulin estudian la información de órdenes de compra y venta {cite:p}`guo2018`; Akbiyik y colaboradores incorporan información de Twitter al pronóstico de volatilidad de Bitcoin {cite:p}`akbiyik2023`.
 

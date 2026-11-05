@@ -1,8 +1,8 @@
-# Página de trabajo 5 · Reproducibilidad y entrega
+# Página de trabajo · Reproducibilidad y entrega
 
 Este libro se construye desde `book_e2/`, con `_config.yml` e `_toc.yml` propios. Comparte el repositorio y el entorno editorial con E1/E3, pero su compilación no importa las carpetas de esos libros ni ejecuta sus experimentos.
 
-Esta página tiene numeración provisional. La guía recibida sitúa reproducibilidad, ética y comunicación en su sección 8; se incorporará su detalle cuando esté disponible.
+Esta página es provisional. La guía recibida sitúa reproducibilidad, ética y comunicación en su sección 8; se incorporará su detalle cuando esté disponible.
 
 Desde la raíz del repositorio, después de instalar `requirements-book.lock.txt` en un entorno Python 3.12:
 
@@ -15,4 +15,6 @@ El workflow común publica este HTML en `/entregable2/`, junto con los otros lib
 
 Ya están disponibles los metadatos propios de E2: [contrato heredado](../_static/e1_reference.json), [Data Card](../_static/dataset_card.json), [manifiesto de la fuente](../_static/dataset_manifest_e1.json) y [registro de las páginas 1–3 recibidas](../_static/guia_e2_recibida.json). La bibliografía editorial de E2 se conserva en `references.bib`.
 
-El código experimental, dependencias de entrenamiento, registros de corridas y resultados específicos se incorporarán tras cerrar el catálogo y el protocolo con la guía restante. La existencia de este libro y sus metadatos no significa que el benchmark de E2 ya esté ejecutado.
+El EDA ampliado se reproduce con `scripts/eda_e2_decisions.py` y `scripts/eda_e2_known_shift.py`, usando el entorno científico de `requirements-eda.lock.txt`. Sus {ref}`instrucciones, tablas y figuras <e2-reproduccion-eda>` conservan hashes de fuentes y separan desarrollo del reanálisis de la reserva ya conocida. El build editorial no ejecuta esos scripts.
+
+El código, piloto y registros del benchmark de diez modelos se incorporarán tras cerrar el catálogo y el protocolo con la guía restante. La existencia de diagnósticos de EDA no significa que ese benchmark esté ejecutado.

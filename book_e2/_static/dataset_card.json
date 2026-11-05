@@ -42,7 +42,8 @@
     "raw_columns": 12,
     "expected_calendar_minutes": 2014560,
     "e2_supervised_sample_count": null,
-    "count_scope": "Recuentos del manifiesto de E1, no ventanas supervisadas ni tamaño de muestra independiente"
+    "count_scope": "Recuentos del manifiesto de E1, no ventanas supervisadas ni tamaño de muestra independiente",
+    "e2_supervised_sample_count_note": "Pendiente por modelo y fase del protocolo final. Los conteos del diagnóstico de desarrollo no son el tamaño muestral común ni el número de unidades independientes del benchmark de diez."
   },
   "schema": {
     "source_frequency": "1 minute",
@@ -203,7 +204,12 @@
     "missing_vs_invalid_distinction": "80 filas ausentes y una fila presente con cierre temporal no estándar; 81 posiciones no elegibles, sin sumar una fila inexistente al recuento bruto",
     "affected_development_day_utc": "2023-03-24",
     "cleaning_policy": "Brutos intactos; no imputar, interpolar ni comprimir calendario. Excluir días incompletos y todas las ventanas/etiquetas que dependan de ellos",
-    "new_raw_archive_or_price_inspection_in_e2_update": false
+    "new_raw_archives_opened_for_e2_eda": false,
+    "existing_derived_market_values_used_for_e2_eda": true,
+    "new_market_observations_acquired_for_e2_eda": false,
+    "eda_near_duplicate_policy": "Diagnóstico numérico de similitud con umbrales aprendidos o fijados en desarrollo; no borrar automáticamente ventanas temporales solapadas ni usar proximidad de precios como prueba de fuga",
+    "external_label_noise_independently_estimated": false,
+    "external_label_noise_note": "La reconstrucción de etiquetas valida aritmética y calendario; no mide el error independiente del proveedor o de la volatilidad como proxy ni establece un techo de desempeño"
   },
   "representation": {
     "variant": "relative_window",
@@ -331,6 +337,27 @@
     "e2_models_trained": false,
     "e2_new_test_assigned": false,
     "e2_new_data_acquired": false,
-    "e2_ten_model_catalogue_selected": false
+    "e2_ten_model_catalogue_selected": false,
+    "e2_models_trained_scope": "Indicador heredado reservado a modelos Deep Learning del benchmark de diez; no cuenta referencias diagnósticas",
+    "e2_deep_learning_models_trained": false,
+    "new_deep_learning_fits": 0,
+    "e2_eda_executed": true,
+    "e2_diagnostic_ridge_fitted": true,
+    "e2_diagnostic_ridge_scope": "Referencia regularizada en desarrollo con forward chaining; diagnóstico temporal, no comparación final DL",
+    "known_test_distribution_analysis": "Posterior a la evaluación de E1; alcance exploratorio, sin reutilizarlo para elegir configuración",
+    "route_diagnosis_closed": false
+  },
+  "eda_scope": {
+    "chapter": "sections/02_eda.md",
+    "inherits_e1_eda": true,
+    "adds_train_only_target_transform_diagnostics": true,
+    "adds_near_duplicate_and_partition_diagnostics": true,
+    "adds_forward_chaining_reference_residuals": true,
+    "known_test_distribution_analysis_is_posthoc": true,
+    "no_deep_learning_benchmark_executed": true,
+    "inherited_partition_changed": false,
+    "inherited_target_changed": false,
+    "target_lags_added": false,
+    "route_alert": "Autocorrelación residual y objetivo móvil justifican revisar la ruta de la guía; no prueban que incorporar rezagos del objetivo mejore. Su evaluación requiere desarrollo y una enmienda explícita antes de alterar entradas o validación."
   }
 }

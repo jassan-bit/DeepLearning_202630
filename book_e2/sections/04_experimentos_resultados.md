@@ -1,8 +1,8 @@
-# Página de trabajo 4 · Experimentos y resultados
+# Página de trabajo · Benchmark y resultados
 
-**Todavía no existen corridas, modelos entrenados ni resultados de E2.** Las métricas citadas en el capítulo 1 pertenecen al antecedente E1 y no se presentan como resultados nuevos.
+**Todavía no se ha ejecutado el benchmark de diez modelos de E2.** La [sección 2](02_eda.md) sí contiene diagnósticos propios, incluida una referencia Ridge ajustada en desarrollo con forward chaining. Esa referencia no es un modelo del benchmark ni modifica los tres modelos base heredados.
 
-Esta página tiene numeración provisional; no desarrolla la sección 4 oficial de la guía todavía no recibida.
+Esta página es provisional; no desarrolla la sección 4 oficial de la guía todavía no recibida. Las métricas de E1 se conservan como antecedentes identificados.
 
 | Evidencia de E2 | Estado |
 |---|---|
