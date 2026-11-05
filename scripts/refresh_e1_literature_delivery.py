@@ -4,7 +4,10 @@ import csv
 import hashlib
 import json
 from pathlib import Path
-import re
+
+from literature_crypto_stage import (
+    crypto_delivery_text, crypto_extension, load_crypto_stage, validate_bibliography,
+)
 
 ROOT=Path(__file__).resolve().parents[1]
 LITERATURE=ROOT/'references/literature_e1/journal_update_20261105'
@@ -24,10 +27,9 @@ def write(path, value):
 
 
 def main():
-    keys=re.findall(r'@\w+\s*\{\s*([^,]+),',(ROOT/'book/references.bib').read_text())
-    required={'bucci2020realized','reisenhofer2022harnet','morenopino2024deepvol'}
-    if len(keys)!=39 or len(set(keys))!=39 or not required.issubset(keys):
-        raise ValueError('The bibliography must preserve36 entries and add only the three documented sources')
+    stage=load_crypto_stage(ROOT)
+    if stage is None:
+        validate_bibliography(ROOT)
     names=['methodological_sources.json','methodological_comparison.csv',
            'bucci2020_primary_extraction.json','bucci2020_metrics.csv',
            'harnet2022_primary_code.json','deepvol2024_publication.json',
@@ -55,6 +57,11 @@ def main():
         'journal_index_evidence':'Independent secondary journal lists only; no individual article or Q1 verification',
         'original_benchmark_changed':False,'new_model_fits':0,'new_forecasts':0,
         'source_sha256':{str((LITERATURE/name).relative_to(ROOT)):sha(LITERATURE/name) for name in names}}
+    historical_journal_extension=extension
+    if stage:
+        extension=crypto_extension(stage)
+        extension['source_sha256']={**historical_journal_extension['source_sha256'],
+                                    **extension['source_sha256']}
     write(PUBLIC/'literature_extension.json',extension)
     manifest=read(PUBLIC/'delivery_manifest.json')
     product=next(r for r in manifest['products'] if r['item']=='8.4')
@@ -62,6 +69,11 @@ def main():
         evidence='references/literature_e1/journal_update_20261105/methodological_sources.json',
         limit='T1 original FNN de revista, T2 código autor Conv1D, T3 identidad editorial con original pendiente. No aumentan frecuencias BTC ni acreditan registros individuales o Q1.')
     manifest['literature_review']='39 references; six BTC full texts and separate T1 full paper, T2 author code, T3 publication identity only'
+    if stage:
+        text=crypto_delivery_text(stage)
+        product.update(status=text['status'],evidence=text['evidence'],limit=text['limit'])
+        manifest['literature_review']=text['review']
+        manifest['historical_journal_literature_extension']=historical_journal_extension
     manifest['literature_extension']=extension
     write(PUBLIC/'delivery_manifest.json',manifest)
     with (PUBLIC/'delivery_manifest.csv').open('w',newline='') as stream:
@@ -69,6 +81,8 @@ def main():
         writer.writeheader();writer.writerows(manifest['products'])
     declaration=read(PUBLIC/'declaration_and_chronology.json')
     declaration['literature_extension']=extension
+    if stage:
+        declaration['historical_journal_literature_extension']=historical_journal_extension
     declaration['source_sha256'].update(extension['source_sha256'])
     write(PUBLIC/'declaration_and_chronology.json',declaration)
     previous['literature_refresh_at_utc']=now
@@ -77,7 +91,9 @@ def main():
     previous['files_sha256']={p.relative_to(PUBLIC).as_posix():sha(p) for p in sorted(PUBLIC.rglob('*'))
         if p.is_file() and p.name!='public_manifest.json'}
     write(PUBLIC/'public_manifest.json',previous)
-    print(json.dumps({'references':39,'BTC_studies':6,'new_methodological_paper':1,
+    print(json.dumps({'references':extension['bibliographic_references'],
+                     'crypto_studies':extension.get('crypto_full_text_studies',6),
+                     'BTC_studies':extension['BTC_full_text_studies'],'new_methodological_paper':1,
                      'new_models_fitted':0,'new_forecasts':0,'historical_configurations_preserved':1560}))
 
 

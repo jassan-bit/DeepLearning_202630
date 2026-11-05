@@ -10,3 +10,5 @@ El suplemento inferencial del test es posterior a inspeccionar sus resultados y 
 [Construcción y reproducción](BUILD.md).
 
 Además se completó un estudio D7 nuevo de aleatoriedad del entrenamiento: protocolo publicado antes de ampliar el piloto con 20 semillas por modelo y R=79 publicado antes de las 237 trayectorias definitivas (5688 ajustes). Los tres contrastes pareados y su corrección Holm se fijaron antes de ambas fases. La auditoría independiente verifica código, cálculos y cronología. Esta evidencia se condiciona a las recetas fijas y al calendario 2024 conocido; no reescribe el benchmark histórico, no demuestra potencia alcanzada ni aporta otro periodo de mercado.
+
+La revisión bibliográfica se amplió a criptomonedas: **40 referencias y siete textos completos**, con un manuscrito de 20 activos contado una sola vez. La matriz separa comparadores independientes, componentes propuestos y transferencia desde otros mercados. La corrección de HARNet retira la inferencia no sustentada de fuga por su escalador fijo. La ampliación es posterior al benchmark y mantiene explícito que no se verificaron nuevas referencias independientes MLP/CNN1D en esta búsqueda.

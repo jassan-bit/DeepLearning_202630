@@ -40,7 +40,7 @@ python scripts/refresh_e1_literature_delivery.py
 python scripts/update_book_item_audit.py
 ```
 
-El primer comando conserva por hash los 1.440 segmentos de configuración de CV y 120 ajustes finales ya auditados. Actualiza literatura y declaraciones sin necesitar pesos privados, entrenar modelos o ejecutar pronósticos. Los 39 registros bibliográficos separan seis textos BTC de T1 (original financiero de revista), T2 (código de autores) y T3 (identidad editorial con original pendiente).
+El primer comando conserva por hash los 1.440 segmentos de configuración de CV y 120 ajustes finales ya auditados. Actualiza literatura y declaraciones sin necesitar pesos privados, entrenar modelos o ejecutar pronósticos. El corte histórico de 39 registros y seis textos BTC se conserva. La etapa vigente contiene 40 referencias y siete textos cripto, separando T1 (original financiero), T2 (código) y T3 (identidad editorial); sus niveles no cambian por añadir citas.
 
 ## Entornos experimentales separados
 
@@ -144,7 +144,7 @@ Las semillas miden variación de entrenamiento condicionada al calendario; no ac
 
 La recuperación documental `references/literature_e1/recovery_20261105/` incorpora el capítulo completo de Miura, Pichl y Kaizoji (2019), con sus comparadores MLP/CNN independientes, la Tabla 1 transcrita y una síntesis de seis estudios. Es una revisión posterior al benchmark: no cambia las configuraciones firmadas ni los resultados. La CNN del artículo no declara dimensionalidad y las recetas del proyecto no se presentan como réplicas exactas. Los paquetes de descarga conservan en `catalogo.json` el commit de las fuentes usadas al construirlos.
 
-La ampliación `references/literature_e1/journal_update_20261105/`, reflejada en `book/_static/literature_e1/journal_update_20261105/`, añade tres fuentes metodológicas financieras al catálogo de **39 referencias**, manteniendo aparte los **seis textos BTC**. Distingue un original editorial completo de Bucci (FNN pequeña), código de autor de HARNet (Conv1D causal) y la identidad editorial de DeepVol corroborada en un CV. Los manuscritos de HARNet y DeepVol no se presentan como leídos, ni se extraen de ellos parámetros o resultados publicados. Las fichas, las métricas verificadas de Bucci, el registro de acceso y las coincidencias secundarias de revistas documentan el alcance. No se redistribuyen aquí esos artículos completos de terceros ni se ejecutan nuevos entrenamientos por esta revisión.
+La ampliación histórica `references/literature_e1/journal_update_20261105/`, reflejada en `book/_static/literature_e1/journal_update_20261105/`, añade tres fuentes metodológicas financieras al catálogo de **39 referencias**, manteniendo aparte los **seis textos BTC**. Distingue un original editorial completo de Bucci (FNN pequeña), código de autor de HARNet (Conv1D causal) y la identidad editorial de DeepVol corroborada en un CV. Los manuscritos de HARNet y DeepVol no se presentan como leídos, ni se extraen de ellos parámetros o resultados publicados. Las fichas, las métricas verificadas de Bucci, el registro de acceso y las coincidencias secundarias de revistas documentan el alcance. No se redistribuyen aquí esos artículos completos de terceros ni se ejecutan nuevos entrenamientos por esta revisión.
 
 ## Piloto nuevo registrado del procedimiento vigente
 
@@ -192,3 +192,19 @@ Los informes del auditor quedan en `references/audits/revision_filipe_confirmato
 El flujo original es `register` → publicación real de protocolo/código y recibo → `variance_extension` → análisis `lock` → auditoría de ampliación → publicación real del bloqueo y recibo → `definitive` → análisis `analyze/check` → auditoría definitiva → exportación. Los recibos registran commits y fechas reales; no se deben fabricar ni sustituir por marcas anteriores. No ejecutar `register/lock/analyze` para sobrescribir el estudio cerrado. Una repetición técnica en otra copia debe conservar su fecha y no representa nuevas realizaciones del mercado.
 
 El R usa una cota unilateral 95 % marginal normal de DE y potencia objetivo 0,80 por comparación con α=0,05/3; no es potencia alcanzada ni conjunta. Los t pareados finales, Holm-3, IC del 95 % marginales e IC del 98,333 % individuales Bonferroni (cobertura conjunta al menos 95 %) se fijaron antes. La evidencia nueva estima diferencias por aleatorización del entrenamiento sobre 2024 conocido; no confirma la selección entre historias 7/14/21/28, no convierte el test antiguo en desconocido y no prueba la frontera avanzada de 5 %.
+
+## Matriz de literatura ampliada a criptomonedas
+
+`references/literature_e1/crypto_extension_20261105/` contiene la etapa documental vigente y su espejo público está en `book/_static/literature_e1/crypto_extension_20261105/`. Se preservan los cortes anteriores y los 39 registros bibliográficos previos; se añade Djanga et al. (2025), original de manuscrito sobre 20 activos. Los siete estudios incluyen BTC; uno incluye además otras criptomonedas. El problema experimental y todos sus resultados siguen siendo de Bitcoin.
+
+Para reconstruir tablas agregadas, validar el catálogo y actualizar los metadatos públicos sin datos privados ni entrenamientos:
+
+```bash
+python scripts/build_crypto_literature_extension.py
+python scripts/refresh_e1_literature_delivery.py
+python scripts/update_book_item_audit.py
+```
+
+El constructor utiliza los registros públicos extraídos, no ejecuta el código de terceros ni descarga manuscritos. `evidence_matrix.json` conserva ubicaciones, fuentes y hashes; `family_frequencies.csv` separa N=7, el estrato de seis estudios con referencias DL extraíbles y el de dos originales con identificación editorial. La presencia de LSTM en el framework de S9 no se cuenta como baseline independiente; sus seis QLIKE publicados pertenecen a ganadores clásicos/árboles.
+
+`harnet_erratum.json` corrige la interpretación anterior de `fit_transform`: las clases locales usan constantes configuradas y esa llamada no prueba aprendizaje de extremos futuros. La falta de `rv5_ss` en el CSV incluido se conserva como otra limitación de reproducibilidad, sin ejecutar el proyecto ajeno. HARNet y DeepVol no pasan a ser originales leídos por esta revisión. Los originales completos no se redistribuyen.

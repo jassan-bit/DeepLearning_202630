@@ -7,6 +7,8 @@ import json
 import re
 import shutil
 
+from literature_crypto_stage import crypto_delivery_text, load_crypto_stage
+
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "results/filipe_multihistory_20261104"
 BASE = ROOT / "references/audits/revision_items_libro_20261104"
@@ -107,6 +109,47 @@ def main():
             "finding": "T1 Bucci original de revista con FNN; T2 HARNet código Conv1D; T3 DeepVol identidad editorial, original pendiente. Niveles distintos, sin aumentar recurrencia BTC o acreditar registros individuales/Q1.",
             "timing": "Recuperación posterior al benchmark; no altera resultados o cronología de entrenamiento.",
         }
+    literature_note = (
+        "La recuperación posterior de Miura2019 verifica comparadores MLP y CNN independientes en Bitcoin: "
+        "cada familia aparece en1/6 textos completos. No acredita dimensionalidad explícita CNN1D, "
+        "réplica exacta de las recetas ni uso amplio en el campo.")
+    crypto = load_crypto_stage(ROOT)
+    if crypto:
+        counts = crypto["counts"]
+        summary = crypto["summary"]
+        report["historical_journal_literature_review"] = report.get("current_literature_review")
+        report["current_literature_review"] = {
+            "source": (crypto["directory"] / "summary.json").relative_to(ROOT).as_posix(),
+            "source_sha256": sha(crypto["directory"] / "summary.json"),
+            "stage_id": summary["stage_id"], **counts,
+            "study_ids": summary["study_ids"], "new_study_ids": summary["new_study_ids"],
+            "finding": crypto_delivery_text(crypto)["review"],
+            "harnet_erratum": (crypto["directory"] / summary["harnet_erratum_file"]).relative_to(ROOT).as_posix(),
+            "metadata_source_sha256": crypto["source_sha256"],
+            "timing": summary["timing"], "experiment_results_modified": False,
+            "new_model_fits": 0, "new_forecasts": 0,
+        }
+        report["outstanding"]["applied_comparator_literature"] = (
+            f"Corpus cripto {counts['crypto_full_text_studies']} ({counts['BTC_full_text_studies']} con BTC), "
+            f"{counts['bibliographic_references']} referencias y {counts['studies_with_non_BTC_crypto']} estudio con otros criptoactivos. "
+            f"Baselines MLP {counts['MLP_baseline_studies']}/{counts['crypto_full_text_studies']}, "
+            f"CNN genérica {counts['CNN_generic_baseline_studies']}/{counts['crypto_full_text_studies']} y "
+            f"CNN1D explícita {counts['CNN1D_explicit_baseline_studies']}/{counts['crypto_full_text_studies']}. "
+            "S9 es un original no publicado; su LSTM propuesto no cuenta como baseline. "
+            "HARNet conserva nivel código con errata de escalado y DeepVol identidad con original pendiente. "
+            "La dimensión CNN de S8, recetas exactas, recurrencia amplia e indexación individual conservan límites. "
+            "Extensión documental posterior al benchmark sin nuevos ajustes ni pronósticos.")
+        literature_note = (
+            f"La revisión documental vigente comprende {counts['crypto_full_text_studies']} textos completos cripto "
+            f"({counts['BTC_full_text_studies']} con Bitcoin; {counts['studies_with_non_BTC_crypto']} también con otros criptoactivos) "
+            f"y {counts['bibliographic_references']} referencias. Los baselines MLP y CNN genérica aparecen, respectivamente, "
+            f"en{counts['MLP_baseline_studies']}/{counts['crypto_full_text_studies']} y "
+            f"{counts['CNN_generic_baseline_studies']}/{counts['crypto_full_text_studies']} textos; "
+            f"CNN1D explícita permanece en{counts['CNN1D_explicit_baseline_studies']}/{counts['crypto_full_text_studies']}. "
+            "S9 añade un original no publicado de varios criptoactivos y su LSTM propuesto no suma un baseline. "
+            "Los registros históricos de seis textos y39 referencias se conservan como cortes anteriores. "
+            "La errata HARNet retira una atribución de fuga no sustentada; no constituye auditoría integral del código. "
+            "No se acredita dimensión CNN de S8, réplica exacta, uso amplio ni indexación individual.")
     pilot = ROOT / "results/e1_filipe_pilot_20261105/analysis/summary.json"
     if pilot.exists():
         report["new_registered_pilot"] = {
@@ -172,7 +215,7 @@ BDS se calculó por fold y semilla: {cv['bds']['planned_hypotheses']} hipótesis
 
 Se añadieron tablas anuales, descomposición descriptiva de variabilidad, segmentos y residuos, inferencia final explícitamente post-hoc, diagramas y una ruta de restauración privada verificada. El criterio operativo académico futuro es una mejora superior al5% frente a MLP/D7 y persistencia; no se presenta como definido antes del test ya conocido ni como utilidad financiera.
 
-La recuperación posterior de Miura2019 verifica comparadores MLP y CNN independientes en Bitcoin: cada familia aparece en1/6 textos completos. No acredita dimensionalidad explícita CNN1D, réplica exacta de las recetas ni uso amplio en el campo. El piloto de cuatro historias se conserva por separado. {conditional_note} La generalización a otro periodo y las mediciones externas de ruido/faltantes conservan sus límites. TOST/ROPE es condicional a una afirmación de equivalencia, no un pendiente obligatorio. No se asigna nota ni porcentaje de cumplimiento.
+{literature_note} El piloto de cuatro historias se conserva por separado. {conditional_note} La generalización a otro periodo y las mediciones externas de ruido/faltantes conservan sus límites. TOST/ROPE es condicional a una afirmación de equivalencia, no un pendiente obligatorio. No se asigna nota ni porcentaje de cumplimiento.
 """)
     public = ROOT / "book/_static/e1"
     public.mkdir(parents=True, exist_ok=True)

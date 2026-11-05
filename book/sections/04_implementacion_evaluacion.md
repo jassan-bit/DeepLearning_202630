@@ -277,7 +277,7 @@ El estudio D7 posterior completó su secuencia: protocolo/código publicados →
 | BDS por fold | Todas las semillas y D; resultados definidos/indefinidos registrados |
 | Piloto y potencia | Nuevo piloto ejecutado tras su registro previo. Dimensionamiento para semillas futuras, sin afirmar potencia alcanzada o una evaluación temporal independiente |
 | Estudio D7 de aleatoriedad | Veinte semillas de varianza y 79 definitivas por red completadas; R publicado antes de las definitivas, análisis y auditoría PASS; solo calendario 2024 conocido |
-| Literatura aplicada | Catálogo de 39 referencias; seis textos BTC y transferencia financiera documentada por nivel de evidencia; recetas propias adaptadas |
+| Literatura aplicada | Catálogo vigente de 40 referencias y siete textos cripto, incluido un estudio de 20 activos; transferencia financiera separada por nivel de evidencia y recetas propias adaptadas |
 | Otras tareas | Objetivos n≠7 y ruido simulado no ejecutados |
 
 ## 4.2. Implementación de los Tres Modelos Base

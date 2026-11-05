@@ -9,10 +9,13 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
 
+from literature_crypto_stage import load_crypto_stage
+
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC_BOOK = "https://jassan-bit.github.io/DeepLearning_202630/"
 RAW = "https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/entregables/"
 D7_STUDY = "e1_filipe_confirmatory_d7_20261105"
+CRYPTO_STAGE = "crypto_extension_20261105"
 ITEMS = [
     ("8.1", "8_1_informe_html.zip", "Informe HTML", "informe"),
     ("8.2", "8_2_codigo.zip", "Código EDA, modelos y análisis", "codigo"),
@@ -46,8 +49,10 @@ def add_file(files, path, name=None):
     files[name or path.relative_to(ROOT).as_posix()] = path.read_bytes()
 
 
-def public_tree(files, directory):
+def public_tree(files, directory, excluded_directories=()):
     for path in sorted(directory.rglob("*")):
+        if any(path.is_relative_to(excluded) for excluded in excluded_directories):
+            continue
         if path.is_file() and path.suffix.lower() in TEXT_SUFFIXES:
             if path.name in EXCLUDED_NAMES:
                 raise ValueError(f"Unexpected individual evidence in public tree: {path}")
@@ -73,6 +78,73 @@ def allowlisted_tree(files, directory, manifest_name="public_allowlist_manifest.
         if include is None or include(name):
             add_file(files, path)
     add_file(files, manifest)
+
+
+def package_crypto_stage(packages, stage):
+    """Package only the validated stage manifest and its listed public metadata."""
+    directory = stage["public_directory"]
+    names = set(stage["manifest"]["files_sha256"])
+    if any(Path(name).suffix.lower() not in {".json", ".csv", ".svg", ".bib", ".md"}
+           for name in names):
+        raise ValueError("The crypto literature stage must contain metadata only")
+    erratum = stage["summary"].get("harnet_erratum_file", "harnet_erratum.json")
+    declarations = {"summary.json", erratum}
+    if not declarations.issubset(names):
+        raise ValueError("Missing crypto literature summary or HARNet erratum")
+    allowlisted_tree(packages["8.4"], directory, "manifest.json")
+    for name in sorted(declarations | {"manifest.json"}):
+        add_file(packages["8.7"], directory / name)
+
+
+def literature_readmes(stage):
+    if stage is None:
+        return (
+            "Se conserva el alcance científico del libro: seis textos del corpus BTC y39 referencias. "
+            "Miura2019 respalda MLP/CNN independientes como familias. Bucci2020 aporta un original "
+            "de revista con FNN financiera; HARNet aporta código autor Conv1D; DeepVol tiene identidad "
+            "editorial en CV, con original pendiente. Estas fuentes metodológicas no añaden estudios BTC "
+            "ni revelan la dimensionalidad no reportada de la CNN de Miura. No son réplicas de las recetas. ",
+            "La síntesis BTC de seis estudios, frecuencias y Tabla1 de Miura2019 están en "
+            "book/_static/literature_e1/recovery_20261105/. El catálogo vigente de39 referencias y la "
+            "ampliación metodológica T1/T2/T3 están en journal_update_20261105/: artículo Bucci leído, "
+            "código HARNet verificado e identidad DeepVol con original pendiente. La indexación de "
+            "revistas es secundaria; no se acreditan registros individuales o Q1. No sumar fuentes "
+            "metodológicas al denominador BTC. No se incluyen manuscritos de terceros.",
+        )
+    counts = stage["counts"]
+    total = counts["crypto_full_text_studies"]
+    common = (
+        f"La etapa cripto conserva {counts['bibliographic_references']} referencias y {total} estudios "
+        f"con texto completo: {counts['BTC_full_text_studies']} incluyen Bitcoin y "
+        f"{counts['studies_with_non_BTC_crypto']} incluye también otras criptomonedas; estos "
+        "subconjuntos se superponen. Las frecuencias de comparadores independientes son "
+        f"MLP {counts['MLP_baseline_studies']}/{total}, CNN genérica "
+        f"{counts['CNN_generic_baseline_studies']}/{total} y CNN1D explícita "
+        f"{counts['CNN1D_explicit_baseline_studies']}/{total}. S9 añade una LSTM propuesta, "
+        "sin contarla como otro baseline. Bucci conserva su original financiero leído; HARNet "
+        "aporta solo código primario con un erratum explícito y DeepVol mantiene identidad "
+        "editorial en CV, con original pendiente. Esas transferencias no aumentan las frecuencias "
+        "cripto ni revelan la dimensionalidad no reportada de la CNN de Miura. Las recetas propias "
+        "siguen siendo adaptaciones. "
+    )
+    detail = (
+        f"El catálogo vigente de {counts['bibliographic_references']} referencias, la síntesis de "
+        f"{total} textos cripto, sus frecuencias y la inclusión S9 están en "
+        f"book/_static/literature_e1/{CRYPTO_STAGE}/. De ellos, "
+        f"{counts['BTC_full_text_studies']} incluyen BTC y "
+        f"{counts['studies_with_non_BTC_crypto']} incluye además otras criptomonedas; no se suman "
+        "esos subconjuntos como estudios distintos. S9 presenta una LSTM propuesta, no un nuevo "
+        "comparador baseline: MLP y CNN genérica permanecen en "
+        f"{counts['MLP_baseline_studies']}/{total} y "
+        f"{counts['CNN_generic_baseline_studies']}/{total}; CNN1D explícita queda en "
+        f"{counts['CNN1D_explicit_baseline_studies']}/{total}. Los cortes anteriores de seis textos "
+        "BTC y39 referencias se conservan como historia. Bucci sigue como original financiero "
+        "leído, HARNet como código de autor corregido mediante erratum y DeepVol como identidad "
+        "editorial con manuscrito original pendiente. Las listas de revistas son evidencia "
+        "secundaria, sin acreditar registros individuales o Q1. La carpeta nueva se limita a la "
+        "metadata enumerada y verificada por manifest.json; no incluye manuscritos de terceros."
+    )
+    return common, detail
 
 
 def report_files():
@@ -194,6 +266,7 @@ def main():
         raise ValueError("Commit the source changes before recording the package revision")
     revision = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
     static = ROOT / "book/_static"
+    crypto_stage = load_crypto_stage(ROOT)
     packages = {item: {} for item, *_ in ITEMS}
     packages["8.1"] = report_files()
     report_check = verify_report(packages["8.1"])
@@ -209,9 +282,12 @@ def main():
         add_file(packages["8.3"], ROOT / name)
     public_tree(packages["8.3"], ROOT / "data/manifests")
     public_tree(packages["8.3"], static / "data_source")
-    public_tree(packages["8.4"], static / "literature_e1")
+    public_tree(packages["8.4"], static / "literature_e1",
+                excluded_directories=(static / "literature_e1" / CRYPTO_STAGE,))
     public_tree(packages["8.4"], static / "e1_audit_improvements_20261104/literature")
     add_file(packages["8.4"], ROOT / "book/references.bib")
+    if crypto_stage is not None:
+        package_crypto_stage(packages, crypto_stage)
     allowlisted_tree(packages["8.5"], static / "filipe_multihistory_20261104")
     allowlisted_tree(packages["8.5"], static / "e1_audit_improvements_20261104")
     allowlisted_tree(packages["8.5"], static / "e1_filipe_pilot_20261105", "public_manifest.json")
@@ -271,12 +347,9 @@ def main():
         " semillas nuevas por modelo, con R publicado antes de esa fase. Ambas fases se "
         "condicionan al calendario2024 conocido y no reabren el test histórico."
     ) if d7_summary else " El R definitivo del piloto histórico aún no se ejecutó."
+    literature_common, literature_detail = literature_readmes(crypto_stage)
     common = (
-        "\n\nSe conserva el alcance científico del libro: seis textos del corpus BTC y39 referencias. "
-        "Miura2019 respalda MLP/CNN independientes como familias. Bucci2020 aporta un original "
-        "de revista con FNN financiera; HARNet aporta código autor Conv1D; DeepVol tiene identidad "
-        "editorial en CV, con original pendiente. Estas fuentes metodológicas no añaden estudios BTC "
-        "ni revelan la dimensionalidad no reportada de la CNN de Miura. No son réplicas de las recetas. "
+        "\n\n" + literature_common +
         "Se conservan el suplemento final post-hoc y el piloto histórico registrado de60 trayectorias."
         + d7_note + " La política académica futura no "
         "se presenta como anterior al test. Pesos, escaladores y predicciones individuales "
@@ -288,7 +361,7 @@ def main():
         "8.1": "Abrir informe/intro.html después de descomprimir. Alternativa: `python -m http.server 8000 --directory informe`. MathJax y los enlaces externos pueden necesitar Internet. ARTEFACTOS_EXTERNOS.json identifica las descargas individuales históricas no incluidas.",
         "8.2": "El código conserva scripts/ y tests/. Leer BUILD.md: entornos separados, adquisición, preparación, entrenamiento y análisis. Para recalcular la ejecución original se necesita la evidencia privada; no ejecutar los originales sobre un registro firmado ni borrar sus marcadores.",
         "8.3": "Leer data/README.md. El script scripts/download_binance_spot.py obtiene los archivos oficiales y verifica checksums. Los manifiestos identifican fuente, fechas, bytes y SHA-256. Este paquete no contiene datos brutos de Binance.",
-        "8.4": "La síntesis BTC de seis estudios, frecuencias y Tabla1 de Miura2019 están en book/_static/literature_e1/recovery_20261105/. El catálogo vigente de39 referencias y la ampliación metodológica T1/T2/T3 están en journal_update_20261105/: artículo Bucci leído, código HARNet verificado e identidad DeepVol con original pendiente. La indexación de revistas es secundaria; no se acreditan registros individuales o Q1. No sumar fuentes metodológicas al denominador BTC. No se incluyen manuscritos de terceros.",
+        "8.4": literature_detail,
         "8.5": "Abrir los CSV con un lector compatible con UTF-8. analysis_cv/ contiene desarrollo; test/analysis/ contiene test. Los suplementos inference/ y descriptive/ conservan su registro post-hoc. e1_filipe_pilot_20261105/ contiene el nuevo piloto sobre validación2024 y su dimensionamiento condicional. Los manifiestos verifican los agregados originales.",
         "8.6": "Los locks y los catálogos identifican 1.440 segmentos modelo-mes de CV original,120 ajustes finales y720 segmentos del nuevo piloto. Las filas son metadatos, sin pesos ni valores de escaladores. No mezclar el entorno CV con el de entrenamiento.",
         "8.7": "Leer declaration_and_chronology.json y statistical_scope.json: distinguen evidencia histórica exploratoria, piloto condicional y requisitos futuros no registrados ni ejecutados. Consultar la congelación anterior al test, la política futura y el registro del nuevo piloto e1_filipe_pilot_20261105. Este piloto fue registrado antes de sus propios ajustes, después del benchmark histórico. next_study_pilot_DRAFT.json conserva el borrador de otra evaluación independiente futura, no ejecutada.",
@@ -297,6 +370,9 @@ def main():
         notes["8.5"] += " " + D7_STUDY + "/ reúne todos los agregados, el dimensionamiento, las figuras, los recibos y las auditorías enumerados en su public_manifest.json."
         notes["8.6"] += " " + D7_STUDY + "/ contiene además el catálogo público por fase de " + str(d7_summary["configuration_records"]) + " configuraciones D7, con hashes y semillas, sin valores de escaladores o pesos."
         notes["8.7"] += " " + D7_STUDY + "/ conserva protocolo, R fijado, ambas publicaciones previas, resúmenes de fases, cronología y auditorías. Su allowlist de procedencia es completa; el ZIP8.5 entrega todos sus archivos."
+    if crypto_stage is not None:
+        notes["8.7"] += (" La etapa " + CRYPTO_STAGE + "/ añade summary.json, el erratum de HARNet "
+                          "y manifest.json; el ZIP8.4 contiene su metadata pública completa por allowlist.")
     license_path = static / "licenses/timeseries-cv-LICENSE.txt"
     records = []
     for item, filename, title, _ in ITEMS:
@@ -316,6 +392,11 @@ def main():
     if d7_summary:
         catalog["registered_d7_study"] = d7_summary
         catalog["execution_counter_scope"] = "Zero counters describe packaging only; completed study fits are recorded in registered_d7_study by phase"
+    if crypto_stage is not None:
+        catalog["literature_crypto_extension"] = {
+            "summary": crypto_stage["summary"],
+            "source_sha256": crypto_stage["source_sha256"],
+        }
     (output / "catalogo.json").write_bytes(encode(catalog))
     paths = sorted(output.glob("*.zip")) + [output / "catalogo.json"]
     (output / "SHA256SUMS.txt").write_text("".join(f"{digest(path.read_bytes())}  {path.name}\n" for path in paths))

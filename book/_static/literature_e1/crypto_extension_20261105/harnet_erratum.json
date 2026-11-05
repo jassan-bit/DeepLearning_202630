@@ -1,0 +1,80 @@
+{
+  "record_type": "Scientific erratum to prior HARNet preprocessing interpretation",
+  "documented_at_utc": "2026-11-05T14:14:53.312470+00:00",
+  "source_id": "T2",
+  "source_commit": "3b2832f163ec52cab2435163e82f2e816ae348c9",
+  "corrects_prior_finding": {
+    "finding_id": "O1",
+    "claim_to_withdraw": "The ordering of scaler.fit_transform before train/test interval selection was treated as evidence of fitting normalization parameters to future data."
+  },
+  "retained_literal_fact": "src/harnet/main.py line72 calls scaler.fit_transform(ts.to_numpy()) before constructing train/test index ranges in lines75-80.",
+  "reason_previous_inference_was_not_supported": "The scaler is a package-local class, not sklearn MinMaxScaler. Its fit_transform only calls transform. It does not estimate extrema or other parameters from the supplied series.",
+  "primary_evidence": [
+    {
+      "path": "src/harnet/model.py",
+      "lines": "17-25",
+      "finding": "Factory constructs the local MinMaxScaler with cfg.scaler_min and cfg.scaler_max; Log, LogMinMax and None also select local classes."
+    },
+    {
+      "path": "src/harnet/model.py",
+      "lines": "375-387",
+      "finding": "MinMaxScaler stores constructor min/max; transform=(ts-min)/(max-min); fit_transform simply returns transform(ts)."
+    },
+    {
+      "path": "src/harnet/model.py",
+      "lines": "390-429",
+      "finding": "LogMinMax, None and Log fit_transform methods also delegate directly to deterministic transforms without learning from supplied samples."
+    },
+    {
+      "path": "src/harnet/util.py",
+      "lines": "45-48",
+      "finding": "Default config sets scaler=\"MinMax\", scaler_min=0.0, scaler_max=0.001."
+    },
+    {
+      "path": "configs/RV/RecField_20/QLIKE/HARNet20_QLIKE_OLS.in",
+      "lines": "1-13",
+      "finding": "SPX example selects scaler=\"MinMax\" and does not override the default min/max values."
+    }
+  ],
+  "verified_default_preset_parameters": {
+    "scaler": "MinMax",
+    "min": 0.0,
+    "max": 0.001,
+    "parameters_estimated_from_ts_by_fit_transform": false
+  },
+  "replacement_interpretation": "The source call applies a transform across the loaded series; under the inspected fixed configuration it does not fit normalization extrema to that series. This ordering alone neither establishes leakage nor provides an integral audit of temporal validity.",
+  "not_established": [
+    "How authors selected the fixed scaling constants before this commit",
+    "Full article protocol or reported results",
+    "Independent end-to-end preprocessing/model-selection audit",
+    "Global absence of leakage"
+  ],
+  "independent_reproducibility_limitation": {
+    "finding": "The pinned public data header includes rv5 but not rv5_ss, whereas util.get_MAN_data selects rv5_ss at lines79/86. Default loading therefore cannot be assumed to run unchanged against the bundled CSV. No replacement variable or replication metrics are attributed to the original.",
+    "schema_file": "author_data_schema.json",
+    "code_execution_performed": false
+  },
+  "evidence_archive": {
+    "source_url": "https://codeload.github.com/mdsunivie/HARNet/zip/3b2832f163ec52cab2435163e82f2e816ae348c9",
+    "file": "HARNet_author_3b2832f.zip",
+    "bytes": 8613640,
+    "sha256": "bc373db075b32dcfd011e7299379b2f9c59cf332e714d9dc1b1882080bf9859b",
+    "retrieval_origin": "Previously retrieved author archive; fresh native GitHub root page revalidated the same current commit during this search."
+  },
+  "source_file_hashes": {
+    "src/harnet/model.py": "63bcda2f571c445103e37f7a7843fe53782c41bf1c823400565a5e06da87734b",
+    "src/harnet/util.py": "47c488e320102eb92d932162554daf35b3f9dd7067ea7cfcb84a905808fcf4ea",
+    "src/harnet/main.py": "8fb85343b7c419ee6a5b875d0ee635798824b76fc4829df42b8e94e1e632c211",
+    "configs/RV/RecField_20/QLIKE/HARNet20_QLIKE_OLS.in": "680b9c865e052946241bbadc3d554186ae49f1201432ae4c905bec2cc7491fdb"
+  },
+  "manuscript_status": "not retrieved; preserve T2 author-code tier",
+  "copyright_handling": "Archive and code excerpts retained in private evidence only; no third-party full source or article manuscript copied into the project publication.",
+  "repository_modified": false,
+  "training_or_prediction_execution": false,
+  "compact_source_excerpts": "scaler_erratum_excerpts.json",
+  "corrects_published_records": [
+    "references/literature_e1/journal_update_20261105/harnet2022_primary_code.json#/evaluation_quality_caveat",
+    "references/literature_e1/journal_update_20261105/methodological_sources.json#/sources/1/evaluation_quality_caveat"
+  ],
+  "role": "Current correction; prior versioned records retained as historical snapshots"
+}

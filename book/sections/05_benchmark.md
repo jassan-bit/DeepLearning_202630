@@ -786,7 +786,7 @@ Las variaciones por año y mes pueden reflejar distribución del mercado, tamañ
 | Tablas anuales/meses, segmentos y variabilidad | Complementadas desde pronósticos guardados |
 | Inferencia final principal D7 | t/efectos/IC, signed-rank de sensibilidad, DM, Ljung–Box y bootstrap temporal ejecutados como post-hoc |
 | Planificación futura | Criterio académico 5 % frente a MLP/D7 y persistencia definido; escenarios frente a la frontera y sensibilidades, sin potencia lograda |
-| Literatura y piloto | Catálogo de 39 referencias, seis textos BTC y transferencia financiera; piloto de cuatro historias conservado. Estudio D7 con veinte semillas de varianza y 79 definitivas por red completado, registrado y auditado; sin potencia alcanzada ni nueva validación temporal |
+| Literatura y piloto | Catálogo vigente de 40 referencias, siete textos cripto y transferencia financiera; piloto de cuatro historias conservado. Estudio D7 con veinte semillas de varianza y 79 definitivas por red completado, registrado y auditado; sin potencia alcanzada ni nueva validación temporal |
 | Equivalencia | Condicional: no se afirma ni se exige TOST/ROPE automáticamente |
 
 Las pruebas se interpretan con sus supuestos. No se acredita potencia 0,80 por observar diez semillas o generar una tabla retrospectiva.

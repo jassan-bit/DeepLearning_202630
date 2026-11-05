@@ -9,6 +9,10 @@ from zoneinfo import ZoneInfo
 
 import pandas as pd
 
+from literature_crypto_stage import (
+    crypto_delivery_text, crypto_extension, load_crypto_stage, validate_bibliography,
+)
+
 ROOT=Path(__file__).resolve().parents[1]
 DEST=ROOT/"book/_static/e1_deliverables_20261104"
 OLD=ROOT/"results/dl_r2_cv_20261104"
@@ -180,8 +184,22 @@ def main():
         inputs.update(d7["source_sha256"])
     literature_path=DEST/"literature_extension.json"
     literature=read(literature_path) if literature_path.exists() else None
+    stage=load_crypto_stage(ROOT)
+    historical_literature=None
+    if stage:
+        if literature and literature.get("bibliographic_references")==39:
+            historical_literature=literature
+        elif (DEST/"delivery_manifest.json").exists():
+            historical_literature=read(DEST/"delivery_manifest.json").get("historical_journal_literature_extension")
+        literature=crypto_extension(stage)
+        if historical_literature:
+            literature["source_sha256"]={**historical_literature.get("source_sha256",{}),
+                                         **literature["source_sha256"]}
+        write_json(literature_path,literature)
+    else:
+        validate_bibliography(ROOT)
     if literature:
-        if literature["bibliographic_references"]!=39 or literature["BTC_full_text_studies"]!=6:
+        if not stage and (literature["bibliographic_references"]!=39 or literature["BTC_full_text_studies"]!=6):
             raise ValueError("Preserve the39-reference literature extension and six-text BTC corpus")
         for name,expected in literature["source_sha256"].items():
             if sha(ROOT/name)!=expected:
@@ -247,6 +265,8 @@ def main():
         "source_sha256":inputs}
     if literature:
         declaration["literature_extension"]=literature
+    if historical_literature:
+        declaration["historical_journal_literature_extension"]=historical_literature
     if d7:
         declaration["registered_d7_study"]=d7["summary"]
         declaration["new_registered_pilot"]["status_scope"]="Historical four-history, twelve-pair pilot design; subsequent D7 study is recorded separately"
@@ -319,6 +339,10 @@ def main():
         ("8.6","Dependencias, semillas y configuraciones","Metadatos originales y 720 configuraciones piloto entregados","book/_static/e1_filipe_pilot_20261105/configuration_catalog.csv","Pesos y escaladores completos en paquete privado; no identidad universal entre versiones/hardware"),
         ("8.7","Declaración previa de métrica, margen, independencia y partición","Cronología original y registro anterior al nuevo piloto","book/_static/e1_deliverables_20261104/declaration_and_chronology.json","Piloto registrado antes de sus ajustes; no previo al benchmark histórico, a los datos de2024 ni al test ya examinado")]
     rows=[dict(zip(["item","product","status","evidence","limit"],row)) for row in products]
+    if stage:
+        text=crypto_delivery_text(stage)
+        product=next(row for row in rows if row["item"]=="8.4")
+        product.update(status=text["status"],evidence=text["evidence"],limit=text["limit"])
     if d7:
         updates={
             "8.5":("Benchmark histórico y estudio D7 registrado entregados con alcances separados",
@@ -348,6 +372,10 @@ def main():
         "publication_scope":"Configuration metadata, dependencies, declarations and aggregate results only; no weights, scaler values, market series or individual forecasts"}
     if literature:
         delivery["literature_extension"]=literature
+    if stage:
+        delivery["literature_review"]=text["review"]
+    if historical_literature:
+        delivery["historical_journal_literature_extension"]=historical_literature
     if d7:
         delivery["registered_d7_study"]=d7["summary"]
     write_json(DEST/"delivery_manifest.json",delivery)
