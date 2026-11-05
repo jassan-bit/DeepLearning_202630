@@ -133,7 +133,7 @@ Los [1.440 registros de configuración CV](../_static/gru_lstm_tcn_20261105/conf
 
 | Elemento | Declaración y alcance |
 |---|---|
-| Métrica primaria | RMSE anual por trayectoria, en unidades originales de σ₇; media y DE entre semillas |
+| Métrica primaria | RMSE sobre todas las fechas de cada trayectoria (366 en CV y 608 en test), en unidades originales de σ₇; media y DE entre semillas |
 | Métricas secundarias | MAE, MSE, R², MAPE y MASE, con sus coberturas y denominadores |
 | Partición | Historia inicial 2023, forward chaining 2024, ajuste final con desarrollo permitido, test histórico enero de 2025–agosto de 2026 |
 | Registro de la nueva ejecución | Protocolo y hashes congelados localmente antes de sus ajustes; publicación en el repositorio posterior a la ejecución |

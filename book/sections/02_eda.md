@@ -4,7 +4,7 @@ El análisis se ejecutó con los archivos oficiales de **Binance Spot BTCUSDT**,
 
 Se distinguen las ventanas de entrada $D$ de las ventanas de volatilidad $n$: ambas se exploran en 7, 14, 21 y 28 **días**, pero tienen funciones diferentes. No se selecciona un ganador a partir de estos gráficos. La escala de cálculo usa retornos logarítmicos sin anualizar; las figuras que muestran porcentajes multiplican por 100 y lo indican en sus ejes.
 
-La métrica principal y el criterio operativo de §1.1.4 son **RMSE** y una mejora relativa mínima del **5 % frente a persistencia**. El EDA de este capítulo utilizó exclusivamente desarrollo 2023–2024; el benchmark posterior de los capítulos 4–5 compara las entradas D=7/14/21/28 manteniendo n=7 y h=1. Las sensibilidades del objetivo n=14/21/28 no se entrenaron. El ajuste final y el test posterior a la congelación tienen registros separados: no se presentan como datos usados para seleccionar a partir del EDA.
+La métrica principal es **RMSE**. El criterio operativo de §1.1.4 propone para un modelo avanzado futuro una mejora relativa superior al **5 % frente a GRU/D7 y frente a persistencia**; se declaró después de observar el test actual y no constituye un criterio a priori de este EDA. El EDA de este capítulo utilizó exclusivamente desarrollo 2023–2024; el benchmark posterior de los capítulos 4–5 compara las entradas D=7/14/21/28 manteniendo n=7 y h=1. Las sensibilidades del objetivo n=14/21/28 no se entrenaron. El ajuste final y el test posterior a la congelación tienen registros separados: no se presentan como datos usados para seleccionar a partir del EDA.
 
 ## 2.1. EDA general
 
@@ -303,7 +303,7 @@ La inclusión de un inciso no acredita su ejecución. Cada bloque termina con de
 
 La referencia lineal regularizada solicitada para una primera aproximación ya existe como **cuatro Ridge diagnósticas**, una por historia de entrada, ajustadas exclusivamente con muestras permitidas de 2023 y evaluadas descriptivamente en 2024. Su desarrollo se conserva en §2.2.3. La separabilidad entre clases no aplica a este objetivo continuo. La dependencia de sus residuos señala límites de esa referencia, pero no cuantifica automáticamente una ganancia alcanzable por una red ni prueba que la relación completa sea lineal o no lineal.
 
-No se transforma este diagnóstico en un ranking de historias o en un baseline DL medido. El margen operativo del 5 % corresponde únicamente a persistencia, según §1.1.4.
+No se transforma este diagnóstico en un ranking de historias o en un baseline DL medido. El margen operativo académico de §1.1.4 propone para un modelo avanzado futuro una mejora superior al 5 % frente a GRU/D7 y frente a persistencia. Se declaró después del test actual y no se contrasta con las referencias Ridge de este EDA.
 
 #### 2.2.1.4. Implicaciones clave
 

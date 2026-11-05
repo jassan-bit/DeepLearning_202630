@@ -194,7 +194,7 @@ No aplica como tarea de clasificación o etiquetado: no hay clases ni entidades.
 
 #### 5.3.2.3. Secuencia a secuencia
 
-No aplica a generación de secuencias: se predice un escalar a h=1. Las doce predicciones mensuales agregadas no son una tarea de traducción o decodificación.
+No aplica a generación de secuencias: se predice un escalar a h=1. Los doce bloques mensuales de CV agrupan 366 pronósticos diarios por trayectoria; los veinte intervalos de reporte de test agrupan 608. Esa agregación temporal no convierte la salida escalar en una tarea de traducción o decodificación.
 
 #### 5.3.2.4. Tamaño de efecto de cada diferencia
 

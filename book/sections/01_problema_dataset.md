@@ -173,7 +173,7 @@ $\mathcal J_t$ contiene pares de etiquetas válidas separados por un día de cal
 
 Las historias **D=7/14/21/28** tienen tablas separadas de **MAPE, MAE, RMSE y MSE**, con media y DE entre las diez semillas. R², MASE, cobertura e IC complementan ese reporte. Los archivos [resúmenes de CV](../_static/gru_lstm_tcn_20261105/metric_summary_cv.csv) y [test](../_static/gru_lstm_tcn_20261105/metric_summary_test.csv) permiten reconstruirlo. n=14/21/28 no se entrenó: esas sensibilidades cambiarían el objetivo, no solo la entrada.
 
-El **BDS de residuos de h=1 se calculó por bloque y semilla** para las tres redes y cuatro entradas, con dimensiones 2/3 y radio 1,5 DE muestral. Se reportan valores sin ajustar y Holm en cada familia declarada, estados no definidos y media/DE descriptivas de p-valores. El promedio no es un contraste combinado ni una probabilidad de independencia. Las muestras mensuales cortas, etiquetas solapadas y cambios de régimen limitan la referencia asintótica.
+El **BDS de residuos de h=1 se calculó por bloque y semilla** para las tres redes y cuatro entradas, con dimensión de incrustación 2 y radio 1,5 DE muestral. Se reportan valores sin ajustar y Holm en cada familia declarada, estados no definidos y media/DE descriptivas de p-valores. El promedio no es un contraste combinado ni una probabilidad de independencia. Las muestras mensuales cortas, etiquetas solapadas y cambios de régimen limitan la referencia asintótica.
 
 **Estado de cierre**
 
@@ -272,7 +272,7 @@ La regla actual exige 1.440 minutos elegibles para acreditar un OHLCV diario com
 
 Las ventanas y las volatilidades móviles comparten información. Una fecha, una inicialización y un bloque temporal representan fuentes diferentes de variabilidad. Las semillas y los doce folds mensuales sobre un mercado no se contarán como mercados independientes. Los IC por semillas condicionan al calendario observado; remuestrear fechas requeriría un diseño que represente su dependencia y seguiría condicionado a los modelos guardados. Los intervalos entre semillas no se presentan como incertidumbre de otros periodos. Un único activo limita la generalización a otros mercados.
 
-Así se declara la dependencia conocida, sin presentar como resuelto el requisito de independencia: ningún número de filas, folds o semillas convierte una serie en varios mercados. La inferencia temporal debe justificar sus supuestos, longitud de bloque y estabilidad en el procedimiento que se evalúa. El suplemento final conserva longitud principal 14 y sensibilidades 7/28, con alcance post-hoc y condicionado a sus modelos guardados.
+Así se declara la dependencia conocida, sin presentar como resuelto el requisito de independencia: ningún número de filas, folds o semillas convierte una serie en varios mercados. La inferencia temporal debe justificar sus supuestos, longitud de bloque y estabilidad en el procedimiento que se evalúa. El análisis vigente utiliza 4.999 remuestras pareadas de las diez semillas como sensibilidad del tamaño de efecto $d_z$, con alcance post-hoc y condicionado al calendario y a los modelos guardados. No se ejecutó bootstrap temporal para esta terna; hacerlo requeriría un diseño y una longitud de bloque propios.
 
 **Separación temporal y prevención de fuga**
 

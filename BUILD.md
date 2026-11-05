@@ -1,10 +1,10 @@
 # Construcción y reproducción: GRU–LSTM–TCN
 
-El JBook vigente evalúa **GRU, LSTM y TCN** sobre Bitcoin, con entradas7/14/21/28, σ₇ poblacional y horizonte1día. El baseline es **GRU/D7**, seleccionado mediante CV 2024. La implementación usa únicamente OHLCV ya observado; escaladores y épocas se ajustan con entrenamiento permitido. El test histórico 2025–agosto2026 ya estaba observado: la evidencia publicada y los contrastes dentro del trío son exploratorios.
+El JBook vigente evalúa **GRU, LSTM y TCN** sobre Bitcoin, con entradas de 7/14/21/28 días, σ₇ poblacional y horizonte de 1 día. El baseline es **GRU/D7**, seleccionado mediante CV 2024. La implementación usa únicamente OHLCV ya observado; escaladores y épocas se ajustan con entrenamiento permitido. El test histórico de 2025 a agosto de 2026 ya estaba observado: la evidencia publicada y los contrastes dentro del trío son exploratorios.
 
 ## Construcción del libro
 
-Se requiere Python 3.12 y Jupyter Book 1.0.4.post1. El build consume tablas/figuras guardadas y no entrena modelos, descarga mercado o ejecuta inferencias.
+Se requiere un clon del repositorio, Python 3.12 y Jupyter Book 1.0.4.post1 para reconstruir las fuentes del libro. El producto 8.1 ya contiene el HTML navegable y no necesita este build. El build consume tablas/figuras guardadas y no entrena modelos, descarga mercado o ejecuta inferencias.
 
 ```bash
 python3.12 -m venv .venv
@@ -14,15 +14,17 @@ python3.12 -m venv .venv
 .venv/bin/python -m http.server 8000 --directory book/_build/html
 ```
 
-Abrir `http://localhost:8000`. En Windows adaptar la activación del entorno. No regenerar resúmenes experimentales para construir HTML.
+Abrir `http://localhost:8000`. Los comandos de esta página usan Bash en Linux; en Windows, ejecutarlos dentro de WSL2 con Linux. La reproducción experimental requiere `os.sched_getaffinity`, usado al registrar el entorno; el soporte de Windows nativo no está validado. No regenerar resúmenes experimentales para construir HTML.
 
 ## Entornos
 
-La librería CV utiliza NumPy menor que 2 y tiene un entorno propio. Los modelos y análisis usan el lock de entrenamiento observado; no sustituir versiones por la última disponible.
+La librería CV utiliza NumPy menor que 2 y tiene un entorno propio. La preparación EDA usa su lock y los modelos y análisis usan el lock de entrenamiento observado; no sustituir versiones por la última disponible.
 
 ```bash
 python3.12 -m venv .venv-cv
 .venv-cv/bin/python -m pip install -r requirements-cv.txt
+python3.12 -m venv .venv-eda
+.venv-eda/bin/python -m pip install -r requirements-eda.lock.txt
 python3.12 -m venv .venv-training
 .venv-training/bin/python -m pip install -r requirements-training.lock.txt
 ```
@@ -49,13 +51,22 @@ Leer `data/README.md` y usar `scripts/download_binance_spot.py --help` para adqu
 - `results/eda_development/daily_market_development.csv`.
 - `results/eda_development/daily_volatility_development.csv`.
 
-El README del dataset documenta la adquisición y los scripts de EDA del repositorio producen los derivados con calendario UTC, sin comprimir faltantes. Los manifiestos de folds D7/D14/D21/D28 provienen de llamadas reales a `split_train_val_forwardChaining(np.arange(731),D,1,1)`, agrupadas explícitamente en doce meses de 2024. La agrupación mensual no es una API nativa mensual ni366 refits diarios. Se conserva embargoD y validación interna de 90 días.
+Un clon del repositorio ya incluye estos dos CSV de desarrollo. Los ZIP públicos omiten los derivados diarios: para reproducir desde las descargas, descomprimir los productos **8.2 (código)** y **8.3 (instrucciones y manifiestos de datos)** en la misma carpeta, conservar sus subdirectorios y crear los entornos `.venv-eda` y `.venv-training` con sus respectivos locks, como se indica arriba. Conservar aparte los `LEEME.md` y `MANIFIESTO.json` de cada ZIP para verificar su integridad individual. Después de adquirir los ZIP oficiales siguiendo `data/README.md`, generar los derivados desde la raíz del proyecto:
 
-Los derivados diarios y las predicciones individuales del experimento observado no forman parte del repositorio público. Una verificación completa de sus checkpoints requiere la evidencia conservada y sus hashes; un clon público puede verificar los agregados permitidos sin fingir haber recalculado pesos privados.
+```bash
+.venv-eda/bin/python scripts/eda_binance_development.py \
+  --raw-root /ruta/adquisicion/oficial
+```
+
+`--raw-root` señala la carpeta que contiene `BTCUSDT/1m/`; se puede cambiar sin modificar código. El script verifica los hashes del manifiesto versionado, abre únicamente los 24 archivos mensuales de desarrollo 2023–2024 y produce los dos CSV requeridos con calendario UTC, sin comprimir faltantes. Este paso debe terminar antes de `--phase validate`; no abre el test ni ajusta redes.
+
+Los manifiestos de folds D7/D14/D21/D28 provienen de llamadas reales a `split_train_val_forwardChaining(np.arange(731),D,1,1)`, agrupadas explícitamente en doce meses de 2024. La agrupación mensual no es una API nativa mensual ni 366 refits diarios. Se conserva embargo de D días y validación interna de 90 días.
+
+Los derivados diarios completos del **test**, las predicciones individuales y los pesos del experimento observado no forman parte de la exportación pública. Los CSV de **desarrollo 2023–2024** sí están versionados en el repositorio, aunque se omiten de los ZIP de entrega. Una verificación completa de los checkpoints observados requiere la evidencia conservada y sus hashes; un clon público puede verificar los agregados permitidos sin recalcular pesos privados.
 
 ## Verificar la publicación sin entrenar
 
-El manifiesto público enumera únicamente archivos agregados y metadatos:
+El manifiesto público enumera únicamente archivos agregados y metadatos. En un clon del repositorio:
 
 ```bash
 .venv-training/bin/python scripts/run_gru_lstm_tcn.py --phase verify \
@@ -63,6 +74,15 @@ El manifiesto público enumera únicamente archivos agregados y metadatos:
 ```
 
 La verificación no registra nuevos ajustes ni abre test. `results/gru_lstm_tcn_20261105/` y su copia estática tienen contenido idéntico por allowlist.
+
+Para verificar las descargas, descomprimir los productos **8.2, 8.3 y 8.5** en una misma raíz de trabajo, conservando los subdirectorios `scripts/`, `data/`, `results/` y `book/_static/`. Guardar aparte el `LEEME.md` y el `MANIFIESTO.json` de cada producto. Si se descargó `entregable1_completo.zip`, primero extraer ese contenedor y después sus ZIP internos. El producto 8.5 contiene los agregados bajo `book/_static/`, por lo que el comando es:
+
+```bash
+.venv-training/bin/python scripts/run_gru_lstm_tcn.py --phase verify \
+  --evidence-manifest book/_static/gru_lstm_tcn_20261105/public_allowlist_manifest.json
+```
+
+Esta verificación de agregados no requiere adquirir mercado ni generar los CSV diarios. El informe HTML del producto 8.1 se abre por separado en `informe/intro.html`.
 
 ## Reproducir una ejecución nueva
 
@@ -78,13 +98,13 @@ El adaptador público es una versión portable publicada después de la ejecuci�
   --project-root . --output-dir /ruta/nueva/gru-lstm-tcn
 ```
 
-`run` genera un registro si la salida todavía no existe y conserva/verifica los ajustes completados al reanudarse. `--limit-trajectories` es sólo una ejecución técnica parcial; un resultado incompleto no permite cerrar test. El conjunto completo tiene120 trayectorias,1.440 segmentos mensuales y2.880 ajustes.
+`run` genera un registro si la salida todavía no existe y conserva/verifica los ajustes completados al reanudarse. `--limit-trajectories` es sólo una ejecución técnica parcial; un resultado incompleto no permite cerrar test. El conjunto completo tiene 120 trayectorias, 1.440 segmentos mensuales y 2.880 ajustes.
 
 Los hiperparámetros están fijos: GRU/LSTM ancho 32, LR 0,003; TCN ancho 16, LR 0,001. AdamW, dropout 0,1, weight_decay 0,0001, batch 32, clipping 1, máximo 100 épocas y patience 12 son compartidos. No se ejecutó una nueva búsqueda comparable de hiperparámetros por familia: los resultados no son un óptimo arquitectónico global. Diez semillas son un presupuesto de evaluación y no acreditan potencia 0,80 ni un piloto prospectivo del trío.
 
 ## Cierre y test de una reproducción
 
-El cierre exige CV completo y fija D por mediaCV, así como las épocas de diciembre. Leer las opciones exactas de `--help`. Se puede señalar un derivado diario explícito con su auditoría, o un `--raw-root` con los ZIP oficiales ya adquiridos. No se descarga ni se abre contenido del test durante registro/CV/ajuste. El manifiesto de adquisición y la identidad esperada se fijan antes del acceso; los120pesos se congelan antes de scoring.
+El cierre exige CV completo y fija D por media de CV, así como las épocas de diciembre. Leer las opciones exactas de `--help`. Se puede señalar un derivado diario explícito con su auditoría, o un `--raw-root` con los ZIP oficiales ya adquiridos. No se descarga ni se abre contenido del test durante registro/CV/ajuste. El manifiesto de adquisición y la identidad esperada se fijan antes del acceso; los 120 pesos se congelan antes de scoring.
 
 ```bash
 .venv-training/bin/python scripts/run_gru_lstm_tcn.py --phase close \
@@ -97,13 +117,20 @@ El cierre exige CV completo y fija D por mediaCV, así como las épocas de dicie
   --raw-root /ruta/adquisicion/oficial
 ```
 
-La repetición portable ajusta120 modelos finales frescos. **El experimento observado publicó80 ajustes nuevos y40 LSTM idénticas reutilizadas**, con verificación de receta/época/cohorte/escaladores; no confundir ambos conteos. En ambos casos se conserva la misma partición. Test abarca2025-01-01–2026-08-31,608 fechas, y sus veinte meses son intervalos de reporte de pesos fijos. Septiembre–octubre de 2026 no se asigna automáticamente.
+La repetición portable ajusta 120 modelos finales frescos. **El experimento observado publicó 80 ajustes nuevos y 40 LSTM idénticas reutilizadas**, con verificación de receta/época/cohorte/escaladores; no confundir ambos conteos. En ambos casos se conserva la misma partición. Test abarca 2025-01-01–2026-08-31, 608 fechas, y sus veinte meses son intervalos de reporte de pesos fijos. Septiembre–octubre de 2026 no se asigna automáticamente.
 
 No borrar marcadores de acceso, modificar hiperparámetros después de test ni repetir inferencias para escoger resultados favorables. El test observado del proyecto sigue siendo exploratorio aun cuando se cierre una nueva configuración antes de sus propias inferencias.
 
 ## Estadística de una reproducción nueva
 
-Después de CV o del scoring final, el analizador portable consume únicamente los CSV de la salida nueva y escribe sus propios agregados. No exige archivos del experimento privado original ni impone sus80 ajustes+40reusos.
+El analizador portable consume únicamente los CSV de la salida nueva y escribe sus propios agregados. No exige archivos del experimento privado original ni impone sus 80 ajustes y 40 reusos. Si sólo se ha completado CV, analizar esa fase:
+
+```bash
+.venv-training/bin/python scripts/analyze_gru_lstm_tcn_run.py \
+  --project-root . --output-dir /ruta/nueva/gru-lstm-tcn --phase cv
+```
+
+Después de completar también el scoring final, `--phase all` analiza CV y test. Requiere ambas fases completas; no ejecuta una fase pendiente:
 
 ```bash
 .venv-training/bin/python scripts/analyze_gru_lstm_tcn_run.py \
@@ -120,9 +147,9 @@ El exportador actual consume las predicciones guardadas del experimento local y 
 .venv-training/bin/python scripts/build_gru_lstm_tcn_evidence.py --help
 ```
 
-Los contrastes D7 entre GRU/LSTM/TCN son **post-hoc**, con Holm3 por fase, IC marginales y familiares. Todas las entradas tienen sensibilidad Holm12. DM utiliza MSE diario medio entre semillas, HAC y corrección HLN; esa pregunta temporal difiere de la variación de inicialización. BDS y Ljung–Box por mes tienen límites de tamaño y dependencia; rechazar iid no demuestra una no linealidad explotable.
+Los contrastes D7 entre GRU/LSTM/TCN son **post-hoc**, con Holm de 3 comparaciones por fase, IC marginales y familiares. Todas las entradas tienen sensibilidad Holm de 12 comparaciones. DM utiliza MSE diario medio entre semillas, HAC y corrección HLN; esa pregunta temporal difiere de la variación de inicialización. BDS y Ljung–Box por mes tienen límites de tamaño y dependencia; rechazar iid no demuestra una no linealidad explotable.
 
-El margen operativo futuro es5 % del RMSE CV de GRU/D7,0,00025772842664981106. Se declara después del test actual, con sensibilidad2,5/10 %; requiere su propio registro/piloto/evaluación futura. No sustituye el margen histórico del protocolo fuente ni prueba utilidad financiera.
+El margen operativo futuro es 5 % del RMSE CV de GRU/D7, 0,00025772842664981106. Se declara después del test actual, con sensibilidad del 2,5 % y el 10 %; requiere su propio registro/piloto/evaluación futura. No sustituye el margen histórico del protocolo fuente ni prueba utilidad financiera.
 
 ## Pruebas
 

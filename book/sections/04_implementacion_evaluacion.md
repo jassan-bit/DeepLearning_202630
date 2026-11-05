@@ -187,7 +187,7 @@ D cambia tanto el contexto como la purga y el entrenamiento elegible. Las difere
 
 #### 4.2.2.2. Semillas, reinicios y reproducibilidad
 
-Las semillas de trayectoria son 4101–4110. La selección interna usa la semilla de trayectoria; el reajuste usa semilla+10.000.000. El orden de minibatches utiliza un generador determinista de etapa. Se reinician pesos en cada ajuste; las semillas no se seleccionan por error. La coincidencia nominal facilita el pareamiento, pero no hace idénticos los flujos aleatorios de arquitecturas distintas.
+Las semillas de trayectoria son 4101–4110. Para el mes de ordinal $j=0,\ldots,11$ (enero=0), la selección interna usa $s_{\mathrm{mes}}=s+100\,000j$ y el reajuste usa $s_{\mathrm{mes}}+10\,000\,000$. El orden de minibatches utiliza un generador determinista con la semilla de esa etapa más 17. Por ejemplo, para la trayectoria 4101, las selecciones de enero y febrero usan 4101 y 104101. Se reinician pesos en cada ajuste; las semillas no se seleccionan por error. La coincidencia nominal facilita el pareamiento, pero no hace idénticos los flujos aleatorios de arquitecturas distintas.
 
 ### 4.2.3. Definición de hiperparámetros
 

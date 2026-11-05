@@ -30,7 +30,7 @@ El procedimiento principal utiliza validación forward chaining de `timeseries-c
 
 Se respeta **entrenamiento < validación < prueba** por disponibilidad de información. La historia inicial es 2023; los orígenes de validación son los días de 2024; el test final comprende 01/01/2025–31/08/2026. Cada entrada termina antes del día de resultado y cada etiqueta usada para ajustar debe estar completamente observada al emitir el pronóstico evaluado.
 
-En notación de calendario, para el resultado del día d se emite al inicio UTC de d, se usa OHLCV de d−D,…,d−1 y se predice σ7(d), conocida al terminar d. Corresponde a $Y_t=\sigma_{t+1}$ de §1.1.1 cuando t identifica ese día de resultado. El OHLCV completo de d no es entrada disponible al comenzar d. Origen, día de resultado y disponibilidad de etiqueta se conservan como campos distintos.
+En notación de calendario, para el resultado del día d se emite al inicio UTC de d, se usa OHLCV de d−D,…,d−1 y se predice σ7(d), conocida al terminar d. El campo de datos σ7(d) incluye los retornos $r_{d-6},\ldots,r_d$; en la convención de la fórmula del curso de §1.1.1, que indexa la volatilidad por el día siguiente al último retorno incluido, es $Y_d=\sigma_{d+1}=\sigma_7(d)$. Ambas escrituras identifican la misma etiqueta del día de resultado d. El OHLCV completo de d no es entrada disponible al comenzar d. Origen, día de resultado y disponibilidad de etiqueta se conservan como campos distintos.
 
 Se mantiene **2023 como entrenamiento inicial, 2024 como validación forward chaining y 2023–2024 para el ajuste final tras cerrar las configuraciones**. El test evaluado comprende enero de 2025–agosto de 2026; septiembre–octubre de 2026 permanece sin asignación automática.
 
