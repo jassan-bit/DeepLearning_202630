@@ -1,0 +1,49 @@
+{
+  "registered_before_first_extension_fit_at_utc": "2026-11-05T16:12:05.816248+00:00",
+  "source_commit": "2964e2e3d0dc82b42e6cd8cbc8a92f5b6346ad9a",
+  "protocol_sha256": "c136f7743ccff2e524e892510dfd05cbbaaf4fc3776bd5c23bd88ad753f60c88",
+  "code_sha256": {
+    "scripts/train_filipe_multihistory.py": "c3a96f60142ef6bbd5faf1dac7855f38f03e51859529adf6861ffdfb8e58d064",
+    "scripts/train_dl_benchmark.py": "b78e2c66f55b07567601065f411881fa7170fe931784b1f59305283fdd292679",
+    "scripts/dl_data.py": "8ea726a1d8ca7b9fa9bfcb26ee6e565b516c40a3ad1cd40e0f639c43b7f429ce",
+    "scripts/dl_data_v2.py": "bbf0ad8646afcd792b3961d0e5e5bcf9318f0fbe4377732a965c58f9557c33cb",
+    "scripts/dl_models.py": "e24110b57aeee201e1e9ab53519eb6b05967927ac54102fe23d3908c3fc57d69",
+    "/workspace/e1_lstm_gru_tcn_local_20261105/runner/run_local.py": "9731333fceca5945a42cf7b08d22cde15c85985a2f0025eb90f23ede233d3ff7",
+    "/workspace/e1_lstm_gru_tcn_local_20261105/implementation/local_models.py": "797fbabe118ba850e3384ca61f564722c72d94c33b90773e48ca2292ad1de96a"
+  },
+  "code_signature": "ced5981c953127c9010c398d8f99ace8ddf6f15d5db8c053abbd8df1192f4c55",
+  "runtime": {
+    "at_utc": "2026-11-05T16:12:05.814549+00:00",
+    "python": "3.12.14",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "versions": {
+      "torch": "2.15.0+cpu",
+      "numpy": "2.5.4",
+      "pandas": "3.1.0",
+      "scipy": "1.18.1",
+      "statsmodels": "0.15.0",
+      "matplotlib": "3.11.2"
+    },
+    "device": "cpu",
+    "cuda_available": false,
+    "cpu_count": 5,
+    "cpu_affinity_count": 5,
+    "cgroup_cpu_max": "400000 100000",
+    "cgroup_memory_max": "34359738368",
+    "torch_threads_per_worker": 1,
+    "torch_interop_threads": 1,
+    "deterministic_algorithms": true,
+    "mkldnn_enabled": true,
+    "timing_scope": "Wall time under registered concurrent CPU workers; no serial latency claim",
+    "forward_cv_library": {
+      "distribution": "timeseries-cv",
+      "version": "0.1.5",
+      "numpy_version": "1.26.4",
+      "function": "tsxv.splitTrainVal.split_train_val_forwardChaining",
+      "signature": "(sequence, numInputs, numOutputs, numJumps)",
+      "function_source_sha256": "ae84a05795b81475c4ca7aaa849a6b5af6c947b2de347cf433ab12ce1e0c04d4",
+      "module_source_sha256": "4532587db2289f01e5b7eab6388e88b9b774f17247c35b6231e74d2848c4a173"
+    }
+  },
+  "test_files_opened": 0
+}

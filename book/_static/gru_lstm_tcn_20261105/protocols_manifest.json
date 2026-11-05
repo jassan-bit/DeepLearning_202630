@@ -1,0 +1,104 @@
+{
+  "postpublication_analysis": {
+    "declared_at_utc": "2026-11-05T17:25:17.911777+00:00",
+    "timing": "AFTER historical test scoring and inspection",
+    "publication_authorized_after_local_comparison": true,
+    "models": [
+      "GRU",
+      "LSTM",
+      "TCN"
+    ],
+    "histories": [
+      7,
+      14,
+      21,
+      28
+    ],
+    "seeds": [
+      4101,
+      4102,
+      4103,
+      4104,
+      4105,
+      4106,
+      4107,
+      4108,
+      4109,
+      4110
+    ],
+    "baseline": "GRU/D7, chosen using CV before its new old-test evaluation",
+    "primary_trio_report": {
+      "history_days": 7,
+      "pairs": [
+        [
+          "GRU",
+          "LSTM"
+        ],
+        [
+          "GRU",
+          "TCN"
+        ],
+        [
+          "LSTM",
+          "TCN"
+        ]
+      ],
+      "comparisons_per_phase": 3,
+      "test": "two-sided paired Student t on per-seed pooled RMSE",
+      "correction": "Holm3 separately per phase",
+      "intervals": "95% marginal and Bonferroni3 family intervals",
+      "effect": "paired Cohen dz with4999 paired-seed bootstrap sensitivity"
+    },
+    "all_histories_sensitivity": {
+      "comparisons_per_phase": 12,
+      "correction": "Holm12 separately per phase",
+      "intervals": "95% marginal and Bonferroni12 family intervals"
+    },
+    "normality": "Shapiro diagnostic only; does not select a different test",
+    "diagnostics": {
+      "BDS": "h1 monthly residuals, m2, epsilon1.5sampleSD, exploratory short-block iid diagnostic",
+      "LjungBox": "h1 monthly residuals, lags1/5, model_df0; not ARMA df estimated for networks",
+      "DM": "D7 three pairs, daily squared losses averaged over seeds; HAC Bartlett lag6, HLN h1, Holm3"
+    },
+    "margins": "Prior frozen absolute delta retained as historical context; new5%GRU-CV margin declared now for future studies only",
+    "fixed_seed_illustration": {
+      "file": "predictions_D7.png",
+      "seed": 4101,
+      "dates": 608,
+      "format": "PNG illustration of observed and predicted sigma7, not a machine-readable daily table",
+      "seed_chosen_by_error": false,
+      "table_vectors_exported": false
+    },
+    "independent_confirmation_claimed": false,
+    "no_new_fits_or_checkpoint_inferences": true,
+    "scope": "Análisis del nuevo trío definido después de inspeccionar el test histórico; exploratorio y condicional al calendario y a la aleatoriedad de entrenamiento. No constituye confirmación temporal independiente."
+  },
+  "signed_originals_preserved": true,
+  "cv": {
+    "registered_at_utc": "2026-11-05T16:12:03.824561+00:00",
+    "protocol_sha256": "c136f7743ccff2e524e892510dfd05cbbaaf4fc3776bd5c23bd88ad753f60c88",
+    "freeze_before_training_sha256": "dd74ebc09abfb86ca240b2ce2d8ed7fe167de99a7af94ba723f61fb8a7309518",
+    "calendar": "2023 initial fit; 2024 monthly blocked forward chaining",
+    "trajectories": 120,
+    "inner_and_refit_fits": 2880,
+    "prediction_rows": 43920,
+    "selection_and_comparisons_timing": "Original recipes/24 historical-reference contrasts frozen before new runs; new within-trio analyses are post-test"
+  },
+  "final": {
+    "closed_at_utc": "2026-11-05T16:41:41.990907+00:00",
+    "configuration_freeze_sha256": "6e39bdd0b372024a1d464a22595df8457c670f130b88b6eba034cc4d868e73e1",
+    "protocol_sha256": "dba3967b2eb4bf58df2975e4f612ace1ebfd71a20433c762f2b52302a7a7c43b",
+    "calendar": "2025-01-01..2026-08-31, already observed",
+    "new_model_fits": 80,
+    "LSTM_models_reused": 40,
+    "new_checkpoint_forward_calls": 80,
+    "LSTM_prediction_runs_reused": 40,
+    "prediction_rows": 72960,
+    "monthly_reporting_intervals": 20,
+    "test_period_refits": 0
+  },
+  "new_trio_analysis_predeclared_before_test": false,
+  "future_margin_predeclared_before_current_test": false,
+  "prospective_pilot_for_new_GRU_TCN": false,
+  "scope": "Análisis del nuevo trío definido después de inspeccionar el test histórico; exploratorio y condicional al calendario y a la aleatoriedad de entrenamiento. No constituye confirmación temporal independiente."
+}

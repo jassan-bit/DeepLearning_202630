@@ -2,13 +2,17 @@
 
 La revisión debe identificar exactamente tres modelos DL básicos usados como referencias comparativas en la literatura del problema. El alcance documental actual abarca **todas las criptomonedas**, mientras el experimento propio sigue en Bitcoin. La bibliografía vigente reúne **40 referencias** y el corpus aplicado contiene **siete textos completos**: seis estudios previos de BTC y S9, un estudio de veinte criptomonedas que también incluye BTC. Por tanto, el subconjunto que incluye BTC tiene siete estudios y uno de ellos incluye otras criptomonedas; son categorías superpuestas, no dos grupos que se suman. S8 verifica MLP, CNN, LSTM y GRU como comparadores independientes {cite:p}`miura2019`; S9 incorpora LSTM como propuesta, con su papel separado {cite:p}`djanga2025commonality`. T1/T2/T3 permanecen como transferencia financiera: un original editorial completo, código primario y una identidad de publicación, respectivamente; no aumentan el denominador cripto.
 
-El trío implementado **MLP–LSTM–CNN1D poco profunda**, orientado por la guía 6.4, permanece como adaptación propia. Bucci (2020) refuerza el fundamento de la MLP como referencia sencilla de volatilidad financiera {cite:p}`bucci2020realized`. El código de HARNet verifica una CNN1D causal en otro mercado {cite:p}`reisenhofer2022harnet`; no revela la dimensionalidad de la CNN de S8 ni convierte la red del proyecto en una réplica. La identificación editorial de DeepVol {cite:p}`morenopino2024deepvol` no se usa para atribuirle parámetros o resultados del original no leído.
+La terna principal vigente es **GRU–LSTM–TCN causal dilatada residual**. Akbiyik et al. (2023), Tabla 2, comparan las tres familias como referencias independientes para volatilidad de Bitcoin {cite:p}`akbiyik2023`; Miura, Pichl y Kaizoji (2019), Tabla 1, aportan otra comparación publicada de GRU y LSTM {cite:p}`miura2019`. En el corpus recuperado, las frecuencias estrictas son **GRU 3/7, LSTM 5/7 y TCN 1/7**. La TCN tiene respaldo directo, pero su recurrencia amplia no está acreditada. Las redes pequeñas del proyecto son adaptaciones declaradas, con 3.777, 5.025 y 4.289 parámetros, respectivamente; no son las configuraciones ganadoras de esos artículos.
+
+La decisión de publicar esta terna se tomó **después del benchmark histórico y de revisar el experimento privado GRU–LSTM–TCN**. No se presenta como una selección bibliográfica anterior a esas ejecuciones ni como confirmación sobre un calendario nuevo. El protocolo privado había fijado las recetas antes de sus propios ajustes; esa congelación y la decisión posterior de publicación son hechos distintos. El [expediente de selección vigente](../_static/literature_e1/gru_lstm_tcn_selection_20261105/selection.json), su [tabla](../_static/literature_e1/gru_lstm_tcn_selection_20261105/selection.csv) y la {download}`justificación <../_static/literature_e1/gru_lstm_tcn_selection_20261105/README.md>` conservan evidencia, criterios y límites.
+
+MLP y CNN permanecen en las extracciones originales cuando los autores las usaron; la terna experimental principal contiene únicamente GRU, LSTM y TCN. Bucci, HARNet y DeepVol siguen como transferencia financiera, con los niveles de acceso ya documentados {cite:p}`bucci2020realized,reisenhofer2022harnet,morenopino2024deepvol`; no añaden estudios al denominador cripto ni se necesitan para completar la evidencia TCN de S1.
 
 La revisión del **03/11/2026** corrigió motivos de cribado, recuperó dos textos adicionales y completó la extracción de los hiperparámetros ganadores de S1, que sí aparecen en su apéndice. Se conservan los cortes anteriores y se explicitan fuentes grises, parámetros desconocidos y límites de las métricas. Aquella revisión documental del 03/11/2026 no entrenó redes ni consultó test; la ejecución posterior de desarrollo se registra por separado.
 
-La lectura previa de S8 se realizó el **04/11/2026, hora de Bogotá**, con registros UTC del 05/11, después del benchmark ya examinado. La referencia es anterior al experimento por su publicación de 2019, pero su recuperación en esta revisión es posterior: **no se reescribe como fundamento de una selección que ya estaba cerrada**. Se actualiza la evidencia documental sin nuevos entrenamientos, pronósticos o selección por test.
+La lectura previa de S8 se realizó el **04/11/2026, hora de Bogotá**, con registros UTC del 05/11, después del benchmark histórico ya examinado. Su publicación de 2019 precede a esos experimentos, pero su recuperación no se reescribe como fundamento de decisiones experimentales previas. La terna vigente se registra como una decisión posterior y diferente; su respaldo se distingue de las fechas de publicación, recuperación y ejecución.
 
-El problema propio es **regresión temporal, tipo 4, ruta 6.4**: OHLCV rezagadas sin historia explícita de la volatilidad objetivo. Las tareas de las fuentes no coinciden automáticamente con ese contrato. El corte documental del 03/11/2026 está en el {download}`informe del capítulo 3 <../_static/e1/revision_estado_arte_20261103.md>` y su [matriz histórica de requisitos](../_static/e1/revision_estado_arte_20261103.json); el estado propio de las tres fichas implementadas se actualiza en §§3.3–3.4.
+El problema propio es **regresión temporal, tipo 4, ruta 6.4**: OHLCV rezagadas sin historia explícita de la volatilidad objetivo. Las tareas de las fuentes no coinciden automáticamente con ese contrato. El expediente de selección vigente y las tres fichas implementadas se desarrollan en §§3.2–3.4; los registros de etapas anteriores permanecen en el historial versionado del repositorio.
 
 La estrategia mantiene la solicitud del usuario: **búsqueda web pública y verificación posterior de procedencia e indexación**. Los registros de las fases previas se conservan. La [ampliación cripto del 05/11/2026](../_static/literature_e1/crypto_extension_20261105/search_log.json) documenta consultas, fuentes, accesos y reevaluación de S9; el manuscrito era una pista conocida y no se presenta como descubrimiento enteramente nuevo. Su original se leyó para incorporarlo bajo el alcance ampliado. La [ampliación financiera previa](../_static/literature_e1/journal_update_20261105/search_and_access_log.json) sigue distinguiendo T1/T2/T3. Ninguna etapa acredita por sí sola búsquedas nativas WoS/Scopus/IEEE Xplore/arXiv, registros individuales o Q1. Los catálogos de 35, 36 y 39 referencias son cortes anteriores; el vigente contiene 40.
 
@@ -164,9 +168,9 @@ El **enlace bibliográfico** identifica el trabajo, su DOI, su preprint o el reg
 
 El catálogo vigente se descarga en [CSV](../_static/literature_e1/crypto_extension_20261105/references_access_40.csv), [JSON](../_static/literature_e1/crypto_extension_20261105/references_access_40.json) y [BibTeX](../_static/literature_e1/crypto_extension_20261105/references_access_40.bib). Los cortes anteriores de [39](../_static/literature_e1/journal_update_20261105/references_access_39.csv), [36](../_static/literature_e1/recovery_20261105/references_access_36.csv) y [35](../_static/literature_e1/references_access_35.csv) se conservan. Las citas completas están en la [bibliografía del libro](referencias.md).
 
-**Recuperación dirigida posterior a la auditoría del 04/11/2026.** Se ejecutó otra etapa de descubrimiento público, separada del flujo original: **13 cadenas literales, 18 páginas y 113 ocurrencias en 92 repositorios únicos**; se inspeccionaron nueve raíces/README y siete archivos de código/notebook sin ejecutarlos. El [registro de consultas](../_static/e1_audit_improvements_20261104/literature/search_log.json) y la [evaluación de candidatos](../_static/e1_audit_improvements_20261104/literature/candidate_assessment.csv) documentan este recorrido. No se suman estas ocurrencias al PRISMA original sin una deduplicación conjunta: son dos etapas con denominadores propios.
+**Recuperación dirigida posterior a la auditoría del 04/11/2026.** Se ejecutó otra etapa de descubrimiento público, separada del flujo original: **13 cadenas literales, 18 páginas y 113 ocurrencias en 92 repositorios únicos**; se inspeccionaron nueve raíces/README y siete archivos de código/notebook sin ejecutarlos. El [registro de consultas](../_static/literature_e1/recovery_audit_20261104/search_log.json) y la [evaluación de candidatos](../_static/literature_e1/recovery_audit_20261104/candidate_assessment.csv) documentan este recorrido. No se suman estas ocurrencias al PRISMA original sin una deduplicación conjunta: son dos etapas con denominadores propios.
 
-En aquella recuperación se verificaron pistas de una CNN1D independiente y una MLP TS-only, pero **no se obtuvo un manuscrito científico completo nuevo**: su resultado histórico fue 35 referencias, cinco textos y 0/5 para MLP/CNN1D simple. La [matriz de siete fuentes](../_static/e1_audit_improvements_20261104/literature/dataset_comparability.csv) y el {download}`informe de esa etapa <../_static/e1_audit_improvements_20261104/literature/report.md>` conservan ese alcance. La inclusión posterior de S8 es otra recuperación primaria, no una reinterpretación de esos README ni prueba de que sus fuentes tengan el mismo dataset/σ7 del proyecto.
+En aquella recuperación se verificaron pistas de una CNN1D independiente y una MLP TS-only, pero **no se obtuvo un manuscrito científico completo nuevo**: su resultado histórico fue 35 referencias, cinco textos y 0/5 para MLP/CNN1D simple. La [matriz de siete fuentes](../_static/literature_e1/recovery_audit_20261104/dataset_comparability.csv) y el {download}`informe de esa etapa <../_static/literature_e1/recovery_audit_20261104/report.md>` conservan ese alcance. La inclusión posterior de S8 es otra recuperación primaria, no una reinterpretación de esos README ni prueba de que sus fuentes tengan el mismo dataset/σ7 del proyecto.
 
 ### 3.1.3. Periodo de búsqueda
 
@@ -345,7 +349,7 @@ La corrección del apéndice C de S1 cambia la valoración de complejidad: sus g
 | TCN S1 | Seis niveles, F=287, k=5, base de dilatación 4; Tabla 6 | 4.563.396, condicionado al bloque de dos convoluciones y un stack | 4.542.924 bajo las mismas hipótesis |
 | SELF-ATT S2 | Dos encoder, d=48, FF=96, cuatro cabezas y M=96 posiciones | 49.249 | 47.521, conservando M=96 |
 | MLP S8 | Cuatro capas, variantes dropout/BN; anchos y activaciones no reportados | No calculable de forma exacta | No calculable sin inventar anchos o interpretación de capas |
-| CNN S8 | Dos capas más Dense; dimensión, canales y kernel no reportados | No calculable de forma exacta | La CNN1D H16/k3 propia es una adaptación, no el conteo de S8 |
+| CNN S8 | Dos capas más Dense; dimensión, canales y kernel no reportados | No calculable de forma exacta | La dimensión desconocida se conserva como dato de esa fuente; no determina la TCN propia |
 
 Los [escenarios analíticos](../_static/literature_e1/model_complexity_review_20261103.csv) documentan fórmulas, sesgos, proyecciones y supuestos. El script `scripts/audit_literature_models.py` reproduce las frecuencias y conteos del corte histórico de cinco textos leyendo aquella extracción; no ejecuta frameworks, entrenamiento ni datos de mercado. El corte previo de seis textos conserva su propia tabla y manifiesto. S6 no permite un total exacto porque faltan ancho feedforward y detalles de la cabeza/posiciones. En S7 se conservan por separado las hipótesis de 12 atributos del PDF y 8 del código.
 
@@ -353,60 +357,40 @@ Los conteos comunes controlan dimensiones de entrada/salida, pero no igualan cap
 
 #### 3.2.1.3. Estado de la selección
 
-**Trío ejecutado en desarrollo, alineado con la guía 6.4:**
-
-| Puesto | Familia | Entrada y papel | Evidencia y límite |
-|---|---|---|---|
-| P1 | MLP sencilla | OHLCV rezagadas aplanadas; referencia feedforward no lineal sin estado recurrente | S8 acredita la familia MLP independiente, 1/7. Su red de cuatro capas no es la MLP propia de una capa oculta H16. |
-| P2 | LSTM unidireccional | Secuencia D×5; referencia con memoria recurrente | Familia 5/7; unidireccional verificada 3/7. La receta propia se documenta en §4.2; GRU 3/7 sigue como alternativa no ejecutada. |
-| P3 | CNN1D poco profunda | Misma secuencia de covariables; filtros temporales compartidos | S8 acredita CNN independiente poco profunda a nivel de capas, 1/7, pero no su dimensión. La elección 1D causal es propia, orientada por el eje temporal y la guía 6.4. |
-
-El [registro histórico de propuesta](../_static/literature_e1/guide_aligned_proposal_20261104.json) conserva la procedencia curricular y las lagunas existentes cuando se entrenó. La [actualización documental](../_static/literature_e1/recovery_20261105/selection_update.json) añade S8 después del benchmark, sin cambiar modelos, pesos, hiperparámetros o la selección previa de MLP/D7. LSTM tiene mayor recurrencia familiar y antecedentes pequeños; no se afirma que prediga mejor que GRU. La CV de 2024 ya expuesta no se vuelve anidada por añadir literatura.
-
-Las configuraciones ejecutadas usan D=7/14/21/28 días y cinco covariables, objetivo fijo σ7, horizonte de un día y salida Softplus:
-
-| Modelo propio | Arquitectura ejecutada | Learning rate | Parámetros entrenables |
-|---|---|---:|---:|
-| MLP | Aplanado D×5 → Dense16/ReLU/dropout 0,1 → Dense1 | 0,001 | 593/1.153/1.713/2.273 para D7/14/21/28 |
-| LSTM | Una capa unidireccional H=32 → último estado/dropout 0,1 → Dense1; dos sesgos por compuerta PyTorch | 0,003 | 5.025 |
-| CNN1D poco profunda | Dos convoluciones causales de 16 canales, kernel 3, sin dilatación ni residuales → media temporal → Dense1 | 0,001 | 1.057 |
-
-La CNN1D propia tiene campo receptivo local de cinco posiciones antes de la media; no reproduce la TCN de S1 ni se atribuye a la CNN dimensionalmente no especificada de S8. El [método y ejecución](../_static/filipe_multihistory_20261104/method.json) conserva las 120 trayectorias, 1.440 segmentos y 2.880 ajustes; la revisión documental no añade corridas ni transforma sus resultados en evidencia bibliográfica.
-
-**Perfiles documentales conservados de la revisión previa:**
-
-| Estado | Familia | Justificación actual | Condición pendiente |
-|---|---|---|---|
-| Perfil documental recurrente | LSTM unidireccional | Mayor recurrencia familiar y arquitectura pequeña identificable en S5 | Justificar variante y adaptación a OHLCV sin transferir resultados |
-| Perfil documental convolucional | TCN causal dilatada | Comparador independiente con filtros compartidos y dilatación | Verificar versión de biblioteca y supuestos de la fuente; no es la CNN1D simple propuesta |
-| Perfil documental de atención | Encoder Transformer | Mecanismo de atención distinto, documentado en S2 y S6 | Corroborar procedencia y detalles de fuentes grises como antecedente suplementario |
-| Alternativa del puesto recurrente | GRU | 3/7 y menor complejidad que algunas LSTM de autor | No descartarla solo por ser recurrente; tiene más apoyos que MLP/CNN y debe considerarse en una selección nueva. |
-
-El [registro de selección previo](../_static/literature_e1/selection_evidence.json) se conserva y la [actualización](../_static/literature_e1/recovery_20261105/selection_update.json) distingue respaldo posterior y decisiones históricas. **La frecuencia sola ordena LSTM, GRU, encoder y luego MLP/CNN/TCN**: el trío ejecutado no se presenta como los tres ganadores de ese orden. Su justificación conjunta combina antecedentes aplicados, arquitecturas de capacidad controlada y tres mecanismos diferentes —interacciones por posición, memoria recurrente y filtros locales compartidos—, siguiendo la ruta 6.4. GRU es una alternativa legítima con mayor frecuencia que MLP/CNN; compartir compuertas recurrentes no basta para descartarla ni prueba redundancia. Compararla en una versión futura requeriría el mismo presupuesto y una evaluación nueva. Se conserva el benchmark actual para no reseleccionar tras observar test. S8 respalda las familias, pero no certifica mínima complejidad global ni una réplica de sus configuraciones.
-
-La validación principal utiliza índices reales de `timeseries-cv`, doce bloques mensuales de 2024 y diez semillas por modelo e historia. Los [resultados de cuatro entradas](../_static/filipe_multihistory_20261104/analysis_cv/metrics_summary.csv) son evidencia propia de desarrollo, separada de cifras de autores y de test. El control relativo–absoluto inicial D7 conserva su alcance: mejorar esa representación no cierra las lagunas bibliográficas ni demuestra generalización universal.
-
 (seleccion-diversidad-d7)=
-**Selección justificada para el nuevo estudio D7.** La [decisión fechada](../_static/literature_e1/selection_20261105/decision.json) combina los criterios de frecuencia, sencillez y diversidad de §3.2 de la guía mediante una selección condicionada: una referencia no lineal sobre covariables aplanadas, una recurrente y una convolucional local. No afirma que el trío ocupe los tres primeros puestos del conteo global.
+(seleccion-gru-lstm-tcn)=
+**Terna principal vigente: GRU, LSTM y TCN.** La selección combina referencia aplicada directa, capacidad controlada, reproducibilidad y diferencias de mecanismo. No corresponde a los tres primeros puestos de un ordenamiento por frecuencia: el encoder tiene 2/7 frente a TCN 1/7. Se elige una TCN compacta por su comparación independiente en el original publicado S1 y por contrastar recurrencia con convolución causal dilatada, sin declarar que un encoder pequeño sea imposible o intrínsecamente inferior.
 
-Dentro del puesto recurrente se eligió LSTM con el corte documental entonces disponible, conservado en la decisión fechada. El conteo actual de referencias es **LSTM 5/7 frente a GRU 3/7**; la presencia LSTM 6/7 incluye la propuesta S9 y no cambia ese papel. GRU sigue siendo una alternativa válida. Reservar un solo puesto recurrente busca diversidad, sin afirmar equivalencia funcional entre sus compuertas. MLP aporta interacciones por posición y CNN1D filtros locales compartidos. S8 conserva una ocurrencia de referencia MLP y CNN; ampliar la bibliografía no vuelve frecuente esa cobertura limitada.
+| Modelo propio | Respaldo directo y frecuencia estricta | Mecanismo y configuración registrada | Parámetros / learning rate |
+|---|---|---|---|
+| GRU | S1, S2 y S8: **3/7**; S1 y S8 tienen publicación identificada en el original | Una capa unidireccional H=32; dos compuertas, estado oculto integrado y lectura del último estado | **3.777 / 0,003** |
+| LSTM | S1, S2, S5, S7 y S8: **5/7**; la variante unidireccional está explícita en S1/S5/S7 | Una capa unidireccional H=32; tres compuertas y estado de celda separado; lectura del último estado | **5.025 / 0,003** |
+| TCN | S1: **1/7**, Tabla 2; no se acredita uso ampliamente recurrente | Tres bloques residuales, dos Conv1D causales por bloque, H=16, k=3, dilataciones 1/2/4 y lectura de la última posición | **4.289 / 0,001** |
 
-La sencillez de las implementaciones se comprueba con **593 parámetros MLP, 1.057 CNN1D y 5.025 LSTM para D7**, no atribuyendo esos conteos a los artículos. La dimensión temporal 1D se justifica por el contrato de entrada $7\times5$, sin ejes espaciales, y la receta convolucional permanece como adaptación declarada. El antecedente TCN causal de S1 no se fusiona con la CNN de S8 para inventar una especificación de autor. Encoder y TCN son candidatos documentados; su exclusión del trío no prueba que sean siempre más complejos o inferiores.
+Las tres reciben **(B,D,5), D∈{7,14,21,28}**, producen una salida escalar Softplus y comparten objetivo σ7/h=1, información, particiones y controles de entrenamiento. Los conteos no dependen de D con estos anchos fijos. La TCN tiene campo receptivo de **29 posiciones**: cubre las cuatro ventanas, incluida la de 28 días; las posiciones anteriores al comienzo de la ventana son relleno izquierdo, no observaciones adicionales. La especificación TCN incluye causalidad, dilatación, conexiones residuales y lectura de la última posición temporal; esos elementos definen la red que se evalúa.
 
-La [matriz de candidatos de aquella selección](../_static/literature_e1/selection_20261105/candidate_matrix.csv) y la {download}`justificación fechada <../_static/literature_e1/selection_20261105/justification.md>` conservan la decisión **posterior al benchmark histórico y anterior al estudio D7**. Aquella selección usó seis textos BTC y 36 citas; T1/T2/T3 llevaron luego el catálogo a 39. La ampliación actual a siete estudios cripto y 40 referencias es posterior a esos experimentos, no cambia recetas, pesos, resultados o la selección MLP/D7, y no se atribuye retroactivamente a aquella decisión.
+GRU y LSTM comparten recurrencia, pero sus estados y actualizaciones son distintos. GRU usa compuertas de actualización y reinicio; LSTM usa entrada, olvido y salida, además de una memoria de celda separada. Compararlas con H=32 controla ancho, no iguala capacidad: sus parámetros difieren. La TCN aporta filtros temporales compartidos y rutas residuales sin estado recurrente. Estas diferencias justifican un contraste, sin garantizar que produzcan errores distintos o mejoras predictivas.
+
+La configuración ganadora de TCN en S1 tiene seis niveles, 287 filtros y k=5; **no es nuestra TCN compacta**. S8 tampoco define las recetas H32 del proyecto. La arquitectura propia se documenta en las [especificaciones públicas](../_static/gru_lstm_tcn_20261105/model_specs.json). El [resumen de ejecución](../_static/gru_lstm_tcn_20261105/summary.json) y la [selección por CV](../_static/gru_lstm_tcn_20261105/selected_by_cv.json) pertenecen al experimento propio, no a los autores citados.
+
+La decisión vigente sucede al benchmark histórico y a la inspección del experimento privado. El protocolo de ese experimento fijó las recetas antes de sus nuevos ajustes, con diez semillas y las cuatro historias, sobre el calendario de desarrollo 2024 ya observado. No hubo una nueva búsqueda de anchos o learning rates: GRU heredó H/LR recurrentes y TCN H/LR convolucionales. Se informa el rendimiento de estas recetas, no la superioridad de cada familia óptimamente ajustada ni una selección prospectiva independiente.
+
+Los [registros originales de procedencia](https://github.com/jassan-bit/DeepLearning_202630/tree/main/experiments/gru_lstm_tcn_20261105/original_registration) se conservan en el archivo fuente del repositorio, fuera de los recursos experimentales presentados en este capítulo. La selección actual es posterior y no se atribuye retroactivamente a esos registros. El [expediente vigente](../_static/literature_e1/gru_lstm_tcn_selection_20261105/selection.json) documenta GRU–LSTM–TCN sin cambiar la matriz de siete estudios ni sus frecuencias.
 
 ### 3.2.2. Criterios que debe cumplir cada modelo base
 
-Los cuatro criterios de la guía se evalúan por modelo, junto con la suficiencia de las fuentes. Disponer de una ficha no implica haberlos satisfecho:
+Los cuatro criterios de la guía se evalúan con evidencia y límites concretos:
 
-| Criterio | Evidencia disponible | Estado y límite |
+| Criterio | GRU y LSTM | TCN y límite de la selección |
 |---|---|---|
-| Arquitectura simple, reproducible y ampliamente documentada | S5 identifica una LSTM pequeña; S1 y S2 describen configuraciones y las fichas separan fuente, cálculo y adaptación | La TCN ganadora de S1 es grande; falta su versión de biblioteca y S6 no permite reconstruir un total exacto. Las configuraciones propias de desarrollo están implementadas y contadas en §4.2; no reproducen automáticamente los ganadores de estas fuentes. |
-| Uso frecuente como referencia en la literatura del problema | Frecuencias por estudio y cortes de §3.2.1.1 | LSTM 5/7 y GRU 3/7 superan MLP 1/7/CNN genérica 1/7; una fuente no demuestra uso amplio. CNN1D simple como referencia permanece 0/7. |
-| Capacidad de entrenarse bajo el mismo pipeline y partición que los otros modelos base | El contrato propio fija información OHLCV, objetivo, horizonte y evaluación cronológica | Las cuatro historias D=7/14/21/28 comparten ventanas OHLCV, cortes, reglas causales, representación principal `relative_window` y diez semillas por familia. Solo el ciclo inicial D7 incluyó el control `absolute_log`; no se ejecutaron dos representaciones para las cuatro historias. Las configuraciones se registran en §4.2. |
-| Ser un modelo de Deep Learning independiente | Se identifican MLP, CNN, LSTM, GRU, TCN y encoder; se separan propuestas e híbridos | La MLP y CNN de S8 tienen filas independientes. Dense1 lineal, cabeza interna, persistencia, Ridge o GARCH no ocupan un puesto DL. |
+| Arquitectura simple y reproducible | Una capa H=32, cabeza escalar; 3.777 y 5.025 parámetros, con fórmulas en §3.3 | Tres bloques residuales y 4.289 parámetros; pequeña frente al ganador de S1, sin afirmar mínima complejidad global. La receta exacta es del proyecto. |
+| Uso como referencia en literatura del problema | GRU 3/7 y LSTM 5/7; ambas en los originales publicados S1 y S8 | TCN 1/7, referencia independiente en S1, Tabla 2. **Uso ampliamente recurrente no acreditado**; la selección autorizada acepta esa cobertura limitada y la hace explícita. |
+| Mismo pipeline, información y evaluación | Cuatro historias OHLCV, σ7/h=1, mismos cortes mensuales 2024, diez semillas y transformaciones ajustadas a entrenamiento | Mismo contrato y presupuesto fijo por configuración. Igualar número de corridas no iguala capacidad ni demuestra optimización equivalente. |
+| Modelo DL independiente | GRU y LSTM son redes completas con salida propia | TCN de una rama con salida propia; no D-TCN social, cabeza interna o red híbrida. |
 
-El mismo pipeline exige igualdad de información disponible, partición, preprocesamiento y evaluación, con transformaciones ajustadas solo al entrenamiento. No exige que vectorización y secuencia tengan idéntica forma. La implementación propia acredita compatibilidad técnica; la literatura aporta ahora existencia de familias, con cobertura y arquitectura incompletas, sin certificar generalización ni cerrar todos los requisitos de extracción.
+El criterio de recurrencia no queda satisfecho por igual en los tres puestos. La publicación de una terna coherente no convierte TCN 1/7 en evidencia abundante ni todas las siete fuentes en artículos revisados por pares. La suficiencia operativa se justifica mediante el antecedente comparativo directo de S1, recetas explícitas y evaluación común; el alcance bibliográfico limitado permanece visible. Los riesgos de cada fuente siguen en §3.1.6 y §3.4.2.
+
+La terna no es redundante por definición ni se demuestra no redundante solo contando compuertas. Se contrastan dos mecanismos recurrentes diferentes y una representación convolucional temporal; el análisis de sus errores y diferencias se realiza con resultados propios bajo el mismo contrato. Persistencia, Ridge, SVR o GARCH son referencias clásicas de contexto, sin ocupar los tres puestos DL.
 
 ### 3.2.3. Producto obligatorio: síntesis de los estudios incluidos
 
@@ -456,40 +440,28 @@ S3 —Herremans y Low— y S4 —Huang et al.— siguen como fuentes identificad
 
 ### 3.2.4. Equivalencia funcional con referencias clásicas
 
-En este problema continuo, el ejemplo clásico pertinente de la guía es **SVR lineal**. El modelo logístico corresponde a clasificación. La equivalencia se refiere al propósito de establecer una referencia de capacidad controlada; no a igualdad de funciones, supuestos o error:
+Para una salida continua, **SVR lineal** es el ejemplo clásico pertinente de la guía. Equivalencia funcional significa establecer una referencia de capacidad controlada; no igualdad de funciones, supuestos o errores:
 
-| Referencia | Capacidad y supuestos | Papel comparativo |
+| Referencia | Representación y capacidad | Papel |
 |---|---|---|
-| SVR lineal | Función afín sobre covariables vectorizadas, regularización y pérdida ε-insensible | Referencia clásica; no ocupa un puesto DL |
-| MLP propuesta | Función no lineal sobre covariables rezagadas aplanadas | Referencia feedforward de capacidad controlada; S8 aporta apoyo aplicado de familia, no la receta propia H16 |
-| LSTM | Estado recurrente, memoria y transformaciones no lineales con compuertas | Referencia DL secuencial si se controla su capacidad y presupuesto |
-| CNN1D propuesta | Filtros temporales compartidos sobre la historia observable | Adaptación convolucional propia; S8 respalda CNN independiente, con dimensión no reportada |
-| TCN | Filtros causales compartidos y campo receptivo definido | Antecedente documental; no se equipara a la CNN1D poco profunda propuesta |
-| Encoder Transformer | Interacciones por contenido y posiciones en una ventana observable | Antecedente documental de atención, fuera de la propuesta actual de tres básicos |
+| SVR lineal / Ridge | Función afín regularizada sobre covariables vectorizadas | Contexto clásico; no ocupa un puesto DL |
+| GRU | Recurrencia no lineal con reinicio y actualización de un estado oculto | Referencia DL independiente y compacta |
+| LSTM | Recurrencia con tres compuertas y memoria de celda separada | Referencia DL independiente con distinta parametrización |
+| TCN | Convoluciones causales dilatadas, conexiones residuales y lectura temporal final | Referencia DL independiente sin estado recurrente |
 
-Su comparación exige información, partición, objetivo y esfuerzo de ajuste comunes. Persistencia, Ridge y GARCH aportan contexto y no sustituyen los tres modelos DL. Los cuatro Ridge del bloque C son diagnósticos de EDA; el benchmark propio de redes y su evaluación final se informan en el capítulo 5. Los resultados de test no se usaron para elegir la configuración.
+Comparar las redes exige información disponible, objetivo, partición, preprocesamiento y evaluación comunes. No exige que sus mecanismos internos coincidan. Los Ridge del bloque C siguen como diagnósticos del EDA; las métricas, incertidumbre y selección del baseline neuronal vigente se informan en el capítulo 5 y en el [registro propio de selección por CV](../_static/gru_lstm_tcn_20261105/selected_by_cv.json).
 
 ### 3.2.5. Arquitecturas no especificadas y búsqueda posterior
 
-La guía exige que, si la literatura no define una arquitectura concreta —por ejemplo, informa solo «un MLP»—, no se elija por criterio personal: se debe aplicar la búsqueda de arquitectura del **Entregable 2, sección 14**, declarando el espacio antes de entrenar. Esa referencia corresponde a la guía suministrada. El experimento propio posterior declaró y ejecutó un espacio acotado, documentado en §4.2; no se presenta como cumplimiento del procedimiento completo de E2 §14, cuyo documento no se ha aportado.
+La guía remite a la búsqueda de arquitectura del **Entregable 2, sección 14** cuando el estudio no define una receta concreta. Un campo no reportado se mantiene desconocido; no se rellena con parámetros de este proyecto. El documento completo de E2 no se ha aportado y no se afirma haber ejecutado su procedimiento íntegro.
 
-En la extracción se identifica primero qué componente no está reportado y qué fuente o código lo respalda. Si continúa desconocido, se conserva como tal y se documenta la decisión pendiente. S6 no especifica lo necesario para un conteo exacto; S7 presenta discrepancias entre PDF y código. Estas lagunas no se resuelven imputando valores por preferencia.
+S1 sí publica ganadores GRU/LSTM/TCN en su apéndice; su complejidad figura en §3.2.1.2. Adoptar H32 en las recurrentes y una TCN H16 de tres bloques es una **adaptación compacta**, no la reconstrucción de un dato ausente ni una réplica de aquellos ganadores. Las especificaciones y fórmulas propias permiten reproducir lo implementado sin atribuir esa receta a los artículos.
 
-S8 informa cuatro capas MLP y dos capas CNN más Dense, pero deja sin reportar anchos, activaciones, kernels y dimensión CNN. **No se rellenan con H16, ReLU o Conv1D de nuestra implementación**. Las recetas actuales ya habían sido entrenadas cuando se recuperó S8; la revisión fortalece el vínculo de familia sin simular una búsqueda anterior motivada por ese capítulo. La búsqueda exigida para completar una arquitectura futura debe declarar sus espacios antes de entrenar y mantener un conjunto de evaluación nuevo cuando corresponda.
+S8 deja anchos, activaciones y otros detalles sin reportar; la dirección de su LSTM no se precisa y su CNN no tiene dimensión acreditada. Esas lagunas pertenecen a la extracción de S8 y se conservan. La terna vigente ya no depende de convertir esa CNN en Conv1D. Para TCN, el límite bibliográfico principal es su **única referencia independiente recuperada**, no una supuesta falta de dimensión de la arquitectura de S1.
 
-Los ganadores de S1 **sí están publicados**: no procede tratar su ancho o profundidad como una arquitectura ausente. La versión de biblioteca pendiente y los supuestos del cálculo permanecen explícitos en §3.2.1.2 y en los perfiles fuente archivados. Reducir la TCN de seis niveles y F=287 sería una adaptación que exige justificación, no una réplica del ganador ni una forma de completar un dato omitido. La configuración propia se recoge en el [método de CV](../_static/dl_r2_cv_20261104/method.json): ancho 16 para MLP/CNN1D y 32 para LSTM. Son decisiones del proyecto, sin atribuirlas a S1 ni presentarlas como prueba de mínima complejidad global.
+El experimento vigente no ejecutó HPO nuevo: mantuvo H32/LR0,003 para LSTM, los transfirió a GRU y usó H16/LR0,001 para la TCN compacta, comparando D=7/14/21/28 y diez semillas. Su protocolo se congeló antes de esos ajustes; el desarrollo 2024 y el test histórico ya habían sido observados en etapas previas. Esto permite una comparación exploratoria de recetas fijas, sin presentarla como validación anidada o confirmación en mercado nuevo.
 
-**Trazabilidad del ajuste de hiperparámetros.** La [búsqueda histórica registrada](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/dl_benchmark_20261104/protocol_initial.json) recorrió dos anchos (16/32), dos learning rates (0,001/0,003), cuatro D y dos semillas (101/202) en cada una de las tres familias: **3×4×2×2×2=96 corridas**, con el mismo número de evaluaciones por familia. Su [tabla de selección](https://github.com/jassan-bit/DeepLearning_202630/blob/main/results/dl_benchmark_20261104/search_configurations.csv) contiene 48 configuraciones agregadas sobre esas dos semillas. Ese recuento no describe las diez repeticiones de la CV vigente.
-
-| Familia | Receta histórica D7 transferida | Decisión vigente antes de test | Alcance de la transferencia |
-|---|---|---|---|
-| MLP | Ancho 16; learning rate 0,001 | Mismos H/LR para las cuatro D; MLP D7 elegida como baseline neuronal con CV | La representación relativa y el entrenamiento creciente modifican el procedimiento respecto a la búsqueda histórica. |
-| LSTM | Ancho 32; learning rate 0,003 | Mismos H/LR para las cuatro D; historia D7 seleccionada con CV | No se atribuye un espacio HPO nuevo a cada mes ni una validación anidada que no se ejecutó. |
-| CNN1D | Canales 16; learning rate 0,001 | Mismos H/LR para las cuatro D; historia D7 seleccionada con CV | El control absoluto es solo D7; la ampliación conserva la receta relativa fijada. |
-
-La [extensión registrada](../_static/filipe_multihistory_20261104/protocol.json) mantuvo las recetas, diez semillas 4101–4110 y reglas de parada. No hubo una nueva búsqueda H/LR en D14/21/28; se comparó longitud D. El presupuesto histórico igual acredita esa etapa, no optimización bajo otra representación ni capacidades equivalentes. La revisión posterior de S8 no modifica esa historia: completa apoyo de familias, pero no atribuye retrospectivamente a la literatura configuraciones, resultados o decisiones del proyecto.
-
-Los metadatos se leen por su identificador de experimento: `dl_benchmark_20261104` conserva la búsqueda/piloto históricos, `dl_r2_cv_20261104` el primer ciclo de Filipe D7 y `filipe_multihistory_20261104` la extensión de cuatro entradas y test final. El nuevo `e1_filipe_pilot_20261105` registra cinco semillas nuevas por modelo e historia para dimensionar repeticiones futuras sobre el calendario conocido; no sustituye esos registros ni vuelve prospectivo el benchmark anterior. Los campos históricos de dos semillas no se actualizan para fingir diez; cada manifiesto enumera sus semillas y resultados reales.
+La [documentación original del procedimiento](https://github.com/jassan-bit/DeepLearning_202630/tree/main/experiments/gru_lstm_tcn_20261105/original_registration) se conserva en el archivo fuente; no se presenta como una búsqueda nueva de arquitecturas para esta terna. El [adaptador público](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/run_gru_lstm_tcn.py) se preparó después de la ejecución privada para facilitar reproducción. No es el archivo que produjo retrospectivamente sus pesos; la procedencia del export conserva los hashes de los archivos originales y la diferencia de versiones.
 
 ### 3.2.6. Familias de arquitecturas orientativas por tipo de problema
 
@@ -499,7 +471,7 @@ Las siguientes familias son una orientación de la guía, no resultados de frecu
 |---|---|---|
 | Clasificación y regresión tabular | MLP superficial, MLP profundo regularizado y red residual tabular | No es la ruta principal; la cronología condiciona la partición. S8 acredita MLP aplicada a RV autorregresiva, no convierte el contrato propio en tabular i.i.d. |
 | Series de tiempo | MLP sobre rezagos, RNN simple, LSTM o GRU de una capa, CNN 1D/TCN poco profunda | Sus diagnósticos temporales son pertinentes. No se adopta como ruta principal porque el contrato actual construye rezagos de covariables, sin usar rezagos explícitos de la variable objetivo. |
-| Regresión temporal | MLP sobre covariables rezagadas, LSTM o GRU sobre sus secuencias y CNN 1D poco profunda | Es la ruta aplicable. La lista orienta la revisión, sin cerrar el trío ni convertir la TCN ganadora de S1 en una red pequeña. |
+| Regresión temporal | MLP sobre covariables rezagadas, LSTM o GRU sobre sus secuencias y CNN 1D poco profunda | Es la ruta aplicable. La terna GRU–LSTM–TCN usa secuencias de covariables; la TCN compacta es una adaptación declarada del proyecto y no el ganador de S1. |
 | Regresión espacial | MLP con coordenadas y variables, MLP con embeddings posicionales y CNN sobre rejilla de vecindad | No aplica: no hay posiciones geográficas ni unidades espaciales que definan vecindad. |
 | Regresión espacio-temporal | LSTM o GRU global sobre ventanas, ConvLSTM y convolución sobre grafo o rejilla poco profunda | No aplica: existe orden temporal, pero no múltiples ubicaciones ni una estructura espacial del objetivo. |
 | Clasificación de imágenes | CNN poco profunda estilo LeNet/VGG reducida, CNN pequeña con normalización por lotes y ResNet de baja profundidad | No aplica: el contrato no recibe imágenes ni predice clases visuales. |
@@ -512,311 +484,239 @@ Un encoder no convierte por sí solo el problema en secuencia a secuencia; una c
 
 ## 3.3. Fichas técnicas de los tres modelos base implementados
 
-Las fichas corresponden a **MLP, LSTM y CNN1D poco profunda**, las tres redes ejecutadas con CV forward chaining de Filipe. Cada una desarrolla los nueve incisos de la guía: referencias, arquitectura, descripción técnica, problema, dataset, métricas, fortalezas, limitaciones y complejidad. Se distingue el fundamento general de la familia, su evidencia aplicada en el corpus y la configuración propia realmente implementada.
+Las fichas vigentes corresponden a **GRU, LSTM y TCN**. Cada una conserva los nueve incisos: referencias, arquitectura, descripción técnica, problema, dataset, métricas, fortalezas, limitaciones y complejidad. La evidencia publicada respalda familias y papeles comparativos; las recetas pequeñas y los resultados propios se identifican por separado.
 
-El contrato común contempla **D∈{7,14,21,28} días × p=5 canales OHLCV**, con objetivo σ7 poblacional de retornos logarítmicos, `ddof=0`, salida escalar y horizonte diario h=1. Cambiar D modifica la historia de entrada, no la definición del objetivo n=7. La representación principal resta al logaritmo de cada OHLC el logaritmo del último cierre observable de la ventana; aplica `log1p` al volumen y escala cada canal usando solo el entrenamiento. Y se divide por su media positiva de entrenamiento y se invierte antes de evaluar. La variante absoluta se conserva como control del ciclo inicial D7 (§4.2).
+El contrato común usa **D∈{7,14,21,28} días × cinco canales OHLCV**, σ7 poblacional de retornos logarítmicos (`ddof=0`, sin anualización), salida escalar y horizonte h=1. D cambia la historia de entrada, no los siete retornos que definen el objetivo. Las entradas terminan antes del día objetivo y no añaden rezagos explícitos de σ7. El OHLC se expresa respecto al último cierre observable de la ventana; al volumen se aplica `log1p`. Los escaladores X/Y se ajustan solo al entrenamiento permitido y se invierten las salidas antes de evaluar.
 
-Los doce cortes mensuales usan pasado permitido de 2023 y 2024, embargo de D días y parada interna cronológica. En cada segmento se descarta el modelo interno y se reajusta una red nueva durante el número de épocas seleccionado. Las tres redes utilizan **AdamW, dropout 0,1, weight decay 0,0001, batch 32, clipping de norma 1, máximo interno de 100 épocas y paciencia 12**, sin planificador. Las configuraciones no se atribuyen a los autores de las referencias fundacionales.
+La CV comprende doce bloques mensuales de 2024, embargo D, parada interna cronológica y reajuste de una red nueva con el número de épocas seleccionado. Se usan diez semillas 4101–4110 por modelo e historia: **120 trayectorias y 1.440 segmentos modelo–fold**, con dos ajustes por segmento. Las tres redes emplean AdamW, dropout 0,1, weight decay 0,0001, batch 32, clipping de norma 1, máximo interno de 100 épocas y paciencia 12. El [resumen propio](../_static/gru_lstm_tcn_20261105/summary.json) conserva el resultado de la ejecución; los [modelos públicos](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/dl_models_gru_lstm_tcn.py) son una adaptación portable preparada después de la ejecución privada, cuya procedencia se registra por separado.
 
-Los perfiles históricos de LSTM/TCN/encoder permanecen en el [archivo del repositorio](https://github.com/jassan-bit/DeepLearning_202630/blob/main/references/literature_e1/source_profiles_archive_20261104.md). S8 aporta ahora MLP independiente y CNN genérica, una fuente por familia. **LSTM familiar alcanza 5/7, la unidireccional explícita 3/7 y CNN1D simple explícita permanece 0/7**. Las fichas separan el antecedente aplicado de las recetas propias; no se presentan como réplicas exactas ni como prueba de amplia recurrencia.
-
-### 3.3.1. Perceptrón multicapa — MLP
+### 3.3.1. GRU unidireccional
 
 #### 3.3.1.1. Referencias completas y papel comparativo
 
-**Fundamento de arquitectura y entrenamiento.** Goodfellow, I., Bengio, Y. y Courville, A. (2016). *Deep Learning*. MIT Press, capítulos 6 y 8; [libro abierto](https://www.deeplearningbook.org/). Describe redes feedforward, retropropagación y optimización {cite:p}`goodfellow2016`. Cybenko, G. (1989). *Approximation by superpositions of a sigmoidal function*. *Mathematics of Control, Signals and Systems*, 2(4), 303–314. DOI: [10.1007/BF02551274](https://doi.org/10.1007/BF02551274) {cite:p}`cybenko1989`. El teorema de Cybenko corresponde a su clase de funciones y activaciones; no garantiza generalización de esta MLP ReLU.
+**Aplicaciones directas.** Akbiyik, M. E., Erkul, M., Kämpf, K., Vasiliauskaite, V. y Antulov-Fantulin, N. (2023), *Ask “Who”, Not “What”: Bitcoin Volatility Forecasting with Twitter Data*, ACM WSDM, DOI [10.1145/3539597.3570387](https://doi.org/10.1145/3539597.3570387), Tabla 2 {cite:p}`akbiyik2023`. Miura, R., Pichl, L. y Kaizoji, T. (2019), *Artificial Neural Networks for Realized Volatility Prediction in Cryptocurrency Time Series*, ISNN, LNCS 11554, pp. 165–172, DOI [10.1007/978-3-030-22796-8_18](https://doi.org/10.1007/978-3-030-22796-8_18), Tabla 1 {cite:p}`miura2019`. Ambos originales contienen GRU independiente; S2 añade un tercer estudio con el estrato de procedencia ya declarado. Frecuencia estricta: **3/7**.
 
-**Antecedente aplicado y papel en el proyecto.** Miura, R., Pichl, L. y Kaizoji, T. (2019). *Artificial Neural Networks for Realized Volatility Prediction in Cryptocurrency Time Series*. En *Advances in Neural Networks—ISNN 2019*, LNCS 11554, pp. 165–172. DOI [10.1007/978-3-030-22796-8_18](https://doi.org/10.1007/978-3-030-22796-8_18), [texto completo consultado](https://raw.githubusercontent.com/Anton21a/Thesis/8bc3aa3c96fd214b34b914d2057f4339f2c8ed1e/ML%20articles/Artificial%20Neural%20Networks.pdf) {cite:p}`miura2019`. Su Tabla 1 compara dos MLP independientes de cuatro capas, con dropout o BN, en RV de Bitcoin. Esa evidencia aporta 1/7 apoyos de familia; la Dense lineal de S5 y las cabezas de LSTM siguen sin contar. La MLP propia es una adaptación de una capa oculta H16 sobre OHLCV, no una réplica del modelo de autor ni una anchura extraída del capítulo.
-
-**Respaldo de revista para una referencia feedforward sencilla.** Andrea Bucci (2020), *Realized Volatility Forecasting with Neural Networks*, Journal of Financial Econometrics 18(3), 502–531, Oxford University Press, DOI [10.1093/jjfinec/nbaa008](https://doi.org/10.1093/jjfinec/nbaa008) {cite:p}`bucci2020realized`. El original editorial consultado define una FNN independiente con **una capa oculta**, ecuaciones 2–3 y Figura 3, pp. 507–508. La Tabla 2 selecciona cinco neuronas para FNN y una para FNNX; la Tabla 3 usa tres en ambas durante la submuestra de crisis. Esa estructura acredita la familia MLP sin confundirla con una cabeza densa o un híbrido GARCH.
-
-La [extracción primaria](../_static/literature_e1/journal_update_20261105/bucci2020_primary_extraction.json) identifica páginas, selección de variables, arquitectura y evaluación. El modelo usa datos **mensuales del S&P 500**, con $\log\sqrt{\sum_i r_{i,t}^{2}}$ como objetivo y horizontes de uno y cinco meses; no es σ7 diaria ni utiliza las mismas covariables que E1. El trabajo informa 300 inicializaciones y selección del ancho por MSE de entrenamiento, no un procedimiento idéntico a nuestra validación. Los controles de escalado, versiones y purga no se completan por inferencia. El apoyo es metodológico y añade cero estudios a las frecuencias BTC.
-
-**Resultados de autores, separados del benchmark propio.** Las Tablas 4–5 de Bucci, pp. 518 y 523, reportan:
-
-| Muestra | Horizonte, meses | MSE FNN | MSE HAR | QLIKE FNN | QLIKE HAR |
-|---|---:|---:|---:|---:|---:|
-| Completa, 245 observaciones de test | 1 | 0,130 | 0,115 | 3,311 | 3,308 |
-| Completa, 245 observaciones de test | 5 | 0,176 | 0,102 | 3,325 | 3,306 |
-| Crisis, 22 observaciones de test | 1 | 0,138 | 0,247 | 2,849 | 2,878 |
-| Crisis, 22 observaciones de test | 5 | 0,234 | 0,263 | 2,874 | 2,885 |
-
-El [CSV de autores transcrito](../_static/literature_e1/journal_update_20261105/bucci2020_metrics.csv) conserva las filas y ubicaciones. La FNN no supera a HAR en MSE de la muestra completa; el patrón cambia en crisis. No se compara esta escala logarítmica mensual con la RMSE diaria de E1 ni se atribuye a una MLP superioridad general. La receta H16/ReLU/Softplus del proyecto sigue siendo propia: el artículo refuerza su función comparativa, no demuestra que nuestro ancho sea mínimo global ni que se haya elegido antes de entrenar por esa publicación.
+**Fundamento.** Cho et al. (2014), *Learning Phrase Representations Using RNN Encoder–Decoder for Statistical Machine Translation*, prepublicación arXiv:1406.1078 {cite:p}`cho2014`. Es fundamento del mecanismo, no un experimento financiero ni un artículo original nuevo leído en esta etapa.
 
 #### 3.3.1.2. Tipo de arquitectura
 
-MLP con **una capa oculta de 16 unidades ReLU**, dropout 0,1 y cabeza escalar Softplus. Aplana los mismos D×5 valores que reciben las otras redes, conservando el orden de días y canales. No incluye estado recurrente, convoluciones ni entradas adicionales.
+Una capa GRU unidireccional de **32 unidades**, estado inicial nulo, dropout 0,1 sobre el último estado y cabeza lineal escalar con Softplus. No incluye atención, bidireccionalidad, otra capa recurrente o estado persistente entre ventanas.
 
 #### 3.3.1.3. Descripción técnica
 
-![Arquitectura propia MLP](../_static/e1_architectures_20261104/mlp.svg)
-
-MLP: aplanado de D×5, capa oculta de 16 unidades y cabeza Softplus; el número de parámetros crece con D. El diagrama corresponde a la implementación del proyecto y conserva n=7/h=1.
-
-Para X∈R^(D×5), x=vec(X)∈R^(5D), W₁∈R^(16×5D) y w₂∈R^16:
+GRU tiene **dos compuertas**, actualización z y reinicio r, y una proyección candidata n. Para xⱼ∈R⁵ y hⱼ∈R³², la convención de PyTorch puede escribirse:
 
 $$
-h=\operatorname{ReLU}(W_1x+b_1),\qquad
-\widehat y^{\mathrm{esc}}=\operatorname{Softplus}\!\left(w_2^\top\operatorname{Dropout}_{0,1}(h)+b_2\right).
+r_j=\sigma(W_rx_j+b_{ir}+U_rh_{j-1}+b_{hr}),\quad
+z_j=\sigma(W_zx_j+b_{iz}+U_zh_{j-1}+b_{hz}),
 $$
 
 $$
-\operatorname{Softplus}(a)=\log(1+e^a),\qquad
-\widehat y=\bar y_{\mathrm{train}}\,\widehat y^{\mathrm{esc}}.
+n_j=\tanh\!\left(W_nx_j+b_{in}+r_j\odot(U_nh_{j-1}+b_{hn})\right),\quad
+h_j=(1-z_j)\odot n_j+z_j\odot h_{j-1}.
 $$
 
-Flujo: **(B,D,5) → aplanado (B,5D) → Dense16/ReLU → dropout → Dense1/Softplus → (B)**. Cada posición temporal tiene pesos propios; la red puede aprender relaciones no lineales de la ventana, pero no impone filtros compartidos o memoria entre pasos. Se entrena con MSE de Y escalada y **learning rate 0,001**, con los controles comunes descritos arriba. El código ejecutado es `SmallMLP` en [dl_models.py](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/dl_models.py).
+Flujo: **(B,D,5) → GRU32 → último estado (B,32) → dropout → Dense1/Softplus → (B)**. La memoria está integrada en h; no existe un estado de celda separado c. Hay tres proyecciones parametrizadas, pero n no es una tercera compuerta. Se minimiza MSE de Y escalada con **learning rate 0,003**.
 
 #### 3.3.1.4. Tipo de problema que aborda
 
-Regresión temporal supervisada del siguiente valor de σ7 a partir de OHLCV anterior al origen. El objetivo es continuo y no negativo. Usar una MLP no convierte la partición en una regresión tabular i.i.d.; se conserva el tipo 4 y la cronología de la ruta 6.4.
+Regresión temporal de la siguiente σ7 a partir de covariables OHLCV observables: tipo 4, ruta 6.4, h=1. La recurrencia modela orden dentro de la ventana, sin añadir historia explícita de volatilidad.
 
 #### 3.3.1.5. Dataset y unidad de observación
 
+Binance Spot BTCUSDT, velas de un minuto agregadas a días UTC. Cada ejemplo es una ventana de D días y una etiqueta diaria; no se rellenan huecos ni se unen días separados por ellos. Los doce bloques de 2024 comparten cohortes crecientes, reglas causales y diez semillas con las otras dos redes. Es el dataset propio, distinto de Twitter/RV intradiaria de S1 y de RV de tres horas de S8.
 
-Binance Spot BTCUSDT, agregado diario UTC desde velas de un minuto. Las entradas D=7/14/21/28 conservan cinco canales y el mismo objetivo sigma7/h1. Los doce bloques de validación de 2024 usan cohortes crecientes de 2023 y pasado permitido de 2024; las diez semillas son comunes. Tras congelar decisiones se ajustó una red final por historia y semilla, con desarrollo permitido y embargo D, y se evaluó la cohorte común del 01/01/2025 al 31/08/2026. No se comprimen huecos ni se imputa el 24/03/2023. Los [reglas, fechas y hashes públicos](../_static/filipe_multihistory_20261104/method.json) distinguen ambos periodos y las fuentes documentales no se presentan como el dataset propio.
+#### 3.3.1.6. Métricas y valores
 
-#### 3.3.1.6. Métricas y valores propios de validación
+**Autores:** S1, Tabla 2, reporta RMSE **4,23 ± 5,61** en veinte corridas y escala RV×100. S8, Tabla 1, reporta RMSE de test **0,0021778**, con entrada GRU de cinco observaciones de su RV. No son métricas del contrato σ7/OHLCV ni un intervalo de confianza común.
 
-
-Resultados propios en escala original para las cuatro historias, con n=7 y h=1. Cada valor anual reúne primero las 366 predicciones de una trayectoria; la media y la DE describen diez semillas del mismo calendario, no diez mercados independientes.
-
-```{include} ../_static/filipe_multihistory_20261104/tables/cv_MLP.md
-```
-
-La evaluación final de estas mismas cuatro entradas se conserva en §5 y en [las tablas de test](../_static/filipe_multihistory_20261104/test/analysis/metrics_summary.csv). La configuración de referencia se eligió con desarrollo antes de abrir test; sus métricas posteriores no se usan para reseleccionar. Las cifras son propias, no resultados de los autores de las referencias fundacionales.
+**Proyecto:** RMSE anual por trayectoria es la métrica primaria; MAE, MSE, R², MAPE y MASE son secundarias. Las medias/DE entre semillas, resultados por historia y configuración seleccionada están en el [resumen vigente](../_static/gru_lstm_tcn_20261105/summary.json), la [selección por CV](../_static/gru_lstm_tcn_20261105/selected_by_cv.json) y el capítulo 5. Para la historia seleccionada de **D=7**, la RMSE de CV es **0,00515457 ± 0,00016156** (media ± DE muestral de diez semillas), en unidades propias de σ7.
 
 #### 3.3.1.7. Fortalezas
 
-Tiene un flujo sencillo de verificar y **593/1.153/1.713/2.273 parámetros para D=7/14/21/28**. Es la menor del trío solo para D7; CNN1D tiene menos parámetros con las historias mayores. Representa interacciones no lineales entre covariables y posiciones sin mantener estado oculto. Su desempeño por historia está documentado en las tablas de CV; la capacidad feedforward no garantiza superioridad predictiva frente a recurrencia, convolución o persistencia.
+Representa dependencias ordenadas con parámetros compartidos y usa menos pesos que la LSTM propia con H=32. Cuenta con dos originales publicados directos y tres referencias en el corpus total. Su menor parametrización facilita un contraste de capacidad controlada, sin garantizar menor error o menor tiempo de entrenamiento.
 
 #### 3.3.1.8. Limitaciones
 
-El aplanado exige pesos distintos por posición y parámetros crecientes con D. No impone filtros compartidos ni memoria recurrente. Su resultado depende de representación, regularización y configuración; el desarrollo expuesto no es una validación anidada independiente. S8 acredita MLP aplicada, pero una fuente no demuestra uso amplio ni respalda la receta propia exacta; sus cuatro capas y RV intradiaria no coinciden con nuestra capa H16 y σ7 diaria. La comparación con persistencia conserva su interpretación por periodo e historia.
+El cómputo recurrente depende del paso anterior. Comparte un solo estado para actualización y salida, a diferencia de la celda LSTM; no se deduce que eso sea siempre mejor o peor. La receta H32 no es una réplica de S1/S8. Las diez semillas describen variabilidad de ajuste sobre las mismas fechas y el desarrollo ya observado; no son diez mercados independientes.
 
 #### 3.3.1.9. Complejidad computacional
 
-Con p=5 y H=16, contando los sesgos de ambas capas:
+Con tres proyecciones, dos sesgos por proyección y cabeza escalar:
 
 $$
-P_{\mathrm{MLP}}=(pD)H+H+H+1=pDH+2H+1=80D+33.
+P_{\mathrm{GRU}}=3H(p+H+2)+(H+1)=3\cdot32(5+32+2)+33=3\,777.
 $$
 
-Para D=7/14/21/28, el total es **593/1.153/1.713/2.273 parámetros**, respectivamente. El ancho oculto se mantiene en 16; aumentar la historia incrementa los pesos de la primera capa.
-
-El costo dominante por ejemplo es O(pDH+H); el aplanado no introduce parámetros. Las activaciones de la capa oculta crecen como O(H), además de la entrada O(Dp). No se confunde ese orden con tiempo de reloj.
-
-**Medición del ciclo inicial D7.** La suma de tiempos de los dos ajustes por mes, sobre los doce meses, es **21,352 ± 1,234 s por trayectoria**; la suma de tiempos medios de inferencia de los doce bloques es **0,623 ± 0,041 ms**. Son medias ± DE entre diez semillas, medidas en CPU bajo tres trabajadores concurrentes. Excluyen preprocesamiento y escritura de artefactos según §4.2.5; no son latencias individuales de producción ni picos de memoria.
+Costo dominante por ventana O(3DH(p+H)); activaciones O(DH). Aumentar D incrementa cómputo, no el número de pesos de esta receta. Los tiempos medidos corresponden al entorno de la ejecución y no se extrapolan a latencia de producción.
 
 ### 3.3.2. LSTM unidireccional
 
 #### 3.3.2.1. Referencias completas y papel comparativo
 
-**Fundamento.** Hochreiter, S. y Schmidhuber, J. (1997). *Long Short-Term Memory*. *Neural Computation*, 9(8), 1735–1780. DOI: [10.1162/neco.1997.9.8.1735](https://doi.org/10.1162/neco.1997.9.8.1735) {cite:p}`hochreiter1997`.
+Akbiyik et al. (2023), *Ask “Who”, Not “What”*, ACM WSDM, DOI [10.1145/3539597.3570387](https://doi.org/10.1145/3539597.3570387), Tabla 2, y Miura, Pichl y Kaizoji (2019), *Artificial Neural Networks for Realized Volatility Prediction in Cryptocurrency Time Series*, ISNN, LNCS 11554, pp. 165–172, DOI [10.1007/978-3-030-22796-8_18](https://doi.org/10.1007/978-3-030-22796-8_18), Tabla 1, usan LSTM independiente {cite:p}`akbiyik2023,miura2019`. La familia alcanza **5/7** al incluir S2/S5/S7; la variante unidireccional está explícita en S1/S5/S7, **3/7**. No se borra la heterogeneidad de esas fuentes.
 
-**Antecedentes aplicados incluidos.** Akbiyik, M. E., Erkul, M., Kämpf, K., Vasiliauskaite, V. y Antulov-Fantulin, N. (2023). *Ask “Who”, Not “What”: Bitcoin Volatility Forecasting with Twitter Data*. WSDM. DOI: [10.1145/3539597.3570387](https://doi.org/10.1145/3539597.3570387) {cite:p}`akbiyik2023`. Gao, M., Li, Q. y Tao, Z. (manuscrito de 2023). *Comparing the Predictive Power of Five Models on Bitcoin Volatility*; referencia editorial declarada a Springer, *Learning and Analytics in Intelligent Systems*, vol. 32, pp. 473–486, DOI declarado [10.1007/978-3-031-38074-7_41](https://doi.org/10.1007/978-3-031-38074-7_41), cuyo año editorial externo sigue sin corroborarse {cite:p}`gao2023`. Alakhouch Idriss (2026). *Bitcoin Volatility Forecasting: Econometric and Machine Learning Approaches Applied to Daily Price Data (July 2010–February 2024)*, informe fechado 02/06/2026, sin DOI ni revisión por pares acreditados {cite:p}`alakhouch2026`.
-
-S1/S5/S7 aportan variantes unidireccionales verificadas, **3/7 textos**. La familia alcanza **5/7** al añadir BiLSTM de S2 y LSTM de S8, cuya direccionalidad no se precisa. S8 informa dos capas LSTM más Dense, longitud 12 y RMSE de test 0,0021960 con varianza 1,0293×10⁻⁹ {cite:p}`miura2019`. Estas fuentes difieren de σ7/OHLCV y no determinan H32 del proyecto. El [archivo de perfiles](https://github.com/jassan-bit/DeepLearning_202630/blob/main/references/literature_e1/source_profiles_archive_20261104.md) conserva las fichas anteriores; la implementación siguiente es propia.
+El fundamento es Hochreiter, S. y Schmidhuber, J. (1997), *Long Short-Term Memory*, *Neural Computation* 9(8), 1735–1780, DOI [10.1162/neco.1997.9.8.1735](https://doi.org/10.1162/neco.1997.9.8.1735) {cite:p}`hochreiter1997`.
 
 #### 3.3.2.2. Tipo de arquitectura
 
-Una **capa LSTM unidireccional de 32 unidades**, con estado inicial nulo, dropout 0,1 sobre el último estado oculto y cabeza Dense1/Softplus. No utiliza una segunda capa recurrente, bidireccionalidad, atención ni rezagos explícitos de σ7.
+Una capa LSTM unidireccional de **32 unidades**, estados iniciales nulos, dropout 0,1 sobre el último estado oculto y cabeza lineal escalar con Softplus. No utiliza atención, bidireccionalidad ni otra capa recurrente.
 
 #### 3.3.2.3. Descripción técnica
 
-![Arquitectura propia LSTM](../_static/e1_architectures_20261104/lstm.svg)
-
-LSTM: una capa recurrente unidireccional de 32 unidades; la salida usa el último estado de la ventana observable. El diagrama corresponde a la implementación del proyecto y conserva n=7/h=1.
-
-Para xⱼ∈R^5, hⱼ,cⱼ∈R^32 y s la función logística, la celda calcula:
+LSTM tiene **tres compuertas** —entrada i, olvido f y salida o—, una transformación candidata g y un **estado de celda c separado de h**:
 
 $$
-(i_j,f_j,o_j)=s(W_{i,f,o}x_j+U_{i,f,o}h_{j-1}+b_{i,f,o}),\qquad
- g_j=\tanh(W_gx_j+U_gh_{j-1}+b_g),
+(i_j,f_j,o_j)=\sigma(W_{i,f,o}x_j+U_{i,f,o}h_{j-1}+b_{i,f,o}),\quad
+g_j=\tanh(W_gx_j+U_gh_{j-1}+b_g),
 $$
 
 $$
-c_j=f_j\odot c_{j-1}+i_j\odot g_j,\qquad
-h_j=o_j\odot\tanh(c_j),\qquad
-\widehat y^{\mathrm{esc}}=\operatorname{Softplus}\!\left(w^\top\operatorname{Dropout}_{0,1}(h_D)+b\right).
+c_j=f_j\odot c_{j-1}+i_j\odot g_j,\qquad h_j=o_j\odot\tanh(c_j).
 $$
 
-Cada b resume los **dos vectores de sesgo por compuerta de PyTorch**, uno de entrada y otro recurrente; ambos se cuentan por separado en los parámetros. Flujo: **(B,D,5) → LSTM32 → último estado (B,32) → dropout → Dense1/Softplus → (B)**. El estado recurrente representa dependencias ordenadas dentro de la ventana. Se optimiza la MSE del objetivo escalado con **learning rate 0,003**. Código ejecutado: `SingleLayerLSTM` en [dl_models.py](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/dl_models.py).
+Flujo: **(B,D,5) → LSTM32 → último estado h (B,32) → dropout → Dense1/Softplus → (B)**. Cada b en la notación resume dos vectores de sesgo PyTorch, contados por separado. Se minimiza MSE de Y escalada con **learning rate 0,003**. La distinción entre c y h permite contrastar una memoria separada con el estado integrado de GRU; no prueba superioridad funcional.
 
 #### 3.3.2.4. Tipo de problema que aborda
 
-Regresión temporal de una volatilidad escalar futura a partir de secuencias OHLCV ya observables. La memoria está dentro de cada ventana de entrada; no se conserva un estado entre las ventanas de ejemplos ni se actualizan pesos con la etiqueta del día pronosticado. Se mantiene tipo 4 y horizonte h=1.
+La misma regresión temporal σ7/h=1 con OHLCV rezagadas. El estado solo recorre cada ventana; no se conserva entre ejemplos ni se actualizan pesos con la etiqueta del día pronosticado.
 
 #### 3.3.2.5. Dataset y unidad de observación
 
+Binance Spot BTCUSDT diario UTC, D=7/14/21/28 y cinco canales. Comparte las doce validaciones mensuales de 2024, cohortes, embargo D, transformación causal y diez semillas con GRU/TCN. El calendario ya observado mantiene el carácter exploratorio de esta evaluación.
 
-Binance Spot BTCUSDT, agregado diario UTC desde velas de un minuto. Las entradas D=7/14/21/28 conservan cinco canales y el mismo objetivo sigma7/h1. Los doce bloques de validación de 2024 usan cohortes crecientes de 2023 y pasado permitido de 2024; las diez semillas son comunes. Tras congelar decisiones se ajustó una red final por historia y semilla, con desarrollo permitido y embargo D, y se evaluó la cohorte común del 01/01/2025 al 31/08/2026. No se comprimen huecos ni se imputa el 24/03/2023. Los [reglas, fechas y hashes públicos](../_static/filipe_multihistory_20261104/method.json) distinguen ambos periodos y las fuentes documentales no se presentan como el dataset propio.
+#### 3.3.2.6. Métricas y valores
 
-#### 3.3.2.6. Métricas y valores propios de validación
+**Autores:** S1, Tabla 2, informa RMSE **2,37 ± 0,19** en veinte corridas, en escala RV×100. S8, Tabla 1, informa RMSE de test **0,0021960** con entrada LSTM de doce observaciones de su RV. Se mantienen sus tareas y escalas originales.
 
-
-Resultados propios en escala original para las cuatro historias, con n=7 y h=1. Cada valor anual reúne primero las 366 predicciones de una trayectoria; la media y la DE describen diez semillas del mismo calendario, no diez mercados independientes.
-
-```{include} ../_static/filipe_multihistory_20261104/tables/cv_LSTM.md
-```
-
-La evaluación final de estas mismas cuatro entradas se conserva en §5 y en [las tablas de test](../_static/filipe_multihistory_20261104/test/analysis/metrics_summary.csv). La configuración de referencia se eligió con desarrollo antes de abrir test; sus métricas posteriores no se usan para reseleccionar. Las cifras son propias, no resultados de los autores de las referencias fundacionales.
+**Proyecto:** RMSE es primaria; MAE, MSE, R², MAPE y MASE complementan el análisis en escala original. El [resumen propio](../_static/gru_lstm_tcn_20261105/summary.json) y el capítulo 5 presentan todas las historias y semillas. Los resultados se identifican por ejecución y no se mezclan con cifras de autores. Para la historia seleccionada de **D=7**, la RMSE de CV es **0,00633541 ± 0,00018701** (media ± DE muestral de diez semillas), en unidades propias de σ7.
 
 #### 3.3.2.7. Fortalezas
 
-La recurrencia y las compuertas representan relaciones ordenadas sin asignar una matriz de entrada distinta a cada posición. Para H fijo, **el número de pesos no depende de D**, aunque el costo de procesar la ventana sí. Dispone de antecedentes aplicados recurrentes dentro del corpus, con heterogeneidad y calidad editorial explícitas.
+Tiene la mayor frecuencia familiar recuperada de la terna y antecedentes de referencia independientes. Comparte parámetros entre posiciones y conserva número de pesos al variar D. Su celda separada permite examinar otra forma de memoria recurrente bajo el mismo contrato.
 
 #### 3.3.2.8. Limitaciones
 
-Tiene más parámetros que las otras dos redes y ejecución recurrente secuencial. Memoria con compuertas no garantiza un aprendizaje útil de volatilidad; los resultados dependen del preprocesamiento y de la parada. Su posición en RMSE depende de la historia y del periodo; se conserva la comparación explícita de §5. Los antecedentes de S1/S5/S7 no comparten exactamente σ7/h1/OHLCV diario, y sus riesgos documentales no desaparecen por disponer de código. La evaluación propia sigue siendo exploratoria sobre desarrollo expuesto.
+Es la mayor de las tres recetas por parámetros y mantiene dependencia secuencial. Más compuertas no garantizan aprender memoria útil para volatilidad. El antecedente S1 tiene otro objetivo e información y S8 otra historia de entrada; tampoco las fuentes grises añaden automáticamente evidencia de igual calidad. La comparación propia sigue siendo exploratoria en un calendario ya conocido.
 
 #### 3.3.2.9. Complejidad computacional
 
-Con cuatro compuertas, dos vectores de sesgo por compuerta y cabeza escalar:
+Con cuatro proyecciones, dos sesgos por proyección y cabeza escalar:
 
 $$
 P_{\mathrm{LSTM}}=4H(p+H+2)+(H+1)=4\cdot32(5+32+2)+33=5\,025.
 $$
 
-El costo dominante por ejemplo es O(4DH(p+H)); las activaciones de entrenamiento crecen como O(DH), además de la entrada. El cómputo de estados depende del orden temporal, aunque las operaciones dentro de cada paso se vectorizan.
+Costo dominante O(4DH(p+H)); activaciones O(DH). El ancho común H32 no iguala los parámetros con GRU ni el tiempo real, que también depende de épocas y ejecución.
 
-**Medición del ciclo inicial D7.** Los doce procedimientos mensuales requieren **18,505 ± 2,305 s por trayectoria** y la suma de tiempos medios de inferencia de los doce bloques es **3,212 ± 0,362 ms**, medias ± DE entre diez semillas bajo la concurrencia registrada. Su menor tiempo de entrenamiento observado no acredita eficiencia intrínseca frente a MLP: el número de épocas seleccionado también cambia. El alcance de medición está en §4.2.5.
-
-### 3.3.3. CNN1D temporal poco profunda
+### 3.3.3. TCN causal dilatada residual
 
 #### 3.3.3.1. Referencias completas y papel comparativo
 
-**Fundamento de filtros compartidos.** LeCun, Y., Bottou, L., Bengio, Y. y Haffner, P. (1998). *Gradient-Based Learning Applied to Document Recognition*. *Proceedings of the IEEE*, 86(11), 2278–2324. DOI: [10.1109/5.726791](https://doi.org/10.1109/5.726791) {cite:p}`lecun1998`.
+Akbiyik, M. E., Erkul, M., Kämpf, K., Vasiliauskaite, V. y Antulov-Fantulin, N. (2023), *Ask “Who”, Not “What”: Bitcoin Volatility Forecasting with Twitter Data*, ACM WSDM, DOI [10.1145/3539597.3570387](https://doi.org/10.1145/3539597.3570387), Tabla 2, presenta **TCN como comparador independiente**; D-TCN es la propuesta avanzada {cite:p}`akbiyik2023`. Es una referencia directa de volatilidad de Bitcoin, **1/7** del corpus, sin amplia recurrencia demostrada.
 
-**Contexto de secuencias.** Bai, S., Kolter, J. Z. y Koltun, V. (2018). *An Empirical Evaluation of Generic Convolutional and Recurrent Networks for Sequence Modeling*. Prepublicación arXiv:1803.01271 {cite:p}`bai2018`. Describe familias temporales más generales y no equivale a la CNN concreta de dos capas aquí ejecutada. LeCun estudia reconocimiento documental, no volatilidad de Bitcoin.
-
-**Antecedente aplicado.** Miura, R., Pichl, L. y Kaizoji, T. (2019), *Artificial Neural Networks for Realized Volatility Prediction in Cryptocurrency Time Series*, ISNN 2019, LNCS 11554, pp. 165–172, DOI [10.1007/978-3-030-22796-8_18](https://doi.org/10.1007/978-3-030-22796-8_18) {cite:p}`miura2019`, incluye una **CNN independiente de dos capas más Dense** (Tabla 1, p. 171), [verificada en el texto completo](https://raw.githubusercontent.com/Anton21a/Thesis/8bc3aa3c96fd214b34b914d2057f4339f2c8ed1e/ML%20articles/Artificial%20Neural%20Networks.pdf). La dimensión 1D/2D, filtros, kernels y padding no se reportan: acredita la familia CNN, 1/7, sin acreditar una Conv1D específica. La TCN S1 tampoco se reetiqueta como la CNN ejecutada. La elección temporal 1D, dos capas H16/k3 y causalidad es una adaptación propia orientada por la guía 6.4, con receta y resultados propios explícitos.
-
-**Dimensionalidad temporal verificada en una fuente primaria de autores.** HARNet, de Reisenhofer, Bayer y Hautsch {cite:p}`reisenhofer2022harnet`, aporta [código de autores fijado y extractos localizados](../_static/literature_e1/crypto_extension_20261105/harnet_current_code_evidence.json). En su preset con rezagos [1,5,20], `Conv1D` opera sobre el eje temporal con padding causal, un filtro por capa, kernels 5 y 4 y dilataciones 1 y 5; usa ReLU, ausencia de sesgo en esas convoluciones, inicialización inspirada en HAR y Dense(1) lineal. El preset SPX identifica entrenamiento 2012–2015 y evaluación 2016. Estos hechos proceden del código, no de asumir la dimensionalidad a partir de «CNN».
-
-HARNet constituye **respaldo metodológico de convolución 1D para volatilidad financiera**, con manuscrito original y publicación en revista pendientes de comprobar en esta revisión. El cargador utiliza la columna `rv5_ss` de Oxford-Man; su definición completa, frecuencia y horizonte económico no quedaron corroborados en esta extracción de código. No se equiparan al objetivo σ7/h1 de E1. Tampoco acredita una CNN1D independiente sobre Bitcoin ni valores de MAE/MSE/QLIKE: el repositorio contiene funciones, no una tabla de resultados verificada. Un minibatch de etiquetas de forma [4,5,1] no identifica por sí solo cinco horizontes. Las dos capas H16/k3, dilatación 1, promedio temporal y Softplus de E1 no se atribuyen a HARNet, cuya parametrización e información son distintas.
-
-**Corrección de la valoración de HARNet.** La [errata trazable](../_static/literature_e1/crypto_extension_20261105/harnet_erratum.json) retira la inferencia anterior de fuga basada en llamar `scaler.fit_transform` antes del corte. El escalador es una clase local: `model.py`, líneas 375–429, delega `fit_transform` en transformaciones deterministas; el preset inspeccionado usa los límites constantes `cfg.scaler_min=0` y `cfg.scaler_max=0,001`, sin estimar extremos con la serie entregada. El orden de esa llamada **no prueba fuga de normalización** ni acredita por sí solo validez temporal global. Se conserva una limitación distinta de reproducción: el [CSV público del preset](../_static/literature_e1/crypto_extension_20261105/harnet_schema.json) contiene `rv5` pero no `rv5_ss`, solicitado por el cargador. Sus 31 símbolos son índices bursátiles, no criptomonedas. No se ejecutó el código ni se sustituyó la variable para atribuir resultados al original.
-
-**Conexión editorial separada.** El CV primario de Fernando Moreno-Pino identifica con Stefan Zohren *DeepVol: Volatility Forecasting from High-Frequency Data with Dilated Causal Convolutions*, Quantitative Finance (2024), DOI [10.1080/14697688.2024.2387222](https://doi.org/10.1080/14697688.2024.2387222) {cite:p}`morenopino2024deepvol`. La [ficha de identidad editorial](../_static/literature_e1/journal_update_20261105/deepvol2024_publication.json) conserva el enlace extraído del CV y su ubicación. El artículo y su código no se recuperaron: no se le imputan kernels, resultados o datos desde HARNet. La presencia de convoluciones en su título no convierte ambos trabajos en la misma evidencia.
+Bai, S., Kolter, J. Z. y Koltun, V. (2018), *An Empirical Evaluation of Generic Convolutional and Recurrent Networks for Sequence Modeling*, arXiv:1803.01271, es fundamento general de TCN; el registro conserva acceso a README/cita de autores y no afirma nueva lectura completa ni revisión por pares de ese preprint {cite:p}`bai2018`.
 
 #### 3.3.3.2. Tipo de arquitectura
 
-Dos convoluciones temporales 1D ordinarias, **16 canales por capa, kernel 3, stride 1 y dilatación 1**, con padding exclusivamente izquierdo, ReLU y dropout 0,1 después de cada capa. La cabeza aplica promedio temporal y Dense1/Softplus. No contiene bloques residuales ni atención.
+TCN de **tres bloques residuales**, dos Conv1D causales por bloque, 16 canales, kernel 3, stride 1 y dilataciones de bloque **1, 2 y 4**. Cada convolución lleva ReLU y dropout 0,1; hay proyección residual 1×1 cuando cambian los canales. La salida toma la **última posición temporal**, seguida de dropout, cabeza escalar y Softplus. No usa pooling global, atención o normalización temporal.
 
 #### 3.3.3.3. Descripción técnica
 
-![Arquitectura propia CNN1D](../_static/e1_architectures_20261104/cnn1d.svg)
+Flujo: **(B,D,5) → transposición (B,5,D) → bloques residuales d=1/2/4 → último paso (B,16) → dropout → Dense1/Softplus → (B)**. Cada convolución de dilatación d rellena solo a la izquierda con (k−1)d ceros y mantiene longitud D. La salida en j depende únicamente de posiciones ≤j de la ventana. Las conexiones residuales suman identidad o proyección de canales a la rama de dos convoluciones y aplican ReLU a esa suma.
 
-CNN1D: dos convoluciones causales ordinarias de 16 canales y media temporal; campo receptivo local de cinco días. El diagrama corresponde a la implementación del proyecto y conserva n=7/h=1.
-
-Para a⁽⁰⁾=X, cada capa l∈{1,2} y posición j calcula, con ceros en posiciones anteriores al comienzo de la ventana:
+Con dos convoluciones por bloque, el campo receptivo máximo es:
 
 $$
-a^{(l)}_{j,c}=\operatorname{Dropout}_{0,1}\!\left[\operatorname{ReLU}\!\left(b_c^{(l)}+
-\sum_{q}\sum_{r=0}^{2} K^{(l)}_{c,q,r}\,a^{(l-1)}_{j-2+r,q}\right)\right].
+R=1+2(k-1)(1+2+4)=1+2\cdot2\cdot7=29.
 $$
 
-$$
-\bar a_c=\frac1D\sum_{j=1}^{D}a^{(2)}_{j,c},\qquad
-\widehat y^{\mathrm{esc}}=\operatorname{Softplus}(w^\top\bar a+b),\qquad
-R=1+2(3-1)=5.
-$$
-
-Flujo: **(B,D,5) → transposición (B,5,D) → Conv1D16/k3/ReLU/dropout → Conv1D16/k3/ReLU/dropout → media temporal (B,16) → Dense1/Softplus → (B)**. El campo receptivo **local** de cada posición antes del promedio es cinco; el promedio reúne todas las posiciones de la ventana observable. La normalización puede usar su último cierre porque ya se conoce al origen, sin utilizar datos posteriores al pronóstico.
-
-Los filtros comparten pesos a lo largo del tiempo y capturan patrones locales repetidos; no representan el mecanismo recurrente de LSTM ni pesos por posición de MLP. Se entrena con MSE del objetivo escalado y **learning rate 0,001**. Código: `ShallowCausalCNN1D` en [dl_models.py](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/dl_models.py).
+R=29 cubre D=7/14/21/28; para D28 hay como máximo **28 observaciones reales**, y el soporte restante es padding anterior a la ventana. La lectura final recoge dependencias causales a varias escalas en la última posición temporal. Se minimiza MSE de Y escalada con **learning rate 0,001**. La receta es propia, no la TCN de seis niveles/F287/k5 ganadora de S1.
 
 #### 3.3.3.4. Tipo de problema que aborda
 
-Regresión temporal sobre secuencias numéricas OHLCV. La convolución opera sobre días, no sobre píxeles; el modelo no convierte el proyecto en clasificación de imágenes ni en generación secuencia a secuencia. Su única salida es σ7 del día de resultado, con horizonte h=1.
+Regresión temporal σ7/h=1 con las mismas covariables rezagadas. Las convoluciones se aplican al eje de días; no implican imágenes, ubicaciones o una tarea de secuencia a secuencia.
 
 #### 3.3.3.5. Dataset y unidad de observación
 
+Binance Spot BTCUSDT diario UTC, ventana D×5 y salida escalar. Comparte ejemplos, cohortes, calendario, diez semillas y reglas de preprocesamiento con GRU/LSTM. La causalidad se establece respecto a las posiciones de la ventana y al reloj de disponibilidad de sus OHLCV; no basta por sí sola para garantizar toda la validez del pipeline.
 
-Binance Spot BTCUSDT, agregado diario UTC desde velas de un minuto. Las entradas D=7/14/21/28 conservan cinco canales y el mismo objetivo sigma7/h1. Los doce bloques de validación de 2024 usan cohortes crecientes de 2023 y pasado permitido de 2024; las diez semillas son comunes. Tras congelar decisiones se ajustó una red final por historia y semilla, con desarrollo permitido y embargo D, y se evaluó la cohorte común del 01/01/2025 al 31/08/2026. No se comprimen huecos ni se imputa el 24/03/2023. Los [reglas, fechas y hashes públicos](../_static/filipe_multihistory_20261104/method.json) distinguen ambos periodos y las fuentes documentales no se presentan como el dataset propio.
+#### 3.3.3.6. Métricas y valores
 
-#### 3.3.3.6. Métricas y valores propios de validación
+**Autores:** S1, Tabla 2, reporta para su TCN independiente RMSE **2,58 ± 0,07** en veinte corridas, en escala RV×100. No se atribuye ese valor a nuestra TCN compacta. Las variantes D-TCN y su comparación se conservan en §3.4.3.
 
-
-Resultados propios en escala original para las cuatro historias, con n=7 y h=1. Cada valor anual reúne primero las 366 predicciones de una trayectoria; la media y la DE describen diez semillas del mismo calendario, no diez mercados independientes.
-
-```{include} ../_static/filipe_multihistory_20261104/tables/cv_CNN1D.md
-```
-
-La evaluación final de estas mismas cuatro entradas se conserva en §5 y en [las tablas de test](../_static/filipe_multihistory_20261104/test/analysis/metrics_summary.csv). La configuración de referencia se eligió con desarrollo antes de abrir test; sus métricas posteriores no se usan para reseleccionar. Las cifras son propias, no resultados de los autores de las referencias fundacionales.
+**Proyecto:** RMSE anual por trayectoria es primaria, con MAE, MSE, R², MAPE y MASE secundarias. El [resumen vigente](../_static/gru_lstm_tcn_20261105/summary.json), la [selección por CV](../_static/gru_lstm_tcn_20261105/selected_by_cv.json) y el capítulo 5 presentan resultados propios. Para la historia seleccionada de **D=7**, la RMSE de CV es **0,00581961 ± 0,00025622** (media ± DE muestral de diez semillas), en unidades propias de σ7.
 
 #### 3.3.3.7. Fortalezas
 
-Comparte filtros entre posiciones con **1.057 parámetros**, independientes de D; tiene menos pesos que LSTM y que MLP con D≥14. Permite cómputo paralelo sobre la ventana, representa patrones locales y mantiene una arquitectura pequeña con conteo exacto. La comparación observada se reporta por D y periodo, sin atribuir superioridad a la familia únicamente por compartir filtros.
+Aporta filtros causales compartidos, conexiones residuales y un campo receptivo multiescala explícito. Permite procesar posiciones de una capa en paralelo sin mantener un estado recurrente. Tiene 4.289 parámetros y cubre las cuatro historias con la misma arquitectura; ello acredita capacidad pequeña y fija, sin demostrar mejor precisión o menor costo real.
 
 #### 3.3.3.8. Limitaciones
 
-El campo local es corto y la media puede perder información de posición; padding y preprocesamiento afectan la representación. Causalidad convolucional no elimina por sí sola la fuga de datos. S8 respalda una CNN independiente, pero su dimensión y componentes no identificados impiden llamarla réplica de nuestra CNN1D; tampoco se replica la TCN de S1. El único apoyo CNN genérico no prueba recurrencia amplia ni que la receta actual sea mínima u óptima. Los resultados iniciales D7 no se extrapolan a otras historias o a una nueva evaluación.
+Su respaldo estricto es **un estudio recuperado**. La capacidad pequeña exige alejarse de la configuración ganadora de S1 y evaluar esa adaptación. El campo receptivo finito y el padding cambian el soporte efectivo con D. Las conexiones residuales y dilataciones no eliminan errores de preprocesamiento, selección o dependencia estadística. No se afirma que TCN sea ampliamente frecuente o que una CNN dimensionalmente no especificada de S8 constituya otra ocurrencia TCN.
 
 #### 3.3.3.9. Complejidad computacional
 
-Con p=5, H=16 y k=3:
+Con p=5, H=16 y k=3, las seis convoluciones incluyen sesgos, la primera conexión residual proyecta 5→16 y la cabeza tiene 17 parámetros:
 
 $$
-P_{\mathrm{CNN}}=(kpH+H)+(kH^2+H)+(H+1)
-=3H^2+18H+1=1\,057.
+P_{\mathrm{TCN}}=H(pk+1)+5H(Hk+1)+H(p+1)+(H+1)
+=256+3\,920+96+17=4\,289.
 $$
 
-Las convoluciones requieren O(D(kpH+kH²)) por ejemplo y la media/cabeza O(DH+H). Las activaciones crecen como O(DH) para profundidad fija. No se infiere menor tiempo solo por paralelizar posiciones o reducir parámetros.
-
-**Medición del ciclo inicial D7.** Los doce procedimientos mensuales requieren **44,350 ± 2,425 s por trayectoria** y la suma de tiempos medios de inferencia de los doce bloques es **3,691 ± 0,235 ms**, medias ± DE entre diez semillas en la CPU registrada. Estos valores describen la implementación y no los tiempos de LeCun/Bai/S1; la memoria pico no fue medida.
+Costo dominante O(Dk(pH+5H²)), más proyección residual y cabeza; activaciones O(6DH). D modifica cómputo y soporte, no el número de pesos de esta receta. No se deduce eficiencia de producción a partir del paralelismo teórico o solo de los parámetros.
 
 ### 3.3.4. Cobertura y comparación de las tres fichas
 
-| Campo | MLP | LSTM | CNN1D poco profunda |
+| Campo | GRU | LSTM | TCN |
 |---|---|---|---|
-| Ficha de implementación con nueve incisos | Completa | Completa | Completa |
-| Entrada / salida propias | (D,5) → escalar, D=7/14/21/28 | Mismas cuatro entradas y salida | Mismas cuatro entradas y salida |
-| Sesgo inductivo principal | Pesos por posición e interacciones feedforward | Memoria recurrente con compuertas | Filtros locales compartidos y promedio temporal |
-| Configuración propia | Una capa H16 | Una capa unidireccional H32 | Dos capas H16/k3, sin dilataciones |
-| Parámetros medidos por código | 593/1.153/1.713/2.273 para D7/14/21/28 | 5.025 | 1.057 |
-| Apoyo aplicado independiente en el corpus | MLP 1/7, S8 | Unidireccional explícita 3/7; familia 5/7 | CNN genérica 1/7, S8; CNN1D simple explícita 0/7 |
-| Datos/objetivo de fuentes idénticos al proyecto | No acreditado | No acreditado | No acreditado |
-| Cumplimiento del respaldo bibliográfico del trío | Familia aplicada identificada; adaptación propia | Antecedentes identificados, con límites | Familia aplicada identificada; dimensión fuente no reportada |
+| Comparador directo publicado | S1 y S8 | S1 y S8 | S1 |
+| Frecuencia estricta, N=7 | 3/7 | 5/7, incluyendo BiLSTM | 1/7 |
+| Memoria / soporte | Estado integrado, dos compuertas | Estado oculto y celda separados, tres compuertas | Filtros causales dilatados y residuales; R=29 |
+| Receta propia | Una capa H32 | Una capa H32 | Tres bloques / seis Conv1D H16, k3, d1/2/4 |
+| Lectura | Último estado | Último estado oculto | Última posición temporal |
+| Parámetros | 3.777 | 5.025 | 4.289 |
+| Límite bibliográfico principal | Transferencia de tarea y receta | Familia heterogénea y transferencia de tarea | Solo una referencia independiente recuperada |
 
-Las **fichas propias están completas**; el respaldo documental se presenta por separado. Los siete estudios cripto, las 40 citas y T1/T2/T3 tienen funciones y niveles de lectura distintos. S9 amplía cobertura a veinte pares sin añadir referencias MLP/CNN y sin multiplicar el número de estudios; el estrato de seis conserva la extracción de comparadores previos. Permanecen recurrencia limitada, dimensionalidad CNN desconocida en S8 y recetas propias adaptadas. T1 aporta una FNN de revista leída; T2 permite inspeccionar Conv1D en otro mercado y T3 identifica una publicación sin original. Ninguno cambia los resultados del proyecto ni su cronología.
+Los nueve campos están desarrollados para las tres redes. Las fuentes prueban el uso comparativo de las familias y conservan desconocidos; la ejecución propia acredita estas configuraciones concretas. Ninguno de esos hechos garantiza generalización, validación prospectiva o mínima complejidad global.
 
 ## 3.4. Comparación crítica de los modelos y de la evidencia
 
-La comparación propia enfrenta **MLP, LSTM y CNN1D** bajo el contrato y CV comunes. Los antecedentes LSTM/TCN/encoder permanecen en el [archivo de fuentes](https://github.com/jassan-bit/DeepLearning_202630/blob/main/references/literature_e1/source_profiles_archive_20261104.md); sus configuraciones y resultados no se mezclan con las cifras de las tres redes implementadas. La validez de los estudios y la brecha avanzada/base de literatura se analizan por separado.
+La comparación principal vigente enfrenta **GRU, LSTM y TCN** bajo el contrato σ7/h=1 y CV comunes. La evidencia aplicada de S1/S8 y el resto del corpus sigue separada de los resultados propios. MLP/CNN permanecen en las tablas de autores, sin ocupar puestos en esta comparación.
 
 ### 3.4.1. Comparación estructurada entre los tres modelos base
 
 #### 3.4.1.1. Desempeño de CV y comparabilidad
 
+El estudio propio usa las cuatro historias D=7/14/21/28, cinco canales y diez semillas. Cada RMSE anual se calcula reuniendo las 366 fechas de una trayectoria antes de resumir media/DE entre semillas. No es la RMSE de un ensemble ni una media de R² mensuales. Se publican todas las configuraciones en el [resumen actual](../_static/gru_lstm_tcn_20261105/summary.json) y el baseline seleccionado por CV en el [registro vigente](../_static/gru_lstm_tcn_20261105/selected_by_cv.json); el capítulo 5 presenta métricas, contrastes y evaluación propia.
 
-La comparación principal reúne las cuatro historias D=7/14/21/28, n=7/h=1, cinco covariables y diez semillas. Cada puntuación anual reúne primero las 366 fechas de una trayectoria; no es la RMSE de un ensemble ni una media de R² mensuales.
+La mejor historia por familia en ese registro es D7:
 
-```{include} ../_static/filipe_multihistory_20261104/tables/cv_models.md
-```
+| Familia propia | Historia seleccionada por CV | RMSE anual 2024, media ± DE de diez semillas | Parámetros |
+|---|---:|---:|---:|
+| GRU | 7 | 0,00515457 ± 0,00016156 | 3.777 |
+| LSTM | 7 | 0,00633541 ± 0,00018701 | 5.025 |
+| TCN | 7 | 0,00581961 ± 0,00025622 | 4.289 |
 
-```{include} ../_static/filipe_multihistory_20261104/tables/selected_configuration.md
-```
+**GRU D7** es el baseline neuronal vigente elegido por media de RMSE de CV. La tabla resume las recetas seleccionadas; las doce combinaciones modelo–historia siguen en el registro y no se descartan las de mayor error. Estas cifras son propias y no se comparan numéricamente con RV×100 o RV de tres horas de los autores.
 
-El test final de §5 conserva esa selección previa. Persistencia resume ocho cierres para sigma7 previa: es más historia de cierre que D7 y menos días que las entradas D14/21/28; la información no se presenta como idéntica. Las fuentes aplicadas usan otros objetivos y escalas y no forman un ranking cuantitativo común con estas métricas propias. La CV de desarrollo expuesto no es selección anidada independiente.
+Las recetas se fijaron antes de los ajustes privados y la decisión de publicar esta terna fue posterior a sus resultados. La comparación sigue siendo **exploratoria sobre desarrollo ya observado**, sin convertir la congelación interna en una selección global prospectiva. Las tablas propias corresponden únicamente a las tres redes vigentes. Los RMSE de distintos artículos tampoco forman un ranking común con el contrato propio.
 
 #### 3.4.1.2. Robustez y evidencia disponible
 
+Las tres redes comparten historias, fechas, semillas y reglas de entrenamiento. Las diez inicializaciones permiten describir variabilidad de ajuste condicionada al mismo mercado; no son diez muestras independientes de mercados. Los contrastes, correcciones e intervalos deben leerse con la unidad de análisis y el calendario que realmente emplean. La selección pública posterior a revisar el experimento privado impide tratar esas mismas métricas como confirmación independiente de la decisión.
 
-Las tres redes usan las mismas cuatro historias y diez semillas, con 366 fechas de CV y una cohorte común de test. El control absoluto se ejecutó exclusivamente en el ciclo inicial D7. Los veinte meses de test permiten describir estabilidad temporal de los modelos finales, sin reajustarlos ni contarlos como réplicas de mercados.
-
-El respaldo aplicado vigente es MLP 1/7, LSTM unidireccional explícita 3/7 y CNN genérica 1/7; CNN1D simple explícita permanece 0/7. No se ejecutaron pruebas de estrés con ruido controlado, otros activos o proveedores. Un orden mensual o R² positivo no demuestra robustez universal. La referencia BDS mensual es aproximada y sus promedios son descriptivos, no una prueba combinada.
+El respaldo estricto es GRU 3/7, LSTM familiar 5/7 y TCN 1/7. S9 eleva la presencia LSTM a 6/7 al incluir una propuesta, sin cambiar su frecuencia como referencia. No se verificaron en este ciclo otros activos, proveedores o perturbaciones controladas. Menor RMSE, cierta estabilidad por mes o un campo receptivo suficiente no acreditan robustez universal.
 
 #### 3.4.1.3. Escalabilidad y simplicidad
 
+| Receta propia | Parámetros | Costo dominante por ventana | Diferencia relevante |
+|---|---:|---|---|
+| GRU H32 | 3.777 | O(3DH(p+H)) | Dos compuertas y un estado integrado; dependencia secuencial |
+| LSTM H32 | 5.025 | O(4DH(p+H)) | Tres compuertas y memoria separada; dependencia secuencial |
+| TCN H16, seis Conv1D | 4.289 | O(Dk(pH+5H²)) | Causalidad, dilatación, residuales y paralelismo por posición |
 
-El costo dominante por ventana es O(DpH) para MLP, O(4DH(p+H)) para LSTM y O(D(kpH+kH²)) para CNN1D. MLP asigna pesos por posición; LSTM comparte las compuertas y CNN comparte filtros. El conteo de pesos por entrada es:
-
-```{include} ../_static/filipe_multihistory_20261104/tables/parameters.md
-```
-
-Los costos medidos de CV se conservan por historia, modelo, semilla y fold; el [ajuste final](../_static/filipe_multihistory_20261104/final_fit_summary.csv) registra sus tiempos por corrida. El aumento de D modifica la entrada y el costo, pero no los pesos recurrentes o convolucionales con ancho fijo. Los tiempos dependen de épocas y concurrencia CPU; no son latencias garantizadas de producción. Los tiempos iniciales D7 siguen disponibles en sus registros y no se extrapolan a D14/21/28. No se midió memoria pico.
+Los parámetros son independientes de D en estas recetas; el costo de procesar ventanas aumenta con D. El ancho común de las recurrentes no iguala capacidad y el mismo número de corridas no optimiza por igual las familias. Los tiempos propios dependen de épocas, CPU y concurrencia; se consultan en el registro vigente y no se toman del benchmark antiguo ni de los artículos. No se atribuyen estos conteos a S1/S8.
 
 ### 3.4.2. Análisis de validez de los estudios revisados
 
@@ -856,9 +756,11 @@ La reducción se deriva como `100·(RMSE_TCN−RMSE_variante)/RMSE_TCN` a partir
 
 ### 3.4.4. Brecha verificable y proyección
 
-**Brecha verificable del contrato propio:** S8 sí compara conjuntamente MLP, LSTM y CNN para RV de Bitcoin; por ello ya no corresponde afirmar ausencia de esas familias. Sin embargo, ninguno de los siete textos identifica la comparación conjunta exacta **MLP–LSTM–CNN1D causal con OHLCV diario de Binance Spot, n=7 y h=1**. La dimensión CNN de S8 es desconocida y su objetivo usa sumas de retornos minuto al cuadrado e historia de RV. Es una limitación de cobertura del corpus, no prueba de inexistencia mundial ni de novedad del proyecto.
+S1 **ya compara conjuntamente GRU, LSTM y TCN para volatilidad de Bitcoin**. Por tanto, la terna no constituye una combinación bibliográficamente inédita. S8 aporta otra comparación publicada GRU/LSTM. La diferencia verificable del proyecto está en su contrato —OHLCV diario de Binance Spot, σ7 centrada, h=1, cuatro historias y recetas compactas—, no en inventar esas familias o afirmar ausencia universal de trabajos equivalentes.
 
-La CV de Filipe establece referencias DL propias bajo reglas comunes y cuatro historias. El baseline neuronal cerrado antes de test sigue siendo **MLP D7**, según el [registro de selección](../_static/filipe_multihistory_20261104/freeze.json). La lectura posterior de S8 no reabre esa decisión, no valida retroactivamente la selección de recetas y no transforma las brechas de otros autores en un margen de mejora propio demostrado. Los capítulos 4–5 conservan resultados, cronología y límites inferenciales.
+El corpus de siete textos no identifica la misma combinación exacta de contrato, proveedores, recetas y evaluación. Esta es una **limitación de cobertura**, sin demostrar novedad mundial. La cobertura TCN sigue siendo una referencia independiente y requiere ampliación antes de afirmar uso ampliamente recurrente. Su receta pequeña se evalúa como adaptación, sin convertir la dimensión desconocida de la CNN de S8 en una laguna de la TCN actual.
+
+El baseline neuronal vigente se identifica en el [registro seleccionado por CV](../_static/gru_lstm_tcn_20261105/selected_by_cv.json). Los [registros originales](https://github.com/jassan-bit/DeepLearning_202630/tree/main/experiments/gru_lstm_tcn_20261105/original_registration) permanecen en el archivo fuente del repositorio. La selección actual se toma tras literatura y revisión del experimento privado, con sus límites de selección exploratoria; no se atribuye retroactivamente a la documentación anterior. Ninguna mejora observada cambia esa cronología ni convierte brechas de autores en una mejora propia demostrada sobre un mercado nuevo.
 
 ### 3.4.5. Correspondencia y estado de cierre
 
@@ -870,10 +772,10 @@ La CV de Filipe establece referencias DL propias bajo reglas comunes y cuatro hi
 | Inclusión, exclusión, flujo y responsable | Cortes históricos de cinco/seis conservados; [flujo actual](../_static/literature_e1/crypto_extension_20261105/flow.svg), cribado y extracción de S9 completan siete estudios cripto | Un estudio multiactivo cuenta una vez; sin exhaustividad, consulta nativa de índices o segundo revisor humano acreditados. |
 | Matriz y evaluación de calidad | Diez registros normalizados: siete cripto más T1/T2/T3; extracción de S9 y errata HARNet | S1/S8 tienen identidad de publicación; S2/S5/S6/S7/S9 mantienen su estrato gris o editorial pendiente. No se acredita validez, artículo indexado o réplica exacta. |
 | Frecuencia y complejidad | Variantes, frecuencias ampliadas/sensibilidades, ganadores de S1 y conteos analíticos reproducibles | Corregido; no demuestra mínima complejidad global ni uso frecuente en todos los índices |
-| Exactamente tres modelos básicos no redundantes | MLP–LSTM–CNN1D ejecutados, con apoyo aplicado de familias MLP/CNN añadido por S8; GRU 3/7 alternativa | No son los tres primeros por frecuencia; dimensión CNN1D y adaptación mínima requieren sus propios límites. S8 no se presenta como motivo anterior al entrenamiento. |
-| Fichas técnicas del trío implementado | Nueve campos propios y referencias aplicadas por familia; se incorpora S8 en MLP/LSTM/CNN | Parámetros propios no atribuidos a autores; CNN de S8 no permite probar dimensión o réplica de Conv1D. |
-| Comparación crítica y brecha | Comparación propia anual MLP/LSTM/CNN1D; validez de estudios y brecha avanzada/base de S1 separadas | Ranking propio descriptivo; sin mezclar tareas, atribuir causalidad única o declarar novedad universal |
-| Experimentos y baseline medido | CV principal de cuatro historias: 120 trayectorias, 1.440 segmentos modelo–fold y 2.880 ajustes, con D7 reutilizado; ajuste final y test separados del diagnóstico Ridge | Diez semillas por red/historia; test posterior a congelación, un solo activo y sin selección mediante sus métricas |
+| Exactamente tres modelos básicos y diferencias de mecanismo | GRU–LSTM–TCN, con S1 como comparación directa publicada y S8 como apoyo adicional GRU/LSTM | Frecuencias 3/7, 5/7 y 1/7: TCN no acredita amplia recurrencia. Selección pública posterior al benchmark y al experimento privado; no se presenta como prospectiva. |
+| Fichas técnicas del trío implementado | Nueve campos para GRU/LSTM/TCN; mecanismos, soporte y conteos 3.777/5.025/4.289 explícitos | Adaptaciones propias, no recetas exactas de S1/S8; R=29 frente a D≤28, con padding izquierdo. |
+| Comparación crítica y brecha | Comparación propia GRU/LSTM/TCN y brecha avanzada/base de S1 separadas; las cifras de autores se conservan | No se mezclan tareas ni se declara novedad de la terna: S1 ya la compara. Evaluación exploratoria sobre calendario conocido. |
+| Experimentos y baseline medido | Ejecución GRU/LSTM/TCN de cuatro historias: 120 trayectorias, 1.440 segmentos y 2.880 ajustes de CV; baseline en registro vigente | Diez semillas por receta/historia; publicación posterior a revisar el experimento privado. La procedencia distingue código original y adaptador público posterior. |
 
 La fase actual sigue la búsqueda pública y la comprobación posterior de procedencia descritas en §3.1. Las siete coincidencias secundarias corresponden a *Journal of International Financial Markets, Institutions and Money*, *Frontiers in Physics*, *Economics Letters*, *Finance Research Letters*, *IEEE Access*, *Journal of Financial Econometrics* y *Quantitative Finance*. No sustituyen la verificación individual de los artículos ni certifican Q1. Las listas inspeccionadas no permiten juzgar actas de congresos: la ausencia de WSDM/ICDM en ellas no prueba falta de indexación.
 
@@ -885,7 +787,7 @@ Los comprobantes históricos, las [frecuencias previas de seis](../_static/liter
 
 La consulta del **2 de noviembre de 2026** incorporó treinta referencias: siete sobre Bitcoin, siete de fundamentos de redes neuronales y dieciséis de volatilidad, diagnóstico y evaluación. Se consultaron repositorios públicos de autores, documentación de software académico y bibliografías de artículos y libros. Para cada entrada se conservan el enlace consultado, los campos corroborados y el nivel de acceso en el [registro de verificación](../_static/bibliografia/verification_30.csv) y el [catálogo detallado](../_static/bibliografia/references_30.json).
 
-El catálogo vigente conserva las 39 referencias anteriores y añade S9: **40 referencias** en §3.1.2.4 y su [CSV](../_static/literature_e1/crypto_extension_20261105/references_access_40.csv). Los cortes de 35/cinco textos, 36/seis textos y 39/seis textos más transferencia permanecen fechados. La ampliación actual es posterior al benchmark; aporta lectura y normalización documental sin entrenamientos nuevos, cambios de modelos o consulta nativa de índices acreditada.
+El catálogo vigente conserva las 39 referencias anteriores y añade S9: **40 referencias** en §3.1.2.4 y su [CSV](../_static/literature_e1/crypto_extension_20261105/references_access_40.csv). Los cortes de 35/cinco textos, 36/seis textos y 39/seis textos más transferencia permanecen fechados. La ampliación documental a siete textos fue posterior al benchmark y no ejecutó entrenamientos. La decisión posterior de publicar GRU–LSTM–TCN y su ejecución privada se identifican por separado en §3.2.1.3; no se atribuyen a la ampliación búsquedas nativas de índices.
 
 La red del entorno bloqueó el acceso directo a Crossref y arXiv. Por ello no se afirma haber consultado sus interfaces ni leído treinta originales completos. La entrada de Huang y colaboradores conserva su verificación previa; su acceso directo actual también está limitado. Las verificaciones nuevas de las otras referencias proceden de las fuentes accesibles indicadas en el registro. Una referencia identificada en otra bibliografía se distingue de un artículo original leído.
 
@@ -897,7 +799,7 @@ Katsiampa estudia la estimación de volatilidad de Bitcoin mediante especificaci
 
 Los estudios asociados a órdenes de compra y venta, información de Twitter y flujos de información a frecuencia de minuto plantean conjuntos de información diferentes {cite:p}`guo2018,akbiyik2023,barjasic2021`. Sus títulos, datos documentados y referencias permiten reconocer líneas de investigación pertinentes, pero no autorizan atribuir a OHLCV diario mejoras obtenidas con otras señales. El artículo de Akbiyik y colaboradores se recuperó como copia de autores; para parte de los antecedentes se corroboraron metadatos en sus bibliografías y no se declara lectura del original.
 
-Miura, Pichl y Kaizoji aportan ahora un **benchmark publicado de MLP, CNN, LSTM y GRU independientes para RV de Bitcoin** {cite:p}`miura2019`. La comparación de su Tabla 1 es directamente pertinente a familias neuronales para volatilidad; el cambio de proveedor, agregación, objetivo e información impide trasladar sus valores al experimento propio. Su CNN no tiene dimensión reportada, y sus cuatro capas MLP no definen la receta H16 del proyecto.
+Miura, Pichl y Kaizoji aportan ahora un **benchmark publicado de MLP, CNN, LSTM y GRU independientes para RV de Bitcoin** {cite:p}`miura2019`. La comparación de su Tabla 1 es directamente pertinente a familias neuronales para volatilidad; el cambio de proveedor, agregación, objetivo e información impide trasladar sus valores al experimento propio. Su CNN no tiene dimensión reportada y sus cuatro capas MLP se conservan como extracción de autores, sin ocupar un puesto en la terna actual. Las recetas GRU/LSTM H32 tampoco se deducen de esos detalles.
 
 Huang y colaboradores aportan un antecedente de pronóstico de volatilidad con técnicas de aprendizaje automático. Herremans y Low se centran en picos de volatilidad e información de transacciones de grandes tenedores y CryptoQuant mediante modelos Synthesizer Transformer {cite:p}`huang2024,herremans2025`. Pronosticar picos, una medida realizada intradiaria o el siguiente valor de una desviación móvil diaria constituye tareas diferentes. La pertinencia temática no acredita igualdad de objetivo, datos, horizonte o protocolo.
 
@@ -909,11 +811,11 @@ La literatura de volatilidad realizada y de modelos HAR estudia construcciones y
 
 ### 3.5.4. Fundamentos de las fichas implementadas y sus antecedentes
 
-El resultado de aproximación de redes feedforward y la exposición general de aprendizaje profundo fundamentan el uso de MLP como familia candidata {cite:p}`cybenko1989,goodfellow2016`. La capacidad de aproximar funciones no garantiza generalización ni acredita que una MLP sea una referencia frecuente para Bitcoin. Esa frecuencia requiere evidencia en estudios aplicados incluidos.
+El resultado de aproximación de redes feedforward y la exposición general de aprendizaje profundo fundamentan el uso de MLP como familia candidata {cite:p}`cybenko1989,goodfellow2016`. La capacidad de aproximar funciones no garantiza generalización ni acredita que una MLP sea una referencia frecuente para Bitcoin. MLP permanece como antecedente y no como modelo experimental principal de la terna vigente.
 
-LSTM introduce un mecanismo de memoria con compuertas; el trabajo de Cho y colaboradores documenta una arquitectura recurrente con compuertas en un codificador–decodificador {cite:p}`hochreiter1997,cho2014`. Estos fundamentos permiten describir LSTM y GRU y discutir sus diferencias de parametrización. El artículo de Cho procede de traducción automática: no se presenta como un experimento de volatilidad financiera.
+LSTM emplea tres compuertas y un estado de celda separado; GRU usa actualización y reinicio con un estado integrado. El trabajo de Cho y colaboradores documenta una arquitectura recurrente con compuertas en un codificador–decodificador {cite:p}`hochreiter1997,cho2014`. Estos fundamentos permiten describir LSTM y GRU y discutir sus diferencias de parametrización. El artículo de Cho procede de traducción automática: no se presenta como un experimento de volatilidad financiera.
 
-Las redes convolucionales de reconocimiento documental y la comparación genérica de modelos convolucionales y recurrentes para secuencias sustentan mecanismos de filtros locales y dependencias temporales {cite:p}`lecun1998,bai2018`. Una CNN de imágenes, una CNN1D simple y una TCN no son arquitecturas idénticas. Su parentesco permite formular candidatos, pero no afirmar una réplica exacta ni trasladar un ranking a BTCUSDT.
+Las redes convolucionales de reconocimiento documental y la comparación genérica de modelos convolucionales y recurrentes para secuencias sustentan mecanismos de filtros locales y dependencias temporales {cite:p}`lecun1998,bai2018`. Una CNN de imágenes, una CNN1D simple y una TCN no son arquitecturas idénticas. La TCN propia añade causalidad, dilataciones y conexiones residuales con lectura final; su apoyo aplicado directo procede de S1. Ese fundamento no acredita una réplica exacta, una amplia recurrencia de TCN o un ranking transferible a BTCUSDT.
 
 Adam aporta un procedimiento de optimización que debe separarse de la arquitectura y de su evidencia de desempeño {cite:p}`kingma2014`. Se cita aquí la prepublicación identificada de 2014; no se cambia silenciosamente al año de una versión de conferencia. El optimizador, la capacidad y el presupuesto de búsqueda deben describirse al comparar estudios, sin deducir superioridad de una familia solo por emplearlos.
 
@@ -939,4 +841,4 @@ Holm aporta un procedimiento secuencial para comparaciones múltiples {cite:p}`h
 
 La herramienta descrita por Haddaway y colaboradores facilita producir diagramas de flujo PRISMA 2020 {cite:p}`haddaway2022`. Se cita como apoyo para documentar el proceso, sin atribuirle la declaración original ni afirmar cumplimiento de una revisión sistemática solo por dibujar un flujo. Los conteos de búsquedas, duplicados y exclusiones deben corresponder a registros reales.
 
-Las **40 referencias**, los **siete estudios cripto completos** y los tres respaldos metodológicos separan cita, lectura y papel del modelo. Todos los estudios cripto incluyen BTC y uno incluye otras diecinueve criptomonedas; las categorías se solapan. La frecuencia estricta de referencias es MLP 1/7, LSTM 5/7 y CNN genérica 1/7, con CNN1D simple 0/7; el estrato de seis conserva sus proporciones previas y la presencia LSTM 6/7 incorpora la propuesta S9. No se cuentan cabezas internas, código solo o identidad editorial como nuevas referencias independientes. La ampliación no demuestra recurrencia amplia, indexación individual o superioridad de las recetas propias. S9 añade cobertura y límites explícitos; la errata HARNet corrige una inferencia de fuga sin certificar validez global. T1/T2/T3 siguen separados; los originales pendientes de HARNet y DeepVol no se presentan como leídos.
+Las **40 referencias**, los **siete estudios cripto completos** y los tres respaldos metodológicos separan cita, lectura y papel del modelo. Todos los estudios cripto incluyen BTC y uno incluye otras diecinueve criptomonedas; las categorías se solapan. La terna principal es **GRU–LSTM–TCN**, con frecuencias estrictas **3/7, 5/7 y 1/7**. MLP 1/7, CNN genérica 1/7 y CNN1D simple 0/7 permanecen como datos de la extracción, sin alterar la matriz; la presencia LSTM 6/7 incorpora la propuesta S9. TCN tiene respaldo directo de S1, con amplia recurrencia no acreditada. La selección para publicación es posterior al benchmark y a revisar el experimento privado, no una decisión preregistrada de la revisión. No se cuentan cabezas internas, código solo o identidad editorial como nuevas referencias independientes. La ampliación no demuestra recurrencia amplia, indexación individual o superioridad de las recetas propias. S9 añade cobertura y límites explícitos; la errata HARNet corrige una inferencia de fuga sin certificar validez global. T1/T2/T3 siguen separados; los originales pendientes de HARNet y DeepVol no se presentan como leídos.

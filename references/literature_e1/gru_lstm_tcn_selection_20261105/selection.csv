@@ -1,0 +1,4 @@
+model,verified_reference_studies,strict_reference_frequency,published_original_reference_studies,own_parameters,own_learning_rate,own_architecture,primary_limit
+GRU,S1;S2;S8,3/7,S1;S8,3777,0.003,"One unidirectional GRU layer, H=32; last hidden state, dropout, Linear(32,1), Softplus.","Family recurrence is descriptive of the recovered corpus, not an unbiased prevalence estimate."
+LSTM,S1;S2;S5;S7;S8,5/7,S1;S8,5025,0.003,"One unidirectional LSTM layer, H=32; last hidden state, dropout, Linear(32,1), Softplus.",Family count includes BiLSTM in S2 and unspecified direction in S8.
+TCN,S1,1/7,S1,4289,0.001,"Three residual blocks with two causal Conv1D layers each; H=16, k=3, block dilations 1/2/4; last time position, dropout, Linear(16,1), Softplus.",Only one independently verified reference in the seven-study corpus; widespread recurrence is not established.

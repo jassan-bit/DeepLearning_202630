@@ -1,108 +1,85 @@
 # 7. Limitaciones Inferenciales de Trabajar con Tres Modelos
 
-Un benchmark con tres modelos y pocas ejecuciones puede tener **potencia muy baja**. El Entregable 1 exige reconocerlo y cuantificarlo, en lugar de interpretar los p-values como si cualquier diseño pudiera detectar diferencias pequeñas.
+El benchmark vigente compara **GRU, LSTM y TCN** con D=7/14/21/28, n=7, h=1 y diez semillas. Se completaron **120 trayectorias de CV, 1.440 segmentos mensuales, 2.880 ajustes y 43.920 predicciones**. El cierre final verificó 120 checkpoints: 80 ajustes nuevos y 40 LSTM idénticos reutilizados. El test histórico contiene 608 fechas y 72.960 predicciones. Los [manifiestos de procedencia](../_static/gru_lstm_tcn_20261105/protocols_manifest.json) distinguen fases, hashes y reutilización.
 
-Este capítulo contrasta las páginas 32–34 de la guía con la CV de Filipe y la evaluación reservada ejecutadas. La comparación principal usa D=7/14/21/28, n=7, h=1 y diez semillas: **120 trayectorias CV, 1.440 segmentos modelo–mes, 2.880 ajustes y 43.920 predicciones**, incluidas treinta trayectorias relativas D7 reutilizadas. La [congelación](../_static/filipe_multihistory_20261104/freeze.json) antecede al ajuste y firma de 120 modelos finales y a la apertura posterior de test. El [método vigente](../_static/filipe_multihistory_20261104/method.json) y sus auditorías distinguen CV, test, complemento inicial D7 y [suplemento inferencial final post-hoc](../_static/e1_audit_improvements_20261104/inference/summary.json). Los límites discretos de Wilcoxon siguientes son teóricos. No se ejecutó ese test en el suplemento inicial D7 ni en el piloto nuevo; la [sensibilidad Wilcoxon del test final](../_static/e1_audit_improvements_20261104/inference/wilcoxon_sensitivity.csv) se conserva como análisis posterior separado.
+**El periodo de test ya había sido observado en el proyecto.** La nueva configuración se cerró antes de puntuar sus checkpoints, pero esa secuencia no vuelve desconocido el mercado ni convierte el análisis en confirmación temporal independiente. La comparación dentro de la terna es posterior a la evaluación y exploratoria. Un benchmark con tres modelos y pocas semillas puede no detectar diferencias pequeñas; ese límite debe cuantificarse y no ocultarse tras el promedio.
 
 ## 7.1. Potencia, tamaño de muestra y multiplicidad
 
 ### 7.1.1. Friedman con tres modelos y cinco bloques
 
-Con tres modelos y cinco bloques, Friedman puede tener poca potencia y el post-hoc de Nemenyi ser conservador. La ausencia de significación no demuestra equivalencia ni descarta diferencias de importancia práctica.
+Con tres modelos y cinco bloques, Friedman puede tener poca potencia y Nemenyi ser conservador. La ausencia de significación no demuestra equivalencia. Tampoco significa que ningún efecto sea detectable: intervienen la alternativa, la dispersión, los empates, la unidad de bloque y la referencia exacta, de permutación o aproximada utilizada.
 
-Esa advertencia no es una estimación numérica de potencia ni significa que sea imposible detectar cualquier efecto. La potencia depende también del efecto alternativo, la dispersión, los empates, la unidad de bloque y la calibración. Con pocos bloques se identificará la referencia exacta, de permutación o aproximada utilizada y se justificarán sus condiciones, como exige §5.4.3.
+Un bloque completo debe contener la misma unidad bajo los tres modelos. Semillas, fechas, meses y ventanas no se mezclan como réplicas independientes de la misma naturaleza. En este experimento una semilla identifica una trayectoria de aleatorización condicionada al calendario; los doce meses de CV no son doce mercados. La interpretación de un Friedman entre semillas tendría ese mismo alcance limitado.
 
-Los bloques deben representar unidades defendibles del experimento. Las 366 fechas de validación, las semillas y las configuraciones no se mezclarán como si fueran réplicas independientes de la misma naturaleza. Se conservarán el emparejamiento, el alcance de la inferencia y la dependencia temporal descritos en §5.4.
+El [Friedman D7 vigente](../_static/gru_lstm_tcn_20261105/friedman_D7.csv) se calculó **post-hoc** con tres modelos y diez bloques-semilla, bajo referencia χ² aproximada con dos grados de libertad:
 
-Un bloque completo contiene los resultados de la misma unidad bajo las alternativas comparadas. Nemenyi controla simultáneamente su familia; no se añade automáticamente Holm como una segunda corrección equivalente. El análisis del ciclo inicial D7 utilizó diez bloques-semilla para las tres redes relativas. Friedman dio χ²=4,2, p=0,122456 bajo referencia asintótica aproximada. Las comparaciones pareadas registradas no quedaron condicionadas a rechazar ese omnibus: la familia global contiene doce hipótesis por semillas, con Holm-12. No se ejecutó Nemenyi ni se aplica Holm como una segunda corrección de ese post-hoc.
+| Fase | χ² de Friedman | p aproximado | p Holm2, sensibilidad entre fases |
+|---|---:|---:|---:|
+| CV 2024 | 18,2 | 0,0001116658 | 0,0002233316 |
+| Test histórico observado | 16,8 | 0,0002248673 | 0,0002248673 |
+
+Estos resultados corresponden a aleatorización sobre fechas conocidas, no a diez mercados independientes. Los contrastes pareados y su multiplicidad se declaran por separado en el [plan vigente](../_static/gru_lstm_tcn_20261105/public_analysis_plan.json); no se eligen ni se ocultan según el resultado del omnibus. No se ejecuta Nemenyi: tiene su propio control simultáneo y no se sustituye automáticamente por Holm.
 
 ### 7.1.2. Límite del Wilcoxon pareado
 
-Para $R$ diferencias pareadas independientes bajo el alcance declarado, sin ceros ni empates en sus valores absolutos, y el modelo nulo de signos equiprobables del Wilcoxon bilateral exacto, el menor p-value posible, cuando todas tienen la misma dirección, es:
+Para R diferencias pareadas independientes bajo el alcance declarado, sin ceros ni empates en sus valores absolutos y con signos equiprobables bajo el nulo bilateral exacto, el menor p-value posible es:
 
 $$
 p_{\min}=\frac{2}{2^R}.
 $$
 
-Con **cinco pares**, $p_{\min}=0{,}0625>0{,}05$: ese Wilcoxon bilateral no puede rechazar al nivel indicado ni en el caso más extremo. Con **seis**, el mínimo es $0{,}03125$. R cuenta pares de resultados de A y B, no la suma de corridas de los tres modelos. Ceros, empates, método exacto o aproximado y convención del software deben declararse; el número de diferencias útiles puede diferir del nominal.
+Con **cinco pares**, el mínimo es 0,0625: ese contraste no puede rechazar al nivel 0,05 ni en el caso más extremo. Con **seis**, el mínimo es 0,03125. R cuenta pares de resultados de dos modelos, no la suma de ejecuciones de las tres redes. Ceros, empates y la convención exacta o aproximada del software deben declararse.
 
-La guía establece cinco ejecuciones como mínimo general y seis para pruebas por rangos, pero el número definitivo deberá responder al piloto y la potencia. No se elegirá una prueba paramétrica solo para conseguir significación: sus supuestos deben justificarse.
-
-Tampoco se cambiará retrospectivamente a un contraste unilateral ni se escogerá un bootstrap porque produzca un resultado favorable. Wilcoxon no contrasta automáticamente la misma media que una t pareada; para una interpretación de desplazamiento requiere condiciones sobre las diferencias, incluida simetría. El bootstrap necesita su propio diseño y puede tener calibración limitada con tan pocas unidades.
+La guía establece cinco ejecuciones como mínimo general y seis para pruebas por rangos. Esos mínimos no garantizan potencia 0,80. Wilcoxon tampoco contrasta automáticamente la misma media que una t pareada; una interpretación de desplazamiento requiere condiciones adicionales, incluida simetría. No se cambia retrospectivamente a una prueba unilateral o a otro método porque produzca un resultado favorable.
 
 ### 7.1.3. Corrección de Holm con tres pares
 
-Tres modelos producen tres comparaciones pareadas dentro de una configuración. En Holm, el menor p-value se compara primero con $\alpha/3\approx0{,}0167$ cuando $\alpha=0{,}05$.
+Tres modelos producen **tres comparaciones pareadas por configuración**. En Holm, el menor p-value se compara primero con α/3≈0,0167 para α=0,05; los siguientes pasos usan α/2 y α si los anteriores rechazan.
 
-Por tanto, **con seis pares es imposible superar ese primer umbral** con el Wilcoxon bilateral exacto descrito. Con siete ya es aritméticamente posible:
-
-| Pares útiles R | Menor p-value bilateral exacto | ¿Permite rechazo a 0,05 sin ajuste? | ¿Permite rechazo en el primer paso de Holm, 0,05/3? |
+| Pares útiles R | Menor p-value bilateral exacto | ¿Permite rechazo a 0,05 sin ajuste? | ¿Permite el primer paso de Holm, 0,05/3? |
 |---|---:|---|---|
 | 5 | 0,0625 | No | No |
 | 6 | 0,03125 | Sí | No |
 | 7 | 0,015625 | Sí | Sí |
 | 8 | 0,0078125 | Sí | Sí |
+| 10 | 0,001953125 | Sí | Sí |
 
-“Puede” indica únicamente que la resolución discreta permite rechazo en un caso extremo. **Siete no es un tamaño recomendado ni el R definitivo del proyecto**: no garantiza rechazo o potencia 0,80, y una familia más amplia cambia el primer umbral. Holm es secuencial: tras el primer paso emplea α/2 y α, si los anteriores rechazan; no impone α/3 a los tres p-values. Con cinco o seis pares ninguno puede superar el primer paso bajo estas condiciones.
+Esta resolución discreta no es una recomendación de tamaño ni una estimación de potencia. La comparación principal D7 de GRU–LSTM–TCN contiene tres pares por fase; la sensibilidad a cuatro historias contiene doce. Cada familia conserva su pregunta y corrección, como muestran los [pares CV](../_static/gru_lstm_tcn_20261105/within_trio_pairs_cv.csv), [pares test](../_static/gru_lstm_tcn_20261105/within_trio_pairs_test.csv) y familias completas [CV](../_static/gru_lstm_tcn_20261105/within_trio_pairs_allD_cv.csv) y [test](../_static/gru_lstm_tcn_20261105/within_trio_pairs_allD_test.csv).
 
-La familia del complemento inicial D7 reúne doce contrastes por semillas; su primer umbral Holm es α/12≈0,004167. El ejemplo de tres pares anterior explica la resolución de Wilcoxon y no describe la multiplicidad efectivamente aplicada. Con diez pares sin ceros ni empates, su mínimo bilateral hipotético sería 0,001953; eso solo permite aritméticamente un rechazo, no garantiza potencia, y Wilcoxon no se ejecutó. La ampliación de historias conserva ese contraste histórico y declara por separado sus familias BDS: 2.880 hipótesis de CV y 4.800 de test; no se reaplica Holm-12 como si cubriera todas las nuevas preguntas. El suplemento posterior del test declara otras familias: seis pares por semillas, seis DM principales y nueve Ljung–Box. Cada familia conserva su objetivo y unidad; no se combinan sus p-values como corroboraciones independientes.
-
-El nuevo piloto de §4.1 planifica otra familia de doce pares neuronales, tres por D. Sus cinco semillas estiman dispersión y no se utilizan para escoger una prueba favorable. Para un futuro Wilcoxon bilateral exacto de esa familia, sin ceros ni empates, **nueve pares** son el mínimo que permite aritméticamente superar α/12: con ocho el mínimo es 0,0078125 y con nueve 0,00390625. Esto no demuestra potencia suficiente; el dimensionamiento principal registrado usa la referencia t no central y declara sus supuestos.
+La referencia principal es la t pareada declarada, con diagnósticos de sus supuestos. Ajustar sus p-valores no hace simultáneos unos IC marginales ni vuelve correcto un modelo de independencia inadecuado. Los diagnósticos BDS/Ljung–Box y DM mantienen sus propias unidades y familias; sus rechazos no se suman como confirmaciones independientes.
 
 ## 7.2. Cómo abordar estas limitaciones
 
 ### 7.2.1. Repeticiones y validación respetando el tiempo
 
-La guía propone considerar validación cruzada repetida con correcciones de varianza, por ejemplo Nadeau–Bengio, cuando el diseño y sus supuestos lo permiten. Esa recomendación **no autoriza aplicar K-fold aleatorio a BTCUSDT** ni convertir un esquema genérico 5 × 5 en una regla automática para series de tiempo.
+La historia inicial es 2023 y los orígenes de validación son los días de 2024. Los índices reales de `split_train_val_forwardChaining` se agrupan en doce bloques mensuales con u≤inicio del mes−D−1 y validación interna reciente con purga propia. Los pesos quedan fijos dentro del mes; cada pronóstico diario usa únicamente OHLCV hasta el día anterior. La selección de D se realiza con ese desarrollo ya expuesto, no con test.
 
-El calendario se mantiene: **2023 como historia inicial, forward chaining 2024, ajuste final con desarrollo permitido de 2023–2024 y test enero de 2025–agosto de 2026**. Septiembre–octubre de 2026 queda fuera. Los doce cortes mensuales de CV usan índices reales de `split_train_val_forwardChaining`; dentro del mes los pesos quedan fijos y cada pronóstico h=1 usa OHLCV hasta d−1. El test usa los pesos y escaladores finales ya congelados, sin reajustes; sus veinte meses son bloques de reporte, no folds de selección.
+Hay diez semillas 4101–4110 por red e historia. Permiten describir variación de entrenamiento condicionada al calendario, sin convertir las 120 combinaciones en 120 mercados. La validación cruzada repetida y una corrección de varianza solo son apropiadas si sus supuestos se justifican; no autorizan K-fold aleatorio ni mezcla de fechas en BTCUSDT.
 
-El entrenamiento mensual admite u≤inicio del mes−D−1 para D=7/14/21/28, con embargo propio antes de la validación interna. Cada escalador se aprende solo con su entrenamiento. Hay diez semillas 4101–4110 por red e historia, condicionadas a una misma trayectoria de mercado; las 120 combinaciones no son 120 mercados. No se aplica Nadeau–Bengio automáticamente a esta CV temporal.
+El ajuste final utiliza el desarrollo admisible 2023–2024. Los 120 checkpoints se cierran antes de acceder al derivado del test en este ciclo, con 80 ajustes nuevos y 40 controles LSTM reutilizados. Sus veinte meses son intervalos de reporte de pesos fijos, sin adaptación o reescalado con test. Septiembre–octubre de 2026 no se incorpora.
 
-En el ciclo inicial D7 se ejecutó [bootstrap circular pareado de fechas](../_static/filipe_statistics_20261104/block_bootstrap.csv): 2.000 réplicas, longitud principal de 14 días y sensibilidades 7/28. En cada muestra se recalcula la RMSE por semilla y su media. Remuestrear predicciones almacenadas condiciona a esos ajustes: no remuestrea semillas ni incorpora nuevos entrenamientos. La dependencia y posibles cambios de régimen limitan su calibración; aumentar las filas de resultados no aumenta información independiente.
-
-Los índices de origen móvil no son repeticiones de una evaluación completa. Las semillas pueden estudiar variación del entrenamiento **condicionada al mismo calendario**, pero no crean nuevas trayectorias de mercado. Ni una corrección de varianza ni Holm reparan fuga temporal, selección con la evaluación o p-values mal calibrados. Se respetarán los cortes internos, el embargo y la separación selección/test de §4–§6.
+Remuestrear fechas o semillas requiere declarar la unidad y la dependencia que se intenta representar. Un bootstrap sobre predicciones guardadas condiciona a esos modelos; no es un nuevo entrenamiento o mercado. Ni esa operación ni Holm reparan fuga temporal, selección con la evaluación o un p-value mal calibrado.
 
 ### 7.2.2. Diferencia mínima detectable y tamaños de efecto
 
-El [nuevo piloto entre baselines](../_static/e1_filipe_pilot_20261105/protocol.json), detallado en §4.1, registra cinco semillas nuevas por familia e historia, conserva la receta de Filipe y estima la dispersión de doce pares de RMSE anual. Se adopta antes de sus corridas δ=0,00023944847859645605 y α=0,05/12. La [planificación](../_static/e1_filipe_pilot_20261105/analysis/paired_dimensioning.csv) reporta R puntual y conservador con límite superior marginal de DE, y MDE con cinco pares y con el R común. Es prospectivo respecto de esas inicializaciones, condicionado a 2024 ya conocido; no acredita normalidad, potencia alcanzada o generalización a otro periodo. Las cinco semillas del piloto quedan fuera de la futura fase definitiva.
+**Pendiente específico de esta terna:** no se ejecutó un piloto prospectivo para dimensionar GRU–LSTM–TCN. Las diez semillas fueron el presupuesto fijo de la comparación y no un resultado de potencia. Los estudios de otros procedimientos no se trasladan automáticamente a estas arquitecturas y recetas.
 
-El máximo común es **302 semillas con DE puntual y 1.680 con el límite superior de DE**, por modelo e historia de una fase futura, determinado por MLP–LSTM/D21. El R grande cuantifica el costo de detectar el margen fijado con multiplicidad y dispersión incierta; no se cambia el margen después de verlo. No se ejecutó esa fase definitiva. Las cinco semillas piloto no se incorporan adaptativamente a sus contrastes.
-
-El {ref}`estudio D7 posterior <estudio-d7-confirmatorio>` registra una pregunta más acotada: tres pares neuronales y recetas D7 fijas, sobre 2024 ya conocido. Veinte semillas nuevas por modelo estimaron varianza y su límite superior marginal. Se fijó **R=79**, frente a un máximo puntual de 44, para una fase definitiva que excluye esas veinte y las cinco anteriores; el cierre se publicó y verificó antes del inicio definitivo. La corrección primaria es Holm-3, con Bonferroni en la planificación y los IC familiares. La ampliación de varianza y la fase definitiva R=79 están completadas, con análisis registrado y auditoría PASS. Dos contrastes rechazan cero con Holm-3; los pares CNN presentan alertas de normalidad y los IC familiares no demuestran una ventaja mayor que δ. La sensibilidad posterior con DE definitiva sitúa la MDE de MLP−CNN1D en 0,000243429, por encima de δ=0,00023944848; se declara como limitación y no se cambia R ni se calcula potencia alcanzada. No ejecuta la familia original de doce pares ni aporta otra trayectoria de mercado.
-
-La [sensibilidad de diseño inicial D7](../_static/filipe_statistics_20261104/design_sensitivity.csv) utiliza la dispersión observada entre las diez diferencias pareadas de RMSE. Es una **calibración retrospectiva condicionada al calendario**, no un piloto anterior al experimento ni potencia calculada con el efecto observado para certificar suficiencia.
-
-Para una alternativa hipotética frente a cero y una aproximación normal, se calculó:
+Una planificación pareada debe estimar la desviación de las diferencias de la métrica primaria bajo el procedimiento futuro, fijar δ y la familia de comparaciones antes de las nuevas ejecuciones, y justificar la unidad de repetición. Bajo una aproximación normal independiente:
 
 $$
-\mathrm{MDE}_0=\frac{(z_{1-\alpha_{\mathrm{plan}}/2}+z_{0,80})\,s_d}{\sqrt{R}},
-\qquad \alpha_{\mathrm{plan}}=0,05/12,\quad R=10.
+R\approx\frac{(z_{1-\alpha_*/2}+z_{1-\beta})^2\widehat\sigma_d^2}{\delta^2},
 $$
 
-| Comparación | DE de diferencias RMSE | MDE frente a cero | δ de planificación, 5 % de persistencia | R orientativo |
-|---|---:|---:|---:|---:|
-| MLP frente a persistencia | 0,000278 | 0,000326 | 0,000239 | 19 |
-| LSTM frente a persistencia | 0,000187 | 0,000219 | 0,000239 | 9 |
-| CNN1D frente a persistencia | 0,000337 | 0,000395 | 0,000239 | 28 |
+donde α* refleja la multiplicidad de planificación. Con muestras pequeñas debe revisarse la referencia t, la incertidumbre de la DE y, si procede, una alternativa por simulación o remuestreo compatible con el diseño. Un cálculo retrospectivo de MDE es sensibilidad del diseño; no acredita un piloto previo o potencia alcanzada.
 
-El δ de esta tabla es aproximadamente 0,00023945, referido al RMSE anual de persistencia en el mismo desarrollo. Los R=19/9/28 son estimaciones orientativas a partir de una desviación incierta, no números decididos antes de la ejecución. Que diez supere el R aproximado de LSTM no acredita potencia 0,80: se usó dispersión observada, una aproximación y un calendario compartido. El dimensionamiento prospectivo debe corresponder al procedimiento y alternativa que se evaluarán.
+Para un modelo avanzado futuro se define **ahora, después del test actual**, una convención operativa del 5 % frente a GRU/D7 y persistencia. El ancla neuronal de CV es RMSE 0,005154568533 y da δ≈0,00025772842665. El [registro del margen futuro](../_static/gru_lstm_tcn_20261105/future_margin.json) conserva su alcance y sensibilidades. No se aplica retrospectivamente como margen pretest ni como banda de equivalencia o utilidad financiera.
 
-Ese archivo histórico también conserva las MDE de tres pares entre redes; allí R queda no definido porque aquel protocolo no fijaba un margen entre redes. El nuevo piloto adopta expresamente ahora un margen absoluto para doce pares, sin reescribir ese antecedente. El 5 % frente a persistencia no crea por sí solo una banda de equivalencia ni la frontera de un modelo avanzado.
-
-Detectar frente a cero un efecto de tamaño δ es distinto de demostrar una ganancia superior al 5 %. Esta última planificación necesita una alternativa de ganancia mayor que el borde; no se inventa su potencia. Tampoco se dimensiona la incertidumbre temporal o el número de mercados aumentando semillas.
-
-Los [contrastes por semillas](../_static/filipe_statistics_20261104/global_seed_tests.csv) reportan diferencias, IC marginales y tamaños d_z. Los [intervalos por fechas](../_static/filipe_statistics_20261104/block_bootstrap.csv) respetan emparejamiento temporal y condicionan a modelos guardados. Los IC no se vuelven simultáneos por ajustar p-valores. Un intervalo amplio no demuestra equivalencia, y una diferencia pequeña no demuestra ausencia de efecto.
-
-La planificación de una futura propuesta conserva [36 escenarios de sensibilidad](../_static/e1_audit_improvements_20261104/planning/advanced_margin_scenarios.csv) de 1/2,5/5/10 % frente al ancla MLP/D7 de CV: estiman el R para detectar δ frente a cero bajo dispersiones y correlaciones hipotéticas, no para superar una frontera práctica. El {download}`alcance original de esos escenarios <../_static/e1_audit_improvements_20261104/planning/README.md>` mantiene esa distinción.
-
-El **criterio operativo del benchmark académico** queda definido para el futuro: reducción de RMSE **superior al 5 % frente a MLP/D7 y frente a persistencia**, considerando incertidumbre y ambas comparaciones. No se presenta como margen previo al test actual ni como utilidad financiera. Los [27 escenarios de frontera práctica](../_static/e1_audit_improvements_20261104/planning/academic_joint_power_scenarios.csv) emplean un mismo promedio avanzado hipotético 7,5/10/15 % menor que persistencia, razones σ_A/σ_B=0,5/1/2 y correlaciones 0/0,5/0,9. Se calcula R por t no central unilateral con α=0,025 y potencia 0,90 para cada referencia, usando al menos cinco ejecuciones. Bajo esos supuestos, la cota de la unión limita a 0,20 la probabilidad de fallar alguna comparación; no presupone independencia entre ellas. La [síntesis académica](../_static/e1_audit_improvements_20261104/planning/academic_planning_summary.json) no acredita potencia alcanzada. Si se ejecuta una propuesta avanzada posterior, se deberán estimar su dispersión real y el dimensionamiento con su propio piloto; una afirmación de nueva generalización temporal requerirá una evaluación independiente.
-
-Para E1, el §5.3 de la guía exige definir el margen de relevancia práctica y la mejora mínima detectable a partir de la variabilidad observada, explicando sus supuestos y limitaciones. El margen, la MDE de los baselines y los escenarios de frontera práctica se documentan en §4.1 y §5.3.4–§5.4.7. Formular el criterio futuro después de observar los baselines es coherente con ese requisito; entrenar un avanzado o ejecutar su piloto corresponde a la futura comparación, no es una condición experimental adicional de E1.
+Las [diferencias de CV](../_static/gru_lstm_tcn_20261105/within_trio_pairs_cv.csv) y [test](../_static/gru_lstm_tcn_20261105/within_trio_pairs_test.csv) reportan magnitud, dispersión e intervalos junto a p-valores ajustados y sin ajustar. El tamaño de efecto pareado describe señal respecto a variación entre semillas; no sustituye la diferencia en unidades de σ₇ ni una valoración contextual del margen práctico.
 
 ### 7.2.3. Probabilidad de superioridad
 
-Puede complementarse la comparación con una probabilidad de superioridad definida explícitamente. Para métricas pareadas en las que menor es mejor, una estimación descriptiva entre las ejecuciones observadas es:
+Para métricas en las que menor es mejor, una proporción descriptiva entre las R ejecuciones emparejadas puede definirse como:
 
 $$
 \widehat p_{A<B}=\frac1R\sum_{s=1}^{R}
@@ -110,59 +87,49 @@ $$
 \frac12\mathbb I(m_{A,s}=m_{B,s})\right].
 $$
 
-La [estimación calculada para D7](../_static/filipe_statistics_20261104/probability_superiority.csv) usa diez pares de semillas y RMSE anual; no hubo empates. Los IC del 95 % son binomiales exactos de Clopper–Pearson, bajo el supuesto de pares de aleatorización independientes **condicionados al mismo calendario**.
+Su unidad es la semilla bajo las mismas fechas y recetas. Una fracción de victorias no es un p-value ni una probabilidad posterior de que la diferencia media sea favorable. Un intervalo binomial necesita declarar cómo se tratan los empates y asumir pares de aleatorización independientes condicionados al calendario. No incluye variabilidad de otros periodos o mercados.
 
-| Comparación | Semillas con menor RMSE de A | Fracción observada | IC 95 % condicional |
+En el [test histórico D7](../_static/gru_lstm_tcn_20261105/within_trio_pairs_test.csv), la fracción observada de semillas con menor RMSE de A y los intervalos exactos de Clopper–Pearson son:
+
+| Comparación A frente a B | Victorias de A | Fracción | IC 95 % condicional |
 |---|---:|---:|---|
-| MLP frente a LSTM | 9/10 | 0,90 | [0,555; 0,997] |
-| MLP frente a CNN1D | 6/10 | 0,60 | [0,262; 0,878] |
-| MLP frente a Persistencia | 0/10 | 0,00 | [0,000; 0,308] |
-| LSTM frente a CNN1D | 5/10 | 0,50 | [0,187; 0,813] |
-| LSTM frente a Persistencia | 0/10 | 0,00 | [0,000; 0,308] |
-| CNN1D frente a Persistencia | 0/10 | 0,00 | [0,000; 0,308] |
+| GRU frente a LSTM | 10/10 | 1,00 | [0,692; 1,000] |
+| GRU frente a TCN | 8/10 | 0,80 | [0,444; 0,975] |
+| LSTM frente a TCN | 0/10 | 0,00 | [0,000; 0,308] |
 
-Cero victorias observadas frente a persistencia no es una probabilidad universal cero: su límite superior condicional es aproximadamente 0,308. Tampoco nueve victorias entre diez prueban una ganancia del 5 %, equivalencia o superioridad en otros mercados. Esta proporción no es un p-value ni una probabilidad posterior de que la diferencia media sea favorable. Las unidades semilla, fecha y bloque temporal no se mezclan.
+No hubo empates bajo la tolerancia declarada. Diez victorias de diez no prueban superioridad universal, una reducción superior al 5 % o equivalencia; cero victorias tampoco significa probabilidad universal cero. Las [fracciones de CV](../_static/gru_lstm_tcn_20261105/within_trio_pairs_cv.csv) se reportan por separado. Los contrastes y los IC de magnitud de §5 mantienen esas preguntas separadas.
 
 ### 7.2.4. Equivalencia requiere un análisis separado
 
-Para sostener equivalencia se utilizará un procedimiento predefinido, como **TOST** con una banda de equivalencia predefinida o un análisis bayesiano con **ROPE**, con sus supuestos y reglas respectivos. El margen de mejora del 5 % frente a persistencia no es automáticamente esa banda de equivalencia. El margen no se elegirá después de ver los resultados y la ausencia de significación no lo sustituye.
+La ausencia de significación no demuestra equivalencia. Para sostenerla se necesitaría un procedimiento predefinido, como **TOST** con una banda justificada o un análisis bayesiano con **ROPE**, con sus supuestos y reglas.
 
-En TOST con α=0,05 sin otro ajuste, ambas pruebas unilaterales deben rechazar; la regla usual corresponde al IC del **90 %** completamente dentro de la banda. Se distingue del IC del 95 % de reporte general y se adapta al procedimiento de multiplicidad aplicable. ROPE requiere modelo, priors, posterior y regla de decisión; no es el mismo contraste ni se obtiene contando semillas ganadoras. Los detalles están en §5.4.8.
+En TOST con α=0,05 sin otro ajuste, ambas pruebas unilaterales deben rechazar; la regla usual corresponde al IC del **90 %** completamente dentro de la banda. Se distingue del IC del 95 % de reporte general y se adapta a la multiplicidad aplicable. ROPE requiere modelo, priors, posterior y decisión; no se obtiene contando semillas ganadoras.
 
-Se responderán por separado la diferencia frente a cero y la equivalencia práctica. Una diferencia pequeña y precisa puede ser distinguible de cero y estar dentro de una banda de equivalencia. Si no hay evidencia suficiente de ninguna afirmación, el resultado es inconcluso. No se forzará la interpretación a “gana” o “empata”.
+El margen de mejora frente al baseline no crea automáticamente una banda de equivalencia. Una diferencia pequeña y precisa puede ser distinguible de cero y estar dentro de una banda práctica. Si no hay evidencia suficiente para ninguna afirmación, el resultado es inconcluso. Este libro **no afirma equivalencia** y no declara TOST/ROPE ejecutados.
 
 ## 7.3. Objetivo y criterio de honestidad inferencial
 
+El propósito es establecer un baseline, su variabilidad y sus límites. **GRU/D7** fue seleccionado por la media de RMSE de CV antes de puntuar el nuevo ciclo en test. La [selección registrada](../_static/gru_lstm_tcn_20261105/selected_by_cv.json) mantiene las cuatro historias y no se modifica por el ranking del test.
 
-El propósito es **establecer un baseline y su variabilidad con evidencia**, no obtener p<0,05 a toda costa. La familia neuronal y su historia se eligieron con la RMSE media de CV antes de examinar test: **MLP con D=7**. La elección y las doce combinaciones que se reportarían están en la [congelación](../_static/filipe_multihistory_20261104/freeze.json). El orden observado en test no reabre esa decisión.
+Las cuarenta trayectorias LSTM de CV se reentrenaron y reprodujeron exactamente 14.640 predicciones; en test se reutilizaron 24.320 predicciones de checkpoints idénticos verificados. Esa identidad es un control de reproducción, no una nueva confirmación de generalización o cuarenta inferencias adicionales.
 
-Las tablas de §5 distinguen desarrollo expuesto de test, meses de reajuste de meses de reporte y dispersión entre semillas de dependencia temporal. Los IC t entre semillas condicionan al calendario: no son intervalos de generalización a mercados nuevos. El cumplimiento puntual del 5 % frente a persistencia y demostrarlo estadísticamente son afirmaciones diferentes. Los nuevos contrastes de RMSE del test se registraron y calcularon como suplemento post-hoc sobre los pronósticos guardados; no se les atribuye un registro anterior al test ni se reutilizan p-valores del D7 de desarrollo para otras historias.
+Los resultados tienen matices: persistencia obtiene menor RMSE que GRU en CV. En test GRU tiene menor RMSE, mientras persistencia conserva mejores MAE y MAPE. Se reportan ambos hechos. Una mejora en la métrica primaria no demuestra superioridad en todas las métricas ni utilidad financiera.
 
-El BDS mensual de h=1 cubre las cuatro historias, tres redes y diez semillas. Se conservan sus valores sin ajustar, Holm por fase y estados no definidos; media y DE de p-valores son resúmenes descriptivos. Muestras mensuales cortas, solapamiento del objetivo y deriva limitan las referencias asintóticas. Rechazar i.i.d. no demuestra exclusivamente no linealidad explotable ni cuantifica una mejora futura.
-
-El ciclo inicial D7 y su complemento Holm-12, Friedman, DM/HAC/HLN y bootstrap mantienen alcance exploratorio propio. Las configuraciones usaron 2024 previamente expuesto; respetar causalidad dentro de los folds no convierte toda la selección en validación anidada. Evaluar el periodo reservado después de congelar modelos fortalece la separación de etapas, pero no acredita potencia 0,80, utilidad financiera o generalización a otros activos. Si se utiliza este test para diseñar una propuesta posterior, será necesario reservar otra evaluación independiente.
-
-La {ref}`matriz de alcance estadístico <alcance-estadistico>` distingue qué respalda cada evidencia. El suplemento posterior al test tiene menor fuerza confirmatoria que un contraste completamente fijado antes de observar sus resultados. Su corrección por multiplicidad no subsana ese orden. El nuevo piloto tiene registro previo a sus propias corridas y sirve para planificar inicializaciones sobre 2024; no aporta otro periodo de mercado. E1 documenta el criterio y la planificación condicional de una mejora avanzada. Si se diseña después una propuesta usando este test, su piloto y una evaluación independiente con protocolo previo corresponderán a esa nueva comparación; no se declaran ejecutados ni se convierten en requisitos experimentales adicionales de E1.
+Los IC entre semillas condicionan al calendario y los contrastes dentro de la terna son **post-hoc**. El periodo de test ya era conocido; congelar el nuevo código y los pesos mejora la trazabilidad sin borrar esa exposición. Se requiere otra evaluación independiente si los resultados se usan para diseñar una propuesta posterior. La dependencia residual también puede provenir del solapamiento del objetivo, actualización mensual o deriva; no cuantifica automáticamente una mejora explotable.
 
 ## 7.4. Entregables y estado documental real
 
-La [sección 8](08_entregables.md) desarrolla los siete productos, con enlaces directos, catálogos descargables y una declaración cronológica. La tabla siguiente conserva el resumen de su estado y límites.
-
-Los siete productos de la página 33 se identifican por separado. Ejecutar las tres redes y el test no completa los límites bibliográficos, de potencia o de definición de márgenes.
-
-| Producto exigido | Evidencia actual | Límite restante |
+| Producto | Evidencia vigente | Límite |
 |---|---|---|
-| Informe en Jupyter Book | Problema, EDA, literatura, CV de cuatro historias, cierre y evaluación final; numeración preservada | No es una calificación ni acredita cumplimiento académico total. |
-| Código completo ejecutable y versionado | Preparación, entrenamiento, análisis, cierre, evaluación y réplica privada aislada; [manual actualizado](https://github.com/jassan-bit/DeepLearning_202630/blob/main/BUILD.md) | La réplica restaura y verifica evidencia guardada; no se afirma haber repetido todos los entrenamientos en otra máquina. Construir HTML no vuelve a entrenar. |
-| Dataset o instrucciones exactas | [Adquisición](https://github.com/jassan-bit/DeepLearning_202630/blob/main/data/README.md), hashes, derivados y manifiesto común de test; [términos](../_static/data_source/terms_snapshot.json) | Brutos fuera del checkout; acceso público no equivale a uso irrestricto. |
-| Síntesis y flujo de literatura | Siete estudios cripto y 40 citas; S9 abarca veinte pares incluido BTC. Matriz de diez registros con T1/T2/T3 separados; síntesis, cribado, flujo y errata HARNet enlazados en §8.4 | Referencias estrictas MLP 1/7, CNN genérica 1/7 y CNN1D 0/7; el estrato extraíble de seis conserva 1/6 y 0/6. S9 aporta LSTM propuesta, no otra referencia simple. Originales HARNet/DeepVol y registros individuales de índices siguen pendientes. |
-| Comparación, baseline e inferencia | CV/test históricos y suplemento post-hoc conservados; estudio D7 registrado con veinte semillas de varianza y 79 definitivas por red, tres pares Holm-3 y auditoría PASS | Nuevo estudio condicionado a 2024 conocido, con dos alertas Shapiro; no demuestra ventaja >δ, potencia alcanzada o mercado independiente. El avanzado conserva su propio piloto/evaluación; equivalencia condicional. |
-| Dependencias, semillas y configuraciones | Diez semillas históricas por modelo/D; cinco del piloto de cuatro historias y, por separado, veinte de varianza y 79 definitivas D7. Manifiestos y catálogos identificados en §8.6; pesos/vectores completos privados | Determinismo documentado no garantiza identidad numérica entre plataformas. Las fases y sus semillas no se mezclan como una cohorte única. |
-| Métrica, margen, unidad y partición previos | Registro histórico antes de test; piloto de doce pares conservado; protocolo D7 de tres pares publicado antes de la ampliación y R=79 publicado antes de las definitivas, con auditoría PASS | El registro D7 precede nuevas aleatorizaciones sobre 2024 conocido, sin ser previo al EDA/benchmark histórico o acreditar potencia alcanzada. |
+| Informe en Jupyter Book | Capítulos centrados en GRU–LSTM–TCN, sus cuatro entradas y el baseline GRU/D7 | Publicación y revisión no equivalen a cumplimiento científico total. |
+| Código EDA, redes y estadística | Recetas, contratos de tensor, semillas, índices, escalado y análisis de predicciones guardadas | Adaptaciones compactas, no réplicas exactas de redes entrenadas en artículos. |
+| Datos y adquisición | Fuente oficial, scripts, manifiestos y reglas de calidad | Una serie BTCUSDT; el periodo de test ya había sido observado. |
+| Literatura y flujo | Siete estudios cripto, roles separados y extracción de la terna | Fortalecer TCN 1/7 y justificar las diferencias entre GRU/LSTM; no inferir Q1 o indexación desde editorial. |
+| Benchmark e inferencia | 120 trayectorias CV, 120 resultados finales, métricas e inferencia dentro de la terna | Contrastes posteriores, condicionales al calendario y las recetas. |
+| Dependencias y configuraciones | [Catálogo CV](../_static/gru_lstm_tcn_20261105/configuration_catalog_cv.csv), [catálogo final](../_static/gru_lstm_tcn_20261105/configuration_catalog_final.csv) y manifiestos | El cierre final incluye 80 ajustes nuevos y 40 controles reutilizados, no 120 entrenamientos nuevos. |
+| Métrica, margen, unidad y partición | Reglas de selección, cronología y alcance del margen futuro documentados | El piloto y dimensionamiento específicos de esta terna siguen pendientes; no se acredita potencia 0,80. |
 
-La evidencia complementaria conserva las cuatro Ridge diagnósticas de EDA y sus 1.464 predicciones; no son otro competidor DL. Los bloques de Filipe alimentan ajustes reales, sin establecer independencia de etiquetas. La [auditoría de test](../_static/filipe_multihistory_20261104/test/raw_test_audit.json) y la [cohorte](../_static/filipe_multihistory_20261104/test/cohort_manifest.json) acreditan 608 fechas comunes y 72960 predicciones después de firmar todos los modelos finales.
-
-El registro de noviembre de 2026 es posterior a los periodos históricos; el test es un backtest con acceso a resultados separado de la selección de desarrollo, no predicciones emitidas en vivo. La existencia de resultados finales no elimina ruido externo desconocido, dependencia, límites de cobertura de literatura o incertidumbre del dimensionamiento.
+Los archivos descargables del [capítulo 8](08_entregables.md) distinguen resúmenes públicos, código y evidencia completa. El registro de noviembre de 2026 es posterior al mercado: estos son backtests históricos, no predicciones emitidas en vivo.
 
 ## 7.5. Criterios de evaluación del entregable
 
@@ -176,27 +143,18 @@ Los pesos de la rúbrica suministrada son:
 | Benchmark, definición del baseline y análisis estadístico | 20 % |
 | **Total** | **100 %** |
 
-Estos valores son **pesos de evaluación**, no porcentajes de avance ni una calificación obtenida. Haber redactado una sección o superado la construcción HTML no equivale a satisfacer el criterio científico correspondiente.
-
-El 40 % asociado a implementación y benchmark conserva sus requisitos empíricos. El 60 % restante tampoco se declara aprobado por disponer de EDA y texto: la revisión bibliográfica y la extracción definitiva mantienen sus límites. No se calcula una nota ni un porcentaje de cumplimiento a partir de esta matriz.
+Son pesos de evaluación, no porcentajes de avance ni una calificación obtenida. Disponer de texto, obtener una métrica favorable o superar el build no demuestra por sí solo cumplimiento. La elección de tres nombres no acredita recurrencia, simplicidad, no redundancia o diseño prospectivo. Este libro no calcula una nota a partir de la matriz.
 
 ## 7.6. Buenas prácticas y cierre
 
+| Ítem | Estado y evidencia | Límite pendiente |
+|---|---|---|
+| Repeticiones | Diez semillas por familia e historia, sin mezclar meses como mercados | Piloto y dimensionamiento prospectivo del procedimiento vigente. |
+| Media, DE, IC y efecto | Tablas completas de seis métricas y diferencias pareadas | Incertidumbre condicional al calendario; no intervalos de otros mercados. |
+| Multiplicidad y supuestos | Familia D7 de tres pares por fase, sensibilidad de doce pares y diagnósticos separados | Análisis posterior y referencias aproximadas en bloques residuales cortos. |
+| Consistencia | Mismas covariables, n7/h1, semillas, fechas y reglas causales | Cambiar D también cambia la purga y cohorte de entrenamiento. |
+| Reproducción | Controles LSTM idénticos, hashes y separación de ajustes/inferencias reutilizados | Identidad local no garantiza bit a bit en otras plataformas. |
+| Cierre anterior al acceso de este ciclo | Configuraciones y 120 checkpoints firmados antes de leer el derivado test | El periodo ya era conocido; no es confirmación temporal independiente. |
+| Baseline y margen avanzado | GRU/D7 por CV; futuro 5 % frente a GRU/D7 y persistencia | Margen definido después del test actual; la propuesta futura necesita piloto, protocolo y evaluación propios. |
 
-La revisión identifica evidencia y límites; **revisado no significa cumplido en su totalidad**.
-
-| Ítem | Estado actual | Evidencia | Límite |
-|---|---|---|---|
-| 1. Repeticiones y tamaño defendible | Piloto previo conservado y estudio D7 completado | Cinco semillas por red/historia para doce pares; veinte nuevas por red D7 y 79 definitivas tras publicar R; auditoría PASS | Tres pares condicionados a 2024; supuestos de dispersión/normalidad, sin potencia lograda ni nueva trayectoria de mercado. |
-| 2. Media, DE, IC y efectos | Histórico y estudio D7 registrado entregados por separado | Seis pares finales post-hoc con IC/efectos; tres pares D7 registrados con 79 semillas, IC familiares y sensibilidad bootstrap | La confirmación D7 se refiere a nuevas aleatorizaciones bajo datos fijos; los intervalos no representan otros mercados. |
-| 3. Pruebas y multiplicidad | Familias históricas y registradas separadas | BDS por bloque, test post-hoc Holm-6/DM-6/LB-9; nueva familia D7 Holm-3, con dos rechazos | Dos alertas Shapiro en D7; t registrada sin cambio de prueba. BDS corto y promedio p descriptivo; no equivalencia o ventaja >δ demostrada. |
-| 4. Consistencia | Ejecutada en las cuatro historias | Mismas covariables, n7/h1, fechas comunes, semillas y reglas causales dentro de cada fase | Cambiar D cambia capacidad y embargo; desarrollo previamente expuesto. |
-| 5. Reproducción | Ruta de entrega y verificación aislada validada | Manual vigente, paquete privado con hashes y auditoría de una copia restaurada | Se verifica el backtest guardado sin borrar su marcador ni repetir pronósticos; pesos/vectores completos no se publican. |
-| 6. Protocolo anterior a test | Cerrado antes de abrir test | Congelación, épocas, selección, calidad y firma de 120 modelos antes de acceso | No es un registro anterior al EDA o al periodo de mercado. |
-| 7. Baseline y margen avanzado | Baseline cerrado y criterio académico futuro definido | **MLP/D7** seleccionado con CV; futura mejora >5 % frente a MLP/D7 y persistencia, con MDE, sensibilidad y planificación conjunta | El criterio se define a partir de los baselines observados y no se atribuye al test histórico. Si se ejecuta una comparación avanzada posterior, necesitará su propio piloto y protocolo; una propuesta diseñada con este test requerirá otra evaluación independiente. La equivalencia sigue siendo condicional. |
-
-El corpus formal incluye siete estudios cripto, todos con BTC y uno con otras diecinueve monedas. S8 mantiene el único apoyo de referencia independiente MLP/CNN, 1/7 por familia; su dimensión CNN no se reporta. S9 amplía la cobertura, pero su LSTM propuesta y cabeza MLP interna no incrementan esas frecuencias. T1/T2/T3 conservan sus niveles financieros separados; la errata HARNet retira una imputación de fuga basada en el orden de fit_transform, sin acreditar validez global. Las recetas propias siguen adaptadas.
-
-El nuevo piloto registra su diseño antes de las corridas y dimensiona futuras semillas sobre el calendario conocido; no modifica la selección histórica ni certifica potencia lograda. La fase definitiva conjunta de cuatro historias no se ha ejecutado. El estudio D7 posterior completó veinte semillas de varianza por red; después publicó R y ejecutó 79 definitivas por red, con auditoría PASS; permanecen los límites de ruido/faltantes. El piloto de un avanzado y una evaluación independiente son condiciones de una futura propuesta diseñada con estos resultados; E1 exige definir su umbral, no entrenarla. No se asigna una nota o porcentaje de cumplimiento ni se fuerza superioridad universal.
-
-La evaluación final identifica selección previa, configuración, periodo y cobertura. Si los resultados se usan para diseñar después otro modelo, se necesitará una evaluación nueva independiente, conforme a §5.5.5.
+El [estado de pendientes](protocolo_pendiente.md) conserva la limitada recurrencia de TCN, la justificación de GRU/LSTM, el piloto y la fuerza inferencial. E1 define un umbral y sus límites; no se inventa una evaluación avanzada ya ejecutada ni se fuerza superioridad universal. La equivalencia sigue siendo condicional a esa afirmación.
