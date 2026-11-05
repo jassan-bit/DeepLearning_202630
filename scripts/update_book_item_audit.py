@@ -54,7 +54,7 @@ def main():
               "scope": "Revisión de los capítulos1–8: 390 incisos previos conservados y siete productos de entrega desarrollados.",
               "reviewed_numbered_items": 397, "original_numbered_items_preserved":390,
               "delivery_items_added":7,"numbering_preserved": True, "chapter_counts": counts,
-              "delivery_section_execution": {"new_fits": 0, "new_forecasts": 0,
+              "delivery_section_execution": {"scope": "This inventory refresh only; completed new pilot training is described separately in new_registered_pilot", "new_fits": 0, "new_forecasts": 0,
                                              "raw_market_archive_reads": 0},
               "distinction": "Revisado o actualizado no significa que todos los requisitos científicos o bibliográficos estén completamente cumplidos.",
               "implemented": {"input_days": [7, 14, 21, 28], "target_return_days": 7, "horizon_days": 1,
@@ -67,7 +67,7 @@ def main():
                               "test_months": "20 intervalos de reporte con los mismos pesos finales; cero reajustes durante test."},
               "historical_D7_supplement": {"protocol": "experiments/filipe_statistics_20261104/protocol.json",
                                           "scope": "Holm12/DM6/bootstrap y diagnósticos anuales pertenecen exclusivamente a la CV inicial D7/2024; no se trasladan a los demás D o al test."},
-              "outstanding": {"prospective_pilot_and_definitive_power": "No realizado; sensibilidad retrospectiva no lo sustituye.",
+              "outstanding": {"prospective_pilot_and_definitive_power": "Nuevo piloto registrado antes de60 trayectorias/1440 ajustes sobre2024; R futuro calculado. Repeticiones definitivas, potencia real y evaluación temporal independiente no ejecutadas; no repara el benchmark histórico.",
                               "applied_comparator_literature": "Miura2019 verifica MLP/CNN independientes en1/6 textos; dimensionalidad CNN, recetas exactas y recurrencia amplia siguen sin acreditarse. Revisión posterior al benchmark.",
                               "future_prospective_validation": "Criterio académico operativo del5% definido ahora para comparaciones futuras; no registrado antes del test ya observado. Falta piloto y evaluación independiente nuevos.",
                               "external_measurements": "Ruido externo de precios/etiquetas y mecanismo MCAR/MAR/MNAR no identificados."},
@@ -96,6 +96,13 @@ def main():
             "timing": "Posterior al benchmark; no reescribe la selección histórica ni los registros de auditoría anteriores.",
             "finding": "Una nueva fuente primaria verifica MLP/CNN independientes; seis estudios en el corpus ampliado. La dimensionalidad CNN no se declara en el original.",
         }
+    pilot = ROOT / "results/e1_filipe_pilot_20261105/analysis/summary.json"
+    if pilot.exists():
+        report["new_registered_pilot"] = {
+            "source": pilot.relative_to(ROOT).as_posix(), "source_sha256": sha(pilot),
+            "scope": "Registro antes de nuevas aleatorizaciones, condicionado al calendario2024 ya examinado; benchmark anterior conservado.",
+            "analysis": json.loads(pilot.read_text()),
+        }
     BASE.with_suffix(".json").write_text(json.dumps(report, ensure_ascii=False, indent=2)+"\n")
     with BASE.with_suffix(".csv").open("w", newline="") as stream:
         writer = csv.DictWriter(stream, fieldnames=list(items[0]), lineterminator="\n")
@@ -113,7 +120,7 @@ BDS se calculó por fold y semilla: {cv['bds']['planned_hypotheses']} hipótesis
 
 Se añadieron tablas anuales, descomposición descriptiva de variabilidad, segmentos y residuos, inferencia final explícitamente post-hoc, diagramas y una ruta de restauración privada verificada. El criterio operativo académico futuro es una mejora superior al5% frente a MLP/D7 y persistencia; no se presenta como definido antes del test ya conocido ni como utilidad financiera.
 
-La recuperación posterior de Miura2019 verifica comparadores MLP y CNN independientes en Bitcoin: cada familia aparece en1/6 textos completos. No acredita dimensionalidad explícita CNN1D, réplica exacta de las recetas ni uso amplio en el campo. Persisten el piloto/dimensionamiento prospectivo de una evaluación futura y las mediciones externas de ruido/faltantes. TOST/ROPE es condicional a una afirmación de equivalencia, no un pendiente obligatorio. No se asigna nota ni porcentaje de cumplimiento.
+La recuperación posterior de Miura2019 verifica comparadores MLP y CNN independientes en Bitcoin: cada familia aparece en1/6 textos completos. No acredita dimensionalidad explícita CNN1D, réplica exacta de las recetas ni uso amplio en el campo. Un piloto nuevo fue registrado antes de60 trayectorias/1440 ajustes y dimensiona semillas futuras bajo supuestos; no repara la cronología anterior. Persisten las repeticiones definitivas, una evaluación temporal independiente y las mediciones externas de ruido/faltantes. TOST/ROPE es condicional a una afirmación de equivalencia, no un pendiente obligatorio. No se asigna nota ni porcentaje de cumplimiento.
 """)
     public = ROOT / "book/_static/e1"
     public.mkdir(parents=True, exist_ok=True)

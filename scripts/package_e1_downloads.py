@@ -52,8 +52,8 @@ def public_tree(files, directory):
             add_file(files, path)
 
 
-def allowlisted_tree(files, directory):
-    manifest = directory / "public_allowlist_manifest.json"
+def allowlisted_tree(files, directory, manifest_name="public_allowlist_manifest.json"):
+    manifest = directory / manifest_name
     record = json.loads(manifest.read_text())
     for name, expected in record["files_sha256"].items():
         path = directory / name
@@ -203,19 +203,24 @@ def main():
     add_file(packages["8.4"], ROOT / "book/references.bib")
     allowlisted_tree(packages["8.5"], static / "filipe_multihistory_20261104")
     allowlisted_tree(packages["8.5"], static / "e1_audit_improvements_20261104")
+    allowlisted_tree(packages["8.5"], static / "e1_filipe_pilot_20261105", "public_manifest.json")
     public_tree(packages["8.6"], static / "e1_deliverables_20261104")
     for name in ["runtime.json", "final_fit_summary.csv", "final_models_manifest.json"]:
         add_file(packages["8.6"], static / "filipe_multihistory_20261104" / name)
     public_tree(packages["8.6"], static / "e1_audit_improvements_20261104/traceability")
+    for name in ["configuration_catalog.csv", "protocol.json", "runtime.json", "code_manifest_before_fitting.json"]:
+        add_file(packages["8.6"], static / "e1_filipe_pilot_20261105" / name)
     for name in ["protocol.json", "freeze.json"]:
         add_file(packages["8.7"], static / "filipe_multihistory_20261104" / name)
     add_file(packages["8.7"], static / "e1_deliverables_20261104/declaration_and_chronology.json")
     for name in ["academic_margin_policy.json", "next_study_pilot_DRAFT.json", "protocol.json"]:
         add_file(packages["8.7"], static / "e1_audit_improvements_20261104" / name)
+    for name in ["protocol.json", "preregistration_git_receipt.json", "execution_summary.json", "analysis/summary.json"]:
+        add_file(packages["8.7"], static / "e1_filipe_pilot_20261105" / name)
     common = (
         "\n\nSe conserva el alcance científico del libro: Miura2019 respalda MLP/CNN independientes "
         "como familias; no declara dimensionalidad CNN ni demuestra una réplica exacta o uso amplio. "
-        "suplemento final post-hoc y piloto futuro sin ejecutar. La política académica futura no "
+        "suplemento final post-hoc y nuevo piloto registrado de60 trayectorias; el R definitivo aún no se ejecutó. La política académica futura no "
         "se presenta como anterior al test. Pesos, escaladores y predicciones individuales "
         "requieren la entrega privada descrita en BUILD.md; este ZIP no los contiene.\n"
         "No se asigna una licencia general al proyecto. El aviso MIT de timeseries-cv se "
@@ -226,9 +231,9 @@ def main():
         "8.2": "El código conserva scripts/ y tests/. Leer BUILD.md: entornos separados, adquisición, preparación, entrenamiento y análisis. Para recalcular la ejecución original se necesita la evidencia privada; no ejecutar los originales sobre un registro firmado ni borrar sus marcadores.",
         "8.3": "Leer data/README.md. El script scripts/download_binance_spot.py obtiene los archivos oficiales y verifica checksums. Los manifiestos identifican fuente, fechas, bytes y SHA-256. Este paquete no contiene datos brutos de Binance.",
         "8.4": "La síntesis vigente de seis estudios, frecuencias y Tabla1 de Miura2019 están en book/_static/literature_e1/recovery_20261105/. La bibliografía principal reúne36referencias. Los archivos anteriores conservan sus cortes históricos; no sumar etapas sin deduplicación. No se incluyen manuscritos de terceros.",
-        "8.5": "Abrir los CSV con un lector compatible con UTF-8. analysis_cv/ contiene desarrollo; test/analysis/ contiene test. Los suplementos inference/ y descriptive/ conservan su registro post-hoc. Los manifiestos de listas permitidas verifican los agregados originales.",
-        "8.6": "Los locks y los catálogos identifican 1.440 segmentos modelo-mes de CV y 120 ajustes finales. Las filas son metadatos, sin pesos ni valores de escaladores. No mezclar el entorno CV con el de entrenamiento.",
-        "8.7": "Leer declaration_and_chronology.json, la congelación anterior al test y la política futura. Los registros conservan su momento real; next_study_pilot_DRAFT.json es un borrador, no un piloto ejecutado.",
+        "8.5": "Abrir los CSV con un lector compatible con UTF-8. analysis_cv/ contiene desarrollo; test/analysis/ contiene test. Los suplementos inference/ y descriptive/ conservan su registro post-hoc. e1_filipe_pilot_20261105/ contiene el nuevo piloto sobre validación2024 y su dimensionamiento condicional. Los manifiestos verifican los agregados originales.",
+        "8.6": "Los locks y los catálogos identifican 1.440 segmentos modelo-mes de CV original,120 ajustes finales y720 segmentos del nuevo piloto. Las filas son metadatos, sin pesos ni valores de escaladores. No mezclar el entorno CV con el de entrenamiento.",
+        "8.7": "Leer declaration_and_chronology.json, la congelación anterior al test, la política futura y el registro del nuevo piloto e1_filipe_pilot_20261105. Este piloto fue registrado antes de sus propios ajustes, después del benchmark histórico. next_study_pilot_DRAFT.json conserva el borrador de otra evaluación independiente futura, no ejecutada.",
     }
     license_path = static / "licenses/timeseries-cv-LICENSE.txt"
     records = []

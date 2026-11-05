@@ -377,7 +377,7 @@ $$
 
 Persistencia es determinista respecto a las semillas, por lo que su varianza de referencia no se replica artificialmente. La incertidumbre temporal/entre mercados se mantiene separada de esta planificación de aleatorizaciones.
 
-El [resumen académico](../_static/e1_audit_improvements_20261104/planning/academic_planning_summary.json) y la {download}`explicación de escenarios <../_static/e1_audit_improvements_20261104/planning/academic_margin_README.md>` conservan supuestos y límites. **Falta el piloto futuro real** para estimar dispersión y fijar R; no son potencia alcanzada, garantía de éxito o elección de otro periodo de prueba.
+El [resumen académico](../_static/e1_audit_improvements_20261104/planning/academic_planning_summary.json) y la {download}`explicación de escenarios <../_static/e1_audit_improvements_20261104/planning/academic_margin_README.md>` conservan supuestos y límites. **Falta el piloto propio de la propuesta avanzada** para estimar sus diferencias frente a ambas referencias; el piloto entre baselines de §4.1 responde otra pregunta. Estos escenarios no son potencia alcanzada, garantía de éxito o elección de otro periodo de prueba.
 
 Los [36 escenarios anteriores frente a cero](../_static/e1_audit_improvements_20261104/planning/advanced_margin_scenarios.csv), sus sensibilidades de 1/2,5/5/10 % y los [mínimos de ejecución](../_static/e1_audit_improvements_20261104/planning/advanced_execution_minimums.csv) se conservan como otro cálculo: detectar una diferencia δ frente a cero no demuestra que la mejora exceda δ.
 
@@ -417,7 +417,7 @@ Esa medida es descriptiva del test y no prueba estadísticamente una ganancia su
 
 **Ejecutado:** cuatro entradas, CV, selección/cierre, 120 ajustes finales, tablas globales/mensuales/anuales, BDS por fold y complemento post-hoc de comparación final D7 con diferencias, efectos, IC, DM y Ljung–Box. Se preservan los pronósticos y los pesos originales.
 
-**Definido para una fase futura:** criterio operativo académico del 5 % frente a MLP/D7 y persistencia, con sensibilidad y planificación condicional. **Estado académico:** Miura et al. (2019) aporta respaldo aplicado de MLP y CNN como familias, con dimensionalidad CNN no reportada y recurrencia limitada; el piloto/dimensionamiento prospectivos siguen pendientes. Los escenarios no certifican potencia lograda ni utilidad financiera. **Equivalencia es condicional:** TOST/ROPE solo se necesitarán si se formula esa afirmación.
+**Definido para una fase futura:** criterio académico del 5 % frente a MLP/D7 y persistencia, con sensibilidad y planificación condicional. **Estado académico:** Miura et al. (2019) respalda MLP/CNN como familias, con dimensión CNN no reportada y recurrencia limitada. El nuevo piloto de §4.1 registra cinco semillas por baseline e historia para dimensionar futuras repeticiones; no demuestra la frontera avanzada ni potencia alcanzada. Esa comparación avanzada conserva su propio piloto y evaluación independiente pendientes. **Equivalencia es condicional:** TOST/ROPE solo si se formula esa afirmación.
 
 ## 5.4. Análisis Estadístico y Pruebas de Hipótesis
 
@@ -520,6 +520,8 @@ La validación de desarrollo utiliza forward chaining creciente con doce meses y
 El bootstrap temporal final usa L14 con L7/28 de sensibilidad (§5.4.5). No reproduce entrenamiento sobre otra trayectoria ni justifica aplicar automáticamente Nadeau–Bengio a un diseño temporal diferente. Las 608 fechas, diez semillas y veinte meses conservan significados distintos.
 
 ### 5.4.7. Reporte de potencia y diferencia mínima detectable
+
+El [nuevo piloto registrado](../_static/e1_filipe_pilot_20261105/protocol.json) de §4.1 estima la dispersión de cinco semillas nuevas por modelo e historia y dimensiona **doce pares entre redes**, con δ absoluto 0,00023944847859645605 y α=0,05/12. Su [tabla de R y MDE](../_static/e1_filipe_pilot_20261105/analysis/paired_dimensioning.csv) distingue DE puntual y límite superior unilateral marginal del 95 %, R futuro y MDE con R=5. La potencia objetivo 0,80 es marginal y condicional a diferencias normales; no es potencia lograda ni una evaluación temporal independiente. Sus resultados no se mezclan con las diez semillas ni con los contrastes de test que siguen.
 
 El complemento calcula **MDE₀ retrospectiva y condicional** de los seis pares finales a partir de su DE observada, R=10, potencia hipotética 0,80 y α de planificación 0,05/6:
 
@@ -737,7 +739,7 @@ Las variaciones por año y mes pueden reflejar distribución del mercado, tamañ
 | Tablas anuales/meses, segmentos y variabilidad | Complementadas desde pronósticos guardados |
 | Inferencia final principal D7 | t/efectos/IC, signed-rank de sensibilidad, DM, Ljung–Box y bootstrap temporal ejecutados como post-hoc |
 | Planificación futura | Criterio académico 5 % frente a MLP/D7 y persistencia definido; escenarios frente a la frontera y sensibilidades, sin potencia lograda |
-| Literatura y piloto | Respaldo aplicado MLP/CNN incorporado con recurrencia y adaptación limitadas; piloto/dimensionamiento prospectivos pendientes según matriz de cierre |
+| Literatura y piloto | Respaldo aplicado MLP/CNN con límites; nuevo piloto entre baselines registrado antes de sus corridas y dimensionamiento de semillas futuras en §4.1; sin potencia alcanzada ni nueva validación temporal |
 | Equivalencia | Condicional: no se afirma ni se exige TOST/ROPE automáticamente |
 
 Las pruebas se interpretan con sus supuestos. No se acredita potencia 0,80 por observar diez semillas o generar una tabla retrospectiva.
@@ -782,7 +784,7 @@ El baseline neuronal previo a test permanece **MLP, D=7, `relative_window`**, RM
 
 Para futuras propuestas académicas queda definido superar el **5 % de reducción relativa frente a MLP/D7 y frente a persistencia**. La política se registra después de estos resultados y no los reclasifica. Se publican [27 escenarios de planificación conjunta](../_static/e1_audit_improvements_20261104/planning/academic_joint_power_scenarios.csv) frente a esa frontera, con alternativas superiores al 5 %, dispersión/correlación hipotéticas y mínimos de la guía.
 
-Sigue pendiente estimar la variabilidad real en un piloto prospectivo y seleccionar una evaluación nueva independiente. Los resultados actuales no demuestran de antemano que un modelo avanzado alcanzará el criterio y no se afirma utilidad financiera.
+La propuesta avanzada aún requiere estimar su propia variabilidad en un piloto y seleccionar una evaluación nueva independiente. El piloto registrado entre baselines de §4.1 dimensiona otra pregunta. Los resultados actuales no demuestran de antemano que un modelo avanzado alcanzará el criterio y no se afirma utilidad financiera.
 
 ### 5.5.6. Brecha con la literatura y margen de mejora potencial
 
@@ -805,7 +807,7 @@ El estudio conserva un activo, un proveedor, n=7, h=1, cuatro historias y diez s
 
 BDS mensual usa 28–31 residuos; los contrastes temporales y el bootstrap también suponen una representación adecuada de dependencia y estabilidad. Los IC por semillas condicionan al calendario. MLP−persistencia activa el diagnóstico Shapiro y su referencia t se declara aproximada.
 
-El respaldo aplicado de las familias MLP y CNN ya está acreditado por Miura et al. (2019); permanecen los límites de recurrencia, dimensionalidad CNN no reportada y adaptación exacta. Siguen abiertos el piloto/dimensionamiento prospectivos. El criterio operativo académico avanzado ya está definido para comparaciones futuras, sin validación de utilidad financiera. La sensibilidad de ruido/proveedor y otras arquitecturas/objetivos son extensiones no ejecutadas. TOST/ROPE son condicionales si se quisiera afirmar equivalencia. Se conserva la regla de épocas de diciembre; su representatividad se puede estudiar solo con desarrollo en otra versión, sin retocarla usando test.
+El respaldo aplicado de MLP/CNN está acreditado por Miura et al. (2019), con límites de recurrencia, dimensionalidad CNN y adaptación. El nuevo piloto entre baselines aporta un registro previo a sus nuevas corridas y planificación sobre el calendario 2024 conocido; no subsana el orden histórico ni acredita potencia lograda. La comparación de un modelo avanzado aún requiere su propio piloto y una evaluación independiente. La sensibilidad de ruido/proveedor y otras arquitecturas/objetivos siguen fuera del alcance ejecutado. TOST/ROPE es condicional a afirmar equivalencia. Se conserva la regla de épocas de diciembre; no se retoca usando test.
 
 ### 5.5.9. Recomendaciones futuras
 
@@ -827,6 +829,6 @@ Si los hallazgos del test orientan cambios de D, arquitectura o actualización, 
 | ¿Se supera persistencia? | Medias y análisis pareado/temporal | La RMSE media de las doce redes es mayor; los contrastes dependen del estimando y supuestos |
 | ¿Qué mejora analítica se añadió? | Años, rangos, variabilidad y meses difíciles | Diagnóstico calculado desde los pronósticos originales |
 | ¿Qué criterio avanzado se fijó? | Política académica futura y escenarios frente a la frontera | Superar 5 % frente a MLP/D7 y persistencia; no es previo al test actual ni certifica potencia lograda |
-| ¿Hay un piloto prospectivo vigente? | Antecedente histórico y calibración retrospectiva | No se puede volver prospectivo el estudio ya observado |
+| ¿Hay un piloto registrado antes de nuevas corridas? | Nuevo protocolo de §4.1, cinco semillas por modelo/historia y doce pares de planificación | Sí, respecto de esas nuevas inicializaciones sobre 2024 conocido; no vuelve prospectivo el estudio ya observado ni prueba potencia alcanzada |
 | ¿Equivalencia es requisito pendiente? | No se afirma equivalencia | TOST/ROPE solo si se formula esa pregunta |
-| ¿Qué sigue abierto? | Matriz de cierre y corpus | Bibliografía aplicada, piloto/dimensionamiento previo y evaluación nueva si se diseñan cambios con este test |
+| ¿Qué sigue abierto? | Matriz de cierre y corpus | Límites de recurrencia/dimensión CNN, ejecución definitiva con nuevas semillas, piloto avanzado y evaluación independiente si se diseñan cambios con este test |

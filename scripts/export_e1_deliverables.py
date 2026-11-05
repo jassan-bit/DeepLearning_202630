@@ -40,11 +40,16 @@ def main():
     raw_audit=read(audit_path)
     supplement_path=ROOT/"experiments/e1_audit_improvements_20261104/protocol.json"
     supplement=read(supplement_path)
+    pilot_path=ROOT/"experiments/e1_filipe_pilot_20261105/protocol.json"
+    pilot_execution_path=ROOT/"results/e1_filipe_pilot_20261105/execution_summary.json"
+    pilot_analysis_path=ROOT/"results/e1_filipe_pilot_20261105/analysis/summary.json"
+    pilot,pilot_execution,pilot_analysis=map(read,[pilot_path,pilot_execution_path,pilot_analysis_path])
     inputs={}
     for path in [freeze_path,plan_path,policy_path,initial_path,audit_path,supplement_path,
                  ROOT/"references/decisiones_e1_20261102.json",
                  ROOT/"references/literature_e1/recovery_20261105/selection_update.json",
-                 ROOT/"references/literature_e1/recovery_20261105/primary_source.json"]:
+                 ROOT/"references/literature_e1/recovery_20261105/primary_source.json",
+                 pilot_path,pilot_execution_path,pilot_analysis_path]:
         inputs[path.relative_to(ROOT).as_posix()]=sha(path)
     entries=[]
     for label,path,key in [
@@ -57,6 +62,14 @@ def main():
         value=read(path)[key]
         local=datetime.fromisoformat(value).astimezone(ZoneInfo("America/Bogota"))
         entries.append({"event":label,"timestamp_utc":value,"timestamp_bogota":local.isoformat(),
+                        "source":path.relative_to(ROOT).as_posix(),"source_sha256":sha(path)})
+    for label,path,key in [
+        ("Registro del nuevo piloto de aleatoriedad; calendario2024 ya conocido",pilot_path,"registered_at_utc"),
+        ("Primera trayectoria nueva del piloto",pilot_execution_path,"first_new_trajectory_started_at_utc"),
+        ("Análisis del piloto bajo código registrado antes de sus ajustes",pilot_analysis_path,"analyzed_at_utc")]:
+        value=read(path)[key]
+        entries.append({"event":label,"timestamp_utc":value,
+                        "timestamp_bogota":datetime.fromisoformat(value).astimezone(ZoneInfo("America/Bogota")).isoformat(),
                         "source":path.relative_to(ROOT).as_posix(),"source_sha256":sha(path)})
     declaration={
         "document_role":"Versioned declaration compiled from existing records; not a new preregistration",
@@ -89,10 +102,16 @@ def main():
             "test":"120 models frozen before first modeling access; twenty reporting months, zero refits"},
         "baseline_selection":freeze["selection"]["baseline"],
         "chronology":entries,
+        "new_registered_pilot":{"scope":"Prospective only for new training randomizations on the known2024 calendar; not a repair of the old benchmark",
+            "new_trajectories":pilot_execution["trajectories"],"seeds_per_model_history":5,
+            "pilot_seeds":pilot["seeds"],"definitive_new_seeds_not_executed":True,
+            "common_point_SD_R":pilot_analysis["common_point_SD_R"],
+            "common_recommended_upper_SD_R":pilot_analysis["common_recommended_upper_SD_R"],
+            "achieved_power_claim":False,"new_independent_market_evaluation":False},
         "limits":["No claim of registration before EDA or before the historical market periods",
                   "The final supplement is post-hoc, not prospective confirmation",
                   "The future academic criterion was not predeclared for the completed test",
-                  "A prospective pilot and new evaluation remain pending for a future study"],
+                  "The new baseline pilot precedes only its own fits; definitive repetitions and an independent future market evaluation remain unperformed"],
         "inherited_next_delivery":"Keep source, target, metric and dependence definitions explicit; any new model designed from this test needs another independent evaluation.",
         "source_sha256":inputs}
     write_json(DEST/"declaration_and_chronology.json",declaration)
@@ -143,17 +162,22 @@ def main():
         ("8.2","Código completo versionado","Código y réplica privada verificados","BUILD.md","La réplica verifica evidencia guardada; no se afirma repetir todos los ajustes en otra máquina"),
         ("8.3","Dataset o instrucciones y scripts","Adquisición y trazabilidad documentadas","data/README.md","Brutos y derivados completos se conservan localmente; publicación de resúmenes"),
         ("8.4","Síntesis y flujo de literatura","Fuente aplicada de MLP/CNN verificada; adaptación y límites explícitos","references/literature_e1/recovery_20261105/synthesis_six_columns.csv","Miura2019 aporta MLP y CNN independientes:1/6 cada familia. Dimensionalidad CNN no reportada; no réplica exacta ni evidencia de uso amplio; incorporación posterior al benchmark"),
-        ("8.5","Comparación, baseline e inferencia","Resultados entregados con límites","book/sections/05_benchmark.md","Comparación final suplementaria post-hoc; baselineMLP/D7 no reseleccionado"),
-        ("8.6","Dependencias, semillas y configuraciones","Metadatos y catálogos entregados","book/_static/e1_deliverables_20261104/final_configuration_catalog.csv","Pesos y escaladores completos en paquete privado; no identidad universal entre versiones/hardware"),
-        ("8.7","Declaración previa de métrica, margen, independencia y partición","Declaración versionada con cronología explícita","book/_static/e1_deliverables_20261104/declaration_and_chronology.json","Registro anterior al test, posterior al EDA; criterio académico avanzado posterior al test y solo futuro")]
+        ("8.5","Comparación, baseline e inferencia","Resultados y piloto nuevo entregados con límites","book/sections/05_benchmark.md","Benchmark histórico conservado; nuevo piloto dimensiona futuras semillas, sin potencia alcanzada ni réplica de mercado"),
+        ("8.6","Dependencias, semillas y configuraciones","Metadatos originales y 720 configuraciones piloto entregados","book/_static/e1_filipe_pilot_20261105/configuration_catalog.csv","Pesos y escaladores completos en paquete privado; no identidad universal entre versiones/hardware"),
+        ("8.7","Declaración previa de métrica, margen, independencia y partición","Cronología original y registro anterior al nuevo piloto","book/_static/e1_deliverables_20261104/declaration_and_chronology.json","Piloto registrado antes de sus ajustes; no previo al benchmark histórico, a los datos de2024 ni al test ya examinado")]
     rows=[dict(zip(["item","product","status","evidence","limit"],row)) for row in products]
     with (DEST/"delivery_manifest.csv").open("w",newline="") as stream:
         writer=csv.DictWriter(stream,fieldnames=list(rows[0]),lineterminator="\n");writer.writeheader();writer.writerows(rows)
     write_json(DEST/"delivery_manifest.json",{"compiled_at_bogota":datetime.now(ZoneInfo("America/Bogota")).isoformat(),
         "guide":"E1, página33, siete productos; producto documentado no equivale a cierre científico de todos sus requisitos",
+        "execution_counter_scope":"The zero execution counters below describe this metadata export only; completed pilot training is recorded separately in registered_pilot and its execution_summary",
         "new_project_fits":0,"new_forecasts":0,"raw_market_archive_reads":0,"products":rows,
         "CV_configuration_records":1440,"final_configuration_records":120,
         "literature_review":"S8 Miura2019, recovered after the benchmark: six included full texts, independent MLP/CNN family support; source CNN dimensionality and exact project replication not established",
+        "registered_pilot":{"new_trajectories":60,"fits":1440,"public_configuration_records":720,
+            "common_point_SD_R":pilot_analysis["common_point_SD_R"],
+            "common_recommended_upper_SD_R":pilot_analysis["common_recommended_upper_SD_R"],
+            "definitive_repetitions_performed":False,"achieved_power_claim":False},
         "publication_scope":"Configuration metadata, dependencies, declarations and aggregate results only; no weights, scaler values, market series or individual forecasts"})
     write_json(DEST/"public_manifest.json",{"created_at_utc":datetime.now(timezone.utc).isoformat(),
         "script_sha256":sha(__file__),"source_sha256":inputs,

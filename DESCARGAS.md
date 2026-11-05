@@ -33,3 +33,5 @@ sha256sum --ignore-missing -c SHA256SUMS.txt
 ```
 
 La revisión incorpora el texto completo de Miura, Pichl y Kaizoji (2019), que evalúa MLP y CNN independientes para RV de Bitcoin. La síntesis vigente de seis estudios y las tablas de extracción están en `book/_static/literature_e1/recovery_20261105/` dentro del ZIP de literatura. La CNN del artículo no declara dimensionalidad ni todos sus hiperparámetros; las redes del proyecto son adaptaciones propias, no réplicas exactas. La revisión es posterior al benchmark y no cambia sus resultados. El criterio académico avanzado conserva su definición posterior al test y su alcance futuro.
+
+El paquete de benchmark incluye también `e1_filipe_pilot_20261105/`:60 trayectorias piloto nuevas, con registro anterior a sus ajustes sobre el calendario2024 ya conocido. Informa dispersión, dimensionamiento y MDE; no afirma potencia alcanzada ni sustituye una evaluación temporal independiente. Los catálogos distinguen las720 configuraciones mensuales nuevas de las originales.

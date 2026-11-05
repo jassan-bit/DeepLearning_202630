@@ -1,6 +1,6 @@
 {
   "document_role": "Versioned declaration compiled from existing records; not a new preregistration",
-  "compiled_at_bogota": "2026-11-04T20:37:38.815175-05:00",
+  "compiled_at_bogota": "2026-11-04T21:28:06.870687-05:00",
   "problem": {
     "type": 4,
     "input_features": [
@@ -128,13 +128,51 @@
       "timestamp_bogota": "2026-11-04T16:03:18.778471-05:00",
       "source": "experiments/e1_audit_improvements_20261104/academic_margin_policy.json",
       "source_sha256": "765a845cbc59c115787d1279b6456e2f45a69bd456cd16ee81a02f1b6216ace6"
+    },
+    {
+      "event": "Registro del nuevo piloto de aleatoriedad; calendario2024 ya conocido",
+      "timestamp_utc": "2026-11-05T01:59:10.210424+00:00",
+      "timestamp_bogota": "2026-11-04T20:59:10.210424-05:00",
+      "source": "experiments/e1_filipe_pilot_20261105/protocol.json",
+      "source_sha256": "17d3f5d021e6ca9b1dbad5364eecaa285535a90aad28b360e3ad7c82fa98e15a"
+    },
+    {
+      "event": "Primera trayectoria nueva del piloto",
+      "timestamp_utc": "2026-11-05T02:01:26.304749+00:00",
+      "timestamp_bogota": "2026-11-04T21:01:26.304749-05:00",
+      "source": "results/e1_filipe_pilot_20261105/execution_summary.json",
+      "source_sha256": "a52169ceae4d0f0273f199c4c6e9331db8bf8f9f089a99ca4444697878b861a7"
+    },
+    {
+      "event": "Análisis del piloto bajo código registrado antes de sus ajustes",
+      "timestamp_utc": "2026-11-05T02:08:06.202525+00:00",
+      "timestamp_bogota": "2026-11-04T21:08:06.202525-05:00",
+      "source": "results/e1_filipe_pilot_20261105/analysis/summary.json",
+      "source_sha256": "e957de89ef1da4e4ec60321b39aca1ac90dcfe57f6b3004cf4b3ea8425fa03d1"
     }
   ],
+  "new_registered_pilot": {
+    "scope": "Prospective only for new training randomizations on the known2024 calendar; not a repair of the old benchmark",
+    "new_trajectories": 60,
+    "seeds_per_model_history": 5,
+    "pilot_seeds": [
+      6201,
+      6202,
+      6203,
+      6204,
+      6205
+    ],
+    "definitive_new_seeds_not_executed": true,
+    "common_point_SD_R": 302,
+    "common_recommended_upper_SD_R": 1680,
+    "achieved_power_claim": false,
+    "new_independent_market_evaluation": false
+  },
   "limits": [
     "No claim of registration before EDA or before the historical market periods",
     "The final supplement is post-hoc, not prospective confirmation",
     "The future academic criterion was not predeclared for the completed test",
-    "A prospective pilot and new evaluation remain pending for a future study"
+    "The new baseline pilot precedes only its own fits; definitive repetitions and an independent future market evaluation remain unperformed"
   ],
   "inherited_next_delivery": "Keep source, target, metric and dependence definitions explicit; any new model designed from this test needs another independent evaluation.",
   "source_sha256": {
@@ -146,6 +184,9 @@
     "experiments/e1_audit_improvements_20261104/protocol.json": "e6319edf4c320707d51fc987b59f62967538784718ffe369d5a0e5b468576442",
     "references/decisiones_e1_20261102.json": "1d0149568acb265b0aadbba396faaaab4b7c76f7b3caf9bf46f8259b4ac95eaf",
     "references/literature_e1/recovery_20261105/selection_update.json": "1a82637e2e11aecb7884f7027744b49e75dcd0edce8e005bccb4d084b364034f",
-    "references/literature_e1/recovery_20261105/primary_source.json": "5119530340a00581e6c3a42f3606af89f511a722baf81789cf10f6b63a43e64e"
+    "references/literature_e1/recovery_20261105/primary_source.json": "5119530340a00581e6c3a42f3606af89f511a722baf81789cf10f6b63a43e64e",
+    "experiments/e1_filipe_pilot_20261105/protocol.json": "17d3f5d021e6ca9b1dbad5364eecaa285535a90aad28b360e3ad7c82fa98e15a",
+    "results/e1_filipe_pilot_20261105/execution_summary.json": "a52169ceae4d0f0273f199c4c6e9331db8bf8f9f089a99ca4444697878b861a7",
+    "results/e1_filipe_pilot_20261105/analysis/summary.json": "e957de89ef1da4e4ec60321b39aca1ac90dcfe57f6b3004cf4b3ea8425fa03d1"
   }
 }

@@ -427,7 +427,7 @@ Los ganadores de S1 **sí están publicados**: no procede tratar su ancho o prof
 
 La [extensión registrada](../_static/filipe_multihistory_20261104/protocol.json) mantuvo las recetas, diez semillas 4101–4110 y reglas de parada. No hubo una nueva búsqueda H/LR en D14/21/28; se comparó longitud D. El presupuesto histórico igual acredita esa etapa, no optimización bajo otra representación ni capacidades equivalentes. La revisión posterior de S8 no modifica esa historia: completa apoyo de familias, pero no atribuye retrospectivamente a la literatura configuraciones, resultados o decisiones del proyecto.
 
-Los metadatos se leen por su identificador de experimento: `dl_benchmark_20261104` conserva la búsqueda/piloto históricos, `dl_r2_cv_20261104` el primer ciclo de Filipe D7 y `filipe_multihistory_20261104` la extensión de cuatro entradas y test final. Los campos históricos de dos semillas no se actualizan para fingir diez; el manifiesto vigente enumera las diez semillas y los outputs que realmente usa.
+Los metadatos se leen por su identificador de experimento: `dl_benchmark_20261104` conserva la búsqueda/piloto históricos, `dl_r2_cv_20261104` el primer ciclo de Filipe D7 y `filipe_multihistory_20261104` la extensión de cuatro entradas y test final. El nuevo `e1_filipe_pilot_20261105` registra cinco semillas nuevas por modelo e historia para dimensionar repeticiones futuras sobre el calendario conocido; no sustituye esos registros ni vuelve prospectivo el benchmark anterior. Los campos históricos de dos semillas no se actualizan para fingir diez; cada manifiesto enumera sus semillas y resultados reales.
 
 ### 3.2.6. Familias de arquitecturas orientativas por tipo de problema
 

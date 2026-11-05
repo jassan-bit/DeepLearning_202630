@@ -3,7 +3,7 @@
 ```{raw} html
 <div class="admonition note" id="descargar-entregable-1">
   <p class="admonition-title">Descargas del Entregable 1</p>
-  <p><a class="btn btn-primary btn-lg" href="../_static/e1_downloads/entregable1_completo.zip" download="entregable1_completo.zip">Descargar entrega completa · ZIP · 25 MB</a></p>
+  <p><a class="btn btn-primary btn-lg" href="../_static/e1_downloads/entregable1_completo.zip" download="entregable1_completo.zip">Descargar entrega completa · ZIP</a></p>
   <p>Incluye los siete productos de esta unidad. También puedes descargar cada entregable por separado en la tabla siguiente.</p>
 </div>
 ```
@@ -65,12 +65,17 @@ El [repositorio del proyecto](https://github.com/jassan-bit/DeepLearning_202630)
 | Cierre, ajuste final y test | [close_filipe_multihistory.py](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/close_filipe_multihistory.py), [final_fit_filipe_multihistory.py](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/final_fit_filipe_multihistory.py) | Decisiones cerradas, 120 modelos finales y evaluación de 608 fechas |
 | Métricas y BDS por bloque | [analyze_filipe_multihistory.py](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/analyze_filipe_multihistory.py) | Tablas por entrada, modelo, semilla y mes |
 | Complementos de la auditoría | [analyze_e1_audit_descriptives.py](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/analyze_e1_audit_descriptives.py), [analyze_e1_final_inference.py](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/analyze_e1_final_inference.py) | Tablas anuales, residuos, variabilidad e inferencia post-hoc |
+| Piloto nuevo y dimensionamiento | [run_filipe_pilot.py](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/run_filipe_pilot.py), [analyze_filipe_pilot.py](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/analyze_filipe_pilot.py) | Registro previo, 60 trayectorias nuevas de validación y R/MDE para futuras semillas |
 
 La ejecución registrada conserva **120 trayectorias primarias de CV, 1.440 segmentos modelo–mes y 43.920 predicciones**. Tras seleccionar con desarrollo se ajustaron 120 modelos finales y se guardaron **72.960 predicciones de test**. Los comandos y la separación de entornos están desarrollados en [BUILD.md](https://github.com/jassan-bit/DeepLearning_202630/blob/main/BUILD.md).
+
+El [piloto nuevo](../_static/e1_filipe_pilot_20261105/execution_summary.json) se entrega por separado: cinco semillas nuevas por familia e historia, 60 trayectorias, 720 segmentos, 1.440 ajustes y 21.960 pronósticos únicos de validación. No se agregan a las semillas del benchmark original ni se utilizan para volver a seleccionar el baseline. El [registro anterior a sus corridas](../_static/e1_filipe_pilot_20261105/protocol.json) y la [verificación independiente](../_static/e1_filipe_pilot_20261105/verification/revision_filipe_pilot_20261105.json) conservan su alcance condicionado a 2024 y los hashes de ejecución.
 
 **Ruta de entrega reproducible.** La evidencia completa se entrega privadamente con un manifiesto de hashes. El [restaurador](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/restore_e1_private_artifacts.py) copia y verifica esa evidencia en un directorio aislado, conservando los registros originales y su marcador de primer acceso al test. La prueba realizada restauró **113 insumos y seis TAR, con 16.890 miembros**, y ejecutó allí una auditoría independiente: [recibo de la réplica](../_static/e1_audit_improvements_20261104/reproducibility/replication_receipt.json) y [resumen de verificación](../_static/e1_audit_improvements_20261104/reproducibility/summary.json).
 
 Esa comprobación recalcula métricas desde resultados guardados y verifica los pesos por sus hashes; no se presenta como repetición de todos los entrenamientos en otra máquina. Un clon público contiene resúmenes y código; para verificar la evidencia individual se necesita el paquete privado indicado en el manual.
+
+El piloto nuevo tiene su propio paquete privado: **6.739 archivos**, incluidos 720 checkpoints, con [recibo de hashes y cantidades](../_static/e1_filipe_pilot_20261105/verification/private_delivery_receipt.json). Se restauró en una copia aislada y allí se reprodujo la auditoría: [recibo de restauración](../_static/e1_filipe_pilot_20261105/verification/replica_receipt.json). Esta verificación no entrenó ni ejecutó nuevas predicciones y no publica los pesos o vectores individuales.
 
 (entrega-8-3)=
 ## 8.3. Dataset e instrucciones exactas de obtención
@@ -182,6 +187,8 @@ Se fijaron AdamW, decaimiento de pesos 0,0001, dropout 0,1, batch 32, MSE, máxi
 
 Se entregan dos catálogos de configuraciones: [1.440 segmentos modelo–mes de CV](../_static/e1_deliverables_20261104/cv_configuration_catalog.csv) y [120 ajustes finales](../_static/e1_deliverables_20261104/final_configuration_catalog.csv). Los segmentos de CV corresponden a 2.880 entrenamientos internos/refits. Cada fila identifica modelo, D, semilla, ancho, LR, épocas, parámetros y hash de la configuración completa; el catálogo CV añade mes y semillas internas de ajuste/refit. Son metadatos públicos y no contienen los pesos ni valores de los escaladores.
 
+El piloto posterior conserva las mismas recetas y añade las semillas **6201–6205**, sin reutilizar las 4101–4110. Sus [60 registros agregados](../_static/e1_filipe_pilot_20261105/runs.csv), [720 segmentos mensuales](../_static/e1_filipe_pilot_20261105/fold_metrics.csv), [protocolo](../_static/e1_filipe_pilot_20261105/protocol.json) y [runtime](../_static/e1_filipe_pilot_20261105/runtime.json) permiten identificar la ejecución. Se publican media/DE/CV, las doce DE pareadas y el [dimensionamiento](../_static/e1_filipe_pilot_20261105/analysis/paired_dimensioning.csv); los pesos, escaladores y pronósticos individuales permanecen privados.
+
 El [protocolo](../_static/filipe_multihistory_20261104/protocol.json), los [registros D7, incluidas sus variantes](../_static/dl_r2_cv_20261104/runs.csv), las [90 trayectorias de la ampliación D14/21/28](../_static/filipe_multihistory_20261104/runs.csv), el [registro de los 120 ajustes finales](../_static/filipe_multihistory_20261104/final_fit_summary.csv) y el [manifiesto de identidades finales](../_static/filipe_multihistory_20261104/final_models_manifest.json) completan la trazabilidad por `D–modelo–semilla`. Los escaladores, curvas, checkpoints y predicciones individuales de cada corrida permanecen en el paquete privado con sus hashes.
 
 (entrega-8-7)=
@@ -196,6 +203,7 @@ La [declaración y cronología versionada](../_static/e1_deliverables_20261104/d
 | Congelación de selección y épocas | MLP/D7 como referencia neuronal, doce combinaciones a reportar, duración y reglas de calidad | 14:42:49, antes del primer acceso experimental de modelado al test, registrado a las 14:44:21 |
 | Suplemento estadístico final | Pares principales, familias, incertidumbre temporal y diagnósticos | Posterior a inspeccionar test; explícitamente post-hoc/exploratorio |
 | Criterio académico para modelos futuros | Mejora superior al 5 % frente a MLP/D7 **y** persistencia, con incertidumbre y multiplicidad | Definido después del test actual; no se atribuye retroactivamente al protocolo inicial |
+| Piloto nuevo entre baselines | Cinco semillas nuevas por modelo/D; doce pares, δ absoluto 0,00023944847859645605 y α=0,05/12 | Registro a las 20:59:10; primera trayectoria nueva a las 21:01:26, después del commit público de preregistro. Prospectivo respecto de esas corridas, no del benchmark histórico |
 
 **Declaración utilizada para interpretar los resultados:**
 
@@ -212,4 +220,6 @@ La [declaración y cronología versionada](../_static/e1_deliverables_20261104/d
 
 La [política académica futura](../_static/e1_audit_improvements_20261104/academic_margin_policy.json) define la reducción mediante la razón de medias de RMSE: $1-\mathbb E[m_A]/\mathbb E[m_{\rm ref}]>0,05$, para cada referencia. Se entregan [sensibilidades de 1/2,5/5/10 %](../_static/e1_audit_improvements_20261104/planning/advanced_margin_scenarios.csv) y [27 escenarios frente a la frontera práctica](../_static/e1_audit_improvements_20261104/planning/academic_joint_power_scenarios.csv). Son supuestos de planificación para una comparación nueva, sin afirmación de utilidad financiera o potencia realmente alcanzada.
 
-El criterio y el número de repeticiones de una propuesta futura deben completarse en un registro anterior a su evaluación independiente. El [borrador de piloto](../_static/e1_audit_improvements_20261104/next_study_pilot_DRAFT.json) no ha sido ejecutado. La declaración anterior al acceso experimental al test está documentada; **no se declara un preregistro anterior al EDA, un piloto prospectivo del procedimiento vigente ni un margen avanzado previo al test ya examinado**.
+El [protocolo del piloto nuevo](../_static/e1_filipe_pilot_20261105/protocol.json) y su [recibo de publicación](../_static/e1_filipe_pilot_20261105/preregistration_git_receipt.json) se registraron antes de las cinco semillas nuevas por familia/historia. Su [resumen de planificación](../_static/e1_filipe_pilot_20261105/analysis/summary.json) dimensiona futuras semillas entre baselines sobre 2024 conocido; no certifica potencia alcanzada ni repara el orden del experimento histórico.
+
+El [borrador para una futura evaluación independiente](../_static/e1_audit_improvements_20261104/next_study_pilot_DRAFT.json) conserva otro alcance y no se presenta como ejecutado. Se mantiene explícito que **no hubo piloto previo al benchmark original, preregistro anterior al EDA o margen avanzado anterior al test ya examinado**. El registro del piloto nuevo no altera esa cronología.

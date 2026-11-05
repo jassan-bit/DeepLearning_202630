@@ -134,3 +134,31 @@ Para evaluar cambios de arquitectura, hiperparámetros o selección se necesita 
 Las semillas miden variación de entrenamiento condicionada al calendario; no acreditan por sí solas potencia 0,80 ni independencia entre mercados. Siguen documentados los pendientes bibliográficos y de dimensionamiento prospectivo; el ajuste final y el test de las cuatro entradas no son tareas pendientes.
 
 La recuperación documental `references/literature_e1/recovery_20261105/` incorpora el capítulo completo de Miura, Pichl y Kaizoji (2019), con sus comparadores MLP/CNN independientes, la Tabla 1 transcrita y una síntesis de seis estudios. Es una revisión posterior al benchmark: no cambia las configuraciones firmadas ni los resultados. La CNN del artículo no declara dimensionalidad y las recetas del proyecto no se presentan como réplicas exactas. Los paquetes de descarga conservan en `catalogo.json` el commit de las fuentes usadas al construirlos.
+
+## Piloto nuevo registrado del procedimiento vigente
+
+`experiments/e1_filipe_pilot_20261105/protocol.json` se publicó en el commit `65fc9c49dd6ce3d4ddf13033b1bc54af0f8d0166` antes de iniciar sus entrenamientos. Usa los mismos índices forward de Filipe, representación relativa, recetas y embargo D, con cinco semillas nuevas 6201–6205 por modelo e historia. Sus 60 trayectorias contienen 720 segmentos mensuales, 1.440 ajustes y 21.960 predicciones de validación de 2024. El calendario ya era conocido; no se convierte en evaluación temporal independiente ni se reescribe el benchmark anterior.
+
+El análisis registrado informa media, DE, CV, diferencias pareadas y dimensionamiento de 12 contrastes neuronales: δ=0,00023944847859645605, α=0,05/12 y potencia objetivo marginal de 0,80 bajo diferencias normales. El máximo común es **302 nuevas semillas con DE puntual o 1.680 con la DE superior marginal del 95 %**. El segundo es la recomendación conservadora registrada; ninguna de esas ejecuciones definitivas se inició. Cinco pares no acreditan normalidad y estos cálculos no son potencia alcanzada ni conjunta, ni prueban una mejora avanzada superior al 5 % frente a dos referencias.
+
+Con evidencia privada completa restaurada, verificar los registros y resultados sin reentrenar:
+
+```bash
+.venv-training/bin/python scripts/run_filipe_pilot.py --phase validate
+.venv-training/bin/python scripts/analyze_filipe_pilot.py --check
+.venv-training/bin/python scripts/verify_filipe_pilot.py
+```
+
+Las corridas, pesos, escaladores y pronósticos individuales del nuevo piloto se conservan bajo `results/e1_filipe_pilot_20261105/runs/` y no se publican. La web ofrece agregados, 720 configuraciones, hashes y el informe independiente en `book/_static/e1_filipe_pilot_20261105/`. Un clon que solo tenga agregados no puede recalcular las métricas individuales sin esos insumos. No se deben borrar firmas o marcadores para forzar la ejecución sobre un registro cerrado.
+
+Para repetir técnicamente los entrenamientos en una copia aislada, usar el commit de implementación **09d626d**, anterior al registro y sin el estado del piloto. Conservar la investigación original y crear otro checkout limpio de ese commit, instalar el lock de entrenamiento y ejecutar:
+
+```bash
+.venv-training/bin/python scripts/run_filipe_pilot.py --phase register
+.venv-training/bin/python scripts/run_filipe_pilot.py --phase validate
+.venv-training/bin/python scripts/run_filipe_pilot.py --phase run
+.venv-training/bin/python scripts/analyze_filipe_pilot.py --phase analyze
+.venv-training/bin/python scripts/analyze_filipe_pilot.py --check
+```
+
+La copia obtiene un registro con su fecha real; no reutiliza el timestamp histórico. Repetir las mismas semillas no crea nuevas réplicas estadísticas. Esta ruta consume los derivados diarios y manifiestos ya verificados de desarrollo, sin abrir ZIP brutos ni el test. Una propuesta avanzada o una evaluación temporal independiente requiere otro protocolo; septiembre–octubre de 2026 sigue sin asignarse automáticamente.
