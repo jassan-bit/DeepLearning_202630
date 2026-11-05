@@ -3,7 +3,7 @@
 Los ocho archivos ZIP conservan los nombres de los botones de la unidad8. Los siete productos y el paquete completo describen la terna actual GRU–LSTM–TCN.
 
 
-Terna experimental vigente: **GRU–LSTM–TCN**. Baseline neural: **GRU/D7**, seleccionado en CV antes de la nueva evaluación del test histórico ya conocido. Fuente versionada: `428d5d07742d87f5ee47fbe9e7ea4738e61a84a3`.
+Terna experimental vigente: **GRU–LSTM–TCN**. Baseline neural: **GRU/D7**, seleccionado en CV antes de la nueva evaluación del test histórico ya conocido. Fuente versionada: `7739deb9765eca7861f996b6252ad70cad3f7e23`.
 
 Las comparaciones actuales entre los tres modelos y los diagnósticos adicionales se definieron después de observar el test: su alcance es exploratorio. Las diez semillas son un presupuesto fijo; no se atribuye un piloto prospectivo de los modelos nuevos ni potencia 0,80. El margen operativo futuro se declara después del test y no se aplica retroactivamente. Persistencia conserva su papel de referencia.
 
