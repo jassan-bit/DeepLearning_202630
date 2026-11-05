@@ -15,7 +15,7 @@ El capítulo 5 presenta las **tablas completas de CV y de test para cada entrada
 
 - [Problema y dataset](sections/01_problema_dataset.md): formulación, justificación, fuente y descripción técnica.
 - [Análisis exploratorio de datos](sections/02_eda.md): calidad, objetivo y estructura temporal; ejemplo oficial y aplicación de la función de Filipe.
-- [Estado del arte](sections/03_estado_arte.md): 36 referencias y seis textos completos; respaldo primario de las familias MLP/LSTM/CNN y límites explícitos de su adaptación.
+- [Estado del arte](sections/03_estado_arte.md): 39 referencias, seis textos completos sobre Bitcoin y una ampliación metodológica financiera; respaldo de las familias MLP/LSTM/CNN y límites de su adaptación.
 - [Implementación y evaluación](sections/04_implementacion_evaluacion.md): cuatro historias, configuraciones, semillas, purgas, congelación y artefactos reproducibles.
 - [Benchmark y baseline](sections/05_benchmark.md): CV 2024, tablas finales del test 2025–agosto de 2026 y diagnósticos por bloque.
 - [Procedimiento temporal](sections/06_procedimiento.md): ruta 6.4, selección con Filipe y evaluación final sin reajustes durante test.
@@ -34,6 +34,8 @@ La elección previa al test y sus hashes están en [la congelación](_static/fil
 Las decisiones de desarrollo usaron 2024 ya expuesto: la CV es exploratoria y no validación anidada independiente. Diez semillas no acreditan potencia 0,80. Los contrastes Holm-12, DM y bootstrap del ciclo inicial D7 conservan su alcance; no se trasladan automáticamente a las cuatro historias o al test. El BDS mensual tiene una referencia asintótica aproximada ante bloques cortos y etiquetas solapadas.
 
 La [matriz de cierre](sections/protocolo_pendiente.md) distingue requisitos todavía abiertos y mejoras ejecutadas a partir de la auditoría del PDF. Miura et al. (2019) aporta respaldo aplicado independiente a MLP y CNN, una vez en seis estudios; su dimensión CNN no está reportada y las recetas son adaptaciones. La revisión posterior no reescribe la selección como a priori. Un {ref}`piloto nuevo registrado antes de sus corridas <piloto-filipe-registrado>` añade cinco semillas por modelo e historia para dimensionar futuras repeticiones condicionadas a 2024; no vuelve prospectivo el benchmark histórico ni acredita potencia alcanzada. El criterio avanzado de superar el 5 % frente a MLP/D7 y persistencia requiere su propio piloto y una evaluación nueva independiente. TOST/ROPE solo será exigible si se afirma equivalencia. Solo se considera Bitcoin; no se inventan requisitos de documentos completos de E2/E3 que no se han recibido.
+
+La ampliación metodológica distingue tres evidencias: el artículo original de Bucci (2020), sobre una FNN pequeña y volatilidad del S&P 500; código de autor de HARNet con Conv1D causal; y la identidad editorial de DeepVol, corroborada mediante el CV de su autor. Solo el primero añade un texto completo leído. Esta transferencia financiera refuerza la justificación de familias simples, conserva seis estudios BTC y no convierte las recetas propias en réplicas publicadas. Las fichas y los límites se entregan en {ref}`8.4 <entrega-8-4>`.
 
 ## Reproducibilidad y privacidad
 

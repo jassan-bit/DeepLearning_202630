@@ -1,0 +1,120 @@
+{
+  "compiled_at_utc": "2026-11-05T12:22:40.011587+00:00",
+  "compiled_at_bogota": "2026-11-05T07:22:40.011587-05:00",
+  "counts": {
+    "bibliographic_references": 39,
+    "direct_BTC_full_text_corpus": 6,
+    "new_methodological_journal_full_texts_read": 1,
+    "new_primary_author_code_sources": 1,
+    "new_primary_author_CV_publication_records": 1,
+    "new_direct_BTC_studies": 0,
+    "BTC_MLP_independent_count": 1,
+    "BTC_CNN_generic_independent_count": 1,
+    "BTC_CNN1D_simple_explicit_count": 0,
+    "BTC_frequency_denominator": 6
+  },
+  "evidence_tier_definition": {
+    "T1": "Full primary journal text read and extracted.",
+    "T2": "Author implementation read; original paper not retrieved.",
+    "T3": "Publication identity in primary author CV; original and implementation not retrieved."
+  },
+  "scope": "Three methodological references with different evidence roles, not three newly read journal articles or three new Bitcoin studies.",
+  "counts_not_added_to_frozen_selection": true,
+  "sources": [
+    {
+      "source_id": "T1",
+      "reference_key": "bucci2020realized",
+      "evidence_tier": "T1",
+      "source_type": "primary_full_journal_article",
+      "title": "Realized Volatility Forecasting with Neural Networks",
+      "authors": [
+        "Andrea Bucci"
+      ],
+      "year": 2020,
+      "journal": "Journal of Financial Econometrics",
+      "publisher": "Oxford University Press",
+      "doi": "10.1093/jjfinec/nbaa008",
+      "consulted_primary_full_text": true,
+      "consulted_primary_author_code": false,
+      "consulted_primary_author_bibliographic_record": false,
+      "source_url": "https://raw.githubusercontent.com/Idaliia19/realized-volatility-bucci-replication/c549b399e66eabb19f63e14f207770ab4de2da3c/paper/rv2.pdf",
+      "source_sha256": "eeaa8d0b690f948715496554a82d1466dc3b6ccee5c72fce4e748e78bd7bdcfc",
+      "source_bytes": 961518,
+      "source_location": "Publisher PDF, printed pp.502–531; FNN equations/figure pp.507–508, results Tables4/5 pp.518/523.",
+      "methodological_role": "Standalone one-hidden-layer FNN/FNNX, MLP family; financial-volatility methodological transfer.",
+      "market_and_target": "S&P500 monthly log realized standard deviation computed from daily returns; not Bitcoin sigma7.",
+      "article_metric_values_verified": true,
+      "counts_in_BTC_corpus": false,
+      "record_file": "bucci2020_primary_extraction.json"
+    },
+    {
+      "source_id": "T2",
+      "reference_key": "reisenhofer2022harnet",
+      "evidence_tier": "T2",
+      "source_type": "primary_author_code",
+      "title": "HARNet: A Convolutional Neural Network for Realized Volatility Forecasting",
+      "authors": [
+        "Rafael Reisenhofer",
+        "Xandro Bayer",
+        "N. Hautsch"
+      ],
+      "year": 2022,
+      "journal": null,
+      "publisher": null,
+      "doi": "10.48550/arXiv.2205.07719",
+      "identifier": "arXiv:2205.07719",
+      "consulted_primary_full_text": false,
+      "consulted_primary_author_code": true,
+      "consulted_primary_author_bibliographic_record": false,
+      "source_url": "https://github.com/mdsunivie/HARNet/tree/3b2832f163ec52cab2435163e82f2e816ae348c9",
+      "source_commit": "3b2832f163ec52cab2435163e82f2e816ae348c9",
+      "source_location": "Author README; model.py lines226–259,354–366; util.py lines19–23,72–89; pinned example configuration.",
+      "methodological_role": "Causal Conv1D in author code, HAR initialization. Preprint identified in README; original and any journal publication not verified.",
+      "market_and_target": "SPX configured example; next-observation rv5_ss series. The loader does not take a square root; not equated to standard deviation sigma7.",
+      "article_metric_values_verified": false,
+      "counts_in_BTC_corpus": false,
+      "record_file": "harnet2022_primary_code.json",
+      "observation_frequency": {
+        "value": null,
+        "status": "Not independently corroborated in this extraction; do not equate the source to E1 calendar-daily sigma7"
+      },
+      "forecast_horizon": {
+        "value": "next observation in code",
+        "calendar_or_multi_horizon_equivalence_verified": false,
+        "label_length5_means_horizon5": false
+      },
+      "evaluation_quality_caveat": {
+        "finding": "main.py applies scaler.fit_transform to the full loaded series before applying train/test ranges",
+        "source": "src/harnet/main.py, lines72–80, pinned commit3b2832f163ec52cab2435163e82f2e816ae348c9",
+        "implication": "Architecture evidence only; the code does not establish leakage-free temporal evaluation or valid out-of-sample performance."
+      }
+    },
+    {
+      "source_id": "T3",
+      "reference_key": "morenopino2024deepvol",
+      "evidence_tier": "T3",
+      "source_type": "primary_author_CV_publication_identity",
+      "title": "DeepVol: Volatility Forecasting from High-Frequency Data with Dilated Causal Convolutions",
+      "authors": [
+        "Fernando Moreno-Pino",
+        "Stefan Zohren"
+      ],
+      "year": 2024,
+      "journal": "Quantitative Finance",
+      "publisher": "Taylor & Francis",
+      "doi": "10.1080/14697688.2024.2387222",
+      "consulted_primary_full_text": false,
+      "consulted_primary_author_code": false,
+      "consulted_primary_author_bibliographic_record": true,
+      "source_url": "https://raw.githubusercontent.com/fmorenopino/fmorenopino.github.io/76079c06b4b2e91bc94267eb2652dbe546916ce7/docs/CV_FernandoMorenoPino.pdf",
+      "source_sha256": "afdd009111d43c07040d5bc768b424c59f1b60679acd6a1fa42dfea5a37cc98f",
+      "source_bytes": 4312678,
+      "source_location": "Author CV, PDF p.2; publication entry and embedded DOI hyperlink.",
+      "methodological_role": "Journal publication identity only; original and code not recovered. Architecture and numerical results remain unassigned.",
+      "market_and_target": "Not extracted from the original; no Bitcoin or financial-asset results inferred from title or reconstructions.",
+      "article_metric_values_verified": false,
+      "counts_in_BTC_corpus": false,
+      "record_file": "deepvol2024_publication.json"
+    }
+  ]
+}

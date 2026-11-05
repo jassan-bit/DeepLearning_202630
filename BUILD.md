@@ -33,6 +33,15 @@ python -m http.server 8000 --directory book/_build/html
 
 Abrir <http://localhost:8000>. En Windows, activar con `.venv\Scripts\activate`. El HTML se escribe en `book/_build/html/`. El build trata advertencias como errores y el comprobador verifica enlaces locales y anclas. Las fórmulas usan MathJax desde CDN.
 
+Para refrescar los metadatos de la ampliación bibliográfica usando únicamente los archivos públicos verificados:
+
+```bash
+python scripts/refresh_e1_literature_delivery.py
+python scripts/update_book_item_audit.py
+```
+
+El primer comando conserva por hash los 1.440 segmentos de configuración de CV y 120 ajustes finales ya auditados. Actualiza literatura y declaraciones sin necesitar pesos privados, entrenar modelos o ejecutar pronósticos. Los 39 registros bibliográficos separan seis textos BTC de T1 (original financiero de revista), T2 (código de autores) y T3 (identidad editorial con original pendiente).
+
 ## Entornos experimentales separados
 
 La librería CV requiere NumPy menor que 2; el entrenamiento y los análisis usan su propio entorno fijado. No mezclar los locks:
@@ -134,6 +143,8 @@ Para evaluar cambios de arquitectura, hiperparámetros o selección se necesita 
 Las semillas miden variación de entrenamiento condicionada al calendario; no acreditan por sí solas potencia 0,80 ni independencia entre mercados. Siguen documentados los pendientes bibliográficos y de dimensionamiento prospectivo; el ajuste final y el test de las cuatro entradas no son tareas pendientes.
 
 La recuperación documental `references/literature_e1/recovery_20261105/` incorpora el capítulo completo de Miura, Pichl y Kaizoji (2019), con sus comparadores MLP/CNN independientes, la Tabla 1 transcrita y una síntesis de seis estudios. Es una revisión posterior al benchmark: no cambia las configuraciones firmadas ni los resultados. La CNN del artículo no declara dimensionalidad y las recetas del proyecto no se presentan como réplicas exactas. Los paquetes de descarga conservan en `catalogo.json` el commit de las fuentes usadas al construirlos.
+
+La ampliación `references/literature_e1/journal_update_20261105/`, reflejada en `book/_static/literature_e1/journal_update_20261105/`, añade tres fuentes metodológicas financieras al catálogo de **39 referencias**, manteniendo aparte los **seis textos BTC**. Distingue un original editorial completo de Bucci (FNN pequeña), código de autor de HARNet (Conv1D causal) y la identidad editorial de DeepVol corroborada en un CV. Los manuscritos de HARNet y DeepVol no se presentan como leídos, ni se extraen de ellos parámetros o resultados publicados. Las fichas, las métricas verificadas de Bucci, el registro de acceso y las coincidencias secundarias de revistas documentan el alcance. No se redistribuyen aquí esos artículos completos de terceros ni se ejecutan nuevos entrenamientos por esta revisión.
 
 ## Piloto nuevo registrado del procedimiento vigente
 
