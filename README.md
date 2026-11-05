@@ -1,5 +1,16 @@
 # DeepLearning_202630
 
+Este repositorio reúne **tres Jupyter Books**, cada uno con índice, configuración y dirección propios:
+
+| Entregable | Fuentes | Dirección del libro | Estado |
+|---|---|---|---|
+| E1 | [`book/`](book/) | [Abrir E1](https://jassan-bit.github.io/DeepLearning_202630/intro.html) | Informe y estudios realizados |
+| E2 | [`book_e2/`](book_e2/) | [Abrir E2](https://jassan-bit.github.io/DeepLearning_202630/entregable2/intro.html) | Libro iniciado; guía específica pendiente |
+| E3 | [`book_e3/`](book_e3/) | [Abrir E3](https://jassan-bit.github.io/DeepLearning_202630/entregable3/intro.html) | Libro iniciado; guía específica pendiente |
+
+[Selector de los tres entregables](https://jassan-bit.github.io/DeepLearning_202630/entregables.html). La infraestructura de compilación es común; cada JBook se construye desde su propia carpeta. Los apartados experimentales que siguen corresponden a **E1**.
+
+
 Proyecto de Deep Learning, 2026-30: **pronóstico de volatilidad de Bitcoin con GRU, LSTM y TCN**.
 
 [Jupyter Book](https://jassan-bit.github.io/DeepLearning_202630/intro.html) · [Estudio D7 planificado](https://jassan-bit.github.io/DeepLearning_202630/sections/09_estudio_planificado.html) · [Entregables descargables](https://jassan-bit.github.io/DeepLearning_202630/sections/08_entregables.html#descargar-entregable-1) · [Reproducción](BUILD.md).

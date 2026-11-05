@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-11-05T20:48:00.258306+00:00",
+  "source_commit": "94a4b0324e93361e8928d708fdfeb50110e3686f",
+  "source_book": "https://jassan-bit.github.io/DeepLearning_202630/intro.html",
+  "source_files": {
+    "results/gru_lstm_tcn_planned_20261105/selected_recipes.json": {
+      "url": "https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/results/gru_lstm_tcn_planned_20261105/selected_recipes.json",
+      "sha256": "3fb4a42d023a09c7ec88d78869434997e3827eb4482d10107562548acd1d78d7"
+    },
+    "results/gru_lstm_tcn_planned_20261105/metric_summary.csv": {
+      "url": "https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/results/gru_lstm_tcn_planned_20261105/metric_summary.csv",
+      "sha256": "77622a89e7a96abc0e2e00bb7efb6b97721265c4513d9a6c5ed711af7193ac12"
+    },
+    "results/gru_lstm_tcn_planned_20261105/dimensioning.json": {
+      "url": "https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/results/gru_lstm_tcn_planned_20261105/dimensioning.json",
+      "sha256": "a5f58378ed80cc05563244abb650ba071df140ae5e68b2c4c56a05f8d910c8e2"
+    }
+  },
+  "registered_baseline": {
+    "id": "GRU/D7-c03",
+    "model": "GRU",
+    "history_days": 7,
+    "width": 16,
+    "parameters": 1121,
+    "learning_rate": 0.003,
+    "dropout": 0.1
+  },
+  "e1_phase_II_reserve": {
+    "start": "2026-09-01",
+    "end_inclusive": "2026-10-30",
+    "calendar_days": 60,
+    "mean_rmse": {
+      "GRU": 0.005116955552658226,
+      "LSTM": 0.005651227152770194,
+      "TCN": 0.004339669041430868,
+      "Persistence": 0.0038447757256001077
+    },
+    "status_for_e2": "already_observed; not a new confirmatory test"
+  },
+  "transfer_policy": {
+    "e1_R_465_is_not_e2_sample_size": true,
+    "e1_delta_is_not_an_approved_e2_margin": true,
+    "e2_model_selected": false,
+    "e2_experiments_executed": false
+  }
+}
