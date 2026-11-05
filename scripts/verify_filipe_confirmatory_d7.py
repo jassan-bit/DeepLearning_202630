@@ -627,6 +627,24 @@ def trajectories(audit, phase, plan, context, calendar, targets, expected, seeds
     return runs, execution
 
 
+def metric_summary_checks(audit, path, runs, n):
+    """Reconstruct all six descriptive metrics and their marginal seed CIs."""
+    table = read_frame(path).set_index(["model", "metric"])
+    require(len(table) == 18 and set(table.index) == set(product(MODELS, ("rmse", "mse", "mae", "r2", "mape", "mase"))),
+            "Six metric summaries for every model family")
+    for (model, metric), row in table.iterrows():
+        values = runs.loc[runs.model.eq(model), metric].to_numpy()
+        values = values[np.isfinite(values)]
+        mean, sd = float(values.mean()), float(values.std(ddof=1))
+        half = stats.t.isf(.025, len(values)-1)*sd/np.sqrt(len(values))
+        for name, value in {"history_days": 7, "n_seeds": n, "n_defined": len(values),
+                            "n_dates_per_trajectory": 366, "mean": mean, "sample_sd": sd,
+                            "CV_percent": 100*sd/mean if metric != "r2" and mean > 0 else None,
+                            "ci95_lower": mean-half, "ci95_upper": mean+half}.items():
+            audit.close(row[name], value, "Independent descriptive metric summary: " + metric + "/" + name)
+        audit.counters["descriptive_metric_summary_rows_checked"] += 1
+
+
 def planning_checks(audit, plan, calendar, targets):
     lock = read(OUT / "locked_design.json")
     settings = plan["dimensioning"]
@@ -657,7 +675,8 @@ def planning_checks(audit, plan, calendar, targets):
                 "Variance extension aggregate guard: " + name)
     require(instant(lock["locked_at_utc"]) > instant(execution["completed_at_utc"]),
             "Complete variance extension precedes the design lock")
-    require(set(lock["design_output_sha256"]) == {"paired_dimensioning.csv", "variance_summary.json", "qq_new20.png", "README.md"},
+    require(set(lock["design_output_sha256"]) == {"paired_dimensioning.csv", "pilot_metrics_summary.csv",
+                                                "variance_summary.json", "qq_new20.png", "README.md"},
             "All design outputs signed")
     for name, expected_hash in lock["design_output_sha256"].items():
         require(audit.sha(OUT / "planning" / name) == expected_hash, "Planning output guard: " + name)
@@ -678,6 +697,7 @@ def planning_checks(audit, plan, calendar, targets):
         require(len(keys) == len(set(keys)) == 3*len(seeds)
                 and set(keys) == set(product(MODELS, seeds)) and data.history_days.eq(7).all()
                 and data.n_dates.eq(366).all() and np.isfinite(data.rmse).all(), "Exact variance source cohorts")
+    metric_summary_checks(audit, OUT / "planning/pilot_metrics_summary.csv", fresh, 20)
     old = old.pivot(index="seed", columns="model", values="rmse").loc[plan["original_pilot_seeds"], list(MODELS)]
     fresh = fresh.pivot(index="seed", columns="model", values="rmse").loc[EXTENSION_SEEDS, list(MODELS)]
     table = read_frame(OUT / "planning/paired_dimensioning.csv").set_index(["model_a", "model_b"])

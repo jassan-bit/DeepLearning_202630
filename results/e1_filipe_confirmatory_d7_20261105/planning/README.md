@@ -1,0 +1,3 @@
+# Dimensionamiento bloqueado antes de la fase definitiva
+
+R común requerido: 79. Se usa exclusivamente la DE de las 20 semillas nuevas y su límite superior normal unilateral marginal del 95 %. Las cinco semillas anteriores y la sensibilidad de 25 combinadas no eligen R; las 25 quedan fuera de la definitiva. El mínimo de 30 es una regla de diseño, no una garantía de normalidad. Se planifica detectar δ frente a cero, con potencia marginal 0,80 y α=0,05/3; no una mejora avanzada superior al 5 %. R nunca se recorta al presupuesto. Si excede el límite operativo, se informa y se bloquea el lanzamiento. Este registro no convierte el calendario conocido en una prueba de mercado nueva ni reescribe el benchmark anterior.
