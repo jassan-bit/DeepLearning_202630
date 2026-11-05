@@ -1,11 +1,11 @@
-# 3. Diseño experimental
+# Página de trabajo 3 · Diseño experimental
 
-**Estado: sin protocolo experimental de E2 cerrado.** Estos puntos organizan las decisiones pendientes; no constituyen un preregistro ya ejecutado.
+**Estado: sin protocolo experimental de E2 cerrado.** La numeración es provisional y no corresponde al desarrollo de la sección 3 oficial todavía no recibida. Estos puntos organizan decisiones pendientes; no constituyen un preregistro.
 
-Antes de entrenar se fijarán la versión de datos, entradas, objetivo, horizonte, cohortes y disponibilidad causal. Las transformaciones se aprenderán únicamente con entrenamiento permitido y se documentarán las reglas temporales. Si se conserva forward chaining, se registrarán sus orígenes, embargo y política de reajuste.
+La [sección 1](01_punto_partida.md) fija la herencia de la fase II D7: datos, entrada, objetivo, horizonte, métrica primaria, δ, unidad de independencia y partición. Se conserva forward chaining con sus orígenes y embargo. Las transformaciones se aprenderán únicamente con entrenamiento permitido. No se redefinen estos elementos para obtener un resultado más favorable.
 
-El diseño identificará las referencias con las que se comparará la propuesta, el espacio y presupuesto de optimización, la métrica primaria, el margen y la multiplicidad. Un piloto del procedimiento de E2 permitirá estimar la variabilidad pareada y dimensionar sus repeticiones. **R=465 y el margen de E1 no se transfieren automáticamente a un modelo nuevo.**
+Faltan el catálogo completo, el espacio y presupuesto comparable de optimización, el esquema operativo de incertidumbre y la familia final de comparaciones. Un piloto del procedimiento de E2 permitirá estimar la variabilidad pareada y dimensionar sus repeticiones. **El margen δ sí se hereda; R=465 no determina automáticamente las repeticiones de nuevos modelos ni acredita potencia para el benchmark de diez.**
 
-La evaluación debe asignarse explícitamente antes de consultar sus resultados. Reutilizar para desarrollo un periodo conocido puede ser legítimo si se declara, pero no lo convierte en confirmación independiente. No se asignan aquí otras fechas ni se adquieren nuevos datos.
+La reserva heredada ya fue evaluada en E1. Su reutilización conserva alcance exploratorio; no se declara desconocida, no se reasigna a entrenamiento y no se inventa aquí otro periodo de test. Cualquier cambio futuro del contrato requeriría una enmienda explícita y compatible con la guía completa.
 
 Se conservarán configuración, código, semillas, hashes y fechas de las decisiones. La unidad de repetición y la incertidumbre temporal se tratarán por separado.

@@ -1,10 +1,12 @@
-# 4. Experimentos y resultados
+# Página de trabajo 4 · Experimentos y resultados
 
 **Todavía no existen corridas, modelos entrenados ni resultados de E2.** Las métricas citadas en el capítulo 1 pertenecen al antecedente E1 y no se presentan como resultados nuevos.
 
+Esta página tiene numeración provisional; no desarrolla la sección 4 oficial de la guía todavía no recibida.
+
 | Evidencia de E2 | Estado |
 |---|---|
-| Implementación de la propuesta | Pendiente de selección y diseño |
+| Catálogo e implementación de diez modelos | Pendientes de selección, guía completa y diseño |
 | Piloto y dimensionamiento | Sin ejecutar |
 | Ajuste de hiperparámetros | Sin ejecutar |
 | Comparación definitiva | Sin ejecutar |

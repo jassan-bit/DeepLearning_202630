@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "created_at_utc": "2026-11-05T20:48:00.258306+00:00",
   "source_commit": "94a4b0324e93361e8928d708fdfeb50110e3686f",
   "source_book": "https://jassan-bit.github.io/DeepLearning_202630/intro.html",
@@ -15,6 +15,21 @@
     "results/gru_lstm_tcn_planned_20261105/dimensioning.json": {
       "url": "https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/results/gru_lstm_tcn_planned_20261105/dimensioning.json",
       "sha256": "a5f58378ed80cc05563244abb650ba071df140ae5e68b2c4c56a05f8d910c8e2"
+    },
+    "results/gru_lstm_tcn_planned_20261105/design.json": {
+      "repository_path": "results/gru_lstm_tcn_planned_20261105/design.json",
+      "url": "https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/results/gru_lstm_tcn_planned_20261105/design.json",
+      "sha256": "80e804a9a4c0ae4c053f02bf62a2b4315c9ddadbb0b0e3951b09652a9964a81c"
+    },
+    "data/manifests/binance_spot_BTCUSDT_1m_20230101_20261030.json": {
+      "repository_path": "data/manifests/binance_spot_BTCUSDT_1m_20230101_20261030.json",
+      "url": "https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/data/manifests/binance_spot_BTCUSDT_1m_20230101_20261030.json",
+      "sha256": "af723bcca2caffcbe44ae5243e2863bbcdcd39ae8cd42df491af0a2857926bb2"
+    },
+    "book/sections/09_estudio_planificado.md": {
+      "repository_path": "book/sections/09_estudio_planificado.md",
+      "url": "https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/book/sections/09_estudio_planificado.md",
+      "sha256": "2058bc204c9e463265da1175118ab07ad315c5cac7a08a835eb7c9ab901d674d"
     }
   },
   "registered_baseline": {
@@ -24,7 +39,8 @@
     "width": 16,
     "parameters": 1121,
     "learning_rate": 0.003,
-    "dropout": 0.1
+    "dropout": 0.1,
+    "selection_scope": "Elegido mediante CV antes del piloto y de la evaluación de fase II; no se sustituye por el ranking de test"
   },
   "e1_phase_II_reserve": {
     "start": "2026-09-01",
@@ -36,12 +52,174 @@
       "TCN": 0.004339669041430868,
       "Persistence": 0.0038447757256001077
     },
-    "status_for_e2": "already_observed; not a new confirmatory test"
+    "status_for_e2": "already_observed; not a new confirmatory test",
+    "result_scope": "Media de RMSE por trayectoria en la reserva ya conocida, conservada como antecedente de E1"
   },
   "transfer_policy": {
+    "e1_three_base_models_inherited_without_change": true,
+    "e1_primary_metric_inherited_without_change": true,
+    "e1_delta_inherited_without_change": true,
+    "e1_independence_unit_inherited_without_change": true,
+    "e1_partition_inherited_without_change": true,
     "e1_R_465_is_not_e2_sample_size": true,
-    "e1_delta_is_not_an_approved_e2_margin": true,
+    "sample_size_reason": "E1 dimensionó sus tres pares y su variabilidad piloto; nuevas familias/comparaciones requieren dimensionamiento propio sin cambiar el margen heredado",
+    "e2_benchmark_target_models": 10,
+    "e2_ten_model_catalogue_selected": false,
     "e2_model_selected": false,
-    "e2_experiments_executed": false
+    "e2_experiments_executed": false,
+    "e2_new_unseen_test_available": false,
+    "historical_results_may_be_labeled_confirmatory_for_e2": false
+  },
+  "updated_on_colombia": "2026-11-05",
+  "administrative_timezone": "America/Bogota",
+  "inheritance_basis": {
+    "source": "Guía de Entregable 2, imágenes aportadas por el usuario, páginas 1–3",
+    "received_date_colombia": "2026-11-05",
+    "rule": "Baseline, métrica primaria, margen δ, unidad de independencia y partición se heredan de E1 sin modificarse",
+    "guide_record": "guia_e2_recibida.json",
+    "full_guide_received": false
+  },
+  "base_model_recipes": {
+    "GRU": {
+      "candidate_id": "c03",
+      "width": 16,
+      "learning_rate": 0.003,
+      "dropout": 0.1,
+      "model": "GRU",
+      "history_days": 7,
+      "mean_rmse": 0.005136197693706435,
+      "sample_sd": 3.067925167633123e-05,
+      "parameters": 1121
+    },
+    "LSTM": {
+      "candidate_id": "c02",
+      "width": 16,
+      "learning_rate": 0.003,
+      "dropout": 0.0,
+      "model": "LSTM",
+      "history_days": 7,
+      "mean_rmse": 0.006263890287288932,
+      "sample_sd": 0.00021401934268919446,
+      "parameters": 1489
+    },
+    "TCN": {
+      "candidate_id": "c02",
+      "width": 8,
+      "learning_rate": 0.003,
+      "dropout": 0.0,
+      "model": "TCN",
+      "history_days": 7,
+      "mean_rmse": 0.005436975510979903,
+      "sample_sd": 0.0005699848942024205,
+      "parameters": 1185
+    }
+  },
+  "recipe_score_scope": "Los campos mean_rmse y sample_sd proceden de selección HPO de E1; no son resultados de E2 ni del test.",
+  "recipe_architectures": {
+    "GRU": {
+      "recurrent_layers": 1,
+      "bidirectional": false,
+      "output": "Scalar Softplus"
+    },
+    "LSTM": {
+      "recurrent_layers": 1,
+      "bidirectional": false,
+      "output": "Scalar Softplus"
+    },
+    "TCN": {
+      "residual_blocks": 3,
+      "convolutions_per_block": 2,
+      "kernel_size": 3,
+      "dilations": [
+        1,
+        2,
+        4
+      ],
+      "causal": true,
+      "receptive_field_days": 29,
+      "prediction_position": "Última posición",
+      "output": "Scalar Softplus"
+    }
+  },
+  "primary_metric": {
+    "name": "RMSE",
+    "direction": "minimize",
+    "scale": "Volatilidad no anualizada en unidades de retorno logarítmico diario",
+    "aggregation": "RMSE por trayectoria sobre todas las fechas elegibles de la cohorte; después media entre semillas",
+    "inverse_target_scaling_before_scoring": true,
+    "not_equivalent_to": [
+      "RMSE de la predicción promediada entre semillas",
+      "Raíz del MSE agregado sobre semilla por fecha",
+      "Media no ponderada de RMSE mensuales"
+    ]
+  },
+  "practical_margin": {
+    "absolute_delta": 0.00025772842664981106,
+    "inherited_without_modification": true,
+    "origin": "0.05 × RMSE de CV de GRU/D7 de la fase I",
+    "original_anchor_rmse": 0.005154568532996221,
+    "relative_anchor_fraction": 0.05,
+    "anchor_is_not_phase_II_reserve_or_tuned_cv": true,
+    "scope": "Margen académico, sin tolerancia de riesgo ni utilidad financiera demostradas",
+    "chronology": "Definido después de la fase I y antes de puntuar la reserva de fase II; en E2 se hereda sin atribuirlo retrospectivamente al test histórico",
+    "additional_e1_relative_convention": "E1 distingue el margen absoluto de planificación y la mejora relativa superior al 5 % frente a GRU/D7 y persistencia; los denominadores no se sustituyen por el RMSE de otro periodo"
+  },
+  "independence": {
+    "observational_unit": "Origen temporal diario con su ventana OHLCV y etiqueta futura",
+    "market_unit": "Una serie BTCUSDT de Binance Spot",
+    "independent_market_count": 1,
+    "conditional_randomization_unit": "Semilla de inicialización y orden de entrenamiento, pareada entre recetas y condicionada al mismo calendario",
+    "dependent_observations": "Fechas y etiquetas móviles solapadas; meses/folds y semillas no son mercados independientes",
+    "generalization": "Los intervalos entre semillas describen variabilidad de entrenamiento condicionada al calendario; no generalización a otros activos o exchanges"
+  },
+  "partition": {
+    "source_phase": "Entregable 1, fase II D7; herencia explícita, sin reasignar la fase I",
+    "timezone": "UTC",
+    "random_shuffle": false,
+    "initial_history": {
+      "start": "2023-01-01",
+      "end_inclusive": "2023-12-31"
+    },
+    "hpo_forward_chaining": {
+      "start": "2024-01-01",
+      "end_inclusive": "2024-10-31",
+      "monthly_blocks": 10,
+      "training_window": "expanding",
+      "embargo_days": 7,
+      "selection": "Media entre semillas del RMSE sobre todas las fechas de validación concatenadas; no media de RMSE mensuales"
+    },
+    "pilot": {
+      "start": "2024-11-01",
+      "end_inclusive": "2024-12-30",
+      "calendar_days": 60,
+      "weights": "Ajustadas antes del origen 2024-11-01 y conservadas para las 60 fechas"
+    },
+    "final_fit": {
+      "development_start": "2023-01-01",
+      "development_end_inclusive": "2024-12-31",
+      "nominal_origin": "2025-01-01",
+      "training_outcome_max": "2024-12-24",
+      "embargo_days": 7,
+      "inner_validation_calendar_days": 90,
+      "weights_and_scalers_frozen_during_evaluation": true,
+      "training_labels_2025_2026_allowed": false
+    },
+    "phase_II_evaluation": {
+      "start": "2026-09-01",
+      "end_inclusive": "2026-10-30",
+      "calendar_days": 60,
+      "already_observed": true,
+      "status_for_e2": "Reserva histórica ya evaluada en E1; reutilización exploratoria, no test nuevo sellado"
+    },
+    "phase_I_archive": {
+      "start": "2025-01-01",
+      "end_inclusive": "2026-08-31",
+      "calendar_days": 608,
+      "already_observed": true,
+      "role": "Archivo histórico de E1, sin reasignación a entrenamiento ni a test desconocido de E2"
+    },
+    "new_unseen_e2_test_assigned": false,
+    "new_dates_acquired_for_e2": false,
+    "e2_evaluation_scope": "La herencia mantiene el calendario; los periodos ya conocidos solo permiten nuevas comparaciones exploratorias. No se declara un test confirmatorio independiente."
   }
 }

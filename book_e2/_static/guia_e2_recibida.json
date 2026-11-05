@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "received_date_colombia": "2026-11-05",
+  "administrative_timezone": "America/Bogota",
+  "source_type": "Tres imágenes aportadas directamente por el usuario en la conversación",
+  "document_title": "Proyecto Final de Deep Learning: Entregable 2",
+  "received_page_numbers": [
+    1,
+    2,
+    3
+  ],
+  "full_pdf_received": false,
+  "scope_received": [
+    "Portada, objetivo, estándar de calidad y cómo leer el documento",
+    "Relación con los otros entregables",
+    "Sección 1: Definición del problema, preguntas de investigación y dataset"
+  ],
+  "objective": {
+    "systematic_literature_review": true,
+    "decision_oriented_eda": true,
+    "benchmark_model_count": 10,
+    "same_reproducible_leakage_free_protocol": true,
+    "methodological_route": "Sección 7, según el tipo de problema",
+    "required_conclusions": [
+      "Inferencia estadística formal",
+      "Robustez",
+      "Calibración",
+      "Incertidumbre",
+      "Interpretabilidad",
+      "Gap de investigación con hipótesis contrastable"
+    ]
+  },
+  "precedence": "Cuando una sección posterior precisa una anterior, prevalece la más restrictiva; el texto de esas secciones posteriores aún no ha sido aportado",
+  "inheritance": {
+    "from_deliverable": 1,
+    "inherited_without_modification": [
+      "Tres modelos base y baseline de referencia",
+      "Métrica primaria",
+      "Margen de relevancia práctica δ",
+      "Unidad de independencia",
+      "Partición"
+    ],
+    "selected_source": "Fase II D7 de E1, identificada explícitamente y fijada por commit",
+    "source_commit": "94a4b0324e93361e8928d708fdfeb50110e3686f",
+    "contract_file": "e1_reference.json",
+    "deliverable_3": "Reutiliza y congela los resultados de E2; no se modifica ni completa aquí"
+  },
+  "section_1_requirements": [
+    {
+      "id": "1.problem.formalization",
+      "requirement": "Entradas x, salidas y, espacio de hipótesis H, pérdida L, riesgo esperado y estimación empírica en prueba sellada"
+    },
+    {
+      "id": "1.problem.task",
+      "requirement": "Identificar uno de los diez tipos de tarea admitidos y justificar la ruta"
+    },
+    {
+      "id": "1.problem.relevance",
+      "requirement": "Relevancia científica y aplicada con al menos tres referencias"
+    },
+    {
+      "id": "1.problem.metrics",
+      "requirement": "Métrica primaria, métricas secundarias y margen δ justificado; heredados de E1"
+    },
+    {
+      "id": "1.problem.independence",
+      "requirement": "Declarar unidad de independencia que condiciona partición, bootstrap y pruebas"
+    },
+    {
+      "id": "1.research.questions",
+      "requirement": "Al menos tres RQ claras, contrastables y no triviales"
+    },
+    {
+      "id": "1.research.hypotheses",
+      "requirement": "H0/H1, prueba, alfa, efecto mínimo de interés y criterio de decisión para cada RQ"
+    },
+    {
+      "id": "1.research.scope",
+      "requirement": "Clasificar cada RQ confirmatoria o exploratoria; evitar atribuir carácter previo a decisiones posteriores"
+    },
+    {
+      "id": "1.dataset.selection",
+      "requirement": "Relevancia, tamaño, calidad, uso previo en literatura Q1 y justificación del dataset"
+    },
+    {
+      "id": "1.dataset.terms",
+      "requirement": "Licencia, procedencia, ética y privacidad"
+    },
+    {
+      "id": "1.dataset.limitations",
+      "requirement": "Limitaciones conocidas, representatividad y sesgos de recolección"
+    },
+    {
+      "id": "1.dataset.officialsplit",
+      "requirement": "Justificar uso o no de partición oficial si existe benchmark público"
+    },
+    {
+      "id": "1.datacard.size",
+      "requirement": "Tamaño y estructura del dataset"
+    },
+    {
+      "id": "1.datacard.labels",
+      "requirement": "Objetivo, protocolo de etiquetado, ruido y acuerdo entre anotadores si aplica"
+    },
+    {
+      "id": "1.datacard.version",
+      "requirement": "Versión y hash o suma de verificación"
+    },
+    {
+      "id": "1.datacard.collection",
+      "requirement": "Recolección, periodo, cobertura geográfica o poblacional y filtros"
+    }
+  ],
+  "implementation_status": {
+    "chapter_1_documentation": "Desarrollada a partir de las páginas recibidas; no acredita ejecución de E2",
+    "inherited_contract_recorded": true,
+    "dataset_card_recorded": true,
+    "manifest_copy_metadata_only": true,
+    "benchmark_ten_model_catalogue_selected": false,
+    "e2_experiments_executed": false,
+    "new_sealed_test_available": false,
+    "inherited_test_limitation": "Los calendarios de prueba de E1 ya se conocen. Las nuevas comparaciones en ellos se clasifican exploratorias; no se inventa una nueva prueba sellada ni se cambia unilateralmente la partición.",
+    "e2_sample_size_determined": false,
+    "sample_size_note": "R=465 corresponde a las comparaciones y piloto de E1; no se traslada automáticamente a diez modelos o hipótesis nuevas"
+  },
+  "pending_source_material": {
+    "later_sections": "Texto completo de secciones 2–14 y apéndices",
+    "benchmark_composition": "No resolver como 3+7 o diez adicionales sin leer el requisito completo",
+    "compliance_scope": "No declarar cumplimiento de apartados cuyo texto aún no se ha recibido"
+  },
+  "source_caution": "Este registro transcribe y estructura requisitos visibles de imágenes; no representa lectura de un PDF completo ni una evaluación cerrada del entregable."
+}

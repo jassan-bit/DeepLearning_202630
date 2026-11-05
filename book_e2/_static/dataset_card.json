@@ -1,0 +1,336 @@
+{
+  "schema_version": 1,
+  "review_date_colombia": "2026-11-05",
+  "administrative_timezone": "America/Bogota",
+  "title": "Data Card heredada: Binance Spot BTCUSDT, 1 minuto → OHLCV diario UTC",
+  "version": {
+    "source_commit_e1": "94a4b0324e93361e8928d708fdfeb50110e3686f",
+    "manifest_sha256": "af723bcca2caffcbe44ae5243e2863bbcdcd39ae8cd42df491af0a2857926bb2",
+    "version_type": "Instantánea de adquisición de E1; no descarga nueva ni datos de precios reempaquetados"
+  },
+  "provenance": {
+    "provider": "Binance Vision / Binance Spot",
+    "symbol": "BTCUSDT",
+    "base_asset": "BTC",
+    "quote_asset": "USDT",
+    "segment": "Spot",
+    "source_catalogue": "https://data.binance.vision/",
+    "provider_repository": "https://github.com/binance/binance-public-data",
+    "provider_schema": "https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md#klinecandlestick-data",
+    "collection_started_at_utc": "2026-11-02T14:47:23.801891+00:00",
+    "collection_finished_at_utc": "2026-11-02T14:47:45.969611+00:00",
+    "acquisition_manifest": "dataset_manifest_e1.json",
+    "manifest_metadata_only": true,
+    "e1_original_manifest": {
+      "repository_path": "data/manifests/binance_spot_BTCUSDT_1m_20230101_20261030.json",
+      "url": "https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/data/manifests/binance_spot_BTCUSDT_1m_20230101_20261030.json",
+      "sha256": "af723bcca2caffcbe44ae5243e2863bbcdcd39ae8cd42df491af0a2857926bb2"
+    },
+    "live_source_or_terms_reverified_during_this_update": false
+  },
+  "coverage": {
+    "start_inclusive_utc": "2023-01-01",
+    "end_inclusive_utc": "2026-10-30",
+    "calendar_days": 1399,
+    "geographic_scope": "Mercado electrónico global de un proveedor; sin unidades geográficas o poblacionales individuales",
+    "assets_and_venues": "Un activo/par y un exchange; no índice agregado de exchanges"
+  },
+  "size": {
+    "verified_archives": 75,
+    "compressed_bytes": 97442605,
+    "raw_csv_rows": 2014480,
+    "raw_columns": 12,
+    "expected_calendar_minutes": 2014560,
+    "e2_supervised_sample_count": null,
+    "count_scope": "Recuentos del manifiesto de E1, no ventanas supervisadas ni tamaño de muestra independiente"
+  },
+  "schema": {
+    "source_frequency": "1 minute",
+    "source_format": "CSV de 12 columnas dentro de ZIP oficiales",
+    "column_names_follow": "scripts/planned_study_data.py:COLUMNS",
+    "columns": [
+      {
+        "position_1_based": 1,
+        "name": "open_time",
+        "type": "integer timestamp",
+        "unit": "ms antes de 2025; us desde 2025",
+        "meaning": "Inicio de la vela"
+      },
+      {
+        "position_1_based": 2,
+        "name": "open",
+        "type": "numeric",
+        "unit": "USDT por BTC",
+        "meaning": "Precio de apertura"
+      },
+      {
+        "position_1_based": 3,
+        "name": "high",
+        "type": "numeric",
+        "unit": "USDT por BTC",
+        "meaning": "Precio máximo"
+      },
+      {
+        "position_1_based": 4,
+        "name": "low",
+        "type": "numeric",
+        "unit": "USDT por BTC",
+        "meaning": "Precio mínimo"
+      },
+      {
+        "position_1_based": 5,
+        "name": "close",
+        "type": "numeric",
+        "unit": "USDT por BTC",
+        "meaning": "Precio de cierre"
+      },
+      {
+        "position_1_based": 6,
+        "name": "volume",
+        "type": "numeric",
+        "unit": "BTC",
+        "meaning": "Volumen del activo base"
+      },
+      {
+        "position_1_based": 7,
+        "name": "close_time",
+        "type": "integer timestamp",
+        "unit": "ms antes de 2025; us desde 2025",
+        "meaning": "Cierre de la vela"
+      },
+      {
+        "position_1_based": 8,
+        "name": "quote_volume",
+        "type": "numeric",
+        "unit": "USDT",
+        "meaning": "Volumen del activo cotizado"
+      },
+      {
+        "position_1_based": 9,
+        "name": "trades",
+        "type": "integer",
+        "unit": "count",
+        "meaning": "Número de operaciones"
+      },
+      {
+        "position_1_based": 10,
+        "name": "taker_base",
+        "type": "numeric",
+        "unit": "BTC",
+        "meaning": "Volumen comprador taker del activo base"
+      },
+      {
+        "position_1_based": 11,
+        "name": "taker_quote",
+        "type": "numeric",
+        "unit": "USDT",
+        "meaning": "Volumen comprador taker del activo cotizado"
+      },
+      {
+        "position_1_based": 12,
+        "name": "ignore",
+        "type": "source field",
+        "unit": "No utilizado",
+        "meaning": "Campo del proveedor ignorado por el modelo"
+      }
+    ],
+    "model_frequency": "1 day",
+    "calendar_timezone": "UTC",
+    "model_features": [
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume"
+    ],
+    "input_shape_per_example": [
+      7,
+      5
+    ],
+    "output_shape_per_example": [
+      1
+    ],
+    "daily_aggregation": {
+      "open": "Primera apertura",
+      "high": "Máximo de máximos",
+      "low": "Mínimo de mínimos",
+      "close": "Último cierre",
+      "volume": "Suma de volúmenes"
+    },
+    "eligible_daily_bar": "1440 minutos válidos del mismo día UTC; conservar posiciones de días incompletos como ausentes"
+  },
+  "label_protocol": {
+    "annotation": "Determinista, sin anotación humana",
+    "target": "Desviación estándar poblacional de siete retornos logarítmicos diarios consecutivos",
+    "formula": "r_d=ln(P_d/P_(d-1)); y_d=sqrt((1/7)*sum_(i=0)^6 (r_(d-i)-mean(r_d,...,r_(d-6)))^2)",
+    "ddof": 0,
+    "return_count": 7,
+    "required_consecutive_closes": 8,
+    "annualized": false,
+    "multiplied_by_100": false,
+    "forecast_horizon_days": 1,
+    "input_history_days": 7,
+    "input_support": "[outcome_day-7,outcome_day)",
+    "target_lags_added": false,
+    "label_available": "Al concluir el día de resultado; el último retorno todavía no está disponible al emitir el pronóstico",
+    "loss": "MSE",
+    "primary_metric": "RMSE en escala original",
+    "noise": [
+      "Proxy de dispersión de retornos observados; no medición sin error de volatilidad latente",
+      "Incertidumbre por ventana finita, calidad del proveedor y microestructura",
+      "Etiquetas consecutivas comparten seis retornos; no siete días enteramente futuros"
+    ],
+    "noise_magnitude_measured": false,
+    "inter_annotator_agreement": "No aplica: no hay anotación humana"
+  },
+  "quality": {
+    "source": "Resumen del manifiesto de adquisición de E1 y su política documentada",
+    "manifest_summary": {
+      "verified_archives": 75,
+      "failed_archives": 0,
+      "download_complete": true,
+      "verified_bytes": 97442605,
+      "csv_rows": 2014480,
+      "expected_minutes_full_request": 2014560,
+      "missing_minutes_within_verified_archives": 80,
+      "duplicate_open_times": 0,
+      "out_of_range_rows": 0,
+      "unaligned_open_times": 0,
+      "unexpected_close_times": 1
+    },
+    "missing_calendar_minutes": 80,
+    "invalid_close_time_rows": 1,
+    "missing_vs_invalid_distinction": "80 filas ausentes y una fila presente con cierre temporal no estándar; 81 posiciones no elegibles, sin sumar una fila inexistente al recuento bruto",
+    "affected_development_day_utc": "2023-03-24",
+    "cleaning_policy": "Brutos intactos; no imputar, interpolar ni comprimir calendario. Excluir días incompletos y todas las ventanas/etiquetas que dependan de ellos",
+    "new_raw_archive_or_price_inspection_in_e2_update": false
+  },
+  "representation": {
+    "variant": "relative_window",
+    "ohlc": "Logaritmos relativos al último cierre observable de la ventana",
+    "volume": "log1p(volume)",
+    "learned_scaling": "Solo entrenamiento admisible; escalas X y media positiva de Y",
+    "metrics": "Después de invertir la escala del objetivo"
+  },
+  "partition": {
+    "source_phase": "Entregable 1, fase II D7; herencia explícita, sin reasignar la fase I",
+    "timezone": "UTC",
+    "random_shuffle": false,
+    "initial_history": {
+      "start": "2023-01-01",
+      "end_inclusive": "2023-12-31"
+    },
+    "hpo_forward_chaining": {
+      "start": "2024-01-01",
+      "end_inclusive": "2024-10-31",
+      "monthly_blocks": 10,
+      "training_window": "expanding",
+      "embargo_days": 7,
+      "selection": "Media entre semillas del RMSE sobre todas las fechas de validación concatenadas; no media de RMSE mensuales"
+    },
+    "pilot": {
+      "start": "2024-11-01",
+      "end_inclusive": "2024-12-30",
+      "calendar_days": 60,
+      "weights": "Ajustadas antes del origen 2024-11-01 y conservadas para las 60 fechas"
+    },
+    "final_fit": {
+      "development_start": "2023-01-01",
+      "development_end_inclusive": "2024-12-31",
+      "nominal_origin": "2025-01-01",
+      "training_outcome_max": "2024-12-24",
+      "embargo_days": 7,
+      "inner_validation_calendar_days": 90,
+      "weights_and_scalers_frozen_during_evaluation": true,
+      "training_labels_2025_2026_allowed": false
+    },
+    "phase_II_evaluation": {
+      "start": "2026-09-01",
+      "end_inclusive": "2026-10-30",
+      "calendar_days": 60,
+      "already_observed": true,
+      "status_for_e2": "Reserva histórica ya evaluada en E1; reutilización exploratoria, no test nuevo sellado"
+    },
+    "phase_I_archive": {
+      "start": "2025-01-01",
+      "end_inclusive": "2026-08-31",
+      "calendar_days": 608,
+      "already_observed": true,
+      "role": "Archivo histórico de E1, sin reasignación a entrenamiento ni a test desconocido de E2"
+    },
+    "new_unseen_e2_test_assigned": false,
+    "new_dates_acquired_for_e2": false,
+    "e2_evaluation_scope": "La herencia mantiene el calendario; los periodos ya conocidos solo permiten nuevas comparaciones exploratorias. No se declara un test confirmatorio independiente."
+  },
+  "independence": {
+    "observational_unit": "Origen temporal diario con su ventana OHLCV y etiqueta futura",
+    "market_unit": "Una serie BTCUSDT de Binance Spot",
+    "independent_market_count": 1,
+    "conditional_randomization_unit": "Semilla de inicialización y orden de entrenamiento, pareada entre recetas y condicionada al mismo calendario",
+    "dependent_observations": "Fechas y etiquetas móviles solapadas; meses/folds y semillas no son mercados independientes",
+    "generalization": "Los intervalos entre semillas describen variabilidad de entrenamiento condicionada al calendario; no generalización a otros activos o exchanges"
+  },
+  "license": {
+    "provider_terms_name": "Binance Vision Dataset Terms",
+    "version": "1.0",
+    "last_updated_in_snapshot": "2026-08-26",
+    "snapshot_review_date": "2026-11-03",
+    "source_url": "https://raw.githubusercontent.com/binance/binance-public-data/master/TERMS_AND_CONDITIONS.md",
+    "snapshot_sha256": "99c4921dbe023cd68c1a447775707d621453cc78aec6ac0bfe2e6c06a5114ee0",
+    "snapshot_e1_url": "https://jassan-bit.github.io/DeepLearning_202630/_static/data_source/TERMS_AND_CONDITIONS.md",
+    "snapshot_repository": {
+      "repository_path": "book/_static/data_source/TERMS_AND_CONDITIONS.md",
+      "url": "https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/book/_static/data_source/TERMS_AND_CONDITIONS.md",
+      "sha256": "99c4921dbe023cd68c1a447775707d621453cc78aec6ac0bfe2e6c06a5114ee0"
+    },
+    "license_in_snapshot": "CC BY-NC-SA 4.0 salvo designación específica, junto con condiciones adicionales del proveedor",
+    "public_access_is_unrestricted_redistribution": false,
+    "distribution_in_this_update": "Solo Data Card y manifiesto de procedencia/checksums; no ZIP ni vectores de precios",
+    "use_scope": "Benchmark académico; sin afirmación de utilidad financiera"
+  },
+  "limitations": [
+    "Un mercado y una serie; resultados no equivalen a validación en otras criptomonedas o exchanges",
+    "Cobertura histórica limitada y cambios de régimen; no muestreo aleatorio de todos los mercados",
+    "USDT y USD no son cotizaciones automáticamente equivalentes",
+    "OHLCV diario no representa toda la información intradiaria, noticias ni libro de órdenes",
+    "La reserva heredada ya se observó: no es test nuevo desconocido de E2"
+  ],
+  "official_benchmark": {
+    "binance_official_train_validation_test_split_for_this_task": null,
+    "same_exact_version_and_target_in_reviewed_papers_verified": false,
+    "policy": "Se mantiene el protocolo propio de E1; no se atribuye al proveedor una partición oficial ni se equiparan sin prueba los datasets de la literatura"
+  },
+  "evidence": [
+    {
+      "repository_path": "data/manifests/binance_spot_BTCUSDT_1m_20230101_20261030.json",
+      "url": "https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/data/manifests/binance_spot_BTCUSDT_1m_20230101_20261030.json",
+      "sha256": "af723bcca2caffcbe44ae5243e2863bbcdcd39ae8cd42df491af0a2857926bb2"
+    },
+    {
+      "repository_path": "results/gru_lstm_tcn_planned_20261105/design.json",
+      "url": "https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/results/gru_lstm_tcn_planned_20261105/design.json",
+      "sha256": "80e804a9a4c0ae4c053f02bf62a2b4315c9ddadbb0b0e3951b09652a9964a81c"
+    },
+    {
+      "repository_path": "scripts/planned_study_data.py",
+      "url": "https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/scripts/planned_study_data.py",
+      "sha256": "f4b732b24a86e9879b53e7a731c0ef2b606bb49fb0a546997ab0e46448232523"
+    },
+    {
+      "repository_path": "book/sections/01_problema_dataset.md",
+      "url": "https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/book/sections/01_problema_dataset.md",
+      "sha256": "a211ea2c96c9908535dedecb578fdcdf3c8b16a01d27b51ce19b39efece6e4e6"
+    },
+    {
+      "repository_path": "book/_static/data_source/terms_snapshot.json",
+      "url": "https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/book/_static/data_source/terms_snapshot.json",
+      "sha256": "e1f9b801799b5ccdb293e98945ca0fae942d74f3d14eb018ca88aba4d74029b5"
+    }
+  ],
+  "execution_status": {
+    "e2_models_trained": false,
+    "e2_new_test_assigned": false,
+    "e2_new_data_acquired": false,
+    "e2_ten_model_catalogue_selected": false
+  }
+}

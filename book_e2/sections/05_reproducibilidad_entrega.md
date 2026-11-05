@@ -1,6 +1,8 @@
-# 5. Reproducibilidad y entrega
+# Página de trabajo 5 · Reproducibilidad y entrega
 
 Este libro se construye desde `book_e2/`, con `_config.yml` e `_toc.yml` propios. Comparte el repositorio y el entorno editorial con E1/E3, pero su compilación no importa las carpetas de esos libros ni ejecuta sus experimentos.
+
+Esta página tiene numeración provisional. La guía recibida sitúa reproducibilidad, ética y comunicación en su sección 8; se incorporará su detalle cuando esté disponible.
 
 Desde la raíz del repositorio, después de instalar `requirements-book.lock.txt` en un entorno Python 3.12:
 
@@ -11,4 +13,6 @@ Desde la raíz del repositorio, después de instalar `requirements-book.lock.txt
 
 El workflow común publica este HTML en `/entregable2/`, junto con los otros libros en sus rutas. La construcción del informe no entrena redes ni abre datos de mercado.
 
-El código experimental, dependencias de entrenamiento, registros, resultados y materiales de entrega específicos se incorporarán después de definir la propuesta y conocer la guía oficial. El estado inicial del sitio no significa que esas evidencias ya existan.
+Ya están disponibles los metadatos propios de E2: [contrato heredado](../_static/e1_reference.json), [Data Card](../_static/dataset_card.json), [manifiesto de la fuente](../_static/dataset_manifest_e1.json) y [registro de las páginas 1–3 recibidas](../_static/guia_e2_recibida.json). La bibliografía editorial de E2 se conserva en `references.bib`.
+
+El código experimental, dependencias de entrenamiento, registros de corridas y resultados específicos se incorporarán tras cerrar el catálogo y el protocolo con la guía restante. La existencia de este libro y sus metadatos no significa que el benchmark de E2 ya esté ejecutado.
