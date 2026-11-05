@@ -1,0 +1,215 @@
+{
+  "decision_id": "diversity_constrained_three_reference_recipes_D7_20261105",
+  "decided_at_utc": "2026-11-05T03:13:11.383241+00:00",
+  "decided_at_bogota": "2026-11-04T22:13:11.383241-05:00",
+  "source_commit_at_compilation": "6a6a091926fecdef1fcb197bee9c54698019ea84",
+  "temporal_status": "New selection and fixed-recipe decision for a subsequent D7 study; made after the historical benchmark and the already documented pilot. It does not rewrite their chronology.",
+  "registration_binding": "The subsequent protocol must record the SHA-256 of this file before starting its new pilot or definitive runs. This file does not claim that those runs have already happened.",
+  "scope": "Exactly three fixed reference recipes for a conditional-on-calendar D7 comparison; no claim of three globally most frequent architectures or best attainable family performance.",
+  "corpus": {
+    "study_ids": [
+      "S1",
+      "S2",
+      "S5",
+      "S6",
+      "S7",
+      "S8"
+    ],
+    "included_full_texts": 6,
+    "bibliographic_references": 36,
+    "new_included_full_texts_in_this_pass": 0,
+    "counting_unit": "One included full-text study per independently evaluated family; two MLP variants in S8 count once.",
+    "family_counts": {
+      "LSTM_including_BiLSTM": 5,
+      "LSTM_unidirectional_explicit": 3,
+      "LSTM_direction_unspecified": 1,
+      "BiLSTM": 1,
+      "GRU": 3,
+      "TCN": 1,
+      "Transformer_encoder": 2,
+      "independent_nonlinear_MLP": 1,
+      "independent_shallow_CNN_dimension_unspecified": 1,
+      "simple_independent_CNN1D_explicit": 0
+    },
+    "limits": "Bounded exploratory corpus, including grey literature and source-reporting limits; not a global prevalence estimate."
+  },
+  "selection_rule": {
+    "form": "Diversity-constrained choice, not an unconstrained frequency ranking",
+    "slots": [
+      {
+        "slot": "pointwise_feedforward",
+        "required_inductive_bias": "Flat nonlinear interactions on the flattened covariate window",
+        "selected": "MLP",
+        "reason": "Provides a direct feedforward reference without learned recurrent state or convolutional weight sharing; one independent applied source S8."
+      },
+      {
+        "slot": "gated_recurrent",
+        "required_inductive_bias": "Sequential recurrent memory",
+        "selected": "LSTM",
+        "within_slot_candidates": [
+          "LSTM",
+          "GRU"
+        ],
+        "within_slot_rule": "Prefer the more recurrent family in the included corpus; LSTM5/6 exceeds GRU3/6. Their gating mechanisms differ, but both occupy the recurrent-memory slot."
+      },
+      {
+        "slot": "local_convolutional",
+        "required_inductive_bias": "Local temporal filters with shared weights",
+        "selected": "CNN1D",
+        "within_slot_candidates": [
+          "ordinary shallow CNN adaptation",
+          "TCN"
+        ],
+        "within_slot_rule": "Use an ordinary two-convolution-layer reference with no dilation, residual connection or attention. S8 documents a shallow independent CNN; its source dimensionality remains unknown. The project uses Conv1D because its input is time×covariates, without a spatial image grid."
+      }
+    ],
+    "role_of_frequency": "Frequency selects LSTM within the recurrent slot and characterizes the strength of each source base. It is not claimed to make MLP/CNN more recurrent than GRU or encoder models.",
+    "role_of_simplicity": "Simplicity is demonstrated for the implemented D7 recipes by layer structure and measured parameter counts, not by invented missing source widths or global literature parameter rankings.",
+    "no_unique_solution_claim": "A different declared objective could choose GRU or an encoder; this constrained three-slot design does not prove all alternatives inferior."
+  },
+  "selected_families": [
+    "MLP",
+    "LSTM",
+    "CNN1D"
+  ],
+  "recipes": {
+    "MLP": {
+      "role": "Flat pointwise nonlinear mapping on the flattened causal window",
+      "hidden_layers": 1,
+      "hidden_width": 16,
+      "learning_rate": 0.001,
+      "architecture": "Flatten(7*5) → Linear(35,16) → ReLU → Dropout(0.1) → Linear(16,1) → Softplus",
+      "parameters_D7": 593,
+      "parameter_expression": "(35*16+16)+(16*1+1)=593",
+      "source_relation": "Adaptation to a minimal project reference; S8 reports a four-layer MLP, not this one-hidden-layer configuration."
+    },
+    "LSTM": {
+      "role": "Gated recurrent memory across covariate positions",
+      "recurrent_layers": 1,
+      "hidden_width": 32,
+      "direction": "unidirectional",
+      "learning_rate": 0.003,
+      "architecture": "LSTM(input=5,hidden=32,layers=1) → final hidden → Dropout(0.1) → Linear(32,1) → Softplus",
+      "parameters_D7": 5025,
+      "parameter_expression": "4*32*5+4*32*32+8*32+32+1=5025 (PyTorch two bias vectors)",
+      "source_relation": "Family supported in S1/S2/S5/S7/S8; this exact project width, output and training recipe are not attributed to all those sources."
+    },
+    "CNN1D": {
+      "role": "Local shared convolutional filters over the causal covariate sequence",
+      "convolution_layers": 2,
+      "channels": 16,
+      "kernel_size": 3,
+      "dilation": 1,
+      "padding": "left only in each convolution",
+      "residual_connections": false,
+      "attention": false,
+      "pooling": "temporal mean",
+      "learning_rate": 0.001,
+      "architecture": "Conv1D(5,16,k3,left pad) → ReLU/Dropout → Conv1D(16,16,k3,left pad) → ReLU/Dropout → time mean → Linear(16,1) → Softplus",
+      "parameters_D7": 1057,
+      "parameter_expression": "(5*16*3+16)+(16*16*3+16)+(16+1)=1057",
+      "source_relation": "S8 supports an independent two-convolution-layer CNN family; its dimensionality, filters, kernels and causality are not reported. The project Conv1D and causal padding are declared design adaptations, not verified source settings."
+    }
+  },
+  "common_recipe": {
+    "history_days": 7,
+    "covariates": [
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume"
+    ],
+    "input_shape": [
+      7,
+      5
+    ],
+    "target": "Daily unannualized population standard deviation of seven daily log returns (sigma7)",
+    "forecast_horizon_days": 1,
+    "source_frequency": "One-minute acquisition aggregated to daily UTC OHLCV",
+    "past_target_lags_as_features": false,
+    "representation": "relative_window",
+    "optimizer": "AdamW",
+    "batch_size": 32,
+    "dropout": 0.1,
+    "weight_decay": 0.0001,
+    "loss": "MSE after target scaling fitted only to admitted training data",
+    "max_inner_epochs": 100,
+    "early_stopping_patience": 12,
+    "early_stopping_min_delta": 1e-05,
+    "gradient_clip_norm": 1,
+    "preprocessing_and_split": "Same causal inputs, admitted training dates, purge/embargo, training-only transforms and evaluation cohort within each paired comparison.",
+    "new_HPO_in_this_decision": false,
+    "future_seed_and_power_policy": "Defined by the subsequent protocol, not by this literature decision."
+  },
+  "candidate_decisions": {
+    "GRU": "Not selected for this three-slot study because LSTM represents the recurrent-memory role with higher included-corpus recurrence. This is not a claim of equivalent dynamics or worse GRU performance.",
+    "TCN": "Not selected as the minimal ordinary convolutional reference. The verified S1 source uses six dilated residual blocks and reported width287; it remains a useful different convolutional candidate. No unimplemented D7 parameter count or ranking of its achievable performance is asserted.",
+    "Transformer_encoder": "Not selected because attention is outside the three predeclared basic roles. Its two source occurrences are acknowledged; no missing parameter count or unmeasured inferiority is invented."
+  },
+  "evidence_and_adaptation": {
+    "Miura2019": {
+      "reference_key": "miura2019",
+      "DOI_printed": "10.1007/978-3-030-22796-8_18",
+      "consulted_source": "https://raw.githubusercontent.com/Anton21a/Thesis/8bc3aa3c96fd214b34b914d2057f4339f2c8ed1e/ML%20articles/Artificial%20Neural%20Networks.pdf",
+      "fulltext_sha256": "2364a462ed212803e2c4b751d27d66091af5773159c601f950df17578853dfeb",
+      "evidence_pages": "MLP/CNN comparator list pp.168–169 and Table1 p.171; source and protocol details p.170.",
+      "verified": "Independent four-layer MLP variants, independent two-convolution-layer CNN plus Dense, LSTM and GRU for Bitcoin three-hour realized volatility.",
+      "not_verified": "CNN dimensionality; source widths, filters, kernels, padding, causality, complete split or scaling procedure; exact replication of the current project recipes."
+    },
+    "Akbiyik2023": {
+      "reference_key": "akbiyik2023",
+      "DOI_declared": "10.1145/3539597.3570387",
+      "consulted_source": "https://github.com/meakbiyik/ask-who-not-what/blob/bcc0e4e89213da2ca3ed968574aa2d08cee39c44/paper.pdf",
+      "evidence": "Published LSTM/GRU/TCN comparison and AppendixC source TCN settings.",
+      "limit": "The causal/dilated TCN in S1 and the shallow generic CNN in S8 cannot be combined into a fictitious source explicitly proving the exact shallow Conv1D recipe."
+    },
+    "explicit_shallow_CNN1D_source_count": 0,
+    "generic_independent_shallow_CNN_source_count": 1,
+    "input_based_adaptation": "Conv1D is chosen by the time×channel structure of the project data, not by claiming the source CNN dimensionality was reported."
+  },
+  "historical_HPO": {
+    "source": "experiments/dl_benchmark_20261104/protocol_initial.json",
+    "declared_method": "Exhaustive identical-width/LR-factor grid",
+    "histories": [
+      7,
+      14,
+      21,
+      28
+    ],
+    "widths": [
+      16,
+      32
+    ],
+    "learning_rates": [
+      0.001,
+      0.003
+    ],
+    "seeds_per_configuration": 2,
+    "runs_per_family": 32,
+    "total_runs": 96,
+    "budget_was_equal_across_families": true,
+    "new_study_policy": "Freeze one previously selected recipe per family at D7; no new tuning in the planned repeated comparison.",
+    "limits": "The historical equal budget is evidence of historical tuning effort. It is not a new search under every later representation, proof of optimality, or reconstruction of missing paper hyperparameters."
+  },
+  "guide_interpretation": {
+    "section_4_2": "The guide allows a reported configuration or a justified minimal configuration; the latter is the explicit role of the fixed project recipes.",
+    "section_3_2": "When a source leaves an architecture undefined, the guide points to Entregable2 section14 and a search space declared before training. This decision does not manufacture missing source settings or claim an E2 search has now been performed.",
+    "compliance_limit": "Family-level support and a justified fixed reference design are distinguished from exact source-architecture reproduction and any further guide-required architecture search."
+  },
+  "inferential_limit": "New seeds or repeated fits on the already examined historical calendar do not create a new independent market trajectory or an untouched temporal test. Any stronger market-generalization claim requires new independent evaluation.",
+  "changes_to_existing_experiments": {
+    "models_changed": false,
+    "weights_changed": false,
+    "predictions_changed": false,
+    "historical_baseline_reselected": false
+  },
+  "source_sha256": {
+    "references/literature_e1/recovery_20261105/primary_source.json": "5119530340a00581e6c3a42f3606af89f511a722baf81789cf10f6b63a43e64e",
+    "references/literature_e1/recovery_20261105/extraction.json": "8827ca3e51de0f477db7d1728237702b29a838f5a17b26198476ca9d723b37b1",
+    "references/literature_e1/recovery_20261105/family_frequencies.csv": "aa259e4382c8f1845420760bdb9fe21aa78ea22d45215574435cd519d6a366ee",
+    "experiments/dl_benchmark_20261104/protocol_initial.json": "7cbda15bd55b8a9fe4bd73b199e2b2af7ca9942e01521ddaa275c6181d43ce4f",
+    "scripts/dl_models.py": "e24110b57aeee201e1e9ab53519eb6b05967927ac54102fe23d3908c3fc57d69",
+    "references/course/Entregable1DeepLearningProject.pdf": "56cffb2e0e23bbdfd28815b7c7515d2663bf501ed5d6e0656a37a76fc45e43eb"
+  }
+}

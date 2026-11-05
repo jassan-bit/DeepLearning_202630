@@ -1,5 +1,5 @@
 {
-  "reviewed_at_utc": "2026-11-05T02:45:29.648929+00:00",
+  "reviewed_at_utc": "2026-11-05T03:23:10.582886+00:00",
   "scope": "Revisión de los capítulos1–8: 390 incisos previos conservados y siete productos de entrega desarrollados.",
   "reviewed_numbered_items": 397,
   "original_numbered_items_preserved": 390,
@@ -237,7 +237,7 @@
   "outstanding": {
     "prospective_pilot_and_definitive_power": "Nuevo piloto registrado antes de60 trayectorias/1440 ajustes sobre2024; R futuro calculado. Repeticiones definitivas, potencia real y evaluación temporal independiente no ejecutadas; no repara el benchmark histórico.",
     "applied_comparator_literature": "Miura2019 verifica MLP/CNN independientes en1/6 textos; dimensionalidad CNN, recetas exactas y recurrencia amplia siguen sin acreditarse. Revisión posterior al benchmark.",
-    "future_prospective_validation": "Criterio académico operativo del5% definido ahora para comparaciones futuras; no registrado antes del test ya observado. Falta piloto y evaluación independiente nuevos.",
+    "future_prospective_validation": "E1 exige definir margen/MDE y sus límites a partir del baseline. El criterio futuro del5% cumple ese propósito documental sin ser margen previo del test histórico. El piloto propio de un avanzado y otra evaluación independiente son condiciones si después se implementa esa propuesta, no entrenamientos obligatorios de E1.",
     "external_measurements": "Ruido externo de precios/etiquetas y mecanismo MCAR/MAR/MNAR no identificados."
   },
   "new_execution_in_this_extension": {
@@ -253,11 +253,11 @@
   "source_book_sha256": {
     "book/sections/01_problema_dataset.md": "51cfdfc978c66653288ec5d4d0cb2d4c9cf9ae745e2e003336095f24441d0412",
     "book/sections/02_eda.md": "63a1fe3ed3bfce50ae85cfa40e376a10769c71349b32d5bc6815c9e9a80a00ce",
-    "book/sections/03_estado_arte.md": "01fb987f0a3157cc36488d0144c64ab9bbbfc0ebce7e4b8315ea66f198a997f6",
+    "book/sections/03_estado_arte.md": "3ca59e8a83b49092a9e6a8863da686ffbdf869346aa2a4a6b0075926107bd0cc",
     "book/sections/04_implementacion_evaluacion.md": "2621e57d818a13806d865cd5d473257dff00329e4a33143fee35cb44201cd07c",
-    "book/sections/05_benchmark.md": "a54ec9e81cb302d4d4b16b72fa40c86ab37fef0ba18cda8929cacab25acf4099",
+    "book/sections/05_benchmark.md": "4f566154f07f3f76750d63acf4cc7e87fe4396c2f22ba0527b62a340a0569c80",
     "book/sections/06_procedimiento.md": "5f2144f0bfc35b94b87eda4a9d3e5beb9afc99e2b9e97339129093986932d2df",
-    "book/sections/07_limitaciones_entregables.md": "92b7968de885b340c22cabbb2a4798ec9535146118e543f3ad03afc26c0143cf",
+    "book/sections/07_limitaciones_entregables.md": "b92075d54258ddcf9b422b475553ea2ec349196cba3aa2f3b911d5d09d428ca7",
     "book/sections/08_entregables.md": "8a45f095d7703c08f89f715d96fb85a549a6b07e0ff4cdb1b3afa814749042cd"
   },
   "items": [
@@ -1297,7 +1297,7 @@
       "item": "3.2.2",
       "titulo": "Criterios que debe cumplir cada modelo base",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 350,
+      "linea": 359,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1305,7 +1305,7 @@
       "item": "3.2.3",
       "titulo": "Producto obligatorio: síntesis de los estudios incluidos",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 363,
+      "linea": 372,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1313,7 +1313,7 @@
       "item": "3.2.4",
       "titulo": "Equivalencia funcional con referencias clásicas",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 395,
+      "linea": 404,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1321,7 +1321,7 @@
       "item": "3.2.5",
       "titulo": "Arquitecturas no especificadas y búsqueda posterior",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 410,
+      "linea": 419,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1329,7 +1329,7 @@
       "item": "3.2.6",
       "titulo": "Familias de arquitecturas orientativas por tipo de problema",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 432,
+      "linea": 441,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1337,7 +1337,7 @@
       "item": "3.3",
       "titulo": "Fichas técnicas de los tres modelos base implementados",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 451,
+      "linea": 460,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1345,7 +1345,7 @@
       "item": "3.3.1",
       "titulo": "Perceptrón multicapa — MLP",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 461,
+      "linea": 470,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1353,7 +1353,7 @@
       "item": "3.3.1.1",
       "titulo": "Referencias completas y papel comparativo",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 463,
+      "linea": 472,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1361,7 +1361,7 @@
       "item": "3.3.1.2",
       "titulo": "Tipo de arquitectura",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 469,
+      "linea": 478,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1369,7 +1369,7 @@
       "item": "3.3.1.3",
       "titulo": "Descripción técnica",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 473,
+      "linea": 482,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1377,7 +1377,7 @@
       "item": "3.3.1.4",
       "titulo": "Tipo de problema que aborda",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 493,
+      "linea": 502,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1385,7 +1385,7 @@
       "item": "3.3.1.5",
       "titulo": "Dataset y unidad de observación",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 497,
+      "linea": 506,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1393,7 +1393,7 @@
       "item": "3.3.1.6",
       "titulo": "Métricas y valores propios de validación",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 502,
+      "linea": 511,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1401,7 +1401,7 @@
       "item": "3.3.1.7",
       "titulo": "Fortalezas",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 512,
+      "linea": 521,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1409,7 +1409,7 @@
       "item": "3.3.1.8",
       "titulo": "Limitaciones",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 516,
+      "linea": 525,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1417,7 +1417,7 @@
       "item": "3.3.1.9",
       "titulo": "Complejidad computacional",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 520,
+      "linea": 529,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1425,7 +1425,7 @@
       "item": "3.3.2",
       "titulo": "LSTM unidireccional",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 534,
+      "linea": 543,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1433,7 +1433,7 @@
       "item": "3.3.2.1",
       "titulo": "Referencias completas y papel comparativo",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 536,
+      "linea": 545,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1441,7 +1441,7 @@
       "item": "3.3.2.2",
       "titulo": "Tipo de arquitectura",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 544,
+      "linea": 553,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1449,7 +1449,7 @@
       "item": "3.3.2.3",
       "titulo": "Descripción técnica",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 548,
+      "linea": 557,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1457,7 +1457,7 @@
       "item": "3.3.2.4",
       "titulo": "Tipo de problema que aborda",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 569,
+      "linea": 578,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1465,7 +1465,7 @@
       "item": "3.3.2.5",
       "titulo": "Dataset y unidad de observación",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 573,
+      "linea": 582,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1473,7 +1473,7 @@
       "item": "3.3.2.6",
       "titulo": "Métricas y valores propios de validación",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 578,
+      "linea": 587,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1481,7 +1481,7 @@
       "item": "3.3.2.7",
       "titulo": "Fortalezas",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 588,
+      "linea": 597,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1489,7 +1489,7 @@
       "item": "3.3.2.8",
       "titulo": "Limitaciones",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 592,
+      "linea": 601,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1497,7 +1497,7 @@
       "item": "3.3.2.9",
       "titulo": "Complejidad computacional",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 596,
+      "linea": 605,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1505,7 +1505,7 @@
       "item": "3.3.3",
       "titulo": "CNN1D temporal poco profunda",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 608,
+      "linea": 617,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1513,7 +1513,7 @@
       "item": "3.3.3.1",
       "titulo": "Referencias completas y papel comparativo",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 610,
+      "linea": 619,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1521,7 +1521,7 @@
       "item": "3.3.3.2",
       "titulo": "Tipo de arquitectura",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 618,
+      "linea": 627,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1529,7 +1529,7 @@
       "item": "3.3.3.3",
       "titulo": "Descripción técnica",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 622,
+      "linea": 631,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1537,7 +1537,7 @@
       "item": "3.3.3.4",
       "titulo": "Tipo de problema que aborda",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 645,
+      "linea": 654,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1545,7 +1545,7 @@
       "item": "3.3.3.5",
       "titulo": "Dataset y unidad de observación",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 649,
+      "linea": 658,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1553,7 +1553,7 @@
       "item": "3.3.3.6",
       "titulo": "Métricas y valores propios de validación",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 654,
+      "linea": 663,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1561,7 +1561,7 @@
       "item": "3.3.3.7",
       "titulo": "Fortalezas",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 664,
+      "linea": 673,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1569,7 +1569,7 @@
       "item": "3.3.3.8",
       "titulo": "Limitaciones",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 668,
+      "linea": 677,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1577,7 +1577,7 @@
       "item": "3.3.3.9",
       "titulo": "Complejidad computacional",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 672,
+      "linea": 681,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1585,7 +1585,7 @@
       "item": "3.3.4",
       "titulo": "Cobertura y comparación de las tres fichas",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 685,
+      "linea": 694,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1593,7 +1593,7 @@
       "item": "3.4",
       "titulo": "Comparación crítica de los modelos y de la evidencia",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 700,
+      "linea": 709,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1601,7 +1601,7 @@
       "item": "3.4.1",
       "titulo": "Comparación estructurada entre los tres modelos base",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 704,
+      "linea": 713,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1609,7 +1609,7 @@
       "item": "3.4.1.1",
       "titulo": "Desempeño de CV y comparabilidad",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 706,
+      "linea": 715,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1617,7 +1617,7 @@
       "item": "3.4.1.2",
       "titulo": "Robustez y evidencia disponible",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 719,
+      "linea": 728,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1625,7 +1625,7 @@
       "item": "3.4.1.3",
       "titulo": "Escalabilidad y simplicidad",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 726,
+      "linea": 735,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1633,7 +1633,7 @@
       "item": "3.4.2",
       "titulo": "Análisis de validez de los estudios revisados",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 736,
+      "linea": 745,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1641,7 +1641,7 @@
       "item": "3.4.3",
       "titulo": "Brecha entre propuestas avanzadas y modelos base",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 756,
+      "linea": 765,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1649,7 +1649,7 @@
       "item": "3.4.4",
       "titulo": "Brecha verificable y proyección",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 772,
+      "linea": 781,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1657,7 +1657,7 @@
       "item": "3.4.5",
       "titulo": "Correspondencia y estado de cierre",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 778,
+      "linea": 787,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1665,7 +1665,7 @@
       "item": "3.5",
       "titulo": "Fundamentos bibliográficos y contexto de la revisión",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 797,
+      "linea": 806,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1673,7 +1673,7 @@
       "item": "3.5.1",
       "titulo": "Búsqueda documental efectuada y alcance de las citas",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 799,
+      "linea": 808,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1681,7 +1681,7 @@
       "item": "3.5.2",
       "titulo": "Antecedentes de volatilidad de Bitcoin",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 809,
+      "linea": 818,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1689,7 +1689,7 @@
       "item": "3.5.3",
       "titulo": "Definiciones de volatilidad y referencias financieras",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 819,
+      "linea": 828,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1697,7 +1697,7 @@
       "item": "3.5.4",
       "titulo": "Fundamentos de las fichas implementadas y sus antecedentes",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 825,
+      "linea": 834,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1705,7 +1705,7 @@
       "item": "3.5.5",
       "titulo": "Diagnóstico temporal e interpretación del EDA",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 835,
+      "linea": 844,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1713,7 +1713,7 @@
       "item": "3.5.6",
       "titulo": "Métricas, validación e incertidumbre",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 841,
+      "linea": 850,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -1721,7 +1721,7 @@
       "item": "3.5.7",
       "titulo": "Trazabilidad de búsqueda y conclusión de la revisión",
       "archivo": "book/sections/03_estado_arte.md",
-      "linea": 853,
+      "linea": 862,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -2785,7 +2785,7 @@
       "item": "5.3.4.1",
       "titulo": "Mejora mínima detectable frente al baseline",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 353,
+      "linea": 355,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -2793,7 +2793,7 @@
       "item": "5.3.4.2",
       "titulo": "Margen de relevancia práctica",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 396,
+      "linea": 398,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -2801,7 +2801,7 @@
       "item": "5.3.4.3",
       "titulo": "Cota de referencia del problema",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 404,
+      "linea": 406,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -2809,7 +2809,7 @@
       "item": "5.3.5",
       "titulo": "Interpretación",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 410,
+      "linea": 412,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -2817,7 +2817,7 @@
       "item": "5.3.5.1",
       "titulo": "Significación estadística y relevancia práctica",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 414,
+      "linea": 416,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -2825,7 +2825,7 @@
       "item": "5.3.5.2",
       "titulo": "Desempeño frente a complejidad, parámetros y costo",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 418,
+      "linea": 420,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -2833,7 +2833,7 @@
       "item": "5.3.5.3",
       "titulo": "Conclusión explícita del baseline y margen disponible",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 422,
+      "linea": 424,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -2841,7 +2841,7 @@
       "item": "5.3.5.4",
       "titulo": "Estado del benchmark",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 428,
+      "linea": 430,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -2849,7 +2849,7 @@
       "item": "5.4",
       "titulo": "Análisis Estadístico y Pruebas de Hipótesis",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 434,
+      "linea": 436,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -2857,7 +2857,7 @@
       "item": "5.4.1",
       "titulo": "Hipótesis, unidad de análisis y supuestos",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 442,
+      "linea": 444,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -2865,7 +2865,7 @@
       "item": "5.4.2",
       "titulo": "Comparaciones pareadas: t y Wilcoxon",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 448,
+      "linea": 450,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -2873,7 +2873,7 @@
       "item": "5.4.3",
       "titulo": "Comparación conjunta de tres modelos",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 466,
+      "linea": 468,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -2881,7 +2881,7 @@
       "item": "5.4.4",
       "titulo": "Comparaciones post-hoc y corrección por multiplicidad",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 472,
+      "linea": 474,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -2889,7 +2889,7 @@
       "item": "5.4.5",
       "titulo": "Intervalos de confianza y tamaño de efecto",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 486,
+      "linea": 488,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -2897,7 +2897,7 @@
       "item": "5.4.5.1",
       "titulo": "Bootstrap de las diferencias pareadas",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 490,
+      "linea": 492,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -2905,7 +2905,7 @@
       "item": "5.4.5.2",
       "titulo": "Tamaño de efecto junto con el p-value",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 512,
+      "linea": 514,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -2913,7 +2913,7 @@
       "item": "5.4.6",
       "titulo": "Advertencia sobre independencia",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 518,
+      "linea": 520,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -2921,7 +2921,7 @@
       "item": "5.4.6.1",
       "titulo": "Ejecuciones que comparten el conjunto de prueba",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 522,
+      "linea": 524,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -2929,7 +2929,7 @@
       "item": "5.4.6.2",
       "titulo": "Validación repetida y remuestreo por bloques",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 528,
+      "linea": 530,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -2937,7 +2937,7 @@
       "item": "5.4.7",
       "titulo": "Reporte de potencia y diferencia mínima detectable",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 534,
+      "linea": 536,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -2945,7 +2945,7 @@
       "item": "5.4.8",
       "titulo": "Ausencia de significación y equivalencia",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 556,
+      "linea": 558,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -2953,7 +2953,7 @@
       "item": "5.4.9",
       "titulo": "Test de Diebold–Mariano",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 562,
+      "linea": 564,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -2961,7 +2961,7 @@
       "item": "5.4.9.1",
       "titulo": "Comparación de precisión predictiva por horizonte",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 568,
+      "linea": 570,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -2969,7 +2969,7 @@
       "item": "5.4.9.2",
       "titulo": "Corrección Harvey–Leybourne–Newbold y pérdida coherente",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 586,
+      "linea": 588,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -2977,7 +2977,7 @@
       "item": "5.4.10",
       "titulo": "Test BDS (Brock–Dechert–Scheinkman)",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 592,
+      "linea": 594,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -2985,7 +2985,7 @@
       "item": "5.4.11",
       "titulo": "Test de Ljung–Box",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 635,
+      "linea": 637,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -2993,7 +2993,7 @@
       "item": "5.4.12",
       "titulo": "Interpretación de los residuos",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 654,
+      "linea": 656,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -3001,7 +3001,7 @@
       "item": "5.4.12.1",
       "titulo": "Estructura residual y posible margen de mejora",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 660,
+      "linea": 662,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -3009,7 +3009,7 @@
       "item": "5.4.13",
       "titulo": "Buenas Prácticas Estadísticas",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 668,
+      "linea": 670,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -3017,7 +3017,7 @@
       "item": "5.4.13.1",
       "titulo": "Nivel de significancia declarado antes de analizar resultados",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 672,
+      "linea": 674,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -3025,7 +3025,7 @@
       "item": "5.4.13.2",
       "titulo": "P-valores numéricos, ajustados y sin ajustar",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 678,
+      "linea": 680,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -3033,7 +3033,7 @@
       "item": "5.4.13.3",
       "titulo": "Intervalos de confianza y tamaños de efecto",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 684,
+      "linea": 686,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -3041,7 +3041,7 @@
       "item": "5.4.13.4",
       "titulo": "Verificación de supuestos",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 690,
+      "linea": 692,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -3049,7 +3049,7 @@
       "item": "5.4.13.5",
       "titulo": "Múltiples ejecuciones documentadas",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 698,
+      "linea": 700,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -3057,7 +3057,7 @@
       "item": "5.4.13.6",
       "titulo": "Métrica principal y comparaciones declaradas con antelación",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 702,
+      "linea": 704,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -3065,7 +3065,7 @@
       "item": "5.4.13.7",
       "titulo": "Registro y trazabilidad de cada contraste",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 710,
+      "linea": 712,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -3073,7 +3073,7 @@
       "item": "5.4.14",
       "titulo": "Interpretación",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 724,
+      "linea": 726,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -3081,7 +3081,7 @@
       "item": "5.4.14.1",
       "titulo": "Diferencias estadísticamente significativas",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 728,
+      "linea": 730,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -3089,7 +3089,7 @@
       "item": "5.4.14.2",
       "titulo": "Significancia estadística y relevancia práctica",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 734,
+      "linea": 736,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -3097,7 +3097,7 @@
       "item": "5.4.14.3",
       "titulo": "Conclusiones respaldadas por diferencias, incertidumbre y efectos",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 740,
+      "linea": 742,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -3105,7 +3105,7 @@
       "item": "5.4.14.4",
       "titulo": "Estado y alcance del análisis estadístico",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 747,
+      "linea": 749,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -3113,7 +3113,7 @@
       "item": "5.5",
       "titulo": "Discusión Crítica",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 767,
+      "linea": 769,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -3121,7 +3121,7 @@
       "item": "5.5.1",
       "titulo": "Desempeño y explicación de las diferencias",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 771,
+      "linea": 773,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -3129,7 +3129,7 @@
       "item": "5.5.2",
       "titulo": "Generalización y estabilidad",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 779,
+      "linea": 781,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -3137,7 +3137,7 @@
       "item": "5.5.3",
       "titulo": "Significación estadística y relevancia práctica",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 787,
+      "linea": 789,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -3145,7 +3145,7 @@
       "item": "5.5.4",
       "titulo": "Desempeño frente a costo y complejidad",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 795,
+      "linea": 797,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -3153,7 +3153,7 @@
       "item": "5.5.5",
       "titulo": "Baseline y umbral para un modelo avanzado",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 801,
+      "linea": 803,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -3161,7 +3161,7 @@
       "item": "5.5.6",
       "titulo": "Brecha con la literatura y margen de mejora potencial",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 809,
+      "linea": 811,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -3169,7 +3169,7 @@
       "item": "5.5.7",
       "titulo": "Amenazas a la validez",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 813,
+      "linea": 815,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -3177,7 +3177,7 @@
       "item": "5.5.8",
       "titulo": "Limitaciones del estudio",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 824,
+      "linea": 826,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -3185,7 +3185,7 @@
       "item": "5.5.9",
       "titulo": "Recomendaciones futuras",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 832,
+      "linea": 834,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -3193,7 +3193,7 @@
       "item": "5.5.9.1",
       "titulo": "Recomendaciones derivadas de las limitaciones",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 836,
+      "linea": 838,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -3201,7 +3201,7 @@
       "item": "5.5.9.2",
       "titulo": "Matriz de conclusiones y evidencia pendiente",
       "archivo": "book/sections/05_benchmark.md",
-      "linea": 842,
+      "linea": 844,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -3337,7 +3337,7 @@
       "item": "7.2.3",
       "titulo": "Probabilidad de superioridad",
       "archivo": "book/sections/07_limitaciones_entregables.md",
-      "linea": 99,
+      "linea": 101,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -3345,7 +3345,7 @@
       "item": "7.2.4",
       "titulo": "Equivalencia requiere un análisis separado",
       "archivo": "book/sections/07_limitaciones_entregables.md",
-      "linea": 122,
+      "linea": 124,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -3353,7 +3353,7 @@
       "item": "7.3",
       "titulo": "Objetivo y criterio de honestidad inferencial",
       "archivo": "book/sections/07_limitaciones_entregables.md",
-      "linea": 130,
+      "linea": 132,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -3361,7 +3361,7 @@
       "item": "7.4",
       "titulo": "Entregables y estado documental real",
       "archivo": "book/sections/07_limitaciones_entregables.md",
-      "linea": 143,
+      "linea": 145,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -3369,7 +3369,7 @@
       "item": "7.5",
       "titulo": "Criterios de evaluación del entregable",
       "archivo": "book/sections/07_limitaciones_entregables.md",
-      "linea": 163,
+      "linea": 165,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
@@ -3377,7 +3377,7 @@
       "item": "7.6",
       "titulo": "Buenas prácticas y cierre",
       "archivo": "book/sections/07_limitaciones_entregables.md",
-      "linea": 179,
+      "linea": 181,
       "revision": "revisado; contenido actualizado o verificado",
       "cierre_del_requisito": "consultar evidencia y límites del apartado; revisión no equivale a cumplimiento total"
     },
