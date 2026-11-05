@@ -1,12 +1,14 @@
 # 4. Implementación y evaluación: diseño y estado de ejecución
 
+**Dos fases del estudio.** Las tablas de cuatro entradas, diez semillas y test enero de 2025–agosto de 2026 de este capítulo corresponden a la **fase I exploratoria**. La **fase II D7** añade búsqueda equitativa, piloto anterior a su ejecución definitiva, dimensionamiento y evaluación preespecificada sobre el 01/09–30/10/2026. Sus recetas, recuentos y resultados se identifican por separado en el [capítulo 9](09_estudio_planificado.md).
+
 La comparación principal utiliza **GRU, LSTM y TCN residual causal**, con entradas de **7, 14, 21 y 28 días**, cinco covariables OHLCV diarias, objetivo de volatilidad poblacional de siete retornos y horizonte de un día. El [resumen vigente](../_static/gru_lstm_tcn_20261105/summary.json), las [especificaciones](../_static/gru_lstm_tcn_20261105/model_specs.json) y la [selección con CV](../_static/gru_lstm_tcn_20261105/selected_by_cv.json) identifican esta versión.
 
 La CV de Filipe sobre 2024 completó **120 trayectorias, 1.440 segmentos mensuales, 2.880 ajustes y 43.920 predicciones**. Las cuarenta trayectorias LSTM se reentrenaron como control y reprodujeron exactamente sus **14.640 predicciones** previas. El baseline neuronal elegido por la RMSE media de CV es **GRU/D7**; la decisión se cerró antes de esta fase final.
 
 Para evaluar 2025–agosto de 2026 se congelaron **120 conjuntos de pesos y escaladores**: **80 ajustes nuevos de GRU/TCN y 40 modelos LSTM idénticos reutilizados**. Hay **72.960 predicciones** sobre 608 fechas comunes: 48.640 nuevas y 24.320 LSTM reutilizadas. El test ya había sido observado en el proyecto; **esta comparación es exploratoria**, aunque los modelos nuevos se cerraran antes de volver a puntuarlo.
 
-Las tres recetas son adaptaciones compactas, con alcance bibliográfico y límites de recurrencia explicitados en el capítulo 3. Diez semillas constituyen un presupuesto fijo de comparación: no son el resultado de un piloto de potencia de este trío. Sus contrastes internos y el margen para E2 se distinguen de las decisiones anteriores al entrenamiento.
+Las tres recetas de fase I son adaptaciones compactas, con alcance bibliográfico y límites de recurrencia explicitados en el capítulo 3. Diez semillas constituyen un presupuesto fijo de comparación: no son el resultado de un piloto de potencia de este trío. Sus contrastes internos y el margen para E2 se distinguen de las decisiones anteriores al entrenamiento.
 
 ## 4.1. Diseño Experimental
 
@@ -41,7 +43,7 @@ La partición temporal sigue el calendario y la disponibilidad de la etiqueta; n
 | Cierre final | Desarrollo 2023–2024 | Selección GRU/D7 y firma de los pesos antes de puntuar esta fase |
 | Evaluación histórica | 01/01/2025–31/08/2026 | 608 fechas comunes; periodo ya observado, alcance exploratorio |
 
-Los 365/366/608 días equivalen al 27,26 %/27,33 %/45,41 % del calendario descrito. No son proporciones exigidas por Filipe ni tamaños efectivos de cada fold. Septiembre–octubre de 2026 permanece fuera y no se reasigna como nueva reserva.
+Los 365/366/608 días equivalen al 27,26 %/27,33 %/45,41 % del calendario descrito. No son proporciones exigidas por Filipe ni tamaños efectivos de cada fold. Septiembre–octubre de 2026 quedó fuera de fase I. La fase II asigna explícitamente el 01/09–30/10/2026 a otra evaluación, con su propio registro previo; no amplía ni vuelve desconocido el test anterior.
 
 #### 4.1.2.2. Esquema de validación y selección de hiperparámetros
 
@@ -87,7 +89,7 @@ Después se resumen las métricas entre las diez semillas. R² utiliza la media 
 (piloto-filipe-registrado)=
 ### 4.1.4. Piloto
 
-**No se ejecutó un piloto prospectivo dedicado a GRU–LSTM–TCN para dimensionar sus repeticiones.** Se fijaron diez semillas por familia e historia como presupuesto de comparación exploratoria. Su dispersión observada puede orientar una planificación posterior, pero no acredita potencia objetivo.
+**La fase I no tuvo un piloto anterior a su benchmark.** Sus diez semillas por familia e historia fueron un presupuesto exploratorio. La fase II D7 corrige el orden para una ejecución nueva: primero congela las recetas seleccionadas, después ejecuta un piloto con diez semillas nuevas por familia sobre 60 días de desarrollo y dimensiona los ajustes definitivos. Véanse [§9.4 y §9.5](09_estudio_planificado.md). No se atribuye el nuevo piloto al benchmark anterior o a D14/21/28.
 
 Los estudios de otros procedimientos no se atribuyen a este trío. La [tabla CV vigente](../_static/gru_lstm_tcn_20261105/metric_summary_cv.csv) permite verificar medias y DE de las diez ejecuciones; los 120 conjuntos D–modelo–semilla no equivalen a 120 mercados.
 
@@ -105,7 +107,7 @@ $$
 (estudio-d7-confirmatorio)=
 ### 4.1.6. Tamaño de muestra
 
-El presupuesto ejecutado es R=10 semillas 4101–4110 por combinación. No se presenta como un R calculado a partir de la varianza de un piloto.
+En fase I se ejecutó R=10 semillas 4101–4110 por combinación, sin dimensionamiento previo. El R de fase II D7 se calcula con t no central, α*=0,05/3, potencia marginal objetivo 0,80 y una cota superior simultánea de las DE pareadas del piloto. El [capítulo 9](09_estudio_planificado.md) identifica el valor, sus semillas disjuntas y el alcance condicional de esa planificación.
 
 | Unidad | CV2024 | Evaluación histórica |
 |---|---:|---:|
@@ -115,11 +117,11 @@ El presupuesto ejecutado es R=10 semillas 4101–4110 por combinación. No se pr
 | Modelos finales reutilizados | No aplica: LSTM se reentrena | 40 LSTM |
 | Predicciones | 43.920 nuevas | 48.640 nuevas + 24.320 reutilizadas |
 
-Las diez semillas sólo modifican la aleatoriedad del entrenamiento, condicionada a una misma trayectoria de mercado. El análisis D7 actual es exploratorio; no se denomina confirmatorio ni hereda el tamaño de estudios anteriores.
+Las diez semillas sólo modifican la aleatoriedad del entrenamiento, condicionada a una misma trayectoria de mercado. El análisis D7 de fase I es exploratorio; no se denomina confirmatorio ni hereda el tamaño de estudios anteriores.
 
 ### 4.1.7. Diferencia mínima detectable
 
-No hay una MDE prospectiva acreditada para este trío: falta un piloto independiente de la comparación avanzada que determine R con una alternativa y multiplicidad fijadas. El margen $\delta$ y la dispersión entre semillas son cantidades distintas.
+La fase I no acredita una MDE prospectiva. En fase II D7, el piloto y el cálculo de R preceden a sus ajustes definitivos; el {ref}`dimensionamiento y las MDE <planned-power>` conservan α, δ, dispersión, incertidumbre y multiplicidad. Esa planificación corresponde a la comparación actual de tres recetas, no al futuro modelo avanzado. El margen $\delta$ y la dispersión entre semillas son cantidades distintas.
 
 Una planificación futura deberá resolver la potencia del contraste pareado previsto, por ejemplo usando $\delta\sqrt R/s_\Delta$ como parámetro de no centralidad bajo diferencias normales independientes. La DE estimada con diez semillas tiene incertidumbre y no asegura esos supuestos. No se usa el efecto observado para calcular «potencia alcanzada», ni se afirma que una MDE insuficiente quede resuelta por obtener p<0,05.
 
@@ -145,7 +147,7 @@ Estos registros no borran la exposición previa a 2024 y al test histórico. Los
 | Control LSTM CV | 14.640 predicciones exactamente reproducidas |
 | Ajustes finales | 80 nuevos y 40 LSTM reutilizados |
 | Evaluación histórica | 608 fechas; exploratoria |
-| Piloto de potencia del trío | No ejecutado |
+| Piloto de fase I / fase II D7 | No existió antes del benchmark inicial; fase II realiza piloto y dimensionamiento antes de sus propios ajustes definitivos (§9.4–9.5) |
 | Confirmación temporal nueva | Pendiente |
 | Margen para E2 | Definido ahora, después de test |
 
@@ -259,7 +261,7 @@ La ejecución usó CPU, tres trabajadores, un hilo intraoperación y uno interop
 
 ### 4.2.6. Equidad en la optimización
 
-Se igualan datos, semillas, duración máxima, parada y reglas causales; los anchos y tasas son fijos por familia. LSTM se conserva como control; GRU y TCN son adaptaciones compactas sin HPO nuevo. Esto controla recursos de la comparación, pero no equivale a una búsqueda exhaustiva e igual de configuraciones ni demuestra superioridad universal de las familias.
+La fase I igualó datos, semillas, duración máxima, parada y reglas causales, pero mantuvo anchos y tasas fijos sin HPO nuevo comparable. En fase II D7 se ejecuta una rejilla de ocho candidatos por familia, dos semillas y diez bloques mensuales comunes: **320 ajustes por familia, 960 en total**. Se publican todos los candidatos y se congelan las recetas antes del piloto y la nueva reserva. La equidad se refiere al método, amplitud y presupuesto registrado; no demuestra un óptimo global de las familias. La rejilla y sus resultados están en [§9.3](09_estudio_planificado.md).
 
 ### 4.2.7. Implementación desde cero o uso de librerías justificadas
 
@@ -357,7 +359,7 @@ Los ochenta modelos nuevos se puntúan una vez tras su cierre y generan 48.640 v
 
 #### 4.3.6.4. Estado de cumplimiento
 
-La ejecución y la integridad están documentadas para el trío actual. Permanecen abiertos el piloto de potencia, la confirmación temporal independiente, la equidad de un HPO exhaustivo y la incertidumbre bibliográfica de una TCN con una sola ocurrencia directa en el corpus.
+La ejecución y la integridad están documentadas para el trío actual. La fase II D7 incorpora piloto, dimensionamiento, HPO comparable e inferencia fijada antes de su reserva histórica. Permanecen la incertidumbre temporal de un periodo de 60 días, la generalización a otros mercados y la limitada recurrencia bibliográfica de TCN. No se declara retrospectivamente prospectiva la fase I ni se dimensionan las otras tres entradas.
 
 ## 4.4. Evaluación
 
@@ -617,3 +619,5 @@ Las observaciones agrupadas de distintas semillas comparten fechas y no son resi
 | Piloto y evaluación independiente futura | Pendientes |
 
 Los agregados públicos, especificaciones y catálogos corresponden a GRU–LSTM–TCN. La publicación no presenta la sustitución documental como un nuevo entrenamiento ni transforma esta evaluación en confirmación independiente.
+
+**Ejecución planificada D7.** El [capítulo 9](09_estudio_planificado.md) reúne el diseño público previo, la rejilla equitativa de ocho candidatos por familia, el piloto de 60 días, el cálculo de R y los resultados sobre el 01/09–30/10/2026. Esa fase mantiene n=7/h=1 y covariables OHLCV, con D7 fijo. Los resultados de fase I y sus limitaciones permanecen identificados; la potencia planificada entre semillas no representa potencia temporal ni confirma otros mercados.

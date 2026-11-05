@@ -1,5 +1,7 @@
 # 6. Guía de Procedimiento por Tipo de Problema
 
+**Dos fases del estudio.** Las tablas de cuatro entradas, diez semillas y test enero de 2025–agosto de 2026 de este capítulo corresponden a la **fase I exploratoria**. La **fase II D7** añade búsqueda equitativa, piloto anterior a su ejecución definitiva, dimensionamiento y evaluación preespecificada sobre el 01/09–30/10/2026. Sus recetas, recuentos y resultados se identifican por separado en el [capítulo 9](09_estudio_planificado.md).
+
 La formulación actual corresponde al **tipo 4: regresión temporal**, con la ruta del **apartado 6.4 de la guía del Entregable 1**. Las redes reciben ventanas de covariables OHLCV y no rezagos explícitos de la volatilidad objetivo. La clasificación describe el contrato de entrada vigente; el diagnóstico de cuatro referencias Ridge ejecutado en el bloque C encuentra dependencia residual, sin cambiar automáticamente ese contrato. El orden cronológico y la dependencia entre fechas se conservan en la partición y la inferencia.
 
 La numeración de este capítulo es continua dentro del libro. La referencia 6.4 identifica la ruta de la guía original; no obliga a reproducir las rutas de otras modalidades.
@@ -32,7 +34,7 @@ Se respeta **entrenamiento < validación < prueba** por disponibilidad de inform
 
 En notación de calendario, para el resultado del día d se emite al inicio UTC de d, se usa OHLCV de d−D,…,d−1 y se predice σ7(d), conocida al terminar d. El campo de datos σ7(d) incluye los retornos $r_{d-6},\ldots,r_d$; en la convención de la fórmula del curso de §1.1.1, que indexa la volatilidad por el día siguiente al último retorno incluido, es $Y_d=\sigma_{d+1}=\sigma_7(d)$. Ambas escrituras identifican la misma etiqueta del día de resultado d. El OHLCV completo de d no es entrada disponible al comenzar d. Origen, día de resultado y disponibilidad de etiqueta se conservan como campos distintos.
 
-Se mantiene **2023 como entrenamiento inicial, 2024 como validación forward chaining y 2023–2024 para el ajuste final tras cerrar las configuraciones**. El test evaluado comprende enero de 2025–agosto de 2026; septiembre–octubre de 2026 permanece sin asignación automática.
+Se mantiene **2023 como entrenamiento inicial, 2024 como validación forward chaining y 2023–2024 para el ajuste final tras cerrar las configuraciones**. El test evaluado comprende enero de 2025–agosto de 2026; septiembre–octubre de 2026 quedó fuera de fase I y no amplía su test. La fase II asigna expresamente el 01/09–30/10/2026 con un protocolo propio.
 
 Se utiliza la función real `split_train_val_forwardChaining(np.arange(731),D,1,1)` de `timeseries-cv` 0.1.5 para D=7/14/21/28. Sus orígenes diarios se reúnen en **doce bloques mensuales**: cada red, historia y semilla se ajusta al comienzo del mes con índices de la función filtrados por embargo y calidad. Los pesos quedan fijos dentro del mes y cada pronóstico h=1 usa OHLCV hasta el día anterior. La agrupación mensual es una adaptación explícita, no una API nativa ni 366 reajustes.
 
@@ -103,13 +105,13 @@ Persistencia es una referencia determinista adicional, no uno de los tres puesto
 
 La ruta 6.4 conserva también las **cuatro Ridge diagnósticas del EDA**, con intercepto libre y penalización fija α=1, ajustadas una vez con entrenamiento admisible de 2023. Sus 1.464 predicciones y residuos de 2024 se documentan en el [resumen de la referencia temporal](../_static/eda_temporal_reference/summary.json). No se convierten en un cuarto modelo DL de test ni seleccionan la ventana de las redes.
 
-El baseline neuronal vigente es **GRU/D7**, elegido con la media de RMSE de CV antes de acceder al contenido del test en este ciclo. El [registro de selección](../_static/gru_lstm_tcn_20261105/selected_by_cv.json) conserva esa decisión y las cuatro historias. El ranking de test no la reabre.
+El baseline neuronal de fase I es **GRU/D7**, elegido con la media de RMSE de CV antes de acceder al contenido del test en este ciclo. El [registro de selección](../_static/gru_lstm_tcn_20261105/selected_by_cv.json) conserva esa decisión y las cuatro historias. El ranking de test no la reabre.
 
 Para una propuesta avanzada futura se define, **después del test actual**, una convención académica: superar el 5 % de reducción relativa de RMSE frente a GRU/D7 y persistencia, con incertidumbre y multiplicidad. El ancla neuronal CV da δ≈0,00025772842665. El [margen futuro](../_static/gru_lstm_tcn_20261105/future_margin.json) identifica su fecha y alcance. No es una tolerancia financiera validada ni un parámetro previo a los resultados actuales. Se requiere piloto y evaluación independiente propios de esa propuesta.
 
 ### 6.1.6. Inferencia y diagnóstico: pregunta, unidad y estado
 
-La comparación **entre GRU, LSTM y TCN** se calcula sobre predicciones guardadas y se declara **post-hoc/exploratoria**. La configuración de las redes y la elección de D se cerraron antes de puntuar este ciclo; el periodo de test ya era conocido y los contrastes actuales no son confirmación temporal independiente.
+La comparación **entre GRU, LSTM y TCN de fase I** se calcula sobre predicciones guardadas y se declara **post-hoc/exploratoria**. La fase II D7 fija sus contrastes antes de otra evaluación y se documenta de forma separada en el [capítulo 9](09_estudio_planificado.md). La configuración de las redes y la elección de D se cerraron antes de puntuar este ciclo; el periodo de test ya era conocido y los contrastes actuales no son confirmación temporal independiente.
 
 | Pregunta | Unidad y alcance | Evidencia vigente |
 |---|---|---|
@@ -137,7 +139,7 @@ No se afirma equivalencia. TOST/ROPE y una banda definida antes de sus cálculos
 | Test histórico | 608 fechas y 72.960 predicciones; 80 inferencias nuevas y 40 trayectorias reutilizadas | Periodo ya observado; 20 intervalos de reporte, sin reajustes o selección en test. |
 | Selección | GRU/D7 por RMSE media CV | No se elige otra ventana por el resultado de test. |
 | Inferencia entre la terna | Tres pares D7 por fase y sensibilidad de doce pares, con Holm | Análisis posterior; incertidumbre condicional a fechas y recetas. |
-| Piloto y potencia | Diez semillas constituyen el presupuesto ejecutado | Piloto prospectivo y dimensionamiento de esta terna pendientes; no potencia alcanzada. |
+| Piloto y potencia | Fase I: diez semillas como presupuesto. Fase II D7: piloto y R=465 calculado antes de sus ajustes definitivos | Potencia marginal de planificación entre semillas, condicionada a supuestos; no potencia temporal o conjunta. |
 | Literatura | Referencias independientes GRU 3/7, LSTM 5/7 y TCN 1/7 | Fortalecer recurrencia TCN y justificar las diferencias entre las recurrentes. |
 
 Los [manifiestos de procedencia](../_static/gru_lstm_tcn_20261105/protocols_manifest.json), [catálogo CV](../_static/gru_lstm_tcn_20261105/configuration_catalog_cv.csv) y [catálogo final](../_static/gru_lstm_tcn_20261105/configuration_catalog_final.csv) permiten seguir las fases sin volver a entrenar.
@@ -153,4 +155,6 @@ El registro de noviembre de 2026 es posterior a los periodos de mercado. Son res
 5. Se usó el derivado diario ya auditado, con 608 fechas y sin abrir ZIP crudos. Hubo 80 inferencias nuevas y reutilización firmada de 40 trayectorias LSTM; no se incorporó septiembre–octubre de 2026.
 6. Se publican los análisis agregados y los contrastes dentro de la terna como **posteriores a la evaluación y exploratorios**. No se reabren las configuraciones para mejorar el test.
 
-El siguiente cierre científico es un piloto y dimensionamiento específicos de GRU–LSTM–TCN, además del refuerzo bibliográfico. Si se diseña otro modelo con estos resultados, deberá reservar una evaluación independiente y registrar sus decisiones antes de producirla. La guía E1 anuncia desarrollos posteriores, pero no permite inventar los requisitos completos de documentos E2/E3 que no se han aportado.
+El [capítulo 9](09_estudio_planificado.md) documenta el cierre de piloto, dimensionamiento y HPO para una nueva comparación D7. Permanecen el refuerzo bibliográfico y los límites temporales de sesenta fechas. Si se diseña otro modelo con estos resultados, deberá reservar datos no utilizados para desarrollarlo y registrar sus decisiones antes de evaluarlo. La guía E1 anuncia desarrollos posteriores, pero no permite inventar los requisitos completos de documentos E2/E3 que no se han aportado.
+
+**Nueva fase D7 con procedimiento registrado.** El [capítulo 9](09_estudio_planificado.md) reúne el diseño público previo, la rejilla equitativa de ocho candidatos por familia, el piloto de 60 días, el cálculo de R y los resultados sobre el 01/09–30/10/2026. Esa fase mantiene n=7/h=1 y covariables OHLCV, con D7 fijo. Los resultados de fase I y sus limitaciones permanecen identificados; la potencia planificada entre semillas no representa potencia temporal ni confirma otros mercados.

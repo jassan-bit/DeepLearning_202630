@@ -1,5 +1,7 @@
 # 1. Definición del Problema y Dataset
 
+**Dos fases del estudio.** Las tablas de cuatro entradas, diez semillas y test enero de 2025–agosto de 2026 de este capítulo corresponden a la **fase I exploratoria**. La **fase II D7** añade búsqueda equitativa, piloto anterior a su ejecución definitiva, dimensionamiento y evaluación preespecificada sobre el 01/09–30/10/2026. Sus recetas, recuentos y resultados se identifican por separado en el [capítulo 9](09_estudio_planificado.md).
+
 **Correspondencia con los requisitos de las páginas 2–3**
 
 La siguiente tabla permite localizar las respuestas solicitadas en la guía. La formulación incorpora las decisiones aceptadas para la validación forward chaining de Filipe, diferenciando la selección con desarrollo de 2024 de la evaluación histórica ya observada, con configuraciones del nuevo ciclo congeladas antes de puntuarlo.
@@ -20,7 +22,7 @@ La siguiente tabla permite localizar las respuestas solicitadas en la guía. La 
 | Dependencia entre observaciones | §1.3.4, con unidad declarada en §1.1.4: solapamiento temporal, partición cronológica y prevención de fuga |
 | Versión y hash del dataset | §1.3.5: instantánea del 02/11/2026, manifiesto y SHA-256 de los 75 ZIP; derivados e índices de desarrollo disponibles; manifiesto supervisado de test y congelación final disponibles |
 
-**Alcance de esta actualización:** se comparan **GRU, LSTM y TCN** con entradas D=7/14/21/28, objetivo fijo n=7 y horizonte h=1. La CV utiliza doce bloques mensuales de Filipe y diez semillas por red e historia: **120 trayectorias nuevas y 43.920 predicciones**. LSTM se reentrenó como control y reprodujo 14.640 predicciones. Tras cerrar las configuraciones se realizaron 80 ajustes finales nuevos y se verificó la reutilización de 40 LSTM: 120 checkpoints, 608 fechas de test y 72.960 predicciones. El periodo 2025–agosto de 2026 ya había sido observado: esta comparación es exploratoria. La [selección con CV](../_static/gru_lstm_tcn_20261105/selected_by_cv.json) identifica **GRU/D7** como baseline. El capítulo 3 documenta su respaldo aplicado y los límites de recurrencia y adaptación.
+**Fase I, conservada como benchmark exploratorio:** se comparan **GRU, LSTM y TCN** con entradas D=7/14/21/28, objetivo fijo n=7 y horizonte h=1. La CV utiliza doce bloques mensuales de Filipe y diez semillas por red e historia: **120 trayectorias nuevas y 43.920 predicciones**. LSTM se reentrenó como control y reprodujo 14.640 predicciones. Tras cerrar las configuraciones se realizaron 80 ajustes finales nuevos y se verificó la reutilización de 40 LSTM: 120 checkpoints, 608 fechas de test y 72.960 predicciones. El periodo 2025–agosto de 2026 ya había sido observado: esta comparación es exploratoria. La [selección con CV](../_static/gru_lstm_tcn_20261105/selected_by_cv.json) identifica **GRU/D7** como baseline. El capítulo 3 documenta su respaldo aplicado y los límites de recurrencia y adaptación.
 
 ## 1.1. Definición del problema
 
@@ -119,7 +121,7 @@ g_m=\frac{\mathrm{RMSE}_{\mathrm{pers}}-\mathrm{RMSE}_m}
 \quad \mathrm{RMSE}_{\mathrm{pers}}>0.
 $$
 
-La mejora relativa frente a persistencia se conserva como **descripción del mismo objetivo y las mismas fechas**. Una estimación puntual favorable, una diferencia estadísticamente distinguible de cero y una mejora que supera un margen práctico son afirmaciones diferentes. Los análisis nuevos entre la terna se declaran posteriores a las observaciones y exploratorios; no se atribuye su protocolo al periodo de mercado.
+La mejora relativa frente a persistencia se conserva como **descripción del mismo objetivo y las mismas fechas**. Una estimación puntual favorable, una diferencia estadísticamente distinguible de cero y una mejora que supera un margen práctico son afirmaciones diferentes. Los análisis nuevos entre la terna se declaran posteriores a las observaciones y exploratorios; no se atribuye su protocolo al periodo de mercado. La fase II registra sus propias comparaciones antes de puntuar una reserva distinta; no cambia esta cronología.
 
 **Margen operativo para una propuesta futura.** Después de evaluar esta terna se propone una reducción relativa de RMSE **superior al 5 % frente a GRU/D7 y frente a persistencia** en una nueva evaluación independiente, con incertidumbre y multiplicidad declaradas. El ancla neuronal de desarrollo es RMSE = 0,005154568533, por lo que el margen absoluto de planificación neuronal es:
 
@@ -130,7 +132,7 @@ $$
 
 Esta definición es **posterior al test actual**. No constituye un margen pretest de sus contrastes ni una tolerancia de riesgo o rentabilidad validada. Las sensibilidades al 2,5 % y al 10 % son escenarios operativos académicos. La comparación futura tendrá que registrar su pérdida, dos referencias, unidad de repetición, alternativa y tamaño de muestra antes de producir resultados. El promedio por sí solo no demuestra superar la frontera práctica.
 
-Las diez semillas de la nueva CV fueron un presupuesto fijo. **Falta un piloto prospectivo y dimensionamiento del procedimiento vigente**, incluido el emparejamiento GRU–LSTM–TCN. La sensibilidad retrospectiva de la variabilidad no lo sustituye ni acredita potencia alcanzada. Tampoco se han entrenado modelos avanzados o evaluado otra trayectoria de mercado.
+Las diez semillas de la CV de fase I fueron un presupuesto fijo y no procedieron de un piloto. La sensibilidad retrospectiva no sustituye ese requisito. La fase II D7 incorpora un piloto antes de sus ajustes definitivos y dimensionamiento con las diferencias pareadas GRU–LSTM–TCN, como se detalla en [§9.4–9.5](09_estudio_planificado.md). Su potencia es de planificación entre semillas, condicionada al calendario; no acredita potencia temporal ni otros mercados. No se han entrenado modelos avanzados.
 | Elemento | Decisión y alcance |
 |---|---|
 | Objetivo principal | Desviación poblacional de siete retornos diarios; próximo valor de la medida móvil |
@@ -179,7 +181,7 @@ El **BDS de residuos de h=1 se calculó por bloque y semilla** para las tres red
 
 La definición principal queda fijada en **n=7, h=1 y D=7/14/21/28**. La [selección de desarrollo](../_static/gru_lstm_tcn_20261105/selected_by_cv.json) identifica GRU/D7 y la política de pesos finales fijos. El contenido del test se leyó en este ciclo después de cerrar los pesos; sus veinte meses son intervalos de reporte. El periodo ya había sido observado, por lo que esta separación no constituye confirmación temporal independiente.
 
-La CV utiliza desarrollo expuesto y no constituye selección anidada ni potencia 0,80 acreditada. El diagnóstico Ridge permanece separado. La [matriz de cierre](protocolo_pendiente.md) registra el piloto pendiente de la terna, la limitada recurrencia de TCN y la necesidad de justificar las diferencias de sesgo entre GRU y LSTM. Una propuesta avanzada requiere su propia dispersión y otra evaluación independiente. TOST/ROPE y una banda de equivalencia solo corresponden si se pretende afirmar equivalencia.
+La CV utiliza desarrollo expuesto y no constituye selección anidada ni potencia 0,80 acreditada. El diagnóstico Ridge permanece separado. La [matriz de cierre](protocolo_pendiente.md) distingue el piloto de fase II D7 de la ausencia de piloto previo en fase I, la limitada recurrencia de TCN y la necesidad de justificar las diferencias de sesgo entre GRU y LSTM. Una propuesta avanzada requiere su propia dispersión y otra evaluación independiente. TOST/ROPE y una banda de equivalencia solo corresponden si se pretende afirmar equivalencia.
 
 ## 1.2. Justificación del Dataset
 
@@ -272,7 +274,7 @@ La regla actual exige 1.440 minutos elegibles para acreditar un OHLCV diario com
 
 Las ventanas y las volatilidades móviles comparten información. Una fecha, una inicialización y un bloque temporal representan fuentes diferentes de variabilidad. Las semillas y los doce folds mensuales sobre un mercado no se contarán como mercados independientes. Los IC por semillas condicionan al calendario observado; remuestrear fechas requeriría un diseño que represente su dependencia y seguiría condicionado a los modelos guardados. Los intervalos entre semillas no se presentan como incertidumbre de otros periodos. Un único activo limita la generalización a otros mercados.
 
-Así se declara la dependencia conocida, sin presentar como resuelto el requisito de independencia: ningún número de filas, folds o semillas convierte una serie en varios mercados. La inferencia temporal debe justificar sus supuestos, longitud de bloque y estabilidad en el procedimiento que se evalúa. El análisis vigente utiliza 4.999 remuestras pareadas de las diez semillas como sensibilidad del tamaño de efecto $d_z$, con alcance post-hoc y condicionado al calendario y a los modelos guardados. No se ejecutó bootstrap temporal para esta terna; hacerlo requeriría un diseño y una longitud de bloque propios.
+Así se declara la dependencia conocida, sin presentar como resuelto el requisito de independencia: ningún número de filas, folds o semillas convierte una serie en varios mercados. La inferencia temporal debe justificar sus supuestos, longitud de bloque y estabilidad en el procedimiento que se evalúa. El análisis de fase I utiliza 4.999 remuestras pareadas de las diez semillas como sensibilidad del tamaño de efecto $d_z$, con alcance post-hoc y condicionado al calendario y a los modelos guardados. La fase I no ejecutó bootstrap temporal para esta terna. La fase II registra antes de la nueva reserva un bootstrap circular temporal con bloque principal siete y sensibilidad tres/catorce, separado del remuestreo de semillas (§9.6.3).
 
 **Separación temporal y prevención de fuga**
 
@@ -285,14 +287,14 @@ Así se declara la dependencia conocida, sin presentar como resuelto el requisit
 
 **Calendario proporcionado**
 
-El calendario confirmado del proyecto es el siguiente:
+El calendario de fase I, conservado sin cambios, es el siguiente:
 
 | Etapa | Periodo | Uso |
 |---|---|---|
 | Historia inicial | 01/01/2023–31/12/2023 | Construir las primeras muestras elegibles de entrenamiento |
 | Validación forward chaining | Objetivos del 01/01/2024 al 31/12/2024 | Entrenar con el pasado y acumular errores de validación para comparar configuraciones |
 | Ajuste final | Datos elegibles de 2023–2024 | Reajustar la configuración seleccionada |
-| Test externo | 01/01/2025–31/08/2026 | Evaluar sin seleccionar configuraciones a partir del test |
+| Test histórico de fase I | 01/01/2025–31/08/2026 | Evaluar las recetas cerradas; periodo ya observado, sin convertirlo en confirmación nueva |
 
 Se reportan **2025 y enero–agosto de 2026 por separado**, con 365 y 243 fechas, respectivamente. La [tabla anual](../_static/gru_lstm_tcn_20261105/annual_metric_summary_test.csv) calcula cada métrica sobre sus fechas y luego resume semillas; 2026 no representa el año completo ni se obtiene la RMSE global promediando dos RMSE anuales.
 
@@ -304,7 +306,7 @@ La historia previa al inicio de validación o test puede formar parte de las ent
 
 La preparación corregida explicita el embargo de la ruta 6.4: para $X_t=(z_{t-D},\ldots,z_{t-1})$, el máximo rezago es $D$ días. Se omiten los días de resultado $t-D,\ldots,t-1$ del ajuste y se admiten candidatos $u\le t-D-1$, sujetos además a disponibilidad y calidad. Los 5.856 registros de partición —366 por cada una de las 16 configuraciones— aplican esa regla. El embargo no elimina toda la dependencia entre etiquetas móviles cuando $n>D+1$, que deberá conservarse en la inferencia.
 
-Los intervalos se expresan en días UTC. El calendario contiene 365 días iniciales de 2023, 366 de validación de 2024 y **608 de test** hasta agosto de 2026; son días de calendario, no recuentos definitivos de muestras elegibles. Los huecos y la historia requerida reducen esa elegibilidad. Los índices, transformaciones y configuraciones se conservaron por corrida. La congelación anterior a la apertura de test, la auditoría de los veinte ZIP y el manifiesto de cohorte permiten verificar su ejecución final. Septiembre–octubre de 2026 se adquirieron, pero no se asignan automáticamente a otra etapa ni cambian el calendario confirmado.
+Los intervalos se expresan en días UTC. El calendario contiene 365 días iniciales de 2023, 366 de validación de 2024 y **608 de test** hasta agosto de 2026; son días de calendario, no recuentos definitivos de muestras elegibles. Los huecos y la historia requerida reducen esa elegibilidad. Los índices, transformaciones y configuraciones se conservaron por corrida. La congelación anterior a la apertura de test, la auditoría de los veinte ZIP y el manifiesto de cohorte permiten verificar su ejecución final. Septiembre–octubre de 2026 se adquirieron sin asignarse a fase I. La fase II asigna explícitamente el 01/09–30/10/2026 bajo un nuevo registro previo; los porcentajes y cohortes iniciales permanecen intactos.
 
 La evaluación prevista es un backtest histórico documentado después del periodo de mercado considerado. La reserva organiza el uso posterior de los datos; no se presenta como un pronóstico que se hubiera emitido en tiempo real durante 2025–2026.
 
@@ -318,3 +320,5 @@ La evaluación prevista es un backtest histórico documentado después del perio
 El SHA-256 del [manifiesto de adquisición](../_static/data/binance_spot_BTCUSDT_1m_20230101_20261030.json) es `af723bcca2caffcbe44ae5243e2863bbcdcd39ae8cd42df491af0a2857926bb2`; cada ZIP conserva además su huella individual.
 
 La identidad de los brutos de test queda fijada en el [manifiesto de reserva de 20 ZIP mensuales](../_static/data/test_raw_reserve_20250101_20260831.json), construido inicialmente desde metadatos. El proyecto ya había observado ese periodo. El ciclo GRU–LSTM–TCN cerró sus configuraciones y checkpoints antes de acceder de nuevo al derivado diario auditado, sin reabrir ZIP brutos. El [manifiesto vigente de protocolos](../_static/gru_lstm_tcn_20261105/protocols_manifest.json) conserva fechas, hashes, reutilización y cohorte; la reserva inicial no se sobrescribe ni convierte esta comparación en un test independiente.
+
+**Aplicación en la fase II D7.** El [capítulo 9](09_estudio_planificado.md) reúne el diseño público previo, la rejilla equitativa de ocho candidatos por familia, el piloto de 60 días, el cálculo de R y los resultados sobre el 01/09–30/10/2026. Esa fase mantiene n=7/h=1 y covariables OHLCV, con D7 fijo. Los resultados de fase I y sus limitaciones permanecen identificados; la potencia planificada entre semillas no representa potencia temporal ni confirma otros mercados.

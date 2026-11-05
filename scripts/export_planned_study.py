@@ -147,6 +147,57 @@ def chronology(registration, selection, pilot, plan, final, access, score, analy
     }
 
 
+def verify_closed_planning(closed, attestation, registration, selection, plan,
+                           source_sha256, first_final_completion_at):
+    """Validate the public closure of recipes/R against the actual private plan.
+
+    A completion timestamp is labeled as completion, not invented as fit start.
+    The external publication receipt separately records that no definitive fit
+    had begun when the public closure was verified.
+    """
+    count = int(plan["R"])
+    if (closed["registration_signature"] != registration["registration_signature"]
+            or closed["registration_sha256"] != source_sha256["registration"]
+            or closed["hpo_selection_sha256"] != source_sha256["selection"]
+            or closed["pilot_complete_sha256"] != source_sha256["pilot"]
+            or closed["dimensioning_sha256"] != source_sha256["plan"]
+            or closed["dimensioning"] != plan
+            or closed["selected_recipes"] != selection["recipes"]
+            or closed["baseline_model_selected_by_hpo"] != selection["baseline_model"]
+            or closed["preregistration_commit"] != registration["source_commit"]
+            or closed["planned_fresh_final_models"] != 3 * count
+            or closed["planned_final_fit_stages"] != 6 * count
+            or closed["planned_reserve_prediction_rows"] != 3 * count * 60
+            or closed["new_reserve_payloads_read"] != 0
+            or not utc(plan["planned_at_utc"]) < utc(closed["closed_before_definitive_fit_at_utc"])
+                < utc(first_final_completion_at)):
+        raise ValueError("The public recipe/dimensioning closure does not match this definitive study")
+    result = {
+        "closed_planning_sha256": source_sha256["closed_planning"],
+        "closed_before_definitive_fit_at_utc": closed["closed_before_definitive_fit_at_utc"],
+        "private_dimensioning_sha256_matches_public_closure": True,
+        "registered_R_matches_public_closure": count,
+        "first_definitive_job_completed_at_utc": first_final_completion_at,
+        "completion_time_is_not_claimed_as_fit_start": True,
+    }
+    if attestation is not None:
+        if (attestation["public_planning_sha256"] != source_sha256["closed_planning"]
+                or attestation["planned_R_per_family"] != count
+                or attestation["definitive_fits_started_before_publication"] != 0
+                or attestation["new_reserve_payload_accessed"] is not False
+                or not utc(closed["closed_before_definitive_fit_at_utc"])
+                    < utc(attestation["public_planning_verified_at_utc"])
+                    < utc(first_final_completion_at)):
+            raise ValueError("Public dimensioning verification does not precede the definitive model completions")
+        result.update({
+            "public_planning_commit": attestation["public_planning_commit"],
+            "public_planning_url": attestation["public_planning_url"],
+            "public_planning_verified_at_utc": attestation["public_planning_verified_at_utc"],
+            "public_receipt_records_zero_definitive_fits_started_at_verification": True,
+        })
+    return result
+
+
 def public_catalog(frame):
     allowed = [field for field in CATALOG_FIELDS if field in frame.columns]
     if not {"model", "trajectory_seed"}.issubset(frame.columns):
@@ -286,7 +337,7 @@ def export_study(experiment=DEFAULT_EXPERIMENT, project_root=ROOT):
     root, experiment = Path(project_root).resolve(), Path(experiment).resolve()
     if experiment.is_relative_to(root):
         raise ValueError("The completed private experiment must remain outside the public checkout")
-    required = ("registration.json", "reservation.json", "design_original.json", "hpo/selection.json",
+    required = ("public_preregistration.json", "registration.json", "reservation.json", "design_original.json", "hpo/selection.json",
         "hpo/candidate_summary.csv", "hpo/run_metrics.csv", "pilot/complete.json", "pilot/metrics.csv",
         "plan.json", "final_models_manifest.json", "final/metrics.csv", "score/raw_access_started.json",
         "score/frozen_access_gate.json", "score/complete.json", "score/data_audit.json", "score/run_metrics.csv",
@@ -301,6 +352,13 @@ def export_study(experiment=DEFAULT_EXPERIMENT, project_root=ROOT):
     if design != registration["design"] or design != read_json(root / "experiments" / ID / "design.json"):
         raise ValueError("The original design differs from its registered public source")
     verify_mapping(root, registration["sources_sha256"])
+    public_registration = records["public_preregistration.json"]
+    if (public_registration["public_code_commit"] != registration["source_commit"]
+            or public_registration["public_design_sha256"] != digest(experiment / "design_original.json")
+            or public_registration["new_real_model_fits_before_verification"] != 0
+            or public_registration["new_reserve_outcomes_evaluated_before_verification"] != 0
+            or utc(public_registration["public_design_verified_at_utc"]) >= utc(registration["registered_at_utc"])):
+        raise ValueError("The public preregistration record does not precede this registered experiment")
     selection, pilot, plan, final, score, analysis = [records[name] for name in
         ("hpo/selection.json", "pilot/complete.json", "plan.json", "final_models_manifest.json",
          "score/complete.json", "analysis/manifest.json")]
@@ -314,7 +372,42 @@ def export_study(experiment=DEFAULT_EXPERIMENT, project_root=ROOT):
         raise ValueError("A linked stage digest no longer matches its predecessor")
     times = chronology(registration, selection, pilot, plan, final,
                        records["score/raw_access_started.json"], score, analysis)
+    times["public_design_verified_before_registration_at_utc"] = public_registration["public_design_verified_at_utc"]
+    times["public_preregistration_commit"] = public_registration["public_code_commit"]
+    times["public_preregistration_url"] = public_registration["commit_url"]
+    canonical = root / "experiments" / ID
+    if digest(canonical / "public_preregistration.json") != digest(experiment / "public_preregistration.json"):
+        raise ValueError("Canonical and private public-preregistration receipts differ")
+    closed = read_json(canonical / "closed_planning.json")
+    final_completions = [read_json(experiment / "final" /
+        f"{job['model']}_s{job['trajectory_seed']}" / "completion.json")["completed_at_utc"]
+        for job in final["jobs"]]
+    if not final_completions:
+        raise ValueError("Every definitive job needs its recorded completion")
+    first_final_completion = min(final_completions, key=utc)
+    if utc(first_final_completion) > utc(final["all_weights_frozen_at_utc"]):
+        raise ValueError("Definitive completion cannot follow its all-weights freeze")
+    public_dimensioning_path = experiment / "public_dimensioning.json"
+    public_dimensioning = read_json(public_dimensioning_path) if public_dimensioning_path.is_file() else None
+    planning_closure = verify_closed_planning(closed, public_dimensioning, registration, selection, plan, {
+        "registration": digest(experiment / "registration.json"),
+        "selection": digest(experiment / "hpo/selection.json"),
+        "pilot": digest(experiment / "pilot/complete.json"),
+        "plan": digest(experiment / "plan.json"),
+        "closed_planning": digest(canonical / "closed_planning.json"),
+    }, first_final_completion)
+    times["public_dimensioning_closure"] = planning_closure
     count = int(plan["R"])
+    gate = records["score/frozen_access_gate.json"]
+    if (gate["registration_sha256"] != digest(experiment / "registration.json")
+            or gate["plan_sha256"] != digest(experiment / "plan.json")
+            or gate["final_models_manifest_sha256"] != digest(experiment / "final_models_manifest.json")
+            or gate["all_final_models_verified"] != 3 * count
+            or not utc(final["all_weights_frozen_at_utc"]) < utc(gate["checked_at_utc"])
+                < utc(records["score/raw_access_started.json"]["at_utc"])):
+        raise ValueError("The pre-access gate does not identify all frozen models before the first payload read")
+    times["frozen_access_gate_verified_at_utc"] = gate["checked_at_utc"]
+    times["frozen_access_gate_links_and_counts_verified"] = True
     if (list(design["models"]) != list(MODELS) or len(plan["seeds"]) != count
             or count < design["statistics"]["min_runs"] or final["models"] != 3*count
             or score["trajectories"] != 3*count or score["prediction_rows"] != 3*count*60
@@ -341,6 +434,10 @@ def export_study(experiment=DEFAULT_EXPERIMENT, project_root=ROOT):
         "scope": "Recorded SHA256 identity of private source evidence; payloads are not public exports",
         "file_sha256": {name: digest(experiment / name) for name in required},
         "registered_scientific_source_sha256": registration["sources_sha256"],
+        "canonical_public_records_sha256": {
+            str((canonical / name).relative_to(root)): digest(canonical / name)
+            for name in ("public_preregistration.json", "closed_planning.json")},
+        "public_dimensioning_receipt_sha256": digest(public_dimensioning_path) if public_dimensioning is not None else None,
         "export_adapter_sha256": digest(__file__),
         "export_adapter_is_post_execution": True,
         "scientific_implementation_is_not_retroactively_replaced": True,
@@ -368,12 +465,16 @@ def export_study(experiment=DEFAULT_EXPERIMENT, project_root=ROOT):
     with tempfile.TemporaryDirectory(prefix="planned-study-public-") as tmp:
         staging = Path(tmp)
         documents = {
-            "design.json": design, "registration.json": registration, "reservation.json": records["reservation.json"],
+            "design.json": design, "public_preregistration.json": public_registration,
+            "closed_planning.json": closed,
+            "registration.json": registration, "reservation.json": records["reservation.json"],
             "selected_recipes.json": selection, "dimensioning.json": plan, "chronology.json": times,
             "source_manifest.json": source_manifest, "runtime.json": runtime,
             "data_quality_audit.json": records["score/data_audit.json"],
             "final_freeze_provenance.json": final, "summary.json": summary,
         }
+        if public_dimensioning is not None:
+            documents["public_dimensioning.json"] = public_dimensioning
         for name, document in documents.items():
             write_json(staging / name, public_metadata(document))
         pd.DataFrame([{**row, "model": model} for model, rows in design["search"]["candidates"].items()

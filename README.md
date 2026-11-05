@@ -2,25 +2,54 @@
 
 Proyecto de Deep Learning, 2026-30: **pronóstico de volatilidad de Bitcoin con GRU, LSTM y TCN**.
 
-[Jupyter Book](https://jassan-bit.github.io/DeepLearning_202630/intro.html) · [Benchmark](https://jassan-bit.github.io/DeepLearning_202630/sections/05_benchmark.html) · [Siete entregables descargables](https://jassan-bit.github.io/DeepLearning_202630/sections/08_entregables.html#descargar-entregable-1) · [Reproducción](BUILD.md).
+[Jupyter Book](https://jassan-bit.github.io/DeepLearning_202630/intro.html) · [Estudio D7 planificado](https://jassan-bit.github.io/DeepLearning_202630/sections/09_estudio_planificado.html) · [Entregables descargables](https://jassan-bit.github.io/DeepLearning_202630/sections/08_entregables.html#descargar-entregable-1) · [Reproducción](BUILD.md).
 
-El objetivo es σ₇, desviación estándar poblacional de siete retornos logarítmicos diarios de Close, sin anualización, con horizonte de un día. Los modelos reciben cinco canales OHLCV diarios y entradas de 7/14/21/28 días. La validación usa los índices forward chaining de `timeseries-cv` de DidierRLopes y Filipe R. Ramos: historia inicial 2023, doce bloques mensuales de 2024 y diez semillas por modelo/entrada.
+El objetivo es σ₇, desviación estándar poblacional de siete retornos logarítmicos diarios de Close, sin anualización, con horizonte de un día. Las entradas son cinco canales OHLCV diarios y la validación emplea los índices forward chaining de `timeseries-cv`, proyecto de DidierRLopes y Filipe R. Ramos, con historia inicial 2023 y embargo temporal.
 
-El baseline neuronal vigente es **GRU/D7**, elegido por CV antes de las nuevas inferencias en el test histórico:
+## Dos fases identificadas
 
-| Fase | RMSE media ± DE de GRU/D7 | R² medio |
-|---|---|---:|
-| CV 2024 | 0,00515457 ± 0,00016156 | 0,721214 |
-| Test histórico 2025–agosto de 2026 | 0,00377511 ± 0,00019410 | 0,854173 |
+| Elemento | Fase I exploratoria | Fase II D7 planificada |
+|---|---|---|
+| Historias | D=7/14/21/28 | D=7, n=7, h=1 |
+| Ajuste | Recetas fijas y diez semillas | Ocho candidatos, dos semillas y diez bloques comunes por familia; 960 ajustes HPO |
+| Piloto | No precedió al benchmark inicial | Diez semillas nuevas por familia, 60 días de desarrollo y 60 ajustes |
+| Repeticiones definitivas | Diez por configuración | 465 por familia, calculadas antes del ajuste definitivo |
+| Evaluación | 01/01/2025–31/08/2026, 608 fechas ya observadas | 01/09–30/10/2026, 60 fechas de una reserva histórica no usada anteriormente para resultados |
+| Inferencia | Posterior y exploratoria | Métodos, margen y comparaciones registrados antes de la nueva evaluación |
 
-La ejecución local produjo 120 trayectorias CV, 2.880 ajustes y 43.920 predicciones. El ajuste final comprende 80 redes GRU/TCN nuevas y 40 LSTM idénticas reutilizadas; sus 120 checkpoints preceden al acceso al derivado del test en este procedimiento. Test reúne 608 fechas y 72.960 predicciones: 80 inferencias nuevas y 40 trayectorias LSTM reutilizadas. Sus veinte meses son intervalos de reporte, sin refits. Septiembre–octubre de 2026 permanece sin asignar ni abrir.
+El diseño y código de fase II se [publicaron antes del HPO](https://github.com/jassan-bit/DeepLearning_202630/commit/ac7dd7f67c0dec2397b519897cf6da8056b238f5). Tras seleccionar las recetas y ejecutar el piloto, el [dimensionamiento se cerró públicamente antes del ajuste definitivo](https://github.com/jassan-bit/DeepLearning_202630/commit/5a0acfbc2ff582e252f0e6fb18aaf652963221f8). El R=465 se calcula mediante t no central, α*=0,05/3, potencia marginal objetivo 0,80 y límite superior simultáneo del 80 % para las DE pareadas del piloto. Supone normalidad y transferencia de dispersión; no acredita potencia temporal o conjunta del 80 %.
 
-**Alcance:** el test ya había sido observado en el proyecto. La comparación actual dentro de GRU–LSTM–TCN se elaboró después del test y es exploratoria; no constituye una confirmación temporal independiente. Persistencia conserva mejores MAE/MAPE y menor RMSE en CV. El nuevo trío no tiene aún piloto prospectivo ni un número de semillas derivado de potencia. El margen académico para modelos futuros se declara después del test y no afirma utilidad financiera.
+El baseline de fase II es **GRU/D7 de 16 unidades**, elegido por RMSE media de HPO enero–octubre de 2024 (**0,00513620 ± 0,00003068**). LSTM selecciona 16 unidades y TCN ancho 8; las tres usan LR 0,003, con dropout 0,1 para GRU y 0 para LSTM/TCN. El piloto y HPO D7 no se atribuyen retrospectivamente a las otras entradas.
 
-La revisión identifica 40 referencias y siete estudios cripto completos. Las frecuencias de comparadores independientes son GRU 3/7, LSTM 5/7 y TCN 1/7, con tipos de publicación y niveles de verificación diferenciados. La recurrencia TCN y la justificación de dos variantes recurrentes conservan sus límites.
+El ejecutor nuevo es [run_gru_lstm_tcn_planned.py](scripts/run_gru_lstm_tcn_planned.py), con [datos reservados](scripts/planned_study_data.py), [estadística preespecificada](scripts/planned_study_statistics.py) y [diseño versionado](experiments/gru_lstm_tcn_planned_20261105/design.json). Sus fases explícitas separan registro, HPO, piloto, planificación, ajuste, puntuación y análisis. Todos los pesos y escaladores se cierran antes de construir objetivos de la nueva reserva. La adquisición previa ya había recorrido esos CSV para auditar integridad, timestamps y esquema: no se afirma que los archivos nunca se abrieron, ni que son pronósticos emitidos en vivo.
 
-El flujo público es [run_gru_lstm_tcn.py](scripts/run_gru_lstm_tcn.py), con [modelos](scripts/dl_models_gru_lstm_tcn.py), [agregación de evidencia](scripts/build_gru_lstm_tcn_evidence.py) y [diagnósticos](scripts/gru_lstm_tcn_diagnostics.py). El adaptador portable se publica después de la ejecución; no se le atribuye retroactivamente el hash del código entrenado. Los originales se preservan en `experiments/gru_lstm_tcn_20261105/original_registration/` y en el historial. Las tablas del libro corresponden únicamente a la terna vigente y persistencia.
+## Resultados de la nueva reserva de 60 días
 
-El repositorio público contiene código, los derivados diarios de desarrollo 2023–2024, metadatos, agregados y figuras; una ilustración observado/predicho usa la semilla fija 4101. Los ZIP de entrega omiten los derivados diarios y documentan cómo generarlos. Los derivados completos del test, las predicciones individuales, los pesos y los escaladores se conservan para auditoría fuera de la exportación pública. Construir o descargar el libro no entrena redes ni abre datos de mercado.
+| Modelo de fase II | RMSE, media ± DE | R² medio |
+|---|---:|---:|
+| GRU | 0,00511696 ± 0,00077519 | 0,34889070 |
+| LSTM | 0,00565123 ± 0,00056569 | 0,21584267 |
+| TCN | 0,00433967 ± 0,00099896 | 0,51795587 |
+| Persistencia | 0,00384478 | 0,64063235 |
 
-[BUILD.md](BUILD.md) distingue la reproducción desde un clon de la restauración conjunta de los ZIP 8.2, 8.3 y 8.5. En las descargas, el manifiesto verificable está en `book/_static/gru_lstm_tcn_20261105/public_allowlist_manifest.json`; en el clon también está en `results/gru_lstm_tcn_20261105/`.
+Persistencia tiene menor RMSE puntual que las tres redes; TCN ocupa el primer puesto descriptivo entre redes. El baseline operativo sigue siendo GRU/D7-c03, elegido antes del piloto y de la reserva. Ninguna de las seis comparaciones temporales DM rechaza tras Holm; el bootstrap temporal familiar no acredita una reducción superior al 5 %. Shapiro–Wilk rechaza normalidad de los tres pares de diferencias, por lo que las t con 465 pares se interpretan como aproximaciones, no como inferencia exacta bajo normalidad demostrada.
+
+Estos resultados corresponden al 01/09–30/10/2026. No se comparan directamente con el test de 608 fechas para atribuir una mejora o deterioro al HPO.
+
+## Benchmark histórico conservado
+
+La fase I produjo 120 trayectorias CV, 2.880 ajustes y 43.920 predicciones. Su ajuste final comprende 80 redes GRU/TCN nuevas y 40 LSTM idénticas reutilizadas; el test de 608 fechas reúne 72.960 predicciones. El baseline inicial **GRU/D7 de 32 unidades** obtiene RMSE 0,00377511 ± 0,00019410 y R² 0,854173 en ese test. Es una receta y una cohorte diferentes de la fase II; comparar métricas entre los dos periodos no identifica una mejora causada por HPO.
+
+Los resultados y contrastes de fase I permanecen exploratorios. Su [ejecutor portable](scripts/run_gru_lstm_tcn.py) y los [originales firmados](experiments/gru_lstm_tcn_20261105/original_registration/) se preservan. Una reproducción fresca de esa fase ajusta 120 modelos finales; no se confunde con los 80 nuevos y 40 reutilizados del experimento observado.
+
+## Literatura y distribución
+
+La revisión identifica 40 referencias y siete estudios cripto completos: GRU aparece como comparador independiente en 3/7, LSTM en 5/7 y TCN en 1/7. Las verificaciones editoriales, tipos de publicación y límites de no redundancia se mantienen explícitos. Un nuevo experimento no aumenta esas frecuencias.
+
+El repositorio incluye los derivados diarios de desarrollo 2023–2024. Los ZIP de entrega los omiten y documentan su generación con los archivos oficiales. Se publican código, metadatos, agregados y figuras; las ilustraciones temporales fijan la semilla antes de comparar errores. Los derivados completos de evaluación, predicciones individuales, pesos y escaladores permanecen fuera de la exportación pública. Construir el libro no entrena redes ni abre datos de mercado.
+
+[BUILD.md](BUILD.md) distingue clon y restauración conjunta de productos 8.2, 8.3 y 8.5. Sus manifiestos se verifican desde `book/_static/` en las descargas y también desde `results/` en el repositorio. Un estudio BTCUSDT y dos meses de reserva no representan otros mercados; la significación entre semillas y la incertidumbre temporal se interpretan por separado.
+
+La reserva de fase II pasa a ser una evaluación conocida una vez publicados sus resultados. Reproducirla no recupera independencia para un futuro modelo diseñado con esa información.
+
+La DE definitiva de GRU–TCN supera aproximadamente 1,64 veces su cota de planificación obtenida con el piloto. Junto con el rechazo de normalidad, esto limita la transferencia de los supuestos: el R se calculó antes de la ejecución, pero no se afirma potencia alcanzada o demostrada.

@@ -40,3 +40,11 @@ La comprobación falla si falta un archivo o cambia un byte; no depende de un TX
 Fuente: Binance Vision / Binance Spot, `https://data.binance.vision/`. Aplican los Binance Vision Dataset Terms consultados, versión 1.0 (26/08/2026), con CC BY-NC-SA 4.0 salvo designación específica y condiciones adicionales. Ver la sección 2.3.4 del libro para condiciones y atribución.
 
 La adquisición y los conteos no constituyen EDA del objetivo ni acceso a resultados de test. El script revisa timestamps, conteos y esquema, sin examinar precios para elegir modelos. La extensión descargada septiembre–octubre de 2026 no modifica por sí sola las particiones experimentales preregistradas.
+
+## Asignación explícita de la nueva reserva D7
+
+La fase I conserva su test de 01/01/2025–31/08/2026 y su alcance exploratorio. La fase II asigna expresamente **01/09–30/10/2026**, sesenta días, mediante el [diseño publicado antes de los nuevos entrenamientos](../experiments/gru_lstm_tcn_planned_20261105/design.json). Los archivos ya se habían recorrido en adquisición para comprobar integridad, timestamps y esquema; según los registros conservados, no se habían utilizado para construir objetivos o evaluar modelos. No se afirma que los ZIP nunca se abrieron. Agosto de 2026 se utiliza únicamente como contexto observable de las primeras ventanas.
+
+El nuevo `scripts/planned_study_data.py` verifica la identidad de un ZIP mensual de septiembre y treinta ZIP diarios de octubre, más agosto como contexto, y solo prepara la reserva cuando el ejecutor exige que todos los pesos y escaladores estén cerrados. No modifica los manifiestos ni el calendario de fase I. La reproducción completa y su orden están en [BUILD.md](../BUILD.md).
+
+La evaluación de fase II ya está completada sobre esas sesenta fechas. Sus 1.395 modelos y escaladores se cerraron antes del primer acceso para derivar la reserva; los resultados agregados y la cronología están en el capítulo 9. Una nueva reproducción de esos mismos datos no recupera una reserva sin consultar ni constituye otra confirmación independiente.

@@ -1,0 +1,394 @@
+{
+  "schema_version": 1,
+  "study_id": "gru_lstm_tcn_planned_20261105",
+  "created_at_utc": "2026-11-05T18:47:10.478844+00:00",
+  "scope": "New D7 main comparison planned after the earlier exploratory benchmark; never a retrospective preregistration of earlier results",
+  "models": [
+    "GRU",
+    "LSTM",
+    "TCN"
+  ],
+  "history_days": 7,
+  "target_returns_days": 7,
+  "forecast_days": 1,
+  "variant": "relative_window",
+  "data_contract": {
+    "market": "Binance Spot BTCUSDT",
+    "daily_timezone": "UTC",
+    "features": [
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume"
+    ],
+    "target": "Population standard deviation ddof=0 of seven daily log close returns; unannualized",
+    "input_support": "[outcome_day-D,outcome_day)",
+    "target_lags_added": false,
+    "missing_data": "No imputation/calendar compression; exclude dependent windows; abort if the preregistered 60-date evaluation is incomplete"
+  },
+  "training": {
+    "optimizer": "AdamW",
+    "weight_decay": 0.0001,
+    "batch_size": 32,
+    "max_epochs": 100,
+    "patience": 12,
+    "min_delta": 1e-05,
+    "gradient_clip_norm": 1.0,
+    "device": "cpu",
+    "torch_threads": 1,
+    "torch_interop_threads": 1,
+    "strict_deterministic_algorithms": true,
+    "inner_validation_calendar_days": 90,
+    "embargo_days": 7,
+    "inner_seed": "stage_seed",
+    "refit_seed": "stage_seed+10000000",
+    "batch_order_seed": "stage_seed+17",
+    "test_refit": false
+  },
+  "search": {
+    "method": "exhaustive_grid",
+    "candidates": {
+      "GRU": [
+        {
+          "candidate_id": "c00",
+          "width": 16,
+          "learning_rate": 0.001,
+          "dropout": 0.0
+        },
+        {
+          "candidate_id": "c01",
+          "width": 16,
+          "learning_rate": 0.001,
+          "dropout": 0.1
+        },
+        {
+          "candidate_id": "c02",
+          "width": 16,
+          "learning_rate": 0.003,
+          "dropout": 0.0
+        },
+        {
+          "candidate_id": "c03",
+          "width": 16,
+          "learning_rate": 0.003,
+          "dropout": 0.1
+        },
+        {
+          "candidate_id": "c04",
+          "width": 32,
+          "learning_rate": 0.001,
+          "dropout": 0.0
+        },
+        {
+          "candidate_id": "c05",
+          "width": 32,
+          "learning_rate": 0.001,
+          "dropout": 0.1
+        },
+        {
+          "candidate_id": "c06",
+          "width": 32,
+          "learning_rate": 0.003,
+          "dropout": 0.0
+        },
+        {
+          "candidate_id": "c07",
+          "width": 32,
+          "learning_rate": 0.003,
+          "dropout": 0.1
+        }
+      ],
+      "LSTM": [
+        {
+          "candidate_id": "c00",
+          "width": 16,
+          "learning_rate": 0.001,
+          "dropout": 0.0
+        },
+        {
+          "candidate_id": "c01",
+          "width": 16,
+          "learning_rate": 0.001,
+          "dropout": 0.1
+        },
+        {
+          "candidate_id": "c02",
+          "width": 16,
+          "learning_rate": 0.003,
+          "dropout": 0.0
+        },
+        {
+          "candidate_id": "c03",
+          "width": 16,
+          "learning_rate": 0.003,
+          "dropout": 0.1
+        },
+        {
+          "candidate_id": "c04",
+          "width": 32,
+          "learning_rate": 0.001,
+          "dropout": 0.0
+        },
+        {
+          "candidate_id": "c05",
+          "width": 32,
+          "learning_rate": 0.001,
+          "dropout": 0.1
+        },
+        {
+          "candidate_id": "c06",
+          "width": 32,
+          "learning_rate": 0.003,
+          "dropout": 0.0
+        },
+        {
+          "candidate_id": "c07",
+          "width": 32,
+          "learning_rate": 0.003,
+          "dropout": 0.1
+        }
+      ],
+      "TCN": [
+        {
+          "candidate_id": "c00",
+          "width": 8,
+          "learning_rate": 0.001,
+          "dropout": 0.0
+        },
+        {
+          "candidate_id": "c01",
+          "width": 8,
+          "learning_rate": 0.001,
+          "dropout": 0.1
+        },
+        {
+          "candidate_id": "c02",
+          "width": 8,
+          "learning_rate": 0.003,
+          "dropout": 0.0
+        },
+        {
+          "candidate_id": "c03",
+          "width": 8,
+          "learning_rate": 0.003,
+          "dropout": 0.1
+        },
+        {
+          "candidate_id": "c04",
+          "width": 16,
+          "learning_rate": 0.001,
+          "dropout": 0.0
+        },
+        {
+          "candidate_id": "c05",
+          "width": 16,
+          "learning_rate": 0.001,
+          "dropout": 0.1
+        },
+        {
+          "candidate_id": "c06",
+          "width": 16,
+          "learning_rate": 0.003,
+          "dropout": 0.0
+        },
+        {
+          "candidate_id": "c07",
+          "width": 16,
+          "learning_rate": 0.003,
+          "dropout": 0.1
+        }
+      ]
+    },
+    "candidate_count_per_family": 8,
+    "seeds": [
+      6101,
+      6102
+    ],
+    "months": [
+      "2024-01",
+      "2024-02",
+      "2024-03",
+      "2024-04",
+      "2024-05",
+      "2024-06",
+      "2024-07",
+      "2024-08",
+      "2024-09",
+      "2024-10"
+    ],
+    "folds_source": "results/dl_r2_cv_20261104/folds.json",
+    "evaluation": "Mean across two seeds of RMSE pooled over all January-October validation dates; not mean monthly RMSE",
+    "tie_tolerance": 1e-12,
+    "tie_break": "lower parameter count, then candidate_id; family tie alphabetical",
+    "new_fits_per_candidate_seed_month": 2,
+    "expected_new_fits": 960,
+    "selection_has_seen_development_before_study": true,
+    "baseline_selection": "Best selected-family CV score; freeze before pilot/test; do not reselect on new reserve",
+    "monthly_stage_seed": "base_seed+100000*month_ordinal, January2024 ordinal0; candidate jobs use the same paired base/month seeds"
+  },
+  "pilot": {
+    "seeds": [
+      7101,
+      7102,
+      7103,
+      7104,
+      7105,
+      7106,
+      7107,
+      7108,
+      7109,
+      7110
+    ],
+    "origin": "2024-11-01",
+    "start": "2024-11-01",
+    "end": "2024-12-30",
+    "evaluation_start": "2024-11-01",
+    "evaluation_end_inclusive": "2024-12-30",
+    "calendar_days": 60,
+    "policy": "Fit before origin, inner chronological selection plus fresh refit; fixed weights for all 60 dates, mimicking final evaluation",
+    "recipes_frozen_after_hpo": true,
+    "known_development_calendar": true,
+    "counts_toward_definitive": false
+  },
+  "definitive": {
+    "seed_start": 8101,
+    "origin": "2025-01-01",
+    "training_calendar_start": "2023-01-01",
+    "training_calendar_end_inclusive": "2024-12-31",
+    "training_outcome_max": "2024-12-24",
+    "policy": "For each registered new seed, inner chronological stopping before origin, then fresh refit on all permitted 2023-2024 development; no 2025-2026 training labels",
+    "all_weights_frozen_before_reserve_payload_read": true,
+    "seeds_disjoint_from_hpo_and_pilot": true,
+    "no_stopping_for_significance": true
+  },
+  "reserve": {
+    "start": "2026-09-01",
+    "end": "2026-10-30",
+    "calendar_days": 60,
+    "expected_outcomes": 60,
+    "context_month": "2026-08",
+    "expected_target_archives": 31,
+    "acquisition_manifest": "data/manifests/binance_spot_BTCUSDT_1m_20230101_20261030.json",
+    "prestudy_access": "Acquisition traversed raw CSV rows for integrity, timestamp and schema audit. No target, price-performance analysis, training, model selection or evaluation of this reserve was performed by this project, according to preserved records. This is not a never-opened-archive claim.",
+    "allocation": "New explicit allocation authorized by the present request; no reassignment of the earlier 2025-August2026 test",
+    "interpretation": "Pre-specified evaluation on a historical reserve unused for earlier model results; not a live future forecast or a second independent market",
+    "read_policy": "One explicit scoring pass after all registered weights and scalers are frozen; save predictions; analyses reread saved predictions only"
+  },
+  "statistics": {
+    "primary_metric": "rmse",
+    "delta": 0.00025772842664981106,
+    "delta_origin": "5% of original GRU/D7 CV RMSE .005154568532996221; academic planning convention fixed before this new phase, posterior to earlier test",
+    "alpha": 0.05,
+    "power": 0.8,
+    "min_runs": 10,
+    "max_runs": 10000,
+    "sd_upper_simultaneous_confidence": 0.8,
+    "sd_sensitivity_confidences": [
+      0.8,
+      0.9,
+      0.95
+    ],
+    "family_size": 3,
+    "primary_pairs": [
+      [
+        "GRU",
+        "LSTM"
+      ],
+      [
+        "GRU",
+        "TCN"
+      ],
+      [
+        "LSTM",
+        "TCN"
+      ]
+    ],
+    "primary_test": "Two-sided paired t on matched-seed pooled 60-date RMSE; Holm3; t noncentral dimensioning at conservative Bonferroni alpha=.05/3",
+    "power_scope": "At least .80 marginal planning power per comparison under Gaussian independent seed differences and transferred pilot dispersion; not joint power .80, not temporal power or unconditional future-market power",
+    "unit": "Independent random initialization/order seed paired across recipes, conditional on the same calendar; do not count days or months as independent seeds",
+    "bootstrap_draws": 4999,
+    "bootstrap_seed": 20261105,
+    "effect": "Paired Cohen d_z plus paired-seed bootstrap sensitivity; zero difference/zero variance handled explicitly",
+    "confidence_intervals": "95% marginal and Bonferroni simultaneous family intervals; intervals conditional on training randomization",
+    "normality": "Shapiro-Wilk on paired differences as diagnostic only; report all pre-specified tests, do not switch to the test yielding smaller p",
+    "temporal_secondary": {
+      "loss": "Daily MSE averaged across individual seed models, not MSE of averaged predictions",
+      "dm_hac_lags": 6,
+      "dm_horizon": 1,
+      "dm_small_sample": "Harvey-Leybourne-Newbold",
+      "dm_family_size": 6,
+      "temporal_bootstrap": "Circular moving blocks, primary length7, sensitivity3/14; 4999 replicates; paired same date resamples all recipes/seeds; preserve mean per-seed RMSE estimand",
+      "temporal_power_claimed": false,
+      "pairs": [
+        [
+          "GRU",
+          "LSTM"
+        ],
+        [
+          "GRU",
+          "TCN"
+        ],
+        [
+          "LSTM",
+          "TCN"
+        ],
+        [
+          "GRU",
+          "Persistence"
+        ],
+        [
+          "LSTM",
+          "Persistence"
+        ],
+        [
+          "TCN",
+          "Persistence"
+        ]
+      ],
+      "temporal_bootstrap_pairs": "The same six explicit temporal-secondary pairs, with paired common date resamples; seed metric aggregation preserved",
+      "temporal_bootstrap_intervals": "95% marginal and Bonferroni simultaneous six-pair intervals for primary block7; block3/14 are descriptive sensitivity, not new opportunities to choose significance"
+    },
+    "practical_relevance": "Report zero-difference evidence separately from whether relative improvement exceeds5%; do not equate significance or a favorable point estimate with a confidence bound exceeding the practical threshold",
+    "all_models_and_results_reported": true,
+    "residual_diagnostics": {
+      "scope": "Exploratory residual diagnostics over all 60 dates for each frozen neural seed; not the confirmatory primary family",
+      "BDS": {
+        "embedding_dimension": 2,
+        "epsilon_sd_multiplier": 1.5
+      },
+      "Ljung_Box": {
+        "lags": [
+          1,
+          5
+        ],
+        "model_df": 0
+      },
+      "multiplicity": "Holm separately for all3R BDS tests and all6R Ljung-Box tests; undefined tests retained in family; not a nonlinear-gain claim"
+    }
+  },
+  "chronology": {
+    "public_code_and_design_before_hpo_required": true,
+    "freeze_selected_recipes_before_pilot": true,
+    "freeze_pilot_and_dimensioning_before_definitive_fits": true,
+    "freeze_weights_before_reserve_target_construction": true,
+    "freeze_analysis_before_reserve_read": true,
+    "old_benchmark_is_unchanged_exploratory": true
+  },
+  "failure_policy": {
+    "technical_failures": "Stop and preserve original error/artifacts; no replacement of unfavorable seeds; resume only exact registered jobs after root-cause review",
+    "missing_reserve_dates": "Abort primary analysis rather than silently changing the cohort",
+    "degenerate_pilot": "Report inability to plan if paired variance cannot be estimated; never substitute an arbitrary successful power",
+    "infeasible_sample_size": "Report required R and infeasibility; never silently cap R or claim target power",
+    "protocol_changes": "Any scientific change after results starts a new version; never overwrite frozen protocol"
+  },
+  "public_export": {
+    "allowed": "Code, preregistration, configurations, aggregate metrics/inference/figures, timestamps and SHA256 manifests",
+    "excluded": "Raw minute archives, individual daily observations/predictions, learned scalers and checkpoints",
+    "fixed_seed_illustration": {
+      "seed": 8101,
+      "rule": "First definitive seed; never selected by holdout error",
+      "format": "PNG only; no machine-readable daily observations/predictions"
+    }
+  }
+}

@@ -1,6 +1,8 @@
 # 7. Limitaciones Inferenciales de Trabajar con Tres Modelos
 
-El benchmark vigente compara **GRU, LSTM y TCN** con D=7/14/21/28, n=7, h=1 y diez semillas. Se completaron **120 trayectorias de CV, 1.440 segmentos mensuales, 2.880 ajustes y 43.920 predicciones**. El cierre final verificó 120 checkpoints: 80 ajustes nuevos y 40 LSTM idénticos reutilizados. El test histórico contiene 608 fechas y 72.960 predicciones. Los [manifiestos de procedencia](../_static/gru_lstm_tcn_20261105/protocols_manifest.json) distinguen fases, hashes y reutilización.
+**Dos fases del estudio.** Las tablas de cuatro entradas, diez semillas y test enero de 2025–agosto de 2026 de este capítulo corresponden a la **fase I exploratoria**. La **fase II D7** añade búsqueda equitativa, piloto anterior a su ejecución definitiva, dimensionamiento y evaluación preespecificada sobre el 01/09–30/10/2026. Sus recetas, recuentos y resultados se identifican por separado en el [capítulo 9](09_estudio_planificado.md).
+
+El benchmark inicial de fase I compara **GRU, LSTM y TCN** con D=7/14/21/28, n=7, h=1 y diez semillas. Se completaron **120 trayectorias de CV, 1.440 segmentos mensuales, 2.880 ajustes y 43.920 predicciones**. El cierre final verificó 120 checkpoints: 80 ajustes nuevos y 40 LSTM idénticos reutilizados. El test histórico contiene 608 fechas y 72.960 predicciones. Los [manifiestos de procedencia](../_static/gru_lstm_tcn_20261105/protocols_manifest.json) distinguen fases, hashes y reutilización.
 
 **El periodo de test ya había sido observado en el proyecto.** La nueva configuración se cerró antes de puntuar sus checkpoints, pero esa secuencia no vuelve desconocido el mercado ni convierte el análisis en confirmación temporal independiente. La comparación dentro de la terna es posterior a la evaluación y exploratoria. Un benchmark con tres modelos y pocas semillas puede no detectar diferencias pequeñas; ese límite debe cuantificarse y no ocultarse tras el promedio.
 
@@ -57,13 +59,13 @@ La historia inicial es 2023 y los orígenes de validación son los días de 2024
 
 Hay diez semillas 4101–4110 por red e historia. Permiten describir variación de entrenamiento condicionada al calendario, sin convertir las 120 combinaciones en 120 mercados. La validación cruzada repetida y una corrección de varianza solo son apropiadas si sus supuestos se justifican; no autorizan K-fold aleatorio ni mezcla de fechas en BTCUSDT.
 
-El ajuste final utiliza el desarrollo admisible 2023–2024. Los 120 checkpoints se cierran antes de acceder al derivado del test en este ciclo, con 80 ajustes nuevos y 40 controles LSTM reutilizados. Sus veinte meses son intervalos de reporte de pesos fijos, sin adaptación o reescalado con test. Septiembre–octubre de 2026 no se incorpora.
+El ajuste final utiliza el desarrollo admisible 2023–2024. Los 120 checkpoints se cierran antes de acceder al derivado del test en este ciclo, con 80 ajustes nuevos y 40 controles LSTM reutilizados. Sus veinte meses son intervalos de reporte de pesos fijos, sin adaptación o reescalado con test. Septiembre–octubre de 2026 no se incorporó a fase I. Su asignación posterior y explícita a fase II D7 se documenta en el capítulo 9.
 
 Remuestrear fechas o semillas requiere declarar la unidad y la dependencia que se intenta representar. Un bootstrap sobre predicciones guardadas condiciona a esos modelos; no es un nuevo entrenamiento o mercado. Ni esa operación ni Holm reparan fuga temporal, selección con la evaluación o un p-value mal calibrado.
 
 ### 7.2.2. Diferencia mínima detectable y tamaños de efecto
 
-**Pendiente específico de esta terna:** no se ejecutó un piloto prospectivo para dimensionar GRU–LSTM–TCN. Las diez semillas fueron el presupuesto fijo de la comparación y no un resultado de potencia. Los estudios de otros procedimientos no se trasladan automáticamente a estas arquitecturas y recetas.
+**Fase I:** no se ejecutó un piloto prospectivo para dimensionar sus repeticiones. Las diez semillas fueron un presupuesto fijo. **Fase II D7:** las recetas se seleccionan mediante HPO comparable, el piloto usa diez semillas nuevas por familia y el dimensionamiento precede a los ajustes definitivos. El [capítulo 9](09_estudio_planificado.md) conserva R, MDE y supuestos. El piloto de D7 no se transfiere a D14/21/28 ni acredita potencia temporal o conjunta del 80 %.
 
 Una planificación pareada debe estimar la desviación de las diferencias de la métrica primaria bajo el procedimiento futuro, fijar δ y la familia de comparaciones antes de las nuevas ejecuciones, y justificar la unidad de repetición. Bajo una aproximación normal independiente:
 
@@ -125,9 +127,9 @@ Los IC entre semillas condicionan al calendario y los contrastes dentro de la te
 | Código EDA, redes y estadística | Recetas, contratos de tensor, semillas, índices, escalado y análisis de predicciones guardadas | Adaptaciones compactas, no réplicas exactas de redes entrenadas en artículos. |
 | Datos y adquisición | Fuente oficial, scripts, manifiestos y reglas de calidad | Una serie BTCUSDT; el periodo de test ya había sido observado. |
 | Literatura y flujo | Siete estudios cripto, roles separados y extracción de la terna | Fortalecer TCN 1/7 y justificar las diferencias entre GRU/LSTM; no inferir Q1 o indexación desde editorial. |
-| Benchmark e inferencia | 120 trayectorias CV, 120 resultados finales, métricas e inferencia dentro de la terna | Contrastes posteriores, condicionales al calendario y las recetas. |
+| Benchmark e inferencia | Fase I: 120 trayectorias CV y 120 resultados finales; fase II D7: HPO, piloto, ajuste dimensionado y nueva reserva (§9) | Fase I posterior y exploratoria; fase II preespecificada y condicionada al calendario, con límites temporales y de generalización. |
 | Dependencias y configuraciones | [Catálogo CV](../_static/gru_lstm_tcn_20261105/configuration_catalog_cv.csv), [catálogo final](../_static/gru_lstm_tcn_20261105/configuration_catalog_final.csv) y manifiestos | El cierre final incluye 80 ajustes nuevos y 40 controles reutilizados, no 120 entrenamientos nuevos. |
-| Métrica, margen, unidad y partición | Reglas de selección, cronología y alcance del margen futuro documentados | El piloto y dimensionamiento específicos de esta terna siguen pendientes; no se acredita potencia 0,80. |
+| Métrica, margen, unidad y partición | Cronologías separadas: fase I exploratoria y fase II D7 registrada antes de su reserva, con piloto y R=465 | La potencia planificada es marginal entre semillas; no acredita potencia temporal, conjunta o de otro mercado. |
 
 Los archivos descargables del [capítulo 8](08_entregables.md) distinguen resúmenes públicos, código y evidencia completa. El registro de noviembre de 2026 es posterior al mercado: estos son backtests históricos, no predicciones emitidas en vivo.
 
@@ -149,12 +151,16 @@ Son pesos de evaluación, no porcentajes de avance ni una calificación obtenida
 
 | Ítem | Estado y evidencia | Límite pendiente |
 |---|---|---|
-| Repeticiones | Diez semillas por familia e historia, sin mezclar meses como mercados | Piloto y dimensionamiento prospectivo del procedimiento vigente. |
+| Repeticiones | Fase I: diez semillas por familia e historia. Fase II D7: R calculado desde su piloto, sin contar días o meses como mercados | La potencia planificada es marginal entre semillas y supone transferencia de dispersión; no es potencia temporal. |
 | Media, DE, IC y efecto | Tablas completas de seis métricas y diferencias pareadas | Incertidumbre condicional al calendario; no intervalos de otros mercados. |
 | Multiplicidad y supuestos | Familia D7 de tres pares por fase, sensibilidad de doce pares y diagnósticos separados | Análisis posterior y referencias aproximadas en bloques residuales cortos. |
-| Consistencia | Mismas covariables, n7/h1, semillas, fechas y reglas causales | Cambiar D también cambia la purga y cohorte de entrenamiento. |
+| Consistencia | Mismas covariables, n7/h1, semillas, fechas y reglas causales dentro de cada fase; HPO comparable en fase II | Cambiar D cambia la purga y cohorte. Las métricas de dos periodos distintos no identifican una mejora causada por HPO. |
 | Reproducción | Controles LSTM idénticos, hashes y separación de ajustes/inferencias reutilizados | Identidad local no garantiza bit a bit en otras plataformas. |
 | Cierre anterior al acceso de este ciclo | Configuraciones y 120 checkpoints firmados antes de leer el derivado test | El periodo ya era conocido; no es confirmación temporal independiente. |
 | Baseline y margen avanzado | GRU/D7 por CV; futuro 5 % frente a GRU/D7 y persistencia | Margen definido después del test actual; la propuesta futura necesita piloto, protocolo y evaluación propios. |
 
-El [estado de pendientes](protocolo_pendiente.md) conserva la limitada recurrencia de TCN, la justificación de GRU/LSTM, el piloto y la fuerza inferencial. E1 define un umbral y sus límites; no se inventa una evaluación avanzada ya ejecutada ni se fuerza superioridad universal. La equivalencia sigue siendo condicional a esa afirmación.
+El [estado de pendientes](protocolo_pendiente.md) distingue el cierre del piloto/HPO D7 de la limitada recurrencia de TCN, la justificación de GRU/LSTM y los límites de fuerza inferencial. E1 define un umbral y sus límites; no se inventa una evaluación avanzada ya ejecutada ni se fuerza superioridad universal. La equivalencia sigue siendo condicional a esa afirmación.
+
+**Alcance de la nueva fase D7.** El [capítulo 9](09_estudio_planificado.md) reúne el diseño público previo, la rejilla equitativa de ocho candidatos por familia, el piloto de 60 días, el cálculo de R y los resultados sobre el 01/09–30/10/2026. Esa fase mantiene n=7/h=1 y covariables OHLCV, con D7 fijo. Los resultados de fase I y sus limitaciones permanecen identificados; la potencia planificada entre semillas no representa potencia temporal ni confirma otros mercados.
+
+**Resultado y supuestos de fase II.** La reserva nueva tiene menor RMSE puntual para persistencia y, entre las redes, para TCN; el baseline GRU/D7-c03 se mantiene porque fue elegido con desarrollo. Shapiro–Wilk rechaza normalidad de los tres pares definitivos. Las t y sus IC se leen como aproximaciones para 465 pares; el objetivo de potencia del diseño no se transforma en potencia alcanzada. Ninguna comparación DM rechaza tras Holm-6 y ningún límite temporal familiar del bloque principal acredita una mejora superior al 5 %. Estos resultados y las sensibilidades se conservan en [§9.6](09_estudio_planificado.md), sin elegir después otro contraste o longitud de bloque.

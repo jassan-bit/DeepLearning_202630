@@ -1,5 +1,7 @@
 # 5. Benchmark de los Modelos Base y Definición del Baseline
 
+**Dos fases del estudio.** Las tablas de cuatro entradas, diez semillas y test enero de 2025–agosto de 2026 de este capítulo corresponden a la **fase I exploratoria**. La **fase II D7** añade búsqueda equitativa, piloto anterior a su ejecución definitiva, dimensionamiento y evaluación preespecificada sobre el 01/09–30/10/2026. Sus recetas, recuentos y resultados se identifican por separado en el [capítulo 9](09_estudio_planificado.md).
+
 El benchmark principal compara **GRU, LSTM y TCN residual causal**, en D=7/14/21/28, con diez semillas por receta, cinco covariables OHLCV diarias y objetivo sigma7 poblacional a h=1 día. **GRU/D7 es el baseline neuronal seleccionado con CV2024**, anterior al ajuste final de esta fase.
 
 La CV produjo **120 trayectorias, 2.880 ajustes y 43.920 predicciones**. El control LSTM se reentrenó y reprodujo exactamente 14.640 pronósticos. La evaluación 01/01/2025–31/08/2026 reúne 608 fechas y 72.960 valores: ochenta modelos GRU/TCN nuevos y cuarenta LSTM reutilizados, con pesos fijos y sin reajustes en test.
@@ -270,7 +272,7 @@ El baseline neuronal vigente es GRU/D7. Persistencia continúa como referencia a
 
 #### 5.3.5.4. Estado del benchmark
 
-El benchmark de las doce recetas y sus diez semillas está ejecutado. La comparación estadística interna actual y los diagnósticos son posteriores; quedan pendientes el piloto de potencia del trío y una evaluación temporal independiente de futuras modificaciones.
+El benchmark inicial de doce recetas y diez semillas está ejecutado; su comparación interna y diagnósticos permanecen posteriores y exploratorios. La fase II D7 incorpora HPO, piloto, dimensionamiento y una evaluación preespecificada sobre otra reserva histórica (§9). Ese cierre no se atribuye a las otras entradas y un futuro modelo avanzado requiere su propia planificación y datos no usados para diseñarlo.
 
 ## 5.4. Análisis Estadístico y Pruebas de Hipótesis
 
@@ -529,3 +531,5 @@ Diseñar un piloto pareado del futuro avanzado, fijar su tamaño y multiplicidad
 | Integridad pública | Agregados, manifiestos y 120 configuraciones finales | Evidencia privada para reproducir pesos/pronósticos |
 
 La interpretación se limita a las recetas y fechas observadas, con todas las historias y métricas visibles.
+
+**Comparación preespecificada en la nueva reserva.** El [capítulo 9](09_estudio_planificado.md) reúne el diseño público previo, la rejilla equitativa de ocho candidatos por familia, el piloto de 60 días, el cálculo de R y los resultados sobre el 01/09–30/10/2026. Esa fase mantiene n=7/h=1 y covariables OHLCV, con D7 fijo. Los resultados de fase I y sus limitaciones permanecen identificados; la potencia planificada entre semillas no representa potencia temporal ni confirma otros mercados.

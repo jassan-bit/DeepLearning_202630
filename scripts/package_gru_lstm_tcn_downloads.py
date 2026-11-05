@@ -29,6 +29,7 @@ DOWNLOAD_RAW = 'https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630
 IMMUTABLE_EXPERIMENT = Path('/workspace/e1_lstm_gru_tcn_local_20261105')
 BENCHMARK = ROOT / 'book/_static/gru_lstm_tcn_20261105'
 DELIVERY = ROOT / 'book/_static/gru_lstm_tcn_delivery_20261105'
+PLANNED = ROOT / 'book/_static/gru_lstm_tcn_planned_20261105'
 LITERATURE = ROOT / 'book/_static/literature_e1'
 SELECTION = LITERATURE / 'gru_lstm_tcn_selection_20261105'
 MODELS = ['GRU', 'LSTM', 'TCN']
@@ -37,7 +38,7 @@ ITEMS = [
     ('8.2', '8_2_codigo.zip', 'Código EDA y GRU–LSTM–TCN'),
     ('8.3', '8_3_dataset_instrucciones.zip', 'Dataset: instrucciones y adquisición'),
     ('8.4', '8_4_literatura.zip', 'Literatura y selección de GRU–LSTM–TCN'),
-    ('8.5', '8_5_benchmark.zip', 'Benchmark vigente e inferencia exploratoria'),
+    ('8.5', '8_5_benchmark.zip', 'Benchmark e inferencia de las fases documentadas'),
     ('8.6', '8_6_configuraciones.zip', 'Dependencias, semillas y configuraciones vigentes'),
     ('8.7', '8_7_declaracion.zip', 'Declaración y cronología vigentes'),
 ]
@@ -46,7 +47,9 @@ FORBIDDEN_SUFFIXES = {'.zip', '.gz', '.tar', '.pt', '.pth', '.npz', '.npy', '.pk
 FORBIDDEN_NAMES = {'predictions.csv', 'daily_market_development.csv', 'daily_volatility_development.csv',
     'daily_market_test.csv', 'daily_volatility_test.csv', 'causal_daily_profile.csv', 'label_reconstruction.csv',
     'validation_predictions_residuals.csv', 'model_parameters.csv', 'reference_configurations.csv',
-    'preprocessing.json', 'splits.json', 'history_inner.csv', 'history_refit.csv'}
+    'preprocessing.json', 'splits.json', 'history_inner.csv', 'history_refit.csv',
+    'holdout_predictions.csv', 'pilot_predictions.csv', 'raw_daily.csv', 'daily_market_reserve.csv',
+    'daily_market_reserved.csv'}
 FORBIDDEN_CSV_FIELDS = {'y_true', 'y_pred', 'prediction', 'residual', 'x_mean', 'x_scale', 'y_scale', 'mase_train_scale', 'train_indices'}
 FOLD_FILES = ['results/dl_r2_cv_20261104/folds.json',
               *[f'results/filipe_multihistory_20261104/D{d}/folds.json' for d in (14, 21, 28)]]
@@ -192,21 +195,63 @@ def verify_archive(path):
     return {'CRC': 'PASS', 'member_hashes': 'PASS', 'safe_paths': 'PASS', 'members': len(names)}
 
 
-def common_readme(revision):
-    return (f'\n\nTerna experimental vigente: **GRU–LSTM–TCN**. Baseline neural: **GRU/D7**, '
-        f'seleccionado en CV antes de la nueva evaluación del test histórico ya conocido. '
+def planned_public_record():
+    """A completed, explicitly allowlisted second phase is optional for old exports."""
+    if not PLANNED.exists():
+        return None
+    manifest = PLANNED / 'public_allowlist_manifest.json'
+    summary = PLANNED / 'summary.json'
+    if not manifest.is_file() or not summary.is_file():
+        raise ValueError('The planned phase is partial; finish its allowlisted export before packaging')
+    record = json.loads(summary.read_text())
+    if record.get('models') != MODELS or not record.get('export_complete'):
+        raise ValueError('Only a complete, verified GRU/LSTM/TCN planned phase may be packaged')
+    return record
+
+
+def add_planned_registration(packages):
+    """Restore the runner's canonical design path in the executable code ZIP."""
+    names = []
+    for name in ('design.json', 'README.md', 'public_preregistration.json', 'closed_planning.json'):
+        path = ROOT / 'experiments/gru_lstm_tcn_planned_20261105' / name
+        # add() deliberately fails when a required registered input is missing.
+        for item in ('8.2', '8.6', '8.7'):
+            add(packages[item], path)
+        names.append(path.relative_to(ROOT).as_posix())
+    return names
+
+
+def common_readme(revision, planned=None):
+    if planned is None:
+        illustration = ('Se incluye una ilustración PNG de observado frente a predicho con la semilla4101 fija, '
+            'sin su CSV individual y sin seleccionar la semilla por su error. El adaptador público de reproducción '
+            'es posterior a la ejecución original y no sustituye sus firmas históricas.\n\n')
+    else:
+        illustration = ('La ilustración PNG de la **fase I** utiliza la semilla fija 4101; la de la '
+            '**fase II** utiliza la semilla fija 8101. Ninguna semilla se elige por su error y no se '
+            'entregan sus CSV individuales. El adaptador público de reproducción de la **fase I** '
+            'es posterior a su ejecución original y no sustituye sus firmas históricas. El código '
+            'científico de la fase II tiene su propio registro previo a esa ejecución.\n\n')
+    return (f'\n\nTerna experimental: **GRU–LSTM–TCN**. El primer benchmark tiene como baseline neuronal **GRU/D7**, '
+        f'seleccionado en CV antes de esa evaluación del test histórico ya conocido. '
         f'Fuente versionada: `{revision}`.\n\n'
-        'Las comparaciones actuales entre los tres modelos y los diagnósticos adicionales se definieron '
-        'después de observar el test: su alcance es exploratorio. Las diez semillas son un presupuesto fijo; '
-        'no se atribuye un piloto prospectivo de los modelos nuevos ni potencia 0,80. El margen operativo '
-        'futuro se declara después del test y no se aplica retroactivamente. Persistencia conserva su papel de referencia.\n\n'
+        'En ese primer benchmark, las comparaciones entre los tres modelos y los diagnósticos adicionales se definieron '
+        'después de observar el test: su alcance es exploratorio. Sus diez semillas son un presupuesto fijo; '
+        'no se atribuye a esa fase un piloto prospectivo ni potencia 0,80. Su margen operativo '
+        'futuro se declaró después del test y no se aplica retroactivamente. Persistencia conserva su papel de referencia.\n\n'
         'Los paquetes públicos contienen código, metadatos, agregados y figuras. Se excluyen archivos crudos, '
-        'pesos, escaladores y series diarias o vectores individuales legibles por máquina. '
-        'Se incluye una ilustración PNG de observado frente a predicho con la semilla4101 fija, '
-        'sin su CSV individual y sin seleccionar la semilla por su error. El adaptador público de reproducción '
-        'es posterior a la ejecución original y no sustituye sus firmas históricas.\n\n'
+        'pesos, escaladores y series diarias o vectores individuales legibles por máquina. ' + illustration +
         'La licencia MIT incluida corresponde a timeseries-cv; no asigna una licencia general al proyecto. '
-        'Los términos de la fuente de datos se conservan en el producto 8.3.\n')
+        'Los términos de la fuente de datos se conservan en el producto 8.3.\n' +
+        ('\n\n**Segunda fase D7 planificada:** el paquete también contiene el diseño y código registrados '
+         'antes de ejecutar HPO, el mismo presupuesto de búsqueda por familia, un piloto separado, '
+         'dimensionamiento por potencia condicional entre semillas y evaluación preespecificada '
+         'del 01/09 al 30/10/2026. Sus resultados y cronología están en '
+         '`book/_static/gru_lstm_tcn_planned_20261105/`. La reserva es histórica: '
+         'no son pronósticos emitidos en vivo ni una validación en otro mercado. '
+         'La potencia de planificación entre semillas no acredita potencia temporal del periodo. '
+         'Las conclusiones del primer benchmark conservan su alcance exploratorio.\n'
+         if planned is not None else ''))
 
 
 def package(output, requested_commit=None):
@@ -215,6 +260,7 @@ def package(output, requested_commit=None):
             or (output.exists() and any(output.iterdir()))):
         raise ValueError('Use an empty external output directory, outside the checkout and immutable experiment')
     revision = source_revision(requested_commit)
+    planned = planned_public_record()
     summary = json.loads((BENCHMARK / 'summary.json').read_text())
     if (summary['models'] != MODELS or summary['baseline_selected_by_cv']['model'] != 'GRU'
             or summary['baseline_selected_by_cv']['history_days'] != 7
@@ -241,6 +287,8 @@ def package(output, requested_commit=None):
     for name in FOLD_FILES:
         add(packages['8.2'], ROOT / name)
         add(packages['8.6'], ROOT / name)
+    if planned is not None:
+        add_planned_registration(packages)
     add(packages['8.3'], ROOT / 'data/README.md')
     add(packages['8.3'], ROOT / 'scripts/download_binance_spot.py')
     metadata_tree(packages['8.3'], ROOT / 'data/manifests')
@@ -257,6 +305,26 @@ def package(output, requested_commit=None):
     allowlist_tree(packages['8.7'], DELIVERY, 'public_manifest.json', 'files_sha256')
     declarations = {'selected_by_cv.json', 'future_margin.json', 'protocols_manifest.json', 'public_analysis_plan.json'}
     allowlist_tree(packages['8.7'], BENCHMARK, 'public_allowlist_manifest.json', 'file_sha256', lambda name: name in declarations)
+    if planned is not None:
+        allowlist_tree(packages['8.5'], PLANNED, 'public_allowlist_manifest.json', 'file_sha256')
+        planned_config_names = {
+            'design.json', 'registration.json', 'runtime.json', 'hpo_candidates.csv',
+            'hpo_summary.csv', 'selected_recipes.json', 'pilot_metrics.csv',
+            'dimensioning.json', 'final_configurations.csv', 'chronology.json',
+            'source_manifest.json', 'summary.json', 'README.md', 'public_preregistration.json',
+            'closed_planning.json', 'public_dimensioning.json',
+            'final_freeze_provenance.json', 'cost_summary.csv', 'holdout_costs.csv',
+        }
+        allowlist_tree(packages['8.6'], PLANNED, 'public_allowlist_manifest.json', 'file_sha256',
+                       lambda name: name in planned_config_names)
+        planned_declaration_names = {
+            'design.json', 'registration.json', 'selected_recipes.json', 'dimensioning.json',
+            'chronology.json', 'source_manifest.json', 'summary.json', 'README.md',
+            'public_preregistration.json', 'final_freeze_provenance.json',
+            'closed_planning.json', 'public_dimensioning.json',
+        }
+        allowlist_tree(packages['8.7'], PLANNED, 'public_allowlist_manifest.json', 'file_sha256',
+                       lambda name: name in planned_declaration_names)
     notes = {
         '8.1': 'Descomprimir y abrir `informe/intro.html`. Alternativa: `python -m http.server 8000 --directory informe`. '
                'Los ZIP y otros artefactos excluidos de este informe mantienen enlaces a su ruta pública online; '
@@ -282,9 +350,39 @@ def package(output, requested_commit=None):
                '`selected_by_cv.json`, `protocols_manifest.json`, `public_analysis_plan.json` y `future_margin.json`. '
                'Distinguen selección previa en CV, evaluación de un test ya observado, análisis posteriores y requisitos futuros.',
     }
+    if planned is not None:
+        final_count = format(3 * int(planned['definitive_runs_per_family']), ',').replace(',', '.')
+        notes['8.2'] = ('Leer `BUILD.md`. La **fase I histórica** se reproduce con '
+            '`scripts/run_gru_lstm_tcn.py`, cuya fase predeterminada sólo valida entradas. '
+            'La **fase II D7 planificada** se reproduce con `scripts/run_gru_lstm_tcn_planned.py`, '
+            'que exige indicar `--phase` explícitamente; seguir en BUILD el registro, HPO, piloto, '
+            'dimensionamiento, ajuste, scoring y análisis. Cada reproducción escribe en otra salida '
+            'y no convierte los periodos ya evaluados en una nueva reserva desconocida. Se incluyen '
+            'EDA, análisis, pruebas, auxiliares y los archivos canónicos de registro en '
+            '`experiments/gru_lstm_tcn_planned_20261105/`. Los manifiestos de folds contienen '
+            'índices y metadatos; los derivados diarios se reconstruyen con la preparación documentada.')
+        notes['8.5'] = ('La **fase I exploratoria** se documenta en '
+            '`book/_static/gru_lstm_tcn_20261105/README.md` y `report.md`. La **fase II D7 planificada** '
+            'está en `book/_static/gru_lstm_tcn_planned_20261105/README.md`; consultar allí '
+            '`dimensioning.json`, `metric_summary.csv`, `pairwise_rmse.csv`, `dm_pairs.csv` y '
+            '`temporal_bootstrap.csv`. Cada fase conserva su propio `public_allowlist_manifest.json` '
+            'con la clave `file_sha256`, y su cronología e interpretación permanecen separadas.')
+        notes['8.6'] = ('Los catálogos de la **fase I** contienen 1.440 segmentos de CV y '
+            '120 configuraciones finales. La **fase II** añade ocho candidatos por familia, las '
+            'recetas elegidas, el piloto y dimensionamiento, y ' + final_count +
+            ' configuraciones definitivas nuevas en `final_configurations.csv`. Se incluyen '
+            'semillas, locks, metadatos de hardware/tiempos y hashes de cada fase; no valores '
+            'aprendidos de escaladores ni pesos.')
+        notes['8.7'] = ('La declaración histórica de la **fase I** está en '
+            '`gru_lstm_tcn_delivery_20261105/`, con sus análisis y margen posteriores al test. '
+            'La **fase II** conserva `design.json`, `public_preregistration.json`, '
+            '`closed_planning.json`, `public_dimensioning.json`, `dimensioning.json` y '
+            '`chronology.json` en `gru_lstm_tcn_planned_20261105/`: identifican registro público, '
+            'recetas y R cerrados antes del ajuste definitivo, y pesos cerrados antes del acceso '
+            'a la reserva histórica adicional. Ninguna fase acredita potencia temporal o predicción en vivo.')
     license_path = ROOT / 'book/_static/licenses/timeseries-cv-LICENSE.txt'
     records, verifications = [], {}
-    common = common_readme(revision)
+    common = common_readme(revision, planned)
     for item, filename, title in ITEMS:
         add(packages[item], ROOT / 'BUILD.md', 'BUILD.md')
         add(packages[item], license_path, 'AVISOS/timeseries-cv-LICENSE.txt')
@@ -302,6 +400,8 @@ def package(output, requested_commit=None):
         'Los siete ZIP conservan LEEME.md, MANIFIESTO.json y hashes individuales.\n' + common)
     verifications[complete['file']] = verify_archive(output / complete['file'])
     catalog = {'source_commit': revision, 'models': MODELS, 'active_entrypoint': 'scripts/run_gru_lstm_tcn.py',
+        'active_entrypoints': {'phase_I': 'scripts/run_gru_lstm_tcn.py'},
+        'active_entrypoint_scope': 'Legacy singular field identifies phase_I; use active_entrypoints for each separate phase',
         'baseline_selected_by_cv': summary['baseline_selected_by_cv'], 'packages': records, 'complete_package': complete,
         'report_verification': report_check, 'archive_verification': verifications,
         'new_model_fits_by_packaging': 0, 'new_checkpoint_forecasts_by_packaging': 0,
@@ -310,6 +410,19 @@ def package(output, requested_commit=None):
         'public_aggregate_manifest_sha256': digest((BENCHMARK / 'public_allowlist_manifest.json').read_bytes()),
         'declaration_manifest_sha256': digest((DELIVERY / 'public_manifest.json').read_bytes()),
         'scientific_limitations_preserved': True}
+    if planned is not None:
+        catalog['active_entrypoints']['phase_II'] = 'scripts/run_gru_lstm_tcn_planned.py'
+        catalog['scope'] = ('Two distinct GRU/LSTM/TCN phases: initial exploratory already-observed test, '
+                            'and separately registered D7 tuning/pilot/power-sized historical reserve study')
+        catalog['planned_D7_phase'] = {
+            'active_entrypoint': 'scripts/run_gru_lstm_tcn_planned.py',
+            'public_aggregate_manifest_sha256': digest((PLANNED / 'public_allowlist_manifest.json').read_bytes()),
+            'baseline_selected_before_reserve': planned.get('baseline_model'),
+            'definitive_seeds_per_family': planned.get('definitive_runs_per_family'),
+            'reserve': planned.get('reserve'),
+            'separate_from_initial_exploratory_benchmark': True,
+            'temporal_power_claimed': False,
+        }
     (output / 'catalogo.json').write_bytes(encode(catalog))
     (output / 'README.md').write_text('# Descargas vigentes del Entregable 1\n\n'
         'Los ocho archivos ZIP conservan los nombres de los botones de la unidad8. '

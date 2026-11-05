@@ -1,5 +1,7 @@
 # 2. Análisis Exploratorio de Datos (EDA)
 
+**Alcance de este capítulo.** El EDA utiliza exclusivamente desarrollo 2023–2024. El libro distingue la **fase I**, benchmark exploratorio de cuatro entradas, de la **fase II D7**, con HPO, piloto y evaluación preespecificada sobre otra reserva histórica. La segunda se documenta en el [capítulo 9](09_estudio_planificado.md); no cambia retrospectivamente el diseño de este EDA.
+
 El análisis se ejecutó con los archivos oficiales de **Binance Spot BTCUSDT**, utilizando **entrenamiento de 2023** y **validación de 2024**. La frecuencia de adquisición es un minuto; la configuración de modelado es **diaria, con cierre UTC**, entradas de **7, 14, 21 o 28 días** y horizonte principal de **un día**. La clasificación documental actual es **tipo 4, regresión temporal**, conforme a la ruta 6.4 de la guía: las redes reciben covariables OHLCV pasadas, sin rezagos explícitos de la volatilidad objetivo. El objetivo principal es la volatilidad de siete retornos diarios; las ventanas 14/21/28 se conservan como sensibilidad de su definición.
 
 Se distinguen las ventanas de entrada $D$ de las ventanas de volatilidad $n$: ambas se exploran en 7, 14, 21 y 28 **días**, pero tienen funciones diferentes. No se selecciona un ganador a partir de estos gráficos. La escala de cálculo usa retornos logarítmicos sin anualizar; las figuras que muestran porcentajes multiplican por 100 y lo indican en sus ejes.
@@ -180,7 +182,7 @@ El [perfil completo](../_static/eda_dataset_context_20261105/distribution_by_per
 **Figura de la ejecución real.** Los 48 bloques dibujados son doce cortes por cada D, compartidos por las tres redes y las diez semillas. Las barras azules delimitan el periodo del entrenamiento mensual permitido; los huecos y sus ventanas se excluyen. El embargo naranja retira etiquetas del ajuste, sin impedir usar como entrada el OHLCV de esos días ya observados. El test morado corresponde a pesos finales congelados, sin reajustes durante sus veinte meses. El diagrama se reconstruye únicamente desde los manifiestos de índices mediante [draw_e1_cv_calendar.py](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/draw_e1_cv_calendar.py).
 
 
-Se mantiene entrenamiento inicial 2023, validación forward chaining en 2024, ajuste final con desarrollo permitido y test 2025–agosto de 2026. El ciclo final fue ejecutado después de cerrar configuraciones, con registro separado del EDA de desarrollo. Septiembre–octubre de 2026 se adquirieron, pero no se asignan automáticamente al test.
+Se mantiene entrenamiento inicial 2023, validación forward chaining en 2024, ajuste final con desarrollo permitido y test 2025–agosto de 2026. El ciclo final fue ejecutado después de cerrar configuraciones, con registro separado del EDA de desarrollo. Septiembre–octubre de 2026 no amplió automáticamente el test de fase I. La asignación posterior y explícita del 01/09–30/10/2026 pertenece a fase II D7 y a su protocolo independiente.
 
 Las proporciones siguientes usan **1.339 días de calendario asignados** al protocolo, del 01/01/2023 al 31/08/2026. Se calculan dividiendo 365, 366 y 608 entre 1.339; son consecuencia de las fechas elegidas, **no proporciones exigidas por el método de Filipe ni una partición aleatoria**. El 54,59 % corresponde al calendario de desarrollo y el 45,41 % al periodo de prueba. No son proporciones de ventanas supervisadas ni de filas de un minuto:
 
@@ -357,7 +359,7 @@ Añadir rezagos explícitos de volatilidad exigiría versionar antes el contrato
 
 **Aplicabilidad: sí; es el bloque específico principal del proyecto.**
 
-Se aplica el **bloque C de la guía: regresión temporal**, porque las entradas son covariables OHLCV rezagadas y no incluyen historia explícita de la volatilidad objetivo. Se utilizan los CSV de desarrollo 2023–2024, se conserva la cuadrícula de 731 días y el 24/03/2023 permanece excluido, sin imputación. El bloque incluye una referencia lineal regularizada para diagnosticar residuos. Ese ajuste de EDA se distingue de GRU, LSTM y TCN y del benchmark de desarrollo documentado en los capítulos 4–5. Las redes del ciclo vigente se ajustan con desarrollo permitido; su evaluación final usa el periodo de test ya observado y conserva un registro separado. El piloto prospectivo de la nueva terna continúa pendiente.
+Se aplica el **bloque C de la guía: regresión temporal**, porque las entradas son covariables OHLCV rezagadas y no incluyen historia explícita de la volatilidad objetivo. Se utilizan los CSV de desarrollo 2023–2024, se conserva la cuadrícula de 731 días y el 24/03/2023 permanece excluido, sin imputación. El bloque incluye una referencia lineal regularizada para diagnosticar residuos. Ese ajuste de EDA se distingue de GRU, LSTM y TCN y del benchmark de desarrollo documentado en los capítulos 4–5. Las redes del ciclo vigente se ajustan con desarrollo permitido; su evaluación final usa el periodo de test ya observado y conserva un registro separado. La fase I no tuvo piloto anterior a su benchmark. La fase II D7 ejecuta después su propio piloto y dimensionamiento antes de sus ajustes definitivos, documentados en el [capítulo 9](09_estudio_planificado.md); ese procedimiento no modifica retrospectivamente este EDA.
 
 La revisión punto por punto se conserva en el {download}`informe del bloque C <../_static/e1/revision_eda_temporal_20261103.md>` y su [matriz de evidencias](../_static/e1/revision_eda_temporal_20261103.json).
 
@@ -739,7 +741,7 @@ Los 80 minutos ausentes y el cierre inesperado pertenecen a marzo de 2023. La ve
 
 El [manifiesto de adquisición](../_static/data/binance_spot_BTCUSDT_1m_20230101_20261030.json) registra URLs, SHA-256, bytes, fechas de verificación, unidades y conteos por archivo. El script reproducible es `scripts/download_binance_spot.py`, documentado en `data/README.md`. Los brutos están en `/workspace/binance-spot-data/`, fuera del repositorio y del sitio público.
 
-Los archivos históricos respondieron HTTP 200. La API respondió HTTP 451 por restricción de ubicación; no se utilizó para adquirir los datos. Las particiones previstas en §1.3.4 se mantienen: disponer de septiembre–octubre de 2026 no asigna automáticamente esos meses al test.
+Los archivos históricos respondieron HTTP 200. La API respondió HTTP 451 por restricción de ubicación; no se utilizó para adquirir los datos. Las particiones previstas en §1.3.4 se mantienen: disponer de septiembre–octubre de 2026 no los asignó automáticamente al test de fase I. La fase II realiza una nueva asignación explícita antes de calcular sus resultados.
 
 El EDA de desarrollo de este capítulo se ejecutó sobre los 24 archivos mensuales de 2023–2024, verificados otra vez antes de leerlos. No se abrieron ZIP de 2025–2026 para generar las figuras.
 
@@ -929,3 +931,5 @@ Los folds se materializaron con `timeseries-cv` 0.1.5 y controles de fechas, obs
 - **Decisión de preprocesamiento:** fijar las configuraciones de objetivos y orígenes, producir manifiestos de muestras y ajustar transformaciones solo con pasado.
 - **Impacto en la arquitectura:** entrada diaria con dimensión explícita; salida principal escalar no negativa; cualquier salida adicional debe registrarse.
 - **Riesgos identificados:** leakage por etiqueta conocida, transformaciones globales y supuestos de independencia entre volatilidades solapadas.
+
+**Relación con el estudio D7 planificado.** El [capítulo 9](09_estudio_planificado.md) reúne el diseño público previo, la rejilla equitativa de ocho candidatos por familia, el piloto de 60 días, el cálculo de R y los resultados sobre el 01/09–30/10/2026. Esa fase mantiene n=7/h=1 y covariables OHLCV, con D7 fijo. Los resultados de fase I y sus limitaciones permanecen identificados; la potencia planificada entre semillas no representa potencia temporal ni confirma otros mercados.
