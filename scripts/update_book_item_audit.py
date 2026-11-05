@@ -68,7 +68,7 @@ def main():
               "historical_D7_supplement": {"protocol": "experiments/filipe_statistics_20261104/protocol.json",
                                           "scope": "Holm12/DM6/bootstrap y diagnósticos anuales pertenecen exclusivamente a la CV inicial D7/2024; no se trasladan a los demás D o al test."},
               "outstanding": {"prospective_pilot_and_definitive_power": "No realizado; sensibilidad retrospectiva no lo sustituye.",
-                              "applied_comparator_literature": "Respaldo aplicado independiente de MLP y CNN1D simple sigue incompleto en el corpus incluido.",
+                              "applied_comparator_literature": "Miura2019 verifica MLP/CNN independientes en1/6 textos; dimensionalidad CNN, recetas exactas y recurrencia amplia siguen sin acreditarse. Revisión posterior al benchmark.",
                               "future_prospective_validation": "Criterio académico operativo del5% definido ahora para comparaciones futuras; no registrado antes del test ya observado. Falta piloto y evaluación independiente nuevos.",
                               "external_measurements": "Ruido externo de precios/etiquetas y mecanismo MCAR/MAR/MNAR no identificados."},
               "new_execution_in_this_extension": {"CV_fits": 2160, "final_fits": 120,
@@ -88,6 +88,14 @@ def main():
             "academic_operational_criterion": updated["academic_operational_criterion"],
             "equivalence": "Condicional, no requisito pendiente sin afirmación de equivalencia.",
         }
+    literature = ROOT / "references/literature_e1/recovery_20261105/selection_update.json"
+    if literature.exists():
+        report["current_literature_review"] = {
+            "source": literature.relative_to(ROOT).as_posix(),
+            "source_sha256": sha(literature),
+            "timing": "Posterior al benchmark; no reescribe la selección histórica ni los registros de auditoría anteriores.",
+            "finding": "Una nueva fuente primaria verifica MLP/CNN independientes; seis estudios en el corpus ampliado. La dimensionalidad CNN no se declara en el original.",
+        }
     BASE.with_suffix(".json").write_text(json.dumps(report, ensure_ascii=False, indent=2)+"\n")
     with BASE.with_suffix(".csv").open("w", newline="") as stream:
         writer = csv.DictWriter(stream, fieldnames=list(items[0]), lineterminator="\n")
@@ -105,7 +113,7 @@ BDS se calculó por fold y semilla: {cv['bds']['planned_hypotheses']} hipótesis
 
 Se añadieron tablas anuales, descomposición descriptiva de variabilidad, segmentos y residuos, inferencia final explícitamente post-hoc, diagramas y una ruta de restauración privada verificada. El criterio operativo académico futuro es una mejora superior al5% frente a MLP/D7 y persistencia; no se presenta como definido antes del test ya conocido ni como utilidad financiera.
 
-Permanecen abiertos el respaldo aplicado de MLP/CNN1D, el piloto/dimensionamiento prospectivo de una evaluación futura y las mediciones externas de ruido/faltantes. TOST/ROPE es condicional a una afirmación de equivalencia, no un pendiente obligatorio. No se asigna nota ni porcentaje de cumplimiento.
+La recuperación posterior de Miura2019 verifica comparadores MLP y CNN independientes en Bitcoin: cada familia aparece en1/6 textos completos. No acredita dimensionalidad explícita CNN1D, réplica exacta de las recetas ni uso amplio en el campo. Persisten el piloto/dimensionamiento prospectivo de una evaluación futura y las mediciones externas de ruido/faltantes. TOST/ROPE es condicional a una afirmación de equivalencia, no un pendiente obligatorio. No se asigna nota ni porcentaje de cumplimiento.
 """)
     public = ROOT / "book/_static/e1"
     public.mkdir(parents=True, exist_ok=True)

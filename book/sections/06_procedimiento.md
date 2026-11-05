@@ -88,7 +88,7 @@ Las fichas de la [sección 3](03_estado_arte.md) documentan las implementaciones
 | CNN1D poco profunda | TCN aparece en S1, pero su ganadora es ancha y de seis niveles; no hay CNN1D simple independiente acreditada | P3 implementada: dos convoluciones causales ordinarias de ancho 16, sin dilatación ni conexiones residuales; completar evidencia aplicada independiente. |
 | Encoder Transformer, fuera de la lista típica | Dos apoyos grises, S2/S6 | Antecedente documental; no ocupa un puesto de la propuesta actual de tres modelos base. |
 
-Las configuraciones están documentadas antes de la ejecución CV. Eso **no acredita la extracción aplicada de §3.2**: los apoyos MLP/CNN1D simple siguen pendientes en el corpus de cinco textos y no se reemplazan por perfiles de otras arquitecturas ni por implementar código propio.
+Las configuraciones están documentadas antes de la ejecución CV. La recuperación posterior de Miura et al. (2019), descrita en §3.2, verifica MLP y CNN independientes en un corpus ampliado de seis textos. No reescribe la selección previa ni acredita una réplica exacta: la dimensionalidad de la CNN fuente no se reporta y las recetas propias son adaptaciones.
 
 Sea cual sea el trío respaldado, el diseño propio conservará las mismas covariables, etiquetas y orígenes entre modelos. Aplanar una ventana para una MLP o conservar su eje temporal para otra red no permite cambiar el conjunto de información disponible.
 
@@ -183,7 +183,7 @@ Esta matriz distingue reglas, ejecuciones y límites. La comparación de cuatro 
 | Suplemento final post-hoc | Seis pares RMSE, DM-6, LB-9 y bootstrap temporal de RMSE/MAE | Registrado después de ver test; no confirma prospectivamente ni reselecciona el baseline. |
 | Mejoras descriptivas | Tablas anuales, distribución, descomposición de variación y diagnóstico por segmentos | Agregados calculados sobre predicciones guardadas; sin nuevos pronósticos. |
 | Referencia regularizada | Cuatro Ridge diagnósticas de EDA y 1.464 residuos de 2024 | No son un cuarto modelo DL ni nuevos competidores del test. |
-| Literatura y potencia | Corpus y limitaciones preservados, diez semillas | Respaldo aplicado MLP/CNN1D y piloto/potencia definitiva pendientes. |
+| Literatura y potencia | Seis textos, fuente aplicada MLP/CNN y diez semillas propias | Dimensionalidad CNN y recetas fuente incompletas, recurrencia limitada; piloto/potencia prospectivos pendientes. |
 
 El [método vigente](../_static/filipe_multihistory_20261104/method.json), la [congelación](../_static/filipe_multihistory_20261104/freeze.json), la [auditoría de test](../_static/filipe_multihistory_20261104/test/raw_test_audit.json) y el [manifiesto de cohorte](../_static/filipe_multihistory_20261104/test/cohort_manifest.json) vinculan esas etapas.
 
@@ -199,6 +199,6 @@ El registro de noviembre de 2026 es posterior a los periodos de mercado y al EDA
 5. Se agregaron y auditaron esos ZIP y se construyó la cohorte común por reglas cerradas, sin usar los errores para excluir fechas. Cada modelo produjo su trayectoria final una vez; los análisis posteriores reutilizan sus predicciones.
 6. La mejora posterior a la auditoría materializó las métricas por año —2025 y enero–agosto de 2026—, además de las globales y mensuales; documentó variación, segmentos y residuos, y calculó el suplemento inferencial final explícitamente post-hoc. No se reabrió la selección, no se volvió a puntuar el modelo ni se incorporó septiembre–octubre de 2026.
 
-La [congelación](../_static/filipe_multihistory_20261104/freeze.json) conserva el baseline **MLP con D=7** elegido con CV. El test no cierra la extracción bibliográfica de MLP/CNN1D ni el piloto y la potencia reales de una propuesta futura. El criterio académico avanzado se define por separado para ese futuro; la equivalencia es condicional a afirmar que dos procedimientos son equivalentes. Si se usa este test para diseñar una propuesta posterior, se necesitará otra evaluación independiente.
+La [congelación](../_static/filipe_multihistory_20261104/freeze.json) conserva el baseline **MLP con D=7** elegido con CV. La fuente aplicada MLP/CNN se recuperó después y conserva los límites documentales de §3; el test no acredita piloto ni potencia prospectivos. El criterio académico avanzado se define por separado para ese futuro; la equivalencia es condicional a afirmar que dos procedimientos son equivalentes. Si se usa este test para diseñar una propuesta posterior, se necesitará otra evaluación independiente.
 
 La guía E1 anuncia que el benchmark de diez modelos se desarrolla en E2. Sus documentos completos y los de E3 no se han aportado; no se inventa una selección de diez arquitecturas o presupuesto a partir de esa mención.

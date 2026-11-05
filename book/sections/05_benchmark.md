@@ -417,7 +417,7 @@ Esa medida es descriptiva del test y no prueba estadísticamente una ganancia su
 
 **Ejecutado:** cuatro entradas, CV, selección/cierre, 120 ajustes finales, tablas globales/mensuales/anuales, BDS por fold y complemento post-hoc de comparación final D7 con diferencias, efectos, IC, DM y Ljung–Box. Se preservan los pronósticos y los pesos originales.
 
-**Definido para una fase futura:** criterio operativo académico del 5 % frente a MLP/D7 y persistencia, con sensibilidad y planificación condicional. **Pendiente académico:** respaldo aplicado suficiente de las familias aún no acreditadas y piloto/dimensionamiento prospectivos. Los escenarios no certifican potencia lograda ni utilidad financiera. **Equivalencia es condicional:** TOST/ROPE solo se necesitarán si se formula esa afirmación.
+**Definido para una fase futura:** criterio operativo académico del 5 % frente a MLP/D7 y persistencia, con sensibilidad y planificación condicional. **Estado académico:** Miura et al. (2019) aporta respaldo aplicado de MLP y CNN como familias, con dimensionalidad CNN no reportada y recurrencia limitada; el piloto/dimensionamiento prospectivos siguen pendientes. Los escenarios no certifican potencia lograda ni utilidad financiera. **Equivalencia es condicional:** TOST/ROPE solo se necesitarán si se formula esa afirmación.
 
 ## 5.4. Análisis Estadístico y Pruebas de Hipótesis
 
@@ -737,7 +737,7 @@ Las variaciones por año y mes pueden reflejar distribución del mercado, tamañ
 | Tablas anuales/meses, segmentos y variabilidad | Complementadas desde pronósticos guardados |
 | Inferencia final principal D7 | t/efectos/IC, signed-rank de sensibilidad, DM, Ljung–Box y bootstrap temporal ejecutados como post-hoc |
 | Planificación futura | Criterio académico 5 % frente a MLP/D7 y persistencia definido; escenarios frente a la frontera y sensibilidades, sin potencia lograda |
-| Literatura y piloto | Suficiencia aplicada y piloto/dimensionamiento prospectivos pendientes según matriz de cierre |
+| Literatura y piloto | Respaldo aplicado MLP/CNN incorporado con recurrencia y adaptación limitadas; piloto/dimensionamiento prospectivos pendientes según matriz de cierre |
 | Equivalencia | Condicional: no se afirma ni se exige TOST/ROPE automáticamente |
 
 Las pruebas se interpretan con sus supuestos. No se acredita potencia 0,80 por observar diez semillas o generar una tabla retrospectiva.
@@ -786,7 +786,7 @@ Sigue pendiente estimar la variabilidad real en un piloto prospectivo y seleccio
 
 ### 5.5.6. Brecha con la literatura y margen de mejora potencial
 
-Las diferencias publicadas en la literatura sirven como contexto cuando se declaran objetivos, escala, fuente y partición. No se trasladan a la σ7 diaria de este proyecto como una ganancia esperada. El corpus mantiene apoyo aplicado pendiente para MLP y CNN1D simple; la ejecución propia no completa esa evidencia ni convierte la CNN en una réplica de la TCN publicada.
+Las diferencias publicadas en la literatura sirven como contexto cuando se declaran objetivos, escala, fuente y partición. No se trasladan a la σ7 diaria de este proyecto como una ganancia esperada. Miura et al. (2019), incorporado en una revisión posterior al benchmark, acredita comparadores MLP y CNN independientes para RV de tres horas de Bitcoin. Su Tabla 1 no declara dimensionalidad CNN, filtros ni anchos; las redes propias continúan siendo adaptaciones, no réplicas. Las frecuencias actuales son una fuente en seis para MLP y para CNN como familias; no se atribuye recurrencia amplia ni una selección bibliográfica a priori.
 
 ### 5.5.7. Amenazas a la validez
 
@@ -805,7 +805,7 @@ El estudio conserva un activo, un proveedor, n=7, h=1, cuatro historias y diez s
 
 BDS mensual usa 28–31 residuos; los contrastes temporales y el bootstrap también suponen una representación adecuada de dependencia y estabilidad. Los IC por semillas condicionan al calendario. MLP−persistencia activa el diagnóstico Shapiro y su referencia t se declara aproximada.
 
-Permanecen abiertos el respaldo aplicado suficiente de las familias no acreditadas y el piloto/dimensionamiento prospectivos. El criterio operativo académico avanzado ya está definido para comparaciones futuras, sin validación de utilidad financiera. La sensibilidad de ruido/proveedor y otras arquitecturas/objetivos son extensiones no ejecutadas. TOST/ROPE son condicionales si se quisiera afirmar equivalencia. Se conserva la regla de épocas de diciembre; su representatividad se puede estudiar solo con desarrollo en otra versión, sin retocarla usando test.
+El respaldo aplicado de las familias MLP y CNN ya está acreditado por Miura et al. (2019); permanecen los límites de recurrencia, dimensionalidad CNN no reportada y adaptación exacta. Siguen abiertos el piloto/dimensionamiento prospectivos. El criterio operativo académico avanzado ya está definido para comparaciones futuras, sin validación de utilidad financiera. La sensibilidad de ruido/proveedor y otras arquitecturas/objetivos son extensiones no ejecutadas. TOST/ROPE son condicionales si se quisiera afirmar equivalencia. Se conserva la regla de épocas de diciembre; su representatividad se puede estudiar solo con desarrollo en otra versión, sin retocarla usando test.
 
 ### 5.5.9. Recomendaciones futuras
 
@@ -813,7 +813,7 @@ Las siguientes acciones derivan de fallos y límites observados; no se promete o
 
 #### 5.5.9.1. Recomendaciones derivadas de las limitaciones
 
-Completar el apoyo aplicado de las dos familias pendientes y preparar el piloto de una comparación avanzada conforme a la regla académica futura ya definida. Investigar meses difíciles y estructura residual mediante hipótesis registradas, manteniendo información causal y una referencia persistente adecuada.
+Ampliar la recurrencia aplicada de MLP y CNN, documentar las configuraciones que la fuente deja desconocidas y preparar el piloto de una comparación avanzada conforme a la regla académica futura ya definida. Investigar meses difíciles y estructura residual mediante hipótesis registradas, manteniendo información causal y una referencia persistente adecuada.
 
 Si los hallazgos del test orientan cambios de D, arquitectura o actualización, evaluarlos después en otro tramo independiente. Más semillas no sustituyen otros periodos/activos. La dependencia residual no garantiza que añadir complejidad produzca una ganancia determinada.
 

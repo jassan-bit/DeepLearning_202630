@@ -15,7 +15,7 @@ El capítulo 5 presenta las **tablas completas de CV y de test para cada entrada
 
 - [Problema y dataset](sections/01_problema_dataset.md): formulación, justificación, fuente y descripción técnica.
 - [Análisis exploratorio de datos](sections/02_eda.md): calidad, objetivo y estructura temporal; ejemplo oficial y aplicación de la función de Filipe.
-- [Estado del arte](sections/03_estado_arte.md): 35 referencias, cinco textos completos y fichas MLP/LSTM/CNN1D con evidencia y límites explícitos.
+- [Estado del arte](sections/03_estado_arte.md): 36 referencias y seis textos completos; respaldo primario de las familias MLP/LSTM/CNN y límites explícitos de su adaptación.
 - [Implementación y evaluación](sections/04_implementacion_evaluacion.md): cuatro historias, configuraciones, semillas, purgas, congelación y artefactos reproducibles.
 - [Benchmark y baseline](sections/05_benchmark.md): CV 2024, tablas finales del test 2025–agosto de 2026 y diagnósticos por bloque.
 - [Procedimiento temporal](sections/06_procedimiento.md): ruta 6.4, selección con Filipe y evaluación final sin reajustes durante test.
@@ -33,7 +33,7 @@ La elección previa al test y sus hashes están en [la congelación](_static/fil
 
 Las decisiones de desarrollo usaron 2024 ya expuesto: la CV es exploratoria y no validación anidada independiente. Diez semillas no acreditan potencia 0,80. Los contrastes Holm-12, DM y bootstrap del ciclo inicial D7 conservan su alcance; no se trasladan automáticamente a las cuatro historias o al test. El BDS mensual tiene una referencia asintótica aproximada ante bloques cortos y etiquetas solapadas.
 
-La [matriz de cierre](sections/protocolo_pendiente.md) distingue requisitos todavía abiertos y mejoras ejecutadas a partir de la auditoría del PDF. El respaldo aplicado de MLP no lineal independiente y CNN1D simple y el piloto/dimensionamiento prospectivo conservan su estado explícito. Para comparaciones futuras se define un criterio académico de mejora superior al 5 % frente a MLP/D7 y persistencia, acompañado de sensibilidad; su potencia real y una nueva evaluación siguen pendientes. TOST/ROPE solo será exigible si se afirma equivalencia. Solo se considera Bitcoin; no se inventan requisitos de documentos completos de E2/E3 que no se han recibido.
+La [matriz de cierre](sections/protocolo_pendiente.md) distingue requisitos todavía abiertos y mejoras ejecutadas a partir de la auditoría del PDF. La recuperación de Miura et al. (2019) aporta respaldo aplicado independiente a las familias MLP y CNN, una vez en seis estudios; la dimensionalidad de su CNN no está reportada y las recetas actuales siguen siendo adaptaciones del proyecto. Esta revisión es posterior al benchmark y no reescribe su selección como a priori. El piloto/dimensionamiento prospectivo continúa pendiente. Para comparaciones futuras se define un criterio académico de mejora superior al 5 % frente a MLP/D7 y persistencia, acompañado de sensibilidad; su potencia real y una nueva evaluación siguen pendientes. TOST/ROPE solo será exigible si se afirma equivalencia. Solo se considera Bitcoin; no se inventan requisitos de documentos completos de E2/E3 que no se han recibido.
 
 ## Reproducibilidad y privacidad
 

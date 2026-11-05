@@ -310,7 +310,7 @@ No se transforma este diagnóstico en un ranking de historias o en un baseline D
 La profundidad, el ancho y la regularización de una posible MLP requieren evidencia y protocolo propios; no están fijados por este bloque. Se conservan MSE como pérdida prevista, RMSE primaria y una salida escalar de volatilidad. Entropía cruzada ponderada y balance de clases no aplican sin un objetivo de clasificación; Huber es una opción de la guía que no se adopta por esta reorganización. La partición debe seguir siendo cronológica con embargo; la representación en tabla no permite barajar fechas.
 
 - **Decisión de preprocesamiento:** conservar OHLCV numérico, desfases causales y escalado aprendido solo con pasado; no introducir codificaciones categóricas o transformaciones nuevas.
-- **Impacto en la arquitectura:** mantener D×5 y el mismo objetivo entre modelos; las referencias lineales son diagnósticos de EDA y las tres redes MLP/LSTM/CNN1D se ejecutaron por separado en los capítulos 4–5. La extracción bibliográfica aplicada continúa parcial.
+- **Impacto en la arquitectura:** mantener D×5 y el mismo objetivo entre modelos; las referencias lineales son diagnósticos de EDA y las tres redes MLP/LSTM/CNN1D se ejecutaron por separado en los capítulos 4–5. La revisión posterior del capítulo 3 incorpora respaldo aplicado independiente para las familias MLP y CNN; no acredita que las recetas propias reproduzcan ese artículo ni que su CNN sea explícitamente Conv1D.
 - **Riesgos identificados:** tratar ventanas temporales como filas independientes, confundir PCA/correlación con utilidad predictiva, usar información posterior al origen o presentar el bloque tabular como sustituto del análisis temporal.
 
 ### 2.2.2. Series de Tiempo
@@ -895,7 +895,7 @@ Como contraste de escala se ejecutaron los diagnósticos sobre datos de un minut
 La ACF/PACF de un minuto usa los últimos 30 días de entrenamiento; la ACF de cuadrados hasta 28 días usa el mayor tramo continuo de entrenamiento y se representa cada 60 minutos. No se unen observaciones a ambos lados de huecos. Las pruebas horarias no se presentan como evidencia intercambiable con las diarias.
 
 - **Decisión de preprocesamiento:** mantener como candidatas las entradas de 7/14/21/28 días; elegir por validación y registrar sensibilidad, sin seleccionar rezagos por test.
-- **Impacto en la arquitectura:** las ventanas diarias fijan pasos temporales de MLP, recurrentes o convolucionales; las tres familias y D=7/14/21/28 se documentan con su selección propia en §4.2, sin atribuir esa elección a una correlación aislada. La suficiencia bibliográfica sigue abierta.
+- **Impacto en la arquitectura:** las ventanas diarias fijan pasos temporales de MLP, recurrentes o convolucionales; las tres familias y D=7/14/21/28 se documentan con su selección propia en §4.2, sin atribuir esa elección a una correlación aislada. El respaldo primario de las familias MLP y CNN se documenta en el capítulo 3; su recurrencia limitada y la adaptación exacta permanecen explícitas.
 - **Riesgos identificados:** dependencia de etiquetas móviles, bandas aproximadas, múltiples pruebas y confusión de frecuencias.
 
 ### 2.5.4. Frecuencia, granularidad y faltantes

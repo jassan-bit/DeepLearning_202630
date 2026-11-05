@@ -20,7 +20,7 @@ La siguiente tabla permite localizar las respuestas solicitadas en la guía. La 
 | Dependencia entre observaciones | §1.3.4, con unidad declarada en §1.1.4: solapamiento temporal, partición cronológica y prevención de fuga |
 | Versión y hash del dataset | §1.3.5: instantánea del 02/11/2026, manifiesto y SHA-256 de los 75 ZIP; derivados e índices de desarrollo disponibles; manifiesto supervisado de test y congelación final disponibles |
 
-**Alcance de esta actualización:** se comparan MLP, LSTM y CNN1D con las cuatro historias D=7/14/21/28, objetivo fijo n=7 y horizonte h=1. La CV principal usa doce cortes mensuales de Filipe y diez semillas por red/historia: 120 trayectorias y 43.920 predicciones, incluidas treinta trayectorias D7 reutilizadas. Tras congelar decisiones se ajustaron 120 modelos finales y se evaluó el periodo 2025–agosto de 2026. El [método vigente](../_static/filipe_multihistory_20261104/method.json), la [congelación](../_static/filipe_multihistory_20261104/freeze.json) y los capítulos 4–5 conservan evidencia y cronología. La cobertura bibliográfica aplicada permanece parcial.
+**Alcance de esta actualización:** se comparan MLP, LSTM y CNN1D con las cuatro historias D=7/14/21/28, objetivo fijo n=7 y horizonte h=1. La CV principal usa doce cortes mensuales de Filipe y diez semillas por red/historia: 120 trayectorias y 43.920 predicciones, incluidas treinta trayectorias D7 reutilizadas. Tras congelar decisiones se ajustaron 120 modelos finales y se evaluó el periodo 2025–agosto de 2026. El [método vigente](../_static/filipe_multihistory_20261104/method.json), la [congelación](../_static/filipe_multihistory_20261104/freeze.json) y los capítulos 4–5 conservan evidencia y cronología. La revisión posterior del capítulo 3 incorpora Miura et al. (2019), que acredita comparadores MLP y CNN independientes para volatilidad de Bitcoin. La dimensionalidad de aquella CNN y las configuraciones exactas siguen sin acreditarse como réplicas de las redes propias; una fuente no demuestra recurrencia amplia.
 
 ## 1.1. Definición del problema
 
@@ -144,7 +144,7 @@ Se mantienen los [36 escenarios de sensibilidad](../_static/e1_audit_improvement
 | Unidad de independencia entre mercados | Una sola serie BTCUSDT de Binance Spot; $N_{\mathrm{series}}=1$, sin réplicas independientes de otros mercados |
 | Unidad inferencial dentro de la serie | Diez trayectorias por red/variante condicionadas al calendario; los folds mensuales y las semillas no representan mercados independientes |
 | Referencias de contexto | Regresión lineal regularizada con las mismas covariables, exigida por la ruta 6.4; persistencia adicional para el margen del 5 % |
-| Selección de modelos | MLP, LSTM y CNN1D poco profunda ejecutadas en desarrollo; configuración congelada por fase en §4. La acreditación bibliográfica de §3 continúa parcial |
+| Selección de modelos | MLP, LSTM y CNN1D poco profunda ejecutadas en desarrollo; configuración congelada por fase en §4. §3 acredita respaldo aplicado de las familias MLP y CNN; la Conv1D y las recetas ejecutadas son adaptaciones, no réplicas documentadas |
 
 Para $N$ predicciones evaluables:
 
@@ -177,7 +177,7 @@ El **BDS de residuos de h=1 se calculó por bloque y semilla** para las tres red
 
 La definición principal queda fijada en **n=7, h=1 y D=7/14/21/28**, RMSE y margen operativo del 5 % frente a persistencia. La [congelación](../_static/filipe_multihistory_20261104/freeze.json) registra la selección de desarrollo y la política de pesos finales fijos. La prueba se evaluó después de firmar los modelos; sus veinte meses se usan para reportar errores, no para seleccionar o reajustar.
 
-La CV mensual y el control absoluto inicial D7 conservan su cronología. Las decisiones ya habían usado desarrollo expuesto y no constituyen selección anidada ni potencia 0,80 acreditada. El diagnóstico Ridge permanece separado. La [matriz de cierre](protocolo_pendiente.md) conserva las limitaciones bibliográficas y de dimensionamiento prospectivo. El criterio académico avanzado ya está definido para el futuro; su potencia real y su evaluación permanecen abiertas. La equivalencia y su margen son condicionales a que se quiera sostener esa afirmación; no se declaran como otro requisito obligatorio pendiente de este estudio.
+La CV mensual y el control absoluto inicial D7 conservan su cronología. Las decisiones ya habían usado desarrollo expuesto y no constituyen selección anidada ni potencia 0,80 acreditada. El diagnóstico Ridge permanece separado. La [matriz de cierre](protocolo_pendiente.md) conserva los límites de recurrencia y adaptación de las arquitecturas y el dimensionamiento prospectivo pendiente. El criterio académico avanzado ya está definido para el futuro; su potencia real y su evaluación permanecen abiertas. La equivalencia y su margen son condicionales a que se quiera sostener esa afirmación; no se declaran como otro requisito obligatorio pendiente de este estudio.
 
 ## 1.2. Justificación del Dataset
 
@@ -185,7 +185,7 @@ La CV mensual y el control absoluto inicial D7 conservan su cronología. Las dec
 
 Se propone evaluar si el historial de covariables OHLCV diarias de Bitcoin contiene información útil para pronosticar el siguiente valor de su volatilidad histórica móvil. Los retornos logarítmicos de cierre se utilizan para construir el objetivo; las entradas definidas son las covariables OHLCV. El interés aplicado es estimar incertidumbre del activo, no predecir directamente su precio ni recomendar operaciones financieras.
 
-El estudio de Huang, Sangiorgi y Urquhart examina pronósticos de volatilidad de Bitcoin con datos de alta frecuencia y redes neuronales; respalda la pertinencia de investigar este problema {cite:p}`huang2024`. Su definición de volatilidad, datos y horizontes no son automáticamente equivalentes a los de este proyecto: sus resultados no se trasladan como resultados propios. La revisión documental y las 35 referencias vigentes se desarrollan en el capítulo 3 y en [Referencias](referencias.md).
+El estudio de Huang, Sangiorgi y Urquhart examina pronósticos de volatilidad de Bitcoin con datos de alta frecuencia y redes neuronales; respalda la pertinencia de investigar este problema {cite:p}`huang2024`. Su definición de volatilidad, datos y horizontes no son automáticamente equivalentes a los de este proyecto: sus resultados no se trasladan como resultados propios. La revisión documental y las 36 referencias vigentes se desarrollan en el capítulo 3 y en [Referencias](referencias.md).
 
 **Decisiones confirmadas:** BTCUSDT, agregación diaria UTC de velas de un minuto, volatilidad poblacional de siete retornos diarios, horizonte de un día, entradas **D=7/14/21/28** y RMSE primaria. Las volatilidades n=14/21/28 fueron sensibilidades de EDA y no son objetivos entrenados del benchmark.
 

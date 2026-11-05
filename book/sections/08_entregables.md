@@ -8,7 +8,7 @@
 </div>
 ```
 
-Este capítulo reúne los **siete productos del Entregable 1** y permite localizar el informe, el código, los datos, las tablas y las declaraciones utilizadas. Cada apartado desarrolla el producto con evidencia verificable. La disponibilidad de un archivo y el cierre académico de todos sus requisitos se identifican por separado: el respaldo aplicado de MLP/CNN1D y el alcance temporal de los registros conservan sus límites.
+Este capítulo reúne los **siete productos del Entregable 1** y permite localizar el informe, el código, los datos, las tablas y las declaraciones utilizadas. Cada apartado desarrolla el producto con evidencia verificable. La revisión incorpora respaldo primario de las familias MLP y CNN; se conservan los límites de recurrencia, dimensionalidad CNN no reportada, adaptación de las recetas y alcance temporal de los registros.
 
 **Descarga directa desde el Jupyter Book:** pulsa el botón superior para obtener todo o el botón de la fila correspondiente para obtener un solo producto. Los archivos se descargan desde este sitio. Para verificar la entrega, descarga las <a href="../_static/e1_downloads/SHA256SUMS.txt" download="SHA256SUMS.txt">sumas SHA-256</a> y el <a href="../_static/e1_downloads/catalogo.json" download="catalogo.json">catálogo de la versión</a>.
 
@@ -17,7 +17,7 @@ Este capítulo reúne los **siete productos del Entregable 1** y permite localiz
 | {ref}`8.1 <entrega-8-1>` | Informe en Jupyter Book | Publicado, con capítulos, figuras y archivos de respaldo | <a class="btn btn-primary btn-sm" href="../_static/e1_downloads/8_1_informe_html.zip" download="8_1_informe_html.zip" aria-label="Descargar 8.1: informe HTML en ZIP">Descargar ZIP</a> |
 | {ref}`8.2 <entrega-8-2>` | Código EDA, tres modelos y análisis estadístico | Versionado; restauración y verificación privada aislada comprobadas | <a class="btn btn-primary btn-sm" href="../_static/e1_downloads/8_2_codigo.zip" download="8_2_codigo.zip" aria-label="Descargar 8.2: código en ZIP">Descargar ZIP</a> |
 | {ref}`8.3 <entrega-8-3>` | Dataset o instrucciones y scripts exactos | Fuente, descargador, calendario y hashes documentados | <a class="btn btn-primary btn-sm" href="../_static/e1_downloads/8_3_dataset_instrucciones.zip" download="8_3_dataset_instrucciones.zip" aria-label="Descargar 8.3: instrucciones del dataset en ZIP">Descargar ZIP</a> |
-| {ref}`8.4 <entrega-8-4>` | Síntesis de literatura y flujo de búsqueda | Tabla y diagrama disponibles; respaldo aplicado del trío todavía parcial | <a class="btn btn-primary btn-sm" href="../_static/e1_downloads/8_4_literatura.zip" download="8_4_literatura.zip" aria-label="Descargar 8.4: literatura y flujo en ZIP">Descargar ZIP</a> |
+| {ref}`8.4 <entrega-8-4>` | Síntesis de literatura y flujo de búsqueda | Seis textos; respaldo aplicado MLP/CNN acreditado a nivel de familia, con límites de configuración y recurrencia | <a class="btn btn-primary btn-sm" href="../_static/e1_downloads/8_4_literatura.zip" download="8_4_literatura.zip" aria-label="Descargar 8.4: literatura y flujo en ZIP">Descargar ZIP</a> |
 | {ref}`8.5 <entrega-8-5>` | Comparación, baseline e inferencia | Métricas y suplemento inferencial entregados, con alcance exploratorio | <a class="btn btn-primary btn-sm" href="../_static/e1_downloads/8_5_benchmark.zip" download="8_5_benchmark.zip" aria-label="Descargar 8.5: benchmark e inferencia en ZIP">Descargar ZIP</a> |
 | {ref}`8.6 <entrega-8-6>` | Dependencias, semillas y configuraciones | Locks, recetas y registros de las corridas identificados | <a class="btn btn-primary btn-sm" href="../_static/e1_downloads/8_6_configuraciones.zip" download="8_6_configuraciones.zip" aria-label="Descargar 8.6: dependencias y configuraciones en ZIP">Descargar ZIP</a> |
 | {ref}`8.7 <entrega-8-7>` | Declaración de métrica, margen, independencia y partición | Documentada por versión y fecha; no se atribuye al pasado una decisión posterior | <a class="btn btn-primary btn-sm" href="../_static/e1_downloads/8_7_declaracion.zip" download="8_7_declaracion.zip" aria-label="Descargar 8.7: declaración y cronología en ZIP">Descargar ZIP</a> |
@@ -102,7 +102,7 @@ La web publica metadatos y agregados. Los ZIP brutos, derivados diarios del test
 (entrega-8-4)=
 ## 8.4. Tabla de síntesis de la literatura y flujo de búsqueda
 
-Se entrega la [tabla de síntesis de seis columnas](../_static/literature_e1/study_synthesis_six_columns_20261103.csv): referencia, problema, dataset, modelos DL, métricas y valores obtenidos por sus autores. La siguiente vista resume los **cinco textos completos incluidos**; el catálogo bibliográfico mantiene 35 referencias y la extracción reúne 81 cifras publicadas.
+Se entrega la [tabla vigente de síntesis de seis columnas](../_static/literature_e1/recovery_20261105/synthesis_six_columns.csv): referencia, problema, dataset, modelos DL, métricas y valores obtenidos por sus autores. La recuperación del capítulo de Miura, Pichl y Kaizoji (2019) amplía el corpus a **seis textos completos y 36 referencias**, recogidas en el [catálogo bibliográfico actualizado](../_static/literature_e1/recovery_20261105/references_access_36.csv). La [síntesis anterior de cinco textos](../_static/literature_e1/study_synthesis_six_columns_20261103.csv), que reunía 81 cifras publicadas, se conserva como corte histórico.
 
 | Estudio del corpus | Dataset y objetivo descritos | Comparadores DL identificados |
 |---|---|---|
@@ -111,16 +111,24 @@ Se entrega la [tabla de síntesis de seis columnas](../_static/literature_e1/stu
 | S5 · Gao et al. (manuscrito 2023) | Yahoo BTC-USD diario; medida móvil de 30 días desplazada siete días | LSTM de una capa; la densa lineal es contexto |
 | S6 · Wang et al. (sin año corroborado) | Bitcoin diario; RV sin definición suficiente para equipararla a σ7 | Transformer OHLCV independiente; EGARCH–Transformer es híbrido |
 | S7 · Alakhouch Idriss (2026) | Bitcoin diario; medida futura de 30 días anualizada | LSTM 64→32 con cabeza Dense16→1; no MLP independiente |
+| S8 · Miura, Pichl y Kaizoji (2019) | Bitstamp BTC/USD minuto; RV como suma de retornos logarítmicos cuadrados en intervalos de tres horas | MLP de cuatro capas, LSTM de dos capas + Dense, GRU y CNN de dos capas + Dense, todos comparadores independientes |
 
-Los valores numéricos y las ubicaciones de tablas se conservan en la síntesis descargable y en la [evaluación de calidad](../_static/literature_e1/quality_assessment.csv). Los objetivos, fuentes, periodos y escalas difieren de σ7: sus métricas no se ordenan como si fueran corridas del mismo benchmark.
+El [registro de la fuente primaria S8](../_static/literature_e1/recovery_20261105/primary_source.json) conserva URL, versión y SHA-256 del PDF leído. Su portada identifica *Advances in Neural Networks – ISNN 2019*, LNCS 11554, páginas 165–172 y DOI **10.1007/978-3-030-22796-8_18**. La [extracción de la Tabla 1](../_static/literature_e1/recovery_20261105/miura_table1.csv), página impresa 171, permite verificar estos valores publicados:
 
-![Flujo de búsqueda complementaria y recuperación de los cinco textos incluidos](../_static/literature_e1/flow.svg)
+| Comparador S8 | RMSE de CV | RMSE de test | Varianza de RMSE de test reportada |
+|---|---:|---:|---:|
+| MLP, cuatro capas con dropout | 1,7209×10⁻² | 2,2067×10⁻³ | 6,8202×10⁻¹⁰ |
+| MLP, cuatro capas con BN | 1,7364×10⁻² | 2,1952×10⁻³ | 2,5325×10⁻⁹ |
+| LSTM, dos capas + Dense | 1,7276×10⁻² | 2,1960×10⁻³ | 1,0293×10⁻⁹ |
+| CNN, dos capas + Dense | 1,7495×10⁻² | 2,1817×10⁻³ | 6,7603×10⁻¹⁰ |
 
-El flujo documenta **118 ocurrencias de repositorios, 12 duplicadas y 106 repositorios distintos; 20 inspeccionados; siete textos evaluados, cinco incluidos y dos excluidos**. Es una recuperación complementaria trazable, sin afirmar exhaustividad PRISMA ni búsqueda nativa acreditada en todas las bases.
+El artículo declara diez folds temporales y 100 corridas de CV, y treinta inicializaciones aleatorias de pesos para test. Las dispersiones de su tabla son **varianzas, no desviaciones estándar**. Las dos variantes MLP no se cuentan como dos estudios. Los valores y los riesgos metodológicos se conservan en la [evaluación de S8](../_static/literature_e1/recovery_20261105/quality_assessment.json), junto con la [evaluación histórica de los otros textos](../_static/literature_e1/quality_assessment.csv). Los objetivos, fuentes, periodos y escalas difieren de σ7: sus métricas no se ordenan como si fueran corridas del mismo benchmark.
 
-La recuperación posterior a la auditoría permanece como otra etapa: [13 cadenas, 18 páginas y 92 repositorios únicos](../_static/e1_audit_improvements_20261104/literature/search_log.json), con [candidatos evaluados](../_static/e1_audit_improvements_20261104/literature/candidate_assessment.csv). No aportó manuscritos científicos completos nuevos; sus ocurrencias no se suman al flujo original sin deduplicación documental conjunta.
+![Recuperación documental posterior y adición de S8 al corpus](../_static/literature_e1/recovery_20261105/retrieval_flow.svg)
 
-**Estado del requisito de extracción:** la tabla, el flujo y la trazabilidad están entregados. El [conteo por familia](../_static/literature_e1/family_frequencies.csv) acredita LSTM unidireccional en 3/5 estudios y la familia LSTM en 4/5; **MLP no lineal independiente y CNN1D simple siguen en 0/5**. Faltan fuentes aplicadas completas que sustenten esos dos integrantes del trío. El código candidato y las corridas propias no se cuentan como artículos incluidos ni cierran esa brecha.
+El {download}`informe de recuperación <../_static/literature_e1/recovery_20261105/README.md>` separa descubrimiento, lectura del texto e incorporación de S8. El [flujo anterior](../_static/literature_e1/flow.svg) conserva **118 ocurrencias de repositorios, 12 duplicadas y 106 repositorios distintos; 20 inspeccionados; siete textos evaluados, cinco incluidos y dos excluidos**. Otra etapa histórica, de [13 cadenas, 18 páginas y 92 repositorios únicos](../_static/e1_audit_improvements_20261104/literature/search_log.json), no aportó entonces textos completos nuevos. Esas cifras no se mezclan ni se suman sin deduplicación documental conjunta, y no acreditan búsquedas nativas en las bases no consultadas.
+
+**Estado del requisito de extracción:** el [conteo vigente por familia](../_static/literature_e1/recovery_20261105/family_frequencies.csv) acredita **MLP independiente en 1/6 estudios y CNN independiente en 1/6**. Queda resuelta la ausencia de una fuente aplicada para esas familias. El artículo no declara si su CNN es unidimensional, ni sus filtros, kernels o anchos: **la Conv1D propia es una adaptación, no una réplica documentada**. Una fuente tampoco demuestra recurrencia amplia. La [actualización de la selección documental](../_static/literature_e1/recovery_20261105/selection_update.json) conserva esos límites y su fecha posterior al benchmark; no se reescriben como a priori las decisiones ya ejecutadas. El código candidato y las corridas propias no se cuentan como artículos incluidos.
 
 (entrega-8-5)=
 ## 8.5. Tabla comparativa, baseline e inferencia estadística

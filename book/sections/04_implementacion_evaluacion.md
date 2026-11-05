@@ -8,7 +8,7 @@ La CV primaria reúne **120 trayectorias, 1.440 segmentos modelo–mes y 2.880 a
 
 Después del cierre se realizaron **120 ajustes finales** con desarrollo permitido de 2023–2024 y pesos fijos durante el test **01/01/2025–31/08/2026**. Cada corrida produjo 608 predicciones elegibles; septiembre–octubre de 2026 no se incorporó. Los veinte meses del test son intervalos de reporte, no nuevos ajustes ni folds de entrenamiento.
 
-La selección con desarrollo ya examinado sigue siendo exploratoria y no es una búsqueda anidada. El test mide el procedimiento cerrado; después de consultarlo no queda como reserva desconocida para diseñar otro modelo. Las referencias aplicadas de MLP/CNN1D, el piloto prospectivo y otros márgenes pendientes se mantienen explícitos.
+La selección con desarrollo ya examinado sigue siendo exploratoria y no es una búsqueda anidada. El test mide el procedimiento cerrado; después de consultarlo no queda como reserva desconocida para diseñar otro modelo. La revisión posterior incorpora respaldo aplicado independiente de MLP y CNN en Miura et al. (2019), sin reescribir la selección como a priori. Su CNN no declara dimensionalidad y las recetas propias no son réplicas; el piloto prospectivo y el dimensionamiento definitivo siguen pendientes.
 
 La auditoría se completa con tablas anuales, variabilidad, segmentos y diagnósticos finales calculados desde los resultados guardados; su registro está en el [protocolo del complemento](../_static/e1_audit_improvements_20261104/protocol.json), [resumen inferencial](../_static/e1_audit_improvements_20261104/inference/summary.json) y [resumen descriptivo](../_static/e1_audit_improvements_20261104/descriptive/summary.json). El complemento se registró **después de inspeccionar el test**, antes de estos cálculos. Es un análisis **post-hoc/exploratorio** de las predicciones guardadas de las tres configuraciones **D7 elegidas con CV**, más persistencia determinista. No es una confirmación prospectiva, no cambia la selección MLP/D7 y no ejecuta nuevos pronósticos ni entrenamientos.
 
@@ -165,7 +165,7 @@ El escenario de LSTM arroja R orientativo 9 y los de MLP/CNN1D 19/28; que un nú
 
 La implementación entrega las cuatro entradas, CV efectiva, BDS por fold y evaluación final con configuración cerrada. El test de 2025–agosto de 2026 ya fue consultado; sus predicciones se reutilizan para tablas y diagnósticos sin ejecutar nuevos pronósticos ni entrenamientos.
 
-La política para un modelo avanzado queda **definida en contexto académico**: superar el 5 % frente a MLP/D7 y persistencia en una evaluación nueva. Se conservan sensibilidades y planificación condicional, sin certificar potencia lograda. Permanecen pendientes el respaldo aplicado suficiente de las familias, el piloto prospectivo y el dimensionamiento definitivo. TOST/ROPE y su banda solo serán necesarios si se quiere afirmar equivalencia.
+La política para un modelo avanzado queda **definida en contexto académico**: superar el 5 % frente a MLP/D7 y persistencia en una evaluación nueva. Se conservan sensibilidades y planificación condicional, sin certificar potencia lograda. El respaldo aplicado de las familias MLP y CNN ya cuenta con una fuente primaria, con recurrencia limitada y configuración incompleta. Permanecen pendientes el piloto prospectivo y el dimensionamiento definitivo. TOST/ROPE y su banda solo serán necesarios si se quiere afirmar equivalencia.
 
 ### 4.1.9. Registro
 
@@ -189,12 +189,12 @@ El [registro del complemento de auditoría](../_static/e1_audit_improvements_202
 | Ajuste final y test | 120 ajustes finales; 608 fechas de test por corrida, sin reajustes con test |
 | BDS por fold | Todas las semillas y D; resultados definidos/indefinidos registrados |
 | Piloto y potencia | Prospectivo y dimensionamiento definitivo pendientes |
-| Literatura aplicada | Apoyo aplicado de MLP/CNN1D todavía incompleto |
+| Literatura aplicada | Miura et al. (2019) acredita MLP y CNN independientes; dimensionalidad CNN no reportada, recurrencia de una fuente y recetas propias como adaptaciones |
 | Otras tareas | Objetivos n≠7 y ruido simulado no ejecutados |
 
 ## 4.2. Implementación de los Tres Modelos Base
 
-Se implementaron **MLP, LSTM unidireccional y CNN1D causal de dos capas** para las cuatro historias de entrada. La ampliación mantiene `relative_window` y los hiperparámetros de familia; no añade GRU, TCN, atención o rezagos del objetivo. Entrenar código propio no convierte las configuraciones en réplicas exactas de artículos ni completa sus referencias aplicadas pendientes.
+Se implementaron **MLP, LSTM unidireccional y CNN1D causal de dos capas** para las cuatro historias de entrada. La ampliación mantiene `relative_window` y los hiperparámetros de familia; no añade GRU, TCN, atención o rezagos del objetivo. Miura et al. (2019) aporta comparadores MLP, LSTM y CNN independientes para volatilidad de Bitcoin; las configuraciones ejecutadas son adaptaciones propias y no réplicas exactas. La dimensionalidad de la CNN fuente no está reportada. Esta incorporación bibliográfica posterior no modifica los entrenamientos ni la selección ya congelada.
 
 ### 4.2.1. Implementación de los tres modelos base
 
@@ -390,7 +390,7 @@ La implementación utiliza **PyTorch 2.15.0+cpu**, Python 3.12.14 y float32. Los
 | Ajuste final | 120 pesos y escaladores cerrados antes de test |
 | Test | 608 fechas elegibles por corrida, sin actualización de pesos |
 | Métricas/BDS | Tablas globales y por intervalo, con motivos de indefinición |
-| Bibliografía/piloto/márgenes futuros | Pendientes específicos; no se declaran resueltos por entrenar |
+| Bibliografía/piloto/márgenes futuros | Respaldo aplicado de familias incorporado; recurrencia/configuración fuente limitadas y piloto/dimensionamiento prospectivos pendientes |
 
 ## 4.3. Requisitos Experimentales
 

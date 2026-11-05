@@ -42,7 +42,9 @@ def main():
     supplement=read(supplement_path)
     inputs={}
     for path in [freeze_path,plan_path,policy_path,initial_path,audit_path,supplement_path,
-                 ROOT/"references/decisiones_e1_20261102.json"]:
+                 ROOT/"references/decisiones_e1_20261102.json",
+                 ROOT/"references/literature_e1/recovery_20261105/selection_update.json",
+                 ROOT/"references/literature_e1/recovery_20261105/primary_source.json"]:
         inputs[path.relative_to(ROOT).as_posix()]=sha(path)
     entries=[]
     for label,path,key in [
@@ -140,7 +142,7 @@ def main():
         ("8.1","Informe en Jupyter Book","Informe entregado","book/intro.md","Capítulos1–8 y referencias; contenido y evidencias disponibles"),
         ("8.2","Código completo versionado","Código y réplica privada verificados","BUILD.md","La réplica verifica evidencia guardada; no se afirma repetir todos los ajustes en otra máquina"),
         ("8.3","Dataset o instrucciones y scripts","Adquisición y trazabilidad documentadas","data/README.md","Brutos y derivados completos se conservan localmente; publicación de resúmenes"),
-        ("8.4","Síntesis y flujo de literatura","Tabla y flujo entregados; respaldo aplicado parcial","references/literature_e1/study_synthesis_six_columns_20261103.csv","MLP independiente y CNN1D simple:0/5 textos completos del corpus; candidatos de código no son nuevas inclusiones"),
+        ("8.4","Síntesis y flujo de literatura","Fuente aplicada de MLP/CNN verificada; adaptación y límites explícitos","references/literature_e1/recovery_20261105/synthesis_six_columns.csv","Miura2019 aporta MLP y CNN independientes:1/6 cada familia. Dimensionalidad CNN no reportada; no réplica exacta ni evidencia de uso amplio; incorporación posterior al benchmark"),
         ("8.5","Comparación, baseline e inferencia","Resultados entregados con límites","book/sections/05_benchmark.md","Comparación final suplementaria post-hoc; baselineMLP/D7 no reseleccionado"),
         ("8.6","Dependencias, semillas y configuraciones","Metadatos y catálogos entregados","book/_static/e1_deliverables_20261104/final_configuration_catalog.csv","Pesos y escaladores completos en paquete privado; no identidad universal entre versiones/hardware"),
         ("8.7","Declaración previa de métrica, margen, independencia y partición","Declaración versionada con cronología explícita","book/_static/e1_deliverables_20261104/declaration_and_chronology.json","Registro anterior al test, posterior al EDA; criterio académico avanzado posterior al test y solo futuro")]
@@ -151,6 +153,7 @@ def main():
         "guide":"E1, página33, siete productos; producto documentado no equivale a cierre científico de todos sus requisitos",
         "new_project_fits":0,"new_forecasts":0,"raw_market_archive_reads":0,"products":rows,
         "CV_configuration_records":1440,"final_configuration_records":120,
+        "literature_review":"S8 Miura2019, recovered after the benchmark: six included full texts, independent MLP/CNN family support; source CNN dimensionality and exact project replication not established",
         "publication_scope":"Configuration metadata, dependencies, declarations and aggregate results only; no weights, scaler values, market series or individual forecasts"})
     write_json(DEST/"public_manifest.json",{"created_at_utc":datetime.now(timezone.utc).isoformat(),
         "script_sha256":sha(__file__),"source_sha256":inputs,

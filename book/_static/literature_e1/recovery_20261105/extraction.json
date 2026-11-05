@@ -1,0 +1,216 @@
+{
+  "candidate_id": "BR02_Miura2019",
+  "suggested_study_id": "S8",
+  "decision": "eligible_primary_applied_Bitcoin_volatility_comparison_with_documentation_limits",
+  "title": "Artificial Neural Networks for Realized Volatility Prediction in Cryptocurrency Time Series",
+  "authors": [
+    "Ryotaro Miura",
+    "Lukáš Pichl",
+    "Taisei Kaizoji"
+  ],
+  "year": 2019,
+  "venue": "Advances in Neural Networks – ISNN 2019",
+  "series": "Lecture Notes in Computer Science",
+  "volume": 11554,
+  "printed_pages": "165–172",
+  "PDF_pages": 8,
+  "DOI_printed_in_publisher_PDF": "10.1007/978-3-030-22796-8_18",
+  "DOI_independently_resolved": false,
+  "source": {
+    "url": "https://raw.githubusercontent.com/Anton21a/Thesis/8bc3aa3c96fd214b34b914d2057f4339f2c8ed1e/ML%20articles/Artificial%20Neural%20Networks.pdf",
+    "sha256": "2364a462ed212803e2c4b751d27d66091af5773159c601f950df17578853dfeb",
+    "bytes": 1678552
+  },
+  "source_repository_commit": "8bc3aa3c96fd214b34b914d2057f4339f2c8ed1e",
+  "source_type": "Springer typeset chapter copy in an academic thesis bibliography; not a newly accessed publisher landing page",
+  "publication_identity_evidence": "PDF page 1 / printed p.165: authors, title, Springer Nature 2019 copyright, H. Lu et al. (Eds.), ISNN 2019, LNCS 11554, pp.165–172 and DOI. PDF metadata agrees on title and DOI.",
+  "indexing_and_quartile": "Not verified; publisher DOI is not evidence of WoS/Scopus coverage or Q1",
+  "copyright": "SpringerNatureSwitzerlandAG2019; retainlocalfulltext, publish bibliographicfacts/extractionandlinkratherthanrepublishingthePDFwithoutlicenseevidence",
+  "dataset": {
+    "asset": "Bitcoin BTCUSD",
+    "provider": "Kaggle Bitcoin historical data, mczielinski/bitcoin-historical-data; Ref.2, p.172",
+    "source_frequency": "1 minute",
+    "plotted_period": "2012-01-01 to 2018-11-11; 2,507 days (Fig.2, p.166)",
+    "cleaned_minute_log_returns": 1804479,
+    "quality_rule": "Missing prices and non-adjacent returns removed (Fig.3, p.167)",
+    "exact_dataset_version_or_hash": "Not reported"
+  },
+  "target": {
+    "name": "Realized volatility, RV",
+    "formal_definition": "Sum of squared minute logarithmic returns within an aggregation bin:RV(t)=sum_i R_i^2",
+    "aggregation_minutes": 180,
+    "aggregation_hours": 3,
+    "not_standard_deviation": true,
+    "annualization": "Not reported",
+    "horizon": "Future RV values predicted from past RV samples in a three-hour series; an explicit step-indexed forecast horizon is not given.",
+    "model_input": "Past RV samples (abstract, p.165); sequence length varies by model.",
+    "target_transform_for_fitting": "Not clearly reported. Fig.7b plots log differences but does not establish the training target transform.",
+    "E1_difference": "Different provider and period; three-hour sums of squared minute returns versus E1 daily rolling seven-return population standard deviation; past RV versus E1 OHLCV-only inputs."
+  },
+  "models": [
+    {
+      "family": "MLP",
+      "independent_comparator": true,
+      "author_model_label": "MLP 4 layers with dropout",
+      "sequence_length": 10,
+      "layer_count_interpretation": "The author label says four layers; hidden versus output layers are not distinguished.",
+      "hidden_widths": null,
+      "activation": null,
+      "dropout_rate": null,
+      "parameters": null,
+      "optimizer": null,
+      "source_location": "Model list, p.168; regularization, p.169; Table1, p.171"
+    },
+    {
+      "family": "MLP",
+      "independent_comparator": true,
+      "author_model_label": "MLP 4 layers with BN",
+      "sequence_length": 10,
+      "layer_count_interpretation": "The author label says four layers; hidden versus output layers are not distinguished.",
+      "hidden_widths": null,
+      "activation": null,
+      "batch_norm": true,
+      "parameters": null,
+      "optimizer": null,
+      "source_location": "Model list, p.168; regularization, p.169; Table1, p.171"
+    },
+    {
+      "family": "CNN",
+      "independent_comparator": true,
+      "author_model_label": "CNN 2 layers + 1 Dense",
+      "sequence_length": 6,
+      "convolution_layers": 2,
+      "dense_layers": 1,
+      "convolution_dimensionality": "Not explicitly reported; do not label the source as verified Conv1D or Conv2D.",
+      "explicit_CNN1D_verified": false,
+      "filters": null,
+      "kernel_sizes": null,
+      "padding": null,
+      "causality": null,
+      "activation": null,
+      "parameters": null,
+      "optimizer": null,
+      "batch_norm": "Text on p.169 says BN was implemented for CNN; Table1 does not separately label the CNN BN configuration.",
+      "source_location": "Model list, p.168; regularization, p.169; Table1, p.171"
+    },
+    {
+      "family": "LSTM",
+      "independent_comparator": true,
+      "author_model_label": "LSTM 2 layers + 1 Dense",
+      "sequence_length": 12,
+      "source_location": "p171Table1"
+    },
+    {
+      "family": "GRU",
+      "independent_comparator": true,
+      "author_model_label": "GRU 1 layer + 2 Dense",
+      "sequence_length": 5,
+      "source_location": "p171Table1"
+    }
+  ],
+  "training_evaluation": {
+    "reported_CV": "10-fold cross-validation for time series using 100 runs, as stated on p.170.",
+    "test_random_initializations": 30,
+    "CV_split_dates": null,
+    "test_split_dates": null,
+    "train_validation_test_ratios": null,
+    "purge_or_embargo": null,
+    "scaling_fit_scope": null,
+    "epochs": null,
+    "early_stopping": null,
+    "paired_tests_or_multiplicity": "Not reported in the inspected eight-page chapter.",
+    "source_location": "p170§3"
+  },
+  "metrics_scale": "MSE and RMSE as reported. Target transformation and aggregation documentation do not establish equivalence with the E1 sigma7 scale.",
+  "reported_table1_p171": [
+    {
+      "model": "HARRV",
+      "sequence_length_label": "1,6,16",
+      "CV_MSE": 0.00031617,
+      "CV_RMSE": 0.017781,
+      "test_MSE": 4.8442e-06,
+      "test_RMSE": 0.002201
+    },
+    {
+      "model": "MLP 4 layers with dropout",
+      "sequence_length": 10,
+      "CV_MSE": 0.00029613,
+      "CV_RMSE": 0.017209,
+      "test_MSE": 4.8704e-06,
+      "test_MSE_variance": 1.3311e-14,
+      "test_RMSE": 0.0022067,
+      "test_RMSE_variance": 6.8202e-10
+    },
+    {
+      "model": "MLP 4 layers with BN",
+      "sequence_length": 10,
+      "CV_MSE": 0.00030151,
+      "CV_RMSE": 0.017364,
+      "test_MSE": 4.8212e-06,
+      "test_MSE_variance": 4.9997e-14,
+      "test_RMSE": 0.0021952,
+      "test_RMSE_variance": 2.5325e-09
+    },
+    {
+      "model": "LSTM 2 layers + 1 Dense",
+      "sequence_length": 12,
+      "CV_MSE": 0.00029845,
+      "CV_RMSE": 0.017276,
+      "test_MSE": 4.8233e-06,
+      "test_MSE_variance": 2.0082e-14,
+      "test_RMSE": 0.002196,
+      "test_RMSE_variance": 1.0293e-09
+    },
+    {
+      "model": "GRU 1 layer + 2 Dense",
+      "sequence_length": 5,
+      "CV_MSE": 0.00029607,
+      "CV_RMSE": 0.017207,
+      "test_MSE": 4.7433e-06,
+      "test_MSE_variance": 8.8148e-15,
+      "test_RMSE": 0.0021778,
+      "test_RMSE_variance": 4.5781e-10
+    },
+    {
+      "model": "CNN 2 layers + 1 Dense",
+      "sequence_length": 6,
+      "CV_MSE": 0.00030608,
+      "CV_RMSE": 0.017495,
+      "test_MSE": 4.7605e-06,
+      "test_MSE_variance": 1.2904e-14,
+      "test_RMSE": 0.0021817,
+      "test_RMSE_variance": 6.7603e-10
+    },
+    {
+      "model": "SVM",
+      "sequence_length": 7,
+      "CV_MSE": 0.0003212,
+      "CV_RMSE": 0.017922,
+      "test_MSE": 4.3463e-05,
+      "test_RMSE": 0.0065293
+    },
+    {
+      "model": "Ridge Regression",
+      "sequence_length": 6,
+      "CV_MSE": 0.00030615,
+      "CV_RMSE": 0.017497,
+      "test_MSE": 4.6667e-06,
+      "test_RMSE": 0.0021603
+    }
+  ],
+  "reported_dispersion": "Table1 labels dispersion as var = variance, not standard deviation.",
+  "critical_assessment": [
+    "Primary applied Bitcoin-volatility evidence of independent MLP and CNN comparators; it does not establish that the E1 configurations were selected from this paper before training.",
+    "One additional study does not establish frequent use. Count each family once despite the two MLP variants.",
+    "The E1 one-hidden-layer MLP and causal Conv1D implementation are project adaptations, not replicas of the paper configurations.",
+    "CNN dimensionality, widths, kernels and causality are not documented; preserve those unknowns.",
+    "Split dates, scaling scope and purging rules are absent; no absence-of-leakage certification is possible.",
+    "Table1 reports HARRV lags 1,6,16 while the conclusion mentions 2,3,4; preserve the source discrepancy.",
+    "No paired comparison or confidence interval is reported. Initialization variances do not demonstrate statistically significant superiority.",
+    "Do not rank literature RMSE directly against E1 RMSE: targets, inputs, frequency, cohorts and sources differ."
+  ],
+  "study_id": "S8",
+  "reviewed_at_utc": "2026-11-05T01:33:52.450087+00:00",
+  "reviewed_at_bogota": "2026-11-04T20:33:52.450087-05:00",
+  "review_timing": "Targeted documentary recovery after the completed benchmark; not a pretraining architecture-selection record"
+}

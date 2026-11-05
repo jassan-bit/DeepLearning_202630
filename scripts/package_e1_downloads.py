@@ -78,7 +78,8 @@ def report_files():
         if not path.is_file():
             continue
         relative = path.relative_to(build).as_posix()
-        if (path.name in EXCLUDED_NAMES or path.suffix.lower() in ARCHIVE_OR_WEIGHTS
+        if (relative.startswith("_static/e1_downloads/")
+                or path.name in EXCLUDED_NAMES or path.suffix.lower() in ARCHIVE_OR_WEIGHTS
                 or relative in sensitive_summaries
                 or (path.name == "summary.json" and digest(path.read_bytes()) in summary_hashes)):
             excluded.add(relative)
@@ -108,7 +109,7 @@ def report_files():
             data = re.sub(r'((?:href|src)=[\"\'])([^\"\']+)([\"\'])', link, data.decode()).encode()
         files["informe/" + relative] = data
     files["ARTEFACTOS_EXTERNOS.json"] = encode({
-        "scope": "Rendered report, figures and aggregate attachments; historical individual data/parameters are external links only",
+        "scope": "Rendered report, figures and aggregate attachments; individual data/parameters and the download packages themselves are external links only, avoiding recursive archives",
         "excluded_from_this_archive": sorted(excluded), "rewritten_links": rewritten,
         "external_math_dependency": "MathJax from its existing CDN may need an Internet connection",
     })
@@ -212,7 +213,8 @@ def main():
     for name in ["academic_margin_policy.json", "next_study_pilot_DRAFT.json", "protocol.json"]:
         add_file(packages["8.7"], static / "e1_audit_improvements_20261104" / name)
     common = (
-        "\n\nSe conserva el alcance científico del libro: respaldo aplicado parcial de MLP/CNN1D; "
+        "\n\nSe conserva el alcance científico del libro: Miura2019 respalda MLP/CNN independientes "
+        "como familias; no declara dimensionalidad CNN ni demuestra una réplica exacta o uso amplio. "
         "suplemento final post-hoc y piloto futuro sin ejecutar. La política académica futura no "
         "se presenta como anterior al test. Pesos, escaladores y predicciones individuales "
         "requieren la entrega privada descrita en BUILD.md; este ZIP no los contiene.\n"
@@ -223,7 +225,7 @@ def main():
         "8.1": "Abrir informe/intro.html después de descomprimir. Alternativa: `python -m http.server 8000 --directory informe`. MathJax y los enlaces externos pueden necesitar Internet. ARTEFACTOS_EXTERNOS.json identifica las descargas individuales históricas no incluidas.",
         "8.2": "El código conserva scripts/ y tests/. Leer BUILD.md: entornos separados, adquisición, preparación, entrenamiento y análisis. Para recalcular la ejecución original se necesita la evidencia privada; no ejecutar los originales sobre un registro firmado ni borrar sus marcadores.",
         "8.3": "Leer data/README.md. El script scripts/download_binance_spot.py obtiene los archivos oficiales y verifica checksums. Los manifiestos identifican fuente, fechas, bytes y SHA-256. Este paquete no contiene datos brutos de Binance.",
-        "8.4": "Las tablas CSV, referencias BibTeX y flow.svg están bajo book/_static/literature_e1/. La recuperación complementaria de la auditoría está separada; no sumar sus conteos sin deduplicación. No se incluyen manuscritos de terceros.",
+        "8.4": "La síntesis vigente de seis estudios, frecuencias y Tabla1 de Miura2019 están en book/_static/literature_e1/recovery_20261105/. La bibliografía principal reúne36referencias. Los archivos anteriores conservan sus cortes históricos; no sumar etapas sin deduplicación. No se incluyen manuscritos de terceros.",
         "8.5": "Abrir los CSV con un lector compatible con UTF-8. analysis_cv/ contiene desarrollo; test/analysis/ contiene test. Los suplementos inference/ y descriptive/ conservan su registro post-hoc. Los manifiestos de listas permitidas verifican los agregados originales.",
         "8.6": "Los locks y los catálogos identifican 1.440 segmentos modelo-mes de CV y 120 ajustes finales. Las filas son metadatos, sin pesos ni valores de escaladores. No mezclar el entorno CV con el de entrenamiento.",
         "8.7": "Leer declaration_and_chronology.json, la congelación anterior al test y la política futura. Los registros conservan su momento real; next_study_pilot_DRAFT.json es un borrador, no un piloto ejecutado.",
