@@ -68,7 +68,7 @@ def main():
               "historical_D7_supplement": {"protocol": "experiments/filipe_statistics_20261104/protocol.json",
                                           "scope": "Holm12/DM6/bootstrap y diagnósticos anuales pertenecen exclusivamente a la CV inicial D7/2024; no se trasladan a los demás D o al test."},
               "outstanding": {"prospective_pilot_and_definitive_power": "Nuevo piloto registrado antes de60 trayectorias/1440 ajustes sobre2024; R futuro calculado. Repeticiones definitivas, potencia real y evaluación temporal independiente no ejecutadas; no repara el benchmark histórico.",
-                              "applied_comparator_literature": "Miura2019 verifica MLP/CNN independientes en1/6 textos; dimensionalidad CNN, recetas exactas y recurrencia amplia siguen sin acreditarse. Revisión posterior al benchmark.",
+                              "applied_comparator_literature": "CorpusBTC6 y39 referencias. Miura2019 conserva MLP/CNN1/6 y dimensiónCNN desconocida; T1 añade original financiero FNN de revista, T2 código autor Conv1D y T3 identidad editorial sin original. No aumentan frecuenciasBTC ni prueban réplica de las recetas o indexación individual. Revisión posterior al benchmark.",
                               "future_prospective_validation": "E1 exige definir margen/MDE y sus límites a partir del baseline. El criterio futuro del5% cumple ese propósito documental sin ser margen previo del test histórico. El piloto propio de un avanzado y otra evaluación independiente son condiciones si después se implementa esa propuesta, no entrenamientos obligatorios de E1.",
                               "external_measurements": "Ruido externo de precios/etiquetas y mecanismo MCAR/MAR/MNAR no identificados."},
               "new_execution_in_this_extension": {"CV_fits": 2160, "final_fits": 120,
@@ -95,6 +95,17 @@ def main():
             "source_sha256": sha(literature),
             "timing": "Posterior al benchmark; no reescribe la selección histórica ni los registros de auditoría anteriores.",
             "finding": "Una nueva fuente primaria verifica MLP/CNN independientes; seis estudios en el corpus ampliado. La dimensionalidad CNN no se declara en el original.",
+        }
+    journals = ROOT / "references/literature_e1/journal_update_20261105/methodological_sources.json"
+    if journals.exists():
+        report["historical_applied_literature_review"] = report.get("current_literature_review")
+        report["current_literature_review"] = {
+            "source": journals.relative_to(ROOT).as_posix(), "source_sha256": sha(journals),
+            "bibliographic_references": 39, "BTC_full_text_studies": 6,
+            "new_methodological_full_texts": 1, "new_author_code_sources": 1,
+            "new_publication_identity_only_sources": 1, "new_BTC_inclusions": 0,
+            "finding": "T1 Bucci original de revista con FNN; T2 HARNet código Conv1D; T3 DeepVol identidad editorial, original pendiente. Niveles distintos, sin aumentar recurrencia BTC o acreditar registros individuales/Q1.",
+            "timing": "Recuperación posterior al benchmark; no altera resultados o cronología de entrenamiento.",
         }
     pilot = ROOT / "results/e1_filipe_pilot_20261105/analysis/summary.json"
     if pilot.exists():

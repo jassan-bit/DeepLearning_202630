@@ -221,8 +221,11 @@ def main():
     for name in ["protocol.json", "preregistration_git_receipt.json", "execution_summary.json", "analysis/summary.json"]:
         add_file(packages["8.7"], static / "e1_filipe_pilot_20261105" / name)
     common = (
-        "\n\nSe conserva el alcance científico del libro: Miura2019 respalda MLP/CNN independientes "
-        "como familias; no declara dimensionalidad CNN ni demuestra una réplica exacta o uso amplio. "
+        "\n\nSe conserva el alcance científico del libro: seis textos del corpus BTC y39 referencias. "
+        "Miura2019 respalda MLP/CNN independientes como familias. Bucci2020 aporta un original "
+        "de revista con FNN financiera; HARNet aporta código autor Conv1D; DeepVol tiene identidad "
+        "editorial en CV, con original pendiente. Estas fuentes metodológicas no añaden estudios BTC "
+        "ni revelan la dimensionalidad no reportada de la CNN de Miura. No son réplicas de las recetas. "
         "suplemento final post-hoc y nuevo piloto registrado de60 trayectorias; el R definitivo aún no se ejecutó. La política académica futura no "
         "se presenta como anterior al test. Pesos, escaladores y predicciones individuales "
         "requieren la entrega privada descrita en BUILD.md; este ZIP no los contiene.\n"
@@ -233,7 +236,7 @@ def main():
         "8.1": "Abrir informe/intro.html después de descomprimir. Alternativa: `python -m http.server 8000 --directory informe`. MathJax y los enlaces externos pueden necesitar Internet. ARTEFACTOS_EXTERNOS.json identifica las descargas individuales históricas no incluidas.",
         "8.2": "El código conserva scripts/ y tests/. Leer BUILD.md: entornos separados, adquisición, preparación, entrenamiento y análisis. Para recalcular la ejecución original se necesita la evidencia privada; no ejecutar los originales sobre un registro firmado ni borrar sus marcadores.",
         "8.3": "Leer data/README.md. El script scripts/download_binance_spot.py obtiene los archivos oficiales y verifica checksums. Los manifiestos identifican fuente, fechas, bytes y SHA-256. Este paquete no contiene datos brutos de Binance.",
-        "8.4": "La síntesis vigente de seis estudios, frecuencias y Tabla1 de Miura2019 están en book/_static/literature_e1/recovery_20261105/. La bibliografía principal reúne36referencias. Los archivos anteriores conservan sus cortes históricos; no sumar etapas sin deduplicación. No se incluyen manuscritos de terceros.",
+        "8.4": "La síntesis BTC de seis estudios, frecuencias y Tabla1 de Miura2019 están en book/_static/literature_e1/recovery_20261105/. El catálogo vigente de39 referencias y la ampliación metodológica T1/T2/T3 están en journal_update_20261105/: artículo Bucci leído, código HARNet verificado e identidad DeepVol con original pendiente. La indexación de revistas es secundaria; no se acreditan registros individuales o Q1. No sumar fuentes metodológicas al denominador BTC. No se incluyen manuscritos de terceros.",
         "8.5": "Abrir los CSV con un lector compatible con UTF-8. analysis_cv/ contiene desarrollo; test/analysis/ contiene test. Los suplementos inference/ y descriptive/ conservan su registro post-hoc. e1_filipe_pilot_20261105/ contiene el nuevo piloto sobre validación2024 y su dimensionamiento condicional. Los manifiestos verifican los agregados originales.",
         "8.6": "Los locks y los catálogos identifican 1.440 segmentos modelo-mes de CV original,120 ajustes finales y720 segmentos del nuevo piloto. Las filas son metadatos, sin pesos ni valores de escaladores. No mezclar el entorno CV con el de entrenamiento.",
         "8.7": "Leer declaration_and_chronology.json y statistical_scope.json: distinguen evidencia histórica exploratoria, piloto condicional y requisitos futuros no registrados ni ejecutados. Consultar la congelación anterior al test, la política futura y el registro del nuevo piloto e1_filipe_pilot_20261105. Este piloto fue registrado antes de sus propios ajustes, después del benchmark histórico. next_study_pilot_DRAFT.json conserva el borrador de otra evaluación independiente futura, no ejecutada.",
