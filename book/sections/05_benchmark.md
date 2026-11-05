@@ -2,7 +2,7 @@
 
 Se completó el benchmark de **MLP, LSTM y CNN1D con entradas de 7, 14, 21 y 28 días**. El objetivo permanece en **siete retornos diarios, volatilidad poblacional sin anualizar**, horizonte **h=1 día** y cinco covariables OHLCV. La fuente de un minuto se agrega a diario antes de formar entradas.
 
-La comparación vigente utiliza **D=7,14,21,28**, objetivo **n=7** y horizonte **h=1 diario**, con representación `relative_window` y diez semillas por combinación. La elección de historia/modelo se cerró con CV de 2024 antes de abrir test. El [cierre previo](../_static/filipe_multihistory_20261104/freeze.json) conserva las decisiones, fuentes y hashes.
+El benchmark histórico de cuatro historias utiliza **D=7,14,21,28**, objetivo **n=7** y horizonte **h=1 diario**, con representación `relative_window` y diez semillas por combinación. La elección de historia/modelo se cerró con CV de 2024 antes de abrir test. El [cierre previo](../_static/filipe_multihistory_20261104/freeze.json) conserva las decisiones, fuentes y hashes.
 
 La CV primaria utiliza doce meses de 2024, entrenamiento inicial de 2023 y pasado permitido de 2024: **120 trayectorias y 43.920 predicciones**. D7 reutiliza sus treinta trayectorias relativas verificadas; las otras noventa son nuevas. La comparación inicial D7 con `absolute_log` se mantiene como antecedente y no se amplió a otros D.
 
@@ -13,6 +13,8 @@ Se publican las métricas requeridas y **BDS por fold/mes para todos los D, mode
 La publicación ampliada ofrece métricas agregadas por semilla y mes, diagnósticos y manifiestos de trazabilidad. Los vectores de predicción individuales, series de mercado, pesos y paquetes completos se conservan localmente; no se ofrecen como descargas públicas de esta ampliación.
 
 El [protocolo del complemento](../_static/e1_audit_improvements_20261104/protocol.json), [resumen inferencial](../_static/e1_audit_improvements_20261104/inference/summary.json) y [resumen descriptivo](../_static/e1_audit_improvements_20261104/descriptive/summary.json) completa la auditoría con resultados anuales, variabilidad, segmentos y comparación formal del test. El complemento se registró **después de inspeccionar el test**, antes de estos cálculos. Es un análisis **post-hoc/exploratorio** de las predicciones guardadas de las tres configuraciones **D7 elegidas con CV**, más persistencia determinista. No es una confirmación prospectiva, no cambia la selección MLP/D7 y no ejecuta nuevos pronósticos ni entrenamientos.
+
+Se añade por separado el {ref}`estudio D7 registrado de aleatoriedad <estudio-d7-confirmatorio>`, con recetas fijas y nuevas semillas sobre el desarrollo 2024 ya conocido. Su ampliación de varianza y su fase definitiva completadas no se suman a las diez semillas de las tablas históricas. La confirmación se refiere a diferencias medias entre aleatorizaciones; no vuelve confirmatorio el suplemento del test ni constituye otro periodo de mercado.
 
 ## 5.1. Comparación Tabular
 
@@ -308,6 +310,32 @@ La familia principal de RMSE por inicialización contiene seis pares: tres entre
 
 El [suplemento inicial D7/2024](../_static/filipe_statistics_20261104/summary.json) conserva sus familias históricas Holm-12/DM-6/diagnósticos-15; no se mezclan sus p-valores con los del test final.
 
+**Estudio D7 posterior, registrado antes de sus nuevas corridas.** La familia primaria contiene únicamente MLP−LSTM, MLP−CNN1D y LSTM−CNN1D, sobre RMSE anual 2024 por semilla definitiva. Se completaron **79 semillas nuevas por receta**, después de fijar y publicar R a partir de veinte semillas de varianza separadas. El diseño se detalla en {ref}`4.1 <estudio-d7-confirmatorio>` y la [auditoría independiente final](../_static/e1_filipe_confirmatory_d7_20261105/verification/revision_filipe_confirmatory_d7_20261105.json) dio PASS. La esperanza estimada corresponde a las aleatorizaciones de las tres recetas fijas sobre el calendario 2024 conocido.
+
+```{include} ../_static/e1_filipe_confirmatory_d7_20261105/tables/metrics.md
+```
+
+Las métricas anteriores resumen solo las 79 semillas definitivas. La [tabla completa de métricas secundarias](../_static/e1_filipe_confirmatory_d7_20261105/analysis/metrics_summary.csv) conserva cobertura e IC; los [registros por trayectoria](../_static/e1_filipe_confirmatory_d7_20261105/definitive/runs.csv) permiten comprobarlas. Persistencia conserva RMSE **0,00478896957** sobre 2024, menor que las tres medias neuronales; es referencia descriptiva y no pertenece a los tres contrastes registrados. El baseline histórico MLP/D7 se conserva: este estudio no volvió a comparar ni seleccionar D.
+
+La prueba primaria fue t pareada bilateral, con **Holm-3**. Los IC familiares de la tabla son tres intervalos individuales del **98,333… %**, con cobertura conjunta de al menos el **95 %** por Bonferroni bajo los supuestos de la referencia t. Un Δ=A−B negativo significa menor RMSE de A. El [CSV completo](../_static/e1_filipe_confirmatory_d7_20261105/analysis/paired_comparisons.csv) incluye además IC marginales del 95 %, estadísticos, diagnósticos y precisión numérica de los p-valores.
+
+```{include} ../_static/e1_filipe_confirmatory_d7_20261105/tables/comparisons.md
+```
+
+| Par D7 | d_z pareado | IC bootstrap marginal 95 % de d_z | p de Shapiro–Wilk |
+|---|---:|---:|---:|
+| MLP−LSTM | −0,830622 | [−1,147571; −0,580968] | 0,506113793 |
+| MLP−CNN1D | −0,429102 | [−0,608606; −0,264168] | 8,94205236×10⁻⁸ |
+| LSTM−CNN1D | 0,062123 | [−0,147794; 0,336760] | 1,36487360×10⁻⁶ |
+
+**Dos de los tres contrastes rechazan diferencia cero:** MLP−LSTM, p Holm=4,38255333928×10⁻¹⁰, y MLP−CNN1D, p Holm=0,000544027165413. LSTM−CNN1D no rechaza, p Holm=0,582418125256. MLP tiene la menor RMSE media de las tres recetas en estas nuevas aleatorizaciones. Esto no implica superioridad universal, confirmación de la historia D7 o generalización a otro periodo.
+
+Los dos pares que incluyen CNN1D presentan alertas Shapiro y su [diagnóstico Q–Q](../_static/e1_filipe_confirmatory_d7_20261105/analysis/qq_differences.png) se conserva. La prueba t registrada no se sustituyó después de ver esas alertas; sus conclusiones e intervalos mantienen esa limitación de referencia. Los IC percentiles de medias de **4.999 remuestreos pareados de semillas**, publicados como sensibilidad, también excluyen cero para los dos pares de MLP y lo incluyen para LSTM−CNN1D. Esos remuestreos no son otra replicación independiente ni eliminan la incertidumbre de los supuestos. No rechazar Shapiro en MLP−LSTM tampoco demuestra normalidad.
+
+**Significación y magnitud:** las diferencias medias de MLP frente a ambas redes son más negativas que −δ=−0,00023944848, pero ambos IC familiares **cruzan esa frontera**: sus extremos superiores son −0,00021192229 y −0,00010096566. Se distingue diferencia cero bajo la referencia registrada; **no queda demostrada una ventaja mayor que δ con esos intervalos familiares**. La t primaria no contrasta una nula en δ. El no rechazo LSTM−CNN1D no constituye una declaración formal de equivalencia y no se ejecutó TOST/ROPE. Tampoco se probó el criterio avanzado >5 % frente a dos referencias ni se afirma potencia alcanzada.
+
+El [resumen del análisis](../_static/e1_filipe_confirmatory_d7_20261105/analysis/summary.json) y el {download}`alcance del estudio <../_static/e1_filipe_confirmatory_d7_20261105/analysis/README.md>` separan esta confirmación de nuevas aleatorizaciones del suplemento histórico del test. No se abrieron otra vez sus archivos ni se añadieron meses de mercado.
+
 #### 5.3.3.1. Comparaciones pareadas y corrección por multiplicidad
 
 Los diez pares corresponden a las mismas semillas y las mismas 608 fechas. La t bilateral compara la **media de diferencias de RMSE entre inicializaciones**; se declara Holm-6 y se conservan IC t marginales y Shapiro. Persistencia se resta como puntuación fija; eso no crea diez modelos persistentes.
@@ -431,7 +459,7 @@ Esa medida es descriptiva del test y no prueba estadísticamente una ganancia su
 
 **Ejecutado:** cuatro entradas, CV, selección/cierre, 120 ajustes finales, tablas globales/mensuales/anuales, BDS por fold y complemento post-hoc de comparación final D7 con diferencias, efectos, IC, DM y Ljung–Box. Se preservan los pronósticos y los pesos originales.
 
-**Definido para una fase futura:** criterio académico del 5 % frente a MLP/D7 y persistencia, con sensibilidad y planificación condicional. **Estado académico:** Miura et al. (2019) respalda MLP/CNN como familias, con dimensión CNN no reportada y recurrencia limitada. El nuevo piloto de §4.1 registra cinco semillas por baseline e historia para dimensionar futuras repeticiones; no demuestra la frontera avanzada ni potencia alcanzada. Esa comparación avanzada conserva su propio piloto y evaluación independiente pendientes. **Equivalencia es condicional:** TOST/ROPE solo si se formula esa afirmación.
+**Definido para una fase futura:** criterio académico del 5 % frente a MLP/D7 y persistencia, con sensibilidad y planificación condicional. **Estado académico:** Miura et al. (2019) respalda MLP/CNN como familias, con dimensión CNN no reportada y recurrencia limitada. El piloto de §4.1 registra cinco semillas por baseline e historia y conserva su planificación de doce pares. El estudio D7 posterior registra una ampliación de varianza y nuevas corridas definitivas separadas; su ampliación de varianza y las 79 semillas definitivas por red están completadas, con análisis registrado y auditoría PASS. Dos pares rechazan cero con Holm-3, con alertas de normalidad en los pares CNN; sus IC familiares no demuestran una ventaja de MLP mayor que δ. Ninguna fase demuestra la frontera avanzada ni potencia alcanzada. Esa comparación avanzada conserva su propio piloto y evaluación independiente pendientes. **Equivalencia es condicional:** TOST/ROPE solo si se formula esa afirmación.
 
 ## 5.4. Análisis Estadístico y Pruebas de Hipótesis
 
@@ -536,6 +564,10 @@ El bootstrap temporal final usa L14 con L7/28 de sensibilidad (§5.4.5). No repr
 ### 5.4.7. Reporte de potencia y diferencia mínima detectable
 
 El [nuevo piloto registrado](../_static/e1_filipe_pilot_20261105/protocol.json) de §4.1 estima la dispersión de cinco semillas nuevas por modelo e historia y dimensiona **doce pares entre redes**, con δ absoluto 0,00023944847859645605 y α=0,05/12. Su [tabla de R y MDE](../_static/e1_filipe_pilot_20261105/analysis/paired_dimensioning.csv) distingue DE puntual y límite superior unilateral marginal del 95 %, R futuro y MDE con R=5. La potencia objetivo 0,80 es marginal y condicional a diferencias normales; no es potencia lograda ni una evaluación temporal independiente. Sus resultados no se mezclan con las diez semillas ni con los contrastes de test que siguen.
+
+La {ref}`ampliación D7 posterior <estudio-d7-confirmatorio>` registra otra familia de tres pares y una estimación de DE con veinte semillas nuevas. Fijó **R=79** con las DE superiores marginales, frente a un máximo puntual de 44; la publicación y verificación del cierre antecedieron a las corridas definitivas, ya completadas y auditadas. El margen se conserva, mientras cambian la pregunta y la familia de comparación. No se transfiere automáticamente el máximo 1.680 del diseño de cuatro historias ni se calcula potencia con el efecto definitivo observado.
+
+La [sensibilidad posterior con DE definitiva](../_static/e1_filipe_confirmatory_d7_20261105/planning/final_sd_sensitivity.csv), separada del cálculo registrado de R, da MDE=0,000141528, 0,000243429 y 0,000210876 para MLP−LSTM, MLP−CNN1D y LSTM−CNN1D. En el segundo par supera δ=0,00023944848 y se declara como limitación. Se mantiene R=79, no se usa el efecto medio para calcular potencia y no se modifica el análisis primario; la referencia normal y sus alertas siguen explícitas. Los detalles se presentan en §4.1.7.
 
 El complemento calcula **MDE₀ retrospectiva y condicional** de los seis pares finales a partir de su DE observada, R=10, potencia hipotética 0,80 y α de planificación 0,05/6:
 
@@ -699,7 +731,7 @@ MLP−persistencia activa la señal de Shapiro; los IC t se conservan con advert
 
 #### 5.4.13.5. Múltiples ejecuciones documentadas
 
-Se conservan las **diez semillas 4101–4110** en cada D–familia. La CV primaria cuenta 120 trayectorias; el ajuste final cuenta 120 modelos nuevos. Ninguna semilla se excluye por error. Los 1.440 segmentos de CV y veinte intervalos de test no son semillas adicionales o mercados independientes. Diez repeticiones no certifican potencia suficiente.
+Se conservan las **diez semillas 4101–4110** en cada D–familia. La CV primaria cuenta 120 trayectorias; el ajuste final cuenta 120 modelos nuevos. Ninguna semilla se excluye por error. Los 1.440 segmentos de CV y veinte intervalos de test no son semillas adicionales o mercados independientes. Diez repeticiones no certifican potencia suficiente. El estudio D7 posterior mantiene aparte sus veinte semillas de varianza y 79 definitivas por red, completadas y auditadas; tampoco convierten el calendario conocido en otro mercado.
 
 #### 5.4.13.6. Métrica principal y comparaciones declaradas con antelación
 
@@ -754,7 +786,7 @@ Las variaciones por año y mes pueden reflejar distribución del mercado, tamañ
 | Tablas anuales/meses, segmentos y variabilidad | Complementadas desde pronósticos guardados |
 | Inferencia final principal D7 | t/efectos/IC, signed-rank de sensibilidad, DM, Ljung–Box y bootstrap temporal ejecutados como post-hoc |
 | Planificación futura | Criterio académico 5 % frente a MLP/D7 y persistencia definido; escenarios frente a la frontera y sensibilidades, sin potencia lograda |
-| Literatura y piloto | Respaldo aplicado MLP/CNN con límites; nuevo piloto entre baselines registrado antes de sus corridas y dimensionamiento de semillas futuras en §4.1; sin potencia alcanzada ni nueva validación temporal |
+| Literatura y piloto | Catálogo de 39 referencias, seis textos BTC y transferencia financiera; piloto de cuatro historias conservado. Estudio D7 con veinte semillas de varianza y 79 definitivas por red completado, registrado y auditado; sin potencia alcanzada ni nueva validación temporal |
 | Equivalencia | Condicional: no se afirma ni se exige TOST/ROPE automáticamente |
 
 Las pruebas se interpretan con sus supuestos. No se acredita potencia 0,80 por observar diez semillas o generar una tabla retrospectiva.
@@ -764,7 +796,7 @@ Las pruebas se interpretan con sus supuestos. No se acredita potencia 0,80 por o
 ```{include} ../_static/e1_deliverables_20261104/statistical_scope.md
 ```
 
-Se entrega la [evaluación de alcance y requisitos futuros](../_static/e1_deliverables_20261104/statistical_scope.json), con hashes de los registros originales. **La aclaración documental queda resuelta; la confirmación nueva sigue pendiente.** No se afirma superioridad avanzada, equivalencia, potencia alcanzada ni generalización temporal a partir de este suplemento.
+Se entrega la [evaluación de alcance y requisitos futuros](../_static/e1_deliverables_20261104/statistical_scope.json), con hashes de los registros originales. **La aclaración documental queda resuelta; una nueva evaluación temporal y la comparación avanzada siguen pendientes.** El {ref}`estudio D7 de nuevas aleatorizaciones <estudio-d7-confirmatorio>` tiene otro alcance: sus corridas definitivas R=79 se completaron tras publicar y verificar el cierre, con análisis y auditoría PASS, sin convertir el suplemento histórico en confirmatorio. No se afirma superioridad avanzada, equivalencia, potencia alcanzada ni generalización temporal a partir de este suplemento.
 
 ## 5.5. Discusión Crítica
 
@@ -829,7 +861,7 @@ El estudio conserva un activo, un proveedor, n=7, h=1, cuatro historias y diez s
 
 BDS mensual usa 28–31 residuos; los contrastes temporales y el bootstrap también suponen una representación adecuada de dependencia y estabilidad. Los IC por semillas condicionan al calendario. MLP−persistencia activa el diagnóstico Shapiro y su referencia t se declara aproximada.
 
-El respaldo aplicado de MLP/CNN está acreditado por Miura et al. (2019), con límites de recurrencia, dimensionalidad CNN y adaptación. El nuevo piloto entre baselines aporta un registro previo a sus nuevas corridas y planificación sobre el calendario 2024 conocido; no subsana el orden histórico ni acredita potencia lograda. La comparación de un modelo avanzado aún requiere su propio piloto y una evaluación independiente. La sensibilidad de ruido/proveedor y otras arquitecturas/objetivos siguen fuera del alcance ejecutado. TOST/ROPE es condicional a afirmar equivalencia. Se conserva la regla de épocas de diciembre; no se retoca usando test.
+El respaldo aplicado de MLP/CNN está acreditado por Miura et al. (2019), con límites de recurrencia, dimensionalidad CNN y adaptación. El piloto de cuatro historias conserva su registro y planificación. El estudio D7 posterior completó veinte semillas de varianza y 79 definitivas por receta, con protocolo/R previos y auditoría PASS sobre 2024 conocido; dos pares rechazan cero bajo la t registrada con Holm-3, con dos alertas de normalidad y sin ventaja >δ acreditada por IC familiares. La MDE posterior de MLP−CNN1D supera δ y se declara como limitación; no se subsana el orden histórico ni se acredita potencia lograda. La comparación de un modelo avanzado aún requiere su propio piloto y una evaluación independiente. La sensibilidad de ruido/proveedor y otras arquitecturas/objetivos siguen fuera del alcance ejecutado. TOST/ROPE es condicional a afirmar equivalencia. Se conserva la regla de épocas de diciembre; no se retoca usando test.
 
 ### 5.5.9. Recomendaciones futuras
 
@@ -851,6 +883,6 @@ Si los hallazgos del test orientan cambios de D, arquitectura o actualización, 
 | ¿Se supera persistencia? | Medias y análisis pareado/temporal | La RMSE media de las doce redes es mayor; los contrastes dependen del estimando y supuestos |
 | ¿Qué mejora analítica se añadió? | Años, rangos, variabilidad y meses difíciles | Diagnóstico calculado desde los pronósticos originales |
 | ¿Qué criterio avanzado se fijó? | Política académica futura y escenarios frente a la frontera | Superar 5 % frente a MLP/D7 y persistencia; no es previo al test actual ni certifica potencia lograda |
-| ¿Hay un piloto registrado antes de nuevas corridas? | Nuevo protocolo de §4.1, cinco semillas por modelo/historia y doce pares de planificación | Sí, respecto de esas nuevas inicializaciones sobre 2024 conocido; no vuelve prospectivo el estudio ya observado ni prueba potencia alcanzada |
+| ¿Hay un piloto y una fase definitiva nuevos registrados? | Piloto de cuatro historias conservado; estudio D7 con veinte semillas de varianza y 79 definitivas por red | Sí, protocolo y R publicados antes de sus fases, con auditoría PASS; dos rechazos Holm-3 condicionados a 2024 conocido. No reescribe el benchmark ni prueba potencia alcanzada |
 | ¿Equivalencia es requisito pendiente? | No se afirma equivalencia | TOST/ROPE solo si se formula esa pregunta |
-| ¿Qué sigue abierto? | Matriz de cierre y corpus | Límites de recurrencia/dimensión CNN, ejecución definitiva con nuevas semillas, piloto avanzado y evaluación independiente si se diseñan cambios con este test |
+| ¿Qué sigue abierto? | Matriz de cierre y corpus | Límites de recurrencia/configuración fuente, supuestos e incertidumbre del diseño; familia histórica de doce pares no ejecutada definitivamente. Una propuesta avanzada requiere su piloto y otra evaluación si usa este test para diseñarse |

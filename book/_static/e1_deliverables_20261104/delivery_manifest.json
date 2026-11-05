@@ -1,7 +1,7 @@
 {
-  "compiled_at_bogota": "2026-11-04T21:45:29.543669-05:00",
+  "compiled_at_bogota": "2026-11-05T08:34:10.275304-05:00",
   "guide": "E1, página33, siete productos; producto documentado no equivale a cierre científico de todos sus requisitos",
-  "execution_counter_scope": "The zero execution counters below describe this metadata export only; completed pilot training is recorded separately in registered_pilot and its execution_summary",
+  "execution_counter_scope": "The zero execution counters below describe this metadata export only; completed training is recorded separately by historical pilot and registered D7 phase",
   "new_project_fits": 0,
   "new_forecasts": 0,
   "raw_market_archive_reads": 0,
@@ -37,23 +37,23 @@
     {
       "item": "8.5",
       "product": "Comparación, baseline e inferencia",
-      "status": "Resultados y piloto nuevo entregados con límites",
-      "evidence": "book/sections/05_benchmark.md",
-      "limit": "Benchmark histórico conservado; nuevo piloto dimensiona futuras semillas, sin potencia alcanzada ni réplica de mercado"
+      "status": "Benchmark histórico y estudio D7 registrado entregados con alcances separados",
+      "evidence": "book/_static/e1_filipe_confirmatory_d7_20261105/analysis/summary.json",
+      "limit": "Definitiva con R=79 semillas nuevas por modelo; tres contrastes predefinidos sobre2024 conocido, sin generalización temporal nueva ni potencia lograda"
     },
     {
       "item": "8.6",
       "product": "Dependencias, semillas y configuraciones",
-      "status": "Metadatos originales y 720 configuraciones piloto entregados",
-      "evidence": "book/_static/e1_filipe_pilot_20261105/configuration_catalog.csv",
-      "limit": "Pesos y escaladores completos en paquete privado; no identidad universal entre versiones/hardware"
+      "status": "Catálogos históricos y configuraciones de ambas fases D7 entregados",
+      "evidence": "book/_static/e1_filipe_confirmatory_d7_20261105/configuration_catalog.csv",
+      "limit": "Metadatos por fase; pesos, escaladores y predicciones individuales privados"
     },
     {
       "item": "8.7",
       "product": "Declaración previa de métrica, margen, independencia y partición",
-      "status": "Cronología original y registro anterior al nuevo piloto",
-      "evidence": "book/_static/e1_deliverables_20261104/declaration_and_chronology.json",
-      "limit": "Piloto registrado antes de sus ajustes; no previo al benchmark histórico, a los datos de2024 ni al test ya examinado"
+      "status": "Cronología histórica y dos publicaciones previas de D7 documentadas",
+      "evidence": "book/_static/e1_filipe_confirmatory_d7_20261105/tables/chronology.md",
+      "limit": "Protocolo antes de ampliación y R antes de definitiva; calendario previamente conocido, sin reescribir el benchmark"
     }
   ],
   "CV_configuration_records": 1440,
@@ -70,7 +70,7 @@
   },
   "publication_scope": "Configuration metadata, dependencies, declarations and aggregate results only; no weights, scaler values, market series or individual forecasts",
   "literature_extension": {
-    "updated_at_utc": "2026-11-05T12:31:55.008092+00:00",
+    "updated_at_utc": "2026-11-05T13:34:10.361068+00:00",
     "bibliographic_references": 39,
     "BTC_full_text_studies": 6,
     "new_methodological_full_texts": 1,
@@ -100,5 +100,35 @@
       "references/literature_e1/journal_update_20261105/references_access_39.csv": "712d7c57649c91a7368f32910bf87a54e6be8b2aeb34201ba8b4d41a9c8bcb00",
       "references/literature_e1/journal_update_20261105/manifest.json": "384393e066e257d6d440680cf3fe149a69a35af0b1f7f3398c5f6faa9cc72ba7"
     }
+  },
+  "registered_d7_study": {
+    "study_id": "e1_filipe_confirmatory_d7_20261105",
+    "scope": "Prospective RNG confirmation conditional on known development2024; not independent temporal validation",
+    "public_manifest": "book/_static/e1_filipe_confirmatory_d7_20261105/public_manifest.json",
+    "public_manifest_sha256": "75e9668566f8b57c49b1dbdf9e699de6ee0f004d7eda5cae27ff825e16f898a2",
+    "common_R": 79,
+    "variance_extension": {
+      "seeds_per_model": 20,
+      "trajectories": 60,
+      "project_fits": 1440,
+      "configuration_records": 720
+    },
+    "definitive": {
+      "seeds_per_model": 79,
+      "trajectories": 237,
+      "project_fits": 5688,
+      "configuration_records": 2844
+    },
+    "configuration_records": 3564,
+    "primary_comparisons": 3,
+    "all25_pilot_seeds_excluded_from_definitive": true,
+    "definitive_repetitions_performed": true,
+    "independent_verification": "PASS",
+    "analysis_status": "definitive_conditional_seed_analysis_complete",
+    "new_independent_market_evaluation": false,
+    "historical_benchmark_repaired": false,
+    "original_test_reopened": false,
+    "achieved_or_joint_power_claim": false,
+    "advanced_gain_boundary_tested": false
   }
 }

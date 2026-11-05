@@ -3,20 +3,20 @@
 **Proyecto de Deep Learning · 2026-30**  
 **Profesor:** Dr. Lihki Rubio  
 **Autor:** Jassan Arteta  
-**Avance:** Entregable 1 · CV de Filipe, cuatro historias y evaluación reservada · 4 de noviembre de 2026
+**Avance:** Entregable 1 · CV de Filipe, evaluación histórica y estudio D7 de aleatoriedad · 5 de noviembre de 2026
 
 Este libro desarrolla el **Entregable 1 de Deep Learning** para el pronóstico de volatilidad de **Bitcoin**, con datos oficiales de **Binance Spot BTCUSDT**. El problema corresponde al **tipo 4: regresión temporal**: cinco covariables OHLCV diarias, objetivo poblacional de siete retornos logarítmicos y horizonte de un día. Las cuatro longitudes **D=7,14,21,28** cambian la historia de entrada, manteniendo **n=7 y h=1**.
 
 La selección usa **`split_train_val_forwardChaining` de `timeseries-cv`**, proyecto de DidierRLopes con coautoría de **Filipe R. Ramos**. Sus orígenes diarios se agrupan en doce bloques mensuales de 2024. Cada ajuste y escalador usa únicamente el pasado permitido, con embargo de D días y validación interna cronológica. Las redes principales usan precios relativos al último cierre observable de su ventana, diez semillas comunes y las mismas 366 fechas.
 
-El capítulo 5 presenta las **tablas completas de CV y de test para cada entrada**, con MAPE, MAE, RMSE, MSE, R² y MASE; media, DE e IC entre semillas; y BDS por bloque mensual de residuos de horizonte h=1. La mejora posterior a la auditoría añade resultados **separados de 2025 y enero–agosto de 2026**, variabilidad cuantitativa, diagnóstico agregado de errores y un **suplemento inferencial post-hoc** de las tres configuraciones D7 seleccionadas. Los promedios de p-valores BDS son descriptivos; los nuevos contrastes no reabren la selección ni se presentan como confirmación prospectiva.
+El capítulo 5 presenta las **tablas completas de CV y de test para cada entrada**, con MAPE, MAE, RMSE, MSE, R² y MASE; media, DE e IC entre semillas; y BDS por bloque mensual de residuos de horizonte h=1. La mejora posterior a la auditoría añade resultados **separados de 2025 y enero–agosto de 2026**, variabilidad cuantitativa, diagnóstico agregado de errores y un **suplemento inferencial post-hoc** de las tres configuraciones D7 seleccionadas. Los promedios de p-valores BDS son descriptivos; los contrastes de ese suplemento no reabren la selección ni se presentan como confirmación prospectiva.
 
 ## Qué contiene este avance
 
 - [Problema y dataset](sections/01_problema_dataset.md): formulación, justificación, fuente y descripción técnica.
 - [Análisis exploratorio de datos](sections/02_eda.md): calidad, objetivo y estructura temporal; ejemplo oficial y aplicación de la función de Filipe.
 - [Estado del arte](sections/03_estado_arte.md): 39 referencias, seis textos completos sobre Bitcoin y una ampliación metodológica financiera; respaldo de las familias MLP/LSTM/CNN y límites de su adaptación.
-- [Implementación y evaluación](sections/04_implementacion_evaluacion.md): cuatro historias, configuraciones, semillas, purgas, congelación y artefactos reproducibles.
+- [Implementación y evaluación](sections/04_implementacion_evaluacion.md): cuatro historias, configuraciones, purgas, congelación y estudio D7 posterior con R=79 fijado antes de sus semillas definitivas.
 - [Benchmark y baseline](sections/05_benchmark.md): CV 2024, tablas finales del test 2025–agosto de 2026 y diagnósticos por bloque.
 - [Procedimiento temporal](sections/06_procedimiento.md): ruta 6.4, selección con Filipe y evaluación final sin reajustes durante test.
 - [Limitaciones y entregables](sections/07_limitaciones_entregables.md): dependencia, potencia, equivalencia y estado de los productos.
@@ -34,6 +34,8 @@ La elección previa al test y sus hashes están en [la congelación](_static/fil
 Las decisiones de desarrollo usaron 2024 ya expuesto: la CV es exploratoria y no validación anidada independiente. Diez semillas no acreditan potencia 0,80. Los contrastes Holm-12, DM y bootstrap del ciclo inicial D7 conservan su alcance; no se trasladan automáticamente a las cuatro historias o al test. El BDS mensual tiene una referencia asintótica aproximada ante bloques cortos y etiquetas solapadas.
 
 La [matriz de cierre](sections/protocolo_pendiente.md) distingue requisitos todavía abiertos y mejoras ejecutadas a partir de la auditoría del PDF. Miura et al. (2019) aporta respaldo aplicado independiente a MLP y CNN, una vez en seis estudios; su dimensión CNN no está reportada y las recetas son adaptaciones. La revisión posterior no reescribe la selección como a priori. Un {ref}`piloto nuevo registrado antes de sus corridas <piloto-filipe-registrado>` añade cinco semillas por modelo e historia para dimensionar futuras repeticiones condicionadas a 2024; no vuelve prospectivo el benchmark histórico ni acredita potencia alcanzada. El criterio avanzado de superar el 5 % frente a MLP/D7 y persistencia requiere su propio piloto y una evaluación nueva independiente. TOST/ROPE solo será exigible si se afirma equivalencia. Solo se considera Bitcoin; no se inventan requisitos de documentos completos de E2/E3 que no se han recibido.
+
+El {ref}`estudio D7 de aleatoriedad <estudio-d7-confirmatorio>` tiene protocolo y código publicados antes de sus nuevas corridas sobre **2024 ya conocido**. Completó veinte semillas nuevas por red para estimar varianza y fijó **R=79 semillas definitivas nuevas por modelo**, con publicación/verificación previa a su inicio. La fase definitiva completó **79 semillas por red**, con análisis y auditoría independiente verificados, excluyendo las cinco semillas piloto y las veinte de ampliación. La t pareada registrada con Holm-3 distingue MLP de las otras dos redes en RMSE media condicional; dos pares presentan alertas de normalidad. Los IC familiares no demuestran una ventaja mayor que δ y no se afirma potencia alcanzada. No confirma la elección de D7 frente a otras historias, no vuelve prospectivo el benchmark histórico ni aporta otro test de mercado.
 
 La ampliación metodológica distingue tres evidencias: el artículo original de Bucci (2020), sobre una FNN pequeña y volatilidad del S&P 500; código de autor de HARNet con Conv1D causal; y la identidad editorial de DeepVol, corroborada mediante el CV de su autor. Solo el primero añade un texto completo leído. Esta transferencia financiera refuerza la justificación de familias simples, conserva seis estudios BTC y no convierte las recetas propias en réplicas publicadas. Las fichas y los límites se entregan en {ref}`8.4 <entrega-8-4>`.
 

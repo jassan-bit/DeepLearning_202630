@@ -169,12 +169,33 @@ $$
 
 La recomendación común es el máximo R de los doce pares calculado con ese límite superior; se presenta también el máximo basado en las DE puntuales. Los doce límites de DE son marginales, no un intervalo simultáneo del 95 %. Si el cálculo supera el límite numérico registrado o no puede dimensionarse una dispersión degenerada, se declara la limitación en lugar de truncar R y afirmar suficiencia.
 
-El resultado es **R=302 con las DE puntuales y R=1.680 bajo la regla conservadora registrada**, por modelo e historia en una fase futura. El máximo procede de MLP–LSTM con D=21: $s_d\approx0{,}00111450$, frente a δ≈0,00023945, y límite superior de DE≈0,00264400. El margen pequeño, la multiplicidad y la incertidumbre de cinco pares elevan el R estimado. Las cinco semillas piloto son las ejecutadas; esos R no son corridas realizadas ni garantías de potencia. La fase definitiva no se ha iniciado.
+El resultado es **R=302 con las DE puntuales y R=1.680 bajo la regla conservadora registrada**, por modelo e historia en una fase futura. El máximo procede de MLP–LSTM con D=21: $s_d\approx0{,}00111450$, frente a δ≈0,00023945, y límite superior de DE≈0,00264400. El margen pequeño, la multiplicidad y la incertidumbre de cinco pares elevan el R estimado. Las cinco semillas piloto son las ejecutadas para ese diseño de doce pares; esos R no son corridas realizadas ni garantías de potencia. La fase definitiva conjunta de las cuatro historias no se ha iniciado. El estudio D7 posterior que sigue registra otra familia y mantiene separado ese resultado.
 
 ```{include} ../_static/e1_filipe_pilot_20261105/tables/paired_dimensioning.md
 ```
 
 Los CSV de [dimensionamiento pareado](../_static/e1_filipe_pilot_20261105/analysis/paired_dimensioning.csv) y el [resumen](../_static/e1_filipe_pilot_20261105/analysis/summary.json) conservan todos los supuestos y resultados. R se refiere a **semillas nuevas de una fase definitiva**, excluyendo las cinco del piloto; no se suman retrospectivamente a las diez del benchmark ya realizado. El mínimo de seis de la guía para pruebas por rangos no acredita su potencia. En Wilcoxon bilateral exacto sin ceros ni empates, una familia Holm-12 requiere al menos nueve pares solo para permitir aritméticamente superar el primer umbral; no es una recomendación de tamaño suficiente.
+
+(estudio-d7-confirmatorio)=
+**Estudio D7 registrado de aleatoriedad del entrenamiento.** Se inició una fase separada para las tres recetas fijas con D=7, que ya era la historia seleccionada en desarrollo. El [protocolo publicado](https://github.com/jassan-bit/DeepLearning_202630/blob/268f348a69d1ffb5c34a1df2f18cabae42e64db4/experiments/e1_filipe_confirmatory_d7_20261105/protocol.json) fija antes de sus nuevos ajustes **tres pares neuronales**, δ=0,00023944847859645605 y calendario 2024 conocido. La elección de D7 ya conocía 2024: esta fase no confirma la selección de historia frente a D14/21/28, no cambia la receta ni transforma el test histórico en una evaluación nueva. Su estimando es la esperanza sobre semillas de la RMSE anual 2024 de cada una de las tres recetas, condicionada a los datos y al procedimiento fijados.
+
+La ampliación de varianza completó **veinte semillas nuevas por modelo**, 6301, 6303, …, 6339: **sesenta trayectorias D7, 720 segmentos mensuales, 1.440 ajustes y 21.960 predicciones de validación**. Conserva la CV de Filipe, embargo de siete días, entrenamiento creciente, escaladores causales y recetas sin HPO. La DE primaria se estima solo con esas veinte diferencias; agruparlas con las cinco semillas piloto anteriores es una sensibilidad separada y no determina R. Ninguna de esas 25 semillas se incorpora a la fase definitiva.
+
+El tamaño definitivo quedó fijado en **R=79 semillas nuevas por modelo** a las **12:57:54,767100 UTC del 5 de noviembre de 2026**, después de completar la ampliación. El máximo con las DE puntuales es 44. La regla registrada toma el máximo de los tres R por t no central bilateral, α=0,05/3, potencia objetivo marginal 0,80 y límite superior unilateral **marginal** del 95 % de la DE de veinte pares; impone al menos treinta ejecuciones. R=79 cabe en el presupuesto autorizado de 300 y no aplica truncamiento. El [cierre de R publicado](https://github.com/jassan-bit/DeepLearning_202630/commit/6ce7ad0a8b81c909612ed5d6a0b4927565d5170c) y su auditoría precedieron a las semillas definitivas: el recibo registra publicación a las **13:00:39,305189 UTC**, el marcador de inicio de fase registra **13:00:48,791334 UTC** y la primera trayectoria definitiva comienza a las **13:00:52,025057 UTC**.
+
+| Par D7 | DE con veinte semillas nuevas | Límite superior marginal de DE | R puntual | R conservador del par | MDE con R común 79 y DE superior |
+|---|---:|---:|---:|---:|---:|
+| MLP−LSTM | 0,000434321 | 0,000595199 | 38 | 68 | 0,000220745 |
+| MLP−CNN1D | 0,000407243 | 0,000558091 | 34 | 60 | 0,000206982 |
+| LSTM−CNN1D | 0,000469386 | 0,000643252 | 44 | 79 | 0,000238567 |
+
+La recomendación común procede de LSTM−CNN1D. Bajo los supuestos de planificación, las tres MDE son menores que δ; esto no calcula potencia alcanzada ni conjunta. Los veinte pares nuevos determinan R; la sensibilidad agrupada de 25 no lo selecciona. La fase definitiva completó **237 trayectorias, 2.844 segmentos, 5.688 ajustes y 86.742 predicciones**, excluyendo las cinco semillas anteriores y las veinte de ampliación. Ambas fases nuevas suman **297 trayectorias, 3.564 segmentos, 7.128 ajustes y 108.702 predicciones**; no incluyen el piloto anterior de cuatro historias ni las corridas históricas del benchmark.
+
+La prueba primaria registrada es t pareada sobre RMSE anual por semilla, con Holm-3, IC marginales del 95 % e intervalos individuales de Bonferroni del 98,333… %, que proporcionan cobertura conjunta de al menos el 95 % bajo sus supuestos. Shapiro y Q–Q diagnostican supuestos sin cambiar la prueba; el bootstrap pareado de 4.999 réplicas acompaña el tamaño d_z como sensibilidad. La independencia se refiere a las nuevas aleatorizaciones de entrenamiento condicionadas al mismo mercado. No se abren archivos brutos ni el test; septiembre–octubre de 2026 permanece sin asignación. El estado es **ampliación y fase definitiva completadas, con análisis registrado y auditoría independiente PASS**. La fase definitiva terminó a las **13:26:12,559668 UTC**; no hubo nuevas lecturas del test o de archivos brutos.
+
+El [cierre de diseño](../_static/e1_filipe_confirmatory_d7_20261105/locked_design.json), la [planificación de tres pares](../_static/e1_filipe_confirmatory_d7_20261105/planning/paired_dimensioning.csv), el [resumen de ambas fases](../_static/e1_filipe_confirmatory_d7_20261105/execution_overview.json) y la [auditoría final](../_static/e1_filipe_confirmatory_d7_20261105/verification/revision_filipe_confirmatory_d7_20261105.json) permiten comprobar cantidades, publicación previa y separación de semillas. Los resultados e intervalos se presentan en §5.3.3.
+
+**Límite empírico del dimensionamiento:** la DE definitiva de MLP−CNN1D, 0,000656362, supera el límite superior marginal del piloto, 0,000558091. Ese límite dependía de normalidad y no era simultáneo. Se conservó R=79 sin ampliarlo tras observar los p-valores; este hallazgo y las alertas de supuestos impiden presentar el tamaño como garantía de potencia lograda.
 
 ### 4.1.7. Diferencia mínima detectable
 
@@ -185,6 +206,16 @@ El nuevo piloto reporta la **MDE frente a cero** con R=5 y con el R común recom
 Shapiro–Wilk y los gráficos Q–Q se conservan como diagnósticos. **Cinco diferencias no acreditan normalidad**, y una alerta no se utiliza para escoger después la prueba o el margen más favorable. La recomendación mantiene explícitos esos supuestos y la incertidumbre de la dispersión.
 
 En el par que determina R, la MDE con cinco semillas es aproximadamente **0,00368758** con DE puntual y **0,00874826** con su límite superior, ambas mayores que δ. Con R=1.680, la MDE calculada usando ese límite superior es aproximadamente **0,000239412**, bajo los supuestos registrados. Los doce diagnósticos Shapiro tienen p≥0,05, pero el de ese par es cercano al umbral (p≈0,05024); no se interpreta como normalidad demostrada ni como potencia alcanzada.
+
+**Sensibilidad posterior del estudio D7 completado.** Tras el análisis primario registrado y su auditoría, se calculó una MDE usando la DE de las 79 diferencias definitivas, R=79, α=0,05/3, potencia objetivo 0,80 y el mismo δ fijo. Es una **evaluación posterior bajo referencia normal**, separada de la decisión previa de tamaño; no usa el efecto medio para estimar potencia alcanzada, no añade contrastes y no modifica R ni el análisis primario.
+
+| Par D7 | DE definitiva | MDE posterior con R=79 | Comparación con δ=0,00023944848 |
+|---|---:|---:|---|
+| MLP−LSTM | 0,000381604 | 0,000141528 | Menor que δ bajo la referencia asumida |
+| MLP−CNN1D | 0,000656362 | 0,000243429 | Mayor que δ: limitación explícita |
+| LSTM−CNN1D | 0,000568590 | 0,000210876 | Menor que δ bajo la referencia asumida |
+
+El [CSV de sensibilidad posterior](../_static/e1_filipe_confirmatory_d7_20261105/planning/final_sd_sensitivity.csv) y su [registro de alcance y fecha](../_static/e1_filipe_confirmatory_d7_20261105/planning/posthoc_design_sensitivity.json) conservan precisión y supuestos. La MDE de **MLP−CNN1D supera δ**; se declara como limitación del diseño conforme a la guía. Las alertas de normalidad de los pares CNN limitan además esa referencia. El R registrado no se amplía después de examinar resultados y ninguno de estos cálculos acredita potencia lograda.
 
 **Antecedente histórico D7/2024, conservado sin reinterpretarlo:** la calibración inicial usa R=10 y no acredita potencia para otras entradas o para test.
 
@@ -209,7 +240,7 @@ El escenario histórico de LSTM arroja R orientativo 9 y los de MLP/CNN1D 19/28;
 
 La implementación entrega las cuatro entradas, CV efectiva, BDS por fold y evaluación final con configuración cerrada. El test de 2025–agosto de 2026 ya fue consultado; sus predicciones se reutilizan para tablas y diagnósticos sin ejecutar nuevos pronósticos ni entrenamientos.
 
-El nuevo piloto aporta la dispersión y el dimensionamiento de **comparaciones entre los tres baselines**, condicionadas al calendario 2024. Las semillas de una fase definitiva nueva seguirán la regla registrada `50000001,…,50000000+R`; las cinco del piloto no se reutilizan como resultados confirmatorios adaptativamente dimensionados.
+El piloto de cuatro historias aporta dispersión y dimensionamiento de **comparaciones entre los tres baselines**, condicionadas al calendario 2024. El {ref}`estudio D7 posterior <estudio-d7-confirmatorio>` registra su propia ampliación de varianza y familia de tres pares. Sus semillas definitivas siguen `50000001+2k`, para k=0,…,R−1, separando estados de inicialización y minibatches; excluyen tanto las cinco semillas piloto como las veinte de ampliación. Esta confirmación de aleatoriedad no equivale a una evaluación temporal independiente ni al piloto de un avanzado.
 
 La política para un **modelo avanzado** sigue siendo superar el 5 % frente a MLP/D7 y persistencia en una evaluación independiente nueva. Esa pregunta exige estimar la dispersión de sus propias diferencias y completar su piloto; el piloto entre baselines no demuestra esa mejora ni asigna automáticamente septiembre–octubre de 2026 al test. El respaldo aplicado de MLP/CNN conserva los límites de recurrencia y configuración. TOST/ROPE solo será necesario si se afirma equivalencia.
 
@@ -230,6 +261,11 @@ El [protocolo del nuevo piloto](../_static/e1_filipe_pilot_20261105/protocol.jso
 ```{include} ../_static/e1_filipe_pilot_20261105/tables/chronology.md
 ```
 
+El estudio D7 posterior completó su secuencia: protocolo/código publicados → veinte nuevas semillas para estimar varianza → fijación y publicación de R → nuevas semillas definitivas → análisis registrado → verificación y exportación. El [recibo de publicación del protocolo](../_static/e1_filipe_confirmatory_d7_20261105/preregistration_git_receipt.json) y el [recibo del cierre R=79](../_static/e1_filipe_confirmatory_d7_20261105/locked_design_publication_receipt.json) anteceden a sus fases respectivas. La fase no modifica el registro de doce pares anterior. Los eventos siguientes están expresados en UTC.
+
+```{include} ../_static/e1_filipe_confirmatory_d7_20261105/tables/chronology.md
+```
+
 #### 4.1.9.2. Estado del diseño y del piloto
 
 | Producto | Estado |
@@ -240,7 +276,8 @@ El [protocolo del nuevo piloto](../_static/e1_filipe_pilot_20261105/protocol.jso
 | Ajuste final y test | 120 ajustes finales; 608 fechas de test por corrida, sin reajustes con test |
 | BDS por fold | Todas las semillas y D; resultados definidos/indefinidos registrados |
 | Piloto y potencia | Nuevo piloto ejecutado tras su registro previo. Dimensionamiento para semillas futuras, sin afirmar potencia alcanzada o una evaluación temporal independiente |
-| Literatura aplicada | Miura et al. (2019) acredita MLP y CNN independientes; dimensionalidad CNN no reportada, recurrencia de una fuente y recetas propias como adaptaciones |
+| Estudio D7 de aleatoriedad | Veinte semillas de varianza y 79 definitivas por red completadas; R publicado antes de las definitivas, análisis y auditoría PASS; solo calendario 2024 conocido |
+| Literatura aplicada | Catálogo de 39 referencias; seis textos BTC y transferencia financiera documentada por nivel de evidencia; recetas propias adaptadas |
 | Otras tareas | Objetivos n≠7 y ruido simulado no ejecutados |
 
 ## 4.2. Implementación de los Tres Modelos Base
@@ -455,13 +492,13 @@ El cierre conserva las semillas de los 120 ajustes finales. La igualdad de etiqu
 
 ### 4.3.2. Repetición de experimentos
 
-El benchmark principal conserva **diez semillas documentadas por D–familia**: 120 trayectorias de CV y 120 corridas finales. El piloto posterior de §4.1 añade por separado cinco semillas nuevas por celda, sin sumarlas a ese benchmark ni descartar resultados por desempeño. La repetición técnica de un checkpoint no crea otra corrida.
+El benchmark principal conserva **diez semillas documentadas por D–familia**: 120 trayectorias de CV y 120 corridas finales. El piloto posterior de §4.1 añade por separado cinco semillas nuevas por celda, sin sumarlas a ese benchmark ni descartar resultados por desempeño. El {ref}`estudio D7 posterior <estudio-d7-confirmatorio>` completó veinte semillas de varianza y 79 definitivas nuevas por modelo, con R fijado y publicado antes de estas últimas. Las dos fases se registran por separado, sin sumarlas a las diez semillas históricas. La repetición técnica de un checkpoint no crea otra corrida.
 
 Los doce meses de CV comparten historia creciente y las fechas consecutivas comparten retornos del objetivo; no son mercados independientes. Los veinte meses de test son segmentos de reporte de modelos finales fijos, no otros entrenamientos o semillas. La comparación está condicionada a un activo y calendario.
 
 ### 4.3.3. Reporte de media, desviación estándar e intervalos de confianza
 
-Se publican media, DE muestral e **IC marginal del 95 % t de Student con nueve grados de libertad** entre las diez semillas por D–familia. Se calcula primero cada métrica global de una semilla y luego su resumen; se mantiene el mismo procedimiento en cada mes.
+Para el benchmark histórico se publican media, DE muestral e **IC marginal del 95 % t de Student con nueve grados de libertad** entre las diez semillas por D–familia. Se calcula primero cada métrica global de una semilla y luego su resumen; se mantiene el mismo procedimiento en cada mes.
 
 Estos IC describen aleatorización del entrenamiento bajo las fechas y configuración fijadas. No incorporan toda la incertidumbre temporal, selección de D o generalización a otros mercados. La persistencia determinista no recibe diez réplicas, DE de inicialización ni IC de semillas. La DE entre meses se identifica separadamente.
 
@@ -931,7 +968,8 @@ El [resumen por intervalos](../_static/e1_audit_improvements_20261104/descriptiv
 | Variabilidad y segmentos | Descomposición descriptiva; rangos con límites de desarrollo; meses difíciles |
 | Residuos y precisión comparativa | BDS por fold existente; suplemento final D7 con pares/IC/efectos, DM y Ljung–Box |
 | Reproducción | Manual actualizado y restauración/verificación aislada con los archivos privados; publicar resúmenes no exige exponerlos |
-| Pendiente de cierre académico | Límites de recurrencia/configuración fuente, ejecución definitiva nueva y piloto/evaluación de una propuesta avanzada; el piloto nuevo entre baselines no reescribe el benchmark original |
+| Estudio D7 posterior | Veinte semillas de varianza y 79 definitivas por red completadas; publicación previa de R, análisis registrado, dos rechazos Holm-3 y auditoría PASS; alcance condicional a 2024 |
+| Pendiente de cierre académico | Límites de recurrencia/configuración fuente y alcance del estudio D7; piloto/evaluación de una propuesta avanzada separados. Ninguna fase reescribe el benchmark original |
 | Análisis condicional | TOST/ROPE solo si se quiere afirmar equivalencia; no se afirma aquí |
 
 Los [protocolo del complemento](../_static/e1_audit_improvements_20261104/protocol.json), [resumen inferencial](../_static/e1_audit_improvements_20261104/inference/summary.json) y [resumen descriptivo](../_static/e1_audit_improvements_20261104/descriptive/summary.json) conservan fechas, fuentes y hashes. El complemento se registró **después de inspeccionar el test**, antes de estos cálculos. Es un análisis **post-hoc/exploratorio** de las predicciones guardadas de las tres configuraciones **D7 elegidas con CV**, más persistencia determinista. No es una confirmación prospectiva, no cambia la selección MLP/D7 y no ejecuta nuevos pronósticos ni entrenamientos.

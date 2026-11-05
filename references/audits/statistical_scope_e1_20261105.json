@@ -1,7 +1,7 @@
 {
-  "schema_version": 1,
-  "document_role": "Current evidence-scope assessment and future evaluation checklist; not a preregistration or a new statistical analysis",
-  "status": "historical_inference_exploratory_future_confirmation_not_performed",
+  "schema_version": 2,
+  "document_role": "Versioned evidence-scope assessment; historical analyses remain exploratory, new conditional seed study has its own prospective records",
+  "status": "historical_inference_exploratory_new_conditional_seed_study_completed",
   "evidence_rows": [
     {
       "evidence": "Selección MLP/D7 y evaluación histórica",
@@ -32,6 +32,12 @@
       "timing_scope": "Protocolo y código registrados antes de sus nuevas corridas; calendario 2024 previamente conocido.",
       "supported_claim": "Estimación piloto de variabilidad por entrenamiento y dimensionamiento condicional de doce comparaciones entre baselines.",
       "unsupported_claim": "Potencia alcanzada, reparación del benchmark histórico, generalización temporal nueva o dimensionamiento de una propuesta avanzada aún no pilotada."
+    },
+    {
+      "evidence": "Estudio D7 nuevo de aleatoriedad del entrenamiento",
+      "timing_scope": "Protocolo y familia primaria publicados antes de 20 nuevas semillas por modelo; R=79 publicado antes de nuevas semillas definitivas, excluyendo las 25 piloto.",
+      "supported_claim": "Diferencias entre medias de RMSE anual respecto a nuevas aleatorizaciones de tres recetas fijas, condicionadas al calendario 2024 conocido y a los supuestos registrados.",
+      "unsupported_claim": "Reparación del orden histórico, evaluación temporal independiente, validación de escoger D7 frente a otras historias, potencia lograda o mejora avanzada superior al 5%."
     }
   ],
   "future_confirmation": {
@@ -60,7 +66,35 @@
     "experiments/e1_audit_improvements_20261104/protocol.json",
     "experiments/e1_audit_improvements_20261104/academic_margin_policy.json",
     "experiments/e1_filipe_pilot_20261105/protocol.json",
-    "results/e1_filipe_pilot_20261105/analysis/summary.json"
+    "results/e1_filipe_pilot_20261105/analysis/summary.json",
+    "results/e1_filipe_confirmatory_d7_20261105/protocol.json",
+    "results/e1_filipe_confirmatory_d7_20261105/preregistration_git_receipt.json",
+    "results/e1_filipe_confirmatory_d7_20261105/locked_design.json",
+    "results/e1_filipe_confirmatory_d7_20261105/locked_design_publication_receipt.json",
+    "results/e1_filipe_confirmatory_d7_20261105/variance_extension/execution_summary.json",
+    "results/e1_filipe_confirmatory_d7_20261105/definitive/execution_summary.json",
+    "results/e1_filipe_confirmatory_d7_20261105/analysis/summary.json",
+    "references/audits/revision_filipe_confirmatory_d7_20261105.json",
+    "book/_static/e1_filipe_confirmatory_d7_20261105/planning/posthoc_design_sensitivity.json"
   ],
-  "execution_scope": "Documentation and metadata only; no additional fits, forecasts, hypothesis tests or market data access"
+  "execution_scope": "Assessment metadata only; the separate registered D7 study actually executed new training randomizations. No new temporal test or advanced model in this update.",
+  "registered_conditional_seed_study": {
+    "status": "completed_independently_verified",
+    "protocol": "experiments/e1_filipe_confirmatory_d7_20261105/protocol.json",
+    "locked_design_sha256": "29c55b54c28e2d28f68b4ea634abb7268db368a93747fc6f50463fd3f75b9fd5",
+    "variance_extension_seeds_per_model": 20,
+    "definitive_seeds_per_model": 79,
+    "definitive_trajectories": 237,
+    "primary_pairs": 3,
+    "analysis_sha256": "4615b5610db012bbcd4a1c3fbc9b86c8604e0cc988ab85274326259c5ab0d4ac",
+    "independent_audit_sha256": "abee4538ecec75ed500c4a0f013bbd8528aefec2cf7cf415dd5bb7c2df748314",
+    "new_temporal_evaluation": false,
+    "historical_test_reopened": false,
+    "achieved_power_claim": false,
+    "posthoc_MDE_sensitivity": {
+      "source": "book/_static/e1_filipe_confirmatory_d7_20261105/planning/posthoc_design_sensitivity.json",
+      "MDE_above_fixed_delta_pairs": 1,
+      "limitation": "MLP–CNN1D MDE using final paired SD exceeds fixed delta under the normal planning reference; no change to R or the registered primary analysis, no achieved-power claim."
+    }
+  }
 }

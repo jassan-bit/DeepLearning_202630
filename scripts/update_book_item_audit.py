@@ -114,6 +114,47 @@ def main():
             "scope": "Registro antes de nuevas aleatorizaciones, condicionado al calendario2024 ya examinado; benchmark anterior conservado.",
             "analysis": json.loads(pilot.read_text()),
         }
+    conditional_note = "Las repeticiones definitivas del estudio D7 nuevo todavía no se declaran completadas."
+    conditional = ROOT / "results/e1_filipe_confirmatory_d7_20261105/analysis/summary.json"
+    conditional_audit = ROOT / "references/audits/revision_filipe_confirmatory_d7_20261105.json"
+    if conditional.exists() and conditional_audit.exists():
+        verified = json.loads(conditional_audit.read_text())
+        if verified.get("status") != "PASS" or verified.get("phase") != "definitive":
+            raise ValueError("The new D7 study must pass its independent final audit")
+        study = conditional.parent.parent
+        lock = json.loads((study / "locked_design.json").read_text())
+        definitive = json.loads((study / "definitive/execution_summary.json").read_text())
+        r = lock["common_R"]
+        if definitive["trajectories"] != 3*r:
+            raise ValueError("The locked number of definitive D7 trajectories must be complete")
+        report["registered_conditional_D7_study"] = {
+            "source": conditional.relative_to(ROOT).as_posix(), "source_sha256": sha(conditional),
+            "independent_audit": conditional_audit.relative_to(ROOT).as_posix(),
+            "independent_audit_sha256": sha(conditional_audit),
+            "variance_extension_seeds_per_model": 20, "definitive_seeds_per_model": r,
+            "definitive_trajectories": 3*r, "definitive_fits": 72*r,
+            "primary_family_size": 3, "new_temporal_evaluation": False,
+            "historical_benchmark_repaired": False, "achieved_power_claim": False,
+            "scope": "Protocolo publicado antes de la ampliación; R publicado antes de las nuevas semillas definitivas. Inferencia condicionada a las recetas y al calendario2024 ya conocido.",
+        }
+        sensitivity = ROOT / "book/_static/e1_filipe_confirmatory_d7_20261105/planning/posthoc_design_sensitivity.json"
+        report["registered_conditional_D7_study"]["normality_warning_pairs"] = json.loads(conditional.read_text())["normality_warning_pairs"]
+        if sensitivity.exists():
+            posterior = json.loads(sensitivity.read_text())
+            report["registered_conditional_D7_study"]["posthoc_design_sensitivity"] = {
+                "source": sensitivity.relative_to(ROOT).as_posix(), "source_sha256": sha(sensitivity),
+                "MDE_exceeds_fixed_delta_pairs": sum(row["MDE_exceeds_fixed_delta"] for row in posterior["pairs"]),
+                "scope": "Posterior normal-reference sensitivity with fixed delta and R; not achieved power, not a new primary test.",
+            }
+        report["outstanding"]["prospective_pilot_and_definitive_power"] = (
+            f"Estudio D7 nuevo completado: ampliación20/modelo y fase definitivaR={r}/modelo, con auditoría independiente. "
+            "La sensibilidad posterior MLP–CNN1D tiene MDE mayor que delta y se declara como límite. "
+            "No repara la cronología anterior ni acredita potencia alcanzada o otra trayectoria temporal.")
+        conditional_note = (
+            f"El estudio D7 nuevo publicó protocolo antes de su ampliación de20 semillas por modelo y R={r} antes "
+            f"de sus {3*r} trayectorias definitivas ({72*r} ajustes). Su familia primaria de tres pares y su "
+            "auditoría independiente quedan separadas del suplemento histórico. Es prospectivo respecto de "
+            "las nuevas aleatorizaciones sobre2024 conocido; no es otro test temporal ni prueba de potencia alcanzada.")
     BASE.with_suffix(".json").write_text(json.dumps(report, ensure_ascii=False, indent=2)+"\n")
     with BASE.with_suffix(".csv").open("w", newline="") as stream:
         writer = csv.DictWriter(stream, fieldnames=list(items[0]), lineterminator="\n")
@@ -131,7 +172,7 @@ BDS se calculó por fold y semilla: {cv['bds']['planned_hypotheses']} hipótesis
 
 Se añadieron tablas anuales, descomposición descriptiva de variabilidad, segmentos y residuos, inferencia final explícitamente post-hoc, diagramas y una ruta de restauración privada verificada. El criterio operativo académico futuro es una mejora superior al5% frente a MLP/D7 y persistencia; no se presenta como definido antes del test ya conocido ni como utilidad financiera.
 
-La recuperación posterior de Miura2019 verifica comparadores MLP y CNN independientes en Bitcoin: cada familia aparece en1/6 textos completos. No acredita dimensionalidad explícita CNN1D, réplica exacta de las recetas ni uso amplio en el campo. Un piloto nuevo fue registrado antes de60 trayectorias/1440 ajustes y dimensiona semillas futuras bajo supuestos; no repara la cronología anterior. Persisten las repeticiones definitivas, una evaluación temporal independiente y las mediciones externas de ruido/faltantes. TOST/ROPE es condicional a una afirmación de equivalencia, no un pendiente obligatorio. No se asigna nota ni porcentaje de cumplimiento.
+La recuperación posterior de Miura2019 verifica comparadores MLP y CNN independientes en Bitcoin: cada familia aparece en1/6 textos completos. No acredita dimensionalidad explícita CNN1D, réplica exacta de las recetas ni uso amplio en el campo. El piloto de cuatro historias se conserva por separado. {conditional_note} La generalización a otro periodo y las mediciones externas de ruido/faltantes conservan sus límites. TOST/ROPE es condicional a una afirmación de equivalencia, no un pendiente obligatorio. No se asigna nota ni porcentaje de cumplimiento.
 """)
     public = ROOT / "book/_static/e1"
     public.mkdir(parents=True, exist_ok=True)

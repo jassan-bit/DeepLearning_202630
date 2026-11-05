@@ -6,6 +6,8 @@ import json
 from pathlib import Path
 import shutil
 
+from analyze_filipe_pilot import minimum_detectable_difference
+
 ROOT=Path(__file__).resolve().parents[1]
 NAME='e1_filipe_confirmatory_d7_20261105'
 SOURCE=ROOT/'results'/NAME
@@ -74,6 +76,12 @@ def main():
     shutil.copyfile(verification,DEST/'verification'/verification.name)
     report=verification.with_suffix('.md')
     if report.exists():shutil.copyfile(report,DEST/'verification'/report.name)
+    for phase in ('variance_extension','definitive'):
+        phase_audit=verification.with_name(verification.stem+'_'+phase+'.json')
+        if not phase_audit.exists() or read(phase_audit).get('status')!='PASS':
+            raise ValueError('Both independent phase audits are required')
+        for path in (phase_audit,phase_audit.with_suffix('.md')):
+            if path.is_file():shutil.copyfile(path,DEST/'verification'/path.name)
     catalog=[]
     for phase in phases:
         for item in rows(SOURCE/phase/'runs.csv'):
@@ -103,6 +111,33 @@ def main():
         [[r['model_a']+' − '+r['model_b'],number(r['mean_difference_A_minus_B']),
           '['+number(r['mean_difference_family_ci_lower'])+'; '+number(r['mean_difference_family_ci_upper'])+']',
           number(r['p_value']),number(r['p_holm3'])] for r in pairs])
+    # Supplemental design sensitivity after the registered primary analysis.
+    # It keeps delta fixed, never plugs the observed mean effect into power,
+    # and never changes R or any of the sealed analysis outputs.
+    sensitivity=[]
+    dimensions=plan['dimensioning']
+    for row in pairs:
+        sd=float(row['paired_SD'])
+        mde=minimum_detectable_difference(n,sd,dimensions['alpha_each'],dimensions['power_target'])
+        sensitivity.append({'model_a':row['model_a'],'model_b':row['model_b'],
+            'R_fixed_before_definitive':n,'paired_SD_definitive':sd,
+            'delta_fixed':dimensions['delta_absolute'],'alpha_each':dimensions['alpha_each'],
+            'marginal_planning_power_target':dimensions['power_target'],
+            'MDE_using_definitive_SD_sensitivity':mde,
+            'MDE_exceeds_fixed_delta':mde>dimensions['delta_absolute'],
+            'scope':'Post-analysis design sensitivity under normal differences; not achieved power or a new sample-size decision'})
+    with (DEST/'planning/final_sd_sensitivity.csv').open('w',newline='') as stream:
+        writer=csv.DictWriter(stream,fieldnames=list(sensitivity[0]),lineterminator='\n')
+        writer.writeheader();writer.writerows(sensitivity)
+    write(DEST/'planning/posthoc_design_sensitivity.json',{
+        'assessed_at_utc':datetime.now(timezone.utc).isoformat(),
+        'timing':'Supplemental assessment after the registered primary analysis and its independent audit',
+        'registered_primary_analysis_modified':False,'new_hypothesis_tests':0,
+        'R_changed':False,'observed_mean_effect_used_for_power':False,'achieved_power_claim':False,
+        'normal_difference_reference_assumption':True,
+        'primary_analysis_summary_sha256':sha(SOURCE/'analysis/summary.json'),
+        'paired_comparisons_sha256':sha(SOURCE/'analysis/paired_comparisons.csv'),
+        'pairs':sensitivity})
     events=[('Registro del protocolo',plan['registered_at_utc']),
         ('Protocolo publicado',read(SOURCE/'preregistration_git_receipt.json')['published_at_utc']),
         ('Primera trayectoria de ampliación',phases['variance_extension']['first_new_trajectory_started_at_utc']),

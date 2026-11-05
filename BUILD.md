@@ -173,3 +173,22 @@ Para repetir técnicamente los entrenamientos en una copia aislada, usar el comm
 ```
 
 La copia obtiene un registro con su fecha real; no reutiliza el timestamp histórico. Repetir las mismas semillas no crea nuevas réplicas estadísticas. Esta ruta consume los derivados diarios y manifiestos ya verificados de desarrollo, sin abrir ZIP brutos ni el test. Una propuesta avanzada o una evaluación temporal independiente requiere otro protocolo; septiembre–octubre de 2026 sigue sin asignarse automáticamente.
+
+## Estudio D7 nuevo con orden prospectivo de las aleatorizaciones
+
+El registro `experiments/e1_filipe_confirmatory_d7_20261105/protocol.json` fija tres recetas, los doce folds 2024 y tres comparaciones primarias antes de nuevas corridas. El protocolo fue publicado en 4c1d19e y su recibo en 268f348 antes del primer ajuste. La ampliación usa 20 semillas nuevas por modelo, sin elegir R mediante las cinco anteriores. El R común **79 por modelo** se fijó y publicó antes de las **237 trayectorias definitivas (5688 ajustes)**. Ninguna de las 25 semillas piloto se incorporó a esta fase.
+
+Con evidencia local completa, estas verificaciones son de solo lectura respecto a los entrenamientos:
+
+```bash
+.venv-training/bin/python scripts/run_filipe_confirmatory_d7.py --phase validate
+.venv-training/bin/python scripts/analyze_filipe_confirmatory_d7.py --phase check
+.venv-training/bin/python scripts/verify_filipe_confirmatory_d7.py --phase variance_extension
+.venv-training/bin/python scripts/verify_filipe_confirmatory_d7.py --phase definitive
+```
+
+Los informes del auditor quedan en `references/audits/revision_filipe_confirmatory_d7_20261105_*.json`. La colección pública está en `book/_static/e1_filipe_confirmatory_d7_20261105/`: incluye protocolo, recibos de publicación, bloqueo de R, catálogos, resúmenes, diagnósticos y hashes. No contiene los checkpoints, valores de escaladores, curvas completas ni predicciones por fecha. El clon público permite revisar los agregados; recalcularlos exige los insumos privados originales. El auditor también necesita un checkout Git con los commits publicados: el ZIP de código no incluye `.git`. Se debe clonar el repositorio y conservar su historia antes de restaurar la evidencia privada; crear un repositorio vacío no acredita la publicación previa.
+
+El flujo original es `register` → publicación real de protocolo/código y recibo → `variance_extension` → análisis `lock` → auditoría de ampliación → publicación real del bloqueo y recibo → `definitive` → análisis `analyze/check` → auditoría definitiva → exportación. Los recibos registran commits y fechas reales; no se deben fabricar ni sustituir por marcas anteriores. No ejecutar `register/lock/analyze` para sobrescribir el estudio cerrado. Una repetición técnica en otra copia debe conservar su fecha y no representa nuevas realizaciones del mercado.
+
+El R usa una cota unilateral 95 % marginal normal de DE y potencia objetivo 0,80 por comparación con α=0,05/3; no es potencia alcanzada ni conjunta. Los t pareados finales, Holm-3, IC del 95 % marginales e IC del 98,333 % individuales Bonferroni (cobertura conjunta al menos 95 %) se fijaron antes. La evidencia nueva estima diferencias por aleatorización del entrenamiento sobre 2024 conocido; no confirma la selección entre historias 7/14/21/28, no convierte el test antiguo en desconocido y no prueba la frontera avanzada de 5 %.

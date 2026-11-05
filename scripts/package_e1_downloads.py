@@ -12,6 +12,7 @@ from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC_BOOK = "https://jassan-bit.github.io/DeepLearning_202630/"
 RAW = "https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/entregables/"
+D7_STUDY = "e1_filipe_confirmatory_d7_20261105"
 ITEMS = [
     ("8.1", "8_1_informe_html.zip", "Informe HTML", "informe"),
     ("8.2", "8_2_codigo.zip", "Código EDA, modelos y análisis", "codigo"),
@@ -25,6 +26,7 @@ EXCLUDED_NAMES = {
     "predictions.csv", "daily_market_development.csv", "daily_volatility_development.csv",
     "causal_daily_profile.csv", "label_reconstruction.csv", "validation_predictions_residuals.csv",
     "model_parameters.csv", "reference_configurations.csv",
+    "preprocessing.json", "splits.json", "history_inner.csv", "history_refit.csv",
 }
 ARCHIVE_OR_WEIGHTS = {".gz", ".tar", ".zip", ".npz", ".npy", ".pt", ".pth", ".pkl", ".pickle"}
 TEXT_SUFFIXES = {".md", ".json", ".csv", ".txt", ".bib", ".svg", ".png", ".py"}
@@ -52,15 +54,24 @@ def public_tree(files, directory):
             add_file(files, path)
 
 
-def allowlisted_tree(files, directory, manifest_name="public_allowlist_manifest.json"):
+def allowlisted_tree(files, directory, manifest_name="public_allowlist_manifest.json", include=None):
     manifest = directory / manifest_name
+    if directory.is_symlink() or manifest.is_symlink():
+        raise ValueError(f"Expected a regular public aggregate export: {directory}")
     record = json.loads(manifest.read_text())
     for name, expected in record["files_sha256"].items():
-        path = directory / name
+        relative = Path(name)
+        path = directory / relative
+        if (relative.is_absolute() or ".." in relative.parts or path.is_symlink()
+                or not path.resolve().is_relative_to(directory.resolve())
+                or relative.name in EXCLUDED_NAMES
+                or relative.suffix.lower() not in TEXT_SUFFIXES):
+            raise ValueError(f"Unexpected private or unsafe allowlisted artifact: {name}")
         data = path.read_bytes()
         if digest(data) != expected:
             raise ValueError(f"Changed public aggregate: {path}")
-        add_file(files, path)
+        if include is None or include(name):
+            add_file(files, path)
     add_file(files, manifest)
 
 
@@ -220,13 +231,54 @@ def main():
         add_file(packages["8.7"], static / "e1_audit_improvements_20261104" / name)
     for name in ["protocol.json", "preregistration_git_receipt.json", "execution_summary.json", "analysis/summary.json"]:
         add_file(packages["8.7"], static / "e1_filipe_pilot_20261105" / name)
+    d7 = static / D7_STUDY
+    d7_summary = None
+    if d7.exists():
+        # Verify the complete export even when a product uses only a subset.
+        # The complete source allowlist remains in each subset for provenance;
+        # MANIFIESTO.json describes the members actually present in that ZIP.
+        allowlisted_tree(packages["8.5"], d7, "public_manifest.json")
+        d7_summary = json.loads((d7 / "execution_overview.json").read_text())
+        final_analysis = json.loads((d7 / "analysis/summary.json").read_text())
+        verification = json.loads((d7 / "verification/revision_filipe_confirmatory_d7_20261105.json").read_text())
+        if (d7_summary.get("study_id") != D7_STUDY
+                or final_analysis.get("status") != "definitive_conditional_seed_analysis_complete"
+                or verification.get("status") != "PASS"
+                or verification.get("phase") != "definitive"):
+            raise ValueError("Only package the completed and independently verified D7 export")
+        roots = {"README.md", "protocol.json", "runtime.json", "code_manifest_before_fitting.json",
+                 "preregistration_git_receipt.json", "locked_design.json",
+                 "locked_design_publication_receipt.json", "execution_overview.json"}
+        phase_records = {phase + "/" + name
+                         for phase in ("variance_extension", "definitive")
+                         for name in ("execution_summary.json", "run_started.json")}
+        configuration_records = roots | phase_records | {
+            "configuration_catalog.csv", "planning/variance_summary.json",
+            "planning/paired_dimensioning.csv", "analysis/summary.json"}
+        chronology_records = roots | phase_records | {
+            "planning/variance_summary.json", "analysis/summary.json", "tables/chronology.md"}
+        required = configuration_records | chronology_records
+        allowlist = json.loads((d7 / "public_manifest.json").read_text())["files_sha256"]
+        if not required.issubset(allowlist):
+            raise ValueError("Missing registered D7 configuration or chronology records")
+        allowlisted_tree(packages["8.6"], d7, "public_manifest.json",
+                         include=lambda name: name in configuration_records)
+        allowlisted_tree(packages["8.7"], d7, "public_manifest.json",
+                         include=lambda name: name in chronology_records or name.startswith("verification/"))
+    d7_note = (
+        " El estudio D7 registrado se entrega por separado: ampliación de20 semillas por modelo "
+        "y definitiva de" + str(d7_summary["definitive"]["seeds_per_model"]) +
+        " semillas nuevas por modelo, con R publicado antes de esa fase. Ambas fases se "
+        "condicionan al calendario2024 conocido y no reabren el test histórico."
+    ) if d7_summary else " El R definitivo del piloto histórico aún no se ejecutó."
     common = (
         "\n\nSe conserva el alcance científico del libro: seis textos del corpus BTC y39 referencias. "
         "Miura2019 respalda MLP/CNN independientes como familias. Bucci2020 aporta un original "
         "de revista con FNN financiera; HARNet aporta código autor Conv1D; DeepVol tiene identidad "
         "editorial en CV, con original pendiente. Estas fuentes metodológicas no añaden estudios BTC "
         "ni revelan la dimensionalidad no reportada de la CNN de Miura. No son réplicas de las recetas. "
-        "suplemento final post-hoc y nuevo piloto registrado de60 trayectorias; el R definitivo aún no se ejecutó. La política académica futura no "
+        "Se conservan el suplemento final post-hoc y el piloto histórico registrado de60 trayectorias."
+        + d7_note + " La política académica futura no "
         "se presenta como anterior al test. Pesos, escaladores y predicciones individuales "
         "requieren la entrega privada descrita en BUILD.md; este ZIP no los contiene.\n"
         "No se asigna una licencia general al proyecto. El aviso MIT de timeseries-cv se "
@@ -241,6 +293,10 @@ def main():
         "8.6": "Los locks y los catálogos identifican 1.440 segmentos modelo-mes de CV original,120 ajustes finales y720 segmentos del nuevo piloto. Las filas son metadatos, sin pesos ni valores de escaladores. No mezclar el entorno CV con el de entrenamiento.",
         "8.7": "Leer declaration_and_chronology.json y statistical_scope.json: distinguen evidencia histórica exploratoria, piloto condicional y requisitos futuros no registrados ni ejecutados. Consultar la congelación anterior al test, la política futura y el registro del nuevo piloto e1_filipe_pilot_20261105. Este piloto fue registrado antes de sus propios ajustes, después del benchmark histórico. next_study_pilot_DRAFT.json conserva el borrador de otra evaluación independiente futura, no ejecutada.",
     }
+    if d7_summary:
+        notes["8.5"] += " " + D7_STUDY + "/ reúne todos los agregados, el dimensionamiento, las figuras, los recibos y las auditorías enumerados en su public_manifest.json."
+        notes["8.6"] += " " + D7_STUDY + "/ contiene además el catálogo público por fase de " + str(d7_summary["configuration_records"]) + " configuraciones D7, con hashes y semillas, sin valores de escaladores o pesos."
+        notes["8.7"] += " " + D7_STUDY + "/ conserva protocolo, R fijado, ambas publicaciones previas, resúmenes de fases, cronología y auditorías. Su allowlist de procedencia es completa; el ZIP8.5 entrega todos sus archivos."
     license_path = static / "licenses/timeseries-cv-LICENSE.txt"
     records = []
     for item, filename, title, _ in ITEMS:
@@ -257,6 +313,9 @@ def main():
                "report_verification": report_check, "new_model_fits": 0, "new_forecasts": 0,
                "raw_market_archive_reads": 0,
                "limits": "Public deliverables only; private evidence is not redistributed; scientific gaps are preserved"}
+    if d7_summary:
+        catalog["registered_d7_study"] = d7_summary
+        catalog["execution_counter_scope"] = "Zero counters describe packaging only; completed study fits are recorded in registered_d7_study by phase"
     (output / "catalogo.json").write_bytes(encode(catalog))
     paths = sorted(output.glob("*.zip")) + [output / "catalogo.json"]
     (output / "SHA256SUMS.txt").write_text("".join(f"{digest(path.read_bytes())}  {path.name}\n" for path in paths))
