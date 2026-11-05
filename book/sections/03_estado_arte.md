@@ -347,6 +347,15 @@ El [registro de selección previo](../_static/literature_e1/selection_evidence.j
 
 La validación principal utiliza índices reales de `timeseries-cv`, doce bloques mensuales de 2024 y diez semillas por modelo e historia. Los [resultados de cuatro entradas](../_static/filipe_multihistory_20261104/analysis_cv/metrics_summary.csv) son evidencia propia de desarrollo, separada de cifras de autores y de test. El control relativo–absoluto inicial D7 conserva su alcance: mejorar esa representación no cierra las lagunas bibliográficas ni demuestra generalización universal.
 
+(seleccion-diversidad-d7)=
+**Selección justificada para el nuevo estudio D7.** La [decisión fechada](../_static/literature_e1/selection_20261105/decision.json) combina los criterios de frecuencia, sencillez y diversidad de §3.2 de la guía mediante una selección condicionada: una referencia no lineal sobre covariables aplanadas, una recurrente y una convolucional local. No afirma que el trío ocupe los tres primeros puestos del conteo global.
+
+Dentro del puesto recurrente se elige **LSTM, presente en 5/6 estudios**, frente a GRU en 3/6. GRU sigue siendo una alternativa válida: reservar un solo puesto recurrente evita que la comparación se concentre en dos variantes con estado y compuertas, sin afirmar que sus funciones sean idénticas. **MLP** aporta interacciones no lineales por posición sobre la ventana aplanada; **CNN1D** aporta filtros locales compartidos y un campo receptivo acotado. La CNN independiente y la MLP tienen respaldo primario de familia en S8, una ocurrencia cada una; esa cobertura limitada se conserva.
+
+La sencillez de las implementaciones se comprueba con **593 parámetros MLP, 1.057 CNN1D y 5.025 LSTM para D7**, no atribuyendo esos conteos a los artículos. La dimensión temporal 1D se justifica por el contrato de entrada $7\times5$, sin ejes espaciales, y la receta convolucional permanece como adaptación declarada. El antecedente TCN causal de S1 no se fusiona con la CNN de S8 para inventar una especificación de autor. Encoder y TCN son candidatos documentados; su exclusión del trío no prueba que sean siempre más complejos o inferiores.
+
+La [matriz de candidatos](../_static/literature_e1/selection_20261105/candidate_matrix.csv) y la [justificación completa](../_static/literature_e1/selection_20261105/justification.md) separan evidencia primaria, decisiones propias y alternativas. Esta decisión es **posterior al benchmark histórico y anterior a las nuevas corridas del estudio D7**. Las recetas se mantienen fijas, con su búsqueda histórica igualada y su transferencia documentadas en §3.2.5; no se seleccionan otra vez mirando test. La revisión no añade artículos elegibles ni cambia el corpus de seis textos y 36 referencias.
+
 ### 3.2.2. Criterios que debe cumplir cada modelo base
 
 Los cuatro criterios de la guía se evalúan por modelo, junto con la suficiencia de las fuentes. Disponer de una ficha no implica haberlos satisfecho:
