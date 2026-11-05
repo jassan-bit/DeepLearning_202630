@@ -1,5 +1,7 @@
 # Descargas del Entregable 1
 
+[Descargar directamente desde la unidad 8 del Jupyter Book](https://jassan-bit.github.io/DeepLearning_202630/sections/08_entregables.html#descargar-entregable-1).
+
 [Descargar los siete entregables juntos (ZIP)](https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/entregables/entregable1_completo.zip) · [Ver carpeta de descargas](https://github.com/jassan-bit/DeepLearning_202630/tree/entregables)
 
 Estos archivos se descargan directamente desde GitHub y se utilizan fuera del Jupyter Book.
