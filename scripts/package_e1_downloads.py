@@ -204,6 +204,9 @@ def main():
     allowlisted_tree(packages["8.5"], static / "filipe_multihistory_20261104")
     allowlisted_tree(packages["8.5"], static / "e1_audit_improvements_20261104")
     allowlisted_tree(packages["8.5"], static / "e1_filipe_pilot_20261105", "public_manifest.json")
+    for name in ["statistical_scope.json", "statistical_scope.md"]:
+        add_file(packages["8.5"], static / "e1_deliverables_20261104" / name)
+        add_file(packages["8.7"], static / "e1_deliverables_20261104" / name)
     public_tree(packages["8.6"], static / "e1_deliverables_20261104")
     for name in ["runtime.json", "final_fit_summary.csv", "final_models_manifest.json"]:
         add_file(packages["8.6"], static / "filipe_multihistory_20261104" / name)
@@ -233,7 +236,7 @@ def main():
         "8.4": "La síntesis vigente de seis estudios, frecuencias y Tabla1 de Miura2019 están en book/_static/literature_e1/recovery_20261105/. La bibliografía principal reúne36referencias. Los archivos anteriores conservan sus cortes históricos; no sumar etapas sin deduplicación. No se incluyen manuscritos de terceros.",
         "8.5": "Abrir los CSV con un lector compatible con UTF-8. analysis_cv/ contiene desarrollo; test/analysis/ contiene test. Los suplementos inference/ y descriptive/ conservan su registro post-hoc. e1_filipe_pilot_20261105/ contiene el nuevo piloto sobre validación2024 y su dimensionamiento condicional. Los manifiestos verifican los agregados originales.",
         "8.6": "Los locks y los catálogos identifican 1.440 segmentos modelo-mes de CV original,120 ajustes finales y720 segmentos del nuevo piloto. Las filas son metadatos, sin pesos ni valores de escaladores. No mezclar el entorno CV con el de entrenamiento.",
-        "8.7": "Leer declaration_and_chronology.json, la congelación anterior al test, la política futura y el registro del nuevo piloto e1_filipe_pilot_20261105. Este piloto fue registrado antes de sus propios ajustes, después del benchmark histórico. next_study_pilot_DRAFT.json conserva el borrador de otra evaluación independiente futura, no ejecutada.",
+        "8.7": "Leer declaration_and_chronology.json y statistical_scope.json: distinguen evidencia histórica exploratoria, piloto condicional y requisitos futuros no registrados ni ejecutados. Consultar la congelación anterior al test, la política futura y el registro del nuevo piloto e1_filipe_pilot_20261105. Este piloto fue registrado antes de sus propios ajustes, después del benchmark histórico. next_study_pilot_DRAFT.json conserva el borrador de otra evaluación independiente futura, no ejecutada.",
     }
     license_path = static / "licenses/timeseries-cv-LICENSE.txt"
     records = []

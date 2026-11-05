@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "document_role": "Current evidence-scope assessment and future evaluation checklist; not a preregistration or a new statistical analysis",
+  "status": "historical_inference_exploratory_future_confirmation_not_performed",
+  "evidence_rows": [
+    {
+      "evidence": "Selección MLP/D7 y evaluación histórica",
+      "timing_scope": "Selección y pesos cerrados antes del primer acceso experimental al test de 2025–agosto de 2026; desarrollo 2024 ya conocido.",
+      "supported_claim": "Desempeño observado fuera del desarrollo y selección neuronal fijada con CV.",
+      "unsupported_claim": "Que los contrastes añadidos después fueran hipótesis confirmatorias anteriores al test, o que el resultado generalice a otros mercados."
+    },
+    {
+      "evidence": "Suplemento t/Holm, IC y efectos por semillas",
+      "timing_scope": "Registrado después de inspeccionar el test; diez inicializaciones sobre las mismas fechas.",
+      "supported_claim": "Diferencias exploratorias entre los procedimientos evaluados, condicionadas al calendario y a los supuestos de cada prueba.",
+      "unsupported_claim": "Confirmación prospectiva o diez realizaciones independientes del mercado. Holm controla la familia declarada, no toda selección analítica previa."
+    },
+    {
+      "evidence": "DM/HAC/HLN y bootstrap temporal",
+      "timing_scope": "Análisis posteriores sobre las mismas predicciones guardadas, con hipótesis y ejes de incertidumbre distintos.",
+      "supported_claim": "Evidencia exploratoria sobre pérdida temporal e incertidumbre por bloques, bajo sus supuestos y aproximaciones.",
+      "unsupported_claim": "Réplicas confirmatorias independientes del análisis por semillas; un nuevo test o incertidumbre completa por volver a entrenar en otros regímenes."
+    },
+    {
+      "evidence": "Criterio avanzado >5 % frente a MLP/D7 y persistencia",
+      "timing_scope": "Definido después del test histórico para una evaluación futura, con dos referencias.",
+      "supported_claim": "Convención académica operativa para planificar una comparación nueva y sus sensibilidades.",
+      "unsupported_claim": "Margen a priori del test histórico, superioridad avanzada ya demostrada o utilidad financiera."
+    },
+    {
+      "evidence": "Nuevo piloto con cinco semillas por modelo e historia",
+      "timing_scope": "Protocolo y código registrados antes de sus nuevas corridas; calendario 2024 previamente conocido.",
+      "supported_claim": "Estimación piloto de variabilidad por entrenamiento y dimensionamiento condicional de doce comparaciones entre baselines.",
+      "unsupported_claim": "Potencia alcanzada, reparación del benchmark histórico, generalización temporal nueva o dimensionamiento de una propuesta avanzada aún no pilotada."
+    }
+  ],
+  "future_confirmation": {
+    "status": "draft_requirements_only_not_registered_not_executed",
+    "new_evaluation_cohort": null,
+    "advanced_model": null,
+    "baseline_pilot_is_advanced_pilot": false,
+    "historical_test_can_become_unseen_again": false,
+    "september_october_2026_assigned": false,
+    "conditional_seed_replication": "A sealed analysis followed by fresh definitive seeds can test the stated training-randomness estimand on the known calendar; it does not establish new temporal generalization.",
+    "required_before_new_outcome_access": [
+      "Definir si la afirmación concierne a aleatoriedad del entrenamiento sobre un calendario fijo o a precisión predictiva en otro periodo; declarar la unidad y el tratamiento de dependencia temporal.",
+      "Identificar y justificar una cohorte cronológica nueva que no haya guiado la propuesta; conservar el test histórico como observado. Septiembre–octubre de 2026 no se asigna automáticamente.",
+      "Fijar arquitectura avanzada, recetas de MLP/D7 y persistencia, fuentes de entrenamiento, preprocesamiento, HPO y épocas. Declarar si se reutilizan pesos o se reajustan recetas y garantizar información comparable.",
+      "Realizar en desarrollo el piloto propio de la propuesta avanzada frente a ambas referencias. Estimar la dispersión de D_j=0.95*m_j-m_A y dimensionar respecto a una alternativa por encima de la frontera del 5 %, sin transferir R=302/1680 del piloto entre baselines.",
+      "Registrar las dos hipótesis unilaterales H0_j:E[D_j]<=0, la prueba primaria, sus supuestos, el control de multiplicidad y los IC coherentes. La política actual planifica alfa global 0.05 con 0.025 por comparación; no acredita potencia lograda.",
+      "Fijar antes de evaluar el número de corridas, calendario, semillas nuevas, reglas de exclusión, manejo de fallos y regla de decisión. No ampliar hasta obtener significación ni elegir retrospectivamente el método favorable.",
+      "Publicar y firmar la versión completa del protocolo, código, configuraciones y plan analítico antes de acceder a los nuevos resultados. Conservar todas las desviaciones y su fecha."
+    ],
+    "decision_and_reporting": "Afirmar mejora superior al 5 % frente a ambas referencias solo si ambas comparaciones primarias superan su frontera con el control de error y los intervalos declarados. Una prueba contra diferencia cero sin la frontera o un DM de igualdad de MSE no demuestra esta afirmación. Separar análisis adicionales, límites de potencia, incertidumbre temporal y relevancia académica; no inferir utilidad financiera.",
+    "remaining_scientific_limit": "Documentar el alcance mejora la trazabilidad, pero no convierte la evidencia histórica en confirmatoria. La propuesta avanzada, su piloto y una evaluación independiente siguen pendientes."
+  },
+  "source_records": [
+    "experiments/filipe_multihistory_20261104/freeze.json",
+    "results/filipe_multihistory_20261104/test/raw_test_audit.json",
+    "experiments/e1_audit_improvements_20261104/protocol.json",
+    "experiments/e1_audit_improvements_20261104/academic_margin_policy.json",
+    "experiments/e1_filipe_pilot_20261105/protocol.json",
+    "results/e1_filipe_pilot_20261105/analysis/summary.json"
+  ],
+  "execution_scope": "Documentation and metadata only; no additional fits, forecasts, hypothesis tests or market data access"
+}

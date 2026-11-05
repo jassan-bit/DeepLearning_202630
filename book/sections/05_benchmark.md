@@ -338,7 +338,17 @@ La familia temporal principal arroja otro resultado: DM/HAC14/HLN con Holm-6 rec
 
 Se adopta un **criterio operativo para el benchmark académico futuro**: una propuesta avanzada debe mejorar la RMSE **más del 5 % frente a MLP/D7 y frente a persistencia**, sobre la misma cohorte de una evaluación independiente. La selección actual MLP/D7 permanece intacta.
 
-La [política registrada](../_static/e1_audit_improvements_20261104/academic_margin_policy.json) explicita origen y temporalidad. Se define después de conocer los resultados actuales y antes de cualquier nuevo modelo: no se presenta como margen previo del test ya observado ni como criterio de utilidad financiera. Las sensibilidades de 1/2,5/5/10 % permiten valorar la dependencia de la convención; el 5 % operativo no se elige buscando un rechazo favorable.
+La [política documentada](../_static/e1_audit_improvements_20261104/academic_margin_policy.json) explicita origen y temporalidad. Se define después de conocer los resultados actuales y antes de cualquier nuevo modelo: no se presenta como margen previo del test ya observado ni como criterio de utilidad financiera. Las sensibilidades de 1/2,5/5/10 % permiten valorar la dependencia de la convención; el 5 % operativo no se elige buscando un rechazo favorable.
+
+**Estado de la futura confirmación: pendiente, sin protocolo completo registrado ni cohorte asignada.** La política fija una convención; no es una evaluación confirmatoria ejecutada. Antes de acceder a nuevos resultados se deberá cerrar lo siguiente:
+
+1. Definir la afirmación y su unidad: aleatoriedad del entrenamiento sobre un calendario fijo o precisión predictiva en un periodo nuevo. Más semillas solo atienden la primera incertidumbre.
+2. Identificar una cohorte que no haya guiado la propuesta y justificar su historial de acceso, fechas, duración y cierre. El test ya observado no vuelve a ser desconocido; septiembre–octubre de 2026 sigue sin asignación automática.
+3. Fijar arquitectura avanzada, HPO, épocas y comparadores con el mismo pasado permitido. **MLP/D7 es la receta seleccionada**: un registro nuevo deberá declarar su reajuste o la reutilización de pesos. Comparar un avanzado actualizado con pesos de 2024 sin igualar información introduciría otra diferencia; la congelación histórica se conserva intacta.
+4. Ejecutar en desarrollo el piloto propio del avanzado frente a ambas referencias y dimensionar las diferencias respecto a la frontera del 5 %. Los R=302/1.680 del piloto entre baselines no se transfieren a esta pregunta.
+5. Firmar antes de evaluar el protocolo, código, semillas nuevas, número de corridas, exclusiones, hipótesis, prueba primaria, multiplicidad e intervalos. Fijar la regla de decisión y el cierre sin ampliar hasta obtener significación; documentar desviaciones y separar todo análisis posterior.
+
+La [lista de requisitos descargable](../_static/e1_deliverables_20261104/statistical_scope.json) conserva este estado como **borrador de requisitos, no preregistro**. Incluso una futura réplica con semillas nuevas sobre 2024 solo podría contrastar el estimando condicional registrado; una afirmación de nueva generalización temporal requiere la cohorte independiente y un tratamiento explícito de la dependencia.
 
 #### 5.3.4.1. Mejora mínima detectable frente al baseline
 
@@ -349,6 +359,8 @@ D_{j,s}=0{,}95\,m_{j,s}-m_{A,s},\qquad H_{0,j}:\mathbb E[D_j]\le0,\quad H_{1,j}:
 $$
 
 El estimando relativo es una **razón de medias de RMSE por semilla**, $Q_j=1-\mathbb E[m_A]/\mathbb E[m_j]$. Como la referencia tiene media positiva, $Q_j>0{,}05$ equivale a $\mathbb E[0{,}95m_j-m_A]>0$. No se sustituye por $\mathbb E[1-m_{A,s}/m_{j,s}]$, que es otro estimando cuando la referencia neuronal varía entre semillas. Para persistencia determinista coinciden.
+
+Una t de diferencias de RMSE contra cero sin ajustar por esa frontera o un DM de igualdad de MSE no demuestra mejora superior al 5 %. El protocolo futuro debe fijar el contraste e intervalo correspondientes a la afirmación primaria y mantener separados los diagnósticos temporales.
 
 La planificación declara dos contrastes unilaterales, α=0,025 cada uno y potencia marginal hipotética 0,90. Por la cota de la unión, la probabilidad de fallar alguna comparación queda como máximo en 0,20; la potencia conjunta es al menos 0,80 **bajo los supuestos**. No se presume independencia entre ambos contrastes.
 
@@ -731,7 +743,8 @@ Se integran diferencias, incertidumbre, efectos y periodo. El IC temporal margin
 
 Las variaciones por año y mes pueden reflejar distribución del mercado, tamaño de entrenamiento y distinta actualización CV/test. La descomposición descriptiva identifica variación entre celdas; no prueba causas ni convierte años en experimentos independientes. Si estos resultados orientan otro procedimiento, el test actual no vuelve a ser una reserva desconocida.
 
-#### 5.4.14.4. Estado del análisis estadístico
+(alcance-estadistico)=
+#### 5.4.14.4. Estado y alcance del análisis estadístico
 
 | Producto | Estado verificable |
 |---|---|
@@ -743,6 +756,13 @@ Las variaciones por año y mes pueden reflejar distribución del mercado, tamañ
 | Equivalencia | Condicional: no se afirma ni se exige TOST/ROPE automáticamente |
 
 Las pruebas se interpretan con sus supuestos. No se acredita potencia 0,80 por observar diez semillas o generar una tabla retrospectiva.
+
+**La fuerza confirmatoria depende de qué se decidió antes de ver los resultados.** Los contrastes posteriores mantienen valor exploratorio; un p ajustado no elimina la selección analítica previa ni convierte varias pruebas sobre las mismas predicciones en réplicas independientes. La evaluación histórica conserva su separación de desarrollo/test; esta limitación se refiere al alcance de los contrastes y criterios añadidos después.
+
+```{include} ../_static/e1_deliverables_20261104/statistical_scope.md
+```
+
+Se entrega la [evaluación de alcance y requisitos futuros](../_static/e1_deliverables_20261104/statistical_scope.json), con hashes de los registros originales. **La aclaración documental queda resuelta; la confirmación nueva sigue pendiente.** No se afirma superioridad avanzada, equivalencia, potencia alcanzada ni generalización temporal a partir de este suplemento.
 
 ## 5.5. Discusión Crítica
 

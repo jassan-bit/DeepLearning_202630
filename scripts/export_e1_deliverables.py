@@ -44,12 +44,14 @@ def main():
     pilot_execution_path=ROOT/"results/e1_filipe_pilot_20261105/execution_summary.json"
     pilot_analysis_path=ROOT/"results/e1_filipe_pilot_20261105/analysis/summary.json"
     pilot,pilot_execution,pilot_analysis=map(read,[pilot_path,pilot_execution_path,pilot_analysis_path])
+    scope_path=ROOT/"references/audits/statistical_scope_e1_20261105.json"
+    scope=read(scope_path)
     inputs={}
     for path in [freeze_path,plan_path,policy_path,initial_path,audit_path,supplement_path,
                  ROOT/"references/decisiones_e1_20261102.json",
                  ROOT/"references/literature_e1/recovery_20261105/selection_update.json",
                  ROOT/"references/literature_e1/recovery_20261105/primary_source.json",
-                 pilot_path,pilot_execution_path,pilot_analysis_path]:
+                 pilot_path,pilot_execution_path,pilot_analysis_path,scope_path]:
         inputs[path.relative_to(ROOT).as_posix()]=sha(path)
     entries=[]
     for label,path,key in [
@@ -108,6 +110,12 @@ def main():
             "common_point_SD_R":pilot_analysis["common_point_SD_R"],
             "common_recommended_upper_SD_R":pilot_analysis["common_recommended_upper_SD_R"],
             "achieved_power_claim":False,"new_independent_market_evaluation":False},
+        "statistical_scope":{"assessment_source":scope_path.relative_to(ROOT).as_posix(),
+            "assessment_status":scope["status"],
+            "future_confirmation_status":scope["future_confirmation"]["status"],
+            "new_evaluation_cohort":None,"advanced_model":None,
+            "historical_supplement_is_confirmatory":False,
+            "baseline_pilot_powers_advanced_claim":False},
         "limits":["No claim of registration before EDA or before the historical market periods",
                   "The final supplement is post-hoc, not prospective confirmation",
                   "The future academic criterion was not predeclared for the completed test",
@@ -115,6 +123,16 @@ def main():
         "inherited_next_delivery":"Keep source, target, metric and dependence definitions explicit; any new model designed from this test needs another independent evaluation.",
         "source_sha256":inputs}
     write_json(DEST/"declaration_and_chronology.json",declaration)
+    write_json(DEST/"statistical_scope.json",{**scope,
+        "compiled_at_utc":datetime.now(timezone.utc).isoformat(),
+        "assessment_source_sha256":sha(scope_path),
+        "source_sha256":{name:sha(ROOT/name) for name in scope["source_records"]}})
+    scope_lines=["| Evidencia | Momento y unidad | Afirmación respaldada | Límite |",
+                 "|---|---|---|---|"]
+    for row in scope["evidence_rows"]:
+        scope_lines.append("| "+" | ".join(row[key] for key in
+            ["evidence","timing_scope","supported_claim","unsupported_claim"])+" |")
+    (DEST/"statistical_scope.md").write_text("\n".join(scope_lines)+"\n")
 
     # Metadata only: no checkpoint bytes, scaler values, targets or forecasts.
     cv_rows=[]

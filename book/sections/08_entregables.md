@@ -163,6 +163,8 @@ Las filas neuronales resumen diez semillas; persistencia no tiene repeticiones d
 
 El complemento final es **post-hoc/exploratorio**: se registró después de inspeccionar el test y reutiliza sus pronósticos guardados. La incertidumbre por semillas, la pérdida temporal y el remuestreo de fechas responden preguntas diferentes; no son confirmaciones independientes. Se conservan las alertas de supuestos, los IC marginales y la multiplicidad. El promedio de p-valores BDS es descriptivo y no compara precisión entre modelos. La discusión detallada y las conclusiones están en [el capítulo 5](05_benchmark.md).
 
+Se añade una {download}`matriz de afirmaciones respaldadas y límites <../_static/e1_deliverables_20261104/statistical_scope.md>`, incluida en los ZIP 8.5 y 8.7. La separación histórica desarrollo/test se mantiene; los contrastes añadidos después se interpretan como exploratorios, con menor fuerza confirmatoria. No se suman sus resultados como si fueran replicaciones independientes.
+
 (entrega-8-6)=
 ## 8.6. Dependencias, semillas y configuración de cada corrida
 
@@ -223,3 +225,5 @@ La [política académica futura](../_static/e1_audit_improvements_20261104/acade
 El [protocolo del piloto nuevo](../_static/e1_filipe_pilot_20261105/protocol.json) y su [recibo de publicación](../_static/e1_filipe_pilot_20261105/preregistration_git_receipt.json) se registraron antes de las cinco semillas nuevas por familia/historia. Su [resumen de planificación](../_static/e1_filipe_pilot_20261105/analysis/summary.json) dimensiona futuras semillas entre baselines sobre 2024 conocido; no certifica potencia alcanzada ni repara el orden del experimento histórico.
 
 El [borrador para una futura evaluación independiente](../_static/e1_audit_improvements_20261104/next_study_pilot_DRAFT.json) conserva otro alcance y no se presenta como ejecutado. Se mantiene explícito que **no hubo piloto previo al benchmark original, preregistro anterior al EDA o margen avanzado anterior al test ya examinado**. El registro del piloto nuevo no altera esa cronología.
+
+La {download}`declaración de alcance y requisitos para una confirmación futura <../_static/e1_deliverables_20261104/statistical_scope.json>` incluye los hashes de los registros y queda dentro del ZIP 8.7. Su estado es **requisitos en borrador, no preregistro ni evaluación ejecutada**: faltan arquitectura avanzada, piloto propio, cohorte independiente justificada y cierre prospectivo del plan analítico. Distingue una futura réplica de semillas condicionada a 2024 de una evaluación temporal nueva. El criterio >5 % conserva su fecha posterior al test histórico; no puede probarse retroactivamente sobre ese mismo test.
