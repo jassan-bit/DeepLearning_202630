@@ -246,7 +246,7 @@ def package(output, requested_commit=None):
     metadata_tree(packages['8.3'], ROOT / 'data/manifests')
     metadata_tree(packages['8.3'], ROOT / 'book/_static/data_source')
     metadata_tree(packages['8.4'], LITERATURE)
-    metadata_tree(packages['8.4'], ROOT / 'book/_static/e1_audit_improvements_20261104/literature')
+    # The relocated recovery metadata is already inside LITERATURE.
     add(packages['8.4'], ROOT / 'book/references.bib')
     if not (SELECTION / 'selection.json').is_file():
         raise ValueError('The current three-model literature selection is required')
