@@ -2,7 +2,7 @@
 
 El EDA de E1 se **amplía y conserva**. Este capítulo reutiliza sus evidencias de desarrollo y añade análisis reproducibles de transformaciones, casi duplicados, soportes temporales y residuos bajo forward chaining. Cada bloque termina con decisiones de preprocesamiento, consecuencias para arquitectura/validación y riesgos; la {ref}`tabla de trazabilidad <e2-trazabilidad-eda>` reúne esas relaciones.
 
-Se distinguen dos alcances: **desarrollo 2023–2024** para diagnósticos y **perfil retrospectivo de la reserva de E1 ya conocida** para describir desplazamiento de distribución. Este último no selecciona arquitecturas, transformaciones, umbrales ni periodos y no convierte la reserva en una confirmación nueva. No se ha ejecutado el benchmark de diez modelos de E2.
+Se distinguen dos alcances: **desarrollo 2023–2024** para diagnósticos y **perfil retrospectivo de la reserva de E1 ya conocida** para describir desplazamiento de distribución. Este último no selecciona arquitecturas, transformaciones, umbrales ni periodos y no convierte la reserva en una confirmación nueva. No se ha ejecutado el benchmark del Top 10 y sus referencias de E2.
 
 El contrato principal sigue siendo D=7, n=7, h=1, cinco canales OHLCV y σ₇ poblacional sin anualizar. D es historia de entrada, n es ventana del objetivo y h es horizonte: no se intercambian. Los resultados n=14/21/28 de E1 son sensibilidades de la etiqueta, no objetivos añadidos al benchmark actual.
 
@@ -185,7 +185,7 @@ Las correlaciones móviles se estimaron en ventanas de 60 días, con al menos 50
 (e2-diagnostico-forward)=
 ### 2.2.3 Diagnóstico con residuos de una referencia forward chaining
 
-La ampliación ajusta una referencia **Ridge, α=1 fijado**, en cada uno de los diez folds mensuales enero–octubre de 2024. Usa exclusivamente las cinco covariables D7, los índices y el embargo heredados, y escalado aprendido en entrenamiento de cada fold. No es un candidato del benchmark de diez modelos ni una búsqueda de hiperparámetros. Persistencia $\widehat Y_t=Y_{t-1}$ aporta una referencia causal adicional.
+La ampliación ajusta una referencia **Ridge, α=1 fijado**, en cada uno de los diez folds mensuales enero–octubre de 2024. Usa exclusivamente las cinco covariables D7, los índices y el embargo heredados, y escalado aprendido en entrenamiento de cada fold. Esta ejecución diagnóstica no es una búsqueda de hiperparámetros ni una corrida del benchmark definitivo. Ridge se propone además como referencia no profunda en la sección 3, con ajuste todavía por definir. Persistencia $\widehat Y_t=Y_{t-1}$ aporta una referencia causal adicional.
 
 | Referencia | Fechas | RMSE | MAE | ACF(1) | ACF(7) |
 |---|---|---|---|---|---|

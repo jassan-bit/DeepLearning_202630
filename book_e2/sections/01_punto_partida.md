@@ -65,7 +65,7 @@ El preprocesamiento heredado usa logaritmos de OHLC relativos al último cierre 
 
 ### 1.1.3 Espacio de hipótesis, pérdida y riesgo
 
-Para un catálogo final $\mathcal M$ de diez modelos, todavía por cerrar, el espacio de hipótesis será $\mathcal H=\bigcup_{m\in\mathcal M}\mathcal H_m$, con $f_\theta:\mathcal X\to\mathbb R$. La variable objetivo es no negativa; las restricciones de salida de cada arquitectura deberán registrarse sin cambiar silenciosamente las recetas heredadas.
+Para el catálogo de redes $\mathcal M$, con los diez modelos propuestos y las tres bases heredadas, todavía pendiente de validación operativa, el espacio de hipótesis será $\mathcal H=\bigcup_{m\in\mathcal M}\mathcal H_m$, con $f_\theta:\mathcal X\to\mathbb R$. La variable objetivo es no negativa; las restricciones de salida de cada arquitectura deberán registrarse sin cambiar silenciosamente las recetas heredadas.
 
 Se conserva la pérdida cuadrática:
 
@@ -151,7 +151,7 @@ La latencia se medirá con entradas de desarrollo o sintéticas de forma $7\time
 
 Se propone α=0,05 y una familia que contenga las tres preguntas para cada uno de los $K$ candidatos contra GRU: **3K contrastes**, aplicando Holm a sus p-valores válidos; para RQ3 se usa primero el p-valor conjunto. Los intervalos simultáneos deberán corresponder al control declarado, mediante inversión de contrastes o un procedimiento conservador documentado. No se mezclarán intervalos nominales individuales con una afirmación de cobertura simultánea.
 
-$K$ depende del catálogo todavía abierto. Cuarenta y cinco comparaciones solo corresponderían a todos los pares de diez modelos; no se adoptan automáticamente. La elección final del remuestreo, su validez con la dependencia observada y el dimensionamiento se revisarán con las secciones metodológicas restantes. Aunque se controle multiplicidad, el uso del test conocido mantiene el alcance exploratorio. Una futura afirmación confirmatoria requeriría una modificación autorizada y registrada antes de resultados nuevos; este capítulo no cambia la partición heredada.
+$K$ depende del catálogo todavía abierto. Cuarenta y cinco comparaciones corresponden a todos los pares de diez modelos; quince configuraciones producirían 105 pares si se eligiera compararlas todas. Ninguno de esos conteos se adopta automáticamente como familia principal. La elección final del remuestreo, su validez con la dependencia observada y el dimensionamiento se revisarán con las secciones metodológicas restantes. Aunque se controle multiplicidad, el uso del test conocido mantiene el alcance exploratorio. Una futura afirmación confirmatoria requeriría una modificación autorizada y registrada antes de resultados nuevos; este capítulo no cambia la partición heredada.
 
 ## 1.3 Justificación del dataset
 
@@ -214,5 +214,5 @@ El hash anterior identifica **el archivo manifiesto**; no es un único checksum 
 | Tres RQ, hipótesis, efecto y reglas | Formulados como propuestas exploratorias; operacionalización final pendiente |
 | Justificación y Data Card | Documentadas con procedencia, versión, hashes, calidad y límites |
 | Uso del dataset exacto en Q1 | No verificado |
-| Catálogo de diez modelos y protocolo completo | Pendientes de la guía restante y revisión sistemática |
+| Catálogo y protocolo | Diez originales extraídos en sección 3; adaptaciones, cribado global, apoyos restantes y protocolo pendientes |
 | Prueba desconocida y confirmación nueva | No disponibles en los periodos heredados ya evaluados |

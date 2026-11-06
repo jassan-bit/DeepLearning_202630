@@ -1,13 +1,14 @@
 {
-  "schema_version": 2,
+  "schema_version": 4,
   "received_date_colombia": "2026-11-05",
   "administrative_timezone": "America/Bogota",
-  "source_type": "Imágenes aportadas directamente por el usuario: tres imágenes iniciales y cinco capturas posteriores con fragmentos de la sección 2",
+  "source_type": "Capturas de la guía aportadas por el usuario: páginas iniciales 1–3, fragmentos de sección 2 y seis capturas de sección 3 con página 9 visible",
   "document_title": "Proyecto Final de Deep Learning: Entregable 2",
   "received_page_numbers": [
     1,
     2,
-    3
+    3,
+    9
   ],
   "full_pdf_received": false,
   "scope_received": [
@@ -16,12 +17,18 @@
     "Sección 1: Definición del problema, preguntas de investigación y dataset",
     "Sección 2: objetivo del EDA orientado a decisiones y bloque 2.1 EDA General",
     "Encabezado 2.2 y bloque C de Regresión Temporal; no se recibieron las otras rutas específicas",
-    "Requisito obligatorio: decisión de preprocesamiento, impacto en arquitectura/protocolo, riesgos y tabla de trazabilidad hallazgo–decisión"
+    "Requisito obligatorio: decisión de preprocesamiento, impacto en arquitectura/protocolo, riesgos y tabla de trazabilidad hallazgo–decisión",
+    "Sección 3: revisión sistemática del estado del arte y extensión de la revisión de E1",
+    "Sección 3.1: estrategia de búsqueda, fuentes, periodo, criterios, PRISMA, extracción, acuerdo y calidad metodológica",
+    "Búsqueda transversal de mecanismos: al menos tres cadenas en otras modalidades y tabla de transferencia para E3",
+    "Sección 3.2: diez modelos adicionales, cuatro familias, puntajes reproducibles y referencias adicionales",
+    "Sección 3.3: análisis técnico por modelo, diagramas, ecuaciones, métricas, complejidad y riesgo de reporte",
+    "Sección 3.4: matriz crítica, reproducibilidad, tendencias y gap verificable conectado con las RQ"
   ],
   "objective": {
     "systematic_literature_review": true,
     "decision_oriented_eda": true,
-    "benchmark_model_count": 10,
+    "benchmark_model_count": 15,
     "same_reproducible_leakage_free_protocol": true,
     "methodological_route": "Sección 7, según el tipo de problema",
     "required_conclusions": [
@@ -31,9 +38,31 @@
       "Incertidumbre",
       "Interpretabilidad",
       "Gap de investigación con hipótesis contrastable"
-    ]
+    ],
+    "benchmark_model_count_semantics": "Mínimo total de configuraciones bajo sección 3.2: diez modelos nuevos del Top 10 más cinco referencias; no son diez modelos en total",
+    "top10_new_deep_learning_model_count": 10,
+    "benchmark_minimum_total_configurations": 15,
+    "benchmark_composition": {
+      "source_rule": "Guía E2, sección 3.2, más restrictiva que la síntesis inicial de un benchmark de diez",
+      "top10_new_deep_learning_models": 10,
+      "inherited_deep_learning_references": [
+        "GRU/D7-c03",
+        "LSTM/D7-c02",
+        "TCN/D7-c02"
+      ],
+      "inherited_deep_learning_reference_count": 3,
+      "simple_non_deep_reference": "Ridge",
+      "simple_non_deep_reference_count": 1,
+      "trivial_reference": "Persistencia causal",
+      "trivial_reference_count": 1,
+      "minimum_deep_learning_configurations": 13,
+      "minimum_total_configurations": 15,
+      "top10_includes_inherited_three_bases": false,
+      "minimum_total_is_not_the_number_of_seeds": true,
+      "reference_scope_note": "Ridge es la referencia no profunda propuesta; su diagnóstico de EDA ya existe, pero el ajuste y presupuesto del benchmark final aún deben cerrarse. Persistencia conserva su función contextual heredada."
+    }
   },
-  "precedence": "Cuando una sección posterior precisa una anterior, prevalece la más restrictiva; se recibieron fragmentos de sección 2, pero las secciones 3–14 y los apéndices siguen sin aportarse",
+  "precedence": "Prevalece la disposición más restrictiva. La sección 3.2 recibida exige diez modelos del Top 10 adicionales a los tres modelos base de E1, una referencia no profunda y otra trivial: mínimo quince configuraciones. Las secciones 4–14 y los apéndices siguen pendientes.",
   "inheritance": {
     "from_deliverable": 1,
     "inherited_without_modification": [
@@ -126,7 +155,7 @@
     "e2_sample_size_determined": false,
     "sample_size_note": "R=465 corresponde a las comparaciones y piloto de E1; no se traslada automáticamente a diez modelos o hipótesis nuevas",
     "chapter_2_documentation": "EDA de E1 ampliado con análisis propios de E2 y cierre hallazgo–decisión; evidencia y límites en sections/02_eda.md",
-    "e2_experiments_executed_scope": "Este indicador se refiere al benchmark de diez modelos de Deep Learning; no niega el EDA ni el ajuste de una referencia Ridge diagnóstica",
+    "e2_experiments_executed_scope": "Benchmark final con diez modelos DL nuevos más tres bases heredadas, referencia no profunda y referencia trivial; no niega los diagnósticos de EDA",
     "e2_eda_executed": true,
     "e2_diagnostic_ridge_fitted": true,
     "e2_diagnostic_ridge_scope": "Referencia de desarrollo con forward chaining para diagnosticar residuos; no es uno de los diez modelos DL ni un benchmark final",
@@ -136,15 +165,66 @@
     "route_diagnosis_closed": false,
     "route_diagnosis_note": "Autocorrelación alta exige discutir la indicación de la guía y contrastar la ruta de series de tiempo. No demuestra por sí sola mejora con rezagos del objetivo. Cualquier extensión debe validarse en desarrollo y versionarse antes de modificar el contrato heredado",
     "external_provider_or_proxy_noise_independently_quantified": false,
-    "label_noise_note": "Recalculabilidad, sensibilidad del proxy y ruido económico son conceptos distintos; no se declara un techo de desempeño identificado"
+    "label_noise_note": "Recalculabilidad, sensibilidad del proxy y ruido económico son conceptos distintos; no se declara un techo de desempeño identificado",
+    "chapter_3_documentation": "Revisión bibliográfica con dos fuentes nativas parciales, diez originales completos (215 páginas), código de autores y métricas con localizadores; el cribado global y la implementación del benchmark no están cerrados",
+    "top10_operational_catalogue_status": "proposed_not_fully_closed",
+    "top10_operational_model_names": [
+      "TSMixer",
+      "TiDE",
+      "TimeMixer",
+      "TimesNet",
+      "PatchTST",
+      "Informer",
+      "Autoformer",
+      "iTransformer",
+      "Crossformer",
+      "S-Mamba"
+    ],
+    "top10_proposed_family_count": 4,
+    "benchmark_minimum_total_configurations": 15,
+    "benchmark_implementation_validated_for_D7": false,
+    "verified_native_academic_database_count": 2,
+    "full_text_review_and_ranking_complete": false,
+    "publication_quartiles_verified_for_all_candidates": false,
+    "minimum_three_crossmodal_queries_verified": false,
+    "minimum_two_native_sources_received": true,
+    "native_export_coverage_complete": false,
+    "ten_architectural_originals_full_text_review_complete": true,
+    "global_full_text_review_and_ranking_complete": false,
+    "full_text_review_and_ranking_complete_scope": "Este indicador compuesto describe el cribado/ranking global; la lectura de los diez originales arquitectónicos sí está cerrada",
+    "bibliographic_models_reviewed": 10,
+    "execution_catalogue_validated": false,
+    "literature_review_evidence": {
+      "bibliographic_models_reviewed": 10,
+      "full_original_PDFs_reviewed": 10,
+      "physical_PDF_pages_reviewed": 215,
+      "author_code_sources_verified": 10,
+      "canonical_external_metric_pairs_verified": 10,
+      "current_fulltext_manifest": "literature_fulltext/fulltext_manifest.json",
+      "current_fulltext_extraction": "literature_fulltext/models.json",
+      "native_sources_received": [
+        "Web of Science",
+        "Scopus"
+      ],
+      "native_export_coverage_complete": false,
+      "combined_bibliographic_groups": 7833,
+      "originals_matched_in_received_Scopus": 8,
+      "global_PRISMA_screening_and_eligibility_complete": false,
+      "benchmark_implementation_validated_for_D7": false,
+      "new_deep_learning_fits_this_review": 0,
+      "original_papers_numerically_reproduced_this_review": 0,
+      "new_Bitcoin_results_this_review": 0,
+      "scope_note": "Lectura y selección bibliográfica para transferencia a Bitcoin; los resultados externos no constituyen un ranking comparable del experimento D7 de Bitcoin."
+    },
+    "benchmark_ten_model_catalogue_selected_scope": "La selección bibliográfica contiene diez nombres; este indicador reserva el cierre del catálogo operativo con adaptación D7 y presupuesto validados"
   },
   "pending_source_material": {
-    "later_sections": "Texto completo de secciones 3–14 y apéndices",
+    "later_sections": "Texto completo de secciones 4–14 y apéndices",
     "other_section_2_routes": "Solo se recibió el bloque específico C de regresión temporal; la ruta de series de tiempo no se ha aportado completa",
-    "benchmark_composition": "No resolver como 3+7 o diez adicionales sin leer el requisito completo",
+    "benchmark_composition": "Composición resuelta por sección 3.2: Top 10 adicional más tres bases, Ridge y persistencia, mínimo quince; faltan el protocolo, presupuestos y reglas completas de sección 11.1",
     "compliance_scope": "No declarar cumplimiento de apartados cuyo texto aún no se ha recibido ni dar por resuelta la clausura de la ruta mediante la sola ACF"
   },
-  "source_caution": "Este registro conserva las páginas iniciales 1–3 y los fragmentos posteriores de sección 2. No se asignan números de página a capturas sin numeración visible; no representa lectura de un PDF completo ni evaluación cerrada del entregable.",
+  "source_caution": "Se conservan las páginas visibles 1–3 y 9 y fragmentos sin número de secciones 2–3 de la guía; no se infieren páginas de capturas sin numeración ni lectura de la guía completa. Las exportaciones WoS y Scopus y los diez PDF de artículos son evidencia aportada por el usuario, no consultas nativas ejecutadas por el asistente. La lectura de los artículos no modifica el alcance recibido de la guía.",
   "received_fragments": [
     {
       "submission": "initial",
@@ -185,6 +265,42 @@
       "capture_sequence": 5,
       "visible_page_number": null,
       "scope": "Requisito obligatorio de cierre y trazabilidad hallazgo–decisión"
+    },
+    {
+      "submission": "section_3",
+      "capture_sequence": 1,
+      "visible_page_number": 9,
+      "scope": "Sección 3 e inicio de 3.1: revisión sistemática y cadenas exactas"
+    },
+    {
+      "submission": "section_3",
+      "capture_sequence": 2,
+      "visible_page_number": null,
+      "scope": "Continuación 3.1: bases, periodo, criterios, flujo, extracción, acuerdo y calidad"
+    },
+    {
+      "submission": "section_3",
+      "capture_sequence": 3,
+      "visible_page_number": null,
+      "scope": "Búsqueda transversal de mecanismos: cadenas mínimas, registro y tabla de salida"
+    },
+    {
+      "submission": "section_3",
+      "capture_sequence": 4,
+      "visible_page_number": null,
+      "scope": "Sección 3.2: selección, puntuación, diversidad y referencias adicionales"
+    },
+    {
+      "submission": "section_3",
+      "capture_sequence": 5,
+      "visible_page_number": null,
+      "scope": "Sección 3.3: ficha detallada, diagrama, ecuaciones, resultados y complejidad"
+    },
+    {
+      "submission": "section_3",
+      "capture_sequence": 6,
+      "visible_page_number": null,
+      "scope": "Continuación 3.3 y sección 3.4: sesgo de reporte, arquitectura definida y comparación crítica/gap"
     }
   ],
   "section_2_requirements": [
@@ -272,5 +388,316 @@
       "id": "2.closure.traceability",
       "requirement": "Registrar cada hallazgo en la tabla hallazgo–decisión; no presentar un mero inventario descriptivo como análisis terminado"
     }
-  ]
+  ],
+  "section_3_requirements": [
+    {
+      "id": "3.scope.extension",
+      "requirement": "Extender la revisión de E1; identificar modelos DL pertinentes con literatura reciente, preferiblemente Q1, sin descartar las tres bases heredadas"
+    },
+    {
+      "id": "3.1.queries",
+      "requirement": "Documentar palabras clave, operadores booleanos y cadenas exactas, sinónimos, fecha de ejecución y número observado de resultados por cadena"
+    },
+    {
+      "id": "3.1.databases",
+      "requirement": "Consultar al menos dos bases entre WoS, Scopus e IEEE Xplore; arXiv se usa de manera complementaria"
+    },
+    {
+      "id": "3.1.period",
+      "requirement": "Preferir los últimos cinco a ocho años y justificar inclusión de trabajos fundacionales anteriores"
+    },
+    {
+      "id": "3.1.eligibility",
+      "requirement": "Criterios de inclusión/exclusión: pertinencia, DL, métricas, código o detalle reproducible y calidad de revista/conferencia"
+    },
+    {
+      "id": "3.1.prisma",
+      "requirement": "Flujo tipo PRISMA con identificados, cribados, elegibles, incluidos y razones de exclusión por etapa; no equiparar importación de metadatos con estudios incluidos"
+    },
+    {
+      "id": "3.1.extraction",
+      "requirement": "Hoja fija: arquitectura, dataset, partición, métricas, semillas, pruebas estadísticas, código público y ajuste de baselines"
+    },
+    {
+      "id": "3.1.reviewers",
+      "requirement": "Si hay más de un revisor, documentar acuerdo mediante kappa de Cohen; no inventar revisores humanos ni calcularlo entre agentes como si fueran personas"
+    },
+    {
+      "id": "3.1.quality",
+      "requirement": "Valorar fuga, número de repeticiones y equidad del ajuste en cada estudio incluido"
+    },
+    {
+      "id": "3.1.transfer.queries",
+      "requirement": "Ejecutar al menos tres cadenas transversales combinando familia de mecanismo y modalidad de origen diferente del problema, con transfer o adaptation cuando aplique"
+    },
+    {
+      "id": "3.1.transfer.register",
+      "requirement": "Registrar aplicación de origen, fuente primaria y propiedad estructural que sustenta transferibilidad preliminar"
+    },
+    {
+      "id": "3.1.transfer.output",
+      "requirement": "Entregar tabla obligatoria de mecanismos candidatos para E3, sin comprometer su elección final"
+    },
+    {
+      "id": "3.2.count",
+      "requirement": "Seleccionar exactamente diez modelos nuevos o justificar cada adición; las tres bases de E1 se añaden como referencias"
+    },
+    {
+      "id": "3.2.scores",
+      "requirement": "Priorizar con puntaje explícito y reproducible: citación normalizada por antigüedad, recencia, desempeño comparable, implementación y representatividad; publicar la tabla completa"
+    },
+    {
+      "id": "3.2.diversity",
+      "requirement": "El Top 10 debe cubrir al menos cuatro familias arquitectónicas distintas, sin usar las bases adicionales para completar artificialmente la diversidad"
+    },
+    {
+      "id": "3.2.references",
+      "requirement": "Añadir los tres modelos base de E1, al menos una referencia simple no profunda y una trivial; mínimo quince configuraciones"
+    },
+    {
+      "id": "3.2.exclusions",
+      "requirement": "Justificar exclusión de candidatos muy citados que no entren en el Top 10"
+    },
+    {
+      "id": "3.2.equity",
+      "requirement": "Aplicar reglas de implementación equitativa de la sección 11.1 cuando se reciba su texto completo"
+    },
+    {
+      "id": "3.3.reference",
+      "requirement": "Referencia académica completa y DOI cuando exista, distinguiendo identificador editorial de identificador del preprint"
+    },
+    {
+      "id": "3.3.family",
+      "requirement": "Tipo de arquitectura y familia principal"
+    },
+    {
+      "id": "3.3.diagram",
+      "requirement": "Componentes y flujo de datos con diagrama obligatorio por cada modelo"
+    },
+    {
+      "id": "3.3.equations",
+      "requirement": "Formulación matemática de los bloques centrales e innovación respecto a trabajos previos"
+    },
+    {
+      "id": "3.3.task_dataset",
+      "requirement": "Problema y datasets originales; distinguir pronóstico de precio, volatilidad y transferencia de otros dominios"
+    },
+    {
+      "id": "3.3.results",
+      "requirement": "Métricas y valores publicados con localizadores, indicando dispersión o pruebas estadísticas y marcando datos no reportados o no verificados"
+    },
+    {
+      "id": "3.3.strengths_limits",
+      "requirement": "Fortalezas y límites en generalización, robustez, eficiencia, sobreajuste, cómputo y dependencia de datos"
+    },
+    {
+      "id": "3.3.complexity",
+      "requirement": "Parámetros, FLOPs, complejidad en longitud de entrada y tiempo reportado; separar cifras publicadas de estimaciones propias"
+    },
+    {
+      "id": "3.3.reporting_bias",
+      "requirement": "Evaluar críticamente si compara con baselines bien ajustados bajo condiciones equivalentes"
+    },
+    {
+      "id": "3.3.definition",
+      "requirement": "Indicar si el paper define capas/dimensiones o solo una familia; eso condiciona la búsqueda de arquitectura de sección 14"
+    },
+    {
+      "id": "3.4.matrix",
+      "requirement": "Matriz de los diez modelos con familia, parámetros, FLOPs, datos, métricas, fortalezas y limitaciones"
+    },
+    {
+      "id": "3.4.trends",
+      "requirement": "Analizar tendencias de Transformers frente a referencias clásicas, híbridos, preentrenamiento y eficiencia"
+    },
+    {
+      "id": "3.4.reproducibility",
+      "requirement": "Reportar proporción de estudios con código y datos públicos usando denominadores explícitos"
+    },
+    {
+      "id": "3.4.gap",
+      "requirement": "Gap concreto y refutable con la hoja de extracción, conectado con las RQ; acotar afirmaciones de ausencia al corpus revisado"
+    },
+    {
+      "id": "3.4.critical",
+      "requirement": "No aceptar una revisión meramente descriptiva: justificar de forma crítica y comparativa el Top 10"
+    }
+  ],
+  "top10_operational_proposal": {
+    "status": "proposed_operational_catalogue_not_fully_closed",
+    "selection_scope": "Propuesta bibliográfica para el experimento de Bitcoin; no un ranking de resultados propios ni una garantía de mejora",
+    "models": [
+      {
+        "model": "TSMixer",
+        "family": "MLP/mixing"
+      },
+      {
+        "model": "TiDE",
+        "family": "MLP/mixing"
+      },
+      {
+        "model": "TimeMixer",
+        "family": "MLP/mixing"
+      },
+      {
+        "model": "TimesNet",
+        "family": "Convolucional"
+      },
+      {
+        "model": "PatchTST",
+        "family": "Atención"
+      },
+      {
+        "model": "Informer",
+        "family": "Atención"
+      },
+      {
+        "model": "Autoformer",
+        "family": "Atención"
+      },
+      {
+        "model": "iTransformer",
+        "family": "Atención"
+      },
+      {
+        "model": "Crossformer",
+        "family": "Atención"
+      },
+      {
+        "model": "S-Mamba",
+        "family": "Espacio de estados"
+      }
+    ],
+    "model_count": 10,
+    "family_counts_proposed": {
+      "MLP/mixing": 3,
+      "Convolucional": 1,
+      "Atención": 5,
+      "Espacio de estados": 1
+    },
+    "distinct_family_count_proposed": 4,
+    "one_primary_family_assigned_per_model": true,
+    "family_and_implementation_validation_complete": false,
+    "benchmark_executed": false,
+    "new_deep_learning_fits": 0,
+    "input_contract": "D7 × cinco canales OHLCV causales; n=7; h=1; salida escalar σ7 poblacional sin anualizar",
+    "target_lags_added": false,
+    "implementation_and_scalar_head_adaptations": "Especificadas por modelo en la revisión, pendientes de implementación y validación explícita D7; no se afirma reproducción idéntica del paper",
+    "outstanding_closure": [
+      "Completar la cobertura de exportación y el cribado global con decisiones y razones de exclusión; no equiparar grupos recibidos con estudios incluidos",
+      "Lectura completa de los apoyos aplicados aún documentados solo por metadatos o resumen",
+      "Verificación académica de cada publicación y cuartil cuando aplique",
+      "Ejecutar y documentar al menos tres búsquedas transversales con resultados y decisiones de transferencia",
+      "Resolver los componentes no comparables de la puntuación; no inventar desempeño Bitcoin ni citas faltantes",
+      "Implementar y validar cada adaptación D7×5 hacia σ7 sin añadir rezagos del objetivo",
+      "Cerrar protocolo equitativo, piloto y dimensionamiento del benchmark"
+    ],
+    "does_not_change_inherited_e1_baselines": true,
+    "bibliographic_review_status": "ten_architectural_originals_read_and_extracted_with_locators",
+    "bibliographic_models_reviewed": 10,
+    "execution_catalogue_validated": false,
+    "bibliographic_evidence": {
+      "bibliographic_models_reviewed": 10,
+      "full_original_PDFs_reviewed": 10,
+      "physical_PDF_pages_reviewed": 215,
+      "author_code_sources_verified": 10,
+      "canonical_external_metric_pairs_verified": 10,
+      "current_fulltext_manifest": "literature_fulltext/fulltext_manifest.json",
+      "current_fulltext_extraction": "literature_fulltext/models.json",
+      "native_sources_received": [
+        "Web of Science",
+        "Scopus"
+      ],
+      "native_export_coverage_complete": false,
+      "combined_bibliographic_groups": 7833,
+      "originals_matched_in_received_Scopus": 8,
+      "global_PRISMA_screening_and_eligibility_complete": false,
+      "benchmark_implementation_validated_for_D7": false,
+      "new_deep_learning_fits_this_review": 0,
+      "original_papers_numerically_reproduced_this_review": 0,
+      "new_Bitcoin_results_this_review": 0,
+      "scope_note": "Lectura y selección bibliográfica para transferencia a Bitcoin; los resultados externos no constituyen un ranking comparable del experimento D7 de Bitcoin."
+    }
+  },
+  "academic_search_evidence": {
+    "record_schema_version": 2,
+    "source": "Tres exportaciones nativas WoS y una exportación CSV Scopus aportadas por el usuario; originales de los diez modelos aportados después en PDF",
+    "verified_native_database_count": 2,
+    "required_database_minimum": 2,
+    "arxiv_role": "Fuente complementaria; no sustituye por sí sola la exigencia de otra base principal",
+    "queries_provided_by_user": {
+      "Q1": "TS=((bitcoin OR ethereum OR cryptocurrenc* OR cryptoasset*)\nAND (volatility OR \"realized volatility\" OR \"realised volatility\")\nAND (\"deep learning\" OR \"neural network*\" OR transformer*\nOR LSTM OR GRU OR CNN OR TCN))",
+      "Q2": "TS=((\"time series\" OR forecasting OR \"temporal prediction\")\nAND (TSMixer OR TiDE OR TimeMixer OR PatchTST OR iTransformer\nOR Crossformer OR TimesNet OR MICN OR Mamba\nOR \"structured state space\"))"
+    },
+    "queries_executed_by_assistant": false,
+    "query_to_file_mapping_confirmed": false,
+    "unique_exact_UT": 1300,
+    "scientific_study_deduplication_complete": false,
+    "full_text_screening_complete": false,
+    "included_studies_count": null,
+    "import_count_is_combined_query_universe": false,
+    "combined_native_query_result_universe": null,
+    "export_DA_raw": "2026-11-06",
+    "export_DA_has_time_or_timezone": false,
+    "query_execution_date_inferred_from_DA": false,
+    "administrative_receipt_date_colombia": "2026-11-05",
+    "administrative_timezone": "America/Bogota",
+    "raw_exports_redistributed": false,
+    "assistant_independent_reviewers_are_human_reviewers": false,
+    "human_independent_reviewer_count": null,
+    "cohen_kappa_calculated": false,
+    "primary_evidence_record": "literature_wos/source_manifest.json",
+    "import_summary": "literature_wos/summary.json",
+    "note": "Dos fuentes principales recibidas, con cobertura parcial. Los 7.833 grupos no son estudios elegibles ni incluidos; los diez PDF revisados son un subcorpus dirigido de originales arquitectónicos. WoS TC y Scopus Cited by se conservan por separado. No se infiere fecha local de consulta a partir de DA sin hora/zona, ni indexación/cuartil de la mera recepción de un PDF.",
+    "verified_native_databases": [
+      "Web of Science",
+      "Scopus"
+    ],
+    "minimum_two_native_sources_received": true,
+    "native_export_coverage_complete": false,
+    "source_files_received": 4,
+    "received_native_record_occurrences": 8802,
+    "combined_bibliographic_groups": 7833,
+    "duplicate_occurrences_removed_all_stages": 969,
+    "cross_database_record_groups_linked": 964,
+    "wos_exported_record_occurrences": 1302,
+    "wos_unique_exact_UT": 1300,
+    "wos_identifier_deduplicated_groups": 1298,
+    "wos_Q2_global_result_count": null,
+    "wos_screenshot_displayed_results": 302,
+    "wos_screenshot_query_assignment_confirmed": false,
+    "scopus_exported_record_occurrences": 7500,
+    "scopus_screenshot_displayed_results": 7874,
+    "scopus_unreceived_or_unexported_records": 374,
+    "scopus_received_fraction_of_screenshot_count": 0.95250190500381,
+    "scopus_partial_export_coverage_note": "374 es brecha de recepción/exportación, no exclusiones de PRISMA; rangos y orden de exportación no confirmados",
+    "scopus_verified_search_field": "Article title, Abstract, Keywords",
+    "scopus_previous_keywords_only_count_2845_is_current_search_count": false,
+    "native_query_universe_fully_received": false,
+    "full_text_screening_scope": "No se ha completado cribado y elegibilidad de los 7.833 grupos; sí se han leído los diez originales arquitectónicos del subcorpus dirigido",
+    "architectural_originals_full_text_reviewed": 10,
+    "architectural_originals_physical_PDF_pages": 215,
+    "architectural_originals_with_immutable_author_code_evidence": 10,
+    "architectural_originals_matched_in_received_Scopus": 8,
+    "architectural_originals_not_matched_in_partial_Scopus": [
+      "Informer",
+      "Autoformer"
+    ],
+    "originals_missing_in_partial_export_are_absent_from_database": false,
+    "current_fulltext_manifest": "literature_fulltext/fulltext_manifest.json",
+    "current_fulltext_extraction": "literature_fulltext/models.json",
+    "current_external_metric_pairs": "literature_fulltext/metrics.csv",
+    "native_combined_import_summary": "literature_scopus/summary.json",
+    "native_scopus_source_manifest": "literature_scopus/source_manifest.json",
+    "historical_code_only_stage_fulltext_count": 0,
+    "historical_zero_fulltext_count_describes_current_review": false,
+    "new_deep_learning_fits_this_review": 0,
+    "original_papers_numerically_reproduced_this_review": 0,
+    "new_Bitcoin_results_this_review": 0,
+    "ieee_native_search_export_received": false,
+    "arxiv_native_search_export_received": false,
+    "minimum_three_crossmodal_queries_verified": false,
+    "publication_quartiles_verified_for_all_candidates": false,
+    "unique_exact_UT_scope": "WoS únicamente; los EID de Scopus se conservan por separado"
+  }
 }

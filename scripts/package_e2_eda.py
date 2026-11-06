@@ -42,7 +42,8 @@ book_e2/_static/eda_known_shift/README.md; admite caché verificado o los ZIP
 oficiales, sin entrenar ni volver a puntuar modelos.
 
 El contenido corresponde a EDA: Ridge es una referencia diagnóstica mensual;
-el benchmark de diez modelos de E2 aún está pendiente. El perfil del test es
+el benchmark de diez modelos nuevos más las cinco referencias de E2 (mínimo
+quince configuraciones) aún está pendiente. El perfil del test es
 retrospectivo y no constituye confirmación nueva. Los resultados adversos y
 las limitaciones de ruido, ruta y sellado se conservan en el capítulo.
 

@@ -63,13 +63,13 @@
     "e1_partition_inherited_without_change": true,
     "e1_R_465_is_not_e2_sample_size": true,
     "sample_size_reason": "E1 dimensionó sus tres pares y su variabilidad piloto; nuevas familias/comparaciones requieren dimensionamiento propio sin cambiar el margen heredado",
-    "e2_benchmark_target_models": 10,
+    "e2_benchmark_target_models": 15,
     "e2_ten_model_catalogue_selected": false,
     "e2_model_selected": false,
     "e2_experiments_executed": false,
     "e2_new_unseen_test_available": false,
     "historical_results_may_be_labeled_confirmatory_for_e2": false,
-    "e2_experiments_executed_scope": "Benchmark de diez modelos DL; el EDA y la referencia diagnóstica se registran por separado",
+    "e2_experiments_executed_scope": "Benchmark final con diez modelos DL nuevos más las tres bases, una referencia no profunda y otra trivial; el EDA y Ridge diagnóstico se registran por separado",
     "e2_eda_executed": true,
     "e2_diagnostic_ridge_fitted": true,
     "e2_diagnostic_ridge_scope": "Diagnóstico forward chaining en desarrollo, sin selección ni entrenamiento de modelos DL de E2",
@@ -77,12 +77,53 @@
     "eda_changes_inherited_data_contract": false,
     "known_test_distribution_analysis_is_posthoc_exploratory": true,
     "target_lags_added_by_eda": false,
-    "route_diagnosis_closed": false
+    "route_diagnosis_closed": false,
+    "e2_benchmark_target_models_semantics": "Mínimo total de configuraciones según guía 3.2; diez modelos DL nuevos del Top 10 más cinco referencias",
+    "e2_top10_new_deep_learning_model_count": 10,
+    "e2_minimum_deep_learning_configurations": 13,
+    "e2_minimum_total_benchmark_configurations": 15,
+    "e2_benchmark_composition": {
+      "source_rule": "Guía E2, sección 3.2, más restrictiva que la síntesis inicial de un benchmark de diez",
+      "top10_new_deep_learning_models": 10,
+      "inherited_deep_learning_references": [
+        "GRU/D7-c03",
+        "LSTM/D7-c02",
+        "TCN/D7-c02"
+      ],
+      "inherited_deep_learning_reference_count": 3,
+      "simple_non_deep_reference": "Ridge",
+      "simple_non_deep_reference_count": 1,
+      "trivial_reference": "Persistencia causal",
+      "trivial_reference_count": 1,
+      "minimum_deep_learning_configurations": 13,
+      "minimum_total_configurations": 15,
+      "top10_includes_inherited_three_bases": false,
+      "minimum_total_is_not_the_number_of_seeds": true,
+      "reference_scope_note": "Ridge es la referencia no profunda propuesta; su diagnóstico de EDA ya existe, pero el ajuste y presupuesto del benchmark final aún deben cerrarse. Persistencia conserva su función contextual heredada."
+    },
+    "e2_top10_operational_catalogue_status": "proposed_not_fully_closed",
+    "e2_top10_operational_model_names": [
+      "TSMixer",
+      "TiDE",
+      "TimeMixer",
+      "TimesNet",
+      "PatchTST",
+      "Informer",
+      "Autoformer",
+      "iTransformer",
+      "Crossformer",
+      "S-Mamba"
+    ],
+    "e2_top10_proposed_family_count": 4,
+    "e2_implementation_validated_for_D7": false,
+    "e2_ten_model_catalogue_selected_scope": "La selección bibliográfica contiene diez nombres; este indicador reserva el cierre del catálogo operativo con adaptación D7 y presupuesto validados",
+    "e2_bibliographic_models_reviewed": 10,
+    "e2_execution_catalogue_validated": false
   },
   "updated_on_colombia": "2026-11-05",
   "administrative_timezone": "America/Bogota",
   "inheritance_basis": {
-    "source": "Guía de Entregable 2, imágenes aportadas por el usuario, páginas 1–3",
+    "source": "Guía de E2: páginas iniciales 1–3 y aclaración de alcance en sección 3.2, página 9 y fragmentos posteriores; la herencia científica de E1 no cambia",
     "received_date_colombia": "2026-11-05",
     "rule": "Baseline, métrica primaria, margen δ, unidad de independencia y partición se heredan de E1 sin modificarse",
     "guide_record": "guia_e2_recibida.json",
@@ -238,5 +279,233 @@
     "preprocessing_decision": "Transformaciones y similitud de ventanas se diagnostican en desarrollo; no sustituyen la representación heredada ni autorizan selección con test",
     "route_alert": "La alta autocorrelación residual requiere discutir la ruta alternativa de series de tiempo, sin inferir que añadir rezagos del objetivo garantiza mejora",
     "contract_policy": "Métrica, δ, unidad, partición, D7×5 y objetivo permanecen sin modificación; no se introduce un nuevo periodo de prueba"
+  },
+  "literature_extension_scope": {
+    "guide_record": "guia_e2_recibida.json",
+    "received_section": "3.1–3.4 y búsqueda transversal de mecanismos",
+    "benchmark_composition": {
+      "source_rule": "Guía E2, sección 3.2, más restrictiva que la síntesis inicial de un benchmark de diez",
+      "top10_new_deep_learning_models": 10,
+      "inherited_deep_learning_references": [
+        "GRU/D7-c03",
+        "LSTM/D7-c02",
+        "TCN/D7-c02"
+      ],
+      "inherited_deep_learning_reference_count": 3,
+      "simple_non_deep_reference": "Ridge",
+      "simple_non_deep_reference_count": 1,
+      "trivial_reference": "Persistencia causal",
+      "trivial_reference_count": 1,
+      "minimum_deep_learning_configurations": 13,
+      "minimum_total_configurations": 15,
+      "top10_includes_inherited_three_bases": false,
+      "minimum_total_is_not_the_number_of_seeds": true,
+      "reference_scope_note": "Ridge es la referencia no profunda propuesta; su diagnóstico de EDA ya existe, pero el ajuste y presupuesto del benchmark final aún deben cerrarse. Persistencia conserva su función contextual heredada."
+    },
+    "top10_operational_proposal": {
+      "status": "proposed_operational_catalogue_not_fully_closed",
+      "selection_scope": "Propuesta bibliográfica para el experimento de Bitcoin; no un ranking de resultados propios ni una garantía de mejora",
+      "models": [
+        {
+          "model": "TSMixer",
+          "family": "MLP/mixing"
+        },
+        {
+          "model": "TiDE",
+          "family": "MLP/mixing"
+        },
+        {
+          "model": "TimeMixer",
+          "family": "MLP/mixing"
+        },
+        {
+          "model": "TimesNet",
+          "family": "Convolucional"
+        },
+        {
+          "model": "PatchTST",
+          "family": "Atención"
+        },
+        {
+          "model": "Informer",
+          "family": "Atención"
+        },
+        {
+          "model": "Autoformer",
+          "family": "Atención"
+        },
+        {
+          "model": "iTransformer",
+          "family": "Atención"
+        },
+        {
+          "model": "Crossformer",
+          "family": "Atención"
+        },
+        {
+          "model": "S-Mamba",
+          "family": "Espacio de estados"
+        }
+      ],
+      "model_count": 10,
+      "family_counts_proposed": {
+        "MLP/mixing": 3,
+        "Convolucional": 1,
+        "Atención": 5,
+        "Espacio de estados": 1
+      },
+      "distinct_family_count_proposed": 4,
+      "one_primary_family_assigned_per_model": true,
+      "family_and_implementation_validation_complete": false,
+      "benchmark_executed": false,
+      "new_deep_learning_fits": 0,
+      "input_contract": "D7 × cinco canales OHLCV causales; n=7; h=1; salida escalar σ7 poblacional sin anualizar",
+      "target_lags_added": false,
+      "implementation_and_scalar_head_adaptations": "Especificadas por modelo en la revisión, pendientes de implementación y validación explícita D7; no se afirma reproducción idéntica del paper",
+      "outstanding_closure": [
+        "Completar la cobertura de exportación y el cribado global con decisiones y razones de exclusión; no equiparar grupos recibidos con estudios incluidos",
+        "Lectura completa de los apoyos aplicados aún documentados solo por metadatos o resumen",
+        "Verificación académica de cada publicación y cuartil cuando aplique",
+        "Ejecutar y documentar al menos tres búsquedas transversales con resultados y decisiones de transferencia",
+        "Resolver los componentes no comparables de la puntuación; no inventar desempeño Bitcoin ni citas faltantes",
+        "Implementar y validar cada adaptación D7×5 hacia σ7 sin añadir rezagos del objetivo",
+        "Cerrar protocolo equitativo, piloto y dimensionamiento del benchmark"
+      ],
+      "does_not_change_inherited_e1_baselines": true,
+      "bibliographic_review_status": "ten_architectural_originals_read_and_extracted_with_locators",
+      "bibliographic_models_reviewed": 10,
+      "execution_catalogue_validated": false,
+      "bibliographic_evidence": {
+        "bibliographic_models_reviewed": 10,
+        "full_original_PDFs_reviewed": 10,
+        "physical_PDF_pages_reviewed": 215,
+        "author_code_sources_verified": 10,
+        "canonical_external_metric_pairs_verified": 10,
+        "current_fulltext_manifest": "literature_fulltext/fulltext_manifest.json",
+        "current_fulltext_extraction": "literature_fulltext/models.json",
+        "native_sources_received": [
+          "Web of Science",
+          "Scopus"
+        ],
+        "native_export_coverage_complete": false,
+        "combined_bibliographic_groups": 7833,
+        "originals_matched_in_received_Scopus": 8,
+        "global_PRISMA_screening_and_eligibility_complete": false,
+        "benchmark_implementation_validated_for_D7": false,
+        "new_deep_learning_fits_this_review": 0,
+        "original_papers_numerically_reproduced_this_review": 0,
+        "new_Bitcoin_results_this_review": 0,
+        "scope_note": "Lectura y selección bibliográfica para transferencia a Bitcoin; los resultados externos no constituyen un ranking comparable del experimento D7 de Bitcoin."
+      }
+    },
+    "academic_search_status": {
+      "record_schema_version": 2,
+      "source": "Tres exportaciones nativas WoS y una exportación CSV Scopus aportadas por el usuario; originales de los diez modelos aportados después en PDF",
+      "verified_native_database_count": 2,
+      "required_database_minimum": 2,
+      "arxiv_role": "Fuente complementaria; no sustituye por sí sola la exigencia de otra base principal",
+      "queries_provided_by_user": {
+        "Q1": "TS=((bitcoin OR ethereum OR cryptocurrenc* OR cryptoasset*)\nAND (volatility OR \"realized volatility\" OR \"realised volatility\")\nAND (\"deep learning\" OR \"neural network*\" OR transformer*\nOR LSTM OR GRU OR CNN OR TCN))",
+        "Q2": "TS=((\"time series\" OR forecasting OR \"temporal prediction\")\nAND (TSMixer OR TiDE OR TimeMixer OR PatchTST OR iTransformer\nOR Crossformer OR TimesNet OR MICN OR Mamba\nOR \"structured state space\"))"
+      },
+      "queries_executed_by_assistant": false,
+      "query_to_file_mapping_confirmed": false,
+      "unique_exact_UT": 1300,
+      "scientific_study_deduplication_complete": false,
+      "full_text_screening_complete": false,
+      "included_studies_count": null,
+      "import_count_is_combined_query_universe": false,
+      "combined_native_query_result_universe": null,
+      "export_DA_raw": "2026-11-06",
+      "export_DA_has_time_or_timezone": false,
+      "query_execution_date_inferred_from_DA": false,
+      "administrative_receipt_date_colombia": "2026-11-05",
+      "administrative_timezone": "America/Bogota",
+      "raw_exports_redistributed": false,
+      "assistant_independent_reviewers_are_human_reviewers": false,
+      "human_independent_reviewer_count": null,
+      "cohen_kappa_calculated": false,
+      "primary_evidence_record": "literature_wos/source_manifest.json",
+      "import_summary": "literature_wos/summary.json",
+      "note": "Dos fuentes principales recibidas, con cobertura parcial. Los 7.833 grupos no son estudios elegibles ni incluidos; los diez PDF revisados son un subcorpus dirigido de originales arquitectónicos. WoS TC y Scopus Cited by se conservan por separado. No se infiere fecha local de consulta a partir de DA sin hora/zona, ni indexación/cuartil de la mera recepción de un PDF.",
+      "verified_native_databases": [
+        "Web of Science",
+        "Scopus"
+      ],
+      "minimum_two_native_sources_received": true,
+      "native_export_coverage_complete": false,
+      "source_files_received": 4,
+      "received_native_record_occurrences": 8802,
+      "combined_bibliographic_groups": 7833,
+      "duplicate_occurrences_removed_all_stages": 969,
+      "cross_database_record_groups_linked": 964,
+      "wos_exported_record_occurrences": 1302,
+      "wos_unique_exact_UT": 1300,
+      "wos_identifier_deduplicated_groups": 1298,
+      "wos_Q2_global_result_count": null,
+      "wos_screenshot_displayed_results": 302,
+      "wos_screenshot_query_assignment_confirmed": false,
+      "scopus_exported_record_occurrences": 7500,
+      "scopus_screenshot_displayed_results": 7874,
+      "scopus_unreceived_or_unexported_records": 374,
+      "scopus_received_fraction_of_screenshot_count": 0.95250190500381,
+      "scopus_partial_export_coverage_note": "374 es brecha de recepción/exportación, no exclusiones de PRISMA; rangos y orden de exportación no confirmados",
+      "scopus_verified_search_field": "Article title, Abstract, Keywords",
+      "scopus_previous_keywords_only_count_2845_is_current_search_count": false,
+      "native_query_universe_fully_received": false,
+      "full_text_screening_scope": "No se ha completado cribado y elegibilidad de los 7.833 grupos; sí se han leído los diez originales arquitectónicos del subcorpus dirigido",
+      "architectural_originals_full_text_reviewed": 10,
+      "architectural_originals_physical_PDF_pages": 215,
+      "architectural_originals_with_immutable_author_code_evidence": 10,
+      "architectural_originals_matched_in_received_Scopus": 8,
+      "architectural_originals_not_matched_in_partial_Scopus": [
+        "Informer",
+        "Autoformer"
+      ],
+      "originals_missing_in_partial_export_are_absent_from_database": false,
+      "current_fulltext_manifest": "literature_fulltext/fulltext_manifest.json",
+      "current_fulltext_extraction": "literature_fulltext/models.json",
+      "current_external_metric_pairs": "literature_fulltext/metrics.csv",
+      "native_combined_import_summary": "literature_scopus/summary.json",
+      "native_scopus_source_manifest": "literature_scopus/source_manifest.json",
+      "historical_code_only_stage_fulltext_count": 0,
+      "historical_zero_fulltext_count_describes_current_review": false,
+      "new_deep_learning_fits_this_review": 0,
+      "original_papers_numerically_reproduced_this_review": 0,
+      "new_Bitcoin_results_this_review": 0,
+      "ieee_native_search_export_received": false,
+      "arxiv_native_search_export_received": false,
+      "minimum_three_crossmodal_queries_verified": false,
+      "publication_quartiles_verified_for_all_candidates": false,
+      "unique_exact_UT_scope": "WoS únicamente; los EID de Scopus se conservan por separado"
+    },
+    "e1_three_baselines_or_results_changed": false,
+    "inherited_metric_margin_independence_partition_changed": false,
+    "e2_new_deep_learning_fits": 0,
+    "dataset_and_target_contract_changed": false,
+    "known_test_status": "Continúa conocido; la propuesta bibliográfica no crea un test nuevo ni justifica afirmaciones confirmatorias",
+    "remaining_guide_material": "Secciones 4–14 y apéndices, incluida la implementación equitativa 11.1 y búsqueda de arquitectura 14",
+    "current_fulltext_review": {
+      "bibliographic_models_reviewed": 10,
+      "full_original_PDFs_reviewed": 10,
+      "physical_PDF_pages_reviewed": 215,
+      "author_code_sources_verified": 10,
+      "canonical_external_metric_pairs_verified": 10,
+      "current_fulltext_manifest": "literature_fulltext/fulltext_manifest.json",
+      "current_fulltext_extraction": "literature_fulltext/models.json",
+      "native_sources_received": [
+        "Web of Science",
+        "Scopus"
+      ],
+      "native_export_coverage_complete": false,
+      "combined_bibliographic_groups": 7833,
+      "originals_matched_in_received_Scopus": 8,
+      "global_PRISMA_screening_and_eligibility_complete": false,
+      "benchmark_implementation_validated_for_D7": false,
+      "new_deep_learning_fits_this_review": 0,
+      "original_papers_numerically_reproduced_this_review": 0,
+      "new_Bitcoin_results_this_review": 0,
+      "scope_note": "Lectura y selección bibliográfica para transferencia a Bitcoin; los resultados externos no constituyen un ranking comparable del experimento D7 de Bitcoin."
+    }
   }
 }

@@ -43,7 +43,7 @@
     "expected_calendar_minutes": 2014560,
     "e2_supervised_sample_count": null,
     "count_scope": "Recuentos del manifiesto de E1, no ventanas supervisadas ni tamaño de muestra independiente",
-    "e2_supervised_sample_count_note": "Pendiente por modelo y fase del protocolo final. Los conteos del diagnóstico de desarrollo no son el tamaño muestral común ni el número de unidades independientes del benchmark de diez."
+    "e2_supervised_sample_count_note": "Pendiente por modelo y fase del protocolo final. Los conteos del diagnóstico de desarrollo no son el tamaño muestral común ni las unidades independientes del benchmark con Top 10 adicional y referencias; mínimo quince configuraciones, no quince muestras."
   },
   "schema": {
     "source_frequency": "1 minute",
@@ -338,14 +338,33 @@
     "e2_new_test_assigned": false,
     "e2_new_data_acquired": false,
     "e2_ten_model_catalogue_selected": false,
-    "e2_models_trained_scope": "Indicador heredado reservado a modelos Deep Learning del benchmark de diez; no cuenta referencias diagnósticas",
+    "e2_models_trained_scope": "Modelos DL del benchmark final (Top 10 nuevo más tres bases heredadas); no cuenta el Ridge diagnóstico de EDA",
     "e2_deep_learning_models_trained": false,
     "new_deep_learning_fits": 0,
     "e2_eda_executed": true,
     "e2_diagnostic_ridge_fitted": true,
     "e2_diagnostic_ridge_scope": "Referencia regularizada en desarrollo con forward chaining; diagnóstico temporal, no comparación final DL",
     "known_test_distribution_analysis": "Posterior a la evaluación de E1; alcance exploratorio, sin reutilizarlo para elegir configuración",
-    "route_diagnosis_closed": false
+    "route_diagnosis_closed": false,
+    "e2_top10_operational_catalogue_status": "proposed_not_fully_closed",
+    "e2_top10_operational_model_names": [
+      "TSMixer",
+      "TiDE",
+      "TimeMixer",
+      "TimesNet",
+      "PatchTST",
+      "Informer",
+      "Autoformer",
+      "iTransformer",
+      "Crossformer",
+      "S-Mamba"
+    ],
+    "e2_top10_new_deep_learning_model_count": 10,
+    "e2_minimum_total_benchmark_configurations": 15,
+    "e2_implementation_validated_for_D7": false,
+    "e2_ten_model_catalogue_selected_scope": "La selección bibliográfica contiene diez nombres; este indicador reserva el cierre del catálogo operativo con adaptación D7 y presupuesto validados",
+    "e2_bibliographic_models_reviewed": 10,
+    "e2_execution_catalogue_validated": false
   },
   "eda_scope": {
     "chapter": "sections/02_eda.md",
@@ -359,5 +378,86 @@
     "inherited_target_changed": false,
     "target_lags_added": false,
     "route_alert": "Autocorrelación residual y objetivo móvil justifican revisar la ruta de la guía; no prueban que incorporar rezagos del objetivo mejore. Su evaluación requiere desarrollo y una enmienda explícita antes de alterar entradas o validación."
+  },
+  "literature_scope": {
+    "guide_record": "guia_e2_recibida.json",
+    "focus": "Experimento de Bitcoin/BTCUSDT; la literatura sobre otras criptomonedas u otros dominios puede informar mecanismos, sin cambiar este dataset",
+    "proposed_top10_model_names": [
+      "TSMixer",
+      "TiDE",
+      "TimeMixer",
+      "TimesNet",
+      "PatchTST",
+      "Informer",
+      "Autoformer",
+      "iTransformer",
+      "Crossformer",
+      "S-Mamba"
+    ],
+    "proposed_top10_status": "Diez originales arquitectónicos leídos y seleccionados bibliográficamente; catálogo operativo D7 aún sin implementación validada ni benchmark ejecutado",
+    "minimum_benchmark_composition": {
+      "source_rule": "Guía E2, sección 3.2, más restrictiva que la síntesis inicial de un benchmark de diez",
+      "top10_new_deep_learning_models": 10,
+      "inherited_deep_learning_references": [
+        "GRU/D7-c03",
+        "LSTM/D7-c02",
+        "TCN/D7-c02"
+      ],
+      "inherited_deep_learning_reference_count": 3,
+      "simple_non_deep_reference": "Ridge",
+      "simple_non_deep_reference_count": 1,
+      "trivial_reference": "Persistencia causal",
+      "trivial_reference_count": 1,
+      "minimum_deep_learning_configurations": 13,
+      "minimum_total_configurations": 15,
+      "top10_includes_inherited_three_bases": false,
+      "minimum_total_is_not_the_number_of_seeds": true,
+      "reference_scope_note": "Ridge es la referencia no profunda propuesta; su diagnóstico de EDA ya existe, pero el ajuste y presupuesto del benchmark final aún deben cerrarse. Persistencia conserva su función contextual heredada."
+    },
+    "model_source_datasets_are_not_this_snapshot": true,
+    "same_exact_version_target_and_partition_in_literature_verified": false,
+    "native_wos_exports_verified": true,
+    "verified_native_database_count": 2,
+    "imported_wos_occurrences": 1302,
+    "unique_wos_UT": 1300,
+    "identifier_groups": 1298,
+    "included_studies_count": null,
+    "raw_native_exports_or_full_abstracts_redistributed": false,
+    "export_date_semantics": "DA=2026-11-06 sin hora/zona; no equivale automáticamente a fecha de consulta local. Recepción administrativa America/Bogota=2026-11-05",
+    "query_execution_by_assistant_claimed": false,
+    "independent_new_test_created": false,
+    "target_lags_added": false,
+    "contract_policy": "D7×5, σ7 poblacional, h=1, métrica, margen, unidad y partición heredados sin modificación",
+    "native_scopus_export_verified": true,
+    "minimum_two_native_sources_received": true,
+    "native_export_coverage_complete": false,
+    "imported_scopus_occurrences": 7500,
+    "scopus_screenshot_results": 7874,
+    "scopus_unreceived_or_unexported_records": 374,
+    "combined_native_occurrences": 8802,
+    "combined_bibliographic_groups": 7833,
+    "identifier_groups_scope": "1298 = WoS previo a enlace; 7833 = grupos bibliográficos combinados tras enlace por DOI/título-año-fuente",
+    "current_fulltext_review": {
+      "bibliographic_models_reviewed": 10,
+      "full_original_PDFs_reviewed": 10,
+      "physical_PDF_pages_reviewed": 215,
+      "author_code_sources_verified": 10,
+      "canonical_external_metric_pairs_verified": 10,
+      "current_fulltext_manifest": "literature_fulltext/fulltext_manifest.json",
+      "current_fulltext_extraction": "literature_fulltext/models.json",
+      "native_sources_received": [
+        "Web of Science",
+        "Scopus"
+      ],
+      "native_export_coverage_complete": false,
+      "combined_bibliographic_groups": 7833,
+      "originals_matched_in_received_Scopus": 8,
+      "global_PRISMA_screening_and_eligibility_complete": false,
+      "benchmark_implementation_validated_for_D7": false,
+      "new_deep_learning_fits_this_review": 0,
+      "original_papers_numerically_reproduced_this_review": 0,
+      "new_Bitcoin_results_this_review": 0,
+      "scope_note": "Lectura y selección bibliográfica para transferencia a Bitcoin; los resultados externos no constituyen un ranking comparable del experimento D7 de Bitcoin."
+    }
   }
 }

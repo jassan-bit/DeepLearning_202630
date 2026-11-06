@@ -1,0 +1,920 @@
+{
+  "schema_version": 1,
+  "snapshot_stage": "historical_code_only_before_complete_PDF_receipt",
+  "snapshot_scope_note": "The zero-paper and unverified manuscript fields below describe the earlier code-retrieval stage only. Current full-PDF reading is documented separately: 10 originals, 215 physical pages.",
+  "current_fulltext_review": "references/literature_e2/fulltext_20261105/models.json",
+  "retrieval_completed_at_utc": "2026-11-06T01:12:40.804047+00:00",
+  "administrative_date_colombia": "2026-11-05",
+  "models": [
+    {
+      "name": "TSMixer",
+      "family": "MLP y mezcla",
+      "paper_title": "TSMixer: An All-MLP Architecture for Time Series Forecasting",
+      "paper_year": 2023,
+      "venue_status": "Author README title/authors verified; venue not specified in that README",
+      "doi": "10.48550/arXiv.2303.06053",
+      "doi_kind": "arXiv preprint DOI; not an editorial conference DOI",
+      "identifier_evidence": "Author README gives title and authors; matching arXiv identifier appears in CR of WoS study DOI10.1016/j.jfds.2024.100143",
+      "repo": "google-research/google-research",
+      "code": "tsmixer/tsmixer_basic/models/tsmixer.py",
+      "readme": "tsmixer/README.md",
+      "license": "Apache-2.0",
+      "license_path": "LICENSE",
+      "flow": [
+        "X: B×7×5",
+        "Residual time mixing",
+        "Residual feature mixing",
+        "Readout to one volatility target"
+      ],
+      "equations": [
+        "T = X + transpose(phi(W_t transpose(N(X)) + b_t))",
+        "Z = T + W_f2 phi(W_f1 N(T)+b_f1)+b_f2",
+        "y_hat = softplus(w^T vec(Z)+b) [proposed scalar adaptation]"
+      ],
+      "complexity": "Own structural estimate per block O(C L² + L C F), plus projection; L=7,C=5. Not a measured FLOP count.",
+      "adaptation": "Basic multivariate variant, no static/future auxiliary features; original B×H×C output replaced by a scalar target readout, preserving time/feature mixing.",
+      "risk": "Do not confuse Google/Chen all-MLP TSMixer with differently named IBM variants; layer parameters and training settings still require preregistered configuration.",
+      "source_kind": "Primary author code and README retrieved by immutable commit; no full paper PDF retrieved in this task",
+      "code_source": {
+        "repository": "google-research/google-research",
+        "commit": "d3a4bd8f0eceddda553e47085033b537935b283f",
+        "path": "tsmixer/tsmixer_basic/models/tsmixer.py",
+        "url": "https://raw.githubusercontent.com/google-research/google-research/d3a4bd8f0eceddda553e47085033b537935b283f/tsmixer/tsmixer_basic/models/tsmixer.py",
+        "sha256": "84a7451f86b40b989f7ab7aa36368f24f39610ad62d7ce43e474a30a4e006159",
+        "bytes": 2188,
+        "locators": [
+          {
+            "token": "def res_block",
+            "lines": [
+              22
+            ]
+          },
+          {
+            "token": "def build_model",
+            "lines": [
+              50
+            ]
+          },
+          {
+            "token": "layers.Dense(pred_len)",
+            "lines": [
+              71
+            ]
+          }
+        ]
+      },
+      "readme_source": {
+        "repository": "google-research/google-research",
+        "commit": "d3a4bd8f0eceddda553e47085033b537935b283f",
+        "path": "tsmixer/README.md",
+        "url": "https://raw.githubusercontent.com/google-research/google-research/d3a4bd8f0eceddda553e47085033b537935b283f/tsmixer/README.md",
+        "sha256": "726055327ae83be7f9dff2591b0e7e936cdc5c6a6dc4abedad5f6c9a66f147f2",
+        "bytes": 603,
+        "locators": []
+      },
+      "license_source": {
+        "repository": "google-research/google-research",
+        "commit": "d3a4bd8f0eceddda553e47085033b537935b283f",
+        "path": "LICENSE",
+        "url": "https://raw.githubusercontent.com/google-research/google-research/d3a4bd8f0eceddda553e47085033b537935b283f/LICENSE",
+        "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "bytes": 11358,
+        "locators": []
+      },
+      "equation_status": "Own simplified formulation grounded in inspected implementation; proposed scalar head explicitly marked. Not claimed verbatim paper equations.",
+      "original_metric_values_status": "Not extracted from full manuscript; do not invent table/page values. Separate supplied WoS AB claims from full-text verification.",
+      "original_parameters_flops_training_time_status": "Not independently verified in the original manuscript; model not instantiated/trained here",
+      "benchmark_implementation_status": "Not implemented or tested for D7 in this retrieval task",
+      "paper_full_text_retrieved": false,
+      "supporting_identity_evidence": {
+        "supplied_WoS_study_doi": "10.1016/j.jfds.2024.100143",
+        "cited_reference_contains": "Chen SA, 2023, Arxiv, DOI [arXiv:2303.06053, DOI 10.48550/ARXIV.2303.06053]",
+        "meaning": "Identifies cited Chen/Google TSMixer, not a citation count or full-text reading"
+      }
+    },
+    {
+      "name": "TiDE",
+      "family": "MLP y mezcla",
+      "paper_title": "Long-term Forecasting with TiDE: Time-series Dense Encoder",
+      "paper_year": 2023,
+      "venue_status": "Title and arXiv link verified in author README; publication venue not verified through that source",
+      "doi": "10.48550/arXiv.2304.08424",
+      "doi_kind": "arXiv preprint DOI",
+      "identifier_evidence": "Author README arXiv:2304.08424; DOI resolver not accessed",
+      "repo": "google-research/google-research",
+      "code": "tide/models.py",
+      "readme": "tide/README.md",
+      "license": "Apache-2.0",
+      "license_path": "LICENSE",
+      "flow": [
+        "X: B×7×5",
+        "Past-feature projection and residual dense encoder",
+        "Residual dense decoder",
+        "Scalar forecast with learned skip"
+      ],
+      "equations": [
+        "R(u) = W_2 phi(W_1 u+b_1)+W_skip u+b_skip",
+        "e = E(vec(X)); d = D(e)",
+        "y_hat = g(d) + W_skip vec(X) [proposed covariate-only adaptation]"
+      ],
+      "complexity": "Own estimate sum_l O(d_l d_(l+1)) over dense layers, plus feature projections. Widths are not fixed here; no numerical FLOPs/parameters inferred.",
+      "adaptation": "Original interface includes past target-series data, series embeddings and known future covariates. Reimplement a documented covariate-only dense encoder/decoder from 35 observed values; omit unknown future/extra categorical fields and never add sigma7 lags silently.",
+      "risk": "Not a plug-and-play execution of original interface under the inherited contract. The scalar head/skip and removal of target-history inputs must be named as adaptations.",
+      "source_kind": "Primary author code and README retrieved by immutable commit; no full paper PDF retrieved in this task",
+      "code_source": {
+        "repository": "google-research/google-research",
+        "commit": "d3a4bd8f0eceddda553e47085033b537935b283f",
+        "path": "tide/models.py",
+        "url": "https://raw.githubusercontent.com/google-research/google-research/d3a4bd8f0eceddda553e47085033b537935b283f/tide/models.py",
+        "sha256": "ad8fd8d498809deeed9c847a169cada42134cbd0351b03e750706132a5d151c7",
+        "bytes": 10828,
+        "locators": [
+          {
+            "token": "class MLPResidual",
+            "lines": [
+              29
+            ]
+          },
+          {
+            "token": "class TideModel",
+            "lines": [
+              84
+            ]
+          },
+          {
+            "token": "future_features = inputs[1]",
+            "lines": [
+              175
+            ]
+          },
+          {
+            "token": "residual_out = self.linear(past_ts)",
+            "lines": [
+              203
+            ]
+          }
+        ]
+      },
+      "readme_source": {
+        "repository": "google-research/google-research",
+        "commit": "d3a4bd8f0eceddda553e47085033b537935b283f",
+        "path": "tide/README.md",
+        "url": "https://raw.githubusercontent.com/google-research/google-research/d3a4bd8f0eceddda553e47085033b537935b283f/tide/README.md",
+        "sha256": "57c6e2ee1c48d889c3ea6e81607871c6e6f76042e60f716582b94e0d6ed368e8",
+        "bytes": 3869,
+        "locators": []
+      },
+      "license_source": {
+        "repository": "google-research/google-research",
+        "commit": "d3a4bd8f0eceddda553e47085033b537935b283f",
+        "path": "LICENSE",
+        "url": "https://raw.githubusercontent.com/google-research/google-research/d3a4bd8f0eceddda553e47085033b537935b283f/LICENSE",
+        "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "bytes": 11358,
+        "locators": []
+      },
+      "equation_status": "Own simplified formulation grounded in inspected implementation; proposed scalar head explicitly marked. Not claimed verbatim paper equations.",
+      "original_metric_values_status": "Not extracted from full manuscript; do not invent table/page values. Separate supplied WoS AB claims from full-text verification.",
+      "original_parameters_flops_training_time_status": "Not independently verified in the original manuscript; model not instantiated/trained here",
+      "benchmark_implementation_status": "Not implemented or tested for D7 in this retrieval task",
+      "paper_full_text_retrieved": false
+    },
+    {
+      "name": "TimeMixer",
+      "family": "MLP y mezcla",
+      "paper_title": "TimeMixer: Decomposable Multiscale Mixing for Time Series Forecasting",
+      "paper_year": 2024,
+      "venue_status": "ICLR2024 verified in author README citation",
+      "doi": "10.48550/arXiv.2405.14616",
+      "doi_kind": "arXiv full-paper DOI, not an ICLR editorial DOI",
+      "identifier_evidence": "Author README links arXiv:2405.14616 as full-paper version",
+      "repo": "kwuking/TimeMixer",
+      "code": "models/TimeMixer.py",
+      "readme": "README.md",
+      "license": "Apache-2.0",
+      "license_path": "LICENSE",
+      "flow": [
+        "Observed X and valid downsampled scales",
+        "Season/trend decomposition",
+        "Fine-to-coarse season and coarse-to-fine trend MLP mixing",
+        "Sum of scale-specific predictors → scalar"
+      ],
+      "equations": [
+        "(S_l,T_l) = decomp(X_l)",
+        "S_l <- S_l + MLP_down(S_(l-1)); T_l <- T_l + MLP_up(T_(l+1))",
+        "y_hat = sum_l head_l(Z_l) [scalar adaptation]"
+      ],
+      "complexity": "Own estimate sums dense temporal mixing costs across scales L_l; O(sum_l C L_l² + feature-FFN costs). No measured FLOP claim.",
+      "adaptation": "For D7, ensure every downsampled length stays positive, e.g. lengths7/3/1 with factor2 and at most2 reductions; choose a short valid decomposition kernel. Replace variablewise future outputs/inverse normalization with target-scale scalar readout.",
+      "risk": "Do not use defaults for histories96/336 blindly; no extra future time features or unchanged channelwise inverse scaling for a different target.",
+      "source_kind": "Primary author code and README retrieved by immutable commit; no full paper PDF retrieved in this task",
+      "code_source": {
+        "repository": "kwuking/TimeMixer",
+        "commit": "e24610583b36fdd8c76cc17a8df4e65759a5f460",
+        "path": "models/TimeMixer.py",
+        "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/models/TimeMixer.py",
+        "sha256": "817d62f4aac54c8566e560f6d3785856e31c8ee51460279ee3d0a4823f11d4be",
+        "bytes": 20663,
+        "locators": [
+          {
+            "token": "class MultiScaleSeasonMixing",
+            "lines": [
+              28
+            ]
+          },
+          {
+            "token": "class MultiScaleTrendMixing",
+            "lines": [
+              72
+            ]
+          },
+          {
+            "token": "class PastDecomposableMixing",
+            "lines": [
+              117
+            ]
+          },
+          {
+            "token": "def forecast",
+            "lines": [
+              331
+            ]
+          }
+        ]
+      },
+      "readme_source": {
+        "repository": "kwuking/TimeMixer",
+        "commit": "e24610583b36fdd8c76cc17a8df4e65759a5f460",
+        "path": "README.md",
+        "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/README.md",
+        "sha256": "38f3eeafef388f3e67b23c403d93937272f5403e97c5cfec3bfdef86774e3eda",
+        "bytes": 13159,
+        "locators": []
+      },
+      "license_source": {
+        "repository": "kwuking/TimeMixer",
+        "commit": "e24610583b36fdd8c76cc17a8df4e65759a5f460",
+        "path": "LICENSE",
+        "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/LICENSE",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "bytes": 11357,
+        "locators": []
+      },
+      "equation_status": "Own simplified formulation grounded in inspected implementation; proposed scalar head explicitly marked. Not claimed verbatim paper equations.",
+      "original_metric_values_status": "Not extracted from full manuscript; do not invent table/page values. Separate supplied WoS AB claims from full-text verification.",
+      "original_parameters_flops_training_time_status": "Not independently verified in the original manuscript; model not instantiated/trained here",
+      "benchmark_implementation_status": "Not implemented or tested for D7 in this retrieval task",
+      "paper_full_text_retrieved": false
+    },
+    {
+      "name": "TimesNet",
+      "family": "Convolución temporal 2D",
+      "paper_title": "TimesNet: Temporal 2D-Variation Modeling for General Time Series Analysis",
+      "paper_year": 2023,
+      "venue_status": "ICLR2023 verified in author README citation",
+      "doi": "10.48550/arXiv.2210.02186",
+      "doi_kind": "arXiv preprint DOI",
+      "identifier_evidence": "Author README links arXiv:2210.02186; exact DOI resolver not accessed",
+      "repo": "thuml/Time-Series-Library",
+      "code": "models/TimesNet.py",
+      "readme_repo": "thuml/TimesNet",
+      "readme": "README.md",
+      "license": "MIT",
+      "license_path": "LICENSE",
+      "flow": [
+        "X → embedding",
+        "FFT-derived candidate periods",
+        "Reshape into intraperiod/interperiod 2D grids",
+        "Inception2D convolution and weighted residual fusion",
+        "Scalar target readout"
+      ],
+      "equations": [
+        "p_i = floor(L/f_i), f_i in selected nonzero FFT bins",
+        "Z_i = reshape_back(Conv2D(reshape_(p_i)(X)))",
+        "Z = X + sum_i softmax(a)_i Z_i"
+      ],
+      "complexity": "Own estimate O(L d log L) for FFT plus O(sum_i A_i k_i² d_in d_out) for 2D convolutions over padded grids. No numerical FLOP measurement.",
+      "adaptation": "D7 admits only a few positive FFT bins; constrain top_k and exclude DC explicitly, with a defined tie/constant-signal case. Do not infer long market cycles from seven days. Use scalar head before channelwise inverse scaling.",
+      "risk": "Official TimesNet README moved executable source to official Time-Series-Library; record both repositories. FFT selection depends on input; periods beyond observed support are not evidence of learned long memory.",
+      "source_kind": "Primary author code and README retrieved by immutable commit; no full paper PDF retrieved in this task",
+      "code_source": {
+        "repository": "thuml/Time-Series-Library",
+        "commit": "4e938a1767106324dd753b2a44832bf870a0252e",
+        "path": "models/TimesNet.py",
+        "url": "https://raw.githubusercontent.com/thuml/Time-Series-Library/4e938a1767106324dd753b2a44832bf870a0252e/models/TimesNet.py",
+        "sha256": "f64c4bed1fd7347090044a0163bd4209c9f9ec1c1b19ceff47842df36b64bba7",
+        "bytes": 8735,
+        "locators": [
+          {
+            "token": "def FFT_for_Period",
+            "lines": [
+              9
+            ]
+          },
+          {
+            "token": "class TimesBlock",
+            "lines": [
+              21
+            ]
+          },
+          {
+            "token": "class Model",
+            "lines": [
+              71
+            ]
+          },
+          {
+            "token": "def forecast",
+            "lines": [
+              103
+            ]
+          }
+        ]
+      },
+      "readme_source": {
+        "repository": "thuml/TimesNet",
+        "commit": "2b39e14cd16448e0ed94e4df81c4f5dc86f658d9",
+        "path": "README.md",
+        "url": "https://raw.githubusercontent.com/thuml/TimesNet/2b39e14cd16448e0ed94e4df81c4f5dc86f658d9/README.md",
+        "sha256": "41d7cb0cd723e0febbfa82d27ab145a3cf35aa2de0d4d1cd67d805929e05b6d7",
+        "bytes": 5396,
+        "locators": []
+      },
+      "license_source": {
+        "repository": "thuml/Time-Series-Library",
+        "commit": "4e938a1767106324dd753b2a44832bf870a0252e",
+        "path": "LICENSE",
+        "url": "https://raw.githubusercontent.com/thuml/Time-Series-Library/4e938a1767106324dd753b2a44832bf870a0252e/LICENSE",
+        "sha256": "8a6caa178ea3f33ebff5d7bb5558628cf5b423305dc30d3630f86564c7db94a2",
+        "bytes": 1084,
+        "locators": []
+      },
+      "equation_status": "Own simplified formulation grounded in inspected implementation; proposed scalar head explicitly marked. Not claimed verbatim paper equations.",
+      "original_metric_values_status": "Not extracted from full manuscript; do not invent table/page values. Separate supplied WoS AB claims from full-text verification.",
+      "original_parameters_flops_training_time_status": "Not independently verified in the original manuscript; model not instantiated/trained here",
+      "benchmark_implementation_status": "Not implemented or tested for D7 in this retrieval task",
+      "paper_full_text_retrieved": false
+    },
+    {
+      "name": "PatchTST",
+      "family": "Atención",
+      "paper_title": "A Time Series is Worth 64 Words: Long-term Forecasting with Transformers",
+      "paper_year": 2023,
+      "venue_status": "ICLR2023 verified in author README citation",
+      "doi": "10.48550/arXiv.2211.14730",
+      "doi_kind": "arXiv preprint DOI",
+      "identifier_evidence": "Author README links arXiv:2211.14730",
+      "repo": "yuqinie98/PatchTST",
+      "code": "PatchTST_supervised/models/PatchTST.py",
+      "readme": "README.md",
+      "license": "Apache-2.0",
+      "license_path": "LICENSE",
+      "flow": [
+        "Per-channel historical windows",
+        "Short patches and shared projection",
+        "Channel-independent transformer backbone",
+        "Declared cross-channel scalar readout"
+      ],
+      "equations": [
+        "P_c = patch(X_[:,c]); H_c = Transformer(P_c W_p+E_pos)",
+        "y_hat = head(concat_c H_c) [proposed output fusion]"
+      ],
+      "complexity": "Own estimate O(C P² d + C P d²) for P patches and transformer FFN; patching can reduce token count. No advantage guaranteed with L7.",
+      "adaptation": "Patch length and stride must fit7, e.g. patch2/stride1. Original model predicts each input variable independently; scalar volatility requires an explicit fusion head and matching target scaling.",
+      "risk": "Do not leave patch_len16 or32 defaults; a new cross-channel head must not be represented as an unchanged original architecture.",
+      "source_kind": "Primary author code and README retrieved by immutable commit; no full paper PDF retrieved in this task",
+      "code_source": {
+        "repository": "yuqinie98/PatchTST",
+        "commit": "204c21efe0b39603ad6e2ca640ef5896646ab1a9",
+        "path": "PatchTST_supervised/models/PatchTST.py",
+        "url": "https://raw.githubusercontent.com/yuqinie98/PatchTST/204c21efe0b39603ad6e2ca640ef5896646ab1a9/PatchTST_supervised/models/PatchTST.py",
+        "sha256": "49d8bb865e1226d6338842f4b33c4bc6992cefb048dc2a4a5a8c410ca708586b",
+        "bytes": 5442,
+        "locators": [
+          {
+            "token": "class Model",
+            "lines": [
+              15
+            ]
+          },
+          {
+            "token": "PatchTST_backbone",
+            "lines": [
+              11,
+              53,
+              61,
+              70
+            ]
+          },
+          {
+            "token": "def forward",
+            "lines": [
+              80
+            ]
+          }
+        ]
+      },
+      "readme_source": {
+        "repository": "yuqinie98/PatchTST",
+        "commit": "204c21efe0b39603ad6e2ca640ef5896646ab1a9",
+        "path": "README.md",
+        "url": "https://raw.githubusercontent.com/yuqinie98/PatchTST/204c21efe0b39603ad6e2ca640ef5896646ab1a9/README.md",
+        "sha256": "7b45e8c686111038986b3b6e35b7e29338dad16eb1a9586a321be8a19d16ea7e",
+        "bytes": 5389,
+        "locators": []
+      },
+      "license_source": {
+        "repository": "yuqinie98/PatchTST",
+        "commit": "204c21efe0b39603ad6e2ca640ef5896646ab1a9",
+        "path": "LICENSE",
+        "url": "https://raw.githubusercontent.com/yuqinie98/PatchTST/204c21efe0b39603ad6e2ca640ef5896646ab1a9/LICENSE",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "bytes": 11357,
+        "locators": []
+      },
+      "equation_status": "Own simplified formulation grounded in inspected implementation; proposed scalar head explicitly marked. Not claimed verbatim paper equations.",
+      "original_metric_values_status": "Not extracted from full manuscript; do not invent table/page values. Separate supplied WoS AB claims from full-text verification.",
+      "original_parameters_flops_training_time_status": "Not independently verified in the original manuscript; model not instantiated/trained here",
+      "benchmark_implementation_status": "Not implemented or tested for D7 in this retrieval task",
+      "paper_full_text_retrieved": false
+    },
+    {
+      "name": "Informer",
+      "family": "Atención",
+      "paper_title": "Informer: Beyond Efficient Transformer for Long Sequence Time-Series Forecasting",
+      "paper_year": 2021,
+      "venue_status": "AAAI2021 verified in author README citation",
+      "doi": "10.1609/aaai.v35i12.17325",
+      "doi_kind": "Editorial AAAI DOI",
+      "identifier_evidence": "Exact editorial DOI also present in WoS cited-reference strings; original editorial page not accessed",
+      "repo": "zhouhaoyi/Informer2020",
+      "code": "models/model.py",
+      "readme": "README.md",
+      "license": "Apache-2.0 in LICENSE; README badge separately says CC BY-NC-SA",
+      "license_path": "LICENSE",
+      "flow": [
+        "Known OHLCV history → value/position embeddings",
+        "ProbSparse encoder and optional distillation",
+        "Decoder known context plus zero placeholders",
+        "One-step scalar projection"
+      ],
+      "equations": [
+        "Attn(Q,K,V) = softmax(Q K^T/sqrt(d)) V; ProbSparse computes a selected query subset",
+        "y_hat = head(Decoder(context_known,zeros_H,Encoder(X)))"
+      ],
+      "complexity": "Original mechanism advertises O(L log L) attention; full model includes O(L d²) projections/FFN and decoder costs. At L7 no speed superiority follows.",
+      "adaptation": "H1, observed decoder context and zeros for unknown future only; remove original timestamp embedding branch if it would add calendar variables outside five-channel contract. No future true OHLCV or volatility targets in decoder.",
+      "risk": "License discrepancy: root LICENSE Apache2.0 while README badge labels CC BY-NC-SA. Do not collapse dataset, code and badge claims; evaluate CPU distillation behavior on length7.",
+      "source_kind": "Primary author code and README retrieved by immutable commit; no full paper PDF retrieved in this task",
+      "code_source": {
+        "repository": "zhouhaoyi/Informer2020",
+        "commit": "29f2a739226a509202a092b464163da81fa74960",
+        "path": "models/model.py",
+        "url": "https://raw.githubusercontent.com/zhouhaoyi/Informer2020/29f2a739226a509202a092b464163da81fa74960/models/model.py",
+        "sha256": "bc8e062fbbb4f4ae970ca0d02d2bf43b2e92c3251c3627d887c01d35cbc6891a",
+        "bytes": 7224,
+        "locators": [
+          {
+            "token": "class Informer(",
+            "lines": [
+              11
+            ]
+          },
+          {
+            "token": "ProbAttention",
+            "lines": [
+              8,
+              26,
+              99
+            ]
+          },
+          {
+            "token": "self.projection = nn.Linear",
+            "lines": [
+              65,
+              142
+            ]
+          },
+          {
+            "token": "def forward",
+            "lines": [
+              67,
+              144
+            ]
+          }
+        ]
+      },
+      "readme_source": {
+        "repository": "zhouhaoyi/Informer2020",
+        "commit": "29f2a739226a509202a092b464163da81fa74960",
+        "path": "README.md",
+        "url": "https://raw.githubusercontent.com/zhouhaoyi/Informer2020/29f2a739226a509202a092b464163da81fa74960/README.md",
+        "sha256": "452be04b3e97f47e97937893aac1047957f237b7baf6df8e27df2c89cb248c4c",
+        "bytes": 13200,
+        "locators": []
+      },
+      "license_source": {
+        "repository": "zhouhaoyi/Informer2020",
+        "commit": "29f2a739226a509202a092b464163da81fa74960",
+        "path": "LICENSE",
+        "url": "https://raw.githubusercontent.com/zhouhaoyi/Informer2020/29f2a739226a509202a092b464163da81fa74960/LICENSE",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "bytes": 11357,
+        "locators": []
+      },
+      "equation_status": "Own simplified formulation grounded in inspected implementation; proposed scalar head explicitly marked. Not claimed verbatim paper equations.",
+      "original_metric_values_status": "Not extracted from full manuscript; do not invent table/page values. Separate supplied WoS AB claims from full-text verification.",
+      "original_parameters_flops_training_time_status": "Not independently verified in the original manuscript; model not instantiated/trained here",
+      "benchmark_implementation_status": "Not implemented or tested for D7 in this retrieval task",
+      "paper_full_text_retrieved": false
+    },
+    {
+      "name": "Autoformer",
+      "family": "Atención y descomposición",
+      "paper_title": "Autoformer: Decomposition Transformers with Auto-Correlation for Long-Term Series Forecasting",
+      "paper_year": 2021,
+      "venue_status": "NeurIPS2021 verified in author README citation",
+      "doi": "10.48550/arXiv.2106.13008",
+      "doi_kind": "arXiv preprint DOI",
+      "identifier_evidence": "Author README links arXiv:2106.13008",
+      "repo": "thuml/Autoformer",
+      "code": "models/Autoformer.py",
+      "readme": "README.md",
+      "license": "MIT",
+      "license_path": "LICENSE",
+      "flow": [
+        "Observed window → seasonal/trend decomposition",
+        "Auto-Correlation blocks over latent seasonal signal",
+        "Progressive decomposition and decoder",
+        "Declared scalar target head"
+      ],
+      "equations": [
+        "X = S+T; T = MovingAverage(X)",
+        "AC(Q,K,V) = sum_(tau in selected_lags) softmax(R_QK(tau)) roll(V,tau)",
+        "y_hat = projected_target_head(seasonal_latent,trend_latent) [adaptation]"
+      ],
+      "complexity": "FFT-based correlation component O(L d log L) plus projections/FFNs O(L d²). Own structural summary, not a measured full-model cost.",
+      "adaptation": "Short odd moving-average kernel≤7, no future true values/calendar extras. Original trend addition is in input-variable units: it cannot be added unchanged to scalar sigma7. Register a coherent learned scalar projection before channelwise inverse normalization.",
+      "risk": "Simply setting c_out=1 can broadcast an OHLCV trend into wrong target units. A covariate-only volatility regressor is an explicit adaptation, not the unmodified original forecaster.",
+      "source_kind": "Primary author code and README retrieved by immutable commit; no full paper PDF retrieved in this task",
+      "code_source": {
+        "repository": "thuml/Autoformer",
+        "commit": "51c7d416ae120b805fd5beef2f4ccf7de496a6ff",
+        "path": "models/Autoformer.py",
+        "url": "https://raw.githubusercontent.com/thuml/Autoformer/51c7d416ae120b805fd5beef2f4ccf7de496a6ff/models/Autoformer.py",
+        "sha256": "f18e9e82844ed8c4dc26e00c3c2f0b7c278ac8ea8427c4fab7331939bf69829d",
+        "bytes": 4352,
+        "locators": [
+          {
+            "token": "class Model",
+            "lines": [
+              8
+            ]
+          },
+          {
+            "token": "series_decomp",
+            "lines": [
+              5,
+              22
+            ]
+          },
+          {
+            "token": "def forward",
+            "lines": [
+              74
+            ]
+          }
+        ]
+      },
+      "readme_source": {
+        "repository": "thuml/Autoformer",
+        "commit": "51c7d416ae120b805fd5beef2f4ccf7de496a6ff",
+        "path": "README.md",
+        "url": "https://raw.githubusercontent.com/thuml/Autoformer/51c7d416ae120b805fd5beef2f4ccf7de496a6ff/README.md",
+        "sha256": "885424e599e692e4ac13c5b8b94913925dc770f09e2387832bcd4865b473c217",
+        "bytes": 5686,
+        "locators": []
+      },
+      "license_source": {
+        "repository": "thuml/Autoformer",
+        "commit": "51c7d416ae120b805fd5beef2f4ccf7de496a6ff",
+        "path": "LICENSE",
+        "url": "https://raw.githubusercontent.com/thuml/Autoformer/51c7d416ae120b805fd5beef2f4ccf7de496a6ff/LICENSE",
+        "sha256": "8a6caa178ea3f33ebff5d7bb5558628cf5b423305dc30d3630f86564c7db94a2",
+        "bytes": 1084,
+        "locators": []
+      },
+      "equation_status": "Own simplified formulation grounded in inspected implementation; proposed scalar head explicitly marked. Not claimed verbatim paper equations.",
+      "original_metric_values_status": "Not extracted from full manuscript; do not invent table/page values. Separate supplied WoS AB claims from full-text verification.",
+      "original_parameters_flops_training_time_status": "Not independently verified in the original manuscript; model not instantiated/trained here",
+      "benchmark_implementation_status": "Not implemented or tested for D7 in this retrieval task",
+      "paper_full_text_retrieved": false
+    },
+    {
+      "name": "iTransformer",
+      "family": "Atención",
+      "paper_title": "iTransformer: Inverted Transformers Are Effective for Time Series Forecasting",
+      "paper_year": 2024,
+      "venue_status": "Official author README describes ICLR2024; README BibTeX retains arXiv2023",
+      "doi": "10.48550/arXiv.2310.06625",
+      "doi_kind": "arXiv preprint DOI",
+      "identifier_evidence": "Author README links arXiv:2310.06625",
+      "repo": "thuml/iTransformer",
+      "code": "model/iTransformer.py",
+      "readme": "README.md",
+      "license": "MIT",
+      "license_path": "LICENSE",
+      "flow": [
+        "Transpose D7 histories into five variate tokens",
+        "Temporal-history embedding",
+        "Self-attention across variates and FFN",
+        "Scalar volatility head over variate latents"
+      ],
+      "equations": [
+        "H0 = X^T W_L",
+        "H_(l+1) = FFN(Attention(H_l)) with residual normalization",
+        "y_hat = head(H_last) [scalar adaptation]"
+      ],
+      "complexity": "Own estimate O(C L d + C² d + C d²) per embedding/block, attention across C variables rather than L time points.",
+      "adaptation": "C5,L7; omit timestamp tokens and replace variablewise projected forecasts/de-normalization with target-scale scalar readout. Do not take one forecasted input channel as volatility.",
+      "risk": "The efficiency claim concerns the attention axis; standard time-axis complexity cannot be copied unchanged. No benefit proven for C5.",
+      "source_kind": "Primary author code and README retrieved by immutable commit; no full paper PDF retrieved in this task",
+      "code_source": {
+        "repository": "thuml/iTransformer",
+        "commit": "c2426e68ca13f74aaec08045c5c724d8ad328124",
+        "path": "model/iTransformer.py",
+        "url": "https://raw.githubusercontent.com/thuml/iTransformer/c2426e68ca13f74aaec08045c5c724d8ad328124/model/iTransformer.py",
+        "sha256": "6f34777a5a12c253a293f79e7e1fd5b6f79ac100b443951e051e269e7e2542db",
+        "bytes": 3419,
+        "locators": [
+          {
+            "token": "class Model",
+            "lines": [
+              10
+            ]
+          },
+          {
+            "token": "DataEmbedding_inverted",
+            "lines": [
+              6,
+              22
+            ]
+          },
+          {
+            "token": "def forecast",
+            "lines": [
+              42
+            ]
+          },
+          {
+            "token": "self.projector = nn.Linear",
+            "lines": [
+              40
+            ]
+          }
+        ]
+      },
+      "readme_source": {
+        "repository": "thuml/iTransformer",
+        "commit": "c2426e68ca13f74aaec08045c5c724d8ad328124",
+        "path": "README.md",
+        "url": "https://raw.githubusercontent.com/thuml/iTransformer/c2426e68ca13f74aaec08045c5c724d8ad328124/README.md",
+        "sha256": "7a9ce06030a87852774537b08196785f88391506687476725e89bffd59d5e5a8",
+        "bytes": 7150,
+        "locators": []
+      },
+      "license_source": {
+        "repository": "thuml/iTransformer",
+        "commit": "c2426e68ca13f74aaec08045c5c724d8ad328124",
+        "path": "LICENSE",
+        "url": "https://raw.githubusercontent.com/thuml/iTransformer/c2426e68ca13f74aaec08045c5c724d8ad328124/LICENSE",
+        "sha256": "29d2a4c09fa577780522219dc248466977f77cd420354c5e9a0e86550be2b849",
+        "bytes": 1084,
+        "locators": []
+      },
+      "equation_status": "Own simplified formulation grounded in inspected implementation; proposed scalar head explicitly marked. Not claimed verbatim paper equations.",
+      "original_metric_values_status": "Not extracted from full manuscript; do not invent table/page values. Separate supplied WoS AB claims from full-text verification.",
+      "original_parameters_flops_training_time_status": "Not independently verified in the original manuscript; model not instantiated/trained here",
+      "benchmark_implementation_status": "Not implemented or tested for D7 in this retrieval task",
+      "paper_full_text_retrieved": false
+    },
+    {
+      "name": "Crossformer",
+      "family": "Atención",
+      "paper_title": "Crossformer: Transformer Utilizing Cross-Dimension Dependency for Multivariate Time Series Forecasting",
+      "paper_year": 2023,
+      "venue_status": "ICLR2023 verified in author README citation",
+      "doi": null,
+      "doi_kind": "No DOI shown in the examined primary author README; OpenReview ID verified",
+      "identifier_evidence": "Official author README links https://openreview.net/forum?id=vSVLM2j9eie",
+      "repo": "Thinklab-SJTU/Crossformer",
+      "code": "cross_models/cross_former.py",
+      "readme": "readme.md",
+      "license": "Apache-2.0",
+      "license_path": "LICENSE",
+      "flow": [
+        "Seven-day per-variable segments",
+        "Dimension-Segment-Wise embedding",
+        "Hierarchical two-stage time/dimension attention",
+        "Decoder with learned positions → scalar target adaptation"
+      ],
+      "equations": [
+        "E_(c,s) = W_p X_(c,segment_s)+E_pos",
+        "H = TSA_dimension(TSA_time(E))",
+        "y_hat = head(Decoder(H)) [adaptation]"
+      ],
+      "complexity": "Own estimate O(C S² d + S C R d) for time attention plus router dimension attention, S segment count,R router count; projections/FFN costs additional.",
+      "adaptation": "Segment length≤7 with explicit padding of observed history only; learned decoder position queries do not require future observations. Disable baseline raw-variable-mean addition or project it coherently to sigma7.",
+      "risk": "Model defaults use segment6 and merge4 with long history; hierarchy/merging must remain valid for a few segments. No editorial DOI invented for DOI-less proceedings.",
+      "source_kind": "Primary author code and README retrieved by immutable commit; no full paper PDF retrieved in this task",
+      "code_source": {
+        "repository": "Thinklab-SJTU/Crossformer",
+        "commit": "c10c8eadb153d1dd9798250967747ca3ebb81383",
+        "path": "cross_models/cross_former.py",
+        "url": "https://raw.githubusercontent.com/Thinklab-SJTU/Crossformer/c10c8eadb153d1dd9798250967747ca3ebb81383/cross_models/cross_former.py",
+        "sha256": "deee243b2ae877084320dce49e691c8860c56f0cbda269c6f0cdb50848f6c708",
+        "bytes": 2646,
+        "locators": [
+          {
+            "token": "class Crossformer",
+            "lines": [
+              13
+            ]
+          },
+          {
+            "token": "DSW_embedding",
+            "lines": [
+              9,
+              34
+            ]
+          },
+          {
+            "token": "def forward",
+            "lines": [
+              47
+            ]
+          },
+          {
+            "token": "self.in_len_add",
+            "lines": [
+              31,
+              53,
+              54
+            ]
+          }
+        ]
+      },
+      "readme_source": {
+        "repository": "Thinklab-SJTU/Crossformer",
+        "commit": "c10c8eadb153d1dd9798250967747ca3ebb81383",
+        "path": "readme.md",
+        "url": "https://raw.githubusercontent.com/Thinklab-SJTU/Crossformer/c10c8eadb153d1dd9798250967747ca3ebb81383/readme.md",
+        "sha256": "f3bf718af99d50ae8d760ff2454a37d85e3f66825adf1648a9ac4919e9135ff5",
+        "bytes": 7698,
+        "locators": []
+      },
+      "license_source": {
+        "repository": "Thinklab-SJTU/Crossformer",
+        "commit": "c10c8eadb153d1dd9798250967747ca3ebb81383",
+        "path": "LICENSE",
+        "url": "https://raw.githubusercontent.com/Thinklab-SJTU/Crossformer/c10c8eadb153d1dd9798250967747ca3ebb81383/LICENSE",
+        "sha256": "96c19fcecfadd5fc02b73d95dec507288f8d5b1724f1c8e6229fb21a987d8352",
+        "bytes": 11357,
+        "locators": []
+      },
+      "equation_status": "Own simplified formulation grounded in inspected implementation; proposed scalar head explicitly marked. Not claimed verbatim paper equations.",
+      "original_metric_values_status": "Not extracted from full manuscript; do not invent table/page values. Separate supplied WoS AB claims from full-text verification.",
+      "original_parameters_flops_training_time_status": "Not independently verified in the original manuscript; model not instantiated/trained here",
+      "benchmark_implementation_status": "Not implemented or tested for D7 in this retrieval task",
+      "paper_full_text_retrieved": false
+    },
+    {
+      "name": "S-Mamba",
+      "family": "Espacio de estados",
+      "paper_title": "Is Mamba effective for time series forecasting?",
+      "paper_year": 2025,
+      "venue_status": "Neurocomputing publication2025 per supplied WoS record, early accessDEC2024; author README BibTeX uses2024",
+      "doi": "10.1016/j.neucom.2024.129178",
+      "doi_kind": "Editorial Neurocomputing DOI",
+      "identifier_evidence": "Native WoS UT WOS:001416250600001 DI field and author README Neurocomputing article129178; arXiv:2403.11144",
+      "repo": "wzhwzhwzh0921/S-D-Mamba",
+      "code": "model/S_Mamba.py",
+      "readme": "README.md",
+      "license": "Not verified: no root LICENSE found at captured commit",
+      "license_path": null,
+      "flow": [
+        "Seven historical values per each of five variates",
+        "Inverted variate-token embedding",
+        "Forward and reversed Mamba scans across observed variates",
+        "FFN residuals and scalar target head"
+      ],
+      "equations": [
+        "H0 = X^T W_L",
+        "Z = Mamba_f(H0)+reverse(Mamba_b(reverse(H0)))",
+        "s_i = Abar_i s_(i-1)+Bbar_i x_i; z_i=C_i s_i [selective SSM schematic]",
+        "y_hat=head(FFN(H0+Z)) [adaptation]"
+      ],
+      "complexity": "Own axis-aware summary: history embedding O(C L d); selective scan linear in C variate tokens for fixed state/width, plus FFN/projection costs. This implementation does not simply scan L chronological tokens.",
+      "adaptation": "Bidirectionality is over already observed variate tokens, not future dates. Scalar head before input-channel de-normalization. Source imports mamba_ssm; CPU/hardware-compatible reference implementation and equivalence must be checked before benchmark.",
+      "risk": "License not verified. model/S_Mamba.py docstring incorrectly links iTransformer by copy; use README and WoS identity. EncoderLayer registers unused man/man2/attention modules: naive parameter counts include inactive modules. Define counting/implementation policy explicitly, without importing unexplained extras.",
+      "source_kind": "Primary author code and README retrieved by immutable commit; no full paper PDF retrieved in this task",
+      "code_source": {
+        "repository": "wzhwzhwzh0921/S-D-Mamba",
+        "commit": "e7e8bf04066135afa43d85b0a87afa97cda16e3f",
+        "path": "model/S_Mamba.py",
+        "url": "https://raw.githubusercontent.com/wzhwzhwzh0921/S-D-Mamba/e7e8bf04066135afa43d85b0a87afa97cda16e3f/model/S_Mamba.py",
+        "sha256": "48952b3906962917bc76345b5247ce350cae3243915142896b1952b4813b5fc9",
+        "bytes": 4163,
+        "locators": [
+          {
+            "token": "class Model",
+            "lines": [
+              7
+            ]
+          },
+          {
+            "token": "DataEmbedding_inverted",
+            "lines": [
+              4,
+              19
+            ]
+          },
+          {
+            "token": "Mamba(",
+            "lines": [
+              26,
+              32
+            ]
+          },
+          {
+            "token": "def forecast",
+            "lines": [
+              61
+            ]
+          }
+        ]
+      },
+      "readme_source": {
+        "repository": "wzhwzhwzh0921/S-D-Mamba",
+        "commit": "e7e8bf04066135afa43d85b0a87afa97cda16e3f",
+        "path": "README.md",
+        "url": "https://raw.githubusercontent.com/wzhwzhwzh0921/S-D-Mamba/e7e8bf04066135afa43d85b0a87afa97cda16e3f/README.md",
+        "sha256": "1fb55d78f1aec939cd2249921311cd86b89769f8908f7d056ad68c934bf901fa",
+        "bytes": 3369,
+        "locators": []
+      },
+      "equation_status": "Own simplified formulation grounded in inspected implementation; proposed scalar head explicitly marked. Not claimed verbatim paper equations.",
+      "original_metric_values_status": "Not extracted from full manuscript; do not invent table/page values. Separate supplied WoS AB claims from full-text verification.",
+      "original_parameters_flops_training_time_status": "Not independently verified in the original manuscript; model not instantiated/trained here",
+      "benchmark_implementation_status": "Not implemented or tested for D7 in this retrieval task",
+      "paper_full_text_retrieved": false,
+      "additional_code_sources": [
+        {
+          "repository": "wzhwzhwzh0921/S-D-Mamba",
+          "commit": "e7e8bf04066135afa43d85b0a87afa97cda16e3f",
+          "path": "layers/Mamba_EncDec.py",
+          "url": "https://raw.githubusercontent.com/wzhwzhwzh0921/S-D-Mamba/e7e8bf04066135afa43d85b0a87afa97cda16e3f/layers/Mamba_EncDec.py",
+          "sha256": "8f89aefe9a44c59856e1743e66e3df7ec1d6bef110c3f6247cfdf6644e1af33d",
+          "bytes": 3038,
+          "locators": [
+            {
+              "token": "new_x = self.attention(x)",
+              "lines": [
+                37
+              ]
+            },
+            {
+              "token": "self.man = Mamba",
+              "lines": [
+                21
+              ]
+            },
+            {
+              "token": "self.man2 = Mamba",
+              "lines": [
+                27
+              ]
+            },
+            {
+              "token": "self.a = AttentionLayer",
+              "lines": [
+                33
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "model_count": 10,
+  "families": [
+    "MLP/mixing",
+    "convolution",
+    "attention",
+    "state-space"
+  ],
+  "full_papers_retrieved": 0,
+  "models_trained": 0,
+  "review_scope": "Verified public primary implementations, Readmes and license documents; not a complete systematic-review eligibility or peer-review assessment",
+  "network_note": "Only GitHub and raw.githubusercontent.com sources used; no claim of native arXiv/publisher/WoS search execution"
+}
