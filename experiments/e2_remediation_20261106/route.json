@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "decision_date_utc": "2026-11-06",
+  "decision_id": "E2-F2a-route-resolution-v1",
+  "status": "methodological_route_resolved_before_Bitcoin_benchmark; execution_not_authorized_by_this_record",
+  "guide": {
+    "filename": "Entregable2DeepLearningProject.pdf",
+    "physical_pages": 65,
+    "sha256": "93499dcfda6a36d9621524a81821470017ba114ca6b08241a35de5a54f74a654",
+    "rules": [
+      {"physical_page": 6, "section": "2.2 C", "requirement": "High residual autocorrelation requires target-lag/time-series route diagnosis"},
+      {"physical_page": 20, "section": "7", "requirement": "Resolve problem route before implementation"},
+      {"physical_page": 30, "section": "7.4 F2a S1-S8", "requirement": "Time-series route; naive, seasonal naive and ARIMA or ETS references"},
+      {"physical_page": 32, "section": "7.4 F2b RT1", "requirement": "Reclassify to time series when reference residuals show strong autocorrelation"}
+    ]
+  },
+  "route": {
+    "previous_documentary_classification": "temporal regression, diagnosis unresolved",
+    "adopted": "F2a time series",
+    "route_diagnosis_closed": true,
+    "reason": "Forward development Ridge D7 leaves strong residual dependence; explicit RT1 rule applies",
+    "evidence": {
+      "chapter": "book_e2/sections/02_eda.md#e2-diagnostico-forward",
+      "metrics": "book_e2/_static/eda_decisions/forward_reference_metrics.csv",
+      "ljung_box": "book_e2/_static/eda_decisions/forward_reference_ljung_box.csv",
+      "development_validation_dates": 305,
+      "ridge_ACF_lag1": 0.632228,
+      "ridge_Ljung_Box_lag7_Q": 266.4062,
+      "ridge_Ljung_Box_lag7_p_approx": 8.88183e-54,
+      "interpretation": "Exploratory diagnostics; overlap, changing monthly fits and small samples limit asymptotic calibration; no proof of causal usefulness of a new feature"
+    }
+  },
+  "preserved_E1_contract": {
+    "source_commit": "94a4b0324e93361e8928d708fdfeb50110e3686f",
+    "deep_learning_inputs": "seven closed UTC daily OHLCV bars; D7x5",
+    "target": "population standard deviation of seven consecutive daily log returns, ddof=0, not annualized",
+    "horizon_days": 1,
+    "primary_metric": "mean over seeds of per-trajectory RMSE in original sigma units",
+    "delta_absolute": 0.00025772842664981106,
+    "new_target_lag_channel_added_to_DL": false,
+    "partition_changed": false,
+    "independence_unit_changed": false,
+    "inherited_anchor_recipes_changed": false,
+    "E1_files_changed": false,
+    "training_embargo_days": 7,
+    "development_monthly_validation": ["2024-01-01", "2024-10-31"],
+    "pilot_calendar": ["2024-11-01", "2024-12-30"],
+    "final_training_outcome_end_inclusive": "2024-12-24",
+    "historical_phase_II_evaluation": ["2026-09-01", "2026-10-30"],
+    "evaluation_scope": "already observed historical calendar; exploratory; no new test seal"
+  },
+  "benchmark_panel": {
+    "status": "updated design, not executed or declared ready by route resolution",
+    "Top10_new_DL": 10,
+    "E2_retuned_GRU_LSTM_TCN": 3,
+    "fixed_E1_GRU_LSTM_TCN_anchors": 3,
+    "additional_references": ["Ridge", "naive_lag1", "seasonal_naive_lag7", "ARIMA"],
+    "total_configurations": 20,
+    "ETS_required_in_addition_to_ARIMA": false,
+    "baseline_information_is_identical_to_DL": false,
+    "common_eligible_calendar": "intersection of explicitly valid outcome/input/reference supports; no calendar compression or post-result exclusions"
+  },
+  "endogenous_references": {
+    "naive_lag1": {
+      "forecast": "Yhat_t=sigma7(t-1)",
+      "required_label_day": "t-1",
+      "effective_close_support": ["t-8", "t-1"],
+      "effective_close_count": 8,
+      "historical_span_days_from_origin": 8,
+      "tunable_parameters": 0
+    },
+    "seasonal_naive_lag7": {
+      "forecast": "Yhat_t=sigma7(t-7)",
+      "required_label_day": "t-7",
+      "effective_close_support": ["t-14", "t-7"],
+      "effective_close_count": 8,
+      "historical_span_days_from_origin": 14,
+      "seasonality_claim": "registered weekly calendar comparator; no significant weekly seasonality inferred from STL or results",
+      "tunable_parameters": 0
+    },
+    "ARIMA": {
+      "implementation": "scripts/e2_temporal_baselines.py:FixedParameterARIMA",
+      "dependency": "statsmodels==0.14.6 in requirements-eda.lock.txt",
+      "parameter_fit_cutoff": "no later than first_outer_origin-8 calendar days",
+      "target_scaling": "training-only mean; exactly 1 for an all-zero training series",
+      "local_candidate_orders": "p in {0,1,2}, d in {0,1}, q in {0,1}; 12 configurations",
+      "local_grid_is_a_selected_winner": false,
+      "trend": "constant when d=0; no deterministic trend when d=1",
+      "enforce_stationarity": true,
+      "enforce_invertibility": true,
+      "optimizer_maxiter": 100,
+      "minimum_observed_training_labels": 32,
+      "policy": "one parameter fit per registered outer origin; fixed parameters afterwards; daily state update through t-1 only, refit=False",
+      "missing_label_policy": "NaN at the true day in the state-space observation sequence; never compress/interpolate; missing latest label makes forecast ineligible",
+      "information_support": "all eligible past labels from declared training start through t-1; longer and endogenous relative to D7x5 DL",
+      "nonconvergence_policy": "explicit failed candidate; no silent alternative fitted or test-based replacement",
+      "raw_output_clipping": false,
+      "benchmark_postprocessing": "benchmark_nonnegative: max(0,raw_forecast), fixed before results; retain raw_value and failure status",
+      "postprocessing_protocol": "experiments/e2_remediation_20261106/architecture_decisions.json",
+      "common_HPO_budget_closed_by_this_record": false,
+      "common_HPO_budget_protocol": "experiments/e2_remediation_20261106/hpo.json",
+      "common_HPO_trials_assigned_per_tunable_family": 12,
+      "common_HPO_tunable_family_count": 15,
+      "common_HPO_assigned_compute_seconds_per_family": 172800,
+      "common_HPO_assigned_budget_is_executed_work": false
+    }
+  },
+  "execution": {
+    "Bitcoin_baseline_fits": 0,
+    "Bitcoin_DL_fits": 0,
+    "new_market_data_reads": 0,
+    "new_test_scoring": 0,
+    "synthetic_test_suite": "tests/test_e2_temporal_baselines.py",
+    "synthetic_tests_passed": 12,
+    "synthetic_statsmodels_fits_are_not_Bitcoin_experiments": true,
+    "remaining_before_real_fits": [
+      "Implement and verify execution of the shared registered HPO/resource cap, candidate failures and selection/retraining policy; budget assignment alone is not execution",
+      "Register exact eligible daily indices and common cohort including lag7 support",
+      "Freeze analysis, pilot and dimensioning design with full-guide requirements before execution"
+    ]
+  }
+}

@@ -1,0 +1,426 @@
+{
+  "schema_version": 1,
+  "client_date": "2026-11-06",
+  "client_timezone": "America/Bogota",
+  "status": "fixed_before_dataset_fits_pending_git_registration",
+  "scope": "P0_development_feasibility_variance_gap_not_final_benchmark",
+  "source_E1_commit": "94a4b0324e93361e8928d708fdfeb50110e3686f",
+  "inherited_scientific_sha256": "1464fa79d472f6755651774989b140659ee1f21daeb30032fc650a8770f4fdc4",
+  "inherited_reference_metadata_sha256": "ba37ec26fb31ae6e70e69ef6323a120c00fc88a26bab87e78e6f434be309f6ba",
+  "models": [
+    "TimeMixer",
+    "iTransformer",
+    "PatchTST",
+    "GRU"
+  ],
+  "model_roles": {
+    "TimeMixer": "Top10 published backbone, explicit D7 task adapter",
+    "iTransformer": "Top10 published backbone, explicit D7 task adapter",
+    "PatchTST": "Top10 published backbone, explicit D7 task adapter",
+    "GRU": "freshly trained inherited GRU/D7-c03 reference"
+  },
+  "seeds": [
+    660101,
+    660102,
+    660103,
+    660104,
+    660105
+  ],
+  "seed_reason": "Fresh prespecified IDs avoid reusing already inspected E1 seed IDs; all models and origins use these same IDs for pairing. Five seeds describe optimization variation, not five independent Bitcoin series.",
+  "input_contract": {
+    "D": 7,
+    "n": 7,
+    "h": 1,
+    "channels": [
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume"
+    ],
+    "target_lags": false
+  },
+  "target": "sigma7 population standard deviation (ddof0) of seven daily log close returns; positive target mean scaling, no centering",
+  "primary_metric": "mean across paired seeds of RMSE on original sigma7 scale",
+  "margin_absolute": 0.00025772842664981106,
+  "known_high_volatility_threshold": 0.024247163097617024,
+  "threshold_provenance": "Fixed E1 training-2023 q75 of sigma7, reused unchanged; causal high-volatility mask at outcome t uses observed sigma7(t-1). No evaluation labels determine membership.",
+  "calendar": {
+    "timezone": "UTC",
+    "pilot_origin": "2024-11-01",
+    "pilot_end": "2024-12-30",
+    "pilot_days": 60,
+    "pilot_training_outcome_max": "2024-10-24",
+    "embargo_days": 7,
+    "OOF_origins": [
+      "2024-01-01",
+      "2024-02-01",
+      "2024-03-01",
+      "2024-04-01",
+      "2024-05-01",
+      "2024-06-01",
+      "2024-07-01",
+      "2024-08-01",
+      "2024-09-01",
+      "2024-10-01"
+    ],
+    "max_decoded_outcome": "2024-12-30",
+    "incomplete_day": "2023-03-24",
+    "calendar_compressed": false,
+    "forecast_rule": "weights and all training transformations stay fixed during each evaluation cohort; each x consists only of seven preceding observed OHLCV days"
+  },
+  "training": {
+    "optimizer": "AdamW",
+    "learning_rate": 0.003,
+    "weight_decay": 0.0001,
+    "batch_size": 32,
+    "max_epochs": 100,
+    "patience": 12,
+    "min_delta": 1e-05,
+    "gradient_clip_norm": 1.0,
+    "torch_threads": 1,
+    "inner_validation_nominal_days": 90,
+    "refit_seed_offset": 10000000,
+    "batch_generator_seed_offset": 17,
+    "shuffle_training_only": true,
+    "drop_last": false,
+    "num_workers": 0,
+    "deterministic_algorithms": true,
+    "scheduler": "constant learning rate",
+    "epoch_selection": "best scaled MSE on chronological inner validation only; nominal90-day interval truncated by inherited7-day embargo to83 potential dates; fresh full-prefix refit for selected epoch count"
+  },
+  "fresh_GRU_reference": {
+    "candidate_id": "c03",
+    "width": 16,
+    "dropout": 0.1,
+    "learning_rate": 0.003
+  },
+  "preprocessing": {
+    "code": "scripts/dl_data_v2.py",
+    "representation": "four log price ratios to last known Close in the same window, log1p Volume",
+    "x_scaler": "mean/std ddof0 over N*7 positions of eligible training windows only",
+    "y_scaler": "strictly positive mean of training sigma7 outcomes; forward y/y_scale, inverse prediction*y_scale",
+    "fit_cutoffs": "inner and outer scalers fit only their own training cohorts; no outer validation or pilot labels",
+    "derived_readout_moments": "For the three Top10 adapters, five means and five ddof0 standard deviations of exactly the same scaled D7*5 input window; no extra market observations, target lags, calendar marks or channels"
+  },
+  "adapters": {
+    "code": "scripts/e2_temporal_models.py",
+    "shared_Top10_latents": [
+      5,
+      16
+    ],
+    "shared_Top10_head": "flatten80 + means5 + ddof0SD5 -> Linear(90,1) -> Softplus; output in sigma7/y_scale units",
+    "shared_Top10_dimensions": {
+      "d_model": 16,
+      "d_ff": 32,
+      "encoder_layers": 2,
+      "dropout": 0.1,
+      "attention_heads_if_used": 4,
+      "activation": "gelu"
+    },
+    "TimeMixer": {
+      "source": "TimeMixer",
+      "scales": [
+        7,
+        3
+      ],
+      "down_sampling_layers": 1,
+      "down_sampling_window": 2,
+      "down_sampling_method": "avg",
+      "moving_avg": 25,
+      "channel_independence": 1,
+      "use_norm": 1,
+      "use_future_temporal_feature": 0,
+      "mechanism": "author PDM decomposition and multiscale mixing; original scale-specific 7->1 and3->1 projections; sum latent forecasts before scalar task head",
+      "removed_unused_parameters": [
+        "original OHLCV projection",
+        "unused time embedding",
+        "unused PDM LayerNorm"
+      ],
+      "original_OHLCV_denormalization": false
+    },
+    "iTransformer": {
+      "source": "controls",
+      "variable_tokens": 5,
+      "mechanism": "author inverted embedding and two attention encoder layers; five variable latents to shared scalar task head",
+      "original_OHLCV_denormalization": false
+    },
+    "PatchTST": {
+      "source": "controls",
+      "patch_len": 2,
+      "stride": 1,
+      "right_replication_padding": 1,
+      "patch_tokens": 7,
+      "mechanism": "author channel-independent patch embedding and attention encoder; mean across encoded patch tokens to five variable latents",
+      "normalization": "original instance mean/std and original encoder BatchNorm; eval mode uses frozen running statistics",
+      "original_OHLCV_denormalization": false
+    },
+    "task_adaptations_are_exact_paper_replicas": false,
+    "does_not_exempt_final_architecture_search": true
+  },
+  "OOF": {
+    "enabled": true,
+    "enable_rule": "Root may enable before the public registration solely from technical synthetic runtime profiling, never from model results; no adaptive change of settings after P0 outcomes",
+    "purpose": "Fixed-config development error analysis and pilot variability on >=100 unique calendar origins/model; not Top3 final selection, not post-HPO performance",
+    "folds": 10,
+    "calendar_outcomes": 305,
+    "trajectory_count_if_enabled": 200,
+    "optimizer_fit_count_if_enabled": 400,
+    "same_seed_ids_as_P0": true,
+    "independent_series_count": 1,
+    "outer_scoring_guard": "All200 refit checkpoints must be closed before computing any OOF evaluation prediction",
+    "decision": "Enabled before public registration using synthetic runtime profiling only; no market fits, forecasts or losses were inspected."
+  },
+  "budget": {
+    "P0_models": 4,
+    "seeds_per_model": 5,
+    "P0_trajectories": 20,
+    "optimizer_fits_per_trajectory": 2,
+    "P0_optimizer_fits": 40,
+    "optional_OOF_trajectories": 200,
+    "optional_OOF_optimizer_fits": 400,
+    "total_optimizer_fits_if_OOF_enabled": 440,
+    "max_epochs_per_optimizer_fit": 100,
+    "profile": "Synthetic B32 forward/backward only, no optimizer steps or decoded market rows; CPU threads1"
+  },
+  "gap_analysis": {
+    "hypotheses": [
+      {
+        "model": "TimeMixer",
+        "null": "RMSE_high_minus_rest<=delta",
+        "alternative": "RMSE_high_minus_rest>delta"
+      },
+      {
+        "model": "iTransformer",
+        "null": "RMSE_high_minus_rest<=delta",
+        "alternative": "RMSE_high_minus_rest>delta"
+      },
+      {
+        "model": "PatchTST",
+        "null": "RMSE_high_minus_rest<=delta",
+        "alternative": "RMSE_high_minus_rest>delta"
+      }
+    ],
+    "baseline_comparison": "fresh paired GRU/D7-c03; improvement g=RMSE_GRU minus RMSE_candidate at identical origin/seed/cohort",
+    "regime_rule": "high at t iff known sigma7(t-1)>0.024247163097617024, else rest; threshold fixed using2023 training only",
+    "seed_aggregation": "compute cohort/regime RMSE per seed then average; do not treat seeds times dates as independent observations",
+    "temporal_unit": "one Bitcoin chronological trajectory, seven-day moving blocks preserving paired model/seed/day rows",
+    "block_lengths": [
+      7,
+      14,
+      28
+    ],
+    "main_block_length": 7,
+    "bootstrap_draws": 4999,
+    "Monte_Carlo_seed": 20261106,
+    "interval": "95% percentile temporal block bootstrap; report failed/empty-regime replicates explicitly",
+    "testing": "one-sided beyond-margin diagnostic; Holm over three Top10 gap hypotheses, family alpha0.01; no confirmatory claim",
+    "variance_and_power": "report paired-seed variance and temporal uncertainty. This fixed-config feasibility pilot cannot establish power of a final post-HPO procedure or turn a known test into unseen data. Final pilot/power remains required after final training procedure is frozen.",
+    "gap_guaranteed": false,
+    "minimal_unique_error_origins": 100,
+    "P0_only_can_meet_minimal_unique_error_origins": false,
+    "primary_decision_cohort": "OOF_2024-01-01_to_2024-10-31",
+    "November_December_scope": "Feasibility and conditional variance; gap estimates descriptive only, no separate rejection family"
+  },
+  "information_guards": {
+    "real_test_2025_or_later_allowed": false,
+    "training_prefix_decode": "parse only through origin minus8 days; values beyond that prefix remain NaN",
+    "full_source_integrity": "Hash bytes of the two pre-existing development files without statistical analysis; no raw/test paths",
+    "P0_scoring": "all20 fixed refit checkpoints and scales closed before computing any Nov-Dec evaluation predictions",
+    "OOF_scoring": "all200 fixed refit checkpoints closed before computing any monthly outer predictions",
+    "actual_time": "Execution and closure timestamps are actual UTC2026 times. Nominal2024 fit origins express information availability, never retrospective execution dates.",
+    "no_reused_weights_or_predictions": true,
+    "no_hyperparameter_or_architecture_selection_by_P0": true,
+    "test_blinding_restored": false
+  },
+  "execution": {
+    "script": "scripts/run_e2_remediation_pilot.py",
+    "phases": [
+      "validate",
+      "profile",
+      "register",
+      "pilot",
+      "oof",
+      "score",
+      "score-oof",
+      "analyze"
+    ],
+    "private_artifacts": [
+      "registration",
+      "started/completion receipts",
+      "frozen checkpoint and scalers",
+      "inner and refit learning curves",
+      "individual predictions",
+      "descriptive analysis"
+    ],
+    "registration": "Requires design and both executable source modules committed, with no prior dataset-fit receipts under output root. Every execution verifies design/code/development/author source hashes. Root controls public registration and actual execution.",
+    "training_environment_lock": "requirements-e2-remediation.lock.txt; hash included in immutable inputs"
+  },
+  "author_sources": {
+    "TimeMixer": {
+      "repository": "kwuking/TimeMixer",
+      "commit": "e24610583b36fdd8c76cc17a8df4e65759a5f460",
+      "archive_url": "https://codeload.github.com/kwuking/TimeMixer/zip/e24610583b36fdd8c76cc17a8df4e65759a5f460",
+      "archive_sha256": "7287f8f5f21b405d6985d47ac45aaf846cf8a59882ddc3fc8fb5caf9335295d3",
+      "archive_filename": "TimeMixer_e24610583b36fdd8c76cc17a8df4e65759a5f460.zip",
+      "extract_directory": "TimeMixer-e24610583b36fdd8c76cc17a8df4e65759a5f460",
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+          "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/LICENSE",
+          "bytes": 11357
+        },
+        {
+          "path": "README.md",
+          "sha256": "38f3eeafef388f3e67b23c403d93937272f5403e97c5cfec3bfdef86774e3eda",
+          "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/README.md",
+          "bytes": 13159
+        },
+        {
+          "path": "requirements.txt",
+          "sha256": "2b7b6434c94f0e74d68ce788eb0ec25a7eb8581991f167f379558a10f21171b9",
+          "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/requirements.txt",
+          "bytes": 279
+        },
+        {
+          "path": "run.py",
+          "sha256": "2d945cae47154e08e2a0aa8f794e2a25fb1bd5ce8ff3e070d2692326fe197024",
+          "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/run.py",
+          "bytes": 9696
+        },
+        {
+          "path": "scripts/long_term_forecast/ETT_script/TimeMixer_ETTh1_unify.sh",
+          "sha256": "13086d899b992b67cdd4409d26f686c1ac7e15e9ad4fd03dd53a2e0728554fc4",
+          "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/scripts/long_term_forecast/ETT_script/TimeMixer_ETTh1_unify.sh",
+          "bytes": 2822
+        },
+        {
+          "path": "models/TimeMixer.py",
+          "sha256": "817d62f4aac54c8566e560f6d3785856e31c8ee51460279ee3d0a4823f11d4be",
+          "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/models/TimeMixer.py",
+          "bytes": 20663
+        },
+        {
+          "path": "layers/Embed.py",
+          "sha256": "ab492ea2f68459bbcf3cbffdd1beb75b24d0d70248d017a313a3b470316aaa2b",
+          "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/layers/Embed.py",
+          "bytes": 9579
+        },
+        {
+          "path": "layers/Autoformer_EncDec.py",
+          "sha256": "48745b4bb647355e9845792a855df9c59fd7df7fcc664c765351fec390c4073e",
+          "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/layers/Autoformer_EncDec.py",
+          "bytes": 6831
+        },
+        {
+          "path": "layers/StandardNorm.py",
+          "sha256": "cc1c0bc65b7b094bbe83f988fb05b86272a59638c030c3781aa52ce8880379df",
+          "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/layers/StandardNorm.py",
+          "bytes": 2183
+        },
+        {
+          "path": "data_provider/data_loader.py",
+          "sha256": "179d7ee4b591339aacefd07eecdb6463aa0bf2fb2e40a77ce44ecb370c2789b5",
+          "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/data_provider/data_loader.py",
+          "bytes": 36249
+        },
+        {
+          "path": "data_provider/data_factory.py",
+          "sha256": "528a0f2c37a7e55c777ce098eb1e3f65337a749d52f002a000f411062c10b3a6",
+          "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/data_provider/data_factory.py",
+          "bytes": 2963
+        },
+        {
+          "path": "utils/tools.py",
+          "sha256": "5a16efe58607a5ac2da5694c9297cbffb7c314a16e746de028760ea822ff9376",
+          "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/utils/tools.py",
+          "bytes": 4289
+        },
+        {
+          "path": "utils/timefeatures.py",
+          "sha256": "2414683a009c1bc0ffe8306aeca00800f95f76dc485db8121c1fc36ae87a7971",
+          "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/utils/timefeatures.py",
+          "bytes": 4276
+        },
+        {
+          "path": "utils/metrics.py",
+          "sha256": "09e243e50baa6373286d3fe9954ab99075fa254e310b99769318b666ab92806a",
+          "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/utils/metrics.py",
+          "bytes": 921
+        },
+        {
+          "path": "exp/exp_basic.py",
+          "sha256": "23a9ed0c4ea26b0bc1053b89ba11b1f9a1a1ff6ef2f18cdbdeee22c5ac3c70d9",
+          "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/exp/exp_basic.py",
+          "bytes": 1283
+        },
+        {
+          "path": "exp/exp_long_term_forecasting.py",
+          "sha256": "4a69bbc273780021315ed9b69a7011a1b30079ff797c944762eff2423204ac11",
+          "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/exp/exp_long_term_forecasting.py",
+          "bytes": 12575
+        }
+      ],
+      "license": "Apache2.0"
+    },
+    "controls": {
+      "repository": "thuml/Time-Series-Library",
+      "commit": "4e938a1767106324dd753b2a44832bf870a0252e",
+      "archive_url": "https://codeload.github.com/thuml/Time-Series-Library/zip/4e938a1767106324dd753b2a44832bf870a0252e",
+      "archive_sha256": "8ad00c38d00baa6b4a17df2a688a96c945a0c005b6caceca0e932e6f5ac6edaa",
+      "archive_filename": "Time-Series-Library_4e938a1767106324dd753b2a44832bf870a0252e.zip",
+      "extract_directory": "Time-Series-Library-4e938a1767106324dd753b2a44832bf870a0252e",
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "8a6caa178ea3f33ebff5d7bb5558628cf5b423305dc30d3630f86564c7db94a2",
+          "url": "https://raw.githubusercontent.com/thuml/Time-Series-Library/4e938a1767106324dd753b2a44832bf870a0252e/LICENSE",
+          "bytes": 1084
+        },
+        {
+          "path": "models/iTransformer.py",
+          "sha256": "7fdc721d041b0f8f63be8fa794ecd68422fd958c7c8d449026320fd9f368788e",
+          "url": "https://raw.githubusercontent.com/thuml/Time-Series-Library/4e938a1767106324dd753b2a44832bf870a0252e/models/iTransformer.py",
+          "bytes": 5735
+        },
+        {
+          "path": "models/PatchTST.py",
+          "sha256": "29835d4fedddd3cbee26cc60d6a54c04513f5a9ca32e4a0d08de2c9e059084e5",
+          "url": "https://raw.githubusercontent.com/thuml/Time-Series-Library/4e938a1767106324dd753b2a44832bf870a0252e/models/PatchTST.py",
+          "bytes": 9071
+        },
+        {
+          "path": "layers/Transformer_EncDec.py",
+          "sha256": "7b26f4459735c341f161011f6bc24b9deb8ecc3bcf61e4f15431998272a44fb4",
+          "url": "https://raw.githubusercontent.com/thuml/Time-Series-Library/4e938a1767106324dd753b2a44832bf870a0252e/layers/Transformer_EncDec.py",
+          "bytes": 4929
+        },
+        {
+          "path": "layers/SelfAttention_Family.py",
+          "sha256": "6f6592aed0753e342fc04c01db70528c2eb191eeb067cd5fd4c8d348fddcb794",
+          "url": "https://raw.githubusercontent.com/thuml/Time-Series-Library/4e938a1767106324dd753b2a44832bf870a0252e/layers/SelfAttention_Family.py",
+          "bytes": 12001
+        },
+        {
+          "path": "layers/Embed.py",
+          "sha256": "17e7c3577324c41a0da427a199c955b782fde905aabb1f7cbc3c4e15ebd4ae35",
+          "url": "https://raw.githubusercontent.com/thuml/Time-Series-Library/4e938a1767106324dd753b2a44832bf870a0252e/layers/Embed.py",
+          "bytes": 7012
+        },
+        {
+          "path": "utils/masking.py",
+          "sha256": "02f453e52cfaec65e34132923add80e7132f188706680fa86d7bd884976e09ef",
+          "url": "https://raw.githubusercontent.com/thuml/Time-Series-Library/4e938a1767106324dd753b2a44832bf870a0252e/utils/masking.py",
+          "bytes": 832
+        }
+      ],
+      "scope": "Small trained pilot implementations of iTransformer and PatchTST, not numerical reproductions of their original published rows",
+      "license": "MIT"
+    }
+  },
+  "development_sources": {
+    "results/eda_development/daily_market_development.csv": "bf6bb5160af924aef6a15c3684aeae932df3017e8639888bb7e91ce787900171",
+    "results/eda_development/daily_volatility_development.csv": "20b96374a659eb87dadfa68aa3d6b6b5fb6bea5b10eebe6f2c186ad69861844a"
+  }
+}
