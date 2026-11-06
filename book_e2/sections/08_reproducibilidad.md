@@ -69,7 +69,7 @@ La salida debe estar fuera del repositorio. El registro rechaza intentos anterio
 
 ### 8.3.1 Implementación del benchmark final
 
-La [descarga nueva](../_static/completion_download/completion_bundle.zip) incorpora el runner `scripts/run_e2_final_benchmark.py`, adaptadores finales, estadística, incertidumbre, diagnósticos, contador de operaciones, referencia de predictibilidad y pruebas. El [diseño](../_static/completion_protocol/design.json) y la [enmienda](../_static/completion_protocol/analysis_additions.json) identifican los insumos que deben registrarse antes de sus ajustes reales. Se conservan el código/registro P0 y sus recibos sin reescribirlos.
+La [descarga nueva](../_static/completion_download/completion_bundle.zip) incorpora el runner `scripts/run_e2_final_benchmark.py`, adaptadores finales, estadística, incertidumbre, diagnósticos, contador de operaciones, referencia de predictibilidad y pruebas. El [diseño](../_static/completion_protocol/design.json) y la [enmienda](../_static/completion_protocol/analysis_additions.json) identifican los insumos del [registro previo](../_static/completion_preflight/registration.json) que habilitó sus ajustes reales. Se conservan el código/registro P0 y sus recibos sin reescribirlos.
 
 El programa separa inventario/preflight, registro, HPO, P1, coste, potencia, cierre de pesos primarios y A, calibración, scoring y análisis. Debe ejecutarse desde un checkout limpio con fuentes de autores fijadas y salida privada nueva. No basta instalar paquetes: se verifican los bytes de todas las dependencias importadas, datos de desarrollo, candidatos y revisión arquitectónica. Los comandos y opciones exactas están en el paquete; el flujo aún no acredita una reproducción independiente de la tabla final.
 

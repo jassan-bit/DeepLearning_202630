@@ -92,7 +92,7 @@
   "current_readiness_tool": "scripts/run_e2_final_benchmark.py --phase preflight",
   "current_training_driver": "scripts/run_e2_final_benchmark.py (completion); scripts/execute_e2_development_pilot.py remains historicalP0 driver",
   "full_guide_receipt_is_not_full_requirement_compliance": true,
-  "updated_at_utc": "2026-11-06T18:50:35.659317+00:00",
+  "updated_at_utc": "2026-11-06T19:00:35.486972+00:00",
   "observed_execution": {
     "source_commit": "599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0",
     "registered_at_utc": "2026-11-06T14:52:32.498327+00:00",
@@ -221,7 +221,7 @@
   "observed_error_analysis": "remediation_error_results/error_summary.json",
   "completion_update": {
     "protocol_id": "E2-completion-20261106-v1",
-    "status": "implemented_under_final_integration_review_before_public_registration",
+    "status": "registered_HPO_in_progress",
     "design": "completion_protocol/design.json",
     "preregistration": "completion_protocol/preregistration.json",
     "amendments": "completion_protocol/analysis_additions.json",
@@ -230,8 +230,8 @@
     "tiny_batch_sanity": "completion_preflight/tiny_batch_sanity.json",
     "source_author_files_pinned": 112,
     "source_author_trees": 11,
-    "source_registered_commit": null,
-    "actual_completion_market_fits": 0,
+    "source_registered_commit": "dbb193a72897c80cbd34b452ba3cfe9d82ce6ce0",
+    "actual_completion_market_fits": 24,
     "actual_completion_market_scores": 0,
     "HPO_completed": false,
     "P1_days": 53,
@@ -239,6 +239,16 @@
     "Top3_uncertainty_predictor_cohort_predeclared": 20,
     "legacy_anchor_OOF_selection_exposure_disclosed": true,
     "standalone_false_completion_claimed": false,
-    "external_literature_closure_pending": true
-  }
+    "external_literature_closure_pending": true,
+    "registered_at_utc": "2026-11-06T18:59:10.119489+00:00",
+    "registration_receipt": "completion_preflight/registration.json",
+    "execution_progress": "completion_preflight/execution_progress.json",
+    "closed_completion_trajectories": 12,
+    "closed_completion_optimizer_fits": 24,
+    "closed_completion_estimator_fits": 0,
+    "market_fit_counter_scope": "Closed trajectory receipts only; active or failed incomplete optimizer stages are not counted as completed fits. This is a dated snapshot, not live telemetry.",
+    "snapshot_at_utc": "2026-11-06T19:00:35.486972+00:00"
+  },
+  "HPO_execution_state": "in_progress",
+  "HPO_actual_executed_scope": "Historical boolean records closure of the full fifteen-procedure HPO, not whether partial registered fits exist; see completion_update/execution_progress"
 }

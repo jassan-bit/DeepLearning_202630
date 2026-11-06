@@ -1,6 +1,6 @@
 # 4. Implementación de Modelos Benchmark
 
-**Estado: P0/OOF registrado y ejecutado; nueva implementación final y enmienda preparadas, pendientes de registro y ejecución con mercado.** La guía completa de 65 páginas ya está recibida. Se cerraron las reglas de ejecución antes de iniciar P0 y OOF; el benchmark final de veinte configuraciones, su HPO y su dimensionamiento P1 todavía no están ejecutados. P0/OOF ya está ejecutado y analizado en [§9](09_protocolo_registrado.md), como diagnóstico de desarrollo separado del benchmark final.
+**Estado: P0/OOF registrado y ejecutado; nueva implementación final registrada y HPO en ejecución.** La guía completa de 65 páginas ya está recibida. Se cerraron las reglas de ejecución antes de iniciar P0 y OOF; el benchmark final de veinte configuraciones, su HPO todavía no está cerrado y su dimensionamiento P1 no se ha ejecutado. P0/OOF ya está ejecutado y analizado en [§9](09_protocolo_registrado.md), como diagnóstico de desarrollo separado del benchmark final.
 
 La [sección 9](09_protocolo_registrado.md) identifica el registro y los recibos. La réplica y el piloto **ETTh1** de [§5](05_paper_guia.md) conservan su alcance externo; no cuentan como entrenamientos ni potencia del benchmark Bitcoin. La propuesta v1 se mantiene como archivo histórico[^v1].
 

@@ -1,20 +1,22 @@
 # 9. Preregistro, potencia y piloto
 
-**Estado al 06/11/2026:** protocolo versionado antes de iniciar el piloto Bitcoin de esta etapa; P0 y su evaluación fuera de muestra en desarrollo están **ejecutados y analizados**, con 220 trayectorias y 440 ajustes cerrados. El HPO, el piloto P1, los ajustes definitivos y el benchmark final siguen pendientes. La guía completa de **65 páginas** ya fue recibida y revisada: los pendientes actuales corresponden a implementación y evidencia experimental.
+**Estado al 06/11/2026:** protocolo versionado antes de iniciar el piloto Bitcoin de esta etapa; P0 y su evaluación fuera de muestra en desarrollo están **ejecutados y analizados**, con 220 trayectorias y 440 ajustes cerrados. El HPO final está en ejecución; el piloto P1, los ajustes definitivos y el benchmark final siguen pendientes. La guía completa de **65 páginas** ya fue recibida y revisada: los pendientes actuales corresponden a implementación y evidencia experimental.
 
 El registro público es el commit [`599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0`](https://github.com/jassan-bit/DeepLearning_202630/commit/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0), con recibo de registro del **06/11/2026 a las 14:52:32 UTC**. El inicio de P0/OOF se condicionó a ese registro y a sus verificaciones previas. Registrar decisiones ahora mejora el procedimiento prospectivo; **no devuelve el cegamiento al test histórico conocido ni convierte E2 en una confirmación independiente**.
 
-## 9.0 Enmienda preparada para la implementación final
+## 9.0 Enmienda registrada para la implementación final
 
-El registro `599a29f` y sus JSON se conservan intactos. La nueva [enmienda](../_static/completion_protocol/analysis_additions.json) está preparada para registrarse **antes de cualquier ajuste de mercado de esta implementación**. No se atribuye al registro P0 una decisión posterior. Resuelve presets y adaptaciones de los diez backbones, conserva once candidatos aleatorios y añade un c12 fuente por red, manteniendo T12 y los límites comunes.
+El registro `599a29f` y sus JSON se conservan intactos. La nueva [enmienda](../_static/completion_protocol/analysis_additions.json) se publicó en [`dbb193a`](https://github.com/jassan-bit/DeepLearning_202630/commit/dbb193a72897c80cbd34b452ba3cfe9d82ce6ce0) y se [registró](../_static/completion_preflight/registration.json) el **06/11/2026 a las 18:59:10 UTC (13:59:10 en Colombia)**, con cero ajustes previos de mercado de esta implementación. No se atribuye al registro P0 una decisión posterior. Resuelve presets y adaptaciones de los diez backbones, conserva once candidatos aleatorios y añade un c12 fuente por red, manteniendo T12 y los límites comunes.
 
 La selección histórica de recetas E1 llega al **31/10/2024**. Por ello, P1 y la calibración A pasan al **08/11–30/12/2024, 53 fechas**, con ajuste/selección hasta 31/10 y embargo 01–07/11. Se mantienen las sesenta fechas históricas P0 como evidencia ya ejecutada y las sesenta fechas de test de 2026; ningún calendario se presenta como desconocido de nuevo.
 
 La rama A se declara para **los veinte modelos antes del ranking**. Sus cinco miembros neurales `680101`–`680105`, de pesos 0,2, se fijan antes de P1 y no dependen del R que P1 elija usando las mismas 53 etiquetas. Las cuatro referencias deterministas usan una trayectoria. Todos los pesos primarios, A y de controles negativos cierran antes de puntuar calibración; todos los calibradores cierran antes de la única fase de scoring del test E2. El predictor A evaluado es el mismo que se calibró, sin reajuste.
 
+El primer arranque, registrado con la fuente `ef2be28`, falló al invocar los workers antes de crear ajustes. Se conserva su [incidencia](../_static/completion_preflight/execution_incident.json). La corrección se publicó y registró con salida nueva antes del primer ajuste; no modifica candidatos, arquitectura, hipótesis ni presupuestos. El [avance observado](../_static/completion_preflight/execution_progress.json) distingue ajustes cerrados de trabajo planificado.
+
 ## 9.1 Diecinueve decisiones documentadas
 
-La matriz organiza diecinueve decisiones operativas. Las filas de arquitectura, candidatos, calendario y orden incorporan la enmienda preparada de §9.0; no se afirma que esos cambios estuvieran en `599a29f`. El registro de una regla no acredita que sus experimentos o verificaciones finales estén terminados. El R definitivo y las recetas finales se obtendrán mediante las reglas registradas, sin completar esos campos con resultados imaginados.
+La matriz organiza diecinueve decisiones operativas. Las filas de arquitectura, candidatos, calendario y orden incorporan la enmienda registrada de §9.0; no se afirma que esos cambios estuvieran en `599a29f`. El registro de una regla no acredita que sus experimentos o verificaciones finales estén terminados. El R definitivo y las recetas finales se obtendrán mediante las reglas registradas, sin completar esos campos con resultados imaginados.
 
 | N.º | Decisión | Regla y alcance, con enmiendas indicadas |
 |---|---|---|
@@ -111,7 +113,7 @@ La incertidumbre de la DE cambia mucho el R proyectado. Con su cota superior, Ti
 
 ## 9.3 Qué queda por ejecutar y cómo se dimensionará
 
-P0 no estima la potencia de las recetas finales ni determina el ganador. La nueva [revisión arquitectónica](../_static/completion_protocol/architecture_review.json) ya resuelve individualmente los diez adaptadores y documenta `nas_required=false` en esos casos, con fuente, preset y modificaciones D7. Las pruebas sintéticas verifican implementaciones, no el pipeline completo ni el rendimiento de mercado. HPO, P1 y ajustes finales requieren registrar la enmienda y superar sus recibos integrados antes de comenzar.
+P0 no estima la potencia de las recetas finales ni determina el ganador. La nueva [revisión arquitectónica](../_static/completion_protocol/architecture_review.json) ya resuelve individualmente los diez adaptadores y documenta `nas_required=false` en esos casos, con fuente, preset y modificaciones D7. Las pruebas sintéticas verifican implementaciones, no el pipeline completo ni el rendimiento de mercado. El registro y el preflight integrado ya están cerrados. HPO está en curso; P1 y ajustes finales siguen sujetos a los recibos de las fases anteriores.
 
 La selección final de hiperparámetros se separa de su evaluación OOF. Las tres anclas E1 conservan selección histórica hasta octubre: su OOF enero–septiembre **no se presenta como selección anidada libre de exposición**. El corte mensual de ajuste, épocas y escaladores sigue siendo obligatorio para todos. Las otras diecisiete configuraciones respetan selección de configuración anterior al origen externo; la excepción histórica no autoriza nueva selección con meses futuros.
 
