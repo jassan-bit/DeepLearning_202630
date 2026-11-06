@@ -181,7 +181,7 @@ $$
 
 No basta cambiar `c_out=1` ni seleccionar Close de una salida multivariante. La escala final corresponde al objetivo, ajustada solo en entrenamiento. La rama de tendencia de Autoformer y las conexiones residuales de otros modelos deben proyectarse coherentemente a esa variable. TiDE requiere una adaptación explícita **covariate-only** para conservar la ausencia de Y rezagada, atributos estáticos y covariables futuras. Esa adaptación no se presenta como ejecución idéntica de la configuración del artículo.
 
-En Informer/Autoformer, el decoder admite contexto observado y placeholders futuros sin valores verdaderos; los embeddings de calendario originales se deben desactivar o sustituir para no añadir canales no acordados. Los parches, segmentos, kernels, frecuencias y niveles de downsampling deben ser válidos con D7. La factibilidad de forma y los espacios de búsqueda equitativos se verificarán antes de entrenar, con la guía de implementación restante.
+En Informer/Autoformer, el decoder admite contexto observado y placeholders futuros sin valores verdaderos; los embeddings de calendario originales se deben desactivar o sustituir para no añadir canales no acordados. Los parches, segmentos, kernels, frecuencias y niveles de downsampling deben ser válidos con D7. La [sección 4](04_implementacion.md) desarrolla el diseño y los requisitos de implementación recibidos; la factibilidad de forma y los espacios equitativos se verificarán antes de entrenar y de cerrar el protocolo completo.
 
 ## 3.3 Análisis técnico por modelo
 

@@ -484,7 +484,7 @@
     "e2_new_deep_learning_fits": 0,
     "dataset_and_target_contract_changed": false,
     "known_test_status": "Continúa conocido; la propuesta bibliográfica no crea un test nuevo ni justifica afirmaciones confirmatorias",
-    "remaining_guide_material": "Secciones 4–14 y apéndices, incluida la implementación equitativa 11.1 y búsqueda de arquitectura 14",
+    "remaining_guide_material": "Secciones 5–14 y apéndices, incluida la implementación equitativa 11.1 y búsqueda de arquitectura 14",
     "current_fulltext_review": {
       "bibliographic_models_reviewed": 10,
       "full_original_PDFs_reviewed": 10,
@@ -507,5 +507,71 @@
       "new_Bitcoin_results_this_review": 0,
       "scope_note": "Lectura y selección bibliográfica para transferencia a Bitcoin; los resultados externos no constituyen un ranking comparable del experimento D7 de Bitcoin."
     }
+  },
+  "benchmark_implementation_scope": {
+    "guide_record": "guia_e2_recibida.json",
+    "received_section": "4.1–4.6",
+    "visible_page_numbers": [
+      12,
+      13,
+      14,
+      15
+    ],
+    "last_capture_unpaginated": true,
+    "section_4_6_page_number": null,
+    "full_guide_received": false,
+    "requirements_registered": true,
+    "final_experimental_protocol_closed": false,
+    "implementation_validated_for_D7": false,
+    "new_deep_learning_fits": 0,
+    "new_Bitcoin_results": 0,
+    "common_budget_planned_not_executed": true,
+    "at_least_five_runs_is_not_power_evidence": true,
+    "guide_cross_references_pending": [
+      "7",
+      "7.3",
+      "9.2",
+      "10",
+      "11",
+      "11.1",
+      "13.2",
+      "14"
+    ],
+    "current_limits": [
+      "Las secciones 7, 9.2, 10, 11/11.1, 13.2 y 14 se citan en las capturas, pero su texto completo todavía no se ha recibido.",
+      "La reserva de E1 ya fue evaluada. No puede describirse como un test nuevo sellado o no observado; reutilizarla mantiene interpretación exploratoria.",
+      "No se reasignan fechas, se inventa un periodo nuevo ni se modifica unilateralmente la partición heredada para aparentar cumplimiento del test desconocido.",
+      "El mínimo de cinco semillas no demuestra potencia suficiente y R=465 de E1 no dimensiona automáticamente las nuevas comparaciones.",
+      "Los folds de una única serie y las semillas no son réplicas del calendario independientes; su incertidumbre debe distinguirse de la variabilidad de optimización.",
+      "La activación de búsqueda de arquitectura es condicional a que el original no la defina; no se declara obligatoria para los diez por mera adaptación de la cabeza escalar. La decisión requiere registro por modelo y sección 14 completa.",
+      "Aún no hay entrenamiento, HPO, piloto, potencia, robustez, explicabilidad o ablaciones del benchmark DL de E2 ejecutados."
+    ],
+    "contract_policy": "Conservar entradas D7×5 OHLCV, σ7 poblacional, horizonte h=1, métrica primaria, δ, unidad y partición de E1; cualquier enmienda debe ser explícita y compatible con la guía completa.",
+    "architecture_search_rule_received": {
+      "trigger": "El paper no define arquitectura",
+      "two_phase_protocol_reference": "14",
+      "phase_1_layers": 3,
+      "phase_1_widths": [
+        16,
+        32,
+        64,
+        128,
+        256
+      ],
+      "phase_1_dropout_rate": 0.2,
+      "phase_1_all_width_combinations": true,
+      "phase_1_all_dropout_positions": true,
+      "phase_1_architectures_stated_by_guide": 1000,
+      "phase_2_details_received": false,
+      "per_model_applicability_decisions_closed": false,
+      "executed": false
+    },
+    "minimum_repetitions_received": 5,
+    "minimum_repetitions_recommendation_for_exact_two_sided_Wilcoxon": 6,
+    "minimum_exact_two_sided_Wilcoxon_p_with_five_nonzero_pairs": 0.0625,
+    "Wilcoxon_note": "El mínimo supone cinco diferencias efectivas no nulas sin empates; no convierte cinco folds temporales en observaciones independientes.",
+    "robustness_minimum_levels_per_perturbation": 3,
+    "interpretability_top_models": 3,
+    "ablation_minimum_components": 3
   }
 }

@@ -20,7 +20,18 @@ Desde la raíz, con el entorno de `requirements-book.lock.txt` instalado:
 
 La carpeta de salida del ensamblado debe ser nueva o vacía; usar otra ruta al repetir. Abrir `http://localhost:8000/entregables.html`. La publicación automatizada siempre reconstruye y reúne los tres libros, para conservarlos cuando cambia uno de ellos.
 
-Los comandos experimentales del resto de este documento describen **E1**. E2 tiene introducción y secciones 1–3 desarrolladas a partir de las capturas recibidas; su EDA y revisión bibliográfica tienen scripts y artefactos propios. Se integraron exportaciones de WoS y Scopus y diez originales completos; continúan abiertos el cribado global, la búsqueda transversal, la guía restante y el protocolo experimental. La sección 3.2 exige diez modelos más cinco referencias, con mínimo quince configuraciones. E3 conserva estructura inicial. El benchmark de E2 y los experimentos de E3 no se han ejecutado.
+Los comandos experimentales del resto de este documento describen **E1**. E2 tiene introducción y secciones 1–4 desarrolladas a partir de las capturas recibidas; su EDA y revisión bibliográfica tienen scripts y artefactos propios. Se integraron exportaciones de WoS y Scopus y diez originales completos; continúan abiertos el cribado global, la búsqueda transversal, la guía restante y el protocolo experimental. La sección 3.2 exige diez modelos más cinco referencias, con mínimo quince configuraciones. E3 conserva estructura inicial. El benchmark de E2 y los experimentos de E3 no se han ejecutado.
+
+
+El diseño de implementación E2 y su auditoría documental se verifican sin importar librerías DL ni abrir archivos de mercado:
+
+```bash
+python scripts/audit_e2_benchmark_readiness.py
+python tests/test_e2_benchmark_readiness.py
+python scripts/package_e2_benchmark_design.py --check
+```
+
+La auditoría devuelve código cero para una propuesta documental válida que todavía puede tener bloqueos. `python scripts/audit_e2_benchmark_readiness.py --require-ready` devuelve **2** mientras esos prerrequisitos falten; un contrato alterado devuelve **1**. La propuesta conserva 15 configuraciones mínimas, ocho candidatos por familia y un presupuesto temporal aún sin dimensionar. Los 1.320 ajustes por familia son planificación, no ejecuciones. Esta herramienta no sustituye un ejecutor de entrenamiento, el piloto ni la auditoría de cada pipeline real.
 
 
 El JBook distingue **fase I exploratoria** y **fase II D7 planificada** de GRU–LSTM–TCN. Ambas usan Bitcoin, σ₇ poblacional, horizonte de un día y covariables OHLCV causales. La primera conserva las cuatro entradas y su test enero de 2025–agosto de 2026 ya observado. La segunda registra HPO comparable, piloto, dimensionamiento y evaluación sobre el 01/09–30/10/2026. Sus recetas y registros no se mezclan: GRU/D7 de fase I tiene 32 unidades y 3.777 parámetros; GRU/D7-c03 de fase II tiene 16 unidades y 1.121 parámetros.

@@ -1,0 +1,626 @@
+{
+  "schema_version": 1,
+  "administrative_date_colombia": "2026-11-05",
+  "administrative_timezone": "America/Bogota",
+  "status": "proposed_not_frozen",
+  "chapter": "sections/04_implementacion.md",
+  "scope": "Propuesta y auditor documental preentrenamiento; no implementa ni ejecuta el benchmark E2.",
+  "declared_ready_to_train": false,
+  "inherited_scientific_contract": {
+    "source_commit": "94a4b0324e93361e8928d708fdfeb50110e3686f",
+    "registered_baseline": {
+      "id": "GRU/D7-c03",
+      "model": "GRU",
+      "history_days": 7,
+      "width": 16,
+      "parameters": 1121,
+      "learning_rate": 0.003,
+      "dropout": 0.1,
+      "selection_scope": "Elegido mediante CV antes del piloto y de la evaluación de fase II; no se sustituye por el ranking de test"
+    },
+    "base_model_recipes": {
+      "GRU": {
+        "candidate_id": "c03",
+        "width": 16,
+        "learning_rate": 0.003,
+        "dropout": 0.1,
+        "model": "GRU",
+        "history_days": 7,
+        "mean_rmse": 0.005136197693706435,
+        "sample_sd": 3.067925167633123e-05,
+        "parameters": 1121
+      },
+      "LSTM": {
+        "candidate_id": "c02",
+        "width": 16,
+        "learning_rate": 0.003,
+        "dropout": 0.0,
+        "model": "LSTM",
+        "history_days": 7,
+        "mean_rmse": 0.006263890287288932,
+        "sample_sd": 0.00021401934268919446,
+        "parameters": 1489
+      },
+      "TCN": {
+        "candidate_id": "c02",
+        "width": 8,
+        "learning_rate": 0.003,
+        "dropout": 0.0,
+        "model": "TCN",
+        "history_days": 7,
+        "mean_rmse": 0.005436975510979903,
+        "sample_sd": 0.0005699848942024205,
+        "parameters": 1185
+      }
+    },
+    "recipe_architectures": {
+      "GRU": {
+        "recurrent_layers": 1,
+        "bidirectional": false,
+        "output": "Scalar Softplus"
+      },
+      "LSTM": {
+        "recurrent_layers": 1,
+        "bidirectional": false,
+        "output": "Scalar Softplus"
+      },
+      "TCN": {
+        "residual_blocks": 3,
+        "convolutions_per_block": 2,
+        "kernel_size": 3,
+        "dilations": [
+          1,
+          2,
+          4
+        ],
+        "causal": true,
+        "receptive_field_days": 29,
+        "prediction_position": "Última posición",
+        "output": "Scalar Softplus"
+      }
+    },
+    "primary_metric": {
+      "name": "RMSE",
+      "direction": "minimize",
+      "scale": "Volatilidad no anualizada en unidades de retorno logarítmico diario",
+      "aggregation": "RMSE por trayectoria sobre todas las fechas elegibles de la cohorte; después media entre semillas",
+      "inverse_target_scaling_before_scoring": true,
+      "not_equivalent_to": [
+        "RMSE de la predicción promediada entre semillas",
+        "Raíz del MSE agregado sobre semilla por fecha",
+        "Media no ponderada de RMSE mensuales"
+      ]
+    },
+    "practical_margin": {
+      "absolute_delta": 0.00025772842664981106,
+      "inherited_without_modification": true,
+      "origin": "0.05 × RMSE de CV de GRU/D7 de la fase I",
+      "original_anchor_rmse": 0.005154568532996221,
+      "relative_anchor_fraction": 0.05,
+      "anchor_is_not_phase_II_reserve_or_tuned_cv": true,
+      "scope": "Margen académico, sin tolerancia de riesgo ni utilidad financiera demostradas",
+      "chronology": "Definido después de la fase I y antes de puntuar la reserva de fase II; en E2 se hereda sin atribuirlo retrospectivamente al test histórico",
+      "additional_e1_relative_convention": "E1 distingue el margen absoluto de planificación y la mejora relativa superior al 5 % frente a GRU/D7 y persistencia; los denominadores no se sustituyen por el RMSE de otro periodo"
+    },
+    "independence": {
+      "observational_unit": "Origen temporal diario con su ventana OHLCV y etiqueta futura",
+      "market_unit": "Una serie BTCUSDT de Binance Spot",
+      "independent_market_count": 1,
+      "conditional_randomization_unit": "Semilla de inicialización y orden de entrenamiento, pareada entre recetas y condicionada al mismo calendario",
+      "dependent_observations": "Fechas y etiquetas móviles solapadas; meses/folds y semillas no son mercados independientes",
+      "generalization": "Los intervalos entre semillas describen variabilidad de entrenamiento condicionada al calendario; no generalización a otros activos o exchanges"
+    },
+    "partition": {
+      "source_phase": "Entregable 1, fase II D7; herencia explícita, sin reasignar la fase I",
+      "timezone": "UTC",
+      "random_shuffle": false,
+      "initial_history": {
+        "start": "2023-01-01",
+        "end_inclusive": "2023-12-31"
+      },
+      "hpo_forward_chaining": {
+        "start": "2024-01-01",
+        "end_inclusive": "2024-10-31",
+        "monthly_blocks": 10,
+        "training_window": "expanding",
+        "embargo_days": 7,
+        "selection": "Media entre semillas del RMSE sobre todas las fechas de validación concatenadas; no media de RMSE mensuales"
+      },
+      "pilot": {
+        "start": "2024-11-01",
+        "end_inclusive": "2024-12-30",
+        "calendar_days": 60,
+        "weights": "Ajustadas antes del origen 2024-11-01 y conservadas para las 60 fechas"
+      },
+      "final_fit": {
+        "development_start": "2023-01-01",
+        "development_end_inclusive": "2024-12-31",
+        "nominal_origin": "2025-01-01",
+        "training_outcome_max": "2024-12-24",
+        "embargo_days": 7,
+        "inner_validation_calendar_days": 90,
+        "weights_and_scalers_frozen_during_evaluation": true,
+        "training_labels_2025_2026_allowed": false
+      },
+      "phase_II_evaluation": {
+        "start": "2026-09-01",
+        "end_inclusive": "2026-10-30",
+        "calendar_days": 60,
+        "already_observed": true,
+        "status_for_e2": "Reserva histórica ya evaluada en E1; reutilización exploratoria, no test nuevo sellado"
+      },
+      "phase_I_archive": {
+        "start": "2025-01-01",
+        "end_inclusive": "2026-08-31",
+        "calendar_days": 608,
+        "already_observed": true,
+        "role": "Archivo histórico de E1, sin reasignación a entrenamiento ni a test desconocido de E2"
+      },
+      "new_unseen_e2_test_assigned": false,
+      "new_dates_acquired_for_e2": false,
+      "e2_evaluation_scope": "La herencia mantiene el calendario; los periodos ya conocidos solo permiten nuevas comparaciones exploratorias. No se declara un test confirmatorio independiente."
+    }
+  },
+  "data_contract": {
+    "schema": {
+      "source_frequency": "1 minute",
+      "source_format": "CSV de 12 columnas dentro de ZIP oficiales",
+      "column_names_follow": "scripts/planned_study_data.py:COLUMNS",
+      "columns": [
+        {
+          "position_1_based": 1,
+          "name": "open_time",
+          "type": "integer timestamp",
+          "unit": "ms antes de 2025; us desde 2025",
+          "meaning": "Inicio de la vela"
+        },
+        {
+          "position_1_based": 2,
+          "name": "open",
+          "type": "numeric",
+          "unit": "USDT por BTC",
+          "meaning": "Precio de apertura"
+        },
+        {
+          "position_1_based": 3,
+          "name": "high",
+          "type": "numeric",
+          "unit": "USDT por BTC",
+          "meaning": "Precio máximo"
+        },
+        {
+          "position_1_based": 4,
+          "name": "low",
+          "type": "numeric",
+          "unit": "USDT por BTC",
+          "meaning": "Precio mínimo"
+        },
+        {
+          "position_1_based": 5,
+          "name": "close",
+          "type": "numeric",
+          "unit": "USDT por BTC",
+          "meaning": "Precio de cierre"
+        },
+        {
+          "position_1_based": 6,
+          "name": "volume",
+          "type": "numeric",
+          "unit": "BTC",
+          "meaning": "Volumen del activo base"
+        },
+        {
+          "position_1_based": 7,
+          "name": "close_time",
+          "type": "integer timestamp",
+          "unit": "ms antes de 2025; us desde 2025",
+          "meaning": "Cierre de la vela"
+        },
+        {
+          "position_1_based": 8,
+          "name": "quote_volume",
+          "type": "numeric",
+          "unit": "USDT",
+          "meaning": "Volumen del activo cotizado"
+        },
+        {
+          "position_1_based": 9,
+          "name": "trades",
+          "type": "integer",
+          "unit": "count",
+          "meaning": "Número de operaciones"
+        },
+        {
+          "position_1_based": 10,
+          "name": "taker_base",
+          "type": "numeric",
+          "unit": "BTC",
+          "meaning": "Volumen comprador taker del activo base"
+        },
+        {
+          "position_1_based": 11,
+          "name": "taker_quote",
+          "type": "numeric",
+          "unit": "USDT",
+          "meaning": "Volumen comprador taker del activo cotizado"
+        },
+        {
+          "position_1_based": 12,
+          "name": "ignore",
+          "type": "source field",
+          "unit": "No utilizado",
+          "meaning": "Campo del proveedor ignorado por el modelo"
+        }
+      ],
+      "model_frequency": "1 day",
+      "calendar_timezone": "UTC",
+      "model_features": [
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume"
+      ],
+      "input_shape_per_example": [
+        7,
+        5
+      ],
+      "output_shape_per_example": [
+        1
+      ],
+      "daily_aggregation": {
+        "open": "Primera apertura",
+        "high": "Máximo de máximos",
+        "low": "Mínimo de mínimos",
+        "close": "Último cierre",
+        "volume": "Suma de volúmenes"
+      },
+      "eligible_daily_bar": "1440 minutos válidos del mismo día UTC; conservar posiciones de días incompletos como ausentes"
+    },
+    "label_protocol": {
+      "annotation": "Determinista, sin anotación humana",
+      "target": "Desviación estándar poblacional de siete retornos logarítmicos diarios consecutivos",
+      "formula": "r_d=ln(P_d/P_(d-1)); y_d=sqrt((1/7)*sum_(i=0)^6 (r_(d-i)-mean(r_d,...,r_(d-6)))^2)",
+      "ddof": 0,
+      "return_count": 7,
+      "required_consecutive_closes": 8,
+      "annualized": false,
+      "multiplied_by_100": false,
+      "forecast_horizon_days": 1,
+      "input_history_days": 7,
+      "input_support": "[outcome_day-7,outcome_day)",
+      "target_lags_added": false,
+      "label_available": "Al concluir el día de resultado; el último retorno todavía no está disponible al emitir el pronóstico",
+      "loss": "MSE",
+      "primary_metric": "RMSE en escala original",
+      "noise": [
+        "Proxy de dispersión de retornos observados; no medición sin error de volatilidad latente",
+        "Incertidumbre por ventana finita, calidad del proveedor y microestructura",
+        "Etiquetas consecutivas comparten seis retornos; no siete días enteramente futuros"
+      ],
+      "noise_magnitude_measured": false,
+      "inter_annotator_agreement": "No aplica: no hay anotación humana"
+    },
+    "representation": {
+      "variant": "relative_window",
+      "ohlc": "Logaritmos relativos al último cierre observable de la ventana",
+      "volume": "log1p(volume)",
+      "learned_scaling": "Solo entrenamiento admisible; escalas X y media positiva de Y",
+      "metrics": "Después de invertir la escala del objetivo"
+    }
+  },
+  "e1_source_receipts": {
+    "results/gru_lstm_tcn_planned_20261105/selected_recipes.json": "3fb4a42d023a09c7ec88d78869434997e3827eb4482d10107562548acd1d78d7",
+    "results/gru_lstm_tcn_planned_20261105/metric_summary.csv": "77622a89e7a96abc0e2e00bb7efb6b97721265c4513d9a6c5ed711af7193ac12",
+    "results/gru_lstm_tcn_planned_20261105/dimensioning.json": "a5f58378ed80cc05563244abb650ba071df140ae5e68b2c4c56a05f8d910c8e2",
+    "results/gru_lstm_tcn_planned_20261105/design.json": "80e804a9a4c0ae4c053f02bf62a2b4315c9ddadbb0b0e3951b09652a9964a81c",
+    "data/manifests/binance_spot_BTCUSDT_1m_20230101_20261030.json": "af723bcca2caffcbe44ae5243e2863bbcdcd39ae8cd42df491af0a2857926bb2",
+    "book/sections/09_estudio_planificado.md": "2058bc204c9e463265da1175118ab07ad315c5cac7a08a835eb7c9ab901d674d"
+  },
+  "models": [
+    {
+      "id": "TSMixer",
+      "role": "top10_candidate",
+      "family": "MLP/mixing",
+      "original_architecture_identified": true,
+      "D7_architecture_definition_status": "pending_adapter_specification_and_section14_review",
+      "e2_adapter_path": null,
+      "e2_adapter_sha256": null
+    },
+    {
+      "id": "TiDE",
+      "role": "top10_candidate",
+      "family": "MLP/mixing",
+      "original_architecture_identified": true,
+      "D7_architecture_definition_status": "pending_adapter_specification_and_section14_review",
+      "e2_adapter_path": null,
+      "e2_adapter_sha256": null
+    },
+    {
+      "id": "TimeMixer",
+      "role": "top10_candidate",
+      "family": "MLP/mixing",
+      "original_architecture_identified": true,
+      "D7_architecture_definition_status": "pending_adapter_specification_and_section14_review",
+      "e2_adapter_path": null,
+      "e2_adapter_sha256": null
+    },
+    {
+      "id": "TimesNet",
+      "role": "top10_candidate",
+      "family": "Convolution",
+      "original_architecture_identified": true,
+      "D7_architecture_definition_status": "pending_adapter_specification_and_section14_review",
+      "e2_adapter_path": null,
+      "e2_adapter_sha256": null
+    },
+    {
+      "id": "PatchTST",
+      "role": "top10_candidate",
+      "family": "Attention",
+      "original_architecture_identified": true,
+      "D7_architecture_definition_status": "pending_adapter_specification_and_section14_review",
+      "e2_adapter_path": null,
+      "e2_adapter_sha256": null
+    },
+    {
+      "id": "Informer",
+      "role": "top10_candidate",
+      "family": "Attention",
+      "original_architecture_identified": true,
+      "D7_architecture_definition_status": "pending_adapter_specification_and_section14_review",
+      "e2_adapter_path": null,
+      "e2_adapter_sha256": null
+    },
+    {
+      "id": "Autoformer",
+      "role": "top10_candidate",
+      "family": "Attention",
+      "original_architecture_identified": true,
+      "D7_architecture_definition_status": "pending_adapter_specification_and_section14_review",
+      "e2_adapter_path": null,
+      "e2_adapter_sha256": null
+    },
+    {
+      "id": "iTransformer",
+      "role": "top10_candidate",
+      "family": "Attention",
+      "original_architecture_identified": true,
+      "D7_architecture_definition_status": "pending_adapter_specification_and_section14_review",
+      "e2_adapter_path": null,
+      "e2_adapter_sha256": null
+    },
+    {
+      "id": "Crossformer",
+      "role": "top10_candidate",
+      "family": "Attention",
+      "original_architecture_identified": true,
+      "D7_architecture_definition_status": "pending_adapter_specification_and_section14_review",
+      "e2_adapter_path": null,
+      "e2_adapter_sha256": null
+    },
+    {
+      "id": "S-Mamba",
+      "role": "top10_candidate",
+      "family": "State-space",
+      "original_architecture_identified": true,
+      "D7_architecture_definition_status": "pending_adapter_specification_and_section14_review",
+      "e2_adapter_path": null,
+      "e2_adapter_sha256": null
+    },
+    {
+      "id": "GRU/D7-c03",
+      "role": "inherited_fixed_anchor",
+      "family": "Recurrent",
+      "original_architecture_identified": true,
+      "D7_architecture_definition_status": "inherited_recipe_without_modification_E2_interface_pending",
+      "e2_adapter_path": null,
+      "e2_adapter_sha256": null
+    },
+    {
+      "id": "LSTM/D7-c02",
+      "role": "inherited_fixed_anchor",
+      "family": "Recurrent",
+      "original_architecture_identified": true,
+      "D7_architecture_definition_status": "inherited_recipe_without_modification_E2_interface_pending",
+      "e2_adapter_path": null,
+      "e2_adapter_sha256": null
+    },
+    {
+      "id": "TCN/D7-c02",
+      "role": "inherited_fixed_anchor",
+      "family": "Convolution",
+      "original_architecture_identified": true,
+      "D7_architecture_definition_status": "inherited_recipe_without_modification_E2_interface_pending",
+      "e2_adapter_path": null,
+      "e2_adapter_sha256": null
+    },
+    {
+      "id": "Ridge",
+      "role": "simple_non_deep_reference",
+      "family": "Linear",
+      "original_architecture_identified": true,
+      "D7_architecture_definition_status": "EDA_diagnostic_exists_benchmark_interface_pending",
+      "e2_adapter_path": null,
+      "e2_adapter_sha256": null
+    },
+    {
+      "id": "Persistence",
+      "role": "trivial_reference",
+      "family": "Naive",
+      "original_architecture_identified": true,
+      "D7_architecture_definition_status": "causal_sigma7_previous_day_requires8closes_context_reference",
+      "e2_adapter_path": null,
+      "e2_adapter_sha256": null
+    }
+  ],
+  "evaluation": {
+    "confirmatory": false,
+    "new_unseen_test_assigned": false,
+    "historical_test_is_unseen": false,
+    "test_selection_allowed": false,
+    "maximum_future_scoring_events": 1,
+    "scope": "Una única puntuación adicional de E2 sólo después de congelar todo; no borra las inspecciones previas de E1.",
+    "test_hash_preserves_identity_not_prospective_blinding": true
+  },
+  "hpo": {
+    "status": "proposed_not_frozen",
+    "strategy": "finite_grid",
+    "candidates_per_family": 8,
+    "search_seed_ids": [
+      202611051,
+      202611052
+    ],
+    "common_compute_budget_seconds": null,
+    "declared_equal_budget_for_all15": false,
+    "equal_budget_claim_scope": "Propuesta de igualdad dentro de los diez nuevos candidatos; pendiente de tiempo común y protocolo. Las tres recetas E1 son anclas fijas.",
+    "fairness_resolution_pending": "Revisar sección11.1: no atribuir el nuevo HPO a las recetas E1. Si se ajustan nuevamente GRU/LSTM/TCN, conservar las tres anclas y registrar variantes E2 separadas (18configuraciones); esa ampliación no está elegida ni ejecutada.",
+    "proposed_hpo_grid": {
+      "axes": {
+        "learning_rate": [
+          0.001,
+          0.003
+        ],
+        "dropout": [
+          0.0,
+          0.1
+        ],
+        "d_model": [
+          16,
+          32
+        ]
+      },
+      "D7_adapter_validity_pending": true,
+      "capacity_axis_scope": "d_model es un eje de capacidad propuesto; el adaptador deberá definir su significado, posiciones de dropout, capas, parches y escalas antes de ejecutar.",
+      "candidate_failure_policy": "Conservar todos los intentos inválidos, fallidos o censurados y su causa; no reponer selectivamente ni dar más intentos al modelo rápido."
+    },
+    "nested_validation_proposal": {
+      "outer_monthly_blocks": 10,
+      "outer_start": "2024-01-01",
+      "outer_end_inclusive": "2024-10-31",
+      "inner_blocks_per_origin": 3,
+      "inner_block_calendar_days": 30,
+      "inner_data_scope": "Dentro del entrenamiento permitido antes de cada origen externo; sin seleccionar con el mes externo.",
+      "last_admissible_outcome_relative_to_origin_days": -8,
+      "embargo_days": 7,
+      "indices_generated": false,
+      "nested_execution_already_performed": false,
+      "final_recipe_selection": "Otra búsqueda forward en desarrollo, cerrada antes del piloto noviembre–diciembre; no usar test.",
+      "score_aggregation": "RMSE por trayectoria sobre fechas concatenadas, después media de las dos semillas; no promedio de RMSE por mes."
+    }
+  },
+  "training_proposal": {
+    "status": "proposed_not_validated",
+    "optimizer": "AdamW",
+    "weight_decay": 0.0001,
+    "batch_size": 32,
+    "maximum_epochs": 100,
+    "early_stopping_patience": 12,
+    "early_stopping_monitor": "validation_MSE",
+    "gradient_clip_norm": 1.0,
+    "loss": "MSE",
+    "scheduler": null,
+    "scheduler_status": "Sin scheduler en propuesta base; receta definitiva pendiente.",
+    "mixed_precision": false,
+    "precision": "FP32",
+    "hardware_proposal": "Mismo CPU, un thread PyTorch y un interop thread; perfil y compatibilidad de todas las implementaciones pendientes.",
+    "gpu_use_observed": false,
+    "no_gpu_performance_claim": true,
+    "hardware_profile_status": "not_profiled",
+    "training_lock_status": "pending_E2_compatibility_not_inherited_automatically",
+    "optimizer_fits_per_validation_evaluation": 2,
+    "evaluation_training_stages": [
+      "early_stopping_fit_on_allowed_subtrain",
+      "new_fit_on_full_admissible_train_for_selected_epoch_count"
+    ],
+    "early_stop_nominal_lookback_days": 90,
+    "early_stop_validation_interval": "For validation origin q: [q−90,q−8] inclusive, 83potentialcalendar dates before excluding invalid windows.",
+    "early_stop_training_outcome_max": "q−98 calendar days",
+    "early_stop_calendar_rule_source": "scripts/dl_data_v2.py split_for_origin; inherited nominal90 lookback plus7day embargo.",
+    "stage_scope": "Selection-stage scalers exclude stop-validation. Refit scalers are newly fitted on full admissible training, including its former stop-validation portion; evaluation labels never fit either scaler."
+  },
+  "repetitions": {
+    "minimum_guide_runs": 5,
+    "recommended_if_Wilcoxon": 6,
+    "minimum_exact_two_sided_Wilcoxon_p_with5_nonzero_pairs": 0.0625,
+    "final_R": null,
+    "definitive_seed_ids": null,
+    "pilot_R": 10,
+    "power_method": "Pending complete section9.2; paired variance of the E2 procedure, not old E1 R.",
+    "E1_R465_is_E2_power": false,
+    "seed_uncertainty_is_market_uncertainty": false,
+    "pilot_status": "proposed_not_frozen_not_executed"
+  },
+  "architecture_search_condition": {
+    "papers_define_source_architectures": true,
+    "D7_adapters_defined_and_verified": false,
+    "all_adapters_exempt_from_section14": false,
+    "section14_received": false,
+    "if_architecture_not_predefined": "Aplicar búsqueda en dos fases descrita en sección14 antes de comparar; no sustituirla por la cuadrícula de8.",
+    "phase1_as_printed_in_received_section4": {
+      "layers": 3,
+      "widths": [
+        16,
+        32,
+        64,
+        128,
+        256
+      ],
+      "dropout_rate": 0.2,
+      "dropout_positions": "Todas las posiciones posibles según guía; verificar detalle en sección14.",
+      "architectures_per_undefined_model": 1000
+    }
+  },
+  "pretraining_receipts": {
+    "adapter_architecture_definitions": {
+      "path": null,
+      "sha256": null,
+      "status": "pending"
+    },
+    "D7_contract_and_causality_tests": {
+      "path": null,
+      "sha256": null,
+      "status": "pending"
+    },
+    "nested_indices_audit": {
+      "path": null,
+      "sha256": null,
+      "status": "pending"
+    },
+    "training_environment_lock": {
+      "path": null,
+      "sha256": null,
+      "status": "pending"
+    },
+    "common_hardware_profile": {
+      "path": null,
+      "sha256": null,
+      "status": "pending"
+    },
+    "leakage_audit": {
+      "path": null,
+      "sha256": null,
+      "status": "pending"
+    },
+    "pilot_and_power": {
+      "path": null,
+      "sha256": null,
+      "status": "pending"
+    },
+    "frozen_protocol": {
+      "path": null,
+      "sha256": null,
+      "status": "pending"
+    }
+  },
+  "required_guide_sections_pending": [
+    "7",
+    "9.2",
+    "10",
+    "11.1",
+    "13.2",
+    "14"
+  ],
+  "new_deep_learning_fits": 0,
+  "new_Bitcoin_results": 0
+}

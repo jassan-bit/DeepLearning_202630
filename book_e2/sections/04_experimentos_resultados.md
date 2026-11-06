@@ -2,7 +2,7 @@
 
 **Todavía no se ha ejecutado el benchmark del Top 10 y sus referencias de E2.** La [sección 2](02_eda.md) sí contiene diagnósticos propios, incluida una referencia Ridge ajustada en desarrollo con forward chaining. Esa ejecución diagnóstica no pertenece al benchmark definitivo; Ridge se propone como referencia no profunda, sin modificar los tres modelos base heredados.
 
-Esta página es provisional; no desarrolla la sección 4 oficial de la guía todavía no recibida. Las métricas de E1 se conservan como antecedentes identificados.
+La sección 4 oficial ya se desarrolla en el [capítulo de implementación](04_implementacion.md), con un diseño propuesto y auditoría documental. Esta página conserva el espacio para resultados efectivamente ejecutados. Las métricas de E1 siguen identificadas como antecedentes.
 
 | Evidencia de E2 | Estado |
 |---|---|

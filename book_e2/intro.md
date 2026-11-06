@@ -4,7 +4,7 @@
 
 **Autor:** Jassan Arteta
 
-**Estado:** introducción, secciones 1–2 y propuesta bibliográfica de la sección 3 desarrolladas con las capturas de la guía recibidas el 5 de noviembre de 2026 (America/Bogota). El EDA se amplió con diagnósticos ejecutados y trazables. Se recibieron las capturas de las secciones 1–3; faltan las siguientes y el protocolo completo. El benchmark del Top 10 y sus referencias adicionales no se ha ejecutado.
+**Estado:** secciones 1–4 desarrolladas con las capturas recibidas el 5 de noviembre de 2026 (America/Bogota). Incluyen EDA ejecutado, diez originales bibliográficos leídos y un diseño de implementación con auditoría documental. Los adaptadores y el benchmark E2 no se han ejecutado. Faltan las secciones siguientes y el cierre del protocolo.
 
 Este es el Jupyter Book del **Entregable 2**. Tiene su propia configuración, índice y capítulos dentro del repositorio común [DeepLearning_202630](https://github.com/jassan-bit/DeepLearning_202630). Su dirección es distinta de las de E1 y E3.
 
@@ -23,6 +23,7 @@ El índice actual distingue las secciones desarrolladas de las páginas de traba
 1. [Definición del problema, preguntas de investigación y dataset](sections/01_punto_partida.md): formulación, tres RQ, contrato heredado y Data Card.
 2. [EDA orientado a decisiones](sections/02_eda.md): distribución, transformaciones, calidad, duplicados, sesgos, partición, desplazamiento y diagnóstico temporal.
 3. [Revisión de literatura y diez modelos propuestos](sections/03_literatura.md): fuentes WoS/Scopus, deduplicación, cuatro familias, código de autores y adaptación a Bitcoin.
+4. [Implementación de modelos benchmark](sections/04_implementacion.md): diseño temporal, HPO y costes propuestos, requisitos de implementación, piloto, auditoría de fuga, evaluación, robustez, explicabilidad y ablación. La auditoría distingue documentación válida de preparación real para entrenar.
 
 Además, se conservan las páginas de trabajo de [catálogo y propuesta](sections/02_propuesta.md), [diseño experimental](sections/03_diseno_experimental.md), [benchmark pendiente](sections/04_experimentos_resultados.md), [reproducibilidad](sections/05_reproducibilidad_entrega.md) y [referencias de contexto](sections/referencias.md).
 

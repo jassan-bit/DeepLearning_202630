@@ -1,13 +1,7 @@
-# Página de trabajo · Diseño experimental
+# Página de trabajo · Seguimiento del diseño
 
-**Estado: sin protocolo experimental de E2 cerrado.** La sección 3 oficial ya se desarrolla en el [capítulo de literatura](03_literatura.md). Esta página provisional organiza las decisiones pendientes del futuro diseño experimental; no constituye un preregistro.
+El diseño recibido de la guía se desarrolla en la [sección 4: Implementación de Modelos Benchmark](04_implementacion.md). Esta página mantiene el enlace de trabajo anterior.
 
-La [sección 1](01_punto_partida.md) fija la herencia de la fase II D7: datos, entrada, objetivo, horizonte, métrica primaria, δ, unidad de independencia y partición. Se conserva forward chaining con sus orígenes y embargo. Las transformaciones se aprenderán únicamente con entrenamiento permitido. No se redefinen estos elementos para obtener un resultado más favorable.
+La propuesta conserva el contrato D7 de E1 y distingue los candidatos nuevos de las tres recetas heredadas. Incluye HPO temporal anidado propuesto, cómputo de selección/reajuste, piloto y requisitos de ejecución. La auditoría documental comprueba los contratos y enumera pendientes; no certifica adaptadores ni entrenamiento.
 
-Existe una propuesta de diez modelos, más las referencias adicionales; faltan su validación operativa, el espacio y presupuesto comparable de optimización, el esquema operativo de incertidumbre y la familia final de comparaciones. Un piloto del procedimiento de E2 permitirá estimar la variabilidad pareada y dimensionar sus repeticiones. **El margen δ sí se hereda; R=465 no determina automáticamente las repeticiones de nuevos modelos ni acredita potencia para el benchmark de diez.**
-
-La reserva heredada ya fue evaluada en E1. Su reutilización conserva alcance exploratorio; no se declara desconocida, no se reasigna a entrenamiento y no se inventa aquí otro periodo de test. Cualquier cambio futuro del contrato requeriría una enmienda explícita y compatible con la guía completa.
-
-Se conservarán configuración, código, semillas, hashes y fechas de las decisiones. La unidad de repetición y la incertidumbre temporal se tratarán por separado.
-
-La [auditoría del EDA](02_eda.md) ya comprueba soportes de los diez folds de desarrollo y ajusta una referencia Ridge diagnóstica. No sustituye la auditoría de cada futura implementación ni el piloto de diez modelos. Su alerta de dependencia residual obliga a contrastar la ruta metodológica antes de cerrar el protocolo, manteniendo visible la herencia de E1.
+**El protocolo no está congelado.** Faltan las remisiones metodológicas completas, hardware/presupuesto común, adaptadores, índices auditados, entorno compatible y dimensionamiento E2. La reserva conocida mantiene alcance exploratorio. El R=465 de E1 no se adopta automáticamente.
