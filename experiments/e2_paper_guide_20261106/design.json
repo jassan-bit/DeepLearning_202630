@@ -1,0 +1,471 @@
+{
+  "schema_version": 1,
+  "client_date": "2026-11-06",
+  "client_timezone": "America/Bogota",
+  "status": "registered_design_before_dataset_fits",
+  "scope": "External ETTh1 paper reproduction and limited trained-model pilot; no Bitcoin benchmark and no change to E1 contract",
+  "paper_guide": {
+    "model": "TimeMixer",
+    "title": "TimeMixer: Decomposable Multiscale Mixing for Time Series Forecasting",
+    "publication": "ICLR2024",
+    "doi": "10.48550/arXiv.2405.14616",
+    "read_PDF_version": "2405.14616v1",
+    "read_PDF_sha256": "a599b338e44af70d8e9c87be3c5417bde7864b2c92074e1346703f3e2b641e3d",
+    "table": "13",
+    "pdf_page": 17,
+    "condition": "unified ETTh1 multivariate L96/H96, not the searched configuration",
+    "reported_MSE": 0.375,
+    "reported_MAE": 0.4,
+    "reported_decimal_precision": 3,
+    "selected_row_dispersion": "not reported for this particular row",
+    "paper_test_tail_coverage_explicit": "not reported; author code operationalization is stated below"
+  },
+  "dataset": {
+    "name": "ETTh1",
+    "repository": "zhouhaoyi/ETDataset",
+    "commit": "1d16c8f4f943005d613b5bc962e9eeb06058cf07",
+    "filename": "ETTh1.csv",
+    "url": "https://raw.githubusercontent.com/zhouhaoyi/ETDataset/1d16c8f4f943005d613b5bc962e9eeb06058cf07/ETT-small/ETTh1.csv",
+    "sha256": "f18de3ad269cef59bb07b5438d79bb3042d3be49bdeecf01c1cd6d29695ee066",
+    "bytes": 2589657,
+    "rows": 17420,
+    "channels": [
+      "HUFL",
+      "HULL",
+      "MUFL",
+      "MULL",
+      "LUFL",
+      "LULL",
+      "OT"
+    ],
+    "source_timezone": "not specified; naive hourly timestamps",
+    "split_source_rows": {
+      "train": [
+        0,
+        8640
+      ],
+      "validation_labels": [
+        8640,
+        11520
+      ],
+      "test_labels": [
+        11520,
+        14400
+      ]
+    },
+    "global_scaler_fit_rows": [
+      0,
+      8640
+    ],
+    "scaler_ddof": 0,
+    "nominal_windows": {
+      "train": 8449,
+      "val": 2785,
+      "test": 2785
+    },
+    "author_processed_windows": {
+      "train": 8448,
+      "val": 2688,
+      "test": 2688
+    },
+    "test_omitted_origins": 97,
+    "test_selection": "first2688 eligible test origins; ordered batches128 with drop_lastTrue",
+    "metric_scale": "train-standardized7channels, all96 horizons, not inverse scaled",
+    "license": "CC BY-ND4.0; original CSV is acquired separately and not redistributed in book"
+  },
+  "sources": {
+    "TimeMixer": {
+      "repository": "kwuking/TimeMixer",
+      "commit": "e24610583b36fdd8c76cc17a8df4e65759a5f460",
+      "archive_url": "https://codeload.github.com/kwuking/TimeMixer/zip/e24610583b36fdd8c76cc17a8df4e65759a5f460",
+      "archive_sha256": "7287f8f5f21b405d6985d47ac45aaf846cf8a59882ddc3fc8fb5caf9335295d3",
+      "archive_filename": "TimeMixer_e24610583b36fdd8c76cc17a8df4e65759a5f460.zip",
+      "extract_directory": "TimeMixer-e24610583b36fdd8c76cc17a8df4e65759a5f460",
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+          "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/LICENSE",
+          "bytes": 11357
+        },
+        {
+          "path": "README.md",
+          "sha256": "38f3eeafef388f3e67b23c403d93937272f5403e97c5cfec3bfdef86774e3eda",
+          "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/README.md",
+          "bytes": 13159
+        },
+        {
+          "path": "requirements.txt",
+          "sha256": "2b7b6434c94f0e74d68ce788eb0ec25a7eb8581991f167f379558a10f21171b9",
+          "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/requirements.txt",
+          "bytes": 279
+        },
+        {
+          "path": "run.py",
+          "sha256": "2d945cae47154e08e2a0aa8f794e2a25fb1bd5ce8ff3e070d2692326fe197024",
+          "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/run.py",
+          "bytes": 9696
+        },
+        {
+          "path": "scripts/long_term_forecast/ETT_script/TimeMixer_ETTh1_unify.sh",
+          "sha256": "13086d899b992b67cdd4409d26f686c1ac7e15e9ad4fd03dd53a2e0728554fc4",
+          "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/scripts/long_term_forecast/ETT_script/TimeMixer_ETTh1_unify.sh",
+          "bytes": 2822
+        },
+        {
+          "path": "models/TimeMixer.py",
+          "sha256": "817d62f4aac54c8566e560f6d3785856e31c8ee51460279ee3d0a4823f11d4be",
+          "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/models/TimeMixer.py",
+          "bytes": 20663
+        },
+        {
+          "path": "layers/Embed.py",
+          "sha256": "ab492ea2f68459bbcf3cbffdd1beb75b24d0d70248d017a313a3b470316aaa2b",
+          "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/layers/Embed.py",
+          "bytes": 9579
+        },
+        {
+          "path": "layers/Autoformer_EncDec.py",
+          "sha256": "48745b4bb647355e9845792a855df9c59fd7df7fcc664c765351fec390c4073e",
+          "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/layers/Autoformer_EncDec.py",
+          "bytes": 6831
+        },
+        {
+          "path": "layers/StandardNorm.py",
+          "sha256": "cc1c0bc65b7b094bbe83f988fb05b86272a59638c030c3781aa52ce8880379df",
+          "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/layers/StandardNorm.py",
+          "bytes": 2183
+        },
+        {
+          "path": "data_provider/data_loader.py",
+          "sha256": "179d7ee4b591339aacefd07eecdb6463aa0bf2fb2e40a77ce44ecb370c2789b5",
+          "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/data_provider/data_loader.py",
+          "bytes": 36249
+        },
+        {
+          "path": "data_provider/data_factory.py",
+          "sha256": "528a0f2c37a7e55c777ce098eb1e3f65337a749d52f002a000f411062c10b3a6",
+          "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/data_provider/data_factory.py",
+          "bytes": 2963
+        },
+        {
+          "path": "utils/tools.py",
+          "sha256": "5a16efe58607a5ac2da5694c9297cbffb7c314a16e746de028760ea822ff9376",
+          "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/utils/tools.py",
+          "bytes": 4289
+        },
+        {
+          "path": "utils/timefeatures.py",
+          "sha256": "2414683a009c1bc0ffe8306aeca00800f95f76dc485db8121c1fc36ae87a7971",
+          "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/utils/timefeatures.py",
+          "bytes": 4276
+        },
+        {
+          "path": "utils/metrics.py",
+          "sha256": "09e243e50baa6373286d3fe9954ab99075fa254e310b99769318b666ab92806a",
+          "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/utils/metrics.py",
+          "bytes": 921
+        },
+        {
+          "path": "exp/exp_basic.py",
+          "sha256": "23a9ed0c4ea26b0bc1053b89ba11b1f9a1a1ff6ef2f18cdbdeee22c5ac3c70d9",
+          "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/exp/exp_basic.py",
+          "bytes": 1283
+        },
+        {
+          "path": "exp/exp_long_term_forecasting.py",
+          "sha256": "4a69bbc273780021315ed9b69a7011a1b30079ff797c944762eff2423204ac11",
+          "url": "https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/exp/exp_long_term_forecasting.py",
+          "bytes": 12575
+        }
+      ],
+      "license": "Apache2.0"
+    },
+    "controls": {
+      "repository": "thuml/Time-Series-Library",
+      "commit": "4e938a1767106324dd753b2a44832bf870a0252e",
+      "archive_url": "https://codeload.github.com/thuml/Time-Series-Library/zip/4e938a1767106324dd753b2a44832bf870a0252e",
+      "archive_sha256": "8ad00c38d00baa6b4a17df2a688a96c945a0c005b6caceca0e932e6f5ac6edaa",
+      "archive_filename": "Time-Series-Library_4e938a1767106324dd753b2a44832bf870a0252e.zip",
+      "extract_directory": "Time-Series-Library-4e938a1767106324dd753b2a44832bf870a0252e",
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "8a6caa178ea3f33ebff5d7bb5558628cf5b423305dc30d3630f86564c7db94a2",
+          "url": "https://raw.githubusercontent.com/thuml/Time-Series-Library/4e938a1767106324dd753b2a44832bf870a0252e/LICENSE",
+          "bytes": 1084
+        },
+        {
+          "path": "models/iTransformer.py",
+          "sha256": "7fdc721d041b0f8f63be8fa794ecd68422fd958c7c8d449026320fd9f368788e",
+          "url": "https://raw.githubusercontent.com/thuml/Time-Series-Library/4e938a1767106324dd753b2a44832bf870a0252e/models/iTransformer.py",
+          "bytes": 5735
+        },
+        {
+          "path": "models/PatchTST.py",
+          "sha256": "29835d4fedddd3cbee26cc60d6a54c04513f5a9ca32e4a0d08de2c9e059084e5",
+          "url": "https://raw.githubusercontent.com/thuml/Time-Series-Library/4e938a1767106324dd753b2a44832bf870a0252e/models/PatchTST.py",
+          "bytes": 9071
+        },
+        {
+          "path": "layers/Transformer_EncDec.py",
+          "sha256": "7b26f4459735c341f161011f6bc24b9deb8ecc3bcf61e4f15431998272a44fb4",
+          "url": "https://raw.githubusercontent.com/thuml/Time-Series-Library/4e938a1767106324dd753b2a44832bf870a0252e/layers/Transformer_EncDec.py",
+          "bytes": 4929
+        },
+        {
+          "path": "layers/SelfAttention_Family.py",
+          "sha256": "6f6592aed0753e342fc04c01db70528c2eb191eeb067cd5fd4c8d348fddcb794",
+          "url": "https://raw.githubusercontent.com/thuml/Time-Series-Library/4e938a1767106324dd753b2a44832bf870a0252e/layers/SelfAttention_Family.py",
+          "bytes": 12001
+        },
+        {
+          "path": "layers/Embed.py",
+          "sha256": "17e7c3577324c41a0da427a199c955b782fde905aabb1f7cbc3c4e15ebd4ae35",
+          "url": "https://raw.githubusercontent.com/thuml/Time-Series-Library/4e938a1767106324dd753b2a44832bf870a0252e/layers/Embed.py",
+          "bytes": 7012
+        },
+        {
+          "path": "utils/masking.py",
+          "sha256": "02f453e52cfaec65e34132923add80e7132f188706680fa86d7bd884976e09ef",
+          "url": "https://raw.githubusercontent.com/thuml/Time-Series-Library/4e938a1767106324dd753b2a44832bf870a0252e/utils/masking.py",
+          "bytes": 832
+        }
+      ],
+      "scope": "Small trained pilot implementations of iTransformer and PatchTST, not numerical reproductions of their original published rows",
+      "license": "MIT"
+    }
+  },
+  "replication": {
+    "model": "TimeMixer",
+    "seeds": [
+      2019,
+      2020,
+      2021,
+      2022,
+      2023
+    ],
+    "model_args": {
+      "task_name": "long_term_forecast",
+      "seq_len": 96,
+      "label_len": 0,
+      "pred_len": 96,
+      "enc_in": 7,
+      "dec_in": 7,
+      "c_out": 7,
+      "e_layers": 2,
+      "d_layers": 1,
+      "d_model": 16,
+      "d_ff": 32,
+      "n_heads": 8,
+      "factor": 1,
+      "activation": "gelu",
+      "dropout": 0.1,
+      "embed": "timeF",
+      "freq": "h",
+      "channel_independence": 1,
+      "decomp_method": "moving_avg",
+      "moving_avg": 25,
+      "use_norm": 1,
+      "down_sampling_layers": 3,
+      "down_sampling_window": 2,
+      "down_sampling_method": "avg",
+      "use_future_temporal_feature": 0,
+      "top_k": 5,
+      "num_kernels": 6,
+      "output_attention": false
+    },
+    "training": {
+      "batch_size": 128,
+      "epochs": 10,
+      "patience": 10,
+      "learning_rate": 0.01,
+      "pct_start": 0.2,
+      "threads": 2,
+      "drop_last": true,
+      "shuffle_validation": true,
+      "scheduler": "OneCycleLR",
+      "optimizer": "Adam",
+      "weight_decay": 0,
+      "precision": "float32",
+      "gradient_clipping": null,
+      "num_workers": 0
+    },
+    "deviations_from_author_execution": [
+      "CPU and observed framework/library versions instead of original GPU environment",
+      "Five predeclared seeds2019–2023; reported row seed IDs unknown, author script starts2021",
+      "Independent explicit generators per loader and num_workers0; exact author global RNG draw order is not reproduced",
+      "No test loss is computed during training; the author driver reports test loss each epoch although only validation selects checkpoint",
+      "Author code defines the97 omitted test origins; paper row does not disclose exact tail coverage"
+    ],
+    "frozen_before_test_scoring": true,
+    "no_changes_after_test": "Do not retune or replace seeds to match a published value"
+  },
+  "replication_criterion": {
+    "primary_metric": "MSE",
+    "reference_value": 0.375,
+    "relative_tolerance": 0.05,
+    "absolute_tolerance": 0.01875,
+    "interval": "Student t 95% CI of mean MSE across five independent training seeds, conditional on fixed evaluation cohort",
+    "success_rule": "Entire95%CI for replication meanMSE minus fixed published0.375 is contained in[-0.01875,+0.01875]",
+    "MAE_secondary_reference": 0.4,
+    "MAE_secondary_tolerance": 0.02,
+    "MAE_is_not_a_second_success_route": true,
+    "rounding_sensitivity": 0.0005,
+    "no_two_sample_pvalue_against_publication": true,
+    "strict_paper_row_identity_confirmed": false,
+    "scope": "Numerical compatibility of declared author-preset operationalization; not bit-for-bit replication or proof of unknown published sample identity",
+    "not_Bitcoin_delta": true
+  },
+  "pilot": {
+    "models": [
+      "TimeMixer",
+      "iTransformer",
+      "PatchTST"
+    ],
+    "seeds": [
+      2019,
+      2020,
+      2021,
+      2022,
+      2023
+    ],
+    "train_windows": 2048,
+    "training_window_selection": "last2048 eligible training windows, beforevalidation",
+    "model_args": {
+      "task_name": "long_term_forecast",
+      "seq_len": 96,
+      "label_len": 0,
+      "pred_len": 96,
+      "enc_in": 7,
+      "dec_in": 7,
+      "c_out": 7,
+      "e_layers": 2,
+      "d_layers": 1,
+      "d_model": 16,
+      "d_ff": 32,
+      "n_heads": 4,
+      "factor": 3,
+      "activation": "gelu",
+      "dropout": 0.1,
+      "embed": "timeF",
+      "freq": "h",
+      "channel_independence": 1,
+      "decomp_method": "moving_avg",
+      "moving_avg": 25,
+      "use_norm": 1,
+      "down_sampling_layers": 3,
+      "down_sampling_window": 2,
+      "down_sampling_method": "avg",
+      "use_future_temporal_feature": 0,
+      "top_k": 5,
+      "num_kernels": 6,
+      "output_attention": false
+    },
+    "model_args_by_name": {
+      "TimeMixer": {},
+      "iTransformer": {},
+      "PatchTST": {}
+    },
+    "training": {
+      "batch_size": 128,
+      "epochs": 2,
+      "patience": 2,
+      "learning_rate": 0.001,
+      "threads": 2,
+      "drop_last": true,
+      "shuffle_validation": false,
+      "scheduler": "constant",
+      "optimizer": "Adam",
+      "weight_decay": 0
+    },
+    "checkpoint_rule": "fixed epoch2; no validation selection of pilot model weights",
+    "scope": "Limited learned-weight functional pilot, equal data/epochs/steps, not fully optimized models or a replication of control-paper metrics",
+    "test_labels_used": false,
+    "Bitcoin_results": 0
+  },
+  "analysis": {
+    "bootstrap_replicates": 4999,
+    "bootstrap_seed": 20261106,
+    "primary_block_hours": 192,
+    "sensitivity_block_hours": [
+      96,
+      384
+    ],
+    "block_lengths": [
+      192,
+      96,
+      384
+    ],
+    "alignment_tolerance": 1e-05,
+    "alignment_queries": 512,
+    "alignment_query_selection": "linspace integer indices across all2785 validation origins, fixed before weights",
+    "historical_bank_size": 127,
+    "historical_bank_selection": "linspace integer eligible training-window indices; all inputs precede validation",
+    "inference_batch_size": 128,
+    "query_position": 0,
+    "no_marks_sensitivity": true,
+    "replication_seed_CI": "t95conditionalcalendar",
+    "replication_temporal_CI": "separate moving-block bootstrap192 of all test origins, keepH96 and7channels together",
+    "L1": {
+      "name": "Calendar-marker alignment and batch-composition dependence",
+      "structural_mechanism": "TimeMixer channel-independent branch flattens(b,c) but repeats markers in(c,b)order via repeat; batch1 unaffected",
+      "estimand": "Mean absolute change of one fixed query forecast betweenB1 andquery+127historical contexts, averaged overH96/C7 and registered seeds",
+      "cohort": "512 validation queries, scattered at preregistered indices; resample dense original hourly origin calendar and then retain query membership",
+      "nominal_CI": 0.95,
+      "hypotheses_family": [
+        "TimeMixer meanchange<=1e-5",
+        "TimeMixer meanchange<=PatchTST meanchange",
+        "TimeMixer meanchange<=iTransformer meanchange"
+      ],
+      "pvalue_method": "Centered paired moving-block bootstrap at null boundary, one-sided; Holm across three tests",
+      "secondary_metric": "Change in MSE on the same query targets; direction not assumed; marker-free inference without retraining as mechanism control",
+      "scope": "Implementation-level limitation of the pinned original with calendar markers; not proof of future-price leakage or a theorem about all TimeMixer variants",
+      "Bitcoin_transfer": "Inherited Bitcoin inputs have no calendar markers; this defect does not by itself affect that adapter or establish an E3 research contribution"
+    },
+    "L2": {
+      "name": "Observable high-variability context error heterogeneity",
+      "input_statistic": "sqrt(mean(diff(train-standardized input96x7,axis=time)^2))",
+      "threshold": "q75 across eligible TRAIN windows only, calculated before validation errors",
+      "estimand": "Mean acrossseeds of RMSE onhighvariability validation origins minusRMSE onremainingvalidationorigins",
+      "cohort": "all2785 original validation origins, fixed chronological inference batches128(drop_lastFalse forpilotdiagnostics)",
+      "hypotheses_family": [
+        "RMSE_high−RMSE_rest<=0 for each ofTimeMixer/iTransformer/PatchTST"
+      ],
+      "nominal_CI": 0.95,
+      "pvalue_method": "Centered paired moving-block bootstrap192h, Holm across3models; sensitivity96/384",
+      "scope": "Exploratory hypothesis of a transferable regime limitation, not a promised failure or evidence of causal architecture effect",
+      "negative_result_policy": "If CI/effect do not support the hypothesis, label limitation not demonstrated; do not select a new regime threshold or replace it after results",
+      "E3_link": "Only a supported predictive limitation could motivate further regime-aware/multiscale mechanisms; requires BitcoinD7-specific validation later"
+    },
+    "bootstrap_method": "circular moving-block bootstrap on original hourly forecast origins; wrapped blocks are part of the declared approximation"
+  },
+  "inheritance_boundary": {
+    "e1_contract_changed": false,
+    "Bitcoin_benchmark_executed": false,
+    "Bitcoin_target_inputs_partition_delta_unchanged": true,
+    "new_unknown_Bitcoin_test_claimed": false,
+    "full_section9_1_received": false,
+    "preregistration_scope": "Public code/design commit and localhash registration before these external datasetfits; not a claim of full guide9.1 compliance"
+  },
+  "export_policy": {
+    "raw_ETTh1_CSV": false,
+    "downloaded_author_code": false,
+    "individual_forecasts": false,
+    "checkpoints": false,
+    "allowed": [
+      "Own code",
+      "frozen design",
+      "source URLs/versions/hashes",
+      "aggregate metrics and intervals",
+      "figures",
+      "run receipts without privatepaths"
+    ]
+  },
+  "execution_resources": {
+    "device": "CPU",
+    "threads_per_job": 2,
+    "maximum_concurrent_jobs": 2,
+    "profiling_basis": "synthetic input timings only, no model accuracy or test results used to choose resources"
+  }
+}
