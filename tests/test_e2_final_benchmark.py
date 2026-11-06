@@ -82,6 +82,27 @@ class CalendarAndRegistryTests(unittest.TestCase):
         with self.assertRaises(ValueError):engine.validate_requested_fit(context,'Ridge',invented,'deterministic','2024-01-01','HPO')
         with self.assertRaises(ValueError):engine.validate_requested_fit(context,'Ridge',candidate,'deterministic','2026-09-01','HPO')
 
+    def test_cli_worker_dispatch_passes_context_and_parsed_job_arguments(self):
+        registry=engine.read_json(ROOT/'experiments/e2_completion_20261106/candidate_registry.json')
+        candidate=next(c for c in registry if c['model']=='Ridge')
+        payload={'model':'Ridge','candidate':candidate,'seed':'deterministic',
+                 'origin':'2024-01-01','budget_scope':'HPO'}
+        receipt={'status':'passed','worker_accounting_finalized':True,'budget_scope':'HPO'}
+        with tempfile.TemporaryDirectory() as tmp:
+            output=Path(tmp)/'private';job=Path(tmp)/'job.json'
+            engine.write_json(job,payload)
+            context={'output':output,'inputs':{}}
+            # Exercise the real CLI action table AND real worker body. Only the
+            # actual fit is replaced, so an inverted (args, context) call fails.
+            with patch.object(engine,'create_context',return_value=context), \
+                 patch.object(engine,'check_registration') as registered, \
+                 patch.object(engine,'fit_trial',return_value=receipt) as fitted, \
+                 redirect_stdout(io.StringIO()):
+                result=engine.main(['--phase','worker','--job-json',str(job)])
+            registered.assert_called_once_with(context)
+            fitted.assert_called_once_with(context,'Ridge',candidate,'deterministic','2024-01-01',budget_scope='HPO')
+            self.assertEqual(result,receipt)
+
 
 class ReceiptTests(unittest.TestCase):
     def setUp(self):

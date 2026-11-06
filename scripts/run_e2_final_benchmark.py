@@ -1349,7 +1349,7 @@ class TrialRunner:
         return results
 
 
-def worker(args, context):
+def worker(context, args):
     payload = read_json(args.job_json)
     record = fit_trial(context, payload["model"], payload["candidate"], payload["seed"], payload["origin"],
                        budget_scope=payload["budget_scope"])
