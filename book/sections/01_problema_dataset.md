@@ -12,10 +12,10 @@ La siguiente tabla permite localizar las respuestas solicitadas en la guía. La 
 | Tipo de problema admitido | §1.1.2: tipo 4, regresión temporal; ruta 6.4 de la guía, con entrada OHLCV sin rezagos explícitos de volatilidad |
 | Pregunta de investigación e hipótesis operativa | §1.1.3: comparar el error de pronóstico con persistencia |
 | Métricas primaria y secundarias | §1.1.4: RMSE principal; MAE, MSE, R², MAPE y MASE complementarias, con sus condiciones explícitas |
-| Margen práctico e independencia | §1.1.4: criterio futuro del 5 % frente a GRU/D7 y persistencia, declarado después del test; inferencia entre semillas condicionada al calendario |
+| Margen práctico e independencia | §1.1.4: convención académica del 5 %, posterior al test de fase I y fijada antes de fase II; no acredita utilidad económica; inferencia entre semillas condicionada al calendario |
 | Relevancia científica o aplicada | §1.2.1: pronóstico de incertidumbre de Bitcoin y antecedente científico |
 | Disponibilidad, licencia y procedencia | §1.2.2 y §1.3.2: Binance Spot BTCUSDT, archivos oficiales, términos y reglas de agregación diaria documentados |
-| Uso previo del dataset en literatura | §1.2.3: no verificado; el artículo citado es antecedente del problema |
+| Uso previo del dataset en literatura | §1.2.3: uso previo de BTC y datos Binance documentado; comparabilidad parcial por mercado, etiqueta, frecuencia, horizonte y protocolo, con campos desconocidos explícitos |
 | Tamaño, dimensionalidad y almacenamiento | §1.3.1: 75 ZIP, 2.014.480 filas CSV de 12 columnas y esquema de entrada definido; muestras de desarrollo y test supervisado materializadas, con elegibilidad y hashes |
 | Tipo de datos y unidad de observación | §1.3.2: vela de un minuto en los brutos, día UTC en los derivados y origen temporal en las muestras supervisadas |
 | Etiquetado y ruido esperado | §1.3.3, con fórmula en §1.1.1: cálculo automático del siguiente valor de volatilidad histórica móvil y fuentes de ruido |
@@ -80,7 +80,7 @@ $$
 
 $\sigma_{t+1}$ incorpora $r_t$, que todavía no se conoce al emitir el pronóstico y se observa al cerrar ese día. Esta indexación evita presentar como pronóstico una cantidad ya calculable con los datos disponibles. Es una convención operacional explícita de la fórmula del curso; no se anualiza ni multiplica por 100 en el cálculo. Las gráficas pueden mostrar porcentaje con la conversión indicada.
 
-El objetivo es el siguiente valor de una **volatilidad histórica móvil**. Las ventanas consecutivas comparten $n-1$ retornos; no se está pronosticando la volatilidad de $n$ días enteramente futuros. La volatilidad es un proxy de dispersión de retornos observados, con incertidumbre de muestreo y posible ruido del proveedor. No se confunde con volatilidad latente observada sin error. Las etiquetas necesitan $n$ retornos válidos consecutivos y, por tanto, $n+1$ cierres diarios; no se forman atravesando días incompletos.
+El objetivo es el siguiente valor de una **volatilidad histórica móvil**. Para $n=7$, $Y_t$ utiliza $r_{t-6},\ldots,r_t$: seis retornos ya son conocidos al emitir y únicamente $r_t$ incorpora el nuevo cierre. Las ventanas consecutivas comparten seis retornos; el horizonte de pronóstico es un día, mientras siete días es la longitud del estimador. Esta distinción explica parte de la fuerza de persistencia y exige inferencia con dependencia temporal. No se está pronosticando la volatilidad de siete días enteramente futuros. La volatilidad es un proxy de dispersión de retornos observados, con incertidumbre de muestreo y posible ruido del proveedor. No se confunde con volatilidad latente observada sin error. Las etiquetas necesitan $n$ retornos válidos consecutivos y, por tanto, $n+1$ cierres diarios; no se forman atravesando días incompletos.
 
 **Pérdida y referencia contextual**
 
@@ -123,14 +123,27 @@ $$
 
 La mejora relativa frente a persistencia se conserva como **descripción del mismo objetivo y las mismas fechas**. Una estimación puntual favorable, una diferencia estadísticamente distinguible de cero y una mejora que supera un margen práctico son afirmaciones diferentes. Los análisis nuevos entre la terna se declaran posteriores a las observaciones y exploratorios; no se atribuye su protocolo al periodo de mercado. La fase II registra sus propias comparaciones antes de puntuar una reserva distinta; no cambia esta cronología.
 
-**Margen operativo para una propuesta futura.** Después de evaluar esta terna se propone una reducción relativa de RMSE **superior al 5 % frente a GRU/D7 y frente a persistencia** en una nueva evaluación independiente, con incertidumbre y multiplicidad declaradas. El ancla neuronal de desarrollo es RMSE = 0,005154568533, por lo que el margen absoluto de planificación neuronal es:
+**Margen académico de planificación y criterio para una propuesta futura.** Después de evaluar la fase I se propuso una reducción relativa de RMSE **superior al 5 % frente a GRU/D7 y frente a persistencia** en una nueva evaluación independiente, con incertidumbre y multiplicidad declaradas. El ancla neuronal de desarrollo es RMSE = 0,005154568533, por lo que el margen absoluto de planificación neuronal es:
 
 $$
 \delta_{\mathrm{futuro}}=0{,}05\times0{,}005154568533
 \simeq0{,}00025772842665.
 $$
 
-Esta definición es **posterior al test actual**. No constituye un margen pretest de sus contrastes ni una tolerancia de riesgo o rentabilidad validada. Las sensibilidades al 2,5 % y al 10 % son escenarios operativos académicos. La comparación futura tendrá que registrar su pérdida, dos referencias, unidad de repetición, alternativa y tamaño de muestra antes de producir resultados. El promedio por sí solo no demuestra superar la frontera práctica.
+Esta definición es **posterior al test de fase I**. La fase II la fijó antes de puntuar su propia reserva: `design.json/statistics/delta` conserva $0{,}00025772842664981106$. Ese valor absoluto se usa para dimensionar las diferencias entre redes; no se recalcula a partir del RMSE de reserva ni se sustituye por el 5 % de persistencia. La ganancia relativa frente a cada referencia sigue siendo otra cantidad, con el denominador de esa referencia. No constituye un margen pretest de fase I ni una tolerancia de riesgo o rentabilidad validada.
+
+**Justificación y límite aplicado del 5 %.** El criterio evita considerar suficiente cualquier mejora numérica arbitrariamente pequeña y permite planificar un experimento con un umbral interpretable respecto de una referencia de desarrollo. Su magnitud es una elección académica, no una estimación del costo de un error ni una cota de ruido irreducible. La incertidumbre de la etiqueta móvil, el solapamiento y los cambios de régimen impiden deducir utilidad económica únicamente de una RMSE menor. No se afirma que el 5 % sea un umbral óptimo.
+
+| Escenario descriptivo | Reducción respecto del ancla GRU-CV | Diferencia absoluta de RMSE |
+|---|---:|---:|
+| Cambio pequeño | 1 % | 0,00005154568533 |
+| Sensibilidad inferior | 2,5 % | 0,00012886421332 |
+| Margen fijado en fase II | **5 %** | **0,00025772842665** |
+| Sensibilidad superior | 10 % | 0,00051545685330 |
+
+Los cuatro escenarios se calculan exclusivamente a partir del mismo ancla de desarrollo. Son una sensibilidad de escala, **no cuatro contrastes nuevos ni márgenes elegidos por los resultados de reserva**. El {download}`CSV de sensibilidad <../_static/e1_dataset_comparison_20261106/margin_sensitivity.csv>` conserva precisión completa; este suplemento no cambia el diseño, el cálculo de R ni las conclusiones de fase II.
+
+Para convertir el pronóstico en una decisión aplicada futura deberán fijarse antes de evaluar: una acción concreta —por ejemplo, asignar una categoría de alerta de variabilidad—, sus umbrales, los costos de falsas alarmas y omisiones, la referencia operativa y una métrica de utilidad o calibración pertinente. Esas decisiones no se implementaron aquí. Se deberán estimar su efecto y su incertidumbre en una cohorte nueva, sin traducir automáticamente el 5 % de RMSE en mejora de rentabilidad o de riesgo. El promedio por sí solo no demuestra superar una frontera práctica; debe distinguirse siempre $\delta$ de la MDE que resulte del diseño y de sus supuestos.
 
 Las diez semillas de la CV de fase I fueron un presupuesto fijo y no procedieron de un piloto. La sensibilidad retrospectiva no sustituye ese requisito. La fase II D7 incorpora un piloto antes de sus ajustes definitivos y dimensionamiento con las diferencias pareadas GRU–LSTM–TCN, como se detalla en [§9.4–9.5](09_estudio_planificado.md). Su potencia es de planificación entre semillas, condicionada al calendario; no acredita potencia temporal ni otros mercados. No se han entrenado modelos avanzados.
 | Elemento | Decisión y alcance |
@@ -141,7 +154,7 @@ Las diez semillas de la CV de fase I fueron un presupuesto fijo y no procedieron
 | Métrica primaria | RMSE en la escala original del objetivo |
 | Pérdida implementada | MSE; escala positiva del objetivo ajustada solo con entrenamiento e inversión para evaluar |
 | Métricas complementarias | MAE, MSE, MAPE, R² y MASE, con cobertura y casos no definidos |
-| Margen operativo futuro | 5 % frente a GRU/D7 y persistencia; definición posterior al test actual, para una evaluación nueva |
+| Margen académico | $\delta=0,05\times\mathrm{RMSE}_{\mathrm{GRU,CV}}$ fijado en fase II; criterio relativo futuro del 5 % frente a ambas referencias, sin utilidad económica demostrada |
 | Nivel de significación del análisis | $\alpha=0{,}05$; familias por fase, con comparaciones dentro de la terna declaradas post-hoc y corrección de Holm |
 | Partición | Historia inicial 2023; validación 2024; test 01/01/2025–31/08/2026 |
 | Unidad observacional | Origen temporal $t$ con entrada histórica y etiqueta futura |
@@ -189,7 +202,7 @@ La CV utiliza desarrollo expuesto y no constituye selección anidada ni potencia
 
 Se propone evaluar si el historial de covariables OHLCV diarias de Bitcoin contiene información útil para pronosticar el siguiente valor de su volatilidad histórica móvil. Los retornos logarítmicos de cierre se utilizan para construir el objetivo; las entradas definidas son las covariables OHLCV. El interés aplicado es estimar incertidumbre del activo, no predecir directamente su precio ni recomendar operaciones financieras.
 
-El estudio de Huang, Sangiorgi y Urquhart examina pronósticos de volatilidad de Bitcoin con datos de alta frecuencia y redes neuronales; respalda la pertinencia de investigar este problema {cite:p}`huang2024`. Su definición de volatilidad, datos y horizontes no son automáticamente equivalentes a los de este proyecto: sus resultados no se trasladan como resultados propios. La revisión documental y las 40 referencias vigentes se desarrollan en el capítulo 3 y en [Referencias](referencias.md). El catálogo vigente distingue siete textos completos sobre criptomonedas de las fuentes metodológicas de otros mercados. Los siete incluyen Bitcoin; uno estudia además otros 19 activos, por lo que esos subconjuntos se solapan.
+El estudio de Huang, Sangiorgi y Urquhart examina pronósticos de volatilidad de Bitcoin con datos de alta frecuencia y redes neuronales; respalda la pertinencia de investigar este problema {cite:p}`huang2024`. Su definición de volatilidad, datos y horizontes no son automáticamente equivalentes a los de este proyecto: sus resultados no se trasladan como resultados propios. La revisión documental y las 42 referencias vigentes se desarrollan en el capítulo 3 y en [Referencias](referencias.md). El catálogo histórico distingue siete textos completos sobre criptomonedas de las fuentes metodológicas de otros mercados. Los siete incluyen Bitcoin; uno estudia además otros 19 activos, por lo que esos subconjuntos se solapan. Las dos lecturas completas adicionales de CVI e híbridos GARCH–DL se conservan en estratos separados; 42 entradas bibliográficas no equivalen a 42 estudios incluidos.
 
 **Decisiones confirmadas:** BTCUSDT, agregación diaria UTC de velas de un minuto, volatilidad poblacional de siete retornos diarios, horizonte de un día, entradas **D=7/14/21/28** y RMSE primaria. Las volatilidades n=14/21/28 fueron sensibilidades de EDA y no son objetivos entrenados del benchmark.
 
@@ -213,21 +226,30 @@ Los términos de uso se conservan como {download}`copia documental <../_static/d
 
 ### 1.2.3. Uso previo del dataset en la literatura
 
-**Uso previo y comparabilidad:** la [matriz actual de evidencia](../_static/literature_e1/crypto_extension_20261105/evidence_matrix.csv) identifica las siete fuentes completas del corpus cripto, **S1, S2, S5, S6, S7, S8 y S9**, y separa sus registros de transferencia financiera. No se acreditó que una publicación utilice la misma versión histórica de Binance Spot BTCUSDT y el mismo objetivo σ₇/h1. Las diferencias de proveedor, medida, frecuencia, horizonte e información se documentan sin declarar equivalencia entre datasets.
+**Uso previo y comparabilidad:** la [matriz de evidencia histórica](../_static/literature_e1/crypto_extension_20261105/evidence_matrix.csv) identifica las siete fuentes completas del corpus cripto, **S1, S2, S5, S6, S7, S8 y S9**, y separa sus registros de transferencia financiera. Existe uso científico previo de datos de Bitcoin y datos Binance: S2 identifica futuros perpetuos y S9 identifica Binance mediante Tardis, con el segmento sin precisar. Esto acredita antecedentes pertinentes, pero no una comparación numérica directa con el contrato de E1.
 
-| Fuente del corpus completo | Datos y mercado documentados | Objetivo/horizonte y límite para comparar |
-|---|---|---|
-| S1 · Akbiyik et al. | Bitcoin cada 15 minutos y Twitter | RV del próximo día agregada de 96 retornos intradiarios; cambia definición, escala, información y periodo. |
-| S2 · Zeri | Binance Futures BTCUSDT perpetuo, vía CryptoLake | Log RV futura de 30 minutos; futuros no es Spot y su microestructura no coincide con OHLCV diario. |
-| S5 · Gao et al. | Yahoo Finance BTC-USD diario | Ventana de 30 días sin centrar y desplazamiento de siete días; cambia proveedor, par, normalización y horizonte. |
-| S6 · Wang et al. | Bitcoin diario; proveedor insuficientemente especificado | RV1D sin fórmula suficientemente recuperada; no se equipara a σ₇. |
-| S7 · Alakhouch | BTC/USD diario de Investing.com/Kaggle, según manuscrito/código | Código de volatilidad futura de 30 días anualizada; no es la etiqueta móvil σ₇/h1 del proyecto. |
-| S8 · Miura et al. | BTCUSD de un minuto, fuente Kaggle Bitcoin historical data | Suma de retornos cuadrados en intervalos de tres horas, sin raíz; ese intervalo no acredita por sí solo un horizonte explícito de pronóstico. |
-| S9 · Djanga et al. | Veinte pares cripto USDT de Binance vía Tardis, incluido BTC; segmento Spot/futuros no explícito | RV intradiaria de 30 minutos y trayectoria del día siguiente en rejilla de cinco minutos; definición y horizonte no se equiparan a σ₇ diario. |
+La guía no exige reproducir la misma versión o periodo exactos. La comparabilidad se juzga conjuntamente por **mercado y proveedor, frecuencia, constructo del objetivo, horizonte, entradas y protocolo**. Se conserva como desconocido todo campo que la fuente no permite establecer; compartir la palabra «volatilidad» o el activo BTC no basta para transferir una RMSE.
+
+| Fuente / nivel de comparación | Proveedor, mercado y frecuencia | Etiqueta y horizonte | Protocolo documentado y consecuencia |
+|---|---|---|---|
+| **E1 · referencia del contrato** | Binance Spot BTCUSDT; klines de un minuto agregadas a OHLCV diario UTC | Desviación poblacional centrada de siete retornos diarios, sin anualizar; siguiente valor móvil a h=1 | Fase I: forward chaining 2024 y test histórico expuesto; fase II: D7, HPO/piloto y 465 semillas por red sobre reserva histórica de 60 días. Son dos fases, no réplicas de mercados. |
+| **S1 · Akbiyik** — antecedente de tarea/familias | Bitcoin a 15 minutos y Twitter; proveedor/versionado de precios no suficientemente verificado | RV diaria = $100\sqrt{\sum r_{15min}^2}$; se predicen 96 retornos del próximo día | 96 días de desarrollo, divididos 72/24, y 48 de test; 250 configuraciones por red y 20 corridas. Escala, información y etiqueta difieren: no comparar sus errores con E1. |
+| **S2 · Zeri** — antecedente Binance, otro segmento | Binance Futures BTCUSDT perpetuo vía CryptoLake; barras de cinco minutos | Log-RV de los próximos 30 minutos a partir de precio medio del libro | Train/validación/test cronológicos declarados; tres semillas y 20 trials por red. Futuros y microestructura difieren de Spot diario; no atribuirle uso del dataset propio. |
+| **S5 · Gao** — antecedente diario, otro contrato | Yahoo Finance BTC-USD diario | Medida no centrada de ventana 30, desplazada siete días; no siete retornos enteramente futuros | Código: 365 días de validación y 30 de test, sin múltiples repeticiones acreditadas. Cambian proveedor, par, escala, entrada y horizonte. |
+| **S6 · Wang** — proximidad de frecuencia/horizonte | Bitcoin diario; proveedor bruto insuficientemente identificado | RV1D del día siguiente; fórmula del proxy no recuperada suficientemente | División 70/30 y semilla 42; cohortes no reconciliadas entre modelos. La proximidad nominal h1/OHLCV no acredita igualdad de etiqueta o comparación de métricas. |
+| **S7 · Alakhouch** — antecedente diario con discrepancias | BTC/USD diario de Investing.com/Kaggle, según manuscrito/código | Código: std móvil de 30 días, desplazada 30 días y anualizada por $\sqrt{365}$ | Código ajusta escaladores sobre todo `df_garch` antes de efectuar la partición cronológica 01/02/2021: riesgo aparente de fuga. Reporte y código requieren reconciliación; no se transfiere su ranking a E1. |
+| **S8 · Miura** — antecedente RV/autorreferencia | BTCUSD a un minuto, Kaggle Bitcoin historical data | Suma de retornos cuadrados en tres horas, sin raíz; horizonte explícito en pasos no establecido | Declara CV temporal de diez folds y 30 inicializaciones de test; fechas, embargo y alcance del escalado no especificados. La agregación de tres horas no define por sí sola h. |
+| **S9 · Djanga** — antecedente Binance/multiasset | Veinte pares USDT Binance vía Tardis, incluido BTC; segmento Spot/futuros no explícito | RV intradiaria de 30 minutos y trayectoria del día siguiente en rejilla de cinco minutos | Ajuste diario a medianoche; validación interna 80/20 y ventanas de 1 semana/1 mes/6 meses. Cambian covariables, pooling y reajuste; veinte activos siguen siendo un estudio. |
+| **PR_CVI · Nguyen** — nuevo estrato implícito | Entradas cripto de Yahoo Finance; CVI de Investing.com, diario | Próximo valor diario del CVI implícito, que representa expectativas a 30 días; no es σ₇ de BTC | Último 20 % test, diez corridas; sin validación separada documentada y elección de pérdida usando test. Útil para contrastar roles LSTM/TCN, no el nivel de error de E1. |
+| **PR_GARCH · Zahid** — nuevo estrato híbrido | Bitcoincharts, cierres diarios BTC de 2015–2021 | Fórmula intradiaria de RV frente a datos diarios declarados; horizontes 7/14/21 y actualización rolling descritos sin reconciliación completa | Evaluación cronológica y rolling; sin semillas ni dispersión reportadas. La ambigüedad del proxy y las redes híbridas impiden equiparar tarea o atribuir baselines autónomos. |
+
+El {download}`CSV de comparabilidad <../_static/e1_dataset_comparison_20261106/comparison.csv>` conserva las diez filas y las ubicaciones de evidencia. Las dos filas nuevas remiten a las [fichas CVI/GARCH–DL](../_static/literature_e1/primary_reviews_20261106/evidence_matrix.json), no se incorporan retrospectivamente al denominador N=7. Esta tabla es una síntesis documental de las extracciones existentes; no implica una réplica de autores ni una nueva comprobación de los archivos brutos de sus estudios.
 
 Las pistas S3 y S4 de revisiones previas no se cuentan como originales completos dentro de ese denominador de siete. La [matriz de diez registros](../_static/literature_e1/crypto_extension_20261105/evidence_matrix.json) conserva además T1/T2/T3 como transferencia financiera con sus niveles de lectura y verificación separados.
 
-La recuperación también encontró software que declara Binance Spot/BTCUSDT a un minuto, pero con dispersión futura de diez minutos y sin un artículo verificable: aporta una pista de procedencia, no uso científico acreditado del dataset propio. Las cifras de las fuentes siguen siendo contexto; no se ordenan junto a las métricas propias como si procedieran del mismo experimento. El {download}`informe de recuperación <../_static/literature_e1/recovery_audit_20261104/report.md>` conserva ubicaciones, calidad y limitaciones. La igualdad de la versión exacta sigue abierta; la **matriz de diferencias ya está documentada**.
+La recuperación también encontró software que declara Binance Spot/BTCUSDT a un minuto, pero con dispersión futura de diez minutos y sin un artículo verificable: aporta una pista de procedencia, no uso científico acreditado del dataset propio. Las cifras de las fuentes siguen siendo contexto; no se ordenan junto a las métricas propias como si procedieran del mismo experimento. El {download}`informe de recuperación <../_static/literature_e1/recovery_audit_20261104/report.md>` conserva ubicaciones, calidad y limitaciones.
+
+**Consecuencia para el diseño y alcance del baseline.** La comparación cuantitativa principal se realiza dentro del propio conjunto de datos, con etiquetas, fechas, escalado y pérdidas comunes. El uso previo ofrece respaldo aplicado a familias y decisiones de evaluación; el nivel de error fijado aquí es propio de BTCUSDT Spot/σ₇/h1. Para contrastarlo con un estudio externo habría que armonizar constructo, unidades, disponibilidad, horizonte y protocolo sobre una cohorte común o justificar una métrica comparable. Eso no se ejecutó y no se requiere para afirmar que existe literatura pertinente; permanece como límite a la transferencia del valor numérico del baseline. El [resumen y las huellas de evidencia](../_static/e1_dataset_comparison_20261106/summary.json) separan estos extremos.
 
 ## 1.3. Descripción de la técnica
 

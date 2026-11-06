@@ -1,15 +1,24 @@
 """Public download refresh tests with synthetic archives, never market data."""
 import json
 from pathlib import Path
+import struct
 import subprocess
 import sys
 import tempfile
 import unittest
 from unittest.mock import patch
 from zipfile import ZipFile, ZipInfo
+import zlib
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 import refresh_e1_native_downloads as refresh
+
+
+def public_png():
+    def chunk(kind, data):
+        return struct.pack(">I", len(data)) + kind + data + struct.pack(">I", zlib.crc32(kind + data) & 0xffffffff)
+    return (b"\x89PNG\r\n\x1a\n" + chunk(b"IHDR", struct.pack(">IIBBBBB", 1, 1, 8, 2, 0, 0, 0))
+            + chunk(b"IDAT", zlib.compress(b"\x00\x00\x00\x00")) + chunk(b"IEND", b""))
 
 
 class NativeDownloadRefreshTests(unittest.TestCase):
@@ -25,6 +34,7 @@ class NativeDownloadRefreshTests(unittest.TestCase):
         self.write(".gitignore", "book/_build/\ndata/raw/\n")
         self.write("BUILD.md", "Current public build instructions\n")
         self.write("README.md", "Current repository documentation\n")
+        self.write("requirements-e1-supplement.lock.txt", "supplement-package==1.0\n")
         self.write("scripts/current.py", "print('public current code')\n")
         self.write("tests/test_current.py", "# current public verification\n")
         self.write("book/references.bib", "@article{current, title={Current literature}}\n")
@@ -50,6 +60,26 @@ class NativeDownloadRefreshTests(unittest.TestCase):
             mapping = {name: refresh.legacy.digest((directory / name).read_bytes()) for name in names}
             self.write(prefix + "/manifest.json", json.dumps({"files_sha256": mapping}) + "\n")
             self.stage_directories[stage] = directory
+        self.supplement_directories = {}
+        for label, spec in refresh.SUPPLEMENTS.items():
+            prefix, names = spec["directory"], spec["files"]
+            directory = self.root / prefix
+            for name in names:
+                if name == "summary.json":
+                    value = json.dumps({"supplement": label, "post_hoc": True}) + "\n"
+                elif name.endswith(".json"):
+                    value = json.dumps({"public_metrics": True}) + "\n"
+                elif name.endswith(".csv"):
+                    value = "model,rmse\nGRU,0.005\n"
+                elif name.endswith(".png"):
+                    value = public_png()
+                else:
+                    value = "Public post-hoc evidence; no new fits\n"
+                self.write(prefix + "/" + name, value)
+            mapping = {name: {"sha256": refresh.legacy.digest((directory / name).read_bytes()),
+                              "bytes": (directory / name).stat().st_size} for name in names}
+            self.write(prefix + "/" + spec["manifest"], json.dumps({"files": mapping}) + "\n")
+            self.supplement_directories[label] = directory
         self.base = self.root / "book/_static/e1_downloads"
         self.base.mkdir(parents=True)
         records = []
@@ -127,6 +157,7 @@ class NativeDownloadRefreshTests(unittest.TestCase):
             self.assertEqual(saved.read("experiments/original/design.json"), b'{"seed": 73}\n')
             self.assertEqual(saved.read("requirements-training.lock.txt"), b"historical==1.0\n")
             self.assertEqual(saved.read("BUILD.md"), b"Current public build instructions\n")
+            self.assertEqual(saved.read("requirements-e1-supplement.lock.txt"), b"supplement-package==1.0\n")
         with ZipFile(self.output / refresh.ITEMS["8.4"]) as saved:
             self.assertEqual(saved.read("book/references.bib"), (self.root / "book/references.bib").read_bytes())
             self.assertEqual(saved.read("book/_static/literature_e1/history_20261102/studies.json"), b'{"n": 7}\n')
@@ -134,11 +165,25 @@ class NativeDownloadRefreshTests(unittest.TestCase):
                 for name in names | {"manifest.json"}:
                     self.assertIn("book/_static/literature_e1/" + stage + "/" + name, saved.namelist())
         with ZipFile(self.output / refresh.ITEMS["8.7"]) as saved:
-            for stage in refresh.STAGES:
+            for stage, names in refresh.STAGES.items():
                 for name in ("summary.json", "manifest.json", "source_manifest.json"):
-                    self.assertIn("book/_static/literature_e1/" + stage + "/" + name, saved.namelist())
+                    if name == "manifest.json" or name in names:
+                        self.assertIn("book/_static/literature_e1/" + stage + "/" + name, saved.namelist())
             self.assertEqual(saved.read("original_metadata.json"), b'{"historical": true}\n')
             self.assertIn("prerregistro retrospectivo", saved.read("AMPLIACION_LITERARIA_20261106.md").decode())
+            self.assertIn("SUPLEMENTO_EVIDENCIAS_20261106.md", saved.namelist())
+            for label, spec in refresh.SUPPLEMENTS.items():
+                for name in ("summary.json", spec["manifest"]):
+                    self.assertIn(spec["directory"] + "/" + name, saved.namelist())
+        for label, spec in refresh.SUPPLEMENTS.items():
+            with ZipFile(self.output / refresh.ITEMS[spec["item"]]) as saved:
+                for name in spec["files"] | {spec["manifest"]}:
+                    self.assertEqual(saved.read(spec["directory"] + "/" + name),
+                                     (self.supplement_directories[label] / name).read_bytes())
+                # Supplemental analyses add separate namespaces; original science remains byte-identical.
+                for name, data in self.base_payloads[spec["item"]].items():
+                    self.assertEqual(saved.read(name), data)
+        self.assertEqual(catalog["evidence_refresh"]["supplements"]["statistics"]["product"], "8.5")
         with ZipFile(self.output / refresh.ITEMS["8.1"]) as saved:
             self.assertNotIn("informe/_static/e1_downloads/8_5_benchmark.zip", saved.namelist())
             self.assertNotIn("informe/_static/eda/results/summary.json", saved.namelist())
@@ -259,6 +304,37 @@ class NativeDownloadRefreshTests(unittest.TestCase):
         for name, data in cases.items():
             with self.subTest(name=name), self.assertRaisesRegex(ValueError, "Private/abstract"):
                 refresh.validate_public_bytes(name, data)
+
+    def test_statistics_manifest_is_closed_and_public_payload_is_validated(self):
+        spec = refresh.SUPPLEMENTS["statistics"]
+        directory = self.supplement_directories["statistics"]
+        files, _ = refresh.public_stage(directory, spec["files"], spec["manifest"])
+        self.assertIn("qq_differences.png", files)
+        path = directory / spec["manifest"]
+        original = json.loads(path.read_text())
+        changed = json.loads(path.read_text())
+        changed["files"]["predictions.csv"] = {"sha256": "a" * 64, "bytes": 1}
+        path.write_text(json.dumps(changed))
+        with self.assertRaisesRegex(ValueError, "approved public files"):
+            refresh.public_stage(directory, spec["files"], spec["manifest"])
+        private = b"model,Author Email\nGRU,private@example.test\n"
+        (directory / "pairwise_sensitivity.csv").write_bytes(private)
+        original["files"]["pairwise_sensitivity.csv"] = {
+            "sha256": refresh.legacy.digest(private), "bytes": len(private)}
+        path.write_text(json.dumps(original))
+        with self.assertRaisesRegex(ValueError, "Private/abstract"):
+            refresh.public_stage(directory, spec["files"], spec["manifest"])
+
+    def test_rejects_broken_plot_trailing_payload_and_unsupported_format(self):
+        refresh.validate_public_bytes("qq.png", public_png())
+        with self.assertRaisesRegex(ValueError, "Trailing data"):
+            refresh.validate_public_bytes("qq.png", public_png() + b"hidden payload")
+        corrupted = bytearray(public_png())
+        corrupted[20] ^= 1
+        with self.assertRaisesRegex(ValueError, "CRC mismatch"):
+            refresh.validate_public_bytes("qq.png", bytes(corrupted))
+        with self.assertRaisesRegex(ValueError, "Unsupported public evidence extension"):
+            refresh.validate_public_bytes("model.pt", b"checkpoint")
 
     def test_rejects_archive_manifest_mismatch_unsafe_path_and_symlink(self):
         path = Path(self.temporary.name) / "test.zip"

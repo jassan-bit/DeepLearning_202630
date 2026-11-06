@@ -1,5 +1,15 @@
 # Evidencia documental del Entregable 1
 
+## Índice de la actualización del 6 de noviembre de 2026
+
+La bibliografía canónica contiene 42 referencias. `native_search_20261106/` conserva la ingesta de cuatro exportaciones WoS/Scopus: 244 ocurrencias y 182 grupos provisionales. `primary_reviews_20261106/` separa dos originales adicionales de CVI/híbridos GARCH, dos resúmenes y una lectura primaria parcial. Estos estratos no modifican las frecuencias históricas de los siete estudios cripto.
+
+`editorial_screening_20261106/` añade decisiones por título/resumen y mantiene pendiente el original cuando no puede establecerse elegibilidad. `selection_synthesis_20261106/` documenta la comparación de familias y las condiciones de la terna. Los metadatos públicos omiten los resúmenes exportados y contactos; los archivos originales recibidos no se redistribuyen. La evidencia de IEEE, el historial completo de recuperación y la verificación restante por originales siguen abiertas.
+
+## Archivo histórico del 3 de noviembre de 2026
+
+Los estados descritos a continuación pertenecen a ese corte y no sustituyen los expedientes posteriores.
+
 La versión del 03/11/2026 conserva las consultas originales del 02/11/2026 y añade recuperación dirigida, correcciones de cribado y extracción de los apéndices de S1. No ejecuta redes ni utiliza datos de mercado o test del proyecto.
 
 ## Conteos y cortes

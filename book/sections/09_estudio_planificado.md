@@ -271,3 +271,60 @@ La entrada es [run_gru_lstm_tcn_planned.py](https://github.com/jassan-bit/DeepLe
 | Procedencia y cierre | [Cronología](../_static/gru_lstm_tcn_planned_20261105/chronology.json), [pesos congelados](../_static/gru_lstm_tcn_planned_20261105/final_freeze_provenance.json), [resumen](../_static/gru_lstm_tcn_planned_20261105/summary.json) y [SHA-256 permitidos](../_static/gru_lstm_tcn_planned_20261105/public_allowlist_manifest.json) |
 
 Los artefactos públicos son metadatos, configuraciones, agregados y figuras; las observaciones/predicciones individuales, escaladores y checkpoints completos permanecen en la evidencia conservada. La construcción del JBook consume los archivos publicados y no vuelve a entrenar o puntuar la reserva.
+
+## 9.9. Suplemento diagnóstico posterior: Q–Q y comparación global
+
+El 06/11/2026 se añadió este **análisis suplementario posterior**, a partir de las métricas RMSE por semilla ya publicadas. No formaba parte del prerregistro y no sustituye la familia primaria t/Holm, el dimensionamiento, las recetas o el baseline GRU fijado con desarrollo. Atiende la inspección gráfica y la comparación global solicitadas en la guía E1, §5.4, pp. 23–24, dejando explícita su cronología. No añade entrenamientos, acceso a archivos brutos de la reserva, cargas de pesos o pronósticos.
+
+### 9.9.1. Normalidad de las diferencias: evidencia gráfica
+
+```{figure} ../_static/e1_statistics_supplement_20261106/qq_differences.png
+---
+name: qq-diferencias-fase-ii-suplemento
+---
+Q–Q de las 465 diferencias RMSE por par. El eje vertical expresa diferencias A−B multiplicadas por 10³; la recta es un ajuste descriptivo, sin banda de confianza.
+```
+
+Las desviaciones de la recta, especialmente las colas de GRU−LSTM, hacen visible lo que Shapiro–Wilk ya rechazaba. Las asimetrías muestrales corregidas son −0,504, −0,561 y −0,457; el exceso de curtosis de GRU−LSTM es 2,762. La figura no convierte la t primaria en una prueba normal exacta ni demuestra que una prueba alternativa carezca de supuestos. Se conserva su interpretación asintótica condicionada al calendario. No se exige igualdad de varianzas marginales entre redes para una t **pareada**: el objeto de esa inferencia es la diferencia dentro de semilla.
+
+Los {download}`diagnósticos numéricos <../_static/e1_statistics_supplement_20261106/qq_diagnostics.csv>` y las {download}`1.395 coordenadas de los Q–Q <../_static/e1_statistics_supplement_20261106/qq_coordinates.csv>` permiten reconstruir las figuras desde los mismos valores guardados, sin redondear diferencias antes de analizarlas.
+
+### 9.9.2. Friedman y concordancia del orden entre semillas
+
+Se comparan las tres redes dentro de cada una de las **465 semillas emparejadas**. Friedman obtiene **χ²(2)=391,625806**, **p≈9,1104×10⁻⁸⁶**, con aproximación chi-cuadrado; no hay empates exactos de RMSE dentro de bloque. El resultado es una comparación global posterior y no una nueva selección del modelo operativo.
+
+| Modelo | Rango medio de RMSE, menor es mejor |
+|---|---:|
+| GRU | 1,890323 |
+| LSTM | 2,696774 |
+| TCN | 1,412903 |
+
+La **W de Kendall es 0,421103**, calculada como χ²/[465×(3−1)]. Resume la concordancia del orden entre semillas: no es una reducción porcentual de RMSE, un efecto económico ni evidencia de mejora temporal. La hipótesis global se interpreta en términos de distribuciones/rangos bajo intercambio de etiquetas de modelo dentro de bloques independientes. Interpretarla exclusivamente como igualdad de medianas o localización exige formas comparables de las distribuciones. Los bloques son inicializaciones sobre las mismas fechas, no 465 periodos o mercados independientes. El {download}`resultado global completo <../_static/e1_statistics_supplement_20261106/friedman_global.json>` conserva sus supuestos y rangos.
+
+### 9.9.3. Sensibilidad pareada de rangos
+
+Como sensibilidad posterior se añaden tres Wilcoxon bilaterales de rangos con signo, emparejados por semilla, con aproximación normal sin corrección de continuidad y ajuste Holm dentro de **esta familia suplementaria de tres pares**. Se descartan ceros exactos y se asignan rangos medios a empates absolutos; en estos datos los tres pares tienen 465 diferencias no nulas. No se presentan p exactas.
+
+| Par A−B | Estadístico W, menor suma de rangos | p Holm-3 suplementaria | Efecto biserial pareado A−B |
+|---|---:|---:|---:|
+| GRU−LSTM | 14.963 | 2,2598×10⁻⁴¹ | −0,723790 |
+| GRU−TCN | 21.091 | 3,7150×10⁻³⁰ | 0,610670 |
+| LSTM−TCN | 6.593 | 4,7981×10⁻⁶⁰ | 0,878296 |
+
+El efecto biserial usa (suma positiva−suma negativa)/(suma positiva+suma negativa); un signo negativo favorece A porque menor RMSE es mejor. No estima la misma magnitud que d_z. Wilcoxon **no elimina automáticamente el problema de normalidad**: una interpretación como desplazamiento de localización requiere simetría de las diferencias, que las asimetrías y Q–Q invitan a tratar con cautela. El {download}`CSV de sensibilidad <../_static/e1_statistics_supplement_20261106/pairwise_sensitivity.csv>` publica sumas de rangos, ceros, estadísticos, método y p sin ajustar y ajustadas.
+
+Los tres pares suplementarios rechazan su nulidad a 0,05 después de Holm. Reutilizan los mismos datos que las pruebas primarias; **no son corroboración independiente** ni se escoge entre métodos por su p más pequeña. El ajuste Holm-3 no cubre todos los contrastes del libro. Este suplemento no altera DM/HAC/HLN, el bootstrap por bloques o la conclusión sobre el margen del 5 %: sigue sin acreditarse una mejora práctica temporal mediante sus límites familiares principales.
+
+### 9.9.4. Reproducción y evidencia que no puede recuperarse de agregados
+
+El nuevo [script suplementario](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/supplement_e1_planned_statistics.py) consume únicamente `run_metrics.csv` y comprueba las identidades de **18 fuentes científicas y dos registros públicos** congelados. Los hashes acreditan identidad de esos archivos, no reproducción del entrenamiento. La {download}`procedencia del suplemento <../_static/e1_statistics_supplement_20261106/source_manifest.json>` autentica entradas, código y sus ocho archivos públicos derivados.
+
+```bash
+python -m pip install -r requirements-e1-supplement.lock.txt
+python scripts/supplement_e1_planned_statistics.py
+python -m unittest discover -s tests -p 'test_e1_statistics_supplement.py'
+```
+
+El {download}`resumen de ejecución <../_static/e1_statistics_supplement_20261106/summary.json>` registra las versiones efectivamente usadas en este suplemento: Python 3.12.14, NumPy 2.3.5, pandas 2.2.3, SciPy 1.17.0 y Matplotlib 3.10.8. Son un entorno posterior separado; no se atribuyen a las corridas históricas ni sustituyen sus dependencias registradas.
+
+La inspección de existencia del 06/11 no encontró en este entorno la ruta privada que declara el ejecutor original, `/workspace/e1_new_study_20261105/run`. Por ello no se recuperaron curvas `history_inner.csv`/`history_refit.csv`, pesos, escaladores o vectores diarios. La {download}`comprobación de disponibilidad <../_static/e1_statistics_supplement_20261106/artifact_availability.json>` sólo examina presencia de archivos: su ausencia aquí no demuestra que no se ejecutaran o que el autor no los conserve. Los RMSE agregados no permiten reconstruir esos contenidos. La reproducción independiente de DM, bootstrap temporal y BDS desde observaciones sigue pendiente; no se fabrican curvas ni se repite entrenamiento para simular los originales.

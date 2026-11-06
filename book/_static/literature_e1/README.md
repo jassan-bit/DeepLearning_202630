@@ -4,7 +4,9 @@
 
 `native_search_20261106/` conserva cuatro exportaciones recibidas (244 ocurrencias, 182 grupos provisionales), deduplicación, primera pasada y cola de revisión. `primary_reviews_20261106/` contiene cinco fichas de acceso: dos originales completos adicionales, dos resúmenes y una lectura primaria parcial. CVI implícita y redes dentro de híbridos GARCH permanecen en estratos distintos de los siete textos del corte del 05/11. La bibliografía canónica contiene 42 referencias; su cantidad no equivale a estudios elegibles. Los manifiestos identifican evidencia y límites, sin declarar un PRISMA global cerrado.
 
-`crypto_extension_20261105/` conserva los siete textos y las frecuencias históricas; `gru_lstm_tcn_selection_20261105/` identifica la terna experimental. Sus resultados, HPO y piloto están en los capítulos 4, 5 y 9 y no cambian con esta ampliación. La consulta de IEEE y la adjudicación editorial siguen pendientes.
+`editorial_screening_20261106/` añade decisiones individuales de título/resumen sobre los grupos nuevos. Distingue exclusiones del núcleo, candidatos que requieren original y límites de fecha o deduplicación. Es una revisión editorial asistida posterior a la ingesta; no reemplaza sus archivos ni certifica inclusión por resumen. `selection_synthesis_20261106/` compara recurrencia, simplicidad y mecanismos de las familias candidatas sin ampliar artificialmente el denominador.
+
+`crypto_extension_20261105/` conserva los siete textos y las frecuencias históricas; `gru_lstm_tcn_selection_20261105/` identifica la terna experimental. Sus resultados, HPO y piloto están en los capítulos 4, 5 y 9 y no cambian con esta ampliación. La consulta acreditada de IEEE, elementos del historial nativo y la elegibilidad por original que corresponda siguen pendientes.
 
 ## Archivo histórico del 3 de noviembre de 2026
 

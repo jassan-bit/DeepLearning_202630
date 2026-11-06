@@ -83,7 +83,7 @@ Se agregan días UTC completos y se conserva el calendario, sin imputar faltante
 (entrega-8-4)=
 ## 8.4. Síntesis de literatura y flujo de búsqueda
 
-**Estado de las descargas de esta ampliación.** Los metadatos nuevos están disponibles directamente en los enlaces de este apartado. Los ZIP enlazados conservan el corte anterior hasta que se publique el refresco del 06/11; el catálogo y sus SHA-256 identifican la versión efectivamente distribuida. La preparación de un paquete no equivale a su publicación.
+**Corte y procedencia de las descargas.** El catálogo identifica el commit fuente de la actualización y los SHA-256 de cada ZIP. El producto 8.4 reúne la bibliografía actual de 42 entradas, la ingesta nativa, las fichas primarias y las decisiones editoriales de título/resumen. Estos últimos documentos amplían la evidencia sin convertir registros pendientes de original en estudios incluidos. Los manifiestos de las etapas históricas se conservan con sus fechas y denominadores.
 
 El **corte histórico del 05/11/2026** conserva **40 referencias de antecedentes y siete estudios cripto con texto completo verificado**. Los siete incluyen Bitcoin y uno otras diecinueve criptomonedas; los subconjuntos se solapan. Las frecuencias siguientes describen ese corte y su criterio de comparador independiente.
 
@@ -116,7 +116,7 @@ El [capítulo 3](03_estado_arte.md) distingue antecedentes, corte histórico y a
 
 El [capítulo 9](09_estudio_planificado.md) presenta la evaluación preespecificada de fase II D7, con recetas seleccionadas por HPO, **465 semillas por familia**, contrastes primarios Holm-3 y análisis temporal secundario. El baseline seleccionado antes del piloto y la reserva es **GRU/D7 de 16 unidades**, con RMSE de HPO enero–octubre **0,00513620 ± 0,00003068**. La elección no se reabre según el ranking de la reserva.
 
-El ZIP 8.5 incluye los [agregados de fase II](../_static/gru_lstm_tcn_planned_20261105/summary.json), junto con los registros de fase I. Cada directorio conserva su manifiesto de integridad y su cohorte.
+El ZIP 8.5 incluye los [agregados de fase II](../_static/gru_lstm_tcn_planned_20261105/summary.json), junto con los registros de fase I y el suplemento estadístico posterior del [capítulo 9](09_estudio_planificado.md). Cada directorio conserva su manifiesto de integridad y su cohorte. Los Q–Q, Friedman y la sensibilidad Wilcoxon del suplemento se calculan desde métricas ya guardadas: no formaron parte del análisis registrado ni modifican sus contrastes primarios.
 
 La reserva de fase II tiene los siguientes resultados:
 
@@ -177,3 +177,5 @@ La fase I conserva sus [1.440 configuraciones CV](../_static/gru_lstm_tcn_202611
 | Fuera de alcance | Utilidad financiera, otro mercado independiente o pronósticos emitidos en vivo |
 
 La [cronología de fase II](../_static/gru_lstm_tcn_planned_20261105/chronology.json), su [registro](../_static/gru_lstm_tcn_planned_20261105/registration.json) y el [cierre de pesos](../_static/gru_lstm_tcn_planned_20261105/final_freeze_provenance.json) permiten seguir el orden. La [cronología de fase I](../_static/gru_lstm_tcn_delivery_20261105/declaration_and_chronology.json) conserva su carácter anterior y exploratorio. Los límites bibliográficos y de generalización permanecen en la [matriz de pendientes](protocolo_pendiente.md).
+
+El producto 8.7 añade el expediente de comparabilidad de datasets y sensibilidad algebraica del margen, junto con resúmenes y manifiestos de las ampliaciones editoriales y estadísticas. Los productos 8.3 y 8.6 conservan los archivos originales de adquisición y configuración. Los resultados científicos históricos incluidos en los demás productos mantienen sus bytes; las adiciones posteriores tienen directorios y procedencia propios.
