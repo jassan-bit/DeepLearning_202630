@@ -1,6 +1,6 @@
 # 5. Paper Guía y Replicación
 
-Este capítulo desarrolla las dos capturas recibidas de la sección 5: página 16 y continuación sin folio visible. Distingue la réplica externa de ETTh1 del benchmark Bitcoin D7. El diseño, las fuentes, las cinco semillas y el criterio de comparación se registraron antes de los ajustes con datos.
+Este capítulo desarrolla la sección 5 de la guía completa de 65 páginas, recibida después de sus dos capturas iniciales (página16 y continuación). Distingue la réplica externa de ETTh1 del benchmark Bitcoin D7. El diseño, las fuentes, las cinco semillas y el criterio de comparación se registraron antes de los ajustes con datos.
 
 ## 5.1 Paper guía y justificación de selección
 
@@ -145,7 +145,7 @@ La discrepancia no se atribuye causalmente a una única diferencia. Hay cambios 
 
 El archivo oficial tiene 17.420 filas horarias regulares, siete canales y sin faltantes numéricos. El protocolo original usa las primeras 14.400 filas; las 3.020 restantes no se reasignan a un nuevo test. Las fechas del archivo no declaran zona horaria. La tabla 6 del manuscrito imprime 15 minutos para ETTh1; el CSV verificado tiene intervalos de **una hora**. Se conserva esta diferencia documental y se utiliza la fuente efectiva del experimento.
 
-La ejecución valida la cadena externa de adquisición con hashes, ventanas, escalado train-only, backbone original, optimización, cierre de checkpoints, scoring y agregación de métricas. **No valida todavía el adaptador Bitcoin D7**, su cabeza de volatilidad, los otros siete modelos del Top 10 ni el HPO completo de §4.
+La ejecución valida la cadena externa de adquisición con hashes, ventanas, escalado train-only, backbone original, optimización, cierre de checkpoints, scoring y agregación de métricas. **No valida por sí sola el adaptador Bitcoin D7**, su cabeza de volatilidad, los otros modelos ni el HPO completo. La nueva revisión de §14 aporta evidencia de implementación propia de los diez adaptadores; sus resultados de mercado siguen pendientes.
 
 ## 5.4 Limitaciones: piloto cuantificado en tres modelos
 
@@ -211,7 +211,7 @@ El contrato Bitcoin D7 no permite marcadores de calendario: su adaptación debe 
 
 El paso necesario para E3 es obtener una limitación predictiva pertinente al contrato D7 mediante el procedimiento cerrado, contrastarla en varios modelos y verificar que un mecanismo adicional aporte una mejora relevante. Las búsquedas transversales de §3 y la guía completa ya recibida deberán sustentar esa selección. El [piloto Bitcoin registrado](09_protocolo_registrado.md) evalúa por separado el diagnóstico propuesto; sus resultados no se sustituyen por este piloto ETTh1. Aquí no se elige la arquitectura de E3 ni se cambia su libro independiente.
 
-El registro previo de esta réplica y piloto está disponible desde el commit 329b0a6, anterior a los ajustes con ETTh1. La sección 9.1 completa todavía no se ha recibido: esta evidencia de cronología no se presenta como cumplimiento certificado de requisitos desconocidos. El test Bitcoin heredado sigue conocido y sus futuras comparaciones siguen siendo exploratorias.
+El registro previo de esta réplica y piloto está disponible desde el commit 329b0a6, anterior a los ajustes con ETTh1. La sección 9.1 completa ya se recibió: esta evidencia demuestra la cronología acotada de la réplica y debe contrastarse con sus requisitos completos, sin convertirla automáticamente en cumplimiento integral del benchmark Bitcoin. El test Bitcoin heredado sigue conocido y sus futuras comparaciones siguen siendo exploratorias.
 
 ## 5.6 Reproducción, descargas y estado de cierre
 
@@ -234,7 +234,7 @@ La reproducción separa `validate`, `register`, cinco `fit`, un `score` posterio
 | Limitación concreta cuantificada | Dependencia del batch con calendario, IC temporal y contrastes pareados |
 | Piloto de al menos tres modelos | TimeMixer, iTransformer y PatchTST, cinco semillas cada uno; entrenamiento limitado declarado |
 | Limitación predictiva transferible | Alta variabilidad: inconclusa con el análisis principal; no hay prueba de un fallo Bitcoin |
-| Preregistro completo de §9.1 | Cronología acotada comprobable; texto completo y revisión de cumplimiento pendientes |
+| Preregistro completo de §9.1 | Guía completa recibida; cronología acotada de la réplica comprobable y revisión integral de sus requisitos separada del protocolo Bitcoin |
 | Motivación para E3 | Condiciones y candidatos de investigación documentados; originalidad y validación D7 pendientes |
 
-Estos experimentos suman **veinte ajustes externos de modelos**. Los diez adaptadores y el benchmark Bitcoin D7 de §4 permanecen pendientes; sus métricas, fechas y margen heredados no se modifican.
+Estos experimentos suman **veinte ajustes externos de modelos**. Los diez adaptadores finales ya están implementados y revisados con pruebas sintéticas en §14; HPO, potencia y benchmark Bitcoin de §4 siguen pendientes de ejecución. Se preservan la métrica, test y margen heredados. La nueva enmienda separa 53 fechas de P1/calibración de los sesenta días históricos P0 y de test.

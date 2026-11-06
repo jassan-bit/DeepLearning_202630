@@ -4,11 +4,19 @@
 
 El registro público es el commit [`599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0`](https://github.com/jassan-bit/DeepLearning_202630/commit/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0), con recibo de registro del **06/11/2026 a las 14:52:32 UTC**. El inicio de P0/OOF se condicionó a ese registro y a sus verificaciones previas. Registrar decisiones ahora mejora el procedimiento prospectivo; **no devuelve el cegamiento al test histórico conocido ni convierte E2 en una confirmación independiente**.
 
+## 9.0 Enmienda preparada para la implementación final
+
+El registro `599a29f` y sus JSON se conservan intactos. La nueva [enmienda](../_static/completion_protocol/analysis_additions.json) está preparada para registrarse **antes de cualquier ajuste de mercado de esta implementación**. No se atribuye al registro P0 una decisión posterior. Resuelve presets y adaptaciones de los diez backbones, conserva once candidatos aleatorios y añade un c12 fuente por red, manteniendo T12 y los límites comunes.
+
+La selección histórica de recetas E1 llega al **31/10/2024**. Por ello, P1 y la calibración A pasan al **08/11–30/12/2024, 53 fechas**, con ajuste/selección hasta 31/10 y embargo 01–07/11. Se mantienen las sesenta fechas históricas P0 como evidencia ya ejecutada y las sesenta fechas de test de 2026; ningún calendario se presenta como desconocido de nuevo.
+
+La rama A se declara para **los veinte modelos antes del ranking**. Sus cinco miembros neurales `680101`–`680105`, de pesos 0,2, se fijan antes de P1 y no dependen del R que P1 elija usando las mismas 53 etiquetas. Las cuatro referencias deterministas usan una trayectoria. Todos los pesos primarios, A y de controles negativos cierran antes de puntuar calibración; todos los calibradores cierran antes de la única fase de scoring del test E2. El predictor A evaluado es el mismo que se calibró, sin reajuste.
+
 ## 9.1 Diecinueve decisiones documentadas
 
-La siguiente matriz organiza diecinueve decisiones operativas. Las reglas quedan especificadas; su registro no afirma que los experimentos ni todas las verificaciones finales estén terminados. El R definitivo y las recetas finales se obtendrán mediante las reglas registradas, sin completar esos campos con resultados imaginados.
+La matriz organiza diecinueve decisiones operativas. Las filas de arquitectura, candidatos, calendario y orden incorporan la enmienda preparada de §9.0; no se afirma que esos cambios estuvieran en `599a29f`. El registro de una regla no acredita que sus experimentos o verificaciones finales estén terminados. El R definitivo y las recetas finales se obtendrán mediante las reglas registradas, sin completar esos campos con resultados imaginados.
 
-| N.º | Decisión | Regla registrada y alcance |
+| N.º | Decisión | Regla y alcance, con enmiendas indicadas |
 |---|---|---|
 | 1 | Tarea y unidad | Ruta F2a de series de tiempo, horizonte diario h=1 y una única serie BTCUSDT. Semillas, fechas y meses no se cuentan como nuevos mercados independientes. |
 | 2 | Entradas y objetivo | Se conserva D7×5 OHLCV y σ₇ como DE poblacional, `ddof=0`, de siete retornos logarítmicos diarios. No se añaden rezagos de σ₇ a las redes. |
@@ -17,10 +25,10 @@ La siguiente matriz organiza diecinueve decisiones operativas. Las reglas quedan
 | 5 | Mejora mínima | δ=**0,00025772842664981106** unidades de volatilidad diaria. No se recalcula con el resultado del nuevo benchmark. |
 | 6 | Sobreajuste | δg=δ como tolerancia operativa previa para la brecha RMSE validación−train, calculada con la misma regla de inferencia. Es una elección prospectiva, no una aprobación retrospectiva de E1. |
 | 7 | Catálogo | **20 configuraciones:** Top 10, GRU-E2/LSTM-E2/TCN-E2, tres anclas E1, Ridge, ARIMA, persistencia y referencia ingenua semanal. |
-| 8 | Equidad del ajuste | **15 recetas ajustables**, doce candidatos por receta: **180 candidatos**. Asignación común de **172.800 CPU-s por receta**, con registro del consumo y de los intentos incompletos. No es HPO ya realizado. |
-| 9 | Arquitectura final | Conservar estructuras respaldadas por originales o presets identificados y revisar explícitamente su adaptación D7. Las recetas pequeñas P0 no sustituyen las configuraciones finales publicadas. |
+| 8 | Equidad del ajuste | **15 recetas ajustables**, doce candidatos: **180**. Enmienda: once aleatorios originales + c12 fuente en las trece redes; clásicos sin cambios. **172.800 CPU-s por receta**, consumo y fallos trazables; HPO no ejecutado. |
+| 9 | Arquitectura final | Diez estructuras/adaptaciones D7 implementadas y revisadas individualmente con pruebas sintéticas. Registro y ejecución reales pendientes; las recetas pequeñas P0 no sustituyen las finales. |
 | 10 | NAS condicional | Aplicar §14 solamente cuando corresponda: espacio completo de 1.000 arquitecturas, control, piloto de ruido, fases y selección previamente especificados. **No se ha ejecutado NAS.** |
-| 11 | Partición temporal | Desarrollo forward enero–octubre de 2024, piloto noviembre–diciembre y reserva histórica heredada. Cortes de etiquetas y embargo de siete días se comprueban en cada índice; no se barajan ni comprimen fechas. |
+| 11 | Partición temporal | Desarrollo forward enero–octubre de 2024; P0 histórico de sesenta fechas; nuevo P1/A de **53 fechas 08/11–30/12**, selección/ajuste hasta 31/10 y embargo 01–07/11; reserva heredada sin cambios. No se comprimen fechas. |
 | 12 | Aleatoriedad | Semillas P0 nuevas **660101–660105**, emparejadas entre modelos. Los conjuntos de semillas P0, HPO, P1 y finales se mantienen separados. |
 | 13 | Familias | Treinta hipótesis frente a GRU/D7-c03 con α=0,02; treinta frente a GRU-E2 con α=0,02; 199 diagnósticos con α=0,01. Holm dentro de cada familia y asignación global total de 0,05. |
 | 14 | Contrastes e intervalos | Comparaciones temporales pareadas, nula centrada en δ, bloques de siete días y sensibilidades de catorce/veintiocho; justificación de la longitud exigida en desarrollo. RQ3 usa la intersección-unión de mejora y menor latencia. |
@@ -28,7 +36,7 @@ La siguiente matriz organiza diecinueve decisiones operativas. Las reglas quedan
 | 16 | Dimensionamiento | P1 posterior al HPO y al congelamiento de recetas; potencia objetivo 0,80, alternativas de ganancia/erosión 2δ y límite **R=200**. R se elegirá con simulación registrada y su incertidumbre Monte Carlo. |
 | 17 | Coste | CPU común, un thread y latencia batch 1; calentamiento, bloques de temporización e intercalado de modelos fijados. El cronómetro tiene una unidad distinta de la evaluación predictiva. |
 | 18 | Exclusiones y parada | Conservar fallos, NaN, divergencias, límites de recursos e interrupciones documentadas. Máximo de cien épocas y paciencia doce; sin reponer selectivamente candidatos o semillas por su resultado. |
-| 19 | Orden y cambios | Registro → verificaciones → P0 → HPO/NAS aplicable → recetas congeladas → P1 → dimensionamiento → pesos cerrados → fase única de scoring E2 → análisis registrado. Los cambios requieren enmienda fechada. |
+| 19 | Orden y cambios | Registro de la enmienda → verificaciones → HPO → recetas congeladas → P1 → dimensionamiento → todos los pesos primarios, A y de controles negativos cerrados → calibración → calibradores cerrados → única fase de test E2 → análisis. P0 previo se conserva; los cambios exigen enmienda. |
 
 Persistencia, referencia semanal y ARIMA usan información endógena causal con un soporte diferente del D7×5 de las redes. Esa excepción se identifica al interpretar la comparación. Las tres anclas E1 conservan su receta; las variantes E2 permiten estudiar el ajuste comparable sin reescribirlas.
 
@@ -101,25 +109,27 @@ La incertidumbre de la DE cambia mucho el R proyectado. Con su cota superior, Ti
 ![Resultados del diagnóstico P0: error global y brecha de régimen](../_static/remediation_pilot_results/pilot_summary.png)
 
 
-## 9.3 Lo que P0 no decide y lo que sigue bloqueado
+## 9.3 Qué queda por ejecutar y cómo se dimensionará
 
-P0 no estima la potencia de recetas todavía no seleccionadas por HPO, no determina qué arquitectura es superior en el benchmark final y no concede una exención general de NAS. Las diez adaptaciones finales del Top 10 conservan una revisión pendiente: la identificación del mecanismo publicado se distingue de la verificación de su configuración y de la cabeza de σ₇.
+P0 no estima la potencia de las recetas finales ni determina el ganador. La nueva [revisión arquitectónica](../_static/completion_protocol/architecture_review.json) ya resuelve individualmente los diez adaptadores y documenta `nas_required=false` en esos casos, con fuente, preset y modificaciones D7. Las pruebas sintéticas verifican implementaciones, no el pipeline completo ni el rendimiento de mercado. HPO, P1 y ajustes finales requieren registrar la enmienda y superar sus recibos integrados antes de comenzar.
 
-Por ello, el control de fases **bloquea HPO, P1, ajustes definitivos y scoring** mientras esas revisiones finales no estén verificadas. Los valores no reportados por un artículo deben resolverse con evidencia de un preset identificable o mantenerse como pendientes; no se reemplazan por los valores pequeños de P0. Si una arquitectura queda realmente sin definir, se activa el NAS condicional y se exigen sus recibos de fase 2 y ganador antes de continuar.
+La selección final de hiperparámetros se separa de su evaluación OOF. Las tres anclas E1 conservan selección histórica hasta octubre: su OOF enero–septiembre **no se presenta como selección anidada libre de exposición**. El corte mensual de ajuste, épocas y escaladores sigue siendo obligatorio para todos. Las otras diecisiete configuraciones respetan selección de configuración anterior al origen externo; la excepción histórica no autoriza nueva selección con meses futuros.
 
-El [protocolo de ajuste equitativo](11_hpo_equidad.md) y la [revisión de arquitecturas](14_arquitecturas.md) desarrollan esos controles para las fases siguientes.
+El [HPO](11_hpo_equidad.md) y la [revisión de arquitecturas](14_arquitecturas.md) especifican las condiciones de la implementación final.
 
 Cuando corresponda NAS, el registro conserva tres bloques, anchos {16,32,64,128,256}, los ocho patrones de dropout 0,2 y las 1.000 combinaciones. Un piloto de ruido fija k=20 o 40 con una regla previa, se añade el control 64–64–64/dropout010 y se confirman los finalistas con al menos cinco semillas distintas de la fase 1. Esta especificación no acredita que la búsqueda se haya ejecutado.
 
-P1 se realizará **después del HPO y del congelamiento de sus recetas**. El dimensionamiento distinguirá variabilidad entre semillas y dependencia del calendario, conservará las familias completas y reproducirá la decisión conjunta de RQ3. La alternativa de planificación es 2δ: detectar exactamente el valor de la frontera nula δ no permite prometer potencia del 80 %. La alternativa de coste es una reducción relativa del 20 % de latencia, medida por separado.
+P1 se realizará **después del HPO y del congelamiento de sus recetas**, sobre las 53 fechas 08/11–30/12/2024, con los cinco modelos y diez semillas `660201`–`660210` predefinidos. El dimensionamiento distinguirá variabilidad entre semillas y dependencia del calendario, conservará las familias completas y reproducirá la decisión conjunta de RQ3. La alternativa de planificación es 2δ: detectar exactamente el valor de la frontera nula δ no permite prometer potencia del 80 %. La alternativa de coste es una reducción relativa del 20 % de latencia, medida por separado.
 
-Se elegirá el menor R de la cuadrícula registrada cuyo límite inferior unilateral de Wilson al 95 % para la potencia simulada alcance 0,80 en las celdas previstas. Si ninguna opción lo consigue, se registrará R=200 con **objetivo de potencia no alcanzado**, efecto mínimo detectable y limitaciones. Los modelos sin piloto propio usarán supuestos proxy identificados para planificar; no recibirán una certificación empírica de potencia. Aumentar semillas no crea nuevas fechas independientes.
+La cuadrícula es **R∈{5,6,8,10,15,20,30,40,60,80,100,150,200}**. Cada R usa 10.000 simulaciones de nula y 10.000 de alternativa independientes, con familias completas/Holm e intersección-unión de RQ3. Se evalúan variación entre semillas, calendario y remuestreo conjunto. Proyectar de 53 días P1 a sesenta de test es un supuesto de transferencia, no siete nuevas observaciones. Se elegirá el menor R cuyo límite inferior unilateral de Wilson al 95 % alcance 0,80 en todas las celdas previstas. Si ninguna opción lo consigue, se registrará R=200 con **objetivo de potencia no alcanzado**, efecto mínimo detectable y limitaciones. Las siete arquitecturas Top10 sin piloto propio usan la mayor DE representativa, con cota superior del 95 % e inflación 1,5: es un proxy identificado, no certificación empírica de potencia. Las cotas chi-cuadrado con nueve grados de libertad entre diez semillas y sesenta grados entre 61 bloques de tiempo suponen normalidad aproximada. Wilson cuantifica sólo incertidumbre Monte Carlo; no elimina la incertidumbre del pequeño piloto ni demuestra transferencia de su ley empírica. Aumentar semillas no crea nuevas fechas independientes.
 
 Los contrastes finales usarán el α de su familia, incluidos los límites simultáneos, en vez de conservar automáticamente 0,05/30. Se mantienen los límites del test histórico conocido y la necesidad de verificar supuestos, auditoría de fuga, calibración y pipeline final.
 
 ## 9.4 Documentos y descarga
 
-- [Espacios HPO, asignación y catálogo](../_static/remediation_protocol/hpo.json).
+- [Diseño de la implementación final](../_static/completion_protocol/design.json), [enmienda preparada](../_static/completion_protocol/analysis_additions.json), [HPO](../_static/completion_protocol/hpo.json) y [candidatos](../_static/completion_protocol/candidate_registry.json).
+- [Implementación y evidencia descargables](../_static/completion_download/completion_bundle.zip).
+- [Espacios HPO originales P0, conservados](../_static/remediation_protocol/hpo.json).
 - [Preregistro: hipótesis, familias, pilotos, potencia y reglas](../_static/remediation_protocol/preregistration.json).
 - [Decisiones arquitectónicas y NAS condicional](../_static/remediation_protocol/architecture_decisions.json).
 - [Validación documental del protocolo](../_static/remediation_protocol/validation.json) y [registro de 180 candidatos sin evaluar](../_static/remediation_protocol/candidate_registry.json).

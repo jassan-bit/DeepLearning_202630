@@ -2,9 +2,9 @@
 
 **Deep Learning · 2026-30 · Jassan Arteta**
 
-**Estado al 6 de noviembre de 2026:** la guía completa de **65 páginas** está recibida y auditada. El libro incorpora las decisiones metodológicas de sus secciones 1–14. La ruta queda clasificada como **F2a: series de tiempo**, conservando las entradas D7×5 OHLCV, el objetivo σ₇, la RMSE, δ y la partición heredados de E1. Se distinguen veinte configuraciones y quince recetas ajustables con presupuesto común. El protocolo de esta etapa se publicó [antes de los ajustes](https://github.com/jassan-bit/DeepLearning_202630/commit/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0).
+**Estado al 6 de noviembre de 2026:** la guía completa de **65 páginas** está recibida y auditada. El libro incorpora las decisiones metodológicas de sus secciones 1–14. La ruta queda clasificada como **F2a: series de tiempo**, conservando las entradas D7×5 OHLCV, el objetivo σ₇, la RMSE, δ y la partición heredados de E1. Se distinguen veinte configuraciones y quince recetas ajustables con presupuesto común. El protocolo P0 se publicó [antes de los ajustes](https://github.com/jassan-bit/DeepLearning_202630/commit/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0).
 
-El [piloto Bitcoin y su evaluación temporal OOF](sections/09_protocolo_registrado.md) ya se ejecutaron como un experimento de desarrollo con cuatro recetas fijas: **220 trayectorias y 440 ajustes**, con sus resultados y límites publicados allí. **El benchmark final de veinte configuraciones, el HPO y la incertidumbre de sus tres mejores modelos siguen pendientes.** El registro del procedimiento no acredita por sí solo su ejecución ni potencia suficiente. La réplica de TimeMixer y el piloto ETTh1 se conservan como evidencia externa, con otro dataset y otra tarea.
+El [piloto Bitcoin y su evaluación temporal OOF](sections/09_protocolo_registrado.md) se ejecutaron con cuatro recetas fijas: **220 trayectorias y 440 ajustes**. La nueva implementación incorpora los diez adaptadores finales, HPO temporal, dimensionamiento, calibración, análisis estadístico, robustez y ablaciones. La revisión arquitectónica y la prueba de memorización sintética de los diez modelos están disponibles; **el HPO y los resultados finales Bitcoin siguen pendientes de ejecución y sus recibos**. La nueva [enmienda de implementación](./_static/completion_protocol/analysis_additions.json) requiere registro antes de sus ajustes con datos de mercado. El registro P0 no se reutiliza para retrofechar esa enmienda. La réplica TimeMixer/ETTh1 conserva su alcance externo.
 
 Este Jupyter Book tiene configuración, índice y capítulos propios dentro del repositorio común [DeepLearning_202630](https://github.com/jassan-bit/DeepLearning_202630). E1 y E3 conservan sus direcciones independientes.
 
@@ -32,10 +32,25 @@ La guía completa identifica requisitos que todavía necesitan experimentos o fu
 
 Las páginas de trabajo anteriores se conservan como archivo identificado y enlazan a estas secciones vigentes. No constituyen un protocolo alternativo.
 
+## Matriz de cierre de esta actualización
+
+| Requisito | Evidencia existente | Para considerarlo terminado |
+|---|---|---|
+| Ruta metodológica | F2a; persistencia, naive semanal y ARIMA definidos causalmente | Resultados de las veinte configuraciones y auditoría final |
+| Diez arquitecturas | [Revisión por modelo](./_static/completion_protocol/architecture_review.json), fuentes fijadas y [sanidad sintética](./_static/completion_preflight/tiny_batch_sanity.json) | Registro y ejecución del pipeline real; las pruebas no son métricas Bitcoin |
+| HPO comparable | [180 candidatos](./_static/completion_protocol/candidate_registry.json), quince asignaciones T12 | Completar búsquedas, consumo, fallos y recetas congeladas |
+| Preregistro y potencia | [Enmienda](./_static/completion_protocol/analysis_additions.json): P1 de 53 fechas, alternativas y regla de R | Registro previo, P1, simulación y decisión con incertidumbre; diez semillas no acreditan potencia |
+| Incertidumbre Top3 | Rama A predefinida para **los veinte modelos**, con 53 fechas de calibración y miembros fijos | Cerrar pesos/calibradores y medir cobertura posterior del mismo predictor |
+| Cien errores por modelo | Análisis P0 ya ejecutado; procedimiento final sobre 305 fechas implementado | OOF final, trazabilidad y cien casos únicos auditables por modelo |
+| Inferencia y mecanismos | Familias, diagnósticos, coste, robustez, XAI y ablación implementados | Resultados y límites, incluidos desenlaces negativos o no estimables |
+| Literatura | Diez originales/215 páginas; elegibilidad acotada y mecanismos trazables | 374 Scopus faltantes, búsquedas nativas, adjudicación y metadatos bibliográficos pendientes |
+
+La [descarga de la implementación](./_static/completion_download/completion_bundle.zip) permite revisar código, configuración y evidencias. **Implementación, registro y resultado son estados distintos**; esta matriz no certifica la terminación experimental del proyecto.
+
 ## Pendientes que requieren evidencia
 
 - **Literatura:** faltan 374 registros de la búsqueda Scopus de 7.874 resultados. Los reenvíos son idénticos a los lotes anteriores. El cribado por reglas, las consultas transversales locales y las revisiones de resúmenes no sustituyen la adjudicación final de textos completos, los cuartiles verificados ni nuevas búsquedas nativas documentadas.
-- **Experimentos:** la verificación fiel de las adaptaciones finales habilitará HPO, P1 y dimensionamiento posterior al HPO; después se podrán ejecutar la comparación final, robustez, ablación y calibración de los tres mejores. No se hereda automáticamente R=465 de E1 ni se declara suficiente usar diez semillas.
+- **Experimentos:** falta completar la verificación integrada y registrar la enmienda antes de HPO, P1 y dimensionamiento. La calibración secundaria se prepara para los veinte modelos; después se podrán informar los tres mejores con su rama válida. No se hereda R=465 de E1 ni se declara suficiente usar diez semillas.
 - **Gap transferible:** el diagnóstico registrado en Bitcoin debe informar su resultado aunque sea negativo o inconcluso. Una limitación observada en ETTh1 no demuestra una brecha predictiva corregible en Bitcoin.
 
 ## Relación con E1 y E3

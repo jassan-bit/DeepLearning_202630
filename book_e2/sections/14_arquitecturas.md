@@ -1,68 +1,35 @@
 # 14. Arquitecturas fuente, adaptación D7 y búsqueda condicional
 
-**Estado:** diez mecanismos fuente identificados; las diez revisiones de arquitectura final del Top 10 siguen pendientes.
-P0 está ejecutando tres recetas pequeñas y la referencia GRU fijadas previamente; no ofrece resultados completos ni una exención para el benchmark final.
-No se ha entrenado ninguna de las 1.000 arquitecturas de una búsqueda NAS.
+**Estado:** los diez adaptadores finales están implementados y cuentan con [revisión independiente por modelo](../_static/completion_protocol/architecture_review.json), pruebas de gradientes/invariancia y [sanidad de memorización sintética](../_static/completion_preflight/tiny_batch_sanity.json). No se han ejecutado HPO ni ajustes finales Bitcoin. La nueva enmienda debe registrarse antes de esos ajustes. P0/OOF y su registro `599a29f` conservan sus recetas y resultados históricos.
 
-La guía completa de 65 páginas ya está recibida. Sus páginas **52–58** definen la condición y el procedimiento de búsqueda;
-la lista de verificación de la página **63** exige documentar los casos afectados y las dos fases.
-El registro de esta etapa es el commit público [`599a29f`](https://github.com/jassan-bit/DeepLearning_202630/commit/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0).
+La guía, PDF pp52–58, exige búsqueda de 1.000 arquitecturas **cuando la estructura no esté definida**. La revisión resuelve fuentes, presets y modificaciones de los diez casos; `nas_required=false` está justificado individualmente. No significa que NAS se haya ejecutado ni exime de HPO, auditoría real o comparación justa.
 
-## 14.1 Identificar una arquitectura no equivale a aprobar cualquier adaptación
+## 14.1 Fuentes y adaptaciones finales verificadas
 
-La [matriz registrada](../_static/remediation_protocol/architecture_decisions.json) separa la estructura publicada,
-su configuración numérica, la receta P0 y la adaptación final a **D7×5 → σ₇**.
-`source_architecture_defined=true` indica que se recuperó una descripción estructural; no acredita que el adaptador final esté validado.
-En los diez casos, `final_architecture_exception_verified=false` mantiene bloqueadas las fases posteriores correspondientes.
+Se usa el artículo para los parámetros que declara; los no reportados se completan desde un preset/código oficial fijado, identificando sus condiciones. Mezclar campos explícitos de artículo y default de código se declara como una receta adaptada, **no como réplica exacta de una fila ganadora**. Los hashes completos, pruebas e identidad de archivos revisados están en la matriz descargable. La matriz antigua `architecture_decisions.json` conserva su estado previo P0 y no se edita para aparentar que estas revisiones existían entonces.
 
-La decisión actual `nas_required=false` describe los backbones fuente identificados, no una exención general concedida por tener DOI o código.
-Un hiperparámetro no reportado tampoco demuestra que el artículo sólo nombre una familia: debe resolverse la receta con evidencia identificable.
-Si el diseño realmente queda sin definir, se activa la búsqueda condicional; si existe un diseño, se conserva y se justifican sus modificaciones necesarias.
-
-Las páginas de la tabla siguiente son **páginas físicas del artículo original**, distintas de las páginas de la guía.
-Los commits y los hashes completos de código/PDF están en la matriz descargable; las abreviaturas sólo facilitan la lectura.
-
-| Modelo | Configuración o información numérica fuente | Código fijado | Revisión necesaria para el benchmark final |
-|---|---|---|---|
-| **TSMixer** | `2303.06053v5`, Tabla 8, pp. 21–23: ETTh1/h96, seis bloques, hidden 512, ReLU y pre-BatchNorm; dropout 0,9. La tabla presenta hidden 512 fuera del rango ETT 8–64 impreso; se conserva la inconsistencia. | `google-research/google-research@d3a4bd8`, `tsmixer/tsmixer_basic/models/tsmixer.py`, `res_block`/`build_model` | Conservar mezcla temporal y de atributos, residuales y normalización. Revisar contexto siete y lectura σ₇. No es uno de los tres Top 10 de P0. |
-| **TiDE** | `2304.08424v5`, Tablas 7–8, pp. 20–21: hidden 256, encoder 2/decoder 2, decoderOutputDim=8, temporalDecoderHidden=128, temporalWidth=4, LayerNorm y RevIN activas. | `google-research/google-research@d3a4bd8`, `tide/models.py`, `MLPResidual`/`TideModel` | Mantener proyección de covariables, encoder, decoder y decoder temporal. La ausencia de historia de σ₇ y de covariables futuras exige declarar las ramas modificadas; no presentarlo como réplica literal. |
-| **TimeMixer** | `2405.14616v1`, Tabla 7, p. 14, más preset original ETTh1 unificado: d=16, FFN 32, dos PDM, tres descensos por factor 2, media móvil 25, channel independence y normalización activas. FFN 32 procede del código, no de la tabla. | `kwuking/TimeMixer@e246105`, `models/TimeMixer.py`; preset `TimeMixer_ETTh1_unify.sh` | D7 no admite tres descensos no vacíos. P0 usa uno, con longitudes 7/3, preservando mezcla estacional/tendencia y suma FMM. Esa modificación no se acepta automáticamente para la receta final. |
-| **TimesNet** | `2210.02186v3`, Tabla 7, p. 14: dos bloques, regla de ancho con mínimo 32 —32 para cinco canales— y top-k=5. FFN y número de kernels requieren completar el preset/versionado pertinente. | `thuml/Time-Series-Library@4e938a1`, `models/TimesNet.py`, `FFT_for_Period`/`TimesBlock` | El preset TSL posterior d=16/FFN 32 no se atribuye al mínimo 32 del PDF. Resolver parámetros y frecuencias admisibles con D7; preservar Inception 2D y selección de periodos por origen. No está en P0. |
-| **PatchTST** | `2211.14730v2`, p. 14, A.1.4–A.1.5: configuración pequeña ETTh1 con tres bloques, d=16, cuatro cabezas, FFN 128 y GELU. Patches publicados de longitud=16/stride8 y dropout del encoder 0,2. | `yuqinie98/PatchTST@204c21e`, `PatchTST_supervised/models/PatchTST.py` | Sus patches no caben directamente en D7. P0 usa dos bloques, FFN 32, patch 2/stride 1; no es la configuración publicada ni decide la configuración final. |
-| **Informer** | `2012.07436v3`, pp. 5/12/13, Tabla 7: d=512, FFN 2048, dieciséis cabezas de encoder y ocho de atención cruzada de decoder; stacks 3+1, decoder 2, factor 5 y dropout 0,1. La configuración ganadora exacta por fila no está reportada. | `zhouhaoyi/Informer2020@29f2a73`, `models/model.py`, variantes `Informer` y stack | Resolver variante/preset y conservar ProbSparse, destilación y decoder. Revisar longitudes y muestreo válidos para D7; el futuro usa placeholders, no OHLCV observadas después del origen. No está en P0. |
-| **Autoformer** | `2106.13008v5`, pp. 7/19: d=512, encoder 2/decoder 1, ocho cabezas y media móvil 25. El texto presenta factor en 1–3; FFN y factor exacto requieren preset original identificable. Dropout numérico: NR en el PDF. | `thuml/Autoformer@51c7d41`, `models/Autoformer.py`, `series_decomp` | Conservar descomposición, autocorrelación y suma de ramas. La tendencia de precio no se reutiliza como tendencia de σ₇: la proyección de tarea debe estar declarada y revisada. No está en P0. |
-| **iTransformer** | `2310.06625v4`, A.2, p. 14: búsqueda de dos/tres/cuatro bloques y d=256/512. La configuración ETTh1 seleccionada y sus cabezas/FFN no quedan fijadas por esa tabla. | `thuml/iTransformer@c2426e6`, `model/iTransformer.py`, embedding invertido y encoder | Recuperar un preset oficial exacto. P0 d=16/FFN 32/dos bloques no se convierte en el ganador original. Conservar tokens de las cinco variables y revisar lectura latente para σ₇. |
-| **Crossformer** | PDF ICLR 2023, A.3, p. 14: ETTh1 d=256, tres niveles, cuatro cabezas y diez routers; segmentos entre 6/12/24, ganador exacto pendiente. Constructor fijado: merge=4 y FFN 1024, separados de la evidencia del PDF. | `Thinklab-SJTU/Crossformer@c10c8ea`, `cross_models/cross_former.py` | Resolver segmento y adaptación D7. Preservar DSW, TSA y HED completo: decoder futuro y combinación de escalas, no sólo pooling del encoder. No está en P0. |
-| **S-Mamba** | `2403.11144v3`, Algoritmos 1–2, pp. 4–5: mecanismos definidos, pero receta numérica final por dataset **NR**. El código fija d_conv=2 y expand=1; faltan preset de capas, d, FFN y d_state. | `wzhwzhwzh0921/S-D-Mamba@e7e8bf0`, `model/S_Mamba.py` | No inventar d_state=8 o d=16 como parámetros del artículo. Verificar preset y runtime, manteniendo Mamba bidireccional sobre variables y FFN. NR bloquea el cierre; no activa NAS por sí solo. No está en P0. |
-
-Las bases GRU-E2/LSTM-E2/TCN-E2 tienen estructuras locales heredadas explícitas: una capa recurrente de ancho 16 para GRU/LSTM y tres bloques TCN de ancho 8,
-kernel 3 y dilataciones 1/2/4. Su cabeza es escalar Softplus. El ajuste E2 no debe cambiar esa estructura silenciosamente.
-Ridge y ARIMA son estimadores especificados, sin una arquitectura neuronal oculta que requiera inventar un NAS.
-Esta procedencia local se distingue de afirmar que sus dimensiones son una configuración canónica de un artículo.
-
-## 14.2 Recetas P0 y modificaciones de tarea
-
-P0 se ejecutó con TimeMixer, iTransformer, PatchTST y la GRU/D7-c03 de referencia, con cinco semillas nuevas.
-Las tres recetas pequeñas del Top 10 se fijaron antes del entrenamiento y están separadas en `P0_fixed_recipe`.
-El detalle de registro, calendario y alcance está en [§9](09_protocolo_registrado.md); este capítulo no presenta sus resultados.
-
-| Receta P0 | Parámetros estructurales fijados | Diferencia que debe conservarse en el reporte |
+| Modelo | Estructura final y fuente | Adaptación D7 declarada |
 |---|---|---|
-| TimeMixer | d=16, FFN 32, dos PDM; channel independence=1; average pooling por 2 con un descenso 7→3; moving_avg=25 | Cambio de pirámide frente a los tres descensos del preset fuente; suma de contribuciones FMM antes de proyección/desnormalización OHLCV |
-| iTransformer | d=16, FFN 32, dos bloques, cuatro cabezas y cinco tokens de variables | Receta de factibilidad distinta del espacio d=256/512 documentado en el original |
-| PatchTST | d=16, FFN 32, dos bloques, cuatro cabezas, patch 2/stride 1 y siete patches con padding final | Cambios explícitos frente a tres bloques/FFN 128 y patch 16/stride 8 de la configuración pequeña publicada |
+| **TSMixer** | Artículo Tabla8 ETTh1/h96; Google `d3a4bd8`: seis bloques, hidden512, ReLU, pre-BatchNorm en ejes tiempo/canal, Glorot | Port TensorFlow→PyTorch de los bloques; cabeza de tarea escalar Softplus. Se conserva la inconsistencia impresa de hidden512 frente al rango ETT8–64. c12 dropout0,9 no se atribuye al espacio aleatorio0–0,3. |
+| **TiDE** | Artículo Tabla8 + Google `d3a4bd8`: hidden256, flag num_layers2, decoderOutput8, temporalHidden128, width4, LayerNorm/RevIN. En el código, flag2 corresponde a **un bloque residual de dos densas**, no dos bloques | Cinco identidades OHLCV y mismas covariables pasadas D7; futuras fijadas a cero. Decoder temporal produce latente8 con LayerNorm8 para evitar colapso del escalar LayerNorm1; skip7→1 difundido al latente. Cabeza escalar, sin desnormalizar OHLCV como σ₇. |
+| **TimeMixer** | Autor `e246105`, preset ETTh1 unificado: d16, FF32, dos PDM, media25 y channel independence | Tres descensos darían longitud cero. Se usa máxima profundidad válida **dos descensos, 7→3→1**, preservando PDM y FMM por escala; P0 tenía un descenso y sigue diferenciado. |
+| **TimesNet** | Artículo Tabla7, C5 implica d32; TSL `4e938a1` aporta FF32 y seis kernels, dos bloques | Extensión temporal aprendida7→8 antes de FFT; top-k5 se limita a las **cuatro frecuencias no DC** disponibles, con pesos propios por origen. Inception2D conserva las seis parametrizaciones mediante fusión de kernels numéricamente equivalente y comprobación de gradientes. |
+| **PatchTST** | Artículo A.1.4–A.1.5 y autor `204c21e`: tres bloques, d16, FF128, cuatro cabezas, patch16/stride8 | Normalizar sólo D7 observado, replicar borde izquierdo hasta16 y conservar padding final8: dos patches. La réplica de bordes no añade historia ni observaciones futuras. Encoder de atención residual y lectura escalar propios de esta tarea. |
+| **Informer** | Artículo Tabla7 + autor `29f2a73`: d512, FF2048, encoder stacks3+1, cabezas16; decoder2 y atención cruzada8; factor5 | Mantiene stacks/destilación/decoder; seq7/label3/pred1, sin calendario futuro. La rama corta tiene un token; se define ese límite de ProbSparse y su régimen de consulta completa. Las cinco salidas latentes del decoder son características de tarea, no pronósticos OHLCV reutilizados como volatilidad. |
+| **Autoformer** | Autor `51c7d41`, script/defaults originales: d512, FF2048, encoder2/decoder1, ocho cabezas, media25 y factor3 | Mantiene descomposición, autocorrelación, decoder y ramas aditivas; padding de borde para media25. Sin embeddings de calendario ni observaciones futuras; lectura escalar explícita. |
+| **iTransformer** | Autor `c2426e6`, preset ETTh1_96_96: d256, FF256, dos bloques y ocho cabezas por default identificado | Cinco tokens de variables con siete datos observados; conserva encoder invertido y normalización. Sustituye proyector por variable/desnormalización OHLCV por cabeza σ₇. P0 d16 no se presenta como esta receta. |
+| **Crossformer** | Autor `c10c8ea`, script ETTh1/CLI: seg6, d256, FF512, tres niveles, cuatro cabezas, diez routers y merge2 | Repetición causal izquierda D7→12, DSW/TSA y **cuatro etapas de decoder HED** con combinación aditiva. FF1024/merge4 del constructor son otra condición y no se atribuyen a este preset. |
+| **S-Mamba** | Autor `e7e8bf0`, preset ETTh1H96: d256, FF256, dos bloques, state2, conv2, expand1 | Mantiene escaneo selectivo bidireccional de variables y FFN. Referencia CPU explícita contrastada en valores/gradientes con Mamba1.2.0; no se exige un kernel CUDA inexistente ni se sustituye por una RNN genérica. |
 
-Los tres adaptadores P0 producen latentes `[B,5,16]`. Su cabeza concatena los 80 latentes con cinco medias y cinco desviaciones poblacionales
-calculadas desde la **misma entrada D7 escalada con train**, y aplica `Linear(90,1)` más Softplus; la inversión de escala de Y pertenece al pipeline.
-Esos diez resúmenes no añaden información externa. La cabeza de 90 entradas es propia de estas recetas P0, no una dimensión impuesta a backbones finales d=256/512.
+Las bases retunadas tienen una capa GRU/LSTM de ancho16 o tres bloques TCN de ancho8, kernel3/dilataciones1/2/4. Se distinguen de las tres recetas E1 fijas. Ridge y ARIMA son estimadores definidos; no requieren inventar una búsqueda de arquitectura neuronal.
 
-La adaptación final debe preservar el objetivo y la información disponible: siete barras OHLCV, ninguna historia de σ₇ como canal nuevo y ningún valor futuro en decoders.
-Una proyección que originalmente predice OHLCV no se interpreta como volatilidad ni se desnormaliza con media/DE de Close como si fuera σ₇.
-Debe registrarse el punto de lectura latente y cualquier cambio de normalización, marcas temporales, parches, escalas o proyecciones.
+Los backbones y las cabezas se prueban con salida positiva `[B]`, gradientes finitos de sus parámetros entrenables y predicción en evaluación independiente de acompañantes del batch. La prueba de memorización usa cuatro entradas sintéticas y un umbral fijado; pasó en los diez casos. **Es sanidad de software, no rendimiento ni potencia Bitcoin**, y no sustituye los controles de etiquetas permutadas u otras verificaciones del pipeline real.
 
-TiDE debe conservar y describir sus bloques centrales, declarando la sustitución de ramas que requieran historia del objetivo o covariables futuras inexistentes.
-Crossformer debe conservar su decoder HED y fusión multiescala. TimesNet debe evitar selección de periodos compartida entre orígenes de inferencia;
-batch 1 o una selección independiente requieren pruebas del adaptador. La factibilidad de forma no sustituye esas comprobaciones.
+## 14.2 Diferencia respecto al piloto y conservación del contrato
+
+P0 usó TimeMixer d16/FF32 con escalas7/3, iTransformer d16/FF32/dos bloques y PatchTST d16/FF32/dos bloques/patch2. Las tres cabezas concatenaban 80 latentes y diez momentos de la misma entrada D7, `Linear(90,1)` y Softplus. Estas recetas se conservan con sus hashes; las nuevas no se seleccionaron por sus resultados P0 ni se renombran retroactivamente.
+
+Cada adaptador final registra su lectura latente y cambios de normalización, escalas, parches o proyección. Conserva **D7×5 OHLCV → σ₇**, sin historia de σ₇ como canal nuevo, barras futuras ni embeddings con información posterior al origen. Las estadísticas de la misma entrada no son observaciones externas. Una salida OHLCV no se desnormaliza con Close para interpretarla como σ₇.
 
 ## 14.3 NAS sólo cuando corresponda
 
@@ -100,25 +67,10 @@ $$
 Se publicará también el consumo real. Un límite insuficiente se registra como desviación y búsqueda incompleta, sin recortar el espacio silenciosamente.
 La asignación HPO de [§11](11_hpo_equidad.md) no prueba que este coste adicional esté cubierto o que se hayan completado las 1.000 evaluaciones.
 
-## 14.4 Evidencia y controles antes de continuar
+## 14.4 Cierre operativo y evidencia pendiente
 
-La revisión final debe unir fuente, configuración numérica, adaptación, implementación y pruebas sobre el contrato D7.
-En el estado registrado, **HPO, P1, ajustes definitivos y scoring están bloqueados por las revisiones finales pendientes del Top 10**.
-Si algún caso activa NAS, P1/ajustes definitivos/scoring exigirán además los recibos de fase 2 completa y del ganador congelado.
-Un flag de arquitectura conocida, un forward sintético o un archivo con hash no equivalen a validar todo el pipeline.
+La revisión arquitectónica por modelo y las pruebas sintéticas ya existen. La [enmienda](../_static/completion_protocol/analysis_additions.json), el [diseño](../_static/completion_protocol/design.json) y el [HPO](../_static/completion_protocol/hpo.json) requieren registro público y verificación integrada antes de ajustes reales. El runner vincula fuente propia, dependencias de autores, configuración, datos de desarrollo y revisión mediante hashes; rechaza cambios respecto a su registro. Eso no convierte la existencia de un archivo en certificación de validez científica.
 
-| Evidencia de una búsqueda que llegue a ejecutarse | Contenido que debe entregarse |
-|---|---|
-| Espacio y cómputo | Los 1.000 identificadores/versiones, configuración, parámetros/FLOPs, presupuesto estimado y consumo real |
-| Dos fases | Todas las métricas del cribado, semilla/presupuesto, finalistas, control y resultados completos por semilla de confirmación |
-| Fiabilidad de selección | Ruido piloto, regla k, correlación de rangos entre fases, regla de desempate y posición del ganador en el borde del espacio |
-| Análisis agregado | Superficies, efectos principales/interacciones con IC, varianza explicada y multiplicidad por factores; no 499.500 pruebas entre pares |
-| Calidad y límites | Pareto de error/coste, brechas de generalización, conjunto de finalistas indistinguibles con procedimiento justificado y desviaciones |
+Si la verificación integrada rechaza un caso y éste queda sin estructura definida, se registra la corrección o se activa NAS antes de seguir; no se concede una excepción por conveniencia. En tal caso se entregarían los 1.000 identificadores, presupuesto estimado/real, cribado, piloto de ruido, k finalistas y control, cinco semillas de confirmación y selección congelada. No hay resultados de esas fases que informar ahora.
 
-No se infiere equivalencia de finalistas a partir de no rechazar diferencias; TOST/ROPE requieren margen y supuestos, y pertenecer a MCS no prueba equivalencia.
-Un óptimo en el borde se declara como limitación; no se amplía W tras consultar test para buscar un resultado favorable.
-Estos análisis pendientes deberán aportar sus datos y recibos; enumerarlos aquí no constituye un resultado de búsqueda.
-
-Las fuentes vigentes son la [matriz arquitectónica](../_static/remediation_protocol/architecture_decisions.json),
-el [preregistro](../_static/remediation_protocol/preregistration.json) y el [diseño HPO](../_static/remediation_protocol/hpo.json).
-La [implementación prevista](04_implementacion.md) y el [registro del piloto](09_protocolo_registrado.md) conservan la separación entre P0 y el benchmark final.
+La [descarga de implementación](../_static/completion_download/completion_bundle.zip) permite revisar adaptadores, pruebas y procedencia. HPO completo, potencia P1, robustez, ablación y métricas finales se acreditarán únicamente mediante sus ejecuciones y recibos. No se infiere equivalencia de finalistas por no rechazar diferencias ni se amplía una estructura después de consultar test.

@@ -16,7 +16,7 @@
   "HPO_registry_candidates": 180,
   "same_assigned_CPU_seconds_per_tunable": 172800,
   "HPO_actual_executed": false,
-  "final_adapter_architecture_review_status": "Required before HPO; exact source recipes and D7 changes recorded; final exception review not falsely certified",
+  "final_adapter_architecture_review_status": "Passed independent source-based review of all10fixed D7 adaptations; exact ownadapter hashes in completion_protocol/architecture_review.json; not a result replication or benchmark execution",
   "NAS_rule": "Only for genuinely undefined architectures; no blanket1000 search or automatic exemption from a DOI",
   "master_registered_source_commit": "599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0",
   "registered_before_first_dataset_fit_at_utc": "2026-11-06T14:52:32.498327+00:00",
@@ -69,11 +69,14 @@
     "unreceived_Scopus_records": 374,
     "reuploaded_files_identical_to_prior_inputs": true,
     "global_fulltext_eligibility_closed": false,
-    "quartiles_not_invented": true
+    "quartiles_not_invented": true,
+    "bounded_original_fulltext_eligibility_closed_for_ten": true,
+    "new_applied_fulltext_bodies_recovered_in_completion": 0,
+    "inherited_E1_bodies_verified_separately": 7
   },
   "uncertainty_errors": {
     "implementation_and_synthetic_tests": true,
-    "secondary_branch_A": "Fit/scalers/selection<=2024-10-24, frozen predictor; calibration2024-11-01..12-30, separate from primary full-development fit",
+    "secondary_branch_A": "Completion amendment: fit/scaler/recipe selection<=2024-10-31; embargoNov1–7; frozen A predictor calibratedNov8–Dec30(53dates), same predictor evaluated2026; fixed5members declared beforeP1 for all20; not the primaryDec24fit",
     "claimed_exact_temporal_coverage": false,
     "final_top3_selected": false,
     "error_unique_origins_required_per_primary_model": 100,
@@ -82,13 +85,14 @@
     "P0_error_analysis_executed": true,
     "P0_unique_error_cases_per_model": 305,
     "P0_private_audit_sample_per_model": 100,
-    "final_Top3_predictive_intervals_evaluated": false
+    "final_Top3_predictive_intervals_evaluated": false,
+    "historical_branch_A_proposal": "Fit/scalers/selection<=2024-10-24, frozen predictor; calibration2024-11-01..12-30, separate from primary full-development fit"
   },
   "legacy_documentary_proposals": "20261105/initial20261106 proposals and ZIPs remain identified as historical; their15-row validators are not current readiness.",
-  "current_readiness_tool": "scripts/e2_protocol_plan.py",
-  "current_training_driver": "scripts/execute_e2_development_pilot.py",
+  "current_readiness_tool": "scripts/run_e2_final_benchmark.py --phase preflight",
+  "current_training_driver": "scripts/run_e2_final_benchmark.py (completion); scripts/execute_e2_development_pilot.py remains historicalP0 driver",
   "full_guide_receipt_is_not_full_requirement_compliance": true,
-  "updated_at_utc": "2026-11-06T15:22:57.829324+00:00",
+  "updated_at_utc": "2026-11-06T18:50:35.659317+00:00",
   "observed_execution": {
     "source_commit": "599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0",
     "registered_at_utc": "2026-11-06T14:52:32.498327+00:00",
@@ -214,5 +218,27 @@
   "P0_and_OOF_status": "completed_fits_scoring_analysis",
   "P0_and_OOF_completed_optimizer_fits": 440,
   "observed_aggregate_results": "remediation_pilot_results/summary.json",
-  "observed_error_analysis": "remediation_error_results/error_summary.json"
+  "observed_error_analysis": "remediation_error_results/error_summary.json",
+  "completion_update": {
+    "protocol_id": "E2-completion-20261106-v1",
+    "status": "implemented_under_final_integration_review_before_public_registration",
+    "design": "completion_protocol/design.json",
+    "preregistration": "completion_protocol/preregistration.json",
+    "amendments": "completion_protocol/analysis_additions.json",
+    "workflow": "completion_protocol/workflow.md",
+    "architecture_review": "completion_protocol/architecture_review.json",
+    "tiny_batch_sanity": "completion_preflight/tiny_batch_sanity.json",
+    "source_author_files_pinned": 112,
+    "source_author_trees": 11,
+    "source_registered_commit": null,
+    "actual_completion_market_fits": 0,
+    "actual_completion_market_scores": 0,
+    "HPO_completed": false,
+    "P1_days": 53,
+    "calibration_A_days": 53,
+    "Top3_uncertainty_predictor_cohort_predeclared": 20,
+    "legacy_anchor_OOF_selection_exposure_disclosed": true,
+    "standalone_false_completion_claimed": false,
+    "external_literature_closure_pending": true
+  }
 }

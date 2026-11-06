@@ -1,0 +1,2040 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-06",
+  "administrative_timezone": "America/Bogota",
+  "status": "prospective_amendment_awaiting_public_registration",
+  "guide_sha256": "93499dcfda6a36d9621524a81821470017ba114ca6b08241a35de5a54f74a654",
+  "no_training_or_new_Bitcoin_results": true,
+  "protocol_id": "E2-completion-20261106-v1",
+  "claim_scope": "exploratory because inherited test already inspected; registration improves prospective procedure only, never restores historical blinding",
+  "source_E1_commit": "94a4b0324e93361e8928d708fdfeb50110e3686f",
+  "inherited_contract": {
+    "history_days": 7,
+    "input_features": [
+      "Open",
+      "High",
+      "Low",
+      "Close",
+      "Volume"
+    ],
+    "target": "population SD ddof0 of7daily logreturns (8closes)",
+    "horizon": 1,
+    "primary_metric": "mean_seed_RMSE_original_scale",
+    "absolute_delta": 0.00025772842664981106,
+    "baseline": "GRU/D7-c03",
+    "partition": {
+      "source_phase": "Entregable 1, fase II D7; herencia explícita, sin reasignar la fase I",
+      "timezone": "UTC",
+      "random_shuffle": false,
+      "initial_history": {
+        "start": "2023-01-01",
+        "end_inclusive": "2023-12-31"
+      },
+      "hpo_forward_chaining": {
+        "start": "2024-01-01",
+        "end_inclusive": "2024-10-31",
+        "monthly_blocks": 10,
+        "training_window": "expanding",
+        "embargo_days": 7,
+        "selection": "Media entre semillas del RMSE sobre todas las fechas de validación concatenadas; no media de RMSE mensuales"
+      },
+      "pilot": {
+        "start": "2024-11-01",
+        "end_inclusive": "2024-12-30",
+        "calendar_days": 60,
+        "weights": "Ajustadas antes del origen 2024-11-01 y conservadas para las 60 fechas"
+      },
+      "final_fit": {
+        "development_start": "2023-01-01",
+        "development_end_inclusive": "2024-12-31",
+        "nominal_origin": "2025-01-01",
+        "training_outcome_max": "2024-12-24",
+        "embargo_days": 7,
+        "inner_validation_calendar_days": 90,
+        "weights_and_scalers_frozen_during_evaluation": true,
+        "training_labels_2025_2026_allowed": false
+      },
+      "phase_II_evaluation": {
+        "start": "2026-09-01",
+        "end_inclusive": "2026-10-30",
+        "calendar_days": 60,
+        "already_observed": true,
+        "status_for_e2": "Reserva histórica ya evaluada en E1; reutilización exploratoria, no test nuevo sellado"
+      },
+      "phase_I_archive": {
+        "start": "2025-01-01",
+        "end_inclusive": "2026-08-31",
+        "calendar_days": 608,
+        "already_observed": true,
+        "role": "Archivo histórico de E1, sin reasignación a entrenamiento ni a test desconocido de E2"
+      },
+      "new_unseen_e2_test_assigned": false,
+      "new_dates_acquired_for_e2": false,
+      "e2_evaluation_scope": "La herencia mantiene el calendario; los periodos ya conocidos solo permiten nuevas comparaciones exploratorias. No se declara un test confirmatorio independiente."
+    },
+    "new_unseen_test_assigned": false,
+    "independent_market_series": 1
+  },
+  "generalization_gap": {
+    "delta_g": 0.00025772842664981106,
+    "units": "absolute original daily sigma7 RMSE",
+    "definition": "validation RMSE minus inference-mode training RMSE using identical units/forecast rule",
+    "justification": "prospective operational tolerance equal to inherited minimum meaningful RMSE difference; not fitted to historical gap; not assertion that same numerical margin is an economic risk tolerance",
+    "null": "gap<=delta_g",
+    "interpretation": "beyond-margin flag plus temporal/development uncertainty; not retrospective pass/fail of E1"
+  },
+  "families": [
+    {
+      "id": "historical_anchor",
+      "alpha": 0.02,
+      "control": "Holm_FWER",
+      "hypothesis_count": 30,
+      "hypotheses": [
+        {
+          "id": "historical_anchor:RQ1:TSMixer",
+          "candidate": "TSMixer",
+          "reference": "GRU/D7-c03",
+          "question": "RQ1",
+          "null": "g<=delta",
+          "alternative": "g>delta"
+        },
+        {
+          "id": "historical_anchor:RQ2:TSMixer",
+          "candidate": "TSMixer",
+          "reference": "GRU/D7-c03",
+          "question": "RQ2",
+          "null": "erosion<=delta",
+          "alternative": "erosion>delta"
+        },
+        {
+          "id": "historical_anchor:RQ3:TSMixer",
+          "candidate": "TSMixer",
+          "reference": "GRU/D7-c03",
+          "question": "RQ3",
+          "null": "g<=delta OR latency_candidate_minus_reference>=0",
+          "alternative": "g>delta AND latency_candidate_minus_reference<0"
+        },
+        {
+          "id": "historical_anchor:RQ1:TiDE",
+          "candidate": "TiDE",
+          "reference": "GRU/D7-c03",
+          "question": "RQ1",
+          "null": "g<=delta",
+          "alternative": "g>delta"
+        },
+        {
+          "id": "historical_anchor:RQ2:TiDE",
+          "candidate": "TiDE",
+          "reference": "GRU/D7-c03",
+          "question": "RQ2",
+          "null": "erosion<=delta",
+          "alternative": "erosion>delta"
+        },
+        {
+          "id": "historical_anchor:RQ3:TiDE",
+          "candidate": "TiDE",
+          "reference": "GRU/D7-c03",
+          "question": "RQ3",
+          "null": "g<=delta OR latency_candidate_minus_reference>=0",
+          "alternative": "g>delta AND latency_candidate_minus_reference<0"
+        },
+        {
+          "id": "historical_anchor:RQ1:TimeMixer",
+          "candidate": "TimeMixer",
+          "reference": "GRU/D7-c03",
+          "question": "RQ1",
+          "null": "g<=delta",
+          "alternative": "g>delta"
+        },
+        {
+          "id": "historical_anchor:RQ2:TimeMixer",
+          "candidate": "TimeMixer",
+          "reference": "GRU/D7-c03",
+          "question": "RQ2",
+          "null": "erosion<=delta",
+          "alternative": "erosion>delta"
+        },
+        {
+          "id": "historical_anchor:RQ3:TimeMixer",
+          "candidate": "TimeMixer",
+          "reference": "GRU/D7-c03",
+          "question": "RQ3",
+          "null": "g<=delta OR latency_candidate_minus_reference>=0",
+          "alternative": "g>delta AND latency_candidate_minus_reference<0"
+        },
+        {
+          "id": "historical_anchor:RQ1:TimesNet",
+          "candidate": "TimesNet",
+          "reference": "GRU/D7-c03",
+          "question": "RQ1",
+          "null": "g<=delta",
+          "alternative": "g>delta"
+        },
+        {
+          "id": "historical_anchor:RQ2:TimesNet",
+          "candidate": "TimesNet",
+          "reference": "GRU/D7-c03",
+          "question": "RQ2",
+          "null": "erosion<=delta",
+          "alternative": "erosion>delta"
+        },
+        {
+          "id": "historical_anchor:RQ3:TimesNet",
+          "candidate": "TimesNet",
+          "reference": "GRU/D7-c03",
+          "question": "RQ3",
+          "null": "g<=delta OR latency_candidate_minus_reference>=0",
+          "alternative": "g>delta AND latency_candidate_minus_reference<0"
+        },
+        {
+          "id": "historical_anchor:RQ1:PatchTST",
+          "candidate": "PatchTST",
+          "reference": "GRU/D7-c03",
+          "question": "RQ1",
+          "null": "g<=delta",
+          "alternative": "g>delta"
+        },
+        {
+          "id": "historical_anchor:RQ2:PatchTST",
+          "candidate": "PatchTST",
+          "reference": "GRU/D7-c03",
+          "question": "RQ2",
+          "null": "erosion<=delta",
+          "alternative": "erosion>delta"
+        },
+        {
+          "id": "historical_anchor:RQ3:PatchTST",
+          "candidate": "PatchTST",
+          "reference": "GRU/D7-c03",
+          "question": "RQ3",
+          "null": "g<=delta OR latency_candidate_minus_reference>=0",
+          "alternative": "g>delta AND latency_candidate_minus_reference<0"
+        },
+        {
+          "id": "historical_anchor:RQ1:Informer",
+          "candidate": "Informer",
+          "reference": "GRU/D7-c03",
+          "question": "RQ1",
+          "null": "g<=delta",
+          "alternative": "g>delta"
+        },
+        {
+          "id": "historical_anchor:RQ2:Informer",
+          "candidate": "Informer",
+          "reference": "GRU/D7-c03",
+          "question": "RQ2",
+          "null": "erosion<=delta",
+          "alternative": "erosion>delta"
+        },
+        {
+          "id": "historical_anchor:RQ3:Informer",
+          "candidate": "Informer",
+          "reference": "GRU/D7-c03",
+          "question": "RQ3",
+          "null": "g<=delta OR latency_candidate_minus_reference>=0",
+          "alternative": "g>delta AND latency_candidate_minus_reference<0"
+        },
+        {
+          "id": "historical_anchor:RQ1:Autoformer",
+          "candidate": "Autoformer",
+          "reference": "GRU/D7-c03",
+          "question": "RQ1",
+          "null": "g<=delta",
+          "alternative": "g>delta"
+        },
+        {
+          "id": "historical_anchor:RQ2:Autoformer",
+          "candidate": "Autoformer",
+          "reference": "GRU/D7-c03",
+          "question": "RQ2",
+          "null": "erosion<=delta",
+          "alternative": "erosion>delta"
+        },
+        {
+          "id": "historical_anchor:RQ3:Autoformer",
+          "candidate": "Autoformer",
+          "reference": "GRU/D7-c03",
+          "question": "RQ3",
+          "null": "g<=delta OR latency_candidate_minus_reference>=0",
+          "alternative": "g>delta AND latency_candidate_minus_reference<0"
+        },
+        {
+          "id": "historical_anchor:RQ1:iTransformer",
+          "candidate": "iTransformer",
+          "reference": "GRU/D7-c03",
+          "question": "RQ1",
+          "null": "g<=delta",
+          "alternative": "g>delta"
+        },
+        {
+          "id": "historical_anchor:RQ2:iTransformer",
+          "candidate": "iTransformer",
+          "reference": "GRU/D7-c03",
+          "question": "RQ2",
+          "null": "erosion<=delta",
+          "alternative": "erosion>delta"
+        },
+        {
+          "id": "historical_anchor:RQ3:iTransformer",
+          "candidate": "iTransformer",
+          "reference": "GRU/D7-c03",
+          "question": "RQ3",
+          "null": "g<=delta OR latency_candidate_minus_reference>=0",
+          "alternative": "g>delta AND latency_candidate_minus_reference<0"
+        },
+        {
+          "id": "historical_anchor:RQ1:Crossformer",
+          "candidate": "Crossformer",
+          "reference": "GRU/D7-c03",
+          "question": "RQ1",
+          "null": "g<=delta",
+          "alternative": "g>delta"
+        },
+        {
+          "id": "historical_anchor:RQ2:Crossformer",
+          "candidate": "Crossformer",
+          "reference": "GRU/D7-c03",
+          "question": "RQ2",
+          "null": "erosion<=delta",
+          "alternative": "erosion>delta"
+        },
+        {
+          "id": "historical_anchor:RQ3:Crossformer",
+          "candidate": "Crossformer",
+          "reference": "GRU/D7-c03",
+          "question": "RQ3",
+          "null": "g<=delta OR latency_candidate_minus_reference>=0",
+          "alternative": "g>delta AND latency_candidate_minus_reference<0"
+        },
+        {
+          "id": "historical_anchor:RQ1:S-Mamba",
+          "candidate": "S-Mamba",
+          "reference": "GRU/D7-c03",
+          "question": "RQ1",
+          "null": "g<=delta",
+          "alternative": "g>delta"
+        },
+        {
+          "id": "historical_anchor:RQ2:S-Mamba",
+          "candidate": "S-Mamba",
+          "reference": "GRU/D7-c03",
+          "question": "RQ2",
+          "null": "erosion<=delta",
+          "alternative": "erosion>delta"
+        },
+        {
+          "id": "historical_anchor:RQ3:S-Mamba",
+          "candidate": "S-Mamba",
+          "reference": "GRU/D7-c03",
+          "question": "RQ3",
+          "null": "g<=delta OR latency_candidate_minus_reference>=0",
+          "alternative": "g>delta AND latency_candidate_minus_reference<0"
+        }
+      ],
+      "simultaneous_bounds": "one-sided basic centered paired temporal bootstrap, marginal tail alpha_family/30; lower gain/erosion and upper latency; g bound reused in RQ3",
+      "nonestimable": "retain internal p1 and report null, no family shrinkage"
+    },
+    {
+      "id": "fair_retuned",
+      "alpha": 0.02,
+      "control": "Holm_FWER",
+      "hypothesis_count": 30,
+      "hypotheses": [
+        {
+          "id": "fair_retuned:RQ1:TSMixer",
+          "candidate": "TSMixer",
+          "reference": "GRU-E2",
+          "question": "RQ1",
+          "null": "g<=delta",
+          "alternative": "g>delta"
+        },
+        {
+          "id": "fair_retuned:RQ2:TSMixer",
+          "candidate": "TSMixer",
+          "reference": "GRU-E2",
+          "question": "RQ2",
+          "null": "erosion<=delta",
+          "alternative": "erosion>delta"
+        },
+        {
+          "id": "fair_retuned:RQ3:TSMixer",
+          "candidate": "TSMixer",
+          "reference": "GRU-E2",
+          "question": "RQ3",
+          "null": "g<=delta OR latency_candidate_minus_reference>=0",
+          "alternative": "g>delta AND latency_candidate_minus_reference<0"
+        },
+        {
+          "id": "fair_retuned:RQ1:TiDE",
+          "candidate": "TiDE",
+          "reference": "GRU-E2",
+          "question": "RQ1",
+          "null": "g<=delta",
+          "alternative": "g>delta"
+        },
+        {
+          "id": "fair_retuned:RQ2:TiDE",
+          "candidate": "TiDE",
+          "reference": "GRU-E2",
+          "question": "RQ2",
+          "null": "erosion<=delta",
+          "alternative": "erosion>delta"
+        },
+        {
+          "id": "fair_retuned:RQ3:TiDE",
+          "candidate": "TiDE",
+          "reference": "GRU-E2",
+          "question": "RQ3",
+          "null": "g<=delta OR latency_candidate_minus_reference>=0",
+          "alternative": "g>delta AND latency_candidate_minus_reference<0"
+        },
+        {
+          "id": "fair_retuned:RQ1:TimeMixer",
+          "candidate": "TimeMixer",
+          "reference": "GRU-E2",
+          "question": "RQ1",
+          "null": "g<=delta",
+          "alternative": "g>delta"
+        },
+        {
+          "id": "fair_retuned:RQ2:TimeMixer",
+          "candidate": "TimeMixer",
+          "reference": "GRU-E2",
+          "question": "RQ2",
+          "null": "erosion<=delta",
+          "alternative": "erosion>delta"
+        },
+        {
+          "id": "fair_retuned:RQ3:TimeMixer",
+          "candidate": "TimeMixer",
+          "reference": "GRU-E2",
+          "question": "RQ3",
+          "null": "g<=delta OR latency_candidate_minus_reference>=0",
+          "alternative": "g>delta AND latency_candidate_minus_reference<0"
+        },
+        {
+          "id": "fair_retuned:RQ1:TimesNet",
+          "candidate": "TimesNet",
+          "reference": "GRU-E2",
+          "question": "RQ1",
+          "null": "g<=delta",
+          "alternative": "g>delta"
+        },
+        {
+          "id": "fair_retuned:RQ2:TimesNet",
+          "candidate": "TimesNet",
+          "reference": "GRU-E2",
+          "question": "RQ2",
+          "null": "erosion<=delta",
+          "alternative": "erosion>delta"
+        },
+        {
+          "id": "fair_retuned:RQ3:TimesNet",
+          "candidate": "TimesNet",
+          "reference": "GRU-E2",
+          "question": "RQ3",
+          "null": "g<=delta OR latency_candidate_minus_reference>=0",
+          "alternative": "g>delta AND latency_candidate_minus_reference<0"
+        },
+        {
+          "id": "fair_retuned:RQ1:PatchTST",
+          "candidate": "PatchTST",
+          "reference": "GRU-E2",
+          "question": "RQ1",
+          "null": "g<=delta",
+          "alternative": "g>delta"
+        },
+        {
+          "id": "fair_retuned:RQ2:PatchTST",
+          "candidate": "PatchTST",
+          "reference": "GRU-E2",
+          "question": "RQ2",
+          "null": "erosion<=delta",
+          "alternative": "erosion>delta"
+        },
+        {
+          "id": "fair_retuned:RQ3:PatchTST",
+          "candidate": "PatchTST",
+          "reference": "GRU-E2",
+          "question": "RQ3",
+          "null": "g<=delta OR latency_candidate_minus_reference>=0",
+          "alternative": "g>delta AND latency_candidate_minus_reference<0"
+        },
+        {
+          "id": "fair_retuned:RQ1:Informer",
+          "candidate": "Informer",
+          "reference": "GRU-E2",
+          "question": "RQ1",
+          "null": "g<=delta",
+          "alternative": "g>delta"
+        },
+        {
+          "id": "fair_retuned:RQ2:Informer",
+          "candidate": "Informer",
+          "reference": "GRU-E2",
+          "question": "RQ2",
+          "null": "erosion<=delta",
+          "alternative": "erosion>delta"
+        },
+        {
+          "id": "fair_retuned:RQ3:Informer",
+          "candidate": "Informer",
+          "reference": "GRU-E2",
+          "question": "RQ3",
+          "null": "g<=delta OR latency_candidate_minus_reference>=0",
+          "alternative": "g>delta AND latency_candidate_minus_reference<0"
+        },
+        {
+          "id": "fair_retuned:RQ1:Autoformer",
+          "candidate": "Autoformer",
+          "reference": "GRU-E2",
+          "question": "RQ1",
+          "null": "g<=delta",
+          "alternative": "g>delta"
+        },
+        {
+          "id": "fair_retuned:RQ2:Autoformer",
+          "candidate": "Autoformer",
+          "reference": "GRU-E2",
+          "question": "RQ2",
+          "null": "erosion<=delta",
+          "alternative": "erosion>delta"
+        },
+        {
+          "id": "fair_retuned:RQ3:Autoformer",
+          "candidate": "Autoformer",
+          "reference": "GRU-E2",
+          "question": "RQ3",
+          "null": "g<=delta OR latency_candidate_minus_reference>=0",
+          "alternative": "g>delta AND latency_candidate_minus_reference<0"
+        },
+        {
+          "id": "fair_retuned:RQ1:iTransformer",
+          "candidate": "iTransformer",
+          "reference": "GRU-E2",
+          "question": "RQ1",
+          "null": "g<=delta",
+          "alternative": "g>delta"
+        },
+        {
+          "id": "fair_retuned:RQ2:iTransformer",
+          "candidate": "iTransformer",
+          "reference": "GRU-E2",
+          "question": "RQ2",
+          "null": "erosion<=delta",
+          "alternative": "erosion>delta"
+        },
+        {
+          "id": "fair_retuned:RQ3:iTransformer",
+          "candidate": "iTransformer",
+          "reference": "GRU-E2",
+          "question": "RQ3",
+          "null": "g<=delta OR latency_candidate_minus_reference>=0",
+          "alternative": "g>delta AND latency_candidate_minus_reference<0"
+        },
+        {
+          "id": "fair_retuned:RQ1:Crossformer",
+          "candidate": "Crossformer",
+          "reference": "GRU-E2",
+          "question": "RQ1",
+          "null": "g<=delta",
+          "alternative": "g>delta"
+        },
+        {
+          "id": "fair_retuned:RQ2:Crossformer",
+          "candidate": "Crossformer",
+          "reference": "GRU-E2",
+          "question": "RQ2",
+          "null": "erosion<=delta",
+          "alternative": "erosion>delta"
+        },
+        {
+          "id": "fair_retuned:RQ3:Crossformer",
+          "candidate": "Crossformer",
+          "reference": "GRU-E2",
+          "question": "RQ3",
+          "null": "g<=delta OR latency_candidate_minus_reference>=0",
+          "alternative": "g>delta AND latency_candidate_minus_reference<0"
+        },
+        {
+          "id": "fair_retuned:RQ1:S-Mamba",
+          "candidate": "S-Mamba",
+          "reference": "GRU-E2",
+          "question": "RQ1",
+          "null": "g<=delta",
+          "alternative": "g>delta"
+        },
+        {
+          "id": "fair_retuned:RQ2:S-Mamba",
+          "candidate": "S-Mamba",
+          "reference": "GRU-E2",
+          "question": "RQ2",
+          "null": "erosion<=delta",
+          "alternative": "erosion>delta"
+        },
+        {
+          "id": "fair_retuned:RQ3:S-Mamba",
+          "candidate": "S-Mamba",
+          "reference": "GRU-E2",
+          "question": "RQ3",
+          "null": "g<=delta OR latency_candidate_minus_reference>=0",
+          "alternative": "g>delta AND latency_candidate_minus_reference<0"
+        }
+      ],
+      "simultaneous_bounds": "one-sided basic centered paired temporal bootstrap, marginal tail alpha_family/30; lower gain/erosion and upper latency; g bound reused in RQ3",
+      "nonestimable": "retain internal p1 and report null, no family shrinkage"
+    }
+  ],
+  "diagnostic_family": {
+    "id": "diagnostics",
+    "alpha": 0.01,
+    "control": "Holm_FWER",
+    "hypothesis_count": 199,
+    "hypotheses": [
+      {
+        "id": "diagnostic:LB_residual_lag7:TSMixer",
+        "model": "TSMixer",
+        "test": "LB_residual_lag7"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag14:TSMixer",
+        "model": "TSMixer",
+        "test": "LB_residual_lag14"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag7:TSMixer",
+        "model": "TSMixer",
+        "test": "LB_squared_lag7"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag14:TSMixer",
+        "model": "TSMixer",
+        "test": "LB_squared_lag14"
+      },
+      {
+        "id": "diagnostic:ARCH_LM_lag7:TSMixer",
+        "model": "TSMixer",
+        "test": "ARCH_LM_lag7"
+      },
+      {
+        "id": "diagnostic:BDS_dim2_radius1.5SD:TSMixer",
+        "model": "TSMixer",
+        "test": "BDS_dim2_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:BDS_dim3_radius1.5SD:TSMixer",
+        "model": "TSMixer",
+        "test": "BDS_dim3_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:Jarque_Bera:TSMixer",
+        "model": "TSMixer",
+        "test": "Jarque_Bera"
+      },
+      {
+        "id": "diagnostic:Mincer_Zarnowitz_joint_intercept0_slope1:TSMixer",
+        "model": "TSMixer",
+        "test": "Mincer_Zarnowitz_joint_intercept0_slope1"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag7:TiDE",
+        "model": "TiDE",
+        "test": "LB_residual_lag7"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag14:TiDE",
+        "model": "TiDE",
+        "test": "LB_residual_lag14"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag7:TiDE",
+        "model": "TiDE",
+        "test": "LB_squared_lag7"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag14:TiDE",
+        "model": "TiDE",
+        "test": "LB_squared_lag14"
+      },
+      {
+        "id": "diagnostic:ARCH_LM_lag7:TiDE",
+        "model": "TiDE",
+        "test": "ARCH_LM_lag7"
+      },
+      {
+        "id": "diagnostic:BDS_dim2_radius1.5SD:TiDE",
+        "model": "TiDE",
+        "test": "BDS_dim2_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:BDS_dim3_radius1.5SD:TiDE",
+        "model": "TiDE",
+        "test": "BDS_dim3_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:Jarque_Bera:TiDE",
+        "model": "TiDE",
+        "test": "Jarque_Bera"
+      },
+      {
+        "id": "diagnostic:Mincer_Zarnowitz_joint_intercept0_slope1:TiDE",
+        "model": "TiDE",
+        "test": "Mincer_Zarnowitz_joint_intercept0_slope1"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag7:TimeMixer",
+        "model": "TimeMixer",
+        "test": "LB_residual_lag7"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag14:TimeMixer",
+        "model": "TimeMixer",
+        "test": "LB_residual_lag14"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag7:TimeMixer",
+        "model": "TimeMixer",
+        "test": "LB_squared_lag7"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag14:TimeMixer",
+        "model": "TimeMixer",
+        "test": "LB_squared_lag14"
+      },
+      {
+        "id": "diagnostic:ARCH_LM_lag7:TimeMixer",
+        "model": "TimeMixer",
+        "test": "ARCH_LM_lag7"
+      },
+      {
+        "id": "diagnostic:BDS_dim2_radius1.5SD:TimeMixer",
+        "model": "TimeMixer",
+        "test": "BDS_dim2_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:BDS_dim3_radius1.5SD:TimeMixer",
+        "model": "TimeMixer",
+        "test": "BDS_dim3_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:Jarque_Bera:TimeMixer",
+        "model": "TimeMixer",
+        "test": "Jarque_Bera"
+      },
+      {
+        "id": "diagnostic:Mincer_Zarnowitz_joint_intercept0_slope1:TimeMixer",
+        "model": "TimeMixer",
+        "test": "Mincer_Zarnowitz_joint_intercept0_slope1"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag7:TimesNet",
+        "model": "TimesNet",
+        "test": "LB_residual_lag7"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag14:TimesNet",
+        "model": "TimesNet",
+        "test": "LB_residual_lag14"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag7:TimesNet",
+        "model": "TimesNet",
+        "test": "LB_squared_lag7"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag14:TimesNet",
+        "model": "TimesNet",
+        "test": "LB_squared_lag14"
+      },
+      {
+        "id": "diagnostic:ARCH_LM_lag7:TimesNet",
+        "model": "TimesNet",
+        "test": "ARCH_LM_lag7"
+      },
+      {
+        "id": "diagnostic:BDS_dim2_radius1.5SD:TimesNet",
+        "model": "TimesNet",
+        "test": "BDS_dim2_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:BDS_dim3_radius1.5SD:TimesNet",
+        "model": "TimesNet",
+        "test": "BDS_dim3_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:Jarque_Bera:TimesNet",
+        "model": "TimesNet",
+        "test": "Jarque_Bera"
+      },
+      {
+        "id": "diagnostic:Mincer_Zarnowitz_joint_intercept0_slope1:TimesNet",
+        "model": "TimesNet",
+        "test": "Mincer_Zarnowitz_joint_intercept0_slope1"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag7:PatchTST",
+        "model": "PatchTST",
+        "test": "LB_residual_lag7"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag14:PatchTST",
+        "model": "PatchTST",
+        "test": "LB_residual_lag14"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag7:PatchTST",
+        "model": "PatchTST",
+        "test": "LB_squared_lag7"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag14:PatchTST",
+        "model": "PatchTST",
+        "test": "LB_squared_lag14"
+      },
+      {
+        "id": "diagnostic:ARCH_LM_lag7:PatchTST",
+        "model": "PatchTST",
+        "test": "ARCH_LM_lag7"
+      },
+      {
+        "id": "diagnostic:BDS_dim2_radius1.5SD:PatchTST",
+        "model": "PatchTST",
+        "test": "BDS_dim2_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:BDS_dim3_radius1.5SD:PatchTST",
+        "model": "PatchTST",
+        "test": "BDS_dim3_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:Jarque_Bera:PatchTST",
+        "model": "PatchTST",
+        "test": "Jarque_Bera"
+      },
+      {
+        "id": "diagnostic:Mincer_Zarnowitz_joint_intercept0_slope1:PatchTST",
+        "model": "PatchTST",
+        "test": "Mincer_Zarnowitz_joint_intercept0_slope1"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag7:Informer",
+        "model": "Informer",
+        "test": "LB_residual_lag7"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag14:Informer",
+        "model": "Informer",
+        "test": "LB_residual_lag14"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag7:Informer",
+        "model": "Informer",
+        "test": "LB_squared_lag7"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag14:Informer",
+        "model": "Informer",
+        "test": "LB_squared_lag14"
+      },
+      {
+        "id": "diagnostic:ARCH_LM_lag7:Informer",
+        "model": "Informer",
+        "test": "ARCH_LM_lag7"
+      },
+      {
+        "id": "diagnostic:BDS_dim2_radius1.5SD:Informer",
+        "model": "Informer",
+        "test": "BDS_dim2_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:BDS_dim3_radius1.5SD:Informer",
+        "model": "Informer",
+        "test": "BDS_dim3_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:Jarque_Bera:Informer",
+        "model": "Informer",
+        "test": "Jarque_Bera"
+      },
+      {
+        "id": "diagnostic:Mincer_Zarnowitz_joint_intercept0_slope1:Informer",
+        "model": "Informer",
+        "test": "Mincer_Zarnowitz_joint_intercept0_slope1"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag7:Autoformer",
+        "model": "Autoformer",
+        "test": "LB_residual_lag7"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag14:Autoformer",
+        "model": "Autoformer",
+        "test": "LB_residual_lag14"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag7:Autoformer",
+        "model": "Autoformer",
+        "test": "LB_squared_lag7"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag14:Autoformer",
+        "model": "Autoformer",
+        "test": "LB_squared_lag14"
+      },
+      {
+        "id": "diagnostic:ARCH_LM_lag7:Autoformer",
+        "model": "Autoformer",
+        "test": "ARCH_LM_lag7"
+      },
+      {
+        "id": "diagnostic:BDS_dim2_radius1.5SD:Autoformer",
+        "model": "Autoformer",
+        "test": "BDS_dim2_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:BDS_dim3_radius1.5SD:Autoformer",
+        "model": "Autoformer",
+        "test": "BDS_dim3_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:Jarque_Bera:Autoformer",
+        "model": "Autoformer",
+        "test": "Jarque_Bera"
+      },
+      {
+        "id": "diagnostic:Mincer_Zarnowitz_joint_intercept0_slope1:Autoformer",
+        "model": "Autoformer",
+        "test": "Mincer_Zarnowitz_joint_intercept0_slope1"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag7:iTransformer",
+        "model": "iTransformer",
+        "test": "LB_residual_lag7"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag14:iTransformer",
+        "model": "iTransformer",
+        "test": "LB_residual_lag14"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag7:iTransformer",
+        "model": "iTransformer",
+        "test": "LB_squared_lag7"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag14:iTransformer",
+        "model": "iTransformer",
+        "test": "LB_squared_lag14"
+      },
+      {
+        "id": "diagnostic:ARCH_LM_lag7:iTransformer",
+        "model": "iTransformer",
+        "test": "ARCH_LM_lag7"
+      },
+      {
+        "id": "diagnostic:BDS_dim2_radius1.5SD:iTransformer",
+        "model": "iTransformer",
+        "test": "BDS_dim2_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:BDS_dim3_radius1.5SD:iTransformer",
+        "model": "iTransformer",
+        "test": "BDS_dim3_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:Jarque_Bera:iTransformer",
+        "model": "iTransformer",
+        "test": "Jarque_Bera"
+      },
+      {
+        "id": "diagnostic:Mincer_Zarnowitz_joint_intercept0_slope1:iTransformer",
+        "model": "iTransformer",
+        "test": "Mincer_Zarnowitz_joint_intercept0_slope1"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag7:Crossformer",
+        "model": "Crossformer",
+        "test": "LB_residual_lag7"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag14:Crossformer",
+        "model": "Crossformer",
+        "test": "LB_residual_lag14"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag7:Crossformer",
+        "model": "Crossformer",
+        "test": "LB_squared_lag7"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag14:Crossformer",
+        "model": "Crossformer",
+        "test": "LB_squared_lag14"
+      },
+      {
+        "id": "diagnostic:ARCH_LM_lag7:Crossformer",
+        "model": "Crossformer",
+        "test": "ARCH_LM_lag7"
+      },
+      {
+        "id": "diagnostic:BDS_dim2_radius1.5SD:Crossformer",
+        "model": "Crossformer",
+        "test": "BDS_dim2_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:BDS_dim3_radius1.5SD:Crossformer",
+        "model": "Crossformer",
+        "test": "BDS_dim3_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:Jarque_Bera:Crossformer",
+        "model": "Crossformer",
+        "test": "Jarque_Bera"
+      },
+      {
+        "id": "diagnostic:Mincer_Zarnowitz_joint_intercept0_slope1:Crossformer",
+        "model": "Crossformer",
+        "test": "Mincer_Zarnowitz_joint_intercept0_slope1"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag7:S-Mamba",
+        "model": "S-Mamba",
+        "test": "LB_residual_lag7"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag14:S-Mamba",
+        "model": "S-Mamba",
+        "test": "LB_residual_lag14"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag7:S-Mamba",
+        "model": "S-Mamba",
+        "test": "LB_squared_lag7"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag14:S-Mamba",
+        "model": "S-Mamba",
+        "test": "LB_squared_lag14"
+      },
+      {
+        "id": "diagnostic:ARCH_LM_lag7:S-Mamba",
+        "model": "S-Mamba",
+        "test": "ARCH_LM_lag7"
+      },
+      {
+        "id": "diagnostic:BDS_dim2_radius1.5SD:S-Mamba",
+        "model": "S-Mamba",
+        "test": "BDS_dim2_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:BDS_dim3_radius1.5SD:S-Mamba",
+        "model": "S-Mamba",
+        "test": "BDS_dim3_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:Jarque_Bera:S-Mamba",
+        "model": "S-Mamba",
+        "test": "Jarque_Bera"
+      },
+      {
+        "id": "diagnostic:Mincer_Zarnowitz_joint_intercept0_slope1:S-Mamba",
+        "model": "S-Mamba",
+        "test": "Mincer_Zarnowitz_joint_intercept0_slope1"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag7:GRU-E2",
+        "model": "GRU-E2",
+        "test": "LB_residual_lag7"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag14:GRU-E2",
+        "model": "GRU-E2",
+        "test": "LB_residual_lag14"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag7:GRU-E2",
+        "model": "GRU-E2",
+        "test": "LB_squared_lag7"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag14:GRU-E2",
+        "model": "GRU-E2",
+        "test": "LB_squared_lag14"
+      },
+      {
+        "id": "diagnostic:ARCH_LM_lag7:GRU-E2",
+        "model": "GRU-E2",
+        "test": "ARCH_LM_lag7"
+      },
+      {
+        "id": "diagnostic:BDS_dim2_radius1.5SD:GRU-E2",
+        "model": "GRU-E2",
+        "test": "BDS_dim2_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:BDS_dim3_radius1.5SD:GRU-E2",
+        "model": "GRU-E2",
+        "test": "BDS_dim3_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:Jarque_Bera:GRU-E2",
+        "model": "GRU-E2",
+        "test": "Jarque_Bera"
+      },
+      {
+        "id": "diagnostic:Mincer_Zarnowitz_joint_intercept0_slope1:GRU-E2",
+        "model": "GRU-E2",
+        "test": "Mincer_Zarnowitz_joint_intercept0_slope1"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag7:LSTM-E2",
+        "model": "LSTM-E2",
+        "test": "LB_residual_lag7"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag14:LSTM-E2",
+        "model": "LSTM-E2",
+        "test": "LB_residual_lag14"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag7:LSTM-E2",
+        "model": "LSTM-E2",
+        "test": "LB_squared_lag7"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag14:LSTM-E2",
+        "model": "LSTM-E2",
+        "test": "LB_squared_lag14"
+      },
+      {
+        "id": "diagnostic:ARCH_LM_lag7:LSTM-E2",
+        "model": "LSTM-E2",
+        "test": "ARCH_LM_lag7"
+      },
+      {
+        "id": "diagnostic:BDS_dim2_radius1.5SD:LSTM-E2",
+        "model": "LSTM-E2",
+        "test": "BDS_dim2_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:BDS_dim3_radius1.5SD:LSTM-E2",
+        "model": "LSTM-E2",
+        "test": "BDS_dim3_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:Jarque_Bera:LSTM-E2",
+        "model": "LSTM-E2",
+        "test": "Jarque_Bera"
+      },
+      {
+        "id": "diagnostic:Mincer_Zarnowitz_joint_intercept0_slope1:LSTM-E2",
+        "model": "LSTM-E2",
+        "test": "Mincer_Zarnowitz_joint_intercept0_slope1"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag7:TCN-E2",
+        "model": "TCN-E2",
+        "test": "LB_residual_lag7"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag14:TCN-E2",
+        "model": "TCN-E2",
+        "test": "LB_residual_lag14"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag7:TCN-E2",
+        "model": "TCN-E2",
+        "test": "LB_squared_lag7"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag14:TCN-E2",
+        "model": "TCN-E2",
+        "test": "LB_squared_lag14"
+      },
+      {
+        "id": "diagnostic:ARCH_LM_lag7:TCN-E2",
+        "model": "TCN-E2",
+        "test": "ARCH_LM_lag7"
+      },
+      {
+        "id": "diagnostic:BDS_dim2_radius1.5SD:TCN-E2",
+        "model": "TCN-E2",
+        "test": "BDS_dim2_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:BDS_dim3_radius1.5SD:TCN-E2",
+        "model": "TCN-E2",
+        "test": "BDS_dim3_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:Jarque_Bera:TCN-E2",
+        "model": "TCN-E2",
+        "test": "Jarque_Bera"
+      },
+      {
+        "id": "diagnostic:Mincer_Zarnowitz_joint_intercept0_slope1:TCN-E2",
+        "model": "TCN-E2",
+        "test": "Mincer_Zarnowitz_joint_intercept0_slope1"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag7:GRU/D7-c03",
+        "model": "GRU/D7-c03",
+        "test": "LB_residual_lag7"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag14:GRU/D7-c03",
+        "model": "GRU/D7-c03",
+        "test": "LB_residual_lag14"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag7:GRU/D7-c03",
+        "model": "GRU/D7-c03",
+        "test": "LB_squared_lag7"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag14:GRU/D7-c03",
+        "model": "GRU/D7-c03",
+        "test": "LB_squared_lag14"
+      },
+      {
+        "id": "diagnostic:ARCH_LM_lag7:GRU/D7-c03",
+        "model": "GRU/D7-c03",
+        "test": "ARCH_LM_lag7"
+      },
+      {
+        "id": "diagnostic:BDS_dim2_radius1.5SD:GRU/D7-c03",
+        "model": "GRU/D7-c03",
+        "test": "BDS_dim2_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:BDS_dim3_radius1.5SD:GRU/D7-c03",
+        "model": "GRU/D7-c03",
+        "test": "BDS_dim3_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:Jarque_Bera:GRU/D7-c03",
+        "model": "GRU/D7-c03",
+        "test": "Jarque_Bera"
+      },
+      {
+        "id": "diagnostic:Mincer_Zarnowitz_joint_intercept0_slope1:GRU/D7-c03",
+        "model": "GRU/D7-c03",
+        "test": "Mincer_Zarnowitz_joint_intercept0_slope1"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag7:LSTM/D7-c02",
+        "model": "LSTM/D7-c02",
+        "test": "LB_residual_lag7"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag14:LSTM/D7-c02",
+        "model": "LSTM/D7-c02",
+        "test": "LB_residual_lag14"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag7:LSTM/D7-c02",
+        "model": "LSTM/D7-c02",
+        "test": "LB_squared_lag7"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag14:LSTM/D7-c02",
+        "model": "LSTM/D7-c02",
+        "test": "LB_squared_lag14"
+      },
+      {
+        "id": "diagnostic:ARCH_LM_lag7:LSTM/D7-c02",
+        "model": "LSTM/D7-c02",
+        "test": "ARCH_LM_lag7"
+      },
+      {
+        "id": "diagnostic:BDS_dim2_radius1.5SD:LSTM/D7-c02",
+        "model": "LSTM/D7-c02",
+        "test": "BDS_dim2_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:BDS_dim3_radius1.5SD:LSTM/D7-c02",
+        "model": "LSTM/D7-c02",
+        "test": "BDS_dim3_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:Jarque_Bera:LSTM/D7-c02",
+        "model": "LSTM/D7-c02",
+        "test": "Jarque_Bera"
+      },
+      {
+        "id": "diagnostic:Mincer_Zarnowitz_joint_intercept0_slope1:LSTM/D7-c02",
+        "model": "LSTM/D7-c02",
+        "test": "Mincer_Zarnowitz_joint_intercept0_slope1"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag7:TCN/D7-c02",
+        "model": "TCN/D7-c02",
+        "test": "LB_residual_lag7"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag14:TCN/D7-c02",
+        "model": "TCN/D7-c02",
+        "test": "LB_residual_lag14"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag7:TCN/D7-c02",
+        "model": "TCN/D7-c02",
+        "test": "LB_squared_lag7"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag14:TCN/D7-c02",
+        "model": "TCN/D7-c02",
+        "test": "LB_squared_lag14"
+      },
+      {
+        "id": "diagnostic:ARCH_LM_lag7:TCN/D7-c02",
+        "model": "TCN/D7-c02",
+        "test": "ARCH_LM_lag7"
+      },
+      {
+        "id": "diagnostic:BDS_dim2_radius1.5SD:TCN/D7-c02",
+        "model": "TCN/D7-c02",
+        "test": "BDS_dim2_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:BDS_dim3_radius1.5SD:TCN/D7-c02",
+        "model": "TCN/D7-c02",
+        "test": "BDS_dim3_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:Jarque_Bera:TCN/D7-c02",
+        "model": "TCN/D7-c02",
+        "test": "Jarque_Bera"
+      },
+      {
+        "id": "diagnostic:Mincer_Zarnowitz_joint_intercept0_slope1:TCN/D7-c02",
+        "model": "TCN/D7-c02",
+        "test": "Mincer_Zarnowitz_joint_intercept0_slope1"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag7:Ridge",
+        "model": "Ridge",
+        "test": "LB_residual_lag7"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag14:Ridge",
+        "model": "Ridge",
+        "test": "LB_residual_lag14"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag7:Ridge",
+        "model": "Ridge",
+        "test": "LB_squared_lag7"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag14:Ridge",
+        "model": "Ridge",
+        "test": "LB_squared_lag14"
+      },
+      {
+        "id": "diagnostic:ARCH_LM_lag7:Ridge",
+        "model": "Ridge",
+        "test": "ARCH_LM_lag7"
+      },
+      {
+        "id": "diagnostic:BDS_dim2_radius1.5SD:Ridge",
+        "model": "Ridge",
+        "test": "BDS_dim2_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:BDS_dim3_radius1.5SD:Ridge",
+        "model": "Ridge",
+        "test": "BDS_dim3_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:Jarque_Bera:Ridge",
+        "model": "Ridge",
+        "test": "Jarque_Bera"
+      },
+      {
+        "id": "diagnostic:Mincer_Zarnowitz_joint_intercept0_slope1:Ridge",
+        "model": "Ridge",
+        "test": "Mincer_Zarnowitz_joint_intercept0_slope1"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag7:Persistence",
+        "model": "Persistence",
+        "test": "LB_residual_lag7"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag14:Persistence",
+        "model": "Persistence",
+        "test": "LB_residual_lag14"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag7:Persistence",
+        "model": "Persistence",
+        "test": "LB_squared_lag7"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag14:Persistence",
+        "model": "Persistence",
+        "test": "LB_squared_lag14"
+      },
+      {
+        "id": "diagnostic:ARCH_LM_lag7:Persistence",
+        "model": "Persistence",
+        "test": "ARCH_LM_lag7"
+      },
+      {
+        "id": "diagnostic:BDS_dim2_radius1.5SD:Persistence",
+        "model": "Persistence",
+        "test": "BDS_dim2_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:BDS_dim3_radius1.5SD:Persistence",
+        "model": "Persistence",
+        "test": "BDS_dim3_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:Jarque_Bera:Persistence",
+        "model": "Persistence",
+        "test": "Jarque_Bera"
+      },
+      {
+        "id": "diagnostic:Mincer_Zarnowitz_joint_intercept0_slope1:Persistence",
+        "model": "Persistence",
+        "test": "Mincer_Zarnowitz_joint_intercept0_slope1"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag7:SeasonalNaive",
+        "model": "SeasonalNaive",
+        "test": "LB_residual_lag7"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag14:SeasonalNaive",
+        "model": "SeasonalNaive",
+        "test": "LB_residual_lag14"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag7:SeasonalNaive",
+        "model": "SeasonalNaive",
+        "test": "LB_squared_lag7"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag14:SeasonalNaive",
+        "model": "SeasonalNaive",
+        "test": "LB_squared_lag14"
+      },
+      {
+        "id": "diagnostic:ARCH_LM_lag7:SeasonalNaive",
+        "model": "SeasonalNaive",
+        "test": "ARCH_LM_lag7"
+      },
+      {
+        "id": "diagnostic:BDS_dim2_radius1.5SD:SeasonalNaive",
+        "model": "SeasonalNaive",
+        "test": "BDS_dim2_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:BDS_dim3_radius1.5SD:SeasonalNaive",
+        "model": "SeasonalNaive",
+        "test": "BDS_dim3_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:Jarque_Bera:SeasonalNaive",
+        "model": "SeasonalNaive",
+        "test": "Jarque_Bera"
+      },
+      {
+        "id": "diagnostic:Mincer_Zarnowitz_joint_intercept0_slope1:SeasonalNaive",
+        "model": "SeasonalNaive",
+        "test": "Mincer_Zarnowitz_joint_intercept0_slope1"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag7:ARIMA",
+        "model": "ARIMA",
+        "test": "LB_residual_lag7"
+      },
+      {
+        "id": "diagnostic:LB_residual_lag14:ARIMA",
+        "model": "ARIMA",
+        "test": "LB_residual_lag14"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag7:ARIMA",
+        "model": "ARIMA",
+        "test": "LB_squared_lag7"
+      },
+      {
+        "id": "diagnostic:LB_squared_lag14:ARIMA",
+        "model": "ARIMA",
+        "test": "LB_squared_lag14"
+      },
+      {
+        "id": "diagnostic:ARCH_LM_lag7:ARIMA",
+        "model": "ARIMA",
+        "test": "ARCH_LM_lag7"
+      },
+      {
+        "id": "diagnostic:BDS_dim2_radius1.5SD:ARIMA",
+        "model": "ARIMA",
+        "test": "BDS_dim2_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:BDS_dim3_radius1.5SD:ARIMA",
+        "model": "ARIMA",
+        "test": "BDS_dim3_radius1.5SD"
+      },
+      {
+        "id": "diagnostic:Jarque_Bera:ARIMA",
+        "model": "ARIMA",
+        "test": "Jarque_Bera"
+      },
+      {
+        "id": "diagnostic:Mincer_Zarnowitz_joint_intercept0_slope1:ARIMA",
+        "model": "ARIMA",
+        "test": "Mincer_Zarnowitz_joint_intercept0_slope1"
+      },
+      {
+        "id": "diagnostic:DM_HLN:TSMixer",
+        "candidate": "TSMixer",
+        "reference": "GRU/D7-c03",
+        "test": "squared-error DM-HLN h1 Bartlett HAC7; per-date mean individual squaredseedloss; twosided"
+      },
+      {
+        "id": "diagnostic:DM_HLN:TiDE",
+        "candidate": "TiDE",
+        "reference": "GRU/D7-c03",
+        "test": "squared-error DM-HLN h1 Bartlett HAC7; per-date mean individual squaredseedloss; twosided"
+      },
+      {
+        "id": "diagnostic:DM_HLN:TimeMixer",
+        "candidate": "TimeMixer",
+        "reference": "GRU/D7-c03",
+        "test": "squared-error DM-HLN h1 Bartlett HAC7; per-date mean individual squaredseedloss; twosided"
+      },
+      {
+        "id": "diagnostic:DM_HLN:TimesNet",
+        "candidate": "TimesNet",
+        "reference": "GRU/D7-c03",
+        "test": "squared-error DM-HLN h1 Bartlett HAC7; per-date mean individual squaredseedloss; twosided"
+      },
+      {
+        "id": "diagnostic:DM_HLN:PatchTST",
+        "candidate": "PatchTST",
+        "reference": "GRU/D7-c03",
+        "test": "squared-error DM-HLN h1 Bartlett HAC7; per-date mean individual squaredseedloss; twosided"
+      },
+      {
+        "id": "diagnostic:DM_HLN:Informer",
+        "candidate": "Informer",
+        "reference": "GRU/D7-c03",
+        "test": "squared-error DM-HLN h1 Bartlett HAC7; per-date mean individual squaredseedloss; twosided"
+      },
+      {
+        "id": "diagnostic:DM_HLN:Autoformer",
+        "candidate": "Autoformer",
+        "reference": "GRU/D7-c03",
+        "test": "squared-error DM-HLN h1 Bartlett HAC7; per-date mean individual squaredseedloss; twosided"
+      },
+      {
+        "id": "diagnostic:DM_HLN:iTransformer",
+        "candidate": "iTransformer",
+        "reference": "GRU/D7-c03",
+        "test": "squared-error DM-HLN h1 Bartlett HAC7; per-date mean individual squaredseedloss; twosided"
+      },
+      {
+        "id": "diagnostic:DM_HLN:Crossformer",
+        "candidate": "Crossformer",
+        "reference": "GRU/D7-c03",
+        "test": "squared-error DM-HLN h1 Bartlett HAC7; per-date mean individual squaredseedloss; twosided"
+      },
+      {
+        "id": "diagnostic:DM_HLN:S-Mamba",
+        "candidate": "S-Mamba",
+        "reference": "GRU/D7-c03",
+        "test": "squared-error DM-HLN h1 Bartlett HAC7; per-date mean individual squaredseedloss; twosided"
+      },
+      {
+        "id": "diagnostic:DM_HLN:GRU-E2",
+        "candidate": "GRU-E2",
+        "reference": "GRU/D7-c03",
+        "test": "squared-error DM-HLN h1 Bartlett HAC7; per-date mean individual squaredseedloss; twosided"
+      },
+      {
+        "id": "diagnostic:DM_HLN:LSTM-E2",
+        "candidate": "LSTM-E2",
+        "reference": "GRU/D7-c03",
+        "test": "squared-error DM-HLN h1 Bartlett HAC7; per-date mean individual squaredseedloss; twosided"
+      },
+      {
+        "id": "diagnostic:DM_HLN:TCN-E2",
+        "candidate": "TCN-E2",
+        "reference": "GRU/D7-c03",
+        "test": "squared-error DM-HLN h1 Bartlett HAC7; per-date mean individual squaredseedloss; twosided"
+      },
+      {
+        "id": "diagnostic:DM_HLN:LSTM/D7-c02",
+        "candidate": "LSTM/D7-c02",
+        "reference": "GRU/D7-c03",
+        "test": "squared-error DM-HLN h1 Bartlett HAC7; per-date mean individual squaredseedloss; twosided"
+      },
+      {
+        "id": "diagnostic:DM_HLN:TCN/D7-c02",
+        "candidate": "TCN/D7-c02",
+        "reference": "GRU/D7-c03",
+        "test": "squared-error DM-HLN h1 Bartlett HAC7; per-date mean individual squaredseedloss; twosided"
+      },
+      {
+        "id": "diagnostic:DM_HLN:Ridge",
+        "candidate": "Ridge",
+        "reference": "GRU/D7-c03",
+        "test": "squared-error DM-HLN h1 Bartlett HAC7; per-date mean individual squaredseedloss; twosided"
+      },
+      {
+        "id": "diagnostic:DM_HLN:Persistence",
+        "candidate": "Persistence",
+        "reference": "GRU/D7-c03",
+        "test": "squared-error DM-HLN h1 Bartlett HAC7; per-date mean individual squaredseedloss; twosided"
+      },
+      {
+        "id": "diagnostic:DM_HLN:SeasonalNaive",
+        "candidate": "SeasonalNaive",
+        "reference": "GRU/D7-c03",
+        "test": "squared-error DM-HLN h1 Bartlett HAC7; per-date mean individual squaredseedloss; twosided"
+      },
+      {
+        "id": "diagnostic:DM_HLN:ARIMA",
+        "candidate": "ARIMA",
+        "reference": "GRU/D7-c03",
+        "test": "squared-error DM-HLN h1 Bartlett HAC7; per-date mean individual squaredseedloss; twosided"
+      }
+    ],
+    "designated_seed": "first registered final seed, never favorable-seed selection; deterministic references once",
+    "model_df": 0,
+    "nonestimable": "retain internal p1; report null and reason"
+  },
+  "global_error_budget": {
+    "alpha": 0.05,
+    "allocations": {
+      "historical_anchor": 0.02,
+      "fair_retuned": 0.02,
+      "diagnostics": 0.01
+    },
+    "scope": "union bound across these three prespecified families only, valid component pvalues assumed",
+    "other_analyses": "MCS, predictive calibration, segment exploration, equivalence and NAS factor families must be separately identified; no claim that their nominal levels are jointly covered by this allocation"
+  },
+  "alternatives_for_planning": {
+    "RQ1_gain": 0.0005154568532996221,
+    "RQ2_erosion": 0.0005154568532996221,
+    "excess_above_null_boundary": 0.00025772842664981106,
+    "RQ3_latency_relative_reduction": 0.2,
+    "RQ3_latency_absolute_shift": "-0.20 * reference mean latency for each corresponding reference; timing units separate from predictive calendar",
+    "why": "detect a true improvement twice the meaningful margin; cannot claim80%power exactly at the null boundarydelta; no observed benchmark values used"
+  },
+  "power": {
+    "target": 0.8,
+    "alpha_for_conservative_planning": 0.0006666666666666666,
+    "minimum_runs": 5,
+    "candidate_R": [
+      5,
+      6,
+      8,
+      10,
+      15,
+      20,
+      30,
+      40,
+      60,
+      80,
+      100,
+      150,
+      200
+    ],
+    "maximum_R": 200,
+    "mc_repetitions": 10000,
+    "mc_seed": 202611063,
+    "mc_decision": "choose smallest R whose one-sided95%Wilson lower bound of simulated rejection probability is>=.80 for every declared RQ/source cell; otherwise R200 and explicit target_not_met, MDE and limitation",
+    "sources": [
+      "conditional_training_randomness",
+      "temporal_calendar_dependence"
+    ],
+    "P0_not_valid_power_evidence": true,
+    "P1_method": "postHPO frozen recipes; common paired seed and calendar resampling, recompute seed RMSE before mean; preserve regime labels; block7 primary14/28 sensitivities fixed; center null atdelta and simulate gain/erosion2delta; timings independently acquired pairedblocks and target20%reduction; full Holm family and IUTmax reproduced",
+    "conditional_approximation": "paired t bilateral conservative R estimate from delta/SD provides reference only; final R cannot be certified from this formula alone",
+    "representative_proxy_policy": "P1 includes at least3representative Top10 plus both references; empirical capability only for those recipes. Any unpiloted architecture uses explicitly labeled worst-case representative SD upper95% inflated1.5 for planning simulation, never certified empirical power of that architecture. Report all proxy assumptions. If unavailable or unmet, label underpowered/unknown; increasing seeds does not create dates.",
+    "temporal_limit": "60known dependent dates; report blocks and power separately. Cannot restore generalization or confirmatory blinding.",
+    "final_seed_ids_at_cap": [
+      670101,
+      670102,
+      670103,
+      670104,
+      670105,
+      670106,
+      670107,
+      670108,
+      670109,
+      670110,
+      670111,
+      670112,
+      670113,
+      670114,
+      670115,
+      670116,
+      670117,
+      670118,
+      670119,
+      670120,
+      670121,
+      670122,
+      670123,
+      670124,
+      670125,
+      670126,
+      670127,
+      670128,
+      670129,
+      670130,
+      670131,
+      670132,
+      670133,
+      670134,
+      670135,
+      670136,
+      670137,
+      670138,
+      670139,
+      670140,
+      670141,
+      670142,
+      670143,
+      670144,
+      670145,
+      670146,
+      670147,
+      670148,
+      670149,
+      670150,
+      670151,
+      670152,
+      670153,
+      670154,
+      670155,
+      670156,
+      670157,
+      670158,
+      670159,
+      670160,
+      670161,
+      670162,
+      670163,
+      670164,
+      670165,
+      670166,
+      670167,
+      670168,
+      670169,
+      670170,
+      670171,
+      670172,
+      670173,
+      670174,
+      670175,
+      670176,
+      670177,
+      670178,
+      670179,
+      670180,
+      670181,
+      670182,
+      670183,
+      670184,
+      670185,
+      670186,
+      670187,
+      670188,
+      670189,
+      670190,
+      670191,
+      670192,
+      670193,
+      670194,
+      670195,
+      670196,
+      670197,
+      670198,
+      670199,
+      670200,
+      670201,
+      670202,
+      670203,
+      670204,
+      670205,
+      670206,
+      670207,
+      670208,
+      670209,
+      670210,
+      670211,
+      670212,
+      670213,
+      670214,
+      670215,
+      670216,
+      670217,
+      670218,
+      670219,
+      670220,
+      670221,
+      670222,
+      670223,
+      670224,
+      670225,
+      670226,
+      670227,
+      670228,
+      670229,
+      670230,
+      670231,
+      670232,
+      670233,
+      670234,
+      670235,
+      670236,
+      670237,
+      670238,
+      670239,
+      670240,
+      670241,
+      670242,
+      670243,
+      670244,
+      670245,
+      670246,
+      670247,
+      670248,
+      670249,
+      670250,
+      670251,
+      670252,
+      670253,
+      670254,
+      670255,
+      670256,
+      670257,
+      670258,
+      670259,
+      670260,
+      670261,
+      670262,
+      670263,
+      670264,
+      670265,
+      670266,
+      670267,
+      670268,
+      670269,
+      670270,
+      670271,
+      670272,
+      670273,
+      670274,
+      670275,
+      670276,
+      670277,
+      670278,
+      670279,
+      670280,
+      670281,
+      670282,
+      670283,
+      670284,
+      670285,
+      670286,
+      670287,
+      670288,
+      670289,
+      670290,
+      670291,
+      670292,
+      670293,
+      670294,
+      670295,
+      670296,
+      670297,
+      670298,
+      670299,
+      670300
+    ]
+  },
+  "pilots": {
+    "P0": {
+      "purpose": [
+        "adapter feasibility",
+        "registered generalization gap",
+        "conditional recipe variability",
+        "external limitation check"
+      ],
+      "models": [
+        "TimeMixer",
+        "iTransformer",
+        "PatchTST",
+        "GRU/D7-c03"
+      ],
+      "seed_ids": [
+        660101,
+        660102,
+        660103,
+        660104,
+        660105
+      ],
+      "training": "weights fitted before2024-11-01, outcomes through2024-10-24; two-stage early-stop plus refit",
+      "evaluation_start": "2024-11-01",
+      "evaluation_end": "2024-12-30",
+      "days": 60,
+      "already_observed_historical_development": true,
+      "not_final_HPO_recipe_power": true,
+      "not_model_or_architecture_selection": true,
+      "not_NAS_exemption": true,
+      "OOF_same_recipe": {
+        "origins": "Jan-Oct2024, 10monthly",
+        "models": "same4",
+        "seeds": "same5P0",
+        "trajectories": 200,
+        "optimizer_fits": 400,
+        "no_architecture_selection_from_P0": true,
+        "primary_gap_inference": true,
+        "potential_calendar_origins": 305,
+        "shared_seedIDs_and_recipes": "exact P0recipes and660101..660105 fixed before any P0orOOFfit, no P0-based architecture selection"
+      },
+      "development_gap_family": {
+        "alpha": 0.01,
+        "control": "Holm_FWER",
+        "size": 3,
+        "models": [
+          "TimeMixer",
+          "iTransformer",
+          "PatchTST"
+        ],
+        "null": "RMSE_highvol_minus_normal<=delta",
+        "alternative": "RMSE_highvol_minus_normal>delta",
+        "regime": "past sigma7(t-1)>q75training2023; common original calendar masks",
+        "scope": "single P0 exploratory diagnostic family on305potential OOF calendar origins; same fixed recipes across10origins; no choosing OOF vs NovDec after results; separate from final benchmark error budget",
+        "not_the_train_validation_delta_g_test": true,
+        "primary_dataset": "OOF_2024-01-01_to_2024-10-31",
+        "potential_calendar_origins": 305,
+        "secondary_NovDec_inferential_family": false
+      },
+      "NovDec_scope": "60known development dates for feasibility and conditional recipe variability; regime gap descriptive only, no independent rejection claims and no additional P0family"
+    },
+    "P1": {
+      "purpose": "final-recipe dimensioning after HPO; not executed",
+      "models": [
+        "TimeMixer",
+        "iTransformer",
+        "PatchTST",
+        "GRU/D7-c03",
+        "GRU-E2"
+      ],
+      "seed_ids": [
+        660201,
+        660202,
+        660203,
+        660204,
+        660205,
+        660206,
+        660207,
+        660208,
+        660209,
+        660210
+      ],
+      "recipe_manifest_frozen_before_pilot": true,
+      "same_development_calendar_as_P0": false,
+      "not_new_blind_market_data": true,
+      "changed_recipe_requires_new_pilot_or_explicit_unknown_power": true,
+      "nominal_origin": "2024-11-08",
+      "training_outcome_max": "2024-10-31",
+      "configuration_selection_outcome_max": "2024-10-31",
+      "evaluation_start": "2024-11-08",
+      "evaluation_end": "2024-12-30",
+      "days": 53,
+      "projection_to_primary60days_assumption_explicit": true
+    }
+  },
+  "temporal_inference": {
+    "bootstrap_repetitions": 99999,
+    "bootstrap_seed": 202611064,
+    "primary_block_days": 7,
+    "sensitivity_blocks": [
+      14,
+      28
+    ],
+    "block_rule": "justify using developmentACF and sigma7support before final scores; no smallest-p choice",
+    "regime": "sigma7(t-1)>training2023 q75 0.024247163097617024, never extra network input",
+    "IUT": "max(valid one-sided gainp, valid one-sided costp), missing=>notestimable",
+    "nominal_metric_CI": "percentile95%, >=2000draws",
+    "simultaneous_bounds": "use each familyalpha, never hardcoded.05/30 after alpha allocation"
+  },
+  "cost_protocol": {
+    "device": "same CPU for all comparable measurements",
+    "precision": "FP32 for neural, declare classicalfloat64 separately and do not pretend matching dtype",
+    "threads": 1,
+    "batch_size": 1,
+    "input_shape": [
+      1,
+      7,
+      5
+    ],
+    "warmup_calls": 256,
+    "measurement_blocks": 61,
+    "calls_per_block": 256,
+    "order_seed": 202611065,
+    "order": "interleaved cyclic permutations of registered models perblock",
+    "unit": "paired timing block, not new market observation",
+    "latency_unit": "milliseconds per complete one-window forward including fixed scalar readout; preprocessing timed separately",
+    "training_and_HPO_costs": "total perstage, memory,parameters,FLOPs,actualtime separate"
+  },
+  "failure_and_stopping": {
+    "exclude_only": [
+      "nonfinite loss/forecast",
+      "invalid checkpoint or provenance",
+      "causality/dataaudit failure",
+      "registered wallclock/memory cap",
+      "hardware interruption documented"
+    ],
+    "retain_failures": true,
+    "no_outcome_based_seed_removal": true,
+    "retries": "one exact-config/seed resume only for externally logged infrastructure interruption, no optimizer restart selected by accuracy; charged to same budget",
+    "NaN_or_divergence": "failure retained, not replaced; commoncohort cannot silently shrink permodel",
+    "early_stopping": "max100epochs, patience12, min_delta0 validationMSE; no metricpeek beyond registered training validation",
+    "test_peeking": "no HPO, model,architecture,threshold,regime,block,margin or exclusion selection after scoring"
+  },
+  "phase_order": [
+    "synthetic_preflight",
+    "public_source_registration",
+    "nested_HPO",
+    "OOF_error_audit",
+    "P1_53days",
+    "power_R_selection",
+    "all_primary_A_and_shuffled_control_fits",
+    "all_A_calibrators",
+    "cost_and_development_ablations",
+    "single_known_final_test_scoring",
+    "exploratory_analysis"
+  ],
+  "registration": {
+    "required_before_any_fit": true,
+    "tracked_paths": [
+      "experiments/e2_remediation_20261106/hpo.json",
+      "experiments/e2_remediation_20261106/preregistration.json",
+      "experiments/e2_remediation_20261106/architecture_decisions.json",
+      "scripts/e2_protocol_plan.py",
+      "tests/test_e2_protocol_plan.py"
+    ],
+    "evidence": "gitcommit exact bytes of these files plus separately registered pilot design/adapter sources; no self-declared registered boolean",
+    "cannot_backdate": "commit after outputs exist cannot be called prospective for those outputs"
+  },
+  "observed_execution": {
+    "new_completion_market_fits_at_definition": 0,
+    "new_completion_market_scores_at_definition": 0,
+    "historical_P0_results_are_separate": true
+  },
+  "parent_registered_commit": "599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0",
+  "amendments": "experiments/e2_completion_20261106/analysis_additions.json; this completion file takes precedence over inherited P0-specific schedules only for the new completion workflow"
+}

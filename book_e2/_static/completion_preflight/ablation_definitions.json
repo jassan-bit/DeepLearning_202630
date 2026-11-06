@@ -1,0 +1,831 @@
+{
+  "Autoformer": {
+    "without_encoder_autocorrelation": {
+      "actions": [
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "backbone.encoder.attn_layers.0.attention"
+          ],
+          "mode": "zero_first",
+          "path": "backbone.encoder.attn_layers.0.attention"
+        },
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "backbone.encoder.attn_layers.1.attention"
+          ],
+          "mode": "zero_first",
+          "path": "backbone.encoder.attn_layers.1.attention"
+        }
+      ],
+      "component": "encoder autocorrelation updates; decomposition and residualFF retained",
+      "id": "without_encoder_autocorrelation",
+      "inference_deletion_is_not_this_experiment": true,
+      "model": "Autoformer",
+      "retraining_required": true,
+      "unitary_lesion": true
+    },
+    "without_learned_decoder_trend": {
+      "actions": [
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "backbone.decoder.layers.0.projection"
+          ],
+          "mode": "zero",
+          "path": "backbone.decoder.layers.0.projection"
+        }
+      ],
+      "component": "learned progressive decoder trend residual, preserving observed trend and seasonal decoder",
+      "id": "without_learned_decoder_trend",
+      "inference_deletion_is_not_this_experiment": true,
+      "model": "Autoformer",
+      "retraining_required": true,
+      "unitary_lesion": true
+    },
+    "without_moments": {
+      "actions": [
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [],
+          "mode": "mask_last10",
+          "path": "head"
+        }
+      ],
+      "component": "amplitude moments in scalar task readout",
+      "id": "without_moments",
+      "inference_deletion_is_not_this_experiment": true,
+      "model": "Autoformer",
+      "retraining_required": true,
+      "unitary_lesion": true
+    }
+  },
+  "Crossformer": {
+    "without_cross_variable_routing": {
+      "actions": [
+        {
+          "freeze_parameters": [
+            "backbone.encoder.encode_blocks.0.encode_layers.0.router"
+          ],
+          "freeze_paths": [
+            "backbone.encoder.encode_blocks.0.encode_layers.0.dim_receiver",
+            "backbone.encoder.encode_blocks.0.encode_layers.0.dim_sender"
+          ],
+          "mode": "zero",
+          "path": "backbone.encoder.encode_blocks.0.encode_layers.0.dim_receiver"
+        },
+        {
+          "freeze_parameters": [
+            "backbone.encoder.encode_blocks.1.encode_layers.0.router"
+          ],
+          "freeze_paths": [
+            "backbone.encoder.encode_blocks.1.encode_layers.0.dim_receiver",
+            "backbone.encoder.encode_blocks.1.encode_layers.0.dim_sender"
+          ],
+          "mode": "zero",
+          "path": "backbone.encoder.encode_blocks.1.encode_layers.0.dim_receiver"
+        },
+        {
+          "freeze_parameters": [
+            "backbone.encoder.encode_blocks.2.encode_layers.0.router"
+          ],
+          "freeze_paths": [
+            "backbone.encoder.encode_blocks.2.encode_layers.0.dim_receiver",
+            "backbone.encoder.encode_blocks.2.encode_layers.0.dim_sender"
+          ],
+          "mode": "zero",
+          "path": "backbone.encoder.encode_blocks.2.encode_layers.0.dim_receiver"
+        },
+        {
+          "freeze_parameters": [
+            "backbone.decoder.decode_layers.0.self_attention.router"
+          ],
+          "freeze_paths": [
+            "backbone.decoder.decode_layers.0.self_attention.dim_receiver",
+            "backbone.decoder.decode_layers.0.self_attention.dim_sender"
+          ],
+          "mode": "zero",
+          "path": "backbone.decoder.decode_layers.0.self_attention.dim_receiver"
+        },
+        {
+          "freeze_parameters": [
+            "backbone.decoder.decode_layers.1.self_attention.router"
+          ],
+          "freeze_paths": [
+            "backbone.decoder.decode_layers.1.self_attention.dim_receiver",
+            "backbone.decoder.decode_layers.1.self_attention.dim_sender"
+          ],
+          "mode": "zero",
+          "path": "backbone.decoder.decode_layers.1.self_attention.dim_receiver"
+        },
+        {
+          "freeze_parameters": [
+            "backbone.decoder.decode_layers.2.self_attention.router"
+          ],
+          "freeze_paths": [
+            "backbone.decoder.decode_layers.2.self_attention.dim_receiver",
+            "backbone.decoder.decode_layers.2.self_attention.dim_sender"
+          ],
+          "mode": "zero",
+          "path": "backbone.decoder.decode_layers.2.self_attention.dim_receiver"
+        },
+        {
+          "freeze_parameters": [
+            "backbone.decoder.decode_layers.3.self_attention.router"
+          ],
+          "freeze_paths": [
+            "backbone.decoder.decode_layers.3.self_attention.dim_receiver",
+            "backbone.decoder.decode_layers.3.self_attention.dim_sender"
+          ],
+          "mode": "zero",
+          "path": "backbone.decoder.decode_layers.3.self_attention.dim_receiver"
+        }
+      ],
+      "component": "TSA cross-variable router communications, temporal attention/FF retained",
+      "id": "without_cross_variable_routing",
+      "inference_deletion_is_not_this_experiment": true,
+      "model": "Crossformer",
+      "retraining_required": true,
+      "unitary_lesion": true
+    },
+    "without_moments": {
+      "actions": [
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [],
+          "mode": "mask_last10",
+          "path": "head"
+        }
+      ],
+      "component": "amplitude moments in scalar task readout",
+      "id": "without_moments",
+      "inference_deletion_is_not_this_experiment": true,
+      "model": "Crossformer",
+      "retraining_required": true,
+      "unitary_lesion": true
+    },
+    "without_multiscale_output_sum": {
+      "actions": [
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "backbone.decoder.decode_layers.0.linear_pred"
+          ],
+          "mode": "zero",
+          "path": "backbone.decoder.decode_layers.0.linear_pred"
+        },
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "backbone.decoder.decode_layers.1.linear_pred"
+          ],
+          "mode": "zero",
+          "path": "backbone.decoder.decode_layers.1.linear_pred"
+        },
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "backbone.decoder.decode_layers.2.linear_pred"
+          ],
+          "mode": "zero",
+          "path": "backbone.decoder.decode_layers.2.linear_pred"
+        }
+      ],
+      "component": "fine/intermediate additive decoder predictions removed; finalcoarse prediction and decoder cascade retained",
+      "id": "without_multiscale_output_sum",
+      "inference_deletion_is_not_this_experiment": true,
+      "model": "Crossformer",
+      "retraining_required": true,
+      "unitary_lesion": true
+    }
+  },
+  "Informer": {
+    "without_encoder_attention": {
+      "actions": [
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "backbone.encoder.encoders.0.attn_layers.0.attention"
+          ],
+          "mode": "zero_first",
+          "path": "backbone.encoder.encoders.0.attn_layers.0.attention"
+        },
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "backbone.encoder.encoders.0.attn_layers.1.attention"
+          ],
+          "mode": "zero_first",
+          "path": "backbone.encoder.encoders.0.attn_layers.1.attention"
+        },
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "backbone.encoder.encoders.0.attn_layers.2.attention"
+          ],
+          "mode": "zero_first",
+          "path": "backbone.encoder.encoders.0.attn_layers.2.attention"
+        },
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "backbone.encoder.encoders.1.attn_layers.0.attention"
+          ],
+          "mode": "zero_first",
+          "path": "backbone.encoder.encoders.1.attn_layers.0.attention"
+        }
+      ],
+      "component": "ProbSparse encoder attention updates in both stacks, residualFF retained",
+      "id": "without_encoder_attention",
+      "inference_deletion_is_not_this_experiment": true,
+      "model": "Informer",
+      "retraining_required": true,
+      "unitary_lesion": true
+    },
+    "without_learned_distillation": {
+      "actions": [
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "backbone.encoder.encoders.0.conv_layers.0"
+          ],
+          "mode": "pool_half",
+          "path": "backbone.encoder.encoders.0.conv_layers.0"
+        },
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "backbone.encoder.encoders.0.conv_layers.1"
+          ],
+          "mode": "pool_half",
+          "path": "backbone.encoder.encoders.0.conv_layers.1"
+        }
+      ],
+      "component": "learned convolutional distillation replaced by fixed average pooling with identical length",
+      "id": "without_learned_distillation",
+      "inference_deletion_is_not_this_experiment": true,
+      "model": "Informer",
+      "retraining_required": true,
+      "unitary_lesion": true
+    },
+    "without_moments": {
+      "actions": [
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [],
+          "mode": "mask_last10",
+          "path": "head"
+        }
+      ],
+      "component": "amplitude moments in scalar task readout",
+      "id": "without_moments",
+      "inference_deletion_is_not_this_experiment": true,
+      "model": "Informer",
+      "retraining_required": true,
+      "unitary_lesion": true
+    }
+  },
+  "PatchTST": {
+    "without_RevIN": {
+      "actions": [
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "backbone.revin_layer"
+          ],
+          "mode": "identity",
+          "path": "backbone.revin_layer"
+        }
+      ],
+      "component": "observed-window RevIN normalization/affine before unchanged source patching",
+      "id": "without_RevIN",
+      "inference_deletion_is_not_this_experiment": true,
+      "model": "PatchTST",
+      "retraining_required": true,
+      "unitary_lesion": true
+    },
+    "without_moments": {
+      "actions": [
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [],
+          "mode": "mask_last10",
+          "path": "readout"
+        }
+      ],
+      "component": "amplitude moments in scalar task readout",
+      "id": "without_moments",
+      "inference_deletion_is_not_this_experiment": true,
+      "model": "PatchTST",
+      "retraining_required": true,
+      "unitary_lesion": true
+    },
+    "without_patch_attention": {
+      "actions": [
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "backbone.backbone.encoder.layers.0.self_attn"
+          ],
+          "mode": "zero_first",
+          "path": "backbone.backbone.encoder.layers.0.self_attn"
+        },
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "backbone.backbone.encoder.layers.1.self_attn"
+          ],
+          "mode": "zero_first",
+          "path": "backbone.backbone.encoder.layers.1.self_attn"
+        },
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "backbone.backbone.encoder.layers.2.self_attn"
+          ],
+          "mode": "zero_first",
+          "path": "backbone.backbone.encoder.layers.2.self_attn"
+        }
+      ],
+      "component": "all residual patch-attention updates; FF/residuals retained",
+      "id": "without_patch_attention",
+      "inference_deletion_is_not_this_experiment": true,
+      "model": "PatchTST",
+      "retraining_required": true,
+      "unitary_lesion": true
+    }
+  },
+  "S-Mamba": {
+    "without_FF_refinement": {
+      "actions": [
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "layers.0.conv1",
+            "layers.0.conv2"
+          ],
+          "mode": "zero",
+          "path": "layers.0.conv2"
+        },
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "layers.1.conv1",
+            "layers.1.conv2"
+          ],
+          "mode": "zero",
+          "path": "layers.1.conv2"
+        }
+      ],
+      "component": "post-SSM residual feed-forward refinement, both selective scans retained",
+      "id": "without_FF_refinement",
+      "inference_deletion_is_not_this_experiment": true,
+      "model": "S-Mamba",
+      "retraining_required": true,
+      "unitary_lesion": true
+    },
+    "without_moments": {
+      "actions": [
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [],
+          "mode": "mask_last10",
+          "path": "head"
+        }
+      ],
+      "component": "amplitude moments in scalar task readout",
+      "id": "without_moments",
+      "inference_deletion_is_not_this_experiment": true,
+      "model": "S-Mamba",
+      "retraining_required": true,
+      "unitary_lesion": true
+    },
+    "without_reverse_SSM": {
+      "actions": [
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "layers.0.attention_r"
+          ],
+          "mode": "zero",
+          "path": "layers.0.attention_r"
+        },
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "layers.1.attention_r"
+          ],
+          "mode": "zero",
+          "path": "layers.1.attention_r"
+        }
+      ],
+      "component": "reverse-variable selective-state branch in each bidirectional layer",
+      "id": "without_reverse_SSM",
+      "inference_deletion_is_not_this_experiment": true,
+      "model": "S-Mamba",
+      "retraining_required": true,
+      "unitary_lesion": true
+    }
+  },
+  "TSMixer": {
+    "without_feature_mixing": {
+      "actions": [
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "blocks.0.feature_norm",
+            "blocks.0.feature_1",
+            "blocks.0.feature_2"
+          ],
+          "mode": "zero",
+          "path": "blocks.0.feature_2"
+        },
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "blocks.1.feature_norm",
+            "blocks.1.feature_1",
+            "blocks.1.feature_2"
+          ],
+          "mode": "zero",
+          "path": "blocks.1.feature_2"
+        },
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "blocks.2.feature_norm",
+            "blocks.2.feature_1",
+            "blocks.2.feature_2"
+          ],
+          "mode": "zero",
+          "path": "blocks.2.feature_2"
+        },
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "blocks.3.feature_norm",
+            "blocks.3.feature_1",
+            "blocks.3.feature_2"
+          ],
+          "mode": "zero",
+          "path": "blocks.3.feature_2"
+        },
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "blocks.4.feature_norm",
+            "blocks.4.feature_1",
+            "blocks.4.feature_2"
+          ],
+          "mode": "zero",
+          "path": "blocks.4.feature_2"
+        },
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "blocks.5.feature_norm",
+            "blocks.5.feature_1",
+            "blocks.5.feature_2"
+          ],
+          "mode": "zero",
+          "path": "blocks.5.feature_2"
+        }
+      ],
+      "component": "all residual channel-mixing branches",
+      "id": "without_feature_mixing",
+      "inference_deletion_is_not_this_experiment": true,
+      "model": "TSMixer",
+      "retraining_required": true,
+      "unitary_lesion": true
+    },
+    "without_moments": {
+      "actions": [
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [],
+          "mode": "mask_last10",
+          "path": "readout"
+        }
+      ],
+      "component": "amplitude moments in scalar task readout",
+      "id": "without_moments",
+      "inference_deletion_is_not_this_experiment": true,
+      "model": "TSMixer",
+      "retraining_required": true,
+      "unitary_lesion": true
+    },
+    "without_temporal_mixing": {
+      "actions": [
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "blocks.0.temporal",
+            "blocks.0.temporal_norm"
+          ],
+          "mode": "zero",
+          "path": "blocks.0.temporal"
+        },
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "blocks.1.temporal",
+            "blocks.1.temporal_norm"
+          ],
+          "mode": "zero",
+          "path": "blocks.1.temporal"
+        },
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "blocks.2.temporal",
+            "blocks.2.temporal_norm"
+          ],
+          "mode": "zero",
+          "path": "blocks.2.temporal"
+        },
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "blocks.3.temporal",
+            "blocks.3.temporal_norm"
+          ],
+          "mode": "zero",
+          "path": "blocks.3.temporal"
+        },
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "blocks.4.temporal",
+            "blocks.4.temporal_norm"
+          ],
+          "mode": "zero",
+          "path": "blocks.4.temporal"
+        },
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "blocks.5.temporal",
+            "blocks.5.temporal_norm"
+          ],
+          "mode": "zero",
+          "path": "blocks.5.temporal"
+        }
+      ],
+      "component": "all residual temporal-mixing branches",
+      "id": "without_temporal_mixing",
+      "inference_deletion_is_not_this_experiment": true,
+      "model": "TSMixer",
+      "retraining_required": true,
+      "unitary_lesion": true
+    }
+  },
+  "TiDE": {
+    "without_covariate_encoder": {
+      "actions": [
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "feature_encoder"
+          ],
+          "mode": "zero",
+          "path": "feature_encoder"
+        }
+      ],
+      "component": "shared past/fixed-zero-future covariate encoder",
+      "id": "without_covariate_encoder",
+      "inference_deletion_is_not_this_experiment": true,
+      "model": "TiDE",
+      "retraining_required": true,
+      "unitary_lesion": true
+    },
+    "without_linear_skip": {
+      "actions": [
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "residual_projection"
+          ],
+          "mode": "zero",
+          "path": "residual_projection"
+        }
+      ],
+      "component": "global learned linear history skip",
+      "id": "without_linear_skip",
+      "inference_deletion_is_not_this_experiment": true,
+      "model": "TiDE",
+      "retraining_required": true,
+      "unitary_lesion": true
+    },
+    "without_moments": {
+      "actions": [
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [],
+          "mode": "mask_last10",
+          "path": "readout"
+        }
+      ],
+      "component": "amplitude moments in scalar task readout",
+      "id": "without_moments",
+      "inference_deletion_is_not_this_experiment": true,
+      "model": "TiDE",
+      "retraining_required": true,
+      "unitary_lesion": true
+    }
+  },
+  "TimeMixer": {
+    "without_moments": {
+      "actions": [
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [],
+          "mode": "mask_last10",
+          "path": "readout"
+        }
+      ],
+      "component": "amplitude moments in scalar task readout",
+      "id": "without_moments",
+      "inference_deletion_is_not_this_experiment": true,
+      "model": "TimeMixer",
+      "retraining_required": true,
+      "unitary_lesion": true
+    },
+    "without_seasonal_mixing": {
+      "actions": [
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "backbone.pdm_blocks.0.mixing_multi_scale_season"
+          ],
+          "mode": "zero",
+          "path": "backbone.pdm_blocks.0.mixing_multi_scale_season"
+        },
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "backbone.pdm_blocks.1.mixing_multi_scale_season"
+          ],
+          "mode": "zero",
+          "path": "backbone.pdm_blocks.1.mixing_multi_scale_season"
+        }
+      ],
+      "component": "all multiscale seasonal branches",
+      "id": "without_seasonal_mixing",
+      "inference_deletion_is_not_this_experiment": true,
+      "model": "TimeMixer",
+      "retraining_required": true,
+      "unitary_lesion": true
+    },
+    "without_trend_mixing": {
+      "actions": [
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "backbone.pdm_blocks.0.mixing_multi_scale_trend"
+          ],
+          "mode": "zero",
+          "path": "backbone.pdm_blocks.0.mixing_multi_scale_trend"
+        },
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "backbone.pdm_blocks.1.mixing_multi_scale_trend"
+          ],
+          "mode": "zero",
+          "path": "backbone.pdm_blocks.1.mixing_multi_scale_trend"
+        }
+      ],
+      "component": "all multiscale trend branches",
+      "id": "without_trend_mixing",
+      "inference_deletion_is_not_this_experiment": true,
+      "model": "TimeMixer",
+      "retraining_required": true,
+      "unitary_lesion": true
+    }
+  },
+  "TimesNet": {
+    "without_learned_temporal_extension": {
+      "actions": [
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "backbone.predict_linear"
+          ],
+          "mode": "extend_last",
+          "path": "backbone.predict_linear"
+        }
+      ],
+      "component": "learned7to8 latent forecast projection, replaced by deterministic last-token replication",
+      "id": "without_learned_temporal_extension",
+      "inference_deletion_is_not_this_experiment": true,
+      "model": "TimesNet",
+      "retraining_required": true,
+      "unitary_lesion": true
+    },
+    "without_moments": {
+      "actions": [
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [],
+          "mode": "mask_last10",
+          "path": "readout"
+        }
+      ],
+      "component": "amplitude moments in scalar task readout",
+      "id": "without_moments",
+      "inference_deletion_is_not_this_experiment": true,
+      "model": "TimesNet",
+      "retraining_required": true,
+      "unitary_lesion": true
+    },
+    "without_periodic_mixing": {
+      "actions": [
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "backbone.model.0"
+          ],
+          "mode": "identity",
+          "path": "backbone.model.0"
+        },
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "backbone.model.1"
+          ],
+          "mode": "identity",
+          "path": "backbone.model.1"
+        }
+      ],
+      "component": "periodic2D residual branches, leaving their identity residual",
+      "id": "without_periodic_mixing",
+      "inference_deletion_is_not_this_experiment": true,
+      "model": "TimesNet",
+      "retraining_required": true,
+      "unitary_lesion": true
+    }
+  },
+  "iTransformer": {
+    "without_final_normalization": {
+      "actions": [
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "backbone.encoder.norm"
+          ],
+          "mode": "identity",
+          "path": "backbone.encoder.norm"
+        }
+      ],
+      "component": "final encoder LayerNorm",
+      "id": "without_final_normalization",
+      "inference_deletion_is_not_this_experiment": true,
+      "model": "iTransformer",
+      "retraining_required": true,
+      "unitary_lesion": true
+    },
+    "without_inverted_attention": {
+      "actions": [
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "backbone.encoder.attn_layers.0.attention"
+          ],
+          "mode": "zero_first",
+          "path": "backbone.encoder.attn_layers.0.attention"
+        },
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [
+            "backbone.encoder.attn_layers.1.attention"
+          ],
+          "mode": "zero_first",
+          "path": "backbone.encoder.attn_layers.1.attention"
+        }
+      ],
+      "component": "inverted variable-attention updates, residualFF retained",
+      "id": "without_inverted_attention",
+      "inference_deletion_is_not_this_experiment": true,
+      "model": "iTransformer",
+      "retraining_required": true,
+      "unitary_lesion": true
+    },
+    "without_moments": {
+      "actions": [
+        {
+          "freeze_parameters": [],
+          "freeze_paths": [],
+          "mode": "mask_last10",
+          "path": "head"
+        }
+      ],
+      "component": "amplitude moments in scalar task readout",
+      "id": "without_moments",
+      "inference_deletion_is_not_this_experiment": true,
+      "model": "iTransformer",
+      "retraining_required": true,
+      "unitary_lesion": true
+    }
+  }
+}

@@ -22,7 +22,13 @@ La carpeta de salida del ensamblado debe ser nueva o vacía; usar otra ruta al r
 
 E2 ya cuenta con la guía completa de 65 páginas y capítulos 1–14. La ruta vigente es F2a: series de tiempo, con contrato D7×5 y δ heredados conservados, veinte configuraciones y quince recetas ajustables T12. El commit `599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0` registra el protocolo antes de los ajustes P0/OOF de Bitcoin. Se completaron las 220 trayectorias y 440 ajustes P0/OOF, y se analizaron 305 casos por receta. Ese experimento de desarrollo se distingue de la réplica ETTh1 y del benchmark final, todavía pendiente. Las secciones siguientes sobre GRU–LSTM–TCN describen E1.
 
-## Protocolo actual de E2 y evidencias
+## Implementación final de E2
+
+La nueva fuente está en `experiments/e2_completion_20261106/` y `scripts/run_e2_final_benchmark.py`, con módulos de arquitectura, estadística, incertidumbre, diagnósticos y perfilado. Sus pruebas usan datos sintéticos; aún no acreditan una tabla final ni su reproducción independiente. La enmienda debe registrarse antes del primer ajuste real con esta implementación. Mantiene T12/quince asignaciones; conserva once candidatos aleatorios y añade c12 fuente por red. P1 y calibración A usan 53 fechas (08/11–30/12/2024), selección/ajuste hasta el 31/10 y embargo 01–07/11. El primario conserva el corte 24/12 y test conocido de sesenta fechas. Todos los pesos primarios/A/controles negativos y calibradores deben cerrar en ese orden antes del scoring del test.
+
+Los JSON y el código P0 no se modifican para retrofechar estas decisiones. La ejecución final necesita sus propias fuentes fijadas, entorno verificado, checkout limpio y salida privada nueva; se conserva la frontera de publicación de agregados, sin predicciones individuales, pesos ni datos completos de evaluación. El [capítulo8](book_e2/sections/08_reproducibilidad.md) distingue ambos procedimientos.
+
+## Protocolo P0 de E2 y evidencias
 
 La validación documental no abre precios ni ajusta modelos. El export genera un registro prospectivo de candidatos y reglas; sus contadores iniciales no se reescriben para presentarlos como resultados posteriores:
 

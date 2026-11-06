@@ -1,6 +1,6 @@
 # 1. Definición del Problema, Preguntas de Investigación y Dataset
 
-Esta sección desarrolla las páginas 2–3 de la guía completa de 65 páginas. La formulación y la ficha de datos se conservan; la ruta se cierra como **F2a, series de tiempo**, en la {ref}`sección 7 <e2-ruta-temporal>`. Las preguntas y las reglas del procedimiento E2 están registradas en el [commit previo al piloto `599a29f`](https://github.com/jassan-bit/DeepLearning_202630/tree/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0), con alcance **exploratorio** porque los periodos heredados ya se conocían. El benchmark final sigue pendiente; el [piloto P0 de desarrollo y su protocolo](09_protocolo_registrado.md) se ejecutan por separado y no constituyen sus resultados. Los diagnósticos propios del EDA se presentan en la [sección 2](02_eda.md).
+Esta sección desarrolla las páginas 2–3 de la guía completa de 65 páginas. La formulación y la ficha de datos se conservan; la ruta se cierra como **F2a, series de tiempo**, en la {ref}`sección 7 <e2-ruta-temporal>`. Las preguntas y las reglas del procedimiento E2 están registradas en el [commit previo al piloto `599a29f`](https://github.com/jassan-bit/DeepLearning_202630/tree/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0), con alcance **exploratorio** porque los periodos heredados ya se conocían. El benchmark final sigue pendiente; el [piloto P0 de desarrollo y su protocolo](09_protocolo_registrado.md) ya se ejecutaron y se informan por separado, sin constituir los resultados del benchmark final. Los diagnósticos propios del EDA se presentan en la [sección 2](02_eda.md).
 
 ## 1.1 Definición formal del problema
 
@@ -165,7 +165,7 @@ El snapshot inventariado contiene **75 ZIP, 97.442.605 bytes comprimidos y 2.014
 
 El desarrollo 2023–2024 tiene 731 días de calendario y 730 días OHLCV completos. En 2023 hay 350 etiquetas σ₇ válidas; en 2024, 366. Las pérdidas adicionales de ventanas dependen de D, el objetivo y el embargo: los conteos de filas brutas, días y ejemplos supervisados son distintos. El ajuste final D7 de E1 utilizó 709 ejemplos elegibles; no se atribuye ese número a futuras configuraciones de E2.
 
-La literatura citada respalda el problema y distintas fuentes informativas. **No está verificado el uso de esta versión exacta del dataset en literatura Q1.** Esa comprobación y la matriz de estudios de E2 siguen pendientes de la revisión sistemática; no se usa la reputación de una editorial como sustituto de evidencia.
+La literatura citada respalda el problema y distintas fuentes informativas. **El uso previo de esta fuente o dataset en literatura Q1 requiere aún una referencia verificable y el cuartil de su año.** El criterio de la guía no exige que un artículo haya utilizado exactamente nuestro snapshot, sus fechas o hashes; esa identidad no se confunde con el respaldo de la fuente. La matriz de estudios de E2 mantiene pendiente esta comprobación, sin usar la reputación de una editorial como sustituto de evidencia.
 
 ### 1.3.2 Procedencia, licencia, ética y privacidad
 
@@ -215,6 +215,13 @@ El hash anterior identifica **el archivo manifiesto**; no es un único checksum 
 | Relevancia con al menos tres referencias | Tres referencias de contexto citadas; no sustituyen la revisión sistemática |
 | Tres RQ, hipótesis, efecto y reglas | Registrados antes de P0, con dos familias de treinta hipótesis y alcance exploratorio |
 | Justificación y Data Card | Documentadas con procedencia, versión, hashes, calidad y límites |
-| Uso del dataset exacto en Q1 | No verificado |
+| Uso previo de la fuente/dataset en Q1 | Pendiente de referencia y cuartil por año; no exige identidad exacta del snapshot |
 | Catálogo y protocolo | Veinte configuraciones registradas; quince familias ajustables, tres anclas y dos naive; ejecución y validación final pendientes |
 | Prueba desconocida y confirmación nueva | No disponibles en los periodos heredados ya evaluados |
+
+La [verificación bibliográfica acotada de §3](03_literatura.md) distingue los diez
+originales arquitectónicos completos, los siete cuerpos cripto heredados de E1 y
+los siete apoyos aplicados nuevos de E2 todavía pendientes. La existencia de
+cuerpos heredados no completa esos apoyos ni la evidencia de uso de la fuente en
+Q1. Los [criterios de cierre bibliográfico](../_static/literature_completion/closure_checklist.json)
+mantienen separados estos insumos de la ejecución futura del benchmark.

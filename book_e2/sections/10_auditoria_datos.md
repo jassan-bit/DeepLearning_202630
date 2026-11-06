@@ -20,7 +20,7 @@ El [recibo `data_support_audit.json`](../_static/remediation_preflight/data_supp
 | Corte temporal | Última etiqueta y ajuste de escalado no posteriores a origen−8; embargo de siete días |
 | Preflight de datos | Cero ajustes y cero predicciones realizados por **este auditor**, sin acceso a precios de test de 2025/2026 |
 
-El último contador describe el proceso de auditoría, no el estado global posterior del proyecto: **P0 está en ejecución**, con un plan de 220 trayectorias/440 ajustes de desarrollo. No son resultados del benchmark final, ni nuevos mercados independientes.
+El último contador describe el proceso de auditoría, no el estado global posterior del proyecto: **P0 ya se ejecutó y analizó**, con 220 trayectorias/440 ajustes de desarrollo cerrados y sus resultados en §9. No son resultados del benchmark final, ni nuevos mercados independientes.
 
 Los hashes de fuentes son:
 
@@ -32,6 +32,14 @@ daily_volatility_development.csv
 ```
 
 Un hash identifica bytes y detecta cambios respecto al registro; **no prueba por sí solo ausencia de fuga**. El calendario, la disponibilidad, los soportes y el código de transformación requieren controles adicionales. Tampoco la ausencia de duplicados exactos excluye dependencia, casi duplicados o decisiones hechas con test.
+
+### 10.1.1 Enmienda de soportes para el procedimiento final
+
+La [enmienda preparada](../_static/completion_protocol/analysis_additions.json) reconoce selección de hiperparámetros hasta **31/10/2024**. P1 y A usan origen nominal 08/11, corte de ajuste/escalado/selección 31/10, embargo 01–07/11 y **53 resultados 08/11–30/12**. El antiguo P0 conserva sus sesenta fechas y soportes ya ejecutados; no se reescriben los recibos de `599a29f`.
+
+Para OOF final, las tres recetas históricas E1 declaran su selección hasta el 31/10 incluso en folds anteriores; esa exposición impide calificarlas como selección anidada insesgada. Los cortes mensuales de pesos, escaladores y épocas siguen vigentes para todos; las otras diecisiete configuraciones deben respetar también selección de configuración anterior al origen. La excepción histórica no permite nuevos ajustes con información futura.
+
+El código final añade auditoría de estos soportes y guardas globales: **todos los pesos primarios, A y de controles negativos cerrados antes de cualquier score de calibración**, calibradores sellados antes del test y misma identidad del predictor A calibrado/evaluado. La lectura posterior de historia 2025–agosto de 2026 para referencias endógenas conserva calendario y NaN, con hash/auditoría de archivos; no autoriza refit ni elimina la condición de test conocido. La ejecución integrada de esos controles todavía debe producir sus recibos.
 
 ## 10.2 Contrato operativo de las observaciones
 
@@ -83,11 +91,19 @@ El activo BTCUSDT aparece legítimamente en todas las fases: se evalúa una sola
 | Fuga espacial | Un mercado sin coordenadas/unidades espaciales | No aplica a la tarea F2a; no sustituirlo por un test ficticio |
 | Transformaciones | Escalado de train comprobado y pruebas sintéticas de adaptadores; EDA con parámetros train-only | Evidencia P0 parcial; auditoría completa de cada pipeline final pendiente |
 | Atributos posteriores al evento | Diccionario causal y prefijos de lectura anteriores al origen; análisis de rezagos en §2 | Disponibilidad documentada; revisión final y controles univariados aplicables pendientes de cierre |
-| Validación adversarial | EDA de shift con KS/Wasserstein y remuestreo por bloques | Ese análisis no equivale a un clasificador adversarial; la comprobación correspondiente sigue pendiente |
-| Modelos preentrenados | P0 construye sus cuatro redes desde inicialización, usando código identificado de autores | Sin pesos preentrenados en este piloto; confirmar procedencia de todas las implementaciones finales |
-| Sanidad con etiquetas permutadas | No ejecutada por el preflight de soporte | Pendiente a nivel de modelos; verificar contra una referencia nula apropiada para regresión, sin confundirla con azar de clasificación |
+| Validación adversarial | Implementación de clasificador train/evaluación con las 35 entradas, cinco folds bloqueados/purgados y gap de siete días; escalado dentro de fold | Experimento final pendiente; no se sustituye por KS/Wasserstein ni se seleccionan modelos con su resultado |
+| Modelos preentrenados | P0 desde inicialización; diez adaptadores finales revisados con fuentes/presets por hash | Implementación final sin pesos preentrenados; el registro integrado debe verificar todos los archivos importados y las licencias |
+| Sanidad con etiquetas permutadas | Implementación para dieciséis redes y Ridge; permutación separada por bloques en train/selección de épocas; nuevas semillas y pesos cerrados antes de test | Ejecución y análisis pendientes; las referencias endógenas requieren auditoría causal y perturbaciones de historia, no una regresión supervisada ficticia |
 
-Los controles del preflight de adaptadores verifican forma y finitud de la salida y que una predicción no cambie al acompañarla de otros orígenes en el batch. Son controles relevantes para disponibilidad causal, pero **no equivalen** a entrenar con etiquetas permutadas, demostrar ausencia de atajos o aprobar automáticamente los veinte pipelines finales. Si una comprobación futura falla, se conservará el fallo y se repetirá el experimento afectado tras corregir su causa; no se seleccionarán fechas favorables ni un test que produzca el resultado deseado.
+Los controles de adaptadores verifican forma, gradientes finitos y que una predicción no cambie con otros orígenes en el batch. La revisión independiente y la prueba de memorización sintética de los diez backbones finales están disponibles en [§14](14_arquitecturas.md). Son controles relevantes para disponibilidad causal, pero **no equivalen** a entrenar con etiquetas permutadas, demostrar ausencia de atajos o aprobar automáticamente los veinte pipelines finales. Si una comprobación futura falla, se conservará el fallo y se repetirá el experimento afectado tras corregir su causa; no se seleccionarán fechas favorables ni un test que produzca el resultado deseado.
+
+### 10.4.1 Controles negativos y de desplazamiento implementados
+
+El módulo `scripts/e2_leakage_controls.py` separa diecisiete controles supervisados —dieciséis redes y Ridge— de las referencias endógenas. Permuta etiquetas por bloques de siete observaciones admitidas, declara huecos y separa permutaciones de entrenamiento, selección temprana y validación interna. Usa semillas de permutación 690101/690118/690132, reajuste desde cero y la misma receta primaria congelada. Los **diecisiete predictores de control deben cerrar junto a todos los primarios y A antes de calibración o test**; no se ajusta un control después de observar resultados. Los errores se evalúan sobre la misma reserva conocida de sesenta fechas, dentro de su fase única.
+
+Se compara con el pronóstico constante de media de entrenamiento. La señal sospechosa predefinida requiere conjuntamente ganancia RMSE>δ y correlación Spearman positiva, mediante IUT y **Holm sobre diecisiete hipótesis, α=0,01**, con 2.000 remuestreos. No rechazar no demuestra ausencia de fuga; los controles son diagnósticos con potencia y supuestos limitados, no una certificación automática.
+
+El clasificador adversarial usa las 35 entradas, cinco particiones bloqueadas/purgadas, embargo de siete días, escalado aprendido dentro de cada train y regresión logística L2 balanceada con parámetros fijos. La distribución nula usa **2.000 permutaciones de etiquetas de dominio por bloques con reajuste de todos los folds**. Se ejecuta tras los cierres globales; explica desplazamiento entre periodos sin retroalimentar HPO o adaptar escaladores a test. ARIMA y los dos ingenuos reciben auditoría de estado causal y perturbaciones reales de la historia observable, manteniendo coeficientes fijos. Estos controles están implementados; su ejecución y resultados no se atribuyen al preflight sintético P0.
 
 ## 10.5 Reconstrucción y cierre pendiente
 

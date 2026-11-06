@@ -5,7 +5,7 @@ La guía completa exige un entorno fijado, semillas/configuraciones recuperables
 
 ## 8.1 Fuente registrada y recibos de ejecución
 
-La fuente experimental se fijó en el commit [`599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0`](https://github.com/jassan-bit/DeepLearning_202630/commit/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0). El [recibo de registro](../_static/remediation_preflight/registration.json), fechado **06/11/2026, 14:52:32 UTC**, vincula plan, código, dos fuentes de desarrollo y archivos de los autores mediante hashes. Registra cero ajustes de datos previos **en ese directorio de salida**; no afirma que nunca existieran experimentos de E1 ni que su test vuelva a ser desconocido.
+La fuente experimental de P0 se fijó en el commit [`599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0`](https://github.com/jassan-bit/DeepLearning_202630/commit/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0). El [recibo de registro](../_static/remediation_preflight/registration.json), fechado **06/11/2026, 14:52:32 UTC**, vincula plan, código, dos fuentes de desarrollo y archivos de los autores mediante hashes. Registra cero ajustes de datos previos **en ese directorio de salida**; no afirma que nunca existieran experimentos de E1 ni que su test vuelva a ser desconocido.
 
 Se conserva un checkout separado de la fuente registrada y las salidas experimentales quedan fuera del repositorio: checkpoints, curvas, cierres, logs y predicciones no sobrescriben resultados de E1. Las mejoras documentales posteriores al registro no cambian los bytes con los que se inició P0. Los JSON de diseño conservan sus contadores iniciales: el estado observado se acredita con recibos de ejecución, no editando un plan cerrado.
 
@@ -67,6 +67,16 @@ El flujo disponible de una sola invocación registra esa nueva reproducción, aj
 
 La salida debe estar fuera del repositorio. El registro rechaza intentos anteriores sin registro y cambios en entradas cerradas; no se reutiliza un directorio para ocultar una ejecución fallida. El flujo no acepta precios de evaluación posteriores a 2024 y no cambia las recetas con P0. Una reproducción completa de la **tabla principal final** aún no está demostrada: no se equipara este comando de desarrollo, un build del libro o una prueba sintética con ese requisito de las páginas41/63. Su discrepancia máxima deberá medirse cuando exista la tabla y una reproducción independiente válida.
 
+### 8.3.1 Implementación del benchmark final
+
+La [descarga nueva](../_static/completion_download/completion_bundle.zip) incorpora el runner `scripts/run_e2_final_benchmark.py`, adaptadores finales, estadística, incertidumbre, diagnósticos, contador de operaciones, referencia de predictibilidad y pruebas. El [diseño](../_static/completion_protocol/design.json) y la [enmienda](../_static/completion_protocol/analysis_additions.json) identifican los insumos que deben registrarse antes de sus ajustes reales. Se conservan el código/registro P0 y sus recibos sin reescribirlos.
+
+El programa separa inventario/preflight, registro, HPO, P1, coste, potencia, cierre de pesos primarios y A, calibración, scoring y análisis. Debe ejecutarse desde un checkout limpio con fuentes de autores fijadas y salida privada nueva. No basta instalar paquetes: se verifican los bytes de todas las dependencias importadas, datos de desarrollo, candidatos y revisión arquitectónica. Los comandos y opciones exactas están en el paquete; el flujo aún no acredita una reproducción independiente de la tabla final.
+
+Las pruebas del software usan fixtures sintéticos. La sanidad de memorización de los diez adaptadores usa únicamente entradas sintéticas y no se suma al contador de ajustes de Bitcoin. Los resultados reales requieren curvas, tiempos, cierres y recibos separados. Si un reinicio cambia el entorno, se reinstala/verifica el lock y se repite su preflight antes de continuar; no se reutilizan mediciones de hardware de P0 como costes actuales.
+
+El HPO puede podar pesos sólo después de cerrar sus predicciones de desarrollo, conservando configuración, curva, preprocesamiento, índice, hash original y recibo de poda. Los pesos primarios/A se conservan durante sus cierres globales y puntuación. Las ablaciones DEV53 pueden cerrar/podar secuencialmente sin usar test; se retienen cuatro variantes de la primera semilla. Se estima almacenamiento antes de entrenar y no se cambia R después de ver resultados para ajustarlo al disco.
+
 ## 8.4 Lista de comprobación frente al Apéndice B
 
 Los estados distinguen una especificación registrada de evidencia experimental terminada.
@@ -77,8 +87,8 @@ Los estados distinguen una especificación registrada de evidencia experimental 
 | Hash de datos/test | Fuente e índices identificados; el hash no restaura desconocimiento del test |
 | Auditoría completa de fuga | Soporte P0/OOF aprobado; verificaciones del pipeline final pendientes, véase §10 |
 | Particiones y semillas recuperables | Plan y once calendarios de desarrollo registrados |
-| Pipeline y ajuste solo en train | Controles de P0 disponibles; verificación de todos los modelos finales pendiente |
-| Presupuesto común y configuraciones | Asignación y 180 candidatos registrados; HPO todavía sin ejecutar |
+| Pipeline y ajuste solo en train | P0 disponible; diez adaptadores finales revisados y probados sintéticamente, recibos de integración/ejecución pendientes |
+| Presupuesto común y configuraciones | AsignaciónT12 conservada; enmienda de once aleatorios+c12 fuente preparada; HPO sin ejecutar |
 | Repeticiones y resultados individuales | Cinco semillas previstas por receta P0; ejecución completada y analizada en §9, sin afirmar benchmark final completo |
 | Potencia y número final | P1/dimensionamiento posteriores a HPO; P0 no acredita potencia |
 | Baselines y tres bases E1 | Panel de veinte registrado; comparación final con HPO equitativo pendiente |
@@ -86,10 +96,10 @@ Los estados distinguen una especificación registrada de evidencia experimental 
 | Pruebas, efectos e IC finales | Familias registradas; resultados de benchmark pendientes |
 | Familias y multiplicidad | Treinta contrastes frente a cada GRU, α0,02 por familia; 199 diagnósticos, α0,01; véase §9 |
 | Techo y margen normalizado | No certificados por este preflight; análisis específico pendiente |
-| Arquitectura no definida/NAS | Regla condicional registrada; no se declara NAS ejecutada |
+| Arquitectura no definida/NAS | Diez casos definidos y revisados individualmente; regla condicional conservada, sin NAS ejecutada |
 | Ganador y sesgo de selección | Ningún ganador final declarado |
 | Robustez e interpretabilidad | Diseños documentados; ejecución final pendiente |
-| Incertidumbre Top3 | Protocolo y herramienta de §12; cobertura Bitcoin no acreditada por P0 |
+| Incertidumbre Top3 | A53 predefinida para veinte modelos, cinco miembros fijos antes de P1; implementación probada, calibración/cobertura pendiente |
 | Acceso a prueba con pesos fijados | P0 restringido a desarrollo; test E1 conocido y benchmark final aún pendiente |
 | Réplica del paper guía | Evidencia externa TimeMixer/ETTh1 en §5; separada de Bitcoin |
 | Reproducción independiente de tabla principal | Pendiente; sin discrepancia final inventada |
@@ -103,4 +113,4 @@ Las velas no contienen identificadores de personas, y no se intenta reconstruir 
 
 Las tablas y figuras deben identificar unidades, muestra, escala, fuente y alcance; los IC marginales se distinguen de límites simultáneos. No se presenta cero como sustituto de una medición pendiente ni un promedio sin dispersión como prueba de superioridad. Las afirmaciones bibliográficas y DOI se conservan trazables; indexación o editorial no sustituyen comprobar un original.
 
-**Descargas:** [paquete unificado de protocolo, código y evidencias](../_static/remediation_download/Remediacion_E2_protocolo_codigo_evidencias.zip), [registro](../_static/remediation_preflight/registration.json), [soporte de datos](../_static/remediation_preflight/data_support_audit.json) y [entorno/hardware](../_static/remediation_preflight/hardware_receipt.json).
+**Descargas:** [implementación final y enmienda](../_static/completion_download/completion_bundle.zip), [paquete unificado de protocolo, código y evidencias](../_static/remediation_download/Remediacion_E2_protocolo_codigo_evidencias.zip), [registro](../_static/remediation_preflight/registration.json), [soporte de datos](../_static/remediation_preflight/data_support_audit.json) y [entorno/hardware](../_static/remediation_preflight/hardware_receipt.json).

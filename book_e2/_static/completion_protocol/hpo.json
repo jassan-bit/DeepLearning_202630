@@ -1,0 +1,965 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-06",
+  "administrative_timezone": "America/Bogota",
+  "status": "amendment_specified_awaiting_public_registration",
+  "guide_sha256": "93499dcfda6a36d9621524a81821470017ba114ca6b08241a35de5a54f74a654",
+  "no_training_or_new_Bitcoin_results": true,
+  "tunable_models": [
+    {
+      "id": "TSMixer",
+      "trials": 12,
+      "assigned_compute_seconds": 172800,
+      "space": {
+        "learning_rate": {
+          "distribution": "log_uniform",
+          "min": 0.0001,
+          "max": 0.003,
+          "source_reference_support_exception": 0.0001
+        },
+        "weight_decay": {
+          "distribution": "log_uniform",
+          "min": 1e-06,
+          "max": 0.01
+        },
+        "dropout": {
+          "distribution": "uniform",
+          "min": 0.0,
+          "max": 0.3,
+          "source_reference_support_exception": 0.9
+        },
+        "batch_size": {
+          "distribution": "categorical",
+          "values": [
+            16,
+            32,
+            64
+          ]
+        },
+        "depth": {
+          "mode": "fixed_defined_architecture",
+          "source": "experiments/e2_completion_20261106/architecture_review.json",
+          "reason": "specific structure exception under guide14/p52-53; no structural search of an already defined backbone"
+        },
+        "width": {
+          "mode": "fixed_defined_architecture",
+          "source": "experiments/e2_completion_20261106/architecture_review.json",
+          "reason": "specific D7 task recipe declared before outputs; no silent structural grid"
+        }
+      },
+      "nonapplicable_standard_axes": [],
+      "nonapplicability_reason": null,
+      "candidate_generation_seed": 202611061,
+      "selection_direction": "minimize",
+      "task_representation_exception": false,
+      "source_reference_candidate": "c12"
+    },
+    {
+      "id": "TiDE",
+      "trials": 12,
+      "assigned_compute_seconds": 172800,
+      "space": {
+        "learning_rate": {
+          "distribution": "log_uniform",
+          "min": 0.0001,
+          "max": 0.003,
+          "source_reference_support_exception": 3.822279848104051e-05
+        },
+        "weight_decay": {
+          "distribution": "log_uniform",
+          "min": 1e-06,
+          "max": 0.01
+        },
+        "dropout": {
+          "distribution": "uniform",
+          "min": 0.0,
+          "max": 0.3,
+          "source_reference_support_exception": 0.3
+        },
+        "batch_size": {
+          "distribution": "categorical",
+          "values": [
+            16,
+            32,
+            64
+          ]
+        },
+        "depth": {
+          "mode": "fixed_defined_architecture",
+          "source": "experiments/e2_completion_20261106/architecture_review.json",
+          "reason": "specific structure exception under guide14/p52-53; no structural search of an already defined backbone"
+        },
+        "width": {
+          "mode": "fixed_defined_architecture",
+          "source": "experiments/e2_completion_20261106/architecture_review.json",
+          "reason": "specific D7 task recipe declared before outputs; no silent structural grid"
+        }
+      },
+      "nonapplicable_standard_axes": [],
+      "nonapplicability_reason": null,
+      "candidate_generation_seed": 202611061,
+      "selection_direction": "minimize",
+      "task_representation_exception": false,
+      "source_reference_candidate": "c12"
+    },
+    {
+      "id": "TimeMixer",
+      "trials": 12,
+      "assigned_compute_seconds": 172800,
+      "space": {
+        "learning_rate": {
+          "distribution": "log_uniform",
+          "min": 0.0001,
+          "max": 0.003,
+          "source_reference_support_exception": 0.01
+        },
+        "weight_decay": {
+          "distribution": "log_uniform",
+          "min": 1e-06,
+          "max": 0.01
+        },
+        "dropout": {
+          "distribution": "uniform",
+          "min": 0.0,
+          "max": 0.3,
+          "source_reference_support_exception": 0.1
+        },
+        "batch_size": {
+          "distribution": "categorical",
+          "values": [
+            16,
+            32,
+            64
+          ]
+        },
+        "depth": {
+          "mode": "fixed_defined_architecture",
+          "source": "experiments/e2_completion_20261106/architecture_review.json",
+          "reason": "specific structure exception under guide14/p52-53; no structural search of an already defined backbone"
+        },
+        "width": {
+          "mode": "fixed_defined_architecture",
+          "source": "experiments/e2_completion_20261106/architecture_review.json",
+          "reason": "specific D7 task recipe declared before outputs; no silent structural grid"
+        }
+      },
+      "nonapplicable_standard_axes": [],
+      "nonapplicability_reason": null,
+      "candidate_generation_seed": 202611061,
+      "selection_direction": "minimize",
+      "task_representation_exception": false,
+      "source_reference_candidate": "c12"
+    },
+    {
+      "id": "TimesNet",
+      "trials": 12,
+      "assigned_compute_seconds": 172800,
+      "space": {
+        "learning_rate": {
+          "distribution": "log_uniform",
+          "min": 0.0001,
+          "max": 0.003,
+          "source_reference_support_exception": 0.0001
+        },
+        "weight_decay": {
+          "distribution": "log_uniform",
+          "min": 1e-06,
+          "max": 0.01
+        },
+        "dropout": {
+          "distribution": "uniform",
+          "min": 0.0,
+          "max": 0.3,
+          "source_reference_support_exception": 0.1
+        },
+        "batch_size": {
+          "distribution": "categorical",
+          "values": [
+            16,
+            32,
+            64
+          ]
+        },
+        "depth": {
+          "mode": "fixed_defined_architecture",
+          "source": "experiments/e2_completion_20261106/architecture_review.json",
+          "reason": "specific structure exception under guide14/p52-53; no structural search of an already defined backbone"
+        },
+        "width": {
+          "mode": "fixed_defined_architecture",
+          "source": "experiments/e2_completion_20261106/architecture_review.json",
+          "reason": "specific D7 task recipe declared before outputs; no silent structural grid"
+        }
+      },
+      "nonapplicable_standard_axes": [],
+      "nonapplicability_reason": null,
+      "candidate_generation_seed": 202611061,
+      "selection_direction": "minimize",
+      "task_representation_exception": false,
+      "source_reference_candidate": "c12"
+    },
+    {
+      "id": "PatchTST",
+      "trials": 12,
+      "assigned_compute_seconds": 172800,
+      "space": {
+        "learning_rate": {
+          "distribution": "log_uniform",
+          "min": 0.0001,
+          "max": 0.003,
+          "source_reference_support_exception": 0.0001
+        },
+        "weight_decay": {
+          "distribution": "log_uniform",
+          "min": 1e-06,
+          "max": 0.01
+        },
+        "dropout": {
+          "distribution": "uniform",
+          "min": 0.0,
+          "max": 0.3,
+          "source_reference_support_exception": 0.2
+        },
+        "batch_size": {
+          "distribution": "categorical",
+          "values": [
+            16,
+            32,
+            64
+          ]
+        },
+        "depth": {
+          "mode": "fixed_defined_architecture",
+          "source": "experiments/e2_completion_20261106/architecture_review.json",
+          "reason": "specific structure exception under guide14/p52-53; no structural search of an already defined backbone"
+        },
+        "width": {
+          "mode": "fixed_defined_architecture",
+          "source": "experiments/e2_completion_20261106/architecture_review.json",
+          "reason": "specific D7 task recipe declared before outputs; no silent structural grid"
+        }
+      },
+      "nonapplicable_standard_axes": [],
+      "nonapplicability_reason": null,
+      "candidate_generation_seed": 202611061,
+      "selection_direction": "minimize",
+      "task_representation_exception": false,
+      "source_reference_candidate": "c12"
+    },
+    {
+      "id": "Informer",
+      "trials": 12,
+      "assigned_compute_seconds": 172800,
+      "space": {
+        "learning_rate": {
+          "distribution": "log_uniform",
+          "min": 0.0001,
+          "max": 0.003,
+          "source_reference_support_exception": 0.0001
+        },
+        "weight_decay": {
+          "distribution": "log_uniform",
+          "min": 1e-06,
+          "max": 0.01
+        },
+        "dropout": {
+          "distribution": "uniform",
+          "min": 0.0,
+          "max": 0.3,
+          "source_reference_support_exception": 0.1
+        },
+        "batch_size": {
+          "distribution": "categorical",
+          "values": [
+            16,
+            32,
+            64
+          ]
+        },
+        "depth": {
+          "mode": "fixed_defined_architecture",
+          "source": "experiments/e2_completion_20261106/architecture_review.json",
+          "reason": "specific structure exception under guide14/p52-53; no structural search of an already defined backbone"
+        },
+        "width": {
+          "mode": "fixed_defined_architecture",
+          "source": "experiments/e2_completion_20261106/architecture_review.json",
+          "reason": "specific D7 task recipe declared before outputs; no silent structural grid"
+        }
+      },
+      "nonapplicable_standard_axes": [],
+      "nonapplicability_reason": null,
+      "candidate_generation_seed": 202611061,
+      "selection_direction": "minimize",
+      "task_representation_exception": false,
+      "source_reference_candidate": "c12"
+    },
+    {
+      "id": "Autoformer",
+      "trials": 12,
+      "assigned_compute_seconds": 172800,
+      "space": {
+        "learning_rate": {
+          "distribution": "log_uniform",
+          "min": 0.0001,
+          "max": 0.003,
+          "source_reference_support_exception": 0.0001
+        },
+        "weight_decay": {
+          "distribution": "log_uniform",
+          "min": 1e-06,
+          "max": 0.01
+        },
+        "dropout": {
+          "distribution": "uniform",
+          "min": 0.0,
+          "max": 0.3,
+          "source_reference_support_exception": 0.05
+        },
+        "batch_size": {
+          "distribution": "categorical",
+          "values": [
+            16,
+            32,
+            64
+          ]
+        },
+        "depth": {
+          "mode": "fixed_defined_architecture",
+          "source": "experiments/e2_completion_20261106/architecture_review.json",
+          "reason": "specific structure exception under guide14/p52-53; no structural search of an already defined backbone"
+        },
+        "width": {
+          "mode": "fixed_defined_architecture",
+          "source": "experiments/e2_completion_20261106/architecture_review.json",
+          "reason": "specific D7 task recipe declared before outputs; no silent structural grid"
+        }
+      },
+      "nonapplicable_standard_axes": [],
+      "nonapplicability_reason": null,
+      "candidate_generation_seed": 202611061,
+      "selection_direction": "minimize",
+      "task_representation_exception": false,
+      "source_reference_candidate": "c12"
+    },
+    {
+      "id": "iTransformer",
+      "trials": 12,
+      "assigned_compute_seconds": 172800,
+      "space": {
+        "learning_rate": {
+          "distribution": "log_uniform",
+          "min": 0.0001,
+          "max": 0.003,
+          "source_reference_support_exception": 0.0001
+        },
+        "weight_decay": {
+          "distribution": "log_uniform",
+          "min": 1e-06,
+          "max": 0.01
+        },
+        "dropout": {
+          "distribution": "uniform",
+          "min": 0.0,
+          "max": 0.3,
+          "source_reference_support_exception": 0.1
+        },
+        "batch_size": {
+          "distribution": "categorical",
+          "values": [
+            16,
+            32,
+            64
+          ]
+        },
+        "depth": {
+          "mode": "fixed_defined_architecture",
+          "source": "experiments/e2_completion_20261106/architecture_review.json",
+          "reason": "specific structure exception under guide14/p52-53; no structural search of an already defined backbone"
+        },
+        "width": {
+          "mode": "fixed_defined_architecture",
+          "source": "experiments/e2_completion_20261106/architecture_review.json",
+          "reason": "specific D7 task recipe declared before outputs; no silent structural grid"
+        }
+      },
+      "nonapplicable_standard_axes": [],
+      "nonapplicability_reason": null,
+      "candidate_generation_seed": 202611061,
+      "selection_direction": "minimize",
+      "task_representation_exception": false,
+      "source_reference_candidate": "c12"
+    },
+    {
+      "id": "Crossformer",
+      "trials": 12,
+      "assigned_compute_seconds": 172800,
+      "space": {
+        "learning_rate": {
+          "distribution": "log_uniform",
+          "min": 0.0001,
+          "max": 0.003,
+          "source_reference_support_exception": 0.0001
+        },
+        "weight_decay": {
+          "distribution": "log_uniform",
+          "min": 1e-06,
+          "max": 0.01
+        },
+        "dropout": {
+          "distribution": "uniform",
+          "min": 0.0,
+          "max": 0.3,
+          "source_reference_support_exception": 0.2
+        },
+        "batch_size": {
+          "distribution": "categorical",
+          "values": [
+            16,
+            32,
+            64
+          ]
+        },
+        "depth": {
+          "mode": "fixed_defined_architecture",
+          "source": "experiments/e2_completion_20261106/architecture_review.json",
+          "reason": "specific structure exception under guide14/p52-53; no structural search of an already defined backbone"
+        },
+        "width": {
+          "mode": "fixed_defined_architecture",
+          "source": "experiments/e2_completion_20261106/architecture_review.json",
+          "reason": "specific D7 task recipe declared before outputs; no silent structural grid"
+        }
+      },
+      "nonapplicable_standard_axes": [],
+      "nonapplicability_reason": null,
+      "candidate_generation_seed": 202611061,
+      "selection_direction": "minimize",
+      "task_representation_exception": false,
+      "source_reference_candidate": "c12"
+    },
+    {
+      "id": "S-Mamba",
+      "trials": 12,
+      "assigned_compute_seconds": 172800,
+      "space": {
+        "learning_rate": {
+          "distribution": "log_uniform",
+          "min": 0.0001,
+          "max": 0.003,
+          "source_reference_support_exception": 7e-05
+        },
+        "weight_decay": {
+          "distribution": "log_uniform",
+          "min": 1e-06,
+          "max": 0.01
+        },
+        "dropout": {
+          "distribution": "uniform",
+          "min": 0.0,
+          "max": 0.3,
+          "source_reference_support_exception": 0.1
+        },
+        "batch_size": {
+          "distribution": "categorical",
+          "values": [
+            16,
+            32,
+            64
+          ]
+        },
+        "depth": {
+          "mode": "fixed_defined_architecture",
+          "source": "experiments/e2_completion_20261106/architecture_review.json",
+          "reason": "specific structure exception under guide14/p52-53; no structural search of an already defined backbone"
+        },
+        "width": {
+          "mode": "fixed_defined_architecture",
+          "source": "experiments/e2_completion_20261106/architecture_review.json",
+          "reason": "specific D7 task recipe declared before outputs; no silent structural grid"
+        }
+      },
+      "nonapplicable_standard_axes": [],
+      "nonapplicability_reason": null,
+      "candidate_generation_seed": 202611061,
+      "selection_direction": "minimize",
+      "task_representation_exception": false,
+      "source_reference_candidate": "c12"
+    },
+    {
+      "id": "GRU-E2",
+      "trials": 12,
+      "assigned_compute_seconds": 172800,
+      "space": {
+        "learning_rate": {
+          "distribution": "log_uniform",
+          "min": 0.0001,
+          "max": 0.003,
+          "source_reference_support_exception": 0.003
+        },
+        "weight_decay": {
+          "distribution": "log_uniform",
+          "min": 1e-06,
+          "max": 0.01
+        },
+        "dropout": {
+          "distribution": "uniform",
+          "min": 0.0,
+          "max": 0.3,
+          "source_reference_support_exception": 0.1
+        },
+        "batch_size": {
+          "distribution": "categorical",
+          "values": [
+            16,
+            32,
+            64
+          ]
+        },
+        "depth": {
+          "mode": "fixed_defined_architecture",
+          "source": "experiments/e2_completion_20261106/architecture_review.json",
+          "reason": "specific structure exception under guide14/p52-53; no structural search of an already defined backbone"
+        },
+        "width": {
+          "mode": "fixed_defined_architecture",
+          "source": "experiments/e2_completion_20261106/architecture_review.json",
+          "reason": "specific D7 task recipe declared before outputs; no silent structural grid"
+        }
+      },
+      "nonapplicable_standard_axes": [],
+      "nonapplicability_reason": null,
+      "candidate_generation_seed": 202611061,
+      "selection_direction": "minimize",
+      "task_representation_exception": false,
+      "source_reference_candidate": "c12"
+    },
+    {
+      "id": "LSTM-E2",
+      "trials": 12,
+      "assigned_compute_seconds": 172800,
+      "space": {
+        "learning_rate": {
+          "distribution": "log_uniform",
+          "min": 0.0001,
+          "max": 0.003,
+          "source_reference_support_exception": 0.003
+        },
+        "weight_decay": {
+          "distribution": "log_uniform",
+          "min": 1e-06,
+          "max": 0.01
+        },
+        "dropout": {
+          "distribution": "uniform",
+          "min": 0.0,
+          "max": 0.3,
+          "source_reference_support_exception": 0.0
+        },
+        "batch_size": {
+          "distribution": "categorical",
+          "values": [
+            16,
+            32,
+            64
+          ]
+        },
+        "depth": {
+          "mode": "fixed_defined_architecture",
+          "source": "experiments/e2_completion_20261106/architecture_review.json",
+          "reason": "specific structure exception under guide14/p52-53; no structural search of an already defined backbone"
+        },
+        "width": {
+          "mode": "fixed_defined_architecture",
+          "source": "experiments/e2_completion_20261106/architecture_review.json",
+          "reason": "specific D7 task recipe declared before outputs; no silent structural grid"
+        }
+      },
+      "nonapplicable_standard_axes": [],
+      "nonapplicability_reason": null,
+      "candidate_generation_seed": 202611061,
+      "selection_direction": "minimize",
+      "task_representation_exception": false,
+      "source_reference_candidate": "c12"
+    },
+    {
+      "id": "TCN-E2",
+      "trials": 12,
+      "assigned_compute_seconds": 172800,
+      "space": {
+        "learning_rate": {
+          "distribution": "log_uniform",
+          "min": 0.0001,
+          "max": 0.003,
+          "source_reference_support_exception": 0.003
+        },
+        "weight_decay": {
+          "distribution": "log_uniform",
+          "min": 1e-06,
+          "max": 0.01
+        },
+        "dropout": {
+          "distribution": "uniform",
+          "min": 0.0,
+          "max": 0.3,
+          "source_reference_support_exception": 0.0
+        },
+        "batch_size": {
+          "distribution": "categorical",
+          "values": [
+            16,
+            32,
+            64
+          ]
+        },
+        "depth": {
+          "mode": "fixed_defined_architecture",
+          "source": "experiments/e2_completion_20261106/architecture_review.json",
+          "reason": "specific structure exception under guide14/p52-53; no structural search of an already defined backbone"
+        },
+        "width": {
+          "mode": "fixed_defined_architecture",
+          "source": "experiments/e2_completion_20261106/architecture_review.json",
+          "reason": "specific D7 task recipe declared before outputs; no silent structural grid"
+        }
+      },
+      "nonapplicable_standard_axes": [],
+      "nonapplicability_reason": null,
+      "candidate_generation_seed": 202611061,
+      "selection_direction": "minimize",
+      "task_representation_exception": false,
+      "source_reference_candidate": "c12"
+    },
+    {
+      "id": "Ridge",
+      "trials": 12,
+      "assigned_compute_seconds": 172800,
+      "space": {
+        "alpha": {
+          "distribution": "log_uniform",
+          "min": 1e-06,
+          "max": 1000.0
+        }
+      },
+      "nonapplicable_standard_axes": [
+        "learning_rate",
+        "weight_decay",
+        "dropout",
+        "batch_size",
+        "depth",
+        "width"
+      ],
+      "nonapplicability_reason": "closed-form linear/state-space estimator: use estimator-specific regularization/order space; no fictitious neural optimization",
+      "candidate_generation_seed": 202611061,
+      "selection_direction": "minimize",
+      "task_representation_exception": false
+    },
+    {
+      "id": "ARIMA",
+      "trials": 12,
+      "assigned_compute_seconds": 172800,
+      "space": {
+        "order": {
+          "distribution": "enumerated",
+          "p": [
+            0,
+            1,
+            2
+          ],
+          "d": [
+            0,
+            1
+          ],
+          "q": [
+            0,
+            1
+          ]
+        },
+        "trend": {
+          "mode": "conditional_fixed",
+          "d0": "c",
+          "d1": "n"
+        }
+      },
+      "nonapplicable_standard_axes": [
+        "learning_rate",
+        "weight_decay",
+        "dropout",
+        "batch_size",
+        "depth",
+        "width"
+      ],
+      "nonapplicability_reason": "closed-form linear/state-space estimator: use estimator-specific regularization/order space; no fictitious neural optimization",
+      "candidate_generation_seed": 202611061,
+      "selection_direction": "minimize",
+      "task_representation_exception": true
+    }
+  ],
+  "contextual_fixed_anchors": [
+    "GRU/D7-c03",
+    "LSTM/D7-c02",
+    "TCN/D7-c02"
+  ],
+  "deterministic_references": [
+    "Persistence",
+    "SeasonalNaive"
+  ],
+  "catalogue": [
+    "TSMixer",
+    "TiDE",
+    "TimeMixer",
+    "TimesNet",
+    "PatchTST",
+    "Informer",
+    "Autoformer",
+    "iTransformer",
+    "Crossformer",
+    "S-Mamba",
+    "GRU-E2",
+    "LSTM-E2",
+    "TCN-E2",
+    "GRU/D7-c03",
+    "LSTM/D7-c02",
+    "TCN/D7-c02",
+    "Ridge",
+    "Persistence",
+    "SeasonalNaive",
+    "ARIMA"
+  ],
+  "candidate_generation": {
+    "method": "For each13neural family: exact first11 common random draws from original registry +one source-anchored c12; Ridge/ARIMA original12 unchanged",
+    "T": 12,
+    "seed": 202611061,
+    "no_results_used": true,
+    "invalid_candidate_policy": "record invalid/failed/timeout and cause; do not replace selectively, no extra trials",
+    "comparability": "same assigned T and total compute cap for15tunables, spaces estimator appropriate; report realized completion/cost, never claim completed equality from assignment",
+    "source_point_standardized_settings": {
+      "weight_decay": 0.0001,
+      "batch_size": 32
+    },
+    "source_point_is_exact_paper_replication": false,
+    "inherited_registry_sha256": "0b1818502e98df19a4f12d3a4226276622b19dc3bc9f408f2f7b4857f71a829d"
+  },
+  "optimization": {
+    "optimizer": "AdamW for DL only",
+    "loss": "MSE normalized by train-only positive y_scale",
+    "scheduler": "none",
+    "maximum_epochs": 100,
+    "patience": 12,
+    "min_delta": 0.0,
+    "gradient_clip_norm": 1.0,
+    "precision": "FP32",
+    "threads": 1,
+    "inter_op_threads": 1,
+    "maximum_optimizer_fit_seconds": 900,
+    "same_hardware_required": true,
+    "weight_update_on_validation": false,
+    "respect_explicit_source_no_weight_decay_flags": true,
+    "no_weight_decay_policy": "Only original explicit _no_weight_decay flags (Mamba A_log/D); no invented bias/norm exemptions. Other trainable parameters use candidate decay."
+  },
+  "selection": {
+    "seed_ids": [
+      2026110611,
+      2026110612
+    ],
+    "outer_origins": "first day Jan-Oct2024",
+    "outer_folds": 10,
+    "inner_folds": 3,
+    "inner_block_days": 30,
+    "latest_training_target_offset_days": -8,
+    "early_stop": "q-90..q-8 potential83dates, fit targets<=q-98; separate refit from fresh initialization",
+    "aggregation": "concatenate common eligible origins per seed, compute RMSE perseed then mean; minimize, not monthly RMSE mean",
+    "refit_policy": "same two-stage early-stop+fresh fit for all13DL; Ridge/ARIMA have estimator-appropriate one fit, all compute recorded",
+    "final_recipe_selection": "additional forward development search Jan-Oct2024, before P1; no test; HPOouter results describe procedure not unique recipe",
+    "tie_break": [
+      "lower validation RMSE in original units",
+      "lower development latency measured on same hardware",
+      "lower parameter count",
+      "lexicographic candidateID"
+    ]
+  },
+  "fairness": {
+    "applies_to": [
+      "TSMixer",
+      "TiDE",
+      "TimeMixer",
+      "TimesNet",
+      "PatchTST",
+      "Informer",
+      "Autoformer",
+      "iTransformer",
+      "Crossformer",
+      "S-Mamba",
+      "GRU-E2",
+      "LSTM-E2",
+      "TCN-E2",
+      "Ridge",
+      "ARIMA"
+    ],
+    "anchors_context_only": true,
+    "equal_assigned_total_compute_seconds_per_tunable": 172800,
+    "common_trial_count": 12,
+    "realized_equal_optimization_claim_requires_complete_same_registered_schedule": true,
+    "exhausted_budget": "mark incomplete, retain all attempted configurations, no winner advantage attribution; no selective budget extensions"
+  },
+  "minimum_axes_policy": "All neural standard axes accounted for; depth/width fixed by architecture-specific exception14 rather than pretending to search published structure. Heads/context/patches/kernels are fixed justified constraints, not posthoc choices. Any rejected exception requires new registered NAS before execution.",
+  "deterministic_estimator_policy": {
+    "models": [
+      "Ridge",
+      "ARIMA"
+    ],
+    "HPO": "one fit per candidate/fold; do not duplicate identical fits for two seedIDs; same12trial and assigned-compute policy, actualfit counts disclosed",
+    "evaluation": "store a single deterministic trajectory per recipe/fold, broadcast only for paired arithmetic; no independent-seed variance invented",
+    "trivial_references": [
+      "Persistence",
+      "SeasonalNaive"
+    ],
+    "reference_information_set": "ARIMA and naive labels use causal target history as route baseline exception, not a new network channel"
+  },
+  "parent_protocol_commit": "599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0",
+  "source_reference_candidates": {
+    "TSMixer": {
+      "candidate_id": "TSMixer-c12",
+      "parameters": {
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001,
+        "dropout": 0.9,
+        "batch_size": 32
+      },
+      "source": "TSMixer Table8 ETTh1,H96,PDFp21; extracted TSMixer.txt1157–1170",
+      "claim": "Paper chosen architecture H512/blocks6 including reported search-space inconsistency"
+    },
+    "TiDE": {
+      "candidate_id": "TiDE-c12",
+      "parameters": {
+        "learning_rate": 3.822279848104051e-05,
+        "weight_decay": 0.0001,
+        "dropout": 0.3,
+        "batch_size": 32
+      },
+      "source": "tide/scripts/etth1.sh36–54 at Google d3a4bd8; Table8 ETTh1 structure",
+      "claim": "Official H336/H720 preset, not H96 recipe; D7 and new task head adapted"
+    },
+    "TimeMixer": {
+      "candidate_id": "TimeMixer-c12",
+      "parameters": {
+        "learning_rate": 0.01,
+        "weight_decay": 0.0001,
+        "dropout": 0.1,
+        "batch_size": 32
+      },
+      "source": "TimeMixer_ETTh1_unify.sh9,38 and run.py dropout default",
+      "claim": "Original unified ETTh1 preset nonstructural anchor; D7 forces pooling-depth adaptation"
+    },
+    "TimesNet": {
+      "candidate_id": "TimesNet-c12",
+      "parameters": {
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001,
+        "dropout": 0.1,
+        "batch_size": 32
+      },
+      "source": "pinned TSL4e938a1 ETTh1 script, run.py71,93 defaults",
+      "claim": "Original paper C5width32 combined with official scriptFF32/defaultkernels6; no exact paper-row replication claim"
+    },
+    "PatchTST": {
+      "candidate_id": "PatchTST-c12",
+      "parameters": {
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001,
+        "dropout": 0.2,
+        "batch_size": 32
+      },
+      "source": "PatchTST PDF A.1.5 encoder dropout .2, official code LR1e-4; ETTh1.sh encoder/fc.3 is a distinct condition",
+      "claim": "Paper-explicit value prioritized; LR1e-4 filled from official ETTh1.sh, without claiming exact paper-row identity"
+    },
+    "Informer": {
+      "candidate_id": "Informer-c12",
+      "parameters": {
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001,
+        "dropout": 0.1,
+        "batch_size": 32
+      },
+      "source": "Informer paper experimental training paragraph1e-4 and Table7 dropout.1; CLIdefault.05 belongs to another condition",
+      "claim": "Paper main Table7 structure with input/task adaptation, not ETTh1.sh row winner"
+    },
+    "Autoformer": {
+      "candidate_id": "Autoformer-c12",
+      "parameters": {
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001,
+        "dropout": 0.05,
+        "batch_size": 32
+      },
+      "source": "original run.py55,68 defaults and ETTh1 script withfactor3",
+      "claim": "Official script/default preset, not separately verified paper-row optimum"
+    },
+    "iTransformer": {
+      "candidate_id": "iTransformer-c12",
+      "parameters": {
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001,
+        "dropout": 0.1,
+        "batch_size": 32
+      },
+      "source": "official ETTh1_96_96 script; run.py52,65",
+      "claim": "d256/ff256/encoder2 official preset; not P0d16"
+    },
+    "Crossformer": {
+      "candidate_id": "Crossformer-c12",
+      "parameters": {
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001,
+        "dropout": 0.2,
+        "batch_size": 32
+      },
+      "source": "scripts/ETTh1.sh4 H24 and main_crossformer.py27,35",
+      "claim": "CLI defaults d256/ff512/merge2/seg6; constructorFF1024/merge4 are distinct andnot chosen row"
+    },
+    "S-Mamba": {
+      "candidate_id": "S-Mamba-c12",
+      "parameters": {
+        "learning_rate": 7e-05,
+        "weight_decay": 0.0001,
+        "dropout": 0.1,
+        "batch_size": 32
+      },
+      "source": "official S_Mamba_ETTh1.sh24 H96 and run.py52",
+      "claim": "d256/ff256/state2/encoder2; CPU exact-reference scan instead of fusedCUDA"
+    },
+    "GRU-E2": {
+      "candidate_id": "GRU-E2-c12",
+      "parameters": {
+        "learning_rate": 0.003,
+        "weight_decay": 0.0001,
+        "dropout": 0.1,
+        "batch_size": 32
+      },
+      "source": "e1_reference.json base_model_recipes.GRU,c03",
+      "claim": "Inherited E1 selected recipe anchor, not claimed canonical original paper"
+    },
+    "LSTM-E2": {
+      "candidate_id": "LSTM-E2-c12",
+      "parameters": {
+        "learning_rate": 0.003,
+        "weight_decay": 0.0001,
+        "dropout": 0.0,
+        "batch_size": 32
+      },
+      "source": "e1_reference.json base_model_recipes.LSTM,c02",
+      "claim": "Inherited E1 selected recipe anchor, not claimed canonical original paper"
+    },
+    "TCN-E2": {
+      "candidate_id": "TCN-E2-c12",
+      "parameters": {
+        "learning_rate": 0.003,
+        "weight_decay": 0.0001,
+        "dropout": 0.0,
+        "batch_size": 32
+      },
+      "source": "e1_reference.json base_model_recipes.TCN,c02",
+      "claim": "Inherited E1 selected recipe anchor, not claimed canonical original paper"
+    }
+  }
+}

@@ -1,0 +1,475 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "reviewer_task": "reaudit_implementation_replica",
+  "review_kind": "Independent static source/mechanism comparison and hash-bound synthetic integration tests before final benchmark registration",
+  "reviewed_at": "2026-11-06T12:59:11.600355-05:00",
+  "models": {
+    "TSMixer": {
+      "status": "passed",
+      "source_architecture_defined": true,
+      "final_architecture_exception_verified": true,
+      "nas_required": false,
+      "scope": "Fixed reviewed source backbone with explicit D7 scalar-task adaptations; not exact original forecasting result replication",
+      "structural_parameters": {
+        "mixer_blocks": 6,
+        "feature_hidden": 512,
+        "activation": "ReLU",
+        "normalization": "Keras BatchNorm axis(time,channel), pre-norm, momentum.99,epsilon.001",
+        "backbone_dense_initialization": "Keras GlorotUniform weights, zero biases"
+      },
+      "task_adaptations": [
+        "Input length7/channels5",
+        "Original temporal OHLCV output head replaced by Linear45,1+Softplus"
+      ],
+      "author_commit": "d3a4bd8f0eceddda553e47085033b537935b283f",
+      "primary_author_file_hashes": {
+        "tsmixer/tsmixer_basic/models/tsmixer.py": "84a7451f86b40b989f7ab7aa36368f24f39610ad62d7ce43e474a30a4e006159"
+      },
+      "numeric_preset_evidence": {
+        "paper": "TSMixer complete PDF Table8 ETTh1; six blocks/H512, including reported search-range inconsistency"
+      },
+      "all_trainable_parameters_on_gradient_path_in_synthetic_test": true,
+      "eval_batch_companion_invariance_tested": true,
+      "no_calendar_or_target_lag_channel_added": true,
+      "no_future_observation_used": true,
+      "no_OHLCV_output_denormalization_for_sigma": true
+    },
+    "TiDE": {
+      "status": "passed",
+      "source_architecture_defined": true,
+      "final_architecture_exception_verified": true,
+      "nas_required": false,
+      "scope": "Fixed reviewed source backbone with explicit D7 scalar-task adaptations; not exact original forecasting result replication",
+      "structural_parameters": {
+        "hidden_size": 256,
+        "source_num_layers_flag": 2,
+        "actual_encoder_residual_blocks": 1,
+        "actual_decoder_residual_blocks": 1,
+        "decoder_output_dim": 8,
+        "temporal_decoder_hidden": 128,
+        "temporal_covariate_encoder_hidden": 64,
+        "temporal_width": 4,
+        "layer_norm": true,
+        "RevIN": true,
+        "learned_series_embedding": 16,
+        "source_reference_horizons": [
+          336,
+          720
+        ],
+        "backbone_dense_initialization": "Keras GlorotUniform weights, zero biases",
+        "series_embedding_initialization": "Keras uniform[-.05,.05]"
+      },
+      "task_adaptations": [
+        "Five OHLCV channel identities; past covariates reuse sameD7, absent future covariates fixedzero",
+        "Temporal decoder output latent8 with LN8 replaces source scalaroutput1/LN1 to avoid constant collapse",
+        "Global residual7to1 broadcast to latent8; Linear50,1+Softplus; no OHLCV inverse normalization"
+      ],
+      "author_commit": "d3a4bd8f0eceddda553e47085033b537935b283f",
+      "primary_author_file_hashes": {
+        "tide/models.py": "ad8fd8d498809deeed9c847a169cada42134cbd0351b03e750706132a5d151c7"
+      },
+      "numeric_preset_evidence": {
+        "paper": "TiDE Table8 ETTh1; paper source structure, not official H96 recipe",
+        "tide/train.py": "3edd19eed01f92ef50cadca73fbe8a793c701d34edb5ea376c6bcc55e92f0854",
+        "tide/scripts/etth1.sh": "55e085f1513af3a4a0ef8f7244512ee78beba5ab09540192b3cd3bb37441981c"
+      },
+      "all_trainable_parameters_on_gradient_path_in_synthetic_test": true,
+      "eval_batch_companion_invariance_tested": true,
+      "no_calendar_or_target_lag_channel_added": true,
+      "no_future_observation_used": true,
+      "no_OHLCV_output_denormalization_for_sigma": true
+    },
+    "TimeMixer": {
+      "status": "passed",
+      "source_architecture_defined": true,
+      "final_architecture_exception_verified": true,
+      "nas_required": false,
+      "scope": "Fixed reviewed source backbone with explicit D7 scalar-task adaptations; not exact original forecasting result replication",
+      "structural_parameters": {
+        "d_model": 16,
+        "d_ff": 32,
+        "e_layers": 2,
+        "down_sampling_layers": 2,
+        "pool_window": 2,
+        "scales": [
+          7,
+          3,
+          1
+        ],
+        "moving_avg": 25,
+        "channel_independence": 1
+      },
+      "task_adaptations": [
+        "Published three pooling levels would produce length0; maximum validD7 pooling depth2 used",
+        "Retain PDM and scale-specific FMM latent projections; Linear90,1+Softplus, no OHLCV denorm"
+      ],
+      "author_commit": "e24610583b36fdd8c76cc17a8df4e65759a5f460",
+      "primary_author_file_hashes": {
+        "models/TimeMixer.py": "817d62f4aac54c8566e560f6d3785856e31c8ee51460279ee3d0a4823f11d4be"
+      },
+      "numeric_preset_evidence": {
+        "scripts/long_term_forecast/ETT_script/TimeMixer_ETTh1_unify.sh": "13086d899b992b67cdd4409d26f686c1ac7e15e9ad4fd03dd53a2e0728554fc4"
+      },
+      "all_trainable_parameters_on_gradient_path_in_synthetic_test": true,
+      "eval_batch_companion_invariance_tested": true,
+      "no_calendar_or_target_lag_channel_added": true,
+      "no_future_observation_used": true,
+      "no_OHLCV_output_denormalization_for_sigma": true
+    },
+    "TimesNet": {
+      "status": "passed",
+      "source_architecture_defined": true,
+      "final_architecture_exception_verified": true,
+      "nas_required": false,
+      "scope": "Fixed reviewed source backbone with explicit D7 scalar-task adaptations; not exact original forecasting result replication",
+      "structural_parameters": {
+        "d_model": 32,
+        "d_ff": 32,
+        "e_layers": 2,
+        "num_kernels": 6,
+        "learned_temporal_extension": [
+          7,
+          8
+        ],
+        "top_k": 4,
+        "period_floor_rule": true,
+        "frequency_indices": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "periods": [
+          8,
+          4,
+          2,
+          2
+        ],
+        "Inception_implementation": "Exact centered-kernel fusion; all six original parameterizations retained"
+      },
+      "task_adaptations": [
+        "Paper C5d_model32; FF32 from pinnedETTh1script and num_kernels6 from pinnedrun.py",
+        "Source learns D7to8 before FFT: topk5 bounded to allfour nonDC frequencies",
+        "Canonical allfrequency aggregation removes source batch-dependent topk and DC division",
+        "Full Inception2D blocks retained; final learned-token latent32 plus sameD7moments->Linear42,1+Softplus"
+      ],
+      "author_commit": "4e938a1767106324dd753b2a44832bf870a0252e",
+      "primary_author_file_hashes": {
+        "models/TimesNet.py": "f64c4bed1fd7347090044a0163bd4209c9f9ec1c1b19ceff47842df36b64bba7"
+      },
+      "numeric_preset_evidence": {
+        "paper": "TimesNet long-term Table7 dimension rule, d_model32 for C5",
+        "run.py": "db6dfa215520ba193fe7095380f9005949a958efa9526975410cb5d97afe3fc4",
+        "scripts/long_term_forecast/ETT_script/TimesNet_ETTh1.sh": "8490506e32ef9ee8f3a62a4286b35be552a3035d243d87104bd02e9cc381922e"
+      },
+      "all_trainable_parameters_on_gradient_path_in_synthetic_test": true,
+      "eval_batch_companion_invariance_tested": true,
+      "no_calendar_or_target_lag_channel_added": true,
+      "no_future_observation_used": true,
+      "no_OHLCV_output_denormalization_for_sigma": true
+    },
+    "PatchTST": {
+      "status": "passed",
+      "source_architecture_defined": true,
+      "final_architecture_exception_verified": true,
+      "nas_required": false,
+      "scope": "Fixed reviewed source backbone with explicit D7 scalar-task adaptations; not exact original forecasting result replication",
+      "structural_parameters": {
+        "d_model": 16,
+        "d_ff": 128,
+        "e_layers": 3,
+        "n_heads": 4,
+        "patch_len": 16,
+        "stride": 8,
+        "padded_context": 16,
+        "actual_observed_context": 7,
+        "original_end_padding": 8,
+        "patches": 2,
+        "residual_attention": true,
+        "batchnorm": true,
+        "revin_affine": true
+      },
+      "task_adaptations": [
+        "Normalize only observedD7; left edge replication9 to fit publishedpatch16, then original rightpadding8",
+        "Original channel-independent residual-attention encoder retained, flatten160+moments10->Linear170,1+Softplus",
+        "Replicated edges are deterministic functions, not additional historical/future observations"
+      ],
+      "author_commit": "204c21efe0b39603ad6e2ca640ef5896646ab1a9",
+      "primary_author_file_hashes": {
+        "models/PatchTST.py": "49d8bb865e1226d6338842f4b33c4bc6992cefb048dc2a4a5a8c410ca708586b",
+        "layers/PatchTST_backbone.py": "df67173153787c2356bdfb6491159cd754332ef7382986efe879e1fbea8ebf26",
+        "layers/PatchTST_layers.py": "21c06c70a90c60ee2a269b5c600c702834dea22cdfd72915e6b0f8b4a28db3f6",
+        "layers/RevIN.py": "e64c0ccded9228b347134e7368420d3fb10f70c75145b5ff2d8bdd8c3af59df6"
+      },
+      "numeric_preset_evidence": {
+        "PatchTST_supervised/scripts/PatchTST/etth1.sh": "556c87cd7dd795094ff6cb73465e84c90686017e1535e0ba23ed43683b9b0897"
+      },
+      "all_trainable_parameters_on_gradient_path_in_synthetic_test": true,
+      "eval_batch_companion_invariance_tested": true,
+      "no_calendar_or_target_lag_channel_added": true,
+      "no_future_observation_used": true,
+      "no_OHLCV_output_denormalization_for_sigma": true
+    },
+    "Informer": {
+      "status": "passed",
+      "source_architecture_defined": true,
+      "final_architecture_exception_verified": true,
+      "nas_required": false,
+      "scope": "Fixed reviewed source backbone with explicit D7 scalar-task adaptations; not exact original forecasting result replication",
+      "structural_parameters": {
+        "d_model": 512,
+        "d_ff": 2048,
+        "encoder_stacks": [
+          3,
+          1
+        ],
+        "encoder_heads": 16,
+        "decoder_heads": 8,
+        "decoder_cross_heads": 8,
+        "second_stack_context_divisor": 4,
+        "d_layers": 2,
+        "factor": 5,
+        "distil": true,
+        "activation": "gelu",
+        "decoder_label_len": 3
+      },
+      "task_adaptations": [
+        "seq_len7,label_len3,pred_len1; observed context only",
+        "paper quarter-context branch has one observed token",
+        "exact ProbSparse all-query limit and defined single-token boundary",
+        "remove calendar embedding; preserve both encoder stacks, distillation and full two-layer decoder",
+        "trim unused sinusoidal-buffer tail after encoder7/decoder4; used positions unchanged",
+        "keep decoder projection as five learned task features, without OHLCV interpretation"
+      ],
+      "author_commit": "29f2a739226a509202a092b464163da81fa74960",
+      "primary_author_file_hashes": {
+        "models/model.py": "bc8e062fbbb4f4ae970ca0d02d2bf43b2e92c3251c3627d887c01d35cbc6891a",
+        "models/encoder.py": "bfd72a16e8bf7b2b36bcab47d198b885863e4b2ebfa5707f619c31078bc87737",
+        "models/decoder.py": "ec2ebb81ba8d5400c06cb7db5ae2d93bb95dd04b2afbc33b5cefa284afb9a9df",
+        "models/attn.py": "d9a294d829371759f1984f9f8fee12408774dda1a3de662313151d86e8513528",
+        "models/embed.py": "d7f4f06370c640b56acab9df4092988f7711afb33cc64e868dc080286a0c4b9d",
+        "utils/masking.py": "33862345a8e9297b4214614e16c86829279953506319da4ffe33a476ef047c28",
+        "scripts/ETTh1.sh": "3550722a983d09f98d02d4f04bee2947ab7c7fb550b9697fb1d73398dc1391e1",
+        "main_informer.py": "b35cf6c96a5c2b57600995a14865ddc0124b9c89b8e3f5184fa3c3e1a38e6736",
+        "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      },
+      "numeric_preset_evidence": "paper main Table7 recipe; inspected ETTh1.sh is a different recipe, not claimed as the winner replicated here",
+      "all_trainable_parameters_on_gradient_path_in_synthetic_test": true,
+      "eval_batch_companion_and_RNG_invariance_tested": true,
+      "no_calendar_or_target_lag_channel_added": true,
+      "no_future_observation_used": true,
+      "no_OHLCV_output_denormalization_for_sigma": true
+    },
+    "Autoformer": {
+      "status": "passed",
+      "source_architecture_defined": true,
+      "final_architecture_exception_verified": true,
+      "nas_required": false,
+      "scope": "Fixed reviewed source backbone with explicit D7 scalar-task adaptations; not exact original forecasting result replication",
+      "structural_parameters": {
+        "d_model": 512,
+        "d_ff": 2048,
+        "e_layers": 2,
+        "d_layers": 1,
+        "n_heads": 8,
+        "factor": 3,
+        "moving_avg": 25,
+        "activation": "gelu",
+        "decoder_label_len": 3
+      },
+      "task_adaptations": [
+        "seq_len7,label_len3,pred_len1; no future observations",
+        "remove calendar embedding and unused positional buffer; retain endpoint padding for moving_average25",
+        "preserve encoder2, decoder1, all trend/seasonal decomposition and projections",
+        "decoder output supplies five learned task features; scalar bridge is explicit"
+      ],
+      "author_commit": "51c7d416ae120b805fd5beef2f4ccf7de496a6ff",
+      "primary_author_file_hashes": {
+        "models/Autoformer.py": "f18e9e82844ed8c4dc26e00c3c2f0b7c278ac8ea8427c4fab7331939bf69829d",
+        "layers/Embed.py": "4133ae41fc64f5531cd001d2e883bd3ab89283ddea9ffdf5659960cc8bd37918",
+        "layers/AutoCorrelation.py": "dddbc3cc533f9640bbee0e624a49532efe4ee99735101f51a4b03e105772af01",
+        "layers/Autoformer_EncDec.py": "512a01144804da2a64ade5c1e687b624a0257238da18ea02af0720479ea216e2",
+        "utils/masking.py": "02f453e52cfaec65e34132923add80e7132f188706680fa86d7bd884976e09ef",
+        "scripts/ETT_script/Autoformer_ETTh1.sh": "94dc59bccbe97567633030fe0beca466d973849755992d239fc0c29d6f7a58fa",
+        "run.py": "60ec12b07d018830675d186f462f310eb3da831e2ec3d9d3160b319e4e6b3421",
+        "LICENSE": "8a6caa178ea3f33ebff5d7bb5558628cf5b423305dc30d3630f86564c7db94a2"
+      },
+      "numeric_preset_evidence": "official ETTh1 script factor3 plus original run.py defaults d512/ff2048/heads8",
+      "all_trainable_parameters_on_gradient_path_in_synthetic_test": true,
+      "eval_batch_companion_and_RNG_invariance_tested": true,
+      "no_calendar_or_target_lag_channel_added": true,
+      "no_future_observation_used": true,
+      "no_OHLCV_output_denormalization_for_sigma": true
+    },
+    "iTransformer": {
+      "status": "passed",
+      "source_architecture_defined": true,
+      "final_architecture_exception_verified": true,
+      "nas_required": false,
+      "scope": "Fixed reviewed source backbone with explicit D7 scalar-task adaptations; not exact original forecasting result replication",
+      "structural_parameters": {
+        "d_model": 256,
+        "d_ff": 256,
+        "e_layers": 2,
+        "n_heads": 8,
+        "factor": 1,
+        "activation": "gelu",
+        "use_norm": true
+      },
+      "task_adaptations": [
+        "seq_len7 and five OHLCV variable tokens",
+        "preserve original normalization and full256-wide two-layer inverted encoder",
+        "replace per-covariate projector and its OHLCV denormalization with scalar task head"
+      ],
+      "author_commit": "c2426e68ca13f74aaec08045c5c724d8ad328124",
+      "primary_author_file_hashes": {
+        "model/iTransformer.py": "6f34777a5a12c253a293f79e7e1fd5b6f79ac100b443951e051e269e7e2542db",
+        "layers/Embed.py": "2de7e5049a696d320a23a8bdb6e08e823cf7fa3f246a0a49555fcd729c5c8398",
+        "layers/Transformer_EncDec.py": "985c31f4ae187b08afaa9663dc960a40544b2ec33ab55389ceab3930edc1ce02",
+        "layers/SelfAttention_Family.py": "38ac67428d528b8e145e4944ca059b40629a8446c891142602d5aaadc38dfd9e",
+        "utils/masking.py": "02f453e52cfaec65e34132923add80e7132f188706680fa86d7bd884976e09ef",
+        "scripts/multivariate_forecasting/ETT/iTransformer_ETTh1.sh": "81f8409cff60b754b45ed2e76133c7e3b6e585a50c8361f04fa3daf3b6997cc0",
+        "run.py": "650873cfd6fee1f0415d4e8fd69943ad736fd1bab6495b640aa27b1a769f59f9",
+        "LICENSE": "29d2a4c09fa577780522219dc248466977f77cd420354c5e9a0e86550be2b849"
+      },
+      "numeric_preset_evidence": "official ETTh1_96_96 script d256/ff256/enc2 plus run.py heads8",
+      "all_trainable_parameters_on_gradient_path_in_synthetic_test": true,
+      "eval_batch_companion_and_RNG_invariance_tested": true,
+      "no_calendar_or_target_lag_channel_added": true,
+      "no_future_observation_used": true,
+      "no_OHLCV_output_denormalization_for_sigma": true
+    },
+    "Crossformer": {
+      "status": "passed",
+      "source_architecture_defined": true,
+      "final_architecture_exception_verified": true,
+      "nas_required": false,
+      "scope": "Fixed reviewed source backbone with explicit D7 scalar-task adaptations; not exact original forecasting result replication",
+      "structural_parameters": {
+        "d_model": 256,
+        "d_ff": 512,
+        "e_layers": 3,
+        "decoder_stages": 4,
+        "n_heads": 4,
+        "seg_len": 6,
+        "merge_window": 2,
+        "router_tokens": 10,
+        "baseline": false
+      },
+      "task_adaptations": [
+        "preserve official ETTh1 seg_len6, CLIff512 and merge_window2",
+        "author left-repeats first observed value: D7 padded to12 (two segments), no new observations",
+        "retain full hierarchical encoder3 and additive four-stage decoder, not TSL encoder-only variant",
+        "crop original out_len1 and use five learned task features in scalar bridge"
+      ],
+      "author_commit": "c10c8eadb153d1dd9798250967747ca3ebb81383",
+      "primary_author_file_hashes": {
+        "cross_models/cross_former.py": "deee243b2ae877084320dce49e691c8860c56f0cbda269c6f0cdb50848f6c708",
+        "cross_models/cross_encoder.py": "be2fbf13317c27186563b68ff03326719a5a5db900b896889f46d570605587c2",
+        "cross_models/cross_decoder.py": "3c1d476df29d7a520d2ed3e8a06ec8e7186e96edda0ba74d6b943c8253fbdd40",
+        "cross_models/cross_embed.py": "6b78484268eb67f8fcf135537c3d61982c903992cc3f8f44fb47a46ec47c83fa",
+        "cross_models/attn.py": "39256d8f37e1acb3e52d645887316af89136d5910d4224c697c0cc38896f429b",
+        "main_crossformer.py": "3e2eec7ac04df696eb67968c981ecf99a694dcc92ce62e2a9b410a7e9722c5d7",
+        "scripts/ETTh1.sh": "3285202cae57c35bab6635054d1a3487423d1d365280fdbb1dff7767730850b4",
+        "LICENSE": "96c19fcecfadd5fc02b73d95dec507288f8d5b1724f1c8e6229fb21a987d8352"
+      },
+      "numeric_preset_evidence": "official ETTh1_24 script seg6 plus main_crossformer.py defaults d256/ff512/merge2/heads4/enc3",
+      "all_trainable_parameters_on_gradient_path_in_synthetic_test": true,
+      "eval_batch_companion_and_RNG_invariance_tested": true,
+      "no_calendar_or_target_lag_channel_added": true,
+      "no_future_observation_used": true,
+      "no_OHLCV_output_denormalization_for_sigma": true
+    },
+    "S-Mamba": {
+      "status": "passed",
+      "source_architecture_defined": true,
+      "final_architecture_exception_verified": true,
+      "nas_required": false,
+      "scope": "Fixed reviewed source backbone with explicit D7 scalar-task adaptations; not exact original forecasting result replication",
+      "structural_parameters": {
+        "d_model": 256,
+        "d_ff": 256,
+        "e_layers": 2,
+        "d_state": 2,
+        "d_conv": 2,
+        "expand": 1,
+        "dt_rank": 16,
+        "activation": "gelu",
+        "use_norm": true,
+        "forward_and_reverse_scans_per_block": 2
+      },
+      "task_adaptations": [
+        "five OHLCV variable tokens, each with seven observed days",
+        "preserve bidirectional variable scans, two residual blocks and FF256",
+        "replace covariate projection/denormalization with scalar latent task head",
+        "omit source registered man/man2/a modules never used by its forward method"
+      ],
+      "author_commit": "e7e8bf04066135afa43d85b0a87afa97cda16e3f",
+      "primary_author_file_hashes": {
+        "model/S_Mamba.py": "48952b3906962917bc76345b5247ce350cae3243915142896b1952b4813b5fc9",
+        "layers/Embed.py": "fa23f3680014bcc63674fba0eb3594cfa4c4f81882c5d2452936fda081ad49e0",
+        "layers/Mamba_EncDec.py": "8f89aefe9a44c59856e1743e66e3df7ec1d6bef110c3f6247cfdf6644e1af33d",
+        "layers/SelfAttention_Family.py": "38ac67428d528b8e145e4944ca059b40629a8446c891142602d5aaadc38dfd9e",
+        "utils/masking.py": "02f453e52cfaec65e34132923add80e7132f188706680fa86d7bd884976e09ef",
+        "scripts/multivariate_forecasting/ETT/S_Mamba_ETTh1.sh": "72dc76618e76f9ff145b39ae3900aae30b301b64a4e07a65ecc6af9247dfae68",
+        "run.py": "bb15489d1ec32560df328affac05467ef532291d9f76386bd162d5c0be6e874a",
+        "requirements.txt": "58fd1abde485724c5cc883907b3d476cca90ed3aba308badd60d75326a42608b"
+      },
+      "numeric_preset_evidence": "official ETTh1_96_96 script d256/ff256/state2/enc2, original d_conv2/expand1",
+      "all_trainable_parameters_on_gradient_path_in_synthetic_test": true,
+      "eval_batch_companion_and_RNG_invariance_tested": true,
+      "no_calendar_or_target_lag_channel_added": true,
+      "no_future_observation_used": true,
+      "no_OHLCV_output_denormalization_for_sigma": true
+    }
+  },
+  "reviewed_files": {
+    "scripts/e2_final_models_mlp.py": "beeada2f6754f0ca3ff1304ec090a7259a774cc7ea611fa912428cf9210f6c68",
+    "scripts/e2_final_models_attention.py": "a3f1a2a7534142f505fbf36bddf92e0abf4f76d89ac1a1fb61874559e5aafa07",
+    "tests/test_e2_final_models_mlp.py": "4bec8af5a642da7e8c52d571eba2f0c83e778254d27e2b982ec060cd2a3fb6a4",
+    "tests/test_e2_final_models_attention.py": "65cb9c652685e0729881033f600252755fd703f4621d71e4a458e99a25929c8a"
+  },
+  "synthetic_test_evidence": {
+    "MLP_conv_tests": 15,
+    "attention_SSM_tests": 16,
+    "combined": 31,
+    "all_integration_sources_present": true,
+    "skipped_integration_tests": 0,
+    "logs_sha256": {
+      "independent_mlp_tests_final.log": "f08d37fe1283b1e19899f61e347c95e0b0f64682fcd14dd029989527a3d559e1",
+      "independent_attention_tests.log": "1049e0223fd8b076f7a15e3b285823b11d0e311d7fa514efc2ca347453f1a782"
+    }
+  },
+  "source_metadata_snapshots": {
+    "mlp_models_review.json": "29b79f9a7c68881f252f321b58da576420b0e8f306a853e119ea33cf86686f49",
+    "attention_models_review.json": "412a3c3f240972e4c1085b64af43178ad76e199059fca6ffc810181e947cca86"
+  },
+  "cross_cutting_conditions": [
+    "HPO may tune only registered nonstructural candidate values; structures reviewed here remain fixed.",
+    "The TSMixer.9 sourcepoint is physically supported and tested after explicit API-domain amendment; only hashed registry may admit that exceptional sourcepoint to the HPO run.",
+    "Every actually imported author dependency and numeric preset must be included in the execution author_sources hash manifest, not only the primary Model.py file.",
+    "No blanket source-DOI exemption: these ten individual structures are defined by reviewed source code, presets and necessary D7 task changes. Any unreviewed structure change requires amendment and new review.",
+    "The inherited three E1 anchors remain fixed references; their E2 retuned variants keep inherited defined structures with separate nonstructural optimization.",
+    "TimesNet linear Inception fusion is output/gradient equivalent with all original kernels retained; runtime/FLOP comparisons concern this implementation, not intrinsic model-family superiority.",
+    "S-Mamba uses genuine input-dependent bidirectional variable selective scans and matches pinned reference outputs/gradients; CPU nonfused runtime and unsupported FLOP operations must be disclosed.",
+    "TiDE temporal output latent8 uses the source decoder width to avoid LayerNorm1 collapse; this changed task head is not an exact original scalar forecast or a new architecture search.",
+    "This architectural review does not certify full pipeline leakage checks, small-batch optimization sanity, actual HPO completion, power, calibration, literature eligibility, final superiority or a new unseen test."
+  ],
+  "explicit_adaptation_judgments": {
+    "TimeMixer": "Largest valid pooling depth2 gives7/3/1; retains PDM/FMM and same-window scalar head, replacing invalid source7/3/1/0.",
+    "PatchTST": "Normalize actual D7 first, then deterministic left edge replication9 and source right padding8; two P16/S8 patches add no observations.",
+    "TimesNet": "Learned7to8 produces four nonDC frequencies. Fixed allfour frequency set and per-example weights remove undefined DC/batch membership effects; preserve original2D Inception function class.",
+    "TiDE": "Official num_layers2 means one two-Dense residual block each encoder/decoder; preserve sourcehidden256/decoder8/temp128/feat64to4 and learnedseriesemb16.",
+    "Informer": "Paper main512/2048/full3+1encoder stacks and2decoder layers retained; source ETTh1script is distinct, single-token branch/all-query exact boundary disclosed.",
+    "Autoformer": "Official script factor3 plus d512/ff2048; full2encoder/1decoder trend-seasonal paths retained, without unavailable calendar.",
+    "iTransformer": "Official ETTh1H96preset2blocks/d256/ff256, fullfivevariable tokens, ownscalarhead replaces per-covariate denorm.",
+    "Crossformer": "Official CLI/default ETTh1recipe seg6/ff512/merge2, fullDSW/TSA/HED with4decoderstages retained; constructor ff1024/merge4 are not claimed chosen.",
+    "S-Mamba": "Official ETTh1H96d256/ff256/state2/2blocks/conv2/expand1 with genuine Mamba recurrence; source unused man/man2/a modules omitted explicitly.",
+    "TSMixer": "PaperTable8ETTh1sixblocks/H512 with original normalization/init equations; reported paper search-range inconsistency retained."
+  },
+  "new_market_dataset_fits": 0,
+  "new_market_scores": 0,
+  "final_benchmark_results_claimed": false,
+  "ready_to_score_unseen_test_claimed": false
+}
