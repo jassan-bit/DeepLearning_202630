@@ -4,7 +4,7 @@
 <div class="admonition note" id="descargar-entregable-1">
   <p class="admonition-title">Descargas del Entregable 1 · GRU–LSTM–TCN</p>
   <p><a class="btn btn-primary btn-lg" href="../_static/e1_downloads/entregable1_completo.zip" download="entregable1_completo.zip">Descargar entrega completa · ZIP</a></p>
-  <p>Los siete productos reúnen el benchmark inicial y el nuevo estudio D7 con búsqueda equitativa, piloto y evaluación preespecificada. También pueden descargarse individualmente.</p>
+  <p>Los siete productos reúnen el benchmark inicial, el estudio D7 con búsqueda equitativa, piloto y evaluación preespecificada, y la ampliación bibliográfica nativa del 6 de noviembre. También pueden descargarse individualmente.</p>
 </div>
 ```
 
@@ -17,7 +17,7 @@ Los botones descargan directamente desde el JBook. El [catálogo](../_static/e1_
 | {ref}`8.1 <entrega-8-1>` | Informe en Jupyter Book | Capítulos, figuras y resultados de ambas fases | <a class="btn btn-primary btn-sm" href="../_static/e1_downloads/8_1_informe_html.zip" download="8_1_informe_html.zip">Descargar ZIP</a> |
 | {ref}`8.2 <entrega-8-2>` | Código EDA, modelos y estadística | Ejecutores separados para fase I y fase II; pruebas, locks y guía de restauración | <a class="btn btn-primary btn-sm" href="../_static/e1_downloads/8_2_codigo.zip" download="8_2_codigo.zip">Descargar ZIP</a> |
 | {ref}`8.3 <entrega-8-3>` | Dataset: instrucciones y scripts | Fuente oficial, descargador, manifiestos y calendario | <a class="btn btn-primary btn-sm" href="../_static/e1_downloads/8_3_dataset_instrucciones.zip" download="8_3_dataset_instrucciones.zip">Descargar ZIP</a> |
-| {ref}`8.4 <entrega-8-4>` | Síntesis de literatura y flujo | Siete estudios cripto, 40 referencias y selección de familias con límites explícitos | <a class="btn btn-primary btn-sm" href="../_static/e1_downloads/8_4_literatura.zip" download="8_4_literatura.zip">Descargar ZIP</a> |
+| {ref}`8.4 <entrega-8-4>` | Síntesis de literatura y flujo | 42 referencias actuales; corte histórico de siete estudios y ampliación nativa WoS/Scopus con 244 ocurrencias | <a class="btn btn-primary btn-sm" href="../_static/e1_downloads/8_4_literatura.zip" download="8_4_literatura.zip">Descargar ZIP</a> |
 | {ref}`8.5 <entrega-8-5>` | Benchmark, baseline e inferencia | Agregados del benchmark inicial y del estudio D7 preespecificado | <a class="btn btn-primary btn-sm" href="../_static/e1_downloads/8_5_benchmark.zip" download="8_5_benchmark.zip">Descargar ZIP</a> |
 | {ref}`8.6 <entrega-8-6>` | Dependencias, semillas y configuraciones | Recetas, búsqueda, piloto, dimensionamiento y configuraciones por fase | <a class="btn btn-primary btn-sm" href="../_static/e1_downloads/8_6_configuraciones.zip" download="8_6_configuraciones.zip">Descargar ZIP</a> |
 | {ref}`8.7 <entrega-8-7>` | Métrica, margen, independencia y partición | Registros previos de fase II y cronología original de fase I | <a class="btn btn-primary btn-sm" href="../_static/e1_downloads/8_7_declaracion.zip" download="8_7_declaracion.zip">Descargar ZIP</a> |
@@ -83,9 +83,9 @@ Se agregan días UTC completos y se conserva el calendario, sin imputar faltante
 (entrega-8-4)=
 ## 8.4. Síntesis de literatura y flujo de búsqueda
 
-La revisión mantiene **40 referencias y siete estudios cripto con texto completo**. Todos incluyen Bitcoin y uno otras diecinueve criptomonedas; los subconjuntos se solapan.
+El **corte histórico del 05/11/2026** conserva **40 referencias de antecedentes y siete estudios cripto con texto completo verificado**. Los siete incluyen Bitcoin y uno otras diecinueve criptomonedas; los subconjuntos se solapan. Las frecuencias siguientes describen ese corte y su criterio de comparador independiente.
 
-| Modelo | Comparadores independientes en siete estudios | Respaldo publicado directo |
+| Modelo | Comparadores independientes en siete estudios al 05/11 | Respaldo publicado directo |
 |---|---:|---|
 | GRU | 3/7 | Akbiyik et al. (2023), §5 y Tabla 2; Miura et al. (2019), Tabla 1 |
 | LSTM | 5/7 | Akbiyik et al. (2023); Miura et al. (2019) |
@@ -93,7 +93,21 @@ La revisión mantiene **40 referencias y siete estudios cripto con texto complet
 
 Las tres familias aparecen como comparadores de volatilidad de Bitcoin en WSDM/ACM {cite:p}`akbiyik2023`; GRU y LSTM también en ISNN/Springer LNCS {cite:p}`miura2019`. Se distingue congreso, revista y manuscrito, sin inferir indexación individual o Q1 sólo por la editorial.
 
-El [capítulo 3](03_estado_arte.md) y el ZIP 8.4 conservan síntesis, flujo y extracción. **Pendiente bibliográfico:** ampliar respaldo independiente de TCN y justificar suficientemente las dos variantes recurrentes. El HPO y el piloto nuevos no aumentan las frecuencias ni convierten las recetas propias en réplicas exactas de artículos.
+La **ampliación del 06/11/2026** incorpora cuatro archivos nativos suministrados de Scopus y Web of Science:
+
+| Base | Exportaciones recibidas | Ocurrencias |
+|---|---:|---:|
+| Scopus | 2 | 19 + 158 = 177 |
+| Web of Science | 2 | 8 + 59 = 67 |
+| **Total** | **4** | **244** |
+
+La agrupación por DOI/título produce **182 grupos provisionales**. Este recuento organiza el cribado y conserva las apariciones por fuente; no representa 182 artículos incluidos, textos completos revisados o estudios comparables con σ₇ de BTCUSDT. El año nominal de publicación tampoco basta para admitir registros de 2027: se debe verificar Early Access o fecha efectiva disponible antes del corte.
+
+El {download}`registro de importación <../_static/literature_e1/native_search_20261106/README.md>`, el [manifiesto de fuentes](../_static/literature_e1/native_search_20261106/source_manifest.json), los [recuentos](../_static/literature_e1/native_search_20261106/summary.json), los [registros normalizados](../_static/literature_e1/native_search_20261106/records.csv) y el [cribado](../_static/literature_e1/native_search_20261106/screening.csv) permiten revisar el paso de exportación a candidatos. El ZIP 8.4 reúne estos archivos, las ocurrencias, la deduplicación, la cola de lectura y el flujo de esta ampliación, junto con la evidencia del corte histórico. La recepción de los archivos acredita consultas/exportaciones WoS y Scopus; no reconstruye por sí sola sus cadenas, filtros o cobertura total.
+
+La lectura de **dos originales completos adicionales** lleva la bibliografía actual a **42 referencias**: Nguyen et al. (2023) compara TCN/LSTM para CVI, un índice de volatilidad implícita; Zahid et al. (2022) emplea redes como componentes de modelos híbridos GARCH {cite:p}`nguyen2023cvi,zahid2022hybrid`. El {download}`registro de lectura <../_static/literature_e1/primary_reviews_20261106/README.md>`, su [matriz](../_static/literature_e1/primary_reviews_20261106/evidence_matrix.csv) y las [métricas extraídas](../_static/literature_e1/primary_reviews_20261106/metrics.csv) se incluyen también en el ZIP 8.4. Los objetivos, papeles de modelo y límites metodológicos se mantienen separados; no se modifica el corte N=7 ni se presentan nueve estudios como comparadores autónomos homogéneos de σ₇.
+
+El [capítulo 3](03_estado_arte.md) distingue antecedentes, corte histórico y ampliación. Permanecen abiertas la lectura de los restantes originales y clasificación de sus objetivos, el respaldo independiente de TCN, la justificación de GRU/LSTM y la trazabilidad IEEE. Encontrar una arquitectura en un resumen no actualiza las frecuencias de texto completo. El HPO y el piloto tampoco las aumentan ni convierten las recetas propias en réplicas exactas de artículos. La revisión no se declara cerrada y los nuevos resultados no se seleccionan por favorecer la terna o el ranking experimental.
 
 (entrega-8-5)=
 ## 8.5. Tabla comparativa, baseline e inferencia estadística

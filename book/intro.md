@@ -3,7 +3,7 @@
 **Proyecto de Deep Learning · 2026-30**  
 **Profesor:** Dr. Lihki Rubio  
 **Autor:** Jassan Arteta  
-**Avance:** Entregable 1 · GRU–LSTM–TCN, CV de Filipe y estudio D7 planificado · 5 de noviembre de 2026
+**Avance:** Entregable 1 · GRU–LSTM–TCN, CV de Filipe y estudio D7 planificado · actualización bibliográfica del 6 de noviembre de 2026
 
 Este libro desarrolla el **Entregable 1 de Deep Learning** para pronosticar volatilidad de **Bitcoin**, con datos oficiales de **Binance Spot BTCUSDT**. El problema es **tipo 4: regresión temporal**: cinco covariables OHLCV diarias, desviación estándar poblacional de siete retornos logarítmicos y horizonte de un día. Se conserva la validación **`split_train_val_forwardChaining` de `timeseries-cv`**, proyecto de DidierRLopes con coautoría de **Filipe R. Ramos**, con embargo y transformaciones ajustadas únicamente al pasado permitido.
 
@@ -69,7 +69,11 @@ Las [tablas de CV de fase I](_static/gru_lstm_tcn_20261105/metric_summary_cv.csv
 
 ## Literatura y límites científicos
 
-GRU, LSTM y TCN aparecen como comparadores independientes de volatilidad de Bitcoin en Akbiyik et al. (2023); Miura et al. (2019) también evalúa GRU y LSTM {cite:p}`akbiyik2023,miura2019`. Las frecuencias estrictas son **GRU 3/7, LSTM 5/7 y TCN 1/7**, con publicaciones y manuscritos identificados por nivel de verificación. La nueva ejecución no aumenta la recurrencia bibliográfica de TCN ni elimina la necesidad de justificar las dos variantes recurrentes.
+El **corte bibliográfico del 05/11/2026** conserva 40 referencias de antecedentes y siete estudios cripto con texto completo verificado. GRU, LSTM y TCN aparecen como comparadores independientes de volatilidad de Bitcoin en Akbiyik et al. (2023); Miura et al. (2019) también evalúa GRU y LSTM {cite:p}`akbiyik2023,miura2019`. Las frecuencias estrictas de ese corte son **GRU 3/7, LSTM 5/7 y TCN 1/7**, con publicaciones y manuscritos identificados por nivel de verificación.
+
+La **ampliación nativa del 06/11/2026** incorpora cuatro exportaciones de Scopus y Web of Science: **244 ocurrencias y 182 grupos provisionales** después de agrupar por DOI/título. Son registros para cribado, no 182 estudios elegibles ni un nuevo denominador de recurrencia. El {download}`registro de importación <_static/literature_e1/native_search_20261106/README.md>`, sus [recuentos](_static/literature_e1/native_search_20261106/summary.json) y el [capítulo 3](sections/03_estado_arte.md) separan esta ampliación del corte histórico. La trazabilidad de IEEE y la verificación de objetivos, modelos autónomos y fechas efectivas de publicación permanecen abiertas; la revisión no se declara cerrada. Ni entrenar redes ni encontrar sus nombres en un resumen aumenta las frecuencias verificadas.
+
+La bibliografía actual llega a **42 referencias** al añadir **dos originales completos revisados**: Nguyen et al. (2023), con TCN/LSTM para el índice CVI de volatilidad implícita, y Zahid et al. (2022), con redes como componentes de modelos híbridos GARCH {cite:p}`nguyen2023cvi,zahid2022hybrid`. Las {download}`fichas de lectura <_static/literature_e1/primary_reviews_20261106/README.md>` separan esos objetivos y papeles; no se convierten en dos comparadores autónomos adicionales de σ₇ ni se cambia el denominador histórico a nueve.
 
 El margen académico δ≈0,00025772843 corresponde al 5 % del RMSE CV del GRU/D7 inicial. Fue posterior al test de fase I y quedó fijado antes de fase II. Diferencia distinguible de cero, ganancia superior al 5 % y utilidad financiera son afirmaciones distintas. No se afirma equivalencia ni generalización a otros mercados.
 

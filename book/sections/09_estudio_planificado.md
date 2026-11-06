@@ -252,7 +252,9 @@ Los residuos y sus diagnósticos se interpretan con la longitud de 60 fechas y e
 
 Después de publicar esta evaluación, sus 60 fechas son resultados conocidos. Una reproducción futura de los mismos archivos no recupera un holdout sin consultar ni adquiere otra confirmación independiente.
 
-La literatura conserva sus propios límites: TCN aparece como comparador independiente en 1/7 estudios y la inclusión conjunta de GRU/LSTM necesita argumentación de mecanismos y alcance. Hacer este estudio no aumenta esas frecuencias ni certifica indexación individual de los artículos.
+La literatura conserva sus propios límites: en el **corte verificado del 05/11/2026**, TCN aparece como comparador independiente en **1/7 estudios** y la inclusión conjunta de GRU/LSTM necesita argumentación de mecanismos y alcance. La {download}`ampliación nativa del 06/11 <../_static/literature_e1/native_search_20261106/README.md>` añade registros WoS/Scopus para cribado; sus 244 ocurrencias y 182 grupos provisionales no equivalen a 182 estudios incluidos ni alteran por sí solos esas frecuencias. El [capítulo 3](03_estado_arte.md) documenta esta separación. Hacer este estudio tampoco aumenta la recurrencia bibliográfica ni certifica indexación individual de los artículos.
+
+Las {download}`dos lecturas completas adicionales del 06/11 <../_static/literature_e1/primary_reviews_20261106/README.md>`, sobre CVI implícita y modelos híbridos GARCH, elevan la bibliografía actual a 42 referencias y conservan sus estratos propios. No cambian el objetivo σ₇, las recetas seleccionadas, el baseline o el análisis ya registrado de esta fase.
 
 La fase II cierra el orden piloto–dimensionamiento–ajuste definitivo y el esfuerzo comparable dentro del espacio de HPO registrado. También fija sus métodos antes de evaluar la nueva reserva. Las conclusiones de precisión y relevancia se limitan a lo que muestran sus intervalos y análisis; completar ese orden no garantiza que todas las redes superen persistencia, una mejora práctica o generalización temporal. El benchmark anterior conserva sus resultados exploratorios.
 
