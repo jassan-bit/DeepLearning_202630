@@ -209,7 +209,7 @@ TimeMixer ofrece un punto de partida reproducido para estudiar mecanismos multie
 
 El contrato Bitcoin D7 no permite marcadores de calendario: su adaptación debe usar entradas sin esas marcas. Por ello, L1 **no demuestra un fallo del futuro adaptador Bitcoin**. La hipótesis L2 sí plantea una pregunta pertinente para volatilidad, pero en este piloto externo quedó inconclusa. No se convierte ese resultado en un hueco predictivo de Bitcoin ya demostrado.
 
-El paso necesario para E3 es obtener una limitación predictiva pertinente al contrato D7 mediante el procedimiento cerrado, contrastarla en varios modelos y verificar que un mecanismo adicional aporte una mejora relevante. Las búsquedas transversales de §3 y la guía restante deberán sustentar esa selección. Aquí no se elige la arquitectura de E3 ni se cambia su libro independiente.
+El paso necesario para E3 es obtener una limitación predictiva pertinente al contrato D7 mediante el procedimiento cerrado, contrastarla en varios modelos y verificar que un mecanismo adicional aporte una mejora relevante. Las búsquedas transversales de §3 y la guía completa ya recibida deberán sustentar esa selección. El [piloto Bitcoin registrado](09_protocolo_registrado.md) evalúa por separado el diagnóstico propuesto; sus resultados no se sustituyen por este piloto ETTh1. Aquí no se elige la arquitectura de E3 ni se cambia su libro independiente.
 
 El registro previo de esta réplica y piloto está disponible desde el commit 329b0a6, anterior a los ajustes con ETTh1. La sección 9.1 completa todavía no se ha recibido: esta evidencia de cronología no se presenta como cumplimiento certificado de requisitos desconocidos. El test Bitcoin heredado sigue conocido y sus futuras comparaciones siguen siendo exploratorias.
 

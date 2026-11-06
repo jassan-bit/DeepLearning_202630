@@ -8,6 +8,8 @@ pesos, datos originales ni un pipeline de entrenamiento.
 
 ## Estado y límites
 
+**Archivo v1:** las quince filas y bloqueos de este suplemento describen la propuesta inicial. El protocolo vigente de veinte configuraciones, guía completa y P0/OOF registrado está en `experiments/e2_remediation_20261106/` y en el paquete Remediacion_E2_protocolo_codigo_evidencias.zip. Sus contadores no son el total de experimentos posteriores.
+
 La propuesta permanece abierta. Las pruebas verifican funciones estadísticas e
 integridad con ejemplos sintéticos; no prueban que los quince comparadores se
 hayan entrenado. Continúan los prerrequisitos del diseño D7, incluidos los

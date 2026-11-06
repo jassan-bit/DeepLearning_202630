@@ -63,13 +63,13 @@
     "e1_partition_inherited_without_change": true,
     "e1_R_465_is_not_e2_sample_size": true,
     "sample_size_reason": "E1 dimensionó sus tres pares y su variabilidad piloto; nuevas familias/comparaciones requieren dimensionamiento propio sin cambiar el margen heredado",
-    "e2_benchmark_target_models": 15,
+    "e2_benchmark_target_models": 20,
     "e2_ten_model_catalogue_selected": false,
     "e2_model_selected": false,
     "e2_experiments_executed": false,
     "e2_new_unseen_test_available": false,
     "historical_results_may_be_labeled_confirmatory_for_e2": false,
-    "e2_experiments_executed_scope": "Benchmark final con diez modelos DL nuevos más las tres bases, una referencia no profunda y otra trivial; el EDA y Ridge diagnóstico se registran por separado",
+    "e2_experiments_executed_scope": "Final optimized20-configuration benchmark only; P0development andETTh1 have independent execution receipts.",
     "e2_eda_executed": true,
     "e2_diagnostic_ridge_fitted": true,
     "e2_diagnostic_ridge_scope": "Diagnóstico forward chaining en desarrollo, sin selección ni entrenamiento de modelos DL de E2",
@@ -77,8 +77,8 @@
     "eda_changes_inherited_data_contract": false,
     "known_test_distribution_analysis_is_posthoc_exploratory": true,
     "target_lags_added_by_eda": false,
-    "route_diagnosis_closed": false,
-    "e2_benchmark_target_models_semantics": "Mínimo total de configuraciones según guía 3.2; diez modelos DL nuevos del Top 10 más cinco referencias",
+    "route_diagnosis_closed": true,
+    "e2_benchmark_target_models_semantics": "Current F2a panel20configurations, fifteen tunable E2recipes plus3E1anchors and2naives; original3.2 minimum15 is not the current panel size.",
     "e2_top10_new_deep_learning_model_count": 10,
     "e2_minimum_deep_learning_configurations": 13,
     "e2_minimum_total_benchmark_configurations": 15,
@@ -99,7 +99,8 @@
       "minimum_total_configurations": 15,
       "top10_includes_inherited_three_bases": false,
       "minimum_total_is_not_the_number_of_seeds": true,
-      "reference_scope_note": "Ridge es la referencia no profunda propuesta; su diagnóstico de EDA ya existe, pero el ajuste y presupuesto del benchmark final aún deben cerrarse. Persistencia conserva su función contextual heredada."
+      "reference_scope_note": "Ridge es la referencia no profunda propuesta; su diagnóstico de EDA ya existe, pero el ajuste y presupuesto del benchmark final aún deben cerrarse. Persistencia conserva su función contextual heredada.",
+      "historical_scope": "Originalsection3.2 minimum only; F2a additions and3E2retuned alternatives expand current panel to20. See methodological_route_resolution."
     },
     "e2_top10_operational_catalogue_status": "proposed_not_fully_closed",
     "e2_top10_operational_model_names": [
@@ -118,7 +119,8 @@
     "e2_implementation_validated_for_D7": false,
     "e2_ten_model_catalogue_selected_scope": "La selección bibliográfica contiene diez nombres; este indicador reserva el cierre del catálogo operativo con adaptación D7 y presupuesto validados",
     "e2_bibliographic_models_reviewed": 10,
-    "e2_execution_catalogue_validated": false
+    "e2_execution_catalogue_validated": false,
+    "new_deep_learning_fits_scope": "This original EDA transfer snapshot performed zeroDLfits; subsequent registeredP0/OOF tracked separately."
   },
   "updated_on_colombia": "2026-11-06",
   "administrative_timezone": "America/Bogota",
@@ -127,7 +129,8 @@
     "received_date_colombia": "2026-11-05",
     "rule": "Baseline, métrica primaria, margen δ, unidad de independencia y partición se heredan de E1 sin modificarse",
     "guide_record": "guia_e2_recibida.json",
-    "full_guide_received": false
+    "full_guide_received": true,
+    "guide_receipt_note": "Original inheritance established from initialscreenshots; complete65-page guide later received. Scientific E1contract unchanged."
   },
   "base_model_recipes": {
     "GRU": {
@@ -278,7 +281,9 @@
     "chapter": "sections/02_eda.md",
     "preprocessing_decision": "Transformaciones y similitud de ventanas se diagnostican en desarrollo; no sustituyen la representación heredada ni autorizan selección con test",
     "route_alert": "La alta autocorrelación residual requiere discutir la ruta alternativa de series de tiempo, sin inferir que añadir rezagos del objetivo garantiza mejora",
-    "contract_policy": "Métrica, δ, unidad, partición, D7×5 y objetivo permanecen sin modificación; no se introduce un nuevo periodo de prueba"
+    "contract_policy": "Métrica, δ, unidad, partición, D7×5 y objetivo permanecen sin modificación; no se introduce un nuevo periodo de prueba",
+    "route_diagnosis_closed": true,
+    "route_diagnosis_note": "F2a resolution now supplied in section7; original diagnostic findings and dates preserved."
   },
   "literature_extension_scope": {
     "guide_record": "guia_e2_recibida.json",
@@ -519,7 +524,7 @@
     ],
     "last_capture_unpaginated": true,
     "section_4_6_page_number": null,
-    "full_guide_received": false,
+    "full_guide_received": true,
     "requirements_registered": true,
     "final_experimental_protocol_closed": false,
     "implementation_validated_for_D7": false,
@@ -527,16 +532,7 @@
     "new_Bitcoin_results": 0,
     "common_budget_planned_not_executed": true,
     "at_least_five_runs_is_not_power_evidence": true,
-    "guide_cross_references_pending": [
-      "7",
-      "7.3",
-      "9.2",
-      "10",
-      "11",
-      "11.1",
-      "13.2",
-      "14"
-    ],
+    "guide_cross_references_pending": [],
     "current_limits": [
       "Las secciones 7, 9.2, 10, 11/11.1, 13.2 y 14 se citan en las capturas, pero su texto completo todavía no se ha recibido.",
       "La reserva de E1 ya fue evaluada. No puede describirse como un test nuevo sellado o no observado; reutilizarla mantiene interpretación exploratoria.",
@@ -544,7 +540,7 @@
       "El mínimo de cinco semillas no demuestra potencia suficiente y R=465 de E1 no dimensiona automáticamente las nuevas comparaciones.",
       "Los folds de una única serie y las semillas no son réplicas del calendario independientes; su incertidumbre debe distinguirse de la variabilidad de optimización.",
       "La activación de búsqueda de arquitectura es condicional a que el original no la defina; no se declara obligatoria para los diez por mera adaptación de la cabeza escalar. La decisión requiere registro por modelo y sección 14 completa.",
-      "Aún no hay entrenamiento, HPO, piloto, potencia, robustez, explicabilidad o ablaciones del benchmark DL de E2 ejecutados."
+      "HPO, P1, potencia, robustez, explicabilidad y ablaciones del benchmark final siguen pendientes. El piloto Bitcoin P0/OOF es otra etapa, con ejecución propia registrada."
     ],
     "contract_policy": "Conservar entradas D7×5 OHLCV, σ7 poblacional, horizonte h=1, métrica primaria, δ, unidad y partición de E1; cualquier enmienda debe ser explícita y compatible con la guía completa.",
     "architecture_search_rule_received": {
@@ -572,7 +568,9 @@
     "Wilcoxon_note": "El mínimo supone cinco diferencias efectivas no nulas sin empates; no convierte cinco folds temporales en observaciones independientes.",
     "robustness_minimum_levels_per_perturbation": 3,
     "interpretability_top_models": 3,
-    "ablation_minimum_components": 3
+    "ablation_minimum_components": 3,
+    "historical_scope": "Initial section4 proposal archived, superseded operationally by E2-F2a-remediation-20261106. Original15-row artifacts/flags are provenance, not current readiness.",
+    "snapshot_history": "Initial partial-guide proposal scope, superseded operationally by current_remediation; old15-row artifacts retained as archive. Fullguide now received."
   },
   "paper_guide_replication_scope": {
     "guide_record": "guia_e2_recibida.json",
@@ -585,7 +583,7 @@
     "capture_count": 2,
     "continuation_page_number": null,
     "continuation_capture_unpaginated": true,
-    "full_guide_received": false,
+    "full_guide_received": true,
     "requirements_registered": true,
     "requirement_count": 13,
     "paper_selection_status": "selected_before_dataset_fits",
@@ -600,9 +598,7 @@
     "limitation_pilot_models_executed": 3,
     "minimum_Top10_models_in_limitation_pilot": 3,
     "limitation_pilot_executed": true,
-    "guide_cross_references_pending": [
-      "9.1"
-    ],
+    "guide_cross_references_pending": [],
     "benchmark_D7_training_executed_by_this_section": false,
     "replication_changes_inherited_Bitcoin_contract": false,
     "replication_is_new_Bitcoin_benchmark_result": false,
@@ -639,8 +635,9 @@
     "limitation_L1_accuracy_deterioration_demonstrated": false,
     "limitation_L2_result": "Higher-error hypothesis in high-input-variability regimes inconclusive with principal 192-hour block and Holm correction",
     "Bitcoin_transferable_predictive_gap_confirmed": false,
-    "full_section_9_1_received": false,
-    "bounded_external_preregistration_public_before_fits": true
+    "full_section_9_1_received": true,
+    "bounded_external_preregistration_public_before_fits": true,
+    "snapshot_history": "Initial partial-guide proposal scope, superseded operationally by current_remediation; old15-row artifacts retained as archive. Fullguide now received."
   },
   "benchmark_final_analysis_scope": {
     "received_section": "6. Benchmark Final",
@@ -652,7 +649,7 @@
     "capture_count": 6,
     "unpaginated_fragments": true,
     "unseen_page_numbers_not_inferred": true,
-    "full_guide_received": false,
+    "full_guide_received": true,
     "requirements_registered": true,
     "requirement_count": 30,
     "analysis_protocol_status": "proposed_not_frozen",
@@ -665,28 +662,239 @@
     "statistical_claims_executed_on_Bitcoin_benchmark": false,
     "tool_scope": "Documentary readiness, templates and numerical functions tested on labeled synthetic fixtures; no claim of real benchmark execution",
     "external_ETTh1_fits_not_included": 20,
-    "guide_cross_references_pending": [
-      "7.3",
-      "7.4",
-      "9.2",
-      "11.4",
-      "12",
-      "13",
-      "Apéndice A",
-      "Tabla C"
-    ],
+    "guide_cross_references_pending": [],
     "inherited_Bitcoin_contract_changed": false,
     "known_test_remains_exploratory": true,
     "critical_difference_diagram_requires_justified_independent_blocks": true,
     "training_seeds_are_not_independent_market_datasets": true,
     "current_limits": [
-      "No hay adaptadores D7 validados, HPO comparable, piloto de dimensionamiento o predicciones del benchmark Bitcoin E2; no se completan métricas ausentes con cero.",
+      "Adaptaciones finales, HPO, piloto P1 de dimensionamiento y predicciones del benchmark20 siguen pendientes. Los adaptadores y resultados P0 son diagnósticos de desarrollo separados; no se completan métricas finales con cero.",
       "El análisis de fixtures comprueba software, no desempeño, potencia ni ausencia de fuga.",
       "Los veinte ajustes ETTh1 externos y las métricas heredadas de E1 no se reetiquetan como resultados nuevos del benchmark E2.",
       "La longitud de bloques, las familias y el plan de coste/inferencia definitivos requieren cierre antes de scoring; el test heredado sigue conocido.",
       "Los diez meses solapados y las semillas de una única serie no justifican por sí solos Friedman/Nemenyi como si fueran datasets independientes.",
       "No se infiere calibración probabilística de un pronóstico puntual, techo de desempeño de la literatura ni equivalencia de un p no significativo.",
-      "Las remisiones de la guía siguen pendientes de texto completo; no se inventan condiciones ni folios."
-    ]
+      "Guía completa recibida; implementación final y evidencia pendientes según capítulos7–14."
+    ],
+    "historical_scope": "Initial15-row section6 analysis proposal archived; current20-model protocol and P0results are separate.",
+    "snapshot_history": "Initial partial-guide proposal scope, superseded operationally by current_remediation; old15-row artifacts retained as archive. Fullguide now received."
+  },
+  "methodological_route_resolution": {
+    "protocol_version": "E2-F2a-remediation-20261106",
+    "guide_full_PDF_received": true,
+    "guide_PDF_pages": 65,
+    "guide_PDF_sha256": "93499dcfda6a36d9621524a81821470017ba114ca6b08241a35de5a54f74a654",
+    "scientific_E1_contract_preserved_sha256": "1464fa79d472f6755651774989b140659ee1f21daeb30032fc650a8770f4fdc4",
+    "methodological_route": "F2a_series_de_tiempo",
+    "route_decision_closed": true,
+    "route_evidence": "Ridge D7 forward ACF(1)=0.632228 and guide RT1 p32; resolution in sections/07_ruta_temporal.md",
+    "DL_input_contract": "D7 x 5 OHLCV; no explicit target lags or calendar channels",
+    "primary_metric": "mean per-trajectory RMSE in original sigma7 units",
+    "absolute_delta": 0.00025772842664981106,
+    "catalogue_size": 20,
+    "tunable_model_count": 15,
+    "HPO_trials_each": 12,
+    "HPO_registry_candidates": 180,
+    "same_assigned_CPU_seconds_per_tunable": 172800,
+    "HPO_actual_executed": false,
+    "final_adapter_architecture_review_status": "Required before HPO; exact source recipes and D7 changes recorded; final exception review not falsely certified",
+    "NAS_rule": "Only for genuinely undefined architectures; no blanket1000 search or automatic exemption from a DOI",
+    "master_registered_source_commit": "599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0",
+    "registered_before_first_dataset_fit_at_utc": "2026-11-06T14:52:32.498327+00:00",
+    "inference_families": {
+      "Top10_vs_E1_GRU": {
+        "hypotheses": 30,
+        "alpha": 0.02
+      },
+      "Top10_vs_tuned_E2_GRU": {
+        "hypotheses": 30,
+        "alpha": 0.02
+      },
+      "registered_final_diagnostics": {
+        "hypotheses": 199,
+        "alpha": 0.01
+      }
+    },
+    "primary_final_family_global_allocated_alpha": 0.05,
+    "P0_diagnostic_family_separate_from_final_benchmark": {
+      "scope": "OOF Jan-Oct2024 only",
+      "hypotheses": 3,
+      "alpha": 0.01,
+      "Holm": true,
+      "Nov_Dec_is_descriptive": true
+    },
+    "power_policy": "Target0.80 for alternatives2delta (excessdelta), not at null boundary; P1 after frozen HPO recipes selects R, cap200 with honest insufficient-power status",
+    "overfit_margin_delta_g": 0.00025772842664981106,
+    "P0_scope": "fixed-config development feasibility, variance, regime-gap diagnostic; not optimized final benchmark or new unseen test",
+    "P0_and_OOF_planned_trajectories": 220,
+    "P0_and_OOF_planned_optimizer_fits": 440,
+    "P0_and_OOF_closed_trajectories_snapshot": 220,
+    "P0_and_OOF_fits_count_scope": "closed trajectories only; in-progress stages are not counted as completed optimizer fits",
+    "main_Bitcoin_test_accessed_in_remediation": false,
+    "main_twenty_model_benchmark_completed": false,
+    "literature": {
+      "received_groups_screened_by_rules": 7833,
+      "provisional_exclusions": 4323,
+      "retained_for_text": 2436,
+      "manual_review_queue": 1074,
+      "financial_priority_queue": 602,
+      "editorial_abstract_reviews": 17,
+      "candidate_model_or_family_rows": 29,
+      "local_transverse_query_counts": [
+        15,
+        3,
+        90
+      ],
+      "local_transverse_unique_groups": 102,
+      "new_native_WoS_Scopus_queries": 0,
+      "unreceived_Scopus_records": 374,
+      "reuploaded_files_identical_to_prior_inputs": true,
+      "global_fulltext_eligibility_closed": false,
+      "quartiles_not_invented": true
+    },
+    "uncertainty_errors": {
+      "implementation_and_synthetic_tests": true,
+      "secondary_branch_A": "Fit/scalers/selection<=2024-10-24, frozen predictor; calibration2024-11-01..12-30, separate from primary full-development fit",
+      "claimed_exact_temporal_coverage": false,
+      "final_top3_selected": false,
+      "error_unique_origins_required_per_primary_model": 100,
+      "OOF_development_unique_origins_available": 305,
+      "P0_models_are_representatives_not_final_top3": true,
+      "P0_error_analysis_executed": true,
+      "P0_unique_error_cases_per_model": 305,
+      "P0_private_audit_sample_per_model": 100,
+      "final_Top3_predictive_intervals_evaluated": false
+    },
+    "legacy_documentary_proposals": "20261105/initial20261106 proposals and ZIPs remain identified as historical; their15-row validators are not current readiness.",
+    "current_readiness_tool": "scripts/e2_protocol_plan.py",
+    "current_training_driver": "scripts/execute_e2_development_pilot.py",
+    "full_guide_receipt_is_not_full_requirement_compliance": true,
+    "updated_at_utc": "2026-11-06T15:22:57.829324+00:00",
+    "observed_execution": {
+      "source_commit": "599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0",
+      "registered_at_utc": "2026-11-06T14:52:32.498327+00:00",
+      "first_trajectory_started_at_utc": "2026-11-06T14:54:12.771101+00:00",
+      "last_trajectory_closed_at_utc": "2026-11-06T15:21:47.236854+00:00",
+      "all_fit_closures_before_first_scoring": true,
+      "closed_trajectories": 220,
+      "completed_optimizer_fits": 440,
+      "fit_failures_recorded": 0,
+      "model_phase_aggregates": [
+        {
+          "phase": "pilot",
+          "model": "TimeMixer",
+          "closed_trajectories": 5,
+          "optimizer_fits": 10,
+          "sum_recorded_training_elapsed_seconds": 95.72608955600299,
+          "training_elapsed_seconds_scope": "sum of per-trajectory elapsed clocks (inner+refit), not process CPU-s nor total wall time; at most2 jobs in parallel",
+          "selected_epoch_min": 29,
+          "selected_epoch_max": 51
+        },
+        {
+          "phase": "pilot",
+          "model": "iTransformer",
+          "closed_trajectories": 5,
+          "optimizer_fits": 10,
+          "sum_recorded_training_elapsed_seconds": 54.61480114306323,
+          "training_elapsed_seconds_scope": "sum of per-trajectory elapsed clocks (inner+refit), not process CPU-s nor total wall time; at most2 jobs in parallel",
+          "selected_epoch_min": 25,
+          "selected_epoch_max": 48
+        },
+        {
+          "phase": "pilot",
+          "model": "PatchTST",
+          "closed_trajectories": 5,
+          "optimizer_fits": 10,
+          "sum_recorded_training_elapsed_seconds": 135.6400226469268,
+          "training_elapsed_seconds_scope": "sum of per-trajectory elapsed clocks (inner+refit), not process CPU-s nor total wall time; at most2 jobs in parallel",
+          "selected_epoch_min": 21,
+          "selected_epoch_max": 71
+        },
+        {
+          "phase": "pilot",
+          "model": "GRU",
+          "closed_trajectories": 5,
+          "optimizer_fits": 10,
+          "sum_recorded_training_elapsed_seconds": 24.013442984083667,
+          "training_elapsed_seconds_scope": "sum of per-trajectory elapsed clocks (inner+refit), not process CPU-s nor total wall time; at most2 jobs in parallel",
+          "selected_epoch_min": 40,
+          "selected_epoch_max": 84
+        },
+        {
+          "phase": "oof",
+          "model": "TimeMixer",
+          "closed_trajectories": 50,
+          "optimizer_fits": 100,
+          "sum_recorded_training_elapsed_seconds": 752.1769795324071,
+          "training_elapsed_seconds_scope": "sum of per-trajectory elapsed clocks (inner+refit), not process CPU-s nor total wall time; at most2 jobs in parallel",
+          "selected_epoch_min": 16,
+          "selected_epoch_max": 77
+        },
+        {
+          "phase": "oof",
+          "model": "iTransformer",
+          "closed_trajectories": 50,
+          "optimizer_fits": 100,
+          "sum_recorded_training_elapsed_seconds": 387.6910994396894,
+          "training_elapsed_seconds_scope": "sum of per-trajectory elapsed clocks (inner+refit), not process CPU-s nor total wall time; at most2 jobs in parallel",
+          "selected_epoch_min": 5,
+          "selected_epoch_max": 100
+        },
+        {
+          "phase": "oof",
+          "model": "PatchTST",
+          "closed_trajectories": 50,
+          "optimizer_fits": 100,
+          "sum_recorded_training_elapsed_seconds": 922.5838356798049,
+          "training_elapsed_seconds_scope": "sum of per-trajectory elapsed clocks (inner+refit), not process CPU-s nor total wall time; at most2 jobs in parallel",
+          "selected_epoch_min": 20,
+          "selected_epoch_max": 76
+        },
+        {
+          "phase": "oof",
+          "model": "GRU",
+          "closed_trajectories": 50,
+          "optimizer_fits": 100,
+          "sum_recorded_training_elapsed_seconds": 176.04762076516636,
+          "training_elapsed_seconds_scope": "sum of per-trajectory elapsed clocks (inner+refit), not process CPU-s nor total wall time; at most2 jobs in parallel",
+          "selected_epoch_min": 5,
+          "selected_epoch_max": 100
+        }
+      ],
+      "scoring_phases": {
+        "pilot": {
+          "completed_at_utc": "2026-11-06T15:22:02.765045+00:00",
+          "scheduled_trajectories": 20,
+          "rows": 1200,
+          "max_decoded_outcome": "2024-12-30",
+          "all_fit_closures_before_scoring": true
+        },
+        "oof": {
+          "completed_at_utc": "2026-11-06T15:22:11.211112+00:00",
+          "scheduled_trajectories": 200,
+          "rows": 6100,
+          "max_decoded_outcome": "2024-10-31",
+          "all_fit_closures_before_scoring": true
+        }
+      },
+      "scientific_contract_E1_sha256": "1464fa79d472f6755651774989b140659ee1f21daeb30032fc650a8770f4fdc4",
+      "scoring_phase_receipt_sha256": {
+        "pilot": "545bf1e8be340a23a217691b2f0fc9689fefd2f783f667d9654d90d407f22ea6",
+        "oof": "fbc2585c89e2d04c91fbf9b3df2f109455a820e5bd216b0b372286fc8db4c2b2"
+      },
+      "test_2025_or_later_access": false,
+      "HPO_executed": false,
+      "final_twenty_model_benchmark_completed": false,
+      "final_top3_identified": false,
+      "predictive_intervals_for_final_top3_evaluated": false,
+      "case_error_analysis_P0_unique_per_model": 305,
+      "private_audit_sample_unique_per_model": 100,
+      "public_export_at_utc": "2026-11-06T15:22:57.777353+00:00",
+      "individual_predictions_error_ledger_or_weights_exported": false
+    },
+    "P0_and_OOF_status": "completed_fits_scoring_analysis",
+    "P0_and_OOF_completed_optimizer_fits": 440,
+    "observed_aggregate_results": "remediation_pilot_results/summary.json",
+    "observed_error_analysis": "remediation_error_results/error_summary.json"
   }
 }

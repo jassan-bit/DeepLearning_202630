@@ -6,6 +6,8 @@ Extraer conservando todos los directorios. No exige datos de mercado, paquetes d
 Deep Learning, acceso de red ni una copia adicional del repositorio para ejecutar
 el auditor y sus pruebas; utiliza Python 3.12 y la biblioteca estándar.
 
+**Archivo de la propuesta v1:** este suplemento conserva las quince filas y los bloqueos de la propuesta inicial. El protocolo vigente, con guía completa y veinte configuraciones, está en `experiments/e2_remediation_20261106/` y en el paquete Remediacion_E2_protocolo_codigo_evidencias.zip. Las cifras de este archivo no son el estado global de experimentos posteriores.
+
 ## Estado de esta entrega
 
 Estado: proposed_not_frozen. Hay 17 prerrequisitos bloqueantes y cero

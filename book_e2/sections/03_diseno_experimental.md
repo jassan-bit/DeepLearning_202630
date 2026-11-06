@@ -1,4 +1,6 @@
-# Página de trabajo · Seguimiento del diseño
+# Archivo de trabajo anterior · Seguimiento del diseño
+
+**Archivo histórico anterior a la auditoría de la guía completa (06/11/2026).** Las cifras de quince configuraciones y las remisiones entonces pendientes reflejan esa propuesta inicial, hoy sustituida. Consultar la [sección vigente](11_hpo_equidad.md) y el [protocolo actual](09_protocolo_registrado.md). El texto siguiente se conserva como trazabilidad; no es un segundo protocolo activo.
 
 El diseño recibido de la guía se desarrolla en la [sección 4: Implementación de Modelos Benchmark](04_implementacion.md). Esta página mantiene el enlace de trabajo anterior.
 

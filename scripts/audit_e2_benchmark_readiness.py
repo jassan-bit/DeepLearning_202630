@@ -263,7 +263,7 @@ def validate(proposal, root=ROOT):
     costs["top10_subtotal_optimizer_fits_before_pilot_and_final"] = costs["subtotal_optimizer_fits_per_tuned_family_before_pilot_and_final"] * 10
     costs["scope"] = "Propuesta, no ajustes ejecutados. Cada evaluación exige dos ajustes optimizador (early-stop y refit); no incluye Ridge, anclas, NAS condicional, piloto, definitivo, robustez o ablaciones."
     dates = proposed_nested_calendar(proposal)
-    report = {"schema_version": 1, "audit_kind": "documentary_pretraining_readiness_not_training_pipeline",
+    report = {"schema_version": 1, "archived_proposal_scope": "Initial15-row proposal only; superseded by experiments/e2_remediation_20261106 and scripts/e2_protocol_plan.py. Its pending-guide blockers describe the original snapshot, not current guide receipt.", "audit_kind": "documentary_pretraining_readiness_not_training_pipeline",
               "proposal_valid": True, "proposal_status": "proposed_not_frozen", "ready_to_train": False,
               "ready_to_claim_confirmatory_test": False, "new_deep_learning_fits": 0, "new_Bitcoin_results": 0,
               "minimum_total_configurations": 15, "top10_candidate_count": 10,

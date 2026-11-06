@@ -5,7 +5,7 @@ Este repositorio reúne **tres Jupyter Books**, cada uno con índice, configurac
 | Entregable | Fuentes | Dirección del libro | Estado |
 |---|---|---|---|
 | E1 | [`book/`](book/) | [Abrir E1](https://jassan-bit.github.io/DeepLearning_202630/intro.html) | Informe y estudios realizados |
-| E2 | [`book_e2/`](book_e2/) | [Abrir E2](https://jassan-bit.github.io/DeepLearning_202630/entregable2/intro.html) | Secciones 1–6: réplica y piloto ETTh1 ejecutados; análisis Bitcoin preparado, benchmark pendiente |
+| E2 | [`book_e2/`](book_e2/) | [Abrir E2](https://jassan-bit.github.io/DeepLearning_202630/entregable2/intro.html) | Guía completa, ruta F2a y piloto Bitcoin ejecutado (440 ajustes); benchmark final pendiente |
 | E3 | [`book_e3/`](book_e3/) | [Abrir E3](https://jassan-bit.github.io/DeepLearning_202630/entregable3/intro.html) | Libro iniciado; guía específica pendiente |
 
 [Selector de los tres entregables](https://jassan-bit.github.io/DeepLearning_202630/entregables.html). La infraestructura de compilación es común; cada JBook se construye desde su propia carpeta. Los apartados experimentales que siguen corresponden a **E1**.
@@ -13,6 +13,9 @@ Este repositorio reúne **tres Jupyter Books**, cada uno con índice, configurac
 La [sección 5 de E2](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html) contiene la réplica externa de TimeMixer y el piloto sobre tres modelos en ETTh1. Su [paquete descargable](https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/paper_guide_download/Paper_guia_E2_replica_piloto.zip) reúne código y evidencias; estas ejecuciones no modifican los resultados de E1 ni completan el benchmark Bitcoin D7.
 
 La [sección 6 de E2](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/06_benchmark_final.html) prepara la comparación tabular, la eficiencia, la inferencia y la discusión del benchmark. Su [paquete de análisis y plantillas](https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/benchmark_analysis_download/Benchmark_E2_analisis_plantillas.zip) contiene código verificable y pruebas con fixtures sintéticos. Las métricas y el ranking Bitcoin continúan pendientes de ejecuciones válidas.
+
+
+El [protocolo vigente de E2](book_e2/sections/09_protocolo_registrado.md) se registró públicamente en `599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0` antes de entrenar. Integra veinte configuraciones, quince recetas ajustables T12, NAS condicional, familias e inferencia temporal, potencia objetivo y calibración disjunta. El [paquete actual](book_e2/_static/remediation_download/Remediacion_E2_protocolo_codigo_evidencias.zip) contiene código y evidencia agregada de la etapa P0/OOF de desarrollo; no acredita HPO, calibración de los mejores finales ni el benchmark definitivo. Faltan los 374 registros Scopus y la adjudicación bibliográfica completa. Los capítulos 7–14 desarrollan la guía completa ya recibida.
 
 
 Proyecto de Deep Learning, 2026-30: **pronóstico de volatilidad de Bitcoin con GRU, LSTM y TCN**.

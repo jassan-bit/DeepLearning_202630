@@ -1,0 +1,66 @@
+{
+  "scope": "P0_development_feasibility_variance_gap_not_final_benchmark",
+  "phases": [
+    "pilot",
+    "oof"
+  ],
+  "primary_gap_phase": "oof",
+  "P0_role": "Nov–Dec feasibility/seed-variance only; descriptive gaps, no rejection decision",
+  "models": [
+    "TimeMixer",
+    "iTransformer",
+    "PatchTST",
+    "GRU"
+  ],
+  "seeds": [
+    660101,
+    660102,
+    660103,
+    660104,
+    660105
+  ],
+  "primary_metric": "mean across fitted-seed RMSE; no ensemble RMSE",
+  "delta": 0.00025772842664981106,
+  "high_volatility_threshold_fixed_train2023": 0.024247163097617024,
+  "regime": "sigma7(t-1)>fixed q75, never evaluation target or added input channel",
+  "bootstrap": {
+    "draws": 4999,
+    "seed": 20261106,
+    "primary_block_days": 7,
+    "sensitivity_block_days": [
+      14,
+      28
+    ],
+    "CI": "nominal percentile95, not simultaneous",
+    "all_models_and_seeds_resampled_jointly_by_date": true
+  },
+  "gap_family": {
+    "hypotheses": 3,
+    "alpha": 0.01,
+    "adjustment": "Holm",
+    "principal_decision": "OOF/block7 only; 14/28 are sensitivity"
+  },
+  "power": {
+    "alpha": 0.0006666666666666666,
+    "alternative_gain": 0.0005154568532996221,
+    "epsilon": 0.00025772842664981106,
+    "target_conditional": 0.8,
+    "R_min": 5,
+    "R_cap": 200,
+    "final_post_HPO_power_established": false,
+    "temporal_or_joint_power_established": false
+  },
+  "temporal_limit": "One Bitcoin chronology; R seeds are not independent markets. 60 or305 dates and T/block are not independent sample counts. Circular calendar blocks approximate serial dependence; overlapping target windows, regime imbalance and overlapping OOF training prefixes remain limitations.",
+  "counts": {
+    "P0_trajectories": 20,
+    "P0_optimizer_fits": 40,
+    "OOF_trajectories_if_enabled": 200,
+    "OOF_optimizer_fits_if_enabled": 400
+  },
+  "new_fits_performed_by_analyzer": 0,
+  "test_2025_or_later_access": false,
+  "final_Top3_or_HPO_selection_performed": false,
+  "gap_guaranteed": false,
+  "sources_considered_unseen_test": false,
+  "interpretation": "Diagnostic development estimates only; nonsignificance is not equivalence. No result guarantee, no final benchmark or new confirmatory test."
+}

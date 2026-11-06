@@ -20,38 +20,43 @@ Desde la raíz, con el entorno de `requirements-book.lock.txt` instalado:
 
 La carpeta de salida del ensamblado debe ser nueva o vacía; usar otra ruta al repetir. Abrir `http://localhost:8000/entregables.html`. La publicación automatizada siempre reconstruye y reúne los tres libros, para conservarlos cuando cambia uno de ellos.
 
-E2 tiene introducción y secciones 1–6 documentadas a partir de las capturas recibidas; la sección 5 se incorporó el 6 de noviembre de 2026 (America/Bogota), con página 16 y continuación sin folio visible. Su EDA, literatura, réplica TimeMixer ETTh1 y piloto externo de tres modelos tienen código y artefactos propios. Se integraron exportaciones de WoS y Scopus y diez originales completos; continúan abiertos el cribado global, la búsqueda transversal, la guía restante y el protocolo del benchmark. La sección 3.2 exige diez modelos más cinco referencias, con mínimo quince configuraciones. **El benchmark Bitcoin D7 sigue sin ejecutar: cero ajustes Bitcoin nuevos.** Las veinte corridas externas de §5 —cinco de réplica y quince de piloto— no se cuentan como ese benchmark. E3 conserva estructura inicial y sus experimentos no se han ejecutado. Los comandos del bloque E2 que sigue son propios; los apartados posteriores sobre las fases GRU–LSTM–TCN corresponden a **E1**.
+E2 ya cuenta con la guía completa de 65 páginas y capítulos 1–14. La ruta vigente es F2a: series de tiempo, con contrato D7×5 y δ heredados conservados, veinte configuraciones y quince recetas ajustables T12. El commit `599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0` registra el protocolo antes de los ajustes P0/OOF de Bitcoin. Se completaron las 220 trayectorias y 440 ajustes P0/OOF, y se analizaron 305 casos por receta. Ese experimento de desarrollo se distingue de la réplica ETTh1 y del benchmark final, todavía pendiente. Las secciones siguientes sobre GRU–LSTM–TCN describen E1.
 
+## Protocolo actual de E2 y evidencias
 
-El diseño de implementación E2 y su auditoría documental se verifican sin importar librerías DL ni abrir archivos de mercado:
+La validación documental no abre precios ni ajusta modelos. El export genera un registro prospectivo de candidatos y reglas; sus contadores iniciales no se reescriben para presentarlos como resultados posteriores:
 
 ```bash
-python scripts/audit_e2_benchmark_readiness.py
-python tests/test_e2_benchmark_readiness.py
-python scripts/package_e2_benchmark_design.py --check
+python scripts/e2_protocol_plan.py validate
+python scripts/e2_protocol_plan.py export
+python scripts/e2_predictive_uncertainty.py
+python scripts/package_e2_remediation.py --check
 ```
 
-La auditoría devuelve código cero para una propuesta documental válida que todavía puede tener bloqueos. `python scripts/audit_e2_benchmark_readiness.py --require-ready` devuelve **2** mientras esos prerrequisitos falten; un contrato alterado devuelve **1**. La propuesta conserva 15 configuraciones mínimas, ocho candidatos por familia y un presupuesto temporal aún sin dimensionar. Los 1.320 ajustes por familia son planificación, no ejecuciones. Esta herramienta no sustituye un ejecutor del benchmark Bitcoin D7, su piloto de dimensionamiento ni la auditoría de cada pipeline real.
+El [capítulo 8](book_e2/sections/08_reproducibilidad.md) detalla el entorno `requirements-e2-remediation.lock.txt`, las fuentes de autores por hash y el flujo explícito `preflight → register → fit → score → analyze`. Un nuevo replay se registra en un checkout limpio y usa una salida privada nueva, fuera del repositorio. El scoring exige el cierre de todos los pesos programados. La compilación editorial consume agregados guardados y no dispara ese flujo.
 
+Las pruebas nuevas son sintéticas y no necesitan datos del mercado ni las fuentes externas de autores:
 
-La réplica externa y el piloto de §5 se conservan en `experiments/e2_paper_guide_20261106/` y se documentan en `book_e2/sections/05_paper_guia.md`. Usan ETTh1, L96/H96 y sus métricas originales estandarizadas; no cambian D7×5, σ₇, δ o la partición de Bitcoin. Para revisar los recibos y el paquete sin volver a entrenar:
+```bash
+python tests/test_e2_protocol_plan.py
+python tests/test_e2_temporal_baselines.py
+python tests/test_e2_remediation_pilot.py
+python tests/test_e2_predictive_uncertainty.py
+python tests/test_e2_remediation_statistics.py
+python tests/test_e2_literature_screening.py
+```
+
+Los tests numéricos necesitan el entorno científico indicado por el lock. Los adaptadores de P0, además, se verifican sobre las fuentes externas fijadas. La reproducción de cálculos desde predicciones privadas requiere esos insumos; el ZIP publica agregados, hashes y software, no checkpoints ni predicciones individuales. La comparación completa de veinte configuraciones desde un entorno limpio no se declara terminada.
+
+Los diseños iniciales de 05/11 y 06/11, su auditor `audit_e2_benchmark_readiness.py` y los paquetes `benchmark_design_download` / `benchmark_analysis_download` se conservan como **archivo de la propuesta v1**, con sus quince filas y bloqueos originales. No son el control de preparación actual ni se cambian sus flags para fingir cumplimiento. Sus módulos numéricos siguen disponibles como código reutilizable. El control actual es `e2_protocol_plan.py` y los recibos de cada fase.
+
+La réplica TimeMixer y el piloto externo ETTh1 permanecen separados en `experiments/e2_paper_guide_20261106/`, `requirements-paper-guide.lock.txt` y el [capítulo 5](book_e2/sections/05_paper_guia.md). Para verificar el suplemento externo sin entrenar:
 
 ```bash
 python scripts/package_e2_paper_guide.py --check
 ```
 
-El [ZIP de §5](book_e2/_static/paper_guide_download/Paper_guia_E2_replica_piloto.zip) conserva las instrucciones, `requirements-paper-guide.lock.txt`, fuentes por hash y código propio. Las fases del ejecutor `scripts/run_e2_paper_replication.py` separan registro, ajuste y scoring; la descarga de fuentes y los nuevos entrenamientos son acciones explícitas. La compilación editorial consume agregados y figuras ya guardados, sin ejecutar esas fases. El diseño se publicó antes de los ajustes en el commit `329b0a6c8238d632dd00537c5cefab91360bafd1`; las discrepancias y enmiendas de análisis se mantienen identificadas.
-
-
-La sección 6 incorpora el plan de análisis del benchmark Bitcoin, las plantillas de quince configuraciones y funciones numéricas probadas con fixtures sintéticos. Sus dependencias se fijan en `requirements-benchmark-analysis.lock.txt`. La generación documental no carga predicciones ni ejecuta modelos:
-
-```bash
-python scripts/analyze_e2_benchmark.py
-python tests/test_e2_benchmark_analysis.py
-python scripts/package_e2_benchmark_analysis.py --check
-```
-
-El capítulo `book_e2/sections/06_benchmark_final.md` registra §6.1–6.4, los folios visibles 17 y 19 y las remisiones pendientes. Esta preparación no acredita el benchmark, su potencia ni sus resultados. Las fases posteriores de este documento siguen describiendo E1.
+El protocolo de la réplica se publicó antes de los ajustes en `329b0a6c8238d632dd00537c5cefab91360bafd1`; sus discrepancias y enmiendas se conservan. No se mezcla su MSE estandarizada ETTh1 con la RMSE σ₇ de Bitcoin.
 
 El JBook distingue **fase I exploratoria** y **fase II D7 planificada** de GRU–LSTM–TCN. Ambas usan Bitcoin, σ₇ poblacional, horizonte de un día y covariables OHLCV causales. La primera conserva las cuatro entradas y su test enero de 2025–agosto de 2026 ya observado. La segunda registra HPO comparable, piloto, dimensionamiento y evaluación sobre el 01/09–30/10/2026. Sus recetas y registros no se mezclan: GRU/D7 de fase I tiene 32 unidades y 3.777 parámetros; GRU/D7-c03 de fase II tiene 16 unidades y 1.121 parámetros.
 

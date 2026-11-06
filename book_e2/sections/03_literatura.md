@@ -1,12 +1,14 @@
 # 3. Revisión Sistemática del Estado del Arte
 
-**Resultado de esta etapa:** selección bibliográfica de **diez modelos de Deep Learning para pronosticar la volatilidad de Bitcoin**, con exportaciones de **WoS y Scopus**, lectura de **diez originales completos —215 páginas físicas—** y código de autores identificado por commit y hash. Las adaptaciones a D7×5 → σ₇ todavía no se han implementado ni entrenado.
+**Resultado bibliográfico:** selección provisional de **diez modelos de Deep Learning para pronosticar la volatilidad de Bitcoin**, con exportaciones de **WoS y Scopus**, lectura de **diez originales completos —215 páginas físicas—** y código de autores identificado por commit y hash. La ampliación del **06/11/2026** añade un cribado local por reglas de los **7.833 grupos recibidos**, con decisión provisional y motivo por registro; no cierra la elegibilidad global por texto completo.
 
-La extracción bibliográfica y sus contadores de ejecución describen la etapa del **05/11/2026**. La [sección 5](05_paper_guia.md) documenta después la réplica externa de TimeMixer y el piloto aprendido de tres modelos en ETTh1; esas corridas no son una evaluación del benchmark Bitcoin D7.
+Las fichas, el flujo inicial y los contadores bibliográficos del **05/11/2026** se conservan como evidencia histórica. La [sección 5](05_paper_guia.md) documenta después la réplica externa de TimeMixer y el piloto de tres modelos en ETTh1. En la etapa actual se implementaron adaptadores D7 para el piloto P0 de desarrollo, cuya ejecución está en curso bajo el [protocolo registrado](09_protocolo_registrado.md); esto todavía no acredita el benchmark final, la búsqueda HPO ni la potencia del procedimiento definitivo.
 
-**Estado de la revisión:** recepción, deduplicación, lectura y extracción del subcorpus de diez arquitecturas ejecutadas. Continúan abiertos la cobertura global de las consultas, el cribado de los 7.833 grupos, los textos completos de los estudios aplicados de apoyo, los cuartiles por año y las tres búsquedas transversales. Se distingue esta selección trazable de un PRISMA global cerrado.
+**Estado de la revisión:** recepción, deduplicación, extracción de diez originales y primera pasada por reglas sobre todos los grupos recibidos completadas. Permanecen abiertos la cobertura de las consultas, la validación editorial de las decisiones provisionales, la elegibilidad por texto completo, los siete cuerpos aplicados de apoyo y los cuartiles por año. También se ejecutaron tres consultas **locales** sobre los registros recibidos; siguen pendientes sus búsquedas nativas WoS/Scopus y los originales de los mecanismos de origen. No se presenta un PRISMA global cerrado.
 
 La disposición más específica de §3.2 de la guía exige el Top 10 **adicional** a GRU, LSTM y TCN de E1, una referencia no profunda y otra trivial: **mínimo quince configuraciones**. Las cuatro familias deben estar representadas dentro de los diez modelos propuestos, sin contar esas referencias.
+
+Tras recibir la guía completa de 65 páginas, la [sección 7](07_ruta_temporal.md) resuelve la ruta **F2a, series de tiempo**, y amplía el catálogo a **veinte configuraciones**, de las cuales **quince son ajustables**. Este catálogo distingue las variantes ajustables de E2, las anclas fijas de E1 y las referencias temporales; no representa veinte modelos ya evaluados. El cribado bibliográfico nuevo conserva el Top 10 provisional: una mención en un resumen no basta para sustituir sus integrantes.
 
 ## 3.1 Estrategia de búsqueda y trazabilidad
 
@@ -56,6 +58,8 @@ Los TXT no incorporan la cadena ni el rango global de exportación. La asociaci�
 
 La guía exige al menos dos bases y permite arXiv como complemento. **Se recibieron exportaciones nativas de dos bases: WoS y Scopus.** La cobertura parcial no se convierte en exhaustividad. El [manifiesto Scopus](../_static/literature_scopus/source_manifest.json) conserva hash, nombre y procedencia; el [resumen combinado](../_static/literature_scopus/summary.json) permite comprobar las cuentas. Los intentos del asistente a plataformas académicas fueron bloqueados por la red; las exportaciones nativas proceden del trabajo manual del usuario.
 
+El reenvío de Scopus del **06/11/2026** tiene el mismo SHA-256 que la exportación anterior, `387f673a2146902ce12888ab3d662c095abc33d2cf5b54a168e9e2a12099f7de`. No añade registros ni se suma como otra búsqueda: permanecen los **374 no recibidos**. Los [recibos de la ampliación](../_static/literature_remediation/provenance.json) conservan las huellas de sus entradas y derivados.
+
 El periodo principal propuesto es **2019–2026**, con trabajos fundacionales anteriores justificados por separado. Las exportaciones WoS recibidas contienen años nominales **2006–2027**, por lo que no se afirma que ya estén filtradas a ese intervalo. Sobre los 1.298 grupos bibliográficos WoS deduplicados:
 
 - 1.222 tienen año nominal 2019–2026.
@@ -89,15 +93,30 @@ La [tabla de deduplicación](../_static/literature_wos/deduplication.csv) mantie
 
 Los [enlaces entre bases](../_static/literature_scopus/cross_database_links.csv) y los [7.833 grupos](../_static/literature_scopus/combined_records.csv) mantienen los identificadores originales. Las citas WoS TC y Scopus Cited by permanecen separadas; no se suman.
 
-![Flujo de recepción y revisión dirigida](../_static/literature_selection/receipt_flow.png)
+![Flujo histórico de recepción y revisión dirigida del 05/11/2026](../_static/literature_selection/receipt_flow.png)
 
-Este es el tramo de identificación y depuración del flujo tipo PRISMA. Dentro de él, la recuperación dirigida permitió **leer diez originales arquitectónicos completos**, incluidos apéndices y referencias; sus [recibos PDF](../_static/literature_fulltext/fulltext_manifest.json) fijan versión, tamaño, SHA-256 y páginas físicas. **No se han clasificado los 7.833 grupos por elegibilidad**, por lo que diez originales leídos no se presentan como el total de estudios incluidos de una revisión global. Hay además ocho registros WoS de apoyo aplicado; el mismo estudio financiero respalda PatchTST, Informer y Autoformer, y S-Mamba coincide con una de las diez arquitecturas. No son dieciocho estudios independientes.
+Este flujo conserva el tramo histórico de identificación y depuración. La recuperación dirigida permitió **leer diez originales arquitectónicos completos**, incluidos apéndices y referencias; sus [recibos PDF](../_static/literature_fulltext/fulltext_manifest.json) fijan versión, tamaño, SHA-256 y páginas físicas. La ampliación siguiente agrega el cribado local, sin acreditar todavía **elegibilidad global por texto completo**. Los diez originales no se presentan como el total de estudios incluidos de una revisión global. Hay además ocho registros WoS de apoyo aplicado; el mismo estudio financiero respalda PatchTST, Informer y Autoformer, y S-Mamba coincide con una de las diez arquitecturas. No son dieciocho estudios independientes.
 
 La detección automática produjo pistas de cribado, no comparadores independientes acreditados. Por ejemplo, TiDE debe distinguirse del término inglés *tide* —marea—; aparecer en un abstract o una referencia no demuestra que el modelo fuera evaluado como comparador autónomo.
 
+#### Ampliación del 06/11/2026: cribado local de los 7.833 grupos
+
+Se aplicó el [protocolo reproducible de primera pasada](../_static/literature_remediation/protocol.json) al título y a los resúmenes privados asociados a cada grupo. Se priorizan volatilidad cripto, volatilidad financiera y mecanismos transferibles; los originales y apoyos ya identificados se conservan para revisión. El [registro completo](../_static/literature_remediation/screening_ledger.csv) documenta cada identificador, procedencia, términos detectados, huella del resumen, regla, motivo y estado. No publica los resúmenes completos.
+
+| Decisión de primera pasada | Grupos | Interpretación |
+|---|---:|---|
+| Exclusión provisional por título/resumen | **4.323** | Recomendación automática con motivo; requiere validación editorial |
+| Retención para recuperación o evaluación del texto completo | **2.436** | Candidato retenido, todavía no estudio incluido |
+| Revisión manual pendiente | **1.074** | Objetivo, mecanismo, homónimo o papel del estudio ambiguos |
+| Total procesado | **7.833** | Un registro por grupo recibido, sin omisiones ni duplicaciones |
+
+La [cola priorizada](../_static/literature_remediation/priority_queue.csv) reúne **3.510 grupos**, incluidos los ambiguos; la [cola financiera](../_static/literature_remediation/financial_priority_queue.csv) contiene **602**. El [conteo de motivos](../_static/literature_remediation/reason_counts.csv), el [resumen](../_static/literature_remediation/summary.json) y el [estado PRISMA](../_static/literature_remediation/prisma_status.json) reconcilian estas cantidades. Las recomendaciones automáticas no son exclusiones finales validadas ni el total de estudios elegibles. La cantidad de incluidos de la revisión sistemática permanece **sin determinar**, no se sustituye por cero.
+
+Se realizó además una [lectura editorial asistida de 17 resúmenes prioritarios](../_static/literature_remediation/editorial_title_abstract_checks.json): **diez** declaran pronóstico de volatilidad, **seis** estudian precio, retorno o trading y **uno** presenta una definición ambigua entre retorno y volatilidad. Los seis trabajos cripto que mencionaban modelos del Top 10 en esta comprobación se conservaron como contexto de otro objetivo; no se suman como respaldo directo de σ₇. Las diez declaraciones de volatilidad también requieren comprobar definición, arquitectura y protocolo en el cuerpo del artículo. No se acredita lectura completa de estos 17 textos, dos revisores humanos independientes ni κ de Cohen.
+
 ### 3.1.5 Búsqueda transversal de mecanismos
 
-Se registran tres cadenas adicionales para ejecución y exportación posterior. Son una ampliación planificada; no se les atribuyen resultados aún no recibidos:
+Se conservan las tres cadenas propuestas para búsquedas nativas. El **06/11/2026** se ejecutaron conjunciones locales de mecanismo, modalidad de origen y transferencia/adaptación sobre los **7.833 grupos ya recibidos**. El [registro de consultas locales](../_static/literature_remediation/local_transversal_searches.json) especifica las expresiones, las variantes regex efectivamente utilizadas y su alcance; no equivale al campo TS ni a una nueva consulta global de la base.
 
 ```text
 TS=(("vision transformer" OR "self-attention")
@@ -114,13 +133,22 @@ TS=(("selective state space" OR Mamba)
 AND (language OR speech OR audio) AND (transfer* OR adapt*))
 ```
 
+| Consulta local | Grupos coincidentes |
+|---|---:|
+| Atención / visión | **15** |
+| Mezcla de tokens o canales / visión | **3** |
+| Estado selectivo / lenguaje, voz o audio | **90** |
+| Unión sin duplicar grupos | **102** |
+
+Los [resultados locales por identificador](../_static/literature_remediation/local_transversal_hits.csv) permiten seguir cada coincidencia. Hay solapamiento entre consultas; 15 + 3 + 90 no representa 108 estudios independientes. Se ejecutaron **cero nuevas consultas nativas** en esta ampliación. La cobertura heredada, seleccionada por otras consultas, impide interpretar la ausencia de un resultado local como ausencia en WoS/Scopus.
+
 | Mecanismo candidato para E3 | Modalidad de origen y fuente identificada | Propiedad transferible y cautela |
 |---|---|---|
 | Tokens/segmentos y atención | Visión: ViT/Swin, reconocidos como inspiración en el README primario de Crossformer | Relacionar segmentos temporales y canales; conservar el eje de causalidad y limitar segmentos a D7 |
 | Mezcla de tokens y características | Visión: MLP-Mixer; la ampliación debe recuperar y extraer su fuente primaria completa | Separar mezcla temporal y de covariables con menos atención; con siete días no se presume ventaja de coste o precisión |
 | Memoria selectiva | Lenguaje/secuencias: Mamba; código y referencia del modelo S-Mamba de pronóstico recuperados | Seleccionar estado dependiente de la entrada; distinguir tokens de variables de fechas futuras y verificar utilidad en una historia corta |
 
-La tabla alimenta E3 sin comprometer su arquitectura final. La búsqueda transversal y la revisión de los originales de origen permanecen abiertas; la recuperación dirigida de código no sustituye esas consultas.
+La tabla alimenta E3 sin comprometer su arquitectura final. La búsqueda local está ejecutada; continúan abiertas las búsquedas transversales nativas y la revisión completa de las fuentes originales de origen. Recuperar código o detectar un mecanismo en un resumen no sustituye esas tareas.
 
 ## 3.2 Propuesta del Top 10 para Bitcoin
 
@@ -152,10 +180,12 @@ $$
 - $R$: cercanía de tarea; 0,8 para volatilidad financiera de otros activos y 0,5 para transferencia desde otros dominios de pronóstico. Ningún candidato recibe 1 por una validación directa de nuestro experimento.
 - $A$: acceso verificado al código primario; 1 para las diez fuentes recuperadas. No acredita licencia, ejecución ni adaptación D7 resueltas.
 - $U$: recencia del año de la fuente arquitectónica identificada, acotada a [0,1] mediante $(año-2019)/7$.
-- $C$: citas Scopus por año del **original arquitectónico**, con tasa `Cited by / (2026 − año + 1)`, normalizadas por el máximo observado y acotadas a [0,1]. Se identificaron ocho originales en el CSV; el máximo es PatchTST: 2.435 citas / 4 años = 608,75. Los originales de Informer y Autoformer no se localizaron en la exportación parcial: su componente queda en [0,1], sin atribuirles cero citas. Los [EID y conteos originales](../_static/literature_scopus/original_model_records.csv) distinguen el TSMixer de Google del homónimo de IBM/KDD.
+- $C$: citas Scopus por año del **original arquitectónico**, con tasa `Cited by / (2026 − año de antigüedad + 1)`, normalizadas por el máximo observado y acotadas a [0,1]. El año de antigüedad conserva Early Access cuando está acreditado: S-Mamba usa 2024, aunque su publicación nominal sea 2025. Se identificaron ocho originales en el CSV; el máximo es PatchTST: 2.435 citas / 4 años = 608,75. Los originales de Informer y Autoformer no se localizaron en la exportación parcial: su componente queda en [0,1], sin atribuirles cero citas. Los [EID y conteos originales](../_static/literature_scopus/original_model_records.csv) distinguen el TSMixer de Google del homónimo de IBM/KDD.
 - $P$: desempeño bajo condiciones comparables al objetivo Bitcoin D7×5 → σ₇. **Se verificaron las métricas de los diez originales**, pero sus datasets, escalas, horizontes y entradas no permiten asignar este componente para Bitcoin. Permanece en [0,1]. La puntuación tiene amplitud de 15 puntos, o de 30 cuando también faltan citas originales.
 
 La diversidad de al menos cuatro familias es una restricción adicional. Las citas del estudio compartido de 80 acciones no se multiplican ni se usan como citas de tres originales. El límite inferior usa cero únicamente como extremo algebraico del intervalo desconocido. **No es un cero observado.** El puntaje prioriza dentro de esta propuesta; no es una clasificación exhaustiva de los 7.833 grupos. La regla se documenta después de la exploración bibliográfica y antes de entrenar E2, sin atribuirle un preregistro anterior a las búsquedas.
+
+La [reconsideración del 06/11/2026](../_static/literature_remediation/candidate_reassessment.csv) incorpora **29 modelos o familias**, incluidos alternativas y baselines. Separa menciones, comprobaciones editoriales por resumen y fuentes originales, y conserva vacíos los componentes desconocidos de código, rendimiento comparable, cuartil o representatividad. Las menciones no son frecuencias verificadas de comparadores independientes; los intervalos de los diez propuestos siguen siendo los históricos. No se asignan ceros a las alternativas sin verificar ni se produce un ranking final nuevo. El Top 10 no cambia por esta primera pasada.
 
 ### 3.2.2 Alternativas y razones para no cerrar su inclusión
 
@@ -167,6 +197,8 @@ La diversidad de al menos cuatro familias es una restricción adicional. Las cit
 | N-BEATSx / N-HiTS | Evidencia financiera pertinente; sus usos originales de historia del objetivo requieren revisar la compatibilidad con el contrato sin rezagos explícitos de Y |
 | TFT / DeepAR | Revisar historia del objetivo, variables estáticas/futuras y disponibilidad antes de considerarlos comparaciones con la misma información |
 | CNN-LSTM / BiLSTM | Hay estudios de volatilidad de criptomonedas; falta completar aquí configuración y controles temporales de esos originales. Se conservan como alternativas, sin asumir dimensionalidad CNN o uso legítimo de datos futuros |
+| MLP / DFFNN | Los resúmenes de [LSTM-GARCH](https://doi.org/10.1007/s10614-023-10373-8) y [redes profundas con GARCH](https://doi.org/10.1016/j.mlwa.2023.100465) declaran comparaciones de volatilidad cripto. Extraer cuerpos, profundidad y roles autónomos/híbridos; MLP no equivale automáticamente a una arquitectura profunda definida |
+| Jordan-RNN | El [estudio de volatilidad de BTC, Ripple y Ethereum](https://doi.org/10.1016/j.physa.2022.127158) identifica una red de Jordan en el resumen. Falta revisar configuración y validación completas antes de compararla con los seleccionados |
 | DLinear / ARIMA | No completan cupos de diez modelos profundos. Pueden contextualizar otros diseños de comparación si se justifican |
 
 Estas razones son de alcance y verificabilidad, no pruebas de inferioridad predictiva. La lista de alternativas no pretende agotar todos los modelos más citados de una literatura global que aún no se ha recuperado completamente.
@@ -183,11 +215,15 @@ $$
 
 No basta cambiar `c_out=1` ni seleccionar Close de una salida multivariante. La escala final corresponde al objetivo, ajustada solo en entrenamiento. La rama de tendencia de Autoformer y las conexiones residuales de otros modelos deben proyectarse coherentemente a esa variable. TiDE requiere una adaptación explícita **covariate-only** para conservar la ausencia de Y rezagada, atributos estáticos y covariables futuras. Esa adaptación no se presenta como ejecución idéntica de la configuración del artículo.
 
-En Informer/Autoformer, el decoder admite contexto observado y placeholders futuros sin valores verdaderos; los embeddings de calendario originales se deben desactivar o sustituir para no añadir canales no acordados. Los parches, segmentos, kernels, frecuencias y niveles de downsampling deben ser válidos con D7. La [sección 4](04_implementacion.md) desarrolla el diseño y los requisitos de implementación recibidos; la factibilidad de forma y los espacios equitativos se verificarán antes de entrenar y de cerrar el protocolo completo.
+En Informer/Autoformer, el decoder admite contexto observado y placeholders futuros sin valores verdaderos; los embeddings de calendario originales se deben desactivar o sustituir para no añadir canales no acordados. Los parches, segmentos, kernels, frecuencias y niveles de downsampling deben ser válidos con D7. La [sección 4](04_implementacion.md) conserva el diseño inicial; la [ruta F2a](07_ruta_temporal.md), el [protocolo actual](09_protocolo_registrado.md) y su [fuente registrada](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e2_remediation_20261106/preregistration.json) precisan las decisiones posteriores.
+
+La [revisión arquitectónica de §14](14_arquitecturas.md) y su [matriz de decisiones](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e2_remediation_20261106/architecture_decisions.json) distinguen estructura publicada, receta del piloto y adaptación final. Identificar un backbone no certifica la excepción final de §14: los casos de adaptación y la receta numérica deben verificarse individualmente antes de HPO/P1 o entrenamiento definitivo. El pequeño piloto P0 no exime automáticamente de una búsqueda que resulte obligatoria; los espacios y presupuestos comparables se desarrollan en [§11](11_hpo_equidad.md).
 
 ## 3.3 Análisis técnico por modelo
 
 Las fichas siguientes reúnen lectura del original completo, código inspeccionado, formulación propia simplificada y adaptación propuesta. Cada versión leída se identifica por hash, tabla y página; los estados históricos previos se conservan con su alcance. Los esquemas son originales de este libro; no son reproducciones de figuras editoriales. $g_\sigma$ representa la lectura escalar común anterior. Las complejidades de estas fichas son estimaciones estructurales de la etapa bibliográfica; no son mediciones del adaptador Bitcoin D7. Las mediciones de las corridas externas ETTh1 se presentan por separado en la [sección 5](05_paper_guia.md).
+
+**Alcance de las fichas conservadas:** sus indicaciones de adaptación pendiente y ejecución histórica corresponden al cierre bibliográfico del 05/11/2026. El registro actualizado de fuentes, recetas y revisión de la adaptación D7 está en la matriz arquitectónica y el protocolo enlazados arriba; la ejecución actual de P0 no convierte estas métricas publicadas en resultados Bitcoin ni cierra el benchmark final.
 
 ### 3.3.1 TSMixer
 
@@ -601,11 +637,11 @@ Los costes publicados tampoco comparten condiciones. Por ejemplo, TSMixer inform
 
 ### 3.4.4 Reproducibilidad y brecha verificable
 
-En el subcorpus de arquitecturas hay **10/10 originales completos leídos y 10/10 fuentes públicas de código identificadas** por commit. Código accesible no equivale a licencia de redistribución verificada en todos los casos. **Al cierre de la etapa bibliográfica del 05/11/2026** se registraron **0/10 reproducciones numéricas** y **0/10 descargas de benchmarks verificadas en esa etapa**. Esos ceros son históricos, no totales actuales del proyecto: la [sección 5](05_paper_guia.md) documenta posteriormente **veinte ajustes en ETTh1 —cinco de réplica TimeMixer y quince del piloto de tres modelos—**. La identidad estricta de la fila publicada y la compatibilidad numérica se califican allí según sus evidencias. Siguen pendientes las adaptaciones D7 y la evaluación nueva del benchmark Bitcoin; esos denominadores tampoco estiman la reproducibilidad de los 7.833 grupos sin cribar.
+En el subcorpus de arquitecturas hay **10/10 originales completos leídos y 10/10 fuentes públicas de código identificadas** por commit. Código accesible no equivale a licencia de redistribución verificada en todos los casos. **Al cierre de la etapa bibliográfica del 05/11/2026** se registraron **0/10 reproducciones numéricas** y **0/10 descargas de benchmarks verificadas en esa etapa**. Esos ceros son históricos, no totales actuales del proyecto: la [sección 5](05_paper_guia.md) documenta posteriormente **veinte ajustes en ETTh1 —cinco de réplica TimeMixer y quince del piloto de tres modelos—**. La identidad estricta de la fila publicada y la compatibilidad numérica se califican allí según sus evidencias. El [piloto P0 D7](09_protocolo_registrado.md) pertenece a otra etapa de desarrollo y está en ejecución. Permanecen pendientes el cierre de todos los adaptadores finales, HPO/P1 y el benchmark Bitcoin. Tampoco los diez originales estiman la reproducibilidad de los **7.833 grupos ya cribados por reglas, pero sin elegibilidad global por texto completo**.
 
-El [registro histórico de código](../_static/literature_selection/primary_source_registry.json) conserva la etapa previa, en la que todavía se habían leído cero PDF. El [registro de lectura de esa etapa](../_static/literature_fulltext/provenance.json) y el {download}`informe de extracción <../_static/literature_fulltext/report.md>` documentan los diez originales leídos. La extracción congelada se conserva como evidencia de su fecha; la ejecución posterior se incorpora en §5, sin reescribir esos recibos históricos.
+El [registro histórico de código](../_static/literature_selection/primary_source_registry.json) conserva la etapa previa, en la que todavía se habían leído cero PDF. El [registro de lectura de esa etapa](../_static/literature_fulltext/provenance.json) y el {download}`informe de extracción <../_static/literature_fulltext/report.md>` documentan los diez originales leídos. La extracción congelada se conserva como evidencia de su fecha; la ejecución posterior se incorpora en §5 y §9, y la ampliación bibliográfica del 06/11 en esta sección, sin reescribir esos recibos históricos.
 
-**Brecha comprobable en este subcorpus:** ninguno de los diez originales leídos evalúa conjuntamente los diez mecanismos con entradas OHLCV D7×5, objetivo σ₇ de BTCUSDT a un día, fechas y referencias heredadas, ajuste comparable e incertidumbre temporal. La afirmación se restringe a esos diez originales y puede refutarse con la hoja de extracción. La ausencia en toda la literatura de una comparación equivalente **continúa abierta** hasta completar el cribado de las fuentes recibidas.
+**Brecha comprobable en este subcorpus:** ninguno de los diez originales leídos evalúa conjuntamente los diez mecanismos con entradas OHLCV D7×5, objetivo σ₇ de BTCUSDT a un día, fechas y referencias heredadas, ajuste comparable e incertidumbre temporal. La afirmación se restringe a esos diez originales y puede refutarse con la hoja de extracción. La ausencia en toda la literatura de una comparación equivalente **continúa abierta**: exige completar cobertura, validar las decisiones de cribado y extraer los textos elegibles. Las 7.833 decisiones locales no prueban por sí solas esa ausencia global ni garantizan una brecha empírica en el piloto.
 
 La brecha conecta con las RQ de la sección 1: ganancia frente al baseline heredado, deterioro en alta volatilidad y relación error/coste. La revisión no modifica la métrica, δ, la partición ni convierte el test ya conocido en una evaluación confirmatoria nueva. Los resultados de E1 siguen siendo la referencia hasta ejecutar el benchmark de E2.
 
@@ -618,19 +654,40 @@ La brecha conecta con las RQ de la sección 1: ganancia frente al baseline hered
 - [Puntuación preliminar](../_static/literature_selection/model_selection.csv), [fichas de adaptación](../_static/literature_selection/model_cards.json) y [código de autores identificado](../_static/literature_selection/primary_source_registry.json).
 - [Registros combinados WoS/Scopus](../_static/literature_scopus/combined_records.csv), [resumen de cobertura](../_static/literature_scopus/summary.json) y [deduplicación WoS](../_static/literature_wos/deduplication.csv).
 
+La ampliación del **06/11/2026** se publica por separado en trece artefactos, para conservar la extracción histórica:
+
+1. {download}`Informe de alcance y reproducción <../_static/literature_remediation/README.md>`.
+2. [Protocolo de cribado](../_static/literature_remediation/protocol.json).
+3. [Resumen de cantidades y estados](../_static/literature_remediation/summary.json).
+4. [Recibos y hashes de procedencia](../_static/literature_remediation/provenance.json).
+5. [Registro completo de 7.833 grupos](../_static/literature_remediation/screening_ledger.csv).
+6. [Conteos por motivo](../_static/literature_remediation/reason_counts.csv).
+7. [Cola de 3.510 grupos](../_static/literature_remediation/priority_queue.csv).
+8. [Cola financiera de 602 grupos](../_static/literature_remediation/financial_priority_queue.csv).
+9. [Reconsideración de 29 modelos o familias](../_static/literature_remediation/candidate_reassessment.csv).
+10. [Diecisiete comprobaciones editoriales de resumen](../_static/literature_remediation/editorial_title_abstract_checks.json).
+11. [Estado PRISMA del universo recibido](../_static/literature_remediation/prisma_status.json).
+12. [Especificaciones y conteos de consultas transversales locales](../_static/literature_remediation/local_transversal_searches.json).
+13. [Coincidencias locales por identificador](../_static/literature_remediation/local_transversal_hits.csv).
+
 El paquete incluye derivados bibliográficos mínimos, fuentes curadas, scripts y sus pruebas. No redistribuye los PDF ni las exportaciones nativas con abstracts y referencias. Sin adjuntos privados, `python scripts/compile_e2_fulltext_review.py --check` verifica la extracción congelada y sus hashes; `python scripts/build_e2_literature_selection.py` reconstruye las fichas y figuras con el entorno de `requirements-eda.lock.txt`. Los importadores WoS/Scopus requieren las exportaciones originales para repetir la importación, con su orden y hashes documentados. Estos pasos no entrenan modelos ni puntúan test.
+
+El cribado local nuevo se reproduce con `scripts/screen_e2_literature.py` y el conjunto privado combinado de resúmenes, cuyos identificadores deben coincidir exactamente con los 7.833 públicos. El protocolo se documentó después de las búsquedas; no se le atribuye preregistro anterior a ellas. Los trece derivados no contienen resúmenes completos y no acreditan una nueva búsqueda nativa, elegibilidad final ni resultados de entrenamiento.
 
 | Producto | Estado verificable |
 |---|---|
 | Diez nombres y cuatro familias para Bitcoin | Selección bibliográfica con originales y apoyo aplicado diferenciados |
 | Originales arquitectónicos | Diez PDF completos, 215 páginas, métricas y calidad de reporte extraídas |
-| Fuentes de implementación | Diez backbones identificados; adaptación y pruebas causales D7 pendientes |
+| Fuentes de implementación | Diez backbones identificados; adaptadores del piloto D7 implementados; cierre de adaptaciones finales y excepciones §14 pendiente |
 | Dos bases nativas | WoS y Scopus incorporadas; cobertura parcial documentada |
 | Cuartiles e impacto por año | Pendientes de verificación específica; pertenencia a un índice no acredita Q1 |
 | Estudios aplicados de apoyo | Ocho registros, uno compartido con el original S-Mamba; cuerpos restantes por extraer |
-| Puntuación | Regla y tabla reproducibles; mantiene intervalos donde faltan citas o desempeño comparable a Bitcoin |
-| PRISMA global | Identificación y deduplicación trazables; cobertura, cribado y elegibilidad global por cerrar |
-| Búsqueda transversal | Tres cadenas planificadas y mecanismos identificados; ejecución/exportación por cerrar |
+| Puntuación | Tabla histórica de diez y reconsideración de 29 modelos/familias; desconocidos vacíos, sin ranking final de alternativas |
+| Cribado local recibido | 7.833 grupos procesados: 4.323 exclusiones provisionales, 2.436 retenidos y 1.074 ambiguos |
+| Lectura focal de resúmenes | Diecisiete comprobaciones: diez targets de volatilidad, seis de otro objetivo y uno ambiguo; cuerpos pendientes |
+| PRISMA global | Recepción, deduplicación y primera pasada trazables; cobertura, validación y elegibilidad por texto completo abiertas |
+| Búsqueda transversal | Tres consultas locales ejecutadas: 15/3/90 coincidencias y 102 grupos únicos; búsquedas nativas y originales de origen pendientes |
 | Gap | Verificado dentro de los diez originales; revisión global abierta |
 | Ejecución externa posterior a la revisión | Réplica de TimeMixer y piloto de tres modelos sobre ETTh1; evidencia en [§5](05_paper_guia.md) |
-| Benchmark Bitcoin de mínimo quince configuraciones | Pendiente de adaptadores, protocolo, piloto D7 y ejecución |
+| Piloto D7 de desarrollo | P0 en ejecución; no acredita benchmark final, HPO ejecutado ni potencia definitiva |
+| Catálogo actual F2a | Veinte configuraciones, quince de ellas ajustables, en el protocolo; ejecución del benchmark final pendiente |

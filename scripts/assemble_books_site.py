@@ -20,7 +20,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 BOOKS = (
     ("entregable1", "book", "", "Informe y estudios del Entregable 1"),
-    ("entregable2", "book_e2", "entregable2", "Secciones 1–6; réplica y piloto ETTh1; análisis Bitcoin preparado, ejecución pendiente"),
+    ("entregable2", "book_e2", "entregable2", "Guía completa; ruta F2a y piloto Bitcoin ejecutado (440 ajustes); benchmark final pendiente"),
     ("entregable3", "book_e3", "entregable3", "Libro inicial; guía específica pendiente"),
 )
 
@@ -114,7 +114,7 @@ def assemble(project_root=ROOT, output_dir=None, source_commit=None):
             "assembled_at_utc": datetime.now(timezone.utc).isoformat(),
             "books": records, "e1_root_url_preserved": True,
             "new_model_fits": 0, "new_model_forecasts": 0,
-            "new_model_counts_scope": "Only fits and forecasts performed by this editorial assembly; excludes the previously executed E1 and external E2 experiments whose saved artifacts are published."}
+            "new_model_counts_scope": "Only fits and forecasts performed by this editorial assembly; excludes the previously executed E1, external ETTh1 and registered Bitcoin development P0/OOF experiments whose saved artifacts are published."}
         (staging / "books_manifest.json").write_text(
             json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         (staging / ".nojekyll").touch()

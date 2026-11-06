@@ -1,0 +1,218 @@
+{
+  "protocol_version": "E2-F2a-remediation-20261106",
+  "guide_full_PDF_received": true,
+  "guide_PDF_pages": 65,
+  "guide_PDF_sha256": "93499dcfda6a36d9621524a81821470017ba114ca6b08241a35de5a54f74a654",
+  "scientific_E1_contract_preserved_sha256": "1464fa79d472f6755651774989b140659ee1f21daeb30032fc650a8770f4fdc4",
+  "methodological_route": "F2a_series_de_tiempo",
+  "route_decision_closed": true,
+  "route_evidence": "Ridge D7 forward ACF(1)=0.632228 and guide RT1 p32; resolution in sections/07_ruta_temporal.md",
+  "DL_input_contract": "D7 x 5 OHLCV; no explicit target lags or calendar channels",
+  "primary_metric": "mean per-trajectory RMSE in original sigma7 units",
+  "absolute_delta": 0.00025772842664981106,
+  "catalogue_size": 20,
+  "tunable_model_count": 15,
+  "HPO_trials_each": 12,
+  "HPO_registry_candidates": 180,
+  "same_assigned_CPU_seconds_per_tunable": 172800,
+  "HPO_actual_executed": false,
+  "final_adapter_architecture_review_status": "Required before HPO; exact source recipes and D7 changes recorded; final exception review not falsely certified",
+  "NAS_rule": "Only for genuinely undefined architectures; no blanket1000 search or automatic exemption from a DOI",
+  "master_registered_source_commit": "599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0",
+  "registered_before_first_dataset_fit_at_utc": "2026-11-06T14:52:32.498327+00:00",
+  "inference_families": {
+    "Top10_vs_E1_GRU": {
+      "hypotheses": 30,
+      "alpha": 0.02
+    },
+    "Top10_vs_tuned_E2_GRU": {
+      "hypotheses": 30,
+      "alpha": 0.02
+    },
+    "registered_final_diagnostics": {
+      "hypotheses": 199,
+      "alpha": 0.01
+    }
+  },
+  "primary_final_family_global_allocated_alpha": 0.05,
+  "P0_diagnostic_family_separate_from_final_benchmark": {
+    "scope": "OOF Jan-Oct2024 only",
+    "hypotheses": 3,
+    "alpha": 0.01,
+    "Holm": true,
+    "Nov_Dec_is_descriptive": true
+  },
+  "power_policy": "Target0.80 for alternatives2delta (excessdelta), not at null boundary; P1 after frozen HPO recipes selects R, cap200 with honest insufficient-power status",
+  "overfit_margin_delta_g": 0.00025772842664981106,
+  "P0_scope": "fixed-config development feasibility, variance, regime-gap diagnostic; not optimized final benchmark or new unseen test",
+  "P0_and_OOF_planned_trajectories": 220,
+  "P0_and_OOF_planned_optimizer_fits": 440,
+  "P0_and_OOF_closed_trajectories_snapshot": 220,
+  "P0_and_OOF_fits_count_scope": "closed trajectories only; in-progress stages are not counted as completed optimizer fits",
+  "main_Bitcoin_test_accessed_in_remediation": false,
+  "main_twenty_model_benchmark_completed": false,
+  "literature": {
+    "received_groups_screened_by_rules": 7833,
+    "provisional_exclusions": 4323,
+    "retained_for_text": 2436,
+    "manual_review_queue": 1074,
+    "financial_priority_queue": 602,
+    "editorial_abstract_reviews": 17,
+    "candidate_model_or_family_rows": 29,
+    "local_transverse_query_counts": [
+      15,
+      3,
+      90
+    ],
+    "local_transverse_unique_groups": 102,
+    "new_native_WoS_Scopus_queries": 0,
+    "unreceived_Scopus_records": 374,
+    "reuploaded_files_identical_to_prior_inputs": true,
+    "global_fulltext_eligibility_closed": false,
+    "quartiles_not_invented": true
+  },
+  "uncertainty_errors": {
+    "implementation_and_synthetic_tests": true,
+    "secondary_branch_A": "Fit/scalers/selection<=2024-10-24, frozen predictor; calibration2024-11-01..12-30, separate from primary full-development fit",
+    "claimed_exact_temporal_coverage": false,
+    "final_top3_selected": false,
+    "error_unique_origins_required_per_primary_model": 100,
+    "OOF_development_unique_origins_available": 305,
+    "P0_models_are_representatives_not_final_top3": true,
+    "P0_error_analysis_executed": true,
+    "P0_unique_error_cases_per_model": 305,
+    "P0_private_audit_sample_per_model": 100,
+    "final_Top3_predictive_intervals_evaluated": false
+  },
+  "legacy_documentary_proposals": "20261105/initial20261106 proposals and ZIPs remain identified as historical; their15-row validators are not current readiness.",
+  "current_readiness_tool": "scripts/e2_protocol_plan.py",
+  "current_training_driver": "scripts/execute_e2_development_pilot.py",
+  "full_guide_receipt_is_not_full_requirement_compliance": true,
+  "updated_at_utc": "2026-11-06T15:22:57.829324+00:00",
+  "observed_execution": {
+    "source_commit": "599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0",
+    "registered_at_utc": "2026-11-06T14:52:32.498327+00:00",
+    "first_trajectory_started_at_utc": "2026-11-06T14:54:12.771101+00:00",
+    "last_trajectory_closed_at_utc": "2026-11-06T15:21:47.236854+00:00",
+    "all_fit_closures_before_first_scoring": true,
+    "closed_trajectories": 220,
+    "completed_optimizer_fits": 440,
+    "fit_failures_recorded": 0,
+    "model_phase_aggregates": [
+      {
+        "phase": "pilot",
+        "model": "TimeMixer",
+        "closed_trajectories": 5,
+        "optimizer_fits": 10,
+        "sum_recorded_training_elapsed_seconds": 95.72608955600299,
+        "training_elapsed_seconds_scope": "sum of per-trajectory elapsed clocks (inner+refit), not process CPU-s nor total wall time; at most2 jobs in parallel",
+        "selected_epoch_min": 29,
+        "selected_epoch_max": 51
+      },
+      {
+        "phase": "pilot",
+        "model": "iTransformer",
+        "closed_trajectories": 5,
+        "optimizer_fits": 10,
+        "sum_recorded_training_elapsed_seconds": 54.61480114306323,
+        "training_elapsed_seconds_scope": "sum of per-trajectory elapsed clocks (inner+refit), not process CPU-s nor total wall time; at most2 jobs in parallel",
+        "selected_epoch_min": 25,
+        "selected_epoch_max": 48
+      },
+      {
+        "phase": "pilot",
+        "model": "PatchTST",
+        "closed_trajectories": 5,
+        "optimizer_fits": 10,
+        "sum_recorded_training_elapsed_seconds": 135.6400226469268,
+        "training_elapsed_seconds_scope": "sum of per-trajectory elapsed clocks (inner+refit), not process CPU-s nor total wall time; at most2 jobs in parallel",
+        "selected_epoch_min": 21,
+        "selected_epoch_max": 71
+      },
+      {
+        "phase": "pilot",
+        "model": "GRU",
+        "closed_trajectories": 5,
+        "optimizer_fits": 10,
+        "sum_recorded_training_elapsed_seconds": 24.013442984083667,
+        "training_elapsed_seconds_scope": "sum of per-trajectory elapsed clocks (inner+refit), not process CPU-s nor total wall time; at most2 jobs in parallel",
+        "selected_epoch_min": 40,
+        "selected_epoch_max": 84
+      },
+      {
+        "phase": "oof",
+        "model": "TimeMixer",
+        "closed_trajectories": 50,
+        "optimizer_fits": 100,
+        "sum_recorded_training_elapsed_seconds": 752.1769795324071,
+        "training_elapsed_seconds_scope": "sum of per-trajectory elapsed clocks (inner+refit), not process CPU-s nor total wall time; at most2 jobs in parallel",
+        "selected_epoch_min": 16,
+        "selected_epoch_max": 77
+      },
+      {
+        "phase": "oof",
+        "model": "iTransformer",
+        "closed_trajectories": 50,
+        "optimizer_fits": 100,
+        "sum_recorded_training_elapsed_seconds": 387.6910994396894,
+        "training_elapsed_seconds_scope": "sum of per-trajectory elapsed clocks (inner+refit), not process CPU-s nor total wall time; at most2 jobs in parallel",
+        "selected_epoch_min": 5,
+        "selected_epoch_max": 100
+      },
+      {
+        "phase": "oof",
+        "model": "PatchTST",
+        "closed_trajectories": 50,
+        "optimizer_fits": 100,
+        "sum_recorded_training_elapsed_seconds": 922.5838356798049,
+        "training_elapsed_seconds_scope": "sum of per-trajectory elapsed clocks (inner+refit), not process CPU-s nor total wall time; at most2 jobs in parallel",
+        "selected_epoch_min": 20,
+        "selected_epoch_max": 76
+      },
+      {
+        "phase": "oof",
+        "model": "GRU",
+        "closed_trajectories": 50,
+        "optimizer_fits": 100,
+        "sum_recorded_training_elapsed_seconds": 176.04762076516636,
+        "training_elapsed_seconds_scope": "sum of per-trajectory elapsed clocks (inner+refit), not process CPU-s nor total wall time; at most2 jobs in parallel",
+        "selected_epoch_min": 5,
+        "selected_epoch_max": 100
+      }
+    ],
+    "scoring_phases": {
+      "pilot": {
+        "completed_at_utc": "2026-11-06T15:22:02.765045+00:00",
+        "scheduled_trajectories": 20,
+        "rows": 1200,
+        "max_decoded_outcome": "2024-12-30",
+        "all_fit_closures_before_scoring": true
+      },
+      "oof": {
+        "completed_at_utc": "2026-11-06T15:22:11.211112+00:00",
+        "scheduled_trajectories": 200,
+        "rows": 6100,
+        "max_decoded_outcome": "2024-10-31",
+        "all_fit_closures_before_scoring": true
+      }
+    },
+    "scientific_contract_E1_sha256": "1464fa79d472f6755651774989b140659ee1f21daeb30032fc650a8770f4fdc4",
+    "scoring_phase_receipt_sha256": {
+      "pilot": "545bf1e8be340a23a217691b2f0fc9689fefd2f783f667d9654d90d407f22ea6",
+      "oof": "fbc2585c89e2d04c91fbf9b3df2f109455a820e5bd216b0b372286fc8db4c2b2"
+    },
+    "test_2025_or_later_access": false,
+    "HPO_executed": false,
+    "final_twenty_model_benchmark_completed": false,
+    "final_top3_identified": false,
+    "predictive_intervals_for_final_top3_evaluated": false,
+    "case_error_analysis_P0_unique_per_model": 305,
+    "private_audit_sample_unique_per_model": 100,
+    "public_export_at_utc": "2026-11-06T15:22:57.777353+00:00",
+    "individual_predictions_error_ledger_or_weights_exported": false
+  },
+  "P0_and_OOF_status": "completed_fits_scoring_analysis",
+  "P0_and_OOF_completed_optimizer_fits": 440,
+  "observed_aggregate_results": "remediation_pilot_results/summary.json",
+  "observed_error_analysis": "remediation_error_results/error_summary.json"
+}

@@ -1,4 +1,6 @@
-# Página de trabajo · Benchmark y resultados
+# Archivo de trabajo anterior · Benchmark y resultados
+
+**Archivo histórico anterior a la auditoría de la guía completa (06/11/2026).** Las cifras de quince configuraciones y las remisiones entonces pendientes reflejan esa propuesta inicial, hoy sustituida. Consultar la [sección vigente](09_protocolo_registrado.md) y el [protocolo actual](09_protocolo_registrado.md). El texto siguiente se conserva como trazabilidad; no es un segundo protocolo activo.
 
 **Todavía no se ha ejecutado el benchmark Bitcoin D7 del Top 10 y sus referencias.** La [sección 2](02_eda.md) sí contiene diagnósticos propios, incluida una referencia Ridge ajustada en desarrollo con forward chaining. Esa ejecución diagnóstica no pertenece al benchmark definitivo; Ridge se propone como referencia no profunda, sin modificar los tres modelos base heredados.
 

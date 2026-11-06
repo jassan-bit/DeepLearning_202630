@@ -1,4 +1,6 @@
-# Página de trabajo · Reproducibilidad y entrega
+# Archivo de trabajo anterior · Reproducibilidad y entrega
+
+**Archivo histórico anterior a la auditoría de la guía completa (06/11/2026).** Las cifras de quince configuraciones y las remisiones entonces pendientes reflejan esa propuesta inicial, hoy sustituida. Consultar la [sección vigente](08_reproducibilidad.md) y el [protocolo actual](09_protocolo_registrado.md). El texto siguiente se conserva como trazabilidad; no es un segundo protocolo activo.
 
 Este libro se construye desde `book_e2/`, con `_config.yml` e `_toc.yml` propios. Comparte el repositorio y el entorno editorial con E1/E3, pero su compilación no importa las carpetas de esos libros ni ejecuta sus experimentos.
 

@@ -2,9 +2,9 @@
 
 El EDA de E1 se **amplía y conserva**. Este capítulo reutiliza sus evidencias de desarrollo y añade análisis reproducibles de transformaciones, casi duplicados, soportes temporales y residuos bajo forward chaining. Cada bloque termina con decisiones de preprocesamiento, consecuencias para arquitectura/validación y riesgos; la {ref}`tabla de trazabilidad <e2-trazabilidad-eda>` reúne esas relaciones.
 
-Se distinguen dos alcances: **desarrollo 2023–2024** para diagnósticos y **perfil retrospectivo de la reserva de E1 ya conocida** para describir desplazamiento de distribución. Este último no selecciona arquitecturas, transformaciones, umbrales ni periodos y no convierte la reserva en una confirmación nueva. No se ha ejecutado el benchmark del Top 10 y sus referencias de E2.
+Se distinguen dos alcances de este EDA: **desarrollo 2023–2024** para diagnósticos y **perfil retrospectivo de la reserva de E1 ya conocida** para describir desplazamiento de distribución. Este último no selecciona arquitecturas, transformaciones, umbrales ni periodos y no convierte la reserva en una confirmación nueva. El benchmark final del panel de veinte configuraciones sigue pendiente; el [piloto P0 de desarrollo](09_protocolo_registrado.md), registrado previamente, se ejecuta como otra etapa y no se presenta como ese benchmark.
 
-El contrato principal sigue siendo D=7, n=7, h=1, cinco canales OHLCV y σ₇ poblacional sin anualizar. D es historia de entrada, n es ventana del objetivo y h es horizonte: no se intercambian. Los resultados n=14/21/28 de E1 son sensibilidades de la etiqueta, no objetivos añadidos al benchmark actual.
+El contrato principal sigue siendo D=7, n=7, h=1, cinco canales OHLCV y σ₇ poblacional sin anualizar. D es historia de entrada, n es ventana del objetivo y h es horizonte: no se intercambian. Los resultados n=14/21/28 de E1 son sensibilidades de la etiqueta, no objetivos añadidos al benchmark actual. La guía completa de 65 páginas permite cerrar la clasificación como **F2a, series de tiempo**, según la {ref}`resolución de ruta <e2-ruta-temporal>`; las covariables y etiquetas heredadas no se modifican por esa reclasificación.
 
 ## 2.1 EDA General
 
@@ -117,7 +117,7 @@ Con D=n=7, la entrada de un ejemplo $u$ usa días $[u-7,u-1]$ y su etiqueta nece
 
 Las **305 fechas** de validación son únicas y consecutivas; no se detectan violaciones de disponibilidad ni intersecciones de soportes en las separaciones externa e interna auditadas. Esto no implica independencia entre ejemplos o folds.
 
-Descargar la [auditoría de los folds](../_static/eda_decisions/fold_leakage_audit.csv). Estos controles comprueban el calendario y la representación analizados; no certifican por sí solos todas las futuras implementaciones de diez modelos.
+Descargar la [auditoría de los folds](../_static/eda_decisions/fold_leakage_audit.csv). Estos controles comprueban el calendario y la representación analizados; no certifican por sí solos los adaptadores, las referencias endógenas y las cohortes del panel ampliado de veinte configuraciones.
 
 **Identidad de la reserva y cronología.** El manifiesto heredado tiene SHA-256 `af723bcca2caffcbe44ae5243e2863bbcdcd39ae8cd42df491af0a2857926bb2`; el derivado diario de la reserva ya evaluada tiene SHA-256 `93ec9490137eee80581f56f987067001d346a421235962da5b2e9645970adebf`. El [registro de identidad y alcance](../_static/eda_traceability/partition_identity.json) enlaza la reserva y la cronología de E1 sin redistribuir ese vector de precios.
 
@@ -152,7 +152,9 @@ El [registro de procedencia](../_static/eda_known_shift/provenance.json) identif
 
 **Decisión de preprocesamiento:** conservar las transformaciones heredadas y sus parámetros de entrenamiento; no adaptar con la reserva. **Impacto en arquitectura y validación:** evaluar estabilidad por fase/régimen y registrar sensibilidad a cambios de distribución; una propuesta de adaptación requeriría diseño propio compatible con el contrato. **Riesgos:** normalizar usando test, interpretar KS como prueba causal o explotar un perfil retrospectivo para seleccionar modelos y llamarlo confirmatorio.
 
-## 2.2 EDA Específico por Tipo de Problema · C. Regresión Temporal
+## 2.2 EDA temporal: covariables y diagnóstico de la ruta F2a
+
+Se conserva el análisis de covariables del bloque C que originó el diagnóstico. La autocorrelación residual fuerte activa RT1 (PDF p32) y la reclasificación a F2a, ahora resuelta. La {ref}`sección 7.4 <e2-ruta-temporal>` integra el bloque B y los diagnósticos E1 reutilizables —STL, ADF/KPSS, ACF/PACF, ARCH y BDS— con sus fechas, frecuencias y límites, sin presentarlos como análisis nuevos ni como pruebas sobre residuos del benchmark final todavía pendiente.
 
 ### 2.2.1 Estructura y disponibilidad temporal de covariables
 
@@ -185,7 +187,7 @@ Las correlaciones móviles se estimaron en ventanas de 60 días, con al menos 50
 (e2-diagnostico-forward)=
 ### 2.2.3 Diagnóstico con residuos de una referencia forward chaining
 
-La ampliación ajusta una referencia **Ridge, α=1 fijado**, en cada uno de los diez folds mensuales enero–octubre de 2024. Usa exclusivamente las cinco covariables D7, los índices y el embargo heredados, y escalado aprendido en entrenamiento de cada fold. Esta ejecución diagnóstica no es una búsqueda de hiperparámetros ni una corrida del benchmark definitivo. Ridge se propone además como referencia no profunda en la sección 3, con ajuste todavía por definir. Persistencia $\widehat Y_t=Y_{t-1}$ aporta una referencia causal adicional.
+La ampliación del EDA ajustó una referencia **Ridge, α=1 fijado**, en cada uno de los diez folds mensuales enero–octubre de 2024. Usa exclusivamente las cinco covariables D7, los índices y el embargo heredados, y escalado aprendido en entrenamiento de cada fold. Esta ejecución diagnóstica no es una búsqueda de hiperparámetros ni una corrida del benchmark definitivo. Ridge también integra el catálogo E2, con su HPO y enlace puntual definidos por el protocolo registrado; esas reglas del benchmark no alteran las cifras diagnósticas de esta tabla. Persistencia $\widehat Y_t=Y_{t-1}$ aporta una referencia causal adicional.
 
 | Referencia | Fechas | RMSE | MAE | ACF(1) | ACF(7) |
 |---|---|---|---|---|---|
@@ -198,16 +200,16 @@ Ridge mantiene dependencia de primer rezago y pierde frente a persistencia en RM
 
 Se reportan [métricas por fold](../_static/eda_decisions/forward_reference_metrics.csv), [ACF](../_static/eda_decisions/forward_reference_acf.csv) y [Ljung–Box](../_static/eda_decisions/forward_reference_ljung_box.csv), con número de observaciones, rezagos y grados de libertad declarados. La referencia se ajusta con observaciones anteriores, no sobre los residuos de validación; no se resta mecánicamente el número de 35 entradas a los grados de libertad. La aproximación chi-cuadrado es un diagnóstico exploratorio y puede ser imprecisa en meses cortos o con heterogeneidad. No se convierten fechas separadas por huecos en observaciones consecutivas; agrupar meses tampoco elimina cambios de modelo o de régimen.
 
-**Implicación de ruta metodológica.** La autocorrelación remanente constituye una alerta sobre dinámica no explicada. La guía recibida pide considerar la ruta de **series de tiempo y rezagos del objetivo** cuando la dependencia residual sea alta. Por tanto, la clasificación como regresión temporal por el mero hecho de excluir rezagos de Y **no se considera un diagnóstico cerrado**. Se registra la necesidad de contrastar esa ruta al recibir sus requisitos completos.
+**Resolución de ruta metodológica.** La autocorrelación remanente originó la alerta sobre dinámica no explicada. Con la guía completa, RT1 (PDF p32) exige reclasificar cuando los residuos de una referencia muestran autocorrelación fuerte. Por ello, el 06/11/2026 se cierra la ruta **F2a, series de tiempo**, documentada en la {ref}`sección 7 <e2-ruta-temporal>`. No se mantiene una clasificación abierta por el mero hecho de que las redes excluyan Y rezagada.
 
 Esta evidencia no demuestra que añadir Y rezagada mejore un modelo ni autoriza cambiar las entradas heredadas. Una sensibilidad con rezagos del objetivo necesitaría una decisión documentada y una evaluación de desarrollo compatible con la herencia de E1; aquí no se añade ese canal ni se cambia la partición. El solapamiento de σ₇ también contribuye a la dependencia y debe distinguirse de un mecanismo aprovechable fuera de muestra.
 
-**Decisión de preprocesamiento:** conservar X/Y y máscaras heredadas, con la alerta de ruta registrada; no añadir rezagos de Y silenciosamente. **Impacto en arquitectura y validación:** exigir diagnósticos temporales y contraste explícito de la ruta antes de cerrar el diseño; usar incertidumbre por bloques y mantener persistencia. **Riesgos:** interpretar ACF como prueba de no linealidad o de utilidad de una nueva variable, presentar Ridge como cuarto modelo base o confundir el diagnóstico de EDA con el benchmark definitivo.
+**Decisión de preprocesamiento:** conservar X/Y y máscaras heredadas; no añadir rezagos de Y silenciosamente. **Impacto en arquitectura y validación:** seguir F2a, usar incertidumbre por bloques e incluir persistencia, naive semanal y ARIMA con soporte e información endógena declarados; los residuos de cada modelo ejecutado requieren sus propios diagnósticos. **Riesgos:** interpretar ACF como prueba de no linealidad o de utilidad de una nueva variable, presentar Ridge como cuarto modelo base o confundir el diagnóstico de EDA con el benchmark definitivo.
 
 (e2-trazabilidad-eda)=
 ## 2.3 Trazabilidad hallazgo–decisión
 
-La [tabla completa descargable](../_static/eda_traceability/hallazgo_decision.csv) registra evidencia, preprocesamiento, arquitectura, protocolo, riesgo y alcance para cada análisis. Se adopta un formato propio mientras no se haya recibido la plantilla del Apéndice A; no se afirma equivalencia literal con una plantilla aún no disponible.
+La [tabla completa descargable](../_static/eda_traceability/hallazgo_decision.csv) registra evidencia, preprocesamiento, arquitectura, protocolo, riesgo y alcance para cada análisis. Contrastada con **A.1 de la guía completa (PDF p61)**, cubre sus cinco campos: hallazgo, evidencia, decisión de preprocesamiento, impacto en arquitectura/validación y riesgo/fuga. Las columnas adicionales separan protocolo, alcance y estado. La decisión posterior de ruta se explicita aquí y en §7; el CSV conserva la procedencia de los hallazgos del EDA.
 
 | Hallazgo | Decisión y efecto en el diseño | Riesgo que controla |
 |---|---|---|
@@ -220,7 +222,7 @@ La [tabla completa descargable](../_static/eda_traceability/hallazgo_decision.cs
 | Reserva ya evaluada | Identidad trazable y perfil retrospectivo; alcance exploratorio | Sellado retrospectivo ficticio |
 | Desplazamiento entre fases | Representación causal fija y análisis de estabilidad | Adaptación con test |
 | Asociaciones móviles variables | Comparar mecanismos con la misma información | Elección de rezagos por asociación marginal |
-| Dependencia residual | Alerta de ruta y diagnóstico temporal antes del cierre | Clasificación del problema por conveniencia |
+| Dependencia residual | Resolución F2a y referencias específicas; contrato D7 conservado | Clasificación del problema por conveniencia |
 
 (e2-reproduccion-eda)=
 ## 2.4 Reproducción y estado de cierre
@@ -243,8 +245,9 @@ La reconstrucción del perfil de la reserva conocida, sus argumentos y el proced
 | Partición y solapamiento | Auditados para el calendario y representación D7 heredados; cada implementación futura deberá respetarlos |
 | Comparación de distribuciones | Desarrollo y reserva conocida descritos; análisis del test retrospectivo, sin selección de configuración |
 | Estructura, disponibilidad, relaciones rezagadas/móviles | Evidencia E1 ampliada y trazable |
-| Residuos de referencia | Diagnóstico forward de desarrollo ejecutado; alerta de ruta registrada |
+| Residuos de referencia | Diagnóstico forward de desarrollo ejecutado; resolución F2a registrada en §7 |
 | Ruido externo y techo de desempeño | No identificables con esta única fuente/proxy; limitación explícita, sin cota inventada |
 | Sellado prospectivo de un test nuevo de E2 | No disponible en los periodos heredados ya conocidos |
-| Tabla del Apéndice A y ruta completa | Formato provisional de trazabilidad; faltan esos textos de la guía |
-| Benchmark de diez modelos | No ejecutado; este capítulo no lo sustituye |
+| Tabla del Apéndice A y ruta completa | Guía completa recibida; tabla cotejada con A.1 y ruta F2a cerrada |
+| Referencias F2a | Naive, naive semanal y ARIMA implementadas y verificadas con doce pruebas sintéticas en §7; no son resultados Bitcoin |
+| Benchmark final de veinte configuraciones | Pendiente; P0 de desarrollo ejecutado y analizado por separado, sin afirmar resultados finales ni potencia acreditada |

@@ -1,44 +1,49 @@
 # Proyecto Final de Deep Learning: Entregable 2
 
-**Deep Learning · 2026-30**
+**Deep Learning · 2026-30 · Jassan Arteta**
 
-**Autor:** Jassan Arteta
+**Estado al 6 de noviembre de 2026:** la guía completa de **65 páginas** está recibida y auditada. El libro incorpora las decisiones metodológicas de sus secciones 1–14. La ruta queda clasificada como **F2a: series de tiempo**, conservando las entradas D7×5 OHLCV, el objetivo σ₇, la RMSE, δ y la partición heredados de E1. Se distinguen veinte configuraciones y quince recetas ajustables con presupuesto común. El protocolo de esta etapa se publicó [antes de los ajustes](https://github.com/jassan-bit/DeepLearning_202630/commit/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0).
 
-**Estado:** secciones 1–6 documentadas. Las capturas de las secciones 1–4 se recibieron el 5 de noviembre de 2026; las secciones 5 y 6, el 6 de noviembre (America/Bogota). De §6 son visibles los folios 17 y 19; las continuaciones se registran sin número. Se ejecutaron el EDA, la réplica externa de TimeMixer en ETTh1 y un piloto externo sobre TimeMixer, iTransformer y PatchTST. La sección 6 prepara la comparación, las plantillas y el análisis verificable. Los adaptadores y el benchmark **Bitcoin D7** siguen pendientes; esas corridas externas no son resultados de Bitcoin. Faltan las secciones metodológicas siguientes y el cierre del protocolo.
+El [piloto Bitcoin y su evaluación temporal OOF](sections/09_protocolo_registrado.md) ya se ejecutaron como un experimento de desarrollo con cuatro recetas fijas: **220 trayectorias y 440 ajustes**, con sus resultados y límites publicados allí. **El benchmark final de veinte configuraciones, el HPO y la incertidumbre de sus tres mejores modelos siguen pendientes.** El registro del procedimiento no acredita por sí solo su ejecución ni potencia suficiente. La réplica de TimeMixer y el piloto ETTh1 se conservan como evidencia externa, con otro dataset y otra tarea.
 
-Este es el Jupyter Book del **Entregable 2**. Tiene su propia configuración, índice y capítulos dentro del repositorio común [DeepLearning_202630](https://github.com/jassan-bit/DeepLearning_202630). Su dirección es distinta de las de E1 y E3.
+Este Jupyter Book tiene configuración, índice y capítulos propios dentro del repositorio común [DeepLearning_202630](https://github.com/jassan-bit/DeepLearning_202630). E1 y E3 conservan sus direcciones independientes.
 
-## Objetivo y estándar de calidad
+## Objetivo y criterio de evaluación
 
-El entregable requiere una revisión sistemática del estado del arte, un EDA orientado a decisiones y un **Top 10 de modelos** y su benchmark con referencias adicionales bajo un protocolo común, reproducible y con prevención de fuga de datos. Debe seguir la ruta metodológica del tipo de problema y respaldar sus conclusiones con inferencia estadística, análisis de robustez, calibración, incertidumbre e interpretabilidad. Culminará en una brecha de investigación y una hipótesis contrastable.
+El entregable amplía la revisión de E1 hacia diez mecanismos de Deep Learning, desarrolla un EDA orientado a decisiones e implementa una comparación reproducible y justa, con prevención de fuga. Las conclusiones deben apoyarse en inferencia temporal, relevancia práctica, coste, robustez, calibración, incertidumbre e interpretabilidad. Un resultado significativo entre semillas no equivale a evidencia en nuevos mercados.
 
-Se mantiene el **pronóstico de volatilidad de Bitcoin: regresión temporal**, con la definición de datos y objetivo heredada de E1. Cada decisión deberá justificarse, cada afirmación apoyarse en evidencia y cada resultado poder reproducirse desde el repositorio. El propósito es un benchmark académico; los márgenes no acreditan utilidad financiera.
+La guía completa identifica requisitos que todavía necesitan experimentos o fuentes externas. **Recibir la guía no significa cumplirlos todos.** La [matriz del protocolo vigente](./_static/current_protocol.json) registra qué decisiones están cerradas, qué evidencia existe y qué falta.
 
 ## Cómo leer el libro
 
-La parte recibida de la guía describe esta organización: secciones 1–6, productos; sección 7, rutas por tipo de problema y pruebas; sección 8, reproducibilidad, ética y comunicación; secciones 9–14, procedimientos de mayor riesgo metodológico; apéndices, plantillas y listas de verificación. **Ese resumen no sustituye el contenido completo todavía no recibido.**
+| Secciones | Contenido y evidencia |
+|---|---|
+| [1. Problema](sections/01_punto_partida.md) y [2. EDA](sections/02_eda.md) | Contrato E1, RQ, Data Card, análisis ejecutados y decisiones derivadas |
+| [3. Literatura](sections/03_literatura.md) | Diez originales completos, 215 páginas; cribado por reglas de 7.833 grupos recibidos y elegibilidad aún abierta |
+| [4. Implementación](sections/04_implementacion.md) | Catálogo de veinte configuraciones, requisitos experimentales y comparación justa |
+| [5. Paper guía](sections/05_paper_guia.md) | Réplica TimeMixer y piloto externo ETTh1, discrepancias y límites de transferencia |
+| [6. Benchmark final](sections/06_benchmark_final.md) | Tablas e inferencia requeridas; resultados finales pendientes |
+| [7. Ruta temporal](sections/07_ruta_temporal.md) | Decisión F2a y referencias endógenas persistencia, ingenua semanal y ARIMA |
+| [8. Reproducibilidad](sections/08_reproducibilidad.md) y [10. Auditoría](sections/10_auditoria_datos.md) | Entornos, registro y verificación real de soportes/particiones de desarrollo |
+| [9. Preregistro y potencia](sections/09_protocolo_registrado.md) | Familias, alternativas, margen de sobreajuste, P0/OOF y reglas de dimensionamiento |
+| [11. HPO](sections/11_hpo_equidad.md) y [14. Arquitecturas](sections/14_arquitecturas.md) | Ejes mínimos, presupuesto comparable y aplicación condicional de NAS por modelo |
+| [12. Incertidumbre y errores](sections/12_incertidumbre_errores.md) | Calibración disjunta, panel de 305 fechas y auditoría de cien casos únicos por modelo |
+| [13. Agregación](sections/13_agregacion_estadistica.md) | Separación de variación entre semillas y dependencia temporal; contrastes e interpretación |
 
-El índice actual distingue las secciones desarrolladas de las páginas de trabajo:
+Las páginas de trabajo anteriores se conservan como archivo identificado y enlazan a estas secciones vigentes. No constituyen un protocolo alternativo.
 
-1. [Definición del problema, preguntas de investigación y dataset](sections/01_punto_partida.md): formulación, tres RQ, contrato heredado y Data Card.
-2. [EDA orientado a decisiones](sections/02_eda.md): distribución, transformaciones, calidad, duplicados, sesgos, partición, desplazamiento y diagnóstico temporal.
-3. [Revisión de literatura y diez modelos propuestos](sections/03_literatura.md): fuentes WoS/Scopus, deduplicación, cuatro familias, código de autores y adaptación a Bitcoin.
-4. [Implementación de modelos benchmark](sections/04_implementacion.md): diseño temporal, HPO y costes propuestos, requisitos de implementación, piloto, auditoría de fuga, evaluación, robustez, explicabilidad y ablación. La auditoría distingue documentación válida de preparación real para entrenar.
-5. [Paper guía y replicación](sections/05_paper_guia.md): TimeMixer como referencia, réplica parcial ETTh1 con cinco semillas, criterio previo de compatibilidad y piloto externo de tres modelos para cuantificar limitaciones. Presenta resultados observados, discrepancias y límites de transferencia a Bitcoin.
-6. [Benchmark final](sections/06_benchmark_final.md): tabla de quince configuraciones, ranking, eficiencia, análisis estadístico y discusión crítica. Incluye herramientas y plantillas; los resultados numéricos Bitcoin aún no están disponibles.
+## Pendientes que requieren evidencia
 
-Además, se conservan las páginas de trabajo de [catálogo y propuesta](sections/02_propuesta.md), [diseño experimental](sections/03_diseno_experimental.md), [benchmark pendiente](sections/04_experimentos_resultados.md), [reproducibilidad](sections/05_reproducibilidad_entrega.md) y [referencias de contexto](sections/referencias.md).
-
-Las páginas de trabajo son provisionales y no se presentan como el desarrollo de otras secciones oficiales cuyo texto aún no se ha recibido. La sección 3.2 recibida aclara que los diez se añaden a las tres bases de E1, una referencia no profunda y una trivial: **mínimo quince configuraciones**. La propuesta es TSMixer, TiDE, TimeMixer, TimesNet, PatchTST, Informer, Autoformer, iTransformer, Crossformer y S-Mamba. Se procesaron exportaciones de WoS y Scopus y se leyeron sus diez originales completos, con métricas, páginas y limitaciones trazables. Falta validar las adaptaciones y cerrar el protocolo operativo; el cribado global y la búsqueda transversal siguen abiertos.
+- **Literatura:** faltan 374 registros de la búsqueda Scopus de 7.874 resultados. Los reenvíos son idénticos a los lotes anteriores. El cribado por reglas, las consultas transversales locales y las revisiones de resúmenes no sustituyen la adjudicación final de textos completos, los cuartiles verificados ni nuevas búsquedas nativas documentadas.
+- **Experimentos:** la verificación fiel de las adaptaciones finales habilitará HPO, P1 y dimensionamiento posterior al HPO; después se podrán ejecutar la comparación final, robustez, ablación y calibración de los tres mejores. No se hereda automáticamente R=465 de E1 ni se declara suficiente usar diez semillas.
+- **Gap transferible:** el diagnóstico registrado en Bitcoin debe informar su resultado aunque sea negativo o inconcluso. Una limitación observada en ETTh1 no demuestra una brecha predictiva corregible en Bitcoin.
 
 ## Relación con E1 y E3
 
-Se heredan **los tres modelos base, la métrica primaria, el margen práctico δ, la unidad de independencia y la partición** de la versión de E1 identificada en la [sección 1](sections/01_punto_partida.md). El tamaño muestral de E1 no determina automáticamente el de E2. E3 reutilizará y congelará los resultados que efectivamente produzca E2.
+Se preservan los tres modelos base, la métrica primaria, δ, la unidad y la partición de E1. Las variantes GRU-E2/LSTM-E2/TCN-E2 recibirán ajuste comparable y se distinguirán de las tres recetas históricas. Las referencias endógenas declaran que utilizan un soporte de historia diferente del D7×5 de las redes.
 
-Los periodos de prueba de E1 ya son conocidos. Por ello, las preguntas formuladas sobre ellos se clasifican como **exploratorias**; escribir hipótesis formales ahora no los convierte en un test nuevo y sellado. Cuando una disposición posterior de la guía precise otra anterior, prevalece la más restrictiva. Su aplicación completa requiere las páginas restantes.
+El test heredado ya es conocido. Registrar ahora hipótesis mejora el procedimiento de las fases posteriores, pero **no recupera su cegamiento**: la interpretación de E2 sobre esa reserva sigue siendo exploratoria. E3 deberá congelar únicamente resultados efectivamente producidos y una motivación respaldada por ellos.
 
-El diagnóstico residual del EDA registra una **alerta para revisar la ruta de series de tiempo**. No cambia silenciosamente las entradas heredadas ni demuestra que añadir rezagos del objetivo mejore el pronóstico.
-
-Descargar el [registro de la guía recibida](./_static/guia_e2_recibida.json), el [contrato de referencia de E1](./_static/e1_reference.json) y la [tabla hallazgo–decisión](./_static/eda_traceability/hallazgo_decision.csv). También está disponible el [paquete de la réplica y el piloto ETTh1](./_static/paper_guide_download/Paper_guia_E2_replica_piloto.zip), con código propio, diseño registrado y agregados verificables.
+Descargas: [protocolo, código y evidencias actuales](./_static/remediation_download/Remediacion_E2_protocolo_codigo_evidencias.zip), [guía recibida](./_static/guia_e2_recibida.json), [contrato E1](./_static/e1_reference.json) y [réplica ETTh1](./_static/paper_guide_download/Paper_guia_E2_replica_piloto.zip).
 
 [Todos los entregables](https://jassan-bit.github.io/DeepLearning_202630/entregables.html) · [E1](https://jassan-bit.github.io/DeepLearning_202630/intro.html) · [E3](https://jassan-bit.github.io/DeepLearning_202630/entregable3/intro.html).

@@ -1,277 +1,117 @@
 # 4. Implementación de Modelos Benchmark
 
-**Estado:** diseño propuesto del benchmark **Bitcoin D7** y auditoría documental ejecutable; sus diez adaptadores, HPO y piloto de dimensionamiento **no se han ejecutado**. La [sección 5](05_paper_guia.md) sí presenta una réplica TimeMixer y un piloto externo de tres modelos en ETTh1, que no sustituyen ese benchmark. Este capítulo desarrolla las cinco capturas recibidas de §4.1–4.6: páginas 12–15 y un fragmento final sin folio visible. Distingue requisitos de la guía, decisiones propuestas y evidencias efectivamente disponibles.
+**Versión vigente: protocolo registrado el 6 de noviembre de 2026, commit `599a29f`.** La guía completa de 65 páginas ya está recibida. Se cerraron las reglas de ejecución antes de iniciar P0 y OOF; el benchmark final de veinte configuraciones, su HPO y su dimensionamiento P1 todavía no están ejecutados. P0/OOF ya está ejecutado y analizado en [§9](09_protocolo_registrado.md), como diagnóstico de desarrollo separado del benchmark final.
 
-La implementación debe seguir también §7 y §11. Las remisiones a potencia (§9.2), auditoría formal de fuga (§10), agregación (§13.2) y búsqueda de arquitectura (§14) no se sustituyen por supuestos sobre páginas todavía no recibidas. El [registro de requisitos](../_static/guia_e2_recibida.json) conserva ese alcance. La propuesta y su auditoría pueden descargarse en §4.7.
+La [sección 9](09_protocolo_registrado.md) identifica el registro y los recibos. La réplica y el piloto **ETTh1** de [§5](05_paper_guia.md) conservan su alcance externo; no cuentan como entrenamientos ni potencia del benchmark Bitcoin. La propuesta v1 se mantiene como archivo histórico[^v1].
 
-## 4.1 Diseño experimental
+## 4.1 Contrato experimental y veinte configuraciones
 
-### 4.1.1 Variables, tarea y modelos
+Se conserva el contrato de [§1](01_punto_partida.md): siete días de OHLCV, cinco canales, predicción a un día de σ₇ —desviación poblacional de siete retornos, `ddof=0`—, escalado causal y métrica primaria igual a la **media de las RMSE por semilla en escala original**. No se incorporan rezagos de σ₇ a las redes.
 
-Se conserva el [contrato científico de E1](../_static/e1_reference.json): regresión temporal de BTCUSDT, siete días de cinco canales OHLCV conocidos en el origen, objetivo σ₇ poblacional de siete retornos diarios, horizonte de un día y sin anualización. No se añaden rezagos explícitos de Y, calendario, variables estáticas ni covariables futuras. Las transformaciones de precios y volumen y la inversión de escala de Y son las de §1.
-
-| Papel | Configuraciones | Alcance de comparación |
+| Grupo | Configuraciones | Tratamiento |
 |---|---|---|
-| Diez candidatos nuevos | TSMixer, TiDE, TimeMixer, TimesNet, PatchTST, Informer, Autoformer, iTransformer, Crossformer, S-Mamba | Cuatro familias; HPO común propuesto y adaptaciones D7 por validar |
-| Tres referencias heredadas | GRU/D7-c03, LSTM/D7-c02, TCN/D7-c02 | Se conservan sus recetas y la identidad del baseline GRU-c03 |
-| Referencia no profunda | Ridge | Ajuste final pendiente; el diagnóstico Ridge del EDA no cuenta como benchmark ejecutado |
-| Referencia trivial | Persistencia σ₇(t−1) | Sin hiperparámetros aprendidos; necesita ocho cierres pasados, como declara E1 |
+| Top 10 | TSMixer, TiDE, TimeMixer, TimesNet, PatchTST, Informer, Autoformer, iTransformer, Crossformer, S-Mamba | Diez backbones con arquitectura fuente identificada; adaptadores finales pendientes de revisión |
+| Bases ajustadas en E2 | GRU-E2, LSTM-E2, TCN-E2 | Mismo presupuesto de ajuste que el Top 10; no sustituyen las anclas |
+| Anclas heredadas E1 | GRU/D7-c03, LSTM/D7-c02, TCN/D7-c02 | Recetas históricas fijas, contexto y referencia; no se les atribuye HPO nuevo |
+| Referencias de la ruta temporal | Ridge, ARIMA, persistencia y naive estacional | Ridge y ARIMA ajustables; las dos referencias ingenuas son deterministas |
 
-La guía §3.2 exige **mínimo quince configuraciones**, no quince semillas. La igualdad de información de las redes no convierte la representación de persistencia en D7×5.
+Son **20 configuraciones, 15 ajustables y 5 referencias fijas**. GRU/D7-c03 conserva su papel de baseline heredado. La comparación adicional contra GRU-E2 permite examinar la ganancia frente a una base retunada; ambas familias quedaron declaradas antes del piloto.
 
-**Herencia y equidad del HPO:** las tres referencias E1 tienen recetas fijas. Optimizar los nuevos modelos ahora no permite afirmar que las quince configuraciones recibieron el mismo HPO. La igualdad propuesta de intentos y presupuesto se refiere al Top 10; debe resolverse con §11.1 cómo comparar también las bases ajustadas en E2. Si se incorporan GRU-E2, LSTM-E2 y TCN-E2 con el mismo HPO, serán **tres variantes adicionales**, sin reemplazar las referencias heredadas: mínimo dieciocho configuraciones. Esa ampliación no está ejecutada ni congelada. Ridge requiere su espacio propio; persistencia no recibe una búsqueda ficticia. Mientras esto no se cierre, no se atribuirá una ventaja frente a las referencias exclusivamente a la arquitectura.
+Ridge usa las mismas 35 entradas ordenadas. ARIMA y las referencias ingenuas emplean historia causal del objetivo como excepción explícita de la ruta temporal: no reciben la misma representación que las redes. Se conserva la predicción cruda de los estimadores clásicos y se aplica la regla fija `max(0, predicción)` para su salida de volatilidad; no se eliminan fechas por un pronóstico negativo. Los detalles causales están en [§7](07_ruta_temporal.md).
 
-### 4.1.2 Partición cronológica y límite del test conocido
+### 4.1.1 Calendario heredado y test conocido
 
-| Periodo UTC heredado | Uso en la propuesta E2 |
+| Periodo UTC | Uso |
 |---|---|
-| 01/01–31/12/2023 | Historia inicial de ajuste y transformaciones causales |
-| Enero–octubre de 2024 | Diez bloques mensuales externos de forward chaining; HPO interno anterior a cada bloque |
-| 01/11–30/12/2024 | Piloto E2 con recetas previamente congeladas; pesos ajustados antes de su inicio |
-| Desarrollo 2023–2024 | Ajuste final nominal al 01/01/2025; etiquetas de entrenamiento hasta el 24/12/2024 y embargo de siete días |
-| 01/09–30/10/2026 | Evaluación heredada de sesenta días, **ya observada en E1**; nuevas comparaciones exploratorias |
-| Enero de 2025–agosto de 2026 | Archivo histórico conocido de E1; no se reasigna a entrenamiento ni a un test desconocido |
+| 2023 | Historia inicial; ajuste de transformaciones y umbrales permitidos |
+| Enero–octubre de 2024 | Diez orígenes mensuales; OOF y desarrollo para selección temporal anidada |
+| 1 de noviembre–30 de diciembre de 2024 | Sesenta fechas de desarrollo para P0; después, P1 con recetas finales congeladas |
+| Desarrollo 2023–2024 | Ajuste final nominal al 1 de enero de 2025; etiquetas hasta el 24 de diciembre de 2024 |
+| 1 de septiembre–30 de octubre de 2026 | Reserva de sesenta fechas **ya observada en E1**; futuras comparaciones exploratorias |
+| Enero de 2025–agosto de 2026 | Archivo histórico conocido; no se reasigna a entrenamiento o a un test desconocido |
 
-La guía pide reservar el test y tocarlo una vez al final. **La parte histórica de ese requisito no se puede recuperar:** publicar hashes o escribir un protocolo ahora no elimina el conocimiento anterior. Sí puede registrarse una única fase de scoring del benchmark E2, después de cerrar configuraciones y pesos, seguida del análisis registrado sobre sus predicciones guardadas. Esa fase deberá incluir de antemano las condiciones limpia, perturbadas y de ablación; sus recetas y checkpoints se cerrarán antes de consultar sus resultados. No se reentrena o elige una receta por su resultado en esa fase. Su interpretación seguirá siendo exploratoria; aquí no se adquiere ni asigna un nuevo periodo confirmatorio.
+En un origen q se admiten etiquetas de ajuste hasta q−8: horizonte uno y embargo siete. Los índices conservan días inválidos y los soportes de entradas/etiquetas; no basta comparar nombres de archivos. La prueba histórica no recupera cegamiento por registrar ahora un protocolo. La fase futura de scoring E2 debe ocurrir con pesos, recetas, cohortes y análisis fijados y mantiene alcance exploratorio.
 
-La separación se verifica por soportes temporales de entradas y etiquetas, no solo por nombres de archivos. Cada transformación se ajusta dentro del entrenamiento permitido de su fold. Los índices diarios forward chaining heredados proceden de `timeseries-cv`, proyecto de DidierRLopes con Filipe R. Ramos; agruparlos en meses no convierte la librería en una API nativa de folds mensuales. Los índices de la nueva anidación todavía deben generarse y auditarse.
+### 4.1.2 HPO común y selección temporal
 
-### 4.1.3 Selección interna y validación externa
+El [diseño HPO registrado](../_static/remediation_protocol/hpo.json) asigna **T=12 configuraciones a cada una de las quince recetas ajustables**, con semilla de generación `202611061`: 180 candidatos, no 180 entrenamientos. Folds, semillas, selección de épocas y reajustes multiplican el trabajo.
 
-El procedimiento E1 usa una validación interna para elegir épocas y diez meses para seleccionar recetas. **Eso no es una evaluación externa anidada independiente del HPO.** Para E2 se propone una anidación temporal explícita:
-
-1. En cada origen mensual externo O, solo se permiten etiquetas de entrenamiento hasta O−8 días: horizonte uno más embargo siete.
-2. Dentro de ese pasado se forman tres bloques internos consecutivos de treinta días. El último termina en O−8; los otros dos lo preceden. Cada origen interno q vuelve a imponer su propio corte q−8.
-3. Para cada candidato y semilla se seleccionan épocas con la regla interna heredada: inicio nominal q−90, final permitido q−8 y entrenamiento temprano hasta q−98. El intervalo de noventa días es nominal respecto al origen; tras el embargo quedan **83 fechas de calendario potenciales**, antes de aplicar elegibilidad. No se cuentan noventa etiquetas válidas por defecto.
-4. Se reajusta desde una inicialización registrada sobre todo el entrenamiento permitido durante las épocas seleccionadas, y se evalúa el bloque interno. Escaladores internos y de reajuste se aprenden por separado.
-5. El candidato se elige por RMSE en escala original, concatenando las fechas internas por trayectoria y promediando después entre las dos semillas de HPO. Se reajusta la receta seleccionada para el origen externo y se puntúa ese mes sin usarlo para su propia selección.
-
-Los resultados externos evalúan el **procedimiento de selección**, cuyas recetas pueden variar entre meses. No se atribuyen automáticamente a una única receta final. Esta última se escogerá mediante una búsqueda forward adicional en enero–octubre, se congelará antes del piloto y se distinguirá de la evaluación anidada. Ese HPO final es selección en desarrollo, no una evaluación independiente.
-
-### 4.1.4 Espacio y presupuesto propuestos
-
-Se propone una cuadrícula de ocho candidatos por familia nueva: learning rate {0,001; 0,003} × dropout {0; 0,1} × dimensión latente {16; 32}. Es un punto de partida pequeño, orientado a D7 y comparable en número de intentos; **no reproduce las configuraciones originales de horizontes largos**. Profundidad, cabezas, parches, escalas, kernels y estados se especificarán por adaptador, justificando las elecciones con §3. Cada combinación debe pasar restricciones de forma antes del cierre; no se corrige silenciosamente un candidato inválido durante la búsqueda.
-
-| Control | Propuesta; todavía no congelada |
+| Control | Regla registrada |
 |---|---|
-| Optimización | AdamW, weight decay 0,0001; pérdida cuadrática heredada |
-| Batch, épocas, parada | Batch 32; máximo 100 épocas; paciencia 12; épocas seleccionadas solo en validación permitida |
-| Estabilidad | Gradient clipping de norma 1; FP32; determinismo explícito, sin fallback silencioso |
-| Dispositivo | CPU con un thread como propuesta inicial comparable; compatibilidad y perfilado pendientes |
-| Intentos | Ocho candidatos registrados por familia y las mismas dos semillas HPO |
-| Presupuesto de tiempo y memoria | **Pendiente de perfilado en entrenamiento**; aún no existe un límite común B validado |
+| Presupuesto | 172.800 CPU-s asignados por familia ajustable; mismo hardware y trazabilidad del consumo real |
+| Redes | Learning rate loguniforme 10⁻⁴–0,003; weight decay loguniforme 10⁻⁶–0,01; dropout uniforme 0–0,3; batch ∈ {16,32,64} |
+| Estructura | Profundidad, ancho, cabezas, parches, escalas y kernels sujetos al caso fuente de cada arquitectura; no se retocan silenciosamente |
+| Ridge | Doce valores de regularización en escala logarítmica 10⁻⁶–10³; representación fija de 35 entradas |
+| ARIMA | Doce órdenes: p∈{0,1,2}, d∈{0,1}, q∈{0,1}; tendencia constante si d=0 y sin tendencia si d=1 |
+| Optimización neural | AdamW, MSE con escala de Y aprendida en train, sin scheduler, FP32, clipping de norma 1 |
+| Parada | Máximo 100 épocas, paciencia 12 y mejora mínima 0; límite de 900 s por ajuste de optimizador |
+| Semillas HPO | `2026110611` y `2026110612`; los estimadores deterministas no repiten ajustes idénticos para fingir dos realizaciones |
 
-Mismo presupuesto significa la misma **asignación y límites**, además del mismo número de intentos; no que las arquitecturas consuman exactamente los mismos segundos. Se contará selección de épocas, reajuste, folds, compilación y fallos. Los timeouts no se reponen solo a una familia ni se conceden intentos extras a la más rápida. Si una familia no completa los intentos previstos dentro del presupuesto, se informa como búsqueda incompleta; no se afirma igualdad de optimización realizada.
+La igualdad de asignación no demuestra que todos completen el mismo esfuerzo. Se conservan intentos inválidos, fallos y timeouts, sin reposición selectiva o extensiones para una familia. Una búsqueda incompleta se declara como tal; no permite atribuir la diferencia exclusivamente al backbone.
 
-El coste previsto se expresa en dos unidades para no ocultar reajustes. Con dos ajustes de optimizador por evaluación —selección de épocas y reajuste—:
+Dentro de cada origen externo mensual se usan tres bloques internos de treinta días, anteriores al corte permitido. La selección de épocas usa el intervalo nominal q−90 a q−8: **83 fechas potenciales**, antes de elegibilidad; su entrenamiento temprano termina en q−98. Después se reajusta desde una inicialización registrada y con transformaciones aprendidas por separado.
 
-| Etapa por familia nueva | Evaluaciones entrenadas | Ajustes de optimizador |
-|---|---:|---:|
-| HPO interno: 8 × 2 semillas × 3 bloques × 10 orígenes | 480 | 960 |
-| Recetas seleccionadas de los diez meses: 2 semillas × 10 | 20 | 40 |
-| HPO para receta final: 8 × 2 semillas × 10 bloques | 160 | 320 |
-| Total previo al piloto | **660** | **1.320** |
+Se concatenan fechas internas por trayectoria, se calcula su RMSE y se promedia entre semillas. Se minimiza esa métrica; no la media de RMSE mensuales. Los meses externos evalúan el procedimiento de selección. La búsqueda forward adicional de receta final usa desarrollo, se distingue de aquella evaluación y debe cerrarse antes de P1. Los desempates siguen error, latencia de desarrollo, parámetros e identificador registrados.
 
-Para el Top 10 son **13.200 ajustes propuestos**, no ocho por modelo. La cuenta no incluye perfilado, NAS condicional, Ridge, referencias adicionales, piloto, R ejecuciones definitivas, robustez o ablaciones. El piloto y el ajuste definitivo añaden dos ajustes por semilla y modelo bajo la misma regla. El cómputo total debe estimarse antes de cerrar una configuración ejecutable; estas cuentas no son trabajo realizado ni horas medidas.
+## 4.2 Arquitecturas finales, adaptadores y condición NAS
 
-**Arquitectura no predefinida:** §4 remite obligatoriamente a §14. El fragmento recibido describe tres capas, cinco anchos posibles y dropout 0,2 en todas las posiciones: 5³ × 2³ = **1.000 arquitecturas en fase 1** por modelo afectado. No se activa esa regla solo por un nombre de familia, ni se exime a todos los modelos porque tengan un DOI. Se debe localizar la arquitectura original, fijar la adaptación D7 y decidir el caso con la sección completa, incluida la segunda fase y su presupuesto. La cuadrícula de ocho hiperparámetros no sustituye un NAS que resulte obligatorio.
+La [matriz de decisiones](../_static/remediation_protocol/architecture_decisions.json) separa **arquitectura publicada, configuración fuente, receta pequeña P0 y adaptación final D7**. Por ejemplo, PatchTST fuente conserva tres bloques y FFN 128 en su configuración pequeña publicada; el piloto de dos bloques y FFN 32 no se convierte por ello en su configuración final.
 
-## 4.2 Implementación de modelos
+Las diez excepciones finales de arquitectura siguen sin verificación operativa. Antes del HPO real deben cotejarse código, manifiesto, parámetros fuente y modificaciones indispensables de contexto/salida. Los valores no reportados permanecen identificados; no se completan con preferencias personales o con resultados de P0.
 
-### 4.2.1 Pipeline modular y contratos verificables
+Para el piloto limitado, TimeMixer, iTransformer y PatchTST usan latentes `[B,5,16]`. Su cabeza común concatena 80 latentes y diez estadísticas —media y desviación poblacional por canal de **la misma** entrada escalada D7—, seguidas de `Linear(90,1)` y Softplus. No son diez covariables externas. TimeMixer conserva `moving_avg=25` y dos escalas 7/3. Esta adaptación no se presenta como réplica literal ni exonera las configuraciones finales.
 
-La interfaz prevista separa adquisición/elegibilidad, índices, transformaciones, backbone, lectura escalar, ajuste y scoring. El futuro adaptador recibirá un tensor `[batch, 7, 5]` y devolverá una predicción escalar por ventana. La salida debe corresponder a σ₇ y a su escala de entrenamiento; no se selecciona Close de una salida multivariante ni se desnormaliza como precio o volumen.
+Si una arquitectura queda definida únicamente por familia, se activa §14: 1.000 combinaciones de tres anchos {16,32,64,128,256} y ocho patrones de dropout 0,2. El protocolo condicional exige piloto de ruido, HPO previo del control 64/64/64 con patrón 010, cribado completo, k finalistas más control y al menos cinco semillas nuevas en fase 2. No hay NAS ejecutado ni obligación de aplicar 1.000 búsquedas a los diez modelos por defecto. La revisión debe justificar el caso y preservar el mismo esfuerzo entre los modelos afectados.
 
-| Módulo previsto | Comprobación anterior al entrenamiento |
-|---|---|
-| Índices y elegibilidad | Calendario y embargo heredados; soportes reales de entrada/objetivo por fold; ningún cruce con fechas de evaluación |
-| Transformaciones | Logaritmos y ancla causal heredados; scaler y media de Y ajustados únicamente en train; sin imputación principal ni compresión de huecos |
-| Adaptadores | Forma 7×5, valor finito/no negativo tras invertir escala, gradientes y checkpoint recuperable; campos futuros ausentes |
-| Ajuste y reajuste | Inicializaciones, épocas y transformaciones de cada etapa registradas; validación sin gradientes |
-| Scoring | Solo checkpoints cerrados y cohorte común; persistencia con su soporte causal declarado; métricas en unidades originales |
+Cada adaptador real debe pasar forma, gradientes/checkpoint, escala del objetivo y causalidad: sin verdad futura en decoders, sin desnormalizar una columna de OHLCV como σ₇ y sin selección de periodos entre orígenes del mismo batch. TiDE conserva sus bloques de proyección/decoder con las modificaciones de tarea declaradas; Crossformer debe conservar HED y la combinación de escalas, no sustituirse por un encoder aislado.
 
-Los controles particulares de §3 se convierten en pruebas de cada adaptador: TiDE covariate-only y sus skips; tendencia de Autoformer en unidades del objetivo; decoders sin verdad futura; parches/escalas válidos con siete días; exclusión de frecuencia cero y selección de periodos por origen en TimesNet; tokens de variables observadas en iTransformer/S-Mamba. Para TimesNet se propone inferencia batch 1 para impedir que distintos orígenes compartan la selección de periodos. Estas pruebas **todavía no están implementadas**; la auditoría documental no las reemplaza.
+## 4.3 P0 ejecutado y P1 de dimensionamiento
 
-### 4.2.2 Dependencias, hardware y trazas
+El registro público [599a29f](https://github.com/jassan-bit/DeepLearning_202630/commit/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0) precede al inicio de P0/OOF. El checkout de ejecución se registró a las **14:52:32 UTC del 6 de noviembre de 2026** y superó sus controles previos específicos. Se usan dos trabajadores y un thread por entrenamiento; estos controles no certifican los veinte pipelines finales.
 
-Las fuentes de autores están fijadas por commit en §3. El lock editorial del libro y el lock histórico de entrenamiento E1 **no constituyen un entorno E2 validado para los diez backbones**. Se debe resolver y fijar Python, framework, bibliotecas de modelos, kernel Mamba si aplica y dispositivo; registrar versiones, código y hash de cada adaptador propio. La disponibilidad de un repositorio no prueba compatibilidad ni permisos de redistribución. No se ha documentado un entrenamiento GPU de E2.
-
-Si S-Mamba requiere kernels CUDA, no se le concede otro hardware sin justificar la comparación. Debe verificarse una implementación compatible y determinista en el dispositivo común, o cerrar un cambio de entorno para todos los modelos afectados. No se cambia precisión o determinismo automáticamente para superar una prueba de forma.
-
-Se propone tracking local mediante configuraciones JSON versionadas, eventos JSONL y tablas CSV por corrida; no requiere un servicio externo. Cada registro tendrá modelo, fase, candidato, semilla, fold, etapa, datos/índices/código por hash, parámetros, optimizer/scheduler —incluido «sin scheduler»—, batch, dropout, weight decay, pérdida, épocas, clipping, precisión y dispositivo. Los estados completado, fallido, timeout y no estimable se conservarán junto al error y los recursos consumidos.
-
-| Evidencia obligatoria por ajuste | Regla de registro propuesta |
-|---|---|
-| Curvas train/validación | Pérdida por época, mejor época y checkpoint; separar selección y reajuste |
-| Entrenamiento e inferencia | Tiempo total y por etapa; inferencia batch 1 por muestra y throughput separado, con calentamiento, sincronización y orden intercalado |
-| Memoria, parámetros y FLOPs | Pico CPU/GPU, parámetros registrados/activos y método exacto de conteo; distinguir FLOPs de MACs y operaciones no soportadas |
-| Hardware y energía | CPU/GPU, RAM, threads, precisión y versiones; energía solo si hay medición o estimación trazable, sin convertir TDP por tiempo en una medición real |
-
-Se usarán datos de desarrollo o tensores sintéticos para perfilado y latencia; no hace falta puntuar el test para medir coste. Un valor no medido se reportará como tal, nunca como cero. Robustez, explicaciones y ablaciones tienen presupuestos adicionales identificados.
-
-## 4.3 Requisitos experimentales y piloto
-
-Se registrarán las semillas de Python, NumPy y el framework y las opciones de determinismo, orden de datos y threads. Dos semillas con el mismo entero en arquitecturas distintas no producen pesos idénticos; el emparejamiento conserva la realización del procedimiento, las fechas y la configuración de aleatoriedad. La clave de cada corrida permitirá reanudar solo artefactos con hashes coincidentes, sin reemplazar ejecuciones desfavorables.
-
-La guía exige al menos cinco ejecuciones independientes o particiones CV justificadas. **Cinco folds temporales solapados no son cinco series de mercado independientes.** Para contrastes Wilcoxon bilaterales exactos, con cinco pares no nulos y sin empates el mínimo p es 0,0625; seis permiten 0,03125, sin que ello demuestre potencia suficiente. R debe dimensionarse con §9.2; el R=465 de E1 no se transfiere.
-
-Se propone un piloto de dimensionamiento Bitcoin D7 de diez semillas por modelo con recetas previamente congeladas y las fechas heredadas 01/11–30/12/2024. Los pesos se ajustarán antes del 01/11 y se conservarán durante esas sesenta fechas. El piloto estima dispersión del **procedimiento E2** antes del ajuste definitivo; no precede al benchmark histórico E1 ni crea nuevas fechas desconocidas. Las sesenta fechas continúan temporalmente dependientes. Solo después se fijarán R, potencia objetivo, multiplicidad, estimador de variabilidad y sus supuestos. Diez semillas no acreditan por sí solas potencia temporal o conjunta. El piloto externo de tres modelos y cinco semillas de §5 ya se ejecutó en ETTh1 para estudiar limitaciones; no estima la dispersión del futuro procedimiento Bitcoin D7 ni fija su R.
-
-La cronología prevista separa: cierre de adaptadores/entorno/presupuesto → HPO en desarrollo → recetas congeladas → piloto → dimensionamiento → ajustes definitivos → cierre de pesos/escaladores → scoring único E2 → análisis registrado. Un cambio posterior se documentará como enmienda con fecha y motivo; no se le atribuye carácter previo a resultados ya conocidos.
-
-## 4.4 Prevención de fuga y auditoría obligatoria
-
-La auditoría formal de §10 debe ejecutarse sobre **cada pipeline real**, no solo sobre la tabla de fechas. El EDA ya aporta una auditoría de soportes de los folds heredados; no certifica los nuevos índices internos ni adaptadores.
-
-| Riesgo específico | Evidencia que se exigirá antes de cerrar la ejecución |
-|---|---|
-| Solapamiento temporal indebido | Manifiestos de soportes de etiquetas/entradas; cortes q−8 y comprobación de todos los folds internos/externos |
-| Scaler aprendido fuera de train | Índices y hashes de su ajuste en selección/reajuste; prueba de invariancia al modificar datos posteriores |
-| Información futura en decoder o canales | Firma de entrada y prueba de que una modificación del futuro no cambia la predicción del origen |
-| Contaminación entre muestras | Inferencia por origen o prueba de independencia del batch, especialmente selección de periodos TimesNet |
-| Selección con test | Configuraciones, cohortes, presupuestos y pesos cerrados antes del scoring; sin consultas de métricas durante HPO |
-| Duplicados o índices desalineados | Unicidad de timestamp/semilla/modelo, calendario sin compresión y misma cohorte para las comparaciones previstas |
-| Adaptación silenciosa de contratos | Comparación exacta con E1 de objetivo, margen, unidad, partición y recetas protegidas |
-
-Las comprobaciones espaciales y de duplicados semánticos de imágenes/texto se declararán no aplicables al dataset OHLCV, sin usarlas como evidencia de haber auditado el riesgo temporal. Una auditoría sin incidencias detectadas no acredita ausencia universal de fuga; deben publicarse alcance, resultados e incidencias. El conocimiento previo del test sigue siendo una limitación aunque todos los nuevos controles pasen.
-
-## 4.5 Evaluación y análisis de errores
-
-**Estado:** diseño propuesto a partir de las páginas recibidas; no hay métricas del benchmark Bitcoin D7. Las métricas externas de réplica y piloto ETTh1 están en §5. Las pruebas específicas de §7.3, la agregación de §13.2 y el dimensionamiento de §9.2 se incorporarán al recibir esos apartados. No se atribuye al pasado una decisión tomada ahora ni se presenta el test conocido de E1 como prueba sellada nueva.
-
-### 4.5.1 Métricas, estimando y cohorte
-
-Se conserva la primaria heredada: para cada semilla se calcula RMSE en todas las fechas elegibles comunes y después se promedian las RMSE entre semillas. No se sustituye por RMSE de un ensamble, raíz de los errores mezclados entre semillas o media no ponderada de RMSE mensuales.
-
-$$
-\widehat\mu_m=\frac{1}{R}\sum_{s=1}^{R}\sqrt{\frac{1}{|\mathcal T|}\sum_{t\in\mathcal T}(Y_t-\widehat Y_{m,s,t})^2}.
-$$
-
-Se reportarán MAE, MSE, R², MAPE y MASE en escala original. MAPE usa únicamente objetivos positivos y publica numerador de casos definidos, denominador de elegibles y cobertura; no se añade épsilon para ocultar ceros. R² se marca no definido si la variación del objetivo es cero. MASE divide MAE por la escala ingenua de lag 1 ajustada exclusivamente en pares de días consecutivos elegibles del entrenamiento correspondiente; no se comprime el calendario, no se usa test y no se recalcula la escala en cada subconjunto de evaluación. Si esa escala es cero, MASE queda no definida y se publica su cobertura.
-
-El margen absoluto sigue siendo **δ = 0,00025772842664981106**. Su origen es el 5 % de una RMSE CV histórica específica; no equivale al 5 % de cualquier nueva RMSE. Se conserva aparte la reducción relativa académica frente a GRU-c03 y persistencia. Una mejora puntual del 5 % no acredita por sí sola una mejora práctica con incertidumbre controlada.
-
-Las tablas incluirán modelo/configuración, fase, semilla, fechas, número elegible/definido, métricas, coste y estado de ejecución. Se publicarán resultados por semilla y fold además de media, DE muestral e IC95 %, con un agregado que concatene predicciones de las mismas fechas. No se descartan semillas desfavorables ni se completan métricas ausentes con cero.
-
-### 4.5.2 Dos fuentes distintas de incertidumbre
-
-| Fuente | Qué estima y cómo se tratará | Qué no acredita |
+| Rama registrada P0 | Modelos y semillas | Alcance y trabajo planificado |
 |---|---|---|
-| Semillas de entrenamiento | Variabilidad condicionada a los datos fijos; trayectorias emparejadas entre modelos, media/DE/IC95 % sobre las ejecuciones previstas | Nuevas series independientes, incertidumbre del mercado o potencia temporal por aumentar R |
-| Calendario | Dependencia de ventanas y etiquetas solapadas; bootstrap temporal pareado, remuestreando las mismas fechas/bloques para ambos modelos y recalculando la RMSE de cada trayectoria | Independencia iid de días o validez exacta bajo cambios de régimen |
-| Perturbaciones sintéticas | Monte Carlo de corrupción condicionado a pesos/datos; idénticas realizaciones entre modelos | Nuevos ajustes independientes ni aumento del número de semillas R |
+| Noviembre–diciembre | TimeMixer, iTransformer, PatchTST y GRU/D7-c03; cinco semillas nuevas `660101`–`660105` | 20 trayectorias / 40 ajustes; factibilidad y variabilidad condicional; gap descriptivo |
+| OOF enero–octubre | Los mismos cuatro modelos, cinco semillas y recetas; diez orígenes | 200 trayectorias / 400 ajustes; 305 fechas potenciales; familia principal del diagnóstico P0 |
 
-El número de ejecuciones se justificará con el piloto de E2 y §9.2; el mínimo de cinco es una cota de la guía, no prueba de potencia suficiente. Con cinco pares no nulos y sin empates, el p-valor bilateral mínimo del Wilcoxon exacto es 0,0625; no se promete significación a α=0,05 mediante cinco semillas ni se selecciona una prueba favorable tras inspeccionar resultados.
+Se completaron **220 trayectorias y 440 ajustes**, verificadas mediante recibos cerrados; se puntuaron y analizaron en §9. Cada trayectoria separa selección de épocas y reajuste. Estos resultados P0 no se presentan como ejecución de HPO o del benchmark final.
 
-Como propuesta para la incertidumbre temporal, se conservará un bloque principal de siete fechas y sensibilidades de catorce y veintiocho, con 4.999 remuestreos y semilla 20261105, coherentes con el solapamiento de σ₇ y la referencia de E1. **Son parámetros por ratificar con el procedimiento completo de E2**, sin elegir luego la longitud que produzca el menor p-valor. La propuesta posterior de §6 eleva el número de remuestreos a 49.999 para resolver mejor las colas de una familia de treinta contrastes; conserva el carácter de borrador previo al benchmark y no cambia análisis históricos. El tamaño y número efectivo de bloques, las fechas y las hipótesis de estacionariedad deben figurar junto al intervalo. Si no hay soporte temporal suficiente, el resultado se declara inconcluso.
+El diagnóstico principal P0 compara RMSE de alta volatilidad frente a régimen normal en los tres modelos Top 10, con Holm sobre tres hipótesis y α=0,01. El régimen usa σ₇(t−1) y el cuantil 0,75 de entrenamiento. Su conjunto principal quedó fijado en OOF antes de resultados; noviembre–diciembre no aporta una segunda familia entre la que elegir un resultado favorable. Es un estudio de desarrollo separado de las familias del benchmark final.
 
-Se calcularán ganancias absolutas y relativas respecto a los comparadores registrados, intervalos y p-valores ajustados y sin ajustar. La familia principal y el ajuste por multiplicidad se fijarán antes del scoring E2; no se heredan automáticamente las tres comparaciones de E1 ni se convierten todos los 105 pares de quince configuraciones en hipótesis principales. La inferencia de mejora práctica contrasta la frontera δ, no solo la diferencia cero. No rechazar no equivale a demostrar equivalencia.
+**P0 no dimensiona recetas posteriores al HPO.** P1 usará recetas finales congeladas, cinco modelos registrados —tres Top 10 y ambas referencias GRU— y diez semillas nuevas `660201`–`660210`. Dimensionará R con meta 0,80, alternativas de ganancia/erosión 2δ y ahorro de latencia del 20 %, tratando aleatoriedad de entrenamiento y calendario por separado. El máximo es R=200; si no alcanza la meta se informa potencia insuficiente y diferencia mínima detectable. Aumentar R no crea más fechas o mercados.
 
-La descomposición de varianza entre modelos, semillas y calendario queda como producto pendiente de §13.2. No se modelan las 60 fechas de la reserva conocida o las semillas como unidades iid intercambiables para obtener artificialmente grados de libertad. La [sección 6](06_benchmark_final.md) desarrolla la tabla, los rangos, la eficiencia y el plan de inferencia a partir de las nuevas capturas; mantiene el estado pendiente de las ejecuciones Bitcoin.
+## 4.4 Auditoría, costes y registro de incidencias
 
-### 4.5.3 Sobreajuste, casos difíciles y estratos
+La auditoría formal de §10 se exige a cada pipeline real: soportes cronológicos, duplicados/casi duplicados pertinentes, ajuste de transformaciones, disponibilidad de atributos, sanidad con etiquetas permutadas y desplazamientos explicados. Los checks no aplicables se motivan. Un fallo debe corregirse y repetirse en la rama afectada; una nota al pie no valida un resultado contaminado.
 
-Las curvas de entrenamiento/validación registrarán pérdida, épocas y checkpoint seleccionado. Las brechas se calcularán con las mismas métricas, unidades y regla de predicción en train y validación; el train score se reportará fuera del modo entrenamiento. Las pruebas formales serán las de §7.3 cuando se reciba esa sección; una brecha descriptiva no se etiqueta como diagnóstico estadístico de sobreajuste o subajuste.
+Se registran configuraciones, fases, origen, semilla, hashes de datos/código/índices/checkpoints, curvas, épocas, fallos y consumo. Solo cabe reanudar con la misma configuración ante interrupción de infraestructura documentada; no descartar una semilla por mal desempeño. Ni un hash ni una prueba sintética acreditan por sí solos ausencia de fuga, entrenamiento justo o potencia.
 
-Se congelan estratos con información disponible en el origen. Se conserva la propuesta de §1: alta volatilidad cuando σ₇(t−1) supera el cuantil 0,75 de entrenamiento 2023, **0,024247163097617024**, sin introducirla como sexto canal de entrada. Se reportan por estrato fechas, bloques útiles, métricas e incertidumbre; un subconjunto pequeño no recibe automáticamente un IC fiable. El análisis de la reserva ya conocida describe desplazamiento retrospectivo; no selecciona umbrales o arquitecturas.
+Entrenamiento y HPO se miden por separado. Latencia futura: mismo CPU, batch 1, un thread, calentamiento de 256 llamadas y 61 bloques intercalados de 256 llamadas; se declaran precisión y coste del preprocesamiento. Parámetros, FLOPs/MACs, memoria y throughput se identifican con su método de medición. Energía no medida no se informa como cero.
 
-El reporte de errores combinará: trayectoria de predicción/objetivo en fechas seleccionadas por una regla fijada en desarrollo; máximos errores absolutos de cada modelo con la misma regla; errores en aumentos/disminuciones de volatilidad; sesgo firmado y distribución de residuos por régimen. Los casos extremos se etiquetan como ejemplos seleccionados por error, sin presentarlos como muestra representativa. La taxonomía permitirá distinguir retraso de respuesta, sobrepredicción, infrapredicción y fallos de datos, con recuentos y ejemplos adversos. Los motivos no observables se mantendrán como hipótesis.
+## 4.5 Evaluación, incertidumbre y análisis complementarios
 
-## 4.6 Robustez, interpretabilidad y ablación
+La [sección 6](06_benchmark_final.md) fija las tablas, familias y diagnósticos finales. Se conservan MAE, MSE, R², MAPE y MASE junto a RMSE. MAPE publica cobertura sobre objetivos positivos; R² y MASE quedan indefinidos si su denominador es cero. La escala MASE usa exclusivamente pares consecutivos elegibles del entrenamiento, sin comprimir huecos.
 
-**Todo lo siguiente es un plan pendiente de implementación y ejecución.** Niveles, máscaras, transformaciones, semillas, modelos elegidos y familias de contrastes se registrarán antes de sus resultados. El diseño se comprobará primero en desarrollo; no se ajustarán severidades para que favorezcan a un modelo en test.
+El margen heredado es **δ=0,00025772842664981106**. El nuevo margen operacional de sobreajuste es δg=δ, en las mismas unidades de RMSE; no se le atribuye una decisión previa a E1. Una brecha train–validación requiere predicción en modo evaluación y reglas comparables; no se confunde con el gap P0 entre regímenes.
 
-### 4.6.1 Perturbaciones pertinentes para OHLCV
+Los IC temporales remuestrean bloques comunes de fechas y recalculan la RMSE por trayectoria antes de promediar. Los IC entre semillas describen entrenamiento condicionado al mismo calendario. Ninguno proporciona por sí solo intervalos predictivos; techo de desempeño, γ, calibración y cobertura de tres modelos siguen exigiendo ejecución y evidencia propias.
 
-Se evaluarán los pesos entrenados con datos limpios y congelados; esta prueba mide sensibilidad de inferencia, no robust training. La cohorte elegible y las etiquetas originales permanecen iguales para nivel cero y niveles perturbados. No se reordena el calendario, no se cambia Y y no se añaden rezagos de Y, indicadores nuevos o covariables futuras.
+## 4.6 Robustez, interpretabilidad y ablación previstas
 
-| Perturbación | Tres niveles propuestos, además de cero | Aplicación causal y controles |
-|---|---|---|
-| Ruido de medición en OHLC | α = 0,05; 0,10; 0,20 de la DE de retornos logarítmicos estimada solo en train | Para cada barra pasada, multiplicar O,H,L,C por el mismo factor positivo exp(ασᵣξₜ). Se preserva L≤min(O,C)≤max(O,C)≤H y positividad. Recalcular las transformaciones heredadas, incluido el ancla del último cierre, desde la entrada perturbada. Volumen y objetivo no se modifican |
-| Ausencia del canal volumen | Tasas p = 0,10; 0,20; 0,30 | Máscaras sintéticas por fecha con umbrales anidados sobre uniformes comunes. Sustituir únicamente V ausente por la mediana de log1p(V) aprendida en train y transformada de vuelta. Se mantienen OHLC, fechas y cinco canales. Publicar la tasa realmente obtenida y ventanas afectadas |
+Estas ramas finales siguen pendientes. Se fijan en desarrollo y antes de su scoring, sin escoger condiciones por resultados de test:
 
-Las innovaciones y uniformes se generarán por timestamp y realización, de forma común a modelos y semillas, para que una barra compartida por ventanas solapadas reciba la misma corrupción. Se proponen cinco realizaciones de perturbación, semillas 30101–30105, sin contarlas como cinco entrenamientos. Se reutilizan innovaciones base entre niveles para obtener comparaciones anidadas. La transformación principal y el imputador de diagnóstico se ajustan sin consultar validación o test; su estado se versionará.
+- **Robustez:** ruido causal en OHLC con intensidades 0,05/0,10/0,20 de la escala de retornos train y ausencia sintética de volumen 0,10/0,20/0,30, además del control limpio. Se mantienen etiquetas/cohorte y realizaciones comunes por timestamp; se reportan curvas, error absoluto y área normalizada, sin fingir nuevas muestras independientes.
+- **Interpretabilidad:** tres modelos seleccionados en desarrollo, Integrated Gradients u oclusión registrada si el mecanismo no admite gradientes adecuados, con controles de completitud, borrado/inserción de días completos, fidelidad y estabilidad entre semillas. Una atención visual no prueba causalidad.
+- **Ablación:** al menos tres componentes reales de la mejor red profunda elegida en desarrollo; mismas semillas, fechas y presupuesto comparable. Se publican diferencias pareadas, incertidumbre, multiplicidad y cambios de capacidad/coste. Si gana una referencia clásica, no se renombra a la mejor red como ganadora global.
 
-La ausencia sintética de V es una **rama diagnóstica separada**. El benchmark principal conserva su regla de exclusión de días inválidos; esta prueba no autoriza imputar silenciosamente huecos originales ni interpolar con observaciones futuras. La imputación no añade canales de máscara, ni historial fuera de D7. No se simulan precios negativos, velas desordenadas o una reordenación arbitraria de fechas como si fueran perturbaciones financieras plausibles.
+La taxonomía de errores debe ser excluyente y tener al menos cien casos únicos por modelo principal. Los 305 orígenes potenciales OOF permiten planificarla; sesenta fechas de reserva no se multiplican por semillas para inventar cien casos. P0 no satisface automáticamente el reporte de errores, la calibración o la robustez del benchmark final.
 
-Persistencia usa ocho cierres pasados para construir σ₇(t−1). Si se incluye en la prueba de ruido OHLC, se aplica la misma realización a los cierres de su soporte pasado permitido y se recalcula la referencia, sin concederle datos futuros. Se documenta que su representación de entrada difiere de las siete barras de las redes. La ausencia de V no modifica persistencia; eso es una propiedad de la referencia y no una ventaja que deba ocultarse.
+## 4.7 Evidencia vigente y archivo
 
-Para cada nivel se reportará RMSE absoluta y normalizada por el nivel cero de cada modelo, con las métricas secundarias y el coste de inferencia. Se propone
+- [Protocolo registrado y sus 19 campos](09_protocolo_registrado.md), [HPO](../_static/remediation_protocol/hpo.json), [arquitecturas](../_static/remediation_protocol/architecture_decisions.json) y [preregistro](../_static/remediation_protocol/preregistration.json).
+- [Validación documental](../_static/remediation_protocol/validation.json) y [180 candidatos predefinidos](../_static/remediation_protocol/candidate_registry.json): describen reglas y pruebas, sin resultados de HPO.
+- [Descargar protocolo, código y evidencias](../_static/remediation_download/Remediacion_E2_protocolo_codigo_evidencias.zip).
 
-$$
-D_m(u)=\widehat\mu_m(u)/\widehat\mu_m(0),\qquad
-A_m=\int_0^1D_m(u)\,du,
-$$
+Los guardas separan registro Git, preflight P0/OOF, revisión arquitectónica final, HPO, P1, R, pesos finales y scoring. El registro público ya existe para P0; la preparación del benchmark completo requiere sus recibos adicionales. No se cambia un `ready=false` a «cumplido» porque el documento o un fichero exista.
 
-con severidad u normalizada por el máximo de cada perturbación y aproximación trapezoidal sobre los cuatro puntos registrados. Menor área indica menor degradación relativa; A=1 representa ausencia de cambio y A−1 puede ser negativo si el ruido mejora el error en esa muestra. No se recorta esa mejora ni se asume monotonicidad. Si la RMSE de nivel cero es cero, la normalización se declara no definida y se publica la curva absoluta, sin épsilon. Se acompañará siempre de RMSE absoluta: un modelo impreciso puede parecer estable en términos relativos. Las unidades de severidad entre ruido y ausencia no tienen la misma interpretación física; no se funden en un único ranking sin una ponderación justificada previamente.
-
-La incertidumbre usará comparaciones pareadas con calendario y corrupción comunes; R×5 realizaciones no son R×5 series independientes. Se mostrará la curva completa y las sensibilidades de bloques. No rechazar un aumento del error no demuestra robustez o equivalencia. Los estratos de volatilidad de §4.5.3 aportan cambio de distribución temporal, con su límite retrospectivo; no acreditan generalización a otra criptomoneda o proveedor.
-
-### 4.6.2 Interpretabilidad de tres modelos y pruebas de explicación
-
-Los tres modelos profundos a explicar se seleccionarán por la RMSE media de validación forward chaining, con desempate por coste de inferencia y luego identificador de configuración. La regla se congelará antes del scoring; no se elegirán después tres modelos que produzcan las explicaciones más convincentes. Se distinguirá esta selección de cualquier orden observado en el test conocido. Para explicar orígenes de validación se usarán sus checkpoints forward, entrenados solo con el pasado permitido; no se presentarán como fuera de muestra explicaciones de un ajuste final que ya incorporó esas etiquetas.
-
-Se propone Integrated Gradients sobre la predicción escalar σ₇ y las 35 entradas D7×5, usando un tensor de referencia derivado de medianas de entrenamiento y manteniendo las transformaciones congeladas. Se registrarán implementación, número inicial de pasos —64 propuestos—, normalización y error de completitud. Un control numérico a 128 pasos solo responderá a un criterio de convergencia fijado previamente, sin seleccionar el resultado más atractivo. Las atenciones no se interpretarán automáticamente como importancia causal.
-
-La elección de IG tiene una condición técnica: TimesNet puede seleccionar periodos mediante top-k discreto. Los gradientes de una rama no acreditan por sí solos la explicación del cambio de periodo. Se registrará antes de la evaluación una alternativa de oclusión por grupos para modelos con operaciones no diferenciables, y se reportará el alcance del método en vez de atribuirle una fidelidad completa no probada.
-
-La fidelidad se medirá con borrado e inserción progresiva de **bloques de un día completos**, cinco canales juntos, reemplazados por una referencia de train coherente; se evita borrar solo H o L y generar una vela inválida. Se ordenan los siete días por atribución absoluta agregada y se comparan la respuesta de la predicción y el error con órdenes aleatorios comunes y orden inverso. Se publicarán las siete fracciones, áreas y controles. El cambio de pérdida y el cambio de predicción son medidas distintas: borrar una característica influyente no tiene por qué empeorar el error si la predicción inicial era mala.
-
-La estabilidad entre semillas se reportará mediante correlación de rangos y solapamiento top-k de los mismos grupos de días, junto a dispersión de atribuciones normalizadas cuando su norma sea positiva. Correlaciones o normalizaciones indefinidas se marcarán como tales con su cobertura. Las muestras explicadas se fijarán por calendario y régimen de desarrollo, con todas las semillas previstas y una regla de selección reproducible. Una explicación inestable, infiel o limitada por discontinuidades se reporta como resultado adverso; plausibilidad visual y acuerdo con intuiciones financieras no sustituyen fidelidad ni demuestran causalidad económica.
-
-### 4.6.3 Ablación de al menos tres componentes
-
-El modelo profundo a ablacionar se escogerá exclusivamente en desarrollo con la misma regla de desempeño/coste anterior, antes de sus resultados de test. Se seleccionarán tres componentes reales de su implementación congelada y se retirará o sustituirá **uno a la vez**, conservando el resto y la cabeza de σ₇. La biblioteca de ablaciones se cerrará al validar los adaptadores; no se elegirá después qué cambios producen diferencias significativas.
-
-| Modelo que resulte elegido | Ejemplos de componentes que deben mapearse al código exacto antes de ejecutar |
-|---|---|
-| TSMixer | Mezcla temporal, mezcla de variables, conexiones residuales |
-| TiDE | Bloques residuales del encoder, skip global, decoder de características; revisar proyección al objetivo adaptado |
-| TimeMixer | Descomposición estacional/tendencia, mezcla estacional ascendente, mezcla de tendencia descendente |
-| TimesNet | Agregación de varios periodos frente a uno, convolución intra/interperiodo, ponderación de amplitudes frente a fusión uniforme |
-| PatchTST | Parches frente a tokens de un paso, codificación posicional, normalización reversible |
-| Informer | Selección ProbSparse frente a atención completa, distilling, codificación posicional interna |
-| Autoformer | Agregación de retardos, rama de tendencia, un bloque de procesamiento; auditar dependencias entre mecanismos al retirarlos |
-| iTransformer | Atención entre variables, bloque FFN, normalización interna |
-| Crossformer | Atención temporal, atención dimensional con routers, jerarquía de segmentos |
-| S-Mamba | Rama inversa de variables, selectividad de entrada frente a parámetros no dependientes de ella, bloque FFN |
-
-Esta tabla es una lista de candidatos, no recetas implementadas. Si la mejor red es una base heredada, se definirán los tres componentes de esa arquitectura antes de su evaluación, sin fingir que posee un mecanismo del Top 10. Si Ridge o persistencia ganan el benchmark completo, se conservará ese resultado: la ablación arquitectónica de la mejor red profunda no la convierte en el mejor modelo global. La condición de una ablación de tres componentes para una referencia trivial se declarará no aplicable y se contrastará con el requisito completo de la guía.
-
-Cada ablación usará las mismas semillas y fechas, el mismo preprocesamiento permitido y el mismo número y presupuesto de intentos. La variante completa y las ablaciones tendrán búsquedas comparables cuando el objetivo sea medir capacidad tras ajuste; un estudio secundario sin reajuste podrá medir dependencia de la receta original, pero no se confundirá con el primero. Se registrarán parámetros, FLOPs, latencia y memoria para separar mecanismo y capacidad. Un control con capacidad aproximadamente emparejada se justificará cuando la retirada reduzca parámetros sustancialmente; si no es posible, esa confusión será una limitación explícita.
-
-Para cada retirada se reportarán diferencia completa–ablación, IC95 %, tamaño de efecto y p-valor ajustado y sin ajustar, con inferencia temporal pareada y control de la familia de al menos tres contrastes. Las semillas de las ablaciones serán las mismas y el número R estará dimensionado con el procedimiento final, no elegido por el primer resultado. Un intervalo que incluya cero no prueba que el componente sea inútil. Las comparaciones sobre la reserva conocida conservan carácter exploratorio.
-
-
-
-## 4.7 Productos verificables y requisitos de cierre
-
-La herramienta `scripts/audit_e2_benchmark_readiness.py` se ejecuta con biblioteca estándar de Python. Comprueba el contrato científico, la lista de quince configuraciones, los seis hashes públicos de referencia de E1 y las cuentas/calendarios propuestos. No carga archivos de mercado ni predicciones individuales; los agregados históricos conocidos solo se usan como artefactos de procedencia. No importa librerías DL ni ajusta modelos.
-
-- [Descargar diseño, auditor y pruebas](../_static/benchmark_design_download/Diseno_E2_propuesta_auditoria.zip) y [manifiesto de integridad](../_static/benchmark_design_download/MANIFIESTO.json).
-- [Propuesta de configuración](../_static/benchmark_design/proposal.json) e [informe de preparación](../_static/benchmark_design/report.json).
-- [Estado de los quince modelos](../_static/benchmark_design/model_readiness.csv) y [trazabilidad de los 26 requisitos recibidos](../_static/benchmark_design/requirements.csv).
-- [Calendario anidado propuesto: treinta bloques internos](../_static/benchmark_design/nested_calendar.csv) y [hashes de procedencia](../_static/benchmark_design/provenance.json).
-
-El calendario CSV contiene fechas, **no índices supervisados ni una auditoría de elegibilidad ejecutada**. El estado de preparación del benchmark Bitcoin D7 es `proposal_valid=true`, `ready_to_train=false`: una propuesta válida puede tener prerrequisitos incompletos. La réplica externa ejecutada de §5 no convierte ese estado en aprobación del benchmark. El auditor valida documentos y no convierte por sí mismo un archivo existente en una implementación científicamente certificada.
-
-```bash
-python scripts/audit_e2_benchmark_readiness.py
-python tests/test_e2_benchmark_readiness.py
-```
-
-El modo `--require-ready` devuelve código 2 mientras existan esos pendientes; no debe interpretarse como fallo del experimento o como ausencia de resultados significativos. Un contrato inválido devuelve 1. Este auditor no invoca el ejecutor de la réplica ETTh1 ni entrena un modelo Bitcoin D7.
-
-| Producto de §4 | Evidencia actual | Falta para cumplir su ejecución |
-|---|---|---|
-| Variables, herencia y roles | Contrato, catálogo y propuesta versionados | Cerrar la equidad de optimización con las referencias |
-| CV/HPO y presupuesto | Fechas anidadas, cuadrícula y cuentas propuestas | Índices reales, perfilado y presupuesto común; §11.1 y §14 completos |
-| Implementación de diez modelos | Originales/código identificados en §3 | Adaptadores D7, lock y pruebas de forma, causalidad y recuperación |
-| Registro de experimentos y costes BTC D7 | Esquema de trazas definido; la ejecución externa ETTh1 tiene sus propios recibos en §5 | Tracker y mediciones del benchmark Bitcoin |
-| Repeticiones y piloto BTC D7 | Cronología y mínimo de guía documentados; piloto ETTh1 separado en §5 | Piloto de dimensionamiento Bitcoin, potencia y R con §9.2 |
-| Prevención de fuga | Auditoría EDA previa y controles previstos | Auditoría formal de cada pipeline conforme a §10 |
-| Evaluación e inferencia | Estimando, métricas y reglas de reporte propuestos | Resultados; rutas §7 y agregación §13.2 completas |
-| Robustez, explicaciones y ablación | Dos perturbaciones de tres niveles; selección, fidelidad, estabilidad y tres componentes previstos | Implementación y ejecución con decisiones registradas |
-| Test nuevo sellado | Limitación identificada | No disponible en la partición heredada; análisis E2 exploratorio |
-
-El diseño no se presenta como cumplimiento experimental terminado. La siguiente etapa del benchmark Bitcoin D7 requiere cerrar sus adaptadores, entorno, presupuesto, auditoría y procedimiento estadístico con las páginas restantes. Las curvas, tiempos, tablas y contrastes deberán proceder de las corridas efectivamente registradas.
+[^v1]: La [propuesta v1 fechada el 5 de noviembre](../_static/benchmark_design/proposal.json), su [informe](../_static/benchmark_design/report.json) y su [ZIP](../_static/benchmark_design_download/Diseno_E2_propuesta_auditoria.zip) se conservan como antecedentes: catálogo 15, grid 8 y cómputo propuesto antiguo. No son el diseño vigente ni habilitan sus entrenamientos. Sus comprobaciones históricas conservan su alcance original.

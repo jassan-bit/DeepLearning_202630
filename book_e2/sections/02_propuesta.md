@@ -1,4 +1,6 @@
-# Página de trabajo · Catálogo y propuesta
+# Archivo de trabajo anterior · Catálogo y propuesta
+
+**Archivo histórico anterior a la auditoría de la guía completa (06/11/2026).** Las cifras de quince configuraciones y las remisiones entonces pendientes reflejan esa propuesta inicial, hoy sustituida. Consultar la [sección vigente](03_literatura.md) y el [protocolo actual](09_protocolo_registrado.md). El texto siguiente se conserva como trazabilidad; no es un segundo protocolo activo.
 
 La [sección 3](03_literatura.md) contiene la propuesta bibliográfica: **TSMixer, TiDE, TimeMixer, TimesNet, PatchTST, Informer, Autoformer, iTransformer, Crossformer y S-Mamba**. Cubren cuatro familias y tienen código primario identificado.
 
