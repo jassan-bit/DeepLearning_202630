@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "client_date": "2026-11-06",
+  "original_design_commit": "329b0a6c8238d632dd00537c5cefab91360bafd1",
+  "amendment_scope": "Analysis implementation corrections identified by independent static review; dataset fits already running, first test scoring and pilot diagnostics not yet executed",
+  "result_driven": false,
+  "registered_design_changed": false,
+  "changes": [
+    {
+      "id": "A1",
+      "description": "Handle empty high/normal validation strata or insufficient valid bootstrap draws as non-estimable/inconclusive, with null effect/CI/p. Preserve replication and L1 outputs; keep Holm family size three conservatively."
+    },
+    {
+      "id": "A2",
+      "description": "Export the already preregistered secondary change in query MSE (bank minus B1), with a descriptive temporal interval. No new success criterion or hypothesis."
+    }
+  ],
+  "unchanged": [
+    "paper/model selection",
+    "dataset and source versions",
+    "seeds and training",
+    "registered numerical replication tolerance",
+    "stratum threshold and definition",
+    "query selection and historical bank",
+    "bootstrap blocks and draws",
+    "primary hypotheses and multiplicity"
+  ]
+}

@@ -25,6 +25,15 @@ REFERENCE_MAE = 0.400
 ALIGNMENT_TOLERANCE = 1e-5
 
 
+class NonEstimableError(ValueError):
+    """An unchanged estimand lacks data support; this is not a zero effect."""
+    def __init__(self, reason, message, finite_draws=None, requested_draws=None):
+        super().__init__(message)
+        self.reason = reason
+        self.finite_draws = finite_draws
+        self.requested_draws = requested_draws
+
+
 def digest(path):
     return sha256(Path(path).read_bytes()).hexdigest()
 
@@ -148,7 +157,9 @@ def bootstrap_distribution(values, statistic, block=192, repetitions=4999, seed=
         result[b] = statistic(values[..., indices], indices)
     finite = result[np.isfinite(result)]
     if len(finite) < 0.95 * repetitions:
-        raise ValueError("Insufficient bootstrap draws with estimable strata/query coverage")
+        raise NonEstimableError("insufficient_estimable_bootstrap_draws",
+                                "Insufficient bootstrap draws with estimable strata/query coverage",
+                                finite_draws=len(finite), requested_draws=repetitions)
     return finite
 
 
@@ -179,15 +190,54 @@ def holm(pvalues):
 def region_gap(squared_error, high_mask):
     errors = finite_array(squared_error, "squared error", 2)
     mask = np.asarray(high_mask, dtype=bool)
-    if mask.shape != (errors.shape[1],) or not mask.any() or mask.all():
-        raise ValueError("Both preregistered regions must contain origins")
+    if mask.shape != (errors.shape[1],):
+        raise ValueError("Regime mask and error calendar lengths differ")
     if np.any(errors < 0):
         raise ValueError("Squared errors cannot be negative")
+    if not mask.any() or mask.all():
+        raise NonEstimableError("empty_preregistered_region",
+                                "Both preregistered regions must contain origins")
     high = np.sqrt(errors[:, mask].mean(axis=1))
     normal = np.sqrt(errors[:, ~mask].mean(axis=1))
     return {"effect": float(np.mean(high - normal)), "high_RMSE_mean": float(high.mean()),
             "rest_RMSE_mean": float(normal.mean()), "per_seed_gap": (high - normal).tolist(),
             "n_high_origins": int(mask.sum()), "n_rest_origins": int((~mask).sum())}
+
+
+def nonestimable_region_record(name, mask, error, repetitions):
+    """Publish missing inference explicitly, retaining the registered strata."""
+    return {"model": name, "status": "not_estimable", "conclusion": "inconclusive",
+            "reason": error.reason, "reason_detail": str(error),
+            "effect": None, "ci95": None, "p_one_sided_unadjusted": None,
+            "p_one_sided_Holm_family3": None, "positive_gap_supported": None,
+            "high_RMSE_mean": None, "rest_RMSE_mean": None, "per_seed_gap": None,
+            "n_high_origins": int(mask.sum()), "n_rest_origins": int((~mask).sum()),
+            "null_boundary": 0.0, "finite_bootstrap_draws": error.finite_draws,
+            "requested_bootstrap_draws": repetitions,
+            "bootstrap_attempted": error.requested_draws is not None,
+            "minimum_estimable_bootstrap_fraction": .95,
+            "threshold_and_block_length_changed": False}
+
+
+def adjust_region_family(records):
+    """Keep all three hypotheses, with conservative internal p=1 for N/E.
+
+    Missing p-values remain missing in reports. They are never deleted from the
+    registered family or advertised as p=1 observed from a statistical test.
+    """
+    if len(records) != 3:
+        raise ValueError("The registered regime family contains exactly three hypotheses")
+    values = [1.0 if r["p_one_sided_unadjusted"] is None else r["p_one_sided_unadjusted"]
+              for r in records]
+    for record, adjusted in zip(records, holm(values)):
+        if record["p_one_sided_unadjusted"] is None:
+            record["p_one_sided_Holm_family3"] = None
+            record["positive_gap_supported"] = None
+        else:
+            record["p_one_sided_Holm_family3"] = float(adjusted)
+            record["positive_gap_supported"] = bool(adjusted < .05 and record["ci95"][0] > 0)
+        record["registered_hypothesis_family_size"] = 3
+        record["nonestimable_family_handling"] = "Internal conservative p=1; reported missing p remains null"
 
 
 def analyse_limitation(diagnostics, blocks=(192, 96, 384), repetitions=4999, seed=20261106):
@@ -198,18 +248,26 @@ def analyse_limitation(diagnostics, blocks=(192, 96, 384), repetitions=4999, see
     queries = np.asarray(first["query_indices"], dtype=np.int64)
     n = int(first["calendar_length"])
     masks = np.asarray(first["high_mask"], dtype=bool)
+    if masks.shape != (n,): raise ValueError("Regime mask and original calendar lengths differ")
     dense = {}
     no_marks = {}
     errors = {}
+    query_MSE_change = {}
     for name, data in diagnostics.items():
         if (int(data["calendar_length"]) != n or not np.array_equal(data["query_indices"], queries)
                 or not np.array_equal(data["high_mask"], masks)):
             raise ValueError("Pilot models must share queries, calendar and train-defined regime")
         dense[name] = sparse_to_calendar(data["batch_delta"], queries, n)
         no_marks[name] = sparse_to_calendar(data["no_marks_delta"], queries, n)
+        mse_b1=finite_array(data["query_MSE_B1"],name+" query MSE B1",2)
+        mse_bank=finite_array(data["query_MSE_bank"],name+" query MSE bank",2)
+        if (mse_b1.shape!=mse_bank.shape or np.any(mse_b1<0) or np.any(mse_bank<0)):
+            raise ValueError("Paired nonnegative query MSE arrays must have equal shapes")
+        query_MSE_change[name]=sparse_to_calendar(mse_bank-mse_b1,queries,n)
         errors[name] = finite_array(data["val_squared_error_by_origin"], name + " errors", 2)
         if errors[name].shape[-1] != n:
             raise ValueError("Pilot error calendar length differs")
+        if np.any(errors[name] < 0): raise ValueError("Squared errors cannot be negative")
     results = {"state": "executed_pilot_conditional_on_learned_weights", "calendar_length": n,
                "query_origins": len(queries), "training_seeds": list(SEEDS),
                "no_new_independent_market_series": True, "calendar_input_used_only_in_external_ETTh1_task": True,
@@ -241,23 +299,39 @@ def analyse_limitation(diagnostics, blocks=(192, 96, 384), repetitions=4999, see
         principal = [next(r for r in l1 if r["model"] == "TimeMixer"), *contrasts]
         for record, adjusted in zip(principal, holm([r["p_one_sided_unadjusted"] for r in principal])):
             record["p_one_sided_Holm_family3"] = float(adjusted)
+        secondary_MSE=[]
+        for name,array in query_MSE_change.items():
+            observed=float(np.nanmean(array))
+            boot=bootstrap_distribution(array,mean_stat,block,repetitions,seed)
+            secondary_MSE.append({"model":name,"effect":observed,
+                                  "ci95":np.quantile(boot,[.025,.975]).tolist(),
+                                  "finite_bootstrap_draws":len(boot),
+                                  "per_seed_change":np.nanmean(array,axis=1).tolist(),
+                                  "direction":"MSE bank batch minus MSE B1 on identical query targets",
+                                  "scale":"ETTh1 train-standardized squared error, average H96/C7",
+                                  "interpretation":"Positive is higher error in bank batch; negative is lower error; neither direction was selected after results",
+                                  "role":"Preregistered descriptive secondary metric, no p-value, extra hypothesis, or success route"})
         l2 = []
         for name, err in errors.items():
-            point = region_gap(err, masks)
             def statistic(x, indices):
                 mask = masks[indices]
                 if not mask.any() or mask.all(): return np.nan
                 return float(np.mean(np.sqrt(x[:, mask].mean(axis=1)) - np.sqrt(x[:, ~mask].mean(axis=1))))
-            boot = bootstrap_distribution(err, statistic, block, repetitions, seed)
-            l2.append({"model": name, **point, **interval_record(point["effect"], boot)})
-        for record, adjusted in zip(l2, holm([r["p_one_sided_unadjusted"] for r in l2])):
-            record["p_one_sided_Holm_family3"] = float(adjusted)
-            record["positive_gap_supported"] = bool(adjusted < .05 and record["ci95"][0] > 0)
+            try:
+                point = region_gap(err, masks)
+                boot = bootstrap_distribution(err, statistic, block, repetitions, seed)
+            except NonEstimableError as error:
+                l2.append(nonestimable_region_record(name, masks, error, repetitions))
+            else:
+                l2.append({"model": name, "status": "estimated", **point,
+                           **interval_record(point["effect"], boot)})
+        adjust_region_family(l2)
         results["by_block"][str(block)] = {
             "L1_batch_sensitivity": l1, "L1_paired_control_contrasts": contrasts,
             "L1_calendar_disabled_same_weights": {k: {"mean_absolute_prediction_change": float(np.nanmean(v)),
                                                        "per_seed": np.nanmean(v, axis=1).tolist()}
                                                    for k, v in no_marks.items()},
+            "L1_query_MSE_change_bank_minus_B1_descriptive":secondary_MSE,
             "L2_high_input_variability": l2,
             "scope": "Exploratory validation pilot; not a full benchmark or population-wide architectural/family claim"}
     return results
@@ -353,6 +427,8 @@ def load_diagnostics(root, expected_design_sha256=None):
                         "high_mask": first["high_mask"], "high_threshold": float(first["high_threshold"]),
                         "batch_delta": np.stack([a["batch_delta"] for a in arrays_by_seed]),
                         "no_marks_delta": np.stack([a["no_marks_delta"] for a in arrays_by_seed]),
+                        "query_MSE_B1":np.stack([a["query_MSE_B1"] for a in arrays_by_seed]),
+                        "query_MSE_bank":np.stack([a["query_MSE_bank"] for a in arrays_by_seed]),
                         "val_squared_error_by_origin": np.stack([a["val_squared_error_by_origin"] for a in arrays_by_seed])}
     return result, receipts
 
@@ -381,6 +457,7 @@ def validate_analysis_design(design):
 def plots(output, replication, limitations):
     import os
     os.environ.setdefault("MPLCONFIGDIR", "/tmp/mpl-e2-paper-guide")
+    os.environ.setdefault("XDG_CACHE_HOME", "/tmp/cache-e2-paper-guide")
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
@@ -402,7 +479,12 @@ def plots(output, replication, limitations):
         rows=limitations["by_block"]["192"]["L2_high_input_variability"]
         fig,ax=plt.subplots(figsize=(8,3.6))
         for i,r in enumerate(rows):
-            lo,hi=r["ci95"];ax.errorbar(r["effect"],i,xerr=[[max(0,r["effect"]-lo)],[max(0,hi-r["effect"])]],fmt="o",capsize=4)
+            if r["effect"] is None or r["ci95"] is None:
+                # x is an axes fraction, not an invented numerical effect=0.
+                ax.text(.98,i,"N/E · inconcluso",ha="right",va="center",
+                        transform=ax.get_yaxis_transform(),color="tab:gray")
+            else:
+                lo,hi=r["ci95"];ax.errorbar(r["effect"],i,xerr=[[max(0,r["effect"]-lo)],[max(0,hi-r["effect"])]],fmt="o",capsize=4)
         ax.axvline(0,color="black",linewidth=.8);ax.set(yticks=range(len(rows)),yticklabels=[r["model"] for r in rows],xlabel="RMSE alta variación observable − resto",title="Piloto en validación: heterogeneidad de error, IC95 % temporal")
         fig.tight_layout();fig.savefig(output/"pilot_regime_error.png",dpi=160);plt.close(fig)
 
@@ -430,6 +512,30 @@ def main(argv=None):
         limitations=analyse_limitation(diagnostics,repetitions=4999)
         limitations["high_variability_threshold_train_only"]=diagnostics["TimeMixer"]["high_threshold"]
         write_json(out/"limitation_summary.json",limitations)
+        region_rows=[]
+        for block, result in limitations["by_block"].items():
+            for row in result["L2_high_input_variability"]:
+                region_rows.append({"block_hours":block,"model":row["model"],
+                                    "status":row["status"],"reason":row.get("reason"),
+                                    "effect":row["effect"],
+                                    "ci95_low":None if row["ci95"] is None else row["ci95"][0],
+                                    "ci95_high":None if row["ci95"] is None else row["ci95"][1],
+                                    "p_unadjusted":row["p_one_sided_unadjusted"],
+                                    "p_Holm_family3":row["p_one_sided_Holm_family3"],
+                                    "n_high_origins":row["n_high_origins"],
+                                    "n_rest_origins":row["n_rest_origins"],
+                                    "registered_family_size":3})
+        with (out/"pilot_regime_inference.csv").open("w",newline="") as f:
+            writer=csv.DictWriter(f,fieldnames=list(region_rows[0]));writer.writeheader();writer.writerows(region_rows)
+        secondary_rows=[]
+        for block,result in limitations["by_block"].items():
+            for row in result["L1_query_MSE_change_bank_minus_B1_descriptive"]:
+                secondary_rows.append({"block_hours":block,"model":row["model"],
+                                       "MSE_bank_minus_B1":row["effect"],
+                                       "ci95_low":row["ci95"][0],"ci95_high":row["ci95"][1],
+                                       "role":"descriptive secondary; no added hypothesis or success route"})
+        with (out/"pilot_batch_MSE_change.csv").open("w",newline="") as f:
+            writer=csv.DictWriter(f,fieldnames=list(secondary_rows[0]));writer.writeheader();writer.writerows(secondary_rows)
     if replicas is None and limitations is None: raise SystemExit("At least one completed private experiment input is required")
     plots(out,replicas,limitations)
     hashes={p.name:digest(p) for p in sorted(out.iterdir()) if p.is_file() and p.name!="provenance.json"}

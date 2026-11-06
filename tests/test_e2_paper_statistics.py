@@ -4,17 +4,35 @@ from pathlib import Path
 import unittest
 import json
 import copy
+import tempfile
+import os
+from unittest.mock import patch
 from types import SimpleNamespace
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"scripts"))
 import numpy as np
 from analyze_e2_paper_guide import (seed_mean_interval,replication_summary,
     circular_block_indices,sparse_to_calendar,bootstrap_distribution,
-    centered_upper_p,holm,region_gap,analyse_limitation,validate_analysis_design)
+    centered_upper_p,holm,region_gap,analyse_limitation,validate_analysis_design,
+    adjust_region_family,plots,clean_json)
 from paper_guide_pilot_diagnostics import input_variability
 
 
 class PaperStatisticsTests(unittest.TestCase):
+    @staticmethod
+    def synthetic_diagnostics(high_mask):
+        n=len(high_mask);queries=np.arange(0,n,8,dtype=np.int64)
+        result={}
+        for name,magnitude in [('TimeMixer',.02),('iTransformer',1e-8),('PatchTST',2e-8)]:
+            result[name]={"query_indices":queries,"calendar_length":n,
+                          "high_mask":np.asarray(high_mask,dtype=bool),
+                          "batch_delta":np.full((5,len(queries)),magnitude),
+                          "no_marks_delta":np.full((5,len(queries)),1e-8),
+                          "query_MSE_B1":np.ones((5,len(queries))),
+                          "query_MSE_bank":np.full((5,len(queries)),1.1),
+                          "val_squared_error_by_origin":np.tile(np.linspace(.2,.7,n),(5,1))}
+        return result
+
     def test_seed_compatibility_uses_published_MSE_units_not_BTC_delta(self):
         r=replication_summary([.374,.375,.376,.375,.375],[.399,.400,.401,.400,.400])
         self.assertTrue(r["registered_success_rule"]["numerical_compatibility"])
@@ -107,6 +125,80 @@ class PaperStatisticsTests(unittest.TestCase):
         with self.assertRaises(ValueError):validate_analysis_design(changed)
         changed=copy.deepcopy(design);changed["analysis"]["block_lengths"]=[36,18,72]
         with self.assertRaises(ValueError):validate_analysis_design(changed)
+
+    def test_empty_or_all_high_strata_are_null_inconclusive_without_aborting_L1(self):
+        for high in [np.zeros(384,dtype=bool),np.ones(384,dtype=bool)]:
+            with self.subTest(all_high=bool(high.all())):
+                result=analyse_limitation(self.synthetic_diagnostics(high),blocks=(192,),repetitions=99)
+                block=result['by_block']['192']
+                self.assertEqual(len(block['L1_batch_sensitivity']),3)
+                self.assertGreater(block['L1_batch_sensitivity'][0]['effect'],0)
+                for row in block['L2_high_input_variability']:
+                    self.assertEqual(row['status'],'not_estimable')
+                    self.assertEqual(row['conclusion'],'inconclusive')
+                    for key in ['effect','ci95','p_one_sided_unadjusted','p_one_sided_Holm_family3','positive_gap_supported']:
+                        self.assertIsNone(row[key])
+                    self.assertEqual(row['registered_hypothesis_family_size'],3)
+                    self.assertFalse(row['threshold_and_block_length_changed'])
+                serialized=json.dumps(clean_json(result),allow_nan=False)
+                self.assertIn('"effect": null',serialized)
+
+    def test_insufficient_estimable_bootstrap_strata_remain_inconclusive(self):
+        mask=np.zeros(384,dtype=bool);mask[0]=True
+        result=analyse_limitation(self.synthetic_diagnostics(mask),blocks=(192,),repetitions=99)
+        rows=result['by_block']['192']['L2_high_input_variability']
+        for row in rows:
+            self.assertEqual(row['reason'],'insufficient_estimable_bootstrap_draws')
+            self.assertTrue(row['bootstrap_attempted'])
+            self.assertLess(row['finite_bootstrap_draws'],.95*99)
+            self.assertIsNone(row['effect']);self.assertIsNone(row['ci95'])
+        self.assertTrue(result['by_block']['192']['L1_paired_control_contrasts'])
+
+    def test_nonestimable_hypothesis_does_not_reduce_Holm_family(self):
+        records=[{'p_one_sided_unadjusted':.01,'ci95':[.1,.2]},
+                 {'p_one_sided_unadjusted':None,'ci95':None},
+                 {'p_one_sided_unadjusted':.04,'ci95':[.1,.2]}]
+        adjust_region_family(records)
+        self.assertAlmostEqual(records[0]['p_one_sided_Holm_family3'],.03)
+        self.assertAlmostEqual(records[2]['p_one_sided_Holm_family3'],.08)
+        self.assertIsNone(records[1]['p_one_sided_Holm_family3'])
+        self.assertIsNone(records[1]['p_one_sided_unadjusted'])
+        self.assertEqual([r['registered_hypothesis_family_size'] for r in records],[3,3,3])
+
+    def test_invalid_error_arrays_still_fail_instead_of_becoming_missing_strata(self):
+        data=self.synthetic_diagnostics(np.zeros(384,dtype=bool))
+        data['TimeMixer']['val_squared_error_by_origin'][0,0]=-1
+        with self.assertRaisesRegex(ValueError,'negative'):analyse_limitation(data,blocks=(192,),repetitions=99)
+
+    def test_secondary_MSE_change_retains_improvement_and_deterioration_without_pvalues(self):
+        data=self.synthetic_diagnostics(np.zeros(384,dtype=bool))
+        data['iTransformer']['query_MSE_bank'][:]=.8
+        result=analyse_limitation(data,blocks=(192,),repetitions=99)
+        rows=result['by_block']['192']['L1_query_MSE_change_bank_minus_B1_descriptive']
+        by_name={r['model']:r for r in rows}
+        self.assertAlmostEqual(by_name['TimeMixer']['effect'],.1)
+        self.assertAlmostEqual(by_name['iTransformer']['effect'],-.2)
+        for row in rows:
+            self.assertEqual(len(row['ci95']),2)
+            self.assertFalse(any(key.startswith('p_') for key in row))
+            self.assertIn('no p-value',row['role'])
+
+    def test_nonestimable_regime_plot_keeps_replica_L1_and_marks_NE_without_zero_effects(self):
+        result=analyse_limitation(self.synthetic_diagnostics(np.zeros(384,dtype=bool)),blocks=(192,),repetitions=99)
+        replica=replication_summary([.374,.375,.376,.375,.375],[.399,.4,.401,.4,.4])
+        os.environ.setdefault('MPLCONFIGDIR','/tmp/mpl-e2-statistics-tests')
+        os.environ.setdefault('XDG_CACHE_HOME','/tmp/cache-e2-statistics-tests')
+        import matplotlib.axes
+        original=matplotlib.axes.Axes.errorbar
+        calls=[]
+        def record(axis,*args,**kwargs):
+            calls.append(args);return original(axis,*args,**kwargs)
+        with tempfile.TemporaryDirectory(prefix='synthetic-e2-statistics-',dir='/tmp') as directory:
+            with patch.object(matplotlib.axes.Axes,'errorbar',new=record):plots(Path(directory),replica,result)
+            self.assertEqual(len(calls),4)  # replica + three L1; no invented L2 point
+            self.assertTrue((Path(directory)/'replication_discrepancy.png').is_file())
+            self.assertTrue((Path(directory)/'pilot_batch_invariance.png').is_file())
+            self.assertTrue((Path(directory)/'pilot_regime_error.png').is_file())
 
 
 if __name__=="__main__":unittest.main()
