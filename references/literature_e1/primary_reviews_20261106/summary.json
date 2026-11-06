@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "compiled_at_utc": "2026-11-06T22:23:43Z",
+  "compiled_at_bogota": "2026-11-06T17:23:43-05:00",
+  "reviewed_candidates": 5,
+  "reviewed_fulltexts": 2,
+  "fulltext_study_ids": [
+    "PR_CVI",
+    "PR_GARCH"
+  ],
+  "primary_publisher_abstract_only": 1,
+  "export_abstract_and_primary_program_only": 1,
+  "indexed_primary_sections_partial": 1,
+  "historical_N7_unchanged": true,
+  "historical_N7": 7,
+  "additional_strata": [
+    {
+      "stratum": "implied_CVI",
+      "new_fulltexts": 1,
+      "separate_model_comparator_study_counts": {
+        "TCN": 1,
+        "LSTM": 1,
+        "SVR": 1,
+        "RF": 1,
+        "SMA": 1
+      },
+      "hybrid_component_study_counts": {
+        "LSTM": 1,
+        "MLP": 1
+      },
+      "interpretation": "Una comparación TCN separada con cabeza/parámetros compartidos; objetivo distinto a sigma7."
+    },
+    {
+      "stratum": "GARCH_to_DL_hybrids",
+      "new_fulltexts": 1,
+      "separate_neural_comparator_study_counts": {},
+      "hybrid_component_study_counts": {
+        "LSTM": 1,
+        "GRU": 1,
+        "BiLSTM": 1
+      },
+      "interpretation": "Filas de redes híbridas; no añadir a frecuencias de baselines autónomos."
+    }
+  ],
+  "denominator_rule": "No sumar estratos a N7 para fabricar frecuencias mezcladas. Dos nuevos textos completos leídos no equivalen a dos réplicas directas de la tarea E1.",
+  "canonical_bibtex_additions": [
+    "nguyen2023cvi",
+    "zahid2022hybrid"
+  ],
+  "metrics_rows": 54,
+  "metrics_scope": "Solo dos completos; ningún valor IEEE parcial o PSO abstract se usa en comparación cuantitativa.",
+  "native_ledger": "references/literature_e1/native_search_20261106/records.csv",
+  "native_ledger_sha256": "1a3d2072f233e2ed5d927642d9c2cb85c39ab4bf41f89f1f11fa6c375cb753b7",
+  "review_ids_are_native_group_ids": true
+}

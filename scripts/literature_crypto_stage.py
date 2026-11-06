@@ -34,12 +34,29 @@ def read(path):
 
 
 def validate_bibliography(root, stage=None):
-    """Retain the inherited key order; a new stage may append its documented key."""
+    """Retain the historical catalog and allow a separately verified new cut.
+
+    The 05/11 catalog is an immutable evidence cut, not a ceiling on later
+    bibliography entries. New original readings must have a hashed BibTeX
+    fragment; they never change that cut's corpus or family frequencies.
+    """
     root = Path(root)
     keys = re.findall(r"@\w+\s*\{\s*([^,]+),", (root / "book/references.bib").read_text())
     previous = read(root / "references/literature_e1/journal_update_20261105/references_access_39.json")
     inherited = [row["key"] for row in previous["references"]]
-    expected_count = stage["counts"]["bibliographic_references"] if stage else 39
+    historical_count = stage["counts"]["bibliographic_references"] if stage else 39
+    extra_keys = []
+    review_dir = root / "references/literature_e1/primary_reviews_20261106"
+    fragment = review_dir / "references.bib"
+    if stage and fragment.is_file():
+        manifest = read(review_dir / "manifest.json")
+        expected_hash = manifest["files_sha256"].get("references.bib")
+        if fragment.is_symlink() or sha(fragment) != expected_hash:
+            raise ValueError("The new bibliography fragment must match its review manifest")
+        extra_keys = re.findall(r"@\w+\s*\{\s*([^,]+),", fragment.read_text())
+        if not extra_keys or len(extra_keys) != len(set(extra_keys)):
+            raise ValueError("The new review fragment needs unique reference keys")
+    expected_count = historical_count + len(extra_keys)
     if (len(inherited) != 39 or len(set(inherited)) != 39 or len(keys) != expected_count
             or len(set(keys)) != len(keys) or set(keys[:39]) != set(inherited)
             or tuple(keys[:39]) != LEGACY_BIB_KEYS):
@@ -47,10 +64,13 @@ def validate_bibliography(root, stage=None):
     if stage:
         catalog = read(stage["directory"] / "references_access_40.json")
         catalog_keys = [row["key"] for row in catalog["references"]]
-        if len(catalog_keys) != len(keys) or set(catalog_keys) != set(keys):
-            raise ValueError("The current reference access catalog must match the bibliography")
-        if keys[39:] != ["djanga2025commonality"]:
-            raise ValueError("Only the documented crypto original may extend the 39-key bibliography")
+        if (len(catalog_keys) != historical_count
+                or set(catalog_keys) != set(keys[:historical_count])):
+            raise ValueError("The historical reference access catalog must match its bibliography prefix")
+        if keys[39:historical_count] != ["djanga2025commonality"]:
+            raise ValueError("Preserve the documented 05/11 crypto reference")
+        if keys[historical_count:] != extra_keys:
+            raise ValueError("Later bibliography entries must match the separately verified review fragment")
     return keys
 
 

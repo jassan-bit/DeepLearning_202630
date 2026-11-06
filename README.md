@@ -62,7 +62,11 @@ Los resultados y contrastes de fase I permanecen exploratorios. Su [ejecutor por
 
 ## Literatura y distribución
 
-La revisión identifica 40 referencias y siete estudios cripto completos: GRU aparece como comparador independiente en 3/7, LSTM en 5/7 y TCN en 1/7. Las verificaciones editoriales, tipos de publicación y límites de no redundancia se mantienen explícitos. Un nuevo experimento no aumenta esas frecuencias.
+El corte bibliográfico del **05/11/2026** conserva **40 referencias de antecedentes y siete estudios cripto con texto completo verificado**: GRU aparece como comparador independiente en **3/7**, LSTM en **5/7** y TCN en **1/7**. Las verificaciones editoriales, tipos de publicación y límites de no redundancia se mantienen explícitos.
+
+La [ampliación nativa del 06/11/2026](references/literature_e1/native_search_20261106/README.md) incorpora cuatro exportaciones WoS/Scopus: **244 ocurrencias y 182 grupos provisionales** por DOI/título, con [recuentos](references/literature_e1/native_search_20261106/summary.json), [registros](references/literature_e1/native_search_20261106/records.csv) y [cribado](references/literature_e1/native_search_20261106/screening.csv) separados del corte histórico. El recuento de grupos no equivale al de estudios elegibles o nuevos textos completos verificados. La lectura de los restantes originales, la comprobación de fechas efectivas y la trazabilidad IEEE permanecen abiertas. Un resumen o un nuevo experimento no aumenta las frecuencias históricas. El [capítulo 3](book/sections/03_estado_arte.md) y las [descargas de literatura](book/sections/08_entregables.md) conservan ambas procedencias.
+
+La bibliografía actual reúne **42 referencias**, tras revisar [dos originales completos adicionales](references/literature_e1/primary_reviews_20261106/README.md): TCN/LSTM para un índice CVI de volatilidad implícita y redes como componentes híbridos GARCH. Las fichas distinguen sus objetivos y roles; no se cambia el denominador histórico a nueve ni se atribuyen a estos textos comparadores autónomos adicionales de σ₇.
 
 El repositorio incluye los derivados diarios de desarrollo 2023–2024. Los ZIP de entrega los omiten y documentan su generación con los archivos oficiales. Se publican código, metadatos, agregados y figuras; las ilustraciones temporales fijan la semilla antes de comparar errores. Los derivados completos de evaluación, predicciones individuales, pesos y escaladores permanecen fuera de la exportación pública. Construir el libro no entrena redes ni abre datos de mercado.
 

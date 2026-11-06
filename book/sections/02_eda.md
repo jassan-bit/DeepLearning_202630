@@ -8,6 +8,8 @@ Se distinguen las ventanas de entrada $D$ de las ventanas de volatilidad $n$: am
 
 La métrica principal es **RMSE**. El criterio operativo de §1.1.4 propone para un modelo avanzado futuro una mejora relativa superior al **5 % frente a GRU/D7 y frente a persistencia**; se declaró después de observar el test actual y no constituye un criterio a priori de este EDA. El EDA de este capítulo utilizó exclusivamente desarrollo 2023–2024; el benchmark posterior de los capítulos 4–5 compara las entradas D=7/14/21/28 manteniendo n=7 y h=1. Las sensibilidades del objetivo n=14/21/28 no se entrenaron. El ajuste final y el test posterior a la congelación tienen registros separados: no se presentan como datos usados para seleccionar a partir del EDA.
 
+**Actualización documental del 6 de noviembre de 2026.** La {ref}`ampliación de literatura <ampliacion-nativa-e1>` incorpora las búsquedas nativas y nuevas lecturas críticas. Distingue el objetivo móvil σ₇ de este EDA, la volatilidad realizada de otras fuentes y el índice de volatilidad implícita CVI. Esa evidencia contextualiza la comparación de modelos; las tablas y figuras de desarrollo mantienen su procedencia y escala.
+
 ## 2.1. EDA general
 
 La revisión de este bloque se recoge punto por punto en el {download}`informe de EDA general <../_static/e1/revision_eda_general_20261103.md>` y su [matriz JSON](../_static/e1/revision_eda_general_20261103.json). Los criterios de clasificación se adaptan al objetivo continuo y los diagnósticos estadísticos se distinguen de la evaluación de modelos.

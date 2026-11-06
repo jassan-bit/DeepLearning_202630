@@ -269,3 +269,30 @@ Las pruebas nuevas comprueban forma, gradientes, causalidad, checkpoints y lectu
 ## Regenerar descargas
 
 Después de guardar el código y el libro en un commit local, construir HTML y ejecutar el empaquetador en una salida externa nueva. Verifica CRC y hashes por miembro y excluye ZIP recursivos, brutos, escaladores, pesos y vectores tabulares individuales. Las figuras incluyen ilustraciones temporales con semillas fijadas: 4101 en fase I y 8101 en fase II, identificadas explícitamente sin escoger la de menor error. Copiar sus ocho ZIP y catálogos a `book/_static/e1_downloads/` y reconstruir el sitio. Los protocolos de origen quedan preservados en `experiments/gru_lstm_tcn_20261105/original_registration/`; los siete productos públicos conservan la terna GRU–LSTM–TCN y los alcances separados de ambas fases.
+
+## Actualizar la literatura de E1 con exportaciones nativas
+
+La etapa del 6 de noviembre de 2026 añade metadatos de cuatro exportaciones WoS/Scopus y dos fichas de originales completos. El corte anterior de 40 referencias, siete textos y sus frecuencias se conserva; la bibliografía canónica añade dos entradas, con objetivos y papeles separados. Los originales de las exportaciones y sus resúmenes no se redistribuyen. La reproducción de la ingesta requiere los cuatro archivos del autor, identificados por SHA-256 en `references/literature_e1/native_search_20261106/source_manifest.json`.
+
+```bash
+python scripts/import_e1_literature.py \
+  --scopus '/ruta/export_4a31d458-6ce4-4435-9507-df9ee7cc2881_2026-11-06T220747.614885599.csv' \
+  --scopus '/ruta/export_694623e0-7e5c-4597-aca5-c8fc7cb8b431_2026-11-06T220948.394330608.csv' \
+  --wos '/ruta/savedrecs (4).txt' \
+  --wos '/ruta/savedrecs (3).txt' \
+  --search-context references/literature_e1/native_search_context_20261106.json
+python scripts/import_e1_literature.py --verify-public references/literature_e1/native_search_20261106
+python -m unittest discover -s tests -p 'test_e1_literature_import.py'
+```
+
+La primera pasada automática no decide elegibilidad final ni modifica frecuencias por menciones de arquitecturas. `primary_reviews_20261106/` contiene extracción editorial, ubicación de evidencia y límites de dos textos completos, más tres candidatos con acceso parcial. Su `manifest.json` valida los derivados, sin inventar hashes de originales no materializados. Las entradas nuevas se verifican contra su fragmento `references.bib`; el catálogo histórico de 40 no se reescribe.
+
+Para refrescar las descargas de esta ampliación, usar el refresco específico después de guardar los cambios de fuentes en un commit y construir E1:
+
+```bash
+jupyter-book build book --all --warningiserror --keep-going
+python scripts/check_book_links.py --book-dir book
+python scripts/refresh_e1_native_downloads.py --output-dir /tmp/e1-native-downloads
+```
+
+El destino debe estar vacío y fuera del checkout. El refresco utiliza los ZIP vigentes como base, mantiene los productos 8.3/8.5/8.6 byte a byte y añade la nueva literatura al informe, código, producto 8.4 y declaración. Verifica hashes por miembro y CRC, renueva catálogo y paquete conjunto; no regenera la ciencia desde el empaquetador histórico. Copiar los productos verificados a `book/_static/e1_downloads/` y reconstruir E1 para distribuir las descargas actualizadas.
