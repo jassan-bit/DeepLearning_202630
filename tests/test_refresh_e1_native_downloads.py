@@ -116,6 +116,8 @@ class NativeDownloadRefreshTests(unittest.TestCase):
                     "planned_D7_phase", "scope", "declaration_manifest_sha256"):
             self.assertEqual(catalog[key], self.catalog[key])
         self.assertEqual(catalog["source_commit"], self.git("rev-parse", "HEAD"))
+        for row in catalog["packages"] + [catalog["complete_package"]]:
+            self.assertEqual(row["url"], refresh.legacy.PUBLIC_BOOK + "_static/e1_downloads/" + row["file"])
         self.assertFalse(catalog["literature_refresh"]["retrospective_preregistration"])
         self.assertEqual(catalog["new_model_fits_by_packaging"], 0)
         with ZipFile(self.output / refresh.ITEMS["8.2"]) as saved:

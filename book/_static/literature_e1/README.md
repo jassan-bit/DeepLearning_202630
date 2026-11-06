@@ -1,5 +1,15 @@
 # Evidencia documental del Entregable 1
 
+## Ampliación vigente del 6 de noviembre de 2026
+
+`native_search_20261106/` conserva cuatro exportaciones recibidas (244 ocurrencias, 182 grupos provisionales), deduplicación, primera pasada y cola de revisión. `primary_reviews_20261106/` contiene cinco fichas de acceso: dos originales completos adicionales, dos resúmenes y una lectura primaria parcial. CVI implícita y redes dentro de híbridos GARCH permanecen en estratos distintos de los siete textos del corte del 05/11. La bibliografía canónica contiene 42 referencias; su cantidad no equivale a estudios elegibles. Los manifiestos identifican evidencia y límites, sin declarar un PRISMA global cerrado.
+
+`crypto_extension_20261105/` conserva los siete textos y las frecuencias históricas; `gru_lstm_tcn_selection_20261105/` identifica la terna experimental. Sus resultados, HPO y piloto están en los capítulos 4, 5 y 9 y no cambian con esta ampliación. La consulta de IEEE y la adjudicación editorial siguen pendientes.
+
+## Archivo histórico del 3 de noviembre de 2026
+
+Los apartados siguientes describen exclusivamente ese corte. Sus expresiones de estado no sustituyen la actualización anterior.
+
 La versión del 03/11/2026 conserva las consultas originales del 02/11/2026 y añade recuperación dirigida, correcciones de cribado y extracción de los apéndices de S1. No ejecuta redes ni utiliza datos de mercado o test del proyecto.
 
 ## Conteos y cortes
@@ -10,7 +20,7 @@ El corpus exploratorio es S1/S2/S5/S6/S7. S2/S6/S7 son literatura gris y S6 no a
 
 WoS, Scopus, IEEE y arXiv no se presentan como bases consultadas. Sus conteos son desconocidos, no cero. Tampoco se acredita Q1 por tener DOI, un manuscrito o una copia en GitHub.
 
-## Productos actuales
+## Productos del corte histórico 03/11
 
 - `search_log.json`, `query_summary_20261103.csv`, `discovery_records.json`: cadenas, fechas, páginas, conteos, límites y hashes originales.
 - `screening.csv`, `screening_revision_20261103.json`, `screening_recovery_stage_20261103.json` y `flow.svg`: motivos corregidos, nueva recuperación y flujo acumulado con unidades diferenciadas.
@@ -24,4 +34,4 @@ WoS, Scopus, IEEE y arXiv no se presentan como bases consultadas. Sus conteos so
 - `selection_evidence.json`: selección final pendiente, con fichas candidatas separadas. La frecuencia ampliada es LSTM4/5, GRU2/5, TCN1/5 y encoder2/5; las sensibilidades conservan el corte original, el corpus sin S6 y el corpus sin las fuentes explícitamente grises.
 - `fichas_arquitecturas.md/json`: fichas, diagramas y fuentes. S1 sí publica los ganadores de LSTM/GRU/TCN en apéndice C, Tablas5–6. La versión de `keras-tcn`, la especificación parcial de S6 y las configuraciones propias siguen abiertas.
 
-Las fuentes difieren en objetivo, datos, horizonte, escala y protocolo. No se construye un ranking mezclando sus RMSE/R² ni se considera que diversidad, frecuencia aislada o cantidad de citas cierre la selección definitiva de tres modelos básicos. Los experimentos de las tres redes, piloto, benchmark y evaluación de test permanecen reservados para E2.
+Las fuentes difieren en objetivo, datos, horizonte, escala y protocolo. No se construye un ranking mezclando sus RMSE/R² ni se considera que diversidad, frecuencia aislada o cantidad de citas cierre la selección definitiva de tres modelos básicos. En ese corte los experimentos figuraban pendientes. Las ejecuciones posteriores de E1 se documentan por separado en los capítulos 4, 5 y 9, con su propia cronología.

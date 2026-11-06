@@ -331,6 +331,7 @@ def package(output_dir, requested_revision=None):
             row.update(legacy.archive(output / filename, products[item], item, row["title"], revision,
                                       _readme(item, row["title"], revision, original_readmes[item])))
         verifications[filename] = verify_archive(output / filename)
+        row["url"] = legacy.PUBLIC_BOOK + "_static/e1_downloads/" + filename
         records.append(row)
     combined = {row["file"]: (output / row["file"]).read_bytes() for row in records}
     combined["CATALOGO_PRODUCTOS.json"] = legacy.encode(records)
@@ -338,6 +339,7 @@ def package(output_dir, requested_revision=None):
         catalog["complete_package"]["title"], revision,
         "# Entregable 1: siete productos vigentes\n\nDescomprimir este ZIP y después cada producto. "
         "Cada producto conserva su LEEME.md y MANIFIESTO.json.\n\n" + CHRONOLOGY_NOTE + "\n")
+    complete["url"] = legacy.PUBLIC_BOOK + "_static/e1_downloads/" + complete["file"]
     verifications[complete["file"]] = verify_archive(output / complete["file"])
     result = copy.deepcopy(catalog)
     result.update(source_commit=revision, packages=records, complete_package=complete,
