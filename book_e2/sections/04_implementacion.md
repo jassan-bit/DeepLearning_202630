@@ -1,6 +1,6 @@
 # 4. Implementación de Modelos Benchmark
 
-**Estado:** diseño experimental propuesto y auditoría documental ejecutable; los diez adaptadores, el HPO, el piloto y el benchmark E2 **no se han ejecutado**. Este capítulo desarrolla las cinco capturas recibidas de §4.1–4.6: páginas 12–15 y un fragmento final sin folio visible. Distingue requisitos de la guía, decisiones propuestas y evidencias efectivamente disponibles.
+**Estado:** diseño propuesto del benchmark **Bitcoin D7** y auditoría documental ejecutable; sus diez adaptadores, HPO y piloto de dimensionamiento **no se han ejecutado**. La [sección 5](05_paper_guia.md) sí presenta una réplica TimeMixer y un piloto externo de tres modelos en ETTh1, que no sustituyen ese benchmark. Este capítulo desarrolla las cinco capturas recibidas de §4.1–4.6: páginas 12–15 y un fragmento final sin folio visible. Distingue requisitos de la guía, decisiones propuestas y evidencias efectivamente disponibles.
 
 La implementación debe seguir también §7 y §11. Las remisiones a potencia (§9.2), auditoría formal de fuga (§10), agregación (§13.2) y búsqueda de arquitectura (§14) no se sustituyen por supuestos sobre páginas todavía no recibidas. El [registro de requisitos](../_static/guia_e2_recibida.json) conserva ese alcance. La propuesta y su auditoría pueden descargarse en §4.7.
 
@@ -115,7 +115,7 @@ Se registrarán las semillas de Python, NumPy y el framework y las opciones de d
 
 La guía exige al menos cinco ejecuciones independientes o particiones CV justificadas. **Cinco folds temporales solapados no son cinco series de mercado independientes.** Para contrastes Wilcoxon bilaterales exactos, con cinco pares no nulos y sin empates el mínimo p es 0,0625; seis permiten 0,03125, sin que ello demuestre potencia suficiente. R debe dimensionarse con §9.2; el R=465 de E1 no se transfiere.
 
-Se propone un piloto E2 de diez semillas por modelo con recetas previamente congeladas y las fechas heredadas 01/11–30/12/2024. Los pesos se ajustarán antes del 01/11 y se conservarán durante esas sesenta fechas. El piloto estima dispersión del **procedimiento E2** antes del ajuste definitivo; no precede al benchmark histórico E1 ni crea nuevas fechas desconocidas. Las sesenta fechas continúan temporalmente dependientes. Solo después se fijarán R, potencia objetivo, multiplicidad, estimador de variabilidad y sus supuestos. Diez semillas no acreditan por sí solas potencia temporal o conjunta.
+Se propone un piloto de dimensionamiento Bitcoin D7 de diez semillas por modelo con recetas previamente congeladas y las fechas heredadas 01/11–30/12/2024. Los pesos se ajustarán antes del 01/11 y se conservarán durante esas sesenta fechas. El piloto estima dispersión del **procedimiento E2** antes del ajuste definitivo; no precede al benchmark histórico E1 ni crea nuevas fechas desconocidas. Las sesenta fechas continúan temporalmente dependientes. Solo después se fijarán R, potencia objetivo, multiplicidad, estimador de variabilidad y sus supuestos. Diez semillas no acreditan por sí solas potencia temporal o conjunta. El piloto externo de tres modelos y cinco semillas de §5 ya se ejecutó en ETTh1 para estudiar limitaciones; no estima la dispersión del futuro procedimiento Bitcoin D7 ni fija su R.
 
 La cronología prevista separa: cierre de adaptadores/entorno/presupuesto → HPO en desarrollo → recetas congeladas → piloto → dimensionamiento → ajustes definitivos → cierre de pesos/escaladores → scoring único E2 → análisis registrado. Un cambio posterior se documentará como enmienda con fecha y motivo; no se le atribuye carácter previo a resultados ya conocidos.
 
@@ -137,7 +137,7 @@ Las comprobaciones espaciales y de duplicados semánticos de imágenes/texto se 
 
 ## 4.5 Evaluación y análisis de errores
 
-**Estado:** diseño propuesto a partir de las páginas recibidas; no hay métricas del benchmark E2. Las pruebas específicas de §7.3, la agregación de §13.2 y el dimensionamiento de §9.2 se incorporarán al recibir esos apartados. No se atribuye al pasado una decisión tomada ahora ni se presenta el test conocido de E1 como prueba sellada nueva.
+**Estado:** diseño propuesto a partir de las páginas recibidas; no hay métricas del benchmark Bitcoin D7. Las métricas externas de réplica y piloto ETTh1 están en §5. Las pruebas específicas de §7.3, la agregación de §13.2 y el dimensionamiento de §9.2 se incorporarán al recibir esos apartados. No se atribuye al pasado una decisión tomada ahora ni se presenta el test conocido de E1 como prueba sellada nueva.
 
 ### 4.5.1 Métricas, estimando y cohorte
 
@@ -253,25 +253,25 @@ La herramienta `scripts/audit_e2_benchmark_readiness.py` se ejecuta con bibliote
 - [Estado de los quince modelos](../_static/benchmark_design/model_readiness.csv) y [trazabilidad de los 26 requisitos recibidos](../_static/benchmark_design/requirements.csv).
 - [Calendario anidado propuesto: treinta bloques internos](../_static/benchmark_design/nested_calendar.csv) y [hashes de procedencia](../_static/benchmark_design/provenance.json).
 
-El calendario CSV contiene fechas, **no índices supervisados ni una auditoría de elegibilidad ejecutada**. El estado actual es `proposal_valid=true`, `ready_to_train=false`: una propuesta válida puede tener prerrequisitos incompletos. El auditor valida documentos y no convierte por sí mismo un archivo existente en una implementación científicamente certificada.
+El calendario CSV contiene fechas, **no índices supervisados ni una auditoría de elegibilidad ejecutada**. El estado de preparación del benchmark Bitcoin D7 es `proposal_valid=true`, `ready_to_train=false`: una propuesta válida puede tener prerrequisitos incompletos. La réplica externa ejecutada de §5 no convierte ese estado en aprobación del benchmark. El auditor valida documentos y no convierte por sí mismo un archivo existente en una implementación científicamente certificada.
 
 ```bash
 python scripts/audit_e2_benchmark_readiness.py
 python tests/test_e2_benchmark_readiness.py
 ```
 
-El modo `--require-ready` devuelve código 2 mientras existan esos pendientes; no debe interpretarse como fallo del experimento o como ausencia de resultados significativos. Un contrato inválido devuelve 1. No hay un ejecutor de entrenamiento E2 oculto tras esta comprobación.
+El modo `--require-ready` devuelve código 2 mientras existan esos pendientes; no debe interpretarse como fallo del experimento o como ausencia de resultados significativos. Un contrato inválido devuelve 1. Este auditor no invoca el ejecutor de la réplica ETTh1 ni entrena un modelo Bitcoin D7.
 
 | Producto de §4 | Evidencia actual | Falta para cumplir su ejecución |
 |---|---|---|
 | Variables, herencia y roles | Contrato, catálogo y propuesta versionados | Cerrar la equidad de optimización con las referencias |
 | CV/HPO y presupuesto | Fechas anidadas, cuadrícula y cuentas propuestas | Índices reales, perfilado y presupuesto común; §11.1 y §14 completos |
 | Implementación de diez modelos | Originales/código identificados en §3 | Adaptadores D7, lock y pruebas de forma, causalidad y recuperación |
-| Registro de experimentos y costes | Esquema de trazas definido | Tracker y mediciones sobre ajustes reales |
-| Repeticiones y piloto | Cronología y mínimo de guía documentados | Piloto E2, potencia y R con §9.2 |
+| Registro de experimentos y costes BTC D7 | Esquema de trazas definido; la ejecución externa ETTh1 tiene sus propios recibos en §5 | Tracker y mediciones del benchmark Bitcoin |
+| Repeticiones y piloto BTC D7 | Cronología y mínimo de guía documentados; piloto ETTh1 separado en §5 | Piloto de dimensionamiento Bitcoin, potencia y R con §9.2 |
 | Prevención de fuga | Auditoría EDA previa y controles previstos | Auditoría formal de cada pipeline conforme a §10 |
 | Evaluación e inferencia | Estimando, métricas y reglas de reporte propuestos | Resultados; rutas §7 y agregación §13.2 completas |
 | Robustez, explicaciones y ablación | Dos perturbaciones de tres niveles; selección, fidelidad, estabilidad y tres componentes previstos | Implementación y ejecución con decisiones registradas |
 | Test nuevo sellado | Limitación identificada | No disponible en la partición heredada; análisis E2 exploratorio |
 
-El diseño no se presenta como cumplimiento experimental terminado. La siguiente etapa ejecutable requiere cerrar los adaptadores, entorno, presupuesto, auditoría y procedimiento estadístico con las páginas restantes. Las curvas, tiempos, tablas y contrastes deberán proceder de las corridas efectivamente registradas.
+El diseño no se presenta como cumplimiento experimental terminado. La siguiente etapa del benchmark Bitcoin D7 requiere cerrar sus adaptadores, entorno, presupuesto, auditoría y procedimiento estadístico con las páginas restantes. Las curvas, tiempos, tablas y contrastes deberán proceder de las corridas efectivamente registradas.

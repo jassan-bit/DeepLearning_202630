@@ -2,6 +2,8 @@
 
 **Resultado de esta etapa:** selección bibliográfica de **diez modelos de Deep Learning para pronosticar la volatilidad de Bitcoin**, con exportaciones de **WoS y Scopus**, lectura de **diez originales completos —215 páginas físicas—** y código de autores identificado por commit y hash. Las adaptaciones a D7×5 → σ₇ todavía no se han implementado ni entrenado.
 
+La extracción bibliográfica y sus contadores de ejecución describen la etapa del **05/11/2026**. La [sección 5](05_paper_guia.md) documenta después la réplica externa de TimeMixer y el piloto aprendido de tres modelos en ETTh1; esas corridas no son una evaluación del benchmark Bitcoin D7.
+
 **Estado de la revisión:** recepción, deduplicación, lectura y extracción del subcorpus de diez arquitecturas ejecutadas. Continúan abiertos la cobertura global de las consultas, el cribado de los 7.833 grupos, los textos completos de los estudios aplicados de apoyo, los cuartiles por año y las tres búsquedas transversales. Se distingue esta selección trazable de un PRISMA global cerrado.
 
 La disposición más específica de §3.2 de la guía exige el Top 10 **adicional** a GRU, LSTM y TCN de E1, una referencia no profunda y otra trivial: **mínimo quince configuraciones**. Las cuatro familias deben estar representadas dentro de los diez modelos propuestos, sin contar esas referencias.
@@ -185,7 +187,7 @@ En Informer/Autoformer, el decoder admite contexto observado y placeholders futu
 
 ## 3.3 Análisis técnico por modelo
 
-Las fichas siguientes reúnen lectura del original completo, código inspeccionado, formulación propia simplificada y adaptación propuesta. Cada versión leída se identifica por hash, tabla y página; los estados históricos previos se conservan con su alcance. Los esquemas son originales de este libro; no son reproducciones de figuras editoriales. $g_\sigma$ representa la lectura escalar común anterior. Las complejidades son estimaciones estructurales, no FLOPs medidos ni tiempos obtenidos en este proyecto.
+Las fichas siguientes reúnen lectura del original completo, código inspeccionado, formulación propia simplificada y adaptación propuesta. Cada versión leída se identifica por hash, tabla y página; los estados históricos previos se conservan con su alcance. Los esquemas son originales de este libro; no son reproducciones de figuras editoriales. $g_\sigma$ representa la lectura escalar común anterior. Las complejidades de estas fichas son estimaciones estructurales de la etapa bibliográfica; no son mediciones del adaptador Bitcoin D7. Las mediciones de las corridas externas ETTh1 se presentan por separado en la [sección 5](05_paper_guia.md).
 
 ### 3.3.1 TSMixer
 
@@ -219,7 +221,7 @@ Estado para la fila seleccionada: repeticiones: NR; semillas: NR; dispersión de
 
 **Limitación técnica:** La fuente elegida es Google/Chen All-MLP TSMixer, distinta de variantes IBM con nombre parecido. Las capas y la receta del adaptador aún deben fijarse antes de entrenarlo.
 
-**Estado de ejecución:** texto completo y código revisados; adaptación D7×5→σ₇ y evaluación en Bitcoin pendientes. No se entrenaron modelos ni se reprodujeron numéricamente los originales en esta revisión.
+**Alcance histórico de ejecución:** la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La adaptación D7×5→σ₇ y su evaluación en Bitcoin siguen pendientes. La [réplica externa de TimeMixer y el piloto de tres modelos en ETTh1](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html) pertenecen a la etapa posterior del capítulo 5.
 
 ### 3.3.2 TiDE
 
@@ -255,7 +257,7 @@ Estado para la fila seleccionada: repeticiones: reported; semillas: NR; dispersi
 
 La formulación original incorpora historia del objetivo y covariables futuras; la versión covariate-only bajo el contrato vigente es una adaptación explícita que necesita validación, no una reproducción idéntica.
 
-**Estado de ejecución:** texto completo y código revisados; adaptación D7×5→σ₇ y evaluación en Bitcoin pendientes. No se entrenaron modelos ni se reprodujeron numéricamente los originales en esta revisión.
+**Alcance histórico de ejecución:** la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La adaptación D7×5→σ₇ y su evaluación en Bitcoin siguen pendientes. La [réplica externa de TimeMixer y el piloto de tres modelos en ETTh1](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html) pertenecen a la etapa posterior del capítulo 5.
 
 ### 3.3.3 TimeMixer
 
@@ -289,7 +291,7 @@ Estado para la fila seleccionada: repeticiones: reported; semillas: NR; dispersi
 
 **Limitación técnica:** Las escalas y longitudes predeterminadas para historias de 96/336 pasos no sirven automáticamente para D7. No se añaden variables futuras ni se invierte la escala OHLCV como si el objetivo fuera una de sus columnas.
 
-**Estado de ejecución:** texto completo y código revisados; adaptación D7×5→σ₇ y evaluación en Bitcoin pendientes. No se entrenaron modelos ni se reprodujeron numéricamente los originales en esta revisión.
+**Alcance histórico de ejecución:** la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La adaptación D7×5→σ₇ y su evaluación en Bitcoin siguen pendientes. La [réplica externa de TimeMixer y el piloto de tres modelos en ETTh1](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html) pertenecen a la etapa posterior del capítulo 5.
 
 ### 3.3.4 TimesNet
 
@@ -325,7 +327,7 @@ Estado para la fila seleccionada: repeticiones: reported; semillas: NR; dispersi
 
 La ecuación 1 del artículo usa techo para el periodo y el código examinado usa división entera (piso); la fórmula anterior describe ese código. FFT_for_Period promedia amplitudes sobre el batch. Para no compartir información entre orígenes temporales, la adaptación propuesta debe seleccionar periodos por ventana o inferir con batch=1, excluir explícitamente la frecuencia cero y limitar k≤⌊L_eff/2⌋. Son controles propuestos, aún no ejecutados.
 
-**Estado de ejecución:** texto completo y código revisados; adaptación D7×5→σ₇ y evaluación en Bitcoin pendientes. No se entrenaron modelos ni se reprodujeron numéricamente los originales en esta revisión.
+**Alcance histórico de ejecución:** la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La adaptación D7×5→σ₇ y su evaluación en Bitcoin siguen pendientes. La [réplica externa de TimeMixer y el piloto de tres modelos en ETTh1](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html) pertenecen a la etapa posterior del capítulo 5.
 
 ### 3.3.5 PatchTST
 
@@ -359,7 +361,7 @@ Estado para la fila seleccionada: repeticiones: reported; semillas: reported; di
 
 **Limitación técnica:** Los parches predeterminados de 16/32 pasos exceden D7. Una nueva cabeza que combine canales es una adaptación que debe declararse y validarse.
 
-**Estado de ejecución:** texto completo y código revisados; adaptación D7×5→σ₇ y evaluación en Bitcoin pendientes. No se entrenaron modelos ni se reprodujeron numéricamente los originales en esta revisión.
+**Alcance histórico de ejecución:** la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La adaptación D7×5→σ₇ y su evaluación en Bitcoin siguen pendientes. La [réplica externa de TimeMixer y el piloto de tres modelos en ETTh1](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html) pertenecen a la etapa posterior del capítulo 5.
 
 ### 3.3.6 Informer
 
@@ -393,7 +395,7 @@ Estado para la fila seleccionada: repeticiones: reported; semillas: NR; dispersi
 
 **Limitación técnica:** La licencia raíz observada es Apache-2.0 y el badge del README indica CC BY-NC-SA: se distinguen código, datos y badge. Debe comprobarse que el distilling sea válido con siete pasos.
 
-**Estado de ejecución:** texto completo y código revisados; adaptación D7×5→σ₇ y evaluación en Bitcoin pendientes. No se entrenaron modelos ni se reprodujeron numéricamente los originales en esta revisión.
+**Alcance histórico de ejecución:** la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La adaptación D7×5→σ₇ y su evaluación en Bitcoin siguen pendientes. La [réplica externa de TimeMixer y el piloto de tres modelos en ETTh1](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html) pertenecen a la etapa posterior del capítulo 5.
 
 ### 3.3.7 Autoformer
 
@@ -429,7 +431,7 @@ Estado para la fila seleccionada: repeticiones: reported; semillas: NR; dispersi
 
 Roll es una operación circular sobre representaciones de historia observada, no una garantía de causalidad por posición. La rama de tendencia en unidades de covariables también debe proyectarse de forma coherente al objetivo σ₇ antes de aplicar la escala Y de entrenamiento.
 
-**Estado de ejecución:** texto completo y código revisados; adaptación D7×5→σ₇ y evaluación en Bitcoin pendientes. No se entrenaron modelos ni se reprodujeron numéricamente los originales en esta revisión.
+**Alcance histórico de ejecución:** la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La adaptación D7×5→σ₇ y su evaluación en Bitcoin siguen pendientes. La [réplica externa de TimeMixer y el piloto de tres modelos en ETTh1](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html) pertenecen a la etapa posterior del capítulo 5.
 
 ### 3.3.8 iTransformer
 
@@ -463,7 +465,7 @@ Estado para la fila seleccionada: repeticiones: NV; semillas: NR; dispersión de
 
 **Limitación técnica:** La ventaja asintótica depende del eje de atención y no acredita una mejora para sólo cinco variables. La lectura escalar debe preceder a cualquier desnormalización por canal.
 
-**Estado de ejecución:** texto completo y código revisados; adaptación D7×5→σ₇ y evaluación en Bitcoin pendientes. No se entrenaron modelos ni se reprodujeron numéricamente los originales en esta revisión.
+**Alcance histórico de ejecución:** la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La adaptación D7×5→σ₇ y su evaluación en Bitcoin siguen pendientes. La [réplica externa de TimeMixer y el piloto de tres modelos en ETTh1](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html) pertenecen a la etapa posterior del capítulo 5.
 
 ### 3.3.9 Crossformer
 
@@ -497,7 +499,7 @@ Estado para la fila seleccionada: repeticiones: reported; semillas: NR; dispersi
 
 **Limitación técnica:** Segmentos de seis pasos y merges de cuatro requieren rediseñar una jerarquía válida con pocos segmentos. El DOI editorial del original no está identificado; se conserva su enlace OpenReview.
 
-**Estado de ejecución:** texto completo y código revisados; adaptación D7×5→σ₇ y evaluación en Bitcoin pendientes. No se entrenaron modelos ni se reprodujeron numéricamente los originales en esta revisión.
+**Alcance histórico de ejecución:** la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La adaptación D7×5→σ₇ y su evaluación en Bitcoin siguen pendientes. La [réplica externa de TimeMixer y el piloto de tres modelos en ETTh1](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html) pertenecen a la etapa posterior del capítulo 5.
 
 ### 3.3.10 S-Mamba
 
@@ -533,7 +535,7 @@ Estado para la fila seleccionada: repeticiones: NR; semillas: NR; dispersión de
 
 La bidireccionalidad recorre tokens de las cinco variables ya observadas, no fechas futuras. El código registra módulos que no participan en forward; al implementarlo habrá que distinguir parámetros registrados y activos. No se verificó una licencia raíz que autorice reutilizar ese código.
 
-**Estado de ejecución:** texto completo y código revisados; adaptación D7×5→σ₇ y evaluación en Bitcoin pendientes. No se entrenaron modelos ni se reprodujeron numéricamente los originales en esta revisión.
+**Alcance histórico de ejecución:** la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La adaptación D7×5→σ₇ y su evaluación en Bitcoin siguen pendientes. La [réplica externa de TimeMixer y el piloto de tres modelos en ETTh1](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html) pertenecen a la etapa posterior del capítulo 5.
 
 
 ## 3.4 Comparación crítica y brecha de investigación
@@ -599,9 +601,9 @@ Los costes publicados tampoco comparten condiciones. Por ejemplo, TSMixer inform
 
 ### 3.4.4 Reproducibilidad y brecha verificable
 
-En el subcorpus de arquitecturas hay **10/10 originales completos leídos y 10/10 fuentes públicas de código identificadas** por commit. Código accesible no equivale a licencia de redistribución verificada en todos los casos. Hay **0/10 reproducciones numéricas**, **0/10 descargas de benchmarks verificadas en esta revisión**, cero adaptaciones D7 terminadas y cero resultados nuevos de Bitcoin. Estos denominadores no estiman la proporción de reproducibilidad de los 7.833 grupos sin cribar.
+En el subcorpus de arquitecturas hay **10/10 originales completos leídos y 10/10 fuentes públicas de código identificadas** por commit. Código accesible no equivale a licencia de redistribución verificada en todos los casos. **Al cierre de la etapa bibliográfica del 05/11/2026** se registraron **0/10 reproducciones numéricas** y **0/10 descargas de benchmarks verificadas en esa etapa**. Esos ceros son históricos, no totales actuales del proyecto: la [sección 5](05_paper_guia.md) documenta posteriormente **veinte ajustes en ETTh1 —cinco de réplica TimeMixer y quince del piloto de tres modelos—**. La identidad estricta de la fila publicada y la compatibilidad numérica se califican allí según sus evidencias. Siguen pendientes las adaptaciones D7 y la evaluación nueva del benchmark Bitcoin; esos denominadores tampoco estiman la reproducibilidad de los 7.833 grupos sin cribar.
 
-El [registro histórico de código](../_static/literature_selection/primary_source_registry.json) conserva la etapa previa, en la que todavía se habían leído cero PDF. El [registro actual de lectura](../_static/literature_fulltext/provenance.json) y el {download}`informe de extracción <../_static/literature_fulltext/report.md>` documentan los diez actuales. Los estados históricos se conservan con su alcance, sin confundirlos con pendientes actuales.
+El [registro histórico de código](../_static/literature_selection/primary_source_registry.json) conserva la etapa previa, en la que todavía se habían leído cero PDF. El [registro de lectura de esa etapa](../_static/literature_fulltext/provenance.json) y el {download}`informe de extracción <../_static/literature_fulltext/report.md>` documentan los diez originales leídos. La extracción congelada se conserva como evidencia de su fecha; la ejecución posterior se incorpora en §5, sin reescribir esos recibos históricos.
 
 **Brecha comprobable en este subcorpus:** ninguno de los diez originales leídos evalúa conjuntamente los diez mecanismos con entradas OHLCV D7×5, objetivo σ₇ de BTCUSDT a un día, fechas y referencias heredadas, ajuste comparable e incertidumbre temporal. La afirmación se restringe a esos diez originales y puede refutarse con la hoja de extracción. La ausencia en toda la literatura de una comparación equivalente **continúa abierta** hasta completar el cribado de las fuentes recibidas.
 
@@ -630,4 +632,5 @@ El paquete incluye derivados bibliográficos mínimos, fuentes curadas, scripts 
 | PRISMA global | Identificación y deduplicación trazables; cobertura, cribado y elegibilidad global por cerrar |
 | Búsqueda transversal | Tres cadenas planificadas y mecanismos identificados; ejecución/exportación por cerrar |
 | Gap | Verificado dentro de los diez originales; revisión global abierta |
-| Benchmark de mínimo quince configuraciones | Pendiente de adaptadores, protocolo, piloto y ejecución |
+| Ejecución externa posterior a la revisión | Réplica de TimeMixer y piloto de tres modelos sobre ETTh1; evidencia en [§5](05_paper_guia.md) |
+| Benchmark Bitcoin de mínimo quince configuraciones | Pendiente de adaptadores, protocolo, piloto D7 y ejecución |

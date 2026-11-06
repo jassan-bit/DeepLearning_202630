@@ -5,10 +5,12 @@ Este repositorio reúne **tres Jupyter Books**, cada uno con índice, configurac
 | Entregable | Fuentes | Dirección del libro | Estado |
 |---|---|---|---|
 | E1 | [`book/`](book/) | [Abrir E1](https://jassan-bit.github.io/DeepLearning_202630/intro.html) | Informe y estudios realizados |
-| E2 | [`book_e2/`](book_e2/) | [Abrir E2](https://jassan-bit.github.io/DeepLearning_202630/entregable2/intro.html) | Secciones 1–4: EDA, literatura y diseño del benchmark; ejecución pendiente |
+| E2 | [`book_e2/`](book_e2/) | [Abrir E2](https://jassan-bit.github.io/DeepLearning_202630/entregable2/intro.html) | Secciones 1–5: réplica y piloto ETTh1 ejecutados; benchmark Bitcoin pendiente |
 | E3 | [`book_e3/`](book_e3/) | [Abrir E3](https://jassan-bit.github.io/DeepLearning_202630/entregable3/intro.html) | Libro iniciado; guía específica pendiente |
 
 [Selector de los tres entregables](https://jassan-bit.github.io/DeepLearning_202630/entregables.html). La infraestructura de compilación es común; cada JBook se construye desde su propia carpeta. Los apartados experimentales que siguen corresponden a **E1**.
+
+La [sección 5 de E2](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html) contiene la réplica externa de TimeMixer y el piloto sobre tres modelos en ETTh1. Su [paquete descargable](https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/paper_guide_download/Paper_guia_E2_replica_piloto.zip) reúne código y evidencias; estas ejecuciones no modifican los resultados de E1 ni completan el benchmark Bitcoin D7.
 
 
 Proyecto de Deep Learning, 2026-30: **pronóstico de volatilidad de Bitcoin con GRU, LSTM y TCN**.

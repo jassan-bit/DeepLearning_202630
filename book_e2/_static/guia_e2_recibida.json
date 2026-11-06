@@ -1,8 +1,8 @@
 {
-  "schema_version": 5,
+  "schema_version": 6,
   "received_date_colombia": "2026-11-05",
   "administrative_timezone": "America/Bogota",
-  "source_type": "Capturas de la guía aportadas por el usuario: páginas iniciales 1–3, fragmentos de sección 2 y seis capturas de sección 3 con página 9 visible; cinco capturas de sección 4, páginas 12–15 visibles y bloque 4.6 sin folio visible",
+  "source_type": "Capturas de la guía aportadas por el usuario: páginas iniciales 1–3, fragmentos de sección 2 y seis capturas de sección 3 con página 9 visible; cinco capturas de sección 4, páginas 12–15 visibles y bloque 4.6 sin folio visible; dos capturas de sección 5, página 16 visible y continuación sin folio visible",
   "document_title": "Proyecto Final de Deep Learning: Entregable 2",
   "received_page_numbers": [
     1,
@@ -12,7 +12,8 @@
     12,
     13,
     14,
-    15
+    15,
+    16
   ],
   "full_pdf_received": false,
   "scope_received": [
@@ -34,7 +35,11 @@
     "Sección 4.3: semillas, repeticiones, potencia, tracking y cómputo equitativo",
     "Sección 4.4: prevención y auditoría de fuga; uso de test sin selección",
     "Sección 4.5: métricas, comparación justa, componentes de varianza y análisis de errores",
-    "Sección 4.6: robustez con tres severidades, explicabilidad de tres mejores y ablación de tres componentes"
+    "Sección 4.6: robustez con tres severidades, explicabilidad de tres mejores y ablación de tres componentes",
+    "Sección 5: paper guía como referencia principal, justificación, arquitectura, supuestos y referencia con DOI",
+    "Réplica parcial: resultado clave en condiciones originales, discrepancia con IC y criterio de éxito definido antes de resultados",
+    "Limitación cuantificada: métrica, subconjunto, magnitud, IC95 % por unidad de independencia, piloto sobre al menos tres modelos del Top 10 y declaración en preregistro 9.1",
+    "Relación del paper con el benchmark y del límite medido con un posible modelo original de E3, sin elegir aquí su arquitectura"
   ],
   "objective": {
     "systematic_literature_review": true,
@@ -73,7 +78,7 @@
       "reference_scope_note": "Ridge es la referencia no profunda propuesta; su diagnóstico de EDA ya existe, pero el ajuste y presupuesto del benchmark final aún deben cerrarse. Persistencia conserva su función contextual heredada."
     }
   },
-  "precedence": "Prevalece la disposición más restrictiva. La sección 3.2 recibida exige diez modelos del Top 10 adicionales a los tres modelos base de E1, una referencia no profunda y otra trivial: mínimo quince configuraciones. La sección 4.1 exige reserva tocada una sola vez al final; la reserva heredada ya conocida no se presenta como una prueba nueva y sus comparaciones permanecen exploratorias. Las secciones 5–14 y los apéndices siguen pendientes.",
+  "precedence": "Prevalece la disposición más restrictiva. La sección 3.2 recibida exige diez modelos del Top 10 adicionales a los tres modelos base de E1, una referencia no profunda y otra trivial: mínimo quince configuraciones. La sección 4.1 exige reserva tocada una sola vez al final; la reserva heredada ya conocida no se presenta como una prueba nueva y sus comparaciones permanecen exploratorias. La sección 5 requiere réplica original y limitación cuantificada con piloto sobre al menos tres modelos del Top 10; registrar el requisito no acredita ejecución. Las secciones 6–14 y los apéndices siguen pendientes.",
   "inheritance": {
     "from_deliverable": 1,
     "inherited_without_modification": [
@@ -166,7 +171,7 @@
     "e2_sample_size_determined": false,
     "sample_size_note": "R=465 corresponde a las comparaciones y piloto de E1; no se traslada automáticamente a diez modelos o hipótesis nuevas",
     "chapter_2_documentation": "EDA de E1 ampliado con análisis propios de E2 y cierre hallazgo–decisión; evidencia y límites en sections/02_eda.md",
-    "e2_experiments_executed_scope": "Benchmark final con diez modelos DL nuevos más tres bases heredadas, referencia no profunda y referencia trivial; no niega los diagnósticos de EDA",
+    "e2_experiments_executed_scope": "Benchmark final Bitcoin D7 con diez modelos DL nuevos y cinco referencias; no niega el EDA ni la réplica/piloto externos de sección 5.",
     "e2_eda_executed": true,
     "e2_diagnostic_ridge_fitted": true,
     "e2_diagnostic_ridge_scope": "Referencia de desarrollo con forward chaining para diagnosticar residuos; no es uno de los diez modelos DL ni un benchmark final",
@@ -232,10 +237,16 @@
     "section_4_requirements_received": true,
     "section_4_final_protocol_closed": false,
     "section_4_benchmark_executed": false,
-    "section_4_robustness_interpretability_ablations_executed": false
+    "section_4_robustness_interpretability_ablations_executed": false,
+    "section_5_requirements_received": true,
+    "chapter_5_documentation": "TimeMixer seleccionado antes de los ajustes; réplica parcial ETTh1 de cinco semillas compatible y piloto externo de quince ajustes en tres modelos ejecutados, con L1 cuantificada y L2 inconclusa.",
+    "paper_guide_replication_executed": true,
+    "paper_guide_limitation_pilot_executed": true,
+    "external_ETTh1_dataset_fits": 20,
+    "new_deep_learning_fits_scope": "Benchmark Bitcoin D7; excluye veinte ajustes externos de ETTh1 en sección 5."
   },
   "pending_source_material": {
-    "later_sections": "Texto completo de secciones 5–14 y apéndices; remisiones de sección 4 a 7/7.3, 9.2, 10, 11/11.1, 13.2 y 14",
+    "later_sections": "Texto completo de secciones 6–14 y apéndices; remisiones de sección 4 a 7/7.3, 9.2, 10, 11/11.1, 13.2 y 14 y de sección 5 a 9.1",
     "other_section_2_routes": "Solo se recibió el bloque específico C de regresión temporal; la ruta de series de tiempo no se ha aportado completa",
     "benchmark_composition": "Composición resuelta por sección 3.2: Top 10 adicional más tres bases, Ridge y persistencia, mínimo quince; faltan el protocolo, presupuestos y reglas completas de sección 11.1",
     "compliance_scope": "No declarar cumplimiento de apartados cuyo texto aún no se ha recibido ni dar por resuelta la clausura de la ruta mediante la sola ACF",
@@ -248,9 +259,12 @@
       "11.1": "Texto completo no recibido",
       "13.2": "Texto completo no recibido",
       "14": "Texto completo no recibido"
+    },
+    "section_5_dependencies": {
+      "9.1": "Texto completo no recibido; la captura solo remite al preregistro"
     }
   },
-  "source_caution": "Se conservan las páginas visibles 1–3, 9 y 12–15 y fragmentos sin número de secciones 2–4 de la guía; el bloque 4.6 carece de folio visible, sin atribuirle la página 16. No se infiere lectura de la guía completa. Las exportaciones WoS/Scopus y diez PDF de artículos son evidencia aportada por el usuario, no consultas nativas ejecutadas por el asistente. La lectura de artículos no amplía el texto recibido de la guía.",
+  "source_caution": "Se conservan las páginas visibles 1–3, 9 y 12–16 y fragmentos sin número de secciones 2–5 de la guía. El bloque 4.6 y la continuación de sección 5 carecen de folio visible; no se inventa la página 17. No se infiere lectura de la guía completa. Las exportaciones WoS/Scopus y diez PDF de artículos son evidencia aportada por el usuario, no consultas nativas ejecutadas por el asistente. La lectura de artículos no amplía el texto recibido de la guía.",
   "received_fragments": [
     {
       "submission": "initial",
@@ -357,6 +371,20 @@
       "capture_sequence": 5,
       "visible_page_number": null,
       "scope": "Sección 4.6: robustez, interpretabilidad y ablación; captura sin folio visible"
+    },
+    {
+      "submission": "section_5",
+      "received_date_colombia": "2026-11-06",
+      "capture_sequence": 1,
+      "visible_page_number": 16,
+      "scope": "Inicio de sección 5: selección del paper guía, referencia, arquitectura/supuestos, justificación y reproducción en condiciones originales con discrepancia e IC"
+    },
+    {
+      "submission": "section_5",
+      "received_date_colombia": "2026-11-06",
+      "capture_sequence": 2,
+      "visible_page_number": null,
+      "scope": "Continuación sin folio: criterio a priori de réplica, relación con Top 10, limitación cuantificada/piloto mínimo tres/preregistro 9.1 y relación recomendada con E3"
     }
   ],
   "section_2_requirements": [
@@ -953,5 +981,141 @@
     "robustness_minimum_levels_per_perturbation": 3,
     "interpretability_top_models": 3,
     "ablation_minimum_components": 3
+  },
+  "latest_received_date_colombia": "2026-11-06",
+  "section_5_requirements": [
+    {
+      "id": "5.paper.selection",
+      "requirement": "Seleccionar un paper base que sea referencia principal del proyecto y punto de partida recomendado para el modelo original del Entregable 3.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "5.paper.reference",
+      "requirement": "Incluir referencia académica completa con DOI, distinguiendo identificación editorial y versión efectivamente utilizada.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "5.paper.architecture",
+      "requirement": "Describir detalladamente arquitectura, formulación matemática y supuestos del modelo original.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "5.paper.justification",
+      "requirement": "Justificar la elección por relevancia, impacto e idoneidad frente al problema del proyecto.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "5.replication.original_conditions",
+      "requirement": "Reproducir al menos un resultado clave bajo sus condiciones originales: mismo dataset, partición y métrica.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "5.replication.discrepancy",
+      "requirement": "Reportar lo publicado y lo obtenido, su discrepancia con intervalo de confianza y posibles causas: versiones, preprocesamiento, semillas y partición.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "5.replication.prior_success_criterion",
+      "requirement": "Definir antes de observar la réplica el criterio de éxito; cualquier margen de réplica debe tener unidades y justificación propias, sin trasladar automáticamente δ de volatilidad BTC a otra métrica/dataset.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "5.benchmark.relationship",
+      "requirement": "Explicar similitudes, diferencias y posición del paper guía dentro del Top 10.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "5.limitation.concrete",
+      "requirement": "Identificar al menos una limitación concreta del modelo del paper guía, no solo una observación general de la literatura.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "5.limitation.quantification",
+      "requirement": "Cuantificar la limitación con métrica, subconjunto, magnitud e IC95 % por bootstrap según la unidad de independencia.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "5.limitation.pilot",
+      "requirement": "Verificar la limitación con un piloto sobre al menos tres modelos del Top 10, para estudiar si es específica del paper o compartida por la familia.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "5.limitation.preregistration",
+      "requirement": "Declarar la limitación en el preregistro de sección 9.1 antes de los experimentos definitivos.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "5.deliverable3.relationship",
+      "requirement": "Conectar la limitación con un hueco de investigación para E3; se recomienda extender/corregir el paper guía y se permite otra motivación con evidencia equivalente, sin comprometer aquí una arquitectura final.",
+      "receipt_status": "received_not_execution_evidence"
+    }
+  ],
+  "section_5_scope": {
+    "guide_record": "guia_e2_recibida.json",
+    "received_section": "5. Paper Guía y Replicación",
+    "received_date_colombia": "2026-11-06",
+    "date_basis": "Fecha de cliente proporcionada para esta recepción; no sustituye las fechas históricas de las recepciones anteriores.",
+    "visible_page_numbers": [
+      16
+    ],
+    "capture_count": 2,
+    "continuation_page_number": null,
+    "continuation_capture_unpaginated": true,
+    "full_guide_received": false,
+    "requirements_registered": true,
+    "requirement_count": 13,
+    "paper_selection_status": "selected_before_dataset_fits",
+    "final_paper_selected": true,
+    "original_dataset_version_split_metric_frozen": true,
+    "replication_success_criterion_declared_before_results": true,
+    "original_condition_replication_executed": true,
+    "original_result_numerically_replicated": true,
+    "replication_result_receipt": "paper_guide_results/replication_summary.json",
+    "limitation_selected_and_preregistered": true,
+    "limitation_quantified_with_independence_unit_bootstrap": true,
+    "limitation_pilot_models_executed": 3,
+    "minimum_Top10_models_in_limitation_pilot": 3,
+    "limitation_pilot_executed": true,
+    "guide_cross_references_pending": [
+      "9.1"
+    ],
+    "benchmark_D7_training_executed_by_this_section": false,
+    "replication_changes_inherited_Bitcoin_contract": false,
+    "replication_is_new_Bitcoin_benchmark_result": false,
+    "replication_margin_is_not_automatically_Bitcoin_delta": true,
+    "deliverable3_model_architecture_committed": false,
+    "current_limits": [
+      "Réplica parcial compatible del preset TimeMixer en ETTh1: no acredita identidad bit a bit, semillas originales ni cobertura histórica exacta no publicada.",
+      "L1 cuantifica inconsistencia frente a composición del batch con calendario; el IC del cambio de MSE contiene cero y no demuestra deterioro predictivo.",
+      "L2 no quedó demostrada bajo el análisis principal; tampoco acredita ausencia de efecto o equivalencia entre modelos.",
+      "Los quince ajustes del piloto son limitados, dos épocas por semilla; no constituyen el benchmark optimizado de Bitcoin ni réplicas de las métricas de los controles.",
+      "La sección 9.1 completa no se ha recibido. El registro acotado previo de estos experimentos no certifica cumplimiento de texto desconocido.",
+      "Los veinte ajustes externos no alteran objetivo, margen, unidad, partición o estado conocido/exploratorio de los periodos Bitcoin heredados.",
+      "El contrato Bitcoin no usa marcadores de calendario; no se ha confirmado una limitación predictiva transferible ni seleccionado arquitectura original para E3."
+    ],
+    "selected_paper_model": "TimeMixer",
+    "public_design_commit": "329b0a6c8238d632dd00537c5cefab91360bafd1",
+    "analysis_implementation_amendment_record": "experiments/e2_paper_guide_20261106/analysis_amendments.json",
+    "analysis_amendment_before_first_scoring_and_diagnostics": true,
+    "replication_scope": "Partial author-preset ETTh1 L96/H96 reproduction; CPU/runtime/loader deviations and undisclosed historical cohort identity limit exact equivalence",
+    "strict_historical_paper_row_identity_established": false,
+    "numerical_replication_interpretation": "The entire seed-t 95% CI of mean MSE minus 0.375 is inside preregistered ±0.01875; fixed rounded reference, not a two-population significance test",
+    "execution_receipt": "paper_guide_evidence/execution_receipt.json",
+    "external_dataset": "ETTh1",
+    "external_replication_fits": 5,
+    "external_pilot_fits": 15,
+    "external_dataset_fits_total": 20,
+    "new_Bitcoin_D7_fits": 0,
+    "limitation_pilot_models": [
+      "TimeMixer",
+      "iTransformer",
+      "PatchTST"
+    ],
+    "limitation_L1_result": "Batch-composition dependence with historical calendar markers in pinned TimeMixer implementation; supported against numerical tolerance and two paired controls",
+    "limitation_L1_accuracy_deterioration_demonstrated": false,
+    "limitation_L2_result": "Higher-error hypothesis in high-input-variability regimes inconclusive with principal 192-hour block and Holm correction",
+    "Bitcoin_transferable_predictive_gap_confirmed": false,
+    "full_section_9_1_received": false,
+    "bounded_external_preregistration_public_before_fits": true
   }
 }

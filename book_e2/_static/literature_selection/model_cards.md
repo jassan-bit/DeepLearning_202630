@@ -30,7 +30,7 @@ Estado para la fila seleccionada: repeticiones: NR; semillas: NR; dispersión de
 
 **Limitación técnica:** La fuente elegida es Google/Chen All-MLP TSMixer, distinta de variantes IBM con nombre parecido. Las capas y la receta del adaptador aún deben fijarse antes de entrenarlo.
 
-**Estado de ejecución:** texto completo y código revisados; adaptación D7×5→σ₇ y evaluación en Bitcoin pendientes. No se entrenaron modelos ni se reprodujeron numéricamente los originales en esta revisión.
+**Alcance histórico de ejecución:** la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La adaptación D7×5→σ₇ y su evaluación en Bitcoin siguen pendientes. La [réplica externa de TimeMixer y el piloto de tres modelos en ETTh1](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html) pertenecen a la etapa posterior del capítulo 5.
 
 ### 3.3.2 TiDE
 
@@ -66,7 +66,7 @@ Estado para la fila seleccionada: repeticiones: reported; semillas: NR; dispersi
 
 La formulación original incorpora historia del objetivo y covariables futuras; la versión covariate-only bajo el contrato vigente es una adaptación explícita que necesita validación, no una reproducción idéntica.
 
-**Estado de ejecución:** texto completo y código revisados; adaptación D7×5→σ₇ y evaluación en Bitcoin pendientes. No se entrenaron modelos ni se reprodujeron numéricamente los originales en esta revisión.
+**Alcance histórico de ejecución:** la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La adaptación D7×5→σ₇ y su evaluación en Bitcoin siguen pendientes. La [réplica externa de TimeMixer y el piloto de tres modelos en ETTh1](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html) pertenecen a la etapa posterior del capítulo 5.
 
 ### 3.3.3 TimeMixer
 
@@ -100,7 +100,7 @@ Estado para la fila seleccionada: repeticiones: reported; semillas: NR; dispersi
 
 **Limitación técnica:** Las escalas y longitudes predeterminadas para historias de 96/336 pasos no sirven automáticamente para D7. No se añaden variables futuras ni se invierte la escala OHLCV como si el objetivo fuera una de sus columnas.
 
-**Estado de ejecución:** texto completo y código revisados; adaptación D7×5→σ₇ y evaluación en Bitcoin pendientes. No se entrenaron modelos ni se reprodujeron numéricamente los originales en esta revisión.
+**Alcance histórico de ejecución:** la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La adaptación D7×5→σ₇ y su evaluación en Bitcoin siguen pendientes. La [réplica externa de TimeMixer y el piloto de tres modelos en ETTh1](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html) pertenecen a la etapa posterior del capítulo 5.
 
 ### 3.3.4 TimesNet
 
@@ -136,7 +136,7 @@ Estado para la fila seleccionada: repeticiones: reported; semillas: NR; dispersi
 
 La ecuación 1 del artículo usa techo para el periodo y el código examinado usa división entera (piso); la fórmula anterior describe ese código. FFT_for_Period promedia amplitudes sobre el batch. Para no compartir información entre orígenes temporales, la adaptación propuesta debe seleccionar periodos por ventana o inferir con batch=1, excluir explícitamente la frecuencia cero y limitar k≤⌊L_eff/2⌋. Son controles propuestos, aún no ejecutados.
 
-**Estado de ejecución:** texto completo y código revisados; adaptación D7×5→σ₇ y evaluación en Bitcoin pendientes. No se entrenaron modelos ni se reprodujeron numéricamente los originales en esta revisión.
+**Alcance histórico de ejecución:** la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La adaptación D7×5→σ₇ y su evaluación en Bitcoin siguen pendientes. La [réplica externa de TimeMixer y el piloto de tres modelos en ETTh1](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html) pertenecen a la etapa posterior del capítulo 5.
 
 ### 3.3.5 PatchTST
 
@@ -170,7 +170,7 @@ Estado para la fila seleccionada: repeticiones: reported; semillas: reported; di
 
 **Limitación técnica:** Los parches predeterminados de 16/32 pasos exceden D7. Una nueva cabeza que combine canales es una adaptación que debe declararse y validarse.
 
-**Estado de ejecución:** texto completo y código revisados; adaptación D7×5→σ₇ y evaluación en Bitcoin pendientes. No se entrenaron modelos ni se reprodujeron numéricamente los originales en esta revisión.
+**Alcance histórico de ejecución:** la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La adaptación D7×5→σ₇ y su evaluación en Bitcoin siguen pendientes. La [réplica externa de TimeMixer y el piloto de tres modelos en ETTh1](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html) pertenecen a la etapa posterior del capítulo 5.
 
 ### 3.3.6 Informer
 
@@ -204,7 +204,7 @@ Estado para la fila seleccionada: repeticiones: reported; semillas: NR; dispersi
 
 **Limitación técnica:** La licencia raíz observada es Apache-2.0 y el badge del README indica CC BY-NC-SA: se distinguen código, datos y badge. Debe comprobarse que el distilling sea válido con siete pasos.
 
-**Estado de ejecución:** texto completo y código revisados; adaptación D7×5→σ₇ y evaluación en Bitcoin pendientes. No se entrenaron modelos ni se reprodujeron numéricamente los originales en esta revisión.
+**Alcance histórico de ejecución:** la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La adaptación D7×5→σ₇ y su evaluación en Bitcoin siguen pendientes. La [réplica externa de TimeMixer y el piloto de tres modelos en ETTh1](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html) pertenecen a la etapa posterior del capítulo 5.
 
 ### 3.3.7 Autoformer
 
@@ -240,7 +240,7 @@ Estado para la fila seleccionada: repeticiones: reported; semillas: NR; dispersi
 
 Roll es una operación circular sobre representaciones de historia observada, no una garantía de causalidad por posición. La rama de tendencia en unidades de covariables también debe proyectarse de forma coherente al objetivo σ₇ antes de aplicar la escala Y de entrenamiento.
 
-**Estado de ejecución:** texto completo y código revisados; adaptación D7×5→σ₇ y evaluación en Bitcoin pendientes. No se entrenaron modelos ni se reprodujeron numéricamente los originales en esta revisión.
+**Alcance histórico de ejecución:** la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La adaptación D7×5→σ₇ y su evaluación en Bitcoin siguen pendientes. La [réplica externa de TimeMixer y el piloto de tres modelos en ETTh1](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html) pertenecen a la etapa posterior del capítulo 5.
 
 ### 3.3.8 iTransformer
 
@@ -274,7 +274,7 @@ Estado para la fila seleccionada: repeticiones: NV; semillas: NR; dispersión de
 
 **Limitación técnica:** La ventaja asintótica depende del eje de atención y no acredita una mejora para sólo cinco variables. La lectura escalar debe preceder a cualquier desnormalización por canal.
 
-**Estado de ejecución:** texto completo y código revisados; adaptación D7×5→σ₇ y evaluación en Bitcoin pendientes. No se entrenaron modelos ni se reprodujeron numéricamente los originales en esta revisión.
+**Alcance histórico de ejecución:** la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La adaptación D7×5→σ₇ y su evaluación en Bitcoin siguen pendientes. La [réplica externa de TimeMixer y el piloto de tres modelos en ETTh1](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html) pertenecen a la etapa posterior del capítulo 5.
 
 ### 3.3.9 Crossformer
 
@@ -308,7 +308,7 @@ Estado para la fila seleccionada: repeticiones: reported; semillas: NR; dispersi
 
 **Limitación técnica:** Segmentos de seis pasos y merges de cuatro requieren rediseñar una jerarquía válida con pocos segmentos. El DOI editorial del original no está identificado; se conserva su enlace OpenReview.
 
-**Estado de ejecución:** texto completo y código revisados; adaptación D7×5→σ₇ y evaluación en Bitcoin pendientes. No se entrenaron modelos ni se reprodujeron numéricamente los originales en esta revisión.
+**Alcance histórico de ejecución:** la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La adaptación D7×5→σ₇ y su evaluación en Bitcoin siguen pendientes. La [réplica externa de TimeMixer y el piloto de tres modelos en ETTh1](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html) pertenecen a la etapa posterior del capítulo 5.
 
 ### 3.3.10 S-Mamba
 
@@ -344,4 +344,4 @@ Estado para la fila seleccionada: repeticiones: NR; semillas: NR; dispersión de
 
 La bidireccionalidad recorre tokens de las cinco variables ya observadas, no fechas futuras. El código registra módulos que no participan en forward; al implementarlo habrá que distinguir parámetros registrados y activos. No se verificó una licencia raíz que autorice reutilizar ese código.
 
-**Estado de ejecución:** texto completo y código revisados; adaptación D7×5→σ₇ y evaluación en Bitcoin pendientes. No se entrenaron modelos ni se reprodujeron numéricamente los originales en esta revisión.
+**Alcance histórico de ejecución:** la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La adaptación D7×5→σ₇ y su evaluación en Bitcoin siguen pendientes. La [réplica externa de TimeMixer y el piloto de tres modelos en ETTh1](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html) pertenecen a la etapa posterior del capítulo 5.

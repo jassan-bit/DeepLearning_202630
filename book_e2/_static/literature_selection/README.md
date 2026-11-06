@@ -1,6 +1,6 @@
 # Selección bibliográfica de diez modelos
 
-Reconstruir desde la raíz: `python scripts/build_e2_literature_selection.py`, con el entorno de `requirements-eda.lock.txt`. Las decisiones curadas están en references/literature_e2/top10_20261105 y la extracción completa en references/literature_e2/fulltext_20261105. No se ejecutan búsquedas ni se entrenan modelos.
+Reconstruir desde la raíz: `python scripts/build_e2_literature_selection.py`, con el entorno de `requirements-eda.lock.txt`. Las decisiones curadas están en references/literature_e2/top10_20261105 y la extracción completa en references/literature_e2/fulltext_20261105. Este generador no ejecuta búsquedas ni entrena modelos. Los contadores de cero ajustes y reproducciones describen exclusivamente la etapa bibliográfica histórica del 05/11/2026; no son totales actuales del proyecto. La réplica externa de TimeMixer y el piloto de tres modelos en ETTh1 se documentan después en el [capítulo 5](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html). No equivalen al benchmark Bitcoin D7.
 
 Se leyeron diez originales completos (215 páginas PDF), con versión, hash, métricas de una misma fila, páginas/tablas y evaluación metodológica. El registro primary_source_registry conserva como históricos los estados de la etapa anterior de código sin PDF; no representa la cobertura actual. La matriz actual está en ../literature_fulltext. Los PDF no se redistribuyen.
 

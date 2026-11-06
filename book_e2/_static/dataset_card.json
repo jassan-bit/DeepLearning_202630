@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "review_date_colombia": "2026-11-05",
+  "review_date_colombia": "2026-11-06",
   "administrative_timezone": "America/Bogota",
   "title": "Data Card heredada: Binance Spot BTCUSDT, 1 minuto → OHLCV diario UTC",
   "version": {
@@ -338,7 +338,7 @@
     "e2_new_test_assigned": false,
     "e2_new_data_acquired": false,
     "e2_ten_model_catalogue_selected": false,
-    "e2_models_trained_scope": "Modelos DL del benchmark final (Top 10 nuevo más tres bases heredadas); no cuenta el Ridge diagnóstico de EDA",
+    "e2_models_trained_scope": "Modelos DL del benchmark final Bitcoin D7; excluye Ridge diagnóstico y veinte ajustes ETTh1 externos.",
     "e2_deep_learning_models_trained": false,
     "new_deep_learning_fits": 0,
     "e2_eda_executed": true,
@@ -369,7 +369,15 @@
     "e2_final_experimental_protocol_closed": false,
     "e2_equivalent_hpo_executed": false,
     "e2_pilot_and_power_executed": false,
-    "e2_robustness_interpretability_ablations_executed": false
+    "e2_robustness_interpretability_ablations_executed": false,
+    "e2_section_5_requirements_received": true,
+    "e2_paper_guide_replication_executed": true,
+    "e2_paper_guide_limitation_pilot_executed": true,
+    "external_ETTh1_dataset_fits": 20,
+    "new_deep_learning_fits_scope": "Benchmark Bitcoin D7 de esta Data Card; excluye veinte ajustes externos de ETTh1 en sección 5.",
+    "e2_deep_learning_models_trained_scope": "Solo el benchmark Bitcoin D7 de esta Data Card.",
+    "e2_new_data_acquired_scope": "Fuente Bitcoin heredada; la adquisición externa ETTh1 se documenta por separado.",
+    "e2_pilot_and_power_executed_scope": "Piloto y potencia del benchmark Bitcoin D7, no el piloto externo de limitaciones ETTh1."
   },
   "eda_scope": {
     "chapter": "sections/02_eda.md",
@@ -530,5 +538,73 @@
     "robustness_minimum_levels_per_perturbation": 3,
     "interpretability_top_models": 3,
     "ablation_minimum_components": 3
+  },
+  "paper_guide_replication_scope": {
+    "guide_record": "guia_e2_recibida.json",
+    "received_section": "5. Paper Guía y Replicación",
+    "received_date_colombia": "2026-11-06",
+    "date_basis": "Fecha de cliente proporcionada para esta recepción; no sustituye las fechas históricas de las recepciones anteriores.",
+    "visible_page_numbers": [
+      16
+    ],
+    "capture_count": 2,
+    "continuation_page_number": null,
+    "continuation_capture_unpaginated": true,
+    "full_guide_received": false,
+    "requirements_registered": true,
+    "requirement_count": 13,
+    "paper_selection_status": "selected_before_dataset_fits",
+    "final_paper_selected": true,
+    "original_dataset_version_split_metric_frozen": true,
+    "replication_success_criterion_declared_before_results": true,
+    "original_condition_replication_executed": true,
+    "original_result_numerically_replicated": true,
+    "replication_result_receipt": "paper_guide_results/replication_summary.json",
+    "limitation_selected_and_preregistered": true,
+    "limitation_quantified_with_independence_unit_bootstrap": true,
+    "limitation_pilot_models_executed": 3,
+    "minimum_Top10_models_in_limitation_pilot": 3,
+    "limitation_pilot_executed": true,
+    "guide_cross_references_pending": [
+      "9.1"
+    ],
+    "benchmark_D7_training_executed_by_this_section": false,
+    "replication_changes_inherited_Bitcoin_contract": false,
+    "replication_is_new_Bitcoin_benchmark_result": false,
+    "replication_margin_is_not_automatically_Bitcoin_delta": true,
+    "deliverable3_model_architecture_committed": false,
+    "current_limits": [
+      "Réplica parcial compatible del preset TimeMixer en ETTh1: no acredita identidad bit a bit, semillas originales ni cobertura histórica exacta no publicada.",
+      "L1 cuantifica inconsistencia frente a composición del batch con calendario; el IC del cambio de MSE contiene cero y no demuestra deterioro predictivo.",
+      "L2 no quedó demostrada bajo el análisis principal; tampoco acredita ausencia de efecto o equivalencia entre modelos.",
+      "Los quince ajustes del piloto son limitados, dos épocas por semilla; no constituyen el benchmark optimizado de Bitcoin ni réplicas de las métricas de los controles.",
+      "La sección 9.1 completa no se ha recibido. El registro acotado previo de estos experimentos no certifica cumplimiento de texto desconocido.",
+      "Los veinte ajustes externos no alteran objetivo, margen, unidad, partición o estado conocido/exploratorio de los periodos Bitcoin heredados.",
+      "El contrato Bitcoin no usa marcadores de calendario; no se ha confirmado una limitación predictiva transferible ni seleccionado arquitectura original para E3."
+    ],
+    "selected_paper_model": "TimeMixer",
+    "public_design_commit": "329b0a6c8238d632dd00537c5cefab91360bafd1",
+    "analysis_implementation_amendment_record": "experiments/e2_paper_guide_20261106/analysis_amendments.json",
+    "analysis_amendment_before_first_scoring_and_diagnostics": true,
+    "replication_scope": "Partial author-preset ETTh1 L96/H96 reproduction; CPU/runtime/loader deviations and undisclosed historical cohort identity limit exact equivalence",
+    "strict_historical_paper_row_identity_established": false,
+    "numerical_replication_interpretation": "The entire seed-t 95% CI of mean MSE minus 0.375 is inside preregistered ±0.01875; fixed rounded reference, not a two-population significance test",
+    "execution_receipt": "paper_guide_evidence/execution_receipt.json",
+    "external_dataset": "ETTh1",
+    "external_replication_fits": 5,
+    "external_pilot_fits": 15,
+    "external_dataset_fits_total": 20,
+    "new_Bitcoin_D7_fits": 0,
+    "limitation_pilot_models": [
+      "TimeMixer",
+      "iTransformer",
+      "PatchTST"
+    ],
+    "limitation_L1_result": "Batch-composition dependence with historical calendar markers in pinned TimeMixer implementation; supported against numerical tolerance and two paired controls",
+    "limitation_L1_accuracy_deterioration_demonstrated": false,
+    "limitation_L2_result": "Higher-error hypothesis in high-input-variability regimes inconclusive with principal 192-hour block and Holm correction",
+    "Bitcoin_transferable_predictive_gap_confirmed": false,
+    "full_section_9_1_received": false,
+    "bounded_external_preregistration_public_before_fits": true
   }
 }
