@@ -203,7 +203,7 @@ Descargar la [Data Card en JSON](../_static/dataset_card.json), el [contrato her
 | Licencia | Términos Vision conservados en E1, CC BY-NC-SA 4.0 con condiciones y excepciones indicadas por la fuente |
 | Límites de uso | Benchmark académico de una sola serie; sin afirmación de utilidad financiera ni generalización a otras criptomonedas |
 
-El hash anterior identifica **el archivo manifiesto**; no es un único checksum de todos los precios concatenados. Cada ZIP tiene su comprobación individual en ese archivo. La Data Card y el contrato documentan la transferencia; aún no existe un manifiesto de corridas de E2.
+El hash anterior identifica **el archivo manifiesto**; no es un único checksum de todos los precios concatenados. Cada ZIP tiene su comprobación individual en ese archivo. La Data Card y el contrato documentan la transferencia; aún no existe un manifiesto de corridas del benchmark Bitcoin D7 de E2. El [recibo de las veinte corridas externas de ETTh1](../_static/paper_guide_evidence/execution_receipt.json) tiene otro alcance.
 
 ### 1.4.1 Estado de cierre de esta sección
 

@@ -4,7 +4,7 @@
 
 **Autor:** Jassan Arteta
 
-**Estado:** secciones 1–5 desarrolladas. Las capturas de las secciones 1–4 se recibieron el 5 de noviembre de 2026; la sección 5, el 6 de noviembre (America/Bogota), con página 16 y continuación sin folio visible. Se ejecutaron el EDA, la réplica externa de TimeMixer en ETTh1 y un piloto externo sobre TimeMixer, iTransformer y PatchTST. Los adaptadores y el benchmark **Bitcoin D7** siguen pendientes; esas corridas externas no son resultados de Bitcoin. Faltan las secciones siguientes y el cierre del protocolo del benchmark.
+**Estado:** secciones 1–6 documentadas. Las capturas de las secciones 1–4 se recibieron el 5 de noviembre de 2026; las secciones 5 y 6, el 6 de noviembre (America/Bogota). De §6 son visibles los folios 17 y 19; las continuaciones se registran sin número. Se ejecutaron el EDA, la réplica externa de TimeMixer en ETTh1 y un piloto externo sobre TimeMixer, iTransformer y PatchTST. La sección 6 prepara la comparación, las plantillas y el análisis verificable. Los adaptadores y el benchmark **Bitcoin D7** siguen pendientes; esas corridas externas no son resultados de Bitcoin. Faltan las secciones metodológicas siguientes y el cierre del protocolo.
 
 Este es el Jupyter Book del **Entregable 2**. Tiene su propia configuración, índice y capítulos dentro del repositorio común [DeepLearning_202630](https://github.com/jassan-bit/DeepLearning_202630). Su dirección es distinta de las de E1 y E3.
 
@@ -25,6 +25,7 @@ El índice actual distingue las secciones desarrolladas de las páginas de traba
 3. [Revisión de literatura y diez modelos propuestos](sections/03_literatura.md): fuentes WoS/Scopus, deduplicación, cuatro familias, código de autores y adaptación a Bitcoin.
 4. [Implementación de modelos benchmark](sections/04_implementacion.md): diseño temporal, HPO y costes propuestos, requisitos de implementación, piloto, auditoría de fuga, evaluación, robustez, explicabilidad y ablación. La auditoría distingue documentación válida de preparación real para entrenar.
 5. [Paper guía y replicación](sections/05_paper_guia.md): TimeMixer como referencia, réplica parcial ETTh1 con cinco semillas, criterio previo de compatibilidad y piloto externo de tres modelos para cuantificar limitaciones. Presenta resultados observados, discrepancias y límites de transferencia a Bitcoin.
+6. [Benchmark final](sections/06_benchmark_final.md): tabla de quince configuraciones, ranking, eficiencia, análisis estadístico y discusión crítica. Incluye herramientas y plantillas; los resultados numéricos Bitcoin aún no están disponibles.
 
 Además, se conservan las páginas de trabajo de [catálogo y propuesta](sections/02_propuesta.md), [diseño experimental](sections/03_diseno_experimental.md), [benchmark pendiente](sections/04_experimentos_resultados.md), [reproducibilidad](sections/05_reproducibilidad_entrega.md) y [referencias de contexto](sections/referencias.md).
 

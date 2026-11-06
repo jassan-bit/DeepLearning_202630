@@ -1,0 +1,78 @@
+{
+  "prediction_panel": {
+    "fields": [
+      "model",
+      "seed",
+      "origin_utc",
+      "horizon",
+      "y_true",
+      "y_pred",
+      "eligible",
+      "run_id",
+      "scope"
+    ],
+    "dense_key": [
+      "model",
+      "seed",
+      "origin_utc",
+      "horizon"
+    ],
+    "scale": "original unannualized daily volatility",
+    "calendar": "explicit assigned daily UTC origins including missing-eligibility placeholders",
+    "horizon": 1
+  },
+  "runs": {
+    "fields": [
+      "run_id",
+      "model",
+      "seed",
+      "phase",
+      "dataset_sha256",
+      "split_sha256",
+      "config_sha256",
+      "checkpoint_sha256",
+      "scope"
+    ],
+    "hash_semantics": "64hex SHA-256 receipts identify input bytes, not scientific correctness or actual fairness"
+  },
+  "costs": {
+    "fields": [
+      "model",
+      "seed",
+      "measurement_block",
+      "latency_ms_per_window",
+      "training_seconds",
+      "peak_memory_bytes",
+      "parameters",
+      "FLOPs_per_window",
+      "device",
+      "precision",
+      "threads",
+      "batch_size",
+      "input_shape",
+      "timing_protocol_sha256",
+      "scope"
+    ],
+    "measurement_unit": "interleaved timing block; not a new predictive-market sample",
+    "required_comparability": [
+      "device",
+      "precision",
+      "threads",
+      "batch_size",
+      "input_shape",
+      "timing_protocol_sha256"
+    ]
+  },
+  "calendar": {
+    "fields": [
+      "timezone",
+      "frequency",
+      "origins",
+      "seeds",
+      "scope"
+    ],
+    "timezone": "UTC",
+    "frequency": "D"
+  },
+  "metric_coverage": "MAPE only positive truth; SMAPE excludes both-zero denominator; no arbitrary epsilon; MASE denominator external train-only"
+}

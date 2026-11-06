@@ -13,7 +13,7 @@ Desde la raíz del repositorio, después de instalar `requirements-book.lock.txt
 
 El workflow común publica este HTML en `/entregable2/`, junto con los otros libros en sus rutas. La construcción del informe no entrena redes ni abre datos de mercado.
 
-Ya están disponibles los metadatos propios de E2: [contrato heredado](../_static/e1_reference.json), [Data Card](../_static/dataset_card.json), [manifiesto de la fuente](../_static/dataset_manifest_e1.json) y [registro de las secciones 1–5 recibidas](../_static/guia_e2_recibida.json). La bibliografía editorial de E2 se conserva en `references.bib`.
+Ya están disponibles los metadatos propios de E2: [contrato heredado](../_static/e1_reference.json), [Data Card](../_static/dataset_card.json), [manifiesto de la fuente](../_static/dataset_manifest_e1.json) y [registro de las secciones 1–6 recibidas](../_static/guia_e2_recibida.json). La bibliografía editorial de E2 se conserva en `references.bib`.
 
 El EDA ampliado se reproduce con `scripts/eda_e2_decisions.py` y `scripts/eda_e2_known_shift.py`, usando el entorno científico de `requirements-eda.lock.txt`. Sus {ref}`instrucciones, tablas y figuras <e2-reproduccion-eda>` conservan hashes de fuentes y separan desarrollo del reanálisis de la reserva ya conocida. El build editorial no ejecuta esos scripts.
 
@@ -31,3 +31,5 @@ python scripts/package_e2_paper_guide.py --check
 ```
 
 Los recibos y resultados guardados de ETTh1 se incorporan al HTML como evidencias. La compilación y el ensamblado editorial siguen realizando cero ajustes y cero predicciones: esos conteos se refieren a la operación de publicación, no al total histórico de experimentos E1/E2.
+
+La [sección 6](06_benchmark_final.md) añade el [paquete de análisis y plantillas](../_static/benchmark_analysis_download/Benchmark_E2_analisis_plantillas.zip). El comando `python scripts/analyze_e2_benchmark.py` verifica la identidad heredada y genera documentación del estado pendiente. El núcleo numérico se comprueba con `tests/test_e2_benchmark_analysis.py`, sobre fixtures sintéticos identificados: esas pruebas no son resultados de Bitcoin, no entrenan modelos ni crean una nueva evaluación confirmatoria. El protocolo permanece propuesto; el benchmark requiere los adaptadores, HPO, piloto, índices y registros pendientes de §4.

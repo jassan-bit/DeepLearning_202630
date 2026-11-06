@@ -1,8 +1,8 @@
 {
-  "schema_version": 6,
+  "schema_version": 7,
   "received_date_colombia": "2026-11-05",
   "administrative_timezone": "America/Bogota",
-  "source_type": "Capturas de la guía aportadas por el usuario: páginas iniciales 1–3, fragmentos de sección 2 y seis capturas de sección 3 con página 9 visible; cinco capturas de sección 4, páginas 12–15 visibles y bloque 4.6 sin folio visible; dos capturas de sección 5, página 16 visible y continuación sin folio visible",
+  "source_type": "Capturas de la guía aportadas por el usuario: páginas iniciales 1–3, fragmentos de sección 2 y seis capturas de sección 3 con página 9 visible; cinco capturas de sección 4, páginas 12–15 visibles y bloque 4.6 sin folio visible; dos capturas de sección 5, página 16 visible y continuación sin folio visible; seis capturas de sección 6 con páginas 17 y 19 visibles y fragmentos sin folio",
   "document_title": "Proyecto Final de Deep Learning: Entregable 2",
   "received_page_numbers": [
     1,
@@ -13,7 +13,9 @@
     13,
     14,
     15,
-    16
+    16,
+    17,
+    19
   ],
   "full_pdf_received": false,
   "scope_received": [
@@ -39,7 +41,11 @@
     "Sección 5: paper guía como referencia principal, justificación, arquitectura, supuestos y referencia con DOI",
     "Réplica parcial: resultado clave en condiciones originales, discrepancia con IC y criterio de éxito definido antes de resultados",
     "Limitación cuantificada: métrica, subconjunto, magnitud, IC95 % por unidad de independencia, piloto sobre al menos tres modelos del Top 10 y declaración en preregistro 9.1",
-    "Relación del paper con el benchmark y del límite medido con un posible modelo original de E3, sin elegir aquí su arquitectura"
+    "Relación del paper con el benchmark y del límite medido con un posible modelo original de E3, sin elegir aquí su arquitectura",
+    "Sección 6.1: comparación de diez modelos y referencias, métricas/IC, calibración, robustez y recursos",
+    "Sección 6.2: ranking, Pareto y trade-offs de eficiencia",
+    "Sección 6.3: supuestos, contraste pareado/multimodelo/temporal, corrección múltiple, potencia e interpretación",
+    "Sección 6.4: discusión crítica de resultados, generalización, límites y validez"
   ],
   "objective": {
     "systematic_literature_review": true,
@@ -78,7 +84,7 @@
       "reference_scope_note": "Ridge es la referencia no profunda propuesta; su diagnóstico de EDA ya existe, pero el ajuste y presupuesto del benchmark final aún deben cerrarse. Persistencia conserva su función contextual heredada."
     }
   },
-  "precedence": "Prevalece la disposición más restrictiva. La sección 3.2 recibida exige diez modelos del Top 10 adicionales a los tres modelos base de E1, una referencia no profunda y otra trivial: mínimo quince configuraciones. La sección 4.1 exige reserva tocada una sola vez al final; la reserva heredada ya conocida no se presenta como una prueba nueva y sus comparaciones permanecen exploratorias. La sección 5 requiere réplica original y limitación cuantificada con piloto sobre al menos tres modelos del Top 10; registrar el requisito no acredita ejecución. Las secciones 6–14 y los apéndices siguen pendientes.",
+  "precedence": "Prevalece la disposición más restrictiva. La sección 3.2 recibida exige diez modelos del Top 10 adicionales a los tres modelos base de E1, una referencia no profunda y otra trivial: mínimo quince configuraciones. La sección 4.1 exige reserva tocada una sola vez al final; la reserva heredada ya conocida no se presenta como una prueba nueva y sus comparaciones permanecen exploratorias. La sección 5 requiere réplica original y limitación cuantificada con piloto sobre al menos tres modelos del Top 10; registrar el requisito no acredita ejecución. La sección 6 añade tabla, eficiencia, inferencia y discusión crítica; las secciones 7–14 y los apéndices completos siguen pendientes.",
   "inheritance": {
     "from_deliverable": 1,
     "inherited_without_modification": [
@@ -243,10 +249,14 @@
     "paper_guide_replication_executed": true,
     "paper_guide_limitation_pilot_executed": true,
     "external_ETTh1_dataset_fits": 20,
-    "new_deep_learning_fits_scope": "Benchmark Bitcoin D7; excluye veinte ajustes externos de ETTh1 en sección 5."
+    "new_deep_learning_fits_scope": "Benchmark Bitcoin D7; excluye veinte ajustes externos de ETTh1 en sección 5.",
+    "section_6_requirements_received": true,
+    "chapter_6_documentation": "Plan de comparación, herramientas de análisis y plantillas; sin resultados del benchmark Bitcoin D7.",
+    "section_6_final_benchmark_executed": false,
+    "section_6_Bitcoin_statistical_analysis_executed": false
   },
   "pending_source_material": {
-    "later_sections": "Texto completo de secciones 6–14 y apéndices; remisiones de sección 4 a 7/7.3, 9.2, 10, 11/11.1, 13.2 y 14 y de sección 5 a 9.1",
+    "later_sections": "Texto completo de secciones 7–14 y apéndices; incluye remisiones §7.3/7.4, §9.1/9.2, §10, §11.1/11.4, §12, §13/13.2 y §14.",
     "other_section_2_routes": "Solo se recibió el bloque específico C de regresión temporal; la ruta de series de tiempo no se ha aportado completa",
     "benchmark_composition": "Composición resuelta por sección 3.2: Top 10 adicional más tres bases, Ridge y persistencia, mínimo quince; faltan el protocolo, presupuestos y reglas completas de sección 11.1",
     "compliance_scope": "No declarar cumplimiento de apartados cuyo texto aún no se ha recibido ni dar por resuelta la clausura de la ruta mediante la sola ACF",
@@ -262,9 +272,19 @@
     },
     "section_5_dependencies": {
       "9.1": "Texto completo no recibido; la captura solo remite al preregistro"
+    },
+    "section_6_dependencies": {
+      "7.3": "Texto completo no recibido",
+      "7.4": "Texto completo no recibido",
+      "9.2": "Texto completo no recibido",
+      "11.4": "Texto completo no recibido",
+      "12": "Texto completo no recibido",
+      "13": "Texto completo no recibido",
+      "Apéndice A": "Texto completo no recibido",
+      "Tabla C": "Texto completo no recibido"
     }
   },
-  "source_caution": "Se conservan las páginas visibles 1–3, 9 y 12–16 y fragmentos sin número de secciones 2–5 de la guía. El bloque 4.6 y la continuación de sección 5 carecen de folio visible; no se inventa la página 17. No se infiere lectura de la guía completa. Las exportaciones WoS/Scopus y diez PDF de artículos son evidencia aportada por el usuario, no consultas nativas ejecutadas por el asistente. La lectura de artículos no amplía el texto recibido de la guía.",
+  "source_caution": "Se conservan las páginas visibles 1–3, 9 y 12–16 y fragmentos sin número de secciones 2–5 de la guía. El bloque 4.6 y la continuación de sección 5 carecen de folio visible; no se inventa la página 17. No se infiere lectura de la guía completa. Las exportaciones WoS/Scopus y diez PDF de artículos son evidencia aportada por el usuario, no consultas nativas ejecutadas por el asistente. La lectura de artículos no amplía el texto recibido de la guía. Sección 6: se registran únicamente los folios visibles 17 y 19; las continuaciones no se numeran por inferencia.",
   "received_fragments": [
     {
       "submission": "initial",
@@ -385,6 +405,48 @@
       "capture_sequence": 2,
       "visible_page_number": null,
       "scope": "Continuación sin folio: criterio a priori de réplica, relación con Top 10, limitación cuantificada/piloto mínimo tres/preregistro 9.1 y relación recomendada con E3"
+    },
+    {
+      "submission": "section_6",
+      "received_date_colombia": "2026-11-06",
+      "capture_sequence": 1,
+      "visible_page_number": 17,
+      "scope": "Inicio de sección 6, tabla 6.1 y ranking 6.2; folio17 visible; continuación Pareto y trade-off sin folio"
+    },
+    {
+      "submission": "section_6",
+      "received_date_colombia": "2026-11-06",
+      "capture_sequence": 2,
+      "visible_page_number": null,
+      "scope": "Sección 6.3, pruebas generales y solapamiento, sin folio"
+    },
+    {
+      "submission": "section_6",
+      "received_date_colombia": "2026-11-06",
+      "capture_sequence": 3,
+      "visible_page_number": null,
+      "scope": "Caso específico de series/regresión temporal, sin folio"
+    },
+    {
+      "submission": "section_6",
+      "received_date_colombia": "2026-11-06",
+      "capture_sequence": 4,
+      "visible_page_number": null,
+      "scope": "Buenas prácticas estadísticas, sin folio"
+    },
+    {
+      "submission": "section_6",
+      "received_date_colombia": "2026-11-06",
+      "capture_sequence": 5,
+      "visible_page_number": 19,
+      "scope": "Interpretación, folio19 visible"
+    },
+    {
+      "submission": "section_6",
+      "received_date_colombia": "2026-11-06",
+      "capture_sequence": 6,
+      "visible_page_number": null,
+      "scope": "Sección 6.4 discusión crítica, sin folio"
     }
   ],
   "section_2_requirements": [
@@ -1117,5 +1179,204 @@
     "Bitcoin_transferable_predictive_gap_confirmed": false,
     "full_section_9_1_received": false,
     "bounded_external_preregistration_public_before_fits": true
+  },
+  "section_6_requirements": [
+    {
+      "id": "6.0",
+      "requirement": "Benchmark reproducible, justo y comparable; resultados verificables mediante código entregado.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "6.1.a",
+      "requirement": "Tabla de diez modelos y baselines siguiendo Apéndice A: métricas media ± DE e IC95 %, preferiblemente bootstrap.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "6.1.b",
+      "requirement": "Métricas de calibración y robustez.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "6.1.c",
+      "requirement": "Tiempo de entrenamiento, latencia de inferencia, parámetros y FLOPs.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "6.2.a",
+      "requirement": "Ranking por métrica principal con rangos promedio sobre ejecuciones o particiones.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "6.2.b",
+      "requirement": "Frontera de Pareto desempeño/coste y modelos no dominados.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "6.2.c",
+      "requirement": "Trade-off precisión, complejidad, interpretabilidad y robustez; protocolo de eficiencia §11.4.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "6.3.a",
+      "requirement": "Pruebas formales con corrección de comparaciones múltiples; no basta comparar promedios. Remisiones §7.3, §7.4 y §13.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "6.3.b",
+      "requirement": "Verificar normalidad Shapiro–Wilk, homoscedasticidad Levene e independencia; justificar elección de pruebas.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "6.3.c",
+      "requirement": "Comparaciones pareadas: t pareado o Wilcoxon signed-rank; tamaño de efecto d de Cohen o delta de Cliff e IC.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "6.3.d",
+      "requirement": "Diez o más modelos: ANOVA de medidas repetidas si aplica o Friedman recomendado; post-hoc Nemenyi o pares con Holm/Bonferroni.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "6.3.e",
+      "requirement": "Diagrama de diferencia crítica; opción avanzada bayesiana de rangos con signo y ROPE.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "6.3.f",
+      "requirement": "Particiones con entrenamiento solapado: corrección de varianza apropiada, ejemplo Nadeau–Bengio, o justificar omisión.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "6.3.g",
+      "requirement": "Series temporales/regresión temporal: Diebold–Mariano con corrección Harvey–Leybourne–Newbold para muestras finitas.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "6.3.h",
+      "requirement": "Model Confidence Set opcional para identificar conjunto de modelos superiores.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "6.3.i",
+      "requirement": "BDS en residuos para independencia y dependencia no lineal remanente.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "6.3.j",
+      "requirement": "Ljung–Box en residuos y cuadrados para autocorrelación y efectos de tipo ARCH.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "6.3.k",
+      "requirement": "Alfa 0,05 y control explícito de FWER o FDR.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "6.3.l",
+      "requirement": "P-valores numéricos sin ajustar y ajustados, tamaños de efecto e intervalos.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "6.3.m",
+      "requirement": "Número de comparaciones justificado a priori; potencia o capacidad de pruebas dado R, remisión §9.2.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "6.3.n",
+      "requirement": "Distinguir significación y relevancia práctica; no rechazar no demuestra equivalencia, usar TOST o ROPE si se afirma.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "6.4.a",
+      "requirement": "Mejor modelo y explicación respaldada por ablación e interpretabilidad.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "6.4.b",
+      "requirement": "Generalización y calibración comparadas.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "6.4.c",
+      "requirement": "Robustez frente a perturbaciones y cambio de distribución.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "6.4.d",
+      "requirement": "Significación estadística y relevancia práctica de las diferencias.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "6.4.e",
+      "requirement": "Trade-off entre desempeño y coste computacional.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "6.4.f",
+      "requirement": "Cercanía al techo estimado de desempeño y margen de mejora, remisión §12.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "6.4.g",
+      "requirement": "Contraste de las hipótesis de §1.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "6.4.h",
+      "requirement": "Amenazas a validez interna, externa, de constructo y estadística.",
+      "receipt_status": "received_not_execution_evidence"
+    },
+    {
+      "id": "6.4.i",
+      "requirement": "Limitaciones y líneas futuras; cada afirmación exige evidencia estadística rigurosa.",
+      "receipt_status": "received_not_execution_evidence"
+    }
+  ],
+  "section_6_scope": {
+    "received_section": "6. Benchmark Final",
+    "received_date_colombia": "2026-11-06",
+    "visible_page_numbers": [
+      17,
+      19
+    ],
+    "capture_count": 6,
+    "unpaginated_fragments": true,
+    "unseen_page_numbers_not_inferred": true,
+    "full_guide_received": false,
+    "requirements_registered": true,
+    "requirement_count": 30,
+    "analysis_protocol_status": "proposed_not_frozen",
+    "ten_model_plus_references_Bitcoin_benchmark_executed": false,
+    "minimum_configurations": 15,
+    "new_Bitcoin_D7_fits": 0,
+    "new_Bitcoin_D7_results": 0,
+    "real_prediction_panel_available": false,
+    "real_ranking_available": false,
+    "statistical_claims_executed_on_Bitcoin_benchmark": false,
+    "tool_scope": "Documentary readiness, templates and numerical functions tested on labeled synthetic fixtures; no claim of real benchmark execution",
+    "external_ETTh1_fits_not_included": 20,
+    "guide_cross_references_pending": [
+      "7.3",
+      "7.4",
+      "9.2",
+      "11.4",
+      "12",
+      "13",
+      "Apéndice A",
+      "Tabla C"
+    ],
+    "inherited_Bitcoin_contract_changed": false,
+    "known_test_remains_exploratory": true,
+    "critical_difference_diagram_requires_justified_independent_blocks": true,
+    "training_seeds_are_not_independent_market_datasets": true,
+    "current_limits": [
+      "No hay adaptadores D7 validados, HPO comparable, piloto de dimensionamiento o predicciones del benchmark Bitcoin E2; no se completan métricas ausentes con cero.",
+      "El análisis de fixtures comprueba software, no desempeño, potencia ni ausencia de fuga.",
+      "Los veinte ajustes ETTh1 externos y las métricas heredadas de E1 no se reetiquetan como resultados nuevos del benchmark E2.",
+      "La longitud de bloques, las familias y el plan de coste/inferencia definitivos requieren cierre antes de scoring; el test heredado sigue conocido.",
+      "Los diez meses solapados y las semillas de una única serie no justifican por sí solos Friedman/Nemenyi como si fueran datasets independientes.",
+      "No se infiere calibración probabilística de un pronóstico puntual, techo de desempeño de la literatura ni equivalencia de un p no significativo.",
+      "Las remisiones de la guía siguen pendientes de texto completo; no se inventan condiciones ni folios."
+    ]
   }
 }

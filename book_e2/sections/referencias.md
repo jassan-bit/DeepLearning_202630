@@ -8,6 +8,8 @@ Los DOI `10.48550/arXiv…` identifican preprints, aunque la ficha también cons
 
 La identificación de una revista, conferencia o registro indexado no demuestra por sí sola cuartil Q1: los cuartiles e indicadores por año siguen sin verificarse. Las versiones, métricas, páginas y límites de comparabilidad se desarrollan en la [sección 3](03_literatura.md).
 
+La sección 6 añade referencias metodológicas para DM, la corrección HLN, Holm, Ljung–Box y comparaciones de rangos sobre múltiples datasets. Se identifican como fuentes metodológicas, fuera del corpus aplicado y de sus frecuencias; no acreditan una nueva búsqueda nativa WoS/Scopus ni sustituyen la validación de los supuestos en Bitcoin.
+
 ```{bibliography}
 :all:
 ```

@@ -20,7 +20,7 @@ Desde la raíz, con el entorno de `requirements-book.lock.txt` instalado:
 
 La carpeta de salida del ensamblado debe ser nueva o vacía; usar otra ruta al repetir. Abrir `http://localhost:8000/entregables.html`. La publicación automatizada siempre reconstruye y reúne los tres libros, para conservarlos cuando cambia uno de ellos.
 
-E2 tiene introducción y secciones 1–5 desarrolladas a partir de las capturas recibidas; la sección 5 se incorporó el 6 de noviembre de 2026 (America/Bogota), con página 16 y continuación sin folio visible. Su EDA, literatura, réplica TimeMixer ETTh1 y piloto externo de tres modelos tienen código y artefactos propios. Se integraron exportaciones de WoS y Scopus y diez originales completos; continúan abiertos el cribado global, la búsqueda transversal, la guía restante y el protocolo del benchmark. La sección 3.2 exige diez modelos más cinco referencias, con mínimo quince configuraciones. **El benchmark Bitcoin D7 sigue sin ejecutar: cero ajustes Bitcoin nuevos.** Las veinte corridas externas de §5 —cinco de réplica y quince de piloto— no se cuentan como ese benchmark. E3 conserva estructura inicial y sus experimentos no se han ejecutado. Los comandos del bloque E2 que sigue son propios; los apartados posteriores sobre las fases GRU–LSTM–TCN corresponden a **E1**.
+E2 tiene introducción y secciones 1–6 documentadas a partir de las capturas recibidas; la sección 5 se incorporó el 6 de noviembre de 2026 (America/Bogota), con página 16 y continuación sin folio visible. Su EDA, literatura, réplica TimeMixer ETTh1 y piloto externo de tres modelos tienen código y artefactos propios. Se integraron exportaciones de WoS y Scopus y diez originales completos; continúan abiertos el cribado global, la búsqueda transversal, la guía restante y el protocolo del benchmark. La sección 3.2 exige diez modelos más cinco referencias, con mínimo quince configuraciones. **El benchmark Bitcoin D7 sigue sin ejecutar: cero ajustes Bitcoin nuevos.** Las veinte corridas externas de §5 —cinco de réplica y quince de piloto— no se cuentan como ese benchmark. E3 conserva estructura inicial y sus experimentos no se han ejecutado. Los comandos del bloque E2 que sigue son propios; los apartados posteriores sobre las fases GRU–LSTM–TCN corresponden a **E1**.
 
 
 El diseño de implementación E2 y su auditoría documental se verifican sin importar librerías DL ni abrir archivos de mercado:
@@ -42,6 +42,16 @@ python scripts/package_e2_paper_guide.py --check
 
 El [ZIP de §5](book_e2/_static/paper_guide_download/Paper_guia_E2_replica_piloto.zip) conserva las instrucciones, `requirements-paper-guide.lock.txt`, fuentes por hash y código propio. Las fases del ejecutor `scripts/run_e2_paper_replication.py` separan registro, ajuste y scoring; la descarga de fuentes y los nuevos entrenamientos son acciones explícitas. La compilación editorial consume agregados y figuras ya guardados, sin ejecutar esas fases. El diseño se publicó antes de los ajustes en el commit `329b0a6c8238d632dd00537c5cefab91360bafd1`; las discrepancias y enmiendas de análisis se mantienen identificadas.
 
+
+La sección 6 incorpora el plan de análisis del benchmark Bitcoin, las plantillas de quince configuraciones y funciones numéricas probadas con fixtures sintéticos. Sus dependencias se fijan en `requirements-benchmark-analysis.lock.txt`. La generación documental no carga predicciones ni ejecuta modelos:
+
+```bash
+python scripts/analyze_e2_benchmark.py
+python tests/test_e2_benchmark_analysis.py
+python scripts/package_e2_benchmark_analysis.py --check
+```
+
+El capítulo `book_e2/sections/06_benchmark_final.md` registra §6.1–6.4, los folios visibles 17 y 19 y las remisiones pendientes. Esta preparación no acredita el benchmark, su potencia ni sus resultados. Las fases posteriores de este documento siguen describiendo E1.
 
 El JBook distingue **fase I exploratoria** y **fase II D7 planificada** de GRU–LSTM–TCN. Ambas usan Bitcoin, σ₇ poblacional, horizonte de un día y covariables OHLCV causales. La primera conserva las cuatro entradas y su test enero de 2025–agosto de 2026 ya observado. La segunda registra HPO comparable, piloto, dimensionamiento y evaluación sobre el 01/09–30/10/2026. Sus recetas y registros no se mezclan: GRU/D7 de fase I tiene 32 unidades y 3.777 parámetros; GRU/D7-c03 de fase II tiene 16 unidades y 1.121 parámetros.
 
