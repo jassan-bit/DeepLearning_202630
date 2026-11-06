@@ -856,15 +856,15 @@ El corte del **05/11**, con **40 referencias**, **siete estudios cripto completo
 
 La ampliación integra cuatro archivos aportados por el autor después de las búsquedas guiadas en Web of Science y Scopus. La ingesta lee los originales, identifica sus registros y genera metadatos públicos derivados; no publica los archivos de exportación completos, resúmenes, emails o direcciones. El [manifiesto de fuentes](../_static/literature_e1/native_search_20261106/source_manifest.json) conserva nombre, tamaño, SHA-256 y conteos. El {download}`procedimiento reproducible <../_static/literature_e1/native_search_20261106/README.md>` identifica los límites de la recepción y los comandos de ingesta y verificación.
 
-| Fuente recibida | Identificador del archivo | Ocurrencias recibidas |
-|---|---|---:|
-| Web of Science | `savedrecs (3).txt` | 8 |
-| Web of Science | `savedrecs (4).txt` | 59 |
-| Scopus | CSV `export_4a31d458…220747…csv` | 19 |
-| Scopus | CSV `export_694623e0…220948…csv` | 158 |
-| **Total** | **Cuatro exportaciones** | **244** |
+| Fuente recibida | Identificador del archivo | Familia confirmada por el autor | Ocurrencias recibidas |
+|---|---|---|---:|
+| Web of Science | `savedrecs (3).txt` | TCN | 8 |
+| Web of Science | `savedrecs (4).txt` | GRU/LSTM | 59 |
+| Scopus | CSV `export_4a31d458…220747…csv` | TCN | 19 |
+| Scopus | CSV `export_694623e0…220948…csv` | GRU/LSTM | 158 |
+| **Total** | **Cuatro exportaciones** | **Filtro declarado: 2019–2026** | **244** |
 
-Estas cantidades son registros recibidos, no el universo de resultados de las bases. Las exportaciones no incorporan por sí solas toda la cadena, filtros, rangos ni hora de búsqueda. Las consultas sugeridas durante la asistencia no se convierten automáticamente en consultas ejecutadas. La asociación archivo–consulta y los filtros se documentan únicamente hasta donde la evidencia aportada permite verificarlos; los campos sin confirmar permanecen desconocidos en el manifiesto. La fecha del nombre de un CSV identifica su exportación y no demuestra la hora de ejecución de la consulta.
+Estas cantidades son registros recibidos, no el universo de resultados de las bases. Las exportaciones no incorporan por sí solas toda la cadena, filtros, rangos ni hora de búsqueda. El autor confirmó el 06/11 que los archivos de ocho y 19 registros corresponden a la búsqueda TCN, y los de 59 y 158 a GRU/LSTM, con filtro de publicación 2019–2026. Esa confirmación se registra como procedencia declarada por el autor; no acredita las cadenas literales, totales globales, rangos u horas que no se conservaron. Las consultas sugeridas durante la asistencia no se convierten automáticamente en cadenas exactas ejecutadas. La fecha del nombre de un CSV identifica su exportación y no demuestra la hora de ejecución de la consulta.
 
 El material previo de E2 acredita otras recepciones WoS/Scopus. No se suman sus 7.833 grupos a esta ampliación como si fueran conjuntos disjuntos o estudios elegibles nuevos. El objeto de esta etapa es incorporar y examinar las cuatro exportaciones específicas de E1; un flujo global acumulado exige reconciliar todas las ocurrencias de las etapas anteriores. Encontrar un artículo IEEE en Scopus tampoco acredita una búsqueda dentro de IEEE Xplore.
 
@@ -905,7 +905,7 @@ El nuevo respaldo de TCN fortalece su pertinencia como comparador en volatilidad
 
 | Requisito de la guía | Evidencia incorporada | Pendiente real |
 |---|---|---|
-| Consultar WoS y Scopus | Cuatro exportaciones identificadas por hash, 244 ocurrencias recibidas | Completar asociación de consultas, filtros, totales y rangos cuando no estén acreditados; no confundir recepción con cobertura exhaustiva. |
+| Consultar WoS y Scopus | Cuatro exportaciones identificadas por hash, 244 ocurrencias recibidas | Familias de consulta y filtro 2019–2026 confirmados por el autor; completar cadenas literales, totales y rangos todavía no acreditados. No confundir recepción con cobertura exhaustiva. |
 | Cribado y deduplicación trazables | 182 grupos provisionales, decisiones enlazadas, motivos y cola de recuperación | Adjudicación editorial, identidad de duplicados ambiguos y reconciliación acumulada con las etapas anteriores. |
 | Extraer modelos de los originales | Dos lecturas completas nuevas con ubicación de evidencia, objetivo, papel y calidad | Recuperar y evaluar los candidatos pertinentes aún no leídos íntegramente. |
 | Justificar exactamente tres bases simples | Corte histórico preservado, nuevo comparador TCN/CVI y separación de componentes híbridos | Validar selección por recurrencia, simplicidad y diversidad; no hacer búsquedas solo para confirmar la terna existente. |

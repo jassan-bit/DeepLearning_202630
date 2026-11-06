@@ -299,6 +299,19 @@ def package(output_dir, requested_revision=None):
             products["8.4"][prefix + name] = data
             if name in {"summary.json", "source_manifest.json", "manifest.json"}:
                 products["8.7"][prefix + name] = data
+    # User-confirmed query families and year filters are a separate, reproducible
+    # input to the importer; they must travel with its code and derived ledger.
+    context = stage_info["native_search_20261106"]["summary"].get("search_context")
+    if context:
+        context_name = "references/literature_e1/native_search_context_20261106.json"
+        if context_name not in tracked:
+            raise ValueError("The confirmed search context must be committed")
+        context_data = _regular_file(ROOT / context_name, ROOT)
+        if legacy.digest(context_data) != context["sha256"]:
+            raise ValueError("Search context differs from the imported provenance")
+        validate_public_bytes(context_name, context_data)
+        for item in ("8.2", "8.4", "8.7"):
+            products[item][context_name] = context_data
     refresh = {
         "date": "2026-11-06", "source_commit": revision,
         "baseline_source_commit": catalog.get("source_commit"),

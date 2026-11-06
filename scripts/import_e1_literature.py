@@ -27,7 +27,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUTPUT = ROOT / "references/literature_e1/native_search_20261106"
 DEFAULT_MIRROR = ROOT / "book/_static/literature_e1/native_search_20261106"
 HISTORICAL_EVIDENCE = ROOT / "references/literature_e1/crypto_extension_20261105/evidence_matrix.json"
-ALGORITHM_VERSION = "1.0"
+ALGORITHM_VERSION = "1.1"
 RECEIVED_DATE = "2026-11-06"
 
 
@@ -261,10 +261,39 @@ def read_historical(path: Path | None) -> tuple[dict[str, str], dict]:
     }
 
 
+def read_search_context(path: Path | None, source_names: set[str]) -> tuple[dict, dict | None]:
+    """Load only the explicitly reported family/year context, never a query string."""
+    if path is None:
+        return {}, None
+    raw = path.read_bytes()
+    data = json.loads(raw)
+    years = data["publication_years"]
+    if not isinstance(years["start"], int) or not isinstance(years["end"], int) or years["start"] > years["end"]:
+        raise ValueError("Search-context publication years must be an ordered integer range")
+    evidence = data["evidence"]
+    if evidence["kind"] != "user_confirmation" or data["exact_query_confirmation"] != "not_confirmed":
+        raise ValueError("This context supports user-confirmed family/filter only; exact query remains unconfirmed")
+    mapping = {s["filename"]: s["query_family"] for s in data["sources"]}
+    if len(mapping) != len(data["sources"]) or set(mapping) != source_names:
+        raise ValueError("Search-context filenames must match received exports exactly")
+    if not set(mapping.values()) <= {"TCN", "GRU/LSTM"}:
+        raise ValueError("Unknown search-context query family")
+    metadata = {
+        "filename": path.name, "sha256": sha256(raw), "bytes": len(raw),
+        "evidence": {k: evidence[k] for k in ("kind", "date_local", "timezone")},
+        "publication_years_user_reported": {"start": years["start"], "end": years["end"]},
+        "exact_query_confirmation": "not_confirmed",
+        "independently_verified_in_export": False,
+    }
+    return mapping, metadata
+
+
 def import_sources(source_specs: list[tuple[str, Path]], output_dir: Path,
-                   mirror_dir: Path | None = None, historical_path: Path | None = HISTORICAL_EVIDENCE) -> dict:
+                   mirror_dir: Path | None = None, historical_path: Path | None = HISTORICAL_EVIDENCE,
+                   search_context_path: Path | None = None) -> dict:
     records: list[Record] = []
     sources = []
+    query_families, search_context = read_search_context(search_context_path, {p.name for _, p in source_specs})
     db_counts: Counter = Counter()
     for kind, path in source_specs:
         db_counts[kind] += 1
@@ -273,7 +302,7 @@ def import_sources(source_specs: list[tuple[str, Path]], output_dir: Path,
         text = raw.decode("utf-8-sig")
         parsed = parse_scopus(text, key) if kind == "scopus" else parse_wos(text, key)
         records.extend(parsed)
-        sources.append({
+        source = {
             "source_key": key, "database": parsed[0].database if parsed else kind,
             "filename": path.name, "sha256": sha256(raw), "bytes": len(raw),
             "exported_occurrences": len(parsed), "doi_present": sum(bool(r.doi) for r in parsed),
@@ -282,7 +311,18 @@ def import_sources(source_specs: list[tuple[str, Path]], output_dir: Path,
             "query_family_association": None, "applied_filters": None,
             "displayed_result_total": None, "exported_result_range": None,
             "completeness": "not_established_by_exported_row_count",
-        })
+        }
+        if search_context:
+            years = search_context["publication_years_user_reported"]
+            source.update({
+                "query_family_association": query_families[path.name],
+                "query_family_association_evidence": "user_confirmation",
+                "applied_filters": {"publication_years": years, "status": "user_reported_not_independently_verified_in_export"},
+                "executed_query_status": "not_confirmed_by_user_or_embedded_in_export",
+                "nominal_years_observed": dict(sorted(Counter(r.year for r in parsed if r.year).items())),
+                "occurrences_outside_user_reported_year_filter": [r.occurrence_id for r in parsed if r.year.isdigit() and not years["start"] <= int(r.year) <= years["end"]],
+            })
+        sources.append(source)
     groups, decisions = deduplicate(records)
     historical_map, historical = read_historical(historical_path)
     occurrence_to_group = {}
@@ -351,12 +391,19 @@ def import_sources(source_specs: list[tuple[str, Path]], output_dir: Path,
         "all_groups_require_human_review": True,
         "full_texts_reviewed_by_importer": 0, "new_final_inclusions": None,
         "final_exclusions": None, "historical_e1": historical,
+        "search_context": search_context,
+        "nominal_year_after_received_year_occurrences": sum(r.year.isdigit() and int(r.year) > int(RECEIVED_DATE[:4]) for r in records),
+        "nominal_year_after_received_year_groups": sum(r["nominal_year_after_received_year"] == "true" for r in grouped_rows),
         "previous_e1_doi_matches": [{"group_id": r["group_id"], "study_ids": r["previous_e1_study_ids_by_doi"]} for r in grouped_rows if r["previous_e1_study_ids_by_doi"]],
         "interpretation": "The candidate-group count is not a validated study denominator; raw occurrences and uncertain identities are retained. Model mentions are not independent comparator evidence.",
     }
     source_manifest = {
         "schema_version": "1.0", "received_date": RECEIVED_DATE, "sources": sources,
-        "queries_and_filters": "No exact query, time filter, search date, result total or export range is established from these received files alone. Suggested searches are not executed-query evidence.",
+        "search_context": search_context,
+        "queries_and_filters": (
+            "Query-family associations and publication-year filter are user-reported in the hashed context input. They are not independently verified from the export. Exact query, search date, result total and export range remain unconfirmed. Observed nominal years are retained even when outside the reported filter."
+            if search_context else
+            "No exact query, time filter, search date, result total or export range is established from these received files alone. Suggested searches are not executed-query evidence."),
         "source_exports_republished": False,
         "public_metadata_policy": "Minimal bibliographic identity, controlled screening labels and hashes only; no abstract text, author emails, affiliations, or raw cited-reference fields.",
     }
@@ -389,13 +436,21 @@ def import_sources(source_specs: list[tuple[str, Path]], output_dir: Path,
 
 
 def make_readme(summary: dict) -> str:
+    context = summary.get("search_context")
+    if context:
+        years = context["publication_years_user_reported"]
+        context_note = f"El usuario confirmó el 6 de noviembre de 2026 (America/Bogota) la asociación de los archivos de 19 registros Scopus y 8 WoS con TCN, los de 158 Scopus y 59 WoS con GRU/LSTM, y el filtro de años de publicación {years['start']}–{years['end']}. Esta información es declarada por el usuario; no está verificada de forma independiente en las exportaciones. La consulta exacta, fecha de ejecución, total mostrado y rango exportado siguen sin confirmarse. La confirmación se conserva en `references/literature_e1/{context['filename']}`, cuya huella y tamaño aparecen en `source_manifest.json`."
+        context_arg = " \\\n" + f"  --search-context 'references/literature_e1/{context['filename']}'"
+    else:
+        context_note = "Sin un archivo de contexto confirmado, no se establecen consulta exacta, familia de búsqueda, filtros, fecha de ejecución, total mostrado o rango exportado a partir de estas exportaciones."
+        context_arg = ""
     return f"""# Búsquedas nativas recibidas el 6 de noviembre de 2026
 
 Esta capa documenta cuatro exportaciones recibidas: {summary['exported_occurrences']} ocurrencias y {summary['candidate_groups_provisional']} grupos candidatos provisionales. No sustituye el corpus histórico de E1 ni acredita exhaustividad de las búsquedas. El denominador histórico de textos completos cripto sigue siendo N=7; esta importación no modifica sus frecuencias.
 
 ## Archivos
 
-- `source_manifest.json`: nombre, tamaño, SHA-256 y cobertura observable de cada exportación. Consulta exacta, filtros, total mostrado y rango exportado quedan sin establecer.
+- `source_manifest.json`: nombre, tamaño, SHA-256 y cobertura observable de cada exportación; separa contexto declarado por el usuario y metadatos observados.
 - `occurrences.csv`: las ocurrencias originales por archivo, sin borrar identidades de origen.
 - `records.csv`: grupos candidatos por DOI, identificador de base o título normalizado; conserva años e identificadores discrepantes.
 - `deduplication.csv`: cada enlace o conflicto entre ocurrencias. Un enlace por título es siempre provisional.
@@ -405,6 +460,10 @@ Esta capa documenta cuatro exportaciones recibidas: {summary['exported_occurrenc
 - `manifest.json`: integridad de los archivos públicos derivados.
 
 ## Identidades y decisiones pendientes
+
+{context_note}
+
+Se conservan {summary['nominal_year_after_received_year_occurrences']} ocurrencias correspondientes a {summary['nominal_year_after_received_year_groups']} grupos con año nominal posterior a 2026 (2027 en los archivos recibidos). La diferencia entre el filtro declarado 2019–2026 y esos metadatos observados exige comprobar la fecha efectiva de publicación, publicación anticipada o posible discrepancia del filtro. No se atribuye una explicación concreta ni se excluyen automáticamente esos registros.
 
 Los {summary['occurrences_linked_within_candidate_groups']} enlaces internos no equivalen a duplicados definitivamente descartados. Hay {summary['groups_with_title_only_links']} grupos con enlaces por título; {summary['groups_with_distinct_ids_requiring_identity_review']} contiene identificadores diferentes de la misma base. En particular, el título *Enhancing Cryptocurrency Price Prediction Using Hybrid Regression and RNN Models* aparece con dos EID Scopus y años 2024/2025: ambos registros y el registro WoS se conservan como ocurrencias distintas dentro de un grupo candidato pendiente de validación. El total definitivo de documentos únicos sigue sin resolverse.
 
@@ -419,12 +478,12 @@ python scripts/import_e1_literature.py \\
   --scopus '/ruta/export_4a31d458-6ce4-4435-9507-df9ee7cc2881_2026-11-06T220747.614885599.csv' \\
   --scopus '/ruta/export_694623e0-7e5c-4597-aca5-c8fc7cb8b431_2026-11-06T220948.394330608.csv' \\
   --wos '/ruta/savedrecs (4).txt' \\
-  --wos '/ruta/savedrecs (3).txt'
+  --wos '/ruta/savedrecs (3).txt'{context_arg}
 python scripts/import_e1_literature.py --verify-public references/literature_e1/native_search_20261106
 python -m unittest discover -s tests -p 'test_e1_literature_import.py'
 ```
 
-El orden de los cuatro argumentos fija los identificadores S01/S02/W01/W02; el orden de salida y las reglas son deterministas. El script lee la matriz histórica `references/literature_e1/crypto_extension_20261105/evidence_matrix.json` únicamente para enlazar DOI y registrar su huella. `--output-dir` y `--mirror-dir` permiten otros destinos; `--no-mirror` evita la copia estática. `--verify-public` verifica hashes, recuentos, cobertura de ocurrencias y campos permitidos sin necesitar las exportaciones originales.
+El orden de los cuatro argumentos fija los identificadores S01/S02/W01/W02; el orden de salida y las reglas son deterministas. `--search-context JSON` es opcional; sus nombres deben corresponder exactamente a los archivos de entrada. El script lee la matriz histórica `references/literature_e1/crypto_extension_20261105/evidence_matrix.json` únicamente para enlazar DOI y registrar su huella. `--output-dir` y `--mirror-dir` permiten otros destinos; `--no-mirror` evita la copia estática. `--verify-public` verifica hashes, recuentos, cobertura de ocurrencias y campos permitidos sin necesitar las exportaciones originales ni el archivo de contexto.
 
 Los resúmenes se usan en memoria y solo se publica su disponibilidad y huella del texto normalizado por el parser. No se redistribuyen exportaciones completas, resúmenes, correos, afiliaciones ni referencias citadas brutas. Las fuentes originales son necesarias para repetir el cribado; sus SHA-256 permiten comprobar que son los mismos archivos.
 """
@@ -509,13 +568,14 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--mirror-dir", type=Path, default=DEFAULT_MIRROR)
     parser.add_argument("--no-mirror", action="store_true")
     parser.add_argument("--verify-public", type=Path)
+    parser.add_argument("--search-context", type=Path, help="Optional user-confirmed source-family/year-filter JSON; exact query remains unconfirmed")
     args = parser.parse_args(argv)
     if args.verify_public:
         print(json.dumps(verify_public(args.verify_public), sort_keys=True))
         return 0
     if len(args.scopus) != 2 or len(args.wos) != 2:
         parser.error("provide exactly two --scopus and two --wos received exports, or --verify-public DIR")
-    summary = import_sources([*(('scopus', p) for p in args.scopus), *(('wos', p) for p in args.wos)], args.output_dir, None if args.no_mirror else args.mirror_dir)
+    summary = import_sources([*(('scopus', p) for p in args.scopus), *(('wos', p) for p in args.wos)], args.output_dir, None if args.no_mirror else args.mirror_dir, search_context_path=args.search_context)
     print(json.dumps({k: summary[k] for k in ("exported_occurrences", "candidate_groups_provisional", "groups_with_distinct_ids_requiring_identity_review", "screening_scope_categories")}, ensure_ascii=False, sort_keys=True))
     return 0
 

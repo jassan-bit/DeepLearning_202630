@@ -4,7 +4,7 @@ Esta capa documenta cuatro exportaciones recibidas: 244 ocurrencias y 182 grupos
 
 ## Archivos
 
-- `source_manifest.json`: nombre, tamaño, SHA-256 y cobertura observable de cada exportación. Consulta exacta, filtros, total mostrado y rango exportado quedan sin establecer.
+- `source_manifest.json`: nombre, tamaño, SHA-256 y cobertura observable de cada exportación; separa contexto declarado por el usuario y metadatos observados.
 - `occurrences.csv`: las ocurrencias originales por archivo, sin borrar identidades de origen.
 - `records.csv`: grupos candidatos por DOI, identificador de base o título normalizado; conserva años e identificadores discrepantes.
 - `deduplication.csv`: cada enlace o conflicto entre ocurrencias. Un enlace por título es siempre provisional.
@@ -14,6 +14,10 @@ Esta capa documenta cuatro exportaciones recibidas: 244 ocurrencias y 182 grupos
 - `manifest.json`: integridad de los archivos públicos derivados.
 
 ## Identidades y decisiones pendientes
+
+El usuario confirmó el 6 de noviembre de 2026 (America/Bogota) la asociación de los archivos de 19 registros Scopus y 8 WoS con TCN, los de 158 Scopus y 59 WoS con GRU/LSTM, y el filtro de años de publicación 2019–2026. Esta información es declarada por el usuario; no está verificada de forma independiente en las exportaciones. La consulta exacta, fecha de ejecución, total mostrado y rango exportado siguen sin confirmarse. La confirmación se conserva en `references/literature_e1/native_search_context_20261106.json`, cuya huella y tamaño aparecen en `source_manifest.json`.
+
+Se conservan 5 ocurrencias correspondientes a 5 grupos con año nominal posterior a 2026 (2027 en los archivos recibidos). La diferencia entre el filtro declarado 2019–2026 y esos metadatos observados exige comprobar la fecha efectiva de publicación, publicación anticipada o posible discrepancia del filtro. No se atribuye una explicación concreta ni se excluyen automáticamente esos registros.
 
 Los 62 enlaces internos no equivalen a duplicados definitivamente descartados. Hay 4 grupos con enlaces por título; 1 contiene identificadores diferentes de la misma base. En particular, el título *Enhancing Cryptocurrency Price Prediction Using Hybrid Regression and RNN Models* aparece con dos EID Scopus y años 2024/2025: ambos registros y el registro WoS se conservan como ocurrencias distintas dentro de un grupo candidato pendiente de validación. El total definitivo de documentos únicos sigue sin resolverse.
 
@@ -28,11 +32,12 @@ python scripts/import_e1_literature.py \
   --scopus '/ruta/export_4a31d458-6ce4-4435-9507-df9ee7cc2881_2026-11-06T220747.614885599.csv' \
   --scopus '/ruta/export_694623e0-7e5c-4597-aca5-c8fc7cb8b431_2026-11-06T220948.394330608.csv' \
   --wos '/ruta/savedrecs (4).txt' \
-  --wos '/ruta/savedrecs (3).txt'
+  --wos '/ruta/savedrecs (3).txt' \
+  --search-context 'references/literature_e1/native_search_context_20261106.json'
 python scripts/import_e1_literature.py --verify-public references/literature_e1/native_search_20261106
 python -m unittest discover -s tests -p 'test_e1_literature_import.py'
 ```
 
-El orden de los cuatro argumentos fija los identificadores S01/S02/W01/W02; el orden de salida y las reglas son deterministas. El script lee la matriz histórica `references/literature_e1/crypto_extension_20261105/evidence_matrix.json` únicamente para enlazar DOI y registrar su huella. `--output-dir` y `--mirror-dir` permiten otros destinos; `--no-mirror` evita la copia estática. `--verify-public` verifica hashes, recuentos, cobertura de ocurrencias y campos permitidos sin necesitar las exportaciones originales.
+El orden de los cuatro argumentos fija los identificadores S01/S02/W01/W02; el orden de salida y las reglas son deterministas. `--search-context JSON` es opcional; sus nombres deben corresponder exactamente a los archivos de entrada. El script lee la matriz histórica `references/literature_e1/crypto_extension_20261105/evidence_matrix.json` únicamente para enlazar DOI y registrar su huella. `--output-dir` y `--mirror-dir` permiten otros destinos; `--no-mirror` evita la copia estática. `--verify-public` verifica hashes, recuentos, cobertura de ocurrencias y campos permitidos sin necesitar las exportaciones originales ni el archivo de contexto.
 
 Los resúmenes se usan en memoria y solo se publica su disponibilidad y huella del texto normalizado por el parser. No se redistribuyen exportaciones completas, resúmenes, correos, afiliaciones ni referencias citadas brutas. Las fuentes originales son necesarias para repetir el cribado; sus SHA-256 permiten comprobar que son los mismos archivos.

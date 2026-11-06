@@ -279,7 +279,8 @@ python scripts/import_e1_literature.py \
   --scopus '/ruta/export_4a31d458-6ce4-4435-9507-df9ee7cc2881_2026-11-06T220747.614885599.csv' \
   --scopus '/ruta/export_694623e0-7e5c-4597-aca5-c8fc7cb8b431_2026-11-06T220948.394330608.csv' \
   --wos '/ruta/savedrecs (4).txt' \
-  --wos '/ruta/savedrecs (3).txt'
+  --wos '/ruta/savedrecs (3).txt' \
+  --search-context references/literature_e1/native_search_context_20261106.json
 python scripts/import_e1_literature.py --verify-public references/literature_e1/native_search_20261106
 python -m unittest discover -s tests -p 'test_e1_literature_import.py'
 ```

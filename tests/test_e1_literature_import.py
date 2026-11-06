@@ -222,6 +222,46 @@ class ArtifactTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Unexpected public artifact names"):
             importer.verify_public(output)
 
+    def write_context(self):
+        context = self.base / "search_context.json"
+        context.write_bytes(importer.json_bytes({
+            "evidence": {"kind": "user_confirmation", "date_local": "2026-11-06", "timezone": "America/Bogota"},
+            "publication_years": {"start": 2019, "end": 2026},
+            "exact_query_confirmation": "not_confirmed",
+            "sources": [{"filename": self.csv.name, "query_family": "TCN"}, {"filename": self.wos.name, "query_family": "GRU/LSTM"}],
+            "ignored_private_context_field": self.secret,
+        }))
+        return context
+
+    def test_user_confirmed_context_is_hashed_and_kept_separate_from_observed_years(self):
+        context = self.write_context()
+        context_hash = importer.sha256(context.read_bytes())
+        output = self.base / "with_context"
+        summary = importer.import_sources(self.specs, output, historical_path=None, search_context_path=context)
+        manifest = json.loads((output / "source_manifest.json").read_text())
+        self.assertEqual(manifest["search_context"]["sha256"], context_hash)
+        self.assertEqual(manifest["search_context"]["evidence"]["timezone"], "America/Bogota")
+        scopus = manifest["sources"][0]
+        self.assertEqual(scopus["query_family_association"], "TCN")
+        self.assertEqual(scopus["applied_filters"]["status"], "user_reported_not_independently_verified_in_export")
+        self.assertEqual(scopus["occurrences_outside_user_reported_year_filter"], ["S01:0001"])
+        self.assertEqual(scopus["nominal_years_observed"]["2027"], 1)
+        self.assertIsNone(scopus["executed_query"])
+        self.assertIsNone(scopus["displayed_result_total"])
+        self.assertEqual(summary["nominal_year_after_received_year_occurrences"], 1)
+        for path in output.iterdir():
+            self.assertNotIn(self.secret.encode(), path.read_bytes())
+        context.unlink()
+        self.assertEqual(importer.verify_public(output)["status"], "verified")
+
+    def test_context_source_names_must_match_exactly(self):
+        context = self.write_context()
+        data = json.loads(context.read_text())
+        data["sources"][0]["filename"] = "different.csv"
+        context.write_bytes(importer.json_bytes(data))
+        with self.assertRaisesRegex(ValueError, "filenames must match"):
+            importer.import_sources(self.specs, self.base / "bad_context", historical_path=None, search_context_path=context)
+
 
 if __name__ == "__main__":
     unittest.main()
