@@ -1,4 +1,4 @@
-"""Refresh E1 literature downloads while retaining the current scientific products.
+"""Refresh E1 downloads with reviewed evidence and a post-hoc statistics supplement.
 
 After committing the source and rebuilding ``jupyter-book build book``, run::
 
@@ -6,7 +6,7 @@ After committing the source and rebuilding ``jupyter-book build book``, run::
 
 The destination must be empty and outside this checkout. This command uses the
 committed current ZIPs as its baseline, not the historical package generator.
-It reads public documentation, code and explicitly allowlisted literature only;
+It reads public documentation, code and explicitly allowlisted evidence only;
 it does not train, forecast, read market archives, or publish any files.
 """
 from __future__ import annotations
@@ -20,7 +20,9 @@ from pathlib import Path, PurePosixPath
 import re
 import shutil
 import stat
+import struct
 import subprocess
+import zlib
 from zipfile import ZipFile
 
 import package_e1_downloads as legacy
@@ -28,7 +30,7 @@ import package_e1_downloads as legacy
 
 ROOT = Path(__file__).resolve().parents[1]
 ITEMS = {item: filename for item, filename, *_ in legacy.ITEMS}
-PRESERVED_ITEMS = frozenset({"8.3", "8.5", "8.6"})
+PRESERVED_ITEMS = frozenset({"8.3", "8.6"})
 STAGES = {
     "native_search_20261106": {
         "README.md", "source_manifest.json", "summary.json", "records.csv",
@@ -38,12 +40,34 @@ STAGES = {
         "README.md", "source_manifest.json", "summary.json", "evidence_matrix.json",
         "evidence_matrix.csv", "metrics.csv", "references.bib",
     },
+    "editorial_screening_20261106": {
+        "README.md", "decisions.csv", "summary.json", "identity_review.csv", "flow.svg",
+    },
+    "selection_synthesis_20261106": {
+        "README.md", "decision_matrix.csv", "search_evidence_ledger.csv", "summary.json",
+    },
+}
+SUPPLEMENTS = {
+    "dataset_comparison": {
+        "directory": "book/_static/e1_dataset_comparison_20261106",
+        "manifest": "manifest.json", "item": "8.7",
+        "files": {"README.md", "comparison.csv", "margin_sensitivity.csv", "summary.json"},
+    },
+    "statistics": {
+        "directory": "book/_static/e1_statistics_supplement_20261106",
+        "manifest": "source_manifest.json", "item": "8.5",
+        "files": {"README.md", "summary.json", "friedman_global.json", "pairwise_sensitivity.csv",
+                  "qq_diagnostics.csv", "qq_coordinates.csv", "qq_differences.png",
+                  "artifact_availability.json"},
+    },
 }
 CHRONOLOGY_NOTE = (
-    "La ampliación bibliográfica del 6 de noviembre de 2026 es posterior a los "
-    "experimentos documentados. No constituye un prerregistro retrospectivo, no "
+    "La ampliación bibliográfica, la comparación documental y el suplemento estadístico "
+    "del 6 de noviembre de 2026 son posteriores a los "
+    "experimentos documentados. Esta ampliación no constituye un prerregistro retrospectivo, no "
     "modifica sus configuraciones, resultados ni cronologías y no añade ajustes "
-    "o pronósticos. Los estratos históricos de literatura conservan su identidad."
+    "o pronósticos. Los nuevos contrastes son análisis suplementarios posteriores; "
+    "los estratos históricos de literatura conservan su identidad."
 )
 _SHA256 = re.compile(r"^[0-9a-f]{64}$")
 _PRIVATE_FIELDS = {
@@ -114,8 +138,35 @@ def _field_is_private(name):
 
 
 def validate_public_bytes(name, data):
-    """Do not republish exported abstracts or contact fields as metadata."""
+    """Validate allowlisted metadata and plots, never exported private fields."""
     suffix = PurePosixPath(name).suffix.lower()
+    if suffix == ".png":
+        if not data.startswith(b"\x89PNG\r\n\x1a\n"):
+            raise ValueError("Invalid public PNG: " + name)
+        offset, chunks = 8, []
+        while offset < len(data):
+            if offset + 12 > len(data):
+                raise ValueError("Truncated public PNG: " + name)
+            length = struct.unpack(">I", data[offset:offset + 4])[0]
+            end = offset + 12 + length
+            if end > len(data):
+                raise ValueError("Truncated public PNG: " + name)
+            kind = data[offset + 4:offset + 8]
+            payload = data[offset + 8:offset + 8 + length]
+            checksum = struct.unpack(">I", data[offset + 8 + length:end])[0]
+            if zlib.crc32(kind + payload) & 0xffffffff != checksum:
+                raise ValueError("Public PNG CRC mismatch: " + name)
+            chunks.append(kind)
+            offset = end
+            if kind == b"IEND":
+                if length or offset != len(data):
+                    raise ValueError("Trailing data in public PNG: " + name)
+                break
+        if not chunks or chunks[0] != b"IHDR" or chunks[-1] != b"IEND" or b"IDAT" not in chunks:
+            raise ValueError("Incomplete public PNG: " + name)
+        return
+    if suffix not in {".csv", ".json", ".bib", ".md", ".svg"}:
+        raise ValueError("Unsupported public evidence extension: " + name)
     text = data.decode("utf-8-sig")
     if suffix == ".csv":
         headers = next(csv.reader(io.StringIO(text)), [])
@@ -137,10 +188,11 @@ def validate_public_bytes(name, data):
         raise ValueError("Private/abstract field in public BibTeX: " + name)
 
 
-def public_stage(directory, expected_names):
+def public_stage(directory, expected_names, manifest_name="manifest.json"):
     """Read only reviewed metadata names with hashes in a committed manifest."""
     directory = Path(directory)
-    manifest_data = _regular_file(directory / "manifest.json", ROOT)
+    safe_member(manifest_name)
+    manifest_data = _regular_file(directory / manifest_name, ROOT)
     manifest = json.loads(manifest_data)
     if "files_sha256" in manifest and "files" in manifest:
         raise ValueError("Ambiguous literature manifest schema: " + str(directory))
@@ -161,8 +213,8 @@ def public_stage(directory, expected_names):
             raise ValueError("Literature allowlist hash mismatch: " + name)
         validate_public_bytes(name, data)
         files[name] = data
-    validate_public_bytes("manifest.json", manifest_data)
-    files["manifest.json"] = manifest_data
+    validate_public_bytes(manifest_name, manifest_data)
+    files[manifest_name] = manifest_data
     summary = json.loads(files["summary.json"])
     if not isinstance(summary, dict):
         raise ValueError("Literature summary must be an object: " + str(directory))
@@ -235,7 +287,9 @@ def _readme(item, title, revision, previous):
     )
     return (f"# {item}. {title}\n\nFuente de esta actualización: `{revision}`.\n\n"
             + introduction + CHRONOLOGY_NOTE + "\n\n"
-            "Los productos 8.3, 8.5 y 8.6 conservan exactamente los ZIP de la entrega base. "
+            "Los productos 8.3 y 8.6 conservan exactamente los ZIP de la entrega base. "
+            "8.5 conserva sus archivos científicos originales y añade estadística "
+            "suplementaria posterior; 8.7 incorpora la comparación documental. "
             "Los manifiestos internos identifican los bytes realmente incluidos.\n\n"
             "## Notas conservadas de la entrega base\n\n" + previous.decode("utf-8"))
 
@@ -258,6 +312,14 @@ def package(output_dir, requested_revision=None):
             if (directory / name).relative_to(ROOT).as_posix() not in tracked:
                 raise ValueError("Literature source is not committed: " + stage + "/" + name)
         stages[stage], stage_info[stage] = files, info
+    supplements, supplement_info = {}, {}
+    for label, spec in SUPPLEMENTS.items():
+        directory = ROOT / spec["directory"]
+        files, info = public_stage(directory, spec["files"], spec["manifest"])
+        for name in files:
+            if (directory / name).relative_to(ROOT).as_posix() not in tracked:
+                raise ValueError("Supplement source is not committed: " + label + "/" + name)
+        supplements[label], supplement_info[label] = files, {**info, "product": spec["item"]}
     # The historical generator is used only for its HTML exclusion/link logic.
     # Do not call its main(), load_crypto_stage(), or any experimental exporter.
     report = legacy.report_files()
@@ -283,6 +345,9 @@ def package(output_dir, requested_revision=None):
         if name not in tracked:
             raise ValueError("Required source is not committed: " + name)
         products["8.2"][name] = _regular_file(ROOT / name, ROOT)
+    supplement_lock = "requirements-e1-supplement.lock.txt"
+    if supplement_lock in tracked:
+        products["8.2"][supplement_lock] = _regular_file(ROOT / supplement_lock, ROOT)
     if not {"book/references.bib", "book/_static/literature_e1/README.md"}.issubset(tracked):
         raise ValueError("Bibliography and literature index must be committed")
     bibliography = _regular_file(ROOT / "book/references.bib", ROOT)
@@ -298,6 +363,16 @@ def package(output_dir, requested_revision=None):
         for name, data in files.items():
             products["8.4"][prefix + name] = data
             if name in {"summary.json", "source_manifest.json", "manifest.json"}:
+                products["8.7"][prefix + name] = data
+    for label, files in supplements.items():
+        spec = SUPPLEMENTS[label]
+        prefix = spec["directory"] + "/"
+        for item in {spec["item"], "8.7"}:
+            products[item] = {name: data for name, data in products[item].items()
+                              if not name.startswith(prefix)}
+        for name, data in files.items():
+            products[spec["item"]][prefix + name] = data
+            if name in {"summary.json", "source_manifest.json", "manifest.json", "artifact_availability.json"}:
                 products["8.7"][prefix + name] = data
     # User-confirmed query families and year filters are a separate, reproducible
     # input to the importer; they must travel with its code and derived ledger.
@@ -317,9 +392,11 @@ def package(output_dir, requested_revision=None):
         "baseline_source_commit": catalog.get("source_commit"),
         "baseline_catalog_sha256": base_catalog_sha,
         "stages": stage_info,
+        "supplements": supplement_info,
         "preserved_archive_sha256": {ITEMS[item]: base_rows[item]["sha256"]
                                      for item in sorted(PRESERVED_ITEMS)},
         "original_experiments_changed": False, "retrospective_preregistration": False,
+        "new_analysis_scope": "Post-hoc statistics from saved aggregate run metrics only; no training or daily forecasts",
         "chronology_note": CHRONOLOGY_NOTE,
     }
     products["8.7"]["literature_refresh_20261106.json"] = legacy.encode(refresh)
@@ -328,6 +405,16 @@ def package(output_dir, requested_revision=None):
         "El producto 8.4 contiene los metadatos públicos completos de las nuevas etapas; "
         "aquí se conservan sus resúmenes, manifiestos y procedencia. No se redistribuyen "
         "los archivos de búsqueda originales, resúmenes editoriales ni PDF de terceros.\n"
+    ).encode()
+    products["8.7"]["SUPLEMENTO_EVIDENCIAS_20261106.md"] = (
+        "# Evidencias y análisis posteriores del 6 de noviembre de 2026\n\n"
+        + CHRONOLOGY_NOTE + "\n\n"
+        "8.7 añade la comparación documental y sensibilidad del margen; 8.4 incluye el "
+        "cribado editorial y la síntesis de selección; 8.5 añade Q–Q, contraste global y "
+        "sensibilidad no paramétrica calculados desde métricas guardadas. Aquí se "
+        "conservan resúmenes y manifiestos. Los resultados y fuentes prerregistrados "
+        "no se reescriben; los vectores diarios, pesos y escaladores permanecen fuera "
+        "de la entrega pública.\n"
     ).encode()
     # Nothing is written until all source metadata and baseline archives pass.
     output.mkdir(parents=True, exist_ok=True)
@@ -357,14 +444,17 @@ def package(output_dir, requested_revision=None):
     result = copy.deepcopy(catalog)
     result.update(source_commit=revision, packages=records, complete_package=complete,
                   report_verification=report_check, archive_verification=verifications,
-                  literature_refresh=refresh, scientific_limitations_preserved=True,
+                  literature_refresh=refresh, evidence_refresh=refresh,
+                  scientific_limitations_preserved=True,
                   new_model_fits_by_packaging=0, new_checkpoint_forecasts_by_packaging=0,
                   raw_market_archive_reads_by_packaging=0, publications_by_packaging=0)
     (output / "catalogo.json").write_bytes(legacy.encode(result))
     (output / "README.md").write_text(
         "# Descargas vigentes del Entregable 1\n\nLos siete productos conservan los nombres "
         "de la unidad 8. La descarga completa reúne esos siete ZIP y su catálogo.\n\n"
-        + CHRONOLOGY_NOTE + "\n\nLos ZIP 8.3, 8.5 y 8.6 son idénticos a la entrega base. "
+        + CHRONOLOGY_NOTE + "\n\nLos ZIP 8.3 y 8.6 son idénticos a la entrega base. El ZIP "
+        "8.5 conserva sus archivos originales y añade el suplemento identificado; 8.7 "
+        "incorpora la comparación documental. "
         "`catalogo.json` conserva modelos, fases, entrypoints y limitaciones científicas. "
         "Verificar integridad con `sha256sum -c SHA256SUMS.txt`; los manifiestos internos "
         "verifican bytes y SHA256 por miembro.\n", encoding="utf-8")

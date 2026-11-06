@@ -3,7 +3,7 @@
 **Proyecto de Deep Learning · 2026-30**  
 **Profesor:** Dr. Lihki Rubio  
 **Autor:** Jassan Arteta  
-**Avance:** Entregable 1 · GRU–LSTM–TCN, CV de Filipe y estudio D7 planificado · actualización bibliográfica del 6 de noviembre de 2026
+**Avance:** Entregable 1 · GRU–LSTM–TCN, CV de Filipe y estudio D7 planificado · cribado editorial y suplemento estadístico del 6 de noviembre de 2026
 
 Este libro desarrolla el **Entregable 1 de Deep Learning** para pronosticar volatilidad de **Bitcoin**, con datos oficiales de **Binance Spot BTCUSDT**. El problema es **tipo 4: regresión temporal**: cinco covariables OHLCV diarias, desviación estándar poblacional de siete retornos logarítmicos y horizonte de un día. Se conserva la validación **`split_train_val_forwardChaining` de `timeseries-cv`**, proyecto de DidierRLopes con coautoría de **Filipe R. Ramos**, con embargo y transformaciones ajustadas únicamente al pasado permitido.
 
@@ -78,6 +78,8 @@ La bibliografía actual llega a **42 referencias** al añadir **dos originales c
 El margen académico δ≈0,00025772843 corresponde al 5 % del RMSE CV del GRU/D7 inicial. Fue posterior al test de fase I y quedó fijado antes de fase II. Diferencia distinguible de cero, ganancia superior al 5 % y utilidad financiera son afirmaciones distintas. No se afirma equivalencia ni generalización a otros mercados.
 
 ## Reproducibilidad
+
+La actualización del 06/11 añade decisiones editoriales por título/resumen, una comparación explícita de familias candidatas y un suplemento estadístico con Q–Q, Friedman y sensibilidad Wilcoxon. Son ampliaciones posteriores a los experimentos. Conservan el baseline, las métricas, el margen registrado y las cronologías originales; su ejecución no añade entrenamientos ni predicciones. Los candidatos que necesitan texto completo y la trazabilidad de búsquedas todavía incompleta se identifican en el [capítulo 3](sections/03_estado_arte.md).
 
 [BUILD.md](https://github.com/jassan-bit/DeepLearning_202630/blob/main/BUILD.md) distingue los comandos de ambas fases y la restauración desde los ZIP. Las descargas del [capítulo 8](sections/08_entregables.md) reúnen informe, código y evidencia pública. Construir HTML consume resultados guardados y no entrena redes ni abre archivos de mercado. Las observaciones y predicciones individuales, los escaladores y los checkpoints completos se distinguen de los agregados públicos conservados para revisión.
 

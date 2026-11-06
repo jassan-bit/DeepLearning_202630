@@ -102,9 +102,9 @@ La [matriz de las once referencias aplicadas](../_static/literature_e1/public_we
 Un mirror atribuía a Herremans un PDF y el ID arXiv:2211.00759; al leer la portada se comprobó que era otro trabajo, de Reijnen y colaboradores. Se descartó esa asociación. La pista secundaria 2211.08281 permanece sin corroboración oficial. La concordancia de título, autores, DOI y portada prevalece sobre el nombre de un archivo o una etiqueta del buscador.
 
 (tabla-referencias-e1)=
-#### 3.1.2.4. Catálogo bibliográfico vigente: 40 referencias
+#### 3.1.2.4. Catálogo histórico del 05/11/2026: 40 referencias
 
-Las tablas conservan las 39 entradas del corte anterior y añaden una referencia cripto, S9. El [catálogo vigente de 40 referencias](../_static/literature_e1/crypto_extension_20261105/references_access_40.json) conserva procedencia y nivel de acceso. Los catálogos de [39](../_static/literature_e1/journal_update_20261105/references_access_39.json) y [36](../_static/literature_e1/recovery_20261105/references_access_36.json) permanecen como antecedentes; no se modifican sus fechas ni se atribuyen lecturas nuevas a entradas anteriores.
+Las tablas conservan las 39 entradas del corte anterior y añaden una referencia cripto, S9. El [catálogo histórico de 40 referencias](../_static/literature_e1/crypto_extension_20261105/references_access_40.json) conserva procedencia y nivel de acceso. La bibliografía canónica actual contiene **42 entradas**, al incorporar los dos originales de §3.6.3; sus objetivos y papeles se estratifican y no convierten automáticamente el corpus histórico en nueve comparadores homogéneos. Los catálogos de [39](../_static/literature_e1/journal_update_20261105/references_access_39.json) y [36](../_static/literature_e1/recovery_20261105/references_access_36.json) permanecen como antecedentes; no se modifican sus fechas ni se atribuyen lecturas nuevas a entradas anteriores.
 
 El catálogo reúne **40 referencias: trece aplicaciones a Bitcoin u otras criptomonedas, ocho fundamentos de redes neuronales, dieciséis referencias de volatilidad, diagnóstico y evaluación, y tres respaldos metodológicos financieros**. Siete son estudios cripto completos incluidos; la cantidad de citas no equivale a ese denominador. Las pistas sin original y la evidencia solo de código o identidad se conservan por separado.
 
@@ -381,6 +381,26 @@ La decisión de publicar la fase I sucede al benchmark histórico y a la inspecc
 
 Los [registros originales de procedencia](https://github.com/jassan-bit/DeepLearning_202630/tree/main/experiments/gru_lstm_tcn_20261105/original_registration) se conservan en el archivo fuente del repositorio, fuera de los recursos experimentales presentados en este capítulo. La selección actual es posterior y no se atribuye retroactivamente a esos registros. El [expediente vigente](../_static/literature_e1/gru_lstm_tcn_selection_20261105/selection.json) documenta GRU–LSTM–TCN sin cambiar la matriz de siete estudios ni sus frecuencias.
 
+#### 3.2.1.4. Comparación imparcial de candidatos y regla de reconsideración
+
+La siguiente matriz evalúa alternativas con el mismo criterio: evidencia de uso independiente, especificación recuperada, capacidad y sesgo inductivo. Es una **síntesis posterior** de las fuentes disponibles, sin nuevos entrenamientos ni una regla de selección anterior al benchmark. El [expediente de síntesis](../_static/literature_e1/selection_synthesis_20261106/summary.json), la {download}`matriz completa <../_static/literature_e1/selection_synthesis_20261106/decision_matrix.csv>` y su [manifiesto](../_static/literature_e1/selection_synthesis_20261106/manifest.json) permiten revisar el razonamiento y sus fuentes.
+
+| Candidato | Evidencia independiente y capacidad conocida | Aporte y objeción aplicados al problema | Decisión condicionada y qué la cambiaría |
+|---|---|---|---|
+| **GRU** | S1/S2/S8, **3/7**. Una capa propia: 3.777 parámetros en fase I; 1.121 en fase II. | Representa recurrencia con dos compuertas y estado integrado. A igual ancho tiene menos pesos que LSTM; eso no prueba menor error ni igual capacidad. | Se conserva por recurrencia y por aislar una parametrización recurrente. Se reconsideraría si el objetivo prioritario fuera ampliar familias y el corpus adjudicado respaldara mejor otra referencia simple. |
+| **LSTM** | S1/S2/S5/S7/S8, **5/7**. Una capa propia: 5.025 parámetros en fase I; 1.489 en fase II. | Mayor recurrencia del corte; celda separada permite contrastar la actualización de memoria. Comparte secuencialidad y compuertas con GRU y reduce la amplitud de sesgos cubierta por tres puestos. | Se conserva como referencia recurrente más frecuente. Podría sustituirse una de las dos recurrentes en un estudio futuro orientado a diversidad; no se elige cuál usando el test actual. |
+| **TCN** | S1, **1/7**. Tres bloques propios: 4.289 parámetros en fase I; 1.185 en fase II. CVI aporta evidencia externa estratificada, no otro caso σ7. | Contrasta recurrencia con filtros causales dilatados y rutas residuales. Su estructura no es más simple por definición que una CNN convencional o MLP. | Se conserva por comparación directa de S1 y contraste convolucional explícito. La baja recurrencia exige contrastarla con los originales pendientes; no se transforma 1/7 en prevalencia amplia. |
+| **MLP** | S8, **1/7**. Cuatro capas; anchos insuficientemente especificados para un total exacto. Cabezas internas de S9/CVI no incrementan frecuencia. | Vectorizar la ventana conserva el orden por posiciones; no necesita recurrencia para ser una referencia válida. Aporta un sesgo más diferente del de GRU que una segunda recurrente. | Alternativa legítima. Una receta compacta propia es posible, como en otras familias; la especificación incompleta de S8 no justifica descartarla por principio. Un corpus cerrado favorable motivaría una nueva comparación con presupuesto común. |
+| **RNN sencilla** | Sin comparador independiente verificado en los siete originales actuales. No se le atribuye una receta de autor ausente. | Permitiría aislar el efecto de las compuertas y puede ser menor a igual ancho. Su sencillez teórica no acredita uso en este problema ni ausencia universal de publicaciones. | Candidata pendiente de respaldo aplicado. Se incorporaría a la decisión si un original elegible documenta ese papel y una configuración recuperable. |
+| **CNN genérica** | S8, **1/7**; dos capas más Dense, sin dimensión, canales y kernels suficientes. CNN1D simple explícita: **0/7**. | Localidad y pesos compartidos son pertinentes. Causalidad, dimensión y campo receptivo requieren una receta concreta; no se deducen del nombre CNN. | Alternativa legítima a TCN. Un original que especifique una CNN temporal básica puede favorecerla por simplicidad. No se penaliza su familia por la descripción incompleta de una sola fuente. |
+| **Encoder Transformer** | S2/S6, **2/7**, más que TCN. S2 permite un conteo común condicional de 47.521 parámetros; S6 queda incompleto. | Atención y posiciones aportan otro sesgo. Sus fuentes grises y recetas disponibles limitan respaldo y comparación; un encoder más pequeño sigue siendo posible. Con D7, el costo cuadrático de atención no basta para declararlo inviable. | Se prioriza aquí el comparador convolucional directo de S1 y las recetas compactas registradas. Se reconsideraría ante originales mejor especificados y un balance favorable de frecuencia, capacidad y calidad. |
+
+**Alcance de la no redundancia.** En `SingleLayerGRU.forward` y `SingleLayerLSTM.forward` el encoder recibe únicamente la ventana y no se transporta un estado entre fechas: cada evaluación parte del estado inicial predeterminado. Por ello, en fase II ambas redes disponen de **las mismas siete observaciones**, y la memoria de celda LSTM no incorpora historia anterior a D7. El contraste identifica diferencias de parametrización y actualización dentro de una familia amplia, no una ventaja demostrada de memoria de largo plazo ni independencia de sus errores. El piloto y los contrastes propios evalúan diferencias bajo este contrato; no sustituyen el respaldo bibliográfico de diversidad.
+
+**Sensibilidad de la decisión a los criterios.** Ordenar únicamente por frecuencia produciría **LSTM–GRU–Transformer**. Priorizar amplitud de sesgos podría favorecer **MLP–LSTM–TCN** —o una sola recurrente equivalente—, con recetas que requerirían su propio estudio comparable. La terna vigente **GRU–LSTM–TCN** prioriza un contraste entre dos celdas recurrentes frecuentes y una representación convolucional causal, apoyada directamente por S1. Se reconoce el costo: dos puestos comparten recurrencia y TCN no está entre las tres primeras frecuencias. No se afirma un óptimo único ni que esos contrafactuales hayan sido ejecutados.
+
+La elección queda así defendida como **comparación operativa condicionada al corpus recuperado**. Su cierre conforme a la guía exige completar la adjudicación y evaluar si la evidencia mantiene conjuntamente recurrencia, sencillez y no redundancia. Ni la autorización para publicar ni el ranking de una reserva ya observada justifican ese cierre. Las posibles revisiones afectan una decisión futura documentada; no cambian retrospectivamente la terna, las recetas o los resultados de las fases I y II.
+
 ### 3.2.2. Criterios que debe cumplir cada modelo base
 
 Los cuatro criterios de la guía se evalúan con evidencia y límites concretos:
@@ -388,7 +408,7 @@ Los cuatro criterios de la guía se evalúan con evidencia y límites concretos:
 | Criterio | GRU y LSTM | TCN y límite de la selección |
 |---|---|---|
 | Arquitectura simple y reproducible | Una capa H=32, cabeza escalar; 3.777 y 5.025 parámetros, con fórmulas en §3.3 | Tres bloques residuales y 4.289 parámetros; pequeña frente al ganador de S1, sin afirmar mínima complejidad global. La receta exacta es del proyecto. |
-| Uso como referencia en literatura del problema | GRU 3/7 y LSTM 5/7; ambas en los originales publicados S1 y S8 | TCN 1/7, referencia independiente en S1, Tabla 2. **Uso ampliamente recurrente no acreditado**; la selección autorizada acepta esa cobertura limitada y la hace explícita. |
+| Uso como referencia en literatura del problema | GRU 3/7 y LSTM 5/7; ambas en los originales publicados S1 y S8 | TCN 1/7, referencia independiente en S1, Tabla 2. **Uso ampliamente recurrente no acreditado**; el antecedente directo acredita pertinencia, mientras la suficiencia de recurrencia permanece parcial. |
 | Mismo pipeline, información y evaluación | Cuatro historias OHLCV, σ7/h=1, mismos cortes mensuales 2024, diez semillas y transformaciones ajustadas a entrenamiento | Mismo contrato y presupuesto fijo por configuración. Igualar número de corridas no iguala capacidad ni demuestra optimización equivalente. |
 | Modelo DL independiente | GRU y LSTM son redes completas con salida propia | TCN de una rama con salida propia; no D-TCN social, cabeza interna o red híbrida. |
 
@@ -868,6 +888,21 @@ Estas cantidades son registros recibidos, no el universo de resultados de las ba
 
 El material previo de E2 acredita otras recepciones WoS/Scopus. No se suman sus 7.833 grupos a esta ampliación como si fueran conjuntos disjuntos o estudios elegibles nuevos. El objeto de esta etapa es incorporar y examinar las cuatro exportaciones específicas de E1; un flujo global acumulado exige reconciliar todas las ocurrencias de las etapas anteriores. Encontrar un artículo IEEE en Scopus tampoco acredita una búsqueda dentro de IEEE Xplore.
 
+#### 3.6.1.1. Bitácora de evidencia recuperada, declarada y pendiente
+
+La {download}`bitácora consolidada de evidencia de búsqueda <../_static/literature_e1/selection_synthesis_20261106/search_evidence_ledger.csv>` separa los siguientes estados. Esta distinción evita atribuir a un archivo metadatos que no contiene o reconstruir como ejecutada una consulta sugerida.
+
+| Etapa | Estado y respaldo disponible | Qué falta para reproducir la recuperación |
+|---|---|---|
+| Descubrimiento web histórico | **Recuperado:** cadenas, URL, respuestas y hashes en las bitácoras fijadas | Su alcance es acotado; no acredita búsquedas internas de índices. |
+| Cuatro exportaciones WoS/Scopus | **Recibido y comprobable:** 244 ocurrencias, campos y hashes de los archivos | Cadena literal, fecha/hora de consulta, total mostrado y rango exportado para cada búsqueda. |
+| Familia TCN o GRU/LSTM y filtro 2019–2026 | **Declarado por el autor:** confirmación conservada en el registro de contexto | Evidencia de interfaz o historial que corrobore todos los parámetros. No se requiere repetir la confirmación ya aportada. |
+| Consulta IEEE Xplore | **Pendiente de evidencia:** se conocen publicaciones IEEE, pero no un resultado de búsqueda nativa recuperado | Historial válido o exportación, cadena, fecha y total, incluso si fuera cero. |
+| Intento IEEE Xplore del 06/11 | **Acceso fallido:** la herramienta web devolvió `Internal Error` al abrir la URL de búsqueda dirigida | No se recibieron registros ni total. No es consulta acreditada ni evidencia de cero resultados. |
+| Plan de 24 cadenas nativas | **Propuesto, no ejecutado en aquel registro:** se conserva el plan histórico | Su existencia no completa cadenas literales de consultas efectivamente realizadas. |
+
+El intento fallido IEEE utilizó una URL con los grupos conceptuales `(bitcoin OR ethereum OR cryptocurrenc*)`, `(volatil* OR "realized variance")` y `(GRU OR LSTM OR "temporal convolutional")`. Se registra únicamente como intento de acceso posterior; no se validó su sintaxis en la plataforma ni se obtuvo un universo de resultados. Resolver el acceso o recuperar el historial original sigue siendo una necesidad de evidencia externa.
+
 ### 3.6.2. Deduplicación y primera pasada
 
 La [tabla de registros](../_static/literature_e1/native_search_20261106/records.csv), las [ocurrencias](../_static/literature_e1/native_search_20261106/occurrences.csv) y las [decisiones de deduplicación](../_static/literature_e1/native_search_20261106/deduplication.csv) permiten reconstruir el paso de **244 ocurrencias a 182 grupos bibliográficos provisionales**. Se enlazan DOI normalizados y títulos normalizados; los grupos por título sin identificador suficiente conservan su incertidumbre. Dos EID diferentes con el mismo título y años distintos no se declaran definitivamente una sola publicación sin verificar su identidad.
@@ -906,10 +941,32 @@ El nuevo respaldo de TCN fortalece su pertinencia como comparador en volatilidad
 | Requisito de la guía | Evidencia incorporada | Pendiente real |
 |---|---|---|
 | Consultar WoS y Scopus | Cuatro exportaciones identificadas por hash, 244 ocurrencias recibidas | Familias de consulta y filtro 2019–2026 confirmados por el autor; completar cadenas literales, totales y rangos todavía no acreditados. No confundir recepción con cobertura exhaustiva. |
-| Cribado y deduplicación trazables | 182 grupos provisionales, decisiones enlazadas, motivos y cola de recuperación | Adjudicación editorial, identidad de duplicados ambiguos y reconciliación acumulada con las etapas anteriores. |
+| Cribado y deduplicación trazables | 182 grupos provisionales, primera pasada automática preservada y adjudicación título/resumen en §3.6.6 | Textos completos de los candidatos pendientes, identidad de duplicados ambiguos y reconciliación acumulada con las etapas anteriores. |
 | Extraer modelos de los originales | Dos lecturas completas nuevas con ubicación de evidencia, objetivo, papel y calidad | Recuperar y evaluar los candidatos pertinentes aún no leídos íntegramente. |
-| Justificar exactamente tres bases simples | Corte histórico preservado, nuevo comparador TCN/CVI y separación de componentes híbridos | Validar selección por recurrencia, simplicidad y diversidad; no hacer búsquedas solo para confirmar la terna existente. |
+| Justificar exactamente tres bases simples | Matriz de siete familias en §3.2.1.4, corte histórico preservado, nuevo comparador TCN/CVI y separación de híbridos | Reevaluar el balance de recurrencia, simplicidad y diversidad con el corpus elegible cerrado; no buscar solo confirmación de la terna. |
 | IEEE Xplore | Publicaciones IEEE identificadas en índices y antecedentes de acceso | Consulta en la biblioteca y bitácora/exportación verificables; un resultado vacío también debe conservarse si la búsqueda fue válida. |
 | Diagrama de selección | Flujo de recepción y primera pasada explícitamente provisional | Un PRISMA acumulado solo puede cerrarse con conteos de elegibilidad y exclusiones finales respaldados. |
 
 La guía no fija una cantidad mágica de citas que sustituya estas comprobaciones. La siguiente decisión es editorial: leer los candidatos pertinentes, registrar inclusión/exclusión, actualizar la extracción y reevaluar el respaldo de la terna. Una nueva búsqueda dirigida se justifica cuando quede un vacío específico de objetivo, arquitectura o cobertura. Los experimentos y sus métricas no cambian al ampliar la bibliografía.
+
+### 3.6.6. Adjudicación editorial de título y resumen
+
+Tras la primera pasada, **Codex realizó una revisión asistida de título y resumen de los 182 grupos**, con decisión y motivo individual. Se identifica como una revisión por un único responsable asistido, pendiente de validación humana; no se atribuye una segunda revisión independiente ni lectura íntegra a esta etapa. Las {download}`decisiones editoriales <../_static/literature_e1/editorial_screening_20261106/decisions.csv>`, el [resumen](../_static/literature_e1/editorial_screening_20261106/summary.json), la {download}`revisión de identidad <../_static/literature_e1/editorial_screening_20261106/identity_review.csv>` y su [manifiesto](../_static/literature_e1/editorial_screening_20261106/manifest.json) constituyen el estado posterior; el archivo `native_search_20261106/screening.csv` conserva intacta la primera clasificación automática.
+
+El núcleo operacional de esta etapa es **pronóstico numérico de volatilidad cripto**, con RV y CVI conservados en estratos separados. Los trabajos de precio, retorno o dirección se excluyen de ese núcleo y pueden conservar utilidad contextual. Esta adjudicación no vuelve a evaluar la elegibilidad de cada miembro del N=7 histórico ni demuestra homogeneidad de sus criterios con los de esta etapa; reconciliar criterios y registros sigue siendo parte del cierre acumulado.
+
+| Resultado de la revisión título/resumen | Grupos | Alcance de la decisión |
+|---|---:|---|
+| Excluidos del núcleo por tarea o dominio | **145** | Motivo individual: predicción de precio/retorno/dirección, riesgo sin el objetivo pertinente u otro dominio. No se afirma ausencia de toda utilidad contextual. |
+| Contexto, revisiones o volúmenes | **11** | No añaden un experimento primario de referencia a la frecuencia de modelos; pueden orientar recuperación o discusión. |
+| Requieren original para decidir | **22** | El título/resumen no basta para comprobar objetivo, comparador autónomo y protocolo. Se conserva la incertidumbre. |
+| Lectura completa ya documentada y enlazada | **4** | E1N037=S8, E1N038=S1, E1N073=CVI y E1N111=GARCH–DL. Son identidades recuperadas, no cuatro inclusiones nuevas homogéneas. |
+| **Total revisado** | **182** | **No equivale al número de estudios incluidos.** |
+
+![Flujo del cribado editorial de las cuatro exportaciones](../_static/literature_e1/editorial_screening_20261106/flow.svg)
+
+Los dos primeros originales enlazados ya pertenecen al corpus N=7. CVI y GARCH–DL mantienen los estratos de objetivo y papel establecidos en §3.6.3. Por tanto, esta reconciliación no suma 4 al corpus histórico, no cambia sus frecuencias y no presenta nueve comparadores de σ7 equivalentes. Las cinco ocurrencias con año nominal 2027 quedan sujetas a fecha efectiva; ninguna exclusión se decide únicamente por ese año.
+
+El cotejo editorial de los cuatro grupos enlazados inicialmente solo por título acepta **E1N011, E1N094 y E1N150** por concordancia de autor, revista, año, volumen/número y páginas. **E1N097** conserva un conflicto de identidad entre EID/años que requiere fuente primaria. Se documenta la evidencia de cada decisión sin sobrescribir el agrupamiento provisional original ni sumar otra vez sus ocurrencias.
+
+La cola restante contiene **E1N007, 053, 057, 074, 075, 080, 091, 118, 120, 121, 124, 129, 133, 138, 142, 152, 163, 169, 170, 173, 175 y 177**. Recuperar sus originales y aplicar los mismos criterios a evidencia favorable o desfavorable puede modificar el corpus y la selección. El diagrama cierra esta etapa de título/resumen; el flujo acumulado entre todas las etapas y la elegibilidad final de esos candidatos siguen abiertos.
