@@ -1,0 +1,106 @@
+[
+  {
+    "mechanism": "attention_segments",
+    "origin_modality": "Vision/image patches",
+    "identified_primary_sources": [
+      {
+        "title": "An Image Is Worth 16x16 Words: Transformers for Image Recognition at Scale",
+        "authors": "Dosovitskiy et al.",
+        "venue": "ICLR",
+        "year": 2021,
+        "DOI": null
+      },
+      {
+        "title": "Swin Transformer: Hierarchical Vision Transformer Using Shifted Windows",
+        "authors": "Liu et al.",
+        "venue": "ICCV",
+        "year": 2021,
+        "DOI": null
+      }
+    ],
+    "identification_basis": "Bibliography and/or motivation in a previously read complete forecasting original; not a new native database search",
+    "forecast_source": "Crossformer",
+    "forecast_source_version": "ICLR 2023 conference PDF",
+    "forecast_source_PDF_sha256": "a5fcad16cd810492124af3efad2fa18f7c5f9556fb303bb88360cceaf396183a",
+    "forecast_source_PDF_page_locators": {
+      "partitioning images into patches": [
+        3
+      ],
+      "An image is worth 16x16 words": [
+        10
+      ],
+      "Swin transformer: Hierarchical": [
+        11
+      ]
+    },
+    "private_extracted_text_sha256": "6826dea319c7910cd0a2cf5466739f961aae888bafbd41ad4bafddb405351f4c",
+    "shared_structural_property": "Partition an observed context into segments and model relationships between time segments and variables; different axes retain their meaning.",
+    "D7_limitations": "D7 needs valid segment lengths and no future observations; image successes do not certify Bitcoin gains or make temporal and feature axes interchangeable.",
+    "origin_full_manuscripts_read_in_this_step": 0,
+    "new_native_transversal_queries": 0,
+    "Bitcoin_improvement_claimed": false,
+    "E3_architecture_selected": false
+  },
+  {
+    "mechanism": "token_feature_mixing",
+    "origin_modality": "Vision/token and channel mixing",
+    "identified_primary_sources": [
+      {
+        "title": "MLP-Mixer: An All-MLP Architecture for Vision",
+        "authors": "Tolstikhin et al.",
+        "venue": "NeurIPS34, pp24261–24272",
+        "year": 2021,
+        "DOI": null
+      }
+    ],
+    "identification_basis": "Bibliography and/or motivation in a previously read complete forecasting original; not a new native database search",
+    "forecast_source": "TSMixer",
+    "forecast_source_version": "2303.06053v5",
+    "forecast_source_PDF_sha256": "864079eb9702bca1f27f540819052af94625b226cd5a652a02638800f95b365e",
+    "forecast_source_PDF_page_locators": {
+      "Mlp-mixer: An all-mlp architecture for vision": [
+        15
+      ]
+    },
+    "private_extracted_text_sha256": "8b8cb4b78aff43321f405e98ecd23a3db2fb3041b0dff8122734bfb8dc4a1215",
+    "shared_structural_property": "Separate the mixing of observed positions and channels; the D7×5 tensor has two explicit axes.",
+    "D7_limitations": "Seven days and five channels are a small domain; mixing and extra readouts must be assessed by ablation and equal tuning, not assumed efficient or superior.",
+    "origin_full_manuscripts_read_in_this_step": 0,
+    "new_native_transversal_queries": 0,
+    "Bitcoin_improvement_claimed": false,
+    "E3_architecture_selected": false
+  },
+  {
+    "mechanism": "input_selective_state",
+    "origin_modality": "Language/sequence modeling",
+    "identified_primary_sources": [
+      {
+        "title": "Mamba: Linear-Time Sequence Modeling with Selective State Spaces",
+        "authors": "Gu and Dao",
+        "venue": "arXiv2312.00752, as cited in the supplied S-Mamba preprint",
+        "year": 2023,
+        "identifier": "arXiv:2312.00752",
+        "DOI": null
+      }
+    ],
+    "identification_basis": "Bibliography and/or motivation in a previously read complete forecasting original; not a new native database search",
+    "forecast_source": "S-Mamba",
+    "forecast_source_version": "2403.11144v3",
+    "forecast_source_PDF_sha256": "11f25c26b33a50455c835cd4062d9314b417716c8a6d35356249efa56d230751",
+    "forecast_source_PDF_page_locators": {
+      "Mamba: Linear-time sequence modeling with": [
+        13
+      ],
+      "selective state spaces. arXiv preprint arXiv:2312.00752": [
+        13
+      ]
+    },
+    "private_extracted_text_sha256": "c56e8a84e946f78070a69140967c1cd0619132900a869d2fef67b00ef4ac90d5",
+    "shared_structural_property": "Input-dependent state selection can be adapted over tokens formed from already observed variable histories.",
+    "D7_limitations": "The retrieved S-Mamba scans variable tokens; long language sequences are not D7. Adding target lags would change the contract and is not licensed by this transfer rationale.",
+    "origin_full_manuscripts_read_in_this_step": 0,
+    "new_native_transversal_queries": 0,
+    "Bitcoin_improvement_claimed": false,
+    "E3_architecture_selected": false
+  }
+]

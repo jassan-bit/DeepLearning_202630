@@ -1,0 +1,840 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>5. Paper Guía y Replicación &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/05_paper_guia';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="6. Benchmark Final" href="06_benchmark_final.html" />
+    <link rel="prev" title="4. Implementación de Modelos Benchmark" href="04_implementacion.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 2 · Bitcoin: pronóstico de volatilidad</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_literatura.html">3. Revisión Sistemática del Estado del Arte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación de Modelos Benchmark</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Paper Guía y Replicación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark Final</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y referencias causales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Preregistro, potencia y piloto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de datos y auditoría formal de fuga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. Entrenamiento, ajuste equitativo y coste computacional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Incertidumbre predictiva y análisis de errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Agregación estadística e interpretación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas fuente, adaptación D7 y búsqueda condicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_propuesta.html">Archivo de trabajo anterior · Catálogo y propuesta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_diseno_experimental.html">Archivo de trabajo anterior · Seguimiento del diseño</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_experimentos_resultados.html">Archivo de trabajo anterior · Benchmark y resultados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_reproducibilidad_entrega.html">Archivo de trabajo anterior · Reproducibilidad y entrega</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><p class="small">Entregable 2 · Jassan Arteta · 2026-30</p></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/05_paper_guia.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>5. Paper Guía y Replicación</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paper-guia-y-justificacion-de-seleccion">5.1 Paper guía y justificación de selección</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-original-arquitectura-formulacion-y-supuestos">5.2 Modelo original: arquitectura, formulación y supuestos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entrada-salida-y-flujo-de-datos">5.2.1 Entrada, salida y flujo de datos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulacion-propia-fiel-al-mecanismo">5.2.2 Formulación propia fiel al mecanismo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supuestos-y-relacion-con-el-benchmark">5.2.3 Supuestos y relación con el benchmark</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#replica-parcial-condiciones-y-criterio-registrado">5.3 Réplica parcial: condiciones y criterio registrado</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-obtenido-y-discrepancia">5.3.1 Resultado obtenido y discrepancia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#posibles-causas-y-alcance-de-la-validacion">5.3.2 Posibles causas y alcance de la validación</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitaciones-piloto-cuantificado-en-tres-modelos">5.4 Limitaciones: piloto cuantificado en tres modelos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-fijado-antes-de-los-resultados">5.4.1 Diseño fijado antes de los resultados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#l1-dependencia-de-la-composicion-del-batch">5.4.2 L1: dependencia de la composición del batch</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#l2-alta-variabilidad-observable-resultado-inconcluso">5.4.3 L2: alta variabilidad observable, resultado inconcluso</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relacion-con-el-entregable-3-y-limites-de-transferencia">5.5 Relación con el Entregable 3 y límites de transferencia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduccion-descargas-y-estado-de-cierre">5.6 Reproducción, descargas y estado de cierre</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="paper-guia-y-replicacion">
+<h1>5. Paper Guía y Replicación<a class="headerlink" href="#paper-guia-y-replicacion" title="Link to this heading">#</a></h1>
+<p>Este capítulo desarrolla la sección 5 de la guía completa de 65 páginas, recibida después de sus dos capturas iniciales (página16 y continuación). Distingue la réplica externa de ETTh1 del benchmark Bitcoin D7. El diseño, las fuentes, las cinco semillas y el criterio de comparación se registraron antes de los ajustes con datos.</p>
+<section id="paper-guia-y-justificacion-de-seleccion">
+<h2>5.1 Paper guía y justificación de selección<a class="headerlink" href="#paper-guia-y-justificacion-de-seleccion" title="Link to this heading">#</a></h2>
+<p>Se selecciona <strong>TimeMixer</strong> como paper guía del proyecto: Wang, S., Wu, H., Shi, X., Hu, T., Luo, H., Ma, L., Zhang, J. Y. y Zhou, J. (2024). <em>TimeMixer: Decomposable Multiscale Mixing for Time Series Forecasting</em>. International Conference on Learning Representations (ICLR). <a class="reference external" href="https://doi.org/10.48550/arXiv.2405.14616">DOI del preprint: 10.48550/arXiv.2405.14616</a> <span class="bibtex-citation" id="id1">[<a class="reference internal" href="referencias.html#id7" title="Shiyu Wang, Haixu Wu, Xiaoming Shi, Tengge Hu, Huakun Luo, Lintao Ma, James Y. Zhang, and Jun Zhou. TimeMixer: Decomposable Multiscale Mixing for Time Series Forecasting. In International Conference on Learning Representations. 2024. Versión leída: arXiv 2405.14616v1, con identificación ICLR 2024. El DOI corresponde al preprint. URL: https://doi.org/10.48550/arXiv.2405.14616, doi:10.48550/arXiv.2405.14616.">Wang <em>et al.</em>, 2024</a>]</span>.</p>
+<p>El manuscrito leído es <strong>2405.14616v1</strong>, de 28 páginas físicas. Ese DOI identifica el preprint; no se presenta como DOI editorial ni como evidencia de un cuartil de revista. La conferencia, la versión leída y el código utilizado se registran por separado.</p>
+<p>La selección se fijó antes de los ajustes con datos y no depende de haber obtenido una buena métrica propia. Se apoya en cinco razones verificables:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Criterio</p></th>
+<th class="head"><p>Evidencia y alcance</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Tarea transferible</p></td>
+<td><p>Pronóstico temporal multivariante mediante descomposición y mezcla de escalas. Motiva una adaptación a volatilidad; no demuestra desempeño en Bitcoin</p></td>
+</tr>
+<tr class="row-odd"><td><p>Impacto rastreable</p></td>
+<td><p>El original aparece en la exportación Scopus aportada con <strong>609 citas</strong>, EID <code class="docutils literal notranslate"><span class="pre">2-s2.0-85186508140</span></code>; es una señal bibliométrica contextual, no prueba de superioridad ni de cuartil Q1</p></td>
+</tr>
+<tr class="row-even"><td><p>Configuración rastreable</p></td>
+<td><p>Tabla 7, página PDF 14, y preset original <code class="docutils literal notranslate"><span class="pre">TimeMixer_ETTh1_unify.sh</span></code>: historia 96, horizonte 96, cuatro niveles, dos bloques PDM, dimensión 16, Adam LR 0,01, batch 128 y diez épocas</p></td>
+</tr>
+<tr class="row-odd"><td><p>Resultado parcial identificable</p></td>
+<td><p>ETTh1 multivariante, configuración unificada: <strong>MSE 0,375 y MAE 0,400</strong>, tabla 13, página PDF 17. La configuración optimizada de tabla 14 corresponde a otra condición</p></td>
+</tr>
+<tr class="row-even"><td><p>Ejecución viable</p></td>
+<td><p>Arquitectura de MLP y pooling con código de autores recuperable. El perfil previo de TimesNet mostró un coste CPU mucho mayor; se usó ese dato de recursos, no una comparación de precisión test, para escoger la réplica viable</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El código de referencia es <code class="docutils literal notranslate"><span class="pre">kwuking/TimeMixer</span></code>, fijado en el commit <a class="reference external" href="https://github.com/kwuking/TimeMixer/tree/e24610583b36fdd8c76cc17a8df4e65759a5f460"><code class="docutils literal notranslate"><span class="pre">e24610583b36fdd8c76cc17a8df4e65759a5f460</span></code></a>. Los recibos identifican por hash el modelo, sus dependencias relevantes, el preset y el controlador. El port de Time-Series-Library constituye otra versión: no se combinan sus defaults con el código original sin declararlo.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/bac8a55ddd352ffdb9e0c12819736c18/original_model_records.csv"><span class="xref download myst">tabla de registros originales</span></a> conserva el registro de impacto y su procedencia; no se suman citas de otras bases ni de estudios aplicados. La presencia de TimeMixer en aplicaciones de energía y otros dominios es respaldo de transferencia. Ni esas aplicaciones ni la réplica ETTh1 prueban capacidad para pronosticar σ₇ de BTCUSDT. Tampoco se atribuye al paper guía la validación de nuestro contrato D7×5.</p>
+</section>
+<section id="modelo-original-arquitectura-formulacion-y-supuestos">
+<h2>5.2 Modelo original: arquitectura, formulación y supuestos<a class="headerlink" href="#modelo-original-arquitectura-formulacion-y-supuestos" title="Link to this heading">#</a></h2>
+<section id="entrada-salida-y-flujo-de-datos">
+<h3>5.2.1 Entrada, salida y flujo de datos<a class="headerlink" href="#entrada-salida-y-flujo-de-datos" title="Link to this heading">#</a></h3>
+<p>El caso replicado recibe <strong>96 observaciones horarias de siete variables ETTh1</strong> y pronostica los <strong>96 valores futuros de esas mismas siete variables</strong>. No recibe OHLCV de Bitcoin ni genera una volatilidad escalar. La figura 1 de la página PDF 4 presenta la arquitectura; la figura 2 de la página PDF 5 desarrolla las mezclas estacional, de tendencia y de predictores.</p>
+<p>El flujo es: entrada → pirámide de average pooling → normalización por instancia y embedding → dos bloques <strong>Past-Decomposable-Mixing (PDM)</strong> → cuatro predictores por escala → suma <strong>Future-Multipredictor-Mixing (FMM)</strong> → inversión de la normalización de instancia. La configuración registrada usa <code class="docutils literal notranslate"><span class="pre">channel_independence=1</span></code>: aplica parámetros compartidos a canales procesados por separado. Los pesos compartidos no convierten esos canales en siete modelos entrenados independientemente.</p>
+<p>Los cuatro niveles tienen longitudes <strong>96, 48, 24 y 12</strong>. Aquí <code class="docutils literal notranslate"><span class="pre">M=3</span></code> cuenta tres reducciones, no tres niveles. Cada nivel se embebe a dimensión 16; la transformación feed-forward utiliza ancho 32. La descomposición seleccionada es media móvil de ventana 25; no se activa la variante DFT.</p>
+<p>El código original incorpora cuatro marcadores temporales horarios mediante <code class="docutils literal notranslate"><span class="pre">timeF</span></code>: hora, día de semana, día del mes y día del año, normalizados por el extractor de fechas. <code class="docutils literal notranslate"><span class="pre">use_future_temporal_feature=0</span></code> desactiva marcadores futuros adicionales, pero <strong>no elimina los marcadores históricos</strong>. Su alineación al aplanar canales es un aspecto de la implementación que se audita por separado.</p>
+<p><img alt="Esquema propio del modelo TimeMixer replicado" src="../_images/timemixer_replication_architecture.png" /></p>
+</section>
+<section id="formulacion-propia-fiel-al-mecanismo">
+<h3>5.2.2 Formulación propia fiel al mecanismo<a class="headerlink" href="#formulacion-propia-fiel-al-mecanismo" title="Link to this heading">#</a></h3>
+<p>La siguiente notación sintetiza las ecuaciones 1–6 y figuras del artículo, junto con la configuración de código registrada. No se presenta como transcripción literal de todas sus operaciones de implementación. Para una ventana <span class="math notranslate nohighlight">\(X\in\mathbb R^{96\times7}\)</span>, omitiendo el índice de canal en los estados latentes compartidos:</p>
+<div class="math notranslate nohighlight">
+\[
+X_0=X,\qquad X_m=\operatorname{AvgPool}_2(X_{m-1}),\qquad m=1,2,3.
+\]</div>
+<p>Cada escala se normaliza usando sus estadísticas por instancia y canal, con parámetros afines aprendidos; a continuación se embebe el valor y, cuando se suministran, sus marcadores históricos:</p>
+<div class="math notranslate nohighlight">
+\[
+H_m^{(0)}=\operatorname{Embed}\!\left(\operatorname{Norm}_m(X_m),\tau_m\right),
+\qquad H_m^{(0)}\in\mathbb R^{L_m\times16},
+\quad L_m\in\{96,48,24,12\}.
+\]</div>
+<p>En cada bloque PDM se separan tendencia y residuo estacional del estado de cada escala:</p>
+<div class="math notranslate nohighlight">
+\[
+T_m=\operatorname{MA}_{25}(H_m),\qquad S_m=H_m-T_m.
+\]</div>
+<p>Las funciones <span class="math notranslate nohighlight">\(D_m\)</span> y <span class="math notranslate nohighlight">\(U_m\)</span> son MLP temporales de dos capas con GELU, que cambian la longitud entre escalas adyacentes. La mezcla estacional asciende desde la resolución fina hacia la gruesa; la de tendencia recorre el orden inverso:</p>
+<div class="math notranslate nohighlight">
+\[
+\widetilde S_0=S_0,\qquad
+\widetilde S_m=S_m+D_m(\widetilde S_{m-1}),\quad m=1,2,3,
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\widetilde T_3=T_3,\qquad
+\widetilde T_m=T_m+U_m(\widetilde T_{m+1}),\quad m=2,1,0.
+\]</div>
+<p>En el modo de independencia de canales seleccionado, la suma se procesa con una transformación de características 16→32→16 y una conexión residual. Se aplican dos bloques:</p>
+<div class="math notranslate nohighlight">
+\[
+H_m^{(\ell+1)}=H_m^{(\ell)}+
+\operatorname{FFN}^{(\ell)}\!\left(\widetilde S_m^{(\ell)}+\widetilde T_m^{(\ell)}\right),
+\qquad \ell=0,1.
+\]</div>
+<p>Cada predictor proyecta la longitud <span class="math notranslate nohighlight">\(L_m\)</span> al horizonte 96 y su representación a la variable original del canal. Se reagrupan los siete canales y se suman las cuatro predicciones:</p>
+<div class="math notranslate nohighlight">
+\[
+Z_m=\operatorname{Predictor}_m(H_m^{(2)})\in\mathbb R^{96\times7},\qquad
+\widehat Y=\operatorname{Norm}_0^{-1}\!\left(\sum_{m=0}^{3}Z_m\right).
+\]</div>
+<p>El embedding se comparte entre escalas y canales; dentro de cada bloque PDM, la transformación FFN también se comparte entre escalas. Las proyecciones temporales de los predictores sí dependen de su longitud. La normalización de instancia se invierte con las estadísticas del nivel de entrada; es distinta del escalador global aprendido en entrenamiento. En esta réplica, <strong>no se invierte el escalador global para calcular MSE/MAE</strong>, conforme a la operacionalización del código de autores. La salida lineal puede ser negativa en esas unidades estandarizadas. No se añade Softplus ni una cabeza positiva de σ₇ al modelo original.</p>
+<p>Los mecanismos están localizados en §3.1–3.3 del artículo, páginas PDF 3–5: ecuaciones 1–2, flujo; ecuación 3, descomposición y combinación; ecuaciones 4–5, mezclas direccionales; ecuación 6, suma de predictores. Las dimensiones y operaciones de normalización anteriores se completan con el código fijado por hash.</p>
+</section>
+<section id="supuestos-y-relacion-con-el-benchmark">
+<h3>5.2.3 Supuestos y relación con el benchmark<a class="headerlink" href="#supuestos-y-relacion-con-el-benchmark" title="Link to this heading">#</a></h3>
+<p>El sesgo inductivo supone que las representaciones fina y gruesa aportan información complementaria y que separar componentes suaves y residuales ayuda a extraer patrones predictivos. La suma de predictores aprendidos permite combinar esas escalas; no constituye un resultado teórico de mejora para cualquier serie. La independencia de canales usa una transformación con pesos compartidos, sin atención explícita entre variables en esta configuración.</p>
+<p>El pooling y la media móvil operan sobre la ventana observada completa. No se describen como filtros estrictamente causales en cada posición interna; el requisito de pronóstico es que la ventana y sus marcadores estén disponibles en el origen. Normalizar por instancia no prueba estacionariedad, inmunidad al cambio de régimen o ausencia de errores de alineación.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelos del Top 10</p></th>
+<th class="head"><p>Relación con TimeMixer</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TSMixer y TiDE</p></td>
+<td><p>Comparten familia MLP; TimeMixer añade descomposición y mezcla explícita entre escalas</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimesNet</p></td>
+<td><p>Transforma periodicidades en representaciones 2D y aplica convoluciones; TimeMixer usa pooling y MLP temporales</p></td>
+</tr>
+<tr class="row-even"><td><p>PatchTST, Informer, Autoformer, iTransformer y Crossformer</p></td>
+<td><p>Emplean atención, segmentos, autocorrelación o interacciones entre variables; no son variantes del PDM/FMM</p></td>
+</tr>
+<tr class="row-odd"><td><p>S-Mamba</p></td>
+<td><p>Utiliza estados selectivos; ofrece un mecanismo distinto de la mezcla multiescala</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>GRU, LSTM y TCN siguen siendo referencias heredadas, adicionales al Top 10. Elegir TimeMixer como guía no lo convierte en ganador del benchmark ni reemplaza el baseline GRU-c03.</p>
+<p>La transferencia a Bitcoin requerirá otro adaptador: D7×5 de OHLCV, sin calendario ni rezagos explícitos de Y, lectura escalar de σ₇ y escala objetivo propia. Copiar tres reducciones de factor dos produciría longitudes 7/3/1/0; por tanto, no es una configuración válida automática. Cambiar la cabeza y las escalas constituye una adaptación que debe especificarse y validarse. La réplica ETTh1 no acredita que esa adaptación ya exista o generalice.</p>
+</section>
+</section>
+<section id="replica-parcial-condiciones-y-criterio-registrado">
+<h2>5.3 Réplica parcial: condiciones y criterio registrado<a class="headerlink" href="#replica-parcial-condiciones-y-criterio-registrado" title="Link to this heading">#</a></h2>
+<p>Se fijó un diseño antes de los ajustes con datos, en el commit <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/329b0a6"><code class="docutils literal notranslate"><span class="pre">329b0a6</span></code></a>. La referencia numérica es la fila unificada ETTh1 L96/H96: <strong>MSE 0,375 y MAE 0,400</strong>. La réplica usa cinco semillas declaradas —2019–2023—; el artículo informa tres repeticiones, sin identificar las semillas de esta fila. La diferencia se conserva como parte del alcance de reproducción.</p>
+<p>El dataset es ETTh1 del repositorio de autores ETDataset, fijado por commit y hash. El controlador de referencia define train <code class="docutils literal notranslate"><span class="pre">[0,8640)</span></code>, validación con contexto <code class="docutils literal notranslate"><span class="pre">[8544,11520)</span></code> y test con contexto <code class="docutils literal notranslate"><span class="pre">[11424,14400)</span></code>. StandardScaler aprende solo de las primeras 8.640 filas. Con L96/H96 existen 8.449 ventanas de train y 2.785 de validación y test; <code class="docutils literal notranslate"><span class="pre">drop_last=True</span></code> y batch 128 consumen <strong>8.448/2.688/2.688</strong>, respectivamente. Se omiten <strong>97 orígenes test</strong>. La tabla de tamaños del artículo no identifica esa cobertura exacta; no se presenta como identidad comprobada de la muestra publicada.</p>
+<p>Se mantienen el preset unificado, MSE, Adam, OneCycleLR y diez épocas máximas. La réplica utiliza CPU, versiones observadas de librerías, generadores explícitos por loader y cero workers. Además, aísla el test del entrenamiento: el controlador original imprime su pérdida por época, aunque solo validación selecciona el checkpoint. Estas diferencias impiden afirmar ejecución bit a bit idéntica.</p>
+<p>El criterio primario declarado exige que <strong>todo el IC95 % de la MSE media entre semillas menos 0,375 quede dentro de [−0,01875; +0,01875]</strong>. La tolerancia corresponde al 5 % del MSE publicado; es una regla de compatibilidad numérica de esta réplica, <strong>no el margen δ de volatilidad heredado de E1</strong>. MAE se reporta como secundaria y no ofrece otra vía para declarar éxito. Se registra sensibilidad al redondeo del artículo, ±0,0005.</p>
+<p>El IC t de Student entre las cinco semillas usa cuatro grados de libertad y es condicional al mismo calendario de evaluación; su cobertura depende de los supuestos del procedimiento. La incertidumbre temporal se analiza por separado. El valor 0,375 se trata como referencia fija publicada, cuya dispersión específica es desconocida. No se fabrica una prueba de dos muestras con varianza original no disponible. La interpretación es compatibilidad de la operacionalización registrada del preset de autores, no confirmación de identidad de todas las condiciones históricas.</p>
+<section id="resultado-obtenido-y-discrepancia">
+<h3>5.3.1 Resultado obtenido y discrepancia<a class="headerlink" href="#resultado-obtenido-y-discrepancia" title="Link to this heading">#</a></h3>
+<p>Las cinco trayectorias registradas finalizaron antes de construir las predicciones de test. No se reemplazaron semillas ni se reajustó la receta después de conocer ese resultado.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Métrica</p></th>
+<th class="head text-right"><p>Artículo</p></th>
+<th class="head text-right"><p>Réplica, media ± DE entre cinco semillas</p></th>
+<th class="head"><p>IC95 % entre semillas</p></th>
+<th class="head text-right"><p>Réplica − artículo</p></th>
+<th class="head"><p>IC95 % de la discrepancia</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>MSE</p></td>
+<td class="text-right"><p>0,375</p></td>
+<td class="text-right"><p>0,377838 ± 0,002870</p></td>
+<td><p>[0,374274; 0,381401]</p></td>
+<td class="text-right"><p>0,002838</p></td>
+<td><p>[-0,000726; 0,006401]</p></td>
+</tr>
+<tr class="row-odd"><td><p>MAE</p></td>
+<td class="text-right"><p>0,400</p></td>
+<td class="text-right"><p>0,401082 ± 0,003473</p></td>
+<td><p>[0,396769; 0,405394]</p></td>
+<td class="text-right"><p>0,001082</p></td>
+<td><p>[-0,003231; 0,005394]</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Se cumple el criterio registrado de compatibilidad numérica:</strong> el IC de la discrepancia MSE es [-0,000726; 0,006401], contenido en [−0,018750; +0,018750]. La diferencia puntual de MSE es <strong>+0,757 %</strong>; no es una mejora frente al artículo. La MAE difiere +0,270 % y conserva su función secundaria. La sensibilidad al redondeo de la referencia tampoco cambia la decisión.</p>
+<p>La conclusión es una <strong>réplica parcial compatible del preset de autores</strong>, con dataset, partición operacional y métrica rastreados. No acredita identidad de las semillas, el entorno histórico o la cobertura exacta no publicada de la fila del paper. El <a class="reference download internal" download="" href="../_downloads/f03360c6a3a1fac394d0f93739a75873/replication_summary.json"><span class="xref download myst">resumen de réplica</span></a> conserva la regla y la decisión; la <a class="reference download internal" download="" href="../_downloads/bbfafa49ef24be928ed355a4cd5550c2/replication_seed_metrics.csv"><span class="xref download myst">tabla por semilla</span></a> permite comprobar sus cinco valores.</p>
+<p><img alt="Discrepancia de la réplica frente al valor publicado" src="../_images/replication_discrepancy.png" /></p>
+<p>El bootstrap temporal circular de 4.999 remuestreos, bloque principal 192 orígenes horarios, produce otro intervalo de MSE: <strong>[0,319104; 0,445662]</strong>. Es más amplio porque mide variación entre tramos del calendario, manteniendo los pesos entrenados y los 96 horizontes/siete canales de cada origen. No reemplaza el criterio condicional entre semillas ni se usa como una segunda oportunidad de éxito. Las sensibilidades de 96 y 384 horas están publicadas en el JSON.</p>
+<p><img alt="Curvas de entrenamiento y validación, media y desviación entre semillas" src="../_images/replication_learning_curves.png" /></p>
+<p>Las bandas muestran desviación estándar entre trayectorias, no intervalos de confianza. La <a class="reference download internal" download="" href="../_downloads/9dc0ec49396f4dc946e3ea529ddcb584/training_curve_summary.csv"><span class="xref download myst">tabla de curvas</span></a> conserva los agregados por época.</p>
+</section>
+<section id="posibles-causas-y-alcance-de-la-validacion">
+<h3>5.3.2 Posibles causas y alcance de la validación<a class="headerlink" href="#posibles-causas-y-alcance-de-la-validacion" title="Link to this heading">#</a></h3>
+<p>La discrepancia no se atribuye causalmente a una única diferencia. Hay cambios documentados de framework y dispositivo, semillas distintas a las no publicadas de la fila, generadores de loaders independientes y una implementación mínima del escalado poblacional. Se conserva el preset original, sin corregir su tratamiento de marcadores ni su omisión de la cola test para acercarse al valor publicado. Comparar causalmente las versiones o recuperar la varianza original requeriría experimentos y evidencias adicionales.</p>
+<p>El archivo oficial tiene 17.420 filas horarias regulares, siete canales y sin faltantes numéricos. El protocolo original usa las primeras 14.400 filas; las 3.020 restantes no se reasignan a un nuevo test. Las fechas del archivo no declaran zona horaria. La tabla 6 del manuscrito imprime 15 minutos para ETTh1; el CSV verificado tiene intervalos de <strong>una hora</strong>. Se conserva esta diferencia documental y se utiliza la fuente efectiva del experimento.</p>
+<p>La ejecución valida la cadena externa de adquisición con hashes, ventanas, escalado train-only, backbone original, optimización, cierre de checkpoints, scoring y agregación de métricas. <strong>No valida por sí sola el adaptador Bitcoin D7</strong>, su cabeza de volatilidad, los otros modelos ni el HPO completo. La nueva revisión de §14 aporta evidencia de implementación propia de los diez adaptadores; sus resultados de mercado siguen pendientes.</p>
+</section>
+</section>
+<section id="limitaciones-piloto-cuantificado-en-tres-modelos">
+<h2>5.4 Limitaciones: piloto cuantificado en tres modelos<a class="headerlink" href="#limitaciones-piloto-cuantificado-en-tres-modelos" title="Link to this heading">#</a></h2>
+<section id="diseno-fijado-antes-de-los-resultados">
+<h3>5.4.1 Diseño fijado antes de los resultados<a class="headerlink" href="#diseno-fijado-antes-de-los-resultados" title="Link to this heading">#</a></h3>
+<p>El piloto entrenó <strong>TimeMixer, iTransformer y PatchTST</strong>, cada uno con las cinco semillas registradas: quince ajustes, dos épocas fijas y las últimas 2.048 ventanas de entrenamiento elegibles. Todos recibieron el mismo presupuesto de 32 pasos de optimizador, batch 128 y Adam LR 0,001. Se usaron implementaciones y dimensiones pequeñas fijadas previamente: dimensión 16, FF 32, dos capas; los controles usan cuatro cabezas. Los parámetros registrados son 75.497, 7.664 y 23.264, respectivamente. El presupuesto común no implica capacidad idéntica.</p>
+<p>Los controles proceden de Time-Series-Library, commit <code class="docutils literal notranslate"><span class="pre">4e938a1767106324dd753b2a44832bf870a0252e</span></code>, con historia 96. PatchTST en este piloto no reproduce la condición <code class="docutils literal notranslate"><span class="pre">/64</span></code>, L512, extraída del artículo en §3.</p>
+<p>Los checkpoints del piloto se eligieron en la época fija dos, sin selección por validación. Sus predicciones se evalúan en las 2.785 ventanas de validación, conservando la cola. Estos ajustes limitados <strong>no son réplicas de las métricas publicadas de los controles ni modelos plenamente optimizados</strong>, y sus errores no deben compararse como si fueran los de las cinco réplicas completas.</p>
+<p>Las dos hipótesis siguientes se declararon en el diseño previo. Una revisión estática independiente detectó dos correcciones de reporte: conservar los análisis válidos si un estrato no es estimable y publicar la secundaria ΔMSE ya prevista. La <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e2_paper_guide_20261106/analysis_amendments.json">enmienda de implementación</a> se registró antes del primer scoring y los diagnósticos; no cambió datos, semillas, umbrales, bloques ni hipótesis.</p>
+<p>La unidad temporal de remuestreo es el <strong>origen horario</strong>, conservando juntos sus 96 horizontes, siete canales y cinco trayectorias emparejadas. Se utilizó bootstrap circular de bloques: principal 192 horas, sensibilidades 96/384, 4.999 remuestreos y semilla 20261106. Las 512 consultas dispersas de L1 se insertan en el calendario denso original antes de remuestrear; no se tratan 192 consultas separadas como si fueran 192 horas. Hay aproximadamente 14,5 bloques de longitud 192 en validación: los intervalos son aproximados y pueden verse afectados por dependencia larga o cambio de régimen. Las cinco semillas y los siete canales no son nuevas unidades físicas independientes.</p>
+</section>
+<section id="l1-dependencia-de-la-composicion-del-batch">
+<h3>5.4.2 L1: dependencia de la composición del batch<a class="headerlink" href="#l1-dependencia-de-la-composicion-del-batch" title="Link to this heading">#</a></h3>
+<p>En la versión fijada de TimeMixer, la rama de independencia de canales aplana el tensor en orden muestra–canal, pero replica los marcadores históricos mediante <code class="docutils literal notranslate"><span class="pre">repeat</span></code>, en otro orden. Para batch 128 y siete canales, <strong>888 de 896 asignaciones de índice</strong> quedan desalineadas; batch 1 conserva la alineación. Es un hecho de la implementación, no una estimación de rendimiento ni una acusación de fuga de precios futuros.</p>
+<p>Se evaluaron 512 consultas de validación seleccionadas uniformemente antes de los resultados. Para cada consulta se comparó su predicción aislada B1 con la obtenida al colocarla al inicio de un batch formado por ella y 127 contextos históricos de entrenamiento, todos anteriores a validación. Se mantuvieron pesos y precios de la consulta. El estimando es el cambio absoluto medio de predicción sobre sus 96 horizontes y siete canales, promediado entre las cinco semillas. La tolerancia numérica previa fue τ=10⁻⁵ en unidades estandarizadas.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo del piloto</p></th>
+<th class="head text-right"><p>Cambio absoluto medio B1 frente a banco B128</p></th>
+<th class="head"><p>IC95 % temporal, bloque 192</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TimeMixer</p></td>
+<td class="text-right"><p>0,041588</p></td>
+<td><p>[0,035654; 0,048342]</p></td>
+</tr>
+<tr class="row-odd"><td><p>iTransformer</p></td>
+<td class="text-right"><p>4.125e-08</p></td>
+<td><p>[3.764e-08; 4.482e-08]</p></td>
+</tr>
+<tr class="row-even"><td><p>PatchTST</p></td>
+<td class="text-right"><p>1.992e-08</p></td>
+<td><p>[1.760e-08; 2.240e-08]</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los tres contrastes registrados para L1 son TimeMixer frente a τ y sus dos diferencias pareadas frente a los controles. Cada uno obtiene <strong>p bootstrap=0,0002 y p ajustado por Holm=0,0006</strong>. Son estimaciones con corrección de Monte Carlo y resolución mínima 0,0002; los IC95 % de la tabla son nominales, no intervalos simultáneos de la familia.</p>
+<p>La evidencia respalda una limitación de consistencia de <strong>esta implementación con esos marcadores y ese banco</strong>, frente a los dos controles entrenados. Al retirar los marcadores históricos, sin reentrenar, el cambio medido de TimeMixer cae a <strong>cero en las cinco semillas</strong>. Esa intervención y el análisis de índices apuntan al manejo de calendario; no demuestran una deficiencia de toda la familia MLP o multiescala. Los resultados de L1 se mantienen con bloques 96 y 384.</p>
+<p><img alt="Piloto de dependencia del batch" src="../_images/pilot_batch_invariance.png" /></p>
+<p>La secundaria preregistrada analiza el cambio de error sobre las mismas etiquetas de las consultas. Para TimeMixer, <strong>ΔMSE banco−B1=−0,006358</strong>, IC95 % <strong>[−0,018596; +0,002752]</strong>. No demuestra empeoramiento ni mejora de precisión: el intervalo incluye cero. Dependencia de otras muestras y deterioro predictivo son afirmaciones distintas. La <a class="reference download internal" download="" href="../_downloads/7759011f02eb4e5e32f0c86f659bccc0/pilot_batch_MSE_change.csv"><span class="xref download myst">tabla secundaria</span></a> publica también los controles y las sensibilidades.</p>
+<p>La corrección natural de índices sería alinear cada marcador con su muestra y canal, por ejemplo mediante repetición por fila. No se cambió el backbone de la réplica ni se ejecutó una nueva comparación de precisión con ese arreglo; no se le atribuyen mejoras que este estudio no midió.</p>
+</section>
+<section id="l2-alta-variabilidad-observable-resultado-inconcluso">
+<h3>5.4.3 L2: alta variabilidad observable, resultado inconcluso<a class="headerlink" href="#l2-alta-variabilidad-observable-resultado-inconcluso" title="Link to this heading">#</a></h3>
+<p>La segunda hipótesis buscó una limitación predictiva más transferible. Para cada origen se calculó la raíz de la media de diferencias temporales al cuadrado de los 96 pasos y siete variables estandarizadas de entrada. El cuantil 75 de las ventanas de entrenamiento, <strong>0,400058645</strong>, fijó el estrato alto; no se aprendió de los errores de validación. En validación hay <strong>1.569 orígenes altos y 1.216 restantes</strong>.</p>
+<p>El efecto es la RMSE alta menos la RMSE del resto, calculada por trayectoria y promediada entre semillas. Valores positivos indican mayor error puntual en contextos variables.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo</p></th>
+<th class="head text-right"><p>RMSE alta</p></th>
+<th class="head text-right"><p>RMSE resto</p></th>
+<th class="head text-right"><p>Diferencia</p></th>
+<th class="head"><p>IC95 % temporal</p></th>
+<th class="head text-right"><p>p unilateral</p></th>
+<th class="head text-right"><p>p Holm, familia 3</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TimeMixer</p></td>
+<td class="text-right"><p>1,022790</p></td>
+<td class="text-right"><p>0,844574</p></td>
+<td class="text-right"><p>0,178216</p></td>
+<td><p>[-0,035298; 0,395833]</p></td>
+<td class="text-right"><p>0,0596</p></td>
+<td class="text-right"><p>0,1192</p></td>
+</tr>
+<tr class="row-odd"><td><p>iTransformer</p></td>
+<td class="text-right"><p>1,104454</p></td>
+<td class="text-right"><p>0,899052</p></td>
+<td class="text-right"><p>0,205402</p></td>
+<td><p>[-0,005199; 0,411740]</p></td>
+<td class="text-right"><p>0,0256</p></td>
+<td class="text-right"><p>0,0768</p></td>
+</tr>
+<tr class="row-even"><td><p>PatchTST</p></td>
+<td class="text-right"><p>0,961680</p></td>
+<td class="text-right"><p>0,799046</p></td>
+<td class="text-right"><p>0,162633</p></td>
+<td><p>[-0,052834; 0,383393]</p></td>
+<td class="text-right"><p>0,0800</p></td>
+<td class="text-right"><p>0,1192</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>La limitación L2 no quedó demostrada con el análisis principal:</strong> los tres IC contienen cero y ningún p ajustado alcanza 0,05. Los aumentos puntuales no bastan para declarar fragilidad predictiva. Tampoco se ha demostrado equivalencia o ausencia de efecto. El piloto pequeño y la dependencia temporal limitan la precisión de la inferencia.</p>
+<p>Con el bloque de sensibilidad 96 horas, iTransformer obtiene p Holm 0,0492; con 192 obtiene 0,0768 y con 384, 0,1386. No se reemplaza el bloque principal para escoger la conclusión favorable. Además, se registraron efectos alto−resto por modelo, no contrastes entre esos deterioros: diferencias de significación no prueban diferencias entre arquitecturas o familias.</p>
+<p><img alt="Error por régimen observable de entrada" src="../_images/pilot_regime_error.png" /></p>
+<p>Las familias L1 y L2 se definieron como preguntas separadas, con Holm dentro de cada familia de tres contrastes. Esto no se presenta como control global conjunto de seis hipótesis. Los <a class="reference download internal" download="" href="../_downloads/adaed4a9a90ab7d7ceb8a1dda8841c2a/limitation_summary.json"><span class="xref download myst">resultados completos</span></a> conservan todos los efectos, intervalos, p-valores y sensibilidades; la <a class="reference download internal" download="" href="../_downloads/0d3c16733e6eee331df57ea762834e1f/pilot_regime_inference.csv"><span class="xref download myst">tabla de regímenes</span></a> permite auditar también estados no estimables.</p>
+</section>
+</section>
+<section id="relacion-con-el-entregable-3-y-limites-de-transferencia">
+<h2>5.5 Relación con el Entregable 3 y límites de transferencia<a class="headerlink" href="#relacion-con-el-entregable-3-y-limites-de-transferencia" title="Link to this heading">#</a></h2>
+<p>TimeMixer ofrece un punto de partida reproducido para estudiar mecanismos multiescala. El piloto identifica una limitación operativa que debe corregirse o evitarse en implementaciones que usan calendario. <strong>Corregir un índice no constituye por sí solo un modelo original de Deep Learning para E3.</strong> Debe formar parte de la higiene experimental de sus referencias.</p>
+<p>El contrato Bitcoin D7 no permite marcadores de calendario: su adaptación debe usar entradas sin esas marcas. Por ello, L1 <strong>no demuestra un fallo del futuro adaptador Bitcoin</strong>. La hipótesis L2 sí plantea una pregunta pertinente para volatilidad, pero en este piloto externo quedó inconclusa. No se convierte ese resultado en un hueco predictivo de Bitcoin ya demostrado.</p>
+<p>El paso necesario para E3 es obtener una limitación predictiva pertinente al contrato D7 mediante el procedimiento cerrado, contrastarla en varios modelos y verificar que un mecanismo adicional aporte una mejora relevante. Las búsquedas transversales de §3 y la guía completa ya recibida deberán sustentar esa selección. El <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">piloto Bitcoin registrado</span></a> evalúa por separado el diagnóstico propuesto; sus resultados no se sustituyen por este piloto ETTh1. Aquí no se elige la arquitectura de E3 ni se cambia su libro independiente.</p>
+<p>El registro previo de esta réplica y piloto está disponible desde el commit 329b0a6, anterior a los ajustes con ETTh1. La sección 9.1 completa ya se recibió: esta evidencia demuestra la cronología acotada de la réplica y debe contrastarse con sus requisitos completos, sin convertirla automáticamente en cumplimiento integral del benchmark Bitcoin. El test Bitcoin heredado sigue conocido y sus futuras comparaciones siguen siendo exploratorias.</p>
+</section>
+<section id="reproduccion-descargas-y-estado-de-cierre">
+<h2>5.6 Reproducción, descargas y estado de cierre<a class="headerlink" href="#reproduccion-descargas-y-estado-de-cierre" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="../_downloads/c9b4f9827d1e1ff42690fbc7bf63ceb8/Paper_guia_E2_replica_piloto.zip"><span class="xref download myst">Descargar código, diseño, métricas y figuras de la réplica/piloto</span></a> y <a class="reference download internal" download="" href="../_downloads/ffc7e45621c4814d519f579898f20b54/MANIFIESTO.json"><span class="xref download myst">manifiesto SHA-256</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/1a50d6c30d6941b7f6b61469a16fcc47/paper_selection.json"><span class="xref download myst">Paper seleccionado</span></a>, <a class="reference download internal" download="" href="../_downloads/2a761ee9bae800b0ca66794e448ee646/source_receipts.json"><span class="xref download myst">fuentes de autores por hash</span></a> y <a class="reference download internal" download="" href="../_downloads/1e15001630d2585f7d5233a1dc191cec/dataset_card.json"><span class="xref download myst">Data Card ETTh1</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/c6876792dc83534d3646c071920f2483/original_conditions.json"><span class="xref download myst">Condiciones originales</span></a>, <a class="reference download internal" download="" href="../_downloads/e75b92e4c2d90f325cd9f1d7dbf658e4/registration.json"><span class="xref download myst">registro previo</span></a> y <a class="reference download internal" download="" href="../_downloads/fbc91d017fbdde44dfac807741db64d1/runtime_versions.json"><span class="xref download myst">entorno observado</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/e8b855b10fafbdbf06fdfd1b6faa35f2/limitations_registered.json"><span class="xref download myst">Hipótesis previas</span></a>, <a class="reference download internal" download="" href="../_downloads/509b719d3c945b6db39c7464fff8dacb/execution_receipt.json"><span class="xref download myst">recibo de ejecución</span></a> y <a class="reference download internal" download="" href="../_downloads/2f7ee3715d310f8da93ee24e59eb181b/provenance.json"><span class="xref download myst">procedencia del análisis</span></a>.</p></li>
+</ul>
+<p>El paquete contiene código propio, configuración registrada, tablas, figuras y hashes. El descargador obtiene por separado el CSV oficial y dos repositorios fijados por commit; no se incluyen copias de los PDF, el CSV, el código de autores, pesos o predicciones individuales en el paquete. El repositorio conserva las pruebas y el entorno fijado en <code class="docutils literal notranslate"><span class="pre">requirements-paper-guide.lock.txt</span></code>.</p>
+<p>La reproducción separa <code class="docutils literal notranslate"><span class="pre">validate</span></code>, <code class="docutils literal notranslate"><span class="pre">register</span></code>, cinco <code class="docutils literal notranslate"><span class="pre">fit</span></code>, un <code class="docutils literal notranslate"><span class="pre">score</span></code> posterior al cierre y el <code class="docutils literal notranslate"><span class="pre">pilot</span></code> externo. Los diagnósticos y el análisis consumen los artefactos guardados. Las instrucciones completas del ZIP conservan las rutas y fases; recalcular el artículo no consiste en ejecutar el build editorial del JBook.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Requisito de §5</p></th>
+<th class="head"><p>Evidencia y límite</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Paper principal, DOI, arquitectura y justificación</p></td>
+<td><p>TimeMixer ICLR 2024, versión leída, mecanismo y fuentes identificados</p></td>
+</tr>
+<tr class="row-odd"><td><p>Resultado original replicado parcialmente</p></td>
+<td><p>ETTh1 L96/H96, preset unificado, cinco ejecuciones, compatibilidad numérica cumplida</p></td>
+</tr>
+<tr class="row-even"><td><p>Discrepancia, IC y posibles causas</p></td>
+<td><p>Tablas por semilla, IC condicional/temporal separados y desviaciones declaradas</p></td>
+</tr>
+<tr class="row-odd"><td><p>Criterio previo</p></td>
+<td><p>Diseño publicado antes de los ajustes; tolerancia MSE propia, sin trasladar δ BTC</p></td>
+</tr>
+<tr class="row-even"><td><p>Relación con Top 10</p></td>
+<td><p>Guía MLP multiescala; no sustituye a las referencias heredadas</p></td>
+</tr>
+<tr class="row-odd"><td><p>Limitación concreta cuantificada</p></td>
+<td><p>Dependencia del batch con calendario, IC temporal y contrastes pareados</p></td>
+</tr>
+<tr class="row-even"><td><p>Piloto de al menos tres modelos</p></td>
+<td><p>TimeMixer, iTransformer y PatchTST, cinco semillas cada uno; entrenamiento limitado declarado</p></td>
+</tr>
+<tr class="row-odd"><td><p>Limitación predictiva transferible</p></td>
+<td><p>Alta variabilidad: inconclusa con el análisis principal; no hay prueba de un fallo Bitcoin</p></td>
+</tr>
+<tr class="row-even"><td><p>Preregistro completo de §9.1</p></td>
+<td><p>Guía completa recibida; cronología acotada de la réplica comprobable y revisión integral de sus requisitos separada del protocolo Bitcoin</p></td>
+</tr>
+<tr class="row-odd"><td><p>Motivación para E3</p></td>
+<td><p>Condiciones y candidatos de investigación documentados; originalidad y validación D7 pendientes</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Estos experimentos suman <strong>veinte ajustes externos de modelos</strong>. Los diez adaptadores finales ya están implementados y revisados con pruebas sintéticas en §14; HPO, potencia y benchmark Bitcoin de §4 siguen pendientes de ejecución. Se preservan la métrica, test y margen heredados. La nueva enmienda separa 53 fechas de P1/calibración de los sesenta días históricos P0 y de test.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="04_implementacion.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">4. Implementación de Modelos Benchmark</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="06_benchmark_final.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">6. Benchmark Final</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paper-guia-y-justificacion-de-seleccion">5.1 Paper guía y justificación de selección</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-original-arquitectura-formulacion-y-supuestos">5.2 Modelo original: arquitectura, formulación y supuestos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entrada-salida-y-flujo-de-datos">5.2.1 Entrada, salida y flujo de datos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulacion-propia-fiel-al-mecanismo">5.2.2 Formulación propia fiel al mecanismo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supuestos-y-relacion-con-el-benchmark">5.2.3 Supuestos y relación con el benchmark</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#replica-parcial-condiciones-y-criterio-registrado">5.3 Réplica parcial: condiciones y criterio registrado</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-obtenido-y-discrepancia">5.3.1 Resultado obtenido y discrepancia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#posibles-causas-y-alcance-de-la-validacion">5.3.2 Posibles causas y alcance de la validación</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitaciones-piloto-cuantificado-en-tres-modelos">5.4 Limitaciones: piloto cuantificado en tres modelos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-fijado-antes-de-los-resultados">5.4.1 Diseño fijado antes de los resultados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#l1-dependencia-de-la-composicion-del-batch">5.4.2 L1: dependencia de la composición del batch</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#l2-alta-variabilidad-observable-resultado-inconcluso">5.4.3 L2: alta variabilidad observable, resultado inconcluso</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relacion-con-el-entregable-3-y-limites-de-transferencia">5.5 Relación con el Entregable 3 y límites de transferencia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduccion-descargas-y-estado-de-cierre">5.6 Reproducción, descargas y estado de cierre</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

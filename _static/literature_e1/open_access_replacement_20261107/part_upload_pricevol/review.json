@@ -1,0 +1,212 @@
+{
+  "record_id": "E1N057",
+  "review_id": "E1N057_user_supplied_original_20261107",
+  "title": "Cryptocurrency price and volatility predictions with machine learning",
+  "authors": ["Samir Poudel", "Rajendra Paudyal", "Burak Cankaya", "Naomi Sterlingsdottir", "Marissa Murphy", "Shital Pandey", "Jorge Vargas", "Khem Poudel"],
+  "year": 2023,
+  "journal": "Journal of Marketing Analytics",
+  "volume": "11",
+  "pages": "642–660",
+  "doi": "10.1057/s41270-023-00239-1",
+  "doi_url": "https://doi.org/10.1057/s41270-023-00239-1",
+  "publication_dates": {"accepted": "2023-06-10", "first_online": "2023-08-27"},
+  "reviewed_utc": "2026-11-07T03:10:26Z",
+  "access": {
+    "tier": "user_supplied_complete_original",
+    "original_full_read": true,
+    "original_page_count": 19,
+    "complete_extracted_text_lines_read": 1075,
+    "coverage": "Lectura íntegra de las pp. 642–660 del original suministrado mediante su extracción completa; verificación visual adicional de Table 1, Table 2 y Figs. 13–20 en el PDF original.",
+    "original_file_sha256": "dabfe50b1a7f5684783902aa879e7e336a3f32e2cfbd2cfe54587867fcc4eee6",
+    "license_evidence": "La primera página indica licencia exclusiva a Springer Nature Limited; p. 660 declara derechos exclusivos. No se verificó una licencia abierta de reutilización.",
+    "open_access_verified": false,
+    "redistribution": "Este registro conserva únicamente metadatos, hash y análisis derivados. No incorpora el PDF, texto completo, resumen ni datos de contacto."
+  },
+  "objective": {
+    "problem_type": "Predicción de series financieras con salidas continuas; el artículo mezcla precio, cambio porcentual, interés de búsqueda y volatilidad.",
+    "continuous_target": true,
+    "declared_target": {"description": "La columna Change % respecto del día anterior se declara variable objetivo y se denomina volatilidad.", "location": "p. 646; Table 1 p. 647"},
+    "price_target_evidence": [
+      {"location": "Fig. 13 p. 654", "model": "GRU", "asset": "Bitcoin", "observation": "El eje vertical del experimento dice Close Price; muestra valores de precio, no una fórmula de volatilidad."},
+      {"location": "Fig. 14 p. 654", "model": "GRU", "asset": "DogeCoin", "observation": "El eje vertical dice Close Price."},
+      {"location": "Figs. 15–17 p. 655", "model": "LSTM / Bi-LSTM", "observation": "Las tres figuras muestran Close Price; LSTM para Bitcoin y DogeCoin, Bi-LSTM para Bitcoin."}
+    ],
+    "search_interest_target_or_covariate": {"description": "Índice Google Trends 0–100 denominado search volatility; comparación manual con los precios y ajuste de un coeficiente para regresión.", "locations": ["p. 645", "pp. 649–651", "p. 657"]},
+    "realized_volatility_evidence": {
+      "present": true,
+      "location": "Fig. 18 p. 656; discusión pp. 654–655",
+      "intervals_days_from_visual_legend": [7, 30, 60, 180, 365],
+      "description": "Figura descriptiva titulada Realized Volatility Using Different Interval Windows. La leyenda incluye ventanas que exceden el rango 7–60 del pie. No se proporciona una fórmula ni una conexión explícita entre esta figura y las puntuaciones de las redes en Table 2.",
+      "target_formula": null,
+      "connection_to_dl_training_verified": false
+    },
+    "tarch_volatility_evidence": {"location": "Fig. 20 p. 657; pp. 655 y 658", "description": "Pronóstico TARCH de volatilidad con series Scaled Current Daily Volatility, Target Volatility y Forecasted Volatility; no se define la construcción ni horizonte del objetivo."},
+    "table2_target": "Table 2 se presenta como Bitcoin price volatility prediction, pero no permite identificar una única definición operativa coherente con sus figuras de precio.",
+    "target_formula": null,
+    "sigma7_equivalence_verified": false,
+    "direct_relevance_to_continuous_volatility": "Parcial/ambigua: sí contiene análisis y TARCH de volatilidad continua; no se verifica que LSTM, Bi-LSTM o GRU de Table 2 pronostiquen volatilidad realizada y no precio.",
+    "horizon": null,
+    "horizon_reporting": "No se especifica un horizonte reproducible para cada modelo. La explicación genérica de autoregresión al siguiente paso en p. 650 no acredita el horizonte de las redes. Una ventana de volatilidad en Fig. 18 no equivale a un horizonte de pronóstico."
+  },
+  "datasets": [
+    {
+      "assets": ["Bitcoin", "DogeCoin"],
+      "kind": "Datos de mercado de criptomonedas",
+      "frequency": "daily (declarada)",
+      "variables_reported": ["Date", "Price", "Open", "High", "Low", "Vol. (K)", "Change %"],
+      "source_provider": null,
+      "source_reporting": "Se alude a datos abiertos de mercado, pero no se identifica un proveedor, URL descargable, versión o archivo que permita reconstruir el dataset.",
+      "locations": ["p. 645", "Table 1 p. 647", "p. 658"],
+      "dates_as_reported": [
+        {"range": "2013-08 a 2023-03", "use": "Historia Bitcoin mostrada", "location": "p. 645; Fig. 2 p. 649"},
+        {"range": "2014-03 a 2023-03", "use": "Datos declarados para predicción, nueve años", "location": "p. 645"},
+        {"range": "2021-09 a 2023-03", "use": "Periodo de visualización de mayor volatilidad", "location": "p. 645; Fig. 13 p. 654; Figs. 15 y 17 p. 655"},
+        {"range": "2023-03 a 2023-04", "use": "DogeCoin según ejes de figuras; no coincide con el cierre declarado en marzo", "location": "Fig. 14 p. 654; Fig. 16 p. 655; Fig. 19 p. 656"},
+        {"range": "aproximadamente 2021-08 a 2022-08", "use": "Volatilidad TARCH sobre datos de validación", "location": "pp. 655 y 657, Fig. 20"}
+      ],
+      "observations": null,
+      "train_validation_test_counts": null,
+      "dataset_version_or_hash": null,
+      "dataset_license_verified": false
+    },
+    {
+      "kind": "Google Trends / interés de búsqueda",
+      "terms": ["Bitcoin", "DogeCoin"],
+      "scale": "0–100",
+      "dates_as_reported": "11-01-2019 a 11-01-2021; formato de fecha no aclarado",
+      "locations": ["pp. 645 y 650–651; Figs. 4–5"],
+      "integration": "Comparación manual con los patrones de precio; la fusión automática se propone como trabajo futuro en p. 657.",
+      "observations": null,
+      "download_configuration": null
+    }
+  ],
+  "model_roles": {
+    "standalone_deep_learning_comparators": ["LSTM", "Bi-LSTM", "GRU"],
+    "champion_as_reported": "GRU, por menor RMSPE de Table 2",
+    "standalone_non_deep_learning_context": ["Linear regression / least squares", "TARCH (fila impresa TRACH)", "VAR", "GARCH (figura DogeCoin)"],
+    "hybrid_components": [],
+    "mentioned_only_or_theoretical": ["RNN genérica", "NN genérica", "ARMA", "ARDL", "DCC-GARCH", "VAR-DCC-GARCH", "E-GARCH"],
+    "tcn_present": false,
+    "cnn_present": false,
+    "interpretation": "LSTM, Bi-LSTM y GRU tienen filas separadas de comparación y figuras independientes; no son componentes de un único híbrido. Las explicaciones generales de NN/RNN no constituyen un cuarto modelo autónomo. GARCH/TARCH/VAR no son Deep Learning aunque algunos pasajes los agrupen con redes."
+  },
+  "architecture_and_training": [
+    {
+      "model": "LSTM",
+      "locations": ["p. 644", "p. 653", "Figs. 15–16 p. 655", "Table 2 p. 652"],
+      "reported": "Descripción conceptual de puertas y memoria; histórico de precios como entrada.",
+      "layers": null, "hidden_units": null, "input_lookback": null, "input_feature_tensor": null, "readout": null, "activations": null, "regularization": null, "loss": null, "optimizer": null, "learning_rate": null, "epochs": null, "batch_size": null, "parameter_count": null
+    },
+    {
+      "model": "Bi-LSTM",
+      "locations": ["p. 644", "p. 653", "Fig. 17 p. 655", "Table 2 p. 652"],
+      "reported": "Dos recorridos LSTM de la secuencia en direcciones opuestas como explicación de bidireccionalidad. No establece profundidad de la red implementada ni qué datos estaban disponibles al emitir la predicción.",
+      "layers": null, "hidden_units": null, "input_lookback": null, "input_feature_tensor": null, "readout": null, "activations": null, "regularization": null, "loss": null, "optimizer": null, "learning_rate": null, "epochs": null, "batch_size": null, "parameter_count": null
+    },
+    {
+      "model": "GRU",
+      "locations": ["p. 644", "pp. 652–653", "Fig. 13 p. 654", "Table 2 p. 652"],
+      "reported": "Descripción de reset/update gates; se reportan 800 épocas y tamaño de lote 50. El pie de Fig. 13 los asocia a Bitcoin; no se extienden por inferencia a todas las redes o a DogeCoin.",
+      "layers": null, "hidden_units": null, "input_lookback": null, "input_feature_tensor": null, "readout": null, "activations": null, "regularization": null, "loss": null, "optimizer": null, "learning_rate": null, "epochs": 800, "batch_size": 50, "parameter_count": null
+    },
+    {
+      "model": "TARCH",
+      "locations": ["Fig. 20 p. 657 (título visible)", "p. 658"],
+      "reported": "El título de la figura indica bootstrap TARCH(1,2,0), constant mean, skewed Student's t distribution sobre datos de validación; la conclusión abrevia TARCH(1,2).",
+      "deep_learning": false,
+      "target_formula": null,
+      "forecast_horizon": null,
+      "bootstrap_repetitions": null
+    },
+    {
+      "model": "Least-squares / polynomial regression con coeficiente de volatilidad",
+      "locations": ["pp. 646–650"],
+      "reported": "Ajuste de mínimos cuadrados; coeficiente de volatilidad, umbral y factor elegidos por prueba y error; uso de polyfit/polyval, sin orden seleccionado reproducible.",
+      "deep_learning": false
+    }
+  ],
+  "experimental_protocol": {
+    "methodology": "CRISP-DM",
+    "partition_as_reported": "Datos aleatorizados y divididos en diez partes; cada una se prueba contra las nueve restantes. Se menciona elegir un fold mediano y modelar sobre el conjunto del fold aleatorio.",
+    "partition_location": "p. 645",
+    "train_test_visual_claim": "Los pies de Figs. 11–12 pp. 653–654 mencionan separación train/test, sin proporciones ni límites suficientes para reconciliarla con la CV aleatoria.",
+    "chronological_split_verified": false,
+    "rolling_or_walk_forward_verified": false,
+    "train_dates": null,
+    "validation_dates": null,
+    "test_dates": null,
+    "train_validation_test_proportions": null,
+    "fold_assignments": null,
+    "seed": null,
+    "preprocessing": "Se enumeran limpieza, imputación, transformación, clustering y selección de variables; no se fijan algoritmos, parámetros ni ámbito de ajuste por fold. Se describe normalizar volatilidad por el promedio anual.",
+    "preprocessing_fit_scope": null,
+    "hyperparameter_search": "Se discute ajustar hiperparámetros y se dan dos valores GRU, sin espacio, presupuesto, criterio de selección o separación del test.",
+    "hpo_search_space": null,
+    "independent_training_repetitions": null,
+    "tenfold_cv_is_not_seed_repetition": true,
+    "dispersion_or_intervals": null,
+    "statistical_tests": null,
+    "software": "TensorFlow se menciona y se discuten POSIX threads/OpenMP; sin versiones o configuración suficiente para reconstruir cada experimento.",
+    "code_repository": null,
+    "data_repository": null,
+    "author_experiment_replicated_by_this_review": false
+  },
+  "metrics": {
+    "primary_metric_as_emphasized_by_authors": "RMSPE (p. 650)",
+    "table": "Table 2",
+    "printed_page": 652,
+    "pdf_page": 11,
+    "table_target_label": "Bitcoin price volatility prediction",
+    "metric_definitions": "La sección de regresión desarrolla MSE y R² en pp. 646–647. No se proporciona una definición operacional de RMSPE, su denominador, tratamiento de ceros o escala del objetivo de Table 2.",
+    "scores_are_author_reported_not_recomputed": true,
+    "rows": [
+      {"model": "Linear regression", "MSE": 14914797, "RMSE": 3861, "MAE": 2963, "RMSPE": 0.1033},
+      {"model": "LSTM", "MSE": 2845040, "RMSE": 1686, "MAE": 1191, "RMSPE": 0.0535},
+      {"model": "Bi-LSTM", "MSE": 3425114, "RMSE": 1850, "MAE": 1403, "RMSPE": 0.0506},
+      {"model": "GRU", "MSE": 2003410, "RMSE": 1415, "MAE": 1030, "RMSPE": 0.0418},
+      {"model": "TARCH", "model_label_verbatim": "TRACH", "MSE": 384400, "RMSE": 620, "MAE": 603, "RMSPE": 0.2009},
+      {"model": "VAR", "MSE": 613715, "RMSE": 783.4, "MAE": 253.4, "RMSPE": 3.2254}
+    ],
+    "other_numeric_claims": [
+      {"location": "p. 642", "model": "GRU", "metric": "RMSPE", "value": 0.0468, "assessment": "Contradice el 0.0418 de Table 2 y p. 650; se conserva Table 2 como fuente de las filas, sin corregirla ni promediar valores."},
+      {"location": "p. 655; Fig. 19 p. 656", "model": "GARCH / DogeCoin", "metric_label": "accuracy rate", "value_percent": 94.67, "assessment": "Afirmación sin fórmula, denominador, intervalo o protocolo suficiente; no es una métrica de clasificación validada ni se combina con Table 2."}
+    ],
+    "table_1_role": "Ejemplo de datos, no tabla de resultados ni resumen de partición.",
+    "comparability": "No hay una métrica de error verificada para σ7. Las escalas y objetivos no se pueden reconciliar con certeza entre modelos. No se combinan estos valores con los de un benchmark de volatilidad realizada.",
+    "ranking_interpretation": "GRU tiene menor RMSPE en Table 2; TARCH tiene menor MSE/RMSE y VAR menor MAE. Por tanto, Table 2 no demuestra superioridad de GRU en todas las métricas ni significancia estadística."
+  },
+  "quality": {
+    "peer_reviewed_journal_article": true,
+    "journal_quartile_verified": false,
+    "protocol_clarity": "Insuficiente para reconstrucción experimental.",
+    "architecture_sufficiency": "Insuficiente: no se informan profundidad, unidades, ventana, lectura final, regularización ni optimización de las redes.",
+    "leakage_assessment": "La aleatorización temporal explícita de p. 645 permite entrenamiento con observaciones posteriores a otras evaluadas. La normalización anual y el ajuste manual requieren verificar el ámbito de ajuste, no descrito. No se acredita ausencia de fuga. La bidireccionalidad por sí sola no prueba fuga; falta el tensor y corte de información para evaluarla.",
+    "repetitions": "No se informa repetición independiente de entrenamiento por semillas; diez folds no sustituyen esa información.",
+    "statistical_inference": "No se reportan intervalos, dispersiones por fold, pruebas pareadas ni significancia de la diferencia entre modelos.",
+    "data_traceability": "Sin proveedor de mercado preciso, descarga, versión, número de filas o hashes de partición.",
+    "internal_consistency_issues": [
+      {"location": "pp. 646 y 652; Figs. 13–17 pp. 654–655", "issue": "Change % se declara objetivo, Table 2 se rotula volatilidad, y las figuras DL muestran Close Price."},
+      {"location": "p. 642 versus Table 2 p. 652 y p. 650", "issue": "RMSPE GRU 0.0468 versus 0.0418."},
+      {"location": "p. 645 versus Figs. 14, 16 y 19 pp. 654–656", "issue": "Rango declarado hasta marzo de 2023; figuras DogeCoin alcanzan abril de 2023."},
+      {"location": "Table 1 p. 647", "issue": "El pie anuncia agosto 8–14 pero una fila dice agosto 18; en agosto 12 Low 24616.4 supera High 24440.8. Observado en el PDF, no corregido por el revisor."},
+      {"location": "Fig. 18 p. 656", "issue": "El pie limita intervalos a 7–60 días; la leyenda también incluye 180 y 365 días."}
+    ],
+    "overall": "Útil para verificar que se comparan familias recurrentes autónomas en criptomonedas. Evidencia débil e insuficiente para inferir desempeño de volatilidad continua, reproducir el experimento o certificar cumplimiento de la guía."
+  },
+  "eligibility": {
+    "full_text_available_and_read": true,
+    "full_text_screening_denominator": true,
+    "strict_eligible_study_denominator": false,
+    "quantitative_synthesis": false,
+    "architecture_reproduction_source": false,
+    "contextual_family_evidence": true,
+    "decision": "Conservar como original completo revisado y evidencia contextual; excluir del conjunto estricto elegible para extracción reproducible de baselines.",
+    "reasons": ["Guía §3.1 exige excluir estudios sin arquitectura de referencia o protocolo suficiente.", "Objetivo DL ambiguo entre precio, cambio porcentual y volatilidad; no hay equivalencia σ7 verificable.", "Protocolo temporal aleatorizado y sin comprobación de ausencia de fuga."],
+    "guide_section_3_2_action": "Si se utiliza GRU/LSTM como familia candidata gracias al conjunto total de literatura, la arquitectura concreta debe justificarse con otra fuente suficiente o mediante la búsqueda de arquitectura prescrita en Entregable 2 §14; no atribuir al artículo una red de una capa u otros parámetros que omite.",
+    "frequency_count_rule": "Como evidencia contextual, contar como máximo una presencia por artículo y familia normalizada: LSTM incluye aquí LSTM y Bi-LSTM; conservar las dos variantes en la tabla de modelos. Para el denominador estricto este artículo aporta cero.",
+    "contextual_normalized_family_presence": {"LSTM": 1, "GRU": 1, "TCN": 0, "CNN_1D": 0, "MLP": 0, "simple_RNN": 0},
+    "strict_eligible_normalized_family_presence": {"LSTM": 0, "GRU": 0, "TCN": 0, "CNN_1D": 0, "MLP": 0, "simple_RNN": 0},
+    "final_selection_implication": "Apoya candidatos recurrentes LSTM y GRU solo de forma contextual. No apoya TCN, no establece los tres modelos finales por sí solo y no prueba que GRU supere estadísticamente a LSTM para σ7."
+  },
+  "review_scope": "Revisión documental derivada, sin entrenamiento ni reproducción de los resultados del autor. Ningún capítulo, implementación o resultado de experimentos locales se modifica en esta parte."
+}

@@ -1,0 +1,430 @@
+{
+  "record_id": "METH_MLP_BUCCI2020",
+  "eligibility": "eligible_primary_journal_financial_volatility_standalone_feedforward_MLP_family",
+  "bitcoin_corpus_inclusion": false,
+  "counts_as_bitcoin_evidence": false,
+  "methodological_asset_transfer_only": true,
+  "bibliography": {
+    "author": "Andrea Bucci",
+    "year": 2020,
+    "title": "Realized Volatility Forecasting with Neural Networks",
+    "journal": "Journal of Financial Econometrics",
+    "publisher": "Oxford University Press",
+    "volume": 18,
+    "issue": 3,
+    "pages": "502–531",
+    "doi": "10.1093/jjfinec/nbaa008",
+    "advance_access_date": "2020-06-13",
+    "identity_source": "Publisher typeset PDF, PDF page 1 / printed page 502",
+    "independent_DOI_resolution": false,
+    "indexing_WoS_Scopus_quartile_verified": false
+  },
+  "access": {
+    "file": "bucci2020_rv2.pdf",
+    "url": "https://raw.githubusercontent.com/Idaliia19/realized-volatility-bucci-replication/c549b399e66eabb19f63e14f207770ab4de2da3c/paper/rv2.pdf",
+    "status": 200,
+    "bytes": 961518,
+    "sha256": "eeaa8d0b690f948715496554a82d1466dc3b6ccee5c72fce4e748e78bd7bdcfc",
+    "public_repository": "Idaliia19/realized-volatility-bucci-replication",
+    "commit": "c549b399e66eabb19f63e14f207770ab4de2da3c",
+    "repository_native_path": "paper/rv2.pdf",
+    "source_nature": "Primary OUP typeset article copy in an academic replication repository; replication results are not used as article evidence.",
+    "pdf_pages": 30,
+    "copyright": "The Author(s) 2020, published by Oxford University Press; all rights reserved. Retain PDF/text locally; publish bibliographic facts, extraction, source URL and SHA rather than republishing the PDF."
+  },
+  "dataset": {
+    "asset": "S&P 500 U.S. equity index (§1 says Standard & Poor’s index; captions specify S&P 500)",
+    "market": "U.S. equities, not Bitcoin or cryptocurrency",
+    "observation_frequency": "monthly target, computed from daily continuously compounded returns",
+    "full_period": "February 1950–December 2017",
+    "full_monthly_observations": 815,
+    "crisis_subsample": "February 1973–June 2009",
+    "target": "RV_t = ln(sqrt(sum_{i=1}^{N_t} r_{i,t}^2))",
+    "target_description": "Log of monthly realized standard deviation computed from the sum of squared daily log returns. Not daily intraday realized variance; Eq. (1) does not center returns or divide by N_t.",
+    "daily_price_data_provider": "Not explicitly identified in §1 / Table 1; do not substitute Yahoo Finance from the repository replication.",
+    "exogenous_sources": "Table 1, p. 507: Shiller website (DP, EP); Kenneth French website (MKT, HML, SMB, STR); Datastream (TB, TS, DEF, INF); OECD (IP).",
+    "target_units_annualization": "Log-volatility; annualization not stated",
+    "source_locations": [
+      "printed p. 504, Eq. (1)",
+      "printed p. 507, Table 1"
+    ]
+  },
+  "models": [
+    {
+      "paper_label": "FNNX",
+      "family": "standalone dense feed-forward neural network, MLP family",
+      "independent_comparator": true,
+      "recurrent": false,
+      "hybrid_GARCH": false,
+      "hidden_layers": 1,
+      "full_sample_selected_hidden_nodes": 1,
+      "full_sample_reported_weights": 10,
+      "full_sample_training_MSE": 0.1029,
+      "crisis_selected_hidden_nodes": 3,
+      "crisis_reported_weights": 22,
+      "crisis_training_MSE": 0.1196,
+      "inputs_full": [
+        "RV(t-1)",
+        "RV(t-2)",
+        "RV(t-3)",
+        "DP(t-1)",
+        "MKT(t-1)",
+        "STR(t-1)",
+        "DEF(t-1)"
+      ],
+      "inputs_crisis": [
+        "RV(t-1)",
+        "RV(t-2)",
+        "RV(t-3)",
+        "MKT(t-1)",
+        "STR(t-1)"
+      ],
+      "input_lag_ambiguity": "§3, p. 512 says independent/control variables are lagged by one year; the selected input sets on pp. 513 and 516 use (t-1). Preserve this ambiguity; do not silently assume monthly or annual exogenous lags.",
+      "source_locations": [
+        "p507Eq2",
+        "p508Eq3/Fig3",
+        "p513inputsets",
+        "p515Table2",
+        "p516Table3"
+      ]
+    },
+    {
+      "paper_label": "FNN",
+      "family": "standalone dense feed-forward neural network, MLP family",
+      "independent_comparator": true,
+      "recurrent": false,
+      "hybrid_GARCH": false,
+      "hidden_layers": 1,
+      "full_sample_selected_hidden_nodes": 5,
+      "full_sample_reported_weights": 26,
+      "full_sample_training_MSE": 0.1136,
+      "crisis_selected_hidden_nodes": 3,
+      "crisis_reported_weights": 16,
+      "crisis_training_MSE": 0.1474,
+      "inputs": [
+        "RV(t-1)",
+        "RV(t-2)",
+        "RV(t-3)"
+      ],
+      "source_locations": [
+        "p507Eq2",
+        "p508Eq3/Fig3",
+        "p515Table2",
+        "p516Table3"
+      ]
+    }
+  ],
+  "architecture_common": {
+    "output_units": 1,
+    "activation": "§2, p. 508 describes identity output F and logistic hidden G as common choices; §3 does not separately certify the activations used in empirical fits. Do not label a sigmoid configuration as independently verified.",
+    "training_algorithm": "Gradient descent with momentum and adaptive learning rate (gdx) backpropagation for FNN, ENN, JNN and LSTM (§3, p. 514).",
+    "architecture_selection": "Minimum training MSE; hidden nodes searched up to 7 (full sample) or 5 (subsample), selected on training samples. A separate footnote sets LSTM to 50 hidden units.",
+    "random_initializations": 300,
+    "maximum_iterations_each_architecture": 1000,
+    "loss_for_training": "MSE",
+    "regularization_dropout_weight_decay": "Not stated forFNN",
+    "learning_rate_momentum_values": "Not stated",
+    "early_stopping": "Not stated",
+    "software_version_seed": "Not stated",
+    "weights_caveat": "Reported weight counts are copied verbatim; do not reverse engineer input width from them.",
+    "scaler_fit_scope": "Not stated"
+  },
+  "evaluation": {
+    "scheme": "Rolling window re-estimation at each forecast origin",
+    "horizons_months": [
+      1,
+      5
+    ],
+    "five_step_definition": "Iterated forecast of the target at t+5, updating lagged target inputs with previous predictions; not variance aggregated over the next five months.",
+    "full_test": "August 1997–December 2017",
+    "full_test_n": 245,
+    "crisis_test": "September 2007–June 2009",
+    "crisis_test_n": 22,
+    "input_selection_on_train": true,
+    "metrics": [
+      "MSE",
+      "QLIKE"
+    ],
+    "MCS": "Range-statistic MCS; stationary bootstrap with 10,000 resamples. Tables 4 and 5 report average losses and MCS p-values.",
+    "DM": "Table 6 also reports DM against persistence; editorial significance legend/prose conflicts are documented below. It is not used for a clean superiority claim.",
+    "uncertainty": "There are only 22 crisis out-of-sample points; the source does not document enough to certify purging or scaler causality.",
+    "source_locations": [
+      "p. 514, test dates",
+      "p. 515, rolling horizons",
+      "p. 516, iterative inputs and metrics",
+      "p. 518, Table 4",
+      "p. 523, Table 5",
+      "p. 524, Table 6"
+    ]
+  },
+  "test_metrics": [
+    {
+      "sample": "full",
+      "period": "1997.08–2017.12",
+      "n": 245,
+      "model": "FNNX",
+      "horizon_months": 1,
+      "MSE": 0.132,
+      "QLIKE": 3.313,
+      "location": "p518Table4"
+    },
+    {
+      "sample": "full",
+      "period": "1997.08–2017.12",
+      "n": 245,
+      "model": "FNNX",
+      "horizon_months": 5,
+      "MSE": 0.178,
+      "QLIKE": 3.325,
+      "location": "p518Table4"
+    },
+    {
+      "sample": "full",
+      "period": "1997.08–2017.12",
+      "n": 245,
+      "model": "FNN",
+      "horizon_months": 1,
+      "MSE": 0.13,
+      "QLIKE": 3.311,
+      "location": "p518Table4"
+    },
+    {
+      "sample": "full",
+      "period": "1997.08–2017.12",
+      "n": 245,
+      "model": "FNN",
+      "horizon_months": 5,
+      "MSE": 0.176,
+      "QLIKE": 3.325,
+      "location": "p518Table4"
+    },
+    {
+      "sample": "full",
+      "period": "1997.08–2017.12",
+      "n": 245,
+      "model": "HAR",
+      "horizon_months": 1,
+      "MSE": 0.115,
+      "QLIKE": 3.308,
+      "location": "p518Table4"
+    },
+    {
+      "sample": "full",
+      "period": "1997.08–2017.12",
+      "n": 245,
+      "model": "HAR",
+      "horizon_months": 5,
+      "MSE": 0.102,
+      "QLIKE": 3.306,
+      "location": "p518Table4"
+    },
+    {
+      "sample": "full",
+      "period": "1997.08–2017.12",
+      "n": 245,
+      "model": "LSTMX",
+      "horizon_months": 1,
+      "MSE": 0.042,
+      "QLIKE": 3.293,
+      "location": "p518Table4"
+    },
+    {
+      "sample": "full",
+      "period": "1997.08–2017.12",
+      "n": 245,
+      "model": "LSTMX",
+      "horizon_months": 5,
+      "MSE": 0.152,
+      "QLIKE": 3.313,
+      "location": "p518Table4"
+    },
+    {
+      "sample": "full",
+      "period": "1997.08–2017.12",
+      "n": 245,
+      "model": "LSTM",
+      "horizon_months": 1,
+      "MSE": 0.11,
+      "QLIKE": 3.307,
+      "location": "p518Table4"
+    },
+    {
+      "sample": "full",
+      "period": "1997.08–2017.12",
+      "n": 245,
+      "model": "LSTM",
+      "horizon_months": 5,
+      "MSE": 0.185,
+      "QLIKE": 3.327,
+      "location": "p518Table4"
+    },
+    {
+      "sample": "full",
+      "period": "1997.08–2017.12",
+      "n": 245,
+      "model": "NARX",
+      "horizon_months": 1,
+      "MSE": 0.018,
+      "QLIKE": 3.288,
+      "location": "p518Table4"
+    },
+    {
+      "sample": "full",
+      "period": "1997.08–2017.12",
+      "n": 245,
+      "model": "NARX",
+      "horizon_months": 5,
+      "MSE": 0.146,
+      "QLIKE": 3.316,
+      "location": "p518Table4"
+    },
+    {
+      "sample": "crisis",
+      "period": "2007.09–2009.06",
+      "n": 22,
+      "model": "FNNX",
+      "horizon_months": 1,
+      "MSE": 0.176,
+      "QLIKE": 2.864,
+      "location": "p523Table5"
+    },
+    {
+      "sample": "crisis",
+      "period": "2007.09–2009.06",
+      "n": 22,
+      "model": "FNNX",
+      "horizon_months": 5,
+      "MSE": 0.259,
+      "QLIKE": 2.89,
+      "location": "p523Table5"
+    },
+    {
+      "sample": "crisis",
+      "period": "2007.09–2009.06",
+      "n": 22,
+      "model": "FNN",
+      "horizon_months": 1,
+      "MSE": 0.138,
+      "QLIKE": 2.849,
+      "location": "p523Table5"
+    },
+    {
+      "sample": "crisis",
+      "period": "2007.09–2009.06",
+      "n": 22,
+      "model": "FNN",
+      "horizon_months": 5,
+      "MSE": 0.234,
+      "QLIKE": 2.874,
+      "location": "p523Table5"
+    },
+    {
+      "sample": "crisis",
+      "period": "2007.09–2009.06",
+      "n": 22,
+      "model": "HAR",
+      "horizon_months": 1,
+      "MSE": 0.247,
+      "QLIKE": 2.878,
+      "location": "p523Table5"
+    },
+    {
+      "sample": "crisis",
+      "period": "2007.09–2009.06",
+      "n": 22,
+      "model": "HAR",
+      "horizon_months": 5,
+      "MSE": 0.263,
+      "QLIKE": 2.885,
+      "location": "p523Table5"
+    },
+    {
+      "sample": "crisis",
+      "period": "2007.09–2009.06",
+      "n": 22,
+      "model": "LSTMX",
+      "horizon_months": 1,
+      "MSE": 0.151,
+      "QLIKE": 2.853,
+      "location": "p523Table5"
+    },
+    {
+      "sample": "crisis",
+      "period": "2007.09–2009.06",
+      "n": 22,
+      "model": "LSTMX",
+      "horizon_months": 5,
+      "MSE": 0.533,
+      "QLIKE": 2.936,
+      "location": "p523Table5"
+    },
+    {
+      "sample": "crisis",
+      "period": "2007.09–2009.06",
+      "n": 22,
+      "model": "LSTM",
+      "horizon_months": 1,
+      "MSE": 0.08,
+      "QLIKE": 2.833,
+      "location": "p523Table5"
+    },
+    {
+      "sample": "crisis",
+      "period": "2007.09–2009.06",
+      "n": 22,
+      "model": "LSTM",
+      "horizon_months": 5,
+      "MSE": 0.46,
+      "QLIKE": 2.952,
+      "location": "p523Table5"
+    },
+    {
+      "sample": "crisis",
+      "period": "2007.09–2009.06",
+      "n": 22,
+      "model": "NARX",
+      "horizon_months": 1,
+      "MSE": 0.052,
+      "QLIKE": 2.824,
+      "location": "p523Table5"
+    },
+    {
+      "sample": "crisis",
+      "period": "2007.09–2009.06",
+      "n": 22,
+      "model": "NARX",
+      "horizon_months": 5,
+      "MSE": 0.266,
+      "QLIKE": 2.884,
+      "location": "p523Table5"
+    }
+  ],
+  "limits": [
+    "This is one primary journal study on S&P 500, supporting methodological family selection. It adds zero studies to a Bitcoin-specific corpus.",
+    "The paper calls the baseline FNN and supplies an explicit dense, single hidden layer equation and Figure 3. The MLP-family mapping rests on this structure, not inference from generic deep learning.",
+    "This does not prove the current E1 configuration was derived before training. A current one hidden layer baseline may be a project simplification, not an exact replica.",
+    "Do not compare raw MSE/QLIKE with E1 daily seven-return volatility: asset, monthly frequency, target log transform, predictors, horizon and test cohort differ.",
+    "An evaluated comparator is not automatically best. Full-sample FNN loses to HAR in MSE at both horizons. Crisis-subsample FNN has the lowest reported five-step MSE in Table 5.",
+    "Do not claim frequent use from this single study.",
+    "§1 says February 1950; §3 and §4 occasionally say January 1950. Preserve the §1 count of 815 observations with its February start.",
+    "The source says exogenous variables are lagged one year, but selected input sets use t-1; this blocks an exact replica without clarification.",
+    "The narrative on p. 520 says fewer families beat persistence at one step, while Table 6 marks the FNN full-sample statistic 2.457 with stars. The significance legend maps stars to 1%, 5% and 10% in an unusual order. Do not base an MLP superiority claim on these ambiguities."
+  ],
+  "visual_QA": {
+    "checked": true,
+    "pages": [
+      518,
+      523
+    ],
+    "method": "Rendered PDF pages 17 and 22 and visually checked model rows and MSE/QLIKE columns against extracted text."
+  },
+  "source_id": "T1",
+  "evidence_tier": "T1",
+  "reference_key": "bucci2020realized",
+  "consulted_primary_full_text": true,
+  "counts_as_new_methodological_journal_full_text": true,
+  "counts_in_BTC_corpus": false,
+  "reported_losses_interpretation": "Tables4/5 report average out-of-sample losses over245/22 forecast observations. They are not mean±SD over300 independent benchmark seeds; the300 random starts belong to source fitting/architecture selection.",
+  "reviewed_at_utc": "2026-11-05T12:22:40.011587+00:00",
+  "reviewed_at_bogota": "2026-11-05T07:22:40.011587-05:00"
+}

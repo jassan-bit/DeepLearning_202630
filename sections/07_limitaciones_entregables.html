@@ -1,0 +1,793 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>7. Limitaciones Inferenciales de Trabajar con Tres Modelos &#8212; Bitcoin: pronóstico de volatilidad</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/07_limitaciones_entregables';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="8. Entregables: productos y evidencias" href="08_entregables.html" />
+    <link rel="prev" title="6. Guía de Procedimiento por Tipo de Problema" href="06_procedimiento.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Bitcoin: pronóstico de volatilidad</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_problema_dataset.html">1. Definición del Problema y Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_estado_arte.html">3. Revisión del Estado del Arte y Extracción de los Tres Modelos Base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion_evaluacion.html">4. Implementación y evaluación: diseño y estado de ejecución</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_benchmark.html">5. Benchmark de los Modelos Base y Definición del Baseline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_procedimiento.html">6. Guía de Procedimiento por Tipo de Problema</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">7. Limitaciones Inferenciales de Trabajar con Tres Modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_entregables.html">8. Entregables: productos y evidencias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_estudio_planificado.html">9. Estudio D7 con piloto, ajuste equitativo y evaluación preespecificada</a></li>
+<li class="toctree-l1"><a class="reference internal" href="protocolo_pendiente.html">Decisiones, revisión y pendientes de E1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias y materiales</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><div class="book-credit">
+  <p class="component-author">By Jassan Arteta</p>
+  <p class="copyright">© Copyright 2026.</p>
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/07_limitaciones_entregables.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>7. Limitaciones Inferenciales de Trabajar con Tres Modelos</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#potencia-tamano-de-muestra-y-multiplicidad">7.1. Potencia, tamaño de muestra y multiplicidad</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#friedman-con-tres-modelos-y-cinco-bloques">7.1.1. Friedman con tres modelos y cinco bloques</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limite-del-wilcoxon-pareado">7.1.2. Límite del Wilcoxon pareado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correccion-de-holm-con-tres-pares">7.1.3. Corrección de Holm con tres pares</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-abordar-estas-limitaciones">7.2. Cómo abordar estas limitaciones</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#repeticiones-y-validacion-respetando-el-tiempo">7.2.1. Repeticiones y validación respetando el tiempo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencia-minima-detectable-y-tamanos-de-efecto">7.2.2. Diferencia mínima detectable y tamaños de efecto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilidad-de-superioridad">7.2.3. Probabilidad de superioridad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equivalencia-requiere-un-analisis-separado">7.2.4. Equivalencia requiere un análisis separado</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo-y-criterio-de-honestidad-inferencial">7.3. Objetivo y criterio de honestidad inferencial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entregables-y-estado-documental-real">7.4. Entregables y estado documental real</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#criterios-de-evaluacion-del-entregable">7.5. Criterios de evaluación del entregable</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#buenas-practicas-y-cierre">7.6. Buenas prácticas y cierre</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="limitaciones-inferenciales-de-trabajar-con-tres-modelos">
+<h1>7. Limitaciones Inferenciales de Trabajar con Tres Modelos<a class="headerlink" href="#limitaciones-inferenciales-de-trabajar-con-tres-modelos" title="Link to this heading">#</a></h1>
+<p><strong>Dos fases del estudio.</strong> Las tablas de cuatro entradas, diez semillas y test enero de 2025–agosto de 2026 de este capítulo corresponden a la <strong>fase I exploratoria</strong>. La <strong>fase II D7</strong> añade búsqueda equitativa, piloto anterior a su ejecución definitiva, dimensionamiento y evaluación preespecificada sobre el 01/09–30/10/2026. Sus recetas, recuentos y resultados se identifican por separado en el <a class="reference internal" href="09_estudio_planificado.html"><span class="std std-doc">capítulo 9</span></a>.</p>
+<p>El benchmark inicial de fase I compara <strong>GRU, LSTM y TCN</strong> con D=7/14/21/28, n=7, h=1 y diez semillas. Se completaron <strong>120 trayectorias de CV, 1.440 segmentos mensuales, 2.880 ajustes y 43.920 predicciones</strong>. El cierre final verificó 120 checkpoints: 80 ajustes nuevos y 40 LSTM idénticos reutilizados. El test histórico contiene 608 fechas y 72.960 predicciones. Los <a class="reference download internal" download="" href="../_downloads/36d74710df2babf37694c1d56ed4cce9/protocols_manifest.json"><span class="xref download myst">manifiestos de procedencia</span></a> distinguen fases, hashes y reutilización.</p>
+<p><strong>El periodo de test ya había sido observado en el proyecto.</strong> La nueva configuración se cerró antes de puntuar sus checkpoints, pero esa secuencia no vuelve desconocido el mercado ni convierte el análisis en confirmación temporal independiente. La comparación dentro de la terna es posterior a la evaluación y exploratoria. Un benchmark con tres modelos y pocas semillas puede no detectar diferencias pequeñas; ese límite debe cuantificarse y no ocultarse tras el promedio.</p>
+<section id="potencia-tamano-de-muestra-y-multiplicidad">
+<h2>7.1. Potencia, tamaño de muestra y multiplicidad<a class="headerlink" href="#potencia-tamano-de-muestra-y-multiplicidad" title="Link to this heading">#</a></h2>
+<section id="friedman-con-tres-modelos-y-cinco-bloques">
+<h3>7.1.1. Friedman con tres modelos y cinco bloques<a class="headerlink" href="#friedman-con-tres-modelos-y-cinco-bloques" title="Link to this heading">#</a></h3>
+<p>Con tres modelos y cinco bloques, Friedman puede tener poca potencia y Nemenyi ser conservador. La ausencia de significación no demuestra equivalencia. Tampoco significa que ningún efecto sea detectable: intervienen la alternativa, la dispersión, los empates, la unidad de bloque y la referencia exacta, de permutación o aproximada utilizada.</p>
+<p>Un bloque completo debe contener la misma unidad bajo los tres modelos. Semillas, fechas, meses y ventanas no se mezclan como réplicas independientes de la misma naturaleza. En este experimento una semilla identifica una trayectoria de aleatorización condicionada al calendario; los doce meses de CV no son doce mercados. La interpretación de un Friedman entre semillas tendría ese mismo alcance limitado.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/f9749917aa5500d7bb8ee0a829c00772/friedman_D7.csv"><span class="xref download myst">Friedman D7 vigente</span></a> se calculó <strong>post-hoc</strong> con tres modelos y diez bloques-semilla, bajo referencia χ² aproximada con dos grados de libertad:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fase</p></th>
+<th class="head text-right"><p>χ² de Friedman</p></th>
+<th class="head text-right"><p>p aproximado</p></th>
+<th class="head text-right"><p>p Holm2, sensibilidad entre fases</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CV 2024</p></td>
+<td class="text-right"><p>18,2</p></td>
+<td class="text-right"><p>0,0001116658</p></td>
+<td class="text-right"><p>0,0002233316</p></td>
+</tr>
+<tr class="row-odd"><td><p>Test histórico observado</p></td>
+<td class="text-right"><p>16,8</p></td>
+<td class="text-right"><p>0,0002248673</p></td>
+<td class="text-right"><p>0,0002248673</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Estos resultados corresponden a aleatorización sobre fechas conocidas, no a diez mercados independientes. Los contrastes pareados y su multiplicidad se declaran por separado en el <a class="reference download internal" download="" href="../_downloads/cb347cfce2acc6620ccbb32a7b86c752/public_analysis_plan.json"><span class="xref download myst">plan vigente</span></a>; no se eligen ni se ocultan según el resultado del omnibus. No se ejecuta Nemenyi: tiene su propio control simultáneo y no se sustituye automáticamente por Holm.</p>
+</section>
+<section id="limite-del-wilcoxon-pareado">
+<h3>7.1.2. Límite del Wilcoxon pareado<a class="headerlink" href="#limite-del-wilcoxon-pareado" title="Link to this heading">#</a></h3>
+<p>Para R diferencias pareadas independientes bajo el alcance declarado, sin ceros ni empates en sus valores absolutos y con signos equiprobables bajo el nulo bilateral exacto, el menor p-value posible es:</p>
+<div class="math notranslate nohighlight">
+\[
+p_{\min}=\frac{2}{2^R}.
+\]</div>
+<p>Con <strong>cinco pares</strong>, el mínimo es 0,0625: ese contraste no puede rechazar al nivel 0,05 ni en el caso más extremo. Con <strong>seis</strong>, el mínimo es 0,03125. R cuenta pares de resultados de dos modelos, no la suma de ejecuciones de las tres redes. Ceros, empates y la convención exacta o aproximada del software deben declararse.</p>
+<p>La guía establece cinco ejecuciones como mínimo general y seis para pruebas por rangos. Esos mínimos no garantizan potencia 0,80. Wilcoxon tampoco contrasta automáticamente la misma media que una t pareada; una interpretación de desplazamiento requiere condiciones adicionales, incluida simetría. No se cambia retrospectivamente a una prueba unilateral o a otro método porque produzca un resultado favorable.</p>
+</section>
+<section id="correccion-de-holm-con-tres-pares">
+<h3>7.1.3. Corrección de Holm con tres pares<a class="headerlink" href="#correccion-de-holm-con-tres-pares" title="Link to this heading">#</a></h3>
+<p>Tres modelos producen <strong>tres comparaciones pareadas por configuración</strong>. En Holm, el menor p-value se compara primero con α/3≈0,0167 para α=0,05; los siguientes pasos usan α/2 y α si los anteriores rechazan.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Pares útiles R</p></th>
+<th class="head text-right"><p>Menor p-value bilateral exacto</p></th>
+<th class="head"><p>¿Permite rechazo a 0,05 sin ajuste?</p></th>
+<th class="head"><p>¿Permite el primer paso de Holm, 0,05/3?</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>5</p></td>
+<td class="text-right"><p>0,0625</p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td class="text-right"><p>0,03125</p></td>
+<td><p>Sí</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td class="text-right"><p>0,015625</p></td>
+<td><p>Sí</p></td>
+<td><p>Sí</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td class="text-right"><p>0,0078125</p></td>
+<td><p>Sí</p></td>
+<td><p>Sí</p></td>
+</tr>
+<tr class="row-even"><td><p>10</p></td>
+<td class="text-right"><p>0,001953125</p></td>
+<td><p>Sí</p></td>
+<td><p>Sí</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Esta resolución discreta no es una recomendación de tamaño ni una estimación de potencia. La comparación principal D7 de GRU–LSTM–TCN contiene tres pares por fase; la sensibilidad a cuatro historias contiene doce. Cada familia conserva su pregunta y corrección, como muestran los <a class="reference download internal" download="" href="../_downloads/29495c8bbf41642e12bd96da2b9eb752/within_trio_pairs_cv.csv"><span class="xref download myst">pares CV</span></a>, <a class="reference download internal" download="" href="../_downloads/6023f334211ed3be3cafe536d128c2dd/within_trio_pairs_test.csv"><span class="xref download myst">pares test</span></a> y familias completas <a class="reference download internal" download="" href="../_downloads/579d0b84b36b4b2524129425680e84ea/within_trio_pairs_allD_cv.csv"><span class="xref download myst">CV</span></a> y <a class="reference download internal" download="" href="../_downloads/b1e09de36b7133b05ccc52977f752002/within_trio_pairs_allD_test.csv"><span class="xref download myst">test</span></a>.</p>
+<p>La referencia principal es la t pareada declarada, con diagnósticos de sus supuestos. Ajustar sus p-valores no hace simultáneos unos IC marginales ni vuelve correcto un modelo de independencia inadecuado. Los diagnósticos BDS/Ljung–Box y DM mantienen sus propias unidades y familias; sus rechazos no se suman como confirmaciones independientes.</p>
+</section>
+</section>
+<section id="como-abordar-estas-limitaciones">
+<h2>7.2. Cómo abordar estas limitaciones<a class="headerlink" href="#como-abordar-estas-limitaciones" title="Link to this heading">#</a></h2>
+<section id="repeticiones-y-validacion-respetando-el-tiempo">
+<h3>7.2.1. Repeticiones y validación respetando el tiempo<a class="headerlink" href="#repeticiones-y-validacion-respetando-el-tiempo" title="Link to this heading">#</a></h3>
+<p>La historia inicial es 2023 y los orígenes de validación son los días de 2024. Los índices reales de <code class="docutils literal notranslate"><span class="pre">split_train_val_forwardChaining</span></code> se agrupan en doce bloques mensuales con u≤inicio del mes−D−1 y validación interna reciente con purga propia. Los pesos quedan fijos dentro del mes; cada pronóstico diario usa únicamente OHLCV hasta el día anterior. La selección de D se realiza con ese desarrollo ya expuesto, no con test.</p>
+<p>Hay diez semillas 4101–4110 por red e historia. Permiten describir variación de entrenamiento condicionada al calendario, sin convertir las 120 combinaciones en 120 mercados. La validación cruzada repetida y una corrección de varianza solo son apropiadas si sus supuestos se justifican; no autorizan K-fold aleatorio ni mezcla de fechas en BTCUSDT.</p>
+<p>El ajuste final utiliza el desarrollo admisible 2023–2024. Los 120 checkpoints se cierran antes de acceder al derivado del test en este ciclo, con 80 ajustes nuevos y 40 controles LSTM reutilizados. Sus veinte meses son intervalos de reporte de pesos fijos, sin adaptación o reescalado con test. Septiembre–octubre de 2026 no se incorporó a fase I. Su asignación posterior y explícita a fase II D7 se documenta en el capítulo 9.</p>
+<p>Remuestrear fechas o semillas requiere declarar la unidad y la dependencia que se intenta representar. Un bootstrap sobre predicciones guardadas condiciona a esos modelos; no es un nuevo entrenamiento o mercado. Ni esa operación ni Holm reparan fuga temporal, selección con la evaluación o un p-value mal calibrado.</p>
+</section>
+<section id="diferencia-minima-detectable-y-tamanos-de-efecto">
+<h3>7.2.2. Diferencia mínima detectable y tamaños de efecto<a class="headerlink" href="#diferencia-minima-detectable-y-tamanos-de-efecto" title="Link to this heading">#</a></h3>
+<p><strong>Fase I:</strong> no se ejecutó un piloto prospectivo para dimensionar sus repeticiones. Las diez semillas fueron un presupuesto fijo. <strong>Fase II D7:</strong> las recetas se seleccionan mediante HPO comparable, el piloto usa diez semillas nuevas por familia y el dimensionamiento precede a los ajustes definitivos. El <a class="reference internal" href="09_estudio_planificado.html"><span class="std std-doc">capítulo 9</span></a> conserva R, MDE y supuestos. El piloto de D7 no se transfiere a D14/21/28 ni acredita potencia temporal o conjunta del 80 %.</p>
+<p>Una planificación pareada debe estimar la desviación de las diferencias de la métrica primaria bajo el procedimiento futuro, fijar δ y la familia de comparaciones antes de las nuevas ejecuciones, y justificar la unidad de repetición. Bajo una aproximación normal independiente:</p>
+<div class="math notranslate nohighlight">
+\[
+R\approx\frac{(z_{1-\alpha_*/2}+z_{1-\beta})^2\widehat\sigma_d^2}{\delta^2},
+\]</div>
+<p>donde α* refleja la multiplicidad de planificación. Con muestras pequeñas debe revisarse la referencia t, la incertidumbre de la DE y, si procede, una alternativa por simulación o remuestreo compatible con el diseño. Un cálculo retrospectivo de MDE es sensibilidad del diseño; no acredita un piloto previo o potencia alcanzada.</p>
+<p>Después del test de fase I se definió una convención académica del 5 % frente a GRU/D7 y persistencia para un futuro modelo avanzado. El ancla neuronal de CV es RMSE 0,005154568533 y da δ≈0,00025772842665; fase II registró ese valor antes de su reserva. El <a class="reference download internal" download="" href="../_downloads/c3b010d7cc228902773db95f5eecef8d/future_margin.json"><span class="xref download myst">registro del margen futuro</span></a> conserva esa cronología. La <a class="reference internal" href="01_problema_dataset.html"><span class="std std-doc">justificación ampliada de §1.1.4</span></a> responde al uso confirmado de <strong>comparación académica de modelos</strong>: exige una reducción apreciable del error antes de aceptar mayor complejidad y sitúa el 5 % entre sensibilidades del 2,5 % y del 10 %.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/6325eef34fafe060a7967b9082839400/README.md"><code class="xref download docutils literal notranslate"><span class="pre">suplemento</span> <span class="pre">de</span> <span class="pre">contexto</span> <span class="pre">académico</span></code></a> usa sólo desarrollo 2023–2024: δ equivale a 1,60 DE del RMSE CV entre semillas de GRU/D7 y al 2,64 % de la DE observada del objetivo en 2024. Esas escalas contextualizan una decisión normativa; no derivan un umbral óptimo ni prueban relevancia temporal o económica. La fundamentación es posterior y conserva δ, R, recetas y baseline: no se retrofecha como margen pretest de fase I, no añade pruebas y no establece equivalencia o utilidad financiera.</p>
+<p>Las <a class="reference download internal" download="" href="../_downloads/29495c8bbf41642e12bd96da2b9eb752/within_trio_pairs_cv.csv"><span class="xref download myst">diferencias de CV</span></a> y <a class="reference download internal" download="" href="../_downloads/6023f334211ed3be3cafe536d128c2dd/within_trio_pairs_test.csv"><span class="xref download myst">test</span></a> reportan magnitud, dispersión e intervalos junto a p-valores ajustados y sin ajustar. El tamaño de efecto pareado describe señal respecto a variación entre semillas; no sustituye la diferencia en unidades de σ₇ ni una valoración contextual del margen práctico.</p>
+</section>
+<section id="probabilidad-de-superioridad">
+<h3>7.2.3. Probabilidad de superioridad<a class="headerlink" href="#probabilidad-de-superioridad" title="Link to this heading">#</a></h3>
+<p>Para métricas en las que menor es mejor, una proporción descriptiva entre las R ejecuciones emparejadas puede definirse como:</p>
+<div class="math notranslate nohighlight">
+\[
+\widehat p_{A&lt;B}=\frac1R\sum_{s=1}^{R}
+\left[\mathbb I(m_{A,s}&lt;m_{B,s})+
+\frac12\mathbb I(m_{A,s}=m_{B,s})\right].
+\]</div>
+<p>Su unidad es la semilla bajo las mismas fechas y recetas. Una fracción de victorias no es un p-value ni una probabilidad posterior de que la diferencia media sea favorable. Un intervalo binomial necesita declarar cómo se tratan los empates y asumir pares de aleatorización independientes condicionados al calendario. No incluye variabilidad de otros periodos o mercados.</p>
+<p>En el <a class="reference download internal" download="" href="../_downloads/6023f334211ed3be3cafe536d128c2dd/within_trio_pairs_test.csv"><span class="xref download myst">test histórico D7</span></a>, la fracción observada de semillas con menor RMSE de A y los intervalos exactos de Clopper–Pearson son:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Comparación A frente a B</p></th>
+<th class="head text-right"><p>Victorias de A</p></th>
+<th class="head text-right"><p>Fracción</p></th>
+<th class="head"><p>IC 95 % condicional</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>GRU frente a LSTM</p></td>
+<td class="text-right"><p>10/10</p></td>
+<td class="text-right"><p>1,00</p></td>
+<td><p>[0,692; 1,000]</p></td>
+</tr>
+<tr class="row-odd"><td><p>GRU frente a TCN</p></td>
+<td class="text-right"><p>8/10</p></td>
+<td class="text-right"><p>0,80</p></td>
+<td><p>[0,444; 0,975]</p></td>
+</tr>
+<tr class="row-even"><td><p>LSTM frente a TCN</p></td>
+<td class="text-right"><p>0/10</p></td>
+<td class="text-right"><p>0,00</p></td>
+<td><p>[0,000; 0,308]</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>No hubo empates bajo la tolerancia declarada. Diez victorias de diez no prueban superioridad universal, una reducción superior al 5 % o equivalencia; cero victorias tampoco significa probabilidad universal cero. Las <a class="reference download internal" download="" href="../_downloads/29495c8bbf41642e12bd96da2b9eb752/within_trio_pairs_cv.csv"><span class="xref download myst">fracciones de CV</span></a> se reportan por separado. Los contrastes y los IC de magnitud de §5 mantienen esas preguntas separadas.</p>
+</section>
+<section id="equivalencia-requiere-un-analisis-separado">
+<h3>7.2.4. Equivalencia requiere un análisis separado<a class="headerlink" href="#equivalencia-requiere-un-analisis-separado" title="Link to this heading">#</a></h3>
+<p>La ausencia de significación no demuestra equivalencia. Para sostenerla se necesitaría un procedimiento predefinido, como <strong>TOST</strong> con una banda justificada o un análisis bayesiano con <strong>ROPE</strong>, con sus supuestos y reglas.</p>
+<p>En TOST con α=0,05 sin otro ajuste, ambas pruebas unilaterales deben rechazar; la regla usual corresponde al IC del <strong>90 %</strong> completamente dentro de la banda. Se distingue del IC del 95 % de reporte general y se adapta a la multiplicidad aplicable. ROPE requiere modelo, priors, posterior y decisión; no se obtiene contando semillas ganadoras.</p>
+<p>El margen de mejora frente al baseline no crea automáticamente una banda de equivalencia. Una diferencia pequeña y precisa puede ser distinguible de cero y estar dentro de una banda práctica. Si no hay evidencia suficiente para ninguna afirmación, el resultado es inconcluso. Este libro <strong>no afirma equivalencia</strong> y no declara TOST/ROPE ejecutados.</p>
+</section>
+</section>
+<section id="objetivo-y-criterio-de-honestidad-inferencial">
+<h2>7.3. Objetivo y criterio de honestidad inferencial<a class="headerlink" href="#objetivo-y-criterio-de-honestidad-inferencial" title="Link to this heading">#</a></h2>
+<p>El propósito es establecer un baseline, su variabilidad y sus límites. <strong>GRU/D7</strong> fue seleccionado por la media de RMSE de CV antes de puntuar el nuevo ciclo en test. La <a class="reference download internal" download="" href="../_downloads/8cb0de6e4f53d56251ec7e4b4abfb5ad/selected_by_cv.json"><span class="xref download myst">selección registrada</span></a> mantiene las cuatro historias y no se modifica por el ranking del test.</p>
+<p>Las cuarenta trayectorias LSTM de CV se reentrenaron y reprodujeron exactamente 14.640 predicciones; en test se reutilizaron 24.320 predicciones de checkpoints idénticos verificados. Esa identidad es un control de reproducción, no una nueva confirmación de generalización o cuarenta inferencias adicionales.</p>
+<p>Los resultados tienen matices: persistencia obtiene menor RMSE que GRU en CV. En test GRU tiene menor RMSE, mientras persistencia conserva mejores MAE y MAPE. Se reportan ambos hechos. Una mejora en la métrica primaria no demuestra superioridad en todas las métricas ni utilidad financiera.</p>
+<p>Los IC entre semillas condicionan al calendario y los contrastes dentro de la terna son <strong>post-hoc</strong>. El periodo de test ya era conocido; congelar el nuevo código y los pesos mejora la trazabilidad sin borrar esa exposición. Se requiere otra evaluación independiente si los resultados se usan para diseñar una propuesta posterior. La dependencia residual también puede provenir del solapamiento del objetivo, actualización mensual o deriva; no cuantifica automáticamente una mejora explotable.</p>
+</section>
+<section id="entregables-y-estado-documental-real">
+<h2>7.4. Entregables y estado documental real<a class="headerlink" href="#entregables-y-estado-documental-real" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Producto</p></th>
+<th class="head"><p>Evidencia vigente</p></th>
+<th class="head"><p>Límite</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Informe en Jupyter Book</p></td>
+<td><p>Capítulos centrados en GRU–LSTM–TCN, sus cuatro entradas y el baseline GRU/D7</p></td>
+<td><p>Publicación y revisión no equivalen a cumplimiento científico total.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Código EDA, redes y estadística</p></td>
+<td><p>Recetas, contratos de tensor, semillas, índices, escalado y análisis de predicciones guardadas</p></td>
+<td><p>Adaptaciones compactas, no réplicas exactas de redes entrenadas en artículos.</p></td>
+</tr>
+<tr class="row-even"><td><p>Datos y adquisición</p></td>
+<td><p>Fuente oficial, scripts, manifiestos y reglas de calidad</p></td>
+<td><p>Una serie BTCUSDT; el periodo de test ya había sido observado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Literatura y flujo</p></td>
+<td><p>N7 histórico conservado; 244 ocurrencias/182 grupos. Actualización de acceso gratuito: ocho decisiones de exclusión/contexto y 14 informes no recuperados de la cola original; alternativas por tema y función (§3.8)</p></td>
+<td><p>El acceso informado no equivale a calidad ni resuelve el historial nativo/IEEE. Distinguir familias autónomas, híbridos, activos, objetivos y versiones; no inferir Q1 o indexación desde editorial.</p></td>
+</tr>
+<tr class="row-even"><td><p>Benchmark e inferencia</p></td>
+<td><p>Fase I: 120 trayectorias CV y 120 resultados finales; fase II D7: HPO, piloto, ajuste dimensionado y nueva reserva (§9)</p></td>
+<td><p>Fase I posterior y exploratoria; fase II preespecificada y condicionada al calendario, con límites temporales y de generalización.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dependencias y configuraciones</p></td>
+<td><p><a class="reference download internal" download="" href="../_downloads/2e40a4c9d1ec05d082b1018c251a6cb6/configuration_catalog_cv.csv"><span class="xref download myst">Catálogo CV</span></a>, <a class="reference download internal" download="" href="../_downloads/16a739389054cccc347649497206d6e8/configuration_catalog_final.csv"><span class="xref download myst">catálogo final</span></a> y manifiestos</p></td>
+<td><p>El cierre final incluye 80 ajustes nuevos y 40 controles reutilizados, no 120 entrenamientos nuevos.</p></td>
+</tr>
+<tr class="row-even"><td><p>Métrica, margen, unidad y partición</p></td>
+<td><p>Cronologías separadas: fase I exploratoria y fase II D7 registrada antes de su reserva, con piloto y R=465</p></td>
+<td><p>La potencia planificada es marginal entre semillas; no acredita potencia temporal, conjunta o de otro mercado.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los archivos descargables del <a class="reference internal" href="08_entregables.html"><span class="std std-doc">capítulo 8</span></a> distinguen resúmenes públicos, código y evidencia completa. El registro de noviembre de 2026 es posterior al mercado: estos son backtests históricos, no predicciones emitidas en vivo.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/511d44370257d2b9854c77d916cf2e8d/README.md"><code class="xref download docutils literal notranslate"><span class="pre">ampliación</span> <span class="pre">bibliográfica</span> <span class="pre">del</span> <span class="pre">06/11</span></code></a> acredita exportaciones nativas de WoS y Scopus para E1. Sus 182 grupos no equivalen a textos completos incluidos: un resultado de precio, dirección o volatilidad implícita puede corresponder a otro objetivo. La <a class="reference download internal" download="" href="../_downloads/a6afefcffde309f47c6a9fdce73292f4/README.md"><code class="xref download docutils literal notranslate"><span class="pre">recuperación</span> <span class="pre">posterior</span> <span class="pre">de</span> <span class="pre">fuentes</span></code></a> revisa los 22 casos inicialmente abiertos, con cuatro originales completos y una transcripción completa diferenciada del PDF editorial; cerró cinco decisiones de exclusión/contexto y conservó <strong>17 elegibilidades pendientes en ese corte</strong>. Las fuentes complementarias y sus roles se mantienen separados. Las frecuencias <strong>GRU 3/7, LSTM 5/7 y TCN 1/7</strong> pertenecen al corte verificado del <strong>05/11</strong>: este seguimiento no las actualiza por simple acceso a registros o textos.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/05cbad879f5d9841bb2bd10733e6dc48/README.md"><code class="xref download docutils literal notranslate"><span class="pre">sustitución</span> <span class="pre">posterior</span> <span class="pre">por</span> <span class="pre">fuentes</span> <span class="pre">de</span> <span class="pre">acceso</span> <span class="pre">gratuito</span></code></a> incorpora las lecturas de los tres PDF entregados. Poudel y Tang aportan comparadores recurrentes, pero sus insuficiencias de objetivo/arquitectura/protocolo impiden usarlos como recetas estrictas; Nokar se conserva como contexto porque no acredita una evaluación identificable de volatilidad continua para las redes finales. Las ocho decisiones verificadas y los 14 informes no recuperados suman los 22 casos originales. La inaccesibilidad no se convierte en exclusión metodológica y las alternativas no se contabilizan como textos recuperados de esos 14.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/848639967622d7ea91e636b7303c249b/README.md"><code class="xref download docutils literal notranslate"><span class="pre">bitácora</span> <span class="pre">de</span> <span class="pre">búsqueda</span></code></a> registra cuatro accesos nativos bloqueados y doce consultas propuestas no ejecutadas; no recupera el historial privado ni acredita consulta efectiva de IEEE. Los totales nuevos son desconocidos, no cero. Dos fechas First Online de capítulos nominalmente de 2027 se verificaron en 2026; otras dos fechas sólo corresponden al volumen relacionado y tres fechas efectivas individuales siguen sin resolver. §3.1 continúa abierto; la síntesis documenta el respaldo conjunto y sus límites, sin añadir inclusiones estrictas, aumentar las frecuencias verificadas o cerrar §3.2.</p>
+<p>La primera ampliación de <a class="reference download internal" download="" href="../_downloads/c8b87e31b19de4a0089ddc4d7a319cd5/README.md"><code class="xref download docutils literal notranslate"><span class="pre">dos</span> <span class="pre">originales</span> <span class="pre">adicionales</span> <span class="pre">revisados</span></code></a> elevó la bibliografía de 40 a <strong>42 referencias</strong> y aportó evidencia en estratos separados: CVI de volatilidad implícita con TCN/LSTM y modelos híbridos GARCH con componentes neuronales. Su <a class="reference download internal" download="" href="../_downloads/36d3632813a4ef23832a1e3df0197242/evidence_matrix.csv"><span class="xref download myst">matriz de evidencia</span></a> documenta el papel de cada red y los límites del diseño. No justifican tratar nueve estudios como un conjunto homogéneo de comparadores autónomos del objetivo σ₇.</p>
+<p>La <a class="reference internal" href="03_estado_arte.html#provisional-native-log-e1"><span class="std std-ref">bitácora provisional de §3.9</span></a> facilita completar la documentación: las cotas WoS ≥8/≥59 y Scopus ≥19/≥158 proceden de los registros únicos exportados, por familia y archivo. Son valores de trabajo, sin total nativo observado ni fecha de ejecución recuperada; no se incorporan al flujo verificado como nuevos resultados de búsqueda. IEEE sigue sin una base para estimar su total. Este registro documental no altera modelos, predicciones o métricas.</p>
+</section>
+<section id="criterios-de-evaluacion-del-entregable">
+<h2>7.5. Criterios de evaluación del entregable<a class="headerlink" href="#criterios-de-evaluacion-del-entregable" title="Link to this heading">#</a></h2>
+<p>Los pesos de la rúbrica suministrada son:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Criterio</p></th>
+<th class="head text-right"><p>Peso</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>EDA</p></td>
+<td class="text-right"><p>30 %</p></td>
+</tr>
+<tr class="row-odd"><td><p>Revisión de literatura y extracción de los tres modelos base</p></td>
+<td class="text-right"><p>30 %</p></td>
+</tr>
+<tr class="row-even"><td><p>Implementación de los tres modelos base</p></td>
+<td class="text-right"><p>20 %</p></td>
+</tr>
+<tr class="row-odd"><td><p>Benchmark, definición del baseline y análisis estadístico</p></td>
+<td class="text-right"><p>20 %</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Total</strong></p></td>
+<td class="text-right"><p><strong>100 %</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Son pesos de evaluación, no porcentajes de avance ni una calificación obtenida. Disponer de texto, obtener una métrica favorable o superar el build no demuestra por sí solo cumplimiento. La elección de tres nombres no acredita recurrencia, simplicidad, no redundancia o diseño prospectivo. Este libro no calcula una nota a partir de la matriz.</p>
+</section>
+<section id="buenas-practicas-y-cierre">
+<h2>7.6. Buenas prácticas y cierre<a class="headerlink" href="#buenas-practicas-y-cierre" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Ítem</p></th>
+<th class="head"><p>Estado y evidencia</p></th>
+<th class="head"><p>Límite pendiente</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Repeticiones</p></td>
+<td><p>Fase I: diez semillas por familia e historia. Fase II D7: R calculado desde su piloto, sin contar días o meses como mercados</p></td>
+<td><p>La potencia planificada es marginal entre semillas y supone transferencia de dispersión; no es potencia temporal.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Media, DE, IC y efecto</p></td>
+<td><p>Tablas completas de seis métricas y diferencias pareadas</p></td>
+<td><p>Incertidumbre condicional al calendario; no intervalos de otros mercados.</p></td>
+</tr>
+<tr class="row-even"><td><p>Multiplicidad y supuestos</p></td>
+<td><p>Familia D7 de tres pares por fase, sensibilidad de doce pares y diagnósticos separados</p></td>
+<td><p>Análisis posterior y referencias aproximadas en bloques residuales cortos.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Consistencia</p></td>
+<td><p>Mismas covariables, n7/h1, semillas, fechas y reglas causales dentro de cada fase; HPO comparable en fase II</p></td>
+<td><p>Cambiar D cambia la purga y cohorte. Las métricas de dos periodos distintos no identifican una mejora causada por HPO.</p></td>
+</tr>
+<tr class="row-even"><td><p>Reproducción</p></td>
+<td><p>Controles LSTM de fase I idénticos; curvas nuevas de recetas finales en §9.10 y comparación con manifiesto histórico</p></td>
+<td><p>La reproducción posterior de recetas finales no coincide en curvas/checkpoints históricos; identidad de configuración no es identidad de entrenamiento.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cierre anterior al acceso de este ciclo</p></td>
+<td><p>Configuraciones y 120 checkpoints firmados antes de leer el derivado test</p></td>
+<td><p>El periodo ya era conocido; no es confirmación temporal independiente.</p></td>
+</tr>
+<tr class="row-even"><td><p>Baseline y margen avanzado</p></td>
+<td><p>GRU/D7 por CV; 5 % fijado, con justificación académica de desarrollo ampliada después</p></td>
+<td><p>La justificación no retrofecha el margen ni acredita utilidad; la propuesta futura necesita piloto, protocolo y evaluación propios.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El <a class="reference internal" href="protocolo_pendiente.html"><span class="std std-doc">estado de pendientes</span></a> distingue el cierre del piloto/HPO D7 del cribado de la ampliación bibliográfica, la limitada recurrencia histórica de TCN, la justificación de GRU/LSTM y los límites de fuerza inferencial. La selección de familias debe responder a los textos y mecanismos documentados; el resultado del benchmark no decide qué estudios se incluyen. E1 define un umbral y sus límites; no se inventa una evaluación avanzada ya ejecutada ni se fuerza superioridad universal. La equivalencia sigue siendo condicional a esa afirmación.</p>
+<p><strong>Alcance de la nueva fase D7.</strong> El <a class="reference internal" href="09_estudio_planificado.html"><span class="std std-doc">capítulo 9</span></a> reúne el diseño público previo, la rejilla equitativa de ocho candidatos por familia, el piloto de 60 días, el cálculo de R y los resultados sobre el 01/09–30/10/2026. Esa fase mantiene n=7/h=1 y covariables OHLCV, con D7 fijo. Los resultados de fase I y sus limitaciones permanecen identificados; la potencia planificada entre semillas no representa potencia temporal ni confirma otros mercados.</p>
+<p><strong>Resultado y supuestos de fase II.</strong> La reserva nueva tiene menor RMSE puntual para persistencia y, entre las redes, para TCN; el baseline GRU/D7-c03 se mantiene porque fue elegido con desarrollo. Shapiro–Wilk rechaza normalidad de los tres pares definitivos. Las t y sus IC se leen como aproximaciones para 465 pares; el objetivo de potencia del diseño no se transforma en potencia alcanzada. Ninguna comparación DM rechaza tras Holm-6 y ningún límite temporal familiar del bloque principal acredita una mejora superior al 5 %. Estos resultados y las sensibilidades se conservan en <a class="reference internal" href="09_estudio_planificado.html"><span class="std std-doc">§9.6</span></a>, sin elegir después otro contraste o longitud de bloque.</p>
+<p><strong>Suplemento posterior del 06/11.</strong> Los Q–Q de diferencias, el Friedman global de fase II y la sensibilidad Wilcoxon/Holm se calculan sobre los RMSE por semilla ya publicados y se distinguen del análisis preespecificado en el <a class="reference internal" href="09_estudio_planificado.html"><span class="std std-doc">capítulo 9</span></a>. Friedman aporta χ²(2)=391,6258 y Kendall W=0,4211, con alcance condicionado a las mismas sesenta fechas. Los tres pares Wilcoxon rechazan tras Holm bajo sus supuestos; esto no valida normalidad, no convierte semillas en fechas independientes ni sustituye DM o el bootstrap temporal. No se reabre la selección del baseline.</p>
+<p><strong>Curvas nuevas del modelo final.</strong> La <a class="reference internal" href="09_estudio_planificado.html#curvas-finales-reproducidas"><span class="std std-ref">reproducción posterior de §9.10</span></a> publica entrenamiento/validación interna y reajuste de <strong>1.395 trayectorias, 2.790 etapas y 59.210 registros de pérdida</strong>, con protocolo publicado antes de estos ajustes, 465 semillas por familia y sólo desarrollo 2023–2024. Las figuras y CSV muestran curvas observadas de esa ejecución; no se reconstruyen a partir de métricas agregadas ni se vuelve a evaluar la reserva.</p>
+<p><strong>Límite de reproducción que persiste.</strong> Coinciden 4.185/4.185 archivos de configuración, preprocesamiento y partición, pero <strong>0/2.790 CSV de curvas y 0/1.395 checkpoints</strong> con los hashes históricos. La época elegida coincide en 1.366/1.395 trayectorias; difieren 29 TCN. Esto no acredita reproducción exacta del entrenamiento. Sin los originales no se mide la discrepancia numérica ni se determina su causa; un hash distinto de checkpoint tampoco cuantifica diferencias entre pesos. El <a class="reference download internal" download="" href="../_downloads/e7222b0b8550669a6dd77a42372ca8e3/README.md"><code class="xref download docutils literal notranslate"><span class="pre">resumen</span> <span class="pre">y</span> <span class="pre">comparador</span> <span class="pre">públicos</span></code></a> conservan coincidencias y discrepancias. Los originales privados siguen sin recuperarse y la reproducción independiente de contrastes temporales desde las observaciones originales permanece abierta. Las nuevas curvas no añaden otro mercado o muestra de evaluación ni cambian baseline, margen, métricas o conclusiones históricas.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="06_procedimiento.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">6. Guía de Procedimiento por Tipo de Problema</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="08_entregables.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">8. Entregables: productos y evidencias</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#potencia-tamano-de-muestra-y-multiplicidad">7.1. Potencia, tamaño de muestra y multiplicidad</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#friedman-con-tres-modelos-y-cinco-bloques">7.1.1. Friedman con tres modelos y cinco bloques</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limite-del-wilcoxon-pareado">7.1.2. Límite del Wilcoxon pareado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correccion-de-holm-con-tres-pares">7.1.3. Corrección de Holm con tres pares</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-abordar-estas-limitaciones">7.2. Cómo abordar estas limitaciones</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#repeticiones-y-validacion-respetando-el-tiempo">7.2.1. Repeticiones y validación respetando el tiempo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencia-minima-detectable-y-tamanos-de-efecto">7.2.2. Diferencia mínima detectable y tamaños de efecto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilidad-de-superioridad">7.2.3. Probabilidad de superioridad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equivalencia-requiere-un-analisis-separado">7.2.4. Equivalencia requiere un análisis separado</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo-y-criterio-de-honestidad-inferencial">7.3. Objetivo y criterio de honestidad inferencial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entregables-y-estado-documental-real">7.4. Entregables y estado documental real</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#criterios-de-evaluacion-del-entregable">7.5. Criterios de evaluación del entregable</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#buenas-practicas-y-cierre">7.6. Buenas prácticas y cierre</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

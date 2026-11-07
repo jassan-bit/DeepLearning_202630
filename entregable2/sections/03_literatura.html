@@ -1,0 +1,1432 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3. Revisión Sistemática del Estado del Arte &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/03_literatura';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="4. Implementación de Modelos Benchmark" href="04_implementacion.html" />
+    <link rel="prev" title="2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones" href="02_eda.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 2 · Bitcoin: pronóstico de volatilidad</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Revisión Sistemática del Estado del Arte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación de Modelos Benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark Final</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y referencias causales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Preregistro, potencia y piloto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de datos y auditoría formal de fuga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. Entrenamiento, ajuste equitativo y coste computacional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Incertidumbre predictiva y análisis de errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Agregación estadística e interpretación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas fuente, adaptación D7 y búsqueda condicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_propuesta.html">Archivo de trabajo anterior · Catálogo y propuesta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_diseno_experimental.html">Archivo de trabajo anterior · Seguimiento del diseño</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_experimentos_resultados.html">Archivo de trabajo anterior · Benchmark y resultados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_reproducibilidad_entrega.html">Archivo de trabajo anterior · Reproducibilidad y entrega</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><p class="small">Entregable 2 · Jassan Arteta · 2026-30</p></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/03_literatura.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>3. Revisión Sistemática del Estado del Arte</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrategia-de-busqueda-y-trazabilidad">3.1 Estrategia de búsqueda y trazabilidad</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cadenas-aportadas-y-procedencia">3.1.1 Cadenas aportadas y procedencia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bases-periodo-y-cobertura">3.1.2 Bases, periodo y cobertura</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inclusion-exclusion-y-evaluacion-de-calidad">3.1.3 Inclusión, exclusión y evaluación de calidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#flujo-de-recepcion-y-deduplicacion">3.1.4 Flujo de recepción y deduplicación</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ampliacion-del-06-11-2026-cribado-local-de-los-7-833-grupos">Ampliación del 06/11/2026: cribado local de los 7.833 grupos</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-transversal-de-mecanismos">3.1.5 Búsqueda transversal de mecanismos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verificacion-acotada-del-material-disponible">3.1.6 Verificación acotada del material disponible</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propuesta-del-top-10-para-bitcoin">3.2 Propuesta del Top 10 para Bitcoin</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#priorizacion-reproducible-y-sus-limites">3.2.1 Priorización reproducible y sus límites</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternativas-y-razones-para-no-cerrar-su-inclusion">3.2.2 Alternativas y razones para no cerrar su inclusión</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias-adicionales-y-contrato-de-adaptacion">3.2.3 Referencias adicionales y contrato de adaptación</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-tecnico-por-modelo">3.3 Análisis técnico por modelo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tsmixer">3.3.1 TSMixer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tide">3.3.2 TiDE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#timemixer">3.3.3 TimeMixer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#timesnet">3.3.4 TimesNet</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#patchtst">3.3.5 PatchTST</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#informer">3.3.6 Informer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#autoformer">3.3.7 Autoformer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#itransformer">3.3.8 iTransformer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crossformer">3.3.9 Crossformer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#s-mamba">3.3.10 S-Mamba</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-critica-y-brecha-de-investigacion">3.4 Comparación crítica y brecha de investigación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-originales-y-condiciones-de-comparacion">3.4.1 Resultados originales y condiciones de comparación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calidad-metodologica-y-sesgo-de-reporte">3.4.2 Calidad metodológica y sesgo de reporte</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complejidad-coste-y-adaptacion-causal">3.4.3 Complejidad, coste y adaptación causal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducibilidad-y-brecha-verificable">3.4.4 Reproducibilidad y brecha verificable</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descargas-y-cierre-pendiente">3.5 Descargas y cierre pendiente</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="revision-sistematica-del-estado-del-arte">
+<h1>3. Revisión Sistemática del Estado del Arte<a class="headerlink" href="#revision-sistematica-del-estado-del-arte" title="Link to this heading">#</a></h1>
+<p><strong>Resultado bibliográfico:</strong> selección provisional de <strong>diez modelos de Deep Learning para pronosticar la volatilidad de Bitcoin</strong>, con exportaciones de <strong>WoS y Scopus</strong>, lectura de <strong>diez originales completos —215 páginas físicas—</strong> y código de autores identificado por commit y hash. La ampliación del <strong>06/11/2026</strong> añade un cribado local por reglas de los <strong>7.833 grupos recibidos</strong>, con decisión provisional y motivo por registro; no cierra la elegibilidad global por texto completo.</p>
+<p>Las fichas, el flujo inicial y los contadores bibliográficos del <strong>05/11/2026</strong> se conservan como evidencia histórica. La <a class="reference internal" href="05_paper_guia.html"><span class="std std-doc">sección 5</span></a> documenta después la réplica externa de TimeMixer y el piloto de tres modelos en ETTh1. En la etapa actual se implementaron adaptadores D7 para el piloto P0 de desarrollo, cuya ejecución completó 220 trayectorias y 440 ajustes bajo el <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">protocolo registrado</span></a>; esto todavía no acredita el benchmark final, la búsqueda HPO ni la potencia del procedimiento definitivo.</p>
+<p><strong>Estado de la revisión:</strong> recepción, deduplicación, extracción de diez originales y primera pasada por reglas sobre todos los grupos recibidos completadas. Permanecen abiertos la cobertura de las consultas, la validación editorial de las decisiones provisionales, la elegibilidad por texto completo, los siete cuerpos aplicados de apoyo y los cuartiles por año. También se ejecutaron tres consultas <strong>locales</strong> sobre los registros recibidos; siguen pendientes sus búsquedas nativas WoS/Scopus y los originales de los mecanismos de origen. No se presenta un PRISMA global cerrado.</p>
+<p>La disposición más específica de §3.2 de la guía exige el Top 10 <strong>adicional</strong> a GRU, LSTM y TCN de E1, una referencia no profunda y otra trivial: <strong>mínimo quince configuraciones</strong>. Las cuatro familias deben estar representadas dentro de los diez modelos propuestos, sin contar esas referencias.</p>
+<p>Tras recibir la guía completa de 65 páginas, la <a class="reference internal" href="07_ruta_temporal.html"><span class="std std-doc">sección 7</span></a> resuelve la ruta <strong>F2a, series de tiempo</strong>, y amplía el catálogo a <strong>veinte configuraciones</strong>, de las cuales <strong>quince son ajustables</strong>. Este catálogo distingue las variantes ajustables de E2, las anclas fijas de E1 y las referencias temporales; no representa veinte modelos ya evaluados. El cribado bibliográfico nuevo conserva el Top 10 provisional: una mención en un resumen no basta para sustituir sus integrantes.</p>
+<section id="estrategia-de-busqueda-y-trazabilidad">
+<h2>3.1 Estrategia de búsqueda y trazabilidad<a class="headerlink" href="#estrategia-de-busqueda-y-trazabilidad" title="Link to this heading">#</a></h2>
+<section id="cadenas-aportadas-y-procedencia">
+<h3>3.1.1 Cadenas aportadas y procedencia<a class="headerlink" href="#cadenas-aportadas-y-procedencia" title="Link to this heading">#</a></h3>
+<p>El usuario ejecutó búsquedas manuales y aportó tres exportaciones nativas WoS de texto plano, con registro completo y referencias citadas. También proporcionó estas dos cadenas:</p>
+<p><strong>Q1 · Aplicación: criptomonedas y volatilidad.</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>TS=((bitcoin OR ethereum OR cryptocurrenc* OR cryptoasset*)
+AND (volatility OR "realized volatility" OR "realised volatility")
+AND ("deep learning" OR "neural network*" OR transformer*
+OR LSTM OR GRU OR CNN OR TCN))
+</pre></div>
+</div>
+<p><strong>Q2 · Familias y mecanismos candidatos.</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>TS=(("time series" OR forecasting OR "temporal prediction")
+AND (TSMixer OR TiDE OR TimeMixer OR PatchTST OR iTransformer
+OR Crossformer OR TimesNet OR MICN OR Mamba
+OR "structured state space"))
+</pre></div>
+</div>
+<p>Se conservan como dos consultas, no como una cadena unida mediante una coma. Q2 es la consulta efectivamente aportada: <strong>Informer y Autoformer se identificaron en la evidencia examinada y se ampliaron mediante fuentes de autores; no se atribuye a esa Q2 una búsqueda nominal que no contiene.</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Archivo recibido</p></th>
+<th class="head text-right"><p>Registros completos PT–ER</p></th>
+<th class="head"><p>Evidencia disponible</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">savedrecs.txt</span></code></p></td>
+<td class="text-right"><p>302</p></td>
+<td><p>Cantidad coincidente con la captura WoS de 302 resultados</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">savedrecs</span> <span class="pre">(1).txt</span></code></p></td>
+<td class="text-right"><p>500</p></td>
+<td><p>Lote exportado; rango global no confirmado</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">savedrecs</span> <span class="pre">(2).txt</span></code></p></td>
+<td class="text-right"><p>500</p></td>
+<td><p>Lote exportado; rango global no confirmado</p></td>
+</tr>
+<tr class="row-odd"><td><p>Total de ocurrencias recibidas</p></td>
+<td class="text-right"><p><strong>1.302</strong></p></td>
+<td><p>No equivale al universo global desconocido de las dos consultas</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los TXT no incorporan la cadena ni el rango global de exportación. La asociación archivo–consulta se mantiene como inferencia pendiente de confirmación; no impide analizar los registros como un conjunto recibido. Los originales se preservan fuera de los archivos públicos. Se publican metadatos bibliográficos derivados, identificadores, conteos y hashes, sin reproducir el conjunto de abstracts, referencias, emails o direcciones.</p>
+<p><strong>Fechas:</strong> el campo WoS <code class="docutils literal notranslate"><span class="pre">DA</span></code> indica <strong>2026-11-06</strong>, sin hora ni zona. La recepción administrativa se registra como <strong>2026-11-05, America/Bogota</strong>. No se convierte el campo DA en una fecha/hora de ejecución de la consulta que el archivo no proporciona. El <a class="reference download internal" download="" href="../_downloads/649a1892a80fac3da9544aaff330c413/source_manifest.json"><span class="xref download myst">manifiesto de procedencia</span></a> conserva las identidades de los tres archivos.</p>
+</section>
+<section id="bases-periodo-y-cobertura">
+<h3>3.1.2 Bases, periodo y cobertura<a class="headerlink" href="#bases-periodo-y-cobertura" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fuente</p></th>
+<th class="head"><p>Estado verificable de esta etapa</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Web of Science</p></td>
+<td><p>Tres exportaciones nativas: 1.302 ocurrencias y 1.298 grupos bibliográficos; total global y rangos de Q2 no confirmados</p></td>
+</tr>
+<tr class="row-odd"><td><p>Scopus</p></td>
+<td><p>CSV nativo con <strong>7.500 registros de 7.874 mostrados</strong> en título/resumen/palabras clave: 95,25 % recibido y <strong>374 no recibidos</strong>. Los 2.845 resultados de la captura anterior en Keywords corresponden a otra cobertura y no se suman</p></td>
+</tr>
+<tr class="row-even"><td><p>IEEE Xplore y arXiv</p></td>
+<td><p>Capturas de páginas de búsqueda sin exportación de resultados. Los PDF recuperados directamente de arXiv/OpenReview son originales leídos, sin acreditarlos como una búsqueda sistemática adicional</p></td>
+</tr>
+<tr class="row-odd"><td><p>GitHub de autores</p></td>
+<td><p>Diez backbones con código, revisiones y hashes verificados; fuente primaria de implementación, sin contarlo como base bibliográfica adicional</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La guía exige al menos dos bases y permite arXiv como complemento. <strong>Se recibieron exportaciones nativas de dos bases: WoS y Scopus.</strong> La cobertura parcial no se convierte en exhaustividad. El <a class="reference download internal" download="" href="../_downloads/11fbb8bc8f31438153178db5455e5dd5/source_manifest.json"><span class="xref download myst">manifiesto Scopus</span></a> conserva hash, nombre y procedencia; el <a class="reference download internal" download="" href="../_downloads/8c20a9f286c65271861134fe36b0e762/summary.json"><span class="xref download myst">resumen combinado</span></a> permite comprobar las cuentas. Los intentos del asistente a plataformas académicas fueron bloqueados por la red; las exportaciones nativas proceden del trabajo manual del usuario.</p>
+<p>El reenvío de Scopus del <strong>06/11/2026</strong> tiene el mismo SHA-256 que la exportación anterior, <code class="docutils literal notranslate"><span class="pre">387f673a2146902ce12888ab3d662c095abc33d2cf5b54a168e9e2a12099f7de</span></code>. No añade registros ni se suma como otra búsqueda: permanecen los <strong>374 no recibidos</strong>. Los <a class="reference download internal" download="" href="../_downloads/0b019add3d3d2746cec07417cb679962/provenance.json"><span class="xref download myst">recibos de la ampliación</span></a> conservan las huellas de sus entradas y derivados.</p>
+<p>El periodo principal propuesto es <strong>2019–2026</strong>, con trabajos fundacionales anteriores justificados por separado. Las exportaciones WoS recibidas contienen años nominales <strong>2006–2027</strong>, por lo que no se afirma que ya estén filtradas a ese intervalo. Sobre los 1.298 grupos bibliográficos WoS deduplicados:</p>
+<ul class="simple">
+<li><p>1.222 tienen año nominal 2019–2026.</p></li>
+<li><p>26 tienen año nominal fuera del intervalo y <em>Early Access</em> 2019–2026: requieren verificar la fecha efectiva, sin descartarlos solo por el volumen de 2027.</p></li>
+<li><p>49 quedan fuera de la ventana y requieren justificación fundacional o exclusión.</p></li>
+<li><p>Uno no tiene la ventana de publicación confirmada con los campos disponibles.</p></li>
+</ul>
+<p>Scopus contiene años nominales 1997–2027, incluidos 112 registros de 2027 sin fecha explícita de Early Access: deben verificarse antes de declararlos elegibles. No se traslada automáticamente a Scopus la fecha de publicación anticipada disponible en WoS. La cadena completa y los filtros efectivos del CSV no están embebidos en el archivo; se conserva la consulta aportada y la captura, sin inventar filtros o rangos. No se extrapolan frecuencias de estas exportaciones parciales a toda la literatura.</p>
+</section>
+<section id="inclusion-exclusion-y-evaluacion-de-calidad">
+<h3>3.1.3 Inclusión, exclusión y evaluación de calidad<a class="headerlink" href="#inclusion-exclusion-y-evaluacion-de-calidad" title="Link to this heading">#</a></h3>
+<p>Se distinguen <strong>volatilidad de criptomonedas</strong>, <strong>volatilidad financiera de otros activos</strong> y <strong>mecanismos transferibles de otros dominios</strong>. «Volatilidad» como contexto de un artículo de precios, trading o clasificación no acredita una red que pronostique nuestra variable continua σ₇.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Criterio</p></th>
+<th class="head"><p>Regla de revisión</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Relevancia</p></td>
+<td><p>Identificar la variable realmente pronosticada y el papel del modelo; separar aplicación directa y transferencia</p></td>
+</tr>
+<tr class="row-odd"><td><p>Deep Learning</p></td>
+<td><p>Mecanismo profundo identificable; modelos lineales o ajustes de hiperparámetros de una misma base no completan automáticamente los diez cupos</p></td>
+</tr>
+<tr class="row-even"><td><p>Reproducibilidad</p></td>
+<td><p>Verificar código primario o detalles suficientes; código público y adaptación implementada son estados distintos</p></td>
+</tr>
+<tr class="row-odd"><td><p>Métricas</p></td>
+<td><p>Registrar datos, horizonte, unidades, ubicación de la evidencia y dispersión; no comparar RMSE de escalas distintas</p></td>
+</tr>
+<tr class="row-even"><td><p>Calidad editorial</p></td>
+<td><p>Conservar revista/congreso e índice WoS del registro. Cuartil e impacto requieren fuente y año específicos; permanecen no verificados</p></td>
+</tr>
+<tr class="row-odd"><td><p>Riesgo metodológico</p></td>
+<td><p>Auditar partición, fuga, repeticiones y equidad del ajuste en el original; si solo se examinó el resumen, usar <strong>no verificado</strong>, no «no reportado»</p></td>
+</tr>
+<tr class="row-even"><td><p>Versiones</p></td>
+<td><p>Agrupar preprint/publicación cuando su identidad esté verificada y conservar la versión realmente leída; el PDF arXiv v3 de S-Mamba no se atribuye al cuerpo editorial de Neurocomputing 2025</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>No se calculó κ de Cohen: no hay dos revisores humanos independientes acreditados. La curación es editorial asistida por agentes, con verificaciones de identificadores y código; no se presenta como doble revisión humana.</p>
+</section>
+<section id="flujo-de-recepcion-y-deduplicacion">
+<h3>3.1.4 Flujo de recepción y deduplicación<a class="headerlink" href="#flujo-de-recepcion-y-deduplicacion" title="Link to this heading">#</a></h3>
+<p><strong>8.802 ocurrencias recibidas → 7.833 grupos bibliográficos.</strong> WoS aporta 1.302 ocurrencias, 1.300 UT únicos y 1.298 grupos; Scopus aporta 7.500 EID únicos y 7.499 grupos después de unir un DOI duplicado. Entre bases se enlazan 964 grupos: 960 por DOI y cuatro por título/año/revista cuando falta DOI. Se conservan 334 grupos exclusivos de WoS y 6.535 de Scopus. Las <strong>969 duplicaciones</strong> son cuatro internas WoS, una interna Scopus y 964 enlaces entre bases.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/c9e7a9d941e75c52e0de5ffc09d276d1/deduplication.csv"><span class="xref download myst">tabla de deduplicación</span></a> mantiene cada decisión. Los <a class="reference download internal" download="" href="../_downloads/d427c6f13e637d3eec3f7c41a6813775/records.csv"><span class="xref download myst">registros derivados</span></a> conservan procedencia por archivo y posición. El <a class="reference download internal" download="" href="../_downloads/45c331cc07ff4a798c13f4cd01b0f122/summary.json"><span class="xref download myst">resumen de importación</span></a> diferencia ocurrencias, UT, grupos, años y datos ausentes.</p>
+<p>Los <a class="reference download internal" download="" href="../_downloads/6c06e107b824947d65dcbb46d783be0a/cross_database_links.csv"><span class="xref download myst">enlaces entre bases</span></a> y los <a class="reference download internal" download="" href="../_downloads/e21fa3c77e5dc06baad3f7abd8a2bfc9/combined_records.csv"><span class="xref download myst">7.833 grupos</span></a> mantienen los identificadores originales. Las citas WoS TC y Scopus Cited by permanecen separadas; no se suman.</p>
+<p><img alt="Flujo histórico de recepción y revisión dirigida del 05/11/2026" src="../_images/receipt_flow.png" /></p>
+<p>Este flujo conserva el tramo histórico de identificación y depuración. La recuperación dirigida permitió <strong>leer diez originales arquitectónicos completos</strong>, incluidos apéndices y referencias; sus <a class="reference download internal" download="" href="../_downloads/e1c292106dfa39435ea62978b6196d93/fulltext_manifest.json"><span class="xref download myst">recibos PDF</span></a> fijan versión, tamaño, SHA-256 y páginas físicas. La ampliación siguiente agrega el cribado local, sin acreditar todavía <strong>elegibilidad global por texto completo</strong>. Los diez originales no se presentan como el total de estudios incluidos de una revisión global. Hay además ocho registros WoS de apoyo aplicado; el mismo estudio financiero respalda PatchTST, Informer y Autoformer, y S-Mamba coincide con una de las diez arquitecturas. No son dieciocho estudios independientes.</p>
+<p>La detección automática produjo pistas de cribado, no comparadores independientes acreditados. Por ejemplo, TiDE debe distinguirse del término inglés <em>tide</em> —marea—; aparecer en un abstract o una referencia no demuestra que el modelo fuera evaluado como comparador autónomo.</p>
+<section id="ampliacion-del-06-11-2026-cribado-local-de-los-7-833-grupos">
+<h4>Ampliación del 06/11/2026: cribado local de los 7.833 grupos<a class="headerlink" href="#ampliacion-del-06-11-2026-cribado-local-de-los-7-833-grupos" title="Link to this heading">#</a></h4>
+<p>Se aplicó el <a class="reference download internal" download="" href="../_downloads/4a316ce28caad695101e64b2e76a7d96/protocol.json"><span class="xref download myst">protocolo reproducible de primera pasada</span></a> al título y a los resúmenes privados asociados a cada grupo. Se priorizan volatilidad cripto, volatilidad financiera y mecanismos transferibles; los originales y apoyos ya identificados se conservan para revisión. El <a class="reference download internal" download="" href="../_downloads/43a790a56bfad5636e4bf5b2f19ba034/screening_ledger.csv"><span class="xref download myst">registro completo</span></a> documenta cada identificador, procedencia, términos detectados, huella del resumen, regla, motivo y estado. No publica los resúmenes completos.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Decisión de primera pasada</p></th>
+<th class="head text-right"><p>Grupos</p></th>
+<th class="head"><p>Interpretación</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Exclusión provisional por título/resumen</p></td>
+<td class="text-right"><p><strong>4.323</strong></p></td>
+<td><p>Recomendación automática con motivo; requiere validación editorial</p></td>
+</tr>
+<tr class="row-odd"><td><p>Retención para recuperación o evaluación del texto completo</p></td>
+<td class="text-right"><p><strong>2.436</strong></p></td>
+<td><p>Candidato retenido, todavía no estudio incluido</p></td>
+</tr>
+<tr class="row-even"><td><p>Revisión manual pendiente</p></td>
+<td class="text-right"><p><strong>1.074</strong></p></td>
+<td><p>Objetivo, mecanismo, homónimo o papel del estudio ambiguos</p></td>
+</tr>
+<tr class="row-odd"><td><p>Total procesado</p></td>
+<td class="text-right"><p><strong>7.833</strong></p></td>
+<td><p>Un registro por grupo recibido, sin omisiones ni duplicaciones</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La <a class="reference download internal" download="" href="../_downloads/f5c153e3d2eb8236afb982420bcd103c/priority_queue.csv"><span class="xref download myst">cola priorizada</span></a> reúne <strong>3.510 grupos</strong>, incluidos los ambiguos; la <a class="reference download internal" download="" href="../_downloads/d7919d14db263875f5f7001fe62cd0b0/financial_priority_queue.csv"><span class="xref download myst">cola financiera</span></a> contiene <strong>602</strong>. El <a class="reference download internal" download="" href="../_downloads/1a8ec035395957dca7309de2056c74e3/reason_counts.csv"><span class="xref download myst">conteo de motivos</span></a>, el <a class="reference download internal" download="" href="../_downloads/cfa43a723f5ae7359868ea39da4b9aeb/summary.json"><span class="xref download myst">resumen</span></a> y el <a class="reference download internal" download="" href="../_downloads/c66d01ccd56b96da9e4a9f348c1ff700/prisma_status.json"><span class="xref download myst">estado PRISMA</span></a> reconcilian estas cantidades. Las recomendaciones automáticas no son exclusiones finales validadas ni el total de estudios elegibles. La cantidad de incluidos de la revisión sistemática permanece <strong>sin determinar</strong>, no se sustituye por cero.</p>
+<p>Se realizó además una <a class="reference download internal" download="" href="../_downloads/25bb4e70310d2cd7b5a461bf58abc7cd/editorial_title_abstract_checks.json"><span class="xref download myst">lectura editorial asistida de 17 resúmenes prioritarios</span></a>: <strong>diez</strong> declaran pronóstico de volatilidad, <strong>seis</strong> estudian precio, retorno o trading y <strong>uno</strong> presenta una definición ambigua entre retorno y volatilidad. Los seis trabajos cripto que mencionaban modelos del Top 10 en esta comprobación se conservaron como contexto de otro objetivo; no se suman como respaldo directo de σ₇. Las diez declaraciones de volatilidad también requieren comprobar definición, arquitectura y protocolo en el cuerpo del artículo. No se acredita lectura completa de estos 17 textos, dos revisores humanos independientes ni κ de Cohen.</p>
+</section>
+</section>
+<section id="busqueda-transversal-de-mecanismos">
+<h3>3.1.5 Búsqueda transversal de mecanismos<a class="headerlink" href="#busqueda-transversal-de-mecanismos" title="Link to this heading">#</a></h3>
+<p>Se conservan las tres cadenas propuestas para búsquedas nativas. El <strong>06/11/2026</strong> se ejecutaron conjunciones locales de mecanismo, modalidad de origen y transferencia/adaptación sobre los <strong>7.833 grupos ya recibidos</strong>. El <a class="reference download internal" download="" href="../_downloads/2a370600be2361bdd2e77f78355280ab/local_transversal_searches.json"><span class="xref download myst">registro de consultas locales</span></a> especifica las expresiones, las variantes regex efectivamente utilizadas y su alcance; no equivale al campo TS ni a una nueva consulta global de la base.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>TS=(("vision transformer" OR "self-attention")
+AND ("computer vision" OR image*) AND (transfer* OR adapt*))
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>TS=(("MLP-Mixer" OR "token mixing" OR "channel mixing")
+AND (vision OR image*) AND (transfer* OR adapt*))
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>TS=(("selective state space" OR Mamba)
+AND (language OR speech OR audio) AND (transfer* OR adapt*))
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Consulta local</p></th>
+<th class="head text-right"><p>Grupos coincidentes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Atención / visión</p></td>
+<td class="text-right"><p><strong>15</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Mezcla de tokens o canales / visión</p></td>
+<td class="text-right"><p><strong>3</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Estado selectivo / lenguaje, voz o audio</p></td>
+<td class="text-right"><p><strong>90</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Unión sin duplicar grupos</p></td>
+<td class="text-right"><p><strong>102</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los <a class="reference download internal" download="" href="../_downloads/1fc0be7ecd7fcf26368f545413a2a7ca/local_transversal_hits.csv"><span class="xref download myst">resultados locales por identificador</span></a> permiten seguir cada coincidencia. Hay solapamiento entre consultas; 15 + 3 + 90 no representa 108 estudios independientes. Se ejecutaron <strong>cero nuevas consultas nativas</strong> en esta ampliación. La cobertura heredada, seleccionada por otras consultas, impide interpretar la ausencia de un resultado local como ausencia en WoS/Scopus.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Mecanismo candidato para E3</p></th>
+<th class="head"><p>Modalidad de origen y fuente identificada</p></th>
+<th class="head"><p>Propiedad transferible y cautela</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Tokens/segmentos y atención</p></td>
+<td><p>Visión: ViT/Swin, reconocidos como inspiración en el README primario de Crossformer</p></td>
+<td><p>Relacionar segmentos temporales y canales; conservar el eje de causalidad y limitar segmentos a D7</p></td>
+</tr>
+<tr class="row-odd"><td><p>Mezcla de tokens y características</p></td>
+<td><p>Visión: MLP-Mixer; la ampliación debe recuperar y extraer su fuente primaria completa</p></td>
+<td><p>Separar mezcla temporal y de covariables con menos atención; con siete días no se presume ventaja de coste o precisión</p></td>
+</tr>
+<tr class="row-even"><td><p>Memoria selectiva</p></td>
+<td><p>Lenguaje/secuencias: Mamba; código y referencia del modelo S-Mamba de pronóstico recuperados</p></td>
+<td><p>Seleccionar estado dependiente de la entrada; distinguir tokens de variables de fechas futuras y verificar utilidad en una historia corta</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La tabla alimenta E3 sin comprometer su arquitectura final. La búsqueda local está ejecutada; continúan abiertas las búsquedas transversales nativas y la revisión completa de las fuentes originales de origen. Recuperar código o detectar un mecanismo en un resumen no sustituye esas tareas.</p>
+</section>
+<section id="verificacion-acotada-del-material-disponible">
+<h3>3.1.6 Verificación acotada del material disponible<a class="headerlink" href="#verificacion-acotada-del-material-disponible" title="Link to this heading">#</a></h3>
+<p>La <a class="reference download internal" download="" href="../_downloads/8f1faeb807e8dffda333a632775b40fb/architectural_originals_eligibility.csv"><span class="xref download myst">evaluación posterior de admisibilidad</span></a> aplica criterios explícitos a los <strong>diez originales completos</strong> ya extraídos: identidad, ventana de publicación, mecanismo profundo, par de métricas localizable, código primario y límites de transferencia. Los <strong>diez archivos principales de autores se cotejaron nuevamente con sus hashes</strong>. Los estudios resultan admisibles como fuentes de mecanismos de pronóstico de otros dominios, con las limitaciones de calidad ya documentadas. Esto no cierra el universo sistemático, no prueba efectividad en Bitcoin ni certifica las recetas finales D7.</p>
+<p>Se <a class="reference download internal" download="" href="../_downloads/16df45ba24321eb82a468e6268d6ae39/financial_abstract_routes_17.csv"><span class="xref download myst">revalidaron las identidades y rutas de los 17 resúmenes</span></a>: diez se retienen para verificar volatilidad en texto completo, seis no acreditan el objetivo de volatilidad por describir precio/retorno/trading, y uno requiere resolver su definición matemática. Es una comprobación acotada de los mismos resúmenes, no diecisiete cuerpos nuevos leídos ni revisores humanos independientes.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/0bcb5a738e2a6b0147e98b31f11a9f46/candidate_score_intervals_29.csv"><span class="xref download myst">tabla reproducible de intervalos de 29 modelos/familias</span></a> y su <a class="reference download internal" download="" href="../_downloads/862d741955514caed5c83d310689962c/score_protocol.json"><span class="xref download myst">regla de puntuación</span></a> conservan nulos/vacíos los componentes desconocidos. Se verifican dos identidades originales adicionales en la exportación recibida: <strong>MICN</strong>, con 597 citas Scopus, y <strong>CryptoMamba-SSM de volatilidad</strong>, con tres. Este último es distinto de CryptoMamba de precio. Identidad y citas no acreditan cuerpo, código o adaptación; no se produce un ranking final ni se sustituyen modelos solo por menciones o antigüedad.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/12d1c13cc0d720acb1625640e4ac1830/origin_mechanism_trace.json"><span class="xref download myst">trazado de mecanismos de origen</span></a> localiza ViT/Swin en motivación y referencias de Crossformer, MLP-Mixer en TSMixer y Mamba en S-Mamba, con títulos, autores, año, páginas y cautelas D7. Esa identificación bibliográfica y estructural amplía la tabla de transferencia; siguen pendientes las consultas nativas y no se afirma haber leído nuevos originales de visión/lenguaje.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/c3631c8becb26fd044505bc4bcf305ee/dataset_source_candidates.csv"><span class="xref download myst">cola de fuente de datos</span></a> distingue ocho coincidencias de Binance: <strong>cinco son Binance Coin</strong> y tres no bastan para identificar el exchange o proveedor. Ninguna se usa como prueba de uso de datos Binance ni de Q1. El cuartil y el año requieren evidencia propia; no se exige que una referencia haya utilizado exactamente nuestro snapshot.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/34b4c825e5e80bfcb87d690fe3e9db2c/recovery_scope.json"><span class="xref download myst">recuperación adicional de cuerpos</span></a> revisó <strong>40 PDF privados, 35 documentos únicos</strong>, y <a class="reference download internal" download="" href="../_downloads/772f1f79d3b23eaae30e288bd5d1f9ee/inherited_E1_body_reverification.json"><span class="xref download myst">cotejó siete cuerpos heredados de E1</span></a>. Esos siete no son los siete apoyos nuevos de E2: <a class="reference download internal" download="" href="../_downloads/7fc2c436401839574097f8df6d44d297/applied_fulltext_recovery_status.json"><span class="xref download myst">siguen sin recuperarse sus cuerpos y los de once candidatos financieros prioritarios</span></a>. Se recuperó la copia fijada del manuscrito heredado S2 y se verificó su identidad anterior; no se cuenta como un estudio E2 nuevo. Los <a class="reference download internal" download="" href="../_downloads/a2752990b0ec3513ff81614492e68d0c/applied_author_repository_context.json"><span class="xref download myst">README de dos repositorios aplicados</span></a>, de 230 y 246 bytes, identifican artículos/código y no sustituyen los manuscritos. Dos coincidencias aparentes de DOI se resolvieron como una referencia en otro artículo y una bibliografía del proyecto. Esta recuperación acotada no acredita indisponibilidad global, exclusiones por texto completo ni nuevos resultados de esos estudios.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/06c48bdf95cad897850bc261cccafb47/summary.json"><span class="xref download myst">resumen y alcance de esta ampliación</span></a>, sus <a class="reference download internal" download="" href="../_downloads/75ba1e9ec7bda2acf07395c51f580045/provenance.json"><span class="xref download myst">hashes</span></a> y los <a class="reference download internal" download="" href="../_downloads/7e0dbccdb6e688269bd33636116f48e6/manual_inputs_required.json"><span class="xref download myst">insumos externos pendientes</span></a> separan estas verificaciones del PRISMA global aún abierto. Los recibos históricos no se reescriben: la admisibilidad de una subcohorte preseleccionada no cambia automáticamente el contador de elegibilidad formal de toda la revisión.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/92bd01192e203e296c0c5282bf8345dd/closure_checklist.json"><span class="xref download myst">registro de condiciones de cierre</span></a> fija los productos faltantes: completar cobertura Scopus y confirmar historia WoS, adjudicar decisiones y cuerpos con motivos por etapa, ejecutar las búsquedas transversales nativas, cerrar los componentes verificables de selección y documentar calidad por año. Los estudios incluidos y elegibles globales permanecen <strong>sin determinar</strong>, no en cero. El código o los resultados futuros del benchmark no resolverán por sí solos estos pendientes bibliográficos.</p>
+</section>
+</section>
+<section id="propuesta-del-top-10-para-bitcoin">
+<h2>3.2 Propuesta del Top 10 para Bitcoin<a class="headerlink" href="#propuesta-del-top-10-para-bitcoin" title="Link to this heading">#</a></h2>
+<p>La selección de trabajo contiene <strong>exactamente diez mecanismos</strong> y <strong>cuatro familias</strong>, con código primario recuperado. Se propone adaptarlos al mismo tensor de siete días y cinco covariables, objetivo σ₇ y horizonte de un día. Su respaldo en otros activos o tareas no demuestra un resultado favorable en Bitcoin.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo</p></th>
+<th class="head"><p>Familia</p></th>
+<th class="head"><p>Respaldo representativo en el corpus WoS</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>TSMixer</strong></p></td>
+<td><p>MLP/mixing</p></td>
+<td><p>Volatilidad realizada de acciones: <a class="reference external" href="https://doi.org/10.1016/j.jfds.2024.100143">10.1016/j.jfds.2024.100143</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>TiDE</strong></p></td>
+<td><p>MLP/mixing</p></td>
+<td><p>Pronóstico fotovoltaico: <a class="reference external" href="https://doi.org/10.3390/en18102434">10.3390/en18102434</a></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>TimeMixer</strong></p></td>
+<td><p>MLP/mixing</p></td>
+<td><p>Comparador de pronóstico eólico: <a class="reference external" href="https://doi.org/10.1016/j.epsr.2025.112196">10.1016/j.epsr.2025.112196</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>TimesNet</strong></p></td>
+<td><p>Convolucional</p></td>
+<td><p>Volatilidad realizada de acciones: <a class="reference external" href="https://doi.org/10.1016/j.eswa.2024.124851">10.1016/j.eswa.2024.124851</a></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>PatchTST</strong></p></td>
+<td><p>Atención</p></td>
+<td><p>Comparador financiero: <a class="reference external" href="https://doi.org/10.1108/CFRI-01-2024-0032">10.1108/CFRI-01-2024-0032</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Informer</strong></p></td>
+<td><p>Atención</p></td>
+<td><p>Comparador financiero en el mismo estudio de 80 acciones</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Autoformer</strong></p></td>
+<td><p>Atención</p></td>
+<td><p>Comparador financiero en el mismo estudio de 80 acciones</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>iTransformer</strong></p></td>
+<td><p>Atención</p></td>
+<td><p>Pronóstico multivariante de tráfico: <a class="reference external" href="https://doi.org/10.1016/j.physa.2024.130185">10.1016/j.physa.2024.130185</a></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Crossformer</strong></p></td>
+<td><p>Atención</p></td>
+<td><p>Comparador de pronóstico eólico: <a class="reference external" href="https://doi.org/10.1016/j.energy.2025.138706">10.1016/j.energy.2025.138706</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>S-Mamba</strong></p></td>
+<td><p>Espacio de estados selectivo</p></td>
+<td><p>Artículo original de pronóstico multivariado: <a class="reference external" href="https://doi.org/10.1016/j.neucom.2024.129178">10.1016/j.neucom.2024.129178</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Las diez posiciones agrupan familias; no constituyen un ranking de resultados propios. Los dos artículos financieros de TSMixer/TimesNet y el estudio de Transformers aportan una cercanía de problema mayor que una mera aplicación a precios o a energía. <strong>No se atribuye al conjunto completo evidencia directa de regresión de volatilidad de Bitcoin.</strong></p>
+<section id="priorizacion-reproducible-y-sus-limites">
+<h3>3.2.1 Priorización reproducible y sus límites<a class="headerlink" href="#priorizacion-reproducible-y-sus-limites" title="Link to this heading">#</a></h3>
+<p>Se publica la <a class="reference download internal" download="" href="../_downloads/2779408a7f4f2e480f26f9b537aa1c29/model_selection.csv"><span class="xref download myst">tabla de puntuación preliminar completa de los diez propuestos</span></a>. La regla documentada en esta etapa es</p>
+<div class="math notranslate nohighlight">
+\[
+S=100\,(0,35R+0,20A+0,15U+0,15C+0,15P).
+\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(R\)</span>: cercanía de tarea; 0,8 para volatilidad financiera de otros activos y 0,5 para transferencia desde otros dominios de pronóstico. Ningún candidato recibe 1 por una validación directa de nuestro experimento.</p></li>
+<li><p><span class="math notranslate nohighlight">\(A\)</span>: acceso verificado al código primario; 1 para las diez fuentes recuperadas. No acredita licencia, ejecución ni adaptación D7 resueltas.</p></li>
+<li><p><span class="math notranslate nohighlight">\(U\)</span>: recencia del año de la fuente arquitectónica identificada, acotada a [0,1] mediante <span class="math notranslate nohighlight">\((año-2019)/7\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(C\)</span>: citas Scopus por año del <strong>original arquitectónico</strong>, con tasa <code class="docutils literal notranslate"><span class="pre">Cited</span> <span class="pre">by</span> <span class="pre">/</span> <span class="pre">(2026</span> <span class="pre">−</span> <span class="pre">año</span> <span class="pre">de</span> <span class="pre">antigüedad</span> <span class="pre">+</span> <span class="pre">1)</span></code>, normalizadas por el máximo observado y acotadas a [0,1]. El año de antigüedad conserva Early Access cuando está acreditado: S-Mamba usa 2024, aunque su publicación nominal sea 2025. Se identificaron ocho originales en el CSV; el máximo es PatchTST: 2.435 citas / 4 años = 608,75. Los originales de Informer y Autoformer no se localizaron en la exportación parcial: su componente queda en [0,1], sin atribuirles cero citas. Los <a class="reference download internal" download="" href="../_downloads/bac8a55ddd352ffdb9e0c12819736c18/original_model_records.csv"><span class="xref download myst">EID y conteos originales</span></a> distinguen el TSMixer de Google del homónimo de IBM/KDD.</p></li>
+<li><p><span class="math notranslate nohighlight">\(P\)</span>: desempeño bajo condiciones comparables al objetivo Bitcoin D7×5 → σ₇. <strong>Se verificaron las métricas de los diez originales</strong>, pero sus datasets, escalas, horizontes y entradas no permiten asignar este componente para Bitcoin. Permanece en [0,1]. La puntuación tiene amplitud de 15 puntos, o de 30 cuando también faltan citas originales.</p></li>
+</ul>
+<p>La diversidad de al menos cuatro familias es una restricción adicional. Las citas del estudio compartido de 80 acciones no se multiplican ni se usan como citas de tres originales. El límite inferior usa cero únicamente como extremo algebraico del intervalo desconocido. <strong>No es un cero observado.</strong> El puntaje prioriza dentro de esta propuesta; no es una clasificación exhaustiva de los 7.833 grupos. La regla se documenta después de la exploración bibliográfica y antes de entrenar E2, sin atribuirle un preregistro anterior a las búsquedas.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/d31505fc81dd261a6ca3d0e058fe9ba9/candidate_reassessment.csv"><span class="xref download myst">reconsideración del 06/11/2026</span></a> incorpora <strong>29 modelos o familias</strong>, incluidos alternativas y baselines. Separa menciones, comprobaciones editoriales por resumen y fuentes originales, y conserva vacíos los componentes desconocidos de código, rendimiento comparable, cuartil o representatividad. Las menciones no son frecuencias verificadas de comparadores independientes; los intervalos de los diez propuestos siguen siendo los históricos. No se asignan ceros a las alternativas sin verificar ni se produce un ranking final nuevo. El Top 10 no cambia por esta primera pasada.</p>
+</section>
+<section id="alternativas-y-razones-para-no-cerrar-su-inclusion">
+<h3>3.2.2 Alternativas y razones para no cerrar su inclusión<a class="headerlink" href="#alternativas-y-razones-para-no-cerrar-su-inclusion" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Alternativa</p></th>
+<th class="head"><p>Evidencia/razón documentada</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CryptoMamba-SSM</p></td>
+<td><p>Respaldo directo de Bitcoin, DOI <a class="reference external" href="https://doi.org/10.1109/OJCS.2026.3651226">10.1109/OJCS.2026.3651226</a>. Reserva prioritaria: el resumen no permite verificar configuración completa ni código; no se incorpora como una implementación ya reproducible</p></td>
+</tr>
+<tr class="row-odd"><td><p>MICN</p></td>
+<td><p>Aparece en el corpus, pero la evidencia financiera revisada es menor y varias aplicaciones son variantes/híbridos. Se mantiene como alternativa, sin atribuirle resultados de sus modificaciones</p></td>
+</tr>
+<tr class="row-even"><td><p>S4</p></td>
+<td><p>Mecanismo relevante; no se ha verificado un soporte aplicado comparable que desplace las opciones propuestas</p></td>
+</tr>
+<tr class="row-odd"><td><p>N-BEATSx / N-HiTS</p></td>
+<td><p>Evidencia financiera pertinente; sus usos originales de historia del objetivo requieren revisar la compatibilidad con el contrato sin rezagos explícitos de Y</p></td>
+</tr>
+<tr class="row-even"><td><p>TFT / DeepAR</p></td>
+<td><p>Revisar historia del objetivo, variables estáticas/futuras y disponibilidad antes de considerarlos comparaciones con la misma información</p></td>
+</tr>
+<tr class="row-odd"><td><p>CNN-LSTM / BiLSTM</p></td>
+<td><p>Hay estudios de volatilidad de criptomonedas; falta completar aquí configuración y controles temporales de esos originales. Se conservan como alternativas, sin asumir dimensionalidad CNN o uso legítimo de datos futuros</p></td>
+</tr>
+<tr class="row-even"><td><p>MLP / DFFNN</p></td>
+<td><p>Los resúmenes de <a class="reference external" href="https://doi.org/10.1007/s10614-023-10373-8">LSTM-GARCH</a> y <a class="reference external" href="https://doi.org/10.1016/j.mlwa.2023.100465">redes profundas con GARCH</a> declaran comparaciones de volatilidad cripto. Extraer cuerpos, profundidad y roles autónomos/híbridos; MLP no equivale automáticamente a una arquitectura profunda definida</p></td>
+</tr>
+<tr class="row-odd"><td><p>Jordan-RNN</p></td>
+<td><p>El <a class="reference external" href="https://doi.org/10.1016/j.physa.2022.127158">estudio de volatilidad de BTC, Ripple y Ethereum</a> identifica una red de Jordan en el resumen. Falta revisar configuración y validación completas antes de compararla con los seleccionados</p></td>
+</tr>
+<tr class="row-even"><td><p>DLinear / ARIMA</p></td>
+<td><p>No completan cupos de diez modelos profundos. Pueden contextualizar otros diseños de comparación si se justifican</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Estas razones son de alcance y verificabilidad, no pruebas de inferioridad predictiva. La lista de alternativas no pretende agotar todos los modelos más citados de una literatura global que aún no se ha recuperado completamente.</p>
+</section>
+<section id="referencias-adicionales-y-contrato-de-adaptacion">
+<h3>3.2.3 Referencias adicionales y contrato de adaptación<a class="headerlink" href="#referencias-adicionales-y-contrato-de-adaptacion" title="Link to this heading">#</a></h3>
+<p>El benchmark deberá incluir las <strong>tres bases heredadas GRU–LSTM–TCN</strong>, <strong>Ridge</strong> como referencia no profunda y <strong>persistencia</strong> como referencia trivial, además de los diez propuestos. Ridge puede usar el mismo D7×5. Persistencia mantiene la definición heredada σ₇(t−1), calculada con ocho cierres pasados; es causal, pero no idéntica a la representación de siete barras de las redes.</p>
+<p>Todas las nuevas lecturas escalares deben producir el objetivo σ₇, no uno de los cinco precios/volúmenes. Se propone una lectura <span class="math notranslate nohighlight">\(g_\sigma\)</span> anterior a la desnormalización por covariables y una salida no negativa:</p>
+<div class="math notranslate nohighlight">
+\[
+\widehat\sigma_7=\mu_{Y,\mathrm{train}}\,\operatorname{softplus}(g_\sigma(Z)).
+\]</div>
+<p>No basta cambiar <code class="docutils literal notranslate"><span class="pre">c_out=1</span></code> ni seleccionar Close de una salida multivariante. La escala final corresponde al objetivo, ajustada solo en entrenamiento. La rama de tendencia de Autoformer y las conexiones residuales de otros modelos deben proyectarse coherentemente a esa variable. TiDE requiere una adaptación explícita <strong>covariate-only</strong> para conservar la ausencia de Y rezagada, atributos estáticos y covariables futuras. Esa adaptación no se presenta como ejecución idéntica de la configuración del artículo.</p>
+<p>En Informer/Autoformer, el decoder admite contexto observado y placeholders futuros sin valores verdaderos; los embeddings de calendario originales se deben desactivar o sustituir para no añadir canales no acordados. Los parches, segmentos, kernels, frecuencias y niveles de downsampling deben ser válidos con D7. La <a class="reference internal" href="04_implementacion.html"><span class="std std-doc">sección 4</span></a> conserva el diseño inicial; la <a class="reference internal" href="07_ruta_temporal.html"><span class="std std-doc">ruta F2a</span></a>, el <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">protocolo actual</span></a> y su <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e2_remediation_20261106/preregistration.json">fuente registrada</a> precisan las decisiones posteriores.</p>
+<p>La <a class="reference internal" href="14_arquitecturas.html"><span class="std std-doc">revisión arquitectónica de §14</span></a> y su <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e2_remediation_20261106/architecture_decisions.json">matriz de decisiones</a> distinguen estructura publicada, receta del piloto y adaptación final. Identificar un backbone no certifica la excepción final de §14: los casos de adaptación y la receta numérica deben verificarse individualmente antes de HPO/P1 o entrenamiento definitivo. El pequeño piloto P0 no exime automáticamente de una búsqueda que resulte obligatoria; los espacios y presupuestos comparables se desarrollan en <a class="reference internal" href="11_hpo_equidad.html"><span class="std std-doc">§11</span></a>.</p>
+</section>
+</section>
+<section id="analisis-tecnico-por-modelo">
+<h2>3.3 Análisis técnico por modelo<a class="headerlink" href="#analisis-tecnico-por-modelo" title="Link to this heading">#</a></h2>
+<p>Las fichas siguientes reúnen lectura del original completo, código inspeccionado, formulación propia simplificada y adaptación propuesta. Cada versión leída se identifica por hash, tabla y página; los estados históricos previos se conservan con su alcance. Los esquemas son originales de este libro; no son reproducciones de figuras editoriales. <span class="math notranslate nohighlight">\(g_\sigma\)</span> representa la lectura escalar común anterior. Las complejidades de estas fichas son estimaciones estructurales de la etapa bibliográfica; no son mediciones del adaptador Bitcoin D7. Las mediciones de las corridas externas ETTh1 se presentan por separado en la <a class="reference internal" href="05_paper_guia.html"><span class="std std-doc">sección 5</span></a>.</p>
+<p><strong>Alcance de las fichas conservadas:</strong> sus indicaciones de adaptación pendiente y ejecución histórica corresponden al cierre bibliográfico del 05/11/2026. El registro actualizado de fuentes, recetas y revisión de la adaptación D7 está en la matriz arquitectónica y el protocolo enlazados arriba; la ejecución actual de P0 no convierte estas métricas publicadas en resultados Bitcoin ni cierra el benchmark final.</p>
+<section id="tsmixer">
+<h3>3.3.1 TSMixer<a class="headerlink" href="#tsmixer" title="Link to this heading">#</a></h3>
+<p><strong>Familia:</strong> MLP / mezcla temporal y de variables.</p>
+<p><strong>Fuente arquitectónica:</strong> <a class="reference external" href="https://doi.org/10.48550/arXiv.2303.06053">TSMixer: An All-MLP Architecture for Time Series Forecasting</a>, 2023. Identificador: 10.48550/arXiv.2303.06053. La naturaleza editorial o de preprint se conserva en el registro de fuentes.</p>
+<p><strong>Texto completo leído:</strong> <a class="reference external" href="https://arxiv.org/abs/2303.06053v5">2303.06053v5</a>, 24 páginas PDF; SHA-256 <code class="docutils literal notranslate"><span class="pre">864079eb9702bca1f27f540819052af94625b226cd5a652a02638800f95b365e</span></code>. Se distingue esta versión del registro editorial.</p>
+<p><strong>Código primario:</strong> <a class="reference external" href="https://raw.githubusercontent.com/google-research/google-research/d3a4bd8f0eceddda553e47085033b537935b283f/tsmixer/tsmixer_basic/models/tsmixer.py">implementación fijada por commit</a>, SHA-256 <code class="docutils literal notranslate"><span class="pre">84a7451f86b40b989f7ab7aa36368f24f39610ad62d7ce43e474a30a4e006159</span></code>. Licencia observada: Apache-2.0.</p>
+<p><img alt="Esquema propio de TSMixer" src="../_images/TSMixer.png" /></p>
+<p><strong>Síntesis matemática propia, basada en el código examinado:</strong></p>
+<div class="math notranslate nohighlight">
+\[
+T=X+\mathcal M_t(\mathcal N(X)^\top)^\top,\qquad Z=T+\mathcal M_c(\mathcal N(T)).
+\]</div>
+<p><strong>Resultado publicado rastreable:</strong> ETTh1 multivariante; variante <strong>TSMixer básico multivariante</strong>; contexto L=512, horizonte H=96; <strong>MSE 0.361 y MAE 0.392</strong>, misma fila de la tabla 3, <strong>página PDF 10</strong>. Escala: estandarización global por covariable y RevIN; se evalúa sin invertir la escala global, cuyo ajuste train-only no se explicita. Son resultados externos, no una corrida de Bitcoin ni un ranking comparable entre estos diez artículos.</p>
+<p><strong>Calidad y reproducibilidad:</strong> La fila LTSF seleccionada no declara repeticiones ni dispersión. Las cinco semillas y media±DE de M5 pertenecen a otra tarea. El PDF declara estandarización global y RevIN, pero no explicita el ajuste del scaler sólo en entrenamiento; parte de los comparadores se importa de otro artículo.</p>
+<p>Estado para la fila seleccionada: repeticiones: NR; semillas: NR; dispersión de esta fila: NR; scaler train-only: NR; prueba formal: NR; igual presupuesto HPO: NR. <code class="docutils literal notranslate"><span class="pre">NR</span></code> significa no reportado en el PDF para ese alcance; <code class="docutils literal notranslate"><span class="pre">NV</span></code> significa no verificado y <code class="docutils literal notranslate"><span class="pre">partial</span></code>, evidencia parcial. El detalle y los localizadores están en la <a class="reference download internal" download="" href="../_downloads/622d7e17278445d6151f15c40be7910b/quality_matrix.csv"><span class="xref download myst">matriz metodológica</span></a>.</p>
+<p><strong>Respaldo aplicado adicional:</strong> <a class="reference external" href="https://doi.org/10.1016/j.jfds.2024.100143">Time-mixing and feature-mixing modelling for realized volatility forecast: Evidence from TSMixer model</a>, <code class="docutils literal notranslate"><span class="pre">WOS:001491684900001</span></code>. Alcance: Volatilidad realizada de acciones. Sus 9 citas corresponden a ese estudio representativo, no automáticamente al original arquitectónico. El registro de apoyo procede de resumen/metadatos, salvo el preprint original de S-Mamba también leído.</p>
+<p><strong>Adaptación propuesta:</strong> Mezclar días y variables con MLP residuales; lectura escalar para σ7.</p>
+<p><strong>Complejidad:</strong> Estimación estructural propia por bloque O(C L² + L C F), más la proyección; L=7 y C=5. No es un recuento medido de FLOPs. El número de parámetros y FLOPs de la configuración ETTh1 seleccionada no está reportado; los tiempos/memorias de otras condiciones se conservan en la <a class="reference download internal" download="" href="../_downloads/4897b20c82fa579a2f160a2d1cb91a4f/efficiency_matrix.csv"><span class="xref download myst">matriz de eficiencia</span></a>, sin trasladarlos a D7 ni a Bitcoin.</p>
+<p><strong>Limitación técnica:</strong> La fuente elegida es Google/Chen All-MLP TSMixer, distinta de variantes IBM con nombre parecido. Las capas y la receta del adaptador aún deben fijarse antes de entrenarlo.</p>
+<p><strong>Alcance histórico de ejecución:</strong> la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La adaptación D7×5→σ₇ y su evaluación en Bitcoin siguen pendientes. La <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html">réplica externa de TimeMixer y el piloto de tres modelos en ETTh1</a> pertenecen a la etapa posterior del capítulo 5.</p>
+</section>
+<section id="tide">
+<h3>3.3.2 TiDE<a class="headerlink" href="#tide" title="Link to this heading">#</a></h3>
+<p><strong>Familia:</strong> MLP / mezcla temporal y de variables.</p>
+<p><strong>Fuente arquitectónica:</strong> <a class="reference external" href="https://doi.org/10.48550/arXiv.2304.08424">Long-term Forecasting with TiDE: Time-series Dense Encoder</a>, 2023. Identificador: 10.48550/arXiv.2304.08424. La naturaleza editorial o de preprint se conserva en el registro de fuentes.</p>
+<p><strong>Texto completo leído:</strong> <a class="reference external" href="https://arxiv.org/abs/2304.08424v5">2304.08424v5</a>, 21 páginas PDF; SHA-256 <code class="docutils literal notranslate"><span class="pre">eee9d9e3248f262a137e6cf63920137263f3bbbe22cd8608e5eec77882af1999</span></code>. Se distingue esta versión del registro editorial.</p>
+<p><strong>Código primario:</strong> <a class="reference external" href="https://raw.githubusercontent.com/google-research/google-research/d3a4bd8f0eceddda553e47085033b537935b283f/tide/models.py">implementación fijada por commit</a>, SHA-256 <code class="docutils literal notranslate"><span class="pre">ad8fd8d498809deeed9c847a169cada42134cbd0351b03e750706132a5d151c7</span></code>. Licencia observada: Apache-2.0.</p>
+<p><img alt="Esquema propio de TiDE" src="../_images/TiDE.png" /></p>
+<p><strong>Síntesis matemática propia, basada en el código examinado:</strong></p>
+<div class="math notranslate nohighlight">
+\[
+z=\operatorname{Enc}(\operatorname{vec}(X)),\qquad r=\operatorname{Dec}(z),\qquad \widehat y=g_\sigma(r).
+\]</div>
+<p><strong>Resultado publicado rastreable:</strong> ETTh1 multivariante; variante <strong>TiDE completo, RevIN activado, todos los residuales; tabla 2 con configuración de tabla 8</strong>; contexto L=720, horizonte H=96; <strong>MSE 0.375 y MAE 0.398</strong>, misma fila de la tabla 2, <strong>página PDF 8</strong>. Escala: estandarización con media/DE del periodo de entrenamiento y RevIN activado para ETTh1. Son resultados externos, no una corrida de Bitcoin ni un ranking comparable entre estos diez artículos.</p>
+<p><strong>Calidad y reproducibilidad:</strong> Declara cinco ejecuciones independientes. La tabla 5 (PDF p.19) proporciona errores estándar para ETTh1/H96: MSE 0.0003 y MAE 0.0002; no son desviaciones estándar. La normalización con media/DE del periodo de entrenamiento está explícita. Los presupuestos HPO de todos los comparadores no se igualan documentalmente.</p>
+<p>Estado para la fila seleccionada: repeticiones: reported; semillas: NR; dispersión de esta fila: reported; scaler train-only: reported; prueba formal: NR; igual presupuesto HPO: NR. <code class="docutils literal notranslate"><span class="pre">NR</span></code> significa no reportado en el PDF para ese alcance; <code class="docutils literal notranslate"><span class="pre">NV</span></code> significa no verificado y <code class="docutils literal notranslate"><span class="pre">partial</span></code>, evidencia parcial. El detalle y los localizadores están en la <a class="reference download internal" download="" href="../_downloads/622d7e17278445d6151f15c40be7910b/quality_matrix.csv"><span class="xref download myst">matriz metodológica</span></a>.</p>
+<p><strong>Respaldo aplicado adicional:</strong> <a class="reference external" href="https://doi.org/10.3390/en18102434">A Deep Learning Method for Photovoltaic Power Generation Forecasting Based on a Time-Series Dense Encoder</a>, <code class="docutils literal notranslate"><span class="pre">WOS:001495953000001</span></code>. Alcance: Pronóstico en otro dominio. Sus 13 citas corresponden a ese estudio representativo, no automáticamente al original arquitectónico. El registro de apoyo procede de resumen/metadatos, salvo el preprint original de S-Mamba también leído.</p>
+<p><strong>Adaptación propuesta:</strong> Codificar las covariables históricas con bloques densos; decoder escalar sin covariables futuras.</p>
+<p><strong>Complejidad:</strong> Estimación propia Σℓ O(dℓ dℓ₊₁) sobre capas densas, más proyecciones de variables. Los anchos no están fijados; no se infieren parámetros ni FLOPs numéricos. El número de parámetros y FLOPs de la configuración ETTh1 seleccionada no está reportado; los tiempos/memorias de otras condiciones se conservan en la <a class="reference download internal" download="" href="../_downloads/4897b20c82fa579a2f160a2d1cb91a4f/efficiency_matrix.csv"><span class="xref download myst">matriz de eficiencia</span></a>, sin trasladarlos a D7 ni a Bitcoin.</p>
+<p><strong>Limitación técnica:</strong> La interfaz original no se ejecuta sin cambios bajo el contrato heredado. La cabeza/skip escalar y retirar historia del objetivo deben declararse como adaptaciones.</p>
+<p>La formulación original incorpora historia del objetivo y covariables futuras; la versión covariate-only bajo el contrato vigente es una adaptación explícita que necesita validación, no una reproducción idéntica.</p>
+<p><strong>Alcance histórico de ejecución:</strong> la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La adaptación D7×5→σ₇ y su evaluación en Bitcoin siguen pendientes. La <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html">réplica externa de TimeMixer y el piloto de tres modelos en ETTh1</a> pertenecen a la etapa posterior del capítulo 5.</p>
+</section>
+<section id="timemixer">
+<h3>3.3.3 TimeMixer<a class="headerlink" href="#timemixer" title="Link to this heading">#</a></h3>
+<p><strong>Familia:</strong> MLP / mezcla temporal y de variables.</p>
+<p><strong>Fuente arquitectónica:</strong> <a class="reference external" href="https://doi.org/10.48550/arXiv.2405.14616">TimeMixer: Decomposable Multiscale Mixing for Time Series Forecasting</a>, 2024. Identificador: 10.48550/arXiv.2405.14616. La naturaleza editorial o de preprint se conserva en el registro de fuentes.</p>
+<p><strong>Texto completo leído:</strong> <a class="reference external" href="https://arxiv.org/abs/2405.14616v1">2405.14616v1</a>, 28 páginas PDF; SHA-256 <code class="docutils literal notranslate"><span class="pre">a599b338e44af70d8e9c87be3c5417bde7864b2c92074e1346703f3e2b641e3d</span></code>. Se distingue esta versión del registro editorial.</p>
+<p><strong>Código primario:</strong> <a class="reference external" href="https://raw.githubusercontent.com/kwuking/TimeMixer/e24610583b36fdd8c76cc17a8df4e65759a5f460/models/TimeMixer.py">implementación fijada por commit</a>, SHA-256 <code class="docutils literal notranslate"><span class="pre">817d62f4aac54c8566e560f6d3785856e31c8ee51460279ee3d0a4823f11d4be</span></code>. Licencia observada: Apache-2.0.</p>
+<p><img alt="Esquema propio de TimeMixer" src="../_images/TimeMixer.png" /></p>
+<p><strong>Síntesis matemática propia, basada en el código examinado:</strong></p>
+<div class="math notranslate nohighlight">
+\[
+X_s=\operatorname{Down}_s(X),\quad (S_s,T_s)=\operatorname{Decomp}(X_s),\quad \widehat y=g_\sigma(\{\operatorname{Mix}_s(S_s,T_s)\}_s).
+\]</div>
+<p><strong>Resultado publicado rastreable:</strong> ETTh1 multivariante; variante <strong>TimeMixer unificado, M=3 y cuatro escalas 96/48/24/12</strong>; contexto L=96, horizonte H=96; <strong>MSE 0.375 y MAE 0.400</strong>, misma fila de la tabla 13, <strong>página PDF 17</strong>. Escala: escala/unidades exactas de las métricas no reportadas en el PDF. Son resultados externos, no una corrida de Bitcoin ni un ranking comparable entre estos diez artículos.</p>
+<p><strong>Calidad y reproducibilidad:</strong> Declara tres repeticiones. La media±DE de la tabla 9 corresponde al promedio de cuatro horizontes, no a esta fila H96. Sus afirmaciones de IC/significancia no incluyen prueba identificada, p-valores ni extremos reproducibles. La configuración unificada alinea contexto, batch y épocas, sin demostrar igual presupuesto de búsqueda.</p>
+<p>Estado para la fila seleccionada: repeticiones: reported; semillas: NR; dispersión de esta fila: NR; scaler train-only: NR; prueba formal: partial; igual presupuesto HPO: NR. <code class="docutils literal notranslate"><span class="pre">NR</span></code> significa no reportado en el PDF para ese alcance; <code class="docutils literal notranslate"><span class="pre">NV</span></code> significa no verificado y <code class="docutils literal notranslate"><span class="pre">partial</span></code>, evidencia parcial. El detalle y los localizadores están en la <a class="reference download internal" download="" href="../_downloads/622d7e17278445d6151f15c40be7910b/quality_matrix.csv"><span class="xref download myst">matriz metodológica</span></a>.</p>
+<p><strong>Respaldo aplicado adicional:</strong> <a class="reference external" href="https://doi.org/10.1016/j.epsr.2025.112196">Adaptive multi-scale short term wind power forecasting framework based on TimeMixer and Mix-of-Experts</a>, <code class="docutils literal notranslate"><span class="pre">WOS:001569047800001</span></code>. Alcance: Comparador en otro dominio. Sus 11 citas corresponden a ese estudio representativo, no automáticamente al original arquitectónico. El registro de apoyo procede de resumen/metadatos, salvo el preprint original de S-Mamba también leído.</p>
+<p><strong>Adaptación propuesta:</strong> Combinar escalas temporales compatibles con siete días; no agregar entradas externas.</p>
+<p><strong>Complejidad:</strong> Estimación propia O(Σₛ C Lₛ² + costes de FFN de variables), sumando las escalas. No es una medición de FLOPs. El número de parámetros y FLOPs de la configuración ETTh1 seleccionada no está reportado; los tiempos/memorias de otras condiciones se conservan en la <a class="reference download internal" download="" href="../_downloads/4897b20c82fa579a2f160a2d1cb91a4f/efficiency_matrix.csv"><span class="xref download myst">matriz de eficiencia</span></a>, sin trasladarlos a D7 ni a Bitcoin.</p>
+<p><strong>Limitación técnica:</strong> Las escalas y longitudes predeterminadas para historias de 96/336 pasos no sirven automáticamente para D7. No se añaden variables futuras ni se invierte la escala OHLCV como si el objetivo fuera una de sus columnas.</p>
+<p><strong>Alcance histórico de ejecución:</strong> la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La adaptación D7×5→σ₇ y su evaluación en Bitcoin siguen pendientes. La <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html">réplica externa de TimeMixer y el piloto de tres modelos en ETTh1</a> pertenecen a la etapa posterior del capítulo 5.</p>
+</section>
+<section id="timesnet">
+<h3>3.3.4 TimesNet<a class="headerlink" href="#timesnet" title="Link to this heading">#</a></h3>
+<p><strong>Familia:</strong> Convolución multiescala / variación2D.</p>
+<p><strong>Fuente arquitectónica:</strong> <a class="reference external" href="https://doi.org/10.48550/arXiv.2210.02186">TimesNet: Temporal 2D-Variation Modeling for General Time Series Analysis</a>, 2023. Identificador: 10.48550/arXiv.2210.02186. La naturaleza editorial o de preprint se conserva en el registro de fuentes.</p>
+<p><strong>Texto completo leído:</strong> <a class="reference external" href="https://arxiv.org/abs/2210.02186v3">2210.02186v3</a>, 23 páginas PDF; SHA-256 <code class="docutils literal notranslate"><span class="pre">a45cb3d35c7b4db7091439ee714fd43dd6cd9e8f2fb1867f5463ae0433aebbd1</span></code>. Se distingue esta versión del registro editorial.</p>
+<p><strong>Código primario:</strong> <a class="reference external" href="https://raw.githubusercontent.com/thuml/Time-Series-Library/4e938a1767106324dd753b2a44832bf870a0252e/models/TimesNet.py">implementación fijada por commit</a>, SHA-256 <code class="docutils literal notranslate"><span class="pre">f64c4bed1fd7347090044a0163bd4209c9f9ec1c1b19ceff47842df36b64bba7</span></code>. Licencia observada: MIT.</p>
+<p><img alt="Esquema propio de TimesNet" src="../_images/TimesNet.png" /></p>
+<p><strong>Síntesis matemática propia, basada en el código examinado:</strong></p>
+<div class="math notranslate nohighlight">
+\[
+p_i=\lfloor L/f_i\rfloor,\quad Z=\sum_i a_i\operatorname{Reshape}_{p_i}^{-1}(\operatorname{Conv2D}_i(\operatorname{Reshape}_{p_i}(X))).
+\]</div>
+<p><strong>Resultado publicado rastreable:</strong> ETTh1 multivariante; variante <strong>TimesNet con Inception compartido</strong>; contexto L=96, horizonte H=96; <strong>MSE 0.384 y MAE 0.402</strong>, misma fila de la tabla 13, <strong>página PDF 21</strong>. Escala: Series Stationarization declarada; scaler global y unidades exactas de estas métricas no reportados. Son resultados externos, no una corrida de Bitcoin ni un ranking comparable entre estos diez artículos.</p>
+<p><strong>Calidad y reproducibilidad:</strong> Declara tres repeticiones; la dispersión de esta fila H96 no está reportada. Series Stationarization es una normalización interna y no acredita por sí sola un scaler global ajustado sólo en entrenamiento. Los controles compartidos de entrada/salida no demuestran igual presupuesto HPO.</p>
+<p>Estado para la fila seleccionada: repeticiones: reported; semillas: NR; dispersión de esta fila: NR; scaler train-only: NR; prueba formal: NR; igual presupuesto HPO: NR. <code class="docutils literal notranslate"><span class="pre">NR</span></code> significa no reportado en el PDF para ese alcance; <code class="docutils literal notranslate"><span class="pre">NV</span></code> significa no verificado y <code class="docutils literal notranslate"><span class="pre">partial</span></code>, evidencia parcial. El detalle y los localizadores están en la <a class="reference download internal" download="" href="../_downloads/622d7e17278445d6151f15c40be7910b/quality_matrix.csv"><span class="xref download myst">matriz metodológica</span></a>.</p>
+<p><strong>Respaldo aplicado adicional:</strong> <a class="reference external" href="https://doi.org/10.1016/j.eswa.2024.124851">Charting new avenues in financial forecasting with TimesNet: The impact of intraperiod and interperiod variations on realized volatility prediction</a>, <code class="docutils literal notranslate"><span class="pre">WOS:001283528600001</span></code>. Alcance: Volatilidad realizada de acciones. Sus 14 citas corresponden a ese estudio representativo, no automáticamente al original arquitectónico. El registro de apoyo procede de resumen/metadatos, salvo el preprint original de S-Mamba también leído.</p>
+<p><strong>Adaptación propuesta:</strong> Transformar la historia a representaciones de variación 2D; limitar frecuencias al soporte D7.</p>
+<p><strong>Complejidad:</strong> Estimación propia O(L d log L) para FFT más O(Σᵢ Aᵢ kᵢ² d_in d_out) para convoluciones 2D sobre rejillas con relleno. No se ha medido el coste numérico. El número de parámetros y FLOPs de la configuración ETTh1 seleccionada no está reportado; los tiempos/memorias de otras condiciones se conservan en la <a class="reference download internal" download="" href="../_downloads/4897b20c82fa579a2f160a2d1cb91a4f/efficiency_matrix.csv"><span class="xref download myst">matriz de eficiencia</span></a>, sin trasladarlos a D7 ni a Bitcoin.</p>
+<p><strong>Limitación técnica:</strong> El README original deriva la implementación a Time-Series-Library: se conservan ambos repositorios. Periodos inferidos por FFT fuera del soporte observado no prueban memoria de largo plazo.</p>
+<p>La ecuación 1 del artículo usa techo para el periodo y el código examinado usa división entera (piso); la fórmula anterior describe ese código. FFT_for_Period promedia amplitudes sobre el batch. Para no compartir información entre orígenes temporales, la adaptación propuesta debe seleccionar periodos por ventana o inferir con batch=1, excluir explícitamente la frecuencia cero y limitar k≤⌊L_eff/2⌋. Son controles propuestos, aún no ejecutados.</p>
+<p><strong>Alcance histórico de ejecución:</strong> la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La adaptación D7×5→σ₇ y su evaluación en Bitcoin siguen pendientes. La <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html">réplica externa de TimeMixer y el piloto de tres modelos en ETTh1</a> pertenecen a la etapa posterior del capítulo 5.</p>
+</section>
+<section id="patchtst">
+<h3>3.3.5 PatchTST<a class="headerlink" href="#patchtst" title="Link to this heading">#</a></h3>
+<p><strong>Familia:</strong> Atención / Transformer.</p>
+<p><strong>Fuente arquitectónica:</strong> <a class="reference external" href="https://doi.org/10.48550/arXiv.2211.14730">A Time Series is Worth 64 Words: Long-term Forecasting with Transformers</a>, 2023. Identificador: 10.48550/arXiv.2211.14730. La naturaleza editorial o de preprint se conserva en el registro de fuentes.</p>
+<p><strong>Texto completo leído:</strong> <a class="reference external" href="https://arxiv.org/abs/2211.14730v2">2211.14730v2</a>, 24 páginas PDF; SHA-256 <code class="docutils literal notranslate"><span class="pre">ffd4021d25b4959883242f256b0fe4ec42f477f66db78c61bfacf7baa7848b0e</span></code>. Se distingue esta versión del registro editorial.</p>
+<p><strong>Código primario:</strong> <a class="reference external" href="https://raw.githubusercontent.com/yuqinie98/PatchTST/204c21efe0b39603ad6e2ca640ef5896646ab1a9/PatchTST_supervised/models/PatchTST.py">implementación fijada por commit</a>, SHA-256 <code class="docutils literal notranslate"><span class="pre">49d8bb865e1226d6338842f4b33c4bc6992cefb048dc2a4a5a8c410ca708586b</span></code>. Licencia observada: Apache-2.0.</p>
+<p><img alt="Esquema propio de PatchTST" src="../_images/PatchTST.png" /></p>
+<p><strong>Síntesis matemática propia, basada en el código examinado:</strong></p>
+<div class="math notranslate nohighlight">
+\[
+P_c=\operatorname{Patch}(X_{:,c}),\quad Z_c=\operatorname{Encoder}(P_cW_p+E),\quad \widehat y=g_\sigma(Z_1,\ldots,Z_5).
+\]</div>
+<p><strong>Resultado publicado rastreable:</strong> ETTh1 multivariante; variante <strong>PatchTST/64 supervisado, parche 16 y salto 8</strong>; contexto L=512, horizonte H=96; <strong>MSE 0.370 y MAE 0.400</strong>, misma fila de la tabla 3, <strong>página PDF 7</strong>. Escala: normalización de instancia declarada; scaler global y unidades exactas de las métricas no reportados. Son resultados externos, no una corrida de Bitcoin ni un ranking comparable entre estos diez artículos.</p>
+<p><strong>Calidad y reproducibilidad:</strong> La tabla principal usa semilla 2021. La robustez con cinco semillas 2019–2023 y media±DE se estudia para la variante /42; no se atribuye su dispersión a /64. La normalización de instancia está descrita, pero el scaler global y su población de ajuste no quedan explícitos en el PDF.</p>
+<p>Estado para la fila seleccionada: repeticiones: reported; semillas: reported; dispersión de esta fila: NR; scaler train-only: NR; prueba formal: NR; igual presupuesto HPO: NR. <code class="docutils literal notranslate"><span class="pre">NR</span></code> significa no reportado en el PDF para ese alcance; <code class="docutils literal notranslate"><span class="pre">NV</span></code> significa no verificado y <code class="docutils literal notranslate"><span class="pre">partial</span></code>, evidencia parcial. El detalle y los localizadores están en la <a class="reference download internal" download="" href="../_downloads/622d7e17278445d6151f15c40be7910b/quality_matrix.csv"><span class="xref download myst">matriz metodológica</span></a>.</p>
+<p><strong>Respaldo aplicado adicional:</strong> <a class="reference external" href="https://doi.org/10.1108/CFRI-01-2024-0032">Can transformers transform financial forecasting?</a>, <code class="docutils literal notranslate"><span class="pre">WOS:001250609400001</span></code>. Alcance: Volatilidad realizada de acciones. Sus 23 citas corresponden a ese estudio representativo, no automáticamente al original arquitectónico. El registro de apoyo procede de resumen/metadatos, salvo el preprint original de S-Mamba también leído.</p>
+<p><strong>Adaptación propuesta:</strong> Usar parches cortos y fusionar representaciones de los cinco canales en un objetivo.</p>
+<p><strong>Complejidad:</strong> Estimación propia O(C P² d + C P d²), con P parches. Reducir tokens puede ahorrar atención, pero con L=7 no demuestra una ventaja. El número de parámetros y FLOPs de la configuración ETTh1 seleccionada no está reportado; los tiempos/memorias de otras condiciones se conservan en la <a class="reference download internal" download="" href="../_downloads/4897b20c82fa579a2f160a2d1cb91a4f/efficiency_matrix.csv"><span class="xref download myst">matriz de eficiencia</span></a>, sin trasladarlos a D7 ni a Bitcoin.</p>
+<p><strong>Limitación técnica:</strong> Los parches predeterminados de 16/32 pasos exceden D7. Una nueva cabeza que combine canales es una adaptación que debe declararse y validarse.</p>
+<p><strong>Alcance histórico de ejecución:</strong> la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La adaptación D7×5→σ₇ y su evaluación en Bitcoin siguen pendientes. La <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html">réplica externa de TimeMixer y el piloto de tres modelos en ETTh1</a> pertenecen a la etapa posterior del capítulo 5.</p>
+</section>
+<section id="informer">
+<h3>3.3.6 Informer<a class="headerlink" href="#informer" title="Link to this heading">#</a></h3>
+<p><strong>Familia:</strong> Atención / Transformer.</p>
+<p><strong>Fuente arquitectónica:</strong> <a class="reference external" href="https://doi.org/10.1609/aaai.v35i12.17325">Informer: Beyond Efficient Transformer for Long Sequence Time-Series Forecasting</a>, 2021. Identificador: 10.1609/aaai.v35i12.17325. La naturaleza editorial o de preprint se conserva en el registro de fuentes.</p>
+<p><strong>Texto completo leído:</strong> <a class="reference external" href="https://arxiv.org/abs/2012.07436v3">2012.07436v3</a>, 15 páginas PDF; SHA-256 <code class="docutils literal notranslate"><span class="pre">95d8d427005e4dab28932b2630886931fc095996fdd4a65d0e050bae801ffc37</span></code>. Se distingue esta versión del registro editorial.</p>
+<p><strong>Código primario:</strong> <a class="reference external" href="https://raw.githubusercontent.com/zhouhaoyi/Informer2020/29f2a739226a509202a092b464163da81fa74960/models/model.py">implementación fijada por commit</a>, SHA-256 <code class="docutils literal notranslate"><span class="pre">bc8e062fbbb4f4ae970ca0d02d2bf43b2e92c3251c3627d887c01d35cbc6891a</span></code>. Licencia observada: Apache-2.0 in LICENSE; README badge separately says CC BY-NC-SA.</p>
+<p><img alt="Esquema propio de Informer" src="../_images/Informer.png" /></p>
+<p><strong>Síntesis matemática propia, basada en el código examinado:</strong></p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Attn}(\overline Q,K,V)=\operatorname{softmax}(\overline QK^\top/\sqrt d)V,\qquad \widehat y=g_\sigma(Z).
+\]</div>
+<p><strong>Resultado publicado rastreable:</strong> ETTh1 multivariante; variante <strong>Informer con ProbSparse y distilling, columna Informer sin daga</strong>; contexto L=NR (contexto ganador no reportado), horizonte H=24; <strong>MSE 0.577 y MAE 0.549</strong>, misma fila de la tabla 2, <strong>página PDF 6</strong>. Escala: estandarización media cero/DE uno declarada; ajuste train-only e inversión al evaluar no explicitados. Son resultados externos, no una corrida de Bitcoin ni un ranking comparable entre estos diez artículos.</p>
+<p><strong>Calidad y reproducibilidad:</strong> Declara cinco ejecuciones con desplazamiento de los conjuntos de entrenamiento/validación; no equivale a cinco semillas independientes sobre una única partición fija. No reporta dispersión para la fila seleccionada. La estandarización está declarada, sin precisar ajuste sólo en entrenamiento ni inversión al evaluar.</p>
+<p>Estado para la fila seleccionada: repeticiones: reported; semillas: NR; dispersión de esta fila: NR; scaler train-only: NR; prueba formal: NR; igual presupuesto HPO: NR. <code class="docutils literal notranslate"><span class="pre">NR</span></code> significa no reportado en el PDF para ese alcance; <code class="docutils literal notranslate"><span class="pre">NV</span></code> significa no verificado y <code class="docutils literal notranslate"><span class="pre">partial</span></code>, evidencia parcial. El detalle y los localizadores están en la <a class="reference download internal" download="" href="../_downloads/622d7e17278445d6151f15c40be7910b/quality_matrix.csv"><span class="xref download myst">matriz metodológica</span></a>.</p>
+<p><strong>Respaldo aplicado adicional:</strong> <a class="reference external" href="https://doi.org/10.1108/CFRI-01-2024-0032">Can transformers transform financial forecasting?</a>, <code class="docutils literal notranslate"><span class="pre">WOS:001250609400001</span></code>. Alcance: Volatilidad realizada de acciones. Sus 23 citas corresponden a ese estudio representativo, no automáticamente al original arquitectónico. El registro de apoyo procede de resumen/metadatos, salvo el preprint original de S-Mamba también leído.</p>
+<p><strong>Adaptación propuesta:</strong> Atención dispersa con contexto observado; decoder sin valores futuros verdaderos ni calendario añadido.</p>
+<p><strong>Complejidad:</strong> El mecanismo original propone atención O(L log L); el modelo completo añade proyecciones/FFN O(L d²) y decoder. No se deduce superioridad de velocidad con L=7. El número de parámetros y FLOPs de la configuración ETTh1 seleccionada no está reportado; los tiempos/memorias de otras condiciones se conservan en la <a class="reference download internal" download="" href="../_downloads/4897b20c82fa579a2f160a2d1cb91a4f/efficiency_matrix.csv"><span class="xref download myst">matriz de eficiencia</span></a>, sin trasladarlos a D7 ni a Bitcoin.</p>
+<p><strong>Limitación técnica:</strong> La licencia raíz observada es Apache-2.0 y el badge del README indica CC BY-NC-SA: se distinguen código, datos y badge. Debe comprobarse que el distilling sea válido con siete pasos.</p>
+<p><strong>Alcance histórico de ejecución:</strong> la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La adaptación D7×5→σ₇ y su evaluación en Bitcoin siguen pendientes. La <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html">réplica externa de TimeMixer y el piloto de tres modelos en ETTh1</a> pertenecen a la etapa posterior del capítulo 5.</p>
+</section>
+<section id="autoformer">
+<h3>3.3.7 Autoformer<a class="headerlink" href="#autoformer" title="Link to this heading">#</a></h3>
+<p><strong>Familia:</strong> Atención / Transformer.</p>
+<p><strong>Fuente arquitectónica:</strong> <a class="reference external" href="https://doi.org/10.48550/arXiv.2106.13008">Autoformer: Decomposition Transformers with Auto-Correlation for Long-Term Series Forecasting</a>, 2021. Identificador: 10.48550/arXiv.2106.13008. La naturaleza editorial o de preprint se conserva en el registro de fuentes.</p>
+<p><strong>Texto completo leído:</strong> <a class="reference external" href="https://arxiv.org/abs/2106.13008v5">2106.13008v5</a>, 20 páginas PDF; SHA-256 <code class="docutils literal notranslate"><span class="pre">6ec6743b8d3df87a91ecd7b17d83123c0132f5ab87dffeb6318c05e2cb13f11b</span></code>. Se distingue esta versión del registro editorial.</p>
+<p><strong>Código primario:</strong> <a class="reference external" href="https://raw.githubusercontent.com/thuml/Autoformer/51c7d416ae120b805fd5beef2f4ccf7de496a6ff/models/Autoformer.py">implementación fijada por commit</a>, SHA-256 <code class="docutils literal notranslate"><span class="pre">f18e9e82844ed8c4dc26e00c3c2f0b7c278ac8ea8427c4fab7331939bf69829d</span></code>. Licencia observada: MIT.</p>
+<p><img alt="Esquema propio de Autoformer" src="../_images/Autoformer.png" /></p>
+<p><strong>Síntesis matemática propia, basada en el código examinado:</strong></p>
+<div class="math notranslate nohighlight">
+\[
+R_{QK}=\operatorname{IFFT}(\operatorname{FFT}(Q)\overline{\operatorname{FFT}(K)}),\quad Z=\sum_{\tau\in\operatorname{TopK}(R)}a_\tau\operatorname{Roll}_{\tau}(V).
+\]</div>
+<p><strong>Resultado publicado rastreable:</strong> ETTh1 multivariante; variante <strong>Autoformer speedup, dos capas de encoder y una de decoder</strong>; contexto L=96, horizonte H=24; <strong>MSE 0.384 y MAE 0.425</strong>, misma fila de la tabla 5, <strong>página PDF 13</strong>. Escala: normalización global del benchmark no reportada en el PDF. Son resultados externos, no una corrida de Bitcoin ni un ranking comparable entre estos diez artículos.</p>
+<p><strong>Calidad y reproducibilidad:</strong> Declara tres ejecuciones y presenta DE para otros casos, como ETTm2/H96; no se transfiere esa incertidumbre a ETTh1/H24. La normalización global del benchmark no está reportada en el PDF. Los resultados corresponden a la versión speedup.</p>
+<p>Estado para la fila seleccionada: repeticiones: reported; semillas: NR; dispersión de esta fila: NR; scaler train-only: NR; prueba formal: NR; igual presupuesto HPO: NR. <code class="docutils literal notranslate"><span class="pre">NR</span></code> significa no reportado en el PDF para ese alcance; <code class="docutils literal notranslate"><span class="pre">NV</span></code> significa no verificado y <code class="docutils literal notranslate"><span class="pre">partial</span></code>, evidencia parcial. El detalle y los localizadores están en la <a class="reference download internal" download="" href="../_downloads/622d7e17278445d6151f15c40be7910b/quality_matrix.csv"><span class="xref download myst">matriz metodológica</span></a>.</p>
+<p><strong>Respaldo aplicado adicional:</strong> <a class="reference external" href="https://doi.org/10.1108/CFRI-01-2024-0032">Can transformers transform financial forecasting?</a>, <code class="docutils literal notranslate"><span class="pre">WOS:001250609400001</span></code>. Alcance: Volatilidad realizada de acciones. Sus 23 citas corresponden a ese estudio representativo, no automáticamente al original arquitectónico. El registro de apoyo procede de resumen/metadatos, salvo el preprint original de S-Mamba también leído.</p>
+<p><strong>Adaptación propuesta:</strong> Descomposición y autocorrelación temporal; proyectar coherentemente tendencia y estacionalidad al objetivo.</p>
+<p><strong>Complejidad:</strong> Correlación basada en FFT O(L d log L), más proyecciones/FFN O(L d²). Es una síntesis estructural propia, no un coste medido del modelo completo. El número de parámetros y FLOPs de la configuración ETTh1 seleccionada no está reportado; los tiempos/memorias de otras condiciones se conservan en la <a class="reference download internal" download="" href="../_downloads/4897b20c82fa579a2f160a2d1cb91a4f/efficiency_matrix.csv"><span class="xref download myst">matriz de eficiencia</span></a>, sin trasladarlos a D7 ni a Bitcoin.</p>
+<p><strong>Limitación técnica:</strong> Fijar c_out=1 puede difundir una tendencia OHLCV en unidades incompatibles con σ₇. El regresor de volatilidad basado sólo en covariables es una adaptación explícita.</p>
+<p>Roll es una operación circular sobre representaciones de historia observada, no una garantía de causalidad por posición. La rama de tendencia en unidades de covariables también debe proyectarse de forma coherente al objetivo σ₇ antes de aplicar la escala Y de entrenamiento.</p>
+<p><strong>Alcance histórico de ejecución:</strong> la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La adaptación D7×5→σ₇ y su evaluación en Bitcoin siguen pendientes. La <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html">réplica externa de TimeMixer y el piloto de tres modelos en ETTh1</a> pertenecen a la etapa posterior del capítulo 5.</p>
+</section>
+<section id="itransformer">
+<h3>3.3.8 iTransformer<a class="headerlink" href="#itransformer" title="Link to this heading">#</a></h3>
+<p><strong>Familia:</strong> Atención / Transformer.</p>
+<p><strong>Fuente arquitectónica:</strong> <a class="reference external" href="https://doi.org/10.48550/arXiv.2310.06625">iTransformer: Inverted Transformers Are Effective for Time Series Forecasting</a>, 2024. Identificador: 10.48550/arXiv.2310.06625. La naturaleza editorial o de preprint se conserva en el registro de fuentes.</p>
+<p><strong>Texto completo leído:</strong> <a class="reference external" href="https://arxiv.org/abs/2310.06625v4">2310.06625v4</a>, 25 páginas PDF; SHA-256 <code class="docutils literal notranslate"><span class="pre">83e889795af52c672090255493266e3ea93e7b2a32c528f58074f2f9f757ffc5</span></code>. Se distingue esta versión del registro editorial.</p>
+<p><strong>Código primario:</strong> <a class="reference external" href="https://raw.githubusercontent.com/thuml/iTransformer/c2426e68ca13f74aaec08045c5c724d8ad328124/model/iTransformer.py">implementación fijada por commit</a>, SHA-256 <code class="docutils literal notranslate"><span class="pre">6f34777a5a12c253a293f79e7e1fd5b6f79ac100b443951e051e269e7e2542db</span></code>. Licencia observada: MIT.</p>
+<p><img alt="Esquema propio de iTransformer" src="../_images/iTransformer.png" /></p>
+<p><strong>Síntesis matemática propia, basada en el código examinado:</strong></p>
+<div class="math notranslate nohighlight">
+\[
+H^{(0)}=X^\top W_e,\qquad H^{(\ell+1)}=\operatorname{Encoder}(H^{(\ell)}),\qquad \widehat y=g_\sigma(H).
+\]</div>
+<p><strong>Resultado publicado rastreable:</strong> ETTh1 multivariante; variante <strong>iTransformer completo, columna original Ours</strong>; contexto L=96, horizonte H=96; <strong>MSE 0.386 y MAE 0.405</strong>, misma fila de la tabla 10, <strong>página PDF 23</strong>. Escala: preprocesamiento del benchmark remitido a TimesNet; no son errores de precio bruto ni de Bitcoin. Son resultados externos, no una corrida de Bitcoin ni un ranking comparable entre estos diez artículos.</p>
+<p><strong>Calidad y reproducibilidad:</strong> El análisis de robustez incluye cinco semillas en otros datasets; su tabla 5 no contiene ETTh1 y no acredita incertidumbre de esta fila. La atención entre variables tiene coste cuadrático en el número de variables, no en el número de fechas. Un contexto común no prueba igualdad de presupuesto HPO.</p>
+<p>Estado para la fila seleccionada: repeticiones: NV; semillas: NR; dispersión de esta fila: NR; scaler train-only: NR; prueba formal: NR; igual presupuesto HPO: NR. <code class="docutils literal notranslate"><span class="pre">NR</span></code> significa no reportado en el PDF para ese alcance; <code class="docutils literal notranslate"><span class="pre">NV</span></code> significa no verificado y <code class="docutils literal notranslate"><span class="pre">partial</span></code>, evidencia parcial. El detalle y los localizadores están en la <a class="reference download internal" download="" href="../_downloads/622d7e17278445d6151f15c40be7910b/quality_matrix.csv"><span class="xref download myst">matriz metodológica</span></a>.</p>
+<p><strong>Respaldo aplicado adicional:</strong> <a class="reference external" href="https://doi.org/10.1016/j.physa.2024.130185">Short-term freeway traffic speed multistep prediction using an iTransformer model</a>, <code class="docutils literal notranslate"><span class="pre">WOS:001352915400001</span></code>. Alcance: Pronóstico en otro dominio. Sus 35 citas corresponden a ese estudio representativo, no automáticamente al original arquitectónico. El registro de apoyo procede de resumen/metadatos, salvo el preprint original de S-Mamba también leído.</p>
+<p><strong>Adaptación propuesta:</strong> Atender entre tokens de variables, cada uno con siete observaciones; lectura escalar de covariables.</p>
+<p><strong>Complejidad:</strong> Estimación propia O(C L d + C² d + C d²) para embedding/bloque: atención entre C variables, no entre L fechas. El número de parámetros y FLOPs de la configuración ETTh1 seleccionada no está reportado; los tiempos/memorias de otras condiciones se conservan en la <a class="reference download internal" download="" href="../_downloads/4897b20c82fa579a2f160a2d1cb91a4f/efficiency_matrix.csv"><span class="xref download myst">matriz de eficiencia</span></a>, sin trasladarlos a D7 ni a Bitcoin.</p>
+<p><strong>Limitación técnica:</strong> La ventaja asintótica depende del eje de atención y no acredita una mejora para sólo cinco variables. La lectura escalar debe preceder a cualquier desnormalización por canal.</p>
+<p><strong>Alcance histórico de ejecución:</strong> la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La adaptación D7×5→σ₇ y su evaluación en Bitcoin siguen pendientes. La <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html">réplica externa de TimeMixer y el piloto de tres modelos en ETTh1</a> pertenecen a la etapa posterior del capítulo 5.</p>
+</section>
+<section id="crossformer">
+<h3>3.3.9 Crossformer<a class="headerlink" href="#crossformer" title="Link to this heading">#</a></h3>
+<p><strong>Familia:</strong> Atención / Transformer.</p>
+<p><strong>Fuente arquitectónica:</strong> <a class="reference external" href="https://openreview.net/forum?id=vSVLM2j9eie">Crossformer: Transformer Utilizing Cross-Dimension Dependency for Multivariate Time Series Forecasting</a>, 2023. Identificador: OpenReview vSVLM2j9eie; DOI no verificado. La naturaleza editorial o de preprint se conserva en el registro de fuentes.</p>
+<p><strong>Texto completo leído:</strong> <a class="reference external" href="https://openreview.net/forum?id=vSVLM2j9eie">ICLR 2023 conference PDF</a>, 21 páginas PDF; SHA-256 <code class="docutils literal notranslate"><span class="pre">a5fcad16cd810492124af3efad2fa18f7c5f9556fb303bb88360cceaf396183a</span></code>. Se distingue esta versión del registro editorial.</p>
+<p><strong>Código primario:</strong> <a class="reference external" href="https://raw.githubusercontent.com/Thinklab-SJTU/Crossformer/c10c8eadb153d1dd9798250967747ca3ebb81383/cross_models/cross_former.py">implementación fijada por commit</a>, SHA-256 <code class="docutils literal notranslate"><span class="pre">deee243b2ae877084320dce49e691c8860c56f0cbda269c6f0cdb50848f6c708</span></code>. Licencia observada: Apache-2.0.</p>
+<p><img alt="Esquema propio de Crossformer" src="../_images/Crossformer.png" /></p>
+<p><strong>Síntesis matemática propia, basada en el código examinado:</strong></p>
+<div class="math notranslate nohighlight">
+\[
+H_{c,s}=\operatorname{DSW}(X_{s:s+p,c}),\quad Z=\operatorname{Attn}_{\rm dim}(\operatorname{Attn}_{\rm time}(H)),\quad\widehat y=g_\sigma(Z).
+\]</div>
+<p><strong>Resultado publicado rastreable:</strong> ETTh1 multivariante; variante <strong>Crossformer original completo DSW+TSA+HED sin covariables</strong>; contexto L=NR (contexto ganador no reportado), horizonte H=24; <strong>MSE 0.305 y MAE 0.367</strong>, misma fila de la tabla 1, <strong>página PDF 7</strong>. Escala: normalización con media/DE de entrenamiento declarada en §4.1; la fila se conserva en la escala del benchmark. Son resultados externos, no una corrida de Bitcoin ni un ranking comparable entre estos diez artículos.</p>
+<p><strong>Calidad y reproducibilidad:</strong> Declara media de cinco ejecuciones y normalización con media/DE de entrenamiento; no proporciona IDs de semillas ni dispersión para esta fila. El contexto ganador exacto no está reportado y no se infiere del ejemplo del README. Algunos comparadores se importan de Informer y utilizan covariables calendario distintas.</p>
+<p>Estado para la fila seleccionada: repeticiones: reported; semillas: NR; dispersión de esta fila: NR; scaler train-only: reported; prueba formal: NR; igual presupuesto HPO: NR. <code class="docutils literal notranslate"><span class="pre">NR</span></code> significa no reportado en el PDF para ese alcance; <code class="docutils literal notranslate"><span class="pre">NV</span></code> significa no verificado y <code class="docutils literal notranslate"><span class="pre">partial</span></code>, evidencia parcial. El detalle y los localizadores están en la <a class="reference download internal" download="" href="../_downloads/622d7e17278445d6151f15c40be7910b/quality_matrix.csv"><span class="xref download myst">matriz metodológica</span></a>.</p>
+<p><strong>Respaldo aplicado adicional:</strong> <a class="reference external" href="https://doi.org/10.1016/j.energy.2025.138706">Ultra-short-term wind power forecast based on multi-feature information fusion of GAT-Crossformer</a>, <code class="docutils literal notranslate"><span class="pre">WOS:001614987300004</span></code>. Alcance: Comparador en otro dominio. Sus 18 citas corresponden a ese estudio representativo, no automáticamente al original arquitectónico. El registro de apoyo procede de resumen/metadatos, salvo el preprint original de S-Mamba también leído.</p>
+<p><strong>Adaptación propuesta:</strong> Segmentación temporal y atención por tiempo y dimensión, con padding exclusivamente derivado del pasado.</p>
+<p><strong>Complejidad:</strong> Estimación propia O(C S² d + S C R d) para atención temporal y dimensional con routers; S segmentos y R routers. Proyecciones/FFN añaden coste. El número de parámetros y FLOPs de la configuración ETTh1 seleccionada no está reportado; los tiempos/memorias de otras condiciones se conservan en la <a class="reference download internal" download="" href="../_downloads/4897b20c82fa579a2f160a2d1cb91a4f/efficiency_matrix.csv"><span class="xref download myst">matriz de eficiencia</span></a>, sin trasladarlos a D7 ni a Bitcoin.</p>
+<p><strong>Limitación técnica:</strong> Segmentos de seis pasos y merges de cuatro requieren rediseñar una jerarquía válida con pocos segmentos. El DOI editorial del original no está identificado; se conserva su enlace OpenReview.</p>
+<p><strong>Alcance histórico de ejecución:</strong> la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La adaptación D7×5→σ₇ y su evaluación en Bitcoin siguen pendientes. La <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html">réplica externa de TimeMixer y el piloto de tres modelos en ETTh1</a> pertenecen a la etapa posterior del capítulo 5.</p>
+</section>
+<section id="s-mamba">
+<h3>3.3.10 S-Mamba<a class="headerlink" href="#s-mamba" title="Link to this heading">#</a></h3>
+<p><strong>Familia:</strong> Espacio de estados selectivo.</p>
+<p><strong>Fuente arquitectónica:</strong> <a class="reference external" href="https://doi.org/10.1016/j.neucom.2024.129178">Is Mamba effective for time series forecasting?</a>, 2025. Identificador: 10.1016/j.neucom.2024.129178. La naturaleza editorial o de preprint se conserva en el registro de fuentes.</p>
+<p><strong>Texto completo leído:</strong> <a class="reference external" href="https://arxiv.org/abs/2403.11144v3">2403.11144v3</a>, 14 páginas PDF; SHA-256 <code class="docutils literal notranslate"><span class="pre">11f25c26b33a50455c835cd4062d9314b417716c8a6d35356249efa56d230751</span></code>. Se distingue esta versión del registro editorial.</p>
+<p><strong>Código primario:</strong> <a class="reference external" href="https://raw.githubusercontent.com/wzhwzhwzh0921/S-D-Mamba/e7e8bf04066135afa43d85b0a87afa97cda16e3f/model/S_Mamba.py">implementación fijada por commit</a>, SHA-256 <code class="docutils literal notranslate"><span class="pre">48952b3906962917bc76345b5247ce350cae3243915142896b1952b4813b5fc9</span></code>. Licencia observada: Not verified: no root LICENSE found at captured commit.</p>
+<p><img alt="Esquema propio de S-Mamba" src="../_images/S-Mamba.png" /></p>
+<p><strong>Síntesis matemática propia, basada en el código examinado:</strong></p>
+<div class="math notranslate nohighlight">
+\[
+h_i=\overline A_i h_{i-1}+\overline B_i e_i,\quad z_i=C_i h_i,\quad Z=\operatorname{Mamba}(E)+\operatorname{Flip}(\operatorname{Mamba}(\operatorname{Flip}(E))).
+\]</div>
+<p><strong>Resultado publicado rastreable:</strong> ETTh1 multivariante; variante <strong>S-Mamba principal con bi-Mamba VC y FFN TD</strong>; contexto L=96, horizonte H=96; <strong>MSE 0.386 y MAE 0.405</strong>, misma fila de la tabla 3, <strong>página PDF 7</strong>. Escala: normalización interna del encoder declarada; scaler global y escala final de estas métricas no reportados. Son resultados externos, no una corrida de Bitcoin ni un ranking comparable entre estos diez artículos.</p>
+<p><strong>Calidad y reproducibilidad:</strong> En las 14 páginas del preprint suministrado no se reportan repeticiones, semillas, dispersión, prueba formal, optimizador ni presupuesto HPO. La normalización dentro del encoder no demuestra un scaler global train-only. Se leyó el preprint v3 de 2024, no el cuerpo de la publicación editorial de 2025.</p>
+<p>Estado para la fila seleccionada: repeticiones: NR; semillas: NR; dispersión de esta fila: NR; scaler train-only: NR; prueba formal: NR; igual presupuesto HPO: NR. <code class="docutils literal notranslate"><span class="pre">NR</span></code> significa no reportado en el PDF para ese alcance; <code class="docutils literal notranslate"><span class="pre">NV</span></code> significa no verificado y <code class="docutils literal notranslate"><span class="pre">partial</span></code>, evidencia parcial. El detalle y los localizadores están en la <a class="reference download internal" download="" href="../_downloads/622d7e17278445d6151f15c40be7910b/quality_matrix.csv"><span class="xref download myst">matriz metodológica</span></a>.</p>
+<p><strong>Respaldo aplicado adicional:</strong> <a class="reference external" href="https://doi.org/10.1016/j.neucom.2024.129178">Is Mamba effective for time series forecasting?</a>, <code class="docutils literal notranslate"><span class="pre">WOS:001416250600001</span></code>. Alcance: Modelo original de pronóstico multivariado. Sus 252 citas corresponden a ese estudio representativo, no automáticamente al original arquitectónico. El registro de apoyo procede de resumen/metadatos, salvo el preprint original de S-Mamba también leído.</p>
+<p><strong>Adaptación propuesta:</strong> Estados selectivos entre tokens de variables; salida escalar y escala propia del objetivo.</p>
+<p><strong>Complejidad:</strong> Embedding O(C L d) y scan selectivo lineal en C tokens de variables para estado/ancho fijos, más FFN/proyecciones. Esta implementación no recorre simplemente L tokens cronológicos. El número de parámetros y FLOPs de la configuración ETTh1 seleccionada no está reportado; los tiempos/memorias de otras condiciones se conservan en la <a class="reference download internal" download="" href="../_downloads/4897b20c82fa579a2f160a2d1cb91a4f/efficiency_matrix.csv"><span class="xref download myst">matriz de eficiencia</span></a>, sin trasladarlos a D7 ni a Bitcoin.</p>
+<p><strong>Limitación técnica:</strong> No se verificó licencia raíz. Un docstring copia una referencia a iTransformer; la identidad se contrasta con README y registro editorial. Los módulos registrados pero inactivos exigen una política explícita al contar parámetros.</p>
+<p>La bidireccionalidad recorre tokens de las cinco variables ya observadas, no fechas futuras. El código registra módulos que no participan en forward; al implementarlo habrá que distinguir parámetros registrados y activos. No se verificó una licencia raíz que autorice reutilizar ese código.</p>
+<p><strong>Alcance histórico de ejecución:</strong> la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La adaptación D7×5→σ₇ y su evaluación en Bitcoin siguen pendientes. La <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html">réplica externa de TimeMixer y el piloto de tres modelos en ETTh1</a> pertenecen a la etapa posterior del capítulo 5.</p>
+</section>
+</section>
+<section id="comparacion-critica-y-brecha-de-investigacion">
+<h2>3.4 Comparación crítica y brecha de investigación<a class="headerlink" href="#comparacion-critica-y-brecha-de-investigacion" title="Link to this heading">#</a></h2>
+<section id="resultados-originales-y-condiciones-de-comparacion">
+<h3>3.4.1 Resultados originales y condiciones de comparación<a class="headerlink" href="#resultados-originales-y-condiciones-de-comparacion" title="Link to this heading">#</a></h3>
+<p>Se extrajo un <strong>par MSE/MAE de la misma fila y variante</strong> para cada arquitectura, escogiendo ETTh1 multivariante cuando aparece en el PDF. Los diez casos tienen siete canales, pero cambian el horizonte, la longitud de entrada, el escalado y la partición. Son medidas externas, en las condiciones de sus artículos; <strong>no son resultados de Bitcoin ni una clasificación comparable</strong>. En particular, no se ordenan estas cifras de menor a mayor para elegir un ganador.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/6e56fcf74a0d4974a21c820f344081d3/metrics.csv"><span class="xref download myst">matriz de métricas</span></a> y las <a class="reference download internal" download="" href="../_downloads/013b4b6f0250828e732e100ec4c8e675/models.json"><span class="xref download myst">fichas completas</span></a> conservan versión, hash, variante, ubicación y escalado. Las páginas son <strong>páginas físicas del PDF recibido</strong>, comenzando en uno; la numeración impresa se guarda por separado. NR significa no reportado en la versión leída; NV, no verificado. Ninguno significa cero.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo</p></th>
+<th class="head"><p>Variante</p></th>
+<th class="head text-right"><p>L</p></th>
+<th class="head text-right"><p>H</p></th>
+<th class="head text-right"><p>MSE</p></th>
+<th class="head text-right"><p>MAE</p></th>
+<th class="head"><p>Tabla / página PDF</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TSMixer</p></td>
+<td><p>Básico</p></td>
+<td class="text-right"><p>512</p></td>
+<td class="text-right"><p>96</p></td>
+<td class="text-right"><p>0.361</p></td>
+<td class="text-right"><p>0.392</p></td>
+<td><p>3 / 10</p></td>
+</tr>
+<tr class="row-odd"><td><p>TiDE</p></td>
+<td><p>Residual, RevIN</p></td>
+<td class="text-right"><p>720</p></td>
+<td class="text-right"><p>96</p></td>
+<td class="text-right"><p>0.375</p></td>
+<td class="text-right"><p>0.398</p></td>
+<td><p>2 / 8</p></td>
+</tr>
+<tr class="row-even"><td><p>TimeMixer</p></td>
+<td><p>Unificado</p></td>
+<td class="text-right"><p>96</p></td>
+<td class="text-right"><p>96</p></td>
+<td class="text-right"><p>0.375</p></td>
+<td class="text-right"><p>0.400</p></td>
+<td><p>13 / 17</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimesNet</p></td>
+<td><p>Backbone final</p></td>
+<td class="text-right"><p>96</p></td>
+<td class="text-right"><p>96</p></td>
+<td class="text-right"><p>0.384</p></td>
+<td class="text-right"><p>0.402</p></td>
+<td><p>13 / 21</p></td>
+</tr>
+<tr class="row-even"><td><p>PatchTST</p></td>
+<td><p>/64 supervisado</p></td>
+<td class="text-right"><p>512</p></td>
+<td class="text-right"><p>96</p></td>
+<td class="text-right"><p>0.370</p></td>
+<td class="text-right"><p>0.400</p></td>
+<td><p>3 / 7</p></td>
+</tr>
+<tr class="row-odd"><td><p>Informer</p></td>
+<td><p>ProbSparse, distilling</p></td>
+<td class="text-right"><p>NR</p></td>
+<td class="text-right"><p>24</p></td>
+<td class="text-right"><p>0.577</p></td>
+<td class="text-right"><p>0.549</p></td>
+<td><p>2 / 6</p></td>
+</tr>
+<tr class="row-even"><td><p>Autoformer</p></td>
+<td><p>Speedup</p></td>
+<td class="text-right"><p>96</p></td>
+<td class="text-right"><p>24</p></td>
+<td class="text-right"><p>0.384</p></td>
+<td class="text-right"><p>0.425</p></td>
+<td><p>5 / 13</p></td>
+</tr>
+<tr class="row-odd"><td><p>iTransformer</p></td>
+<td><p>Original</p></td>
+<td class="text-right"><p>96</p></td>
+<td class="text-right"><p>96</p></td>
+<td class="text-right"><p>0.386</p></td>
+<td class="text-right"><p>0.405</p></td>
+<td><p>10 / 23</p></td>
+</tr>
+<tr class="row-even"><td><p>Crossformer</p></td>
+<td><p>DSW + TSA + HED</p></td>
+<td class="text-right"><p>NR</p></td>
+<td class="text-right"><p>24</p></td>
+<td class="text-right"><p>0.305</p></td>
+<td class="text-right"><p>0.367</p></td>
+<td><p>1 / 7</p></td>
+</tr>
+<tr class="row-odd"><td><p>S-Mamba</p></td>
+<td><p>S-Mamba, no D-Mamba</p></td>
+<td class="text-right"><p>96</p></td>
+<td class="text-right"><p>96</p></td>
+<td class="text-right"><p>0.386</p></td>
+<td class="text-right"><p>0.405</p></td>
+<td><p>3 / 7</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>No se mezclan PatchTST/64 MSE 0,370 con MAE 0,399 de /42; el par correcto de /64 es <strong>0,370/0,400</strong>. TimeMixer unificado L96 tiene <strong>0,375/0,400</strong>; la fila optimizada <strong>0,361/0,390</strong> corresponde a otra condición. Autoformer usa ETTh1 H24 de su apéndice; ETT* de la tabla principal es <strong>ETTm2</strong>, no ETTh1. Informer y Crossformer ofrecen ETTh1 H24; no se les atribuye una fila ETTh1 H96 inexistente en esos originales.</p>
+<p>Las versiones leídas son TSMixer <code class="docutils literal notranslate"><span class="pre">2303.06053v5</span></code>, TiDE <code class="docutils literal notranslate"><span class="pre">2304.08424v5</span></code>, TimeMixer <code class="docutils literal notranslate"><span class="pre">2405.14616v1</span></code>, TimesNet <code class="docutils literal notranslate"><span class="pre">2210.02186v3</span></code>, PatchTST <code class="docutils literal notranslate"><span class="pre">2211.14730v2</span></code>, Informer <code class="docutils literal notranslate"><span class="pre">2012.07436v3</span></code>, Autoformer <code class="docutils literal notranslate"><span class="pre">2106.13008v5</span></code>, iTransformer <code class="docutils literal notranslate"><span class="pre">2310.06625v4</span></code>, Crossformer PDF ICLR 2023 y S-Mamba <code class="docutils literal notranslate"><span class="pre">2403.11144v3</span></code>. El identificador editorial de S-Mamba corresponde a Neurocomputing 2025; <strong>su PDF leído es el preprint v3 de 2024</strong>, sin atribuirle la lectura del cuerpo editorial.</p>
+</section>
+<section id="calidad-metodologica-y-sesgo-de-reporte">
+<h3>3.4.2 Calidad metodológica y sesgo de reporte<a class="headerlink" href="#calidad-metodologica-y-sesgo-de-reporte" title="Link to this heading">#</a></h3>
+<p>La <a class="reference download internal" download="" href="../_downloads/622d7e17278445d6151f15c40be7910b/quality_matrix.csv"><span class="xref download myst">matriz de calidad</span></a> registra partición, escalado, ajuste del scaler solo en train, repeticiones, semillas, incertidumbre, pruebas y equidad del HPO. Se evalúa la <strong>fila seleccionada</strong>, sin trasladarle desviaciones de otro dataset o variante. La lectura del artículo acredita lo que reporta; no constituye una auditoría ejecutada de sus datos o código.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo</p></th>
+<th class="head"><p>Repeticiones y dispersión pertinentes</p></th>
+<th class="head"><p>Límite que afecta la comparación</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TSMixer</p></td>
+<td><p>Repeticiones y dispersión de la fila ETTh1: NR. Cinco semillas de M5 corresponden a otra tarea</p></td>
+<td><p>Escalado descrito; ajuste global solo en train no explicitado. Table 2 imprime 7:2:1 para Weather/Electricity/Traffic; no se sustituye silenciosamente</p></td>
+</tr>
+<tr class="row-odd"><td><p>TiDE</p></td>
+<td><p>Cinco ejecuciones; Table 5, PDF p19, informa <strong>error estándar</strong>, no DE: 0,0003 en MSE y 0,0002 en MAE para ETTh1 H96</p></td>
+<td><p>Declara 7:1:2 para todos los datasets y normalización con train. No se reemplaza por el split habitual de otro repositorio</p></td>
+</tr>
+<tr class="row-even"><td><p>TimeMixer</p></td>
+<td><p>Tres ejecuciones. La Table 9 de PDF p15 menciona IC99 % sobre agregados de horizontes; no aporta un contraste completamente identificable para la fila elegida</p></td>
+<td><p>Presupuesto HPO idéntico entre bases no acreditado. La Table 6 imprime 15 min para ETTh1/h2: inconsistencia documental conservada</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimesNet</p></td>
+<td><p>Tres ejecuciones; dispersión específica del par seleccionado NR</p></td>
+<td><p>Stationarization interna no acredita por sí sola el ajuste correcto de un scaler global</p></td>
+</tr>
+<tr class="row-even"><td><p>PatchTST</p></td>
+<td><p>Fila principal supervisada con semilla 2021. Cinco semillas 2019–2023 y DE en Table 14, PDF p20, corresponden a /42, no /64</p></td>
+<td><p>No se transfieren esas DE al par /64. Los resultados supervisados y de preentrenamiento permanecen separados</p></td>
+</tr>
+<tr class="row-odd"><td><p>Informer</p></td>
+<td><p>Cinco ejecuciones con desplazamientos de train/validación; no se acreditan como cinco semillas independientes. DE de la fila NR</p></td>
+<td><p>Normalización z-score descrita; ajuste solo en train NR. HPO común con igual presupuesto entre familias NR</p></td>
+</tr>
+<tr class="row-even"><td><p>Autoformer</p></td>
+<td><p>Tres ejecuciones. La DE de Table 10, PDF p17, corresponde a ETTm2 H96 y no a ETTh1 H24</p></td>
+<td><p>No se trasladan incertidumbre ni escala entre esos dos casos</p></td>
+</tr>
+<tr class="row-odd"><td><p>iTransformer</p></td>
+<td><p>Cinco ejecuciones de robustez en Table 5 cubren otros seis datasets. Repeticiones de la fila ETTh1 no verificadas</p></td>
+<td><p>La robustez de otras tablas no acredita incertidumbre de este caso</p></td>
+</tr>
+<tr class="row-even"><td><p>Crossformer</p></td>
+<td><p>Cinco ejecuciones; identificadores de semillas y dispersión de la fila seleccionada NR</p></td>
+<td><p>El lookback ganador de ETTh1 H24 es NR; la búsqueda incluye varias longitudes. Su ejemplo README L168 no identifica la receta ganadora</p></td>
+</tr>
+<tr class="row-odd"><td><p>S-Mamba</p></td>
+<td><p>Semillas, repeticiones, dispersión e inferencia NR en las 14 páginas del preprint</p></td>
+<td><p>Split, optimizador y presupuesto de ajuste NR en esta versión. LayerNorm interna no establece el escalado global</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La documentación disponible <strong>no acredita un presupuesto idéntico de HPO para todos los comparadores de ninguno de los diez originales</strong>. Esto limita la atribución de una ventaja exclusivamente a la arquitectura. No implica que se haya demostrado optimización desigual, fuga o invalidez de sus resultados. Por la misma razón, ausencia de p-valores de una fila no prueba ausencia de efecto.</p>
+<p>El respaldo aplicado también requiere cautela. El resumen de TimesNet financiero informa competitividad en RMSE/QLIKE y resultados menos favorables en MAE/MAPE; el de TSMixer indica que la ventaja disminuye con pocos activos. El artículo financiero compartido por tres Transformers no son tres estudios independientes. De los ocho apoyos representativos se leyeron sus registros/resúmenes; salvo la identidad de S-Mamba con uno de los originales, <strong>sus cuerpos completos no se han extraído aquí</strong>. No se les atribuyen tamaños de efecto o pruebas que sus resúmenes no identifican.</p>
+</section>
+<section id="complejidad-coste-y-adaptacion-causal">
+<h3>3.4.3 Complejidad, coste y adaptación causal<a class="headerlink" href="#complejidad-coste-y-adaptacion-causal" title="Link to this heading">#</a></h3>
+<p>La <a class="reference download internal" download="" href="../_downloads/4897b20c82fa579a2f160a2d1cb91a4f/efficiency_matrix.csv"><span class="xref download myst">matriz de eficiencia</span></a> conserva parámetros, FLOPs, tiempos, memoria, hardware y condiciones cuando se reportan. Los campos no reportados permanecen NR. Las estimaciones estructurales de las fichas son derivaciones propias; no son mediciones de FLOPs, parámetros o tiempo del modelo adaptado.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Familia / modelos</p></th>
+<th class="head"><p>Mecanismo y coste que debe medirse</p></th>
+<th class="head"><p>Riesgo concreto con D7×5</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>MLP: TSMixer, TiDE, TimeMixer</p></td>
+<td><p>Proyecciones densas, mezcla de tiempo/canales y número de escalas; el coste depende de las anchuras elegidas</p></td>
+<td><p>TiDE requiere retirar entradas ajenas al contrato y proyectar skips al objetivo. En TimeMixer, M=2 downsamplings ya genera longitudes 7/3/1; no se copia M=3 si produce una escala vacía</p></td>
+</tr>
+<tr class="row-odd"><td><p>Convolución: TimesNet</p></td>
+<td><p>FFT y convoluciones sobre periodos seleccionados</p></td>
+<td><p>Excluir frecuencia DC explícitamente, limitar top-k a frecuencias positivas y comprobar longitud efectiva. El artículo usa ceil(T/f), el código inspeccionado floor(T/f): son fuentes distintas</p></td>
+</tr>
+<tr class="row-even"><td><p>Atención: PatchTST, Informer, Autoformer, iTransformer, Crossformer</p></td>
+<td><p>Tokens, segmentos, dimensión latente y atención: la eficiencia asintótica depende del eje donde se aplica</p></td>
+<td><p>Con solo siete fechas, no se presume beneficio de atención eficiente. iTransformer y S-Mamba procesan tokens de variables; su bidireccionalidad sobre historias observadas no significa usar fechas futuras</p></td>
+</tr>
+<tr class="row-odd"><td><p>Estados: S-Mamba</p></td>
+<td><p>Estado selectivo y bloques bidireccionales sobre cinco tokens de variables</p></td>
+<td><p>El código registra módulos que no se usan en forward; si se instancia, deben distinguirse parámetros registrados y activos. La licencia raíz no se verificó</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El código de TimesNet obtiene amplitudes FFT promediadas entre muestras del batch. Si se agrupan orígenes distintos, la selección de periodos de una muestra podría depender de historias posteriores a su propio origen. <strong>La adaptación propuesta exige inferencia con batch 1 o selección de periodos independiente por origen</strong>, más exclusión de f=0 incluso en empates de amplitud cero. Es una condición del adaptador que debe probarse, no una acusación sobre el artículo. El operador Roll de Autoformer es circular dentro del contexto disponible; no se describe como causal por posición. El límite causal común está en la información disponible al emitir cada pronóstico.</p>
+<p>Los costes publicados tampoco comparten condiciones. Por ejemplo, TSMixer informa <strong>189 K parámetros, 11.077,95 s y 96 pasos de inferencia/s</strong> en M5, Table 6, PDF p13; ese tiempo no está identificado inequívocamente como total o por época. No corresponde a ETTh1 ni a Bitcoin D7. Los costes de imputación de TimesNet tampoco representan su forecast. Las barras de memoria de S-Mamba y las curvas de otros artículos no se convierten en tiempos exactos cuando no tienen etiquetas numéricas. La comparación de coste para E2 tendrá que medirse con el mismo hardware, batch, precisión y protocolo.</p>
+</section>
+<section id="reproducibilidad-y-brecha-verificable">
+<h3>3.4.4 Reproducibilidad y brecha verificable<a class="headerlink" href="#reproducibilidad-y-brecha-verificable" title="Link to this heading">#</a></h3>
+<p>En el subcorpus de arquitecturas hay <strong>10/10 originales completos leídos y 10/10 fuentes públicas de código identificadas</strong> por commit. Código accesible no equivale a licencia de redistribución verificada en todos los casos. <strong>Al cierre de la etapa bibliográfica del 05/11/2026</strong> se registraron <strong>0/10 reproducciones numéricas</strong> y <strong>0/10 descargas de benchmarks verificadas en esa etapa</strong>. Esos ceros son históricos, no totales actuales del proyecto: la <a class="reference internal" href="05_paper_guia.html"><span class="std std-doc">sección 5</span></a> documenta posteriormente <strong>veinte ajustes en ETTh1 —cinco de réplica TimeMixer y quince del piloto de tres modelos—</strong>. La identidad estricta de la fila publicada y la compatibilidad numérica se califican allí según sus evidencias. El <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">piloto P0 D7</span></a> pertenece a otra etapa de desarrollo y ya está ejecutado y analizado, con 220 trayectorias y 440 ajustes. Permanecen pendientes el cierre de todos los adaptadores finales, HPO/P1 y el benchmark Bitcoin. Tampoco los diez originales estiman la reproducibilidad de los <strong>7.833 grupos ya cribados por reglas, pero sin elegibilidad global por texto completo</strong>.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/a4dd6275736348ab3f2c26f3f0fc3e89/primary_source_registry.json"><span class="xref download myst">registro histórico de código</span></a> conserva la etapa previa, en la que todavía se habían leído cero PDF. El <a class="reference download internal" download="" href="../_downloads/ad33e159b8d7ee8eab64806bc3908d7f/provenance.json"><span class="xref download myst">registro de lectura de esa etapa</span></a> y el <a class="reference download internal" download="" href="../_downloads/d4b65102641ac896f4e74fd0d884e4ee/report.md"><code class="xref download docutils literal notranslate"><span class="pre">informe</span> <span class="pre">de</span> <span class="pre">extracción</span></code></a> documentan los diez originales leídos. La extracción congelada se conserva como evidencia de su fecha; la ejecución posterior se incorpora en §5 y §9, y la ampliación bibliográfica del 06/11 en esta sección, sin reescribir esos recibos históricos.</p>
+<p><strong>Brecha comprobable en este subcorpus:</strong> ninguno de los diez originales leídos evalúa conjuntamente los diez mecanismos con entradas OHLCV D7×5, objetivo σ₇ de BTCUSDT a un día, fechas y referencias heredadas, ajuste comparable e incertidumbre temporal. La afirmación se restringe a esos diez originales y puede refutarse con la hoja de extracción. La ausencia en toda la literatura de una comparación equivalente <strong>continúa abierta</strong>: exige completar cobertura, validar las decisiones de cribado y extraer los textos elegibles. Las 7.833 decisiones locales no prueban por sí solas esa ausencia global ni garantizan una brecha empírica en el piloto.</p>
+<p>La brecha conecta con las RQ de la sección 1: ganancia frente al baseline heredado, deterioro en alta volatilidad y relación error/coste. La revisión no modifica la métrica, δ, la partición ni convierte el test ya conocido en una evaluación confirmatoria nueva. Los resultados de E1 siguen siendo la referencia hasta ejecutar el benchmark de E2.</p>
+</section>
+</section>
+<section id="descargas-y-cierre-pendiente">
+<h2>3.5 Descargas y cierre pendiente<a class="headerlink" href="#descargas-y-cierre-pendiente" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="../_downloads/1433b500cb569bcbf0a0bf4d289d9c20/Literatura_E2_codigo_matrices_diagramas.zip"><span class="xref download myst">Descargar literatura E2: código, matrices, fichas y diagramas</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/4785850853b9ea138459d150c25e78eb/MANIFIESTO.json"><span class="xref download myst">Manifiesto SHA-256 del paquete</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/6e56fcf74a0d4974a21c820f344081d3/metrics.csv"><span class="xref download myst">Métricas originales con página y tabla</span></a>, <a class="reference download internal" download="" href="../_downloads/622d7e17278445d6151f15c40be7910b/quality_matrix.csv"><span class="xref download myst">calidad</span></a> y <a class="reference download internal" download="" href="../_downloads/4897b20c82fa579a2f160a2d1cb91a4f/efficiency_matrix.csv"><span class="xref download myst">eficiencia</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/e1c292106dfa39435ea62978b6196d93/fulltext_manifest.json"><span class="xref download myst">Diez recibos de PDF/versiones</span></a> y <a class="reference download internal" download="" href="../_downloads/013b4b6f0250828e732e100ec4c8e675/models.json"><span class="xref download myst">extracción estructurada completa</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/2779408a7f4f2e480f26f9b537aa1c29/model_selection.csv"><span class="xref download myst">Puntuación preliminar</span></a>, <a class="reference download internal" download="" href="../_downloads/293d8c68552c84be1e871ed3aff7cbbd/model_cards.json"><span class="xref download myst">fichas de adaptación</span></a> y <a class="reference download internal" download="" href="../_downloads/a4dd6275736348ab3f2c26f3f0fc3e89/primary_source_registry.json"><span class="xref download myst">código de autores identificado</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/e21fa3c77e5dc06baad3f7abd8a2bfc9/combined_records.csv"><span class="xref download myst">Registros combinados WoS/Scopus</span></a>, <a class="reference download internal" download="" href="../_downloads/8c20a9f286c65271861134fe36b0e762/summary.json"><span class="xref download myst">resumen de cobertura</span></a> y <a class="reference download internal" download="" href="../_downloads/c9e7a9d941e75c52e0de5ffc09d276d1/deduplication.csv"><span class="xref download myst">deduplicación WoS</span></a>.</p></li>
+</ul>
+<p>La ampliación del <strong>06/11/2026</strong> se publica por separado en trece artefactos, para conservar la extracción histórica:</p>
+<ol class="arabic simple">
+<li><p><a class="reference download internal" download="" href="../_downloads/d954f630a8005a33b08c1f14552610fe/README.md"><code class="xref download docutils literal notranslate"><span class="pre">Informe</span> <span class="pre">de</span> <span class="pre">alcance</span> <span class="pre">y</span> <span class="pre">reproducción</span></code></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/4a316ce28caad695101e64b2e76a7d96/protocol.json"><span class="xref download myst">Protocolo de cribado</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/cfa43a723f5ae7359868ea39da4b9aeb/summary.json"><span class="xref download myst">Resumen de cantidades y estados</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/0b019add3d3d2746cec07417cb679962/provenance.json"><span class="xref download myst">Recibos y hashes de procedencia</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/43a790a56bfad5636e4bf5b2f19ba034/screening_ledger.csv"><span class="xref download myst">Registro completo de 7.833 grupos</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/1a8ec035395957dca7309de2056c74e3/reason_counts.csv"><span class="xref download myst">Conteos por motivo</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/f5c153e3d2eb8236afb982420bcd103c/priority_queue.csv"><span class="xref download myst">Cola de 3.510 grupos</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/d7919d14db263875f5f7001fe62cd0b0/financial_priority_queue.csv"><span class="xref download myst">Cola financiera de 602 grupos</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/d31505fc81dd261a6ca3d0e058fe9ba9/candidate_reassessment.csv"><span class="xref download myst">Reconsideración de 29 modelos o familias</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/25bb4e70310d2cd7b5a461bf58abc7cd/editorial_title_abstract_checks.json"><span class="xref download myst">Diecisiete comprobaciones editoriales de resumen</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/c66d01ccd56b96da9e4a9f348c1ff700/prisma_status.json"><span class="xref download myst">Estado PRISMA del universo recibido</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/2a370600be2361bdd2e77f78355280ab/local_transversal_searches.json"><span class="xref download myst">Especificaciones y conteos de consultas transversales locales</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/1fc0be7ecd7fcf26368f545413a2a7ca/local_transversal_hits.csv"><span class="xref download myst">Coincidencias locales por identificador</span></a>.</p></li>
+</ol>
+<p>El paquete incluye derivados bibliográficos mínimos, fuentes curadas, scripts y sus pruebas. No redistribuye los PDF ni las exportaciones nativas con abstracts y referencias. Sin adjuntos privados, <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">scripts/compile_e2_fulltext_review.py</span> <span class="pre">--check</span></code> verifica la extracción congelada y sus hashes; <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">scripts/build_e2_literature_selection.py</span></code> reconstruye las fichas y figuras con el entorno de <code class="docutils literal notranslate"><span class="pre">requirements-eda.lock.txt</span></code>. Los importadores WoS/Scopus requieren las exportaciones originales para repetir la importación, con su orden y hashes documentados. Estos pasos no entrenan modelos ni puntúan test.</p>
+<p>El cribado local nuevo se reproduce con <code class="docutils literal notranslate"><span class="pre">scripts/screen_e2_literature.py</span></code> y el conjunto privado combinado de resúmenes, cuyos identificadores deben coincidir exactamente con los 7.833 públicos. El protocolo se documentó después de las búsquedas; no se le atribuye preregistro anterior a ellas. Los trece derivados no contienen resúmenes completos y no acreditan una nueva búsqueda nativa, elegibilidad final ni resultados de entrenamiento.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Producto</p></th>
+<th class="head"><p>Estado verificable</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Diez nombres y cuatro familias para Bitcoin</p></td>
+<td><p>Selección bibliográfica con originales y apoyo aplicado diferenciados</p></td>
+</tr>
+<tr class="row-odd"><td><p>Originales arquitectónicos</p></td>
+<td><p>Diez PDF completos, 215 páginas; admisibilidad acotada y diez hashes de código cotejados; elegibilidad global distinta y abierta</p></td>
+</tr>
+<tr class="row-even"><td><p>Fuentes de implementación</p></td>
+<td><p>Diez backbones identificados; adaptadores del piloto D7 implementados; cierre de adaptaciones finales y excepciones §14 pendiente</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dos bases nativas</p></td>
+<td><p>WoS y Scopus incorporadas; cobertura parcial documentada</p></td>
+</tr>
+<tr class="row-even"><td><p>Cuartiles e impacto por año</p></td>
+<td><p>Pendientes de verificación específica; pertenencia a un índice no acredita Q1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Estudios aplicados de apoyo</p></td>
+<td><p>Ocho registros, uno compartido con el original S-Mamba; siete cuerpos nuevos pendientes. La recuperación verifica siete cuerpos heredados distintos, sin sumarlos como apoyos nuevos</p></td>
+</tr>
+<tr class="row-even"><td><p>Puntuación</p></td>
+<td><p>Intervalos reproducibles para 29 modelos/familias, con MICN y CryptoMamba-SSM identificados en registros nativos; desconocidos vacíos, sin ranking final</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cribado local recibido</p></td>
+<td><p>7.833 grupos procesados: 4.323 exclusiones provisionales, 2.436 retenidos y 1.074 ambiguos</p></td>
+</tr>
+<tr class="row-even"><td><p>Lectura focal de resúmenes</p></td>
+<td><p>Diecisiete comprobaciones: diez targets de volatilidad, seis de otro objetivo y uno ambiguo; cuerpos pendientes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Recuperación de cuerpos pendientes</p></td>
+<td><p>40 PDF privados/35 únicos revisados; cero cuerpos de los siete apoyos nuevos y once candidatos financieros recuperados; dos README aplicados no sustituyen los cuerpos</p></td>
+</tr>
+<tr class="row-even"><td><p>PRISMA global</p></td>
+<td><p>Recepción, deduplicación y primera pasada trazables; cobertura, validación y elegibilidad por texto completo abiertas</p></td>
+</tr>
+<tr class="row-odd"><td><p>Búsqueda transversal</p></td>
+<td><p>Tres consultas locales ejecutadas: 15/3/90 coincidencias y 102 grupos únicos; búsquedas nativas y originales de origen pendientes</p></td>
+</tr>
+<tr class="row-even"><td><p>Gap</p></td>
+<td><p>Verificado dentro de los diez originales; revisión global abierta</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ejecución externa posterior a la revisión</p></td>
+<td><p>Réplica de TimeMixer y piloto de tres modelos sobre ETTh1; evidencia en <a class="reference internal" href="05_paper_guia.html"><span class="std std-doc">§5</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>Piloto D7 de desarrollo</p></td>
+<td><p>P0 ejecutado y analizado: 220 trayectorias/440 ajustes; no acredita benchmark final, HPO ejecutado ni potencia definitiva</p></td>
+</tr>
+<tr class="row-odd"><td><p>Catálogo actual F2a</p></td>
+<td><p>Veinte configuraciones, quince de ellas ajustables, en el protocolo; ejecución del benchmark final pendiente</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="02_eda.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="04_implementacion.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">4. Implementación de Modelos Benchmark</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrategia-de-busqueda-y-trazabilidad">3.1 Estrategia de búsqueda y trazabilidad</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cadenas-aportadas-y-procedencia">3.1.1 Cadenas aportadas y procedencia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bases-periodo-y-cobertura">3.1.2 Bases, periodo y cobertura</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inclusion-exclusion-y-evaluacion-de-calidad">3.1.3 Inclusión, exclusión y evaluación de calidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#flujo-de-recepcion-y-deduplicacion">3.1.4 Flujo de recepción y deduplicación</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ampliacion-del-06-11-2026-cribado-local-de-los-7-833-grupos">Ampliación del 06/11/2026: cribado local de los 7.833 grupos</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-transversal-de-mecanismos">3.1.5 Búsqueda transversal de mecanismos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verificacion-acotada-del-material-disponible">3.1.6 Verificación acotada del material disponible</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propuesta-del-top-10-para-bitcoin">3.2 Propuesta del Top 10 para Bitcoin</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#priorizacion-reproducible-y-sus-limites">3.2.1 Priorización reproducible y sus límites</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternativas-y-razones-para-no-cerrar-su-inclusion">3.2.2 Alternativas y razones para no cerrar su inclusión</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias-adicionales-y-contrato-de-adaptacion">3.2.3 Referencias adicionales y contrato de adaptación</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-tecnico-por-modelo">3.3 Análisis técnico por modelo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tsmixer">3.3.1 TSMixer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tide">3.3.2 TiDE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#timemixer">3.3.3 TimeMixer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#timesnet">3.3.4 TimesNet</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#patchtst">3.3.5 PatchTST</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#informer">3.3.6 Informer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#autoformer">3.3.7 Autoformer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#itransformer">3.3.8 iTransformer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crossformer">3.3.9 Crossformer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#s-mamba">3.3.10 S-Mamba</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-critica-y-brecha-de-investigacion">3.4 Comparación crítica y brecha de investigación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-originales-y-condiciones-de-comparacion">3.4.1 Resultados originales y condiciones de comparación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calidad-metodologica-y-sesgo-de-reporte">3.4.2 Calidad metodológica y sesgo de reporte</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complejidad-coste-y-adaptacion-causal">3.4.3 Complejidad, coste y adaptación causal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducibilidad-y-brecha-verificable">3.4.4 Reproducibilidad y brecha verificable</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descargas-y-cierre-pendiente">3.5 Descargas y cierre pendiente</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,282 @@
+{
+  "review_date": "2026-11-03",
+  "scope": "Bloque C de EDA específico para regresión temporal: descriptivos causales y cuatro referencias Ridge autorizadas exclusivamente para diagnosticar residuos en desarrollo. No es benchmark ni cumplimiento global de E1.",
+  "guide_requirement": "§2.2.C de la guía: estructura temporal de covariables, relaciones y deriva, residuos de referencia e implicaciones; pp. 6–7.",
+  "admitted_problem_type": 4,
+  "development_period": "2023-01-01 through 2024-12-31 UTC",
+  "primary_volatility_days": 7,
+  "forecast_days": 1,
+  "input_history_days": [
+    7,
+    14,
+    21,
+    28
+  ],
+  "covariates": [
+    "open",
+    "high",
+    "low",
+    "close",
+    "volume"
+  ],
+  "explicit_target_lags": false,
+  "missingness_policy": "strict exclusion; no imputation; preserve missing 2023-03-24 calendar position",
+  "items": [
+    {
+      "id": "C01",
+      "requirement": "Frecuencia, regularidad y huecos de las covariables",
+      "status": "Ejecutado",
+      "evidence": "731 posiciones diarias UTC de 2023–2024; el 24/03/2023 permanece ausente y se excluyen muestras que lo necesitan sin comprimir fechas.",
+      "preprocessing_decision": "Exclusión estricta de entradas o etiquetas incompletas; sin imputación.",
+      "architecture_impact": "Tensores de D días de calendario completos, no de las últimas D filas disponibles.",
+      "risk_or_limit": "El episodio no identifica MCAR/MAR/MNAR ni autoriza interpolación futura."
+    },
+    {
+      "id": "C02",
+      "requirement": "Disponibilidad y desfases en el momento de predicción",
+      "status": "Ejecutado",
+      "evidence": "Alineación explícita de OHLCV(d−k), k≥1, disponible al inicio de d; σ7(d) se conoce al terminar d y no entra en X.",
+      "preprocessing_decision": "Conservar marcas UTC y permitir solo días completos anteriores al origen.",
+      "architecture_impact": "Cinco covariables OHLCV y D∈{7,14,21,28}; ningún rezago explícito del objetivo.",
+      "risk_or_limit": "OHLCV completo de d, σ7(d) o correlaciones móviles etiquetadas d introducirían información no disponible al inicio de d."
+    },
+    {
+      "id": "C03",
+      "requirement": "Correlaciones cruzadas con rezagos de covariables",
+      "status": "Ampliado con cohorte común",
+      "evidence": "140 pares variable–rezago, k=1…28, usan las mismas 308 fechas de 2023; Pearson y Spearman. Se distingue el análisis marginal anterior con 328–350 pares.",
+      "preprocessing_decision": "Cohorte común para describir rezagos; log(OHLC) y log1p(volumen) son transformaciones fijas del diagnóstico.",
+      "architecture_impact": "Se conservan las cinco variables y las cuatro ventanas; los picos no seleccionan D ni un rezago óptimo.",
+      "risk_or_limit": "Correlaciones de niveles pueden ser espurias; no prueban causalidad, habilidad predictiva ni significancia tras buscar máximos."
+    },
+    {
+      "id": "C04",
+      "requirement": "Deriva de relaciones covariable–objetivo",
+      "status": "Ejecutado descriptivamente",
+      "evidence": "Pearson móvil de 60 días con mínimo 50 pares; 309 ventanas definidas en 2023 y 366 en 2024 por covariable, con resumen anual.",
+      "preprocessing_decision": "Mantener calendario y resumir variación temporal sin igualar artificialmente años.",
+      "architecture_impact": "Evaluar después estabilidad de modelos simples antes de aumentar capacidad; este análisis no selecciona arquitectura.",
+      "risk_or_limit": "Ventanas y objetivos solapados; cambios de signo no constituyen quiebres independientes ni causas económicas demostradas."
+    },
+    {
+      "id": "C05",
+      "requirement": "Ajuste de referencia lineal regularizada",
+      "status": "Ejecutado bajo autorización específica para EDA",
+      "evidence": "Cuatro Ridge estáticos con α=1 fijo, sin tuning; Nfit=343/322/301/280 según D. Escalado train-only ddof=0 e intercepto libre; objetivo SSE+α||β||², sin factor 1/N.",
+      "preprocessing_decision": "Ajustar media/escala solo en muestras permitidas de 2023, escala 1 si varianza cero y objetivo sin transformar.",
+      "architecture_impact": "Referencia lineal de 5D entradas para diagnóstico, separada de los tres modelos DL; pesos fijos durante 2024.",
+      "risk_or_limit": "α y cadencia estática son decisiones diagnósticas; no congelan E2. Predicciones sin recorte, aunque podrían ser negativas."
+    },
+    {
+      "id": "C06",
+      "requirement": "Autocorrelación de residuos fuera del ajuste",
+      "status": "Ejecutado como diagnóstico exploratorio",
+      "evidence": "366 residuos de 2024 por D, 1464 en total; 112 ACF a rezagos 1…28 y 12 Ljung–Box a 7/14/28 con model_df=0 y Holm sobre la familia completa.",
+      "preprocessing_decision": "Conservar errores y fechas pareados, sin seleccionar D ni α por valores p; documentar bandas puntuales aproximadas.",
+      "architecture_impact": "La dependencia residual motiva considerar la estructura temporal en la evaluación; no decide añadir rezagos del objetivo ni reclasificar el proyecto.",
+      "risk_or_limit": "Etiquetas consecutivas comparten seis retornos. Solapamiento, límites lineales y deriva pueden explicar dependencia; χ² es una referencia asintótica y Holm no corrige su calibración."
+    },
+    {
+      "id": "C07",
+      "requirement": "Partición cronológica, embargo y escalado pasado",
+      "status": "Verificado para las referencias EDA",
+      "evidence": "Entrenamiento u≤t−D−1; se omiten [t−D,t−1] antes del primer origen 01/01/2024. Índices y hashes coinciden con el manifiesto CV; el ajuste fijo satisface el embargo en todos los orígenes posteriores.",
+      "preprocessing_decision": "Mantener las máscaras y el embargo existentes; ninguna etiqueta 2024 ajusta pesos o escalas.",
+      "architecture_impact": "Los cuatro modelos diagnósticos no modifican política de reajuste ni protocolo de los futuros modelos DL.",
+      "risk_or_limit": "Un embargo de covariables no demuestra independencia de etiquetas; no se fijan longitud de bloques ni inferencia confirmatoria."
+    },
+    {
+      "id": "C08",
+      "requirement": "Tipo de problema e implicaciones técnicas explícitas",
+      "status": "Documentado con evidencia",
+      "evidence": "Tipo 4: regresión temporal; n=7, h=1 y D=7/14/21/28, con cinco covariables históricas y sin rezagos explícitos del objetivo.",
+      "preprocessing_decision": "Mantener σ7(d) como salida y OHLCV(d−D…d−1) como entrada; sin imputación.",
+      "architecture_impact": "Las redes documentales siguen sin implementar o entrenar en este alcance; las cuatro Ridge no constituyen esos tres baselines DL.",
+      "risk_or_limit": "Incorporar rezagos del objetivo exigiría revisar el contrato y la ruta de series de tiempo. Completar este bloque no acredita cumplimiento global de E1."
+    }
+  ],
+  "source_files": [
+    {
+      "path": "results/eda_development/daily_market_development.csv",
+      "sha256": "bf6bb5160af924aef6a15c3684aeae932df3017e8639888bb7e91ce787900171"
+    },
+    {
+      "path": "results/eda_development/daily_volatility_development.csv",
+      "sha256": "20b96374a659eb87dadfa68aa3d6b6b5fb6bea5b10eebe6f2c186ad69861844a"
+    },
+    {
+      "path": "results/eda_covariates_documental/rolling_60d_correlations_development.csv",
+      "sha256": "ec63dda2cbd8dc8ee36afd73f521a07e4217a3bd5968907529faa596d4d18c49"
+    },
+    {
+      "path": "results/eda_covariates_documental/rolling_60d_pair_counts.csv",
+      "sha256": "75182c9c2ed6fb5b998750db54c8a28f9ef74608c6a359f90346c10014ee15cd"
+    },
+    {
+      "path": "results/eda_covariates_documental/lagged_correlations_train.csv",
+      "sha256": "d6a661c62d7e0c42394f73b948695fac96a849f5bce3c22fe4664ae83f297e3e"
+    },
+    {
+      "path": "results/cv_forward_chaining/folds.csv",
+      "sha256": "d46153075ce18231f24ff43b6f80dba555003b963dc5d1c4bd4d8ade90148571"
+    }
+  ],
+  "evidence_files": [
+    {
+      "path": "results/eda_temporal_specific/summary.json",
+      "sha256": "3b66392246c972ada4b7e22c104582e86bbea05a52d4b8443722e81a57a0f0f5"
+    },
+    {
+      "path": "results/eda_temporal_reference/summary.json",
+      "sha256": "ec8087cc54454e64b90ad2d25c443f81ac96efd75004f9fd2e8478fc9ed37d47"
+    },
+    {
+      "path": "results/eda_temporal_reference/reference_configurations.csv",
+      "sha256": "91ea1157a401b1f0dde957ddf8dd98455d3238706d274a5fd1636bf664b7a9ee"
+    },
+    {
+      "path": "results/eda_temporal_reference/training_outcomes.csv",
+      "sha256": "89f6957ef9913bf1763ff38cda927fab3ddc0ec5640c9a60560181faad1d2dc3"
+    },
+    {
+      "path": "results/eda_temporal_reference/model_parameters.csv",
+      "sha256": "8e7a955b203873d9313d9ca628d7fd43f723dd32fd94ad174f237705558191b4"
+    },
+    {
+      "path": "results/eda_temporal_reference/validation_predictions_residuals.csv",
+      "sha256": "b9910937e2135218b43898231b1f830d5418cde175c719b6d0030783b97c14e0"
+    },
+    {
+      "path": "results/eda_temporal_reference/residual_acf.csv",
+      "sha256": "42f26c16b57f7268bc96f0224350417100e583dd1384697da81bc39a0694437d"
+    },
+    {
+      "path": "results/eda_temporal_reference/ljung_box_holm.csv",
+      "sha256": "4f532286b78d47b2915462ff0c9e9ee57d856baa73fd18743091e2aa380f2444"
+    },
+    {
+      "path": "results/eda_temporal_specific/availability_by_lag.csv",
+      "sha256": "54ac51eeeb6973b75e7504509ca956920b4eb24636356e629e55b52096f27ef1"
+    },
+    {
+      "path": "results/eda_temporal_specific/availability_contract.csv",
+      "sha256": "a2e1de846642d0d8449a1aba23238ebb00eff157abdb68f339267b51da291161"
+    },
+    {
+      "path": "results/eda_temporal_specific/causal_alignment_checks.csv",
+      "sha256": "e38f3a38f7cf7605c4c06399ed588b3321effcf12761c212b2593326e8e1d0ae"
+    },
+    {
+      "path": "results/eda_temporal_specific/cohort_comparison.csv",
+      "sha256": "4c2919a317026ca419adc2f3a5800800d21aaf61d1a1532b9d6881251b714068"
+    },
+    {
+      "path": "results/eda_temporal_specific/common_cohort_calendar.csv",
+      "sha256": "0ff0253b937b2eba9748ada9b6ecd30deaeacd0490d6bda0f8daf91c3289c863"
+    },
+    {
+      "path": "results/eda_temporal_specific/covariate_structure.csv",
+      "sha256": "50c52411eff57a7ea9d96b01df3b508343eabeb1779853843e39b4e5e4983e59"
+    },
+    {
+      "path": "results/eda_temporal_specific/lag_correlations_common_train.csv",
+      "sha256": "8891bea7df79dd8c15407685e419b33c083aaf941ac5670e0a2060a31863928e"
+    },
+    {
+      "path": "results/eda_temporal_specific/lag_peak_summary.csv",
+      "sha256": "3ad0fb4e7b8e7e91335163f3bdcdc2a726f4a21dfca4af98f97829a12f03827e"
+    },
+    {
+      "path": "results/eda_temporal_specific/rolling_reconstruction_checks.csv",
+      "sha256": "66634556a07c2c885010d20eba1e0c25eba7160c13d8e246746f238a200a6270"
+    },
+    {
+      "path": "results/eda_temporal_specific/rolling_relationship_summary.csv",
+      "sha256": "fb6056bcfa19e1d96e1d25e80e295e9599414cc381b5c9401fc7d16b21b0f68c"
+    }
+  ],
+  "generators": [
+    {
+      "path": "scripts/eda_temporal_specific.py",
+      "sha256": "82490d64b850f08c314a7f5bf7f4fb55e0ae087f3f834ff58b200ca98d3cd1d6"
+    },
+    {
+      "path": "scripts/eda_temporal_reference.py",
+      "sha256": "b5fb3f56d9d9fa4bb7dcbdc19b23da5c189ba5c0ca56afc8c2ed6150e22f5dcc"
+    }
+  ],
+  "results": {
+    "common_cohort_2023": 308,
+    "variable_lag_pairs": 140,
+    "lag_range_calendar_days": [
+      1,
+      28
+    ],
+    "rolling_window_calendar_days": 60,
+    "rolling_minimum_pairs": 50,
+    "rolling_defined_windows_by_year_per_covariate": {
+      "2023": 309,
+      "2024": 366
+    },
+    "ridge_alpha_fixed": 1.0,
+    "ridge_implementation": "SciPy Cholesky; training-only NumPy mean and population standard deviation; sklearn not installed or used",
+    "ridge_objective": "sum((y-intercept-Z beta)^2) + alpha sum(beta^2); no 1/N factor; intercept not penalized",
+    "training_samples_by_history": {
+      "7": 343,
+      "14": 322,
+      "21": 301,
+      "28": 280
+    },
+    "last_training_outcome_by_history": {
+      "7": "2023-12-24",
+      "14": "2023-12-17",
+      "21": "2023-12-10",
+      "28": "2023-12-03"
+    },
+    "out_of_training_residuals_by_history": 366,
+    "total_out_of_training_residuals": 1464,
+    "residual_acf_rows": 112,
+    "residual_acf_lag1_by_history": {
+      "7": 0.7664804096185646,
+      "14": 0.7321704003329493,
+      "21": 0.7624647427073171,
+      "28": 0.7623200134356793
+    },
+    "ljung_box_tests": 12,
+    "ljung_box_lags": [
+      7,
+      14,
+      28
+    ],
+    "ljung_box_model_df": 0,
+    "multiplicity": "Holm across all 12; exploratory asymptotic references",
+    "holm_adjusted_asymptotic_reference_min": 3.8546779259122596e-211,
+    "holm_adjusted_asymptotic_reference_max": 2.920999532404062e-77,
+    "all_12_below_0_05_under_asymptotic_reference": true,
+    "negative_predictions_observed": 0,
+    "augmented_lstsq_prediction_max_abs_difference": 2.4570623313735496e-14
+  },
+  "verification": {
+    "reference_models_fitted": 4,
+    "deep_learning_models_trained": 0,
+    "pilot_runs": 0,
+    "benchmark_comparisons": 0,
+    "test_files_opened": 0,
+    "raw_archives_opened": 0,
+    "source_files_unchanged": true,
+    "descriptive_module_models_fitted": 0,
+    "first_origin_cv_hash_and_count_matched": true,
+    "fixed_model_embargo_verified_for_all_validation_origins": true,
+    "scalers_fitted_on_permitted_2023_samples_only": true,
+    "reference_predictions_independently_reproduced": true,
+    "reference_counts_do_not_modify_general_eda_module_model_count": true
+  },
+  "limitations": [
+    "La autocorrelación residual no demuestra por sí sola necesidad de rezagos del objetivo ni cambia automáticamente el tipo 4.",
+    "El objetivo móvil comparte seis retornos entre días consecutivos; la dependencia puede reflejar solapamiento, limitaciones lineales, mala especificación o deriva.",
+    "Bandas ACF puntuales de ruido blanco y referencia χ² de Ljung–Box son aproximaciones exploratorias; Holm no las vuelve confirmatorias.",
+    "No se selecciona D ni α, no se comparan RMSE de modelos ni persistencia y no se declara baseline DL medido.",
+    "El mecanismo de faltantes, el ruido externo, la selección bibliográfica definitiva y el protocolo experimental siguen pendientes.",
+    "Estas referencias estáticas no fijan cadencia, implementación o regularización de E2; no se abre test y no se declara E1 completo."
+  ]
+}

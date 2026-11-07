@@ -1,0 +1,640 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>11. Entrenamiento, ajuste equitativo y coste computacional &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/11_hpo_equidad';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="12. Incertidumbre predictiva y análisis de errores" href="12_incertidumbre_errores.html" />
+    <link rel="prev" title="10. Contrato de datos y auditoría formal de fuga" href="10_auditoria_datos.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 2 · Bitcoin: pronóstico de volatilidad</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_literatura.html">3. Revisión Sistemática del Estado del Arte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación de Modelos Benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark Final</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y referencias causales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Preregistro, potencia y piloto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de datos y auditoría formal de fuga</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">11. Entrenamiento, ajuste equitativo y coste computacional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Incertidumbre predictiva y análisis de errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Agregación estadística e interpretación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas fuente, adaptación D7 y búsqueda condicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_propuesta.html">Archivo de trabajo anterior · Catálogo y propuesta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_diseno_experimental.html">Archivo de trabajo anterior · Seguimiento del diseño</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_experimentos_resultados.html">Archivo de trabajo anterior · Benchmark y resultados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_reproducibilidad_entrega.html">Archivo de trabajo anterior · Reproducibilidad y entrega</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><p class="small">Entregable 2 · Jassan Arteta · 2026-30</p></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/11_hpo_equidad.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>11. Entrenamiento, ajuste equitativo y coste computacional</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-recibe-el-mismo-presupuesto">11.1 Qué recibe el mismo presupuesto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#espacios-de-busqueda-y-restricciones">11.2 Espacios de búsqueda y restricciones</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejes-registrados">11.2.1 Ejes registrados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-temporal-anidada">11.2.2 Selección temporal anidada</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenamiento-incidencias-y-ficha-por-receta">11.3 Entrenamiento, incidencias y ficha por receta</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eficiencia-y-coste-por-mejora">11.4 Eficiencia y coste por mejora</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#condiciones-para-abrir-el-hpo-real">11.5 Condiciones para abrir el HPO real</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="entrenamiento-ajuste-equitativo-y-coste-computacional">
+<h1>11. Entrenamiento, ajuste equitativo y coste computacional<a class="headerlink" href="#entrenamiento-ajuste-equitativo-y-coste-computacional" title="Link to this heading">#</a></h1>
+<p><strong>Estado:</strong> HPO implementado con <a class="reference download internal" download="" href="../_downloads/e6afa871de0ad5cd8543ef14d185c3c4/registration.json"><span class="xref download myst">enmienda registrada</span></a>, en ejecución. El registro <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0"><code class="docutils literal notranslate"><span class="pre">599a29f</span></code></a> conserva el procedimiento original P0; <strong>HPO sin cierre y benchmark final sin resultados</strong>. P0/OOF de cuatro modelos representativos ya se ejecutó y tiene otro propósito, descrito en <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">§9</span></a>. No se presenta su receta pequeña como ganadora de una búsqueda.</p>
+<p>Este capítulo desarrolla §§11.1–11.4 de la guía completa, páginas <strong>46–48</strong>, y el requisito de equidad del Apéndice B, página <strong>63</strong>. Las fuentes de la implementación final son el <a class="reference download internal" download="" href="../_downloads/eeac82cd243cfc54c404386ddd32ae56/hpo.json"><span class="xref download myst">HPO enmendado</span></a>, la <a class="reference download internal" download="" href="../_downloads/47a0a31721456b70c253b9b8290a2de8/analysis_additions.json"><span class="xref download myst">enmienda</span></a> y la <a class="reference download internal" download="" href="../_downloads/727d67ab94e2789eab7eb179543e9d7f/architecture_review.json"><span class="xref download myst">revisión arquitectónica</span></a>. El <a class="reference download internal" download="" href="../_downloads/c43ed0c31c71b99655b1063c15477973/preregistration.json"><span class="xref download myst">preregistro original</span></a> conserva las familias principales y el alcance histórico P0. Su existencia no acredita ejecución o igualdad de consumo realizada.</p>
+<section id="que-recibe-el-mismo-presupuesto">
+<h2>11.1 Qué recibe el mismo presupuesto<a class="headerlink" href="#que-recibe-el-mismo-presupuesto" title="Link to this heading">#</a></h2>
+<p>El catálogo vigente tiene <strong>20 configuraciones</strong>. La distinción entre receta ajustable y referencia fija evita atribuir una optimización nueva a modelos históricos:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Grupo</p></th>
+<th class="head text-right"><p>Número</p></th>
+<th class="head"><p>Regla de comparación</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Top 10 de §3</p></td>
+<td class="text-right"><p>10</p></td>
+<td><p>TSMixer, TiDE, TimeMixer, TimesNet, PatchTST, Informer, Autoformer, iTransformer, Crossformer y S-Mamba; adaptadores finales implementados y revisados por modelo; pipeline real pendiente</p></td>
+</tr>
+<tr class="row-odd"><td><p>Bases retunadas E2</p></td>
+<td class="text-right"><p>3</p></td>
+<td><p>GRU-E2, LSTM-E2 y TCN-E2 reciben el mismo presupuesto asignado que el Top 10</p></td>
+</tr>
+<tr class="row-even"><td><p>Referencias clásicas ajustables</p></td>
+<td class="text-right"><p>2</p></td>
+<td><p>Ridge y ARIMA: espacios propios de regularización/orden, con el mismo número de candidatos y límite asignado</p></td>
+</tr>
+<tr class="row-odd"><td><p>Anclas históricas E1</p></td>
+<td class="text-right"><p>3</p></td>
+<td><p>GRU/D7-c03, LSTM/D7-c02 y TCN/D7-c02 conservan sus recetas; se identifican como contexto fijo</p></td>
+</tr>
+<tr class="row-even"><td><p>Referencias ingenuas</p></td>
+<td class="text-right"><p>2</p></td>
+<td><p>Persistencia y naive semanal: sin búsqueda ni realizaciones aleatorias ficticias</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Son <strong>15 recetas ajustables</strong>. A cada una se asignan <strong>12 candidatos</strong> y <strong>172.800 CPU-s</strong>: el registro contiene <strong>180 configuraciones predefinidas</strong>. Ese número no cuenta folds, semillas, selección de épocas, reajustes o evaluación; no equivale a 180 entrenamientos.</p>
+<p>Las variantes E2 permiten comparar modelos con ajuste comparable sin borrar las tres anclas. GRU/D7-c03 sigue siendo el baseline heredado; el HPO no lo renombra después de conocer test. La familia adicional contra GRU-E2 estudia otra comparación y conserva su nombre, nivel y alcance.</p>
+<p>Se mantienen origen de pronóstico, objetivo, partición, elegibilidad y métrica. Ridge aplana las mismas 35 entradas; ARIMA y las referencias ingenuas usan historia causal del objetivo, una excepción explícita de la ruta de <a class="reference internal" href="07_ruta_temporal.html"><span class="std std-doc">§7</span></a>, no un sexto canal para las redes. Esa diferencia de información se declara al interpretar resultados.</p>
+<p><strong>Igualdad asignada no significa igualdad ejecutada.</strong> Se informará cuántos candidatos completó cada modelo, su presupuesto consumido, fallos y censura. Si una familia no termina su programa, no se compensa con más intentos para otra ni se afirma que recibieron la misma optimización realizada. Tampoco se atribuye automáticamente la ganancia frente a una ancla fija sólo a la arquitectura.</p>
+</section>
+<section id="espacios-de-busqueda-y-restricciones">
+<h2>11.2 Espacios de búsqueda y restricciones<a class="headerlink" href="#espacios-de-busqueda-y-restricciones" title="Link to this heading">#</a></h2>
+<section id="ejes-registrados">
+<h3>11.2.1 Ejes registrados<a class="headerlink" href="#ejes-registrados" title="Link to this heading">#</a></h3>
+<p>Las trece recetas profundas conservan exactamente los <strong>once primeros candidatos aleatorios</strong> del registro original, generado con semilla <code class="docutils literal notranslate"><span class="pre">202611061</span></code>, y sustituyen únicamente c12 por un punto respaldado por fuente. Ridge y ARIMA conservan sus doce candidatos originales. El total sigue siendo 180. Los soportes de los once aleatorios son:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Eje</p></th>
+<th class="head"><p>Espacio</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Learning rate</p></td>
+<td><p>Loguniforme entre 10⁻⁴ y 0,003</p></td>
+</tr>
+<tr class="row-odd"><td><p>Weight decay</p></td>
+<td><p>Loguniforme entre 10⁻⁶ y 0,01</p></td>
+</tr>
+<tr class="row-even"><td><p>Dropout</p></td>
+<td><p>Uniforme entre 0 y 0,3 en las posiciones documentadas del modelo</p></td>
+</tr>
+<tr class="row-odd"><td><p>Batch de entrenamiento</p></td>
+<td><p>{16, 32, 64}</p></td>
+</tr>
+<tr class="row-even"><td><p>Profundidad y ancho</p></td>
+<td><p>Fijados por la estructura fuente/adaptación D7 revisada individualmente en §14; no se presenta como búsqueda un valor constante</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cabezas, parches, escalas y kernels</p></td>
+<td><p>Restricciones de cada backbone y del contexto D7, con correspondencia y fuente explícitas; no se eligen mirando resultados</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La guía pide considerar profundidad/ancho y los parámetros de cada familia, y conserva las estructuras ya definidas. La <a class="reference download internal" download="" href="../_downloads/727d67ab94e2789eab7eb179543e9d7f/architecture_review.json"><span class="xref download myst">revisión individual</span></a> resuelve la configuración final de los diez backbones con fuentes/presets fijados y modificaciones D7 explícitas. Sus dimensiones no se sustituyen por las pequeñas P0. La excepción estructural se fundamenta modelo por modelo; no equivale a una excepción de todo el HPO.</p>
+<p>El candidato <strong>c12</strong> usa LR/dropout identificados en artículo o código fuente, con <strong>weight decay=0,0001 y batch=32 comunes</strong>. No se presenta como réplica literal del mejor resultado del paper. Las únicas salidas del soporte aleatorio permitidas son sus valores exactos: TSMixer dropout=0,9; TiDE LR=0,00003822279848104051; TimeMixer LR=0,01 y S-Mamba LR=0,00007. El manifiesto identifica también los puntos que caen dentro del soporte. Una excepción de c12 no autoriza candidatos aleatorios adicionales fuera del rango, ni cambia T tras observar resultados. Para PatchTST se prioriza dropout=0,2 explícito en el artículo frente al 0,3 de otro script; las condiciones se distinguen.</p>
+<p>AdamW respeta únicamente las exenciones <code class="docutils literal notranslate"><span class="pre">_no_weight_decay</span></code> explícitas de la fuente Mamba para <code class="docutils literal notranslate"><span class="pre">A_log</span></code>/<code class="docutils literal notranslate"><span class="pre">D</span></code>; los demás parámetros reciben el decay del candidato. No se añaden exenciones generales de bias o normalización sin declararlas.</p>
+<p>Si un caso queda realmente sin diseño definido, se activa el protocolo condicional de <a class="reference internal" href="14_arquitecturas.html"><span class="std std-doc">§14</span></a>. La tasa y los patrones de dropout de ese NAS siguen su espacio fijo 0,2 y no se sustituyen por la cuadrícula general de tasas. Su HPO previo se hace sobre el control especificado antes de comparar arquitecturas.</p>
+<p>Ridge recibe doce valores de α en escala logarítmica <strong>10⁻⁶–10³</strong>, con intercepto y representación fija. ARIMA usa el universo completo de doce órdenes <strong>p∈{0,1,2}, d∈{0,1}, q∈{0,1}</strong>; tendencia constante cuando d=0 y sin tendencia cuando d=1. A estos estimadores no se les inventan dropout, batch o learning rate para simular igualdad de parámetros.</p>
+<p>Los estimadores clásicos conservan su salida cruda y aplican la transformación fija <code class="docutils literal notranslate"><span class="pre">max(0,</span> <span class="pre">predicción)</span></code> al publicar el pronóstico de volatilidad. Una salida no finita es un fallo registrado, no se transforma en cero. La regla está fijada antes de los resultados y no elimina fechas del panel.</p>
+</section>
+<section id="seleccion-temporal-anidada">
+<h3>11.2.2 Selección temporal anidada<a class="headerlink" href="#seleccion-temporal-anidada" title="Link to this heading">#</a></h3>
+<p>El programa comparte dos semillas HPO, <strong>2026110611 y 2026110612</strong>, y diez orígenes externos mensuales de enero a octubre de 2024. Las referencias deterministas se ajustan una vez por candidato/fold, sin contar dos copias idénticas como ejecuciones independientes.</p>
+<p>En cada origen externo se forman tres bloques internos de treinta días en su pasado permitido. Las etiquetas de ajuste terminan en q−8; la selección de épocas usa la ventana nominal q−90 a q−8, <strong>83 fechas potenciales antes de elegibilidad</strong>, con ajuste temprano hasta q−98. Se reestima cada transformación sólo en su entrenamiento autorizado y se reajusta desde una inicialización nueva durante las épocas elegidas.</p>
+<p>Se concatenan las fechas elegibles de cada trayectoria, se calcula su RMSE en escala original y después se promedia entre semillas. No se optimiza una media no ponderada de RMSE mensuales ni la RMSE de un ensamble. Se minimiza ese valor; los desempates siguen latencia de desarrollo bajo el mismo protocolo, parámetros e identificador de candidato, sin crear empates por redondeo.</p>
+<p>Los resultados de los meses externos describen el <strong>procedimiento de selección</strong>, no una receta única que haya sido elegida sin usarlos. La receta final procede de una búsqueda forward adicional en desarrollo, declarada como selección y congelada antes de P1. Ninguna de estas búsquedas usa la reserva histórica para decidir parámetros.</p>
+<p>La igualdad de T no prueba que los espacios sean igual de informativos para cada familia. Se deben reportar el espacio, la posición de la receta seleccionada, las restricciones y las curvas de importancia. Un parámetro fijado, un óptimo en el borde o un rango insuficiente se explican como tales; no se amplía el espacio tras observar test.</p>
+</section>
+</section>
+<section id="entrenamiento-incidencias-y-ficha-por-receta">
+<h2>11.3 Entrenamiento, incidencias y ficha por receta<a class="headerlink" href="#entrenamiento-incidencias-y-ficha-por-receta" title="Link to this heading">#</a></h2>
+<p>Las reglas siguientes corresponden a las futuras recetas profundas ajustables; las anclas conservan su configuración E1 y P0 conserva su propio manifiesto:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Control</p></th>
+<th class="head"><p>Regla registrada</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Optimización</p></td>
+<td><p>AdamW; MSE con escala positiva de Y aprendida exclusivamente en train</p></td>
+</tr>
+<tr class="row-odd"><td><p>Scheduler</p></td>
+<td><p>Sin scheduler</p></td>
+</tr>
+<tr class="row-even"><td><p>Precisión y ejecución</p></td>
+<td><p>FP32, un thread y un interop thread; mismo hardware para comparaciones pertinentes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Estabilidad</p></td>
+<td><p>Gradient clipping de norma 1 y determinismo explícito</p></td>
+</tr>
+<tr class="row-even"><td><p>Parada</p></td>
+<td><p>Máximo 100 épocas, paciencia 12, mejora mínima 0 en MSE de validación</p></td>
+</tr>
+<tr class="row-odd"><td><p>Límite por ajuste</p></td>
+<td><p>900 s por ajuste de optimizador, dentro del presupuesto total asignado</p></td>
+</tr>
+<tr class="row-even"><td><p>Gradientes</p></td>
+<td><p>No actualizar pesos con validación o test</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La ficha de modelo exigida por §11.3 incluirá nombre/familia/DOI; repositorio y commit; pesos preentrenados, corpus y licencia o «ninguno»; arquitectura, parámetros entrenables/totales y FLOPs; espacios y valores elegidos; epochs, checkpoint, precisión y hardware; costes por etapa; resultados por semilla/fold y todas las incidencias.</p>
+<p>Se conserva el registro de <strong>todas</strong> las configuraciones, no sólo la ganadora. Los fallos por NaN, divergencia, checkpoint, auditoría causal, límite de recursos o interrupción quedan identificados. No se elimina una semilla por mal desempeño ni se reemplazan candidatos fallidos selectivamente. Sólo se permite reanudar la misma configuración/semilla ante una interrupción externa documentada, cargando ese consumo al mismo presupuesto.</p>
+<p>P0/OOF consta de cuatro modelos y cinco semillas nuevas, con 220 trayectorias / 440 ajustes completados. Es una ejecución de factibilidad y diagnóstico de recetas fijas; <strong>no son el HPO de quince familias ni su R final</strong>. Tras el HPO se requiere P1 con recetas congeladas, dimensionamiento y nuevo cierre de pesos. Los modelos no pilotados no reciben una certificación empírica de potencia a partir de los representantes.</p>
+</section>
+<section id="eficiencia-y-coste-por-mejora">
+<h2>11.4 Eficiencia y coste por mejora<a class="headerlink" href="#eficiencia-y-coste-por-mejora" title="Link to this heading">#</a></h2>
+<p>El consumo realizado se medirá por separado de la asignación. Se distinguen tiempo de búsqueda, selección de épocas, reajuste, entrenamiento definitivo e inferencia, junto a memoria pico, parámetros, FLOPs/MACs y throughput. Se documentan versiones y operaciones no soportadas por el contador; menos parámetros no implica menor latencia. El contador propio declara MAC real=2 y un convenio explícito por operación. FFT nativa u operadores flotantes no soportados dejan el total como <strong>no estimable</strong> y publican sólo un subtotal parcial, nunca un cero ni un total completo inventado. Throughput usa batch32, 32 calentamientos y 31 bloques de 32 llamadas, en CPU sin entrenamiento concurrente.</p>
+<p>El protocolo de latencia fija <strong>batch 1</strong>, CPU común, un thread, 256 llamadas de calentamiento y <strong>61 bloques intercalados de 256 llamadas</strong>, con semilla de orden <code class="docutils literal notranslate"><span class="pre">202611065</span></code>. La unidad es el bloque de temporización; no una nueva observación de mercado. Se informa la precisión neural FP32 y la clásica correspondiente, sin afirmar que sean idénticas. El preprocesamiento se mide por separado del forward completo con la cabeza escalar.</p>
+<p>Se construirán fronteras de Pareto RMSE–latencia, RMSE–parámetros y frente a cada otro coste pertinente. Un valor no medido queda ausente, no cero; no beneficia al modelo ni elimina su error del ranking descriptivo. Una frontera puntual no demuestra dominancia con incertidumbre.</p>
+<p>La relación entre ganancia de error y coste incremental debe conservar signos y unidades. Si el coste incremental es cero o próximo a cero, se informa la indefinición o inestabilidad del cociente, sin épsilon arbitrario. Un modelo más preciso y barato se describe con ambas diferencias, sin ocultarlo tras un ranking de cocientes. El bootstrap debe propagar incertidumbre predictiva y de temporización con sus unidades respectivas.</p>
+<p>La enmienda fija diecinueve comparaciones de equivalencia práctica y menor latencia frente al mejor modelo elegido entre los veinte en desarrollo. Usa TOST con ±δ y una intersección-unión con ahorro de coste, Holm α=0,01, en una familia exploratoria separada. La referencia no se elige en test y un no rechazo de diferencia no prueba equivalencia. La energía y emisiones pueden estimarse si hay método y hardware trazables, incluyendo HPO; una magnitud no medida no se publica como cero ni se presenta una estimación por TDP como medición directa.</p>
+</section>
+<section id="condiciones-para-abrir-el-hpo-real">
+<h2>11.5 Condiciones para abrir el HPO real<a class="headerlink" href="#condiciones-para-abrir-el-hpo-real" title="Link to this heading">#</a></h2>
+<p>Las quince asignaciones y los 180 candidatos están especificados; los diez backbones y sus adaptaciones ya cuentan con revisión independiente y controles sintéticos. <strong>Antes del HPO real faltan el registro de esta enmienda y los recibos integrados del entorno, datos, fuentes, código, candidatos y recursos.</strong> Si aplica NAS, las fases posteriores exigen además la fase 2 completa y el ganador congelado.</p>
+<p>El control compara los bytes con su commit registrado y exige recibos de evidencia con hashes. Esto permite detectar cambios y falta de prerrequisitos; no convierte un fichero existente en certificación científica. Los resultados negativos, la búsqueda incompleta y la potencia insuficiente siguen siendo desenlaces posibles y deben conservarse.</p>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="../_downloads/996cf1405bc0d22e2ebe67b076015cbb/candidate_registry.json"><span class="xref download myst">Registro nuevo de 180 candidatos sin evaluar</span></a>, <a class="reference download internal" download="" href="../_downloads/eeac82cd243cfc54c404386ddd32ae56/hpo.json"><span class="xref download myst">HPO con puntos fuente</span></a> y <a class="reference download internal" download="" href="../_downloads/47a0a31721456b70c253b9b8290a2de8/analysis_additions.json"><span class="xref download myst">enmienda</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/9b52f4cbbed12d8b4ceea2b516a3b1fc/validation.json"><span class="xref download myst">Validación documental original P0</span></a>, conservada con su alcance.</p></li>
+<li><p>Antecedentes conservados: <a class="reference download internal" download="" href="../_downloads/7ea29c584883c1a042191229f859a09f/hpo.json"><span class="xref download myst">HPO original</span></a>, <a class="reference download internal" download="" href="../_downloads/abaf3ffb20ac3be8be335ff4fb924efd/architecture_decisions.json"><span class="xref download myst">decisiones arquitectónicas previas</span></a> y <a class="reference download internal" download="" href="../_downloads/c43ed0c31c71b99655b1063c15477973/preregistration.json"><span class="xref download myst">preregistro P0</span></a>.</p></li>
+<li><p><a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">Protocolo y piloto</span></a>, <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">tabla de benchmark pendiente</span></a> y <a class="reference internal" href="14_arquitecturas.html"><span class="std std-doc">búsqueda arquitectónica condicional</span></a>.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="10_auditoria_datos.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">10. Contrato de datos y auditoría formal de fuga</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="12_incertidumbre_errores.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">12. Incertidumbre predictiva y análisis de errores</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-recibe-el-mismo-presupuesto">11.1 Qué recibe el mismo presupuesto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#espacios-de-busqueda-y-restricciones">11.2 Espacios de búsqueda y restricciones</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejes-registrados">11.2.1 Ejes registrados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-temporal-anidada">11.2.2 Selección temporal anidada</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenamiento-incidencias-y-ficha-por-receta">11.3 Entrenamiento, incidencias y ficha por receta</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eficiencia-y-coste-por-mejora">11.4 Eficiencia y coste por mejora</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#condiciones-para-abrir-el-hpo-real">11.5 Condiciones para abrir el HPO real</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

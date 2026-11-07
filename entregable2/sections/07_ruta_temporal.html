@@ -1,0 +1,588 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>7. Ruta metodológica: series de tiempo y referencias causales &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/07_ruta_temporal';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="8. Reproducibilidad, ética y comunicación científica" href="08_reproducibilidad.html" />
+    <link rel="prev" title="6. Benchmark Final" href="06_benchmark_final.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 2 · Bitcoin: pronóstico de volatilidad</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_literatura.html">3. Revisión Sistemática del Estado del Arte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación de Modelos Benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark Final</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">7. Ruta metodológica: series de tiempo y referencias causales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Preregistro, potencia y piloto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de datos y auditoría formal de fuga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. Entrenamiento, ajuste equitativo y coste computacional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Incertidumbre predictiva y análisis de errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Agregación estadística e interpretación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas fuente, adaptación D7 y búsqueda condicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_propuesta.html">Archivo de trabajo anterior · Catálogo y propuesta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_diseno_experimental.html">Archivo de trabajo anterior · Seguimiento del diseño</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_experimentos_resultados.html">Archivo de trabajo anterior · Benchmark y resultados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_reproducibilidad_entrega.html">Archivo de trabajo anterior · Reproducibilidad y entrega</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><p class="small">Entregable 2 · Jassan Arteta · 2026-30</p></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/07_ruta_temporal.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>7. Ruta metodológica: series de tiempo y referencias causales</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivo-de-la-reclasificacion-y-contrato-que-se-conserva">7.1 Motivo de la reclasificación y contrato que se conserva</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias-endogenas-y-panel-ampliado">7.2 Referencias endógenas y panel ampliado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-de-las-referencias-y-politica-de-reajuste">7.3 Implementación de las referencias y política de reajuste</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda-temporal-heredado-evidencia-reutilizada-y-cobertura">7.4 EDA temporal heredado: evidencia reutilizada y cobertura</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verificacion-y-estado">7.5 Verificación y estado</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="ruta-metodologica-series-de-tiempo-y-referencias-causales">
+<span id="e2-ruta-temporal"></span><h1>7. Ruta metodológica: series de tiempo y referencias causales<a class="headerlink" href="#ruta-metodologica-series-de-tiempo-y-referencias-causales" title="Link to this heading">#</a></h1>
+<p><strong>Decisión del 06/11/2026:</strong> se adopta la ruta <strong>F2a, series de tiempo</strong>, tras recibir la guía completa de 65 páginas. El diagnóstico de desarrollo activa la regla RT1 de la página 32: la autocorrelación residual fuerte de una referencia requiere reclasificar el problema. Esta decisión cierra la clasificación metodológica; el benchmark Bitcoin continúa pendiente. La resolución no modifica E1 ni convierte la reserva conocida en una prueba confirmatoria.</p>
+<section id="motivo-de-la-reclasificacion-y-contrato-que-se-conserva">
+<h2>7.1 Motivo de la reclasificación y contrato que se conserva<a class="headerlink" href="#motivo-de-la-reclasificacion-y-contrato-que-se-conserva" title="Link to this heading">#</a></h2>
+<p>La <a class="reference internal" href="02_eda.html#e2-diagnostico-forward"><span class="std std-ref">referencia Ridge forward</span></a> dejó ACF(1)=0,632228 en 305 fechas de validación de 2024. Ljung–Box de lag7 dio Q=266,4062 y p≈8,88×10⁻⁵⁴, con sus limitaciones asintóticas y de dependencia. No se clasifica la tarea solo por excluir Y rezagada de las entradas. La regla específica RT1 (PDF p32) y el diagnóstico del EDA C (p6) determinan seguir F2a; la instrucción general de p40 no rebaja ese requisito. La guía exige resolver la ruta antes de implementar el benchmark (p20).</p>
+<p>Se conservan <strong>D7×5 OHLCV → σ₇, horizonte h=1</strong>, escala, primaria RMSE media por trayectoria, <strong>δ=0,00025772842664981106</strong>, unidad y partición heredadas. Las tres recetas de E1 continúan como anclas fijas. Reclasificar la ruta no añade automáticamente Y rezagada como sexto canal de las redes ni cambia su historia. Una ampliación de información futura necesitaría su propia decisión y comparación de desarrollo, sin sustituir la referencia heredada.</p>
+<p>La dependencia de etiquetas σ₇ consecutivas —seis retornos compartidos— contribuye a la autocorrelación. El diagnóstico no demuestra que un canal nuevo mejoraría fuera de muestra, ni prueba no linealidad. La decisión sí exige las referencias y controles propios de F2a, con soportes explícitos.</p>
+</section>
+<section id="referencias-endogenas-y-panel-ampliado">
+<h2>7.2 Referencias endógenas y panel ampliado<a class="headerlink" href="#referencias-endogenas-y-panel-ampliado" title="Link to this heading">#</a></h2>
+<p>F2a S5 (PDF p30) requiere naive, naive estacional y <strong>ARIMA o ETS</strong>. Se incorporan <strong>persistencia, referencia semanal y ARIMA</strong>; ETS queda como alternativa posible, sin ser necesario añadir ambos para esa disyunción. El panel actualizado tiene veinte configuraciones: diez Top10, tres variantes GRU/LSTM/TCN ajustadas en E2, las tres anclas fijas de E1, Ridge y estas tres referencias endógenas. Las veinte filas representan modelos/configuraciones, no veinte observaciones independientes ni veinte resultados ya obtenidos.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Referencia</p></th>
+<th class="head"><p>Pronóstico emitido al comenzar t</p></th>
+<th class="head"><p>Información efectiva</p></th>
+<th class="head"><p>Alcance respecto al origen</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Naive/persistencia</p></td>
+<td><p>Ŷₜ=σ₇(t−1)</p></td>
+<td><p>Ocho cierres de t−8 a t−1</p></td>
+<td><p>Ocho días hacia atrás</p></td>
+</tr>
+<tr class="row-odd"><td><p>Naive semanal</p></td>
+<td><p>Ŷₜ=σ₇(t−7)</p></td>
+<td><p>Ocho cierres de t−14 a t−7</p></td>
+<td><p>Catorce días hacia atrás</p></td>
+</tr>
+<tr class="row-even"><td><p>ARIMA</p></td>
+<td><p>E[Yₜ|información observada hasta t−1] bajo el modelo ajustado</p></td>
+<td><p>Historia de etiquetas hasta t−1; parámetros aprendidos solo hasta el corte registrado</p></td>
+<td><p>Historia expansiva declarada, superior a D7</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El alcance de catorce días de la referencia semanal <strong>no significa catorce retornos ni catorce cierres usados para calcular esa σ₇</strong>: su etiqueta requiere ocho cierres, y los seis días posteriores no entran en ese valor. La semana es un comparador de calendario registrado, no una conclusión de estacionalidad significativa obtenida del STL.</p>
+<p>Estas referencias utilizan información endógena y longitudes distintas de D7×5. Se comparan sus errores sobre las mismas fechas elegibles, pero no se atribuye toda diferencia a arquitectura bajo información idéntica. El soporte de la referencia semanal y la historia ARIMA se incorporarán a la auditoría del panel común antes de ejecutar; no se comprime el calendario ni se decide la cohorte según los errores observados.</p>
+</section>
+<section id="implementacion-de-las-referencias-y-politica-de-reajuste">
+<h2>7.3 Implementación de las referencias y política de reajuste<a class="headerlink" href="#implementacion-de-las-referencias-y-politica-de-reajuste" title="Link to this heading">#</a></h2>
+<p>El módulo <code class="docutils literal notranslate"><span class="pre">scripts/e2_temporal_baselines.py</span></code> recibe etiquetas diarias σ₇ ya verificadas y fechas UTC; no descarga datos, no abre archivos de mercado y no escoge un ganador. <code class="docutils literal notranslate"><span class="pre">naive_forecast</span></code> accede exclusivamente a la etiqueta de lag1 o lag7 de calendario. Si falta, devuelve una observación inelegible, sin sustituirla por la fila anterior disponible.</p>
+<p><code class="docutils literal notranslate"><span class="pre">FixedParameterARIMA</span></code> usa statsmodels: la verificación sintética inicial empleó <strong>0.14.6</strong> (<code class="docutils literal notranslate"><span class="pre">requirements-eda.lock.txt</span></code>); el entorno nuevo de esta etapa fija <strong>0.15.0</strong> (<code class="docutils literal notranslate"><span class="pre">requirements-e2-remediation.lock.txt</span></code>). Se registra la versión por ejecución y no se confunden esos entornos. Ajusta una vez por origen externo registrado: para el comienzo t₀ del fold, las etiquetas usadas para estimar parámetros y escala terminan como máximo en t₀−8, manteniendo el embargo de siete días. La escala de Y es su media solo de entrenamiento; una serie totalmente nula usa escala1. El estado se actualiza con observaciones efectivamente conocidas hasta t−1 y <strong><code class="docutils literal notranslate"><span class="pre">refit=False</span></code></strong>; ese filtrado no reestima parámetros. Un objeto nuevo corresponde a un nuevo fold. Los orígenes deben crecer estrictamente y no se admiten pronósticos retrospectivos sobre un estado que ya vio fechas posteriores.</p>
+<p>La observación más reciente disponible cambia con cada día; no se introducen covariables futuras ni Yₜ. Los huecos se mantienen como <code class="docutils literal notranslate"><span class="pre">NaN</span></code> en su día dentro del modelo de estado: la transición del estado no crea una etiqueta observada imputada. Si falta Yₜ₋₁, el módulo marca el origen como inelegible para el panel de información observada. Las políticas de actualización y reajuste deben figurar por familia en el protocolo común; no se concede un refit diario oculto a ARIMA.</p>
+<p>La cuadrícula local contiene doce órdenes: p∈{0,1,2}, d∈{0,1}, q∈{0,1}; usa constante con d=0 y sin tendencia determinista con d=1, restricciones de estacionariedad/invertibilidad y máximo100 iteraciones. Se registra la no convergencia como fallo; no se sustituye silenciosamente por otro orden ni se usa test para escogerlo. El protocolo común <code class="docutils literal notranslate"><span class="pre">experiments/e2_remediation_20261106/hpo.json</span></code> asigna <strong>T=12 a cada una de quince familias ajustables y 172.800 CPU-s por familia</strong>. La cuadrícula local y esa asignación no son una búsqueda ejecutada, un orden ganador ni prueba de consumo equivalente medido.</p>
+<p>El accessor <code class="docutils literal notranslate"><span class="pre">FixedParameterARIMA.predict</span></code> conserva el pronóstico original para auditoría. Antes de observar resultados del benchmark, <code class="docutils literal notranslate"><span class="pre">architecture_decisions.json</span></code> fija para ARIMA y Ridge el enlace puntual <strong>max(0, pronóstico original)</strong>. El wrapper explícito <code class="docutils literal notranslate"><span class="pre">benchmark_nonnegative</span></code> aplica esa misma regla, conserva <code class="docutils literal notranslate"><span class="pre">raw_value</span></code>, motivo y elegibilidad, y rechaza valores no finitos: un fallo no se convierte en cero ni se elimina una fecha por una predicción negativa. Las observaciones inelegibles mantienen valor puntuable <code class="docutils literal notranslate"><span class="pre">None</span></code>. El panel del benchmark consume el valor posprocesado; el valor original sigue disponible para auditar el efecto de la regla.</p>
+<p>F2a (p31) exige declarar la política común, no impone un refit diario en todos los casos. Se conserva el calendario y el embargo heredados; h=1 no es razón para reducir unilateralmente el embargo D7. El análisis del test histórico seguirá siendo exploratorio.</p>
+</section>
+<section id="eda-temporal-heredado-evidencia-reutilizada-y-cobertura">
+<h2>7.4 EDA temporal heredado: evidencia reutilizada y cobertura<a class="headerlink" href="#eda-temporal-heredado-evidencia-reutilizada-y-cobertura" title="Link to this heading">#</a></h2>
+<p>El EDA de E1 se amplía, como exige la guía; no se desecha ni se repite automáticamente. Los siguientes resultados ya existen en el <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/sections/02_eda.html">capítulo EDA de E1</a>, y se separan de los diagnósticos futuros del Top10 Bitcoin.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Requisito F2a / EDA B</p></th>
+<th class="head"><p>Evidencia ejecutada de E1</p></th>
+<th class="head"><p>Uso y límite para E2</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Tendencia y estacionalidad</p></td>
+<td><p>STL robusto de log-cierres diarios, 25/03–31/12/2023, periodo7; E1 §2.5.1</p></td>
+<td><p>Apoya representación causal; periodo impuesto no prueba estacionalidad ni habilita STL centrado como predictor</p></td>
+</tr>
+<tr class="row-odd"><td><p>Estacionariedad</p></td>
+<td><p>ADF con constante/7 rezagos y KPSS constante/rezagos automáticos; σ₇ de 01/04–31/12/2023, n275, pADF≈0,002423 y pKPSS&gt;0,10; E1 §2.5.2</p></td>
+<td><p>Compatibilidad de ese tramo con estacionariedad, sin garantía para 2024/2026; no diferencia automáticamente Y</p></td>
+</tr>
+<tr class="row-even"><td><p>Dependencia temporal</p></td>
+<td><p>ACF/PACF y periodograma de retornos diarios, 26/03–31/12/2023, n281; E1 §2.5.3</p></td>
+<td><p>Distingue unidades y retornos frente a σ₇; no selecciona D o temporada por máximo visual</p></td>
+</tr>
+<tr class="row-odd"><td><p>Heterocedasticidad</p></td>
+<td><p>ARCH-LM sobre retornos diarios centrados, siete rezagos, p≈0,341; E1 §2.5.3</p></td>
+<td><p>No rechazo exploratorio no prueba homocedasticidad ni sustituye el ARCH-LM de residuos de nuevas redes</p></td>
+</tr>
+<tr class="row-even"><td><p>IID residual</p></td>
+<td><p>BDS y Ljung–Box de GRU/LSTM/TCN de E1 por fold y semilla; E1 §2.5.6</p></td>
+<td><p>BDS contrasta iid; no atribuir todo rechazo a no linealidad ni trasladar el resultado al Top10</p></td>
+</tr>
+<tr class="row-odd"><td><p>Anomalías y cambios</p></td>
+<td><p>Máscaras de continuidad, extremos sin borrado; candidato CUSUM 15/10/2023 sin confirmación; E1 §2.5.1/2.5.5</p></td>
+<td><p>Preservar eventos legítimos y revisar sensibilidad; el candidato no prueba una ruptura causal</p></td>
+</tr>
+<tr class="row-even"><td><p>Dificultad de pronóstico</p></td>
+<td><p>Persistencia forward de desarrollo: RMSE0,00474310, MAE0,00292428; E2 §2.2.3</p></td>
+<td><p>Referencia informal de predictibilidad; no es ruido irreducible ni techo validado</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los CSV heredados <code class="docutils literal notranslate"><span class="pre">results/eda_development/stationarity_daily.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">stationarity_volatility.csv</span></code> y <code class="docutils literal notranslate"><span class="pre">summary.json</span></code> contienen especificaciones, rangos y advertencias; sus figuras están en <code class="docutils literal notranslate"><span class="pre">book/_static/eda/</span></code>. E1 ya permite reutilizar STL, ADF/KPSS, PACF y ARCH con esos límites. No se exige volver a calcularlos solo porque cambie el nombre de la ruta. El <a class="reference internal" href="02_eda.html#e2-diagnostico-forward"><span class="std std-ref">diagnóstico forward de E2</span></a> amplía esta evidencia con Ridge/persistencia sobre 2024.</p>
+<p><strong>Decisión de preprocesamiento:</strong> mantener escalado causal, máscaras y calendario, sin diferenciación automática ni imputación de observaciones. <strong>Impacto en arquitectura y validación:</strong> adoptar F2a, incorporar sus referencias y validar por origen con políticas registradas; realizar diagnósticos de residuos de los modelos efectivamente ejecutados. <strong>Riesgos:</strong> heredar conclusiones de otra frecuencia/tramo, confundir un contraste iid con prueba exclusiva de no linealidad y tratar el error naive como techo de Bayes. La referencia condicional de predictibilidad y γ de §6 ya dispone de código específico, pero requiere ejecución; su ley empírica de innovación train-only y supuestos iid/transferencia no constituyen un techo de Bayes universal.</p>
+</section>
+<section id="verificacion-y-estado">
+<h2>7.5 Verificación y estado<a class="headerlink" href="#verificacion-y-estado" title="Link to this heading">#</a></h2>
+<p>Se verificó el módulo con doce pruebas <strong>sintéticas</strong>, usando el entorno de <code class="docutils literal notranslate"><span class="pre">requirements-eda.lock.txt</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>unittest<span class="w"> </span>discover<span class="w"> </span>-s<span class="w"> </span>tests<span class="w"> </span>-p<span class="w"> </span>test_e2_temporal_baselines.py<span class="w"> </span>-v
+</pre></div>
+</div>
+<p>Las pruebas cubren lag de calendario frente a filas retenidas, alcance8/14, exclusión de valores futuros, embargo, huecos conservados, ausencia de refit, orden temporal de llamadas y fallos declarados. Verifican también que el enlace registrado conserva el negativo original, no cambia la elegibilidad y rechaza <code class="docutils literal notranslate"><span class="pre">NaN</span></code>/infinito. Los pequeños ajustes ARIMA de estas pruebas son sintéticos: <strong>no son corridas del benchmark Bitcoin</strong>, no usan sus precios ni aportan resultados al ranking.</p>
+<p>La decisión reproducible está en <code class="docutils literal notranslate"><span class="pre">experiments/e2_remediation_20261106/route.json</span></code>. Estado: <strong>ruta cerrada, referencias implementadas y verificadas sintéticamente; presupuesto HPO asignado por el protocolo común, sin ejecuciones Bitcoin acreditadas por esta sección</strong>. El registro previo y el piloto de desarrollo se documentan en la <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">sección 9</span></a>; HPO y dimensionamiento final siguen pendientes. El cierre de esta sección no permite afirmar superioridad o cumplimiento de todos los requisitos de F2a.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="06_benchmark_final.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">6. Benchmark Final</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="08_reproducibilidad.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">8. Reproducibilidad, ética y comunicación científica</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivo-de-la-reclasificacion-y-contrato-que-se-conserva">7.1 Motivo de la reclasificación y contrato que se conserva</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias-endogenas-y-panel-ampliado">7.2 Referencias endógenas y panel ampliado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-de-las-referencias-y-politica-de-reajuste">7.3 Implementación de las referencias y política de reajuste</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda-temporal-heredado-evidencia-reutilizada-y-cobertura">7.4 EDA temporal heredado: evidencia reutilizada y cobertura</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verificacion-y-estado">7.5 Verificación y estado</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

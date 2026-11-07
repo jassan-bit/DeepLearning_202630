@@ -1,0 +1,2808 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-06",
+  "administrative_timezone": "America/Bogota",
+  "status": "specified_pending_git_registration_and_preflight",
+  "guide_sha256": "93499dcfda6a36d9621524a81821470017ba114ca6b08241a35de5a54f74a654",
+  "no_training_or_new_Bitcoin_results": true,
+  "literature_registry": {
+    "path": "book_e2/_static/literature_fulltext/models.json",
+    "sha256": "5ea1cc30fdfc8cc5cbbbc9665a32fd2a556418a72d607c4519379b9dae1045be"
+  },
+  "models": [
+    {
+      "id": "TSMixer",
+      "architecture_defined": true,
+      "nas_required": false,
+      "decision": "published_source_structure_identified_FINAL_exception_not_yet_verified; P0tiny_recipe_not_final_exemption",
+      "evidence": [
+        {
+          "kind": "original_fulltext",
+          "source_version": "2303.06053v5",
+          "filename": "2303.06053v5.pdf",
+          "sha256": "864079eb9702bca1f27f540819052af94625b226cd5a652a02638800f95b365e",
+          "source_url": "https://arxiv.org/abs/2303.06053v5",
+          "architecture_extraction": {
+            "original_problem": {
+              "input": "X∈R^(L×Cx), observaciones históricas que incluyen valores pasados de las series objetivo",
+              "output": "Y∈R^(T×Cy), Cy≤Cx; la proyección genera Cx canales y se seleccionan los Cy correspondientes",
+              "target_history_in_original": true,
+              "locators": [
+                {
+                  "pdf_page": 5,
+                  "printed_page": "5",
+                  "section": "3",
+                  "equation": "1"
+                },
+                {
+                  "pdf_page": 20,
+                  "printed_page": "20",
+                  "section": "B.3.2"
+                }
+              ]
+            },
+            "base_model_flow": "X(L×C) → K bloques de time mixing seguido de feature mixing, conservando L×C → proyección temporal compartida L→T → Yhat(T×C). Para LTSF todos los canales históricos son también objetivos. No se aplana L×C para una única MLP gigante.",
+            "blocks": [
+              {
+                "name": "Time mixing",
+                "operation": "Transponer para operar a lo largo del tiempo; FC L→L compartida entre todos los canales, ReLU, dropout, conexión residual. Una sola capa temporal.",
+                "locators": [
+                  {
+                    "pdf_page": 2,
+                    "printed_page": "2",
+                    "figure": "1"
+                  },
+                  {
+                    "pdf_page": 7,
+                    "printed_page": "7",
+                    "section": "4.1"
+                  },
+                  {
+                    "pdf_page": 19,
+                    "printed_page": "19",
+                    "section": "B.3.1",
+                    "equation": "5"
+                  }
+                ]
+              },
+              {
+                "name": "Feature mixing",
+                "operation": "MLP de dos capas C→H→C aplicada a cada instante y compartida entre instantes: FC, ReLU, dropout, FC, dropout y conexión residual. H es hiperparámetro; si cambia el ancho de salida, el residual también tiene proyección lineal.",
+                "locators": [
+                  {
+                    "pdf_page": 2,
+                    "printed_page": "2",
+                    "figure": "1"
+                  },
+                  {
+                    "pdf_page": 7,
+                    "printed_page": "7",
+                    "section": "4.1"
+                  },
+                  {
+                    "pdf_page": 19,
+                    "printed_page": "19",
+                    "section": "B.3.1"
+                  },
+                  {
+                    "pdf_page": 20,
+                    "printed_page": "20",
+                    "section": "B.3.2"
+                  }
+                ]
+              },
+              {
+                "name": "Normalization",
+                "operation": "Normalización 2D que comprende tiempo y canales. Base LTSF: batch normalization antes de cada subbloque residual (pre-normalization). Ext/M5: layer normalization después de sumar el residual (post-normalization). Separada de global scaling y RevIN.",
+                "locators": [
+                  {
+                    "pdf_page": 2,
+                    "printed_page": "2",
+                    "figure": "1"
+                  },
+                  {
+                    "pdf_page": 8,
+                    "printed_page": "8",
+                    "section": "4.1"
+                  },
+                  {
+                    "pdf_page": 18,
+                    "printed_page": "18",
+                    "section": "B.1–B.2",
+                    "figure": "6"
+                  },
+                  {
+                    "pdf_page": 20,
+                    "printed_page": "20",
+                    "section": "B.3.2"
+                  }
+                ]
+              },
+              {
+                "name": "Temporal projection",
+                "operation": "FC compartida por canales, L→T, posterior a los K bloques en TSMixer básico. Ext la aplica al histórico antes de mezclar con las covariables futuras.",
+                "locators": [
+                  {
+                    "pdf_page": 2,
+                    "printed_page": "2",
+                    "figure": "1"
+                  },
+                  {
+                    "pdf_page": 7,
+                    "printed_page": "7",
+                    "section": "4.1"
+                  },
+                  {
+                    "pdf_page": 19,
+                    "printed_page": "19",
+                    "section": "B.3.1",
+                    "equation": "4"
+                  },
+                  {
+                    "pdf_page": 20,
+                    "printed_page": "20",
+                    "section": "B.3.2–B.3.3"
+                  }
+                ]
+              }
+            ],
+            "paper_math": [
+              {
+                "formula": "Yhat = AX ⊕ b; A∈R^(T×L), b∈R^(T×1)",
+                "meaning": "Modelo lineal motivador; ⊕ es suma por columnas aquí.",
+                "locators": [
+                  {
+                    "pdf_page": 5,
+                    "printed_page": "5",
+                    "section": "3",
+                    "equation": "1"
+                  }
+                ]
+              },
+              {
+                "formula": "TP_(L→T)(X)[:,i] = W1 X[:,i] + b1",
+                "meaning": "Proyección temporal compartida. El PDF imprime W1∈R^(L×T), incompatible con la multiplicación por columna; se conserva la operación L→T y se marca el error dimensional, sin corregir silenciosamente la fuente.",
+                "locators": [
+                  {
+                    "pdf_page": 19,
+                    "printed_page": "19",
+                    "section": "B.3.1",
+                    "equation": "4"
+                  }
+                ]
+              },
+              {
+                "formula": "TM(X)[:,i] = Norm(X[:,i] + Drop(σ(TP_(L→L)(X)[:,i])))",
+                "meaning": "Eq5 escrita con post-normalization; la base LTSF se modifica a pre-normalization según B.3.2/Fig1. No aplicar esta versión postnorm a la base sin esa salvedad.",
+                "locators": [
+                  {
+                    "pdf_page": 19,
+                    "printed_page": "19",
+                    "section": "B.3.1",
+                    "equation": "5"
+                  },
+                  {
+                    "pdf_page": 20,
+                    "printed_page": "20",
+                    "section": "B.3.2"
+                  },
+                  {
+                    "pdf_page": 2,
+                    "printed_page": "2",
+                    "figure": "1"
+                  }
+                ]
+              },
+              {
+                "formula": "U[j,:]=Drop(σ(W2 X[j,:]+b2)); FM_(C→C)(X)[j,:]=Norm(X[j,:]+Drop(W3 U[j,:]+b3))",
+                "meaning": "MLP residual por instante. Base LTSF usa W2:H×C, W3:C×H y pre-normalization; formula genérica del PDF muestra versión postnorm y anchos C×C.",
+                "locators": [
+                  {
+                    "pdf_page": 19,
+                    "printed_page": "19",
+                    "section": "B.3.1"
+                  },
+                  {
+                    "pdf_page": 20,
+                    "printed_page": "20",
+                    "section": "B.3.2"
+                  }
+                ]
+              },
+              {
+                "formula": "V=FR_(Cs→H)(Expand_L(S)); CFM_(C→H)(X,S)=FM_(C+H→H)(X⊕V)",
+                "meaning": "La condición estática se repite a lo largo del tiempo y se combina con canales; aquí ⊕ significa concatenación, no suma. FR es el símbolo impreso en el PDF.",
+                "locators": [
+                  {
+                    "pdf_page": 19,
+                    "printed_page": "19",
+                    "section": "B.3.1",
+                    "equation": "6–7"
+                  }
+                ]
+              },
+              {
+                "formula": "O1=Mix_(C→C)(X); Ok=Mix_(C→C)(O[k−1]), k=2…K; Yhat=TP_(L→T)(OK)",
+                "meaning": "Flujo básico exacto descrito por B.3.2.",
+                "locators": [
+                  {
+                    "pdf_page": 20,
+                    "printed_page": "20",
+                    "section": "B.3.2"
+                  }
+                ]
+              },
+              {
+                "formula": "X′=CFM_(C+Cx→H)(TL_(L→T)(X⊕Xhist),S); Z′=CFM_(Cz→H)(Z,S); O1=CMix_(2H→H)(X′⊕Z′,S); Ok=CMix_(H→H)(O[k−1],S); salida=lineal(OK)",
+                "meaning": "Ext: histórico con objetivo y covariables → horizonte T; futuras Z(T×Cz) y estáticas S; representaciones X′,Z′∈R^(T×H); salida escalar/canal o parámetros de distribución. TL/TR/FR/CFR son inconsistencias de notación impresas para las operaciones temporales/de canales previamente descritas.",
+                "locators": [
+                  {
+                    "pdf_page": 20,
+                    "printed_page": "20",
+                    "section": "B.3.3"
+                  },
+                  {
+                    "pdf_page": 9,
+                    "printed_page": "9",
+                    "figure": "4"
+                  }
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "name": "TMix-Only",
+                "difference": "Sólo time mixing con residual compartido por variates; modelo univariante, no intercambiable con TSMixer.",
+                "locators": [
+                  {
+                    "pdf_page": 7,
+                    "printed_page": "7",
+                    "figure": "3"
+                  }
+                ]
+              },
+              {
+                "name": "TSMixer-Ext",
+                "difference": "Alinea historia a T, proyecta covariables futuras y repite estáticas; concatena y usa conditional feature mixing/mixing; M5 usa layer/postnorm y salida de distribución binomial negativa.",
+                "locators": [
+                  {
+                    "pdf_page": 8,
+                    "printed_page": "8",
+                    "section": "4.2"
+                  },
+                  {
+                    "pdf_page": 9,
+                    "printed_page": "9",
+                    "figure": "4"
+                  },
+                  {
+                    "pdf_page": 18,
+                    "printed_page": "18",
+                    "section": "B.2",
+                    "figure": "6"
+                  },
+                  {
+                    "pdf_page": 20,
+                    "printed_page": "20",
+                    "section": "B.3.3"
+                  }
+                ]
+              }
+            ],
+            "theoretical_scope": {
+              "claim": "La motivación lineal cubre periodicidad y tendencia Lipschitz: si x=g+f, periodo P, suavidad K y L≥P+1, existe lineal con |yi−yhat_i|≤K(i+min(i,P)).",
+              "does_not_show": "No garantiza ese resultado para TSMixer completo, serie BTC de alta volatilidad ni entrada sin lags del objetivo. El propio artículo reconoce que patrones no periódicos/no suaves quedan fuera del análisis.",
+              "locators": [
+                {
+                  "pdf_page": 5,
+                  "printed_page": "5",
+                  "section": "3"
+                },
+                {
+                  "pdf_page": 6,
+                  "printed_page": "6",
+                  "section": "3",
+                  "equation": "Theorem3.1"
+                },
+                {
+                  "pdf_page": 17,
+                  "printed_page": "17",
+                  "section": "A"
+                }
+              ]
+            },
+            "source_shape_caveat": "§4.2 p8 dice RL×Ch para alineación, mientras Fig4 p9/B.3.3 p20 y sus fórmulas dan RT×H. El flujo detallado trabaja sobre horizonteT; se marca la discrepancia."
+          }
+        },
+        {
+          "kind": "pinned_author_code",
+          "repository": "google-research/google-research",
+          "commit": "d3a4bd8f0eceddda553e47085033b537935b283f",
+          "path": "tsmixer/tsmixer_basic/models/tsmixer.py",
+          "sha256": "84a7451f86b40b989f7ab7aa36368f24f39610ad62d7ce43e474a30a4e006159",
+          "locators": [
+            {
+              "token": "def res_block",
+              "lines": [
+                22
+              ]
+            },
+            {
+              "token": "def build_model",
+              "lines": [
+                50
+              ]
+            },
+            {
+              "token": "layers.Dense(pred_len)",
+              "lines": [
+                71
+              ]
+            }
+          ]
+        }
+      ],
+      "fixed_structural_parameters": {
+        "source_recipe": {
+          "kind": "paper_ETTh1_h96_selected_configuration",
+          "pdf_pages": [
+            21,
+            22,
+            23
+          ],
+          "table": "8",
+          "blocks": 6,
+          "feature_hidden": 512,
+          "activation": "ReLU",
+          "normalization": "pre_batchnorm",
+          "paper_dropout": 0.9,
+          "paper_learning_rate": 0.0001,
+          "caveat": "reported H512 outside printed ETTsearch8..64; preserve inconsistency",
+          "required_unreported_structural_fields": []
+        },
+        "D7_target_adaptation": {
+          "history_days": 7,
+          "channels": 5,
+          "horizon": 1,
+          "target": "sigma7, no target-history input",
+          "readout": "replace OHLCV forecast/denormalization with learned scalar sigma7 head; preserve central backbone and audited necessary dimensional changes",
+          "final_readout_shape": "derived from published backbone latent dimension, NOT assumed P0Linear90"
+        },
+        "final_execution_allowed_by_this_record": false
+      },
+      "runtime_validated_by_this_record": false,
+      "structural_HPO_policy": "keep source architecture/preset; resolve numericNR via pinnedofficialpreset, review D7/readout beforeHPO; do not decree P0width16 final",
+      "task_adapter": {
+        "inputs": "D7x5OHLCV only",
+        "extra_external_covariates": false,
+        "target_history_input": false,
+        "output": "scalar sigma7, original unannualized units after multiplying train-only positive y_scale",
+        "common_Top10_head": "P0 ONLY TimeMixer/PatchTST/iTransformer: flatten5x16+inputmean5+inputstd5 -> Linear90,1 Softplus; final head follows published backbone dimensions and explicit review",
+        "no_OHLCV_output_denormalization_as_target": true
+      },
+      "NAS_decision_scope": "nas_requiredfalse describes identified sourcebackbone, not blanketexemption for changed finaladapter. HPO/P1/finalfit blocked until casewise finalreview verifies faithful defined architecture or triggers conditionalNAS.",
+      "source_architecture_defined": true,
+      "pilot_recipe_is_exact_original": false,
+      "final_architecture_exception_verified": false,
+      "final_decision_status": "source_backbone_defined_but_final_task_adapter_exception_requires_source_recipe_and_code_review",
+      "fixed_source_recipe": {
+        "kind": "paper_ETTh1_h96_selected_configuration",
+        "pdf_pages": [
+          21,
+          22,
+          23
+        ],
+        "table": "8",
+        "blocks": 6,
+        "feature_hidden": 512,
+        "activation": "ReLU",
+        "normalization": "pre_batchnorm",
+        "paper_dropout": 0.9,
+        "paper_learning_rate": 0.0001,
+        "caveat": "reported H512 outside printed ETTsearch8..64; preserve inconsistency",
+        "required_unreported_structural_fields": []
+      }
+    },
+    {
+      "id": "TiDE",
+      "architecture_defined": true,
+      "nas_required": false,
+      "decision": "published_source_structure_identified_FINAL_exception_not_yet_verified; P0tiny_recipe_not_final_exemption",
+      "evidence": [
+        {
+          "kind": "original_fulltext",
+          "source_version": "2304.08424v5",
+          "filename": "2304.08424v5.pdf",
+          "sha256": "eee9d9e3248f262a137e6cf63920137263f3bbbe22cd8608e5eec77882af1999",
+          "source_url": "https://arxiv.org/abs/2304.08424v5",
+          "architecture_extraction": {
+            "original_task": "Global univariate/channel-independent forecaster, shared weights across all series. For series i, forecasts its own future y from its own y history plus known dynamic covariates and optional static attributes; does not jointly ingest histories of the other series.",
+            "original_input": "y^(i)_[1:L], x^(i)_[1:L+H] in R^r per time, optional static a^(i)",
+            "original_output": "yhat^(i)_[L+1:L+H] in R^H",
+            "locators": [
+              {
+                "pdf_page": 3,
+                "printed_page": "3",
+                "section": "3.2"
+              },
+              {
+                "pdf_page": 4,
+                "printed_page": "4",
+                "section": "3.2",
+                "equation": 1
+              },
+              {
+                "pdf_page": 4,
+                "printed_page": "4",
+                "section": "4"
+              }
+            ],
+            "flow": [
+              {
+                "block": "ResidualBlock",
+                "operation": "One hidden dense layer with ReLU; dense linear output layer with dropout; add fully linear skip connection; optional output layer normalization. A compact equivalent transcription is RB(z)=LN_optional(Wskip z+bskip+Dropout(W2 ReLU(W1 z+b1)+b2)). This formula is an explicit structural transcription, not an equation printed verbatim.",
+                "locators": [
+                  {
+                    "pdf_page": 4,
+                    "printed_page": "4",
+                    "section": "4"
+                  },
+                  {
+                    "pdf_page": 5,
+                    "printed_page": "5",
+                    "figure": 1
+                  }
+                ],
+                "math_status": "architecture transcription; paper description and diagram"
+              },
+              {
+                "block": "Per-time feature projection",
+                "operation": "For t in look-back AND horizon, xtilde_t=ResidualBlock(x_t), reducing r to rtilde (temporalWidth); avoids flattening (L+H)r covariates directly.",
+                "math": "xtilde_t^(i)=ResidualBlock(x_t^(i))",
+                "locators": [
+                  {
+                    "pdf_page": 4,
+                    "printed_page": "4",
+                    "section": "4.1",
+                    "equation": 3
+                  },
+                  {
+                    "pdf_page": 5,
+                    "printed_page": "5",
+                    "section": "4.1"
+                  }
+                ]
+              },
+              {
+                "block": "Dense encoder",
+                "operation": "Stack and flatten all projected past/future covariates; concatenate with y history and static attributes; apply n_e residual blocks at hiddenSize.",
+                "math": "e^(i)=Encoder([y^(i)_[1:L]; vec(xtilde^(i)_[1:L+H]); a^(i)])",
+                "locators": [
+                  {
+                    "pdf_page": 5,
+                    "printed_page": "5",
+                    "section": "4.1",
+                    "equation": 4
+                  },
+                  {
+                    "pdf_page": 5,
+                    "printed_page": "5",
+                    "figure": 1
+                  }
+                ]
+              },
+              {
+                "block": "Dense decoder",
+                "operation": "n_d residual blocks; final output size H*p, p=decoderOutputDim; reshape to D in R^(p×H); column d_t belongs to horizon time t.",
+                "math": "g^(i)=Decoder(e^(i)) in R^(pH); D^(i)=Reshape(g^(i)) in R^(p×H)",
+                "locators": [
+                  {
+                    "pdf_page": 6,
+                    "printed_page": "6",
+                    "section": "4.2"
+                  }
+                ]
+              },
+              {
+                "block": "Temporal decoder",
+                "operation": "At each horizon time t, residual block with output size 1 takes [d_t;xtilde_(L+t)]; the direct future-covariate highway is a designed component.",
+                "math": "yhat_(L+t)^(i)=TemporalDecoder([d_t^(i);xtilde_(L+t)^(i)]) for t in [H] (before addition of global residual)",
+                "locators": [
+                  {
+                    "pdf_page": 6,
+                    "printed_page": "6",
+                    "section": "4.2"
+                  },
+                  {
+                    "pdf_page": 5,
+                    "printed_page": "5",
+                    "figure": 1
+                  }
+                ]
+              },
+              {
+                "block": "Global linear residual",
+                "operation": "Add a direct linear map y_[1:L]→R^H to temporal-decoder predictions. This branch permits a purely linear forecaster as a subclass.",
+                "math": "yhat_final=yhat_temporal+Linear(y_[1:L])",
+                "locators": [
+                  {
+                    "pdf_page": 6,
+                    "printed_page": "6",
+                    "section": "4.2"
+                  },
+                  {
+                    "pdf_page": 5,
+                    "printed_page": "5",
+                    "figure": 1
+                  }
+                ]
+              }
+            ],
+            "normalization_in_architecture": "Residual-block LayerNorm and optional RevIN are separate choices. RevIN is tuned on/off per dataset (B.3); paper does not spell out its full normalize/denormalize equations. ETTh1 selected revIn=True.",
+            "normalization_locators": [
+              {
+                "pdf_page": 20,
+                "printed_page": "20",
+                "section": "B.3"
+              },
+              {
+                "pdf_page": 21,
+                "printed_page": "21",
+                "section": "B.3",
+                "table": 8
+              }
+            ],
+            "no_attention_convolution_recurrence": {
+              "reported": true,
+              "locators": [
+                {
+                  "pdf_page": 2,
+                  "printed_page": "2",
+                  "section": "1"
+                }
+              ]
+            },
+            "theory": {
+              "scope": "Only a simplified linear analogue, not a theorem for nonlinear TiDE or Bitcoin. LDS: h_(t+1)=Ah_t+Bx_t+eta_t, y_t=Ch_t+Dx_t+xi_t; h0=0, bounded x/y and B/C/D, positive semidefinite A with 0≼A≼gamma I, gamma<1. With k=Theta(log(1/epsilon)) and iid rollout examples, linear predictor using x_(t-k:t) and y_(t-1) achieves excess loss <=epsilon+O(log(1/epsilon)*sqrt(log(1/delta))/sqrt(N)).",
+              "locators": [
+                {
+                  "pdf_page": 15,
+                  "printed_page": "15",
+                  "section": "A.1",
+                  "equation": "5–7 / Proposition A.3"
+                },
+                {
+                  "pdf_page": 16,
+                  "printed_page": "16",
+                  "section": "A.1 / Proposition A.4"
+                },
+                {
+                  "pdf_page": 17,
+                  "printed_page": "17",
+                  "section": "A.1 / Lemma A.5"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "kind": "pinned_author_code",
+          "repository": "google-research/google-research",
+          "commit": "d3a4bd8f0eceddda553e47085033b537935b283f",
+          "path": "tide/models.py",
+          "sha256": "ad8fd8d498809deeed9c847a169cada42134cbd0351b03e750706132a5d151c7",
+          "locators": [
+            {
+              "token": "class MLPResidual",
+              "lines": [
+                29
+              ]
+            },
+            {
+              "token": "class TideModel",
+              "lines": [
+                84
+              ]
+            },
+            {
+              "token": "future_features = inputs[1]",
+              "lines": [
+                175
+              ]
+            },
+            {
+              "token": "residual_out = self.linear(past_ts)",
+              "lines": [
+                203
+              ]
+            }
+          ]
+        }
+      ],
+      "fixed_structural_parameters": {
+        "source_recipe": {
+          "kind": "paper_ETTh1_selected_configuration",
+          "pdf_pages": [
+            20,
+            21
+          ],
+          "tables": [
+            "7",
+            "8"
+          ],
+          "hidden_size": 256,
+          "encoder_layers": 2,
+          "decoder_layers": 2,
+          "decoder_output_dim": 8,
+          "temporal_decoder_hidden": 128,
+          "temporal_width": 4,
+          "layer_norm": true,
+          "RevIN": true,
+          "paper_dropout": 0.3,
+          "paper_learning_rate": 3.82e-05,
+          "required_unreported_structural_fields": []
+        },
+        "D7_target_adaptation": {
+          "history_days": 7,
+          "channels": 5,
+          "horizon": 1,
+          "target": "sigma7, no target-history input",
+          "readout": "replace OHLCV forecast/denormalization with learned scalar sigma7 head; preserve central backbone and audited necessary dimensional changes",
+          "final_readout_shape": "derived from published backbone latent dimension, NOT assumed P0Linear90"
+        },
+        "final_execution_allowed_by_this_record": false
+      },
+      "runtime_validated_by_this_record": false,
+      "structural_HPO_policy": "keep source architecture/preset; resolve numericNR via pinnedofficialpreset, review D7/readout beforeHPO; do not decree P0width16 final",
+      "task_adapter": {
+        "inputs": "D7x5OHLCV only",
+        "extra_external_covariates": false,
+        "target_history_input": false,
+        "output": "scalar sigma7, original unannualized units after multiplying train-only positive y_scale",
+        "common_Top10_head": "P0 ONLY TimeMixer/PatchTST/iTransformer: flatten5x16+inputmean5+inputstd5 -> Linear90,1 Softplus; final head follows published backbone dimensions and explicit review",
+        "no_OHLCV_output_denormalization_as_target": true
+      },
+      "NAS_decision_scope": "nas_requiredfalse describes identified sourcebackbone, not blanketexemption for changed finaladapter. HPO/P1/finalfit blocked until casewise finalreview verifies faithful defined architecture or triggers conditionalNAS.",
+      "source_architecture_defined": true,
+      "pilot_recipe_is_exact_original": false,
+      "final_architecture_exception_verified": false,
+      "final_decision_status": "source_backbone_defined_but_final_task_adapter_exception_requires_source_recipe_and_code_review",
+      "fixed_source_recipe": {
+        "kind": "paper_ETTh1_selected_configuration",
+        "pdf_pages": [
+          20,
+          21
+        ],
+        "tables": [
+          "7",
+          "8"
+        ],
+        "hidden_size": 256,
+        "encoder_layers": 2,
+        "decoder_layers": 2,
+        "decoder_output_dim": 8,
+        "temporal_decoder_hidden": 128,
+        "temporal_width": 4,
+        "layer_norm": true,
+        "RevIN": true,
+        "paper_dropout": 0.3,
+        "paper_learning_rate": 3.82e-05,
+        "required_unreported_structural_fields": []
+      }
+    },
+    {
+      "id": "TimeMixer",
+      "architecture_defined": true,
+      "nas_required": false,
+      "decision": "published_source_structure_identified_FINAL_exception_not_yet_verified; P0tiny_recipe_not_final_exemption",
+      "evidence": [
+        {
+          "kind": "original_fulltext",
+          "source_version": "2405.14616v1",
+          "filename": "2405.14616v1.pdf",
+          "sha256": "a599b338e44af70d8e9c87be3c5417bde7864b2c92074e1346703f3e2b641e3d",
+          "source_url": "https://arxiv.org/abs/2405.14616v1",
+          "architecture_extraction": {
+            "task": "Regresión directa de una serie futura F×C a partir del pasado P×C; predice las mismas C variables del problema original, no una volatilidad financiera escalar.",
+            "diagram_locator": {
+              "pdf_page": 4,
+              "section": "§3.1",
+              "figure": "1"
+            },
+            "flow": "x[P,C] → average pooling sucesivo por factor2 → X={x0,…,xM} → embedding a d_model → L bloques PDM → M+1 predictores por escala → suma de predicciones [F,C].",
+            "blocks": [
+              {
+                "name": "Piramide multiescala",
+                "description": "x_m tiene longitud floor(P/2^m), m=0,…,M; x0=x. M cuenta descensos y produce M+1 niveles, aunque la prosa lo llama número de escalas. Average pooling; embedding de cada serie a d_model.",
+                "locator": {
+                  "pdf_page": 3,
+                  "section": "§3.1"
+                }
+              },
+              {
+                "name": "Past-Decomposable-Mixing (PDM)",
+                "description": "Por escala, descomposición estacional/tendencia con media móvil de Autoformer. Mezcla estacional bottom-up (fina→gruesa), tendencia top-down (gruesa→fina); suma de ambas y feed-forward de dos lineales+GELU con residual del bloque.",
+                "locator": {
+                  "pdf_page": 4,
+                  "section": "§3.2",
+                  "equations": [
+                    "1",
+                    "3"
+                  ],
+                  "figure": "1"
+                }
+              },
+              {
+                "name": "Seasonal Mixing",
+                "description": "s_m ← s_m + BottomUp(s_(m−1)), m=1→M. Dos lineales temporales con GELU cambian floor(P/2^(m−1))→floor(P/2^m).",
+                "locator": {
+                  "pdf_page": 5,
+                  "section": "§3.2",
+                  "equation": "4",
+                  "figure": "2a"
+                }
+              },
+              {
+                "name": "Trend Mixing",
+                "description": "t_m ← t_m + TopDown(t_(m+1)), m=M−1→0. Dos lineales temporales+GELU cambian floor(P/2^(m+1))→floor(P/2^m).",
+                "locator": {
+                  "pdf_page": 5,
+                  "section": "§3.2",
+                  "equation": "5",
+                  "figure": "2b"
+                }
+              },
+              {
+                "name": "Future-Multipredictor-Mixing (FMM)",
+                "description": "Cada predictor proyecta linealmente la longitud de su escala a F y luego d_model a C; resultado final suma de M+1 salidas. Pérdida aplicada a la suma, no una pérdida separada por predictor.",
+                "locator": {
+                  "pdf_page": 5,
+                  "section": "§3.3",
+                  "equation": "6",
+                  "figure": "2c"
+                },
+                "additional_locator": {
+                  "pdf_page": 20,
+                  "section": "Apéndice F.4",
+                  "table": "20"
+                }
+              }
+            ],
+            "equations": [
+              {
+                "formula": "X^l=PDM(X^(l−1)); xhat=FMM(X^L)",
+                "locator": {
+                  "pdf_page": 4,
+                  "section": "§3.1",
+                  "equations": [
+                    "1",
+                    "2"
+                  ]
+                }
+              },
+              {
+                "formula": "(s_m,t_m)=SeriesDecomp(x_m); X^l=X^(l−1)+FF(SMix({s_m})+TMix({t_m}))",
+                "locator": {
+                  "pdf_page": 4,
+                  "section": "§3.2",
+                  "equation": "3"
+                }
+              },
+              {
+                "formula": "xhat_m=Predictor_m(x_m^L); xhat=sum_(m=0)^M xhat_m",
+                "locator": {
+                  "pdf_page": 5,
+                  "section": "§3.3",
+                  "equation": "6"
+                }
+              }
+            ],
+            "default_scale_configs": [
+              {
+                "task": "long-term",
+                "M": 3,
+                "number_of_levels": 4,
+                "input_length": 96,
+                "lengths": [
+                  96,
+                  48,
+                  24,
+                  12
+                ],
+                "pdm_layers": 2,
+                "locator": {
+                  "pdf_page": 14,
+                  "section": "Apéndice A",
+                  "table": "7"
+                }
+              },
+              {
+                "task": "PEMS short-term",
+                "M": 1,
+                "number_of_levels": 2,
+                "input_length": 96,
+                "lengths": [
+                  96,
+                  48
+                ],
+                "pdm_layers": 5,
+                "locator": {
+                  "pdf_page": 14,
+                  "section": "Apéndice A",
+                  "table": "7"
+                }
+              },
+              {
+                "task": "M4 short-term",
+                "M": 1,
+                "number_of_levels": 2,
+                "input_length": "No único contexto global tabulado; Fig.18 muestra input36→predict18.",
+                "pdm_layers": 4,
+                "locator": {
+                  "pdf_page": 14,
+                  "section": "Apéndice A",
+                  "table": "7"
+                },
+                "example_locator": {
+                  "pdf_page": 28,
+                  "section": "Apéndice I",
+                  "figure": "18"
+                }
+              }
+            ],
+            "variations_reported": [
+              {
+                "variation": "DFT high/low peor que descomposición oficial; DFT season-trend supera ligeramente media móvil",
+                "locator": {
+                  "pdf_page": 20,
+                  "section": "Apéndice F.2",
+                  "table": "18"
+                }
+              },
+              {
+                "variation": "Convolución1D stride2 ligeramente mejor que average pooling; se conserva pooling por sencillez/eficiencia",
+                "locator": {
+                  "pdf_page": 20,
+                  "section": "Apéndice F.3",
+                  "table": "19"
+                }
+              },
+              {
+                "variation": "Ensamble promedio y suma casi iguales al aprender escala constante",
+                "locator": {
+                  "pdf_page": 20,
+                  "section": "Apéndice F.4",
+                  "table": "20"
+                }
+              },
+              {
+                "variation": "M=3 en PEMS04 e input336 en ETTm1 como ablaciones adicionales; no mezclar con configuración unificada",
+                "locator": {
+                  "pdf_page": 21,
+                  "section": "Apéndice F.5",
+                  "tables": [
+                    "21",
+                    "22"
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "kind": "pinned_author_code",
+          "repository": "kwuking/TimeMixer",
+          "commit": "e24610583b36fdd8c76cc17a8df4e65759a5f460",
+          "path": "models/TimeMixer.py",
+          "sha256": "817d62f4aac54c8566e560f6d3785856e31c8ee51460279ee3d0a4823f11d4be",
+          "locators": [
+            {
+              "token": "class MultiScaleSeasonMixing",
+              "lines": [
+                28
+              ]
+            },
+            {
+              "token": "class MultiScaleTrendMixing",
+              "lines": [
+                72
+              ]
+            },
+            {
+              "token": "class PastDecomposableMixing",
+              "lines": [
+                117
+              ]
+            },
+            {
+              "token": "def forecast",
+              "lines": [
+                331
+              ]
+            }
+          ]
+        }
+      ],
+      "fixed_structural_parameters": {
+        "source_recipe": {
+          "kind": "paper_ETTh1_Table7_plus_original_pinned_unify_preset",
+          "pdf_pages": [
+            14
+          ],
+          "table": "7",
+          "d_model": 16,
+          "d_ff": 32,
+          "e_layers": 2,
+          "down_sampling_layers": 3,
+          "down_sampling_window": 2,
+          "down_sampling_method": "avg",
+          "moving_avg": 25,
+          "channel_independence": 1,
+          "use_norm": 1,
+          "code_evidence": "experiments/e2_paper_guide_20261106/design.json:model_args and original TimeMixer_ETTh1_unify.sh; d_ff from code not paper",
+          "required_unreported_structural_fields": []
+        },
+        "D7_target_adaptation": {
+          "history_days": 7,
+          "channels": 5,
+          "horizon": 1,
+          "target": "sigma7, no target-history input",
+          "readout": "replace OHLCV forecast/denormalization with learned scalar sigma7 head; preserve central backbone and audited necessary dimensional changes",
+          "final_readout_shape": "derived from published backbone latent dimension, NOT assumed P0Linear90",
+          "necessary_change": "sourceM3 creates7,3,1,0: invalid. Maxvalidpool2M2 gives7,3,1; P0M1 gives7,3. Register/test exact finalchoice; preservePDM/FMM andmovingavg25."
+        },
+        "final_execution_allowed_by_this_record": false
+      },
+      "runtime_validated_by_this_record": false,
+      "structural_HPO_policy": "keep source architecture/preset; resolve numericNR via pinnedofficialpreset, review D7/readout beforeHPO; do not decree P0width16 final",
+      "task_adapter": {
+        "inputs": "D7x5OHLCV only",
+        "extra_external_covariates": false,
+        "target_history_input": false,
+        "output": "scalar sigma7, original unannualized units after multiplying train-only positive y_scale",
+        "common_Top10_head": "P0 ONLY TimeMixer/PatchTST/iTransformer: flatten5x16+inputmean5+inputstd5 -> Linear90,1 Softplus; final head follows published backbone dimensions and explicit review",
+        "no_OHLCV_output_denormalization_as_target": true
+      },
+      "NAS_decision_scope": "nas_requiredfalse describes identified sourcebackbone, not blanketexemption for changed finaladapter. HPO/P1/finalfit blocked until casewise finalreview verifies faithful defined architecture or triggers conditionalNAS.",
+      "source_architecture_defined": true,
+      "pilot_recipe_is_exact_original": false,
+      "final_architecture_exception_verified": false,
+      "final_decision_status": "source_backbone_defined_but_final_task_adapter_exception_requires_source_recipe_and_code_review",
+      "fixed_source_recipe": {
+        "kind": "paper_ETTh1_Table7_plus_original_pinned_unify_preset",
+        "pdf_pages": [
+          14
+        ],
+        "table": "7",
+        "d_model": 16,
+        "d_ff": 32,
+        "e_layers": 2,
+        "down_sampling_layers": 3,
+        "down_sampling_window": 2,
+        "down_sampling_method": "avg",
+        "moving_avg": 25,
+        "channel_independence": 1,
+        "use_norm": 1,
+        "code_evidence": "experiments/e2_paper_guide_20261106/design.json:model_args and original TimeMixer_ETTh1_unify.sh; d_ff from code not paper",
+        "required_unreported_structural_fields": []
+      },
+      "P0_fixed_recipe": {
+        "d_model": 16,
+        "d_ff": 32,
+        "e_layers": 2,
+        "channel_independence": 1,
+        "down_sampling_layers": 1,
+        "down_sampling_window": 2,
+        "down_sampling_method": "avg",
+        "scale_lengths": [
+          7,
+          3
+        ],
+        "moving_avg": 25,
+        "use_norm": 1,
+        "mixing": "bottom-up seasonal, top-down trend, FMM sum",
+        "latent_readout": "five16dimensional variate tokens after FMM sum before OHLCV output/denormalization"
+      }
+    },
+    {
+      "id": "TimesNet",
+      "architecture_defined": true,
+      "nas_required": false,
+      "decision": "published_source_structure_identified_FINAL_exception_not_yet_verified; P0tiny_recipe_not_final_exemption",
+      "evidence": [
+        {
+          "kind": "original_fulltext",
+          "source_version": "2210.02186v3",
+          "filename": "2210.02186v3.pdf",
+          "sha256": "a45cb3d35c7b4db7091439ee714fd43dd6cd9e8f2fb1867f5463ae0433aebbd1",
+          "source_url": "https://arxiv.org/abs/2210.02186v3",
+          "architecture_extraction": [
+            {
+              "value": "Backbone de variación temporal 2D; transforma series 1D a múltiples rejillas según períodos. Las columnas representan intraperíodo y filas interperíodo. El componente central usa kernels 2D compartidos de Inception; clasificarlo simplemente como CNN1D pierde el mecanismo.",
+              "locators": [
+                {
+                  "pdf_page": 2,
+                  "printed_page": "2",
+                  "section": "1",
+                  "figure": "1"
+                },
+                {
+                  "pdf_page": 4,
+                  "printed_page": "4",
+                  "section": "3.1",
+                  "equation": "3"
+                },
+                {
+                  "pdf_page": 5,
+                  "printed_page": "5",
+                  "section": "3.2",
+                  "equation": "5",
+                  "figure": "3"
+                }
+              ]
+            },
+            {
+              "value": "Embed: X^(0)_1D=Embed(X_1D), con X∈R^(T×C) y embedding R^(T×d_model). TimesBlocks apilados con residual X^(l)=TimesBlock(X^(l-1))+X^(l-1).",
+              "locators": [
+                {
+                  "pdf_page": 4,
+                  "printed_page": "4",
+                  "section": "3.2",
+                  "equation": "4"
+                }
+              ]
+            },
+            {
+              "value": "FFT→amplitud→promedio entre C→selección top-k de frecuencias NO DC f∈{1,…,floor(T/2)}→períodos p_i=ceil(T/f_i) en el paper. El código oficial posterior inspeccionado usa división entera floor(T/f_i); no presentar ambas convenciones como idénticas.",
+              "locators": [
+                {
+                  "pdf_page": 3,
+                  "printed_page": "3",
+                  "section": "3.1",
+                  "equation": "1"
+                },
+                {
+                  "pdf_page": 4,
+                  "printed_page": "4",
+                  "section": "3.1",
+                  "equation": "2"
+                }
+              ]
+            },
+            {
+              "value": "Para cada período: padding con ceros→reshape p_i×f_i×d_model→Inception2D compartido→reshape a 1D y truncado a T. El peso de cada rama es Softmax de amplitudes; suma ponderada, más residual. Estima períodos de los features de cada bloque, no sólo de la serie cruda.",
+              "locators": [
+                {
+                  "pdf_page": 4,
+                  "printed_page": "4",
+                  "section": "3.1–3.2",
+                  "equation": "3–4"
+                },
+                {
+                  "pdf_page": 5,
+                  "printed_page": "5",
+                  "section": "3.2",
+                  "equation": "5–6"
+                },
+                {
+                  "pdf_page": 15,
+                  "printed_page": "15",
+                  "section": "Appendix C",
+                  "table": "9"
+                }
+              ]
+            },
+            {
+              "value": "En forecasting se usa MLP temporal para inicializar los futuros y Series Stationarization de Non-stationary Transformer; entrada y proyección final se mantienen iguales entre backbones para comparación.",
+              "locators": [
+                {
+                  "pdf_page": 12,
+                  "printed_page": "12",
+                  "section": "Appendix A"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "pinned_author_code",
+          "repository": "thuml/Time-Series-Library",
+          "commit": "4e938a1767106324dd753b2a44832bf870a0252e",
+          "path": "models/TimesNet.py",
+          "sha256": "f64c4bed1fd7347090044a0163bd4209c9f9ec1c1b19ceff47842df36b64bba7",
+          "locators": [
+            {
+              "token": "def FFT_for_Period",
+              "lines": [
+                9
+              ]
+            },
+            {
+              "token": "class TimesBlock",
+              "lines": [
+                21
+              ]
+            },
+            {
+              "token": "class Model",
+              "lines": [
+                71
+              ]
+            },
+            {
+              "token": "def forecast",
+              "lines": [
+                103
+              ]
+            }
+          ]
+        }
+      ],
+      "fixed_structural_parameters": {
+        "source_recipe": {
+          "kind": "paper_long_term_Table7",
+          "pdf_pages": [
+            14
+          ],
+          "table": "7",
+          "e_layers": 2,
+          "d_model_rule": "min(max(2^ceil(log2(C)),32),512)",
+          "d_model_for_C5": 32,
+          "top_k": 5,
+          "required_unreported_structural_fields": [
+            "d_ff/originalversionpreset",
+            "num_kernels/originalversionpreset"
+          ],
+          "caveat": "laterTSLETTh1 d16/ff32 differs frompaperdmin32"
+        },
+        "D7_target_adaptation": {
+          "history_days": 7,
+          "channels": 5,
+          "horizon": 1,
+          "target": "sigma7, no target-history input",
+          "readout": "replace OHLCV forecast/denormalization with learned scalar sigma7 head; preserve central backbone and audited necessary dimensional changes",
+          "final_readout_shape": "derived from published backbone latent dimension, NOT assumed P0Linear90",
+          "necessary_change": "L7 has3nonDCfreqs: source topk5 needs registered bound. Fix floor-vs-ceil code convention and batch1periodselection."
+        },
+        "final_execution_allowed_by_this_record": false
+      },
+      "runtime_validated_by_this_record": false,
+      "structural_HPO_policy": "keep source architecture/preset; resolve numericNR via pinnedofficialpreset, review D7/readout beforeHPO; do not decree P0width16 final",
+      "task_adapter": {
+        "inputs": "D7x5OHLCV only",
+        "extra_external_covariates": false,
+        "target_history_input": false,
+        "output": "scalar sigma7, original unannualized units after multiplying train-only positive y_scale",
+        "common_Top10_head": "P0 ONLY TimeMixer/PatchTST/iTransformer: flatten5x16+inputmean5+inputstd5 -> Linear90,1 Softplus; final head follows published backbone dimensions and explicit review",
+        "no_OHLCV_output_denormalization_as_target": true
+      },
+      "NAS_decision_scope": "nas_requiredfalse describes identified sourcebackbone, not blanketexemption for changed finaladapter. HPO/P1/finalfit blocked until casewise finalreview verifies faithful defined architecture or triggers conditionalNAS.",
+      "source_architecture_defined": true,
+      "pilot_recipe_is_exact_original": false,
+      "final_architecture_exception_verified": false,
+      "final_decision_status": "source_backbone_defined_but_final_task_adapter_exception_requires_source_recipe_and_code_review",
+      "fixed_source_recipe": {
+        "kind": "paper_long_term_Table7",
+        "pdf_pages": [
+          14
+        ],
+        "table": "7",
+        "e_layers": 2,
+        "d_model_rule": "min(max(2^ceil(log2(C)),32),512)",
+        "d_model_for_C5": 32,
+        "top_k": 5,
+        "required_unreported_structural_fields": [
+          "d_ff/originalversionpreset",
+          "num_kernels/originalversionpreset"
+        ],
+        "caveat": "laterTSLETTh1 d16/ff32 differs frompaperdmin32"
+      }
+    },
+    {
+      "id": "PatchTST",
+      "architecture_defined": true,
+      "nas_required": false,
+      "decision": "published_source_structure_identified_FINAL_exception_not_yet_verified; P0tiny_recipe_not_final_exemption",
+      "evidence": [
+        {
+          "kind": "original_fulltext",
+          "source_version": "2211.14730v2",
+          "filename": "2211.14730v2.pdf",
+          "sha256": "ffd4021d25b4959883242f256b0fe4ec42f477f66db78c61bfacf7baa7848b0e",
+          "source_url": "https://arxiv.org/abs/2211.14730v2",
+          "architecture_extraction": {
+            "task": "Dada entrada L×M, predice los T pasos futuros de las mismas M variables; en benchmark multivariante no se limita a oil temperature.",
+            "diagram_locator": {
+              "pdf_page": 4,
+              "section": "§3.1",
+              "figure": "1"
+            },
+            "flow": "Separar M canales → normalización por ventana/canal → patches → proyección lineal+posición aprendida → Transformer encoder compartido entre canales procesados independientemente → flatten+head lineal a T por canal → invertir normalización de ese canal → concatenar M outputs.",
+            "blocks": [
+              {
+                "name": "Channel-independence",
+                "description": "Misma proyección/encoder compartidos; canales independientes en forward y mapas de atención propios. Implementación B×M×P×N→(B·M)×P×N; no son M modelos con pesos entrenados distintos.",
+                "locators": [
+                  {
+                    "pdf_page": 3,
+                    "section": "§3.1"
+                  },
+                  {
+                    "pdf_page": 14,
+                    "section": "ApéndiceA.1.5"
+                  }
+                ]
+              },
+              {
+                "name": "Instance norm",
+                "description": "Media cero y DE1 por instancia univariante antes del patching; repone media/DE de esa ventana al output del mismo canal. No equivale a un scaler global train-only.",
+                "locator": {
+                  "pdf_page": 5,
+                  "section": "§3.1"
+                },
+                "ablation_locator": {
+                  "pdf_page": 18,
+                  "section": "ApéndiceA.4.4",
+                  "table": "11"
+                }
+              },
+              {
+                "name": "Patching",
+                "description": "Patches temporales longitudP,strideS; N=floor((L−P)/S)+2, con padding de S repeticiones del último valor. Para el autosupervisado se especifican42 patches regulares no solapados deP12 conL512; no imponer sin matiz la fórmula padded del supervisado a ese régimen.",
+                "locator": {
+                  "pdf_page": 4,
+                  "section": "§3.1"
+                },
+                "selfsup_locator": {
+                  "pdf_page": 6,
+                  "section": "§4.2"
+                }
+              },
+              {
+                "name": "Embedding",
+                "description": "x_d^(i)=W_p x_p^(i)+W_pos; x_p[P,N],W_p[D,P],posición aprendidaW_pos[D,N].",
+                "locator": {
+                  "pdf_page": 4,
+                  "section": "§3.1"
+                }
+              },
+              {
+                "name": "Transformer encoder",
+                "description": "Vanilla multihead scaled dot-product attention; BatchNorm (descripción explícita), FFN dos lineales conGELU y residuales. Figura dice Add&Norm; no etiquetarlo automáticamente LayerNorm.",
+                "locators": [
+                  {
+                    "pdf_page": 4,
+                    "section": "§3.1",
+                    "figure": "1b"
+                  },
+                  {
+                    "pdf_page": 5,
+                    "section": "§3.1"
+                  }
+                ]
+              },
+              {
+                "name": "Supervised output head",
+                "description": "Flatten z[D,N] y head lineal a T valores del mismo canal; promedio de la pérdida MSE entre canales.",
+                "locator": {
+                  "pdf_page": 5,
+                  "section": "§3.1"
+                }
+              },
+              {
+                "name": "Self-supervised masked reconstruction",
+                "description": "Sustituye forecasting head por linealD→P por patch; enmascara patches enteros a cero seleccionados uniforme aleatoriamente; MSE reconstruye sólo patches enmascarados. Red compartida permite distinto número de canales entre pretraining y downstream.",
+                "locator": {
+                  "pdf_page": 5,
+                  "section": "§3.2",
+                  "figure": "1c"
+                }
+              }
+            ],
+            "equations": [
+              {
+                "formula": "N=floor((L−P)/S)+2 (con padding de S repeticiones del último valor)",
+                "locator": {
+                  "pdf_page": 4,
+                  "section": "§3.1"
+                }
+              },
+              {
+                "formula": "x_d^(i)=W_p x_p^(i)+W_pos",
+                "locator": {
+                  "pdf_page": 4,
+                  "section": "§3.1"
+                }
+              },
+              {
+                "formula": "Attention(Q,K,V)=Softmax(QK^T/sqrt(d_k))V",
+                "locator": {
+                  "pdf_page": 5,
+                  "section": "§3.1"
+                }
+              },
+              {
+                "formula": "Loss=E_x[(1/M)sum_i ||xhat_(L+1:L+T)^(i)−x_(L+1:L+T)^(i)||_2^2]",
+                "locator": {
+                  "pdf_page": 5,
+                  "section": "§3.1"
+                }
+              }
+            ],
+            "default_hyperparameters": {
+              "encoder_layers": 3,
+              "heads": 16,
+              "d_model": 128,
+              "ff_hidden": 256,
+              "activation": "GELU",
+              "encoder_dropout": 0.2,
+              "small_dataset_override": {
+                "datasets": [
+                  "ILI",
+                  "ETTh1",
+                  "ETTh2"
+                ],
+                "heads": 4,
+                "d_model": 16,
+                "ff_hidden": 128
+              },
+              "locator": {
+                "pdf_page": 14,
+                "section": "ApéndiceA.1.4"
+              }
+            },
+            "variants": [
+              {
+                "name": "PatchTST/64 supervisado",
+                "context": 512,
+                "patch_length": 16,
+                "stride": 8,
+                "patch_count": 64,
+                "locators": [
+                  {
+                    "pdf_page": 6,
+                    "section": "§4.1"
+                  },
+                  {
+                    "pdf_page": 7,
+                    "section": "§4.1",
+                    "table": "3"
+                  }
+                ]
+              },
+              {
+                "name": "PatchTST/42 supervisado",
+                "context": 336,
+                "patch_length": 16,
+                "stride": 8,
+                "patch_count": 42,
+                "locators": [
+                  {
+                    "pdf_page": 6,
+                    "section": "§4.1"
+                  },
+                  {
+                    "pdf_page": 7,
+                    "section": "§4.1",
+                    "table": "3"
+                  }
+                ],
+                "ili_exception": "Figura3 PDFp14 muestraL104 paraILI /42; no aplicar L336 sin matiz aILI."
+              },
+              {
+                "name": "PatchTST autosupervisado",
+                "context": 512,
+                "patch_length": 12,
+                "patch_count": 42,
+                "overlap": false,
+                "mask_ratio": 0.4,
+                "segmentation_caution": "El texto declara42 patches; manejo exacto del remanente/padding autosupervisado no detallado. El /42 de esta tabla no implicaL336,P16,S8.",
+                "pretraining_epochs": 100,
+                "linear_probing_epochs": 20,
+                "fine_tuning": {
+                  "head_only_epochs": 10,
+                  "full_network_epochs": 20
+                },
+                "locators": [
+                  {
+                    "pdf_page": 5,
+                    "section": "§3.2"
+                  },
+                  {
+                    "pdf_page": 6,
+                    "section": "§4.2"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "pinned_author_code",
+          "repository": "yuqinie98/PatchTST",
+          "commit": "204c21efe0b39603ad6e2ca640ef5896646ab1a9",
+          "path": "PatchTST_supervised/models/PatchTST.py",
+          "sha256": "49d8bb865e1226d6338842f4b33c4bc6992cefb048dc2a4a5a8c410ca708586b",
+          "locators": [
+            {
+              "token": "class Model",
+              "lines": [
+                15
+              ]
+            },
+            {
+              "token": "PatchTST_backbone",
+              "lines": [
+                11,
+                53,
+                61,
+                70
+              ]
+            },
+            {
+              "token": "def forward",
+              "lines": [
+                80
+              ]
+            }
+          ]
+        }
+      ],
+      "fixed_structural_parameters": {
+        "source_recipe": {
+          "kind": "paper_small_dataset_ETTh1_configuration",
+          "pdf_pages": [
+            14
+          ],
+          "section": "A.1.4-A.1.5",
+          "d_model": 16,
+          "d_ff": 128,
+          "e_layers": 3,
+          "n_heads": 4,
+          "patch_len": 16,
+          "stride": 8,
+          "activation": "GELU",
+          "paper_encoder_dropout": 0.2,
+          "required_unreported_structural_fields": []
+        },
+        "D7_target_adaptation": {
+          "history_days": 7,
+          "channels": 5,
+          "horizon": 1,
+          "target": "sigma7, no target-history input",
+          "readout": "replace OHLCV forecast/denormalization with learned scalar sigma7 head; preserve central backbone and audited necessary dimensional changes",
+          "final_readout_shape": "derived from published backbone latent dimension, NOT assumed P0Linear90",
+          "necessary_change": "sourcepatch16/stride8 exceedsD7. Faithfulshortpatch/padding adaptation requirescode/test/review; P0patch2stride1 not proof of originalconfig equality."
+        },
+        "final_execution_allowed_by_this_record": false
+      },
+      "runtime_validated_by_this_record": false,
+      "structural_HPO_policy": "keep source architecture/preset; resolve numericNR via pinnedofficialpreset, review D7/readout beforeHPO; do not decree P0width16 final",
+      "task_adapter": {
+        "inputs": "D7x5OHLCV only",
+        "extra_external_covariates": false,
+        "target_history_input": false,
+        "output": "scalar sigma7, original unannualized units after multiplying train-only positive y_scale",
+        "common_Top10_head": "P0 ONLY TimeMixer/PatchTST/iTransformer: flatten5x16+inputmean5+inputstd5 -> Linear90,1 Softplus; final head follows published backbone dimensions and explicit review",
+        "no_OHLCV_output_denormalization_as_target": true
+      },
+      "NAS_decision_scope": "nas_requiredfalse describes identified sourcebackbone, not blanketexemption for changed finaladapter. HPO/P1/finalfit blocked until casewise finalreview verifies faithful defined architecture or triggers conditionalNAS.",
+      "source_architecture_defined": true,
+      "pilot_recipe_is_exact_original": false,
+      "final_architecture_exception_verified": false,
+      "final_decision_status": "source_backbone_defined_but_final_task_adapter_exception_requires_source_recipe_and_code_review",
+      "fixed_source_recipe": {
+        "kind": "paper_small_dataset_ETTh1_configuration",
+        "pdf_pages": [
+          14
+        ],
+        "section": "A.1.4-A.1.5",
+        "d_model": 16,
+        "d_ff": 128,
+        "e_layers": 3,
+        "n_heads": 4,
+        "patch_len": 16,
+        "stride": 8,
+        "activation": "GELU",
+        "paper_encoder_dropout": 0.2,
+        "required_unreported_structural_fields": []
+      },
+      "P0_fixed_recipe": {
+        "d_model": 16,
+        "d_ff": 32,
+        "e_layers": 2,
+        "n_heads": 4,
+        "patch_len": 2,
+        "stride": 1,
+        "padding_patch": "end replication",
+        "patches": 7,
+        "channel_independence": true,
+        "latent_readout": "mean over seven encoded patches independently for each of5channels -> [B,5,16]"
+      }
+    },
+    {
+      "id": "Informer",
+      "architecture_defined": true,
+      "nas_required": false,
+      "decision": "published_source_structure_identified_FINAL_exception_not_yet_verified; P0tiny_recipe_not_final_exemption",
+      "evidence": [
+        {
+          "kind": "original_fulltext",
+          "source_version": "2012.07436v3",
+          "filename": "2012.07436v3.pdf",
+          "sha256": "95d8d427005e4dab28932b2630886931fc095996fdd4a65d0e050bae801ffc37",
+          "source_url": "https://arxiv.org/abs/2012.07436v3",
+          "architecture_extraction": {
+            "family": "Transformer encoder-decoder con ProbSparse, destilación temporal y salida directa de horizonte completo.",
+            "flow": [
+              {
+                "step": "Valores históricos -> Conv1d de ancho3 -> embedding d_model512, más posición sinusoidal y embeddings de calendario/timestamps.",
+                "evidence": "PDF pp9-10, Appendix B, Ecs.7-8 y Figura6; PDF p12 Tabla7."
+              },
+              {
+                "step": "Encoder aplica atención ProbSparse: estima consultas relevantes con max-media en pares muestreados, selecciona top-u y conserva contexto medio para consultas no seleccionadas.",
+                "evidence": "PDF p3 Ecs.2-4; p12 Algoritmo 1 pasos2-8."
+              },
+              {
+                "step": "Tras bloque de atención: Conv1d ancho3 + ELU + MaxPool stride2; réplicas de encoder con entradas L y L/4 concatenan mapas finales.",
+                "evidence": "PDF p4 Ec.5 y Figura3; p5 Experimental Details y p7 Figura4c."
+              },
+              {
+                "step": "Decoder: segmento histórico conocido X_token, concatenado con Ly ceros; autoatención enmascarada y atención al encoder; FC final a dimensión de salida. Predice todo Ly de una vez.",
+                "evidence": "PDF p4 Ec.6 y Figura2 en p2; p12 Tabla7."
+              }
+            ],
+            "equations": [
+              {
+                "equation": "A(Q,K,V)=softmax(QK^T/sqrt(d))V; ProbSparse sustituye Q por las top-u consultas, u=c ln L_Q.",
+                "evidence": "PDF p3, Ec.3."
+              },
+              {
+                "equation": "M(q_i,K)=log sum_j exp(q_i k_j^T/sqrt(d)) - mean_j(q_i k_j^T/sqrt(d)); aproximación max-media.",
+                "evidence": "PDF p3 Ecs.2 y4; propiedades y supuestos en Appendix D pp10-12."
+              },
+              {
+                "equation": "X_{j+1}=MaxPool(ELU(Conv1d([X_j]_AB))).",
+                "evidence": "PDF p4 Ec.5."
+              },
+              {
+                "equation": "X_de=Concat(X_token,X_0), X_0 de largo Ly y valores cero.",
+                "evidence": "PDF p4 Ec.6."
+              }
+            ],
+            "original_temporal_information": "La posición interna y los timestamps de calendario son componentes distintos. El decoder original dispone también de timestamps del horizonte, no de valores futuros observados; Appendix B menciona minutos, horas, semana, mes y festividades como posibles embeddings.",
+            "configuration": {
+              "d_model": 512,
+              "ffn_inner": 2048,
+              "encoder_heads": 16,
+              "encoder_head_dim": 32,
+              "decoder_cross_attention_heads": 8,
+              "decoder_cross_attention_head_dim": 64,
+              "dropout": 0.1,
+              "stacks_main_text": "3 capas con entrada completa + 1 capa con L/4; decoder2 capas.",
+              "sampling_factor_main_text": 5,
+              "evidence": "PDF p5 Experimental Details, p7 Sampling Factor y Layer Stacking, p12 Tabla7. Grid de profundidad/heads en p13; los valores ganadores exactos por fila no están reportados."
+            }
+          }
+        },
+        {
+          "kind": "pinned_author_code",
+          "repository": "zhouhaoyi/Informer2020",
+          "commit": "29f2a739226a509202a092b464163da81fa74960",
+          "path": "models/model.py",
+          "sha256": "bc8e062fbbb4f4ae970ca0d02d2bf43b2e92c3251c3627d887c01d35cbc6891a",
+          "locators": [
+            {
+              "token": "class Informer(",
+              "lines": [
+                11
+              ]
+            },
+            {
+              "token": "ProbAttention",
+              "lines": [
+                8,
+                26,
+                99
+              ]
+            },
+            {
+              "token": "self.projection = nn.Linear",
+              "lines": [
+                65,
+                142
+              ]
+            },
+            {
+              "token": "def forward",
+              "lines": [
+                67,
+                144
+              ]
+            }
+          ]
+        }
+      ],
+      "fixed_structural_parameters": {
+        "source_recipe": {
+          "kind": "paper_main_configuration_not_unique_selected_row",
+          "pdf_pages": [
+            5,
+            12,
+            13
+          ],
+          "table": "7",
+          "d_model": 512,
+          "d_ff": 2048,
+          "encoder_heads": 16,
+          "decoder_cross_heads": 8,
+          "encoder_stacks": [
+            3,
+            1
+          ],
+          "second_stack_relative_context": 0.25,
+          "d_layers": 2,
+          "factor": 5,
+          "paper_dropout": 0.1,
+          "required_unreported_structural_fields": [],
+          "caveat": "exact winning configuration per resultrow NR"
+        },
+        "D7_target_adaptation": {
+          "history_days": 7,
+          "channels": 5,
+          "horizon": 1,
+          "target": "sigma7, no target-history input",
+          "readout": "replace OHLCV forecast/denormalization with learned scalar sigma7 head; preserve central backbone and audited necessary dimensional changes",
+          "final_readout_shape": "derived from published backbone latent dimension, NOT assumed P0Linear90"
+        },
+        "final_execution_allowed_by_this_record": false
+      },
+      "runtime_validated_by_this_record": false,
+      "structural_HPO_policy": "keep source architecture/preset; resolve numericNR via pinnedofficialpreset, review D7/readout beforeHPO; do not decree P0width16 final",
+      "task_adapter": {
+        "inputs": "D7x5OHLCV only",
+        "extra_external_covariates": false,
+        "target_history_input": false,
+        "output": "scalar sigma7, original unannualized units after multiplying train-only positive y_scale",
+        "common_Top10_head": "P0 ONLY TimeMixer/PatchTST/iTransformer: flatten5x16+inputmean5+inputstd5 -> Linear90,1 Softplus; final head follows published backbone dimensions and explicit review",
+        "no_OHLCV_output_denormalization_as_target": true
+      },
+      "NAS_decision_scope": "nas_requiredfalse describes identified sourcebackbone, not blanketexemption for changed finaladapter. HPO/P1/finalfit blocked until casewise finalreview verifies faithful defined architecture or triggers conditionalNAS.",
+      "source_architecture_defined": true,
+      "pilot_recipe_is_exact_original": false,
+      "final_architecture_exception_verified": false,
+      "final_decision_status": "source_backbone_defined_but_final_task_adapter_exception_requires_source_recipe_and_code_review",
+      "fixed_source_recipe": {
+        "kind": "paper_main_configuration_not_unique_selected_row",
+        "pdf_pages": [
+          5,
+          12,
+          13
+        ],
+        "table": "7",
+        "d_model": 512,
+        "d_ff": 2048,
+        "encoder_heads": 16,
+        "decoder_cross_heads": 8,
+        "encoder_stacks": [
+          3,
+          1
+        ],
+        "second_stack_relative_context": 0.25,
+        "d_layers": 2,
+        "factor": 5,
+        "paper_dropout": 0.1,
+        "required_unreported_structural_fields": [],
+        "caveat": "exact winning configuration per resultrow NR"
+      }
+    },
+    {
+      "id": "Autoformer",
+      "architecture_defined": true,
+      "nas_required": false,
+      "decision": "published_source_structure_identified_FINAL_exception_not_yet_verified; P0tiny_recipe_not_final_exemption",
+      "evidence": [
+        {
+          "kind": "original_fulltext",
+          "source_version": "2106.13008v5",
+          "filename": "2106.13008v5.pdf",
+          "sha256": "6ec6743b8d3df87a91ecd7b17d83123c0132f5ab87dffeb6318c05e2cb13f11b",
+          "source_url": "https://arxiv.org/abs/2106.13008v5",
+          "architecture_extraction": {
+            "family": "Encoder-decoder con descomposición progresiva tendencia/estacionalidad y Auto-Correlation por FFT y retardos.",
+            "flow": [
+              {
+                "step": "SeriesDecomp aplica promedio móvil con padding para conservar longitud: Xt=AvgPool(Padding(X)); Xs=X-Xt.",
+                "evidence": "PDF p3 Ec.1, sección 3.1."
+              },
+              {
+                "step": "El encoder recibe I pasos; tras Auto-Correlation residual y FFN residual extrae y descarta tendencia, conservando la representación estacional.",
+                "evidence": "PDF p4 Ec.3 y Figura 1."
+              },
+              {
+                "step": "El decoder inicializa la componente estacional con la última mitad del historial más O ceros; la tendencia con la última mitad descompuesta más O medias históricas.",
+                "evidence": "PDF pp3-4 Ec.2; Appendix G Algoritmo 1 p19."
+              },
+              {
+                "step": "El decoder alterna Auto-Correlation interna, Auto-Correlation cruzada con el encoder, FFN y tres descomposiciones; acumula tendencias proyectadas. Predicción = proyección estacional + tendencia acumulada, conservando los últimos O pasos.",
+                "evidence": "PDF pp4-5 Ec.4 y salida WS*Xde+Tde; Algoritmo 1 p19."
+              },
+              {
+                "step": "Auto-Correlation calcula IFFT(FFT(Q)·conj(FFT(K))), elige top-k retardos, k=floor(c log L), normaliza por softmax y suma Roll(V,tau) ponderados.",
+                "evidence": "PDF pp5-6 Ecs.6-8; Algoritmo 2 p19 y Algoritmos 3-4 p20."
+              }
+            ],
+            "equations": [
+              {
+                "equation": "X_t=AvgPool(Padding(X)); X_s=X-X_t.",
+                "evidence": "PDF p3 Ec.1."
+              },
+              {
+                "equation": "X_des=Concat(X_ens,X_0); X_det=Concat(X_ent,X_Mean).",
+                "evidence": "PDF p3 Ec.2 y p4 continuación."
+              },
+              {
+                "equation": "T_de^l=T_de^(l-1)+sum_{i=1}^3 W_(l,i)*T_de^(l,i).",
+                "evidence": "PDF p4 Ec.4."
+              },
+              {
+                "equation": "AutoCorrelation(Q,K,V)=sum_i Roll(V,tau_i)*softmax(R_QK(tau_i)); tau=argTopk(R_QK).",
+                "evidence": "PDF p5 Ec.6."
+              },
+              {
+                "equation": "R_QK=IFFT(FFT(Q)*conj(FFT(K))).",
+                "evidence": "PDF p6 Ec.8 y p19 Algoritmo 2."
+              }
+            ],
+            "original_temporal_information": "No usa embedding de posición; sí mantiene embedding de valores y timestamps en el original. Appendix G.2p18. Q/K/V se redimensionan a longitud común mediante truncado o ceros (Algoritmos 2-4).",
+            "circularity": "Roll reintroduce al final elementos desplazados más allá del inicio: es circular (PDF p5, tras Ec.6). La operación no impone causalidad por cada posición del encoder. Los 7 pasos históricos pueden ser conocidos en el origen de forecast sin que ello sea fuga futura.",
+            "configuration": {
+              "d_model": 512,
+              "encoder_layers": 2,
+              "decoder_layers": 1,
+              "heads": 8,
+              "moving_average_window": 25,
+              "c_main_range": [
+                1,
+                3
+              ],
+              "evidence": "PDF p7 Implementation details; Algoritmo 1 p19 fija 512, 2, 1, 25 y Algoritmo 2 p19 fija 8 heads; Appendix B Tabla 6 p14 explora c=1-5.",
+              "ffn_inner_and_dropout": "NReportado en el PDF.",
+              "reported_results_variant": "Todos los resultados del paper proceden de la versión speedup, no de la versión estándar (PDF p18 G.1)."
+            },
+            "speedup": "Reduce ejes de canales/heads; durante entrenamiento promedia correlaciones en el batch para elegir retardos comunes. El texto distingue inferencia por gather con retardos simplificados. Algoritmos 3-4 p20 contienen notación de ejes/formas ambigua; no se toma ese pseudocódigo como especificación ejecutable verificada.",
+            "initialization_ambiguity": "Ec.2 y continuación p4 describen XMean como media de Xen; Algoritmo 1 p19 usa la media de la última mitad. Se registran ambas formulaciones sin inventar una resolución por código."
+          }
+        },
+        {
+          "kind": "pinned_author_code",
+          "repository": "thuml/Autoformer",
+          "commit": "51c7d416ae120b805fd5beef2f4ccf7de496a6ff",
+          "path": "models/Autoformer.py",
+          "sha256": "f18e9e82844ed8c4dc26e00c3c2f0b7c278ac8ea8427c4fab7331939bf69829d",
+          "locators": [
+            {
+              "token": "class Model",
+              "lines": [
+                8
+              ]
+            },
+            {
+              "token": "series_decomp",
+              "lines": [
+                5,
+                22
+              ]
+            },
+            {
+              "token": "def forward",
+              "lines": [
+                74
+              ]
+            }
+          ]
+        }
+      ],
+      "fixed_structural_parameters": {
+        "source_recipe": {
+          "kind": "paper_Algorithms1-2_and_implementation",
+          "pdf_pages": [
+            7,
+            19
+          ],
+          "d_model": 512,
+          "e_layers": 2,
+          "d_layers": 1,
+          "n_heads": 8,
+          "moving_avg": 25,
+          "factor_paper_range": [
+            1,
+            3
+          ],
+          "required_unreported_structural_fields": [
+            "exactfactor/pinnedoriginalpreset",
+            "d_ff/pinnedoriginalpreset"
+          ],
+          "paper_dropout": "NR; nonstructural HPO axis",
+          "caveat": "laterTSL defaults not original published winner"
+        },
+        "D7_target_adaptation": {
+          "history_days": 7,
+          "channels": 5,
+          "horizon": 1,
+          "target": "sigma7, no target-history input",
+          "readout": "replace OHLCV forecast/denormalization with learned scalar sigma7 head; preserve central backbone and audited necessary dimensional changes",
+          "final_readout_shape": "derived from published backbone latent dimension, NOT assumed P0Linear90"
+        },
+        "final_execution_allowed_by_this_record": false
+      },
+      "runtime_validated_by_this_record": false,
+      "structural_HPO_policy": "keep source architecture/preset; resolve numericNR via pinnedofficialpreset, review D7/readout beforeHPO; do not decree P0width16 final",
+      "task_adapter": {
+        "inputs": "D7x5OHLCV only",
+        "extra_external_covariates": false,
+        "target_history_input": false,
+        "output": "scalar sigma7, original unannualized units after multiplying train-only positive y_scale",
+        "common_Top10_head": "P0 ONLY TimeMixer/PatchTST/iTransformer: flatten5x16+inputmean5+inputstd5 -> Linear90,1 Softplus; final head follows published backbone dimensions and explicit review",
+        "no_OHLCV_output_denormalization_as_target": true
+      },
+      "NAS_decision_scope": "nas_requiredfalse describes identified sourcebackbone, not blanketexemption for changed finaladapter. HPO/P1/finalfit blocked until casewise finalreview verifies faithful defined architecture or triggers conditionalNAS.",
+      "source_architecture_defined": true,
+      "pilot_recipe_is_exact_original": false,
+      "final_architecture_exception_verified": false,
+      "final_decision_status": "source_backbone_defined_but_final_task_adapter_exception_requires_source_recipe_and_code_review",
+      "fixed_source_recipe": {
+        "kind": "paper_Algorithms1-2_and_implementation",
+        "pdf_pages": [
+          7,
+          19
+        ],
+        "d_model": 512,
+        "e_layers": 2,
+        "d_layers": 1,
+        "n_heads": 8,
+        "moving_avg": 25,
+        "factor_paper_range": [
+          1,
+          3
+        ],
+        "required_unreported_structural_fields": [
+          "exactfactor/pinnedoriginalpreset",
+          "d_ff/pinnedoriginalpreset"
+        ],
+        "paper_dropout": "NR; nonstructural HPO axis",
+        "caveat": "laterTSL defaults not original published winner"
+      }
+    },
+    {
+      "id": "iTransformer",
+      "architecture_defined": true,
+      "nas_required": false,
+      "decision": "published_source_structure_identified_FINAL_exception_not_yet_verified; P0tiny_recipe_not_final_exemption",
+      "evidence": [
+        {
+          "kind": "original_fulltext",
+          "source_version": "2310.06625v4",
+          "filename": "2310.06625v4.pdf",
+          "sha256": "83e889795af52c672090255493266e3ea93e7b2a32c528f58074f2f9f757ffc5",
+          "source_url": "https://arxiv.org/abs/2310.06625v4",
+          "architecture_extraction": {
+            "variant": "Original complete encoder-only iTransformer with full self-attention, shared FFN and layer normalization. Excludes iFlowformer, efficient 20%-variate training, +Inverted Reformer/Informer, and removal/replacement ablations.",
+            "flow": [
+              "Optionally normalize observed histories as implemented in official code; transpose T×N to N×T",
+              "Shared temporal-history embedding T→d produces one token per variate",
+              "K residual encoder blocks: self-attention across N variate tokens, normalization, shared per-token FFN, normalization",
+              "Shared projection d→S for each variate token; transpose back to S×N",
+              "Official optional stationarization restores each forecast channel with its own input mean/std"
+            ],
+            "blocks": [
+              {
+                "pdf_pages": [
+                  3,
+                  4
+                ],
+                "section_or_table": "§3.1, Figure 4, Eq. (1)",
+                "detail": "Encoder only; embedding/projection as MLP; no temporal position embedding needed in this formulation"
+              },
+              {
+                "pdf_pages": [
+                  5
+                ],
+                "section_or_table": "§3.2, Eq. (2)",
+                "detail": "LayerNorm acts within each variate representation; FFN learns global series representation; attention captures variate relations"
+              },
+              {
+                "pdf_pages": [
+                  13
+                ],
+                "section_or_table": "Appendix A.2, Algorithm 1",
+                "detail": "Complete tensor-shape pseudocode and residual block order"
+              }
+            ],
+            "equations": [
+              {
+                "equation": "h_n^0=Embedding(X_:,n); H^(l+1)=TrmBlock(H^l); Yhat_:,n=Projection(h_n^K)",
+                "locator": {
+                  "pdf_pages": [
+                    4
+                  ],
+                  "section_or_table": "Eq. (1)",
+                  "detail": "Embedding R^T→R^d and Projection R^d→R^S"
+                }
+              },
+              {
+                "equation": "LayerNorm(h_n)=(h_n−Mean(h_n))/sqrt(Var(h_n))",
+                "locator": {
+                  "pdf_pages": [
+                    5
+                  ],
+                  "section_or_table": "Eq. (2)",
+                  "detail": "Per-variate latent feature normalization; paper omits epsilon/affine in displayed formula"
+                }
+              },
+              {
+                "equation": "A=QK^T/sqrt(d_k), A in R^(N×N)",
+                "locator": {
+                  "pdf_pages": [
+                    5
+                  ],
+                  "section_or_table": "§3.2, Self-attention",
+                  "detail": "Attention scores across variates"
+                }
+              }
+            ],
+            "temporal_alignment": "Embeds whole observed history per variate rather than merging unlike physical quantities at one timestamp; can represent lagged relations but attention-map resemblance is descriptive and does not prove causality. Appendix E.3 pp18,20 and G.3 p25 discuss time-unaligned patch/timestamp risks."
+          }
+        },
+        {
+          "kind": "pinned_author_code",
+          "repository": "thuml/iTransformer",
+          "commit": "c2426e68ca13f74aaec08045c5c724d8ad328124",
+          "path": "model/iTransformer.py",
+          "sha256": "6f34777a5a12c253a293f79e7e1fd5b6f79ac100b443951e051e269e7e2542db",
+          "locators": [
+            {
+              "token": "class Model",
+              "lines": [
+                10
+              ]
+            },
+            {
+              "token": "DataEmbedding_inverted",
+              "lines": [
+                6,
+                22
+              ]
+            },
+            {
+              "token": "def forecast",
+              "lines": [
+                42
+              ]
+            },
+            {
+              "token": "self.projector = nn.Linear",
+              "lines": [
+                40
+              ]
+            }
+          ]
+        }
+      ],
+      "fixed_structural_parameters": {
+        "source_recipe": {
+          "kind": "paper_A2_search_space_selected_ETTh1_not_reported",
+          "pdf_pages": [
+            14
+          ],
+          "section": "A.2",
+          "e_layers_reported_search": [
+            2,
+            3,
+            4
+          ],
+          "d_model_reported_search": [
+            256,
+            512
+          ],
+          "required_unreported_structural_fields": [
+            "pinnedofficialconfiguration e_layers,d_model,n_heads,d_ff"
+          ],
+          "caveat": "noexactETTh1winnerinPDF; P0d16/L2/ff32 not finalpublished"
+        },
+        "D7_target_adaptation": {
+          "history_days": 7,
+          "channels": 5,
+          "horizon": 1,
+          "target": "sigma7, no target-history input",
+          "readout": "replace OHLCV forecast/denormalization with learned scalar sigma7 head; preserve central backbone and audited necessary dimensional changes",
+          "final_readout_shape": "derived from published backbone latent dimension, NOT assumed P0Linear90"
+        },
+        "final_execution_allowed_by_this_record": false
+      },
+      "runtime_validated_by_this_record": false,
+      "structural_HPO_policy": "keep source architecture/preset; resolve numericNR via pinnedofficialpreset, review D7/readout beforeHPO; do not decree P0width16 final",
+      "task_adapter": {
+        "inputs": "D7x5OHLCV only",
+        "extra_external_covariates": false,
+        "target_history_input": false,
+        "output": "scalar sigma7, original unannualized units after multiplying train-only positive y_scale",
+        "common_Top10_head": "P0 ONLY TimeMixer/PatchTST/iTransformer: flatten5x16+inputmean5+inputstd5 -> Linear90,1 Softplus; final head follows published backbone dimensions and explicit review",
+        "no_OHLCV_output_denormalization_as_target": true
+      },
+      "NAS_decision_scope": "nas_requiredfalse describes identified sourcebackbone, not blanketexemption for changed finaladapter. HPO/P1/finalfit blocked until casewise finalreview verifies faithful defined architecture or triggers conditionalNAS.",
+      "source_architecture_defined": true,
+      "pilot_recipe_is_exact_original": false,
+      "final_architecture_exception_verified": false,
+      "final_decision_status": "source_backbone_defined_but_final_task_adapter_exception_requires_source_recipe_and_code_review",
+      "fixed_source_recipe": {
+        "kind": "paper_A2_search_space_selected_ETTh1_not_reported",
+        "pdf_pages": [
+          14
+        ],
+        "section": "A.2",
+        "e_layers_reported_search": [
+          2,
+          3,
+          4
+        ],
+        "d_model_reported_search": [
+          256,
+          512
+        ],
+        "required_unreported_structural_fields": [
+          "pinnedofficialconfiguration e_layers,d_model,n_heads,d_ff"
+        ],
+        "caveat": "noexactETTh1winnerinPDF; P0d16/L2/ff32 not finalpublished"
+      },
+      "P0_fixed_recipe": {
+        "d_model": 16,
+        "d_ff": 32,
+        "e_layers": 2,
+        "n_heads": 4,
+        "variable_tokens": 5,
+        "attention": "full over variables",
+        "normalization": "LayerNorm",
+        "latent_readout": "five encoded variate tokens before OHLCV projection/denormalization -> [B,5,16]"
+      }
+    },
+    {
+      "id": "Crossformer",
+      "architecture_defined": true,
+      "nas_required": false,
+      "decision": "published_source_structure_identified_FINAL_exception_not_yet_verified; P0tiny_recipe_not_final_exemption",
+      "evidence": [
+        {
+          "kind": "original_fulltext",
+          "source_version": "ICLR 2023 conference PDF",
+          "filename": "992_crossformer_transformer_utiliz.pdf",
+          "sha256": "a5fcad16cd810492124af3efad2fa18f7c5f9556fb303bb88360cceaf396183a",
+          "source_url": "https://openreview.net/forum?id=vSVLM2j9eie",
+          "architecture_extraction": {
+            "variant": "Original complete Crossformer = DSW+TSA+HED; do not substitute DSW-only or TSA(w/oRouter) ablations",
+            "flow": [
+              "Dimension-Segment-Wise embedding splits each variate history into length-P segments; Linear(P,d) plus learnable2D position embedding",
+              "Two-Stage Attention: temporal self-attention among segments independently per variate",
+              "Cross-dimension attention with c learnable routers gathering and distributing messages across variates at each segment",
+              "Hierarchical encoder merges adjacent temporal segments; each level applies TSA",
+              "Decoder uses learnable future positions, TSA and cross-attention to corresponding encoder scale",
+              "Per-level linear segment forecast; forecasts from all scales are summed and cropped to H"
+            ],
+            "blocks": [
+              {
+                "pdf_pages": [
+                  3,
+                  4
+                ],
+                "section_or_table": "§3.1, Eqs1–2",
+                "detail": "DSW retains temporal and dimension axes"
+              },
+              {
+                "pdf_pages": [
+                  4,
+                  5,
+                  6
+                ],
+                "section_or_table": "§3.2, Eqs3–5, Figure2",
+                "detail": "TSA temporal stage then dimension-router stage; full original mechanism"
+              },
+              {
+                "pdf_pages": [
+                  6,
+                  7
+                ],
+                "section_or_table": "§3.3, Eqs6–8, Figure3",
+                "detail": "Hierarchical merging and decoder forecasts summed"
+              }
+            ],
+            "equations": [
+              {
+                "equation": "h_(i,c)=E x_(i,c)^segment + E_(i,c)^pos",
+                "locator": {
+                  "pdf_pages": [
+                    4
+                  ],
+                  "section_or_table": "Eq2",
+                  "detail": "Segment projection plus learned position"
+                }
+              },
+              {
+                "equation": "Ztime=LN(Z+MSA_time(Z,Z,Z)); then FFN residual/LN",
+                "locator": {
+                  "pdf_pages": [
+                    4
+                  ],
+                  "section_or_table": "Eq3",
+                  "detail": "Temporal attention independently by dimension"
+                }
+              },
+              {
+                "equation": "B_i=MSA_dim1(R_i,Ztime_i,Ztime_i); Zdim_i=MSA_dim2(Ztime_i,B_i,B_i)",
+                "locator": {
+                  "pdf_pages": [
+                    5
+                  ],
+                  "section_or_table": "Eq4",
+                  "detail": "Router gather and distribute; residual/LN/MLP follow"
+                }
+              },
+              {
+                "equation": "Zenc_l=TSA(merge(Zenc_(l−1))); Yhat=sum_l(W_l Zdec_l)",
+                "locator": {
+                  "pdf_pages": [
+                    6
+                  ],
+                  "section_or_table": "Eqs6–8",
+                  "detail": "Hierarchical encoding and additive scale forecasts"
+                }
+              },
+              {
+                "equation": "x′=[x_1 repeated ceil(T/P)P−T times, x_(1:T)]",
+                "locator": {
+                  "pdf_pages": [
+                    20
+                  ],
+                  "section_or_table": "AppendixD.1, Eq9",
+                  "detail": "Input padding repeats earliest observed vector; future decoder extent is padded via learned positions and outputs cropped"
+                }
+              }
+            ],
+            "vision_inspiration": {
+              "paper_evidence": {
+                "pdf_pages": [
+                  3
+                ],
+                "section_or_table": "Related work: Vision Transformers",
+                "detail": "ViT non-overlapping patches inspire DSW; Swin discussed for patch merging/hierarchical features"
+              },
+              "README_evidence": "readme.md lines141–145, Acknowledgement: Vision Transformer and Swin-Transformer links explicitly inspire DSW and HED designs",
+              "interpretation": "Architecture is a time-series adaptation inspired by vision tokenization/hierarchy; it is not an image-data forecast or a claim that time and dimension axes are interchangeable."
+            },
+            "temporal_alignment": "DSW groups consecutive observed time points separately for each variable; TSA time attention precedes dimension attention at aligned segment positions. Equal segment index is not proof that events in distinct variables align physically; lagged relations and ordering remain empirical concerns. §5/AppendixB.2 acknowledge noise and ordering issues."
+          }
+        },
+        {
+          "kind": "pinned_author_code",
+          "repository": "Thinklab-SJTU/Crossformer",
+          "commit": "c10c8eadb153d1dd9798250967747ca3ebb81383",
+          "path": "cross_models/cross_former.py",
+          "sha256": "deee243b2ae877084320dce49e691c8860c56f0cbda269c6f0cdb50848f6c708",
+          "locators": [
+            {
+              "token": "class Crossformer",
+              "lines": [
+                13
+              ]
+            },
+            {
+              "token": "DSW_embedding",
+              "lines": [
+                9,
+                34
+              ]
+            },
+            {
+              "token": "def forward",
+              "lines": [
+                47
+              ]
+            },
+            {
+              "token": "self.in_len_add",
+              "lines": [
+                31,
+                53,
+                54
+              ]
+            }
+          ]
+        }
+      ],
+      "fixed_structural_parameters": {
+        "source_recipe": {
+          "kind": "paper_ETTh1_structural_configuration_and_pinned_constructor",
+          "pdf_pages": [
+            14
+          ],
+          "section": "A.3.1-A.3.2",
+          "d_model": 256,
+          "e_layers": 3,
+          "n_heads": 4,
+          "router_tokens": 10,
+          "segment_length_candidates": [
+            6,
+            12,
+            24
+          ],
+          "constructor_merge_window": 4,
+          "constructor_d_ff": 1024,
+          "required_unreported_structural_fields": [
+            "selected/pinnedofficialsegmentlength"
+          ],
+          "caveat": "merge4/d_ff1024 separate code evidence; preserve fullHEDdecoder"
+        },
+        "D7_target_adaptation": {
+          "history_days": 7,
+          "channels": 5,
+          "horizon": 1,
+          "target": "sigma7, no target-history input",
+          "readout": "replace OHLCV forecast/denormalization with learned scalar sigma7 head; preserve central backbone and audited necessary dimensional changes",
+          "final_readout_shape": "derived from published backbone latent dimension, NOT assumed P0Linear90"
+        },
+        "final_execution_allowed_by_this_record": false
+      },
+      "runtime_validated_by_this_record": false,
+      "structural_HPO_policy": "keep source architecture/preset; resolve numericNR via pinnedofficialpreset, review D7/readout beforeHPO; do not decree P0width16 final",
+      "task_adapter": {
+        "inputs": "D7x5OHLCV only",
+        "extra_external_covariates": false,
+        "target_history_input": false,
+        "output": "scalar sigma7, original unannualized units after multiplying train-only positive y_scale",
+        "common_Top10_head": "P0 ONLY TimeMixer/PatchTST/iTransformer: flatten5x16+inputmean5+inputstd5 -> Linear90,1 Softplus; final head follows published backbone dimensions and explicit review",
+        "no_OHLCV_output_denormalization_as_target": true
+      },
+      "NAS_decision_scope": "nas_requiredfalse describes identified sourcebackbone, not blanketexemption for changed finaladapter. HPO/P1/finalfit blocked until casewise finalreview verifies faithful defined architecture or triggers conditionalNAS.",
+      "source_architecture_defined": true,
+      "pilot_recipe_is_exact_original": false,
+      "final_architecture_exception_verified": false,
+      "final_decision_status": "source_backbone_defined_but_final_task_adapter_exception_requires_source_recipe_and_code_review",
+      "fixed_source_recipe": {
+        "kind": "paper_ETTh1_structural_configuration_and_pinned_constructor",
+        "pdf_pages": [
+          14
+        ],
+        "section": "A.3.1-A.3.2",
+        "d_model": 256,
+        "e_layers": 3,
+        "n_heads": 4,
+        "router_tokens": 10,
+        "segment_length_candidates": [
+          6,
+          12,
+          24
+        ],
+        "constructor_merge_window": 4,
+        "constructor_d_ff": 1024,
+        "required_unreported_structural_fields": [
+          "selected/pinnedofficialsegmentlength"
+        ],
+        "caveat": "merge4/d_ff1024 separate code evidence; preserve fullHEDdecoder"
+      }
+    },
+    {
+      "id": "S-Mamba",
+      "architecture_defined": true,
+      "nas_required": false,
+      "decision": "published_source_structure_identified_FINAL_exception_not_yet_verified; P0tiny_recipe_not_final_exemption",
+      "evidence": [
+        {
+          "kind": "original_fulltext",
+          "source_version": "2403.11144v3",
+          "filename": "2403.11144v3.pdf",
+          "sha256": "11f25c26b33a50455c835cd4062d9314b417716c8a6d35356249efa56d230751",
+          "source_url": "https://arxiv.org/abs/2403.11144v3",
+          "architecture_extraction": [
+            {
+              "value": "Tokenización invertida: historia U_in[B,L,V] se transpone a[B,V,L] y una capa lineal mapea cada variable a un token d-dimensional. No es escaneo cronológico de L tokens.",
+              "locators": [
+                {
+                  "pdf_page": 3,
+                  "printed_page": "3",
+                  "section": "3.1"
+                },
+                {
+                  "pdf_page": 4,
+                  "printed_page": "4",
+                  "section": "4.1",
+                  "equation": "3"
+                },
+                {
+                  "pdf_page": 4,
+                  "printed_page": "4",
+                  "section": "Algorithm2"
+                }
+              ]
+            },
+            {
+              "value": "Mamba VC Encoding usa dos Mamba blocks en sentidos opuestos sobre la secuencia de variables ya observadas; se realinea la salida reversa, se suma y se añade residual. Bidireccionalidad no significa acceso a fechas futuras.",
+              "locators": [
+                {
+                  "pdf_page": 4,
+                  "printed_page": "4",
+                  "section": "Algorithm2"
+                },
+                {
+                  "pdf_page": 5,
+                  "printed_page": "5",
+                  "section": "4.2",
+                  "equation": "4",
+                  "figure": "3"
+                }
+              ]
+            },
+            {
+              "value": "Mamba interno: proyecciones x,z→Conv1D+SiLU(x)→parámetros de selección B,C,Δ dependientes del input→discretización y selective SSM→gating con SiLU(z)→proyección. La Conv1D del bloque no convierte el modelo en una CNN1D temporal.",
+              "locators": [
+                {
+                  "pdf_page": 3,
+                  "printed_page": "3",
+                  "section": "3.2–3.3",
+                  "equation": "1–2"
+                },
+                {
+                  "pdf_page": 4,
+                  "printed_page": "4",
+                  "section": "Algorithm1"
+                }
+              ]
+            },
+            {
+              "value": "FFN TD: normalización, FFN no lineal sobre representación de cada variable, normalización; aprende dependencias temporales implícitas. Proyección lineal final d→T y transposición[B,T,V].",
+              "locators": [
+                {
+                  "pdf_page": 4,
+                  "printed_page": "4",
+                  "section": "Algorithm2"
+                },
+                {
+                  "pdf_page": 5,
+                  "printed_page": "5",
+                  "section": "4.3–4.4",
+                  "figure": "3"
+                }
+              ]
+            },
+            {
+              "value": "El orden de variables no es naturalmente temporal; §5.5 investiga reordenamientos sólo en Electricity y encuentra estabilidad tras entrenamiento. No demuestra invarianza matemática a permutaciones.",
+              "locators": [
+                {
+                  "pdf_page": 10,
+                  "printed_page": "10",
+                  "section": "5.5",
+                  "figure": "6"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "pinned_author_code",
+          "repository": "wzhwzhwzh0921/S-D-Mamba",
+          "commit": "e7e8bf04066135afa43d85b0a87afa97cda16e3f",
+          "path": "model/S_Mamba.py",
+          "sha256": "48952b3906962917bc76345b5247ce350cae3243915142896b1952b4813b5fc9",
+          "locators": [
+            {
+              "token": "class Model",
+              "lines": [
+                7
+              ]
+            },
+            {
+              "token": "DataEmbedding_inverted",
+              "lines": [
+                4,
+                19
+              ]
+            },
+            {
+              "token": "Mamba(",
+              "lines": [
+                26,
+                32
+              ]
+            },
+            {
+              "token": "def forecast",
+              "lines": [
+                61
+              ]
+            }
+          ]
+        }
+      ],
+      "fixed_structural_parameters": {
+        "source_recipe": {
+          "kind": "paper_Algorithm1-2_no_numeric_dataset_recipe",
+          "pdf_pages": [
+            4,
+            5
+          ],
+          "paper_configuration_status": "NR",
+          "official_code_fixed": {
+            "d_conv": 2,
+            "expand": 1
+          },
+          "required_unreported_structural_fields": [
+            "pinnedofficialETTh1preset e_layers,d_model,d_ff,d_state,n_headsifused"
+          ],
+          "caveat": "definedmechanisms, numericalpresetunresolved; no inventedstate8/width16 or automaticNAS"
+        },
+        "D7_target_adaptation": {
+          "history_days": 7,
+          "channels": 5,
+          "horizon": 1,
+          "target": "sigma7, no target-history input",
+          "readout": "replace OHLCV forecast/denormalization with learned scalar sigma7 head; preserve central backbone and audited necessary dimensional changes",
+          "final_readout_shape": "derived from published backbone latent dimension, NOT assumed P0Linear90"
+        },
+        "final_execution_allowed_by_this_record": false
+      },
+      "runtime_validated_by_this_record": false,
+      "structural_HPO_policy": "keep source architecture/preset; resolve numericNR via pinnedofficialpreset, review D7/readout beforeHPO; do not decree P0width16 final",
+      "task_adapter": {
+        "inputs": "D7x5OHLCV only",
+        "extra_external_covariates": false,
+        "target_history_input": false,
+        "output": "scalar sigma7, original unannualized units after multiplying train-only positive y_scale",
+        "common_Top10_head": "P0 ONLY TimeMixer/PatchTST/iTransformer: flatten5x16+inputmean5+inputstd5 -> Linear90,1 Softplus; final head follows published backbone dimensions and explicit review",
+        "no_OHLCV_output_denormalization_as_target": true
+      },
+      "NAS_decision_scope": "nas_requiredfalse describes identified sourcebackbone, not blanketexemption for changed finaladapter. HPO/P1/finalfit blocked until casewise finalreview verifies faithful defined architecture or triggers conditionalNAS.",
+      "source_architecture_defined": true,
+      "pilot_recipe_is_exact_original": false,
+      "final_architecture_exception_verified": false,
+      "final_decision_status": "source_backbone_defined_but_final_task_adapter_exception_requires_source_recipe_and_code_review",
+      "fixed_source_recipe": {
+        "kind": "paper_Algorithm1-2_no_numeric_dataset_recipe",
+        "pdf_pages": [
+          4,
+          5
+        ],
+        "paper_configuration_status": "NR",
+        "official_code_fixed": {
+          "d_conv": 2,
+          "expand": 1
+        },
+        "required_unreported_structural_fields": [
+          "pinnedofficialETTh1preset e_layers,d_model,d_ff,d_state,n_headsifused"
+        ],
+        "caveat": "definedmechanisms, numericalpresetunresolved; no inventedstate8/width16 or automaticNAS"
+      }
+    },
+    {
+      "id": "GRU-E2",
+      "architecture_defined": true,
+      "nas_required": false,
+      "decision": "explicit_implementation_or_estimator",
+      "evidence": [
+        {
+          "kind": "explicit_local_architecture",
+          "path": "scripts/dl_models_gru_lstm_tcn.py",
+          "sha256": "c11af1229fec43dd7da01a21e349dc2b109d9d61d977f6df3d01cd7da736b35d"
+        },
+        {
+          "kind": "explicit_local_architecture",
+          "path": "scripts/dl_models.py",
+          "sha256": "e24110b57aeee201e1e9ab53519eb6b05967927ac54102fe23d3908c3fc57d69"
+        }
+      ],
+      "fixed_structural_parameters": {
+        "hidden_layers": 1,
+        "width": 16,
+        "bidirectional": false,
+        "dropout_location": "last hidden state before scalar head",
+        "readout": "last hidden -> Linear16,1 -> Softplus"
+      },
+      "runtime_validated_by_this_record": false,
+      "structural_HPO_policy": "depth,width,heads,patches,scales and kernels fixed in this recipe; not varied silently; published mechanism with explicitly declared changed dimensions, not literal replication",
+      "task_adapter": {
+        "inputs": "D7x5OHLCV only",
+        "extra_external_covariates": false,
+        "target_history_input": false,
+        "output": "scalar sigma7, original unannualized units after multiplying train-only positive y_scale",
+        "common_Top10_head": null,
+        "no_OHLCV_output_denormalization_as_target": true
+      },
+      "NAS_decision_scope": "only the exact backbone and fully specified task head above; P0 feasibility does not exempt future unspecified heads/changed architectures; require new review and registration before changes",
+      "source_architecture_defined": true,
+      "pilot_recipe_is_exact_original": null,
+      "final_architecture_exception_verified": true,
+      "fixed_source_recipe": {
+        "kind": "explicit_local_estimator_or_E1_recipe",
+        "parameters": {
+          "hidden_layers": 1,
+          "width": 16,
+          "bidirectional": false,
+          "dropout_location": "last hidden state before scalar head",
+          "readout": "last hidden -> Linear16,1 -> Softplus"
+        },
+        "scope": "explicit E1/localcode, not generic paperhyperparameters"
+      }
+    },
+    {
+      "id": "LSTM-E2",
+      "architecture_defined": true,
+      "nas_required": false,
+      "decision": "explicit_implementation_or_estimator",
+      "evidence": [
+        {
+          "kind": "explicit_local_architecture",
+          "path": "scripts/dl_models_gru_lstm_tcn.py",
+          "sha256": "c11af1229fec43dd7da01a21e349dc2b109d9d61d977f6df3d01cd7da736b35d"
+        },
+        {
+          "kind": "explicit_local_architecture",
+          "path": "scripts/dl_models.py",
+          "sha256": "e24110b57aeee201e1e9ab53519eb6b05967927ac54102fe23d3908c3fc57d69"
+        }
+      ],
+      "fixed_structural_parameters": {
+        "hidden_layers": 1,
+        "width": 16,
+        "bidirectional": false,
+        "dropout_location": "last hidden state before scalar head",
+        "readout": "last hidden -> Linear16,1 -> Softplus"
+      },
+      "runtime_validated_by_this_record": false,
+      "structural_HPO_policy": "depth,width,heads,patches,scales and kernels fixed in this recipe; not varied silently; published mechanism with explicitly declared changed dimensions, not literal replication",
+      "task_adapter": {
+        "inputs": "D7x5OHLCV only",
+        "extra_external_covariates": false,
+        "target_history_input": false,
+        "output": "scalar sigma7, original unannualized units after multiplying train-only positive y_scale",
+        "common_Top10_head": null,
+        "no_OHLCV_output_denormalization_as_target": true
+      },
+      "NAS_decision_scope": "only the exact backbone and fully specified task head above; P0 feasibility does not exempt future unspecified heads/changed architectures; require new review and registration before changes",
+      "source_architecture_defined": true,
+      "pilot_recipe_is_exact_original": null,
+      "final_architecture_exception_verified": true,
+      "fixed_source_recipe": {
+        "kind": "explicit_local_estimator_or_E1_recipe",
+        "parameters": {
+          "hidden_layers": 1,
+          "width": 16,
+          "bidirectional": false,
+          "dropout_location": "last hidden state before scalar head",
+          "readout": "last hidden -> Linear16,1 -> Softplus"
+        },
+        "scope": "explicit E1/localcode, not generic paperhyperparameters"
+      }
+    },
+    {
+      "id": "TCN-E2",
+      "architecture_defined": true,
+      "nas_required": false,
+      "decision": "explicit_implementation_or_estimator",
+      "evidence": [
+        {
+          "kind": "explicit_local_architecture",
+          "path": "scripts/dl_models_gru_lstm_tcn.py",
+          "sha256": "c11af1229fec43dd7da01a21e349dc2b109d9d61d977f6df3d01cd7da736b35d"
+        },
+        {
+          "kind": "explicit_local_architecture",
+          "path": "scripts/dl_models.py",
+          "sha256": "e24110b57aeee201e1e9ab53519eb6b05967927ac54102fe23d3908c3fc57d69"
+        }
+      ],
+      "fixed_structural_parameters": {
+        "residual_blocks": 3,
+        "width": 8,
+        "kernel_size": 3,
+        "dilations": [
+          1,
+          2,
+          4
+        ],
+        "dropout_location": "after each temporal convolution and before scalar head",
+        "readout": "last causal time position -> Linear8,1 -> Softplus"
+      },
+      "runtime_validated_by_this_record": false,
+      "structural_HPO_policy": "depth,width,heads,patches,scales and kernels fixed in this recipe; not varied silently; published mechanism with explicitly declared changed dimensions, not literal replication",
+      "task_adapter": {
+        "inputs": "D7x5OHLCV only",
+        "extra_external_covariates": false,
+        "target_history_input": false,
+        "output": "scalar sigma7, original unannualized units after multiplying train-only positive y_scale",
+        "common_Top10_head": null,
+        "no_OHLCV_output_denormalization_as_target": true
+      },
+      "NAS_decision_scope": "only the exact backbone and fully specified task head above; P0 feasibility does not exempt future unspecified heads/changed architectures; require new review and registration before changes",
+      "source_architecture_defined": true,
+      "pilot_recipe_is_exact_original": null,
+      "final_architecture_exception_verified": true,
+      "fixed_source_recipe": {
+        "kind": "explicit_local_estimator_or_E1_recipe",
+        "parameters": {
+          "residual_blocks": 3,
+          "width": 8,
+          "kernel_size": 3,
+          "dilations": [
+            1,
+            2,
+            4
+          ],
+          "dropout_location": "after each temporal convolution and before scalar head",
+          "readout": "last causal time position -> Linear8,1 -> Softplus"
+        },
+        "scope": "explicit E1/localcode, not generic paperhyperparameters"
+      }
+    },
+    {
+      "id": "Ridge",
+      "architecture_defined": true,
+      "nas_required": false,
+      "decision": "explicit_implementation_or_estimator",
+      "evidence": [
+        {
+          "kind": "specified_estimator",
+          "definition": "Ridge: linear least squares plus alpha*L2, intercept and deterministic max(0,.) point link; flatten35; no hidden architecture",
+          "reference": "Hoerl and Kennard1970 doi10.1080/00401706.1970.10488634"
+        }
+      ],
+      "fixed_structural_parameters": {
+        "design": "flatten same ordered D7x5 ->35",
+        "fit_intercept": true,
+        "positive_point_link": "max(0, raw_prediction) fixed before HPO"
+      },
+      "runtime_validated_by_this_record": false,
+      "structural_HPO_policy": "depth,width,heads,patches,scales and kernels fixed in this recipe; not varied silently; published mechanism with explicitly declared changed dimensions, not literal replication",
+      "task_adapter": {
+        "inputs": "D7x5OHLCV only",
+        "extra_external_covariates": false,
+        "target_history_input": false,
+        "output": "scalar sigma7, original unannualized units after multiplying train-only positive y_scale",
+        "common_Top10_head": null,
+        "no_OHLCV_output_denormalization_as_target": true
+      },
+      "NAS_decision_scope": "only the exact backbone and fully specified task head above; P0 feasibility does not exempt future unspecified heads/changed architectures; require new review and registration before changes",
+      "source_architecture_defined": true,
+      "pilot_recipe_is_exact_original": null,
+      "final_architecture_exception_verified": true,
+      "fixed_source_recipe": {
+        "kind": "explicit_local_estimator_or_E1_recipe",
+        "parameters": {
+          "design": "flatten same ordered D7x5 ->35",
+          "fit_intercept": true,
+          "positive_point_link": "max(0, raw_prediction) fixed before HPO"
+        },
+        "scope": "explicit E1/localcode, not generic paperhyperparameters"
+      }
+    },
+    {
+      "id": "ARIMA",
+      "architecture_defined": true,
+      "nas_required": false,
+      "decision": "explicit_implementation_or_estimator",
+      "evidence": [
+        {
+          "kind": "explicit_local_architecture",
+          "path": "scripts/e2_temporal_baselines.py",
+          "sha256": "c98a28f37b645d445424f625d3addde51b43b400c8e8ef032207e8a718617161"
+        }
+      ],
+      "fixed_structural_parameters": {
+        "orders": "Cartesian p=0,1,2;d=0,1;q=0,1",
+        "trend": "c if d=0, n if d=1",
+        "maxiter": 100,
+        "minimum_observed_training_labels": 32,
+        "coefficient_fit": "labels<=origin0-8, fixed thereafter; update state with observed labels<=t-1, refitFalse",
+        "positive_point_link": "max(0, raw_prediction) fixed before HPO"
+      },
+      "runtime_validated_by_this_record": false,
+      "structural_HPO_policy": "depth,width,heads,patches,scales and kernels fixed in this recipe; not varied silently; published mechanism with explicitly declared changed dimensions, not literal replication",
+      "task_adapter": {
+        "inputs": "causal sigma7 history; route baseline exception, different information set",
+        "extra_external_covariates": false,
+        "target_history_input": true,
+        "output": "scalar sigma7, original unannualized units after multiplying train-only positive y_scale",
+        "common_Top10_head": null,
+        "no_OHLCV_output_denormalization_as_target": true
+      },
+      "NAS_decision_scope": "only the exact backbone and fully specified task head above; P0 feasibility does not exempt future unspecified heads/changed architectures; require new review and registration before changes",
+      "source_architecture_defined": true,
+      "pilot_recipe_is_exact_original": null,
+      "final_architecture_exception_verified": true,
+      "fixed_source_recipe": {
+        "kind": "explicit_local_estimator_or_E1_recipe",
+        "parameters": {
+          "orders": "Cartesian p=0,1,2;d=0,1;q=0,1",
+          "trend": "c if d=0, n if d=1",
+          "maxiter": 100,
+          "minimum_observed_training_labels": 32,
+          "coefficient_fit": "labels<=origin0-8, fixed thereafter; update state with observed labels<=t-1, refitFalse",
+          "positive_point_link": "max(0, raw_prediction) fixed before HPO"
+        },
+        "scope": "explicit E1/localcode, not generic paperhyperparameters"
+      }
+    }
+  ],
+  "claim": "Published backbone mechanisms documented; published numericalrecipes separate from P0tiny. No finalTop10 architectureexception certified until faithful D7adapter/codereview. NRblocksHPO rather than inventedwidth16 or automaticNAS.",
+  "nas_executed": false,
+  "nas_protocol": {
+    "conditional_only": true,
+    "trigger": "a newly introduced model/head remains defined only by family or lacks explicit architecture; current listed exact recipes do not activate NAS",
+    "depth": 3,
+    "widths": [
+      16,
+      32,
+      64,
+      128,
+      256
+    ],
+    "dropout_probability": 0.2,
+    "patterns": "all8 binary positions after3blocks",
+    "cardinality": 1000,
+    "control": {
+      "widths": [
+        64,
+        64,
+        64
+      ],
+      "dropout_pattern": [
+        0,
+        1,
+        0
+      ]
+    },
+    "noise_pilot": {
+      "architectures": "control plus4prespecified corners (16,16,16)/000,(256,256,256)/000,(16,64,256)/111,(256,64,16)/010",
+      "seeds": [
+        6301,
+        6302,
+        6303,
+        6304,
+        6305
+      ],
+      "k_rule": "compute max within-architecture SD / between-architecture SD of mean pilot RMSE: k20 if ratio<=1, k40 if>1, undefined ratio=>k40; use same maximum k across all affected models"
+    },
+    "stage1": {
+      "architectures": 1000,
+      "seed": 6401,
+      "epoch_fraction": 0.25,
+      "same_early_stopping": true,
+      "no_pruning": true
+    },
+    "stage2": {
+      "seed_ids": [
+        6501,
+        6502,
+        6503,
+        6504,
+        6505
+      ],
+      "minimum_finalists": 10,
+      "control_added": true,
+      "full_budget": true,
+      "same_k_and_R_across_affected_models": true
+    },
+    "hyperparameters": "HPO first on control, then freeze optimizer/LR/scheduler/weight_decay/batch/loss/activation/stopping across1000; only(widths,dropoutbits) vary",
+    "selection": "minimum mean validation RMSE; tie |difference|<delta then fewerparameters then lexicographic architectureID; no test",
+    "cost_formula": "m*(1000*t_stage1+(k+1)*5*t_stage2), profiled before any NAS fit; budget cap cannot be silently reduced",
+    "outputs_required": [
+      "all1000 configurations",
+      "stage1 all metrics",
+      "stage2 all seeds",
+      "rank correlation phases",
+      "indistinguishable finalist procedure with justified equivalence margin",
+      "factor/interactions IC and Holm",
+      "Pareto",
+      "generalization gaps",
+      "winner boundary",
+      "estimated and consumed compute",
+      "deviations"
+    ]
+  }
+}

@@ -1,0 +1,557 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>13. Agregación estadística e interpretación &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/13_agregacion_estadistica';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="14. Arquitecturas fuente, adaptación D7 y búsqueda condicional" href="14_arquitecturas.html" />
+    <link rel="prev" title="12. Incertidumbre predictiva y análisis de errores" href="12_incertidumbre_errores.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 2 · Bitcoin: pronóstico de volatilidad</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_literatura.html">3. Revisión Sistemática del Estado del Arte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación de Modelos Benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark Final</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y referencias causales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Preregistro, potencia y piloto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de datos y auditoría formal de fuga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. Entrenamiento, ajuste equitativo y coste computacional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Incertidumbre predictiva y análisis de errores</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">13. Agregación estadística e interpretación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas fuente, adaptación D7 y búsqueda condicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_propuesta.html">Archivo de trabajo anterior · Catálogo y propuesta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_diseno_experimental.html">Archivo de trabajo anterior · Seguimiento del diseño</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_experimentos_resultados.html">Archivo de trabajo anterior · Benchmark y resultados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_reproducibilidad_entrega.html">Archivo de trabajo anterior · Reproducibilidad y entrega</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><p class="small">Entregable 2 · Jassan Arteta · 2026-30</p></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/13_agregacion_estadistica.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>13. Agregación estadística e interpretación</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-se-estima-y-que-se-remuestrea">13.1 Qué se estima y qué se remuestrea</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inferencia-del-diagnostico-p0">13.2 Inferencia del diagnóstico P0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#potencia-condicional-y-dimensionamiento-definitivo">13.3 Potencia condicional y dimensionamiento definitivo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#familias-finales-y-diagnosticos">13.4 Familias finales y diagnósticos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-adicionales-con-alcance-propio">13.4.1 Análisis adicionales con alcance propio</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-verificable">13.5 Evidencia verificable</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="agregacion-estadistica-e-interpretacion">
+<h1>13. Agregación estadística e interpretación<a class="headerlink" href="#agregacion-estadistica-e-interpretacion" title="Link to this heading">#</a></h1>
+<p><strong>Estado:</strong> reglas P0 registradas y código probado; enmienda e implementación final preparadas, pendientes de registro y ejecución; el diagnóstico P0/OOF se informa en la <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">sección 9</span></a>. Este capítulo aplica la separación de niveles de §13 de la guía. Sus reglas no convierten el test histórico conocido en una evaluación confirmatoria nueva.</p>
+<section id="que-se-estima-y-que-se-remuestrea">
+<h2>13.1 Qué se estima y qué se remuestrea<a class="headerlink" href="#que-se-estima-y-que-se-remuestrea" title="Link to this heading">#</a></h2>
+<p>Para cada modelo <span class="math notranslate nohighlight">\(m\)</span> y semilla <span class="math notranslate nohighlight">\(s\)</span> se calcula <span class="math notranslate nohighlight">\(\operatorname{RMSE}_{ms}=\sqrt{N^{-1}\sum_t(y_t-\widehat y_{mst})^2}\)</span>. La métrica primaria es la <strong>media de esas RMSE</strong> entre semillas. La RMSE de un ensamble de pronósticos es otro estimando y se identifica por separado. Tampoco se promedian sin ponderación diez RMSE mensuales para sustituir la pérdida sobre todas las fechas elegibles.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Unidad</p></th>
+<th class="head"><p>Función</p></th>
+<th class="head"><p>Límite</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Semilla emparejada</p></td>
+<td><p>Variación de inicialización/optimización con calendario fijo</p></td>
+<td><p>No es otra trayectoria de mercado</p></td>
+</tr>
+<tr class="row-odd"><td><p>Origen diario</p></td>
+<td><p>Error predictivo sobre σ₇</p></td>
+<td><p>Etiquetas, covariables y regímenes dependen temporalmente</p></td>
+</tr>
+<tr class="row-even"><td><p>Fold mensual forward</p></td>
+<td><p>Predictor congelado durante el mes, entrenado solo con historia admisible</p></td>
+<td><p>Los folds comparten entrenamiento; no son diez datasets independientes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Serie BTCUSDT</p></td>
+<td><p>Dominio de aplicación de este experimento</p></td>
+<td><p>No permite estimar varianza entre activos, bolsas o mercados</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Las tres anclas GRU/D7-c03, LSTM/D7-c02 y TCN/D7-c02 fueron seleccionadas en E1 con desarrollo hasta <strong>31/10/2024</strong>. Sus OOF enero–septiembre conservan esa exposición de hiperparámetros, identificada en cada fila; no se les asigna falsamente una selección anterior al origen. Ajuste de pesos, épocas y escaladores sí respetan los cortes mensuales. Las otras diecisiete configuraciones exigen selección temporal anidada. Nuevas semillas no eliminan la selección histórica y la excepción no se extiende al HPO E2.</p>
+<p>Los modelos se comparan sobre las mismas fechas y semillas registradas. Las referencias deterministas se almacenan una vez; su repetición aritmética para emparejar una tabla no genera observaciones independientes ni una DE de entrenamiento estimada. Los faltantes mantienen su posición en el calendario y se excluyen de la métrica únicamente mediante la máscara común auditada.</p>
+</section>
+<section id="inferencia-del-diagnostico-p0">
+<h2>13.2 Inferencia del diagnóstico P0<a class="headerlink" href="#inferencia-del-diagnostico-p0" title="Link to this heading">#</a></h2>
+<p>El análisis de P0 usa un panel modelo×semilla×fecha y bootstrap circular sobre <strong>bloques del calendario</strong>, con índices comunes entre modelos. Se conserva el emparejamiento y la pertenencia al régimen se filtra después de remuestrear; no se concatenan días de alta volatilidad separados como si fueran contiguos. El bloque principal es de siete días; catorce y veintiocho días son sensibilidades registradas, con <strong>4.999</strong> réplicas y semilla Monte Carlo 20261106. La elección de bloques para el benchmark definitivo deberá justificarse en desarrollo antes de su scoring.</p>
+<p>El gap registrado contrasta, para TimeMixer, iTransformer y PatchTST, <span class="math notranslate nohighlight">\(H_0:G_m\leq\delta\)</span> frente a <span class="math notranslate nohighlight">\(H_1:G_m&gt;\delta\)</span>, donde <span class="math notranslate nohighlight">\(G_m\)</span> es la media entre semillas de RMSE en alta volatilidad menos RMSE en el resto. Se utiliza exclusivamente OOF enero–octubre de 2024, Holm sobre tres hipótesis y <strong>α=0,01</strong>. Noviembre–diciembre aporta descripción y variación de entrenamiento; no se abre otra oportunidad para rechazar el mismo gap. El estadístico bajo la nula se centra en su frontera δ; no se transforma un contraste contra cero en una afirmación de mejora práctica.</p>
+<p>La clasificación usa σ₇(t−1) y un umbral q₇₅=<strong>0,024247163097617024</strong> calculado en entrenamiento de 2023. Esa variable contextual no se añade como entrada de las redes. Si un estrato queda vacío, el resultado es no estimable. La dependencia, no estacionariedad y la escasez de episodios limitan la precisión aunque existan cientos de filas.</p>
+<p>Los intervalos descriptivos nominales al 95 % no se presentan como simultáneos ni sustituyen los p ajustados. Una diferencia entre regímenes no demuestra una causa arquitectónica, una solución transferible ni superioridad global. Un gap no demostrado se informa como tal; no se escoge después otro calendario, otra receta o un umbral más favorable.</p>
+</section>
+<section id="potencia-condicional-y-dimensionamiento-definitivo">
+<h2>13.3 Potencia condicional y dimensionamiento definitivo<a class="headerlink" href="#potencia-condicional-y-dimensionamiento-definitivo" title="Link to this heading">#</a></h2>
+<p>La proyección P0 de semillas usa las cinco ganancias RMSE emparejadas frente a GRU sobre un calendario fijo. Emplea t no central con alternativa de planificación <strong>2δ</strong>, nula en δ y α conservador <strong>0,02/30</strong>. La incertidumbre de su DE se muestra con cuatro grados de libertad, junto a proyecciones optimista y conservadora. Son aproximaciones condicionales bajo supuestos explícitos, no potencia temporal ni potencia del procedimiento final.</p>
+<p>P1 solo procede tras seleccionar y congelar las recetas finales mediante HPO/NAS aplicable. La enmienda lo sitúa en <strong>53 fechas 08/11–30/12/2024</strong>, tras selección/ajuste hasta el 31/10 y embargo 01–07/11. Diez semillas nuevas en cinco modelos estiman variación, sin acreditar por sí solas potencia. Se usan 10.000 simulaciones independientes bajo nula y alternativa por R, incluyendo familias completas y decisión IUT; extrapolar de 53 a sesenta fechas es un supuesto de planificación. La simulación registrada debe incorporar las familias completas, dependencia temporal y la decisión conjunta de RQ3. Se exige que el límite inferior unilateral de Wilson al 95 % de la potencia simulada alcance <strong>0,80</strong>. Si ninguna opción de R hasta 200 lo logra, se informarán el límite, la potencia estimada y el efecto mínimo detectable; no se certificará suficiencia por haber ejecutado un número redondo de semillas.</p>
+<p>La variación entre modelos y semillas se reportará por separado. Un modelo mixto o descomposición de varianza que se ejecute deberá declarar efectos, identificabilidad y estimador; no se atribuyen componentes de varianza inexistentes a una única serie. Las pérdidas diarias y los folds con entrenamiento solapado requieren correcciones apropiadas o una justificación explícita de la estrategia temporal adoptada.</p>
+</section>
+<section id="familias-finales-y-diagnosticos">
+<h2>13.4 Familias finales y diagnósticos<a class="headerlink" href="#familias-finales-y-diagnosticos" title="Link to this heading">#</a></h2>
+<p>El <a class="reference download internal" download="" href="../_downloads/c43ed0c31c71b99655b1063c15477973/preregistration.json"><span class="xref download myst">preregistro</span></a> fija treinta hipótesis frente al GRU original con α=0,02, treinta frente a GRU-E2 con α=0,02 y 199 diagnósticos con α=0,01. Holm se aplica dentro de cada familia completa y la suma de asignaciones es 0,05. La familia diagnóstica P0 es una etapa separada: no se afirma un control conjunto retrospectivo entre P0 y el benchmark final.</p>
+<p>La <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">sección 6</span></a> conserva los requisitos de DM con corrección HLN, Ljung–Box, BDS, sobreajuste, bondad de ajuste y comparación de eficiencia. Los diagnósticos no se usan para elegir después el contraste que resulte significativo. La ausencia de rechazo no prueba equivalencia, y un diagrama de diferencia crítica o Friedman no trata las semillas sobre el mismo mercado como datasets independientes. Para una afirmación de equivalencia se necesita el contraste registrado correspondiente y un intervalo compatible con su margen.</p>
+<p>Para RQ3 se exige simultáneamente mejora predictiva y menor coste: el contraste de intersección-unión conserva el mayor p de ambos componentes, antes del ajuste familiar. Los tiempos batch 1 se miden con calentamiento, bloques y orden intercalado en el mismo hardware; no se mezclan con la variabilidad de la RMSE.</p>
+<section id="analisis-adicionales-con-alcance-propio">
+<h3>13.4.1 Análisis adicionales con alcance propio<a class="headerlink" href="#analisis-adicionales-con-alcance-propio" title="Link to this heading">#</a></h3>
+<p>La <a class="reference download internal" download="" href="../_downloads/47a0a31721456b70c253b9b8290a2de8/analysis_additions.json"><span class="xref download myst">enmienda</span></a> añade cuarenta contrastes de generalización A53: veinte para exceso de la brecha sobre δg y veinte para estar dentro de tolerancia, Holm α=0,005 en cada subfamilia y 19.999 remuestreos por bloques de siete días, sensibilidades de catorce/veintiocho días. Se calcula la media de RMSE por semilla con inferencia comparable en train y DEV53, no RMSE de ensamble. No rechazar el exceso es inconcluso; no equivale a aprobar ausencia de sobreajuste.</p>
+<p>Equivalencia/menor coste usa diecinueve comparaciones frente a una referencia elegida en desarrollo, TOST ±δ más IUT de ahorro y Holm α=0,01. PIT tiene su familia de veinte, Holm α=0,01, con proceso empírico centrado por bloques. Tres ablaciones prácticas bilaterales usan Holm α=0,05 exclusivamente sobre DEV53. MCS es secuencial Tmax al 90 %. Los controles de etiquetas permutadas tienen diecisiete alertas IUT/Holm α=0,01 y el clasificador adversarial un diagnóstico temporal α=0,01, con 2.000 remuestreos y supuestos declarados en §10. Ninguna de estas familias se presenta como cubierta automáticamente por el presupuesto principal de 0,05.</p>
+<p>La descomposición descriptiva separa modelos y semillas de las <strong>dieciséis redes</strong>; las cuatro referencias deterministas no generan una varianza de inicialización ficticia. Probabilidad de superioridad, contraste HAC alternativo y fronteras de Pareto conservan su alcance condicionado y supuestos. Un IC de calendario sobre pesos fijos no incluye automáticamente la búsqueda HPO ni incertidumbre entre activos.</p>
+</section>
+</section>
+<section id="evidencia-verificable">
+<h2>13.5 Evidencia verificable<a class="headerlink" href="#evidencia-verificable" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">scripts/analyze_e2_remediation_pilot.py</span></code> verifica identidad del plan, semillas, cohortes, hashes de checkpoints, cierre de todos los ajustes antes del scoring y soportes de cada fold. Consume predicciones privadas cerradas y escribe únicamente agregados y procedencia. Sus trece pruebas usan casos sintéticos; los resultados de Bitcoin se publican por separado después de ejecutar el protocolo.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/a421707fc03ce60be02b214170dea130/Remediacion_E2_protocolo_codigo_evidencias.zip"><span class="xref download myst">paquete P0</span></a> conserva ese código, diseño y agregados. La <a class="reference download internal" download="" href="../_downloads/5c39a73befc06b6ac68a0ab1b13e5ac7/completion_bundle.zip"><span class="xref download myst">implementación final</span></a> añade <code class="docutils literal notranslate"><span class="pre">e2_final_statistics.py</span></code>, sus pruebas y el runner de las fases; requiere sus propios recibos antes de afirmar resultados finales. La <a class="reference internal" href="12_incertidumbre_errores.html"><span class="std std-doc">sección 12</span></a> especifica otra función distinta: intervalos predictivos de σ₇ con calibración disjunta y análisis de cien casos únicos por modelo. Un IC de RMSE o la dispersión entre semillas no sustituye esa incertidumbre predictiva.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="12_incertidumbre_errores.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">12. Incertidumbre predictiva y análisis de errores</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="14_arquitecturas.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">14. Arquitecturas fuente, adaptación D7 y búsqueda condicional</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-se-estima-y-que-se-remuestrea">13.1 Qué se estima y qué se remuestrea</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inferencia-del-diagnostico-p0">13.2 Inferencia del diagnóstico P0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#potencia-condicional-y-dimensionamiento-definitivo">13.3 Potencia condicional y dimensionamiento definitivo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#familias-finales-y-diagnosticos">13.4 Familias finales y diagnósticos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-adicionales-con-alcance-propio">13.4.1 Análisis adicionales con alcance propio</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-verificable">13.5 Evidencia verificable</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

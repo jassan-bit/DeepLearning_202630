@@ -1,0 +1,446 @@
+{
+  "prepared_date": "2026-11-03",
+  "timezone": "America/Bogota",
+  "status": "planned_not_executed",
+  "research_question": "Which independent, relatively simple deep-learning comparator architectures are used in empirical Bitcoin volatility/variance forecasting studies?",
+  "preferred_publication_years": [
+    2019,
+    2026
+  ],
+  "calendar_window_note": "Eight calendar years 2019–2026, with a prepared cutoff of 3 November 2026; no source retrieval or applied date filter is certified by this plan.",
+  "upper_date_cutoff": "2026-11-03",
+  "period_applied_confirmed": false,
+  "date_basis_warning": "WoS/Scopus publication year, IEEE publication-year filter and arXiv first submission are different date variables. Record actual field and source-provided publication/submission/online dates; do not infer editorial year from repository timestamps.",
+  "classification_warning": "B1 and B2 identify queries. Q1 journal quartile requires separate verification of index, journal, year and category.",
+  "common_terms": {
+    "asset": [
+      "Bitcoin",
+      "BTC",
+      "BTCUSDT"
+    ],
+    "volatility_or_variance": [
+      "volatility",
+      "realized volatility",
+      "realised volatility",
+      "realized variance",
+      "realised variance"
+    ],
+    "forecast_or_prediction": [
+      "forecast",
+      "forecasting",
+      "prediction",
+      "predicting",
+      "predictive"
+    ],
+    "general_DL": [
+      "deep learning",
+      "neural network",
+      "neural networks"
+    ],
+    "targeted_families": {
+      "feedforward": [
+        "MLP",
+        "multilayer perceptron",
+        "feedforward",
+        "feed-forward"
+      ],
+      "recurrent": [
+        "RNN",
+        "LSTM",
+        "GRU",
+        "BiLSTM"
+      ],
+      "convolutional": [
+        "CNN",
+        "TCN",
+        "temporal convolutional",
+        "convolutional neural"
+      ],
+      "attention": [
+        "Transformer",
+        "attention",
+        "Synthesizer"
+      ]
+    }
+  },
+  "queries": [
+    {
+      "source": "Web of Science",
+      "query_id": "B1",
+      "kind": "general_DL",
+      "native_query": "TS=(Bitcoin OR BTC OR BTCUSDT) AND TS=(volatil* OR \"realized variance\" OR \"realised variance\") AND TS=(forecast* OR predict*) AND TS=(\"deep learning\" OR \"neural network\" OR \"neural networks\") AND PY=(2019-2026)",
+      "fields": "TS: Topic (database-defined title, abstract and keyword fields)",
+      "requested_date_filter": "PY=(2019-2026)",
+      "query_executed": false,
+      "applied_filters_verified": false,
+      "total_hits": null,
+      "retrieved_record_count": null,
+      "note": "Candidate native syntax; verify acceptance and active fields/filters in the source response before marking executed. No citation count is a result of this plan."
+    },
+    {
+      "source": "Web of Science",
+      "query_id": "B2",
+      "kind": "sensitivity_without_DL_requirement",
+      "native_query": "TS=(Bitcoin OR BTC OR BTCUSDT) AND TS=(volatil* OR \"realized variance\" OR \"realised variance\") AND TS=(forecast* OR predict*) AND PY=(2019-2026)",
+      "fields": "TS: Topic (database-defined title, abstract and keyword fields)",
+      "requested_date_filter": "PY=(2019-2026)",
+      "query_executed": false,
+      "applied_filters_verified": false,
+      "total_hits": null,
+      "retrieved_record_count": null,
+      "note": "Catches studies whose title/abstract/keywords omit simple neural baselines. DL comparator eligibility is assessed during screening, not inferred from B2 membership."
+    },
+    {
+      "source": "Web of Science",
+      "query_id": "F_feedforward",
+      "kind": "targeted_family_optional",
+      "native_query": "TS=(Bitcoin OR BTC OR BTCUSDT) AND TS=(volatil* OR \"realized variance\" OR \"realised variance\") AND TS=(forecast* OR predict*) AND TS=(MLP OR \"multilayer perceptron\" OR feedforward OR \"feed-forward\") AND PY=(2019-2026)",
+      "fields": "TS: Topic (database-defined title, abstract and keyword fields)",
+      "requested_date_filter": "PY=(2019-2026)",
+      "query_executed": false,
+      "applied_filters_verified": false,
+      "total_hits": null,
+      "retrieved_record_count": null,
+      "note": "Supplementary recovery; union/deduplicate at document level. Targeted search counts do not estimate independent architecture prevalence."
+    },
+    {
+      "source": "Web of Science",
+      "query_id": "F_recurrent",
+      "kind": "targeted_family_optional",
+      "native_query": "TS=(Bitcoin OR BTC OR BTCUSDT) AND TS=(volatil* OR \"realized variance\" OR \"realised variance\") AND TS=(forecast* OR predict*) AND TS=(RNN OR LSTM OR GRU OR BiLSTM) AND PY=(2019-2026)",
+      "fields": "TS: Topic (database-defined title, abstract and keyword fields)",
+      "requested_date_filter": "PY=(2019-2026)",
+      "query_executed": false,
+      "applied_filters_verified": false,
+      "total_hits": null,
+      "retrieved_record_count": null,
+      "note": "Supplementary recovery; union/deduplicate at document level. Targeted search counts do not estimate independent architecture prevalence."
+    },
+    {
+      "source": "Web of Science",
+      "query_id": "F_convolutional",
+      "kind": "targeted_family_optional",
+      "native_query": "TS=(Bitcoin OR BTC OR BTCUSDT) AND TS=(volatil* OR \"realized variance\" OR \"realised variance\") AND TS=(forecast* OR predict*) AND TS=(CNN OR TCN OR \"temporal convolutional\" OR \"convolutional neural\") AND PY=(2019-2026)",
+      "fields": "TS: Topic (database-defined title, abstract and keyword fields)",
+      "requested_date_filter": "PY=(2019-2026)",
+      "query_executed": false,
+      "applied_filters_verified": false,
+      "total_hits": null,
+      "retrieved_record_count": null,
+      "note": "Supplementary recovery; union/deduplicate at document level. Targeted search counts do not estimate independent architecture prevalence."
+    },
+    {
+      "source": "Web of Science",
+      "query_id": "F_attention",
+      "kind": "targeted_family_optional",
+      "native_query": "TS=(Bitcoin OR BTC OR BTCUSDT) AND TS=(volatil* OR \"realized variance\" OR \"realised variance\") AND TS=(forecast* OR predict*) AND TS=(Transformer OR attention OR Synthesizer) AND PY=(2019-2026)",
+      "fields": "TS: Topic (database-defined title, abstract and keyword fields)",
+      "requested_date_filter": "PY=(2019-2026)",
+      "query_executed": false,
+      "applied_filters_verified": false,
+      "total_hits": null,
+      "retrieved_record_count": null,
+      "note": "Supplementary recovery; union/deduplicate at document level. Targeted search counts do not estimate independent architecture prevalence."
+    },
+    {
+      "source": "Scopus",
+      "query_id": "B1",
+      "kind": "general_DL",
+      "native_query": "TITLE-ABS-KEY(Bitcoin OR BTC OR BTCUSDT) AND TITLE-ABS-KEY(volatil* OR \"realized variance\" OR \"realised variance\") AND TITLE-ABS-KEY(forecast* OR predict*) AND TITLE-ABS-KEY(\"deep learning\" OR \"neural network\" OR \"neural networks\") AND PUBYEAR > 2018 AND PUBYEAR < 2027",
+      "fields": "TITLE-ABS-KEY",
+      "requested_date_filter": "PUBYEAR > 2018 AND PUBYEAR < 2027",
+      "query_executed": false,
+      "applied_filters_verified": false,
+      "total_hits": null,
+      "retrieved_record_count": null,
+      "note": "Candidate native syntax; verify acceptance and active fields/filters in the source response before marking executed. No citation count is a result of this plan."
+    },
+    {
+      "source": "Scopus",
+      "query_id": "B2",
+      "kind": "sensitivity_without_DL_requirement",
+      "native_query": "TITLE-ABS-KEY(Bitcoin OR BTC OR BTCUSDT) AND TITLE-ABS-KEY(volatil* OR \"realized variance\" OR \"realised variance\") AND TITLE-ABS-KEY(forecast* OR predict*) AND PUBYEAR > 2018 AND PUBYEAR < 2027",
+      "fields": "TITLE-ABS-KEY",
+      "requested_date_filter": "PUBYEAR > 2018 AND PUBYEAR < 2027",
+      "query_executed": false,
+      "applied_filters_verified": false,
+      "total_hits": null,
+      "retrieved_record_count": null,
+      "note": "Catches studies whose title/abstract/keywords omit simple neural baselines. DL comparator eligibility is assessed during screening, not inferred from B2 membership."
+    },
+    {
+      "source": "Scopus",
+      "query_id": "F_feedforward",
+      "kind": "targeted_family_optional",
+      "native_query": "TITLE-ABS-KEY(Bitcoin OR BTC OR BTCUSDT) AND TITLE-ABS-KEY(volatil* OR \"realized variance\" OR \"realised variance\") AND TITLE-ABS-KEY(forecast* OR predict*) AND TITLE-ABS-KEY(MLP OR \"multilayer perceptron\" OR feedforward OR \"feed-forward\") AND PUBYEAR > 2018 AND PUBYEAR < 2027",
+      "fields": "TITLE-ABS-KEY",
+      "requested_date_filter": "PUBYEAR > 2018 AND PUBYEAR < 2027",
+      "query_executed": false,
+      "applied_filters_verified": false,
+      "total_hits": null,
+      "retrieved_record_count": null,
+      "note": "Supplementary recovery; union/deduplicate at document level. Targeted search counts do not estimate independent architecture prevalence."
+    },
+    {
+      "source": "Scopus",
+      "query_id": "F_recurrent",
+      "kind": "targeted_family_optional",
+      "native_query": "TITLE-ABS-KEY(Bitcoin OR BTC OR BTCUSDT) AND TITLE-ABS-KEY(volatil* OR \"realized variance\" OR \"realised variance\") AND TITLE-ABS-KEY(forecast* OR predict*) AND TITLE-ABS-KEY(RNN OR LSTM OR GRU OR BiLSTM) AND PUBYEAR > 2018 AND PUBYEAR < 2027",
+      "fields": "TITLE-ABS-KEY",
+      "requested_date_filter": "PUBYEAR > 2018 AND PUBYEAR < 2027",
+      "query_executed": false,
+      "applied_filters_verified": false,
+      "total_hits": null,
+      "retrieved_record_count": null,
+      "note": "Supplementary recovery; union/deduplicate at document level. Targeted search counts do not estimate independent architecture prevalence."
+    },
+    {
+      "source": "Scopus",
+      "query_id": "F_convolutional",
+      "kind": "targeted_family_optional",
+      "native_query": "TITLE-ABS-KEY(Bitcoin OR BTC OR BTCUSDT) AND TITLE-ABS-KEY(volatil* OR \"realized variance\" OR \"realised variance\") AND TITLE-ABS-KEY(forecast* OR predict*) AND TITLE-ABS-KEY(CNN OR TCN OR \"temporal convolutional\" OR \"convolutional neural\") AND PUBYEAR > 2018 AND PUBYEAR < 2027",
+      "fields": "TITLE-ABS-KEY",
+      "requested_date_filter": "PUBYEAR > 2018 AND PUBYEAR < 2027",
+      "query_executed": false,
+      "applied_filters_verified": false,
+      "total_hits": null,
+      "retrieved_record_count": null,
+      "note": "Supplementary recovery; union/deduplicate at document level. Targeted search counts do not estimate independent architecture prevalence."
+    },
+    {
+      "source": "Scopus",
+      "query_id": "F_attention",
+      "kind": "targeted_family_optional",
+      "native_query": "TITLE-ABS-KEY(Bitcoin OR BTC OR BTCUSDT) AND TITLE-ABS-KEY(volatil* OR \"realized variance\" OR \"realised variance\") AND TITLE-ABS-KEY(forecast* OR predict*) AND TITLE-ABS-KEY(Transformer OR attention OR Synthesizer) AND PUBYEAR > 2018 AND PUBYEAR < 2027",
+      "fields": "TITLE-ABS-KEY",
+      "requested_date_filter": "PUBYEAR > 2018 AND PUBYEAR < 2027",
+      "query_executed": false,
+      "applied_filters_verified": false,
+      "total_hits": null,
+      "retrieved_record_count": null,
+      "note": "Supplementary recovery; union/deduplicate at document level. Targeted search counts do not estimate independent architecture prevalence."
+    },
+    {
+      "source": "IEEE Xplore",
+      "query_id": "B1",
+      "kind": "general_DL",
+      "native_query": "(\"All Metadata\":Bitcoin OR \"All Metadata\":BTC OR \"All Metadata\":BTCUSDT) AND (\"All Metadata\":volatil* OR \"All Metadata\":\"realized variance\" OR \"All Metadata\":\"realised variance\") AND (\"All Metadata\":forecast* OR \"All Metadata\":predict*) AND (\"All Metadata\":\"deep learning\" OR \"All Metadata\":\"neural network\" OR \"All Metadata\":\"neural networks\")",
+      "fields": "All Metadata, Command Search",
+      "requested_date_filter": "Publication Year: 2019–2026, applied in source filters and recorded separately",
+      "query_executed": false,
+      "applied_filters_verified": false,
+      "total_hits": null,
+      "retrieved_record_count": null,
+      "note": "Candidate native syntax; verify acceptance and active fields/filters in the source response before marking executed. No citation count is a result of this plan."
+    },
+    {
+      "source": "IEEE Xplore",
+      "query_id": "B2",
+      "kind": "sensitivity_without_DL_requirement",
+      "native_query": "(\"All Metadata\":Bitcoin OR \"All Metadata\":BTC OR \"All Metadata\":BTCUSDT) AND (\"All Metadata\":volatil* OR \"All Metadata\":\"realized variance\" OR \"All Metadata\":\"realised variance\") AND (\"All Metadata\":forecast* OR \"All Metadata\":predict*)",
+      "fields": "All Metadata, Command Search",
+      "requested_date_filter": "Publication Year: 2019–2026, applied in source filters and recorded separately",
+      "query_executed": false,
+      "applied_filters_verified": false,
+      "total_hits": null,
+      "retrieved_record_count": null,
+      "note": "Catches studies whose title/abstract/keywords omit simple neural baselines. DL comparator eligibility is assessed during screening, not inferred from B2 membership."
+    },
+    {
+      "source": "IEEE Xplore",
+      "query_id": "F_feedforward",
+      "kind": "targeted_family_optional",
+      "native_query": "(\"All Metadata\":Bitcoin OR \"All Metadata\":BTC OR \"All Metadata\":BTCUSDT) AND (\"All Metadata\":volatil* OR \"All Metadata\":\"realized variance\" OR \"All Metadata\":\"realised variance\") AND (\"All Metadata\":forecast* OR \"All Metadata\":predict*) AND (\"All Metadata\":MLP OR \"All Metadata\":\"multilayer perceptron\" OR \"All Metadata\":feedforward OR \"All Metadata\":\"feed-forward\")",
+      "fields": "All Metadata, Command Search",
+      "requested_date_filter": "Publication Year: 2019–2026, applied in source filters and recorded separately",
+      "query_executed": false,
+      "applied_filters_verified": false,
+      "total_hits": null,
+      "retrieved_record_count": null,
+      "note": "Supplementary recovery; union/deduplicate at document level. Targeted search counts do not estimate independent architecture prevalence."
+    },
+    {
+      "source": "IEEE Xplore",
+      "query_id": "F_recurrent",
+      "kind": "targeted_family_optional",
+      "native_query": "(\"All Metadata\":Bitcoin OR \"All Metadata\":BTC OR \"All Metadata\":BTCUSDT) AND (\"All Metadata\":volatil* OR \"All Metadata\":\"realized variance\" OR \"All Metadata\":\"realised variance\") AND (\"All Metadata\":forecast* OR \"All Metadata\":predict*) AND (\"All Metadata\":RNN OR \"All Metadata\":LSTM OR \"All Metadata\":GRU OR \"All Metadata\":BiLSTM)",
+      "fields": "All Metadata, Command Search",
+      "requested_date_filter": "Publication Year: 2019–2026, applied in source filters and recorded separately",
+      "query_executed": false,
+      "applied_filters_verified": false,
+      "total_hits": null,
+      "retrieved_record_count": null,
+      "note": "Supplementary recovery; union/deduplicate at document level. Targeted search counts do not estimate independent architecture prevalence."
+    },
+    {
+      "source": "IEEE Xplore",
+      "query_id": "F_convolutional",
+      "kind": "targeted_family_optional",
+      "native_query": "(\"All Metadata\":Bitcoin OR \"All Metadata\":BTC OR \"All Metadata\":BTCUSDT) AND (\"All Metadata\":volatil* OR \"All Metadata\":\"realized variance\" OR \"All Metadata\":\"realised variance\") AND (\"All Metadata\":forecast* OR \"All Metadata\":predict*) AND (\"All Metadata\":CNN OR \"All Metadata\":TCN OR \"All Metadata\":\"temporal convolutional\" OR \"All Metadata\":\"convolutional neural\")",
+      "fields": "All Metadata, Command Search",
+      "requested_date_filter": "Publication Year: 2019–2026, applied in source filters and recorded separately",
+      "query_executed": false,
+      "applied_filters_verified": false,
+      "total_hits": null,
+      "retrieved_record_count": null,
+      "note": "Supplementary recovery; union/deduplicate at document level. Targeted search counts do not estimate independent architecture prevalence."
+    },
+    {
+      "source": "IEEE Xplore",
+      "query_id": "F_attention",
+      "kind": "targeted_family_optional",
+      "native_query": "(\"All Metadata\":Bitcoin OR \"All Metadata\":BTC OR \"All Metadata\":BTCUSDT) AND (\"All Metadata\":volatil* OR \"All Metadata\":\"realized variance\" OR \"All Metadata\":\"realised variance\") AND (\"All Metadata\":forecast* OR \"All Metadata\":predict*) AND (\"All Metadata\":Transformer OR \"All Metadata\":attention OR \"All Metadata\":Synthesizer)",
+      "fields": "All Metadata, Command Search",
+      "requested_date_filter": "Publication Year: 2019–2026, applied in source filters and recorded separately",
+      "query_executed": false,
+      "applied_filters_verified": false,
+      "total_hits": null,
+      "retrieved_record_count": null,
+      "note": "Supplementary recovery; union/deduplicate at document level. Targeted search counts do not estimate independent architecture prevalence."
+    },
+    {
+      "source": "arXiv",
+      "query_id": "B1",
+      "kind": "general_DL",
+      "native_query": "(ti:Bitcoin OR abs:Bitcoin OR ti:BTC OR abs:BTC OR ti:BTCUSDT OR abs:BTCUSDT) AND (ti:volatility OR abs:volatility OR ti:\"realized volatility\" OR abs:\"realized volatility\" OR ti:\"realised volatility\" OR abs:\"realised volatility\" OR ti:\"realized variance\" OR abs:\"realized variance\" OR ti:\"realised variance\" OR abs:\"realised variance\") AND (ti:forecast OR abs:forecast OR ti:forecasting OR abs:forecasting OR ti:prediction OR abs:prediction OR ti:predicting OR abs:predicting OR ti:predictive OR abs:predictive) AND (ti:\"deep learning\" OR abs:\"deep learning\" OR ti:\"neural network\" OR abs:\"neural network\" OR ti:\"neural networks\" OR abs:\"neural networks\") AND submittedDate:[201901010000 TO 202611032359]",
+      "fields": "ti and abs, API/advanced search",
+      "requested_date_filter": "submittedDate:[201901010000 TO 202611032359]",
+      "query_executed": false,
+      "applied_filters_verified": false,
+      "total_hits": null,
+      "retrieved_record_count": null,
+      "note": "Candidate native syntax; verify acceptance and active fields/filters in the source response before marking executed. No citation count is a result of this plan."
+    },
+    {
+      "source": "arXiv",
+      "query_id": "B2",
+      "kind": "sensitivity_without_DL_requirement",
+      "native_query": "(ti:Bitcoin OR abs:Bitcoin OR ti:BTC OR abs:BTC OR ti:BTCUSDT OR abs:BTCUSDT) AND (ti:volatility OR abs:volatility OR ti:\"realized volatility\" OR abs:\"realized volatility\" OR ti:\"realised volatility\" OR abs:\"realised volatility\" OR ti:\"realized variance\" OR abs:\"realized variance\" OR ti:\"realised variance\" OR abs:\"realised variance\") AND (ti:forecast OR abs:forecast OR ti:forecasting OR abs:forecasting OR ti:prediction OR abs:prediction OR ti:predicting OR abs:predicting OR ti:predictive OR abs:predictive) AND submittedDate:[201901010000 TO 202611032359]",
+      "fields": "ti and abs, API/advanced search",
+      "requested_date_filter": "submittedDate:[201901010000 TO 202611032359]",
+      "query_executed": false,
+      "applied_filters_verified": false,
+      "total_hits": null,
+      "retrieved_record_count": null,
+      "note": "Catches studies whose title/abstract/keywords omit simple neural baselines. DL comparator eligibility is assessed during screening, not inferred from B2 membership."
+    },
+    {
+      "source": "arXiv",
+      "query_id": "F_feedforward",
+      "kind": "targeted_family_optional",
+      "native_query": "(ti:Bitcoin OR abs:Bitcoin OR ti:BTC OR abs:BTC OR ti:BTCUSDT OR abs:BTCUSDT) AND (ti:volatility OR abs:volatility OR ti:\"realized volatility\" OR abs:\"realized volatility\" OR ti:\"realised volatility\" OR abs:\"realised volatility\" OR ti:\"realized variance\" OR abs:\"realized variance\" OR ti:\"realised variance\" OR abs:\"realised variance\") AND (ti:forecast OR abs:forecast OR ti:forecasting OR abs:forecasting OR ti:prediction OR abs:prediction OR ti:predicting OR abs:predicting OR ti:predictive OR abs:predictive) AND (ti:MLP OR abs:MLP OR ti:\"multilayer perceptron\" OR abs:\"multilayer perceptron\" OR ti:feedforward OR abs:feedforward OR ti:\"feed-forward\" OR abs:\"feed-forward\") AND submittedDate:[201901010000 TO 202611032359]",
+      "fields": "ti and abs, API/advanced search",
+      "requested_date_filter": "submittedDate:[201901010000 TO 202611032359]",
+      "query_executed": false,
+      "applied_filters_verified": false,
+      "total_hits": null,
+      "retrieved_record_count": null,
+      "note": "Supplementary recovery; union/deduplicate at document level. Targeted search counts do not estimate independent architecture prevalence."
+    },
+    {
+      "source": "arXiv",
+      "query_id": "F_recurrent",
+      "kind": "targeted_family_optional",
+      "native_query": "(ti:Bitcoin OR abs:Bitcoin OR ti:BTC OR abs:BTC OR ti:BTCUSDT OR abs:BTCUSDT) AND (ti:volatility OR abs:volatility OR ti:\"realized volatility\" OR abs:\"realized volatility\" OR ti:\"realised volatility\" OR abs:\"realised volatility\" OR ti:\"realized variance\" OR abs:\"realized variance\" OR ti:\"realised variance\" OR abs:\"realised variance\") AND (ti:forecast OR abs:forecast OR ti:forecasting OR abs:forecasting OR ti:prediction OR abs:prediction OR ti:predicting OR abs:predicting OR ti:predictive OR abs:predictive) AND (ti:RNN OR abs:RNN OR ti:LSTM OR abs:LSTM OR ti:GRU OR abs:GRU OR ti:BiLSTM OR abs:BiLSTM) AND submittedDate:[201901010000 TO 202611032359]",
+      "fields": "ti and abs, API/advanced search",
+      "requested_date_filter": "submittedDate:[201901010000 TO 202611032359]",
+      "query_executed": false,
+      "applied_filters_verified": false,
+      "total_hits": null,
+      "retrieved_record_count": null,
+      "note": "Supplementary recovery; union/deduplicate at document level. Targeted search counts do not estimate independent architecture prevalence."
+    },
+    {
+      "source": "arXiv",
+      "query_id": "F_convolutional",
+      "kind": "targeted_family_optional",
+      "native_query": "(ti:Bitcoin OR abs:Bitcoin OR ti:BTC OR abs:BTC OR ti:BTCUSDT OR abs:BTCUSDT) AND (ti:volatility OR abs:volatility OR ti:\"realized volatility\" OR abs:\"realized volatility\" OR ti:\"realised volatility\" OR abs:\"realised volatility\" OR ti:\"realized variance\" OR abs:\"realized variance\" OR ti:\"realised variance\" OR abs:\"realised variance\") AND (ti:forecast OR abs:forecast OR ti:forecasting OR abs:forecasting OR ti:prediction OR abs:prediction OR ti:predicting OR abs:predicting OR ti:predictive OR abs:predictive) AND (ti:CNN OR abs:CNN OR ti:TCN OR abs:TCN OR ti:\"temporal convolutional\" OR abs:\"temporal convolutional\" OR ti:\"convolutional neural\" OR abs:\"convolutional neural\") AND submittedDate:[201901010000 TO 202611032359]",
+      "fields": "ti and abs, API/advanced search",
+      "requested_date_filter": "submittedDate:[201901010000 TO 202611032359]",
+      "query_executed": false,
+      "applied_filters_verified": false,
+      "total_hits": null,
+      "retrieved_record_count": null,
+      "note": "Supplementary recovery; union/deduplicate at document level. Targeted search counts do not estimate independent architecture prevalence."
+    },
+    {
+      "source": "arXiv",
+      "query_id": "F_attention",
+      "kind": "targeted_family_optional",
+      "native_query": "(ti:Bitcoin OR abs:Bitcoin OR ti:BTC OR abs:BTC OR ti:BTCUSDT OR abs:BTCUSDT) AND (ti:volatility OR abs:volatility OR ti:\"realized volatility\" OR abs:\"realized volatility\" OR ti:\"realised volatility\" OR abs:\"realised volatility\" OR ti:\"realized variance\" OR abs:\"realized variance\" OR ti:\"realised variance\" OR abs:\"realised variance\") AND (ti:forecast OR abs:forecast OR ti:forecasting OR abs:forecasting OR ti:prediction OR abs:prediction OR ti:predicting OR abs:predicting OR ti:predictive OR abs:predictive) AND (ti:Transformer OR abs:Transformer OR ti:attention OR abs:attention OR ti:Synthesizer OR abs:Synthesizer) AND submittedDate:[201901010000 TO 202611032359]",
+      "fields": "ti and abs, API/advanced search",
+      "requested_date_filter": "submittedDate:[201901010000 TO 202611032359]",
+      "query_executed": false,
+      "applied_filters_verified": false,
+      "total_hits": null,
+      "retrieved_record_count": null,
+      "note": "Supplementary recovery; union/deduplicate at document level. Targeted search counts do not estimate independent architecture prevalence."
+    }
+  ],
+  "execution_requirements": [
+    "Confirm active network policy allows source host before making an upstream query; do not bypass blocked destinations.",
+    "Use a valid source session/API entitlement where required; access to an institutional link is not proof of authentication or search execution.",
+    "Capture native query, requested and applied filters, exact timestamp and timezone, database/collection, sort, page size, pages, total source count, exported count and raw-response/export hashes.",
+    "If blocked before search, query_executed=false, total_hits=null and retrieved_record_count=null; unavailable does not mean zero.",
+    "If accessible, paginate/export all records or declare the exact stopping rule and truncated coverage. Do not sum hit estimates across overlapping queries."
+  ],
+  "eligibility": {
+    "inclusion": [
+      "Bitcoin/BTC/BTCUSDT or a mixed-asset study with separately extractable Bitcoin results",
+      "Volatility or variance forecasting/prediction outcome with market, source, sampling frequency, target formula and forecast horizon identifiable",
+      "DL used as an independent comparator, with architecture/protocol and verifiable metrics sufficient for extraction",
+      "Identifiable author/title/document and reported or explicitly unknown publication status/year"
+    ],
+    "exclusion_after_screening": [
+      "Price/direction/trading-only outcomes without a volatility/variance forecast",
+      "Only other assets with no separately extractable Bitcoin experiment",
+      "No recoverable scientific document sufficient to establish model role/protocol/results; retain as context or pending retrieval rather than inventing evidence",
+      "Redundant version of the same work; retain linkage rather than count as a second study"
+    ],
+    "not_automatic_exclusions": [
+      "Mentions of price",
+      "A hybrid proposed model if it compares an independently evaluated simple DL model",
+      "An advanced architecture name",
+      "Preprint/course/report genre",
+      "No Q1 classification",
+      "Unknown year; retain explicitly as exploratory with sensitivity, not as proven recent indexed evidence"
+    ]
+  },
+  "deduplication": [
+    "Normalize DOI: lower-case, strip doi.org URL and surrounding punctuation; exact DOI agreement links records",
+    "Normalize arXiv base identifier and preserve v-number separately; connect preprint and final DOI through explicit metadata",
+    "Absent DOI/arXiv linkage, compare normalized title, authors and year, then manually review ambiguous pairs",
+    "Different datasets or targets in one work are experiments within the study, not additional papers; each study counts at most once per independent comparator family"
+  ],
+  "quality_and_flow": {
+    "flow_units": [
+      "source record occurrence",
+      "deduplicated scientific document/study",
+      "full text sought",
+      "full text assessed",
+      "included study",
+      "comparator architecture family"
+    ],
+    "quality_domains": [
+      "clarity of target/dataset and temporal availability",
+      "train/validation/test and leakage risk",
+      "reference architecture and independent role",
+      "same-information/equal-effort comparison",
+      "seed repetitions and what dispersion represents",
+      "statistical methods, dependence and multiplicity",
+      "code/data/metric/protocol consistency"
+    ],
+    "reviewer_policy": "Record actual screener and resolver. Do not claim independent human reviewers, agreement or consensus when not performed.",
+    "quartile_policy": "Verify source index, journal, reporting system (e.g. JCR vs SJR), edition/year and subject category. A DOI, Scopus/WoS hit or IEEE conference record alone does not prove Q1 or peer review.",
+    "grey_literature_policy": "arXiv is a complementary preprint source. Mark peer-review status and link later journal versions; report sensitivities excluding grey documents and unverified-date items."
+  },
+  "existing_evidence_preservation": {
+    "catalog_entries": 35,
+    "visible_catalog_columns": 4,
+    "included_full_text_studies": 5,
+    "selected_families": [],
+    "new_studies_added_by_this_plan": 0,
+    "new_results_or_frequencies_inferred": false
+  },
+  "capture_plan_status": "Prepared before the current access attempts; not a retrospective claim about historical searches."
+}

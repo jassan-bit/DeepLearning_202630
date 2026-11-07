@@ -1,0 +1,164 @@
+{
+  "accessed_utc": "2026-11-07",
+  "method": "Búsqueda web pública dirigida, acceso editorial/autor/arXiv y lectura primaria. No ejecución de nuevas búsquedas nativas Scopus/WoS, no contacto a autores, no bypass de paywalls ni descarga a repositorio.",
+  "queries_executed": [
+    {
+      "query": "Bitcoin volatility forecasting LSTM GRU open access 2024 2025",
+      "service": "search_service_web_run"
+    },
+    {
+      "query": "Brauneis Sahiner 2024 09510 6 volatility full text",
+      "service": "search_service_web_run"
+    },
+    {
+      "query": "\"Forecasting cryptocurrencies volatility using statistical\" pdf Dudek",
+      "service": "search_service_web_run"
+    },
+    {
+      "query": "\"Bitcoin Volatility Forecasting Based on Time Series Decomposition\" GRU pdf",
+      "service": "search_service_web_run"
+    },
+    {
+      "query": "bitcoin \"volatility\" \"GRU\" \"open access\" -price -stock -sentiment -PSO -Nokar",
+      "service": "search_service_web_run"
+    },
+    {
+      "query": "\"Forecasting bitcoin volatility: exploring\" returns volatility Pratas",
+      "service": "search_service_web_run"
+    },
+    {
+      "query": "\"111132\" pdf volatility Dudek",
+      "service": "search_service_web_run"
+    },
+    {
+      "query": "\"Dudek_Fiszeder_Kobus_Orzeszko_ASC.pdf\"",
+      "service": "search_service_web_run"
+    },
+    {
+      "query": "\"Forecasting cryptocurrencies volatility\" arxiv",
+      "service": "search_service_web_run"
+    },
+    {
+      "query": "\"Forecasting cryptocurrencies volatility\" filetype:pdf -researchgate -ssrn -home.umk.pl",
+      "service": "search_service_web_run"
+    },
+    {
+      "query": "\"Forecasting Volatility with Machine Learning and Rough Volatility\" DOI Tang Rosenbaum",
+      "service": "search_service_web_run"
+    },
+    {
+      "query": "\"10.1109/DSAA65442.2025.11248015\"",
+      "service": "search_service_web_run"
+    }
+  ],
+  "deduplication_checks": [
+    {
+      "path": "references/literature_e1/native_search_20261106/records.csv",
+      "sha256": "1a3d2072f233e2ed5d927642d9c2cb85c39ab4bf41f89f1f11fa6c375cb753b7",
+      "rows": 182
+    },
+    {
+      "path": "references/literature_e1/crypto_extension_20261105/evidence_matrix.csv",
+      "sha256": "bc781bb92b600801d5aa93447e63b0a0b6e3ab94a001ddfcf8a93172c48e325c",
+      "rows": 10
+    },
+    {
+      "path": "references/literature_e2/scopus_20261105/combined_records.csv",
+      "sha256": "4c3e9e4cab834c9c1146dc57f83de0a772f3c558cab476af525ccea618a47c70",
+      "rows": 7833
+    }
+  ],
+  "deduplication_result": {
+    "E1_182": "Ninguno de R01–R04 ni X001 pertenece a los182 registros; cotejo DOI/título más nombres normalizados.",
+    "N7": "Ninguno coincide con S1/S2/S5/S6/S7/S8/S9.",
+    "global": "R02 ya existe en E2 como WOS:001137349000001; sólo lectura primaria nueva. X001 ya es fuente complementaria. R01/R03/R04 sin coincidencia previa exacta.",
+    "deduplication_time": "Antes de materializar estas cuatro salidas; no usar búsqueda posterior sobre la propia ficha como novedad."
+  },
+  "access_routes": [
+    {
+      "id": "E1OA-R01",
+      "route": "arXiv2311.04727v2 HTML completo; editorial sólo preview.",
+      "outcome": "full_author_version_read; journal_final_not_read"
+    },
+    {
+      "id": "E1OA-R02",
+      "route": "Editor ScienceDirect403; enlace público del coautor en piotr.fiszeder.prac.umk.pl/stronaangielska.htm → PDF. Host antiguo home.umk.pl no respondió; host actual accesible mediante link de autor.",
+      "outcome": "full_21_page_pdf_read; explicit_OA_reuse_license_unverified"
+    },
+    {
+      "id": "E1OA-R03",
+      "route": "SAGE/IOS Press PDF8 páginas abierto.",
+      "outcome": "full_publisher_read_CC_BY_NC4; quality_context_only"
+    },
+    {
+      "id": "E1OA-R04",
+      "route": "arXiv2508.15922v1 HTML completo; publicaciónDSAA en página del autor.",
+      "outcome": "full_author_version_read; final_IEEE_not_read"
+    },
+    {
+      "id": "E1X001",
+      "route": "Springer HTML y PDF33 páginas; tablas4–8 extraídas de fuente original.",
+      "outcome": "upgrade_prior_partial_to_full_CC_BY4"
+    }
+  ],
+  "excluded_or_not_promoted": [
+    {
+      "doi": "10.1007/s40822-023-00232-0",
+      "title": "Forecasting bitcoin volatility: exploring the potential of deep learning",
+      "access": "publisher_full_available",
+      "full_text_read": false,
+      "locations_read": "Abstract y metodología, §3.2/Ec.14; no se declara lectura completa.",
+      "decision": "No promover: target identificado como BTC-USD-RET (retornos), no una proxy de volatilidad explícita; título engañoso para este criterio.",
+      "url": "https://link.springer.com/article/10.1007/s40822-023-00232-0"
+    },
+    {
+      "doi": "10.1007/s42521-026-00229-9",
+      "title": "Regime-dependent bitcoin volatility forecasting under alternative information sets: evidence from econometric, deep learning, and hybrid models",
+      "access": "publisher_full_available_CC_BY4",
+      "full_text_read": false,
+      "locations_read": "Metadatos y §§3–4 parciales.",
+      "decision": "No promover en este cierre: fórmula del target común y split no resueltos; se detuvo lectura para priorizar fuentes concluidas.",
+      "url": "https://link.springer.com/article/10.1007/s42521-026-00229-9"
+    },
+    {
+      "arxiv": "2609.27024v1",
+      "title": "Loss Choice or Model Choice? The Role of Forecast Level in Cryptocurrency Volatility Forecasting",
+      "access": "author_full_available",
+      "full_text_read": false,
+      "decision": "Contexto no recurrente; sin GRU/LSTM autónomos. No promovido.",
+      "url": "https://arxiv.org/html/2609.27024v1"
+    },
+    {
+      "doi": "10.1007/s13278-025-01463-6",
+      "decision": "Resultado de búsqueda de precio; no lectura completa ni inclusión."
+    },
+    {
+      "doi": "10.1016/j.knosys.2024.112026",
+      "decision": "Resultado de búsqueda de precio; no lectura completa ni inclusión."
+    },
+    {
+      "doi": "10.1038/s41598-026-46271-w",
+      "decision": "Resultado de búsqueda de clasificación de movimiento de precio; no lectura completa ni inclusión."
+    },
+    {
+      "doi": "10.1002/for.3165",
+      "decision": "Resultado de búsqueda de retornos; no lectura completa ni inclusión."
+    }
+  ],
+  "existing_evidence_reused_without_new_count": [
+    {
+      "group_id": "E1X003",
+      "doi": "10.1186/s40854-025-00768-x",
+      "record": "references/literature_e1/internet_closure_20261106/part_d/reviews.json",
+      "role": "Comparador LSTM autónomo ya leído. EMGNN contiene convolución temporal; no TCN autónoma.",
+      "new_review": false
+    }
+  ],
+  "storage": "Sólo metadatos, paráfrasis breves, hechos estructurados, métricas seleccionadas y localizadores. No PDF, fulltext, abstract ni contactos guardados.",
+  "limits": [
+    "No revisión sistemática nueva; búsquedas dirigidas potencialmente incompletas.",
+    "Acceso pleno no equivale a licencia OA ni a receta reproducible.",
+    "Ninguna configuración se entrenó ni reprodujo.",
+    "Tablas parseadas, sin verificación visual de screenshots."
+  ]
+}

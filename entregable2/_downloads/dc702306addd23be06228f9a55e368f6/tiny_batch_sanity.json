@@ -1,0 +1,212 @@
+{
+  "status": "passed",
+  "at_utc": "2026-11-06T18:17:00.440127+00:00",
+  "generator": "preflight_e2_final_models.py",
+  "generator_sha256": "da90029211d6be95cb33fc998fc5e5542001e2f2e9f6843daa1e3deeb2ff61e9",
+  "models": [
+    {
+      "model": "TSMixer",
+      "status": "passed",
+      "trials": [
+        {
+          "learning_rate": 0.003,
+          "initial_training_MSE": 1.222423791885376,
+          "final_training_MSE": 0.000990224420093,
+          "final_eval_MSE": 0.3133910000324249,
+          "steps": 20,
+          "loss_checks": 21,
+          "elapsed_seconds": 0.10855743300635368,
+          "passed": true
+        }
+      ],
+      "criterion": "Memorize four distinct targets in training mode; eval loss is separately disclosed, including BatchNorm running-statistic limitations"
+    },
+    {
+      "model": "TiDE",
+      "status": "passed",
+      "trials": [
+        {
+          "learning_rate": 0.003,
+          "initial_training_MSE": 0.762423574924469,
+          "final_training_MSE": 0.000868743285536766,
+          "final_eval_MSE": 0.000868743285536766,
+          "steps": 21,
+          "loss_checks": 22,
+          "elapsed_seconds": 0.06727899401448667,
+          "passed": true
+        }
+      ],
+      "criterion": "Memorize four distinct targets in training mode; eval loss is separately disclosed, including BatchNorm running-statistic limitations"
+    },
+    {
+      "model": "TimeMixer",
+      "status": "passed",
+      "trials": [
+        {
+          "learning_rate": 0.003,
+          "initial_training_MSE": 0.2558753788471222,
+          "final_training_MSE": 0.0007135953055694699,
+          "final_eval_MSE": 0.0007135953055694699,
+          "steps": 29,
+          "loss_checks": 30,
+          "elapsed_seconds": 0.24487549799960107,
+          "passed": true
+        }
+      ],
+      "criterion": "Memorize four distinct targets in training mode; eval loss is separately disclosed, including BatchNorm running-statistic limitations"
+    },
+    {
+      "model": "TimesNet",
+      "status": "passed",
+      "trials": [
+        {
+          "learning_rate": 0.003,
+          "initial_training_MSE": 0.3971814811229706,
+          "final_training_MSE": 0.0007401645998470485,
+          "final_eval_MSE": 0.0007401645998470485,
+          "steps": 24,
+          "loss_checks": 25,
+          "elapsed_seconds": 0.8821145410183817,
+          "passed": true
+        }
+      ],
+      "criterion": "Memorize four distinct targets in training mode; eval loss is separately disclosed, including BatchNorm running-statistic limitations"
+    },
+    {
+      "model": "PatchTST",
+      "status": "passed",
+      "trials": [
+        {
+          "learning_rate": 0.003,
+          "initial_training_MSE": 0.38610193133354187,
+          "final_training_MSE": 0.000500938156619668,
+          "final_eval_MSE": 0.014272602275013924,
+          "steps": 12,
+          "loss_checks": 13,
+          "elapsed_seconds": 0.07613309205044061,
+          "passed": true
+        }
+      ],
+      "criterion": "Memorize four distinct targets in training mode; eval loss is separately disclosed, including BatchNorm running-statistic limitations"
+    },
+    {
+      "model": "Informer",
+      "status": "passed",
+      "trials": [
+        {
+          "learning_rate": 0.003,
+          "initial_training_MSE": 0.5593879222869873,
+          "final_training_MSE": 0.013738111592829227,
+          "final_eval_MSE": 0.013750524260103703,
+          "steps": 120,
+          "loss_checks": 120,
+          "elapsed_seconds": 41.92865930503467,
+          "passed": false
+        },
+        {
+          "learning_rate": 0.001,
+          "initial_training_MSE": 0.5593879222869873,
+          "final_training_MSE": 0.0006228500860743225,
+          "final_eval_MSE": 0.0006323421839624643,
+          "steps": 21,
+          "loss_checks": 22,
+          "elapsed_seconds": 6.530514232988935,
+          "passed": true
+        }
+      ],
+      "criterion": "Memorize four distinct targets in training mode; eval loss is separately disclosed, including BatchNorm running-statistic limitations"
+    },
+    {
+      "model": "Autoformer",
+      "status": "passed",
+      "trials": [
+        {
+          "learning_rate": 0.003,
+          "initial_training_MSE": 0.30815595388412476,
+          "final_training_MSE": 1.5487499237060547,
+          "final_eval_MSE": 1.5487499237060547,
+          "steps": 120,
+          "loss_checks": 120,
+          "elapsed_seconds": 22.89923853200162,
+          "passed": false
+        },
+        {
+          "learning_rate": 0.001,
+          "initial_training_MSE": 0.30815595388412476,
+          "final_training_MSE": 0.0009126566583290696,
+          "final_eval_MSE": 0.0010809928644448519,
+          "steps": 25,
+          "loss_checks": 26,
+          "elapsed_seconds": 5.309235515014734,
+          "passed": true
+        }
+      ],
+      "criterion": "Memorize four distinct targets in training mode; eval loss is separately disclosed, including BatchNorm running-statistic limitations"
+    },
+    {
+      "model": "iTransformer",
+      "status": "passed",
+      "trials": [
+        {
+          "learning_rate": 0.003,
+          "initial_training_MSE": 0.33200186491012573,
+          "final_training_MSE": 0.0009261665400117636,
+          "final_eval_MSE": 0.0009261665400117636,
+          "steps": 97,
+          "loss_checks": 98,
+          "elapsed_seconds": 1.2816834629629739,
+          "passed": true
+        }
+      ],
+      "criterion": "Memorize four distinct targets in training mode; eval loss is separately disclosed, including BatchNorm running-statistic limitations"
+    },
+    {
+      "model": "Crossformer",
+      "status": "passed",
+      "trials": [
+        {
+          "learning_rate": 0.003,
+          "initial_training_MSE": 0.6543353796005249,
+          "final_training_MSE": 0.000764253840316087,
+          "final_eval_MSE": 0.000764253840316087,
+          "steps": 43,
+          "loss_checks": 44,
+          "elapsed_seconds": 5.125387120991945,
+          "passed": true
+        }
+      ],
+      "criterion": "Memorize four distinct targets in training mode; eval loss is separately disclosed, including BatchNorm running-statistic limitations"
+    },
+    {
+      "model": "S-Mamba",
+      "status": "passed",
+      "trials": [
+        {
+          "learning_rate": 0.003,
+          "initial_training_MSE": 0.6458463668823242,
+          "final_training_MSE": 0.0008735934970900416,
+          "final_eval_MSE": 0.0008735934970900416,
+          "steps": 52,
+          "loss_checks": 53,
+          "elapsed_seconds": 1.2669512380380183,
+          "passed": true
+        }
+      ],
+      "criterion": "Memorize four distinct targets in training mode; eval loss is separately disclosed, including BatchNorm running-statistic limitations"
+    }
+  ],
+  "toy_seed": 202611067,
+  "batch_size": 4,
+  "learning_rates_tried_in_fixed_order": [
+    0.003,
+    0.001,
+    0.01
+  ],
+  "maximum_steps_per_toy_attempt": 120,
+  "absolute_training_MSE_limit": 0.001,
+  "training_MSE_ratio_limit": 0.05,
+  "threads": 1,
+  "market_data_read": false,
+  "market_model_fits": 0,
+  "scope": "Implementation memorization sanity only; no generalization, HPO or power evidence"
+}

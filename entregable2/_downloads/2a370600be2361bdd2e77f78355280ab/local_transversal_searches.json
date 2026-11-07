@@ -1,0 +1,52 @@
+{
+  "scope": "Local searches in already received records only",
+  "date": "2026-11-06",
+  "native_database_search": false,
+  "queries": [
+    {
+      "query_id": "T1_attention_vision",
+      "family": "attention",
+      "modality": "vision",
+      "expression": "(\"vision transformer\" OR \"self-attention\") AND (\"computer vision\" OR image*) AND (transfer* OR adapt*)",
+      "executed_local_regex": {
+        "family": "\\b(?:vision transformers?|self[- ]attention|ViT|Swin)\\b",
+        "modality": "\\b(?:computer vision|images?|visual|vision|object detection|image classification)\\b",
+        "transfer": "\\b(?:transfer\\w*|adapt\\w*)\\b"
+      },
+      "hits": 15,
+      "source_scope_groups": 7833,
+      "fulltext_review_status": "pending",
+      "limitations": "Received search universe is incomplete and selected for prior queries; expression is a conceptual search string, executed local regex variants are given explicitly; local zero cannot establish absence in native database"
+    },
+    {
+      "query_id": "T2_mixing_vision",
+      "family": "mixing",
+      "modality": "vision",
+      "expression": "(\"MLP-Mixer\" OR \"token mixing\" OR \"channel mixing\") AND (vision OR image*) AND (transfer* OR adapt*)",
+      "executed_local_regex": {
+        "family": "\\b(?:MLP[- ]Mixer|token[- ]mixing|channel[- ]mixing)\\b",
+        "modality": "\\b(?:computer vision|images?|visual|vision|object detection|image classification)\\b",
+        "transfer": "\\b(?:transfer\\w*|adapt\\w*)\\b"
+      },
+      "hits": 3,
+      "source_scope_groups": 7833,
+      "fulltext_review_status": "pending",
+      "limitations": "Received search universe is incomplete and selected for prior queries; expression is a conceptual search string, executed local regex variants are given explicitly; local zero cannot establish absence in native database"
+    },
+    {
+      "query_id": "T3_ssm_language",
+      "family": "ssm",
+      "modality": "language",
+      "expression": "(\"selective state space\" OR Mamba) AND (language OR speech OR audio) AND (transfer* OR adapt*)",
+      "executed_local_regex": {
+        "family": "\\b(?:selective state[- ]space|selective state|structured state[- ]space|Mamba)\\b",
+        "modality": "\\b(?:language|speech|audio|text|natural language processing|NLP)\\b",
+        "transfer": "\\b(?:transfer\\w*|adapt\\w*)\\b"
+      },
+      "hits": 90,
+      "source_scope_groups": 7833,
+      "fulltext_review_status": "pending",
+      "limitations": "Received search universe is incomplete and selected for prior queries; expression is a conceptual search string, executed local regex variants are given explicitly; local zero cannot establish absence in native database"
+    }
+  ]
+}

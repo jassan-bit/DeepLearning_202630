@@ -1,0 +1,657 @@
+{
+  "dataset_fits_before_registration": 0,
+  "environment": {
+    "CPU_affinity_count": 5,
+    "classical_precision": "float64",
+    "neural_precision": "FP32",
+    "packages": {
+      "einops": "0.8.1",
+      "numpy": "2.5.4",
+      "pandas": "3.1.0",
+      "scipy": "1.18.1",
+      "statsmodels": "0.15.0",
+      "torch": "2.15.0+cpu"
+    },
+    "python": "3.12.14",
+    "system": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "threads_per_fit": 1,
+    "torch_deterministic_algorithms_set_in_worker": true
+  },
+  "immutable_inputs": {
+    "author_sources": [
+      {
+        "model": "TSMixer",
+        "path": "LICENSE",
+        "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+      },
+      {
+        "model": "TSMixer",
+        "path": "tsmixer/tsmixer_basic/models/tsmixer.py",
+        "sha256": "84a7451f86b40b989f7ab7aa36368f24f39610ad62d7ce43e474a30a4e006159"
+      },
+      {
+        "model": "TiDE",
+        "path": "LICENSE",
+        "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+      },
+      {
+        "model": "TiDE",
+        "path": "tide/models.py",
+        "sha256": "ad8fd8d498809deeed9c847a169cada42134cbd0351b03e750706132a5d151c7"
+      },
+      {
+        "model": "TiDE",
+        "path": "tide/scripts/etth1.sh",
+        "sha256": "55e085f1513af3a4a0ef8f7244512ee78beba5ab09540192b3cd3bb37441981c"
+      },
+      {
+        "model": "TiDE",
+        "path": "tide/train.py",
+        "sha256": "3edd19eed01f92ef50cadca73fbe8a793c701d34edb5ea376c6bcc55e92f0854"
+      },
+      {
+        "model": "TimeMixer",
+        "path": "LICENSE",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      },
+      {
+        "model": "TimeMixer",
+        "path": "layers/AutoCorrelation.py",
+        "sha256": "35fc23e552419a53ebf12de5eb39a276aeb379f3f49ad5cf85ad0527a8c18feb"
+      },
+      {
+        "model": "TimeMixer",
+        "path": "layers/Autoformer_EncDec.py",
+        "sha256": "48745b4bb647355e9845792a855df9c59fd7df7fcc664c765351fec390c4073e"
+      },
+      {
+        "model": "TimeMixer",
+        "path": "layers/Conv_Blocks.py",
+        "sha256": "25c80a3f21bfcd403e9b3672cb1d3639b19e24d156e791060754b9ad32b90f3f"
+      },
+      {
+        "model": "TimeMixer",
+        "path": "layers/DWT_Decomposition.py",
+        "sha256": "365356b4017ff144e92e655c24631bd422ec066741f5130fb6dd9e6f1a186e91"
+      },
+      {
+        "model": "TimeMixer",
+        "path": "layers/Embed.py",
+        "sha256": "ab492ea2f68459bbcf3cbffdd1beb75b24d0d70248d017a313a3b470316aaa2b"
+      },
+      {
+        "model": "TimeMixer",
+        "path": "layers/FourierCorrelation.py",
+        "sha256": "457afe4aa2a8ececf50bc359840edb3c9ed455cb02748b69fd01488215e186ca"
+      },
+      {
+        "model": "TimeMixer",
+        "path": "layers/SelfAttention_Family.py",
+        "sha256": "34026dd7d5644a2e1dab912f2bb661c91d458015796133e681f40b98fbc10cfd"
+      },
+      {
+        "model": "TimeMixer",
+        "path": "layers/StandardNorm.py",
+        "sha256": "cc1c0bc65b7b094bbe83f988fb05b86272a59638c030c3781aa52ce8880379df"
+      },
+      {
+        "model": "TimeMixer",
+        "path": "layers/Transformer_EncDec.py",
+        "sha256": "7b26f4459735c341f161011f6bc24b9deb8ecc3bcf61e4f15431998272a44fb4"
+      },
+      {
+        "model": "TimeMixer",
+        "path": "layers/__init__.py",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "model": "TimeMixer",
+        "path": "models/TimeMixer.py",
+        "sha256": "817d62f4aac54c8566e560f6d3785856e31c8ee51460279ee3d0a4823f11d4be"
+      },
+      {
+        "model": "TimeMixer",
+        "path": "requirements.txt",
+        "sha256": "2b7b6434c94f0e74d68ce788eb0ec25a7eb8581991f167f379558a10f21171b9"
+      },
+      {
+        "model": "TimeMixer",
+        "path": "scripts/long_term_forecast/ETT_script/TimeMixer_ETTh1_unify.sh",
+        "sha256": "13086d899b992b67cdd4409d26f686c1ac7e15e9ad4fd03dd53a2e0728554fc4"
+      },
+      {
+        "model": "TimeMixer",
+        "path": "utils/__init__.py",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "model": "TimeMixer",
+        "path": "utils/data_analysis.py",
+        "sha256": "4176dc3ebb06988635085a397021d3b264056fc4251878b60abeee5b8aa94d69"
+      },
+      {
+        "model": "TimeMixer",
+        "path": "utils/losses.py",
+        "sha256": "d7f924f9abdf9dbbf097b60329a25ad727b163111014954ebf5856370a1aa116"
+      },
+      {
+        "model": "TimeMixer",
+        "path": "utils/m4_summary.py",
+        "sha256": "bfc7ba06736c3919b4542b0e68a15280642d80989a7f837132121136e8a4e8a7"
+      },
+      {
+        "model": "TimeMixer",
+        "path": "utils/masking.py",
+        "sha256": "02f453e52cfaec65e34132923add80e7132f188706680fa86d7bd884976e09ef"
+      },
+      {
+        "model": "TimeMixer",
+        "path": "utils/metrics.py",
+        "sha256": "09e243e50baa6373286d3fe9954ab99075fa254e310b99769318b666ab92806a"
+      },
+      {
+        "model": "TimeMixer",
+        "path": "utils/timefeatures.py",
+        "sha256": "2414683a009c1bc0ffe8306aeca00800f95f76dc485db8121c1fc36ae87a7971"
+      },
+      {
+        "model": "TimeMixer",
+        "path": "utils/tools.py",
+        "sha256": "5a16efe58607a5ac2da5694c9297cbffb7c314a16e746de028760ea822ff9376"
+      },
+      {
+        "model": "TimesNet",
+        "path": "LICENSE",
+        "sha256": "8a6caa178ea3f33ebff5d7bb5558628cf5b423305dc30d3630f86564c7db94a2"
+      },
+      {
+        "model": "TimesNet",
+        "path": "layers/AutoCorrelation.py",
+        "sha256": "354b44e54bdd39380c9f5c2bfaaf3b967fdbe80dc7998741dbfdfa5d521a040c"
+      },
+      {
+        "model": "TimesNet",
+        "path": "layers/Autoformer_EncDec.py",
+        "sha256": "48745b4bb647355e9845792a855df9c59fd7df7fcc664c765351fec390c4073e"
+      },
+      {
+        "model": "TimesNet",
+        "path": "layers/Conv_Blocks.py",
+        "sha256": "16d9f2d9e4fa094dc357901e32beecda9839709bcca02625e6447186933ce4e1"
+      },
+      {
+        "model": "TimesNet",
+        "path": "layers/Crossformer_EncDec.py",
+        "sha256": "ee2cc5c8d3a44f4de67ce986e6b442488826a20fa4d8f87991941a75587936a1"
+      },
+      {
+        "model": "TimesNet",
+        "path": "layers/DWT_Decomposition.py",
+        "sha256": "422af1eec77df1b9dcfdea3d457e545c8575da69da4f505f27ba54db0c9f7764"
+      },
+      {
+        "model": "TimesNet",
+        "path": "layers/ETSformer_EncDec.py",
+        "sha256": "4ba2a0b76381602e32341fcc1a6a74ca86d2347905589fb34a74f8e54d7023e3"
+      },
+      {
+        "model": "TimesNet",
+        "path": "layers/Embed.py",
+        "sha256": "17e7c3577324c41a0da427a199c955b782fde905aabb1f7cbc3c4e15ebd4ae35"
+      },
+      {
+        "model": "TimesNet",
+        "path": "layers/FourierCorrelation.py",
+        "sha256": "cea1095b3a94764f240e6ac67280d6ea7fac9f5ef54de137cd1f5e5adab1305f"
+      },
+      {
+        "model": "TimesNet",
+        "path": "layers/MSGBlock.py",
+        "sha256": "01d3d446a214c33062ba098f251a1e49ed8a342dd4372e973a0a8c0dde5cd8c0"
+      },
+      {
+        "model": "TimesNet",
+        "path": "layers/MambaBlock.py",
+        "sha256": "cbcbbd6cbb83366e40ffe5926da16b4ca0aa11b6649e2259750994b60527a390"
+      },
+      {
+        "model": "TimesNet",
+        "path": "layers/MultiWaveletCorrelation.py",
+        "sha256": "cf0b8faf45a1b7fab4a3c1c521623c0762e2f9d7375b20ba9a9acd2142747342"
+      },
+      {
+        "model": "TimesNet",
+        "path": "layers/Pyraformer_EncDec.py",
+        "sha256": "ab92396677a9ad2e49c7bf171e15c96108d388b8898d29ee520d18dfe0bd5306"
+      },
+      {
+        "model": "TimesNet",
+        "path": "layers/SelfAttention_Family.py",
+        "sha256": "6f6592aed0753e342fc04c01db70528c2eb191eeb067cd5fd4c8d348fddcb794"
+      },
+      {
+        "model": "TimesNet",
+        "path": "layers/StandardNorm.py",
+        "sha256": "3f690dc5fc0e395d4f1ffe6396717548d18bd04f4518258308bbe5f392703f5f"
+      },
+      {
+        "model": "TimesNet",
+        "path": "layers/TimeFilter_layers.py",
+        "sha256": "3441713bdb54de1153afe3d5e746de4e251c07b545492180a073c4f275df6b9f"
+      },
+      {
+        "model": "TimesNet",
+        "path": "layers/Transformer_EncDec.py",
+        "sha256": "7b26f4459735c341f161011f6bc24b9deb8ecc3bcf61e4f15431998272a44fb4"
+      },
+      {
+        "model": "TimesNet",
+        "path": "layers/__init__.py",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "model": "TimesNet",
+        "path": "models/TimesNet.py",
+        "sha256": "f64c4bed1fd7347090044a0163bd4209c9f9ec1c1b19ceff47842df36b64bba7"
+      },
+      {
+        "model": "TimesNet",
+        "path": "requirements.txt",
+        "sha256": "1467f08eca3f4b749addf69042955eeb547dfb13a8a569e7e881b545c696df9f"
+      },
+      {
+        "model": "TimesNet",
+        "path": "run.py",
+        "sha256": "db6dfa215520ba193fe7095380f9005949a958efa9526975410cb5d97afe3fc4"
+      },
+      {
+        "model": "TimesNet",
+        "path": "scripts/long_term_forecast/ETT_script/TimesNet_ETTh1.sh",
+        "sha256": "8490506e32ef9ee8f3a62a4286b35be552a3035d243d87104bd02e9cc381922e"
+      },
+      {
+        "model": "TimesNet",
+        "path": "utils/ADFtest.py",
+        "sha256": "fcc30ead66778d2f70409740f8d54287fbeb032cd080695879a370722f7a4b26"
+      },
+      {
+        "model": "TimesNet",
+        "path": "utils/__init__.py",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "model": "TimesNet",
+        "path": "utils/augmentation.py",
+        "sha256": "17bac803a96fb6c98d0822052c1edc9f6bc72ae37eec5aa859e9e2918d537b69"
+      },
+      {
+        "model": "TimesNet",
+        "path": "utils/dtw.py",
+        "sha256": "a12084ab35783e4c09ddfadb54b0253f1fa8a3499abd88c772f93f499bcffa2a"
+      },
+      {
+        "model": "TimesNet",
+        "path": "utils/dtw_metric.py",
+        "sha256": "308c56507b01a945f38796f2f9b4bb104adc213ab574aa2693f93635c9748889"
+      },
+      {
+        "model": "TimesNet",
+        "path": "utils/losses.py",
+        "sha256": "d7f924f9abdf9dbbf097b60329a25ad727b163111014954ebf5856370a1aa116"
+      },
+      {
+        "model": "TimesNet",
+        "path": "utils/m4_summary.py",
+        "sha256": "bfc7ba06736c3919b4542b0e68a15280642d80989a7f837132121136e8a4e8a7"
+      },
+      {
+        "model": "TimesNet",
+        "path": "utils/masking.py",
+        "sha256": "02f453e52cfaec65e34132923add80e7132f188706680fa86d7bd884976e09ef"
+      },
+      {
+        "model": "TimesNet",
+        "path": "utils/metrics.py",
+        "sha256": "0a565c3f64d7cd29d9a87dee0c22d48f4a6a329476f893458cc18a35fa46a5df"
+      },
+      {
+        "model": "TimesNet",
+        "path": "utils/print_args.py",
+        "sha256": "423454ec7e2cefe6d24a458903f6080e866efdbe78c0ac2481b2cf32d44c558a"
+      },
+      {
+        "model": "TimesNet",
+        "path": "utils/timefeatures.py",
+        "sha256": "319b3da2ef15ccae95162b1b4f4a9a0b0da63fa0062a7f6006a06dd567258d85"
+      },
+      {
+        "model": "TimesNet",
+        "path": "utils/tools.py",
+        "sha256": "f47237f29d2a27570ef11871d9acdc51d1742b3bd1d8d09e5226e4140f4ad024"
+      },
+      {
+        "model": "PatchTST",
+        "path": "LICENSE",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      },
+      {
+        "model": "PatchTST",
+        "path": "layers/PatchTST_backbone.py",
+        "sha256": "df67173153787c2356bdfb6491159cd754332ef7382986efe879e1fbea8ebf26"
+      },
+      {
+        "model": "PatchTST",
+        "path": "layers/PatchTST_layers.py",
+        "sha256": "21c06c70a90c60ee2a269b5c600c702834dea22cdfd72915e6b0f8b4a28db3f6"
+      },
+      {
+        "model": "PatchTST",
+        "path": "layers/RevIN.py",
+        "sha256": "e64c0ccded9228b347134e7368420d3fb10f70c75145b5ff2d8bdd8c3af59df6"
+      },
+      {
+        "model": "PatchTST",
+        "path": "models/PatchTST.py",
+        "sha256": "49d8bb865e1226d6338842f4b33c4bc6992cefb048dc2a4a5a8c410ca708586b"
+      },
+      {
+        "model": "PatchTST",
+        "path": "scripts/PatchTST/etth1.sh",
+        "sha256": "556c87cd7dd795094ff6cb73465e84c90686017e1535e0ba23ed43683b9b0897"
+      },
+      {
+        "model": "Informer",
+        "path": "LICENSE",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      },
+      {
+        "model": "Informer",
+        "path": "main_informer.py",
+        "sha256": "b35cf6c96a5c2b57600995a14865ddc0124b9c89b8e3f5184fa3c3e1a38e6736"
+      },
+      {
+        "model": "Informer",
+        "path": "models/attn.py",
+        "sha256": "d9a294d829371759f1984f9f8fee12408774dda1a3de662313151d86e8513528"
+      },
+      {
+        "model": "Informer",
+        "path": "models/decoder.py",
+        "sha256": "ec2ebb81ba8d5400c06cb7db5ae2d93bb95dd04b2afbc33b5cefa284afb9a9df"
+      },
+      {
+        "model": "Informer",
+        "path": "models/embed.py",
+        "sha256": "d7f4f06370c640b56acab9df4092988f7711afb33cc64e868dc080286a0c4b9d"
+      },
+      {
+        "model": "Informer",
+        "path": "models/encoder.py",
+        "sha256": "bfd72a16e8bf7b2b36bcab47d198b885863e4b2ebfa5707f619c31078bc87737"
+      },
+      {
+        "model": "Informer",
+        "path": "models/model.py",
+        "sha256": "bc8e062fbbb4f4ae970ca0d02d2bf43b2e92c3251c3627d887c01d35cbc6891a"
+      },
+      {
+        "model": "Informer",
+        "path": "scripts/ETTh1.sh",
+        "sha256": "3550722a983d09f98d02d4f04bee2947ab7c7fb550b9697fb1d73398dc1391e1"
+      },
+      {
+        "model": "Informer",
+        "path": "utils/masking.py",
+        "sha256": "33862345a8e9297b4214614e16c86829279953506319da4ffe33a476ef047c28"
+      },
+      {
+        "model": "Autoformer",
+        "path": "LICENSE",
+        "sha256": "8a6caa178ea3f33ebff5d7bb5558628cf5b423305dc30d3630f86564c7db94a2"
+      },
+      {
+        "model": "Autoformer",
+        "path": "layers/AutoCorrelation.py",
+        "sha256": "dddbc3cc533f9640bbee0e624a49532efe4ee99735101f51a4b03e105772af01"
+      },
+      {
+        "model": "Autoformer",
+        "path": "layers/Autoformer_EncDec.py",
+        "sha256": "512a01144804da2a64ade5c1e687b624a0257238da18ea02af0720479ea216e2"
+      },
+      {
+        "model": "Autoformer",
+        "path": "layers/Embed.py",
+        "sha256": "4133ae41fc64f5531cd001d2e883bd3ab89283ddea9ffdf5659960cc8bd37918"
+      },
+      {
+        "model": "Autoformer",
+        "path": "models/Autoformer.py",
+        "sha256": "f18e9e82844ed8c4dc26e00c3c2f0b7c278ac8ea8427c4fab7331939bf69829d"
+      },
+      {
+        "model": "Autoformer",
+        "path": "run.py",
+        "sha256": "60ec12b07d018830675d186f462f310eb3da831e2ec3d9d3160b319e4e6b3421"
+      },
+      {
+        "model": "Autoformer",
+        "path": "scripts/ETT_script/Autoformer_ETTh1.sh",
+        "sha256": "94dc59bccbe97567633030fe0beca466d973849755992d239fc0c29d6f7a58fa"
+      },
+      {
+        "model": "Autoformer",
+        "path": "utils/masking.py",
+        "sha256": "02f453e52cfaec65e34132923add80e7132f188706680fa86d7bd884976e09ef"
+      },
+      {
+        "model": "iTransformer",
+        "path": "LICENSE",
+        "sha256": "29d2a4c09fa577780522219dc248466977f77cd420354c5e9a0e86550be2b849"
+      },
+      {
+        "model": "iTransformer",
+        "path": "layers/Embed.py",
+        "sha256": "2de7e5049a696d320a23a8bdb6e08e823cf7fa3f246a0a49555fcd729c5c8398"
+      },
+      {
+        "model": "iTransformer",
+        "path": "layers/SelfAttention_Family.py",
+        "sha256": "38ac67428d528b8e145e4944ca059b40629a8446c891142602d5aaadc38dfd9e"
+      },
+      {
+        "model": "iTransformer",
+        "path": "layers/Transformer_EncDec.py",
+        "sha256": "985c31f4ae187b08afaa9663dc960a40544b2ec33ab55389ceab3930edc1ce02"
+      },
+      {
+        "model": "iTransformer",
+        "path": "model/iTransformer.py",
+        "sha256": "6f34777a5a12c253a293f79e7e1fd5b6f79ac100b443951e051e269e7e2542db"
+      },
+      {
+        "model": "iTransformer",
+        "path": "run.py",
+        "sha256": "650873cfd6fee1f0415d4e8fd69943ad736fd1bab6495b640aa27b1a769f59f9"
+      },
+      {
+        "model": "iTransformer",
+        "path": "scripts/multivariate_forecasting/ETT/iTransformer_ETTh1.sh",
+        "sha256": "81f8409cff60b754b45ed2e76133c7e3b6e585a50c8361f04fa3daf3b6997cc0"
+      },
+      {
+        "model": "iTransformer",
+        "path": "utils/masking.py",
+        "sha256": "02f453e52cfaec65e34132923add80e7132f188706680fa86d7bd884976e09ef"
+      },
+      {
+        "model": "Crossformer",
+        "path": "LICENSE",
+        "sha256": "96c19fcecfadd5fc02b73d95dec507288f8d5b1724f1c8e6229fb21a987d8352"
+      },
+      {
+        "model": "Crossformer",
+        "path": "cross_models/attn.py",
+        "sha256": "39256d8f37e1acb3e52d645887316af89136d5910d4224c697c0cc38896f429b"
+      },
+      {
+        "model": "Crossformer",
+        "path": "cross_models/cross_decoder.py",
+        "sha256": "3c1d476df29d7a520d2ed3e8a06ec8e7186e96edda0ba74d6b943c8253fbdd40"
+      },
+      {
+        "model": "Crossformer",
+        "path": "cross_models/cross_embed.py",
+        "sha256": "6b78484268eb67f8fcf135537c3d61982c903992cc3f8f44fb47a46ec47c83fa"
+      },
+      {
+        "model": "Crossformer",
+        "path": "cross_models/cross_encoder.py",
+        "sha256": "be2fbf13317c27186563b68ff03326719a5a5db900b896889f46d570605587c2"
+      },
+      {
+        "model": "Crossformer",
+        "path": "cross_models/cross_former.py",
+        "sha256": "deee243b2ae877084320dce49e691c8860c56f0cbda269c6f0cdb50848f6c708"
+      },
+      {
+        "model": "Crossformer",
+        "path": "main_crossformer.py",
+        "sha256": "3e2eec7ac04df696eb67968c981ecf99a694dcc92ce62e2a9b410a7e9722c5d7"
+      },
+      {
+        "model": "Crossformer",
+        "path": "scripts/ETTh1.sh",
+        "sha256": "3285202cae57c35bab6635054d1a3487423d1d365280fdbb1dff7767730850b4"
+      },
+      {
+        "model": "S-Mamba",
+        "path": "layers/Embed.py",
+        "sha256": "fa23f3680014bcc63674fba0eb3594cfa4c4f81882c5d2452936fda081ad49e0"
+      },
+      {
+        "model": "S-Mamba",
+        "path": "layers/Mamba_EncDec.py",
+        "sha256": "8f89aefe9a44c59856e1743e66e3df7ec1d6bef110c3f6247cfdf6644e1af33d"
+      },
+      {
+        "model": "S-Mamba",
+        "path": "layers/SelfAttention_Family.py",
+        "sha256": "38ac67428d528b8e145e4944ca059b40629a8446c891142602d5aaadc38dfd9e"
+      },
+      {
+        "model": "S-Mamba",
+        "path": "model/S_Mamba.py",
+        "sha256": "48952b3906962917bc76345b5247ce350cae3243915142896b1952b4813b5fc9"
+      },
+      {
+        "model": "S-Mamba",
+        "path": "requirements.txt",
+        "sha256": "58fd1abde485724c5cc883907b3d476cca90ed3aba308badd60d75326a42608b"
+      },
+      {
+        "model": "S-Mamba",
+        "path": "run.py",
+        "sha256": "bb15489d1ec32560df328affac05467ef532291d9f76386bd162d5c0be6e874a"
+      },
+      {
+        "model": "S-Mamba",
+        "path": "scripts/multivariate_forecasting/ETT/S_Mamba_ETTh1.sh",
+        "sha256": "72dc76618e76f9ff145b39ae3900aae30b301b64a4e07a65ecc6af9247dfae68"
+      },
+      {
+        "model": "S-Mamba",
+        "path": "utils/masking.py",
+        "sha256": "02f453e52cfaec65e34132923add80e7132f188706680fa86d7bd884976e09ef"
+      },
+      {
+        "model": "MambaReference",
+        "path": "LICENSE",
+        "sha256": "760939b000194d04548ede6a857bbe735d1695d8422ec85955c8e2bd7f4b95c5"
+      },
+      {
+        "model": "MambaReference",
+        "path": "mamba_ssm/modules/mamba_simple.py",
+        "sha256": "dc035a4dcfbc9f9809e2bb60764f7bfe38259b6397968399fc33cad159300a43"
+      },
+      {
+        "model": "MambaReference",
+        "path": "mamba_ssm/ops/selective_scan_interface.py",
+        "sha256": "fe606b4c7e81b47bb091cf59dc474aece1112a6ca01eb6f22309090e56030bc4"
+      }
+    ],
+    "development_sources": {
+      "results/eda_development/daily_market_development.csv": "bf6bb5160af924aef6a15c3684aeae932df3017e8639888bb7e91ce787900171",
+      "results/eda_development/daily_volatility_development.csv": "20b96374a659eb87dadfa68aa3d6b6b5fb6bea5b10eebe6f2c186ad69861844a"
+    },
+    "inherited_scientific_sha256": "1464fa79d472f6755651774989b140659ee1f21daeb30032fc650a8770f4fdc4",
+    "source_files": {
+      "book_e2/_static/remediation_error_results/training_taxonomy.json": "3d14407eacaccf1ab7537fab4745131cf72f56ae5f695850a9279cbb2b83e4ab",
+      "book_e2/_static/remediation_protocol/candidate_registry.json": "0b1818502e98df19a4f12d3a4226276622b19dc3bc9f408f2f7b4857f71a829d",
+      "data/manifests/binance_spot_BTCUSDT_1m_20230101_20261030.json": "af723bcca2caffcbe44ae5243e2863bbcdcd39ae8cd42df491af0a2857926bb2",
+      "experiments/e2_completion_20261106/analysis_additions.json": "1dc6c3eb0a3e4deb9321044a481583515d04155762a376ad6b35e575f9f55f9d",
+      "experiments/e2_completion_20261106/architecture_review.json": "a93b67cbcc069f34cff74814b4002983aac91dcd2f442d4f955b9a1f610711d9",
+      "experiments/e2_completion_20261106/candidate_registry.json": "ad34a914a2985eaa0d94eca82865821e8a652949fa600fed11041a3a6b2ac2d5",
+      "experiments/e2_completion_20261106/design.json": "58f54626d0765ee7a97dfd3cbe2dec932c74a28d2f47b5bda519fb0f5777a7f0",
+      "experiments/e2_completion_20261106/hpo.json": "8071f5151fee83134b957395974f27d05694376daa16aafcb17cc2c8e8659d62",
+      "experiments/e2_completion_20261106/preregistration.json": "e4918e2fbe463b07c3694d7eff89869857915fc52b6a1660d2d027384812995d",
+      "experiments/e2_completion_20261106/workflow.md": "6c985208ddb2be1ae2f0875278676983e765fca44e456c3b22680369ff73bfa2",
+      "requirements-e2-completion.lock.txt": "9de05a8716fdcfaf3c489ad188a5cf2b31249c5b7d4db1dac83ca0f387297640",
+      "requirements-e2-remediation.lock.txt": "43d75f8d989bf075172877a3b1d9d49f60fb8661a81674f48a5788940ca90f6c",
+      "requirements-eda.lock.txt": "f2ddd0ecb28c26264d0b991ea098af2857450162ecefa1294a8d3ab559c6fdd0",
+      "requirements-paper-guide.lock.txt": "54d0d6eed31e11fc95ba98558425bb44ac47d4f85964fd50cfc3cf67a4007772",
+      "scripts/analyze_e2_benchmark.py": "2b9d4ba0ac89d830792dd72081c36c04125a5d2b53f9d3f5fef0d1d08a951c7b",
+      "scripts/analyze_e2_remediation_pilot.py": "297ad775d954781b07a3b7ec2b2d6f07964835aacb43be9d70f5f43937b6c385",
+      "scripts/audit_e2_benchmark_readiness.py": "3b0fa2f73d5fa8a567a488c508556832fca251c396f163c7279485829571d7b2",
+      "scripts/dl_data.py": "8ea726a1d8ca7b9fa9bfcb26ee6e565b516c40a3ad1cd40e0f639c43b7f429ce",
+      "scripts/dl_data_v2.py": "bbf0ad8646afcd792b3961d0e5e5bcf9318f0fbe4377732a965c58f9557c33cb",
+      "scripts/dl_models.py": "e24110b57aeee201e1e9ab53519eb6b05967927ac54102fe23d3908c3fc57d69",
+      "scripts/dl_models_gru_lstm_tcn.py": "c11af1229fec43dd7da01a21e349dc2b109d9d61d977f6df3d01cd7da736b35d",
+      "scripts/download_e2_completion_sources.py": "c01432b13fe3f036580d28c7e59765d299b989c2f338941fed8c1637a55a9427",
+      "scripts/e2_compute_profile.py": "0f1f34a1baa11324598523c04a74874ef0de54e664e67cf4ccbeb64cffef52f3",
+      "scripts/e2_final_diagnostics.py": "16faef33c6d2a7671d2b5d53987c5a4134a3f4dac09f8d842dfd952aee399f96",
+      "scripts/e2_final_models.py": "0ac83835093fb8e7e98555c576a06e91e99b6200a88ae38377aa881e9f41b6d1",
+      "scripts/e2_final_models_attention.py": "a3f1a2a7534142f505fbf36bddf92e0abf4f76d89ac1a1fb61874559e5aafa07",
+      "scripts/e2_final_models_mlp.py": "beeada2f6754f0ca3ff1304ec090a7259a774cc7ea611fa912428cf9210f6c68",
+      "scripts/e2_final_statistics.py": "ad66fd7a625627d967fc685bfa5a00abf77930afeacfee2247a639f47ae4ce69",
+      "scripts/e2_final_test_data.py": "f8671f4c6b249f801b03334636ea51618607edfd7fd94ccceb1bcd32e79dcb54",
+      "scripts/e2_final_uncertainty.py": "a707cbdcc59037c340cffbea707ceee08477222cdab641d16954779273f86c5d",
+      "scripts/e2_hpo_report.py": "6bf39579fbd40b74dcd7644b2742f6a63b75b8ec918c5dce96f66b9c4b640b40",
+      "scripts/e2_leakage_controls.py": "0a822afa9dfdad6cb850672af47c73c93d1c9f25b14e17fd6fdfdfba345783a0",
+      "scripts/e2_predictability_reference.py": "82c97c34fd39b0599ea35e064a8a0d50595afd781dcb3fc7a4f528c84d55c38e",
+      "scripts/e2_predictive_uncertainty.py": "927286f9aa7c0f2a9c3665ec3ea6292ad312331ce30c4d26430f6fc1f683efcf",
+      "scripts/e2_remediation_data_audit.py": "04961d22989f61000339dfd128b82e3c3d1f40ea750ebf192ff3d1f4c1f80bf9",
+      "scripts/e2_temporal_baselines.py": "c98a28f37b645d445424f625d3addde51b43b400c8e8ef032207e8a718617161",
+      "scripts/e2_temporal_models.py": "6999c34e25b434dd07d2009f298ca9da7ab66497bb55f4c6232baeb0e6307c81",
+      "scripts/planned_study_data.py": "f4b732b24a86e9879b53e7a731c0ef2b606bb49fb0a546997ab0e46448232523",
+      "scripts/preflight_e2_final_models.py": "da90029211d6be95cb33fc998fc5e5542001e2f2e9f6843daa1e3deeb2ff61e9",
+      "scripts/run_e2_final_benchmark.py": "07e1006df8be523bbf9969993dc111614b417bb6850b0c87c70dc22d98a17b95",
+      "scripts/run_e2_remediation_pilot.py": "460838d932c030d1cb6d84986e42ed70f62d4c4f152dc56db5215b7e31d56c5e",
+      "tests/test_e2_completion_acquisition.py": "0659b2f3068fd36a7dce8a6e775064c4989a302de31ae649e099852c7985d0d7",
+      "tests/test_e2_compute_profile.py": "d0b4b21ff1a2929b04f9da7f3fce5ec9bb1e40cbd4fb42740f763a2517438b46",
+      "tests/test_e2_final_benchmark.py": "78be365e2d0958cab8068e166505d3f4725245fe76deaa014ca7a2cf4d9e8cda",
+      "tests/test_e2_final_diagnostics.py": "13718408ea9c3c662804ad69f41b7f2a55eae980bc1ad896a3185ce080fdcae6",
+      "tests/test_e2_final_models.py": "386e62c9e1ffbc4657790ff3343cfcaa45164ca6131df71a27a58b76e88f76f9",
+      "tests/test_e2_final_models_attention.py": "65cb9c652685e0729881033f600252755fd703f4621d71e4a458e99a25929c8a",
+      "tests/test_e2_final_models_mlp.py": "4bec8af5a642da7e8c52d571eba2f0c83e778254d27e2b982ec060cd2a3fb6a4",
+      "tests/test_e2_final_statistics.py": "101f91a11d490e38afbca77e734940f9fab37a3be219d0c62af8673899238a08",
+      "tests/test_e2_final_test_data.py": "8571c8454e50f709758a3d9613c7bd72c0ed5d90a09a625657ca732b94dfa217",
+      "tests/test_e2_final_uncertainty.py": "989e8be8570fabb434a7ddcd20a933543078b0322e7be5663b061313e6e83513",
+      "tests/test_e2_hpo_report.py": "b5d21a178c591237fe91c255c786cf4c6f30a07bbc2e41ec4c313aeb42ea50eb",
+      "tests/test_e2_leakage_controls.py": "9fea084510130aa0f6277f22d0be606843c2d6e760199d8635396d439da4cc98",
+      "tests/test_e2_predictability_reference.py": "b47a2cf14bec09a93404a39d77c6195a4a79641205fe1cd9b32e81bca6107228",
+      "third_party/e2/Apache-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "third_party/e2/NOTICE.md": "f603304e8b4f4253387a05761a6fa379741e179dcd8529dd2babf797d22942fe"
+    }
+  },
+  "known_historical_test": true,
+  "new_blind_test_claimed": false,
+  "preflight_receipt_sha256": "bc5913122e0e986e8798f2d7c840c90830d9926e8d3eae732ad4ae50e18206b1",
+  "protocol_id": "E2-completion-20261106-v1",
+  "registered_at_utc": "2026-11-06T18:59:10.119489+00:00",
+  "registration_inputs_sha256": "7d01d7aae13965bac412f14d1404ef5a9927ac438621aa21514e1bedfa86ee6b",
+  "source_commit": "dbb193a72897c80cbd34b452ba3cfe9d82ce6ce0",
+  "state_history_reservation_sha256": "388cdee9d97973ef9a53115abdebefae69e241ebf0093c7b977d5afad0436890",
+  "test_prices_or_labels_decoded": false,
+  "test_reservation_sha256": "23cea2367cdb564e0a9e0b950010a9db9a246f0c45e92cae20bcf17ea7b076fa"
+}

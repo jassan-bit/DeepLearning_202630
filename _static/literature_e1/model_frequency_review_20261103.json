@@ -1,0 +1,210 @@
+{
+  "review_date": "2026-11-03",
+  "cohort": "expanded_exploratory_S1_S2_S5_S6_S7",
+  "scope": "Documentary arithmetic for reviewer-included full texts; no search or automatic eligibility decision performed by this script",
+  "counting_unit": "one included full-text study per independently evaluated comparative DL family",
+  "studies": [
+    "S1",
+    "S2",
+    "S5",
+    "S6",
+    "S7"
+  ],
+  "denominator": 5,
+  "family_frequency": {
+    "LSTM": {
+      "studies": [
+        "S1",
+        "S2",
+        "S5",
+        "S7"
+      ],
+      "count": 4,
+      "denominator": 5
+    },
+    "GRU": {
+      "studies": [
+        "S1",
+        "S2"
+      ],
+      "count": 2,
+      "denominator": 5
+    },
+    "Transformer encoder": {
+      "studies": [
+        "S2",
+        "S6"
+      ],
+      "count": 2,
+      "denominator": 5
+    },
+    "TCN": {
+      "studies": [
+        "S1"
+      ],
+      "count": 1,
+      "denominator": 5
+    }
+  },
+  "variant_studies": {
+    "LSTM_unidirectional": [
+      "S1",
+      "S5",
+      "S7"
+    ],
+    "BiLSTM": [
+      "S2"
+    ]
+  },
+  "sensitivity_strata": {
+    "original_full_text_cohort": {
+      "studies": [
+        "S1",
+        "S2",
+        "S5"
+      ],
+      "denominator": 3,
+      "family_counts": {
+        "LSTM": 3,
+        "GRU": 2,
+        "TCN": 1,
+        "Transformer encoder": 1
+      },
+      "note": "Subset sensitivity, not proof of indexing, Q1 or peer review of remaining studies"
+    },
+    "expanded_without_undated_S6": {
+      "studies": [
+        "S1",
+        "S2",
+        "S5",
+        "S7"
+      ],
+      "denominator": 4,
+      "family_counts": {
+        "LSTM": 4,
+        "GRU": 2,
+        "TCN": 1,
+        "Transformer encoder": 1
+      },
+      "note": "Subset sensitivity, not proof of indexing, Q1 or peer review of remaining studies"
+    },
+    "expanded_without_explicit_grey_S2_S6_S7": {
+      "studies": [
+        "S1",
+        "S5"
+      ],
+      "denominator": 2,
+      "family_counts": {
+        "LSTM": 2,
+        "GRU": 1,
+        "TCN": 1,
+        "Transformer encoder": 0
+      },
+      "note": "Subset sensitivity, not proof of indexing, Q1 or peer review of remaining studies"
+    }
+  },
+  "excluded_from_baseline_family_counts": [
+    {
+      "study_id": "S1",
+      "family": "TCN",
+      "role": "proposed advanced architecture"
+    },
+    {
+      "study_id": "S2",
+      "family": "Ensemble",
+      "role": "forecast aggregation"
+    },
+    {
+      "study_id": "S5",
+      "family": "Fully-connected linear",
+      "role": "classical-capacity context implemented with NN framework"
+    }
+  ],
+  "source_parameter_checks": [
+    {
+      "study_id": "S1",
+      "family": "LSTM",
+      "parameters": 299724,
+      "status": "analytical, not publication-reported or instantiated"
+    },
+    {
+      "study_id": "S1",
+      "family": "GRU",
+      "parameters": 10158,
+      "status": "analytical, not publication-reported or instantiated"
+    },
+    {
+      "study_id": "S1",
+      "family": "TCN",
+      "parameters": 4563396,
+      "status": "analytical, not publication-reported or instantiated"
+    },
+    {
+      "study_id": "S2",
+      "family": "GRU",
+      "parameters": 7745,
+      "status": "analytical, not publication-reported or instantiated"
+    },
+    {
+      "study_id": "S2",
+      "family": "LSTM",
+      "parameters": 39649,
+      "status": "analytical, not publication-reported or instantiated"
+    },
+    {
+      "study_id": "S2",
+      "family": "Transformer encoder",
+      "parameters": 49249,
+      "status": "analytical, not publication-reported or instantiated"
+    },
+    {
+      "study_id": "S5",
+      "family": "LSTM",
+      "parameters": 1781,
+      "status": "analytical, not publication-reported or instantiated"
+    },
+    {
+      "study_id": "S5",
+      "family": "Fully-connected linear",
+      "parameters": 15,
+      "status": "analytical, not publication-reported or instantiated"
+    },
+    {
+      "study_id": "S6",
+      "family": "Transformer encoder",
+      "parameters": null,
+      "status": "not identifiable from source; missing feedforward/readout/positions"
+    },
+    {
+      "study_id": "S7",
+      "family": "LSTM",
+      "parameters": 32673,
+      "status": "analytical, not publication-reported or instantiated",
+      "conditional_input_dimension_counts": [
+        {
+          "input_features": 12,
+          "parameters": 32673
+        },
+        {
+          "input_features": 8,
+          "parameters": 31649
+        }
+      ]
+    }
+  ],
+  "common_dimension_scenarios": 13,
+  "source_csv_sha256": "8a7e5f81b860595d62442677cd85436683625470d47e0c02d5cb756051b4bc84",
+  "generator_script_sha256": "c705e8b117b30805b4f499e03da05f1e36c35ef24f494dbc38b926ea3d9e6e9c",
+  "source_hyperparameters_corrected": "S1 Appendix C Tables5-6 PDF pages10-11 report winners; they are not missing",
+  "limitations": [
+    "Frequencies describe five accessible exploratory full texts, not global prevalence or the number of bibliographic citations.",
+    "S2/S6/S7 are grey literature; S6 is undated and date-sensitive; declared editorial metadata of S5 were not independently corroborated.",
+    "S6 has no exact parameter total; S7 declares12 inputs while supplied code lists8, so its totals are conditional alternatives.",
+    "Parameter values are analytical under recorded conventions; TCN library version is unpinned.",
+    "Common-dimension arithmetic retains source widths/depths and does not select a project architecture.",
+    "The selected-family frequency, simplicity and diversity requirements are not jointly closed by this audit."
+  ],
+  "neural_models_executed": 0,
+  "market_files_opened": 0,
+  "test_files_opened": 0
+}

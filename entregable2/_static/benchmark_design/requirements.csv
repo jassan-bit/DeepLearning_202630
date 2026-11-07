@@ -1,0 +1,27 @@
+id,requirement,status,execution_evidence_available
+4.scope.common_protocol,"Implementar, entrenar y comparar los diez identificados en el mismo entorno y con el mismo presupuesto de optimización, siguiendo la ruta de sección 7 y protocolo de sección 11.",documented_proposal_not_executed,False
+4.1.variables,"Definir entradas, variable objetivo y tarea con claridad.",documented_proposal_not_executed,False
+4.1.partition,"Definir entrenamiento, validación y prueba reservada, tocada una sola vez al final; usar una estrategia de partición idéntica para todos los modelos.",known_test_limitation_unsatisfied,False
+4.1.pipeline,"Encapsular preprocesamiento ajustado solo en train, entrenamiento y evaluación en código modular.",documented_proposal_not_executed,False
+4.1.hpo_budget,"Búsqueda sistemática bayesiana, aleatoria o por cuadrícula con el mismo número de intentos y presupuesto de cómputo por modelo; documentar y justificar el espacio.",documented_proposal_not_executed,False
+4.1.inner_validation,Validación anidada o validación cruzada interna cuando el tamaño de datos lo permita.,documented_proposal_not_executed,False
+4.1.undefined_architecture,"Si el paper no define la arquitectura, aplicar obligatoriamente la búsqueda en dos fases de sección 14: tres capas, anchos {16,32,64,128,256}, todas las combinaciones y dropout de 0.2 en todas las posiciones posibles; la captura indica 1000 arquitecturas por modelo en fase 1.",conditional_section14_pending,False
+4.2.implementation,"Implementación propia o librerías justificadas, con versión fijada.",documented_proposal_not_executed,False
+4.2.hyperparameters,"Reportar learning rate y scheduler, optimizador, capas, dimensión oculta, batch size, dropout, weight decay y pérdida.",documented_proposal_not_executed,False
+4.2.training,"Registrar épocas, early stopping sobre validación, gradient clipping y precisión mixta cuando aplique.",documented_proposal_not_executed,False
+4.2.logs,"Conservar curvas train/validación, tiempo de entrenamiento y latencia por muestra, memoria pico, parámetros, FLOPs, GPU/CPU/RAM y estimación energética si es posible.",documented_proposal_not_executed,False
+4.3.seeds,"Controlar semillas Python, NumPy y framework DL y documentar determinismo.",documented_proposal_not_executed,False
+4.3.repetitions,"Mínimo cinco ejecuciones independientes por modelo con semillas distintas o cinco particiones CV según la captura, reportando media, DE e IC95%; justificar el número final mediante potencia de sección 9.2.",pilot_and_power_pending,False
+4.3.rank_tests,Para Wilcoxon se recomiendan al menos seis ejecuciones: con cinco el p-valor exacto bilateral mínimo es 0.0625.,documented_proposal_not_executed,False
+4.3.tracking,"Seguimiento con herramienta de tracking como MLflow, Weights & Biases u otra, y configuraciones versionadas.",documented_proposal_not_executed,False
+4.3.compute_equity,Documentar uso GPU y verificar que ningún modelo recibe una ventaja de cómputo injustificada; estimar previamente el cómputo total de la búsqueda de arquitectura en dos fases.,documented_proposal_not_executed,False
+4.4.train_only,"Separar train/validación/test y ajustar scalers, imputadores, tokenizadores, codificadores y selección de atributos únicamente en train dentro de cada fold.",documented_proposal_not_executed,False
+4.4.leakage,"Evitar mezcla temporal y validar con origen móvil; aplicar reglas de fugas espaciales, semánticas, duplicados y grupos cuando correspondan al problema.",documented_proposal_not_executed,False
+4.4.test_and_audit,"No usar test para seleccionar hiperparámetros, arquitecturas o umbrales; aplicar la misma validación y ejecutar/reportar auditoría formal de fuga de sección 10.",documented_proposal_not_executed,False
+4.5.metrics,"Aplicar métricas según la ruta de sección 7; para regresión y pronóstico, RMSE, MAE, MAPE o sMAPE con cautela ante ceros, MASE y R².",documented_proposal_not_executed,False
+4.5.fair_comparison,"Mantener dataset, partición, preprocesamiento, evaluación y presupuesto de optimización comunes.",documented_proposal_not_executed,False
+4.5.inference,"Media, DE e IC95% entre ejecuciones, componentes de varianza entre semillas/modelos según sección 13.2 y diagnóstico de overfitting/underfitting con pruebas de sección 7.3.",documented_proposal_not_executed,False
+4.5.errors,"Visualizar predicción frente a ground truth, construir taxonomía de errores sistemáticos/casos difíciles y evaluar subgrupos o estratos relevantes.",documented_proposal_not_executed,False
+4.6.robustness,Perturbaciones controladas apropiadas al problema con al menos tres niveles de severidad por perturbación y curva de degradación; evaluar cambio de distribución mediante conjunto externo o partición que lo emule. Índice sugerido: área bajo degradación normalizada por score sin perturbar.,documented_proposal_not_executed,False
+4.6.interpretability,"Al menos una técnica de explicabilidad en los tres mejores modelos; discutir coherencia de dominio, comprobar fidelidad mediante borrado/inserción y estabilidad entre semillas.",documented_proposal_not_executed,False
+4.6.ablation,"En el mejor modelo, aislar al menos tres componentes con el mismo número de semillas e inferencia sobre cada diferencia.",documented_proposal_not_executed,False

@@ -1,0 +1,2053 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>5. Benchmark de los Modelos Base y Definición del Baseline &#8212; Bitcoin: pronóstico de volatilidad</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/05_benchmark';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="6. Guía de Procedimiento por Tipo de Problema" href="06_procedimiento.html" />
+    <link rel="prev" title="4. Implementación y evaluación: diseño y estado de ejecución" href="04_implementacion_evaluacion.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Bitcoin: pronóstico de volatilidad</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_problema_dataset.html">1. Definición del Problema y Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_estado_arte.html">3. Revisión del Estado del Arte y Extracción de los Tres Modelos Base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion_evaluacion.html">4. Implementación y evaluación: diseño y estado de ejecución</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Benchmark de los Modelos Base y Definición del Baseline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_procedimiento.html">6. Guía de Procedimiento por Tipo de Problema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_limitaciones_entregables.html">7. Limitaciones Inferenciales de Trabajar con Tres Modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_entregables.html">8. Entregables: productos y evidencias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_estudio_planificado.html">9. Estudio D7 con piloto, ajuste equitativo y evaluación preespecificada</a></li>
+<li class="toctree-l1"><a class="reference internal" href="protocolo_pendiente.html">Decisiones, revisión y pendientes de E1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias y materiales</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><div class="book-credit">
+  <p class="component-author">By Jassan Arteta</p>
+  <p class="copyright">© Copyright 2026.</p>
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/05_benchmark.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>5. Benchmark de los Modelos Base y Definición del Baseline</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-tabular">5.1. Comparación Tabular</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-de-comparacion-de-los-tres-modelos-base">5.1.1. Tabla de comparación de los tres modelos base</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-base">5.1.1.1. Modelo base</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-media-desviacion-estandar">5.1.1.2. Métricas: media ± desviación estándar</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#intervalos-de-confianza-del-95-y-metodo-de-construccion">5.1.1.3. Intervalos de confianza del 95 % y método de construcción</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tiempo-de-entrenamiento-y-de-inferencia">5.1.1.4. Tiempo de entrenamiento y de inferencia</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#numero-de-parametros">5.1.1.5. Número de parámetros</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ranking-de-modelos-base">5.2. Ranking de Modelos Base</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#orden-de-los-tres-modelos-segun-la-metrica-principal">5.2.1. Orden de los tres modelos según la métrica principal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-trade-off">5.2.2. Análisis del trade-off</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#precision-frente-a-costo-computacional">5.2.2.1. Precisión frente a costo computacional</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#precision-frente-a-complejidad-del-modelo">5.2.2.2. Precisión frente a complejidad del modelo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-del-baseline-y-margen-de-mejora-disponible">5.3. Definición del Baseline y Margen de Mejora Disponible</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-del-baseline-de-referencia">5.3.1. Selección del baseline de referencia</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#identificacion-del-mejor-modelo-base">5.3.1.1. Identificación del mejor modelo base</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#desempeno-con-media-desviacion-e-ic-del-95">5.3.1.2. Desempeño con media, desviación e IC del 95 %</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cuantificacion-de-las-diferencias-entre-modelos-base">5.3.2. Cuantificación de las diferencias entre modelos base</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-y-series-de-tiempo-diferencias-respecto-al-peor-y-al-mejor-modelo">5.3.2.1. Regresión y series de tiempo: diferencias respecto al peor y al mejor modelo</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#clasificacion-etiquetado-secuencial-y-segmentacion">5.3.2.2. Clasificación, etiquetado secuencial y segmentación</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#secuencia-a-secuencia">5.3.2.3. Secuencia a secuencia</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tamano-de-efecto-de-cada-diferencia">5.3.2.4. Tamaño de efecto de cada diferencia</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inferencia-sobre-las-diferencias">5.3.3. Inferencia sobre las diferencias</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#comparaciones-pareadas-y-correccion-por-multiplicidad">5.3.3.1. Comparaciones pareadas y corrección por multiplicidad</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencia-media-ic-del-95-y-p-value-ajustado-y-sin-ajustar">5.3.3.2. Diferencia media, IC del 95 % y p-value ajustado y sin ajustar</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#umbral-de-mejora-para-modelos-avanzados">5.3.4. Umbral de mejora para modelos avanzados</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mejora-minima-detectable-frente-al-baseline">5.3.4.1. Mejora mínima detectable frente al baseline</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#margen-de-relevancia-practica">5.3.4.2. Margen de relevancia práctica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cota-de-referencia-del-problema">5.3.4.3. Cota de referencia del problema</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion">5.3.5. Interpretación</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#significacion-estadistica-y-relevancia-practica">5.3.5.1. Significación estadística y relevancia práctica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#desempeno-frente-a-complejidad-parametros-y-costo">5.3.5.2. Desempeño frente a complejidad, parámetros y costo</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-explicita-del-baseline-y-margen-disponible">5.3.5.3. Conclusión explícita del baseline y margen disponible</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-del-benchmark">5.3.5.4. Estado del benchmark</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-estadistico-y-pruebas-de-hipotesis">5.4. Análisis Estadístico y Pruebas de Hipótesis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hipotesis-unidad-de-analisis-y-supuestos">5.4.1. Hipótesis, unidad de análisis y supuestos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparaciones-pareadas-t-y-wilcoxon">5.4.2. Comparaciones pareadas: t y Wilcoxon</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-conjunta-de-tres-modelos">5.4.3. Comparación conjunta de tres modelos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparaciones-post-hoc-y-correccion-por-multiplicidad">5.4.4. Comparaciones post-hoc y corrección por multiplicidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intervalos-de-confianza-y-tamano-de-efecto">5.4.5. Intervalos de confianza y tamaño de efecto</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap-de-las-diferencias-pareadas">5.4.5.1. Bootstrap de las diferencias pareadas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tamano-de-efecto-junto-con-el-p-value">5.4.5.2. Tamaño de efecto junto con el p-value</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advertencia-sobre-independencia">5.4.6. Advertencia sobre independencia</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecuciones-que-comparten-el-conjunto-de-prueba">5.4.6.1. Ejecuciones que comparten el conjunto de prueba</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-repetida-y-remuestreo-por-bloques">5.4.6.2. Validación repetida y remuestreo por bloques</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reporte-de-potencia-y-diferencia-minima-detectable">5.4.7. Reporte de potencia y diferencia mínima detectable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ausencia-de-significacion-y-equivalencia">5.4.8. Ausencia de significación y equivalencia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-de-dieboldmariano">5.4.9. Test de Diebold–Mariano</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-de-precision-predictiva-por-horizonte">5.4.9.1. Comparación de precisión predictiva por horizonte</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#correccion-harveyleybournenewbold-y-perdida-coherente">5.4.9.2. Corrección Harvey–Leybourne–Newbold y pérdida coherente</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-bds-brockdechertscheinkman">5.4.10. Test BDS (Brock–Dechert–Scheinkman)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-de-ljungbox">5.4.11. Test de Ljung–Box</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-los-residuos">5.4.12. Interpretación de los residuos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-residual-y-posible-margen-de-mejora">5.4.12.1. Estructura residual y posible margen de mejora</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#buenas-practicas-estadisticas">5.4.13. Buenas Prácticas Estadísticas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nivel-de-significancia-declarado-antes-de-analizar-resultados">5.4.13.1. Nivel de significancia declarado antes de analizar resultados</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#p-valores-numericos-ajustados-y-sin-ajustar">5.4.13.2. P-valores numéricos, ajustados y sin ajustar</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#intervalos-de-confianza-y-tamanos-de-efecto">5.4.13.3. Intervalos de confianza y tamaños de efecto</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#verificacion-de-supuestos">5.4.13.4. Verificación de supuestos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#multiples-ejecuciones-documentadas">5.4.13.5. Múltiples ejecuciones documentadas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metrica-principal-y-comparaciones-declaradas-con-antelacion">5.4.13.6. Métrica principal y comparaciones declaradas con antelación</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-y-trazabilidad-de-cada-contraste">5.4.13.7. Registro y trazabilidad de cada contraste</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">5.4.14. Interpretación</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencias-estadisticamente-significativas">5.4.14.1. Diferencias estadísticamente significativas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#significancia-estadistica-y-relevancia-practica">5.4.14.2. Significancia estadística y relevancia práctica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones-respaldadas-por-diferencias-incertidumbre-y-efectos">5.4.14.3. Conclusiones respaldadas por diferencias, incertidumbre y efectos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-y-alcance-del-analisis-estadistico">5.4.14.4. Estado y alcance del análisis estadístico</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discusion-critica">5.5. Discusión Crítica</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#desempeno-y-explicacion-de-las-diferencias">5.5.1. Desempeño y explicación de las diferencias</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generalizacion-y-estabilidad">5.5.2. Generalización y estabilidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">5.5.3. Significación estadística y relevancia práctica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#desempeno-frente-a-costo-y-complejidad">5.5.4. Desempeño frente a costo y complejidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#baseline-y-umbral-para-un-modelo-avanzado">5.5.5. Baseline y umbral para un modelo avanzado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#brecha-con-la-literatura-y-margen-de-mejora-potencial">5.5.6. Brecha con la literatura y margen de mejora potencial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amenazas-a-la-validez">5.5.7. Amenazas a la validez</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitaciones-del-estudio">5.5.8. Limitaciones del estudio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recomendaciones-futuras">5.5.9. Recomendaciones futuras</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#recomendaciones-derivadas-de-las-limitaciones">5.5.9.1. Recomendaciones derivadas de las limitaciones</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-conclusiones-y-evidencia-pendiente">5.5.9.2. Matriz de conclusiones y evidencia pendiente</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="benchmark-de-los-modelos-base-y-definicion-del-baseline">
+<h1>5. Benchmark de los Modelos Base y Definición del Baseline<a class="headerlink" href="#benchmark-de-los-modelos-base-y-definicion-del-baseline" title="Link to this heading">#</a></h1>
+<p><strong>Dos fases del estudio.</strong> Las tablas de cuatro entradas, diez semillas y test enero de 2025–agosto de 2026 de este capítulo corresponden a la <strong>fase I exploratoria</strong>. La <strong>fase II D7</strong> añade búsqueda equitativa, piloto anterior a su ejecución definitiva, dimensionamiento y evaluación preespecificada sobre el 01/09–30/10/2026. Sus recetas, recuentos y resultados se identifican por separado en el <a class="reference internal" href="09_estudio_planificado.html"><span class="std std-doc">capítulo 9</span></a>.</p>
+<p>El benchmark principal compara <strong>GRU, LSTM y TCN residual causal</strong>, en D=7/14/21/28, con diez semillas por receta, cinco covariables OHLCV diarias y objetivo sigma7 poblacional a h=1 día. <strong>GRU/D7 es el baseline neuronal seleccionado con CV2024</strong>, anterior al ajuste final de esta fase.</p>
+<p>La CV produjo <strong>120 trayectorias, 2.880 ajustes y 43.920 predicciones</strong>. El control LSTM se reentrenó y reprodujo exactamente 14.640 pronósticos. La evaluación 01/01/2025–31/08/2026 reúne 608 fechas y 72.960 valores: ochenta modelos GRU/TCN nuevos y cuarenta LSTM reutilizados, con pesos fijos y sin reajustes en test.</p>
+<p>El test ya se había observado antes de diseñar esta comparación. <strong>Los resultados son exploratorios, condicionados al calendario y a las recetas</strong>, sin confirmación temporal independiente. Los análisis actuales entre las tres redes y los diagnósticos se definieron después de inspeccionar ese test; su <a class="reference download internal" download="" href="../_downloads/cb347cfce2acc6620ccbb32a7b86c752/public_analysis_plan.json"><span class="xref download myst">plan público</span></a> preserva esa fecha. No modifican modelos ni realizan nuevas inferencias.</p>
+<p>GRU/D7 reduce RMSE en este test frente a TCN, LSTM y persistencia. Persistencia tiene menor RMSE en CV y conserva mejor MAE y MAPE en test. Ese resultado exige distinguir métrica, periodo y tipo de incertidumbre, sin declarar una ganadora universal.</p>
+<section id="comparacion-tabular">
+<h2>5.1. Comparación Tabular<a class="headerlink" href="#comparacion-tabular" title="Link to this heading">#</a></h2>
+<p>Las tablas presentan todas las historias y las seis métricas. Los agregados entre semillas se calculan después de puntuar cada trayectoria completa.</p>
+<section id="tabla-de-comparacion-de-los-tres-modelos-base">
+<h3>5.1.1. Tabla de comparación de los tres modelos base<a class="headerlink" href="#tabla-de-comparacion-de-los-tres-modelos-base" title="Link to this heading">#</a></h3>
+<p>Las descargas <a class="reference download internal" download="" href="../_downloads/260df7ff8d87642d4959a355c1206400/metric_summary_cv.csv"><span class="xref download myst">CV</span></a> y <a class="reference download internal" download="" href="../_downloads/1f26186862a98dbe0b5db16c283d802e/metric_summary_test.csv"><span class="xref download myst">test</span></a> contienen medias, DE muestrales, IC y conteos definidos. Las redes tienen diez semillas; persistencia es una sola trayectoria determinista y se identifica por D para conservar su denominador MASE.</p>
+<p><img alt="RMSE y R² del trío por historia y fase" src="../_images/metrics_by_history.png" /></p>
+<section id="modelo-base">
+<h4>5.1.1.1. Modelo base<a class="headerlink" href="#modelo-base" title="Link to this heading">#</a></h4>
+<p><strong>CV2024: 366 fechas por trayectoria.</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p>D</p></th>
+<th class="head"><p>Modelo</p></th>
+<th class="head text-right"><p>RMSE, media ± DE</p></th>
+<th class="head text-right"><p>IC95 % RMSE</p></th>
+<th class="head text-right"><p>R², media ± DE</p></th>
+<th class="head text-right"><p>Parámetros</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>7</p></td>
+<td><p>GRU</p></td>
+<td class="text-right"><p>0,0051546 ± 0,0001616</p></td>
+<td class="text-right"><p>[0,0050390; 0,0052701]</p></td>
+<td class="text-right"><p>0,721214 ± 0,017505</p></td>
+<td class="text-right"><p>3777</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>7</p></td>
+<td><p>LSTM</p></td>
+<td class="text-right"><p>0,0063354 ± 0,0001870</p></td>
+<td class="text-right"><p>[0,0062016; 0,0064692]</p></td>
+<td class="text-right"><p>0,578892 ± 0,024807</p></td>
+<td class="text-right"><p>5025</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>7</p></td>
+<td><p>TCN</p></td>
+<td class="text-right"><p>0,0058196 ± 0,0002562</p></td>
+<td class="text-right"><p>[0,0056363; 0,0060029]</p></td>
+<td class="text-right"><p>0,644330 ± 0,030513</p></td>
+<td class="text-right"><p>4289</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>7</p></td>
+<td><p>Persistencia</p></td>
+<td class="text-right"><p>0,0047890</p></td>
+<td class="text-right"><p>No aplica a semillas</p></td>
+<td class="text-right"><p>0,759571</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>14</p></td>
+<td><p>GRU</p></td>
+<td class="text-right"><p>0,0066768 ± 0,0002370</p></td>
+<td class="text-right"><p>[0,0065073; 0,0068464]</p></td>
+<td class="text-right"><p>0,532118 ± 0,033416</p></td>
+<td class="text-right"><p>3777</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>14</p></td>
+<td><p>LSTM</p></td>
+<td class="text-right"><p>0,0077018 ± 0,0001999</p></td>
+<td class="text-right"><p>[0,0075588; 0,0078448]</p></td>
+<td class="text-right"><p>0,377765 ± 0,032441</p></td>
+<td class="text-right"><p>5025</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>14</p></td>
+<td><p>TCN</p></td>
+<td class="text-right"><p>0,0069670 ± 0,0009256</p></td>
+<td class="text-right"><p>[0,0063048; 0,0076292]</p></td>
+<td class="text-right"><p>0,483061 ± 0,147325</p></td>
+<td class="text-right"><p>4289</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>14</p></td>
+<td><p>Persistencia</p></td>
+<td class="text-right"><p>0,0047890</p></td>
+<td class="text-right"><p>No aplica a semillas</p></td>
+<td class="text-right"><p>0,759571</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>21</p></td>
+<td><p>GRU</p></td>
+<td class="text-right"><p>0,0074140 ± 0,0003267</p></td>
+<td class="text-right"><p>[0,0071803; 0,0076477]</p></td>
+<td class="text-right"><p>0,422748 ± 0,051604</p></td>
+<td class="text-right"><p>3777</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>21</p></td>
+<td><p>LSTM</p></td>
+<td class="text-right"><p>0,0087796 ± 0,0003524</p></td>
+<td class="text-right"><p>[0,0085275; 0,0090317]</p></td>
+<td class="text-right"><p>0,190751 ± 0,063743</p></td>
+<td class="text-right"><p>5025</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>21</p></td>
+<td><p>TCN</p></td>
+<td class="text-right"><p>0,0078665 ± 0,0007890</p></td>
+<td class="text-right"><p>[0,0073021; 0,0084309]</p></td>
+<td class="text-right"><p>0,345395 ± 0,127822</p></td>
+<td class="text-right"><p>4289</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>21</p></td>
+<td><p>Persistencia</p></td>
+<td class="text-right"><p>0,0047890</p></td>
+<td class="text-right"><p>No aplica a semillas</p></td>
+<td class="text-right"><p>0,759571</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>28</p></td>
+<td><p>GRU</p></td>
+<td class="text-right"><p>0,0079966 ± 0,0002369</p></td>
+<td class="text-right"><p>[0,0078271; 0,0081660]</p></td>
+<td class="text-right"><p>0,329105 ± 0,040046</p></td>
+<td class="text-right"><p>3777</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>28</p></td>
+<td><p>LSTM</p></td>
+<td class="text-right"><p>0,0093129 ± 0,0002589</p></td>
+<td class="text-right"><p>[0,0091277; 0,0094980]</p></td>
+<td class="text-right"><p>0,090149 ± 0,050359</p></td>
+<td class="text-right"><p>5025</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>28</p></td>
+<td><p>TCN</p></td>
+<td class="text-right"><p>0,0081262 ± 0,0006931</p></td>
+<td class="text-right"><p>[0,0076304; 0,0086220]</p></td>
+<td class="text-right"><p>0,303192 ± 0,118173</p></td>
+<td class="text-right"><p>4289</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>28</p></td>
+<td><p>Persistencia</p></td>
+<td class="text-right"><p>0,0047890</p></td>
+<td class="text-right"><p>No aplica a semillas</p></td>
+<td class="text-right"><p>0,759571</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El parámetro D no cambia n=7 ni h=1. Los pesos se comparten temporalmente y sus conteos no aumentan con D. Aumentar la historia también aumenta el embargo y reduce el entrenamiento elegible.</p>
+</section>
+<section id="metricas-media-desviacion-estandar">
+<h4>5.1.1.2. Métricas: media ± desviación estándar<a class="headerlink" href="#metricas-media-desviacion-estandar" title="Link to this heading">#</a></h4>
+<p><strong>Test histórico: 608 fechas por trayectoria.</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p>D</p></th>
+<th class="head"><p>Modelo</p></th>
+<th class="head text-right"><p>RMSE, media ± DE</p></th>
+<th class="head text-right"><p>IC95 % RMSE</p></th>
+<th class="head text-right"><p>R², media ± DE</p></th>
+<th class="head text-right"><p>Parámetros</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>7</p></td>
+<td><p>GRU</p></td>
+<td class="text-right"><p>0,0037751 ± 0,0001941</p></td>
+<td class="text-right"><p>[0,0036363; 0,0039140]</p></td>
+<td class="text-right"><p>0,854173 ± 0,015331</p></td>
+<td class="text-right"><p>3777</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>7</p></td>
+<td><p>LSTM</p></td>
+<td class="text-right"><p>0,0050298 ± 0,0002637</p></td>
+<td class="text-right"><p>[0,0048412; 0,0052184]</p></td>
+<td class="text-right"><p>0,741108 ± 0,026619</p></td>
+<td class="text-right"><p>5025</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>7</p></td>
+<td><p>TCN</p></td>
+<td class="text-right"><p>0,0041747 ± 0,0003728</p></td>
+<td class="text-right"><p>[0,0039079; 0,0044414]</p></td>
+<td class="text-right"><p>0,820819 ± 0,032191</p></td>
+<td class="text-right"><p>4289</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>7</p></td>
+<td><p>Persistencia</p></td>
+<td class="text-right"><p>0,0040856</p></td>
+<td class="text-right"><p>No aplica a semillas</p></td>
+<td class="text-right"><p>0,829605</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>14</p></td>
+<td><p>GRU</p></td>
+<td class="text-right"><p>0,0047674 ± 0,0002737</p></td>
+<td class="text-right"><p>[0,0045716; 0,0049632]</p></td>
+<td class="text-right"><p>0,767302 ± 0,026815</p></td>
+<td class="text-right"><p>3777</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>14</p></td>
+<td><p>LSTM</p></td>
+<td class="text-right"><p>0,0057094 ± 0,0007524</p></td>
+<td class="text-right"><p>[0,0051711; 0,0062476]</p></td>
+<td class="text-right"><p>0,662048 ± 0,095907</p></td>
+<td class="text-right"><p>5025</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>14</p></td>
+<td><p>TCN</p></td>
+<td class="text-right"><p>0,0053366 ± 0,0008272</p></td>
+<td class="text-right"><p>[0,0047449; 0,0059284]</p></td>
+<td class="text-right"><p>0,702991 ± 0,097530</p></td>
+<td class="text-right"><p>4289</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>14</p></td>
+<td><p>Persistencia</p></td>
+<td class="text-right"><p>0,0040856</p></td>
+<td class="text-right"><p>No aplica a semillas</p></td>
+<td class="text-right"><p>0,829605</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>21</p></td>
+<td><p>GRU</p></td>
+<td class="text-right"><p>0,0050212 ± 0,0002070</p></td>
+<td class="text-right"><p>[0,0048731; 0,0051693]</p></td>
+<td class="text-right"><p>0,742235 ± 0,021903</p></td>
+<td class="text-right"><p>3777</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>21</p></td>
+<td><p>LSTM</p></td>
+<td class="text-right"><p>0,0061970 ± 0,0008139</p></td>
+<td class="text-right"><p>[0,0056148; 0,0067792]</p></td>
+<td class="text-right"><p>0,601894 ± 0,106170</p></td>
+<td class="text-right"><p>5025</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>21</p></td>
+<td><p>TCN</p></td>
+<td class="text-right"><p>0,0062210 ± 0,0011532</p></td>
+<td class="text-right"><p>[0,0053960; 0,0070459]</p></td>
+<td class="text-right"><p>0,592724 ± 0,156640</p></td>
+<td class="text-right"><p>4289</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>21</p></td>
+<td><p>Persistencia</p></td>
+<td class="text-right"><p>0,0040856</p></td>
+<td class="text-right"><p>No aplica a semillas</p></td>
+<td class="text-right"><p>0,829605</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>28</p></td>
+<td><p>GRU</p></td>
+<td class="text-right"><p>0,0050551 ± 0,0001589</p></td>
+<td class="text-right"><p>[0,0049415; 0,0051688]</p></td>
+<td class="text-right"><p>0,738908 ± 0,016552</p></td>
+<td class="text-right"><p>3777</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>28</p></td>
+<td><p>LSTM</p></td>
+<td class="text-right"><p>0,0077325 ± 0,0011902</p></td>
+<td class="text-right"><p>[0,0068811; 0,0085839]</p></td>
+<td class="text-right"><p>0,376622 ± 0,180465</p></td>
+<td class="text-right"><p>5025</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>28</p></td>
+<td><p>TCN</p></td>
+<td class="text-right"><p>0,0063864 ± 0,0011537</p></td>
+<td class="text-right"><p>[0,0055611; 0,0072117]</p></td>
+<td class="text-right"><p>0,571424 ± 0,151746</p></td>
+<td class="text-right"><p>4289</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>28</p></td>
+<td><p>Persistencia</p></td>
+<td class="text-right"><p>0,0040856</p></td>
+<td class="text-right"><p>No aplica a semillas</p></td>
+<td class="text-right"><p>0,829605</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Métricas secundarias de CV.</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p>D</p></th>
+<th class="head"><p>Modelo</p></th>
+<th class="head text-right"><p>MAE, media ± DE</p></th>
+<th class="head text-right"><p>MAPE %, media ± DE</p></th>
+<th class="head text-right"><p>MSE, media ± DE</p></th>
+<th class="head text-right"><p>MASE, media ± DE</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>7</p></td>
+<td><p>GRU</p></td>
+<td class="text-right"><p>0,0036192 ± 0,0001308</p></td>
+<td class="text-right"><p>16,0924 ± 0,6301</p></td>
+<td class="text-right"><p>0,0000265931 ± 0,0000016698</p></td>
+<td class="text-right"><p>1,37600 ± 0,04946</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>7</p></td>
+<td><p>LSTM</p></td>
+<td class="text-right"><p>0,0047263 ± 0,0001245</p></td>
+<td class="text-right"><p>21,7863 ± 0,8045</p></td>
+<td class="text-right"><p>0,0000401690 ± 0,0000023663</p></td>
+<td class="text-right"><p>1,78982 ± 0,04645</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>7</p></td>
+<td><p>TCN</p></td>
+<td class="text-right"><p>0,0042473 ± 0,0001500</p></td>
+<td class="text-right"><p>18,9330 ± 0,6031</p></td>
+<td class="text-right"><p>0,0000339270 ± 0,0000029106</p></td>
+<td class="text-right"><p>1,61777 ± 0,05925</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>7</p></td>
+<td><p>Persistencia</p></td>
+<td class="text-right"><p>0,0029435</p></td>
+<td class="text-right"><p>13,5521</p></td>
+<td class="text-right"><p>0,0000229342</p></td>
+<td class="text-right"><p>1,11835</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>14</p></td>
+<td><p>GRU</p></td>
+<td class="text-right"><p>0,0049486 ± 0,0001794</p></td>
+<td class="text-right"><p>21,7150 ± 0,7837</p></td>
+<td class="text-right"><p>0,0000446307 ± 0,0000031875</p></td>
+<td class="text-right"><p>1,87334 ± 0,06847</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>14</p></td>
+<td><p>LSTM</p></td>
+<td class="text-right"><p>0,0056700 ± 0,0001658</p></td>
+<td class="text-right"><p>24,4425 ± 1,4407</p></td>
+<td class="text-right"><p>0,0000593542 ± 0,0000030945</p></td>
+<td class="text-right"><p>2,14989 ± 0,06420</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>14</p></td>
+<td><p>TCN</p></td>
+<td class="text-right"><p>0,0050224 ± 0,0003579</p></td>
+<td class="text-right"><p>22,0064 ± 1,3197</p></td>
+<td class="text-right"><p>0,0000493102 ± 0,0000140531</p></td>
+<td class="text-right"><p>1,91020 ± 0,14217</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>14</p></td>
+<td><p>Persistencia</p></td>
+<td class="text-right"><p>0,0029435</p></td>
+<td class="text-right"><p>13,5521</p></td>
+<td class="text-right"><p>0,0000229342</p></td>
+<td class="text-right"><p>1,11335</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>21</p></td>
+<td><p>GRU</p></td>
+<td class="text-right"><p>0,0054819 ± 0,0002303</p></td>
+<td class="text-right"><p>23,8402 ± 0,9648</p></td>
+<td class="text-right"><p>0,0000550634 ± 0,0000049224</p></td>
+<td class="text-right"><p>2,07691 ± 0,08821</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>21</p></td>
+<td><p>LSTM</p></td>
+<td class="text-right"><p>0,0062492 ± 0,0002399</p></td>
+<td class="text-right"><p>26,2239 ± 1,0187</p></td>
+<td class="text-right"><p>0,0000771933 ± 0,0000060804</p></td>
+<td class="text-right"><p>2,36819 ± 0,09224</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>21</p></td>
+<td><p>TCN</p></td>
+<td class="text-right"><p>0,0054871 ± 0,0004066</p></td>
+<td class="text-right"><p>23,0163 ± 1,2862</p></td>
+<td class="text-right"><p>0,0000624420 ± 0,0000121928</p></td>
+<td class="text-right"><p>2,08595 ± 0,15775</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>21</p></td>
+<td><p>Persistencia</p></td>
+<td class="text-right"><p>0,0029435</p></td>
+<td class="text-right"><p>13,5521</p></td>
+<td class="text-right"><p>0,0000229342</p></td>
+<td class="text-right"><p>1,11245</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>28</p></td>
+<td><p>GRU</p></td>
+<td class="text-right"><p>0,0056527 ± 0,0001611</p></td>
+<td class="text-right"><p>24,2246 ± 0,5269</p></td>
+<td class="text-right"><p>0,0000639959 ± 0,0000038200</p></td>
+<td class="text-right"><p>2,16339 ± 0,06176</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>28</p></td>
+<td><p>LSTM</p></td>
+<td class="text-right"><p>0,0064968 ± 0,0001772</p></td>
+<td class="text-right"><p>26,1069 ± 0,8578</p></td>
+<td class="text-right"><p>0,0000867896 ± 0,0000048037</p></td>
+<td class="text-right"><p>2,47789 ± 0,06705</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>28</p></td>
+<td><p>TCN</p></td>
+<td class="text-right"><p>0,0056234 ± 0,0003789</p></td>
+<td class="text-right"><p>23,0948 ± 1,5804</p></td>
+<td class="text-right"><p>0,0000664677 ± 0,0000112723</p></td>
+<td class="text-right"><p>2,15431 ± 0,14961</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>28</p></td>
+<td><p>Persistencia</p></td>
+<td class="text-right"><p>0,0029435</p></td>
+<td class="text-right"><p>13,5521</p></td>
+<td class="text-right"><p>0,0000229342</p></td>
+<td class="text-right"><p>1,12126</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Métricas secundarias del test histórico.</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p>D</p></th>
+<th class="head"><p>Modelo</p></th>
+<th class="head text-right"><p>MAE, media ± DE</p></th>
+<th class="head text-right"><p>MAPE %, media ± DE</p></th>
+<th class="head text-right"><p>MSE, media ± DE</p></th>
+<th class="head text-right"><p>MASE, media ± DE</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>7</p></td>
+<td><p>GRU</p></td>
+<td class="text-right"><p>0,0027985 ± 0,0001892</p></td>
+<td class="text-right"><p>18,0667 ± 1,5054</p></td>
+<td class="text-right"><p>0,0000142854 ± 0,0000015019</p></td>
+<td class="text-right"><p>1,03256 ± 0,06982</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>7</p></td>
+<td><p>LSTM</p></td>
+<td class="text-right"><p>0,0039189 ± 0,0002196</p></td>
+<td class="text-right"><p>25,3406 ± 3,4056</p></td>
+<td class="text-right"><p>0,0000253613 ± 0,0000026077</p></td>
+<td class="text-right"><p>1,44595 ± 0,08102</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>7</p></td>
+<td><p>TCN</p></td>
+<td class="text-right"><p>0,0031443 ± 0,0003475</p></td>
+<td class="text-right"><p>19,8847 ± 2,4480</p></td>
+<td class="text-right"><p>0,0000175528 ± 0,0000031535</p></td>
+<td class="text-right"><p>1,16015 ± 0,12823</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>7</p></td>
+<td><p>Persistencia</p></td>
+<td class="text-right"><p>0,0023532</p></td>
+<td class="text-right"><p>13,7553</p></td>
+<td class="text-right"><p>0,0000166921</p></td>
+<td class="text-right"><p>0,86825</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>14</p></td>
+<td><p>GRU</p></td>
+<td class="text-right"><p>0,0035609 ± 0,0003000</p></td>
+<td class="text-right"><p>22,1494 ± 2,5660</p></td>
+<td class="text-right"><p>0,0000227953 ± 0,0000026269</p></td>
+<td class="text-right"><p>1,31402 ± 0,11069</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>14</p></td>
+<td><p>LSTM</p></td>
+<td class="text-right"><p>0,0042049 ± 0,0004001</p></td>
+<td class="text-right"><p>24,6377 ± 1,6635</p></td>
+<td class="text-right"><p>0,0000331062 ± 0,0000093952</p></td>
+<td class="text-right"><p>1,55164 ± 0,14765</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>14</p></td>
+<td><p>TCN</p></td>
+<td class="text-right"><p>0,0040122 ± 0,0005922</p></td>
+<td class="text-right"><p>24,6464 ± 4,2369</p></td>
+<td class="text-right"><p>0,0000290954 ± 0,0000095541</p></td>
+<td class="text-right"><p>1,48055 ± 0,21853</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>14</p></td>
+<td><p>Persistencia</p></td>
+<td class="text-right"><p>0,0023532</p></td>
+<td class="text-right"><p>13,7553</p></td>
+<td class="text-right"><p>0,0000166921</p></td>
+<td class="text-right"><p>0,86834</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>21</p></td>
+<td><p>GRU</p></td>
+<td class="text-right"><p>0,0037942 ± 0,0001314</p></td>
+<td class="text-right"><p>22,6636 ± 0,7514</p></td>
+<td class="text-right"><p>0,0000252510 ± 0,0000021456</p></td>
+<td class="text-right"><p>1,39217 ± 0,04820</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>21</p></td>
+<td><p>LSTM</p></td>
+<td class="text-right"><p>0,0045288 ± 0,0004498</p></td>
+<td class="text-right"><p>26,6124 ± 3,0421</p></td>
+<td class="text-right"><p>0,0000389989 ± 0,0000104005</p></td>
+<td class="text-right"><p>1,66172 ± 0,16505</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>21</p></td>
+<td><p>TCN</p></td>
+<td class="text-right"><p>0,0045999 ± 0,0007228</p></td>
+<td class="text-right"><p>27,9433 ± 5,7696</p></td>
+<td class="text-right"><p>0,0000398973 ± 0,0000153447</p></td>
+<td class="text-right"><p>1,68782 ± 0,26522</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>21</p></td>
+<td><p>Persistencia</p></td>
+<td class="text-right"><p>0,0023532</p></td>
+<td class="text-right"><p>13,7553</p></td>
+<td class="text-right"><p>0,0000166921</p></td>
+<td class="text-right"><p>0,86343</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>28</p></td>
+<td><p>GRU</p></td>
+<td class="text-right"><p>0,0038322 ± 0,0001177</p></td>
+<td class="text-right"><p>23,6993 ± 1,3838</p></td>
+<td class="text-right"><p>0,0000255769 ± 0,0000016214</p></td>
+<td class="text-right"><p>1,40706 ± 0,04320</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>28</p></td>
+<td><p>LSTM</p></td>
+<td class="text-right"><p>0,0053131 ± 0,0007067</p></td>
+<td class="text-right"><p>30,8444 ± 6,5454</p></td>
+<td class="text-right"><p>0,0000610668 ± 0,0000176786</p></td>
+<td class="text-right"><p>1,95080 ± 0,25949</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>28</p></td>
+<td><p>TCN</p></td>
+<td class="text-right"><p>0,0046625 ± 0,0006904</p></td>
+<td class="text-right"><p>28,2255 ± 5,0322</p></td>
+<td class="text-right"><p>0,0000419838 ± 0,0000148653</p></td>
+<td class="text-right"><p>1,71193 ± 0,25350</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>28</p></td>
+<td><p>Persistencia</p></td>
+<td class="text-right"><p>0,0023532</p></td>
+<td class="text-right"><p>13,7553</p></td>
+<td class="text-right"><p>0,0000166921</p></td>
+<td class="text-right"><p>0,86401</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Las métricas usan la escala original de sigma7. MAPE está expresada en porcentaje; MSE tiene unidades cuadráticas. MASE mantiene el denominador aprendido con el entrenamiento de cada D. Persistencia tiene mejor MAE y MAPE que GRU/D7 en test, aunque GRU tenga menor RMSE; no se descartan esas métricas.</p>
+</section>
+<section id="intervalos-de-confianza-del-95-y-metodo-de-construccion">
+<h4>5.1.1.3. Intervalos de confianza del 95 % y método de construcción<a class="headerlink" href="#intervalos-de-confianza-del-95-y-metodo-de-construccion" title="Link to this heading">#</a></h4>
+<p>El IC95 % marginal de una métrica es <span class="math notranslate nohighlight">\(\bar m\pm t_{0{,}975;9}s_m/\sqrt{10}\)</span>. Describe aleatoriedad de entrenamiento condicionada a fechas y receta, sin incorporar una nueva trayectoria de mercado. No se interpreta el solapamiento de IC marginales como una prueba entre modelos; para eso se utilizan las diferencias pareadas.</p>
+<p>Persistencia no tiene un IC entre semillas. Esa ausencia no significa que su error carezca de incertidumbre temporal.</p>
+</section>
+<section id="tiempo-de-entrenamiento-y-de-inferencia">
+<h4>5.1.1.4. Tiempo de entrenamiento y de inferencia<a class="headerlink" href="#tiempo-de-entrenamiento-y-de-inferencia" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo D7</p></th>
+<th class="head text-right"><p>Train CV, segundos ± DE</p></th>
+<th class="head text-right"><p>Inferencia CV registrada, segundos ± DE</p></th>
+<th class="head text-right"><p>Parámetros</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>GRU</p></td>
+<td class="text-right"><p>32,53 ± 2,91</p></td>
+<td class="text-right"><p>0,002635 ± 0,000177</p></td>
+<td class="text-right"><p>3777</p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM</p></td>
+<td class="text-right"><p>14,65 ± 1,88</p></td>
+<td class="text-right"><p>0,002318 ± 0,000167</p></td>
+<td class="text-right"><p>5025</p></td>
+</tr>
+<tr class="row-even"><td><p>TCN</p></td>
+<td class="text-right"><p>73,35 ± 8,82</p></td>
+<td class="text-right"><p>0,008192 ± 0,000584</p></td>
+<td class="text-right"><p>4289</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La tabla suma tiempos registrados de la trayectoria CV y sus mediciones de inferencia; no es una prueba aislada de latencia online. La duración elegida, CPU y concurrencia afectan el costo. Los <a class="reference download internal" download="" href="../_downloads/e0c20886c11c440889bfdb32ea6c311d/cost_summary_cv.csv"><span class="xref download myst">tiempos CV</span></a> y <a class="reference download internal" download="" href="../_downloads/4a1efe5467a65033a3b7f07c32ac0873/cost_summary_test.csv"><span class="xref download myst">finales</span></a> conservan todos los D. LSTM final tiene costo incremental cero por reutilización, sin eliminar su costo histórico.</p>
+</section>
+<section id="numero-de-parametros">
+<h4>5.1.1.5. Número de parámetros<a class="headerlink" href="#numero-de-parametros" title="Link to this heading">#</a></h4>
+<p>GRU tiene 3.777 parámetros, TCN 4.289 y LSTM 5.025 en todos los D. Persistencia no ajusta pesos. Igual número de parámetros no implica igual costo: recurrentes y convoluciones ejecutan operaciones diferentes, y la época de parada también varía.</p>
+</section>
+</section>
+</section>
+<section id="ranking-de-modelos-base">
+<h2>5.2. Ranking de Modelos Base<a class="headerlink" href="#ranking-de-modelos-base" title="Link to this heading">#</a></h2>
+<p>El orden de selección procede exclusivamente de CV. El test describe después las recetas ya cerradas.</p>
+<section id="orden-de-los-tres-modelos-segun-la-metrica-principal">
+<h3>5.2.1. Orden de los tres modelos según la métrica principal<a class="headerlink" href="#orden-de-los-tres-modelos-segun-la-metrica-principal" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p>D</p></th>
+<th class="head"><p>Orden neuronal por RMSE CV</p></th>
+<th class="head text-right"><p>RMSE GRU CV</p></th>
+<th class="head text-right"><p>RMSE persistencia CV</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>7</p></td>
+<td><p>GRU → TCN → LSTM</p></td>
+<td class="text-right"><p>0,0051546</p></td>
+<td class="text-right"><p>0,0047890</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>14</p></td>
+<td><p>GRU → TCN → LSTM</p></td>
+<td class="text-right"><p>0,0066768</p></td>
+<td class="text-right"><p>0,0047890</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>21</p></td>
+<td><p>GRU → TCN → LSTM</p></td>
+<td class="text-right"><p>0,0074140</p></td>
+<td class="text-right"><p>0,0047890</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>28</p></td>
+<td><p>GRU → TCN → LSTM</p></td>
+<td class="text-right"><p>0,0079966</p></td>
+<td class="text-right"><p>0,0047890</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Las tres redes seleccionan D7; GRU/D7 obtiene RMSE CV <strong>0,0051545685 ± 0,0001615571</strong>, frente a 0,0058196121 de TCN/D7 y 0,0063354143 de LSTM/D7. Persistencia obtiene 0,0047889696. El <a class="reference download internal" download="" href="../_downloads/8cb0de6e4f53d56251ec7e4b4abfb5ad/selected_by_cv.json"><span class="xref download myst">cierre de selección</span></a> no se sustituye por otro orden al observar test.</p>
+</section>
+<section id="analisis-del-trade-off">
+<h3>5.2.2. Análisis del trade-off<a class="headerlink" href="#analisis-del-trade-off" title="Link to this heading">#</a></h3>
+<p>Se comparan error, variabilidad, parámetros y tiempos de la receta completa. Un menor error en un único calendario no garantiza que el costo adicional resulte útil fuera de muestra.</p>
+<section id="precision-frente-a-costo-computacional">
+<h4>5.2.2.1. Precisión frente a costo computacional<a class="headerlink" href="#precision-frente-a-costo-computacional" title="Link to this heading">#</a></h4>
+<p>En D7/CV, GRU consume más tiempo registrado que LSTM a pesar de tener menos parámetros; TCN es la más costosa de las tres en esta ejecución. El número de épocas y los operadores impiden atribuir todo el tiempo a una única causa. El costo final de reutilizar LSTM se separa del de entrenarla.</p>
+</section>
+<section id="precision-frente-a-complejidad-del-modelo">
+<h4>5.2.2.2. Precisión frente a complejidad del modelo<a class="headerlink" href="#precision-frente-a-complejidad-del-modelo" title="Link to this heading">#</a></h4>
+<p>GRU es la red de menor número de pesos; LSTM mantiene una celda de memoria adicional y TCN emplea seis convoluciones en tres bloques residuales. Que GRU tenga menor RMSE aquí no demuestra que la complejidad adicional sea innecesaria en otros periodos o con otro ajuste.</p>
+</section>
+</section>
+</section>
+<section id="definicion-del-baseline-y-margen-de-mejora-disponible">
+<h2>5.3. Definición del Baseline y Margen de Mejora Disponible<a class="headerlink" href="#definicion-del-baseline-y-margen-de-mejora-disponible" title="Link to this heading">#</a></h2>
+<p>Baseline significa aquí la referencia neuronal seleccionada con desarrollo. Persistencia permanece como referencia determinista contextual y como condición adicional para una mejora avanzada.</p>
+<section id="seleccion-del-baseline-de-referencia">
+<h3>5.3.1. Selección del baseline de referencia<a class="headerlink" href="#seleccion-del-baseline-de-referencia" title="Link to this heading">#</a></h3>
+<p>Se selecciona GRU/D7 por la media de RMSE CV, conservando las reglas causales y la representación relativa. La decisión antecede al ajuste final y a esta puntuación, aunque el calendario histórico ya fuera conocido.</p>
+<section id="identificacion-del-mejor-modelo-base">
+<h4>5.3.1.1. Identificación del mejor modelo base<a class="headerlink" href="#identificacion-del-mejor-modelo-base" title="Link to this heading">#</a></h4>
+<p>GRU/D7 es el mejor modelo neuronal según CV. Su elección no depende de escoger una semilla afortunada: se utiliza la media de diez ejecuciones. Persistencia es mejor en RMSE CV; por ello el término baseline neuronal no implica que GRU ya venza a una referencia ingenua en desarrollo.</p>
+</section>
+<section id="desempeno-con-media-desviacion-e-ic-del-95">
+<h4>5.3.1.2. Desempeño con media, desviación e IC del 95 %<a class="headerlink" href="#desempeno-con-media-desviacion-e-ic-del-95" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Periodo</p></th>
+<th class="head text-right"><p>RMSE GRU/D7: media ± DE</p></th>
+<th class="head text-right"><p>IC95 % marginal</p></th>
+<th class="head text-right"><p>R²: media ± DE</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CV2024</p></td>
+<td class="text-right"><p>0,0051545685 ± 0,0001615571</p></td>
+<td class="text-right"><p>[0,0050389976; 0,0052701395]</p></td>
+<td class="text-right"><p>0,721214 ± 0,017505</p></td>
+</tr>
+<tr class="row-odd"><td><p>Test histórico</p></td>
+<td class="text-right"><p>0,0037751113 ± 0,0001941007</p></td>
+<td class="text-right"><p>[0,0036362600; 0,0039139626]</p></td>
+<td class="text-right"><p>0,854173 ± 0,015331</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Persistencia tiene RMSE test 0,0040855959 y R² 0,829605. Sus MAE 0,0023531639 y MAPE 13,7553 % son menores que los de GRU, 0,0027985090 y 18,0667 %. CV y test describen regímenes y políticas de ajuste diferentes; no se interpreta su diferencia como una ganancia causal.</p>
+</section>
+</section>
+<section id="cuantificacion-de-las-diferencias-entre-modelos-base">
+<h3>5.3.2. Cuantificación de las diferencias entre modelos base<a class="headerlink" href="#cuantificacion-de-las-diferencias-entre-modelos-base" title="Link to this heading">#</a></h3>
+<p>Las diferencias se calculan sobre resultados de las mismas semillas y fechas. La dirección, escala y denominador se explicitan antes de interpretarlas.</p>
+<section id="regresion-y-series-de-tiempo-diferencias-respecto-al-peor-y-al-mejor-modelo">
+<h4>5.3.2.1. Regresión y series de tiempo: diferencias respecto al peor y al mejor modelo<a class="headerlink" href="#regresion-y-series-de-tiempo-diferencias-respecto-al-peor-y-al-mejor-modelo" title="Link to this heading">#</a></h4>
+<p>Para una referencia B y un modelo A, la ganancia absoluta es RMSE(B)−RMSE(A) y la reducción relativa es <span class="math notranslate nohighlight">\(100[1-\mathrm{RMSE}(A)/\mathrm{RMSE}(B)]\)</span>.</p>
+<p>En D7/test, la ganancia media de GRU frente a LSTM es <strong>0,0012546753</strong>, aproximadamente <strong>24,94 %</strong>; frente a TCN es <strong>0,0003995392</strong>, aproximadamente <strong>9,57 %</strong>. Frente a persistencia la reducción puntual de RMSE es aproximadamente <strong>7,60 %</strong>. Esta última no forma parte de la familia de tres contrastes neuronales y no recibe sus p-valores.</p>
+</section>
+<section id="clasificacion-etiquetado-secuencial-y-segmentacion">
+<h4>5.3.2.2. Clasificación, etiquetado secuencial y segmentación<a class="headerlink" href="#clasificacion-etiquetado-secuencial-y-segmentacion" title="Link to this heading">#</a></h4>
+<p>No aplica como tarea de clasificación o etiquetado: no hay clases ni entidades. No se convierten reducciones de RMSE en exactitud de clasificación ni en probabilidades de rentabilidad.</p>
+</section>
+<section id="secuencia-a-secuencia">
+<h4>5.3.2.3. Secuencia a secuencia<a class="headerlink" href="#secuencia-a-secuencia" title="Link to this heading">#</a></h4>
+<p>No aplica a generación de secuencias: se predice un escalar a h=1. Los doce bloques mensuales de CV agrupan 366 pronósticos diarios por trayectoria; los veinte intervalos de reporte de test agrupan 608. Esa agregación temporal no convierte la salida escalar en una tarea de traducción o decodificación.</p>
+</section>
+<section id="tamano-de-efecto-de-cada-diferencia">
+<h4>5.3.2.4. Tamaño de efecto de cada diferencia<a class="headerlink" href="#tamano-de-efecto-de-cada-diferencia" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fase</p></th>
+<th class="head"><p>A − B</p></th>
+<th class="head text-right"><p>d_z pareado</p></th>
+<th class="head text-right"><p>IC95 % bootstrap de d_z</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CV</p></td>
+<td><p>GRU − LSTM</p></td>
+<td class="text-right"><p>-4,180</p></td>
+<td class="text-right"><p>[-7,471; -3,139]</p></td>
+</tr>
+<tr class="row-odd"><td><p>CV</p></td>
+<td><p>GRU − TCN</p></td>
+<td class="text-right"><p>-2,428</p></td>
+<td class="text-right"><p>[-4,822; -1,700]</p></td>
+</tr>
+<tr class="row-even"><td><p>CV</p></td>
+<td><p>LSTM − TCN</p></td>
+<td class="text-right"><p>1,262</p></td>
+<td class="text-right"><p>[0,843; 2,474]</p></td>
+</tr>
+<tr class="row-odd"><td><p>TEST</p></td>
+<td><p>GRU − LSTM</p></td>
+<td class="text-right"><p>-4,182</p></td>
+<td class="text-right"><p>[-10,976; -3,077]</p></td>
+</tr>
+<tr class="row-even"><td><p>TEST</p></td>
+<td><p>GRU − TCN</p></td>
+<td class="text-right"><p>-1,124</p></td>
+<td class="text-right"><p>[-2,604; -0,574]</p></td>
+</tr>
+<tr class="row-odd"><td><p>TEST</p></td>
+<td><p>LSTM − TCN</p></td>
+<td class="text-right"><p>2,006</p></td>
+<td class="text-right"><p>[1,486; 3,469]</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><span class="math notranslate nohighlight">\(d_z=\bar d/s_d\)</span> usa diferencias A−B por semilla. Un valor negativo favorece A para RMSE. Su escala depende de la DE de diferencias, no es una reducción porcentual ni un efecto económico. Los IC bootstrap de 4.999 remuestras son sensibilidades condicionales a diez pares.</p>
+</section>
+</section>
+<section id="inferencia-sobre-las-diferencias">
+<h3>5.3.3. Inferencia sobre las diferencias<a class="headerlink" href="#inferencia-sobre-las-diferencias" title="Link to this heading">#</a></h3>
+<p>La familia D7 contiene <strong>GRU−LSTM, GRU−TCN y LSTM−TCN</strong>, con diez diferencias de RMSE por par. Se aplica t bilateral y Holm-3 separadamente en CV y test. <strong>La familia se definió después de observar test</strong>: sus p-valores son exploratorios, no el resultado confirmatorio de una selección bibliográfica o estadística previa.</p>
+<p>Las descargas <a class="reference download internal" download="" href="../_downloads/29495c8bbf41642e12bd96da2b9eb752/within_trio_pairs_cv.csv"><span class="xref download myst">CV</span></a> y <a class="reference download internal" download="" href="../_downloads/6023f334211ed3be3cafe536d128c2dd/within_trio_pairs_test.csv"><span class="xref download myst">test</span></a> conservan p brutos/ajustados, diferencias, IC, efectos y diagnósticos. La sensibilidad de cuatro D contiene doce pares por fase y usa Holm-12; no se elige la corrección más favorable.</p>
+<section id="comparaciones-pareadas-y-correccion-por-multiplicidad">
+<h4>5.3.3.1. Comparaciones pareadas y corrección por multiplicidad<a class="headerlink" href="#comparaciones-pareadas-y-correccion-por-multiplicidad" title="Link to this heading">#</a></h4>
+<p>H0 es media de las diferencias de RMSE igual a cero, frente a alternativa bilateral. Se parean las diez semillas nominales, sin tratar meses como réplicas. Holm ordena tres p-valores y los compara secuencialmente con α/3, α/2 y α; no impone α/3 a cada contraste. α=0,05 es la convención del análisis posterior.</p>
+</section>
+<section id="diferencia-media-ic-del-95-y-p-value-ajustado-y-sin-ajustar">
+<h4>5.3.3.2. Diferencia media, IC del 95 % y p-value ajustado y sin ajustar<a class="headerlink" href="#diferencia-media-ic-del-95-y-p-value-ajustado-y-sin-ajustar" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fase</p></th>
+<th class="head"><p>A − B</p></th>
+<th class="head text-right"><p>Diferencia media RMSE</p></th>
+<th class="head text-right"><p>IC95 %</p></th>
+<th class="head text-right"><p>p sin ajustar</p></th>
+<th class="head text-right"><p>p Holm-3</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CV</p></td>
+<td><p>GRU − LSTM</p></td>
+<td class="text-right"><p>-0,0011808</p></td>
+<td class="text-right"><p>[-0,0013829; -0,0009788]</p></td>
+<td class="text-right"><p>3.36628e-07</p></td>
+<td class="text-right"><p>1.00988e-06</p></td>
+</tr>
+<tr class="row-odd"><td><p>CV</p></td>
+<td><p>GRU − TCN</p></td>
+<td class="text-right"><p>-0,0006650</p></td>
+<td class="text-right"><p>[-0,0008610; -0,0004691]</p></td>
+<td class="text-right"><p>3.06616e-05</p></td>
+<td class="text-right"><p>6.13232e-05</p></td>
+</tr>
+<tr class="row-even"><td><p>CV</p></td>
+<td><p>LSTM − TCN</p></td>
+<td class="text-right"><p>0,0005158</p></td>
+<td class="text-right"><p>[0,0002234; 0,0008082]</p></td>
+<td class="text-right"><p>0.00315693</p></td>
+<td class="text-right"><p>0.00315693</p></td>
+</tr>
+<tr class="row-odd"><td><p>TEST</p></td>
+<td><p>GRU − LSTM</p></td>
+<td class="text-right"><p>-0,0012547</p></td>
+<td class="text-right"><p>[-0,0014693; -0,0010400]</p></td>
+<td class="text-right"><p>3.35348e-07</p></td>
+<td class="text-right"><p>1.00604e-06</p></td>
+</tr>
+<tr class="row-even"><td><p>TEST</p></td>
+<td><p>GRU − TCN</p></td>
+<td class="text-right"><p>-0,0003995</p></td>
+<td class="text-right"><p>[-0,0006538; -0,0001453]</p></td>
+<td class="text-right"><p>0.00616503</p></td>
+<td class="text-right"><p>0.00616503</p></td>
+</tr>
+<tr class="row-odd"><td><p>TEST</p></td>
+<td><p>LSTM − TCN</p></td>
+<td class="text-right"><p>0,0008551</p></td>
+<td class="text-right"><p>[0,0005502; 0,0011601]</p></td>
+<td class="text-right"><p>0.000133987</p></td>
+<td class="text-right"><p>0.000267974</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los tres pares D7 se distinguen de cero con Holm-3 en cada fase. Los IC familiares Bonferroni de nivel individual 98,333 % también excluyen cero. El orden neuronal medio es GRU–TCN–LSTM en D7; eso no acredita generalización nueva, selección independiente o una mejora práctica de cualquier magnitud.</p>
+</section>
+</section>
+<section id="umbral-de-mejora-para-modelos-avanzados">
+<h3>5.3.4. Umbral de mejora para modelos avanzados<a class="headerlink" href="#umbral-de-mejora-para-modelos-avanzados" title="Link to this heading">#</a></h3>
+<p>Se define un criterio operativo para evaluar posteriormente un modelo avanzado. Al haberse observado ya el test, este criterio es una propuesta futura y no una regla que hubiera gobernado el experimento presentado.</p>
+<section id="mejora-minima-detectable-frente-al-baseline">
+<h4>5.3.4.1. Mejora mínima detectable frente al baseline<a class="headerlink" href="#mejora-minima-detectable-frente-al-baseline" title="Link to this heading">#</a></h4>
+<p>El número de semillas actual no procede de un piloto de potencia. No se afirma potencia 0,80 ni se calcula «potencia alcanzada» usando el efecto observado. La MDE del futuro avanzado depende de su propia dispersión pareada frente a las referencias y del procedimiento previsto.</p>
+<p>Si la MDE supera el margen relevante, habrá que mejorar el diseño o declarar esa limitación. Aumentar semillas sólo precisa el componente de aleatoriedad del entrenamiento sobre estas fechas; no proporciona otro mercado o un test desconocido.</p>
+</section>
+<section id="margen-de-relevancia-practica">
+<h4>5.3.4.2. Margen de relevancia práctica<a class="headerlink" href="#margen-de-relevancia-practica" title="Link to this heading">#</a></h4>
+<p>Se fija ahora <span class="math notranslate nohighlight">\(\delta=0{,}05\times\mathrm{RMSE}_{CV}(\mathrm{GRU/D7})=0{,}000257728426649811\)</span>. El <a class="reference download internal" download="" href="../_downloads/c3b010d7cc228902773db95f5eecef8d/future_margin.json"><span class="xref download myst">registro del margen</span></a> declara su definición posterior al test y su finalidad académica.</p>
+<p>Una evaluación futura deberá exigir una mejora relevante frente a GRU/D7 y persistencia, con piloto y multiplicidad propios. Un IC que excluye cero no demuestra automáticamente superar δ; este umbral tampoco equivale a una utilidad financiera.</p>
+</section>
+<section id="cota-de-referencia-del-problema">
+<h4>5.3.4.3. Cota de referencia del problema<a class="headerlink" href="#cota-de-referencia-del-problema" title="Link to this heading">#</a></h4>
+<p>Persistencia es una referencia reproducible y observable, no una cota óptima del problema. Ninguno de los resultados permite afirmar que se alcanzó el error irreducible. El soporte de ocho cierres de persistencia difiere de D7; se mantiene visible esa diferencia de información.</p>
+</section>
+</section>
+<section id="interpretacion">
+<h3>5.3.5. Interpretación<a class="headerlink" href="#interpretacion" title="Link to this heading">#</a></h3>
+<p>Se distinguen error observado, diferencia entre semillas, contraste temporal y margen práctico. Responden a preguntas relacionadas, sin ser corroboraciones independientes.</p>
+<section id="significacion-estadistica-y-relevancia-practica">
+<h4>5.3.5.1. Significación estadística y relevancia práctica<a class="headerlink" href="#significacion-estadistica-y-relevancia-practica" title="Link to this heading">#</a></h4>
+<p>Los contrastes D7 rechazan diferencia cero entre las redes bajo su referencia t y corrección declarada. La relevancia práctica exige además un margen justificado y una evaluación nueva. No se emplea el margen definido ahora para describir el benchmark como un éxito previsto de antemano.</p>
+</section>
+<section id="desempeno-frente-a-complejidad-parametros-y-costo">
+<h4>5.3.5.2. Desempeño frente a complejidad, parámetros y costo<a class="headerlink" href="#desempeno-frente-a-complejidad-parametros-y-costo" title="Link to this heading">#</a></h4>
+<p>GRU combina menor RMSE D7 con menos pesos, pero no con menor tiempo CV que LSTM. TCN introduce convoluciones causales y residuos, con costo mayor en esta ejecución. La decisión práctica requiere valorar precisión, estabilidad, recursos y complejidad de mantenimiento.</p>
+</section>
+<section id="conclusion-explicita-del-baseline-y-margen-disponible">
+<h4>5.3.5.3. Conclusión explícita del baseline y margen disponible<a class="headerlink" href="#conclusion-explicita-del-baseline-y-margen-disponible" title="Link to this heading">#</a></h4>
+<p>El baseline neuronal vigente es GRU/D7. Persistencia continúa como referencia adicional; la ganancia RMSE de test de GRU no se extiende a MAE y MAPE. El margen operativo futuro es 0,0002577284 y se declara posterior a la observación de test.</p>
+</section>
+<section id="estado-del-benchmark">
+<h4>5.3.5.4. Estado del benchmark<a class="headerlink" href="#estado-del-benchmark" title="Link to this heading">#</a></h4>
+<p>El benchmark inicial de doce recetas y diez semillas está ejecutado; su comparación interna y diagnósticos permanecen posteriores y exploratorios. La fase II D7 incorpora HPO, piloto, dimensionamiento y una evaluación preespecificada sobre otra reserva histórica (§9). Ese cierre no se atribuye a las otras entradas y un futuro modelo avanzado requiere su propia planificación y datos no usados para diseñarlo.</p>
+</section>
+</section>
+</section>
+<section id="analisis-estadistico-y-pruebas-de-hipotesis">
+<h2>5.4. Análisis Estadístico y Pruebas de Hipótesis<a class="headerlink" href="#analisis-estadistico-y-pruebas-de-hipotesis" title="Link to this heading">#</a></h2>
+<p>El <a class="reference download internal" download="" href="../_downloads/cb347cfce2acc6620ccbb32a7b86c752/public_analysis_plan.json"><span class="xref download myst">plan del análisis público</span></a> está fechado el 05/11/2026, <strong>después de puntuar e inspeccionar el test histórico</strong>. Distingue diferencias de RMSE por semilla, prueba conjunta por bloques de semilla, pérdidas diarias y diagnósticos mensuales. No se acumulan sus rechazos como evidencia independiente.</p>
+<p>Las estimaciones se calculan desde resultados guardados, sin reajustar pesos ni realizar nuevas inferencias.</p>
+<section id="hipotesis-unidad-de-analisis-y-supuestos">
+<h3>5.4.1. Hipótesis, unidad de análisis y supuestos<a class="headerlink" href="#hipotesis-unidad-de-analisis-y-supuestos" title="Link to this heading">#</a></h3>
+<p>Para los pares neuronales, la unidad es una RMSE de periodo completo por semilla. Se supone una distribución de diferencias compatible con la referencia t y ejecuciones de RNG independientes, condicionadas al calendario. Diez semillas no son diez periodos de mercado. Para DM la unidad es una pérdida por fecha; para diagnósticos, el bloque mensual.</p>
+</section>
+<section id="comparaciones-pareadas-t-y-wilcoxon">
+<h3>5.4.2. Comparaciones pareadas: t y Wilcoxon<a class="headerlink" href="#comparaciones-pareadas-t-y-wilcoxon" title="Link to this heading">#</a></h3>
+<p>El contraste informado es t pareada bilateral, <span class="math notranslate nohighlight">\(t=\bar d/(s_d/\sqrt{10})\)</span>, con nueve grados de libertad. Shapiro se presenta como diagnóstico y no selecciona una prueba alternativa tras observar p.</p>
+<p>Wilcoxon exige otros supuestos y no se ejecutó como una segunda oportunidad de significación. Su resolución discreta depende de pares útiles, ceros y empates. El hecho de disponer de diez semillas no demuestra potencia suficiente para t o rangos.</p>
+</section>
+<section id="comparacion-conjunta-de-tres-modelos">
+<h3>5.4.3. Comparación conjunta de tres modelos<a class="headerlink" href="#comparacion-conjunta-de-tres-modelos" title="Link to this heading">#</a></h3>
+<p>Se calculó Friedman para tres redes D7 y diez bloques de semilla: <strong>χ²≈18,2, p≈0,000111666 en CV</strong> y <strong>χ²≈16,8, p≈0,000224867 en test</strong>, con dos grados de libertad. La <a class="reference download internal" download="" href="../_downloads/f9749917aa5500d7bb8ee0a829c00772/friedman_D7.csv"><span class="xref download myst">tabla conjunta</span></a> conserva también Holm-2 como sensibilidad entre fases.</p>
+<p>Es una aproximación chi-cuadrado con sólo diez bloques; su interpretación es condicional a estas fechas. No localiza por sí sola los pares distintos ni transforma la familia posterior en confirmatoria.</p>
+</section>
+<section id="comparaciones-post-hoc-y-correccion-por-multiplicidad">
+<h3>5.4.4. Comparaciones post-hoc y corrección por multiplicidad<a class="headerlink" href="#comparaciones-post-hoc-y-correccion-por-multiplicidad" title="Link to this heading">#</a></h3>
+<p>Los tres pares D7 reciben Holm-3 por fase. La sensibilidad de las cuatro historias conserva doce hipótesis y Holm-12: <a class="reference download internal" download="" href="../_downloads/579d0b84b36b4b2524129425680e84ea/within_trio_pairs_allD_cv.csv"><span class="xref download myst">CV</span></a> y <a class="reference download internal" download="" href="../_downloads/b1e09de36b7133b05ccc52977f752002/within_trio_pairs_allD_test.csv"><span class="xref download myst">test</span></a>.</p>
+<p>Friedman, pares por semilla, DM y diagnósticos son familias distintas con objetivos distintos. Las correcciones no constituyen control global de todas las decisiones históricas y de esta revisión posterior; ese límite se conserva.</p>
+</section>
+<section id="intervalos-de-confianza-y-tamano-de-efecto">
+<h3>5.4.5. Intervalos de confianza y tamaño de efecto<a class="headerlink" href="#intervalos-de-confianza-y-tamano-de-efecto" title="Link to this heading">#</a></h3>
+<p>Se publican IC95 % marginales, IC familiares Bonferroni y d_z junto con sus convenciones. La incertidumbre por semillas no reemplaza la dependencia y variación temporal.</p>
+<section id="bootstrap-de-las-diferencias-pareadas">
+<h4>5.4.5.1. Bootstrap de las diferencias pareadas<a class="headerlink" href="#bootstrap-de-las-diferencias-pareadas" title="Link to this heading">#</a></h4>
+<p>La sensibilidad de efecto usa 4.999 remuestras pareadas de las diez diferencias, con reemplazo; se recalcula d_z en cada muestra y se informa cuántas fueron definidas. No se remuestrean meses como mercados ni se reentrenan redes. Con diez pares y cocientes por una DE estimada, el bootstrap puede ser inestable y no certifica cobertura exacta.</p>
+</section>
+<section id="tamano-de-efecto-junto-con-el-p-value">
+<h4>5.4.5.2. Tamaño de efecto junto con el p-value<a class="headerlink" href="#tamano-de-efecto-junto-con-el-p-value" title="Link to this heading">#</a></h4>
+<p>Se conserva el signo A−B para diferencia y d_z; negativo favorece A. Un efecto grande puede surgir de poca dispersión entre inicializaciones y no equivale a una gran reducción absoluta del error. Las tablas de §5.3.2.4 y los CSV mantienen efecto, IC y p en conjunto.</p>
+</section>
+</section>
+<section id="advertencia-sobre-independencia">
+<h3>5.4.6. Advertencia sobre independencia<a class="headerlink" href="#advertencia-sobre-independencia" title="Link to this heading">#</a></h3>
+<p>Todos los modelos comparten fechas y objetivos; pares, meses y métricas no son experimentos independientes.</p>
+<section id="ejecuciones-que-comparten-el-conjunto-de-prueba">
+<h4>5.4.6.1. Ejecuciones que comparten el conjunto de prueba<a class="headerlink" href="#ejecuciones-que-comparten-el-conjunto-de-prueba" title="Link to this heading">#</a></h4>
+<p>Las 608 fechas del test son una sola trayectoria de mercado. Cambiar la semilla estima sensibilidad del entrenamiento sobre esa trayectoria. Reutilizar LSTM es un control identificado, sin generar información de mercado nueva ni una réplica adicional de sus predicciones.</p>
+</section>
+<section id="validacion-repetida-y-remuestreo-por-bloques">
+<h4>5.4.6.2. Validación repetida y remuestreo por bloques<a class="headerlink" href="#validacion-repetida-y-remuestreo-por-bloques" title="Link to this heading">#</a></h4>
+<p>Los doce meses CV contienen entrenamientos crecientes y las ventanas del objetivo se solapan. No se aplica automáticamente una corrección de CV aleatoria ni se remuestrean esos meses como bloques independientes. La sensibilidad bootstrap presentada remuestrea semillas; cualquier bootstrap temporal requeriría longitud de bloque y alcance propios.</p>
+</section>
+</section>
+<section id="reporte-de-potencia-y-diferencia-minima-detectable">
+<h3>5.4.7. Reporte de potencia y diferencia mínima detectable<a class="headerlink" href="#reporte-de-potencia-y-diferencia-minima-detectable" title="Link to this heading">#</a></h3>
+<p>Se informa R=10 como presupuesto fijo y la ausencia de piloto prospectivo de potencia para GRU/TCN. El margen futuro se define después del test. No se usa el p observado ni d_z para declarar potencia alcanzada, y no se atribuye al trío un tamaño dimensionado para otros procedimientos.</p>
+</section>
+<section id="ausencia-de-significacion-y-equivalencia">
+<h3>5.4.8. Ausencia de significación y equivalencia<a class="headerlink" href="#ausencia-de-significacion-y-equivalencia" title="Link to this heading">#</a></h3>
+<p>No rechazar diferencia cero no demuestra equivalencia. Si una propuesta futura afirma equivalencia, necesitará márgenes y procedimiento, por ejemplo TOST o una ROPE justificada, fijados antes. No se ejecuta ni exige una prueba de equivalencia para interpretar este benchmark de diferencias.</p>
+</section>
+<section id="test-de-dieboldmariano">
+<h3>5.4.9. Test de Diebold–Mariano<a class="headerlink" href="#test-de-dieboldmariano" title="Link to this heading">#</a></h3>
+<p>DM compara <strong>pérdidas cuadráticas diarias en unidades originales, promediadas entre las diez semillas</strong>. El estimando es distinto de la media de RMSE por semilla. Se conserva h=1, HAC Bartlett/Newey–West con seis rezagos y corrección HLN; la familia tiene tres pares por fase.</p>
+<p>Los <a class="reference download internal" download="" href="../_downloads/0f1d4df3f356be6f7f627c4e3e3d8122/dm_pairs_cv.csv"><span class="xref download myst">resultados CV</span></a> y <a class="reference download internal" download="" href="../_downloads/1a218baa71195cc3edf1348d0cded5ae/dm_pairs_test.csv"><span class="xref download myst">test</span></a> son exploratorios y posteriores al test.</p>
+<section id="comparacion-de-precision-predictiva-por-horizonte">
+<h4>5.4.9.1. Comparación de precisión predictiva por horizonte<a class="headerlink" href="#comparacion-de-precision-predictiva-por-horizonte" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fase</p></th>
+<th class="head"><p>A − B</p></th>
+<th class="head text-right"><p>DM con HLN</p></th>
+<th class="head text-right"><p>p sin ajustar</p></th>
+<th class="head text-right"><p>p Holm-3</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CV</p></td>
+<td><p>GRU − LSTM</p></td>
+<td class="text-right"><p>-4,059</p></td>
+<td class="text-right"><p>6.0442e-05</p></td>
+<td class="text-right"><p>0.000181326</p></td>
+</tr>
+<tr class="row-odd"><td><p>CV</p></td>
+<td><p>GRU − TCN</p></td>
+<td class="text-right"><p>-1,868</p></td>
+<td class="text-right"><p>0.0625374</p></td>
+<td class="text-right"><p>0.125075</p></td>
+</tr>
+<tr class="row-even"><td><p>CV</p></td>
+<td><p>LSTM − TCN</p></td>
+<td class="text-right"><p>1,164</p></td>
+<td class="text-right"><p>0.245324</p></td>
+<td class="text-right"><p>0.245324</p></td>
+</tr>
+<tr class="row-odd"><td><p>TEST</p></td>
+<td><p>GRU − LSTM</p></td>
+<td class="text-right"><p>-6,258</p></td>
+<td class="text-right"><p>7.38874e-10</p></td>
+<td class="text-right"><p>2.21662e-09</p></td>
+</tr>
+<tr class="row-even"><td><p>TEST</p></td>
+<td><p>GRU − TCN</p></td>
+<td class="text-right"><p>-5,232</p></td>
+<td class="text-right"><p>2.31746e-07</p></td>
+<td class="text-right"><p>4.63492e-07</p></td>
+</tr>
+<tr class="row-odd"><td><p>TEST</p></td>
+<td><p>LSTM − TCN</p></td>
+<td class="text-right"><p>4,636</p></td>
+<td class="text-right"><p>4.35165e-06</p></td>
+<td class="text-right"><p>4.35165e-06</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>En CV, GRU−TCN tiene p Holm≈0,1251 y no rechaza; la t por semillas sí rechaza. En test, ese DM tiene p Holm≈4,63×10⁻⁷. La diferencia no se resuelve eligiendo el p menor: cambian unidad, pérdida y dependencia tratada.</p>
+</section>
+<section id="correccion-harveyleybournenewbold-y-perdida-coherente">
+<h4>5.4.9.2. Corrección Harvey–Leybourne–Newbold y pérdida coherente<a class="headerlink" href="#correccion-harveyleybournenewbold-y-perdida-coherente" title="Link to this heading">#</a></h4>
+<p>La estadística usa la varianza de largo plazo del diferencial diario con covarianzas divididas por n, kernel Bartlett y seis rezagos; HLN utiliza horizonte uno y referencia t con n−1 grados de libertad. Los seis rezagos atienden el solapamiento de sigma7, sin garantizar que capturen toda dependencia o cambios de régimen.</p>
+</section>
+</section>
+<section id="test-bds-brockdechertscheinkman">
+<h3>5.4.10. Test BDS (Brock–Dechert–Scheinkman)<a class="headerlink" href="#test-bds-brockdechertscheinkman" title="Link to this heading">#</a></h3>
+<p>Se calculó BDS sobre residuos mensuales de cada familia, D y semilla, con <strong>dimensión de incrustación 2</strong> y <strong>ε=1,5 veces la DE muestral residual</strong>, a h=1. Hay <strong>1.440 hipótesis en CV y 2.400 en test</strong>, corregidas por Holm separadamente por fase.</p>
+<p>Los CSV <a class="reference download internal" download="" href="../_downloads/97f08092d584255c687d6db0264d969c/bds_by_fold_cv.csv"><span class="xref download myst">CV</span></a> y <a class="reference download internal" download="" href="../_downloads/50b9595a2fdecb0fa67f01f5ef930d1b/bds_by_fold_test.csv"><span class="xref download myst">test</span></a> preservan estadística, p, estado, advertencias y rechazos; los siguientes promedios de p son <strong>sólo descriptivos</strong>, sin ser un p global.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fase</p></th>
+<th class="head text-right"><p>D</p></th>
+<th class="head"><p>Modelo</p></th>
+<th class="head text-right"><p>n definidos</p></th>
+<th class="head text-right"><p>p medio ± DE, descriptivo</p></th>
+<th class="head text-right"><p>Rechazos brutos %</p></th>
+<th class="head text-right"><p>Rechazos Holm %</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CV</p></td>
+<td class="text-right"><p>7</p></td>
+<td><p>GRU</p></td>
+<td class="text-right"><p>120</p></td>
+<td class="text-right"><p>0,2548 ± 0,3203</p></td>
+<td class="text-right"><p>47,5</p></td>
+<td class="text-right"><p>24,2</p></td>
+</tr>
+<tr class="row-odd"><td><p>CV</p></td>
+<td class="text-right"><p>7</p></td>
+<td><p>LSTM</p></td>
+<td class="text-right"><p>120</p></td>
+<td class="text-right"><p>0,1043 ± 0,2168</p></td>
+<td class="text-right"><p>70,8</p></td>
+<td class="text-right"><p>47,5</p></td>
+</tr>
+<tr class="row-even"><td><p>CV</p></td>
+<td class="text-right"><p>7</p></td>
+<td><p>TCN</p></td>
+<td class="text-right"><p>120</p></td>
+<td class="text-right"><p>0,2604 ± 0,3153</p></td>
+<td class="text-right"><p>46,7</p></td>
+<td class="text-right"><p>25,8</p></td>
+</tr>
+<tr class="row-odd"><td><p>CV</p></td>
+<td class="text-right"><p>14</p></td>
+<td><p>GRU</p></td>
+<td class="text-right"><p>120</p></td>
+<td class="text-right"><p>0,1014 ± 0,2214</p></td>
+<td class="text-right"><p>76,7</p></td>
+<td class="text-right"><p>58,3</p></td>
+</tr>
+<tr class="row-even"><td><p>CV</p></td>
+<td class="text-right"><p>14</p></td>
+<td><p>LSTM</p></td>
+<td class="text-right"><p>120</p></td>
+<td class="text-right"><p>0,0863 ± 0,1954</p></td>
+<td class="text-right"><p>74,2</p></td>
+<td class="text-right"><p>60,8</p></td>
+</tr>
+<tr class="row-odd"><td><p>CV</p></td>
+<td class="text-right"><p>14</p></td>
+<td><p>TCN</p></td>
+<td class="text-right"><p>120</p></td>
+<td class="text-right"><p>0,1762 ± 0,2928</p></td>
+<td class="text-right"><p>63,3</p></td>
+<td class="text-right"><p>37,5</p></td>
+</tr>
+<tr class="row-even"><td><p>CV</p></td>
+<td class="text-right"><p>21</p></td>
+<td><p>GRU</p></td>
+<td class="text-right"><p>120</p></td>
+<td class="text-right"><p>0,0796 ± 0,2057</p></td>
+<td class="text-right"><p>81,7</p></td>
+<td class="text-right"><p>70,0</p></td>
+</tr>
+<tr class="row-odd"><td><p>CV</p></td>
+<td class="text-right"><p>21</p></td>
+<td><p>LSTM</p></td>
+<td class="text-right"><p>120</p></td>
+<td class="text-right"><p>0,0938 ± 0,2005</p></td>
+<td class="text-right"><p>75,0</p></td>
+<td class="text-right"><p>67,5</p></td>
+</tr>
+<tr class="row-even"><td><p>CV</p></td>
+<td class="text-right"><p>21</p></td>
+<td><p>TCN</p></td>
+<td class="text-right"><p>120</p></td>
+<td class="text-right"><p>0,1599 ± 0,2747</p></td>
+<td class="text-right"><p>64,2</p></td>
+<td class="text-right"><p>47,5</p></td>
+</tr>
+<tr class="row-odd"><td><p>CV</p></td>
+<td class="text-right"><p>28</p></td>
+<td><p>GRU</p></td>
+<td class="text-right"><p>120</p></td>
+<td class="text-right"><p>0,0696 ± 0,1908</p></td>
+<td class="text-right"><p>85,0</p></td>
+<td class="text-right"><p>73,3</p></td>
+</tr>
+<tr class="row-even"><td><p>CV</p></td>
+<td class="text-right"><p>28</p></td>
+<td><p>LSTM</p></td>
+<td class="text-right"><p>120</p></td>
+<td class="text-right"><p>0,0636 ± 0,1816</p></td>
+<td class="text-right"><p>85,0</p></td>
+<td class="text-right"><p>70,0</p></td>
+</tr>
+<tr class="row-odd"><td><p>CV</p></td>
+<td class="text-right"><p>28</p></td>
+<td><p>TCN</p></td>
+<td class="text-right"><p>120</p></td>
+<td class="text-right"><p>0,1720 ± 0,2893</p></td>
+<td class="text-right"><p>63,3</p></td>
+<td class="text-right"><p>45,8</p></td>
+</tr>
+<tr class="row-even"><td><p>TEST</p></td>
+<td class="text-right"><p>7</p></td>
+<td><p>GRU</p></td>
+<td class="text-right"><p>200</p></td>
+<td class="text-right"><p>0,2389 ± 0,2978</p></td>
+<td class="text-right"><p>43,0</p></td>
+<td class="text-right"><p>14,5</p></td>
+</tr>
+<tr class="row-odd"><td><p>TEST</p></td>
+<td class="text-right"><p>7</p></td>
+<td><p>LSTM</p></td>
+<td class="text-right"><p>200</p></td>
+<td class="text-right"><p>0,0500 ± 0,1849</p></td>
+<td class="text-right"><p>91,0</p></td>
+<td class="text-right"><p>68,0</p></td>
+</tr>
+<tr class="row-even"><td><p>TEST</p></td>
+<td class="text-right"><p>7</p></td>
+<td><p>TCN</p></td>
+<td class="text-right"><p>200</p></td>
+<td class="text-right"><p>0,2167 ± 0,3036</p></td>
+<td class="text-right"><p>54,0</p></td>
+<td class="text-right"><p>27,5</p></td>
+</tr>
+<tr class="row-odd"><td><p>TEST</p></td>
+<td class="text-right"><p>14</p></td>
+<td><p>GRU</p></td>
+<td class="text-right"><p>200</p></td>
+<td class="text-right"><p>0,0353 ± 0,1117</p></td>
+<td class="text-right"><p>85,5</p></td>
+<td class="text-right"><p>50,0</p></td>
+</tr>
+<tr class="row-even"><td><p>TEST</p></td>
+<td class="text-right"><p>14</p></td>
+<td><p>LSTM</p></td>
+<td class="text-right"><p>200</p></td>
+<td class="text-right"><p>0,0174 ± 0,0954</p></td>
+<td class="text-right"><p>92,5</p></td>
+<td class="text-right"><p>73,5</p></td>
+</tr>
+<tr class="row-odd"><td><p>TEST</p></td>
+<td class="text-right"><p>14</p></td>
+<td><p>TCN</p></td>
+<td class="text-right"><p>200</p></td>
+<td class="text-right"><p>0,0686 ± 0,1807</p></td>
+<td class="text-right"><p>80,5</p></td>
+<td class="text-right"><p>58,0</p></td>
+</tr>
+<tr class="row-even"><td><p>TEST</p></td>
+<td class="text-right"><p>21</p></td>
+<td><p>GRU</p></td>
+<td class="text-right"><p>200</p></td>
+<td class="text-right"><p>0,0200 ± 0,1051</p></td>
+<td class="text-right"><p>95,5</p></td>
+<td class="text-right"><p>68,5</p></td>
+</tr>
+<tr class="row-odd"><td><p>TEST</p></td>
+<td class="text-right"><p>21</p></td>
+<td><p>LSTM</p></td>
+<td class="text-right"><p>200</p></td>
+<td class="text-right"><p>0,0128 ± 0,0644</p></td>
+<td class="text-right"><p>95,0</p></td>
+<td class="text-right"><p>77,0</p></td>
+</tr>
+<tr class="row-even"><td><p>TEST</p></td>
+<td class="text-right"><p>21</p></td>
+<td><p>TCN</p></td>
+<td class="text-right"><p>200</p></td>
+<td class="text-right"><p>0,0353 ± 0,1342</p></td>
+<td class="text-right"><p>89,5</p></td>
+<td class="text-right"><p>70,5</p></td>
+</tr>
+<tr class="row-odd"><td><p>TEST</p></td>
+<td class="text-right"><p>28</p></td>
+<td><p>GRU</p></td>
+<td class="text-right"><p>200</p></td>
+<td class="text-right"><p>0,0113 ± 0,0657</p></td>
+<td class="text-right"><p>96,0</p></td>
+<td class="text-right"><p>66,5</p></td>
+</tr>
+<tr class="row-even"><td><p>TEST</p></td>
+<td class="text-right"><p>28</p></td>
+<td><p>LSTM</p></td>
+<td class="text-right"><p>200</p></td>
+<td class="text-right"><p>0,0137 ± 0,0783</p></td>
+<td class="text-right"><p>96,0</p></td>
+<td class="text-right"><p>90,0</p></td>
+</tr>
+<tr class="row-odd"><td><p>TEST</p></td>
+<td class="text-right"><p>28</p></td>
+<td><p>TCN</p></td>
+<td class="text-right"><p>200</p></td>
+<td class="text-right"><p>0,0464 ± 0,1550</p></td>
+<td class="text-right"><p>88,0</p></td>
+<td class="text-right"><p>74,5</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>BDS contrasta una referencia iid, no únicamente linealidad. Los bloques tienen entre 28 y 31 residuos y el objetivo se solapa; la aproximación asintótica es frágil. Un rechazo no identifica por sí solo no linealidad explotable ni garantiza que una red más compleja mejore pronósticos.</p>
+</section>
+<section id="test-de-ljungbox">
+<h3>5.4.11. Test de Ljung–Box<a class="headerlink" href="#test-de-ljungbox" title="Link to this heading">#</a></h3>
+<p>Ljung–Box se aplicó a los residuos mensuales en rezagos <strong>1 y 5</strong>, con model_df=0. Las familias contienen <strong>2.880 hipótesis CV y 4.800 test</strong>, con Holm por fase. Los CSV <a class="reference download internal" download="" href="../_downloads/0e28bb1d6fe68aee98a4db647245a842/ljung_box_by_fold_cv.csv"><span class="xref download myst">CV</span></a> y <a class="reference download internal" download="" href="../_downloads/cb816ede1f8edc39126dd343e6d4194a/ljung_box_by_fold_test.csv"><span class="xref download myst">test</span></a> conservan todos los casos.</p>
+<p>model_df=0 no afirma que ajustar una red consuma cero grados de libertad; no existe aquí una corrección ARMA justificada para esos parámetros. El tamaño corto limita la calibración. No rechazo no acredita residuos independientes.</p>
+</section>
+<section id="interpretacion-de-los-residuos">
+<h3>5.4.12. Interpretación de los residuos<a class="headerlink" href="#interpretacion-de-los-residuos" title="Link to this heading">#</a></h3>
+<p>Se interpreta conjuntamente la forma del error, su estructura temporal y los límites de las pruebas. Un diagnóstico residual no equivale a una ganancia de predicción alcanzable.</p>
+<section id="estructura-residual-y-posible-margen-de-mejora">
+<h4>5.4.12.1. Estructura residual y posible margen de mejora<a class="headerlink" href="#estructura-residual-y-posible-margen-de-mejora" title="Link to this heading">#</a></h4>
+<p><img alt="Distribución residual D7 en la comparación actual" src="../_images/residual_histograms_D7.png" /></p>
+<p>El histograma muestra observado menos predicho y no representa probabilidades de utilidad financiera. Las diferencias de colas y sesgo deben contrastarse con RMSE/MAE; BDS y Ljung–Box añaden preguntas específicas. La reserva de mejora no se cuantifica restando un p-value a uno.</p>
+</section>
+</section>
+<section id="buenas-practicas-estadisticas">
+<h3>5.4.13. Buenas Prácticas Estadísticas<a class="headerlink" href="#buenas-practicas-estadisticas" title="Link to this heading">#</a></h3>
+<p>La trazabilidad identifica qué se fijó antes de ajustar y qué se decidió después de observar resultados. La transparencia de esa diferencia es parte del reporte.</p>
+<section id="nivel-de-significancia-declarado-antes-de-analizar-resultados">
+<h4>5.4.13.1. Nivel de significancia declarado antes de analizar resultados<a class="headerlink" href="#nivel-de-significancia-declarado-antes-de-analizar-resultados" title="Link to this heading">#</a></h4>
+<p>α=0,05 es la convención del análisis público posterior. No se presenta como una decisión congelada antes del test histórico. El plan conserva fecha y familia; una futura confirmación deberá fijarlos antes de acceder a sus resultados.</p>
+</section>
+<section id="p-valores-numericos-ajustados-y-sin-ajustar">
+<h4>5.4.13.2. P-valores numéricos, ajustados y sin ajustar<a class="headerlink" href="#p-valores-numericos-ajustados-y-sin-ajustar" title="Link to this heading">#</a></h4>
+<p>Se informan p numéricos brutos y ajustados, sin sustituir valores pequeños por cero. La familia de cada corrección se identifica y no se mezcla Holm-3 con Holm-12 o los miles de diagnósticos.</p>
+</section>
+<section id="intervalos-de-confianza-y-tamanos-de-efecto">
+<h4>5.4.13.3. Intervalos de confianza y tamaños de efecto<a class="headerlink" href="#intervalos-de-confianza-y-tamanos-de-efecto" title="Link to this heading">#</a></h4>
+<p>Cada comparación informa diferencia firmada, IC marginal y familiar, y d_z con sensibilidad bootstrap. Se evita decidir sólo mediante p&lt;0,05 o sólo mediante el solapamiento de IC marginales.</p>
+</section>
+<section id="verificacion-de-supuestos">
+<h4>5.4.13.4. Verificación de supuestos<a class="headerlink" href="#verificacion-de-supuestos" title="Link to this heading">#</a></h4>
+<p>Shapiro D7 tiene p&gt;0,05 en los tres pares de cada fase (seis diagnósticos en total), pero diez diferencias no prueban normalidad. No se cambió la t por otra prueba para favorecer resultados. La dependencia temporal se trata de forma distinta en DM y diagnósticos; esas correcciones siguen teniendo límites.</p>
+</section>
+<section id="multiples-ejecuciones-documentadas">
+<h4>5.4.13.5. Múltiples ejecuciones documentadas<a class="headerlink" href="#multiples-ejecuciones-documentadas" title="Link to this heading">#</a></h4>
+<p>Diez semillas por receta están conservadas, incluidas las peores. Las cuatro historias y las dos fases se publican completas. El control LSTM y su reutilización final están identificados, sin contarlos como nuevas observaciones independientes de mercado.</p>
+</section>
+<section id="metrica-principal-y-comparaciones-declaradas-con-antelacion">
+<h4>5.4.13.6. Métrica principal y comparaciones declaradas con antelación<a class="headerlink" href="#metrica-principal-y-comparaciones-declaradas-con-antelacion" title="Link to this heading">#</a></h4>
+<p>RMSE y la regla de selección con CV preceden al ajuste final. La familia interna D7 del libro, sus diagnósticos y el margen futuro se definen después del test y se rotulan así. No se atribuye a estas preguntas la antelación de otros contrastes.</p>
+</section>
+<section id="registro-y-trazabilidad-de-cada-contraste">
+<h4>5.4.13.7. Registro y trazabilidad de cada contraste<a class="headerlink" href="#registro-y-trazabilidad-de-cada-contraste" title="Link to this heading">#</a></h4>
+<p>La <a class="reference download internal" download="" href="../_downloads/6c0b78015094d2821011e60fc354b9aa/public_allowlist_manifest.json"><span class="xref download myst">allowlist pública</span></a>, el <a class="reference download internal" download="" href="../_downloads/5d8a133c1ee4baa61989437e1453851b/source_manifest.json"><span class="xref download myst">manifiesto de procedencia</span></a> y el <a class="reference download internal" download="" href="../_downloads/535c9cc64932341071821b845c783d04/summary.json"><span class="xref download myst">resumen</span></a> relacionan outputs, fuentes y métodos. Los catálogos distinguen ajustes nuevos y reutilizados.</p>
+<p>Los hashes respaldan identidad e integridad, sin constituir una validación automática del diseño o una garantía de ausencia de sesgo.</p>
+</section>
+</section>
+<section id="id1">
+<h3>5.4.14. Interpretación<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>La conclusión depende del estimando: aleatoriedad de entrenamiento, pérdida por fecha, orden entre tres modelos o comportamiento residual.</p>
+<section id="diferencias-estadisticamente-significativas">
+<h4>5.4.14.1. Diferencias estadísticamente significativas<a class="headerlink" href="#diferencias-estadisticamente-significativas" title="Link to this heading">#</a></h4>
+<p>Los tres pares D7 se distinguen de cero mediante t/Holm en ambas fases. Friedman también encuentra diferencias globales bajo su aproximación. En DM/CV sólo GRU−LSTM rechaza con Holm-3; en DM/test rechazan los tres pares. Estos resultados son condicionales y posteriores, sin independencia entre análisis.</p>
+</section>
+<section id="significancia-estadistica-y-relevancia-practica">
+<h4>5.4.14.2. Significancia estadística y relevancia práctica<a class="headerlink" href="#significancia-estadistica-y-relevancia-practica" title="Link to this heading">#</a></h4>
+<p>El margen futuro de 5 % de GRU/CV no convierte los rechazos actuales en una demostración prevista de relevancia práctica. La reducción RMSE de GRU en test coexiste con peor MAE/MAPE que persistencia; ninguna prueba aporta por sí sola una interpretación económica.</p>
+</section>
+<section id="conclusiones-respaldadas-por-diferencias-incertidumbre-y-efectos">
+<h4>5.4.14.3. Conclusiones respaldadas por diferencias, incertidumbre y efectos<a class="headerlink" href="#conclusiones-respaldadas-por-diferencias-incertidumbre-y-efectos" title="Link to this heading">#</a></h4>
+<p>Se respalda el orden medio GRU–TCN–LSTM en D7 sobre estas fechas, con incertidumbre y supuestos explícitos. No se demuestra una superioridad universal, otra trayectoria de mercado ni que GRU y LSTM sean mecanismos sin redundancia.</p>
+</section>
+<section id="estado-y-alcance-del-analisis-estadistico">
+<span id="alcance-estadistico"></span><h4>5.4.14.4. Estado y alcance del análisis estadístico<a class="headerlink" href="#estado-y-alcance-del-analisis-estadistico" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Análisis actual</p></th>
+<th class="head"><p>Unidad/familia</p></th>
+<th class="head"><p>Alcance</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>t y Holm</p></td>
+<td><p>Diez RMSE pareadas; tres pares D7 por fase</p></td>
+<td><p>Diferencias de inicialización condicionales</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sensibilidad de historias</p></td>
+<td><p>Doce pares por fase, Holm-12</p></td>
+<td><p>No reemplaza la familia D7</p></td>
+</tr>
+<tr class="row-even"><td><p>Friedman</p></td>
+<td><p>Tres redes, diez bloques de semilla</p></td>
+<td><p>Omnibus aproximado</p></td>
+</tr>
+<tr class="row-odd"><td><p>DM</p></td>
+<td><p>Pérdida cuadrática diaria media; tres pares por fase</p></td>
+<td><p>HAC6/HLN, estimando distinto</p></td>
+</tr>
+<tr class="row-even"><td><p>BDS</p></td>
+<td><p>Bloque mensual; 1.440/2.400 hipótesis</p></td>
+<td><p>Iid asintótico en bloques cortos</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ljung–Box</p></td>
+<td><p>Rezagos 1/5; 2.880/4.800 hipótesis</p></td>
+<td><p>Autocorrelación, model_df=0</p></td>
+</tr>
+<tr class="row-even"><td><p>Confirmación prospectiva</p></td>
+<td><p>No ejecutada</p></td>
+<td><p>Test histórico ya observado</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Todos estos outputs públicos se definieron después de inspeccionar test. Su publicación documenta resultados guardados; no crea entrenamientos, pronósticos o confirmaciones nuevas.</p>
+</section>
+</section>
+</section>
+<section id="discusion-critica">
+<h2>5.5. Discusión Crítica<a class="headerlink" href="#discusion-critica" title="Link to this heading">#</a></h2>
+<p>La discusión integra los resultados con sus amenazas a la validez y la evidencia bibliográfica, sin ampliar el alcance más allá de lo ejecutado.</p>
+<section id="desempeno-y-explicacion-de-las-diferencias">
+<h3>5.5.1. Desempeño y explicación de las diferencias<a class="headerlink" href="#desempeno-y-explicacion-de-las-diferencias" title="Link to this heading">#</a></h3>
+<p>GRU/D7 obtiene menor RMSE media neuronal en CV y test; TCN/D7 sigue y LSTM/D7 queda detrás. Persistencia domina RMSE CV y MAE/MAPE test. Las compuertas y convoluciones son explicaciones arquitectónicas plausibles, no causas identificadas por esta comparación.</p>
+</section>
+<section id="generalizacion-y-estabilidad">
+<h3>5.5.2. Generalización y estabilidad<a class="headerlink" href="#generalizacion-y-estabilidad" title="Link to this heading">#</a></h3>
+<p><img alt="RMSE mensual de las tres recetas D7" src="../_images/monthly_rmse_D7.png" /></p>
+<p>Los meses muestran variación del error dentro de una misma trayectoria. Los pesos de test están fijos, mientras CV reajusta mensualmente. El mejor promedio no demuestra estabilidad en todos los regímenes ni generalización a otra criptomoneda o periodo.</p>
+</section>
+<section id="id2">
+<h3>5.5.3. Significación estadística y relevancia práctica<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>La significación pareada es condicional a las semillas y datos observados. Los rechazos temporales y por semillas no son confirmaciones independientes. Un futuro avanzado necesita un margen justificado, potencia planificada y evaluación desconocida para sostener una mejora práctica.</p>
+</section>
+<section id="desempeno-frente-a-costo-y-complejidad">
+<h3>5.5.4. Desempeño frente a costo y complejidad<a class="headerlink" href="#desempeno-frente-a-costo-y-complejidad" title="Link to this heading">#</a></h3>
+<p>GRU tiene 3.777 pesos frente a 4.289 de TCN y 5.025 de LSTM. La menor parametrización no asegura menor tiempo; el registro CV muestra que LSTM fue más rápida. La TCN mantiene operadores residuales y receptivo teórico 29, con costo dependiente de época e historia.</p>
+</section>
+<section id="baseline-y-umbral-para-un-modelo-avanzado">
+<h3>5.5.5. Baseline y umbral para un modelo avanzado<a class="headerlink" href="#baseline-y-umbral-para-un-modelo-avanzado" title="Link to this heading">#</a></h3>
+<p>La referencia neuronal es GRU/D7, elegida con CV. El objetivo futuro se formula frente a GRU y persistencia, usando como margen orientativo 0,0002577284 fijado ahora. No se ejecutó un avanzado ni se afirma haber cerrado el criterio de E2.</p>
+</section>
+<section id="brecha-con-la-literatura-y-margen-de-mejora-potencial">
+<h3>5.5.6. Brecha con la literatura y margen de mejora potencial<a class="headerlink" href="#brecha-con-la-literatura-y-margen-de-mejora-potencial" title="Link to this heading">#</a></h3>
+<p>El corpus revisado apoya referencias GRU 3/7, LSTM 5/7 y TCN 1/7. Akbiyik et al. <span class="bibtex-citation" id="id3">[<a class="reference internal" href="referencias.html#id7" title="M. Eren Akbiyik, Mert Erkul, Killian Kämpf, Vaiva Vasiliauskaite, and Nino Antulov-Fantulin. Ask “Who”, Not “What”: Bitcoin Volatility Forecasting with Twitter Data. In Proceedings of the Sixteenth ACM International Conference on Web Search and Data Mining (WSDM ’23). 2023. URL: https://doi.org/10.1145/3539597.3570387, doi:10.1145/3539597.3570387.">Akbiyik <em>et al.</em>, 2023</a>]</span> aporta el respaldo directo TCN; Miura et al. <span class="bibtex-citation" id="id4">[<a class="reference internal" href="referencias.html#id5" title="Ryotaro Miura, Lukáš Pichl, and Taisei Kaizoji. Artificial Neural Networks for Realized Volatility Prediction in Cryptocurrency Time Series. In Advances in Neural Networks – ISNN 2019, volume 11554 of Lecture Notes in Computer Science, 165–172. Springer, 2019. URL: https://doi.org/10.1007/978-3-030-22796-8_18, doi:10.1007/978-3-030-22796-8_18.">Miura <em>et al.</em>, 2019</a>]</span> respalda recurrentes. TCN no tiene una recurrencia amplia y GRU/LSTM son dos alternativas de una misma clase recurrente. Las configuraciones OHLCV/sigma7 propias son adaptaciones, no réplicas o valores trasladados de artículos.</p>
+</section>
+<section id="amenazas-a-la-validez">
+<h3>5.5.7. Amenazas a la validez<a class="headerlink" href="#amenazas-a-la-validez" title="Link to this heading">#</a></h3>
+<p>Las amenazas principales son exposición previa a desarrollo/test, selección con un calendario único, preguntas estadísticas posteriores, falta de piloto de potencia del trío, recetas no optimizadas exhaustivamente y soporte bibliográfico TCN limitado. La reutilización LSTM es control transparente; no una evaluación nueva.</p>
+</section>
+<section id="limitaciones-del-estudio">
+<h3>5.5.8. Limitaciones del estudio<a class="headerlink" href="#limitaciones-del-estudio" title="Link to this heading">#</a></h3>
+<p>No se estableció independencia de mercado, utilidad financiera, robustez a ruido artificial, sensibilidad a otros horizontes o superioridad fuera de BTCUSDT. Los IC por semillas no cubren toda incertidumbre temporal; BDS/Ljung–Box de bloques cortos y HAC6 no eliminan esas limitaciones.</p>
+</section>
+<section id="recomendaciones-futuras">
+<h3>5.5.9. Recomendaciones futuras<a class="headerlink" href="#recomendaciones-futuras" title="Link to this heading">#</a></h3>
+<p>Las recomendaciones se dirigen a una versión nueva, sin reajustar decisiones después del test presentado.</p>
+<section id="recomendaciones-derivadas-de-las-limitaciones">
+<h4>5.5.9.1. Recomendaciones derivadas de las limitaciones<a class="headerlink" href="#recomendaciones-derivadas-de-las-limitaciones" title="Link to this heading">#</a></h4>
+<p>Diseñar un piloto pareado del futuro avanzado, fijar su tamaño y multiplicidad, justificar el margen, utilizar una evaluación desconocida y contrastar presupuesto de HPO/capacidad. Ampliar respaldo primario de TCN y estudiar redundancia GRU/LSTM son trabajos de evidencia y diseño, no resultados supuestos.</p>
+</section>
+<section id="matriz-de-conclusiones-y-evidencia-pendiente">
+<h4>5.5.9.2. Matriz de conclusiones y evidencia pendiente<a class="headerlink" href="#matriz-de-conclusiones-y-evidencia-pendiente" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Conclusión</p></th>
+<th class="head"><p>Evidencia</p></th>
+<th class="head"><p>Pendiente</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>GRU/D7 es el baseline neuronal</p></td>
+<td><p>Menor RMSE CV, cierre antes de esta fase final</p></td>
+<td><p>Confirmación temporal nueva</p></td>
+</tr>
+<tr class="row-odd"><td><p>GRU tiene menor RMSE test</p></td>
+<td><p>Diez trayectorias, t/Holm y pérdidas diarias</p></td>
+<td><p>No domina MAE/MAPE de persistencia</p></td>
+</tr>
+<tr class="row-even"><td><p>Control LSTM conservado</p></td>
+<td><p>CV exactamente reproducida y final reutilizado identificado</p></td>
+<td><p>No aporta otro mercado</p></td>
+</tr>
+<tr class="row-odd"><td><p>Trío con apoyo aplicado</p></td>
+<td><p>GRU/LSTM/TCN en corpus con roles separados</p></td>
+<td><p>TCN 1/7 y redundancia recurrente no resuelta</p></td>
+</tr>
+<tr class="row-even"><td><p>Criterio operativo futuro</p></td>
+<td><p>5 % de RMSE GRU/CV, declarado después del test</p></td>
+<td><p>Piloto propio y evaluación independiente</p></td>
+</tr>
+<tr class="row-odd"><td><p>Integridad pública</p></td>
+<td><p>Agregados, manifiestos y 120 configuraciones finales</p></td>
+<td><p>Evidencia privada para reproducir pesos/pronósticos</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La interpretación se limita a las recetas y fechas observadas, con todas las historias y métricas visibles.</p>
+<p><strong>Comparación preespecificada en la nueva reserva.</strong> El <a class="reference internal" href="09_estudio_planificado.html"><span class="std std-doc">capítulo 9</span></a> reúne el diseño público previo, la rejilla equitativa de ocho candidatos por familia, el piloto de 60 días, el cálculo de R y los resultados sobre el 01/09–30/10/2026. Esa fase mantiene n=7/h=1 y covariables OHLCV, con D7 fijo. Los resultados de fase I y sus limitaciones permanecen identificados; la potencia planificada entre semillas no representa potencia temporal ni confirma otros mercados.</p>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="04_implementacion_evaluacion.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">4. Implementación y evaluación: diseño y estado de ejecución</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="06_procedimiento.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">6. Guía de Procedimiento por Tipo de Problema</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-tabular">5.1. Comparación Tabular</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-de-comparacion-de-los-tres-modelos-base">5.1.1. Tabla de comparación de los tres modelos base</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-base">5.1.1.1. Modelo base</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-media-desviacion-estandar">5.1.1.2. Métricas: media ± desviación estándar</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#intervalos-de-confianza-del-95-y-metodo-de-construccion">5.1.1.3. Intervalos de confianza del 95 % y método de construcción</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tiempo-de-entrenamiento-y-de-inferencia">5.1.1.4. Tiempo de entrenamiento y de inferencia</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#numero-de-parametros">5.1.1.5. Número de parámetros</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ranking-de-modelos-base">5.2. Ranking de Modelos Base</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#orden-de-los-tres-modelos-segun-la-metrica-principal">5.2.1. Orden de los tres modelos según la métrica principal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-trade-off">5.2.2. Análisis del trade-off</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#precision-frente-a-costo-computacional">5.2.2.1. Precisión frente a costo computacional</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#precision-frente-a-complejidad-del-modelo">5.2.2.2. Precisión frente a complejidad del modelo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-del-baseline-y-margen-de-mejora-disponible">5.3. Definición del Baseline y Margen de Mejora Disponible</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-del-baseline-de-referencia">5.3.1. Selección del baseline de referencia</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#identificacion-del-mejor-modelo-base">5.3.1.1. Identificación del mejor modelo base</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#desempeno-con-media-desviacion-e-ic-del-95">5.3.1.2. Desempeño con media, desviación e IC del 95 %</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cuantificacion-de-las-diferencias-entre-modelos-base">5.3.2. Cuantificación de las diferencias entre modelos base</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-y-series-de-tiempo-diferencias-respecto-al-peor-y-al-mejor-modelo">5.3.2.1. Regresión y series de tiempo: diferencias respecto al peor y al mejor modelo</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#clasificacion-etiquetado-secuencial-y-segmentacion">5.3.2.2. Clasificación, etiquetado secuencial y segmentación</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#secuencia-a-secuencia">5.3.2.3. Secuencia a secuencia</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tamano-de-efecto-de-cada-diferencia">5.3.2.4. Tamaño de efecto de cada diferencia</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inferencia-sobre-las-diferencias">5.3.3. Inferencia sobre las diferencias</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#comparaciones-pareadas-y-correccion-por-multiplicidad">5.3.3.1. Comparaciones pareadas y corrección por multiplicidad</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencia-media-ic-del-95-y-p-value-ajustado-y-sin-ajustar">5.3.3.2. Diferencia media, IC del 95 % y p-value ajustado y sin ajustar</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#umbral-de-mejora-para-modelos-avanzados">5.3.4. Umbral de mejora para modelos avanzados</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mejora-minima-detectable-frente-al-baseline">5.3.4.1. Mejora mínima detectable frente al baseline</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#margen-de-relevancia-practica">5.3.4.2. Margen de relevancia práctica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cota-de-referencia-del-problema">5.3.4.3. Cota de referencia del problema</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion">5.3.5. Interpretación</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#significacion-estadistica-y-relevancia-practica">5.3.5.1. Significación estadística y relevancia práctica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#desempeno-frente-a-complejidad-parametros-y-costo">5.3.5.2. Desempeño frente a complejidad, parámetros y costo</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-explicita-del-baseline-y-margen-disponible">5.3.5.3. Conclusión explícita del baseline y margen disponible</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-del-benchmark">5.3.5.4. Estado del benchmark</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-estadistico-y-pruebas-de-hipotesis">5.4. Análisis Estadístico y Pruebas de Hipótesis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hipotesis-unidad-de-analisis-y-supuestos">5.4.1. Hipótesis, unidad de análisis y supuestos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparaciones-pareadas-t-y-wilcoxon">5.4.2. Comparaciones pareadas: t y Wilcoxon</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-conjunta-de-tres-modelos">5.4.3. Comparación conjunta de tres modelos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparaciones-post-hoc-y-correccion-por-multiplicidad">5.4.4. Comparaciones post-hoc y corrección por multiplicidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intervalos-de-confianza-y-tamano-de-efecto">5.4.5. Intervalos de confianza y tamaño de efecto</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap-de-las-diferencias-pareadas">5.4.5.1. Bootstrap de las diferencias pareadas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tamano-de-efecto-junto-con-el-p-value">5.4.5.2. Tamaño de efecto junto con el p-value</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advertencia-sobre-independencia">5.4.6. Advertencia sobre independencia</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecuciones-que-comparten-el-conjunto-de-prueba">5.4.6.1. Ejecuciones que comparten el conjunto de prueba</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-repetida-y-remuestreo-por-bloques">5.4.6.2. Validación repetida y remuestreo por bloques</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reporte-de-potencia-y-diferencia-minima-detectable">5.4.7. Reporte de potencia y diferencia mínima detectable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ausencia-de-significacion-y-equivalencia">5.4.8. Ausencia de significación y equivalencia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-de-dieboldmariano">5.4.9. Test de Diebold–Mariano</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-de-precision-predictiva-por-horizonte">5.4.9.1. Comparación de precisión predictiva por horizonte</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#correccion-harveyleybournenewbold-y-perdida-coherente">5.4.9.2. Corrección Harvey–Leybourne–Newbold y pérdida coherente</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-bds-brockdechertscheinkman">5.4.10. Test BDS (Brock–Dechert–Scheinkman)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-de-ljungbox">5.4.11. Test de Ljung–Box</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-los-residuos">5.4.12. Interpretación de los residuos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-residual-y-posible-margen-de-mejora">5.4.12.1. Estructura residual y posible margen de mejora</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#buenas-practicas-estadisticas">5.4.13. Buenas Prácticas Estadísticas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nivel-de-significancia-declarado-antes-de-analizar-resultados">5.4.13.1. Nivel de significancia declarado antes de analizar resultados</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#p-valores-numericos-ajustados-y-sin-ajustar">5.4.13.2. P-valores numéricos, ajustados y sin ajustar</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#intervalos-de-confianza-y-tamanos-de-efecto">5.4.13.3. Intervalos de confianza y tamaños de efecto</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#verificacion-de-supuestos">5.4.13.4. Verificación de supuestos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#multiples-ejecuciones-documentadas">5.4.13.5. Múltiples ejecuciones documentadas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metrica-principal-y-comparaciones-declaradas-con-antelacion">5.4.13.6. Métrica principal y comparaciones declaradas con antelación</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-y-trazabilidad-de-cada-contraste">5.4.13.7. Registro y trazabilidad de cada contraste</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">5.4.14. Interpretación</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencias-estadisticamente-significativas">5.4.14.1. Diferencias estadísticamente significativas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#significancia-estadistica-y-relevancia-practica">5.4.14.2. Significancia estadística y relevancia práctica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones-respaldadas-por-diferencias-incertidumbre-y-efectos">5.4.14.3. Conclusiones respaldadas por diferencias, incertidumbre y efectos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-y-alcance-del-analisis-estadistico">5.4.14.4. Estado y alcance del análisis estadístico</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discusion-critica">5.5. Discusión Crítica</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#desempeno-y-explicacion-de-las-diferencias">5.5.1. Desempeño y explicación de las diferencias</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generalizacion-y-estabilidad">5.5.2. Generalización y estabilidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">5.5.3. Significación estadística y relevancia práctica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#desempeno-frente-a-costo-y-complejidad">5.5.4. Desempeño frente a costo y complejidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#baseline-y-umbral-para-un-modelo-avanzado">5.5.5. Baseline y umbral para un modelo avanzado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#brecha-con-la-literatura-y-margen-de-mejora-potencial">5.5.6. Brecha con la literatura y margen de mejora potencial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amenazas-a-la-validez">5.5.7. Amenazas a la validez</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitaciones-del-estudio">5.5.8. Limitaciones del estudio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recomendaciones-futuras">5.5.9. Recomendaciones futuras</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#recomendaciones-derivadas-de-las-limitaciones">5.5.9.1. Recomendaciones derivadas de las limitaciones</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-conclusiones-y-evidencia-pendiente">5.5.9.2. Matriz de conclusiones y evidencia pendiente</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

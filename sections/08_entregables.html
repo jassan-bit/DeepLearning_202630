@@ -1,0 +1,906 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>8. Entregables: productos y evidencias &#8212; Bitcoin: pronóstico de volatilidad</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/08_entregables';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="9. Estudio D7 con piloto, ajuste equitativo y evaluación preespecificada" href="09_estudio_planificado.html" />
+    <link rel="prev" title="7. Limitaciones Inferenciales de Trabajar con Tres Modelos" href="07_limitaciones_entregables.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Bitcoin: pronóstico de volatilidad</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_problema_dataset.html">1. Definición del Problema y Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_estado_arte.html">3. Revisión del Estado del Arte y Extracción de los Tres Modelos Base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion_evaluacion.html">4. Implementación y evaluación: diseño y estado de ejecución</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_benchmark.html">5. Benchmark de los Modelos Base y Definición del Baseline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_procedimiento.html">6. Guía de Procedimiento por Tipo de Problema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_limitaciones_entregables.html">7. Limitaciones Inferenciales de Trabajar con Tres Modelos</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">8. Entregables: productos y evidencias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_estudio_planificado.html">9. Estudio D7 con piloto, ajuste equitativo y evaluación preespecificada</a></li>
+<li class="toctree-l1"><a class="reference internal" href="protocolo_pendiente.html">Decisiones, revisión y pendientes de E1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias y materiales</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><div class="book-credit">
+  <p class="component-author">By Jassan Arteta</p>
+  <p class="copyright">© Copyright 2026.</p>
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/08_entregables.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>8. Entregables: productos y evidencias</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#informe-en-jupyter-book">8.1. Informe en Jupyter Book</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-completo-ejecutable-y-versionado">8.2. Código completo, ejecutable y versionado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-instrucciones-y-scripts-de-obtencion">8.3. Dataset, instrucciones y scripts de obtención</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sintesis-de-literatura-y-flujo-de-busqueda">8.4. Síntesis de literatura y flujo de búsqueda</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-comparativa-baseline-e-inferencia-estadistica">8.5. Tabla comparativa, baseline e inferencia estadística</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependencias-semillas-y-configuracion-de-cada-corrida">8.6. Dependencias, semillas y configuración de cada corrida</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declaracion-de-metrica-margen-independencia-y-particion">8.7. Declaración de métrica, margen, independencia y partición</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="entregables-productos-y-evidencias">
+<h1>8. Entregables: productos y evidencias<a class="headerlink" href="#entregables-productos-y-evidencias" title="Link to this heading">#</a></h1>
+<div class="admonition note" id="descargar-entregable-1">
+  <p class="admonition-title">Descargas del Entregable 1 · GRU–LSTM–TCN</p>
+  <p><a class="btn btn-primary btn-lg" href="../_static/e1_downloads/entregable1_completo.zip" download="entregable1_completo.zip">Descargar entrega completa · ZIP</a></p>
+  <p>Los siete productos reúnen el benchmark inicial, el estudio D7 con búsqueda equitativa, piloto y evaluación preespecificada, y la ampliación bibliográfica nativa del 6 de noviembre. También pueden descargarse individualmente.</p>
+</div><p>Esta unidad reúne el informe, código, instrucciones de datos y evidencias de <strong>GRU, LSTM y TCN</strong>, distinguiendo <strong>fase I exploratoria</strong> y <strong>fase II D7 planificada</strong>. Sus resultados tienen recetas, periodos y registros propios; el nuevo estudio no vuelve prospectivo el test anterior.</p>
+<p>Los botones descargan directamente desde el JBook. El <a class="reference download internal" download="" href="../_downloads/2e2469844133de8e3b31b1b69dce46c9/catalogo.json"><span class="xref download myst">catálogo</span></a> y las <a class="reference download internal" download="" href="../_downloads/419bc219d13e56b685f332698a812dba/SHA256SUMS.txt"><span class="xref download myst">sumas SHA-256</span></a> identifican los archivos de esta versión.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Ítem</p></th>
+<th class="head"><p>Producto</p></th>
+<th class="head"><p>Estado y alcance</p></th>
+<th class="head"><p>Descarga directa</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#entrega-8-1"><span class="std std-ref">8.1</span></a></p></td>
+<td><p>Informe en Jupyter Book</p></td>
+<td><p>Capítulos, figuras y resultados de ambas fases</p></td>
+<td><p><a class="btn btn-primary btn-sm" href="../_static/e1_downloads/8_1_informe_html.zip" download="8_1_informe_html.zip">Descargar ZIP</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#entrega-8-2"><span class="std std-ref">8.2</span></a></p></td>
+<td><p>Código EDA, modelos y estadística</p></td>
+<td><p>Ejecutores separados para fase I y fase II; pruebas, locks y guía de restauración</p></td>
+<td><p><a class="btn btn-primary btn-sm" href="../_static/e1_downloads/8_2_codigo.zip" download="8_2_codigo.zip">Descargar ZIP</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#entrega-8-3"><span class="std std-ref">8.3</span></a></p></td>
+<td><p>Dataset: instrucciones y scripts</p></td>
+<td><p>Fuente oficial, descargador, manifiestos y calendario</p></td>
+<td><p><a class="btn btn-primary btn-sm" href="../_static/e1_downloads/8_3_dataset_instrucciones.zip" download="8_3_dataset_instrucciones.zip">Descargar ZIP</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#entrega-8-4"><span class="std std-ref">8.4</span></a></p></td>
+<td><p>Síntesis de literatura y flujo</p></td>
+<td><p>Bibliografía ampliada, 22 casos revisados y bitácora nativa provisional pendiente de validar</p></td>
+<td><p><a class="btn btn-primary btn-sm" href="../_static/e1_downloads/8_4_literatura.zip" download="8_4_literatura.zip">Descargar ZIP</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#entrega-8-5"><span class="std std-ref">8.5</span></a></p></td>
+<td><p>Benchmark, baseline e inferencia</p></td>
+<td><p>Agregados de ambas evaluaciones y curvas reproducidas del modelo final</p></td>
+<td><p><a class="btn btn-primary btn-sm" href="../_static/e1_downloads/8_5_benchmark.zip" download="8_5_benchmark.zip">Descargar ZIP</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#entrega-8-6"><span class="std std-ref">8.6</span></a></p></td>
+<td><p>Dependencias, semillas y configuraciones</p></td>
+<td><p>Recetas, búsqueda, piloto, dimensionamiento y configuraciones por fase</p></td>
+<td><p><a class="btn btn-primary btn-sm" href="../_static/e1_downloads/8_6_configuraciones.zip" download="8_6_configuraciones.zip">Descargar ZIP</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#entrega-8-7"><span class="std std-ref">8.7</span></a></p></td>
+<td><p>Métrica, margen, independencia y partición</p></td>
+<td><p>Registros previos de fase II y cronología original de fase I</p></td>
+<td><p><a class="btn btn-primary btn-sm" href="../_static/e1_downloads/8_7_declaracion.zip" download="8_7_declaracion.zip">Descargar ZIP</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Descomprime los archivos antes de abrirlos. El informe HTML se inicia en <code class="docutils literal notranslate"><span class="pre">informe/intro.html</span></code>; si el navegador restringe recursos locales, ejecuta <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">http.server</span> <span class="pre">8000</span> <span class="pre">--directory</span> <span class="pre">informe</span></code> y abre <code class="docutils literal notranslate"><span class="pre">http://localhost:8000</span></code>. MathJax y los vínculos a fuentes externas pueden requerir internet. Los ZIP contienen código, metadatos, agregados y figuras. Sus ilustraciones temporales usan semillas fijas declaradas, sin escoger la de menor error. No incluyen brutos de un minuto, vectores individuales de predicción, escaladores o checkpoints. Los derivados diarios de desarrollo 2023–2024 están versionados en el repositorio, pero se omiten de los ZIP y se documenta cómo generarlos.</p>
+<p>La <a class="reference internal" href="protocolo_pendiente.html"><span class="std std-doc">matriz de cierre</span></a> distingue disponibilidad de archivos, requisitos metodológicos y límites científicos.</p>
+<section id="informe-en-jupyter-book">
+<span id="entrega-8-1"></span><h2>8.1. Informe en Jupyter Book<a class="headerlink" href="#informe-en-jupyter-book" title="Link to this heading">#</a></h2>
+<p>El informe desarrolla problema, EDA, literatura, implementación, benchmark inicial, procedimiento, limitaciones y el nuevo estudio D7.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Componente</p></th>
+<th class="head"><p>Ubicación</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Problema y definición de σ₇</p></td>
+<td><p><a class="reference internal" href="01_problema_dataset.html"><span class="std std-doc">Capítulo 1</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>EDA y estructura temporal</p></td>
+<td><p><a class="reference internal" href="02_eda.html"><span class="std std-doc">Capítulo 2</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>Selección bibliográfica de GRU, LSTM y TCN</p></td>
+<td><p><a class="reference internal" href="03_estado_arte.html"><span class="std std-doc">Capítulo 3</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Implementación y requisitos de la guía</p></td>
+<td><p><a class="reference internal" href="04_implementacion_evaluacion.html"><span class="std std-doc">Capítulo 4</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>Benchmark exploratorio de fase I</p></td>
+<td><p><a class="reference internal" href="05_benchmark.html"><span class="std std-doc">Capítulo 5</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Procedimiento y limitaciones</p></td>
+<td><p><a class="reference internal" href="06_procedimiento.html"><span class="std std-doc">Capítulo 6</span></a> y <a class="reference internal" href="07_limitaciones_entregables.html"><span class="std std-doc">capítulo 7</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>HPO, piloto, dimensionamiento y nueva evaluación D7</p></td>
+<td><p><a class="reference internal" href="09_estudio_planificado.html"><span class="std std-doc">Capítulo 9</span></a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Construir HTML consume evidencia guardada y no ejecuta entrenamientos ni inferencias.</p>
+</section>
+<section id="codigo-completo-ejecutable-y-versionado">
+<span id="entrega-8-2"></span><h2>8.2. Código completo, ejecutable y versionado<a class="headerlink" href="#codigo-completo-ejecutable-y-versionado" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/BUILD.md">BUILD.md</a> distingue clon del repositorio, restauración de ZIP y fases de cada estudio. Una reproducción escribe en otra salida y conserva los protocolos cerrados.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Función</p></th>
+<th class="head"><p>Código</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Adquisición oficial</p></td>
+<td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/download_binance_spot.py">download_binance_spot.py</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Arquitecturas GRU, LSTM y TCN</p></td>
+<td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/dl_models_gru_lstm_tcn.py">dl_models_gru_lstm_tcn.py</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Registro, HPO, piloto, planificación y evaluación de fase II</p></td>
+<td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/run_gru_lstm_tcn_planned.py">run_gru_lstm_tcn_planned.py</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Carga verificada de la nueva reserva</p></td>
+<td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/planned_study_data.py">planned_study_data.py</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Estadística y dimensionamiento preespecificados</p></td>
+<td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/planned_study_statistics.py">planned_study_statistics.py</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Reproducción portable de fase I</p></td>
+<td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/run_gru_lstm_tcn.py">run_gru_lstm_tcn.py</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Estadística de una reproducción de fase I</p></td>
+<td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/analyze_gru_lstm_tcn_run.py">analyze_gru_lstm_tcn_run.py</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El diseño y código de fase II se <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/ac7dd7f67c0dec2397b519897cf6da8056b238f5">publicaron antes del HPO</a>. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/5a0acfbc2ff582e252f0e6fb18aaf652963221f8">cierre de planificación</a> fija las recetas y R antes de los ajustes definitivos. Estos registros no se atribuyen retrospectivamente a fase I, cuyo adaptador público se incorporó después de sus ejecuciones originales.</p>
+<p>La fase I conserva 120 trayectorias CV, 1.440 segmentos, 2.880 ajustes y 43.920 predicciones. Su cierre final contiene 80 ajustes nuevos y 40 LSTM idénticos reutilizados. La fase II D7 usa una salida nueva y ajustes frescos: 960 de HPO, 60 de piloto y <strong>2.790 etapas de ajuste definitivo para 1.395 modelos finales</strong>. La puntuación nueva se realiza después del cierre de todos sus pesos y escaladores.</p>
+</section>
+<section id="dataset-instrucciones-y-scripts-de-obtencion">
+<span id="entrega-8-3"></span><h2>8.3. Dataset, instrucciones y scripts de obtención<a class="headerlink" href="#dataset-instrucciones-y-scripts-de-obtencion" title="Link to this heading">#</a></h2>
+<p>La fuente es Binance Vision, BTCUSDT spot, OHLCV de un minuto. <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/data/README.md">data/README.md</a> y el descargador identifican archivos y checksums oficiales.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Periodo UTC</p></th>
+<th class="head"><p>Función</p></th>
+<th class="head"><p>Regla</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>01/01/2023–31/12/2023</p></td>
+<td><p>Historia inicial de ambas fases</p></td>
+<td><p>Orden cronológico</p></td>
+</tr>
+<tr class="row-odd"><td><p>01/01/2024–31/12/2024</p></td>
+<td><p>Desarrollo y CV de fase I</p></td>
+<td><p>Doce bloques mensuales y entrenamiento creciente</p></td>
+</tr>
+<tr class="row-even"><td><p>01/01–31/10/2024</p></td>
+<td><p>HPO de fase II D7</p></td>
+<td><p>Diez bloques comunes, ocho candidatos y dos semillas por familia</p></td>
+</tr>
+<tr class="row-odd"><td><p>01/11–30/12/2024</p></td>
+<td><p>Piloto de fase II</p></td>
+<td><p>60 días, recetas congeladas, diez semillas nuevas y pesos fijos</p></td>
+</tr>
+<tr class="row-even"><td><p>01/01/2025–31/08/2026</p></td>
+<td><p>Test histórico de fase I</p></td>
+<td><p>608 fechas; periodo ya observado, alcance exploratorio</p></td>
+</tr>
+<tr class="row-odd"><td><p>01/09–30/10/2026</p></td>
+<td><p>Nueva reserva de fase II</p></td>
+<td><p>Asignación explícita previa; 60 fechas y una puntuación por modelo cerrado</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La adquisición anterior recorrió los CSV de septiembre–octubre para auditar integridad, timestamps y esquema. Según los registros conservados, no se habían utilizado para construir objetivos o evaluar modelos. No se afirma que los archivos nunca se abrieron ni que las predicciones fueron emitidas en vivo. Octubre de 2026 termina en el <strong>día 30</strong>, porque el 31 no estaba adquirido en esta instantánea.</p>
+<p>Se agregan días UTC completos y se conserva el calendario, sin imputar faltantes. La etiqueta es σ₇ poblacional de retornos logarítmicos diarios, <code class="docutils literal notranslate"><span class="pre">ddof=0</span></code>, sin anualización. Las entradas terminan antes del día objetivo. Agosto de 2026 aporta contexto observable para las primeras ventanas de fase II; no amplía sus 60 resultados de evaluación.</p>
+</section>
+<section id="sintesis-de-literatura-y-flujo-de-busqueda">
+<span id="entrega-8-4"></span><h2>8.4. Síntesis de literatura y flujo de búsqueda<a class="headerlink" href="#sintesis-de-literatura-y-flujo-de-busqueda" title="Link to this heading">#</a></h2>
+<p><strong>Corte y procedencia de las descargas.</strong> El catálogo identifica el commit fuente de la actualización y los SHA-256 de cada ZIP. El producto 8.4 reúne la bibliografía canónica ampliada de 60 entradas, la ingesta nativa, las fichas primarias, las decisiones editoriales y la recuperación posterior de originales y trazabilidad. Estos últimos documentos amplían la evidencia sin convertir registros pendientes de original en estudios incluidos. Los manifiestos de las etapas históricas se conservan con sus fechas y denominadores.</p>
+<p>El <strong>corte histórico del 05/11/2026</strong> conserva <strong>40 referencias de antecedentes y siete estudios cripto con texto completo verificado</strong>. Los siete incluyen Bitcoin y uno otras diecinueve criptomonedas; los subconjuntos se solapan. Las frecuencias siguientes describen ese corte y su criterio de comparador independiente.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo</p></th>
+<th class="head text-right"><p>Comparadores independientes en siete estudios al 05/11</p></th>
+<th class="head"><p>Respaldo publicado directo</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>GRU</p></td>
+<td class="text-right"><p>3/7</p></td>
+<td><p>Akbiyik et al. (2023), §5 y Tabla 2; Miura et al. (2019), Tabla 1</p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM</p></td>
+<td class="text-right"><p>5/7</p></td>
+<td><p>Akbiyik et al. (2023); Miura et al. (2019)</p></td>
+</tr>
+<tr class="row-even"><td><p>TCN</p></td>
+<td class="text-right"><p>1/7</p></td>
+<td><p>Akbiyik et al. (2023), TCN independiente; D-TCN es su propuesta avanzada</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Las tres familias aparecen como comparadores de volatilidad de Bitcoin en WSDM/ACM <span class="bibtex-citation" id="id1">[<a class="reference internal" href="referencias.html#id7" title="M. Eren Akbiyik, Mert Erkul, Killian Kämpf, Vaiva Vasiliauskaite, and Nino Antulov-Fantulin. Ask “Who”, Not “What”: Bitcoin Volatility Forecasting with Twitter Data. In Proceedings of the Sixteenth ACM International Conference on Web Search and Data Mining (WSDM ’23). 2023. URL: https://doi.org/10.1145/3539597.3570387, doi:10.1145/3539597.3570387.">Akbiyik <em>et al.</em>, 2023</a>]</span>; GRU y LSTM también en ISNN/Springer LNCS <span class="bibtex-citation" id="id2">[<a class="reference internal" href="referencias.html#id5" title="Ryotaro Miura, Lukáš Pichl, and Taisei Kaizoji. Artificial Neural Networks for Realized Volatility Prediction in Cryptocurrency Time Series. In Advances in Neural Networks – ISNN 2019, volume 11554 of Lecture Notes in Computer Science, 165–172. Springer, 2019. URL: https://doi.org/10.1007/978-3-030-22796-8_18, doi:10.1007/978-3-030-22796-8_18.">Miura <em>et al.</em>, 2019</a>]</span>. Se distingue congreso, revista y manuscrito, sin inferir indexación individual o Q1 sólo por la editorial.</p>
+<p>La <strong>ampliación del 06/11/2026</strong> incorpora cuatro archivos nativos suministrados de Scopus y Web of Science:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Base</p></th>
+<th class="head text-right"><p>Exportaciones recibidas</p></th>
+<th class="head text-right"><p>Ocurrencias</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Scopus</p></td>
+<td class="text-right"><p>2</p></td>
+<td class="text-right"><p>19 + 158 = 177</p></td>
+</tr>
+<tr class="row-odd"><td><p>Web of Science</p></td>
+<td class="text-right"><p>2</p></td>
+<td class="text-right"><p>8 + 59 = 67</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Total</strong></p></td>
+<td class="text-right"><p><strong>4</strong></p></td>
+<td class="text-right"><p><strong>244</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La agrupación por DOI/título produce <strong>182 grupos provisionales</strong>. Este recuento organiza el cribado y conserva las apariciones por fuente; no representa 182 artículos incluidos, textos completos revisados o estudios comparables con σ₇ de BTCUSDT. El año nominal de publicación tampoco basta para admitir registros de 2027: se debe verificar Early Access o fecha efectiva disponible antes del corte.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/511d44370257d2b9854c77d916cf2e8d/README.md"><code class="xref download docutils literal notranslate"><span class="pre">registro</span> <span class="pre">de</span> <span class="pre">importación</span></code></a>, el <a class="reference download internal" download="" href="../_downloads/a58c61be5598ed7419d9bb6bfb80e5f8/source_manifest.json"><span class="xref download myst">manifiesto de fuentes</span></a>, los <a class="reference download internal" download="" href="../_downloads/c7a23703b51d528c88e85a3506ed7d6e/summary.json"><span class="xref download myst">recuentos</span></a>, los <a class="reference download internal" download="" href="../_downloads/b005e7309bcbe914d9aabbfe91a327e5/records.csv"><span class="xref download myst">registros normalizados</span></a> y el <a class="reference download internal" download="" href="../_downloads/c28a68d9323717d778db91bdfab40d09/screening.csv"><span class="xref download myst">cribado</span></a> permiten revisar el paso de exportación a candidatos. El refresco preparado de 8.4 reúne estos archivos, las ocurrencias, la deduplicación, la cola de lectura y el flujo de esta ampliación, junto con la evidencia histórica. El autor confirmó la correspondencia TCN (ocho/19 registros), GRU/LSTM (59/158) y filtro 2019–2026; las cadenas literales y cobertura total siguen sin acreditarse por los archivos.</p>
+<p>El primer complemento, de <strong>dos originales completos adicionales</strong>, llevó la bibliografía a <strong>42 referencias</strong>: Nguyen et al. (2023) compara TCN/LSTM para CVI, un índice de volatilidad implícita; Zahid et al. (2022) emplea redes como componentes de modelos híbridos GARCH <span class="bibtex-citation" id="id3">[<a class="reference internal" href="referencias.html#id45" title="An Pham Ngoc Nguyen, Martin Crane, and Marija Bezbradica. Cryptocurrency volatility index: an efficient way to predict the future CVI. In Luca Longo and Ruairi O'Reilly, editors, Artificial Intelligence and Cognitive Science, volume 1662 of Communications in Computer and Information Science, pages 355–367. Springer, 2023. URL: https://link.springer.com/chapter/10.1007/978-3-031-26438-2_28, doi:10.1007/978-3-031-26438-2_28.">Nguyen <em>et al.</em>, 2023</a>, <a class="reference internal" href="referencias.html#id46" title="Mamoona Zahid, Farhat Iqbal, and Dimitrios Koutmos. Forecasting Bitcoin volatility using hybrid GARCH models with machine learning. Risks, 10(12):237, 2022. URL: https://www.mdpi.com/2227-9091/10/12/237, doi:10.3390/risks10120237.">Zahid <em>et al.</em>, 2022</a>]</span>. El <a class="reference download internal" download="" href="../_downloads/c8b87e31b19de4a0089ddc4d7a319cd5/README.md"><code class="xref download docutils literal notranslate"><span class="pre">registro</span> <span class="pre">de</span> <span class="pre">lectura</span></code></a>, su <a class="reference download internal" download="" href="../_downloads/36d3632813a4ef23832a1e3df0197242/evidence_matrix.csv"><span class="xref download myst">matriz</span></a> y las <a class="reference download internal" download="" href="../_downloads/567ef9e3c71fb0252a43c1618d135807/metrics.csv"><span class="xref download myst">métricas extraídas</span></a> forman parte del refresco preparado de 8.4. Los objetivos, papeles de modelo y límites metodológicos se mantienen separados; no se modifica el corte N=7 ni se presentan nueve estudios como comparadores autónomos homogéneos de σ₇.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/a6afefcffde309f47c6a9fdce73292f4/README.md"><code class="xref download docutils literal notranslate"><span class="pre">recuperación</span> <span class="pre">posterior</span> <span class="pre">por</span> <span class="pre">internet</span></code></a> revisó los 22 casos pendientes en aquel corte: <strong>cuatro originales completos y una transcripción completa</strong>, cinco decisiones estrictas cerradas por exclusión/contexto y <strong>17 casos todavía pendientes entonces</strong>. La matriz separa acceso, objetivo, papel autónomo o híbrido, receta y decisión. Los cuatro candidatos complementarios tienen su propia procedencia y no se suman a las 22 decisiones ni a las frecuencias históricas.</p>
+<p>El producto 8.4 incorpora ahora la <a class="reference download internal" download="" href="../_downloads/05cbad879f5d9841bb2bd10733e6dc48/README.md"><code class="xref download docutils literal notranslate"><span class="pre">etapa</span> <span class="pre">de</span> <span class="pre">sustitución</span> <span class="pre">por</span> <span class="pre">acceso</span> <span class="pre">gratuito</span></code></a>, su <a class="reference download internal" download="" href="../_downloads/d35d9719e5375b4f52015c538c7163eb/sources.csv"><span class="xref download myst">catálogo de fuentes</span></a>, la <a class="reference download internal" download="" href="../_downloads/4f10b685a6aad046479953dd37833de1/replacement_map.csv"><span class="xref download myst">matriz por tema y función</span></a> y la <a class="reference download internal" download="" href="../_downloads/203fd9144e919132f9144767817abc42/native_dispositions.csv"><span class="xref download myst">disposición actual de los 22 casos</span></a>. Los tres PDF recibidos se revisaron sin redistribuirlos. Se cierran ocho decisiones de exclusión/contexto y se registran 14 informes no obtenidos al corte, conservando el historial y distinguiendo las nuevas fuentes abiertas de los documentos originales no recuperados. El código de compilación se distribuye en 8.2 y los resúmenes/manifiestos en 8.7.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/848639967622d7ea91e636b7303c249b/README.md"><code class="xref download docutils literal notranslate"><span class="pre">registro</span> <span class="pre">histórico</span> <span class="pre">de</span> <span class="pre">recuperación</span> <span class="pre">de</span> <span class="pre">búsquedas</span></code></a> conserva cuatro intentos de acceso nativo bloqueados, sin inventar totales de resultados. Sus doce cadenas propuestas no se ejecutaron en esa etapa. Las cuatro exportaciones recibidas siguen verificadas; aquel registro no recuperó sus cadenas y fechas originales ni acreditó IEEE. La ronda nueva se documenta por separado a continuación. También se resuelven dos fechas efectivas de capítulos con año nominal 2027, conservando ambos campos.</p>
+<p>El producto 8.4 conserva todos los metadatos de la <a class="reference internal" href="03_estado_arte.html#provisional-native-log-e1"><span class="std std-ref">bitácora provisional de §3.9</span></a>: el <a class="reference download internal" download="" href="../_downloads/654b47784a5e3b86ecdf50e84f5d125a/README.md"><code class="xref download docutils literal notranslate"><span class="pre">procedimiento</span></code></a>, el <a class="reference download internal" download="" href="../_downloads/aa13f5f17f1bfded362253a67819fbdb/provisional_log.csv"><code class="xref download docutils literal notranslate"><span class="pre">CSV</span> <span class="pre">de</span> <span class="pre">preparación</span></code></a>, el <a class="reference download internal" download="" href="../_downloads/09518b7f1056434950889f27fd23f977/summary.json"><span class="xref download myst">resumen</span></a> y el <a class="reference download internal" download="" href="../_downloads/3a258d96267d2cd2e50367c879b563ca/manifest.json"><span class="xref download myst">manifiesto</span></a>. Las cotas ≥8/≥59/≥19/≥158 se derivan de exportaciones recibidas; son límites inferiores provisionales del universo compatible, no totales observados ni estimaciones puntuales. En aquella preparación IEEE no tenía consulta acreditada. La referencia documental del 06/11/2026 y las propuestas para repetir se distinguen de fechas y cadenas nativas no verificadas. Esa fotografía histórica no modifica PRISMA, 244 ocurrencias/182 grupos ni el N=7 histórico.</p>
+<p>La <a class="reference internal" href="03_estado_arte.html#homogeneous-selection-e1"><span class="std std-ref">síntesis homogénea de §3.10</span></a> y la <a class="reference internal" href="03_estado_arte.html#current-native-execution-e1"><span class="std std-ref">ronda nativa documentada de §3.11</span></a> tienen directorios propios dentro de 8.4. La primera audita 47 identidades y distingue <strong>26 originales primarios leídos y una transcripción completa</strong> de los informes parciales o no recuperados. El estrato de volatilidad realizada histórica contiene 12 estudios; diez permiten extraer comparadores base, con <strong>LSTM 10, GRU 4, MLP 3 y TCN 1</strong>. Los estratos, la deduplicación y la sensibilidad de calidad de descripción quedan en su <a class="reference download internal" download="" href="../_downloads/8f08b474a30e14cdcad4b2d1375be1ad/README.md"><code class="xref download docutils literal notranslate"><span class="pre">procedimiento</span> <span class="pre">y</span> <span class="pre">resultados</span></code></a>. La terna registrada GRU–LSTM–TCN se conserva como contraste entre celdas recurrentes y filtros causales: no se presenta como las tres arquitecturas más frecuentes ni como el mínimo único de complejidad.</p>
+<p>La nueva ronda acredita consultas en las tres bases y conserva sus diferentes alcances:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Base</p></th>
+<th class="head text-right"><p>Total nativo</p></th>
+<th class="head text-right"><p>Registros exportados</p></th>
+<th class="head"><p>Alcance acreditado</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Web of Science</p></td>
+<td class="text-right"><p>271</p></td>
+<td class="text-right"><p>271 UT distintos</p></td>
+<td><p>La exportación incluye cuatro publicaciones de 2017–2018; no se atribuye un filtro 2019–2026</p></td>
+</tr>
+<tr class="row-odd"><td><p>Scopus</p></td>
+<td class="text-right"><p>538</p></td>
+<td class="text-right"><p>538 EID distintos</p></td>
+<td><p>2019–2026 en la cadena literal</p></td>
+</tr>
+<tr class="row-even"><td><p>IEEE Xplore</p></td>
+<td class="text-right"><p>32</p></td>
+<td class="text-right"><p>25</p></td>
+<td><p>Consulta con filtro de acceso abierto y años 2018–2026; exportación parcial, siete resultados no exportados</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El <a class="reference download internal" download="" href="../_downloads/3b5918d70b5b19a46c703af95050176d/README.md"><code class="xref download docutils literal notranslate"><span class="pre">expediente</span> <span class="pre">de</span> <span class="pre">ejecución</span></code></a> distingue cadena, fecha, total, tamaño exportado y respaldo de cada campo. El autor confirma el <strong>06/11/2026 en Colombia para las tres consultas</strong>; los nombres de exportación son evidencia adicional, sin acreditar la hora exacta de búsqueda. Los 834 registros exportados se agrupan provisionalmente en 620 grupos por identificadores y título; no son 620 estudios leídos. Esta ronda acredita ejecuciones nuevas y no reconstruye las sesiones de las cuatro exportaciones históricas ni declara concluida una revisión completa de todos los nuevos candidatos.</p>
+<p>El <a class="reference internal" href="03_estado_arte.html"><span class="std std-doc">capítulo 3</span></a> explica el respaldo conjunto de GRU/LSTM/TCN y sus límites. Encontrar una arquitectura en un resumen o en un componente híbrido no actualiza frecuencias de comparadores independientes. El HPO y el piloto tampoco aumentan esa recurrencia ni convierten las recetas propias en réplicas exactas de artículos.</p>
+</section>
+<section id="tabla-comparativa-baseline-e-inferencia-estadistica">
+<span id="entrega-8-5"></span><h2>8.5. Tabla comparativa, baseline e inferencia estadística<a class="headerlink" href="#tabla-comparativa-baseline-e-inferencia-estadistica" title="Link to this heading">#</a></h2>
+<p>El <a class="reference internal" href="09_estudio_planificado.html"><span class="std std-doc">capítulo 9</span></a> presenta la evaluación preespecificada de fase II D7, con recetas seleccionadas por HPO, <strong>465 semillas por familia</strong>, contrastes primarios Holm-3 y análisis temporal secundario. El baseline seleccionado antes del piloto y la reserva es <strong>GRU/D7 de 16 unidades</strong>, con RMSE de HPO enero–octubre <strong>0,00513620 ± 0,00003068</strong>. La elección no se reabre según el ranking de la reserva.</p>
+<p>El ZIP 8.5 incluye los <a class="reference download internal" download="" href="../_downloads/59a320e4adb30e167314545601de54e4/summary.json"><span class="xref download myst">agregados de fase II</span></a>, junto con los registros de fase I y el suplemento estadístico posterior del <a class="reference internal" href="09_estudio_planificado.html"><span class="std std-doc">capítulo 9</span></a>. Cada directorio conserva su manifiesto de integridad y su cohorte. Se añaden las <a class="reference download internal" download="" href="../_downloads/e7222b0b8550669a6dd77a42372ca8e3/README.md"><code class="xref download docutils literal notranslate"><span class="pre">curvas</span> <span class="pre">públicas</span> <span class="pre">reproducidas</span></code></a> de las tres recetas finales: 1.395 trayectorias y 2.790 etapas nuevas, sólo con desarrollo 2023–2024. Su comparación de hashes distingue identidad de configuración, curvas y pesos; la ejecución no sustituye los resultados originales ni puntúa la reserva. Los Q–Q, Friedman y la sensibilidad Wilcoxon del suplemento se calculan desde métricas ya guardadas: no formaron parte del análisis registrado ni modifican sus contrastes primarios.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/85aa87f6b6ada7284aa477bbe0b8fd4a/README.md"><code class="xref download docutils literal notranslate"><span class="pre">auditoría</span> <span class="pre">forense</span></code></a> añade la búsqueda de originales, la comparación de archivos y los 29 cambios de época de TCN, con causa todavía no identificada. La <a class="reference download internal" download="" href="../_downloads/ab4212ff545cf636df6bae15f08e0c80/README.md"><code class="xref download docutils literal notranslate"><span class="pre">repetibilidad</span> <span class="pre">actual</span> <span class="pre">controlada</span></code></a> ejecuta dos procesos independientes sobre seis celdas diagnósticas: <strong>12 trayectorias, 24 etapas y 18/18 comparaciones canónicas exactas</strong> entre réplicas; las seis celdas satisfacen también la tolerancia fijada antes del ajuste. Coinciden además con esas seis celdas de la reproducción completa anterior. No se leen precios de reserva ni se añaden observaciones independientes al benchmark; el resultado no acredita identidad con los archivos originales ni repetibilidad de las 1.395 trayectorias completas.</p>
+<p>La reserva de fase II tiene los siguientes resultados:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo final</p></th>
+<th class="head text-right"><p>RMSE, media ± DE</p></th>
+<th class="head text-right"><p>R² medio</p></th>
+<th class="head text-right"><p>MAE medio</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>GRU</p></td>
+<td class="text-right"><p>0,00511696 ± 0,00077519</p></td>
+<td class="text-right"><p>0,348891</p></td>
+<td class="text-right"><p>0,00391028</p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM</p></td>
+<td class="text-right"><p>0,00565123 ± 0,00056569</p></td>
+<td class="text-right"><p>0,215843</p></td>
+<td class="text-right"><p>0,00429363</p></td>
+</tr>
+<tr class="row-even"><td><p>TCN</p></td>
+<td class="text-right"><p>0,00433967 ± 0,00099896</p></td>
+<td class="text-right"><p>0,517956</p></td>
+<td class="text-right"><p>0,00338399</p></td>
+</tr>
+<tr class="row-odd"><td><p>Persistencia</p></td>
+<td class="text-right"><p>0,00384478</p></td>
+<td class="text-right"><p>0,640632</p></td>
+<td class="text-right"><p>0,00212123</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Las redes resumen 465 semillas sobre las mismas sesenta fechas; persistencia es determinista. Los <a class="reference internal" href="09_estudio_planificado.html"><span class="std std-doc">contrastes e intervalos de fase II</span></a> distinguen aleatoriedad de entrenamiento e incertidumbre temporal.</p>
+<p>En esta reserva, <strong>persistencia tiene menor RMSE media que las tres redes y TCN el menor error entre las redes</strong>. El baseline operativo permanece GRU/D7-c03, fijado por desarrollo. Las diferencias entre semillas no equivalen a superioridad temporal: ninguna comparación DM rechaza tras Holm-6 y el bootstrap temporal familiar no acredita una mejora superior al 5 %. Los diagnósticos rechazan normalidad de las diferencias; las t de 465 pares se interpretan como aproximaciones, con sus límites en el capítulo 9.</p>
+<p>La tabla siguiente conserva el <strong>test de fase I, 01/01/2025–31/08/2026</strong>, para las recetas iniciales D7:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo de fase I</p></th>
+<th class="head"><p>RMSE, media ± DE</p></th>
+<th class="head"><p>R², media ± DE</p></th>
+<th class="head text-right"><p>MAE medio</p></th>
+<th class="head text-right"><p>MAPE medio (%)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>GRU, 32 unidades</strong></p></td>
+<td><p><strong>0,00377511 ± 0,00019410</strong></p></td>
+<td><p><strong>0,854173 ± 0,015331</strong></p></td>
+<td class="text-right"><p><strong>0,00279851</strong></p></td>
+<td class="text-right"><p><strong>18,0667</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM, 32 unidades</p></td>
+<td><p>0,00502979 ± 0,00026367</p></td>
+<td><p>0,741108 ± 0,026619</p></td>
+<td class="text-right"><p>0,00391888</p></td>
+<td class="text-right"><p>25,3406</p></td>
+</tr>
+<tr class="row-even"><td><p>TCN, ancho 16</p></td>
+<td><p>0,00417465 ± 0,00037283</p></td>
+<td><p>0,820819 ± 0,032191</p></td>
+<td class="text-right"><p>0,00314430</p></td>
+<td class="text-right"><p>19,8847</p></td>
+</tr>
+<tr class="row-odd"><td><p>Persistencia</p></td>
+<td><p>0,00408560</p></td>
+<td><p>0,829605</p></td>
+<td class="text-right"><p>0,00235316</p></td>
+<td class="text-right"><p>13,7553</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Las redes de esa tabla resumen diez semillas. Persistencia es determinista y no tiene DE de inicialización. Las <a class="reference download internal" download="" href="../_downloads/1f26186862a98dbe0b5db16c283d802e/metric_summary_test.csv"><span class="xref download myst">métricas originales de test</span></a>, las <a class="reference download internal" download="" href="../_downloads/260df7ff8d87642d4959a355c1206400/metric_summary_cv.csv"><span class="xref download myst">de CV</span></a> y la <a class="reference download internal" download="" href="../_downloads/8cb0de6e4f53d56251ec7e4b4abfb5ad/selected_by_cv.json"><span class="xref download myst">selección de fase I</span></a> no cambian. Su inferencia sigue siendo posterior y exploratoria. En esa CV persistencia tiene menor RMSE; en ese test GRU tiene menor RMSE, mientras persistencia conserva mejores MAE y MAPE.</p>
+<p>No se comparan directamente RMSE de 608 y 60 fechas para atribuir una ganancia al HPO. La diferencia de cohorte, régimen y longitud impide esa conclusión causal.</p>
+</section>
+<section id="dependencias-semillas-y-configuracion-de-cada-corrida">
+<span id="entrega-8-6"></span><h2>8.6. Dependencias, semillas y configuración de cada corrida<a class="headerlink" href="#dependencias-semillas-y-configuracion-de-cada-corrida" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo final</p></th>
+<th class="head"><p>Receta seleccionada</p></th>
+<th class="head text-right"><p>Parámetros entrenables</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>GRU</p></td>
+<td><p>Una capa unidireccional de 16 unidades; LR 0,003; dropout 0,1</p></td>
+<td class="text-right"><p>1.121</p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM</p></td>
+<td><p>Una capa unidireccional de 16 unidades; LR 0,003; dropout 0</p></td>
+<td class="text-right"><p>1.489</p></td>
+</tr>
+<tr class="row-even"><td><p>TCN</p></td>
+<td><p>Tres bloques residuales, dos convoluciones causales por bloque; ancho 8; kernel 3; dilataciones 1/2/4; LR 0,003; dropout 0</p></td>
+<td class="text-right"><p>1.185</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Se comparten AdamW, batch 32, decaimiento 0,0001, clipping 1, máximo de cien épocas y paciencia 12. La búsqueda conserva sus <strong>24 candidatos</strong>, 48 trayectorias de validación y 480 segmentos mensuales. Sus semillas son <strong>6101–6102</strong>; el piloto usa <strong>7101–7110</strong> y la comparación definitiva <strong>8101–8565</strong>, sin solapamiento entre etapas. R=465 resulta del dimensionamiento registrado, sin parada por significación.</p>
+<p>La fase I conserva sus <a class="reference download internal" download="" href="../_downloads/2e40a4c9d1ec05d082b1018c251a6cb6/configuration_catalog_cv.csv"><span class="xref download myst">1.440 configuraciones CV</span></a> y <a class="reference download internal" download="" href="../_downloads/16a739389054cccc347649497206d6e8/configuration_catalog_final.csv"><span class="xref download myst">120 registros finales</span></a>, con anchos 32/32/16 y semillas 4101–4110. La fase II tiene su <a class="reference download internal" download="" href="../_downloads/ccedd97cf9bad53102320c80efc919fe/final_configurations.csv"><span class="xref download myst">catálogo definitivo</span></a>, <a class="reference download internal" download="" href="../_downloads/4831e64305e2f81d8dabead07e286836/selected_recipes.json"><span class="xref download myst">recetas</span></a>, <a class="reference download internal" download="" href="../_downloads/33428cb79000c341d749d96b2d231fb5/runtime.json"><span class="xref download myst">runtime</span></a> y <a class="reference download internal" download="" href="../_downloads/f5104854ac36531d2eb07fd5f7ccbc6e/dimensioning.json"><span class="xref download myst">dimensionamiento</span></a>. El ZIP 8.6 reúne dependencias, semillas y metadatos, sin pesos o valores de escaladores. Incluye por separado el protocolo publicado, el lock y los recibos de la reproducción posterior de curvas; conservar las semillas originales no convierte esas nuevas curvas en archivos originales recuperados.</p>
+<p>También incorpora <code class="docutils literal notranslate"><span class="pre">experiments/e1_replay_audit_20261107/</span></code> y los registros de la comprobación controlada: publicación previa, registro, entorno y ejecución. Su fuente <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/79f8dcc1a4c3bfacfd1fc56c0ecb43d8e0185501">79f8dcc</a> fue verificada remotamente antes del registro y de las réplicas. La guía §4.3 pide semillas, dependencias, configuración, un procedimiento reproducible y declarar el alcance del determinismo; no exige recuperar archivos históricos idénticos bit a bit. Se acredita el procedimiento actual y se conserva como límite independiente la comparación numérica imposible con los archivos privados originales ausentes.</p>
+</section>
+<section id="declaracion-de-metrica-margen-independencia-y-particion">
+<span id="entrega-8-7"></span><h2>8.7. Declaración de métrica, margen, independencia y partición<a class="headerlink" href="#declaracion-de-metrica-margen-independencia-y-particion" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Elemento</p></th>
+<th class="head"><p>Declaración y alcance de fase II D7</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Métrica primaria</p></td>
+<td><p>RMSE por trayectoria sobre las mismas 60 fechas; media y DE entre 465 semillas</p></td>
+</tr>
+<tr class="row-odd"><td><p>Métricas secundarias</p></td>
+<td><p>MAE, MSE, R², MAPE y MASE, con cobertura y denominadores</p></td>
+</tr>
+<tr class="row-even"><td><p>Partición</p></td>
+<td><p>HPO enero–octubre de 2024; piloto noviembre–30 de diciembre; ajuste final con desarrollo permitido 2023–2024; nueva reserva 01/09–30/10/2026</p></td>
+</tr>
+<tr class="row-odd"><td><p>Registro inicial</p></td>
+<td><p>Diseño y código públicos antes del primer ajuste HPO</p></td>
+</tr>
+<tr class="row-even"><td><p>Piloto y dimensionamiento</p></td>
+<td><p>Diez semillas nuevas por modelo; R=465 calculado y publicado antes de los ajustes definitivos</p></td>
+</tr>
+<tr class="row-odd"><td><p>Potencia</p></td>
+<td><p>Objetivo marginal 0,80 por comparación, bajo supuestos gaussianos y transferencia de DE; no potencia conjunta ni temporal</p></td>
+</tr>
+<tr class="row-even"><td><p>Unidad de repetición</p></td>
+<td><p>Semilla independiente de entrenamiento, emparejada entre modelos y condicionada al mismo calendario</p></td>
+</tr>
+<tr class="row-odd"><td><p>Selección del baseline</p></td>
+<td><p>GRU/D7 de 16 unidades, por HPO; congelado antes del piloto y de la reserva</p></td>
+</tr>
+<tr class="row-even"><td><p>Inferencia primaria</p></td>
+<td><p>Tres comparaciones bilaterales de RMSE, Holm-3, IC marginales/familiares y efecto; métodos fijados antes de la reserva</p></td>
+</tr>
+<tr class="row-odd"><td><p>Margen de planificación</p></td>
+<td><p>δ=0,00025772842664981106, ancla académica del 5 % del RMSE CV del GRU inicial; posterior a fase I y previo a fase II</p></td>
+</tr>
+<tr class="row-even"><td><p>Incertidumbre temporal</p></td>
+<td><p>DM/HAC6/HLN, familia secundaria de seis pares y bootstrap circular de bloques 7, sensibilidad 3/14; sin prometer potencia temporal</p></td>
+</tr>
+<tr class="row-odd"><td><p>Equivalencia</p></td>
+<td><p>No afirmada; ausencia de significación no demuestra igualdad</p></td>
+</tr>
+<tr class="row-even"><td><p>Fuera de alcance</p></td>
+<td><p>Utilidad financiera, otro mercado independiente o pronósticos emitidos en vivo</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La <a class="reference download internal" download="" href="../_downloads/f90b8d44bdaf12787deac66f6072aef8/chronology.json"><span class="xref download myst">cronología de fase II</span></a>, su <a class="reference download internal" download="" href="../_downloads/4ae6343d1013e7e93b711ecfe423b951/registration.json"><span class="xref download myst">registro</span></a> y el <a class="reference download internal" download="" href="../_downloads/e3fb3885791a9c1187a7347775d4bd0f/final_freeze_provenance.json"><span class="xref download myst">cierre de pesos</span></a> permiten seguir el orden. La <a class="reference download internal" download="" href="../_downloads/20e37529354aee13f5454263c7033b7a/declaration_and_chronology.json"><span class="xref download myst">cronología de fase I</span></a> conserva su carácter anterior y exploratorio. Los límites bibliográficos y de generalización permanecen en la <a class="reference internal" href="protocolo_pendiente.html"><span class="std std-doc">matriz de pendientes</span></a>.</p>
+<p>El producto 8.7 añade el expediente de comparabilidad de datasets, el contexto académico del margen fijo y los registros de las reproducciones de curvas, junto con resúmenes y manifiestos de las ampliaciones editoriales, búsquedas nativas, síntesis homogénea y auditoría forense. La <a class="reference download internal" download="" href="../_downloads/6325eef34fafe060a7967b9082839400/README.md"><code class="xref download docutils literal notranslate"><span class="pre">justificación</span> <span class="pre">del</span> <span class="pre">margen</span></code></a> usa sólo desarrollo y no modifica δ, R ni la decisión primaria. El producto 8.3 conserva íntegro el archivo original de adquisición; 8.6 conserva sus miembros históricos y añade la nueva configuración por separado. Los resultados científicos históricos incluidos en los demás productos mantienen sus bytes; las adiciones posteriores tienen directorios y procedencia propios. Los metadatos de actualización del 07/11 se añaden sin sustituir los registros fechados del 06/11.</p>
+<p>También incorpora el <a class="reference download internal" download="" href="../_downloads/09518b7f1056434950889f27fd23f977/summary.json"><span class="xref download myst">resumen de la bitácora provisional</span></a> y su <a class="reference download internal" download="" href="../_downloads/3a258d96267d2cd2e50367c879b563ca/manifest.json"><span class="xref download myst">manifiesto de procedencia</span></a>; el CSV y el procedimiento completos se distribuyen en 8.4. Este registro conserva como desconocidos la cadena literal, el total y la fecha nativa, y dejaba abierta la consulta acreditada de IEEE en aquel corte. La ronda nativa posterior conserva esta versión previa y registra su propia fecha de ejecución confirmada.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="07_limitaciones_entregables.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">7. Limitaciones Inferenciales de Trabajar con Tres Modelos</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="09_estudio_planificado.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">9. Estudio D7 con piloto, ajuste equitativo y evaluación preespecificada</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#informe-en-jupyter-book">8.1. Informe en Jupyter Book</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-completo-ejecutable-y-versionado">8.2. Código completo, ejecutable y versionado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-instrucciones-y-scripts-de-obtencion">8.3. Dataset, instrucciones y scripts de obtención</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sintesis-de-literatura-y-flujo-de-busqueda">8.4. Síntesis de literatura y flujo de búsqueda</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-comparativa-baseline-e-inferencia-estadistica">8.5. Tabla comparativa, baseline e inferencia estadística</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependencias-semillas-y-configuracion-de-cada-corrida">8.6. Dependencias, semillas y configuración de cada corrida</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declaracion-de-metrica-margen-independencia-y-particion">8.7. Declaración de métrica, margen, independencia y partición</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

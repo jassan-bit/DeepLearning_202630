@@ -1,0 +1,9 @@
+﻿family,variant_details,verified_full_text_studies,count,denominator,proportion,supplementary_author_code,eligible_for_final_trio
+LSTM,Unidireccional explícita: S1/S5/S7 (3); BiLSTM: S2 (1); dirección no especificada: S8 (1).,S1;S2;S5;S7;S8,5,6,0.8333333333333334,No aumenta el conteo; un estudio por familia.,Candidata. S8 no se convierte en LSTM unidireccional verificada.
+GRU,"S1, S2 y S8. En S8: una capa GRU más dos Dense.",S1;S2;S8,3,6,0.5,No aumenta el conteo; un estudio por familia.,Candidata; recurrencia descriptiva del corpus acotado.
+TCN,TCN independiente de S1; la propuesta D-TCN no añade otra ocurrencia.,S1,1,6,0.16666666666666666,No aumenta el conteo; un estudio por familia.,Candidata; no equiparar TCN profunda con CNN simple.
+Transformer encoder,Encoder de S2 y Transformer OHLCV independiente de S6.,S2;S6,2,6,0.3333333333333333,No aumenta el conteo; un estudio por familia.,Candidata; conservar diferencias de sesgo y complejidad.
+MLP no lineal,"S8: dos variantes independientes de MLP de cuatro capas, con dropout o BN; un solo estudio.",S8,1,6,0.16666666666666666,No aumenta el conteo; un estudio por familia.,"Respaldo aplicado de familia, no réplica de nuestra MLP ni uso ampliamente recurrente."
+CNN independiente,"S8: dos capas CNN más Dense sobre secuencias RV; dimensionalidad, filtros, kernel y padding no reportados.",S8,1,6,0.16666666666666666,No aumenta el conteo; un estudio por familia.,Respaldo aplicado de CNN poco profunda; dimensionalidad original desconocida.
+CNN1D simple,Ningún texto incluido especifica Conv1D; S8 no permite verificar la dimensionalidad.,,0,6,0.0,No aumenta el conteo; un estudio por familia.,No acreditada expresamente. Nuestra Conv1D causal es una adaptación declarada.
+Fully-connected lineal,"Dense(1) sin capa oculta en S5; contexto lineal, no MLP no lineal.",S5,1,6,0.16666666666666666,No aumenta el conteo; un estudio por familia.,No elegible como uno de los tres modelos DL.

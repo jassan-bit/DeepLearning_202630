@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "name": "ETTh1 external paper dataset",
+  "source": {
+    "name": "ETTh1",
+    "repository": "zhouhaoyi/ETDataset",
+    "commit": "1d16c8f4f943005d613b5bc962e9eeb06058cf07",
+    "filename": "ETTh1.csv",
+    "url": "https://raw.githubusercontent.com/zhouhaoyi/ETDataset/1d16c8f4f943005d613b5bc962e9eeb06058cf07/ETT-small/ETTh1.csv",
+    "sha256": "f18de3ad269cef59bb07b5438d79bb3042d3be49bdeecf01c1cd6d29695ee066",
+    "bytes": 2589657,
+    "rows": 17420,
+    "channels": [
+      "HUFL",
+      "HULL",
+      "MUFL",
+      "MULL",
+      "LUFL",
+      "LULL",
+      "OT"
+    ],
+    "source_timezone": "not specified; naive hourly timestamps",
+    "split_source_rows": {
+      "train": [
+        0,
+        8640
+      ],
+      "validation_labels": [
+        8640,
+        11520
+      ],
+      "test_labels": [
+        11520,
+        14400
+      ]
+    },
+    "global_scaler_fit_rows": [
+      0,
+      8640
+    ],
+    "scaler_ddof": 0,
+    "nominal_windows": {
+      "train": 8449,
+      "val": 2785,
+      "test": 2785
+    },
+    "author_processed_windows": {
+      "train": 8448,
+      "val": 2688,
+      "test": 2688
+    },
+    "test_omitted_origins": 97,
+    "test_selection": "first2688 eligible test origins; ordered batches128 with drop_lastTrue",
+    "metric_scale": "train-standardized7channels, all96 horizons, not inverse scaled",
+    "license": "CC BY-ND4.0; original CSV is acquired separately and not redistributed in book"
+  },
+  "integrity_summary": {
+    "records": 17420,
+    "columns": [
+      "date",
+      "HUFL",
+      "HULL",
+      "MUFL",
+      "MULL",
+      "LUFL",
+      "LULL",
+      "OT"
+    ],
+    "numerical_channels": 7,
+    "first_timestamp": "2016-07-01 00:00:00",
+    "last_timestamp": "2018-06-26 19:00:00",
+    "timestamps_unique": true,
+    "all_hourly_differences": true,
+    "missing_numeric_cells": 0,
+    "nonfinite_numeric_cells": 0,
+    "timestamps_have_explicit_timezone": false,
+    "forecast_metrics_computed": false,
+    "raw_CSV_redistributed": false,
+    "train": {
+      "source_slice_start_inclusive": 0,
+      "source_slice_end_exclusive": 8640,
+      "context_first_date": "2016-07-01 00:00:00",
+      "slice_last_date": "2017-06-25 23:00:00",
+      "eligible_sliding_windows_L96_H96": 8449,
+      "first_forecast_target_date": "2016-07-05 00:00:00",
+      "last_forecast_target_date": "2017-06-25 23:00:00"
+    },
+    "val": {
+      "source_slice_start_inclusive": 8544,
+      "source_slice_end_exclusive": 11520,
+      "context_first_date": "2017-06-22 00:00:00",
+      "slice_last_date": "2017-10-23 23:00:00",
+      "eligible_sliding_windows_L96_H96": 2785,
+      "first_forecast_target_date": "2017-06-26 00:00:00",
+      "last_forecast_target_date": "2017-10-23 23:00:00"
+    },
+    "test": {
+      "source_slice_start_inclusive": 11424,
+      "source_slice_end_exclusive": 14400,
+      "context_first_date": "2017-10-20 00:00:00",
+      "slice_last_date": "2018-02-20 23:00:00",
+      "eligible_sliding_windows_L96_H96": 2785,
+      "first_forecast_target_date": "2017-10-24 00:00:00",
+      "last_forecast_target_date": "2018-02-20 23:00:00"
+    },
+    "tail_rows_not_used_by_official_12_4_4_split": 3020
+  },
+  "scope": "Paper original task, not the inherited Bitcoin dataset",
+  "raw_CSV_redistributed": false
+}

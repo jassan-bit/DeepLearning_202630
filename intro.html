@@ -1,0 +1,619 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Bitcoin: pronóstico de volatilidad &#8212; Bitcoin: pronóstico de volatilidad</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="1. Definición del Problema y Dataset" href="sections/01_problema_dataset.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Bitcoin: pronóstico de volatilidad</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="sections/01_problema_dataset.html">1. Definición del Problema y Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/02_eda.html">2. Análisis Exploratorio de Datos (EDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/03_estado_arte.html">3. Revisión del Estado del Arte y Extracción de los Tres Modelos Base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/04_implementacion_evaluacion.html">4. Implementación y evaluación: diseño y estado de ejecución</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/05_benchmark.html">5. Benchmark de los Modelos Base y Definición del Baseline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/06_procedimiento.html">6. Guía de Procedimiento por Tipo de Problema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/07_limitaciones_entregables.html">7. Limitaciones Inferenciales de Trabajar con Tres Modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/08_entregables.html">8. Entregables: productos y evidencias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/09_estudio_planificado.html">9. Estudio D7 con piloto, ajuste equitativo y evaluación preespecificada</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/protocolo_pendiente.html">Decisiones, revisión y pendientes de E1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/referencias.html">Referencias y materiales</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><div class="book-credit">
+  <p class="component-author">By Jassan Arteta</p>
+  <p class="copyright">© Copyright 2026.</p>
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/intro.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Bitcoin: pronóstico de volatilidad</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-contiene-el-libro">Qué contiene el libro</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-final-y-evaluacion-d7">Modelo final y evaluación D7</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-de-la-nueva-reserva">Resultados de la nueva reserva</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fase-i-benchmark-exploratorio-conservado">Fase I: benchmark exploratorio conservado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#literatura-y-limites-cientificos">Literatura y límites científicos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducibilidad">Reproducibilidad</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="bitcoin-pronostico-de-volatilidad">
+<h1>Bitcoin: pronóstico de volatilidad<a class="headerlink" href="#bitcoin-pronostico-de-volatilidad" title="Link to this heading">#</a></h1>
+<p><strong>Proyecto de Deep Learning · 2026-30</strong><br />
+<strong>Profesor:</strong> Dr. Lihki Rubio<br />
+<strong>Autor:</strong> Jassan Arteta<br />
+<strong>Avance:</strong> Entregable 1 · GRU–LSTM–TCN, CV de Filipe y modelo final D7 · recuperación de literatura, curvas reproducidas y margen académico del 6 de noviembre de 2026</p>
+<p>Este libro desarrolla el <strong>Entregable 1 de Deep Learning</strong> para pronosticar volatilidad de <strong>Bitcoin</strong>, con datos oficiales de <strong>Binance Spot BTCUSDT</strong>. El problema es <strong>tipo 4: regresión temporal</strong>: cinco covariables OHLCV diarias, desviación estándar poblacional de siete retornos logarítmicos y horizonte de un día. Se conserva la validación <strong><code class="docutils literal notranslate"><span class="pre">split_train_val_forwardChaining</span></code> de <code class="docutils literal notranslate"><span class="pre">timeseries-cv</span></code></strong>, proyecto de DidierRLopes con coautoría de <strong>Filipe R. Ramos</strong>, con embargo y transformaciones ajustadas únicamente al pasado permitido.</p>
+<p>El estudio tiene <strong>dos fases identificadas por separado</strong>. La fase I evalúa las cuatro entradas D=7/14/21/28 con diez semillas y un test histórico ya observado. La fase II mantiene <strong>D7, n=7 y h=1</strong>, registra una búsqueda equitativa, ejecuta un piloto antes de su ajuste definitivo y evalúa una reserva histórica distinta con métodos fijados previamente.</p>
+<section id="que-contiene-el-libro">
+<h2>Qué contiene el libro<a class="headerlink" href="#que-contiene-el-libro" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="sections/01_problema_dataset.html"><span class="std std-doc">Problema y dataset</span></a>: formulación, fuente, reloj de información y definición de σ₇.</p></li>
+<li><p><a class="reference internal" href="sections/02_eda.html"><span class="std std-doc">Análisis exploratorio</span></a>: calidad, estructura temporal y decisiones derivadas del desarrollo 2023–2024.</p></li>
+<li><p><a class="reference internal" href="sections/03_estado_arte.html"><span class="std std-doc">Estado del arte</span></a>: extracción de GRU–LSTM–TCN y límites de recurrencia bibliográfica.</p></li>
+<li><p><a class="reference internal" href="sections/04_implementacion_evaluacion.html"><span class="std std-doc">Implementación y evaluación</span></a>: arquitecturas, cuatro entradas iniciales, purgas y alcance de las dos fases.</p></li>
+<li><p><a class="reference internal" href="sections/05_benchmark.html"><span class="std std-doc">Benchmark inicial</span></a>: tablas de CV y del test histórico, baseline e inferencia exploratoria.</p></li>
+<li><p><a class="reference internal" href="sections/06_procedimiento.html"><span class="std std-doc">Procedimiento temporal</span></a>: ruta 6.4 de la guía y disponibilidad causal.</p></li>
+<li><p><a class="reference internal" href="sections/07_limitaciones_entregables.html"><span class="std std-doc">Limitaciones</span></a>: potencia entre semillas, dependencia y fuerza inferencial.</p></li>
+<li><p><a class="reference internal" href="sections/08_entregables.html"><span class="std std-doc">Entregables</span></a>: siete productos y ocho descargas directas.</p></li>
+<li><p><a class="reference internal" href="sections/09_estudio_planificado.html"><span class="std std-doc">Modelo final y evaluación D7</span></a>: HPO comparable, piloto, dimensionamiento y evaluación preespecificada.</p></li>
+<li><p><a class="reference internal" href="sections/protocolo_pendiente.html"><span class="std std-doc">Decisiones y pendientes</span></a>: evidencia de cierre y límites aún abiertos.</p></li>
+</ul>
+</section>
+<section id="modelo-final-y-evaluacion-d7">
+<h2>Modelo final y evaluación D7<a class="headerlink" href="#modelo-final-y-evaluacion-d7" title="Link to this heading">#</a></h2>
+<p>El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/ac7dd7f67c0dec2397b519897cf6da8056b238f5">diseño y código</a> se publicaron <strong>antes del primer entrenamiento</strong> de esta fase. La búsqueda utiliza <strong>ocho configuraciones y dos semillas por familia</strong>, los mismos diez bloques mensuales de enero–octubre de 2024 y <strong>320 ajustes por familia, 960 en total</strong>. La puntuación es la media entre semillas del RMSE sobre las 305 fechas de validación concatenadas.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo</p></th>
+<th class="head"><p>Receta elegida con desarrollo</p></th>
+<th class="head text-right"><p>Parámetros</p></th>
+<th class="head text-right"><p>RMSE enero–octubre, media ± DE</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>GRU/D7</strong></p></td>
+<td><p>Una capa de 16 unidades, LR 0,003, dropout 0,1</p></td>
+<td class="text-right"><p><strong>1.121</strong></p></td>
+<td class="text-right"><p><strong>0,00513620 ± 0,00003068</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM/D7</p></td>
+<td><p>Una capa de 16 unidades, LR 0,003, dropout 0</p></td>
+<td class="text-right"><p>1.489</p></td>
+<td class="text-right"><p>0,00626389 ± 0,00021402</p></td>
+</tr>
+<tr class="row-even"><td><p>TCN/D7</p></td>
+<td><p>Tres bloques causales, ancho 8, LR 0,003, dropout 0</p></td>
+<td class="text-right"><p>1.185</p></td>
+<td class="text-right"><p>0,00543698 ± 0,00056998</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El baseline final es <strong>GRU/D7 de 16 unidades</strong>, seleccionado y congelado por desarrollo antes del piloto y de la reserva. Es una receta distinta de la GRU de 32 unidades de fase I.</p>
+<p>El piloto usa <strong>diez semillas nuevas por familia</strong>, treinta trayectorias y sesenta ajustes, sobre el <strong>01/11–30/12/2024</strong> con pesos fijos. Las diferencias pareadas de RMSE y su incertidumbre dimensionan <strong>465 ejecuciones por familia</strong> mediante t no central, α*=0,05/3 y potencia marginal objetivo 0,80. La planificación quedó <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/5a0acfbc2ff582e252f0e6fb18aaf652963221f8">publicada antes de los ajustes definitivos</a>. Sus supuestos y MDE se desarrollan en el <a class="reference internal" href="sections/09_estudio_planificado.html"><span class="std std-doc">capítulo 9</span></a>.</p>
+<p>La nueva reserva comprende <strong>01/09–30/10/2026, 60 días</strong>. Los archivos ya habían sido auditados por integridad, timestamps y esquema; según los registros conservados, no se habían utilizado para construir objetivos o evaluar resultados. Esta fase es una evaluación preespecificada de una reserva histórica, no predicciones emitidas en vivo ni evidencia de otro mercado. La potencia planificada entre semillas <strong>no acredita potencia temporal del 80 %</strong> sobre esos 60 días.</p>
+<section id="resultados-de-la-nueva-reserva">
+<h3>Resultados de la nueva reserva<a class="headerlink" href="#resultados-de-la-nueva-reserva" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo final</p></th>
+<th class="head text-right"><p>RMSE, media ± DE</p></th>
+<th class="head text-right"><p>R² medio</p></th>
+<th class="head text-right"><p>MAE medio</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>GRU</p></td>
+<td class="text-right"><p>0,00511696 ± 0,00077519</p></td>
+<td class="text-right"><p>0,348891</p></td>
+<td class="text-right"><p>0,00391028</p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM</p></td>
+<td class="text-right"><p>0,00565123 ± 0,00056569</p></td>
+<td class="text-right"><p>0,215843</p></td>
+<td class="text-right"><p>0,00429363</p></td>
+</tr>
+<tr class="row-even"><td><p>TCN</p></td>
+<td class="text-right"><p>0,00433967 ± 0,00099896</p></td>
+<td class="text-right"><p>0,517956</p></td>
+<td class="text-right"><p>0,00338399</p></td>
+</tr>
+<tr class="row-odd"><td><p>Persistencia</p></td>
+<td class="text-right"><p>0,00384478</p></td>
+<td class="text-right"><p>0,640632</p></td>
+<td class="text-right"><p>0,00212123</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Las redes resumen 465 semillas sobre las mismas sesenta fechas; persistencia es determinista. Los <a class="reference internal" href="sections/09_estudio_planificado.html"><span class="std std-doc">contrastes e intervalos de fase II</span></a> distinguen aleatoriedad de entrenamiento e incertidumbre temporal.</p>
+<p>En esta reserva, <strong>persistencia tiene menor RMSE media que las tres redes y TCN el menor error entre las redes</strong>. El baseline operativo permanece GRU/D7-c03, fijado por desarrollo. Las diferencias entre semillas no equivalen a superioridad temporal: ninguna comparación DM rechaza tras Holm-6 y el bootstrap temporal familiar no acredita una mejora superior al 5 %. Los diagnósticos rechazan normalidad de las diferencias; las t de 465 pares se interpretan como aproximaciones, con sus límites en el capítulo 9.</p>
+</section>
+</section>
+<section id="fase-i-benchmark-exploratorio-conservado">
+<h2>Fase I: benchmark exploratorio conservado<a class="headerlink" href="#fase-i-benchmark-exploratorio-conservado" title="Link to this heading">#</a></h2>
+<p>La comparación inicial utiliza <strong>D=7/14/21/28</strong>, n=7, h=1, doce bloques mensuales de 2024 y diez semillas por red e historia. Completó <strong>120 trayectorias, 1.440 segmentos, 2.880 ajustes y 43.920 predicciones</strong>. Las cuarenta trayectorias LSTM reentrenadas reprodujeron exactamente <strong>14.640 predicciones de control</strong>.</p>
+<p>Tras cerrar configuraciones y épocas se realizaron <strong>80 ajustes finales nuevos de GRU/TCN</strong> y se reutilizaron <strong>40 LSTM idénticos</strong>, verificando pesos, escaladores y recetas. El test <strong>01/01/2025–31/08/2026</strong> contiene <strong>608 fechas y 72.960 predicciones</strong>: ochenta inferencias nuevas y cuarenta trayectorias LSTM conservadas. Sus veinte meses son intervalos de reporte, sin reajuste durante test.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo de fase I seleccionado con CV</p></th>
+<th class="head text-right"><p>RMSE CV 2024, media</p></th>
+<th class="head text-right"><p>RMSE test histórico, media ± DE</p></th>
+<th class="head text-right"><p>R² test, media</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>GRU/D7, 32 unidades</strong></p></td>
+<td class="text-right"><p><strong>0,005155</strong></p></td>
+<td class="text-right"><p><strong>0,003775 ± 0,000194</strong></p></td>
+<td class="text-right"><p><strong>0,8542</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM/D7, 32 unidades</p></td>
+<td class="text-right"><p>0,006335</p></td>
+<td class="text-right"><p>0,005030 ± 0,000264</p></td>
+<td class="text-right"><p>0,7411</p></td>
+</tr>
+<tr class="row-even"><td><p>TCN/D7, ancho 16</p></td>
+<td class="text-right"><p>0,005820</p></td>
+<td class="text-right"><p>0,004175 ± 0,000373</p></td>
+<td class="text-right"><p>0,8208</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Las <a class="reference download internal" download="" href="_downloads/260df7ff8d87642d4959a355c1206400/metric_summary_cv.csv"><span class="xref download myst">tablas de CV de fase I</span></a> y <a class="reference download internal" download="" href="_downloads/1f26186862a98dbe0b5db16c283d802e/metric_summary_test.csv"><span class="xref download myst">su test</span></a> conservan las seis métricas y las cuatro entradas. Persistencia obtiene menor RMSE que GRU en esa CV; en su test GRU tiene menor RMSE, mientras persistencia conserva mejores MAE y MAPE.</p>
+<p><strong>El test de fase I ya había sido observado.</strong> Sus contrastes y margen son posteriores y exploratorios; el nuevo estudio no cambia esa cronología. El piloto y HPO D7 de fase II no se atribuyen a D14/21/28. Tampoco se comparan directamente métricas de 608 y 60 días para afirmar una ganancia causada por el HPO: cambian el periodo y el régimen.</p>
+</section>
+<section id="literatura-y-limites-cientificos">
+<h2>Literatura y límites científicos<a class="headerlink" href="#literatura-y-limites-cientificos" title="Link to this heading">#</a></h2>
+<p>La bibliografía canónica reúne <strong>60 referencias</strong>. La <a class="reference internal" href="sections/03_estado_arte.html#homogeneous-selection-e1"><span class="std std-ref">síntesis homogénea actual</span></a> concilia 47 identidades documentales y distingue <strong>26 originales completos leídos y una transcripción completa</strong>, fuentes parciales y textos no recuperados. Dentro del núcleo de volatilidad realizada cripto hay <strong>12 estudios</strong>, diez con comparadores básicos extraíbles: <strong>LSTM 10/10, GRU 4/10, MLP 3/10 y TCN 1/10</strong>. El estrato elegible por suficiencia de reporte contiene <strong>ocho estudios</strong>: LSTM 8/8, GRU 2/8, MLP 2/8 y TCN 1/8. N10 es la extracción descriptiva; los denominadores y exclusiones de reporte se publican; no se mezclan precios, dirección, volatilidad implícita o componentes híbridos para aumentar frecuencias.</p>
+<p>La terna <strong>GRU–LSTM–TCN</strong> conserva el experimento registrado: dos reglas de actualización recurrente y una representación convolucional causal sobre la misma entrada D7. La tabla conjunta documenta recetas, parámetros y sesgos inductivos. <strong>MLP es una alternativa más frecuente y más pequeña que TCN en la evidencia disponible</strong>; existe también una receta histórica propia de 593 parámetros. La elección actual prioriza el contraste entre celdas y filtros y no se presenta como las tres primeras del ranking de frecuencia ni como una solución de complejidad mínima global. La guía exige justificar sesgos diferentes, sin imponer tres familias amplias distintas.</p>
+<p>El flujo histórico conserva <strong>244 ocurrencias y 182 grupos provisionales</strong> de cuatro exportaciones. Los 22 casos que requirieron recuperación quedan al corte como <strong>ocho decisiones de exclusión/contexto y 14 informes no obtenidos</strong>. Es una disposición documentada del flujo, sin obligación de comprar esos textos ni afirmación de haberlos leído. Las <a class="reference download internal" download="" href="_downloads/05cbad879f5d9841bb2bd10733e6dc48/README.md"><code class="xref download docutils literal notranslate"><span class="pre">alternativas</span> <span class="pre">de</span> <span class="pre">acceso</span> <span class="pre">gratuito</span></code></a> aportan respaldo por tema y función. El corte anterior de siete estudios y sus frecuencias permanecen como evidencia histórica, separado del corpus conciliado actual.</p>
+<p>La nueva <a class="reference internal" href="sections/03_estado_arte.html#current-native-execution-e1"><span class="std std-ref">bitácora nativa</span></a> conserva las consultas comunicadas y las exportaciones reales: <strong>271 resultados de Web of Science, 538 de Scopus y 32 de IEEE Xplore</strong>. Se distinguen total de resultados, registros exportados y estudios incluidos. Los filtros difieren: Scopus incluye 2019–2026; el exportado WoS contiene años 2017–2026; IEEE muestra acceso abierto e intervalo 2018–2026. Esta ronda acredita la consulta efectiva de las tres bases con su procedencia y alcance, sin atribuirle las cadenas desconocidas de las sesiones históricas ni convertir los resultados en artículos leídos.</p>
+<p>El margen académico δ≈0,00025772843 corresponde al <strong>5 % del RMSE CV del GRU/D7 inicial</strong>. Fue posterior al test de fase I y quedó fijado antes de la evaluación definitiva. Su <a class="reference internal" href="sections/01_problema_dataset.html"><span class="std std-doc">justificación</span></a> lo relaciona con el uso académico confirmado y las escalas de desarrollo: 1,60 DE del RMSE CV entre semillas y 2,64 % de la DE observada de σ₇ en 2024, con sensibilidad al 2,5 % y 10 %. Es una elección normativa documentada; no demuestra utilidad financiera, equivalencia entre modelos o generalización a otros mercados.</p>
+</section>
+<section id="reproducibilidad">
+<h2>Reproducibilidad<a class="headerlink" href="#reproducibilidad" title="Link to this heading">#</a></h2>
+<p>La actualización del 06/11 añade fichas de originales, comparación de familias, contexto académico del margen y curvas públicas de las recetas finales. La <a class="reference internal" href="sections/09_estudio_planificado.html#curvas-finales-reproducidas"><span class="std std-ref">reproducción de curvas</span></a> se registró y publicó antes de sus nuevos ajustes: <strong>465 semillas por familia, 1.395 trayectorias y 2.790 etapas</strong>, sólo con desarrollo 2023–2024. Es una ejecución posterior; no recupera las historias privadas originales ni puntúa de nuevo la reserva. Se publican también las diferencias respecto de los hashes históricos. El baseline, las métricas de evaluación y el margen registrado se conservan. La <a class="reference internal" href="sections/09_estudio_planificado.html#auditoria-numerica-e1"><span class="std std-ref">auditoría numérica posterior</span></a> añade dos ejecuciones independientes de seis celdas fijadas previamente: <strong>18/18 coincidencias canónicas de pérdidas y pesos, con diferencia máxima cero</strong>. Ese control acredita repetibilidad actual del subpanel; la comparación numérica con los archivos originales conserva su limitación de acceso.</p>
+<p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/BUILD.md">BUILD.md</a> distingue los comandos de ambas fases y la restauración desde los ZIP. Las descargas del <a class="reference internal" href="sections/08_entregables.html"><span class="std std-doc">capítulo 8</span></a> reúnen informe, código y evidencia pública. Construir HTML consume resultados guardados y no entrena redes ni abre archivos de mercado. Las observaciones y predicciones individuales, los escaladores y los checkpoints completos se distinguen de los agregados públicos conservados para revisión.</p>
+<p>La reserva de fase II pasa a ser una evaluación conocida una vez publicados sus resultados. Reproducirla no recupera independencia para un futuro modelo diseñado con esa información.</p>
+</section>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="right-next"
+       href="sections/01_problema_dataset.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">1. Definición del Problema y Dataset</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-contiene-el-libro">Qué contiene el libro</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-final-y-evaluacion-d7">Modelo final y evaluación D7</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-de-la-nueva-reserva">Resultados de la nueva reserva</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fase-i-benchmark-exploratorio-conservado">Fase I: benchmark exploratorio conservado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#literatura-y-limites-cientificos">Literatura y límites científicos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducibilidad">Reproducibilidad</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

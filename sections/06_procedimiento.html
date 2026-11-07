@@ -1,0 +1,756 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>6. Guía de Procedimiento por Tipo de Problema &#8212; Bitcoin: pronóstico de volatilidad</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/06_procedimiento';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="7. Limitaciones Inferenciales de Trabajar con Tres Modelos" href="07_limitaciones_entregables.html" />
+    <link rel="prev" title="5. Benchmark de los Modelos Base y Definición del Baseline" href="05_benchmark.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Bitcoin: pronóstico de volatilidad</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_problema_dataset.html">1. Definición del Problema y Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_estado_arte.html">3. Revisión del Estado del Arte y Extracción de los Tres Modelos Base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion_evaluacion.html">4. Implementación y evaluación: diseño y estado de ejecución</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_benchmark.html">5. Benchmark de los Modelos Base y Definición del Baseline</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Guía de Procedimiento por Tipo de Problema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_limitaciones_entregables.html">7. Limitaciones Inferenciales de Trabajar con Tres Modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_entregables.html">8. Entregables: productos y evidencias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_estudio_planificado.html">9. Estudio D7 con piloto, ajuste equitativo y evaluación preespecificada</a></li>
+<li class="toctree-l1"><a class="reference internal" href="protocolo_pendiente.html">Decisiones, revisión y pendientes de E1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias y materiales</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><div class="book-credit">
+  <p class="component-author">By Jassan Arteta</p>
+  <p class="copyright">© Copyright 2026.</p>
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/06_procedimiento.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>6. Guía de Procedimiento por Tipo de Problema</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-de-la-ruta-6-4-de-la-guia-regresion-temporal">6.1. Aplicación de la ruta 6.4 de la guía: regresión temporal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#particion-cronologica-y-origen-movil">6.1.1. Partición cronológica y origen móvil</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ventanas-y-preprocesamiento-causal">6.1.2. Ventanas y preprocesamiento causal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#familias-de-referencia-y-seleccion-documental">6.1.3. Familias de referencia y selección documental</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perdida-y-estrategia-de-pronostico">6.1.4. Pérdida y estrategia de pronóstico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-y-referencias-de-contexto">6.1.5. Métricas y referencias de contexto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inferencia-y-diagnostico-pregunta-unidad-y-estado">6.1.6. Inferencia y diagnóstico: pregunta, unidad y estado</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correspondencia-entre-procedimiento-y-evidencia">6.2. Correspondencia entre procedimiento y evidencia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#secuencia-de-cierre-y-ejecucion-posterior">6.3. Secuencia de cierre y ejecución posterior</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="guia-de-procedimiento-por-tipo-de-problema">
+<h1>6. Guía de Procedimiento por Tipo de Problema<a class="headerlink" href="#guia-de-procedimiento-por-tipo-de-problema" title="Link to this heading">#</a></h1>
+<p><strong>Dos fases del estudio.</strong> Las tablas de cuatro entradas, diez semillas y test enero de 2025–agosto de 2026 de este capítulo corresponden a la <strong>fase I exploratoria</strong>. La <strong>fase II D7</strong> añade búsqueda equitativa, piloto anterior a su ejecución definitiva, dimensionamiento y evaluación preespecificada sobre el 01/09–30/10/2026. Sus recetas, recuentos y resultados se identifican por separado en el <a class="reference internal" href="09_estudio_planificado.html"><span class="std std-doc">capítulo 9</span></a>.</p>
+<p>La formulación actual corresponde al <strong>tipo 4: regresión temporal</strong>, con la ruta del <strong>apartado 6.4 de la guía del Entregable 1</strong>. Las redes reciben ventanas de covariables OHLCV y no rezagos explícitos de la volatilidad objetivo. La clasificación describe el contrato de entrada vigente; el diagnóstico de cuatro referencias Ridge ejecutado en el bloque C encuentra dependencia residual, sin cambiar automáticamente ese contrato. El orden cronológico y la dependencia entre fechas se conservan en la partición y la inferencia.</p>
+<p>La numeración de este capítulo es continua dentro del libro. La referencia 6.4 identifica la ruta de la guía original; no obliga a reproducir las rutas de otras modalidades.</p>
+<p>La guía contiene <strong>once rutas numeradas, de 6.1 a 6.11</strong>. Su lista inicial agrupa etiquetado secuencial y secuencia a secuencia bajo el ítem 10; aquí se conservan esos rótulos sin convertirlos en una nueva enumeración de tipos. Para el contrato vigente se desarrolla únicamente la ruta 6.4:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Ruta de la guía</p></th>
+<th class="head"><p>Tipo de tarea</p></th>
+<th class="head"><p>Aplicabilidad al proyecto</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>6.1</p></td>
+<td><p>Clasificación tabular</p></td>
+<td><p>No: el objetivo es una magnitud continua, sin clases.</p></td>
+</tr>
+<tr class="row-odd"><td><p>6.2</p></td>
+<td><p>Regresión tabular</p></td>
+<td><p>No es la ruta principal: que OHLCV sea numérico no elimina el reloj de información ni permite barajar fechas.</p></td>
+</tr>
+<tr class="row-even"><td><p>6.3</p></td>
+<td><p>Series de tiempo</p></td>
+<td><p>No es la ruta principal mientras no se incluyan rezagos explícitos del objetivo; se revisará si cambia ese contrato.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>6.4</strong></p></td>
+<td><p><strong>Regresión temporal</strong></p></td>
+<td><p><strong>Aplicable: OHLCV rezagadas, salida continua, disponibilidad causal y partición cronológica con embargo.</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>6.5</p></td>
+<td><p>Regresión espacial</p></td>
+<td><p>No hay coordenadas, vecindad o unidades espaciales de predicción.</p></td>
+</tr>
+<tr class="row-odd"><td><p>6.6</p></td>
+<td><p>Regresión espacio-temporal</p></td>
+<td><p>No se predicen ubicaciones ni se construye un tensor o grafo espacial.</p></td>
+</tr>
+<tr class="row-even"><td><p>6.7</p></td>
+<td><p>Clasificación de imágenes</p></td>
+<td><p>Las entradas no son imágenes y no hay clases visuales.</p></td>
+</tr>
+<tr class="row-odd"><td><p>6.8</p></td>
+<td><p>Segmentación de imágenes</p></td>
+<td><p>No existen máscaras ni objetivos por píxel.</p></td>
+</tr>
+<tr class="row-even"><td><p>6.9</p></td>
+<td><p>Clasificación de texto</p></td>
+<td><p>No se incorporan documentos o etiquetas textuales; citar estudios con Twitter no añade esa modalidad.</p></td>
+</tr>
+<tr class="row-odd"><td><p>6.10</p></td>
+<td><p>Etiquetado secuencial</p></td>
+<td><p>No se asigna una etiqueta a cada elemento de la ventana de entrada.</p></td>
+</tr>
+<tr class="row-even"><td><p>6.11</p></td>
+<td><p>Aprendizaje secuencia a secuencia</p></td>
+<td><p>La salida es una volatilidad escalar de un día, no una secuencia de salida.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Usar LSTM o Transformer y una entrada D×5 no cambia por sí solo el tipo de tarea. La clasificación como tipo 4 tampoco afirma independencia o exogeneidad de OHLCV respecto a la volatilidad: los precios intervienen en construir retornos y pueden aportar información sobre volatilidad pasada. La distinción operativa de la guía se aplica a las entradas explícitas registradas.</p>
+<p>El procedimiento principal utiliza validación forward chaining de <code class="docutils literal notranslate"><span class="pre">timeseries-cv</span></code>, con coautoría de Filipe R. Ramos, y las mismas tres redes GRU/LSTM/TCN para D=7/14/21/28. Los doce bloques mensuales de 2024 generan 120 trayectorias primarias y 43.920 predicciones; las cuatro historias se reentrenan y LSTM actúa como control reproducido. El <a class="reference download internal" download="" href="../_downloads/36d74710df2babf37694c1d56ed4cce9/protocols_manifest.json"><span class="xref download myst">registro vigente</span></a> distingue esos ajustes del cierre de 120 checkpoints finales y de la evaluación posterior sobre test ya observado.</p>
+<section id="aplicacion-de-la-ruta-6-4-de-la-guia-regresion-temporal">
+<h2>6.1. Aplicación de la ruta 6.4 de la guía: regresión temporal<a class="headerlink" href="#aplicacion-de-la-ruta-6-4-de-la-guia-regresion-temporal" title="Link to this heading">#</a></h2>
+<section id="particion-cronologica-y-origen-movil">
+<h3>6.1.1. Partición cronológica y origen móvil<a class="headerlink" href="#particion-cronologica-y-origen-movil" title="Link to this heading">#</a></h3>
+<p>Se respeta <strong>entrenamiento &lt; validación &lt; prueba</strong> por disponibilidad de información. La historia inicial es 2023; los orígenes de validación son los días de 2024; el test final comprende 01/01/2025–31/08/2026. Cada entrada termina antes del día de resultado y cada etiqueta usada para ajustar debe estar completamente observada al emitir el pronóstico evaluado.</p>
+<p>En notación de calendario, para el resultado del día d se emite al inicio UTC de d, se usa OHLCV de d−D,…,d−1 y se predice σ7(d), conocida al terminar d. El campo de datos σ7(d) incluye los retornos <span class="math notranslate nohighlight">\(r_{d-6},\ldots,r_d\)</span>; en la convención de la fórmula del curso de §1.1.1, que indexa la volatilidad por el día siguiente al último retorno incluido, es <span class="math notranslate nohighlight">\(Y_d=\sigma_{d+1}=\sigma_7(d)\)</span>. Ambas escrituras identifican la misma etiqueta del día de resultado d. El OHLCV completo de d no es entrada disponible al comenzar d. Origen, día de resultado y disponibilidad de etiqueta se conservan como campos distintos.</p>
+<p>Se mantiene <strong>2023 como entrenamiento inicial, 2024 como validación forward chaining y 2023–2024 para el ajuste final tras cerrar las configuraciones</strong>. El test evaluado comprende enero de 2025–agosto de 2026; septiembre–octubre de 2026 quedó fuera de fase I y no amplía su test. La fase II asigna expresamente el 01/09–30/10/2026 con un protocolo propio.</p>
+<p>Se utiliza la función real <code class="docutils literal notranslate"><span class="pre">split_train_val_forwardChaining(np.arange(731),D,1,1)</span></code> de <code class="docutils literal notranslate"><span class="pre">timeseries-cv</span></code> 0.1.5 para D=7/14/21/28. Sus orígenes diarios se reúnen en <strong>doce bloques mensuales</strong>: cada red, historia y semilla se ajusta al comienzo del mes con índices de la función filtrados por embargo y calidad. Los pesos quedan fijos dentro del mes y cada pronóstico h=1 usa OHLCV hasta el día anterior. La agrupación mensual es una adaptación explícita, no una API nativa ni 366 reajustes.</p>
+<p>Las cohortes crecen con el pasado permitido de 2024. Los manifiestos por historia y las tablas de CV conservan los índices realmente usados. Se reúnen las 366 predicciones por trayectoria para RMSE/R² anual; no se promedian R² de orígenes unitarios. La selección de historia y familia usa ese desarrollo ya expuesto: no es validación anidada independiente de todo el procedimiento.</p>
+<p>La ruta 6.4 exige un <strong>embargo igual al máximo rezago de las covariables</strong>. Para <span class="math notranslate nohighlight">\(X_t=(z_{t-D},\ldots,z_{t-1})^\top\)</span>, los rezagos son de uno a <span class="math notranslate nohighlight">\(D\)</span> días de calendario y se fija <span class="math notranslate nohighlight">\(E_D=D\)</span>. Se define embargo como el número de días de resultado inmediatamente anteriores a <span class="math notranslate nohighlight">\(t\)</span> que se omiten del ajuste: <span class="math notranslate nohighlight">\(t-D,\ldots,t-1\)</span>. Así, los candidatos de entrenamiento deben cumplir <span class="math notranslate nohighlight">\(u\le t-D-1\)</span>, además de tener entradas válidas y etiquetas conocidas al emitir el pronóstico. Esta convención deja verificable la diferencia entre días omitidos y distancia entre dos fechas.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Historia de covariables <span class="math notranslate nohighlight">\(D\)</span></p></th>
+<th class="head"><p>Máximo rezago y embargo <span class="math notranslate nohighlight">\(E_D\)</span></p></th>
+<th class="head"><p>Último día de resultado admisible en el ajuste del origen <span class="math notranslate nohighlight">\(t\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>7 días</p></td>
+<td><p>7 días de calendario omitidos</p></td>
+<td><p><span class="math notranslate nohighlight">\(t-8\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>14 días</p></td>
+<td><p>14 días de calendario omitidos</p></td>
+<td><p><span class="math notranslate nohighlight">\(t-15\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>21 días</p></td>
+<td><p>21 días de calendario omitidos</p></td>
+<td><p><span class="math notranslate nohighlight">\(t-22\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>28 días</p></td>
+<td><p>28 días de calendario omitidos</p></td>
+<td><p><span class="math notranslate nohighlight">\(t-29\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Como ejemplo de frontera para <strong>t=01/01/2024 y D=7</strong>, los resultados de 25–31/12/2023 se omiten del ajuste y el último resultado admisible es 24/12/2023. Las covariables completas de 25–31/12 sí forman la entrada conocida del pronóstico de 01/01. Su etiqueta se conoce al terminar 01/01, al inicio UTC de 02/01. Es una ilustración de índices y disponibilidad, no una corrida nueva ni una decisión de reajuste diario.</p>
+<p><strong>Preparación corregida.</strong> La versión 2 de <code class="docutils literal notranslate"><span class="pre">results/cv_forward_chaining/folds.csv</span></code> aplica esta convención y conserva <strong>5.856 filas: 366 orígenes por cada una de las 16 configuraciones</strong>. El último día de resultado del ajuste es <span class="math notranslate nohighlight">\(t-D-1\)</span> en todas las filas. Se retiró una muestra de ajuste adicional por fila respecto de la versión anterior, que terminaba en <span class="math notranslate nohighlight">\(t-D\)</span> y omitía <span class="math notranslate nohighlight">\(D-1\)</span> días intermedios. Los índices, fechas y hashes se comprobaron mediante una reconstrucción independiente; los CSV de desarrollo y la exclusión del 24/03/2023 permanecen intactos. El <a class="reference download internal" download="" href="../_downloads/e041bc3f860f4aea27552731f1b5d7b1/folds.csv"><span class="xref download myst">manifiesto vigente</span></a> y su <a class="reference download internal" download="" href="../_downloads/4a11caca6e5f3a3341859ca8567c1517/summary.json"><span class="xref download myst">resumen de verificación</span></a> documentan la regla, el hash y los recuentos corregidos. Esta preparación no entrena modelos ni abre archivos de test.</p>
+<p>La historia observable anterior a validación o test puede formar parte de sus entradas, incluidos los días cuyo resultado se omite del ajuste por embargo. Se revisan por separado el soporte temporal y la disponibilidad de entradas y etiquetas. El embargo de covariables no elimina automáticamente el solapamiento entre volatilidades móviles: con la convención actual, si <span class="math notranslate nohighlight">\(n&gt;D+1\)</span>, la última etiqueta de ajuste y la de validación comparten <span class="math notranslate nohighlight">\(n-D-1\)</span> retornos. Esto ocurre en <strong>2.196 filas de seis configuraciones de sensibilidad</strong> del manifiesto; se registra como dependencia, no como consulta del retorno futuro. Esa dependencia debe conservarse en el diseño inferencial. Incorporar una etiqueta pasada de 2024, cuando ya se conoce y cumple los filtros del entrenamiento permitido, es diferente de consultar la etiqueta futura que se evalúa.</p>
+</section>
+<section id="ventanas-y-preprocesamiento-causal">
+<h3>6.1.2. Ventanas y preprocesamiento causal<a class="headerlink" href="#ventanas-y-preprocesamiento-causal" title="Link to this heading">#</a></h3>
+<p>La adquisición es de un minuto y el modelado es <strong>diario UTC</strong>. La CV y el test comparan cinco covariables OHLCV con <strong>D=7/14/21/28 días</strong>, manteniendo la desviación poblacional de <strong>n=7 retornos diarios</strong> y horizonte h=1. Las volatilidades n=14/21/28 son sensibilidad del objetivo explorada en EDA, no objetivos entrenados del benchmark.</p>
+<p>La ruta de regresión temporal requiere estudiar frecuencia, desfases y disponibilidad de covariables, su relación con el objetivo, cambios de régimen y autocorrelación de los errores de una referencia. Los diagnósticos de ACF/PACF y estacionariedad ya presentes en el EDA son información temporal complementaria; no constituyen por sí solos una selección de ventana o un resultado de modelos. La correspondencia de los requisitos específicos y la evidencia debe mantenerse explícita en el capítulo 2.</p>
+<p>El bloque C de la guía exige diagnosticar residuos de una referencia y reconsiderar el planteamiento si queda autocorrelación importante. La sección 2.2 aporta el contrato de disponibilidad, correlaciones cruzadas de las cinco covariables con 28 rezagos sobre las mismas 308 fechas elegibles de 2023, relaciones móviles de 60 días con al menos 50 pares y residuos fuera de entrenamiento de la referencia definida en §6.1.5. Los máximos de correlación y las variaciones móviles son descriptivos: no seleccionan una historia de entrada ni demuestran cambios de régimen.</p>
+<p>Los errores de las cuatro referencias muestran autocorrelación. Las etiquetas consecutivas de volatilidad de siete retornos comparten seis retornos; la especificación lineal y la ausencia de adaptación de esa referencia también limitan la interpretación. Esta evidencia exige conservar la dependencia en la evaluación y revisar la especificación, pero no establece por sí sola que el problema necesite autorregresión del objetivo. Si se introducen rezagos de la volatilidad como entradas, el proyecto pasaría al tipo 3 y habría que actualizar su ruta metodológica.</p>
+<p>La reconsideración se documenta en esta revisión del <strong>3 de noviembre de 2026</strong>: se mantiene el tipo 4 porque continúa el contrato OHLCV sin historia explícita de σ como entrada. Se reconoce la dependencia residual y no se atribuye a una causa única. Si se decide añadir σ rezagada, antes de ejecutarlo se versionarán entrada, formulación, disponibilidad, partición y comparación bajo la ruta 6.3; el diagnóstico actual no demuestra que ese cambio sea necesario ni que ya haya ocurrido.</p>
+<p>La representación principal <code class="docutils literal notranslate"><span class="pre">relative_window</span></code> resta a los cuatro logaritmos OHLC el logaritmo del último cierre de la propia ventana, conocido en d−1; conserva log1p del volumen y aprende escalas con posiciones de ventanas de entrenamiento. El objetivo se divide por su media positiva de entrenamiento y se invierte para evaluar; no se transfieren estadísticas ni PCA globales del EDA.</p>
+<p>En la parada interna del origen t, el bloque de validación termina como máximo en t−D−1. Si v es su primer resultado, el subentrenamiento usa u≤v−D−1. Escaladores y escala de Y se ajustan <strong>solo al subentrenamiento</strong>; la cohorte interna reciente de 90 días deja <strong>90−D etiquetas</strong>, es decir 83/76/69/62. Después de elegir duración se descartan los pesos internos y se reajusta una red nueva con todo el entrenamiento mensual permitido. La etapa final toma la duración ya seleccionada en el último corte de CV, usa desarrollo permitido y congela sus pesos antes de abrir test.</p>
+<p>Si las métricas de 2024 intervienen en elegir hiperparámetros o D, son <strong>resultados de selección</strong>. Una evaluación externa de todo el procedimiento requeriría selección anidada en el pasado de cada origen; una parada causal por sí sola no corrige la selección hecha con todo ese año. La evaluación histórica no elige reglas después de puntuar los nuevos checkpoints. El periodo ya observado conserva alcance exploratorio.</p>
+<p>La política vigente preserva los ZIP y el calendario completo: un día sin 1.440 minutos elegibles queda ausente, no se calculan retornos a través de huecos y se excluyen ventanas afectadas. Los 80 minutos ausentes y la fila de cierre no estándar del 24/03/2023 permanecen documentados. En esta revisión no se introduce una recuperación de otra granularidad ni una imputación nueva.</p>
+</section>
+<section id="familias-de-referencia-y-seleccion-documental">
+<h3>6.1.3. Familias de referencia y selección documental<a class="headerlink" href="#familias-de-referencia-y-seleccion-documental" title="Link to this heading">#</a></h3>
+<p>La terna vigente es <strong>GRU–LSTM–TCN</strong>. Su selección se documenta con publicaciones y manuscritos leídos y con el papel real de cada modelo. Akbiyik et al. (2023) compara las tres arquitecturas como referencias independientes de volatilidad de Bitcoin; Miura et al. (2019) añade evidencia directa para GRU y LSTM <span class="bibtex-citation" id="id1">[<a class="reference internal" href="referencias.html#id7" title="M. Eren Akbiyik, Mert Erkul, Killian Kämpf, Vaiva Vasiliauskaite, and Nino Antulov-Fantulin. Ask “Who”, Not “What”: Bitcoin Volatility Forecasting with Twitter Data. In Proceedings of the Sixteenth ACM International Conference on Web Search and Data Mining (WSDM ’23). 2023. URL: https://doi.org/10.1145/3539597.3570387, doi:10.1145/3539597.3570387.">Akbiyik <em>et al.</em>, 2023</a>, <a class="reference internal" href="referencias.html#id5" title="Ryotaro Miura, Lukáš Pichl, and Taisei Kaizoji. Artificial Neural Networks for Realized Volatility Prediction in Cryptocurrency Time Series. In Advances in Neural Networks – ISNN 2019, volume 11554 of Lecture Notes in Computer Science, 165–172. Springer, 2019. URL: https://doi.org/10.1007/978-3-030-22796-8_18, doi:10.1007/978-3-030-22796-8_18.">Miura <em>et al.</em>, 2019</a>]</span>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo base</p></th>
+<th class="head"><p>Receta compacta ejecutada</p></th>
+<th class="head"><p>Sesgo y alcance</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>GRU</strong></p></td>
+<td><p>Una capa unidireccional de 32 unidades, estado final, dropout 0,1 y salida Softplus; LR 0,003; <strong>3.777 parámetros</strong></p></td>
+<td><p>Compuertas de actualización y reinicio; memoria integrada en el estado.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>LSTM</strong></p></td>
+<td><p>Una capa unidireccional de 32 unidades, estado final, dropout 0,1 y Softplus; LR 0,003; <strong>5.025 parámetros</strong></p></td>
+<td><p>Celda de memoria separada y compuertas de entrada, olvido y salida.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>TCN</strong></p></td>
+<td><p>Tres bloques residuales, dos convoluciones causales por bloque, kernel 3, ancho 16 y dilataciones 1/2/4; lectura del último instante y Softplus; LR 0,001; <strong>4.289 parámetros</strong></p></td>
+<td><p>Convoluciones causales dilatadas; campo receptivo de <strong>29 días</strong>, que cubre las cuatro ventanas sin cambiar su profundidad.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Las <a class="reference download internal" download="" href="../_downloads/18ee2d7d67ea4eaa04ace2a04367f315/model_specs.json"><span class="xref download myst">especificaciones</span></a> distinguen las recetas propias de las redes de los artículos. No se afirma réplica exacta. Las frecuencias estrictas son GRU 3/7, LSTM 5/7 y TCN 1/7 dentro del corpus completo; no todos esos registros son artículos de revista indexados. La recurrencia de TCN requiere fortalecerse. GRU y LSTM pertenecen a la misma familia recurrente: sus diferencias de compuertas, memoria, capacidad y costo deben sostener la justificación de no redundancia; una frecuencia o una métrica favorable no la resuelve por sí sola.</p>
+<p>Las tres redes usan las mismas covariables, etiquetas, orígenes, semillas y presupuesto de entrenamiento. No se añaden rezagos del objetivo o metadatos a una familia para mejorar su resultado. Los hiperparámetros se mantienen fijos al comparar D; no se ejecuta otra búsqueda después de ver test.</p>
+</section>
+<section id="perdida-y-estrategia-de-pronostico">
+<h3>6.1.4. Pérdida y estrategia de pronóstico<a class="headerlink" href="#perdida-y-estrategia-de-pronostico" title="Link to this heading">#</a></h3>
+<p>La pérdida es <strong>MSE</strong> y la métrica principal <strong>RMSE</strong>. El objetivo se divide por su media positiva de entrenamiento y todas las métricas se calculan tras invertir la escala. La salida Softplus conserva volatilidad no negativa. La ruta 6.4 permite otras pérdidas, pero no obliga a probarlas: Huber o MAE necesitarían un procedimiento nuevo, declarado antes de su evaluación.</p>
+<p>Cada salida es una magnitud escalar de horizonte <strong>h=1</strong>. El pronóstico se emite al inicio del día d con OHLCV hasta d−1 y su etiqueta se observa al cierre. La etiqueta σ₇ comparte seis retornos con la del día previo; no representa siete días enteramente futuros. El ejemplo sintético 4/3/2 de la librería CV no modifica ese contrato.</p>
+</section>
+<section id="metricas-y-referencias-de-contexto">
+<h3>6.1.5. Métricas y referencias de contexto<a class="headerlink" href="#metricas-y-referencias-de-contexto" title="Link to this heading">#</a></h3>
+<p>Las <a class="reference download internal" download="" href="../_downloads/260df7ff8d87642d4959a355c1206400/metric_summary_cv.csv"><span class="xref download myst">tablas de CV</span></a> y <a class="reference download internal" download="" href="../_downloads/1f26186862a98dbe0b5db16c283d802e/metric_summary_test.csv"><span class="xref download myst">test histórico</span></a> contienen RMSE, MAE, MSE, R², MAPE y MASE por historia y modelo, con media, DE, cobertura e IC. RMSE y R² se calculan sobre las fechas de cada trayectoria y después se resumen sus diez semillas; no son métricas de un ensemble ni medias de R² por origen unitario.</p>
+<p>MAPE admite etiquetas estrictamente positivas, sin epsilon oculto, e informa cobertura. MASE conserva una escala de diferencias de un día de calendario estimada únicamente con entrenamiento permitido. En CV puede cambiar por origen; se promedian errores escalados, sin reemplazarlos por una MAE dividida por una escala elegida después. Una escala nula o sin pares suficientes produce un valor no definido.</p>
+<p>Persistencia es una referencia determinista adicional, no uno de los tres puestos DL. Para σ₇ previa requiere ocho cierres; esa información se distingue de D=7 OHLCV. En CV su RMSE es menor que el de GRU; en test GRU tiene menor RMSE, pero persistencia mantiene mejores MAE y MAPE. No se concluye superioridad en todas las métricas.</p>
+<p>La ruta 6.4 conserva también las <strong>cuatro Ridge diagnósticas del EDA</strong>, con intercepto libre y penalización fija α=1, ajustadas una vez con entrenamiento admisible de 2023. Sus 1.464 predicciones y residuos de 2024 se documentan en el <a class="reference download internal" download="" href="../_downloads/9ef165cfa20e8dbdfee9faf1cce6d437/summary.json"><span class="xref download myst">resumen de la referencia temporal</span></a>. No se convierten en un cuarto modelo DL de test ni seleccionan la ventana de las redes.</p>
+<p>El baseline neuronal de fase I es <strong>GRU/D7</strong>, elegido con la media de RMSE de CV antes de acceder al contenido del test en este ciclo. El <a class="reference download internal" download="" href="../_downloads/8cb0de6e4f53d56251ec7e4b4abfb5ad/selected_by_cv.json"><span class="xref download myst">registro de selección</span></a> conserva esa decisión y las cuatro historias. El ranking de test no la reabre.</p>
+<p>Para una propuesta avanzada futura se define, <strong>después del test actual</strong>, una convención académica: superar el 5 % de reducción relativa de RMSE frente a GRU/D7 y persistencia, con incertidumbre y multiplicidad. El ancla neuronal CV da δ≈0,00025772842665. El <a class="reference download internal" download="" href="../_downloads/c3b010d7cc228902773db95f5eecef8d/future_margin.json"><span class="xref download myst">margen futuro</span></a> identifica su fecha y alcance. No es una tolerancia financiera validada ni un parámetro previo a los resultados actuales. Se requiere piloto y evaluación independiente propios de esa propuesta.</p>
+</section>
+<section id="inferencia-y-diagnostico-pregunta-unidad-y-estado">
+<h3>6.1.6. Inferencia y diagnóstico: pregunta, unidad y estado<a class="headerlink" href="#inferencia-y-diagnostico-pregunta-unidad-y-estado" title="Link to this heading">#</a></h3>
+<p>La comparación <strong>entre GRU, LSTM y TCN de fase I</strong> se calcula sobre predicciones guardadas y se declara <strong>post-hoc/exploratoria</strong>. La fase II D7 fija sus contrastes antes de otra evaluación y se documenta de forma separada en el <a class="reference internal" href="09_estudio_planificado.html"><span class="std std-doc">capítulo 9</span></a>. La configuración de las redes y la elección de D se cerraron antes de puntuar este ciclo; el periodo de test ya era conocido y los contrastes actuales no son confirmación temporal independiente.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Pregunta</p></th>
+<th class="head"><p>Unidad y alcance</p></th>
+<th class="head"><p>Evidencia vigente</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Diferencia de RMSE entre las tres recetas D7</p></td>
+<td><p>Diez diferencias pareadas por semilla, t bilateral, IC y corrección Holm para los tres pares por fase</p></td>
+<td><p><a class="reference download internal" download="" href="../_downloads/29495c8bbf41642e12bd96da2b9eb752/within_trio_pairs_cv.csv"><span class="xref download myst">Pares CV</span></a> y <a class="reference download internal" download="" href="../_downloads/6023f334211ed3be3cafe536d128c2dd/within_trio_pairs_test.csv"><span class="xref download myst">pares test</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Sensibilidad a las cuatro entradas</p></td>
+<td><p>Doce pares por fase; multiplicidad propia, sin convertir D o semillas en otros mercados</p></td>
+<td><p><a class="reference download internal" download="" href="../_downloads/579d0b84b36b4b2524129425680e84ea/within_trio_pairs_allD_cv.csv"><span class="xref download myst">Familia completa CV</span></a> y <a class="reference download internal" download="" href="../_downloads/b1e09de36b7133b05ccc52977f752002/within_trio_pairs_allD_test.csv"><span class="xref download myst">test</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>Precisión predictiva temporal</p></td>
+<td><p>Diferencias por fecha de pérdidas cuadradas medias entre semillas, HAC y corrección HLN, h=1</p></td>
+<td><p><a class="reference download internal" download="" href="../_downloads/0f1d4df3f356be6f7f627c4e3e3d8122/dm_pairs_cv.csv"><span class="xref download myst">Diebold–Mariano CV</span></a> y <a class="reference download internal" download="" href="../_downloads/1a218baa71195cc3edf1348d0cded5ae/dm_pairs_test.csv"><span class="xref download myst">test</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Independencia de los residuos</p></td>
+<td><p>BDS por bloque y semilla, con dimensiones, radio, multiplicidad y estados no definidos documentados</p></td>
+<td><p><a class="reference download internal" download="" href="../_downloads/97f08092d584255c687d6db0264d969c/bds_by_fold_cv.csv"><span class="xref download myst">BDS CV</span></a> y <a class="reference download internal" download="" href="../_downloads/50b9595a2fdecb0fa67f01f5ef930d1b/bds_by_fold_test.csv"><span class="xref download myst">test</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>Autocorrelación remanente</p></td>
+<td><p>Ljung–Box por bloque, con rezagos y grados de libertad documentados</p></td>
+<td><p><a class="reference download internal" download="" href="../_downloads/0e28bb1d6fe68aee98a4db647245a842/ljung_box_by_fold_cv.csv"><span class="xref download myst">Ljung–Box CV</span></a> y <a class="reference download internal" download="" href="../_downloads/cb816ede1f8edc39126dd343e6d4194a/ljung_box_by_fold_test.csv"><span class="xref download myst">test</span></a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La t entre semillas estudia variación del entrenamiento bajo el calendario fijo. DM estudia pérdidas en fechas correlacionadas. Sus p-valores responden preguntas distintas y no son corroboraciones independientes. Se conservan la normalidad como diagnóstico, el tamaño de efecto y los intervalos; no se cambia el contraste para obtener el resultado más favorable.</p>
+<p>BDS rechaza i.i.d., no exclusivamente ausencia de no linealidad aprovechable. Los meses tienen entre 28 y 31 fechas y las etiquetas se solapan: sus referencias asintóticas son aproximadas. La media de p-valores BDS se presenta solo como descripción. Ljung–Box no resta el número de pesos de una red como si fueran parámetros ARMA. Las reglas exactas y la fecha posterior del análisis constan en el <a class="reference download internal" download="" href="../_downloads/cb347cfce2acc6620ccbb32a7b86c752/public_analysis_plan.json"><span class="xref download myst">plan público</span></a>.</p>
+<p>No se afirma equivalencia. TOST/ROPE y una banda definida antes de sus cálculos solo serían necesarios para sostener esa afirmación. La ausencia de significación no significa igualdad. Tampoco el número de semillas o una corrección de multiplicidad acreditan potencia 0,80 o generalización a otra trayectoria de mercado.</p>
+</section>
+</section>
+<section id="correspondencia-entre-procedimiento-y-evidencia">
+<h2>6.2. Correspondencia entre procedimiento y evidencia<a class="headerlink" href="#correspondencia-entre-procedimiento-y-evidencia" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Componente</p></th>
+<th class="head"><p>Evidencia vigente</p></th>
+<th class="head"><p>Límite</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Tipo, frecuencia y entrada</p></td>
+<td><p>Tipo 4; OHLCV diaria UTC desde fuente de un minuto; D=7/14/21/28</p></td>
+<td><p>No se entrenan redes a frecuencia de un minuto ni se añaden rezagos explícitos del objetivo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Objetivo</p></td>
+<td><p>σ₇ poblacional, ddof0, sin anualizar; h=1</p></td>
+<td><p>n=14/21/28 son sensibilidad de EDA, no objetivos del benchmark.</p></td>
+</tr>
+<tr class="row-even"><td><p>CV de Filipe</p></td>
+<td><p>Doce bloques mensuales de 2024 y entrenamiento creciente con u≤origen−D−1</p></td>
+<td><p>Desarrollo previamente expuesto; no validación anidada de toda la selección.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ejecución nueva</p></td>
+<td><p>120 trayectorias, 1.440 segmentos, 2.880 ajustes y 43.920 predicciones</p></td>
+<td><p>Las 40 trayectorias LSTM se reentrenan y reproducen 14.640 predicciones; no son otra serie.</p></td>
+</tr>
+<tr class="row-even"><td><p>Cierre final</p></td>
+<td><p>80 ajustes GRU/TCN nuevos y 40 LSTM idénticos reutilizados; 120 checkpoints firmados</p></td>
+<td><p>La reutilización no se presenta como entrenamiento nuevo o costo intrínseco cero.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Test histórico</p></td>
+<td><p>608 fechas y 72.960 predicciones; 80 inferencias nuevas y 40 trayectorias reutilizadas</p></td>
+<td><p>Periodo ya observado; 20 intervalos de reporte, sin reajustes o selección en test.</p></td>
+</tr>
+<tr class="row-even"><td><p>Selección</p></td>
+<td><p>GRU/D7 por RMSE media CV</p></td>
+<td><p>No se elige otra ventana por el resultado de test.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Inferencia entre la terna</p></td>
+<td><p>Tres pares D7 por fase y sensibilidad de doce pares, con Holm</p></td>
+<td><p>Análisis posterior; incertidumbre condicional a fechas y recetas.</p></td>
+</tr>
+<tr class="row-even"><td><p>Piloto y potencia</p></td>
+<td><p>Fase I: diez semillas como presupuesto. Fase II D7: piloto y R=465 calculado antes de sus ajustes definitivos</p></td>
+<td><p>Potencia marginal de planificación entre semillas, condicionada a supuestos; no potencia temporal o conjunta.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Literatura</p></td>
+<td><p>Referencias independientes GRU 3/7, LSTM 5/7 y TCN 1/7</p></td>
+<td><p>Fortalecer recurrencia TCN y justificar las diferencias entre las recurrentes.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los <a class="reference download internal" download="" href="../_downloads/36d74710df2babf37694c1d56ed4cce9/protocols_manifest.json"><span class="xref download myst">manifiestos de procedencia</span></a>, <a class="reference download internal" download="" href="../_downloads/2e40a4c9d1ec05d082b1018c251a6cb6/configuration_catalog_cv.csv"><span class="xref download myst">catálogo CV</span></a> y <a class="reference download internal" download="" href="../_downloads/16a739389054cccc347649497206d6e8/configuration_catalog_final.csv"><span class="xref download myst">catálogo final</span></a> permiten seguir las fases sin volver a entrenar.</p>
+</section>
+<section id="secuencia-de-cierre-y-ejecucion-posterior">
+<h2>6.3. Secuencia de cierre y ejecución posterior<a class="headerlink" href="#secuencia-de-cierre-y-ejecucion-posterior" title="Link to this heading">#</a></h2>
+<p>El registro de noviembre de 2026 es posterior a los periodos de mercado. Son resultados de un <strong>backtest histórico</strong>, no pronósticos emitidos en vivo en 2025–2026.</p>
+<ol class="arabic simple">
+<li><p>Se congelaron código, recetas, datos de desarrollo, cuatro entradas, diez semillas e índices de Filipe antes de ajustar la nueva terna.</p></li>
+<li><p>Se completaron las 120 trayectorias de CV y se comprobó la identidad de LSTM con su control. Todas las recetas e historias permanecen reportadas.</p></li>
+<li><p>Se seleccionó D=7 por familia y GRU/D7 como baseline por la media de RMSE de desarrollo; se cerraron las épocas finales a partir del corte de diciembre de 2024.</p></li>
+<li><p>Se realizaron 80 ajustes finales nuevos y se verificaron 40 checkpoints LSTM idénticos. El manifiesto de 120 pesos y escaladores precede al acceso de este ciclo al contenido del test.</p></li>
+<li><p>Se usó el derivado diario ya auditado, con 608 fechas y sin abrir ZIP crudos. Hubo 80 inferencias nuevas y reutilización firmada de 40 trayectorias LSTM; no se incorporó septiembre–octubre de 2026.</p></li>
+<li><p>Se publican los análisis agregados y los contrastes dentro de la terna como <strong>posteriores a la evaluación y exploratorios</strong>. No se reabren las configuraciones para mejorar el test.</p></li>
+</ol>
+<p>El <a class="reference internal" href="09_estudio_planificado.html"><span class="std std-doc">capítulo 9</span></a> documenta el cierre de piloto, dimensionamiento y HPO para una nueva comparación D7. Permanecen el refuerzo bibliográfico y los límites temporales de sesenta fechas. Si se diseña otro modelo con estos resultados, deberá reservar datos no utilizados para desarrollarlo y registrar sus decisiones antes de evaluarlo. La guía E1 anuncia desarrollos posteriores, pero no permite inventar los requisitos completos de documentos E2/E3 que no se han aportado.</p>
+<p><strong>Nueva fase D7 con procedimiento registrado.</strong> El <a class="reference internal" href="09_estudio_planificado.html"><span class="std std-doc">capítulo 9</span></a> reúne el diseño público previo, la rejilla equitativa de ocho candidatos por familia, el piloto de 60 días, el cálculo de R y los resultados sobre el 01/09–30/10/2026. Esa fase mantiene n=7/h=1 y covariables OHLCV, con D7 fijo. Los resultados de fase I y sus limitaciones permanecen identificados; la potencia planificada entre semillas no representa potencia temporal ni confirma otros mercados.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="05_benchmark.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">5. Benchmark de los Modelos Base y Definición del Baseline</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="07_limitaciones_entregables.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">7. Limitaciones Inferenciales de Trabajar con Tres Modelos</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-de-la-ruta-6-4-de-la-guia-regresion-temporal">6.1. Aplicación de la ruta 6.4 de la guía: regresión temporal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#particion-cronologica-y-origen-movil">6.1.1. Partición cronológica y origen móvil</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ventanas-y-preprocesamiento-causal">6.1.2. Ventanas y preprocesamiento causal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#familias-de-referencia-y-seleccion-documental">6.1.3. Familias de referencia y selección documental</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perdida-y-estrategia-de-pronostico">6.1.4. Pérdida y estrategia de pronóstico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-y-referencias-de-contexto">6.1.5. Métricas y referencias de contexto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inferencia-y-diagnostico-pregunta-unidad-y-estado">6.1.6. Inferencia y diagnóstico: pregunta, unidad y estado</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correspondencia-entre-procedimiento-y-evidencia">6.2. Correspondencia entre procedimiento y evidencia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#secuencia-de-cierre-y-ejecucion-posterior">6.3. Secuencia de cierre y ejecución posterior</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

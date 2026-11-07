@@ -1,0 +1,8 @@
+family,variant_details,verified_full_text_studies,count,denominator,proportion,supplementary_author_code,eligible_for_final_trio
+LSTM,Unidirectional S1/S5/S7; BiLSTM S2; variants retained,S1;S2;S5;S7,4,5,0.8,"S3 author code, not counted",Candidate; compare source configurations and preserve variants
+GRU,Standalone GRU in S1/S2,S1;S2,2,5,0.4,,Candidate; no automatic exclusion for sharing recurrence with LSTM
+TCN,Single-branch causal dilated baseline S1; not a shallow generic CNN1D,S1,1,5,0.2,,Candidate; published winner large; no claim of minimum complexity
+Transformer encoder,S2 encoder comparator and S6 pure-OHLCV Model1; not nine studies,S2;S6,2,5,0.4,,Candidate; both supporting studies grey; S6 date/configuration incomplete
+MLP no lineal,No independent nonlinear MLP verified; S7 Dense16 is a head inside LSTM,,0,5,0.0,,Not verified as independent baseline in this cohort
+CNN1D simple,Do not equate with TCN or CNN-LSTM hybrid,,0,5,0.0,,Not verified as independent baseline in this cohort
+Fully-connected lineal,"S5 Flatten->Dense1, no nonlinear hidden layer",S5,1,5,0.2,,Context only; not a DL baseline slot

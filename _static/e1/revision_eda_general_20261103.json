@@ -1,0 +1,141 @@
+{
+  "review_date": "2026-11-03",
+  "scope": "Section2.1 EDA general, including applicability to temporal regression and development-only analysis.",
+  "admitted_problem_type": 4,
+  "development_period": "2023-01-01 through 2024-12-31 UTC",
+  "primary_volatility_days": 7,
+  "items": [
+    {
+      "id": "EDA01",
+      "requirement": "Distribución del objetivo",
+      "status": "Ejecutado",
+      "evidence": "Ocho perfiles año–ventana; histogramas/ECDF, cuantiles y cola empírica de n=7.",
+      "limit": "No mezclar n=7/14/21/28 como si fueran la misma etiqueta."
+    },
+    {
+      "id": "EDA02",
+      "requirement": "Desbalance y entropía de clases",
+      "status": "No aplicable",
+      "evidence": "El objetivo es continuo; no hay clases ni etiquetas categóricas.",
+      "limit": "Las cuatro ventanas de volatilidad no son cuatro clases."
+    },
+    {
+      "id": "EDA03",
+      "requirement": "Clases raras, asimetría y curtosis",
+      "status": "Adaptado a regresión",
+      "evidence": "Asimetría/curtosis y regla 1,5 IQR de 2023:3/350 frente 14/366 en 2024 para n=7.",
+      "limit": "Las marcas de cola no son errores confirmados ni motivo de eliminación automática."
+    },
+    {
+      "id": "EDA04",
+      "requirement": "Implicación sobre pérdidas y métricas",
+      "status": "Documentado",
+      "evidence": "Se conservan MSE/RMSE; ceros de MAPE y escala original definidos.",
+      "limit": "La distribución de Y no es una medición de residuos; nuevas pérdidas requerirían protocolo propio."
+    },
+    {
+      "id": "EDA05",
+      "requirement": "Faltantes y mecanismo con evidencia",
+      "status": "Caracterizado; mecanismo no identificable",
+      "evidence": "80 minutos ausentes y un cierre temporal no elegible; un día excluido y propagación a retornos/etiquetas/ventanas.",
+      "limit": "Un episodio no identifica MCAR/MAR/MNAR; no se atribuye causa sin fuente independiente."
+    },
+    {
+      "id": "EDA06",
+      "requirement": "Corrupción y rangos semánticos",
+      "status": "Ejecutado",
+      "evidence": "Controles originales de un minuto y auditoría diaria de OHLCV;730 días completos sin incoherencias detectadas.",
+      "limit": "No equivale a verificar la exactitud de los precios frente a una fuente externa."
+    },
+    {
+      "id": "EDA07",
+      "requirement": "Duplicados exactos y casi duplicados",
+      "status": "Adaptado y ejecutado",
+      "evidence": "Unicidad de fechas y filas OHLCV completas; cero duplicados detectados en derivados.",
+      "limit": "Precios repetidos o ventanas solapadas no son duplicados erróneos; hashing perceptual no aplica."
+    },
+    {
+      "id": "EDA08",
+      "requirement": "Ruido de etiquetas",
+      "status": "Consistencia verificada; ruido externo no estimado",
+      "evidence": "2.924 posiciones comprobadas,2.780 etiquetas válidas reconstruidas, cero discrepancias de elegibilidad, máxima diferencia 1,027 e-15.",
+      "limit": "No estima error del proveedor ni incertidumbre del proxy; acuerdo entre anotadores no aplica al cálculo automático."
+    },
+    {
+      "id": "EDA09",
+      "requirement": "Sesgo de representación",
+      "status": "Documentado",
+      "evidence": "Un activo, Binance Spot y cotizaciónUSDT; no representa todos los mercados.",
+      "limit": "No se crean subpoblaciones o clases artificiales para aparentar balance."
+    },
+    {
+      "id": "EDA10",
+      "requirement": "Sesgos temporales y espaciales",
+      "status": "Temporal ejecutado; espacial no aplicable",
+      "evidence": "Comparación 2023/24, perfiles móviles y diagnósticos temporales; no hay coordenadas espaciales.",
+      "limit": "Cambios descriptivos no atribuyen causas económicas ni rupturas confirmadas."
+    },
+    {
+      "id": "EDA11",
+      "requirement": "Sesgos semánticos o de dominio",
+      "status": "Adaptado al dominio financiero",
+      "evidence": "Fuente/mercado/cotización únicos; USDT y USD no se tratan como idénticos.",
+      "limit": "NLP, imágenes y sensores no forman parte del contrato."
+    },
+    {
+      "id": "EDA12",
+      "requirement": "Atajos y correlaciones espurias",
+      "status": "Documentado con evidencia",
+      "evidence": "Correlaciones causales, redundancia OHLC/PCA y posible señal de régimen de los niveles de precio.",
+      "limit": "No demuestra causalidad ni anticipación del retorno desconocido; OHLCV del día de resultado no es entrada."
+    },
+    {
+      "id": "EDA13",
+      "requirement": "Prueba de desplazamiento",
+      "status": "Diagnóstico marginal condicional ejecutado",
+      "evidence": "Seis distanciasKS;2.000 permutaciones por 14/28 días, semilla 42, Holm 12.",
+      "limit": "Condicionado a intercambiabilidad de bloques completos dadas partes fijas; no prueba exacta, conjunta, de todos los rezagos ni de test."
+    },
+    {
+      "id": "EDA14",
+      "requirement": "Implicaciones de sesgos y desplazamiento",
+      "status": "Documentado por análisis",
+      "evidence": "Escalas solo con pasado, calendario cronológico y comparación de referencias simples antes de aumentar capacidad.",
+      "limit": "No igualar distribuciones artificialmente ni seleccionar modelo/ventana/pérdida por estos p-values."
+    },
+    {
+      "id": "EDA15",
+      "requirement": "Conjuntos, proporciones y semilla",
+      "status": "Documentado",
+      "evidence": "365/366/608 días sobre 1.339 asignados:27,26/27,33/45,41%;60 días adquiridos no asignados fuera denominador.",
+      "limit": "Son proporciones de calendario, no muestras; división determinista sin semilla de barajado."
+    },
+    {
+      "id": "EDA16",
+      "requirement": "Partición según dependencia",
+      "status": "Aplicado en preparación",
+      "evidence": "EmbargoD, u≤t-D-1,5.856 registros de índices; fechas, semillas y bloques diferenciados.",
+      "limit": "Índices no son entrenamientos ni observaciones independientes."
+    },
+    {
+      "id": "EDA17",
+      "requirement": "Distribuciones entre particiones",
+      "status": "Desarrollo comparado; test reservado",
+      "evidence": "Perfil causal 350/366 casos y seis marginales 2023/24; no se consultótest para diseñar preprocesamiento.",
+      "limit": "No rechazo no demuestra igualdad; test no se analiza antes de fijar decisiones."
+    },
+    {
+      "id": "EDA18",
+      "requirement": "Congelar y proteger test",
+      "status": "Reserva bruta documentada; supervisado pendiente",
+      "evidence": "20 ZIPyhashes seleccionados del manifiesto existente;0 archivos test abiertos en esta ampliación.",
+      "limit": "Faltan manifiesto supervisado, máscaras y protocolo experimental definitivo de E2."
+    }
+  ],
+  "quality_summary": "results/eda_general_quality/summary.json",
+  "quality_script_sha256": "9143ebd645a6878de567a8c11ec210ec06ac31c8f14148ee0518026397a3bead",
+  "shift_summary": "results/eda_general_shift/summary.json",
+  "shift_script_sha256": "f1ccd659ae1877a946b0179bfef153daa228e7727ce8c53125d8b869567cc3e8",
+  "own_predictive_models_fitted": 0,
+  "test_files_opened": 0
+}

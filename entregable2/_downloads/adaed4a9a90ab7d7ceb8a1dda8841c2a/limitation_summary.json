@@ -1,0 +1,855 @@
+{
+  "state": "executed_pilot_conditional_on_learned_weights",
+  "calendar_length": 2785,
+  "query_origins": 512,
+  "training_seeds": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
+  ],
+  "no_new_independent_market_series": true,
+  "calendar_input_used_only_in_external_ETTh1_task": true,
+  "BTC_D7_omits_calendar_so_this_bug_is_not_automatically_a_BTC_limitation": true,
+  "simple_marker_correction_is_not_an_original_E3_architecture": true,
+  "bootstrap": {
+    "unit": "hourly forecast origin; retain complete horizons/channels and paired seed trajectories",
+    "method": "circular moving-block bootstrap on the original dense hourly calendar",
+    "primary_block_hours": 192,
+    "sensitivity_blocks_hours": [
+      96,
+      384
+    ],
+    "draws": 4999,
+    "seed": 20261106,
+    "seeds_resampled_as_markets": false,
+    "assumptions_and_limits": "Approximate weak temporal dependence; finite roughly14.5 primary blocks; no exact coverage claim under distribution shift",
+    "sparse_query_calendar_not_compressed": true
+  },
+  "by_block": {
+    "192": {
+      "L1_batch_sensitivity": [
+        {
+          "comparison": "TimeMixer batch sensitivity",
+          "model": "TimeMixer",
+          "effect": 0.041587683442497,
+          "ci95": [
+            0.0356541064612511,
+            0.04834153193306242
+          ],
+          "p_one_sided_unadjusted": 0.0002,
+          "null_boundary": 1e-05,
+          "finite_bootstrap_draws": 4999,
+          "interval_kind": "nominal percentile interval; not a simultaneous-family interval",
+          "per_seed_sensitivity": [
+            0.044681759203267835,
+            0.04042082625400388,
+            0.02648931794706704,
+            0.036948043381222144,
+            0.059398470426924095
+          ],
+          "p_one_sided_Holm_family3": 0.0006000000000000001
+        },
+        {
+          "comparison": "iTransformer batch sensitivity",
+          "model": "iTransformer",
+          "effect": 4.1249811168936074e-08,
+          "ci95": [
+            3.764328949582993e-08,
+            4.4821045468325806e-08
+          ],
+          "p_one_sided_unadjusted": 1.0,
+          "null_boundary": 1e-05,
+          "finite_bootstrap_draws": 4999,
+          "interval_kind": "nominal percentile interval; not a simultaneous-family interval",
+          "per_seed_sensitivity": [
+            4.1878951523564136e-08,
+            4.0242334417176344e-08,
+            4.084066469139153e-08,
+            4.164621511141117e-08,
+            4.164089010113717e-08
+          ]
+        },
+        {
+          "comparison": "PatchTST batch sensitivity",
+          "model": "PatchTST",
+          "effect": 1.99242559720655e-08,
+          "ci95": [
+            1.7598916049036098e-08,
+            2.240319602594058e-08
+          ],
+          "p_one_sided_unadjusted": 1.0,
+          "null_boundary": 1e-05,
+          "finite_bootstrap_draws": 4999,
+          "interval_kind": "nominal percentile interval; not a simultaneous-family interval",
+          "per_seed_sensitivity": [
+            2.0166089327522926e-08,
+            1.9505452745046825e-08,
+            2.0022185306548375e-08,
+            2.0132187134300867e-08,
+            1.979536534690851e-08
+          ]
+        }
+      ],
+      "L1_paired_control_contrasts": [
+        {
+          "comparison": "TimeMixer minus iTransformer",
+          "effect": 0.04158764219268583,
+          "ci95": [
+            0.035654066965111426,
+            0.04834149032803516
+          ],
+          "p_one_sided_unadjusted": 0.0002,
+          "null_boundary": 0.0,
+          "finite_bootstrap_draws": 4999,
+          "interval_kind": "nominal percentile interval; not a simultaneous-family interval",
+          "p_one_sided_Holm_family3": 0.0006000000000000001
+        },
+        {
+          "comparison": "TimeMixer minus PatchTST",
+          "effect": 0.04158766351824102,
+          "ci95": [
+            0.03565408648709925,
+            0.04834151247209517
+          ],
+          "p_one_sided_unadjusted": 0.0002,
+          "null_boundary": 0.0,
+          "finite_bootstrap_draws": 4999,
+          "interval_kind": "nominal percentile interval; not a simultaneous-family interval",
+          "p_one_sided_Holm_family3": 0.0006000000000000001
+        }
+      ],
+      "L1_calendar_disabled_same_weights": {
+        "TimeMixer": {
+          "mean_absolute_prediction_change": 0.0,
+          "per_seed": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "iTransformer": {
+          "mean_absolute_prediction_change": 4.57915852791757e-08,
+          "per_seed": [
+            4.653339571870588e-08,
+            4.4276369745180737e-08,
+            4.581039886055632e-08,
+            4.618624145569768e-08,
+            4.6151520615737916e-08
+          ]
+        },
+        "PatchTST": {
+          "mean_absolute_prediction_change": 1.99242559720655e-08,
+          "per_seed": [
+            2.0166089327522926e-08,
+            1.9505452745046825e-08,
+            2.0022185306548375e-08,
+            2.0132187134300867e-08,
+            1.979536534690851e-08
+          ]
+        }
+      },
+      "L1_query_MSE_change_bank_minus_B1_descriptive": [
+        {
+          "model": "TimeMixer",
+          "effect": -0.006358357729862267,
+          "ci95": [
+            -0.018596358168319074,
+            0.0027523803614119685
+          ],
+          "finite_bootstrap_draws": 4999,
+          "per_seed_change": [
+            -0.0073343837808029005,
+            -0.011396850062692072,
+            0.0009635267406041506,
+            -0.0028006732571909396,
+            -0.011223408289229575
+          ],
+          "direction": "MSE bank batch minus MSE B1 on identical query targets",
+          "scale": "ETTh1 train-standardized squared error, average H96/C7",
+          "interpretation": "Positive is higher error in bank batch; negative is lower error; neither direction was selected after results",
+          "role": "Preregistered descriptive secondary metric, no p-value, extra hypothesis, or success route"
+        },
+        {
+          "model": "iTransformer",
+          "effect": -1.4670440043980035e-10,
+          "ci95": [
+            -4.3137198187378563e-10,
+            1.1658950084492894e-10
+          ],
+          "finite_bootstrap_draws": 4999,
+          "per_seed_change": [
+            5.562919488119947e-11,
+            -4.107265903253998e-10,
+            1.315732265434917e-10,
+            -3.7431495218936267e-10,
+            -1.3568288110893043e-10
+          ],
+          "direction": "MSE bank batch minus MSE B1 on identical query targets",
+          "scale": "ETTh1 train-standardized squared error, average H96/C7",
+          "interpretation": "Positive is higher error in bank batch; negative is lower error; neither direction was selected after results",
+          "role": "Preregistered descriptive secondary metric, no p-value, extra hypothesis, or success route"
+        },
+        {
+          "model": "PatchTST",
+          "effect": -1.3365382322476187e-10,
+          "ci95": [
+            -4.842265172548731e-10,
+            1.2463611020197425e-10
+          ],
+          "finite_bootstrap_draws": 4999,
+          "per_seed_change": [
+            -5.703083836617901e-10,
+            -3.870776763893226e-10,
+            1.1550783184208387e-10,
+            -1.303595244445989e-10,
+            3.039686365298184e-10
+          ],
+          "direction": "MSE bank batch minus MSE B1 on identical query targets",
+          "scale": "ETTh1 train-standardized squared error, average H96/C7",
+          "interpretation": "Positive is higher error in bank batch; negative is lower error; neither direction was selected after results",
+          "role": "Preregistered descriptive secondary metric, no p-value, extra hypothesis, or success route"
+        }
+      ],
+      "L2_high_input_variability": [
+        {
+          "model": "TimeMixer",
+          "status": "estimated",
+          "effect": 0.17821597121275018,
+          "high_RMSE_mean": 1.0227901151558751,
+          "rest_RMSE_mean": 0.844574143943125,
+          "per_seed_gap": [
+            0.18745681480828658,
+            0.1871260270248657,
+            0.17047032541211082,
+            0.18399869755150255,
+            0.1620279912669853
+          ],
+          "n_high_origins": 1569,
+          "n_rest_origins": 1216,
+          "ci95": [
+            -0.0352980989572967,
+            0.39583333965327183
+          ],
+          "p_one_sided_unadjusted": 0.0596,
+          "null_boundary": 0.0,
+          "finite_bootstrap_draws": 4999,
+          "interval_kind": "nominal percentile interval; not a simultaneous-family interval",
+          "p_one_sided_Holm_family3": 0.1192,
+          "positive_gap_supported": false,
+          "registered_hypothesis_family_size": 3,
+          "nonestimable_family_handling": "Internal conservative p=1; reported missing p remains null"
+        },
+        {
+          "model": "iTransformer",
+          "status": "estimated",
+          "effect": 0.20540209562608353,
+          "high_RMSE_mean": 1.1044543790713692,
+          "rest_RMSE_mean": 0.8990522834452858,
+          "per_seed_gap": [
+            0.2011917615912021,
+            0.20597921362845528,
+            0.20724203367496197,
+            0.20727421037454408,
+            0.20532325886125424
+          ],
+          "n_high_origins": 1569,
+          "n_rest_origins": 1216,
+          "ci95": [
+            -0.005198722804832036,
+            0.4117403209195148
+          ],
+          "p_one_sided_unadjusted": 0.0256,
+          "null_boundary": 0.0,
+          "finite_bootstrap_draws": 4999,
+          "interval_kind": "nominal percentile interval; not a simultaneous-family interval",
+          "p_one_sided_Holm_family3": 0.07680000000000001,
+          "positive_gap_supported": false,
+          "registered_hypothesis_family_size": 3,
+          "nonestimable_family_handling": "Internal conservative p=1; reported missing p remains null"
+        },
+        {
+          "model": "PatchTST",
+          "status": "estimated",
+          "effect": 0.16263340555510944,
+          "high_RMSE_mean": 0.9616795172615129,
+          "rest_RMSE_mean": 0.7990461117064036,
+          "per_seed_gap": [
+            0.1642573906898357,
+            0.16244945814454126,
+            0.1634926044397852,
+            0.15934532858786843,
+            0.1636222459135166
+          ],
+          "n_high_origins": 1569,
+          "n_rest_origins": 1216,
+          "ci95": [
+            -0.052833977860971916,
+            0.383393292167522
+          ],
+          "p_one_sided_unadjusted": 0.08,
+          "null_boundary": 0.0,
+          "finite_bootstrap_draws": 4999,
+          "interval_kind": "nominal percentile interval; not a simultaneous-family interval",
+          "p_one_sided_Holm_family3": 0.1192,
+          "positive_gap_supported": false,
+          "registered_hypothesis_family_size": 3,
+          "nonestimable_family_handling": "Internal conservative p=1; reported missing p remains null"
+        }
+      ],
+      "scope": "Exploratory validation pilot; not a full benchmark or population-wide architectural/family claim"
+    },
+    "96": {
+      "L1_batch_sensitivity": [
+        {
+          "comparison": "TimeMixer batch sensitivity",
+          "model": "TimeMixer",
+          "effect": 0.041587683442497,
+          "ci95": [
+            0.036518130377243864,
+            0.04719775400135781
+          ],
+          "p_one_sided_unadjusted": 0.0002,
+          "null_boundary": 1e-05,
+          "finite_bootstrap_draws": 4999,
+          "interval_kind": "nominal percentile interval; not a simultaneous-family interval",
+          "per_seed_sensitivity": [
+            0.044681759203267835,
+            0.04042082625400388,
+            0.02648931794706704,
+            0.036948043381222144,
+            0.059398470426924095
+          ],
+          "p_one_sided_Holm_family3": 0.0006000000000000001
+        },
+        {
+          "comparison": "iTransformer batch sensitivity",
+          "model": "iTransformer",
+          "effect": 4.1249811168936074e-08,
+          "ci95": [
+            3.817843247381768e-08,
+            4.436569168517888e-08
+          ],
+          "p_one_sided_unadjusted": 1.0,
+          "null_boundary": 1e-05,
+          "finite_bootstrap_draws": 4999,
+          "interval_kind": "nominal percentile interval; not a simultaneous-family interval",
+          "per_seed_sensitivity": [
+            4.1878951523564136e-08,
+            4.0242334417176344e-08,
+            4.084066469139153e-08,
+            4.164621511141117e-08,
+            4.164089010113717e-08
+          ]
+        },
+        {
+          "comparison": "PatchTST batch sensitivity",
+          "model": "PatchTST",
+          "effect": 1.99242559720655e-08,
+          "ci95": [
+            1.797386155898012e-08,
+            2.1982084714333568e-08
+          ],
+          "p_one_sided_unadjusted": 1.0,
+          "null_boundary": 1e-05,
+          "finite_bootstrap_draws": 4999,
+          "interval_kind": "nominal percentile interval; not a simultaneous-family interval",
+          "per_seed_sensitivity": [
+            2.0166089327522926e-08,
+            1.9505452745046825e-08,
+            2.0022185306548375e-08,
+            2.0132187134300867e-08,
+            1.979536534690851e-08
+          ]
+        }
+      ],
+      "L1_paired_control_contrasts": [
+        {
+          "comparison": "TimeMixer minus iTransformer",
+          "effect": 0.04158764219268583,
+          "ci95": [
+            0.03651809018908476,
+            0.04719771065571561
+          ],
+          "p_one_sided_unadjusted": 0.0002,
+          "null_boundary": 0.0,
+          "finite_bootstrap_draws": 4999,
+          "interval_kind": "nominal percentile interval; not a simultaneous-family interval",
+          "p_one_sided_Holm_family3": 0.0006000000000000001
+        },
+        {
+          "comparison": "TimeMixer minus PatchTST",
+          "effect": 0.04158766351824102,
+          "ci95": [
+            0.03651811058342557,
+            0.047197734134136186
+          ],
+          "p_one_sided_unadjusted": 0.0002,
+          "null_boundary": 0.0,
+          "finite_bootstrap_draws": 4999,
+          "interval_kind": "nominal percentile interval; not a simultaneous-family interval",
+          "p_one_sided_Holm_family3": 0.0006000000000000001
+        }
+      ],
+      "L1_calendar_disabled_same_weights": {
+        "TimeMixer": {
+          "mean_absolute_prediction_change": 0.0,
+          "per_seed": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "iTransformer": {
+          "mean_absolute_prediction_change": 4.57915852791757e-08,
+          "per_seed": [
+            4.653339571870588e-08,
+            4.4276369745180737e-08,
+            4.581039886055632e-08,
+            4.618624145569768e-08,
+            4.6151520615737916e-08
+          ]
+        },
+        "PatchTST": {
+          "mean_absolute_prediction_change": 1.99242559720655e-08,
+          "per_seed": [
+            2.0166089327522926e-08,
+            1.9505452745046825e-08,
+            2.0022185306548375e-08,
+            2.0132187134300867e-08,
+            1.979536534690851e-08
+          ]
+        }
+      },
+      "L1_query_MSE_change_bank_minus_B1_descriptive": [
+        {
+          "model": "TimeMixer",
+          "effect": -0.006358357729862267,
+          "ci95": [
+            -0.01712677669315897,
+            0.002105085152841271
+          ],
+          "finite_bootstrap_draws": 4999,
+          "per_seed_change": [
+            -0.0073343837808029005,
+            -0.011396850062692072,
+            0.0009635267406041506,
+            -0.0028006732571909396,
+            -0.011223408289229575
+          ],
+          "direction": "MSE bank batch minus MSE B1 on identical query targets",
+          "scale": "ETTh1 train-standardized squared error, average H96/C7",
+          "interpretation": "Positive is higher error in bank batch; negative is lower error; neither direction was selected after results",
+          "role": "Preregistered descriptive secondary metric, no p-value, extra hypothesis, or success route"
+        },
+        {
+          "model": "iTransformer",
+          "effect": -1.4670440043980035e-10,
+          "ci95": [
+            -4.4318078433667843e-10,
+            1.4823660132723417e-10
+          ],
+          "finite_bootstrap_draws": 4999,
+          "per_seed_change": [
+            5.562919488119947e-11,
+            -4.107265903253998e-10,
+            1.315732265434917e-10,
+            -3.7431495218936267e-10,
+            -1.3568288110893043e-10
+          ],
+          "direction": "MSE bank batch minus MSE B1 on identical query targets",
+          "scale": "ETTh1 train-standardized squared error, average H96/C7",
+          "interpretation": "Positive is higher error in bank batch; negative is lower error; neither direction was selected after results",
+          "role": "Preregistered descriptive secondary metric, no p-value, extra hypothesis, or success route"
+        },
+        {
+          "model": "PatchTST",
+          "effect": -1.3365382322476187e-10,
+          "ci95": [
+            -4.430627222885248e-10,
+            1.0997991299679001e-10
+          ],
+          "finite_bootstrap_draws": 4999,
+          "per_seed_change": [
+            -5.703083836617901e-10,
+            -3.870776763893226e-10,
+            1.1550783184208387e-10,
+            -1.303595244445989e-10,
+            3.039686365298184e-10
+          ],
+          "direction": "MSE bank batch minus MSE B1 on identical query targets",
+          "scale": "ETTh1 train-standardized squared error, average H96/C7",
+          "interpretation": "Positive is higher error in bank batch; negative is lower error; neither direction was selected after results",
+          "role": "Preregistered descriptive secondary metric, no p-value, extra hypothesis, or success route"
+        }
+      ],
+      "L2_high_input_variability": [
+        {
+          "model": "TimeMixer",
+          "status": "estimated",
+          "effect": 0.17821597121275018,
+          "high_RMSE_mean": 1.0227901151558751,
+          "rest_RMSE_mean": 0.844574143943125,
+          "per_seed_gap": [
+            0.18745681480828658,
+            0.1871260270248657,
+            0.17047032541211082,
+            0.18399869755150255,
+            0.1620279912669853
+          ],
+          "n_high_origins": 1569,
+          "n_rest_origins": 1216,
+          "ci95": [
+            -0.019595632247934505,
+            0.37703368357336553
+          ],
+          "p_one_sided_unadjusted": 0.04,
+          "null_boundary": 0.0,
+          "finite_bootstrap_draws": 4999,
+          "interval_kind": "nominal percentile interval; not a simultaneous-family interval",
+          "p_one_sided_Holm_family3": 0.08,
+          "positive_gap_supported": false,
+          "registered_hypothesis_family_size": 3,
+          "nonestimable_family_handling": "Internal conservative p=1; reported missing p remains null"
+        },
+        {
+          "model": "iTransformer",
+          "status": "estimated",
+          "effect": 0.20540209562608353,
+          "high_RMSE_mean": 1.1044543790713692,
+          "rest_RMSE_mean": 0.8990522834452858,
+          "per_seed_gap": [
+            0.2011917615912021,
+            0.20597921362845528,
+            0.20724203367496197,
+            0.20727421037454408,
+            0.20532325886125424
+          ],
+          "n_high_origins": 1569,
+          "n_rest_origins": 1216,
+          "ci95": [
+            0.013283885853815774,
+            0.39235465112343126
+          ],
+          "p_one_sided_unadjusted": 0.0164,
+          "null_boundary": 0.0,
+          "finite_bootstrap_draws": 4999,
+          "interval_kind": "nominal percentile interval; not a simultaneous-family interval",
+          "p_one_sided_Holm_family3": 0.04920000000000001,
+          "positive_gap_supported": true,
+          "registered_hypothesis_family_size": 3,
+          "nonestimable_family_handling": "Internal conservative p=1; reported missing p remains null"
+        },
+        {
+          "model": "PatchTST",
+          "status": "estimated",
+          "effect": 0.16263340555510944,
+          "high_RMSE_mean": 0.9616795172615129,
+          "rest_RMSE_mean": 0.7990461117064036,
+          "per_seed_gap": [
+            0.1642573906898357,
+            0.16244945814454126,
+            0.1634926044397852,
+            0.15934532858786843,
+            0.1636222459135166
+          ],
+          "n_high_origins": 1569,
+          "n_rest_origins": 1216,
+          "ci95": [
+            -0.03862732012333898,
+            0.36657833262916445
+          ],
+          "p_one_sided_unadjusted": 0.0594,
+          "null_boundary": 0.0,
+          "finite_bootstrap_draws": 4999,
+          "interval_kind": "nominal percentile interval; not a simultaneous-family interval",
+          "p_one_sided_Holm_family3": 0.08,
+          "positive_gap_supported": false,
+          "registered_hypothesis_family_size": 3,
+          "nonestimable_family_handling": "Internal conservative p=1; reported missing p remains null"
+        }
+      ],
+      "scope": "Exploratory validation pilot; not a full benchmark or population-wide architectural/family claim"
+    },
+    "384": {
+      "L1_batch_sensitivity": [
+        {
+          "comparison": "TimeMixer batch sensitivity",
+          "model": "TimeMixer",
+          "effect": 0.041587683442497,
+          "ci95": [
+            0.035591467183213134,
+            0.04869684421913071
+          ],
+          "p_one_sided_unadjusted": 0.0002,
+          "null_boundary": 1e-05,
+          "finite_bootstrap_draws": 4999,
+          "interval_kind": "nominal percentile interval; not a simultaneous-family interval",
+          "per_seed_sensitivity": [
+            0.044681759203267835,
+            0.04042082625400388,
+            0.02648931794706704,
+            0.036948043381222144,
+            0.059398470426924095
+          ],
+          "p_one_sided_Holm_family3": 0.0006000000000000001
+        },
+        {
+          "comparison": "iTransformer batch sensitivity",
+          "model": "iTransformer",
+          "effect": 4.1249811168936074e-08,
+          "ci95": [
+            3.7234723788733565e-08,
+            4.5572892216386914e-08
+          ],
+          "p_one_sided_unadjusted": 1.0,
+          "null_boundary": 1e-05,
+          "finite_bootstrap_draws": 4999,
+          "interval_kind": "nominal percentile interval; not a simultaneous-family interval",
+          "per_seed_sensitivity": [
+            4.1878951523564136e-08,
+            4.0242334417176344e-08,
+            4.084066469139153e-08,
+            4.164621511141117e-08,
+            4.164089010113717e-08
+          ]
+        },
+        {
+          "comparison": "PatchTST batch sensitivity",
+          "model": "PatchTST",
+          "effect": 1.99242559720655e-08,
+          "ci95": [
+            1.7053052648070643e-08,
+            2.2975850746890193e-08
+          ],
+          "p_one_sided_unadjusted": 1.0,
+          "null_boundary": 1e-05,
+          "finite_bootstrap_draws": 4999,
+          "interval_kind": "nominal percentile interval; not a simultaneous-family interval",
+          "per_seed_sensitivity": [
+            2.0166089327522926e-08,
+            1.9505452745046825e-08,
+            2.0022185306548375e-08,
+            2.0132187134300867e-08,
+            1.979536534690851e-08
+          ]
+        }
+      ],
+      "L1_paired_control_contrasts": [
+        {
+          "comparison": "TimeMixer minus iTransformer",
+          "effect": 0.04158764219268583,
+          "ci95": [
+            0.03559142754360245,
+            0.04869680047434558
+          ],
+          "p_one_sided_unadjusted": 0.0002,
+          "null_boundary": 0.0,
+          "finite_bootstrap_draws": 4999,
+          "interval_kind": "nominal percentile interval; not a simultaneous-family interval",
+          "p_one_sided_Holm_family3": 0.0006000000000000001
+        },
+        {
+          "comparison": "TimeMixer minus PatchTST",
+          "effect": 0.04158766351824102,
+          "ci95": [
+            0.03559144862778561,
+            0.04869682354109179
+          ],
+          "p_one_sided_unadjusted": 0.0002,
+          "null_boundary": 0.0,
+          "finite_bootstrap_draws": 4999,
+          "interval_kind": "nominal percentile interval; not a simultaneous-family interval",
+          "p_one_sided_Holm_family3": 0.0006000000000000001
+        }
+      ],
+      "L1_calendar_disabled_same_weights": {
+        "TimeMixer": {
+          "mean_absolute_prediction_change": 0.0,
+          "per_seed": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "iTransformer": {
+          "mean_absolute_prediction_change": 4.57915852791757e-08,
+          "per_seed": [
+            4.653339571870588e-08,
+            4.4276369745180737e-08,
+            4.581039886055632e-08,
+            4.618624145569768e-08,
+            4.6151520615737916e-08
+          ]
+        },
+        "PatchTST": {
+          "mean_absolute_prediction_change": 1.99242559720655e-08,
+          "per_seed": [
+            2.0166089327522926e-08,
+            1.9505452745046825e-08,
+            2.0022185306548375e-08,
+            2.0132187134300867e-08,
+            1.979536534690851e-08
+          ]
+        }
+      },
+      "L1_query_MSE_change_bank_minus_B1_descriptive": [
+        {
+          "model": "TimeMixer",
+          "effect": -0.006358357729862267,
+          "ci95": [
+            -0.016920665679783026,
+            0.0021454722442372795
+          ],
+          "finite_bootstrap_draws": 4999,
+          "per_seed_change": [
+            -0.0073343837808029005,
+            -0.011396850062692072,
+            0.0009635267406041506,
+            -0.0028006732571909396,
+            -0.011223408289229575
+          ],
+          "direction": "MSE bank batch minus MSE B1 on identical query targets",
+          "scale": "ETTh1 train-standardized squared error, average H96/C7",
+          "interpretation": "Positive is higher error in bank batch; negative is lower error; neither direction was selected after results",
+          "role": "Preregistered descriptive secondary metric, no p-value, extra hypothesis, or success route"
+        },
+        {
+          "model": "iTransformer",
+          "effect": -1.4670440043980035e-10,
+          "ci95": [
+            -4.2285710887286077e-10,
+            1.2517869658960325e-10
+          ],
+          "finite_bootstrap_draws": 4999,
+          "per_seed_change": [
+            5.562919488119947e-11,
+            -4.107265903253998e-10,
+            1.315732265434917e-10,
+            -3.7431495218936267e-10,
+            -1.3568288110893043e-10
+          ],
+          "direction": "MSE bank batch minus MSE B1 on identical query targets",
+          "scale": "ETTh1 train-standardized squared error, average H96/C7",
+          "interpretation": "Positive is higher error in bank batch; negative is lower error; neither direction was selected after results",
+          "role": "Preregistered descriptive secondary metric, no p-value, extra hypothesis, or success route"
+        },
+        {
+          "model": "PatchTST",
+          "effect": -1.3365382322476187e-10,
+          "ci95": [
+            -4.857480296087357e-10,
+            1.3355566489392954e-10
+          ],
+          "finite_bootstrap_draws": 4999,
+          "per_seed_change": [
+            -5.703083836617901e-10,
+            -3.870776763893226e-10,
+            1.1550783184208387e-10,
+            -1.303595244445989e-10,
+            3.039686365298184e-10
+          ],
+          "direction": "MSE bank batch minus MSE B1 on identical query targets",
+          "scale": "ETTh1 train-standardized squared error, average H96/C7",
+          "interpretation": "Positive is higher error in bank batch; negative is lower error; neither direction was selected after results",
+          "role": "Preregistered descriptive secondary metric, no p-value, extra hypothesis, or success route"
+        }
+      ],
+      "L2_high_input_variability": [
+        {
+          "model": "TimeMixer",
+          "status": "estimated",
+          "effect": 0.17821597121275018,
+          "high_RMSE_mean": 1.0227901151558751,
+          "rest_RMSE_mean": 0.844574143943125,
+          "per_seed_gap": [
+            0.18745681480828658,
+            0.1871260270248657,
+            0.17047032541211082,
+            0.18399869755150255,
+            0.1620279912669853
+          ],
+          "n_high_origins": 1569,
+          "n_rest_origins": 1216,
+          "ci95": [
+            -0.05569632589156111,
+            0.43062682459748475
+          ],
+          "p_one_sided_unadjusted": 0.085,
+          "null_boundary": 0.0,
+          "finite_bootstrap_draws": 4999,
+          "interval_kind": "nominal percentile interval; not a simultaneous-family interval",
+          "p_one_sided_Holm_family3": 0.17,
+          "positive_gap_supported": false,
+          "registered_hypothesis_family_size": 3,
+          "nonestimable_family_handling": "Internal conservative p=1; reported missing p remains null"
+        },
+        {
+          "model": "iTransformer",
+          "status": "estimated",
+          "effect": 0.20540209562608353,
+          "high_RMSE_mean": 1.1044543790713692,
+          "rest_RMSE_mean": 0.8990522834452858,
+          "per_seed_gap": [
+            0.2011917615912021,
+            0.20597921362845528,
+            0.20724203367496197,
+            0.20727421037454408,
+            0.20532325886125424
+          ],
+          "n_high_origins": 1569,
+          "n_rest_origins": 1216,
+          "ci95": [
+            -0.027050807309485485,
+            0.4399061511894579
+          ],
+          "p_one_sided_unadjusted": 0.0462,
+          "null_boundary": 0.0,
+          "finite_bootstrap_draws": 4999,
+          "interval_kind": "nominal percentile interval; not a simultaneous-family interval",
+          "p_one_sided_Holm_family3": 0.1386,
+          "positive_gap_supported": false,
+          "registered_hypothesis_family_size": 3,
+          "nonestimable_family_handling": "Internal conservative p=1; reported missing p remains null"
+        },
+        {
+          "model": "PatchTST",
+          "status": "estimated",
+          "effect": 0.16263340555510944,
+          "high_RMSE_mean": 0.9616795172615129,
+          "rest_RMSE_mean": 0.7990461117064036,
+          "per_seed_gap": [
+            0.1642573906898357,
+            0.16244945814454126,
+            0.1634926044397852,
+            0.15934532858786843,
+            0.1636222459135166
+          ],
+          "n_high_origins": 1569,
+          "n_rest_origins": 1216,
+          "ci95": [
+            -0.0717714217436803,
+            0.42000189980220975
+          ],
+          "p_one_sided_unadjusted": 0.1008,
+          "null_boundary": 0.0,
+          "finite_bootstrap_draws": 4999,
+          "interval_kind": "nominal percentile interval; not a simultaneous-family interval",
+          "p_one_sided_Holm_family3": 0.17,
+          "positive_gap_supported": false,
+          "registered_hypothesis_family_size": 3,
+          "nonestimable_family_handling": "Internal conservative p=1; reported missing p remains null"
+        }
+      ],
+      "scope": "Exploratory validation pilot; not a full benchmark or population-wide architectural/family claim"
+    }
+  },
+  "high_variability_threshold_train_only": 0.40005864506246047
+}

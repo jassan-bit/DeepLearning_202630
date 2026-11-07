@@ -1,0 +1,433 @@
+{
+  "schema_version": 1,
+  "client_date": "2026-11-06",
+  "client_timezone": "America/Bogota",
+  "status": "proposed_not_frozen",
+  "scope": "Section6 benchmark-analysis proposal and numerical prototypes; no D7 training, prediction inputs or benchmark results",
+  "source_E1_commit": "94a4b0324e93361e8928d708fdfeb50110e3686f",
+  "primary_metric": "mean_seed_RMSE_original_scale",
+  "absolute_margin": 0.00025772842664981106,
+  "alpha": 0.05,
+  "new_Bitcoin_results": 0,
+  "benchmark_executed": false,
+  "external_ETTh1_replica_is_not_Bitcoin_benchmark": true,
+  "minimum_model_registry": [
+    {
+      "id": "TSMixer",
+      "role": "top10_candidate"
+    },
+    {
+      "id": "TiDE",
+      "role": "top10_candidate"
+    },
+    {
+      "id": "TimeMixer",
+      "role": "top10_candidate"
+    },
+    {
+      "id": "TimesNet",
+      "role": "top10_candidate"
+    },
+    {
+      "id": "PatchTST",
+      "role": "top10_candidate"
+    },
+    {
+      "id": "Informer",
+      "role": "top10_candidate"
+    },
+    {
+      "id": "Autoformer",
+      "role": "top10_candidate"
+    },
+    {
+      "id": "iTransformer",
+      "role": "top10_candidate"
+    },
+    {
+      "id": "Crossformer",
+      "role": "top10_candidate"
+    },
+    {
+      "id": "S-Mamba",
+      "role": "top10_candidate"
+    },
+    {
+      "id": "GRU/D7-c03",
+      "role": "inherited_fixed_anchor"
+    },
+    {
+      "id": "LSTM/D7-c02",
+      "role": "inherited_fixed_anchor"
+    },
+    {
+      "id": "TCN/D7-c02",
+      "role": "inherited_fixed_anchor"
+    },
+    {
+      "id": "Ridge",
+      "role": "simple_non_deep_reference"
+    },
+    {
+      "id": "Persistence",
+      "role": "trivial_reference"
+    }
+  ],
+  "deterministic_reference_policy": {
+    "Persistence": "Store exactly once per origin with seed=deterministic; broadcast only for paired arithmetic; zero independent randomized fits"
+  },
+  "inference_family": {
+    "status": "proposed_not_frozen",
+    "candidates": [
+      "TSMixer",
+      "TiDE",
+      "TimeMixer",
+      "TimesNet",
+      "PatchTST",
+      "Informer",
+      "Autoformer",
+      "iTransformer",
+      "Crossformer",
+      "S-Mamba"
+    ],
+    "reference": "GRU/D7-c03",
+    "questions": [
+      "RQ1",
+      "RQ2",
+      "RQ3"
+    ],
+    "size": 30,
+    "control": "Holm_FWER",
+    "hypotheses": [
+      {
+        "id": "RQ1:TSMixer",
+        "candidate": "TSMixer",
+        "reference": "GRU/D7-c03",
+        "null": "gain_RMSE <= delta",
+        "alternative": "gain_RMSE > delta",
+        "status": "proposed_not_frozen",
+        "RQ3_IUT_if_applicable": null
+      },
+      {
+        "id": "RQ2:TSMixer",
+        "candidate": "TSMixer",
+        "reference": "GRU/D7-c03",
+        "null": "gain_normal_minus_gain_high <= delta",
+        "alternative": "gain_normal_minus_gain_high > delta",
+        "status": "proposed_not_frozen",
+        "RQ3_IUT_if_applicable": null
+      },
+      {
+        "id": "RQ3:TSMixer",
+        "candidate": "TSMixer",
+        "reference": "GRU/D7-c03",
+        "null": "gain_RMSE <= delta OR latency_candidate_minus_reference >= 0",
+        "alternative": "gain_RMSE > delta AND latency_candidate_minus_reference < 0",
+        "status": "proposed_not_frozen",
+        "RQ3_IUT_if_applicable": "max(p_error,p_cost)"
+      },
+      {
+        "id": "RQ1:TiDE",
+        "candidate": "TiDE",
+        "reference": "GRU/D7-c03",
+        "null": "gain_RMSE <= delta",
+        "alternative": "gain_RMSE > delta",
+        "status": "proposed_not_frozen",
+        "RQ3_IUT_if_applicable": null
+      },
+      {
+        "id": "RQ2:TiDE",
+        "candidate": "TiDE",
+        "reference": "GRU/D7-c03",
+        "null": "gain_normal_minus_gain_high <= delta",
+        "alternative": "gain_normal_minus_gain_high > delta",
+        "status": "proposed_not_frozen",
+        "RQ3_IUT_if_applicable": null
+      },
+      {
+        "id": "RQ3:TiDE",
+        "candidate": "TiDE",
+        "reference": "GRU/D7-c03",
+        "null": "gain_RMSE <= delta OR latency_candidate_minus_reference >= 0",
+        "alternative": "gain_RMSE > delta AND latency_candidate_minus_reference < 0",
+        "status": "proposed_not_frozen",
+        "RQ3_IUT_if_applicable": "max(p_error,p_cost)"
+      },
+      {
+        "id": "RQ1:TimeMixer",
+        "candidate": "TimeMixer",
+        "reference": "GRU/D7-c03",
+        "null": "gain_RMSE <= delta",
+        "alternative": "gain_RMSE > delta",
+        "status": "proposed_not_frozen",
+        "RQ3_IUT_if_applicable": null
+      },
+      {
+        "id": "RQ2:TimeMixer",
+        "candidate": "TimeMixer",
+        "reference": "GRU/D7-c03",
+        "null": "gain_normal_minus_gain_high <= delta",
+        "alternative": "gain_normal_minus_gain_high > delta",
+        "status": "proposed_not_frozen",
+        "RQ3_IUT_if_applicable": null
+      },
+      {
+        "id": "RQ3:TimeMixer",
+        "candidate": "TimeMixer",
+        "reference": "GRU/D7-c03",
+        "null": "gain_RMSE <= delta OR latency_candidate_minus_reference >= 0",
+        "alternative": "gain_RMSE > delta AND latency_candidate_minus_reference < 0",
+        "status": "proposed_not_frozen",
+        "RQ3_IUT_if_applicable": "max(p_error,p_cost)"
+      },
+      {
+        "id": "RQ1:TimesNet",
+        "candidate": "TimesNet",
+        "reference": "GRU/D7-c03",
+        "null": "gain_RMSE <= delta",
+        "alternative": "gain_RMSE > delta",
+        "status": "proposed_not_frozen",
+        "RQ3_IUT_if_applicable": null
+      },
+      {
+        "id": "RQ2:TimesNet",
+        "candidate": "TimesNet",
+        "reference": "GRU/D7-c03",
+        "null": "gain_normal_minus_gain_high <= delta",
+        "alternative": "gain_normal_minus_gain_high > delta",
+        "status": "proposed_not_frozen",
+        "RQ3_IUT_if_applicable": null
+      },
+      {
+        "id": "RQ3:TimesNet",
+        "candidate": "TimesNet",
+        "reference": "GRU/D7-c03",
+        "null": "gain_RMSE <= delta OR latency_candidate_minus_reference >= 0",
+        "alternative": "gain_RMSE > delta AND latency_candidate_minus_reference < 0",
+        "status": "proposed_not_frozen",
+        "RQ3_IUT_if_applicable": "max(p_error,p_cost)"
+      },
+      {
+        "id": "RQ1:PatchTST",
+        "candidate": "PatchTST",
+        "reference": "GRU/D7-c03",
+        "null": "gain_RMSE <= delta",
+        "alternative": "gain_RMSE > delta",
+        "status": "proposed_not_frozen",
+        "RQ3_IUT_if_applicable": null
+      },
+      {
+        "id": "RQ2:PatchTST",
+        "candidate": "PatchTST",
+        "reference": "GRU/D7-c03",
+        "null": "gain_normal_minus_gain_high <= delta",
+        "alternative": "gain_normal_minus_gain_high > delta",
+        "status": "proposed_not_frozen",
+        "RQ3_IUT_if_applicable": null
+      },
+      {
+        "id": "RQ3:PatchTST",
+        "candidate": "PatchTST",
+        "reference": "GRU/D7-c03",
+        "null": "gain_RMSE <= delta OR latency_candidate_minus_reference >= 0",
+        "alternative": "gain_RMSE > delta AND latency_candidate_minus_reference < 0",
+        "status": "proposed_not_frozen",
+        "RQ3_IUT_if_applicable": "max(p_error,p_cost)"
+      },
+      {
+        "id": "RQ1:Informer",
+        "candidate": "Informer",
+        "reference": "GRU/D7-c03",
+        "null": "gain_RMSE <= delta",
+        "alternative": "gain_RMSE > delta",
+        "status": "proposed_not_frozen",
+        "RQ3_IUT_if_applicable": null
+      },
+      {
+        "id": "RQ2:Informer",
+        "candidate": "Informer",
+        "reference": "GRU/D7-c03",
+        "null": "gain_normal_minus_gain_high <= delta",
+        "alternative": "gain_normal_minus_gain_high > delta",
+        "status": "proposed_not_frozen",
+        "RQ3_IUT_if_applicable": null
+      },
+      {
+        "id": "RQ3:Informer",
+        "candidate": "Informer",
+        "reference": "GRU/D7-c03",
+        "null": "gain_RMSE <= delta OR latency_candidate_minus_reference >= 0",
+        "alternative": "gain_RMSE > delta AND latency_candidate_minus_reference < 0",
+        "status": "proposed_not_frozen",
+        "RQ3_IUT_if_applicable": "max(p_error,p_cost)"
+      },
+      {
+        "id": "RQ1:Autoformer",
+        "candidate": "Autoformer",
+        "reference": "GRU/D7-c03",
+        "null": "gain_RMSE <= delta",
+        "alternative": "gain_RMSE > delta",
+        "status": "proposed_not_frozen",
+        "RQ3_IUT_if_applicable": null
+      },
+      {
+        "id": "RQ2:Autoformer",
+        "candidate": "Autoformer",
+        "reference": "GRU/D7-c03",
+        "null": "gain_normal_minus_gain_high <= delta",
+        "alternative": "gain_normal_minus_gain_high > delta",
+        "status": "proposed_not_frozen",
+        "RQ3_IUT_if_applicable": null
+      },
+      {
+        "id": "RQ3:Autoformer",
+        "candidate": "Autoformer",
+        "reference": "GRU/D7-c03",
+        "null": "gain_RMSE <= delta OR latency_candidate_minus_reference >= 0",
+        "alternative": "gain_RMSE > delta AND latency_candidate_minus_reference < 0",
+        "status": "proposed_not_frozen",
+        "RQ3_IUT_if_applicable": "max(p_error,p_cost)"
+      },
+      {
+        "id": "RQ1:iTransformer",
+        "candidate": "iTransformer",
+        "reference": "GRU/D7-c03",
+        "null": "gain_RMSE <= delta",
+        "alternative": "gain_RMSE > delta",
+        "status": "proposed_not_frozen",
+        "RQ3_IUT_if_applicable": null
+      },
+      {
+        "id": "RQ2:iTransformer",
+        "candidate": "iTransformer",
+        "reference": "GRU/D7-c03",
+        "null": "gain_normal_minus_gain_high <= delta",
+        "alternative": "gain_normal_minus_gain_high > delta",
+        "status": "proposed_not_frozen",
+        "RQ3_IUT_if_applicable": null
+      },
+      {
+        "id": "RQ3:iTransformer",
+        "candidate": "iTransformer",
+        "reference": "GRU/D7-c03",
+        "null": "gain_RMSE <= delta OR latency_candidate_minus_reference >= 0",
+        "alternative": "gain_RMSE > delta AND latency_candidate_minus_reference < 0",
+        "status": "proposed_not_frozen",
+        "RQ3_IUT_if_applicable": "max(p_error,p_cost)"
+      },
+      {
+        "id": "RQ1:Crossformer",
+        "candidate": "Crossformer",
+        "reference": "GRU/D7-c03",
+        "null": "gain_RMSE <= delta",
+        "alternative": "gain_RMSE > delta",
+        "status": "proposed_not_frozen",
+        "RQ3_IUT_if_applicable": null
+      },
+      {
+        "id": "RQ2:Crossformer",
+        "candidate": "Crossformer",
+        "reference": "GRU/D7-c03",
+        "null": "gain_normal_minus_gain_high <= delta",
+        "alternative": "gain_normal_minus_gain_high > delta",
+        "status": "proposed_not_frozen",
+        "RQ3_IUT_if_applicable": null
+      },
+      {
+        "id": "RQ3:Crossformer",
+        "candidate": "Crossformer",
+        "reference": "GRU/D7-c03",
+        "null": "gain_RMSE <= delta OR latency_candidate_minus_reference >= 0",
+        "alternative": "gain_RMSE > delta AND latency_candidate_minus_reference < 0",
+        "status": "proposed_not_frozen",
+        "RQ3_IUT_if_applicable": "max(p_error,p_cost)"
+      },
+      {
+        "id": "RQ1:S-Mamba",
+        "candidate": "S-Mamba",
+        "reference": "GRU/D7-c03",
+        "null": "gain_RMSE <= delta",
+        "alternative": "gain_RMSE > delta",
+        "status": "proposed_not_frozen",
+        "RQ3_IUT_if_applicable": null
+      },
+      {
+        "id": "RQ2:S-Mamba",
+        "candidate": "S-Mamba",
+        "reference": "GRU/D7-c03",
+        "null": "gain_normal_minus_gain_high <= delta",
+        "alternative": "gain_normal_minus_gain_high > delta",
+        "status": "proposed_not_frozen",
+        "RQ3_IUT_if_applicable": null
+      },
+      {
+        "id": "RQ3:S-Mamba",
+        "candidate": "S-Mamba",
+        "reference": "GRU/D7-c03",
+        "null": "gain_RMSE <= delta OR latency_candidate_minus_reference >= 0",
+        "alternative": "gain_RMSE > delta AND latency_candidate_minus_reference < 0",
+        "status": "proposed_not_frozen",
+        "RQ3_IUT_if_applicable": "max(p_error,p_cost)"
+      }
+    ],
+    "all15pairs105_are_not_the_primary_family": true,
+    "unestimable_hypotheses": "Keep in family with conservative internal p=1; report missing values as null",
+    "RQ3_intersection_union": "max of valid unilateral error and cost p-values, requires both components"
+  },
+  "temporal_bootstrap": {
+    "status": "proposed_not_frozen_before_benchmark_results",
+    "repetitions": 49999,
+    "seed": 20261105,
+    "main_block_days": 7,
+    "sensitivity_block_days": [
+      14,
+      28
+    ],
+    "unit": "dense daily calendar origin, shared across models; retain all paired training-seed trajectories",
+    "confidence": "95% nominal; approximate simultaneous one-sided lower bounds use Bonferroni alpha/30, not automatically Holm CIs",
+    "minimum_MC_p": 2e-05,
+    "expected_draws_at_alpha_div30": 83.33166666666668,
+    "does_not_fix_small_number_of_temporal_blocks": true,
+    "old_section4_4999_draws_was_a_proposal_not_an_executed_Benchmark_analysis": true
+  },
+  "DM": {
+    "status": "secondary_diagnostic_pending_bandwidth_and_loss_family_closure",
+    "loss": "square-error differential averaged over fixed fitted seeds per date",
+    "horizon_days": 1,
+    "HLN_h_is_forecast_horizon_not_sigma_window": true,
+    "HAC_bandwidth": "positive pilot-informed predeclared bandwidth; never silently h-1=0",
+    "not_same_estimand_as_primary_mean_RMSE_or_BTC_margin": true
+  },
+  "conditional_seed_inference": {
+    "paired_tests": "t or Wilcoxon chosen before outcomes; seeds are conditional algorithmic randomizations, not markets",
+    "effect": "paired Cohen dz=mean difference/sampleSD difference; zeroSD means effect not estimable",
+    "Shapiro_scope": "independent paired-seed differences only, not iid correlated dates",
+    "Levene_scope": "only a genuinely independent-group design; equal marginal variance is not an additional assumption of the paired t-test"
+  },
+  "global_tests": {
+    "Friedman_RM_ANOVA_Nemenyi_CD": "not justified by treating seeds or overlapping folds of one BTC series as independent markets; guarded generic independent-dataset utility only",
+    "Nadeau_Bengio": "not applied to expanding temporal folds without derivation; temporal block inference used instead",
+    "MCS": "optional not implemented or executed",
+    "Bayesian_ROPE": "optional not implemented or executed"
+  },
+  "residual_diagnostics": {
+    "Ljung_Box": [
+      "residuals",
+      "squared_residuals"
+    ],
+    "model_df": "explicit; zero may describe a fixed out-of-sample neural forecast, never subtract total neural weights automatically",
+    "BDS": "iid null, not uniquely nonlinearity; optional statsmodels not in minimal dependency lock",
+    "lags_and_multiple_testing": "predeclare all lags, embeddings, residual-series/seed and diagnostic family before outcomes; no concatenate seeds or compress missing dates"
+  },
+  "closure_pending": [
+    "D7 adapters and training executor",
+    "equal-budget HPO and final model recipes",
+    "pilot/power/finalR",
+    "formal leakage and overfit audits",
+    "complete statistical route sections7,9.2,10,11,13.2,14",
+    "calibration/robustness/ablation inputs",
+    "pre-closed model/seed/calendar/cost manifests",
+    "diagnostic bandwidths, lags and families"
+  ],
+  "real_input_cli_enabled": false
+}

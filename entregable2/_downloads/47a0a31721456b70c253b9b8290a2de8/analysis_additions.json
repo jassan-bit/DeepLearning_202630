@@ -1,0 +1,385 @@
+{
+  "schema_version": 1,
+  "status": "specified_awaiting_public_registration_before_any_completion_market_fit",
+  "administrative_timezone": "America/Bogota",
+  "prepared_at_colombia": "2026-11-06T13:12:29.611277-05:00",
+  "parent_registered_commit": "599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0",
+  "scientific_E1_contract_sha256": "1464fa79d472f6755651774989b140659ee1f21daeb30032fc650a8770f4fdc4",
+  "amendment_reasons": [
+    "Resolve source numeric presets and faithful D7 encoders/decoders before HPO",
+    "Warm-start each neural search with one source-backed LR/dropout under equal T12",
+    "Historical E1 recipe selection reachesOct31; purge7days before BOTH P1 and calibration",
+    "Preserve finalE1test60dates/metric/delta/anchors; evaluations remain exploratory because known",
+    "Use all20calibration predictors fixed before results, avoiding missing uncertainty for whichever Top3 is reported",
+    "Declare scratch checkpoint retention and development-only matched-R ablations before any fits"
+  ],
+  "P1": {
+    "nominal_origin": "2024-11-08",
+    "fit_outcome_max": "2024-10-31",
+    "configuration_selection_outcome_max": "2024-10-31",
+    "embargo": [
+      "2024-11-01",
+      "2024-11-07"
+    ],
+    "evaluation_start": "2024-11-08",
+    "evaluation_end": "2024-12-30",
+    "calendar_days": 53,
+    "seed_ids": [
+      660201,
+      660202,
+      660203,
+      660204,
+      660205,
+      660206,
+      660207,
+      660208,
+      660209,
+      660210
+    ],
+    "models": [
+      "TimeMixer",
+      "iTransformer",
+      "PatchTST",
+      "GRU/D7-c03",
+      "GRU-E2"
+    ],
+    "recipes": "Primary HPO recipes frozen from Jan-Oct31 development; actual primary recipes, not truncated surrogate",
+    "power_projection_calendar_days": 60,
+    "projection_from_53_to_60_is_assumption_not_new_observations": true
+  },
+  "calibration_A": {
+    "cohort": [
+      "TSMixer",
+      "TiDE",
+      "TimeMixer",
+      "TimesNet",
+      "PatchTST",
+      "Informer",
+      "Autoformer",
+      "iTransformer",
+      "Crossformer",
+      "S-Mamba",
+      "GRU-E2",
+      "LSTM-E2",
+      "TCN-E2",
+      "GRU/D7-c03",
+      "LSTM/D7-c02",
+      "TCN/D7-c02",
+      "Ridge",
+      "Persistence",
+      "SeasonalNaive",
+      "ARIMA"
+    ],
+    "all_twenty_declared_before_fits": true,
+    "nominal_fit_origin": "2024-11-08",
+    "fit_scaler_recipe_selection_outcome_max": "2024-10-31",
+    "historical_E1_selection_outcome_max": "2024-10-31",
+    "embargo": [
+      "2024-11-01",
+      "2024-11-07"
+    ],
+    "calibration_start": "2024-11-08",
+    "calibration_end": "2024-12-30",
+    "calibration_calendar_days": 53,
+    "neural_ensemble_seed_ids": [
+      680101,
+      680102,
+      680103,
+      680104,
+      680105
+    ],
+    "neural_member_weights": [
+      0.2,
+      0.2,
+      0.2,
+      0.2,
+      0.2
+    ],
+    "neural_ensemble_cardinality_fixed_before_P1": true,
+    "ensemble_uses_R_selected_by_P1": false,
+    "deterministic_predictor_trajectories": 1,
+    "calibration_used_to_refit_or_select_predictor": false,
+    "primary_predictor_replaced": false,
+    "evaluation_start": "2026-09-01",
+    "evaluation_end": "2026-10-30",
+    "eval_predictor_identical_to_calibrated_predictor": true,
+    "all_primary_and_A_weights_close_before_any_calibration_score": true,
+    "all_calibrations_close_before_single_final_test_phase": true,
+    "nominal_coverages": [
+      0.8,
+      0.9,
+      0.95
+    ],
+    "recency_half_life_days": 28,
+    "fixed_future_mass": 1.0,
+    "claimed_exact_coverage": false,
+    "bootstrap_repetitions": 2000,
+    "block_days": 14,
+    "sensitivity_blocks": [
+      7,
+      28
+    ]
+  },
+  "primary_test": {
+    "dates": [
+      "2026-09-01",
+      "2026-10-30"
+    ],
+    "calendar_days": 60,
+    "new_unseen_test": false,
+    "maximum_completion_scoring_phases": 1,
+    "main_fit_outcome_max": "2024-12-24",
+    "primary_metric": "mean per-seed RMSE in original sigma7 units",
+    "absolute_delta": 0.00025772842664981106,
+    "existing_30_30_199_family_budget_unchanged": true
+  },
+  "additional_exploratory_families": {
+    "generalization_gap": {
+      "hypotheses": 40,
+      "null": "validation_RMSE-training_RMSE<=delta_g",
+      "delta_g": 0.00025772842664981106,
+      "alpha": 0.01,
+      "adjustment": "Holm",
+      "draws": 19999,
+      "main_block": 7,
+      "sensitivities": [
+        14,
+        28
+      ],
+      "scope": "SecondaryA53 predictor trained and selected throughOct31; not a claim of no overfit of primaryDec24fit",
+      "subfamilies": [
+        {
+          "name": "gap_violation",
+          "hypotheses": 20,
+          "alpha": 0.005,
+          "null": "validation_RMSE-training_RMSE<=delta_g",
+          "alternative": ">delta_g"
+        },
+        {
+          "name": "gap_within_tolerance",
+          "hypotheses": 20,
+          "alpha": 0.005,
+          "null": "validation_RMSE-training_RMSE>=delta_g",
+          "alternative": "<delta_g"
+        }
+      ],
+      "non_rejection_is_not_no_overfit": true,
+      "primary_test_minus_train_gap": "separate descriptive temporal diagnostic; no extra decision family"
+    },
+    "equivalence_and_cost": {
+      "hypotheses": 19,
+      "reference": "best of all20 by frozen common nested development Jan-Oct31; no test selection",
+      "margin_delta": 0.00025772842664981106,
+      "alpha": 0.01,
+      "adjustment": "Holm",
+      "rule": "IUT max(TOST practical-equivalence p, lower-cost p), keep all19 hypotheses"
+    },
+    "predictive_PIT": {
+      "hypotheses": 20,
+      "alpha": 0.01,
+      "adjustment": "Holm",
+      "test": "centered calendar-block empirical process, randomized atoms; not IID KS"
+    },
+    "MCS": {
+      "level": 0.9,
+      "bootstrap": 9999,
+      "statistic": "sequential Tmax",
+      "temporal_blocks": true
+    },
+    "ablations": {
+      "contrasts": 3,
+      "alpha": 0.05,
+      "adjustment": "Holm",
+      "null": "absolute(RMSE_removed-RMSE_control)<=delta",
+      "two_sided_practical_p": "min(1,2*min(p_delta_positive,p_delta_negative))",
+      "draws": 9999,
+      "main_block_days": 7,
+      "sensitivities": [
+        14,
+        28
+      ]
+    }
+  },
+  "FWER_scope": "The inherited0.05allocation controls only its30+30+199families under valid p-values; added exploratory families have their separately declared controls, not an all-analysis global0.05claim",
+  "ablation_design": {
+    "model_selection": "best Top10 by nested common development before final fits; identify separately if globalbestisaclassical",
+    "components_per_Top10": 3,
+    "definitions_source": "scripts/e2_final_diagnostics.py::get_ablation_definitions",
+    "before_fit_definitions_fixed_for_all_ten": true,
+    "variants": [
+      "full_control",
+      "three_individual_removed_components"
+    ],
+    "training_outcome_max": "2024-10-31",
+    "nominal_origin": "2024-11-08",
+    "evaluation": [
+      "2024-11-08",
+      "2024-12-30"
+    ],
+    "calendar_days": 53,
+    "seeds": "exact same R and seed prefix selected for primary final fits",
+    "primary_Dec24_model_reused_as_control": false,
+    "primary_and_A_weights_frozen_before_first_ablation_development_score": true,
+    "first_registered_seed_four_variant_checkpoints_retained": true,
+    "other_ablation_checkpoints_pruned_only_after_closed_development_score": true,
+    "final_test_used_for_ablations": false,
+    "R_main_is_not_power_certificate_for_ablation": true,
+    "streaming_schedule": "All4Rjobs sealed before first ablation fit; each own checkpoint closes before its development score; allprimary/Afitclosures before first such score; no score-based changes; analysis after complete4Rpanel"
+  },
+  "posthoc_diagnostics_subset": {
+    "neural_seed_ids": [
+      670101,
+      670102,
+      670103,
+      670104,
+      670105
+    ],
+    "deterministic_trajectories": 1,
+    "clean_and_perturbed_same_seed_subset": true,
+    "explanations": "Top3 by frozen nested development over all20; analytic/occlusion explanation for classical references",
+    "XAI_baseline": "35 training-only per-cell standardized means; preserve deterministic relative-window constants",
+    "primary_XAI": "group occlusion14groups:7OHLCbars with4prices each,7volume entries",
+    "secondary_XAI": "Integrated gradients only when completeness passes; same frozen baseline; otherwise reported not applicable",
+    "XAI_group_attributions_not_claimed_individual_price_causal_effects": true
+  },
+  "predictability_reference": {
+    "method": "Known sixD7logreturns plus empirical future innovation law from training2023only",
+    "law_cutoff": "2023-12-24",
+    "permutation_entropy_dimension": 3,
+    "permutation_entropy_delay": 1,
+    "conditional_risk_proxy_under_iid_innovation_assumption": true,
+    "universal_Bayes_bound_claimed": false,
+    "bootstrap_repetitions": 2000,
+    "main_block_days": 7,
+    "sensitivity_blocks": [
+      14,
+      28
+    ],
+    "gamma": "(RMSE_best-RMSE_proxy)/(RMSE_baseline-RMSE_proxy); no clipping to[0,1]; unstable denominator->NE"
+  },
+  "volatility_secondary_metrics": {
+    "variance_target": "sigma7_squared",
+    "QLIKE": "log(max(sigma_pred_squared,1e-12))+sigma_true_squared/max(sigma_pred_squared,1e-12)",
+    "prediction_variance_floor": 1e-12,
+    "MSE_variance": true,
+    "VaR_test_applicability": "Not claimed: realized-volatility forecasts do not specify a conditional return/VaR distribution"
+  },
+  "checkpoint_policy": {
+    "HPO": "after prediction closure keep config,curve,preprocessing,index,predictions,weights hash and pruning receipt; no unbounded checkpoint accumulation",
+    "P1_primary_A": "preserve until corresponding global freeze and scored prediction closure, no earlier payload unblinding",
+    "ablation": "development-scored scratch may be pruned with receipt; retain first seed4variant examples",
+    "never_change_R_posthoc_to_fit_storage": true
+  },
+  "legacy_OOF_selection": {
+    "exact_models": [
+      "GRU/D7-c03",
+      "LSTM/D7-c02",
+      "TCN/D7-c02"
+    ],
+    "hyperparameter_selection_outcome_max": "2024-10-31",
+    "monthly_fit_scaler_epoch_selection_cutoffs_remain_strict": true,
+    "historical_selection_exposure_disclosed": true,
+    "unbiased_nested_selection_claimed_for_legacy": false,
+    "E2_new_configuration_selection": false,
+    "other_seventeen_require_strict_monthly_selection_cutoffs": true
+  },
+  "power_approximation_limits": {
+    "unpiloted_families": "Upper-SD proxy (chi-square df9) inflated1.5 is conditional on a normal contrast approximation, not empirical final-recipe power certification",
+    "latency_upper_SD": "Chi-square df60 approximation from61timing blocks is conditional; CPU scheduling/hardware change invalidates direct transfer",
+    "pilot_to_primary_calendar": "53 known development days project to60known historical test dates under stated stationarity/transfer assumptions; no creation of independent dates"
+  },
+  "runtime": "requirements-e2-completion.lock.txt; CPU/FP32/one numerical thread per fresh fit; up to4workers on4CPU/32GiB; author source hashes bind112files including transitive layers and numeric presets",
+  "leakage_controls": {
+    "protocol": "E2_completion_temporal_leakage_controls_v1",
+    "guide": "Entregable2DeepLearningProject.pdf section10.1 p45",
+    "label_shuffle_models": [
+      "TSMixer",
+      "TiDE",
+      "TimeMixer",
+      "TimesNet",
+      "PatchTST",
+      "Informer",
+      "Autoformer",
+      "iTransformer",
+      "Crossformer",
+      "S-Mamba",
+      "GRU-E2",
+      "LSTM-E2",
+      "TCN-E2",
+      "GRU/D7-c03",
+      "LSTM/D7-c02",
+      "TCN/D7-c02",
+      "Ridge"
+    ],
+    "label_shuffle_models_count": 17,
+    "neural_seed": 690101,
+    "Ridge_seed": "deterministic",
+    "permutation_seeds": {
+      "outer": 690101,
+      "inner_train": 690118,
+      "inner_validation": 690132
+    },
+    "permutation_block_observations": 7,
+    "permutation_unit": "consecutive admitted daily observations, including a moved final partial block; gaps reported, never filled or relabeled",
+    "permutation_scope": "outer, inner-training and inner-validation labels independently permuted; inner stopping never uses unpermuted validation labels",
+    "recipe": "exact primary development-selected hyperparameters; independent negative-control weights, not a competitor or HPO candidate",
+    "fit_origin": "2025-01-01",
+    "fit_and_epoch_selection_max": "2024-12-24",
+    "no_hyperparameter_or_architecture_search": true,
+    "freeze_order": "all primary+A+negative-control weights <= global closure < all calibrators closed < the single E2 test scoring phase",
+    "test_calendar": [
+      "2026-09-01",
+      "2026-10-30"
+    ],
+    "test_is_already_known_historically": true,
+    "regression_reference": "constant original-scale training-target mean, not classification accuracy or an assumed zero score",
+    "gain": "RMSE(training-mean constant)-RMSE(shuffled-label predictor)",
+    "diagnostic_family": {
+      "size": 17,
+      "alpha": 0.01,
+      "adjustment": "Holm across17joint alerts; each intersection-union pvalue=max(practicalgainp,positiveassociationp)",
+      "practical_gain_null": "gain<=inheriteddelta",
+      "practical_gain_delta": 0.00025772842664981106,
+      "gain_pvalue": "centered paired circular-block bootstrap at the null boundary delta",
+      "association_null": "no positive temporal association under block exchangeability",
+      "association_pvalue": "block-permute evaluation targets, fixed control forecasts; one-sided Spearman",
+      "replicates": 2000,
+      "block_observations": 7,
+      "alert_rule": "joint IUT Holm17 pvalue<alpha and observed gain>delta and observed Spearman>0",
+      "nonalert_is_proof_of_no_leakage": false
+    },
+    "endogenous_reference_control": {
+      "models": [
+        "ARIMA",
+        "Persistence",
+        "SeasonalNaive"
+      ],
+      "label_shuffle_training_claimed": false,
+      "reason": "ARIMA and naive forecasts explicitly consume only past target history; shuffling supervised OHLCV labels does not preserve their input contract",
+      "alternative": "existing fixed-parameter causal state/support audits and controlled past-history perturbation curves, evaluated in the same sealed scoring phase",
+      "causal_target_history_is_not_suspicious_association": true
+    },
+    "adversarial_validation": {
+      "features": "the35flattened seven-day OHLCV cells from the common frozen primary preprocessing; no target, outcome-derived covariate or calendar feature",
+      "class_labels": "0=original study training,1=the60historical test inputs",
+      "classifier": "fixed balanced logistic regression, scipy L-BFGS-B, L2coefficient.01, unpenalized intercept, maximum200iterations",
+      "folds": 5,
+      "heldout": "one contiguous date chunk from each population per fold",
+      "purge_calendar_days": 7,
+      "scaler": "mean/SD learned exclusively from each classifier training fold",
+      "score": "pooled out-of-fold ROC AUC via Mann-Whitney ranks, tiecorrected; direction predeclared test=1",
+      "resampling": "permute domain-label blocks and refit the entire cross-validation procedure for every replicate",
+      "replicates": 2000,
+      "block_observations": 7,
+      "seed": 690201,
+      "alpha": 0.01,
+      "two_sided_distinguishability": true,
+      "CI": "paired circular-block percentile bootstrap of frozen out-of-fold scores and domain labels",
+      "handling_if_shift": "retain chronological evaluation, fixed A53 calibration and registered robustness analyses; explain change without reselection or retraining feedback",
+      "iid_exchangeability_or_exact_pvalue_claimed": false,
+      "no_shift_is_proof_of_no_leakage": false
+    },
+    "status_before_execution": "prospectively specified pending public registration and execution",
+    "benchmark_or_control_model_fits_performed_by_this_module": 0
+  }
+}
