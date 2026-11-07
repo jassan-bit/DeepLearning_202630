@@ -3,7 +3,7 @@
 **Proyecto de Deep Learning · 2026-30**  
 **Profesor:** Dr. Lihki Rubio  
 **Autor:** Jassan Arteta  
-**Avance:** Entregable 1 · GRU–LSTM–TCN, CV de Filipe y estudio D7 planificado · cribado editorial y suplemento estadístico del 6 de noviembre de 2026
+**Avance:** Entregable 1 · GRU–LSTM–TCN, CV de Filipe y modelo final D7 · cribado editorial y suplemento estadístico del 6 de noviembre de 2026
 
 Este libro desarrolla el **Entregable 1 de Deep Learning** para pronosticar volatilidad de **Bitcoin**, con datos oficiales de **Binance Spot BTCUSDT**. El problema es **tipo 4: regresión temporal**: cinco covariables OHLCV diarias, desviación estándar poblacional de siete retornos logarítmicos y horizonte de un día. Se conserva la validación **`split_train_val_forwardChaining` de `timeseries-cv`**, proyecto de DidierRLopes con coautoría de **Filipe R. Ramos**, con embargo y transformaciones ajustadas únicamente al pasado permitido.
 
@@ -19,10 +19,10 @@ El estudio tiene **dos fases identificadas por separado**. La fase I evalúa las
 - [Procedimiento temporal](sections/06_procedimiento.md): ruta 6.4 de la guía y disponibilidad causal.
 - [Limitaciones](sections/07_limitaciones_entregables.md): potencia entre semillas, dependencia y fuerza inferencial.
 - [Entregables](sections/08_entregables.md): siete productos y ocho descargas directas.
-- [Estudio D7 planificado](sections/09_estudio_planificado.md): HPO comparable, piloto, dimensionamiento y evaluación preespecificada.
+- [Modelo final y evaluación D7](sections/09_estudio_planificado.md): HPO comparable, piloto, dimensionamiento y evaluación preespecificada.
 - [Decisiones y pendientes](sections/protocolo_pendiente.md): evidencia de cierre y límites aún abiertos.
 
-## Fase II: piloto y evaluación preespecificada D7
+## Modelo final y evaluación D7
 
 El [diseño y código](https://github.com/jassan-bit/DeepLearning_202630/commit/ac7dd7f67c0dec2397b519897cf6da8056b238f5) se publicaron **antes del primer entrenamiento** de esta fase. La búsqueda utiliza **ocho configuraciones y dos semillas por familia**, los mismos diez bloques mensuales de enero–octubre de 2024 y **320 ajustes por familia, 960 en total**. La puntuación es la media entre semillas del RMSE sobre las 305 fechas de validación concatenadas.
 
@@ -32,7 +32,7 @@ El [diseño y código](https://github.com/jassan-bit/DeepLearning_202630/commit/
 | LSTM/D7 | Una capa de 16 unidades, LR 0,003, dropout 0 | 1.489 | 0,00626389 ± 0,00021402 |
 | TCN/D7 | Tres bloques causales, ancho 8, LR 0,003, dropout 0 | 1.185 | 0,00543698 ± 0,00056998 |
 
-El baseline de fase II es **GRU/D7 de 16 unidades**, seleccionado y congelado por desarrollo antes del piloto y de la reserva. Es una receta distinta de la GRU de 32 unidades de fase I.
+El baseline final es **GRU/D7 de 16 unidades**, seleccionado y congelado por desarrollo antes del piloto y de la reserva. Es una receta distinta de la GRU de 32 unidades de fase I.
 
 El piloto usa **diez semillas nuevas por familia**, treinta trayectorias y sesenta ajustes, sobre el **01/11–30/12/2024** con pesos fijos. Las diferencias pareadas de RMSE y su incertidumbre dimensionan **465 ejecuciones por familia** mediante t no central, α*=0,05/3 y potencia marginal objetivo 0,80. La planificación quedó [publicada antes de los ajustes definitivos](https://github.com/jassan-bit/DeepLearning_202630/commit/5a0acfbc2ff582e252f0e6fb18aaf652963221f8). Sus supuestos y MDE se desarrollan en el [capítulo 9](sections/09_estudio_planificado.md).
 
@@ -40,7 +40,7 @@ La nueva reserva comprende **01/09–30/10/2026, 60 días**. Los archivos ya hab
 
 ### Resultados de la nueva reserva
 
-| Modelo de fase II | RMSE, media ± DE | R² medio | MAE medio |
+| Modelo final | RMSE, media ± DE | R² medio | MAE medio |
 |---|---:|---:|---:|
 | GRU | 0,00511696 ± 0,00077519 | 0,348891 | 0,00391028 |
 | LSTM | 0,00565123 ± 0,00056569 | 0,215843 | 0,00429363 |

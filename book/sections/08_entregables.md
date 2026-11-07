@@ -120,7 +120,7 @@ El ZIP 8.5 incluye los [agregados de fase II](../_static/gru_lstm_tcn_planned_20
 
 La reserva de fase II tiene los siguientes resultados:
 
-| Modelo de fase II | RMSE, media ± DE | R² medio | MAE medio |
+| Modelo final | RMSE, media ± DE | R² medio | MAE medio |
 |---|---:|---:|---:|
 | GRU | 0,00511696 ± 0,00077519 | 0,348891 | 0,00391028 |
 | LSTM | 0,00565123 ± 0,00056569 | 0,215843 | 0,00429363 |
@@ -147,7 +147,7 @@ No se comparan directamente RMSE de 608 y 60 fechas para atribuir una ganancia a
 (entrega-8-6)=
 ## 8.6. Dependencias, semillas y configuración de cada corrida
 
-| Modelo de fase II | Receta seleccionada | Parámetros entrenables |
+| Modelo final | Receta seleccionada | Parámetros entrenables |
 |---|---|---:|
 | GRU | Una capa unidireccional de 16 unidades; LR 0,003; dropout 0,1 | 1.121 |
 | LSTM | Una capa unidireccional de 16 unidades; LR 0,003; dropout 0 | 1.489 |
