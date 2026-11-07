@@ -1,0 +1,448 @@
+{
+  "schema_version": 1,
+  "prepared_at_utc": "2026-11-07T04:08:39.501059+00:00",
+  "new_fits_at_preparation": 0,
+  "purpose": "Current independent-process numerical repeatability of a fixed diagnostic subpanel",
+  "chronology": "Post-original and post-full-replay diagnostic; publish protocol and runner before these new fits",
+  "claim_limit": "Six diagnostic cells only; neither full R465 repeatability nor exact original recovery",
+  "original_artifacts_unchanged": true,
+  "baseline_unchanged": true,
+  "panel": [
+    {
+      "model": "GRU",
+      "seed": 8101,
+      "reason": "fixed first registered seed"
+    },
+    {
+      "model": "LSTM",
+      "seed": 8101,
+      "reason": "fixed first registered seed"
+    },
+    {
+      "model": "TCN",
+      "seed": 8101,
+      "reason": "fixed first registered seed"
+    },
+    {
+      "model": "TCN",
+      "seed": 8110,
+      "reason": "top three absolute epoch changes; ties model then seed"
+    },
+    {
+      "model": "TCN",
+      "seed": 8416,
+      "reason": "top three absolute epoch changes; ties model then seed"
+    },
+    {
+      "model": "TCN",
+      "seed": 8552,
+      "reason": "top three absolute epoch changes; ties model then seed"
+    }
+  ],
+  "panel_rule": "GRU/LSTM/TCN at first registered seed8101 plus three greatest absolute historical→replay selected-epoch changes; ties by model then seed. Chosen after old replay, before any new repeatability fits; all results retained.",
+  "replicates": [
+    "a",
+    "b"
+  ],
+  "planned_trajectories": 12,
+  "planned_fit_stages": 24,
+  "history_days": 7,
+  "workers_per_process_pool": 3,
+  "start_method": "spawn",
+  "replicate_processes": "Separate CLI invocations, fresh pools, independent empty private directories; run a then b",
+  "job_order": "Published panel list in order; each job resets Python/NumPy/Torch seeds and independent shuffle generator",
+  "environment": {
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PYTHONHASHSEED": "0"
+  },
+  "worker_settings": {
+    "torch_threads": 1,
+    "torch_interop_threads": 1,
+    "deterministic_algorithms": true,
+    "mkldnn_enabled": true,
+    "float32_matmul_precision": "highest",
+    "default_dtype": "torch.float32"
+  },
+  "runtime_expected": {
+    "python": "3.12.14",
+    "versions": {
+      "torch": "2.15.0+cpu",
+      "numpy": "2.5.4",
+      "pandas": "3.1.0",
+      "scipy": "1.18.1",
+      "statsmodels": "0.15.0",
+      "matplotlib": "3.11.2"
+    }
+  },
+  "data_scope": {
+    "calendar": [
+      "2023-01-01",
+      "2024-12-31"
+    ],
+    "train_samples": 709,
+    "inner_train_samples": 619,
+    "inner_validation_samples": 83,
+    "reserve_price_payloads_allowed": 0,
+    "reserve_scoring_allowed": false,
+    "new_forecasts_allowed": false
+  },
+  "settings": {
+    "histories": [
+      7
+    ],
+    "target_days": 7,
+    "horizon": 1,
+    "hpo": {
+      "seeds": [
+        6101,
+        6102
+      ],
+      "candidates": {
+        "GRU": [
+          {
+            "candidate_id": "c00",
+            "width": 16,
+            "learning_rate": 0.001,
+            "dropout": 0.0
+          },
+          {
+            "candidate_id": "c01",
+            "width": 16,
+            "learning_rate": 0.001,
+            "dropout": 0.1
+          },
+          {
+            "candidate_id": "c02",
+            "width": 16,
+            "learning_rate": 0.003,
+            "dropout": 0.0
+          },
+          {
+            "candidate_id": "c03",
+            "width": 16,
+            "learning_rate": 0.003,
+            "dropout": 0.1
+          },
+          {
+            "candidate_id": "c04",
+            "width": 32,
+            "learning_rate": 0.001,
+            "dropout": 0.0
+          },
+          {
+            "candidate_id": "c05",
+            "width": 32,
+            "learning_rate": 0.001,
+            "dropout": 0.1
+          },
+          {
+            "candidate_id": "c06",
+            "width": 32,
+            "learning_rate": 0.003,
+            "dropout": 0.0
+          },
+          {
+            "candidate_id": "c07",
+            "width": 32,
+            "learning_rate": 0.003,
+            "dropout": 0.1
+          }
+        ],
+        "LSTM": [
+          {
+            "candidate_id": "c00",
+            "width": 16,
+            "learning_rate": 0.001,
+            "dropout": 0.0
+          },
+          {
+            "candidate_id": "c01",
+            "width": 16,
+            "learning_rate": 0.001,
+            "dropout": 0.1
+          },
+          {
+            "candidate_id": "c02",
+            "width": 16,
+            "learning_rate": 0.003,
+            "dropout": 0.0
+          },
+          {
+            "candidate_id": "c03",
+            "width": 16,
+            "learning_rate": 0.003,
+            "dropout": 0.1
+          },
+          {
+            "candidate_id": "c04",
+            "width": 32,
+            "learning_rate": 0.001,
+            "dropout": 0.0
+          },
+          {
+            "candidate_id": "c05",
+            "width": 32,
+            "learning_rate": 0.001,
+            "dropout": 0.1
+          },
+          {
+            "candidate_id": "c06",
+            "width": 32,
+            "learning_rate": 0.003,
+            "dropout": 0.0
+          },
+          {
+            "candidate_id": "c07",
+            "width": 32,
+            "learning_rate": 0.003,
+            "dropout": 0.1
+          }
+        ],
+        "TCN": [
+          {
+            "candidate_id": "c00",
+            "width": 8,
+            "learning_rate": 0.001,
+            "dropout": 0.0
+          },
+          {
+            "candidate_id": "c01",
+            "width": 8,
+            "learning_rate": 0.001,
+            "dropout": 0.1
+          },
+          {
+            "candidate_id": "c02",
+            "width": 8,
+            "learning_rate": 0.003,
+            "dropout": 0.0
+          },
+          {
+            "candidate_id": "c03",
+            "width": 8,
+            "learning_rate": 0.003,
+            "dropout": 0.1
+          },
+          {
+            "candidate_id": "c04",
+            "width": 16,
+            "learning_rate": 0.001,
+            "dropout": 0.0
+          },
+          {
+            "candidate_id": "c05",
+            "width": 16,
+            "learning_rate": 0.001,
+            "dropout": 0.1
+          },
+          {
+            "candidate_id": "c06",
+            "width": 16,
+            "learning_rate": 0.003,
+            "dropout": 0.0
+          },
+          {
+            "candidate_id": "c07",
+            "width": 16,
+            "learning_rate": 0.003,
+            "dropout": 0.1
+          }
+        ]
+      },
+      "months": [
+        "2024-01",
+        "2024-02",
+        "2024-03",
+        "2024-04",
+        "2024-05",
+        "2024-06",
+        "2024-07",
+        "2024-08",
+        "2024-09",
+        "2024-10"
+      ]
+    },
+    "pilot": {
+      "seeds": [
+        7101,
+        7102,
+        7103,
+        7104,
+        7105,
+        7106,
+        7107,
+        7108,
+        7109,
+        7110
+      ],
+      "origin": "2024-11-01",
+      "first_day": "2024-11-01",
+      "last_day": "2024-12-30",
+      "days": 60
+    },
+    "final_fit_origin": "2025-01-01",
+    "training": {
+      "optimizer": "AdamW",
+      "weight_decay": 0.0001,
+      "batch_size": 32,
+      "max_epochs": 100,
+      "patience": 12,
+      "min_delta": 1e-05,
+      "gradient_clip_norm": 1.0,
+      "device": "cpu",
+      "torch_threads": 1,
+      "torch_interop_threads": 1,
+      "strict_deterministic_algorithms": true,
+      "inner_validation_calendar_days": 90,
+      "embargo_days": 7,
+      "inner_seed": "stage_seed",
+      "refit_seed": "stage_seed+10000000",
+      "batch_order_seed": "stage_seed+17",
+      "test_refit": false,
+      "dropout": 0.1
+    },
+    "holdout_first_day": "2026-09-01",
+    "holdout_last_day": "2026-10-30",
+    "holdout_days": 60,
+    "failure_policy": {
+      "technical_failures": "Stop and preserve original error/artifacts; no replacement of unfavorable seeds; resume only exact registered jobs after root-cause review",
+      "missing_reserve_dates": "Abort primary analysis rather than silently changing the cohort",
+      "degenerate_pilot": "Report inability to plan if paired variance cannot be estimated; never substitute an arbitrary successful power",
+      "infeasible_sample_size": "Report required R and infeasibility; never silently cap R or claim target power",
+      "protocol_changes": "Any scientific change after results starts a new version; never overwrite frozen protocol"
+    },
+    "selection": "Mean across two seeds of RMSE pooled over all January-October validation dates; not mean monthly RMSE",
+    "tie_tolerance": 1e-12
+  },
+  "recipes": {
+    "GRU": {
+      "candidate_id": "c03",
+      "width": 16,
+      "learning_rate": 0.003,
+      "dropout": 0.1,
+      "model": "GRU",
+      "history_days": 7,
+      "mean_rmse": 0.005136197693706435,
+      "sample_sd": 3.067925167633123e-05,
+      "parameters": 1121
+    },
+    "LSTM": {
+      "candidate_id": "c02",
+      "width": 16,
+      "learning_rate": 0.003,
+      "dropout": 0.0,
+      "model": "LSTM",
+      "history_days": 7,
+      "mean_rmse": 0.006263890287288932,
+      "sample_sd": 0.00021401934268919446,
+      "parameters": 1489
+    },
+    "TCN": {
+      "candidate_id": "c02",
+      "width": 8,
+      "learning_rate": 0.003,
+      "dropout": 0.0,
+      "model": "TCN",
+      "history_days": 7,
+      "mean_rmse": 0.005436975510979903,
+      "sample_sd": 0.0005699848942024205,
+      "parameters": 1185
+    }
+  },
+  "primary_acceptance": "All six cells have identical selected_epoch, e1-csv-values-v1 hashes of both histories, e1-state-dict-v1 tensor hashes and checkpoint metadata hashes between a and b. Exact equality; no fitted tolerance.",
+  "secondary_numerical_equivalence": {
+    "rtol": 1e-06,
+    "atol": 1e-08,
+    "elementwise_rule": "abs(a-b) <= atol + rtol*max(abs(a),abs(b)); symmetric and fixed before new fits",
+    "values": "Every numeric loss/LR CSV cell and every tensor element; no observations or predictions",
+    "structure_rule": "Equal selected_epoch, curve row counts, epoch/stage/best_epoch, missingness, tensor names/dtypes/shapes and checkpoint metadata; otherwise no whole-fit equivalence",
+    "interpretation": "Separate secondary numerical classification, never relabel a strict canonical failure as an exact pass"
+  },
+  "secondary_comparisons": "Report all a/b vs existing full replay raw/canonical hashes and historical raw hashes, without optimizing settings to improve agreement",
+  "failure_policy": "Stop, retain every partial output; no seed substitution, tuning, retry, cache reuse or extension of scope. Any further fits require a new published protocol.",
+  "public_outputs": [
+    "hashes",
+    "runtime metadata",
+    "selected epochs",
+    "pass/fail per cell",
+    "aggregate counts"
+  ],
+  "excluded_public_outputs": [
+    "weights",
+    "learned scaler values",
+    "observations",
+    "daily predictions"
+  ],
+  "sources_sha256": {
+    "scripts/run_gru_lstm_tcn_planned.py": "0afd0158f80aeadba6e3528c86d540183d0599ec864dffc8c0ea0e9bafd5c9d6",
+    "scripts/planned_study_data.py": "f4b732b24a86e9879b53e7a731c0ef2b606bb49fb0a546997ab0e46448232523",
+    "scripts/planned_study_statistics.py": "703492f299649ac5f87a2c37e30f0ae5fc4253595fba0fce36ec1b1b817fcdf2",
+    "scripts/dl_models_gru_lstm_tcn.py": "c11af1229fec43dd7da01a21e349dc2b109d9d61d977f6df3d01cd7da736b35d",
+    "scripts/dl_models.py": "e24110b57aeee201e1e9ab53519eb6b05967927ac54102fe23d3908c3fc57d69",
+    "scripts/dl_data.py": "8ea726a1d8ca7b9fa9bfcb26ee6e565b516c40a3ad1cd40e0f639c43b7f429ce",
+    "scripts/dl_data_v2.py": "bbf0ad8646afcd792b3961d0e5e5bcf9318f0fbe4377732a965c58f9557c33cb",
+    "scripts/train_dl_benchmark.py": "b78e2c66f55b07567601065f411881fa7170fe931784b1f59305283fdd292679",
+    "scripts/final_fit_filipe_multihistory.py": "1267f14787e52c72a798923a1a24551f2de69887e4412bd030aae31db2848c84",
+    "scripts/load_filipe_reserved_test.py": "6f253b063cbb8482e325d7fb846bd58b5480c30bc2e6d4aa2ce4d9c4b8d0b908",
+    "scripts/gru_lstm_tcn_diagnostics.py": "8cf66f3c169d90a677ae1fe16d2b77636d19c42bfa718d0b1beec77980d49ec8",
+    "scripts/train_filipe_multihistory.py": "c3a96f60142ef6bbd5faf1dac7855f38f03e51859529adf6861ffdfb8e58d064",
+    "requirements-training.lock.txt": "a344a762f8373b4e0086e992c38a7c7ff66a8f6018f265c037053df5ccfc1077",
+    "requirements-cv.txt": "cd0bfe7b2be713cbda86e856124777c5e481f5f2bf865981e5f17b49507b8fe6",
+    "results/eda_development/daily_market_development.csv": "bf6bb5160af924aef6a15c3684aeae932df3017e8639888bb7e91ce787900171",
+    "results/eda_development/daily_volatility_development.csv": "20b96374a659eb87dadfa68aa3d6b6b5fb6bea5b10eebe6f2c186ad69861844a",
+    "results/dl_r2_cv_20261104/folds.json": "3851de7cbb388d791a0f2b3d8e9fdd8d1002e44a300927c2adc8001b8a3916c6",
+    "experiments/gru_lstm_tcn_planned_20261105/design.json": "80e804a9a4c0ae4c053f02bf62a2b4315c9ddadbb0b0e3951b09652a9964a81c",
+    "scripts/audit_e1_replay_forensics.py": "367a57f2cc7c2cf9911857e7b53716685bb7d978b53bc2afc988c27c28e88114",
+    "tests/test_e1_replay_forensics.py": "f433c4a1569db8ac216434fd362229d94353c1a828dea11744e8fc075f5360cd",
+    "experiments/e1_replay_audit_20261107/README.md": "731972a94d6e4e6b90ca6cdddffd4ee069ff22520a019233c42ac797a5e1068a",
+    "requirements-e1-curves.lock.txt": "44a0abc6b30d8387ffb879d31003419b82f032e9aa348b206ca7f4a50b37f7d4",
+    "results/gru_lstm_tcn_planned_20261105/selected_recipes.json": "3fb4a42d023a09c7ec88d78869434997e3827eb4482d10107562548acd1d78d7",
+    "results/gru_lstm_tcn_planned_20261105/final_freeze_provenance.json": "502ab6e1cd2d451d51455b943c8c9cb88c280669426b6a8dac0e9555f651acc0",
+    "results/e1_curve_reproduction_20261106/fit_summary.csv": "4571d54fcdbe619d4b5252baaf40eafbbe8a7d71954d07ba065e7ea79b089b32",
+    "results/e1_curve_reproduction_20261106/artifact_hash_comparison.csv": "c98343acbef509cd4daa06d505e713457e0f69490c14ba5ec7d2993b8b5733fc"
+  },
+  "runtime_observed_at_preparation": {
+    "python": "3.12.14",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "versions": {
+      "torch": "2.15.0+cpu",
+      "numpy": "2.5.4",
+      "pandas": "3.1.0",
+      "scipy": "1.18.1",
+      "statsmodels": "0.15.0",
+      "matplotlib": "3.11.2"
+    },
+    "torch_config": "PyTorch built with:\n  - GCC 13.3\n  - C++ Version: 202002\n  - Intel(R) oneAPI Math Kernel Library Version 2024.2-Product Build 20240605 for Intel(R) 64 architecture applications\n  - Intel(R) MKL-DNN v3.13.3 (Git Hash b38f97eb6f2173513112f15a0481750b8a66e901)\n  - OpenMP 201511 (a.k.a. OpenMP 4.5)\n  - LAPACK is enabled (usually provided by MKL)\n  - NNPACK is enabled\n  - CPU capability usage: AVX512\n  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, COMMIT_SHA=d0f2af8b66b20da4baa50644c0cd3f887a2eae2e, CUDA_FLAGS= -DLIBCUDACXX_ENABLE_SIMPLIFIED_COMPLEX_OPERATIONS -Xfatbin -compress-all  -Wno-deprecated-gpu-targets --expt-extended-lambda -DCUB_WRAPPED_NAMESPACE=at_cuda_detail -DDISABLE_CUSPARSE_DEPRECATED -DCUDA_HAS_FP16=1 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -DC10_NODEPRECATED, CXX_COMPILER=/opt/rh/gcc-toolset-13/root/usr/bin/c++, CXX_FLAGS= -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DUSE_FBGEMM -DUSE_PYTORCH_QNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -DC10_NODEPRECATED -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=range-loop-construct -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-unknown-pragmas -Wno-unused-parameter -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wsuggest-override -Wno-psabi -Wno-error=old-style-cast -faligned-new -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-dangling-reference -Wno-error=dangling-reference -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, TORCH_VERSION=2.15.0, USE_CUDA=0, USE_CUDNN=OFF, USE_CUSPARSELT=OFF, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_GLOO=ON, USE_HIPSPARSELT=OFF, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=OFF, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, USE_ROCM_KERNEL_ASSERT=OFF, USE_XCCL=OFF, USE_XPU=OFF, \n",
+    "cpu_models": [
+      "Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz"
+    ],
+    "cpu_capability": "AVX512",
+    "affinity": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "cpu_quota": "400000 100000",
+    "torch_extension_sha256": "b09d26e7781dffdf26001f7f89d85fc1e7866c9d241cde7ecc5277e11950d6e0",
+    "torch_cpu_library_sha256": "afe839bc112b41f97b82776675a0fc44425f7d755c58db700fe75efee0a36170",
+    "environment": {
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "PYTHONHASHSEED": null,
+      "MKL_CBWR": null,
+      "DNNL_MAX_CPU_ISA": null,
+      "ONEDNN_MAX_CPU_ISA": null
+    },
+    "actual_torch_threads": 1,
+    "actual_torch_interop_threads": 5,
+    "deterministic_algorithms": false,
+    "mkldnn_enabled": true,
+    "float32_matmul_precision": "highest",
+    "default_dtype": "torch.float32"
+  }
+}
