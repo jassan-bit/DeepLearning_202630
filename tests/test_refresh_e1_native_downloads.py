@@ -90,6 +90,10 @@ class NativeDownloadRefreshTests(unittest.TestCase):
                           "part_upload_psogru/review.json", "part_upload_psogru/README.md"}
             elif stage == "provisional_native_log_20261107":
                 names |= {"provenance.json", "provisional_log.csv"}
+            elif stage == "free_model_expansion_20261107":
+                names |= {"references.csv", "references.bib", "readings.json"}
+            elif stage == "homogeneous_expansion_20261107":
+                names |= {"adjudications.csv", "frequencies.csv", "comparator_quality.csv"}
             for name in names:
                 if stage == "provisional_native_log_20261107" and name == "summary.json":
                     value = json.dumps(self.provisional_summary) + "\n"
@@ -153,7 +157,9 @@ class NativeDownloadRefreshTests(unittest.TestCase):
                                 "requirements-training.lock.txt": b"original-runtime==1.0\n"})
             if item == "8.7":
                 payload.update({"literature_refresh_20261106.json": b'{"prior_round": true}\n',
-                                "AMPLIACION_LITERARIA_20261106.md": b"Prior dated literature round\n"})
+                                "AMPLIACION_LITERARIA_20261106.md": b"Prior dated literature round\n",
+                                "literature_refresh_20261107.json": b'{"prior_same_day_round": true}\n',
+                                "AMPLIACION_LITERARIA_20261107.md": b"Prior same-day literature round\n"})
             self.base_payloads[item] = payload
             records.append(refresh.legacy.archive(self.base / filename, payload, item, "Product " + item,
                                                   "a" * 40, "Original phase I/II notes\n"))
@@ -241,6 +247,10 @@ class NativeDownloadRefreshTests(unittest.TestCase):
                 for name in ("summary.json", "manifest.json"):
                     self.assertIn("book/_static/literature_e1/" + stage + "/" + name, saved.namelist())
             self.assertEqual(saved.read("original_metadata.json"), b'{"historical": true}\n')
+            self.assertEqual(saved.read("literature_refresh_20261107.json"),
+                             b'{"prior_same_day_round": true}\n')
+            self.assertEqual(saved.read("AMPLIACION_LITERARIA_20261107.md"),
+                             b"Prior same-day literature round\n")
             self.assertIn("prerregistro retrospectivo", saved.read("AMPLIACION_LITERARIA_" + refresh.REFRESH_ID + ".md").decode())
             self.assertIn("SUPLEMENTO_EVIDENCIAS_" + refresh.REFRESH_ID + ".md", saved.namelist())
             for label, spec in refresh.SUPPLEMENTS.items():
@@ -311,6 +321,8 @@ class NativeDownloadRefreshTests(unittest.TestCase):
             "provisional_native_log_20261107": "scripts/build_e1_provisional_native_log.py",
             "homogeneous_synthesis_20261107": "scripts/build_e1_homogeneous_synthesis.py",
             "native_execution_20261107": "scripts/ingest_e1_native_execution.py",
+            "free_model_expansion_20261107": "scripts/build_e1_free_model_expansion.py",
+            "homogeneous_expansion_20261107": "scripts/build_e1_homogeneous_expansion.py",
         }
         for stage, builder in additions.items():
             self.assertIn(stage, refresh.MANIFEST_STAGES)

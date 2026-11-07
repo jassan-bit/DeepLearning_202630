@@ -501,11 +501,13 @@ La referencia neuronal es GRU/D7, elegida con CV. El objetivo futuro se formula 
 
 ### 5.5.6. Brecha con la literatura y margen de mejora potencial
 
-El corpus revisado apoya referencias GRU 3/7, LSTM 5/7 y TCN 1/7. Akbiyik et al. {cite:p}`akbiyik2023` aporta el respaldo directo TCN; Miura et al. {cite:p}`miura2019` respalda recurrentes. TCN no tiene una recurrencia amplia y GRU/LSTM son dos alternativas de una misma clase recurrente. Las configuraciones OHLCV/sigma7 propias son adaptaciones, no réplicas o valores trasladados de artículos.
+El **corte bibliográfico histórico del 05/11/2026** registró referencias GRU 3/7, LSTM 5/7 y TCN 1/7. Akbiyik et al. {cite:p}`akbiyik2023` aporta el respaldo directo TCN; Miura et al. {cite:p}`miura2019` respalda recurrentes. La {ref}`ampliación de fuentes gratuitas <free-model-expansion-e1>` y la {ref}`síntesis acumulada actual <homogeneous-expansion-e1>` documentan las lecturas posteriores, sus roles y los denominadores comparables. Las configuraciones OHLCV/sigma7 propias son adaptaciones, no réplicas o valores trasladados de artículos.
+
+La terna de este benchmark sigue siendo **GRU–LSTM–TCN**. MLP es una alternativa examinada en la literatura y un antecedente histórico, sin incorporar un cuarto modelo a estas tablas. El respaldo financiero adicional de TCN se distingue del respaldo específico de volatilidad realizada cripto; la selección conserva su intercambio entre recurrencia, complejidad y contraste de mecanismos. Las diferencias funcionales GRU/LSTM no demuestran independencia de sus errores, y el resultado del test no decide qué estudios se incluyen.
 
 ### 5.5.7. Amenazas a la validez
 
-Las amenazas principales son exposición previa a desarrollo/test, selección con un calendario único, preguntas estadísticas posteriores, falta de piloto de potencia del trío, recetas no optimizadas exhaustivamente y soporte bibliográfico TCN limitado. La reutilización LSTM es control transparente; no una evaluación nueva.
+Las amenazas de **esta fase I** son exposición previa a desarrollo/test, selección con un calendario único, preguntas estadísticas posteriores, falta de piloto de potencia del trío, recetas no optimizadas exhaustivamente y soporte bibliográfico TCN limitado en el corte inicial. La reutilización LSTM es control transparente; no una evaluación nueva. El piloto y el HPO de la comparación final D7 se documentan por separado en el capítulo 9 y no se atribuyen retrospectivamente a esta fase.
 
 ### 5.5.8. Limitaciones del estudio
 
@@ -517,7 +519,7 @@ Las recomendaciones se dirigen a una versión nueva, sin reajustar decisiones de
 
 #### 5.5.9.1. Recomendaciones derivadas de las limitaciones
 
-Diseñar un piloto pareado del futuro avanzado, fijar su tamaño y multiplicidad, justificar el margen, utilizar una evaluación desconocida y contrastar presupuesto de HPO/capacidad. Ampliar respaldo primario de TCN y estudiar redundancia GRU/LSTM son trabajos de evidencia y diseño, no resultados supuestos.
+Diseñar un piloto pareado del futuro avanzado, fijar su tamaño y multiplicidad, justificar el margen, utilizar una evaluación desconocida y contrastar presupuesto de HPO/capacidad. La revisión actual amplía el respaldo primario y describe los mecanismos de GRU/LSTM/TCN. Comprobar complementariedad predictiva o una ganancia transferible requiere un diseño propio; no se deduce de las diferencias arquitectónicas o de añadir referencias.
 
 #### 5.5.9.2. Matriz de conclusiones y evidencia pendiente
 
@@ -526,7 +528,7 @@ Diseñar un piloto pareado del futuro avanzado, fijar su tamaño y multiplicidad
 | GRU/D7 es el baseline neuronal | Menor RMSE CV, cierre antes de esta fase final | Confirmación temporal nueva |
 | GRU tiene menor RMSE test | Diez trayectorias, t/Holm y pérdidas diarias | No domina MAE/MAPE de persistencia |
 | Control LSTM conservado | CV exactamente reproducida y final reutilizado identificado | No aporta otro mercado |
-| Trío con apoyo aplicado | GRU/LSTM/TCN en corpus con roles separados | TCN 1/7 y redundancia recurrente no resuelta |
+| Trío con apoyo aplicado | GRU/LSTM/TCN con extracción histórica y síntesis acumulada de roles y mecanismos | El 1/7 de TCN pertenece al corte inicial; el respaldo financiero relacionado no equivale a recurrencia cripto ni prueba complementariedad de errores |
 | Criterio operativo futuro | 5 % de RMSE GRU/CV, declarado después del test | Piloto propio y evaluación independiente |
 | Integridad pública | Agregados, manifiestos y 120 configuraciones finales | Evidencia privada para reproducir pesos/pronósticos |
 

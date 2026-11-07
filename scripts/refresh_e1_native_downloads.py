@@ -53,10 +53,14 @@ MANIFEST_STAGES = (
     "search_recovery_20261106", "internet_closure_20261106",
     "open_access_replacement_20261107", "provisional_native_log_20261107",
     "homogeneous_synthesis_20261107", "native_execution_20261107",
+    "free_model_expansion_20261107", "homogeneous_expansion_20261107",
 )
 PUBLICATION_SCHEMA = "e1_public_metadata_allowlist_v1"
 REFRESH_DATE = "2026-11-07"
-REFRESH_ID = "20261107"
+# Keep the earlier same-day delivery records inside the next package. The
+# source commit identifies this exact edition; the suffix distinguishes its
+# bibliographic scope without inventing another execution date.
+REFRESH_ID = "20261107_free_models"
 SUPPLEMENTS = {
     "dataset_comparison": {
         "directory": "book/_static/e1_dataset_comparison_20261106",
@@ -109,7 +113,10 @@ CHRONOLOGY_NOTE = (
     "ni modifica sus resultados, recetas, selección o cronologías. Los contrastes suplementarios "
     "anteriores conservan su carácter posterior. La auditoría forense y la repetibilidad actual "
     "tienen alcance separado de la identidad histórica; las búsquedas nuevas conservan su "
-    "propia procedencia. Esta actualización no constituye un prerregistro "
+    "propia procedencia. La búsqueda web dirigida de trece obras y su conciliación "
+    "acumulada conservan los ámbitos, papeles y niveles de lectura; no convierten "
+    "la cuota de selección por arquitectura en frecuencia del corpus. "
+    "Esta actualización no constituye un prerregistro "
     "retrospectivo. Empaquetar consume las evidencias guardadas y no ejecuta ajustes o pronósticos."
 )
 _SHA256 = re.compile(r"^[0-9a-f]{64}$")
@@ -475,18 +482,18 @@ def package(output_dir, requested_revision=None):
         "preserved_archive_sha256": {ITEMS[item]: base_rows[item]["sha256"]
                                      for item in sorted(PRESERVED_ITEMS)},
         "original_experiments_changed": False, "retrospective_preregistration": False,
-        "new_analysis_scope": "Reviewed homogeneous synthesis, documented native searches, development-only margin context, separately registered curve reproduction and diagnostic repeatability. Packaging itself performs no training or daily forecasts.",
+        "new_analysis_scope": "Reviewed free full-text bibliographic routes and cumulative homogeneous synthesis, with historical native searches, development-only margin context, separately registered curve reproduction and diagnostic repeatability preserved. Packaging itself performs no training, searches or daily forecasts.",
         "chronology_note": CHRONOLOGY_NOTE,
     }
     products["8.7"]["literature_refresh_" + REFRESH_ID + ".json"] = legacy.encode(refresh)
     products["8.7"]["AMPLIACION_LITERARIA_" + REFRESH_ID + ".md"] = (
-        "# Ampliación literaria del 7 de noviembre de 2026 UTC\n\n" + CHRONOLOGY_NOTE + "\n\n"
+        "# Ampliación literaria del 7 de noviembre de 2026 (Colombia)\n\n" + CHRONOLOGY_NOTE + "\n\n"
         "El producto 8.4 contiene los metadatos públicos completos de las nuevas etapas; "
         "aquí se conservan sus resúmenes, manifiestos y procedencia. No se redistribuyen "
         "los archivos de búsqueda originales, resúmenes editoriales ni PDF de terceros.\n"
     ).encode()
     products["8.7"]["SUPLEMENTO_EVIDENCIAS_" + REFRESH_ID + ".md"] = (
-        "# Evidencias y análisis posteriores del 7 de noviembre de 2026 UTC\n\n"
+        "# Evidencias y análisis posteriores del 7 de noviembre de 2026 (Colombia)\n\n"
         + CHRONOLOGY_NOTE + "\n\n"
         "8.7 añade la comparación documental y el contexto académico del margen; 8.4 incluye "
         "cribado, recuperación de originales y evidencia de búsquedas con sus límites. "
