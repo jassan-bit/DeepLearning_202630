@@ -1096,3 +1096,24 @@ El respaldo accesible permite discutir los tres mecanismos con mayor precisión,
 No se calcula una nueva frecuencia acumulada sumando preprints, variantes, artículos relacionados o estratos distintos al **N=7 histórico**. Cerrar un denominador ampliado requeriría reconciliar identidades y elegibilidad con criterios homogéneos; los 182 grupos nativos tampoco se convierten en un corpus incluido por añadir citas accesibles. Esta sustitución documental no cambia la terna, los datos, las particiones, las recetas, las predicciones ni las métricas propias de las fases I y II. Sigue pendiente el historial literal de las consultas nativas y la consulta acreditada de IEEE Xplore; encontrar artículos con DOI IEEE no satisface ese requisito.
 
 La bibliografía canónica pasa de **50 a 60 entradas**: se conservan las cincuenta identidades previas y se añaden diez entradas, deduplicadas por DOI o identidad cuando no existe DOI. Nokar no se duplica; DeepVol conserva su clave y actualiza únicamente el enlace y la nota de acceso. Dudek et al. (2024) ya figuraba en el expediente de E2 y Brauneis/Sahiner ya era E1X001: añadirlos a esta bibliografía no los convierte en descubrimientos documentales nuevos. El número de citas no es el número de estudios elegibles, recetas reproducibles o réplicas independientes.
+
+(provisional-native-log-e1)=
+## 3.9. Bitácora provisional para completar cuando haya evidencia nativa
+
+Se prepara el **07/11/2026 UTC** una bitácora provisional para completar y actualizar la trazabilidad. Usa **06/11/2026 como referencia documental**, sin atribuir esa fecha a consultas cuya ejecución no está acreditada. En Scopus corresponde a la fecha literal del nombre de los CSV, con zona horaria desconocida; en WoS, al contexto de recepción y confirmación del autor. Ninguna de estas referencias demuestra la fecha de ejecución nativa.
+
+Las cifras siguientes son **cotas inferiores del universo que contenía los registros únicos de cada exportación**. No son totales observados en la interfaz ni estimaciones puntuales del tamaño de la búsqueda. Las familias y el filtro **2019–2026** fueron confirmados por el autor; las cadenas originales siguen desconocidas.
+
+| Base y familia | Registros exportados | Cota provisional | Cadena original | Propuesta para repetir, abreviada |
+|---|---:|---:|---|---|
+| WoS · TCN | 8 | ≥8 | Desconocida | `TS=(B AND F_TCN)`; filtro 2019–2026 |
+| WoS · GRU/LSTM | 59 | ≥59 | Desconocida | `TS=(B AND F_R)`; filtro 2019–2026 |
+| Scopus · TCN | 19 | ≥19 | Desconocida | `TITLE-ABS-KEY(B AND F_TCN)`; `PUBYEAR > 2018 AND PUBYEAR < 2027` |
+| Scopus · GRU/LSTM | 158 | ≥158 | Desconocida | `TITLE-ABS-KEY(B AND F_R)`; `PUBYEAR > 2018 AND PUBYEAR < 2027` |
+| IEEE Xplore · plan | Pendiente | **Sin base** | Consulta no acreditada | `B AND (F_TCN OR F_R)` en All Metadata; filtro 2019–2026 |
+
+La notación abreviada usa **B** para criptomonedas y volatilidad (`bitcoin`, `ethereum`, `cryptocurrency/cryptocurrencies`, `volatility`, `realized/realised variance`); **F_TCN** para TCN, temporal convolutional network(s) y causal convolution; y **F_R** para GRU/gated recurrent unit(s) o LSTM/long short-term memory. El {download}`CSV de preparación <../_static/literature_e1/provisional_native_log_20261107/provisional_log.csv>` conserva las cadenas propuestas completas, separadas de las originales desconocidas. Son propuestas para una nueva sesión, no reconstrucciones de consultas anteriores. IEEE no tiene base para asignarle una cota: **pendiente no significa cero**.
+
+El {download}`procedimiento y límites <../_static/literature_e1/provisional_native_log_20261107/README.md>` y el [resumen provisional](../_static/literature_e1/provisional_native_log_20261107/summary.json) mantienen sin verificar (`null`) la cadena literal, el total y la fecha nativa. Las cotas pertenecen solo a esta preparación provisional, fuera de PRISMA y de los totales nativos verificados. Permanecen **244 ocurrencias, 182 grupos y N=7 histórico**, con frecuencias **GRU 3/7, LSTM 5/7 y TCN 1/7**. §3.1 y el historial de IEEE siguen pendientes.
+
+Cuando haya evidencia, se guardará la versión anterior y se añadirá la captura de fecha/hora, cadena literal, colección/ediciones, filtros, total mostrado y rango exportado, junto con las nuevas exportaciones. Una repetición tendrá su fecha real; no se retrofechará como recuperación del historial original.

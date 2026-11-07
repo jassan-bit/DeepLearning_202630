@@ -143,6 +143,8 @@ La {download}`bitácora de búsqueda <../_static/literature_e1/search_recovery_2
 
 La primera ampliación de {download}`dos originales adicionales revisados <../_static/literature_e1/primary_reviews_20261106/README.md>` elevó la bibliografía de 40 a **42 referencias** y aportó evidencia en estratos separados: CVI de volatilidad implícita con TCN/LSTM y modelos híbridos GARCH con componentes neuronales. Su [matriz de evidencia](../_static/literature_e1/primary_reviews_20261106/evidence_matrix.csv) documenta el papel de cada red y los límites del diseño. No justifican tratar nueve estudios como un conjunto homogéneo de comparadores autónomos del objetivo σ₇.
 
+La {ref}`bitácora provisional de §3.9 <provisional-native-log-e1>` facilita completar la documentación: las cotas WoS ≥8/≥59 y Scopus ≥19/≥158 proceden de los registros únicos exportados, por familia y archivo. Son valores de trabajo, sin total nativo observado ni fecha de ejecución recuperada; no se incorporan al flujo verificado como nuevos resultados de búsqueda. IEEE sigue sin una base para estimar su total. Este registro documental no altera modelos, predicciones o métricas.
+
 ## 7.5. Criterios de evaluación del entregable
 
 Los pesos de la rúbrica suministrada son:

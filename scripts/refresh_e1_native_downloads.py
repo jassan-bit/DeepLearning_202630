@@ -51,7 +51,7 @@ STAGES = {
 # explicitly approve every member; unlisted neighbouring uploads are never read.
 MANIFEST_STAGES = (
     "search_recovery_20261106", "internet_closure_20261106",
-    "open_access_replacement_20261107",
+    "open_access_replacement_20261107", "provisional_native_log_20261107",
 )
 PUBLICATION_SCHEMA = "e1_public_metadata_allowlist_v1"
 SUPPLEMENTS = {
