@@ -47,3 +47,8 @@ El corte de §3.7 reunió 50 entradas de fundamentos, aplicaciones y metodologí
 ## Sustitución de respaldo por acceso gratuito · corte 07/11/2026 UTC
 
 La bibliografía canónica actual tiene 60 entradas, sin equivalencia con el número de estudios incluidos. `open_access_replacement_20261107/` conserva la revisión de los tres PDF suministrados, las alternativas públicas y su matriz por tema/función. La disposición actual de la cola de 22 es ocho decisiones de exclusión/contexto y 14 informes no recuperados al corte, sin borrar los estados de §3.7. No se infiere mala calidad por pago ni se exige una sustitución uno-a-uno. La licencia y el acceso se distinguen de la lectura íntegra y la extracción de tablas. El denominador histórico N7, los experimentos y sus métricas permanecen intactos.
+
+
+## Bitácora provisional para completar con evidencia nativa
+
+`provisional_native_log_20261107/` publica valores de trabajo conservadores, procedencia y campos de actualización. Las cotas por archivo no equivalen a totales nativos observados ni se suman como estudios únicos. Las fechas son referencias del nombre de archivo o del contexto, y las cadenas se identifican como propuestas. IEEE no tiene una base verificable para estimar su total. Se conservan las cifras exactas de 244 ocurrencias y 182 grupos, sin nuevas consultas acreditadas o cambios experimentales.

@@ -65,6 +65,21 @@ class NativeDownloadRefreshTests(unittest.TestCase):
             self.write(prefix + "/manifest.json", json.dumps({"files_sha256": mapping}) + "\n")
             self.stage_directories[stage] = directory
         self.dynamic_stage_names = {}
+        self.provisional_summary = {
+            "schema_version": 1, "log_status": "PROVISIONAL_EDITABLE", "row_count": 5,
+            "status_counts": {"provisional_lower_bound": 4, "planned_not_executed": 1},
+            "new_native_search_executions": 0, "verified_native_search_totals_added": 0,
+            "verified_native_search_dates_added": 0, "recovered_historical_query_literals_added": 0,
+            "provisional_export_compatible_lower_bounds_by_source_key": {
+                "W02": 8, "W01": 59, "S01": 19, "S02": 158},
+            "ieee": {"status": "planned_not_executed", "export_compatible_lower_bound": None,
+                     "native_total_verified": None, "native_search_date_verified": None,
+                     "execution_accredited": False},
+            "preserved_native_import": {"exported_occurrences": 244, "candidate_groups_provisional": 182},
+            "historical_e1": {"crypto_full_text_denominator_preserved": 7,
+                              "frequency_update_performed": False},
+            "excluded_from_prisma_totals": True,
+        }
         for stage in refresh.MANIFEST_STAGES:
             prefix = "book/_static/literature_e1/" + stage
             directory = self.root / prefix
@@ -73,10 +88,15 @@ class NativeDownloadRefreshTests(unittest.TestCase):
                 names |= {"source_manifest.json", "evidence_matrix.json", "metrics.csv",
                           "references.bib", "inputs/prior_review_registry.json",
                           "part_upload_psogru/review.json", "part_upload_psogru/README.md"}
+            elif stage == "provisional_native_log_20261107":
+                names |= {"provenance.json", "provisional_log.csv"}
             for name in names:
-                self.write(prefix + "/" + name,
-                    '{"public_metadata": true}\n' if name.endswith(".json")
-                    else "Reviewed nested metadata only\n")
+                if stage == "provisional_native_log_20261107" and name == "summary.json":
+                    value = json.dumps(self.provisional_summary) + "\n"
+                else:
+                    value = ('{"public_metadata": true}\n' if name.endswith(".json")
+                             else "Reviewed nested metadata only\n")
+                self.write(prefix + "/" + name, value)
             mapping = {name: {"sha256": refresh.legacy.digest((directory / name).read_bytes()),
                               "bytes": (directory / name).stat().st_size} for name in names}
             self.write(prefix + "/manifest.json", json.dumps({
@@ -266,29 +286,43 @@ class NativeDownloadRefreshTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "current HEAD"):
             refresh.source_revision("HEAD~1")
 
-    def test_open_access_replacement_routes_nested_metadata_and_current_builder(self):
-        stage = "open_access_replacement_20261107"
-        self.assertIn(stage, refresh.MANIFEST_STAGES)
-        builder = "scripts/build_e1_open_access_replacement.py"
-        self.write(builder, "# Build reviewed literature metadata without training.\n")
-        self.git("add", builder)
+    def test_reviewed_additions_route_metadata_and_current_builders(self):
+        additions = {
+            "open_access_replacement_20261107": "scripts/build_e1_open_access_replacement.py",
+            "provisional_native_log_20261107": "scripts/build_e1_provisional_native_log.py",
+        }
+        for stage, builder in additions.items():
+            self.assertIn(stage, refresh.MANIFEST_STAGES)
+            self.write(builder, "# Build reviewed literature metadata without training.\n")
+            self.git("add", builder)
         self.commit()
         self.build()
         catalog = refresh.package(self.output)
-        prefix = "book/_static/literature_e1/" + stage + "/"
-        directory = self.stage_directories[stage]
-        approved = self.dynamic_stage_names[stage] | {"manifest.json"}
-        with ZipFile(self.output / refresh.ITEMS["8.4"]) as saved:
-            included = {name[len(prefix):] for name in saved.namelist() if name.startswith(prefix)}
-            self.assertEqual(included, approved)
-            for name in approved:
-                self.assertEqual(saved.read(prefix + name), (directory / name).read_bytes())
-        with ZipFile(self.output / refresh.ITEMS["8.7"]) as saved:
-            included = {name[len(prefix):] for name in saved.namelist() if name.startswith(prefix)}
-            self.assertEqual(included, {"summary.json", "source_manifest.json", "manifest.json"})
-        with ZipFile(self.output / refresh.ITEMS["8.2"]) as saved:
-            self.assertEqual(saved.read(builder), (self.root / builder).read_bytes())
-        self.assertEqual(catalog["literature_refresh"]["stages"][stage]["public_files"], len(approved))
+        for stage, builder in additions.items():
+            with self.subTest(stage=stage):
+                prefix = "book/_static/literature_e1/" + stage + "/"
+                directory = self.stage_directories[stage]
+                approved = self.dynamic_stage_names[stage] | {"manifest.json"}
+                with ZipFile(self.output / refresh.ITEMS["8.4"]) as saved:
+                    included = {name[len(prefix):] for name in saved.namelist() if name.startswith(prefix)}
+                    self.assertEqual(included, approved)
+                    for name in approved:
+                        self.assertEqual(saved.read(prefix + name), (directory / name).read_bytes())
+                with ZipFile(self.output / refresh.ITEMS["8.7"]) as saved:
+                    included = {name[len(prefix):] for name in saved.namelist() if name.startswith(prefix)}
+                    expected_roots = approved & {"summary.json", "source_manifest.json", "manifest.json"}
+                    self.assertEqual(included, expected_roots)
+                    if stage == "provisional_native_log_20261107":
+                        # Export-compatible bounds and unknown native IEEE data must
+                        # survive packaging as metadata, without becoming totals.
+                        self.assertEqual(json.loads(saved.read(prefix + "summary.json")),
+                                         self.provisional_summary)
+                with ZipFile(self.output / refresh.ITEMS["8.2"]) as saved:
+                    self.assertEqual(saved.read(builder), (self.root / builder).read_bytes())
+                info = catalog["literature_refresh"]["stages"][stage]
+                self.assertEqual(info["public_files"], len(approved))
+                if stage == "provisional_native_log_20261107":
+                    self.assertEqual(info["summary"], self.provisional_summary)
         for key in ("new_model_fits_by_packaging", "new_checkpoint_forecasts_by_packaging",
                     "raw_market_archive_reads_by_packaging", "publications_by_packaging"):
             self.assertEqual(catalog[key], 0)
