@@ -69,6 +69,10 @@ class NativeDownloadRefreshTests(unittest.TestCase):
             prefix = "book/_static/literature_e1/" + stage
             directory = self.root / prefix
             names = {"README.md", "summary.json", "part_a/reviews.json", "query_log.json"}
+            if stage == "open_access_replacement_20261107":
+                names |= {"source_manifest.json", "evidence_matrix.json", "metrics.csv",
+                          "references.bib", "inputs/prior_review_registry.json",
+                          "part_upload_psogru/review.json", "part_upload_psogru/README.md"}
             for name in names:
                 self.write(prefix + "/" + name,
                     '{"public_metadata": true}\n' if name.endswith(".json")
@@ -262,6 +266,33 @@ class NativeDownloadRefreshTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "current HEAD"):
             refresh.source_revision("HEAD~1")
 
+    def test_open_access_replacement_routes_nested_metadata_and_current_builder(self):
+        stage = "open_access_replacement_20261107"
+        self.assertIn(stage, refresh.MANIFEST_STAGES)
+        builder = "scripts/build_e1_open_access_replacement.py"
+        self.write(builder, "# Build reviewed literature metadata without training.\n")
+        self.git("add", builder)
+        self.commit()
+        self.build()
+        catalog = refresh.package(self.output)
+        prefix = "book/_static/literature_e1/" + stage + "/"
+        directory = self.stage_directories[stage]
+        approved = self.dynamic_stage_names[stage] | {"manifest.json"}
+        with ZipFile(self.output / refresh.ITEMS["8.4"]) as saved:
+            included = {name[len(prefix):] for name in saved.namelist() if name.startswith(prefix)}
+            self.assertEqual(included, approved)
+            for name in approved:
+                self.assertEqual(saved.read(prefix + name), (directory / name).read_bytes())
+        with ZipFile(self.output / refresh.ITEMS["8.7"]) as saved:
+            included = {name[len(prefix):] for name in saved.namelist() if name.startswith(prefix)}
+            self.assertEqual(included, {"summary.json", "source_manifest.json", "manifest.json"})
+        with ZipFile(self.output / refresh.ITEMS["8.2"]) as saved:
+            self.assertEqual(saved.read(builder), (self.root / builder).read_bytes())
+        self.assertEqual(catalog["literature_refresh"]["stages"][stage]["public_files"], len(approved))
+        for key in ("new_model_fits_by_packaging", "new_checkpoint_forecasts_by_packaging",
+                    "raw_market_archive_reads_by_packaging", "publications_by_packaging"):
+            self.assertEqual(catalog[key], 0)
+
     def test_rejects_unbuilt_stale_report_and_unsafe_destination(self):
         intro = self.root / "book/_build/html/intro.html"
         intro.unlink()
@@ -330,24 +361,31 @@ class NativeDownloadRefreshTests(unittest.TestCase):
     def test_unlisted_uploads_are_never_copied_or_opened(self):
         # Ignored files mimic private uploads kept alongside public working data.
         stage = self.stage_directories["native_search_20261106"]
-        self.write(".gitignore", (self.root / ".gitignore").read_text() + "raw_upload.csv\n")
+        self.write(".gitignore", (self.root / ".gitignore").read_text() + "raw_upload.csv\noriginal.pdf\n")
         self.git("add", ".gitignore")
         self.commit()
         self.build()
         upload = stage / "raw_upload.csv"
         upload.write_text("Abstract,Author Email\nPrivate abstract,private@example.test\n")
-        nested_upload = self.stage_directories[refresh.MANIFEST_STAGES[0]] / "raw_upload.csv"
-        nested_upload.write_text("Abstract,Author Email\nPrivate abstract,private@example.test\n")
+        nested_uploads = set()
+        for stage in refresh.MANIFEST_STAGES:
+            directory = self.stage_directories[stage]
+            nested_upload = directory / "raw_upload.csv"
+            nested_upload.write_text("Abstract,Author Email\nPrivate abstract,private@example.test\n")
+            original_pdf = directory / "original.pdf"
+            original_pdf.write_bytes(b"Private original supplied separately")
+            nested_uploads.update({nested_upload, original_pdf})
         market = self.write("data/raw/market.csv", "Do not read market observations\n")
         original_read_bytes = Path.read_bytes
         def public_reads_only(path):
-            if path in {upload, nested_upload, market}:
+            if path in {upload, market} | nested_uploads:
                 raise AssertionError("Private input was opened: " + str(path))
             return original_read_bytes(path)
         with patch.object(Path, "read_bytes", public_reads_only):
             refresh.package(self.output)
         with ZipFile(self.output / refresh.ITEMS["8.4"]) as saved:
             self.assertFalse(any("raw_upload" in name for name in saved.namelist()))
+            self.assertFalse(any(name.endswith(".pdf") for name in saved.namelist()))
 
     def test_rejects_abstract_contact_fields_in_metadata(self):
         cases = {"records.csv": b"Title,Abstract\nPublic title,Private abstract\n",
@@ -359,37 +397,45 @@ class NativeDownloadRefreshTests(unittest.TestCase):
                 refresh.validate_public_bytes(name, data)
 
     def test_nested_stage_needs_explicit_closed_approval(self):
-        directory = self.stage_directories[refresh.MANIFEST_STAGES[0]]
-        path = directory / "manifest.json"
-        original = json.loads(path.read_text())
-        files, _ = refresh.public_stage(directory, None)
-        self.assertIn("part_a/reviews.json", files)
-        for change in ("missing_schema", "unapproved_file", "duplicate_approval", "hash_mismatch"):
-            changed = json.loads(json.dumps(original))
-            if change == "missing_schema":
-                changed.pop("publication_schema")
-            elif change == "unapproved_file":
-                changed["files"]["other.json"] = {"bytes": 1, "sha256": "a" * 64}
-            elif change == "duplicate_approval":
-                changed["approved_public_files"].append("summary.json")
-            else:
-                changed["files"]["part_a/reviews.json"]["sha256"] = "a" * 64
-            path.write_text(json.dumps(changed))
-            with self.subTest(change=change), self.assertRaises(ValueError):
-                refresh.public_stage(directory, None)
+        for stage in refresh.MANIFEST_STAGES:
+            directory = self.stage_directories[stage]
+            path = directory / "manifest.json"
+            original = json.loads(path.read_text())
+            files, _ = refresh.public_stage(directory, None)
+            self.assertIn("part_a/reviews.json", files)
+            for change in ("missing_schema", "unapproved_file", "duplicate_approval",
+                           "unsorted_approval", "hash_mismatch", "byte_mismatch"):
+                changed = json.loads(json.dumps(original))
+                if change == "missing_schema":
+                    changed.pop("publication_schema")
+                elif change == "unapproved_file":
+                    changed["files"]["other.json"] = {"bytes": 1, "sha256": "a" * 64}
+                elif change == "duplicate_approval":
+                    changed["approved_public_files"].append("summary.json")
+                elif change == "unsorted_approval":
+                    changed["approved_public_files"].reverse()
+                elif change == "byte_mismatch":
+                    changed["files"]["part_a/reviews.json"]["bytes"] += 1
+                else:
+                    changed["files"]["part_a/reviews.json"]["sha256"] = "a" * 64
+                path.write_text(json.dumps(changed))
+                with self.subTest(stage=stage, change=change), self.assertRaises(ValueError):
+                    refresh.public_stage(directory, None)
 
     def test_nested_approval_cannot_ship_private_payload_or_pdf(self):
-        directory = self.stage_directories[refresh.MANIFEST_STAGES[0]]
-        path = directory / "manifest.json"
-        original = json.loads(path.read_text())
-        for name in ("predictions.csv", "part_a/paper.pdf", "../escape.json"):
-            changed = json.loads(json.dumps(original))
-            changed["files"][name] = {"bytes": 1, "sha256": "a" * 64}
-            changed["approved_public_files"] = sorted(changed["files"])
-            path.write_text(json.dumps(changed))
-            # Failure must precede reading any payload named by the bad entry.
-            with self.subTest(name=name), self.assertRaisesRegex(ValueError, "Private experimental|Unsupported public|Unsafe"):
-                refresh.public_stage(directory, None)
+        for stage in refresh.MANIFEST_STAGES:
+            directory = self.stage_directories[stage]
+            path = directory / "manifest.json"
+            original = json.loads(path.read_text())
+            for name in ("predictions.csv", "part_a/paper.pdf", "../escape.json"):
+                changed = json.loads(json.dumps(original))
+                changed["files"][name] = {"bytes": 1, "sha256": "a" * 64}
+                changed["approved_public_files"] = sorted(changed["files"])
+                path.write_text(json.dumps(changed))
+                # Failure must precede reading any payload named by the bad entry.
+                with self.subTest(stage=stage, name=name), self.assertRaisesRegex(
+                        ValueError, "Private experimental|Unsupported public|Unsafe"):
+                    refresh.public_stage(directory, None)
 
     def test_reproduction_protocol_must_be_committed_before_any_output(self):
         name = sorted(refresh.REPRODUCTION_PROTOCOL_FILES)[0]

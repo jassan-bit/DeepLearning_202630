@@ -1,0 +1,623 @@
+[
+  {
+    "accessed_utc": "2026-11-07",
+    "scope": "Estrato complementario de lectura primaria pública; no modifica N7 ni convierte en leídos los originales inaccesibles.",
+    "historical_N7_inclusion": false,
+    "part_of_original_14_inaccessible": false,
+    "original_file_materialized": false,
+    "original_file_sha256": null,
+    "full_text_read": true,
+    "table_verification": "Texto primario HTML/PDF parseado. El servicio no devolvió imágenes visualizables para screenshots; no se declara cotejo visual de celdas.",
+    "group_id": "E1OA-R01",
+    "title": "Forecasting volatility with machine learning and rough volatility: example from the crypto-winter",
+    "authors": [
+      "Siu Hin Tang",
+      "Mathieu Rosenbaum",
+      "Chao Zhou"
+    ],
+    "doi": "10.1007/s42521-024-00108-1",
+    "year_nominal": 2024,
+    "year_online": 2024,
+    "venue": "Digital Finance",
+    "volume": "6",
+    "issue": "4",
+    "pages": "639–655",
+    "recommended_bibtex_key": "Tang2024RoughVolatility",
+    "source_urls": [
+      "https://arxiv.org/html/2311.04727v2",
+      "https://arxiv.org/abs/2311.04727",
+      "https://link.springer.com/article/10.1007/s42521-024-00108-1"
+    ],
+    "access_level": "author_preprint_full_text",
+    "version_read": "arXiv:2311.04727v2, 2024-02-27; final editorial identificado, no leído",
+    "access_full": true,
+    "oa_license_verified": false,
+    "license": "arXiv non-exclusive distribution license; no licencia CC del manuscrito ni OA editorial verificada.",
+    "license_url": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html",
+    "novelty": {
+      "in_prior_E1_182": false,
+      "in_historical_N7": false,
+      "prior_reference_global_search": "Sin DOI/título en referencias/book antes de escribir esta ficha; fuente complementaria nueva, no búsqueda nativa nueva.",
+      "new_unique_reference_global": true
+    },
+    "evidence_locations": [
+      "arXiv v2 §§1–6: cuerpo completo; §2, Ecs. de sigma y retornos; §3.2, Ecs. de puertas y párrafos de configuración; §4.1/Fig.3; §5/Fig.5.",
+      "Ficha editorial: título, autores, fecha y DOI; contenido de suscripción."
+    ],
+    "target": "sigma diaria = raíz de suma de retornos simples intradía de 5 min al cuadrado; h=1 día.",
+    "target_explicit_volatility": true,
+    "models_and_roles": {
+      "autonomous_recurrent": [
+        "LSTM_7,var",
+        "LSTM_30,var",
+        "LSTM_7,ret",
+        "LSTM_30,ret"
+      ],
+      "simple_comparators": [
+        "AR7",
+        "AR30",
+        "HAR",
+        "RFSV",
+        "RFSV+QRH"
+      ],
+      "gru_independent_verified": false,
+      "tcn_independent_verified": false,
+      "lstm_independent_verified": true
+    },
+    "architecture_details": {
+      "lstm_layers": 1,
+      "units_volatility_only": 2,
+      "units_volatility_and_returns": 4,
+      "output": "Dense(1)",
+      "activation": "SiLU; puertas sigmoid",
+      "lookback": [
+        7,
+        30
+      ],
+      "optimizer": "Adam",
+      "learning_rate": 0.001,
+      "epochs": null,
+      "batch_size": null
+    },
+    "data": {
+      "exchange": "Binance/USDT",
+      "assets": 213,
+      "frequency": "5 min → diaria",
+      "train": "2020-01-01/2021-12-31",
+      "test": "2022-01-01/2022-06-30",
+      "scaling": "Estadísticas de cada moneda obtenidas en train.",
+      "pooling": "LSTM sobre conjunto de monedas; AR/HAR por moneda."
+    },
+    "validation": "Configuración ajustada con partición CV dentro de train; esquema no precisado.",
+    "repetitions": {
+      "seeds": 10,
+      "meaning": "Promedio de predicciones de diez ajustes: ensemble; no diez evaluaciones independientes."
+    },
+    "metrics": [
+      "MSE",
+      "MSE/HAR por moneda"
+    ],
+    "statistical_tests": "No DM/MCS encontrado.",
+    "published_values": [],
+    "result_scope": "Figuras: LSTM con retornos y ventana30 mejora HAR; RFSV+QRH de cinco parámetros alcanza desempeño parecido. No se digitalizan boxplots ni se afirma equivalencia estadística.",
+    "quality_notes": [
+      "Receta pequeña explícita; faltan epochs/batch y detalle de validación.",
+      "Versiones preprint y editorial no se presumen idénticas."
+    ],
+    "decision": "retain_complementary_simple_crypto_volatility",
+    "eligible_strict_reproducible_recipe": false,
+    "recipe_evidence": "partial_strong_small_lstm",
+    "e1_target_equivalent": false,
+    "include_in_new_stratum": true,
+    "comparability_stratum": "direct_crypto_volatility_point_comparison",
+    "full_text_read_scope": "Cuerpo completo de la versión identificada; tablas señaladas en evidence_locations. Bibliografía no tratada como evidencia del modelo."
+  },
+  {
+    "accessed_utc": "2026-11-07",
+    "scope": "Estrato complementario de lectura primaria pública; no modifica N7 ni convierte en leídos los originales inaccesibles.",
+    "historical_N7_inclusion": false,
+    "part_of_original_14_inaccessible": false,
+    "original_file_materialized": false,
+    "original_file_sha256": null,
+    "full_text_read": true,
+    "table_verification": "Texto primario HTML/PDF parseado. El servicio no devolvió imágenes visualizables para screenshots; no se declara cotejo visual de celdas.",
+    "group_id": "E1OA-R02",
+    "title": "Forecasting cryptocurrencies volatility using statistical and machine learning methods: A comparative study",
+    "authors": [
+      "Grzegorz Dudek",
+      "Piotr Fiszeder",
+      "Paweł Kobus",
+      "Witold Orzeszko"
+    ],
+    "doi": "10.1016/j.asoc.2023.111132",
+    "year_nominal": 2024,
+    "year_online": 2023,
+    "venue": "Applied Soft Computing",
+    "volume": "151",
+    "article_number": "111132",
+    "recommended_bibtex_key": "Dudek2024VolatilityComparative",
+    "source_urls": [
+      "https://piotr.fiszeder.prac.umk.pl/stronaangielska.htm",
+      "https://piotr.fiszeder.prac.umk.pl/Dudek_Fiszeder_Kobus_Orzeszko_ASC.pdf",
+      "https://www.sciencedirect.com/science/article/pii/S156849462301150X"
+    ],
+    "access_level": "author_hosted_public_full_text",
+    "version_read": "PDF editorial maquetado de 21 páginas alojado por coautor; publicado online 2023-12-07.",
+    "access_full": true,
+    "oa_license_verified": false,
+    "license": "PDF declara ©2023 Elsevier, all rights reserved. Acceso público del coautor; licencia de reutilización OA no verificada.",
+    "novelty": {
+      "in_prior_E1_182": false,
+      "in_historical_N7": false,
+      "in_prior_E2": true,
+      "prior_E2_id": "doi:10.1016/j.asoc.2023.111132; WOS:001137349000001",
+      "new_unique_reference_global": false,
+      "prior_status": "E2: abstract leído/fulltext pendiente. Esta ficha recupera y verifica el texto primario."
+    },
+    "evidence_locations": [
+      "PDF §§1–5 y apéndice: cuerpo, resultados y tablas; §2.6 p5 MLP; §2.9 p6 LSTM; §§3–4.1 pp6–8.",
+      "Tablas2–3 p9,6–7 p11 y apéndice A1–A11; paginación editorial."
+    ],
+    "target": "RV diaria = suma de 288 retornos logarítmicos de 5 min al cuadrado; semanal = suma de 7 RV diarias.",
+    "target_explicit_volatility": true,
+    "models_and_roles": {
+      "autonomous_recurrent": [
+        "LSTM"
+      ],
+      "autonomous_feedforward": [
+        "MLP"
+      ],
+      "simple_comparators": [
+        "HAR",
+        "HAR-R",
+        "ARFIMA",
+        "GARCH",
+        "LASSO",
+        "RR",
+        "SVR-G",
+        "SVR-L",
+        "FNM",
+        "RF"
+      ],
+      "gru_independent_verified": false,
+      "tcn_independent_verified": false,
+      "lstm_independent_verified": true
+    },
+    "architecture_details": {
+      "lstm": "1 LSTM + capa lineal de 7 salidas; tres entradas log(1+100RV) diaria/semanal/mensual; ancho seleccionado no publicado.",
+      "mlp": "3 entradas,1 oculta tanh,7 salidas lineales; Levenberg–Marquardt con regularización bayesiana; ancho final ausente.",
+      "epochs": null,
+      "batch_size": null,
+      "lstm_optimizer": null
+    },
+    "data": {
+      "exchange": "Kraken",
+      "assets": [
+        "BTC/USD",
+        "ETH/USD",
+        "LTC/USD",
+        "XMR/USD"
+      ],
+      "period": "2017-01-01/2021-12-31",
+      "initial_train": "2017-02-01/2018-12-31",
+      "test": "2019-01-01/2021-12-31",
+      "test_daily_n": 1096,
+      "test_weekly_n": 155,
+      "inputs": "RV diaria, semanal7, mensual30 rezagadas."
+    },
+    "validation": "Ventana móvil diaria de 23 meses; reajuste/reoptimización con validación dentro de train. Tamaño/orden de validación no precisados.",
+    "repetitions": {
+      "seeds": null,
+      "meaning": "Promediar pérdidas temporales no controla por sí solo la inicialización aleatoria."
+    },
+    "metrics": [
+      "MSE",
+      "MAE",
+      "R2",
+      "MAPE",
+      "QLIKE"
+    ],
+    "statistical_tests": "MCS90%; no DM encontrado.",
+    "published_values": [
+      {
+        "location": "Tabla2 p9; BTC diario",
+        "metric": "MSE",
+        "display_multiplier": 10000,
+        "HAR": 0.191,
+        "MLP": 0.186,
+        "LSTM": 0.207
+      },
+      {
+        "location": "Tabla3 p9; BTC diario",
+        "metric": "MAE",
+        "display_multiplier": 100,
+        "HAR": 0.102,
+        "MLP": 0.103,
+        "LSTM": 0.114
+      }
+    ],
+    "result_scope": "BTC: MLP menor MSE y HAR menor MAE entre esos tres; LSTM queda fuera MCS en ambas. No extrapolar a otros targets.",
+    "quality_notes": [
+      "Contrapeso directo al sesgo hacia recurrentes.",
+      "Transformación LSTM difiere; anchos, entrenamiento y semillas insuficientes para réplica exacta."
+    ],
+    "decision": "retain_complementary_simple_crypto_volatility",
+    "eligible_strict_reproducible_recipe": false,
+    "recipe_evidence": "partial_lstm_and_mlp",
+    "e1_target_equivalent": false,
+    "include_in_new_stratum": true,
+    "comparability_stratum": "direct_crypto_volatility_point_comparison",
+    "full_text_read_scope": "Cuerpo completo de la versión identificada; tablas señaladas en evidence_locations. Bibliografía no tratada como evidencia del modelo."
+  },
+  {
+    "accessed_utc": "2026-11-07",
+    "scope": "Estrato complementario de lectura primaria pública; no modifica N7 ni convierte en leídos los originales inaccesibles.",
+    "historical_N7_inclusion": false,
+    "part_of_original_14_inaccessible": false,
+    "original_file_materialized": false,
+    "original_file_sha256": null,
+    "full_text_read": true,
+    "table_verification": "Texto primario HTML/PDF parseado. El servicio no devolvió imágenes visualizables para screenshots; no se declara cotejo visual de celdas.",
+    "group_id": "E1OA-R03",
+    "title": "Bitcoin Volatility Forecasting Based on Time Series Decomposition and Deep Learning Model",
+    "authors": [
+      "Yankun Sun",
+      "Xiaolong Tang",
+      "Yile Jiang"
+    ],
+    "doi": "10.3233/FAIA250121",
+    "year_nominal": 2025,
+    "year_online": 2025,
+    "venue": "Artificial Intelligence and Human-Computer Interaction: Proceedings of ArtInHCI 2024",
+    "pages": "194–201",
+    "recommended_bibtex_key": "Sun2025VMDGRU",
+    "source_urls": [
+      "https://journals.sagepub.com/doi/10.3233/FAIA250121",
+      "https://journals.sagepub.com/doi/pdf/10.3233/FAIA250121?download=true"
+    ],
+    "access_level": "publisher_full_text",
+    "version_read": "PDF editorial completo 8 páginas.",
+    "access_full": true,
+    "oa_license_verified": true,
+    "license": "CC BY-NC4.0, primera página.",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "novelty": {
+      "in_prior_E1_182": false,
+      "in_historical_N7": false,
+      "prior_reference_global_search": "Sin este DOI/título en referencias/book antes de escribir la ficha; otros Sun pertenecen a PSO-GRU, no a esta obra.",
+      "new_unique_reference_global": true
+    },
+    "evidence_locations": [
+      "PDF pp194–201 completo; §2.2 p196; §2.3 pp197–198; Tablas2–3 p199; Tabla4 p200; conclusión p200."
+    ],
+    "target": "Volatilidad realizada diaria calculada con precios BTC de 5 min; fórmula exacta RV/raíz no especificada; horizontes1 y5 días.",
+    "target_explicit_volatility": true,
+    "models_and_roles": {
+      "autonomous_recurrent": [
+        "GRU",
+        "LSTM"
+      ],
+      "hybrids": [
+        "VMD-GRU",
+        "VMD-LSTM"
+      ],
+      "simple_comparators": [
+        "ARIMA",
+        "GARCH",
+        "SVM",
+        "RF",
+        "XGBoost"
+      ],
+      "gru_independent_verified": true,
+      "lstm_independent_verified": true,
+      "tcn_independent_verified": false
+    },
+    "architecture_details": {
+      "lookback": 22,
+      "vmd_imfs": 3,
+      "layers": null,
+      "units": null,
+      "optimizer": null,
+      "epochs": null,
+      "batch_size": null
+    },
+    "data": {
+      "asset": "Bitcoin",
+      "source": "blockchain.com; Wind; qkl123",
+      "period": "2014-02-03/2021-10-31",
+      "n_reported": 2053,
+      "predictors": 17,
+      "normalization": "MinMax",
+      "split": null
+    },
+    "validation": "Partición, fechas y orden causal VMD no documentados.",
+    "repetitions": {
+      "seeds": null
+    },
+    "metrics": [
+      "MSE",
+      "RMSE",
+      "MAE"
+    ],
+    "statistical_tests": "Tabla4 DM; p-valores y protocolo insuficientes.",
+    "published_values": [
+      {
+        "location": "Tabla2 p199; h1",
+        "model": "GRU",
+        "MSE": 1408.42,
+        "RMSE": 37.5289,
+        "MAE": 10.2882
+      },
+      {
+        "location": "Tabla2 p199; h1",
+        "model": "LSTM",
+        "MSE": 1523.93,
+        "RMSE": 38.6512,
+        "MAE": 15.8641
+      }
+    ],
+    "quality_notes": [
+      "Varias parejas MSE/RMSE incumplen RMSE=raíz(MSE); LSTM h1: raíz1523.93≈39.0375, distinto38.6512.",
+      "Estadístico DM GRU/VMD-GRU 2.42 en tabla,1.21 en prosa.",
+      "Párrafos sobre permisos de carbono/mercado UE ajenos al objeto; sin split ni receta recurrente."
+    ],
+    "result_scope": "Sólo confirma comparadores GRU/LSTM autónomos. No usar magnitudes ni supuesto16% como efecto validado.",
+    "decision": "context_only_exclude_quantitative_and_strict_recipe",
+    "eligible_strict_reproducible_recipe": false,
+    "recipe_evidence": "insufficient",
+    "e1_target_equivalent": false,
+    "include_in_new_stratum": false,
+    "comparability_stratum": "quality_context_only",
+    "full_text_read_scope": "Cuerpo completo de la versión identificada; tablas señaladas en evidence_locations. Bibliografía no tratada como evidencia del modelo."
+  },
+  {
+    "accessed_utc": "2026-11-07",
+    "scope": "Estrato complementario de lectura primaria pública; no modifica N7 ni convierte en leídos los originales inaccesibles.",
+    "historical_N7_inclusion": false,
+    "part_of_original_14_inaccessible": false,
+    "original_file_materialized": false,
+    "original_file_sha256": null,
+    "full_text_read": true,
+    "table_verification": "Texto primario HTML/PDF parseado. El servicio no devolvió imágenes visualizables para screenshots; no se declara cotejo visual de celdas.",
+    "group_id": "E1OA-R04",
+    "title": "Probabilistic Forecasting Cryptocurrencies Volatility: From Point to Quantile Forecasts",
+    "authors": [
+      "Grzegorz Dudek",
+      "Witold Orzeszko",
+      "Piotr Fiszeder"
+    ],
+    "doi": "10.48550/arXiv.2508.15922",
+    "related_published_doi": "10.1109/DSAA65442.2025.11248015",
+    "year_nominal": 2025,
+    "year_online": 2025,
+    "venue": "arXiv; DSAA25 conference paper",
+    "recommended_bibtex_key": "Dudek2025ProbabilisticVolatility",
+    "source_urls": [
+      "https://arxiv.org/html/2508.15922v1",
+      "https://arxiv.org/abs/2508.15922",
+      "https://gdudek.el.pcz.pl/index.php/publications"
+    ],
+    "access_level": "author_preprint_full_text",
+    "version_read": "arXiv:2508.15922v1,2025-08-21; versión IEEE no leída.",
+    "access_full": true,
+    "oa_license_verified": true,
+    "license": "CC BY-NC-ND4.0, enlace de licencia arXiv.",
+    "license_url": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+    "novelty": {
+      "in_prior_E1_182": false,
+      "in_historical_N7": false,
+      "prior_reference_global_search": "Sin DOI/título previo en referencias/book.",
+      "independent_dataset_replication": false,
+      "relationship": "Reutiliza pronósticos base/datos de Dudek2024; no nueva receta LSTM.",
+      "new_unique_reference_global": true
+    },
+    "evidence_locations": [
+      "arXiv v1 §§I–V completos; §II datos/target; §§III–IV configuración; TablaI y §IV-E/V."
+    ],
+    "target": "Cuantiles de RV diaria BTC = suma de 288 retornos logarítmicos de 5 min al cuadrado; h1 día.",
+    "target_explicit_volatility": true,
+    "models_and_roles": {
+      "base_point_models": [
+        "HAR",
+        "HAR-R",
+        "ARFIMA",
+        "GARCH",
+        "LASSO",
+        "RR",
+        "SVR-G",
+        "SVR-L",
+        "MLP",
+        "FNM",
+        "RF",
+        "LSTM"
+      ],
+      "probabilistic_methods": [
+        "QRS",
+        "QLR",
+        "QRF"
+      ],
+      "autonomous_lstm_role": "Base puntual separada heredada de 2024; no híbrido recurrente nuevo.",
+      "gru_independent_verified": false,
+      "lstm_independent_verified": true,
+      "tcn_independent_verified": false
+    },
+    "architecture_details": {
+      "base_lstm_recipe": "Remite a Dudek2024; no receta nueva.",
+      "qrf_trees": 100,
+      "qrf_mtry": "n/3"
+    },
+    "data": {
+      "exchange": "Kraken",
+      "asset": "BTC/USD",
+      "raw_period": "2017/2021",
+      "base_forecasts": "2019/2021",
+      "probabilistic_test": "2021;365 días",
+      "meta_training": "Expansivo desde 2019; primeras 731 observaciones2019–2020."
+    },
+    "validation": "QRF ajuste OOB con datos2019–2020.",
+    "repetitions": {
+      "qrf_training_repeats": 50,
+      "base_lstm_seeds": null
+    },
+    "metrics": [
+      "CRPS",
+      "MARFE",
+      "Winkler",
+      "MSE de mediana",
+      "MAE de mediana"
+    ],
+    "statistical_tests": "DM alpha.05.",
+    "published_values": [
+      {
+        "location": "TablaI; QRS/log, meanCRPS",
+        "HAR": 0.000953,
+        "MLP": 0.000962,
+        "LSTM": 0.00103
+      }
+    ],
+    "result_scope": "QRS con bases lineales resulta competitivo; LSTM no domina. Métrica probabilística no equiparable al MSE E1.",
+    "quality_notes": [
+      "Dependencia de R02: no contar como réplica/dataset independiente.",
+      "50 repeticiones QRF no son50 semillas LSTM; versión final no cotejada."
+    ],
+    "decision": "retain_probabilistic_context_not_new_recurrent_recipe",
+    "eligible_strict_reproducible_recipe": false,
+    "recipe_evidence": "inherits_R02",
+    "e1_target_equivalent": false,
+    "include_in_new_stratum": false,
+    "comparability_stratum": "probabilistic_context_same_base_data_as_R02",
+    "full_text_read_scope": "Cuerpo completo de la versión identificada; tablas señaladas en evidence_locations. Bibliografía no tratada como evidencia del modelo."
+  },
+  {
+    "accessed_utc": "2026-11-07",
+    "scope": "Estrato complementario de lectura primaria pública; no modifica N7 ni convierte en leídos los originales inaccesibles.",
+    "historical_N7_inclusion": false,
+    "part_of_original_14_inaccessible": false,
+    "original_file_materialized": false,
+    "original_file_sha256": null,
+    "full_text_read": true,
+    "table_verification": "Texto primario HTML/PDF parseado. El servicio no devolvió imágenes visualizables para screenshots; no se declara cotejo visual de celdas.",
+    "group_id": "E1X001",
+    "title": "Crypto Volatility Forecasting: Mounting a HAR, Sentiment, and Machine Learning Horserace",
+    "authors": [
+      "Alexander Brauneis",
+      "Mehmet Sahiner"
+    ],
+    "doi": "10.1007/s10690-024-09510-6",
+    "year_nominal": 2026,
+    "year_online": 2024,
+    "online_date": "2024-12-13",
+    "venue": "Asia-Pacific Financial Markets",
+    "volume": "33",
+    "pages": "379–411",
+    "recommended_bibtex_key": "Brauneis2026VolatilityHorserace",
+    "source_urls": [
+      "https://link.springer.com/article/10.1007/s10690-024-09510-6",
+      "https://link.springer.com/content/pdf/10.1007/s10690-024-09510-6.pdf"
+    ],
+    "access_level": "publisher_full_text",
+    "version_read": "HTML editorial y PDF 33 páginas; tablas originales recuperadas.",
+    "access_full": true,
+    "oa_license_verified": true,
+    "license": "CC BY4.0; PDF p407, Rights and permissions HTML.",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "novelty": {
+      "in_prior_E1_182": false,
+      "in_historical_N7": false,
+      "existing_complementary_id": "E1X001",
+      "new_unique_reference_global": false,
+      "update": "Actualiza lectura parcial previa part_root a cuerpo y tablas completos; conserva identidad."
+    },
+    "evidence_locations": [
+      "HTML §§1–6 completo; PDF pp379–407 cuerpo y licencia.",
+      "Tablas4–5 pp398–400; Tabla6 p401; Tabla7 pp402–403; Tabla8 pp404–405."
+    ],
+    "target": "Varianza realizada6h = suma de cuadrados de retornos logarítmicos de 5 min; h1 intervalo6h.",
+    "target_explicit_volatility": true,
+    "models_and_roles": {
+      "autonomous_recurrent": [
+        "LSTM"
+      ],
+      "autonomous_feedforward": [
+        "MLP"
+      ],
+      "simple_comparators": [
+        "HAR",
+        "LightGBM",
+        "XGBoost"
+      ],
+      "hybrids": [
+        "CNN-BiLSTM"
+      ],
+      "gru_independent_verified": false,
+      "lstm_independent_verified": true,
+      "tcn_independent_verified": false
+    },
+    "architecture_details": {
+      "lstm": "Ecuaciones genéricas; ancho/capas/epochs seleccionados no informados.",
+      "mlp": "Una capa oculta sigmoid y salida lineal; ancho final ausente.",
+      "optimization": "Bayesian optimization neural; TensorFlow2."
+    },
+    "data": {
+      "exchange": "Coinbase/USD",
+      "assets": [
+        "BTC",
+        "ETH",
+        "ADA",
+        "DOGE",
+        "DOT",
+        "LTC",
+        "SHIB",
+        "SOL"
+      ],
+      "period": "2021-12-21 00:00UTC/2022-12-22 06:00UTC",
+      "n": 1461,
+      "initial_train_n": 1169,
+      "test_n": 292,
+      "inputs": "RV rezagada y promedios8/28 intervalos; sentimiento rezagado de 6 canales."
+    },
+    "validation": "80% inicial; ventana móvil con 292 pronósticos de un paso. Fivefold CV declarada para boosting, no diseño temporal neural completo.",
+    "repetitions": {
+      "neural_seeds": null
+    },
+    "metrics": [
+      "MAE",
+      "RMSE",
+      "QLIKE"
+    ],
+    "statistical_tests": "MCS y DM; Tabla6 contiene inconsistencia alpha.2/EPA75%.",
+    "published_values": [
+      {
+        "location": "Tabla4 pp398–399; BTC sin sentimiento",
+        "HAR": {
+          "MAE": 0.0047,
+          "RMSE": 0.007,
+          "QLIKE": -7.3555
+        },
+        "LSTM": {
+          "MAE": 0.0077,
+          "RMSE": 0.0095,
+          "QLIKE": -7.7244
+        },
+        "MLP": {
+          "MAE": 0.0091,
+          "RMSE": 0.0102,
+          "QLIKE": -7.5091
+        }
+      }
+    ],
+    "result_scope": "BTC HAR presenta menor MAE/RMSE; dirección QLIKE/DM requiere cautela por discrepancias entre tabla y narrativa. No ganador universal.",
+    "quality_notes": [
+      "Texto completo no proporciona receta neuronal exacta.",
+      "Proxy6h y sentimiento comercial impiden equivalencia con sigma7 E1.",
+      "No tratar no rechazo MCS como equivalencia; no sintetizar valores QLIKE con formulaciones ajenas."
+    ],
+    "decision": "upgrade_existing_complementary_to_full_text_comparison",
+    "eligible_strict_reproducible_recipe": false,
+    "recipe_evidence": "incomplete_selected_configuration",
+    "e1_target_equivalent": false,
+    "include_in_new_stratum": true,
+    "comparability_stratum": "direct_crypto_volatility_point_comparison",
+    "full_text_read_scope": "Cuerpo completo de la versión identificada; tablas señaladas en evidence_locations. Bibliografía no tratada como evidencia del modelo."
+  }
+]
