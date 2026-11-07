@@ -1,0 +1,23 @@
+[
+  {
+    "group_id": "E1X001",
+    "title": "Crypto Volatility Forecasting: Mounting a HAR, Sentiment, and Machine Learning Horserace",
+    "doi": "10.1007/s10690-024-09510-6",
+    "authors": ["Alexander Brauneis", "Mehmet Sahiner"],
+    "year": 2026,
+    "effective_publication_date": "2024-12-13",
+    "venue": "Asia-Pacific Financial Markets 33, 379–411",
+    "source_urls": ["https://link.springer.com/article/10.1007/s10690-024-09510-6"],
+    "access_level": "publisher_html_main_text_read_tables_not_extracted",
+    "full_text_read": false,
+    "evidence_locations": ["§§1–6, ecuaciones 1–26; pies de Tablas 1–8", "El intento de abrir la tabla 4 por separado no recuperó sus celdas"],
+    "target": "RV de seis horas: suma de logretornos de cierres Coinbase de cinco minutos al cuadrado (Ec. 1), horizonte de un intervalo. Ocho criptomonedas, incluido BTC; no equivale a σ7.",
+    "models_and_roles": {"independent": ["HAR", "LightGBM", "XGBoost", "MLP", "LSTM"], "hybrid": ["CNN-BiLSTM"], "GRU": false, "TCN": false},
+    "architecture_details": "§4.2 define MLP de una capa oculta y LSTM; no se recuperaron anchos definitivos ni catálogo HPO. No es fuente de una receta reproducida en E1.",
+    "protocol": "1461 observaciones; ajuste inicial 1169 y 292 pronósticos rolling. Declara optimización bayesiana neuronal y CV de cinco folds para boosting; no especifica aquí temporalidad de esos folds ni semillas neuronales.",
+    "quality_issues": ["Tablas numéricas no extraídas: no se transcriben sus métricas.", "El pie MCS menciona α=0,2 y nivel75%; requiere conciliación.", "No significancia de EPA no demuestra equivalencia."],
+    "eligibility_decision": "context_family_comparison_pending_table_and_recipe_verification",
+    "eligibility_reason": "Aporta contraste imparcial MLP/LSTM frente a HAR. Permanece fuera de las frecuencias estrictas; es descubrimiento complementario, no uno de los 22 grupos nativos.",
+    "metrics": []
+  }
+]

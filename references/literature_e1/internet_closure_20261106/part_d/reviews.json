@@ -1,0 +1,334 @@
+[
+  {
+    "accessed_utc": "2026-11-07T02:02:04Z",
+    "accessed_bogota": "2026-11-06T21:02:04-05:00",
+    "scope": "Ampliación complementaria fuera de los 22 originales pendientes; no reduce esa cola ni modifica N7.",
+    "historical_N7_inclusion": false,
+    "part_of_original_22": false,
+    "original_file_materialized": false,
+    "original_file_sha256": null,
+    "group_id": "E1X002",
+    "title": "ARCH–LSTM Structural Equivalence with Hybrid Student-t Likelihood Loss for Financial Volatility Forecasting",
+    "doi": "10.3390/jrfm19090688",
+    "authors": [
+      "Natalia Acevedo-Prins",
+      "Juan D. Velásquez"
+    ],
+    "year_nominal": 2026,
+    "year_online": 2026,
+    "online_date": "2026-09-04",
+    "venue": "Journal of Risk and Financial Management",
+    "volume": "19",
+    "issue": "9",
+    "article_number": "688",
+    "source_urls": [
+      "https://www.mdpi.com/1911-8074/19/9/688",
+      "https://ideas.repec.org/a/gam/jjrfmx/v19y2026i9p688-d2033527.html",
+      "https://github.com/Nataliaprins/arch-lstm-hybrid",
+      "https://github.com/Nataliaprins/arch-lstm-hybrid/blob/9c8aef3506b1e676f181c5af5b1db7f1834212fb/src/models/neural.py"
+    ],
+    "access_level": "indexed_primary_sections_and_author_code",
+    "full_text_read": false,
+    "evidence_locations": [
+      "Texto primario indexado MDPI: introducción, §2.2, §3.1, §3.3, §4.2, §4.5, §5.4, §6, Tabla 1, Tabla 2, Tabla 3 y parte de Tabla 9; no equivalen a lectura continua del artículo completo.",
+      "§3.1: seis activos, datos diarios Yahoo Finance, muestra hasta 30 de junio de 2026 y partición temporal.",
+      "§5.4.2: proxy epsilon_t^2 y horizonte de un paso.",
+      "Repositorio enlazado por el artículo, HEAD 9c8aef3506b1e676f181c5af5b1db7f1834212fb: src/models/neural.py líneas 544–592, TCN; líneas 64–92, LSTM-SSE; src/tuning/tune_and_train.py líneas 1072–1082, registro independiente de builders.",
+      "config/config.yaml: split, ventana, búsqueda, semillas y ajustes experimentales; README.md: tabla de muestras y modelos; CITATION.cff: metadatos de citación no reconciliados."
+    ],
+    "target": "Varianza condicional un paso adelante, evaluada frente al cuadrado del retorno centrado epsilon_t^2, una proxy diaria ruidosa. No equivale a sigma7 futura de E1.",
+    "models_and_roles": {
+      "proposed": "LSTM-SSE-t-Student con pérdida combinada SSE y NLL Student-t.",
+      "independent_comparators_in_primary_index": [
+        "LSTM-SSE",
+        "TCN",
+        "Transformer"
+      ],
+      "hybrid_comparators_in_primary_index": [
+        "CNN-LSTM",
+        "LSTM-Attention",
+        "SVR-GARCH",
+        "NN-GARCH"
+      ],
+      "tcn_independent_code_verified": true,
+      "lstm_independent_code_verified": true,
+      "gru_independent_verified": false,
+      "tcn_evidence_level": "El texto primario indexado incluye TCN en el conjunto de benchmarks; el repositorio del autor implementa builder y entrada de entrenamiento separados. No se verificó tabla editorial completa ni identidad de un release congelado que la reproduzca."
+    },
+    "architecture_details": {
+      "tcn_author_code": {
+        "residual_blocks": 4,
+        "conv1d_per_block": 2,
+        "dilations": [
+          1,
+          2,
+          4,
+          8
+        ],
+        "kernel_size_default": 3,
+        "channels_parameter": "hp['lstm_units'], reutilizado como número de filtros",
+        "normalization": "LayerNormalization",
+        "activation": "ReLU",
+        "dropout": "SpatialDropout1D",
+        "residual_projection": "Conv1D 1x1 si el número de canales cambia",
+        "aggregation": "GlobalAveragePooling1D",
+        "output": "Dense(1) lineal log_sigma2; conversión posterior a varianza",
+        "optimizer": "Adam",
+        "loss": "make_variance_mse_loss()"
+      },
+      "lstm_author_code": "LSTM-SSE de una capa recurrente seguida por dropout y Dense lineal log_sigma2; MSE de varianza.",
+      "proposed_search_space_primary_table2": {
+        "units": [
+          16,
+          32,
+          64,
+          128
+        ],
+        "degrees_of_freedom": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "dropout": [
+          0,
+          0.1,
+          0.2,
+          0.3
+        ],
+        "mixing_lambda": [
+          0.1,
+          0.3,
+          0.5,
+          0.7,
+          0.9
+        ],
+        "batch_size": [
+          32,
+          64,
+          128
+        ],
+        "epochs_up_to": 1000,
+        "cv": "TimeSeriesSplit k=5"
+      },
+      "recipe_scope": "Los parámetros descritos son del texto indexado y del HEAD inspeccionado; no son una receta definitiva verificada para cada fila editorial."
+    },
+    "protocol": {
+      "primary_data_description": "Bitcoin desde 2013-04-28 (n=4304), Ethereum desde 2015-08-07 (n=3155), DJIA y S&P500 desde 2015-06-01 (n≈2786), oro y petróleo con período comparable; cierre común declarado 2026-06-30.",
+      "primary_split": "Se declara split cronológico 80/20 train-test con validación tomada del final del entrenamiento; sin shuffle.",
+      "author_code_split": "README/config usan 80% entrenamiento, 10% validación, 10% test. No se estableció una conciliación con la redacción editorial.",
+      "repetitions": "Config declara semilla base 42 y diez semillas; el texto indexado refiere análisis multisemilla.",
+      "tests_reported_not_reproduced": "DM con corrección Holm, equivalencia TOST con margen QLIKE ±2%, y backtests VaR/ES.",
+      "code_commit": "9c8aef3506b1e676f181c5af5b1db7f1834212fb",
+      "code_execution": "Inspección estática del código; no se ejecutó entrenamiento ni se reprodujeron tablas."
+    },
+    "quality_issues": [
+      "MDPI directo devuelve 429 y el PDF no fue recuperado; se conserva estatus de secciones indexadas, sin fingir lectura completa.",
+      "La TCN autónoma está implementada en el código inspeccionado; no se comprobó que un commit/release congelado produzca las tablas del artículo.",
+      "El HEAD incluye ajustes experimentales marcados pendientes y sustituciones de pérdida para el modelo propuesto; no se deben equiparar automáticamente a la versión publicada.",
+      "CITATION.cff conserva repository-code placeholder y fecha 2025-08-01; la identidad se ancla al enlace directo del artículo y al commit leído, no a ese placeholder.",
+      "La partición 80/20 de §3.1 y la partición 80/10/10 del repositorio requieren conciliación.",
+      "GRU aparece en abreviaturas; eso no establece un comparador GRU independiente."
+    ],
+    "eligibility_decision": "complementary_tcn_candidate_primary_partial_author_code_verified",
+    "eligibility_reason": "Aporta respaldo verificable de TCN autónoma para varianza diaria en la implementación del autor y en la descripción primaria de comparadores. Mantener como ampliación complementaria con verificación parcial hasta revisar texto/tablas completos y release coincidente; no contar aún como original completo en corpus estricto, ni alterar N7 o la cola de 22.",
+    "metrics": [],
+    "access_attempts": [
+      {
+        "url": "https://www.mdpi.com/1911-8074/19/9/688",
+        "outcome": "429 Too Many Requests; no se eludió."
+      },
+      {
+        "url": "https://www.mdpi.com/1911-8074/19/9/688/pdf",
+        "outcome": "PDF no accesible mediante herramienta web."
+      },
+      {
+        "url": "https://mdpi-res.com/d_attachment/jrfm/jrfm-19-00688/article_deploy/jrfm-19-00688.pdf",
+        "outcome": "Recurso de CDN editorial no accesible mediante herramienta."
+      },
+      {
+        "url": "https://www.mdpi.com/1911-8074/19/9/688",
+        "outcome": "Resultados indexados de la fuente primaria permiten inspeccionar secciones sustantivas y metadatos; no se guardó ni se trató como texto completo."
+      },
+      {
+        "url": "https://github.com/Nataliaprins/arch-lstm-hybrid",
+        "outcome": "Repositorio público enlazado por §3.3; clone legítimo en /tmp y revisión estática de builders/config a HEAD 9c8aef3506b1e676f181c5af5b1db7f1834212fb."
+      }
+    ],
+    "recommended_bibtex_key": "AcevedoPrins2026ArchLstm"
+  },
+  {
+    "accessed_utc": "2026-11-07T02:02:04Z",
+    "accessed_bogota": "2026-11-06T21:02:04-05:00",
+    "scope": "Ampliación complementaria fuera de los 22 originales pendientes; no reduce esa cola ni modifica N7.",
+    "historical_N7_inclusion": false,
+    "part_of_original_22": false,
+    "original_file_materialized": false,
+    "original_file_sha256": null,
+    "group_id": "E1X003",
+    "title": "Forecasting cryptocurrency volatility: a novel framework based on the evolving multiscale graph neural network",
+    "doi": "10.1186/s40854-025-00768-x",
+    "authors": [
+      "Yang Zhou",
+      "Chi Xie",
+      "Gang-Jin Wang",
+      "Jue Gong",
+      "You Zhu"
+    ],
+    "year_nominal": 2025,
+    "year_online": 2025,
+    "online_date": "2025-02-24",
+    "venue": "Financial Innovation",
+    "volume": "11",
+    "article_number": "87",
+    "source_urls": [
+      "https://link.springer.com/article/10.1186/s40854-025-00768-x",
+      "https://link.springer.com/content/pdf/10.1186/s40854-025-00768-x.pdf"
+    ],
+    "access_level": "publisher_full_text_html_and_pdf",
+    "full_text_read": true,
+    "evidence_locations": [
+      "Original editorial abierto, HTML y PDF de 52 páginas: cuerpo principal desde introducción hasta conclusión; apéndices A–C y notas.",
+      "Volatility estimator y Data collection and preprocessing: ecuaciones 1–3, objetivo QML-RV, fuentes, fechas e imputación.",
+      "Experimental design: Competing models e Hyperparameter setting; Tabla 4 en p. 21 del PDF; Tabla 5 en p. 23; Appendix C pp. 45–47.",
+      "Temporal convolution module, ecuaciones 8–9: componente de EMGNN, no comparador autónomo TCN.",
+      "Computational complexity y Tabla 13, pp. 39–40; Data availability p. 48. Valores no transcritos de imágenes no se consideran verificados."
+    ],
+    "target": "Volatilidad/variación cuadrática diaria QML-RV de futuros CME Bitcoin, con ruido microestructural y saltos, estimada desde datos de alta frecuencia; robustez con RV suma de retornos intradía cuadrados de 5 y 15 minutos. Horizonte principal de un día; adicionales 3, 6 y 12 días. No es la misma proxy sigma7 de E1.",
+    "models_and_roles": {
+      "proposed": "Evolving Multiscale Graph Neural Network (EMGNN): convolución temporal, aprendizaje de grafo dinámico y convolución de grafo.",
+      "independent_comparators_verified": [
+        "AR",
+        "ARIMAX",
+        "HAR",
+        "GPR",
+        "Random Forest",
+        "LightGBM",
+        "LSTM",
+        "LSTNet",
+        "MTGNN"
+      ],
+      "additional_garch_comparators_appendix": [
+        "EGARCH",
+        "GJR-GARCH",
+        "CCC-GARCH",
+        "BEKK-GARCH",
+        "DCC-GARCH",
+        "GO-GARCH",
+        "VAR-GARCH"
+      ],
+      "lstm_independent": true,
+      "gru_independent": false,
+      "tcn_independent": false,
+      "tcn_note": "Módulo temporal de dos inception layers dilatadas dentro de EMGNN; no se cuenta como TCN autónoma. LSTNet también es una arquitectura compuesta."
+    },
+    "architecture_details": {
+      "lstm_search_space_table4": {
+        "layers": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "hidden_units": "Potencias de 2 desde 2^1 hasta 2^7",
+        "dropout": [
+          0.1,
+          0.2,
+          0.3
+        ],
+        "learning_rate": [
+          0.1,
+          0.01,
+          0.001,
+          0.0001
+        ]
+      },
+      "emgnn": {
+        "multiscale_layers": 5,
+        "time_intervals": [
+          31,
+          21,
+          14,
+          5,
+          1
+        ],
+        "temporal_filter_sizes": [
+          2,
+          3,
+          6,
+          7
+        ],
+        "temporal_graph_channels": 8,
+        "output_channels": [
+          32,
+          1
+        ],
+        "skip_channels": 16,
+        "input_length": 168,
+        "output_length": 1,
+        "batch_size": 4
+      },
+      "selected_lstm_recipe": "Se publica espacio de búsqueda; configuración elegida por horizonte y conteo de parámetros no establecidos en los localizadores revisados.",
+      "simplicity": "LSTM es el comparador DL de menor tiempo de entrenamiento según la sección de complejidad. La arquitectura EMGNN compuesta no es un candidato simple equivalente a la receta E1."
+    },
+    "protocol": {
+      "data": "11 variables: RV de siete mercados (BTC y seis futuros tradicionales) y EPU, GPR, VIX y OVX; muestra diaria 2017-12-18 a 2023-05-22.",
+      "main_target_source": "Risk Lab de Dacheng Xiu, CME Bitcoin futures QML-RV.",
+      "preprocessing": "LOCF para fechas faltantes, 0,6198% de valores; Z-score. Ajuste del escalador exclusivamente en train no establecido explícitamente.",
+      "split": "70% cronológico para entrenamiento, siguiente 15% validación, último 15% prueba.",
+      "hpo": "Optuna, optimización bayesiana y validación cruzada de cinco folds; no se establece en el texto si los folds mantienen orden temporal ni el presupuesto de ensayos.",
+      "metrics": "MSFE/MAFE relativas al AR; QLIKE y R2LOG, Theil U, dirección de cambio; DM y MCS90%; utilidad y CER para ejercicio económico.",
+      "repetitions": "Apéndice C ejecuta diez repeticiones por configuración de sensibilidad; no se confunden con número de semillas para toda la tabla principal.",
+      "availability": "Los autores ofrecen datos bajo solicitud razonable; no se identificó repositorio de reproducción enlazado."
+    },
+    "quality_issues": [
+      "Objetivo de RV diario de futuros y RV intradía difiere de sigma7 futura de E1; no agrupar niveles de error ni interpretar mismas condiciones.",
+      "Se detallan arquitectura EMGNN y espacio de búsqueda LSTM, pero falta receta seleccionada por horizonte para reproducir exactamente cada fila.",
+      "Cronología del holdout está descrita; ámbito de ajuste del escalador y orden temporal de CV no están establecidos. No se afirma fuga demostrada.",
+      "El artículo no demuestra superioridad estadística frente a todos los competidores en todos los horizontes; no trasladar sus afirmaciones generales a E1.",
+      "Se inspeccionaron texto, tablas 4/5 y apéndices; no se transcribieron matrices o valores internos de figuras no verificados visualmente."
+    ],
+    "eligibility_decision": "include_complementary_daily_rv_comparison_lstm_only",
+    "eligibility_reason": "Original completo y tarea de pronóstico de RV verificadas; respalda uso de LSTM autónoma y diversidad frente a redes de grafo. No aporta recurrencia autónoma de GRU o TCN. Incluir como ampliación complementaria en estrato RV diaria con reservas de reproducción, sin alterar N7 ni atribuirlo a los 22 originales pendientes.",
+    "metrics": [
+      {
+        "location": "Tabla 5, p. 23",
+        "target": "CME Bitcoin QML-RV, h=1 día",
+        "model": "LSTM",
+        "msfe_ratio_to_ar": 0.8703,
+        "mafe_ratio_to_ar": 0.7659
+      },
+      {
+        "location": "Tabla 5, p. 23",
+        "target": "CME Bitcoin QML-RV, h=1 día",
+        "model": "MTGNN",
+        "msfe_ratio_to_ar": 0.7809,
+        "mafe_ratio_to_ar": 0.7295
+      },
+      {
+        "location": "Tabla 5, p. 23",
+        "target": "CME Bitcoin QML-RV, h=1 día",
+        "model": "EMGNN",
+        "msfe_ratio_to_ar": 0.6527,
+        "mafe_ratio_to_ar": 0.679
+      }
+    ],
+    "access_attempts": [
+      {
+        "url": "https://link.springer.com/article/10.1186/s40854-025-00768-x",
+        "outcome": "HTML editorial abierto; se leyó cuerpo principal y notas."
+      },
+      {
+        "url": "https://link.springer.com/content/pdf/10.1186/s40854-025-00768-x.pdf",
+        "outcome": "Enlace Download PDF abierto; PDF52 páginas consultado, incluidas tablas 4/5 y apéndices A–C."
+      },
+      {
+        "url": "https://link.springer.com/article/10.1186/s40854-025-00768-x/tables/4",
+        "outcome": "Vista separada no accesible; Tabla4 sí se leyó dentro del PDF oficial."
+      }
+    ],
+    "recommended_bibtex_key": "Zhou2025EmgnnVolatility"
+  }
+]

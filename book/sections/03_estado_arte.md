@@ -22,6 +22,8 @@ La numeración mantiene los seis incisos de búsqueda (§3.1.1–3.1.6). La iden
 
 ## 3.1. Estrategia de Búsqueda (Obligatoria)
 
+**Estado actualizado.** La recuperación pública y las lecturas de §3.7 amplían la evidencia, pero este requisito permanece **parcialmente satisfecho**: las cuatro exportaciones WoS/Scopus están verificadas y el historial literal completo de búsqueda e IEEE Xplore continúa pendiente. Los intentos bloqueados y las cadenas propuestas se documentan con su alcance efectivo.
+
 ### 3.1.1. Cadena de búsqueda
 
 **Cronología.** Los apartados siguientes preservan las búsquedas de descubrimiento realizadas hasta el 05/11. La recepción nativa de WoS/Scopus del 06/11, sus límites de cobertura y la nueva extracción se presentan en {ref}`ampliacion-nativa-e1`; no se reescriben los registros de las etapas previas.
@@ -104,7 +106,7 @@ Un mirror atribuía a Herremans un PDF y el ID arXiv:2211.00759; al leer la port
 (tabla-referencias-e1)=
 #### 3.1.2.4. Catálogo histórico del 05/11/2026: 40 referencias
 
-Las tablas conservan las 39 entradas del corte anterior y añaden una referencia cripto, S9. El [catálogo histórico de 40 referencias](../_static/literature_e1/crypto_extension_20261105/references_access_40.json) conserva procedencia y nivel de acceso. La bibliografía canónica actual contiene **42 entradas**, al incorporar los dos originales de §3.6.3; sus objetivos y papeles se estratifican y no convierten automáticamente el corpus histórico en nueve comparadores homogéneos. Los catálogos de [39](../_static/literature_e1/journal_update_20261105/references_access_39.json) y [36](../_static/literature_e1/recovery_20261105/references_access_36.json) permanecen como antecedentes; no se modifican sus fechas ni se atribuyen lecturas nuevas a entradas anteriores.
+Las tablas conservan las 39 entradas del corte anterior y añaden una referencia cripto, S9. El [catálogo histórico de 40 referencias](../_static/literature_e1/crypto_extension_20261105/references_access_40.json) conserva procedencia y nivel de acceso. La bibliografía canónica actual contiene **50 entradas**: las 42 del cierre de §3.6.3 y ocho incorporadas en la actualización de §3.7. Sus objetivos, papeles y niveles de acceso se estratifican; el número de referencias no modifica el corpus histórico de siete estudios. Los catálogos de [39](../_static/literature_e1/journal_update_20261105/references_access_39.json) y [36](../_static/literature_e1/recovery_20261105/references_access_36.json) permanecen como antecedentes; no se modifican sus fechas ni se atribuyen lecturas nuevas a entradas anteriores.
 
 El catálogo reúne **40 referencias: trece aplicaciones a Bitcoin u otras criptomonedas, ocho fundamentos de redes neuronales, dieciséis referencias de volatilidad, diagnóstico y evaluación, y tres respaldos metodológicos financieros**. Siete son estudios cripto completos incluidos; la cantidad de citas no equivale a ese denominador. Las pistas sin original y la evidencia solo de código o identidad se conservan por separado.
 
@@ -308,7 +310,7 @@ La verificación de procedencia añadida en esta fase no avala la calidad experi
 
 ## 3.2. Identificación de los tres modelos base de Deep Learning
 
-El corpus vigente contiene **siete textos completos cripto: S1, S2, S5, S6, S7, S8 y S9**. Todos incluyen BTC; S9 incluye también diecinueve pares adicionales. S1 y S8 tienen identidad de publicación en sus documentos; S2/S5/S6/S7/S9 mantienen su género gris o publicación editorial pendiente, sin atribuir indexación. La inclusión permite extraer lo reportado y su papel; no certifica validez, equivalencia de contratos o que cada estudio añada una referencia básica independiente.
+El corte histórico del **05/11/2026** contiene **siete textos completos cripto: S1, S2, S5, S6, S7, S8 y S9**. Todos incluyen BTC; S9 incluye también diecinueve pares adicionales. S1 y S8 tienen identidad de publicación en sus documentos; S2/S5/S6/S7/S9 mantienen su género gris o publicación editorial pendiente, sin atribuir indexación. La inclusión permite extraer lo reportado y su papel; no certifica validez, equivalencia de contratos o que cada estudio añada una referencia básica independiente.
 
 ### 3.2.1. Procedimiento de extracción
 
@@ -335,7 +337,7 @@ La unidad es **un estudio por familia empleada como referencia independiente**. 
 | CNN independiente, dimensión no reportada | S8 | 1/7 | 1/6 | Dos capas más Dense; no se infiere Conv1D |
 | CNN1D simple explícitamente identificada | Ninguno verificado | 0/7 | 0/6 | Falta de verificación positiva en este corte, sin afirmar inexistencia universal |
 
-Las [frecuencias actuales](../_static/literature_e1/crypto_extension_20261105/family_frequencies.csv) distinguen **referencias independientes** y **presencia empírica**. Al añadir la LSTM propuesta de S9, la presencia de la familia LSTM es **6/7**, pero su frecuencia estricta como referencia permanece **5/7**. El estrato de seis estudios con referencias DL extraíbles conserva los numeradores previos y 1/6 para MLP/CNN; no se presenta como todo el corpus. Los siete estudios incluyen BTC; solo S9 incorpora otras criptomonedas, con solapamiento entre categorías.
+Las [frecuencias del corte histórico del 05/11](../_static/literature_e1/crypto_extension_20261105/family_frequencies.csv) distinguen **referencias independientes** y **presencia empírica**. Al añadir la LSTM propuesta de S9, la presencia de la familia LSTM es **6/7**, pero su frecuencia estricta como referencia permanece **5/7**. El estrato de seis estudios con referencias DL extraíbles conserva los numeradores previos y 1/6 para MLP/CNN; no se presenta como todo el corpus. Los siete estudios incluyen BTC; solo S9 incorpora otras criptomonedas, con solapamiento entre categorías.
 
 El [corte previo de seis](../_static/literature_e1/recovery_20261105/family_frequencies.csv), su [decisión fechada](../_static/literature_e1/recovery_20261105/selection_update.json) y las [frecuencias de cinco textos](../_static/literature_e1/family_frequencies.csv) conservan sus denominadores originales. S9 se incluye por pertinencia y lectura completa aunque no aumente MLP/CNN: no se condiciona su inclusión a favorecer el trío implementado. Las diferencias de calidad y publicación se mantienen en la matriz y sus estratos; no se usan para borrar silenciosamente un estudio incluido.
 
@@ -391,7 +393,7 @@ La siguiente matriz evalúa alternativas con el mismo criterio: evidencia de uso
 | **LSTM** | S1/S2/S5/S7/S8, **5/7**. Una capa propia: 5.025 parámetros en fase I; 1.489 en fase II. | Mayor recurrencia del corte; celda separada permite contrastar la actualización de memoria. Comparte secuencialidad y compuertas con GRU y reduce la amplitud de sesgos cubierta por tres puestos. | Se conserva como referencia recurrente más frecuente. Podría sustituirse una de las dos recurrentes en un estudio futuro orientado a diversidad; no se elige cuál usando el test actual. |
 | **TCN** | S1, **1/7**. Tres bloques propios: 4.289 parámetros en fase I; 1.185 en fase II. CVI aporta evidencia externa estratificada, no otro caso σ7. | Contrasta recurrencia con filtros causales dilatados y rutas residuales. Su estructura no es más simple por definición que una CNN convencional o MLP. | Se conserva por comparación directa de S1 y contraste convolucional explícito. La baja recurrencia exige contrastarla con los originales pendientes; no se transforma 1/7 en prevalencia amplia. |
 | **MLP** | S8, **1/7**. Cuatro capas; anchos insuficientemente especificados para un total exacto. Cabezas internas de S9/CVI no incrementan frecuencia. | Vectorizar la ventana conserva el orden por posiciones; no necesita recurrencia para ser una referencia válida. Aporta un sesgo más diferente del de GRU que una segunda recurrente. | Alternativa legítima. Una receta compacta propia es posible, como en otras familias; la especificación incompleta de S8 no justifica descartarla por principio. Un corpus cerrado favorable motivaría una nueva comparación con presupuesto común. |
-| **RNN sencilla** | Sin comparador independiente verificado en los siete originales actuales. No se le atribuye una receta de autor ausente. | Permitiría aislar el efecto de las compuertas y puede ser menor a igual ancho. Su sencillez teórica no acredita uso en este problema ni ausencia universal de publicaciones. | Candidata pendiente de respaldo aplicado. Se incorporaría a la decisión si un original elegible documenta ese papel y una configuración recuperable. |
+| **RNN sencilla** | Sin comparador independiente verificado en los siete textos del corte histórico del 05/11. No se le atribuye una receta de autor ausente. | Permitiría aislar el efecto de las compuertas y puede ser menor a igual ancho. Su sencillez teórica no acredita uso en este problema ni ausencia universal de publicaciones. | Candidata pendiente de respaldo aplicado. Se incorporaría a la decisión si un original elegible documenta ese papel y una configuración recuperable. |
 | **CNN genérica** | S8, **1/7**; dos capas más Dense, sin dimensión, canales y kernels suficientes. CNN1D simple explícita: **0/7**. | Localidad y pesos compartidos son pertinentes. Causalidad, dimensión y campo receptivo requieren una receta concreta; no se deducen del nombre CNN. | Alternativa legítima a TCN. Un original que especifique una CNN temporal básica puede favorecerla por simplicidad. No se penaliza su familia por la descripción incompleta de una sola fuente. |
 | **Encoder Transformer** | S2/S6, **2/7**, más que TCN. S2 permite un conteo común condicional de 47.521 parámetros; S6 queda incompleto. | Atención y posiciones aportan otro sesgo. Sus fuentes grises y recetas disponibles limitan respaldo y comparación; un encoder más pequeño sigue siendo posible. Con D7, el costo cuadrático de atención no basta para declararlo inviable. | Se prioriza aquí el comparador convolucional directo de S1 y las recetas compactas registradas. Se reconsideraría ante originales mejor especificados y un balance favorable de frecuencia, capacidad y calidad. |
 
@@ -477,7 +479,7 @@ Comparar las redes exige información disponible, objetivo, partición, preproce
 
 ### 3.2.5. Arquitecturas no especificadas y búsqueda posterior
 
-La guía remite a la búsqueda de arquitectura del **Entregable 2, sección 14** cuando el estudio no define una receta concreta. Un campo no reportado se mantiene desconocido; no se rellena con parámetros de este proyecto. El documento completo de E2 no se ha aportado y no se afirma haber ejecutado su procedimiento íntegro.
+La guía remite a la búsqueda de arquitectura del **Entregable 2, sección 14** cuando el estudio no define una receta concreta. Un campo no reportado se mantiene desconocido; no se rellena con parámetros de este proyecto. El procedimiento posterior de E2 se documenta en su propio libro; no se atribuye retrospectivamente a las recetas de E1.
 
 S1 sí publica ganadores GRU/LSTM/TCN en su apéndice; su complejidad figura en §3.2.1.2. Adoptar H32 en las recurrentes y una TCN H16 de tres bloques es una **adaptación compacta**, no la reconstrucción de un dato ausente ni una réplica de aquellos ganadores. Las especificaciones y fórmulas propias permiten reproducir lo implementado sin atribuir esa receta a los artículos.
 
@@ -811,7 +813,7 @@ Los comprobantes históricos, las [frecuencias previas de seis](../_static/liter
 
 La consulta del **2 de noviembre de 2026** incorporó treinta referencias: siete sobre Bitcoin, siete de fundamentos de redes neuronales y dieciséis de volatilidad, diagnóstico y evaluación. Se consultaron repositorios públicos de autores, documentación de software académico y bibliografías de artículos y libros. Para cada entrada se conservan el enlace consultado, los campos corroborados y el nivel de acceso en el [registro de verificación](../_static/bibliografia/verification_30.csv) y el [catálogo detallado](../_static/bibliografia/references_30.json).
 
-El catálogo vigente conserva las 39 referencias anteriores y añade S9: **40 referencias** en §3.1.2.4 y su [CSV](../_static/literature_e1/crypto_extension_20261105/references_access_40.csv). Los cortes de 35/cinco textos, 36/seis textos y 39/seis textos más transferencia permanecen fechados. La ampliación documental a siete textos fue posterior al benchmark y no ejecutó entrenamientos. La decisión posterior de publicar GRU–LSTM–TCN y su ejecución privada se identifican por separado en §3.2.1.3; no se atribuyen a la ampliación búsquedas nativas de índices.
+El catálogo histórico del 05/11 conserva las 39 referencias anteriores y añade S9: **40 referencias** en §3.1.2.4 y su [CSV](../_static/literature_e1/crypto_extension_20261105/references_access_40.csv). Los cortes de 35/cinco textos, 36/seis textos y 39/seis textos más transferencia permanecen fechados; §§3.6–3.7 añaden referencias y revisiones posteriores. La ampliación documental a siete textos fue posterior al benchmark y no ejecutó entrenamientos. La decisión posterior de publicar GRU–LSTM–TCN y su ejecución privada se identifican por separado en §3.2.1.3; no se atribuyen a la ampliación búsquedas nativas de índices.
 
 La red del entorno bloqueó el acceso directo a Crossref y arXiv. Por ello no se afirma haber consultado sus interfaces ni leído treinta originales completos. La entrada de Huang y colaboradores conserva su verificación previa; su acceso directo actual también está limitado. Las verificaciones nuevas de las otras referencias proceden de las fuentes accesibles indicadas en el registro. Una referencia identificada en otra bibliografía se distingue de un artículo original leído.
 
@@ -926,7 +928,7 @@ Las [fichas primarias](../_static/literature_e1/primary_reviews_20261106/evidenc
 
 Esta lectura aporta análisis crítico, no una certificación de validez de los estudios. Las referencias canónicas pasan de **40 a 42**, mediante dos entradas añadidas al final de `book/references.bib`; el [fragmento de las dos nuevas referencias](../_static/literature_e1/primary_reviews_20261106/references.bib) se verifica por manifiesto. Los catálogos de 40 referencias y los hashes de la extracción anterior permanecen intactos como evidencia histórica.
 
-Los candidatos PSO–GRU, Direct Neuro y CryptoMamba conservan el nivel de acceso documentado en las fichas: un resumen o fragmentos primarios parciales no se presentan como lectura íntegra. Los trabajos de precio, dirección o regímenes discretos pueden servir como contexto, pero no añaden automáticamente frecuencias para la regresión de σ7.
+En ese primer corte, PSO–GRU, Direct Neuro y CryptoMamba conservaban acceso por resumen o fragmentos primarios. La recuperación posterior de §3.7 completa la lectura de la versión aceptada de CryptoMamba; PSO–GRU y Direct Neuro siguen pendientes. Los trabajos de precio, dirección o regímenes discretos pueden servir como contexto, pero no añaden automáticamente frecuencias para la regresión de σ7.
 
 ### 3.6.4. Consecuencias para la selección de modelos
 
@@ -942,7 +944,7 @@ El nuevo respaldo de TCN fortalece su pertinencia como comparador en volatilidad
 |---|---|---|
 | Consultar WoS y Scopus | Cuatro exportaciones identificadas por hash, 244 ocurrencias recibidas | Familias de consulta y filtro 2019–2026 confirmados por el autor; completar cadenas literales, totales y rangos todavía no acreditados. No confundir recepción con cobertura exhaustiva. |
 | Cribado y deduplicación trazables | 182 grupos provisionales, primera pasada automática preservada y adjudicación título/resumen en §3.6.6 | Textos completos de los candidatos pendientes, identidad de duplicados ambiguos y reconciliación acumulada con las etapas anteriores. |
-| Extraer modelos de los originales | Dos lecturas completas nuevas con ubicación de evidencia, objetivo, papel y calidad | Recuperar y evaluar los candidatos pertinentes aún no leídos íntegramente. |
+| Extraer modelos de los originales | Dos lecturas del primer complemento del 06/11 (§3.6.3), seguidas de la recuperación diferenciada de §3.7 | Recuperar y evaluar los candidatos pertinentes aún no leídos íntegramente. |
 | Justificar exactamente tres bases simples | Matriz de siete familias en §3.2.1.4, corte histórico preservado, nuevo comparador TCN/CVI y separación de híbridos | Reevaluar el balance de recurrencia, simplicidad y diversidad con el corpus elegible cerrado; no buscar solo confirmación de la terna. |
 | IEEE Xplore | Publicaciones IEEE identificadas en índices y antecedentes de acceso | Consulta en la biblioteca y bitácora/exportación verificables; un resultado vacío también debe conservarse si la búsqueda fue válida. |
 | Diagrama de selección | Flujo de recepción y primera pasada explícitamente provisional | Un PRISMA acumulado solo puede cerrarse con conteos de elegibilidad y exclusiones finales respaldados. |
@@ -969,4 +971,69 @@ Los dos primeros originales enlazados ya pertenecen al corpus N=7. CVI y GARCH�
 
 El cotejo editorial de los cuatro grupos enlazados inicialmente solo por título acepta **E1N011, E1N094 y E1N150** por concordancia de autor, revista, año, volumen/número y páginas. **E1N097** conserva un conflicto de identidad entre EID/años que requiere fuente primaria. Se documenta la evidencia de cada decisión sin sobrescribir el agrupamiento provisional original ni sumar otra vez sus ocurrencias.
 
-La cola restante contiene **E1N007, 053, 057, 074, 075, 080, 091, 118, 120, 121, 124, 129, 133, 138, 142, 152, 163, 169, 170, 173, 175 y 177**. Recuperar sus originales y aplicar los mismos criterios a evidencia favorable o desfavorable puede modificar el corpus y la selección. El diagrama cierra esta etapa de título/resumen; el flujo acumulado entre todas las etapas y la elegibilidad final de esos candidatos siguen abiertos.
+La cola de esta etapa contenía **E1N007, 053, 057, 074, 075, 080, 091, 118, 120, 121, 124, 129, 133, 138, 142, 152, 163, 169, 170, 173, 175 y 177**. La recuperación de §3.7 revisa los 22 casos y deja 17 decisiones pendientes. El diagrama preserva el corte de título/resumen; el flujo acumulado entre todas las etapas y la elegibilidad final siguen abiertos.
+
+(recuperacion-publica-e1)=
+## 3.7. Recuperación pública y contraste de la selección del 06/11/2026
+
+### 3.7.1. Método, unidades y resultado de acceso
+
+Esta etapa buscó originales y evidencia contraria o favorable a GRU–LSTM–TCN mediante títulos, DOI, editoriales, repositorios institucionales y copias públicas de autores. Las fechas de consulta corresponden al **06/11/2026 en América/Bogotá**, con registros UTC del 07/11. Se cotejaron identidad, objetivo realmente pronosticado, papel autónomo o híbrido, arquitectura y protocolo. Se conservaron denegaciones y campos desconocidos; una ficha de acceso no sustituye una lectura. La revisión es asistida y de una sola pasada, con las reservas ya indicadas en §3.6.6.
+
+El [resumen consolidado](../_static/literature_e1/internet_closure_20261106/summary.json), las {download}`decisiones de los 22 casos <../_static/literature_e1/internet_closure_20261106/decisions.csv>`, las [fichas con localizadores](../_static/literature_e1/internet_closure_20261106/reviews.json), la [matriz de evidencia de modelos](../_static/literature_e1/internet_closure_20261106/model_evidence.csv) y el {download}`procedimiento <../_static/literature_e1/internet_closure_20261106/README.md>` permiten comprobar cada conclusión. Sus [huellas y alcance](../_static/literature_e1/internet_closure_20261106/manifest.json) distinguen esta actualización del cribado congelado. No se redistribuyen originales ni resúmenes exportados.
+
+| Nivel alcanzado en la cola nativa | Casos | Consecuencia |
+|---|---:|---|
+| Original completo editorial o de autor leído | **4**: E1N053, 075, 118 y 163 | Leer no implica incluir: objetivo, comparadores y protocolo se juzgan por separado. |
+| Transcripción pública completa | **1**: E1N091 | Método evaluado en esa copia; no se acredita lectura del PDF editorial. |
+| Método primario parcial suficiente para resolver objetivo | **1**: E1N170 | Salida explícita de precio; exclusión temática sin declarar lectura íntegra. |
+| Sin original completo recuperado | **16** | Permanecen pendientes; acceso restringido no es motivo de exclusión. |
+| **Total de casos revisados** | **22** | **Cinco decisiones estrictas cerradas y 17 pendientes; cero inclusiones nativas nuevas.** |
+
+E1N118 forma parte de las cuatro lecturas completas y también de las 17 decisiones pendientes: falta confirmar la salida final en suplemento/código. Las cuatro evidencias complementarias `E1X001–004`, examinadas fuera de esa cola, tampoco reducen sus pendientes. El denominador histórico **N=7** y sus frecuencias permanecen intactos.
+
+### 3.7.2. Qué aportan los originales recuperados
+
+| Grupo y fuente | Evidencia revisada y decisión |
+|---|---|
+| **E1N053**, Mukhanov et al. {cite:p}`Mukhanov2026VolatilityComparison` | Original CEUR completo. Incluye una fila TCN, pero la operacionalización del objetivo y la receta no bastan para el núcleo metodológico estricto. Se conserva como comparación contextual y se cierra su exclusión estricta. |
+| **E1N075**, Zhao et al. {cite:p}`Zhao2026CryptoMambaSSM` | Manuscrito aceptado de autor completo, incluidas tablas y apéndices. Verifica GRU/LSTM independientes; las reservas de proxy, horizonte, receta y consistencia impiden incorporarlo al núcleo estricto. Su convolución interna con SSM no cuenta como TCN autónoma. |
+| **E1N091**, *Early Prediction of Cryptocurrency Price Decline* | Transcripción completa de un espejo público: definición de etiqueta y arquitectura/protocolo insuficientes para la comparación estricta. Se excluye por especificación, manteniendo el nivel de fuente visible en la ficha. |
+| **E1N118**, Nokar et al. {cite:p}`nokar2026multitarget` | Original editorial completo. La lista de candidatos incluye `Future_vwvol`, pero los diagnósticos finales corresponden a PD, BB-Zscore y VaR; la tabla de regresión agrega salidas. Verifica comparadores LSTM/TCN, sin probar que esa tabla evalúe volatilidad continua por separado. Pendiente de suplemento; no añade frecuencia estricta. |
+| **E1N163**, Gou y Sohaib {cite:p}`gou2025riskmamba` | Original completo: GRU/LSTM son filas independientes y TCN es componente interno. La respuesta, horizonte y particiones de *Cryptocurrency Market* quedan insuficientemente definidos. Se excluye del núcleo por objetivo/protocolo, conservando contexto. |
+| **E1N170**, Lee {cite:p}`lee2025tft` | Método y experimento primarios confirman precio de cierre del día siguiente. La volatilidad interviene en señales y evaluación de estrategia; se cierra la exclusión por tarea. La revisión de secciones no se etiqueta como lectura íntegra. |
+
+Las 17 decisiones pendientes corresponden a **E1N007, 057, 074, 080, 118, 120, 121, 124, 129, 133, 138, 142, 152, 169, 173, 175 y 177**. En particular, un resultado de precio de GRU no se reasigna a volatilidad por aparecer ambos términos en un resumen. Los métodos inaccesibles conservan sus incógnitas.
+
+### 3.7.3. Evidencia complementaria y equivalencia arquitectónica
+
+| Hallazgo fuera de los 22 casos | Estado y uso permitido en la síntesis |
+|---|---|
+| **E1X001**, [Brauneis y Sahiner, *Crypto Volatility Forecasting: Mounting a HAR, Sentiment, and Machine Learning Horserace*](https://link.springer.com/article/10.1007/s10690-024-09510-6) | Texto principal primario revisado parcialmente, sin extraer tablas/receta completas. RV a seis horas y comparadores HAR/MLP/LSTM; se conserva como contraste entre alternativas, sin métricas ni frecuencia estricta nueva. |
+| **E1X002**, Acevedo-Prins y Velásquez {cite:p}`AcevedoPrins2026ArchLstm` | Secciones primarias indexadas y código enlazado por autores: TCN y LSTM independientes para una proxy diaria de varianza. Artículo/tablas completos y release coincidente pendientes. Aporta evidencia complementaria de implementación, sin inclusión estricta. |
+| **E1X003**, Zhou et al. {cite:p}`Zhou2025EmgnnVolatility` | Original editorial completo para RV diaria de futuros Bitcoin y horizontes diferenciados. LSTM es comparador autónomo; la convolución temporal de EMGNN es un componente de la propuesta. Se incorpora al estrato complementario de RV diaria, sin sumar GRU ni TCN autónomas. |
+| **E1X004**, [Ferraro, tesis *Forecasting realized volatility through traditional time series and machine learning models*](https://unitesi.unive.it/handle/20.500.14247/26283) | Ficha institucional indexada; archivo no disponible. Anuncia LSTM/TCN para cinco criptomonedas, pero independencia, receta y resultados no se verificaron. Permanece como pista pendiente, sin contarse como estudio leído. |
+
+El código primario de E1X002 identifica **cuatro bloques residuales, dos Conv1D por bloque y dilataciones 1/2/4/8**, con kernel predeterminado 3 y una cabeza de salida distinta. La TCN del E1 utiliza tres bloques. Se comparte la familia causal dilatada residual, pero **no se ha replicado esa arquitectura ni su receta**. El repositorio está fijado al commit `9c8aef3506b1e676f181c5af5b1db7f1834212fb`; su partición y la descrita en el artículo necesitan conciliación. No se ejecutó ese código para reproducir resultados editoriales.
+
+Las métricas de CVI, proxy de varianza diaria, RV intradiaria, futuros Bitcoin y σ7 futura se conservan en sus propios estratos. Ni los niveles de error ni las tablas multisalida se agregan como si midieran la misma respuesta. La bibliografía añade siete fuentes de investigación con acceso diferenciado y el respaldo metodológico de justificación del tamaño de muestra de Lakens {cite:p}`lakens2022samplesize`: **42 entradas previas + 8 nuevas = 50**. Esa referencia metodológica no prescribe un umbral financiero universal del 5 %.
+
+### 3.7.4. Respaldo conjunto de recurrencia, simplicidad y diversidad
+
+Los parámetros dependen de la receta: las configuraciones históricas de este capítulo y las [recetas finales seleccionadas](../_static/gru_lstm_tcn_planned_20261105/selected_recipes.json) del capítulo 9 tienen anchuras diferentes. Se conservan ambos recuentos para evaluar capacidad sin confundir etapas.
+
+| Modelo | Recurrencia verificada | Simplicidad de la receta propia | Diversidad y límite de la selección |
+|---|---|---|---|
+| **GRU** | **3/7** en el corte histórico; Miura y Akbiyik aportan comparaciones independientes. CryptoMamba aporta contexto intradía con reservas, sin incrementar ese cociente. | **1.121 parámetros** en la receta final D7; **3.777** en la histórica. Capacidad comprobada en la implementación propia. | Estado recurrente único con compuertas de actualización/reinicio. Su comparación con LSTM contrasta mecanismos dentro de la misma familia amplia. |
+| **LSTM** | **5/7** históricos; E1X003 amplía evidencia independiente de RV diaria en otro estrato. | **1.489 parámetros** en la receta final D7; **5.025** en la histórica. Su tamaño se compara bajo el mismo contrato experimental. | Celda y estado separados; también se contrastó su evidencia frente a alternativas no recurrentes, como MLP/CNN y modelos de grafo. |
+| **TCN** | **1/7** histórico. CVI aporta otro estrato; E1X002 añade código primario y E1N118 una comparación multisalida aún pendiente de objetivo. | **1.185 parámetros** en la receta final D7; **4.289** en la histórica. Arquitectura causal dilatada residual explícita. | Aporta procesamiento convolucional, localidad y dilatación sin recurrencia. Su presencia está acreditada, pero la mayor recurrencia bibliográfica de esta terna no está demostrada. |
+
+La selección conjunta resulta defendible como comparación controlada de dos mecanismos recurrentes y una alternativa convolucional de capacidad acotada. La evidencia de cada criterio procede de fuentes distintas: **recurrencia** de los comparadores documentados en fuentes identificadas y su papel; **simplicidad** de las recetas propias y sus parámetros; **diversidad** de mecanismos de modelado. Esto no establece que sean los tres modelos más frecuentes ni universalmente más simples. MLP, RNN sencilla y CNN conservan su lugar en la matriz de alternativas de §3.2; la recuperación también conserva hallazgos desfavorables y exclusiones. Cerrar los candidatos pendientes puede cambiar el balance de evidencia.
+
+### 3.7.5. Trazabilidad nativa: avance comprobado y límite pendiente
+
+La [recuperación de historial](../_static/literature_e1/search_recovery_20261106/summary.json), su {download}`bitácora de intentos <../_static/literature_e1/search_recovery_20261106/search_log.json>` y el {download}`procedimiento <../_static/literature_e1/search_recovery_20261106/README.md>` conservan **cuatro intentos bloqueados** en WoS público, WoS institucional, Scopus e IEEE Xplore. No se recuperaron páginas de resultados nativos ni historial adicional: **los totales de búsqueda son desconocidos**, no cero. La apertura fallida de una URL tampoco acredita ejecución de su cadena.
+
+Se verificaron otra vez las cuatro exportaciones recibidas: sus hashes y **244 ocurrencias/182 grupos** coinciden con el corte anterior. Las familias y el periodo 2019–2026 siguen respaldados por la confirmación del autor. El [plan nuevo de doce cadenas](../_static/literature_e1/search_recovery_20261106/query_plan.csv) cubre una general y tres familiares por plataforma; permanece **propuesto y no ejecutado**, separado del plan histórico de 24. Las [comprobaciones de fechas editoriales](../_static/literature_e1/search_recovery_20261106/publication_dates.json) resuelven dos capítulos de año nominal 2027 publicados anticipadamente en 2026, sin reconstruir filtros originales.
+
+Para completar §3.1 sigue faltando el historial nativo con cadena literal, fecha/hora, colección/ediciones, filtros, total visible y rangos exportados; IEEE Xplore aún no queda acreditado como consulta efectiva. La mejora actual consiste en originales contrastados, decisiones auditables y una justificación de modelos más precisa, manteniendo explícitos esos pendientes.

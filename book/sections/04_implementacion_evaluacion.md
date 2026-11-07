@@ -249,6 +249,8 @@ Cada selección interna conserva curvas train/validación; el reajuste conserva 
 
 La figura agrega las curvas disponibles de las corridas, no representa una única semilla o mes. Una curva de reajuste sin validación no selecciona una duración nueva ni demuestra ausencia global de sobreajuste.
 
+Estas curvas corresponden a las recetas iniciales de fase I. Las **recetas del modelo final D7** tienen sus propias [curvas públicas reproducidas en §9.10](09_estudio_planificado.md#curvas-finales-reproducidas), con las 465 semillas por familia y sólo desarrollo 2023–2024. La nueva ejecución conserva los módulos y recetas congelados; distingue reproducción posterior, coincidencias de hashes y recuperación de originales privados. No modifica las métricas históricas ni evalúa de nuevo la reserva.
+
 #### 4.2.5.2. Número de parámetros
 
 Para H=32 y cinco entradas, GRU tiene $3H(5+H+2)+(H+1)=3.777$ parámetros; LSTM tiene $4H(5+H+2)+(H+1)=5.025$. Los dos términos de sesgo por compuerta corresponden a PyTorch.
@@ -616,7 +618,7 @@ Las observaciones agrupadas de distintas semillas comparten fechas y no son resi
 | Evaluación histórica | 608 fechas; 72.960 predicciones, con reutilización identificada |
 | Selección neuronal | GRU/D7 por CV, anterior a esta fase final |
 | Comparación interna D7 | Tres pares por fase; análisis posterior y exploratorio |
-| Piloto y evaluación independiente futura | Pendientes |
+| Piloto y evaluación posterior de estas recetas iniciales | No se atribuyen retrospectivamente; el estudio del modelo final D7 tiene su propio piloto y reserva (§9) |
 
 Los agregados públicos, especificaciones y catálogos corresponden a GRU–LSTM–TCN. La publicación no presenta la sustitución documental como un nuevo entrenamiento ni transforma esta evaluación en confirmación independiente.
 
