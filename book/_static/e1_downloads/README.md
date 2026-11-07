@@ -2,8 +2,6 @@
 
 Los siete productos conservan los nombres de la unidad 8. La descarga completa reúne esos siete ZIP y su catálogo.
 
-La ampliación bibliográfica, la comparación documental y el suplemento estadístico del 6 de noviembre de 2026 son posteriores a los experimentos documentados. Esta ampliación no constituye un prerregistro retrospectivo, no modifica sus configuraciones, resultados ni cronologías y no añade ajustes o pronósticos. Los nuevos contrastes son análisis suplementarios posteriores; los estratos históricos de literatura conservan su identidad.
+La recuperación bibliográfica y la fundamentación académica del margen son posteriores a los experimentos iniciales. La reproducción de curvas tiene un protocolo y registro propios y realiza nuevos ajustes de desarrollo; no sustituye los originales históricos ni modifica sus resultados, recetas, selección o cronologías. Los contrastes suplementarios anteriores conservan su carácter posterior. Esta actualización no constituye un prerregistro retrospectivo. Empaquetar consume las evidencias guardadas y no ejecuta ajustes o pronósticos.
 
-Los ZIP 8.3 y 8.6 son idénticos a la entrega base. El ZIP 8.5 conserva sus archivos originales y añade el suplemento identificado; 8.7 incorpora la comparación documental. `catalogo.json` conserva modelos, fases, entrypoints y limitaciones científicas. Verificar integridad con `sha256sum -c SHA256SUMS.txt`; los manifiestos internos verifican bytes y SHA256 por miembro.
-
-El informe HTML usa el rótulo Modelo final. Esta actualización de presentación conserva los seis ZIP restantes y no modifica experimentos.
+El ZIP 8.3 es idéntico a la entrega base. 8.5 y 8.6 conservan sus archivos científicos originales y añaden evidencia y configuración de la reproducción identificada; 8.7 incorpora comparación documental, margen y procedencia. `catalogo.json` conserva modelos, fases, entrypoints y limitaciones científicas. Verificar integridad con `sha256sum -c SHA256SUMS.txt`; los manifiestos internos verifican bytes y SHA256 por miembro.
