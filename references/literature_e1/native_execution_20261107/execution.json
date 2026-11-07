@@ -1,0 +1,275 @@
+{
+  "campaign_id": "E1-NATIVE-20261106-COLOMBIA",
+  "evidence": [
+    {
+      "bytes": null,
+      "collected_at": "2026-11-07T04:25:41.908651+00:00",
+      "conversation_ref": "User-supplied WoS results screenshot in the current conversation: 271 results in Web of Science Core Collection.",
+      "evidence_id": "WOS-CHAT-IMAGE",
+      "execution_id": "E1-20261106-WOS",
+      "integrity_status": "conversation_image_witnessed_no_binary_hash_available",
+      "kind": "conversation_image",
+      "review_provenance": "Parent assistant visually witnessed the user screenshot; this ledger records that parent-agent observation. Binary image bytes are unavailable to this ingestion script.",
+      "reviewed_at": "2026-11-07T04:25:41.908651+00:00",
+      "sha256": null,
+      "verified_fields": [
+        "collection",
+        "displayed_total"
+      ]
+    },
+    {
+      "bytes": null,
+      "collected_at": "2026-11-07T04:25:41.908651+00:00",
+      "conversation_ref": "User-supplied Scopus results screenshot in the current conversation: 538 documents.",
+      "evidence_id": "SCOPUS-CHAT-IMAGE",
+      "execution_id": "E1-20261106-SCOPUS",
+      "integrity_status": "conversation_image_witnessed_no_binary_hash_available",
+      "kind": "conversation_image",
+      "review_provenance": "Parent assistant visually witnessed the user screenshot; this ledger records that parent-agent observation. Binary image bytes are unavailable to this ingestion script.",
+      "reviewed_at": "2026-11-07T04:25:41.908651+00:00",
+      "sha256": null,
+      "verified_fields": [
+        "displayed_total"
+      ]
+    },
+    {
+      "bytes": null,
+      "collected_at": "2026-11-07T04:25:41.908651+00:00",
+      "conversation_ref": "User-supplied cropped IEEE results screenshot in the current conversation: OPEN ACCESS ONLY selected; year controls display 2018 and 2026. The result total is outside the crop.",
+      "evidence_id": "IEEE-CHAT-IMAGE",
+      "execution_id": "E1-20261106-IEEE",
+      "integrity_status": "conversation_image_witnessed_no_binary_hash_available",
+      "kind": "conversation_image",
+      "review_provenance": "Parent assistant visually witnessed the user screenshot; this ledger records that parent-agent observation. Binary image bytes are unavailable to this ingestion script.",
+      "reviewed_at": "2026-11-07T04:25:41.908651+00:00",
+      "sha256": null,
+      "verified_fields": [
+        "displayed_filter_controls"
+      ]
+    },
+    {
+      "bytes": null,
+      "collected_at": "2026-11-07T04:25:41.908651+00:00",
+      "conversation_ref": "User copied the native IEEE result heading in the current conversation: Showing 1-25 of 32 results for the supplied All Metadata query. The cropped screenshot does not show this total.",
+      "evidence_id": "IEEE-NATIVE-HEADING-TRANSCRIBED",
+      "execution_id": "E1-20261106-IEEE",
+      "integrity_status": "user_transcribed_native_interface_no_binary_hash_available",
+      "kind": "conversation_transcription",
+      "review_provenance": "User-transcribed native interface heading, reviewed as a transcription; not independently visually witnessed by the assistant.",
+      "reviewed_at": "2026-11-07T04:25:41.908651+00:00",
+      "sha256": null,
+      "verified_fields": [
+        "displayed_total"
+      ]
+    }
+  ],
+  "executions": [
+    {
+      "attempt_evidence_ids": [],
+      "database": "Web of Science",
+      "declaration_disagreements": [],
+      "execution_day_context": null,
+      "execution_id": "E1-20261106-WOS",
+      "export_all_results_user_confirmed": null,
+      "exported_row_count_equals_native_total": true,
+      "exports": [
+        {
+          "bytes": 2107173,
+          "export_id": "E1NEW-WOS-GENERAL",
+          "format": "wos_tagged",
+          "original_filename": "savedrecs (5).txt",
+          "parsed_occurrences": 271,
+          "range_end": null,
+          "range_evidence_ids": [],
+          "range_start": null,
+          "range_verified": false,
+          "sha256": "cd439243f2e47ff5b8f9232050bff56b9012ded7829ffdbaab55496dbec40fd0"
+        }
+      ],
+      "guide_3_1_provenance": {
+        "execution_date": "user_confirmed_day",
+        "literal_query": "user_supplied_literal",
+        "native_displayed_total": "visually_witnessed_native_result"
+      },
+      "guide_3_1_search_log_complete": true,
+      "native_displayed_total": 271,
+      "native_displayed_total_provenance": "visually_witnessed_native_result",
+      "native_export_complete": false,
+      "native_metadata_complete": false,
+      "new_occurrences_outside_verified_year_filter": [],
+      "publication_year_filter_matches_2019_2026": null,
+      "reported_native_total_evidence_ids": [],
+      "status": "executed",
+      "user_declared": {
+        "executed_on": "2026-11-06",
+        "execution_date_timezone": "America/Bogota",
+        "query_literal": "TS=((bitcoin OR ethereum OR cryptocurrency OR cryptocurrencies) AND (volatility OR \"realized variance\" OR \"realised variance\") AND (\"deep learning\" OR \"neural network\" OR \"neural networks\"))"
+      },
+      "verified": {
+        "collection": {
+          "evidence_ids": [
+            "WOS-CHAT-IMAGE"
+          ],
+          "value": "Web of Science Core Collection"
+        },
+        "displayed_total": {
+          "evidence_ids": [
+            "WOS-CHAT-IMAGE"
+          ],
+          "value": 271
+        },
+        "editions": null,
+        "executed_at": null,
+        "field_scope": null,
+        "filters": null,
+        "interface": null,
+        "query_literal": null
+      },
+      "verified_zero_result_execution": false
+    },
+    {
+      "attempt_evidence_ids": [],
+      "database": "Scopus",
+      "declaration_disagreements": [],
+      "execution_day_context": null,
+      "execution_id": "E1-20261106-SCOPUS",
+      "export_all_results_user_confirmed": null,
+      "exported_row_count_equals_native_total": true,
+      "exports": [
+        {
+          "bytes": 1279182,
+          "export_id": "E1NEW-SCOPUS-GENERAL",
+          "format": "scopus_csv",
+          "original_filename": "export_d028ad55-ca3e-47e9-be5f-f26f2ae85585_2026-11-07T041417.510658876.csv",
+          "parsed_occurrences": 538,
+          "range_end": null,
+          "range_evidence_ids": [],
+          "range_start": null,
+          "range_verified": false,
+          "sha256": "5e490ef249a1ff202ad4cd0125a9653717db8d6d8b4ccb7cf22f4417ccd8ff9f"
+        }
+      ],
+      "guide_3_1_provenance": {
+        "execution_date": "user_confirmed_day",
+        "literal_query": "user_supplied_literal",
+        "native_displayed_total": "visually_witnessed_native_result"
+      },
+      "guide_3_1_search_log_complete": true,
+      "native_displayed_total": 538,
+      "native_displayed_total_provenance": "visually_witnessed_native_result",
+      "native_export_complete": false,
+      "native_metadata_complete": false,
+      "new_occurrences_outside_verified_year_filter": [],
+      "publication_year_filter_matches_2019_2026": null,
+      "reported_native_total_evidence_ids": [],
+      "status": "executed",
+      "user_declared": {
+        "executed_on": "2026-11-06",
+        "execution_date_timezone": "America/Bogota",
+        "query_literal": "TITLE-ABS-KEY ( bitcoin OR ethereum OR cryptocurrency OR cryptocurrencies ) AND TITLE-ABS-KEY ( volatility OR \"realized variance\" OR \"realised variance\" ) AND TITLE-ABS-KEY ( \"deep learning\" OR \"neural network\" OR \"neural networks\" ) AND PUBYEAR > 2018 AND PUBYEAR < 2027",
+        "query_literal_received": "TITLE-ABS-KEY ( bitcoin OR ethereum OR cryptocurrency OR cryptocurrencies ) AND TITLE-ABS-KEY ( volatility OR \"realized variance\" OR \"realised variance\" ) AND TITLE-ABS-KEY ( \"deep learning\" OR \"neural network\" OR \"neural networks\" ) AND PUBYEAR > 2018 AND PUBYEAR < 2027\\"
+      },
+      "verified": {
+        "collection": null,
+        "displayed_total": {
+          "evidence_ids": [
+            "SCOPUS-CHAT-IMAGE"
+          ],
+          "value": 538
+        },
+        "editions": null,
+        "executed_at": null,
+        "field_scope": null,
+        "filters": null,
+        "interface": null,
+        "query_literal": null
+      },
+      "verified_zero_result_execution": false
+    },
+    {
+      "attempt_evidence_ids": [],
+      "database": "IEEE Xplore",
+      "declaration_disagreements": [],
+      "execution_day_context": null,
+      "execution_id": "E1-20261106-IEEE",
+      "export_all_results_user_confirmed": null,
+      "exported_row_count_equals_native_total": false,
+      "exports": [
+        {
+          "bytes": 12176,
+          "export_id": "E1NEW-IEEE-GENERAL",
+          "format": "ieee_plain_text",
+          "original_filename": "IEEE Xplore Citation Plain Text Download 2026.11.6.23.18.3.txt",
+          "parsed_occurrences": 25,
+          "range_end": null,
+          "range_evidence_ids": [],
+          "range_start": null,
+          "range_verified": false,
+          "sha256": "0e8ef4fe3f8e8caa49cade6a0a85b4047466e0d25bd4b15082b7405655d5480f"
+        }
+      ],
+      "guide_3_1_provenance": {
+        "execution_date": "user_confirmed_day",
+        "literal_query": "user_supplied_literal",
+        "native_displayed_total": "user_transcribed_native_result_heading"
+      },
+      "guide_3_1_search_log_complete": true,
+      "native_displayed_total": 32,
+      "native_displayed_total_provenance": "user_transcribed_native_result_heading",
+      "native_export_complete": false,
+      "native_metadata_complete": false,
+      "new_occurrences_outside_verified_year_filter": [],
+      "publication_year_filter_matches_2019_2026": null,
+      "reported_native_total_evidence_ids": [
+        "IEEE-NATIVE-HEADING-TRANSCRIBED"
+      ],
+      "status": "executed",
+      "user_declared": {
+        "displayed_total": 32,
+        "executed_on": "2026-11-06",
+        "execution_date_timezone": "America/Bogota",
+        "query_literal": "(\"All Metadata\":bitcoin OR ethereum OR cryptocurrency OR cryptocurrencies) AND (\"All Metadata\":volatility OR \"realized variance\" OR \"realised variance\") AND (\"All Metadata\":\"deep learning\" OR \"neural network\" OR \"neural networks\")"
+      },
+      "verified": {
+        "collection": null,
+        "displayed_filter_controls": {
+          "evidence_ids": [
+            "IEEE-CHAT-IMAGE"
+          ],
+          "value": [
+            "OPEN ACCESS ONLY selected",
+            "Year controls display 2018 and 2026; application of that exact interval is not separately captured."
+          ]
+        },
+        "displayed_total": null,
+        "editions": null,
+        "executed_at": null,
+        "field_scope": null,
+        "filters": null,
+        "interface": null,
+        "query_literal": null
+      },
+      "verified_zero_result_execution": false
+    }
+  ],
+  "historical_fulltext_evidence_sha256": "4b5eb36f0db801f15df64a5f04cc053a107165a86ff89f755afe9e548ec72f82",
+  "historical_public_file_sha256": {
+    "README.md": "fca0c88ff0cc844ebe0367b9f1756839d924ccf010a0a066b07d0a6463064d2e",
+    "deduplication.csv": "1602ecb28936da63f82ee78de31d18a25dcfda570d0935a88f30e074a1b0dc90",
+    "flow.svg": "ecc601b6d34f5f9c44cdd16846cd4d91443b68bbb4d3510a7603d08b1ca941f8",
+    "manifest.json": "c84f7f3b5e8aa3afeb3717334f668546ea161a76ec33bb0a27f5d8fb76e644c9",
+    "occurrences.csv": "005199f0d4088563d188db6b0d265021700245d5c705ec64c705348c51e2da48",
+    "records.csv": "1a3d2072f233e2ed5d927642d9c2cb85c39ab4bf41f89f1f11fa6c375cb753b7",
+    "review_queue.csv": "718ed321f1859ee6129accb785c780d5d1bb837da407731801d658a65cec20c6",
+    "screening.csv": "f3ff674e49fc581e840f5611d5df82ec13ea50415fb808ae79c9c61ad45ff00c",
+    "source_manifest.json": "ae80451bcea7686d6fa3875c3fa9f8a9a0a4063336a15a0828561a359cf1cb72",
+    "summary.json": "6474360911be95ecf956f4b9e984adb7ebde54ecda20cb14055dc6e0f7accbf9"
+  },
+  "ingested_at": "2026-11-07T04:25:41.989669+00:00",
+  "new_search_campaign_not_historical_reconstruction": true,
+  "private_manifest_sha256": "0eb590e77726d153b846be242888af94789bee646806b54d8e83357f7039a2d1",
+  "raw_evidence_republished": false,
+  "raw_exports_republished": false,
+  "schema_version": "1.0",
+  "verification_scope": "File hashes, explicit field-review assertions, chronology, ranges and row counts checked. Evidence content must have been inspected by the manifest author; this script does not interpret screenshots."
+}

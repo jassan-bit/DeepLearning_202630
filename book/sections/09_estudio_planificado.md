@@ -379,3 +379,31 @@ La ejecución acredita curvas observadas para una reproducción de estas recetas
 ### 9.10.3. Reproducción y descarga
 
 El [ejecutor](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/reproduce_e1_final_curves.py) exige un checkout limpio del protocolo publicado y una salida privada nueva. El [exportador](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/export_e1_reproduced_curves.py) verifica el registro y la finalización de las 1.395 trayectorias antes de publicar una lista cerrada de pérdidas, agregados y procedencia. [BUILD.md](https://github.com/jassan-bit/DeepLearning_202630/blob/main/BUILD.md) contiene los comandos y distingue sus dependencias de las usadas para construir el libro. Las curvas están incluidas en el producto 8.5; el código, configuración y declaración están en 8.2, 8.6 y 8.7.
+
+(auditoria-numerica-e1)=
+## 9.11. Auditoría numérica y repetibilidad actual
+
+La guía §4.3 exige controlar las semillas, declarar si se utiliza determinismo estricto y entregar dependencias, configuración y ejecutores. Esos requisitos se distinguen de recuperar exactamente los archivos privados de una ejecución anterior. Esta auditoría conserva las discrepancias e identifica qué permite comprobar cada evidencia.
+
+La {download}`inspección forense <../_static/e1_replay_forensics_20261107/README.md>` revisó los **8.370 artefactos** de la reproducción existente y calculó **4.185 hashes canónicos** de curvas y tensores. No entrenó modelos ni abrió la reserva. Ambos ejecutores usan `spawn`; el cambio supuesto de `fork` a `spawn` queda descartado. Se observaron tres trabajadores en el original y cuatro en la reproducción, y diferente tratamiento de las variables de entorno BLAS. Son diferencias de procedimiento, sin evidencia suficiente para atribuirles la causa de las discrepancias.
+
+Los CSV de pérdidas no contienen tiempos. Una prueba de serialización mostró que el contenedor de un checkpoint puede cambiar su hash conservando los tensores; esa posibilidad no explica por sí sola las **29 diferencias reales de época seleccionada**. Tampoco una época coincidente prueba igualdad de pesos o de pérdidas. El {download}`registro de búsqueda de originales <../_static/e1_replay_forensics_20261107/recovery_search.json>` documenta las ubicaciones inspeccionadas y su alcance: no se recuperaron los archivos necesarios para comparar valores históricos.
+
+Los hashes canónicos de esta auditoría se calculan sobre los valores interpretados de los CSV y sobre nombres, tipos, formas y bytes de los tensores. Permiten comparar ejecuciones actuales sin depender de saltos de línea o nombres internos del ZIP. No pueden reconstruirse a partir de los hashes históricos de archivo.
+
+### 9.11.1. Comprobación entre procesos independientes
+
+El [protocolo diagnóstico](https://github.com/jassan-bit/DeepLearning_202630/commit/79f8dcc1a4c3bfacfd1fc56c0ecb43d8e0185501) se publicó y se verificó en GitHub a las **04:15:54 UTC del 07/11/2026**, antes del registro a las **04:16:30 UTC** y de los ajustes. El {download}`recibo de publicación <../_static/e1_replay_repeatability_20261107/publication_verification.json>` conserva esa secuencia. Se fijaron seis celdas: GRU/LSTM/TCN con la primera semilla 8101 y TCN con 8110, 8416 y 8552, las tres mayores discrepancias absolutas de época ya observadas. Es una selección diagnóstica dirigida, declarada antes de estos ajustes y después de la reproducción completa.
+
+Se ejecutaron dos invocaciones independientes de Python, con directorios vacíos y pools nuevos de tres procesos `spawn`: **12 trayectorias y 24 etapas**, sin reintentos ni sustitución de semillas. Se fijaron versiones, generadores, un hilo por biblioteca y operaciones deterministas. Sólo se leyeron derivados de desarrollo 2023–2024: **cero accesos a precios de la reserva y cero pronósticos nuevos**.
+
+| Comprobación fijada previamente | Resultado observado | Alcance |
+|---|---|---|
+| Igualdad canónica A–B de dos curvas y pesos por celda | **18/18 coincidencias; diferencia máxima 0** | Pérdidas y tensores iguales en las seis celdas |
+| Época seleccionada A–B | **6/6 coincidencias** | Misma duración seleccionada |
+| Equivalencia numérica secundaria: `rtol=1e-6`, `atol=1e-8` | **6/6 celdas cumplen** | Criterio adicional; no reemplaza la igualdad principal |
+| A y B frente a la reproducción completa previa | **18/18 coincidencias canónicas en cada comparación** | Tres trabajadores reprodujeron esos resultados previos de cuatro trabajadores |
+
+La {download}`comparación completa <../_static/e1_replay_repeatability_20261107/comparison.csv>`, los {download}`hashes de artefactos <../_static/e1_replay_repeatability_20261107/artifact_hashes.csv>`, el {download}`entorno registrado <../_static/e1_replay_repeatability_20261107/runtime.json>` y el {download}`resumen <../_static/e1_replay_repeatability_20261107/summary.json>` permiten verificar el resultado. Las épocas fueron 65, 12 y 75 para GRU/LSTM/TCN-8101, y 19, 6 y 97 para las otras tres TCN.
+
+El criterio principal se satisface para este subpanel. El resultado debilita la hipótesis de que pasar de tres a cuatro trabajadores explique por sí solo las discrepancias en estas celdas; no identifica la causa histórica. Las repeticiones con la misma semilla son controles técnicos, **no doce nuevas muestras independientes del benchmark**. No se extiende la coincidencia al panel completo de 465 semillas ni a los archivos privados originales. Se conservan el baseline, las métricas y las conclusiones publicadas.

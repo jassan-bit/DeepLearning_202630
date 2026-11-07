@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-11-07T04:08:37.794110+00:00",
+  "new_fits": 0,
+  "reserve_price_payloads_read": 0,
+  "forecasts_generated": 0,
+  "original_private_payloads_available": false,
+  "exact_cause_identified": false,
+  "original_and_replay_start_method": "spawn",
+  "original_workers": 3,
+  "replay_workers": 4,
+  "history_csv_contains_timing_columns": false,
+  "selected_epochs_compared": 1395,
+  "selected_epoch_mismatches": 29,
+  "selected_epoch_mismatch_families": [
+    "TCN"
+  ],
+  "artifact_byte_comparisons": {
+    "configuration.json": {
+      "compared": 1395,
+      "matched": 1395
+    },
+    "history_inner.csv": {
+      "compared": 1395,
+      "matched": 0
+    },
+    "history_refit.csv": {
+      "compared": 1395,
+      "matched": 0
+    },
+    "model.pt": {
+      "compared": 1395,
+      "matched": 0
+    },
+    "preprocessing.json": {
+      "compared": 1395,
+      "matched": 1395
+    },
+    "split.json": {
+      "compared": 1395,
+      "matched": 1395
+    }
+  },
+  "canonical_historical_comparison_possible": false,
+  "reason": "Historical SHA256 digests cannot reconstruct values or canonical tensor hashes",
+  "unrecorded_original_details": [
+    "CPU model and ISA dispatch",
+    "Torch build/extension digest",
+    "effective BLAS environment",
+    "actual worker runtime snapshots",
+    "initialization/gradient tensors"
+  ],
+  "observed_execution_differences_not_established_causes": [
+    "three vs four workers",
+    "original respects preexisting OMP/MKL/OPENBLAS environment; replay forces those values to one"
+  ],
+  "conclusion": "At least the 29 epoch changes are numerical/algorithmic divergence; its root cause is unresolved. Other byte mismatches alone do not identify value differences.",
+  "diagnostic_panel": [
+    {
+      "model": "GRU",
+      "seed": 8101,
+      "reason": "fixed first registered seed"
+    },
+    {
+      "model": "LSTM",
+      "seed": 8101,
+      "reason": "fixed first registered seed"
+    },
+    {
+      "model": "TCN",
+      "seed": 8101,
+      "reason": "fixed first registered seed"
+    },
+    {
+      "model": "TCN",
+      "seed": 8110,
+      "reason": "top three absolute epoch changes; ties model then seed"
+    },
+    {
+      "model": "TCN",
+      "seed": 8416,
+      "reason": "top three absolute epoch changes; ties model then seed"
+    },
+    {
+      "model": "TCN",
+      "seed": 8552,
+      "reason": "top three absolute epoch changes; ties model then seed"
+    }
+  ],
+  "runtime_observed_now_not_historical": {
+    "python": "3.12.14",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "versions": {
+      "torch": "2.15.0+cpu",
+      "numpy": "2.5.4",
+      "pandas": "3.1.0",
+      "scipy": "1.18.1",
+      "statsmodels": "0.15.0",
+      "matplotlib": "3.11.2"
+    },
+    "torch_config": "PyTorch built with:\n  - GCC 13.3\n  - C++ Version: 202002\n  - Intel(R) oneAPI Math Kernel Library Version 2024.2-Product Build 20240605 for Intel(R) 64 architecture applications\n  - Intel(R) MKL-DNN v3.13.3 (Git Hash b38f97eb6f2173513112f15a0481750b8a66e901)\n  - OpenMP 201511 (a.k.a. OpenMP 4.5)\n  - LAPACK is enabled (usually provided by MKL)\n  - NNPACK is enabled\n  - CPU capability usage: AVX512\n  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, COMMIT_SHA=d0f2af8b66b20da4baa50644c0cd3f887a2eae2e, CUDA_FLAGS= -DLIBCUDACXX_ENABLE_SIMPLIFIED_COMPLEX_OPERATIONS -Xfatbin -compress-all  -Wno-deprecated-gpu-targets --expt-extended-lambda -DCUB_WRAPPED_NAMESPACE=at_cuda_detail -DDISABLE_CUSPARSE_DEPRECATED -DCUDA_HAS_FP16=1 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -DC10_NODEPRECATED, CXX_COMPILER=/opt/rh/gcc-toolset-13/root/usr/bin/c++, CXX_FLAGS= -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DUSE_FBGEMM -DUSE_PYTORCH_QNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -DC10_NODEPRECATED -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=range-loop-construct -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-unknown-pragmas -Wno-unused-parameter -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wsuggest-override -Wno-psabi -Wno-error=old-style-cast -faligned-new -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-dangling-reference -Wno-error=dangling-reference -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, TORCH_VERSION=2.15.0, USE_CUDA=0, USE_CUDNN=OFF, USE_CUSPARSELT=OFF, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_GLOO=ON, USE_HIPSPARSELT=OFF, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=OFF, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, USE_ROCM_KERNEL_ASSERT=OFF, USE_XCCL=OFF, USE_XPU=OFF, \n",
+    "cpu_models": [
+      "Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz"
+    ],
+    "cpu_capability": "AVX512",
+    "affinity": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "cpu_quota": "400000 100000",
+    "torch_extension_sha256": "b09d26e7781dffdf26001f7f89d85fc1e7866c9d241cde7ecc5277e11950d6e0",
+    "torch_cpu_library_sha256": "afe839bc112b41f97b82776675a0fc44425f7d755c58db700fe75efee0a36170",
+    "environment": {
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "PYTHONHASHSEED": null,
+      "MKL_CBWR": null,
+      "DNNL_MAX_CPU_ISA": null,
+      "ONEDNN_MAX_CPU_ISA": null
+    },
+    "actual_torch_threads": 1,
+    "actual_torch_interop_threads": 5,
+    "deterministic_algorithms": false,
+    "mkldnn_enabled": true,
+    "float32_matmul_precision": "highest",
+    "default_dtype": "torch.float32"
+  }
+}
