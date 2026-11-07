@@ -1,0 +1,1868 @@
+{
+  "schema_version": 1,
+  "search_date_colombia": "2026-11-07",
+  "search_type": "complementary_public_web_search_not_native_index_execution",
+  "selected_count": 13,
+  "selected_model_quotas": {
+    "TCN": 7,
+    "MLP": 6
+  },
+  "existing_count": 3,
+  "new_count": 10,
+  "research_intake_sha256": {
+    "seleccion_TCN7_MLP6.json": "f6964be5ab55fa989596512c1e42a4449d1b5884b6e7aff84a13826e443a3d54",
+    "mlp_crypto.json": "d3584e83a343a2c31b643561020b925928876af063f37186dc21c16ae0c57753",
+    "mlp_finance.json": "92874d6e624dd3153d1e61f97dfd5267e8e1ca4f49ae6d5469f6cc718787bbec",
+    "tcn_finance.json": "ecea1f456c983f63fe920c93cea2a03850b9677d1c4e11cf8cda71c6a0e99de1",
+    "tcn_crypto.json": "11a04b4a0448421bce98de55f80d81dc406e45f7bfbe6a671e7147da23dfdb4c"
+  },
+  "records": [
+    {
+      "id": "S1",
+      "title": "Ask “Who”, Not “What”: Bitcoin Volatility Forecasting with Twitter Data",
+      "doi": "10.1145/3539597.3570387",
+      "genre": "publication",
+      "stratum": "crypto_realized_or_historical_continuous_construct",
+      "target": {
+        "description": "Volatilidad realizada del próximo día: 100·sqrt(sum(r_15min²)). Las redes predicen 96 retornos intradiarios y después agregan.",
+        "quantity": "standard_deviation_realized",
+        "construct_verified": true,
+        "future_forecast_verified": true,
+        "numerical_horizon_verified": true,
+        "same_as_E1_sigma7": false,
+        "horizon_as_reported": "Un día, con 96 intervalos de 15 minutos.",
+        "scale_family": "standard_deviation_or_log_standard_deviation"
+      },
+      "independentfamilies": [
+        "LSTM",
+        "GRU",
+        "TCN"
+      ],
+      "hybridfamilies": [
+        "D-TCN_financial_social"
+      ],
+      "reported_autonomous_families": [
+        "LSTM",
+        "GRU",
+        "TCN"
+      ],
+      "architecture_reporting": {
+        "status": "substantive_selected_reference_architectures",
+        "recipe": "not_verified",
+        "missing": [
+          "Exact keras-tcn dependency version not fixed; total parameters depend on explicitly stated implementation assumptions.",
+          "The six-block TCN comparator is not a shallow generic CNN1D; D-TCN is the advanced proposal and not another independent study."
+        ],
+        "source_details": [
+          {
+            "family": "LSTM",
+            "variant": "unidirectional",
+            "role": "comparative neural baseline",
+            "independent_comparator_verified": true,
+            "input_representation": "96 x 1 log-return inputs; Dense 96 outputs",
+            "depth": "1",
+            "width": "261",
+            "regularization": "dropout=.0237; epsilon=.0364; learning_rate=.00521; weight_decay=9.25e-7",
+            "training_as_extracted": "AdamW; squared epsilon-insensitive loss; 250 Optuna trials/model; 30 epochs/trial; 20 final runs; development 72/24 days and test 48 days",
+            "evidence_location": "Appendix C; Table 5 PDF page 10; hpo.py create_model LSTM branch",
+            "architecture_spec": {
+              "kind": "lstm",
+              "p": 1,
+              "H": 261,
+              "q": 96,
+              "bias_vectors": 1,
+              "directions": 1,
+              "layers": 1,
+              "head_hidden": null
+            },
+            "parameter_count_reported": null,
+            "parameter_count_analytical_conditional": "299724",
+            "parameter_count_assumptions": "Keras single bias per gate; p=1,H=261,q=96; 4H(p+H+1)+Hq+q",
+            "limitations": "Published tuned comparator is not the minimum LSTM configuration in the corpus; no project adaptation frozen.",
+            "source_url": "https://github.com/meakbiyik/ask-who-not-what/blob/bcc0e4e89213da2ca3ed968574aa2d08cee39c44/paper.pdf",
+            "source_sha256": "00072c7488d436cff0b2b34ba2a00385dcc370ef3a378539d51f6221d0038c33",
+            "record_location": "references/literature_e1/model_extraction_review_20261103.csv#CSV-data-row-1"
+          },
+          {
+            "family": "GRU",
+            "variant": "unidirectional",
+            "role": "comparative neural baseline",
+            "independent_comparator_verified": true,
+            "input_representation": "96 x 1 log-return inputs; Dense 96 outputs",
+            "depth": "1",
+            "width": "43",
+            "regularization": "dropout=.0544; epsilon=.0431; learning_rate=.00973; weight_decay=1.59e-8",
+            "training_as_extracted": "AdamW; squared epsilon-insensitive loss; 250 Optuna trials/model; 30 epochs/trial; 20 final runs; development 72/24 days and test 48 days",
+            "evidence_location": "Appendix C; Table 5 PDF page 10; hpo.py create_model GRU branch",
+            "architecture_spec": {
+              "kind": "gru",
+              "p": 1,
+              "H": 43,
+              "q": 96,
+              "bias_vectors": 2,
+              "directions": 1,
+              "layers": 1,
+              "head_hidden": null
+            },
+            "parameter_count_reported": null,
+            "parameter_count_analytical_conditional": "10158",
+            "parameter_count_assumptions": "Keras reset_after=True/two gate biases assumed; p=1,H=43,q=96; 3H(p+H+2)+Hq+q; one-bias alternative10029",
+            "limitations": "Framework version/reset_after not fixed in call; count is conditional. Shares recurrence with LSTM but gates and state differ.",
+            "source_url": "https://github.com/meakbiyik/ask-who-not-what/blob/bcc0e4e89213da2ca3ed968574aa2d08cee39c44/paper.pdf",
+            "source_sha256": "00072c7488d436cff0b2b34ba2a00385dcc370ef3a378539d51f6221d0038c33",
+            "record_location": "references/literature_e1/model_extraction_review_20261103.csv#CSV-data-row-2"
+          },
+          {
+            "family": "TCN",
+            "variant": "single-branch causal dilated residual network",
+            "role": "comparative neural baseline",
+            "independent_comparator_verified": true,
+            "input_representation": "96 x 1 log-return inputs; Dense 96 outputs",
+            "depth": "6 dilation blocks; 2 convolutions/block conditional",
+            "width": "287",
+            "regularization": "kernel5; dilation base4; dropout=.217; epsilon=.0913; learning_rate=6.49e-5; weight_decay=5.93e-6; skip=True; normalization=None",
+            "training_as_extracted": "AdamW; squared epsilon-insensitive loss; 250 Optuna trials/model; 30 epochs/trial; 20 final runs; development 72/24 days and test 48 days",
+            "evidence_location": "Appendix C; Table 6 PDF page 11; hpo.py create_model TCN branch",
+            "architecture_spec": {
+              "kind": "tcn",
+              "p": 1,
+              "F": 287,
+              "q": 96,
+              "kernel": 5,
+              "blocks": 6,
+              "dilation_base": 4,
+              "convolutions_per_block": 2,
+              "stacks": 1,
+              "bias": true,
+              "normalization": "none",
+              "residual_projection": true
+            },
+            "parameter_count_reported": null,
+            "parameter_count_analytical_conditional": "4563396",
+            "parameter_count_assumptions": "Assume keras-tcn one stack, two convolutions/block, bias, first residual1x1 projection, no final normalization; p1,F287,k5,B6,q96; conditional receptive field10921",
+            "limitations": "Best hyperparameters ARE published. Exact count depends on unpinned keras-tcn version; not a shallow generic CNN1D; R greatly exceeds input96.",
+            "source_url": "https://github.com/meakbiyik/ask-who-not-what/blob/bcc0e4e89213da2ca3ed968574aa2d08cee39c44/paper.pdf",
+            "source_sha256": "00072c7488d436cff0b2b34ba2a00385dcc370ef3a378539d51f6221d0038c33",
+            "record_location": "references/literature_e1/model_extraction_review_20261103.csv#CSV-data-row-3"
+          },
+          {
+            "family": "TCN",
+            "variant": "D-TCN two-branch financial/social extension",
+            "role": "proposed advanced architecture",
+            "independent_comparator_verified": false,
+            "input_representation": "Financial returns branch plus Twitter branch",
+            "depth": "two TCN branches",
+            "width": "depends on variant",
+            "regularization": "Published feature variants",
+            "training_as_extracted": "40 final runs reported for D-TCN variants",
+            "evidence_location": "Sections6.1-6.3 and Table4",
+            "architecture_spec": null,
+            "parameter_count_reported": null,
+            "parameter_count_analytical_conditional": null,
+            "parameter_count_assumptions": "not counted as another independent baseline-family study",
+            "limitations": "Do not replace one-branch baseline with the proposed D-TCN or count multiple ablations as new studies.",
+            "source_url": "https://github.com/meakbiyik/ask-who-not-what/blob/bcc0e4e89213da2ca3ed968574aa2d08cee39c44/paper.pdf",
+            "source_sha256": "00072c7488d436cff0b2b34ba2a00385dcc370ef3a378539d51f6221d0038c33",
+            "record_location": "references/literature_e1/model_extraction_review_20261103.csv#CSV-data-row-4"
+          }
+        ]
+      },
+      "protocolquality": {
+        "status": "reported_split_tuning_repetitions_with_limits",
+        "details": {
+          "as_extracted": "96 días de desarrollo (72/24), 48 días de test; 250 configuraciones Optuna por red; 30 épocas; AdamW; 20 corridas por red.",
+          "replication_performed_by_this_matrix": false
+        },
+        "limitations": [
+          {
+            "study_id": "S1",
+            "dimension": "Datos, objetivo y horizonte",
+            "status": "documentado",
+            "evidence": "paper.pdf pp.3–5; RV=100sqrt(sum(r_15min²)), pronóstico de un día",
+            "limitation": "No equivalente a desviación móvil de siete retornos diarios."
+          },
+          {
+            "study_id": "S1",
+            "dimension": "Partición y disponibilidad",
+            "status": "documentado_con_limites",
+            "evidence": "paper.pdf §5.3:96días desarrollo(72/24),48test; predicción con día anterior",
+            "limitation": "Test corto; no se certifica ausencia de toda fuga a partir del reporte."
+          },
+          {
+            "study_id": "S1",
+            "dimension": "Arquitectura y ajuste",
+            "status": "documentado",
+            "evidence": "Fig.1, §§5.2–5.3 y apéndice C, Tablas 5–6: 250 configuraciones/red, 30 épocas, AdamW; LSTM H261 y TCN F287/k5/base4 con hiperparámetros ganadores publicados.",
+            "limitation": "La extracción anterior omitía las tablas ganadoras. Sigue sin fijarse la versión keras-tcn; el conteo analítico de TCN depende del bloque y no sustituye una réplica."
+          },
+          {
+            "study_id": "S1",
+            "dimension": "Repetición e incertidumbre",
+            "status": "documentado",
+            "evidence": "Tabla2:20corridas por red, media y desviación; Fig.2 bootstrap1000",
+            "limitation": "La variabilidad entre inicializaciones no equivale a replicación de mercados."
+          },
+          {
+            "study_id": "S1",
+            "dimension": "Inferencia y multiplicidad",
+            "status": "parcial",
+            "evidence": "§5.3 y Tablas 2/4: Welch unilateral frente a AR-RV o TCN; múltiples redes, métricas y combinaciones de atributos.",
+            "limitation": "No se identificó una política global de corrección múltiple en lo leído; veinte/cuarenta inicializaciones no equivalen a mercados o periodos independientes."
+          },
+          {
+            "study_id": "S1",
+            "dimension": "Reproducibilidad",
+            "status": "parcial",
+            "evidence": "Repositorio de autores,paper.pdf,scripts/hpo.py,commit bcc0e4e",
+            "limitation": "No se reprodujeron experimentos ni se certifica acceso a todas las fuentes Twitter."
+          }
+        ],
+        "absence_of_leakage_certified": false,
+        "author_experiment_reproduced": false,
+        "leakage_assessment": {
+          "status": "reported_temporal_split_not_integrally_validated",
+          "evidence": "96 development days(72/24) and48 test days; inputs from the preceding day",
+          "source_location": "paper§5.3",
+          "limitations": [
+            "Short test; no integral absence-of-leakage certification from the report."
+          ]
+        }
+      },
+      "decision": {
+        "primary_document_read": true,
+        "continuous_crypto_construct_corpus": true,
+        "baseline_role_verified": true,
+        "frequency_eligible": true,
+        "minimum_reporting_adequate_for_candidate_appraisal": true,
+        "guide31_reporting_sensitivity_eligible": true,
+        "unverified_does_not_mean_absent": true
+      },
+      "reason": "Objetivo sqrt(RV) y bases separadas confirmados; TCN de seis bloques no prueba TCN mínima. D-TCN no añade otro voto.",
+      "evidence_file_locations": [
+        "references/literature_e1/crypto_extension_20261105/evidence_matrix.json#/studies/0",
+        "references/literature_e1/studies.json#/0",
+        "references/literature_e1/fichas_arquitecturas.json#/references/0",
+        "references/literature_e1/source_manifest.json#/1",
+        "references/literature_e1/studies.json#/0/dataset",
+        "references/literature_e1/studies.json#/0/target",
+        "references/literature_e1/studies.json#/0/horizon",
+        "references/literature_e1/studies.json#/0/training",
+        "references/literature_e1/model_extraction_review_20261103.csv#CSV-filter-study_id=S1",
+        "references/literature_e1/reported_metrics.csv#CSV-filter-study_id=S1",
+        "references/literature_e1/quality_assessment.json#/0",
+        "references/literature_e1/quality_assessment.json#/1",
+        "references/literature_e1/quality_assessment.json#/2",
+        "references/literature_e1/quality_assessment.json#/3",
+        "references/literature_e1/quality_assessment.json#/4",
+        "references/literature_e1/quality_assessment.json#/5",
+        "references/literature_e1/public_web_verification_20261103/publication_provenance.json#/documents/2"
+      ],
+      "primary_evidence_locations": [
+        "PDF pp. 4–6, §§5.2–5.4, Fig. 1 y Tabla 2; scripts/hpo.py."
+      ],
+      "identity": {
+        "canonical_key": "doi:10.1145/3539597.3570387",
+        "aliases": [
+          "S1"
+        ],
+        "deduplication_rule": "DOI normalizado; sin DOI, identidad de título/autores/versión; no similitud temática",
+        "dependence_group": "S1",
+        "independent_base_experiment": true,
+        "normalized_title": "ask who not what bitcoin volatility forecasting with twitter data",
+        "version_source_locations": [
+          "references/literature_e1/crypto_extension_20261105/evidence_matrix.json#/studies/0",
+          "references/literature_e1/studies.json#/0"
+        ]
+      },
+      "historical_N7_inclusion": true,
+      "document_genre_detail": "Artículo de congreso; versión completa en repositorio de autores",
+      "publication_identity_status": "WSDM 2023 identificado en PDF y README; no se verificó cuartil.",
+      "primary_source_urls": [
+        "https://github.com/meakbiyik/ask-who-not-what/blob/bcc0e4e89213da2ca3ed968574aa2d08cee39c44/paper.pdf"
+      ],
+      "lstm_variant": "unidirectional",
+      "expansion_intake_id": "TCN01",
+      "existing_identity": true,
+      "citation_key": "akbiyik2023",
+      "authors": [
+        "M. Eren Akbiyik",
+        "Mert Erkul",
+        "Killian Kämpf",
+        "Vaiva Vasiliauskaite",
+        "Nino Antulov-Fantulin"
+      ],
+      "year": 2023,
+      "online_year": null,
+      "free_fulltext_url": "https://arxiv.org/pdf/2110.14317",
+      "source_version": "Published WSDM 2023; author arXiv v2 accessed",
+      "access_method": "True",
+      "metadata_sources": [
+        "https://doi.org/10.1145/3539597.3570387"
+      ],
+      "publication": {
+        "type": "conference",
+        "booktitle": "Proceedings of the Sixteenth ACM International Conference on Web Search and Data Mining (WSDM 2023)"
+      }
+    },
+    {
+      "id": "PR_CVI",
+      "title": "Cryptocurrency Volatility Index: An Efficient Way to Predict the Future CVI",
+      "doi": "10.1007/978-3-031-26438-2_28",
+      "genre": "publication",
+      "stratum": "crypto_implied_volatility_index",
+      "target": {
+        "description": "Etiqueta CVI; la raíz media de cinco retornos diarios cuadrados transforma entradas y no define la etiqueta.",
+        "quantity": "CVI_implied_volatility_index",
+        "construct_verified": true,
+        "future_forecast_verified": true,
+        "numerical_horizon_verified": true,
+        "same_as_E1_sigma7": false,
+        "horizon_as_reported": "one_day_ahead",
+        "scale_family": "implied_volatility_index"
+      },
+      "independentfamilies": [
+        "LSTM",
+        "TCN"
+      ],
+      "hybridfamilies": [
+        "attention_LSTM_MLP_proposed"
+      ],
+      "reported_autonomous_families": [
+        "LSTM",
+        "TCN"
+      ],
+      "architecture_reporting": {
+        "status": "partial_shared_head_TCN_comparator_parameters",
+        "recipe": "not_verified",
+        "missing": [],
+        "source_details": {
+          "proposed": {
+            "timestamps": 20,
+            "hidden_state": 60,
+            "fully_connected": [
+              128,
+              64,
+              1
+            ],
+            "loss": "MAE",
+            "optimizer": "Adam",
+            "epochs": 7000,
+            "learning_rate": 0.005,
+            "batch_size": "El valor óptimo no se transcribe porque la negrita del visor no se verificó con suficiente certeza."
+          },
+          "LSTM_benchmark": {
+            "cells": 20,
+            "hidden_state": 1,
+            "epochs": 7000,
+            "learning_rate": 0.005
+          },
+          "TCN_benchmark": {
+            "features": 10,
+            "timestamps": 20,
+            "kernel": 5,
+            "channels": 10,
+            "dilation": 2,
+            "epochs": 5000,
+            "learning_rate": 0.001
+          },
+          "SMA_windows": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            15,
+            20,
+            25,
+            30
+          ]
+        }
+      },
+      "protocolquality": {
+        "status": "test_used_for_loss_selection",
+        "details": {
+          "partition": "Último 20% test; 80% anterior entrenamiento (§4.2).",
+          "validation": "No se documenta conjunto independiente de validación.",
+          "hpo": "Tabla 1 enumera espacios de pérdida, optimizador, longitudes, capas y tasas; presupuesto/búsqueda no explicitados.",
+          "repetitions": "10 ejecuciones para métodos variables; media ± desviación estándar (§5). SMA/SVR una ejecución.",
+          "statistical_tests": "No se identificó prueba de diferencias predictivas entre modelos.",
+          "leakage_assessment": "Selección de pérdida usando errores de test reconocida en §4.2; compromete independencia del test. No se deduce fuga adicional sin evidencia.",
+          "comparability": "LSTM comparador hidden=1 vs propuesta hidden=60; capacidad y épocas difieren para TCN. Superioridad no generalizable a sigma7."
+        },
+        "limitations": {
+          "partition": "Último 20% test; 80% anterior entrenamiento (§4.2).",
+          "validation": "No se documenta conjunto independiente de validación.",
+          "hpo": "Tabla 1 enumera espacios de pérdida, optimizador, longitudes, capas y tasas; presupuesto/búsqueda no explicitados.",
+          "repetitions": "10 ejecuciones para métodos variables; media ± desviación estándar (§5). SMA/SVR una ejecución.",
+          "statistical_tests": "No se identificó prueba de diferencias predictivas entre modelos.",
+          "leakage_assessment": "Selección de pérdida usando errores de test reconocida en §4.2; compromete independencia del test. No se deduce fuga adicional sin evidencia.",
+          "comparability": "LSTM comparador hidden=1 vs propuesta hidden=60; capacidad y épocas difieren para TCN. Superioridad no generalizable a sigma7."
+        },
+        "absence_of_leakage_certified": false,
+        "author_experiment_reproduced": false
+      },
+      "decision": {
+        "primary_document_read": true,
+        "continuous_crypto_construct_corpus": false,
+        "baseline_role_verified": true,
+        "frequency_eligible": false,
+        "minimum_reporting_adequate_for_candidate_appraisal": true,
+        "guide31_reporting_sensitivity_eligible": false,
+        "unverified_does_not_mean_absent": true
+      },
+      "reason": "CVI cripto continuo con etiqueta de índice identificada; estrato implícito separado de realizada/histórica. TCN es fila comparativa con cabeza/parámetros compartidos: no prueba receta TCN mínima sin atención. MLP solo componente.",
+      "evidence_file_locations": [
+        "references/literature_e1/primary_reviews_20261106/evidence_matrix.json#/studies/0"
+      ],
+      "primary_evidence_locations": [
+        "PDF autor pp. 4–5, §3 (datos y transformación)",
+        "PDF pp. 6–8, §§4.1–4.3 y Tabla 1 (arquitectura y partición)",
+        "PDF pp. 8–10, §5, Tablas 2–3 (errores y repeticiones)",
+        "HTML editorial §§3–5; metadatos y licencia CC BY 4.0"
+      ],
+      "identity": {
+        "canonical_key": "doi:10.1007/978-3-031-26438-2_28",
+        "aliases": [
+          "PR_CVI"
+        ],
+        "deduplication_rule": "DOI normalizado; sin DOI, identidad de título/autores/versión; no similitud temática",
+        "dependence_group": "PR_CVI",
+        "independent_base_experiment": true,
+        "normalized_title": "cryptocurrency volatility index an efficient way to predict the future cvi",
+        "version_source_locations": [
+          "references/literature_e1/primary_reviews_20261106/evidence_matrix.json#/studies/0"
+        ]
+      },
+      "historical_N7_inclusion": false,
+      "primary_source_urls": [
+        "https://doras.dcu.ie/30785/1/CryptocurrencyVolatilityIndex.pdf"
+      ],
+      "citation_key": "nguyen2023cvi",
+      "tcn_variant": "Separate TCN benchmark with shared head/parameters; a pure minimal TCN architecture is not established.",
+      "expansion_intake_id": "TCN02",
+      "existing_identity": true,
+      "authors": [
+        "An Pham Ngoc Nguyen",
+        "Martin Crane",
+        "Marija Bezbradica"
+      ],
+      "year": 2023,
+      "online_year": null,
+      "free_fulltext_url": "https://link.springer.com/chapter/10.1007/978-3-031-26438-2_28",
+      "source_version": "Open access conference chapter AICS2022, CCIS1662, pp355–367; first online23-Feb-2023",
+      "access_method": "True",
+      "metadata_sources": [
+        "https://doi.org/10.1007/978-3-031-26438-2_28"
+      ],
+      "publication": {
+        "type": "conference",
+        "booktitle": "Artificial Intelligence and Cognitive Science",
+        "series": "Communications in Computer and Information Science",
+        "volume": "1662",
+        "pages": "355--367"
+      }
+    },
+    {
+      "id": "E1OA-T01",
+      "title": "Volatility Forecasting for High-Frequency Financial Data Based on Web Search Index and Deep Learning Model",
+      "doi": "10.3390/math9040320",
+      "genre": "publication",
+      "stratum": "transfer_equity_realized",
+      "target": {
+        "description": "RV diaria del Shanghai Securities Composite Index: suma de cuadrados de 48 retornos logarítmicos intradía de cinco minutos, multiplicados por 100; ecuaciones 10–11, p. 6. Es varianza realizada aunque el artículo la denomina volatility; no σ7 cripto.",
+        "quantity": "realized_variance_daily",
+        "construct_verified": true,
+        "future_forecast_verified": true,
+        "numerical_horizon_verified": true,
+        "same_as_E1_sigma7": false,
+        "scale_family": "variance_or_quadratic_variation"
+      },
+      "independentfamilies": [
+        "TCN",
+        "LSTM"
+      ],
+      "hybridfamilies": [],
+      "reported_autonomous_families": [
+        "TCN",
+        "LSTM"
+      ],
+      "architecture_reporting": {
+        "status": "partial_TCN_depth_not_unambiguous",
+        "recipe": "not_verified",
+        "missing": [],
+        "source_details": {
+          "tcn": "Convoluciones causales dilatadas y conexiones residuales; dos convoluciones/ReLU por módulo, WeightNorm y dropout (§2.1, pp. 3–4). Dilatación elegida con factor 2. Tabla 6, p. 11: 11 filtros, kernel 2, ventana 20 días, Adam, MSE, batch 84, 50 épocas. Profundidad total y número de parámetros no quedan fijados inequívocamente.",
+          "simplicity_assessment": "Arquitectura convolucional autónoma y relativamente acotada; no se acredita que sea mínima ni equivalente en capacidad a E1. Sin búsqueda híbrida GARCH dentro de la TCN."
+        }
+      },
+      "protocolquality": {
+        "status": "test_error_used_to_select_lookback",
+        "details": {
+          "asset": "Shanghai Securities Composite Index; no cripto.",
+          "period": "2011-01-04 a 2020-11-21",
+          "daily_observations": 2403,
+          "data_sources": "Datos intradía de cinco minutos; disponibilidad declarada en JoinQuant; índice Baidu recolectado por los autores.",
+          "inputs": "Tabla 4, p. 9: once indicadores declarados, incluidos RV, volumen y técnicos, con/sin factor Baidu. Tabla 5 también incluye money, lo que exige conciliar el conteo.",
+          "split": "Tabla 6: 68% entrenamiento, 17% validación, 15% prueba. §3.3.2 describe ventanas móviles para ejemplos; el orden temporal exacto del split y política de reestimación no quedan enteramente explicitados.",
+          "selection": "§3.3.2, p. 11: el autor elige ventana de 20 días por el menor error del test entre 5/10/20/30. Riesgo de selección con evaluación confirmado en el texto.",
+          "repetitions": "No se acreditan repeticiones independientes ni dispersión por semilla.",
+          "statistics": "KS compara distribuciones de resultados en Tabla 7; no sustituye una prueba de diferencias de pérdida predictiva como DM.",
+          "execution": "Sin ejecución del código ni reproducción de resultados."
+        },
+        "limitations": [
+          "Selección explícita de ventana por error de test; las cifras no acreditan evaluación final intacta.",
+          "El cribado de palabras y ponderación Baidu no se limitan explícitamente al entrenamiento; posible exposición temporal no resuelta.",
+          "Tabla 8 no respalda superioridad en todas las métricas: ARFIMA MAE 0.326 frente a 0.331 de TCN+B; en horizontes 2/5 hay otras excepciones.",
+          "TCN+B en Tabla 8 MSE 0.254/RMSE 0.504, pero Tablas 12/14 usan RMSE 0.549 y Tabla 12 MSE 0.302 para columna con igual rótulo. No se homogeneizan esas series de resultados.",
+          "Los comparadores econométricos y redes usan conjuntos de información distintos; no atribuir diferencias sólo a arquitectura.",
+          "No consta una receta total con profundidad inequívoca o repeticiones. No se compara su escala numérica con E1."
+        ],
+        "absence_of_leakage_certified": false,
+        "author_experiment_reproduced": false
+      },
+      "decision": {
+        "primary_document_read": true,
+        "continuous_crypto_construct_corpus": false,
+        "baseline_role_verified": true,
+        "frequency_eligible": false,
+        "minimum_reporting_adequate_for_candidate_appraisal": true,
+        "guide31_reporting_sensitivity_eligible": false,
+        "unverified_does_not_mean_absent": true
+      },
+      "reason": "Shanghai índice: TCN+B autónoma, B predictor Baidu no módulo arquitectónico atención. Transferencia separada, ventana seleccionada por test; no añade frecuencia cripto.",
+      "evidence_file_locations": [
+        "references/literature_e1/open_access_replacement_20261107/reviews.json#/26",
+        "references/literature_e1/open_access_replacement_20261107/part_open_tcn/reviews.json"
+      ],
+      "primary_evidence_locations": [
+        "PDF p. 1: DOI, autores, fecha y CC BY 4.0.",
+        "§2.1 pp. 3–4, Figuras 1–3: TCN residual, causal y dilatada.",
+        "§3.1 p. 6, ecuaciones 10–11: variable objetivo y escala.",
+        "§§3.2–3.3 pp. 6–11, Tablas 1–6: datos, construcción Baidu e hiperparámetros.",
+        "§3.3.2 p. 11: elección de ventana con test.",
+        "§3.4 pp. 12–14, Tablas 7–10: comparadores y resultados.",
+        "§4 pp. 14–16, Tablas 11–14: otras construcciones del factor y discrepancias de resultados.",
+        "§4.3 pp. 15–16: limitaciones de Baidu; disponibilidad de datos p. 16."
+      ],
+      "identity": {
+        "canonical_key": "doi:10.3390/math9040320",
+        "aliases": [
+          "E1OA-T01"
+        ],
+        "deduplication_rule": "DOI normalizado; sin DOI, identidad de título/autores/versión; no similitud temática",
+        "dependence_group": "E1OA-T01",
+        "independent_base_experiment": true,
+        "normalized_title": "volatility forecasting for high frequency financial data based on web search index and deep learning model",
+        "version_source_locations": [
+          "references/literature_e1/open_access_replacement_20261107/reviews.json#/26",
+          "references/literature_e1/open_access_replacement_20261107/part_open_tcn/reviews.json"
+        ]
+      },
+      "historical_N7_inclusion": false,
+      "document_genre_detail": "Mathematics",
+      "publication_identity_status": "Identidad de publicación informada por la ficha; versión efectivamente leída conservada aparte.",
+      "read_version": "Artículo publicado, Mathematics 2021, 9, 320; copia íntegra con DOI y declaración de licencia del original en p. 1, alojada en Semantic Scholar.",
+      "read_scope": "PDF completo de 17 páginas accesible; revisados introducción, método, datos, resultados, discusión, limitaciones, conclusión y tablas 1–14. Extracción textual con localizadores de página.",
+      "access_level": "complete_publisher_article_ccby_copy",
+      "complete_mirror_transcription_read": false,
+      "primary_source_urls": [
+        "https://www.mdpi.com/2227-7390/9/4/320",
+        "https://pdfs.semanticscholar.org/1b82/b28c49e99e9a216708516dc5d99eca0e5578.pdf"
+      ],
+      "citation_key": "lei2021volatilitytcn",
+      "previous_stage_decision": "include_transfer_stratum_with_major_protocol_reservations",
+      "expansion_intake_id": "TCN03",
+      "existing_identity": true,
+      "authors": [
+        "Bolin Lei",
+        "Boyu Zhang",
+        "Yuping Song"
+      ],
+      "year": 2021,
+      "online_year": null,
+      "free_fulltext_url": "https://pdfs.semanticscholar.org/1b82/b28c49e99e9a216708516dc5d99eca0e5578.pdf",
+      "source_version": "articulo_de_revista_publicado",
+      "access_method": "PDF editorial CC BY 4.0 de 17 páginas abierto en esta búsqueda; copia pública de Semantic Scholar.",
+      "metadata_sources": [
+        "https://doi.org/10.3390/math9040320"
+      ],
+      "publication": {
+        "type": "journal",
+        "journal": "Mathematics",
+        "volume": "9",
+        "number": "4",
+        "pages": "320"
+      }
+    },
+    {
+      "id": "E1F-T04",
+      "title": "Forecasting volatility index by temporal convolutional neural network",
+      "doi": "10.5351/KJAS.2023.36.2.129",
+      "genre": "publication",
+      "stratum": "transfer_equity_implied",
+      "target": {
+        "description": "Continuous VIX,VXD,VXN implied-volatility index levels; horizons1,2,5days. Not realized volatility.",
+        "quantity": "implied_volatility_index_level",
+        "construct_verified": true,
+        "future_forecast_verified": true,
+        "numerical_horizon_verified": true,
+        "same_as_E1_sigma7": false,
+        "horizon_as_reported": "VIX/VXD/VXN; horizontes 1,2,5 días; Tabla3 y Tabla4.",
+        "scale_family": "implied_volatility_index"
+      },
+      "independentfamilies": [
+        "LSTM",
+        "GRU",
+        "TCN"
+      ],
+      "hybridfamilies": [],
+      "reported_autonomous_families": [
+        "LSTM",
+        "GRU",
+        "TCN"
+      ],
+      "architecture_reporting": {
+        "status": "substantive_architecture_and_protocol",
+        "recipe": "Input22,one stack,dilations[1,2,4]. VIX32filters/kernel2;VXD16/kernel2;VXN64/kernel3. Dropout0,lr.001,Adam,MAE,ReLU,max100epochs,earlystop10.",
+        "missing": [],
+        "source_details": [
+          {
+            "family": "TCN",
+            "role": "TCN autónoma frente a ARIMA, LSTM, GRU y variantes.",
+            "independent_comparator_verified": true,
+            "evidence_location": "Tabla 3, p.133; Tabla 4, p.135.",
+            "source_url": "https://pdf.medrang.co.kr/KJAS/2023/036/KJAS036-02-129.pdf",
+            "source_sha256": null
+          }
+        ]
+      },
+      "protocolquality": {
+        "status": "described_with_explicit_limits",
+        "details": {
+          "architecture": "Input22,one stack,dilations[1,2,4]. VIX32filters/kernel2;VXD16/kernel2;VXN64/kernel3. Dropout0,lr.001,Adam,MAE,ReLU,max100epochs,earlystop10.",
+          "target_dataset": "VIX/VXD/VXN; horizontes 1,2,5 días; Tabla3 y Tabla4.",
+          "split_and_preprocessing": "not_extracted_in_this_stage",
+          "independent_repetitions": null,
+          "statistical_tests": null,
+          "leakage_absence_verified": false,
+          "unknown_not_absent": true
+        },
+        "limitations": "Ninguna reproducción independiente de los autores realizada."
+      },
+      "decision": {
+        "primary_document_read": true,
+        "continuous_crypto_construct_corpus": false,
+        "baseline_role_verified": true,
+        "frequency_eligible": false,
+        "minimum_reporting_adequate_for_candidate_appraisal": true,
+        "guide31_reporting_sensitivity_eligible": false,
+        "unverified_does_not_mean_absent": true
+      },
+      "reason": "TCN autónoma frente a ARIMA, LSTM, GRU y variantes. VIX/VXD/VXN; horizontes 1,2,5 días; Tabla3 y Tabla4.",
+      "evidence_file_locations": [
+        "references/literature_e1/free_model_expansion_20261107/inputs.json#TCN04"
+      ],
+      "primary_evidence_locations": [
+        "Tabla 3, p.133; Tabla 4, p.135."
+      ],
+      "identity": {
+        "canonical_key": "doi:10.5351/kjas.2023.36.2.129",
+        "aliases": [
+          "TCN04",
+          "E1F-T04"
+        ],
+        "deduplication_rule": "DOI normalizado y versiones de una obra; no se duplica preprint/publicación",
+        "dependence_group": "E1F-T04",
+        "independent_base_experiment": true,
+        "normalized_title": "forecasting volatility index by temporal convolutional neural network",
+        "version_source_locations": [
+          "https://pdf.medrang.co.kr/KJAS/2023/036/KJAS036-02-129.pdf"
+        ]
+      },
+      "historical_N7_inclusion": false,
+      "document_genre_detail": "published_journal",
+      "publication_identity_status": "Identidad publicada verificada",
+      "primary_source_urls": [
+        "https://pdf.medrang.co.kr/KJAS/2023/036/KJAS036-02-129.pdf"
+      ],
+      "lstm_variant": "unidirectional",
+      "expansion_intake_id": "TCN04",
+      "existing_identity": false,
+      "citation_key": "E1Search_TCN04",
+      "authors": [
+        "Ji Won Shin",
+        "Dong Wan Shin"
+      ],
+      "year": 2023,
+      "online_year": null,
+      "free_fulltext_url": "https://pdf.medrang.co.kr/KJAS/2023/036/KJAS036-02-129.pdf",
+      "source_version": "published_journal",
+      "access_method": "Child agent directly opened publisher-linked PDF: 12 PDF pages,426 extracted lines. Journal landing labels Full Text(PDF) Free.",
+      "metadata_sources": [
+        "https://www.kjas.or.kr/journal/view.html?doi=10.5351/KJAS.2023.36.2.129"
+      ],
+      "publication": {
+        "type": "journal",
+        "journal": "The Korean Journal of Applied Statistics",
+        "volume": "36",
+        "number": "2",
+        "pages": "129--139"
+      }
+    },
+    {
+      "id": "E1F-T05",
+      "title": "Stock Market Volatility Forecasting: Exploring the Power of Deep Learning",
+      "doi": "10.3390/fintech4040061",
+      "genre": "publication",
+      "stratum": "transfer_equity_realized",
+      "target": {
+        "description": "Realized-volatility forecasting of S&P500,DJIA,Nasdaq using22.5years high-frequency data; horizons one day through one month; with/without macrovariables DXY,VIX,US10Y,US1M.",
+        "quantity": "realized_volatility_as_reported_units_not_reconciled",
+        "construct_verified": true,
+        "future_forecast_verified": true,
+        "numerical_horizon_verified": true,
+        "same_as_E1_sigma7": false,
+        "horizon_as_reported": "Volatilidad realizada de S&P500/DJIA/Nasdaq; cuerpo editorial indexado y Tablas4–5; descarga/lectura completa no acreditada por HTTP429.",
+        "scale_family": "unresolved"
+      },
+      "independentfamilies": [
+        "LSTM",
+        "TCN",
+        "Transformer_encoder",
+        "TiDE",
+        "DeepAR"
+      ],
+      "hybridfamilies": [],
+      "reported_autonomous_families": [
+        "LSTM",
+        "TCN",
+        "Transformer_encoder",
+        "TiDE",
+        "DeepAR"
+      ],
+      "architecture_reporting": {
+        "status": "partial_or_indexed_primary_only",
+        "recipe": "TCN lookback50,kernel5,filters8,dropout.1,learningrate.001,batch64,max300epochs,earlystop30. Number of TCN layers not given in Table4.",
+        "missing": [
+          "Cuerpo primario íntegro no recuperado por HTTP429; número de capas TCN y unidades exactas del objetivo no reconciliados. Las Tablas4–5 indexadas sí verifican receta parcial y resultado separado."
+        ],
+        "source_details": [
+          {
+            "family": "TCN",
+            "role": "TCN autónoma frente a TiDE, LSTM, DeepAR, Transformer y HAR.",
+            "independent_comparator_verified": true,
+            "evidence_location": "Tablas 4–5 y secciones experimentales.",
+            "source_url": "https://www.mdpi.com/2674-1032/4/4/61",
+            "source_sha256": null
+          }
+        ]
+      },
+      "protocolquality": {
+        "status": "partial_reporting_or_access",
+        "details": {
+          "architecture": "TCN lookback50,kernel5,filters8,dropout.1,learningrate.001,batch64,max300epochs,earlystop30. Number of TCN layers not given in Table4.",
+          "target_dataset": "Volatilidad realizada de S&P500/DJIA/Nasdaq; cuerpo editorial indexado y Tablas4–5; descarga/lectura completa no acreditada por HTTP429.",
+          "split_and_preprocessing": "not_extracted_in_this_stage",
+          "independent_repetitions": null,
+          "statistical_tests": null,
+          "leakage_absence_verified": false,
+          "unknown_not_absent": true
+        },
+        "limitations": "Ninguna reproducción independiente de los autores realizada."
+      },
+      "decision": {
+        "primary_document_read": false,
+        "continuous_crypto_construct_corpus": false,
+        "baseline_role_verified": true,
+        "frequency_eligible": false,
+        "minimum_reporting_adequate_for_candidate_appraisal": false,
+        "guide31_reporting_sensitivity_eligible": false,
+        "unverified_does_not_mean_absent": true
+      },
+      "reason": "TCN autónoma frente a TiDE, LSTM, DeepAR, Transformer y HAR. Volatilidad realizada de S&P500/DJIA/Nasdaq; cuerpo editorial indexado y Tablas4–5; descarga/lectura completa no acreditada por HTTP429.",
+      "evidence_file_locations": [
+        "references/literature_e1/free_model_expansion_20261107/inputs.json#TCN05"
+      ],
+      "primary_evidence_locations": [
+        "Tablas 4–5 y secciones experimentales."
+      ],
+      "identity": {
+        "canonical_key": "doi:10.3390/fintech4040061",
+        "aliases": [
+          "TCN05",
+          "E1F-T05"
+        ],
+        "deduplication_rule": "DOI normalizado y versiones de una obra; no se duplica preprint/publicación",
+        "dependence_group": "E1F-T05",
+        "independent_base_experiment": true,
+        "normalized_title": "stock market volatility forecasting exploring the power of deep learning",
+        "version_source_locations": [
+          "https://www.mdpi.com/2674-1032/4/4/61"
+        ]
+      },
+      "historical_N7_inclusion": false,
+      "document_genre_detail": "published_journal_open_access",
+      "publication_identity_status": "Identidad publicada verificada",
+      "primary_source_urls": [
+        "https://www.mdpi.com/2674-1032/4/4/61"
+      ],
+      "lstm_variant": "unidirectional",
+      "expansion_intake_id": "TCN05",
+      "existing_identity": false,
+      "reading_status": "indexed_primary_partial; complete_body_not_read",
+      "citation_key": "E1Search_TCN05",
+      "authors": [
+        "Minh Vo"
+      ],
+      "year": 2025,
+      "online_year": null,
+      "free_fulltext_url": "https://www.mdpi.com/2674-1032/4/4/61",
+      "source_version": "published_journal_open_access",
+      "access_method": "Official indexed full-body sections and Tables4–5 retrieved by web search. Direct HTML/PDF open repeatedly returned429; no PDF download claimed. This is automated access throttling on an OA article, not evidence of a paywall.",
+      "metadata_sources": [
+        "https://www.mdpi.com/2674-1032/4/4/61"
+      ],
+      "publication": {
+        "type": "journal",
+        "journal": "FinTech",
+        "volume": "4",
+        "number": "4",
+        "pages": "61"
+      }
+    },
+    {
+      "id": "E1F-T06",
+      "title": "Comparing Deep Learning Models for the Task of Volatility Prediction Using Multivariate Data",
+      "doi": "10.48550/arXiv.2306.12446",
+      "genre": "grey",
+      "stratum": "transfer_multiasset_historical_and_implied",
+      "target": {
+        "description": "S&P500,NASDAQ100,gold,silver,oil. Forward month HV=std(logreturns t+1 through t+22); next-day IVindex/sqrt252. Thus historical/forward-standard-deviation and implied-volatility targets, not intraday RV.",
+        "quantity": "forward_standard_deviation_and_implied_index",
+        "construct_verified": true,
+        "future_forecast_verified": true,
+        "numerical_horizon_verified": true,
+        "same_as_E1_sigma7": false,
+        "horizon_as_reported": "HV=DE de log-retornos futuros t+1..t+22; IV siguiente día/raíz252; cinco activos.",
+        "scale_family": "mixed_historical_and_implied"
+      },
+      "independentfamilies": [
+        "MLP",
+        "TCN"
+      ],
+      "hybridfamilies": [
+        "CNN_LSTM",
+        "ANN_GARCH"
+      ],
+      "reported_autonomous_families": [
+        "MLP",
+        "TCN",
+        "Temporal_Fusion_Transformer"
+      ],
+      "architecture_reporting": {
+        "status": "substantive_architecture_and_protocol",
+        "recipe": "Search Table7 TCN filters[2,4,5,7],channels/filter[20,25,30,35,40],kernel[2,5,7],dropout[.1,.3,.5],lr[.001,.0001]. Report as search space, not selected architecture. NARMLP hiddenlayers[1,2,4],width[3,5,10,21];NARXMLP hiddenlayers[1,2,3,4],width[5,10,20,40,100].",
+        "missing": [],
+        "source_details": [
+          {
+            "family": "TCN",
+            "role": "TCN vanilla con resultados separados de sus variantes; también compara MLP.",
+            "independent_comparator_verified": true,
+            "evidence_location": "§3.2.4; Tablas 4–5; Apéndice A, Tabla 7.",
+            "source_url": "https://arxiv.org/pdf/2306.12446",
+            "source_sha256": null
+          }
+        ]
+      },
+      "protocolquality": {
+        "status": "described_with_explicit_limits",
+        "details": {
+          "architecture": "Search Table7 TCN filters[2,4,5,7],channels/filter[20,25,30,35,40],kernel[2,5,7],dropout[.1,.3,.5],lr[.001,.0001]. Report as search space, not selected architecture. NARMLP hiddenlayers[1,2,4],width[3,5,10,21];NARXMLP hiddenlayers[1,2,3,4],width[5,10,20,40,100].",
+          "target_dataset": "HV=DE de log-retornos futuros t+1..t+22; IV siguiente día/raíz252; cinco activos.",
+          "split_and_preprocessing": "not_extracted_in_this_stage",
+          "independent_repetitions": null,
+          "statistical_tests": null,
+          "leakage_absence_verified": false,
+          "unknown_not_absent": true
+        },
+        "limitations": "Equation text says t+1..t+22 but labels N=tau2-tau1=21; preserve this reporting inconsistency. Preprint status must remain explicit."
+      },
+      "decision": {
+        "primary_document_read": true,
+        "continuous_crypto_construct_corpus": false,
+        "baseline_role_verified": true,
+        "frequency_eligible": false,
+        "minimum_reporting_adequate_for_candidate_appraisal": true,
+        "guide31_reporting_sensitivity_eligible": false,
+        "unverified_does_not_mean_absent": true
+      },
+      "reason": "TCN vanilla con resultados separados de sus variantes; también compara MLP. HV=DE de log-retornos futuros t+1..t+22; IV siguiente día/raíz252; cinco activos. La Tabla3/§3.2.3 también evalúa CNN-LSTM/ANN-GARCH como híbridos, y Tabla5 evalúa TFT como comparador avanzado; no se infiere una LSTM autónoma desde el resumen.",
+      "evidence_file_locations": [
+        "references/literature_e1/free_model_expansion_20261107/inputs.json#TCN06"
+      ],
+      "primary_evidence_locations": [
+        "§3.2.4; Tablas 4–5; Apéndice A, Tabla 7."
+      ],
+      "identity": {
+        "canonical_key": "doi:10.48550/arxiv.2306.12446",
+        "aliases": [
+          "TCN06",
+          "E1F-T06"
+        ],
+        "deduplication_rule": "DOI normalizado y versiones de una obra; no se duplica preprint/publicación",
+        "dependence_group": "E1F-T06",
+        "independent_base_experiment": true,
+        "normalized_title": "comparing deep learning models for the task of volatility prediction using multivariate data",
+        "version_source_locations": [
+          "https://arxiv.org/pdf/2306.12446"
+        ]
+      },
+      "historical_N7_inclusion": false,
+      "document_genre_detail": "preprint_arXiv; no_publicacion_revisada_verificada",
+      "publication_identity_status": "Preprint; publicación revisada no verificada",
+      "primary_source_urls": [
+        "https://arxiv.org/pdf/2306.12446"
+      ],
+      "lstm_variant": null,
+      "expansion_intake_id": "TCN06",
+      "existing_identity": false,
+      "citation_key": "E1Search_TCN06",
+      "authors": [
+        "Wenbo Ge",
+        "Pooia Lalbakhsh",
+        "Leigh Isai",
+        "Artem Lensky",
+        "Hanna Suominen"
+      ],
+      "year": 2023,
+      "online_year": null,
+      "free_fulltext_url": "https://arxiv.org/pdf/2306.12446",
+      "source_version": "preprint_arXiv; no_publicacion_revisada_verificada",
+      "access_method": "Actual complete arXiv PDF opened:14pages,1357extractedlines; v2 dated23Jun2023. arXiv metadata has no verified journal/conference publication.",
+      "metadata_sources": [
+        "https://arxiv.org/abs/2306.12446"
+      ],
+      "publication": {
+        "type": "preprint",
+        "archivePrefix": "arXiv",
+        "eprint": "2306.12446"
+      },
+      "advanced_autonomous_families": [
+        "Temporal_Fusion_Transformer"
+      ]
+    },
+    {
+      "id": "E1F-T07",
+      "title": "A hybrid deep learning framework for volatility prediction in financial markets",
+      "doi": "10.1038/s41598-026-70301-2",
+      "genre": "publication",
+      "stratum": "transfer_multiasset_realized",
+      "target": {
+        "description": "Predicción de volatilidad financiera a1/5/20d; TCN es componente del híbrido. TCN standalone mencionado sin receta/fila numérica independiente recuperada.",
+        "quantity": "financial_volatility_as_reported",
+        "construct_verified": true,
+        "future_forecast_verified": true,
+        "numerical_horizon_verified": true,
+        "same_as_E1_sigma7": false,
+        "horizon_as_reported": "Predicción de volatilidad financiera a1/5/20d; TCN es componente del híbrido. TCN standalone mencionado sin receta/fila numérica independiente recuperada.",
+        "scale_family": "unresolved"
+      },
+      "independentfamilies": [],
+      "hybridfamilies": [
+        "TCN_BiLSTM_attention_FinAnalyzeNet"
+      ],
+      "reported_autonomous_families": [
+        "LSTM",
+        "CNN_generic",
+        "TCN",
+        "Transformer_encoder"
+      ],
+      "architecture_reporting": {
+        "status": "partial_or_indexed_primary_only",
+        "recipe": "TCN module6bloquesdilatados,64filtros,k3; BiLSTM3capas256/128/64; atención8cabezas. Es la propuesta híbrida, no la receta de una TCN base.",
+        "missing": [
+          "Sirve como evidencia de una propuesta híbrida. No contarlo como comparador TCN autónomo básico verificado."
+        ],
+        "source_details": [
+          {
+            "family": "TCN",
+            "role": "Componente TCN de FinAnalyzeNet (TCN+BiLSTM+atención). El texto menciona un comparador TCN, pero no se recupera su receta ni una fila numérica independiente.",
+            "independent_comparator_verified": false,
+            "evidence_location": "Secciones FinAnalyzeNet architecture design / Benchmark models; Tabla 1.",
+            "source_url": "https://www.nature.com/articles/s41598-026-70301-2",
+            "source_sha256": null
+          }
+        ]
+      },
+      "protocolquality": {
+        "status": "partial_reporting_or_access",
+        "details": {
+          "architecture": "TCN module6bloquesdilatados,64filtros,k3; BiLSTM3capas256/128/64; atención8cabezas. Es la propuesta híbrida, no la receta de una TCN base.",
+          "target_dataset": "Predicción de volatilidad financiera a1/5/20d; TCN es componente del híbrido. TCN standalone mencionado sin receta/fila numérica independiente recuperada.",
+          "split_and_preprocessing": "not_extracted_in_this_stage",
+          "independent_repetitions": null,
+          "statistical_tests": null,
+          "leakage_absence_verified": false,
+          "unknown_not_absent": true
+        },
+        "limitations": "Sirve como evidencia de una propuesta híbrida. No contarlo como comparador TCN autónomo básico verificado."
+      },
+      "decision": {
+        "primary_document_read": true,
+        "continuous_crypto_construct_corpus": false,
+        "baseline_role_verified": false,
+        "frequency_eligible": false,
+        "minimum_reporting_adequate_for_candidate_appraisal": false,
+        "guide31_reporting_sensitivity_eligible": false,
+        "unverified_does_not_mean_absent": true
+      },
+      "reason": "Componente TCN de FinAnalyzeNet (TCN+BiLSTM+atención). El texto menciona un comparador TCN, pero no se recupera su receta ni una fila numérica independiente. Predicción de volatilidad financiera a1/5/20d; TCN es componente del híbrido. TCN standalone mencionado sin receta/fila numérica independiente recuperada.",
+      "evidence_file_locations": [
+        "references/literature_e1/free_model_expansion_20261107/inputs.json#TCN07"
+      ],
+      "primary_evidence_locations": [
+        "Secciones FinAnalyzeNet architecture design / Benchmark models; Tabla 1."
+      ],
+      "identity": {
+        "canonical_key": "doi:10.1038/s41598-026-70301-2",
+        "aliases": [
+          "TCN07",
+          "E1F-T07"
+        ],
+        "deduplication_rule": "DOI normalizado y versiones de una obra; no se duplica preprint/publicación",
+        "dependence_group": "E1F-T07",
+        "independent_base_experiment": true,
+        "normalized_title": "a hybrid deep learning framework for volatility prediction in financial markets",
+        "version_source_locations": [
+          "https://www.nature.com/articles/s41598-026-70301-2"
+        ]
+      },
+      "historical_N7_inclusion": false,
+      "document_genre_detail": "articulo_de_revista_publicado",
+      "publication_identity_status": "Identidad publicada verificada",
+      "primary_source_urls": [
+        "https://www.nature.com/articles/s41598-026-70301-2"
+      ],
+      "lstm_variant": null,
+      "expansion_intake_id": "TCN07",
+      "existing_identity": false,
+      "reading_status": "primary_full_body; baseline_role_not_positive",
+      "citation_key": "E1Search_TCN07",
+      "authors": [
+        "Sanjay Agal"
+      ],
+      "year": 2026,
+      "online_year": null,
+      "free_fulltext_url": "https://www.nature.com/articles/s41598-026-70301-2",
+      "source_version": "articulo_de_revista_publicado",
+      "access_method": "HTML editorial completo abierto; Open Access; publicado 9 de septiembre de 2026.",
+      "metadata_sources": [
+        "https://doi.org/10.1038/s41598-026-70301-2"
+      ],
+      "publication": {
+        "type": "journal",
+        "journal": "Scientific Reports",
+        "volume": "16",
+        "pages": "35992"
+      }
+    },
+    {
+      "id": "E1F-M01",
+      "title": "LSTM–GARCH Hybrid Model for the Prediction of Volatility in Cryptocurrency Portfolios",
+      "doi": "10.1007/s10614-023-10373-8",
+      "genre": "publication",
+      "stratum": "crypto_realized_or_historical_continuous_construct",
+      "target": {
+        "description": "Data describes variance of intrahour 5-minute log returns; not canonical uncentered RV sum-of-squares. 1–24-hour forward predictions, then portfolio aggregation.",
+        "quantity": "hourly_empirical_variance_from_intrahour_returns",
+        "construct_verified": true,
+        "future_forecast_verified": true,
+        "numerical_horizon_verified": true,
+        "same_as_E1_sigma7": false,
+        "horizon_as_reported": "Varianza empírica intrahoraria de retornos5min; horizonte1–24h.",
+        "scale_family": "variance_or_log_variance"
+      },
+      "independentfamilies": [
+        "MLP",
+        "LSTM"
+      ],
+      "hybridfamilies": [
+        "LSTM_GARCH"
+      ],
+      "reported_autonomous_families": [
+        "MLP",
+        "LSTM"
+      ],
+      "architecture_reporting": {
+        "status": "substantive_architecture_and_protocol",
+        "recipe": "72 hourly variance lags; one dense hidden layer with 10 neurons; outputs for next 24 hours; sigmoid activation stated in training section.",
+        "missing": [],
+        "source_details": [
+          {
+            "family": "MLP",
+            "role": "MLP autónoma E8, separada de los híbridos LSTM–GARCH.",
+            "independent_comparator_verified": true,
+            "evidence_location": "Tabla 4; sección Deep Learning Models; Tablas 6–7.",
+            "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10013303/",
+            "source_sha256": null
+          }
+        ],
+        "family_recipes": {
+          "MLP": "72 past hourly variances; one hidden dense layer of10neurons;24outputs; sigmoid stated in training section.",
+          "LSTM": "AutonomousLSTM explicitlyseparate; exact hidden-unitwidth not reconstructed in this audit; Figure4 contains architecture."
+        }
+      },
+      "protocolquality": {
+        "status": "primary_protocol_with_known_limits",
+        "details": {
+          "split": "Each504hour window shifted24hours;161windows. Supervised input72lags; text splits383train/48validation/1test.",
+          "hpo": "Batchsizes24/48/72, sigmoid; minimizevalidationMSE; earlystop.",
+          "repetitions": "10randommodelruns per configuration/window; author says average nineassetpredictions. Do not confuse nineassets with nineinitializations.",
+          "statistics": "DM at h1/6/12/24; no multiplicitycorrection reconstructed. Paper warns tests indicative and portfolioSR/VaR insample.",
+          "leakage_risks": "Linearinterpolation explicitly applied to missingdata beforeanalysis; scaler[0,1] fittedscope not explicit; purgingmultioutputoverlap not documented. Risk, not proved leakage.",
+          "known_scope_limit": "Pandemic firsthalf2020 nine riskycoins plusUSDTreference; portfolio task differs E1."
+        },
+        "limitations": "Linearinterpolation explicitly applied to missingdata beforeanalysis; scaler[0,1] fittedscope not explicit; purgingmultioutputoverlap not documented. Risk, not proved leakage.",
+        "source_location": [
+          "Data/Table1; line233 hourlyvariance/interpolation",
+          "Methodology/Table4",
+          "DeepLearningModels/Eq24",
+          "Tables6–7; DM Tables10–13; Conclusions"
+        ]
+      },
+      "decision": {
+        "primary_document_read": true,
+        "continuous_crypto_construct_corpus": true,
+        "baseline_role_verified": true,
+        "frequency_eligible": true,
+        "minimum_reporting_adequate_for_candidate_appraisal": true,
+        "guide31_reporting_sensitivity_eligible": true,
+        "unverified_does_not_mean_absent": true
+      },
+      "reason": "Table4 E8=MLP and E9=LSTM; E10–E12 volume/hybrid variants. Tables6–7 report separate forecasts. MLP structure and experimental protocol are directly specified. Do not exclude only for incompletely recovered selected LSTM width.",
+      "evidence_file_locations": [
+        "references/literature_e1/free_model_expansion_20261107/inputs.json#MLP01"
+      ],
+      "primary_evidence_locations": [
+        "Data/Table1; line233 hourlyvariance/interpolation",
+        "Methodology/Table4",
+        "DeepLearningModels/Eq24",
+        "Tables6–7; DM Tables10–13; Conclusions"
+      ],
+      "identity": {
+        "canonical_key": "doi:10.1007/s10614-023-10373-8",
+        "aliases": [
+          "MLP01",
+          "E1F-M01"
+        ],
+        "deduplication_rule": "DOI normalizado y versiones de una obra; no se duplica preprint/publicación",
+        "dependence_group": "E1F-M01",
+        "independent_base_experiment": true,
+        "normalized_title": "lstm garch hybrid model for the prediction of volatility in cryptocurrency portfolios",
+        "version_source_locations": [
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC10013303/"
+        ]
+      },
+      "historical_N7_inclusion": false,
+      "document_genre_detail": "peer_reviewed_journal_article",
+      "publication_identity_status": "Identidad publicada verificada",
+      "primary_source_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC10013303/"
+      ],
+      "lstm_variant": "unidirectional",
+      "expansion_intake_id": "MLP01",
+      "existing_identity": false,
+      "citation_key": "E1Search_MLP01",
+      "authors": [
+        "Andrés García-Medina",
+        "Ester Aguayo-Moreno"
+      ],
+      "year": 2024,
+      "online_year": 2023,
+      "free_fulltext_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10013303/",
+      "source_version": "Computational Economics 63, 1511–1542",
+      "access_method": "True",
+      "metadata_sources": [
+        "https://link.springer.com/article/10.1007/s10614-023-10373-8"
+      ],
+      "family_audit": {
+        "positive_role_evidence": "Table4 E8=MLP and E9=LSTM; E10–E12 volume/hybrid variants. Tables6–7 report separate forecasts.",
+        "non_votes": [
+          "LSTM-Vol",
+          "LSTM-eGARCH",
+          "LSTM-gjrGARCH"
+        ],
+        "policy": "Una familia por experimento; las arquitecturas distintas no se colapsan en MLP y variantes no son estudios."
+      },
+      "publication": {
+        "type": "journal",
+        "journal": "Computational Economics",
+        "volume": "63",
+        "pages": "1511--1542"
+      }
+    },
+    {
+      "id": "E1F-M02",
+      "title": "Coin impact on cross-crypto realized volatility and dynamic cryptocurrency volatility connectedness",
+      "doi": "10.1186/s40854-025-00881-x",
+      "genre": "publication",
+      "stratum": "crypto_realized_or_historical_continuous_construct",
+      "target": {
+        "description": "Eq1 uses daily sum of squared intraday returns; source calls RV realizedvolatility but varianceunits. h1rollingforecasts.",
+        "quantity": "realized_variance_sum_of_intraday_squared_log_returns",
+        "construct_verified": true,
+        "future_forecast_verified": true,
+        "numerical_horizon_verified": true,
+        "same_as_E1_sigma7": false,
+        "horizon_as_reported": "Varianza realizada diaria=sum r_intraday²; predicción siguiente día BTC/ETH/LTC/XRP.",
+        "scale_family": "variance_or_log_variance"
+      },
+      "independentfamilies": [
+        "MLP",
+        "LSTM",
+        "RNN_simple",
+        "RBFN",
+        "GFN",
+        "MFN"
+      ],
+      "hybridfamilies": [],
+      "reported_autonomous_families": [
+        "MLP",
+        "LSTM",
+        "RNN_simple",
+        "RBFN",
+        "GFN",
+        "MFN"
+      ],
+      "architecture_reporting": {
+        "status": "substantive_architecture_and_protocol",
+        "recipe": "MLP/MFN/GFN grid uses 1 or 2 hidden layers, 32/64/128 neurons, tanh. Actual selected MLP recipe is not reported in inspected passages.",
+        "missing": [],
+        "source_details": [
+          {
+            "family": "MLP",
+            "role": "MLP autónoma; columnas propias frente a otras redes y modelos.",
+            "independent_comparator_verified": true,
+            "evidence_location": "Ecuación 1; Tabla 1; Tablas 4–7.",
+            "source_url": "https://link.springer.com/content/pdf/10.1186/s40854-025-00881-x.pdf",
+            "source_sha256": null
+          }
+        ],
+        "family_recipes": {
+          "MLP": "Illustrative onehidden logisticMLP equations6–8; implementedgrid1/2hidden32/64/128 tanh.",
+          "RNN_simple": "Recurrentstate equations9–11; separatebaseline.",
+          "LSTM": "Input/output/forgetgate cell described; separatebaseline; selectedwidths unknown."
+        }
+      },
+      "protocolquality": {
+        "status": "primary_protocol_with_known_limits",
+        "details": {
+          "split": "493968five-minuteobservations May15 2018–Jan24 2023 ->1716dailyRV;1000train/716evaluation; h1fixedrollingwindow.",
+          "hpo": "Up to2hiddenlayers;1000maxepochs/earlystop100; tanh; LM; model-specificgridTable1. Validationselectiontiming not fullyspecified.",
+          "repetitions": "Multiple randomseeds/runs reported; no exactcount recovered.",
+          "statistics": "DMpairwise forecastaccuracy andMCS reported. Do not state all testassumptions or adjustment details verified.",
+          "leakage_risks": "Rollingchronology clear; hyperparameter-search/earlystop validationdates and preprocessing fit scope not exhaustively specified.",
+          "known_scope_limit": "Fourcoins dailyvariance andcross-coinlags/connectedness; noE1 metric pooling."
+        },
+        "limitations": "Rollingchronology clear; hyperparameter-search/earlystop validationdates and preprocessing fit scope not exhaustively specified.",
+        "source_location": [
+          "Eq1 targetvariance",
+          "MachineLearningModels §§MLP,RNN,LSTM,RBFN,GFN,MFN",
+          "Optimization/Table1",
+          "DataDescription1000/716split",
+          "Tables4–7; MCS/DM empiricaldiscussion"
+        ]
+      },
+      "decision": {
+        "primary_document_read": true,
+        "continuous_crypto_construct_corpus": true,
+        "baseline_role_verified": true,
+        "frequency_eligible": true,
+        "minimum_reporting_adequate_for_candidate_appraisal": true,
+        "guide31_reporting_sensitivity_eligible": true,
+        "unverified_does_not_mean_absent": true
+      },
+      "reason": "Methods separately defineMLP,RNN,LSTM,RBFN,GFN,MFN; Tables4–7 separate columns for each family. NoGRU,TCN orCNN comparator verified. Published architecturegrid and complete rollingforecastprotocol satisfy same rule allowing Dudek/Brauneis despite unknown selectedwidth. Preserve sigmoidillustration vs actualtanh implementation discrepancy.",
+      "evidence_file_locations": [
+        "references/literature_e1/free_model_expansion_20261107/inputs.json#MLP02"
+      ],
+      "primary_evidence_locations": [
+        "Eq1 targetvariance",
+        "MachineLearningModels §§MLP,RNN,LSTM,RBFN,GFN,MFN",
+        "Optimization/Table1",
+        "DataDescription1000/716split",
+        "Tables4–7; MCS/DM empiricaldiscussion"
+      ],
+      "identity": {
+        "canonical_key": "doi:10.1186/s40854-025-00881-x",
+        "aliases": [
+          "MLP02",
+          "E1F-M02"
+        ],
+        "deduplication_rule": "DOI normalizado y versiones de una obra; no se duplica preprint/publicación",
+        "dependence_group": "E1F-M02",
+        "independent_base_experiment": true,
+        "normalized_title": "coin impact on cross crypto realized volatility and dynamic cryptocurrency volatility connectedness",
+        "version_source_locations": [
+          "https://link.springer.com/content/pdf/10.1186/s40854-025-00881-x.pdf"
+        ]
+      },
+      "historical_N7_inclusion": false,
+      "document_genre_detail": "peer_reviewed_journal_article",
+      "publication_identity_status": "Identidad publicada verificada",
+      "primary_source_urls": [
+        "https://link.springer.com/content/pdf/10.1186/s40854-025-00881-x.pdf"
+      ],
+      "lstm_variant": "unidirectional",
+      "expansion_intake_id": "MLP02",
+      "existing_identity": false,
+      "citation_key": "E1Search_MLP02",
+      "authors": [
+        "Burak Korkusuz",
+        "Mehmet Sahiner"
+      ],
+      "year": 2025,
+      "online_year": null,
+      "free_fulltext_url": "https://link.springer.com/content/pdf/10.1186/s40854-025-00881-x.pdf",
+      "source_version": "Financial Innovation 11, article 129",
+      "access_method": "True",
+      "metadata_sources": [
+        "https://link.springer.com/article/10.1186/s40854-025-00881-x"
+      ],
+      "family_audit": {
+        "positive_role_evidence": "Methods separately defineMLP,RNN,LSTM,RBFN,GFN,MFN; Tables4–7 separate columns for each family. NoGRU,TCN orCNN comparator verified.",
+        "non_votes": [
+          "GFN and MFN are distinct described architectures, not additional MLPvotes"
+        ],
+        "policy": "Una familia por experimento; las arquitecturas distintas no se colapsan en MLP y variantes no son estudios."
+      },
+      "publication": {
+        "type": "journal",
+        "journal": "Financial Innovation",
+        "volume": "11",
+        "pages": "129"
+      },
+      "dependency_check": {
+        "compared_with": "E1X001 / Brauneis–Sahiner DOI10.1007/s10690-024-09510-6",
+        "unit": "independently_described_training_evaluation_protocol",
+        "result": "distinct_described_experiment; no_positive_forecast_or_fit_reuse_documented",
+        "evidence": [
+          "Korkusuz: CryptoDataDownload4coins2018–2023,1716dailyvariance,rolling1000/716,owncrosscoinlags/VARconnectedness.",
+          "Brauneis: Coinbase8coins2021–2022,1461six-hourvariance,rolling1169/292,6sentimentchannels,TensorFlow/Bayesianrecipe.",
+          "PrimaryKorkusuzfullHTMLsearch found no positive statement of reused Brauneis forecasts/fits."
+        ],
+        "limit": "Shared author and partial calendar overlap remain; this does not establish independent markets or no common raw data."
+      }
+    },
+    {
+      "id": "E1F-M03",
+      "title": "Learning to Predict Short-Term Volatility with Order Flow Image Representation",
+      "doi": "10.1109/CAI59869.2024.00154",
+      "genre": "publication",
+      "stratum": "crypto_realized_or_historical_continuous_construct",
+      "target": {
+        "description": "Square root of sum of squared log returns over the next 60 seconds.",
+        "quantity": "realized_standard_deviation_sqrt_sum_next60seconds_logreturns_squared",
+        "construct_verified": true,
+        "future_forecast_verified": true,
+        "numerical_horizon_verified": true,
+        "same_as_E1_sigma7": false,
+        "horizon_as_reported": "DE realizada futura60s=sqrt(sum r_future²); BTC/USDT perpetuo. Receta básica MLP/anchosLSTM incompletos.",
+        "scale_family": "standard_deviation_or_log_standard_deviation"
+      },
+      "independentfamilies": [
+        "MLP",
+        "LSTM",
+        "CNN_generic"
+      ],
+      "hybridfamilies": [
+        "CNN_Aggr",
+        "ResNet18",
+        "ConvMixer"
+      ],
+      "reported_autonomous_families": [
+        "MLP",
+        "LSTM",
+        "CNN_generic"
+      ],
+      "architecture_reporting": {
+        "status": "partial_reference_recipe",
+        "recipe": "Fully connected MLP on aggregated features; exact hidden widths/depth not specified in inspected full text.",
+        "missing": [
+          "MLP: profundidad, anchuras y activación no recuperadas; LSTM: anchuras no recuperadas."
+        ],
+        "source_details": [
+          {
+            "family": "MLP",
+            "role": "MLP autónoma de referencia sobre variables agregadas; anchos/profundidad no recuperados.",
+            "independent_comparator_verified": true,
+            "evidence_location": "§III-D; §IV; Tabla II.",
+            "source_url": "https://arxiv.org/pdf/2304.02472v2",
+            "source_sha256": null
+          }
+        ],
+        "family_recipes": {
+          "MLP": "393aggregatedfeatures; fullyconnected network; hidden depth, widths and activations absent in inspectedtext.",
+          "LSTM": "3LSTMlayers plusaffineregression; widths absent.",
+          "CNN_generic": "CNNPred2Dkernel1firstlayer; CNN1D6convfilter5; separateTableII. NaiveCNN3convwithBN/pool/ReLU and128latenthead also described."
+        }
+      },
+      "protocolquality": {
+        "status": "primary_protocol_with_known_limits",
+        "details": {
+          "split": "Daily January1–30 2021 BTCUSDTperpetualfutures; chronological3:1:1train/val/test; 240secondinputs step10seconds ->230secondsinputoverlap.",
+          "hpo": "GARCHp/qsearch smallsubset; neuraloptimizer/grid details not reconstructed in inspectedtext.",
+          "repetitions": "Mean±SDacross dailydata; independent randomseedrepetitioncount not given. Do notcall30days30independentinitializations.",
+          "statistics": "RMSPEmean±SD; no formalforecastaccuracytest recovered.",
+          "leakage_risks": "Stronglyoverlappingwindows, no embargo/purging stated; percentile99pixelclipping anddaynormalizationfit scope unclear. Figure3/4 June2022visualization andJanuary2021evaluation dates coexist; retain role distinction instead of assuming error.",
+          "known_scope_limit": "Orderbook/trades ofBTCfutures andminuteaheadstd; E1 dailyOHLCVstandarddeviation differs."
+        },
+        "limitations": "Stronglyoverlappingwindows, no embargo/purging stated; percentile99pixelclipping anddaynormalizationfit scope unclear. Figure3/4 June2022visualization andJanuary2021evaluation dates coexist; retain role distinction instead of assuming error.",
+        "source_location": [
+          "§II-A realisedvolatilityformula",
+          "§III-Adata;§III-Dmodels",
+          "§IVchronological3:1:1/TableII",
+          "Figure3caption daynormalization andJune2022visualization"
+        ]
+      },
+      "decision": {
+        "primary_document_read": true,
+        "continuous_crypto_construct_corpus": true,
+        "baseline_role_verified": true,
+        "frequency_eligible": true,
+        "minimum_reporting_adequate_for_candidate_appraisal": false,
+        "guide31_reporting_sensitivity_eligible": false,
+        "unverified_does_not_mean_absent": true
+      },
+      "reason": "§III-D lists fullyconnectedMLP,CNNPred2D,CNN1D,LSTM1D separately. TableII gives distinctscores for all. LSTM1DthreeLSTMlayers; CNN1Dsixconvfilter5. ProposedCNN-Aggriscomparedagainstthose alternatives. Apply same study-level reporting sensitivity as S8: selected MLP architecture is not sufficiently specified, though its independent role is verified. More complete CNNrecipe does not silently repair missing MLPbaseline. Can expose family-specific sensitivity separately if rule preregistered/documented.",
+      "evidence_file_locations": [
+        "references/literature_e1/free_model_expansion_20261107/inputs.json#MLP03"
+      ],
+      "primary_evidence_locations": [
+        "§II-A realisedvolatilityformula",
+        "§III-Adata;§III-Dmodels",
+        "§IVchronological3:1:1/TableII",
+        "Figure3caption daynormalization andJune2022visualization"
+      ],
+      "identity": {
+        "canonical_key": "doi:10.1109/cai59869.2024.00154",
+        "aliases": [
+          "MLP03",
+          "E1F-M03"
+        ],
+        "deduplication_rule": "DOI normalizado y versiones de una obra; no se duplica preprint/publicación",
+        "dependence_group": "E1F-M03",
+        "independent_base_experiment": true,
+        "normalized_title": "learning to predict short term volatility with order flow image representation",
+        "version_source_locations": [
+          "https://arxiv.org/pdf/2304.02472v2"
+        ]
+      },
+      "historical_N7_inclusion": false,
+      "document_genre_detail": "congreso_publicado_IEEE_CAI_2024_pp817_822; version_gratuita_arXiv",
+      "publication_identity_status": "Identidad publicada verificada",
+      "primary_source_urls": [
+        "https://arxiv.org/pdf/2304.02472v2"
+      ],
+      "lstm_variant": "unidirectional",
+      "expansion_intake_id": "MLP03",
+      "existing_identity": false,
+      "citation_key": "E1Search_MLP03",
+      "authors": [
+        "Artem Lensky",
+        "Mingyu Hao"
+      ],
+      "year": 2024,
+      "online_year": null,
+      "free_fulltext_url": "https://arxiv.org/pdf/2304.02472v2",
+      "source_version": "2024 IEEE Conference on Artificial Intelligence (CAI), pp.817–822",
+      "access_method": "True",
+      "metadata_sources": [
+        "https://dblp.org/rec/conf/ieeecai/LenskyH24.html?view=bibtex",
+        "https://doi.org/10.1109/CAI59869.2024.00154"
+      ],
+      "alternate_version_doi": "10.48550/arXiv.2304.02472",
+      "family_audit": {
+        "positive_role_evidence": "§III-D lists fullyconnectedMLP,CNNPred2D,CNN1D,LSTM1D separately. TableII gives distinctscores for all. LSTM1DthreeLSTMlayers; CNN1Dsixconvfilter5. ProposedCNN-Aggriscomparedagainstthose alternatives.",
+        "non_votes": [
+          "CNNPred2D andCNN1D countoneCNNfamily",
+          "ResNet18/ConvMixer/CNN-Aggr advanced/proposedvariants do notaddbasicfamilyvotes",
+          "CNN-LSTM failedhybridmentionedwithoutseparatebasisfornewfamilyvote"
+        ],
+        "policy": "Una familia por experimento; las arquitecturas distintas no se colapsan en MLP y variantes no son estudios."
+      },
+      "publication": {
+        "type": "conference",
+        "booktitle": "2024 IEEE Conference on Artificial Intelligence (CAI)",
+        "pages": "817--822"
+      }
+    },
+    {
+      "id": "E1F-M04",
+      "title": "Volatility Forecasting with Machine Learning and Intraday Commonality",
+      "doi": "10.1093/jjfinec/nbad005",
+      "genre": "publication",
+      "stratum": "transfer_equity_realized",
+      "target": {
+        "description": "Log sum of squared intraday returns, horizons10min,30min,65min,1day across US stocks. Intraday2Daily extension forecasts next-day volatility.",
+        "quantity": "log_realized_variance",
+        "construct_verified": true,
+        "future_forecast_verified": true,
+        "numerical_horizon_verified": true,
+        "same_as_E1_sigma7": false,
+        "horizon_as_reported": "Log-varianza realizada de acciones EEUU; intradía y siguiente día; MLP ReLU e intraday pooling.",
+        "scale_family": "variance_or_log_variance"
+      },
+      "independentfamilies": [
+        "MLP",
+        "LSTM"
+      ],
+      "hybridfamilies": [],
+      "reported_autonomous_families": [
+        "MLP",
+        "LSTM"
+      ],
+      "architecture_reporting": {
+        "status": "substantive_architecture_and_protocol",
+        "recipe": "Nonlinear fully connected feedforward MLP with ReLU, Eq.14; main model3hidden layers; AppendixB explicitly tests1,2,3hidden-layer MLPs. Ten random seeds averaged within model; not ten independent papers.",
+        "missing": [],
+        "source_details": [
+          {
+            "family": "MLP",
+            "role": "MLP autónoma ReLU; variantes de una, dos y tres capas ocultas.",
+            "independent_comparator_verified": true,
+            "evidence_location": "§5.1.6, Ecuación 14; Tabla 3; Apéndice B, Tablas B1–B2.",
+            "source_url": "https://arxiv.org/pdf/2202.08962",
+            "source_sha256": null
+          }
+        ]
+      },
+      "protocolquality": {
+        "status": "described_with_explicit_limits",
+        "details": {
+          "architecture": "Nonlinear fully connected feedforward MLP with ReLU, Eq.14; main model3hidden layers; AppendixB explicitly tests1,2,3hidden-layer MLPs. Ten random seeds averaged within model; not ten independent papers.",
+          "target_dataset": "Log-varianza realizada de acciones EEUU; intradía y siguiente día; MLP ReLU e intraday pooling.",
+          "split_and_preprocessing": "not_extracted_in_this_stage",
+          "independent_repetitions": null,
+          "statistical_tests": null,
+          "leakage_absence_verified": false,
+          "unknown_not_absent": true
+        },
+        "limitations": "Ninguna reproducción independiente de los autores realizada."
+      },
+      "decision": {
+        "primary_document_read": true,
+        "continuous_crypto_construct_corpus": false,
+        "baseline_role_verified": true,
+        "frequency_eligible": false,
+        "minimum_reporting_adequate_for_candidate_appraisal": true,
+        "guide31_reporting_sensitivity_eligible": false,
+        "unverified_does_not_mean_absent": true
+      },
+      "reason": "MLP autónoma ReLU; variantes de una, dos y tres capas ocultas. Log-varianza realizada de acciones EEUU; intradía y siguiente día; MLP ReLU e intraday pooling.",
+      "evidence_file_locations": [
+        "references/literature_e1/free_model_expansion_20261107/inputs.json#MLP04"
+      ],
+      "primary_evidence_locations": [
+        "§5.1.6, Ecuación 14; Tabla 3; Apéndice B, Tablas B1–B2."
+      ],
+      "identity": {
+        "canonical_key": "doi:10.1093/jjfinec/nbad005",
+        "aliases": [
+          "MLP04",
+          "E1F-M04"
+        ],
+        "deduplication_rule": "DOI normalizado y versiones de una obra; no se duplica preprint/publicación",
+        "dependence_group": "E1F-M04",
+        "independent_base_experiment": true,
+        "normalized_title": "volatility forecasting with machine learning and intraday commonality",
+        "version_source_locations": [
+          "https://arxiv.org/pdf/2202.08962"
+        ]
+      },
+      "historical_N7_inclusion": false,
+      "document_genre_detail": "peer-reviewed journal article; accepted author manuscript read",
+      "publication_identity_status": "Identidad publicada verificada",
+      "primary_source_urls": [
+        "https://arxiv.org/pdf/2202.08962"
+      ],
+      "lstm_variant": "unidirectional",
+      "expansion_intake_id": "MLP04",
+      "existing_identity": false,
+      "citation_key": "E1Search_MLP04",
+      "authors": [
+        "Chao Zhang",
+        "Yihuang Zhang",
+        "Mihai Cucuringu",
+        "Zhongmin Qian"
+      ],
+      "year": 2024,
+      "online_year": 2023,
+      "free_fulltext_url": "https://arxiv.org/pdf/2202.08962",
+      "source_version": "Author accepted manuscript arXiv v2 revised 24 February2023, 45 PDF pages; actual body opened. Publisher search confirms final DOI and 2024 issue, first publication20March2023.",
+      "access_method": "True",
+      "metadata_sources": [
+        "https://academic.oup.com/jfec/article/22/2/492/7081291"
+      ],
+      "publication": {
+        "type": "journal",
+        "journal": "Journal of Financial Econometrics",
+        "volume": "22",
+        "number": "2",
+        "pages": "492--530"
+      }
+    },
+    {
+      "id": "E1F-M05",
+      "title": "A machine learning approach to volatility forecasting",
+      "doi": "10.1093/jjfinec/nbac020",
+      "genre": "publication",
+      "stratum": "transfer_equity_realized",
+      "target": {
+        "description": "Daily realized variance/quadratic variation using squared intraday returns,29DJIA constituent stocks2001–2017; one-day,one-week,one-month horizons.",
+        "quantity": "realized_variance",
+        "construct_verified": true,
+        "future_forecast_verified": true,
+        "numerical_horizon_verified": true,
+        "same_as_E1_sigma7": false,
+        "horizon_as_reported": "Varianza realizada diaria de29accionesDJIA2001–2017; horizontes1d/1semana/1mes.",
+        "scale_family": "variance_or_log_variance"
+      },
+      "independentfamilies": [
+        "MLP"
+      ],
+      "hybridfamilies": [],
+      "reported_autonomous_families": [
+        "MLP"
+      ],
+      "architecture_reporting": {
+        "status": "substantive_architecture_and_protocol",
+        "recipe": "NN1 has one hidden layer with2neurons; NN2(4,2),NN3(8,4,2),NN4(16,8,4,2), LeakyReLU and Adam. NN1 is a verified nonlinear MLP-equivalent, not inferred from ANN label.",
+        "missing": [],
+        "source_details": [
+          {
+            "family": "MLP",
+            "role": "NN1–NN4 feedforward; NN1 tiene una capa oculta de dos neuronas y LeakyReLU.",
+            "independent_comparator_verified": true,
+            "evidence_location": "§2.5, Ecuaciones 23–25; resultados NN1–NN4.",
+            "source_url": "https://pure.au.dk/ws/files/414118629/A_machine_learning_approach_to_volatility_forecasting_2023_AM.pdf",
+            "source_sha256": null
+          }
+        ]
+      },
+      "protocolquality": {
+        "status": "described_with_explicit_limits",
+        "details": {
+          "architecture": "NN1 has one hidden layer with2neurons; NN2(4,2),NN3(8,4,2),NN4(16,8,4,2), LeakyReLU and Adam. NN1 is a verified nonlinear MLP-equivalent, not inferred from ANN label.",
+          "target_dataset": "Varianza realizada diaria de29accionesDJIA2001–2017; horizontes1d/1semana/1mes.",
+          "split_and_preprocessing": "not_extracted_in_this_stage",
+          "independent_repetitions": null,
+          "statistical_tests": null,
+          "leakage_absence_verified": false,
+          "unknown_not_absent": true
+        },
+        "limitations": "Related DOI10.1093/jjfinec/nbac032 identifies a correction to this paper concerning Corsi2009 being misquoted as2008. Canonical main article DOI is nbac020; correction is not a separate experiment."
+      },
+      "decision": {
+        "primary_document_read": true,
+        "continuous_crypto_construct_corpus": false,
+        "baseline_role_verified": true,
+        "frequency_eligible": false,
+        "minimum_reporting_adequate_for_candidate_appraisal": true,
+        "guide31_reporting_sensitivity_eligible": false,
+        "unverified_does_not_mean_absent": true
+      },
+      "reason": "NN1–NN4 feedforward; NN1 tiene una capa oculta de dos neuronas y LeakyReLU. Varianza realizada diaria de29accionesDJIA2001–2017; horizontes1d/1semana/1mes.",
+      "evidence_file_locations": [
+        "references/literature_e1/free_model_expansion_20261107/inputs.json#MLP05"
+      ],
+      "primary_evidence_locations": [
+        "§2.5, Ecuaciones 23–25; resultados NN1–NN4."
+      ],
+      "identity": {
+        "canonical_key": "doi:10.1093/jjfinec/nbac020",
+        "aliases": [
+          "MLP05",
+          "E1F-M05"
+        ],
+        "deduplication_rule": "DOI normalizado y versiones de una obra; no se duplica preprint/publicación",
+        "dependence_group": "E1F-M05",
+        "independent_base_experiment": true,
+        "normalized_title": "a machine learning approach to volatility forecasting",
+        "version_source_locations": [
+          "https://pure.au.dk/ws/files/414118629/A_machine_learning_approach_to_volatility_forecasting_2023_AM.pdf"
+        ]
+      },
+      "historical_N7_inclusion": false,
+      "document_genre_detail": "peer-reviewed journal article; author manuscript read",
+      "publication_identity_status": "Identidad publicada verificada",
+      "primary_source_urls": [
+        "https://pure.au.dk/ws/files/414118629/A_machine_learning_approach_to_volatility_forecasting_2023_AM.pdf"
+      ],
+      "lstm_variant": null,
+      "expansion_intake_id": "MLP05",
+      "existing_identity": false,
+      "citation_key": "E1Search_MLP05",
+      "authors": [
+        "Kim Christensen",
+        "Mathias Voldum Siggaard",
+        "Bezirgen Veliyev"
+      ],
+      "year": 2023,
+      "online_year": null,
+      "free_fulltext_url": "https://pure.au.dk/ws/files/414118629/A_machine_learning_approach_to_volatility_forecasting_2023_AM.pdf",
+      "source_version": "Official Aarhus author accepted manuscript dated27May2022,58PDFpages including institutional cover; actual full body opened. Cover explicitly verifies DOI nbac020. arXiv version also read.",
+      "access_method": "True",
+      "metadata_sources": [
+        "https://pure.au.dk/portal/en/publications/a-machine-learning-approach-to-volatility-forecasting/"
+      ],
+      "publication": {
+        "type": "journal",
+        "journal": "Journal of Financial Econometrics",
+        "volume": "21",
+        "number": "5",
+        "pages": "1680--1727"
+      }
+    },
+    {
+      "id": "E1F-M06",
+      "title": "Do artificial neural networks provide improved volatility forecasts: Evidence from Asian markets",
+      "doi": "10.1007/s12197-023-09629-8",
+      "genre": "publication",
+      "stratum": "transfer_equity_conditional_variance",
+      "target": {
+        "description": "Conditional variance forecast evaluated against squared daily returns proxy; tenAsianstockindices1994–2018. This is NOT high-frequency realized volatility.",
+        "quantity": "conditional_variance_evaluated_against_squared_returns",
+        "construct_verified": true,
+        "future_forecast_verified": true,
+        "numerical_horizon_verified": true,
+        "same_as_E1_sigma7": false,
+        "horizon_as_reported": "Varianza condicional de10índicesasiáticos; proxyretornodiario²; noRV de altafrecuencia.",
+        "scale_family": "variance_or_log_variance"
+      },
+      "independentfamilies": [
+        "MLP",
+        "LSTM",
+        "RNN_simple",
+        "RBFN",
+        "ANFIS",
+        "CANFIS",
+        "PNN",
+        "GFN",
+        "MFN"
+      ],
+      "hybridfamilies": [],
+      "reported_autonomous_families": [
+        "MLP",
+        "LSTM",
+        "RNN_simple",
+        "RBFN",
+        "ANFIS",
+        "CANFIS",
+        "PNN",
+        "GFN",
+        "MFN"
+      ],
+      "architecture_reporting": {
+        "status": "substantive_architecture_and_protocol",
+        "recipe": "Explicit MLP formula in §3.2.1 has single logistic hidden layer plus linear output. Implementation §3.3 instead states maximum2hidden layers and tanh; exact realized MLP neuron counts not resolved. Call it verified MLP, not definitively one-hidden logistic implementation.",
+        "missing": [],
+        "source_details": [
+          {
+            "family": "MLP",
+            "role": "MLP autónoma frente a RNN, LSTM y modelos econométricos; distinguir fórmula ilustrativa de implementación.",
+            "independent_comparator_verified": true,
+            "evidence_location": "§3.2.1, Ecuaciones 7–9; §3.3; Tabla 3.",
+            "source_url": "https://link.springer.com/content/pdf/10.1007/s12197-023-09629-8.pdf",
+            "source_sha256": null
+          }
+        ]
+      },
+      "protocolquality": {
+        "status": "described_with_explicit_limits",
+        "details": {
+          "architecture": "Explicit MLP formula in §3.2.1 has single logistic hidden layer plus linear output. Implementation §3.3 instead states maximum2hidden layers and tanh; exact realized MLP neuron counts not resolved. Call it verified MLP, not definitively one-hidden logistic implementation.",
+          "target_dataset": "Varianza condicional de10índicesasiáticos; proxyretornodiario²; noRV de altafrecuencia.",
+          "split_and_preprocessing": "not_extracted_in_this_stage",
+          "independent_repetitions": null,
+          "statistical_tests": null,
+          "leakage_absence_verified": false,
+          "unknown_not_absent": true
+        },
+        "limitations": "Ninguna reproducción independiente de los autores realizada."
+      },
+      "decision": {
+        "primary_document_read": true,
+        "continuous_crypto_construct_corpus": false,
+        "baseline_role_verified": true,
+        "frequency_eligible": false,
+        "minimum_reporting_adequate_for_candidate_appraisal": true,
+        "guide31_reporting_sensitivity_eligible": false,
+        "unverified_does_not_mean_absent": true
+      },
+      "reason": "MLP autónoma frente a RNN, LSTM y modelos econométricos; distinguir fórmula ilustrativa de implementación. Varianza condicional de10índicesasiáticos; proxyretornodiario²; noRV de altafrecuencia.",
+      "evidence_file_locations": [
+        "references/literature_e1/free_model_expansion_20261107/inputs.json#MLP06"
+      ],
+      "primary_evidence_locations": [
+        "§3.2.1, Ecuaciones 7–9; §3.3; Tabla 3."
+      ],
+      "identity": {
+        "canonical_key": "doi:10.1007/s12197-023-09629-8",
+        "aliases": [
+          "MLP06",
+          "E1F-M06"
+        ],
+        "deduplication_rule": "DOI normalizado y versiones de una obra; no se duplica preprint/publicación",
+        "dependence_group": "E1F-M06",
+        "independent_base_experiment": true,
+        "normalized_title": "do artificial neural networks provide improved volatility forecasts evidence from asian markets",
+        "version_source_locations": [
+          "https://link.springer.com/content/pdf/10.1007/s12197-023-09629-8.pdf"
+        ]
+      },
+      "historical_N7_inclusion": false,
+      "document_genre_detail": "peer-reviewed open-access journal article; published16May2023",
+      "publication_identity_status": "Identidad publicada verificada",
+      "primary_source_urls": [
+        "https://link.springer.com/content/pdf/10.1007/s12197-023-09629-8.pdf"
+      ],
+      "lstm_variant": "unidirectional",
+      "expansion_intake_id": "MLP06",
+      "existing_identity": false,
+      "citation_key": "E1Search_MLP06",
+      "authors": [
+        "Mehmet Sahiner",
+        "David G. McMillan",
+        "Dimos Kambouroudis"
+      ],
+      "year": 2023,
+      "online_year": null,
+      "free_fulltext_url": "https://link.springer.com/content/pdf/10.1007/s12197-023-09629-8.pdf",
+      "source_version": "Publisher open-access article,40PDFpages, full HTML/PDF actually opened.",
+      "access_method": "True",
+      "metadata_sources": [
+        "https://link.springer.com/article/10.1007/s12197-023-09629-8"
+      ],
+      "publication": {
+        "type": "journal",
+        "journal": "Journal of Economics and Finance",
+        "volume": "47",
+        "number": "3",
+        "pages": "723--762"
+      }
+    }
+  ],
+  "adjudication_policy": {
+    "target": "Same crypto continuous volatility construct as historical protocol; other markets separate; no exact sigma7 requirement.",
+    "reporting": "Same study-level reporting test as S8/PSO-GRU/Dudek; absence of selected width alone not universal exclusion.",
+    "access": "Vo is indexed primary partial only, not a complete original read.",
+    "families": "Only positively verified autonomous comparator roles; simple CNN proposals and hybrids are not automatic base votes.",
+    "same_work": "Author preprint and final DOI are versions of one work; corrigendum is not an experiment.",
+    "quota": "Seven TCN and six MLP papers is intake organisation, not observed prevalence."
+  }
+}

@@ -151,7 +151,7 @@ Estos registros no borran la exposición previa a 2024 y al test histórico. Los
 | Confirmación temporal nueva | Pendiente |
 | Margen para E2 | Definido ahora, después de test |
 
-Las recetas no se cambian tras la puntuación. La documentación vigente usa exclusivamente este trío y persistencia como referencia contextual.
+Las recetas no se cambian tras la puntuación. El experimento vigente compara **GRU, LSTM y TCN**, con persistencia como referencia contextual. MLP aparece en la revisión de candidatos y en antecedentes experimentales identificados por su fecha; no forma parte de esta terna ni de sus resultados finales.
 
 ## 4.2. Implementación de los Tres Modelos Base
 
@@ -167,7 +167,9 @@ Las redes implementadas comparten información disponible y salida positiva. Se 
 
 Las [especificaciones](../_static/gru_lstm_tcn_20261105/model_specs.json) distinguen estos modelos de una reproducción de recetas publicadas. La TCN suma residuales y una proyección 1×1 en el primer bloque; no utiliza atención, normalización temporal ni información futura.
 
-Akbiyik et al. (2023) {cite:p}`akbiyik2023` aporta comparadores GRU, LSTM y TCN para volatilidad de Bitcoin; Miura et al. (2019) {cite:p}`miura2019` aporta apoyo independiente para GRU y LSTM, según el capítulo 3. En el corpus de siete estudios las frecuencias estrictas son GRU 3/7, LSTM 5/7 y TCN 1/7. El respaldo de TCN es limitado. GRU y LSTM son dos alternativas recurrentes de complejidad distinta; no se afirma que su falta de redundancia haya quedado demostrada.
+Akbiyik et al. (2023) {cite:p}`akbiyik2023` aporta comparadores GRU, LSTM y TCN para volatilidad de Bitcoin; Miura et al. (2019) {cite:p}`miura2019` aporta apoyo independiente para GRU y LSTM. En el **corte histórico del 05/11/2026**, las frecuencias de aquel corpus de siete estudios fueron GRU 3/7, LSTM 5/7 y TCN 1/7. La {ref}`síntesis acumulada actual <homogeneous-expansion-e1>` conserva ese corte y aplica una regla común a las lecturas nuevas, con mercados, objetivos y papeles separados.
+
+La {ref}`ampliación de fuentes gratuitas <free-model-expansion-e1>` añade respaldo metodológico para TCN y MLP, diferenciando comparadores autónomos, variantes y propuestas híbridas. Un estudio de VIX o de bolsa no aumenta por sí mismo la frecuencia específica de volatilidad realizada cripto. GRU y LSTM comparten recurrencia pero difieren en la actualización de estado y el uso de una celda separada; TCN utiliza filtros causales dilatados. Es un contraste de mecanismos bajo la misma entrada, sin demostrar independencia de errores o complementariedad predictiva.
 
 ### 4.2.2. Entrenamiento con el mismo pipeline, partición y semillas
 

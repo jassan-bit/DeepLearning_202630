@@ -1,12 +1,22 @@
 # Evidencia documental del Entregable 1
 
-## Ampliación vigente del 6 de noviembre de 2026
+## Actualización vigente del 7 de noviembre de 2026
+
+La bibliografía canónica reúne **70 referencias**. La [ampliación gratuita TCN/MLP](free_model_expansion_20261107/README.md) documenta 13 obras seleccionadas: tres ya citadas y diez incorporaciones. Sus [autores, DOI y rutas gratuitas](free_model_expansion_20261107/references.csv), [BibTeX](free_model_expansion_20261107/references.bib) y [lecturas críticas](free_model_expansion_20261107/readings.json) distinguen publicaciones, versiones de autor, un preprint y el texto editorial indexado parcial de Vo.
+
+La [síntesis acumulada](homogeneous_expansion_20261107/README.md) incorpora las nuevas identidades al registro anterior, cuenta todas las familias de referencia verificadas y conserva separados los objetivos cripto, la transferencia financiera y los componentes híbridos. La cuota dirigida de siete fuentes TCN y seis MLP no es una frecuencia poblacional. **GRU, LSTM y TCN son la terna experimental; MLP es una alternativa bibliográfica y un antecedente histórico.**
+
+La [bitácora nativa acreditada](native_execution_20261107/README.md) conserva las consultas del 06/11/2026 en Colombia: WoS 271 resultados, Scopus 538 e IEEE 32; se recibieron 271/538/25 registros. Los 620 grupos de esa ronda son candidatos de recuperación, sin afirmación de cribado completo. Esta búsqueda web complementaria no reescribe consultas ni conteos nativos.
+
+Los directorios anteriores conservan sus cortes y manifiestos. El corte homogéneo anterior está en `homogeneous_synthesis_20261107/`; la síntesis vigente se distribuye como una etapa nueva y no modifica sus archivos históricos.
+
+## Corte histórico del 6 de noviembre de 2026
 
 `native_search_20261106/` conserva cuatro exportaciones recibidas (244 ocurrencias, 182 grupos provisionales), deduplicación, primera pasada y cola de revisión. `primary_reviews_20261106/` contiene cinco fichas de acceso: dos originales completos adicionales, dos resúmenes y una lectura primaria parcial. CVI implícita y redes dentro de híbridos GARCH permanecen en estratos distintos de los siete textos del corte del 05/11. Ese complemento reunió 42 referencias; su cantidad no equivale a estudios elegibles. Los manifiestos identifican evidencia y límites, sin declarar un PRISMA global cerrado.
 
 `editorial_screening_20261106/` añade decisiones individuales de título/resumen sobre los grupos nuevos. Distingue exclusiones del núcleo, candidatos que requieren original y límites de fecha o deduplicación. Es una revisión editorial asistida posterior a la ingesta; no reemplaza sus archivos ni certifica inclusión por resumen. `selection_synthesis_20261106/` compara recurrencia, simplicidad y mecanismos de las familias candidatas sin ampliar artificialmente el denominador.
 
-`crypto_extension_20261105/` conserva los siete textos y las frecuencias históricas; `gru_lstm_tcn_selection_20261105/` identifica la terna experimental. Sus resultados, HPO y piloto están en los capítulos 4, 5 y 9 y no cambian con esta ampliación. La consulta acreditada de IEEE, elementos del historial nativo y la elegibilidad por original que corresponda siguen pendientes.
+`crypto_extension_20261105/` conserva los siete textos y las frecuencias históricas; `gru_lstm_tcn_selection_20261105/` identifica la terna experimental. Sus resultados, HPO y piloto están en los capítulos 4, 5 y 9 y no cambian con esta ampliación. En aquel corte seguían pendientes la consulta acreditada de IEEE y elementos del historial nativo. La ronda documentada en `native_execution_20261107/` acredita después las tres bases; la recuperación histórica no se afirma.
 
 ## Archivo histórico del 3 de noviembre de 2026
 

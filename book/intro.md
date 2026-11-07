@@ -3,9 +3,11 @@
 **Proyecto de Deep Learning · 2026-30**  
 **Profesor:** Dr. Lihki Rubio  
 **Autor:** Jassan Arteta  
-**Avance:** Entregable 1 · GRU–LSTM–TCN, CV de Filipe y modelo final D7 · recuperación de literatura, curvas reproducidas y margen académico del 6 de noviembre de 2026
+**Avance:** Entregable 1 · GRU–LSTM–TCN, CV de Filipe y modelo final D7 · actualización bibliográfica y síntesis comparativa del 7 de noviembre de 2026
 
 Este libro desarrolla el **Entregable 1 de Deep Learning** para pronosticar volatilidad de **Bitcoin**, con datos oficiales de **Binance Spot BTCUSDT**. El problema es **tipo 4: regresión temporal**: cinco covariables OHLCV diarias, desviación estándar poblacional de siete retornos logarítmicos y horizonte de un día. Se conserva la validación **`split_train_val_forwardChaining` de `timeseries-cv`**, proyecto de DidierRLopes con coautoría de **Filipe R. Ramos**, con embargo y transformaciones ajustadas únicamente al pasado permitido.
+
+**Los tres modelos del experimento son GRU, LSTM y TCN.** MLP se examina como alternativa encontrada en la literatura y como antecedente histórico del repositorio. Las tablas del benchmark actual comparan la terna experimental y la referencia de persistencia.
 
 El estudio tiene **dos fases identificadas por separado**. La fase I evalúa las cuatro entradas D=7/14/21/28 con diez semillas y un test histórico ya observado. La fase II mantiene **D7, n=7 y h=1**, registra una búsqueda equitativa, ejecuta un piloto antes de su ajuste definitivo y evalúa una reserva histórica distinta con métodos fijados previamente.
 
@@ -13,7 +15,7 @@ El estudio tiene **dos fases identificadas por separado**. La fase I evalúa las
 
 - [Problema y dataset](sections/01_problema_dataset.md): formulación, fuente, reloj de información y definición de σ₇.
 - [Análisis exploratorio](sections/02_eda.md): calidad, estructura temporal y decisiones derivadas del desarrollo 2023–2024.
-- [Estado del arte](sections/03_estado_arte.md): extracción de GRU–LSTM–TCN y límites de recurrencia bibliográfica.
+- [Estado del arte](sections/03_estado_arte.md): búsqueda, modelos de referencia y justificación de GRU–LSTM–TCN frente a otras alternativas.
 - [Implementación y evaluación](sections/04_implementacion_evaluacion.md): arquitecturas, cuatro entradas iniciales, purgas y alcance de las dos fases.
 - [Benchmark inicial](sections/05_benchmark.md): tablas de CV y del test histórico, baseline e inferencia exploratoria.
 - [Procedimiento temporal](sections/06_procedimiento.md): ruta 6.4 de la guía y disponibilidad causal.
@@ -69,9 +71,11 @@ Las [tablas de CV de fase I](_static/gru_lstm_tcn_20261105/metric_summary_cv.csv
 
 ## Literatura y límites científicos
 
-La bibliografía canónica reúne **60 referencias**. La {ref}`síntesis homogénea actual <homogeneous-selection-e1>` concilia 47 identidades documentales y distingue **26 originales completos leídos y una transcripción completa**, fuentes parciales y textos no recuperados. Dentro del núcleo de volatilidad realizada cripto hay **12 estudios**, diez con comparadores básicos extraíbles: **LSTM 10/10, GRU 4/10, MLP 3/10 y TCN 1/10**. El estrato elegible por suficiencia de reporte contiene **ocho estudios**: LSTM 8/8, GRU 2/8, MLP 2/8 y TCN 1/8. N10 es la extracción descriptiva; los denominadores y exclusiones de reporte se publican; no se mezclan precios, dirección, volatilidad implícita o componentes híbridos para aumentar frecuencias.
+La bibliografía canónica reúne **70 referencias**. La {ref}`ampliación gratuita TCN/MLP <free-model-expansion-e1>` documenta **13 obras seleccionadas: tres ya citadas y diez incorporaciones**, con autores, DOI, enlaces al texto y evaluación de su papel comparativo. Doce tienen identidad de publicación en revista o congreso; Ge et al. permanece como preprint. Las fuentes de otros mercados y los híbridos aportan evidencia relacionada, separada del pronóstico de volatilidad realizada cripto.
 
-La terna **GRU–LSTM–TCN** conserva el experimento registrado: dos reglas de actualización recurrente y una representación convolucional causal sobre la misma entrada D7. La tabla conjunta documenta recetas, parámetros y sesgos inductivos. **MLP es una alternativa más frecuente y más pequeña que TCN en la evidencia disponible**; existe también una receta histórica propia de 593 parámetros. La elección actual prioriza el contraste entre celdas y filtros y no se presenta como las tres primeras del ranking de frecuencia ni como una solución de complejidad mínima global. La guía exige justificar sesgos diferentes, sin imponer tres familias amplias distintas.
+La {ref}`síntesis acumulada vigente <homogeneous-expansion-e1>` concilia **57 obras**, con **35 textos primarios completos consultados y una transcripción completa**, además de fuentes parciales o no obtenidas. El constructo cripto contiene **15 experimentos independientes**, trece con referencias autónomas extraíbles. El estrato con reporte suficiente reúne **diez experimentos**: **LSTM 10/10, MLP 4/10, GRU 2/10 y TCN 1/10**. La extracción descriptiva de trece registra LSTM 13/13, MLP 6/13, GRU 4/13 y TCN 1/13; una receta insuficiente puede describir una familia sin entrar en el estrato de reporte. El {ref}`corte anterior de 47 obras <homogeneous-selection-e1>` conserva sus propios denominadores y archivos.
+
+La terna **GRU–LSTM–TCN** mantiene el contraste experimental entre dos reglas de estado recurrente y una representación convolucional causal sobre D7. Los nuevos antecedentes de Shin, Vo y Ge refuerzan el uso comparativo de TCN en otros mercados financieros, con niveles de reporte y publicación explícitos. **MLP conserva su lugar de alternativa bibliográfica**, con mayor recurrencia en el corpus cripto y una receta histórica propia de 593 parámetros. La decisión explica el contraste entre mecanismos; no se presenta como las tres primeras posiciones por frecuencia o como mínima complejidad global. La cuota de búsqueda de siete fuentes TCN y seis MLP organiza la recuperación, sin convertirse en una medida de prevalencia.
 
 El flujo histórico conserva **244 ocurrencias y 182 grupos provisionales** de cuatro exportaciones. Los 22 casos que requirieron recuperación quedan al corte como **ocho decisiones de exclusión/contexto y 14 informes no obtenidos**. Es una disposición documentada del flujo, sin obligación de comprar esos textos ni afirmación de haberlos leído. Las {download}`alternativas de acceso gratuito <_static/literature_e1/open_access_replacement_20261107/README.md>` aportan respaldo por tema y función. El corte anterior de siete estudios y sus frecuencias permanecen como evidencia histórica, separado del corpus conciliado actual.
 
