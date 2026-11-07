@@ -1,6 +1,6 @@
 # Curvas reproducidas de las recetas finales D7
 
-Se ejecutaron de nuevo las tres recetas congeladas, con 465 semillas por familia, sólo desarrollo 2023–2024 y código histórico intacto. Esta es una reproducción posterior; no se recuperaron los logs privados originales. Se publicaron protocolo, código y semillas antes de estos ajustes nuevos.
+Se ejecutaron de nuevo las tres recetas congeladas, con 465 semillas por familia, sólo desarrollo 2023–2024 y código histórico intacto. Esta es una reproducción posterior; no se recuperaron los logs privados originales. Se publicaron protocolo, código y semillas antes de esta nueva ejecución.
 
 Fuente inmutable publicada: https://github.com/jassan-bit/DeepLearning_202630/commit/fe41b8ad1eaa1425aad900f6c3cd966843d600c7.
 
@@ -16,4 +16,4 @@ Las figuras agregadas muestran media y rango intercuartil. Cada época incluye s
 
 La selección interna tiene pérdidas train/validación; el reajuste conserva sólo train durante el número cerrado de épocas. La ausencia de validación en el reajuste es intencional. La escala del objetivo se ajusta por separado con los datos permitidos de cada etapa; no comparar directamente los valores entre inner y refit.
 
-Este producto no consulta la reserva de 2026, genera pronósticos nuevos ni cambia el baseline, δ o los resultados originales. Pesos, observaciones, predicciones y valores de escaladores quedan fuera de la publicación.
+Este producto no consulta la reserva de 2026, no genera pronósticos nuevos y no cambia el baseline, δ o los resultados originales. Pesos, observaciones, predicciones y valores de escaladores quedan fuera de la publicación.

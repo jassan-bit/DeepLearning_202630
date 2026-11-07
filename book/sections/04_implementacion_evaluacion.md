@@ -249,7 +249,7 @@ Cada selección interna conserva curvas train/validación; el reajuste conserva 
 
 La figura agrega las curvas disponibles de las corridas, no representa una única semilla o mes. Una curva de reajuste sin validación no selecciona una duración nueva ni demuestra ausencia global de sobreajuste.
 
-Estas curvas corresponden a las recetas iniciales de fase I. Las **recetas del modelo final D7** tienen sus propias [curvas públicas reproducidas en §9.10](09_estudio_planificado.md#curvas-finales-reproducidas), con las 465 semillas por familia y sólo desarrollo 2023–2024. La nueva ejecución conserva los módulos y recetas congelados; distingue reproducción posterior, coincidencias de hashes y recuperación de originales privados. No modifica las métricas históricas ni evalúa de nuevo la reserva.
+Estas curvas corresponden a las recetas iniciales de fase I. Las **recetas del modelo final D7** tienen sus propias {ref}`curvas públicas reproducidas en §9.10 <curvas-finales-reproducidas>`, con las 465 semillas por familia y sólo desarrollo 2023–2024. La nueva ejecución conserva los módulos y recetas congelados; distingue reproducción posterior, coincidencias de hashes y recuperación de originales privados. No modifica las métricas históricas ni evalúa de nuevo la reserva.
 
 #### 4.2.5.2. Número de parámetros
 
