@@ -1,0 +1,895 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:e1:native-execution-manifest:v1",
+  "title": "Fresh E1 native-search execution input manifest",
+  "description": "Input only; no observed result is supplied by the schema. Receipt/review timestamps do not substitute for the search date. A user-confirmed execution day and supplied literal query can satisfy the date/query requirements of guide §3.1 with explicit provenance; exact seconds, editions and ordinal export ranges are supplementary. Conversation images are witnessed sources with null binary hash, never fabricated hash values. The ingestion script checks hashes where bytes exist, explicit field-review links, chronology, range/count agreement, historical preservation and private paths; it cannot interpret screenshots. Native result headings transcribed by the user remain user_declared with separate transcription evidence; they can document the search log without being relabelled visually witnessed. A contextual day from the native export filename and the current session is explicitly distinguished from a user-confirmed day. Search-log completion does not mean exhaustive screening or full §3.1 review closure.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "campaign_id",
+    "evidence",
+    "executions"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "campaign_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/evidence"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "executions": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "items": {
+        "$ref": "#/$defs/execution"
+      }
+    }
+  },
+  "$defs": {
+    "filters": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "publication_year_start": {
+          "type": "integer",
+          "minimum": 1900,
+          "maximum": 2100
+        },
+        "publication_year_end": {
+          "type": "integer",
+          "minimum": 1900,
+          "maximum": 2100
+        },
+        "document_types": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "other": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "publication_year_start",
+        "publication_year_end",
+        "document_types",
+        "other"
+      ]
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "evidence_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+        },
+        "execution_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+        },
+        "path": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^/"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sha256": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "kind": {
+          "enum": [
+            "screenshot",
+            "native_history",
+            "screen_recording",
+            "browser_error",
+            "conversation_image",
+            "conversation_transcription"
+          ]
+        },
+        "collected_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Real instant with explicit offset; >=2026-11-07T00:00:00Z and <=ingestion time."
+        },
+        "reviewed_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time",
+              "description": "Real instant with explicit offset; >=2026-11-07T00:00:00Z and <=ingestion time."
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "verified_fields": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "executed_at",
+              "query_literal",
+              "interface",
+              "field_scope",
+              "collection",
+              "editions",
+              "filters",
+              "displayed_total",
+              "export_range",
+              "access_error",
+              "executed_on",
+              "execution_date_timezone",
+              "exported_all_results",
+              "query_literal_received",
+              "displayed_filter_controls"
+            ]
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "conversation_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "review_provenance": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "evidence_id",
+        "execution_id",
+        "path",
+        "sha256",
+        "kind",
+        "collected_at",
+        "reviewed_at",
+        "verified_fields"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "enum": [
+                  "conversation_image",
+                  "conversation_transcription"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "conversation_ref"
+            ],
+            "properties": {
+              "path": {
+                "type": "null"
+              },
+              "sha256": {
+                "type": "null"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "path": {
+                "type": "string",
+                "pattern": "^/"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "export": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "export_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+        },
+        "path": {
+          "type": "string",
+          "pattern": "^/"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "format": {
+          "enum": [
+            "wos_tagged",
+            "scopus_csv",
+            "ieee_csv",
+            "ieee_plain_text"
+          ]
+        },
+        "range_start": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "range_end": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "range_evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "export_id",
+        "path",
+        "sha256",
+        "format",
+        "range_start",
+        "range_end",
+        "range_evidence_ids"
+      ]
+    },
+    "executed_at_claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Real instant with explicit offset; >=2026-11-07T00:00:00Z and <=ingestion time."
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "value",
+        "evidence_ids"
+      ]
+    },
+    "query_literal_claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "value",
+        "evidence_ids"
+      ]
+    },
+    "interface_claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "value",
+        "evidence_ids"
+      ]
+    },
+    "field_scope_claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "value",
+        "evidence_ids"
+      ]
+    },
+    "collection_claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "value",
+        "evidence_ids"
+      ]
+    },
+    "editions_claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "value",
+        "evidence_ids"
+      ]
+    },
+    "filters_claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "#/$defs/filters"
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "value",
+        "evidence_ids"
+      ]
+    },
+    "displayed_total_claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "value",
+        "evidence_ids"
+      ]
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "execution_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+        },
+        "database": {
+          "enum": [
+            "Web of Science",
+            "Scopus",
+            "IEEE Xplore"
+          ]
+        },
+        "status": {
+          "enum": [
+            "executed",
+            "blocked",
+            "not_executed"
+          ]
+        },
+        "verified": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "executed_at": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/executed_at_claim"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "query_literal": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/query_literal_claim"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "interface": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/interface_claim"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "field_scope": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/field_scope_claim"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "collection": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/collection_claim"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "editions": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/editions_claim"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "filters": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/filters_claim"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "displayed_total": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/displayed_total_claim"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "executed_on": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/executed_on_claim"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "execution_date_timezone": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/execution_date_timezone_claim"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "exported_all_results": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/exported_all_results_claim"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "query_literal_received": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/query_literal_received_claim"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "displayed_filter_controls": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/displayed_filter_controls_claim"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "executed_at",
+            "query_literal",
+            "interface",
+            "field_scope",
+            "collection",
+            "editions",
+            "filters",
+            "displayed_total"
+          ]
+        },
+        "user_declared": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "executed_at": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Real instant with explicit offset; >=2026-11-07T00:00:00Z and <=ingestion time."
+            },
+            "query_literal": {
+              "type": "string",
+              "minLength": 1
+            },
+            "interface": {
+              "type": "string",
+              "minLength": 1
+            },
+            "field_scope": {
+              "type": "string",
+              "minLength": 1
+            },
+            "collection": {
+              "type": "string",
+              "minLength": 1
+            },
+            "editions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 0,
+              "uniqueItems": true
+            },
+            "filters": {
+              "$ref": "#/$defs/filters"
+            },
+            "displayed_total": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "executed_on": {
+              "type": "string",
+              "format": "date"
+            },
+            "execution_date_timezone": {
+              "type": "string",
+              "minLength": 1
+            },
+            "exported_all_results": {
+              "type": "boolean"
+            },
+            "query_literal_received": {
+              "type": "string",
+              "minLength": 1
+            },
+            "displayed_filter_controls": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true
+            }
+          },
+          "required": []
+        },
+        "exports": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/export"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "attempt_evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "reported_native_total_evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+          },
+          "uniqueItems": true
+        },
+        "execution_day_context": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "date",
+            "basis",
+            "source_export_id"
+          ],
+          "properties": {
+            "date": {
+              "type": "string",
+              "format": "date"
+            },
+            "basis": {
+              "const": "native_export_filename_and_current_session_receipt"
+            },
+            "source_export_id": {
+              "type": "string",
+              "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+            },
+            "timezone": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      },
+      "required": [
+        "execution_id",
+        "database",
+        "status",
+        "verified",
+        "user_declared",
+        "exports",
+        "attempt_evidence_ids"
+      ]
+    },
+    "executed_on_claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "string",
+          "format": "date"
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "value",
+        "evidence_ids"
+      ]
+    },
+    "execution_date_timezone_claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "value",
+        "evidence_ids"
+      ]
+    },
+    "exported_all_results_claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "boolean"
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "value",
+        "evidence_ids"
+      ]
+    },
+    "query_literal_received_claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "value",
+        "evidence_ids"
+      ]
+    },
+    "displayed_filter_controls_claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "value",
+        "evidence_ids"
+      ]
+    }
+  }
+}

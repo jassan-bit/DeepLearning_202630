@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "cutoff_utc_date": "2026-11-07",
+  "purpose": "Adjudicación transversal de todos los originales ya revisados y sus registros de acceso; no una nueva búsqueda ni una modificación de N7.",
+  "language": "es",
+  "review_method": "Un adjudicador automatizado consolida fichas primarias preexistentes; revisión crítica independiente de mecanismos por otro agente. Sin doble cribado humano ni acuerdo interevaluador inventado.",
+  "source_inputs": [
+    {
+      "path": "references/literature_e1/crypto_extension_20261105/evidence_matrix.json",
+      "sha256": "4b5eb36f0db801f15df64a5f04cc053a107165a86ff89f755afe9e548ec72f82"
+    },
+    {
+      "path": "references/literature_e1/studies.json",
+      "sha256": "af6047bf4e0a5ca777f28e5235086bd03a9f9948d3b6dc01383eb8326cde74a0"
+    },
+    {
+      "path": "references/literature_e1/primary_reviews_20261106/evidence_matrix.json",
+      "sha256": "de19f2aac65542f35c097d5d2a9a64d4564cea4555ba2a136633a72b157e6385"
+    },
+    {
+      "path": "references/literature_e1/internet_closure_20261106/reviews.json",
+      "sha256": "d1f8d811a261946e7ab85ab211120669cdf995d00370e4659822294fbbd1241b"
+    },
+    {
+      "path": "references/literature_e1/open_access_replacement_20261107/reviews.json",
+      "sha256": "b5e2fe392f185b350c0ca9c0032f80342911a3f0cf8291de42a8f39e1459a303"
+    }
+  ],
+  "identity_rules": [
+    "DOI normalizado domina; T3/E1T3 es una identidad de DeepVol con acceso actualizado.",
+    "Sin DOI se usa título+autores+versión; título parecido no basta (Mukhanov CEUR no es Bekaulova).",
+    "Una publicación y su preprint son una identidad de obra con versión leída explicitada; publicación identificada no implica leer su final editorial.",
+    "Dudek2025 es otro documento con el mismo experimento base de Dudek2024: conservar documento y grupo de dependencia, cero voto adicional.",
+    "No multiplicar por activos, horizontes, variantes, ventanas, semillas ni ablations."
+  ],
+  "homogeneous_eligibility": [
+    "Lectura de fuente primaria original confirmada; transcripción espejo completa, código, resumen o parcial quedan estratos distintos.",
+    "Directa significa pronosticar magnitud futura continua de volatilidad cripto, sin exigir mismo exchange, OHLCV, sigma7, lookback, frecuencia o fechas de E1.",
+    "La matriz confirmada de realizada/histórica exige constructo identificable en fórmula/variable y pronóstico futuro. Horizonte numérico exacto y transformación de ajuste quedan flags separados: su falta no elimina una ocurrencia descriptiva (S8).",
+    "Índices implícitos (CVI cripto/VIX acciones), precio, retorno firmado, estados, riesgo, VaR y transferencias no se mezclan en realizada/histórica. CVI se reconoce relevante a volatilidad continua en su propio estrato.",
+    "S6/Sun2025 sin fórmula y CryptoMamba/Zahid con proxy/datos no reconciliados reciben la misma categoría de objetivo declarado y sensibilidad inclusiva.",
+    "Solo filas/modelos neuronales autónomos cuyo uso comparativo esté verificado suman familias. S9/Linde propuestos sin rol base simple confirmado quedan presencia documentada y denominador de corpus, sin voto de baseline.",
+    "Cabezas Dense, atención, convolución interna, módulos SSM, híbridos GARCH→DL, CNN-LSTM, encoder-decoder y ensembles no se descomponen en votos de familia.",
+    "Conv1D genérica, TCN causal/residual, DCCNN propia y DCC con atención se conservan distintos hasta evidencia estructural; la etiqueta o título no basta.",
+    "Publicación identificada, gris, versión leída, acceso y limitaciones de calidad se codifican separadamente; no transformar un estimado o supuesto en observación real."
+  ],
+  "guide31_reporting_rule": {
+    "purpose": "Sensibilidad de documentación, separada del registro descriptivo; no una garantía de validez ni un umbral numérico inventado por la guía.",
+    "adequate_with_partial_recipe": "Identidad/estructura de referencia sustantiva y protocolo suficiente para entender datos, objetivo, separación temporal/evaluación y ajuste; anchos finales o hiperparámetros faltantes se registran y remiten a búsqueda E2 según §3.2, sin exigir réplica bitexacta.",
+    "insufficient": "La referencia carece de descripción operativa y/o no se describe partición/entrenamiento suficientemente para evaluar el experimento (S8 y PSO-GRU). Se aplica igualmente al histórico y a fuentes nuevas.",
+    "known_risk_not_missing_description": "S7 describe pipeline y variantes pero presenta p12/p8 y escalado total: se conserva ocurrencia con riesgo, sin validar sus puntuaciones. La calidad y la claridad no son sinónimos.",
+    "limitation": "El borde suficiente/parcial requiere juicio crítico, no se convierte en puntaje automático ni prueba de que tres modelos satisfagan toda la guía."
+  },
+  "missingness": {
+    "null": "No verificado/no evaluable, no ausencia.",
+    "empty_list": "No ocurrencia independiente positiva en las filas inspeccionadas bajo la definición de referencia; no prueba ausencia global de familia.",
+    "false": "Falta de verificación positiva según campo, no negación universal.",
+    "frequency": "Número mínimo de ocurrencias comparativas positivamente verificadas; las fuentes sin rol de referencia confirmado no son negativas demostradas."
+  },
+  "selection_limits": [
+    "Frecuencia de este corpus documental no es prevalencia global en la literatura.",
+    "La frecuencia no ordena complejidad o rendimiento; comparar parámetros requiere supuestos y anchuras compatibles.",
+    "No existe un mínimo numérico de artículos para TCN en la guía; tampoco basta citar una ocurrencia para probar simplicidad y uso frecuente.",
+    "La guía pide tres modelos no redundantes en sesgo inductivo, sin imponer tres macrofamilias diferentes.",
+    "Recetas parciales deben conducir a búsqueda E2 declarada antes de entrenar; no seleccionar arquitectura por criterio personal ni atribuir retrospectivamente un benchmark previo a estas fuentes.",
+    "Ninguna métrica externa se agrega con E1 ni se declara reproducción de los autores."
+  ]
+}

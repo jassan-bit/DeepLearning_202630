@@ -105,8 +105,12 @@ class NativeDownloadRefreshTests(unittest.TestCase):
             self.dynamic_stage_names[stage] = names
             self.stage_directories[stage] = directory
         self.supplement_directories = {}
+        self.supplement_names = {}
         for label, spec in refresh.SUPPLEMENTS.items():
             prefix, names = spec["directory"], spec["files"]
+            if names is None:
+                names = {"README.md", "summary.json", "comparison.csv", "manifest.json"} | (
+                    set(spec.get("configuration_files", ())) - {spec["manifest"]})
             directory = self.root / prefix
             for name in names:
                 if name == "summary.json":
@@ -122,8 +126,13 @@ class NativeDownloadRefreshTests(unittest.TestCase):
                 self.write(prefix + "/" + name, value)
             mapping = {name: {"sha256": refresh.legacy.digest((directory / name).read_bytes()),
                               "bytes": (directory / name).stat().st_size} for name in names}
-            self.write(prefix + "/" + spec["manifest"], json.dumps({"files": mapping}) + "\n")
+            manifest = {"files": mapping}
+            if spec["files"] is None:
+                manifest.update(publication_schema=refresh.PUBLICATION_SCHEMA,
+                                approved_public_files=sorted(names))
+            self.write(prefix + "/" + spec["manifest"], json.dumps(manifest) + "\n")
             self.supplement_directories[label] = directory
+            self.supplement_names[label] = names
         self.base = self.root / "book/_static/e1_downloads"
         self.base.mkdir(parents=True)
         records = []
@@ -142,6 +151,9 @@ class NativeDownloadRefreshTests(unittest.TestCase):
             if item == "8.6":
                 payload.update({"experiments/original/design.json": b'{"original_config": true}\n',
                                 "requirements-training.lock.txt": b"original-runtime==1.0\n"})
+            if item == "8.7":
+                payload.update({"literature_refresh_20261106.json": b'{"prior_round": true}\n',
+                                "AMPLIACION_LITERARIA_20261106.md": b"Prior dated literature round\n"})
             self.base_payloads[item] = payload
             records.append(refresh.legacy.archive(self.base / filename, payload, item, "Product " + item,
                                                   "a" * 40, "Original phase I/II notes\n"))
@@ -229,14 +241,14 @@ class NativeDownloadRefreshTests(unittest.TestCase):
                 for name in ("summary.json", "manifest.json"):
                     self.assertIn("book/_static/literature_e1/" + stage + "/" + name, saved.namelist())
             self.assertEqual(saved.read("original_metadata.json"), b'{"historical": true}\n')
-            self.assertIn("prerregistro retrospectivo", saved.read("AMPLIACION_LITERARIA_20261106.md").decode())
-            self.assertIn("SUPLEMENTO_EVIDENCIAS_20261106.md", saved.namelist())
+            self.assertIn("prerregistro retrospectivo", saved.read("AMPLIACION_LITERARIA_" + refresh.REFRESH_ID + ".md").decode())
+            self.assertIn("SUPLEMENTO_EVIDENCIAS_" + refresh.REFRESH_ID + ".md", saved.namelist())
             for label, spec in refresh.SUPPLEMENTS.items():
                 for name in ("summary.json", spec["manifest"]):
                     self.assertIn(spec["directory"] + "/" + name, saved.namelist())
         for label, spec in refresh.SUPPLEMENTS.items():
             with ZipFile(self.output / refresh.ITEMS[spec["item"]]) as saved:
-                for name in spec["files"] | {spec["manifest"]}:
+                for name in self.supplement_names[label] | {spec["manifest"]}:
                     self.assertEqual(saved.read(spec["directory"] + "/" + name),
                                      (self.supplement_directories[label] / name).read_bytes())
                 # Supplemental analyses add separate namespaces; original science remains byte-identical.
@@ -245,6 +257,9 @@ class NativeDownloadRefreshTests(unittest.TestCase):
         self.assertEqual(catalog["evidence_refresh"]["supplements"]["statistics"]["product"], "8.5")
         self.assertEqual(catalog["evidence_refresh"]["supplements"]["curves"]["product"], "8.5")
         self.assertEqual(catalog["evidence_refresh"]["supplements"]["academic_margin"]["product"], "8.7")
+        self.assertEqual(catalog["evidence_refresh"]["date"], refresh.REFRESH_DATE)
+        for label in ("replay_forensics", "replay_repeatability"):
+            self.assertEqual(catalog["evidence_refresh"]["supplements"][label]["product"], "8.5")
         with ZipFile(self.output / refresh.ITEMS["8.6"]) as saved:
             for name, data in self.base_payloads["8.6"].items():
                 self.assertEqual(saved.read(name), data)
@@ -255,6 +270,10 @@ class NativeDownloadRefreshTests(unittest.TestCase):
             for name in ("reproduction_registration.json", "runtime.json", "execution.json"):
                 self.assertEqual(saved.read(curve_prefix + name),
                     (self.supplement_directories["curves"] / name).read_bytes())
+            for label, spec in refresh.SUPPLEMENTS.items():
+                for name in spec.get("configuration_files", ()):
+                    self.assertEqual(saved.read(spec["directory"] + "/" + name),
+                        (self.supplement_directories[label] / name).read_bytes())
         with ZipFile(self.output / refresh.ITEMS["8.7"]) as saved:
             for name in refresh.REPRODUCTION_PROTOCOL_FILES:
                 self.assertEqual(saved.read(name), (self.root / name).read_bytes())
@@ -290,6 +309,8 @@ class NativeDownloadRefreshTests(unittest.TestCase):
         additions = {
             "open_access_replacement_20261107": "scripts/build_e1_open_access_replacement.py",
             "provisional_native_log_20261107": "scripts/build_e1_provisional_native_log.py",
+            "homogeneous_synthesis_20261107": "scripts/build_e1_homogeneous_synthesis.py",
+            "native_execution_20261107": "scripts/ingest_e1_native_execution.py",
         }
         for stage, builder in additions.items():
             self.assertIn(stage, refresh.MANIFEST_STAGES)
@@ -499,6 +520,32 @@ class NativeDownloadRefreshTests(unittest.TestCase):
         path.write_text(json.dumps(original))
         with self.assertRaisesRegex(ValueError, "Private/abstract"):
             refresh.public_stage(directory, spec["files"], spec["manifest"])
+
+    def test_diagnostic_supplements_require_closed_allowlists_and_all_configuration_records(self):
+        for label in ("replay_forensics", "replay_repeatability"):
+            spec = refresh.SUPPLEMENTS[label]
+            directory = self.supplement_directories[label]
+            path = directory / spec["manifest"]
+            original = json.loads(path.read_text())
+            changed = json.loads(path.read_text())
+            changed.pop("approved_public_files")
+            path.write_text(json.dumps(changed))
+            with self.subTest(label=label), self.assertRaisesRegex(ValueError, "explicit closed public approval"):
+                refresh.public_stage(directory, None, spec["manifest"])
+            path.write_text(json.dumps(original))
+        spec = refresh.SUPPLEMENTS["replay_repeatability"]
+        directory = self.supplement_directories["replay_repeatability"]
+        path = directory / spec["manifest"]
+        changed = json.loads(path.read_text())
+        changed["files"].pop("publication_verification.json")
+        changed["approved_public_files"].remove("publication_verification.json")
+        path.write_text(json.dumps(changed))
+        self.git("add", ".")
+        self.commit()
+        self.build()
+        with self.assertRaisesRegex(ValueError, "configuration files must be publicly approved"):
+            refresh.package(self.output)
+        self.assertFalse(self.output.exists())
 
     def test_rejects_broken_plot_trailing_payload_and_unsupported_format(self):
         refresh.validate_public_bytes("qq.png", public_png())

@@ -52,8 +52,11 @@ STAGES = {
 MANIFEST_STAGES = (
     "search_recovery_20261106", "internet_closure_20261106",
     "open_access_replacement_20261107", "provisional_native_log_20261107",
+    "homogeneous_synthesis_20261107", "native_execution_20261107",
 )
 PUBLICATION_SCHEMA = "e1_public_metadata_allowlist_v1"
+REFRESH_DATE = "2026-11-07"
+REFRESH_ID = "20261107"
 SUPPLEMENTS = {
     "dataset_comparison": {
         "directory": "book/_static/e1_dataset_comparison_20261106",
@@ -79,18 +82,34 @@ SUPPLEMENTS = {
                   "runtime.json", "fit_summary.csv", "learning_curves_by_run.csv",
                   "learning_curve_summary.csv", "epoch_summary.csv", "artifact_hash_comparison.csv",
                   "learning_curves_final_recipes.png", "learning_curves_seed8101.png"},
+        "configuration_files": {"reproduction_registration.json", "runtime.json", "execution.json"},
+    },
+    "replay_forensics": {
+        "directory": "book/_static/e1_replay_forensics_20261107",
+        "manifest": "public_allowlist_manifest.json", "item": "8.5", "files": None,
+    },
+    "replay_repeatability": {
+        "directory": "book/_static/e1_replay_repeatability_20261107",
+        "manifest": "public_allowlist_manifest.json", "item": "8.5", "files": None,
+        "configuration_files": {"registration.json", "runtime.json", "execution.json",
+                                "publication_verification.json", "manifest.json",
+                                "public_allowlist_manifest.json"},
     },
 }
 REPRODUCTION_PROTOCOL_FILES = {
     "experiments/e1_curve_reproduction_20261106/protocol.json",
     "experiments/e1_curve_reproduction_20261106/README.md",
+    "experiments/e1_replay_audit_20261107/protocol.json",
+    "experiments/e1_replay_audit_20261107/README.md",
 }
 CHRONOLOGY_NOTE = (
     "La recuperación bibliográfica y la fundamentación académica del margen son posteriores "
     "a los experimentos iniciales. La reproducción de curvas tiene un protocolo y registro "
     "propios y realiza nuevos ajustes de desarrollo; no sustituye los originales históricos "
     "ni modifica sus resultados, recetas, selección o cronologías. Los contrastes suplementarios "
-    "anteriores conservan su carácter posterior. Esta actualización no constituye un prerregistro "
+    "anteriores conservan su carácter posterior. La auditoría forense y la repetibilidad actual "
+    "tienen alcance separado de la identidad histórica; las búsquedas nuevas conservan su "
+    "propia procedencia. Esta actualización no constituye un prerregistro "
     "retrospectivo. Empaquetar consume las evidencias guardadas y no ejecuta ajustes o pronósticos."
 )
 _SHA256 = re.compile(r"^[0-9a-f]{64}$")
@@ -331,9 +350,9 @@ def _readme(item, title, revision, previous):
     return (f"# {item}. {title}\n\nFuente de esta actualización: `{revision}`.\n\n"
             + introduction + CHRONOLOGY_NOTE + "\n\n"
             "El producto 8.3 conserva exactamente el ZIP de la entrega base. "
-            "8.5 conserva sus archivos científicos originales y añade estadística y curvas "
-            "de una reproducción identificada; 8.6 conserva sus configuraciones originales "
-            "y añade el protocolo y metadatos de esa reproducción. 8.7 incorpora contexto "
+            "8.5 conserva sus archivos científicos originales y añade estadística, curvas, "
+            "auditoría forense y repetibilidad actual con alcances identificados; 8.6 conserva "
+            "sus configuraciones originales y añade los protocolos y metadatos correspondientes. 8.7 incorpora contexto "
             "documental, margen y procedencia. "
             "Los manifiestos internos identifican los bytes realmente incluidos.\n\n"
             "## Notas conservadas de la entrega base\n\n" + previous.decode("utf-8"))
@@ -361,6 +380,8 @@ def package(output_dir, requested_revision=None):
     for label, spec in SUPPLEMENTS.items():
         directory = ROOT / spec["directory"]
         files, info = public_stage(directory, spec["files"], spec["manifest"])
+        if not set(spec.get("configuration_files", ())).issubset(files):
+            raise ValueError("Supplement configuration files must be publicly approved: " + label)
         for name in files:
             if (directory / name).relative_to(ROOT).as_posix() not in tracked:
                 raise ValueError("Supplement source is not committed: " + label + "/" + name)
@@ -422,14 +443,14 @@ def package(output_dir, requested_revision=None):
     for label, files in supplements.items():
         spec = SUPPLEMENTS[label]
         prefix = spec["directory"] + "/"
-        for item in {spec["item"], "8.7"} | ({"8.6"} if label == "curves" else set()):
+        for item in {spec["item"], "8.7"} | ({"8.6"} if spec.get("configuration_files") else set()):
             products[item] = {name: data for name, data in products[item].items()
                               if not name.startswith(prefix)}
         for name, data in files.items():
             products[spec["item"]][prefix + name] = data
-            if name in {"summary.json", "source_manifest.json", "manifest.json", "artifact_availability.json"}:
+            if name in {"summary.json", "source_manifest.json", "manifest.json", "artifact_availability.json", spec["manifest"]}:
                 products["8.7"][prefix + name] = data
-            if label == "curves" and name in {"reproduction_registration.json", "runtime.json", "execution.json"}:
+            if name in spec.get("configuration_files", ()):
                 products["8.6"][prefix + name] = data
                 products["8.7"][prefix + name] = data
     # User-confirmed query families and year filters are a separate, reproducible
@@ -446,7 +467,7 @@ def package(output_dir, requested_revision=None):
         for item in ("8.2", "8.4", "8.7"):
             products[item][context_name] = context_data
     refresh = {
-        "date": "2026-11-06", "source_commit": revision,
+        "date": REFRESH_DATE, "source_commit": revision,
         "baseline_source_commit": catalog.get("source_commit"),
         "baseline_catalog_sha256": base_catalog_sha,
         "stages": stage_info,
@@ -454,23 +475,26 @@ def package(output_dir, requested_revision=None):
         "preserved_archive_sha256": {ITEMS[item]: base_rows[item]["sha256"]
                                      for item in sorted(PRESERVED_ITEMS)},
         "original_experiments_changed": False, "retrospective_preregistration": False,
-        "new_analysis_scope": "Reviewed source recovery and development-only margin context; separately registered curve reproduction. Packaging itself performs no training or daily forecasts.",
+        "new_analysis_scope": "Reviewed homogeneous synthesis, documented native searches, development-only margin context, separately registered curve reproduction and diagnostic repeatability. Packaging itself performs no training or daily forecasts.",
         "chronology_note": CHRONOLOGY_NOTE,
     }
-    products["8.7"]["literature_refresh_20261106.json"] = legacy.encode(refresh)
-    products["8.7"]["AMPLIACION_LITERARIA_20261106.md"] = (
-        "# Ampliación literaria del 6 de noviembre de 2026\n\n" + CHRONOLOGY_NOTE + "\n\n"
+    products["8.7"]["literature_refresh_" + REFRESH_ID + ".json"] = legacy.encode(refresh)
+    products["8.7"]["AMPLIACION_LITERARIA_" + REFRESH_ID + ".md"] = (
+        "# Ampliación literaria del 7 de noviembre de 2026 UTC\n\n" + CHRONOLOGY_NOTE + "\n\n"
         "El producto 8.4 contiene los metadatos públicos completos de las nuevas etapas; "
         "aquí se conservan sus resúmenes, manifiestos y procedencia. No se redistribuyen "
         "los archivos de búsqueda originales, resúmenes editoriales ni PDF de terceros.\n"
     ).encode()
-    products["8.7"]["SUPLEMENTO_EVIDENCIAS_20261106.md"] = (
-        "# Evidencias y análisis posteriores del 6 de noviembre de 2026\n\n"
+    products["8.7"]["SUPLEMENTO_EVIDENCIAS_" + REFRESH_ID + ".md"] = (
+        "# Evidencias y análisis posteriores del 7 de noviembre de 2026 UTC\n\n"
         + CHRONOLOGY_NOTE + "\n\n"
         "8.7 añade la comparación documental y el contexto académico del margen; 8.4 incluye "
         "cribado, recuperación de originales y evidencia de búsquedas con sus límites. "
-        "8.5 añade estadística posterior y curvas de una reproducción separada. Su protocolo, "
-        "registro y entorno también se incluyen en 8.6. Los resultados y fuentes históricos "
+        "8.5 añade estadística posterior, curvas de una reproducción separada, auditoría "
+        "forense y repetibilidad diagnóstica actual. Los protocolos y metadatos de ejecución "
+        "también se incluyen en 8.6. La guía exige procedimiento reproducible, semillas, "
+        "dependencias y declarar el alcance del determinismo; no exige identidad histórica "
+        "bit a bit. Las discrepancias encontradas conservan sus límites científicos. Los resultados y fuentes históricos "
         "no se reescriben; los vectores diarios, pesos y escaladores permanecen fuera de "
         "la entrega pública. Los nuevos ajustes de curvas no son los originales recuperados.\n"
     ).encode()
@@ -514,7 +538,7 @@ def package(output_dir, requested_revision=None):
         "de la unidad 8. La descarga completa reúne esos siete ZIP y su catálogo.\n\n"
         + CHRONOLOGY_NOTE + "\n\nEl ZIP 8.3 es idéntico a la entrega base. "
         "8.5 y 8.6 conservan sus archivos científicos originales y añaden evidencia y "
-        "configuración de la reproducción identificada; 8.7 incorpora comparación documental, "
+        "configuración de las reproducciones y auditorías identificadas; 8.7 incorpora comparación documental, "
         "margen y procedencia. "
         "`catalogo.json` conserva modelos, fases, entrypoints y limitaciones científicas. "
         "Verificar integridad con `sha256sum -c SHA256SUMS.txt`; los manifiestos internos "

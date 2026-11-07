@@ -291,9 +291,32 @@ Estos comandos reproducen la ingesta documental de los archivos recibidos; no ej
 python scripts/build_e1_provisional_native_log.py
 ```
 
-Su estado es **PROVISIONAL**: las exportaciones son compatibles con cotas **≥8 y ≥59 en WoS**, y **≥19 y ≥158 en Scopus**. Esas cotas no son los totales mostrados por las plataformas. Las fechas referenciadas identifican declaraciones o exportaciones y no acreditan fechas de consulta nativa. Las cadenas propuestas permanecen identificadas como propuestas, sin recuperación de los literales históricos. IEEE Xplore conserva resultado y fecha nativos desconocidos, con consulta pendiente; desconocido no significa cero. La reproducción de esta bitácora no acredita nuevas búsquedas ni cierra el requisito 3.1. Se conservan exactamente las **244 ocurrencias y 182 grupos provisionales** de la ingesta, N7=7 y las frecuencias históricas; las cotas quedan fuera de los totales PRISMA.
+Su estado histórico es **PROVISIONAL**: las exportaciones son compatibles con cotas **≥8 y ≥59 en WoS**, y **≥19 y ≥158 en Scopus**. Esas cotas no son los totales mostrados por las plataformas. Las fechas referenciadas identifican declaraciones o exportaciones y no acreditan fechas de consulta nativa. Las cadenas propuestas permanecen identificadas como propuestas, sin recuperación de los literales históricos. En esa preparación IEEE Xplore conservaba resultado y fecha desconocidos; desconocido no significa cero. Reproducir esa bitácora no ejecuta búsquedas ni cierra por sí solo el requisito 3.1. Se conservan exactamente las **244 ocurrencias y 182 grupos provisionales** de la ingesta, N7=7 y las frecuencias históricas; las cotas quedan fuera de los totales PRISMA.
+
+La ronda real posterior se conserva en `references/literature_e1/native_execution_20261107/` y su espejo público. Sus exportaciones de WoS y Scopus contienen **271 UT y 538 EID distintos**, respectivamente, coincidentes con los totales nativos observados. El autor confirma la fecha **06/11/2026 en Colombia** para las tres consultas. IEEE aporta **32 resultados nativos y 25 exportados**, con filtro de acceso abierto y años 2018–2026; la fecha 06/11 fue confirmada también para IEEE por el autor, y los siete resultados no exportados se declaran. El expediente separa cada campo observado, comunicado por el autor o desconocido: no deduce una hora de consulta desde el nombre del CSV ni fabrica hashes para capturas presenciadas sólo en la conversación. Scopus incluye 2019–2026 en la consulta; WoS conserva cuatro registros de 2017–2018. Los archivos originales permanecen fuera del repositorio. Los **834 registros y 620 grupos provisionales** de esta nueva ronda no se añaden automáticamente al corpus de textos leídos ni alteran el corte histórico de 244/182.
+
+Para reproducir la ingesta de esta ronda con sus archivos privados y el manifiesto de entrada correspondiente:
+
+```bash
+python scripts/ingest_e1_native_execution.py \
+  --manifest /ruta/privada/manifiesto_ejecuciones.json \
+  --output-dir /ruta/nueva/metadatos_publicos
+python -m unittest discover -s tests -p 'test_e1_native_execution.py'
+```
+
+El esquema y el README del expediente definen el contrato del manifiesto; estos comandos validan evidencia guardada y no ejecutan las consultas en las plataformas. La fecha de día confirmada por el autor se distingue de una marca temporal automática; el total nativo se distingue del tamaño o rango exportado.
 
 La primera pasada automática no decide elegibilidad final ni modifica frecuencias por menciones de arquitecturas. El expediente posterior `editorial_screening_20261106/` registra decisiones de revisión por título/resumen y distingue exclusión, ambigüedad y necesidad de texto completo; no convierte los candidatos en originales leídos. `primary_reviews_20261106/` contiene extracción editorial, ubicación de evidencia y límites de dos textos completos, más tres candidatos con acceso parcial. Su `manifest.json` valida los derivados, sin inventar hashes de originales no materializados. Las entradas nuevas se verifican contra su fragmento `references.bib`; el catálogo histórico de 40 no se reescribe. `selection_synthesis_20261106/` mantiene una matriz de alternativas y una bitácora que separa consultas acreditadas, información declarada y búsquedas pendientes.
+
+La síntesis homogénea posterior se reconstruye desde sus extracciones editoriales, sin abrir originales privados ni entrenar modelos:
+
+```bash
+python scripts/build_e1_homogeneous_synthesis.py
+python scripts/build_e1_homogeneous_synthesis.py --check
+python -m unittest discover -s tests -p 'test_e1_homogeneous_synthesis.py'
+```
+
+`homogeneous_synthesis_20261107/` audita 47 identidades, con 26 originales primarios leídos y una transcripción completa. Separa doce estudios de volatilidad realizada histórica, diez con comparadores base extraíbles, y sensibilidades por receta, tipo de publicación y objetivo. Sus votos son LSTM10, GRU4, MLP3 y TCN1 dentro del estrato base; el MLP de 593 parámetros implementado históricamente se conserva como alternativa real. La terna registrada GRU–LSTM–TCN expresa un contraste entre celdas recurrentes y filtros causales, no las tres frecuencias máximas ni una solución global de complejidad mínima. Los 14 informes no recuperados al corte son una disposición terminal documentada de aquella ronda, con limitación de cobertura; no requieren compra para poder citar alternativas verificadas ni se eliminan del historial.
 
 Para refrescar las descargas de esta ampliación, usar el refresco específico después de guardar los cambios de fuentes en un commit y construir E1:
 
@@ -307,7 +330,7 @@ El destino debe estar vacío y fuera del checkout. El refresco utiliza los ZIP v
 
 La ampliación bibliográfica `open_access_replacement_20261107/` se incorpora por su manifiesto público cerrado: **8.4** incluye sus metadatos y síntesis de raíz, subpartes de revisión e insumos derivados bajo `inputs/`; **8.7** incluye sólo `summary.json`, `source_manifest.json` y `manifest.json` de su raíz cuando estén declarados. El constructor `scripts/build_e1_open_access_replacement.py` entra automáticamente en **8.2** como código Python versionado. Esta ampliación de literatura no requiere repetir entrenamientos ni curvas: se consumen exactamente las evidencias de curvas ya guardadas, manteniendo los archivos científicos de **8.5/8.6** y el binario de **8.3**.
 
-La bitácora `provisional_native_log_20261107/` usa el mismo manifiesto cerrado: **8.4** incorpora todos sus archivos aprobados y **8.7** sólo el resumen y el manifiesto de raíz. Su constructor entra automáticamente en **8.2** como código Python versionado. Este refresco conserva el estado provisional y los datos nativos desconocidos; no ejecuta las cadenas propuestas ni añade cotas a los conteos de la ingesta. Tampoco ejecuta entrenamientos o curvas ni cambia los archivos científicos de **8.5/8.6** o el binario de **8.3**.
+La bitácora `provisional_native_log_20261107/` usa el mismo manifiesto cerrado: **8.4** incorpora todos sus archivos aprobados y **8.7** sólo el resumen y el manifiesto de raíz. Su constructor entra automáticamente en **8.2** como código Python versionado. El refresco conserva el estado histórico de esa preparación; las ejecuciones acreditadas posteriores se añaden por separado en `native_execution_20261107/`, junto a `homogeneous_synthesis_20261107/`, con todos sus miembros aprobados en **8.4** y sus resúmenes/manifiestos en **8.7**. No ejecuta consultas, entrenamientos o curvas ni cambia los archivos científicos de **8.5/8.6** o el binario de **8.3**.
 
 El suplemento `results/e1_statistics_supplement_20261106/`, reflejado en el libro, calcula Q–Q, Friedman/Kendall W y sensibilidad Wilcoxon/Holm desde las métricas por semilla guardadas; es **posterior** a la evaluación original y no acredita potencia temporal ni nuevos ajustes. La fundamentación `e1_academic_margin_20261106/` consume sólo desarrollo y mantiene δ y R. Sus manifiestos fijan insumos y productos públicos.
 
@@ -319,4 +342,30 @@ El lock de curvas conserva el paquete `torch==2.15.0+cpu` y requiere el índice 
 python -m pip install -r requirements-e1-curves.lock.txt --extra-index-url https://download.pytorch.org/whl/cpu
 ```
 
-El empaquetador admite únicamente las listas explícitas de esos manifiestos, comprueba hashes/bytes, estructura PNG, campos privados, CRC y rutas seguras. Los stages anidados `search_recovery_20261106`, `internet_closure_20261106`, `open_access_replacement_20261107` y `provisional_native_log_20261107` requieren `publication_schema: e1_public_metadata_allowlist_v1`, una lista ordenada sin duplicados `approved_public_files` y `files: {ruta: {sha256, bytes}}` con exactamente los mismos miembros. Sólo se leen esos metadatos admitidos, nunca archivos vecinos sin listar, originales PDF ni payloads experimentales privados. Renueva catálogo y paquete conjunto; no regenera la ciencia desde el empaquetador histórico. Copiar los productos verificados a `book/_static/e1_downloads/` y reconstruir E1 para distribuir las descargas actualizadas. La compilación posterior sólo actualiza enlaces y recursos de distribución; el catálogo identifica el commit de fuentes usado para generar los ZIP, separado del commit posterior que agrega los propios paquetes.
+## Auditoría forense y repetibilidad actual controlada
+
+`results/e1_replay_forensics_20261107/` inspecciona los artefactos de la reproducción completa y documenta la búsqueda de originales sin entrenar redes. Conserva 29 cambios de época de TCN frente a los registros originales; su causa no queda identificada. La falta de un archivo privado original impide comparar sus valores con una tolerancia numérica: un SHA256 no reconstruye pérdidas o tensores. La guía §4.3 exige procedimiento, semillas, dependencias y declarar si se usa determinismo estricto; no exige identidad histórica bit a bit. El procedimiento actual y la identidad histórica tienen alcances distintos.
+
+La comprobación adicional de `experiments/e1_replay_audit_20261107/` se publicó y verificó remotamente antes de su registro y nuevos ajustes. Desde un checkout limpio e inmutable de la fuente publicada, con Python 3.12.14 y el lock anterior en un entorno externo al checkout:
+
+```bash
+git worktree add --detach /ruta/checkout_diagnostico 79f8dcc1a4c3bfacfd1fc56c0ecb43d8e0185501
+cd /ruta/checkout_diagnostico
+PYTHONHASHSEED=0 /ruta/venv/bin/python scripts/audit_e1_replay_forensics.py register \
+  --private-dir /ruta/privada/nueva \
+  --published-commit 79f8dcc1a4c3bfacfd1fc56c0ecb43d8e0185501
+PYTHONHASHSEED=0 /ruta/venv/bin/python scripts/audit_e1_replay_forensics.py fit \
+  --private-dir /ruta/privada/nueva --replicate a
+PYTHONHASHSEED=0 /ruta/venv/bin/python scripts/audit_e1_replay_forensics.py fit \
+  --private-dir /ruta/privada/nueva --replicate b
+/ruta/venv/bin/python scripts/audit_e1_replay_forensics.py compare \
+  --private-dir /ruta/privada/nueva \
+  --prior-private-dir /ruta/privada/reproduccion_completa \
+  --output-dir /ruta/nueva/resultado_diagnostico
+```
+
+La verificación remota previa debe conservarse aparte; el argumento `--published-commit` por sí solo no prueba publicación. Las rutas privadas y de salida deben ser nuevas. Las réplicas son invocaciones independientes y secuenciales; la CLI impide reutilizar una réplica ya ajustada. No se vuelve a ejecutar `prepare` sobre el protocolo publicado ni se reintenta una semilla para obtener coincidencia. Esta ejecución es optativa para reproducir el diagnóstico y nunca forma parte del build o del empaquetado.
+
+El panel dirigido de seis celdas produjo **12 trayectorias y 24 etapas**, con **18/18 hashes canónicos iguales entre réplicas** y también frente a esas seis celdas de la reproducción completa anterior; la diferencia numérica máxima fue cero. Satisface el criterio secundario fijado de `rtol=1e-6`, `atol=1e-8` en las seis celdas. `results/e1_replay_repeatability_20261107/` publica comparación, registro, entorno, ejecución y prueba de publicación previa, sin pesos, escaladores o predicciones diarias. No se consultó la reserva ni se añadieron muestras independientes al benchmark. El resultado se limita a ese panel: no recupera los archivos originales ni certifica la repetibilidad de todo R465.
+
+El empaquetador admite únicamente las listas explícitas de esos manifiestos, comprueba hashes/bytes, estructura PNG, campos privados, CRC y rutas seguras. Los stages anidados `search_recovery_20261106`, `internet_closure_20261106`, `open_access_replacement_20261107`, `provisional_native_log_20261107`, `homogeneous_synthesis_20261107` y `native_execution_20261107` requieren `publication_schema: e1_public_metadata_allowlist_v1`, una lista ordenada sin duplicados `approved_public_files` y `files: {ruta: {sha256, bytes}}` con exactamente los mismos miembros. La auditoría forense y la repetibilidad controlada usan ese mismo contrato en `public_allowlist_manifest.json`: sus archivos aprobados entran en **8.5**; resúmenes y manifiestos en **8.7**; para repetibilidad, registro, runtime, ejecución y verificación de publicación también entran en **8.6/8.7**. Los protocolos de ambas reproducciones viajan en **8.6/8.7** y sus ejecutores en **8.2**. Sólo se leen esos metadatos admitidos, nunca archivos vecinos sin listar, originales PDF ni payloads experimentales privados. Renueva catálogo y paquete conjunto; no regenera la ciencia desde el empaquetador histórico. Los metadatos fechados del 07/11 se añaden sin sustituir los del 06/11. Copiar los productos verificados a `book/_static/e1_downloads/` y reconstruir E1 para distribuir las descargas actualizadas. La compilación posterior sólo actualiza enlaces y recursos de distribución; el catálogo identifica el commit de fuentes usado para generar los ZIP, separado del commit posterior que agrega los propios paquetes.
