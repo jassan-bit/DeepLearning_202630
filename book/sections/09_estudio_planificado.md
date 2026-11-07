@@ -254,7 +254,7 @@ Después de publicar esta evaluación, sus 60 fechas son resultados conocidos. U
 
 La literatura conserva sus propios límites: en el **corte verificado del 05/11/2026**, TCN aparece como comparador independiente en **1/7 estudios** y la inclusión conjunta de GRU/LSTM necesita argumentación de mecanismos y alcance. La {download}`ampliación nativa del 06/11 <../_static/literature_e1/native_search_20261106/README.md>` añade registros WoS/Scopus para cribado; sus 244 ocurrencias y 182 grupos provisionales no equivalen a 182 estudios incluidos ni alteran por sí solos esas frecuencias. El [capítulo 3](03_estado_arte.md) documenta esta separación. Hacer este estudio tampoco aumenta la recurrencia bibliográfica ni certifica indexación individual de los artículos.
 
-Las {download}`dos lecturas completas adicionales del 06/11 <../_static/literature_e1/primary_reviews_20261106/README.md>`, sobre CVI implícita y modelos híbridos GARCH, elevan la bibliografía actual a 42 referencias y conservan sus estratos propios. No cambian el objetivo σ₇, las recetas seleccionadas, el baseline o el análisis ya registrado de esta fase.
+Las {download}`dos lecturas completas adicionales del 06/11 <../_static/literature_e1/primary_reviews_20261106/README.md>`, sobre CVI implícita y modelos híbridos GARCH, llevaron ese complemento a 42 referencias y conservan sus estratos propios. No cambian el objetivo σ₇, las recetas seleccionadas, el baseline o el análisis ya registrado de esta fase.
 
 La fase II cierra el orden piloto–dimensionamiento–ajuste definitivo y el esfuerzo comparable dentro del espacio de HPO registrado. También fija sus métodos antes de evaluar la nueva reserva. Las conclusiones de precisión y relevancia se limitan a lo que muestran sus intervalos y análisis; completar ese orden no garantiza que todas las redes superen persistencia, una mejora práctica o generalización temporal. El benchmark anterior conserva sus resultados exploratorios.
 
@@ -327,4 +327,55 @@ python -m unittest discover -s tests -p 'test_e1_statistics_supplement.py'
 
 El {download}`resumen de ejecución <../_static/e1_statistics_supplement_20261106/summary.json>` registra las versiones efectivamente usadas en este suplemento: Python 3.12.14, NumPy 2.3.5, pandas 2.2.3, SciPy 1.17.0 y Matplotlib 3.10.8. Son un entorno posterior separado; no se atribuyen a las corridas históricas ni sustituyen sus dependencias registradas.
 
-La inspección de existencia del 06/11 no encontró en este entorno la ruta privada que declara el ejecutor original, `/workspace/e1_new_study_20261105/run`. Por ello no se recuperaron curvas `history_inner.csv`/`history_refit.csv`, pesos, escaladores o vectores diarios. La {download}`comprobación de disponibilidad <../_static/e1_statistics_supplement_20261106/artifact_availability.json>` sólo examina presencia de archivos: su ausencia aquí no demuestra que no se ejecutaran o que el autor no los conserve. Los RMSE agregados no permiten reconstruir esos contenidos. La reproducción independiente de DM, bootstrap temporal y BDS desde observaciones sigue pendiente; no se fabrican curvas ni se repite entrenamiento para simular los originales.
+La inspección de existencia del 06/11 no encontró en este entorno la ruta privada que declara el ejecutor original, `/workspace/e1_new_study_20261105/run`. Por ello no se recuperaron curvas `history_inner.csv`/`history_refit.csv`, pesos, escaladores o vectores diarios. La {download}`comprobación de disponibilidad <../_static/e1_statistics_supplement_20261106/artifact_availability.json>` sólo examina presencia de archivos: su ausencia aquí no demuestra que no se ejecutaran o que el autor no los conserve. Los RMSE agregados no permiten reconstruir esos contenidos. La reproducción independiente de DM, bootstrap temporal y BDS desde observaciones sigue pendiente. El apartado siguiente documenta una ejecución nueva de desarrollo, con procedencia propia.
+
+(curvas-finales-reproducidas)=
+## 9.10. Curvas públicas reproducidas de las recetas finales
+
+La ausencia de las historias privadas motivó una **reproducción nueva y posterior**, sin modificar el benchmark. El [protocolo y ejecutor](https://github.com/jassan-bit/DeepLearning_202630/commit/fe41b8ad1eaa1425aad900f6c3cd966843d600c7) se publicaron y se consultaron mediante GitHub antes de registrar y comenzar los nuevos ajustes. El recibo documenta ese orden observado; la fecha de un commit por sí sola no demuestra cuándo se publicó. Se mantiene el estado de preparación con cero ajustes y se añaden registros de ejecución separados.
+
+Se reproducen las **tres recetas congeladas**, con las **465 semillas 8101–8565 por familia**: **1.395 trayectorias y 2.790 etapas de selección interna y reajuste**. Se utilizan únicamente los derivados de desarrollo **2023–2024**, los módulos originales sin cambios y sus versiones fijadas. La nueva ejecución no abre precios de la reserva, no genera pronósticos y no obtiene una nueva muestra de evaluación. La semilla ilustrativa **8101** quedó fijada en el protocolo antes de entrenar; no se elige por su curva o error.
+
+### 9.10.1. Pérdidas y parada temprana
+
+```{figure} ../_static/e1_curve_reproduction_20261106/learning_curves_final_recipes.png
+---
+name: curvas-recetas-finales-reproduccion
+---
+Reproducción de las recetas finales. Se muestran pérdidas MSE escaladas por familia y etapa, media, intervalo intercuartílico y número de trayectorias disponibles en cada época. Son pérdidas de desarrollo, no RMSE de la reserva.
+```
+
+La etapa interna permite comparar entrenamiento en modo evaluación con validación pasada y seleccionar la duración mediante la regla original. El reajuste empieza desde cero con esa duración y sólo registra entrenamiento: añadirle una validación sobre la reserva cambiaría el diseño. La pérdida de optimización usa el modo entrenamiento y puede diferir de la pérdida calculada en modo evaluación, especialmente con dropout. Se distinguen ambas en el CSV.
+
+El número de curvas disponible disminuye por parada temprana. Las épocas tardías resumen una selección de trayectorias más largas y no las mismas 465 inicializaciones de la primera época. Las escalas se ajustan dentro de cada entrenamiento; comparar visualmente pérdidas escaladas entre semillas o familias no sustituye la comparación de errores en unidades originales. Un descenso de pérdida o un gap local no certifica ausencia global de sobreajuste, robustez temporal o superioridad entre modelos.
+
+```{figure} ../_static/e1_curve_reproduction_20261106/learning_curves_seed8101.png
+---
+name: curvas-recetas-finales-semilla-fija
+---
+Trayectorias de la semilla 8101 fijada de antemano. La marca de época seleccionada pertenece a la validación interna; el reajuste conserva esa duración.
+```
+
+Las {download}`curvas por corrida y época <../_static/e1_curve_reproduction_20261106/learning_curves_by_run.csv>`, el {download}`resumen agregado <../_static/e1_curve_reproduction_20261106/learning_curve_summary.csv>` y la {download}`duración por familia <../_static/e1_curve_reproduction_20261106/epoch_summary.csv>` permiten comprobar la figura y sus denominadores. No contienen observaciones del mercado, pronósticos, pesos o valores de escaladores.
+
+Se publican **59.210 registros de pérdida por época y corrida**. La parada interna y el reajuste tienen las siguientes duraciones:
+
+| Familia | Trayectorias | Época elegida, mediana [mín.; máx.] | Selecciones internas terminadas antes de 100 épocas |
+|---|---:|---:|---:|
+| GRU | 465 | 4 [3; 100] | 454 |
+| LSTM | 465 | 4 [2; 100] | 458 |
+| TCN | 465 | 17 [3; 97] | 459 |
+
+Las medianas de cuatro épocas de GRU/LSTM muestran por qué el descenso de la media agregada hasta la época 100 **no representa una corrida típica**. Al final contribuyen sólo 11/7/6 curvas internas de GRU/LSTM/TCN. La semilla 8101 selecciona 65/12/75 épocas, respectivamente; es una ilustración fijada de antemano, no una ejecución representativa de esas medianas. La separación posterior entre entrenamiento y validación describe el calendario interno y las trayectorias que siguen activas, sin justificar alargar la duración ya seleccionada.
+
+### 9.10.2. Identidad y alcance de la reproducción
+
+El {download}`comparador de integridad <../_static/e1_curve_reproduction_20261106/artifact_hash_comparison.csv>` contrasta **8.370 artefactos científicos** con el manifiesto histórico, incluidos **2.790 CSV de curvas**, además de configuraciones, preprocesamiento, particiones y checkpoints. Los checkpoints se comparan de forma privada; sólo se publican los hashes y el resultado de cada contraste. Coincidencia de configuración o época no equivale a identidad de pesos o pérdidas. Se publican las diferencias sin sustituir semillas o ajustar recetas para forzar igualdad.
+
+Coinciden byte a byte **4.185/4.185** archivos de configuración, preprocesamiento y partición. **No coincide ninguno de los 2.790 CSV de curvas ni de los 1.395 checkpoints serializados.** La época elegida coincide en **1.366/1.395** trayectorias: todas las GRU/LSTM y 436/465 TCN. Por tanto, no se acredita reproducción exacta del entrenamiento. Sin los archivos privados originales no se cuantifica la diferencia de pérdidas o tensores ni se determina su causa; una diferencia de hash de un checkpoint tampoco mide por sí sola una diferencia numérica entre sus pesos.
+
+La ejecución acredita curvas observadas para una reproducción de estas recetas bajo el entorno registrado. **No recupera los archivos originales ni añade 1.395 muestras independientes al benchmark.** El baseline GRU, el dimensionamiento, las métricas de la reserva y sus conclusiones se conservan. El {download}`resumen de ejecución <../_static/e1_curve_reproduction_20261106/summary.json>` y el {download}`registro de procedencia <../_static/e1_curve_reproduction_20261106/README.md>` identifican fechas, versiones, integridad y límites.
+
+### 9.10.3. Reproducción y descarga
+
+El [ejecutor](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/reproduce_e1_final_curves.py) exige un checkout limpio del protocolo publicado y una salida privada nueva. El [exportador](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/export_e1_reproduced_curves.py) verifica el registro y la finalización de las 1.395 trayectorias antes de publicar una lista cerrada de pérdidas, agregados y procedencia. [BUILD.md](https://github.com/jassan-bit/DeepLearning_202630/blob/main/BUILD.md) contiene los comandos y distingue sus dependencias de las usadas para construir el libro. Las curvas están incluidas en el producto 8.5; el código, configuración y declaración están en 8.2, 8.6 y 8.7.

@@ -43,7 +43,7 @@ El ejecutor nuevo es [run_gru_lstm_tcn_planned.py](scripts/run_gru_lstm_tcn_plan
 
 ## Resultados de la nueva reserva de 60 días
 
-| Modelo de fase II | RMSE, media ± DE | R² medio |
+| Modelo final | RMSE, media ± DE | R² medio |
 |---|---:|---:|
 | GRU | 0,00511696 ± 0,00077519 | 0,34889070 |
 | LSTM | 0,00565123 ± 0,00056569 | 0,21584267 |
@@ -66,7 +66,7 @@ El corte bibliográfico del **05/11/2026** conserva **40 referencias de antecede
 
 La [ampliación nativa del 06/11/2026](references/literature_e1/native_search_20261106/README.md) incorpora cuatro exportaciones WoS/Scopus: **244 ocurrencias y 182 grupos provisionales** por DOI/título, con [recuentos](references/literature_e1/native_search_20261106/summary.json), [registros](references/literature_e1/native_search_20261106/records.csv) y [cribado](references/literature_e1/native_search_20261106/screening.csv) separados del corte histórico. El recuento de grupos no equivale al de estudios elegibles o nuevos textos completos verificados. La lectura de los restantes originales, la comprobación de fechas efectivas y la trazabilidad IEEE permanecen abiertas. Un resumen o un nuevo experimento no aumenta las frecuencias históricas. El [capítulo 3](book/sections/03_estado_arte.md) y las [descargas de literatura](book/sections/08_entregables.md) conservan ambas procedencias.
 
-La bibliografía actual reúne **42 referencias**, tras revisar [dos originales completos adicionales](references/literature_e1/primary_reviews_20261106/README.md): TCN/LSTM para un índice CVI de volatilidad implícita y redes como componentes híbridos GARCH. Las fichas distinguen sus objetivos y roles; no se cambia el denominador histórico a nueve ni se atribuyen a estos textos comparadores autónomos adicionales de σ₇.
+El primer complemento del 06/11 llevó la bibliografía a **42 referencias**, tras revisar [dos originales completos adicionales](references/literature_e1/primary_reviews_20261106/README.md): TCN/LSTM para un índice CVI de volatilidad implícita y redes como componentes híbridos GARCH. Las fichas distinguen sus objetivos y roles; no se cambia el denominador histórico a nueve ni se atribuyen a estos textos comparadores autónomos adicionales de σ₇.
 
 La actualización añade el [cribado editorial por título/resumen](references/literature_e1/editorial_screening_20261106/README.md), una [matriz de selección de familias](references/literature_e1/selection_synthesis_20261106/README.md) y la [comparabilidad de datos y objetivos](references/e1_dataset_comparison_20261106/README.md). Los Q–Q, Friedman y la sensibilidad Wilcoxon se incorporan como [suplemento estadístico posterior](results/e1_statistics_supplement_20261106/README.md), calculado desde métricas guardadas. No modifican el protocolo, los resultados primarios ni la elección del baseline, y no añaden entrenamientos.
 
@@ -77,3 +77,7 @@ El repositorio incluye los derivados diarios de desarrollo 2023–2024. Los ZIP 
 La reserva de fase II pasa a ser una evaluación conocida una vez publicados sus resultados. Reproducirla no recupera independencia para un futuro modelo diseñado con esa información.
 
 La DE definitiva de GRU–TCN supera aproximadamente 1,64 veces su cota de planificación obtenida con el piloto. Junto con el rechazo de normalidad, esto limita la transferencia de los supuestos: el R se calculó antes de la ejecución, pero no se afirma potencia alcanzada o demostrada.
+
+La bibliografía canónica ampliada contiene **50 entradas**, con niveles de lectura separados. La [recuperación posterior por internet](references/literature_e1/internet_closure_20261106/README.md) revisa los 22 casos: cuatro originales y una transcripción completa, cinco decisiones de elegibilidad cerradas por exclusión/contexto y 17 casos pendientes de original o suplemento. Los cuatro candidatos complementarios están separados. El [registro de intentos nativos](references/literature_e1/search_recovery_20261106/README.md) documenta bloqueos, cuatro exportaciones verificadas y doce cadenas propuestas no ejecutadas; no acredita IEEE ni recupera cadenas, fechas o conteos históricos faltantes.
+
+El [modelo final](book/sections/09_estudio_planificado.md) incorpora una reproducción posterior de curvas con las 465 semillas por familia y sólo desarrollo 2023–2024, sin puntuar de nuevo la reserva ni cambiar el benchmark. El [contexto académico de δ](results/e1_academic_margin_20261106/README.md) añade escalas de variabilidad y mantiene el 5% fijo como elección normativa.

@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "analysis_date_local": "2026-11-06",
+  "timezone_for_date": "America/Bogota",
+  "source_commit_before_supplement": "e4ea9abab09eb0f9e85fced0cf574f2f11e8743d",
+  "purpose": "Explain the already fixed 5% threshold for academic model comparison; retrospective contextualization, not a new preregistration.",
+  "application_context_confirmed_by_author": "Academic comparison of models for E1",
+  "development_only": true,
+  "new_model_fits": 0,
+  "new_forecasts": 0,
+  "reserve_or_test_observations_read": false,
+  "delta_changed": false,
+  "R_changed": false,
+  "new_hypothesis_tests": 0,
+  "financial_utility_claimed": false,
+  "reference": {
+    "model": "GRU",
+    "history_days": 7,
+    "phase": "Initial exploratory CV2024",
+    "n_seeds": 10,
+    "n_dates": 366,
+    "mean_rmse_anchor": 0.005154568532996221,
+    "seed_sd_rmse": 0.00016155707713944208,
+    "seed_ci95_halfwidth_rmse": 0.00011557097084013527,
+    "seed_ci95_scope": "Marginal t interval conditional on fixed dates; not a market uncertainty interval.",
+    "persistence_rmse_same_dates": 0.004788969571929121
+  },
+  "registered_relative_margin": 0.05,
+  "registered_absolute_delta": 0.00025772842664981106,
+  "target_profiles": {
+    "2023": {
+      "n_valid": 350,
+      "mean": 0.018796715781918345,
+      "sample_sd": 0.008902541748293928,
+      "median": 0.01756716376814713,
+      "q25": 0.011273484848218872,
+      "q75": 0.024247163097617108,
+      "iqr": 0.012973678249398235
+    },
+    "2024": {
+      "n_valid": 366,
+      "mean": 0.02366105363239066,
+      "sample_sd": 0.00978008997471675,
+      "median": 0.021989355434916036,
+      "q25": 0.01692027702507171,
+      "q75": 0.027709808819869723,
+      "iqr": 0.010789531794798014
+    }
+  },
+  "monthly_gru_rmse_context": {
+    "n_months": 12,
+    "minimum": 0.002414348628387007,
+    "maximum": 0.008668845655275759,
+    "sample_sd_of_monthly_means": 0.0019045190351970624,
+    "scope": "Descriptive calendar heterogeneity, unequal month lengths; months are not independent markets and this is not an IC."
+  },
+  "initial_recipe_cost_context": [
+    {
+      "model": "GRU",
+      "parameters": 3777,
+      "training_seconds_mean": 32.530489294865404,
+      "inference_seconds_mean": 0.002635450835514348,
+      "timing_scope": "Recorded wall time under documented CPU concurrency; not isolated architecture speed."
+    },
+    {
+      "model": "LSTM",
+      "parameters": 5025,
+      "training_seconds_mean": 14.646946985501563,
+      "inference_seconds_mean": 0.0023180403691367246,
+      "timing_scope": "Recorded wall time under documented CPU concurrency; not isolated architecture speed."
+    },
+    {
+      "model": "TCN",
+      "parameters": 4289,
+      "training_seconds_mean": 73.35336603081086,
+      "inference_seconds_mean": 0.00819182519102469,
+      "timing_scope": "Recorded wall time under documented CPU concurrency; not isolated architecture speed."
+    }
+  ],
+  "final_recipe_parameter_context": {
+    "GRU": 1121,
+    "LSTM": 1489,
+    "TCN": 1185
+  },
+  "final_recipe_complexity_scope": "Selected with development January–October2024; these are configuration metadata, not reserve metrics. They are not paired with the earlier 366-day CV errors as if they were the same experiment.",
+  "cost_interpretation": "Parameters and wall times describe the initial recipes on the common CV; wall times reflect documented concurrency and are not causal architecture speed comparisons or a cost-derived optimal delta.",
+  "academic_acceptance_rationale": [
+    "Require a non-negligible reduction of predictive error before calling added architectural complexity an academic improvement.",
+    "The existing 5% rule is a transparent intermediate demand between the 2.5% and 10% sensitivity scenarios; it is not inferred as a uniquely correct value from these data.",
+    "Only interval-supported effects and a separately justified model-complexity budget can support a future advancement claim; any future comparison needs its own registered paired design and calendar uncertainty assessment.",
+    "The registered absolute delta for the completed neural study and relative gains against each separate reference remain different quantities."
+  ],
+  "interpretation_limits": [
+    "Observed label spread is not measurement noise or irreducible prediction error.",
+    "The seed SD and CI contextualize scale but do not define relevance or prove that delta exceeds temporal uncertainty.",
+    "The paired differences are descriptive initialization-conditional context; no p-values, equivalence claim or new winner selection is added.",
+    "No reported 2025–2026 evaluation metrics or individual evaluation observations are used.",
+    "This text supplies a posterior contextual argument; it cannot be attributed to the original preregistration."
+  ],
+  "methodological_source": {
+    "author": "Daniël Lakens",
+    "year": 2022,
+    "title": "Sample Size Justification",
+    "doi": "10.1525/collabra.33267",
+    "primary_url": "https://online.ucpress.edu/collabra/article/8/1/33267/120491/Sample-Size-Justification",
+    "access_level": "primary_relevant_sections_read",
+    "sections": [
+      "Six Ways to Evaluate Which Effect Sizes are Interesting",
+      "What is the Smallest Effect Size of Interest?",
+      "The Minimal Statistically Detectable Effect"
+    ],
+    "contribution": "Distinguishes a theoretically/practically interesting effect from detectability; allows an explicitly reasoned, context-specific interest threshold.",
+    "does_not_support": "The author does not prescribe 5% RMSE for cryptocurrency forecasting.",
+    "original_bytes_sha256": null
+  },
+  "runtime": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "scipy": "1.17.0"
+  }
+}

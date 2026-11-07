@@ -30,7 +30,7 @@ import package_e1_downloads as legacy
 
 ROOT = Path(__file__).resolve().parents[1]
 ITEMS = {item: filename for item, filename, *_ in legacy.ITEMS}
-PRESERVED_ITEMS = frozenset({"8.3", "8.6"})
+PRESERVED_ITEMS = frozenset({"8.3"})
 STAGES = {
     "native_search_20261106": {
         "README.md", "source_manifest.json", "summary.json", "records.csv",
@@ -47,6 +47,10 @@ STAGES = {
         "README.md", "decision_matrix.csv", "search_evidence_ledger.csv", "summary.json",
     },
 }
+# These stages contain reviewed nested metadata. Their committed manifests must
+# explicitly approve every member; unlisted neighbouring uploads are never read.
+MANIFEST_STAGES = ("search_recovery_20261106", "internet_closure_20261106")
+PUBLICATION_SCHEMA = "e1_public_metadata_allowlist_v1"
 SUPPLEMENTS = {
     "dataset_comparison": {
         "directory": "book/_static/e1_dataset_comparison_20261106",
@@ -60,20 +64,43 @@ SUPPLEMENTS = {
                   "qq_diagnostics.csv", "qq_coordinates.csv", "qq_differences.png",
                   "artifact_availability.json"},
     },
+    "academic_margin": {
+        "directory": "book/_static/e1_academic_margin_20261106",
+        "manifest": "source_manifest.json", "item": "8.7",
+        "files": {"README.md", "summary.json", "margin_context.csv", "paired_development.csv"},
+    },
+    "curves": {
+        "directory": "book/_static/e1_curve_reproduction_20261106",
+        "manifest": "manifest.json", "item": "8.5",
+        "files": {"README.md", "summary.json", "reproduction_registration.json", "execution.json",
+                  "runtime.json", "fit_summary.csv", "learning_curves_by_run.csv",
+                  "learning_curve_summary.csv", "epoch_summary.csv", "artifact_hash_comparison.csv",
+                  "learning_curves_final_recipes.png", "learning_curves_seed8101.png"},
+    },
+}
+REPRODUCTION_PROTOCOL_FILES = {
+    "experiments/e1_curve_reproduction_20261106/protocol.json",
+    "experiments/e1_curve_reproduction_20261106/README.md",
 }
 CHRONOLOGY_NOTE = (
-    "La ampliación bibliográfica, la comparación documental y el suplemento estadístico "
-    "del 6 de noviembre de 2026 son posteriores a los "
-    "experimentos documentados. Esta ampliación no constituye un prerregistro retrospectivo, no "
-    "modifica sus configuraciones, resultados ni cronologías y no añade ajustes "
-    "o pronósticos. Los nuevos contrastes son análisis suplementarios posteriores; "
-    "los estratos históricos de literatura conservan su identidad."
+    "La recuperación bibliográfica y la fundamentación académica del margen son posteriores "
+    "a los experimentos iniciales. La reproducción de curvas tiene un protocolo y registro "
+    "propios y realiza nuevos ajustes de desarrollo; no sustituye los originales históricos "
+    "ni modifica sus resultados, recetas, selección o cronologías. Los contrastes suplementarios "
+    "anteriores conservan su carácter posterior. Esta actualización no constituye un prerregistro "
+    "retrospectivo. Empaquetar consume las evidencias guardadas y no ejecuta ajustes o pronósticos."
 )
 _SHA256 = re.compile(r"^[0-9a-f]{64}$")
 _PRIVATE_FIELDS = {
     "abstract", "abstracts", "abstracttext", "email", "emails", "emailaddress",
     "authoremail", "authoremails", "correspondence", "correspondenceaddress",
+    "rawabstract", "exportedabstract", "abstractbody", "rawfulltext", "originalfulltext",
+    "fulltext", "rawhtml", "contactemail", "contactemails",
 }
+_PRIVATE_BASENAMES = legacy.EXCLUDED_NAMES | {
+    "model.pt", "model.pth", "checkpoint.json", "weights.json", "scaler.json",
+}
+PUBLIC_EVIDENCE_SUFFIXES = frozenset({".csv", ".json", ".bib", ".md", ".svg", ".png"})
 
 
 def safe_member(name):
@@ -165,7 +192,7 @@ def validate_public_bytes(name, data):
         if not chunks or chunks[0] != b"IHDR" or chunks[-1] != b"IEND" or b"IDAT" not in chunks:
             raise ValueError("Incomplete public PNG: " + name)
         return
-    if suffix not in {".csv", ".json", ".bib", ".md", ".svg"}:
+    if suffix not in PUBLIC_EVIDENCE_SUFFIXES:
         raise ValueError("Unsupported public evidence extension: " + name)
     text = data.decode("utf-8-sig")
     if suffix == ".csv":
@@ -198,11 +225,24 @@ def public_stage(directory, expected_names, manifest_name="manifest.json"):
         raise ValueError("Ambiguous literature manifest schema: " + str(directory))
     sized = "files" in manifest
     mapping = manifest.get("files" if sized else "files_sha256")
+    if expected_names is None:
+        approved = manifest.get("approved_public_files")
+        if (manifest.get("publication_schema") != PUBLICATION_SCHEMA or not sized
+                or not isinstance(approved, list) or not all(isinstance(name, str) for name in approved)
+                or approved != sorted(set(approved)) or not isinstance(mapping, dict)
+                or set(approved) != set(mapping) or not {"README.md", "summary.json"} <= set(approved)
+                or manifest_name in approved):
+            raise ValueError("Nested evidence needs an explicit closed public approval manifest: " + str(directory))
+        expected_names = set(approved)
     if not isinstance(mapping, dict) or set(mapping) != set(expected_names):
         raise ValueError("Literature manifest must list exactly the approved public files: " + str(directory))
     files = {}
     for name, metadata in sorted(mapping.items()):
         relative = safe_member(name)
+        if relative.name in _PRIVATE_BASENAMES:
+            raise ValueError("Private experimental payload is not public evidence: " + name)
+        if relative.suffix.lower() not in PUBLIC_EVIDENCE_SUFFIXES:
+            raise ValueError("Unsupported public evidence extension: " + name)
         expected = metadata.get("sha256") if sized and isinstance(metadata, dict) else metadata
         if not isinstance(expected, str) or not _SHA256.fullmatch(expected):
             raise ValueError("Invalid literature SHA256: " + name)
@@ -287,9 +327,11 @@ def _readme(item, title, revision, previous):
     )
     return (f"# {item}. {title}\n\nFuente de esta actualización: `{revision}`.\n\n"
             + introduction + CHRONOLOGY_NOTE + "\n\n"
-            "Los productos 8.3 y 8.6 conservan exactamente los ZIP de la entrega base. "
-            "8.5 conserva sus archivos científicos originales y añade estadística "
-            "suplementaria posterior; 8.7 incorpora la comparación documental. "
+            "El producto 8.3 conserva exactamente el ZIP de la entrega base. "
+            "8.5 conserva sus archivos científicos originales y añade estadística y curvas "
+            "de una reproducción identificada; 8.6 conserva sus configuraciones originales "
+            "y añade el protocolo y metadatos de esa reproducción. 8.7 incorpora contexto "
+            "documental, margen y procedencia. "
             "Los manifiestos internos identifican los bytes realmente incluidos.\n\n"
             "## Notas conservadas de la entrega base\n\n" + previous.decode("utf-8"))
 
@@ -305,7 +347,7 @@ def package(output_dir, requested_revision=None):
     base = ROOT / "book/_static/e1_downloads"
     catalog, base_rows, products, _, base_catalog_sha = baseline_products(base)
     stages, stage_info = {}, {}
-    for stage, expected_names in STAGES.items():
+    for stage, expected_names in [*STAGES.items(), *((name, None) for name in MANIFEST_STAGES)]:
         directory = ROOT / "book/_static/literature_e1" / stage
         files, info = public_stage(directory, expected_names)
         for name in files:
@@ -345,9 +387,19 @@ def package(output_dir, requested_revision=None):
         if name not in tracked:
             raise ValueError("Required source is not committed: " + name)
         products["8.2"][name] = _regular_file(ROOT / name, ROOT)
-    supplement_lock = "requirements-e1-supplement.lock.txt"
-    if supplement_lock in tracked:
-        products["8.2"][supplement_lock] = _regular_file(ROOT / supplement_lock, ROOT)
+    for supplement_lock in ("requirements-e1-supplement.lock.txt", "requirements-e1-curves.lock.txt"):
+        if supplement_lock in tracked:
+            data = _regular_file(ROOT / supplement_lock, ROOT)
+            products["8.2"][supplement_lock] = data
+            if supplement_lock == "requirements-e1-curves.lock.txt":
+                products["8.6"][supplement_lock] = data
+    for name in sorted(REPRODUCTION_PROTOCOL_FILES):
+        if name not in tracked:
+            raise ValueError("Reproduction protocol source is not committed: " + name)
+        data = _regular_file(ROOT / name, ROOT)
+        validate_public_bytes(name, data)
+        for item in ("8.6", "8.7"):
+            products[item][name] = data
     if not {"book/references.bib", "book/_static/literature_e1/README.md"}.issubset(tracked):
         raise ValueError("Bibliography and literature index must be committed")
     bibliography = _regular_file(ROOT / "book/references.bib", ROOT)
@@ -367,12 +419,15 @@ def package(output_dir, requested_revision=None):
     for label, files in supplements.items():
         spec = SUPPLEMENTS[label]
         prefix = spec["directory"] + "/"
-        for item in {spec["item"], "8.7"}:
+        for item in {spec["item"], "8.7"} | ({"8.6"} if label == "curves" else set()):
             products[item] = {name: data for name, data in products[item].items()
                               if not name.startswith(prefix)}
         for name, data in files.items():
             products[spec["item"]][prefix + name] = data
             if name in {"summary.json", "source_manifest.json", "manifest.json", "artifact_availability.json"}:
+                products["8.7"][prefix + name] = data
+            if label == "curves" and name in {"reproduction_registration.json", "runtime.json", "execution.json"}:
+                products["8.6"][prefix + name] = data
                 products["8.7"][prefix + name] = data
     # User-confirmed query families and year filters are a separate, reproducible
     # input to the importer; they must travel with its code and derived ledger.
@@ -396,7 +451,7 @@ def package(output_dir, requested_revision=None):
         "preserved_archive_sha256": {ITEMS[item]: base_rows[item]["sha256"]
                                      for item in sorted(PRESERVED_ITEMS)},
         "original_experiments_changed": False, "retrospective_preregistration": False,
-        "new_analysis_scope": "Post-hoc statistics from saved aggregate run metrics only; no training or daily forecasts",
+        "new_analysis_scope": "Reviewed source recovery and development-only margin context; separately registered curve reproduction. Packaging itself performs no training or daily forecasts.",
         "chronology_note": CHRONOLOGY_NOTE,
     }
     products["8.7"]["literature_refresh_20261106.json"] = legacy.encode(refresh)
@@ -409,12 +464,12 @@ def package(output_dir, requested_revision=None):
     products["8.7"]["SUPLEMENTO_EVIDENCIAS_20261106.md"] = (
         "# Evidencias y análisis posteriores del 6 de noviembre de 2026\n\n"
         + CHRONOLOGY_NOTE + "\n\n"
-        "8.7 añade la comparación documental y sensibilidad del margen; 8.4 incluye el "
-        "cribado editorial y la síntesis de selección; 8.5 añade Q–Q, contraste global y "
-        "sensibilidad no paramétrica calculados desde métricas guardadas. Aquí se "
-        "conservan resúmenes y manifiestos. Los resultados y fuentes prerregistrados "
-        "no se reescriben; los vectores diarios, pesos y escaladores permanecen fuera "
-        "de la entrega pública.\n"
+        "8.7 añade la comparación documental y el contexto académico del margen; 8.4 incluye "
+        "cribado, recuperación de originales y evidencia de búsquedas con sus límites. "
+        "8.5 añade estadística posterior y curvas de una reproducción separada. Su protocolo, "
+        "registro y entorno también se incluyen en 8.6. Los resultados y fuentes históricos "
+        "no se reescriben; los vectores diarios, pesos y escaladores permanecen fuera de "
+        "la entrega pública. Los nuevos ajustes de curvas no son los originales recuperados.\n"
     ).encode()
     # Nothing is written until all source metadata and baseline archives pass.
     output.mkdir(parents=True, exist_ok=True)
@@ -442,6 +497,8 @@ def package(output_dir, requested_revision=None):
     complete["url"] = legacy.PUBLIC_BOOK + "_static/e1_downloads/" + complete["file"]
     verifications[complete["file"]] = verify_archive(output / complete["file"])
     result = copy.deepcopy(catalog)
+    if "presentation_refresh" in result:
+        result.setdefault("prior_presentation_refreshes", []).append(result.pop("presentation_refresh"))
     result.update(source_commit=revision, packages=records, complete_package=complete,
                   report_verification=report_check, archive_verification=verifications,
                   literature_refresh=refresh, evidence_refresh=refresh,
@@ -452,9 +509,10 @@ def package(output_dir, requested_revision=None):
     (output / "README.md").write_text(
         "# Descargas vigentes del Entregable 1\n\nLos siete productos conservan los nombres "
         "de la unidad 8. La descarga completa reúne esos siete ZIP y su catálogo.\n\n"
-        + CHRONOLOGY_NOTE + "\n\nLos ZIP 8.3 y 8.6 son idénticos a la entrega base. El ZIP "
-        "8.5 conserva sus archivos originales y añade el suplemento identificado; 8.7 "
-        "incorpora la comparación documental. "
+        + CHRONOLOGY_NOTE + "\n\nEl ZIP 8.3 es idéntico a la entrega base. "
+        "8.5 y 8.6 conservan sus archivos científicos originales y añaden evidencia y "
+        "configuración de la reproducción identificada; 8.7 incorpora comparación documental, "
+        "margen y procedencia. "
         "`catalogo.json` conserva modelos, fases, entrypoints y limitaciones científicas. "
         "Verificar integridad con `sha256sum -c SHA256SUMS.txt`; los manifiestos internos "
         "verifican bytes y SHA256 por miembro.\n", encoding="utf-8")

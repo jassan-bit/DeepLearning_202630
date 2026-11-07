@@ -2,7 +2,7 @@
 
 ## Ampliación vigente del 6 de noviembre de 2026
 
-`native_search_20261106/` conserva cuatro exportaciones recibidas (244 ocurrencias, 182 grupos provisionales), deduplicación, primera pasada y cola de revisión. `primary_reviews_20261106/` contiene cinco fichas de acceso: dos originales completos adicionales, dos resúmenes y una lectura primaria parcial. CVI implícita y redes dentro de híbridos GARCH permanecen en estratos distintos de los siete textos del corte del 05/11. La bibliografía canónica contiene 42 referencias; su cantidad no equivale a estudios elegibles. Los manifiestos identifican evidencia y límites, sin declarar un PRISMA global cerrado.
+`native_search_20261106/` conserva cuatro exportaciones recibidas (244 ocurrencias, 182 grupos provisionales), deduplicación, primera pasada y cola de revisión. `primary_reviews_20261106/` contiene cinco fichas de acceso: dos originales completos adicionales, dos resúmenes y una lectura primaria parcial. CVI implícita y redes dentro de híbridos GARCH permanecen en estratos distintos de los siete textos del corte del 05/11. Ese complemento reunió 42 referencias; su cantidad no equivale a estudios elegibles. Los manifiestos identifican evidencia y límites, sin declarar un PRISMA global cerrado.
 
 `editorial_screening_20261106/` añade decisiones individuales de título/resumen sobre los grupos nuevos. Distingue exclusiones del núcleo, candidatos que requieren original y límites de fecha o deduplicación. Es una revisión editorial asistida posterior a la ingesta; no reemplaza sus archivos ni certifica inclusión por resumen. `selection_synthesis_20261106/` compara recurrencia, simplicidad y mecanismos de las familias candidatas sin ampliar artificialmente el denominador.
 
@@ -37,3 +37,8 @@ WoS, Scopus, IEEE y arXiv no se presentan como bases consultadas. Sus conteos so
 - `fichas_arquitecturas.md/json`: fichas, diagramas y fuentes. S1 sí publica los ganadores de LSTM/GRU/TCN en apéndice C, Tablas5–6. La versión de `keras-tcn`, la especificación parcial de S6 y las configuraciones propias siguen abiertas.
 
 Las fuentes difieren en objetivo, datos, horizonte, escala y protocolo. No se construye un ranking mezclando sus RMSE/R² ni se considera que diversidad, frecuencia aislada o cantidad de citas cierre la selección definitiva de tres modelos básicos. En ese corte los experimentos figuraban pendientes. Las ejecuciones posteriores de E1 se documentan por separado en los capítulos 4, 5 y 9, con su propia cronología.
+
+
+## Recuperación por internet posterior al cribado del 06/11
+
+La bibliografía canónica ampliada reúne 50 entradas de fundamentos, aplicaciones y metodología; no es un recuento de inclusiones. `internet_closure_20261106/` contiene fichas de los 22 casos inicialmente pendientes: cuatro originales completos, una transcripción completa, cinco decisiones estrictas cerradas por exclusión/contexto y 17 pendientes de original o suplemento. Los candidatos E1X001–004 se conservan aparte y no aumentan el denominador histórico N7. `search_recovery_20261106/` registra cuatro intentos de acceso nativo bloqueados y doce consultas propuestas no ejecutadas, además de verificar las cuatro exportaciones recibidas. Los conteos nativos no recuperados son nulos, no cero resultados. La consulta efectiva de IEEE y el historial original siguen pendientes.

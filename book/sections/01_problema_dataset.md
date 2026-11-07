@@ -132,18 +132,29 @@ $$
 
 Esta definición es **posterior al test de fase I**. La fase II la fijó antes de puntuar su propia reserva: `design.json/statistics/delta` conserva $0{,}00025772842664981106$. Ese valor absoluto se usa para dimensionar las diferencias entre redes; no se recalcula a partir del RMSE de reserva ni se sustituye por el 5 % de persistencia. La ganancia relativa frente a cada referencia sigue siendo otra cantidad, con el denominador de esa referencia. No constituye un margen pretest de fase I ni una tolerancia de riesgo o rentabilidad validada.
 
-**Justificación y límite aplicado del 5 %.** El criterio evita considerar suficiente cualquier mejora numérica arbitrariamente pequeña y permite planificar un experimento con un umbral interpretable respecto de una referencia de desarrollo. Su magnitud es una elección académica, no una estimación del costo de un error ni una cota de ruido irreducible. La incertidumbre de la etiqueta móvil, el solapamiento y los cambios de régimen impiden deducir utilidad económica únicamente de una RMSE menor. No se afirma que el 5 % sea un umbral óptimo.
+**Justificación para el objetivo académico confirmado.** E1 compara modelos para establecer una referencia que una arquitectura más compleja deba superar. El 5 % funciona como una exigencia mínima de reducción del error para considerar un avance académico: evita que una ganancia minúscula sea suficiente por tener un p-valor pequeño y sitúa la exigencia entre los escenarios del 2,5 % y del 10 %. La elección conserva un componente normativo explícito; el costo computacional y la complejidad deben informarse junto a la ganancia. Los modelos finales tienen 1.121/1.489/1.185 parámetros para GRU/LSTM/TCN. No se infiere un 5 % óptimo ni una rentabilidad a partir de esos tamaños.
 
-| Escenario descriptivo | Reducción respecto del ancla GRU-CV | Diferencia absoluta de RMSE |
+La distinción entre efecto de interés y efecto detectable se apoya en los apartados metodológicos de {cite:t}`lakens2022samplesize`. Esa fuente permite fundamentar un umbral contextual y deliberado; no prescribe un 5 % universal para pronóstico de criptomonedas. **La fundamentación siguiente es posterior a la ejecución** y usa sólo desarrollo 2023–2024; no se atribuye al registro original ni selecciona otro margen según la reserva.
+
+| Contexto de desarrollo | Valor observado | Escala del margen fijado |
+|---|---:|---|
+| Ancla GRU/D7, RMSE CV2024 | 0,005154568533 | δ=0,000257728427; 0,02577 puntos porcentuales de volatilidad |
+| DE entre las diez semillas GRU/D7 | 0,000161557077 | δ equivale a **1,60 DE de inicialización** |
+| Semiamplitud del IC marginal 95 % de la media GRU/D7 | 0,000115570971 | δ equivale a **2,23 semiamplitudes** |
+| DE de las 366 etiquetas σ₇ de 2024 | 0,009780089975 | δ equivale al **2,64 % de esa DE observada** |
+| DE descriptiva de las doce medias mensuales de RMSE GRU/D7 | 0,001904519035 | La heterogeneidad del calendario es mayor que δ; no es un IC temporal |
+
+Estos valores calibran la magnitud del criterio. Las DE y los IC por semillas están condicionados a las mismas fechas; no estiman ruido irreducible, utilidad financiera ni incertidumbre de otro mercado. La dispersión de las etiquetas tampoco es una medida del error de medición. Que δ sea 1,60 DE entre semillas no demuestra que supere la variación temporal ni sustituye el contraste pareado apropiado. Las diferencias GRU–LSTM, GRU–TCN y GRU–persistencia en desarrollo, con IC marginales y efectos descriptivos, se conservan en el {download}`CSV de contexto pareado <../_static/e1_academic_margin_20261106/paired_development.csv>`; no añaden p-valores ni cambian el ganador registrado.
+
+| Sensibilidad de escala | Diferencia absoluta de RMSE | δ del escenario / DE de inicialización GRU-CV |
 |---|---:|---:|
-| Cambio pequeño | 1 % | 0,00005154568533 |
-| Sensibilidad inferior | 2,5 % | 0,00012886421332 |
-| Margen fijado en fase II | **5 %** | **0,00025772842665** |
-| Sensibilidad superior | 10 % | 0,00051545685330 |
+| 2,5 % | 0,00012886421332 | 0,80 |
+| **5 % fijado** | **0,00025772842665** | **1,60** |
+| 10 % | 0,00051545685330 | 3,19 |
 
-Los cuatro escenarios se calculan exclusivamente a partir del mismo ancla de desarrollo. Son una sensibilidad de escala, **no cuatro contrastes nuevos ni márgenes elegidos por los resultados de reserva**. El {download}`CSV de sensibilidad <../_static/e1_dataset_comparison_20261106/margin_sensitivity.csv>` conserva precisión completa; este suplemento no cambia el diseño, el cálculo de R ni las conclusiones de fase II.
+El escenario inferior admite cambios más cercanos a la variación de inicialización observada; el superior exige el doble de reducción que el criterio elegido. Esta comparación explica la exigencia intermedia del 5 % sin convertirla en una estimación empírica única. El {download}`contexto académico reproducible <../_static/e1_academic_margin_20261106/README.md>`, su [resumen y alcance](../_static/e1_academic_margin_20261106/summary.json), el {download}`CSV normalizado <../_static/e1_academic_margin_20261106/margin_context.csv>` y su [manifiesto de entradas](../_static/e1_academic_margin_20261106/source_manifest.json) permiten reconstruir las cifras desde agregados públicos. El [CSV de escala anterior](../_static/e1_dataset_comparison_20261106/margin_sensitivity.csv) conserva también el escenario del 1 % como archivo histórico.
 
-Para convertir el pronóstico en una decisión aplicada futura deberán fijarse antes de evaluar: una acción concreta —por ejemplo, asignar una categoría de alerta de variabilidad—, sus umbrales, los costos de falsas alarmas y omisiones, la referencia operativa y una métrica de utilidad o calibración pertinente. Esas decisiones no se implementaron aquí. Se deberán estimar su efecto y su incertidumbre en una cohorte nueva, sin traducir automáticamente el 5 % de RMSE en mejora de rentabilidad o de riesgo. El promedio por sí solo no demuestra superar una frontera práctica; debe distinguirse siempre $\delta$ de la MDE que resulte del diseño y de sus supuestos.
+En una comparación futura, la relevancia académica se juzgará por el tamaño de la reducción, su incertidumbre y el aumento de recursos respecto de las referencias pertinentes. La MDE responde a la detectabilidad bajo un diseño y sus supuestos; δ expresa la exigencia de interés y permanece separado. El suplemento no cambia el 5 %, R, las recetas, el baseline ni las conclusiones de los estudios cerrados. Una implementación económica posterior necesitaría su propia acción, costos y evaluación de utilidad; ese objetivo está fuera del alcance académico confirmado para E1.
 
 Las diez semillas de la CV de fase I fueron un presupuesto fijo y no procedieron de un piloto. La sensibilidad retrospectiva no sustituye ese requisito. La fase II D7 incorpora un piloto antes de sus ajustes definitivos y dimensionamiento con las diferencias pareadas GRU–LSTM–TCN, como se detalla en [§9.4–9.5](09_estudio_planificado.md). Su potencia es de planificación entre semillas, condicionada al calendario; no acredita potencia temporal ni otros mercados. No se han entrenado modelos avanzados.
 | Elemento | Decisión y alcance |

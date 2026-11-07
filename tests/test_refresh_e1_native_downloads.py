@@ -35,6 +35,10 @@ class NativeDownloadRefreshTests(unittest.TestCase):
         self.write("BUILD.md", "Current public build instructions\n")
         self.write("README.md", "Current repository documentation\n")
         self.write("requirements-e1-supplement.lock.txt", "supplement-package==1.0\n")
+        self.write("requirements-e1-curves.lock.txt", "curve-package==1.0\n")
+        for name in refresh.REPRODUCTION_PROTOCOL_FILES:
+            self.write(name, '{"new_development_reproduction": true}\n' if name.endswith(".json")
+                       else "Separately registered development curve reproduction\n")
         self.write("scripts/current.py", "print('public current code')\n")
         self.write("tests/test_current.py", "# current public verification\n")
         self.write("book/references.bib", "@article{current, title={Current literature}}\n")
@@ -59,6 +63,22 @@ class NativeDownloadRefreshTests(unittest.TestCase):
                 self.write(prefix + "/" + name, value)
             mapping = {name: refresh.legacy.digest((directory / name).read_bytes()) for name in names}
             self.write(prefix + "/manifest.json", json.dumps({"files_sha256": mapping}) + "\n")
+            self.stage_directories[stage] = directory
+        self.dynamic_stage_names = {}
+        for stage in refresh.MANIFEST_STAGES:
+            prefix = "book/_static/literature_e1/" + stage
+            directory = self.root / prefix
+            names = {"README.md", "summary.json", "part_a/reviews.json", "query_log.json"}
+            for name in names:
+                self.write(prefix + "/" + name,
+                    '{"public_metadata": true}\n' if name.endswith(".json")
+                    else "Reviewed nested metadata only\n")
+            mapping = {name: {"sha256": refresh.legacy.digest((directory / name).read_bytes()),
+                              "bytes": (directory / name).stat().st_size} for name in names}
+            self.write(prefix + "/manifest.json", json.dumps({
+                "publication_schema": refresh.PUBLICATION_SCHEMA,
+                "approved_public_files": sorted(names), "files": mapping}) + "\n")
+            self.dynamic_stage_names[stage] = names
             self.stage_directories[stage] = directory
         self.supplement_directories = {}
         for label, spec in refresh.SUPPLEMENTS.items():
@@ -95,6 +115,9 @@ class NativeDownloadRefreshTests(unittest.TestCase):
             if item == "8.4":
                 payload.update({"book/references.bib": b"@article{old}\n",
                     "book/_static/literature_e1/history_20261102/studies.json": b'{"n": 7}\n'})
+            if item == "8.6":
+                payload.update({"experiments/original/design.json": b'{"original_config": true}\n',
+                                "requirements-training.lock.txt": b"original-runtime==1.0\n"})
             self.base_payloads[item] = payload
             records.append(refresh.legacy.archive(self.base / filename, payload, item, "Product " + item,
                                                   "a" * 40, "Original phase I/II notes\n"))
@@ -106,6 +129,8 @@ class NativeDownloadRefreshTests(unittest.TestCase):
             "planned_D7_phase": {"definitive_seeds_per_family": 465, "temporal_power_claimed": False},
             "scope": "Two separate historical experimental phases",
             "declaration_manifest_sha256": "c" * 64,
+            "presentation_refresh": {"source_commit": "a" * 40,
+                                     "preserved_archive_sha256": {"8_6_configuraciones.zip": "b" * 64}},
             "packages": records, "complete_package": {"title": "Complete E1"},
             "scientific_limitations_preserved": True}
         self.write("book/_static/e1_downloads/catalogo.json", json.dumps(self.catalog) + "\n")
@@ -149,6 +174,8 @@ class NativeDownloadRefreshTests(unittest.TestCase):
         for row in catalog["packages"] + [catalog["complete_package"]]:
             self.assertEqual(row["url"], refresh.legacy.PUBLIC_BOOK + "_static/e1_downloads/" + row["file"])
         self.assertFalse(catalog["literature_refresh"]["retrospective_preregistration"])
+        self.assertNotIn("presentation_refresh", catalog)
+        self.assertEqual(catalog["prior_presentation_refreshes"], [self.catalog["presentation_refresh"]])
         self.assertEqual(catalog["new_model_fits_by_packaging"], 0)
         with ZipFile(self.output / refresh.ITEMS["8.2"]) as saved:
             self.assertEqual(saved.read("scripts/current.py"), (self.root / "scripts/current.py").read_bytes())
@@ -158,17 +185,25 @@ class NativeDownloadRefreshTests(unittest.TestCase):
             self.assertEqual(saved.read("requirements-training.lock.txt"), b"historical==1.0\n")
             self.assertEqual(saved.read("BUILD.md"), b"Current public build instructions\n")
             self.assertEqual(saved.read("requirements-e1-supplement.lock.txt"), b"supplement-package==1.0\n")
+            self.assertEqual(saved.read("requirements-e1-curves.lock.txt"), b"curve-package==1.0\n")
         with ZipFile(self.output / refresh.ITEMS["8.4"]) as saved:
             self.assertEqual(saved.read("book/references.bib"), (self.root / "book/references.bib").read_bytes())
             self.assertEqual(saved.read("book/_static/literature_e1/history_20261102/studies.json"), b'{"n": 7}\n')
             for stage, names in refresh.STAGES.items():
                 for name in names | {"manifest.json"}:
                     self.assertIn("book/_static/literature_e1/" + stage + "/" + name, saved.namelist())
+            for stage, names in self.dynamic_stage_names.items():
+                for name in names | {"manifest.json"}:
+                    self.assertEqual(saved.read("book/_static/literature_e1/" + stage + "/" + name),
+                                     (self.stage_directories[stage] / name).read_bytes())
         with ZipFile(self.output / refresh.ITEMS["8.7"]) as saved:
             for stage, names in refresh.STAGES.items():
                 for name in ("summary.json", "manifest.json", "source_manifest.json"):
                     if name == "manifest.json" or name in names:
                         self.assertIn("book/_static/literature_e1/" + stage + "/" + name, saved.namelist())
+            for stage in refresh.MANIFEST_STAGES:
+                for name in ("summary.json", "manifest.json"):
+                    self.assertIn("book/_static/literature_e1/" + stage + "/" + name, saved.namelist())
             self.assertEqual(saved.read("original_metadata.json"), b'{"historical": true}\n')
             self.assertIn("prerregistro retrospectivo", saved.read("AMPLIACION_LITERARIA_20261106.md").decode())
             self.assertIn("SUPLEMENTO_EVIDENCIAS_20261106.md", saved.namelist())
@@ -184,6 +219,21 @@ class NativeDownloadRefreshTests(unittest.TestCase):
                 for name, data in self.base_payloads[spec["item"]].items():
                     self.assertEqual(saved.read(name), data)
         self.assertEqual(catalog["evidence_refresh"]["supplements"]["statistics"]["product"], "8.5")
+        self.assertEqual(catalog["evidence_refresh"]["supplements"]["curves"]["product"], "8.5")
+        self.assertEqual(catalog["evidence_refresh"]["supplements"]["academic_margin"]["product"], "8.7")
+        with ZipFile(self.output / refresh.ITEMS["8.6"]) as saved:
+            for name, data in self.base_payloads["8.6"].items():
+                self.assertEqual(saved.read(name), data)
+            for name in refresh.REPRODUCTION_PROTOCOL_FILES:
+                self.assertEqual(saved.read(name), (self.root / name).read_bytes())
+            self.assertEqual(saved.read("requirements-e1-curves.lock.txt"), b"curve-package==1.0\n")
+            curve_prefix = refresh.SUPPLEMENTS["curves"]["directory"] + "/"
+            for name in ("reproduction_registration.json", "runtime.json", "execution.json"):
+                self.assertEqual(saved.read(curve_prefix + name),
+                    (self.supplement_directories["curves"] / name).read_bytes())
+        with ZipFile(self.output / refresh.ITEMS["8.7"]) as saved:
+            for name in refresh.REPRODUCTION_PROTOCOL_FILES:
+                self.assertEqual(saved.read(name), (self.root / name).read_bytes())
         with ZipFile(self.output / refresh.ITEMS["8.1"]) as saved:
             self.assertNotIn("informe/_static/e1_downloads/8_5_benchmark.zip", saved.namelist())
             self.assertNotIn("informe/_static/eda/results/summary.json", saved.namelist())
@@ -286,10 +336,12 @@ class NativeDownloadRefreshTests(unittest.TestCase):
         self.build()
         upload = stage / "raw_upload.csv"
         upload.write_text("Abstract,Author Email\nPrivate abstract,private@example.test\n")
+        nested_upload = self.stage_directories[refresh.MANIFEST_STAGES[0]] / "raw_upload.csv"
+        nested_upload.write_text("Abstract,Author Email\nPrivate abstract,private@example.test\n")
         market = self.write("data/raw/market.csv", "Do not read market observations\n")
         original_read_bytes = Path.read_bytes
         def public_reads_only(path):
-            if path in {upload, market}:
+            if path in {upload, nested_upload, market}:
                 raise AssertionError("Private input was opened: " + str(path))
             return original_read_bytes(path)
         with patch.object(Path, "read_bytes", public_reads_only):
@@ -300,10 +352,53 @@ class NativeDownloadRefreshTests(unittest.TestCase):
     def test_rejects_abstract_contact_fields_in_metadata(self):
         cases = {"records.csv": b"Title,Abstract\nPublic title,Private abstract\n",
                  "source_manifest.json": b'{"records": [{"author_email": "private@example.test"}]}',
-                 "references.bib": b"@article{x,\n abstract = {Private abstract}\n}\n"}
+                 "references.bib": b"@article{x,\n abstract = {Private abstract}\n}\n",
+                 "reviews.json": b'{"raw_abstract": "Exported copyrighted text"}'}
         for name, data in cases.items():
             with self.subTest(name=name), self.assertRaisesRegex(ValueError, "Private/abstract"):
                 refresh.validate_public_bytes(name, data)
+
+    def test_nested_stage_needs_explicit_closed_approval(self):
+        directory = self.stage_directories[refresh.MANIFEST_STAGES[0]]
+        path = directory / "manifest.json"
+        original = json.loads(path.read_text())
+        files, _ = refresh.public_stage(directory, None)
+        self.assertIn("part_a/reviews.json", files)
+        for change in ("missing_schema", "unapproved_file", "duplicate_approval", "hash_mismatch"):
+            changed = json.loads(json.dumps(original))
+            if change == "missing_schema":
+                changed.pop("publication_schema")
+            elif change == "unapproved_file":
+                changed["files"]["other.json"] = {"bytes": 1, "sha256": "a" * 64}
+            elif change == "duplicate_approval":
+                changed["approved_public_files"].append("summary.json")
+            else:
+                changed["files"]["part_a/reviews.json"]["sha256"] = "a" * 64
+            path.write_text(json.dumps(changed))
+            with self.subTest(change=change), self.assertRaises(ValueError):
+                refresh.public_stage(directory, None)
+
+    def test_nested_approval_cannot_ship_private_payload_or_pdf(self):
+        directory = self.stage_directories[refresh.MANIFEST_STAGES[0]]
+        path = directory / "manifest.json"
+        original = json.loads(path.read_text())
+        for name in ("predictions.csv", "part_a/paper.pdf", "../escape.json"):
+            changed = json.loads(json.dumps(original))
+            changed["files"][name] = {"bytes": 1, "sha256": "a" * 64}
+            changed["approved_public_files"] = sorted(changed["files"])
+            path.write_text(json.dumps(changed))
+            # Failure must precede reading any payload named by the bad entry.
+            with self.subTest(name=name), self.assertRaisesRegex(ValueError, "Private experimental|Unsupported public|Unsafe"):
+                refresh.public_stage(directory, None)
+
+    def test_reproduction_protocol_must_be_committed_before_any_output(self):
+        name = sorted(refresh.REPRODUCTION_PROTOCOL_FILES)[0]
+        self.git("rm", name)
+        self.commit()
+        self.build()
+        with self.assertRaisesRegex(ValueError, "Reproduction protocol source is not committed"):
+            refresh.package(self.output)
+        self.assertFalse(self.output.exists())
 
     def test_statistics_manifest_is_closed_and_public_payload_is_validated(self):
         spec = refresh.SUPPLEMENTS["statistics"]
