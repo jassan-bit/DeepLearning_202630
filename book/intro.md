@@ -3,90 +3,94 @@
 **Proyecto de Deep Learning · 2026-30**  
 **Profesor:** Dr. Lihki Rubio  
 **Autor:** Jassan Arteta  
-**Avance:** Entregable 1 · GRU–LSTM–TCN, CV de Filipe y modelo final D7 · actualización bibliográfica y síntesis comparativa del 7 de noviembre de 2026
+**Entregable 1 · Modelos base LSTM–MLP–GRU · actualización del 7 de noviembre de 2026, Colombia**
 
-Este libro desarrolla el **Entregable 1 de Deep Learning** para pronosticar volatilidad de **Bitcoin**, con datos oficiales de **Binance Spot BTCUSDT**. El problema es **tipo 4: regresión temporal**: cinco covariables OHLCV diarias, desviación estándar poblacional de siete retornos logarítmicos y horizonte de un día. Se conserva la validación **`split_train_val_forwardChaining` de `timeseries-cv`**, proyecto de DidierRLopes con coautoría de **Filipe R. Ramos**, con embargo y transformaciones ajustadas únicamente al pasado permitido.
+E1 compara modelos básicos de Deep Learning para pronosticar la volatilidad de **Bitcoin BTCUSDT**, con datos oficiales de Binance Spot. La tarea es **regresión temporal, tipo 4**: cinco covariables OHLCV diarias, volatilidad poblacional de siete retornos logarítmicos y horizonte de un día. El procedimiento conserva la validación forward chaining de **timeseries-cv**, con coautoría de Filipe R. Ramos, purga temporal y transformaciones aprendidas únicamente del pasado permitido.
 
-**Los tres modelos del experimento son GRU, LSTM y TCN.** MLP se examina como alternativa encontrada en la literatura y como antecedente histórico del repositorio. Las tablas del benchmark actual comparan la terna experimental y la referencia de persistencia.
+**El núcleo vigente es LSTM–MLP–GRU. TCN se conserva como comparación complementaria.** La selección utiliza las tres familias más recurrentes del estrato cripto con reporte suficiente y concreta su simplicidad y diversidad mediante arquitecturas de una capa oculta o recurrente. El cambio está respaldado por una matriz verificable y por una ejecución propia; se preservan nombres y puntuaciones de los experimentos anteriores.
 
-El estudio tiene **dos fases identificadas por separado**. La fase I evalúa las cuatro entradas D=7/14/21/28 con diez semillas y un test histórico ya observado. La fase II mantiene **D7, n=7 y h=1**, registra una búsqueda equitativa, ejecuta un piloto antes de su ajuste definitivo y evalúa una reserva histórica distinta con métodos fijados previamente.
+## Selección de los modelos base
 
-## Qué contiene el libro
+| Familia | Frecuencia en diez experimentos elegibles | Arquitectura básica y mecanismo |
+|---|---:|---|
+| **LSTM** | **10/10** | Una capa recurrente con estado de memoria separado y compuertas de entrada, olvido y salida |
+| **MLP** | **4/10** | Una capa oculta densa sobre la ventana ordenada; aprende interacciones entre posiciones sin estado recurrente |
+| **GRU** | **2/10** | Una capa recurrente con actualización y reinicio del estado |
+| TCN, complementaria | 1/10 | Convoluciones causales dilatadas; evidencia y experimentos históricos conservados |
 
-- [Problema y dataset](sections/01_problema_dataset.md): formulación, fuente, reloj de información y definición de σ₇.
-- [Análisis exploratorio](sections/02_eda.md): calidad, estructura temporal y decisiones derivadas del desarrollo 2023–2024.
-- [Estado del arte](sections/03_estado_arte.md): búsqueda, modelos de referencia y justificación de GRU–LSTM–TCN frente a otras alternativas.
-- [Implementación y evaluación](sections/04_implementacion_evaluacion.md): arquitecturas, cuatro entradas iniciales, purgas y alcance de las dos fases.
-- [Benchmark inicial](sections/05_benchmark.md): tablas de CV y del test histórico, baseline e inferencia exploratoria.
-- [Procedimiento temporal](sections/06_procedimiento.md): ruta 6.4 de la guía y disponibilidad causal.
-- [Limitaciones](sections/07_limitaciones_entregables.md): potencia entre semillas, dependencia y fuerza inferencial.
-- [Entregables](sections/08_entregables.md): siete productos y ocho descargas directas.
-- [Modelo final y evaluación D7](sections/09_estudio_planificado.md): HPO comparable, piloto, dimensionamiento y evaluación preespecificada.
-- [Decisiones y pendientes](sections/protocolo_pendiente.md): evidencia de cierre y límites aún abiertos.
+La {ref}`decisión de §3.14 <core-selection-e1>` deriva estos recuentos del corpus congelado, identifica autores, DOI, recetas y adaptaciones, y comprueba parámetros. Las frecuencias describen **el corpus revisado**, con sus búsquedas dirigidas y límites de cobertura. Todas las familias reciben la misma ventana; los estados recurrentes se reinician en cada muestra.
 
-## Modelo final y evaluación D7
+## Ruta de lectura
 
-El [diseño y código](https://github.com/jassan-bit/DeepLearning_202630/commit/ac7dd7f67c0dec2397b519897cf6da8056b238f5) se publicaron **antes del primer entrenamiento** de esta fase. La búsqueda utiliza **ocho configuraciones y dos semillas por familia**, los mismos diez bloques mensuales de enero–octubre de 2024 y **320 ajustes por familia, 960 en total**. La puntuación es la media entre semillas del RMSE sobre las 305 fechas de validación concatenadas.
+- [Problema y dataset](sections/01_problema_dataset.md): formulación, procedencia, reloj de información y objetivo σ₇.
+- [Análisis exploratorio](sections/02_eda.md): calidad, dependencia temporal y decisiones del desarrollo 2023–2024.
+- [Estado del arte](sections/03_estado_arte.md): búsquedas nativas, lectura crítica y selección vigente.
+- [Implementación](sections/04_implementacion_evaluacion.md): modelos, cuatro entradas, entrenamiento y reproducibilidad.
+- [Benchmark](sections/05_benchmark.md): comparación histórica compatible del núcleo y resultados complementarios.
+- [Procedimiento](sections/06_procedimiento.md): validación forward chaining y disponibilidad causal.
+- [Limitaciones](sections/07_limitaciones_entregables.md): alcance temporal, potencia y generalización.
+- [Entregables y descargas](sections/08_entregables.md): informe, código, configuración y evidencia pública.
+- [Estudio anterior con TCN](sections/09_estudio_planificado.md): resultados y cronología conservados.
+- [Núcleo LSTM–MLP–GRU](sections/10_nucleo_mlp.md): nueva comparación D7 con HPO, piloto y planificación propios.
+- [Matriz de cumplimiento](sections/protocolo_pendiente.md): requisitos, evidencia y alcance.
 
-| Modelo | Receta elegida con desarrollo | Parámetros | RMSE enero–octubre, media ± DE |
+## Nueva comparación D7
+
+El [protocolo y código](https://github.com/jassan-bit/DeepLearning_202630/commit/91acdeae1efd92f098ff2ce9a32f90c5b0a4b98a) quedaron publicados y verificados antes de los nuevos ajustes. El {ref}`capítulo 10 <final-core-mlp-e1>` identifica esta ejecución y sus resultados propios.
+
+El HPO completó **ocho candidatos y dos semillas por familia**, diez bloques enero–octubre de 2024 y **320 etapas por familia, 960 en total**. Comparte D7, n=7, h=1, preprocesamiento, optimizador y reglas de parada. La selección quedó congelada antes del piloto y de la evaluación:
+
+| Modelo | Receta seleccionada con desarrollo | Parámetros | RMSE CV, media ± DE |
 |---|---|---:|---:|
-| **GRU/D7** | Una capa de 16 unidades, LR 0,003, dropout 0,1 | **1.121** | **0,00513620 ± 0,00003068** |
-| LSTM/D7 | Una capa de 16 unidades, LR 0,003, dropout 0 | 1.489 | 0,00626389 ± 0,00021402 |
-| TCN/D7 | Tres bloques causales, ancho 8, LR 0,003, dropout 0 | 1.185 | 0,00543698 ± 0,00056998 |
+| **GRU** | 16 unidades, LR 0,003, dropout 0,1 | **1.121** | **0,00513620 ± 0,00003068** |
+| MLP | Una capa oculta de 32 unidades, LR 0,003, dropout 0,1 | 1.185 | 0,00527943 ± 0,00003534 |
+| LSTM | 16 unidades, LR 0,003, dropout 0 | 1.489 | 0,00626389 ± 0,00021402 |
 
-El baseline final es **GRU/D7 de 16 unidades**, seleccionado y congelado por desarrollo antes del piloto y de la reserva. Es una receta distinta de la GRU de 32 unidades de fase I.
+El **baseline actual es GRU/D7-c03 de 16 unidades**, elegido por CV. La MLP nueva tiene 1.185 parámetros y conserva su propia procedencia; la MLP histórica de 593 parámetros permanece en su tabla anterior.
 
-El piloto usa **diez semillas nuevas por familia**, treinta trayectorias y sesenta ajustes, sobre el **01/11–30/12/2024** con pesos fijos. Las diferencias pareadas de RMSE y su incertidumbre dimensionan **465 ejecuciones por familia** mediante t no central, α*=0,05/3 y potencia marginal objetivo 0,80. La planificación quedó [publicada antes de los ajustes definitivos](https://github.com/jassan-bit/DeepLearning_202630/commit/5a0acfbc2ff582e252f0e6fb18aaf652963221f8). Sus supuestos y MDE se desarrollan en el [capítulo 9](sections/09_estudio_planificado.md).
+El piloto completó **diez semillas nuevas por familia, treinta trayectorias y sesenta etapas**, sobre noviembre–diciembre de 2024. Su dispersión pareada requiere **R=331** mediante t no central y multiplicidad; el piso prefijado produce **465 ejecuciones por modelo**, conservando δ=0,00025772842664981106. El [plan exacto](https://github.com/jassan-bit/DeepLearning_202630/commit/593b4ec943dc0f7e257d348f3145e71810f665e4) quedó publicado y verificado antes de los ajustes definitivos. Se cierran todos los pesos antes de puntuar.
 
-La nueva reserva comprende **01/09–30/10/2026, 60 días**. Los archivos ya habían sido auditados por integridad, timestamps y esquema; según los registros conservados, no se habían utilizado para construir objetivos o evaluar resultados. Esta fase es una evaluación preespecificada de una reserva histórica, no predicciones emitidas en vivo ni evidencia de otro mercado. La potencia planificada entre semillas **no acredita potencia temporal del 80 %** sobre esos 60 días.
+La evaluación comprende **01/09–30/10/2026**, sesenta fechas con contexto de agosto. **Este calendario ya fue evaluado en el proyecto**: la extensión es histórica y exploratoria, con procedimiento registrado antes de sus nuevos ajustes. No constituye un holdout independiente nuevo ni predicciones emitidas en vivo.
 
-### Resultados de la nueva reserva
+### Evaluación final del núcleo
 
-| Modelo final | RMSE, media ± DE | R² medio | MAE medio |
+Se cerraron **1.395 modelos y 2.790 etapas definitivas** antes de puntuar; la ejecución completa, incluido HPO y piloto, comprende **3.810 etapas**. Los 32 archivos recibidos coinciden con los hashes originales. La evaluación conserva **83.700 predicciones** sobre las sesenta fechas comunes.
+
+| Modelo final | RMSE, media ± DE | MAE medio | R² medio |
 |---|---:|---:|---:|
-| GRU | 0,00511696 ± 0,00077519 | 0,348891 | 0,00391028 |
-| LSTM | 0,00565123 ± 0,00056569 | 0,215843 | 0,00429363 |
-| TCN | 0,00433967 ± 0,00099896 | 0,517956 | 0,00338399 |
-| Persistencia | 0,00384478 | 0,640632 | 0,00212123 |
+| **GRU** | **0,00511696 ± 0,00077519** | 0,00391028 | 0,348891 |
+| **MLP** | **0,00516664 ± 0,00048727** | 0,00397196 | 0,345286 |
+| **LSTM** | **0,00565123 ± 0,00056569** | 0,00429363 | 0,215843 |
+| Persistencia | 0,00384478 | 0,00212123 | 0,640632 |
 
-Las redes resumen 465 semillas sobre las mismas sesenta fechas; persistencia es determinista. Los [contrastes e intervalos de fase II](sections/09_estudio_planificado.md) distinguen aleatoriedad de entrenamiento e incertidumbre temporal.
+Las redes resumen 465 semillas cada una; persistencia es determinista. **GRU–MLP no rechaza igualdad de medias tras Holm, p=0,243**, sin demostrar equivalencia. Ambas tienen menor RMSE que LSTM en la comparación entre inicializaciones. Ningún DM rechaza tras Holm-6; el bootstrap temporal familiar no acredita una mejora superior al 5 %. Persistencia conserva el menor error puntual.
 
-En esta reserva, **persistencia tiene menor RMSE media que las tres redes y TCN el menor error entre las redes**. El baseline operativo permanece GRU/D7-c03, fijado por desarrollo. Las diferencias entre semillas no equivalen a superioridad temporal: ninguna comparación DM rechaza tras Holm-6 y el bootstrap temporal familiar no acredita una mejora superior al 5 %. Los diagnósticos rechazan normalidad de las diferencias; las t de 465 pares se interpretan como aproximaciones, con sus límites en el capítulo 9.
+El {ref}`capítulo 10 <final-core-mlp-e1>` publica las seis métricas, IC, contrastes y **44.201 registros de pérdidas de entrenamiento/validación**. Una revisión independiente recalculó las seis métricas desde las predicciones guardadas con diferencia máxima cero y verificó la cronología y los archivos públicos.
 
-## Fase I: benchmark exploratorio conservado
+## Comparación histórica del núcleo
 
-La comparación inicial utiliza **D=7/14/21/28**, n=7, h=1, doce bloques mensuales de 2024 y diez semillas por red e historia. Completó **120 trayectorias, 1.440 segmentos, 2.880 ajustes y 43.920 predicciones**. Las cuarenta trayectorias LSTM reentrenadas reprodujeron exactamente **14.640 predicciones de control**.
+El [benchmark](sections/05_benchmark.md) reúne métricas reales de **GRU, MLP y LSTM** para **D=7/14/21/28**, diez semillas comunes 4101–4110, doce bloques de CV de 2024 y test histórico **01/01/2025–31/08/2026**. Los modelos comparten contrato de datos y calendario. Las recetas y el esfuerzo de HPO original difieren; este antecedente se distingue de la nueva búsqueda comparable.
 
-Tras cerrar configuraciones y épocas se realizaron **80 ajustes finales nuevos de GRU/TCN** y se reutilizaron **40 LSTM idénticos**, verificando pesos, escaladores y recetas. El test **01/01/2025–31/08/2026** contiene **608 fechas y 72.960 predicciones**: ochenta inferencias nuevas y cuarenta trayectorias LSTM conservadas. Sus veinte meses son intervalos de reporte, sin reajuste durante test.
-
-| Modelo de fase I seleccionado con CV | RMSE CV 2024, media | RMSE test histórico, media ± DE | R² test, media |
+| Modelo histórico D7 | Parámetros | RMSE CV, media | RMSE test de 608 días, media ± DE |
 |---|---:|---:|---:|
-| **GRU/D7, 32 unidades** | **0,005155** | **0,003775 ± 0,000194** | **0,8542** |
-| LSTM/D7, 32 unidades | 0,006335 | 0,005030 ± 0,000264 | 0,7411 |
-| TCN/D7, ancho 16 | 0,005820 | 0,004175 ± 0,000373 | 0,8208 |
+| **GRU, 32 unidades** | **3.777** | **0,00515457** | **0,00377511 ± 0,00019410** |
+| MLP, 16 unidades | 593 | 0,00604907 | 0,00479318 ± 0,00039878 |
+| LSTM, 32 unidades | 5.025 | 0,00633541 | 0,00502979 ± 0,00026367 |
 
-Las [tablas de CV de fase I](_static/gru_lstm_tcn_20261105/metric_summary_cv.csv) y [su test](_static/gru_lstm_tcn_20261105/metric_summary_test.csv) conservan las seis métricas y las cuatro entradas. Persistencia obtiene menor RMSE que GRU en esa CV; en su test GRU tiene menor RMSE, mientras persistencia conserva mejores MAE y MAPE.
+Las cuatro entradas y las seis métricas se conservan en el capítulo 5. D7 minimiza la RMSE CV de cada familia en ese antecedente; GRU es su baseline histórico. El test ya había sido observado y sus contrastes son exploratorios. La nueva selección documental conserva esta cronología.
 
-**El test de fase I ya había sido observado.** Sus contrastes y margen son posteriores y exploratorios; el nuevo estudio no cambia esa cronología. El piloto y HPO D7 de fase II no se atribuyen a D14/21/28. Tampoco se comparan directamente métricas de 608 y 60 días para afirmar una ganancia causada por el HPO: cambian el periodo y el régimen.
+## Literatura y búsqueda reproducible
 
-## Literatura y límites científicos
+La bibliografía canónica contiene **70 referencias**. La {ref}`síntesis acumulada <homogeneous-expansion-e1>` concilia 57 obras, **35 textos primarios completos consultados y una transcripción completa**. El constructo cripto contiene quince experimentos: trece con familias autónomas extraíbles y diez con reporte suficiente para el ranking principal. La {ref}`ampliación gratuita <free-model-expansion-e1>` documenta trece obras seleccionadas, de las que diez son incorporaciones; fuentes de otros mercados e híbridos conservan su papel de evidencia relacionada.
 
-La bibliografía canónica reúne **70 referencias**. La {ref}`ampliación gratuita TCN/MLP <free-model-expansion-e1>` documenta **13 obras seleccionadas: tres ya citadas y diez incorporaciones**, con autores, DOI, enlaces al texto y evaluación de su papel comparativo. Doce tienen identidad de publicación en revista o congreso; Ge et al. permanece como preprint. Las fuentes de otros mercados y los híbridos aportan evidencia relacionada, separada del pronóstico de volatilidad realizada cripto.
+La {ref}`bitácora nativa <current-native-execution-e1>` acredita consultas del **6 de noviembre de 2026 en Colombia**: **WoS 271, Scopus 538 e IEEE Xplore 32 resultados**. Se conservan cadenas, campos, filtros y exportaciones reales, distinguiendo resultados de registros exportados: **271/538/25**. Los filtros difieren y se declaran: Scopus 2019–2026; WoS con años exportados 2017–2026; IEEE con acceso abierto e intervalo visible 2018–2026.
 
-La {ref}`síntesis acumulada vigente <homogeneous-expansion-e1>` concilia **57 obras**, con **35 textos primarios completos consultados y una transcripción completa**, además de fuentes parciales o no obtenidas. El constructo cripto contiene **15 experimentos independientes**, trece con referencias autónomas extraíbles. El estrato con reporte suficiente reúne **diez experimentos**: **LSTM 10/10, MLP 4/10, GRU 2/10 y TCN 1/10**. La extracción descriptiva de trece registra LSTM 13/13, MLP 6/13, GRU 4/13 y TCN 1/13; una receta insuficiente puede describir una familia sin entrar en el estrato de reporte. El {ref}`corte anterior de 47 obras <homogeneous-selection-e1>` conserva sus propios denominadores y archivos.
+La recuperación histórica conserva ocho decisiones verificadas y catorce informes no obtenidos al corte, con identidad, motivo y alternativas gratuitas por función. Es una limitación de cobertura documentada. Las sesiones antiguas y los cortes bibliográficos fechados se conservan separados de la ronda nativa actual.
 
-La terna **GRU–LSTM–TCN** mantiene el contraste experimental entre dos reglas de estado recurrente y una representación convolucional causal sobre D7. Los nuevos antecedentes de Shin, Vo y Ge refuerzan el uso comparativo de TCN en otros mercados financieros, con niveles de reporte y publicación explícitos. **MLP conserva su lugar de alternativa bibliográfica**, con mayor recurrencia en el corpus cripto y una receta histórica propia de 593 parámetros. La decisión explica el contraste entre mecanismos; no se presenta como las tres primeras posiciones por frecuencia o como mínima complejidad global. La cuota de búsqueda de siete fuentes TCN y seis MLP organiza la recuperación, sin convertirse en una medida de prevalencia.
+## Interpretación y reproducibilidad
 
-El flujo histórico conserva **244 ocurrencias y 182 grupos provisionales** de cuatro exportaciones. Los 22 casos que requirieron recuperación quedan al corte como **ocho decisiones de exclusión/contexto y 14 informes no obtenidos**. Es una disposición documentada del flujo, sin obligación de comprar esos textos ni afirmación de haberlos leído. Las {download}`alternativas de acceso gratuito <_static/literature_e1/open_access_replacement_20261107/README.md>` aportan respaldo por tema y función. El corte anterior de siete estudios y sus frecuencias permanecen como evidencia histórica, separado del corpus conciliado actual.
+El margen del 5 % es una convención para la **comparación académica** confirmada por el autor. Su [justificación](sections/01_problema_dataset.md) lo sitúa frente a la variación de desarrollo y presenta sensibilidad al 2,5/10 %. Las semillas caracterizan aleatoriedad del entrenamiento sobre las mismas fechas; no representan cientos de mercados independientes. Persistencia permanece visible y los resultados adversos se conservan.
 
-La nueva {ref}`bitácora nativa <current-native-execution-e1>` conserva las consultas comunicadas y las exportaciones reales: **271 resultados de Web of Science, 538 de Scopus y 32 de IEEE Xplore**. Se distinguen total de resultados, registros exportados y estudios incluidos. Los filtros difieren: Scopus incluye 2019–2026; el exportado WoS contiene años 2017–2026; IEEE muestra acceso abierto e intervalo 2018–2026. Esta ronda acredita la consulta efectiva de las tres bases con su procedencia y alcance, sin atribuirle las cadenas desconocidas de las sesiones históricas ni convertir los resultados en artículos leídos.
+El estudio anterior con TCN conserva curvas públicas y la {ref}`auditoría de repetibilidad <auditoria-numerica-e1>` de seis celdas: **18/18 coincidencias canónicas actuales**, separadas de la comparación limitada con archivos privados originales. La nueva ejecución mantiene sus propias curvas y procedencia.
 
-El margen académico δ≈0,00025772843 corresponde al **5 % del RMSE CV del GRU/D7 inicial**. Fue posterior al test de fase I y quedó fijado antes de la evaluación definitiva. Su [justificación](sections/01_problema_dataset.md) lo relaciona con el uso académico confirmado y las escalas de desarrollo: 1,60 DE del RMSE CV entre semillas y 2,64 % de la DE observada de σ₇ en 2024, con sensibilidad al 2,5 % y 10 %. Es una elección normativa documentada; no demuestra utilidad financiera, equivalencia entre modelos o generalización a otros mercados.
-
-## Reproducibilidad
-
-La actualización del 06/11 añade fichas de originales, comparación de familias, contexto académico del margen y curvas públicas de las recetas finales. La {ref}`reproducción de curvas <curvas-finales-reproducidas>` se registró y publicó antes de sus nuevos ajustes: **465 semillas por familia, 1.395 trayectorias y 2.790 etapas**, sólo con desarrollo 2023–2024. Es una ejecución posterior; no recupera las historias privadas originales ni puntúa de nuevo la reserva. Se publican también las diferencias respecto de los hashes históricos. El baseline, las métricas de evaluación y el margen registrado se conservan. La {ref}`auditoría numérica posterior <auditoria-numerica-e1>` añade dos ejecuciones independientes de seis celdas fijadas previamente: **18/18 coincidencias canónicas de pérdidas y pesos, con diferencia máxima cero**. Ese control acredita repetibilidad actual del subpanel; la comparación numérica con los archivos originales conserva su limitación de acceso.
-
-[BUILD.md](https://github.com/jassan-bit/DeepLearning_202630/blob/main/BUILD.md) distingue los comandos de ambas fases y la restauración desde los ZIP. Las descargas del [capítulo 8](sections/08_entregables.md) reúnen informe, código y evidencia pública. Construir HTML consume resultados guardados y no entrena redes ni abre archivos de mercado. Las observaciones y predicciones individuales, los escaladores y los checkpoints completos se distinguen de los agregados públicos conservados para revisión.
-
-La reserva de fase II pasa a ser una evaluación conocida una vez publicados sus resultados. Reproducirla no recupera independencia para un futuro modelo diseñado con esa información.
+[BUILD.md](https://github.com/jassan-bit/DeepLearning_202630/blob/main/BUILD.md) y las [descargas](sections/08_entregables.md) documentan la restauración. Construir HTML consume resultados guardados: no entrena redes ni abre datos de mercado. Los precios, predicciones diarias, escaladores y checkpoints se mantienen separados de los agregados públicos.

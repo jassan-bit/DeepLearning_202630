@@ -1,16 +1,16 @@
 # 3. Revisión del Estado del Arte y Extracción de los Tres Modelos Base
 
-**Dos fases del estudio.** Las tablas de cuatro entradas, diez semillas y test enero de 2025–agosto de 2026 de este capítulo corresponden a la **fase I exploratoria**. La **fase II D7** añade búsqueda equitativa, piloto anterior a su ejecución definitiva, dimensionamiento y evaluación preespecificada sobre el 01/09–30/10/2026. Sus recetas, recuentos y resultados se identifican por separado en el [capítulo 9](09_estudio_planificado.md).
+**Núcleo vigente y antecedentes.** La selección principal de E1 es **LSTM–MLP–GRU**. TCN se conserva como comparación complementaria y antecedente de los experimentos anteriores. El {ref}`nuevo estudio del núcleo <final-core-mlp-e1>` tiene protocolo y ejecución propios; las tablas históricas de este capítulo corresponden a la fase I exploratoria y al estudio D7 anterior, con sus recetas, semillas y calendarios. La incorporación de MLP se decide después de conocer aquellos resultados y no crea una reserva nueva independiente.
 
-La revisión debe identificar exactamente tres modelos DL básicos usados como referencias comparativas en la literatura del problema. El experimento propio sigue en Bitcoin y distingue evidencia cripto de transferencia financiera. La {ref}`ampliación gratuita de §3.12 <free-model-expansion-e1>` incorpora **13 obras seleccionadas —siete bajo la búsqueda TCN y seis bajo MLP—, de las cuales diez son identidades nuevas**: la bibliografía canónica pasa de 60 a **70 referencias**. La {ref}`conciliación acumulada de §3.13 <homogeneous-expansion-e1>` actualiza acceso, roles, calidad y frecuencias sin sumar registros por cuota de arquitectura. MLP figura como candidata de la revisión y antecedente histórico; **el benchmark experimental actual conserva exactamente GRU, LSTM y TCN**.
+La revisión debe identificar exactamente tres modelos DL básicos usados como referencias comparativas en la literatura del problema. El experimento propio sigue en Bitcoin y distingue evidencia cripto de transferencia financiera. La {ref}`ampliación gratuita de §3.12 <free-model-expansion-e1>` incorpora **13 obras seleccionadas —siete bajo la búsqueda TCN y seis bajo MLP—, de las cuales diez son identidades nuevas**: la bibliografía canónica pasa de 60 a **70 referencias**. La {ref}`conciliación acumulada de §3.13 <homogeneous-expansion-e1>` actualiza acceso, roles, calidad y frecuencias sin sumar registros por cuota de arquitectura. La decisión de {ref}`§3.14 <core-selection-e1>` adopta las tres mayores frecuencias del estrato con reporte suficiente: **LSTM 10/10, MLP 4/10 y GRU 2/10**. MLP pasa al núcleo seleccionado; TCN queda como comparación complementaria. La receta ganadora y los resultados de la ejecución nueva se identifican en el capítulo 10, sin atribuirle métricas antiguas.
 
 El corte anterior de la {ref}`síntesis homogénea de §3.10 <homogeneous-selection-e1>` concilió **47 identidades, 26 originales primarios leídos, 12 experimentos del constructo, diez con referencias extraíbles y ocho elegibles por reporte**. Esas unidades y cifras permanecen como evidencia histórica. El corte histórico del **05/11/2026** reúne **40 referencias** y un corpus aplicado de **siete textos completos**: seis estudios previos de BTC y S9, un estudio de veinte criptomonedas que también incluye BTC. Por tanto, el subconjunto que incluye BTC tiene siete estudios y uno de ellos incluye otras criptomonedas; son categorías superpuestas, no dos grupos que se suman. S8 verifica MLP, CNN, LSTM y GRU como comparadores independientes {cite:p}`miura2019`; S9 incorpora LSTM como propuesta, con su papel separado {cite:p}`djanga2025commonality`. En ese corte, T1/T2/T3 figuraban como transferencia financiera: un original editorial completo, código primario y una identidad de publicación, respectivamente; no aumentaban el denominador cripto. §3.8 actualiza después la lectura de T3, conservando su estrato financiero.
 
-La terna principal vigente es **GRU–LSTM–TCN causal dilatada residual**. Akbiyik et al. (2023), Tabla 2, comparan las tres familias como referencias independientes para volatilidad de Bitcoin {cite:p}`akbiyik2023`; Miura, Pichl y Kaizoji (2019), Tabla 1, aportan otra comparación publicada de GRU y LSTM {cite:p}`miura2019`. En ese corte de siete estudios, las frecuencias estrictas son **GRU 3/7, LSTM 5/7 y TCN 1/7**. En ese corte, la TCN tenía respaldo directo y recurrencia limitada en cripto. La ampliación de §3.12 añade comparadores TCN en otros mercados financieros, conservando ese estrato separado. Las redes pequeñas del proyecto son adaptaciones declaradas, con 3.777, 5.025 y 4.289 parámetros, respectivamente; no son las configuraciones ganadoras de esos artículos.
+**Antecedente GRU–LSTM–TCN.** Akbiyik et al. (2023), Tabla 2, comparan estas tres familias como referencias independientes para volatilidad de Bitcoin {cite:p}`akbiyik2023`; Miura, Pichl y Kaizoji (2019), Tabla 1, aportan otra comparación publicada de GRU y LSTM {cite:p}`miura2019`. En el corte de siete estudios las frecuencias estrictas eran GRU 3/7, LSTM 5/7 y TCN 1/7. Sus redes propias de fase I tenían 3.777, 5.025 y 4.289 parámetros; son adaptaciones de E1 y no los ganadores de los artículos. Ese experimento y sus resultados permanecen documentados como antecedentes, separados del núcleo LSTM–MLP–GRU.
 
-La decisión de publicar esta terna se tomó **después del benchmark histórico y de revisar el experimento privado GRU–LSTM–TCN**. No se presenta como una selección bibliográfica anterior a esas ejecuciones ni como confirmación sobre un calendario nuevo. El protocolo privado había fijado las recetas antes de sus propios ajustes; esa congelación y la decisión posterior de publicación son hechos distintos. El [expediente de selección vigente](../_static/literature_e1/gru_lstm_tcn_selection_20261105/selection.json), su [tabla](../_static/literature_e1/gru_lstm_tcn_selection_20261105/selection.csv) y la {download}`justificación <../_static/literature_e1/gru_lstm_tcn_selection_20261105/README.md>` conservan evidencia, criterios y límites.
+La decisión anterior de publicar GRU–LSTM–TCN se tomó **después del benchmark histórico y de revisar el experimento privado GRU–LSTM–TCN**. No se presenta como una selección bibliográfica anterior a esas ejecuciones ni como confirmación sobre un calendario nuevo. El protocolo privado había fijado las recetas antes de sus propios ajustes; esa congelación y la decisión posterior de publicación son hechos distintos. El [expediente de aquella selección](../_static/literature_e1/gru_lstm_tcn_selection_20261105/selection.json), su [tabla](../_static/literature_e1/gru_lstm_tcn_selection_20261105/selection.csv) y la {download}`justificación <../_static/literature_e1/gru_lstm_tcn_selection_20261105/README.md>` conservan evidencia, criterios y límites.
 
-MLP y CNN permanecen en las extracciones originales cuando los autores las usaron; la terna experimental principal contiene únicamente GRU, LSTM y TCN. Bucci, HARNet y DeepVol se conservan como transferencia financiera, con los niveles de acceso documentados en cada corte y la actualización de DeepVol en §3.8 {cite:p}`bucci2020realized,reisenhofer2022harnet,morenopino2024deepvol`; no añaden estudios al denominador cripto ni se necesitan para completar la evidencia TCN de S1.
+Las extracciones conservan todas las familias usadas por los autores. **MLP ahora integra el núcleo vigente junto con LSTM y GRU**; CNN y TCN conservan sus roles documentales y TCN sus resultados complementarios históricos. Bucci, HARNet y DeepVol se conservan como transferencia financiera, con los niveles de acceso documentados en cada corte y la actualización de DeepVol en §3.8 {cite:p}`bucci2020realized,reisenhofer2022harnet,morenopino2024deepvol`; no añaden estudios al denominador cripto ni se necesitan para completar la evidencia TCN de S1.
 
 La revisión del **03/11/2026** corrigió motivos de cribado, recuperó dos textos adicionales y completó la extracción de los hiperparámetros ganadores de S1, que sí aparecen en su apéndice. Se conservan los cortes anteriores y se explicitan fuentes grises, parámetros desconocidos y límites de las métricas. Aquella revisión documental del 03/11/2026 no entrenó redes ni consultó test; la ejecución posterior de desarrollo se registra por separado.
 
@@ -367,7 +367,17 @@ Los conteos comunes controlan dimensiones de entrada/salida, pero no igualan cap
 
 (seleccion-diversidad-d7)=
 (seleccion-gru-lstm-tcn)=
-**Terna principal vigente: GRU, LSTM y TCN.** Se conserva el contraste registrado entre mecanismos recurrentes y filtros causales. La {ref}`síntesis acumulada vigente de §3.13 <homogeneous-expansion-e1>` ordena los diez experimentos con reporte suficiente: **LSTM 10/10, MLP 4/10 y GRU 2/10**, seguidos por TCN, RNN simple y encoder, cada uno 1/10. La extracción descriptiva actual reúne trece experimentos; el corte anterior de §3.10 conserva sus propios recuentos. Por tanto, la terna implementada **no corresponde a las tres mayores frecuencias**. La tabla siguiente conserva las recetas de fase I y las frecuencias históricas N7; no sustituye la síntesis actual. Se elige una TCN compacta por su comparación independiente en el original publicado S1 y por contrastar recurrencia con convolución causal dilatada, sin declarar que un encoder pequeño sea imposible o intrínsecamente inferior.
+**Núcleo principal vigente: LSTM, MLP y GRU.** La {ref}`síntesis de §3.13 <homogeneous-expansion-e1>` proporciona las frecuencias del estrato con reporte suficiente: **10/10, 4/10 y 2/10**, respectivamente. TCN, RNN simple y encoder registran 1/10. La selección actual toma las tres primeras familias; no existe empate en el límite entre la tercera y la cuarta. La {ref}`decisión de §3.14 <core-selection-e1>` vincula esa recurrencia con arquitecturas de una capa, diferencias de sesgo e información común D7. La elección y el nuevo diseño son posteriores a los resultados previos; la extensión sobre la reserva ya observada conserva ese carácter exploratorio.
+
+| Familia del núcleo | Frecuencia vigente | Plantilla y candidatos prefijados | Parámetros bajo D7, cinco entradas y salida escalar |
+|---|---:|---|---:|
+| LSTM | 10/10 | Una capa unidireccional; H=16/32; celda y estado oculto separados | 1.489 / 5.025 |
+| MLP | 4/10 | Una capa oculta ReLU sobre los 35 valores rezagados; H=32/128 | 1.185 / 4.737 |
+| GRU | 2/10 | Una capa unidireccional; H=16/32; compuertas de reinicio/actualización | 1.121 / 3.777 |
+
+La tabla conserva los **candidatos prefijados de búsqueda** y el mismo presupuesto de ocho candidatos por familia, variando dos anchuras, dos tasas de aprendizaje y dropout 0/0,1. La HPO nueva ya seleccionó **LSTM H16, MLP H32 y GRU H16**, con las recetas y errores de desarrollo identificados en §3.14.2. El {ref}`capítulo 10 <final-core-mlp-e1>` distingue esa selección de los ajustes y métricas de evaluación posteriores. La antigua MLP de 593 parámetros no se reutiliza como receta final de este estudio.
+
+**Tabla histórica de fase I.** La tabla siguiente conserva GRU–LSTM–TCN, sus frecuencias N7 y recetas originales. Es un antecedente y no la selección vigente.
 
 | Modelo propio | Respaldo directo y frecuencia estricta | Mecanismo y configuración registrada | Parámetros / learning rate |
 |---|---|---|---|
@@ -383,11 +393,11 @@ La configuración ganadora de TCN en S1 tiene seis niveles, 287 filtros y k=5; *
 
 La decisión de publicar la fase I sucede al benchmark histórico y a la inspección del experimento privado. El protocolo de ese experimento fijó las recetas antes de sus nuevos ajustes, con diez semillas y las cuatro historias, sobre el calendario de desarrollo 2024 ya observado. No hubo una nueva búsqueda de anchos o learning rates: GRU heredó H/LR recurrentes y TCN H/LR convolucionales. Se informa el rendimiento de estas recetas, no la superioridad de cada familia óptimamente ajustada ni una selección prospectiva independiente.
 
-Los [registros originales de procedencia](https://github.com/jassan-bit/DeepLearning_202630/tree/main/experiments/gru_lstm_tcn_20261105/original_registration) se conservan en el archivo fuente del repositorio, fuera de los recursos experimentales presentados en este capítulo. La selección actual es posterior y no se atribuye retroactivamente a esos registros. El [expediente vigente](../_static/literature_e1/gru_lstm_tcn_selection_20261105/selection.json) documenta GRU–LSTM–TCN sin cambiar la matriz de siete estudios ni sus frecuencias.
+Los [registros originales de procedencia](https://github.com/jassan-bit/DeepLearning_202630/tree/main/experiments/gru_lstm_tcn_20261105/original_registration) se conservan en el archivo fuente del repositorio, fuera de los recursos experimentales presentados en este capítulo. La selección de aquel expediente fue posterior y no se atribuye retroactivamente a esos registros. El [expediente histórico](../_static/literature_e1/gru_lstm_tcn_selection_20261105/selection.json) documenta GRU–LSTM–TCN sin cambiar la matriz de siete estudios ni sus frecuencias; el núcleo LSTM–MLP–GRU tiene un registro separado en §3.14.
 
 #### 3.2.1.4. Comparación imparcial de candidatos y regla de reconsideración
 
-La siguiente matriz conserva la evaluación del corte N7 con el mismo criterio: evidencia de uso independiente, especificación recuperada, capacidad y sesgo inductivo. Su ampliación y la decisión documental actual están en {ref}`§3.10 <homogeneous-selection-e1>`. Es una **síntesis posterior** de las fuentes disponibles, sin nuevos entrenamientos ni una regla de selección anterior al benchmark. El [expediente de síntesis](../_static/literature_e1/selection_synthesis_20261106/summary.json), la {download}`matriz completa <../_static/literature_e1/selection_synthesis_20261106/decision_matrix.csv>` y su [manifiesto](../_static/literature_e1/selection_synthesis_20261106/manifest.json) permiten revisar el razonamiento y sus fuentes.
+La siguiente matriz conserva la evaluación del corte N7 con el mismo criterio: evidencia de uso independiente, especificación recuperada, capacidad y sesgo inductivo. Las ampliaciones posteriores están en §§3.10–3.13; la decisión vigente está en {ref}`§3.14 <core-selection-e1>`. Es una **síntesis posterior** de las fuentes disponibles, sin nuevos entrenamientos ni una regla de selección anterior al benchmark. El [expediente de síntesis](../_static/literature_e1/selection_synthesis_20261106/summary.json), la {download}`matriz completa <../_static/literature_e1/selection_synthesis_20261106/decision_matrix.csv>` y su [manifiesto](../_static/literature_e1/selection_synthesis_20261106/manifest.json) permiten revisar el razonamiento y sus fuentes.
 
 | Candidato | Evidencia independiente y capacidad conocida | Aporte y objeción aplicados al problema | Decisión condicionada y qué la cambiaría |
 |---|---|---|---|
@@ -401,24 +411,21 @@ La siguiente matriz conserva la evaluación del corte N7 con el mismo criterio: 
 
 **Alcance de la no redundancia.** En `SingleLayerGRU.forward` y `SingleLayerLSTM.forward` el encoder recibe únicamente la ventana y no se transporta un estado entre fechas: cada evaluación parte del estado inicial predeterminado. Por ello, en fase II ambas redes disponen de **las mismas siete observaciones**, y la memoria de celda LSTM no incorpora historia anterior a D7. El contraste identifica diferencias de parametrización y actualización dentro de una familia amplia, no una ventaja demostrada de memoria de largo plazo ni independencia de sus errores. El piloto y los contrastes propios evalúan diferencias bajo este contrato; no sustituyen el respaldo bibliográfico de diversidad.
 
-**Sensibilidad de la decisión a los criterios.** El corte N7 producía LSTM–GRU–Transformer al ordenar únicamente por frecuencia. La adjudicación homogénea actual produce **LSTM–GRU–MLP**; S6 pasa al estrato de objetivo operativo no reconciliado, mientras Dudek y Brauneis añaden MLP verificada. Priorizar amplitud de sesgos podría favorecer **MLP–LSTM–TCN** —o una sola recurrente equivalente—, con recetas que requerirían su propio estudio comparable. La terna vigente **GRU–LSTM–TCN** prioriza un contraste entre dos celdas recurrentes frecuentes y una representación convolucional causal, apoyada directamente por S1. Se reconoce el costo: dos puestos comparten recurrencia y TCN no está entre las tres primeras frecuencias. No se afirma un óptimo único ni que esos contrafactuales hayan sido ejecutados.
+**Evolución de la decisión.** El corte N7 producía LSTM–GRU–Transformer al ordenar únicamente por frecuencia. La adjudicación acumulada vigente ordena **LSTM–MLP–GRU** en el estrato con reporte suficiente. La selección actual adopta ese resultado y concreta una MLP de una capa oculta, junto con GRU/LSTM de una capa recurrente. La elección anterior GRU–LSTM–TCN se conserva como antecedente del contraste entre celdas recurrentes y filtros causales; sus resultados no se borran ni se atribuyen a MLP. Una selección por amplitud de macrofamilias podría favorecer otro trío, pero la guía exige sesgos distintos y no exactamente tres macrofamilias. La ejecución nueva se identifica por protocolo, recetas y calendario propios.
 
 La elección se documenta como **comparación operativa de células recurrentes y filtros causales**, posterior al benchmark. La adjudicación homogénea y el contraste conjunto de recurrencia, sencillez y sesgo se completan en §3.10; esa documentación conserva el intercambio frente a MLP y no certifica una terna óptima o única. Ni la autorización para publicar ni el ranking de una reserva ya observada justifican ese cierre. Las posibles revisiones afectan una decisión futura documentada; no cambian retrospectivamente la terna, las recetas o los resultados de las fases I y II.
 
 ### 3.2.2. Criterios que debe cumplir cada modelo base
 
-Los cuatro criterios de la guía se evalúan con evidencia y límites concretos:
+| Criterio | LSTM | MLP | GRU |
+|---|---|---|---|
+| Uso como referencia del problema | 10/10 en el estrato cripto con reporte suficiente | 4/10; Dudek, Brauneis, García-Medina y Korkusuz | 2/10; Akbiyik y la fuente gris S2, con su nivel de publicación explícito |
+| Arquitectura simple y trazable | Una capa recurrente unidireccional y cabeza escalar | Una capa oculta no lineal y cabeza escalar; fuentes cripto y transferencia ReLU de Zhang | Una capa recurrente unidireccional y cabeza escalar |
+| Sesgo inductivo | Celda aditiva separada y compuertas de entrada/olvido/salida | Mezcla no lineal de posiciones rezagadas con pesos específicos; sin recurrencia | Transición recurrente compartida con reinicio/actualización, sin celda separada |
+| Comparabilidad | D7, cinco OHLCV, σ7/h1 y reglas comunes | Misma información; aplanar no añade variables ni días | Misma información; el estado se reinicia en cada ventana |
+| Control de capacidad y búsqueda | H=16/32, 1.489/5.025 parámetros | H=32/128, 1.185/4.737 parámetros | H=16/32, 1.121/3.777 parámetros |
 
-| Criterio | GRU y LSTM | TCN y límite de la selección |
-|---|---|---|
-| Arquitectura simple y reproducible | Una capa H=32, cabeza escalar; 3.777 y 5.025 parámetros, con fórmulas en §3.3 | Tres bloques residuales y 4.289 parámetros; pequeña frente al ganador de S1, sin afirmar mínima complejidad global. La receta exacta es del proyecto. |
-| Uso como referencia en literatura del problema | GRU 3/7 y LSTM 5/7; ambas en los originales publicados S1 y S8 | TCN 1/7, referencia independiente en S1, Tabla 2. **Uso ampliamente recurrente no acreditado**; el antecedente directo acredita pertinencia, mientras la suficiencia de recurrencia permanece parcial. |
-| Mismo pipeline, información y evaluación | Cuatro historias OHLCV, σ7/h=1, mismos cortes mensuales 2024, diez semillas y transformaciones ajustadas a entrenamiento | Mismo contrato y presupuesto fijo por configuración. Igualar número de corridas no iguala capacidad ni demuestra optimización equivalente. |
-| Modelo DL independiente | GRU y LSTM son redes completas con salida propia | TCN de una rama con salida propia; no D-TCN social, cabeza interna o red híbrida. |
-
-El criterio de recurrencia no queda satisfecho por igual en los tres puestos. La publicación de una terna coherente no convierte TCN 1/7 en evidencia abundante ni todas las siete fuentes en artículos revisados por pares. La suficiencia operativa se justifica mediante el antecedente comparativo directo de S1, recetas explícitas y evaluación común; el alcance bibliográfico limitado permanece visible. Los riesgos de cada fuente siguen en §3.1.6 y §3.4.2.
-
-La terna no es redundante por definición ni se demuestra no redundante solo contando compuertas. Se contrastan dos mecanismos recurrentes diferentes y una representación convolucional temporal; el análisis de sus errores y diferencias se realiza con resultados propios bajo el mismo contrato. Persistencia, Ridge, SVR o GARCH son referencias clásicas de contexto, sin ocupar los tres puestos DL.
+Las fuentes acreditan el uso comparativo y el tipo de plantilla; no convierten las adaptaciones propias en réplicas exactas de cada artículo. Los tres candidatos seleccionados tienen las mayores frecuencias verificadas de este corpus y se concretan con profundidad mínima no lineal dentro de sus plantillas. Los rangos de parámetros tienen orden comparable bajo la misma entrada, sin demostrar capacidad, coste o error idénticos. La {ref}`selección documentada <core-selection-e1>` distingue los criterios bibliográficos de las métricas nuevas que sólo puede acreditar la ejecución experimental.
 
 ### 3.2.3. Producto obligatorio: síntesis de los estudios incluidos
 
@@ -475,9 +482,9 @@ Para una salida continua, **SVR lineal** es el ejemplo clásico pertinente de la
 | SVR lineal / Ridge | Función afín regularizada sobre covariables vectorizadas | Contexto clásico; no ocupa un puesto DL |
 | GRU | Recurrencia no lineal con reinicio y actualización de un estado oculto | Referencia DL independiente y compacta |
 | LSTM | Recurrencia con tres compuertas y memoria de celda separada | Referencia DL independiente con distinta parametrización |
-| TCN | Convoluciones causales dilatadas, conexiones residuales y lectura temporal final | Referencia DL independiente sin estado recurrente |
+| MLP | Una capa oculta no lineal sobre OHLCV rezagadas aplanadas | Referencia DL independiente feedforward, con pesos específicos por posición |
 
-Comparar las redes exige información disponible, objetivo, partición, preprocesamiento y evaluación comunes. No exige que sus mecanismos internos coincidan. Los Ridge del bloque C siguen como diagnósticos del EDA; las métricas, incertidumbre y selección del baseline neuronal vigente se informan en el capítulo 5 y en el [registro propio de selección por CV](../_static/gru_lstm_tcn_20261105/selected_by_cv.json).
+Comparar las redes exige información disponible, objetivo, partición, preprocesamiento y evaluación comunes. No exige que sus mecanismos internos coincidan. Los Ridge del bloque C siguen como diagnósticos del EDA; las métricas e incertidumbre de fase I permanecen en el capítulo 5 y su [registro histórico de selección por CV](../_static/gru_lstm_tcn_20261105/selected_by_cv.json); el baseline del núcleo actualizado se identifica en el {ref}`capítulo 10 <final-core-mlp-e1>`.
 
 ### 3.2.5. Arquitecturas no especificadas y búsqueda posterior
 
@@ -499,7 +506,7 @@ Las siguientes familias son una orientación de la guía, no resultados de frecu
 |---|---|---|
 | Clasificación y regresión tabular | MLP superficial, MLP profundo regularizado y red residual tabular | No es la ruta principal; la cronología condiciona la partición. S8 acredita MLP aplicada a RV autorregresiva, no convierte el contrato propio en tabular i.i.d. |
 | Series de tiempo | MLP sobre rezagos, RNN simple, LSTM o GRU de una capa, CNN 1D/TCN poco profunda | Sus diagnósticos temporales son pertinentes. No se adopta como ruta principal porque el contrato actual construye rezagos de covariables, sin usar rezagos explícitos de la variable objetivo. |
-| Regresión temporal | MLP sobre covariables rezagadas, LSTM o GRU sobre sus secuencias y CNN 1D poco profunda | Es la ruta aplicable. La terna GRU–LSTM–TCN usa secuencias de covariables; la TCN compacta es una adaptación declarada del proyecto y no el ganador de S1. |
+| Regresión temporal | MLP sobre covariables rezagadas, LSTM o GRU sobre sus secuencias y CNN 1D poco profunda | Es la ruta aplicable. El núcleo LSTM–MLP–GRU usa la misma información OHLCV D7; TCN se conserva como comparación complementaria histórica. |
 | Regresión espacial | MLP con coordenadas y variables, MLP con embeddings posicionales y CNN sobre rejilla de vecindad | No aplica: no hay posiciones geográficas ni unidades espaciales que definan vecindad. |
 | Regresión espacio-temporal | LSTM o GRU global sobre ventanas, ConvLSTM y convolución sobre grafo o rejilla poco profunda | No aplica: existe orden temporal, pero no múltiples ubicaciones ni una estructura espacial del objetivo. |
 | Clasificación de imágenes | CNN poco profunda estilo LeNet/VGG reducida, CNN pequeña con normalización por lotes y ResNet de baja profundidad | No aplica: el contrato no recibe imágenes ni predice clases visuales. |
@@ -510,13 +517,15 @@ Las siguientes familias son una orientación de la guía, no resultados de frecu
 
 Un encoder no convierte por sí solo el problema en secuencia a secuencia; una convolución temporal tampoco implica imágenes. Las orientaciones no aplicables se conservan con su justificación y no añaden experimentos ni puestos al trío.
 
-## 3.3. Fichas técnicas de los tres modelos base implementados
+## 3.3. Fichas técnicas del núcleo y antecedente TCN
 
 Las fichas de la fase I corresponden a **GRU, LSTM y TCN**; los anchos y dropout seleccionados para fase II D7 se detallan en el [capítulo 9](09_estudio_planificado.md). Cada una conserva los nueve incisos: referencias, arquitectura, descripción técnica, problema, dataset, métricas, fortalezas, limitaciones y complejidad. La evidencia publicada respalda familias y papeles comparativos; las recetas pequeñas y los resultados propios se identifican por separado.
 
 El contrato común usa **D∈{7,14,21,28} días × cinco canales OHLCV**, σ7 poblacional de retornos logarítmicos (`ddof=0`, sin anualización), salida escalar y horizonte h=1. D cambia la historia de entrada, no los siete retornos que definen el objetivo. Las entradas terminan antes del día objetivo y no añaden rezagos explícitos de σ7. El OHLC se expresa respecto al último cierre observable de la ventana; al volumen se aplica `log1p`. Los escaladores X/Y se ajustan solo al entrenamiento permitido y se invierten las salidas antes de evaluar.
 
 La CV comprende doce bloques mensuales de 2024, embargo D, parada interna cronológica y reajuste de una red nueva con el número de épocas seleccionado. Se usan diez semillas 4101–4110 por modelo e historia: **120 trayectorias y 1.440 segmentos modelo–fold**, con dos ajustes por segmento. Las tres redes emplean AdamW, dropout 0,1, weight decay 0,0001, batch 32, clipping de norma 1, máximo interno de 100 épocas y paciencia 12. El [resumen propio](../_static/gru_lstm_tcn_20261105/summary.json) conserva el resultado de la ejecución; los [modelos públicos](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/dl_models_gru_lstm_tcn.py) son una adaptación portable preparada después de la ejecución privada, cuya procedencia se registra por separado.
+
+**Lectura por versión.** Las fichas GRU/LSTM y TCN originales que siguen conservan las recetas y métricas de fase I. GRU y LSTM pertenecen también al núcleo actual; la nueva receta seleccionada por HPO y sus resultados se consultan en el {ref}`capítulo 10 <final-core-mlp-e1>`. TCN queda como antecedente complementario y la ficha MLP añadida en §3.3.5 documenta la tercera familia del núcleo vigente, con sus candidatos y fuentes.
 
 ### 3.3.1. GRU unidireccional
 
@@ -558,7 +567,7 @@ Binance Spot BTCUSDT, velas de un minuto agregadas a días UTC. Cada ejemplo es 
 
 **Autores:** S1, Tabla 2, reporta RMSE **4,23 ± 5,61** en veinte corridas y escala RV×100. S8, Tabla 1, reporta RMSE de test **0,0021778**, con entrada GRU de cinco observaciones de su RV. No son métricas del contrato σ7/OHLCV ni un intervalo de confianza común.
 
-**Proyecto, fase I:** RMSE anual de CV por trayectoria es la métrica primaria; MAE, MSE, R², MAPE y MASE son secundarias. Las medias/DE entre semillas, resultados por historia y configuración seleccionada están en el [resumen vigente](../_static/gru_lstm_tcn_20261105/summary.json), la [selección por CV](../_static/gru_lstm_tcn_20261105/selected_by_cv.json) y el capítulo 5. Para la historia seleccionada de **D=7**, la RMSE de CV es **0,00515457 ± 0,00016156** (media ± DE muestral de diez semillas), en unidades propias de σ7.
+**Proyecto, fase I:** RMSE anual de CV por trayectoria es la métrica primaria; MAE, MSE, R², MAPE y MASE son secundarias. Las medias/DE entre semillas, resultados por historia y configuración seleccionada están en el [resumen histórico](../_static/gru_lstm_tcn_20261105/summary.json), la [selección por CV](../_static/gru_lstm_tcn_20261105/selected_by_cv.json) y el capítulo 5. Para la historia seleccionada de **D=7**, la RMSE de CV es **0,00515457 ± 0,00016156** (media ± DE muestral de diez semillas), en unidades propias de σ7.
 
 #### 3.3.1.7. Fortalezas
 
@@ -637,7 +646,7 @@ $$
 
 Costo dominante O(4DH(p+H)); activaciones O(DH). El ancho común H32 no iguala los parámetros con GRU ni el tiempo real, que también depende de épocas y ejecución.
 
-### 3.3.3. TCN causal dilatada residual
+### 3.3.3. TCN complementaria histórica causal dilatada residual
 
 #### 3.3.3.1. Referencias completas y papel comparativo
 
@@ -673,7 +682,7 @@ Binance Spot BTCUSDT diario UTC, ventana D×5 y salida escalar. Comparte ejemplo
 
 **Autores:** S1, Tabla 2, reporta para su TCN independiente RMSE **2,58 ± 0,07** en veinte corridas, en escala RV×100. No se atribuye ese valor a nuestra TCN compacta. Las variantes D-TCN y su comparación se conservan en §3.4.3.
 
-**Proyecto:** RMSE anual por trayectoria es primaria, con MAE, MSE, R², MAPE y MASE secundarias. El [resumen vigente](../_static/gru_lstm_tcn_20261105/summary.json), la [selección por CV](../_static/gru_lstm_tcn_20261105/selected_by_cv.json) y el capítulo 5 presentan resultados propios. Para la historia seleccionada de **D=7**, la RMSE de CV es **0,00581961 ± 0,00025622** (media ± DE muestral de diez semillas), en unidades propias de σ7.
+**Proyecto:** RMSE anual por trayectoria es primaria, con MAE, MSE, R², MAPE y MASE secundarias. El [resumen histórico](../_static/gru_lstm_tcn_20261105/summary.json), la [selección por CV](../_static/gru_lstm_tcn_20261105/selected_by_cv.json) y el capítulo 5 presentan resultados propios. Para la historia seleccionada de **D=7**, la RMSE de CV es **0,00581961 ± 0,00025622** (media ± DE muestral de diez semillas), en unidades propias de σ7.
 
 #### 3.3.3.7. Fortalezas
 
@@ -694,7 +703,7 @@ $$
 
 Costo dominante O(Dk(pH+5H²)), más proyección residual y cabeza; activaciones O(6DH). D modifica cómputo y soporte, no el número de pesos de esta receta. No se deduce eficiencia de producción a partir del paralelismo teórico o solo de los parámetros.
 
-### 3.3.4. Cobertura y comparación de las tres fichas
+### 3.3.4. Cobertura histórica de las tres fichas originales
 
 | Campo | GRU | LSTM | TCN |
 |---|---|---|---|
@@ -706,17 +715,67 @@ Costo dominante O(Dk(pH+5H²)), más proyección residual y cabeza; activaciones
 | Parámetros | 3.777 | 5.025 | 4.289 |
 | Límite bibliográfico principal del corte 05/11 | Transferencia de tarea y receta | Familia heterogénea y transferencia de tarea | Solo una referencia independiente en ese corte |
 
-Los nueve campos están desarrollados para las tres redes. Las fuentes prueban el uso comparativo de las familias y conservan desconocidos; la ejecución propia acredita estas configuraciones concretas. Ninguno de esos hechos garantiza generalización, validación prospectiva o mínima complejidad global.
+Los nueve campos están desarrollados para las tres redes originales de esa tabla. Las fuentes prueban el uso comparativo de las familias y conservan desconocidos; la ejecución propia acredita estas configuraciones concretas. Ninguno de esos hechos garantiza generalización, validación prospectiva o mínima complejidad global.
+
+### 3.3.5. MLP de una capa oculta, incorporada al núcleo
+
+#### 3.3.5.1. Referencias completas y papel comparativo
+
+El estrato cripto con reporte suficiente verifica MLP autónoma en **cuatro de diez experimentos**: Dudek et al., Brauneis y Sahiner, García-Medina y Aguayo-Moreno, y Korkusuz y Sahiner {cite:p}`Dudek2024VolatilityComparative,Brauneis2026VolatilityHorserace,E1Search_MLP01,E1Search_MLP02`. Los dos primeros describen una capa oculta; García-Medina documenta una capa de diez neuronas; Korkusuz incluye una/dos capas y anchuras 32/64/128 en su búsqueda. Zhang et al. aporta una variante ReLU de una capa como transferencia financiera, sin aumentar el numerador cripto {cite:p}`E1Search_MLP04`.
+
+#### 3.3.5.2. Tipo de arquitectura
+
+Red feedforward con una capa oculta ReLU, seguida de una cabeza lineal escalar y Softplus. La entrada D7 de cinco OHLCV se aplana en 35 valores; no se añaden variables o días. El espacio prefijado consideró anchuras **32/128** y dropout 0/0,1. La HPO de desarrollo seleccionó **H32, dropout 0,1 y learning rate 0,003** —candidato c03, **1.185 parámetros**— para el nuevo ajuste definitivo.
+
+#### 3.3.5.3. Descripción técnica
+
+Para $X\in\mathbb{R}^{7\times5}$, la plantilla propia es
+
+$$
+\hat{\sigma}_{7,t+1}=\operatorname{Softplus}\left(w_2^\top\operatorname{Dropout}\!\left(\operatorname{ReLU}(W_1\operatorname{vec}(X)+b_1)\right)+b_2\right).
+$$
+
+La mezcla no lineal usa pesos específicos por posición de la ventana. Carece de estado recurrente y de pesos de transición compartidos temporalmente. La variante ReLU y la cabeza positiva son adaptaciones explícitas al pipeline de E1; no se atribuyen a todos los autores ni se presentan como réplica de un ganador publicado.
+
+#### 3.3.5.4. Tipo de problema
+
+Regresión temporal sobre covariables OHLCV rezagadas: objetivo diario σ7 poblacional de retornos logarítmicos, sin anualizar, horizonte de un día y salida escalar. Es la misma tarea del núcleo recurrente, con una representación feedforward de sus covariables.
+
+#### 3.3.5.5. Dataset y unidad de observación
+
+Una muestra es una ventana diaria D7 y su objetivo posterior, sobre el calendario BTCUSDT del proyecto. Se mantienen disponibilidad causal, embargo, ausencia de imputación y transformaciones ajustadas únicamente en entrenamiento permitido. Las redes reciben los mismos datos y particiones del nuevo estudio; la ejecución y los calendarios exactos constan en el {ref}`capítulo 10 <final-core-mlp-e1>`.
+
+#### 3.3.5.6. Métricas y procedencia
+
+La [selección HPO publicada](https://github.com/jassan-bit/DeepLearning_202630/blob/593b4ec943dc0f7e257d348f3145e71810f665e4/experiments/e1_core_mlp_extension_20261107/planning/selection.json) registra para MLP **RMSE de desarrollo 0,00527943 ± 0,00003534**, media y DE muestral entre las semillas 6101–6102. Cada trayectoria reúne 305 días de los diez bloques de desarrollo. Es el criterio usado para elegir receta; estas cifras no son resultados de la reserva ni de las 465 repeticiones finales planificadas. El {ref}`registro del núcleo vigente <final-core-mlp-e1>` identifica el estado y los resultados de cada fase. Los errores de los artículos tienen sus unidades y horizontes propios; no se trasladan a E1. La antigua MLP de 593 parámetros conserva su experimento histórico y sus métricas no se convierten en puntuaciones de esta búsqueda nueva.
+
+#### 3.3.5.7. Fortalezas
+
+Ofrece una referencia no recurrente de baja profundidad, mezcla directamente las 35 covariables observables y permite comprobar cuánto aporta modelar la secuencia mediante una transición recurrente. Su arquitectura y conteo de parámetros son explícitos; esta función comparativa no presupone que obtenga menor error.
+
+#### 3.3.5.8. Limitaciones
+
+La longitud de entrada es fija y los pesos dependen de la posición de cada rezago; no impone el mismo patrón de compartición temporal que las recurrentes. Una capa no garantiza ausencia de sobreajuste ni menor error. La selección se realiza después de resultados históricos ya conocidos; las comparaciones sobre esa reserva conservan el carácter exploratorio de la actualización.
+
+#### 3.3.5.9. Complejidad computacional
+
+Con $q=1$, $p=5$ y $D=7$, la cuenta es
+
+$$
+P_{\mathrm{MLP}}=(Dp)H+H+H+1=H(Dp+2)+1=37H+1.
+$$
+
+Los candidatos H32/H128 tienen **1.185/4.737 parámetros**; la receta seleccionada H32 tiene **1.185**. El coste dominante por ventana es $O(DpH+H)$ y el almacenamiento de activaciones, $O(Dp+H)$. Cambiar D modifica el tamaño de la primera matriz de esta MLP; no se reutiliza el conteo D7 para otras entradas. Los tiempos medidos pertenecen a la ejecución y no se deducen de esta fórmula.
 
 ## 3.4. Comparación crítica de los modelos y de la evidencia
 
-La comparación principal vigente enfrenta **GRU, LSTM y TCN** bajo el contrato σ7/h=1 y CV comunes. La evidencia aplicada de S1/S8 y el resto del corpus sigue separada de los resultados propios. MLP/CNN permanecen en las tablas de autores, sin ocupar puestos en esta comparación.
+**Comparación histórica.** Esta sección conserva el benchmark GRU–LSTM–TCN de fase I bajo σ7/h1 y CV comunes. Sus métricas permanecen ligadas a esas redes, recetas y fechas. La comparación del núcleo actual **LSTM–MLP–GRU** se documenta en el {ref}`capítulo 10 <final-core-mlp-e1>`; no se intercambian modelos o periodos dentro de las tablas anteriores.
 
 ### 3.4.1. Comparación estructurada entre los tres modelos base
 
 #### 3.4.1.1. Desempeño de CV y comparabilidad
 
-El estudio propio usa las cuatro historias D=7/14/21/28, cinco canales y diez semillas. Cada RMSE anual se calcula reuniendo las 366 fechas de una trayectoria antes de resumir media/DE entre semillas. No es la RMSE de un ensemble ni una media de R² mensuales. Se publican todas las configuraciones en el [resumen actual](../_static/gru_lstm_tcn_20261105/summary.json) y el baseline seleccionado por CV en el [registro vigente](../_static/gru_lstm_tcn_20261105/selected_by_cv.json); el capítulo 5 presenta métricas, contrastes y evaluación propia.
+El estudio propio usa las cuatro historias D=7/14/21/28, cinco canales y diez semillas. Cada RMSE anual se calcula reuniendo las 366 fechas de una trayectoria antes de resumir media/DE entre semillas. No es la RMSE de un ensemble ni una media de R² mensuales. Se publican todas las configuraciones en el [resumen histórico](../_static/gru_lstm_tcn_20261105/summary.json) y el baseline seleccionado por CV en el [registro histórico](../_static/gru_lstm_tcn_20261105/selected_by_cv.json); el capítulo 5 presenta métricas, contrastes y evaluación propia.
 
 La mejor historia por familia en ese registro es D7:
 
@@ -726,9 +785,9 @@ La mejor historia por familia en ese registro es D7:
 | LSTM | 7 | 0,00633541 ± 0,00018701 | 5.025 |
 | TCN | 7 | 0,00581961 ± 0,00025622 | 4.289 |
 
-**GRU D7** es el baseline neuronal vigente elegido por media de RMSE de CV. La tabla resume las recetas seleccionadas; las doce combinaciones modelo–historia siguen en el registro y no se descartan las de mayor error. Estas cifras son propias y no se comparan numéricamente con RV×100 o RV de tres horas de los autores.
+En fase I, **GRU D7** fue el baseline neuronal elegido por media de RMSE de CV. La tabla resume las recetas seleccionadas; las doce combinaciones modelo–historia siguen en el registro y no se descartan las de mayor error. Estas cifras son propias y no se comparan numéricamente con RV×100 o RV de tres horas de los autores.
 
-Las recetas se fijaron antes de los ajustes privados y la decisión de publicar esta terna fue posterior a sus resultados. La comparación sigue siendo **exploratoria sobre desarrollo ya observado**, sin convertir la congelación interna en una selección global prospectiva. Las tablas propias corresponden únicamente a las tres redes vigentes. Los RMSE de distintos artículos tampoco forman un ranking común con el contrato propio.
+Las recetas se fijaron antes de los ajustes privados y la decisión de publicar esta terna fue posterior a sus resultados. La comparación sigue siendo **exploratoria sobre desarrollo ya observado**, sin convertir la congelación interna en una selección global prospectiva. Las tablas de esta sección corresponden únicamente a las tres redes de fase I. Los RMSE de distintos artículos tampoco forman un ranking común con el contrato propio.
 
 #### 3.4.1.2. Robustez y evidencia disponible
 
@@ -827,7 +886,7 @@ Katsiampa estudia la estimación de volatilidad de Bitcoin mediante especificaci
 
 Los estudios asociados a órdenes de compra y venta, información de Twitter y flujos de información a frecuencia de minuto plantean conjuntos de información diferentes {cite:p}`guo2018,akbiyik2023,barjasic2021`. Sus títulos, datos documentados y referencias permiten reconocer líneas de investigación pertinentes, pero no autorizan atribuir a OHLCV diario mejoras obtenidas con otras señales. El artículo de Akbiyik y colaboradores se recuperó como copia de autores; para parte de los antecedentes se corroboraron metadatos en sus bibliografías y no se declara lectura del original.
 
-Miura, Pichl y Kaizoji aportan ahora un **benchmark publicado de MLP, CNN, LSTM y GRU independientes para RV de Bitcoin** {cite:p}`miura2019`. La comparación de su Tabla 1 es directamente pertinente a familias neuronales para volatilidad; el cambio de proveedor, agregación, objetivo e información impide trasladar sus valores al experimento propio. Su CNN no tiene dimensión reportada y sus cuatro capas MLP se conservan como extracción de autores, sin ocupar un puesto en la terna actual. Las recetas GRU/LSTM H32 tampoco se deducen de esos detalles.
+Miura, Pichl y Kaizoji aportan ahora un **benchmark publicado de MLP, CNN, LSTM y GRU independientes para RV de Bitcoin** {cite:p}`miura2019`. La comparación de su Tabla 1 es directamente pertinente a familias neuronales para volatilidad; el cambio de proveedor, agregación, objetivo e información impide trasladar sus valores al experimento propio. Su CNN no tiene dimensión reportada y las cuatro capas MLP de S8 conservan su definición y detalles ausentes; la MLP del núcleo actual se fundamenta también en otras referencias más simples y no replica esa receta incompleta. Las recetas GRU/LSTM H32 tampoco se deducen de esos detalles.
 
 Huang y colaboradores aportan un antecedente de pronóstico de volatilidad con técnicas de aprendizaje automático. Herremans y Low se centran en picos de volatilidad e información de transacciones de grandes tenedores y CryptoQuant mediante modelos Synthesizer Transformer {cite:p}`huang2024,herremans2025`. Pronosticar picos, una medida realizada intradiaria o el siguiente valor de una desviación móvil diaria constituye tareas diferentes. La pertinencia temática no acredita igualdad de objetivo, datos, horizonte o protocolo.
 
@@ -1320,10 +1379,64 @@ El filtro de reporte excluye simétricamente **Miura/S8, PSO–GRU/E1N138 y Lens
 
 La evidencia financiera se mantiene aparte: el estrato de fuentes primarias financieras contiene **diez experimentos independientes**, con **tres ocurrencias autónomas verificadas de TCN: Lei, Shin y Ge**. Este denominador financiero es distinto del N10 cripto elegible por reporte. **Shin y Ge** añaden comparadores TCN autónomos en índices o activos financieros; **Vo** aporta evidencia primaria parcial por tablas indexadas. **Agal** aporta una propuesta híbrida. Estos resultados refuerzan la documentación de TCN como arquitectura útil de referencia o componente, conservando los roles distintos; no elevan el numerador cripto de TCN a siete. Los trabajos financieros nuevos sobre MLP tampoco aumentan el numerador cripto de esa familia.
 
-### 3.13.3. Decisión de modelos y límites de interpretación
+### 3.13.3. Decisión posterior y límites de interpretación
 
-La terna experimental continúa siendo **GRU–LSTM–TCN**: transición recurrente GRU, celda/emisión LSTM y filtros causales TCN bajo la misma información D7. **MLP es una alternativa documentada de la revisión; no es un cuarto modelo del benchmark actual.** La evidencia nueva fortalece el respaldo arquitectónico y las recetas comparativas, sin atribuir a los artículos las configuraciones propias ni convertir la ampliación documental en una selección anterior a los experimentos.
+El expediente acumulado conservó inicialmente la terna GRU–LSTM–TCN y mostró que el orden por frecuencia era **LSTM–MLP–GRU**. Ese estado documental permanece en su versión histórica. La decisión posterior de {ref}`§3.14 <core-selection-e1>` adopta ahora ese orden para el núcleo vigente y conserva TCN como comparación complementaria, sin modificar los numeradores, lecturas ni métricas antiguas.
 
-El orden observado por frecuencia en el estrato de reporte es **LSTM–MLP–GRU**, antes de TCN. La ampliación no se usa para ocultar ese resultado ni para asegurar que la terna elegida sea las tres primeras por recurrencia y menor complejidad. Mantener TCN responde al contraste registrado entre mecanismos y a sus antecedentes directos y financieros; esa elección conserva un intercambio explícito frente a MLP. Un menor número de parámetros corresponde a una receta y entrada determinadas, sin ordenar universalmente familias ni probar mejor desempeño.
+Las frecuencias justifican los tres puestos dentro del corpus evaluado; los detalles de sencillez, adaptación y sesgo se concretan en el nuevo registro. La ampliación no demuestra prevalencia global, mínimos universales o superioridad predictiva. El menor número de parámetros corresponde a una receta e información determinadas; las nuevas puntuaciones no se deducen de las frecuencias bibliográficas.
 
 La búsqueda dirigida por arquitectura amplía una colección de evidencia y tiene sesgo de recuperación por diseño. Aplicar una regla común de adjudicación permite comparar las ocurrencias dentro del corpus; no convierte una cuota de fuentes en un muestreo exhaustivo de la literatura. Los {download}`controles de conciliación <../_static/literature_e1/homogeneous_expansion_20261107/validation.json>` comprueban identidades, independencia, roles, denominadores y preservación de los cortes históricos. El [manifiesto público](../_static/literature_e1/homogeneous_expansion_20261107/manifest.json) limita la distribución a metadatos revisados. No se agregan errores de activos u objetivos distintos ni se modifican los resultados experimentales de E1.
+
+
+(core-selection-e1)=
+## 3.14. Selección vigente: LSTM–MLP–GRU
+
+La actualización solicitada por el autor el **07/11/2026, hora de Colombia**, adopta **LSTM, MLP y GRU como los tres modelos principales de E1**. TCN conserva su evidencia y resultados anteriores como comparación complementaria. El {download}`registro de selección <../_static/literature_e1/core_selection_20261107/README.md>` toma las frecuencias verificadas del corte de §3.13, sin modificar sus adjudicaciones ni los cortes precedentes. La nueva elección es posterior a los resultados conocidos; se distingue del registro experimental de cada ejecución anterior.
+
+### 3.14.1. Recurrencia y regla de selección
+
+| Orden por frecuencia | Familia seleccionada | Estudios con referencia autónoma y reporte suficiente | Fuentes que sostienen la ocurrencia |
+|---|---|---:|---|
+| 1 | **LSTM** | **10/10** | S1, S2, S5, S7, Brauneis, E1X003, Tang–Rosenbaum–Zhou, Dudek, García-Medina y Korkusuz |
+| 2 | **MLP** | **4/10** | Dudek, Brauneis, García-Medina y Korkusuz |
+| 3 | **GRU** | **2/10** | S1/Akbiyik y S2, con su condición de fuente gris identificada |
+
+La [tabla verificable de candidatos](../_static/literature_e1/core_selection_20261107/ranking.csv) conserva también TCN, RNN simple y encoder, cada uno con 1/10. No hay empate entre el tercer y cuarto puesto; la selección no requiere una ponderación hecha para favorecer una familia. Las ANN contextuales que no quedaron certificadas como candidatas DL no se convierten automáticamente en puestos del ranking. Las frecuencias pertenecen al corpus recuperado, con su búsqueda dirigida y sus límites de calidad; no estiman prevalencia global.
+
+### 3.14.2. Arquitecturas básicas y adaptación de capacidad
+
+Las familias elegidas se concretan con **una capa oculta MLP** y **una capa recurrente unidireccional GRU/LSTM**, más sus cabezas escalares. La MLP de una capa está documentada en Dudek, Brauneis y García-Medina; el espacio de Korkusuz contiene una capa y anchuras 32/64/128 {cite:p}`Dudek2024VolatilityComparative,Brauneis2026VolatilityHorserace,E1Search_MLP01,E1Search_MLP02`. La variante ReLU de una capa está comprobada en el Apéndice B de Zhang como transferencia financiera {cite:p}`E1Search_MLP04`. Akbiyik aporta referencias recurrentes explícitas, sin convertir sus anchos ganadores en valores obligatorios del proyecto {cite:p}`akbiyik2023`.
+
+| Familia | Plantilla propia y anchuras candidatas | Parámetros con D7 y cinco entradas |
+|---|---|---:|
+| MLP | Flatten(7×5) → Dense H → ReLU → dropout → Dense1 → Softplus; H=32/128 | **1.185 / 4.737** |
+| GRU | Una capa unidireccional H=16/32; dropout y cabeza escalar positiva | **1.121 / 3.777** |
+| LSTM | Una capa unidireccional H=16/32; dropout y cabeza escalar positiva | **1.489 / 5.025** |
+
+Las anchuras MLP se prefijan para explorar un orden de capacidad próximo al de las recurrentes, manteniendo dos tamaños y el mismo número de candidatos por familia. Es una adaptación declarada de la plantilla publicada al contrato OHLCV/D7, no una reconstrucción de datos ausentes ni una réplica exacta de los autores. ReLU, dropout y Softplus no añaden parámetros; el [desglose de candidatos](../_static/literature_e1/core_selection_20261107/parameter_candidates.csv) verifica las fórmulas bajo la misma entrada y salida. No se afirma igualdad de capacidad o coste, ni un mínimo universal de parámetros.
+
+El plan común consideró dos anchuras, tasas 0,001/0,003 y dropout 0/0,1: **ocho candidatos por familia**, con dos semillas y diez bloques de desarrollo. La HPO cerró el **07/11/2026 a las 18:55:10 de Colombia** y su [registro inmutable de selección](https://github.com/jassan-bit/DeepLearning_202630/blob/593b4ec943dc0f7e257d348f3145e71810f665e4/experiments/e1_core_mlp_extension_20261107/planning/selection.json) identifica las recetas siguientes.
+
+| Familia | Candidato seleccionado | Anchura | Learning rate | Dropout | Parámetros | RMSE de desarrollo, media ± DE entre dos semillas |
+|---|---|---:|---:|---:|---:|---:|
+| LSTM | c02 | 16 | 0,003 | 0 | 1.489 | 0,00626389 ± 0,00021402 |
+| MLP | c03 | 32 | 0,003 | 0,1 | 1.185 | 0,00527943 ± 0,00003534 |
+| GRU | c03 | 16 | 0,003 | 0,1 | 1.121 | 0,00513620 ± 0,00003068 |
+
+La media y la DE muestral se calculan sobre los RMSE agregados de las semillas 6101–6102, cada una con 305 días de desarrollo. **GRU es el baseline seleccionado por desarrollo**. Estas puntuaciones justifican la selección de recetas; no miden todavía el rendimiento de los ajustes definitivos sobre la reserva. El expediente documental de selección conserva sus candidatos y campos previos al ajuste, mientras el registro experimental acredita la selección observada. **La MLP histórica de 593 parámetros no es la receta final de esta actualización.** Sus resultados conservan su procedencia y no se reutilizan como si pertenecieran al nuevo estudio.
+
+### 3.14.3. Diferencias de sesgo con información común
+
+**MLP** aprende combinaciones no lineales con pesos específicos para cada posición y covariable de la ventana; no tiene estado recurrente ni comparte una transición entre los siete pasos. **GRU** aplica una transición temporal compartida, con compuertas de reinicio y actualización sobre un vector de estado. **LSTM** mantiene además una celda aditiva separada y compuertas de escritura, retención y emisión. Estas funciones ofrecen diferencias de sesgo relevantes sin exigir tres macrofamilias distintas.
+
+Las tres familias reciben exactamente siete días observados. El estado de GRU/LSTM se reinicia por ventana; no se atribuye memoria anterior a D7. MLP no recibe rezagos adicionales al aplanar la entrada. Las diferencias estructurales justifican una comparación, sin demostrar a priori errores independientes, complementariedad predictiva o superioridad de una red.
+
+### 3.14.4. Ejecución y cronología propias
+
+El {ref}`capítulo 10 <final-core-mlp-e1>` es el registro del protocolo, estado de HPO, piloto, planificación y resultados propios de la actualización del núcleo. Ese registro separa arquitectura seleccionada, configuración elegida y modelo efectivamente ajustado. La selección de este apartado y su compilador no producen métricas ni entrenan redes; los {download}`insumos y hashes <../_static/literature_e1/core_selection_20261107/inputs.json>` fijan cinco fuentes documentales previas.
+
+El [código y diseño inmutables](https://github.com/jassan-bit/DeepLearning_202630/commit/91acdeae1efd92f098ff2ce9a32f90c5b0a4b98a) preceden a la HPO nueva. Tras su cierre y un piloto de **30 trayectorias y 60 etapas de ajuste**, la [planificación publicada](https://github.com/jassan-bit/DeepLearning_202630/blob/593b4ec943dc0f7e257d348f3145e71810f665e4/experiments/e1_core_mlp_extension_20261107/planning/plan.json) obtuvo **331 repeticiones requeridas** por su regla y conservó el mínimo prefijado de **465 por modelo**. La publicación de ese plan se verificó el **07/11/2026 a las 18:58:35 de Colombia**, antes del inicio de los ajustes finales; sus resultados se documentan separadamente en el capítulo 10.
+
+El registro experimental distingue la publicación de las reglas nuevas de sus ajustes y conserva los recibos que acreditan ese orden observado. Publicar reglas antes de ajustar no recupera la independencia de la reserva de septiembre–octubre de 2026, ya observada. La actualización sobre ese periodo es exploratoria respecto de la selección/modelado; no se describe como una confirmación independiente nueva. TCN conserva sus resultados históricos, y los tres modelos actuales usan cohortes, presupuestos y métricas comparables identificados en el registro experimental.
+
+`python scripts/build_e1_core_selection.py --check` comprueba el ranking, la elegibilidad de las ocurrencias, los parámetros y la preservación de los insumos históricos. Las [validaciones](../_static/literature_e1/core_selection_20261107/validation.json), el [resumen](../_static/literature_e1/core_selection_20261107/summary.json) y el [manifiesto público](../_static/literature_e1/core_selection_20261107/manifest.json) conservan esa evidencia. El cierre de la elección bibliográfica corresponde a las tres mayores frecuencias, plantillas sencillas y sesgos justificados dentro del corpus evaluado; no sustituye la comprobación de ejecución ni las limitaciones estadísticas del experimento.

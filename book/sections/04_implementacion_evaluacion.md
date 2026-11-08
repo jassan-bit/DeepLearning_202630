@@ -1,14 +1,49 @@
-# 4. Implementación y evaluación: diseño y estado de ejecución
+# 4. Implementación y evaluación de los modelos base
 
-**Dos fases del estudio.** Las tablas de cuatro entradas, diez semillas y test enero de 2025–agosto de 2026 de este capítulo corresponden a la **fase I exploratoria**. La **fase II D7** añade búsqueda equitativa, piloto anterior a su ejecución definitiva, dimensionamiento y evaluación preespecificada sobre el 01/09–30/10/2026. Sus recetas, recuentos y resultados se identifican por separado en el [capítulo 9](09_estudio_planificado.md).
+**Núcleo vigente: LSTM–MLP–GRU.** La selección bibliográfica actual determina estas tres referencias principales. **TCN queda como comparación complementaria**, con sus resultados anteriores identificados. El {ref}`estudio nuevo del núcleo <final-core-mlp-e1>` completó búsqueda, piloto, dimensionamiento y ajuste propios; sus resultados y cronología están documentados. Se diseñó después de conocer las evaluaciones anteriores, por lo que su extensión a septiembre–octubre de 2026 es exploratoria.
 
-La comparación principal utiliza **GRU, LSTM y TCN residual causal**, con entradas de **7, 14, 21 y 28 días**, cinco covariables OHLCV diarias, objetivo de volatilidad poblacional de siete retornos y horizonte de un día. El [resumen vigente](../_static/gru_lstm_tcn_20261105/summary.json), las [especificaciones](../_static/gru_lstm_tcn_20261105/model_specs.json) y la [selección con CV](../_static/gru_lstm_tcn_20261105/selected_by_cv.json) identifican esta versión.
+(implementacion-core-mlp-e1)=
+## 4.0. Implementación actual y procedencia de las recetas
 
-La CV de Filipe sobre 2024 completó **120 trayectorias, 1.440 segmentos mensuales, 2.880 ajustes y 43.920 predicciones**. Las cuarenta trayectorias LSTM se reentrenaron como control y reprodujeron exactamente sus **14.640 predicciones** previas. El baseline neuronal elegido por la RMSE media de CV es **GRU/D7**; la decisión se cerró antes de esta fase final.
+Las tres redes reciben la misma entrada **D7 × cinco covariables OHLCV**, objetivo σ₇ poblacional, horizonte h=1 y salida escalar positiva. La representación es `relative_window`; cada transformador se ajusta sólo con el entrenamiento permitido. La MLP aplana la ventana en **35 entradas** y aprende una combinación específica por posición; LSTM y GRU comparten una transición recurrente a lo largo de los siete días.
 
-Para evaluar 2025–agosto de 2026 se congelaron **120 conjuntos de pesos y escaladores**: **80 ajustes nuevos de GRU/TCN y 40 modelos LSTM idénticos reutilizados**. Hay **72.960 predicciones** sobre 608 fechas comunes: 48.640 nuevas y 24.320 LSTM reutilizadas. El test ya había sido observado en el proyecto; **esta comparación es exploratoria**, aunque los modelos nuevos se cerraran antes de volver a puntuarlo.
+| Familia del núcleo | Arquitectura candidata | Anchuras en la búsqueda registrada | Parámetros según anchura |
+|---|---|---|---:|
+| **LSTM** | Una capa unidireccional → dropout → cabeza lineal → Softplus | H=16 o 32 | 1.489 / 5.025 |
+| **MLP** | Flatten(7×5) → Dense(H) → ReLU → dropout → Dense(1) → Softplus | H=32 o 128 | 1.185 / 4.737 |
+| **GRU** | Una capa unidireccional → dropout → cabeza lineal → Softplus | H=16 o 32 | 1.121 / 3.777 |
 
-Las tres recetas de fase I son adaptaciones compactas, con alcance bibliográfico y límites de recurrencia explicitados en el capítulo 3. Diez semillas constituyen un presupuesto fijo de comparación: no son el resultado de un piloto de potencia de este trío. Sus contrastes internos y el margen para E2 se distinguen de las decisiones anteriores al entrenamiento.
+Estas anchuras son **candidatas**, no la receta ganadora. La búsqueda combina dos anchuras, dos tasas de aprendizaje y dos valores de dropout: ocho candidatos por familia, dos semillas y diez bloques mensuales comunes. Las recetas elegidas, la identidad del baseline, el piloto y el dimensionamiento pertenecen al cierre específico del {ref}`capítulo 10 <final-core-mlp-e1>`; no se atribuyen a la MLP histórica de 593 parámetros.
+
+García-Medina y Aguayo-Moreno y Dudek et al. aportan MLP autónomas en volatilidad cripto; Zhang et al. documenta MLP con ReLU y variación de profundidad en volatilidad financiera {cite:p}`E1Search_MLP01,Dudek2024VolatilityComparative,E1Search_MLP04`. La estructura de una capa oculta de E1 es una **adaptación propia**: ReLU/Softplus, las anchuras y el presupuesto están declarados para el pipeline común, sin presentarlos como réplica de una receta editorial completa. La simplicidad se evalúa junto a la función de referencia y la recurrencia de la {ref}`síntesis bibliográfica <homogeneous-expansion-e1>`.
+
+### 4.0.1. Recetas seleccionadas y ejecución completada
+
+La búsqueda común seleccionó las siguientes recetas; **GRU/D7 c03** obtuvo la menor RMSE CV y quedó cerrado como baseline antes del piloto y de recalcular la evaluación histórica. La exposición previa al periodo de septiembre–octubre de 2026 sigue declarada.
+
+| Modelo actual | Candidato | Anchura | LR | Dropout | Parámetros | RMSE CV HPO, media |
+|---|---|---:|---:|---:|---:|---:|
+| LSTM | c02 | 16 | 0,003 | 0,0 | 1.489 | 0,00626389 |
+| MLP | c03 | 32 | 0,003 | 0,1 | 1.185 | 0,00527943 |
+| GRU | c03 | 16 | 0,003 | 0,1 | 1.121 | 0,00513620 |
+
+Los [detalles de arquitectura](../_static/e1_core_mlp_extension_20261107/architecture_summary.csv), el [cierre de selección](../_static/e1_core_mlp_extension_20261107/selection.json) y el [plan](../_static/e1_core_mlp_extension_20261107/plan.json) conservan la procedencia. El piloto de diez semillas por familia produjo R requerido=331; se aplicó el mínimo registrado **R final=465**. La ejecución completa comprende **960 etapas HPO, 60 de piloto y 2.790 definitivas: 3.810 etapas de ajuste**. Las 1.395 redes finales emiten **83.700 predicciones** sobre las mismas sesenta fechas; no son 83.700 observaciones independientes.
+
+![Curvas observadas de las recetas actuales LSTM–MLP–GRU](../_static/e1_core_mlp_extension_20261107/learning_curves.png)
+
+Las [44.201 filas de pérdidas](../_static/e1_core_mlp_extension_20261107/learning_curves_by_run.csv) corresponden sólo a desarrollo 2023–2024. Se distinguen entrenamiento, validación interna y reajuste; éste conserva la duración seleccionada y no incorpora validación de la reserva. Las épocas tardías tienen menos trayectorias por parada temprana. El [resumen de ejecución](../_static/e1_core_mlp_extension_20261107/summary.json) y la [cronología](../_static/e1_core_mlp_extension_20261107/chronology.json) separan esta ejecución de los estudios anteriores con TCN.
+
+### 4.0.2. Relación con las cuatro entradas históricas
+
+La comparación histórica recuperada del núcleo conserva **las cuatro entradas D=7/14/21/28** y diez semillas por combinación. Sus 240 puntuaciones de corrida —CV y test—, seis métricas e intervalos se documentan en el {ref}`benchmark histórico compatible <benchmark-core-historico-e1>`. MLP usa H=16 en esos registros, GRU/LSTM H=32. Son configuraciones anteriores de distinta capacidad, con test ya conocido; no reemplazan la búsqueda equitativa ni el piloto del estudio nuevo.
+
+## Archivo de los estudios anteriores con TCN
+
+Las subsecciones 4.1–4.4 y las tablas siguientes conservan el **estudio anterior GRU–LSTM–TCN**, con entradas de 7, 14, 21 y 28 días, cinco covariables OHLCV, σ₇ y h=1. El [resumen histórico](../_static/gru_lstm_tcn_20261105/summary.json), sus [especificaciones](../_static/gru_lstm_tcn_20261105/model_specs.json) y la [selección con CV](../_static/gru_lstm_tcn_20261105/selected_by_cv.json) mantienen su identidad.
+
+La fase I completó 120 trayectorias, 1.440 segmentos mensuales, 2.880 ajustes y 43.920 predicciones de CV. Las cuarenta LSTM se reentrenaron como control y reprodujeron 14.640 predicciones anteriores; la comparación final conservó 80 ajustes nuevos GRU/TCN y 40 LSTM reutilizados, con 72.960 predicciones sobre 608 fechas. Su baseline neuronal GRU/D7 fue una decisión de aquel estudio.
+
+El [capítulo 9](09_estudio_planificado.md) conserva otro estudio anterior D7 de GRU–LSTM–TCN: HPO, piloto, R=465 y evaluación del 01/09–30/10/2026. Es evidencia complementaria y no entrenamiento retrospectivo de MLP. Las métricas, pesos y cronologías de esos estudios conservan sus límites; la incorporación posterior de MLP no genera una reserva desconocida.
 
 ## 4.1. Diseño Experimental
 
@@ -89,9 +124,9 @@ Después se resumen las métricas entre las diez semillas. R² utiliza la media 
 (piloto-filipe-registrado)=
 ### 4.1.4. Piloto
 
-**La fase I no tuvo un piloto anterior a su benchmark.** Sus diez semillas por familia e historia fueron un presupuesto exploratorio. La fase II D7 corrige el orden para una ejecución nueva: primero congela las recetas seleccionadas, después ejecuta un piloto con diez semillas nuevas por familia sobre 60 días de desarrollo y dimensiona los ajustes definitivos. Véanse [§9.4 y §9.5](09_estudio_planificado.md). No se atribuye el nuevo piloto al benchmark anterior o a D14/21/28.
+**La fase I no tuvo un piloto anterior a su benchmark.** Sus diez semillas por familia e historia fueron un presupuesto exploratorio. El estudio anterior D7 con TCN conservó otro orden: primero congeló las recetas seleccionadas, después ejecutó un piloto con diez semillas nuevas por familia sobre 60 días de desarrollo y dimensionó sus ajustes definitivos. Véanse [§9.4 y §9.5](09_estudio_planificado.md). Ese piloto no se atribuye a la fase I, a D14/21/28 ni al núcleo nuevo con MLP.
 
-Los estudios de otros procedimientos no se atribuyen a este trío. La [tabla CV vigente](../_static/gru_lstm_tcn_20261105/metric_summary_cv.csv) permite verificar medias y DE de las diez ejecuciones; los 120 conjuntos D–modelo–semilla no equivalen a 120 mercados.
+Los estudios de otros procedimientos no se atribuyen a este trío. La [tabla CV histórica](../_static/gru_lstm_tcn_20261105/metric_summary_cv.csv) permite verificar medias y DE de las diez ejecuciones; los 120 conjuntos D–modelo–semilla no equivalen a 120 mercados.
 
 ### 4.1.5. Diferencia mínima de interés
 
@@ -121,7 +156,7 @@ Las diez semillas sólo modifican la aleatoriedad del entrenamiento, condicionad
 
 ### 4.1.7. Diferencia mínima detectable
 
-La fase I no acredita una MDE prospectiva. En fase II D7, el piloto y el cálculo de R preceden a sus ajustes definitivos; el {ref}`dimensionamiento y las MDE <planned-power>` conservan α, δ, dispersión, incertidumbre y multiplicidad. Esa planificación corresponde a la comparación actual de tres recetas, no al futuro modelo avanzado. El margen $\delta$ y la dispersión entre semillas son cantidades distintas.
+La fase I no acredita una MDE prospectiva. En el estudio anterior D7 con TCN, el piloto y el cálculo de R precedieron a sus ajustes definitivos; el {ref}`dimensionamiento y las MDE <planned-power>` conservan α, δ, dispersión, incertidumbre y multiplicidad. Esa planificación corresponde a aquellas tres recetas, no al núcleo nuevo con MLP ni a un futuro modelo avanzado. El margen $\delta$ y la dispersión entre semillas son cantidades distintas.
 
 Una planificación futura deberá resolver la potencia del contraste pareado previsto, por ejemplo usando $\delta\sqrt R/s_\Delta$ como parámetro de no centralidad bajo diferencias normales independientes. La DE estimada con diez semillas tiene incertidumbre y no asegura esos supuestos. No se usa el efecto observado para calcular «potencia alcanzada», ni se afirma que una MDE insuficiente quede resuelta por obtener p<0,05.
 
@@ -141,7 +176,7 @@ Estos registros no borran la exposición previa a 2024 y al test histórico. Los
 
 #### 4.1.9.2. Estado del diseño y del piloto
 
-| Componente | Estado actual |
+| Componente del estudio anterior | Estado histórico |
 |---|---|
 | GRU, LSTM y TCN en cuatro historias | Ejecutados, diez semillas por combinación |
 | Control LSTM CV | 14.640 predicciones exactamente reproducidas |
@@ -151,13 +186,13 @@ Estos registros no borran la exposición previa a 2024 y al test histórico. Los
 | Confirmación temporal nueva | Pendiente |
 | Margen para E2 | Definido ahora, después de test |
 
-Las recetas no se cambian tras la puntuación. El experimento vigente compara **GRU, LSTM y TCN**, con persistencia como referencia contextual. MLP aparece en la revisión de candidatos y en antecedentes experimentales identificados por su fecha; no forma parte de esta terna ni de sus resultados finales.
+Las recetas de este estudio histórico no se cambian tras la puntuación. Este archivo compara **GRU, LSTM y TCN**, con persistencia como referencia contextual. El núcleo vigente **LSTM–MLP–GRU** requiere implementación y cierre propios, cuyo estado se documenta en el capítulo 10; sus resultados no se sustituyen por los de este archivo.
 
-## 4.2. Implementación de los Tres Modelos Base
+## 4.2. Implementación del trío histórico con TCN
 
 Las redes implementadas comparten información disponible y salida positiva. Se diferencian en sus operadores temporales, no en el dataset de entrada.
 
-### 4.2.1. Implementación de los tres modelos base
+### 4.2.1. Arquitecturas históricas GRU–LSTM–TCN
 
 | Modelo | Arquitectura ejecutada | Parámetros |
 |---|---|---:|
@@ -251,7 +286,7 @@ Cada selección interna conserva curvas train/validación; el reajuste conserva 
 
 La figura agrega las curvas disponibles de las corridas, no representa una única semilla o mes. Una curva de reajuste sin validación no selecciona una duración nueva ni demuestra ausencia global de sobreajuste.
 
-Estas curvas corresponden a las recetas iniciales de fase I. Las **recetas del modelo final D7** tienen sus propias {ref}`curvas públicas reproducidas en §9.10 <curvas-finales-reproducidas>`, con las 465 semillas por familia y sólo desarrollo 2023–2024. La nueva ejecución conserva los módulos y recetas congelados; distingue reproducción posterior, coincidencias de hashes y recuperación de originales privados. No modifica las métricas históricas ni evalúa de nuevo la reserva.
+Estas curvas corresponden a las recetas iniciales de fase I. Las **recetas del estudio anterior D7 con TCN** tienen sus propias {ref}`curvas públicas reproducidas en §9.10 <curvas-finales-reproducidas>`, con las 465 semillas por familia y sólo desarrollo 2023–2024. La nueva ejecución conserva los módulos y recetas congelados; distingue reproducción posterior, coincidencias de hashes y recuperación de originales privados. No modifica las métricas históricas ni evalúa de nuevo la reserva.
 
 #### 4.2.5.2. Número de parámetros
 
@@ -363,7 +398,7 @@ Los ochenta modelos nuevos se puntúan una vez tras su cierre y generan 48.640 v
 
 #### 4.3.6.4. Estado de cumplimiento
 
-La ejecución y la integridad están documentadas para el trío actual. La fase II D7 incorpora piloto, dimensionamiento, HPO comparable e inferencia fijada antes de su reserva histórica. Permanecen la incertidumbre temporal de un periodo de 60 días, la generalización a otros mercados y la limitada recurrencia bibliográfica de TCN. No se declara retrospectivamente prospectiva la fase I ni se dimensionan las otras tres entradas.
+La ejecución y la integridad están documentadas para el **trío histórico GRU–LSTM–TCN**. Su estudio D7 anterior incorporó piloto, dimensionamiento, HPO comparable e inferencia fijada antes de puntuar su reserva histórica. Permanecen la incertidumbre temporal de ese periodo de 60 días, la generalización a otros mercados y la limitada recurrencia bibliográfica cripto de TCN. Esos resultados complementarios no acreditan el entrenamiento del núcleo nuevo con MLP, que tiene su propio registro en el capítulo 10. No se declara retrospectivamente prospectiva la fase I ni se dimensionan las otras tres entradas.
 
 ## 4.4. Evaluación
 
@@ -604,7 +639,7 @@ En la figura, el pico de comienzos de febrero de 2026 queda subestimado por las 
 
 #### 4.4.10.3. Residuos: estructura, sesgo y heterocedasticidad
 
-Los residuos actuales son observado menos predicho, en escala original. Se publican BDS por mes, Ljung–Box en rezagos 1/5 y DM sobre pérdidas cuadráticas diarias medias entre semillas, con sus multiplicidades y limitaciones en §5.4. Esos cálculos se definieron después del test y no ejecutan modelos nuevos.
+Los residuos históricos GRU–LSTM–TCN son observado menos predicho, en escala original. Se publican BDS por mes, Ljung–Box en rezagos 1/5 y DM sobre pérdidas cuadráticas diarias medias entre semillas, con sus multiplicidades y limitaciones en §5.4. Esos cálculos se definieron después del test y no ejecutan modelos nuevos.
 
 ![Histogramas residuales D7, CV y test](../_static/gru_lstm_tcn_20261105/residual_histograms_D7.png)
 
@@ -612,16 +647,16 @@ Las observaciones agrupadas de distintas semillas comparten fechas y no son resi
 
 #### 4.4.10.4. Productos y estado de ejecución
 
-| Producto vigente | Estado |
+| Producto histórico GRU–LSTM–TCN | Estado |
 |---|---|
 | Cuatro historias y tres redes | 120 trayectorias CV; 2.880 ajustes |
 | Control LSTM | 14.640 predicciones CV exactamente coincidentes |
-| Modelo final | 80 ajustes nuevos y 40 LSTM reutilizados |
+| Ajuste histórico final | 80 ajustes nuevos y 40 LSTM reutilizados |
 | Evaluación histórica | 608 fechas; 72.960 predicciones, con reutilización identificada |
 | Selección neuronal | GRU/D7 por CV, anterior a esta fase final |
 | Comparación interna D7 | Tres pares por fase; análisis posterior y exploratorio |
-| Piloto y evaluación posterior de estas recetas iniciales | No se atribuyen retrospectivamente; el estudio del modelo final D7 tiene su propio piloto y reserva (§9) |
+| Piloto y evaluación posterior de estas recetas iniciales | No se atribuyen retrospectivamente; el estudio anterior D7 con TCN tuvo su propio piloto y reserva (§9) |
 
 Los agregados públicos, especificaciones y catálogos corresponden a GRU–LSTM–TCN. La publicación no presenta la sustitución documental como un nuevo entrenamiento ni transforma esta evaluación en confirmación independiente.
 
-**Ejecución planificada D7.** El [capítulo 9](09_estudio_planificado.md) reúne el diseño público previo, la rejilla equitativa de ocho candidatos por familia, el piloto de 60 días, el cálculo de R y los resultados sobre el 01/09–30/10/2026. Esa fase mantiene n=7/h=1 y covariables OHLCV, con D7 fijo. Los resultados de fase I y sus limitaciones permanecen identificados; la potencia planificada entre semillas no representa potencia temporal ni confirma otros mercados.
+**Estudio complementario anterior D7 con TCN.** El [capítulo 9](09_estudio_planificado.md) reúne el diseño público previo, la rejilla equitativa de ocho candidatos por familia, el piloto de 60 días, el cálculo de R y los resultados sobre el 01/09–30/10/2026. Esa fase mantiene n=7/h=1 y covariables OHLCV, con D7 fijo. Los resultados de fase I y sus limitaciones permanecen identificados; la potencia planificada entre semillas no representa potencia temporal ni confirma otros mercados.

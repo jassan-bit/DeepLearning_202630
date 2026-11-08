@@ -1,20 +1,83 @@
-# 5. Benchmark de los Modelos Base y Definición del Baseline
+# 5. Benchmark de los modelos base y definición del baseline
 
-**Dos fases del estudio.** Las tablas de cuatro entradas, diez semillas y test enero de 2025–agosto de 2026 de este capítulo corresponden a la **fase I exploratoria**. La **fase II D7** añade búsqueda equitativa, piloto anterior a su ejecución definitiva, dimensionamiento y evaluación preespecificada sobre el 01/09–30/10/2026. Sus recetas, recuentos y resultados se identifican por separado en el [capítulo 9](09_estudio_planificado.md).
+**Núcleo vigente: LSTM–MLP–GRU.** La selección del capítulo 3 se implementa en un {ref}`estudio final propio <final-core-mlp-e1>`. TCN queda como comparación complementaria. La evidencia histórica se conserva con su configuración, calendario y alcance; la nueva terna fue elegida después de conocer aquellos resultados.
 
-El benchmark principal compara **GRU, LSTM y TCN residual causal**, en D=7/14/21/28, con diez semillas por receta, cinco covariables OHLCV diarias y objetivo sigma7 poblacional a h=1 día. **GRU/D7 es el baseline neuronal seleccionado con CV2024**, anterior al ajuste final de esta fase.
+(benchmark-core-actual-e1)=
+## 5.0. Resultados actuales del núcleo LSTM–MLP–GRU
 
-La CV produjo **120 trayectorias, 2.880 ajustes y 43.920 predicciones**. El control LSTM se reentrenó y reprodujo exactamente 14.640 pronósticos. La evaluación 01/01/2025–31/08/2026 reúne 608 fechas y 72.960 valores: ochenta modelos GRU/TCN nuevos y cuarenta LSTM reutilizados, con pesos fijos y sin reajustes en test.
+La ejecución propia completó **465 inicializaciones por red**, con pesos y transformadores cerrados antes de recalcular el periodo histórico **01/09–30/10/2026: 60 fechas comunes**. GRU fue el baseline elegido con desarrollo; persistencia es una referencia determinista. La evaluación se diseñó después de conocer ese periodo y mantiene alcance exploratorio.
 
-El test ya se había observado antes de diseñar esta comparación. **Los resultados son exploratorios, condicionados al calendario y a las recetas**, sin confirmación temporal independiente. Los análisis actuales entre las tres redes y los diagnósticos se definieron después de inspeccionar ese test; su [plan público](../_static/gru_lstm_tcn_20261105/public_analysis_plan.json) preserva esa fecha. No modifican modelos ni realizan nuevas inferencias.
+| Modelo actual | RMSE, media ± DE | IC marginal 95 % RMSE | MAE, media ± DE | R² medio |
+|---|---:|---|---:|---:|
+| LSTM | 0,00565123 ± 0,00056569 | [0,00559968; 0,00570278] | 0,00429363 ± 0,00042837 | 0,215843 |
+| MLP | 0,00516664 ± 0,00048727 | [0,00512224; 0,00521105] | 0,00397196 ± 0,00041141 | 0,345286 |
+| GRU | 0,00511696 ± 0,00077519 | [0,00504631; 0,00518760] | 0,00391028 ± 0,00062417 | 0,348891 |
+| Persistencia | 0,00384478 | No aplica entre semillas | 0,00212123 | 0,640632 |
 
-GRU/D7 reduce RMSE en este test frente a TCN, LSTM y persistencia. Persistencia tiene menor RMSE en CV y conserva mejor MAE y MAPE en test. Ese resultado exige distinguir métrica, periodo y tipo de incertidumbre, sin declarar una ganadora universal.
+La [tabla completa de seis métricas](../_static/e1_core_mlp_extension_20261107/metric_summary.csv) conserva media, DE e IC entre semillas, condicionados a las mismas fechas. **Persistencia tiene la menor RMSE puntual; GRU y MLP presentan resultados próximos**, por delante de LSTM entre las redes. El orden de medias no acredita superioridad temporal ni equivalencia.
+
+El [contraste pareado GRU–MLP](../_static/e1_core_mlp_extension_20261107/pairwise_rmse.csv) tiene **p Holm=0,243**: no rechaza la hipótesis de diferencia media cero y **no demuestra equivalencia**. Los dos pares neuronales frente a LSTM rechazan en la familia Holm-3 entre semillas. Los diagnósticos rechazan normalidad de las diferencias; las t y sus IC se interpretan como aproximaciones condicionadas al calendario, con los supuestos registrados.
+
+Ninguna de las [seis comparaciones temporales DM-HLN](../_static/e1_core_mlp_extension_20261107/dm_pairs.csv) rechaza tras Holm-6. Los [intervalos familiares del bootstrap temporal principal, bloque 7](../_static/e1_core_mlp_extension_20261107/temporal_bootstrap.csv), tampoco acreditan una ganancia superior al 5 %. Semillas, fechas y métricas son unidades distintas; la ejecución conserva resultados adversos e inconclusos. El {ref}`capítulo 10 <final-core-mlp-e1>` desarrolla la planificación, los diagnósticos y su alcance.
+
+(benchmark-core-historico-e1)=
+### 5.0.1. Evidencia histórica compatible del núcleo y relación con el estudio actual
+
+El {download}`suplemento histórico del núcleo <../_static/e1_historical_core_20261107/README.md>` concilia resultados reales de MLP/LSTM del 04/11 con GRU/LSTM del 05/11. Las LSTM coinciden exactamente por semilla en las seis métricas, cuatro historias y ambas fases: **480 igualdades**, verificadas junto a los contratos de datos, purgas, folds y calendario. Son **240 puntuaciones de corrida**: dos fases × cuatro entradas × tres modelos × diez semillas nominales 4101–4110.
+
+Las recetas históricas tienen **5.025 parámetros LSTM, 3.777 GRU y 593/1.153/1.713/2.273 MLP** al variar D7/14/21/28. En MLP se mantiene una capa oculta de 16 unidades y cambia la dimensión aplanada de entrada. La representación es `relative_window`, con cinco canales, σ₇ poblacional y h=1. El [manifiesto de fuentes](../_static/e1_historical_core_20261107/source_manifest.json) verifica identidad; estas métricas no se recalculan desde pronósticos inventados o datos aproximados.
+
+**D7: CV 2024, 366 fechas.**
+
+| Modelo histórico | RMSE ± DE | MAE ± DE | MSE ± DE | R² ± DE | MAPE % ± DE | MASE ± DE |
+|---|---:|---:|---:|---:|---:|---:|
+| LSTM | 0,0063354 ± 0,0001870 | 0,0047263 ± 0,0001245 | 4.0169e-05 ± 2.3663e-06 | 0,5788925 ± 0,0248069 | 21,7863 ± 0,8045 | 1,7898208 ± 0,0464476 |
+| MLP | 0,0060491 ± 0,0002780 | 0,0043804 ± 0,0002110 | 3.6661e-05 ± 3.3905e-06 | 0,6156695 ± 0,0355439 | 19,3303 ± 0,7369 | 1,6616816 ± 0,0842150 |
+| GRU | 0,0051546 ± 0,0001616 | 0,0036192 ± 0,0001308 | 2.6593e-05 ± 1.6698e-06 | 0,7212140 ± 0,0175052 | 16,0924 ± 0,6301 | 1,3759951 ± 0,0494612 |
+
+**D7: Test histórico 01/01/2025–31/08/2026, 608 fechas.**
+
+| Modelo histórico | RMSE ± DE | MAE ± DE | MSE ± DE | R² ± DE | MAPE % ± DE | MASE ± DE |
+|---|---:|---:|---:|---:|---:|---:|
+| LSTM | 0,0050298 ± 0,0002637 | 0,0039189 ± 0,0002196 | 2.5361e-05 ± 2.6077e-06 | 0,7411085 ± 0,0266194 | 25,3406 ± 3,4056 | 1,4459454 ± 0,0810156 |
+| MLP | 0,0047932 ± 0,0003988 | 0,0036400 ± 0,0001764 | 2.3118e-05 ± 4.1315e-06 | 0,7640118 ± 0,0421752 | 21,5699 ± 0,7252 | 1,3430385 ± 0,0650917 |
+| GRU | 0,0037751 ± 0,0001941 | 0,0027985 ± 0,0001892 | 1.4285e-05 ± 1.5019e-06 | 0,8541731 ± 0,0153311 | 18,0667 ± 1,5054 | 1,0325637 ± 0,0698244 |
+
+**Sensibilidad a las cuatro entradas: RMSE media guardada por corrida.**
+
+| D | LSTM CV | MLP CV | GRU CV | LSTM test | MLP test | GRU test |
+|---:|---:|---:|---:|---:|---:|---:|
+| 7 | 0,0063354 | 0,0060491 | 0,0051546 | 0,0050298 | 0,0047932 | 0,0037751 |
+| 14 | 0,0077018 | 0,0069510 | 0,0066768 | 0,0057094 | 0,0052448 | 0,0047674 |
+| 21 | 0,0087796 | 0,0083825 | 0,0074140 | 0,0061970 | 0,0058746 | 0,0050212 |
+| 28 | 0,0093129 | 0,0093860 | 0,0079966 | 0,0077325 | 0,0074423 | 0,0050551 |
+
+Los tres mínimos por familia se encuentran en **D7 según RMSE CV**, y GRU/D7 tiene el menor valor CV del núcleo histórico. Es una comparación derivada de registros conocidos: no se elige D por test ni se presenta como el baseline congelado del estudio nuevo.
+
+**IC marginales del 95 % de RMSE para D7, entre diez semillas:**
+
+| Fase | LSTM | MLP | GRU |
+|---|---|---|---|
+| CV | [0,0062016; 0,0064692] | [0,0058502; 0,0062479] | [0,0050390; 0,0052701] |
+| TEST | [0,0048412; 0,0052184] | [0,0045079; 0,0050785] | [0,0036363; 0,0039140] |
+
+El {download}`resumen completo de seis métricas e IC por entrada <../_static/e1_historical_core_20261107/metric_summary.csv>` y las {download}`puntuaciones por semilla <../_static/e1_historical_core_20261107/run_metrics.csv>` conservan todos los resultados. Los IC t usan DE muestral y nueve grados de libertad; describen inicialización condicionada a las mismas fechas, sin simultaneidad ni incertidumbre temporal incorporada. Las métricas de distinta escala no se suman para elegir una ganadora.
+
+Los {download}`contrastes exploratorios D7 <../_static/e1_historical_core_20261107/paired_rmse.csv>` informan los tres pares de RMSE por fase, diferencia orientada, IC marginal, d_z, Shapiro y Holm dentro de cada familia de tres. Son análisis posteriores sobre etiquetas-semilla y periodos conocidos. No hay nuevos DM, BDS, residuos o bootstrap temporal con MLP: sus vectores diarios originales de test no están disponibles aquí, y los agregados por corrida no los reconstruyen.
+
+La búsqueda nueva, sus recetas elegidas, piloto, dimensionamiento y comparación conjunta pertenecen al {ref}`capítulo 10 <final-core-mlp-e1>`. No se trasladan al núcleo nuevo las diez repeticiones o el R de otro trío, ni se presenta el periodo ya observado de septiembre–octubre de 2026 como una reserva temporal independiente.
+
+## Archivo complementario de GRU–LSTM–TCN
+
+Las secciones 5.1–5.5 conservan las tablas y análisis del estudio anterior con TCN, en D=7/14/21/28, diez semillas, CV 2024 y test histórico de 608 fechas. **GRU/D7 fue el baseline neuronal seleccionado con CV de aquel estudio**. La fase I produjo 120 trayectorias, 2.880 ajustes y 43.920 predicciones; su evaluación reunió 72.960 valores, con ochenta modelos GRU/TCN nuevos y cuarenta LSTM reutilizados.
+
+El test ya se había observado antes de diseñar esa comparación y sus contrastes fueron posteriores: sus resultados son exploratorios. El control LSTM reprodujo 14.640 pronósticos de CV. Las diferencias respecto a TCN, LSTM o persistencia conservan sus unidades y alcance; la incorporación posterior de MLP no modifica esas tablas ni convierte sus pruebas en contrastes del núcleo actual.
 
 ## 5.1. Comparación Tabular
 
 Las tablas presentan todas las historias y las seis métricas. Los agregados entre semillas se calculan después de puntuar cada trayectoria completa.
 
-### 5.1.1. Tabla de comparación de los tres modelos base
+### 5.1.1. Tabla histórica complementaria GRU–LSTM–TCN
 
 Las descargas [CV](../_static/gru_lstm_tcn_20261105/metric_summary_cv.csv) y [test](../_static/gru_lstm_tcn_20261105/metric_summary_test.csv) contienen medias, DE muestrales, IC y conteos definidos. Las redes tienen diez semillas; persistencia es una sola trayectoria determinista y se identifica por D para conservar su denominador MASE.
 
@@ -240,7 +303,7 @@ Se define un criterio operativo para evaluar posteriormente un modelo avanzado. 
 
 #### 5.3.4.1. Mejora mínima detectable frente al baseline
 
-El número de semillas actual no procede de un piloto de potencia. No se afirma potencia 0,80 ni se calcula «potencia alcanzada» usando el efecto observado. La MDE del futuro avanzado depende de su propia dispersión pareada frente a las referencias y del procedimiento previsto.
+Las diez semillas del estudio histórico de fase I no procedieron de un piloto de potencia. No se afirma potencia 0,80 ni se calcula «potencia alcanzada» usando el efecto observado. La MDE del futuro avanzado depende de su propia dispersión pareada frente a las referencias y del procedimiento previsto.
 
 Si la MDE supera el margen relevante, habrá que mejorar el diseño o declarar esa limitación. Aumentar semillas sólo precisa el componente de aleatoriedad del entrenamiento sobre estas fechas; no proporciona otro mercado o un test desconocido.
 
@@ -268,7 +331,7 @@ GRU combina menor RMSE D7 con menos pesos, pero no con menor tiempo CV que LSTM.
 
 #### 5.3.5.3. Conclusión explícita del baseline y margen disponible
 
-El baseline neuronal vigente es GRU/D7. Persistencia continúa como referencia adicional; la ganancia RMSE de test de GRU no se extiende a MAE y MAPE. El margen operativo futuro es 0,0002577284 y se declara posterior a la observación de test.
+El baseline neuronal de este archivo histórico es GRU/D7. Persistencia continúa como referencia adicional; la ganancia RMSE de test de GRU no se extiende a MAE y MAPE. El margen operativo futuro es 0,0002577284 y se declara posterior a la observación de test.
 
 #### 5.3.5.4. Estado del benchmark
 
@@ -404,7 +467,7 @@ Se interpreta conjuntamente la forma del error, su estructura temporal y los lí
 
 #### 5.4.12.1. Estructura residual y posible margen de mejora
 
-![Distribución residual D7 en la comparación actual](../_static/gru_lstm_tcn_20261105/residual_histograms_D7.png)
+![Distribución residual D7 de la comparación histórica GRU–LSTM–TCN](../_static/gru_lstm_tcn_20261105/residual_histograms_D7.png)
 
 El histograma muestra observado menos predicho y no representa probabilidades de utilidad financiera. Las diferencias de colas y sesgo deben contrastarse con RMSE/MAE; BDS y Ljung–Box añaden preguntas específicas. La reserva de mejora no se cuantifica restando un p-value a uno.
 
@@ -452,7 +515,7 @@ Los tres pares D7 se distinguen de cero mediante t/Holm en ambas fases. Friedman
 
 #### 5.4.14.2. Significancia estadística y relevancia práctica
 
-El margen futuro de 5 % de GRU/CV no convierte los rechazos actuales en una demostración prevista de relevancia práctica. La reducción RMSE de GRU en test coexiste con peor MAE/MAPE que persistencia; ninguna prueba aporta por sí sola una interpretación económica.
+El margen futuro de 5 % de GRU/CV no convierte los rechazos de este análisis histórico en una demostración prevista de relevancia práctica. La reducción RMSE de GRU en test coexiste con peor MAE/MAPE que persistencia; ninguna prueba aporta por sí sola una interpretación económica.
 
 #### 5.4.14.3. Conclusiones respaldadas por diferencias, incertidumbre y efectos
 
@@ -461,7 +524,7 @@ Se respalda el orden medio GRU–TCN–LSTM en D7 sobre estas fechas, con incert
 (alcance-estadistico)=
 #### 5.4.14.4. Estado y alcance del análisis estadístico
 
-| Análisis actual | Unidad/familia | Alcance |
+| Análisis histórico complementario | Unidad/familia | Alcance |
 |---|---|---|
 | t y Holm | Diez RMSE pareadas; tres pares D7 por fase | Diferencias de inicialización condicionales |
 | Sensibilidad de historias | Doce pares por fase, Holm-12 | No reemplaza la familia D7 |
@@ -503,7 +566,7 @@ La referencia neuronal es GRU/D7, elegida con CV. El objetivo futuro se formula 
 
 El **corte bibliográfico histórico del 05/11/2026** registró referencias GRU 3/7, LSTM 5/7 y TCN 1/7. Akbiyik et al. {cite:p}`akbiyik2023` aporta el respaldo directo TCN; Miura et al. {cite:p}`miura2019` respalda recurrentes. La {ref}`ampliación de fuentes gratuitas <free-model-expansion-e1>` y la {ref}`síntesis acumulada actual <homogeneous-expansion-e1>` documentan las lecturas posteriores, sus roles y los denominadores comparables. Las configuraciones OHLCV/sigma7 propias son adaptaciones, no réplicas o valores trasladados de artículos.
 
-La terna de este benchmark sigue siendo **GRU–LSTM–TCN**. MLP es una alternativa examinada en la literatura y un antecedente histórico, sin incorporar un cuarto modelo a estas tablas. El respaldo financiero adicional de TCN se distingue del respaldo específico de volatilidad realizada cripto; la selección conserva su intercambio entre recurrencia, complejidad y contraste de mecanismos. Las diferencias funcionales GRU/LSTM no demuestran independencia de sus errores, y el resultado del test no decide qué estudios se incluyen.
+La terna de **este archivo complementario** es GRU–LSTM–TCN. El núcleo vigente LSTM–MLP–GRU aparece en §5.0 y tiene su propio estudio final en el capítulo 10; sus filas no se mezclan con estas tablas históricas. El respaldo financiero adicional de TCN se distingue del respaldo específico de volatilidad realizada cripto; la selección conserva su intercambio entre recurrencia, complejidad y contraste de mecanismos. Las diferencias funcionales GRU/LSTM no demuestran independencia de sus errores, y el resultado del test no decide qué estudios se incluyen.
 
 ### 5.5.7. Amenazas a la validez
 
@@ -519,7 +582,7 @@ Las recomendaciones se dirigen a una versión nueva, sin reajustar decisiones de
 
 #### 5.5.9.1. Recomendaciones derivadas de las limitaciones
 
-Diseñar un piloto pareado del futuro avanzado, fijar su tamaño y multiplicidad, justificar el margen, utilizar una evaluación desconocida y contrastar presupuesto de HPO/capacidad. La revisión actual amplía el respaldo primario y describe los mecanismos de GRU/LSTM/TCN. Comprobar complementariedad predictiva o una ganancia transferible requiere un diseño propio; no se deduce de las diferencias arquitectónicas o de añadir referencias.
+Diseñar un piloto pareado del futuro avanzado, fijar su tamaño y multiplicidad, justificar el margen, utilizar una evaluación desconocida y contrastar presupuesto de HPO/capacidad. La revisión actual fundamenta el núcleo LSTM–MLP–GRU y conserva los mecanismos de TCN como evidencia complementaria. Comprobar complementariedad predictiva o una ganancia transferible requiere un diseño propio; no se deduce de las diferencias arquitectónicas o de añadir referencias.
 
 #### 5.5.9.2. Matriz de conclusiones y evidencia pendiente
 
@@ -534,4 +597,4 @@ Diseñar un piloto pareado del futuro avanzado, fijar su tamaño y multiplicidad
 
 La interpretación se limita a las recetas y fechas observadas, con todas las historias y métricas visibles.
 
-**Comparación preespecificada en la nueva reserva.** El [capítulo 9](09_estudio_planificado.md) reúne el diseño público previo, la rejilla equitativa de ocho candidatos por familia, el piloto de 60 días, el cálculo de R y los resultados sobre el 01/09–30/10/2026. Esa fase mantiene n=7/h=1 y covariables OHLCV, con D7 fijo. Los resultados de fase I y sus limitaciones permanecen identificados; la potencia planificada entre semillas no representa potencia temporal ni confirma otros mercados.
+**Comparación complementaria anterior en septiembre–octubre de 2026.** El [capítulo 9](09_estudio_planificado.md) reúne el diseño público previo, la rejilla equitativa de ocho candidatos por familia, el piloto de 60 días, el cálculo de R y los resultados sobre el 01/09–30/10/2026. Esa fase mantiene n=7/h=1 y covariables OHLCV, con D7 fijo. Los resultados de fase I y sus limitaciones permanecen identificados; la potencia planificada entre semillas no representa potencia temporal ni confirma otros mercados.

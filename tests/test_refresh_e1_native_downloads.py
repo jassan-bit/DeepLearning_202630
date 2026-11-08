@@ -41,6 +41,11 @@ class NativeDownloadRefreshTests(unittest.TestCase):
                        else "Separately registered development curve reproduction\n")
         self.write("scripts/current.py", "print('public current code')\n")
         self.write("tests/test_current.py", "# current public verification\n")
+        for name in refresh.MANUAL_REACQUISITION_FILES:
+            self.write(name, json.dumps({"nbformat": 4, "nbformat_minor": 5,
+                "metadata": {}, "cells": [{"cell_type": "code", "metadata": {},
+                    "source": ["print('download exact original hashes')"],
+                    "execution_count": None, "outputs": []}]}) + "\n")
         self.write("book/references.bib", "@article{current, title={Current literature}}\n")
         self.write("book/_static/literature_e1/README.md", "Current literature stage index\n")
         self.stage_directories = {}
@@ -94,6 +99,8 @@ class NativeDownloadRefreshTests(unittest.TestCase):
                 names |= {"references.csv", "references.bib", "readings.json"}
             elif stage == "homogeneous_expansion_20261107":
                 names |= {"adjudications.csv", "frequencies.csv", "comparator_quality.csv"}
+            elif stage == "core_selection_20261107":
+                names |= {"ranking.csv", "parameter_candidates.csv", "source_anchors.csv"}
             for name in names:
                 if stage == "provisional_native_log_20261107" and name == "summary.json":
                     value = json.dumps(self.provisional_summary) + "\n"
@@ -113,11 +120,27 @@ class NativeDownloadRefreshTests(unittest.TestCase):
         for label, spec in refresh.SUPPLEMENTS.items():
             prefix, names = spec["directory"], spec["files"]
             if names is None:
-                names = {"README.md", "summary.json", "comparison.csv", "manifest.json"} | (
-                    set(spec.get("configuration_files", ())) - {spec["manifest"]})
+                names = ({"README.md", "summary.json", "comparison.csv", "manifest.json"}
+                         | set(spec.get("configuration_files", ()))) - {spec["manifest"]}
             directory = self.root / prefix
             for name in names:
-                if name == "summary.json":
+                if label == "core_mlp_extension" and name in {"summary.json", "selection.json", "plan.json"}:
+                    execution = "d" * 64
+                    recipes = {model: {"model": model, "history_days": 7, "width": 32,
+                                       "mean_rmse": 0.001 + index * 0.0001}
+                               for index, model in enumerate(("GRU", "LSTM", "MLP"))}
+                    payloads = {
+                        "summary.json": {"study_id": "e1_core_mlp_extension_20261107",
+                            "execution_id": execution, "source_commit": "e" * 40,
+                            "core_models": ["GRU", "LSTM", "MLP"], "R_final": 465,
+                            "definitive_trajectories": 1395, "baseline_selected_before_reserve": "GRU",
+                            "known_reserve_exploratory": True, "fresh_confirmatory_holdout": False},
+                        "selection.json": {"registration_signature": execution,
+                            "baseline_model": "GRU", "recipes": recipes},
+                        "plan.json": {"registration_signature": execution, "R_final": 465, "R": 465},
+                    }
+                    value = json.dumps(payloads[name]) + "\n"
+                elif name == "summary.json":
                     value = json.dumps({"supplement": label, "post_hoc": True}) + "\n"
                 elif name.endswith(".json"):
                     value = json.dumps({"public_metrics": True}) + "\n"
@@ -159,7 +182,8 @@ class NativeDownloadRefreshTests(unittest.TestCase):
                 payload.update({"literature_refresh_20261106.json": b'{"prior_round": true}\n',
                                 "AMPLIACION_LITERARIA_20261106.md": b"Prior dated literature round\n",
                                 "literature_refresh_20261107.json": b'{"prior_same_day_round": true}\n',
-                                "AMPLIACION_LITERARIA_20261107.md": b"Prior same-day literature round\n"})
+                                "AMPLIACION_LITERARIA_20261107.md": b"Prior same-day literature round\n",
+                                "literature_refresh_20261107_free_models.json": b'{"previous_free_models_round": true}\n'})
             self.base_payloads[item] = payload
             records.append(refresh.legacy.archive(self.base / filename, payload, item, "Product " + item,
                                                   "a" * 40, "Original phase I/II notes\n"))
@@ -211,7 +235,17 @@ class NativeDownloadRefreshTests(unittest.TestCase):
             self.assertEqual((self.output / refresh.ITEMS[item]).read_bytes(), data)
         for key in ("models", "active_entrypoint", "active_entrypoints", "baseline_selected_by_cv",
                     "planned_D7_phase", "scope", "declaration_manifest_sha256"):
-            self.assertEqual(catalog[key], self.catalog[key])
+            self.assertEqual(catalog["historical_study_metadata"][key], self.catalog[key])
+        self.assertEqual(catalog["models"], ["LSTM", "MLP", "GRU"])
+        self.assertEqual(catalog["complementary_models"], ["TCN"])
+        self.assertEqual(catalog["active_entrypoint"], "scripts/run_e1_core_mlp_extension.py")
+        self.assertEqual(catalog["baseline_selected_by_cv"]["mean_rmse"], 0.001)
+        self.assertEqual(catalog["current_study"]["execution_id"], "d" * 64)
+        self.assertEqual(catalog["current_study"]["source_commit"], "e" * 40)
+        self.assertTrue(catalog["current_study"]["known_reserve_exploratory"])
+        self.assertFalse(catalog["current_study"]["fresh_confirmatory_holdout"])
+        self.assertNotIn("planned_D7_phase", catalog)
+        self.assertNotIn("declaration_manifest_sha256", catalog)
         self.assertEqual(catalog["source_commit"], self.git("rev-parse", "HEAD"))
         for row in catalog["packages"] + [catalog["complete_package"]]:
             self.assertEqual(row["url"], refresh.legacy.PUBLIC_BOOK + "_static/e1_downloads/" + row["file"])
@@ -221,6 +255,8 @@ class NativeDownloadRefreshTests(unittest.TestCase):
         self.assertEqual(catalog["new_model_fits_by_packaging"], 0)
         with ZipFile(self.output / refresh.ITEMS["8.2"]) as saved:
             self.assertEqual(saved.read("scripts/current.py"), (self.root / "scripts/current.py").read_bytes())
+            for name in refresh.MANUAL_REACQUISITION_FILES:
+                self.assertEqual(saved.read(name), (self.root / name).read_bytes())
             self.assertNotIn("scripts/obsolete.py", saved.namelist())
             self.assertNotIn("tests/test_obsolete.py", saved.namelist())
             self.assertEqual(saved.read("experiments/original/design.json"), b'{"seed": 73}\n')
@@ -251,6 +287,8 @@ class NativeDownloadRefreshTests(unittest.TestCase):
                              b'{"prior_same_day_round": true}\n')
             self.assertEqual(saved.read("AMPLIACION_LITERARIA_20261107.md"),
                              b"Prior same-day literature round\n")
+            self.assertEqual(saved.read("literature_refresh_20261107_free_models.json"),
+                             b'{"previous_free_models_round": true}\n')
             self.assertIn("prerregistro retrospectivo", saved.read("AMPLIACION_LITERARIA_" + refresh.REFRESH_ID + ".md").decode())
             self.assertIn("SUPLEMENTO_EVIDENCIAS_" + refresh.REFRESH_ID + ".md", saved.namelist())
             for label, spec in refresh.SUPPLEMENTS.items():
@@ -268,7 +306,7 @@ class NativeDownloadRefreshTests(unittest.TestCase):
         self.assertEqual(catalog["evidence_refresh"]["supplements"]["curves"]["product"], "8.5")
         self.assertEqual(catalog["evidence_refresh"]["supplements"]["academic_margin"]["product"], "8.7")
         self.assertEqual(catalog["evidence_refresh"]["date"], refresh.REFRESH_DATE)
-        for label in ("replay_forensics", "replay_repeatability"):
+        for label in ("replay_forensics", "replay_repeatability", "historical_core", "core_mlp_extension"):
             self.assertEqual(catalog["evidence_refresh"]["supplements"][label]["product"], "8.5")
         with ZipFile(self.output / refresh.ITEMS["8.6"]) as saved:
             for name, data in self.base_payloads["8.6"].items():
@@ -307,6 +345,21 @@ class NativeDownloadRefreshTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Commit final source"):
             refresh.package(self.output)
         self.assertFalse(self.output.exists())
+
+    def test_new_core_cannot_ship_without_its_public_planning_gate(self):
+        spec = refresh.SUPPLEMENTS["core_mlp_extension"]
+        directory = self.supplement_directories["core_mlp_extension"]
+        path = directory / spec["manifest"]
+        changed = json.loads(path.read_text())
+        changed["files"].pop("plan_publication.json")
+        changed["approved_public_files"].remove("plan_publication.json")
+        path.write_text(json.dumps(changed))
+        self.git("add", ".")
+        self.commit()
+        self.build()
+        with self.assertRaisesRegex(ValueError, "configuration files must be publicly approved"):
+            refresh.package(self.output)
+        self.assertFalse(self.output.exists())
         self.git("checkout", "--", "README.md")
         with self.assertRaisesRegex(subprocess.CalledProcessError, "git"):
             refresh.source_revision("does-not-exist")
@@ -323,6 +376,7 @@ class NativeDownloadRefreshTests(unittest.TestCase):
             "native_execution_20261107": "scripts/ingest_e1_native_execution.py",
             "free_model_expansion_20261107": "scripts/build_e1_free_model_expansion.py",
             "homogeneous_expansion_20261107": "scripts/build_e1_homogeneous_expansion.py",
+            "core_selection_20261107": "scripts/build_e1_core_selection.py",
         }
         for stage, builder in additions.items():
             self.assertIn(stage, refresh.MANIFEST_STAGES)
@@ -378,6 +432,33 @@ class NativeDownloadRefreshTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "empty output"):
             refresh.package(self.output)
         self.assertEqual((self.output / "existing.txt").read_text(), "Do not overwrite")
+
+    def test_current_catalog_rejects_old_families_mixed_execution_and_fresh_holdout_claim(self):
+        directory = self.supplement_directories["core_mlp_extension"]
+        files, _ = refresh.public_stage(directory, None)
+        cases = (("summary.json", "core_models", ["GRU", "LSTM", "TCN"]),
+                 ("plan.json", "registration_signature", "f" * 64),
+                 ("summary.json", "fresh_confirmatory_holdout", True))
+        for filename, key, value in cases:
+            with self.subTest(filename=filename, key=key):
+                changed = dict(files)
+                record = json.loads(changed[filename])
+                record[key] = value
+                changed[filename] = json.dumps(record).encode()
+                with self.assertRaisesRegex(ValueError, "consistently identified"):
+                    refresh.current_core_catalog(changed)
+
+    def test_manual_notebook_cannot_publish_execution_outputs(self):
+        name = next(iter(refresh.MANUAL_REACQUISITION_FILES))
+        notebook = json.loads((self.root / name).read_text())
+        notebook["cells"][0]["outputs"] = [{"output_type": "stream", "text": ["private downloaded observations"]}]
+        self.write(name, json.dumps(notebook) + "\n")
+        self.git("add", name)
+        self.commit()
+        self.build()
+        with self.assertRaisesRegex(ValueError, "unexecuted and have no outputs"):
+            refresh.package(self.output)
+        self.assertFalse(self.output.exists())
 
     def test_rejects_baseline_archive_hash_mismatch(self):
         (self.base / refresh.ITEMS["8.5"]).write_bytes(b"tampered archive")
