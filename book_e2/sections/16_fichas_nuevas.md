@@ -2,6 +2,8 @@
 
 Consulta de fuentes primarias: 8 noviembre 2026. Este archivo es material bibliográfico para integrar, no una afirmación de resultados experimentales E2. **NR** significa no reportado o no verificado en las fuentes inspeccionadas; se especifica cuál. Páginas contadas desde 1 en los PDF enlazados. Se separan evidencia publicada, derivación analítica y propuesta de adaptación. Las adaptaciones descritas son propuestas bibliográficas, no configuraciones congeladas del ejecutor registrado. El contrato neural vigente de E2 usa D7×5 OHLCV y una salida escalar σ₇; por tanto, aquí L=7, C=5 y H=1 serían la especialización correspondiente. Un kernel de longitud 8, 10, 20 o 40 exige padding o una modificación explícita: no incorpora observaciones anteriores a esos siete días. No se heredan las recetas, pruebas ni recibos de los modelos sustituidos.
 
+El [avance de implementación de §4.0](04_implementacion.md) documenta por separado los prototipos compactos y sus diferencias respecto de estas fuentes; las fórmulas de coste de las fichas no son mediciones de esos prototipos.
+
 ## Contexto común de evaluación
 
 FCN, ResNet e InceptionTime nacieron para clasificación de series completas. Sustituir softmax por salida lineal no convierte sus resultados UCR en evidencia de forecasting. El LSTM-SAE identificado sí pronostica, pero no evalúa BTC ni acredita automáticamente un autoencoder de pérdida conjunta. Comparar los cuatro exige la misma variable objetivo, ventana histórica, horizonte, particiones temporales, transformación y presupuesto de búsqueda. No ordenar modelos mezclando MPCE, accuracy y RMSE de distintos datasets.

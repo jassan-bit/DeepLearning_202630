@@ -86,4 +86,6 @@ Esta revisión no sustituye las anclas ni reasigna sus métricas, particiones o 
 - Implementar los adaptadores nuevos y realizar controles de forma, gradientes, invariancia de batch, causalidad y memorización sintética. Pasar pruebas no equivale a obtener resultados de mercado.
 - Solo después, registrar la versión ejecutable, cerrar selección y evaluar según el nuevo plan. Presentar todos los resultados, incluidos los negativos.
 
-**En esta actualización se cambian únicamente documentación y navegación.** No se modifica el ejecutor registrado, no se alteran candidatos ni recibos experimentales, no se entrenan redes y no se publican originales, pesos, predicciones individuales o datos completos de evaluación.
+**La revisión original de esta sección cambió únicamente documentación y navegación.** No se modifica el ejecutor registrado, no se alteran candidatos ni recibos experimentales, no se entrenan redes y no se publican originales, pesos, predicciones individuales o datos completos de evaluación.
+
+El avance posterior de [§4.0](04_implementacion.md) añade prototipos aislados y pruebas sintéticas, sin modificar el catálogo registrado ni acreditar entrenamiento de mercado. La tabla de diferencias allí evita confundirlos con las recetas bibliográficas de [§16](16_fichas_nuevas.md).

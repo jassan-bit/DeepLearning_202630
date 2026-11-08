@@ -6,6 +6,44 @@
 
 La [sección 9](09_protocolo_registrado.md) identifica el registro y los recibos. La réplica y el piloto **ETTh1** de [§5](05_paper_guia.md) conservan su alcance externo; no cuentan como entrenamientos ni potencia del benchmark Bitcoin. La propuesta v1 se mantiene como archivo histórico[^v1].
 
+## 4.0 Avance del 08/11/2026: prototipos separados del benchmark registrado
+
+Se incorpora una **implementación preliminar aislada** de FCN1D, ResNet1D, Inception1D, LSTM-autoencoder predictivo y una corrección residual que recibe un pronóstico HAR externo. **No está lista para entrenar datos reales ni constituye el benchmark de once modelos ejecutado.** No altera el runner registrado, candidatos, datos, recibos, anclas o resultados anteriores. El HPO y P1 pendientes del catálogo histórico no se convierten en resultados del nuevo catálogo.
+
+Código: [redes propuestas](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/e2_proposed_models.py), [guardas temporales](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/e2_proposed_temporal.py), [pruebas sintéticas](https://github.com/jassan-bit/DeepLearning_202630/blob/main/tests/test_e2_proposed_benchmark.py) y [alcance/decisiones pendientes](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e2_proposed_benchmark_20261108/README.md).
+
+### Diferencias explícitas respecto de las fuentes y las fichas
+
+Las [fichas bibliográficas](16_fichas_nuevas.md) describen fuentes y posibles adaptaciones, **no la receta de este prototipo compacto**. Las diferencias siguientes impiden presentarlo como una réplica literal o una configuración ya seleccionada:
+
+| Componente | Fuente/ficha | Prototipo implementado y límite |
+|---|---|---|
+| FCN | Tres convoluciones 128/256/128, kernels 8/5/3, BN y GAP | Tres convoluciones con kernels 3/3/1, ancho predeterminado 16, sin BN; adaptación de regresión pendiente de selección |
+| ResNet | Tres bloques residuales, nueve convoluciones y GAP | Dos bloques de convoluciones 3/3, proyección de atajo y ancho 16; no reproduce la profundidad fuente |
+| Inception | Seis módulos por miembro, kernels 10/20/40, cinco miembros | Ramas 1/3/5, bottleneck y max-pooling, una red compacta; no reproduce InceptionTime ni su ensemble |
+| LSTM-AE | Fuente de preentrenamiento y ajuste supervisado | Encoder, decoder de latente repetido y cabeza; sin scheduler, política de congelado o selección de épocas integrada |
+| Salida neural | Clasificadores originales y cabeza lineal propuesta en las fichas | Salida escalar Softplus sobre D7×5; no se atribuye esta elección al paper ni al nuevo protocolo aún no registrado |
+| HAR + corrección | Hipótesis de corrección residual con soporte histórico adicional | Recibe HAR externo y aplica `max(0, HAR + corrección)`; no implementa HAR/OLS ni genera cross-fitting real |
+
+Todas las entradas de las cuatro redes son `(batch,7,5)` y las salidas `(batch,)`. El padding simétrico opera dentro de la ventana ya observada: no se presenta como convolución causal intraventana ni permite extender la historia más allá de D7. No se incorporan las seis arquitecturas retenidas al nuevo runner, porque ese runner todavía no existe.
+
+### Controles sintéticos y bloqueo antes del entrenamiento real
+
+Se ejecutaron **diez pruebas sintéticas**, con Python 3.12.14, torch 2.15.0+cpu, numpy 2.3.5 y un hilo CPU. Pasaron formas, finitez, gradientes, invariancia de batch, roundtrip de pesos en memoria, rechazo de entradas inválidas, reducción de pérdida en ejemplos artificiales y controles de calendario/alcance. Se prueba también que los iteradores de residuos se materializan antes de validarlos, incluidos generadores válidos, inválidos y vacíos. No se abrieron datos de mercado y esta suite no sustituye la validación integral del benchmark.
+
+La prueba del híbrido identifica una limitación deliberadamente visible: **si HAR + corrección es negativo, el truncamiento tiene gradiente cero**. Por eso su `forward` es solo un enlace provisional de inferencia y no una pérdida lista para optimizar. Ajustar la corrección firmada a residuos OOF crudos y truncar solo en inferencia es una alternativa por decidir, no una solución implementada o registrada. La comprobación sintética de gradientes no demuestra que este problema desaparezca durante el entrenamiento.
+
+El soporte HAR propuesto usa agregaciones 1/7/22 de σ₇ en **días calendario** y rechaza huecos; no tiene la misma información que D7×5. El soporte de sus cierres puede llegar hasta t−29. La elección de 22 frente a 30 días, calentamiento, cohorte común y controles con soporte comparable deben fijarse antes de ajustes. Las guardas rechazan preentrenamiento fuera del train de cada fold y residuos con etiquetas no disponibles o separación temporal insuficiente; **no prueban la veracidad de metadatos que suministre un llamador** ni reemplazan un generador real de predicciones OOF.
+
+### Siguiente fase necesaria
+
+1. Cerrar fuentes/configuraciones del curso, familias, pérdidas, arquitectura y papel de NAS; no heredar automáticamente la exención del catálogo anterior.
+2. Implementar HAR solo, red sola y el cross-fitting causal del híbrido; definir su enlace/objetivo sin saturación inadvertida y sus controles de soporte.
+3. Integrar las seis arquitecturas retenidas y referencias pertinentes en un **runner nuevo**, con calendario, escalado train-only, presupuesto comparable, registro y entornos fijados.
+4. Ejecutar preflight, registrar la enmienda antes del primer ajuste de mercado, cerrar HPO y dimensionar con P1 antes de evaluación final. No reutilizar recibos antiguos ni declarar suficiente un número arbitrario de semillas.
+
+Las secciones 4.1 y siguientes mantienen el protocolo histórico registrado y su evidencia. Esta subsección no lo modifica retrospectivamente.
+
 ## 4.1 Contrato experimental y veinte configuraciones
 
 Se conserva el contrato de [§1](01_punto_partida.md): siete días de OHLCV, cinco canales, predicción a un día de σ₇ —desviación poblacional de siete retornos, `ddof=0`—, escalado causal y métrica primaria igual a la **media de las RMSE por semilla en escala original**. No se incorporan rezagos de σ₇ a las redes.
