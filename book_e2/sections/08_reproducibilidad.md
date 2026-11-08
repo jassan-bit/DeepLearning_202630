@@ -87,7 +87,7 @@ Los estados distinguen una especificación registrada de evidencia experimental 
 | Hash de datos/test | Fuente e índices identificados; el hash no restaura desconocimiento del test |
 | Auditoría completa de fuga | Soporte P0/OOF aprobado; verificaciones del pipeline final pendientes, véase §10 |
 | Particiones y semillas recuperables | Plan y once calendarios de desarrollo registrados |
-| Pipeline y ajuste solo en train | P0 disponible; diez adaptadores finales revisados y probados sintéticamente, recibos de integración/ejecución pendientes |
+| Pipeline y ajuste solo en train | P0 disponible; diez adaptadores finales revisados, preflight y registro publicados; recibo parcial HPO del 06/11, sin cierre experimental final publicado |
 | Presupuesto común y configuraciones | AsignaciónT12 conservada; enmienda de once aleatorios+c12 fuente preparada; HPO sin ejecutar |
 | Repeticiones y resultados individuales | Cinco semillas previstas por receta P0; ejecución completada y analizada en §9, sin afirmar benchmark final completo |
 | Potencia y número final | P1/dimensionamiento posteriores a HPO; P0 no acredita potencia |

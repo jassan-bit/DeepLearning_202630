@@ -2,9 +2,11 @@
 
 **Deep Learning · 2026-30 · Jassan Arteta**
 
-**Estado al 6 de noviembre de 2026:** la guía completa de **65 páginas** está recibida y auditada. El libro incorpora las decisiones metodológicas de sus secciones 1–14. La ruta queda clasificada como **F2a: series de tiempo**, conservando las entradas D7×5 OHLCV, el objetivo σ₇, la RMSE, δ y la partición heredados de E1. Se distinguen veinte configuraciones y quince recetas ajustables con presupuesto común. El protocolo P0 se publicó [antes de los ajustes](https://github.com/jassan-bit/DeepLearning_202630/commit/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0).
+**Revisión del 08/11/2026:** la [propuesta de diez modelos y un híbrido candidato](sections/15_revision_modelos.md) incorpora cuatro sustituciones solicitadas y distingue las referencias actuales de E1 de las anclas históricas de E2. Es una propuesta editorial: todavía no modifica el catálogo registrado, no acredita entrenamientos nuevos ni superioridad del modelo 11.
 
-El [piloto Bitcoin y su evaluación temporal OOF](sections/09_protocolo_registrado.md) se ejecutaron con cuatro recetas fijas: **220 trayectorias y 440 ajustes**. La nueva implementación incorpora los diez adaptadores finales, HPO temporal, dimensionamiento, calibración, análisis estadístico, robustez y ablaciones. La revisión arquitectónica y la prueba de memorización sintética de los diez modelos están disponibles; **el HPO está en ejecución; P1 y los resultados finales Bitcoin siguen pendientes de cierre**. La nueva [enmienda de implementación](./_static/completion_protocol/analysis_additions.json) se [registró](./_static/completion_preflight/registration.json) en [`dbb193a`](https://github.com/jassan-bit/DeepLearning_202630/commit/dbb193a72897c80cbd34b452ba3cfe9d82ce6ce0) antes de sus ajustes con datos de mercado. El registro P0 no se reutiliza para retrofechar esa enmienda. La réplica TimeMixer/ETTh1 conserva su alcance externo.
+**Estado experimental documentado al 6 de noviembre de 2026:** la guía completa de **65 páginas** está recibida y auditada. El libro incorpora las decisiones metodológicas de sus secciones 1–14. La ruta queda clasificada como **F2a: series de tiempo**, conservando las entradas D7×5 OHLCV, el objetivo σ₇, la RMSE, δ y la partición heredados de E1. Se distinguen veinte configuraciones y quince recetas ajustables con presupuesto común. El protocolo P0 se publicó [antes de los ajustes](https://github.com/jassan-bit/DeepLearning_202630/commit/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0).
+
+El [piloto Bitcoin y su evaluación temporal OOF](sections/09_protocolo_registrado.md) se ejecutaron con cuatro recetas fijas: **220 trayectorias y 440 ajustes**. La nueva implementación incorpora los diez adaptadores finales, HPO temporal, dimensionamiento, calibración, análisis estadístico, robustez y ablaciones. La revisión arquitectónica y la prueba de memorización sintética de los diez modelos están disponibles; **el último recibo publicado acredita un HPO iniciado e incompleto al 06/11/2026 19:00 UTC; P1 y los resultados finales Bitcoin no tienen cierre publicado**. La nueva [enmienda de implementación](./_static/completion_protocol/analysis_additions.json) se [registró](./_static/completion_preflight/registration.json) en [`dbb193a`](https://github.com/jassan-bit/DeepLearning_202630/commit/dbb193a72897c80cbd34b452ba3cfe9d82ce6ce0) antes de sus ajustes con datos de mercado. El registro P0 no se reutiliza para retrofechar esa enmienda. La réplica TimeMixer/ETTh1 conserva su alcance externo.
 
 Este Jupyter Book tiene configuración, índice y capítulos propios dentro del repositorio común [DeepLearning_202630](https://github.com/jassan-bit/DeepLearning_202630). E1 y E3 conservan sus direcciones independientes.
 
@@ -34,7 +36,7 @@ La guía completa identifica requisitos que todavía necesitan experimentos o fu
 
 Las páginas de trabajo anteriores se conservan como archivo identificado y enlazan a estas secciones vigentes. No constituyen un protocolo alternativo.
 
-## Matriz de cierre de esta actualización
+## Matriz de cierre del diseño experimental registrado
 
 | Requisito | Evidencia existente | Para considerarlo terminado |
 |---|---|---|
@@ -52,7 +54,7 @@ La [descarga de la implementación](./_static/completion_download/completion_bun
 ## Pendientes que requieren evidencia
 
 - **Literatura:** faltan 374 registros de la búsqueda Scopus de 7.874 resultados. Los reenvíos son idénticos a los lotes anteriores. El cribado por reglas, las consultas transversales locales y las revisiones de resúmenes no sustituyen la adjudicación final de textos completos, los cuartiles verificados ni nuevas búsquedas nativas documentadas.
-- **Experimentos:** pasaron 235 pruebas integradas y el preflight de veinte configuraciones. La enmienda se registró antes del HPO, actualmente en ejecución. Faltan cerrar las búsquedas, P1, dimensionamiento y evaluación final. La calibración secundaria se prepara para los veinte modelos; después se podrán informar los tres mejores con su rama válida. No se hereda R=465 de E1 ni se declara suficiente usar diez semillas.
+- **Experimentos:** pasaron 235 pruebas integradas y el preflight de veinte configuraciones. La enmienda se registró antes del HPO; el recibo fechado del 06/11 acredita su inicio, no su actividad actual. Faltan cerrar las búsquedas, P1, dimensionamiento y evaluación final. La calibración secundaria se prepara para los veinte modelos; después se podrán informar los tres mejores con su rama válida. No se hereda R=465 de E1 ni se declara suficiente usar diez semillas.
 - **Gap transferible:** el diagnóstico registrado en Bitcoin debe informar su resultado aunque sea negativo o inconcluso. Una limitación observada en ETTh1 no demuestra una brecha predictiva corregible en Bitcoin.
 
 ## Relación con E1 y E3

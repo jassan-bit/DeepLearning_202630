@@ -1,5 +1,7 @@
 # 1. Definición del Problema, Preguntas de Investigación y Dataset
 
+**Distinción de versiones:** el núcleo actual de E1 es MLP–LSTM–GRU. Las anclas GRU–LSTM–TCN descritas aquí pertenecen a la versión de E1 que E2 adoptó y registró; no se sustituyen retrospectivamente. La [revisión propuesta del 08/11/2026](15_revision_modelos.md) separa ambos contextos y deja cualquier incorporación de MLP al próximo diseño por definir.
+
 Esta sección desarrolla las páginas 2–3 de la guía completa de 65 páginas. La formulación y la ficha de datos se conservan; la ruta se cierra como **F2a, series de tiempo**, en la {ref}`sección 7 <e2-ruta-temporal>`. Las preguntas y las reglas del procedimiento E2 están registradas en el [commit previo al piloto `599a29f`](https://github.com/jassan-bit/DeepLearning_202630/tree/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0), con alcance **exploratorio** porque los periodos heredados ya se conocían. El benchmark final sigue pendiente; el [piloto P0 de desarrollo y su protocolo](09_protocolo_registrado.md) ya se ejecutaron y se informan por separado, sin constituir los resultados del benchmark final. Los diagnósticos propios del EDA se presentan en la [sección 2](02_eda.md).
 
 ## 1.1 Definición formal del problema

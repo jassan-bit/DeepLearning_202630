@@ -1,6 +1,6 @@
 # 11. Entrenamiento, ajuste equitativo y coste computacional
 
-**Estado:** HPO implementado con [enmienda registrada](../_static/completion_preflight/registration.json), en ejecución. El registro [`599a29f`](https://github.com/jassan-bit/DeepLearning_202630/commit/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0) conserva el procedimiento original P0; **HPO sin cierre y benchmark final sin resultados**. P0/OOF de cuatro modelos representativos ya se ejecutó y tiene otro propósito, descrito en [§9](09_protocolo_registrado.md). No se presenta su receta pequeña como ganadora de una búsqueda.
+**Estado:** HPO implementado con [enmienda registrada](../_static/completion_preflight/registration.json) e inicio acreditado por el [recibo del 06/11/2026 a las 19:00 UTC](../_static/completion_preflight/execution_progress.json). Esta instantánea no confirma actividad actual. El registro [`599a29f`](https://github.com/jassan-bit/DeepLearning_202630/commit/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0) conserva el procedimiento original P0; **HPO sin cierre y benchmark final sin resultados**. P0/OOF de cuatro modelos representativos ya se ejecutó y tiene otro propósito, descrito en [§9](09_protocolo_registrado.md). No se presenta su receta pequeña como ganadora de una búsqueda.
 
 Este capítulo desarrolla §§11.1–11.4 de la guía completa, páginas **46–48**, y el requisito de equidad del Apéndice B, página **63**. Las fuentes de la implementación final son el [HPO enmendado](../_static/completion_protocol/hpo.json), la [enmienda](../_static/completion_protocol/analysis_additions.json) y la [revisión arquitectónica](../_static/completion_protocol/architecture_review.json). El [preregistro original](../_static/remediation_protocol/preregistration.json) conserva las familias principales y el alcance histórico P0. Su existencia no acredita ejecución o igualdad de consumo realizada.
 
@@ -97,7 +97,7 @@ La enmienda fija diecinueve comparaciones de equivalencia práctica y menor late
 
 ## 11.5 Condiciones para abrir el HPO real
 
-Las quince asignaciones y los 180 candidatos están especificados; los diez backbones y sus adaptaciones ya cuentan con revisión independiente y controles sintéticos. **Antes del HPO real faltan el registro de esta enmienda y los recibos integrados del entorno, datos, fuentes, código, candidatos y recursos.** Si aplica NAS, las fases posteriores exigen además la fase 2 completa y el ganador congelado.
+Las quince asignaciones y los 180 candidatos están especificados; los diez backbones y sus adaptaciones ya cuentan con revisión independiente y controles sintéticos. **El registro de esta enmienda y el preflight están publicados; el recibo del 06/11 acredita únicamente el inicio parcial del HPO. Faltan sus recibos completos de cierre y el análisis del consumo real.** Si aplica NAS, las fases posteriores exigen además la fase 2 completa y el ganador congelado.
 
 El control compara los bytes con su commit registrado y exige recibos de evidencia con hashes. Esto permite detectar cambios y falta de prerrequisitos; no convierte un fichero existente en certificación científica. Los resultados negativos, la búsqueda incompleta y la potencia insuficiente siguen siendo desenlaces posibles y deben conservarse.
 
