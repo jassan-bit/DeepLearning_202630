@@ -1,47 +1,42 @@
 {
-  "source_commit": "60836db5cf9cdefb838a35ec103650444e70cbb7",
+  "source_commit": "477b7e38cd6b4fdf240c00261c3a5709cdc9e37c",
   "models": [
     "LSTM",
     "MLP",
     "GRU"
   ],
-  "active_entrypoint": "scripts/run_e1_core_mlp_extension.py",
+  "active_entrypoint": "scripts/build_e1_primary_608.py",
   "active_entrypoints": {
-    "hpo": "scripts/run_e1_core_mlp_extension.py",
-    "pilot": "scripts/run_e1_core_mlp_extension.py",
-    "fit": "scripts/run_e1_core_mlp_extension.py",
-    "score": "scripts/run_e1_core_mlp_extension.py",
-    "analyze": "scripts/run_e1_core_mlp_extension.py"
+    "assemble": "scripts/build_e1_primary_608.py",
+    "verify": "scripts/build_e1_primary_608.py --check"
   },
-  "active_entrypoint_scope": "Current common GRU/LSTM/MLP execution; historical entrypoints are preserved separately",
+  "active_entrypoint_scope": "Assemble and verify existing original saved metrics; no new model fits or forecasts",
   "baseline_selected_by_cv": {
     "model": "GRU",
-    "candidate_id": "c03",
-    "width": 16,
-    "learning_rate": 0.003,
     "dropout": 0.1,
     "history_days": 7,
-    "mean_rmse": 0.005136197790738636,
-    "sample_sd": 3.067941479948831e-05,
-    "parameters": 1121
+    "learning_rate": 0.003,
+    "parameters": 3777,
+    "variant": "relative_window",
+    "width": 32
   },
   "packages": [
     {
       "item": "8.1",
       "title": "Informe HTML vigente",
       "file": "8_1_informe_html.zip",
-      "bytes": 31436344,
-      "sha256": "3cfbf87989ae87755c186ad0c223754813ee622a288b2fe64c6b30674a8ac739",
-      "members": 1040,
+      "bytes": 31482287,
+      "sha256": "c61c1b885f32210163cd662734d0cc77157f02c25db90ec8eae5504f45490f8c",
+      "members": 1054,
       "url": "https://jassan-bit.github.io/DeepLearning_202630/_static/e1_downloads/8_1_informe_html.zip"
     },
     {
       "item": "8.2",
       "title": "Código EDA y GRU–LSTM–TCN",
       "file": "8_2_codigo.zip",
-      "bytes": 1372793,
-      "sha256": "520b98ea1c0bd142bba70299205a5e82e888e74dc551a11d9ba29d13f48f25b5",
-      "members": 247,
+      "bytes": 1385933,
+      "sha256": "20a738b15b4c03cb013a5c44d6f9a93560debd65c3e5efcf741fca63cb5c9512",
+      "members": 249,
       "url": "https://jassan-bit.github.io/DeepLearning_202630/_static/e1_downloads/8_2_codigo.zip"
     },
     {
@@ -57,8 +52,8 @@
       "item": "8.4",
       "title": "Literatura y selección de GRU–LSTM–TCN",
       "file": "8_4_literatura.zip",
-      "bytes": 1410335,
-      "sha256": "5928de026e33b6314e9bb32d9bca5e40cd21efabd1d8c49c21087235014ca05d",
+      "bytes": 1410472,
+      "sha256": "9de788f84ad54c5dfb7ae5df17810d0c2b3e37755afc587a72d819e88b2860ed",
       "members": 284,
       "url": "https://jassan-bit.github.io/DeepLearning_202630/_static/e1_downloads/8_4_literatura.zip"
     },
@@ -66,27 +61,27 @@
       "item": "8.5",
       "title": "Benchmark e inferencia de las fases documentadas",
       "file": "8_5_benchmark.zip",
-      "bytes": 9277859,
-      "sha256": "1e91d309e6aef3623a2e278729cec606fb3c7b67bda998fa94c6acea4da8b152",
-      "members": 154,
+      "bytes": 9292788,
+      "sha256": "8bf4fe3c6735873327c9eb7ec056bb82ee08dd2ab69a6007034b94ed895e1a6d",
+      "members": 161,
       "url": "https://jassan-bit.github.io/DeepLearning_202630/_static/e1_downloads/8_5_benchmark.zip"
     },
     {
       "item": "8.6",
       "title": "Dependencias, semillas y configuraciones vigentes",
       "file": "8_6_configuraciones.zip",
-      "bytes": 1127822,
-      "sha256": "5ec0aaf80c69e891015b9bda3b2005ec85553abf88c3809f72a658ba4ae93c0e",
-      "members": 70,
+      "bytes": 1133146,
+      "sha256": "ceb8a5fd0c56b595dc060e018cfec04125ad9ca240803931bc45936badb826f5",
+      "members": 73,
       "url": "https://jassan-bit.github.io/DeepLearning_202630/_static/e1_downloads/8_6_configuraciones.zip"
     },
     {
       "item": "8.7",
       "title": "Declaración y cronología vigentes",
       "file": "8_7_declaracion.zip",
-      "bytes": 1045331,
-      "sha256": "34ff9367abc06e6f16ac21099c52ca9c9bf36b3b65ba965c609aa5d6b3d0cb64",
-      "members": 118,
+      "bytes": 1086679,
+      "sha256": "6ea68f8d4b424494ced06390269ceffdfe5c77aecc76ca40669c9f9049367a6d",
+      "members": 125,
       "url": "https://jassan-bit.github.io/DeepLearning_202630/_static/e1_downloads/8_7_declaracion.zip"
     }
   ],
@@ -94,27 +89,27 @@
     "item": "8.1–8.7",
     "title": "Entregable1 GRU–LSTM–TCN completo",
     "file": "entregable1_completo.zip",
-    "bytes": 45240560,
-    "sha256": "f0b5b144bce8baec6fb994b8ea27d5f767f1483fdd3ff475c9b61411b656224a",
+    "bytes": 45358144,
+    "sha256": "7ef02185c30923c8fdf218f46e112f1021f60c4c21fc7be5ccfbcd4f6de47b2f",
     "members": 10,
     "url": "https://jassan-bit.github.io/DeepLearning_202630/_static/e1_downloads/entregable1_completo.zip"
   },
   "report_verification": {
     "HTML_pages": 16,
-    "local_links_and_assets_checked": 3074
+    "local_links_and_assets_checked": 3095
   },
   "archive_verification": {
     "8_1_informe_html.zip": {
       "CRC": "PASS",
       "member_hashes": "PASS",
       "safe_paths": "PASS",
-      "members": 1040
+      "members": 1054
     },
     "8_2_codigo.zip": {
       "CRC": "PASS",
       "member_hashes": "PASS",
       "safe_paths": "PASS",
-      "members": 247
+      "members": 249
     },
     "8_3_dataset_instrucciones.zip": {
       "CRC": "PASS",
@@ -132,19 +127,19 @@
       "CRC": "PASS",
       "member_hashes": "PASS",
       "safe_paths": "PASS",
-      "members": 154
+      "members": 161
     },
     "8_6_configuraciones.zip": {
       "CRC": "PASS",
       "member_hashes": "PASS",
       "safe_paths": "PASS",
-      "members": 70
+      "members": 73
     },
     "8_7_declaracion.zip": {
       "CRC": "PASS",
       "member_hashes": "PASS",
       "safe_paths": "PASS",
-      "members": 118
+      "members": 125
     },
     "entregable1_completo.zip": {
       "CRC": "PASS",
@@ -157,13 +152,13 @@
   "new_checkpoint_forecasts_by_packaging": 0,
   "raw_market_archive_reads_by_packaging": 0,
   "publications_by_packaging": 0,
-  "scope": "Current common LSTM/MLP/GRU development tuning, pilot and final fits; exploratory scoring on an already observed 60-day historical reserve. Previous TCN studies remain complementary.",
+  "scope": "Primary original fixed-recipe D7 LSTM/MLP/GRU benchmark on 608 already observed dates, with Persistence; unequal historical HPO and R=10 training-seed budget",
   "scientific_limitations_preserved": true,
   "literature_refresh": {
     "date": "2026-11-07",
-    "source_commit": "60836db5cf9cdefb838a35ec103650444e70cbb7",
-    "baseline_source_commit": "a3924e169aef25d293b1cef9cef39a6c07ddd433",
-    "baseline_catalog_sha256": "9fdcd8bf095f732dc78f8045ccc8b767ba079aa72863ae4a06fa7be83375e92c",
+    "source_commit": "477b7e38cd6b4fdf240c00261c3a5709cdc9e37c",
+    "baseline_source_commit": "60836db5cf9cdefb838a35ec103650444e70cbb7",
+    "baseline_catalog_sha256": "d6328a282506507306e228d6acc2662a32d0368dd34181bf654b40e6b1696681",
     "stages": {
       "native_search_20261106": {
         "directory": "book/_static/literature_e1/native_search_20261106",
@@ -4104,6 +4099,323 @@
         },
         "product": "8.5"
       },
+      "primary_608": {
+        "directory": "book/_static/e1_primary_608_20261107",
+        "manifest_sha256": "d47461ec6a4839be6fdf3c968be4fec1c77d4fc0d8ef7dc846278daebc6c6393",
+        "public_files": 7,
+        "summary": {
+          "HPO_effort": {
+            "GRU": "No original GRU HPO; inherits recurrent width32/lr.003",
+            "LSTM": "32 V1 search trajectories; chosen width32/lr.003 inherited without new relative-window HPO",
+            "MLP": "32 V1 search trajectories; chosen width16/lr.001 inherited without new relative-window HPO"
+          },
+          "HPO_not_equal": true,
+          "R": 10,
+          "R_per_neural": 10,
+          "active_primary": true,
+          "baseline": "GRU",
+          "baseline_model": "GRU",
+          "baseline_recipe": {
+            "dropout": 0.1,
+            "history_days": 7,
+            "learning_rate": 0.003,
+            "model": "GRU",
+            "parameters": 3777,
+            "variant": "relative_window",
+            "width": 32
+          },
+          "baseline_selection": "Lowest saved mean CV2024 RMSE among the three neural D7 recipes; persistence reported separately",
+          "ci_scope": "Marginal t95 across ten initializations, df9, conditional on known dates; no temporal uncertainty or simultaneous coverage",
+          "core_models": [
+            "LSTM",
+            "MLP",
+            "GRU"
+          ],
+          "daily_prediction_vectors_read": 0,
+          "dates_per_trajectory": 608,
+          "deterministic_reference_rows": 2,
+          "editorial_promotion_after_results_seen": true,
+          "effective_date_colombia": "2026-11-07",
+          "fresh_confirmatory_holdout": false,
+          "historical_results_already_observed": true,
+          "history_days": 7,
+          "horizon_days": 1,
+          "known_reserve_exploratory": true,
+          "limitations": [
+            "The 608-day test was already known when GRU was evaluated; promotion is editorial after results",
+            "Architecture widths, parameter counts and learning rates differ; cumulative historical HPO effort was unequal",
+            "Original MLP daily test forecasts, weights and scalers are unavailable here; no temporal or residual tests are reconstructed",
+            "Ten seeds were a fixed historical screening budget, not a prospectively powered design"
+          ],
+          "lstm_exact_control_metric_equalities": 480,
+          "models": [
+            "LSTM",
+            "MLP",
+            "GRU"
+          ],
+          "n_dates": 608,
+          "neural_score_rows": 60,
+          "new_forecasts": 0,
+          "new_model_fits": 0,
+          "persistence_scope": "One deterministic sigma7-lag1 reference per phase, no seed SD or CI; requires eight past closes",
+          "phases": {
+            "cv": {
+              "end": "2024-12-31",
+              "n_dates": 366,
+              "start": "2024-01-01"
+            },
+            "test": {
+              "end": "2026-08-31",
+              "n_dates": 608,
+              "start": "2025-01-01"
+            }
+          },
+          "preserved_separate_studies": [
+            "e1_historical_core_20261107",
+            "e1_core_mlp_extension_20261107"
+          ],
+          "primary_scope": "historical_known_fixed_recipes",
+          "prospective_registration_claimed": false,
+          "raw_market_archives_read": 0,
+          "reference_models": [
+            "Persistence"
+          ],
+          "rmse_summary": [
+            {
+              "ci95_high": 0.00646919310794642,
+              "ci95_low": 0.0062016355797310805,
+              "ci95_lower": 0.0062016355797310805,
+              "ci95_upper": 0.00646919310794642,
+              "ci_method": "Marginal Student t across ten training seeds, df9, conditional on known dates",
+              "history_days": 7,
+              "mean": 0.00633541434383875,
+              "metric": "rmse",
+              "model": "LSTM",
+              "n_dates": 366,
+              "n_dates_per_seed": 366,
+              "n_defined": 10,
+              "n_seeds": 10,
+              "n_total": 10,
+              "phase": "cv",
+              "sample_sd": 0.00018700981704530587,
+              "scope": "Editorial promotion of existing historical fixed-recipe scores after results were seen; exploratory and conditional on known market dates and training seeds, without new fits or forecasts, equal cumulative HPO effort, or fresh temporal confirmation.",
+              "stochastic_training": true
+            },
+            {
+              "ci95_high": 0.0062479164681119945,
+              "ci95_low": 0.0058502310860477184,
+              "ci95_lower": 0.0058502310860477184,
+              "ci95_upper": 0.0062479164681119945,
+              "ci_method": "Marginal Student t across ten training seeds, df9, conditional on known dates",
+              "history_days": 7,
+              "mean": 0.0060490737770798565,
+              "metric": "rmse",
+              "model": "MLP",
+              "n_dates": 366,
+              "n_dates_per_seed": 366,
+              "n_defined": 10,
+              "n_seeds": 10,
+              "n_total": 10,
+              "phase": "cv",
+              "sample_sd": 0.00027796291525602774,
+              "scope": "Editorial promotion of existing historical fixed-recipe scores after results were seen; exploratory and conditional on known market dates and training seeds, without new fits or forecasts, equal cumulative HPO effort, or fresh temporal confirmation.",
+              "stochastic_training": true
+            },
+            {
+              "ci95_high": 0.005270139503836356,
+              "ci95_low": 0.0050389975621560855,
+              "ci95_lower": 0.0050389975621560855,
+              "ci95_upper": 0.005270139503836356,
+              "ci_method": "Marginal Student t across ten training seeds, df9, conditional on known dates",
+              "history_days": 7,
+              "mean": 0.005154568532996221,
+              "metric": "rmse",
+              "model": "GRU",
+              "n_dates": 366,
+              "n_dates_per_seed": 366,
+              "n_defined": 10,
+              "n_seeds": 10,
+              "n_total": 10,
+              "phase": "cv",
+              "sample_sd": 0.00016155707713944208,
+              "scope": "Editorial promotion of existing historical fixed-recipe scores after results were seen; exploratory and conditional on known market dates and training seeds, without new fits or forecasts, equal cumulative HPO effort, or fresh temporal confirmation.",
+              "stochastic_training": true
+            },
+            {
+              "ci95_high": "",
+              "ci95_low": "",
+              "ci95_lower": "",
+              "ci95_upper": "",
+              "ci_method": "Deterministic reference; no seed SD or confidence interval",
+              "history_days": 7,
+              "mean": 0.004788969571929121,
+              "metric": "rmse",
+              "model": "Persistence",
+              "n_dates": 366,
+              "n_dates_per_seed": 366,
+              "n_defined": 1,
+              "n_seeds": 0,
+              "n_total": 1,
+              "phase": "cv",
+              "sample_sd": "",
+              "scope": "Editorial promotion of existing historical fixed-recipe scores after results were seen; exploratory and conditional on known market dates and training seeds, without new fits or forecasts, equal cumulative HPO effort, or fresh temporal confirmation.",
+              "stochastic_training": false
+            },
+            {
+              "ci95_high": 0.005218407378124857,
+              "ci95_low": 0.0048411658105665615,
+              "ci95_lower": 0.0048411658105665615,
+              "ci95_upper": 0.005218407378124857,
+              "ci_method": "Marginal Student t across ten training seeds, df9, conditional on known dates",
+              "history_days": 7,
+              "mean": 0.005029786594345709,
+              "metric": "rmse",
+              "model": "LSTM",
+              "n_dates": 608,
+              "n_dates_per_seed": 608,
+              "n_defined": 10,
+              "n_seeds": 10,
+              "n_total": 10,
+              "phase": "test",
+              "sample_sd": 0.00026367367422448984,
+              "scope": "Editorial promotion of existing historical fixed-recipe scores after results were seen; exploratory and conditional on known market dates and training seeds, without new fits or forecasts, equal cumulative HPO effort, or fresh temporal confirmation.",
+              "stochastic_training": true
+            },
+            {
+              "ci95_high": 0.005078450461411523,
+              "ci95_low": 0.004507906921976004,
+              "ci95_lower": 0.004507906921976004,
+              "ci95_upper": 0.005078450461411523,
+              "ci_method": "Marginal Student t across ten training seeds, df9, conditional on known dates",
+              "history_days": 7,
+              "mean": 0.004793178691693763,
+              "metric": "rmse",
+              "model": "MLP",
+              "n_dates": 608,
+              "n_dates_per_seed": 608,
+              "n_defined": 10,
+              "n_seeds": 10,
+              "n_total": 10,
+              "phase": "test",
+              "sample_sd": 0.00039878243620319187,
+              "scope": "Editorial promotion of existing historical fixed-recipe scores after results were seen; exploratory and conditional on known market dates and training seeds, without new fits or forecasts, equal cumulative HPO effort, or fresh temporal confirmation.",
+              "stochastic_training": true
+            },
+            {
+              "ci95_high": 0.00391396255919159,
+              "ci95_low": 0.0036362600024454953,
+              "ci95_lower": 0.0036362600024454953,
+              "ci95_upper": 0.00391396255919159,
+              "ci_method": "Marginal Student t across ten training seeds, df9, conditional on known dates",
+              "history_days": 7,
+              "mean": 0.0037751112808185423,
+              "metric": "rmse",
+              "model": "GRU",
+              "n_dates": 608,
+              "n_dates_per_seed": 608,
+              "n_defined": 10,
+              "n_seeds": 10,
+              "n_total": 10,
+              "phase": "test",
+              "sample_sd": 0.00019410070303947153,
+              "scope": "Editorial promotion of existing historical fixed-recipe scores after results were seen; exploratory and conditional on known market dates and training seeds, without new fits or forecasts, equal cumulative HPO effort, or fresh temporal confirmation.",
+              "stochastic_training": true
+            },
+            {
+              "ci95_high": "",
+              "ci95_low": "",
+              "ci95_lower": "",
+              "ci95_upper": "",
+              "ci_method": "Deterministic reference; no seed SD or confidence interval",
+              "history_days": 7,
+              "mean": 0.004085595867023217,
+              "metric": "rmse",
+              "model": "Persistence",
+              "n_dates": 608,
+              "n_dates_per_seed": 608,
+              "n_defined": 1,
+              "n_seeds": 0,
+              "n_total": 1,
+              "phase": "test",
+              "sample_sd": "",
+              "scope": "Editorial promotion of existing historical fixed-recipe scores after results were seen; exploratory and conditional on known market dates and training seeds, without new fits or forecasts, equal cumulative HPO effort, or fresh temporal confirmation.",
+              "stochastic_training": false
+            }
+          ],
+          "scope": "Editorial promotion of existing historical fixed-recipe scores after results were seen; exploratory and conditional on known market dates and training seeds, without new fits or forecasts, equal cumulative HPO effort, or fresh temporal confirmation.",
+          "seeds": [
+            4101,
+            4102,
+            4103,
+            4104,
+            4105,
+            4106,
+            4107,
+            4108,
+            4109,
+            4110
+          ],
+          "selected_recipes": {
+            "GRU": {
+              "dropout": 0.1,
+              "history_days": 7,
+              "learning_rate": 0.003,
+              "model": "GRU",
+              "parameters": 3777,
+              "variant": "relative_window",
+              "width": 32
+            },
+            "LSTM": {
+              "dropout": 0.1,
+              "history_days": 7,
+              "learning_rate": 0.003,
+              "model": "LSTM",
+              "parameters": 5025,
+              "variant": "relative_window",
+              "width": 32
+            },
+            "MLP": {
+              "dropout": 0.1,
+              "history_days": 7,
+              "learning_rate": 0.001,
+              "model": "MLP",
+              "parameters": 593,
+              "variant": "relative_window",
+              "width": 16
+            }
+          },
+          "source_files_modified": false,
+          "source_score_rows_sha256": "7f9cc6ace6042cdf62f6ae900ab4ee7967b63be41fd75b0309adcadcf747b834",
+          "source_studies": [
+            "filipe_multihistory_20261104",
+            "gru_lstm_tcn_20261105"
+          ],
+          "source_summary_sha256": "f31e0e4714f183a997a76eb589dcd9c779bda2fe4f07741fc090528782da4232",
+          "study_id": "e1_primary_608_20261107",
+          "target_n_days": 7,
+          "training_policy": {
+            "batch_size": 32,
+            "dropout": 0.1,
+            "embargo_days": 7,
+            "final_epochs": "Per-model/per-seed December2024 inner-validation best_epoch",
+            "final_training_end": "2024-12-24",
+            "final_training_samples": 709,
+            "final_training_start": "2023-01-08",
+            "gradient_clip_norm": 1.0,
+            "inner_validation_days": 90,
+            "max_epochs": 100,
+            "min_delta": 1e-05,
+            "monthly_cv_blocks": 12,
+            "optimizer": "AdamW",
+            "patience": 12,
+            "test_period_refits": 0,
+            "test_reporting_months": 20,
+            "weight_decay": 0.0001
+          },
+          "weights_or_scalers_read": 0
+        },
+        "product": "8.5"
+      },
       "core_mlp_extension": {
         "directory": "book/_static/e1_core_mlp_extension_20261107",
         "manifest_sha256": "d3532b94f343d4832dace4676c15faca71aa50dd4c9392c0ae23ca8f35851e4f",
@@ -4182,14 +4494,14 @@
     },
     "original_experiments_changed": false,
     "retrospective_preregistration": false,
-    "new_analysis_scope": "Reviewed bibliographic core selection, compatible historical core aggregates and the closed newly registered GRU/LSTM/MLP historical exploratory execution, with previous native searches, curve reproductions and diagnostic repeatability preserved. Packaging itself performs no training, searches or daily forecasts.",
-    "chronology_note": "La recuperación bibliográfica y la fundamentación académica del margen son posteriores a los experimentos iniciales. La reproducción de curvas tiene un protocolo y registro propios y realiza nuevos ajustes de desarrollo; no sustituye los originales históricos ni modifica sus resultados, recetas, selección o cronologías. Los contrastes suplementarios anteriores conservan su carácter posterior. La auditoría forense y la repetibilidad actual tienen alcance separado de la identidad histórica; las búsquedas nuevas conservan su propia procedencia. La búsqueda web dirigida de trece obras y su conciliación acumulada conservan los ámbitos, papeles y niveles de lectura; no convierten la cuota de selección por arquitectura en frecuencia del corpus. La selección del núcleo LSTM–MLP–GRU y su nueva ejecución conservan como exploratoria la evaluación de septiembre–octubre de 2026 ya observada; los resultados anteriores de TCN permanecen complementarios y separados. Esta actualización no constituye un prerregistro retrospectivo. Empaquetar consume las evidencias guardadas y no ejecuta ajustes o pronósticos."
+    "new_analysis_scope": "Primary original D7/608-date R=10 saved scores and reviewed bibliographic core selection, with the closed 60-date GRU/LSTM/MLP execution complementary, and previous native searches, curve reproductions and diagnostic repeatability preserved. Packaging itself performs no training, searches or daily forecasts.",
+    "chronology_note": "La recuperación bibliográfica y la fundamentación académica del margen son posteriores a los experimentos iniciales. La reproducción de curvas tiene un protocolo y registro propios y realiza nuevos ajustes de desarrollo; no sustituye los originales históricos ni modifica sus resultados, recetas, selección o cronologías. Los contrastes suplementarios anteriores conservan su carácter posterior. La auditoría forense y la repetibilidad actual tienen alcance separado de la identidad histórica; las búsquedas nuevas conservan su propia procedencia. La búsqueda web dirigida de trece obras y su conciliación acumulada conservan los ámbitos, papeles y niveles de lectura; no convierten la cuota de selección por arquitectura en frecuencia del corpus. El benchmark principal D7 recupera resultados ya ejecutados en 608 fechas y diez semillas, incluida la MLP histórica; no añade ajustes. La extensión LSTM–MLP–GRU de sesenta fechas conserva como exploratoria la evaluación de septiembre–octubre de 2026 ya observada; los resultados anteriores de TCN permanecen complementarios y separados. Esta actualización no constituye un prerregistro retrospectivo. Empaquetar consume las evidencias guardadas y no ejecuta ajustes o pronósticos."
   },
   "evidence_refresh": {
     "date": "2026-11-07",
-    "source_commit": "60836db5cf9cdefb838a35ec103650444e70cbb7",
-    "baseline_source_commit": "a3924e169aef25d293b1cef9cef39a6c07ddd433",
-    "baseline_catalog_sha256": "9fdcd8bf095f732dc78f8045ccc8b767ba079aa72863ae4a06fa7be83375e92c",
+    "source_commit": "477b7e38cd6b4fdf240c00261c3a5709cdc9e37c",
+    "baseline_source_commit": "60836db5cf9cdefb838a35ec103650444e70cbb7",
+    "baseline_catalog_sha256": "d6328a282506507306e228d6acc2662a32d0368dd34181bf654b40e6b1696681",
     "stages": {
       "native_search_20261106": {
         "directory": "book/_static/literature_e1/native_search_20261106",
@@ -8130,6 +8442,323 @@
         },
         "product": "8.5"
       },
+      "primary_608": {
+        "directory": "book/_static/e1_primary_608_20261107",
+        "manifest_sha256": "d47461ec6a4839be6fdf3c968be4fec1c77d4fc0d8ef7dc846278daebc6c6393",
+        "public_files": 7,
+        "summary": {
+          "HPO_effort": {
+            "GRU": "No original GRU HPO; inherits recurrent width32/lr.003",
+            "LSTM": "32 V1 search trajectories; chosen width32/lr.003 inherited without new relative-window HPO",
+            "MLP": "32 V1 search trajectories; chosen width16/lr.001 inherited without new relative-window HPO"
+          },
+          "HPO_not_equal": true,
+          "R": 10,
+          "R_per_neural": 10,
+          "active_primary": true,
+          "baseline": "GRU",
+          "baseline_model": "GRU",
+          "baseline_recipe": {
+            "dropout": 0.1,
+            "history_days": 7,
+            "learning_rate": 0.003,
+            "model": "GRU",
+            "parameters": 3777,
+            "variant": "relative_window",
+            "width": 32
+          },
+          "baseline_selection": "Lowest saved mean CV2024 RMSE among the three neural D7 recipes; persistence reported separately",
+          "ci_scope": "Marginal t95 across ten initializations, df9, conditional on known dates; no temporal uncertainty or simultaneous coverage",
+          "core_models": [
+            "LSTM",
+            "MLP",
+            "GRU"
+          ],
+          "daily_prediction_vectors_read": 0,
+          "dates_per_trajectory": 608,
+          "deterministic_reference_rows": 2,
+          "editorial_promotion_after_results_seen": true,
+          "effective_date_colombia": "2026-11-07",
+          "fresh_confirmatory_holdout": false,
+          "historical_results_already_observed": true,
+          "history_days": 7,
+          "horizon_days": 1,
+          "known_reserve_exploratory": true,
+          "limitations": [
+            "The 608-day test was already known when GRU was evaluated; promotion is editorial after results",
+            "Architecture widths, parameter counts and learning rates differ; cumulative historical HPO effort was unequal",
+            "Original MLP daily test forecasts, weights and scalers are unavailable here; no temporal or residual tests are reconstructed",
+            "Ten seeds were a fixed historical screening budget, not a prospectively powered design"
+          ],
+          "lstm_exact_control_metric_equalities": 480,
+          "models": [
+            "LSTM",
+            "MLP",
+            "GRU"
+          ],
+          "n_dates": 608,
+          "neural_score_rows": 60,
+          "new_forecasts": 0,
+          "new_model_fits": 0,
+          "persistence_scope": "One deterministic sigma7-lag1 reference per phase, no seed SD or CI; requires eight past closes",
+          "phases": {
+            "cv": {
+              "end": "2024-12-31",
+              "n_dates": 366,
+              "start": "2024-01-01"
+            },
+            "test": {
+              "end": "2026-08-31",
+              "n_dates": 608,
+              "start": "2025-01-01"
+            }
+          },
+          "preserved_separate_studies": [
+            "e1_historical_core_20261107",
+            "e1_core_mlp_extension_20261107"
+          ],
+          "primary_scope": "historical_known_fixed_recipes",
+          "prospective_registration_claimed": false,
+          "raw_market_archives_read": 0,
+          "reference_models": [
+            "Persistence"
+          ],
+          "rmse_summary": [
+            {
+              "ci95_high": 0.00646919310794642,
+              "ci95_low": 0.0062016355797310805,
+              "ci95_lower": 0.0062016355797310805,
+              "ci95_upper": 0.00646919310794642,
+              "ci_method": "Marginal Student t across ten training seeds, df9, conditional on known dates",
+              "history_days": 7,
+              "mean": 0.00633541434383875,
+              "metric": "rmse",
+              "model": "LSTM",
+              "n_dates": 366,
+              "n_dates_per_seed": 366,
+              "n_defined": 10,
+              "n_seeds": 10,
+              "n_total": 10,
+              "phase": "cv",
+              "sample_sd": 0.00018700981704530587,
+              "scope": "Editorial promotion of existing historical fixed-recipe scores after results were seen; exploratory and conditional on known market dates and training seeds, without new fits or forecasts, equal cumulative HPO effort, or fresh temporal confirmation.",
+              "stochastic_training": true
+            },
+            {
+              "ci95_high": 0.0062479164681119945,
+              "ci95_low": 0.0058502310860477184,
+              "ci95_lower": 0.0058502310860477184,
+              "ci95_upper": 0.0062479164681119945,
+              "ci_method": "Marginal Student t across ten training seeds, df9, conditional on known dates",
+              "history_days": 7,
+              "mean": 0.0060490737770798565,
+              "metric": "rmse",
+              "model": "MLP",
+              "n_dates": 366,
+              "n_dates_per_seed": 366,
+              "n_defined": 10,
+              "n_seeds": 10,
+              "n_total": 10,
+              "phase": "cv",
+              "sample_sd": 0.00027796291525602774,
+              "scope": "Editorial promotion of existing historical fixed-recipe scores after results were seen; exploratory and conditional on known market dates and training seeds, without new fits or forecasts, equal cumulative HPO effort, or fresh temporal confirmation.",
+              "stochastic_training": true
+            },
+            {
+              "ci95_high": 0.005270139503836356,
+              "ci95_low": 0.0050389975621560855,
+              "ci95_lower": 0.0050389975621560855,
+              "ci95_upper": 0.005270139503836356,
+              "ci_method": "Marginal Student t across ten training seeds, df9, conditional on known dates",
+              "history_days": 7,
+              "mean": 0.005154568532996221,
+              "metric": "rmse",
+              "model": "GRU",
+              "n_dates": 366,
+              "n_dates_per_seed": 366,
+              "n_defined": 10,
+              "n_seeds": 10,
+              "n_total": 10,
+              "phase": "cv",
+              "sample_sd": 0.00016155707713944208,
+              "scope": "Editorial promotion of existing historical fixed-recipe scores after results were seen; exploratory and conditional on known market dates and training seeds, without new fits or forecasts, equal cumulative HPO effort, or fresh temporal confirmation.",
+              "stochastic_training": true
+            },
+            {
+              "ci95_high": "",
+              "ci95_low": "",
+              "ci95_lower": "",
+              "ci95_upper": "",
+              "ci_method": "Deterministic reference; no seed SD or confidence interval",
+              "history_days": 7,
+              "mean": 0.004788969571929121,
+              "metric": "rmse",
+              "model": "Persistence",
+              "n_dates": 366,
+              "n_dates_per_seed": 366,
+              "n_defined": 1,
+              "n_seeds": 0,
+              "n_total": 1,
+              "phase": "cv",
+              "sample_sd": "",
+              "scope": "Editorial promotion of existing historical fixed-recipe scores after results were seen; exploratory and conditional on known market dates and training seeds, without new fits or forecasts, equal cumulative HPO effort, or fresh temporal confirmation.",
+              "stochastic_training": false
+            },
+            {
+              "ci95_high": 0.005218407378124857,
+              "ci95_low": 0.0048411658105665615,
+              "ci95_lower": 0.0048411658105665615,
+              "ci95_upper": 0.005218407378124857,
+              "ci_method": "Marginal Student t across ten training seeds, df9, conditional on known dates",
+              "history_days": 7,
+              "mean": 0.005029786594345709,
+              "metric": "rmse",
+              "model": "LSTM",
+              "n_dates": 608,
+              "n_dates_per_seed": 608,
+              "n_defined": 10,
+              "n_seeds": 10,
+              "n_total": 10,
+              "phase": "test",
+              "sample_sd": 0.00026367367422448984,
+              "scope": "Editorial promotion of existing historical fixed-recipe scores after results were seen; exploratory and conditional on known market dates and training seeds, without new fits or forecasts, equal cumulative HPO effort, or fresh temporal confirmation.",
+              "stochastic_training": true
+            },
+            {
+              "ci95_high": 0.005078450461411523,
+              "ci95_low": 0.004507906921976004,
+              "ci95_lower": 0.004507906921976004,
+              "ci95_upper": 0.005078450461411523,
+              "ci_method": "Marginal Student t across ten training seeds, df9, conditional on known dates",
+              "history_days": 7,
+              "mean": 0.004793178691693763,
+              "metric": "rmse",
+              "model": "MLP",
+              "n_dates": 608,
+              "n_dates_per_seed": 608,
+              "n_defined": 10,
+              "n_seeds": 10,
+              "n_total": 10,
+              "phase": "test",
+              "sample_sd": 0.00039878243620319187,
+              "scope": "Editorial promotion of existing historical fixed-recipe scores after results were seen; exploratory and conditional on known market dates and training seeds, without new fits or forecasts, equal cumulative HPO effort, or fresh temporal confirmation.",
+              "stochastic_training": true
+            },
+            {
+              "ci95_high": 0.00391396255919159,
+              "ci95_low": 0.0036362600024454953,
+              "ci95_lower": 0.0036362600024454953,
+              "ci95_upper": 0.00391396255919159,
+              "ci_method": "Marginal Student t across ten training seeds, df9, conditional on known dates",
+              "history_days": 7,
+              "mean": 0.0037751112808185423,
+              "metric": "rmse",
+              "model": "GRU",
+              "n_dates": 608,
+              "n_dates_per_seed": 608,
+              "n_defined": 10,
+              "n_seeds": 10,
+              "n_total": 10,
+              "phase": "test",
+              "sample_sd": 0.00019410070303947153,
+              "scope": "Editorial promotion of existing historical fixed-recipe scores after results were seen; exploratory and conditional on known market dates and training seeds, without new fits or forecasts, equal cumulative HPO effort, or fresh temporal confirmation.",
+              "stochastic_training": true
+            },
+            {
+              "ci95_high": "",
+              "ci95_low": "",
+              "ci95_lower": "",
+              "ci95_upper": "",
+              "ci_method": "Deterministic reference; no seed SD or confidence interval",
+              "history_days": 7,
+              "mean": 0.004085595867023217,
+              "metric": "rmse",
+              "model": "Persistence",
+              "n_dates": 608,
+              "n_dates_per_seed": 608,
+              "n_defined": 1,
+              "n_seeds": 0,
+              "n_total": 1,
+              "phase": "test",
+              "sample_sd": "",
+              "scope": "Editorial promotion of existing historical fixed-recipe scores after results were seen; exploratory and conditional on known market dates and training seeds, without new fits or forecasts, equal cumulative HPO effort, or fresh temporal confirmation.",
+              "stochastic_training": false
+            }
+          ],
+          "scope": "Editorial promotion of existing historical fixed-recipe scores after results were seen; exploratory and conditional on known market dates and training seeds, without new fits or forecasts, equal cumulative HPO effort, or fresh temporal confirmation.",
+          "seeds": [
+            4101,
+            4102,
+            4103,
+            4104,
+            4105,
+            4106,
+            4107,
+            4108,
+            4109,
+            4110
+          ],
+          "selected_recipes": {
+            "GRU": {
+              "dropout": 0.1,
+              "history_days": 7,
+              "learning_rate": 0.003,
+              "model": "GRU",
+              "parameters": 3777,
+              "variant": "relative_window",
+              "width": 32
+            },
+            "LSTM": {
+              "dropout": 0.1,
+              "history_days": 7,
+              "learning_rate": 0.003,
+              "model": "LSTM",
+              "parameters": 5025,
+              "variant": "relative_window",
+              "width": 32
+            },
+            "MLP": {
+              "dropout": 0.1,
+              "history_days": 7,
+              "learning_rate": 0.001,
+              "model": "MLP",
+              "parameters": 593,
+              "variant": "relative_window",
+              "width": 16
+            }
+          },
+          "source_files_modified": false,
+          "source_score_rows_sha256": "7f9cc6ace6042cdf62f6ae900ab4ee7967b63be41fd75b0309adcadcf747b834",
+          "source_studies": [
+            "filipe_multihistory_20261104",
+            "gru_lstm_tcn_20261105"
+          ],
+          "source_summary_sha256": "f31e0e4714f183a997a76eb589dcd9c779bda2fe4f07741fc090528782da4232",
+          "study_id": "e1_primary_608_20261107",
+          "target_n_days": 7,
+          "training_policy": {
+            "batch_size": 32,
+            "dropout": 0.1,
+            "embargo_days": 7,
+            "final_epochs": "Per-model/per-seed December2024 inner-validation best_epoch",
+            "final_training_end": "2024-12-24",
+            "final_training_samples": 709,
+            "final_training_start": "2023-01-08",
+            "gradient_clip_norm": 1.0,
+            "inner_validation_days": 90,
+            "max_epochs": 100,
+            "min_delta": 1e-05,
+            "monthly_cv_blocks": 12,
+            "optimizer": "AdamW",
+            "patience": 12,
+            "test_period_refits": 0,
+            "test_reporting_months": 20,
+            "weight_decay": 0.0001
+          },
+          "weights_or_scalers_read": 0
+        },
+        "product": "8.5"
+      },
       "core_mlp_extension": {
         "directory": "book/_static/e1_core_mlp_extension_20261107",
         "manifest_sha256": "d3532b94f343d4832dace4676c15faca71aa50dd4c9392c0ae23ca8f35851e4f",
@@ -8208,8 +8837,8 @@
     },
     "original_experiments_changed": false,
     "retrospective_preregistration": false,
-    "new_analysis_scope": "Reviewed bibliographic core selection, compatible historical core aggregates and the closed newly registered GRU/LSTM/MLP historical exploratory execution, with previous native searches, curve reproductions and diagnostic repeatability preserved. Packaging itself performs no training, searches or daily forecasts.",
-    "chronology_note": "La recuperación bibliográfica y la fundamentación académica del margen son posteriores a los experimentos iniciales. La reproducción de curvas tiene un protocolo y registro propios y realiza nuevos ajustes de desarrollo; no sustituye los originales históricos ni modifica sus resultados, recetas, selección o cronologías. Los contrastes suplementarios anteriores conservan su carácter posterior. La auditoría forense y la repetibilidad actual tienen alcance separado de la identidad histórica; las búsquedas nuevas conservan su propia procedencia. La búsqueda web dirigida de trece obras y su conciliación acumulada conservan los ámbitos, papeles y niveles de lectura; no convierten la cuota de selección por arquitectura en frecuencia del corpus. La selección del núcleo LSTM–MLP–GRU y su nueva ejecución conservan como exploratoria la evaluación de septiembre–octubre de 2026 ya observada; los resultados anteriores de TCN permanecen complementarios y separados. Esta actualización no constituye un prerregistro retrospectivo. Empaquetar consume las evidencias guardadas y no ejecuta ajustes o pronósticos."
+    "new_analysis_scope": "Primary original D7/608-date R=10 saved scores and reviewed bibliographic core selection, with the closed 60-date GRU/LSTM/MLP execution complementary, and previous native searches, curve reproductions and diagnostic repeatability preserved. Packaging itself performs no training, searches or daily forecasts.",
+    "chronology_note": "La recuperación bibliográfica y la fundamentación académica del margen son posteriores a los experimentos iniciales. La reproducción de curvas tiene un protocolo y registro propios y realiza nuevos ajustes de desarrollo; no sustituye los originales históricos ni modifica sus resultados, recetas, selección o cronologías. Los contrastes suplementarios anteriores conservan su carácter posterior. La auditoría forense y la repetibilidad actual tienen alcance separado de la identidad histórica; las búsquedas nuevas conservan su propia procedencia. La búsqueda web dirigida de trece obras y su conciliación acumulada conservan los ámbitos, papeles y niveles de lectura; no convierten la cuota de selección por arquitectura en frecuencia del corpus. El benchmark principal D7 recupera resultados ya ejecutados en 608 fechas y diez semillas, incluida la MLP histórica; no añade ajustes. La extensión LSTM–MLP–GRU de sesenta fechas conserva como exploratoria la evaluación de septiembre–octubre de 2026 ya observada; los resultados anteriores de TCN permanecen complementarios y separados. Esta actualización no constituye un prerregistro retrospectivo. Empaquetar consume las evidencias guardadas y no ejecuta ajustes o pronósticos."
   },
   "prior_presentation_refreshes": [
     {
@@ -8275,53 +8904,510 @@
     "TCN"
   ],
   "current_study": {
-    "study_id": "e1_core_mlp_extension_20261107",
-    "execution_id": "ba143e27f9ed2bc74d2cd5db1358833da147cd25503fd782acf29d66361f1aa6",
-    "source_commit": "91acdeae1efd92f098ff2ce9a32f90c5b0a4b98a",
+    "HPO_effort": {
+      "GRU": "No original GRU HPO; inherits recurrent width32/lr.003",
+      "LSTM": "32 V1 search trajectories; chosen width32/lr.003 inherited without new relative-window HPO",
+      "MLP": "32 V1 search trajectories; chosen width16/lr.001 inherited without new relative-window HPO"
+    },
+    "HPO_not_equal": true,
+    "R": 10,
+    "R_per_neural": 10,
+    "active_primary": true,
+    "baseline": "GRU",
+    "baseline_model": "GRU",
+    "baseline_recipe": {
+      "dropout": 0.1,
+      "history_days": 7,
+      "learning_rate": 0.003,
+      "model": "GRU",
+      "parameters": 3777,
+      "variant": "relative_window",
+      "width": 32
+    },
+    "baseline_selection": "Lowest saved mean CV2024 RMSE among the three neural D7 recipes; persistence reported separately",
+    "ci_scope": "Marginal t95 across ten initializations, df9, conditional on known dates; no temporal uncertainty or simultaneous coverage",
+    "core_models": [
+      "LSTM",
+      "MLP",
+      "GRU"
+    ],
+    "daily_prediction_vectors_read": 0,
+    "dates_per_trajectory": 608,
+    "deterministic_reference_rows": 2,
+    "editorial_promotion_after_results_seen": true,
+    "effective_date_colombia": "2026-11-07",
+    "fresh_confirmatory_holdout": false,
+    "historical_results_already_observed": true,
     "history_days": 7,
-    "selected_recipes": {
-      "GRU": {
-        "candidate_id": "c03",
-        "width": 16,
-        "learning_rate": 0.003,
-        "dropout": 0.1,
-        "model": "GRU",
-        "history_days": 7,
-        "mean_rmse": 0.005136197790738636,
-        "sample_sd": 3.067941479948831e-05,
-        "parameters": 1121
+    "horizon_days": 1,
+    "known_reserve_exploratory": true,
+    "limitations": [
+      "The 608-day test was already known when GRU was evaluated; promotion is editorial after results",
+      "Architecture widths, parameter counts and learning rates differ; cumulative historical HPO effort was unequal",
+      "Original MLP daily test forecasts, weights and scalers are unavailable here; no temporal or residual tests are reconstructed",
+      "Ten seeds were a fixed historical screening budget, not a prospectively powered design"
+    ],
+    "lstm_exact_control_metric_equalities": 480,
+    "models": [
+      "LSTM",
+      "MLP",
+      "GRU"
+    ],
+    "n_dates": 608,
+    "neural_score_rows": 60,
+    "new_forecasts": 0,
+    "new_model_fits": 0,
+    "persistence_scope": "One deterministic sigma7-lag1 reference per phase, no seed SD or CI; requires eight past closes",
+    "phases": {
+      "cv": {
+        "end": "2024-12-31",
+        "n_dates": 366,
+        "start": "2024-01-01"
       },
-      "LSTM": {
-        "candidate_id": "c02",
-        "width": 16,
-        "learning_rate": 0.003,
-        "dropout": 0.0,
-        "model": "LSTM",
-        "history_days": 7,
-        "mean_rmse": 0.006263890417121395,
-        "sample_sd": 0.00021401916236752426,
-        "parameters": 1489
-      },
-      "MLP": {
-        "candidate_id": "c03",
-        "width": 32,
-        "learning_rate": 0.003,
-        "dropout": 0.1,
-        "model": "MLP",
-        "history_days": 7,
-        "mean_rmse": 0.0052794331337799845,
-        "sample_sd": 3.533722646292175e-05,
-        "parameters": 1185
+      "test": {
+        "end": "2026-08-31",
+        "n_dates": 608,
+        "start": "2025-01-01"
       }
     },
-    "definitive_seeds_per_family": 465,
-    "reserve": {
-      "start": "2026-09-01",
-      "end": "2026-10-30",
-      "days": 60
+    "preserved_separate_studies": [
+      "e1_historical_core_20261107",
+      "e1_core_mlp_extension_20261107"
+    ],
+    "primary_scope": "historical_known_fixed_recipes",
+    "prospective_registration_claimed": false,
+    "raw_market_archives_read": 0,
+    "reference_models": [
+      "Persistence"
+    ],
+    "rmse_summary": [
+      {
+        "ci95_high": 0.00646919310794642,
+        "ci95_low": 0.0062016355797310805,
+        "ci95_lower": 0.0062016355797310805,
+        "ci95_upper": 0.00646919310794642,
+        "ci_method": "Marginal Student t across ten training seeds, df9, conditional on known dates",
+        "history_days": 7,
+        "mean": 0.00633541434383875,
+        "metric": "rmse",
+        "model": "LSTM",
+        "n_dates": 366,
+        "n_dates_per_seed": 366,
+        "n_defined": 10,
+        "n_seeds": 10,
+        "n_total": 10,
+        "phase": "cv",
+        "sample_sd": 0.00018700981704530587,
+        "scope": "Editorial promotion of existing historical fixed-recipe scores after results were seen; exploratory and conditional on known market dates and training seeds, without new fits or forecasts, equal cumulative HPO effort, or fresh temporal confirmation.",
+        "stochastic_training": true
+      },
+      {
+        "ci95_high": 0.0062479164681119945,
+        "ci95_low": 0.0058502310860477184,
+        "ci95_lower": 0.0058502310860477184,
+        "ci95_upper": 0.0062479164681119945,
+        "ci_method": "Marginal Student t across ten training seeds, df9, conditional on known dates",
+        "history_days": 7,
+        "mean": 0.0060490737770798565,
+        "metric": "rmse",
+        "model": "MLP",
+        "n_dates": 366,
+        "n_dates_per_seed": 366,
+        "n_defined": 10,
+        "n_seeds": 10,
+        "n_total": 10,
+        "phase": "cv",
+        "sample_sd": 0.00027796291525602774,
+        "scope": "Editorial promotion of existing historical fixed-recipe scores after results were seen; exploratory and conditional on known market dates and training seeds, without new fits or forecasts, equal cumulative HPO effort, or fresh temporal confirmation.",
+        "stochastic_training": true
+      },
+      {
+        "ci95_high": 0.005270139503836356,
+        "ci95_low": 0.0050389975621560855,
+        "ci95_lower": 0.0050389975621560855,
+        "ci95_upper": 0.005270139503836356,
+        "ci_method": "Marginal Student t across ten training seeds, df9, conditional on known dates",
+        "history_days": 7,
+        "mean": 0.005154568532996221,
+        "metric": "rmse",
+        "model": "GRU",
+        "n_dates": 366,
+        "n_dates_per_seed": 366,
+        "n_defined": 10,
+        "n_seeds": 10,
+        "n_total": 10,
+        "phase": "cv",
+        "sample_sd": 0.00016155707713944208,
+        "scope": "Editorial promotion of existing historical fixed-recipe scores after results were seen; exploratory and conditional on known market dates and training seeds, without new fits or forecasts, equal cumulative HPO effort, or fresh temporal confirmation.",
+        "stochastic_training": true
+      },
+      {
+        "ci95_high": "",
+        "ci95_low": "",
+        "ci95_lower": "",
+        "ci95_upper": "",
+        "ci_method": "Deterministic reference; no seed SD or confidence interval",
+        "history_days": 7,
+        "mean": 0.004788969571929121,
+        "metric": "rmse",
+        "model": "Persistence",
+        "n_dates": 366,
+        "n_dates_per_seed": 366,
+        "n_defined": 1,
+        "n_seeds": 0,
+        "n_total": 1,
+        "phase": "cv",
+        "sample_sd": "",
+        "scope": "Editorial promotion of existing historical fixed-recipe scores after results were seen; exploratory and conditional on known market dates and training seeds, without new fits or forecasts, equal cumulative HPO effort, or fresh temporal confirmation.",
+        "stochastic_training": false
+      },
+      {
+        "ci95_high": 0.005218407378124857,
+        "ci95_low": 0.0048411658105665615,
+        "ci95_lower": 0.0048411658105665615,
+        "ci95_upper": 0.005218407378124857,
+        "ci_method": "Marginal Student t across ten training seeds, df9, conditional on known dates",
+        "history_days": 7,
+        "mean": 0.005029786594345709,
+        "metric": "rmse",
+        "model": "LSTM",
+        "n_dates": 608,
+        "n_dates_per_seed": 608,
+        "n_defined": 10,
+        "n_seeds": 10,
+        "n_total": 10,
+        "phase": "test",
+        "sample_sd": 0.00026367367422448984,
+        "scope": "Editorial promotion of existing historical fixed-recipe scores after results were seen; exploratory and conditional on known market dates and training seeds, without new fits or forecasts, equal cumulative HPO effort, or fresh temporal confirmation.",
+        "stochastic_training": true
+      },
+      {
+        "ci95_high": 0.005078450461411523,
+        "ci95_low": 0.004507906921976004,
+        "ci95_lower": 0.004507906921976004,
+        "ci95_upper": 0.005078450461411523,
+        "ci_method": "Marginal Student t across ten training seeds, df9, conditional on known dates",
+        "history_days": 7,
+        "mean": 0.004793178691693763,
+        "metric": "rmse",
+        "model": "MLP",
+        "n_dates": 608,
+        "n_dates_per_seed": 608,
+        "n_defined": 10,
+        "n_seeds": 10,
+        "n_total": 10,
+        "phase": "test",
+        "sample_sd": 0.00039878243620319187,
+        "scope": "Editorial promotion of existing historical fixed-recipe scores after results were seen; exploratory and conditional on known market dates and training seeds, without new fits or forecasts, equal cumulative HPO effort, or fresh temporal confirmation.",
+        "stochastic_training": true
+      },
+      {
+        "ci95_high": 0.00391396255919159,
+        "ci95_low": 0.0036362600024454953,
+        "ci95_lower": 0.0036362600024454953,
+        "ci95_upper": 0.00391396255919159,
+        "ci_method": "Marginal Student t across ten training seeds, df9, conditional on known dates",
+        "history_days": 7,
+        "mean": 0.0037751112808185423,
+        "metric": "rmse",
+        "model": "GRU",
+        "n_dates": 608,
+        "n_dates_per_seed": 608,
+        "n_defined": 10,
+        "n_seeds": 10,
+        "n_total": 10,
+        "phase": "test",
+        "sample_sd": 0.00019410070303947153,
+        "scope": "Editorial promotion of existing historical fixed-recipe scores after results were seen; exploratory and conditional on known market dates and training seeds, without new fits or forecasts, equal cumulative HPO effort, or fresh temporal confirmation.",
+        "stochastic_training": true
+      },
+      {
+        "ci95_high": "",
+        "ci95_low": "",
+        "ci95_lower": "",
+        "ci95_upper": "",
+        "ci_method": "Deterministic reference; no seed SD or confidence interval",
+        "history_days": 7,
+        "mean": 0.004085595867023217,
+        "metric": "rmse",
+        "model": "Persistence",
+        "n_dates": 608,
+        "n_dates_per_seed": 608,
+        "n_defined": 1,
+        "n_seeds": 0,
+        "n_total": 1,
+        "phase": "test",
+        "sample_sd": "",
+        "scope": "Editorial promotion of existing historical fixed-recipe scores after results were seen; exploratory and conditional on known market dates and training seeds, without new fits or forecasts, equal cumulative HPO effort, or fresh temporal confirmation.",
+        "stochastic_training": false
+      }
+    ],
+    "scope": "Editorial promotion of existing historical fixed-recipe scores after results were seen; exploratory and conditional on known market dates and training seeds, without new fits or forecasts, equal cumulative HPO effort, or fresh temporal confirmation.",
+    "seeds": [
+      4101,
+      4102,
+      4103,
+      4104,
+      4105,
+      4106,
+      4107,
+      4108,
+      4109,
+      4110
+    ],
+    "selected_recipes": {
+      "GRU": {
+        "dropout": 0.1,
+        "history_days": 7,
+        "learning_rate": 0.003,
+        "model": "GRU",
+        "parameters": 3777,
+        "variant": "relative_window",
+        "width": 32
+      },
+      "LSTM": {
+        "dropout": 0.1,
+        "history_days": 7,
+        "learning_rate": 0.003,
+        "model": "LSTM",
+        "parameters": 5025,
+        "variant": "relative_window",
+        "width": 32
+      },
+      "MLP": {
+        "dropout": 0.1,
+        "history_days": 7,
+        "learning_rate": 0.001,
+        "model": "MLP",
+        "parameters": 593,
+        "variant": "relative_window",
+        "width": 16
+      }
     },
-    "known_reserve_exploratory": true,
-    "fresh_confirmatory_holdout": false,
-    "public_metadata_directory": "book/_static/e1_core_mlp_extension_20261107"
+    "source_files_modified": false,
+    "source_score_rows_sha256": "7f9cc6ace6042cdf62f6ae900ab4ee7967b63be41fd75b0309adcadcf747b834",
+    "source_studies": [
+      "filipe_multihistory_20261104",
+      "gru_lstm_tcn_20261105"
+    ],
+    "source_summary_sha256": "f31e0e4714f183a997a76eb589dcd9c779bda2fe4f07741fc090528782da4232",
+    "study_id": "e1_primary_608_20261107",
+    "target_n_days": 7,
+    "training_policy": {
+      "batch_size": 32,
+      "dropout": 0.1,
+      "embargo_days": 7,
+      "final_epochs": "Per-model/per-seed December2024 inner-validation best_epoch",
+      "final_training_end": "2024-12-24",
+      "final_training_samples": 709,
+      "final_training_start": "2023-01-08",
+      "gradient_clip_norm": 1.0,
+      "inner_validation_days": 90,
+      "max_epochs": 100,
+      "min_delta": 1e-05,
+      "monthly_cv_blocks": 12,
+      "optimizer": "AdamW",
+      "patience": 12,
+      "test_period_refits": 0,
+      "test_reporting_months": 20,
+      "weight_decay": 0.0001
+    },
+    "weights_or_scalers_read": 0,
+    "definitive_seeds_per_family": 10,
+    "reserve": {
+      "start": "2025-01-01",
+      "end": "2026-08-31",
+      "days": 608
+    },
+    "public_metadata_directory": "book/_static/e1_primary_608_20261107",
+    "public_summary_sha256": "8ce91137b2da77e0a6237c67bcfab96d5ce6a623023778c45b9b28cf793f1c6e",
+    "public_manifest_sha256": "d47461ec6a4839be6fdf3c968be4fec1c77d4fc0d8ef7dc846278daebc6c6393"
+  },
+  "complementary_study_metadata": {
+    "source_commit": "60836db5cf9cdefb838a35ec103650444e70cbb7",
+    "models": [
+      "LSTM",
+      "MLP",
+      "GRU"
+    ],
+    "complementary_models": [
+      "TCN"
+    ],
+    "active_entrypoint": "scripts/run_e1_core_mlp_extension.py",
+    "active_entrypoints": {
+      "hpo": "scripts/run_e1_core_mlp_extension.py",
+      "pilot": "scripts/run_e1_core_mlp_extension.py",
+      "fit": "scripts/run_e1_core_mlp_extension.py",
+      "score": "scripts/run_e1_core_mlp_extension.py",
+      "analyze": "scripts/run_e1_core_mlp_extension.py"
+    },
+    "active_entrypoint_scope": "Current common GRU/LSTM/MLP execution; historical entrypoints are preserved separately",
+    "baseline_selected_by_cv": {
+      "model": "GRU",
+      "candidate_id": "c03",
+      "width": 16,
+      "learning_rate": 0.003,
+      "dropout": 0.1,
+      "history_days": 7,
+      "mean_rmse": 0.005136197790738636,
+      "sample_sd": 3.067941479948831e-05,
+      "parameters": 1121
+    },
+    "scope": "Current common LSTM/MLP/GRU development tuning, pilot and final fits; exploratory scoring on an already observed 60-day historical reserve. Previous TCN studies remain complementary.",
+    "current_study": {
+      "study_id": "e1_core_mlp_extension_20261107",
+      "execution_id": "ba143e27f9ed2bc74d2cd5db1358833da147cd25503fd782acf29d66361f1aa6",
+      "source_commit": "91acdeae1efd92f098ff2ce9a32f90c5b0a4b98a",
+      "history_days": 7,
+      "selected_recipes": {
+        "GRU": {
+          "candidate_id": "c03",
+          "width": 16,
+          "learning_rate": 0.003,
+          "dropout": 0.1,
+          "model": "GRU",
+          "history_days": 7,
+          "mean_rmse": 0.005136197790738636,
+          "sample_sd": 3.067941479948831e-05,
+          "parameters": 1121
+        },
+        "LSTM": {
+          "candidate_id": "c02",
+          "width": 16,
+          "learning_rate": 0.003,
+          "dropout": 0.0,
+          "model": "LSTM",
+          "history_days": 7,
+          "mean_rmse": 0.006263890417121395,
+          "sample_sd": 0.00021401916236752426,
+          "parameters": 1489
+        },
+        "MLP": {
+          "candidate_id": "c03",
+          "width": 32,
+          "learning_rate": 0.003,
+          "dropout": 0.1,
+          "model": "MLP",
+          "history_days": 7,
+          "mean_rmse": 0.0052794331337799845,
+          "sample_sd": 3.533722646292175e-05,
+          "parameters": 1185
+        }
+      },
+      "definitive_seeds_per_family": 465,
+      "reserve": {
+        "start": "2026-09-01",
+        "end": "2026-10-30",
+        "days": 60
+      },
+      "known_reserve_exploratory": true,
+      "fresh_confirmatory_holdout": false,
+      "public_metadata_directory": "book/_static/e1_core_mlp_extension_20261107"
+    },
+    "historical_study_metadata": {
+      "source_commit": "a3924e169aef25d293b1cef9cef39a6c07ddd433",
+      "models": [
+        "GRU",
+        "LSTM",
+        "TCN"
+      ],
+      "active_entrypoint": "scripts/run_gru_lstm_tcn.py",
+      "active_entrypoints": {
+        "phase_I": "scripts/run_gru_lstm_tcn.py",
+        "phase_II": "scripts/run_gru_lstm_tcn_planned.py"
+      },
+      "active_entrypoint_scope": "Legacy singular field identifies phase_I; use active_entrypoints for each separate phase",
+      "baseline_selected_by_cv": {
+        "model": "GRU",
+        "history_days": 7,
+        "cv_rmse_mean": 0.005154568532996221,
+        "cv_rmse_sample_sd": 0.00016155707713944208,
+        "parameters": 3777,
+        "seeds": 10
+      },
+      "scope": "Two distinct GRU/LSTM/TCN phases: initial exploratory already-observed test, and separately registered D7 tuning/pilot/power-sized historical reserve study",
+      "public_aggregate_manifest_sha256": "b51937d63a3ed94e1d1188d6034758d5726709e503f4118dbcde313413e2cc82",
+      "declaration_manifest_sha256": "9723c96fef74655887d61d9e6430be2b3b152932994af9f93618945fdf25c059",
+      "planned_D7_phase": {
+        "active_entrypoint": "scripts/run_gru_lstm_tcn_planned.py",
+        "public_aggregate_manifest_sha256": "97535c7462f7d5a1d70902f512bd10770d98cdfcbb05d5c7b33bd550c4866222",
+        "baseline_selected_before_reserve": "GRU",
+        "definitive_seeds_per_family": 465,
+        "reserve": {
+          "start": "2026-09-01",
+          "end": "2026-10-30",
+          "days": 60
+        },
+        "separate_from_initial_exploratory_benchmark": true,
+        "temporal_power_claimed": false
+      }
+    },
+    "public_summary": {
+      "study_id": "e1_core_mlp_extension_20261107",
+      "execution_id": "ba143e27f9ed2bc74d2cd5db1358833da147cd25503fd782acf29d66361f1aa6",
+      "models": [
+        "GRU",
+        "LSTM",
+        "MLP"
+      ],
+      "history_days": 7,
+      "target_n_days": 7,
+      "horizon_days": 1,
+      "R": 465,
+      "dates_per_trajectory": 60,
+      "neural_prediction_rows": 83700,
+      "baseline_selected_before_reserve": "GRU",
+      "selection_using_holdout": false,
+      "primary_family": "Three registered-method exploratory paired RMSE zero-null tests, Holm FWER alpha0.05",
+      "planned_delta": 0.00025772842664981106,
+      "power_target": 0.8,
+      "power_scope": "Conditional training-seed normal-difference planning; no temporal or achieved power claim",
+      "temporal_secondary_family": "Six fixed DM comparisons, Holm6; circular block7 bootstrap sensitivity3/14",
+      "normality_diagnostic_selects_tests": false,
+      "bootstrap_draws": 4999,
+      "bootstrap_seed": 20261107,
+      "temporal_bootstrap_seed": 20261108,
+      "R_required": 331,
+      "R_final": 465,
+      "final_runs_floor": 465,
+      "known_reserve_exploratory": true,
+      "fresh_confirmatory_holdout": false,
+      "financial_utility_claimed": false,
+      "delta_role": "Unchanged academic planning convention",
+      "reference_source_sha256": {
+        "planned_study_statistics.py": "703492f299649ac5f87a2c37e30f0ae5fc4253595fba0fce36ec1b1b817fcdf2",
+        "gru_lstm_tcn_diagnostics.py": "8cf66f3c169d90a677ae1fe16d2b77636d19c42bfa718d0b1beec77980d49ec8"
+      },
+      "scope": "New coherent historical exploratory extension on an already observed reserve; seed uncertainty is conditional on its fixed calendar and frozen recipes, not uncertainty over markets or a fresh confirmatory holdout.",
+      "live_prospective_forecasts": false,
+      "temporal_limitations": "Already observed historical outcome cohort of only60days; market-regime generalization and 80percent temporal power are not established",
+      "significance_is_not_practical_relevance": true,
+      "exported_at_utc": "2026-11-08T00:15:44.764428+00:00",
+      "source_commit": "91acdeae1efd92f098ff2ce9a32f90c5b0a4b98a",
+      "hpo_trajectories": 48,
+      "hpo_fit_stages": 960,
+      "pilot_trajectories": 30,
+      "pilot_fit_stages": 60,
+      "definitive_trajectories": 1395,
+      "definitive_fit_stages": 2790,
+      "curve_rows": 44201,
+      "core_models": [
+        "GRU",
+        "LSTM",
+        "MLP"
+      ],
+      "complementary_TCN_included_in_new_core": false,
+      "source_publication_precedes_new_fits": true,
+      "plan_publication_precedes_definitive_fits": true,
+      "scoring_after_all_new_weights_frozen": true,
+      "original_scientific_results_modified": false,
+      "exporter_model_fits": 0,
+      "exporter_checkpoint_forecasts": 0,
+      "exporter_raw_market_archive_reads": 0,
+      "private_payloads_exported": false,
+      "curve_scope": "Observed development2023–2024 losses. Refit has no reserve validation; late epochs have fewer surviving runs.",
+      "registration_reservation_note": "Original acquisition/reservation metadata are inherited byte-for-byte; this new execution explicitly evaluates an already observed historical calendar."
+    },
+    "public_manifest_sha256": "d3532b94f343d4832dace4676c15faca71aa50dd4c9392c0ae23ca8f35851e4f"
   }
 }
