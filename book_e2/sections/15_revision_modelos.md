@@ -52,6 +52,24 @@ Antes del primer ajuste de esta propuesta se deberán decidir y registrar:
 
 El test ya conocido de E1/E2 no recupera independencia con esta propuesta. Una comparación sobre él seguirá siendo exploratoria. Una afirmación confirmatoria de superioridad requeriría una evaluación no utilizada para escoger el híbrido, congelada después de cerrar el diseño y con sus límites temporales documentados.
 
+### Fuentes verificadas y límites de las nuevas propuestas
+
+La ampliación bibliográfica del 08/11/2026 distingue el **origen del mecanismo** de su validación para Bitcoin. No transfiere puntuaciones ni resultados de los cuatro modelos retirados a las altas.
+
+| Candidato | Fuente primaria identificada | Evidencia y adaptación pendiente |
+|---|---|---|
+| FCN-1D | Wang, Yan y Oates, [Time Series Classification from Scratch with Deep Neural Networks: A Strong Baseline](https://arxiv.org/abs/1611.06455) | FCN para clasificación temporal. La fuente no valida regresión de σ₇ en Bitcoin. Fijar kernels compatibles con D7, pooling, canales y cabeza escalar; justificar cambios respecto de clasificación |
+| ResNet-1D | Wang, Yan y Oates, [misma fuente primaria](https://arxiv.org/abs/1611.06455) | Red residual para clasificación temporal; no equivale a la TCN histórica. Documentar bloques, padding, profundidad y salida de regresión; una fuente compartida no son dos estudios independientes |
+| Inception-1D | Fawaz et al., [InceptionTime: Finding AlexNet for Time Series Classification](https://arxiv.org/abs/1909.04939) | Arquitectura/ensemble de clasificación. Decidir red individual frente a ensemble, kernels y bottlenecks para D7; su precisión clasificatoria no es una RMSE de volatilidad |
+| LSTM-autoencoder predictivo | Fuente/configuración exacta **todavía no cerrada** | Los trabajos adyacentes de detección de anomalías o VAE con LSTM no certifican este encoder–decoder supervisado. Deben fijarse fuente primaria, pérdida de reconstrucción, peso de predicción y entrenamiento causal antes del registro |
+| HAR + red residual | Lian et al., [Signal Simplification Is Not Predictive Simplification](https://arxiv.org/abs/2610.03019) | Antecedente directo HAR-style + LSTM residual. El preprint informa deterioro frente a HAR en cinco activos estadounidenses; impide alegar novedad genérica o mejora garantizada, sin demostrar que el mismo desenlace ocurra en Bitcoin |
+
+**Evidencia negativa que cambia la justificación.** En el estudio de Lian et al., el MSE medio pasa de 0,3049 para HAR-style a 0,3594 para HAR-style + LSTM; la LSTM sola obtiene 0,2649. Son valores del artículo en su propio objetivo y protocolo, no resultados E2 ni magnitudes comparables con σ₇. La menor varianza residual no basta para justificar una corrección neuronal. E2 debe mantener HAR solo, red sola y la corrección como controles y aceptar resultados desfavorables.
+
+[HARNet (arXiv:2205.07719)](https://arxiv.org/abs/2205.07719) es un antecedente distinto: convoluciones causales dilatadas inicializadas para reproducir HAR, aplicadas a volatilidad realizada de índices bursátiles. No es sinónimo de una LSTM entrenada sobre residuos. Su mecanismo puede informar una alternativa, pero no se añade de forma tácita al catálogo ni convierte el candidato 11 en una réplica.
+
+La [actualización bibliográfica](03_literatura.md) conserva las consultas, la procedencia y los niveles de lectura de esta ronda. La fuente exacta del autoencoder, el código de cada adaptación y la correspondencia con las configuraciones del curso siguen siendo requisitos abiertos; estas fichas no acreditan implementación o entrenamiento.
+
 ## 15.4 E1 actual y las anclas históricas de E2
 
 El núcleo actual de [E1](https://jassan-bit.github.io/DeepLearning_202630/intro.html) se organiza alrededor de **MLP, LSTM y GRU**. E2, en cambio, registró su contrato desde la fase II anterior con **GRU/D7-c03, LSTM/D7-c02 y TCN/D7-c02**, como fija [§1](01_punto_partida.md) y su referencia versionada. La TCN sigue siendo una ancla histórica de ese registro; no se transforma retrospectivamente en MLP.

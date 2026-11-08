@@ -2,6 +2,76 @@
 
 **Propuesta posterior del 08/11/2026:** véase la [revisión de diez modelos y un híbrido candidato](15_revision_modelos.md). El catálogo y las cifras de esta sección describen el diseño registrado anterior; no son evidencia de ejecución de la nueva propuesta.
 
+## Actualización del 08/11/2026: búsquedas nativas y evidencia para la revisión
+
+Esta ronda complementa el expediente del 05–06/11 sin reemplazarlo. **Una exportación nueva no corrige automáticamente una búsqueda anterior incompleta.** Los 374 registros no recibidos del universo Scopus histórico de 7.874 siguen siendo una limitación de aquella consulta mientras no se concilien sus identificadores y alcance. Del mismo modo, los resultados de IEEE y arXiv de esta ronda no deben añadirse directamente a los 7.833 grupos históricos: primero se necesita deduplicación entre rondas y adjudicación de versiones de un mismo estudio.
+
+### Recepción, deduplicación y cribado de esta ronda
+
+| Fuente y alcance | Ocurrencias recibidas | Estado verificable |
+|---|---:|---|
+| WoS, nuevo TXT | 340 | 340 registros PT–ER y cierre EF; años exportados dentro de 2019–2026 |
+| Scopus, nuevo CSV | 828 | 808 con año 2019–2026; la cadena exacta y la cobertura nativa no quedan acreditadas por el CSV |
+| IEEE Xplore, nuevo CSV | 466 | 457 con año 2019–2026; no equivale a una lectura completa de los artículos |
+| Total de las tres exportaciones | **1.634** | **1.078 grupos** tras retirar 556 ocurrencias redundantes |
+
+Se fusionan DOI normalizados exactos y, cuando no hay DOI conflictivos, título normalizado más año exacto. Se conservan **un conflicto de título/año con DOI diferentes**, 50 registros representantes sin DOI (49 grupos sin DOI en ninguna de sus fuentes) y cinco grupos con años discordantes entre fuentes. No se fusionan versiones por similitud difusa ni se han validado todos los DOI con sus editoriales. Los [metadatos por grupo](../_static/literature_native_20261108/native/cribado_metadatos.csv), el [grafo de enlaces](../_static/literature_native_20261108/native/relaciones_duplicados.csv) y el [resumen](../_static/literature_native_20261108/native/resumen.json) permiten auditar el resultado.
+
+De **1.605 ocurrencias con año 2019–2026** resultan **1.054 grupos en ventana**. La clasificación es triaje conservador por título/resumen, con **21 correcciones focalizadas del asistente**, no lectura individual exhaustiva ni doble cribado humano:
+
+| Disposición provisional | Grupos | Qué significa |
+|---|---:|---|
+| Prioridad principal | 59 | Bitcoin, posible objetivo volatilidad y redes; verificar objetivo, profundidad, papel del modelo y protocolo |
+| Secundarios transferibles | 520 | Otros mercados, híbridos o mecanismos; no evidencia directa homogénea de σ₇ |
+| Inciertos conservados | 138 | Información insuficiente; también actas agregadas que requieren localizar artículos individuales |
+| Exclusiones propuestas por precio | 337 | Propuestas revisables, no exclusiones finales; auditar posibles falsos negativos |
+| Fuera de ventana nominal | 24 | Comprobar fecha efectiva o justificar papel fundacional |
+| Total | **1.078** | Los **717 conservados en ventana** no son estudios incluidos definitivamente |
+
+Las señales pueden describir antecedentes y no la variable predicha. Las correcciones focalizadas detectaron confusiones entre precio, retorno, VaR/ES y volatilidad. No se convierte una pasada automática en una revisión sistemática cerrada; todas las exclusiones propuestas y los ambiguos requieren adjudicación antes de cerrar el flujo. El {download}`procedimiento y sus límites <../_static/literature_native_20261108/native/LEEME.md>` y las [correcciones](../_static/literature_native_20261108/native/ajustes_revision.json) quedan publicados sin resúmenes completos.
+
+### Complemento arXiv: extracción completa de consultas explícitas
+
+La recuperación por API del **08/11/2026, 18:45:29 UTC** utilizó campos `all:`, sin filtro de fechas y con orden de envío descendente. El [manifiesto de consultas](../_static/literature_native_20261108/arxiv/query_manifest.json) conserva las cadenas completas, URLs paginadas y hashes de las respuestas privadas.
+
+| Consulta | Resultados API | Recuperados |
+|---|---:|---:|
+| Bitcoin AND volatility | 181 | 181 |
+| Bitcoin/cryptocurrency/cryptocurrencies AND volatility/variance | 391 | 391 |
+| Volatility/variance AND diez nombres de familias de la propuesta | 605 | 605 |
+| Volatility AND HAR AND neural/residual/hybrid | 22 | 22 |
+| Apariciones antes de unir consultas | **1.199** | **1.199** |
+
+La unión contiene **1.004 identificadores arXiv**, con **195 repeticiones entre consultas**; se verificó que la consulta Bitcoin es subconjunto de la consulta cripto. Se publican [metadatos](../_static/literature_native_20261108/arxiv/records.csv), [pertenencia por consulta](../_static/literature_native_20261108/arxiv/query_membership.csv) y [estado de cribado](../_static/literature_native_20261108/arxiv/screening_initial.csv): **21 etiquetas iniciales y 983 pendientes**, sin decisiones finales de inclusión. El término `variance` y las familias generales recuperan falsos positivos no financieros; extraer todo no significa haberlo revisado todo. Las búsquedas HTML auxiliares se excluyen de este denominador por inconsistencias en la interpretación de operadores booleanos.
+
+Estos 1.004 IDs **no se suman** a los 1.078 grupos de las exportaciones ni a los 7.833 históricos. La conciliación DOI/preprint/publicación entre las tres rondas permanece abierta. Los preprints no se presentan automáticamente como artículos revisados por pares o revistas de un cuartil determinado.
+
+La [lista pública cerrada y sus hashes](../_static/literature_native_20261108/manifest.json) fija los derivados de esta ronda. El {download}`expediente reproducible <../_static/literature_native_20261108/README.md>` separa validación de metadatos públicos, recuperación de fuentes y triaje privado; ninguno de esos procedimientos ejecuta modelos.
+
+### Evidencia aplicada que cambia la lectura de los candidatos
+
+[Volatility Forecasting in Global Financial Markets Using TimeMixer (arXiv:2410.09062)](https://arxiv.org/abs/2410.09062) incluye **BTCUSD 2014–2023** en la tabla 4, además de otras criptomonedas y mercados. Su sección de datos define volatilidad como desviación estándar móvil de **21 días** de log-retornos, anualizada por √252. Por tanto, aporta evidencia aplicada a Bitcoin, pero **no evalúa el objetivo σ₇ de E2**, no es volatilidad realizada intradía y sus errores no pueden compararse numéricamente con los del entregable. La identidad de la arquitectura tampoco sustituye comprobar la partición, el horizonte, las entradas y la variante concreta.
+
+[HARNet (arXiv:2205.07719)](https://arxiv.org/abs/2205.07719) documenta una red de convoluciones causales dilatadas inicializada para reproducir un HAR ajustado. El estudio trabaja con volatilidad realizada de índices bursátiles; sirve como antecedente de una estructura neuronal guiada por HAR, no como validación directa de σ₇ en Bitcoin ni como sinónimo del híbrido residual propuesto.
+
+[Signal Simplification Is Not Predictive Simplification (arXiv:2610.03019)](https://arxiv.org/abs/2610.03019) examina **HAR-style + LSTM residual** en cinco activos estadounidenses. Informa que el híbrido empeora el MSE medio frente a HAR-style (0,3594 frente a 0,3049), mientras la LSTM sola obtiene 0,2649. Estas cifras son resultados del artículo, no de E2. El antecedente impide defender la novedad genérica de «HAR + red» y exige que el candidato 11 se motive mediante una hipótesis concreta, controles y posibilidad de resultado negativo. No prueba de antemano que el híbrido fracase o triunfe en Bitcoin.
+
+### Cuatro altas y una hipótesis adicional, sin transferir evidencia histórica
+
+Las [fichas actualizadas de la propuesta](15_revision_modelos.md) identifican fuentes para **FCN-1D y ResNet-1D** ([Wang et al.](https://arxiv.org/abs/1611.06455)) y **Inception-1D** ([InceptionTime](https://arxiv.org/abs/1909.04939)). Esas fuentes estudian clasificación temporal: justifican mecanismos, no su eficacia en regresión de volatilidad. Adaptar la cabeza, los kernels y el entrenamiento a D7×5 debe quedar registrado y probado.
+
+La arquitectura exacta del **LSTM-autoencoder predictivo** permanece abierta. No se equipara un VAE con LSTM o un detector de anomalías con el encoder–decoder supervisado propuesto. Tampoco se heredan lecturas, métricas, puntuaciones, licencias o código de Informer, Autoformer, Crossformer y S-Mamba al sustituir sus nombres en la lista.
+
+### Qué queda cerrado y qué no
+
+La evidencia nueva permite corregir el contexto aplicado de TimeMixer, documentar fuentes arquitectónicas de tres altas y contrastar el híbrido con antecedentes positivos y negativos de mecanismos distintos. **No cierra el Top 10 por ranking, una revisión PRISMA global, los cuartiles por año, el autoencoder exacto ni la superioridad del modelo 11.** El cribado asistido y la lectura dirigida se presentan con sus denominadores y límites; no se atribuyen a dos revisores humanos independientes.
+
+La integración bibliográfica no entrena modelos, no modifica el registro experimental, no introduce resultados de mercado nuevos y no recupera el cegamiento del test conocido. El catálogo registrado y sus recibos permanecen separados de la propuesta editorial del 08/11.
+
+## Expediente histórico del 05–06/11/2026
+
+Las cifras y estados siguientes corresponden a ese corte. Se conservan para reconstruir sus decisiones; las afirmaciones de acceso pendiente se interpretan a la fecha del corte, no como negación de los materiales recibidos posteriormente.
+
 **Resultado bibliográfico:** selección provisional de **diez modelos de Deep Learning para pronosticar la volatilidad de Bitcoin**, con exportaciones de **WoS y Scopus**, lectura de **diez originales completos —215 páginas físicas—** y código de autores identificado por commit y hash. La ampliación del **06/11/2026** añade un cribado local por reglas de los **7.833 grupos recibidos**, con decisión provisional y motivo por registro; no cierra la elegibilidad global por texto completo.
 
 Las fichas, el flujo inicial y los contadores bibliográficos del **05/11/2026** se conservan como evidencia histórica. La [sección 5](05_paper_guia.md) documenta después la réplica externa de TimeMixer y el piloto de tres modelos en ETTh1. En la etapa actual se implementaron adaptadores D7 para el piloto P0 de desarrollo, cuya ejecución completó 220 trayectorias y 440 ajustes bajo el [protocolo registrado](09_protocolo_registrado.md); esto todavía no acredita el benchmark final, la búsqueda HPO ni la potencia del procedimiento definitivo.
