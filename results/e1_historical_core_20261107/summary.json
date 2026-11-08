@@ -1,0 +1,396 @@
+{
+  "TCN_role": "Separate preserved complementary historical study",
+  "analysis_date_colombia": "2026-11-07",
+  "best_history_by_saved_cv_mean_rmse": {
+    "GRU": 7,
+    "LSTM": 7,
+    "MLP": 7
+  },
+  "ci_scope": "Marginal t95 intervals across initialization seeds on the same known dates",
+  "core_models": [
+    "LSTM",
+    "MLP",
+    "GRU"
+  ],
+  "daily_prediction_vectors_read": 0,
+  "descriptive_cv_minimum_in_core": {
+    "model": "GRU",
+    "selection_scope": "Derived after historical tests were known; not the new study baseline freeze"
+  },
+  "historical_core_selection_is_posthoc": true,
+  "historical_parameters_by_D": {
+    "14": {
+      "GRU": 3777,
+      "LSTM": 5025,
+      "MLP": 1153
+    },
+    "21": {
+      "GRU": 3777,
+      "LSTM": 5025,
+      "MLP": 1713
+    },
+    "28": {
+      "GRU": 3777,
+      "LSTM": 5025,
+      "MLP": 2273
+    },
+    "7": {
+      "GRU": 3777,
+      "LSTM": 5025,
+      "MLP": 593
+    }
+  },
+  "historical_source_models_used": [
+    "LSTM",
+    "MLP",
+    "GRU"
+  ],
+  "histories": [
+    7,
+    14,
+    21,
+    28
+  ],
+  "limitation": "Original MLP test daily vectors and final weights are unavailable here; aggregate seed metrics do not reconstruct them.",
+  "lstm_exact_control_metric_equalities": 480,
+  "new_core_final_study_results_substituted": false,
+  "new_forecasts": 0,
+  "new_model_fits": 0,
+  "paired_tests_scope": "D7 only: three RMSE contrasts per phase, separate exploratory Holm3 families; labels pair nominal seeds",
+  "phases": {
+    "cv": {
+      "end": "2024-12-31",
+      "n_dates": 366,
+      "start": "2024-01-01"
+    },
+    "test": {
+      "end": "2026-08-31",
+      "n_dates": 608,
+      "start": "2025-01-01"
+    }
+  },
+  "purpose": "Post-hoc historical four-history core comparison from authentic saved metrics",
+  "raw_market_archives_read": 0,
+  "rmse_summary": [
+    {
+      "ci95_high": 0.00646919310794642,
+      "ci95_low": 0.0062016355797310805,
+      "ci_scope": "marginal_t_between_seeds_conditional_on_known_dates",
+      "history_days": 7,
+      "mean": 0.00633541434383875,
+      "metric": "rmse",
+      "model": "LSTM",
+      "n_dates_per_seed": 366,
+      "n_seeds": 10,
+      "phase": "cv",
+      "sample_sd": 0.00018700981704530587
+    },
+    {
+      "ci95_high": 0.0062479164681119945,
+      "ci95_low": 0.0058502310860477184,
+      "ci_scope": "marginal_t_between_seeds_conditional_on_known_dates",
+      "history_days": 7,
+      "mean": 0.0060490737770798565,
+      "metric": "rmse",
+      "model": "MLP",
+      "n_dates_per_seed": 366,
+      "n_seeds": 10,
+      "phase": "cv",
+      "sample_sd": 0.00027796291525602774
+    },
+    {
+      "ci95_high": 0.005270139503836356,
+      "ci95_low": 0.0050389975621560855,
+      "ci_scope": "marginal_t_between_seeds_conditional_on_known_dates",
+      "history_days": 7,
+      "mean": 0.005154568532996221,
+      "metric": "rmse",
+      "model": "GRU",
+      "n_dates_per_seed": 366,
+      "n_seeds": 10,
+      "phase": "cv",
+      "sample_sd": 0.00016155707713944208
+    },
+    {
+      "ci95_high": 0.007844829427652583,
+      "ci95_low": 0.00755883980238256,
+      "ci_scope": "marginal_t_between_seeds_conditional_on_known_dates",
+      "history_days": 14,
+      "mean": 0.007701834615017572,
+      "metric": "rmse",
+      "model": "LSTM",
+      "n_dates_per_seed": 366,
+      "n_seeds": 10,
+      "phase": "cv",
+      "sample_sd": 0.0001998929645349306
+    },
+    {
+      "ci95_high": 0.007333094063046943,
+      "ci95_low": 0.006568944462426651,
+      "ci_scope": "marginal_t_between_seeds_conditional_on_known_dates",
+      "history_days": 14,
+      "mean": 0.006951019262736797,
+      "metric": "rmse",
+      "model": "MLP",
+      "n_dates_per_seed": 366,
+      "n_seeds": 10,
+      "phase": "cv",
+      "sample_sd": 0.0005341037419520123
+    },
+    {
+      "ci95_high": 0.006846378201370023,
+      "ci95_low": 0.006507289691049424,
+      "ci_scope": "marginal_t_between_seeds_conditional_on_known_dates",
+      "history_days": 14,
+      "mean": 0.0066768339462097235,
+      "metric": "rmse",
+      "model": "GRU",
+      "n_dates_per_seed": 366,
+      "n_seeds": 10,
+      "phase": "cv",
+      "sample_sd": 0.00023700652603646255
+    },
+    {
+      "ci95_high": 0.009031683553515583,
+      "ci95_low": 0.008527535449942763,
+      "ci_scope": "marginal_t_between_seeds_conditional_on_known_dates",
+      "history_days": 21,
+      "mean": 0.008779609501729173,
+      "metric": "rmse",
+      "model": "LSTM",
+      "n_dates_per_seed": 366,
+      "n_seeds": 10,
+      "phase": "cv",
+      "sample_sd": 0.0003523752265232851
+    },
+    {
+      "ci95_high": 0.008713446099360925,
+      "ci95_low": 0.008051533376396688,
+      "ci_scope": "marginal_t_between_seeds_conditional_on_known_dates",
+      "history_days": 21,
+      "mean": 0.008382489737878807,
+      "metric": "rmse",
+      "model": "MLP",
+      "n_dates_per_seed": 366,
+      "n_seeds": 10,
+      "phase": "cv",
+      "sample_sd": 0.0004626450918692768
+    },
+    {
+      "ci95_high": 0.007647691379092999,
+      "ci95_low": 0.007180300688582347,
+      "ci_scope": "marginal_t_between_seeds_conditional_on_known_dates",
+      "history_days": 21,
+      "mean": 0.007413996033837673,
+      "metric": "rmse",
+      "model": "GRU",
+      "n_dates_per_seed": 366,
+      "n_seeds": 10,
+      "phase": "cv",
+      "sample_sd": 0.0003266835663496198
+    },
+    {
+      "ci95_high": 0.009498028247514912,
+      "ci95_low": 0.009127686741576943,
+      "ci_scope": "marginal_t_between_seeds_conditional_on_known_dates",
+      "history_days": 28,
+      "mean": 0.009312857494545928,
+      "metric": "rmse",
+      "model": "LSTM",
+      "n_dates_per_seed": 366,
+      "n_seeds": 10,
+      "phase": "cv",
+      "sample_sd": 0.00025885086370659407
+    },
+    {
+      "ci95_high": 0.009972282241582447,
+      "ci95_low": 0.00879978450115125,
+      "ci_scope": "marginal_t_between_seeds_conditional_on_known_dates",
+      "history_days": 28,
+      "mean": 0.009386033371366849,
+      "metric": "rmse",
+      "model": "MLP",
+      "n_dates_per_seed": 366,
+      "n_seeds": 10,
+      "phase": "cv",
+      "sample_sd": 0.000819519410971673
+    },
+    {
+      "ci95_high": 0.008166025960283789,
+      "ci95_low": 0.007827148188542464,
+      "ci_scope": "marginal_t_between_seeds_conditional_on_known_dates",
+      "history_days": 28,
+      "mean": 0.007996587074413126,
+      "metric": "rmse",
+      "model": "GRU",
+      "n_dates_per_seed": 366,
+      "n_seeds": 10,
+      "phase": "cv",
+      "sample_sd": 0.00023685922992628688
+    },
+    {
+      "ci95_high": 0.005218407378124857,
+      "ci95_low": 0.0048411658105665615,
+      "ci_scope": "marginal_t_between_seeds_conditional_on_known_dates",
+      "history_days": 7,
+      "mean": 0.005029786594345709,
+      "metric": "rmse",
+      "model": "LSTM",
+      "n_dates_per_seed": 608,
+      "n_seeds": 10,
+      "phase": "test",
+      "sample_sd": 0.00026367367422448984
+    },
+    {
+      "ci95_high": 0.005078450461411523,
+      "ci95_low": 0.004507906921976004,
+      "ci_scope": "marginal_t_between_seeds_conditional_on_known_dates",
+      "history_days": 7,
+      "mean": 0.004793178691693763,
+      "metric": "rmse",
+      "model": "MLP",
+      "n_dates_per_seed": 608,
+      "n_seeds": 10,
+      "phase": "test",
+      "sample_sd": 0.00039878243620319187
+    },
+    {
+      "ci95_high": 0.00391396255919159,
+      "ci95_low": 0.0036362600024454953,
+      "ci_scope": "marginal_t_between_seeds_conditional_on_known_dates",
+      "history_days": 7,
+      "mean": 0.0037751112808185423,
+      "metric": "rmse",
+      "model": "GRU",
+      "n_dates_per_seed": 608,
+      "n_seeds": 10,
+      "phase": "test",
+      "sample_sd": 0.00019410070303947153
+    },
+    {
+      "ci95_high": 0.006247573800143245,
+      "ci95_low": 0.005171138028116382,
+      "ci_scope": "marginal_t_between_seeds_conditional_on_known_dates",
+      "history_days": 14,
+      "mean": 0.005709355914129814,
+      "metric": "rmse",
+      "model": "LSTM",
+      "n_dates_per_seed": 608,
+      "n_seeds": 10,
+      "phase": "test",
+      "sample_sd": 0.0007523767248505497
+    },
+    {
+      "ci95_high": 0.005347818532688523,
+      "ci95_low": 0.00514186774421969,
+      "ci_scope": "marginal_t_between_seeds_conditional_on_known_dates",
+      "history_days": 14,
+      "mean": 0.005244843138454107,
+      "metric": "rmse",
+      "model": "MLP",
+      "n_dates_per_seed": 608,
+      "n_seeds": 10,
+      "phase": "test",
+      "sample_sd": 0.000143949675155075
+    },
+    {
+      "ci95_high": 0.004963165096094127,
+      "ci95_low": 0.004571595758209234,
+      "ci_scope": "marginal_t_between_seeds_conditional_on_known_dates",
+      "history_days": 14,
+      "mean": 0.00476738042715168,
+      "metric": "rmse",
+      "model": "GRU",
+      "n_dates_per_seed": 608,
+      "n_seeds": 10,
+      "phase": "test",
+      "sample_sd": 0.00027368809514292404
+    },
+    {
+      "ci95_high": 0.006779207831302354,
+      "ci95_low": 0.0056147904668773,
+      "ci_scope": "marginal_t_between_seeds_conditional_on_known_dates",
+      "history_days": 21,
+      "mean": 0.006196999149089827,
+      "metric": "rmse",
+      "model": "LSTM",
+      "n_dates_per_seed": 608,
+      "n_seeds": 10,
+      "phase": "test",
+      "sample_sd": 0.0008138716175844146
+    },
+    {
+      "ci95_high": 0.006303961631045636,
+      "ci95_low": 0.005445314651255364,
+      "ci_scope": "marginal_t_between_seeds_conditional_on_known_dates",
+      "history_days": 21,
+      "mean": 0.0058746381411505,
+      "metric": "rmse",
+      "model": "MLP",
+      "n_dates_per_seed": 608,
+      "n_seeds": 10,
+      "phase": "test",
+      "sample_sd": 0.0006001528556051176
+    },
+    {
+      "ci95_high": 0.005169263486389282,
+      "ci95_low": 0.00487313592011367,
+      "ci_scope": "marginal_t_between_seeds_conditional_on_known_dates",
+      "history_days": 21,
+      "mean": 0.005021199703251476,
+      "metric": "rmse",
+      "model": "GRU",
+      "n_dates_per_seed": 608,
+      "n_seeds": 10,
+      "phase": "test",
+      "sample_sd": 0.00020697889669059523
+    },
+    {
+      "ci95_high": 0.008583934230506442,
+      "ci95_low": 0.006881112356026811,
+      "ci_scope": "marginal_t_between_seeds_conditional_on_known_dates",
+      "history_days": 28,
+      "mean": 0.007732523293266627,
+      "metric": "rmse",
+      "model": "LSTM",
+      "n_dates_per_seed": 608,
+      "n_seeds": 10,
+      "phase": "test",
+      "sample_sd": 0.0011901904212199357
+    },
+    {
+      "ci95_high": 0.0077797593199505745,
+      "ci95_low": 0.0071048964731908045,
+      "ci_scope": "marginal_t_between_seeds_conditional_on_known_dates",
+      "history_days": 28,
+      "mean": 0.0074423278965706895,
+      "metric": "rmse",
+      "model": "MLP",
+      "n_dates_per_seed": 608,
+      "n_seeds": 10,
+      "phase": "test",
+      "sample_sd": 0.0004716966042594161
+    },
+    {
+      "ci95_high": 0.0051687737291153755,
+      "ci95_low": 0.004941451788260652,
+      "ci_scope": "marginal_t_between_seeds_conditional_on_known_dates",
+      "history_days": 28,
+      "mean": 0.005055112758688014,
+      "metric": "rmse",
+      "model": "GRU",
+      "n_dates_per_seed": 608,
+      "n_seeds": 10,
+      "phase": "test",
+      "sample_sd": 0.0001588870806707813
+    }
+  ],
+  "runs": 240,
+  "schema_version": "1.0",
+  "seeds_per_model_phase": 10,
+  "software": {
+    "scipy": "1.18.1"
+  },
+  "source_results_modified": false,
+  "temporal_DM_or_residual_tests_recomputed": false
+}

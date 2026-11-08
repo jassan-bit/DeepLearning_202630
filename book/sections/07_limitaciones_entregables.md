@@ -1,10 +1,18 @@
-# 7. Limitaciones Inferenciales de Trabajar con Tres Modelos
+# 7. Limitaciones inferenciales y alcance de la evidencia
 
-**Dos fases del estudio.** Las tablas de cuatro entradas, diez semillas y test enero de 2025–agosto de 2026 de este capítulo corresponden a la **fase I exploratoria**. La **fase II D7** añade búsqueda equitativa, piloto anterior a su ejecución definitiva, dimensionamiento y evaluación preespecificada sobre el 01/09–30/10/2026. Sus recetas, recuentos y resultados se identifican por separado en el [capítulo 9](09_estudio_planificado.md).
+**Núcleo vigente: LSTM–MLP–GRU.** TCN queda como comparación complementaria. El {ref}`estudio nuevo del núcleo <final-core-mlp-e1>` completó HPO comparable, piloto, dimensionamiento y 465 trayectorias definitivas por familia; su cronología y resultados están publicados. El cambio de familias se decide después de conocer los estudios anteriores: ningún resultado previo se convierte retrospectivamente en una evaluación desconocida del núcleo actual.
 
-El benchmark inicial de fase I compara **GRU, LSTM y TCN** con D=7/14/21/28, n=7, h=1 y diez semillas. Se completaron **120 trayectorias de CV, 1.440 segmentos mensuales, 2.880 ajustes y 43.920 predicciones**. El cierre final verificó 120 checkpoints: 80 ajustes nuevos y 40 LSTM idénticos reutilizados. El test histórico contiene 608 fechas y 72.960 predicciones. Los [manifiestos de procedencia](../_static/gru_lstm_tcn_20261105/protocols_manifest.json) distinguen fases, hashes y reutilización.
+La {ref}`evidencia histórica compatible <benchmark-core-historico-e1>` conserva las cuatro entradas D7/14/21/28, diez semillas por combinación, CV 2024 y test de 608 fechas. Son métricas auténticas y comparables en información y calendario, pero su síntesis del nuevo trío es posterior. La MLP histórica de 16 unidades tampoco equivale a la receta seleccionada por el HPO nuevo. Sus diferencias de capacidad y las condiciones históricas deben acompañar cualquier ranking.
 
-**El periodo de test ya había sido observado en el proyecto.** La nueva configuración se cerró antes de puntuar sus checkpoints, pero esa secuencia no vuelve desconocido el mercado ni convierte el análisis en confirmación temporal independiente. La comparación dentro de la terna es posterior a la evaluación y exploratoria. Un benchmark con tres modelos y pocas semillas puede no detectar diferencias pequeñas; ese límite debe cuantificarse y no ocultarse tras el promedio.
+Las secciones 7.1–7.3 conservan el alcance de las pruebas y resultados de los estudios anteriores **GRU–LSTM–TCN**. La fase I tenía cuatro entradas y diez semillas; el estudio D7 posterior con TCN ejecutó su HPO, piloto, R=465 y otra evaluación histórica del 01/09–30/10/2026. Estos controles no se transfieren por sustitución de una familia a MLP. El núcleo actual documenta su propia ejecución en el capítulo 10.
+
+El periodo de septiembre–octubre de 2026 ya se conocía al proponer el núcleo nuevo. Recalcular sus resultados con pesos cerrados y un protocolo publicado permite revisar el procedimiento, pero la comparación conserva alcance **exploratorio sobre un periodo histórico conocido**. No se afirma confirmación temporal independiente, ni se sustituyen datos no disponibles por valores aproximados.
+
+## Límites de la ejecución actual completada
+
+El nuevo núcleo produjo **1.395 redes, 2.790 etapas definitivas y 83.700 predicciones**, con 3.810 etapas al incluir HPO y piloto. No queda pendiente ejecutar esos controles. El piloto produjo R requerido=331 y se aplicó el mínimo registrado R=465; ese tamaño corresponde a aleatoriedad de entrenamiento sobre el calendario fijo, sin garantizar potencia temporal o potencia alcanzada.
+
+En las sesenta fechas históricas conocidas, persistencia tiene menor RMSE puntual que las tres redes. GRU–MLP no rechaza tras Holm-3 (**p=0,243**); esa ausencia de rechazo no establece equivalencia. Los contrastes entre semillas contra LSTM sí rechazan, bajo una aproximación t cuyo supuesto normal es rechazado por los diagnósticos. Ningún DM temporal rechaza tras Holm-6 y el bootstrap familiar principal no demuestra una mejora superior al margen del 5 %. El [resumen público](../_static/e1_core_mlp_extension_20261107/summary.json) y el {ref}`capítulo 10 <final-core-mlp-e1>` conservan estos límites, sin transformar 465 semillas en nuevos periodos de mercado.
 
 ## 7.1. Potencia, tamaño de muestra y multiplicidad
 
@@ -14,14 +22,14 @@ Con tres modelos y cinco bloques, Friedman puede tener poca potencia y Nemenyi s
 
 Un bloque completo debe contener la misma unidad bajo los tres modelos. Semillas, fechas, meses y ventanas no se mezclan como réplicas independientes de la misma naturaleza. En este experimento una semilla identifica una trayectoria de aleatorización condicionada al calendario; los doce meses de CV no son doce mercados. La interpretación de un Friedman entre semillas tendría ese mismo alcance limitado.
 
-El [Friedman D7 vigente](../_static/gru_lstm_tcn_20261105/friedman_D7.csv) se calculó **post-hoc** con tres modelos y diez bloques-semilla, bajo referencia χ² aproximada con dos grados de libertad:
+El [Friedman D7 histórico GRU–LSTM–TCN](../_static/gru_lstm_tcn_20261105/friedman_D7.csv) se calculó **post-hoc** con tres modelos y diez bloques-semilla, bajo referencia χ² aproximada con dos grados de libertad:
 
 | Fase | χ² de Friedman | p aproximado | p Holm2, sensibilidad entre fases |
 |---|---:|---:|---:|
 | CV 2024 | 18,2 | 0,0001116658 | 0,0002233316 |
 | Test histórico observado | 16,8 | 0,0002248673 | 0,0002248673 |
 
-Estos resultados corresponden a aleatorización sobre fechas conocidas, no a diez mercados independientes. Los contrastes pareados y su multiplicidad se declaran por separado en el [plan vigente](../_static/gru_lstm_tcn_20261105/public_analysis_plan.json); no se eligen ni se ocultan según el resultado del omnibus. No se ejecuta Nemenyi: tiene su propio control simultáneo y no se sustituye automáticamente por Holm.
+Estos resultados corresponden a aleatorización sobre fechas conocidas, no a diez mercados independientes. Los contrastes pareados y su multiplicidad se declaran por separado en el [plan histórico de GRU–LSTM–TCN](../_static/gru_lstm_tcn_20261105/public_analysis_plan.json); no se eligen ni se ocultan según el resultado del omnibus. No se ejecuta Nemenyi: tiene su propio control simultáneo y no se sustituye automáticamente por Holm.
 
 ### 7.1.2. Límite del Wilcoxon pareado
 
@@ -47,7 +55,7 @@ Tres modelos producen **tres comparaciones pareadas por configuración**. En Hol
 | 8 | 0,0078125 | Sí | Sí |
 | 10 | 0,001953125 | Sí | Sí |
 
-Esta resolución discreta no es una recomendación de tamaño ni una estimación de potencia. La comparación principal D7 de GRU–LSTM–TCN contiene tres pares por fase; la sensibilidad a cuatro historias contiene doce. Cada familia conserva su pregunta y corrección, como muestran los [pares CV](../_static/gru_lstm_tcn_20261105/within_trio_pairs_cv.csv), [pares test](../_static/gru_lstm_tcn_20261105/within_trio_pairs_test.csv) y familias completas [CV](../_static/gru_lstm_tcn_20261105/within_trio_pairs_allD_cv.csv) y [test](../_static/gru_lstm_tcn_20261105/within_trio_pairs_allD_test.csv).
+Esta resolución discreta no es una recomendación de tamaño ni una estimación de potencia. La comparación anterior D7 de GRU–LSTM–TCN contiene tres pares por fase; la sensibilidad a cuatro historias contiene doce. Cada familia conserva su pregunta y corrección, como muestran los [pares CV](../_static/gru_lstm_tcn_20261105/within_trio_pairs_cv.csv), [pares test](../_static/gru_lstm_tcn_20261105/within_trio_pairs_test.csv) y familias completas [CV](../_static/gru_lstm_tcn_20261105/within_trio_pairs_allD_cv.csv) y [test](../_static/gru_lstm_tcn_20261105/within_trio_pairs_allD_test.csv).
 
 La referencia principal es la t pareada declarada, con diagnósticos de sus supuestos. Ajustar sus p-valores no hace simultáneos unos IC marginales ni vuelve correcto un modelo de independencia inadecuado. Los diagnósticos BDS/Ljung–Box y DM mantienen sus propias unidades y familias; sus rechazos no se suman como confirmaciones independientes.
 
@@ -125,13 +133,13 @@ Los IC entre semillas condicionan al calendario y los contrastes dentro de la te
 
 | Producto | Evidencia vigente | Límite |
 |---|---|---|
-| Informe en Jupyter Book | Capítulos centrados en GRU–LSTM–TCN, sus cuatro entradas y el baseline GRU/D7 | Publicación y revisión no equivalen a cumplimiento científico total. |
+| Informe en Jupyter Book | Núcleo actual LSTM–MLP–GRU y estudio propio; archivo complementario TCN, cuatro entradas históricas y cierres por fecha | Publicación y revisión no equivalen a cumplimiento científico total. |
 | Código EDA, redes y estadística | Recetas, contratos de tensor, semillas, índices, escalado y análisis de predicciones guardadas | Adaptaciones compactas, no réplicas exactas de redes entrenadas en artículos. |
 | Datos y adquisición | Fuente oficial, scripts, manifiestos y reglas de calidad | Una serie BTCUSDT; el periodo de test ya había sido observado. |
 | Literatura y flujo | N7 y flujo de 244 ocurrencias/182 grupos conservados; bitácora actual de WoS, Scopus e IEEE acreditada; ampliación gratuita y síntesis acumulada con lecturas y roles separados | Las consultas acreditadas no equivalen a cribado exhaustivo de todos sus resultados. Distinguir familias autónomas, híbridos, activos, objetivos y versiones; no inferir Q1 o indexación desde editorial. |
-| Benchmark e inferencia | Fase I: 120 trayectorias CV y 120 resultados finales; fase II D7: HPO, piloto, ajuste dimensionado y nueva reserva (§9) | Fase I posterior y exploratoria; fase II preespecificada y condicionada al calendario, con límites temporales y de generalización. |
-| Dependencias y configuraciones | [Catálogo CV](../_static/gru_lstm_tcn_20261105/configuration_catalog_cv.csv), [catálogo final](../_static/gru_lstm_tcn_20261105/configuration_catalog_final.csv) y manifiestos | El cierre final incluye 80 ajustes nuevos y 40 controles reutilizados, no 120 entrenamientos nuevos. |
-| Métrica, margen, unidad y partición | Cronologías separadas: fase I exploratoria y fase II D7 registrada antes de su reserva, con piloto y R=465 | La potencia planificada es marginal entre semillas; no acredita potencia temporal, conjunta o de otro mercado. |
+| Benchmark e inferencia | Núcleo LSTM–MLP–GRU ejecutado: 465 inicializaciones por familia y resultados en capítulo 10; evidencia histórica compatible de cuatro entradas en §5.0.1. Como complemento, fase I y estudio anterior D7 con TCN (§9) | Los pilotos y resultados anteriores con TCN no se transfieren a MLP. El periodo histórico conocido conserva alcance exploratorio para el núcleo nuevo. |
+| Dependencias y configuraciones | Protocolo del núcleo nuevo en capítulo 10; [catálogo CV histórico con TCN](../_static/gru_lstm_tcn_20261105/configuration_catalog_cv.csv), [catálogo final histórico](../_static/gru_lstm_tcn_20261105/configuration_catalog_final.csv) y manifiestos anteriores separados | El cierre histórico con TCN incluyó 80 ajustes nuevos y 40 controles reutilizados, no 120 entrenamientos nuevos; no es el cierre del núcleo con MLP. |
+| Métrica, margen, unidad y partición | El núcleo nuevo ejecutó su propia planificación: R requerido=331 y R final=465. El archivo anterior conserva fase I exploratoria y otro estudio D7 con TCN | Ambos estudios conservan su propio dimensionamiento y procedencia; coincidir en R=465 no permite intercambiar pesos, muestras o contrastes. La potencia planificada es marginal entre semillas, sin acreditar potencia temporal, conjunta o de otro mercado. |
 
 Los archivos descargables del [capítulo 8](08_entregables.md) distinguen resúmenes públicos, código y evidencia completa. El registro de noviembre de 2026 es posterior al mercado: estos son backtests históricos, no predicciones emitidas en vivo.
 
@@ -149,7 +157,7 @@ La {ref}`bitácora de ejecución actual <current-native-execution-e1>` acredita 
 
 La {ref}`ampliación gratuita posterior <free-model-expansion-e1>` incorpora la selección de siete trabajos con TCN y seis con MLP: tres obras ya citadas y diez referencias adicionales. La {ref}`síntesis acumulada <homogeneous-expansion-e1>` reconcilia identidades, versiones, lectura, objetivos y calidad antes de calcular frecuencias. La cuota de búsqueda por arquitectura no representa prevalencia en la literatura. Los trabajos de bolsa o VIX se conservan como evidencia relacionada; un componente TCN de un híbrido no se contabiliza automáticamente como base autónoma de volatilidad cripto.
 
-El experimento principal compara **GRU, LSTM y TCN**. Las menciones de MLP corresponden a candidatos bibliográficos o antecedentes históricos identificados; no añaden un cuarto modelo al benchmark ni cambian sus resultados.
+El núcleo actual compara **LSTM, MLP y GRU**. TCN se conserva como comparación complementaria de los estudios anteriores. La nueva selección sigue la síntesis bibliográfica y tiene un estudio conjunto propio; sus resultados no se obtienen renombrando recetas, semillas o puntuaciones del trío anterior.
 
 ## 7.5. Criterios de evaluación del entregable
 
@@ -177,11 +185,11 @@ Son pesos de evaluación, no porcentajes de avance ni una calificación obtenida
 | Cierre anterior al acceso de este ciclo | Configuraciones y 120 checkpoints firmados antes de leer el derivado test | El periodo ya era conocido; no es confirmación temporal independiente. |
 | Baseline y margen avanzado | GRU/D7 por CV; 5 % fijado, con justificación académica de desarrollo ampliada después | La justificación no retrofecha el margen ni acredita utilidad; la propuesta futura necesita piloto, protocolo y evaluación propios. |
 
-El [estado de pendientes](protocolo_pendiente.md) distingue el cierre del piloto/HPO D7 del cribado de la ampliación bibliográfica, la limitada recurrencia histórica de TCN, la justificación de GRU/LSTM y los límites de fuerza inferencial. La selección de familias debe responder a los textos y mecanismos documentados; el resultado del benchmark no decide qué estudios se incluyen. E1 define un umbral y sus límites; no se inventa una evaluación avanzada ya ejecutada ni se fuerza superioridad universal. La equivalencia sigue siendo condicional a esa afirmación.
+El [estado del entregable](protocolo_pendiente.md) distingue el nuevo núcleo LSTM–MLP–GRU, su estudio propio, los cierres anteriores con TCN y el alcance del cribado bibliográfico. La selección actual se fundamenta en recurrencia, simplicidad y diferencias de mecanismo; la evidencia relacionada financiera se mantiene separada del núcleo cripto. La selección de familias debe responder a los textos y mecanismos documentados; el resultado del benchmark no decide qué estudios se incluyen. E1 define un umbral y sus límites; no se inventa una evaluación avanzada ya ejecutada ni se fuerza superioridad universal. La equivalencia sigue siendo condicional a esa afirmación.
 
-**Alcance de la nueva fase D7.** El [capítulo 9](09_estudio_planificado.md) reúne el diseño público previo, la rejilla equitativa de ocho candidatos por familia, el piloto de 60 días, el cálculo de R y los resultados sobre el 01/09–30/10/2026. Esa fase mantiene n=7/h=1 y covariables OHLCV, con D7 fijo. Los resultados de fase I y sus limitaciones permanecen identificados; la potencia planificada entre semillas no representa potencia temporal ni confirma otros mercados.
+**Alcance del estudio complementario anterior D7 con TCN.** El [capítulo 9](09_estudio_planificado.md) reúne el diseño público previo, la rejilla equitativa de ocho candidatos por familia, el piloto de 60 días, el cálculo de R y los resultados sobre el 01/09–30/10/2026. Esa fase mantiene n=7/h=1 y covariables OHLCV, con D7 fijo. Los resultados de fase I y sus limitaciones permanecen identificados; la potencia planificada entre semillas no representa potencia temporal ni confirma otros mercados.
 
-**Resultado y supuestos de fase II.** La reserva nueva tiene menor RMSE puntual para persistencia y, entre las redes, para TCN; el baseline GRU/D7-c03 se mantiene porque fue elegido con desarrollo. Shapiro–Wilk rechaza normalidad de los tres pares definitivos. Las t y sus IC se leen como aproximaciones para 465 pares; el objetivo de potencia del diseño no se transforma en potencia alcanzada. Ninguna comparación DM rechaza tras Holm-6 y ningún límite temporal familiar del bloque principal acredita una mejora superior al 5 %. Estos resultados y las sensibilidades se conservan en [§9.6](09_estudio_planificado.md), sin elegir después otro contraste o longitud de bloque.
+**Resultado y supuestos del estudio anterior D7 con TCN.** La reserva nueva tiene menor RMSE puntual para persistencia y, entre las redes, para TCN; el baseline GRU/D7-c03 se mantiene porque fue elegido con desarrollo. Shapiro–Wilk rechaza normalidad de los tres pares definitivos. Las t y sus IC se leen como aproximaciones para 465 pares; el objetivo de potencia del diseño no se transforma en potencia alcanzada. Ninguna comparación DM rechaza tras Holm-6 y ningún límite temporal familiar del bloque principal acredita una mejora superior al 5 %. Estos resultados y las sensibilidades se conservan en [§9.6](09_estudio_planificado.md), sin elegir después otro contraste o longitud de bloque.
 
 **Suplemento posterior del 06/11.** Los Q–Q de diferencias, el Friedman global de fase II y la sensibilidad Wilcoxon/Holm se calculan sobre los RMSE por semilla ya publicados y se distinguen del análisis preespecificado en el [capítulo 9](09_estudio_planificado.md). Friedman aporta χ²(2)=391,6258 y Kendall W=0,4211, con alcance condicionado a las mismas sesenta fechas. Los tres pares Wilcoxon rechazan tras Holm bajo sus supuestos; esto no valida normalidad, no convierte semillas en fechas independientes ni sustituye DM o el bootstrap temporal. No se reabre la selección del baseline.
 

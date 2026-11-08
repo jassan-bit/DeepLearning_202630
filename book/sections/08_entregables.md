@@ -2,25 +2,25 @@
 
 ```{raw} html
 <div class="admonition note" id="descargar-entregable-1">
-  <p class="admonition-title">Descargas del Entregable 1 · GRU–LSTM–TCN</p>
+  <p class="admonition-title">Descargas del Entregable 1 · LSTM–MLP–GRU</p>
   <p><a class="btn btn-primary btn-lg" href="../_static/e1_downloads/entregable1_completo.zip" download="entregable1_completo.zip">Descargar entrega completa · ZIP</a></p>
-  <p>Los siete productos reúnen el benchmark inicial, el estudio D7 con búsqueda equitativa, piloto y evaluación preespecificada, y la ampliación bibliográfica nativa del 6 de noviembre. También pueden descargarse individualmente.</p>
+  <p>Los siete productos reúnen la selección bibliográfica LSTM–MLP–GRU, sus resultados históricos compatibles y el registro de una nueva ejecución común. El estudio anterior con TCN conserva sus resultados como comparación complementaria. También pueden descargarse individualmente.</p>
 </div>
 ```
 
-Esta unidad reúne el informe, código, instrucciones de datos y evidencias de **GRU, LSTM y TCN**, distinguiendo **fase I exploratoria** y **fase II D7 planificada**. Sus resultados tienen recetas, periodos y registros propios; el nuevo estudio no vuelve prospectivo el test anterior.
+Esta unidad reúne el informe, código, instrucciones de datos y evidencias del **núcleo LSTM–MLP–GRU**. El [capítulo 10](10_nucleo_mlp.md) documenta su nueva ejecución común; el [capítulo 5](05_benchmark.md) conserva sus resultados históricos compatibles. **TCN pertenece al estudio complementario anterior** del [capítulo 9](09_estudio_planificado.md), cuyos resultados permanecen separados. La evaluación de septiembre–octubre de 2026 ya es conocida: una ejecución nueva no recupera independencia confirmatoria.
 
 Los botones descargan directamente desde el JBook. El [catálogo](../_static/e1_downloads/catalogo.json) y las [sumas SHA-256](../_static/e1_downloads/SHA256SUMS.txt) identifican los archivos de esta versión.
 
 | Ítem | Producto | Estado y alcance | Descarga directa |
 |---|---|---|---|
-| {ref}`8.1 <entrega-8-1>` | Informe en Jupyter Book | Capítulos, figuras y resultados de ambas fases | <a class="btn btn-primary btn-sm" href="../_static/e1_downloads/8_1_informe_html.zip" download="8_1_informe_html.zip">Descargar ZIP</a> |
-| {ref}`8.2 <entrega-8-2>` | Código EDA, modelos y estadística | Ejecutores separados para fase I y fase II; pruebas, locks y guía de restauración | <a class="btn btn-primary btn-sm" href="../_static/e1_downloads/8_2_codigo.zip" download="8_2_codigo.zip">Descargar ZIP</a> |
+| {ref}`8.1 <entrega-8-1>` | Informe en Jupyter Book | Núcleo LSTM–MLP–GRU, ejecución común e historia complementaria de TCN | <a class="btn btn-primary btn-sm" href="../_static/e1_downloads/8_1_informe_html.zip" download="8_1_informe_html.zip">Descargar ZIP</a> |
+| {ref}`8.2 <entrega-8-2>` | Código EDA, modelos y estadística | Ejecutores separados por estudio, pruebas, locks y guía de restauración | <a class="btn btn-primary btn-sm" href="../_static/e1_downloads/8_2_codigo.zip" download="8_2_codigo.zip">Descargar ZIP</a> |
 | {ref}`8.3 <entrega-8-3>` | Dataset: instrucciones y scripts | Fuente oficial, descargador, manifiestos y calendario | <a class="btn btn-primary btn-sm" href="../_static/e1_downloads/8_3_dataset_instrucciones.zip" download="8_3_dataset_instrucciones.zip">Descargar ZIP</a> |
 | {ref}`8.4 <entrega-8-4>` | Síntesis de literatura y flujo | Bibliografía de 70 referencias, bitácora nativa acreditada y ampliación gratuita TCN/MLP con conciliación acumulada | <a class="btn btn-primary btn-sm" href="../_static/e1_downloads/8_4_literatura.zip" download="8_4_literatura.zip">Descargar ZIP</a> |
-| {ref}`8.5 <entrega-8-5>` | Benchmark, baseline e inferencia | Agregados de ambas evaluaciones y curvas reproducidas del modelo final | <a class="btn btn-primary btn-sm" href="../_static/e1_downloads/8_5_benchmark.zip" download="8_5_benchmark.zip">Descargar ZIP</a> |
+| {ref}`8.5 <entrega-8-5>` | Benchmark, baseline e inferencia | Agregados por cohorte del núcleo actual; resultados complementarios y controles de cierre | <a class="btn btn-primary btn-sm" href="../_static/e1_downloads/8_5_benchmark.zip" download="8_5_benchmark.zip">Descargar ZIP</a> |
 | {ref}`8.6 <entrega-8-6>` | Dependencias, semillas y configuraciones | Recetas, búsqueda, piloto, dimensionamiento y configuraciones por fase | <a class="btn btn-primary btn-sm" href="../_static/e1_downloads/8_6_configuraciones.zip" download="8_6_configuraciones.zip">Descargar ZIP</a> |
-| {ref}`8.7 <entrega-8-7>` | Métrica, margen, independencia y partición | Registros previos de fase II y cronología original de fase I | <a class="btn btn-primary btn-sm" href="../_static/e1_downloads/8_7_declaracion.zip" download="8_7_declaracion.zip">Descargar ZIP</a> |
+| {ref}`8.7 <entrega-8-7>` | Métrica, margen, independencia y partición | Cierre y procedencia de la nueva ejecución; registros históricos separados | <a class="btn btn-primary btn-sm" href="../_static/e1_downloads/8_7_declaracion.zip" download="8_7_declaracion.zip">Descargar ZIP</a> |
 
 Descomprime los archivos antes de abrirlos. El informe HTML se inicia en `informe/intro.html`; si el navegador restringe recursos locales, ejecuta `python -m http.server 8000 --directory informe` y abre `http://localhost:8000`. MathJax y los vínculos a fuentes externas pueden requerir internet. Los ZIP contienen código, metadatos, agregados y figuras. Sus ilustraciones temporales usan semillas fijas declaradas, sin escoger la de menor error. No incluyen brutos de un minuto, vectores individuales de predicción, escaladores o checkpoints. Los derivados diarios de desarrollo 2023–2024 están versionados en el repositorio, pero se omiten de los ZIP y se documenta cómo generarlos.
 
@@ -29,17 +29,18 @@ La [matriz de cierre](protocolo_pendiente.md) distingue disponibilidad de archiv
 (entrega-8-1)=
 ## 8.1. Informe en Jupyter Book
 
-El informe desarrolla problema, EDA, literatura, implementación, benchmark inicial, procedimiento, limitaciones y el nuevo estudio D7.
+El informe desarrolla problema, EDA, literatura, implementación, benchmark histórico compatible, procedimiento, limitaciones y la nueva ejecución común del núcleo.
 
 | Componente | Ubicación |
 |---|---|
 | Problema y definición de σ₇ | [Capítulo 1](01_problema_dataset.md) |
 | EDA y estructura temporal | [Capítulo 2](02_eda.md) |
-| Selección bibliográfica de GRU, LSTM y TCN | [Capítulo 3](03_estado_arte.md) |
+| Selección bibliográfica de LSTM, MLP y GRU; TCN complementaria | [Capítulo 3](03_estado_arte.md) |
 | Implementación y requisitos de la guía | [Capítulo 4](04_implementacion_evaluacion.md) |
-| Benchmark exploratorio de fase I | [Capítulo 5](05_benchmark.md) |
+| Benchmark histórico compatible LSTM–MLP–GRU | [Capítulo 5](05_benchmark.md) |
 | Procedimiento y limitaciones | [Capítulo 6](06_procedimiento.md) y [capítulo 7](07_limitaciones_entregables.md) |
-| HPO, piloto, dimensionamiento y nueva evaluación D7 | [Capítulo 9](09_estudio_planificado.md) |
+| Estudio complementario registrado con TCN | [Capítulo 9](09_estudio_planificado.md) |
+| Nueva ejecución común de LSTM–MLP–GRU | [Capítulo 10](10_nucleo_mlp.md) |
 
 Construir HTML consume evidencia guardada y no ejecuta entrenamientos ni inferencias.
 
@@ -51,16 +52,22 @@ Construir HTML consume evidencia guardada y no ejecuta entrenamientos ni inferen
 | Función | Código |
 |---|---|
 | Adquisición oficial | [download_binance_spot.py](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/download_binance_spot.py) |
-| Arquitecturas GRU, LSTM y TCN | [dl_models_gru_lstm_tcn.py](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/dl_models_gru_lstm_tcn.py) |
-| Registro, HPO, piloto, planificación y evaluación de fase II | [run_gru_lstm_tcn_planned.py](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/run_gru_lstm_tcn_planned.py) |
+| Arquitecturas del núcleo LSTM–MLP–GRU | [e1_core_models_mlp.py](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/e1_core_models_mlp.py) |
+| Registro, HPO, piloto, planificación y evaluación común del núcleo | [run_e1_core_mlp_extension.py](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/run_e1_core_mlp_extension.py) |
+| Estadística de la nueva ejecución | [e1_core_mlp_statistics.py](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/e1_core_mlp_statistics.py) |
+| Exportación pública con controles de cierre | [export_e1_core_mlp_extension.py](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/export_e1_core_mlp_extension.py) |
+| Arquitecturas complementarias anteriores con TCN | [dl_models_gru_lstm_tcn.py](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/dl_models_gru_lstm_tcn.py) |
+| Ejecutor del estudio complementario registrado | [run_gru_lstm_tcn_planned.py](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/run_gru_lstm_tcn_planned.py) |
 | Carga verificada de la nueva reserva | [planned_study_data.py](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/planned_study_data.py) |
 | Estadística y dimensionamiento preespecificados | [planned_study_statistics.py](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/planned_study_statistics.py) |
 | Reproducción portable de fase I | [run_gru_lstm_tcn.py](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/run_gru_lstm_tcn.py) |
 | Estadística de una reproducción de fase I | [analyze_gru_lstm_tcn_run.py](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/analyze_gru_lstm_tcn_run.py) |
 
-El diseño y código de fase II se [publicaron antes del HPO](https://github.com/jassan-bit/DeepLearning_202630/commit/ac7dd7f67c0dec2397b519897cf6da8056b238f5). El [cierre de planificación](https://github.com/jassan-bit/DeepLearning_202630/commit/5a0acfbc2ff582e252f0e6fb18aaf652963221f8) fija las recetas y R antes de los ajustes definitivos. Estos registros no se atribuyen retrospectivamente a fase I, cuyo adaptador público se incorporó después de sus ejecuciones originales.
+El diseño del núcleo exige publicar fuentes antes de sus nuevos ajustes, completar una búsqueda equitativa y un piloto nuevo, publicar el dimensionamiento antes del ajuste definitivo y congelar los pesos antes de puntuar. La [ejecución del capítulo 10](10_nucleo_mlp.md) conserva esos recibos y su estado real; ninguna métrica antigua de GRU/LSTM se mezcla con una nueva MLP para presentar una comparación común.
 
-La fase I conserva 120 trayectorias CV, 1.440 segmentos, 2.880 ajustes y 43.920 predicciones. Su cierre final contiene 80 ajustes nuevos y 40 LSTM idénticos reutilizados. La fase II D7 usa una salida nueva y ajustes frescos: 960 de HPO, 60 de piloto y **2.790 etapas de ajuste definitivo para 1.395 modelos finales**. La puntuación nueva se realiza después del cierre de todos sus pesos y escaladores.
+En el estudio complementario con TCN, el diseño y código se [publicaron antes de su HPO](https://github.com/jassan-bit/DeepLearning_202630/commit/ac7dd7f67c0dec2397b519897cf6da8056b238f5). Su [cierre de planificación](https://github.com/jassan-bit/DeepLearning_202630/commit/5a0acfbc2ff582e252f0e6fb18aaf652963221f8) fija recetas y R antes de sus ajustes definitivos. Estos registros conservan su contexto y no se atribuyen a la nueva ejecución del núcleo ni retrospectivamente a fase I.
+
+El estudio anterior con TCN conserva 120 trayectorias CV, 1.440 segmentos, 2.880 ajustes y 43.920 predicciones. Su cierre final contiene 80 ajustes nuevos y 40 LSTM idénticos reutilizados. Su evaluación D7 registrada conserva 960 ajustes HPO, 60 de piloto y **2.790 etapas definitivas para 1.395 modelos**, con su propia cohorte y configuración. Los conteos nuevos de LSTM–MLP–GRU proceden de su ejecución separada y del exportador cerrado.
 
 (entrega-8-3)=
 ## 8.3. Dataset, instrucciones y scripts de obtención
@@ -133,20 +140,41 @@ La **búsqueda web complementaria del 07/11/2026 en Colombia** añade la {ref}`s
 
 La {ref}`conciliación acumulada <homogeneous-expansion-e1>` amplía el registro de 47 a **57 identidades**: **35 originales primarios leídos, una transcripción completa y 21 fuentes con otros niveles de acceso**. El constructo cripto contiene 15 experimentos y 13 con referencias extraíbles. El **estrato actual elegible por reporte tiene diez estudios**, con **LSTM 10, MLP 4, GRU 2 y TCN 1**; este N10 elegible es distinto del N10 descriptivo del corte anterior. Su {download}`matriz de adjudicación <../_static/literature_e1/homogeneous_expansion_20261107/adjudications.csv>` y {download}`frecuencias por estrato <../_static/literature_e1/homogeneous_expansion_20261107/frequencies.csv>` separan evidencia cripto, transferencias financieras, objetivo, lectura y suficiencia de reporte. Siete fuentes seleccionadas para TCN y seis para MLP no representan siete y seis usos elegibles del problema específico ni una estimación de prevalencia: el recuento se deriva de la matriz común. Esta ampliación conserva las consultas nativas, los 244/182 históricos y los resultados del benchmark.
 
-El [capítulo 3](03_estado_arte.md) explica el respaldo conjunto de GRU/LSTM/TCN y sus límites. Encontrar una arquitectura en un resumen o en un componente híbrido no actualiza frecuencias de comparadores independientes. El HPO y el piloto tampoco aumentan esa recurrencia ni convierten las recetas propias en réplicas exactas de artículos.
+La {download}`decisión de núcleo <../_static/literature_e1/core_selection_20261107/README.md>` selecciona **LSTM–MLP–GRU**, las tres mayores frecuencias observadas del estrato elegible, y conserva TCN como complemento. El {download}`ranking reproducible <../_static/literature_e1/core_selection_20261107/ranking.csv>`, las {download}`plantillas publicadas y adaptaciones propias <../_static/literature_e1/core_selection_20261107/source_anchors.csv>` y los {download}`candidatos de capacidad <../_static/literature_e1/core_selection_20261107/parameter_candidates.csv>` documentan simplicidad y diferencias de sesgo bajo D7 común. Las anchuras MLP 32/128 son candidatas anteriores a su nuevo HPO; la receta histórica de 593 parámetros no se presenta como un modelo final de esta ejecución.
+
+El [capítulo 3](03_estado_arte.md) explica el respaldo del núcleo LSTM/MLP/GRU y el papel complementario de TCN. Encontrar una arquitectura en un resumen o en un componente híbrido no actualiza frecuencias de comparadores independientes. El HPO y el piloto tampoco aumentan esa recurrencia ni convierten las recetas propias en réplicas exactas de artículos.
 
 (entrega-8-5)=
 ## 8.5. Tabla comparativa, baseline e inferencia estadística
 
-El [capítulo 9](09_estudio_planificado.md) presenta la evaluación preespecificada de fase II D7, con recetas seleccionadas por HPO, **465 semillas por familia**, contrastes primarios Holm-3 y análisis temporal secundario. El baseline seleccionado antes del piloto y la reserva es **GRU/D7 de 16 unidades**, con RMSE de HPO enero–octubre **0,00513620 ± 0,00003068**. La elección no se reabre según el ranking de la reserva.
+### Núcleo actual LSTM–MLP–GRU
+
+El {download}`paquete histórico compatible <../_static/e1_historical_core_20261107/README.md>` reúne **240 corridas agregadas** de CV2024 y del test histórico 01/01/2025–31/08/2026, cuatro historias D7/14/21/28, tres familias y diez semillas. Sus {download}`144 filas de resumen de métricas <../_static/e1_historical_core_20261107/metric_summary.csv>` y {download}`controles de cohorte <../_static/e1_historical_core_20261107/cohort_checks.json>` permiten revisar esa comparación sin ajustar modelos. Los seis contrastes pareados publicados corresponden sólo a D7 y conservan carácter posterior y exploratorio. No se reconstruyen pronósticos diarios de MLP ni se atribuye a esos agregados un piloto anterior que no tuvieron.
+
+La {ref}`nueva ejecución común cerrada <final-core-mlp-e1>` completa **48 trayectorias HPO y 960 etapas**, **30 trayectorias piloto y 60 etapas**, y **1.395 modelos definitivos y 2.790 etapas**. El piloto exige R=331 y el mínimo registrado eleva el tamaño final a **465 semillas por familia**. Se verificaron las publicaciones de fuente y plan antes de sus ajustes correspondientes y se puntuaron los modelos después de congelar todos los pesos: **83.700 predicciones privadas en 60 fechas**, del 01/09 al 30/10/2026.
+
+| Modelo del núcleo actual | RMSE, media ± DE entre semillas |
+|---|---:|
+| GRU | 0,00511696 ± 0,00077519 |
+| MLP | 0,00516664 ± 0,00048727 |
+| LSTM | 0,00565123 ± 0,00056569 |
+| Persistencia determinista | 0,00384478 |
+
+**Persistencia presenta menor RMSE que las tres redes.** GRU es el baseline elegido por CV y tiene la menor RMSE media entre redes; su diferencia con MLP no rechaza la hipótesis de igualdad tras Holm-3. La evaluación mantiene carácter histórico y exploratorio porque el calendario ya se conocía. Las diferencias entre semillas no acreditan superioridad sobre otros periodos ni utilidad financiera.
+
+Se distribuyen el {download}`resumen y alcance <../_static/e1_core_mlp_extension_20261107/summary.json>`, las {download}`métricas agregadas <../_static/e1_core_mlp_extension_20261107/metric_summary.csv>`, las {download}`métricas por semilla <../_static/e1_core_mlp_extension_20261107/run_metrics.csv>`, los {download}`contrastes pareados <../_static/e1_core_mlp_extension_20261107/pairwise_rmse.csv>` y la {download}`cronología comprobada <../_static/e1_core_mlp_extension_20261107/chronology.json>`. Las {download}`curvas de entrenamiento y validación <../_static/e1_core_mlp_extension_20261107/learning_curves.png>` proceden de **44.201 filas reales de pérdidas**; están disponibles también las {download}`curvas por corrida <../_static/e1_core_mlp_extension_20261107/learning_curves_by_run.csv>` y su {download}`resumen <../_static/e1_core_mlp_extension_20261107/learning_curve_summary.csv>`. El reajuste no usa validación de reserva. El {download}`manifiesto de 25 archivos públicos <../_static/e1_core_mlp_extension_20261107/manifest.json>` acredita hashes y tamaños; los objetivos y pronósticos diarios, pesos y escaladores permanecen privados.
+
+### Estudio complementario anterior con TCN
+
+El [capítulo 9](09_estudio_planificado.md) presenta la evaluación preespecificada del estudio complementario GRU–LSTM–TCN, con recetas seleccionadas por HPO, **465 semillas por familia**, contrastes primarios Holm-3 y análisis temporal secundario. Su baseline seleccionado antes del piloto y de aquella reserva fue **GRU/D7 de 16 unidades**, con RMSE de HPO enero–octubre **0,00513620 ± 0,00003068**. Estos resultados no se atribuyen a las nuevas recetas LSTM–MLP–GRU.
 
 El ZIP 8.5 incluye los [agregados de fase II](../_static/gru_lstm_tcn_planned_20261105/summary.json), junto con los registros de fase I y el suplemento estadístico posterior del [capítulo 9](09_estudio_planificado.md). Cada directorio conserva su manifiesto de integridad y su cohorte. Se añaden las {download}`curvas públicas reproducidas <../_static/e1_curve_reproduction_20261106/README.md>` de las tres recetas finales: 1.395 trayectorias y 2.790 etapas nuevas, sólo con desarrollo 2023–2024. Su comparación de hashes distingue identidad de configuración, curvas y pesos; la ejecución no sustituye los resultados originales ni puntúa la reserva. Los Q–Q, Friedman y la sensibilidad Wilcoxon del suplemento se calculan desde métricas ya guardadas: no formaron parte del análisis registrado ni modifican sus contrastes primarios.
 
 La {download}`auditoría forense <../_static/e1_replay_forensics_20261107/README.md>` añade la búsqueda de originales, la comparación de archivos y los 29 cambios de época de TCN, con causa todavía no identificada. La {download}`repetibilidad actual controlada <../_static/e1_replay_repeatability_20261107/README.md>` ejecuta dos procesos independientes sobre seis celdas diagnósticas: **12 trayectorias, 24 etapas y 18/18 comparaciones canónicas exactas** entre réplicas; las seis celdas satisfacen también la tolerancia fijada antes del ajuste. Coinciden además con esas seis celdas de la reproducción completa anterior. No se leen precios de reserva ni se añaden observaciones independientes al benchmark; el resultado no acredita identidad con los archivos originales ni repetibilidad de las 1.395 trayectorias completas.
 
-La reserva de fase II tiene los siguientes resultados:
+La reserva del estudio complementario anterior tiene los siguientes resultados:
 
-| Modelo final | RMSE, media ± DE | R² medio | MAE medio |
+| Modelo del estudio complementario | RMSE, media ± DE | R² medio | MAE medio |
 |---|---:|---:|---:|
 | GRU | 0,00511696 ± 0,00077519 | 0,348891 | 0,00391028 |
 | LSTM | 0,00565123 ± 0,00056569 | 0,215843 | 0,00429363 |
@@ -155,7 +183,7 @@ La reserva de fase II tiene los siguientes resultados:
 
 Las redes resumen 465 semillas sobre las mismas sesenta fechas; persistencia es determinista. Los [contrastes e intervalos de fase II](09_estudio_planificado.md) distinguen aleatoriedad de entrenamiento e incertidumbre temporal.
 
-En esta reserva, **persistencia tiene menor RMSE media que las tres redes y TCN el menor error entre las redes**. El baseline operativo permanece GRU/D7-c03, fijado por desarrollo. Las diferencias entre semillas no equivalen a superioridad temporal: ninguna comparación DM rechaza tras Holm-6 y el bootstrap temporal familiar no acredita una mejora superior al 5 %. Los diagnósticos rechazan normalidad de las diferencias; las t de 465 pares se interpretan como aproximaciones, con sus límites en el capítulo 9.
+En aquella reserva, **persistencia tuvo menor RMSE media que las tres redes y TCN el menor error entre las redes**. El baseline de ese estudio permanece GRU/D7-c03, fijado por desarrollo. Las diferencias entre semillas no equivalen a superioridad temporal: ninguna comparación DM rechaza tras Holm-6 y el bootstrap temporal familiar no acredita una mejora superior al 5 %. Los diagnósticos rechazan normalidad de las diferencias; las t de 465 pares se interpretan como aproximaciones, con sus límites en el capítulo 9.
 
 La tabla siguiente conserva el **test de fase I, 01/01/2025–31/08/2026**, para las recetas iniciales D7:
 
@@ -173,7 +201,19 @@ No se comparan directamente RMSE de 608 y 60 fechas para atribuir una ganancia a
 (entrega-8-6)=
 ## 8.6. Dependencias, semillas y configuración de cada corrida
 
-| Modelo final | Receta seleccionada | Parámetros entrenables |
+El núcleo actual distribuye su diseño en `experiments/e1_core_mlp_extension_20261107/`, con dependencias fijadas, semillas HPO/piloto/definitivas separadas y una salida privada nueva. La {download}`selección real por desarrollo <../_static/e1_core_mlp_extension_20261107/selection.json>` congela las siguientes recetas D7, con salida Softplus:
+
+| Modelo del núcleo actual | Receta final seleccionada | Parámetros entrenables |
+|---|---|---:|
+| GRU, c03 | Una capa de 16 unidades; LR 0,003; dropout 0,1 | 1.121 |
+| LSTM, c02 | Una capa de 16 unidades; LR 0,003; dropout 0 | 1.489 |
+| MLP, c03 | Una capa ReLU de 32 unidades, entrada D7×5 aplanada; LR 0,003; dropout 0,1 | 1.185 |
+
+El {download}`plan del piloto <../_static/e1_core_mlp_extension_20261107/plan.json>` fija R requerido=331 y R final=465; su {download}`recibo de publicación <../_static/e1_core_mlp_extension_20261107/plan_publication.json>` precede al ajuste definitivo. Se conservan el {download}`registro de ejecución <../_static/e1_core_mlp_extension_20261107/registration.json>`, el {download}`runtime observado <../_static/e1_core_mlp_extension_20261107/runtime.json>` y la {download}`procedencia de fuentes <../_static/e1_core_mlp_extension_20261107/source_manifest.json>`. Las configuraciones históricas permanecen separadas. Los pesos y valores de escaladores permanecen privados.
+
+La tabla siguiente conserva **las recetas del estudio complementario anterior con TCN**:
+
+| Modelo complementario anterior | Receta seleccionada | Parámetros entrenables |
 |---|---|---:|
 | GRU | Una capa unidireccional de 16 unidades; LR 0,003; dropout 0,1 | 1.121 |
 | LSTM | Una capa unidireccional de 16 unidades; LR 0,003; dropout 0 | 1.489 |
@@ -187,6 +227,10 @@ También incorpora `experiments/e1_replay_audit_20261107/` y los registros de la
 
 (entrega-8-7)=
 ## 8.7. Declaración de métrica, margen, independencia y partición
+
+La nueva ejecución **LSTM–MLP–GRU** mantiene una métrica común RMSE, una selección de baseline por desarrollo, el margen académico fijo y la regla publicada de dimensionamiento. Evalúa **sesenta fechas históricas ya observadas**, por lo que sus comparaciones se interpretan como exploratorias. Las repeticiones independientes de entrenamiento no añaden calendarios ni mercados. El exportador conserva esa declaración y rechaza resultados mezclados, paneles incompletos, curvas de validación inventadas en el reajuste o metadatos sin sus controles de publicación y cierre.
+
+La declaración siguiente pertenece al **estudio complementario anterior** y conserva su cronología original:
 
 | Elemento | Declaración y alcance de fase II D7 |
 |---|---|
@@ -206,6 +250,8 @@ También incorpora `experiments/e1_replay_audit_20261107/` y los registros de la
 
 La [cronología de fase II](../_static/gru_lstm_tcn_planned_20261105/chronology.json), su [registro](../_static/gru_lstm_tcn_planned_20261105/registration.json) y el [cierre de pesos](../_static/gru_lstm_tcn_planned_20261105/final_freeze_provenance.json) permiten seguir el orden. La [cronología de fase I](../_static/gru_lstm_tcn_delivery_20261105/declaration_and_chronology.json) conserva su carácter anterior y exploratorio. Los límites bibliográficos y de generalización permanecen en la [matriz de pendientes](protocolo_pendiente.md).
 
-El producto 8.7 añade el expediente de comparabilidad de datasets, el contexto académico del margen fijo y los registros de las reproducciones de curvas, junto con resúmenes y manifiestos de las ampliaciones editoriales, búsquedas nativas, síntesis homogénea y auditoría forense. También incluye los resúmenes/manifiestos de `free_model_expansion_20261107/` y `homogeneous_expansion_20261107/`; las fichas y tablas completas están en 8.4 y los constructores en 8.2. La {download}`justificación del margen <../_static/e1_academic_margin_20261106/README.md>` usa sólo desarrollo y no modifica δ, R ni la decisión primaria. El producto 8.3 conserva íntegro el archivo original de adquisición; 8.6 conserva sus miembros históricos y añade la nueva configuración por separado. Los resultados científicos históricos incluidos en los demás productos mantienen sus bytes; las adiciones posteriores tienen directorios y procedencia propios. La nueva edición usa el sufijo `20261107_free_models`: conserva también los metadatos previos del propio 07/11, además de los fechados del 06/11.
+El producto 8.7 añade el expediente de comparabilidad de datasets, el contexto académico del margen fijo y los registros de las reproducciones de curvas, junto con resúmenes y manifiestos de las ampliaciones editoriales, búsquedas nativas, síntesis homogénea, selección del núcleo y auditoría forense. Incluye también los resúmenes/manifiestos del histórico compatible LSTM–MLP–GRU y los registros de cierre de su nueva ejecución; las fichas/tablas literarias completas están en 8.4, los agregados experimentales en 8.5 y los constructores en 8.2. La {download}`justificación del margen <../_static/e1_academic_margin_20261106/README.md>` usa sólo desarrollo y no modifica el δ registrado. El producto 8.3 conserva íntegro el archivo original de adquisición; 8.6 conserva sus miembros históricos y añade la nueva configuración por separado. Los resultados científicos históricos incluidos en los demás productos mantienen sus bytes. La edición `20261107_core_mlp` conserva también los metadatos anteriores `20261107_free_models` y los registros previos del propio 07/11 y del 06/11.
+
+La edición de descargas del núcleo requiere el cierre comprobado de la nueva ejecución. Su catálogo identifica LSTM–MLP–GRU, la receta y el baseline elegidos en esa validación y el R realmente completado. Los modelos, entrypoints y resultados de selección anteriores quedan separados en `historical_study_metadata`; TCN conserva su papel complementario.
 
 También incorpora el [resumen de la bitácora provisional](../_static/literature_e1/provisional_native_log_20261107/summary.json) y su [manifiesto de procedencia](../_static/literature_e1/provisional_native_log_20261107/manifest.json); el CSV y el procedimiento completos se distribuyen en 8.4. Este registro conserva como desconocidos la cadena literal, el total y la fecha nativa, y dejaba abierta la consulta acreditada de IEEE en aquel corte. La ronda nativa posterior conserva esta versión previa y registra su propia fecha de ejecución confirmada.

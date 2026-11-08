@@ -1,4 +1,4 @@
-# Construcción y reproducción de las dos fases GRU–LSTM–TCN
+# Construcción y reproducción del núcleo LSTM–MLP–GRU y sus estudios complementarios
 
 ## Construir los tres libros
 
@@ -20,7 +20,7 @@ Desde la raíz, con el entorno de `requirements-book.lock.txt` instalado:
 
 La carpeta de salida del ensamblado debe ser nueva o vacía; usar otra ruta al repetir. Abrir `http://localhost:8000/entregables.html`. La publicación automatizada siempre reconstruye y reúne los tres libros, para conservarlos cuando cambia uno de ellos.
 
-E2 ya cuenta con la guía completa de 65 páginas y capítulos 1–14. La ruta vigente es F2a: series de tiempo, con contrato D7×5 y δ heredados conservados, veinte configuraciones y quince recetas ajustables T12. El commit `599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0` registra el protocolo antes de los ajustes P0/OOF de Bitcoin. Se completaron las 220 trayectorias y 440 ajustes P0/OOF, y se analizaron 305 casos por receta. Ese experimento de desarrollo se distingue de la réplica ETTh1 y del benchmark final, todavía pendiente. Las secciones siguientes sobre GRU–LSTM–TCN describen E1.
+E2 ya cuenta con la guía completa de 65 páginas y capítulos 1–14. La ruta vigente es F2a: series de tiempo, con contrato D7×5 y δ heredados conservados, veinte configuraciones y quince recetas ajustables T12. El commit `599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0` registra el protocolo antes de los ajustes P0/OOF de Bitcoin. Se completaron las 220 trayectorias y 440 ajustes P0/OOF, y se analizaron 305 casos por receta. Ese experimento de desarrollo se distingue de la réplica ETTh1 y del benchmark final, todavía pendiente. E1 distingue ahora el núcleo LSTM–MLP–GRU del estudio anterior complementario con TCN; los registros de E2 conservan sus propias fuentes y cronología.
 
 ## Implementación final de E2
 
@@ -148,7 +148,63 @@ Para verificar las descargas, descomprimir los productos **8.2, 8.3 y 8.5** en u
 
 Esta verificación de agregados no requiere adquirir mercado ni generar los CSV diarios. El informe HTML del producto 8.1 se abre por separado en `informe/intro.html`.
 
-## Reproducir una ejecución nueva de fase I
+## Nueva ejecución común del núcleo LSTM–MLP–GRU
+
+La selección bibliográfica actual está en `references/literature_e1/core_selection_20261107/`. Su registro se reconstruye sin entrenar:
+
+```bash
+python scripts/build_e1_core_selection.py --check
+python -m unittest discover -s tests -p 'test_e1_core_selection.py'
+```
+
+Los resultados compatibles anteriores se recopilan separadamente, sin crear nuevas predicciones:
+
+```bash
+python scripts/build_e1_historical_core.py --check
+python -m unittest discover -s tests -p 'test_e1_historical_core.py'
+```
+
+El resultado histórico contiene **240 corridas agregadas**: CV2024 y test histórico 01/01/2025–31/08/2026, cuatro historias D7/14/21/28, tres modelos y diez semillas; el resumen contiene **144 filas de seis métricas**. Sólo D7 lleva seis contrastes pareados posteriores. No se reconstruyen desde esos agregados curvas, pesos o vectores diarios de MLP ausentes, ni se convierte su benchmark exploratorio en una nueva ejecución común.
+
+La nueva fuente está en `experiments/e1_core_mlp_extension_20261107/`. Mantiene el contrato D7×5, σ₇ y h=1, pero ejecuta **desde cero las tres familias**, con ocho candidatos, dos semillas y diez bloques de validación por modelo. La MLP propia tiene una capa oculta ReLU, entrada aplanada ordenada y salida Softplus; las anchuras candidatas son 32/128, con 1.185/4.737 parámetros. Son adaptaciones del proyecto, distintas de la receta histórica de 593 parámetros. El baseline se congela por CV antes de un piloto nuevo de diez semillas por familia. El plan exige `R_final=max(465,R_required)` y su publicación antes de los ajustes definitivos.
+
+La ejecución original de esta extensión está cerrada en `results/e1_core_mlp_extension_20261107/`, con espejo público en `book/_static/e1_core_mlp_extension_20261107/`: **48 trayectorias HPO/960 etapas, 30 piloto/60 etapas, R requerido=331 y R final=465, 1.395 modelos definitivos/2.790 etapas, 83.700 predicciones privadas y 44.201 filas públicas de pérdidas**. Las fuentes científicas corresponden al commit `91acdeae1efd92f098ff2ce9a32f90c5b0a4b98a`; el plan real se publicó en `593b4ec943dc0f7e257d348f3145e71810f665e4` antes de los ajustes definitivos. El baseline por desarrollo es GRU/c03: 16 unidades, LR 0,003, dropout 0,1; LSTM/c02 usa 16 unidades, LR 0,003 y dropout 0; MLP/c03 usa 32 unidades ReLU, LR 0,003 y dropout 0,1, con 1.185 parámetros.
+
+En las 60 fechas evaluadas, las RMSE medias son GRU 0,00511696, MLP 0,00516664, LSTM 0,00565123 y persistencia 0,00384478. Los CSV públicos conservan mayor precisión e inferencia completa. Persistencia tiene menor error; GRU–MLP no rechaza igualdad tras Holm-3. El calendario de septiembre–octubre de 2026 ya era conocido al diseñar esta extensión: sus resultados son **históricos y exploratorios**, no una nueva reserva confirmatoria. La publicación previa controla el orden de esta ejecución nueva; no convierte sus resultados en desconocidos.
+
+Desde un checkout limpio e inmutable de las fuentes ya publicadas, usando Python 3.12.14 y `requirements-e1-curves.lock.txt`:
+
+```bash
+PYTHONHASHSEED=0 python scripts/run_e1_core_mlp_extension.py register --output-dir /ruta/privada/nueva --published-commit SHA40_FUENTE --publication-receipt /ruta/recibo_fuente.json
+PYTHONHASHSEED=0 python scripts/run_e1_core_mlp_extension.py hpo --output-dir /ruta/privada/nueva
+PYTHONHASHSEED=0 python scripts/run_e1_core_mlp_extension.py pilot --output-dir /ruta/privada/nueva
+PYTHONHASHSEED=0 python scripts/run_e1_core_mlp_extension.py plan --output-dir /ruta/privada/nueva
+```
+
+Después se publica el `plan.json` real del piloto y se conserva un recibo de observación remota que identifique su commit y SHA-256. Las fechas de un commit por sí solas no acreditan publicación. Las fases siguientes requieren esos bytes exactos y que todavía no se haya iniciado el ajuste definitivo:
+
+```bash
+PYTHONHASHSEED=0 python scripts/run_e1_core_mlp_extension.py register-plan --output-dir /ruta/privada/nueva --published-plan-file /ruta/plan_publicado.json --published-commit SHA40_PLAN --publication-receipt /ruta/recibo_plan.json
+PYTHONHASHSEED=0 python scripts/run_e1_core_mlp_extension.py fit --output-dir /ruta/privada/nueva
+PYTHONHASHSEED=0 python scripts/run_e1_core_mlp_extension.py freeze --output-dir /ruta/privada/nueva
+PYTHONHASHSEED=0 python scripts/run_e1_core_mlp_extension.py score --output-dir /ruta/privada/nueva --raw-root /ruta/brutos/binance
+PYTHONHASHSEED=0 python scripts/run_e1_core_mlp_extension.py analyze --output-dir /ruta/privada/nueva
+```
+
+`score` requiere los 32 archivos originales identificados por hash: agosto aporta contexto y del 1 de septiembre al 30 de octubre se evalúan 60 fechas. Sólo los abre después de comprobar todos los pesos/configuraciones nuevos. Sin esos archivos no se presenta una tabla completa de evaluación. No se reutilizan puntuaciones antiguas de GRU/LSTM junto con una MLP nueva. Las predicciones privadas llevan `study_id` y `execution_id` de una sola ejecución; el módulo estadístico rechaza mezclas.
+
+Si el entorno de ejecución no puede acceder a Binance, el cuaderno `notebooks/descargar_datos_originales_e1.ipynb`, incluido sin resultados en 8.2, permite adquirir los 32 archivos originales desde otro entorno y comprobar todos sus SHA-256. También puede [abrirse en Google Colab](https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/4033d09005160de8de57b8b2a512cbba7e86c8fd/notebooks/descargar_datos_originales_e1.ipynb). Genera `datos_originales_E1.zip`; antes de usar sus contenidos, el ejecutor vuelve a comprobar los hashes registrados. La disponibilidad del cuaderno no acredita su ejecución ni la adquisición efectiva de los datos.
+
+Una vez cerradas todas las etapas, se ejecuta el exportador **desde el mismo checkout fuente inmutable** hacia directorios públicos nuevos externos a ese checkout:
+
+```bash
+PYTHONHASHSEED=0 python scripts/export_e1_core_mlp_extension.py --source-root /ruta/checkout_fuente --private-dir /ruta/privada/nueva --output-dir /ruta/editorial/results/e1_core_mlp_extension_20261107 --mirror-dir /ruta/editorial/book/_static/e1_core_mlp_extension_20261107
+python -m unittest discover -s tests -p 'test_e1_core_mlp_export.py'
+```
+
+El exportador no ajusta, puntúa ni abre archivos de mercado. Comprueba hashes de todos los artefactos cerrados, las 48 trayectorias HPO/960 etapas, las 30 piloto/60 etapas, el plan real, todas las 3R trayectorias definitivas y sus6R etapas, y los60outcomes de evaluación. Verifica publicaciones anteriores a los ajustes correspondientes, cronología, identidad de ejecución y panel exacto GRU/LSTM/MLP. Publica métricas por semilla, inferencia agregada, configuraciones, procedencia y curvas de pérdidas de desarrollo de las tres familias. El reajuste no recibe una validación inventada de reserva. Los checkpoints, precios, objetivos/pronósticos diarios y valores de escaladores permanecen privados. El manifiesto público limita el producto a esa lista cerrada; una exportación incompleta no se distribuye como resultado final.
+
+## Reproducir una ejecución nueva del estudio complementario de fase I
 
 El adaptador público es una versión portable publicada después de la ejecución local. No se atribuye su hash a un entrenamiento anterior. Para una repetición, elegir una salida vacía distinta de la evidencia cerrada:
 
@@ -345,7 +401,7 @@ La ampliación bibliográfica `open_access_replacement_20261107/` se incorpora p
 
 La bitácora `provisional_native_log_20261107/` usa el mismo manifiesto cerrado: **8.4** incorpora todos sus archivos aprobados y **8.7** sólo el resumen y el manifiesto de raíz. Su constructor entra automáticamente en **8.2** como código Python versionado. El refresco conserva el estado histórico de esa preparación; las ejecuciones acreditadas posteriores se añaden por separado en `native_execution_20261107/`, junto a `homogeneous_synthesis_20261107/`, con todos sus miembros aprobados en **8.4** y sus resúmenes/manifiestos en **8.7**. No ejecuta consultas, entrenamientos o curvas ni cambia los archivos científicos de **8.5/8.6** o el binario de **8.3**.
 
-Las etapas nuevas `free_model_expansion_20261107/` y `homogeneous_expansion_20261107/` emplean ese mismo contrato cerrado: **8.4** recibe sus fichas, tablas, bibliografía y demás metadatos aprobados; **8.7** recibe únicamente sus resúmenes/manifiestos de raíz; sus constructores y pruebas entran en **8.2**. La edición del paquete se identifica como `20261107_free_models`, con la fecha real del 07/11/2026 en Colombia. Conserva dentro de 8.7 los registros anteriores `literature_refresh_20261107.json` y `AMPLIACION_LITERARIA_20261107.md`, además de los del 06/11: un refresco posterior del mismo día no borra la procedencia ya publicada.
+Las etapas `free_model_expansion_20261107/`, `homogeneous_expansion_20261107/` y `core_selection_20261107/` emplean ese mismo contrato cerrado: **8.4** recibe sus fichas, tablas, bibliografía y demás metadatos aprobados; **8.7** recibe únicamente sus resúmenes/manifiestos de raíz; sus constructores y pruebas entran en **8.2**. La edición del paquete se identifica como `20261107_core_mlp`, con la fecha real del 07/11/2026 en Colombia. Conserva dentro de 8.7 los registros anteriores `literature_refresh_20261107_free_models.json`, `literature_refresh_20261107.json` y `AMPLIACION_LITERARIA_20261107.md`, además de los del 06/11: un refresco posterior del mismo día no borra la procedencia ya publicada.
 
 El suplemento `results/e1_statistics_supplement_20261106/`, reflejado en el libro, calcula Q–Q, Friedman/Kendall W y sensibilidad Wilcoxon/Holm desde las métricas por semilla guardadas; es **posterior** a la evaluación original y no acredita potencia temporal ni nuevos ajustes. La fundamentación `e1_academic_margin_20261106/` consume sólo desarrollo y mantiene δ y R. Sus manifiestos fijan insumos y productos públicos.
 
@@ -383,4 +439,4 @@ La verificación remota previa debe conservarse aparte; el argumento `--publishe
 
 El panel dirigido de seis celdas produjo **12 trayectorias y 24 etapas**, con **18/18 hashes canónicos iguales entre réplicas** y también frente a esas seis celdas de la reproducción completa anterior; la diferencia numérica máxima fue cero. Satisface el criterio secundario fijado de `rtol=1e-6`, `atol=1e-8` en las seis celdas. `results/e1_replay_repeatability_20261107/` publica comparación, registro, entorno, ejecución y prueba de publicación previa, sin pesos, escaladores o predicciones diarias. No se consultó la reserva ni se añadieron muestras independientes al benchmark. El resultado se limita a ese panel: no recupera los archivos originales ni certifica la repetibilidad de todo R465.
 
-El empaquetador admite únicamente las listas explícitas de esos manifiestos, comprueba hashes/bytes, estructura PNG, campos privados, CRC y rutas seguras. Los stages anidados `search_recovery_20261106`, `internet_closure_20261106`, `open_access_replacement_20261107`, `provisional_native_log_20261107`, `homogeneous_synthesis_20261107`, `native_execution_20261107`, `free_model_expansion_20261107` y `homogeneous_expansion_20261107` requieren `publication_schema: e1_public_metadata_allowlist_v1`, una lista ordenada sin duplicados `approved_public_files` y `files: {ruta: {sha256, bytes}}` con exactamente los mismos miembros. La auditoría forense y la repetibilidad controlada usan ese mismo contrato en `public_allowlist_manifest.json`: sus archivos aprobados entran en **8.5**; resúmenes y manifiestos en **8.7**; para repetibilidad, registro, runtime, ejecución y verificación de publicación también entran en **8.6/8.7**. Los protocolos de ambas reproducciones viajan en **8.6/8.7** y sus ejecutores en **8.2**. Sólo se leen esos metadatos admitidos, nunca archivos vecinos sin listar, originales PDF ni payloads experimentales privados. Renueva catálogo y paquete conjunto; no regenera la ciencia desde el empaquetador histórico. La edición `20261107_free_models` conserva los registros anteriores del propio 07/11 y del 06/11. Copiar los productos verificados a `book/_static/e1_downloads/` y reconstruir E1 para distribuir las descargas actualizadas. La compilación posterior sólo actualiza enlaces y recursos de distribución; el catálogo identifica el commit de fuentes usado para generar los ZIP, separado del commit posterior que agrega los propios paquetes.
+El empaquetador admite únicamente las listas explícitas de esos manifiestos, comprueba hashes/bytes, estructura PNG, campos privados, CRC y rutas seguras. Los stages anidados `search_recovery_20261106`, `internet_closure_20261106`, `open_access_replacement_20261107`, `provisional_native_log_20261107`, `homogeneous_synthesis_20261107`, `native_execution_20261107`, `free_model_expansion_20261107`, `homogeneous_expansion_20261107` y `core_selection_20261107` requieren `publication_schema: e1_public_metadata_allowlist_v1`, una lista ordenada sin duplicados `approved_public_files` y `files: {ruta: {sha256, bytes}}` con exactamente los mismos miembros. La auditoría forense y la repetibilidad controlada usan ese mismo contrato en `public_allowlist_manifest.json`: sus archivos aprobados entran en **8.5**; resúmenes y manifiestos en **8.7**; para repetibilidad, registro, runtime, ejecución y verificación de publicación también entran en **8.6/8.7**. El histórico compatible `e1_historical_core_20261107/` y la exportación cerrada nueva `e1_core_mlp_extension_20261107/` usan el mismo contrato en `manifest.json`; van a **8.5** con sus resúmenes/manifiestos en **8.7**. La exportación nueva añade a **8.6/8.7** registro, selección, plan, publicación del plan, cronología, runtime y manifiesto de fuentes. Sus fuentes/diseño y los protocolos de las reproducciones viajan en **8.6/8.7** y sus ejecutores en **8.2**. Sólo se leen esos metadatos admitidos, nunca archivos vecinos sin listar, originales PDF ni payloads experimentales privados. La exportación completa nueva es obligatoria para generar esta edición de las descargas; el empaquetador falla ante ausencia o cierre incompleto en lugar de inventar resultados. Renueva catálogo y paquete conjunto; no regenera la ciencia desde el empaquetador histórico. La edición `20261107_core_mlp` conserva las ediciones anteriores del propio 07/11 y del 06/11. Copiar los productos verificados a `book/_static/e1_downloads/` y reconstruir E1 para distribuir las descargas actualizadas. La compilación posterior sólo actualiza enlaces y recursos de distribución; el catálogo identifica el commit de fuentes usado para generar los ZIP, separado del commit posterior que agrega los propios paquetes.

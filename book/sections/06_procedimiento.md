@@ -24,7 +24,7 @@ La guía contiene **once rutas numeradas, de 6.1 a 6.11**. Su lista inicial agru
 
 Usar LSTM o Transformer y una entrada D×5 no cambia por sí solo el tipo de tarea. La clasificación como tipo 4 tampoco afirma independencia o exogeneidad de OHLCV respecto a la volatilidad: los precios intervienen en construir retornos y pueden aportar información sobre volatilidad pasada. La distinción operativa de la guía se aplica a las entradas explícitas registradas.
 
-El procedimiento principal utiliza validación forward chaining de `timeseries-cv`, con coautoría de Filipe R. Ramos, y las mismas tres redes GRU/LSTM/TCN para D=7/14/21/28. Los doce bloques mensuales de 2024 generan 120 trayectorias primarias y 43.920 predicciones; las cuatro historias se reentrenan y LSTM actúa como control reproducido. El [registro vigente](../_static/gru_lstm_tcn_20261105/protocols_manifest.json) distingue esos ajustes del cierre de 120 checkpoints finales y de la evaluación posterior sobre test ya observado.
+El procedimiento utiliza validación forward chaining de `timeseries-cv`, con coautoría de Filipe R. Ramos. El **núcleo vigente LSTM–MLP–GRU** se justifica en {ref}`§3.14 <core-selection-e1>` y su nueva comparación D7 se documenta en el {ref}`capítulo 10 <final-core-mlp-e1>`. El antecedente GRU/LSTM/TCN para D=7/14/21/28 produjo 120 trayectorias y 43.920 predicciones en doce bloques de 2024; LSTM actuó como control reproducido. Su [registro histórico](../_static/gru_lstm_tcn_20261105/protocols_manifest.json) distingue esos ajustes del cierre de 120 checkpoints y de la evaluación posterior sobre test ya observado.
 
 ## 6.1. Aplicación de la ruta 6.4 de la guía: regresión temporal
 
@@ -77,7 +77,9 @@ La política vigente preserva los ZIP y el calendario completo: un día sin 1.44
 
 ### 6.1.3. Familias de referencia y selección documental
 
-La terna vigente es **GRU–LSTM–TCN**. Su selección se documenta con publicaciones y manuscritos leídos y con el papel real de cada modelo. Akbiyik et al. (2023) compara las tres arquitecturas como referencias independientes de volatilidad de Bitcoin; Miura et al. (2019) añade evidencia directa para GRU y LSTM {cite:p}`akbiyik2023,miura2019`.
+La terna vigente es **LSTM–MLP–GRU**. El estrato cripto con reporte suficiente contiene LSTM 10/10, MLP 4/10, GRU 2/10 y TCN 1/10. La selección toma las tres familias más recurrentes y conserva una MLP de una capa oculta frente a dos reglas recurrentes distintas. El ancho se decide mediante el mismo esfuerzo de búsqueda y se declara su capacidad. Véase la {ref}`matriz de selección y simplicidad <core-selection-e1>`.
+
+La tabla siguiente conserva **recetas del antecedente GRU–LSTM–TCN**, sin atribuirlas al núcleo nuevo. Akbiyik et al. compara estas tres arquitecturas como referencias independientes de volatilidad de Bitcoin; Miura et al. añade evidencia directa para GRU/LSTM {cite:p}`akbiyik2023,miura2019`.
 
 | Modelo base | Receta compacta ejecutada | Sesgo y alcance |
 |---|---|---|
@@ -85,7 +87,7 @@ La terna vigente es **GRU–LSTM–TCN**. Su selección se documenta con publica
 | **LSTM** | Una capa unidireccional de 32 unidades, estado final, dropout 0,1 y Softplus; LR 0,003; **5.025 parámetros** | Celda de memoria separada y compuertas de entrada, olvido y salida. |
 | **TCN** | Tres bloques residuales, dos convoluciones causales por bloque, kernel 3, ancho 16 y dilataciones 1/2/4; lectura del último instante y Softplus; LR 0,001; **4.289 parámetros** | Convoluciones causales dilatadas; campo receptivo de **29 días**, que cubre las cuatro ventanas sin cambiar su profundidad. |
 
-Las [especificaciones](../_static/gru_lstm_tcn_20261105/model_specs.json) distinguen las recetas propias de las redes de los artículos. No se afirma réplica exacta. Las frecuencias estrictas son GRU 3/7, LSTM 5/7 y TCN 1/7 dentro del corpus completo; no todos esos registros son artículos de revista indexados. La recurrencia de TCN requiere fortalecerse. GRU y LSTM pertenecen a la misma familia recurrente: sus diferencias de compuertas, memoria, capacidad y costo deben sostener la justificación de no redundancia; una frecuencia o una métrica favorable no la resuelve por sí sola.
+Las [especificaciones históricas](../_static/gru_lstm_tcn_20261105/model_specs.json) distinguen las recetas propias de las redes de los artículos. Las frecuencias GRU 3/7, LSTM 5/7 y TCN 1/7 pertenecen al corte anterior de siete estudios; no sustituyen el estrato vigente de diez. TCN aporta un contraste convolucional complementario. Las diferencias entre las compuertas y estados de GRU/LSTM se declaran junto a la representación estática ordenada de MLP; una métrica favorable por sí sola no justifica la selección documental.
 
 Las tres redes usan las mismas covariables, etiquetas, orígenes, semillas y presupuesto de entrenamiento. No se añaden rezagos del objetivo o metadatos a una familia para mejorar su resultado. Los hiperparámetros se mantienen fijos al comparar D; no se ejecuta otra búsqueda después de ver test.
 
@@ -107,7 +109,7 @@ La ruta 6.4 conserva también las **cuatro Ridge diagnósticas del EDA**, con in
 
 El baseline neuronal de fase I es **GRU/D7**, elegido con la media de RMSE de CV antes de acceder al contenido del test en este ciclo. El [registro de selección](../_static/gru_lstm_tcn_20261105/selected_by_cv.json) conserva esa decisión y las cuatro historias. El ranking de test no la reabre.
 
-Para una propuesta avanzada futura se define, **después del test actual**, una convención académica: superar el 5 % de reducción relativa de RMSE frente a GRU/D7 y persistencia, con incertidumbre y multiplicidad. El ancla neuronal CV da δ≈0,00025772842665. El [margen futuro](../_static/gru_lstm_tcn_20261105/future_margin.json) identifica su fecha y alcance. No es una tolerancia financiera validada ni un parámetro previo a los resultados actuales. Se requiere piloto y evaluación independiente propios de esa propuesta.
+Para una propuesta avanzada futura se define, **después del test histórico de fase I**, una convención académica: superar el 5 % de reducción relativa de RMSE frente a GRU/D7 y persistencia, con incertidumbre y multiplicidad. El ancla neuronal CV da δ≈0,00025772842665. El [margen futuro](../_static/gru_lstm_tcn_20261105/future_margin.json) identifica su fecha y alcance. No es una tolerancia financiera validada ni un parámetro previo a los resultados iniciales. Se requiere piloto y evaluación independiente propios de esa propuesta.
 
 ### 6.1.6. Inferencia y diagnóstico: pregunta, unidad y estado
 

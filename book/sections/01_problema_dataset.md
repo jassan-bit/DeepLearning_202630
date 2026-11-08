@@ -1,6 +1,6 @@
 # 1. Definición del Problema y Dataset
 
-**Dos fases del estudio.** Las tablas de cuatro entradas, diez semillas y test enero de 2025–agosto de 2026 de este capítulo corresponden a la **fase I exploratoria**. La **fase II D7** añade búsqueda equitativa, piloto anterior a su ejecución definitiva, dimensionamiento y evaluación preespecificada sobre el 01/09–30/10/2026. Sus recetas, recuentos y resultados se identifican por separado en el [capítulo 9](09_estudio_planificado.md).
+**Selección vigente y antecedentes.** El núcleo actual es **LSTM–MLP–GRU**, según recurrencia, simplicidad y mecanismos documentados en {ref}`§3.14 <core-selection-e1>`. Su nueva ejecución comparable D7 se identifica en el {ref}`capítulo 10 <final-core-mlp-e1>`. Las tablas de cuatro entradas, diez semillas y test enero de 2025–agosto de 2026 de este capítulo son antecedentes exploratorios. El [capítulo 9](09_estudio_planificado.md) conserva el estudio anterior GRU–LSTM–TCN, con su HPO, piloto y evaluación de septiembre–octubre de 2026; TCN queda como comparación complementaria.
 
 **Correspondencia con los requisitos de las páginas 2–3**
 
@@ -132,7 +132,7 @@ $$
 
 Esta definición es **posterior al test de fase I**. La fase II la fijó antes de puntuar su propia reserva: `design.json/statistics/delta` conserva $0{,}00025772842664981106$. Ese valor absoluto se usa para dimensionar las diferencias entre redes; no se recalcula a partir del RMSE de reserva ni se sustituye por el 5 % de persistencia. La ganancia relativa frente a cada referencia sigue siendo otra cantidad, con el denominador de esa referencia. No constituye un margen pretest de fase I ni una tolerancia de riesgo o rentabilidad validada.
 
-**Justificación para el objetivo académico confirmado.** E1 compara modelos para establecer una referencia que una arquitectura más compleja deba superar. El 5 % funciona como una exigencia mínima de reducción del error para considerar un avance académico: evita que una ganancia minúscula sea suficiente por tener un p-valor pequeño y sitúa la exigencia entre los escenarios del 2,5 % y del 10 %. La elección conserva un componente normativo explícito; el costo computacional y la complejidad deben informarse junto a la ganancia. Los modelos finales tienen 1.121/1.489/1.185 parámetros para GRU/LSTM/TCN. No se infiere un 5 % óptimo ni una rentabilidad a partir de esos tamaños.
+**Justificación para el objetivo académico confirmado.** E1 compara modelos para establecer una referencia que una arquitectura más compleja deba superar. El 5 % funciona como una exigencia mínima de reducción del error para considerar un avance académico: evita que una ganancia minúscula sea suficiente por tener un p-valor pequeño y sitúa la exigencia entre los escenarios del 2,5 % y del 10 %. La elección conserva un componente normativo explícito; el costo computacional y la complejidad deben informarse junto a la ganancia. El estudio anterior GRU/LSTM/TCN tiene recetas de 1.121/1.489/1.185 parámetros; el núcleo vigente declara sus candidatos y selección en el capítulo 10. No se infiere un 5 % óptimo ni una rentabilidad a partir de esos tamaños.
 
 La distinción entre efecto de interés y efecto detectable se apoya en los apartados metodológicos de {cite:t}`lakens2022samplesize`. Esa fuente permite fundamentar un umbral contextual y deliberado; no prescribe un 5 % universal para pronóstico de criptomonedas. **La fundamentación siguiente es posterior a la ejecución** y usa sólo desarrollo 2023–2024; no se atribuye al registro original ni selecciona otro margen según la reserva.
 
@@ -172,7 +172,7 @@ Las diez semillas de la CV de fase I fueron un presupuesto fijo y no procedieron
 | Unidad de independencia entre mercados | Una sola serie BTCUSDT de Binance Spot; $N_{\mathrm{series}}=1$, sin réplicas independientes de otros mercados |
 | Unidad inferencial dentro de la serie | Diez trayectorias por red/variante condicionadas al calendario; los folds mensuales y las semillas no representan mercados independientes |
 | Referencias de contexto | Regresión lineal regularizada con las mismas covariables, exigida por la ruta 6.4; persistencia adicional para el margen del 5 % |
-| Selección de modelos | GRU, LSTM y TCN; configuración congelada por fase y selección de D/baseline con CV. Las recetas son adaptaciones compactas con respaldo aplicado de familia, no réplicas exactas |
+| Selección de modelos | Núcleo vigente LSTM, MLP y GRU (§3.14 y capítulo 10); TCN complementaria. Configuraciones y baseline se seleccionan con desarrollo y se distinguen de los antecedentes históricos. Las recetas son adaptaciones compactas, no réplicas exactas |
 
 Para $N$ predicciones evaluables:
 
@@ -203,7 +203,7 @@ El **BDS de residuos de h=1 se calculó por bloque y semilla** para las tres red
 
 **Estado de cierre**
 
-La definición principal queda fijada en **n=7, h=1 y D=7/14/21/28**. La [selección de desarrollo](../_static/gru_lstm_tcn_20261105/selected_by_cv.json) identifica GRU/D7 y la política de pesos finales fijos. El contenido del test se leyó en este ciclo después de cerrar los pesos; sus veinte meses son intervalos de reporte. El periodo ya había sido observado, por lo que esta separación no constituye confirmación temporal independiente.
+En el benchmark histórico, la definición quedó fijada en **n=7, h=1 y D=7/14/21/28**. El núcleo vigente selecciona D7 y registra su nueva comparación en el {ref}`capítulo 10 <final-core-mlp-e1>`. La [selección de desarrollo](../_static/gru_lstm_tcn_20261105/selected_by_cv.json) identifica GRU/D7 y la política de pesos finales fijos. El contenido del test se leyó en este ciclo después de cerrar los pesos; sus veinte meses son intervalos de reporte. El periodo ya había sido observado, por lo que esta separación no constituye confirmación temporal independiente.
 
 La CV utiliza desarrollo expuesto y no constituye selección anidada ni potencia 0,80 acreditada. El diagnóstico Ridge permanece separado. La [matriz de cierre](protocolo_pendiente.md) distingue el piloto de fase II D7 de la ausencia de piloto previo en fase I, la limitada recurrencia de TCN y la necesidad de justificar las diferencias de sesgo entre GRU y LSTM. Una propuesta avanzada requiere su propia dispersión y otra evaluación independiente. TOST/ROPE y una banda de equivalencia solo corresponden si se pretende afirmar equivalencia.
 
@@ -352,6 +352,6 @@ La evaluación prevista es un backtest histórico documentado después del perio
 
 El SHA-256 del [manifiesto de adquisición](../_static/data/binance_spot_BTCUSDT_1m_20230101_20261030.json) es `af723bcca2caffcbe44ae5243e2863bbcdcd39ae8cd42df491af0a2857926bb2`; cada ZIP conserva además su huella individual.
 
-La identidad de los brutos de test queda fijada en el [manifiesto de reserva de 20 ZIP mensuales](../_static/data/test_raw_reserve_20250101_20260831.json), construido inicialmente desde metadatos. El proyecto ya había observado ese periodo. El ciclo GRU–LSTM–TCN cerró sus configuraciones y checkpoints antes de acceder de nuevo al derivado diario auditado, sin reabrir ZIP brutos. El [manifiesto vigente de protocolos](../_static/gru_lstm_tcn_20261105/protocols_manifest.json) conserva fechas, hashes, reutilización y cohorte; la reserva inicial no se sobrescribe ni convierte esta comparación en un test independiente.
+La identidad de los brutos de test queda fijada en el [manifiesto de reserva de 20 ZIP mensuales](../_static/data/test_raw_reserve_20250101_20260831.json), construido inicialmente desde metadatos. El proyecto ya había observado ese periodo. El ciclo GRU–LSTM–TCN cerró sus configuraciones y checkpoints antes de acceder de nuevo al derivado diario auditado, sin reabrir ZIP brutos. El [manifiesto histórico de protocolos](../_static/gru_lstm_tcn_20261105/protocols_manifest.json) conserva fechas, hashes, reutilización y cohorte; la reserva inicial no se sobrescribe ni convierte esta comparación en un test independiente.
 
 **Aplicación en la fase II D7.** El [capítulo 9](09_estudio_planificado.md) reúne el diseño público previo, la rejilla equitativa de ocho candidatos por familia, el piloto de 60 días, el cálculo de R y los resultados sobre el 01/09–30/10/2026. Esa fase mantiene n=7/h=1 y covariables OHLCV, con D7 fijo. Los resultados de fase I y sus limitaciones permanecen identificados; la potencia planificada entre semillas no representa potencia temporal ni confirma otros mercados.

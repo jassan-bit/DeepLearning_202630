@@ -54,13 +54,14 @@ MANIFEST_STAGES = (
     "open_access_replacement_20261107", "provisional_native_log_20261107",
     "homogeneous_synthesis_20261107", "native_execution_20261107",
     "free_model_expansion_20261107", "homogeneous_expansion_20261107",
+    "core_selection_20261107",
 )
 PUBLICATION_SCHEMA = "e1_public_metadata_allowlist_v1"
 REFRESH_DATE = "2026-11-07"
 # Keep the earlier same-day delivery records inside the next package. The
 # source commit identifies this exact edition; the suffix distinguishes its
 # bibliographic scope without inventing another execution date.
-REFRESH_ID = "20261107_free_models"
+REFRESH_ID = "20261107_core_mlp"
 SUPPLEMENTS = {
     "dataset_comparison": {
         "directory": "book/_static/e1_dataset_comparison_20261106",
@@ -99,13 +100,26 @@ SUPPLEMENTS = {
                                 "publication_verification.json", "manifest.json",
                                 "public_allowlist_manifest.json"},
     },
+    "historical_core": {
+        "directory": "book/_static/e1_historical_core_20261107",
+        "manifest": "manifest.json", "item": "8.5", "files": None,
+    },
+    "core_mlp_extension": {
+        "directory": "book/_static/e1_core_mlp_extension_20261107",
+        "manifest": "manifest.json", "item": "8.5", "files": None,
+        "configuration_files": {"registration.json", "selection.json", "plan.json", "plan_publication.json",
+                                "chronology.json", "runtime.json", "source_manifest.json"},
+    },
 }
 REPRODUCTION_PROTOCOL_FILES = {
     "experiments/e1_curve_reproduction_20261106/protocol.json",
     "experiments/e1_curve_reproduction_20261106/README.md",
     "experiments/e1_replay_audit_20261107/protocol.json",
     "experiments/e1_replay_audit_20261107/README.md",
+    "experiments/e1_core_mlp_extension_20261107/design.json",
+    "experiments/e1_core_mlp_extension_20261107/README.md",
 }
+MANUAL_REACQUISITION_FILES = {"notebooks/descargar_datos_originales_e1.ipynb"}
 CHRONOLOGY_NOTE = (
     "La recuperación bibliográfica y la fundamentación académica del margen son posteriores "
     "a los experimentos iniciales. La reproducción de curvas tiene un protocolo y registro "
@@ -116,6 +130,9 @@ CHRONOLOGY_NOTE = (
     "propia procedencia. La búsqueda web dirigida de trece obras y su conciliación "
     "acumulada conservan los ámbitos, papeles y niveles de lectura; no convierten "
     "la cuota de selección por arquitectura en frecuencia del corpus. "
+    "La selección del núcleo LSTM–MLP–GRU y su nueva ejecución conservan como "
+    "exploratoria la evaluación de septiembre–octubre de 2026 ya observada; "
+    "los resultados anteriores de TCN permanecen complementarios y separados. "
     "Esta actualización no constituye un prerregistro "
     "retrospectivo. Empaquetar consume las evidencias guardadas y no ejecuta ajustes o pronósticos."
 )
@@ -357,12 +374,55 @@ def _readme(item, title, revision, previous):
     return (f"# {item}. {title}\n\nFuente de esta actualización: `{revision}`.\n\n"
             + introduction + CHRONOLOGY_NOTE + "\n\n"
             "El producto 8.3 conserva exactamente el ZIP de la entrega base. "
-            "8.5 conserva sus archivos científicos originales y añade estadística, curvas, "
+            "8.5 conserva sus archivos científicos originales y añade el núcleo histórico "
+            "compatible y la nueva ejecución común LSTM–MLP–GRU, además de estadística, curvas, "
             "auditoría forense y repetibilidad actual con alcances identificados; 8.6 conserva "
             "sus configuraciones originales y añade los protocolos y metadatos correspondientes. 8.7 incorpora contexto "
             "documental, margen y procedencia. "
             "Los manifiestos internos identifican los bytes realmente incluidos.\n\n"
             "## Notas conservadas de la entrega base\n\n" + previous.decode("utf-8"))
+
+
+def current_core_catalog(files):
+    """Describe the new core from its completed public export, never old scores."""
+    summary, selection, plan = (json.loads(files[name]) for name in
+                                ("summary.json", "selection.json", "plan.json"))
+    families = {"GRU", "LSTM", "MLP"}
+    signature = summary.get("execution_id")
+    r = plan.get("R_final")
+    if (set(summary.get("core_models", ())) != families
+            or set(selection.get("recipes", {})) != families
+            or any(recipe.get("model") != family or recipe.get("history_days") != 7
+                   for family, recipe in selection.get("recipes", {}).items())
+            or selection.get("baseline_model") not in families
+            or summary.get("baseline_selected_before_reserve") != selection["baseline_model"]
+            or not isinstance(signature, str) or not _SHA256.fullmatch(signature)
+            or any(row.get("registration_signature") != signature for row in (selection, plan))
+            or type(r) is not int or r < 465 or plan.get("R") != r
+            or summary.get("R_final") != r or summary.get("definitive_trajectories") != 3 * r
+            or summary.get("study_id") != "e1_core_mlp_extension_20261107"
+            or not re.fullmatch(r"[0-9a-f]{40}", str(summary.get("source_commit", "")))
+            or summary.get("known_reserve_exploratory") is not True
+            or summary.get("fresh_confirmatory_holdout") is not False):
+        raise ValueError("The current core catalog requires one complete, consistently identified GRU/LSTM/MLP export")
+    baseline = selection["baseline_model"]
+    return {
+        "models": ["LSTM", "MLP", "GRU"], "complementary_models": ["TCN"],
+        "active_entrypoint": "scripts/run_e1_core_mlp_extension.py",
+        "active_entrypoints": {phase: "scripts/run_e1_core_mlp_extension.py"
+                               for phase in ("hpo", "pilot", "fit", "score", "analyze")},
+        "active_entrypoint_scope": "Current common GRU/LSTM/MLP execution; historical entrypoints are preserved separately",
+        "baseline_selected_by_cv": {"model": baseline, **selection["recipes"][baseline]},
+        "scope": "Current common LSTM/MLP/GRU development tuning, pilot and final fits; exploratory scoring on an already observed 60-day historical reserve. Previous TCN studies remain complementary.",
+        "current_study": {
+            "study_id": summary["study_id"], "execution_id": signature,
+            "source_commit": summary["source_commit"], "history_days": 7,
+            "selected_recipes": selection["recipes"], "definitive_seeds_per_family": r,
+            "reserve": {"start": "2026-09-01", "end": "2026-10-30", "days": 60},
+            "known_reserve_exploratory": True, "fresh_confirmatory_holdout": False,
+            "public_metadata_directory": SUPPLEMENTS["core_mlp_extension"]["directory"],
+        },
+    }
 
 
 def package(output_dir, requested_revision=None):
@@ -393,6 +453,7 @@ def package(output_dir, requested_revision=None):
             if (directory / name).relative_to(ROOT).as_posix() not in tracked:
                 raise ValueError("Supplement source is not committed: " + label + "/" + name)
         supplements[label], supplement_info[label] = files, {**info, "product": spec["item"]}
+    current_catalog = current_core_catalog(supplements["core_mlp_extension"])
     # The historical generator is used only for its HTML exclusion/link logic.
     # Do not call its main(), load_crypto_stage(), or any experimental exporter.
     report = legacy.report_files()
@@ -418,6 +479,17 @@ def package(output_dir, requested_revision=None):
         if name not in tracked:
             raise ValueError("Required source is not committed: " + name)
         products["8.2"][name] = _regular_file(ROOT / name, ROOT)
+    for name in sorted(MANUAL_REACQUISITION_FILES):
+        if name not in tracked:
+            raise ValueError("Manual acquisition helper must be committed: " + name)
+        data = _regular_file(ROOT / name, ROOT)
+        validate_public_bytes(str(PurePosixPath(name).with_suffix(".json")), data)
+        notebook = json.loads(data)
+        if (notebook.get("nbformat") != 4 or not isinstance(notebook.get("cells"), list)
+                or any(cell.get("outputs") or cell.get("execution_count") is not None
+                       for cell in notebook["cells"])):
+            raise ValueError("Manual acquisition notebook must be unexecuted and have no outputs")
+        products["8.2"][name] = data
     for supplement_lock in ("requirements-e1-supplement.lock.txt", "requirements-e1-curves.lock.txt"):
         if supplement_lock in tracked:
             data = _regular_file(ROOT / supplement_lock, ROOT)
@@ -482,7 +554,7 @@ def package(output_dir, requested_revision=None):
         "preserved_archive_sha256": {ITEMS[item]: base_rows[item]["sha256"]
                                      for item in sorted(PRESERVED_ITEMS)},
         "original_experiments_changed": False, "retrospective_preregistration": False,
-        "new_analysis_scope": "Reviewed free full-text bibliographic routes and cumulative homogeneous synthesis, with historical native searches, development-only margin context, separately registered curve reproduction and diagnostic repeatability preserved. Packaging itself performs no training, searches or daily forecasts.",
+        "new_analysis_scope": "Reviewed bibliographic core selection, compatible historical core aggregates and the closed newly registered GRU/LSTM/MLP historical exploratory execution, with previous native searches, curve reproductions and diagnostic repeatability preserved. Packaging itself performs no training, searches or daily forecasts.",
         "chronology_note": CHRONOLOGY_NOTE,
     }
     products["8.7"]["literature_refresh_" + REFRESH_ID + ".json"] = legacy.encode(refresh)
@@ -531,6 +603,15 @@ def package(output_dir, requested_revision=None):
     complete["url"] = legacy.PUBLIC_BOOK + "_static/e1_downloads/" + complete["file"]
     verifications[complete["file"]] = verify_archive(output / complete["file"])
     result = copy.deepcopy(catalog)
+    if "historical_study_metadata" not in result:
+        historical_keys = ("source_commit", "models", "active_entrypoint", "active_entrypoints",
+                           "active_entrypoint_scope", "baseline_selected_by_cv", "scope",
+                           "public_aggregate_manifest_sha256", "declaration_manifest_sha256", "planned_D7_phase")
+        result["historical_study_metadata"] = {
+            key: copy.deepcopy(catalog[key]) for key in historical_keys if key in catalog}
+    for key in ("public_aggregate_manifest_sha256", "declaration_manifest_sha256", "planned_D7_phase"):
+        result.pop(key, None)
+    result.update(current_catalog)
     if "presentation_refresh" in result:
         result.setdefault("prior_presentation_refreshes", []).append(result.pop("presentation_refresh"))
     result.update(source_commit=revision, packages=records, complete_package=complete,
@@ -547,7 +628,8 @@ def package(output_dir, requested_revision=None):
         "8.5 y 8.6 conservan sus archivos científicos originales y añaden evidencia y "
         "configuración de las reproducciones y auditorías identificadas; 8.7 incorpora comparación documental, "
         "margen y procedencia. "
-        "`catalogo.json` conserva modelos, fases, entrypoints y limitaciones científicas. "
+        "`catalogo.json` identifica el núcleo actual LSTM–MLP–GRU y conserva modelos, "
+        "fases y entrypoints anteriores en `historical_study_metadata`. "
         "Verificar integridad con `sha256sum -c SHA256SUMS.txt`; los manifiestos internos "
         "verifican bytes y SHA256 por miembro.\n", encoding="utf-8")
     paths = sorted(output.glob("*.zip")) + [output / "catalogo.json", output / "README.md"]

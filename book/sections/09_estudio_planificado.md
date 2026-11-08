@@ -1,7 +1,7 @@
 (planned-study)=
-# 9. Estudio D7 con piloto, ajuste equitativo y evaluación preespecificada
+# 9. Estudio anterior GRU–LSTM–TCN: evaluación D7
 
-Este capítulo documenta una nueva fase principal de **GRU–LSTM–TCN** con entrada **D=7**, objetivo **n=7** y horizonte **h=1**. Su diseño, búsqueda, piloto y análisis se registraron antes de la ejecución definitiva y de calcular resultados en la reserva del **01/09–30/10/2026**. La cronología verificable y los resultados de esta fase se identifican por separado del benchmark exploratorio anterior.
+Este capítulo conserva el estudio de **GRU–LSTM–TCN** con entrada **D=7**, objetivo **n=7** y horizonte **h=1**. Su diseño, búsqueda, piloto y análisis se registraron antes de su ejecución definitiva y de calcular resultados en la reserva del **01/09–30/10/2026**. La selección vigente **LSTM–MLP–GRU** y su nueva ejecución comparable se documentan en el {ref}`capítulo 10 <final-core-mlp-e1>`. TCN permanece como comparación complementaria; sus resultados históricos no se atribuyen a MLP.
 
 ## 9.1. Dos fases y dos alcances
 
