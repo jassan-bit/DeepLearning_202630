@@ -49,6 +49,8 @@ Las [curvas por corrida](../_static/e1_608_remediation_20261107/learning_curves_
 
 Las duraciones reflejan parada temprana, kernels y entorno compartido; menos parámetros no garantiza menor tiempo de ajuste. El [runtime observado](../_static/e1_608_remediation_20261107/runtime.json) conserva plataforma y controles de los trabajadores. Los costes no se extrapolan a otro hardware ni a redes óptimamente ajustadas. Las seis métricas y los análisis de los vectores diarios privados de GRU, LSTM y **MLP** se presentan en el {ref}`benchmark nuevo <benchmark-core-actual-e1>`; todos corresponden a las 309 semillas nuevas por familia.
 
+La evaluación cualitativa de **§4.4 de la guía** se completa en el {ref}`capítulo 12 <frozen-errors-e1>` con figuras homogéneas de observado/pronosticado, densidades, errores por mes/año/rango de volatilidad, sesgo y dispersión. Lee las predicciones ya cerradas, con umbrales comunes derivados exclusivamente de desarrollo. La verificación de seis métricas por las 928 corridas y de 106 hashes conserva intacto el resultado principal. Es un diagnóstico posterior, sin nuevos ajustes ni selección de recetas.
+
 ### 4.0.2. Recetas originales y sensibilidad histórica
 
 El {ref}`benchmark original de diez semillas <benchmark-core-historico-e1>` conserva las recetas GRU H32/LR 0,003/dropout 0,1; LSTM H32/LR 0,003/dropout 0,1; y MLP H16/LR 0,001/dropout 0,1. Sus semillas **4101–4110**, doce folds de CV 2024 —366 fechas— y sensibilidad **D=7/14/21/28** permanecen identificados. Las 240 puntuaciones de corrida y las seis métricas no se sustituyen por las de la reejecución.

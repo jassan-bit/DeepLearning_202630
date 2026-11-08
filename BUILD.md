@@ -221,6 +221,35 @@ Las [curvas de media/IQR](book/_static/e1_608_remediation_20261107/learning_curv
 
 El refresco de descargas exige ese cierre real y rechaza ausencia, mezcla de ejecución/fuentes, R/semillas incompatibles o una cohorte distinta de 608 fechas. **8.2** incorpora el ejecutor, estadística, exportador, pruebas y cuaderno nuevo; **8.5**, los 34 archivos públicos; **8.6/8.7**, el diseño/README fuente y sus registros de configuración y procedencia. No distribuye precios, objetivos, pronósticos diarios, pesos ni valores de escaladores. La edición `20261107_remediation_608` conserva el registro anterior `20261107_primary_608`, el complemento de sesenta fechas y los snapshots históricos; **8.3 permanece byte a byte idéntico**. La edición incorpora los agregados cerrados y sus manifiestos, sin modificar las fuentes científicas congeladas.
 
+## Análisis posterior de errores sin modificar el experimento cerrado
+
+`scripts/build_e1_frozen_error_analysis.py` lee las predicciones cerradas de `e1_608_remediation_20261107`, sus recibos de puntuación/análisis y las 716 etiquetas de desarrollo necesarias para fijar rangos comunes. No carga checkpoints o escaladores, no abre archivos brutos de mercado y no ajusta ni vuelve a pronosticar. Requiere un checkout que conserve los dos espejos públicos originales y las fuentes científicas firmadas, además de acceso al directorio privado de esa ejecución.
+
+En el entorno científico de E1, usando destinos nuevos y vacíos:
+
+```bash
+PYTHONHASHSEED=0 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python scripts/build_e1_frozen_error_analysis.py --private-dir /ruta/privada/608_cerrado --output-dir /tmp/e1-errores-congelados --mirror-dir /tmp/e1-errores-publicos
+python -m unittest discover -s tests -p 'test_e1_frozen_error_analysis.py'
+```
+
+El suplemento verifica las seis métricas de las 928 corridas y los hashes de 106 archivos antes y después. La ejecución de esta entrega obtuvo diferencia numérica máxima cero y ninguna modificación original. Publica diecisiete archivos y su manifiesto: errores por mes/año/rango de volatilidad, medias mensuales observado/pronosticado, densidad agregada común30×30, comparación por deciles de desarrollo, sesgo y dispersión, descomposición descriptiva de variación y procedencia. Los IC describen inicializaciones condicionadas a cada segmento; las figuras no son un ensemble evaluado ni una validación temporal nueva.
+
+El [capítulo 12](book/sections/12_errores_congelados.md) documenta resultados y alcance. Los agregados están en `results/e1_frozen_error_analysis_20261108/` y su espejo `book/_static/e1_frozen_error_analysis_20261108/`. Los datos privados y los CSV diarios de predicciones no se distribuyen. Un clon público permite revisar código, fuentes y agregados; recalcular el suplemento requiere los pronósticos privados cerrados de la ejecución que se desea comprobar. No se sustituyen por una ejecución nueva para afirmar identidad con ésta.
+
+## Cierre del cribado de los 620 grupos nativos recibidos
+
+`scripts/build_e1_native_620_screening.py` compila decisiones revisadas y fechadas, sin clasificar automáticamente artículos, consultar de nuevo las bases o ajustar modelos. Sus fuentes son el protocolo, las decisiones de cada grupo y las fichas documentales terminales bajo `references/reviews/native_620_screening_20261108/`. Conserva las 834 ocurrencias recibidas y sus 620 grupos provisionales, las siete ocurrencias IEEE no exportadas y la separación entre resúmenes, fuentes primarias, contexto e informes no recuperados.
+
+```bash
+python scripts/build_e1_native_620_screening.py
+python scripts/build_e1_native_620_screening.py --check
+python -m unittest discover -s tests -p 'test_e1_native_620_screening.py'
+```
+
+El primer comando reconstruye los agregados en `references/literature_e1/native_620_screening_20261108/` y su espejo `book/_static/literature_e1/native_620_screening_20261108/`, desde las decisiones existentes; el segundo compara sus bytes con esa reconstrucción. No realizan otra lectura documental ni una nueva búsqueda. El manifiesto declara las copias revisadas de los insumos bajo `review_inputs/`; la entrega 8.4 conserva sus alias canónicos para recompilar tras extraer junto al código 8.2 y los agregados 8.5. No incluye los abstracts completos ni los artículos PDF.
+
+`book/references.bib` conserva las setenta entradas de la base. El segundo archivo de `bibtex_bibfiles`, `bibliography_additions.bib` del suplemento, sólo contiene DOI nuevos de fuentes primarias realmente evaluadas; no se cuentan como estudios incluidos todas las referencias citadas. Los informes y sus versiones se concilian por experimento para evitar doble voto. El [capítulo 3, §3.15](book/sections/03_estado_arte.md) presenta el flujo y su relación con el corpus anterior. El núcleo entrenado, los resultados y la limitación del calendario conocido permanecen iguales.
+
 ## Registro anterior del 07/11/2026: D7, 608 fechas y diez semillas
 
 El registro anterior `e1_primary_608_20261107` usa las recetas originales LSTM32, MLP16 y GRU32, D7×5, σ₇ poblacional y h=1. El baseline de desarrollo es **GRU32, LR 0,003, dropout 0,1 y 3.777 parámetros**, con R² medio 0,854173 en el test 01/01/2025–31/08/2026. Las tres redes **ya se ejecutaron con diez semillas 4101–4110** sobre las mismas 608 fechas; la MLP16 histórica no requiere un nuevo entrenamiento. LSTM32 conserva LR 0,003, dropout 0,1 y 5.025 parámetros; MLP16, LR 0,001, dropout 0,1 y 593 parámetros. La CV común contiene las 366 fechas de 2024.

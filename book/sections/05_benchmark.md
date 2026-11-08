@@ -64,6 +64,8 @@ Los tres límites inferiores a favor de persistencia superan el **5 %**; en este
 
 Los [diagnósticos de residuos](../_static/e1_608_remediation_20261107/diagnostics.csv) rechazan en los **927 BDS** y en los **1.854 Ljung–Box** tras sus respectivas familias de Holm —BDS dimensión dos/radio 1,5 DE; Ljung–Box rezagos uno/cinco—. Detectan dependencia bajo sus hipótesis; no acreditan una mejora neuronal explotable. El solapamiento de σ₇, la deriva y dependencia más allá del HAC6 siguen limitando la inferencia. La evaluación y su registro de noviembre son históricos y exploratorios, sin potencia temporal del 80 % ni una evaluación nueva independiente.
 
+**Visualización y errores por segmentos de la ejecución actual.** El {ref}`capítulo 12 <frozen-errors-e1>` añade comparaciones homogéneas entre observado y pronosticado, veinte meses, años y tres rangos de volatilidad fijados con desarrollo. Identifica sesgo, dispersión y casos difíciles con las mismas predicciones, sin cambiar ninguna de las seis métricas finales. Incluye la [verificación de igualdad de 5.568 puntuaciones](../_static/e1_frozen_error_analysis_20261108/validation.json), archivos por segmento y gráficos. Estas evidencias pertenecen a GRU32–LSTM32–MLP16, no al archivo con TCN.
+
 (benchmark-core-historico-e1)=
 ### 5.0.1. Comparación histórica original del núcleo en las 608 fechas
 

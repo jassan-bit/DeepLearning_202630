@@ -104,6 +104,28 @@ def remediation_public_fixture(r=30, required=12, baseline="MLP"):
     return files
 
 
+def frozen_error_public_fixture(original_files, r=30):
+    """Synthetic closure assertions tied to synthetic immutable result bytes."""
+    return {"README.md": b"Synthetic post-hoc aggregate fixture; never real model output.\n",
+        "summary.json": refresh.legacy.encode({
+            "supplement_id": "e1_frozen_error_analysis_20261108",
+            "parent_study_id": refresh.REMEDIATION_STUDY,
+            "posthoc_after_original_analysis": True, "original_metrics_unchanged": True,
+            "model_fits": 0, "new_checkpoint_forecasts": 0, "raw_market_archive_reads": 0,
+            "weights_or_scalers_loaded": 0, "neural_runs_per_model": r,
+            "neural_runs": 3*r, "deterministic_reference_runs": 1, "common_dates": 608,
+            "neural_prediction_rows_read": 3*r*608, "public_daily_observations_or_forecasts": False,
+            "test_driven_model_selection": False, "new_confirmatory_hypothesis_tests": False}),
+        "source_manifest.json": refresh.legacy.encode({"original_public_files_sha256": {
+            name: refresh.legacy.digest(data) for name, data in original_files.items()}}),
+        "validation.json": refresh.legacy.encode({
+            "original_public_files_verified_per_mirror": len(original_files),
+            "registered_scientific_sources_verified": len(json.loads(original_files["source_manifest.json"])["sources_sha256"]),
+            "all_original_hashes_unchanged": True, "matched_runs": 3*r+1, "metrics_per_run": 6}),
+        "segment_summary.csv": b"model,segment,n_dates,observed_mean,predicted_mean,mean_rmse\nGRU,high,180,0.02,0.021,0.005\n",
+        "monthly_observed_predicted.png": public_png()}
+
+
 class NativeDownloadRefreshTests(unittest.TestCase):
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory()
@@ -184,13 +206,39 @@ class NativeDownloadRefreshTests(unittest.TestCase):
                 names |= {"adjudications.csv", "frequencies.csv", "comparator_quality.csv"}
             elif stage == "core_selection_20261107":
                 names |= {"ranking.csv", "parameter_candidates.csv", "source_anchors.csv"}
+            elif stage == "native_execution_20261107":
+                names |= {"records.csv", "occurrences.csv"}
+            elif stage == "native_620_screening_20261108":
+                names |= {"decisions.csv", "source_manifest.json"} | set(refresh.NATIVE_SCREENING_SOURCE_ALIASES)
             for name in names:
                 if stage == "provisional_native_log_20261107" and name == "summary.json":
                     value = json.dumps(self.provisional_summary) + "\n"
+                elif stage == "native_execution_20261107" and name == "records.csv":
+                    value = "group_id,title\n" + "".join(f"G{i:04},Public title{i}\n" for i in range(620))
+                elif stage == "native_execution_20261107" and name == "occurrences.csv":
+                    value = "group_id,origin\n" + "".join(f"G{i:04},new_native_export\n" for i in range(620))
+                elif stage == "native_620_screening_20261108" and name == "summary.json":
+                    value = json.dumps({"stage_id": stage, "source_campaign_id": "E1-NATIVE-20261106-COLOMBIA",
+                        "reviewed_groups": 620, "screened_groups": 620, "screening_complete": True,
+                        "new_native_search_executions": 0, "benchmark_results_changed": False}) + "\n"
+                elif stage == "native_620_screening_20261108" and name == "decisions.csv":
+                    value = "group_id,screening_decision,reason\n" + "".join(
+                        f"G{i:04},exclude,Outside the synthetic unit-test target scope\n" for i in range(620))
+                elif stage == "native_620_screening_20261108" and name == "source_manifest.json":
+                    native = self.stage_directories["native_execution_20261107"]
+                    value = json.dumps({"native_execution_public_files_sha256": {
+                        key: refresh.legacy.digest((native / key).read_bytes())
+                        for key in ("records.csv", "occurrences.csv")}}) + "\n"
                 else:
                     value = ('{"public_metadata": true}\n' if name.endswith(".json")
                              else "Reviewed nested metadata only\n")
                 self.write(prefix + "/" + name, value)
+            if stage == "native_620_screening_20261108":
+                sources = json.loads((directory / "source_manifest.json").read_text())
+                sources["sources_sha256"] = {
+                    canonical: refresh.legacy.digest((directory / approved).read_bytes())
+                    for approved, canonical in refresh.NATIVE_SCREENING_SOURCE_ALIASES.items()}
+                self.write(prefix + "/source_manifest.json", refresh.legacy.encode(sources))
             mapping = {name: {"sha256": refresh.legacy.digest((directory / name).read_bytes()),
                               "bytes": (directory / name).stat().st_size} for name in names}
             self.write(prefix + "/manifest.json", json.dumps({
@@ -213,6 +261,20 @@ class NativeDownloadRefreshTests(unittest.TestCase):
                     "publication_schema": refresh.PUBLICATION_SCHEMA, "approved_public_files": sorted(names), "files": mapping}))
                 self.supplement_directories[label] = directory
                 self.supplement_names[label] = names
+                continue
+            if label == "frozen_error_analysis":
+                parent, _ = refresh.public_stage(self.supplement_directories["remediation_608"], None)
+                fixture = frozen_error_public_fixture(parent)
+                directory = self.root / spec["directory"]
+                for name, data in fixture.items():
+                    self.write(spec["directory"] + "/" + name, data)
+                mapping = {name: {"sha256": refresh.legacy.digest(data), "bytes": len(data)}
+                           for name, data in fixture.items()}
+                self.write(spec["directory"] + "/manifest.json", refresh.legacy.encode({
+                    "publication_schema": refresh.PUBLICATION_SCHEMA,
+                    "approved_public_files": sorted(fixture), "files": mapping}))
+                self.supplement_directories[label] = directory
+                self.supplement_names[label] = set(fixture)
                 continue
             prefix, names = spec["directory"], spec["files"]
             if names is None:
@@ -304,7 +366,8 @@ class NativeDownloadRefreshTests(unittest.TestCase):
                                 "AMPLIACION_LITERARIA_20261106.md": b"Prior dated literature round\n",
                                 "literature_refresh_20261107.json": b'{"prior_same_day_round": true}\n',
                                 "AMPLIACION_LITERARIA_20261107.md": b"Prior same-day literature round\n",
-                                "literature_refresh_20261107_free_models.json": b'{"previous_free_models_round": true}\n'})
+                                "literature_refresh_20261107_free_models.json": b'{"previous_free_models_round": true}\n',
+                                "literature_refresh_20261107_remediation_608.json": b'{"closed_primary_608_edition": true}\n'})
             self.base_payloads[item] = payload
             records.append(refresh.legacy.archive(self.base / filename, payload, item, "Product " + item,
                                                   "a" * 40, "Original phase I/II notes\n"))
@@ -500,6 +563,7 @@ class NativeDownloadRefreshTests(unittest.TestCase):
             "free_model_expansion_20261107": "scripts/build_e1_free_model_expansion.py",
             "homogeneous_expansion_20261107": "scripts/build_e1_homogeneous_expansion.py",
             "core_selection_20261107": "scripts/build_e1_core_selection.py",
+            "native_620_screening_20261108": "scripts/build_e1_native_620_screening.py",
         }
         for stage, builder in additions.items():
             self.assertIn(stage, refresh.MANIFEST_STAGES)
@@ -536,6 +600,190 @@ class NativeDownloadRefreshTests(unittest.TestCase):
         for key in ("new_model_fits_by_packaging", "new_checkpoint_forecasts_by_packaging",
                     "raw_market_archive_reads_by_packaging", "publications_by_packaging"):
             self.assertEqual(catalog[key], 0)
+
+    def test_native_screening_requires_every_received_group_and_original_sources(self):
+        closed, _ = refresh.public_stage(self.stage_directories["native_620_screening_20261108"], None)
+        native, _ = refresh.public_stage(self.stage_directories["native_execution_20261107"], None)
+        proof = refresh.native_screening_closure(closed, native)
+        self.assertEqual(proof["screened_groups"], 620)
+        self.assertFalse(proof["benchmark_results_changed"])
+        for key, value in (("screened_groups", 619), ("reviewed_groups", 621),
+                ("screening_complete", False), ("screening_complete", 1),
+                ("new_native_search_executions", 1), ("benchmark_results_changed", True)):
+            changed = dict(closed)
+            summary = json.loads(changed["summary.json"])
+            summary[key] = value
+            changed["summary.json"] = refresh.legacy.encode(summary)
+            with self.subTest(key=key, value=value), self.assertRaisesRegex(ValueError, "actual closed620"):
+                refresh.native_screening_closure(changed, native)
+        changed = dict(closed)
+        sources = json.loads(changed["source_manifest.json"])
+        sources["native_execution_public_files_sha256"]["occurrences.csv"] = "f" * 64
+        changed["source_manifest.json"] = refresh.legacy.encode(sources)
+        with self.assertRaisesRegex(ValueError, "source hashes differ"):
+            refresh.native_screening_closure(changed, native)
+        for before, after in ((b"G0000", b"G0001"), (b"G0000", b"OTHER"),
+                (b"G0000,exclude,Outside the synthetic unit-test target scope\n", b""),
+                (b"G0000,exclude,Outside the synthetic unit-test target scope", b"G0000,exclude,")):
+            changed = {**closed, "decisions.csv": closed["decisions.csv"].replace(before, after, 1)}
+            with self.subTest(change=after), self.assertRaises(ValueError):
+                refresh.native_screening_closure(changed, native)
+
+    def test_native_review_snapshots_supply_original_canonical_compiler_paths(self):
+        stage = self.stage_directories["native_620_screening_20261108"]
+        files, _ = refresh.public_stage(stage, None)
+        aliases = refresh.native_review_source_aliases(files)
+        self.assertEqual(set(aliases), set(refresh.NATIVE_SCREENING_SOURCE_ALIASES.values()))
+        for approved, canonical in refresh.NATIVE_SCREENING_SOURCE_ALIASES.items():
+            self.assertEqual(aliases[canonical], files[approved])
+        refresh.package(self.output)
+        with ZipFile(self.output / refresh.ITEMS["8.4"]) as saved:
+            for canonical, data in aliases.items():
+                self.assertEqual(saved.read(canonical), data)
+            self.assertEqual(saved.read("book/references.bib"), (self.root / "book/references.bib").read_bytes())
+        for item in ("8.6", "8.7"):
+            with ZipFile(self.output / refresh.ITEMS[item]) as saved:
+                self.assertFalse(set(aliases) & set(saved.namelist()))
+
+    def test_native_review_aliases_reject_missing_or_changed_approved_snapshots(self):
+        files, _ = refresh.public_stage(self.stage_directories["native_620_screening_20261108"], None)
+        for approved in refresh.NATIVE_SCREENING_SOURCE_ALIASES:
+            changed = dict(files)
+            del changed[approved]
+            with self.subTest(missing=approved), self.assertRaisesRegex(ValueError, "original hash"):
+                refresh.native_review_source_aliases(changed)
+            changed = {**files, approved: files[approved] + b"\n"}
+            with self.subTest(changed=approved), self.assertRaisesRegex(ValueError, "original hash"):
+                refresh.native_review_source_aliases(changed)
+
+    def test_canonical_review_alias_cannot_replace_different_existing_metadata(self):
+        item = "8.4"; filename = refresh.ITEMS[item]
+        canonical = refresh.NATIVE_SCREENING_SOURCE_ALIASES["review_inputs/primary_reviews.json"]
+        previous = self.base_payloads[item] | {canonical: b'{"different_existing_review": true}\n'}
+        metadata = refresh.legacy.archive(self.base / filename, previous, item, "Product " + item,
+                                        "a" * 40, "Original notes\n")
+        catalog = json.loads((self.base / "catalogo.json").read_text())
+        for row in catalog["packages"]:
+            if row["item"] == item:
+                row.update(metadata)
+        self.write("book/_static/e1_downloads/catalogo.json", refresh.legacy.encode(catalog))
+        self.git("add", ".")
+        self.commit()
+        self.build()
+        with self.assertRaisesRegex(ValueError, "existing canonical reviewed input"):
+            refresh.package(self.output)
+        self.assertFalse(self.output.exists())
+
+    def test_evidence_closure_preserves_previous_current_study_and_delivery_edition(self):
+        files, _ = refresh.public_stage(self.supplement_directories["remediation_608"], None)
+        scientific = refresh.remediation_core_catalog(files)
+        previous_refresh = {"edition_id": "20261107_remediation_608", "date": "2026-11-07",
+            "source_commit": "b" * 40, "original_experiments_changed": False}
+        earlier = {"edition_id": "20261107_primary_608", "source_commit": "c" * 40}
+        previous = {**self.catalog, **scientific, "evidence_refresh": previous_refresh,
+            "literature_refresh": previous_refresh, "prior_evidence_refreshes": [earlier]}
+        self.write("book/_static/e1_downloads/catalogo.json", refresh.legacy.encode(previous))
+        self.git("add", ".")
+        self.commit()
+        self.build()
+        current = refresh.package(self.output)
+        self.assertEqual(current["current_study"], previous["current_study"])
+        self.assertEqual(current["baseline_selected_by_cv"], previous["baseline_selected_by_cv"])
+        self.assertEqual(current["dated_study_records"][refresh.REMEDIATION_STUDY]["current_study"],
+                         previous["current_study"])
+        self.assertEqual(current["dated_study_records"][refresh.REMEDIATION_STUDY]["source_commit"],
+                         previous["source_commit"])
+        self.assertEqual(current["prior_evidence_refreshes"], [earlier, previous_refresh])
+        self.assertEqual(current["evidence_refresh"]["edition_id"], "20261108_evidence_closure")
+        self.assertEqual(current["evidence_refresh"]["date_timezone"], "UTC")
+        self.assertEqual(current["evidence_refresh"]["colombia_date_context"], "2026-11-07")
+        self.assertFalse(current["evidence_refresh"]["current_benchmark_results_changed"])
+        with ZipFile(self.output / refresh.ITEMS["8.7"]) as saved:
+            self.assertEqual(saved.read("literature_refresh_20261107_remediation_608.json"),
+                             self.base_payloads["8.7"]["literature_refresh_20261107_remediation_608.json"])
+        with ZipFile(self.output / refresh.ITEMS["8.5"]) as saved:
+            prefix = refresh.SUPPLEMENTS["remediation_608"]["directory"] + "/"
+            for name, data in files.items():
+                self.assertEqual(saved.read(prefix + name), data)
+
+    def test_both_new_evidence_stages_must_exist_before_any_archive_is_written(self):
+        for label, directories in (("native_620_screening_20261108", self.stage_directories),
+                                   ("frozen_error_analysis", self.supplement_directories)):
+            manifest = directories[label] / "manifest.json"
+            original = manifest.read_bytes()
+            manifest.unlink()
+            self.git("add", ".")
+            self.commit()
+            self.build()
+
+            with self.subTest(stage=label), self.assertRaisesRegex(ValueError, "regular public source"):
+                refresh.package(self.output)
+            self.assertFalse(self.output.exists())
+            manifest.write_bytes(original)
+            self.git("add", ".")
+            self.commit()
+            self.build()
+
+    def test_error_aggregates_are_bound_to_all_original_files_without_mutation(self):
+        original, _ = refresh.public_stage(self.supplement_directories["remediation_608"], None)
+        files, _ = refresh.public_stage(self.supplement_directories["frozen_error_analysis"], None)
+        expected = dict(original)
+        current = refresh.remediation_core_catalog(original)
+        proof = refresh.frozen_error_closure(files, original, current)
+        self.assertEqual(proof["original_public_files_verified"], 34)
+        self.assertEqual(proof["matched_runs"], 91)
+        self.assertEqual(proof["common_dates"], 608)
+        self.assertEqual(proof["aggregate_tables"], 1)
+        self.assertEqual(proof["plots"], 1)
+        self.assertEqual(original, expected)
+
+    def test_error_aggregates_reject_new_fits_changed_metrics_sources_and_private_rows(self):
+        original, _ = refresh.public_stage(self.supplement_directories["remediation_608"], None)
+        files, _ = refresh.public_stage(self.supplement_directories["frozen_error_analysis"], None)
+        current = refresh.remediation_core_catalog(original)
+        cases = (("model_fits", 1), ("new_checkpoint_forecasts", 1),
+            ("original_metrics_unchanged", False), ("parent_study_id", "historical_wrong_study"),
+            ("common_dates", 60), ("neural_runs_per_model", 10),
+            ("public_daily_observations_or_forecasts", True), ("posthoc_after_original_analysis", False))
+        for key, value in cases:
+            summary = json.loads(files["summary.json"])
+            summary[key] = value
+            changed = {**files, "summary.json": refresh.legacy.encode(summary)}
+            with self.subTest(key=key), self.assertRaisesRegex(ValueError, "closed post-hoc"):
+                refresh.frozen_error_closure(changed, original, current)
+        sources = json.loads(files["source_manifest.json"])
+        sources["original_public_files_sha256"]["metric_summary.csv"] = "f" * 64
+        with self.assertRaisesRegex(ValueError, "preserve every original"):
+            refresh.frozen_error_closure({**files, "source_manifest.json": refresh.legacy.encode(sources)}, original, current)
+        validation = json.loads(files["validation.json"])
+        validation["matched_runs"] -= 1
+        with self.assertRaisesRegex(ValueError, "frozen-metric/hash validation"):
+            refresh.frozen_error_closure({**files, "validation.json": refresh.legacy.encode(validation)}, original, current)
+        for field in ("outcome_day", "y_true", "y_pred", "persistence_pred", "weights", "scaler"):
+            changed = {**files, "segment_summary.csv": f"model,{field}\nGRU,private\n".encode()}
+            with self.subTest(field=field), self.assertRaisesRegex(ValueError, "private daily"):
+                refresh.frozen_error_closure(changed, original, current)
+        with self.assertRaisesRegex(ValueError, "actual aggregate tables and plots"):
+            refresh.frozen_error_closure({name: data for name, data in files.items()
+                if not name.endswith(".png")}, original, current)
+
+    def test_error_stage_routes_plots_to_benchmark_and_metadata_to_configuration(self):
+        builder = "scripts/build_e1_frozen_error_analysis.py"
+        self.write(builder, "# Public frozen-error aggregator; no model fitting.\n")
+        self.git("add", builder)
+        self.commit()
+        self.build()
+        refresh.package(self.output)
+        prefix = refresh.SUPPLEMENTS["frozen_error_analysis"]["directory"] + "/"
+        with ZipFile(self.output / refresh.ITEMS["8.2"]) as saved:
+            self.assertEqual(saved.read(builder), (self.root / builder).read_bytes())
+        with ZipFile(self.output / refresh.ITEMS["8.5"]) as saved:
+            self.assertIn(prefix + "monthly_observed_predicted.png", saved.namelist())
+            self.assertIn(prefix + "segment_summary.csv", saved.namelist())
+        for item in ("8.6", "8.7"):
+            with ZipFile(self.output / refresh.ITEMS[item]) as saved:
+                included = {name[len(prefix):] for name in saved.namelist() if name.startswith(prefix)}
+                self.assertEqual(included, {"summary.json", "source_manifest.json", "manifest.json"})
 
     def test_rejects_unbuilt_stale_report_and_unsafe_destination(self):
         intro = self.root / "book/_build/html/intro.html"

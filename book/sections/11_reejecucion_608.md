@@ -174,6 +174,8 @@ Los [tiempos por corrida](../_static/e1_608_remediation_20261107/run_costs.csv) 
 
 ## Verificación y reproducción
 
+El {ref}`capítulo 12 <frozen-errors-e1>` conserva un suplemento descriptivo posterior de observado frente a pronosticado y errores por segmentos. Sus análisis leen las predicciones cerradas de este estudio y verifican que todas las métricas y archivos originales permanezcan iguales. No modifican el registro, el plan, los pesos ni los resultados de este capítulo.
+
 La auditoría numérica de esta entrega recalculó las métricas desde las predicciones cerradas mediante fórmulas independientes del módulo científico de producción. Verificó **13.160 comparaciones numéricas** de métricas e inferencia entre semillas: discrepancia máxima **3,55×10⁻¹⁵**. Friedman, Wilcoxon, Q–Q, los 2.781 diagnósticos residuales y los 18 intervalos temporales coincidieron; en DM sólo apareció redondeo de varianza de hasta 3,31×10⁻²⁴. También comprobó hashes, semillas, fechas y el orden publicación→piloto→plan→ajustes→congelación→acceso→análisis. Es una verificación interna de cálculos y trazabilidad, no una réplica histórica de pesos ni una revisión por pares externa.
 
 El [manifiesto público](../_static/e1_608_remediation_20261107/manifest.json) contiene **33 archivos más el propio manifiesto**, idénticos entre resultados y recursos del libro. [BUILD.md](https://github.com/jassan-bit/DeepLearning_202630/blob/main/BUILD.md) detalla el entorno y las fases para una salida nueva; las [descargas de §8](08_entregables.md) incorporan código, configuraciones y agregados. Compilar HTML o empaquetar no entrena ni vuelve a puntuar modelos. Los precios, objetivos, predicciones diarias, pesos y valores de escaladores permanecen privados.
