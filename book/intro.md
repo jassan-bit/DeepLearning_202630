@@ -85,6 +85,6 @@ El margen académico δ=0,00025772842664981106 conserva el ancla del 5 % del RMS
 
 ## Continuidad propuesta hacia E2 y E3
 
-El candidato activo compartido de E2/E3 es **CNN-1D + LSTM + atención temporal**, propuesto y todavía no implementado ni entrenado. Mantiene como referencia el contrato de este E1 principal: D7×5 relativo, σ₇ poblacional y horizonte de un día. Los diez modelos de E2 y ese candidato no sustituyen las referencias MLP16, LSTM32 y GRU32 ni cambian los resultados anteriores.
+El candidato activo compartido de E2/E3 es **CNN-1D + LSTM + atención temporal**, implementado provisionalmente y comprobado con datos sintéticos en E2, sin entrenamiento de mercado. Mantiene como referencia el contrato de este E1 principal: D7×5 relativo, σ₇ poblacional y horizonte de un día. Los diez modelos de E2 y ese candidato no sustituyen las referencias MLP16, LSTM32 y GRU32 ni cambian los resultados anteriores.
 
 El [contrato sincronizado](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/17_contrato_sincronizado.html) separa cohortes, preprocesamiento y métricas de la ejecución E1 de las decisiones pendientes del híbrido. Las 608 fechas ya conocidas sólo permiten una comparación histórica exploratoria; R=309, HPO y conclusiones de E1 no se transfieren al nuevo modelo. [E2](https://jassan-bit.github.io/DeepLearning_202630/entregable2/intro.html) · [E3](https://jassan-bit.github.io/DeepLearning_202630/entregable3/intro.html).

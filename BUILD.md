@@ -629,3 +629,13 @@ No son un nuevo registro experimental. Validar con
 `python -m unittest discover -s tests -p 'test_books_alignment.py'`.
 Las huellas verifican que fuentes, plan y métricas E1 no se modificaron.
 Construir cada libro por separado y ejecutar `scripts/check_book_links.py`.
+
+### Catálogo integrado provisional y smoke sintético
+
+La receta, adquisición de fuentes y comandos están en
+`experiments/e2_current_synthetic_20261108/README.md`. Ejecutar las suites
+`test_e2_current_models.py` (con `E2_CURRENT_AUTHOR_SOURCES` explícito) y
+`test_e2_current_pipeline.py`, y validar artefactos con
+`python scripts/publish_e2_current_implementation.py --check`.
+No son entrenamientos de mercado. Las fuentes de autores quedan fuera del repo;
+los hashes y recibos públicos no incluyen datos originales o checkpoints.

@@ -1,24 +1,26 @@
 # 6. Benchmark vigente: diez modelos y un candidato adicional
 
+**Avance de software:** fábrica de los once candidatos, híbrido y flujo sintético implementados y verificados; recetas provisionales, sin datos de mercado. Véase [§18: integración y pruebas sintéticas](18_integracion_sintetica.md). No hay HPO ni benchmark vigente ejecutado.
+
 **Estado al 08/11/2026: sin resultados de mercado del nuevo catálogo.** La presentación de E2 considera únicamente los diez modelos indicados abajo y CNN-1D + LSTM + atención temporal como candidato 11. La expresión «modelo superior» representa la mejora que se desea investigar; no es una conclusión respaldada por evidencia.
 
-Se conservan cuatro prototipos compactos y un corrector con HAR externo, ahora histórico inactivo, con diez pruebas sintéticas documentadas. El nuevo híbrido es sólo un diseño editorial: no está implementado ni entrenado y esas pruebas no lo validan. Los otros seis modelos tienen código histórico pendiente de integración y validación nueva. No se han ejecutado el HPO, el dimensionamiento ni la evaluación de este conjunto. Las métricas de E1, P0 o ETTh1 y las de artículos externos no rellenan sus resultados.
+Se conservan cuatro prototipos compactos y un corrector con HAR externo, ahora histórico inactivo, con diez pruebas sintéticas documentadas. El nuevo híbrido tiene receta provisional: está implementado provisionalmente y probado con datos sintéticos, sin entrenamiento de mercado. Las diez pruebas anteriores no lo validan; sus nuevos controles están en §18. Los seis adaptadores existentes se integraron sin reducir sus mecanismos y pasaron el smoke sintético; la auditoría del flujo de mercado sigue pendiente. No se han ejecutado el HPO, el dimensionamiento ni la evaluación de este conjunto. Las métricas de E1, P0 o ETTh1 y las de artículos externos no rellenan sus resultados.
 
 ## 6.1 Tabla de los once candidatos
 
 | N.º | Modelo | Estado de implementación para este diseño | RMSE y coste de mercado |
 |---|---|---|---|
-| 1 | FCN-1D | Prototipo compacto aislado; receta pendiente | No medidos |
-| 2 | ResNet-1D | Prototipo compacto aislado; receta pendiente | No medidos |
-| 3 | Inception-1D | Prototipo compacto de una red; receta pendiente | No medidos |
-| 4 | LSTM-autoencoder con predictor | Reconstrucción y predictor disponibles; entrenamiento por definir | No medidos |
-| 5 | TimesNet | Código histórico; integración y validación pendientes | No medidos |
-| 6 | TSMixer | Código histórico; integración y validación pendientes | No medidos |
-| 7 | TiDE | Código histórico; integración y validación pendientes | No medidos |
-| 8 | TimeMixer | Código histórico; integración y validación pendientes | No medidos |
-| 9 | PatchTST | Código histórico; integración y validación pendientes | No medidos |
-| 10 | iTransformer | Código histórico; integración y validación pendientes | No medidos |
-| 11 | CNN-1D + LSTM + atención temporal | Diseño propuesto; implementación y pruebas propias pendientes | No medidos; superioridad no demostrada |
+| 1 | FCN-1D | Prototipo integrado y comprobado sintéticamente; receta definitiva pendiente | No medidos |
+| 2 | ResNet-1D | Prototipo integrado y comprobado sintéticamente; receta definitiva pendiente | No medidos |
+| 3 | Inception-1D | Prototipo integrado de una red; receta definitiva pendiente | No medidos |
+| 4 | LSTM-autoencoder con predictor | Pretrain y ajuste supervisado sintéticos; entrenamiento de mercado por definir | No medidos |
+| 5 | TimesNet | Adaptador integrado y smoke sintético aprobado; receta definitiva pendiente | No medidos |
+| 6 | TSMixer | Adaptador integrado y smoke sintético aprobado; receta definitiva pendiente | No medidos |
+| 7 | TiDE | Adaptador integrado y smoke sintético aprobado; receta definitiva pendiente | No medidos |
+| 8 | TimeMixer | Adaptador integrado y smoke sintético aprobado; receta definitiva pendiente | No medidos |
+| 9 | PatchTST | Adaptador integrado y smoke sintético aprobado; receta definitiva pendiente | No medidos |
+| 10 | iTransformer | Adaptador integrado y smoke sintético aprobado; receta definitiva pendiente | No medidos |
+| 11 | CNN-1D + LSTM + atención temporal | Prototipo integrado y pruebas sintéticas; receta definitiva pendiente | No medidos; superioridad no demostrada |
 
 **No medido no significa cero ni un empate.** Esta tabla es el catálogo y su estado, no un ranking. Los controles CNN sola, LSTM sola y CNN–LSTM sin atención se reportarán dentro del estudio del candidato 11 cuando se definan; no reintroducen el catálogo descartado ni acreditan ensayos ya realizados.
 

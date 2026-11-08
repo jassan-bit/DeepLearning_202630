@@ -4,8 +4,8 @@ ROOT=Path(__file__).resolve().parents[1]
 class AlignmentTests(unittest.TestCase):
  def setUp(self):self.p=ROOT/'references/books_alignment_20261108.json';self.s=json.loads(self.p.read_text())
  def test_candidate_is_proposed(self):
-  self.assertEqual(self.s['candidate'],'CNN-1D + LSTM + atención temporal')
-  for k in ['candidate_implemented','candidate_trained','superiority_demonstrated','new_experimental_design_registered','e3_official_guide_received']:self.assertFalse(self.s[k])
+  self.assertEqual(self.s['candidate'],'CNN-1D + LSTM + atención temporal');self.assertTrue(self.s['candidate_implemented']);self.assertTrue(self.s['candidate_synthetic_fit_executed'])
+  for k in ['candidate_market_trained','superiority_demonstrated','new_experimental_design_registered','e3_official_guide_received']:self.assertFalse(self.s[k])
  def test_mirrors(self):
   for b in ['book','book_e2','book_e3']:self.assertEqual((ROOT/b/'_static/books_alignment_20261108.json').read_bytes(),self.p.read_bytes())
  def test_source_fingerprints(self):

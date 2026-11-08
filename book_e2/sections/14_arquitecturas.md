@@ -1,8 +1,10 @@
 # 14. Arquitecturas del catálogo vigente y adaptación a D7
 
+**Avance de software:** fábrica de los once candidatos, híbrido y flujo sintético implementados y verificados; recetas provisionales, sin datos de mercado. Véase [§18: integración y pruebas sintéticas](18_integracion_sintetica.md). No hay HPO ni benchmark vigente ejecutado.
+
 **Selección vigente al 08/11/2026:** diez modelos neurales y CNN-1D + LSTM + atención temporal como candidato adicional activo. La selección reemplaza el catálogo anterior en la presentación; no convierte los prototipos en recetas definitivas ni transfiere registros, pruebas o resultados de otras arquitecturas.
 
-Cuatro prototipos compactos y un corrector con HAR externo, ahora histórico inactivo, tienen diez pruebas sintéticas documentadas. **El nuevo híbrido es sólo un diseño editorial propuesto: no está implementado ni entrenado, y esas pruebas no lo validan.** Los seis modelos restantes cuentan con código histórico, pero requieren integración y validación nueva. **Ninguno tiene resultados de mercado acreditados bajo el nuevo diseño.**
+Cuatro prototipos compactos y un corrector con HAR externo, ahora histórico inactivo, tienen diez pruebas sintéticas documentadas. **El nuevo híbrido está implementado provisionalmente y probado con datos sintéticos en §18, sin entrenamiento de mercado. Las diez pruebas del prototipo anterior no se transfieren al nuevo código.** Los seis adaptadores existentes están integrados y comprobados con datos sintéticos; su validación de mercado sigue pendiente. **Ninguno tiene resultados de mercado acreditados bajo el nuevo diseño.**
 
 ## 14.1 Diez arquitecturas, una tarea neural
 
@@ -53,7 +55,7 @@ La inspección anterior de un adaptador no verifica automáticamente el nuevo ru
 
 ## 14.4 Modelo 11: CNN-1D + LSTM + atención temporal
 
-El candidato activo combina extracción local, recurrencia y agregación temporal. Es un **diseño editorial propuesto**, no una arquitectura exacta verificada del curso o de la literatura, una innovación acreditada ni un modelo superior demostrado. No tiene código, entrenamiento, pruebas propias o resultados de mercado en este diseño.
+El candidato activo combina extracción local, recurrencia y agregación temporal. Es un **diseño editorial propuesto**, no una arquitectura exacta verificada del curso o de la literatura, una innovación acreditada ni un modelo superior demostrado. Tiene código y pruebas sintéticas propias en §18; no tiene entrenamiento ni resultados de mercado.
 
 | Etapa propuesta | Operación y forma conceptual | Restricción |
 |---|---|---|
@@ -64,11 +66,11 @@ El candidato activo combina extracción local, recurrencia y agregación tempora
 | Contexto | Suma ponderada de estados, forma `(batch, d)` | Agregar información ya observada, sin crear historia adicional |
 | Cabeza escalar | Mapear contexto a un pronóstico de σ₇, forma `(batch,)` | Enlace, pérdida y cualquier transformación por definir y evaluar en unidades originales |
 
-Las letras `c` y `d` representan dimensiones pendientes, no anchos seleccionados. Tampoco se fijan kernels, profundidad, función concreta de puntuación, regularización, optimizador o hiperparámetros definitivos. La función de atención deberá especificarse antes del registro. Sus pesos no se presentarán como una explicación causal del mercado.
+Las letras `c` y `d` representan dimensiones de la receta. §18 fija opciones provisionales explícitas (ancho8 para el smoke, kernel3, atención aditiva y Softplus); su selección definitiva, regularización, presupuesto e hiperparámetros para mercado siguen pendientes del nuevo registro. Sus pesos no se presentarán como una explicación causal del mercado.
 
 La CNN conserva la resolución de siete posiciones para que la LSTM y la atención reciban los siete estados propuestos. El padding no aporta observaciones nuevas. La atención puede ponderar toda la ventana porque los siete días están disponibles en el origen de predicción; no es una atención a datos futuros. La causalidad completa también depende de la construcción de ventanas, transformaciones y cortes de entrenamiento.
 
-Se proponen ablaciones **CNN sola**, **LSTM sola** y **CNN–LSTM sin atención**, con el mismo contrato de información y una regla de lectura fijada para cada una. No se añaden como posiciones del catálogo ni se afirma que se hayan ejecutado. Cualquier afirmación de mejora debe apoyarse en el nuevo protocolo y permitir resultados nulos o desfavorables.
+Se proponen ablaciones **CNN sola**, **LSTM sola** y **CNN–LSTM sin atención**, con el mismo contrato de información y una regla de lectura fijada para cada una. No se añaden como posiciones del catálogo. Se comprobaron mecánicamente en las pruebas nuevas; no se entrenaron ni compararon con mercado. Cualquier afirmación de mejora debe apoyarse en el nuevo protocolo y permitir resultados nulos o desfavorables.
 
 **Antecedente inactivo:** el corrector HAR anterior recibe un pronóstico externo y calcula una corrección truncada; su código, limitaciones y diez pruebas compartidas con las cuatro redes compactas se preservan. El soporte 1/7/22, HAR/OLS y el cross-fitting residual pertenecen a ese prototipo retirado, no al candidato activo. [§4](04_implementacion.md) delimita esa evidencia histórica.
 

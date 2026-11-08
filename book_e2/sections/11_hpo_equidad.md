@@ -1,8 +1,10 @@
 # 11. HPO y equidad para el catálogo vigente
 
+**Avance de software:** fábrica de los once candidatos, híbrido y flujo sintético implementados y verificados; recetas provisionales, sin datos de mercado. Véase [§18: integración y pruebas sintéticas](18_integracion_sintetica.md). No hay HPO ni benchmark vigente ejecutado.
+
 **Estado al 08/11/2026: no hay HPO propio del nuevo catálogo.** Los diez modelos vigentes son FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder con predictor, TimesNet, TSMixer, TiDE, TimeMixer, PatchTST e iTransformer. CNN-1D + LSTM + atención temporal es el candidato adicional activo, no un ganador ni un modelo con presupuesto preferente.
 
-Esta sección define las condiciones que debe satisfacer el nuevo diseño, **no un plan HPO ya registrado**. El número de configuraciones por receta, los límites de cómputo, los espacios, las semillas y R siguen pendientes de definición. Los diez modelos y el híbrido están seleccionados editorialmente, pero este último no está implementado ni entrenado. No se reutilizan las asignaciones ni los compromisos de búsqueda del catálogo retirado.
+Esta sección define las condiciones que debe satisfacer el nuevo diseño, **no un plan HPO ya registrado**. El número de configuraciones por receta, los límites de cómputo, los espacios, las semillas y R siguen pendientes de definición. Los diez modelos y el híbrido están seleccionados editorialmente, pero este último está implementado provisionalmente y probado con datos sintéticos, sin entrenamiento de mercado. No se reutilizan las asignaciones ni los compromisos de búsqueda del catálogo retirado.
 
 ## 11.1 Presupuesto comparable y completo
 
@@ -44,7 +46,7 @@ La evaluación OOF del procedimiento de selección se distingue de la búsqueda 
 
 ## 11.4 Controles específicos del candidato 11
 
-El nuevo híbrido es un diseño documental sin implementación ni pruebas propias. Las diez pruebas sintéticas previas corresponden a cuatro redes compactas y a HAR + red residual, que se conserva como código histórico inactivo. No validan el nuevo flujo CNN/LSTM/atención.
+El nuevo híbrido dispone de implementación provisional y pruebas propias en §18, sin evaluación de mercado. Las diez pruebas sintéticas previas corresponden a cuatro redes compactas y a HAR + red residual, que se conserva como código histórico inactivo. No validan el nuevo flujo CNN/LSTM/atención.
 
 Los controles propuestos son **CNN sola**, **LSTM sola** y **CNN–LSTM sin atención**. Deben compartir el contrato de entrada, objetivo, cortes y calendario del híbrido; las diferencias de capacidad y coste se documentarán para interpretar cada ablación. La variante sin atención necesitará una regla de lectura predefinida, sin escogerla tras observar el test.
 
@@ -64,7 +66,7 @@ Las fronteras de Pareto se construirán con error y costes efectivamente observa
 |---|---|
 | Recetas y espacios de los once candidatos | Sin congelar |
 | Presupuesto, hardware, semillas y límites | Sin preregistro propio |
-| Runner integrado, flujo CNN/LSTM/atención y ablaciones auditados | Pendiente; híbrido no implementado |
+| Runner integrado, flujo CNN/LSTM/atención y ablaciones auditados | Smoke sintético cerrado en §18; auditoría del pipeline de mercado pendiente |
 | Preflight y registro anterior al primer ajuste de mercado | Pendientes |
 | Búsquedas completas y consumo real | No ejecutados |
 | Recetas seleccionadas y dimensionamiento de R | No disponibles |

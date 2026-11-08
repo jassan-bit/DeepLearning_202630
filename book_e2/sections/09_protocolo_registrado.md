@@ -14,7 +14,7 @@ Esta sección sustituye las reglas prospectivas del catálogo retirado por las d
 | Información del híbrido | Mismo D7×5 relativo que E1, sin canales del objetivo | Causalidad convolucional, orden recurrente y máscara de atención |
 | Arquitecturas | Cuatro prototipos compactos; seis implementaciones históricas reutilizables | Fuente, receta adaptada, revisión individual y condición NAS |
 | Autoencoder | Reconstrucción y predictor separados | Secuencia de entrenamiento, pérdidas, pesos, congelado y coste de preentrenamiento |
-| Híbrido | CNN-1D + LSTM + atención temporal, propuesto sin implementación | Receta, pruebas sintéticas, entrenamiento y comparación pendientes |
+| Híbrido | CNN-1D + LSTM + atención temporal, implementación provisional y smoke sintético | Receta definitiva, entrenamiento de mercado y comparación pendientes |
 | Partición | Desarrollo y evaluación históricos ya conocidos | Calendario del nuevo estudio, cortes, embargo y exposición previa declarada |
 | Selección | Debe ser temporal y usar sólo el pasado autorizado | Folds internos/externos, elección de épocas, reajustes y separación del test |
 | Presupuesto | Comparabilidad y contabilidad completa | Límites por receta, espacios, recursos, incidencias y reglas de parada |

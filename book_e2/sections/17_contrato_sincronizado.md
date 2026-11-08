@@ -1,6 +1,6 @@
 # 17. Contrato sincronizado de E1, E2 y E3
 
-**Actualización editorial del 08/11/2026.** El candidato activo de continuidad es **CNN-1D + LSTM + atención temporal**. Sustituye HAR + red residual, cuyo código y recibos permanecen históricos e inactivos. Esta página no es un preregistro, no implementa el híbrido, no ejecuta entrenamiento y no modifica resultados.
+**Actualización editorial del 08/11/2026.** El candidato activo de continuidad es **CNN-1D + LSTM + atención temporal**. Sustituye HAR + red residual, cuyo código y recibos permanecen históricos e inactivos. Esta página no es un preregistro, no registra entrenamiento de mercado ni modifica resultados; la implementación provisional y el smoke se documentan en [§18](18_integracion_sintetica.md).
 
 ## 17.1 Qué aporta cada entregable
 
@@ -64,7 +64,7 @@ Los [resultados cerrados de E1](https://jassan-bit.github.io/DeepLearning_202630
 
 El margen documentado es **δ=0,00025772842664981106**. Su procedencia histórica no se recalcula usando la nueva CV. **R=309 y las semillas 18101–18409 pertenecen exclusivamente a la fase definitiva de las tres redes de E1, dimensionada con su piloto y sus hipótesis. El piloto usó diez semillas por red, 17101–17110.** No acreditan potencia para once modelos, atención, nuevos pares o inferencia temporal. E2/E3 necesitan hipótesis, multiplicidad, HPO, piloto y dimensionamiento propios antes de entrenar; no se heredan p-valores ni intervalos.
 
-## 17.6 Diseño conceptual del candidato, aún no implementado
+## 17.6 Diseño del candidato e implementación provisional
 
 D7×5 relativo → CNN-1D causal → LSTM unidireccional que conserva siete estados → atención temporal sobre esos estados observados → contexto → cabeza escalar para σ₇.
 
@@ -72,10 +72,10 @@ La causalidad de la CNN se define sobre el tensor ya transformado. `relative_win
 
 La atención puede combinar los siete estados porque todos pertenecen al pasado disponible en el origen. No puede atender al día objetivo ni a futuros orígenes, mezclar muestras o estimar escaladores con evaluación. Sus pesos no son explicaciones causales por sí solos.
 
-Permanecen abiertos kernels, anchos, capas, regularización, forma de atención, enlace no negativo, optimizador, presupuesto y política de selección. No se presenta esta composición como novedosa, receta literal del curso o superioridad demostrada. Las ablaciones propuestas —CNN sola, LSTM sola y CNN–LSTM sin atención— son controles del candidato, no modelos añadidos tácitamente al catálogo. Deben definirse antes de evaluar.
+Las recetas provisionales de §18 ya fijan estructura y pasos sintéticos. Su elección definitiva de kernels, anchos, capas, regularización, atención, enlace, optimizador, presupuesto y selección para mercado sigue abierta. No se presenta esta composición como novedosa, receta literal del curso o superioridad demostrada. Las ablaciones propuestas —CNN sola, LSTM sola y CNN–LSTM sin atención— son controles del candidato, no modelos añadidos tácitamente al catálogo. Deben definirse antes de evaluar.
 
 ## 17.7 Estado verificable
 
-Sólo se sincroniza documentación. Los cuatro prototipos compactos de E2 y el corrector HAR anterior conservan sus pruebas y limitaciones; **esas pruebas no validan el nuevo híbrido**. La implementación, pruebas específicas, registro, entrenamiento, evaluación y resultados de CNN-1D + LSTM + atención temporal siguen pendientes. La guía de E3 también sigue pendiente.
+Esta sección conserva el contrato de referencia; la implementación nueva se documenta aparte en §18. Los cuatro prototipos compactos de E2 y el corrector HAR anterior conservan sus pruebas y limitaciones; **esas pruebas no validan el nuevo híbrido**. La implementación provisional y sus pruebas específicas ya están disponibles en [§18](18_integracion_sintetica.md). El preregistro, entrenamiento de mercado, evaluación y resultados del benchmark siguen pendientes. La guía de E3 también sigue pendiente.
 
 El [contrato estructurado y las huellas de fuentes](../_static/books_alignment_20261108.json) tienen copias idénticas en los tres libros. Las huellas permiten comprobar preservación de fuentes y resultados sin publicar datos originales adicionales.

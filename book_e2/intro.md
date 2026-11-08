@@ -23,7 +23,7 @@ El catálogo sustituido se retira de la presentación. Estos nombres provienen d
 
 ## Qué está implementado y qué está pendiente
 
-- **Implementación disponible:** cuatro redes compactas y guardas temporales tienen pruebas sintéticas previas. El prototipo HAR residual queda histórico e inactivo. El nuevo híbrido CNN-1D + LSTM + atención temporal **no está implementado ni entrenado**; las diez pruebas anteriores no lo validan. [Implementación](sections/04_implementacion.md).
+- **Implementación provisional disponible:** los once candidatos comparten fábrica y flujo sintético; 11/11 ejecutados sin omisiones, dos pasos supervisados cada uno y un paso de reconstrucción para el autoencoder. El híbrido ya tiene código y pruebas propias. **No hay entrenamiento de mercado ni benchmark completo.** [Recetas y evidencia](sections/18_integracion_sintetica.md).
 - **Benchmark vigente:** sin entrenamiento integral ni resultados comparativos publicados. No hay ganador. Deben fijarse recetas, entradas, controles, HPO, dimensionamiento e inferencia en una nueva enmienda antes de ajustar datos de mercado. [Plan experimental](sections/06_benchmark_final.md).
 - **Evidencia histórica real:** el piloto previo completó 220 trayectorias y 440 ajustes. El recibo del 06/11/2026 acredita HPO previo iniciado e incompleto, no ejecución actual. La réplica TimeMixer/ETTh1 es externa a Bitcoin. Estos recibos no se atribuyen al catálogo vigente. [Trazabilidad](sections/09_protocolo_registrado.md).
 

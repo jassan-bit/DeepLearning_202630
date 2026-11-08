@@ -1,5 +1,7 @@
 # 15. Catálogo vigente: diez modelos y candidato 11
 
+**Avance de software:** fábrica de los once candidatos, híbrido y flujo sintético implementados y verificados; recetas provisionales, sin datos de mercado. Véase [§18: integración y pruebas sintéticas](18_integracion_sintetica.md). No hay HPO ni benchmark vigente ejecutado.
+
 **Selección vigente del 8 de noviembre de 2026. Estado: catálogo editorial aprobado, no benchmark ejecutado ni enmienda experimental registrada.** Esta página recoge el cambio de selección solicitado: combinar arquitecturas trabajadas en el curso con mecanismos de la literatura y estudiar un modelo adicional. No acredita que los once modelos estén implementados, entrenados o que uno sea superior. La correspondencia exacta con las configuraciones del profesor y las fuentes primarias de las nuevas adaptaciones debe documentarse antes de congelar el diseño.
 
 Los diez modelos se mantienen. El candidato 11 activo cambia de HAR + red residual a **CNN-1D + LSTM + atención temporal**. El corrector HAR y sus pruebas quedan como antecedente histórico inactivo. Los recibos, protocolos y código previos permanecen intactos para auditoría, pero no acreditan la implementación o evaluación del nuevo híbrido.
@@ -37,7 +39,7 @@ Se propone estudiar **convoluciones 1D causales → LSTM unidireccional con `ret
 
 El híbrido mantiene el [contrato sincronizado E1–E2–E3](17_contrato_sincronizado.md): **D7×5 derivado de OHLCV con `relative_window`, σ₇ poblacional y h=1**, sin anualización, nuevos canales, rezagos del objetivo o historia adicional. Las convoluciones conservan las siete posiciones con padding izquierdo cuando sea necesario; la atención sólo pondera estados de la ventana observada. No requiere la historia mensual ni los residuos fuera de muestra del prototipo HAR anterior.
 
-**Estado: diseño editorial propuesto, no implementado, no entrenado y sin superioridad demostrada.** No se afirma que esta combinación exacta reproduzca una receta del curso, un artículo identificado o una contribución original. Anchos, kernels, profundidad, función de atención, enlace e hiperparámetros definitivos siguen pendientes. Las cuatro redes compactas y sus diez pruebas compartidas con el corrector HAR son evidencia histórica separada, no pruebas del nuevo candidato.
+**Estado: implementación provisional con pruebas sintéticas, sin entrenamiento de mercado ni superioridad demostrada.** No se afirma que esta combinación exacta reproduzca una receta del curso, un artículo identificado o una contribución original. Anchos, kernels, profundidad, función de atención, enlace e hiperparámetros definitivos siguen pendientes. Las cuatro redes compactas y sus diez pruebas compartidas con el corrector HAR son evidencia histórica separada; las pruebas nuevas del candidato se identifican en §18.
 
 Antes del primer ajuste se deberán decidir y registrar:
 

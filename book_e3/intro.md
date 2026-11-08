@@ -35,3 +35,7 @@ Esta continuidad temática **no sustituye la guía oficial de E3**. El alcance e
 - [Índice de los tres entregables](https://jassan-bit.github.io/DeepLearning_202630/entregables.html).
 
 Los enlaces a E1 y E2 son referencias externas. La compilación de este libro utiliza sus propias fuentes y no incorpora sus páginas o resultados como si pertenecieran a E3.
+
+## Avance reutilizable de E2
+
+El [prototipo integrado y las pruebas sintéticas de E2](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/18_integracion_sintetica.html) ya incluyen CNN-1D + LSTM + atención temporal. Son evidencia de software de E2, no una ejecución, evaluación o resultado propio de E3; su guía sigue pendiente.

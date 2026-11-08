@@ -1,6 +1,8 @@
 # 4. Implementación de los diez modelos y el candidato adicional
 
-**Catálogo vigente al 08/11/2026:** FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder con predictor, TimesNet, TSMixer, TiDE, TimeMixer, PatchTST e iTransformer. El modelo 11 activo es **CNN-1D + LSTM + atención temporal**, un diseño editorial propuesto, todavía no implementado ni entrenado y sin superioridad demostrada. HAR + red residual queda como prototipo histórico inactivo. Esta selección sustituye el catálogo anterior en la presentación de E2; sus registros experimentales se conservan sólo como trazabilidad.
+**Avance de software:** fábrica de los once candidatos, híbrido y flujo sintético implementados y verificados; recetas provisionales, sin datos de mercado. Véase [§18: integración y pruebas sintéticas](18_integracion_sintetica.md). No hay HPO ni benchmark vigente ejecutado.
+
+**Catálogo vigente al 08/11/2026:** FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder con predictor, TimesNet, TSMixer, TiDE, TimeMixer, PatchTST e iTransformer. El modelo 11 activo es **CNN-1D + LSTM + atención temporal**, un diseño editorial propuesto, implementado provisionalmente y probado con datos sintéticos, sin entrenamiento de mercado y sin superioridad demostrada. HAR + red residual queda como prototipo histórico inactivo. Esta selección sustituye el catálogo anterior en la presentación de E2; sus registros experimentales se conservan sólo como trazabilidad.
 
 **Estado real:** se conservan cuatro prototipos compactos y el corrector HAR anterior, aislados del ejecutor histórico, con diez pruebas sintéticas documentadas. Esas pruebas no cubren el nuevo híbrido CNN-1D + LSTM + atención temporal. Los otros seis modelos tienen código histórico que necesita integración y validación en el nuevo diseño. **No hay entrenamiento de mercado, HPO, dimensionamiento de repeticiones ni resultados finales del catálogo vigente.**
 
@@ -17,7 +19,7 @@ Las [fichas bibliográficas](16_fichas_nuevas.md) describen fuentes y adaptacion
 | Inception-1D | Bottleneck, ramas 1/3/5 y max-pooling, una red compacta | No reproduce los módulos ni el ensemble de InceptionTime |
 | LSTM-autoencoder con predictor | Encoder LSTM, decoder de latente repetido y cabeza escalar; reconstrucción y predicción separadas | Sin política integrada de preentrenamiento, congelado, selección de épocas o ajuste supervisado |
 | HAR + red residual, histórico inactivo | Corrección firmada de D7×5 añadida a un pronóstico HAR externo; truncamiento a cero en inferencia | Se conserva sin activarlo ni transferir sus pruebas al nuevo candidato |
-| CNN-1D + LSTM + atención temporal, candidato activo | Diseño documental; no implementado | Construir y verificar el flujo causal, la atención sobre siete estados y la cabeza de σ₇ antes de entrenar |
+| CNN-1D + LSTM + atención temporal, candidato activo | Prototipo y pruebas sintéticas disponibles | Construir y verificar el flujo causal, la atención sobre siete estados y la cabeza de σ₇ antes de entrenar |
 
 Las cuatro redes reciben `(batch,7,5)` y producen `(batch,)` mediante Softplus. Son decisiones del prototipo, no valores atribuidos a los artículos. El padding simétrico opera dentro de una ventana ya observada: no añade historia ni constituye por sí mismo una convolución causal intraventana.
 
@@ -29,9 +31,9 @@ El flujo propuesto es **convoluciones 1D causales que conservan siete posiciones
 
 Los controles propuestos son **CNN sola**, **LSTM sola** y **CNN–LSTM sin atención**, con el mismo soporte y calendario. Son ablaciones del híbrido, no nuevas posiciones del catálogo. El soporte HAR 1/7/22 y el cross-fitting residual pertenecen al prototipo anterior y dejan de ser requisitos del candidato activo.
 
-## 4.2 Integración pendiente de los seis modelos con código histórico
+## 4.2 Seis adaptadores integrados: controles antes de mercado
 
-| Modelo vigente | Verificación requerida al integrarlo |
+| Modelo vigente | Verificación que debe conservar el pipeline registrado |
 |---|---|
 | TimesNet | Frecuencias disponibles con D7, selección por origen, extensión temporal y cabeza de σ₇ |
 | TSMixer | Orden de mezclas temporal/canal, normalización, independencia de acompañantes del batch y lectura escalar |
@@ -40,13 +42,13 @@ Los controles propuestos son **CNN sola**, **LSTM sola** y **CNN–LSTM sin aten
 | PatchTST | Parches y padding explícitos; normalización sólo de lo observado y proyección a σ₇ |
 | iTransformer | Tokens de variables, atención, normalización y cabeza que no desnormalice OHLCV como volatilidad |
 
-La [revisión arquitectónica histórica](../_static/completion_protocol/architecture_review.json) permite localizar decisiones anteriores. No certifica estas seis integraciones en el nuevo experimento ni congela sus recetas. Las verificaciones se repetirán sobre la fuente, el entorno y el pipeline que efectivamente se registren.
+La [revisión arquitectónica histórica](../_static/completion_protocol/architecture_review.json) permite localizar decisiones anteriores. La integración sintética nueva se verifica por separado en §18; ninguna revisión congela todavía las recetas para mercado. Las verificaciones se repetirán sobre la fuente, el entorno y el pipeline que efectivamente se registren.
 
 ## 4.3 Pruebas sintéticas históricas: qué acreditan y qué no
 
 Para los cuatro prototipos compactos y el corrector HAR anterior se documentaron **diez pruebas sintéticas** el 08/11/2026 con Python 3.12.14, torch 2.15.0+cpu, numpy 2.3.5 y un hilo CPU. Cubren formas y finitez, gradientes, invariancia de batch, roundtrip de pesos en memoria, entradas inválidas, reducción de pérdida artificial y restricciones de calendario/alcance. Incluyen iteradores de residuos válidos, inválidos y vacíos.
 
-No se abrieron datos de mercado. Pasar esta suite no demuestra rendimiento, robustez, potencia ni ausencia de toda fuga. Tampoco acredita que los once candidatos estén integrados o listos para entrenar. **Ninguna de estas diez pruebas valida CNN-1D + LSTM + atención temporal**, que no se ha implementado.
+No se abrieron datos de mercado. Pasar esta suite no demuestra rendimiento, robustez, potencia ni ausencia de toda fuga. Tampoco acredita que los once candidatos estén integrados o listos para entrenar. **Ninguna de estas diez pruebas valida CNN-1D + LSTM + atención temporal**, que dispone de pruebas nuevas separadas en §18.
 
 El corrector HAR histórico inactivo calcula `max(0, HAR + corrección)`. Si la suma es negativa, el truncamiento tiene gradiente cero; la prueba específica confirma esta limitación. Por ello, su `forward` es un enlace provisional de inferencia, **no una pérdida validada para entrenar con datos reales**. La generación de residuos OOF y el enlace pendiente se documentan como límites de ese prototipo retirado, no como próximos pasos del híbrido vigente.
 

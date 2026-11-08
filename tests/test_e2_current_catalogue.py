@@ -18,5 +18,5 @@ class CatalogueTests(unittest.TestCase):
   for p in [ROOT/'book_e2/intro.md',*(ROOT/'book_e2/sections').glob('*.md')]:
    self.assertNotRegex(p.read_text(),r'(?i)(veinte|20) configuraciones|(quince|15) (familias |recetas )?ajustables')
  def test_prototype_not_claimed_complete(self):
-  s=(ROOT/'book_e2/intro.md').read_text();self.assertIn('no está implementado ni entrenado',s);self.assertIn('sin entrenamiento integral',s)
+  s=(ROOT/'book_e2/intro.md').read_text();self.assertIn('No hay entrenamiento de mercado ni benchmark completo',s);self.assertIn('sin entrenamiento integral',s)
 if __name__=='__main__':unittest.main()
