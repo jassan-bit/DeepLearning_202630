@@ -30,6 +30,20 @@ De **1.605 ocurrencias con año 2019–2026** resultan **1.054 grupos en ventana
 
 Las señales pueden describir antecedentes y no la variable predicha. Las correcciones focalizadas detectaron confusiones entre precio, retorno, VaR/ES y volatilidad. No se convierte una pasada automática en una revisión sistemática cerrada; todas las exclusiones propuestas y los ambiguos requieren adjudicación antes de cerrar el flujo. El {download}`procedimiento y sus límites <../_static/literature_native_20261108/native/LEEME.md>` y las [correcciones](../_static/literature_native_20261108/native/ajustes_revision.json) quedan publicados sin resúmenes completos.
 
+### Revisión individual posterior: 59 prioritarios y auditoría de 42 exclusiones propuestas
+
+Después del triaje inicial se revisaron individualmente los títulos y resúmenes de los **59 prioritarios**, mediante lectura asistida por IA. La disposición provisional es **40 candidatos para recuperar/evaluar texto completo, 17 inciertos conservados y dos antecedentes secundarios**. **No son 40 estudios incluidos ni 59 textos completos leídos.** No se verificaron externamente DOI, fechas, editoriales o resultados en esta fase, y no se acredita doble revisión humana ni κ de Cohen.
+
+Se auditaron **42 de las 337 exclusiones propuestas**: una muestra aleatoria sin reemplazo de 30 (semilla `20261108`) más los 15 títulos con `volatility|variance|fluctuation|risk`; tres ya estaban en la muestra, por lo que se añadieron doce. Se mantienen preliminarmente **40 fuera del núcleo directo BTC–volatilidad** y se rescatan **E2-0807 como secundario** y **E2-0993 como incierto**. Algunos registros fuera del núcleo pueden seguir siendo antecedentes metodológicos. No se convierten esos dos rescates en inclusiones definitivas.
+
+Quedan **295 exclusiones sin revisión individual**. La muestra combina azar y selección dirigida: no se extrapola su proporción de rescates como tasa de error global, ni se interpreta como prueba de ausencia de falsos negativos. La categoría automática de precio necesita revisión, no ejecución como descarte definitivo. La auditoría no confirma un nuevo estudio de pronóstico individual de volatilidad BTC; tampoco demuestra que no exista entre los pendientes.
+
+El [registro agregado](../_static/literature_review_progress_20261108/summary.json), el [método de auditoría](../_static/literature_review_progress_20261108/method.json) y el [manifiesto](../_static/literature_review_progress_20261108/manifest.json) conservan conteos, huellas y límites sin publicar resúmenes originales ni evidencias textuales privadas. El ledger del triaje inicial y los denominadores 1.634/1.078 permanecen intactos: este suplemento describe una fase posterior, no una reescritura de sus decisiones.
+
+**Alertas para la siguiente lectura, no hechos confirmados:** distinguir redes que predicen precio de GARCH que estima volatilidad; verificar ecuación del objetivo, BTC individual frente a cartera/índice y profundidad real de ANN/MLP. La posible relación entre E2-0265 y E2-0487 requiere autores, datos y textos completos antes de fusionarlos. Las fechas/copyright discordantes y una fecha narrativa imposible se deben contrastar, sin corregirlas por conjetura ni usarlas como acusación de falsedad. Las [alertas estructuradas](../_static/literature_review_progress_20261108/alerts.json) conservan estas preguntas.
+
+Esta revisión no cambia los **983 registros arXiv pendientes**, no concilia todavía las rondas y no cierra la revisión global. Los [próximos pasos](../_static/literature_review_progress_20261108/next_phases.json) son un plan editorial, no una enmienda experimental registrada.
+
 ### Complemento arXiv: extracción completa de consultas explícitas
 
 La recuperación por API del **08/11/2026, 18:45:29 UTC** utilizó campos `all:`, sin filtro de fechas y con orden de envío descendente. El [manifiesto de consultas](../_static/literature_native_20261108/arxiv/query_manifest.json) conserva las cadenas completas, URLs paginadas y hashes de las respuestas privadas.

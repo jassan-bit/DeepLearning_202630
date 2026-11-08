@@ -1,0 +1,33 @@
+{
+  "status": "verification_questions_not_confirmed_findings",
+  "alerts": [
+    {
+      "issue": "target_and_model_role",
+      "check": "Confirmar que la red predice volatilidad; separar ANN de precios y GARCH de volatilidad, retorno, correlación, clasificación, VaR/ES y cartera."
+    },
+    {
+      "issue": "asset_and_proxy",
+      "check": "Verificar BTC individual frente a cartera/índice y ecuación de variable dependiente. E2-0807 se conserva como secundario, no inclusión directa."
+    },
+    {
+      "issue": "insufficient_information",
+      "check": "E2-0993 se conserva como incierto; un resumen insuficiente no justifica exclusión definitiva."
+    },
+    {
+      "issue": "possible_publication_family",
+      "record_ids": [
+        "E2-0265",
+        "E2-0487"
+      ],
+      "check": "Hay coincidencias descriptivas que exigen contrastar autores, datos y textos; no se ha confirmado duplicación ni se fusionan los grupos."
+    },
+    {
+      "issue": "dates_and_window",
+      "check": "Comprobar fechas de publicación, early access y copyright discordantes y una fecha imposible en los metadatos narrativos; no corregir por conjetura ni afirmar falsedad."
+    },
+    {
+      "issue": "deep_learning_definition",
+      "check": "ANN/MLP/NNAR/Jordan/HONN no garantizan profundidad; verificar capas, mecanismo y papel autónomo/híbrido en el original."
+    }
+  ]
+}

@@ -6,6 +6,8 @@
 
 **Ampliación bibliográfica del 08/11/2026:** la [sección 3](sections/03_literatura.md) incorpora una ronda nueva de WoS, Scopus e IEEE (**1.634 ocurrencias → 1.078 grupos**) y cuatro consultas arXiv (**1.199 apariciones → 1.004 IDs**). Los universos se mantienen separados hasta conciliarlos. Hay triaje provisional, tres lecturas focales y fuentes para las nuevas propuestas; no se declara elegibilidad global cerrada ni se modifican resultados experimentales.
 
+**Avance de revisión bibliográfica:** los 59 prioritarios ya tienen lectura individual asistida por IA: 40 candidatos a texto completo, 17 inciertos y dos secundarios. Se auditaron 42/337 exclusiones propuestas y se rescataron dos registros; quedan 295 sin revisión individual. No son inclusiones finales ni doble revisión humana. [Conteos y límites](sections/03_literatura.md).
+
 **Avance de implementación del 08/11/2026:** [§4.0](sections/04_implementacion.md) incorpora cuatro redes compactas propuestas, un enlace HAR residual y guardas temporales, con diez pruebas sintéticas. Es código preliminar aislado, **no listo para entrenamiento real**: falta resolver la saturación del híbrido, implementar HAR/cross-fitting e integrar el nuevo runner. No se presentan pruebas sintéticas como resultados Bitcoin.
 
 **Estado experimental documentado al 6 de noviembre de 2026:** la guía completa de **65 páginas** está recibida y auditada. El libro incorpora las decisiones metodológicas de sus secciones 1–14. La ruta queda clasificada como **F2a: series de tiempo**, conservando las entradas D7×5 OHLCV, el objetivo σ₇, la RMSE, δ y la partición heredados de E1. Se distinguen veinte configuraciones y quince recetas ajustables con presupuesto común. El protocolo P0 se publicó [antes de los ajustes](https://github.com/jassan-bit/DeepLearning_202630/commit/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0).
@@ -57,7 +59,7 @@ La [descarga de la implementación](./_static/completion_download/completion_bun
 
 ## Pendientes que requieren evidencia
 
-- **Literatura:** los 374 registros no recibidos corresponden a la búsqueda Scopus histórica de 7.874 resultados. La nueva ronda del 08/11 no se considera su cierre sin conciliación de búsquedas e identificadores. Faltan la conciliación entre rondas, la revisión de exclusiones propuestas, el cribado arXiv pendiente, la adjudicación final de textos completos y los cuartiles por año.
+- **Literatura:** los 374 registros no recibidos corresponden a la búsqueda Scopus histórica de 7.874 resultados. La nueva ronda del 08/11 no se considera su cierre sin conciliación de búsquedas e identificadores. Faltan la conciliación entre rondas, la revisión de 295 exclusiones todavía sin lectura individual y la adjudicación de las ya auditadas, el cribado arXiv pendiente, la adjudicación final de textos completos y los cuartiles por año.
 - **Experimentos:** pasaron 235 pruebas integradas y el preflight de veinte configuraciones. La enmienda se registró antes del HPO; el recibo fechado del 06/11 acredita su inicio, no su actividad actual. Faltan cerrar las búsquedas, P1, dimensionamiento y evaluación final. La calibración secundaria se prepara para los veinte modelos; después se podrán informar los tres mejores con su rama válida. No se hereda R=465 de E1 ni se declara suficiente usar diez semillas.
 - **Gap transferible:** el diagnóstico registrado en Bitcoin debe informar su resultado aunque sea negativo o inconcluso. Una limitación observada en ETTh1 no demuestra una brecha predictiva corregible en Bitcoin.
 

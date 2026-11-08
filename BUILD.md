@@ -584,3 +584,14 @@ python scripts/check_book_links.py --book-dir book_e2
 La validación comprueba 1.634 ocurrencias WoS/Scopus/IEEE, 1.078 grupos, 556 redundancias, 1.054 grupos en ventana, clases y 21 correcciones focalizadas. Por separado comprueba 1.199 apariciones arXiv, 1.004 IDs, pertenencia por consulta, 983 pendientes y Bitcoin como subconjunto de cripto. No suma universos que aún no están conciliados ni transforma etiquetas provisionales en decisiones finales de elegibilidad.
 
 Los scripts de triaje privados distribuidos en `native/` deben copiarse con sus insumos a una carpeta externa a Git: rechazan ejecutarse en un checkout para evitar escribir resúmenes completos en el repositorio. Los originales, abstracts completos y cuerpos no forman parte del manifiesto público. Los JSON de protocolo, registros de ajuste, datos, resultados y descargas históricas no se regeneran ni modifican por esta ampliación.
+
+## Seguimiento agregado de revisión E2 del 08/11/2026
+
+`references/literature_e2/title_abstract_review_20261108/` añade agregados de la lectura individual asistida por IA de 59 prioritarios y de la auditoría de 42/337 exclusiones propuestas. Conserva el ledger de triaje anterior y no exporta resúmenes, citas textuales ni tablas privadas de decisiones. El plan de fases es editorial y no cambia registros experimentales.
+
+```bash
+python scripts/build_e2_review_progress.py --check
+python -m unittest discover -s tests -p 'test_e2_review_progress.py'
+```
+
+Para reconstruir exclusivamente los agregados desde las dos tablas privadas, usar `python scripts/build_e2_review_progress.py --private-dir /ruta/privada/fuera-del-checkout`; los nombres requeridos están en el script. La lista pública está cerrada y su manifiesto fija hashes y bytes. No se confunden 40 candidatos a texto completo con incluidos; 295 exclusiones siguen sin lectura individual. La muestra mixta de azar y títulos de riesgo no permite extrapolar tasa de error global. Las alertas bibliográficas son preguntas de verificación, no duplicados o fechas corregidos automáticamente.

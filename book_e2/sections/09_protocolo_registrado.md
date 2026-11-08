@@ -14,6 +14,14 @@ La rama A se declara para **los veinte modelos antes del ranking**. Sus cinco mi
 
 El primer arranque, registrado con la fuente `ef2be28`, falló al invocar los workers antes de crear ajustes. Se conserva su [incidencia](../_static/completion_preflight/execution_incident.json). La corrección se publicó y registró con salida nueva antes del primer ajuste; no modifica candidatos, arquitectura, hipótesis ni presupuestos. El [avance observado](../_static/completion_preflight/execution_progress.json) distingue ajustes cerrados de trabajo planificado.
 
+### Separación de la propuesta del 08/11 y el registro histórico
+
+La revisión de modelos y los prototipos nuevos de [§4.0](04_implementacion.md) no están registrados por `599a29f` ni `dbb193a`. Esos commits acreditan las decisiones históricas que efectivamente contienen; **no se retrofecha una arquitectura, un soporte HAR o una pérdida nueva usando sus recibos**. La revisión posterior de títulos/resúmenes modifica la evidencia bibliográfica disponible, no las hipótesis experimentales ya registradas.
+
+Antes de entrenar la nueva propuesta se necesita una enmienda propia con catálogo completo, entradas y soportes por comparador, recetas, cronología, tuning, presupuesto, potencia, incertidumbre y análisis. El [plan editorial de fases](../_static/literature_review_progress_20261108/next_phases.json) enumera salidas necesarias, pero no sustituye ese registro ni fija R. Las reglas NAS o exenciones, las veinte configuraciones y las familias 30+30+199 de abajo no se transfieren automáticamente a un catálogo distinto.
+
+No se iniciaron ajustes de mercado en esta actualización. P0/OOF conserva sus 220 trayectorias y 440 ajustes históricos; los tests sintéticos de prototipos no incrementan esas cifras. El estado experimental se comunica con la fecha del último recibo, sin afirmar que una ejecución siga activa por el mero transcurso del tiempo.
+
 ## 9.1 Diecinueve decisiones documentadas
 
 La matriz organiza diecinueve decisiones operativas. Las filas de arquitectura, candidatos, calendario y orden incorporan la enmienda registrada de §9.0; no se afirma que esos cambios estuvieran en `599a29f`. El registro de una regla no acredita que sus experimentos o verificaciones finales estén terminados. El R definitivo y las recetas finales se obtendrán mediante las reglas registradas, sin completar esos campos con resultados imaginados.
@@ -27,8 +35,8 @@ La matriz organiza diecinueve decisiones operativas. Las filas de arquitectura, 
 | 5 | Mejora mínima | δ=**0,00025772842664981106** unidades de volatilidad diaria. No se recalcula con el resultado del nuevo benchmark. |
 | 6 | Sobreajuste | δg=δ como tolerancia operativa previa para la brecha RMSE validación−train, calculada con la misma regla de inferencia. Es una elección prospectiva, no una aprobación retrospectiva de E1. |
 | 7 | Catálogo | **20 configuraciones:** Top 10, GRU-E2/LSTM-E2/TCN-E2, tres anclas E1, Ridge, ARIMA, persistencia y referencia ingenua semanal. |
-| 8 | Equidad del ajuste | **15 recetas ajustables**, doce candidatos: **180**. Enmienda: once aleatorios originales + c12 fuente en las trece redes; clásicos sin cambios. **172.800 CPU-s por receta**, consumo y fallos trazables; HPO no ejecutado. |
-| 9 | Arquitectura final | Diez estructuras/adaptaciones D7 implementadas y revisadas individualmente con pruebas sintéticas. Registro y ejecución reales pendientes; las recetas pequeñas P0 no sustituyen las finales. |
+| 8 | Equidad del ajuste | **15 recetas ajustables**, doce candidatos: **180**. Enmienda: once aleatorios originales + c12 fuente en las trece redes; clásicos sin cambios. **172.800 CPU-s por receta**, consumo y fallos trazables. Recibo del 06/11 a las 19:00 UTC: HPO iniciado e incompleto; sin cierre publicado ni telemetría actual. |
+| 9 | Arquitectura final | Diez estructuras/adaptaciones D7 implementadas y revisadas individualmente con pruebas sintéticas. Enmienda y preflight registrados el 06/11; ejecución completa pendiente. Las recetas pequeñas P0 no sustituyen las finales. |
 | 10 | NAS condicional | Aplicar §14 solamente cuando corresponda: espacio completo de 1.000 arquitecturas, control, piloto de ruido, fases y selección previamente especificados. **No se ha ejecutado NAS.** |
 | 11 | Partición temporal | Desarrollo forward enero–octubre de 2024; P0 histórico de sesenta fechas; nuevo P1/A de **53 fechas 08/11–30/12**, selección/ajuste hasta 31/10 y embargo 01–07/11; reserva heredada sin cambios. No se comprimen fechas. |
 | 12 | Aleatoriedad | Semillas P0 nuevas **660101–660105**, emparejadas entre modelos. Los conjuntos de semillas P0, HPO, P1 y finales se mantienen separados. |
@@ -113,7 +121,7 @@ La incertidumbre de la DE cambia mucho el R proyectado. Con su cota superior, Ti
 
 ## 9.3 Qué queda por ejecutar y cómo se dimensionará
 
-P0 no estima la potencia de las recetas finales ni determina el ganador. La nueva [revisión arquitectónica](../_static/completion_protocol/architecture_review.json) ya resuelve individualmente los diez adaptadores y documenta `nas_required=false` en esos casos, con fuente, preset y modificaciones D7. Las pruebas sintéticas verifican implementaciones, no el pipeline completo ni el rendimiento de mercado. El registro y el preflight integrado ya están cerrados. HPO está en curso; P1 y ajustes finales siguen sujetos a los recibos de las fases anteriores.
+P0 no estima la potencia de las recetas finales ni determina el ganador. La nueva [revisión arquitectónica](../_static/completion_protocol/architecture_review.json) ya resuelve individualmente los diez adaptadores y documenta `nas_required=false` en esos casos, con fuente, preset y modificaciones D7. Las pruebas sintéticas verifican implementaciones, no el pipeline completo ni el rendimiento de mercado. El registro y el preflight integrado ya están cerrados. El último recibo del 06/11 a las 19:00 UTC acredita HPO iniciado e incompleto; no permite afirmar actividad actual. P1 y ajustes finales siguen sujetos a los recibos de las fases anteriores.
 
 La selección final de hiperparámetros se separa de su evaluación OOF. Las tres anclas E1 conservan selección histórica hasta octubre: su OOF enero–septiembre **no se presenta como selección anidada libre de exposición**. El corte mensual de ajuste, épocas y escaladores sigue siendo obligatorio para todos. Las otras diecisiete configuraciones respetan selección de configuración anterior al origen externo; la excepción histórica no autoriza nueva selección con meses futuros.
 

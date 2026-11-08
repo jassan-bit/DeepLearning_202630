@@ -1,8 +1,24 @@
 # 6. Benchmark Final
 
-**Estado vigente:** P0 se conserva con su registro `599a29f`. La implementación final y la [enmienda metodológica](../_static/completion_protocol/analysis_additions.json) están preparadas para su registro previo; **resultados del benchmark final Bitcoin D7 pendientes**. P0/OOF está ejecutado y analizado según [§9](09_protocolo_registrado.md). Sus resultados de desarrollo tienen una sección propia; no se insertan como resultados de los veinte modelos finales.
+**Estado vigente:** P0 se conserva con su registro `599a29f`. La implementación final histórica y la [enmienda metodológica](../_static/completion_protocol/analysis_additions.json) se publicaron en [`dbb193a`](https://github.com/jassan-bit/DeepLearning_202630/commit/dbb193a72897c80cbd34b452ba3cfe9d82ce6ce0) y se [registraron](../_static/completion_preflight/registration.json) el 06/11/2026 a las 18:59:10 UTC. El recibo de las 19:00 UTC acredita HPO iniciado e incompleto, no actividad actual ni cierre; **resultados del benchmark final Bitcoin D7 pendientes**. P0/OOF está ejecutado y analizado según [§9](09_protocolo_registrado.md). Sus resultados de desarrollo tienen una sección propia; no se insertan como resultados de los veinte modelos finales.
 
 La réplica y el piloto externo ETTh1 de [§5](05_paper_guia.md) conservan su dataset y finalidad. Las métricas históricas de E1 tampoco se convierten en nuevas corridas E2. El acceso anterior a la reserva limita a exploratoria la interpretación del futuro benchmark, aunque el procedimiento actual esté registrado antes de sus nuevos ajustes.
+
+## 6.0 Alcance de la propuesta nueva y condiciones de reporte
+
+**La tabla de veinte configuraciones siguiente pertenece al catálogo registrado histórico.** Los diez candidatos revisados y el híbrido de [§15](15_revision_modelos.md), junto con los prototipos de [§4.0](04_implementacion.md), no sustituyen sus filas ni heredan sus recibos. El nuevo experimento todavía no tiene catálogo completo congelado: diez candidatos más un híbrido no incluye automáticamente todas las anclas, baselines y controles HAR/red sola.
+
+Para la propuesta nueva se conserva una [secuencia editorial de próximos pasos](../_static/literature_review_progress_20261108/next_phases.json), **no un preregistro**:
+
+| Fase | Evidencia necesaria antes de avanzar | Estado de la propuesta nueva |
+|---|---|---|
+| Selección y recetas | Fuentes, criterios, familias, arquitectura y condición NAS; controles y soportes comparables | Abierta; fichas y prototipos no son recetas congeladas |
+| Pipeline | HAR/OLS, cross-fitting temporal real, enlace/loss residual, seis adaptadores retenidos, escalado y runner separado | Prototipo parcial; no listo para datos reales |
+| Registro | Enmienda ejecutable publicada, hashes, datos ya observados, calendario, presupuesto y análisis definidos antes de ajustes | No creado para el catálogo nuevo |
+| HPO y dimensionamiento | Búsquedas comparables cerradas, recetas fijadas y P1 con variación temporal y de entrenamiento | No iniciados para el catálogo nuevo |
+| Evaluación y reporte | Pesos/calibradores congelados, cohortes comunes, métricas y costes, fallos y resultados negativos | Sin resultados de mercado de esta propuesta |
+
+No se llenan celdas con pérdidas sintéticas, cifras UCR/bicicletas o resultados de otros artículos. Los resultados históricos P0, E1 y ETTh1 mantienen su alcance. La reserva ya conocida continúa siendo exploratoria; una publicación de código no recupera independencia ni acredita potencia.
 
 ## 6.1 Tabla comparativa de veinte configuraciones
 
