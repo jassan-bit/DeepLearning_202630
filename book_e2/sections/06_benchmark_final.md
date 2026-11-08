@@ -8,7 +8,7 @@ La réplica y el piloto externo ETTh1 de [§5](05_paper_guia.md) conservan su da
 
 **La tabla de veinte configuraciones siguiente pertenece al catálogo registrado histórico.** Los diez candidatos revisados y el híbrido de [§15](15_revision_modelos.md), junto con los prototipos de [§4.0](04_implementacion.md), no sustituyen sus filas ni heredan sus recibos. El nuevo experimento todavía no tiene catálogo completo congelado: diez candidatos más un híbrido no incluye automáticamente todas las anclas, baselines y controles HAR/red sola.
 
-Para la propuesta nueva se conserva una [secuencia editorial de próximos pasos](../_static/literature_screening_followup_20261108/next_phases.json), **no un preregistro**:
+Para la propuesta nueva se conserva una [secuencia editorial de próximos pasos](../_static/literature_recovery_second_20261108/next_phases.json), **no un preregistro**:
 
 | Fase | Evidencia necesaria antes de avanzar | Estado de la propuesta nueva |
 |---|---|---|

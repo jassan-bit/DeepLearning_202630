@@ -605,3 +605,9 @@ su unión disjunta con los 42 previos y la cohorte de recuperación de 40; esa r
 no puede estar dentro del repositorio. No publica resúmenes ni originales.
 Ejecutar `python -m unittest discover -s tests -p 'test_e2_screening_followup.py'`.
 La lectura asistida por IA no representa doble revisión humana ni inclusión final.
+
+Segundo corte de recuperación: `python scripts/build_e2_recovery_second.py --check`
+valida el agregado 22/40, las versiones separadas (seis editoriales y dos
+preprints), campos permitidos y espejo. Pruebas:
+`python -m unittest discover -s tests -p 'test_e2_recovery_second.py'`.
+Los cortes previos permanecen históricos; no se reinterpretan como inclusión final.
