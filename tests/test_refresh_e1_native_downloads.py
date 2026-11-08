@@ -122,9 +122,34 @@ class NativeDownloadRefreshTests(unittest.TestCase):
             if names is None:
                 names = ({"README.md", "summary.json", "comparison.csv", "manifest.json"}
                          | set(spec.get("configuration_files", ()))) - {spec["manifest"]}
+            if label in {"historical_core", "primary_608"}:
+                names |= {"run_metrics.csv"}
             directory = self.root / prefix
             for name in names:
-                if label == "core_mlp_extension" and name in {"summary.json", "selection.json", "plan.json"}:
+                if label == "primary_608" and name == "summary.json":
+                    recipes = {model: {"model": model, "history_days": 7, "width": width,
+                        "learning_rate": lr, "dropout": 0.1, "parameters": parameters}
+                        for model, width, lr, parameters in (("GRU", 32, .003, 3777),
+                            ("LSTM", 32, .003, 5025), ("MLP", 16, .001, 593))}
+                    historical = self.supplement_directories["historical_core"]
+                    value = json.dumps({"study_id": "e1_primary_608_20261107",
+                        "models": ["LSTM", "MLP", "GRU"], "baseline_model": "GRU",
+                        "selected_recipes": recipes, "baseline_recipe": recipes["GRU"],
+                        "R": 10, "R_per_neural": 10, "n_dates": 608, "dates_per_trajectory": 608,
+                        "phases": {"cv": {"start": "2024-01-01", "end": "2024-12-31", "n_dates": 366},
+                            "test": {"start": "2025-01-01", "end": "2026-08-31", "n_dates": 608}},
+                        "primary_scope": "historical_known_fixed_recipes", "HPO_not_equal": True,
+                        "editorial_promotion_after_results_seen": True, "new_model_fits": 0, "new_forecasts": 0,
+                        "source_summary_sha256": refresh.legacy.digest((historical / "summary.json").read_bytes()),
+                        "source_score_rows_sha256": refresh.legacy.digest((historical / "run_metrics.csv").read_bytes())}) + "\n"
+                elif label in {"primary_608", "historical_core"} and name == "run_metrics.csv":
+                    value = "phase,history_days,model,seed,n_dates,parameters,rmse\n"
+                    for phase, days in (("cv", 366), ("test", 608)):
+                        for model, parameters in (("GRU", 3777), ("LSTM", 5025), ("MLP", 593)):
+                            for seed in range(4101, 4111):
+                                value += f"{phase},7,{model},{seed},{days},{parameters},0.005\n"
+                        value += f"{phase},7,Persistence,,{days},0,0.004\n"
+                elif label == "core_mlp_extension" and name in {"summary.json", "selection.json", "plan.json"}:
                     execution = "d" * 64
                     recipes = {model: {"model": model, "history_days": 7, "width": 32,
                                        "mean_rmse": 0.001 + index * 0.0001}
@@ -238,10 +263,12 @@ class NativeDownloadRefreshTests(unittest.TestCase):
             self.assertEqual(catalog["historical_study_metadata"][key], self.catalog[key])
         self.assertEqual(catalog["models"], ["LSTM", "MLP", "GRU"])
         self.assertEqual(catalog["complementary_models"], ["TCN"])
-        self.assertEqual(catalog["active_entrypoint"], "scripts/run_e1_core_mlp_extension.py")
-        self.assertEqual(catalog["baseline_selected_by_cv"]["mean_rmse"], 0.001)
-        self.assertEqual(catalog["current_study"]["execution_id"], "d" * 64)
-        self.assertEqual(catalog["current_study"]["source_commit"], "e" * 40)
+        self.assertEqual(catalog["active_entrypoint"], "scripts/build_e1_primary_608.py")
+        self.assertEqual(catalog["baseline_selected_by_cv"]["parameters"], 3777)
+        self.assertEqual(catalog["current_study"]["n_dates"], 608)
+        self.assertEqual(catalog["current_study"]["R"], 10)
+        self.assertEqual(catalog["complementary_study_metadata"]["current_study"]["execution_id"], "d" * 64)
+        self.assertEqual(catalog["complementary_study_metadata"]["current_study"]["source_commit"], "e" * 40)
         self.assertTrue(catalog["current_study"]["known_reserve_exploratory"])
         self.assertFalse(catalog["current_study"]["fresh_confirmatory_holdout"])
         self.assertNotIn("planned_D7_phase", catalog)
@@ -306,7 +333,7 @@ class NativeDownloadRefreshTests(unittest.TestCase):
         self.assertEqual(catalog["evidence_refresh"]["supplements"]["curves"]["product"], "8.5")
         self.assertEqual(catalog["evidence_refresh"]["supplements"]["academic_margin"]["product"], "8.7")
         self.assertEqual(catalog["evidence_refresh"]["date"], refresh.REFRESH_DATE)
-        for label in ("replay_forensics", "replay_repeatability", "historical_core", "core_mlp_extension"):
+        for label in ("replay_forensics", "replay_repeatability", "historical_core", "core_mlp_extension", "primary_608"):
             self.assertEqual(catalog["evidence_refresh"]["supplements"][label]["product"], "8.5")
         with ZipFile(self.output / refresh.ITEMS["8.6"]) as saved:
             for name, data in self.base_payloads["8.6"].items():
@@ -446,7 +473,46 @@ class NativeDownloadRefreshTests(unittest.TestCase):
                 record[key] = value
                 changed[filename] = json.dumps(record).encode()
                 with self.assertRaisesRegex(ValueError, "consistently identified"):
-                    refresh.current_core_catalog(changed)
+                    refresh.complementary_core_catalog(changed)
+
+    def test_primary_catalog_rejects_changed_period_R_models_and_source_mixing(self):
+        files, _ = refresh.public_stage(self.supplement_directories["primary_608"], None)
+        historical, _ = refresh.public_stage(self.supplement_directories["historical_core"], None)
+        for key, value in (("n_dates", 60), ("R", 465), ("models", ["GRU", "LSTM", "TCN"]),
+                           ("source_score_rows_sha256", "f" * 64)):
+            with self.subTest(key=key):
+                changed = dict(files)
+                summary = json.loads(files["summary.json"])
+                summary[key] = value
+                changed["summary.json"] = json.dumps(summary).encode()
+                with self.assertRaisesRegex(ValueError, "saved source proof"):
+                    refresh.current_core_catalog(changed, historical)
+        for old, new in ((b"test,7,MLP,4101,608", b"test,7,MLP,4101,60"),
+                         (b"test,7,MLP,4101,608", b"test,7,MLP,8101,608"),
+                         (b"test,7,MLP,4101,608,593", b"test,7,MLP,4101,608,1185")):
+            with self.subTest(mixed=new):
+                changed = {**files, "run_metrics.csv": files["run_metrics.csv"].replace(old, new)}
+                with self.assertRaisesRegex(ValueError, "mix dates, recipes, seeds or models"):
+                    refresh.current_core_catalog(changed, historical)
+
+        changed = {**files, "run_metrics.csv": files["run_metrics.csv"].replace(b",0.005", b",0.006", 1)}
+        with self.assertRaisesRegex(ValueError, "saved historical source rows"):
+            refresh.current_core_catalog(changed, historical)
+
+    def test_prior_60_date_metadata_and_historical_snapshot_survive_promotion(self):
+        files, _ = refresh.public_stage(self.supplement_directories["core_mlp_extension"], None)
+        previous = {**self.catalog, **refresh.complementary_core_catalog(files),
+                    "historical_study_metadata": {"original": "frozen", "models": ["GRU", "LSTM", "TCN"]}}
+        self.write("book/_static/e1_downloads/catalogo.json", json.dumps(previous) + "\n")
+        self.git("add", ".")
+        self.commit()
+        self.build()
+        current = refresh.package(self.output)
+        for key in ("current_study", "active_entrypoint", "active_entrypoints", "scope",
+                    "baseline_selected_by_cv", "historical_study_metadata"):
+            self.assertEqual(current["complementary_study_metadata"][key], previous[key])
+        self.assertEqual(current["historical_study_metadata"], previous["historical_study_metadata"])
+        self.assertEqual(current["current_study"]["n_dates"], 608)
 
     def test_manual_notebook_cannot_publish_execution_outputs(self):
         name = next(iter(refresh.MANUAL_REACQUISITION_FILES))

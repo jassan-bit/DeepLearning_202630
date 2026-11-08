@@ -24,7 +24,7 @@ La guía contiene **once rutas numeradas, de 6.1 a 6.11**. Su lista inicial agru
 
 Usar LSTM o Transformer y una entrada D×5 no cambia por sí solo el tipo de tarea. La clasificación como tipo 4 tampoco afirma independencia o exogeneidad de OHLCV respecto a la volatilidad: los precios intervienen en construir retornos y pueden aportar información sobre volatilidad pasada. La distinción operativa de la guía se aplica a las entradas explícitas registradas.
 
-El procedimiento utiliza validación forward chaining de `timeseries-cv`, con coautoría de Filipe R. Ramos. El **núcleo vigente LSTM–MLP–GRU** se justifica en {ref}`§3.14 <core-selection-e1>` y su nueva comparación D7 se documenta en el {ref}`capítulo 10 <final-core-mlp-e1>`. El antecedente GRU/LSTM/TCN para D=7/14/21/28 produjo 120 trayectorias y 43.920 predicciones en doce bloques de 2024; LSTM actuó como control reproducido. Su [registro histórico](../_static/gru_lstm_tcn_20261105/protocols_manifest.json) distingue esos ajustes del cierre de 120 checkpoints y de la evaluación posterior sobre test ya observado.
+El procedimiento utiliza validación forward chaining de `timeseries-cv`, con coautoría de Filipe R. Ramos. La comparación principal **GRU32–LSTM32–MLP16** utiliza desarrollo 2023–2024, doce bloques de CV de 2024 y el test común de **608 fechas**. Su [conciliación](05_benchmark.md) verifica las mismas condiciones y conserva las cuatro entradas; son ejecuciones históricas ya realizadas. La {ref}`selección bibliográfica <core-selection-e1>` no cambia esos datos. El {ref}`capítulo 10 <final-core-mlp-e1>` conserva otra comprobación de sesenta fechas y otras recetas. El [registro GRU/LSTM/TCN](../_static/gru_lstm_tcn_20261105/protocols_manifest.json) mantiene la identidad del control LSTM y el archivo complementario.
 
 ## 6.1. Aplicación de la ruta 6.4 de la guía: regresión temporal
 
@@ -77,15 +77,15 @@ La política vigente preserva los ZIP y el calendario completo: un día sin 1.44
 
 ### 6.1.3. Familias de referencia y selección documental
 
-La terna vigente es **LSTM–MLP–GRU**. El estrato cripto con reporte suficiente contiene LSTM 10/10, MLP 4/10, GRU 2/10 y TCN 1/10. La selección toma las tres familias más recurrentes y conserva una MLP de una capa oculta frente a dos reglas recurrentes distintas. El ancho se decide mediante el mismo esfuerzo de búsqueda y se declara su capacidad. Véase la {ref}`matriz de selección y simplicidad <core-selection-e1>`.
+La terna es **LSTM–MLP–GRU**. El estrato cripto con reporte suficiente contiene LSTM 10/10, MLP 4/10, GRU 2/10 y TCN 1/10. La selección toma las tres familias más recurrentes y conserva una MLP de una capa oculta frente a dos reglas recurrentes distintas. Las recetas principales son las originales: sus datos y reglas de entrenamiento coinciden, con distinto ancho y learning rate por familia. La búsqueda histórica no fue equitativa entre todas las familias; el HPO equitativo pertenece al estudio complementario de sesenta días. Véase la {ref}`matriz de selección y simplicidad <core-selection-e1>`.
 
-La tabla siguiente conserva **recetas del antecedente GRU–LSTM–TCN**, sin atribuirlas al núcleo nuevo. Akbiyik et al. compara estas tres arquitecturas como referencias independientes de volatilidad de Bitcoin; Miura et al. añade evidencia directa para GRU/LSTM {cite:p}`akbiyik2023,miura2019`.
+La tabla siguiente identifica las **recetas principales del test de 608 días**. Las fuentes del capítulo 3 respaldan las familias y explicitan las adaptaciones; estas configuraciones no son réplicas exactas de los artículos.
 
 | Modelo base | Receta compacta ejecutada | Sesgo y alcance |
 |---|---|---|
 | **GRU** | Una capa unidireccional de 32 unidades, estado final, dropout 0,1 y salida Softplus; LR 0,003; **3.777 parámetros** | Compuertas de actualización y reinicio; memoria integrada en el estado. |
 | **LSTM** | Una capa unidireccional de 32 unidades, estado final, dropout 0,1 y Softplus; LR 0,003; **5.025 parámetros** | Celda de memoria separada y compuertas de entrada, olvido y salida. |
-| **TCN** | Tres bloques residuales, dos convoluciones causales por bloque, kernel 3, ancho 16 y dilataciones 1/2/4; lectura del último instante y Softplus; LR 0,001; **4.289 parámetros** | Convoluciones causales dilatadas; campo receptivo de **29 días**, que cubre las cuatro ventanas sin cambiar su profundidad. |
+| **MLP** | Ventana ordenada aplanada, una capa oculta de 16 unidades ReLU, dropout 0,1 y salida Softplus; LR 0,001; **593 parámetros en D7** | Interacciones entre rezagos con pesos por posición, sin estado recurrente. Los parámetros aumentan con D: 1.153/1.713/2.273 para D14/21/28. |
 
 Las [especificaciones históricas](../_static/gru_lstm_tcn_20261105/model_specs.json) distinguen las recetas propias de las redes de los artículos. Las frecuencias GRU 3/7, LSTM 5/7 y TCN 1/7 pertenecen al corte anterior de siete estudios; no sustituyen el estrato vigente de diez. TCN aporta un contraste convolucional complementario. Las diferencias entre las compuertas y estados de GRU/LSTM se declaran junto a la representación estática ordenada de MLP; una métrica favorable por sí sola no justifica la selección documental.
 

@@ -1,9 +1,11 @@
 (final-core-mlp-e1)=
-# 10. Modelos base LSTM–MLP–GRU y evaluación comparable
+# 10. Estudio complementario del núcleo en sesenta días
+
+**Alcance complementario.** La comparación principal de E1 conserva **GRU32, LSTM32 y MLP16 en las 608 fechas del 01/01/2025–31/08/2026**, según el [capítulo 5](05_benchmark.md). Este capítulo preserva la ejecución posterior **GRU16–LSTM16–MLP32**, sus 465 semillas por familia y su evaluación de sesenta fechas. Sus pesos, métricas, curvas y dimensionamiento pertenecen exclusivamente a ese estudio.
 
 La selección vigente de E1 reúne **LSTM, MLP y GRU**. En los diez experimentos cripto con reporte suficiente del corpus conciliado aparecen, respectivamente, en **10, 4 y 2**; TCN aparece en uno y se conserva como comparación complementaria. La {ref}`decisión bibliográfica <core-selection-e1>` combina esta recurrencia con arquitecturas básicas: una capa oculta densa y dos celdas recurrentes de una capa. El número de parámetros se comprueba para cada receta; no se deduce simplicidad solamente del nombre de la familia.
 
-Esta actualización requiere una **ejecución nueva y coherente de las tres redes**. Los resultados históricos de MLP no se mezclan con las repeticiones definitivas de GRU/LSTM del capítulo 9. Ese capítulo conserva la comparación anterior y su cronología.
+Este estudio realizó una **ejecución nueva y coherente de las tres redes**. Los resultados de MLP no se mezclaron con las repeticiones de GRU/LSTM del capítulo 9. La decisión posterior de priorizar el benchmark de 608 días conserva esta comparación completa, incluidos sus resultados adversos e inconclusos.
 
 ## Diseño de la nueva ejecución
 
