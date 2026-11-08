@@ -1,5 +1,8 @@
 # Proyecto Final de Deep Learning: Entregable 2
 
+**Guía original cotejada:** [correcciones y pendientes por página](sections/20_contraste_guia.md). La cuadrícula reducida no cubre el espacio mínimo; controles F2a, NAS condicional y batería estadística requieren completar el plan antes de entrenar.
+
+
 **Actualización de planificación:** [§19: auditoría real de desarrollo y plan propuesto](./sections/19_plan_auditoria.md). Sin entrenamiento de mercado, HPO ni preregistro nuevo.
 
 **Deep Learning · 2026-30 · Jassan Arteta**

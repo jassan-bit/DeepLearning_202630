@@ -1,5 +1,8 @@
 # 14. Arquitecturas del catálogo vigente y adaptación a D7
 
+**Guía original cotejada:** [correcciones y pendientes por página](20_contraste_guia.md). La cuadrícula reducida no cubre el espacio mínimo; controles F2a, NAS condicional y batería estadística requieren completar el plan antes de entrenar.
+
+
 **Avance de software:** fábrica de los once candidatos, híbrido y flujo sintético implementados y verificados; recetas provisionales, sin datos de mercado. Véase [§18: integración y pruebas sintéticas](18_integracion_sintetica.md). No hay HPO ni benchmark vigente ejecutado.
 
 **Selección vigente al 08/11/2026:** diez modelos neurales y CNN-1D + LSTM + atención temporal como candidato adicional activo. La selección reemplaza el catálogo anterior en la presentación; no convierte los prototipos en recetas definitivas ni transfiere registros, pruebas o resultados de otras arquitecturas.

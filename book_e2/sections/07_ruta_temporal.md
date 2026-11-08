@@ -1,6 +1,9 @@
 (e2-ruta-temporal)=
 # 7. Ruta metodológica: series de tiempo y controles causales
 
+**Guía original cotejada:** [correcciones y pendientes por página](20_contraste_guia.md). La cuadrícula reducida no cubre el espacio mínimo; controles F2a, NAS condicional y batería estadística requieren completar el plan antes de entrenar.
+
+
 La ruta vigente es **F2a, series de tiempo**, decidida el 06/11/2026 tras recibir la guía completa de 65 páginas. El cambio al [catálogo de diez modelos y el candidato 11](15_revision_modelos.md) conserva esa clasificación, el objetivo y las precauciones causales. La nueva enmienda está pendiente; ningún resultado histórico acredita superioridad de CNN-1D + LSTM + atención temporal.
 
 El [registro de decisiones del EDA](../_static/eda_traceability/decisiones_vigentes.csv) conserva la procedencia de la reclasificación y la fila histórica `RESID`. Su incorporación documental el 08/11/2026 no es una decisión experimental retroactiva.

@@ -72,7 +72,7 @@ La reserva ya consultada en etapas anteriores conserva carácter **exploratorio*
 | Etapa del catálogo vigente | Evidencia necesaria | Estado |
 |---|---|---|
 | Recetas y fuentes | Arquitecturas, adaptaciones, objetivos y controles del híbrido identificados | Pendiente de congelación |
-| Pipeline | Integración de los once candidatos y controles, causalidad, escalado y fallos comprobados | Parcial; cuatro prototipos compactos previos y seis adaptadores históricos; híbrido nuevo sin implementar |
+| Pipeline | Integración de los once candidatos y controles, causalidad, escalado y fallos comprobados | Once candidatos implementados provisionalmente y smoke sintético verificado (§18); desarrollo real auditado (§19), ejecutor de mercado aún sin integrar |
 | Preregistro | Fuente ejecutable, calendario, presupuesto, hipótesis y análisis publicados antes de ajustes | Pendiente |
 | Selección y dimensionamiento | HPO propio, recetas congeladas y planificación de repeticiones que contemple tiempo y entrenamiento | No ejecutados |
 | Evaluación | Pesos y calibradores cerrados, predicciones comparables, costes y auditorías | No ejecutada |
