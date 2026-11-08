@@ -30,19 +30,45 @@ De **1.605 ocurrencias con año 2019–2026** resultan **1.054 grupos en ventana
 
 Las señales pueden describir antecedentes y no la variable predicha. Las correcciones focalizadas detectaron confusiones entre precio, retorno, VaR/ES y volatilidad. No se convierte una pasada automática en una revisión sistemática cerrada; todas las exclusiones propuestas y los ambiguos requieren adjudicación antes de cerrar el flujo. El {download}`procedimiento y sus límites <../_static/literature_native_20261108/native/LEEME.md>` y las [correcciones](../_static/literature_native_20261108/native/ajustes_revision.json) quedan publicados sin resúmenes completos.
 
-### Revisión individual posterior: 59 prioritarios y auditoría de 42 exclusiones propuestas
+### Primer corte conservado: 59 prioritarios y auditoría de 42 exclusiones propuestas
 
 Después del triaje inicial se revisaron individualmente los títulos y resúmenes de los **59 prioritarios**, mediante lectura asistida por IA. La disposición provisional es **40 candidatos para recuperar/evaluar texto completo, 17 inciertos conservados y dos antecedentes secundarios**. **No son 40 estudios incluidos ni 59 textos completos leídos.** No se verificaron externamente DOI, fechas, editoriales o resultados en esta fase, y no se acredita doble revisión humana ni κ de Cohen.
 
 Se auditaron **42 de las 337 exclusiones propuestas**: una muestra aleatoria sin reemplazo de 30 (semilla `20261108`) más los 15 títulos con `volatility|variance|fluctuation|risk`; tres ya estaban en la muestra, por lo que se añadieron doce. Se mantienen preliminarmente **40 fuera del núcleo directo BTC–volatilidad** y se rescatan **E2-0807 como secundario** y **E2-0993 como incierto**. Algunos registros fuera del núcleo pueden seguir siendo antecedentes metodológicos. No se convierten esos dos rescates en inclusiones definitivas.
 
-Quedan **295 exclusiones sin revisión individual**. La muestra combina azar y selección dirigida: no se extrapola su proporción de rescates como tasa de error global, ni se interpreta como prueba de ausencia de falsos negativos. La categoría automática de precio necesita revisión, no ejecución como descarte definitivo. La auditoría no confirma un nuevo estudio de pronóstico individual de volatilidad BTC; tampoco demuestra que no exista entre los pendientes.
+En ese primer corte quedaban **295 exclusiones sin revisión individual**, revisadas después en el segundo corte descrito a continuación. La muestra combina azar y selección dirigida: no se extrapola su proporción de rescates como tasa de error global, ni se interpreta como prueba de ausencia de falsos negativos. La categoría automática de precio necesita revisión, no ejecución como descarte definitivo. La auditoría no confirma un nuevo estudio de pronóstico individual de volatilidad BTC; tampoco demuestra que no exista entre los pendientes.
 
 El [registro agregado](../_static/literature_review_progress_20261108/summary.json), el [método de auditoría](../_static/literature_review_progress_20261108/method.json) y el [manifiesto](../_static/literature_review_progress_20261108/manifest.json) conservan conteos, huellas y límites sin publicar resúmenes originales ni evidencias textuales privadas. El ledger del triaje inicial y los denominadores 1.634/1.078 permanecen intactos: este suplemento describe una fase posterior, no una reescritura de sus decisiones.
 
 **Alertas para la siguiente lectura, no hechos confirmados:** distinguir redes que predicen precio de GARCH que estima volatilidad; verificar ecuación del objetivo, BTC individual frente a cartera/índice y profundidad real de ANN/MLP. La posible relación entre E2-0265 y E2-0487 requiere autores, datos y textos completos antes de fusionarlos. Las fechas/copyright discordantes y una fecha narrativa imposible se deben contrastar, sin corregirlas por conjetura ni usarlas como acusación de falsedad. Las [alertas estructuradas](../_static/literature_review_progress_20261108/alerts.json) conservan estas preguntas.
 
 Esta revisión no cambia los **983 registros arXiv pendientes**, no concilia todavía las rondas y no cierra la revisión global. Los [próximos pasos](../_static/literature_review_progress_20261108/next_phases.json) son un plan editorial, no una enmienda experimental registrada.
+
+### Segundo corte: lectura de las 295 exclusiones restantes
+
+Se completó la lectura individual asistida por IA de las **295 exclusiones propuestas que faltaban**: **184 fuera del núcleo directo, 98 secundarios transferibles, 12 inciertos conservados y un candidato directo a texto completo**. La etiqueta técnica de exclusión abarca otros objetivos o dominios, no solo precio. Los 111 conservados para alguna función no son 111 estudios incluidos de volatilidad.
+
+La cobertura de lectura de este conjunto alcanza **337/337** al sumar las 42 auditorías previas. Esto no significa revisar íntegramente los 1.078 grupos ni cerrar la revisión global. Los 42 anteriores se evaluaron frente al núcleo directo; su utilidad secundaria no se reclasificó con el criterio posterior. Por ello, **no se suman las categorías de ambas rondas como una clasificación homogénea ni se estima una tasa general de error**. El [registro agregado de seguimiento](../_static/literature_screening_followup_20261108/summary.json) conserva ambos cortes sin alterar los ledgers históricos.
+
+**E2-0449** ([DOI](https://doi.org/10.1109/GIET65294.2025.11234750)) se rescata porque su resumen declara precio y volatilidad Bitcoin con redes bayesianas. Es un falso negativo de la regla inicial a nivel de título/resumen, **no una inclusión confirmada**: faltan proxy, profundidad, horizonte y evaluación temporal en el original. **E2-0538** ([DOI](https://doi.org/10.1109/DeCon67170.2025.11447794)) queda incierto prioritario: la descripción de precio/volatilidad con Attention-LSTM no confirma Bitcoin individual. No se confunden incertidumbre del precio, clasificación de regímenes o volatilidad de una cartera con el objetivo E2.
+
+### Recuperación dirigida de los 40 candidatos iniciales
+
+Se examinaron **12 de los 40 candidatos directos del primer corte**: **cinco textos completos revisados en sus secciones metodológicas y empíricas**, **siete con material parcial o no recuperado** y **28 todavía sin búsqueda individual**. La selección fue dirigida, no representativa. El rescate posterior E2-0449 está fuera de esta cohorte de 40 y no se incorpora retroactivamente a su denominador. No se reprodujo código ni se decidió elegibilidad final.
+
+Las [cinco síntesis con fuentes y localizadores](../_static/literature_screening_followup_20261108/source_reviews.json) separan objetivos y resultados:
+
+| Estudio | Evidencia localizada | Consecuencia para E2 |
+|---|---|---|
+| E2-0012 · [híbridos neuronales Bitcoin](https://doi.org/10.3390/app10144768) | PDF pp. 6, 8–10, 13; tablas 3/9. HONN híbrida RMSE 0,022231812 frente GJR 0,022782066 | Objetivo de cinco días futuros y redes poco profundas; no equivalencia con σ₇ ni elegibilidad DL automática |
+| E2-0025 · [redes profundas y volatilidad cripto](https://dergipark.org.tr/en/download/article-file/4132956) | Páginas impresas 550,553–555; tablas 3/4. DBN-DNN tanh RMSE 0,0013300 frente ARMA-GARCH 0,0013604; BPNN sigmoid destaca en MAE | Proxy retorno diario al cuadrado; ganador dependiente de métrica |
+| E2-0059 · [GARCH híbrido con redes](https://doi.org/10.3390/risks10120237) | PDF pp. 11–14; tablas 3/6/7. A 21 días, tabla 6: HMAE triple-GRU 0,24004 frente triple-LSTM 2 0,26580 | No copiar una conclusión universal favorable a LSTM; reconciliar inconsistencias de tablas, objetivo y conteo de test |
+| E2-0253 · [predicción y conectividad cripto](https://link.springer.com/article/10.1186/s40854-025-00881-x) | Ecuación 1 y texto asociado a tabla 4: HAR 0,876, ARMA 0,896, LSTM 1,153 son promedios de pérdidas heterogéneas | **No son RMSE**; celdas individuales aún no recuperadas. No convertir ese promedio en superioridad universal |
+| E2-0867 · [TCN y Twitter](https://arxiv.org/pdf/2110.14317) | PDF pp. 3, 5–6, ecuación 2 y tabla 2: RMSE TCN 2,58±0,07; LSTM 2,37±0,19 | Volatilidad diaria desde 96 retornos intradía de 15 min, 20 ejecuciones y 48 días de test; no equivale a σ₇ D7×5 |
+
+**No comparar errores numéricos entre estas filas:** cambian proxy, escala, horizonte, datos y protocolo. Las discordancias internas detectadas se conservan como preguntas de verificación, sin corregir por inferencia. Las cifras son resultados publicados, no ajustes nuevos de E2.
+
+En los siete accesos incompletos, **NV significa no verificado/no recuperado**, nunca que el artículo no reporta el dato. Un error técnico, una vista previa o un pasaje indexado no cuentan como texto completo ni demuestran que no exista copia legal. Permanecen pendientes su recuperación, la búsqueda de los 28 y la adjudicación metodológica de los candidatos ya leídos. El [plan de próximos pasos actualizado](../_static/literature_screening_followup_20261108/next_phases.json) sigue siendo editorial, no un preregistro. Los originales, resúmenes y evidencias textuales privadas no se publican.
 
 ### Complemento arXiv: extracción completa de consultas explícitas
 

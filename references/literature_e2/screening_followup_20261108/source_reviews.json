@@ -1,0 +1,76 @@
+{
+  "status": "bounded_extraction_not_final_eligibility",
+  "NV_definition": "No verificado o no recuperado; no afirma ausencia en el artículo.",
+  "studies": [
+    {
+      "study_id": "E2-0012",
+      "title": "Hybrid forecasting models based on the neural networks for the volatility of bitcoin",
+      "doi": "10.3390/app10144768",
+      "source_url": "https://doi.org/10.3390/app10144768",
+      "access_level": "fulltext_method_empirical_review_not_replication",
+      "target_and_data": "Cierres diarios Bitcoincharts 2012–2019; varianza de retornos de cinco días futuros, distinta de sigma 7 E2.",
+      "reported_result": "HONN híbrida Tanh/20: MAE 0.01609808, RMSE 0.022231812, MAPE 42.38508374; GJR:0.018100989, 0.022782066, 59.57816469.",
+      "locator": "PDF pp.6, 8–10, 13; tablas 3 y 9.",
+      "limits": "ANN de una capa/HONN: profundidad no equivale a DL estricto. Selección entre variantes exige revisar exposición al test; no prueba victoria universal.",
+      "unverified_fields": [
+        "Reproducción y ajuste equitativo de todos los baselines no verificados."
+      ]
+    },
+    {
+      "study_id": "E2-0025",
+      "title": "Deep Neural Networks in Predicting Financial Volatility: An Application on Cryptocurrencies",
+      "doi": "10.30798/makuiibf.1530528",
+      "source_url": "https://dergipark.org.tr/en/download/article-file/4132956",
+      "access_level": "fulltext_method_empirical_review_not_replication",
+      "target_and_data": "BTC/ETH diarios Yahoo Finance, 580 observaciones; objetivo retorno logarítmico diario al cuadrado, no RV intradía.",
+      "reported_result": "BTC: DBN-DNN tanh RMSE 0.0013300; BPNN sigmoid MAE 0.0006493; ARMA-GARCH RMSE 0.0013604 y MAE 0.0006900.",
+      "locator": "Páginas impresas 550, 553–555; ecuaciones 15–17 y tablas 3–4.",
+      "limits": "El ganador cambia con la métrica; no intercambiar r² con volatilidad sigma 7 ni inferir profundidad solo del nombre.",
+      "unverified_fields": [
+        "Consistencia R²/RMSE y código no reproducidos."
+      ]
+    },
+    {
+      "study_id": "E2-0059",
+      "title": "Forecasting Bitcoin Volatility Using Hybrid GARCH Models with Machine Learning",
+      "doi": "10.3390/risks10120237",
+      "source_url": "https://doi.org/10.3390/risks10120237",
+      "access_level": "fulltext_method_empirical_review_not_replication",
+      "target_and_data": "2283 cierres diarios Bitcoincharts; híbridos GARCH con LSTM/GRU/BiLSTM; ventanas declaradas 7/14/21 días.",
+      "reported_result": "Tabla 3, a 7 d: EGARCH-LSTM 2 HMAE/HMSE 0.37998/0.36799 frente EGARCH 0.39770/0.38956. Tabla 6, a 21 d: triple-GRU HMAE 0.24004 frente triple-LSTM 2 0.26580.",
+      "locator": "PDF pp.6–7, 11–14; tablas 3, 6 y 7.",
+      "limits": "Discordancias entre fórmula intradía y datos diarios, 287/288 observaciones de test y tablas 6/7. No resolverlas por inferencia ni afirmar superioridad universal LSTM.",
+      "unverified_fields": [
+        "Definición operativa objetivo y discrepancias requieren reconciliación."
+      ]
+    },
+    {
+      "study_id": "E2-0253",
+      "title": "Coin impact on cross-crypto realized volatility and dynamic cryptocurrency volatility connectedness",
+      "doi": "10.1186/s40854-025-00881-x",
+      "source_url": "https://link.springer.com/article/10.1186/s40854-025-00881-x",
+      "access_level": "fulltext_method_empirical_review_not_replication",
+      "target_and_data": "CryptoDataDownload 5 min, 2018–2023; suma de cuadrados intradía: varianza realizada, no desviación estándar sigma 7.",
+      "reported_result": "Texto asociado tabla 4: promedio de pérdidas heterogéneas HAR 0.876, ARMA 0.896, LSTM 1.153; estos valores NO son RMSE.",
+      "locator": "HTML: ecuación 1, Data description, Model comparison y texto de tabla 4.",
+      "limits": "No convertir promedio de métricas de escalas distintas en RMSE o ventaja universal. El artículo incluye comparación predictiva y conectividad.",
+      "unverified_fields": [
+        "Celdas individuales tabla 4 RMSE/MAE no recuperadas; NV, no NR."
+      ]
+    },
+    {
+      "study_id": "E2-0867",
+      "title": "Ask \"who\", Not \"what\": Bitcoin Volatility Forecasting with Twitter Data",
+      "doi": "10.1145/3539597.3570387",
+      "source_url": "https://arxiv.org/pdf/2110.14317",
+      "access_level": "fulltext_method_empirical_review_not_replication",
+      "target_and_data": "BTC 15 min y Twitter; 144 días, train 96 y test 48; raíz de suma de cuadrados de 96 retornos intradía, 20 ejecuciones.",
+      "reported_result": "Tabla 2: TCN RMSE2.58±0.07; LSTM 2.37±0.19; AR-RV 2.78. No equivalen a errores en escala E2.",
+      "locator": "PDF pp.3, 5–6; ecuación 2 y tabla 2; versión arXiv v2, 2022-12-06.",
+      "limits": "TCN no gana todas las métricas.48 días limitan generalización; 144 días es muestra, no horizonte. DOI editorial WSDM 2023 separado de versión leída.",
+      "unverified_fields": [
+        "Calendario exacto, ablaciones completas y equivalencia editorial pendientes."
+      ]
+    }
+  ]
+}

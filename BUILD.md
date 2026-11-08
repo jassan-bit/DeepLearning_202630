@@ -595,3 +595,13 @@ python -m unittest discover -s tests -p 'test_e2_review_progress.py'
 ```
 
 Para reconstruir exclusivamente los agregados desde las dos tablas privadas, usar `python scripts/build_e2_review_progress.py --private-dir /ruta/privada/fuera-del-checkout`; los nombres requeridos están en el script. La lista pública está cerrada y su manifiesto fija hashes y bytes. No se confunden 40 candidatos a texto completo con incluidos; 295 exclusiones siguen sin lectura individual. La muestra mixta de azar y títulos de riesgo no permite extrapolar tasa de error global. Las alertas bibliográficas son preguntas de verificación, no duplicados o fechas corregidos automáticamente.
+
+### Seguimiento de lectura y recuperación E2 (08/11/2026)
+
+`python scripts/build_e2_screening_followup.py --check` valida conteos agregados,
+campos públicos permitidos, hashes y espejo del segundo corte. El modo opcional
+`--private-base /ruta/privada/corpus_e2` contrasta identidad de los 295 registros,
+su unión disjunta con los 42 previos y la cohorte de recuperación de 40; esa ruta
+no puede estar dentro del repositorio. No publica resúmenes ni originales.
+Ejecutar `python -m unittest discover -s tests -p 'test_e2_screening_followup.py'`.
+La lectura asistida por IA no representa doble revisión humana ni inclusión final.
