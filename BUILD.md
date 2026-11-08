@@ -611,3 +611,12 @@ valida el agregado 22/40, las versiones separadas (seis editoriales y dos
 preprints), campos permitidos y espejo. Pruebas:
 `python -m unittest discover -s tests -p 'test_e2_recovery_second.py'`.
 Los cortes previos permanecen históricos; no se reinterpretan como inclusión final.
+
+### Catálogo editorial vigente del 08/11/2026
+
+La presentación E2 usa diez modelos y un candidato HAR residual, sin atribuirle
+superioridad ni ejecución integral. `references/e2_current_catalogue_20261108.json`
+no es un preregistro experimental. Validar con
+`python -m unittest discover -s tests -p 'test_e2_current_catalogue.py'`.
+Los protocolos, resultados y recibos históricos permanecen sin cambios; la
+lista retirada no se reimprime como selección vigente en capítulos o anexos.

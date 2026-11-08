@@ -1,5 +1,7 @@
 # 5. Paper Guía y Replicación
 
+**Alcance:** los datos, controles y experimentos ya ejecutados de esta sección se conservan como evidencia histórica. No acreditan entrenamiento del catálogo vigente de diez modelos y candidato 11, definido en [§15](15_revision_modelos.md). Cualquier presupuesto o receta anterior requiere revisión y nuevo registro antes de reutilizarse.
+
 Este capítulo desarrolla la sección 5 de la guía completa de 65 páginas, recibida después de sus dos capturas iniciales (página16 y continuación). Distingue la réplica externa de ETTh1 del benchmark Bitcoin D7. El diseño, las fuentes, las cinco semillas y el criterio de comparación se registraron antes de los ajustes con datos.
 
 ## 5.1 Paper guía y justificación de selección
@@ -95,14 +97,15 @@ El sesgo inductivo supone que las representaciones fina y gruesa aportan informa
 
 El pooling y la media móvil operan sobre la ventana observada completa. No se describen como filtros estrictamente causales en cada posición interna; el requisito de pronóstico es que la ventana y sus marcadores estén disponibles en el origen. Normalizar por instancia no prueba estacionariedad, inmunidad al cambio de régimen o ausencia de errores de alineación.
 
-| Modelos del Top 10 | Relación con TimeMixer |
+| Modelos vigentes | Relación con TimeMixer |
 |---|---|
 | TSMixer y TiDE | Comparten familia MLP; TimeMixer añade descomposición y mezcla explícita entre escalas |
 | TimesNet | Transforma periodicidades en representaciones 2D y aplica convoluciones; TimeMixer usa pooling y MLP temporales |
-| PatchTST, Informer, Autoformer, iTransformer y Crossformer | Emplean atención, segmentos, autocorrelación o interacciones entre variables; no son variantes del PDM/FMM |
-| S-Mamba | Utiliza estados selectivos; ofrece un mecanismo distinto de la mezcla multiescala |
+| PatchTST e iTransformer | Atención sobre parches o variables; mecanismos distintos de PDM/FMM |
+| FCN-1D, ResNet-1D e Inception-1D | Extracción convolucional; requieren adaptación de regresión y soporte D7 |
+| LSTM-autoencoder con predictor | Representación recurrente y reconstrucción; receta supervisada por fijar |
 
-GRU, LSTM y TCN siguen siendo referencias heredadas, adicionales al Top 10. Elegir TimeMixer como guía no lo convierte en ganador del benchmark ni reemplaza el baseline GRU-c03.
+MLP, LSTM y GRU de E1 son referencias separadas. Elegir TimeMixer como guía no lo convierte en ganador del catálogo vigente.
 
 La transferencia a Bitcoin requerirá otro adaptador: D7×5 de OHLCV, sin calendario ni rezagos explícitos de Y, lectura escalar de σ₇ y escala objetivo propia. Copiar tres reducciones de factor dos produciría longitudes 7/3/1/0; por tanto, no es una configuración válida automática. Cambiar la cabeza y las escalas constituye una adaptación que debe especificarse y validarse. La réplica ETTh1 no acredita que esa adaptación ya exista o generalice.
 
@@ -237,4 +240,4 @@ La reproducción separa `validate`, `register`, cinco `fit`, un `score` posterio
 | Preregistro completo de §9.1 | Guía completa recibida; cronología acotada de la réplica comprobable y revisión integral de sus requisitos separada del protocolo Bitcoin |
 | Motivación para E3 | Condiciones y candidatos de investigación documentados; originalidad y validación D7 pendientes |
 
-Estos experimentos suman **veinte ajustes externos de modelos**. Los diez adaptadores finales ya están implementados y revisados con pruebas sintéticas en §14; el recibo del 06/11 acredita inicio de HPO, todavía sin cierre publicado; potencia y benchmark Bitcoin de §4 no tienen resultados finales publicados. Se preservan la métrica, test y margen heredados. La nueva enmienda separa 53 fechas de P1/calibración de los sesenta días históricos P0 y de test.
+Estos experimentos suman **veinte ajustes externos de modelos**. La revisión de adaptadores previa es histórica y no acredita la integración del catálogo vigente; el recibo del 06/11 acredita inicio de HPO, todavía sin cierre publicado; potencia y benchmark Bitcoin de §4 no tienen resultados finales publicados. Se preservan la métrica, test y margen heredados. La enmienda histórica separaba 53 fechas de P1/calibración; no fija el diseño del catálogo vigente, cuya nueva enmienda está pendiente.

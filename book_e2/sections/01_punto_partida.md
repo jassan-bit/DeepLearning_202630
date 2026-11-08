@@ -1,35 +1,30 @@
 # 1. Definición del Problema, Preguntas de Investigación y Dataset
 
-**Distinción de versiones:** el núcleo actual de E1 es MLP–LSTM–GRU. Las anclas GRU–LSTM–TCN descritas aquí pertenecen a la versión de E1 que E2 adoptó y registró; no se sustituyen retrospectivamente. La [revisión propuesta del 08/11/2026](15_revision_modelos.md) separa ambos contextos y deja cualquier incorporación de MLP al próximo diseño por definir.
+**Catálogo vigente:** diez modelos de literatura y adaptaciones de familias, más **HAR + red residual como candidato 11**, sin superioridad demostrada. MLP, LSTM y GRU de E1 son referencias separadas y no se suman al catálogo. La [revisión del 08/11/2026](15_revision_modelos.md) sustituye la selección anterior; la nueva enmienda experimental está pendiente.
 
-Esta sección desarrolla las páginas 2–3 de la guía completa de 65 páginas. La formulación y la ficha de datos se conservan; la ruta se cierra como **F2a, series de tiempo**, en la {ref}`sección 7 <e2-ruta-temporal>`. Las preguntas y las reglas del procedimiento E2 están registradas en el [commit previo al piloto `599a29f`](https://github.com/jassan-bit/DeepLearning_202630/tree/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0), con alcance **exploratorio** porque los periodos heredados ya se conocían. El benchmark final sigue pendiente; el [piloto P0 de desarrollo y su protocolo](09_protocolo_registrado.md) ya se ejecutaron y se informan por separado, sin constituir los resultados del benchmark final. Los diagnósticos propios del EDA se presentan en la [sección 2](02_eda.md).
+Esta sección desarrolla las páginas 2–3 de la guía completa de 65 páginas. Se conservan la formulación y la ficha de datos; la ruta es **F2a, series de tiempo**, como explica la {ref}`sección 7 <e2-ruta-temporal>`. El [registro histórico `599a29f`](https://github.com/jassan-bit/DeepLearning_202630/tree/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0) y el [piloto P0 ejecutado](09_protocolo_registrado.md) se conservan para trazabilidad, sin trasladar sus candidatos, presupuesto o resultados al catálogo vigente. Los periodos heredados ya se conocían: su reutilización tiene alcance exploratorio. Los diagnósticos del EDA se presentan en la [sección 2](02_eda.md).
 
 ## 1.1 Definición formal del problema
 
 (e2-contrato-heredado)=
-### 1.1.1 Contrato heredado y versión de referencia
+### 1.1.1 Contrato de datos y procedencia histórica
 
-Se adopta explícitamente la **fase II D7** del [Entregable 1, commit `94a4b03`](https://github.com/jassan-bit/DeepLearning_202630/tree/94a4b0324e93361e8928d708fdfeb50110e3686f). El [contrato descargable](../_static/e1_reference.json) identifica sus artefactos. No se mezclan sus recetas con las redes de la fase I.
+El contrato de datos utilizado por E2 procede de la **fase II D7** del [Entregable 1, commit `94a4b03`](https://github.com/jassan-bit/DeepLearning_202630/tree/94a4b0324e93361e8928d708fdfeb50110e3686f). El [contrato descargable histórico](../_static/e1_reference.json) identifica esa procedencia. Las recetas y resultados de ese registro conservan su identidad; no definen la nueva selección de modelos ni se reasignan a las referencias actuales MLP, LSTM y GRU de E1.
 
 | Elemento heredado | Definición conservada en E2 |
 |---|---|
 | Problema | Volatilidad histórica de Bitcoin, BTCUSDT en Binance Spot; formulación heredada inicialmente denominada regresión temporal, con ruta E2 resuelta como F2a, series de tiempo |
 | Entrada | D=7 días de cinco canales OHLCV; horizonte h=1 día |
 | Objetivo | σ₇ poblacional de siete retornos logarítmicos diarios de Close, sin anualización |
-| Modelos base | GRU/D7-c03, LSTM/D7-c02 y TCN/D7-c02, con sus configuraciones de fase II |
-| Referencia seleccionada en desarrollo | GRU-c03; se conserva aunque otro modelo obtenga menor error en test |
+| Referencias de E1 | MLP, LSTM y GRU, fuera del catálogo; receta y cohorte comparables por identificar en la nueva enmienda |
 | Métrica primaria | Media entre semillas de la RMSE de cada trayectoria sobre las fechas elegibles comunes, en escala original |
 | Margen absoluto | δ = **0,00025772842664981106** unidades de volatilidad diaria |
 | Unidad de independencia | Una serie BTCUSDT de un proveedor; las fechas y etiquetas solapadas tienen dependencia temporal |
 | Partición | Calendario de fase II descrito abajo; no se reasignan sus periodos |
 
-| Modelo heredado | Receta seleccionada en E1 | Parámetros |
-|---|---|---:|
-| GRU-c03 | Una capa recurrente, 16 unidades, learning rate 0,003, dropout 0,1 | 1.121 |
-| LSTM-c02 | Una capa recurrente, 16 unidades, learning rate 0,003, dropout 0 | 1.489 |
-| TCN-c02 | Ancho 8; tres bloques residuales, dos Conv1D por bloque, kernel 3, dilataciones 1/2/4; learning rate 0,003, dropout 0 | 1.185 |
+Las recetas del experimento de origen se consultan en el [diseño versionado de fase II](https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/experiments/gru_lstm_tcn_planned_20261105/design.json). Se conserva su trazabilidad sin reproducir aquí una segunda selección de modelos.
 
-Las recetas completas, escalado, optimizador y entrenamiento están en el [diseño versionado de fase II](https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/experiments/gru_lstm_tcn_planned_20261105/design.json). La TCN tiene campo receptivo nominal 29; la ventana efectiva de este contrato sigue siendo D=7.
+El siguiente calendario describe la procedencia histórica de los datos. La nueva enmienda debe identificar el uso de cada periodo y de cada referencia sin retrofechar decisiones.
 
 | Función | Periodo UTC y regla heredada |
 |---|---|
@@ -67,7 +62,9 @@ El preprocesamiento heredado usa logaritmos de OHLC relativos al último cierre 
 
 ### 1.1.3 Espacio de hipótesis, pérdida y riesgo
 
-Para el catálogo de redes $\mathcal M$, con los diez modelos Top10, tres variantes GRU/LSTM/TCN ajustables en E2 y tres anclas heredadas, el espacio de hipótesis es $\mathcal H=\bigcup_{m\in\mathcal M}\mathcal H_m$, con $f_\theta:\mathcal X\to\mathbb R$. Junto con Ridge, persistencia, naive semanal y ARIMA, el panel registrado reúne **veinte configuraciones**: quince familias ajustables, tres anclas y dos referencias naive sin HPO ficticio. Las recetas registradas y sus comprobaciones de desarrollo no equivalen a un benchmark final ejecutado. La variable objetivo es no negativa; el protocolo registra las salidas de cada arquitectura y el enlace puntual de Ridge/ARIMA sin cambiar las recetas heredadas.
+El catálogo vigente contiene **FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder con predictor, TimesNet, TSMixer, TiDE, TimeMixer, PatchTST e iTransformer**. Son modelos de la literatura o adaptaciones de familias; no se presentan como los nombres literales del curso. **HAR + red residual** es el candidato 11 que se investigará, sin afirmar que sea superior.
+
+Para esos modelos, el espacio de hipótesis es $\mathcal H=\bigcup_{m\in\mathcal M}\mathcal H_m$. Las diez redes parten del contrato $\mathcal X\subseteq\mathbb R^{7\times5}$; el híbrido requiere declarar su soporte causal HAR y el de la corrección residual antes de implementarlo y compararlo. Una historia adicional no se atribuye a una mejora de arquitectura bajo información idéntica. La variable objetivo es no negativa; el enlace de salida y cualquier posprocesamiento deben fijarse por receta antes de puntuar. MLP, LSTM y GRU de E1 permanecen como referencias externas a este catálogo, con identidad experimental propia.
 
 Se conserva la pérdida cuadrática:
 
@@ -88,7 +85,7 @@ $\widehat\mu_m$ es la métrica primaria. No se reemplaza por la RMSE de un ensam
 
 ### 1.1.4 Tipo de tarea y relevancia
 
-La clasificación metodológica de E2 es **F2a, series de tiempo**, resuelta tras recibir la guía completa. El {ref}`diagnóstico residual de §2.2.3 <e2-diagnostico-forward>` aporta autocorrelación fuerte de la referencia Ridge; RT1 (PDF p32) exige reclasificar, además del diagnóstico del EDA C (p6). La {ref}`sección 7 <e2-ruta-temporal>` registra esa resolución y los baselines específicos. Se conserva la tarea predictiva, D7×5, σ₇, h=1, δ y partición de E1; la reclasificación no añade Y rezagada como canal de las redes. Persistencia, naive semanal y ARIMA declaran su información endógena y sus soportes distintos del D7.
+La clasificación metodológica de E2 es **F2a, series de tiempo**, resuelta tras recibir la guía completa. El {ref}`diagnóstico residual de §2.2.3 <e2-diagnostico-forward>` aporta autocorrelación fuerte de la referencia Ridge; RT1 (PDF p32) exige reclasificar, además del diagnóstico del EDA C (p6). La {ref}`sección 7 <e2-ruta-temporal>` conserva esa resolución y los controles causales. Se conserva la tarea predictiva, D7×5, σ₇, h=1 y δ; la reclasificación no añade Y rezagada como canal de las diez redes. El soporte del híbrido y la función de cualquier control deben quedar explícitos en la nueva enmienda, sin ampliar el catálogo vigente.
 
 Tres trabajos respaldan la relevancia científica del pronóstico de volatilidad en criptomonedas: Miura, Pichl y Kaizoji estudian redes neuronales para volatilidad realizada {cite:p}`miura2019`; Guo, Bifet y Antulov-Fantulin estudian la información de órdenes de compra y venta {cite:p}`guo2018`; Akbiyik y colaboradores incorporan información de Twitter al pronóstico de volatilidad de Bitcoin {cite:p}`akbiyik2023`.
 
@@ -100,31 +97,31 @@ La primaria es RMSE; las secundarias heredadas son MAE, MSE, R², MAPE y MASE. M
 
 El margen absoluto heredado procede de $0,05\times0,005154568532996221$, RMSE CV de la GRU/D7 de fase I. **No se recalcula como el 5 % de una nueva RMSE.** Se conserva aparte la regla relativa académica de E1 frente a GRU y persistencia; no se confunde una reducción porcentual con δ absoluto. Su origen y fecha están documentados: heredar el margen no lo vuelve una decisión previa a los resultados históricos iniciales.
 
-Hay **una única serie de mercado** ($N_{\text{series}}=1$). Las semillas describen variabilidad del entrenamiento condicionada a los datos; no son nuevas series independientes. Las etiquetas σ₇ comparten retornos y las ventanas comparten observaciones. El protocolo registrado empareja modelos por semilla y fecha y distingue remuestreo de trayectorias y de calendario: bootstrap temporal de bloques de siete días, sensibilidades fijadas de catorce y veintiocho días y 99.999 remuestreos, sin escoger el menor p-valor. El R=465 de E1 no acredita potencia para las nuevas comparaciones. El dimensionamiento P1 deberá evaluar capacidad temporal y entre semillas con las recetas que queden seleccionadas por desarrollo; P0 comprueba viabilidad y no acredita esa potencia.
+Hay **una única serie de mercado** ($N_{\text{series}}=1$). Las semillas describen variabilidad del entrenamiento condicionada a los datos; no son nuevas series independientes. Las etiquetas σ₇ comparten retornos y las ventanas comparten observaciones. La comparación debe emparejar fechas y distinguir variación entre semillas de incertidumbre temporal. El remuestreo por bloques evita suponer independencia diaria, pero su diseño y sensibilidad requieren justificación en desarrollo. Ningún número de semillas de E1 o del P0 histórico acredita potencia para las nuevas comparaciones. El dimensionamiento se definirá tras congelar las recetas y las hipótesis de la nueva enmienda.
 
 ## 1.2 Preguntas de investigación e hipótesis
 
-Las tres preguntas siguientes son **exploratorias y registradas antes del piloto P0 de E2** en `599a29f`, con hipótesis, márgenes y reglas explícitas. El registro mejora el orden prospectivo del procedimiento nuevo; no borra que el test heredado ya fue inspeccionado ni lo convierte en una confirmación independiente. La [versión registrada de las reglas](https://github.com/jassan-bit/DeepLearning_202630/blob/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0/experiments/e2_remediation_20261106/preregistration.json) distingue ese estado del registro de ejecución posterior.
+Las tres preguntas siguientes orientan el diseño vigente. **Sus comparadores, familias de hipótesis y reglas de decisión todavía requieren una nueva enmienda**. El [registro anterior](https://github.com/jassan-bit/DeepLearning_202630/blob/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0/experiments/e2_remediation_20261106/preregistration.json) se conserva como antecedente, no como preregistro de los nuevos diez modelos y el candidato 11.
 
-Para cada uno de los diez candidatos Top10 registrados, sea $g_m=\mu_{\mathrm{GRU}}-\mu_m$: valores positivos indican menor RMSE que la GRU-c03 de referencia heredada. Las diferencias se calcularán en las mismas fechas y con semillas emparejadas; no se seleccionarán comparadores después de mirar el resultado. Las mismas tres preguntas se replican en una familia secundaria frente a GRU ajustada en E2 bajo el HPO común, distinguiendo ambos comparadores.
+Para cada candidato $m$, sea $g_m=\mu_{\mathrm{ref}}-\mu_m$: valores positivos indican menor RMSE que la referencia que se identifique antes de la comparación. Las diferencias deben usar las mismas fechas elegibles y un tratamiento explícito de las semillas. MLP, LSTM y GRU de E1 aportan referencias separadas; su receta, cohorte y papel inferencial no se escogen después de mirar los resultados. El híbrido se somete a los mismos criterios de evidencia y no recibe la etiqueta de ganador por construcción.
 
 ### 1.2.1 RQ1 · Ganancia predictiva relevante
 
-**Pregunta:** ¿algún candidato reduce la RMSE respecto a GRU-c03 en más que el margen heredado δ?
+**Pregunta:** ¿algún candidato reduce la RMSE respecto a la referencia predefinida en más que el margen heredado δ?
 
 $$
 H_{0,m}:g_m\le\delta,\qquad H_{1,m}:g_m>\delta.
 $$
 
-El efecto mínimo es δ en unidades originales de volatilidad. Se registra un contraste unilateral pareado del efecto respecto a δ mediante bootstrap temporal por bloques, con las mismas fechas remuestreadas para ambos modelos y la variabilidad entre trayectorias tratada separadamente. La distribución nula se centra en la frontera $g_m=\delta$; no basta probar una diferencia contra cero. Para planificar potencia, P1 usa una ganancia verdadera de **2δ**, cuyo exceso respecto a esa frontera es δ; no promete potencia del 80 % exactamente sobre la hipótesis nula.
+El efecto mínimo es δ en unidades originales de volatilidad. La nueva enmienda deberá especificar un contraste unilateral pareado del efecto respecto a δ mediante bootstrap temporal por bloques, con las mismas fechas remuestreadas para ambos modelos y la variabilidad entre trayectorias tratada separadamente. La distribución nula se centra en la frontera $g_m=\delta$; no basta probar una diferencia contra cero. La alternativa usada para planificar potencia debe ser mayor que δ y quedar explícita antes de dimensionar; no se promete potencia de detección en la frontera de la hipótesis nula.
 
-La decisión requerirá un p-valor ajustado inferior al **α=0,02 de su familia** y un límite inferior simultáneo para $g_m$ superior a δ, usando la cola asignada por el registro. Se reportarán efecto absoluto, reducción relativa, intervalos y p-valores ajustados y sin ajustar. Una ganancia puntual superior a δ, por sí sola, no prueba mejora práctica con incertidumbre controlada. Persistencia conserva su papel de referencia adicional: superar GRU no significa superar el pronóstico ingenuo.
+La decisión requerirá un contraste ajustado y un límite de incertidumbre compatibles con el margen δ y con el control de multiplicidad que se registre. Se reportarán efecto absoluto, reducción relativa, intervalos y p-valores ajustados y sin ajustar. Una ganancia puntual superior a δ, por sí sola, no prueba mejora práctica con incertidumbre controlada.
 
 ### 1.2.2 RQ2 · Deterioro de la ventaja en alta volatilidad
 
-**Pregunta:** ¿la ventaja de un candidato frente a GRU disminuye en más de δ durante días de alta volatilidad conocida al emitir el pronóstico?
+**Pregunta:** ¿la ventaja de un candidato frente a la referencia disminuye en más de δ durante días de alta volatilidad conocida al emitir el pronóstico?
 
-Se registra el estrato causal $A_t=\mathbf1\{\sigma_7(t-1)>q_{0,75}^{2023}\}$, con $q_{0,75}^{2023}=0,024247163097617024$, obtenido únicamente de las 350 etiquetas válidas σ₇ de 2023. Su [perfil de entrenamiento está versionado en E1](https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/book/_static/eda_general_quality/target_profiles.csv). El estrato usa información pasada; no es un nuevo canal de entrada ni un umbral optimizado en test.
+El antecedente metodológico define el estrato causal $A_t=\mathbf1\{\sigma_7(t-1)>q_{0,75}^{2023}\}$, con $q_{0,75}^{2023}=0,024247163097617024$, obtenido únicamente de las 350 etiquetas válidas σ₇ de 2023. Su [perfil de entrenamiento está versionado en E1](https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/book/_static/eda_general_quality/target_profiles.csv). El estrato usa información pasada; no es un nuevo canal de entrada ni un umbral optimizado en test.
 
 Con RMSE calculada por trayectoria dentro de cada estrato, sean $g_{m,N}$ y $g_{m,A}$ las ganancias en régimen normal y alto, y $d_m=g_{m,N}-g_{m,A}$:
 
@@ -132,30 +129,30 @@ $$
 H_{0,m}:d_m\le\delta,\qquad H_{1,m}:d_m>\delta.
 $$
 
-El efecto mínimo es una erosión absoluta δ de la ventaja. Se registra bootstrap temporal pareado sobre el calendario común, conservando las etiquetas de régimen y recalculando las métricas dentro de cada estrato. P1 planifica capacidad bajo una erosión verdadera de 2δ; la frontera contrastada sigue siendo δ. Se reportarán cantidades de fechas y bloques útiles por estrato; si son insuficientes, el resultado será no estimable o inconcluso. Rechazar indica deterioro relevante; **no rechazar no demuestra robustez ni equivalencia**.
+El efecto mínimo es una erosión absoluta δ de la ventaja. Se requiere bootstrap temporal pareado sobre el calendario común, conservando las etiquetas de régimen y recalculando las métricas dentro de cada estrato. La alternativa para dimensionar este contraste sigue pendiente; su frontera es δ. Se reportarán cantidades de fechas y bloques útiles por estrato; si son insuficientes, el resultado será no estimable o inconcluso. Rechazar indica deterioro relevante; **no rechazar no demuestra robustez ni equivalencia**.
 
 ### 1.2.3 RQ3 · Mejora conjunta de error y coste
 
-**Pregunta:** ¿algún candidato mejora la RMSE en más de δ y reduce el coste de inferencia frente a GRU-c03?
+**Pregunta:** ¿algún candidato mejora la RMSE en más de δ y reduce el coste de inferencia frente a la referencia predefinida?
 
-Sea $c_m$ la diferencia de latencia media por ventana, candidato menos GRU, bajo el mismo hardware, precisión y batch size:
+Sea $c_m$ la diferencia de latencia media por ventana, candidato menos referencia, bajo el mismo hardware, precisión y batch size:
 
 $$
 H_{0,m}:(g_m\le\delta)\ \text{o}\ (c_m\ge0),\qquad
 H_{1,m}:(g_m>\delta)\ \text{y}\ (c_m<0).
 $$
 
-Se registra una prueba de intersección-unión: ambas condiciones deben quedar respaldadas; el p-valor conjunto será el máximo de los dos p-valores unilaterales válidos. El margen de error sigue siendo δ; el umbral de coste es cero, sin inventar una tolerancia financiera. P1 planifica una reducción de latencia del 20 % respecto a cada referencia, sin convertir ese objetivo de capacidad en un margen nuevo de la hipótesis. Se reportará también la magnitud e intervalo del ahorro para valorar su importancia operativa.
+La afirmación conjunta requiere una prueba de intersección-unión: ambas condiciones deben quedar respaldadas; el p-valor conjunto será el máximo de los dos p-valores unilaterales válidos. El margen de error sigue siendo δ; el umbral de coste es cero, sin inventar una tolerancia financiera. El efecto de coste usado para dimensionar deberá justificarse en la nueva enmienda, sin inventar un ahorro observado. Se reportará también la magnitud e intervalo del ahorro para valorar su importancia operativa.
 
-La latencia se medirá con entradas de desarrollo o sintéticas de forma $7\times5$, sin volver a puntuar test para medir tiempos. El protocolo fija CPU común, un thread, batch1, 256 llamadas de calentamiento y 61 bloques de 256 llamadas, con orden intercalado reproducible; declara por separado precisión neuronal FP32 y clásica float64. Esos bloques serán las unidades de repetición del coste. Las repeticiones del cronómetro no aumentan el tamaño muestral de la evaluación predictiva.
+La latencia debe medirse con entradas de desarrollo o sintéticas, sin volver a puntuar test para medir tiempos. La nueva enmienda fijará hardware, precisión, batch, calentamiento, bloques y orden intercalado; también declarará cualquier diferencia de soporte del híbrido. Las repeticiones del cronómetro no aumentan el tamaño muestral de la evaluación predictiva.
 
 ### 1.2.4 Multiplicidad y criterio de decisión común
 
-El registro fija **K=10 candidatos Top10** y dos familias distintas de **3K=30 hipótesis**: la principal frente a GRU-c03 heredada y la secundaria frente a GRU ajustada en E2. Cada una aplica Holm con **α=0,02** a sus p-valores válidos; para RQ3 se obtiene primero el p-valor conjunto de intersección-unión. Los límites simultáneos utilizan la cola conservadora **α de la familia / 30**, no 0,05/30. Los IC marginales del 95 % se distinguen de esos límites simultáneos.
+La nueva selección exige definir de nuevo qué comparaciones se harán, cómo se agruparán y qué nivel de error se asignará a cada familia. **No se heredan los recuentos ni las asignaciones estadísticas del catálogo retirado.** Las referencias E1 y los controles del híbrido deben tener un papel explícito, sin incorporarse como nuevos miembros del catálogo.
 
-Una tercera familia contiene **199 diagnósticos registrados**, con Holm y **α=0,01**. La suma 0,02+0,02+0,01 conserva un presupuesto global 0,05 mediante la cota de la unión para esas tres familias, bajo validez de sus p-valores; no cubre automáticamente todos los análisis exploratorios, calibración, incertidumbre o NAS. Los veinte integrantes del panel producirían 190 pares si se compararan todos: ese número no es la familia principal de treinta hipótesis ni la familia de 199 diagnósticos.
+Para RQ3 se obtiene primero el p-valor conjunto de intersección-unión; después se aplica el ajuste familiar que se registre. Los IC marginales del 95 % se distinguen de los límites simultáneos. Las pruebas de equivalencia, calibración, robustez y diagnóstico necesitan su propio alcance; no quedan cubiertas automáticamente por el ajuste de las preguntas principales.
 
-La tolerancia de brecha train–validación queda registrada como **δg=δ**, en unidades originales de RMSE; es una decisión operativa prospectiva, no un criterio que certifique retrospectivamente E1. [El protocolo de §9](09_protocolo_registrado.md) define que P1 dimensionará tras HPO con recetas congeladas, alternativas de ganancia/erosión 2δ y capacidad entre semillas y calendario por separado. P0 no selecciona arquitecturas ni acredita esa potencia: completó 220 trayectorias/440 ajustes de desarrollo y se informa como una etapa distinta, todavía sin resultados finales de benchmark. Aunque se controle multiplicidad, el test conocido mantiene el alcance exploratorio; no se cambia la partición heredada para simular una reserva desconocida.
+El margen absoluto δ se mantiene como referencia metodológica; la tolerancia de brecha train–validación y las alternativas de potencia deberán fijarse explícitamente. El [P0 histórico de §9](09_protocolo_registrado.md) completó 220 trayectorias y 440 ajustes de desarrollo, pero no selecciona ni dimensiona el catálogo vigente. Aunque se controle multiplicidad, reutilizar un test conocido mantiene el alcance exploratorio.
 
 ## 1.3 Justificación del dataset
 
@@ -215,15 +212,10 @@ El hash anterior identifica **el archivo manifiesto**; no es un único checksum 
 |---|---|
 | Formulación matemática, tarea, métricas, δ y unidad | Documentados con la herencia de E1 |
 | Relevancia con al menos tres referencias | Tres referencias de contexto citadas; no sustituyen la revisión sistemática |
-| Tres RQ, hipótesis, efecto y reglas | Registrados antes de P0, con dos familias de treinta hipótesis y alcance exploratorio |
+| Tres RQ, hipótesis, efecto y reglas | Formulación metodológica disponible; comparadores, multiplicidad y registro nuevos pendientes |
 | Justificación y Data Card | Documentadas con procedencia, versión, hashes, calidad y límites |
 | Uso previo de la fuente/dataset en Q1 | Pendiente de referencia y cuartil por año; no exige identidad exacta del snapshot |
-| Catálogo y protocolo | Veinte configuraciones registradas; quince familias ajustables, tres anclas y dos naive; ejecución y validación final pendientes |
+| Catálogo y protocolo | Diez modelos vigentes y HAR + red residual como candidato 11; nueva enmienda y evaluación pendientes |
 | Prueba desconocida y confirmación nueva | No disponibles en los periodos heredados ya evaluados |
 
-La [verificación bibliográfica acotada de §3](03_literatura.md) distingue los diez
-originales arquitectónicos completos, los siete cuerpos cripto heredados de E1 y
-los siete apoyos aplicados nuevos de E2 todavía pendientes. La existencia de
-cuerpos heredados no completa esos apoyos ni la evidencia de uso de la fuente en
-Q1. Los [criterios de cierre bibliográfico](../_static/literature_completion/closure_checklist.json)
-mantienen separados estos insumos de la ejecución futura del benchmark.
+La [revisión bibliográfica de §3](03_literatura.md) distingue las fuentes de los modelos, su adaptación a regresión de σ₇ y la evidencia aplicada a criptomonedas. Una arquitectura publicada o un original leído no acreditan su funcionamiento en este dataset. La comprobación de uso de la fuente en Q1 y el cierre bibliográfico se mantienen separados de la ejecución del nuevo benchmark.

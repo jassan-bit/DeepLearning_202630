@@ -1,49 +1,37 @@
 (e2-ruta-temporal)=
-# 7. Ruta metodológica: series de tiempo y referencias causales
+# 7. Ruta metodológica: series de tiempo y controles causales
 
-**Decisión del 06/11/2026:** se adopta la ruta **F2a, series de tiempo**, tras recibir la guía completa de 65 páginas. El diagnóstico de desarrollo activa la regla RT1 de la página 32: la autocorrelación residual fuerte de una referencia requiere reclasificar el problema. Esta decisión cierra la clasificación metodológica; el benchmark Bitcoin continúa pendiente. La resolución no modifica E1 ni convierte la reserva conocida en una prueba confirmatoria.
+La ruta vigente es **F2a, series de tiempo**, decidida el 06/11/2026 tras recibir la guía completa de 65 páginas. El cambio al [catálogo de diez modelos y el candidato 11](15_revision_modelos.md) conserva esa clasificación, el objetivo y las precauciones causales. La nueva enmienda está pendiente; ningún resultado histórico acredita superioridad de HAR + red residual.
 
-El [registro de decisiones vigentes del EDA](../_static/eda_traceability/decisiones_vigentes.csv) enlaza esta resolución con la fila histórica `RESID`, conservada sin cambios. La fecha de decisión es el 06/11/2026; su incorporación al registro complementario el 08/11/2026 es una aclaración documental, no una nueva reclasificación ni un resultado experimental.
+El [registro de decisiones del EDA](../_static/eda_traceability/decisiones_vigentes.csv) conserva la procedencia de la reclasificación y la fila histórica `RESID`. Su incorporación documental el 08/11/2026 no es una decisión experimental retroactiva.
 
 ## 7.1 Motivo de la reclasificación y contrato que se conserva
 
-La {ref}`referencia Ridge forward <e2-diagnostico-forward>` dejó ACF(1)=0,632228 en 305 fechas de validación de 2024. Ljung–Box de lag7 dio Q=266,4062 y p≈8,88×10⁻⁵⁴, con sus limitaciones asintóticas y de dependencia. No se clasifica la tarea solo por excluir Y rezagada de las entradas. La regla específica RT1 (PDF p32) y el diagnóstico del EDA C (p6) determinan seguir F2a; la instrucción general de p40 no rebaja ese requisito. La guía exige resolver la ruta antes de implementar el benchmark (p20).
+La {ref}`referencia Ridge forward <e2-diagnostico-forward>` dejó ACF(1)=0,632228 en 305 fechas de validación de 2024. Ljung–Box de lag7 dio Q=266,4062 y p≈8,88×10⁻⁵⁴, con sus limitaciones asintóticas y de dependencia. Es evidencia histórica del EDA, no un modelo adicional del catálogo vigente. La regla RT1 (PDF p32) y el diagnóstico del EDA C (p6) determinan seguir F2a; excluir Y rezagada de las entradas no convierte por sí solo la tarea en regresión iid.
 
-Se conservan **D7×5 OHLCV → σ₇, horizonte h=1**, escala, primaria RMSE media por trayectoria, **δ=0,00025772842664981106**, unidad y partición heredadas. Las tres recetas de E1 continúan como anclas fijas. Reclasificar la ruta no añade automáticamente Y rezagada como sexto canal de las redes ni cambia su historia. Una ampliación de información futura necesitaría su propia decisión y comparación de desarrollo, sin sustituir la referencia heredada.
+Se conservan **D7×5 OHLCV → σ₇, horizonte h=1**, escala, primaria RMSE media por trayectoria y **δ=0,00025772842664981106**. Los periodos ya evaluados mantienen su condición de conocidos. Las referencias actuales de E1 son MLP, LSTM y GRU y se documentan aparte, sin sumarlas a los diez modelos ni al candidato 11.
 
-La dependencia de etiquetas σ₇ consecutivas —seis retornos compartidos— contribuye a la autocorrelación. El diagnóstico no demuestra que un canal nuevo mejoraría fuera de muestra, ni prueba no linealidad. La decisión sí exige las referencias y controles propios de F2a, con soportes explícitos.
+La dependencia entre etiquetas σ₇ consecutivas, con seis retornos compartidos, contribuye a la autocorrelación. Ese diagnóstico no demuestra que un canal nuevo mejore fuera de muestra ni prueba no linealidad. Reclasificar la ruta tampoco añade automáticamente Y rezagada como sexto canal de las diez redes.
 
-## 7.2 Referencias endógenas y panel ampliado
+## 7.2 Información endógena y alcance de los controles
 
-F2a S5 (PDF p30) requiere naive, naive estacional y **ARIMA o ETS**. Se incorporan **persistencia, referencia semanal y ARIMA**; ETS queda como alternativa posible, sin ser necesario añadir ambos para esa disyunción. El panel actualizado tiene veinte configuraciones: diez Top10, tres variantes GRU/LSTM/TCN ajustadas en E2, las tres anclas fijas de E1, Ridge y estas tres referencias endógenas. Las veinte filas representan modelos/configuraciones, no veinte observaciones independientes ni veinte resultados ya obtenidos.
+Las exigencias de controles temporales de la guía deben resolverse explícitamente en la nueva enmienda. Su papel de referencia o ablación no amplía el catálogo de modelos seleccionado. Los controles y resultados del diseño sustituido quedan en el [archivo del protocolo](../_static/remediation_protocol/preregistration.json), sin trasladar su lista o presupuesto a este diseño.
 
-| Referencia | Pronóstico emitido al comenzar t | Información efectiva | Alcance respecto al origen |
-|---|---|---|---|
-| Naive/persistencia | Ŷₜ=σ₇(t−1) | Ocho cierres de t−8 a t−1 | Ocho días hacia atrás |
-| Naive semanal | Ŷₜ=σ₇(t−7) | Ocho cierres de t−14 a t−7 | Catorce días hacia atrás |
-| ARIMA | E[Yₜ\|información observada hasta t−1] bajo el modelo ajustado | Historia de etiquetas hasta t−1; parámetros aprendidos solo hasta el corte registrado | Historia expansiva declarada, superior a D7 |
+El objetivo σ₇ necesita ocho cierres consecutivos para siete retornos. Usar una etiqueta histórica exige auditar todos esos cierres, no solo la fecha nominal de la etiqueta. Una referencia con mayor historia puede ser causal y, aun así, disponer de información distinta de las redes D7×5. Las comparaciones deben informar esa diferencia y usar una cohorte elegible común sin comprimir huecos.
 
-El alcance de catorce días de la referencia semanal **no significa catorce retornos ni catorce cierres usados para calcular esa σ₇**: su etiqueta requiere ocho cierres, y los seis días posteriores no entran en ese valor. La semana es un comparador de calendario registrado, no una conclusión de estacionalidad significativa obtenida del STL.
+**HAR + red residual necesita un soporte propio declarado.** Las ventanas de agregación HAR, la información disponible en cada origen y la entrada de la red residual deben fijarse antes de la selección. Si requieren más historia que D7, la ventaja observada no podrá atribuirse exclusivamente a la arquitectura. Los componentes HAR solo y red sola sirven para estudiar el aporte de la corrección, sin convertirse en candidatos adicionales del catálogo ni garantizar una mejora.
 
-Estas referencias utilizan información endógena y longitudes distintas de D7×5. Se comparan sus errores sobre las mismas fechas elegibles, pero no se atribuye toda diferencia a arquitectura bajo información idéntica. El soporte de la referencia semanal y la historia ARIMA se incorporarán a la auditoría del panel común antes de ejecutar; no se comprime el calendario ni se decide la cohorte según los errores observados.
+## 7.3 Política causal de ajuste y actualización
 
-## 7.3 Implementación de las referencias y política de reajuste
+La nueva enmienda deberá distinguir selección de hiperparámetros, ajuste de pesos, escalado, actualización de estado y scoring. Cada operación debe identificar las fechas de datos que puede usar. El horizonte h=1 no autoriza reducir unilateralmente el embargo heredado ni ajustar escaladores con validación o test.
 
-El módulo `scripts/e2_temporal_baselines.py` recibe etiquetas diarias σ₇ ya verificadas y fechas UTC; no descarga datos, no abre archivos de mercado y no escoge un ganador. `naive_forecast` accede exclusivamente a la etiqueta de lag1 o lag7 de calendario. Si falta, devuelve una observación inelegible, sin sustituirla por la fila anterior disponible.
+Un predictor mensual conserva su receta, pesos y escalador durante el fold, salvo que se registre otra política causal antes de comparar. La incorporación de una observación ya disponible al estado de un modelo no equivale a reestimar sus parámetros. Las fechas faltantes permanecen en el calendario y la elegibilidad se decide por soporte, no por el error obtenido.
 
-`FixedParameterARIMA` usa statsmodels: la verificación sintética inicial empleó **0.14.6** (`requirements-eda.lock.txt`); el entorno nuevo de esta etapa fija **0.15.0** (`requirements-e2-remediation.lock.txt`). Se registra la versión por ejecución y no se confunden esos entornos. Ajusta una vez por origen externo registrado: para el comienzo t₀ del fold, las etiquetas usadas para estimar parámetros y escala terminan como máximo en t₀−8, manteniendo el embargo de siete días. La escala de Y es su media solo de entrenamiento; una serie totalmente nula usa escala1. El estado se actualiza con observaciones efectivamente conocidas hasta t−1 y **`refit=False`**; ese filtrado no reestima parámetros. Un objeto nuevo corresponde a un nuevo fold. Los orígenes deben crecer estrictamente y no se admiten pronósticos retrospectivos sobre un estado que ya vio fechas posteriores.
-
-La observación más reciente disponible cambia con cada día; no se introducen covariables futuras ni Yₜ. Los huecos se mantienen como `NaN` en su día dentro del modelo de estado: la transición del estado no crea una etiqueta observada imputada. Si falta Yₜ₋₁, el módulo marca el origen como inelegible para el panel de información observada. Las políticas de actualización y reajuste deben figurar por familia en el protocolo común; no se concede un refit diario oculto a ARIMA.
-
-La cuadrícula local contiene doce órdenes: p∈{0,1,2}, d∈{0,1}, q∈{0,1}; usa constante con d=0 y sin tendencia determinista con d=1, restricciones de estacionariedad/invertibilidad y máximo100 iteraciones. Se registra la no convergencia como fallo; no se sustituye silenciosamente por otro orden ni se usa test para escogerlo. El protocolo común `experiments/e2_remediation_20261106/hpo.json` asigna **T=12 a cada una de quince familias ajustables y 172.800 CPU-s por familia**. La cuadrícula local y esa asignación no son una búsqueda ejecutada, un orden ganador ni prueba de consumo equivalente medido.
-
-El accessor `FixedParameterARIMA.predict` conserva el pronóstico original para auditoría. Antes de observar resultados del benchmark, `architecture_decisions.json` fija para ARIMA y Ridge el enlace puntual **max(0, pronóstico original)**. El wrapper explícito `benchmark_nonnegative` aplica esa misma regla, conserva `raw_value`, motivo y elegibilidad, y rechaza valores no finitos: un fallo no se convierte en cero ni se elimina una fecha por una predicción negativa. Las observaciones inelegibles mantienen valor puntuable `None`. El panel del benchmark consume el valor posprocesado; el valor original sigue disponible para auditar el efecto de la regla.
-
-F2a (p31) exige declarar la política común, no impone un refit diario en todos los casos. Se conserva el calendario y el embargo heredados; h=1 no es razón para reducir unilateralmente el embargo D7. El análisis del test histórico seguirá siendo exploratorio.
+Las restricciones de salida, la gestión de fallos y cualquier truncamiento de pronósticos deben quedar predefinidos. Una predicción no finita se registra como fallo; no se sustituye por cero ni se elimina una fecha de forma favorable a un modelo. Para el híbrido también debe verificarse que la estimación de residuos no use objetivos futuros respecto al entrenamiento de la corrección.
 
 ## 7.4 EDA temporal heredado: evidencia reutilizada y cobertura
 
-El EDA de E1 se amplía, como exige la guía; no se desecha ni se repite automáticamente. Los siguientes resultados ya existen en el [capítulo EDA de E1](https://jassan-bit.github.io/DeepLearning_202630/sections/02_eda.html), y se separan de los diagnósticos futuros del Top10 Bitcoin.
+El EDA de E1 se amplía, como exige la guía; no se desecha ni se repite automáticamente. Los siguientes resultados ya existen en el [capítulo EDA de E1](https://jassan-bit.github.io/DeepLearning_202630/sections/02_eda.html), y se separan de los diagnósticos pendientes del catálogo vigente.
 
 | Requisito F2a / EDA B | Evidencia ejecutada de E1 | Uso y límite para E2 |
 |---|---|---|
@@ -51,22 +39,16 @@ El EDA de E1 se amplía, como exige la guía; no se desecha ni se repite automá
 | Estacionariedad | ADF con constante/7 rezagos y KPSS constante/rezagos automáticos; σ₇ de 01/04–31/12/2023, n275, pADF≈0,002423 y pKPSS>0,10; E1 §2.5.2 | Compatibilidad de ese tramo con estacionariedad, sin garantía para 2024/2026; no diferencia automáticamente Y |
 | Dependencia temporal | ACF/PACF y periodograma de retornos diarios, 26/03–31/12/2023, n281; E1 §2.5.3 | Distingue unidades y retornos frente a σ₇; no selecciona D o temporada por máximo visual |
 | Heterocedasticidad | ARCH-LM sobre retornos diarios centrados, siete rezagos, p≈0,341; E1 §2.5.3 | No rechazo exploratorio no prueba homocedasticidad ni sustituye el ARCH-LM de residuos de nuevas redes |
-| IID residual | BDS y Ljung–Box de GRU/LSTM/TCN de E1 por fold y semilla; E1 §2.5.6 | BDS contrasta iid; no atribuir todo rechazo a no linealidad ni trasladar el resultado al Top10 |
+| IID residual | BDS y Ljung–Box del estudio histórico de E1 por fold y semilla; E1 §2.5.6 | BDS contrasta iid; no atribuir todo rechazo a no linealidad ni trasladar el resultado al catálogo vigente |
 | Anomalías y cambios | Máscaras de continuidad, extremos sin borrado; candidato CUSUM 15/10/2023 sin confirmación; E1 §2.5.1/2.5.5 | Preservar eventos legítimos y revisar sensibilidad; el candidato no prueba una ruptura causal |
 | Dificultad de pronóstico | Persistencia forward de desarrollo: RMSE0,00474310, MAE0,00292428; E2 §2.2.3 | Referencia informal de predictibilidad; no es ruido irreducible ni techo validado |
 
 Los CSV heredados `results/eda_development/stationarity_daily.csv`, `stationarity_volatility.csv` y `summary.json` contienen especificaciones, rangos y advertencias; sus figuras están en `book/_static/eda/`. E1 ya permite reutilizar STL, ADF/KPSS, PACF y ARCH con esos límites. No se exige volver a calcularlos solo porque cambie el nombre de la ruta. El {ref}`diagnóstico forward de E2 <e2-diagnostico-forward>` amplía esta evidencia con Ridge/persistencia sobre 2024.
 
-**Decisión de preprocesamiento:** mantener escalado causal, máscaras y calendario, sin diferenciación automática ni imputación de observaciones. **Impacto en arquitectura y validación:** adoptar F2a, incorporar sus referencias y validar por origen con políticas registradas; realizar diagnósticos de residuos de los modelos efectivamente ejecutados. **Riesgos:** heredar conclusiones de otra frecuencia/tramo, confundir un contraste iid con prueba exclusiva de no linealidad y tratar el error naive como techo de Bayes. La referencia condicional de predictibilidad y γ de §6 ya dispone de código específico, pero requiere ejecución; su ley empírica de innovación train-only y supuestos iid/transferencia no constituyen un techo de Bayes universal.
+**Decisión de preprocesamiento:** mantener escalado causal, máscaras y calendario, sin diferenciación automática ni imputación de observaciones. **Impacto en arquitectura y validación:** mantener F2a y validar por origen con políticas explícitas en la nueva enmienda; realizar diagnósticos de residuos de los modelos efectivamente ejecutados. **Riesgos:** heredar conclusiones de otra frecuencia/tramo, confundir un contraste iid con prueba exclusiva de no linealidad y tratar el error naive como techo de Bayes. La referencia condicional de predictibilidad de §6 requiere una definición compatible con el nuevo diseño; una ley empírica de innovaciones aprendida solo en entrenamiento y sus supuestos de transferencia no constituyen un techo de Bayes universal.
 
 ## 7.5 Verificación y estado
 
-Se verificó el módulo con doce pruebas **sintéticas**, usando el entorno de `requirements-eda.lock.txt`:
+El módulo histórico `scripts/e2_temporal_baselines.py` y sus pruebas sintéticas se conservan sin cambios para reproducir sus controles de calendario, embargo y actualización. Su existencia no constituye la implementación del catálogo vigente ni una ejecución de Bitcoin del nuevo diseño.
 
-```bash
-python -m unittest discover -s tests -p test_e2_temporal_baselines.py -v
-```
-
-Las pruebas cubren lag de calendario frente a filas retenidas, alcance8/14, exclusión de valores futuros, embargo, huecos conservados, ausencia de refit, orden temporal de llamadas y fallos declarados. Verifican también que el enlace registrado conserva el negativo original, no cambia la elegibilidad y rechaza `NaN`/infinito. Los pequeños ajustes ARIMA de estas pruebas son sintéticos: **no son corridas del benchmark Bitcoin**, no usan sus precios ni aportan resultados al ranking.
-
-La decisión reproducible está en `experiments/e2_remediation_20261106/route.json`. Estado: **ruta cerrada, referencias implementadas y verificadas sintéticamente; presupuesto HPO asignado por el protocolo común, sin ejecuciones Bitcoin acreditadas por esta sección**. El registro previo y el piloto de desarrollo se documentan en la [sección 9](09_protocolo_registrado.md); HPO y dimensionamiento final siguen pendientes. El cierre de esta sección no permite afirmar superioridad o cumplimiento de todos los requisitos de F2a.
+Estado: **ruta temporal definida; soportes, controles e implementación del nuevo catálogo pendientes de la nueva enmienda**. El [P0 ejecutado](09_protocolo_registrado.md) mantiene su identidad histórica. No se hereda su presupuesto, no se declara un ganador y no se certifica el cierre de todos los requisitos F2a.

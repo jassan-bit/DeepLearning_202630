@@ -1,7 +1,9 @@
 (e2-auditoria-datos)=
 # 10. Contrato de datos y auditoría formal de fuga
+**Alcance:** los datos, controles y experimentos ya ejecutados de esta sección se conservan como evidencia histórica. No acreditan entrenamiento del catálogo vigente de diez modelos y candidato 11, definido en [§15](15_revision_modelos.md). Cualquier presupuesto o receta anterior requiere revisión y nuevo registro antes de reutilizarse.
 
-**Estado:** la auditoría ejecutada de soporte P0/OOF de desarrollo está aprobada. Esto no certifica todas las verificaciones del pipeline final de veinte configuraciones exigidas en la tabla10.1 de la guía (PDF pp44–45). La regla de p46 exige corregir cualquier fallo y repetir el experimento afectado; no permite publicar un benchmark inválido con una nota al pie. La ausencia de un control todavía no ejecutado se informa como pendiente, sin declararlo aprobado.
+
+**Estado:** la auditoría ejecutada de soporte P0/OOF de desarrollo está aprobada. Esto no certifica todas las verificaciones del pipeline final de configuraciones del registro histórico exigidas en la tabla10.1 de la guía (PDF pp44–45). La regla de p46 exige corregir cualquier fallo y repetir el experimento afectado; no permite publicar un benchmark inválido con una nota al pie. La ausencia de un control todavía no ejecutado se informa como pendiente, sin declararlo aprobado.
 
 ## 10.1 Evidencia ejecutada, fecha y frontera de acceso
 
@@ -92,10 +94,10 @@ El activo BTCUSDT aparece legítimamente en todas las fases: se evalúa una sola
 | Transformaciones | Escalado de train comprobado y pruebas sintéticas de adaptadores; EDA con parámetros train-only | Evidencia P0 parcial; auditoría completa de cada pipeline final pendiente |
 | Atributos posteriores al evento | Diccionario causal y prefijos de lectura anteriores al origen; análisis de rezagos en §2 | Disponibilidad documentada; revisión final y controles univariados aplicables pendientes de cierre |
 | Validación adversarial | Implementación de clasificador train/evaluación con las 35 entradas, cinco folds bloqueados/purgados y gap de siete días; escalado dentro de fold | Experimento final pendiente; no se sustituye por KS/Wasserstein ni se seleccionan modelos con su resultado |
-| Modelos preentrenados | P0 desde inicialización; diez adaptadores finales revisados con fuentes/presets por hash | Implementación final sin pesos preentrenados; el registro integrado debe verificar todos los archivos importados y las licencias |
+| Modelos preentrenados | P0 desde inicialización; adaptadores históricos revisados con fuentes/presets por hash | El catálogo vigente debe verificar procedencia de pesos, archivos importados y licencias antes de entrenar |
 | Sanidad con etiquetas permutadas | Implementación para dieciséis redes y Ridge; permutación separada por bloques en train/selección de épocas; nuevas semillas y pesos cerrados antes de test | Ejecución y análisis pendientes; las referencias endógenas requieren auditoría causal y perturbaciones de historia, no una regresión supervisada ficticia |
 
-Los controles de adaptadores verifican forma, gradientes finitos y que una predicción no cambie con otros orígenes en el batch. La revisión independiente y la prueba de memorización sintética de los diez backbones finales están disponibles en [§14](14_arquitecturas.md). Son controles relevantes para disponibilidad causal, pero **no equivalen** a entrenar con etiquetas permutadas, demostrar ausencia de atajos o aprobar automáticamente los veinte pipelines finales. Si una comprobación futura falla, se conservará el fallo y se repetirá el experimento afectado tras corregir su causa; no se seleccionarán fechas favorables ni un test que produzca el resultado deseado.
+Los controles de adaptadores verifican forma, gradientes finitos y que una predicción no cambie con otros orígenes en el batch. La revisión independiente y la prueba de memorización sintética del catálogo histórico se conservan para auditoría en [§14](14_arquitecturas.md). Son controles relevantes para disponibilidad causal, pero **no equivalen** a entrenar con etiquetas permutadas, demostrar ausencia de atajos o aprobar automáticamente los pipelines del catálogo vigente. Si una comprobación futura falla, se conservará el fallo y se repetirá el experimento afectado tras corregir su causa; no se seleccionarán fechas favorables ni un test que produzca el resultado deseado.
 
 ### 10.4.1 Controles negativos y de desplazamiento implementados
 

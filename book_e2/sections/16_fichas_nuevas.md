@@ -83,7 +83,7 @@ I(h) = ReLU(BN(concat(C_10(B(h)), C_20(B(h)), C_40(B(h)), C_1(MaxPool(h))))).
 
 Coste derivado por módulo con M canales, bottleneck b y f filtros por rama: convoluciones aproximadamente BL[Mb + bf(10+20+40) + Mf], más pooling, BN y residuales. Cuando no se aplica bottleneck, sustituir b por M en las ramas y eliminar Mb. Con f=32 salen 128 canales. Cinco miembros multiplican aproximadamente por cinco el cómputo secuencial de una arquitectura idéntica; no es una predicción exacta de segundos, y entrenarlos a la vez exige más memoria. Medir aparte latencia de un miembro y ensemble. Riesgos razonados: presupuesto cinco veces mayor, kernels demasiado largos respecto a L, promediado que oculte sesgo común; faltan resultados propios para justificar ese coste.
 
-## LSTM autoencoder supervisado
+## LSTM-autoencoder con predictor
 
 ### Fuente identificada y distinción necesaria
 

@@ -1,8 +1,10 @@
 # 2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones
 
+**Alcance:** los datos, controles y experimentos ya ejecutados de esta sección se conservan como evidencia histórica. No acreditan entrenamiento del catálogo vigente de diez modelos y candidato 11, definido en [§15](15_revision_modelos.md). Cualquier presupuesto o receta anterior requiere revisión y nuevo registro antes de reutilizarse.
+
 El EDA de E1 se **amplía y conserva**. Este capítulo reutiliza sus evidencias de desarrollo y añade análisis reproducibles de transformaciones, casi duplicados, soportes temporales y residuos bajo forward chaining. Cada bloque termina con decisiones de preprocesamiento, consecuencias para arquitectura/validación y riesgos; la {ref}`tabla de trazabilidad <e2-trazabilidad-eda>` reúne esas relaciones.
 
-Se distinguen dos alcances de este EDA: **desarrollo 2023–2024** para diagnósticos y **perfil retrospectivo de la reserva de E1 ya conocida** para describir desplazamiento de distribución. Este último no selecciona arquitecturas, transformaciones, umbrales ni periodos y no convierte la reserva en una confirmación nueva. El benchmark final del panel de veinte configuraciones sigue pendiente; el [piloto P0 de desarrollo](09_protocolo_registrado.md), registrado previamente, ya se ejecutó como otra etapa y no se presenta como ese benchmark.
+Se distinguen dos alcances de este EDA: **desarrollo 2023–2024** para diagnósticos y **perfil retrospectivo de la reserva de E1 ya conocida** para describir desplazamiento de distribución. Este último no selecciona arquitecturas, transformaciones, umbrales ni periodos y no convierte la reserva en una confirmación nueva. El benchmark final del panel de configuraciones del registro histórico sigue pendiente; el [piloto P0 de desarrollo](09_protocolo_registrado.md), registrado previamente, ya se ejecutó como otra etapa y no se presenta como ese benchmark.
 
 El contrato principal sigue siendo D=7, n=7, h=1, cinco canales OHLCV y σ₇ poblacional sin anualizar. D es historia de entrada, n es ventana del objetivo y h es horizonte: no se intercambian. Los resultados n=14/21/28 de E1 son sensibilidades de la etiqueta, no objetivos añadidos al benchmark actual. La guía completa de 65 páginas permite cerrar la clasificación como **F2a, series de tiempo**, según la {ref}`resolución de ruta <e2-ruta-temporal>`; las covariables y etiquetas heredadas no se modifican por esa reclasificación.
 
@@ -117,7 +119,7 @@ Con D=n=7, la entrada de un ejemplo $u$ usa días $[u-7,u-1]$ y su etiqueta nece
 
 Las **305 fechas** de validación son únicas y consecutivas; no se detectan violaciones de disponibilidad ni intersecciones de soportes en las separaciones externa e interna auditadas. Esto no implica independencia entre ejemplos o folds.
 
-Descargar la [auditoría de los folds](../_static/eda_decisions/fold_leakage_audit.csv). Estos controles comprueban el calendario y la representación analizados; no certifican por sí solos los adaptadores, las referencias endógenas y las cohortes del panel ampliado de veinte configuraciones.
+Descargar la [auditoría de los folds](../_static/eda_decisions/fold_leakage_audit.csv). Estos controles comprueban el calendario y la representación analizados; no certifican por sí solos los adaptadores, las referencias endógenas y las cohortes del panel ampliado de configuraciones del registro histórico.
 
 **Identidad de la reserva y cronología.** El manifiesto heredado tiene SHA-256 `af723bcca2caffcbe44ae5243e2863bbcdcd39ae8cd42df491af0a2857926bb2`; el derivado diario de la reserva ya evaluada tiene SHA-256 `93ec9490137eee80581f56f987067001d346a421235962da5b2e9645970adebf`. El [registro de identidad y alcance](../_static/eda_traceability/partition_identity.json) enlaza la reserva y la cronología de E1 sin redistribuir ese vector de precios.
 
@@ -211,7 +213,7 @@ Esta evidencia no demuestra que añadir Y rezagada mejore un modelo ni autoriza 
 
 La [tabla completa descargable](../_static/eda_traceability/hallazgo_decision.csv) registra evidencia, preprocesamiento, arquitectura, protocolo, riesgo y alcance para cada análisis. Contrastada con **A.1 de la guía completa (PDF p61)**, cubre sus cinco campos: hallazgo, evidencia, decisión de preprocesamiento, impacto en arquitectura/validación y riesgo/fuga. Las columnas adicionales separan protocolo, alcance y estado. El CSV se conserva íntegro como registro histórico: la fila `RESID` describe la alerta anterior al cierre de la ruta y no expresa el estado vigente. El [registro complementario de decisiones vigentes](../_static/eda_traceability/decisiones_vigentes.csv) enlaza esa fila con la decisión **F2a del 06/11/2026**, documentada en la {ref}`sección 7 <e2-ruta-temporal>`, y registra por separado su incorporación documental del 08/11/2026. No se retrofecha ni se reescribe la evidencia histórica.
 
-En particular, «la referencia no integra el benchmark» en la fila histórica se refiere a la **ejecución diagnóstica Ridge α=1 del EDA**, no a la exclusión de la familia Ridge del catálogo vigente. La configuración Ridge del benchmark sigue su HPO y enlace puntual registrados; sus resultados no se sustituyen por las cifras diagnósticas de §2.2.3.
+Ridge α=1 fue una referencia diagnóstica del EDA, no uno de los diez modelos vigentes. Sus cifras no sustituyen resultados del nuevo catálogo ni autorizan añadirlo como candidato adicional.
 
 | Hallazgo | Decisión y efecto en el diseño | Riesgo que controla |
 |---|---|---|
@@ -252,4 +254,4 @@ La reconstrucción del perfil de la reserva conocida, sus argumentos y el proced
 | Sellado prospectivo de un test nuevo de E2 | No disponible en los periodos heredados ya conocidos |
 | Tabla del Apéndice A y ruta completa | Guía completa recibida; tabla cotejada con A.1 y ruta F2a cerrada |
 | Referencias F2a | Naive, naive semanal y ARIMA implementadas y verificadas con doce pruebas sintéticas en §7; no son resultados Bitcoin |
-| Benchmark final de veinte configuraciones | Pendiente; P0 de desarrollo ejecutado y analizado por separado, sin afirmar resultados finales ni potencia acreditada |
+| Benchmark del catálogo vigente | Pendiente; P0 de desarrollo ejecutado y analizado por separado, sin afirmar resultados finales ni potencia acreditada |

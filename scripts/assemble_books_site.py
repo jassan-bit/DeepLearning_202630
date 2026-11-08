@@ -20,7 +20,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 BOOKS = (
     ("entregable1", "book", "", "Informe y estudios del Entregable 1"),
-    ("entregable2", "book_e2", "entregable2", "Guía completa; ruta F2a y piloto Bitcoin ejecutado (440 ajustes); benchmark final pendiente"),
+    ("entregable2", "book_e2", "entregable2", "Catálogo vigente de diez modelos y candidato HAR residual; benchmark pendiente"),
     ("entregable3", "book_e3", "entregable3", "Libro inicial; guía específica pendiente"),
 )
 
