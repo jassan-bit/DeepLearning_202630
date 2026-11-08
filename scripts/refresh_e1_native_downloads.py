@@ -60,8 +60,8 @@ PUBLICATION_SCHEMA = "e1_public_metadata_allowlist_v1"
 REFRESH_DATE = "2026-11-07"
 # Keep the earlier same-day delivery records inside the next package. The
 # source commit identifies this exact edition; the suffix distinguishes its
-# bibliographic scope without inventing another execution date.
-REFRESH_ID = "20261107_core_mlp"
+# primary benchmark scope without inventing another execution date.
+REFRESH_ID = "20261107_primary_608"
 SUPPLEMENTS = {
     "dataset_comparison": {
         "directory": "book/_static/e1_dataset_comparison_20261106",
@@ -104,6 +104,11 @@ SUPPLEMENTS = {
         "directory": "book/_static/e1_historical_core_20261107",
         "manifest": "manifest.json", "item": "8.5", "files": None,
     },
+    "primary_608": {
+        "directory": "book/_static/e1_primary_608_20261107",
+        "manifest": "manifest.json", "item": "8.5", "files": None,
+        "configuration_files": {"summary.json", "execution_provenance.json", "source_manifest.json"},
+    },
     "core_mlp_extension": {
         "directory": "book/_static/e1_core_mlp_extension_20261107",
         "manifest": "manifest.json", "item": "8.5", "files": None,
@@ -130,7 +135,7 @@ CHRONOLOGY_NOTE = (
     "propia procedencia. La búsqueda web dirigida de trece obras y su conciliación "
     "acumulada conservan los ámbitos, papeles y niveles de lectura; no convierten "
     "la cuota de selección por arquitectura en frecuencia del corpus. "
-    "La selección del núcleo LSTM–MLP–GRU y su nueva ejecución conservan como "
+    "El benchmark principal D7 recupera resultados ya ejecutados en 608 fechas y diez semillas, incluida la MLP histórica; no añade ajustes. La extensión LSTM–MLP–GRU de sesenta fechas conserva como "
     "exploratoria la evaluación de septiembre–octubre de 2026 ya observada; "
     "los resultados anteriores de TCN permanecen complementarios y separados. "
     "Esta actualización no constituye un prerregistro "
@@ -375,7 +380,7 @@ def _readme(item, title, revision, previous):
             + introduction + CHRONOLOGY_NOTE + "\n\n"
             "El producto 8.3 conserva exactamente el ZIP de la entrega base. "
             "8.5 conserva sus archivos científicos originales y añade el núcleo histórico "
-            "compatible y la nueva ejecución común LSTM–MLP–GRU, además de estadística, curvas, "
+            "compatible y el benchmark principal D7 de 608 fechas, con la ejecución de sesenta fechas complementaria, además de estadística, curvas, "
             "auditoría forense y repetibilidad actual con alcances identificados; 8.6 conserva "
             "sus configuraciones originales y añade los protocolos y metadatos correspondientes. 8.7 incorpora contexto "
             "documental, margen y procedencia. "
@@ -383,8 +388,8 @@ def _readme(item, title, revision, previous):
             "## Notas conservadas de la entrega base\n\n" + previous.decode("utf-8"))
 
 
-def current_core_catalog(files):
-    """Describe the new core from its completed public export, never old scores."""
+def complementary_core_catalog(files):
+    """Validate the closed 60-date complementary export and preserve its metadata."""
     summary, selection, plan = (json.loads(files[name]) for name in
                                 ("summary.json", "selection.json", "plan.json"))
     families = {"GRU", "LSTM", "MLP"}
@@ -425,6 +430,79 @@ def current_core_catalog(files):
     }
 
 
+def current_core_catalog(files, historical_files):
+    """Promote only the original D7/608-day scores, with their saved source proof."""
+    summary = json.loads(files["summary.json"])
+    recipes = summary.get("selected_recipes", {})
+    expected = {"GRU": (32, 0.003, 0.1, 3777), "LSTM": (32, 0.003, 0.1, 5025),
+                "MLP": (16, 0.001, 0.1, 593)}
+    phases = {"cv": {"start": "2024-01-01", "end": "2024-12-31", "n_dates": 366},
+              "test": {"start": "2025-01-01", "end": "2026-08-31", "n_dates": 608}}
+    if (summary.get("study_id") != "e1_primary_608_20261107"
+            or set(summary.get("models", ())) != set(expected)
+            or set(recipes) != set(expected) or summary.get("baseline_model") != "GRU"
+            or summary.get("R") != 10 or summary.get("R_per_neural") != 10
+            or summary.get("n_dates") != 608 or summary.get("dates_per_trajectory") != 608
+            or summary.get("phases") != phases
+            or summary.get("primary_scope") != "historical_known_fixed_recipes"
+            or summary.get("HPO_not_equal") is not True
+            or summary.get("editorial_promotion_after_results_seen") is not True
+            or summary.get("new_model_fits") != 0 or summary.get("new_forecasts") != 0
+            or summary.get("source_summary_sha256") != legacy.digest(historical_files["summary.json"])
+            or summary.get("source_score_rows_sha256") != legacy.digest(historical_files["run_metrics.csv"])):
+        raise ValueError("Primary catalog requires the original D7/608-date, R=10 cohort and its saved source proof")
+    for model, (width, lr, dropout, parameters) in expected.items():
+        recipe = recipes[model]
+        if (recipe.get("model") != model or recipe.get("history_days") != 7
+                or tuple(recipe.get(key) for key in ("width", "learning_rate", "dropout", "parameters"))
+                   != (width, lr, dropout, parameters)):
+            raise ValueError("Primary catalog recipe differs from the original D7 cohort: " + model)
+    if summary.get("baseline_recipe") != recipes["GRU"]:
+        raise ValueError("Primary catalog baseline differs from its original GRU recipe")
+    rows = list(csv.DictReader(io.StringIO(files["run_metrics.csv"].decode("utf-8"))))
+    historical_rows = {(row["phase"], row["model"], row["seed"]): row
+                       for row in csv.DictReader(io.StringIO(historical_files["run_metrics.csv"].decode("utf-8")))
+                       if row.get("history_days") == "7"}
+    observed = set()
+    for row in rows:
+        phase, model = row.get("phase"), row.get("model")
+        seed = row.get("seed", "")
+        identity = (phase, model, seed)
+        if (phase not in phases or model not in {*expected, "Persistence"}
+                or row.get("history_days") != "7"
+                or row.get("n_dates") != str(phases[phase]["n_dates"])
+                or identity in observed
+                or (model == "Persistence" and seed != "")
+                or (model in expected and (seed not in {str(n) for n in range(4101, 4111)}
+                    or row.get("parameters") != str(expected[model][3])))):
+            raise ValueError("Primary score rows mix dates, recipes, seeds or models")
+        if model in expected:
+            original = historical_rows.get(identity)
+            if original is None or any(row.get(key) != value for key, value in original.items()):
+                raise ValueError("Primary scores differ from their saved historical source rows")
+        observed.add(identity)
+    required = {(phase, model, str(seed)) for phase in phases for model in expected
+                for seed in range(4101, 4111)} | {(phase, "Persistence", "") for phase in phases}
+    if observed != required:
+        raise ValueError("Primary score rows require the complete D7/608-date R=10 cohort and Persistence")
+    return {
+        "models": ["LSTM", "MLP", "GRU"], "complementary_models": ["TCN"],
+        "active_entrypoint": "scripts/build_e1_primary_608.py",
+        "active_entrypoints": {"assemble": "scripts/build_e1_primary_608.py",
+                               "verify": "scripts/build_e1_primary_608.py --check"},
+        "active_entrypoint_scope": "Assemble and verify existing original saved metrics; no new model fits or forecasts",
+        "baseline_selected_by_cv": {"model": "GRU", **recipes["GRU"]},
+        "scope": "Primary original fixed-recipe D7 LSTM/MLP/GRU benchmark on 608 already observed dates, with Persistence; unequal historical HPO and R=10 training-seed budget",
+        "current_study": {**copy.deepcopy(summary),
+            "history_days": 7, "definitive_seeds_per_family": 10,
+            "reserve": {"start": "2025-01-01", "end": "2026-08-31", "days": 608},
+            "known_reserve_exploratory": True, "fresh_confirmatory_holdout": False,
+            "public_metadata_directory": SUPPLEMENTS["primary_608"]["directory"],
+            "public_summary_sha256": legacy.digest(files["summary.json"]),
+            "public_manifest_sha256": legacy.digest(files["manifest.json"])},
+    }
+
+
 def package(output_dir, requested_revision=None):
     output = Path(output_dir).expanduser().resolve()
     if output.is_relative_to(ROOT.resolve()) or (output.exists()
@@ -453,7 +531,8 @@ def package(output_dir, requested_revision=None):
             if (directory / name).relative_to(ROOT).as_posix() not in tracked:
                 raise ValueError("Supplement source is not committed: " + label + "/" + name)
         supplements[label], supplement_info[label] = files, {**info, "product": spec["item"]}
-    current_catalog = current_core_catalog(supplements["core_mlp_extension"])
+    current_catalog = current_core_catalog(supplements["primary_608"], supplements["historical_core"])
+    complementary_catalog = complementary_core_catalog(supplements["core_mlp_extension"])
     # The historical generator is used only for its HTML exclusion/link logic.
     # Do not call its main(), load_crypto_stage(), or any experimental exporter.
     report = legacy.report_files()
@@ -554,7 +633,7 @@ def package(output_dir, requested_revision=None):
         "preserved_archive_sha256": {ITEMS[item]: base_rows[item]["sha256"]
                                      for item in sorted(PRESERVED_ITEMS)},
         "original_experiments_changed": False, "retrospective_preregistration": False,
-        "new_analysis_scope": "Reviewed bibliographic core selection, compatible historical core aggregates and the closed newly registered GRU/LSTM/MLP historical exploratory execution, with previous native searches, curve reproductions and diagnostic repeatability preserved. Packaging itself performs no training, searches or daily forecasts.",
+        "new_analysis_scope": "Primary original D7/608-date R=10 saved scores and reviewed bibliographic core selection, with the closed 60-date GRU/LSTM/MLP execution complementary, and previous native searches, curve reproductions and diagnostic repeatability preserved. Packaging itself performs no training, searches or daily forecasts.",
         "chronology_note": CHRONOLOGY_NOTE,
     }
     products["8.7"]["literature_refresh_" + REFRESH_ID + ".json"] = legacy.encode(refresh)
@@ -611,6 +690,17 @@ def package(output_dir, requested_revision=None):
             key: copy.deepcopy(catalog[key]) for key in historical_keys if key in catalog}
     for key in ("public_aggregate_manifest_sha256", "declaration_manifest_sha256", "planned_D7_phase"):
         result.pop(key, None)
+    if "complementary_study_metadata" not in result:
+        # Preserve the full prior 60-day catalog fields and its earlier snapshot.
+        keys = ("source_commit", "models", "complementary_models", "active_entrypoint",
+                "active_entrypoints", "active_entrypoint_scope", "baseline_selected_by_cv",
+                "scope", "current_study", "historical_study_metadata")
+        previous = {key: copy.deepcopy(catalog[key]) for key in keys if key in catalog}
+        if catalog.get("current_study", {}).get("study_id") != "e1_core_mlp_extension_20261107":
+            previous.update(copy.deepcopy(complementary_catalog))
+        previous["public_summary"] = json.loads(supplements["core_mlp_extension"]["summary.json"])
+        previous["public_manifest_sha256"] = legacy.digest(supplements["core_mlp_extension"]["manifest.json"])
+        result["complementary_study_metadata"] = previous
     result.update(current_catalog)
     if "presentation_refresh" in result:
         result.setdefault("prior_presentation_refreshes", []).append(result.pop("presentation_refresh"))
@@ -629,7 +719,7 @@ def package(output_dir, requested_revision=None):
         "configuración de las reproducciones y auditorías identificadas; 8.7 incorpora comparación documental, "
         "margen y procedencia. "
         "`catalogo.json` identifica el núcleo actual LSTM–MLP–GRU y conserva modelos, "
-        "fases y entrypoints anteriores en `historical_study_metadata`. "
+        "fases y entrypoints anteriores en `historical_study_metadata`; la ejecución de sesenta fechas y su historial permanecen en `complementary_study_metadata`. "
         "Verificar integridad con `sha256sum -c SHA256SUMS.txt`; los manifiestos internos "
         "verifican bytes y SHA256 por miembro.\n", encoding="utf-8")
     paths = sorted(output.glob("*.zip")) + [output / "catalogo.json", output / "README.md"]
