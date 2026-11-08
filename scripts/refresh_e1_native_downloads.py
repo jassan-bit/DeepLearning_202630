@@ -16,6 +16,7 @@ import copy
 import csv
 import io
 import json
+import math
 from pathlib import Path, PurePosixPath
 import re
 import shutil
@@ -61,7 +62,19 @@ REFRESH_DATE = "2026-11-07"
 # Keep the earlier same-day delivery records inside the next package. The
 # source commit identifies this exact edition; the suffix distinguishes its
 # primary benchmark scope without inventing another execution date.
-REFRESH_ID = "20261107_primary_608"
+REFRESH_ID = "20261107_remediation_608"
+REMEDIATION_STUDY = "e1_608_remediation_20261107"
+REMEDIATION_SOURCE = "98e0cbcf4bb09dba863289261677dd6e7534d259"
+REMEDIATION_PUBLIC_FILES = frozenset({
+    "README.md", "summary.json", "registration.json", "source_manifest.json", "selection.json",
+    "plan.json", "plan_publication.json", "chronology.json", "runtime.json", "hpo_summary.csv",
+    "hpo_run_metrics.csv", "pilot_metrics.csv", "final_fit_summary.csv", "architecture_summary.csv",
+    "learning_curves_by_run.csv", "learning_curve_summary.csv", "learning_curves.png",
+    "metric_summary.csv", "run_metrics.csv", "pairwise_rmse.csv", "dm_pairs.csv",
+    "temporal_bootstrap.csv", "diagnostics.csv", "analysis_summary.json", "friedman_rmse.csv",
+    "wilcoxon_rmse.csv", "qq_data.csv", "qq_rmse_differences.png", "first_seed_learning_curves.csv",
+    "first_seed_learning_curves.png", "run_costs.csv", "cost_summary.csv", "pilot_summary.csv",
+})
 SUPPLEMENTS = {
     "dataset_comparison": {
         "directory": "book/_static/e1_dataset_comparison_20261106",
@@ -115,6 +128,12 @@ SUPPLEMENTS = {
         "configuration_files": {"registration.json", "selection.json", "plan.json", "plan_publication.json",
                                 "chronology.json", "runtime.json", "source_manifest.json"},
     },
+    "remediation_608": {
+        "directory": "book/_static/" + REMEDIATION_STUDY,
+        "manifest": "manifest.json", "item": "8.5", "files": None,
+        "configuration_files": {"registration.json", "selection.json", "plan.json", "plan_publication.json",
+                                "chronology.json", "runtime.json", "source_manifest.json", "architecture_summary.csv"},
+    },
 }
 REPRODUCTION_PROTOCOL_FILES = {
     "experiments/e1_curve_reproduction_20261106/protocol.json",
@@ -123,8 +142,10 @@ REPRODUCTION_PROTOCOL_FILES = {
     "experiments/e1_replay_audit_20261107/README.md",
     "experiments/e1_core_mlp_extension_20261107/design.json",
     "experiments/e1_core_mlp_extension_20261107/README.md",
+    "experiments/" + REMEDIATION_STUDY + "/design.json",
+    "experiments/" + REMEDIATION_STUDY + "/README.md",
 }
-MANUAL_REACQUISITION_FILES = {"notebooks/descargar_datos_originales_e1.ipynb"}
+MANUAL_REACQUISITION_FILES = {"notebooks/descargar_datos_originales_e1.ipynb", "notebooks/descargar_datos_608_e1.ipynb"}
 CHRONOLOGY_NOTE = (
     "La recuperación bibliográfica y la fundamentación académica del margen son posteriores "
     "a los experimentos iniciales. La reproducción de curvas tiene un protocolo y registro "
@@ -135,7 +156,7 @@ CHRONOLOGY_NOTE = (
     "propia procedencia. La búsqueda web dirigida de trece obras y su conciliación "
     "acumulada conservan los ámbitos, papeles y niveles de lectura; no convierten "
     "la cuota de selección por arquitectura en frecuencia del corpus. "
-    "El benchmark principal D7 recupera resultados ya ejecutados en 608 fechas y diez semillas, incluida la MLP histórica; no añade ajustes. La extensión LSTM–MLP–GRU de sesenta fechas conserva como "
+    "El benchmark principal D7 usa una ejecución nueva GRU32–LSTM32–MLP16, HPO igualado y R calculado desde su piloto, sobre608 fechas históricas conocidas. La fuente y el plan calculado preceden a sus respectivos ajustes, y todos los pesos cierran antes del acceso a precios y scoring. El anterior benchmark de608 fechas y diez semillas conserva sus metadatos íntegros como registro fechado. La extensión LSTM–MLP–GRU de sesenta fechas conserva como "
     "exploratoria la evaluación de septiembre–octubre de 2026 ya observada; "
     "los resultados anteriores de TCN permanecen complementarios y separados. "
     "Esta actualización no constituye un prerregistro "
@@ -503,6 +524,170 @@ def current_core_catalog(files, historical_files):
     }
 
 
+def remediation_core_catalog(files):
+    """Admit only the actual closed export of the published new608 execution.
+
+    This verifier consumes public aggregate metadata only. It neither fabricates
+    missing closure records nor falls back to an earlier study's results.
+    """
+    if set(files) != REMEDIATION_PUBLIC_FILES | {"manifest.json"}:
+        raise ValueError("New primary requires exactly33 public payloads and its closed manifest")
+    private = {"ytrue", "ypred", "persistencepred", "outcomeday", "observed",
+               "prediction", "predictions", "statedict", "weights", "scaler", "scalers", "preprocessing",
+               "masescale", "masetrainscale", "yscale", "xmean", "xscale", "rawprices", "open", "high", "low", "close", "volume"}
+    def public_key(key):
+        return re.sub(r"[^a-z]", "", str(key).lower()) not in private
+    def visit(value):
+        if isinstance(value, dict):
+            for key, child in value.items():
+                if not public_key(key):
+                    raise ValueError("New primary metadata contains private prices, vectors, weights or scalers")
+                visit(child)
+        elif isinstance(value, list):
+            for child in value:
+                visit(child)
+    records, tables = {}, {}
+    for name, data in files.items():
+        if name.endswith(".json"):
+            records[name] = json.loads(data)
+            visit(records[name])
+        elif name.endswith(".csv"):
+            reader = csv.DictReader(io.StringIO(data.decode("utf-8-sig")))
+            def public_column(key):
+                normalized = re.sub(r"[^a-z]", "", str(key).lower())
+                return public_key(key) and not any(part in normalized for part in
+                    ("price", "prediction", "scaler", "weights", "ytrue", "ypred", "dailyclose", "dailyopen", "dailyhigh", "dailylow", "dailyvolume"))
+            if not all(public_column(key) for key in reader.fieldnames or ()):
+                raise ValueError("New primary CSV contains private prices, vectors, weights or scalers")
+            tables[name] = list(reader)
+    summary, registration, selection, plan, sources = (records[name] for name in
+        ("summary.json", "registration.json", "selection.json", "plan.json", "source_manifest.json"))
+    families = {"GRU", "LSTM", "MLP"}
+    metrics = {"rmse", "mae", "mse", "r2", "mape", "mase"}
+    signature, source_signature, r = summary.get("execution_id"), summary.get("source_signature"), plan.get("R")
+    if (summary.get("study_id") != REMEDIATION_STUDY or summary.get("source_commit") != REMEDIATION_SOURCE
+            or set(summary.get("core_models", ())) != families or set(summary.get("models", ())) != families
+            or not isinstance(signature, str) or not _SHA256.fullmatch(signature)
+            or not isinstance(source_signature, str) or not _SHA256.fullmatch(source_signature)
+            or registration.get("registration_signature") != signature or registration.get("source_signature") != source_signature
+            or registration.get("study_id") != REMEDIATION_STUDY or registration.get("source_commit") != REMEDIATION_SOURCE
+            or sources.get("source_commit") != REMEDIATION_SOURCE
+            or sources.get("sources_sha256") != registration.get("sources_sha256")
+            or sources.get("design_sha256") != registration.get("design_sha256")
+            or legacy.digest(legacy.encode({"sources_sha256": registration.get("sources_sha256"),
+                "design_sha256": registration.get("design_sha256"), "source_commit": REMEDIATION_SOURCE})) != source_signature):
+        raise ValueError("New primary source and execution identity must match the published608 source")
+    if (type(r) is not int or type(plan.get("R_required")) is not int or not 30 <= r <= 10000
+            or r != max(30, plan["R_required"]) or plan.get("R_final") != r
+            or plan.get("seeds") != list(range(18101, 18101+r))
+            or any(record.get("registration_signature") != signature for record in (selection, plan, records["plan_publication.json"]))
+            or summary.get("R_final") != r or summary.get("R_required") != plan["R_required"]
+            or summary.get("dates_per_trajectory") != 608 or summary.get("neural_prediction_rows") != 1824*r
+            or summary.get("definitive_trajectories") != 3*r or summary.get("definitive_fit_stages") != 6*r
+            or summary.get("hpo_trajectories") != 24 or summary.get("hpo_blocks") != 240 or summary.get("hpo_fit_stages") != 480
+            or summary.get("pilot_trajectories") != 30 or summary.get("pilot_fit_stages") != 60
+            or summary.get("known_reserve_exploratory") is not True or summary.get("fresh_confirmatory_holdout") is not False
+            or summary.get("selection_using_holdout") is not False or summary.get("private_payloads_exported") is not False
+            or any(summary.get(key) is not True for key in ("source_publication_precedes_new_fits",
+                "plan_publication_precedes_definitive_fits", "scoring_after_all_new_weights_frozen"))):
+        raise ValueError("New primary requires its complete608 cohort, dynamic pilot-derived R and registered phase counts")
+    design = registration.get("design", {})
+    reserve = design.get("reserve", {})
+    if (reserve.get("start") != "2025-01-01" or reserve.get("end") != "2026-08-31"
+            or design.get("models") != ["GRU", "LSTM", "MLP"] or design.get("history_days") != 7):
+        raise ValueError("New primary design mixes the608 historical outcome calendar or families")
+    recipes, baseline = selection.get("recipes", {}), selection.get("baseline_model")
+    if set(recipes) != families or baseline not in families or summary.get("baseline_selected_before_reserve") != baseline:
+        raise ValueError("New primary baseline must be the family frozen by its own development CV")
+    for model, width, parameters in (("GRU", 32, 3777), ("LSTM", 32, 5025), ("MLP", 16, 593)):
+        recipe = recipes[model]
+        if (recipe.get("model") != model or recipe.get("history_days") != 7
+                or recipe.get("width") != width or recipe.get("parameters") != parameters
+                or recipe.get("candidate_id") not in {"c00", "c01", "c02", "c03"}
+                or recipe.get("learning_rate") not in {.001, .003} or recipe.get("dropout") not in {0., .1}):
+            raise ValueError("New primary recipes must be the actual GRU32/LSTM32/MLP16 HPO selections")
+    def panel(name, seeds, *, reference=False, identity=True):
+        rows = tables[name]
+        required = {(model, str(seed)) for model in families for seed in seeds}
+        actual = [(row.get("model"), row.get("seed")) for row in rows if row.get("model") != "Persistence"]
+        if set(actual) != required or len(actual) != len(required):
+            raise ValueError("New primary panel mixes seeds, models or phase: " + name)
+        references = [row for row in rows if row.get("model") == "Persistence"]
+        if len(references) != int(reference):
+            raise ValueError("New primary requires exactly one deterministic Persistence reference")
+        for row in rows:
+            if identity and any(row.get(key) != expected for key, expected in
+                    (("study_id", REMEDIATION_STUDY), ("execution_id", signature), ("source_signature", source_signature))):
+                raise ValueError("New primary rows mix registered source or execution identity: " + name)
+            if "phase" in row and row["phase"] != {"pilot_metrics.csv": "pilot", "final_fit_summary.csv": "final"}.get(name, "test"):
+                raise ValueError("New primary rows mix phase identity: " + name)
+        return rows
+    runs = panel("run_metrics.csv", plan["seeds"], reference=True)
+    panel("pilot_metrics.csv", range(17101, 17111))
+    panel("final_fit_summary.csv", plan["seeds"])
+    costs = panel("run_costs.csv", plan["seeds"], identity=False)
+    for row in runs:
+        if row.get("n_dates") != "608" or not metrics <= set(row) or any(not math.isfinite(float(row[key])) for key in metrics):
+            raise ValueError("New primary requires all six observed metrics on608 dates per trajectory")
+    if any(row.get("n_dates") != "608" or not all(math.isfinite(float(row[key])) and float(row[key]) >= 0
+            for key in ("training_seconds", "inference_seconds")) for row in costs):
+        raise ValueError("New primary costs must come from the current608-date fit and inference")
+    tuning = tables["hpo_run_metrics.csv"]
+    expected = {(model, f"c{candidate:02d}", str(seed)) for model in families for candidate in range(4) for seed in (16101, 16102)}
+    actual = [(row.get("model"), row.get("candidate_id"), row.get("trajectory_seed")) for row in tuning]
+    if len(actual) != 24 or set(actual) != expected or any(any(row.get(key) != value for key, value in
+            (("study_id", REMEDIATION_STUDY), ("execution_id", signature), ("source_signature", source_signature))) for row in tuning):
+        raise ValueError("New primary requires all24 current HPO trajectories")
+    pairs = {("GRU", "LSTM"), ("GRU", "MLP"), ("LSTM", "MLP")}
+    for name in ("pairwise_rmse.csv", "wilcoxon_rmse.csv"):
+        rows = tables[name]
+        if len(rows) != 3 or {(row.get("model_a"), row.get("model_b")) for row in rows} != pairs or any(row.get("n_paired") != str(r) for row in rows):
+            raise ValueError("New primary registered paired statistics require all three current R panels")
+    if len(tables["qq_data.csv"]) != 3*r or len(tables["friedman_rmse.csv"]) != 1:
+        raise ValueError("New primary requires its observed QQ and Friedman diagnostics")
+    if (tables["friedman_rmse.csv"][0].get("n_paired") != str(r)
+            or tables["friedman_rmse.csv"][0].get("n_models") != "3"
+            or {(row.get("model_a"), row.get("model_b")) for row in tables["qq_data.csv"]} != pairs
+            or any(row.get("n_paired") != str(r) for row in tables["qq_data.csv"])):
+        raise ValueError("New primary rank and QQ diagnostics mix a different study panel")
+    qq_keys = [(row.get("model_a"), row.get("model_b"), row.get("order_index")) for row in tables["qq_data.csv"]]
+    if set(qq_keys) != {(a, b, str(index)) for a, b in pairs for index in range(1, r+1)}:
+        raise ValueError("New primary QQ coordinates require every ordered observation in all three pairs")
+    temporal_pairs = pairs | {(model, "Persistence") for model in families}
+    for name, expected_rows in (("dm_pairs.csv", 6), ("temporal_bootstrap.csv", 18)):
+        rows = tables[name]
+        if (len(rows) != expected_rows or {(row.get("model_a"), row.get("model_b")) for row in rows} != temporal_pairs
+                or any(row.get("n_dates") != "608" or row.get("baseline_selected_before_reserve") != baseline for row in rows)):
+            raise ValueError("New primary temporal statistics mix a different608 cohort or frozen baseline")
+    if any(row.get("n_residuals") != "608" for row in tables["diagnostics.csv"]) or len(tables["diagnostics.csv"]) != 9*r:
+        raise ValueError("New primary residual diagnostics must use every current608-date trajectory")
+    residual_keys = [(row.get("model"), row.get("seed"), row.get("diagnostic"), row.get("lag"))
+                     for row in tables["diagnostics.csv"]]
+    if set(residual_keys) != {(model, str(seed), diagnostic, lag) for model in families for seed in plan["seeds"]
+            for diagnostic, lag in (("BDS", "2"), ("Ljung-Box", "1"), ("Ljung-Box", "5"))}:
+        raise ValueError("New primary residual diagnostic rows mix models, seeds or registered lags")
+    for name in ("learning_curves_by_run.csv", "first_seed_learning_curves.csv"):
+        rows = tables[name]
+        seeds = [18101] if name.startswith("first_seed") else plan["seeds"]
+        expected = {(model, str(seed), stage) for model in families for seed in seeds for stage in ("inner", "refit")}
+        if {(row.get("model"), row.get("seed"), row.get("stage")) for row in rows} != expected:
+            raise ValueError("New primary requires observed inner and refit curves for every final seed")
+        if any(row["stage"] == "refit" and row.get("validation_mse_scaled_eval") not in ("", "nan", "NaN") for row in rows):
+            raise ValueError("New primary refit curves cannot contain held-out validation losses")
+    return {"models": ["LSTM", "MLP", "GRU"], "complementary_models": ["TCN"],
+        "active_entrypoint": "scripts/run_e1_608_remediation.py",
+        "active_entrypoints": {phase: "scripts/run_e1_608_remediation.py" for phase in ("hpo", "pilot", "plan", "fit", "freeze", "score", "analyze")},
+        "active_entrypoint_scope": "New equal-HPO and pilot-sized GRU32/LSTM32/MLP16 execution on608 known historical dates",
+        "baseline_selected_by_cv": {"model": baseline, **copy.deepcopy(recipes[baseline])},
+        "scope": "Current registered-method historical exploratory608-date study; seed uncertainty is conditional on known dates, without temporal power or a fresh confirmatory holdout",
+        "current_study": {**copy.deepcopy(summary), "R": r, "n_dates": 608, "history_days": 7,
+            "selected_recipes": copy.deepcopy(recipes), "definitive_seeds_per_family": r,
+            "reserve": {"start": "2025-01-01", "end": "2026-08-31", "days": 608},
+            "public_metadata_directory": SUPPLEMENTS["remediation_608"]["directory"],
+            "public_summary_sha256": legacy.digest(files["summary.json"]),
+            "public_manifest_sha256": legacy.digest(files["manifest.json"])}}
+
+
 def package(output_dir, requested_revision=None):
     output = Path(output_dir).expanduser().resolve()
     if output.is_relative_to(ROOT.resolve()) or (output.exists()
@@ -531,7 +716,8 @@ def package(output_dir, requested_revision=None):
             if (directory / name).relative_to(ROOT).as_posix() not in tracked:
                 raise ValueError("Supplement source is not committed: " + label + "/" + name)
         supplements[label], supplement_info[label] = files, {**info, "product": spec["item"]}
-    current_catalog = current_core_catalog(supplements["primary_608"], supplements["historical_core"])
+    previous_primary_catalog = current_core_catalog(supplements["primary_608"], supplements["historical_core"])
+    current_catalog = remediation_core_catalog(supplements["remediation_608"])
     complementary_catalog = complementary_core_catalog(supplements["core_mlp_extension"])
     # The historical generator is used only for its HTML exclusion/link logic.
     # Do not call its main(), load_crypto_stage(), or any experimental exporter.
@@ -633,7 +819,7 @@ def package(output_dir, requested_revision=None):
         "preserved_archive_sha256": {ITEMS[item]: base_rows[item]["sha256"]
                                      for item in sorted(PRESERVED_ITEMS)},
         "original_experiments_changed": False, "retrospective_preregistration": False,
-        "new_analysis_scope": "Primary original D7/608-date R=10 saved scores and reviewed bibliographic core selection, with the closed 60-date GRU/LSTM/MLP execution complementary, and previous native searches, curve reproductions and diagnostic repeatability preserved. Packaging itself performs no training, searches or daily forecasts.",
+        "new_analysis_scope": "Primary new GRU32/LSTM32/MLP16 equal-HPO, pilot-sized execution on608 known historical dates; original R=10/608-day metadata and closed R=465/60-day execution remain dated source records. Packaging itself performs no training, searches or daily forecasts.",
         "chronology_note": CHRONOLOGY_NOTE,
     }
     products["8.7"]["literature_refresh_" + REFRESH_ID + ".json"] = legacy.encode(refresh)
@@ -701,6 +887,18 @@ def package(output_dir, requested_revision=None):
         previous["public_summary"] = json.loads(supplements["core_mlp_extension"]["summary.json"])
         previous["public_manifest_sha256"] = legacy.digest(supplements["core_mlp_extension"]["manifest.json"])
         result["complementary_study_metadata"] = previous
+    if "previous_primary_study_metadata" not in result:
+        if catalog.get("current_study", {}).get("study_id") == "e1_primary_608_20261107":
+            previous = copy.deepcopy(catalog)
+        else:
+            previous = copy.deepcopy(previous_primary_catalog)
+            previous["historical_study_metadata"] = copy.deepcopy(result["historical_study_metadata"])
+        previous["public_summary"] = json.loads(supplements["primary_608"]["summary.json"])
+        previous["public_manifest_sha256"] = legacy.digest(supplements["primary_608"]["manifest.json"])
+        result["previous_primary_study_metadata"] = previous
+    records_by_study = result.setdefault("dated_study_records", {})
+    records_by_study.setdefault("e1_primary_608_20261107", copy.deepcopy(result["previous_primary_study_metadata"]))
+    records_by_study.setdefault("e1_core_mlp_extension_20261107", copy.deepcopy(result["complementary_study_metadata"]))
     result.update(current_catalog)
     if "presentation_refresh" in result:
         result.setdefault("prior_presentation_refreshes", []).append(result.pop("presentation_refresh"))
@@ -719,7 +917,7 @@ def package(output_dir, requested_revision=None):
         "configuración de las reproducciones y auditorías identificadas; 8.7 incorpora comparación documental, "
         "margen y procedencia. "
         "`catalogo.json` identifica el núcleo actual LSTM–MLP–GRU y conserva modelos, "
-        "fases y entrypoints anteriores en `historical_study_metadata`; la ejecución de sesenta fechas y su historial permanecen en `complementary_study_metadata`. "
+        "fases y entrypoints anteriores en `historical_study_metadata`; el anterior primario R=10 permanece en `previous_primary_study_metadata`, y la ejecución de sesenta fechas y su historial en `complementary_study_metadata`. Ambos se conservan también como registros fechados en `dated_study_records`. "
         "Verificar integridad con `sha256sum -c SHA256SUMS.txt`; los manifiestos internos "
         "verifican bytes y SHA256 por miembro.\n", encoding="utf-8")
     paths = sorted(output.glob("*.zip")) + [output / "catalogo.json", output / "README.md"]

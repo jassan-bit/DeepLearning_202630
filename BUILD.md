@@ -148,29 +148,102 @@ Para verificar las descargas, descomprimir los productos **8.2, 8.3 y 8.5** en u
 
 Esta verificación de agregados no requiere adquirir mercado ni generar los CSV diarios. El informe HTML del producto 8.1 se abre por separado en `informe/intro.html`.
 
-## Benchmark principal D7: 608 fechas y diez semillas
+## Benchmark principal actual D7: nueva ejecución común de 608 fechas
 
-El benchmark principal usa las recetas originales LSTM32, MLP16 y GRU32, D7×5, σ₇ poblacional y h=1. El baseline de desarrollo es **GRU32, LR 0,003, dropout 0,1 y 3.777 parámetros**, con R² medio 0,854173 en el test 01/01/2025–31/08/2026. Las tres redes **ya se ejecutaron con diez semillas 4101–4110** sobre las mismas 608 fechas; la MLP16 histórica no requiere un nuevo entrenamiento. LSTM32 conserva LR 0,003, dropout 0,1 y 5.025 parámetros; MLP16, LR 0,001, dropout 0,1 y 593 parámetros. La CV común contiene las 366 fechas de 2024.
+El estudio `e1_608_remediation_20261107` ejecuta de nuevo **GRU32, LSTM32 y MLP16** sobre el contrato común D7×5, σ₇ poblacional y h=1. Su fuente científica inmutable es [`98e0cbcf4bb09dba863289261677dd6e7534d259`](https://github.com/jassan-bit/DeepLearning_202630/commit/98e0cbcf4bb09dba863289261677dd6e7534d259): la publicación se observó mediante GET el **08/11/2026 a las 01:08:27 UTC** y el registro ocurrió a las **01:09:05 UTC**, todavía 07/11 en Colombia, antes del HPO nuevo. El diseño y su README están en `experiments/e1_608_remediation_20261107/`.
 
-| Modelo, test principal | RMSE media | R² medio |
+**Ejecución cerrada:** HPO, piloto, planificación publicada, ajustes definitivos, scoring y análisis completos. **R requerido=R final=309**, con **927 modelos, 1.854 etapas definitivas y 563.616 pronósticos privados**. **GRU32/c03 es el baseline seleccionado por CV.** El export público y su espejo contienen 34 archivos verificados. Una auditoría numérica independiente comprobó las seis métricas, DM, bootstrap, rangos y diagnósticos residuales. Las tablas de los registros anteriores que siguen conservan su identidad y no se usan como resultados de esta ejecución.
+
+La capacidad permanece fija en 32/32/16 unidades y 3.777/5.025/593 parámetros para GRU/LSTM/MLP. La búsqueda equitativa evalúa **cuatro candidatos por familia**, combinando dos tasas de aprendizaje y dos valores de dropout, con semillas **16101–16102** y diez bloques mensuales enero–octubre de 2024: **24 trayectorias, 240 bloques y 480 etapas de ajuste**. La CV de desarrollo seleccionó **GRU32/c03 como baseline** y congeló las tres recetas antes del piloto. El piloto utiliza **17101–17110**, diez semillas nuevas por familia, **30 trayectorias y 60 etapas**, sobre 01/11–30/12/2024.
+
+La [selección real](https://github.com/jassan-bit/DeepLearning_202630/blob/0f5f5eaeb7131b1413a062cb0cce104a88f3ddf3/experiments/e1_608_remediation_20261107/planning/selection.json) conserva las recetas y sus métricas de CV, distintas de cualquier resultado de evaluación:
+
+| Modelo | Receta elegida por desarrollo | Parámetros | RMSE CV media de dos semillas |
+|---|---|---:|---:|
+| **GRU32, baseline, c03** | LR 0,003; dropout 0,1 | 3.777 | 0,00499676871694 |
+| LSTM32, c02 | LR 0,003; dropout 0 | 5.025 | 0,00639760418885 |
+| MLP16, c03 | Una capa ReLU; LR 0,003; dropout 0,1 | 593 | 0,00582374658645 |
+
+El piloto terminó el **08/11/2026 a las 01:15:04 UTC** y el plan se calculó a las **01:15:15 UTC**. La regla `R_final=max(30,R_required)` da **309 semillas por familia**, **18101–18409**, **927 modelos y 1.854 etapas definitivas**. El [plan calculado](https://github.com/jassan-bit/DeepLearning_202630/blob/0f5f5eaeb7131b1413a062cb0cce104a88f3ddf3/experiments/e1_608_remediation_20261107/planning/plan.json), con SHA-256 `6295b408623c811aa707b7c55355ab5fb529306f91049b047bac8dcc4d0fd15f`, se publicó en [`0f5f5eaeb7131b1413a062cb0cce104a88f3ddf3`](https://github.com/jassan-bit/DeepLearning_202630/commit/0f5f5eaeb7131b1413a062cb0cce104a88f3ddf3), observado mediante GET a las **01:17:26 UTC**, antes del primer ajuste definitivo. El piso de treinta no altera ese requerimiento mayor.
+
+La ejecución completa sumó **2.394 etapas**: 480 HPO, 60 piloto y 1.854 definitivas. Todos los pesos y escaladores finales quedaron congelados a las **01:28:08 UTC** del 08/11/2026. La verificación de acceso y la primera lectura de precios ocurrieron a las **01:28:33 UTC**, el scoring terminó a las **01:28:54 UTC** y el análisis a las **01:29:29 UTC**. Cada checkpoint se puntuó una vez sobre las **608 fechas 01/01/2025–31/08/2026**, generando **563.616 pronósticos privados (608×927)**, más una referencia de Persistencia determinista. La [cronología pública](book/_static/e1_608_remediation_20261107/chronology.json) conserva las marcas completas. Este calendario ya era conocido: el alcance sigue siendo **histórico y exploratorio**. El [capítulo 11](book/sections/11_reejecucion_608.md) desarrolla el diseño y sus límites.
+
+El entrypoint actual es `scripts/run_e1_608_remediation.py`. Desde el checkout limpio del commit científico publicado, con Python 3.12.14 y `requirements-e1-curves.lock.txt`, las fases mantienen el orden siguiente y escriben fuera de Git:
+
+```bash
+PYTHONHASHSEED=0 python scripts/run_e1_608_remediation.py register --output-dir /ruta/privada/nueva608 --published-commit 98e0cbcf4bb09dba863289261677dd6e7534d259 --publication-receipt /ruta/recibo_fuente.json
+PYTHONHASHSEED=0 python scripts/run_e1_608_remediation.py hpo --output-dir /ruta/privada/nueva608
+PYTHONHASHSEED=0 python scripts/run_e1_608_remediation.py pilot --output-dir /ruta/privada/nueva608
+PYTHONHASHSEED=0 python scripts/run_e1_608_remediation.py plan --output-dir /ruta/privada/nueva608
+```
+
+Una vez publicado el plan real y observado remotamente su commit y SHA-256, se continúa sin cambiar el checkout científico:
+
+```bash
+PYTHONHASHSEED=0 python scripts/run_e1_608_remediation.py register-plan --output-dir /ruta/privada/nueva608 --published-plan-file /ruta/plan608_publicado.json --published-commit SHA40_PLAN --publication-receipt /ruta/recibo_plan608.json
+PYTHONHASHSEED=0 python scripts/run_e1_608_remediation.py fit --output-dir /ruta/privada/nueva608
+PYTHONHASHSEED=0 python scripts/run_e1_608_remediation.py freeze --output-dir /ruta/privada/nueva608
+PYTHONHASHSEED=0 python scripts/run_e1_608_remediation.py score --output-dir /ruta/privada/nueva608 --raw-root /ruta/brutos/binance
+PYTHONHASHSEED=0 python scripts/run_e1_608_remediation.py analyze --output-dir /ruta/privada/nueva608
+```
+
+`score` comprobó los veinte archivos mensuales originales de enero de 2025 a agosto de 2026 por sus identidades registradas: **42.542.826 bytes originales verificados**, con la adquisición completada. El contexto procede únicamente del CSV de desarrollo 2023–2024 congelado. El cuaderno **`notebooks/descargar_datos_608_e1.ipynb`** se conserva sin ejecutar ni salidas en la distribución: permite adquirir los diecinueve archivos de enero de 2025 a julio de 2026, repartidos en dos ZIP menores de 24 MB, sin volver a descargar agosto, que ya se había recuperado. Su inclusión como ayuda no acredita que ese cuaderno se utilizara para esta adquisición. Una reanudación técnica conserva los artefactos y sus recibos, sin sustituir semillas ni recalcular una puntuación cerrada.
+
+El exportador se ejecutó tras el cierre de todas las fases desde ese mismo checkout hacia una raíz editorial externa. Para reproducir esa verificación sobre un cierre privado propio:
+
+```bash
+PYTHONHASHSEED=0 python scripts/export_e1_608_remediation.py --source-root /ruta/checkout_fuente --private-dir /ruta/privada/nueva608 --output-dir /ruta/editorial/results/e1_608_remediation_20261107 --mirror-dir /ruta/editorial/book/_static/e1_608_remediation_20261107
+python -m unittest discover -s tests -p 'test_e1_608_export.py'
+```
+
+La [publicación cerrada](book/_static/e1_608_remediation_20261107/README.md) contiene **33 archivos públicos y `manifest.json`**, con el contrato cerrado `e1_public_metadata_allowlist_v1`: métricas de las seis medidas por semilla y agregadas, recetas, HPO, piloto, plan, fuentes, cronología, runtime y costes observados de entrenamiento e inferencia. Incluye **33.141 filas observadas de pérdidas finales** internas/de reajuste en CSV, media e IQR con `n_available`, la semilla predefinida 18101, los QQ de las tres diferencias RMSE, Friedman/Wilcoxon y la inferencia primaria/temporal y diagnósticos BDS/Ljung–Box de esta misma cohorte. El reajuste final no tiene pérdidas de validación del test. La potencia planificada corresponde a δ bajo supuestos normales y de transferencia de varianza; la hipótesis primaria es diferencia cero, sin afirmar potencia alcanzada ni temporal.
+
+Las [seis métricas por semilla](book/_static/e1_608_remediation_20261107/run_metrics.csv) y el [resumen agregado](book/_static/e1_608_remediation_20261107/metric_summary.csv) corresponden exclusivamente a esta ejecución nueva:
+
+| Modelo actual, 608 fechas | RMSE, media ± DE entre semillas | R² medio |
+|---|---:|---:|
+| GRU32, baseline por CV | 0,00521269 ± 0,00112121 | 0,709833 |
+| LSTM32 | 0,00625115 ± 0,00079563 | 0,594658 |
+| MLP16 | 0,00522813 ± 0,00054111 | 0,717998 |
+| **Persistencia determinista** | **0,00408560** | **0,829605** |
+
+**Persistencia tiene menor RMSE que las tres redes.** En la familia primaria Holm-3, GRU–LSTM y LSTM–MLP rechazan igualdad; GRU–MLP no rechaza, con p ajustado **0,822534**. El análisis temporal DM/Holm-6 rechaza GRU–LSTM y los tres pares frente a Persistencia; no rechaza GRU–MLP ni LSTM–MLP. El bootstrap principal de bloques siete conserva intervalos familiares compatibles con mejor RMSE de Persistencia frente a las redes; los CSV separan ese estimando del contraste DM. Ninguna de estas conclusiones acredita utilidad financiera o generalización a otros mercados.
+
+Los [costes por semilla](book/_static/e1_608_remediation_20261107/run_costs.csv) y su [resumen](book/_static/e1_608_remediation_20261107/cost_summary.csv) proceden de los ajustes y del scoring actuales, en CPU, tres trabajadores y un hilo por trabajador:
+
+| Modelo | Parámetros | Entrenamiento, s, media ± DE | Inferencia de 608 fechas, ms, media ± DE | Corridas por medida |
+|---|---:|---:|---:|---:|
+| GRU32 | 3.777 | 3,832 ± 4,490 | 2,236 ± 0,535 | 309 |
+| LSTM32 | 5.025 | 0,989 ± 0,978 | 2,276 ± 0,548 | 309 |
+| MLP16 | 593 | 1,022 ± 0,813 | 0,369 ± 0,100 | 309 |
+
+Las [curvas de media/IQR](book/_static/e1_608_remediation_20261107/learning_curves.png), la [semilla predefinida 18101](book/_static/e1_608_remediation_20261107/first_seed_learning_curves.png) y los [QQ de las tres diferencias](book/_static/e1_608_remediation_20261107/qq_rmse_differences.png) acompañan los datos numéricos. El R² original de GRU≈0,854 pertenece únicamente al registro anterior de diez semillas; la nueva media es **0,709833**.
+
+El refresco de descargas exige ese cierre real y rechaza ausencia, mezcla de ejecución/fuentes, R/semillas incompatibles o una cohorte distinta de 608 fechas. **8.2** incorpora el ejecutor, estadística, exportador, pruebas y cuaderno nuevo; **8.5**, los 34 archivos públicos; **8.6/8.7**, el diseño/README fuente y sus registros de configuración y procedencia. No distribuye precios, objetivos, pronósticos diarios, pesos ni valores de escaladores. La edición `20261107_remediation_608` conserva el registro anterior `20261107_primary_608`, el complemento de sesenta fechas y los snapshots históricos; **8.3 permanece byte a byte idéntico**. La edición incorpora los agregados cerrados y sus manifiestos, sin modificar las fuentes científicas congeladas.
+
+## Registro anterior del 07/11/2026: D7, 608 fechas y diez semillas
+
+El registro anterior `e1_primary_608_20261107` usa las recetas originales LSTM32, MLP16 y GRU32, D7×5, σ₇ poblacional y h=1. El baseline de desarrollo es **GRU32, LR 0,003, dropout 0,1 y 3.777 parámetros**, con R² medio 0,854173 en el test 01/01/2025–31/08/2026. Las tres redes **ya se ejecutaron con diez semillas 4101–4110** sobre las mismas 608 fechas; la MLP16 histórica no requiere un nuevo entrenamiento. LSTM32 conserva LR 0,003, dropout 0,1 y 5.025 parámetros; MLP16, LR 0,001, dropout 0,1 y 593 parámetros. La CV común contiene las 366 fechas de 2024.
+
+| Modelo, test del registro anterior | RMSE media | R² medio |
 |---|---:|---:|
 | GRU32 | 0,00377511 | 0,854173 |
 | LSTM32 | 0,00502979 | 0,741108 |
 | MLP16 | 0,00479318 | 0,764012 |
 | Persistencia determinista | 0,00408560 | 0,829605 |
 
-La mayor cobertura temporal frente al estudio de sesenta fechas no acredita representatividad global: continúa siendo Bitcoin, un solo calendario histórico conocido. El HPO original fue desigual entre familias y R=10 es el presupuesto de semillas ya ejecutado, sin dimensionamiento prospectivo para esta promoción editorial. La elección de presentar este benchmark como principal ocurre después de observar sus resultados; no establece una reserva confirmatoria nueva ni independencia temporal entre semillas.
+La mayor cobertura temporal frente al estudio de sesenta fechas no acredita representatividad global: continúa siendo Bitcoin, un solo calendario histórico conocido. El HPO original fue desigual entre familias y R=10 es el presupuesto de semillas ya ejecutado, sin dimensionamiento prospectivo para esta promoción editorial. La elección anterior de presentar este benchmark como principal ocurrió después de observar sus resultados; no establece una reserva confirmatoria nueva ni independencia temporal entre semillas.
 
-El entrypoint actual ensambla y verifica **métricas ya guardadas**, sin ajustar redes, inferir ni adquirir mercado:
+El ensamblador de aquel registro conserva y verifica **métricas ya guardadas**, sin ajustar redes, inferir ni adquirir mercado:
 
 ```bash
 python scripts/build_e1_primary_608.py
 python scripts/build_e1_primary_608.py --check
 ```
 
-`results/e1_primary_608_20261107/` y su espejo `book/_static/e1_primary_608_20261107/` contienen las métricas por corrida y el resumen común con Persistencia, las recetas originales y la procedencia por hash. El producto **8.5** incorpora toda esta etapa; **8.6/8.7** incluyen `summary.json`, `execution_provenance.json` y `source_manifest.json`, y **8.7** también el manifiesto. Los ejecutores históricos que siguen requieren sus datos y una salida nueva si se desea repetir ajustes; el ensamblador actual no ejecuta esas rutas.
+`results/e1_primary_608_20261107/` y su espejo `book/_static/e1_primary_608_20261107/` contienen las métricas por corrida y el resumen común con Persistencia, las recetas originales y la procedencia por hash. El producto **8.5** incorpora toda esta etapa; **8.6/8.7** incluyen `summary.json`, `execution_provenance.json` y `source_manifest.json`, y **8.7** también el manifiesto. Los ejecutores históricos que siguen requieren sus datos y una salida nueva si se desea repetir ajustes; este ensamblador histórico no ejecuta esas rutas.
 
-## Estudio complementario de sesenta fechas LSTM–MLP–GRU
+## Registro complementario cerrado del 07/11/2026: sesenta fechas LSTM–MLP–GRU
 
 La selección bibliográfica actual está en `references/literature_e1/core_selection_20261107/`. Su registro se reconstruye sin entrenar:
 
@@ -423,7 +496,7 @@ La ampliación bibliográfica `open_access_replacement_20261107/` se incorpora p
 
 La bitácora `provisional_native_log_20261107/` usa el mismo manifiesto cerrado: **8.4** incorpora todos sus archivos aprobados y **8.7** sólo el resumen y el manifiesto de raíz. Su constructor entra automáticamente en **8.2** como código Python versionado. El refresco conserva el estado histórico de esa preparación; las ejecuciones acreditadas posteriores se añaden por separado en `native_execution_20261107/`, junto a `homogeneous_synthesis_20261107/`, con todos sus miembros aprobados en **8.4** y sus resúmenes/manifiestos en **8.7**. No ejecuta consultas, entrenamientos o curvas ni cambia los archivos científicos de **8.5/8.6** o el binario de **8.3**.
 
-Las etapas `free_model_expansion_20261107/`, `homogeneous_expansion_20261107/` y `core_selection_20261107/` emplean ese mismo contrato cerrado: **8.4** recibe sus fichas, tablas, bibliografía y demás metadatos aprobados; **8.7** recibe únicamente sus resúmenes/manifiestos de raíz; sus constructores y pruebas entran en **8.2**. La edición del paquete se identifica como `20261107_primary_608`, con la fecha real del 07/11/2026 en Colombia. Conserva dentro de 8.7 los registros anteriores `literature_refresh_20261107_core_mlp.json`, `literature_refresh_20261107_free_models.json`, `literature_refresh_20261107.json` y `AMPLIACION_LITERARIA_20261107.md`, además de los del 06/11: un refresco posterior del mismo día no borra la procedencia ya publicada.
+Las etapas `free_model_expansion_20261107/`, `homogeneous_expansion_20261107/` y `core_selection_20261107/` emplean ese mismo contrato cerrado: **8.4** recibe sus fichas, tablas, bibliografía y demás metadatos aprobados; **8.7** recibe únicamente sus resúmenes/manifiestos de raíz; sus constructores y pruebas entran en **8.2**. La edición anterior del paquete se identifica como `20261107_primary_608`, con la fecha real del 07/11/2026 en Colombia. La edición `20261107_remediation_608` conserva también ese registro dentro de 8.7, junto con los registros anteriores `literature_refresh_20261107_core_mlp.json`, `literature_refresh_20261107_free_models.json`, `literature_refresh_20261107.json` y `AMPLIACION_LITERARIA_20261107.md`, además de los del 06/11: un refresco posterior del mismo día no borra la procedencia ya publicada.
 
 El suplemento `results/e1_statistics_supplement_20261106/`, reflejado en el libro, calcula Q–Q, Friedman/Kendall W y sensibilidad Wilcoxon/Holm desde las métricas por semilla guardadas; es **posterior** a la evaluación original y no acredita potencia temporal ni nuevos ajustes. La fundamentación `e1_academic_margin_20261106/` consume sólo desarrollo y mantiene δ y R. Sus manifiestos fijan insumos y productos públicos.
 
@@ -461,4 +534,4 @@ La verificación remota previa debe conservarse aparte; el argumento `--publishe
 
 El panel dirigido de seis celdas produjo **12 trayectorias y 24 etapas**, con **18/18 hashes canónicos iguales entre réplicas** y también frente a esas seis celdas de la reproducción completa anterior; la diferencia numérica máxima fue cero. Satisface el criterio secundario fijado de `rtol=1e-6`, `atol=1e-8` en las seis celdas. `results/e1_replay_repeatability_20261107/` publica comparación, registro, entorno, ejecución y prueba de publicación previa, sin pesos, escaladores o predicciones diarias. No se consultó la reserva ni se añadieron muestras independientes al benchmark. El resultado se limita a ese panel: no recupera los archivos originales ni certifica la repetibilidad de todo R465.
 
-El empaquetador admite únicamente las listas explícitas de esos manifiestos, comprueba hashes/bytes, estructura PNG, campos privados, CRC y rutas seguras. Los stages anidados `search_recovery_20261106`, `internet_closure_20261106`, `open_access_replacement_20261107`, `provisional_native_log_20261107`, `homogeneous_synthesis_20261107`, `native_execution_20261107`, `free_model_expansion_20261107`, `homogeneous_expansion_20261107` y `core_selection_20261107` requieren `publication_schema: e1_public_metadata_allowlist_v1`, una lista ordenada sin duplicados `approved_public_files` y `files: {ruta: {sha256, bytes}}` con exactamente los mismos miembros. La auditoría forense y la repetibilidad controlada usan ese mismo contrato en `public_allowlist_manifest.json`: sus archivos aprobados entran en **8.5**; resúmenes y manifiestos en **8.7**; para repetibilidad, registro, runtime, ejecución y verificación de publicación también entran en **8.6/8.7**. El histórico compatible `e1_historical_core_20261107/` y la exportación cerrada nueva `e1_core_mlp_extension_20261107/` usan el mismo contrato en `manifest.json`; van a **8.5** con sus resúmenes/manifiestos en **8.7**. La exportación nueva añade a **8.6/8.7** registro, selección, plan, publicación del plan, cronología, runtime y manifiesto de fuentes. Sus fuentes/diseño y los protocolos de las reproducciones viajan en **8.6/8.7** y sus ejecutores en **8.2**. Sólo se leen esos metadatos admitidos, nunca archivos vecinos sin listar, originales PDF ni payloads experimentales privados. La etapa principal `e1_primary_608_20261107/` se añade por su manifiesto cerrado a **8.5**, con sus registros de configuración y procedencia en **8.6/8.7**. El catálogo usa exclusivamente su resumen y las métricas originales D7: comprueba R=10, 608 fechas de test, 366 de CV, recetas 32/32/16, semillas 4101–4110, Persistencia y hashes de las fuentes guardadas. La exportación cerrada de sesenta fechas también se conserva íntegra como complemento; su metadata previa y su snapshot histórico quedan en `complementary_study_metadata`, sin sobrescribir `historical_study_metadata`. El empaquetador falla ante ausencia o mezcla de cohortes. Renueva catálogo y paquete conjunto; no regenera la ciencia desde el empaquetador histórico. La edición `20261107_primary_608` conserva `20261107_core_mlp` y las ediciones anteriores del propio 07/11 y del 06/11. Copiar los productos verificados a `book/_static/e1_downloads/` y reconstruir E1 para distribuir las descargas actualizadas. La compilación posterior sólo actualiza enlaces y recursos de distribución; el catálogo identifica el commit de fuentes usado para generar los ZIP, separado del commit posterior que agrega los propios paquetes.
+El empaquetador admite únicamente las listas explícitas de esos manifiestos, comprueba hashes/bytes, estructura PNG, campos privados, CRC y rutas seguras. Los stages anidados `search_recovery_20261106`, `internet_closure_20261106`, `open_access_replacement_20261107`, `provisional_native_log_20261107`, `homogeneous_synthesis_20261107`, `native_execution_20261107`, `free_model_expansion_20261107`, `homogeneous_expansion_20261107` y `core_selection_20261107` requieren `publication_schema: e1_public_metadata_allowlist_v1`, una lista ordenada sin duplicados `approved_public_files` y `files: {ruta: {sha256, bytes}}` con exactamente los mismos miembros. La auditoría forense y la repetibilidad controlada usan ese mismo contrato en `public_allowlist_manifest.json`: sus archivos aprobados entran en **8.5**; resúmenes y manifiestos en **8.7**; para repetibilidad, registro, runtime, ejecución y verificación de publicación también entran en **8.6/8.7**. El histórico compatible `e1_historical_core_20261107/` y la exportación cerrada nueva `e1_core_mlp_extension_20261107/` usan el mismo contrato en `manifest.json`; van a **8.5** con sus resúmenes/manifiestos en **8.7**. La exportación nueva añade a **8.6/8.7** registro, selección, plan, publicación del plan, cronología, runtime y manifiesto de fuentes. Sus fuentes/diseño y los protocolos de las reproducciones viajan en **8.6/8.7** y sus ejecutores en **8.2**. Sólo se leen esos metadatos admitidos, nunca archivos vecinos sin listar, originales PDF ni payloads experimentales privados. La etapa principal `e1_primary_608_20261107/` se añade por su manifiesto cerrado a **8.5**, con sus registros de configuración y procedencia en **8.6/8.7**. El catálogo histórico de esa etapa usa exclusivamente su resumen y las métricas originales D7: comprueba R=10, 608 fechas de test, 366 de CV, recetas 32/32/16, semillas 4101–4110, Persistencia y hashes de las fuentes guardadas. La exportación cerrada de sesenta fechas también se conserva íntegra como complemento; su metadata previa y su snapshot histórico quedan en `complementary_study_metadata`, sin sobrescribir `historical_study_metadata`. El empaquetador falla ante ausencia o mezcla de cohortes. Renueva catálogo y paquete conjunto; no regenera la ciencia desde el empaquetador histórico. La edición `20261107_remediation_608`, con el nuevo export cerrado, conserva `20261107_primary_608`, `20261107_core_mlp` y las ediciones anteriores del propio 07/11 y del 06/11. Copiar los productos verificados a `book/_static/e1_downloads/` y reconstruir E1 para distribuir las descargas actualizadas. La compilación posterior sólo actualiza enlaces y recursos de distribución; el catálogo identifica el commit de fuentes usado para generar los ZIP, separado del commit posterior que agrega los propios paquetes.

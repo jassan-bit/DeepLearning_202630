@@ -1,6 +1,6 @@
 # Decisiones, evidencia y alcance de E1
 
-**El benchmark principal compara GRU32, LSTM32 y MLP16 sobre las mismas 608 fechas del 01/01/2025–31/08/2026.** Las ejecuciones originales ya existen: esta actualización verifica y prioriza sus resultados. El [capítulo 5](05_benchmark.md) reúne seis métricas y las cuatro entradas; el {ref}`capítulo 10 <final-core-mlp-e1>` conserva la comprobación complementaria de sesenta días con otras recetas. Las versiones y datos de cada estudio permanecen separados.
+**El nuevo benchmark principal compara GRU32, LSTM32 y MLP16 sobre las mismas 608 fechas del 01/01/2025–31/08/2026.** Su HPO equitativo, piloto propio y dimensionamiento **R=309** preceden a los ajustes definitivos. El {ref}`capítulo 11 <remediation-608-e1>` documenta la nueva ejecución coherente de las tres redes. El [capítulo 5](05_benchmark.md) conserva las diez semillas originales y las cuatro entradas; el {ref}`capítulo 10 <final-core-mlp-e1>` mantiene la comprobación complementaria de sesenta días con otras recetas. Se conservan las identidades y resultados de cada estudio.
 
 ## Literatura: selección y trazabilidad
 
@@ -16,26 +16,41 @@ TCN conserva sus resultados como complemento. Los cortes bibliográficos fechado
 
 Las sesiones antiguas conservan cadenas y horas no recuperadas. La ronda nativa posterior documenta consultas reales de las tres bases sin reconstruir esos valores. IEEE exportó 25/32 resultados; se distingue el universo exportado de la consulta efectiva.
 
-## Comparación principal verificada de 608 días
+## Nueva comparación principal de 608 días
 
-El {download}`expediente principal <../_static/e1_primary_608_20261107/README.md>` concilia resultados auténticos bajo el mismo contrato: cinco covariables OHLCV, σ₇ poblacional, D7, horizonte de un día, transformación relativa y escalas aprendidas del entrenamiento. La CV usa doce bloques de 2024 y el test las mismas 608 fechas para todos.
+La ejecución **e1_608_remediation_20261107** mantiene cinco covariables OHLCV, σ₇ poblacional, D7, horizonte de un día, transformación relativa y escalas aprendidas del entrenamiento. Las arquitecturas originales se conservan con nuevos pesos y una HPO común de LR/dropout. El {ref}`capítulo 11 <remediation-608-e1>` identifica las fases, sus hashes y los resultados de la evaluación cerrada.
 
-| Elemento | Evidencia principal |
-|---|---|
-| Recetas | GRU32/LSTM32, LR 0,003; MLP16, LR 0,001; dropout 0,1 |
-| Entrenamiento final | 709 etiquetas comunes, 08/01/2023–24/12/2024; embargo de siete días |
-| Repeticiones | Diez semillas 4101–4110 por red; presupuesto histórico fijo |
-| Evaluación | Pesos y escaladores fijos; veinte meses de reporte, sin reajustes en test |
-| MLP bajo las mismas condiciones | Diez corridas D7 originales verificadas en métricas y eventos; no se afirma una corrida nueva |
-| Control entre fuentes | 480 igualdades exactas de LSTM: cuatro entradas × diez semillas × seis métricas × dos fases |
-| Selección por desarrollo | D7 minimiza RMSE CV por familia; GRU32 es el baseline neuronal principal |
-| Resultados | R² medios GRU **0,854173**, MLP **0,764012**, LSTM **0,741108**, persistencia **0,829605** |
+| Requisito | Evidencia de la nueva ejecución | Alcance |
+|---|---|---|
+| HPO comparable, §§4.1–4.3 | Cuatro candidatos por familia × dos semillas × diez bloques enero–octubre de 2024; **480 etapas**, 160 por red | Igual esfuerzo de búsqueda dentro de LR/dropout; anchos 32/32/16 conservados |
+| Recetas elegidas | **GRU32 c03**, LR 0,003/dropout 0,1; **LSTM32 c02**, LR 0,003/dropout 0; **MLP16 c03**, LR 0,003/dropout 0,1 | Baseline **GRU32** por menor RMSE CV, cerrado antes del piloto |
+| Piloto propio | Diez semillas **17101–17110** por familia sobre 01/11–30/12/2024; 30 trayectorias y 60 etapas | Distinto de HPO y de las semillas definitivas; media, DE y CV informados |
+| Dimensionamiento previo | δ=0,00025772842664981106; α*=0,05/3, potencia marginal 0,80, cota simultánea del 80 % de DE; **R requerido=R final=309** | Plan calculado tras el piloto y publicado/verificado antes del primer ajuste definitivo |
+| Registro público | [Fuente 98e0cbcf](https://github.com/jassan-bit/DeepLearning_202630/commit/98e0cbcf4bb09dba863289261677dd6e7534d259) y [plan exacto 0f5f5eae](https://github.com/jassan-bit/DeepLearning_202630/commit/0f5f5eaeb7131b1413a062cb0cce104a88f3ddf3) | Fuente verificada por GET antes de HPO; plan verificado por GET 08/11/2026 01:17:26 UTC antes de registrar el ajuste definitivo |
+| Entrenamiento definitivo | **927 modelos y 1.854 etapas ejecutados**, semillas comunes **18101–18409**; 709 etiquetas hasta 24/12/2024; **2.394 etapas totales** con HPO/piloto | Etapa interna causal 619/83; reajuste desde cero; los 927 pesos y preprocesadores cerrados antes de leer CSV de test |
+| Inferencia temporal, §5.4 | **563.616 predicciones** de las tres redes sobre las mismas **608 fechas**; DM/HAC6/HLN/Holm-6, bootstrap circular y BDS/Ljung–Box ejecutados conforme al diseño | Vectores nuevos conservados privadamente; resultados y firmas públicos. No se reconstruyen los originales ausentes |
+| Curvas, costes y contraste entre semillas | **33.141 registros de pérdida**, parámetros y tiempos; t/Holm-3, Q–Q, Friedman/Kendall W y Wilcoxon/Holm-3 publicados | Evidencia propia de la ejecución; semillas condicionadas al calendario, sin mercados independientes |
 
-GRU tiene menor RMSE y mayor R² medios en este periodo; persistencia conserva mejores MAE y MAPE. La tabla completa y los IC se publican en el capítulo 5. Los contrastes entre semillas son exploratorios y condicionados al calendario.
+La nueva ejecución corrige el diseño mediante trabajo nuevo verificable. El {download}`resumen de cierre <../_static/e1_608_remediation_20261107/summary.json>` y la {download}`cronología <../_static/e1_608_remediation_20261107/chronology.json>` acreditan las fases; el {download}`manifiesto de publicación <../_static/e1_608_remediation_20261107/manifest.json>` identifica los archivos públicos.
 
-**La búsqueda histórica no tuvo el mismo esfuerzo de HPO entre familias.** Se comparan las recetas originales con reglas de evaluación comunes. Las diez semillas no proceden de un piloto previo y no se les atribuye potencia prospectiva. La prioridad actual de este benchmark se decide después de conocer los resultados; veinte meses aportan mayor cobertura temporal, sin acreditar por sí solos representatividad universal o independencia confirmatoria.
+| Modelo de la nueva ejecución | RMSE media | R² medio |
+|---|---:|---:|
+| GRU32 | 0,005212686 | 0,709833 |
+| LSTM32 | 0,006251147 | 0,594658 |
+| MLP16 | 0,005228132 | 0,717998 |
+| Persistencia | **0,004085596** | **0,829605** |
 
-Los vectores diarios y pesos originales de MLP no están disponibles aquí. Los agregados verificados bastan para esta comparación de seis métricas; no reconstruyen DM, bootstrap temporal o residuos originales. La nueva compilación no ajusta modelos, calcula predicciones ni modifica los resultados fuente.
+Persistencia presenta menor error medio que las tres redes. DM/Holm-6 rechaza GRU–LSTM y las tres redes frente a persistencia; no rechaza GRU–MLP ni LSTM–MLP. Los límites inferiores temporales familiares del bloque siete para la mejora relativa de persistencia sobre GRU/LSTM/MLP son **8,60/21,27/10,22 %**. Los diagnósticos residuales rechazan BDS en 927/927 trayectorias y Ljung–Box en 1.854/1.854 pruebas después de sus ajustes Holm separados: el cierre metodológico no demuestra adecuación residual o superioridad neuronal. La {download}`tabla de seis métricas e IC <../_static/e1_608_remediation_20261107/metric_summary.csv>` mantiene la incertidumbre entre semillas; los contrastes temporales tienen su propia unidad e interpretación.
+
+La comparación nueva satisface HPO común, piloto/dimensionamiento previo a sus propios ajustes y análisis diarios conjuntos; conserva su resultado adverso a las redes. El calendario ya se había utilizado: registrar el código y plan antes de los nuevos ajustes no recupera una reserva temporal independiente ni acredita potencia alcanzada o generalización a otros regímenes.
+
+## Referencia histórica original de 608 días
+
+El {download}`expediente histórico <../_static/e1_primary_608_20261107/README.md>` concilia resultados auténticos de las mismas arquitecturas y fechas. Conserva las diez semillas **4101–4110**, CV de doce bloques de 2024 y cuatro entradas; la MLP original usa LR **0,001**, frente a **0,003** en la nueva receta elegida por HPO. GRU/LSTM usan LR 0,003 y las tres redes originales dropout 0,1. La conciliación verifica **480 igualdades exactas de LSTM** entre fuentes.
+
+Los R² medios originales son GRU **0,854173**, MLP **0,764012**, LSTM **0,741108** y persistencia **0,829605**. GRU tiene menor RMSE y mayor R² medios en esa ejecución; persistencia mejores MAE y MAPE. Esos números se conservan completos en el capítulo 5 y no se atribuyen a los nuevos pesos.
+
+**En la ejecución original** el esfuerzo de HPO fue desigual y las diez semillas fueron un presupuesto sin piloto previo. Los vectores diarios y pesos originales de MLP no están disponibles aquí. La nueva ejecución aporta sus propios vectores, HPO, piloto y plan; no afirma haber recuperado los archivos originales ni retrotrae su registro a aquellas corridas.
 
 ## Comprobación complementaria de sesenta días
 
@@ -49,12 +64,12 @@ En ese periodo persistencia tiene el menor error puntual. GRU16−MLP32 no recha
 
 δ=0,00025772842664981106 conserva el ancla del 5 % del RMSE CV del GRU32 inicial. Su [justificación académica](01_problema_dataset.md) presenta contexto de variabilidad y sensibilidad al 2,5/10 %. La argumentación y planificación posteriores no se retrotraen para dimensionar las diez semillas iniciales ni demuestran utilidad financiera o equivalencia.
 
-Las curvas públicas del capítulo 10 son de las recetas complementarias16/16/32. La {ref}`reproducción del estudio con TCN <curvas-finales-reproducidas>` y la {ref}`auditoría de repetibilidad <auditoria-numerica-e1>` también mantienen sus identidades. Ninguna se presenta como recuperación exacta de tensores privados históricos ausentes.
+La nueva ejecución de 608 fechas registra sus propias curvas de entrenamiento/validación y de reajuste; sus configuraciones, dependencias y costes se identifican por estudio. Las curvas del capítulo 10 pertenecen a las recetas complementarias **16/16/32**. La {ref}`reproducción del estudio con TCN <curvas-finales-reproducidas>` y la {ref}`auditoría de repetibilidad <auditoria-numerica-e1>` también mantienen sus identidades. Ninguna se presenta como recuperación exacta de tensores privados históricos ausentes.
 
 La guía §4.3 exige semillas, dependencias, determinismo declarado y procedimiento ejecutable. Las descargas distinguen compilación de métricas guardadas, métodos originales y ejecuciones posteriores. Construir HTML o empaquetar no entrena ni vuelve a puntuar modelos.
 
 ## Alcance temporal y continuidad a E2
 
-Ambos calendarios ya son conocidos. Las semillas describen aleatoriedad de entrenamiento sobre las mismas fechas y no son mercados independientes. El solapamiento de σ₇, los cambios temporales y las diferencias de receta limitan extrapolar resultados entre periodos.
+Los calendarios de 608 y de sesenta fechas ya son conocidos. Las semillas describen aleatoriedad de entrenamiento sobre las mismas fechas y no son mercados independientes. El solapamiento de σ₇, los cambios temporales y las diferencias de receta limitan extrapolar resultados entre periodos.
 
-**El benchmark principal es GRU32–LSTM32–MLP16 de 608 días; el de sesenta días sigue visible como complemento.** Esta prioridad editorial preserva los resultados completos y su cronología. E2 mantiene sus fuentes, recetas y baseline registrados; esta actualización de E1 no modifica automáticamente experimentos ya cerrados.
+**El benchmark principal es la nueva ejecución GRU32–LSTM32–MLP16, R=309 y 608 fechas; el original R=10 y el de sesenta días siguen visibles con sus identidades.** La nueva planificación y sus resultados no modifican los archivos científicos históricos. E2 mantiene sus fuentes, recetas y baseline registrados; esta actualización de E1 no modifica automáticamente experimentos ya cerrados.

@@ -1,29 +1,63 @@
 # 4. Implementación y evaluación de los modelos base
 
-**Comparación principal: GRU H32–LSTM H32–MLP H16**, D7, CV mensual 2024 y test original de **608 fechas del 01/01/2025–31/08/2026**. Se reúnen ejecuciones originales compatibles, incluidas las de MLP ya disponibles; no se hicieron nuevos ajustes para completar el cuadro. TCN conserva sus resultados complementarios. El {ref}`estudio posterior de 60 fechas <final-core-mlp-e1>`, con otras recetas y 465 semillas, aporta robustez complementaria. La designación del análisis principal se realiza tras conocer ambos resultados y conserva su alcance exploratorio.
+**Comparación principal nueva: GRU H32–LSTM H32–MLP H16**, D7, sobre las **608 fechas del 01/01/2025–31/08/2026**. El estudio `e1_608_remediation_20261107` vuelve a ajustar las tres familias con HPO común, piloto propio y repeticiones dimensionadas. La {ref}`reejecución de 608 fechas <remediation-608-e1>` documenta sus fases y resultados cerrados. La evaluación sigue siendo histórica y exploratoria: ese calendario y los estudios anteriores ya eran conocidos.
 
 (implementacion-core-mlp-e1)=
 ## 4.0. Implementación actual y procedencia de las recetas
 
-Las tres redes reciben la misma entrada **D7 × cinco covariables OHLCV**, objetivo σ₇ poblacional, horizonte h=1 y salida escalar positiva. La representación es `relative_window`; cada transformador se ajusta sólo con el entrenamiento permitido. La MLP aplana la ventana en **35 entradas** y aprende una combinación específica por posición; LSTM y GRU comparten una transición recurrente a lo largo de los siete días.
+Las tres redes reciben la misma entrada **D7 × cinco covariables OHLCV**, objetivo σ₇ poblacional, horizonte h=1 y salida escalar positiva. La representación es `relative_window`; cada transformador se ajusta sólo con el entrenamiento permitido. La MLP conserva el orden día–covariable al aplanar la ventana en **35 entradas**; aprende pesos específicos por posición. LSTM y GRU comparten una transición recurrente a lo largo de los siete días y reinician su estado en cada ventana.
 
-| Familia principal | Arquitectura original D7 | Anchura | LR | Dropout | Parámetros |
+| Familia principal | Arquitectura D7 de la ejecución nueva | Anchura | LR seleccionado | Dropout seleccionado | Parámetros |
 |---|---|---:|---:|---:|---:|
 | **GRU** | Una capa unidireccional → dropout → cabeza lineal → Softplus | 32 | 0,003 | 0,1 | 3.777 |
-| **LSTM** | Una capa unidireccional → dropout → cabeza lineal → Softplus | 32 | 0,003 | 0,1 | 5.025 |
-| **MLP** | Flatten(7×5) → Dense16 → ReLU → dropout → Dense1 → Softplus | 16 | 0,001 | 0,1 | 593 |
+| **LSTM** | Una capa unidireccional → dropout → cabeza lineal → Softplus | 32 | 0,003 | 0,0 | 5.025 |
+| **MLP** | Flatten(7×5) → Dense16 → ReLU → dropout → Dense1 → Softplus | 16 | 0,003 | 0,1 | 593 |
 
-La auditoría concilia las semillas nominales **4101–4110**, los doce bloques de CV 2024 —366 fechas—, entrenamiento final original de **709 muestras** según sus reglas de purga y transformación, y las mismas 608 fechas de test. La MLP ya fue ejecutada con ese contrato. Las LSTM de ambos expedientes coinciden en **480 valores** de seis métricas, cuatro entradas y dos fases; la [fuente y su verificación](../_static/e1_historical_core_20261107/source_manifest.json) conservan la procedencia. El esfuerzo original de búsqueda fue desigual: GRU heredó H/LR de LSTM, mientras MLP y LSTM proceden de búsquedas anteriores. Se comparan estas recetas y no familias con optimización idéntica.
+García-Medina y Aguayo-Moreno y Dudek et al. aportan MLP autónomas en volatilidad cripto; Zhang et al. documenta MLP con ReLU y variación de profundidad en volatilidad financiera {cite:p}`E1Search_MLP01,Dudek2024VolatilityComparative,E1Search_MLP04`. La estructura de una capa oculta de E1 es una **adaptación propia**: D7/OHLCV, H16, ReLU, cabeza Softplus y escalado positivo del objetivo están declarados para el pipeline común. No se presenta como réplica de una receta editorial completa. La simplicidad se evalúa junto a la función de referencia y la recurrencia de la {ref}`síntesis bibliográfica <homogeneous-expansion-e1>`.
 
-García-Medina y Aguayo-Moreno y Dudek et al. aportan MLP autónomas en volatilidad cripto; Zhang et al. documenta MLP con ReLU y variación de profundidad en volatilidad financiera {cite:p}`E1Search_MLP01,Dudek2024VolatilityComparative,E1Search_MLP04`. La estructura de una capa oculta de E1 es una **adaptación propia**: ReLU/Softplus, las anchuras y el presupuesto están declarados para el pipeline común, sin presentarlos como réplica de una receta editorial completa. La simplicidad se evalúa junto a la función de referencia y la recurrencia de la {ref}`síntesis bibliográfica <homogeneous-expansion-e1>`.
+### 4.0.1. HPO común, piloto y entrenamiento definitivo
 
-### 4.0.1. Selección principal por desarrollo y repeticiones originales
+Se fijan las anchuras solicitadas **GRU32/LSTM32/MLP16** y se explora la misma cuadrícula **LR={0,001; 0,003} × dropout={0; 0,1}**, cuatro candidatos por familia. Todos usan las semillas **16101–16102**, diez folds mensuales de enero–octubre de 2024 y las mismas **305 fechas**. Son **24 trayectorias candidato–semilla, 240 bloques mensuales y 480 etapas de ajuste**, cada bloque con selección interna de duración y reajuste nuevo. La puntuación de selección es la media entre semillas del RMSE reunido sobre las 305 fechas, sin promediar RMSE mensuales.
 
-Cada familia obtiene su menor RMSE CV con D7 entre D=7/14/21/28. **GRU H32/D7** presenta la menor media CV del núcleo: **0,0051546**, frente a **0,0060491** de MLP H16 y **0,0063354** de LSTM H32. Éste es el baseline neuronal principal por desarrollo. Las diez semillas originales son un presupuesto exploratorio, sin piloto ni cálculo prospectivo de R. La comparación principal y sus seis métricas se presentan en el {ref}`capítulo 5 <benchmark-core-actual-e1>`.
+| Familia | Candidato | RMSE CV de selección, media de dos semillas |
+|---|---|---:|
+| GRU H32 | c03 | 0,0049967687 |
+| LSTM H32 | c02 | 0,0063976042 |
+| MLP H16 | c03 | 0,0058237466 |
 
-### 4.0.2. Recetas y ejecución del complemento de 60 fechas
+La HPO cerró el **08/11/2026 a las 01:13:53,949566 UTC**. **GRU H32/D7-c03** quedó seleccionado como baseline neuronal por desarrollo antes del piloto. Igualar candidatos, semillas, folds y reglas de ajuste no iguala parámetros ni tiempo de cómputo. Esta búsqueda no incluye anchuras, capas o una búsqueda anidada independiente del desarrollo ya conocido.
 
-La búsqueda común posterior seleccionó las siguientes recetas para el **complemento de robustez**; **GRU H16/D7 c03** obtuvo su menor RMSE CV y quedó cerrado como baseline de ese estudio antes del piloto y de recalcular su evaluación histórica. La exposición previa al periodo de septiembre–octubre de 2026 sigue declarada.
+El piloto usa **diez semillas nuevas por familia, 17101–17110**, y sesenta fechas de desarrollo del **01/11–30/12/2024**. Cada trayectoria selecciona duración antes del origen y reajusta desde otra inicialización; sus pesos permanecen fijos en las sesenta fechas. El tamaño definitivo se fija mediante **R=máximo(30, R requerido por los tres pares)**, con t no central, α*=0,05/3, potencia marginal 0,80, cota superior simultánea del 80 % de la DE pareada y **δ=0,00025772842664981106**. El piloto cerró el **08/11/2026 a las 01:15:04,929154 UTC**. El plan, cerrado a las **01:15:15,471359 UTC**, obtiene R requerido **309/80/231** para GRU–LSTM/GRU–MLP/LSTM–MLP y fija **R requerido=R final=309**. Su [publicación inmutable](https://github.com/jassan-bit/DeepLearning_202630/commit/0f5f5eaeb7131b1413a062cb0cce104a88f3ddf3) se verificó por GET a las **01:17:26 UTC**, antes del primer ajuste definitivo.
+
+Las semillas definitivas son **18101–18409**, disjuntas de HPO y piloto: **927 redes y 1.854 etapas definitivas**. Sumadas HPO y piloto, el presupuesto nuevo es de **2.394 etapas**; la puntuación completa contiene **563.616 pronósticos individuales sobre 608 fechas comunes**. El ajuste usa únicamente desarrollo 2023–2024: **619 muestras internas, 83 de validación interna y 709 de reajuste** por red, con embargo D7 y transformación entrenada en cada etapa. Se conservan AdamW, batch 32, máximo 100 épocas, paciencia 12, weight decay 0,0001 y clip de norma 1. Los **927 pesos y escaladores** quedaron congelados el **08/11/2026 a las 01:28:08 UTC**, antes de la primera lectura de precios originales de las **01:28:33 UTC**. Los veinte archivos mensuales originales sustentan las 608 fechas completas. La puntuación cerró a las **01:28:54 UTC** y el análisis a las **01:29:29 UTC**. No hubo reajuste durante test.
+
+El [código y diseño publicados](https://github.com/jassan-bit/DeepLearning_202630/commit/98e0cbcf4bb09dba863289261677dd6e7534d259) se verificaron por GET el **08/11/2026 a las 01:08:27 UTC**, antes del registro de las **01:09:05 UTC** y de los ajustes nuevos. La antelación de este registro se refiere a esta ejecución; no borra la exposición histórica al calendario evaluado. La {ref}`cronología propia <remediation-608-e1>` conserva recibos, firmas y cierres.
+
+El {download}`expediente nuevo <../_static/e1_608_remediation_20261107/README.md>` publica [selección HPO](../_static/e1_608_remediation_20261107/selection.json), [resumen de candidatos](../_static/e1_608_remediation_20261107/hpo_summary.csv), [piloto](../_static/e1_608_remediation_20261107/pilot_summary.csv), [plan](../_static/e1_608_remediation_20261107/plan.json) y [cronología de cierre](../_static/e1_608_remediation_20261107/chronology.json). La ejecución completa conserva **33.141 filas de pérdidas observadas** de los ajustes definitivos sobre desarrollo 2023–2024.
+
+![Curvas de desarrollo de las 927 redes de la comparación principal de 608 fechas](../_static/e1_608_remediation_20261107/learning_curves.png)
+
+Las [curvas por corrida](../_static/e1_608_remediation_20261107/learning_curves_by_run.csv) y su [resumen por época](../_static/e1_608_remediation_20261107/learning_curve_summary.csv) separan selección interna y reajuste. El reajuste conserva la duración elegida y no tiene validación de test; las épocas tardías incluyen menos trayectorias por parada temprana. La [ilustración de la semilla predefinida 18101](../_static/e1_608_remediation_20261107/first_seed_learning_curves.png) no se seleccionó por desempeño.
+
+**Coste observado por corrida definitiva, media ± DE.** El [resumen de costes](../_static/e1_608_remediation_20261107/cost_summary.csv) y las [mediciones individuales](../_static/e1_608_remediation_20261107/run_costs.csv) corresponden a CPU, tres procesos y un hilo por trabajador; la inferencia abarca las 608 fechas de cada red.
+
+| Familia | Parámetros | Ajuste, segundos | Inferencia de 608 fechas, segundos |
+|---|---:|---:|---:|
+| GRU H32 | 3.777 | 3,83227 ± 4,49027 | 0,002236 ± 0,000535 |
+| LSTM H32 | 5.025 | 0,98946 ± 0,97834 | 0,002276 ± 0,000548 |
+| MLP H16 | 593 | 1,02220 ± 0,81332 | 0,000369 ± 0,000100 |
+
+Las duraciones reflejan parada temprana, kernels y entorno compartido; menos parámetros no garantiza menor tiempo de ajuste. El [runtime observado](../_static/e1_608_remediation_20261107/runtime.json) conserva plataforma y controles de los trabajadores. Los costes no se extrapolan a otro hardware ni a redes óptimamente ajustadas. Las seis métricas y los análisis de los vectores diarios privados de GRU, LSTM y **MLP** se presentan en el {ref}`benchmark nuevo <benchmark-core-actual-e1>`; todos corresponden a las 309 semillas nuevas por familia.
+
+### 4.0.2. Recetas originales y sensibilidad histórica
+
+El {ref}`benchmark original de diez semillas <benchmark-core-historico-e1>` conserva las recetas GRU H32/LR 0,003/dropout 0,1; LSTM H32/LR 0,003/dropout 0,1; y MLP H16/LR 0,001/dropout 0,1. Sus semillas **4101–4110**, doce folds de CV 2024 —366 fechas— y sensibilidad **D=7/14/21/28** permanecen identificados. Las 240 puntuaciones de corrida y las seis métricas no se sustituyen por las de la reejecución.
+
+La MLP original ya se había ejecutado con ese contrato. Las LSTM de ambos expedientes coinciden en **480 valores** de seis métricas, cuatro entradas y dos fases; la [fuente y su verificación](../_static/e1_historical_core_20261107/source_manifest.json) conservan la procedencia. El esfuerzo original de búsqueda fue desigual y sus diez semillas no proceden de un piloto. Estas limitaciones corresponden al registro histórico; el nuevo presupuesto común y su dimensionamiento tienen identidad propia.
+
+### 4.0.3. Recetas y ejecución del complemento de 60 fechas
+
+La búsqueda común del complemento seleccionó las siguientes recetas; **GRU H16/D7 c03** quedó cerrado como baseline de ese estudio antes del piloto y de recalcular su evaluación histórica. La exposición previa al periodo de septiembre–octubre de 2026 sigue declarada.
 
 | Modelo complementario | Candidato | Anchura | LR | Dropout | Parámetros | RMSE CV HPO, media |
 |---|---|---:|---:|---:|---:|---:|
@@ -35,11 +69,7 @@ Los [detalles de arquitectura](../_static/e1_core_mlp_extension_20261107/archite
 
 ![Curvas observadas de las recetas complementarias LSTM–MLP–GRU de 60 fechas](../_static/e1_core_mlp_extension_20261107/learning_curves.png)
 
-Las [44.201 filas de pérdidas](../_static/e1_core_mlp_extension_20261107/learning_curves_by_run.csv) corresponden sólo a desarrollo 2023–2024. Se distinguen entrenamiento, validación interna y reajuste; éste conserva la duración seleccionada y no incorpora validación de la reserva. Las épocas tardías tienen menos trayectorias por parada temprana. El [resumen de ejecución](../_static/e1_core_mlp_extension_20261107/summary.json) y la [cronología](../_static/e1_core_mlp_extension_20261107/chronology.json) separan esta ejecución de los estudios anteriores con TCN.
-
-### 4.0.3. Sensibilidad principal a las cuatro entradas originales
-
-La comparación principal conserva **las cuatro entradas D=7/14/21/28** y diez semillas por combinación como sensibilidad de las recetas originales. Sus 240 puntuaciones de corrida —CV y test—, seis métricas e intervalos se documentan en el {ref}`benchmark histórico compatible <benchmark-core-historico-e1>`. MLP usa H=16 en esos registros, GRU/LSTM H=32. Las capacidades difieren y el test ya era conocido. La búsqueda equitativa y el piloto posteriores pertenecen al complemento, sin transferir sus curvas, R o contrastes temporales a estas recetas.
+Las [44.201 filas de pérdidas](../_static/e1_core_mlp_extension_20261107/learning_curves_by_run.csv) corresponden sólo a desarrollo 2023–2024. Se distinguen entrenamiento, validación interna y reajuste; éste conserva la duración seleccionada y no incorpora validación de la reserva. Las épocas tardías tienen menos trayectorias por parada temprana. El [resumen de ejecución](../_static/e1_core_mlp_extension_20261107/summary.json) y la [cronología](../_static/e1_core_mlp_extension_20261107/chronology.json) separan este complemento de la reejecución principal y de los estudios anteriores con TCN.
 
 ## Archivo de los estudios anteriores con TCN
 
@@ -128,7 +158,7 @@ Después se resumen las métricas entre las diez semillas. R² utiliza la media 
 (piloto-filipe-registrado)=
 ### 4.1.4. Piloto
 
-**La fase I no tuvo un piloto anterior a su benchmark.** Sus diez semillas por familia e historia fueron un presupuesto exploratorio. El estudio anterior D7 con TCN conservó otro orden: primero congeló las recetas seleccionadas, después ejecutó un piloto con diez semillas nuevas por familia sobre 60 días de desarrollo y dimensionó sus ajustes definitivos. Véanse [§9.4 y §9.5](09_estudio_planificado.md). Ese piloto no se atribuye a la fase I, a D14/21/28 ni al núcleo nuevo con MLP.
+**La fase I no tuvo un piloto anterior a su benchmark.** Sus diez semillas por familia e historia fueron un presupuesto exploratorio. El estudio anterior D7 con TCN conservó otro orden: primero congeló las recetas seleccionadas, después ejecutó un piloto con diez semillas nuevas por familia sobre 60 días de desarrollo y dimensionó sus ajustes definitivos. Véanse [§9.4 y §9.5](09_estudio_planificado.md). Ese piloto no se atribuye a la fase I, a D14/21/28 ni al núcleo con MLP; éste dispone de su propio piloto en §4.0.1.
 
 Los estudios de otros procedimientos no se atribuyen a este trío. La [tabla CV histórica](../_static/gru_lstm_tcn_20261105/metric_summary_cv.csv) permite verificar medias y DE de las diez ejecuciones; los 120 conjuntos D–modelo–semilla no equivalen a 120 mercados.
 
@@ -160,7 +190,7 @@ Las diez semillas sólo modifican la aleatoriedad del entrenamiento, condicionad
 
 ### 4.1.7. Diferencia mínima detectable
 
-La fase I no acredita una MDE prospectiva. En el estudio anterior D7 con TCN, el piloto y el cálculo de R precedieron a sus ajustes definitivos; el {ref}`dimensionamiento y las MDE <planned-power>` conservan α, δ, dispersión, incertidumbre y multiplicidad. Esa planificación corresponde a aquellas tres recetas, no al núcleo nuevo con MLP ni a un futuro modelo avanzado. El margen $\delta$ y la dispersión entre semillas son cantidades distintas.
+La fase I no acredita una MDE prospectiva. En el estudio anterior D7 con TCN, el piloto y el cálculo de R precedieron a sus ajustes definitivos; el {ref}`dimensionamiento y las MDE <planned-power>` conservan α, δ, dispersión, incertidumbre y multiplicidad. Esa planificación corresponde a aquellas tres recetas, no a la reejecución con MLP —dimensionada con su propio piloto en §4.0.1— ni a un futuro modelo avanzado. El margen $\delta$ y la dispersión entre semillas son cantidades distintas.
 
 Una planificación futura deberá resolver la potencia del contraste pareado previsto, por ejemplo usando $\delta\sqrt R/s_\Delta$ como parámetro de no centralidad bajo diferencias normales independientes. La DE estimada con diez semillas tiene incertidumbre y no asegura esos supuestos. No se usa el efecto observado para calcular «potencia alcanzada», ni se afirma que una MDE insuficiente quede resuelta por obtener p<0,05.
 
@@ -190,7 +220,7 @@ Estos registros no borran la exposición previa a 2024 y al test histórico. Los
 | Confirmación temporal nueva | Pendiente |
 | Margen para E2 | Definido ahora, después de test |
 
-Las recetas de este estudio histórico no se cambian tras la puntuación. Este archivo compara **GRU, LSTM y TCN**, con persistencia como referencia contextual. El núcleo principal **GRU H32–LSTM H32–MLP H16** utiliza sus registros compatibles originales, documentados en §4.0 y §5.0; el capítulo 10 conserva la ejecución complementaria con otras recetas.
+Las recetas de este estudio histórico no se cambian tras la puntuación. Este bloque histórico compara **GRU, LSTM y TCN**, con persistencia como referencia contextual. El núcleo principal **GRU H32–LSTM H32–MLP H16** tiene una reejecución propia documentada en §4.0 y §11; los registros originales permanecen en §5.0.1; el capítulo 10 conserva la ejecución complementaria con otras recetas.
 
 ## 4.2. Implementación del trío histórico con TCN
 
@@ -402,7 +432,7 @@ Los ochenta modelos nuevos se puntúan una vez tras su cierre y generan 48.640 v
 
 #### 4.3.6.4. Estado de cumplimiento
 
-La ejecución y la integridad están documentadas para el **trío histórico GRU–LSTM–TCN**. Su estudio D7 anterior incorporó piloto, dimensionamiento, HPO comparable e inferencia fijada antes de puntuar su reserva histórica. Permanecen la incertidumbre temporal de ese periodo de 60 días, la generalización a otros mercados y la limitada recurrencia bibliográfica cripto de TCN. El entrenamiento original compatible de MLP H16 del núcleo principal tiene evidencia propia en §4.0; el capítulo 10 conserva el complemento con MLP H32. No se declara retrospectivamente prospectiva la fase I ni se dimensionan las otras tres entradas.
+La ejecución y la integridad están documentadas para el **trío histórico GRU–LSTM–TCN**. Su estudio D7 anterior incorporó piloto, dimensionamiento, HPO comparable e inferencia fijada antes de puntuar su reserva histórica. Permanecen la incertidumbre temporal de ese periodo de 60 días, la generalización a otros mercados y la limitada recurrencia bibliográfica cripto de TCN. La reejecución principal de MLP H16 tiene evidencia propia en §4.0 y §11; su registro original permanece separado; el capítulo 10 conserva el complemento con MLP H32. No se declara retrospectivamente prospectiva la fase I ni se dimensionan las otras tres entradas.
 
 ## 4.4. Evaluación
 

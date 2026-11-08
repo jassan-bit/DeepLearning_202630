@@ -21,6 +21,89 @@ def public_png():
             + chunk(b"IDAT", zlib.compress(b"\x00\x00\x00\x00")) + chunk(b"IEND", b""))
 
 
+def remediation_public_fixture(r=30, required=12, baseline="MLP"):
+    """In-memory toy public aggregates for packaging guards; never real closure evidence."""
+    import csv
+    import io
+    families = ("GRU", "LSTM", "MLP")
+    execution = "d" * 64
+    source_map = {"scripts/unit_test_only.py": "a" * 64}
+    design_sha = "b" * 64
+    source_signature = refresh.legacy.digest(refresh.legacy.encode({"sources_sha256": source_map,
+        "design_sha256": design_sha, "source_commit": refresh.REMEDIATION_SOURCE}))
+    identity = {"study_id": refresh.REMEDIATION_STUDY, "execution_id": execution,
+                "source_signature": source_signature}
+    recipes = {model: {"model": model, "history_days": 7, "width": width,
+        "parameters": parameters, "candidate_id": "c00", "learning_rate": .001, "dropout": 0.}
+        for model, width, parameters in (("GRU", 32, 3777), ("LSTM", 32, 5025), ("MLP", 16, 593))}
+    summary = {**identity, "source_commit": refresh.REMEDIATION_SOURCE,
+        "models": list(families), "core_models": list(families), "R_final": r, "R_required": required,
+        "dates_per_trajectory": 608, "neural_prediction_rows": 1824*r,
+        "definitive_trajectories": 3*r, "definitive_fit_stages": 6*r,
+        "hpo_trajectories": 24, "hpo_blocks": 240, "hpo_fit_stages": 480,
+        "pilot_trajectories": 30, "pilot_fit_stages": 60,
+        "known_reserve_exploratory": True, "fresh_confirmatory_holdout": False,
+        "selection_using_holdout": False, "private_payloads_exported": False,
+        "source_publication_precedes_new_fits": True, "plan_publication_precedes_definitive_fits": True,
+        "scoring_after_all_new_weights_frozen": True, "baseline_selected_before_reserve": baseline}
+    records = {"summary.json": summary,
+        "registration.json": {"study_id": refresh.REMEDIATION_STUDY, "registration_signature": execution,
+            "source_signature": source_signature, "source_commit": refresh.REMEDIATION_SOURCE,
+            "sources_sha256": source_map, "design_sha256": design_sha,
+            "design": {"models": list(families), "history_days": 7,
+                "reserve": {"start": "2025-01-01", "end": "2026-08-31"}}},
+        "selection.json": {"registration_signature": execution, "recipes": recipes, "baseline_model": baseline},
+        "plan.json": {"registration_signature": execution, "R": r, "R_final": r,
+            "R_required": required, "seeds": list(range(18101, 18101+r))},
+        "plan_publication.json": {"registration_signature": execution},
+        "source_manifest.json": {"source_commit": refresh.REMEDIATION_SOURCE,
+            "sources_sha256": source_map, "design_sha256": design_sha}}
+    files = {}
+    for name in refresh.REMEDIATION_PUBLIC_FILES:
+        files[name] = (public_png() if name.endswith(".png") else
+            refresh.legacy.encode(records.get(name, {"unit_test_public_metadata": True})) if name.endswith(".json") else
+            b"model,unit_test_value\nGRU,1\n" if name.endswith(".csv") else b"Unit test public metadata only; never a scientific execution.\n")
+    def table(name, rows):
+        stream = io.StringIO(newline="")
+        writer = csv.DictWriter(stream, fieldnames=list(rows[0]), lineterminator="\n")
+        writer.writeheader()
+        writer.writerows(rows)
+        files[name] = stream.getvalue().encode()
+    runs = [{**identity, "model": model, "seed": seed, "n_dates": 608,
+        **{metric: .005 for metric in ("rmse", "mae", "mse", "r2", "mape", "mase")}}
+        for model in families for seed in range(18101, 18101+r)]
+    table("run_metrics.csv", [*runs, {**runs[0], "model": "Persistence", "seed": 0}])
+    table("final_fit_summary.csv", runs)
+    table("pilot_metrics.csv", [{**identity, "model": model, "seed": seed}
+        for model in families for seed in range(17101, 17111)])
+    table("run_costs.csv", [{"model": row["model"], "seed": row["seed"], "n_dates": 608,
+        "training_seconds": 1., "inference_seconds": .01} for row in runs])
+    table("hpo_run_metrics.csv", [{**identity, "model": model, "candidate_id": f"c{candidate:02d}",
+        "trajectory_seed": seed} for model in families for candidate in range(4) for seed in (16101, 16102)])
+    pairs = (("GRU", "LSTM"), ("GRU", "MLP"), ("LSTM", "MLP"))
+    for name in ("pairwise_rmse.csv", "wilcoxon_rmse.csv"):
+        table(name, [{"model_a": a, "model_b": b, "n_paired": r} for a, b in pairs])
+    table("qq_data.csv", [{"model_a": a, "model_b": b, "n_paired": r, "order_index": index}
+        for a, b in pairs for index in range(1, r+1)])
+    table("friedman_rmse.csv", [{"n_paired": r, "n_models": 3}])
+    temporal_pairs = (*pairs, *((model, "Persistence") for model in families))
+    table("dm_pairs.csv", [{"model_a": a, "model_b": b, "n_dates": 608,
+        "baseline_selected_before_reserve": baseline} for a, b in temporal_pairs])
+    table("temporal_bootstrap.csv", [{"model_a": a, "model_b": b, "n_dates": 608,
+        "block_length": block, "baseline_selected_before_reserve": baseline}
+        for a, b in temporal_pairs for block in (7, 3, 14)])
+    table("diagnostics.csv", [{"model": row["model"], "seed": row["seed"], "n_residuals": 608,
+        "diagnostic": diagnostic, "lag": lag} for row in runs
+        for diagnostic, lag in (("BDS", 2), ("Ljung-Box", 1), ("Ljung-Box", 5))])
+    curves = [{"model": row["model"], "seed": row["seed"], "stage": stage, "epoch": 1,
+        "validation_mse_scaled_eval": .1 if stage == "inner" else ""}
+        for row in runs for stage in ("inner", "refit")]
+    table("learning_curves_by_run.csv", curves)
+    table("first_seed_learning_curves.csv", [row for row in curves if row["seed"] == 18101])
+    files["manifest.json"] = refresh.legacy.encode({"unit_test_only": True})
+    return files
+
+
 class NativeDownloadRefreshTests(unittest.TestCase):
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory()
@@ -118,6 +201,19 @@ class NativeDownloadRefreshTests(unittest.TestCase):
         self.supplement_directories = {}
         self.supplement_names = {}
         for label, spec in refresh.SUPPLEMENTS.items():
+            if label == "remediation_608":
+                fixture = remediation_public_fixture()
+                names = set(fixture) - {"manifest.json"}
+                directory = self.root / spec["directory"]
+                for name in names:
+                    self.write(spec["directory"] + "/" + name, fixture[name])
+                mapping = {name: {"sha256": refresh.legacy.digest(fixture[name]), "bytes": len(fixture[name])}
+                           for name in names}
+                self.write(spec["directory"] + "/manifest.json", refresh.legacy.encode({
+                    "publication_schema": refresh.PUBLICATION_SCHEMA, "approved_public_files": sorted(names), "files": mapping}))
+                self.supplement_directories[label] = directory
+                self.supplement_names[label] = names
+                continue
             prefix, names = spec["directory"], spec["files"]
             if names is None:
                 names = ({"README.md", "summary.json", "comparison.csv", "manifest.json"}
@@ -263,10 +359,10 @@ class NativeDownloadRefreshTests(unittest.TestCase):
             self.assertEqual(catalog["historical_study_metadata"][key], self.catalog[key])
         self.assertEqual(catalog["models"], ["LSTM", "MLP", "GRU"])
         self.assertEqual(catalog["complementary_models"], ["TCN"])
-        self.assertEqual(catalog["active_entrypoint"], "scripts/build_e1_primary_608.py")
-        self.assertEqual(catalog["baseline_selected_by_cv"]["parameters"], 3777)
+        self.assertEqual(catalog["active_entrypoint"], "scripts/run_e1_608_remediation.py")
+        self.assertEqual(catalog["baseline_selected_by_cv"]["parameters"], 593)
         self.assertEqual(catalog["current_study"]["n_dates"], 608)
-        self.assertEqual(catalog["current_study"]["R"], 10)
+        self.assertEqual(catalog["current_study"]["R"], 30)
         self.assertEqual(catalog["complementary_study_metadata"]["current_study"]["execution_id"], "d" * 64)
         self.assertEqual(catalog["complementary_study_metadata"]["current_study"]["source_commit"], "e" * 40)
         self.assertTrue(catalog["current_study"]["known_reserve_exploratory"])
@@ -498,6 +594,93 @@ class NativeDownloadRefreshTests(unittest.TestCase):
         changed = {**files, "run_metrics.csv": files["run_metrics.csv"].replace(b",0.005", b",0.006", 1)}
         with self.assertRaisesRegex(ValueError, "saved historical source rows"):
             refresh.current_core_catalog(changed, historical)
+
+    def test_remediation_primary_uses_calculated_R_and_any_frozen_cv_family(self):
+        for r, required, baseline in ((30, 12, "MLP"), (37, 37, "LSTM"), (41, 41, "GRU")):
+            with self.subTest(r=r, baseline=baseline):
+                current = refresh.remediation_core_catalog(remediation_public_fixture(r, required, baseline))
+                self.assertEqual(current["current_study"]["R"], r)
+                self.assertEqual(current["current_study"]["definitive_trajectories"], 3*r)
+                self.assertEqual(current["baseline_selected_by_cv"]["model"], baseline)
+                self.assertEqual(current["active_entrypoint"], "scripts/run_e1_608_remediation.py")
+
+    def test_remediation_primary_rejects_wrong_source_cohort_R_baseline_and_scope(self):
+        files = remediation_public_fixture()
+        cases = (("summary.json", "source_commit", "e"*40),
+            ("summary.json", "source_signature", "f"*64),
+            ("summary.json", "dates_per_trajectory", 60),
+            ("summary.json", "neural_prediction_rows", 608*89),
+            ("summary.json", "baseline_selected_before_reserve", "GRU"),
+            ("summary.json", "fresh_confirmatory_holdout", True),
+            ("plan.json", "R_required", 31),
+            ("plan.json", "seeds", list(range(8101, 8131))))
+        for name, key, value in cases:
+            changed = dict(files)
+            record = json.loads(changed[name])
+            record[key] = value
+            changed[name] = refresh.legacy.encode(record)
+            with self.subTest(name=name, key=key), self.assertRaises(ValueError):
+                refresh.remediation_core_catalog(changed)
+
+    def test_remediation_primary_rejects_mixed_row_sources_seeds_phase_and_prices(self):
+        files = remediation_public_fixture()
+        replacements = (("run_metrics.csv", b",18101,608,", b",8101,608,"),
+            ("run_metrics.csv", b",608,", b",60,"),
+            ("run_metrics.csv", b"d"*64, b"e"*64),
+            ("diagnostics.csv", b",608,", b",60,"),
+            ("hpo_run_metrics.csv", b"16101", b"6101"))
+        for name, old, new in replacements:
+            self.assertIn(old, files[name])
+            changed = {**files, name: files[name].replace(old, new, 1)}
+            with self.subTest(name=name, replacement=new), self.assertRaises(ValueError):
+                refresh.remediation_core_catalog(changed)
+        import csv
+        import io
+        for key, value in (("phase", "cv"), ("y_true", "0.1"), ("daily_close", "1"), ("fitted_scaler_mean", "2")):
+            rows = list(csv.DictReader(io.StringIO(files["run_metrics.csv"].decode())))
+            for row in rows:
+                row[key] = value
+            out = io.StringIO()
+            writer = csv.DictWriter(out, fieldnames=list(rows[0]), lineterminator="\n")
+            writer.writeheader()
+            writer.writerows(rows)
+            with self.subTest(key=key), self.assertRaises(ValueError):
+                refresh.remediation_core_catalog({**files, "run_metrics.csv": out.getvalue().encode()})
+
+    def test_remediation_requires_actual_closed_stage_without_old_result_fallback(self):
+        files = remediation_public_fixture()
+        with self.assertRaisesRegex(ValueError, "exactly33"):
+            refresh.remediation_core_catalog({name: data for name, data in files.items() if name != "qq_data.csv"})
+        manifest = self.supplement_directories["remediation_608"] / "manifest.json"
+        manifest.unlink()
+        self.git("add", ".")
+        self.commit()
+        self.build()
+        with self.assertRaisesRegex(ValueError, "regular public source"):
+            refresh.package(self.output)
+        self.assertFalse(self.output.exists())
+
+    def test_full_prior_primary_and_complement_snapshots_survive_new_primary(self):
+        prior_files, _ = refresh.public_stage(self.supplement_directories["primary_608"], None)
+        history_files, _ = refresh.public_stage(self.supplement_directories["historical_core"], None)
+        complement_files, _ = refresh.public_stage(self.supplement_directories["core_mlp_extension"], None)
+        prior = {**self.catalog, **refresh.current_core_catalog(prior_files, history_files),
+            "historical_study_metadata": {"frozen_original": {"models": ["GRU", "LSTM", "TCN"]}},
+            "complementary_study_metadata": {**refresh.complementary_core_catalog(complement_files),
+                "full_prior_note": {"provenance": "retained byte-for-byte"}},
+            "reviewed_primary_note": {"not_discarded": True}}
+        self.write("book/_static/e1_downloads/catalogo.json", refresh.legacy.encode(prior))
+        self.git("add", ".")
+        self.commit()
+        self.build()
+        current = refresh.package(self.output)
+        for key, value in prior.items():
+            self.assertEqual(current["previous_primary_study_metadata"][key], value)
+        self.assertEqual(current["historical_study_metadata"], prior["historical_study_metadata"])
+        self.assertEqual(current["complementary_study_metadata"], prior["complementary_study_metadata"])
+        self.assertEqual(current["dated_study_records"]["e1_primary_608_20261107"]["current_study"]["R"], 10)
+        self.assertEqual(current["dated_study_records"]["e1_core_mlp_extension_20261107"]["current_study"]["definitive_seeds_per_family"], 465)
+        self.assertEqual(current["current_study"]["study_id"], refresh.REMEDIATION_STUDY)
 
     def test_prior_60_date_metadata_and_historical_snapshot_survive_promotion(self):
         files, _ = refresh.public_stage(self.supplement_directories["core_mlp_extension"], None)
