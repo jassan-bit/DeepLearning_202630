@@ -1,6 +1,6 @@
 # 3. Desarrollo y evidencias
 
-**Estado actual: no hay desarrollo ni ejecuciones de E3 registrados.** El contenido de este capítulo se completará con el trabajo que corresponda a la guía específica.
+**Estado actual: diseño conceptual propuesto; no hay implementación, entrenamiento ni ejecuciones de E3 registrados.** El contenido de este capítulo se completará con el trabajo que corresponda a la guía específica.
 
 ## Procedencia del trabajo
 
@@ -12,9 +12,11 @@ Las evidencias se enlazarán cuando existan: código, configuraciones, documento
 
 | Producto | Estado |
 |---|---|
-| Desarrollo propio de E3 | Pendiente de definir y realizar |
-| Componentes reutilizados | No seleccionados |
+| Desarrollo propio de E3 | Candidato CNN-1D + LSTM + atención temporal; implementación pendiente |
+| Componentes reutilizados | Contrato de datos de E1 seleccionado como referencia; código concreto y versiones pendientes |
 | Configuraciones o registros de ejecución | No generados |
 | Artefactos de respaldo | No generados |
 
 Estas categorías organizan el trabajo futuro; no acreditan cumplimiento de requisitos todavía no recibidos.
+
+El diagrama conceptual es: D7×5 relativo → CNN-1D causal → LSTM unidireccional → atención temporal → salida σ₇. No usa la etiqueta del día objetivo ni rezagos mensuales del objetivo. Los pesos de atención no se interpretan automáticamente como explicaciones causales.

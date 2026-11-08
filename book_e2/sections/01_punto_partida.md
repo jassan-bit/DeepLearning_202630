@@ -1,15 +1,17 @@
 # 1. Definición del Problema, Preguntas de Investigación y Dataset
 
-**Catálogo vigente:** diez modelos de literatura y adaptaciones de familias, más **HAR + red residual como candidato 11**, sin superioridad demostrada. MLP, LSTM y GRU de E1 son referencias separadas y no se suman al catálogo. La [revisión del 08/11/2026](15_revision_modelos.md) sustituye la selección anterior; la nueva enmienda experimental está pendiente.
+**Catálogo vigente:** diez modelos de literatura y adaptaciones de familias, más **CNN-1D + LSTM + atención temporal como candidato 11**, sin superioridad demostrada. MLP, LSTM y GRU de E1 son referencias separadas y no se suman al catálogo. La [revisión del 08/11/2026](15_revision_modelos.md) sustituye la selección anterior; la nueva enmienda experimental está pendiente.
 
 Esta sección desarrolla las páginas 2–3 de la guía completa de 65 páginas. Se conservan la formulación y la ficha de datos; la ruta es **F2a, series de tiempo**, como explica la {ref}`sección 7 <e2-ruta-temporal>`. El [registro histórico `599a29f`](https://github.com/jassan-bit/DeepLearning_202630/tree/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0) y el [piloto P0 ejecutado](09_protocolo_registrado.md) se conservan para trazabilidad, sin trasladar sus candidatos, presupuesto o resultados al catálogo vigente. Los periodos heredados ya se conocían: su reutilización tiene alcance exploratorio. Los diagnósticos del EDA se presentan en la [sección 2](02_eda.md).
 
 ## 1.1 Definición formal del problema
 
 (e2-contrato-heredado)=
-### 1.1.1 Contrato de datos y procedencia histórica
+### 1.1.1 Contrato vigente y procedencia histórica
 
-El contrato de datos utilizado por E2 procede de la **fase II D7** del [Entregable 1, commit `94a4b03`](https://github.com/jassan-bit/DeepLearning_202630/tree/94a4b0324e93361e8928d708fdfeb50110e3686f). El [contrato descargable histórico](../_static/e1_reference.json) identifica esa procedencia. Las recetas y resultados de ese registro conservan su identidad; no definen la nueva selección de modelos ni se reasignan a las referencias actuales MLP, LSTM y GRU de E1.
+**La especificación vigente se sincroniza con el E1 principal de 608 fechas, no con la reserva complementaria de 60 días.** Véase [§17](17_contrato_sincronizado.md): representación relativa, escalado de entrenamiento, referencias MLP/LSTM/GRU y límites de evaluación conocida. Las tablas siguientes documentan únicamente la procedencia del registro previo y no fijan el calendario de nuevas ejecuciones.
+
+El contrato histórico utilizado por E2 procede de la **fase II D7** del [Entregable 1, commit `94a4b03`](https://github.com/jassan-bit/DeepLearning_202630/tree/94a4b0324e93361e8928d708fdfeb50110e3686f). El [contrato descargable histórico](../_static/e1_reference.json) identifica esa procedencia. Las recetas y resultados de ese registro conservan su identidad; no definen la nueva selección de modelos ni se reasignan a las referencias actuales MLP, LSTM y GRU de E1.
 
 | Elemento heredado | Definición conservada en E2 |
 |---|---|
@@ -62,9 +64,9 @@ El preprocesamiento heredado usa logaritmos de OHLC relativos al último cierre 
 
 ### 1.1.3 Espacio de hipótesis, pérdida y riesgo
 
-El catálogo vigente contiene **FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder con predictor, TimesNet, TSMixer, TiDE, TimeMixer, PatchTST e iTransformer**. Son modelos de la literatura o adaptaciones de familias; no se presentan como los nombres literales del curso. **HAR + red residual** es el candidato 11 que se investigará, sin afirmar que sea superior.
+El catálogo vigente contiene **FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder con predictor, TimesNet, TSMixer, TiDE, TimeMixer, PatchTST e iTransformer**. Son modelos de la literatura o adaptaciones de familias; no se presentan como los nombres literales del curso. **CNN-1D + LSTM + atención temporal** es el candidato 11 que se investigará, sin afirmar que sea superior.
 
-Para esos modelos, el espacio de hipótesis es $\mathcal H=\bigcup_{m\in\mathcal M}\mathcal H_m$. Las diez redes parten del contrato $\mathcal X\subseteq\mathbb R^{7\times5}$; el híbrido requiere declarar su soporte causal HAR y el de la corrección residual antes de implementarlo y compararlo. Una historia adicional no se atribuye a una mejora de arquitectura bajo información idéntica. La variable objetivo es no negativa; el enlace de salida y cualquier posprocesamiento deben fijarse por receta antes de puntuar. MLP, LSTM y GRU de E1 permanecen como referencias externas a este catálogo, con identidad experimental propia.
+Para esos modelos, el espacio de hipótesis es $\mathcal H=\bigcup_{m\in\mathcal M}\mathcal H_m$. Las diez redes parten del contrato $\mathcal X\subseteq\mathbb R^{7\times5}$; el híbrido propuesto usa el mismo D7×5 mediante CNN causal, LSTM unidireccional y atención sólo sobre estados observados. No incorpora historia mensual ni etiquetas rezagadas como entradas adicionales. La variable objetivo es no negativa; el enlace de salida y cualquier posprocesamiento deben fijarse por receta antes de puntuar. MLP, LSTM y GRU de E1 permanecen como referencias externas a este catálogo, con identidad experimental propia.
 
 Se conserva la pérdida cuadrática:
 
@@ -215,7 +217,7 @@ El hash anterior identifica **el archivo manifiesto**; no es un único checksum 
 | Tres RQ, hipótesis, efecto y reglas | Formulación metodológica disponible; comparadores, multiplicidad y registro nuevos pendientes |
 | Justificación y Data Card | Documentadas con procedencia, versión, hashes, calidad y límites |
 | Uso previo de la fuente/dataset en Q1 | Pendiente de referencia y cuartil por año; no exige identidad exacta del snapshot |
-| Catálogo y protocolo | Diez modelos vigentes y HAR + red residual como candidato 11; nueva enmienda y evaluación pendientes |
+| Catálogo y protocolo | Diez modelos vigentes y CNN-1D + LSTM + atención temporal como candidato 11; nueva enmienda y evaluación pendientes |
 | Prueba desconocida y confirmación nueva | No disponibles en los periodos heredados ya evaluados |
 
 La [revisión bibliográfica de §3](03_literatura.md) distingue las fuentes de los modelos, su adaptación a regresión de σ₇ y la evidencia aplicada a criptomonedas. Una arquitectura publicada o un original leído no acreditan su funcionamiento en este dataset. La comprobación de uso de la fuente en Q1 y el cierre bibliográfico se mantienen separados de la ejecución del nuevo benchmark.

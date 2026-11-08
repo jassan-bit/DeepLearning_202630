@@ -1,6 +1,6 @@
 # 3. Revisión Sistemática del Estado del Arte
 
-**Catálogo vigente:** diez modelos y HAR + red residual como candidato 11, definidos en [§15](15_revision_modelos.md), sin superioridad demostrada. Los conteos bibliográficos siguientes son cortes fechados; no acreditan ejecución del benchmark ni se transfieren entre versiones de modelos.
+**Catálogo vigente:** diez modelos y CNN-1D + LSTM + atención temporal como candidato 11, definidos en [§15](15_revision_modelos.md), sin superioridad demostrada. Los conteos bibliográficos siguientes son cortes fechados; no acreditan ejecución del benchmark ni se transfieren entre versiones de modelos.
 
 ## Actualización del 08/11/2026: búsquedas nativas y evidencia para la revisión
 
@@ -102,9 +102,9 @@ La [lista pública cerrada y sus hashes](../_static/literature_native_20261108/m
 
 [Volatility Forecasting in Global Financial Markets Using TimeMixer (arXiv:2410.09062)](https://arxiv.org/abs/2410.09062) incluye **BTCUSD 2014–2023** en la tabla 4, además de otras criptomonedas y mercados. Su sección de datos define volatilidad como desviación estándar móvil de **21 días** de log-retornos, anualizada por √252. Por tanto, aporta evidencia aplicada a Bitcoin, pero **no evalúa el objetivo σ₇ de E2**, no es volatilidad realizada intradía y sus errores no pueden compararse numéricamente con los del entregable. La identidad de la arquitectura tampoco sustituye comprobar la partición, el horizonte, las entradas y la variante concreta.
 
-[HARNet (arXiv:2205.07719)](https://arxiv.org/abs/2205.07719) documenta una red de convoluciones causales dilatadas inicializada para reproducir un HAR ajustado. El estudio trabaja con volatilidad realizada de índices bursátiles; sirve como antecedente de una estructura neuronal guiada por HAR, no como validación directa de σ₇ en Bitcoin ni como sinónimo del híbrido residual propuesto.
+[HARNet (arXiv:2205.07719)](https://arxiv.org/abs/2205.07719) documenta una red de convoluciones causales dilatadas inicializada para reproducir un HAR ajustado. El estudio trabaja con volatilidad realizada de índices bursátiles; sirve como antecedente de una estructura neuronal guiada por HAR, no como validación directa de σ₇ en Bitcoin ni como evidencia del nuevo candidato CNN-1D + LSTM + atención temporal.
 
-[Signal Simplification Is Not Predictive Simplification (arXiv:2610.03019)](https://arxiv.org/abs/2610.03019) examina **HAR-style + LSTM residual** en cinco activos estadounidenses. Informa que el híbrido empeora el MSE medio frente a HAR-style (0,3594 frente a 0,3049), mientras la LSTM sola obtiene 0,2649. Estas cifras son resultados del artículo, no de E2. El antecedente impide defender la novedad genérica de «HAR + red» y exige que el candidato 11 se motive mediante una hipótesis concreta, controles y posibilidad de resultado negativo. No prueba de antemano que el híbrido fracase o triunfe en Bitcoin.
+[Signal Simplification Is Not Predictive Simplification (arXiv:2610.03019)](https://arxiv.org/abs/2610.03019) examina **HAR-style + LSTM residual** en cinco activos estadounidenses. Informa que el híbrido empeora el MSE medio frente a HAR-style (0,3594 frente a 0,3049), mientras la LSTM sola obtiene 0,2649. Estas cifras son resultados del artículo, no de E2. Este antecedente corresponde a la hipótesis HAR residual retirada; se conserva como lectura histórica y no respalda ni refuta el nuevo candidato CNN-1D + LSTM + atención temporal.
 
 ### Cuatro altas y una hipótesis adicional, sin transferir evidencia histórica
 
@@ -114,7 +114,7 @@ La arquitectura exacta del **LSTM-autoencoder con predictor** permanece abierta.
 
 ### Qué queda cerrado y qué no
 
-La evidencia nueva permite corregir el contexto aplicado de TimeMixer, documentar fuentes arquitectónicas de las cuatro altas con distinto grado de correspondencia y contrastar el híbrido con antecedentes positivos y negativos de mecanismos distintos. **No cierra el Top 10 por ranking, una revisión PRISMA global, los cuartiles por año, el autoencoder exacto ni la superioridad del modelo 11.** El cribado asistido y la lectura dirigida se presentan con sus denominadores y límites; no se atribuyen a dos revisores humanos independientes.
+La evidencia nueva permite corregir el contexto aplicado de TimeMixer, documentar fuentes arquitectónicas de las cuatro altas con distinto grado de correspondencia y conservar antecedentes de mecanismos híbridos distintos; no constituye verificación bibliográfica de la receta CNN-1D + LSTM + atención temporal exacta. **No cierra el Top 10 por ranking, una revisión PRISMA global, los cuartiles por año, el autoencoder exacto ni la superioridad del modelo 11.** El cribado asistido y la lectura dirigida se presentan con sus denominadores y límites; no se atribuyen a dos revisores humanos independientes.
 
 La integración bibliográfica no entrena modelos, no modifica el registro experimental, no introduce resultados de mercado nuevos y no recupera el cegamiento del test conocido. El catálogo registrado y sus recibos permanecen separados de la propuesta editorial del 08/11.
 
@@ -299,7 +299,7 @@ La lista anterior y su ranking se retiran de la presentación. La selección vig
 9. **PatchTST**.
 10. **iTransformer**.
 
-**11. HAR + red neuronal residual**, candidato adicional sin superioridad demostrada. La [sección 15](15_revision_modelos.md) establece alcance y controles. No hay resultados del benchmark completo que permitan ordenar estos modelos por desempeño.
+**11. CNN-1D + LSTM + atención temporal**, candidato adicional sin superioridad demostrada. La [sección 15](15_revision_modelos.md) establece alcance y controles. No hay resultados del benchmark completo que permitan ordenar estos modelos por desempeño.
 
 ## 3.3 Fuentes y adaptación de los modelos vigentes
 

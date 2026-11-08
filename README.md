@@ -5,8 +5,8 @@ Este repositorio reúne **tres Jupyter Books**, cada uno con índice, configurac
 | Entregable | Fuentes | Dirección del libro | Estado |
 |---|---|---|---|
 | E1 | [`book/`](book/) | [Abrir E1](https://jassan-bit.github.io/DeepLearning_202630/intro.html) | Informe y estudios realizados |
-| E2 | [`book_e2/`](book_e2/) | [Abrir E2](https://jassan-bit.github.io/DeepLearning_202630/entregable2/intro.html) | Ruta F2a, piloto Bitcoin ejecutado (440 ajustes) y diez adaptadores finales revisados; HPO/resultados finales pendientes |
-| E3 | [`book_e3/`](book_e3/) | [Abrir E3](https://jassan-bit.github.io/DeepLearning_202630/entregable3/intro.html) | Libro iniciado; guía específica pendiente |
+| E2 | [`book_e2/`](book_e2/) | [Abrir E2](https://jassan-bit.github.io/DeepLearning_202630/entregable2/intro.html) | Diez modelos vigentes y candidato CNN-LSTM con atención; benchmark vigente pendiente |
+| E3 | [`book_e3/`](book_e3/) | [Abrir E3](https://jassan-bit.github.io/DeepLearning_202630/entregable3/intro.html) | Continuidad CNN-LSTM con atención propuesta; guía específica pendiente |
 
 [Selector de los tres entregables](https://jassan-bit.github.io/DeepLearning_202630/entregables.html). La infraestructura de compilación es común; cada JBook se construye desde su propia carpeta. Los apartados experimentales que siguen corresponden a **E1**.
 
@@ -15,14 +15,18 @@ La [sección 5 de E2](https://jassan-bit.github.io/DeepLearning_202630/entregabl
 La [sección 6 de E2](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/06_benchmark_final.html) prepara la comparación tabular, la eficiencia, la inferencia y la discusión del benchmark. Su [paquete de análisis y plantillas](https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/benchmark_analysis_download/Benchmark_E2_analisis_plantillas.zip) contiene código verificable y pruebas con fixtures sintéticos. Las métricas y el ranking Bitcoin continúan pendientes de ejecuciones válidas.
 
 
-El [protocolo P0 de E2](book_e2/sections/09_protocolo_registrado.md) se registró públicamente en `599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0` antes de entrenar. Integra veinte configuraciones, quince recetas ajustables T12, NAS condicional, familias e inferencia temporal, potencia objetivo y calibración disjunta. El [paquete actual](book_e2/_static/remediation_download/Remediacion_E2_protocolo_codigo_evidencias.zip) contiene código y evidencia agregada de la etapa P0/OOF de desarrollo; no acredita HPO, calibración de los mejores finales ni el benchmark definitivo. La [nueva implementación final](experiments/e2_completion_20261106/analysis_additions.json) incorpora revisión individual de diez adaptadores, HPO temporal T12 con puntos fuente, P1 y calibración A53 (08/11–30/12/2024), estadística, robustez y ablaciones. Su registro y ejecuciones son evidencia distinta del P0 ya cerrado; no se atribuyen resultados finales inexistentes. Faltan los 374 Scopus y la adjudicación bibliográfica completa. Los capítulos 7–14 desarrollan la guía ya recibida.
+Los [protocolos históricos de E2](book_e2/sections/09_protocolo_registrado.md) conservan sus registros y recibos. No definen el catálogo actual ni acreditan el nuevo híbrido. La nueva especificación, implementación, presupuesto y preregistro siguen pendientes; no se alteran los datos o resultados previos.
 
 
-Proyecto de Deep Learning, 2026-30: **pronóstico de volatilidad de Bitcoin con GRU, LSTM y TCN**.
+Proyecto de Deep Learning, 2026-30: **E1 principal con GRU32, LSTM32 y MLP16; E2/E3 proponen CNN-1D + LSTM + atención temporal**.
 
 [Jupyter Book](https://jassan-bit.github.io/DeepLearning_202630/intro.html) · [Estudio D7 planificado](https://jassan-bit.github.io/DeepLearning_202630/sections/09_estudio_planificado.html) · [Entregables descargables](https://jassan-bit.github.io/DeepLearning_202630/sections/08_entregables.html#descargar-entregable-1) · [Reproducción](BUILD.md).
 
 El objetivo es σ₇, desviación estándar poblacional de siete retornos logarítmicos diarios de Close, sin anualización, con horizonte de un día. Las entradas son cinco canales OHLCV diarios y la validación emplea los índices forward chaining de `timeseries-cv`, proyecto de DidierRLopes y Filipe R. Ramos, con historia inicial 2023 y embargo temporal.
+
+## Archivo de fases anteriores
+
+Los apartados siguientes documentan ejecuciones previas y no sustituyen el E1 principal de 608 fechas/R309 de `book/sections/11_reejecucion_608.md`. Sus recetas y resultados conservan su identidad. El [contrato sincronizado](book_e2/sections/17_contrato_sincronizado.md) define la continuidad editorial vigente; no registra ni ejecuta el nuevo híbrido.
 
 ## Dos fases identificadas
 

@@ -1,6 +1,6 @@
 # 13. Agregación estadística e interpretación
 
-**Estado:** la nueva enmienda estadística para los diez modelos y HAR + red residual como candidato 11 está pendiente. MLP, LSTM y GRU de E1 son referencias separadas. El [diagnóstico P0 ejecutado](09_protocolo_registrado.md) conserva su identidad histórica; sus reglas y resultados no se convierten en evidencia del catálogo vigente ni en superioridad del híbrido.
+**Estado:** la nueva enmienda estadística para los diez modelos y CNN-1D + LSTM + atención temporal como candidato 11 está pendiente. MLP, LSTM y GRU de E1 son referencias separadas. El [diagnóstico P0 ejecutado](09_protocolo_registrado.md) conserva su identidad histórica; sus reglas y resultados no se convierten en evidencia del catálogo vigente ni en superioridad del híbrido.
 
 ## 13.1 Qué se estima y qué se remuestrea
 
@@ -15,7 +15,7 @@ Para cada modelo $m$ y semilla $s$ se calcula $\operatorname{RMSE}_{ms}=\sqrt{N^
 
 La nueva enmienda debe identificar la selección temporal de cada receta. Si una referencia histórica utilizó resultados posteriores a alguno de sus orígenes OOF, esa exposición debe declararse; no se le atribuye selección anidada causal por cambiar el nombre o ejecutar semillas nuevas. La identidad de las referencias E1, sus cohortes y sus métricas se conserva por separado.
 
-Los modelos se comparan sobre fechas comunes y con tratamiento explícito de las semillas. Si un control es determinista, repetir aritméticamente su trayectoria no genera observaciones independientes ni una DE de entrenamiento estimada. Los faltantes mantienen su posición en el calendario y se excluyen de la métrica únicamente mediante una máscara común auditada. Una historia adicional para HAR debe declararse antes de atribuir diferencias a su arquitectura.
+Los modelos se comparan sobre fechas comunes y con tratamiento explícito de las semillas. Si un control es determinista, repetir aritméticamente su trayectoria no genera observaciones independientes ni una DE de entrenamiento estimada. Los faltantes mantienen su posición en el calendario y se excluyen de la métrica únicamente mediante una máscara común auditada. El híbrido usa las mismas entradas D7×5; cualquier cambio de información exige declararlo antes de evaluar.
 
 ## 13.2 Inferencia del diagnóstico P0 histórico
 
@@ -51,7 +51,7 @@ La ausencia de rechazo no prueba equivalencia ni ausencia de sobreajuste. Una af
 
 La brecha train–validación debe usar métricas y soportes comparables. No rechazar un exceso de brecha es inconcluso, no una certificación de generalización. Las pruebas de equivalencia, PIT, ablaciones, controles negativos y diagnósticos de distribución necesitan objetivos y familias propios; no quedan incluidos automáticamente en el ajuste de las preguntas principales.
 
-Las ablaciones de HAR + red residual deberán aislar el aporte de su corrección frente a sus componentes bajo soportes declarados. Son controles del candidato 11, no nuevas incorporaciones al catálogo. Los resultados desfavorables se conservan y no se sustituye la receta después de evaluar para sostener una superioridad presupuesta.
+Las ablaciones de CNN-1D + LSTM + atención temporal deberán aislar el aporte de convolución, memoria y atención con soporte D7×5 idéntico. Son controles del candidato 11, no nuevas incorporaciones al catálogo. Los resultados desfavorables se conservan y no se sustituye la receta después de evaluar para sostener una superioridad presupuesta.
 
 La probabilidad de superioridad, un contraste HAC alternativo o una frontera de Pareto deben conservar su alcance condicionado y supuestos. Un IC de calendario sobre pesos fijos no incluye automáticamente incertidumbre de HPO o entre activos. Una referencia determinista tampoco adquiere variación de inicialización por duplicar sus filas.
 

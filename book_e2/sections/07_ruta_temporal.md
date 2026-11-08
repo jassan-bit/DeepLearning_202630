@@ -1,7 +1,7 @@
 (e2-ruta-temporal)=
 # 7. Ruta metodológica: series de tiempo y controles causales
 
-La ruta vigente es **F2a, series de tiempo**, decidida el 06/11/2026 tras recibir la guía completa de 65 páginas. El cambio al [catálogo de diez modelos y el candidato 11](15_revision_modelos.md) conserva esa clasificación, el objetivo y las precauciones causales. La nueva enmienda está pendiente; ningún resultado histórico acredita superioridad de HAR + red residual.
+La ruta vigente es **F2a, series de tiempo**, decidida el 06/11/2026 tras recibir la guía completa de 65 páginas. El cambio al [catálogo de diez modelos y el candidato 11](15_revision_modelos.md) conserva esa clasificación, el objetivo y las precauciones causales. La nueva enmienda está pendiente; ningún resultado histórico acredita superioridad de CNN-1D + LSTM + atención temporal.
 
 El [registro de decisiones del EDA](../_static/eda_traceability/decisiones_vigentes.csv) conserva la procedencia de la reclasificación y la fila histórica `RESID`. Su incorporación documental el 08/11/2026 no es una decisión experimental retroactiva.
 
@@ -19,7 +19,7 @@ Las exigencias de controles temporales de la guía deben resolverse explícitame
 
 El objetivo σ₇ necesita ocho cierres consecutivos para siete retornos. Usar una etiqueta histórica exige auditar todos esos cierres, no solo la fecha nominal de la etiqueta. Una referencia con mayor historia puede ser causal y, aun así, disponer de información distinta de las redes D7×5. Las comparaciones deben informar esa diferencia y usar una cohorte elegible común sin comprimir huecos.
 
-**HAR + red residual necesita un soporte propio declarado.** Las ventanas de agregación HAR, la información disponible en cada origen y la entrada de la red residual deben fijarse antes de la selección. Si requieren más historia que D7, la ventaja observada no podrá atribuirse exclusivamente a la arquitectura. Los componentes HAR solo y red sola sirven para estudiar el aporte de la corrección, sin convertirse en candidatos adicionales del catálogo ni garantizar una mejora.
+**El candidato 11 usa el mismo soporte D7×5 de E1.** La CNN opera causalmente, la LSTM es unidireccional y la atención pondera sólo los siete estados observados. Sus ablaciones propuestas aíslan convolución, memoria y atención; no añaden candidatos al catálogo ni acreditan mejora. [Contrato vigente](17_contrato_sincronizado.md).
 
 ## 7.3 Política causal de ajuste y actualización
 
@@ -27,7 +27,7 @@ La nueva enmienda deberá distinguir selección de hiperparámetros, ajuste de p
 
 Un predictor mensual conserva su receta, pesos y escalador durante el fold, salvo que se registre otra política causal antes de comparar. La incorporación de una observación ya disponible al estado de un modelo no equivale a reestimar sus parámetros. Las fechas faltantes permanecen en el calendario y la elegibilidad se decide por soporte, no por el error obtenido.
 
-Las restricciones de salida, la gestión de fallos y cualquier truncamiento de pronósticos deben quedar predefinidos. Una predicción no finita se registra como fallo; no se sustituye por cero ni se elimina una fecha de forma favorable a un modelo. Para el híbrido también debe verificarse que la estimación de residuos no use objetivos futuros respecto al entrenamiento de la corrección.
+Las restricciones de salida, la gestión de fallos y cualquier truncamiento de pronósticos deben quedar predefinidos. Una predicción no finita se registra como fallo; no se sustituye por cero ni se elimina una fecha de forma favorable a un modelo. Para el híbrido debe verificarse que convoluciones, estados recurrentes y atención sólo usen las siete posiciones observadas, sin etiquetas ni estados del futuro.
 
 ## 7.4 EDA temporal heredado: evidencia reutilizada y cobertura
 

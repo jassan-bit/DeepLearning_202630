@@ -1,7 +1,7 @@
 (e2-reproducibilidad)=
 # 8. Reproducibilidad, ética y comunicación científica
 
-La guía completa exige un entorno fijado, semillas/configuraciones recuperables y reproducción independiente de la tabla principal (PDF pp40–41); su lista de comprobación está en el Apéndice B (p63). Esta sección distingue el **catálogo vigente de diez modelos y HAR + red residual como candidato 11**, cuya nueva enmienda está pendiente, de la evidencia histórica conservada. El procedimiento P0/OOF de desarrollo está ejecutado: los recibos verifican 220 trayectorias y 440 ajustes cerrados; los resultados se presentan en la [sección 9](09_protocolo_registrado.md).
+La guía completa exige un entorno fijado, semillas/configuraciones recuperables y reproducción independiente de la tabla principal (PDF pp40–41); su lista de comprobación está en el Apéndice B (p63). Esta sección distingue el **catálogo vigente de diez modelos y CNN-1D + LSTM + atención temporal como candidato 11**, cuya nueva enmienda está pendiente, de la evidencia histórica conservada. El procedimiento P0/OOF de desarrollo está ejecutado: los recibos verifican 220 trayectorias y 440 ajustes cerrados; los resultados se presentan en la [sección 9](09_protocolo_registrado.md).
 
 ## 8.1 Fuente registrada y recibos de ejecución
 
@@ -73,7 +73,7 @@ La [descarga de implementación archivada](../_static/completion_download/comple
 
 El [recibo parcial del 06/11/2026, 19:00:35 UTC](../_static/completion_preflight/execution_progress.json) acredita **doce trayectorias y veinticuatro ajustes cerrados de TSMixer** bajo el registro anterior. Es una instantánea histórica de HPO incompleto, no un proceso cuya actividad actual esté demostrada, un resultado final ni una ejecución del nuevo catálogo. Los recibos sintéticos tampoco se convierten en resultados de mercado.
 
-La nueva enmienda deberá identificar fuentes y adaptaciones de los diez modelos, la receta HAR + red residual, controles, dependencias, presupuesto, selección temporal, semillas, dimensionamiento y orden de cierre. MLP, LSTM y GRU de E1 siguen siendo referencias separadas. No se transfieren automáticamente sus recetas o métricas ni las del P0 a la comparación nueva.
+La nueva enmienda deberá identificar fuentes y adaptaciones de los diez modelos, la receta CNN-1D + LSTM + atención temporal, controles, dependencias, presupuesto, selección temporal, semillas, dimensionamiento y orden de cierre. MLP, LSTM y GRU de E1 siguen siendo referencias separadas. No se transfieren automáticamente sus recetas o métricas ni las del P0 a la comparación nueva.
 
 Cada nueva ejecución requerirá fuente identificable, entorno verificable, datos e índices con hashes y una salida propia. Deben conservarse curvas, tiempos, estados de cierre y procedencia, incluidos intentos fallidos. Un build del libro, un prototipo o una prueba sintética no acredita HPO, calibración o evaluación de mercado. El número de repeticiones y el almacenamiento se planificarán antes de evaluar; no se cambia R después de observar resultados para ajustar el experimento a los recursos disponibles.
 
@@ -83,7 +83,7 @@ Los estados distinguen una especificación registrada de evidencia experimental 
 
 | Ítem de p63 | Estado verificable |
 |---|---|
-| Catálogo vigente | Diez modelos de literatura/adaptaciones y HAR + red residual como candidato 11, sin superioridad demostrada |
+| Catálogo vigente | Diez modelos de literatura/adaptaciones y CNN-1D + LSTM + atención temporal como candidato 11, sin superioridad demostrada |
 | Registro antes de los nuevos ajustes | Nueva enmienda pendiente; los recibos anteriores son históricos |
 | Datos, índices y particiones | Procedencia heredada identificada; auditoría específica de los nuevos soportes pendiente |
 | Selección y ajuste causal | Reglas metodológicas descritas; implementación común del catálogo vigente por validar |

@@ -17,17 +17,17 @@ Esta presentación considera únicamente los siguientes diez modelos:
 9. **PatchTST**.
 10. **iTransformer**.
 
-**Candidato 11: HAR + red neuronal residual.** Su superioridad no está demostrada. Es una hipótesis que debe compararse con controles y puede arrojar resultados negativos.
+**Candidato 11: CNN-1D + LSTM + atención temporal.** Su superioridad no está demostrada. Es una hipótesis que debe compararse con controles y puede arrojar resultados negativos.
 
 El catálogo sustituido se retira de la presentación. Estos nombres provienen de la literatura y de adaptaciones a las familias del curso; no son una transcripción literal de sus modelos. MLP, LSTM y GRU de E1 son referencias separadas. [Especificación y límites del catálogo](sections/15_revision_modelos.md).
 
 ## Qué está implementado y qué está pendiente
 
-- **Prototipo nuevo:** cuatro redes compactas, enlace HAR residual y guardas temporales, con diez pruebas sintéticas. No está listo para entrenamiento real: faltan el tratamiento del residual, HAR/cross-fitting, integración de las seis arquitecturas restantes y runner común. [Implementación](sections/04_implementacion.md).
+- **Implementación disponible:** cuatro redes compactas y guardas temporales tienen pruebas sintéticas previas. El prototipo HAR residual queda histórico e inactivo. El nuevo híbrido CNN-1D + LSTM + atención temporal **no está implementado ni entrenado**; las diez pruebas anteriores no lo validan. [Implementación](sections/04_implementacion.md).
 - **Benchmark vigente:** sin entrenamiento integral ni resultados comparativos publicados. No hay ganador. Deben fijarse recetas, entradas, controles, HPO, dimensionamiento e inferencia en una nueva enmienda antes de ajustar datos de mercado. [Plan experimental](sections/06_benchmark_final.md).
 - **Evidencia histórica real:** el piloto previo completó 220 trayectorias y 440 ajustes. El recibo del 06/11/2026 acredita HPO previo iniciado e incompleto, no ejecución actual. La réplica TimeMixer/ETTh1 es externa a Bitcoin. Estos recibos no se atribuyen al catálogo vigente. [Trazabilidad](sections/09_protocolo_registrado.md).
 
-El problema sigue siendo pronóstico temporal de volatilidad Bitcoin. D7×5 OHLCV, σ₇ y horizonte de un día son el punto de partida documentado, no una autorización para igualar artificialmente el soporte mensual de HAR. La nueva especificación debe declarar información disponible, fechas comunes y cualquier cambio causal.
+El contrato vigente se sincroniza con E1: D7×5 derivado de OHLCV mediante `relative_window`, σ₇ poblacional sin anualización, horizonte de un día y referencia histórica principal de 608 fechas. [Contrato completo y diferencias con los recibos anteriores](sections/17_contrato_sincronizado.md). No se reentrena ni se trasladan resultados al híbrido.
 
 ## Evidencia bibliográfica
 

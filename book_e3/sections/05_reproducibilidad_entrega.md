@@ -19,7 +19,7 @@ La construcción genera HTML a partir de estas fuentes y no entrena modelos, eje
 |---|---|
 | Libro con portada, índice y configuración propios | Preparado como estructura inicial |
 | Guía específica y requisitos de E3 | Pendientes de incorporación |
-| Desarrollo y resultados de E3 | No realizados |
+| Desarrollo y resultados de E3 | Diseño conceptual documentado; sin implementación ni resultados |
 | Artefactos académicos y archivos de entrega | Por definir con la guía |
 
 Los futuros productos se identificarán por nombre, versión y evidencia. La disponibilidad de esta estructura no se interpreta como ejecución del trabajo académico ni como una entrega final terminada.

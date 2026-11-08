@@ -1,12 +1,12 @@
 # 4. Implementación de los diez modelos y el candidato adicional
 
-**Catálogo vigente al 08/11/2026:** FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder con predictor, TimesNet, TSMixer, TiDE, TimeMixer, PatchTST e iTransformer. El modelo 11 es **HAR + red residual**, candidato cuya superioridad no está demostrada. Esta selección sustituye el catálogo anterior en la presentación de E2; sus registros experimentales se conservan sólo como trazabilidad.
+**Catálogo vigente al 08/11/2026:** FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder con predictor, TimesNet, TSMixer, TiDE, TimeMixer, PatchTST e iTransformer. El modelo 11 activo es **CNN-1D + LSTM + atención temporal**, un diseño editorial propuesto, todavía no implementado ni entrenado y sin superioridad demostrada. HAR + red residual queda como prototipo histórico inactivo. Esta selección sustituye el catálogo anterior en la presentación de E2; sus registros experimentales se conservan sólo como trazabilidad.
 
-**Estado real:** cuatro prototipos compactos y un corrector que recibe una predicción HAR externa, aislados del ejecutor histórico; diez pruebas sintéticas documentadas. Los otros seis modelos tienen código histórico que necesita integración y validación en el nuevo diseño. **No hay entrenamiento de mercado, HPO, dimensionamiento de repeticiones ni resultados finales del catálogo vigente.**
+**Estado real:** se conservan cuatro prototipos compactos y el corrector HAR anterior, aislados del ejecutor histórico, con diez pruebas sintéticas documentadas. Esas pruebas no cubren el nuevo híbrido CNN-1D + LSTM + atención temporal. Los otros seis modelos tienen código histórico que necesita integración y validación en el nuevo diseño. **No hay entrenamiento de mercado, HPO, dimensionamiento de repeticiones ni resultados finales del catálogo vigente.**
 
 ## 4.0 Implementación preliminar y alcance
 
-El código está en [redes propuestas](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/e2_proposed_models.py), [guardas temporales](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/e2_proposed_temporal.py) y [pruebas sintéticas](https://github.com/jassan-bit/DeepLearning_202630/blob/main/tests/test_e2_proposed_benchmark.py). No implementa un ejecutor completo de entrenamiento, selección y evaluación.
+El código previo se conserva en [redes propuestas](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/e2_proposed_models.py), [guardas temporales](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/e2_proposed_temporal.py) y [pruebas sintéticas](https://github.com/jassan-bit/DeepLearning_202630/blob/main/tests/test_e2_proposed_benchmark.py). No implementa un ejecutor completo de entrenamiento, selección y evaluación ni contiene el nuevo híbrido activo.
 
 Las [fichas bibliográficas](16_fichas_nuevas.md) describen fuentes y adaptaciones posibles. No son la receta de los prototipos compactos ni configuraciones ya seleccionadas:
 
@@ -16,17 +16,18 @@ Las [fichas bibliográficas](16_fichas_nuevas.md) describen fuentes y adaptacion
 | ResNet-1D | Dos bloques de convoluciones 3/3 con proyección de atajo y ancho 16 | No reproduce la profundidad de la arquitectura fuente |
 | Inception-1D | Bottleneck, ramas 1/3/5 y max-pooling, una red compacta | No reproduce los módulos ni el ensemble de InceptionTime |
 | LSTM-autoencoder con predictor | Encoder LSTM, decoder de latente repetido y cabeza escalar; reconstrucción y predicción separadas | Sin política integrada de preentrenamiento, congelado, selección de épocas o ajuste supervisado |
-| HAR + red residual | Corrección firmada de D7×5 añadida a un pronóstico HAR externo; truncamiento a cero en inferencia | Sin estimación HAR/OLS ni generación real de residuos fuera de muestra; enlace de entrenamiento pendiente |
+| HAR + red residual, histórico inactivo | Corrección firmada de D7×5 añadida a un pronóstico HAR externo; truncamiento a cero en inferencia | Se conserva sin activarlo ni transferir sus pruebas al nuevo candidato |
+| CNN-1D + LSTM + atención temporal, candidato activo | Diseño documental; no implementado | Construir y verificar el flujo causal, la atención sobre siete estados y la cabeza de σ₇ antes de entrenar |
 
 Las cuatro redes reciben `(batch,7,5)` y producen `(batch,)` mediante Softplus. Son decisiones del prototipo, no valores atribuidos a los artículos. El padding simétrico opera dentro de una ventana ya observada: no añade historia ni constituye por sí mismo una convolución causal intraventana.
 
 ## 4.1 Contrato de información
 
-Los diez modelos neurales se plantean sobre **D7×5 OHLCV → σ₇**, con horizonte de un día. σ₇ es la desviación poblacional de siete retornos logarítmicos diarios, `ddof=0`, sin anualización. La evaluación debe usar unidades originales y transformaciones aprendidas exclusivamente en el entrenamiento permitido de cada fold. No se añaden rezagos del objetivo como canales neurales sin una modificación explícita del contrato.
+Los diez modelos y el híbrido activo comparten el [contrato sincronizado E1–E2–E3](17_contrato_sincronizado.md): **D7×5 derivado de OHLCV mediante `relative_window` → σ₇, con h=1**. No son niveles OHLCV crudos. σ₇ es la desviación poblacional de siete retornos logarítmicos diarios, `ddof=0`, sin anualización. La evaluación debe usar unidades originales y cualquier transformación aprendida se ajusta exclusivamente en el entrenamiento permitido de cada fold. No se añaden rezagos del objetivo ni historia adicional.
 
-**HAR tiene otro soporte.** La utilidad preliminar agrega σ₇ en 1/7/22 días calendario anteriores al origen. Una agregación de 22 días puede necesitar cierres hasta t−29; no recibe sólo las 35 entradas de las redes. Elegir 22 o 30 días para Bitcoin, definir el calentamiento y fijar las fechas elegibles comunes son decisiones pendientes, no hiperparámetros que puedan elegirse observando la evaluación.
+El flujo propuesto es **convoluciones 1D causales que conservan siete posiciones → LSTM unidireccional con `return_sequences=True` → atención temporal sólo sobre los siete estados observados → vector de contexto → cabeza escalar de σ₇**. La convolución utiliza padding sólo a la izquierda cuando sea necesario; no incorpora días anteriores a D7 como datos nuevos. La atención resume la ventana disponible y no consulta la etiqueta futura. Anchos, kernels, profundidad, función de atención, enlace de salida e hiperparámetros definitivos quedan pendientes de definición y registro.
 
-Los controles **HAR solo**, **red sola** y controles con soporte comparable son necesarios para interpretar el candidato 11. Son controles del experimento del híbrido, no incorporaciones tácitas al catálogo principal. La ventaja sobre una red D7, si aparece, no puede atribuirse exclusivamente a su arquitectura cuando dispone de historia adicional.
+Los controles propuestos son **CNN sola**, **LSTM sola** y **CNN–LSTM sin atención**, con el mismo soporte y calendario. Son ablaciones del híbrido, no nuevas posiciones del catálogo. El soporte HAR 1/7/22 y el cross-fitting residual pertenecen al prototipo anterior y dejan de ser requisitos del candidato activo.
 
 ## 4.2 Integración pendiente de los seis modelos con código histórico
 
@@ -41,29 +42,29 @@ Los controles **HAR solo**, **red sola** y controles con soporte comparable son 
 
 La [revisión arquitectónica histórica](../_static/completion_protocol/architecture_review.json) permite localizar decisiones anteriores. No certifica estas seis integraciones en el nuevo experimento ni congela sus recetas. Las verificaciones se repetirán sobre la fuente, el entorno y el pipeline que efectivamente se registren.
 
-## 4.3 Pruebas sintéticas: qué acreditan y qué no
+## 4.3 Pruebas sintéticas históricas: qué acreditan y qué no
 
-Se documentaron **diez pruebas sintéticas** el 08/11/2026 con Python 3.12.14, torch 2.15.0+cpu, numpy 2.3.5 y un hilo CPU. Cubren formas y finitez, gradientes, invariancia de batch, roundtrip de pesos en memoria, entradas inválidas, reducción de pérdida artificial y restricciones de calendario/alcance. Incluyen iteradores de residuos válidos, inválidos y vacíos.
+Para los cuatro prototipos compactos y el corrector HAR anterior se documentaron **diez pruebas sintéticas** el 08/11/2026 con Python 3.12.14, torch 2.15.0+cpu, numpy 2.3.5 y un hilo CPU. Cubren formas y finitez, gradientes, invariancia de batch, roundtrip de pesos en memoria, entradas inválidas, reducción de pérdida artificial y restricciones de calendario/alcance. Incluyen iteradores de residuos válidos, inválidos y vacíos.
 
-No se abrieron datos de mercado. Pasar esta suite no demuestra rendimiento, robustez, potencia ni ausencia de toda fuga. Tampoco acredita que los once candidatos estén integrados o listos para entrenar.
+No se abrieron datos de mercado. Pasar esta suite no demuestra rendimiento, robustez, potencia ni ausencia de toda fuga. Tampoco acredita que los once candidatos estén integrados o listos para entrenar. **Ninguna de estas diez pruebas valida CNN-1D + LSTM + atención temporal**, que no se ha implementado.
 
-El corrector HAR calcula `max(0, HAR + corrección)`. Si la suma es negativa, el truncamiento tiene gradiente cero; la prueba específica confirma esta limitación. Por ello, su `forward` es un enlace provisional de inferencia, **no una pérdida validada para entrenar con datos reales**. Ajustar la corrección firmada a residuos OOF crudos y truncar sólo al inferir es una alternativa que aún debe diseñarse y registrarse.
+El corrector HAR histórico inactivo calcula `max(0, HAR + corrección)`. Si la suma es negativa, el truncamiento tiene gradiente cero; la prueba específica confirma esta limitación. Por ello, su `forward` es un enlace provisional de inferencia, **no una pérdida validada para entrenar con datos reales**. La generación de residuos OOF y el enlace pendiente se documentan como límites de ese prototipo retirado, no como próximos pasos del híbrido vigente.
 
 ## 4.4 Guardas temporales antes de cualquier ajuste
 
-1. **Ámbito de entrenamiento:** validar orígenes antes de ajustar escaladores, reconstruir con el autoencoder o entrenar la cabeza supervisada. Preentrenar sin etiquetas sobre todo desarrollo también expondría datos posteriores al fold.
-2. **Reinicio por fold:** pesos, estado y transformaciones nuevos; ningún checkpoint posterior se reutiliza hacia el pasado.
-3. **Disponibilidad:** conservar días calendario, huecos y soportes completos de atributos y etiquetas. La guarda preliminar exige etiquetas del estimador base hasta q−8 para un origen q; el nuevo calendario debe justificar e integrar esa separación.
-4. **Residuos fuera de muestra:** generar realmente cada pronóstico HAR sin su etiqueta ni información posterior, dentro del train autorizado. El corrector sólo puede aprender residuos cuya verdad ya estaba disponible al ajustarlo.
-5. **Auditoría de procedencia:** las utilidades comprueban metadatos recibidos, pero no demuestran que sean verdaderos. Faltan el generador temporal OOF y pruebas integrales que comprueben cortes, escalado y ajuste.
+1. **Ámbito de entrenamiento:** validar orígenes antes de ajustar transformaciones, reconstruir con el autoencoder o entrenar la cabeza supervisada. Preentrenar sin etiquetas sobre todo desarrollo también expondría datos posteriores al fold.
+2. **Reinicio por fold:** pesos, estado recurrente y transformaciones nuevos; ningún checkpoint posterior se reutiliza hacia el pasado.
+3. **Disponibilidad:** conservar días calendario, huecos y soportes completos de atributos y etiquetas según el contrato sincronizado. La referencia E1 conserva etiquetas hasta o−8 y embargo de siete días por origen o; los cortes deben comprobarse sobre los datos realmente disponibles. Esta separación no se confunde con el soporte extendido del antiguo estimador HAR.
+4. **Causalidad del híbrido:** verificar la convolución con padding izquierdo, la dirección de la LSTM y la atención restringida a siete estados observados. No usar ventanas centradas, etiquetas futuras ni estados recurrentes de otro origen.
+5. **Auditoría integral:** comprobar construcción de ventanas, `relative_window`, ajustes de transformaciones y selección dentro de cada fold. Las utilidades previas sólo comprueban los metadatos que reciben; no acreditan el futuro pipeline del híbrido.
 
-La auditoría debe cubrir también duplicados pertinentes, disponibilidad de atributos y controles negativos. Un fallo requiere corrección y nueva verificación; no se resuelve describiéndolo como limitación menor.
+Las pruebas nuevas deberán cubrir formas, gradientes, independencia de los acompañantes del batch, checkpoint y causalidad, además de duplicados pertinentes y controles negativos. Son verificaciones propuestas, todavía no ejecutadas para el híbrido. Un fallo requiere corrección y nueva verificación; no se resuelve describiéndolo como limitación menor.
 
 ## 4.5 Secuencia necesaria del nuevo experimento
 
 - Fijar fuentes, correspondencia con el curso y recetas de los diez modelos y del candidato 11; distinguir adaptación propia de reproducción. Resolver la condición NAS conforme a [§14](14_arquitecturas.md).
-- Implementar HAR, cross-fitting y controles del híbrido; resolver su objetivo, enlace y soporte. Integrar los seis adaptadores en un ejecutor nuevo sin modificar los históricos.
-- Cerrar calendario, elegibilidad, transformaciones, hipótesis, comparaciones, presupuesto completo y reglas de fallos. El preentrenamiento y todas las etapas del híbrido cuentan en el coste.
+- Implementar CNN-1D + LSTM + atención temporal y sus ablaciones conforme al contrato común. Integrar los seis adaptadores en un ejecutor nuevo sin modificar el código ni los protocolos históricos.
+- Cerrar calendario, elegibilidad, transformaciones, hipótesis, comparaciones, presupuesto completo y reglas de fallos. El preentrenamiento del autoencoder, el ajuste conjunto del híbrido y todas sus ablaciones cuentan en el coste.
 - Validar el pipeline y publicar su propio preregistro antes de ajustes de mercado. Definir selección temporal, congelación de recetas y dimensionamiento sin trasladar un R o presupuesto anterior.
 - Cerrar pesos y, cuando correspondan, calibradores antes de evaluar; publicar resultados y costes medidos, también fallos y desenlaces desfavorables.
 

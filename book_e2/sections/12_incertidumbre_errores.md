@@ -1,6 +1,6 @@
 # 12. Incertidumbre predictiva y análisis de errores
 
-**Estado:** análisis P0 histórico ejecutado; incertidumbre y errores del catálogo vigente pendientes de la nueva enmienda y de su evaluación. El catálogo contiene diez modelos y HAR + red residual como candidato 11, sin superioridad acreditada; las referencias MLP, LSTM y GRU de E1 se mantienen aparte.
+**Estado:** análisis P0 histórico ejecutado; incertidumbre y errores del catálogo vigente pendientes de la nueva enmienda y de su evaluación. El catálogo contiene diez modelos y CNN-1D + LSTM + atención temporal como candidato 11, sin superioridad acreditada; las referencias MLP, LSTM y GRU de E1 se mantienen aparte.
 
 Esta sección desarrolla §12.2–12.3 de la guía (PDF pp49–50). Los intervalos predictivos describen valores futuros de σ₇; los IC de RMSE describen incertidumbre de una métrica. Ni la dispersión entre semillas ni un IC de RMSE se presentan como un intervalo predictivo. La [enmienda anterior](../_static/completion_protocol/analysis_additions.json) y el [plan P0](https://github.com/jassan-bit/DeepLearning_202630/blob/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0/experiments/e2_remediation_20261106/uncertainty_errors.json) quedan como archivo de trazabilidad, sin trasladar al catálogo vigente sus cohortes, tamaños de ensamble o familias estadísticas.
 

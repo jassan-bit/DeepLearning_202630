@@ -620,3 +620,12 @@ no es un preregistro experimental. Validar con
 `python -m unittest discover -s tests -p 'test_e2_current_catalogue.py'`.
 Los protocolos, resultados y recibos históricos permanecen sin cambios; la
 lista retirada no se reimprime como selección vigente en capítulos o anexos.
+
+### Sincronización editorial E1/E2/E3
+
+`references/books_alignment_20261108.json` y sus tres espejos públicos documentan
+la referencia E1 actual y el candidato CNN-1D + LSTM + atención temporal.
+No son un nuevo registro experimental. Validar con
+`python -m unittest discover -s tests -p 'test_books_alignment.py'`.
+Las huellas verifican que fuentes, plan y métricas E1 no se modificaron.
+Construir cada libro por separado y ejecutar `scripts/check_book_links.py`.

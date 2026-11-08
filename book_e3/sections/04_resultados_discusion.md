@@ -14,3 +14,5 @@ Cuando existan resultados se presentarán junto con su procedimiento, versión y
 Si la guía exige análisis estadístico, este se adecuará a la tarea y a sus unidades de observación. El libro inicial no declara pruebas ejecutadas, significancia obtenida, equivalencia ni mejora de desempeño.
 
 Las conclusiones se redactarán después del desarrollo y la evaluación pertinentes.
+
+El candidato CNN-1D + LSTM + atención temporal no tiene métricas propias. Ninguna tabla de E1, prueba sintética previa de E2 o resultado bibliográfico se presenta como evaluación del híbrido. Su eventual comparación puede ser favorable, nula o desfavorable.

@@ -1,12 +1,12 @@
 # 14. Arquitecturas del catálogo vigente y adaptación a D7
 
-**Selección vigente al 08/11/2026:** diez modelos neurales y HAR + red residual como candidato adicional. La selección reemplaza el catálogo anterior en la presentación; no convierte los prototipos en recetas definitivas ni transfiere registros, pruebas o resultados de otras arquitecturas.
+**Selección vigente al 08/11/2026:** diez modelos neurales y CNN-1D + LSTM + atención temporal como candidato adicional activo. La selección reemplaza el catálogo anterior en la presentación; no convierte los prototipos en recetas definitivas ni transfiere registros, pruebas o resultados de otras arquitecturas.
 
-Cuatro prototipos compactos y un corrector con HAR externo tienen diez pruebas sintéticas documentadas. Los seis modelos restantes cuentan con código histórico, pero requieren integración y validación nueva. **Ninguno tiene resultados de mercado acreditados bajo el nuevo diseño.**
+Cuatro prototipos compactos y un corrector con HAR externo, ahora histórico inactivo, tienen diez pruebas sintéticas documentadas. **El nuevo híbrido es sólo un diseño editorial propuesto: no está implementado ni entrenado, y esas pruebas no lo validan.** Los seis modelos restantes cuentan con código histórico, pero requieren integración y validación nueva. **Ninguno tiene resultados de mercado acreditados bajo el nuevo diseño.**
 
 ## 14.1 Diez arquitecturas, una tarea neural
 
-La entrada propuesta es D7×5 OHLCV y la salida es σ₇ a un día, en su escala original. La fuente de una arquitectura, su configuración publicada, el código reutilizado y la adaptación de E2 deben identificarse por separado.
+La entrada común es D7×5 derivado de OHLCV con `relative_window` y la salida es σ₇ poblacional a un día, sin anualización y en su escala original, conforme al [contrato sincronizado E1–E2–E3](17_contrato_sincronizado.md). La fuente de una arquitectura, su configuración publicada, el código reutilizado y la adaptación de E2 deben identificarse por separado.
 
 | N.º | Modelo | Mecanismo | Decisión arquitectónica pendiente |
 |---|---|---|---|
@@ -51,15 +51,26 @@ La [matriz histórica de revisión](../_static/completion_protocol/architecture_
 
 La inspección anterior de un adaptador no verifica automáticamente el nuevo runner, sus transformaciones o la ausencia de fuga. Los hashes deben corresponder a la receta concreta que se va a registrar.
 
-## 14.4 Modelo 11: HAR + red residual
+## 14.4 Modelo 11: CNN-1D + LSTM + atención temporal
 
-El candidato combina agregaciones de historia de σ₇ con una corrección neuronal. HAR tiene un antecedente establecido en Corsi (2009), [DOI 10.1093/jjfinec/nbp001](https://doi.org/10.1093/jjfinec/nbp001). Esa fuente no valida por sí misma el uso de σ₇ diario de este proyecto ni acredita novedad o superioridad del híbrido.
+El candidato activo combina extracción local, recurrencia y agregación temporal. Es un **diseño editorial propuesto**, no una arquitectura exacta verificada del curso o de la literatura, una innovación acreditada ni un modelo superior demostrado. No tiene código, entrenamiento, pruebas propias o resultados de mercado en este diseño.
 
-La implementación preliminar recibe `HAR_raw` externo y calcula `max(0, HAR_raw + corrección_firmada(D7×5))`. No estima HAR ni genera residuos OOF. Si la suma es negativa, el truncamiento produce gradiente cero; la solución de entrenamiento sigue pendiente. No debe entrenarse con datos reales presentando ese enlace provisional como una pérdida ya resuelta.
+| Etapa propuesta | Operación y forma conceptual | Restricción |
+|---|---|---|
+| Entrada | Tensor `(batch, 7, 5)` bajo `relative_window` | Sólo siete días observados y cinco canales derivados de OHLCV; sin rezagos de σ₇ |
+| CNN-1D causal | Extraer rasgos locales y conservar `(batch, 7, c)` | Cada posición usa sólo ella y posiciones anteriores de la ventana; padding únicamente a la izquierda si se necesita |
+| LSTM unidireccional | Recorrer los rasgos en orden temporal y devolver `(batch, 7, d)` con `return_sequences=True` | Conservar los siete estados; no bidireccionalidad ni estado de otro origen |
+| Atención temporal | Puntuar y normalizar pesos sobre los siete estados observados | Ningún acceso a la etiqueta futura ni a posiciones fuera de la ventana |
+| Contexto | Suma ponderada de estados, forma `(batch, d)` | Agregar información ya observada, sin crear historia adicional |
+| Cabeza escalar | Mapear contexto a un pronóstico de σ₇, forma `(batch,)` | Enlace, pérdida y cualquier transformación por definir y evaluar en unidades originales |
 
-El soporte preliminar 1/7/22 usa días calendario de σ₇, con cierres que pueden llegar hasta t−29. Deben fijarse las ventanas para Bitcoin, el calentamiento y los controles HAR solo/red sola/soporte comparable. La corrección se entrenará únicamente con residuos causalmente fuera de muestra y disponibles dentro del train autorizado, conforme al futuro preregistro.
+Las letras `c` y `d` representan dimensiones pendientes, no anchos seleccionados. Tampoco se fijan kernels, profundidad, función concreta de puntuación, regularización, optimizador o hiperparámetros definitivos. La función de atención deberá especificarse antes del registro. Sus pesos no se presentarán como una explicación causal del mercado.
 
-La literatura de [§15](15_revision_modelos.md) incluye antecedentes de corrección residual con resultados desfavorables. El mecanismo no garantiza que el candidato 11 supere a ninguno de los diez modelos; una comparación registrada debe permitir y comunicar ese desenlace.
+La CNN conserva la resolución de siete posiciones para que la LSTM y la atención reciban los siete estados propuestos. El padding no aporta observaciones nuevas. La atención puede ponderar toda la ventana porque los siete días están disponibles en el origen de predicción; no es una atención a datos futuros. La causalidad completa también depende de la construcción de ventanas, transformaciones y cortes de entrenamiento.
+
+Se proponen ablaciones **CNN sola**, **LSTM sola** y **CNN–LSTM sin atención**, con el mismo contrato de información y una regla de lectura fijada para cada una. No se añaden como posiciones del catálogo ni se afirma que se hayan ejecutado. Cualquier afirmación de mejora debe apoyarse en el nuevo protocolo y permitir resultados nulos o desfavorables.
+
+**Antecedente inactivo:** el corrector HAR anterior recibe un pronóstico externo y calcula una corrección truncada; su código, limitaciones y diez pruebas compartidas con las cuatro redes compactas se preservan. El soporte 1/7/22, HAR/OLS y el cross-fitting residual pertenecen a ese prototipo retirado, no al candidato activo. [§4](04_implementacion.md) delimita esa evidencia histórica.
 
 ## 14.5 Cuándo corresponde una búsqueda estructural
 
@@ -75,9 +86,9 @@ Cada ficha ejecutable debe reunir:
 
 - Fuente y localización exacta de cada decisión, repositorio/commit y licencia aplicable; «no verificado» cuando corresponda.
 - Diagrama, dimensiones, ecuaciones o reglas de los bloques y adaptación explícita a D7×5 → σ₇.
-- Cabeza, transformación del objetivo, enlace, parámetros entrenables y receta de entrenamiento; fases separadas para autoencoder e híbrido.
+- Cabeza, transformación del objetivo, enlace, parámetros entrenables y receta de entrenamiento; fases del autoencoder y flujo completo CNN/LSTM/atención con sus ablaciones.
 - Formas, gradientes finitos, checkpoint, invariancia en evaluación y pruebas de causalidad sobre el pipeline real.
 - Costes medidos con método común y limitaciones del contador, sin convertir complejidad asintótica o cifras de otro dataset en mediciones E2.
 - Identidad de fuente, entorno y configuración vinculada al nuevo preregistro.
 
-Las diez pruebas sintéticas actuales son un comienzo de verificación, no el cierre de estas fichas para los once modelos. El [protocolo pendiente](09_protocolo_registrado.md) y la [equidad de HPO](11_hpo_equidad.md) separan decisiones, implementaciones, ajustes y resultados. Los [artefactos históricos](../_static/completion_download/completion_bundle.zip) permanecen disponibles para auditoría, sin reintroducir su catálogo en la presentación vigente.
+Las diez pruebas sintéticas históricas verifican aspectos de cuatro prototipos compactos y del corrector HAR retirado; no cubren el nuevo híbrido ni cierran estas fichas para los once modelos. El [protocolo pendiente](09_protocolo_registrado.md) y la [equidad de HPO](11_hpo_equidad.md) separan decisiones, implementaciones, ajustes y resultados. Los [artefactos históricos](../_static/completion_download/completion_bundle.zip) permanecen disponibles para auditoría, sin reintroducir su catálogo en la presentación vigente.

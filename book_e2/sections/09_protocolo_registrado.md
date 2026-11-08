@@ -1,6 +1,6 @@
 # 9. Preregistro del catálogo vigente y trazabilidad experimental
 
-**Estado al 08/11/2026: el catálogo nuevo todavía no tiene preregistro experimental propio.** La selección vigente comprende FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder con predictor, TimesNet, TSMixer, TiDE, TimeMixer, PatchTST e iTransformer; HAR + red residual es el candidato adicional 11. Los registros anteriores no autorizan a presentar estas recetas como congeladas ni estos modelos como entrenados.
+**Estado al 08/11/2026: el catálogo nuevo todavía no tiene preregistro experimental propio.** La selección vigente comprende FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder con predictor, TimesNet, TSMixer, TiDE, TimeMixer, PatchTST e iTransformer; CNN-1D + LSTM + atención temporal es el candidato adicional 11. Los registros anteriores no autorizan a presentar estas recetas como congeladas ni estos modelos como entrenados.
 
 Esta sección sustituye las reglas prospectivas del catálogo retirado por las decisiones que deben cerrarse para el actual. Los protocolos y recibos históricos se mantienen intactos y se enlazan al final. **No se fijan ni se simulan nuevos presupuestos, candidatos HPO, búsquedas NAS o repeticiones R mediante esta revisión documental.**
 
@@ -8,13 +8,13 @@ Esta sección sustituye las reglas prospectivas del catálogo retirado por las d
 
 | Decisión | Punto de partida vigente | Cierre necesario antes de entrenamiento de mercado |
 |---|---|---|
-| Catálogo | Diez modelos neurales y HAR + red residual candidato | Identidad de recetas, versiones y controles del híbrido |
+| Catálogo | Diez modelos neurales y CNN-1D + LSTM + atención temporal candidato | Identidad de recetas, versiones y controles del híbrido |
 | Tarea | Bitcoin diario, horizonte uno, σ₇ poblacional de siete retornos | Definición ejecutable de orígenes, etiquetas, disponibilidad y escala |
 | Información neural | Siete barras OHLCV, D7×5 | Transformaciones por fold, valores faltantes y verificación de soportes |
-| Información HAR | Historia del objetivo adicional a D7; agregación preliminar 1/7/22 | Días calendario, elección de ventanas, calentamiento y comparabilidad |
+| Información del híbrido | Mismo D7×5 relativo que E1, sin canales del objetivo | Causalidad convolucional, orden recurrente y máscara de atención |
 | Arquitecturas | Cuatro prototipos compactos; seis implementaciones históricas reutilizables | Fuente, receta adaptada, revisión individual y condición NAS |
 | Autoencoder | Reconstrucción y predictor separados | Secuencia de entrenamiento, pérdidas, pesos, congelado y coste de preentrenamiento |
-| Híbrido | Corrector con HAR externo y enlace provisional | HAR/OLS, cross-fitting real, objetivo residual, enlace y controles |
+| Híbrido | CNN-1D + LSTM + atención temporal, propuesto sin implementación | Receta, pruebas sintéticas, entrenamiento y comparación pendientes |
 | Partición | Desarrollo y evaluación históricos ya conocidos | Calendario del nuevo estudio, cortes, embargo y exposición previa declarada |
 | Selección | Debe ser temporal y usar sólo el pasado autorizado | Folds internos/externos, elección de épocas, reajustes y separación del test |
 | Presupuesto | Comparabilidad y contabilidad completa | Límites por receta, espacios, recursos, incidencias y reglas de parada |
@@ -31,14 +31,14 @@ El margen histórico δ=0,00025772842664981106 puede documentarse como anteceden
 
 Los datos de desarrollo de 2023–2024 y las evaluaciones históricas posteriores ya fueron utilizados o examinados en etapas anteriores. En particular, la reserva del **01/09–30/10/2026** es conocida. Mantenerla como evaluación exploratoria no la convierte en una muestra ciega nueva.
 
-El nuevo manifiesto debe registrar, para cada fold, los orígenes autorizados, la última observación disponible, el soporte completo de la etiqueta y la fecha de cada transformación. Las guardas preliminares del corrector exigen etiquetas de ajuste del estimador base hasta q−8 para un origen q. Esa comprobación conservadora no constituye por sí sola el calendario del estudio ni demuestra que una predicción OOF haya sido generada correctamente.
+El nuevo manifiesto debe registrar, para cada fold, los orígenes autorizados, la última observación disponible, el soporte completo de la etiqueta y la fecha de cada transformación. La referencia E1 exige etiquetas de entrenamiento hasta o−8 para cada origen o y escaladores ajustados sólo al entrenamiento. El antiguo corrector de residuos ya no es el candidato activo; sus guardas no sustituyen las pruebas específicas del nuevo híbrido.
 
-No se comprimen huecos ni se incorporan barras futuras para completar ventanas. El soporte más largo de HAR obliga a definir calentamiento y cohortes comunes. La selección de épocas, los escaladores y el preentrenamiento del autoencoder deben respetar el pasado permitido de cada fold, incluso cuando no utilicen etiquetas.
+No se comprimen huecos ni se incorporan barras futuras para completar ventanas. El híbrido conserva la ventana D7; las cohortes comunes se verifican contra el contrato E1 de [§17](17_contrato_sincronizado.md). La selección de épocas, los escaladores y el preentrenamiento del autoencoder deben respetar el pasado permitido de cada fold, incluso cuando no utilicen etiquetas.
 
 ## 9.3 Orden de las decisiones y ejecuciones
 
 1. **Cerrar diseño:** fuentes y recetas, familias exigidas por la guía, soportes del híbrido, controles y condición NAS. Una familia arquitectónica no equivale a una estructura definida.
-2. **Completar e inspeccionar implementación:** ejecutor separado, entorno fijado, generación causal de residuos, entrenamiento train-only y pruebas integrales. Los diez tests sintéticos existentes son evidencia limitada de software.
+2. **Completar e inspeccionar implementación:** ejecutor separado, entorno fijado, convolución causal, recurrencia unidireccional, atención al pasado observado y entrenamiento train-only y pruebas integrales. Los diez tests sintéticos existentes corresponden al prototipo anterior, no al híbrido nuevo.
 3. **Registrar antes de ajustar:** versión ejecutable y hashes, calendario y datos ya conocidos, espacios y presupuesto, hipótesis, fallos, selección, dimensionamiento y análisis. Un plan editorial no reemplaza este paso.
 4. **Ejecutar selección:** HPO y, sólo si está justificado y registrado, búsqueda estructural; guardar todos los intentos y su coste. Congelar recetas sin mirar la evaluación.
 5. **Dimensionar:** usar el piloto y la regla nuevos para distinguir variación entre entrenamientos y dependencia temporal. No adoptar un R anterior ni certificar a modelos no evaluados con un representante sin advertirlo.

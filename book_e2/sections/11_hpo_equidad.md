@@ -1,8 +1,8 @@
 # 11. HPO y equidad para el catálogo vigente
 
-**Estado al 08/11/2026: no hay HPO propio del nuevo catálogo.** Los diez modelos vigentes son FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder con predictor, TimesNet, TSMixer, TiDE, TimeMixer, PatchTST e iTransformer. HAR + red residual es un candidato adicional, no un ganador ni un modelo con presupuesto preferente.
+**Estado al 08/11/2026: no hay HPO propio del nuevo catálogo.** Los diez modelos vigentes son FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder con predictor, TimesNet, TSMixer, TiDE, TimeMixer, PatchTST e iTransformer. CNN-1D + LSTM + atención temporal es el candidato adicional activo, no un ganador ni un modelo con presupuesto preferente.
 
-Esta sección define las condiciones que debe satisfacer el nuevo diseño, **no un plan HPO ya registrado**. El número de candidatos, los límites de cómputo, los espacios, las semillas y R siguen pendientes de definición. No se reutilizan las asignaciones ni los compromisos de búsqueda del catálogo retirado.
+Esta sección define las condiciones que debe satisfacer el nuevo diseño, **no un plan HPO ya registrado**. El número de configuraciones por receta, los límites de cómputo, los espacios, las semillas y R siguen pendientes de definición. Los diez modelos y el híbrido están seleccionados editorialmente, pero este último no está implementado ni entrenado. No se reutilizan las asignaciones ni los compromisos de búsqueda del catálogo retirado.
 
 ## 11.1 Presupuesto comparable y completo
 
@@ -14,7 +14,7 @@ El preregistro debe fijar una unidad de comparación, hardware y entorno, límit
 | Inception-1D | Todas las redes si se adopta un ensemble; distinguirlo de una receta de un miembro |
 | LSTM-autoencoder con predictor | Preentrenamiento de reconstrucción, selección de esa fase, ajuste supervisado y cualquier reajuste |
 | TimesNet, TSMixer, TiDE, TimeMixer, PatchTST e iTransformer | Integración validada, HPO de su adaptación y cada ajuste previsto |
-| HAR + red residual | Estimación HAR, generación temporal OOF, selección y entrenamiento del corrector, reajustes y controles |
+| CNN-1D + LSTM + atención temporal | Selección, entrenamiento de los bloques CNN/LSTM/atención y cabeza, reajustes y ablaciones registradas |
 
 La preparación de software se puede informar por separado del coste de entrenamiento, sin ocultar las etapas que sí usan datos para seleccionar modelos. Una receta inicializada o preentrenada con información externa debe declarar origen, acceso, licencia y alcance temporal; no se presupone que exista tal recurso aquí.
 
@@ -26,7 +26,7 @@ Las arquitecturas se fijarán a partir de fuentes y adaptaciones verificadas, co
 
 El registro de cada espacio debe indicar parámetros variables, valores fijos, distribución o cuadrícula, restricciones, orden o semilla de generación, número de oportunidades y parada. Las elecciones de optimizador, pérdida, learning rate, batch, regularización y épocas no se heredan por silencio del experimento histórico.
 
-Para el autoencoder deben cerrarse preentrenamiento secuencial frente a otra estrategia, política de congelado y escalado de objetivos. Una pérdida conjunta sería una adaptación propia que requiere justificación. Para Inception-1D debe resolverse red individual frente a ensemble antes de comparar costes. Para HAR deben fijarse ventanas de calendario, transformación, enlace y cómo se generan los residuos disponibles.
+Para el autoencoder deben cerrarse preentrenamiento secuencial frente a otra estrategia, política de congelado y escalado de objetivos. Una pérdida conjunta sería una adaptación propia que requiere justificación. Para Inception-1D debe resolverse red individual frente a ensemble antes de comparar costes. Para el híbrido deben fijarse anchos, kernels, profundidad, función de atención, enlace y entrenamiento. La estructura propuesta es CNN causal → LSTM unidireccional con secuencia de salida → atención sobre siete estados observados → contexto → cabeza escalar; no se han elegido hiperparámetros definitivos.
 
 Una fuente puede justificar un punto de partida; no demuestra que ese punto sea óptimo para Bitcoin D7. Si el óptimo observado cae en el borde del espacio o el presupuesto resulta insuficiente, se reportará esa limitación. No se amplía un rango después de mirar la evaluación.
 
@@ -36,7 +36,7 @@ La condición de búsqueda arquitectónica se resolverá por modelo en [§14](14
 
 Cada origen externo necesita sus propios bloques internos de selección, completamente anteriores a su límite permitido. Escaladores, imputaciones, selección de épocas, preentrenamiento y ajuste supervisado se aprenden exclusivamente en ese ámbito. Un estado o checkpoint entrenado posteriormente no puede viajar a un fold anterior.
 
-Las guardas preliminares exigen una separación de etiquetas del estimador base hasta q−8 para el origen q. El ejecutor nuevo debe comprobar soportes reales, huecos y disponibilidad; no basta confiar en metadatos declarados. La elección exacta de folds, corte y embargo debe constar en el nuevo manifiesto.
+El ejecutor nuevo debe comprobar soportes reales, huecos y disponibilidad de D7×5 `relative_window`, σ₇ poblacional y h=1 conforme al [contrato sincronizado E1–E2–E3](17_contrato_sincronizado.md); no basta confiar en metadatos declarados. La referencia E1 usa etiquetas hasta o−8 y embargo de siete días; el nuevo manifiesto deberá documentar y verificar sus folds y cortes. Retirar HAR no elimina las restricciones temporales del contrato común.
 
 La selección por RMSE debe concatenar las fechas elegibles de cada trayectoria, calcular su RMSE en escala original y después promediar entre semillas. No equivale al promedio no ponderado de RMSE mensuales ni al error de un ensemble no especificado. El nuevo protocolo fijará desempates sin crearlos por redondeo.
 
@@ -44,11 +44,11 @@ La evaluación OOF del procedimiento de selección se distingue de la búsqueda 
 
 ## 11.4 Controles específicos del candidato 11
 
-El prototipo recibe un pronóstico HAR externo. **No implementa HAR/OLS ni cross-fitting real**, y su truncamiento puede anular el gradiente si la suma resulta negativa. Resolver ese problema forma parte del diseño previo al HPO, no de ajustes oportunistas tras observar resultados.
+El nuevo híbrido es un diseño documental sin implementación ni pruebas propias. Las diez pruebas sintéticas previas corresponden a cuatro redes compactas y a HAR + red residual, que se conserva como código histórico inactivo. No validan el nuevo flujo CNN/LSTM/atención.
 
-Dentro del train autorizado se deben generar predicciones HAR realmente fuera de muestra y entrenar la red sólo con sus residuos ya disponibles. Para validación se aplicará la receta de reajuste registrada sin usar residuos de esa validación como etiquetas del corrector. La diferencia entre HAR OOF y HAR reajustado debe quedar explícita.
+Los controles propuestos son **CNN sola**, **LSTM sola** y **CNN–LSTM sin atención**. Deben compartir el contrato de entrada, objetivo, cortes y calendario del híbrido; las diferencias de capacidad y coste se documentarán para interpretar cada ablación. La variante sin atención necesitará una regla de lectura predefinida, sin escogerla tras observar el test.
 
-HAR solo, red sola y el híbrido se compararán con calendario y tratamiento de salida consistentes. Los controles de soporte adicional son necesarios para distinguir una ventaja arquitectónica de disponer de más historia. Todos sus ajustes se contabilizarán sin reintroducir automáticamente modelos del catálogo descartado.
+Sus recetas, oportunidades de selección y costes deben registrarse antes de la búsqueda. Estos controles no amplían tácitamente el catálogo de diez modelos más candidato 11. No se requieren estimación HAR, soporte de 22 días ni cross-fitting de residuos para el nuevo híbrido; conservar el código anterior no los reactiva.
 
 ## 11.5 Medición de eficiencia
 
@@ -64,7 +64,7 @@ Las fronteras de Pareto se construirán con error y costes efectivamente observa
 |---|---|
 | Recetas y espacios de los once candidatos | Sin congelar |
 | Presupuesto, hardware, semillas y límites | Sin preregistro propio |
-| Runner integrado y cross-fitting HAR auditado | Pendiente |
+| Runner integrado, flujo CNN/LSTM/atención y ablaciones auditados | Pendiente; híbrido no implementado |
 | Preflight y registro anterior al primer ajuste de mercado | Pendientes |
 | Búsquedas completas y consumo real | No ejecutados |
 | Recetas seleccionadas y dimensionamiento de R | No disponibles |

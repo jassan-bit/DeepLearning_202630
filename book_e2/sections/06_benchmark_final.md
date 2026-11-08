@@ -1,8 +1,8 @@
 # 6. Benchmark vigente: diez modelos y un candidato adicional
 
-**Estado al 08/11/2026: sin resultados de mercado del nuevo catálogo.** La presentación de E2 considera únicamente los diez modelos indicados abajo y HAR + red residual como candidato 11. La expresión «modelo superior» representa la mejora que se desea investigar; no es una conclusión respaldada por evidencia.
+**Estado al 08/11/2026: sin resultados de mercado del nuevo catálogo.** La presentación de E2 considera únicamente los diez modelos indicados abajo y CNN-1D + LSTM + atención temporal como candidato 11. La expresión «modelo superior» representa la mejora que se desea investigar; no es una conclusión respaldada por evidencia.
 
-Hay cuatro prototipos compactos y un corrector con HAR externo, con diez pruebas sintéticas documentadas. Los otros seis modelos tienen código histórico pendiente de integración y validación nueva. No se han ejecutado el HPO, el dimensionamiento ni la evaluación de este conjunto. Las métricas de E1, P0 o ETTh1 y las de artículos externos no rellenan sus resultados.
+Se conservan cuatro prototipos compactos y un corrector con HAR externo, ahora histórico inactivo, con diez pruebas sintéticas documentadas. El nuevo híbrido es sólo un diseño editorial: no está implementado ni entrenado y esas pruebas no lo validan. Los otros seis modelos tienen código histórico pendiente de integración y validación nueva. No se han ejecutado el HPO, el dimensionamiento ni la evaluación de este conjunto. Las métricas de E1, P0 o ETTh1 y las de artículos externos no rellenan sus resultados.
 
 ## 6.1 Tabla de los once candidatos
 
@@ -18,13 +18,13 @@ Hay cuatro prototipos compactos y un corrector con HAR externo, con diez pruebas
 | 8 | TimeMixer | Código histórico; integración y validación pendientes | No medidos |
 | 9 | PatchTST | Código histórico; integración y validación pendientes | No medidos |
 | 10 | iTransformer | Código histórico; integración y validación pendientes | No medidos |
-| 11 | HAR + red residual | Corrector con HAR externo; falta pipeline HAR/OOF y resolver pérdida/enlace | No medidos; superioridad no demostrada |
+| 11 | CNN-1D + LSTM + atención temporal | Diseño propuesto; implementación y pruebas propias pendientes | No medidos; superioridad no demostrada |
 
-**No medido no significa cero ni un empate.** Esta tabla es el catálogo y su estado, no un ranking. Los controles HAR solo, red sola y soporte comparable se reportarán dentro del estudio del candidato 11 cuando se definan; no reintroducen el catálogo descartado ni acreditan ensayos ya realizados.
+**No medido no significa cero ni un empate.** Esta tabla es el catálogo y su estado, no un ranking. Los controles CNN sola, LSTM sola y CNN–LSTM sin atención se reportarán dentro del estudio del candidato 11 cuando se definan; no reintroducen el catálogo descartado ni acreditan ensayos ya realizados.
 
 ## 6.2 Qué debe medir una comparación válida
 
-La tarea neural conserva D7×5 OHLCV y predicción a un día de σ₇ en unidades originales. El componente HAR requiere más historia del objetivo, que debe identificarse explícitamente. Las fechas comunes, el calentamiento y las exclusiones se fijan antes de comparar; no se eliminan fechas a conveniencia según el modelo o el error observado.
+La tarea común conserva D7×5 derivado de OHLCV mediante `relative_window` y predicción a un día de σ₇ poblacional, sin anualización, en unidades originales, según el [contrato sincronizado E1–E2–E3](17_contrato_sincronizado.md). El híbrido no recibe historia adicional ni rezagos del objetivo. Las fechas comunes y las exclusiones se fijan antes de comparar; no se eliminan fechas a conveniencia según el modelo o el error observado.
 
 La métrica primaria es la **media de las RMSE de cada trayectoria/semilla**, calculadas sobre el mismo calendario elegible:
 
@@ -41,15 +41,15 @@ Cada resultado debe acompañarse de receta, origen, semilla, número de fechas, 
 
 ## 6.3 Cómo evaluar al candidato 11
 
-HAR + red residual sólo podrá presentarse como mejor bajo una comparación definida y respaldada por datos. Antes de entrenar se necesitan:
+CNN-1D + LSTM + atención temporal sólo podrá presentarse como mejor bajo una comparación definida y respaldada por datos. El diseño enlaza convoluciones 1D causales que conservan siete posiciones, LSTM unidireccional con `return_sequences=True`, atención temporal sobre esos siete estados observados, vector de contexto y cabeza escalar de σ₇. Antes de entrenar se necesitan:
 
-1. **Objetivo y enlace:** especificar qué pronostica HAR, qué residuo aprende la red, cómo se invierte cualquier transformación y cómo se tratan valores negativos. El truncamiento del prototipo puede anular gradientes.
-2. **Cross-fitting causal:** obtener residuos de predicciones realmente fuera de muestra dentro del entrenamiento autorizado. Ningún error de validación o test se reutiliza como objetivo del corrector en ese fold.
-3. **Controles:** HAR solo con el mismo calendario y tratamiento de salida; red sola; comparadores con soporte de información equiparable, o una limitación explícita de la atribución arquitectónica.
-4. **Equidad:** cargar estimación HAR, generación OOF, entrenamiento del corrector, selección y reajustes al presupuesto del híbrido. No conceder búsquedas extra hasta lograr ventaja.
+1. **Receta y salida:** definir dimensiones, kernels, profundidad, función de atención, enlace y pérdida sin presentarlos como hiperparámetros ya elegidos. Es una adaptación propuesta, no una reproducción exacta verificada del curso o de una publicación.
+2. **Validación causal:** comprobar la ventana y sus transformaciones, padding exclusivamente izquierdo, estado recurrente reiniciado y ausencia de información futura. La atención no añade observaciones fuera de D7.
+3. **Controles:** CNN sola, LSTM sola y CNN–LSTM sin atención, con entradas, calendario y evaluación comunes. Son ablaciones, no ampliaciones del catálogo ni resultados ya obtenidos.
+4. **Equidad:** contabilizar la búsqueda, entrenamiento de todos los bloques, reajustes y ablaciones. No conceder búsquedas extra hasta lograr ventaja.
 5. **Decisión previa:** comparador, mejora mínima relevante, familia de contrastes, multiplicidad, incertidumbre y criterio de coste definidos antes de resultados.
 
-La literatura aporta tanto motivación como resultados desfavorables de híbridos. Una menor varianza residual no garantiza mayor capacidad predictiva. Se aceptarán resultados nulos o peores; no se seleccionará retrospectivamente la métrica o cohorte que favorezca al candidato.
+Combinar mecanismos no acredita novedad ni mejora garantizada. Se aceptarán resultados nulos o peores; no se seleccionará retrospectivamente la métrica o cohorte que favorezca al candidato. HAR + red residual y sus exigencias de soporte adicional/cross-fitting quedan como antecedente inactivo, no como obligaciones del nuevo diseño.
 
 ## 6.4 Incertidumbre, eficiencia y límites
 
@@ -68,7 +68,7 @@ La reserva ya consultada en etapas anteriores conserva carácter **exploratorio*
 | Etapa del catálogo vigente | Evidencia necesaria | Estado |
 |---|---|---|
 | Recetas y fuentes | Arquitecturas, adaptaciones, objetivos y controles del híbrido identificados | Pendiente de congelación |
-| Pipeline | Integración de los once candidatos y controles, causalidad, escalado y fallos comprobados | Parcial; sólo prototipos aislados |
+| Pipeline | Integración de los once candidatos y controles, causalidad, escalado y fallos comprobados | Parcial; cuatro prototipos compactos previos y seis adaptadores históricos; híbrido nuevo sin implementar |
 | Preregistro | Fuente ejecutable, calendario, presupuesto, hipótesis y análisis publicados antes de ajustes | Pendiente |
 | Selección y dimensionamiento | HPO propio, recetas congeladas y planificación de repeticiones que contemple tiempo y entrenamiento | No ejecutados |
 | Evaluación | Pesos y calibradores cerrados, predicciones comparables, costes y auditorías | No ejecutada |
