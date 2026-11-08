@@ -209,7 +209,9 @@ Esta evidencia no demuestra que añadir Y rezagada mejore un modelo ni autoriza 
 (e2-trazabilidad-eda)=
 ## 2.3 Trazabilidad hallazgo–decisión
 
-La [tabla completa descargable](../_static/eda_traceability/hallazgo_decision.csv) registra evidencia, preprocesamiento, arquitectura, protocolo, riesgo y alcance para cada análisis. Contrastada con **A.1 de la guía completa (PDF p61)**, cubre sus cinco campos: hallazgo, evidencia, decisión de preprocesamiento, impacto en arquitectura/validación y riesgo/fuga. Las columnas adicionales separan protocolo, alcance y estado. La decisión posterior de ruta se explicita aquí y en §7; el CSV conserva la procedencia de los hallazgos del EDA.
+La [tabla completa descargable](../_static/eda_traceability/hallazgo_decision.csv) registra evidencia, preprocesamiento, arquitectura, protocolo, riesgo y alcance para cada análisis. Contrastada con **A.1 de la guía completa (PDF p61)**, cubre sus cinco campos: hallazgo, evidencia, decisión de preprocesamiento, impacto en arquitectura/validación y riesgo/fuga. Las columnas adicionales separan protocolo, alcance y estado. El CSV se conserva íntegro como registro histórico: la fila `RESID` describe la alerta anterior al cierre de la ruta y no expresa el estado vigente. El [registro complementario de decisiones vigentes](../_static/eda_traceability/decisiones_vigentes.csv) enlaza esa fila con la decisión **F2a del 06/11/2026**, documentada en la {ref}`sección 7 <e2-ruta-temporal>`, y registra por separado su incorporación documental del 08/11/2026. No se retrofecha ni se reescribe la evidencia histórica.
+
+En particular, «la referencia no integra el benchmark» en la fila histórica se refiere a la **ejecución diagnóstica Ridge α=1 del EDA**, no a la exclusión de la familia Ridge del catálogo vigente. La configuración Ridge del benchmark sigue su HPO y enlace puntual registrados; sus resultados no se sustituyen por las cifras diagnósticas de §2.2.3.
 
 | Hallazgo | Decisión y efecto en el diseño | Riesgo que controla |
 |---|---|---|

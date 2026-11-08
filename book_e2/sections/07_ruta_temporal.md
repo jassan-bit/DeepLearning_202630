@@ -3,6 +3,8 @@
 
 **Decisión del 06/11/2026:** se adopta la ruta **F2a, series de tiempo**, tras recibir la guía completa de 65 páginas. El diagnóstico de desarrollo activa la regla RT1 de la página 32: la autocorrelación residual fuerte de una referencia requiere reclasificar el problema. Esta decisión cierra la clasificación metodológica; el benchmark Bitcoin continúa pendiente. La resolución no modifica E1 ni convierte la reserva conocida en una prueba confirmatoria.
 
+El [registro de decisiones vigentes del EDA](../_static/eda_traceability/decisiones_vigentes.csv) enlaza esta resolución con la fila histórica `RESID`, conservada sin cambios. La fecha de decisión es el 06/11/2026; su incorporación al registro complementario el 08/11/2026 es una aclaración documental, no una nueva reclasificación ni un resultado experimental.
+
 ## 7.1 Motivo de la reclasificación y contrato que se conserva
 
 La {ref}`referencia Ridge forward <e2-diagnostico-forward>` dejó ACF(1)=0,632228 en 305 fechas de validación de 2024. Ljung–Box de lag7 dio Q=266,4062 y p≈8,88×10⁻⁵⁴, con sus limitaciones asintóticas y de dependencia. No se clasifica la tarea solo por excluir Y rezagada de las entradas. La regla específica RT1 (PDF p32) y el diagnóstico del EDA C (p6) determinan seguir F2a; la instrucción general de p40 no rebaja ese requisito. La guía exige resolver la ruta antes de implementar el benchmark (p20).

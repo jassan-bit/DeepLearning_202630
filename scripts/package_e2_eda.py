@@ -41,11 +41,13 @@ La reconstrucción del perfil de la reserva ya conocida se explica en
 book_e2/_static/eda_known_shift/README.md; admite caché verificado o los ZIP
 oficiales, sin entrenar ni volver a puntuar modelos.
 
-El contenido corresponde a EDA: Ridge es una referencia diagnóstica mensual;
-el benchmark de diez modelos nuevos más las cinco referencias de E2 (mínimo
-quince configuraciones) aún está pendiente. El perfil del test es
-retrospectivo y no constituye confirmación nueva. Los resultados adversos y
-las limitaciones de ruido, ruta y sellado se conservan en el capítulo.
+El contenido corresponde a EDA: Ridge alpha=1 es una referencia diagnóstica
+mensual, distinta de la configuración Ridge del benchmark registrado de veinte
+configuraciones. El benchmark final sigue pendiente; el diagnóstico no sustituye
+sus resultados. La ruta F2a quedó cerrada el 06/11/2026. El CSV histórico se
+conserva y decisiones_vigentes.csv documenta ese cierre y su enlace a la sección 7.
+El perfil del test es retrospectivo y no constituye confirmación nueva. Los
+resultados adversos y las limitaciones de ruido y sellado se conservan.
 
 Se incluyen agregados y derivados diagnósticos de desarrollo; los originales
 de mercado y el caché de precios de test se obtienen/conservan por separado.
