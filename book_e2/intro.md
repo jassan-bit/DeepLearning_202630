@@ -1,5 +1,7 @@
 # Proyecto Final de Deep Learning: Entregable 2
 
+**Actualización de planificación:** [§19: auditoría real de desarrollo y plan propuesto](./sections/19_plan_auditoria.md). Sin entrenamiento de mercado, HPO ni preregistro nuevo.
+
 **Deep Learning · 2026-30 · Jassan Arteta**
 
 ## Catálogo vigente

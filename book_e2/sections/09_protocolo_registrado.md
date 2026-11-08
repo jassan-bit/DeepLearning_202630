@@ -1,5 +1,7 @@
 # 9. Preregistro del catálogo vigente y trazabilidad experimental
 
+**Actualización de planificación:** [§19: auditoría real de desarrollo y plan propuesto](19_plan_auditoria.md). Sin entrenamiento de mercado, HPO ni preregistro nuevo.
+
 **Estado al 08/11/2026: el catálogo nuevo todavía no tiene preregistro experimental propio.** La selección vigente comprende FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder con predictor, TimesNet, TSMixer, TiDE, TimeMixer, PatchTST e iTransformer; CNN-1D + LSTM + atención temporal es el candidato adicional 11. Los registros anteriores no autorizan a presentar estas recetas como congeladas ni estos modelos como entrenados.
 
 Esta sección sustituye las reglas prospectivas del catálogo retirado por las decisiones que deben cerrarse para el actual. Los protocolos y recibos históricos se mantienen intactos y se enlazan al final. **No se fijan ni se simulan nuevos presupuestos, candidatos HPO, búsquedas NAS o repeticiones R mediante esta revisión documental.**

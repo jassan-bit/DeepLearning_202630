@@ -1,5 +1,7 @@
 # 18. Implementación provisional y verificación sintética
 
+**Actualización de planificación:** [§19: auditoría real de desarrollo y plan propuesto](19_plan_auditoria.md). Sin entrenamiento de mercado, HPO ni preregistro nuevo.
+
 **08/11/2026: los once candidatos están conectados a una fábrica y un flujo común de pruebas sintéticas.** Esto no es entrenamiento Bitcoin, HPO, dimensionamiento, preregistro ni benchmark completo. No hay ganador ni superioridad demostrada. Los runners, protocolos y resultados históricos permanecen intactos.
 
 ## 18.1 Código disponible y recetas explícitas
