@@ -2,7 +2,7 @@
 
 **Comparación principal y antecedentes.** E1 compara **GRU H32, LSTM H32 y MLP H16** en D7 sobre las **608 fechas del 01/01/2025–31/08/2026**. La {ref}`reejecución registrada de 608 fechas <remediation-608-e1>` ajusta de nuevo las tres familias con cuatro candidatos comunes de LR–dropout, piloto propio y repeticiones dimensionadas. Las anchuras se conservan; el presupuesto original de diez semillas y el {ref}`estudio de 60 fechas <final-core-mlp-e1>` con otras recetas y 465 semillas permanecen como evidencia histórica y complementaria. TCN conserva sus resultados complementarios. La selección bibliográfica y experimental sucede después de conocer esos estudios y el calendario evaluado, con alcance exploratorio.
 
-La revisión debe identificar exactamente tres modelos DL básicos usados como referencias comparativas en la literatura del problema. El experimento propio sigue en Bitcoin y distingue evidencia cripto de transferencia financiera. La {ref}`ampliación gratuita de §3.12 <free-model-expansion-e1>` incorpora **13 obras seleccionadas —siete bajo la búsqueda TCN y seis bajo MLP—, de las cuales diez son identidades nuevas**: la bibliografía canónica pasa de 60 a **70 referencias**. La {ref}`conciliación acumulada de §3.13 <homogeneous-expansion-e1>` actualiza acceso, roles, calidad y frecuencias sin sumar registros por cuota de arquitectura. La decisión de {ref}`§3.14 <core-selection-e1>` adopta las tres mayores frecuencias del estrato con reporte suficiente: **LSTM 10/10, MLP 4/10 y GRU 2/10**. MLP pasa al núcleo seleccionado; TCN queda como comparación complementaria. Las recetas de la reejecución y los registros históricos se identifican en los capítulos 4 y 5; el capítulo 11 documenta el nuevo protocolo de 608 fechas y el capítulo 10 conserva el complemento de septiembre–octubre de 2026.
+La revisión debe identificar exactamente tres modelos DL básicos usados como referencias comparativas en la literatura del problema. El experimento propio sigue en Bitcoin y distingue evidencia cripto de transferencia financiera. La {ref}`ampliación gratuita de §3.12 <free-model-expansion-e1>` incorpora **13 obras seleccionadas —siete bajo la búsqueda TCN y seis bajo MLP—, de las cuales diez son identidades nuevas**: la bibliografía canónica pasa de 60 a **70 referencias**. La {ref}`conciliación acumulada de §3.13 <homogeneous-expansion-e1>` actualiza acceso, roles, calidad y frecuencias sin sumar registros por cuota de arquitectura. El {ref}`cierre posterior de §3.15 <native-620-closure-e1>` revisa los 620 grupos de la ronda nativa y amplía la síntesis estricta a 18 experimentos (LSTM 15, MLP 6, GRU 4), sin cambiar la terna ni sus resultados. La decisión de {ref}`§3.14 <core-selection-e1>` adopta las tres mayores frecuencias del estrato con reporte suficiente: **LSTM 10/10, MLP 4/10 y GRU 2/10**. MLP pasa al núcleo seleccionado; TCN queda como comparación complementaria. Las recetas de la reejecución y los registros históricos se identifican en los capítulos 4 y 5; el capítulo 11 documenta el nuevo protocolo de 608 fechas y el capítulo 10 conserva el complemento de septiembre–octubre de 2026.
 
 El corte anterior de la {ref}`síntesis homogénea de §3.10 <homogeneous-selection-e1>` concilió **47 identidades, 26 originales primarios leídos, 12 experimentos del constructo, diez con referencias extraíbles y ocho elegibles por reporte**. Esas unidades y cifras permanecen como evidencia histórica. El corte histórico del **05/11/2026** reúne **40 referencias** y un corpus aplicado de **siete textos completos**: seis estudios previos de BTC y S9, un estudio de veinte criptomonedas que también incluye BTC. Por tanto, el subconjunto que incluye BTC tiene siete estudios y uno de ellos incluye otras criptomonedas; son categorías superpuestas, no dos grupos que se suman. S8 verifica MLP, CNN, LSTM y GRU como comparadores independientes {cite:p}`miura2019`; S9 incorpora LSTM como propuesta, con su papel separado {cite:p}`djanga2025commonality`. En ese corte, T1/T2/T3 figuraban como transferencia financiera: un original editorial completo, código primario y una identidad de publicación, respectivamente; no aumentaban el denominador cripto. §3.8 actualiza después la lectura de T3, conservando su estrato financiero.
 
@@ -24,7 +24,7 @@ La numeración mantiene los seis incisos de búsqueda (§3.1.1–3.1.6). La iden
 
 ## 3.1. Estrategia de Búsqueda (Obligatoria)
 
-**Estado y alcance actuales.** La {ref}`bitácora de §3.11 <current-native-execution-e1>` acredita consultas de WoS, Scopus e IEEE Xplore con cadenas, fechas confirmadas y totales documentados. Los incisos siguientes conservan el descubrimiento histórico y sus límites; no reconstruyen sesiones antiguas. La ampliación web gratuita de §§3.12–3.13 tiene consultas y procedencia propias y no se presenta como otra consulta nativa ni como cribado exhaustivo de los 620 grupos recuperados en la ronda de §3.11.
+**Estado y alcance actuales.** La {ref}`bitácora de §3.11 <current-native-execution-e1>` acredita consultas de WoS, Scopus e IEEE Xplore con cadenas, fechas confirmadas y totales documentados. Los incisos siguientes conservan el descubrimiento histórico y sus límites; no reconstruyen sesiones antiguas. La ampliación web gratuita de §§3.12–3.13 tiene consultas y procedencia propias y no se presenta como otra consulta nativa ni como cribado exhaustivo de los 620 grupos recuperados en la ronda de §3.11. Ese cribado se documenta después, con decisiones por grupo y disposiciones de acceso, en {ref}`§3.15 <native-620-closure-e1>`.
 
 ### 3.1.1. Cadena de búsqueda
 
@@ -471,7 +471,7 @@ Son cifras de **ganadores clásicos/árboles, no de LSTM**, transcritas en el [r
 
 La [Tabla 1 completa](../_static/literature_e1/recovery_20261105/miura_table1.csv) conserva también HARRV, SVM y los valores de CV. Ridge obtiene menor RMSE puntual de test que las redes; GRU tiene la menor MSE de CV entre los modelos comparados. No se deduce superioridad estadística de esas medias ni se convierte la longitud de entrada en horizonte. La [procedencia](../_static/literature_e1/recovery_20261105/primary_source.json) identifica el PDF y su hash; aquí se publican extracción y enlace, no se redistribuye el capítulo completo.
 
-S3 —Herremans y Low— y S4 —Huang et al.— siguen como fuentes identificadas con texto completo pendiente. El código de autores de S3 no aumenta la frecuencia hasta verificar en el artículo qué redes se compararon. Las nuevas inspecciones de repositorios sin documento identificable también permanecen fuera del denominador.
+En este corte, S3 —Herremans y Low— y S4 —Huang et al.— seguían como fuentes identificadas con texto completo pendiente. La recuperación primaria posterior de Huang se documenta en {ref}`§3.15 <native-620-closure-e1>`. El código de autores de S3 no aumenta la frecuencia hasta verificar en el artículo qué redes se compararon. Las nuevas inspecciones de repositorios sin documento identificable también permanecen fuera del denominador.
 
 ### 3.2.4. Equivalencia funcional con referencias clásicas
 
@@ -1295,7 +1295,7 @@ Las diferencias de campo, intervalo y acceso impiden interpretar los tres totale
 | Ocurrencias al reunir ronda e historial | **1.078** | 834 nuevas + 244 históricas; no son artículos únicos |
 | Grupos provisionales de la unión | **676** | 126 grupos históricos solapan por ID exacto, 56 siguen sólo en el historial y 494 son nuevos |
 
-Esta ronda es una **auditoría de ejecución y recuperación**, posterior a la selección experimental. No se afirma haber leído ni evaluado para inclusión los 620 grupos de esta ronda. El flujo de cribado de los 182 grupos históricos y la {ref}`conciliación de 47 obras <homogeneous-selection-e1>` conservan sus propios conteos de evaluación, acceso, calidad y elegibilidad. Los 12 experimentos del constructo y diez con referencias extraíbles proceden de esa conciliación; **no son 12 inclusiones derivadas de un cribado completo de esta nueva ronda**.
+En su corte original, esta ronda fue una **auditoría de ejecución y recuperación**, posterior a la selección experimental; todavía no evaluaba para inclusión los 620 grupos. El {ref}`cierre posterior de §3.15 <native-620-closure-e1>` aporta ahora las 620 decisiones, sus 111 disposiciones de avance y la integración con las inclusiones previas. El expediente original conserva su estado fechado y no se reescribe como si aquella lectura ya hubiera ocurrido. El flujo de cribado de los 182 grupos históricos y la {ref}`conciliación de 47 obras <homogeneous-selection-e1>` conservan sus propios conteos de evaluación, acceso, calidad y elegibilidad. Los 12 experimentos del constructo y diez con referencias extraíbles proceden de esa conciliación; **no son 12 inclusiones derivadas de un cribado completo de esta nueva ronda**.
 
 Quedan acreditadas las consultas efectivas y documentados los totales, cadenas y fechas con su procedencia. Esto sustituye la carencia anterior de una bitácora de ejecución actual de las tres bases. La revisión no se declara exhaustiva ni sistemáticamente cerrada por recibir archivos: la exportación parcial de IEEE, su restricción a acceso abierto y las identidades provisionales son límites de cobertura, separados de las lecturas ya verificadas. No se inventan las consultas originales, no se borran informes no obtenidos y no se suman coincidencias como estudios independientes.
 
@@ -1446,3 +1446,75 @@ La {ref}`ejecución nueva <remediation-608-e1>` cerró **927 redes, 1.854 etapas
 La publicación anterior a los ajustes nuevos acredita su orden experimental, sin volver desconocidas las 608 fechas ni la evaluación de sesenta días ya observadas. Todas conservan alcance histórico exploratorio respecto de la selección y el modelado. TCN mantiene sus resultados anteriores; las nuevas HPO, curvas, dimensionamiento y pruebas temporales no se atribuyen a sus archivos históricos.
 
 `python scripts/build_e1_core_selection.py --check` comprueba el ranking, la elegibilidad de las ocurrencias, los parámetros y la preservación de los insumos históricos. Las [validaciones](../_static/literature_e1/core_selection_20261107/validation.json), el [resumen](../_static/literature_e1/core_selection_20261107/summary.json) y el [manifiesto público](../_static/literature_e1/core_selection_20261107/manifest.json) conservan esa evidencia. El cierre de la elección bibliográfica corresponde a las tres mayores frecuencias, plantillas sencillas y sesgos justificados dentro del corpus evaluado; no sustituye la comprobación de ejecución ni las limitaciones estadísticas del experimento.
+
+
+(native-620-closure-e1)=
+## 3.15. Cierre del cribado de los 620 grupos nativos e integración
+
+El cierre del **08/11/2026 UTC —07/11 en Colombia—** evalúa los **620 grupos provisionales de las 834 ocurrencias recibidas** de la campaña nativa del 06/11. El [protocolo](../_static/literature_e1/native_620_screening_20261108/protocol.json) se registró antes de estas decisiones y se aplica a todas las familias. No es una búsqueda nativa nueva: conserva cadenas, fechas, filtros y totales de §3.11. El {download}`expediente reproducible <../_static/literature_e1/native_620_screening_20261108/README.md>` y su [manifiesto](../_static/literature_e1/native_620_screening_20261108/manifest.json) separan cribado, acceso, calidad, inclusión y experimento independiente.
+
+### 3.15.1. Flujo y disposición de todos los candidatos
+
+| Etapa | Grupos o informes | Decisión verificable |
+|---|---:|---|
+| Ocurrencias nativas exportadas | 834 | WoS 271, Scopus 538 e IEEE 25; agrupación provisional por identificadores/título |
+| Grupos cribados por título y resumen disponible | **620** | Una razón por grupo; 610 resúmenes disponibles y diez ausentes |
+| Exclusiones iniciales | **509** | Objetivo o tipo de documento fuera del criterio, con motivo explícito |
+| Avanzados a recuperación primaria o ampliación de metadatos | **111** | Incluye los diez grupos sin resumen, sin excluirlos por falta de acceso |
+| Exclusiones tras ampliar metadatos | **9** | Se verifica objetivo/identidad; no se afirma lectura de métodos |
+| Informes con secciones primarias evaluadas | **44** | **33 evaluaciones nuevas y once revisiones previas reutilizadas**, con fuente enlazada |
+| Informes no recuperados al corte | **58** | Intentos y disposición documentados; sin voto de familia ni juicio de calidad inferido |
+| Desglose de los 44 evaluados | **13 estrictos + 21 excluidos por objetivo + nueve por reporte + un contexto híbrido** | Acceso al original no garantiza elegibilidad |
+| Experimentos estrictos nativos | **13** | Trece informes/experimentos: cinco ya incluidos y ocho nuevos |
+| Síntesis estricta integrada | **18** | Diez experimentos previos + ocho nuevos; una aparición por familia y experimento |
+
+La [tabla de decisiones](../_static/literature_e1/native_620_screening_20261108/decisions.csv), el [registro de recuperación](../_static/literature_e1/native_620_screening_20261108/retrieval.csv), la [matriz de evidencia](../_static/literature_e1/native_620_screening_20261108/evidence_matrix.csv) y la [conciliación de identidades](../_static/literature_e1/native_620_screening_20261108/corpus_crosswalk.csv) permiten seguir cada caso. **111 = 9 + 44 + 58**; los 58 no recuperados tienen disposición al corte y no se presentan como textos leídos. El cribado recibido está cerrado, con cobertura de acceso explícita.
+
+```{figure} ../_static/literature_e1/native_620_screening_20261108/flow.svg
+:name: native-620-flow
+:alt: Flujo de 834 ocurrencias a 620 grupos, 111 avances, evaluación y síntesis integrada
+
+Flujo del universo exportado. Grupos candidatos, informes evaluados y experimentos independientes tienen unidades distintas.
+```
+
+La revisión y la conciliación fueron asistidas por agentes; **no equivalen a un doble cribado humano independiente**. El ledger global conserva diez enlaces provisionales por título —cinco históricos y cinco de ocurrencias nuevas—; ocho grupos nativos tienen la marca de identidad provisional. No se convierte esta agrupación en 620 artículos únicos acreditados. Los **siete resultados IEEE no exportados** quedan fuera de los 620; no se declara cobertura completa de todos los resultados de las tres bases. Los resúmenes completos y los PDF no se redistribuyen.
+
+### 3.15.2. Ocho experimentos estrictos añadidos
+
+Los [juicios primarios](../_static/literature_e1/native_620_screening_20261108/primary_assessments.json) contienen dataset, horizonte, arquitectura, protocolo, métricas y ubicaciones comprobadas, junto con riesgos de sesgo. Esta tabla resume las apariciones autónomas; una propuesta híbrida del mismo artículo no añade otro experimento.
+
+| Autores | DOI | Familias autónomas admitidas | Objetivo y alcance |
+|---|---|---|---|
+| Cocianu, Uscatu, Stan y Muraru | [10.1109/ACCESS.2026.3709184](https://doi.org/10.1109/ACCESS.2026.3709184) | GRU, LSTM | Volatilidad diaria de doce pares cripto; horizonte de un día |
+| Shen, Wan y Leatham | [10.3390/jrfm14070337](https://doi.org/10.3390/jrfm14070337) | GRU | Volatilidad de Bitcoin a 1/5/10 días; se conservan inconsistencias entre métricas y tamaños reportados |
+| Manevich | [10.1134/S1995080224600705](https://doi.org/10.1134/S1995080224600705) | CNN genérica | Volatilidad realizada de BTC y E-mini; un día; menciones sin receta no suman MLP/LSTM |
+| Akgun y Gulay | [10.1007/s10614-024-10694-2](https://doi.org/10.1007/s10614-024-10694-2) | MLP, LSTM, CNN genérica | RV/MedRV de BTC, ETH y BNB, un paso diario; resultados neuronales localizados en figuras |
+| Amirshahi y Lahmiri | [10.1016/j.mlwa.2023.100465](https://doi.org/10.1016/j.mlwa.2023.100465) | MLP, LSTM | Volatilidad histórica de 27 criptomonedas; referencias autónomas separadas de híbridos GARCH |
+| Seo y Kim | [10.3390/app10144768](https://doi.org/10.3390/app10144768) | HONN | Pronóstico diario de varianza futura de cinco días; HONN se mantiene separada de MLP |
+| Wang, Andreeva y Martin-Barragan | [10.1016/j.irfa.2023.102914](https://doi.org/10.1016/j.irfa.2023.102914) | LSTM | Volatilidad de cuatro criptomonedas; optimizaciones de LSTM no se cuentan como experimentos adicionales |
+| Huang, Sangiorgi y Urquhart | [10.1016/j.intfin.2024.102064](https://doi.org/10.1016/j.intfin.2024.102064) | LSTM | BTC/USD intradiario 2014–2021; horizontes 1/7/14/30/60 días; recupera el primario de S4 |
+
+Las cinco inclusiones nativas ya presentes son Akbiyik/S1, Gao/S5, Dudek/E1OA-R02, Zhou/E1X003 y García-Medina/E1F-M01; sus versiones y filas previas no se duplican. Huang estaba citado, pero ahora su lectura primaria justifica su inclusión estricta: **referencia bibliográfica previa y experimento previamente elegible son estados distintos**.
+
+La [tabla de calidad](../_static/literature_e1/native_620_screening_20261108/quality.csv) distingue suficiencia de reporte de riesgo de sesgo. Por ejemplo, las anomalías impresas de Shen no se corrigen inventando números. En Akgun y Gulay se verifican nombres/fórmulas de métricas, protocolo y figuras 11–19, **sin transcribir puntuaciones neuronales que no pudieron extraerse con fiabilidad de las figuras** ni atribuirles la tabla GARCH. El artículo con DOI `10.3390/jrfm14070308` se excluye del estrato estricto por ambigüedades de objetivo/unidades; tener un PDF accesible no basta.
+
+Se aplica la misma regla a los híbridos: Özgür, DOI [10.30798/makuiibf.1530528](https://doi.org/10.30798/makuiibf.1530528), conserva lectura y discusión contextual, pero sus BPNN/DBN usan pronósticos GARCH como entrada y no añaden votos autónomos. Las ANN de Seo con esas entradas tampoco suman MLP; su HONN sin ellas sí constituye una referencia distinta. No se penaliza como mala calidad el mero carácter híbrido: cambia su papel en esta pregunta comparativa.
+
+### 3.15.3. Recurrencia integrada, simplicidad y diversidad
+
+| Familia | Ronda nativa estricta, N=13 | Corte previo de selección, N=10 | Acumulado deduplicado, N=18 |
+|---|---:|---:|---:|
+| **LSTM** | **10/13** | **10/10** | **15/18** |
+| **MLP** | **4/13** | **4/10** | **6/18** |
+| **GRU** | **3/13** | **2/10** | **4/18** |
+| CNN genérica | 2/13 | 0/10 | 2/18 |
+| TCN | 1/13 | 1/10 | 1/18 |
+| HONN | 1/13 | 0/10 | 1/18 |
+
+El [recuento reproducible](../_static/literature_e1/native_620_screening_20261108/frequencies.csv) conserva además GFN, MFN, RBFN, RNN simple y encoder Transformer, cada uno con una aparición acumulada. Las columnas se solapan y no se suman: cinco estudios estrictos nativos ya estaban en el corte previo. El filtro de sensibilidad **2019–2026** conserva los trece experimentos nativos estrictos y sus mismos numeradores; no implica atribuir ese filtro a la búsqueda original de WoS.
+
+**LSTM–MLP–GRU conserva los tres primeros puestos**. La evidencia ampliada refuerza la recurrencia del núcleo sin cambiarlo después de observar los nuevos gráficos. La simplicidad corresponde a las adaptaciones propias de una capa, **MLP16/593, GRU32/3.777 y LSTM32/5.025 parámetros**; diversidad corresponde a ventana aplanada, transición GRU y celda LSTM, bajo la misma información. No se exige copiar los tamaños de los artículos ni afirmar que toda ANN sea un modelo DL profundo.
+
+Las frecuencias no son una estimación de prevalencia mundial: sobreviven búsquedas dirigidas, diferencias de cobertura, informes no obtenidos y objetivos/particiones heterogéneos. No se promedian puntuaciones de artículos con escalas o calendarios distintos. Las [32 adiciones bibliográficas](../_static/literature_e1/native_620_screening_20261108/bibliography_additions.bib) se renderizan con la base inmutable de 70 entradas; incluyen primarios excluidos examinados críticamente y no representan 32 inclusiones nuevas.
+
+El [resumen](../_static/literature_e1/native_620_screening_20261108/summary.json), las [validaciones](../_static/literature_e1/native_620_screening_20261108/validation.json) y las fuentes fijadas en [source_manifest.json](../_static/literature_e1/native_620_screening_20261108/source_manifest.json) permiten recompilar este cierre. La síntesis es posterior al benchmark: **cero ajustes, cero pronósticos nuevos y ninguna métrica modificada**. El calendario de evaluación continúa siendo histórico y conocido, con el alcance descrito en el capítulo 7.

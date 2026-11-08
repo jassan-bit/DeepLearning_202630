@@ -3,7 +3,7 @@
 **Proyecto de Deep Learning · 2026-30**  
 **Profesor:** Dr. Lihki Rubio  
 **Autor:** Jassan Arteta  
-**Entregable 1 · LSTM–MLP–GRU · benchmark principal de 608 días · actualización del 7 de noviembre de 2026, Colombia**
+**Entregable 1 · LSTM–MLP–GRU · benchmark principal de 608 días · cierre de evidencias del 8 de noviembre de 2026 UTC (7 de noviembre en Colombia)**
 
 E1 compara modelos básicos de Deep Learning para pronosticar la volatilidad de **Bitcoin BTCUSDT**, con datos oficiales de Binance Spot. La tarea es **regresión temporal, tipo 4**: cinco covariables OHLCV diarias, volatilidad poblacional de siete retornos logarítmicos y horizonte de un día. Conserva la validación forward chaining de **timeseries-cv**, con coautoría de Filipe R. Ramos, purga temporal y transformaciones aprendidas únicamente del pasado permitido.
 
@@ -28,6 +28,8 @@ Las redes resumen **309 inicializaciones**, cada una sobre las mismas 608 fechas
 
 La puntuación cerró **563.616 predicciones** y los registros contienen **33.141 pérdidas de entrenamiento/validación**. El [benchmark](sections/05_benchmark.md) publica seis métricas, IC, pruebas entre semillas, DM temporal, bootstrap por bloques y diagnósticos residuales de esta misma ejecución. La revisión numérica independiente verificó esas cifras desde sus predicciones cerradas. Las [descargas](sections/08_entregables.md) incluyen los agregados, curvas y configuraciones.
 
+El {ref}`análisis posterior de errores <frozen-errors-e1>` añade observado frente a pronosticado, veinte meses, rangos comunes de volatilidad, sesgo y casos difíciles usando esas mismas predicciones congeladas. **Las 5.568 métricas individuales verificadas coinciden exactamente y los archivos originales conservan sus hashes.** No se reentrena ni se modifica el resultado final.
+
 La potencia planificada describe diferencias entre inicializaciones bajo sus supuestos; no es potencia temporal ni potencia alcanzada. **El calendario ya era conocido: esta es una comparación histórica exploratoria.** La publicación previa del nuevo código y del plan acredita el orden de esta ejecución sin convertir sus fechas en una reserva independiente nueva.
 
 ### Resultados originales conservados
@@ -38,14 +40,14 @@ Estos valores pertenecen a las ejecuciones originales y no se atribuyen a los nu
 
 ## Selección bibliográfica de los modelos base
 
-| Familia | Frecuencia en diez experimentos cripto con reporte suficiente | Mecanismo básico |
-|---|---:|---|
-| **LSTM** | **10/10** | Una capa recurrente con estado de memoria separado y compuertas |
-| **MLP** | **4/10** | Una capa oculta densa sobre la ventana ordenada, sin estado recurrente |
-| **GRU** | **2/10** | Una capa recurrente con actualización y reinicio del estado |
-| TCN, complementaria | 1/10 | Convoluciones causales dilatadas |
+| Familia | Corte de selección, N=10 | Síntesis ampliada, N=18 | Mecanismo básico |
+|---|---:|---:|---|
+| **LSTM** | **10/10** | **15/18** | Una capa recurrente con estado de memoria separado y compuertas |
+| **MLP** | **4/10** | **6/18** | Una capa oculta densa sobre la ventana ordenada, sin estado recurrente |
+| **GRU** | **2/10** | **4/18** | Una capa recurrente con actualización y reinicio del estado |
+| TCN, complementaria | 1/10 | 1/18 | Convoluciones causales dilatadas |
 
-La {ref}`selección de §3.14 <core-selection-e1>` deriva esos recuentos del corpus congelado, identifica autores, DOI y adaptaciones, y comprueba simplicidad y capacidad. La MLP principal tiene **una capa oculta y 593 parámetros**. Las frecuencias describen el corpus revisado, con búsquedas dirigidas y límites de cobertura; todas las familias reciben la misma información observable.
+La {ref}`selección de §3.14 <core-selection-e1>` conserva su corte original. El {ref}`cierre de §3.15 <native-620-closure-e1>` integra los 620 grupos de la ronda nativa: añade ocho experimentos estrictos a los diez previos y confirma el mismo orden de las tres primeras familias. Cada experimento aporta como máximo un voto por familia autónoma; propuestas híbridas, variantes y versiones de autor se distinguen. La MLP principal tiene **una capa oculta y 593 parámetros**; las tres redes reciben la misma información observable. Estas frecuencias describen el corpus evaluado, con sus límites de búsqueda y calidad.
 
 ## Comprobación complementaria de sesenta días
 
@@ -68,13 +70,14 @@ Ese estudio ejecutó 960 etapas de HPO, 60 de piloto y 2.790 definitivas: **465 
 - [Estudio complementario con TCN](sections/09_estudio_planificado.md): archivo y cronología.
 - [Estudio complementario del núcleo en 60 días](sections/10_nucleo_mlp.md): HPO, piloto, curvas y análisis propios.
 - [Ejecución principal registrada](sections/11_reejecucion_608.md): HPO común, piloto, R=309, curvas y análisis de las 608 fechas.
+- [Errores con predicciones congeladas](sections/12_errores_congelados.md): comparación visual, rangos de volatilidad y casos difíciles, conservando las métricas finales.
 - [Matriz de cumplimiento](sections/protocolo_pendiente.md): requisitos, evidencia y alcance.
 
 ## Literatura, margen y reproducibilidad
 
-La bibliografía canónica conserva **70 referencias**. La {ref}`síntesis acumulada <homogeneous-expansion-e1>` concilia 57 obras, 35 textos primarios completos y una transcripción completa. El constructo cripto comprende quince experimentos, trece descriptivos y diez con reporte suficiente para el ranking principal. La {ref}`ampliación gratuita <free-model-expansion-e1>` mantiene los papeles de originales, fuentes relacionadas e híbridos.
+La bibliografía base conserva **70 referencias**, acompañadas ahora de **32 adiciones** de documentos primarios evaluados. Citar una fuente excluida permite documentar el juicio y no la convierte en experimento elegible. La {ref}`síntesis acumulada <homogeneous-expansion-e1>` concilia 57 obras, 35 textos primarios completos y una transcripción completa. El constructo cripto comprende quince experimentos, trece descriptivos y diez con reporte suficiente para el ranking principal. La {ref}`ampliación gratuita <free-model-expansion-e1>` mantiene los papeles de originales, fuentes relacionadas e híbridos.
 
-La {ref}`bitácora nativa <current-native-execution-e1>` acredita las consultas del **6 de noviembre de 2026 en Colombia**: **WoS 271, Scopus 538 e IEEE 32 resultados**, con **271/538/25 registros exportados**. Cadenas, filtros y fechas conservan su procedencia; las sesiones antiguas no se reconstruyen con aproximaciones. Catorce informes no recuperados al corte conservan identidad, motivo y alternativas verificadas.
+La {ref}`bitácora nativa <current-native-execution-e1>` acredita las consultas del **6 de noviembre de 2026 en Colombia**: **WoS 271, Scopus 538 e IEEE 32 resultados**, con **271/538/25 registros exportados**. Cadenas, filtros y fechas conservan su procedencia; las sesiones antiguas no se reconstruyen con aproximaciones. Los catorce informes no recuperados del corte anterior conservan su historia. El cierre posterior revisa **620 grupos**, con **509 exclusiones iniciales y 111 avances**: nueve exclusiones tras ampliar metadatos, **44 evaluaciones primarias** y **58 informes no recuperados al corte**, todos con disposición explícita. De los 44 evaluados, trece satisfacen el estrato estricto; cinco ya estaban incluidos y ocho son nuevos. Los siete resultados IEEE no exportados quedan fuera del universo recibido. El flujo y las fichas permiten distinguir revisión terminada de disponibilidad de texto completo.
 
 El margen académico δ=0,00025772842664981106 conserva el ancla del 5 % del RMSE CV del GRU32 inicial. Su [justificación](sections/01_problema_dataset.md) y el piloto propio dimensionan los ajustes nuevos; ningún piloto posterior dimensiona retrospectivamente las diez semillas originales. Las semillas describen inicialización condicionada al mismo calendario y no son mercados independientes.
 

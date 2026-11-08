@@ -55,16 +55,23 @@ MANIFEST_STAGES = (
     "open_access_replacement_20261107", "provisional_native_log_20261107",
     "homogeneous_synthesis_20261107", "native_execution_20261107",
     "free_model_expansion_20261107", "homogeneous_expansion_20261107",
-    "core_selection_20261107",
+    "core_selection_20261107", "native_620_screening_20261108",
 )
 PUBLICATION_SCHEMA = "e1_public_metadata_allowlist_v1"
-REFRESH_DATE = "2026-11-07"
-# Keep the earlier same-day delivery records inside the next package. The
-# source commit identifies this exact edition; the suffix distinguishes its
-# primary benchmark scope without inventing another execution date.
-REFRESH_ID = "20261107_remediation_608"
+REFRESH_DATE = "2026-11-08"
+REFRESH_TIMEZONE = "UTC"
+# The UTC edition date is distinct from the existing run's Colombia date.
+# Preserve every earlier edition and scientific execution record unchanged.
+REFRESH_ID = "20261108_evidence_closure"
 REMEDIATION_STUDY = "e1_608_remediation_20261107"
 REMEDIATION_SOURCE = "98e0cbcf4bb09dba863289261677dd6e7534d259"
+NATIVE_SCREENING_SOURCE_ALIASES = {
+    **{"review_inputs/" + name: "references/reviews/native_620_screening_20261108/" + name
+       for name in ("protocol.json", "completion.json", "primary_reviews.json", "decisions_chunk1.json",
+                    "decisions_chunk2.json", "decisions_chunk3.json", "base_bibliography.bib")},
+    "review_inputs/prior_adjudications.json":
+        "references/literature_e1/homogeneous_expansion_20261107/adjudications.json",
+}
 REMEDIATION_PUBLIC_FILES = frozenset({
     "README.md", "summary.json", "registration.json", "source_manifest.json", "selection.json",
     "plan.json", "plan_publication.json", "chronology.json", "runtime.json", "hpo_summary.csv",
@@ -134,6 +141,11 @@ SUPPLEMENTS = {
         "configuration_files": {"registration.json", "selection.json", "plan.json", "plan_publication.json",
                                 "chronology.json", "runtime.json", "source_manifest.json", "architecture_summary.csv"},
     },
+    "frozen_error_analysis": {
+        "directory": "book/_static/e1_frozen_error_analysis_20261108",
+        "manifest": "manifest.json", "item": "8.5", "files": None,
+        "configuration_files": {"summary.json", "source_manifest.json", "manifest.json"},
+    },
 }
 REPRODUCTION_PROTOCOL_FILES = {
     "experiments/e1_curve_reproduction_20261106/protocol.json",
@@ -159,6 +171,9 @@ CHRONOLOGY_NOTE = (
     "El benchmark principal D7 usa una ejecución nueva GRU32–LSTM32–MLP16, HPO igualado y R calculado desde su piloto, sobre608 fechas históricas conocidas. La fuente y el plan calculado preceden a sus respectivos ajustes, y todos los pesos cierran antes del acceso a precios y scoring. El anterior benchmark de608 fechas y diez semillas conserva sus metadatos íntegros como registro fechado. La extensión LSTM–MLP–GRU de sesenta fechas conserva como "
     "exploratoria la evaluación de septiembre–octubre de 2026 ya observada; "
     "los resultados anteriores de TCN permanecen complementarios y separados. "
+    "El cribado de la ronda nativa recibida y el análisis de errores agregado se añaden "
+    "después del cierre del benchmark, sin reentrenar, seleccionar otras recetas ni modificar "
+    "sus métricas finales. Las comparaciones por segmento son descriptivas y posteriores. "
     "Esta actualización no constituye un prerregistro "
     "retrospectivo. Empaquetar consume las evidencias guardadas y no ejecuta ajustes o pronósticos."
 )
@@ -335,6 +350,97 @@ def public_stage(directory, expected_names, manifest_name="manifest.json"):
                    "public_files": len(files), "summary": summary}
 
 
+def native_screening_closure(files, native_files):
+    """Require one finished decision per received group, tied to its source."""
+    summary = json.loads(files["summary.json"])
+    sources = json.loads(files["source_manifest.json"])
+    required = {"stage_id": "native_620_screening_20261108",
+        "source_campaign_id": "E1-NATIVE-20261106-COLOMBIA",
+        "reviewed_groups": 620, "screened_groups": 620,
+        "screening_complete": True, "new_native_search_executions": 0,
+        "benchmark_results_changed": False}
+    if any(type(summary.get(key)) is not type(value) or summary.get(key) != value
+           for key, value in required.items()):
+        raise ValueError("Native screening needs actual closed620-group decisions, without altered benchmark results")
+    expected_sources = {name: legacy.digest(native_files[name])
+                        for name in ("records.csv", "occurrences.csv")}
+    if sources.get("native_execution_public_files_sha256") != expected_sources:
+        raise ValueError("Native screening source hashes differ from the received campaign")
+    occurrences = list(csv.DictReader(io.StringIO(native_files["occurrences.csv"].decode("utf-8-sig"))))
+    expected = {row["group_id"] for row in occurrences if row["origin"] == "new_native_export"}
+    decisions = list(csv.DictReader(io.StringIO(files["decisions.csv"].decode("utf-8-sig"))))
+    actual = [row.get("group_id") for row in decisions]
+    if len(expected) != 620 or len(actual) != 620 or len(set(actual)) != 620 or set(actual) != expected:
+        raise ValueError("Native screening decisions must cover exactly the620 received groups")
+    if any(not row.get("screening_decision", "").strip() or not row.get("reason", "").strip()
+           for row in decisions):
+        raise ValueError("Every received group needs a documented screening decision and reason")
+    return {"stage_id": required["stage_id"], "screened_groups": len(actual),
+        "benchmark_results_changed": False,
+        "source_files_sha256": expected_sources}
+
+
+def native_review_source_aliases(files):
+    """Rebuild canonical compiler input paths from approved metadata snapshots."""
+    sources = json.loads(files["source_manifest.json"]).get("sources_sha256", {})
+    result = {}
+    for approved, canonical in NATIVE_SCREENING_SOURCE_ALIASES.items():
+        safe_member(approved)
+        safe_member(canonical)
+        if approved not in files or legacy.digest(files[approved]) != sources.get(canonical):
+            raise ValueError("Native review canonical aliases need every approved source snapshot with its original hash")
+        validate_public_bytes(canonical, files[approved])
+        result[canonical] = files[approved]
+    return result
+
+
+def frozen_error_closure(files, original_files, current_catalog):
+    """Admit post-hoc aggregates only when all original result bytes are pinned."""
+    summary = json.loads(files["summary.json"])
+    sources = json.loads(files["source_manifest.json"])
+    validation = json.loads(files["validation.json"])
+    current = current_catalog["current_study"]
+    r, n = current["R"], current["n_dates"]
+    required = {"supplement_id": "e1_frozen_error_analysis_20261108",
+        "parent_study_id": REMEDIATION_STUDY,
+        "posthoc_after_original_analysis": True, "original_metrics_unchanged": True,
+        "model_fits": 0, "new_checkpoint_forecasts": 0, "raw_market_archive_reads": 0,
+        "weights_or_scalers_loaded": 0, "neural_runs_per_model": r,
+        "neural_runs": 3*r, "deterministic_reference_runs": 1, "common_dates": n,
+        "neural_prediction_rows_read": 3*r*n, "public_daily_observations_or_forecasts": False,
+        "test_driven_model_selection": False, "new_confirmatory_hypothesis_tests": False}
+    if any(type(summary.get(key)) is not type(value) or summary.get(key) != value
+           for key, value in required.items()):
+        raise ValueError("Error supplement requires closed post-hoc aggregates without fitting, forecasting or changed final metrics")
+    expected_sources = {name: legacy.digest(data) for name, data in original_files.items()}
+    if sources.get("original_public_files_sha256") != expected_sources:
+        raise ValueError("Error supplement does not preserve every original public result file")
+    scientific_sources = json.loads(original_files["source_manifest.json"])["sources_sha256"]
+    required_validation = {"original_public_files_verified_per_mirror": len(original_files),
+        "registered_scientific_sources_verified": len(scientific_sources),
+        "all_original_hashes_unchanged": True, "matched_runs": 3*r+1, "metrics_per_run": 6}
+    if any(type(validation.get(key)) is not type(value) or validation.get(key) != value
+           for key, value in required_validation.items()):
+        raise ValueError("Error supplement lacks its complete frozen-metric/hash validation")
+    private_columns = {"outcomeday", "ytrue", "ypred", "persistencepred", "residual",
+        "observed", "prediction", "predictions", "rawprices", "weights", "statedict",
+        "scaler", "scalers", "masescale", "xmean", "xscale", "yscale"}
+    tables, plots = 0, 0
+    for name, data in files.items():
+        if name.endswith(".csv"):
+            fields = next(csv.reader(io.StringIO(data.decode("utf-8-sig"))), [])
+            if any(re.sub(r"[^a-z]", "", field.lower()) in private_columns for field in fields):
+                raise ValueError("Error supplement cannot contain private daily observations or forecasts")
+            tables += 1
+        elif name.endswith(".png"):
+            plots += 1
+    if tables < 1 or plots < 1:
+        raise ValueError("Closed error supplement needs actual aggregate tables and plots")
+    return {"supplement_id": required["supplement_id"], "parent_study_id": REMEDIATION_STUDY,
+        "original_metrics_unchanged": True, "original_public_files_verified": len(original_files),
+        "matched_runs": 3*r+1, "common_dates": n, "aggregate_tables": tables, "plots": plots}
+
+
 def source_revision(requested=None):
     revision = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
     if requested is not None:
@@ -404,7 +510,9 @@ def _readme(item, title, revision, previous):
             "compatible y el benchmark principal D7 de 608 fechas, con la ejecución de sesenta fechas complementaria, además de estadística, curvas, "
             "auditoría forense y repetibilidad actual con alcances identificados; 8.6 conserva "
             "sus configuraciones originales y añade los protocolos y metadatos correspondientes. 8.7 incorpora contexto "
-            "documental, margen y procedencia. "
+            "documental, margen y procedencia. Esta edición añade el cribado de los grupos "
+            "nativos recibidos y gráficos y errores agregados del benchmark cerrado, "
+            "sin volver a entrenar o puntuar modelos. "
             "Los manifiestos internos identifican los bytes realmente incluidos.\n\n"
             "## Notas conservadas de la entrega base\n\n" + previous.decode("utf-8"))
 
@@ -719,6 +827,11 @@ def package(output_dir, requested_revision=None):
     previous_primary_catalog = current_core_catalog(supplements["primary_608"], supplements["historical_core"])
     current_catalog = remediation_core_catalog(supplements["remediation_608"])
     complementary_catalog = complementary_core_catalog(supplements["core_mlp_extension"])
+    screening_closure = native_screening_closure(stages["native_620_screening_20261108"],
+                                               stages["native_execution_20261107"])
+    native_review_inputs = native_review_source_aliases(stages["native_620_screening_20261108"])
+    error_closure = frozen_error_closure(supplements["frozen_error_analysis"],
+                                        supplements["remediation_608"], current_catalog)
     # The historical generator is used only for its HTML exclusion/link logic.
     # Do not call its main(), load_crypto_stage(), or any experimental exporter.
     report = legacy.report_files()
@@ -784,6 +897,10 @@ def package(output_dir, requested_revision=None):
             products["8.4"][prefix + name] = data
             if name in {"summary.json", "source_manifest.json", "manifest.json"}:
                 products["8.7"][prefix + name] = data
+    for name, data in native_review_inputs.items():
+        if name in products["8.4"] and products["8.4"][name] != data:
+            raise ValueError("Refuse to replace an existing canonical reviewed input with different bytes: " + name)
+        products["8.4"][name] = data
     for label, files in supplements.items():
         spec = SUPPLEMENTS[label]
         prefix = spec["directory"] + "/"
@@ -811,7 +928,8 @@ def package(output_dir, requested_revision=None):
         for item in ("8.2", "8.4", "8.7"):
             products[item][context_name] = context_data
     refresh = {
-        "date": REFRESH_DATE, "source_commit": revision,
+        "edition_id": REFRESH_ID, "date": REFRESH_DATE, "date_timezone": REFRESH_TIMEZONE,
+        "colombia_date_context": "2026-11-07", "source_commit": revision,
         "baseline_source_commit": catalog.get("source_commit"),
         "baseline_catalog_sha256": base_catalog_sha,
         "stages": stage_info,
@@ -819,23 +937,31 @@ def package(output_dir, requested_revision=None):
         "preserved_archive_sha256": {ITEMS[item]: base_rows[item]["sha256"]
                                      for item in sorted(PRESERVED_ITEMS)},
         "original_experiments_changed": False, "retrospective_preregistration": False,
-        "new_analysis_scope": "Primary new GRU32/LSTM32/MLP16 equal-HPO, pilot-sized execution on608 known historical dates; original R=10/608-day metadata and closed R=465/60-day execution remain dated source records. Packaging itself performs no training, searches or daily forecasts.",
+        "new_analysis_scope": "Post-hoc screening of received native-search records and aggregate error diagnosis from the already closed GRU32/LSTM32/MLP16 R309/608-date predictions. Current final metrics, recipes, baseline and source records remain unchanged; original R10/608-date and R465/60-date studies are preserved. Packaging itself performs no training, searches or daily forecasts.",
+        "current_benchmark_results_changed": False,
+        "native_screening_closure": screening_closure,
+        "native_review_canonical_input_aliases": sorted(native_review_inputs),
+        "frozen_error_closure": error_closure,
         "chronology_note": CHRONOLOGY_NOTE,
     }
     products["8.7"]["literature_refresh_" + REFRESH_ID + ".json"] = legacy.encode(refresh)
     products["8.7"]["AMPLIACION_LITERARIA_" + REFRESH_ID + ".md"] = (
-        "# Ampliación literaria del 7 de noviembre de 2026 (Colombia)\n\n" + CHRONOLOGY_NOTE + "\n\n"
+        "# Ampliación literaria del 8 de noviembre de 2026 (UTC)\n\n"
+        "Fecha correspondiente en Colombia: 7 de noviembre de 2026.\n\n" + CHRONOLOGY_NOTE + "\n\n"
         "El producto 8.4 contiene los metadatos públicos completos de las nuevas etapas; "
         "aquí se conservan sus resúmenes, manifiestos y procedencia. No se redistribuyen "
         "los archivos de búsqueda originales, resúmenes editoriales ni PDF de terceros.\n"
     ).encode()
     products["8.7"]["SUPLEMENTO_EVIDENCIAS_" + REFRESH_ID + ".md"] = (
-        "# Evidencias y análisis posteriores del 7 de noviembre de 2026 (Colombia)\n\n"
+        "# Evidencias y análisis posteriores del 8 de noviembre de 2026 (UTC)\n\n"
+        "Fecha correspondiente en Colombia: 7 de noviembre de 2026.\n\n"
         + CHRONOLOGY_NOTE + "\n\n"
         "8.7 añade la comparación documental y el contexto académico del margen; 8.4 incluye "
         "cribado, recuperación de originales y evidencia de búsquedas con sus límites. "
         "8.5 añade estadística posterior, curvas de una reproducción separada, auditoría "
-        "forense y repetibilidad diagnóstica actual. Los protocolos y metadatos de ejecución "
+        "forense y repetibilidad diagnóstica actual, además del diagnóstico agregado "
+        "de errores y gráficos observado/pronosticado del estudio R309 cerrado. "
+        "Los protocolos y metadatos de ejecución "
         "también se incluyen en 8.6. La guía exige procedimiento reproducible, semillas, "
         "dependencias y declarar el alcance del determinismo; no exige identidad histórica "
         "bit a bit. Las discrepancias encontradas conservan sus límites científicos. Los resultados y fuentes históricos "
@@ -899,6 +1025,18 @@ def package(output_dir, requested_revision=None):
     records_by_study = result.setdefault("dated_study_records", {})
     records_by_study.setdefault("e1_primary_608_20261107", copy.deepcopy(result["previous_primary_study_metadata"]))
     records_by_study.setdefault("e1_core_mlp_extension_20261107", copy.deepcopy(result["complementary_study_metadata"]))
+    # Freeze the exact preceding current-study record as well. Supplementary
+    # screening and plots must never silently replace its scientific identity.
+    snapshot_keys = ("source_commit", "models", "complementary_models", "active_entrypoint",
+        "active_entrypoints", "active_entrypoint_scope", "baseline_selected_by_cv", "scope", "current_study")
+    prior_current = catalog if catalog.get("current_study", {}).get("study_id") == REMEDIATION_STUDY else current_catalog
+    records_by_study.setdefault(REMEDIATION_STUDY, {
+        key: copy.deepcopy(prior_current[key]) for key in snapshot_keys if key in prior_current})
+    previous_refresh = catalog.get("evidence_refresh", catalog.get("literature_refresh"))
+    if previous_refresh:
+        history = result.setdefault("prior_evidence_refreshes", [])
+        if previous_refresh not in history:
+            history.append(copy.deepcopy(previous_refresh))
     result.update(current_catalog)
     if "presentation_refresh" in result:
         result.setdefault("prior_presentation_refreshes", []).append(result.pop("presentation_refresh"))

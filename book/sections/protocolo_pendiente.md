@@ -7,10 +7,11 @@
 | Requisito | Evidencia entregada | Alcance |
 |---|---|---|
 | **§3.1: WoS, Scopus e IEEE** | {ref}`Bitácora nativa <current-native-execution-e1>`: cadenas, fecha confirmada del 06/11/2026 en Colombia, campos, filtros y totales **271/538/32**; exportados **271/538/25** | Consulta acreditada; resultados, exportaciones y textos leídos se cuentan por separado |
-| **§3.2: recurrencia** | {ref}`Selección de familias <core-selection-e1>`: diez experimentos cripto con reporte suficiente, **LSTM 10, MLP 4, GRU 2, TCN 1** | Las tres primeras familias del corpus examinado; cobertura y búsquedas dirigidas explícitas |
+| **§3.1: cribado e integración** | {ref}`Cierre de 620 grupos <native-620-closure-e1>`: 509 exclusiones iniciales, 111 avances, 44 evaluaciones primarias y trece inclusiones estrictas nativas | 58 informes no recuperados con disposición explícita y nueve exclusiones por metadatos; siete IEEE fuera del export |
+| **§3.2: recurrencia** | Corte original N10 conservado; síntesis acumulada **N18: LSTM 15, MLP 6, GRU 4, TCN 1** | Las tres primeras familias se mantienen; versiones e híbridos no inflan numeradores |
 | **§3.2: simplicidad** | Una capa oculta MLP16 de **593 parámetros**, una capa GRU32 de **3.777** y una LSTM32 de **5.025** | Capacidad y profundidad declaradas; adaptaciones propias con respaldo aplicado, no réplicas exactas |
 | **§3.2: diversidad** | Ventana ordenada sin recurrencia, actualización/reset GRU y memoria LSTM separada; misma información D7×5 | Mecanismos distintos, sin afirmar independencia de errores |
-| **Originales y fuentes gratuitas** | {ref}`Síntesis de 57 obras <homogeneous-expansion-e1>`, 35 textos primarios completos y una transcripción; catálogo de 70 referencias | Catorce informes no recuperados conservan disposición y motivo; alternativas verificadas sin inventar lecturas |
+| **Originales y fuentes gratuitas** | Corte previo de 57 obras conservado; cierre nativo con **33 evaluaciones primarias nuevas y once reutilizadas**; base de 70 referencias +32 adiciones | Acceso, suficiencia de reporte e inclusión separados; no se inventan lecturas ni puntuaciones |
 
 TCN conserva sus resultados como complemento. Los cortes bibliográficos fechados mantienen sus denominadores. La selección documental no se calcula a partir de las puntuaciones de test.
 
@@ -30,6 +31,7 @@ La ejecución **e1_608_remediation_20261107** mantiene cinco covariables OHLCV, 
 | Entrenamiento definitivo | **927 modelos y 1.854 etapas ejecutados**, semillas comunes **18101–18409**; 709 etiquetas hasta 24/12/2024; **2.394 etapas totales** con HPO/piloto | Etapa interna causal 619/83; reajuste desde cero; los 927 pesos y preprocesadores cerrados antes de leer CSV de test |
 | Inferencia temporal, §5.4 | **563.616 predicciones** de las tres redes sobre las mismas **608 fechas**; DM/HAC6/HLN/Holm-6, bootstrap circular y BDS/Ljung–Box ejecutados conforme al diseño | Vectores nuevos conservados privadamente; resultados y firmas públicos. No se reconstruyen los originales ausentes |
 | Curvas, costes y contraste entre semillas | **33.141 registros de pérdida**, parámetros y tiempos; t/Holm-3, Q–Q, Friedman/Kendall W y Wilcoxon/Holm-3 publicados | Evidencia propia de la ejecución; semillas condicionadas al calendario, sin mercados independientes |
+| Visualización y errores por segmentos, §4.4 | {ref}`Suplemento con predicciones congeladas <frozen-errors-e1>`: observado/pronosticado, densidad común, veinte meses, rangos y años, sesgo/dispersion y casos difíciles | **5.568 valores métricos idénticos y 106 hashes originales conservados**; sin reentrenamiento ni nueva validación temporal |
 
 La nueva ejecución corrige el diseño mediante trabajo nuevo verificable. El {download}`resumen de cierre <../_static/e1_608_remediation_20261107/summary.json>` y la {download}`cronología <../_static/e1_608_remediation_20261107/chronology.json>` acreditan las fases; el {download}`manifiesto de publicación <../_static/e1_608_remediation_20261107/manifest.json>` identifica los archivos públicos.
 

@@ -922,7 +922,7 @@ En los retornos de un minuto de entrenamiento, la asimetría es **-0.674028** y 
 
 - **Decisión de preprocesamiento:** distinguir errores verificables de eventos reales y conservar extremos. No se aplica clipping ni se cambia la pérdida sin validación.
 - **Impacto en la arquitectura:** controlar estabilidad de entrenamiento y comparar pérdidas/métricas bajo el mismo protocolo; las colas no justifican automáticamente mayor complejidad.
-- **Riesgos identificados:** borrar episodios de interés y elegir umbrales con información futura. El efecto específico de estos episodios sobre el error de las redes y la causa de los eventos requieren un análisis segmentado adicional; las métricas globales de desarrollo del capítulo 5 no aíslan ese efecto.
+- **Riesgos identificados:** borrar episodios de interés y elegir umbrales con información futura. El {ref}`análisis posterior de errores <frozen-errors-e1>` cuantifica el comportamiento del trío actual fuera del ajuste por rangos del objetivo definidos con desarrollo: 233 fechas de volatilidad baja, 288 media y 87 alta. Esas 87 fechas de evaluación no se equiparan a los extremos de retornos identificados en 2023–2024. La atribución causal de los eventos permanece fuera del análisis; no se eliminan episodios ni se cambian métricas o modelos al examinarlos.
 
 ### 2.5.6. Horizonte, estrategia de pronóstico y validación
 
