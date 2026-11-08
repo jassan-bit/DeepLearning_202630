@@ -60,11 +60,11 @@ La [lista pública cerrada y sus hashes](../_static/literature_native_20261108/m
 
 Las [fichas actualizadas de la propuesta](15_revision_modelos.md) identifican fuentes para **FCN-1D y ResNet-1D** ([Wang et al.](https://arxiv.org/abs/1611.06455)) y **Inception-1D** ([InceptionTime](https://arxiv.org/abs/1909.04939)). Esas fuentes estudian clasificación temporal: justifican mecanismos, no su eficacia en regresión de volatilidad. Adaptar la cabeza, los kernels y el entrenamiento a D7×5 debe quedar registrado y probado.
 
-La arquitectura exacta del **LSTM-autoencoder predictivo** permanece abierta. No se equipara un VAE con LSTM o un detector de anomalías con el encoder–decoder supervisado propuesto. Tampoco se heredan lecturas, métricas, puntuaciones, licencias o código de Informer, Autoformer, Crossformer y S-Mamba al sustituir sus nombres en la lista.
+La arquitectura exacta del **LSTM-autoencoder predictivo** permanece abierta. La [ficha ampliada](16_fichas_nuevas.md) incorpora Sagheer y Kotb (2019): preentrenamiento autoencoder seguido de ajuste supervisado. No acredita una pérdida conjunta ni evidencia Bitcoin; tampoco se equipara un VAE con LSTM o un detector de anomalías con el encoder–decoder propuesto. Tampoco se heredan lecturas, métricas, puntuaciones, licencias o código de Informer, Autoformer, Crossformer y S-Mamba al sustituir sus nombres en la lista.
 
 ### Qué queda cerrado y qué no
 
-La evidencia nueva permite corregir el contexto aplicado de TimeMixer, documentar fuentes arquitectónicas de tres altas y contrastar el híbrido con antecedentes positivos y negativos de mecanismos distintos. **No cierra el Top 10 por ranking, una revisión PRISMA global, los cuartiles por año, el autoencoder exacto ni la superioridad del modelo 11.** El cribado asistido y la lectura dirigida se presentan con sus denominadores y límites; no se atribuyen a dos revisores humanos independientes.
+La evidencia nueva permite corregir el contexto aplicado de TimeMixer, documentar fuentes arquitectónicas de las cuatro altas con distinto grado de correspondencia y contrastar el híbrido con antecedentes positivos y negativos de mecanismos distintos. **No cierra el Top 10 por ranking, una revisión PRISMA global, los cuartiles por año, el autoencoder exacto ni la superioridad del modelo 11.** El cribado asistido y la lectura dirigida se presentan con sus denominadores y límites; no se atribuyen a dos revisores humanos independientes.
 
 La integración bibliográfica no entrena modelos, no modifica el registro experimental, no introduce resultados de mercado nuevos y no recupera el cegamiento del test conocido. El catálogo registrado y sus recibos permanecen separados de la propuesta editorial del 08/11.
 

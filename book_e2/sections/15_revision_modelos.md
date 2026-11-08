@@ -54,6 +54,8 @@ El test ya conocido de E1/E2 no recupera independencia con esta propuesta. Una c
 
 ### Fuentes verificadas y límites de las nuevas propuestas
 
+Las [cuatro fichas bibliográficas ampliadas](16_fichas_nuevas.md) reúnen diagramas, bloques matemáticos, resultados publicados y costes analíticos, separados de cualquier adaptación E2. La fuente LSTM-SAE verificada acredita preentrenamiento seguido de ajuste supervisado, no pérdida conjunta.
+
 La ampliación bibliográfica del 08/11/2026 distingue el **origen del mecanismo** de su validación para Bitcoin. No transfiere puntuaciones ni resultados de los cuatro modelos retirados a las altas.
 
 | Candidato | Fuente primaria identificada | Evidencia y adaptación pendiente |
@@ -61,7 +63,7 @@ La ampliación bibliográfica del 08/11/2026 distingue el **origen del mecanismo
 | FCN-1D | Wang, Yan y Oates, [Time Series Classification from Scratch with Deep Neural Networks: A Strong Baseline](https://arxiv.org/abs/1611.06455) | FCN para clasificación temporal. La fuente no valida regresión de σ₇ en Bitcoin. Fijar kernels compatibles con D7, pooling, canales y cabeza escalar; justificar cambios respecto de clasificación |
 | ResNet-1D | Wang, Yan y Oates, [misma fuente primaria](https://arxiv.org/abs/1611.06455) | Red residual para clasificación temporal; no equivale a la TCN histórica. Documentar bloques, padding, profundidad y salida de regresión; una fuente compartida no son dos estudios independientes |
 | Inception-1D | Fawaz et al., [InceptionTime: Finding AlexNet for Time Series Classification](https://arxiv.org/abs/1909.04939) | Arquitectura/ensemble de clasificación. Decidir red individual frente a ensemble, kernels y bottlenecks para D7; su precisión clasificatoria no es una RMSE de volatilidad |
-| LSTM-autoencoder predictivo | Fuente/configuración exacta **todavía no cerrada** | Los trabajos adyacentes de detección de anomalías o VAE con LSTM no certifican este encoder–decoder supervisado. Deben fijarse fuente primaria, pérdida de reconstrucción, peso de predicción y entrenamiento causal antes del registro |
+| LSTM-autoencoder predictivo | Sagheer y Kotb (2019), [LSTM-SAE](https://doi.org/10.1038/s41598-019-55320-6) | Fuente de preentrenamiento autoencoder y ajuste supervisado para forecasting, no Bitcoin. La variante exacta E2 sigue abierta; una pérdida conjunta de reconstrucción/predicción sería adaptación propia, no reproducción de la fuente |
 | HAR + red residual | Lian et al., [Signal Simplification Is Not Predictive Simplification](https://arxiv.org/abs/2610.03019) | Antecedente directo HAR-style + LSTM residual. El preprint informa deterioro frente a HAR en cinco activos estadounidenses; impide alegar novedad genérica o mejora garantizada, sin demostrar que el mismo desenlace ocurra en Bitcoin |
 
 **Evidencia negativa que cambia la justificación.** En el estudio de Lian et al., el MSE medio pasa de 0,3049 para HAR-style a 0,3594 para HAR-style + LSTM; la LSTM sola obtiene 0,2649. Son valores del artículo en su propio objetivo y protocolo, no resultados E2 ni magnitudes comparables con σ₇. La menor varianza residual no basta para justificar una corrección neuronal. E2 debe mantener HAR solo, red sola y la corrección como controles y aceptar resultados desfavorables.

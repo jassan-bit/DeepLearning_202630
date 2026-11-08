@@ -2,7 +2,7 @@
 
 **Deep Learning · 2026-30 · Jassan Arteta**
 
-**Revisión del 08/11/2026:** la [propuesta de diez modelos y un híbrido candidato](sections/15_revision_modelos.md) incorpora cuatro sustituciones solicitadas y distingue las referencias actuales de E1 de las anclas históricas de E2. Es una propuesta editorial: todavía no modifica el catálogo registrado, no acredita entrenamientos nuevos ni superioridad del modelo 11.
+**Revisión del 08/11/2026:** la [propuesta de diez modelos y un híbrido candidato](sections/15_revision_modelos.md) incorpora cuatro sustituciones solicitadas y distingue las referencias actuales de E1 de las anclas históricas de E2. Las [fichas ampliadas de las cuatro altas](sections/16_fichas_nuevas.md) separan diagramas, formulación, resultados publicados y costes analíticos de sus adaptaciones pendientes. Es una propuesta editorial: todavía no modifica el catálogo registrado, no acredita entrenamientos nuevos ni superioridad del modelo 11.
 
 **Ampliación bibliográfica del 08/11/2026:** la [sección 3](sections/03_literatura.md) incorpora una ronda nueva de WoS, Scopus e IEEE (**1.634 ocurrencias → 1.078 grupos**) y cuatro consultas arXiv (**1.199 apariciones → 1.004 IDs**). Los universos se mantienen separados hasta conciliarlos. Hay triaje provisional, tres lecturas focales y fuentes para las nuevas propuestas; no se declara elegibilidad global cerrada ni se modifican resultados experimentales.
 
