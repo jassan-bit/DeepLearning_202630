@@ -1,7 +1,7 @@
 (planned-study)=
 # 9. Estudio anterior GRU–LSTM–TCN: evaluación D7
 
-Este capítulo conserva el estudio complementario de **GRU–LSTM–TCN** con entrada **D=7**, objetivo **n=7** y horizonte **h=1**. Su diseño, búsqueda, piloto y análisis se registraron antes de su ejecución definitiva y de calcular resultados en la reserva del **01/09–30/10/2026**. La comparación principal **GRU32–LSTM32–MLP16 sobre 608 fechas** se documenta en el [capítulo 5](05_benchmark.md); el {ref}`capítulo 10 <final-core-mlp-e1>` conserva otra comprobación complementaria del núcleo en sesenta fechas. Los resultados de TCN no se atribuyen a MLP.
+Este capítulo conserva el estudio complementario de **GRU–LSTM–TCN** con entrada **D=7**, objetivo **n=7** y horizonte **h=1**. Su diseño, búsqueda, piloto y análisis se registraron antes de su ejecución definitiva y de calcular resultados en la reserva del **01/09–30/10/2026**. La nueva comparación principal **GRU32–LSTM32–MLP16 sobre 608 fechas**, con HPO equitativo y **R=309** propios, se documenta en el {ref}`capítulo 11 <remediation-608-e1>`; el [capítulo 5](05_benchmark.md) conserva las diez semillas originales y su conciliación; el {ref}`capítulo 10 <final-core-mlp-e1>` conserva otra comprobación complementaria del núcleo en sesenta fechas. Los resultados de TCN no se atribuyen a MLP.
 
 ## 9.1. Dos fases y dos alcances
 
