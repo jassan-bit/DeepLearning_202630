@@ -1,0 +1,66 @@
+{
+  "status": "editorial_alignment_not_preregistration",
+  "candidate": "CNN-1D + LSTM + atención temporal",
+  "candidate_implemented": true,
+  "superiority_demonstrated": false,
+  "reference_study": "e1_608_remediation_20261107",
+  "data": {
+    "symbol": "BTCUSDT",
+    "source": "Binance Spot",
+    "timezone": "UTC",
+    "lookback": 7,
+    "features": [
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume"
+    ],
+    "representation": "relative_window",
+    "target": "population_std_of_7_daily_log_returns",
+    "ddof": 0,
+    "annualized": false,
+    "horizon_days": 1
+  },
+  "preprocessing": {
+    "prices": "log(P)-log(last_window_close)",
+    "volume": "log1p(V)",
+    "X": "training_channel_mean_and_population_std_over_Nx7_positions",
+    "y": "divide_by_positive_training_mean_without_centering",
+    "evaluation_refit": false
+  },
+  "reference_calendar": {
+    "cv_months": "2024-01 through 2024-10",
+    "cv_dates": 305,
+    "pilot_start": "2024-11-01",
+    "pilot_end": "2024-12-30",
+    "final_training_last_label": "2024-12-24",
+    "final_training_labels": 709,
+    "embargo_days": 7,
+    "evaluation_start": "2025-01-01",
+    "evaluation_end": "2026-08-31",
+    "evaluation_dates": 608,
+    "known_evaluation_exploratory": true
+  },
+  "e1_references": [
+    "GRU32",
+    "LSTM32",
+    "MLP16"
+  ],
+  "e1_neural_baseline": "GRU32_selected_by_CV",
+  "e1_R": 309,
+  "e1_R_transferable_to_candidate": false,
+  "primary_metric": "mean_of_per_seed_RMSE_in_original_units",
+  "e3_official_guide_received": false,
+  "new_experimental_design_registered": false,
+  "source_fingerprints": {
+    "experiments/e1_608_remediation_20261107/design.json": "5f2733fbbbcfe580bf3ab31905c3aab89dc8ef5eb24935ec6c201e7ec1e35802",
+    "experiments/e1_608_remediation_20261107/planning/plan.json": "6295b408623c811aa707b7c55355ab5fb529306f91049b047bac8dcc4d0fd15f",
+    "book/_static/e1_608_remediation_20261107/metric_summary.csv": "07d70ae842b82877a115df69fc77f1f3f4379adb3976a8b751806c4637ecad1b",
+    "scripts/dl_data.py": "8ea726a1d8ca7b9fa9bfcb26ee6e565b516c40a3ad1cd40e0f639c43b7f429ce",
+    "scripts/dl_data_v2.py": "bbf0ad8646afcd792b3961d0e5e5bcf9318f0fbe4377732a965c58f9557c33cb"
+  },
+  "candidate_market_trained": false,
+  "candidate_synthetic_fit_executed": true,
+  "implementation_evidence": "book_e2/sections/18_integracion_sintetica.md"
+}

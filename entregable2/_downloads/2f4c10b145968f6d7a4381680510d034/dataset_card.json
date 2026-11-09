@@ -1,0 +1,864 @@
+{
+  "schema_version": 1,
+  "review_date_colombia": "2026-11-06",
+  "administrative_timezone": "America/Bogota",
+  "title": "Data Card heredada: Binance Spot BTCUSDT, 1 minuto → OHLCV diario UTC",
+  "version": {
+    "source_commit_e1": "94a4b0324e93361e8928d708fdfeb50110e3686f",
+    "manifest_sha256": "af723bcca2caffcbe44ae5243e2863bbcdcd39ae8cd42df491af0a2857926bb2",
+    "version_type": "Instantánea de adquisición de E1; no descarga nueva ni datos de precios reempaquetados"
+  },
+  "provenance": {
+    "provider": "Binance Vision / Binance Spot",
+    "symbol": "BTCUSDT",
+    "base_asset": "BTC",
+    "quote_asset": "USDT",
+    "segment": "Spot",
+    "source_catalogue": "https://data.binance.vision/",
+    "provider_repository": "https://github.com/binance/binance-public-data",
+    "provider_schema": "https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md#klinecandlestick-data",
+    "collection_started_at_utc": "2026-11-02T14:47:23.801891+00:00",
+    "collection_finished_at_utc": "2026-11-02T14:47:45.969611+00:00",
+    "acquisition_manifest": "dataset_manifest_e1.json",
+    "manifest_metadata_only": true,
+    "e1_original_manifest": {
+      "repository_path": "data/manifests/binance_spot_BTCUSDT_1m_20230101_20261030.json",
+      "url": "https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/data/manifests/binance_spot_BTCUSDT_1m_20230101_20261030.json",
+      "sha256": "af723bcca2caffcbe44ae5243e2863bbcdcd39ae8cd42df491af0a2857926bb2"
+    },
+    "live_source_or_terms_reverified_during_this_update": false
+  },
+  "coverage": {
+    "start_inclusive_utc": "2023-01-01",
+    "end_inclusive_utc": "2026-10-30",
+    "calendar_days": 1399,
+    "geographic_scope": "Mercado electrónico global de un proveedor; sin unidades geográficas o poblacionales individuales",
+    "assets_and_venues": "Un activo/par y un exchange; no índice agregado de exchanges"
+  },
+  "size": {
+    "verified_archives": 75,
+    "compressed_bytes": 97442605,
+    "raw_csv_rows": 2014480,
+    "raw_columns": 12,
+    "expected_calendar_minutes": 2014560,
+    "e2_supervised_sample_count": null,
+    "count_scope": "Recuentos del manifiesto de E1, no ventanas supervisadas ni tamaño de muestra independiente",
+    "e2_supervised_sample_count_note": "Final20-model cohort pending by model and phase. Registered development data preflight verifies305OOF and60pilot unique dates; seeds do not multiply independent calendar units."
+  },
+  "schema": {
+    "source_frequency": "1 minute",
+    "source_format": "CSV de 12 columnas dentro de ZIP oficiales",
+    "column_names_follow": "scripts/planned_study_data.py:COLUMNS",
+    "columns": [
+      {
+        "position_1_based": 1,
+        "name": "open_time",
+        "type": "integer timestamp",
+        "unit": "ms antes de 2025; us desde 2025",
+        "meaning": "Inicio de la vela"
+      },
+      {
+        "position_1_based": 2,
+        "name": "open",
+        "type": "numeric",
+        "unit": "USDT por BTC",
+        "meaning": "Precio de apertura"
+      },
+      {
+        "position_1_based": 3,
+        "name": "high",
+        "type": "numeric",
+        "unit": "USDT por BTC",
+        "meaning": "Precio máximo"
+      },
+      {
+        "position_1_based": 4,
+        "name": "low",
+        "type": "numeric",
+        "unit": "USDT por BTC",
+        "meaning": "Precio mínimo"
+      },
+      {
+        "position_1_based": 5,
+        "name": "close",
+        "type": "numeric",
+        "unit": "USDT por BTC",
+        "meaning": "Precio de cierre"
+      },
+      {
+        "position_1_based": 6,
+        "name": "volume",
+        "type": "numeric",
+        "unit": "BTC",
+        "meaning": "Volumen del activo base"
+      },
+      {
+        "position_1_based": 7,
+        "name": "close_time",
+        "type": "integer timestamp",
+        "unit": "ms antes de 2025; us desde 2025",
+        "meaning": "Cierre de la vela"
+      },
+      {
+        "position_1_based": 8,
+        "name": "quote_volume",
+        "type": "numeric",
+        "unit": "USDT",
+        "meaning": "Volumen del activo cotizado"
+      },
+      {
+        "position_1_based": 9,
+        "name": "trades",
+        "type": "integer",
+        "unit": "count",
+        "meaning": "Número de operaciones"
+      },
+      {
+        "position_1_based": 10,
+        "name": "taker_base",
+        "type": "numeric",
+        "unit": "BTC",
+        "meaning": "Volumen comprador taker del activo base"
+      },
+      {
+        "position_1_based": 11,
+        "name": "taker_quote",
+        "type": "numeric",
+        "unit": "USDT",
+        "meaning": "Volumen comprador taker del activo cotizado"
+      },
+      {
+        "position_1_based": 12,
+        "name": "ignore",
+        "type": "source field",
+        "unit": "No utilizado",
+        "meaning": "Campo del proveedor ignorado por el modelo"
+      }
+    ],
+    "model_frequency": "1 day",
+    "calendar_timezone": "UTC",
+    "model_features": [
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume"
+    ],
+    "input_shape_per_example": [
+      7,
+      5
+    ],
+    "output_shape_per_example": [
+      1
+    ],
+    "daily_aggregation": {
+      "open": "Primera apertura",
+      "high": "Máximo de máximos",
+      "low": "Mínimo de mínimos",
+      "close": "Último cierre",
+      "volume": "Suma de volúmenes"
+    },
+    "eligible_daily_bar": "1440 minutos válidos del mismo día UTC; conservar posiciones de días incompletos como ausentes"
+  },
+  "label_protocol": {
+    "annotation": "Determinista, sin anotación humana",
+    "target": "Desviación estándar poblacional de siete retornos logarítmicos diarios consecutivos",
+    "formula": "r_d=ln(P_d/P_(d-1)); y_d=sqrt((1/7)*sum_(i=0)^6 (r_(d-i)-mean(r_d,...,r_(d-6)))^2)",
+    "ddof": 0,
+    "return_count": 7,
+    "required_consecutive_closes": 8,
+    "annualized": false,
+    "multiplied_by_100": false,
+    "forecast_horizon_days": 1,
+    "input_history_days": 7,
+    "input_support": "[outcome_day-7,outcome_day)",
+    "target_lags_added": false,
+    "label_available": "Al concluir el día de resultado; el último retorno todavía no está disponible al emitir el pronóstico",
+    "loss": "MSE",
+    "primary_metric": "RMSE en escala original",
+    "noise": [
+      "Proxy de dispersión de retornos observados; no medición sin error de volatilidad latente",
+      "Incertidumbre por ventana finita, calidad del proveedor y microestructura",
+      "Etiquetas consecutivas comparten seis retornos; no siete días enteramente futuros"
+    ],
+    "noise_magnitude_measured": false,
+    "inter_annotator_agreement": "No aplica: no hay anotación humana"
+  },
+  "quality": {
+    "source": "Resumen del manifiesto de adquisición de E1 y su política documentada",
+    "manifest_summary": {
+      "verified_archives": 75,
+      "failed_archives": 0,
+      "download_complete": true,
+      "verified_bytes": 97442605,
+      "csv_rows": 2014480,
+      "expected_minutes_full_request": 2014560,
+      "missing_minutes_within_verified_archives": 80,
+      "duplicate_open_times": 0,
+      "out_of_range_rows": 0,
+      "unaligned_open_times": 0,
+      "unexpected_close_times": 1
+    },
+    "missing_calendar_minutes": 80,
+    "invalid_close_time_rows": 1,
+    "missing_vs_invalid_distinction": "80 filas ausentes y una fila presente con cierre temporal no estándar; 81 posiciones no elegibles, sin sumar una fila inexistente al recuento bruto",
+    "affected_development_day_utc": "2023-03-24",
+    "cleaning_policy": "Brutos intactos; no imputar, interpolar ni comprimir calendario. Excluir días incompletos y todas las ventanas/etiquetas que dependan de ellos",
+    "new_raw_archives_opened_for_e2_eda": false,
+    "existing_derived_market_values_used_for_e2_eda": true,
+    "new_market_observations_acquired_for_e2_eda": false,
+    "eda_near_duplicate_policy": "Diagnóstico numérico de similitud con umbrales aprendidos o fijados en desarrollo; no borrar automáticamente ventanas temporales solapadas ni usar proximidad de precios como prueba de fuga",
+    "external_label_noise_independently_estimated": false,
+    "external_label_noise_note": "La reconstrucción de etiquetas valida aritmética y calendario; no mide el error independiente del proveedor o de la volatilidad como proxy ni establece un techo de desempeño"
+  },
+  "representation": {
+    "variant": "relative_window",
+    "ohlc": "Logaritmos relativos al último cierre observable de la ventana",
+    "volume": "log1p(volume)",
+    "learned_scaling": "Solo entrenamiento admisible; escalas X y media positiva de Y",
+    "metrics": "Después de invertir la escala del objetivo"
+  },
+  "partition": {
+    "source_phase": "Entregable 1, fase II D7; herencia explícita, sin reasignar la fase I",
+    "timezone": "UTC",
+    "random_shuffle": false,
+    "initial_history": {
+      "start": "2023-01-01",
+      "end_inclusive": "2023-12-31"
+    },
+    "hpo_forward_chaining": {
+      "start": "2024-01-01",
+      "end_inclusive": "2024-10-31",
+      "monthly_blocks": 10,
+      "training_window": "expanding",
+      "embargo_days": 7,
+      "selection": "Media entre semillas del RMSE sobre todas las fechas de validación concatenadas; no media de RMSE mensuales"
+    },
+    "pilot": {
+      "start": "2024-11-01",
+      "end_inclusive": "2024-12-30",
+      "calendar_days": 60,
+      "weights": "Ajustadas antes del origen 2024-11-01 y conservadas para las 60 fechas"
+    },
+    "final_fit": {
+      "development_start": "2023-01-01",
+      "development_end_inclusive": "2024-12-31",
+      "nominal_origin": "2025-01-01",
+      "training_outcome_max": "2024-12-24",
+      "embargo_days": 7,
+      "inner_validation_calendar_days": 90,
+      "weights_and_scalers_frozen_during_evaluation": true,
+      "training_labels_2025_2026_allowed": false
+    },
+    "phase_II_evaluation": {
+      "start": "2026-09-01",
+      "end_inclusive": "2026-10-30",
+      "calendar_days": 60,
+      "already_observed": true,
+      "status_for_e2": "Reserva histórica ya evaluada en E1; reutilización exploratoria, no test nuevo sellado"
+    },
+    "phase_I_archive": {
+      "start": "2025-01-01",
+      "end_inclusive": "2026-08-31",
+      "calendar_days": 608,
+      "already_observed": true,
+      "role": "Archivo histórico de E1, sin reasignación a entrenamiento ni a test desconocido de E2"
+    },
+    "new_unseen_e2_test_assigned": false,
+    "new_dates_acquired_for_e2": false,
+    "e2_evaluation_scope": "La herencia mantiene el calendario; los periodos ya conocidos solo permiten nuevas comparaciones exploratorias. No se declara un test confirmatorio independiente."
+  },
+  "independence": {
+    "observational_unit": "Origen temporal diario con su ventana OHLCV y etiqueta futura",
+    "market_unit": "Una serie BTCUSDT de Binance Spot",
+    "independent_market_count": 1,
+    "conditional_randomization_unit": "Semilla de inicialización y orden de entrenamiento, pareada entre recetas y condicionada al mismo calendario",
+    "dependent_observations": "Fechas y etiquetas móviles solapadas; meses/folds y semillas no son mercados independientes",
+    "generalization": "Los intervalos entre semillas describen variabilidad de entrenamiento condicionada al calendario; no generalización a otros activos o exchanges"
+  },
+  "license": {
+    "provider_terms_name": "Binance Vision Dataset Terms",
+    "version": "1.0",
+    "last_updated_in_snapshot": "2026-08-26",
+    "snapshot_review_date": "2026-11-03",
+    "source_url": "https://raw.githubusercontent.com/binance/binance-public-data/master/TERMS_AND_CONDITIONS.md",
+    "snapshot_sha256": "99c4921dbe023cd68c1a447775707d621453cc78aec6ac0bfe2e6c06a5114ee0",
+    "snapshot_e1_url": "https://jassan-bit.github.io/DeepLearning_202630/_static/data_source/TERMS_AND_CONDITIONS.md",
+    "snapshot_repository": {
+      "repository_path": "book/_static/data_source/TERMS_AND_CONDITIONS.md",
+      "url": "https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/book/_static/data_source/TERMS_AND_CONDITIONS.md",
+      "sha256": "99c4921dbe023cd68c1a447775707d621453cc78aec6ac0bfe2e6c06a5114ee0"
+    },
+    "license_in_snapshot": "CC BY-NC-SA 4.0 salvo designación específica, junto con condiciones adicionales del proveedor",
+    "public_access_is_unrestricted_redistribution": false,
+    "distribution_in_this_update": "Solo Data Card y manifiesto de procedencia/checksums; no ZIP ni vectores de precios",
+    "use_scope": "Benchmark académico; sin afirmación de utilidad financiera"
+  },
+  "limitations": [
+    "Un mercado y una serie; resultados no equivalen a validación en otras criptomonedas o exchanges",
+    "Cobertura histórica limitada y cambios de régimen; no muestreo aleatorio de todos los mercados",
+    "USDT y USD no son cotizaciones automáticamente equivalentes",
+    "OHLCV diario no representa toda la información intradiaria, noticias ni libro de órdenes",
+    "La reserva heredada ya se observó: no es test nuevo desconocido de E2"
+  ],
+  "official_benchmark": {
+    "binance_official_train_validation_test_split_for_this_task": null,
+    "same_exact_version_and_target_in_reviewed_papers_verified": false,
+    "policy": "Se mantiene el protocolo propio de E1; no se atribuye al proveedor una partición oficial ni se equiparan sin prueba los datasets de la literatura"
+  },
+  "evidence": [
+    {
+      "repository_path": "data/manifests/binance_spot_BTCUSDT_1m_20230101_20261030.json",
+      "url": "https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/data/manifests/binance_spot_BTCUSDT_1m_20230101_20261030.json",
+      "sha256": "af723bcca2caffcbe44ae5243e2863bbcdcd39ae8cd42df491af0a2857926bb2"
+    },
+    {
+      "repository_path": "results/gru_lstm_tcn_planned_20261105/design.json",
+      "url": "https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/results/gru_lstm_tcn_planned_20261105/design.json",
+      "sha256": "80e804a9a4c0ae4c053f02bf62a2b4315c9ddadbb0b0e3951b09652a9964a81c"
+    },
+    {
+      "repository_path": "scripts/planned_study_data.py",
+      "url": "https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/scripts/planned_study_data.py",
+      "sha256": "f4b732b24a86e9879b53e7a731c0ef2b606bb49fb0a546997ab0e46448232523"
+    },
+    {
+      "repository_path": "book/sections/01_problema_dataset.md",
+      "url": "https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/book/sections/01_problema_dataset.md",
+      "sha256": "a211ea2c96c9908535dedecb578fdcdf3c8b16a01d27b51ce19b39efece6e4e6"
+    },
+    {
+      "repository_path": "book/_static/data_source/terms_snapshot.json",
+      "url": "https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/book/_static/data_source/terms_snapshot.json",
+      "sha256": "e1f9b801799b5ccdb293e98945ca0fae942d74f3d14eb018ca88aba4d74029b5"
+    }
+  ],
+  "execution_status": {
+    "e2_models_trained": false,
+    "e2_new_test_assigned": false,
+    "e2_new_data_acquired": false,
+    "e2_ten_model_catalogue_selected": false,
+    "e2_models_trained_scope": "Final optimized20-model benchmark, not the separately registered P0/OOF development experiment.",
+    "e2_deep_learning_models_trained": false,
+    "new_deep_learning_fits": 0,
+    "e2_eda_executed": true,
+    "e2_diagnostic_ridge_fitted": true,
+    "e2_diagnostic_ridge_scope": "Referencia regularizada en desarrollo con forward chaining; diagnóstico temporal, no comparación final DL",
+    "known_test_distribution_analysis": "Posterior a la evaluación de E1; alcance exploratorio, sin reutilizarlo para elegir configuración",
+    "route_diagnosis_closed": true,
+    "e2_top10_operational_catalogue_status": "proposed_not_fully_closed",
+    "e2_top10_operational_model_names": [
+      "TSMixer",
+      "TiDE",
+      "TimeMixer",
+      "TimesNet",
+      "PatchTST",
+      "Informer",
+      "Autoformer",
+      "iTransformer",
+      "Crossformer",
+      "S-Mamba"
+    ],
+    "e2_top10_new_deep_learning_model_count": 10,
+    "e2_minimum_total_benchmark_configurations": 15,
+    "e2_implementation_validated_for_D7": false,
+    "e2_ten_model_catalogue_selected_scope": "La selección bibliográfica contiene diez nombres; este indicador reserva el cierre del catálogo operativo con adaptación D7 y presupuesto validados",
+    "e2_bibliographic_models_reviewed": 10,
+    "e2_execution_catalogue_validated": false,
+    "e2_section_4_requirements_received": true,
+    "e2_final_experimental_protocol_closed": false,
+    "e2_equivalent_hpo_executed": false,
+    "e2_pilot_and_power_executed": false,
+    "e2_robustness_interpretability_ablations_executed": false,
+    "e2_section_5_requirements_received": true,
+    "e2_paper_guide_replication_executed": true,
+    "e2_paper_guide_limitation_pilot_executed": true,
+    "external_ETTh1_dataset_fits": 20,
+    "new_deep_learning_fits_scope": "Final optimized20-model benchmark only; development P0/OOF and external ETTh1 are recorded separately.",
+    "e2_deep_learning_models_trained_scope": "Solo el benchmark Bitcoin D7 de esta Data Card.",
+    "e2_new_data_acquired_scope": "Fuente Bitcoin heredada; la adquisición externa ETTh1 se documenta por separado.",
+    "e2_pilot_and_power_executed_scope": "Final post-HPO P1 and power certification only; registered Bitcoin development P0/OOF and ETTh1 are separate stages.",
+    "e2_section_6_requirements_received": true,
+    "e2_final_benchmark_analysis_executed": false,
+    "P0_development_status": "all_registered_trajectories_closed",
+    "P0_development_closed_trajectories_snapshot": 220
+  },
+  "eda_scope": {
+    "chapter": "sections/02_eda.md",
+    "inherits_e1_eda": true,
+    "adds_train_only_target_transform_diagnostics": true,
+    "adds_near_duplicate_and_partition_diagnostics": true,
+    "adds_forward_chaining_reference_residuals": true,
+    "known_test_distribution_analysis_is_posthoc": true,
+    "no_deep_learning_benchmark_executed": true,
+    "inherited_partition_changed": false,
+    "inherited_target_changed": false,
+    "target_lags_added": false,
+    "route_alert": "Autocorrelación residual y objetivo móvil justifican revisar la ruta de la guía; no prueban que incorporar rezagos del objetivo mejore. Su evaluación requiere desarrollo y una enmienda explícita antes de alterar entradas o validación."
+  },
+  "literature_scope": {
+    "guide_record": "guia_e2_recibida.json",
+    "focus": "Experimento de Bitcoin/BTCUSDT; la literatura sobre otras criptomonedas u otros dominios puede informar mecanismos, sin cambiar este dataset",
+    "proposed_top10_model_names": [
+      "TSMixer",
+      "TiDE",
+      "TimeMixer",
+      "TimesNet",
+      "PatchTST",
+      "Informer",
+      "Autoformer",
+      "iTransformer",
+      "Crossformer",
+      "S-Mamba"
+    ],
+    "proposed_top10_status": "Diez originales arquitectónicos leídos y seleccionados bibliográficamente; catálogo operativo D7 aún sin implementación validada ni benchmark ejecutado",
+    "minimum_benchmark_composition": {
+      "source_rule": "Guía E2, sección 3.2, más restrictiva que la síntesis inicial de un benchmark de diez",
+      "top10_new_deep_learning_models": 10,
+      "inherited_deep_learning_references": [
+        "GRU/D7-c03",
+        "LSTM/D7-c02",
+        "TCN/D7-c02"
+      ],
+      "inherited_deep_learning_reference_count": 3,
+      "simple_non_deep_reference": "Ridge",
+      "simple_non_deep_reference_count": 1,
+      "trivial_reference": "Persistencia causal",
+      "trivial_reference_count": 1,
+      "minimum_deep_learning_configurations": 13,
+      "minimum_total_configurations": 15,
+      "top10_includes_inherited_three_bases": false,
+      "minimum_total_is_not_the_number_of_seeds": true,
+      "reference_scope_note": "Ridge es la referencia no profunda propuesta; su diagnóstico de EDA ya existe, pero el ajuste y presupuesto del benchmark final aún deben cerrarse. Persistencia conserva su función contextual heredada."
+    },
+    "model_source_datasets_are_not_this_snapshot": true,
+    "same_exact_version_target_and_partition_in_literature_verified": false,
+    "native_wos_exports_verified": true,
+    "verified_native_database_count": 2,
+    "imported_wos_occurrences": 1302,
+    "unique_wos_UT": 1300,
+    "identifier_groups": 1298,
+    "included_studies_count": null,
+    "raw_native_exports_or_full_abstracts_redistributed": false,
+    "export_date_semantics": "DA=2026-11-06 sin hora/zona; no equivale automáticamente a fecha de consulta local. Recepción administrativa America/Bogota=2026-11-05",
+    "query_execution_by_assistant_claimed": false,
+    "independent_new_test_created": false,
+    "target_lags_added": false,
+    "contract_policy": "D7×5, σ7 poblacional, h=1, métrica, margen, unidad y partición heredados sin modificación",
+    "native_scopus_export_verified": true,
+    "minimum_two_native_sources_received": true,
+    "native_export_coverage_complete": false,
+    "imported_scopus_occurrences": 7500,
+    "scopus_screenshot_results": 7874,
+    "scopus_unreceived_or_unexported_records": 374,
+    "combined_native_occurrences": 8802,
+    "combined_bibliographic_groups": 7833,
+    "identifier_groups_scope": "1298 = WoS previo a enlace; 7833 = grupos bibliográficos combinados tras enlace por DOI/título-año-fuente",
+    "current_fulltext_review": {
+      "bibliographic_models_reviewed": 10,
+      "full_original_PDFs_reviewed": 10,
+      "physical_PDF_pages_reviewed": 215,
+      "author_code_sources_verified": 10,
+      "canonical_external_metric_pairs_verified": 10,
+      "current_fulltext_manifest": "literature_fulltext/fulltext_manifest.json",
+      "current_fulltext_extraction": "literature_fulltext/models.json",
+      "native_sources_received": [
+        "Web of Science",
+        "Scopus"
+      ],
+      "native_export_coverage_complete": false,
+      "combined_bibliographic_groups": 7833,
+      "originals_matched_in_received_Scopus": 8,
+      "global_PRISMA_screening_and_eligibility_complete": false,
+      "benchmark_implementation_validated_for_D7": false,
+      "new_deep_learning_fits_this_review": 0,
+      "original_papers_numerically_reproduced_this_review": 0,
+      "new_Bitcoin_results_this_review": 0,
+      "scope_note": "Lectura y selección bibliográfica para transferencia a Bitcoin; los resultados externos no constituyen un ranking comparable del experimento D7 de Bitcoin."
+    }
+  },
+  "benchmark_implementation_scope": {
+    "guide_record": "guia_e2_recibida.json",
+    "received_section": "4.1–4.6",
+    "visible_page_numbers": [
+      12,
+      13,
+      14,
+      15
+    ],
+    "last_capture_unpaginated": true,
+    "section_4_6_page_number": null,
+    "full_guide_received": true,
+    "requirements_registered": true,
+    "final_experimental_protocol_closed": false,
+    "implementation_validated_for_D7": false,
+    "new_deep_learning_fits": 0,
+    "new_Bitcoin_results": 0,
+    "common_budget_planned_not_executed": true,
+    "at_least_five_runs_is_not_power_evidence": true,
+    "guide_cross_references_pending": [],
+    "current_limits": [
+      "Las secciones 7, 9.2, 10, 11/11.1, 13.2 y 14 se citan en las capturas, pero su texto completo todavía no se ha recibido.",
+      "La reserva de E1 ya fue evaluada. No puede describirse como un test nuevo sellado o no observado; reutilizarla mantiene interpretación exploratoria.",
+      "No se reasignan fechas, se inventa un periodo nuevo ni se modifica unilateralmente la partición heredada para aparentar cumplimiento del test desconocido.",
+      "El mínimo de cinco semillas no demuestra potencia suficiente y R=465 de E1 no dimensiona automáticamente las nuevas comparaciones.",
+      "Los folds de una única serie y las semillas no son réplicas del calendario independientes; su incertidumbre debe distinguirse de la variabilidad de optimización.",
+      "La activación de búsqueda de arquitectura es condicional a que el original no la defina; no se declara obligatoria para los diez por mera adaptación de la cabeza escalar. La decisión requiere registro por modelo y sección 14 completa.",
+      "HPO, P1, potencia, robustez, explicabilidad y ablaciones del benchmark final siguen pendientes. El piloto Bitcoin P0/OOF es otra etapa, con ejecución propia registrada."
+    ],
+    "contract_policy": "Conservar entradas D7×5 OHLCV, σ7 poblacional, horizonte h=1, métrica primaria, δ, unidad y partición de E1; cualquier enmienda debe ser explícita y compatible con la guía completa.",
+    "architecture_search_rule_received": {
+      "trigger": "El paper no define arquitectura",
+      "two_phase_protocol_reference": "14",
+      "phase_1_layers": 3,
+      "phase_1_widths": [
+        16,
+        32,
+        64,
+        128,
+        256
+      ],
+      "phase_1_dropout_rate": 0.2,
+      "phase_1_all_width_combinations": true,
+      "phase_1_all_dropout_positions": true,
+      "phase_1_architectures_stated_by_guide": 1000,
+      "phase_2_details_received": false,
+      "per_model_applicability_decisions_closed": false,
+      "executed": false
+    },
+    "minimum_repetitions_received": 5,
+    "minimum_repetitions_recommendation_for_exact_two_sided_Wilcoxon": 6,
+    "minimum_exact_two_sided_Wilcoxon_p_with_five_nonzero_pairs": 0.0625,
+    "Wilcoxon_note": "El mínimo supone cinco diferencias efectivas no nulas sin empates; no convierte cinco folds temporales en observaciones independientes.",
+    "robustness_minimum_levels_per_perturbation": 3,
+    "interpretability_top_models": 3,
+    "ablation_minimum_components": 3,
+    "historical_scope": "Initial section4 proposal archived, superseded operationally by E2-F2a-remediation-20261106. Original15-row artifacts/flags are provenance, not current readiness.",
+    "snapshot_history": "Initial partial-guide proposal scope preserved; completeguide now received, current20-model protocol supersedes old15-row artifacts."
+  },
+  "paper_guide_replication_scope": {
+    "guide_record": "guia_e2_recibida.json",
+    "received_section": "5. Paper Guía y Replicación",
+    "received_date_colombia": "2026-11-06",
+    "date_basis": "Fecha de cliente proporcionada para esta recepción; no sustituye las fechas históricas de las recepciones anteriores.",
+    "visible_page_numbers": [
+      16
+    ],
+    "capture_count": 2,
+    "continuation_page_number": null,
+    "continuation_capture_unpaginated": true,
+    "full_guide_received": true,
+    "requirements_registered": true,
+    "requirement_count": 13,
+    "paper_selection_status": "selected_before_dataset_fits",
+    "final_paper_selected": true,
+    "original_dataset_version_split_metric_frozen": true,
+    "replication_success_criterion_declared_before_results": true,
+    "original_condition_replication_executed": true,
+    "original_result_numerically_replicated": true,
+    "replication_result_receipt": "paper_guide_results/replication_summary.json",
+    "limitation_selected_and_preregistered": true,
+    "limitation_quantified_with_independence_unit_bootstrap": true,
+    "limitation_pilot_models_executed": 3,
+    "minimum_Top10_models_in_limitation_pilot": 3,
+    "limitation_pilot_executed": true,
+    "guide_cross_references_pending": [],
+    "benchmark_D7_training_executed_by_this_section": false,
+    "replication_changes_inherited_Bitcoin_contract": false,
+    "replication_is_new_Bitcoin_benchmark_result": false,
+    "replication_margin_is_not_automatically_Bitcoin_delta": true,
+    "deliverable3_model_architecture_committed": false,
+    "current_limits": [
+      "Réplica parcial compatible del preset TimeMixer en ETTh1: no acredita identidad bit a bit, semillas originales ni cobertura histórica exacta no publicada.",
+      "L1 cuantifica inconsistencia frente a composición del batch con calendario; el IC del cambio de MSE contiene cero y no demuestra deterioro predictivo.",
+      "L2 no quedó demostrada bajo el análisis principal; tampoco acredita ausencia de efecto o equivalencia entre modelos.",
+      "Los quince ajustes del piloto son limitados, dos épocas por semilla; no constituyen el benchmark optimizado de Bitcoin ni réplicas de las métricas de los controles.",
+      "La sección 9.1 completa no se ha recibido. El registro acotado previo de estos experimentos no certifica cumplimiento de texto desconocido.",
+      "Los veinte ajustes externos no alteran objetivo, margen, unidad, partición o estado conocido/exploratorio de los periodos Bitcoin heredados.",
+      "El contrato Bitcoin no usa marcadores de calendario; no se ha confirmado una limitación predictiva transferible ni seleccionado arquitectura original para E3."
+    ],
+    "selected_paper_model": "TimeMixer",
+    "public_design_commit": "329b0a6c8238d632dd00537c5cefab91360bafd1",
+    "analysis_implementation_amendment_record": "experiments/e2_paper_guide_20261106/analysis_amendments.json",
+    "analysis_amendment_before_first_scoring_and_diagnostics": true,
+    "replication_scope": "Partial author-preset ETTh1 L96/H96 reproduction; CPU/runtime/loader deviations and undisclosed historical cohort identity limit exact equivalence",
+    "strict_historical_paper_row_identity_established": false,
+    "numerical_replication_interpretation": "The entire seed-t 95% CI of mean MSE minus 0.375 is inside preregistered ±0.01875; fixed rounded reference, not a two-population significance test",
+    "execution_receipt": "paper_guide_evidence/execution_receipt.json",
+    "external_dataset": "ETTh1",
+    "external_replication_fits": 5,
+    "external_pilot_fits": 15,
+    "external_dataset_fits_total": 20,
+    "new_Bitcoin_D7_fits": 0,
+    "limitation_pilot_models": [
+      "TimeMixer",
+      "iTransformer",
+      "PatchTST"
+    ],
+    "limitation_L1_result": "Batch-composition dependence with historical calendar markers in pinned TimeMixer implementation; supported against numerical tolerance and two paired controls",
+    "limitation_L1_accuracy_deterioration_demonstrated": false,
+    "limitation_L2_result": "Higher-error hypothesis in high-input-variability regimes inconclusive with principal 192-hour block and Holm correction",
+    "Bitcoin_transferable_predictive_gap_confirmed": false,
+    "full_section_9_1_received": true,
+    "bounded_external_preregistration_public_before_fits": true,
+    "snapshot_history": "Initial partial-guide proposal scope preserved; completeguide now received, current20-model protocol supersedes old15-row artifacts."
+  },
+  "benchmark_final_analysis_scope": {
+    "received_section": "6. Benchmark Final",
+    "received_date_colombia": "2026-11-06",
+    "visible_page_numbers": [
+      17,
+      19
+    ],
+    "capture_count": 6,
+    "unpaginated_fragments": true,
+    "unseen_page_numbers_not_inferred": true,
+    "full_guide_received": true,
+    "requirements_registered": true,
+    "requirement_count": 30,
+    "analysis_protocol_status": "proposed_not_frozen",
+    "ten_model_plus_references_Bitcoin_benchmark_executed": false,
+    "minimum_configurations": 15,
+    "new_Bitcoin_D7_fits": 0,
+    "new_Bitcoin_D7_results": 0,
+    "real_prediction_panel_available": false,
+    "real_ranking_available": false,
+    "statistical_claims_executed_on_Bitcoin_benchmark": false,
+    "tool_scope": "Documentary readiness, templates and numerical functions tested on labeled synthetic fixtures; no claim of real benchmark execution",
+    "external_ETTh1_fits_not_included": 20,
+    "guide_cross_references_pending": [],
+    "inherited_Bitcoin_contract_changed": false,
+    "known_test_remains_exploratory": true,
+    "critical_difference_diagram_requires_justified_independent_blocks": true,
+    "training_seeds_are_not_independent_market_datasets": true,
+    "current_limits": [
+      "Adaptaciones finales, HPO, piloto P1 de dimensionamiento y predicciones del benchmark20 siguen pendientes. Los adaptadores y resultados P0 son diagnósticos de desarrollo separados; no se completan métricas finales con cero.",
+      "El análisis de fixtures comprueba software, no desempeño, potencia ni ausencia de fuga.",
+      "Los veinte ajustes ETTh1 externos y las métricas heredadas de E1 no se reetiquetan como resultados nuevos del benchmark E2.",
+      "La longitud de bloques, las familias y el plan de coste/inferencia definitivos requieren cierre antes de scoring; el test heredado sigue conocido.",
+      "Los diez meses solapados y las semillas de una única serie no justifican por sí solos Friedman/Nemenyi como si fueran datasets independientes.",
+      "No se infiere calibración probabilística de un pronóstico puntual, techo de desempeño de la literatura ni equivalencia de un p no significativo.",
+      "Guía completa recibida; implementación final y evidencia pendientes según capítulos7–14."
+    ],
+    "historical_scope": "Initial15-row section6 analysis proposal archived; current20-model protocol and P0results are separate.",
+    "snapshot_history": "Initial partial-guide proposal scope preserved; completeguide now received, current20-model protocol supersedes old15-row artifacts."
+  },
+  "methodological_route_resolution": {
+    "protocol_version": "E2-F2a-remediation-20261106",
+    "guide_full_PDF_received": true,
+    "guide_PDF_pages": 65,
+    "guide_PDF_sha256": "93499dcfda6a36d9621524a81821470017ba114ca6b08241a35de5a54f74a654",
+    "scientific_E1_contract_preserved_sha256": "1464fa79d472f6755651774989b140659ee1f21daeb30032fc650a8770f4fdc4",
+    "methodological_route": "F2a_series_de_tiempo",
+    "route_decision_closed": true,
+    "route_evidence": "Ridge D7 forward ACF(1)=0.632228 and guide RT1 p32; resolution in sections/07_ruta_temporal.md",
+    "DL_input_contract": "D7 x 5 OHLCV; no explicit target lags or calendar channels",
+    "primary_metric": "mean per-trajectory RMSE in original sigma7 units",
+    "absolute_delta": 0.00025772842664981106,
+    "catalogue_size": 20,
+    "tunable_model_count": 15,
+    "HPO_trials_each": 12,
+    "HPO_registry_candidates": 180,
+    "same_assigned_CPU_seconds_per_tunable": 172800,
+    "HPO_actual_executed": false,
+    "final_adapter_architecture_review_status": "Required before HPO; exact source recipes and D7 changes recorded; final exception review not falsely certified",
+    "NAS_rule": "Only for genuinely undefined architectures; no blanket1000 search or automatic exemption from a DOI",
+    "master_registered_source_commit": "599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0",
+    "registered_before_first_dataset_fit_at_utc": "2026-11-06T14:52:32.498327+00:00",
+    "inference_families": {
+      "Top10_vs_E1_GRU": {
+        "hypotheses": 30,
+        "alpha": 0.02
+      },
+      "Top10_vs_tuned_E2_GRU": {
+        "hypotheses": 30,
+        "alpha": 0.02
+      },
+      "registered_final_diagnostics": {
+        "hypotheses": 199,
+        "alpha": 0.01
+      }
+    },
+    "primary_final_family_global_allocated_alpha": 0.05,
+    "P0_diagnostic_family_separate_from_final_benchmark": {
+      "scope": "OOF Jan-Oct2024 only",
+      "hypotheses": 3,
+      "alpha": 0.01,
+      "Holm": true,
+      "Nov_Dec_is_descriptive": true
+    },
+    "power_policy": "Target0.80 for alternatives2delta (excessdelta), not at null boundary; P1 after frozen HPO recipes selects R, cap200 with honest insufficient-power status",
+    "overfit_margin_delta_g": 0.00025772842664981106,
+    "P0_scope": "fixed-config development feasibility, variance, regime-gap diagnostic; not optimized final benchmark or new unseen test",
+    "P0_and_OOF_planned_trajectories": 220,
+    "P0_and_OOF_planned_optimizer_fits": 440,
+    "P0_and_OOF_closed_trajectories_snapshot": 220,
+    "P0_and_OOF_fits_count_scope": "closed trajectories only; in-progress stages are not counted as completed optimizer fits",
+    "main_Bitcoin_test_accessed_in_remediation": false,
+    "main_twenty_model_benchmark_completed": false,
+    "literature": {
+      "received_groups_screened_by_rules": 7833,
+      "provisional_exclusions": 4323,
+      "retained_for_text": 2436,
+      "manual_review_queue": 1074,
+      "financial_priority_queue": 602,
+      "editorial_abstract_reviews": 17,
+      "candidate_model_or_family_rows": 29,
+      "local_transverse_query_counts": [
+        15,
+        3,
+        90
+      ],
+      "local_transverse_unique_groups": 102,
+      "new_native_WoS_Scopus_queries": 0,
+      "unreceived_Scopus_records": 374,
+      "reuploaded_files_identical_to_prior_inputs": true,
+      "global_fulltext_eligibility_closed": false,
+      "quartiles_not_invented": true
+    },
+    "uncertainty_errors": {
+      "implementation_and_synthetic_tests": true,
+      "secondary_branch_A": "Fit/scalers/selection<=2024-10-24, frozen predictor; calibration2024-11-01..12-30, separate from primary full-development fit",
+      "claimed_exact_temporal_coverage": false,
+      "final_top3_selected": false,
+      "error_unique_origins_required_per_primary_model": 100,
+      "OOF_development_unique_origins_available": 305,
+      "P0_models_are_representatives_not_final_top3": true,
+      "P0_error_analysis_executed": true,
+      "P0_unique_error_cases_per_model": 305,
+      "P0_private_audit_sample_per_model": 100,
+      "final_Top3_predictive_intervals_evaluated": false
+    },
+    "legacy_documentary_proposals": "20261105/initial20261106 proposals and ZIPs remain identified as historical; their15-row validators are not current readiness.",
+    "current_readiness_tool": "scripts/e2_protocol_plan.py",
+    "current_training_driver": "scripts/execute_e2_development_pilot.py",
+    "full_guide_receipt_is_not_full_requirement_compliance": true,
+    "updated_at_utc": "2026-11-06T15:22:57.829324+00:00",
+    "observed_execution": {
+      "source_commit": "599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0",
+      "registered_at_utc": "2026-11-06T14:52:32.498327+00:00",
+      "first_trajectory_started_at_utc": "2026-11-06T14:54:12.771101+00:00",
+      "last_trajectory_closed_at_utc": "2026-11-06T15:21:47.236854+00:00",
+      "all_fit_closures_before_first_scoring": true,
+      "closed_trajectories": 220,
+      "completed_optimizer_fits": 440,
+      "fit_failures_recorded": 0,
+      "model_phase_aggregates": [
+        {
+          "phase": "pilot",
+          "model": "TimeMixer",
+          "closed_trajectories": 5,
+          "optimizer_fits": 10,
+          "sum_recorded_training_elapsed_seconds": 95.72608955600299,
+          "training_elapsed_seconds_scope": "sum of per-trajectory elapsed clocks (inner+refit), not process CPU-s nor total wall time; at most2 jobs in parallel",
+          "selected_epoch_min": 29,
+          "selected_epoch_max": 51
+        },
+        {
+          "phase": "pilot",
+          "model": "iTransformer",
+          "closed_trajectories": 5,
+          "optimizer_fits": 10,
+          "sum_recorded_training_elapsed_seconds": 54.61480114306323,
+          "training_elapsed_seconds_scope": "sum of per-trajectory elapsed clocks (inner+refit), not process CPU-s nor total wall time; at most2 jobs in parallel",
+          "selected_epoch_min": 25,
+          "selected_epoch_max": 48
+        },
+        {
+          "phase": "pilot",
+          "model": "PatchTST",
+          "closed_trajectories": 5,
+          "optimizer_fits": 10,
+          "sum_recorded_training_elapsed_seconds": 135.6400226469268,
+          "training_elapsed_seconds_scope": "sum of per-trajectory elapsed clocks (inner+refit), not process CPU-s nor total wall time; at most2 jobs in parallel",
+          "selected_epoch_min": 21,
+          "selected_epoch_max": 71
+        },
+        {
+          "phase": "pilot",
+          "model": "GRU",
+          "closed_trajectories": 5,
+          "optimizer_fits": 10,
+          "sum_recorded_training_elapsed_seconds": 24.013442984083667,
+          "training_elapsed_seconds_scope": "sum of per-trajectory elapsed clocks (inner+refit), not process CPU-s nor total wall time; at most2 jobs in parallel",
+          "selected_epoch_min": 40,
+          "selected_epoch_max": 84
+        },
+        {
+          "phase": "oof",
+          "model": "TimeMixer",
+          "closed_trajectories": 50,
+          "optimizer_fits": 100,
+          "sum_recorded_training_elapsed_seconds": 752.1769795324071,
+          "training_elapsed_seconds_scope": "sum of per-trajectory elapsed clocks (inner+refit), not process CPU-s nor total wall time; at most2 jobs in parallel",
+          "selected_epoch_min": 16,
+          "selected_epoch_max": 77
+        },
+        {
+          "phase": "oof",
+          "model": "iTransformer",
+          "closed_trajectories": 50,
+          "optimizer_fits": 100,
+          "sum_recorded_training_elapsed_seconds": 387.6910994396894,
+          "training_elapsed_seconds_scope": "sum of per-trajectory elapsed clocks (inner+refit), not process CPU-s nor total wall time; at most2 jobs in parallel",
+          "selected_epoch_min": 5,
+          "selected_epoch_max": 100
+        },
+        {
+          "phase": "oof",
+          "model": "PatchTST",
+          "closed_trajectories": 50,
+          "optimizer_fits": 100,
+          "sum_recorded_training_elapsed_seconds": 922.5838356798049,
+          "training_elapsed_seconds_scope": "sum of per-trajectory elapsed clocks (inner+refit), not process CPU-s nor total wall time; at most2 jobs in parallel",
+          "selected_epoch_min": 20,
+          "selected_epoch_max": 76
+        },
+        {
+          "phase": "oof",
+          "model": "GRU",
+          "closed_trajectories": 50,
+          "optimizer_fits": 100,
+          "sum_recorded_training_elapsed_seconds": 176.04762076516636,
+          "training_elapsed_seconds_scope": "sum of per-trajectory elapsed clocks (inner+refit), not process CPU-s nor total wall time; at most2 jobs in parallel",
+          "selected_epoch_min": 5,
+          "selected_epoch_max": 100
+        }
+      ],
+      "scoring_phases": {
+        "pilot": {
+          "completed_at_utc": "2026-11-06T15:22:02.765045+00:00",
+          "scheduled_trajectories": 20,
+          "rows": 1200,
+          "max_decoded_outcome": "2024-12-30",
+          "all_fit_closures_before_scoring": true
+        },
+        "oof": {
+          "completed_at_utc": "2026-11-06T15:22:11.211112+00:00",
+          "scheduled_trajectories": 200,
+          "rows": 6100,
+          "max_decoded_outcome": "2024-10-31",
+          "all_fit_closures_before_scoring": true
+        }
+      },
+      "scientific_contract_E1_sha256": "1464fa79d472f6755651774989b140659ee1f21daeb30032fc650a8770f4fdc4",
+      "scoring_phase_receipt_sha256": {
+        "pilot": "545bf1e8be340a23a217691b2f0fc9689fefd2f783f667d9654d90d407f22ea6",
+        "oof": "fbc2585c89e2d04c91fbf9b3df2f109455a820e5bd216b0b372286fc8db4c2b2"
+      },
+      "test_2025_or_later_access": false,
+      "HPO_executed": false,
+      "final_twenty_model_benchmark_completed": false,
+      "final_top3_identified": false,
+      "predictive_intervals_for_final_top3_evaluated": false,
+      "case_error_analysis_P0_unique_per_model": 305,
+      "private_audit_sample_unique_per_model": 100,
+      "public_export_at_utc": "2026-11-06T15:22:57.777353+00:00",
+      "individual_predictions_error_ledger_or_weights_exported": false
+    },
+    "P0_and_OOF_status": "completed_fits_scoring_analysis",
+    "P0_and_OOF_completed_optimizer_fits": 440,
+    "observed_aggregate_results": "remediation_pilot_results/summary.json",
+    "observed_error_analysis": "remediation_error_results/error_summary.json"
+  }
+}

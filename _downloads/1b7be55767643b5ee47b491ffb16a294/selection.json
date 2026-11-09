@@ -1,0 +1,335 @@
+{
+  "decision_id": "gru_lstm_tcn_selection_20261105",
+  "recorded_at_utc": "2026-11-05T17:25:04.627481+00:00",
+  "selected_models": [
+    "GRU",
+    "LSTM",
+    "TCN"
+  ],
+  "supersedes_current_presentation": [
+    "MLP",
+    "LSTM",
+    "CNN1D"
+  ],
+  "authorized_scope": "The user authorized publishing GRU–LSTM–TCN as the principal JBook terna while preserving historical evidence and study counts.",
+  "chronology": {
+    "after_historical_benchmark": true,
+    "after_inspection_of_private_experiment": true,
+    "literature_selection_not_preregistered_before_experiments": true,
+    "private_protocol_fixed_before_its_new_fits": true,
+    "publication_decision_is_not_internal_recipe_freeze": true,
+    "public_code_is_post_execution_portable_adapter": true,
+    "not_claimed_fresh_market_confirmation": true
+  },
+  "scope": {
+    "review": "Continuous volatility or variance forecasting in any cryptocurrency.",
+    "experiment": "Bitcoin BTCUSDT, Binance Spot, daily OHLCV.",
+    "corpus_study_ids": [
+      "S1",
+      "S2",
+      "S5",
+      "S6",
+      "S7",
+      "S8",
+      "S9"
+    ],
+    "corpus_n": 7,
+    "publication_identified_in_original": [
+      "S1",
+      "S8"
+    ],
+    "all_studies_peer_reviewed": false,
+    "article_indexing_or_Q1_verified_by_this_record": false
+  },
+  "selection_basis": [
+    "S1, an original published paper, compares all three families independently for Bitcoin volatility in Table 2.",
+    "S8, an original published chapter, provides additional independent GRU and LSTM comparisons in Table 1.",
+    "Compact explicit project recipes control capacity without claiming a global minimum or exact reproduction of fitted paper architectures.",
+    "Compare GRU with two gates and an integrated state, LSTM with three gates and separate cell memory, and a causal dilated residual TCN."
+  ],
+  "unmet_or_partial_criteria": [
+    "TCN has one strict reference out of seven; widespread recurrence is not established.",
+    "The terna is not the corpus frequency top three: the Transformer encoder has 2/7 references, compared with TCN 1/7.",
+    "The decision to publish followed inspection of the private experiment; those results are not independent prospective validation of the selection.",
+    "Fixed inherited recipes do not represent equivalently optimized architecture families."
+  ],
+  "common_project_contract": {
+    "input_shape": [
+      "B",
+      "D",
+      5
+    ],
+    "histories_days": [
+      7,
+      14,
+      21,
+      28
+    ],
+    "feature_channels": [
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume"
+    ],
+    "target": "sigma7: population SD of seven daily log returns, ddof=0, no annualization",
+    "horizon_days": 1,
+    "target_lags_added": false,
+    "output": "positive scalar via Softplus",
+    "seeds": [
+      4101,
+      4102,
+      4103,
+      4104,
+      4105,
+      4106,
+      4107,
+      4108,
+      4109,
+      4110
+    ],
+    "monthly_cv_blocks_2024": 12,
+    "cv_trajectories": 120,
+    "cv_segments": 1440,
+    "cv_optimization_fits": 2880,
+    "optimizer": "AdamW",
+    "weight_decay": 0.0001,
+    "dropout": 0.1,
+    "batch_size": 32,
+    "gradient_clip_norm": 1,
+    "maximum_inner_epochs": 100,
+    "early_stopping_patience": 12,
+    "preprocessing": "Relative-window OHLC, log1p(volume), and scalers fitted only on permitted training observations.",
+    "development_status": "Previously observed 2024 calendar; exploratory comparison of fixed recipes.",
+    "new_HPO": false
+  },
+  "models": [
+    {
+      "model": "GRU",
+      "reference_studies": [
+        "S1",
+        "S2",
+        "S8"
+      ],
+      "reference_count": 3,
+      "denominator": 7,
+      "strict_reference_frequency": "3/7",
+      "published_original_reference_studies": [
+        "S1",
+        "S8"
+      ],
+      "own_architecture": "One unidirectional GRU layer, H=32; last hidden state, dropout, Linear(32,1), Softplus.",
+      "hidden_width": 32,
+      "recurrent_layers": 1,
+      "control_gates": [
+        "reset",
+        "update"
+      ],
+      "candidate_projection": "New/candidate projection; this is not a third control gate.",
+      "memory": "Single integrated hidden state.",
+      "learning_rate": 0.003,
+      "trainable_parameters": 3777,
+      "parameter_formula": "3H(p+H+2)+(H+1), p=5, H=32.",
+      "mechanism": "Gated recurrence with an integrated state.",
+      "limits": [
+        "Family recurrence is descriptive of the recovered corpus, not an unbiased prevalence estimate.",
+        "The project H=32 recipe is not an exact reproduction of S1 or S8."
+      ]
+    },
+    {
+      "model": "LSTM",
+      "reference_studies": [
+        "S1",
+        "S2",
+        "S5",
+        "S7",
+        "S8"
+      ],
+      "reference_count": 5,
+      "denominator": 7,
+      "strict_reference_frequency": "5/7",
+      "explicit_unidirectional_studies": [
+        "S1",
+        "S5",
+        "S7"
+      ],
+      "published_original_reference_studies": [
+        "S1",
+        "S8"
+      ],
+      "own_architecture": "One unidirectional LSTM layer, H=32; last hidden state, dropout, Linear(32,1), Softplus.",
+      "hidden_width": 32,
+      "recurrent_layers": 1,
+      "control_gates": [
+        "input",
+        "forget",
+        "output"
+      ],
+      "candidate_projection": "Cell candidate transformation; this is not a fourth control gate.",
+      "memory": "Separate cell state c and hidden state h.",
+      "learning_rate": 0.003,
+      "trainable_parameters": 5025,
+      "parameter_formula": "4H(p+H+2)+(H+1), p=5, H=32.",
+      "mechanism": "Gated recurrence with separate cell memory.",
+      "limits": [
+        "Family count includes BiLSTM in S2 and unspecified direction in S8.",
+        "The proposed LSTM of S9 raises empirical presence to 6/7 but does not raise strict reference frequency.",
+        "The project H=32 recipe is not the winning recipe from S1 or S8."
+      ]
+    },
+    {
+      "model": "TCN",
+      "reference_studies": [
+        "S1"
+      ],
+      "reference_count": 1,
+      "denominator": 7,
+      "strict_reference_frequency": "1/7",
+      "published_original_reference_studies": [
+        "S1"
+      ],
+      "own_architecture": "Three residual blocks with two causal Conv1D layers each; H=16, k=3, block dilations 1/2/4; last time position, dropout, Linear(16,1), Softplus.",
+      "hidden_width": 16,
+      "residual_blocks": 3,
+      "convolution_layers": 6,
+      "kernel_size": 3,
+      "block_dilations": [
+        1,
+        2,
+        4
+      ],
+      "residual_projection": "First block: pointwise 1x1 projection from p=5 to H=16.",
+      "padding": "Left only.",
+      "readout": "Last observed time position; no global average pooling.",
+      "receptive_field_positions": 29,
+      "receptive_field_formula": "1+2(k-1)(1+2+4)=29.",
+      "maximum_observed_input_days": 28,
+      "support_note": "RF=29 covers D=7/14/21/28. Support before each window is zero padding, not additional observations.",
+      "learning_rate": 0.001,
+      "trainable_parameters": 4289,
+      "parameter_formula": "H(pk+1)+5H(Hk+1)+H(p+1)+(H+1), p=5, H=16, k=3.",
+      "mechanism": "Causal dilated residual temporal convolution.",
+      "limits": [
+        "Only one independently verified reference in the seven-study corpus; widespread recurrence is not established.",
+        "Compact project adaptation, not the S1 winner with six levels, F=287, k=5.",
+        "This is not a renaming or reproduction of the historical two-convolution CNN1D.",
+        "The dimensionally unspecified CNN in S8 does not add TCN evidence."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "study_id": "S1",
+      "reference_key": "akbiyik2023",
+      "year": 2023,
+      "title": "Ask “Who”, Not “What”: Bitcoin Volatility Forecasting with Twitter Data",
+      "venue": "ACM WSDM 2023",
+      "doi": "10.1145/3539597.3570387",
+      "fulltext_read": true,
+      "fulltext_url": "https://raw.githubusercontent.com/meakbiyik/ask-who-not-what/bcc0e4e89213da2ca3ed968574aa2d08cee39c44/paper.pdf",
+      "locations": [
+        "Table 2: independent GRU, LSTM and TCN references.",
+        "Appendix Tables 5–6: winning hyperparameters."
+      ],
+      "role_separation": "D-TCN is the proposed advanced model, not an additional independent TCN reference.",
+      "journal_Q1_verified": false,
+      "individual_index_records_verified": false
+    },
+    {
+      "study_id": "S8",
+      "reference_key": "miura2019",
+      "year": 2019,
+      "title": "Artificial Neural Networks for Realized Volatility Prediction in Cryptocurrency Time Series",
+      "venue": "ISNN 2019, LNCS 11554, pp.165–172",
+      "doi": "10.1007/978-3-030-22796-8_18",
+      "fulltext_read": true,
+      "fulltext_url": "https://raw.githubusercontent.com/Anton21a/Thesis/8bc3aa3c96fd214b34b914d2057f4339f2c8ed1e/ML%20articles/Artificial%20Neural%20Networks.pdf",
+      "fulltext_sha256": "2364a462ed212803e2c4b751d27d66091af5773159c601f950df17578853dfeb",
+      "locations": [
+        "Table 1, p.171."
+      ],
+      "role_separation": "MLP, CNN, LSTM and GRU are independent models. MLP/CNN remain in source extraction, not in the current project terna.",
+      "journal_Q1_verified": false,
+      "individual_index_records_verified": false
+    }
+  ],
+  "unchanged_corpus_artifacts": [
+    {
+      "path": "references/literature_e1/crypto_extension_20261105/family_frequencies.csv",
+      "sha256": "a8f66230168f0d4bf30e4c585609f9b356fc07268bc96bb8f25217f1383dbaa7"
+    },
+    {
+      "path": "references/literature_e1/crypto_extension_20261105/evidence_matrix.json",
+      "sha256": "4b5eb36f0db801f15df64a5f04cc053a107165a86ff89f755afe9e548ec72f82"
+    }
+  ],
+  "private_execution_provenance": [
+    {
+      "role": "original_private_protocol",
+      "sha256": "c136f7743ccff2e524e892510dfd05cbbaaf4fc3776bd5c23bd88ad753f60c88"
+    },
+    {
+      "role": "original_private_model_module",
+      "sha256": "797fbabe118ba850e3384ca61f564722c72d94c33b90773e48ca2292ad1de96a"
+    },
+    {
+      "role": "original_private_runner",
+      "sha256": "9731333fceca5945a42cf7b08d22cde15c85985a2f0025eb90f23ede233d3ff7"
+    }
+  ],
+  "public_project_artifacts": {
+    "model_specs": "book/_static/gru_lstm_tcn_20261105/model_specs.json",
+    "execution_summary": "book/_static/gru_lstm_tcn_20261105/summary.json",
+    "selected_by_cv": "book/_static/gru_lstm_tcn_20261105/selected_by_cv.json",
+    "portable_model_adapter": "scripts/dl_models_gru_lstm_tcn.py",
+    "portable_runner_adapter": "scripts/run_gru_lstm_tcn.py"
+  },
+  "search_activity_of_this_selection_update": "No bibliographic queries executed; reused verified originals and existing extractions.",
+  "disallowed_inferences": [
+    "TCN is widely recurrent.",
+    "All seven studies are peer reviewed.",
+    "A DOI proves article indexing or Q1.",
+    "The exact project recipes were copied from the papers.",
+    "Historical MLP/CNN metrics are GRU/TCN metrics.",
+    "The portable public adapter was the original privately executed file."
+  ],
+  "own_results_context": {
+    "source": "book/_static/gru_lstm_tcn_20261105/selected_by_cv.json",
+    "baseline": {
+      "model": "GRU",
+      "history_days": 7,
+      "cv_rmse_mean": 0.005154568532996221,
+      "cv_rmse_sample_sd": 0.00016155707713944208,
+      "parameters": 3777,
+      "seeds": 10
+    },
+    "selected_by_model": {
+      "LSTM": {
+        "model": "LSTM",
+        "history_days": 7,
+        "cv_rmse_mean": 0.006335414343838751,
+        "cv_rmse_sample_sd": 0.00018700981704530587,
+        "parameters": 5025,
+        "seeds": 10
+      },
+      "GRU": {
+        "model": "GRU",
+        "history_days": 7,
+        "cv_rmse_mean": 0.005154568532996221,
+        "cv_rmse_sample_sd": 0.00016155707713944208,
+        "parameters": 3777,
+        "seeds": 10
+      },
+      "TCN": {
+        "model": "TCN",
+        "history_days": 7,
+        "cv_rmse_mean": 0.005819612099624867,
+        "cv_rmse_sample_sd": 0.00025622208406607985,
+        "parameters": 4289,
+        "seeds": 10
+      }
+    },
+    "scope": "Previously observed development calendar; conditional training variability, not prospective market confirmation.",
+    "distinct_from_literature_metrics": true
+  }
+}

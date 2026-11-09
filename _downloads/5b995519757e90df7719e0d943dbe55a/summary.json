@@ -1,0 +1,104 @@
+{
+  "scope": "descriptive_development_EDA_only_no_fitted_model_or_experiment",
+  "period": {
+    "start": "2023-01-01",
+    "end_inclusive": "2024-12-31",
+    "calendar_days": 731
+  },
+  "source_files": [
+    {
+      "path": "results/eda_development/daily_market_development.csv",
+      "sha256": "bf6bb5160af924aef6a15c3684aeae932df3017e8639888bb7e91ce787900171"
+    },
+    {
+      "path": "results/eda_development/daily_volatility_development.csv",
+      "sha256": "20b96374a659eb87dadfa68aa3d6b6b5fb6bea5b10eebe6f2c186ad69861844a"
+    }
+  ],
+  "input_transform_for_diagnostics_only": "log(OHLC), log1p(volume); no fitted scaler",
+  "target": "existing sigma_7 daily-return population standard deviation",
+  "lagged_correlation_training_year": 2023,
+  "lag_days": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28
+  ],
+  "correlation_rows": 140,
+  "pair_counts_by_lag_range": [
+    328,
+    350
+  ],
+  "rolling": {
+    "window_calendar_days": 60,
+    "minimum_pairs": 50,
+    "centered": false,
+    "availability": "diagnostic after outcome is observed; not an unshifted predictor"
+  },
+  "missing_daily_market_days": [
+    "2023-03-24"
+  ],
+  "original_raw_quality": {
+    "missing_minutes": 80,
+    "noneligible_minute_close_time_rows": 1,
+    "policy": "existing strict exclusion; no imputation or recovery performed"
+  },
+  "calendar_alignment_checks": [
+    {
+      "outcome_day_utc": "2023-02-10",
+      "lag_days": 7,
+      "feature": "close",
+      "source_day_utc": "2023-02-03",
+      "passed": true
+    },
+    {
+      "outcome_day_utc": "2023-04-30",
+      "lag_days": 28,
+      "feature": "volume",
+      "source_day_utc": "2023-04-02",
+      "passed": true
+    },
+    {
+      "outcome_day_utc": "2024-01-01",
+      "lag_days": 1,
+      "feature": "open",
+      "source_day_utc": "2023-12-31",
+      "passed": true
+    }
+  ],
+  "missing_calendar_position_preserved": true,
+  "models_fitted": 0,
+  "hypothesis_tests_run": 0,
+  "test_files_opened": 0,
+  "limitations": [
+    "Correlations of price levels may be spurious and do not establish causality or forecast value.",
+    "Overlapping rolling windows and volatility targets make plotted values dependent.",
+    "Differences between years are descriptive, not evidence of a significant regime change.",
+    "No variable, history, model, block length or hyperparameter is selected using these plots.",
+    "Reference-model residual diagnostics remain deferred to E2 under the user's scope."
+  ]
+}

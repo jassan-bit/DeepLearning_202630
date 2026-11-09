@@ -1,0 +1,167 @@
+{
+  "reviewed_at": "2026-11-03T02:11:36.269883+00:00",
+  "scope": "Directed recovery of three previously uninspected repositories identified in the original 106-record corpus. No new repository searches, no own models, no market data or test access.",
+  "new_repositories_actually_inspected": 3,
+  "new_scientific_full_texts_recovered": 1,
+  "new_scientific_full_texts_assessed_for_eligibility": 1,
+  "final_inclusion_decision": "Parent reviewer; no automatic inclusion or frequency changes by recovery agent.",
+  "records": [
+    {
+      "record_id": "R004",
+      "repository": "AroopGit/bitcoin_volatility_forecasting",
+      "commit": "b4ce953c14a9de0bca1d7b5a78b02a6a2ea25be2",
+      "inspection": "Repository root, README, notebooks directory tree. Tree contains three notebooks and no scientific manuscript.",
+      "verified_topic": "Bitcoin 7-day average daily realized volatility, GARCH and univariate/multivariate LSTM, with technical indicators.",
+      "identity_status": "Educational/research project README; no identified scientific paper with title/authorship/year/DOI recovered.",
+      "eligible_full_text": false,
+      "corrected_reason": "DL and Bitcoin volatility are present. A scientific manuscript was not recovered from the inspected repository, so do not exclude as price-only or absence of DL."
+    },
+    {
+      "record_id": "R012",
+      "repository": "magetojackline2-hue/bitcoin-volatility-forecasting",
+      "commit": "65a6c4ed669fc03968ded11a55cef580403edc6e",
+      "inspection": "Repository root and README. Root contains README, license, gitignore and screenshots.",
+      "verified_topic": "Bitcoin daily volatility with GARCH/EGARCH/LSTM and hybrids; S&P500 ancillary comparison.",
+      "identity_status": "Jacqueline Mageto; MSc group of four, HFU Furtwangen; no scientific manuscript, DOI or editorial year recovered.",
+      "eligible_full_text": false,
+      "corrected_reason": "DL is explicitly present. Repository documents an MSc project in a README and screenshots rather than an identified full scientific article."
+    },
+    {
+      "record_id": "R015",
+      "repository": "cathyw111/bitcoin-volatility-forecasting",
+      "commit": "61feeec81d695e19eac9c819be41d704e6279547",
+      "inspection": "Repository root, README, research-draft.pdf (14 pages), presentation.pdf (same work, not an additional study), commit page.",
+      "title": "A comparative analysis of volatility predictions via EGARCH, Transformer and hybrid EGARCH-Transformer models: changes in forecasting ability after introducing sentiment factors",
+      "authors": [
+        "Yafei Wang",
+        "Qiujin Yu",
+        "Jiangchuan Peng",
+        "Bokai Yang",
+        "Ziqing Chen"
+      ],
+      "editorial_year": null,
+      "doi": null,
+      "peer_review_status": "Not established; repository explicitly asserts no publication status.",
+      "commit_date": "2026-10-30T10:38:01.000-04:00",
+      "date_note": "Commit date identifies a repository version only, not publication year. PDF has no creation/modification date reported by pdfinfo. Citation may use s.f. and a separate version/access date.",
+      "scientific_full_text_identifiable": true,
+      "possible_eligibility": "Identifiable full grey manuscript with methods, DL comparative baseline and numerical results. May be assessed under the same explicit grey-literature policy as S2. Architecture/protocol reproducibility remains partial. Do not assert indexed or peer-reviewed status.",
+      "dataset": {
+        "asset": "Bitcoin",
+        "raw_source": "Not sufficiently identified in methods reviewed",
+        "frequency": "Daily",
+        "sample_dates": "2021-03-25 through 2024-12-30",
+        "reported_return_observations": 1376,
+        "target": "One-day-ahead realized volatility (RV1D); precise proxy construction not recovered. Do not equate with sigma7.",
+        "inputs_baseline": "OHLCV only; other variants add RV, VIX, S&P500, DXY, EGARCH variance forecasts and Reddit sentiment."
+      },
+      "baseline": {
+        "family": "Transformer encoder",
+        "role": "Standalone/pure OHLCV model1; compared with EGARCH and added-feature/hybrid variants",
+        "location": "Section3.4 pp6–7; Table1 p7; Table2 p7; Table4 p10",
+        "lookback_days": 20,
+        "d_model": 32,
+        "attention_heads": 4,
+        "encoder_layers": 2,
+        "dropout": 0.1,
+        "output_activation": "Softplus",
+        "loss": "MSE",
+        "optimizer": "Adam",
+        "learning_rate": 0.001,
+        "batch_size": 32,
+        "max_epochs": 100,
+        "early_stopping_patience": 10,
+        "random_seed": 42,
+        "unreported_for_exact_replication": [
+          "feedforward width",
+          "pooling/readout details",
+          "normalization ordering",
+          "implementation version",
+          "training code/data/weights/logs not supplied"
+        ]
+      },
+      "reported_metrics": {
+        "location": "Table4 p10; model1 baseline",
+        "rmse": 1.4738,
+        "qlike": 0.4369,
+        "r2": -0.7347,
+        "mae": 0.4369,
+        "dispersion": "None reported across seeds; seed42 only."
+      },
+      "quality_limits": [
+        "Transformer split 70/30 is not reconciled with EGARCH test window 2024-06-11 through 2024-12-30 (203 days).",
+        "DM explicitly not executed due computational cost (introduction and section6.2 p13).",
+        "Paper asserts model9 best MAE0.7399, but model1 MAE0.4369 is smaller.",
+        "Reported RMSE/R2 imply different target variances under a conventional common-cohort R2 (model1≈1.252 versus model2≈2.063); cohort/metric definition is not verifiable without data.",
+        "EGARCH order selection text partly cites out-of-sample performance; apparent risk of selecting using test.",
+        "No training code or underlying data permits leakage/availability checks.",
+        "Draft and slides use different configuration numbering; count one study and do not cross-map by number alone."
+      ]
+    }
+  ],
+  "source_files": [
+    {
+      "record_id": "R004",
+      "repository": "AroopGit/bitcoin_volatility_forecasting",
+      "commit": "b4ce953c14a9de0bca1d7b5a78b02a6a2ea25be2",
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/AroopGit/bitcoin_volatility_forecasting/b4ce953c14a9de0bca1d7b5a78b02a6a2ea25be2/README.md",
+      "retrieved_at": "2026-11-03T02:07:35.941209+00:00",
+      "http_status": 200,
+      "bytes": 5167,
+      "sha256": "dc91f9ecd5e1da02b7ce44487eeb299eff21434005981cc19130994a518c8ebb",
+      "local_path": "/workspace/e1_literature_revision_20261103/recovery_a/R004_README.md"
+    },
+    {
+      "record_id": "R012",
+      "repository": "magetojackline2-hue/bitcoin-volatility-forecasting",
+      "commit": "65a6c4ed669fc03968ded11a55cef580403edc6e",
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/magetojackline2-hue/bitcoin-volatility-forecasting/65a6c4ed669fc03968ded11a55cef580403edc6e/README.md",
+      "retrieved_at": "2026-11-03T02:07:36.007651+00:00",
+      "http_status": 200,
+      "bytes": 5522,
+      "sha256": "ac09d216822b213660289b5dd1c365169e47b60dbe9d471afed756409ca3d960",
+      "local_path": "/workspace/e1_literature_revision_20261103/recovery_a/R012_README.md"
+    },
+    {
+      "record_id": "R015",
+      "repository": "cathyw111/bitcoin-volatility-forecasting",
+      "commit": "61feeec81d695e19eac9c819be41d704e6279547",
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/cathyw111/bitcoin-volatility-forecasting/61feeec81d695e19eac9c819be41d704e6279547/README.md",
+      "retrieved_at": "2026-11-03T02:07:36.006209+00:00",
+      "http_status": 200,
+      "bytes": 3303,
+      "sha256": "66394d8af0e5a30109f8d0f2c74f080f35edafba6d343beb5d2571abc246a9ea",
+      "local_path": "/workspace/e1_literature_revision_20261103/recovery_a/R015_README.md"
+    },
+    {
+      "record_id": "R015",
+      "repository": "cathyw111/bitcoin-volatility-forecasting",
+      "commit": "61feeec81d695e19eac9c819be41d704e6279547",
+      "path": "research-draft.pdf",
+      "url": "https://raw.githubusercontent.com/cathyw111/bitcoin-volatility-forecasting/61feeec81d695e19eac9c819be41d704e6279547/research-draft.pdf",
+      "retrieved_at": "2026-11-03T02:07:36.016145+00:00",
+      "http_status": 200,
+      "bytes": 1527210,
+      "sha256": "f849fcbf220c84a09f56641ca53500ec47bdb331fb21015e7ed85486d3174af0",
+      "local_path": "/workspace/e1_literature_revision_20261103/recovery_a/R015_research-draft.pdf"
+    },
+    {
+      "record_id": "R015",
+      "repository": "cathyw111/bitcoin-volatility-forecasting",
+      "commit": "61feeec81d695e19eac9c819be41d704e6279547",
+      "path": "presentation.pdf",
+      "url": "https://raw.githubusercontent.com/cathyw111/bitcoin-volatility-forecasting/61feeec81d695e19eac9c819be41d704e6279547/presentation.pdf",
+      "retrieved_at": "2026-11-03T02:07:36.034110+00:00",
+      "http_status": 200,
+      "bytes": 453749,
+      "sha256": "43cb3013412fa6a7ee314f43f40e7c9068411d990fc346127ba5ad5781bc4e95",
+      "local_path": "/workspace/e1_literature_revision_20261103/recovery_a/R015_presentation.pdf"
+    }
+  ],
+  "own_deep_learning_models_trained": 0,
+  "own_market_data_opened": 0,
+  "own_test_files_opened": 0
+}

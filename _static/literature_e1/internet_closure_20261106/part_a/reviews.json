@@ -1,0 +1,627 @@
+[
+  {
+    "accessed_utc": "2026-11-07T01:54:31Z",
+    "accessed_bogota": "2026-11-06T20:54:31-05:00",
+    "original_file_materialized": false,
+    "original_file_sha256": null,
+    "historical_N7_inclusion": false,
+    "source_method": "Consulta web de fuentes primarias y copias de autor; no es una nueva búsqueda nativa de WoS, Scopus o IEEE Xplore.",
+    "group_id": "E1N053",
+    "title": "Comparison of neural network models for prediction cryptocurrency price volatility in trading pairs",
+    "doi": null,
+    "authors": [
+      "Samat Mukhanov",
+      "Kaisar Bekbolat",
+      "Ikram Bazarbekov",
+      "Saule Amanzholova",
+      "Kymbat Seilkhanova",
+      "Galym Kapyshev"
+    ],
+    "year_nominal": 2026,
+    "year_online": 2026,
+    "online_date": "2026-07-16",
+    "venue": "CEUR Workshop Proceedings, volume 4224; Workshop on Artificial Intelligence 2025, co-located with DTESI 2025",
+    "conference_dates": "2025-11-19/2025-11-20",
+    "source_urls": [
+      "https://ceur-ws.org/Vol-4224/",
+      "https://ceur-ws.org/Vol-4224/Paper9.pdf"
+    ],
+    "access_level": "publisher_full_text_pdf_via_web",
+    "full_text_read": true,
+    "evidence_locations": [
+      "Índice CEUR Vol-4224: artículo 9, autores, licencia CC BY 4.0 y fecha efectiva 16 de julio de 2026.",
+      "PDF de 11 páginas: §2 (pp. 3–4), datos y partición; §2.2 (p. 4), TCN; §2.5–2.6 (p. 5), CNN-LSTM y métricas.",
+      "§3 y Tabla 1 (pp. 5–6); Figuras 1–6 y pies (pp. 7–9); conclusión (pp. 9–10). Las páginas indican posición física en el PDF, comenzando en 1.",
+      "Referencias pp. 10–11. Valores interiores de imágenes de matrices de confusión no se transcriben porque no se verificaron visualmente."
+    ],
+    "target": "El artículo denomina el objetivo volatilidad de criptomonedas; los resultados operan principalmente como clasificación de estados de alta/baja volatilidad. No queda definida una fórmula de volatilidad, horizonte, regla de etiquetas ni umbral de clases que permita equipararlo a la regresión diaria sigma7 de E1.",
+    "models_and_roles": {
+      "independent_reported": [
+        "Temporal Fusion Transformer",
+        "TCN",
+        "XGBoost",
+        "Random Forest"
+      ],
+      "hybrid_reported": [
+        "CNN-LSTM"
+      ],
+      "gru_independent": false,
+      "lstm_independent": false,
+      "tcn_independent": true,
+      "tcn_presence_evidence": "§2.2 y fila propia de Tabla 1; no se infiere desde una mención en introducción."
+    },
+    "architecture_details": {
+      "tcn": "Se describen convoluciones causales dilatadas y una ecuación genérica h_t=f(W·X_t+b). No se especifican capas, canales, kernel, dilataciones concretas, optimizador ni presupuesto de entrenamiento.",
+      "tft": "Descripción genérica de atención y selección de entradas; configuración final no especificada.",
+      "cnn_lstm": "Se describe el híbrido y una ecuación CNN genérica; no se ofrecen anchos, profundidad o hiperparámetros seleccionados.",
+      "simplicity_evidence": "Las afirmaciones de eficiencia/interpretabilidad son narrativas; no hay conteos de parámetros, tiempos o presupuesto de ajuste verificables."
+    },
+    "protocol": {
+      "data": "OHLCV diario de las diez criptomonedas de mayor capitalización; se nombran Binance API y Yahoo Finance; período declarado 2013–2021.",
+      "features": "Medias móviles de 7, 21 y 50 días, momentum, índices de volatilidad, RSI y MACD.",
+      "split": "Entrenamiento 2013–2019 y prueba 2020–2021; se declara validación con ventana expansiva sobre entrenamiento.",
+      "preprocessing": "Interpolación lineal y normalización Min-Max; no se establece ajuste de transformaciones exclusivamente en entrenamiento.",
+      "hpo": "Se declaran grid search y optimización bayesiana sin espacio, número de ensayos o configuración seleccionada por modelo.",
+      "uncertainty": "Se afirma promedio entre folds e intervalos de confianza; no se publican valores de intervalos, número de folds o semillas."
+    },
+    "quality_issues": [
+      "Faltan definición operativa del objetivo, horizonte, umbral de etiquetas y lookback; no permite comprobar la misma tarea que E1.",
+      "Las fórmulas MAE/MSE/RMSE aparecen en §2.6, pero Tabla 1 reporta una columna Test Loss sin identificar cuál de esas pérdidas representa ni su escala.",
+      "La tabla de resultados aporta clasificación y pérdida agregada; no sustenta superioridad de TCN para volatilidad diaria ni comparación de complejidad.",
+      "La configuración final de las redes y el protocolo de ajuste no permiten reproducción independiente.",
+      "La identidad CEUR de Mukhanov y colaboradores difiere del artículo de título similar firmado por Zh. M. Bekaulova en 2025, DOI 10.54309/IJICT.2025.22.2.008; no se agrupan como un mismo original."
+    ],
+    "eligibility_decision": "exclude_strict_methodological_corpus_retain_context",
+    "eligibility_reason": "El original se revisó y puede citarse críticamente como comparación contextual de estados de volatilidad con TCN. Se excluye del denominador estricto de modelos simples para regresión de volatilidad por objetivo operacional y receta insuficientes; la exclusión no se debe a falta de acceso.",
+    "metrics": [
+      {
+        "location": "Tabla 1, p. 6 física",
+        "model": "TFT",
+        "test_loss_reported": 0.00478,
+        "loss_definition": "No identificada",
+        "auc": 0.72,
+        "classification_accuracy_pct": 81.3
+      },
+      {
+        "location": "Tabla 1, p. 6 física",
+        "model": "TCN",
+        "test_loss_reported": 0.00512,
+        "loss_definition": "No identificada",
+        "auc": 0.69,
+        "classification_accuracy_pct": 78.5
+      },
+      {
+        "location": "Tabla 1, p. 6 física",
+        "model": "XGBoost",
+        "test_loss_reported": 0.00589,
+        "loss_definition": "No identificada",
+        "auc": 0.64,
+        "classification_accuracy_pct": 75.1
+      },
+      {
+        "location": "Tabla 1, p. 6 física",
+        "model": "Random Forest",
+        "test_loss_reported": 0.00622,
+        "loss_definition": "No identificada",
+        "auc": 0.61,
+        "classification_accuracy_pct": 72.8
+      },
+      {
+        "location": "Tabla 1, p. 6 física",
+        "model": "CNN-LSTM",
+        "test_loss_reported": 0.00492,
+        "loss_definition": "No identificada",
+        "auc": 0.71,
+        "classification_accuracy_pct": 80.5
+      }
+    ],
+    "access_attempts": [
+      {
+        "url": "https://ceur-ws.org/Vol-4224/Paper9.pdf",
+        "outcome": "La apertura directa falló en algunos intentos; índice oficial → enlace Paper9.pdf abrió el PDF completo de 11 páginas. No se eludieron restricciones."
+      }
+    ],
+    "recommended_bibtex_key": "Mukhanov2026VolatilityComparison"
+  },
+  {
+    "accessed_utc": "2026-11-07T01:54:31Z",
+    "accessed_bogota": "2026-11-06T20:54:31-05:00",
+    "original_file_materialized": false,
+    "original_file_sha256": null,
+    "historical_N7_inclusion": false,
+    "source_method": "Consulta web de fuentes primarias y copias de autor; no es una nueva búsqueda nativa de WoS, Scopus o IEEE Xplore.",
+    "group_id": "E1N075",
+    "title": "CryptoMamba-SSM: Linear Complexity State Space Models for Cryptocurrency Volatility Prediction",
+    "doi": "10.1109/OJCS.2026.3651226",
+    "authors": [
+      "Xiuyuan Zhao",
+      "Jingyi Liu",
+      "Ying Wang",
+      "Jiyuan Wang"
+    ],
+    "year_nominal": 2026,
+    "year_online": 2026,
+    "online_date": null,
+    "online_month": "2026-01",
+    "venue": "IEEE Open Journal of the Computer Society",
+    "volume": "7",
+    "pages": "226–243",
+    "version_read": "Versión aceptada de autor de 18 páginas, expuesta íntegramente en HTML de ResearchGate; no es la versión editorial final comprobada.",
+    "source_urls": [
+      "https://doi.org/10.1109/OJCS.2026.3651226",
+      "https://ieeexplore.ieee.org/document/11339936/",
+      "https://www.researchgate.net/publication/399710354_CryptoMamba-SSM_Linear_Complexity_State_Space_Models_for_Cryptocurrency_Volatility_Prediction"
+    ],
+    "access_level": "author_manuscript_full_text_html",
+    "full_text_read": true,
+    "evidence_locations": [
+      "ResearchGate, metadatos iniciales: autores, DOI, enero de 2026, revista 7:226–243 y licencia CC BY 4.0.",
+      "Manuscrito de autor pp. 1–18: §III.A–E; §IV y Tablas 1–6; apéndices A–H. El texto del artículo termina antes de las recomendaciones y citas de ResearchGate.",
+      "Tabla 1 (p. 7), resultados Bitcoin; Tabla 2 (p. 7), horizontes; Tabla 5 (p. 10), coste computacional; §IV.B.8 (p. 10), incertidumbre.",
+      "Apéndice B.1, ecuación 21 (p. 13), varianza condicional; apéndice F.3 (p. 15), baselines; apéndice H.1–H.4 (pp. 16–17), objetivo empírico, partición, HPO y repeticiones.",
+      "Portada, cabecera DOI placeholder 10.1109/OJIM.2022.1234567 y fechas sin rellenar; pie de página identifica DOI correcto 10.1109/OJCS.2026.3651226 y versión de autor no editada."
+    ],
+    "target": "El apéndice B.1 define varianza condicional de logretornos. El apéndice H.1 llama ground truth a estimadores Garman–Klass, Parkinson y Rogers–Satchell; no se concilia qué estimador, escala y transformación originan cada tabla. El diseño declara horizontes de 1, 5 y 30 minutos; Tabla 2 añade 15 minutos.",
+    "models_and_roles": {
+      "proposed": "CryptoMamba-SSM combina características multiescala Conv1D, SSM selectivo, adaptación de régimen, actualización asimétrica, atención local y salida probabilística multihorizonte.",
+      "independent_comparator_rows_verified": [
+        "GARCH",
+        "ARIMA-GARCH",
+        "SVR",
+        "Random Forest",
+        "XGBoost",
+        "LSTM",
+        "GRU",
+        "BiLSTM",
+        "Transformer",
+        "TFT",
+        "Performer",
+        "Helformer",
+        "S4",
+        "Mamba",
+        "MambaStock",
+        "CryptoMamba"
+      ],
+      "hybrid_comparator_rows_verified": [
+        "CNN-LSTM"
+      ],
+      "tcn_independent": false,
+      "tcn_note": "No hay fila de TCN independiente. Las convoluciones del modelo propuesto no equivalen a un comparador TCN simple."
+    },
+    "architecture_details": {
+      "input_scales": [
+        1,
+        4,
+        16
+      ],
+      "conv_kernel_sizes": [
+        3,
+        7,
+        15
+      ],
+      "sequence_length": 512,
+      "batch_size": 64,
+      "optimizer": "AdamW",
+      "weight_decay": 0.0001,
+      "gradient_clip_norm": 1,
+      "training_stages_epochs": [
+        50,
+        75,
+        100
+      ],
+      "training_stages_learning_rates": [
+        0.001,
+        0.0005,
+        0.0001
+      ],
+      "schedule": "Cosine annealing",
+      "lstm_gru_baseline_space": "Apéndice F.3: LSTM vanilla y variantes apiladas con atención, 2–4 capas y 128–512 unidades; GRU de arquitecturas similares. No se especifica la configuración definitiva de cada fila de resultados.",
+      "complexity": "El modelo propuesto es compuesto. Tabla 5 informa costes de ejecución; estos costes del artículo no prueban simplicidad de las recetas de E1."
+    },
+    "protocol": {
+      "datasets": [
+        "Kaggle Bitcoin Historical Data, minuto OHLCV, enero 2012–marzo 2024; >6,4 millones de observaciones declaradas.",
+        "BTC, ETH, BNB, ADA y SOL, 5 minutos, enero 2020–diciembre 2024.",
+        "Binance/Coinbase tick, junio 2023–diciembre 2024; conjuntos adicionales de crisis COVID, China, LUNA y FTX."
+      ],
+      "primary_split": "Train enero 2012–diciembre 2021, validación enero 2022–junio 2023, test julio 2023–marzo 2024. El manuscrito etiqueta estos períodos 70/15/15 sin recuentos que permitan reconciliar las proporciones.",
+      "hpo": "Optimización bayesiana con procesos gaussianos declarada para todos los métodos; espacio de estados 64/128/256/512, regímenes 3/5/8/12, atención 16/32/64/128, learning rate 1e-5–1e-3 y regularización 1e-6–1e-3. Presupuesto de ensayos y selección final por baseline no publicados.",
+      "repetitions": "Se declaran cinco semillas por configuración, 1000 bootstrap, CV con ventana expansiva y evaluación móvil.",
+      "statistical_claims": "Se declaran DM p<0,001, MCS al 90/95 % e intervalos bootstrap. No se establecen longitud de bloque temporal, retardo del contraste o familia completa de comparaciones.",
+      "code_identity": "No se verificó implementación pública de este DOI. El repositorio MShahabSepehri/CryptoMamba corresponde al trabajo distinto de 2025 sobre precio, citado como antecedente; no se atribuye a este artículo."
+    },
+    "quality_issues": [
+      "Se leyó el manuscrito aceptado y sus tablas/apéndices, pero la versión editorial final siguió inaccesible. La cabecera conserva DOI y fechas de plantilla; se documenta como limitación de versión.",
+      "El objetivo teórico de varianza y las tres proxies empíricas no se mapean a cada resultado; no permite equivalencia con sigma7 diaria.",
+      "La red define cabezas 1/5/30 min; Tabla 2 incluye 15 min sin conciliación explícita.",
+      "Texto afirma 23,7 % de reducción MAE GARCH para 0,0847→0,0598; el cálculo con Tabla 1 es 29,398 %.",
+      "Texto afirma 3,9 puntos porcentuales DA para 65,8→68,4; el cambio es 2,6 puntos.",
+      "Texto afirma 5,8 % de mejora MAE a 1 minuto para 0,0486→0,0462; el cálculo con Tabla 2 es 4,938 %.",
+      "Los episodios de crisis 2020/2021 caen dentro de la ventana primaria de entrenamiento declarada; no queda explicado un ajuste independiente para esa evaluación. Esto requiere aclaración y no demuestra por sí solo fuga.",
+      "No se establece ajuste del preprocesamiento solo con train, purga de objetivos solapados, receta final por baseline o presupuesto comparable de ajuste."
+    ],
+    "eligibility_decision": "full_text_reviewed_contextual_intraday_with_reporting_caveats",
+    "eligibility_reason": "Cierra la lectura del original de autor y verifica filas independientes de GRU y LSTM. Conservar en un estrato intradía contextual y reservar decisión del corpus estricto hasta conciliar proxy, receta y versión. No usarlo para añadir recurrencia TCN, afirmar superioridad general, importar porcentajes narrativos o modificar el denominador histórico N7.",
+    "metrics": [
+      {
+        "location": "Tabla 1, p. 7; escala de target no conciliada",
+        "model": "LSTM",
+        "mae": 0.0687,
+        "rmse": 0.1156,
+        "mape_pct": 17.89,
+        "directional_accuracy_pct": 60.2
+      },
+      {
+        "location": "Tabla 1, p. 7; escala de target no conciliada",
+        "model": "GRU",
+        "mae": 0.0694,
+        "rmse": 0.1163,
+        "mape_pct": 18.12,
+        "directional_accuracy_pct": 59.8
+      },
+      {
+        "location": "Tabla 1, p. 7; escala de target no conciliada",
+        "model": "Transformer",
+        "mae": 0.0658,
+        "rmse": 0.1098,
+        "mape_pct": 16.78,
+        "directional_accuracy_pct": 62.8
+      },
+      {
+        "location": "Tabla 1, p. 7; escala de target no conciliada",
+        "model": "GARCH",
+        "mae": 0.0847,
+        "rmse": 0.1432,
+        "mape_pct": 23.45,
+        "directional_accuracy_pct": 52.3
+      },
+      {
+        "location": "Tabla 1, p. 7; escala de target no conciliada",
+        "model": "CryptoMamba",
+        "mae": 0.0628,
+        "rmse": 0.1058,
+        "mape_pct": 15.54,
+        "directional_accuracy_pct": 65.8
+      },
+      {
+        "location": "Tabla 1, p. 7; escala de target no conciliada",
+        "model": "CryptoMamba-SSM",
+        "mae": 0.0598,
+        "rmse": 0.1009,
+        "mape_pct": 14.73,
+        "directional_accuracy_pct": 68.4
+      },
+      {
+        "location": "Tabla 2, p. 7",
+        "model": "LSTM",
+        "horizons_minutes": [
+          1,
+          5,
+          15,
+          30
+        ],
+        "mae_by_horizon": [
+          0.0524,
+          0.0687,
+          0.0843,
+          0.0976
+        ]
+      },
+      {
+        "location": "Tabla 2, p. 7",
+        "model": "CryptoMamba-SSM",
+        "horizons_minutes": [
+          1,
+          5,
+          15,
+          30
+        ],
+        "mae_by_horizon": [
+          0.0462,
+          0.0598,
+          0.0731,
+          0.0853
+        ]
+      },
+      {
+        "location": "§IV.B.8, p. 10; intervalos declarados por autores",
+        "model": "CryptoMamba-SSM",
+        "mae_95ci_center": 0.0598,
+        "mae_95ci_halfwidth": 0.0023,
+        "mape_pct_95ci_center": 14.73,
+        "mape_pct_95ci_halfwidth": 0.67,
+        "directional_accuracy_pct_95ci_center": 68.4,
+        "directional_accuracy_pct_95ci_halfwidth": 1.2
+      },
+      {
+        "location": "Tabla 5, p. 10; entorno del artículo",
+        "model": "LSTM",
+        "training_hours": 2.3,
+        "inference_ms": 15.2,
+        "memory_gb": 4.8,
+        "flops_g": 2.1,
+        "throughput_sequences_per_second": 842
+      },
+      {
+        "location": "Tabla 5, p. 10; entorno del artículo",
+        "model": "CryptoMamba-SSM",
+        "training_hours": 2.1,
+        "inference_ms": 13.4,
+        "memory_gb": 3.6,
+        "flops_g": 1.9,
+        "throughput_sequences_per_second": 934
+      }
+    ],
+    "access_attempts": [
+      {
+        "url": "https://ieeexplore.ieee.org/document/11339936/",
+        "outcome": "Página de verificación JavaScript; no se usó como lectura del original final."
+      },
+      {
+        "url": "https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=11339936",
+        "outcome": "PDF editorial no accesible mediante la herramienta."
+      },
+      {
+        "url": "https://www.researchgate.net/publication/399710354_CryptoMamba-SSM_Linear_Complexity_State_Space_Models_for_Cryptocurrency_Volatility_Prediction",
+        "outcome": "HTML público muestra texto completo de la versión aceptada, tablas 1–6 y apéndices A–H; leído en segmentos hasta el final del artículo."
+      },
+      {
+        "url": "https://www.researchgate.net/publication/publication/399710354_CryptoMamba-SSM_Linear_Complexity_State_Space_Models_for_Cryptocurrency_Volatility_Prediction/fulltext/69696e3bee048155cffc3d57/CryptoMamba-SSM-Linear-Complexity-State-Space-Models-for-Cryptocurrency-Volatility-Prediction.pdf",
+        "outcome": "Enlace de descarga ofrecido por la página devolvió 403; no se eludió."
+      }
+    ],
+    "recommended_bibtex_key": "Zhao2026CryptoMambaSSM"
+  },
+  {
+    "accessed_utc": "2026-11-07T01:54:31Z",
+    "accessed_bogota": "2026-11-06T20:54:31-05:00",
+    "original_file_materialized": false,
+    "original_file_sha256": null,
+    "historical_N7_inclusion": false,
+    "source_method": "Consulta web de fuentes primarias y copias de autor; no es una nueva búsqueda nativa de WoS, Scopus o IEEE Xplore.",
+    "group_id": "E1N138",
+    "title": "On Forecasting Realized Volatility for Bitcoin Based on Deep Learning PSO–GRU Model",
+    "doi": "10.1007/s10614-023-10392-5",
+    "authors": [
+      "Xiaolong Tang",
+      "Yuping Song",
+      "Xingrui Jiao",
+      "Yankun Sun"
+    ],
+    "year_nominal": 2024,
+    "year_online": 2023,
+    "online_date": "2023-04-20",
+    "venue": "Computational Economics",
+    "volume": "63",
+    "issue": "5",
+    "pages": "2011–2033",
+    "source_urls": [
+      "https://link.springer.com/article/10.1007/s10614-023-10392-5",
+      "https://doi.org/10.1007/s10614-023-10392-5"
+    ],
+    "access_level": "publisher_abstract_and_metadata_only",
+    "full_text_read": false,
+    "evidence_locations": [
+      "Página editorial: título, Published 20 April 2023, volume 63 pages 2011–2033 (2024), autores.",
+      "Publisher Abstract y aviso This is a preview of subscription content.",
+      "Availability of data and material; Code availability."
+    ],
+    "target": "La página editorial identifica volatilidad realizada de Bitcoin; fórmula, frecuencia, horizonte y ventana no se verificaron en el original completo.",
+    "models_and_roles": {
+      "proposed_at_abstract_level": "Selección de características con Random Forest y GRU cuyos parámetros optimiza PSO.",
+      "comparators_at_abstract_level": [
+        "GRU",
+        "LSTM",
+        "modelos de machine learning",
+        "GARCH"
+      ],
+      "independent_implementation_verified": false
+    },
+    "architecture_details": {
+      "selected_recipe": null,
+      "parameter_count": null,
+      "training_budget": null
+    },
+    "protocol": {
+      "data_sources_reported_in_publisher": [
+        "WIND",
+        "blockchain.com",
+        "Google Trends"
+      ],
+      "code": "La editorial indica Python 3.6 y código suministrable a solicitud; no se solicitó ni se obtuvo.",
+      "split": null,
+      "hpo": null,
+      "repetitions": null
+    },
+    "quality_issues": [
+      "Acceso limitado al resumen/editorial; no se revisaron métodos o tablas originales.",
+      "El resumen menciona mejoras relativas MAE, pero no se transcriben como métricas verificadas del original.",
+      "La inaccesibilidad impide adjudicar calidad y elegibilidad; no constituye evidencia de exclusión por la tarea."
+    ],
+    "eligibility_decision": "pending_full_text_not_counted",
+    "eligibility_reason": "Candidato relevante para GRU y LSTM; mantener en cola de recuperación. No contar en denominadores de lectura completa, recetas simples o síntesis numérica hasta revisar métodos y resultados.",
+    "metrics": [],
+    "access_attempts": [
+      {
+        "url": "https://link.springer.com/article/10.1007/s10614-023-10392-5",
+        "outcome": "Preview público confirma metadatos y resumen; indica contenido de suscripción."
+      },
+      {
+        "url": "https://link.springer.com/content/pdf/10.1007/s10614-023-10392-5.pdf",
+        "outcome": "Dirige al acceso restringido/preview; no se obtuvo original completo."
+      },
+      {
+        "url": "https://www.researchgate.net/publication/370152025_On_Forecasting_Realized_Volatility_for_Bitcoin_Based_on_Deep_Learning_PSO-GRU_Model",
+        "outcome": "Preview y metadatos; no se recuperaron métodos y resultados completos."
+      }
+    ],
+    "recommended_bibtex_key": null
+  },
+  {
+    "accessed_utc": "2026-11-07T01:54:31Z",
+    "accessed_bogota": "2026-11-06T20:54:31-05:00",
+    "original_file_materialized": false,
+    "original_file_sha256": null,
+    "historical_N7_inclusion": false,
+    "source_method": "Consulta web de fuentes primarias y copias de autor; no es una nueva búsqueda nativa de WoS, Scopus o IEEE Xplore.",
+    "group_id": "E1N169",
+    "title": "TCN-Driven Volatility-Robust Forecasting in Minute-Resolution Cryptocurrency Markets",
+    "doi": "10.1145/3770177.3770242",
+    "authors": [
+      "Zitong Wu"
+    ],
+    "year_nominal": 2025,
+    "year_online": 2025,
+    "online_date": null,
+    "online_month": "2025-12",
+    "venue": "Proceedings of 2025 International Conference on Economic Management and Big Data Application (ICEMBDA 2025)",
+    "source_urls": [
+      "https://doi.org/10.1145/3770177.3770242",
+      "https://dl.acm.org/doi/10.1145/3770177.3770242",
+      "https://www.researchgate.net/publication/398321195_TCN-Driven_Volatility-Robust_Forecasting_in_Minute-Resolution_Cryptocurrency_Markets"
+    ],
+    "access_level": "native_export_metadata_and_secondary_record_only",
+    "full_text_read": false,
+    "evidence_locations": [
+      "Registro nativo E1N169 del repositorio, procedencia Scopus S01, EID 2-s2.0-105026281381.",
+      "ResearchGate: título, DOI, Zitong Wu, diciembre de 2025 y conferencia ICEMBDA 2025; aviso No full-text available."
+    ],
+    "target": "El título menciona pronóstico robusto a volatilidad con resolución de minuto. No se verificó en el original si la variable dependiente es precio, retorno o volatilidad; no inferir el objetivo a partir del título.",
+    "models_and_roles": {
+      "tcn_mentioned_in_title": true,
+      "tcn_as_independent_experiment_verified": false,
+      "other_comparators_verified": []
+    },
+    "architecture_details": {
+      "selected_recipe": null,
+      "parameter_count": null,
+      "training_budget": null
+    },
+    "protocol": {
+      "data": null,
+      "split": null,
+      "hpo": null,
+      "repetitions": null
+    },
+    "quality_issues": [
+      "No se recuperó texto completo ni abstract primario editorial accesible.",
+      "Los fragmentos bajo Citations y References de ResearchGate pertenecen a otros artículos; no se atribuyen a este estudio.",
+      "La presencia de TCN en el título no permite contar una implementación simple ni equivalencia con la tarea de E1."
+    ],
+    "eligibility_decision": "pending_full_text_and_target_not_counted",
+    "eligibility_reason": "Pendiente de original y definición del objetivo. No excluir por inaccesibilidad, ni convertirlo en respaldo empírico de TCN para regresión diaria de volatilidad sin leer métodos y resultados.",
+    "metrics": [],
+    "access_attempts": [
+      {
+        "url": "https://dl.acm.org/doi/10.1145/3770177.3770242",
+        "outcome": "403 Forbidden; no se eludió."
+      },
+      {
+        "url": "https://doi.org/10.1145/3770177.3770242",
+        "outcome": "No accesible mediante la herramienta."
+      },
+      {
+        "url": "https://www.researchgate.net/publication/398321195_TCN-Driven_Volatility-Robust_Forecasting_in_Minute-Resolution_Cryptocurrency_Markets",
+        "outcome": "Metadatos accesibles; No full-text available."
+      }
+    ],
+    "recommended_bibtex_key": null
+  },
+  {
+    "accessed_utc": "2026-11-07T01:54:31Z",
+    "accessed_bogota": "2026-11-06T20:54:31-05:00",
+    "original_file_materialized": false,
+    "original_file_sha256": null,
+    "historical_N7_inclusion": false,
+    "source_method": "Consulta web de fuentes primarias y copias de autor; no es una nueva búsqueda nativa de WoS, Scopus o IEEE Xplore.",
+    "group_id": "E1N173",
+    "title": "The Superiority of Direct Neuro Volatility Forecasts Over GARCH and Machine Learning Forecasts for Financial Assets",
+    "doi": "10.1109/CiFerCompanion65204.2025.10980396",
+    "authors": [
+      "Sulalitha Bowala Mudiyanselage",
+      "Aerambamoorthy Thavaneswaran",
+      "Avanthi Moragammana Gedara",
+      "Joy Dip Das",
+      "Ruppa Thulasiram",
+      "Alex Paseka"
+    ],
+    "year_nominal": 2025,
+    "year_online": 2025,
+    "online_date": null,
+    "conference_session_date": "2025-03-18",
+    "venue": "2025 IEEE Symposium on Computational Intelligence for Financial Engineering and Economics Companion (CiFer Companion)",
+    "source_urls": [
+      "https://doi.org/10.1109/CiFerCompanion65204.2025.10980396",
+      "https://ieeexplore.ieee.org/document/10980396",
+      "https://ieee-ssci.org/assets/files/S7.pdf",
+      "https://www.researchgate.net/publication/391471026_The_Superiority_of_Direct_Neuro_Volatility_Forecasts_Over_GARCH_and_Machine_Learning_Forecasts_for_Financial_Assets"
+    ],
+    "access_level": "native_export_abstract_primary_program_and_secondary_metadata_only",
+    "full_text_read": false,
+    "evidence_locations": [
+      "Programa oficial IEEE SSCI S7.pdf, p. 1: sesión short S7-A del 18 de marzo de 2025, título y seis autores.",
+      "Registro nativo Scopus E1N173 (S02), EID 2-s2.0-105007286004; contenido descriptivo tratado como resumen, no métodos completos.",
+      "ResearchGate: título, DOI, marzo de 2025 y aviso No full-text available."
+    ],
+    "target": "El resumen nativo describe pronóstico directo de volatilidad para VIX y Bitcoin frente a obtener la raíz de una varianza condicional. No se comprobaron fórmula empírica, fechas, frecuencia ni horizonte en el original.",
+    "models_and_roles": {
+      "families_in_native_abstract": [
+        "NNAR",
+        "RNN",
+        "LSTM",
+        "GRU"
+      ],
+      "architectures_in_native_abstract": [
+        "una capa",
+        "dos capas",
+        "bidireccional"
+      ],
+      "comparators_in_native_abstract": [
+        "modelos GARCH"
+      ],
+      "independent_vs_hybrid_verified": false
+    },
+    "architecture_details": {
+      "selected_recipe": null,
+      "parameter_count": null,
+      "training_budget": null
+    },
+    "protocol": {
+      "data_at_abstract_level": [
+        "CBOE VIX",
+        "Bitcoin"
+      ],
+      "dates": null,
+      "split": null,
+      "hpo": null,
+      "repetitions": null
+    },
+    "quality_issues": [
+      "El programa primario acredita título, autores y presentación; no acredita lectura del original ni implementación.",
+      "No se verifican resultados numéricos ni significado exacto de la afirmación de superioridad.",
+      "Una tesis de autor en repositorio institucional contiene referencia al trabajo, pero la herramienta rechazó el PDF de 14.919.901 bytes por tamaño; no se afirma haber leído un capítulo equivalente."
+    ],
+    "eligibility_decision": "pending_full_text_not_counted",
+    "eligibility_reason": "Relevante para recuperar evidencia de GRU y LSTM. Mantener pendiente; no contar en frecuencia de modelos implementados ni sintetizar afirmaciones de superioridad desde resumen/programa.",
+    "metrics": [],
+    "access_attempts": [
+      {
+        "url": "https://ieeexplore.ieee.org/document/10980396",
+        "outcome": "Acceso editorial mediante herramienta no disponible/verificación JavaScript; no se obtuvo texto completo."
+      },
+      {
+        "url": "https://www.researchgate.net/publication/391471026_The_Superiority_of_Direct_Neuro_Volatility_Forecasts_Over_GARCH_and_Machine_Learning_Forecasts_for_Financial_Assets",
+        "outcome": "No full-text available; no se enviaron solicitudes a autores."
+      },
+      {
+        "url": "https://ieee-ssci.org/assets/files/S7.pdf",
+        "outcome": "Programa oficial de una página leído; confirma identidad y sesión."
+      },
+      {
+        "url": "https://mspace.lib.umanitoba.ca/server/api/core/bitstreams/faa867fb-e4ff-4a14-9784-041149ec2cd9/content",
+        "outcome": "Repositorio institucional legítimo; web fetch rechazado por tamaño (14.919.901 bytes). No se obtuvo ni se trató como original leído."
+      }
+    ],
+    "recommended_bibtex_key": null
+  }
+]

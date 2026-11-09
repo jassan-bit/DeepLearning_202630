@@ -1,0 +1,107 @@
+{
+  "reference": {
+    "paper": "TimeMixer",
+    "dataset": "ETTh1",
+    "context": 96,
+    "horizon": 96,
+    "channels": 7,
+    "table": "13",
+    "physical_PDF_page": 17,
+    "MSE": 0.375,
+    "MAE": 0.4,
+    "publication_dispersion_of_selected_row": "NR",
+    "reference_treated_as_fixed_rounded_value": true
+  },
+  "MSE": {
+    "mean": 0.37783761620521544,
+    "sample_sd": 0.0028701700685373776,
+    "n_seeds": 5,
+    "ci95": [
+      0.37427382936239056,
+      0.3814014030480403
+    ],
+    "method": "Student-t over fitted-seed metrics; conditional fixed retained calendar",
+    "assumption": "Independent initialization/training randomizations; approximate normality of seed metrics",
+    "does_not_estimate_market_or_original_paper_variance": true,
+    "difference_from_paper": 0.002837616205215443,
+    "relative_difference_percent": 0.7566976547241255,
+    "difference_ci95": [
+      -0.0007261706376094357,
+      0.006401403048040322
+    ]
+  },
+  "MAE": {
+    "mean": 0.4010817587375641,
+    "sample_sd": 0.0034731733035474875,
+    "n_seeds": 5,
+    "ci95": [
+      0.3967692444870267,
+      0.40539427298810143
+    ],
+    "method": "Student-t over fitted-seed metrics; conditional fixed retained calendar",
+    "assumption": "Independent initialization/training randomizations; approximate normality of seed metrics",
+    "does_not_estimate_market_or_original_paper_variance": true,
+    "difference_from_paper": 0.0010817587375640536,
+    "relative_difference_percent": 0.27043968439102173,
+    "difference_ci95": [
+      -0.0032307555129733045,
+      0.005394272988101412
+    ],
+    "role": "secondary descriptive; not selected after observing the MSE decision"
+  },
+  "registered_success_rule": {
+    "metric": "mean seed MSE",
+    "absolute_margin": 0.018750000000000003,
+    "relative_tolerance": 0.05,
+    "rule": "Entire conditional 95% difference interval contained in [-0.01875,0.01875]",
+    "numerical_compatibility": true,
+    "does_not_by_itself_establish_identical_historical_row_conditions": true
+  },
+  "reference_rounding_sensitivity": [
+    {
+      "fixed_reference": 0.3745,
+      "difference_ci95": [
+        -0.00022617063760943523,
+        0.006901403048040322
+      ],
+      "within_registered_absolute_margin": true
+    },
+    {
+      "fixed_reference": 0.3755,
+      "difference_ci95": [
+        -0.0012261706376094361,
+        0.005901403048040321
+      ],
+      "within_registered_absolute_margin": true
+    }
+  ],
+  "condition_scope": "Partial author-preset replication; historical paper tail coverage not independently established",
+  "Bitcoin_margin_used": false,
+  "no_two_population_significance_test": "Original row variance and individual predictions are unavailable",
+  "temporal_uncertainty_separate_from_registered_seed_success": {
+    "192": {
+      "MSE": 0.3778376160360593,
+      "ci95": [
+        0.31910368961306124,
+        0.44566154838500643
+      ],
+      "unit": "forecast origin, full96x7error retained; fixed fitted seeds"
+    },
+    "96": {
+      "MSE": 0.3778376160360593,
+      "ci95": [
+        0.3279635685644695,
+        0.4344043507917871
+      ],
+      "unit": "forecast origin, full96x7error retained; fixed fitted seeds"
+    },
+    "384": {
+      "MSE": 0.3778376160360593,
+      "ci95": [
+        0.3111382226617684,
+        0.45159584395655333
+      ],
+      "unit": "forecast origin, full96x7error retained; fixed fitted seeds"
+    }
+  }
+}

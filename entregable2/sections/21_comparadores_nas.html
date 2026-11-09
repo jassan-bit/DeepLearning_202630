@@ -1,0 +1,667 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>21. Comparadores temporales y decisión NAS por receta &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/21_comparadores_nas';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="22. Once fichas de recetas propuestas" href="22_fichas_recetas.html" />
+    <link rel="prev" title="20. Cotejo del plan con la guía original" href="20_contraste_guia.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 2 · Bitcoin: pronóstico de volatilidad</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_literatura.html">3. Revisión Sistemática del Estado del Arte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación de los diez modelos y el candidato adicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark vigente: diez modelos y un candidato adicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Preregistro del catálogo vigente y trazabilidad experimental</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de datos y auditoría formal de fuga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. HPO y equidad para el catálogo vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Incertidumbre predictiva y análisis de errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Agregación estadística e interpretación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas del catálogo vigente y adaptación a D7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo vigente: diez modelos y candidato 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_fichas_nuevas.html">16. Fichas bibliográficas de las cuatro altas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato sincronizado de E1, E2 y E3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_integracion_sintetica.html">18. Implementación provisional y verificación sintética</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_plan_auditoria.html">19. Plan experimental propuesto y auditoría sin entrenamiento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_contraste_guia.html">20. Cotejo del plan con la guía original</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">21. Comparadores temporales y decisión NAS por receta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22_fichas_recetas.html">22. Once fichas de recetas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_implementacion_recetas.html">23. Implementación de recetas y controles temporales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="24_ejecutor_comun.html">24. Ejecutor común y disponibilidad temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><p class="small">Entregable 2 · Jassan Arteta · 2026-30</p></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/21_comparadores_nas.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>21. Comparadores temporales y decisión NAS por receta</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparadores-exigidos-por-f2a">21.1 Comparadores exigidos por F2a</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dos-escenarios-de-seleccion-no-acumulativos">Dos escenarios de selección, no acumulativos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-fuentes-y-decisiones-nas">21.2 Matriz de fuentes y decisiones NAS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coste-por-escenarios-no-tiempos-inventados">21.3 Coste por escenarios, no tiempos inventados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-queda-antes-de-ejecutar">21.4 Qué queda antes de ejecutar</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="comparadores-temporales-y-decision-nas-por-receta">
+<h1>21. Comparadores temporales y decisión NAS por receta<a class="headerlink" href="#comparadores-temporales-y-decision-nas-por-receta" title="Link to this heading">#</a></h1>
+<p><strong>Once propuestas concretas:</strong> <a class="reference internal" href="22_fichas_recetas.html"><span class="std std-doc">fichas de cuerpos, adaptaciones y decisiones pendientes</span></a>. No se implementan ni entrenan las recetas nuevas en este corte.</p>
+<p><strong>Especificación propuesta, sin ejecución.</strong> Este corte desarrolla los dos siguientes pasos de §20: comparadores F2a y examen de arquitectura por modelo. No añade candidatos al Top 10, no declara un ganador y no inicia HPO, NAS, piloto o entrenamiento. Los prototipos actuales permanecen sin modificar.</p>
+<p>La guía exige conservar el contrato de E1 y resolver explícitamente las diferencias de información y de presupuesto. Una receta bibliográfica definida no es sinónimo de una implementación fiel; cambiar el cuerpo de una red y mantener su nombre tampoco demuestra una exención NAS. Las decisiones se separan por fuente, cuerpo implementado, adaptación de tarea y condición pendiente.</p>
+<section id="comparadores-exigidos-por-f2a">
+<h2>21.1 Comparadores exigidos por F2a<a class="headerlink" href="#comparadores-exigidos-por-f2a" title="Link to this heading">#</a></h2>
+<p>Se propone <strong>naive estacional y ARIMA no estacional</strong>, sin añadir ETS como búsqueda oculta. La elección ARIMA se apoya en su separación documentada entre estimación de parámetros y filtrado causal de nuevas observaciones; no demuestra superioridad frente a ETS. Los diez modelos y el híbrido permanecen iguales. Con las tres bases de E1, Ridge y persistencia, son al menos 18 sistemas separados de las ablaciones.</p>
+<p><a class="reference download internal" download="" href="../_downloads/5a4124b7364a3378a39515c88305804f/controls.md"><code class="xref download docutils literal notranslate"><span class="pre">Especificación</span> <span class="pre">completa</span> <span class="pre">de</span> <span class="pre">controles,</span> <span class="pre">pruebas</span> <span class="pre">pendientes</span> <span class="pre">y</span> <span class="pre">fuentes</span></code></a>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Control propuesto</p></th>
+<th class="head"><p>Receta y selección</p></th>
+<th class="head"><p>Alcance</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Naive estacional</p></td>
+<td><p>ŷ[t]=y[t−m], m∈{7,14,28}; elegir sólo en desarrollo</p></td>
+<td><p>Hipótesis semanal/quincenal/cuatro semanas, no estacionalidad demostrada; 28 no es mes calendario. Cero ajustes numéricos, pero selección no gratuita.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ARIMA</p></td>
+<td><p>p,q∈{0,1,2}, d∈{0,1}: 18 órdenes; constante si d=0, sin drift si d=1; no estacional ni exógenas</p></td>
+<td><p>Máxima verosimilitud en espacio de estados, parámetros fijos dentro del bloque, actualización causal del filtro. Versión y tolerancias por fijar y probar.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Tres relojes distintos:</strong> ajustar parámetros y escala con etiquetas≤o−8; condicionar estado sólo con etiquetas ya observadas≤t−1; puntuar y[t] después de emitir y guardar ŷ[t]. Incorporar días del embargo al filtro no los incorpora a una optimización, pero sí supone historia distinta de D7, que debe declararse. Ningún estado suavizado con observaciones posteriores puede reconstruir pronósticos anteriores.</p>
+<p>La etiqueta y[t] necesita ocho cierres completos t−7…t. Persistencia necesita t−8…t−1; naive estacional requiere t−m−7…t−m. ARIMA utiliza historia univariada de desarrollo, no las mismas 35 entradas de la red. La comparación es entre sistemas, no aislamiento de arquitectura con información idéntica.</p>
+<p>Conservar calendario y el día incompleto 24/03/2023. Naive no sustituye un rezago inválido por otro. ARIMA mantiene faltantes sobre frecuencia diaria y propaga estado sin actualización de medición; no usar <code class="docutils literal notranslate"><span class="pre">dropna</span></code> comprimiendo tiempo. Esto requiere pruebas del adaptador, todavía no implementado. La escala y/a usa media positiva de su propio entrenamiento y queda fija; los pronósticos finitos negativos se truncan a cero por regla previa, conservando raw y tasa de truncamiento. Una salida fallida nunca se sustituye por cero.</p>
+<p>La máscara de evaluación debe ser común a redes, verdad, persistencia y los tres periodos candidatos; publicar exclusiones por soporte, no por error. <strong>Las 305/53/608 fechas son soportes de referencia, no cobertura nueva certificada para estos controles.</strong> No se eliminan filas válidas del entrenamiento neuronal porque un comparador requiera más historia. MASE conserva un denominador común train-only sobre diferencias de fechas consecutivas, no uno elegido por periodo ganador.</p>
+<section id="dos-escenarios-de-seleccion-no-acumulativos">
+<h3>Dos escenarios de selección, no acumulativos<a class="headerlink" href="#dos-escenarios-de-seleccion-no-acumulativos" title="Link to this heading">#</a></h3>
+<p>A, propuesto como continuidad del borrador: 18 órdenes×10 folds=180 ajustes; una vez seleccionado y congelado, un ajuste piloto y uno final si se autorizan, total 182. La selección global por 305 fechas concatenadas no es OOF anidado. Naive compara tres periodos sin ajustes numéricos y no se repite por semilla. El piloto de 53 fechas desde 08/11 usa parámetros hasta 31/10; evaluación histórica desde 01/01/2025 usaría parámetros hasta 24/12, sin refit posterior.</p>
+<p>B, alternativa si se decide evaluar selección anidada por origen:18 ajustes internos hasta o−98 y un refit ganador hasta o−8; antes de validación interna o−90…o−8, filtrar el puente o−97…o−91 con parámetros fijos. Diez folds=190 ajustes, piloto 19 y final 19, total 228. No sumar A y B ni elegir entre ellos después de ver resultados. El coste de 18 órdenes no acredita por sí solo equidad frente al espacio neural aún pendiente.</p>
+<p>Convergencia, inicialización, límites y fallos deben quedar registrados. Propuesta inicial: una inicialización determinista, L-BFGS máximo 200 iteraciones, sin reinicios; al menos 90 etiquetas válidas como umbral de ingeniería, no garantía estadística. Si un candidato falla, conserva recibo y consumo; no borrar fechas favorables, ampliar rangos ni rescatar un ganador usando el test. Toda esta política debe validarse antes de datos reales.</p>
+</section>
+</section>
+<section id="matriz-de-fuentes-y-decisiones-nas">
+<h2>21.2 Matriz de fuentes y decisiones NAS<a class="headerlink" href="#matriz-de-fuentes-y-decisiones-nas" title="Link to this heading">#</a></h2>
+<p>La revisión comprobó diseños publicados y código real, separando fuente y adaptación. <strong>Ninguna fila concede por sí sola una exención académica ni fija m.</strong> La guía no define el umbral preciso entre una adaptación de tarea y una arquitectura nueva. Se recomienda recuperar un cuerpo publicado cuando sea viable y mantener visible cualquier decisión propia. El código provisional no se modifica en este corte.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo</p></th>
+<th class="head"><p>Diseño en fuente primaria</p></th>
+<th class="head"><p>Diferencia relevante del código D7 actual</p></th>
+<th class="head"><p>Decisión defendible antes de entrenar</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>FCN-1D</p></td>
+<td><p>Sí: Wang et al., §II.B, pp. 2–3 y Fig. 1b</p></td>
+<td><p>Tres convoluciones de ancho 16 y kernels 3/3/1, sin BatchNorm; no el cuerpo 128/256/128, 8/5/3 de la fuente</p></td>
+<td><p>Restaurar cuerpo publicado y justificar cabeza escalar, o tratar el compacto como diseño propio sujeto a §14; no eximir el compacto por su nombre</p></td>
+</tr>
+<tr class="row-odd"><td><p>ResNet-1D</p></td>
+<td><p>Sí: Wang et al., §II.C, p. 3 y Fig. 1c</p></td>
+<td><p>Dos bloques de dos convoluciones, ancho 16, sin BatchNorm; fuente: tres bloques y nueve convoluciones principales</p></td>
+<td><p>Misma bifurcación: cuerpo publicado documentado frente a diseño compacto propio; adjudicación pendiente</p></td>
+</tr>
+<tr class="row-even"><td><p>Inception-1D</p></td>
+<td><p>Sí: Fawaz et al., §3.1–3.2, pp. 5–6 y código de autor</p></td>
+<td><p>Un módulo, kernels 1/3/5 y ancho 16; sin las seis unidades, normalización y conexiones residuales del cuerpo fuente</p></td>
+<td><p>Resolver red individual frente a ensemble y restaurar diseño o aplicar §14 al propio; la red actual no es InceptionTime publicado literal</p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM-autoencoder con predictor</p></td>
+<td><p>Código primario del autor sí contiene diseños explícitos; texto/tablas del paper no revalidados en esta revisión</p></td>
+<td><p>Un encoder y un decoder de ancho 16 con proyección, frente a preentrenamiento apilado y preset de dos encoders 25/26</p></td>
+<td><p>Verificar el diseño del paper y elegir receta explícita, o reconocer diseño propio y aplicar §14; ni ausencia de diseño ni exención por paper demostradas todavía</p></td>
+</tr>
+<tr class="row-even"><td><p>TimesNet</p></td>
+<td><p>Sí: §3 y Table 7, p. 14 del PDF</p></td>
+<td><p>D7 se extiende a 8; se usan las cuatro frecuencias no DC en lugar del top-k original; cuerpo y dimensiones mezclan decisiones del paper/código</p></td>
+<td><p>No basta decir «cabeza cambiada». Justificar/adjudicar modificación estructural; restaurar configuración compatible o incluir diseño adaptado en §14 si se considera nuevo</p></td>
+</tr>
+<tr class="row-odd"><td><p>TSMixer</p></td>
+<td><p>Sí: Fig. 1, p. 2; Appendix E, Table 8, p. 21; implementación de autor</p></td>
+<td><p>Conserva seis bloques y feature MLP 512; cambia longitud, salida escalar, momentos y dropout</p></td>
+<td><p>Candidato fuerte a cuerpo publicado más puente de tarea, sujeto a registro explícito; no es réplica exacta ni exención automática de toda la receta</p></td>
+</tr>
+<tr class="row-even"><td><p>TiDE</p></td>
+<td><p>Sí: Table 8, p. 21; código primario de encoder/decoder</p></td>
+<td><p>Covariables propias, sentinel futuro cero y decoder temporal de salida 8 en vez de 1, además de cabeza</p></td>
+<td><p>Cambio estructural real que exige adjudicación; no presentarlo como mero reemplazo de readout</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimeMixer</p></td>
+<td><p>Sí: §3; Table 7, p. 14; script ETTh1 de autor</p></td>
+<td><p>Reduce tres downsamplings publicados a dos, dando longitudes 7→3→1; elimina proyección de variables y calendario</p></td>
+<td><p>Justificar/adjudicar el cambio de escalas; fuente explícita no prueba que esta receta esté exenta</p></td>
+</tr>
+<tr class="row-even"><td><p>PatchTST</p></td>
+<td><p>Sí: §4.1, p. 6; Appendix A.1.4, p. 14; es ejemplo explícito de la guía</p></td>
+<td><p>Mantiene cuerpo ETTh pequeño, pero rellena D7 hasta 16 y crea dos patches; cabeza conjunta y momentos</p></td>
+<td><p>Documentar geometría/padding y puente; exención condicional si se admite configuración publicada adaptada, no por nombre</p></td>
+</tr>
+<tr class="row-odd"><td><p>iTransformer</p></td>
+<td><p>Sí: Appendix A.2, Algorithm 1, p. 13; script ETTh1 de autor</p></td>
+<td><p>Conserva encoder L=2, D=256, FF=256, H=8; entrada 7 y cabeza conjunta sustituyen forecast por variable</p></td>
+<td><p>Candidato fuerte a cuerpo publicado más puente; registrar adaptaciones y adjudicar, sin llamarlo réplica literal</p></td>
+</tr>
+<tr class="row-even"><td><p>CNN-1D + LSTM + atención temporal</p></td>
+<td><p>No se verificó una fuente primaria exacta para esta receta completa; esto no afirma que no exista literatura semejante</p></td>
+<td><p>Composición propia CNN32→LSTM32→atención16, kernel3, una LSTM, cabeza escalar</p></td>
+<td><p>Si se evalúa como arquitectura propia de E2, planificar §14 salvo justificación académica expresa. La guía E2 no resuelve por sí sola el tratamiento de una propuesta separada E3</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><a class="reference download internal" download="" href="../_downloads/cfbaaa745902b37e8e5d088022feafae/nas.md"><code class="xref download docutils literal notranslate"><span class="pre">Evidencia</span> <span class="pre">completa</span> <span class="pre">por</span> <span class="pre">modelo,</span> <span class="pre">fuentes</span> <span class="pre">primarias,</span> <span class="pre">localizadores</span> <span class="pre">y</span> <span class="pre">limitaciones</span></code></a>.</p>
+<p>Los cuatro prototipos compactos cambian más que la cabeza. Para FCN/ResNet/Inception hay diseños primarios explícitos; restaurarlos exige especificar normalización, kernels, bloques y miembro individual frente a ensemble. Para LSTM-SAE se verificó código del autor con variantes definidas, pero no se recuperó el cuerpo del artículo de forma verificable en esta revisión: no se concede exención a partir de una tabla no releída.</p>
+<p>Entre los seis adaptadores, TSMixer e iTransformer preservan mejor el cuerpo de una configuración fuente, mientras TimesNet, TiDE y TimeMixer presentan cambios estructurales de D7 y PatchTST cambia geometría de parches. Los seis incorporan diez momentos de la misma ventana a la cabeza. No son días adicionales ni pesos preentrenados, pero sí diferencias que deben adjudicarse y controlarse.</p>
+<p>El candidato CNN-LSTM-atención carece de una fuente exacta verificada para su receta completa. Proponer tres bloques CNN/LSTM/atención con anchos independientes es una posible correspondencia para §14, aún no aprobada ni implementada. No se presume originalidad ni ausencia de trabajos semejantes.</p>
+<p><strong>Decisión siguiente recomendada:</strong> fijar por escrito la receta fuente o adaptada de cada fila y someter las adaptaciones ambiguas a adjudicación metodológica. Sólo entonces elegir m y enumerar los mil diseños únicos donde proceda. No iniciar NAS para los once por defecto, ni omitirla por conservar el nombre del paper.</p>
+</section>
+<section id="coste-por-escenarios-no-tiempos-inventados">
+<h2>21.3 Coste por escenarios, no tiempos inventados<a class="headerlink" href="#coste-por-escenarios-no-tiempos-inventados" title="Link to this heading">#</a></h2>
+<p>La calculadora <code class="docutils literal notranslate"><span class="pre">scripts/e2_nas_cost_scenarios.py</span></code> sólo realiza aritmética: no importa frameworks de entrenamiento ni lee observaciones. Para m modelos sometidos a NAS, F orígenes que repiten toda la búsqueda, k finalistas y R₂ semillas de fase 2:</p>
+<ul class="simple">
+<li><p>Fase 1: m × F × 1.000 trayectorias cortas, una semilla por arquitectura.</p></li>
+<li><p>Fase 2: m × F × (k + c) × R₂ trayectorias completas, con k ≥ 10 y R₂ ≥ 5.</p></li>
+<li><p>c=1 si la referencia debe añadirse; c=0 si ya está entre los finalistas. No duplicar la misma arquitectura para inflar coste o evidencia.</p></li>
+<li><p>Tiempo simbólico: m × F × [1.000 × t_corta + (k + c) × R₂ × t_completa]. No se han medido t_corta ni t_completa y no se calculan horas. Si los costes difieren por modelo, sumar sus tiempos; no asumir uno común. No multiplicar otra vez por folds ya incluidos dentro de la trayectoria cronometrada.</p></li>
+</ul>
+<p>Una trayectoria significa el pipeline completo correspondiente. Preentrenamiento AE, ajustes internos y refits que incluya deben entrar en su tiempo, no tratarse como gratuitos ni confundirse con un único paso de optimizador. La fórmula no incluye HPO previo, ajuste final, comparadores, robustez, explicaciones o ablaciones; esos componentes se presupuestan aparte. F=1 no equivale a ejecutar toda la búsqueda dentro de diez folds anidados.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Escenario aritmético</p></th>
+<th class="head text-right"><p>F</p></th>
+<th class="head text-right"><p>Cortas</p></th>
+<th class="head text-right"><p>Completas máximas (k=10, R₂=5, c=1)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>m=0, sólo si ninguna receta queda sujeta a NAS por decisión expresa</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>m=1</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>1.000</p></td>
+<td class="text-right"><p>55</p></td>
+</tr>
+<tr class="row-even"><td><p>m=4, ejemplo de guía</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>4.000</p></td>
+<td class="text-right"><p>220</p></td>
+</tr>
+<tr class="row-odd"><td><p>m=5</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>5.000</p></td>
+<td class="text-right"><p>275</p></td>
+</tr>
+<tr class="row-even"><td><p>m=11</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>11.000</p></td>
+<td class="text-right"><p>605</p></td>
+</tr>
+<tr class="row-odd"><td><p>m=5, búsqueda completa repetida en diez orígenes</p></td>
+<td class="text-right"><p>10</p></td>
+<td class="text-right"><p>50.000</p></td>
+<td class="text-right"><p>2.750</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>m no ha sido adjudicado.</strong> Los escenarios no clasifican modelos por decreto ni autorizan once búsquedas. <a class="reference download internal" download="" href="../_downloads/b6368b4060dec03e6ffac1b9141d5f41/cost_scenarios.json"><span class="xref download myst">Cálculos reproducibles</span></a>.</p>
+<p>La guía ofrece m=4, k=10, R₂=5 como ejemplo: 4.000 trayectorias cortas y hasta 220 completas (p55). Reproducir ese cálculo no autoriza el cómputo ni afirma que cuatro sea el número de modelos aplicable a este catálogo. R₂ tampoco es el R final de la comparación.</p>
+</section>
+<section id="que-queda-antes-de-ejecutar">
+<h2>21.4 Qué queda antes de ejecutar<a class="headerlink" href="#que-queda-antes-de-ejecutar" title="Link to this heading">#</a></h2>
+<p>Cerrar la condición arquitectónica por receta, validar los comparadores y su soporte, completar el espacio HPO, resolver recursos y registrar decisiones con fecha real. La reserva histórica conocida no recupera condición confirmatoria. Un presupuesto insuficiente se documenta; no se recortan silenciosamente arquitecturas, semillas o fallos.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="20_contraste_guia.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">20. Cotejo del plan con la guía original</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="22_fichas_recetas.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">22. Once fichas de recetas propuestas</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparadores-exigidos-por-f2a">21.1 Comparadores exigidos por F2a</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dos-escenarios-de-seleccion-no-acumulativos">Dos escenarios de selección, no acumulativos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-fuentes-y-decisiones-nas">21.2 Matriz de fuentes y decisiones NAS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coste-por-escenarios-no-tiempos-inventados">21.3 Coste por escenarios, no tiempos inventados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-queda-antes-de-ejecutar">21.4 Qué queda antes de ejecutar</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

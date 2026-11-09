@@ -1,0 +1,617 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>19. Plan experimental propuesto y auditoría sin entrenamiento &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/19_plan_auditoria';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="20. Cotejo del plan con la guía original" href="20_contraste_guia.html" />
+    <link rel="prev" title="18. Implementación provisional y verificación sintética" href="18_integracion_sintetica.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 2 · Bitcoin: pronóstico de volatilidad</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_literatura.html">3. Revisión Sistemática del Estado del Arte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación de los diez modelos y el candidato adicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark vigente: diez modelos y un candidato adicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Preregistro del catálogo vigente y trazabilidad experimental</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de datos y auditoría formal de fuga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. HPO y equidad para el catálogo vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Incertidumbre predictiva y análisis de errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Agregación estadística e interpretación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas del catálogo vigente y adaptación a D7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo vigente: diez modelos y candidato 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_fichas_nuevas.html">16. Fichas bibliográficas de las cuatro altas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato sincronizado de E1, E2 y E3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_integracion_sintetica.html">18. Implementación provisional y verificación sintética</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">19. Plan experimental propuesto y auditoría sin entrenamiento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_contraste_guia.html">20. Cotejo del plan con la guía original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_comparadores_nas.html">21. Comparadores temporales y decisión NAS por receta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22_fichas_recetas.html">22. Once fichas de recetas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_implementacion_recetas.html">23. Implementación de recetas y controles temporales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="24_ejecutor_comun.html">24. Ejecutor común y disponibilidad temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><p class="small">Entregable 2 · Jassan Arteta · 2026-30</p></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/19_plan_auditoria.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>19. Plan experimental propuesto y auditoría sin entrenamiento</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alcance-y-condicion-de-entrada">19.1 Alcance y condición de entrada</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auditoria-del-snapshot">19.2 Auditoría del snapshot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recetas-y-presupuesto-propuestos">19.3 Recetas y presupuesto propuestos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calendario-seleccion-y-semillas-propuestas">Calendario, selección y semillas propuestas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#controles-y-analisis-por-registrar">Controles y análisis por registrar</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limites-de-inferencia-y-proximos-pasos">19.4 Límites de inferencia y próximos pasos</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="plan-experimental-propuesto-y-auditoria-sin-entrenamiento">
+<h1>19. Plan experimental propuesto y auditoría sin entrenamiento<a class="headerlink" href="#plan-experimental-propuesto-y-auditoria-sin-entrenamiento" title="Link to this heading">#</a></h1>
+<p><strong>Cotejo posterior con la guía original de 65 páginas recibida el 08/11/2026:</strong> este borrador queda condicionado por las correcciones de <a class="reference internal" href="20_contraste_guia.html"><span class="std std-doc">§20</span></a>. La cuadrícula reducida y el total de16 sistemas no cubren todos los requisitos; no son el plan definitivo autorizado.</p>
+<p><strong>Corte del 08/11/2026.</strong> Este documento registra decisiones y comprobaciones posteriores a resultados históricos conocidos. <strong>No es un preregistro prospectivo, no acredita HPO ni piloto del catálogo vigente y no demuestra superioridad.</strong> Los protocolos y resultados de E1 y de versiones anteriores permanecen sin cambios. La ejecución requiere cerrar las condiciones pendientes y registrar una enmienda con su exposición previa antes de nuevos ajustes.</p>
+<section id="alcance-y-condicion-de-entrada">
+<h2>19.1 Alcance y condición de entrada<a class="headerlink" href="#alcance-y-condicion-de-entrada" title="Link to this heading">#</a></h2>
+<p>El catálogo comprende los diez modelos de §15 y el candidato adicional CNN-1D + LSTM + atención temporal. Las referencias separadas son MLP16, LSTM32 y GRU32 vigentes de E1, Ridge como control no profundo propuesto y persistencia causal. El borrador inicial contaba quince configuraciones de benchmark más el candidato once: <strong>dieciséis sistemas</strong>, no dieciséis arquitecturas nuevas ni una lista que reintroduzca modelos retirados. La ruta F2a vigente añade naive estacional y ARIMA o ETS (PDF p30): manteniendo Ridge, la propuesta debe contemplar al menos 18 sistemas, con recetas y coste de esos controles pendientes. Las ablaciones son controles adicionales y no cuentan como nuevos modelos del Top 10.</p>
+<p>La entrada y el objetivo permanecen D7×5 OHLCV relativo, σ₇ poblacional sin anualización y horizonte uno conforme a §17. La receta de software es una adaptación y no una reproducción literal de los artículos. La guía recibida se conserva como registro histórico: sus selecciones antiguas, TCN, R y estados de ejecución no sustituyen este catálogo ni el E1 vigente. El PDF original ya se cotejó posteriormente; las páginas y correcciones actuales están en §20. El JSON histórico de recepción no se reescribe retroactivamente.</p>
+</section>
+<section id="auditoria-del-snapshot">
+<h2>19.2 Auditoría del snapshot<a class="headerlink" href="#auditoria-del-snapshot" title="Link to this heading">#</a></h2>
+<p>Se auditó el snapshot diario de desarrollo2023–2024 mediante <code class="docutils literal notranslate"><span class="pre">scripts/audit_e2_real_data.py</span></code>, contrastando sus SHA256 con el registro histórico y reconstruyendo etiquetas y escaladores. <a class="reference download internal" download="" href="../_downloads/953fb96c3878b8b0b07ee712b51dc09e/audit.json"><span class="xref download myst">Recibo agregado</span></a>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Comprobación ejecutada</p></th>
+<th class="head"><p>Resultado</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Calendario</p></td>
+<td><p>731 filas diarias UTC, sin duplicados ni compresión de fechas</p></td>
+</tr>
+<tr class="row-odd"><td><p>Calidad</p></td>
+<td><p>24/03/2023 incompleto conservado; no imputación</p></td>
+</tr>
+<tr class="row-even"><td><p>Elegibilidad</p></td>
+<td><p>716 ventanas D7;15 no elegibles por soporte/etiquetas</p></td>
+</tr>
+<tr class="row-odd"><td><p>Objetivo</p></td>
+<td><p>σ₇ poblacional recomputada; diferencia máxima9,72×10⁻¹⁷</p></td>
+</tr>
+<tr class="row-even"><td><p>Entrada</p></td>
+<td><p>Siete días t−7…t−1, sin barra del objetivo</p></td>
+</tr>
+<tr class="row-odd"><td><p>CV histórica</p></td>
+<td><p>305 fechas de enero–octubre2024</p></td>
+</tr>
+<tr class="row-even"><td><p>Piloto histórico</p></td>
+<td><p>60 fechas,01/11–30/12/2024; no se reemplaza</p></td>
+</tr>
+<tr class="row-odd"><td><p>Soporte de ajuste final</p></td>
+<td><p>709 refit,619 entrenamiento interno,83 validación interna</p></td>
+</tr>
+<tr class="row-even"><td><p>Transformaciones</p></td>
+<td><p>Reconstrucción independiente y perturbación futura sin cambios en train/escaladores</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ejecución de modelos</p></td>
+<td><p>Cero ajustes, cero pasos de optimizador, cero HPO y cero descargas</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La auditoría usa los derivados diarios existentes, <strong>no reagrega los archivos originales de minutos</strong>. Verificar hashes acredita identidad del snapshot registrado, no certificación independiente de Binance. No se leyó ni recuperó la evaluación2025–2026, por lo que no se certifican aquí sus608 filas. Tampoco se prueba fuga a nivel de un runner real inexistente.</p>
+<p>El flujo actual rechaza correctamente este snapshot por su guarda <code class="docutils literal notranslate"><span class="pre">synthetic_only</span></code>; no se retiró la guarda ni se cambió su procedencia para pasar pruebas. Sólo la función matemática de transformación es compartida. <strong>Datos de desarrollo auditados no equivale a flujo de entrenamiento real integrado.</strong></p>
+</section>
+<section id="recetas-y-presupuesto-propuestos">
+<h2>19.3 Recetas y presupuesto propuestos<a class="headerlink" href="#recetas-y-presupuesto-propuestos" title="Link to this heading">#</a></h2>
+<p>Se propone usar <code class="docutils literal notranslate"><span class="pre">provisional_default</span></code> de §18 como estructura fija, sin ensemble InceptionTime, sin variación de profundidad ni NAS declarada. Los cuatro prototipos usan ancho16 y dropout0; el híbrido CNN32/LSTM32/atención16, kernel3, una capa LSTM y dropout0,1. Las seis adaptaciones mantienen sus mecanismos y heads documentados. Los valores son puntos de partida del diseño, <strong>no óptimos validados</strong>.</p>
+<p>La cuadrícula reducida inicialmente propuesta, <strong>insuficiente para el espacio mínimo de §11.2 de la guía (p47)</strong>, es LR∈{0,001; 0,003} × weight decay∈{0; 0,0001}, cuatro configuraciones por red. Es una desviación explícita respecto de la cuadrícula LR/dropout histórica de E1: los cuatro prototipos no implementan dropout y variar ese parámetro crearía intentos inexistentes o duplicados. Se fija el dropout estructural de cada receta. AdamW, MSE en y escalada, batch32 con último batch conservado (sin recomendar batch1; registrar tamaño efectivo), máximo100 épocas supervisadas, paciencia12, mejora mínima10⁻⁵ y clipping1. No se altera una receta después de mirar la evaluación.</p>
+<p>Para LSTM-AE: hasta20 épocas de reconstrucción train-only, sin selección por la validación externa, seguidas de fine-tuning supervisado de encoder/predictor; decoder no participa en esa pérdida. Se crea un optimizador nuevo al pasar a supervisión. Cada reajuste reinicia también el preentrenamiento, no hereda pesos posteriores. La política propuesta usa20 épocas fijas de reconstrucción y no una búsqueda oculta; cualquier parada por fallo se registra. El costo incluye ambas fases.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Partida propuesta</p></th>
+<th class="head"><p>Cálculo</p></th>
+<th class="head text-right"><p>Etapas máximas programadas</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Once candidatos, selección supervisada</p></td>
+<td><p>11×4 configuraciones×2 semillas×10 folds×(ajuste interno+refit)</p></td>
+<td class="text-right"><p>1.760</p></td>
+</tr>
+<tr class="row-odd"><td><p>Preentrenamientos AE independientes</p></td>
+<td><p>4×2×10×2</p></td>
+<td class="text-right"><p>160</p></td>
+</tr>
+<tr class="row-even"><td><p>Tres referencias E1 retunadas para E2</p></td>
+<td><p>3×4×2×10×2</p></td>
+<td class="text-right"><p>480</p></td>
+</tr>
+<tr class="row-odd"><td><p>Subtotal del escenario reducido neuronal</p></td>
+<td><p>Supervisado2.240 + reconstrucción160</p></td>
+<td class="text-right"><p>2.400</p></td>
+</tr>
+<tr class="row-even"><td><p>Ridge propuesto</p></td>
+<td><p>α∈{0,01; 0,1; 1; 10}×10 folds, ajuste cerrado una vez</p></td>
+<td class="text-right"><p>40</p></td>
+</tr>
+<tr class="row-odd"><td><p>Persistencia</p></td>
+<td><p>Sin parámetros aprendidos</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Estos subtotales conservan la contabilidad del borrador inicial, no el presupuesto completo conforme a la guía: faltan expansión de espacios, NAS donde aplique y controles temporales. Estas cantidades <strong>no son horas, FLOPs, equivalencia de cómputo ni ejecuciones realizadas</strong>. Los refits dependen de la época elegida internamente; todo preentrenamiento, fallo, reintento y control entra en el consumo. Hardware homogéneo, memoria y techo de tiempo por receta deben fijarse tras una prueba técnica acotada autorizada; no se deducen tiempos reales del smoke. Un presupuesto que no permita terminar se declara insuficiente, sin favorecer al híbrido ni regalar intentos adicionales.</p>
+<p>Las referencias retunadas serán nuevas ejecuciones etiquetadas E2, no modificaciones de pesos/resultados E1. Sus anclas históricas se presentan por separado. Ridge se ajustará sobre D7×5 transformada y escalada con el mismo entrenamiento; enlace no negativo por truncamiento explícito al evaluar σ, sin confundirlo con Softplus. La persistencia usa σ₇ del último día observado y requiere ocho cierres t−8…t−1, frente a las siete barras de la entrada neuronal. En desarrollo,716 ventanas neuronales no equivalen a716 casos de comparación común:714 tienen también persistencia; faltan08/01/2023 y01/04/2023. La revisión independiente verificó que CV 305 y piloto propuesto53 sí conservan soporte de persistencia completo. Exigir una máscara común al evaluar todos los sistemas finalmente incluidos, sin quitar por ello dos filas elegibles del entrenamiento neuronal. Ninguno agrega información futura.</p>
+<section id="calendario-seleccion-y-semillas-propuestas">
+<h3>Calendario, selección y semillas propuestas<a class="headerlink" href="#calendario-seleccion-y-semillas-propuestas" title="Link to this heading">#</a></h3>
+<p>El desempate por ID descrito a continuación pertenece al borrador reducido de HPO, no a la selección arquitectónica: para NAS rige la parsimonia en empate técnico de la guía p56.</p>
+<p>Diez folds de enero–octubre2024 con los mismos soportes/embargos de E1. La selección concatena305 fechas elegibles por trayectoria, calcula RMSE original y promedia entre semillas; no promedia RMSE mensuales sin ponderar. Dos semillas propuestas de búsqueda:27101 y27102; refit=semilla+10.000.000 y orden de lotes=semilla+17, con generadores separados. Desempate: menor RMSE sin redondeo y luego ID lexicográfico prefijado; no elegir por test. La parada interna de épocas <strong>no convierte la selección global de hiperparámetros en validación anidada</strong>: es desarrollo/selección, no OOF insesgado del procedimiento completo.</p>
+<p>Tras congelar receta, se propone un piloto auxiliar 08/11–30/12/2024 (53 fechas), semillas28101–28110. El ajuste y sus escaladores usan sólo etiquetas hasta31/10, origen08/11 y embargo01–07/11. El inicio evita llamar causal a una evaluación desde01/11 cuando la receta utiliza octubre completo y se exige embargo de siete días. No se cambia el piloto histórico E1. Este bloque también es conocido: dimensionamiento exploratorio, nunca reserva nueva. Se propone aplicar el piloto a las14 redes y10 semillas:280 ajustes supervisados más20 reconstrucciones AE,300 etapas adicionales a la tabla, no ejecutadas, más un ajuste Ridge y cero de persistencia. Las fechas exactas y muestras deben validarse antes de ejecutar. R definitivo queda pendiente del dimensionamiento de variación entre inicializaciones; incertidumbre y potencia temporal se evalúan por separado, y transferir estimaciones de53 a608 fechas es un supuesto fuerte; las semillas definitivas no se asignan todavía.</p>
+</section>
+<section id="controles-y-analisis-por-registrar">
+<h3>Controles y análisis por registrar<a class="headerlink" href="#controles-y-analisis-por-registrar" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Tres ablaciones del híbrido ya existen como código aislado: CNN-only, LSTM-only y CNN-LSTM sin atención. Mantener datos, transformaciones y protocolo; sus diferencias de capacidad/readout impiden interpretar todo cambio como efecto puro de un único bloque. Sin selección por el test. Para aislar tres componentes se proponen además −CNN=LSTM+atención, −LSTM=CNN+atención y −atención=CNN+LSTM+pooling uniforme sobre los mismos siete estados, conservando la cabeza. Estas tres intervenciones <strong>no están implementadas</strong>; no se da por cumplido el requisito de aislar tres componentes con los controles actuales. Tras fijar recetas, sus ajustes internos+refits sumarían6R etapas, fuera de la tabla de selección y sin reutilizar pesos del híbrido.</p></li>
+<li><p>Los seis adaptadores incorporan cinco medias y cinco DE de D7 escalada. Proponer controles sin esos momentos y un control sólo-momentos. Las seis variantes sin momentos añadirían12R etapas internas+refit a igual R, y el control sólo-momentos necesita receta/presupuesto propio. No están implementados ni comprometidos: la comparación inicial es del <strong>adaptador completo</strong>, no del backbone puro.</p></li>
+<li><p>Métrica primaria: media de RMSE por semilla en unidades originales; MAE, MSE, R², MAPE con cobertura de y&gt;0 y MASE con denominador train-only sobre diferencias consecutivas. No confundir promedio de semillas con ensemble.</p></li>
+<li><p>Margen histórico δ=0,00025772842664981106 preservado como referencia práctica explícita, no reestimado a favor del candidato. Contrastes pareados por fecha y dependencia temporal; bootstrap por bloques con sensibilidad de longitud fijada antes de resultados. Longitud de bloque pendiente de justificar con desarrollo, no del test. La guía fija al menos2.000 remuestreos para IC (p22) y al menos10.000 para la prueba de remuestreo/permutación pareada (p27); se propone10.000 para ambos, todavía sin ejecutar. Se remuestrean bloques comunes de fechas, recalculando RMSE por trayectoria antes de promediar semillas; dispersión entre semillas y variación temporal se informan separadas. No se usan semillas o meses como datasets ficticios de Friedman.</p></li>
+<li><p>Familia primaria provisional, aún por conciliar con la batería de tres pruebas admisibles por contraste (p23) y los controles F2a añadidos: doce comparaciones del candidato frente a cada uno de los diez modelos, GRU32-E2 y persistencia. H0: ganancia de RMSE del candidato≤δ, H1: ganancia&gt;δ; alfa familiar0,05 con corrección Holm. Otras parejas se etiquetan secundarias. El cálculo de potencia debe usar una alternativa por encima deδ, no la frontera nulaδ; su magnitud requiere justificación previa. El mejor competidor no se elige a posteriori en test. No se atribuyen intervalos válidos a comparaciones todavía no ejecutadas.</p></li>
+<li><p>Robustez con tres severidades, calibración predictiva y explicación de tres mejores requieren especificar perturbaciones físicamente válidas, un bloque de calibración separado y criterio de selección basado en desarrollo. No se calibran intervalos con residuos de etiquetas incluidas en el ajuste final hasta24/12. Una eventual rama secundaria ajustada sólo hasta31/10 y calibrada08/11–30/12 debe mantener ese mismo predictor al evaluar y quedar separada del primario; su cobertura bajo dependencia/deriva no está garantizada. No se simulan resultados ni se considera cerrado este requisito. La condición NAS por modelo y el piloto de limitación del paper guía siguen pendientes, no satisfechos por fijar defaults.</p></li>
+</ul>
+<p><strong>Decisiones descritas, no preregistradas ni cerradas como cumplimiento de la guía:</strong> objetivo/soportes heredados, catálogo, estructura provisional, cuadrícula propuesta y contabilidad, separación de fases AE, no test para selección. <strong>Puertas aún abiertas:</strong> ejecutor real integrado y auditado, controles de momentos, NAS/guía, hardware/tiempos, política de calibración/robustez, dimensionamiento R e inferencia. Cerrar un borrador no equivale a autorizar las2.400 etapas ni a cumplir la guía completa.</p>
+</section>
+</section>
+<section id="limites-de-inferencia-y-proximos-pasos">
+<h2>19.4 Límites de inferencia y próximos pasos<a class="headerlink" href="#limites-de-inferencia-y-proximos-pasos" title="Link to this heading">#</a></h2>
+<p>La reserva de 608 fechas (01/01/2025–31/08/2026) ya es conocida y sólo puede informar comparación exploratoria. La reserva anterior de 60 fechas (01/09–30/10/2026) también fue observada. Ni volver a sellar archivos ni cambiar semillas recupera independencia respecto de decisiones previas. No se utiliza ninguna de ellas para elegir recetas, épocas, presupuesto o márgenes. Una afirmación confirmatoria futura exige un soporte temporal realmente no observado, congelado antes de examinar sus resultados; aquí no se inventa ese soporte.</p>
+<p>El R=309 de E1 y sus semillas pertenecen a su propio dimensionamiento. No se transfieren potencia ni suficiencia a once recetas diferentes o a series con dependencia temporal. Semillas de optimización y fechas son fuentes distintas de variación: repetir semillas no multiplica el tamaño de la muestra de mercado.</p>
+<p><strong>Siguiente puerta de ejecución:</strong> completar el ejecutor real separado del smoke sintético, revisar el plan y sus recursos, resolver controles y registrar las decisiones con fecha real. Sólo después correspondería solicitar/ejecutar selección y piloto autorizados. Este corte no inicia entrenamiento de mercado, búsqueda ni dimensionamiento.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="18_integracion_sintetica.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">18. Implementación provisional y verificación sintética</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="20_contraste_guia.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">20. Cotejo del plan con la guía original</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alcance-y-condicion-de-entrada">19.1 Alcance y condición de entrada</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auditoria-del-snapshot">19.2 Auditoría del snapshot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recetas-y-presupuesto-propuestos">19.3 Recetas y presupuesto propuestos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calendario-seleccion-y-semillas-propuestas">Calendario, selección y semillas propuestas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#controles-y-analisis-por-registrar">Controles y análisis por registrar</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limites-de-inferencia-y-proximos-pasos">19.4 Límites de inferencia y próximos pasos</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

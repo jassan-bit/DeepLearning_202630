@@ -1,0 +1,28 @@
+{
+  "source_period": "2023-01-01/2024-12-31",
+  "valid_development_labels": 716,
+  "quantile_method": "NumPy linear interpolation",
+  "quantiles": {
+    "0.1": 0.010526056944977318,
+    "0.2": 0.012666412045499885,
+    "0.25": 0.014533953035352525,
+    "0.3": 0.015952750110951618,
+    "0.4": 0.01769544499592922,
+    "0.5": 0.020021929862612826,
+    "0.6": 0.022028460059177107,
+    "0.7": 0.025107740125147174,
+    "0.75": 0.02632103051447081,
+    "0.8": 0.027809368044315236,
+    "0.9": 0.0336556904886019
+  },
+  "regime_rule": "low: y<=Q25; middle: Q25<y<=Q75; high: y>Q75",
+  "decile_rule": "Ten common observed-target intervals split by developmentD10..D90; lower-open upper-closed, unbounded tails",
+  "boundaries_derived_from_test": false,
+  "uses_observed_target_for_descriptive_stratification": true,
+  "not_available_as_a_forecast_input": true,
+  "minimum_dates_for_public_bin_means": 5,
+  "development_target_max": 0.05959837243869294,
+  "density_grid_upper": 0.11919674487738588,
+  "density_grid_bins_per_axis": 30,
+  "density_grid_rule": "Thirty equally spaced bins from0 to max(0.1,twice development target maximum); beyond-range values recorded in boundary cells with separate overflow counts"
+}

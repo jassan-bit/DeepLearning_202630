@@ -1,0 +1,17 @@
+{
+  "test": "Friedman chi-square approximation with within-seed blocks",
+  "n_blocks": 465,
+  "n_models": 3,
+  "degrees_of_freedom": 2,
+  "chi_square": 391.62580645161324,
+  "p_value": 9.110383178388181e-86,
+  "kendall_W": 0.4211030176899067,
+  "mean_ranks_lower_rmse_better": {
+    "GRU": 1.8903225806451613,
+    "LSTM": 2.696774193548387,
+    "TCN": 1.4129032258064516
+  },
+  "blocks_with_any_exact_rmse_tie": 0,
+  "null_and_assumptions": "Exchangeability of model labels within independent seed blocks under the global null. A rejection establishes a distributional/rank difference; a median or location-only interpretation needs comparable distribution shapes. These are seed blocks, not independently sampled dates or markets.",
+  "scope": "Post-execution exploratory supplement; initialization uncertainty conditional on the same 60 historical dates and frozen recipes. Not preregistered, not independent temporal confirmation."
+}

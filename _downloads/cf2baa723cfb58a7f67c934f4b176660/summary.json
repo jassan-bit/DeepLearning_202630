@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-11-06",
+  "reviewer": "Codex, síntesis documental asistida; no segunda revisión humana independiente",
+  "status": "conditional_operational_selection_not_closed_systematic_review",
+  "selected_models": [
+    "GRU",
+    "LSTM",
+    "TCN"
+  ],
+  "historical_corpus_studies": [
+    "S1",
+    "S2",
+    "S5",
+    "S6",
+    "S7",
+    "S8",
+    "S9"
+  ],
+  "historical_corpus_n": 7,
+  "counting_unit": "Un estudio por familia utilizada como comparador DL independiente; no componentes híbridos ni propuestas.",
+  "canonical_bibliography_entries": 42,
+  "bibliography_entries_are_included_studies": false,
+  "candidate_matrix": [
+    {
+      "family": "GRU",
+      "inductive_bias": "Estado recurrente con reinicio y actualización; pesos compartidos en la ventana.",
+      "simplicity": "Una capa propia; 3777 parámetros en fase I y 1121 en fase II. No es la GRU ganadora de S1.",
+      "selection_judgment": "Retener: segunda mayor recurrencia independiente; aporta una celda recurrente de menor tamaño que LSTM a igual ancho.",
+      "limitation": "Comparte secuencialidad y compuertas con LSTM. Menor número de parámetros no acredita mejor desempeño.",
+      "reconsider_if": "Un corpus adjudicado favorece una alternativa simple con mejor cobertura o la comparación recurrente deja de ser objetivo.",
+      "verified_reference_studies": "S1;S2;S8",
+      "verified_count": 3,
+      "denominator": 7,
+      "frequency_evidence": "historical_family_frequency_table"
+    },
+    {
+      "family": "LSTM",
+      "inductive_bias": "Celda separada del estado oculto; compuertas de entrada, olvido y salida.",
+      "simplicity": "Una capa propia; 5025 parámetros en fase I y 1489 en fase II. Las variantes publicadas tienen profundidades y anchos distintos.",
+      "selection_judgment": "Retener: mayor recurrencia estricta del corpus y contraste de celda frente a GRU.",
+      "limitation": "La memoria se reinicia por ventana; D7 no permite atribuir ventaja a memoria más allá de siete observaciones.",
+      "reconsider_if": "Se prioriza cobertura de familias sobre contraste entre celdas recurrentes; no se decide con el test ya observado.",
+      "verified_reference_studies": "S1;S2;S5;S7;S8",
+      "verified_count": 5,
+      "denominator": 7,
+      "frequency_evidence": "historical_family_frequency_table"
+    },
+    {
+      "family": "TCN",
+      "inductive_bias": "Filtros temporales causales compartidos, dilatación y rutas residuales; sin estado recurrente.",
+      "simplicity": "Tres bloques propios; 4289 parámetros en fase I y 1185 en fase II. Ganador S1 de seis niveles no es esta adaptación.",
+      "selection_judgment": "Retener condicionalmente: comparador independiente en S1 y contraste convolución-recursión. CVI aporta un estrato externo de objetivo.",
+      "limitation": "1/7 no acredita alta recurrencia; mayor complejidad estructural que una CNN simple o MLP mínima. CVI no es sigma7.",
+      "reconsider_if": "Cribado y originales elegibles muestran mayor apoyo para otra referencia simple o no sostienen pertinencia para el objetivo.",
+      "verified_reference_studies": "S1",
+      "verified_count": 1,
+      "denominator": 7,
+      "frequency_evidence": "historical_family_frequency_table"
+    },
+    {
+      "family": "MLP",
+      "inductive_bias": "Covariables de la ventana vectorizadas; orden representado por posición, sin recurrencia ni filtros compartidos.",
+      "simplicity": "S8 verifica MLP de cuatro capas, sin anchos suficientes para conteo exacto. Una adaptación compacta sería posible, igual que para otras familias.",
+      "selection_judgment": "Alternativa válida: ofrece un contraste de sesgo más amplio que una segunda recurrente. No se descarta por carecer de estructura temporal.",
+      "limitation": "Sólo 1/7 como comparador; MLP en AT-LSTM-MLP o cabeza de S9 no incrementa frecuencia autónoma.",
+      "reconsider_if": "El corpus cerrado y el criterio de diversidad favorecen MLP; requeriría nuevo estudio comparable, no reinterpretar el benchmark actual.",
+      "verified_reference_studies": "S8",
+      "verified_count": 1,
+      "denominator": 7,
+      "frequency_evidence": "historical_family_frequency_table"
+    },
+    {
+      "family": "RNN_simple",
+      "inductive_bias": "Recurrencia sin compuertas; referencia para aislar utilidad del mecanismo de gating.",
+      "simplicity": "Puede tener menos parámetros a igual ancho que GRU/LSTM; no se asigna una arquitectura publicada no recuperada.",
+      "selection_judgment": "Candidata metodológica pendiente de respaldo aplicado; no se sustituye por preferencia teórica.",
+      "limitation": "Sin comparador independiente verificado en los siete originales actuales; no equivale a ausencia universal.",
+      "reconsider_if": "Se recupera un original elegible que la utiliza como referencia y se documenta una receta reproducible.",
+      "verified_reference_studies": "",
+      "verified_count": 0,
+      "denominator": 7,
+      "frequency_evidence": "no_positive_comparator_verified_in_current_fulltexts"
+    },
+    {
+      "family": "CNN_generic",
+      "inductive_bias": "Localidad y pesos compartidos; causalidad/dimensión dependen de la receta concreta.",
+      "simplicity": "S8 declara dos capas y Dense, pero dimensión, canales y kernels incompletos impiden conteo exacto.",
+      "selection_judgment": "Alternativa válida a TCN. La ambigüedad de S8 impide afirmar que esa CNN sea Conv1D causal; no demuestra inferioridad.",
+      "limitation": "1/7 CNN genérica; CNN1D simple explícita 0/7. No duplicar esa misma evidencia como dos familias independientes.",
+      "reconsider_if": "Un original elegible especifica una CNN temporal básica que satisface mejor simplicidad y cobertura.",
+      "verified_reference_studies": "S8",
+      "verified_count": 1,
+      "denominator": 7,
+      "frequency_evidence": "historical_family_frequency_table"
+    },
+    {
+      "family": "Transformer_encoder",
+      "inductive_bias": "Interacciones entre posiciones mediante atención; representación posicional explícita.",
+      "simplicity": "S2 aporta dos encoder, d48 y FF96; conteo común registrado 47521. Un encoder menor es posible y no se descarta por principio.",
+      "selection_judgment": "Tercer puesto por frecuencia (2/7), por encima de TCN. Se prefiere aquí la referencia convolucional directa de S1 y capacidad compacta documentada.",
+      "limitation": "Fuentes S2/S6 grises; S6 receta incompleta. Atención cuadrática no es prohibitiva por sí sola con D7.",
+      "reconsider_if": "Originales mejor especificados y corpus adjudicado favorecen recurrencia de atención bajo capacidad y presupuesto comparables.",
+      "verified_reference_studies": "S2;S6",
+      "verified_count": 2,
+      "denominator": 7,
+      "frequency_evidence": "historical_family_frequency_table"
+    }
+  ],
+  "separate_new_fulltext_strata": [
+    {
+      "native_id": "E1N073",
+      "citation_key": "nguyen2023cvi",
+      "target": "CVI implícita predicha a un día; expectativas subyacentes a 30 días",
+      "independent_comparators": [
+        "LSTM",
+        "TCN"
+      ],
+      "internal_components_not_independent": [
+        "MLP"
+      ],
+      "quality_limits": [
+        "Elección de pérdida usando error de test",
+        "Capacidad de recetas desigual"
+      ],
+      "transfer": "No equivale a sigma7 ni a volatilidad realizada BTC."
+    },
+    {
+      "native_id": "E1N111",
+      "citation_key": "zahid2022hybrid",
+      "target": "Volatilidad Bitcoin; proxy operativo ambiguo entre datos diarios e intradía",
+      "independent_comparators": [],
+      "internal_components_not_independent": [
+        "LSTM",
+        "GRU",
+        "BiLSTM"
+      ],
+      "quality_limits": [
+        "Híbridos GARCH-DL",
+        "Semillas y dispersión no acreditadas",
+        "Discrepancias entre tablas"
+      ],
+      "transfer": "No incrementa frecuencias de baselines neuronales autónomos."
+    }
+  ],
+  "counterfactuals": [
+    {
+      "criterion": "Ordenar sólo por frecuencia histórica",
+      "terna": [
+        "LSTM",
+        "GRU",
+        "Transformer_encoder"
+      ],
+      "limit": "No satisface automáticamente simplicidad, reproducibilidad o calidad."
+    },
+    {
+      "criterion": "Ampliar cobertura de sesgos manteniendo convolución causal",
+      "terna": [
+        "MLP",
+        "LSTM",
+        "TCN"
+      ],
+      "limit": "Alternativa razonable, no ejecutada como sustitución de las dos fases actuales; receta MLP publicada incompleta."
+    },
+    {
+      "criterion": "Contrastar dos celdas recurrentes y una convolucional con recetas compactas",
+      "terna": [
+        "GRU",
+        "LSTM",
+        "TCN"
+      ],
+      "limit": "Elección vigente; sacrifica amplitud de familias y no acredita máxima recurrencia de TCN."
+    }
+  ],
+  "nonredundancy_scope": "Diferencia de parametrización y estado dentro de la recurrencia; ambas redes reinician estado por ventana. No demuestra independencia de errores ni memoria más allá de D.",
+  "selection_not_based_on": [
+    "Autorización de publicación",
+    "Ranking del test conocido",
+    "Comparación de RMSE entre objetivos o escalas distintas"
+  ],
+  "new_searches_executed": 0,
+  "new_fulltexts_claimed_by_this_synthesis": 0,
+  "new_model_fits": 0,
+  "open_requirements": [
+    "Historial literal de consultas nativas y evidencia IEEE Xplore",
+    "Adjudicación y reconciliación del corpus acumulado",
+    "Respaldo conjunto de recurrencia, simplicidad y diversidad"
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "scope": "block_C_descriptive_causal_EDA_only_no_fitted_model",
+  "period": {
+    "start": "2023-01-01",
+    "end_inclusive": "2024-12-31",
+    "calendar_days": 731
+  },
+  "source_files": [
+    {
+      "path": "results/eda_development/daily_market_development.csv",
+      "sha256": "bf6bb5160af924aef6a15c3684aeae932df3017e8639888bb7e91ce787900171"
+    },
+    {
+      "path": "results/eda_development/daily_volatility_development.csv",
+      "sha256": "20b96374a659eb87dadfa68aa3d6b6b5fb6bea5b10eebe6f2c186ad69861844a"
+    },
+    {
+      "path": "results/eda_covariates_documental/rolling_60d_correlations_development.csv",
+      "sha256": "ec63dda2cbd8dc8ee36afd73f521a07e4217a3bd5968907529faa596d4d18c49"
+    },
+    {
+      "path": "results/eda_covariates_documental/rolling_60d_pair_counts.csv",
+      "sha256": "75182c9c2ed6fb5b998750db54c8a28f9ef74608c6a359f90346c10014ee15cd"
+    },
+    {
+      "path": "results/eda_covariates_documental/lagged_correlations_train.csv",
+      "sha256": "d6a661c62d7e0c42394f73b948695fac96a849f5bce3c22fe4664ae83f297e3e"
+    }
+  ],
+  "generator_script_sha256": "82490d64b850f08c314a7f5bf7f4fb55e0ae087f3f834ff58b200ca98d3cd1d6",
+  "frequency": "completed daily UTC bars; source acquisition was one minute",
+  "covariates": [
+    "open",
+    "high",
+    "low",
+    "close",
+    "volume"
+  ],
+  "target": "sigma_7 outcome day; not an input lag",
+  "diagnostic_transforms": "fixed log(OHLC), log1p(volume); no learned scaler",
+  "common_cohort": {
+    "year": 2023,
+    "N": 308,
+    "condition": "all 28 lags of all five covariates and sigma7 valid",
+    "first_outcome_day": "2023-01-29",
+    "last_outcome_day": "2023-12-31",
+    "same_dates_used_for_all_correlations": true,
+    "full_window_valid_days_by_year": {
+      "2023": 308,
+      "2024": 366
+    }
+  },
+  "lag_days": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28
+  ],
+  "correlation_rows": 140,
+  "legacy_marginal_pair_count_range": [
+    328,
+    350
+  ],
+  "peak_selection": "largest absolute descriptive coefficient; ties use first lag; no window/model/hyperparameter selected",
+  "rolling": {
+    "window_calendar_days": 60,
+    "minimum_pairs": 50,
+    "source": "results/eda_covariates_documental/rolling_60d_correlations_development.csv",
+    "new_regime_hypothesis_test": false,
+    "retrospective_not_current_predictor": true
+  },
+  "independent_checks": {
+    "calendar_common_mask_matches_direct_date_lookup": true,
+    "explicit_alignment_snapshots": [
+      {
+        "outcome_day_utc": "2023-01-29",
+        "feature": "close",
+        "lag_calendar_days": 28,
+        "source_day_utc": "2023-01-01",
+        "available_at_utc": "2023-01-02T00:00:00Z",
+        "source_value_missing": false,
+        "alignment_matches": true
+      },
+      {
+        "outcome_day_utc": "2023-03-25",
+        "feature": "close",
+        "lag_calendar_days": 1,
+        "source_day_utc": "2023-03-24",
+        "available_at_utc": "2023-03-25T00:00:00Z",
+        "source_value_missing": true,
+        "alignment_matches": true
+      },
+      {
+        "outcome_day_utc": "2024-01-01",
+        "feature": "open",
+        "lag_calendar_days": 1,
+        "source_day_utc": "2023-12-31",
+        "available_at_utc": "2024-01-01T00:00:00Z",
+        "source_value_missing": false,
+        "alignment_matches": true
+      },
+      {
+        "outcome_day_utc": "2024-12-31",
+        "feature": "volume",
+        "lag_calendar_days": 28,
+        "source_day_utc": "2024-12-03",
+        "available_at_utc": "2024-12-04T00:00:00Z",
+        "source_value_missing": false,
+        "alignment_matches": true
+      }
+    ],
+    "rolling_snapshot_comparisons": 20,
+    "max_rolling_snapshot_absolute_difference": 2.0328183580886616e-13
+  },
+  "missing_daily_market_days": [
+    "2023-03-24"
+  ],
+  "calendar_preserved": true,
+  "source_files_unchanged": true,
+  "models_fitted": 0,
+  "hypothesis_tests_run": 0,
+  "raw_archives_opened": 0,
+  "test_files_opened": 0,
+  "randomness": "none; deterministic descriptive calculations",
+  "figures": [
+    "correlaciones_rezagos_cohorte_comun.png"
+  ],
+  "limitations": [
+    "Correlations of price levels can be spurious and are not evidence of predictive skill.",
+    "Comparing 28 lags creates descriptive selection; no significance or optimal lag is claimed.",
+    "The common cohort has 308 dates, unlike the older marginal analyses with 328--350 pairs.",
+    "Rolling windows and volatility targets overlap; sign changes are not independent regime changes.",
+    "Target sigma7 and rolling relationships labelled d are not admissible current covariates at the start of d.",
+    "Residual diagnostics require a separately authorised reference fit; none is fitted by this script."
+  ]
+}

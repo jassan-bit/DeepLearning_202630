@@ -1,0 +1,21 @@
+{
+  "status": "post_search_bounded_score_intervals_not_final_rank",
+  "formula": "100*(0.35R+0.20A+0.15U+0.15C+0.15P)",
+  "weights": {
+    "R": 0.35,
+    "A": 0.2,
+    "U": 0.15,
+    "C": 0.15,
+    "P": 0.15
+  },
+  "citation_rate_normalizer": 608.75,
+  "normalizer_scope": "Largest verified original-paper Scopus citations/year in the current received working cohort: PatchTST2435/4=608.75; incomplete coverage disclosed",
+  "relevance_R": "Historical current-cohort evidence retained; alternative target/relevance remains unknown until source verification",
+  "implementation_A": "Pinned original author-code identity, not an unverified repository mention",
+  "recency_U": "clip((earliest verified publication year-2019)/7,0,1)",
+  "citation_C": "clip(Scopus citations/(2026-citation_age_year+1)/608.75,0,1); WoS andScopus counts never summed",
+  "performance_P": "Unknown when datasets, scale, horizon or target do not support comparable performance; not inferred from paper ranking or model mentions",
+  "unknown_value_policy": "Unknowns remain null/empty. Bounds replace unknowns by0/1 only algebraically, never as observed measurements",
+  "family_policy": "At least4distinct families within10; E1references and nondeep comparators do not count as new deep models",
+  "selection_limit": "Admissibility and a reproducible interval do not identify a unique optimal Top10. Unread alternatives and missing records keep global selection open"
+}

@@ -1,0 +1,31 @@
+id,requirement,status
+6.0,"Benchmark reproducible, justo y comparable; resultados verificables mediante código entregado.",pending_benchmark_execution_and_protocol_closure
+6.1.a,"Tabla de diez modelos y baselines siguiendo Apéndice A: métricas media ± DE e IC95 %, preferiblemente bootstrap.",pending_benchmark_execution_and_protocol_closure
+6.1.b,Métricas de calibración y robustez.,pending_benchmark_execution_and_protocol_closure
+6.1.c,"Tiempo de entrenamiento, latencia de inferencia, parámetros y FLOPs.",pending_benchmark_execution_and_protocol_closure
+6.2.a,Ranking por métrica principal con rangos promedio sobre ejecuciones o particiones.,pending_benchmark_execution_and_protocol_closure
+6.2.b,Frontera de Pareto desempeño/coste y modelos no dominados.,pending_benchmark_execution_and_protocol_closure
+6.2.c,"Trade-off precisión, complejidad, interpretabilidad y robustez; protocolo de eficiencia §11.4.",pending_benchmark_execution_and_protocol_closure
+6.3.a,"Pruebas formales con corrección de comparaciones múltiples; no basta comparar promedios. Remisiones §7.3, §7.4 y §13.",pending_benchmark_execution_and_protocol_closure
+6.3.b,"Verificar normalidad Shapiro–Wilk, homoscedasticidad Levene e independencia; justificar elección de pruebas.",pending_benchmark_execution_and_protocol_closure
+6.3.c,Comparaciones pareadas: t pareado o Wilcoxon signed-rank; tamaño de efecto d de Cohen o delta de Cliff e IC.,pending_benchmark_execution_and_protocol_closure
+6.3.d,Diez o más modelos: ANOVA de medidas repetidas si aplica o Friedman recomendado; post-hoc Nemenyi o pares con Holm/Bonferroni.,pending_benchmark_execution_and_protocol_closure
+6.3.e,Diagrama de diferencia crítica; opción avanzada bayesiana de rangos con signo y ROPE.,pending_benchmark_execution_and_protocol_closure
+6.3.f,"Particiones con entrenamiento solapado: corrección de varianza apropiada, ejemplo Nadeau–Bengio, o justificar omisión.",pending_benchmark_execution_and_protocol_closure
+6.3.g,Series temporales/regresión temporal: Diebold–Mariano con corrección Harvey–Leybourne–Newbold para muestras finitas.,pending_benchmark_execution_and_protocol_closure
+6.3.h,Model Confidence Set opcional para identificar conjunto de modelos superiores.,pending_benchmark_execution_and_protocol_closure
+6.3.i,BDS en residuos para independencia y dependencia no lineal remanente.,pending_benchmark_execution_and_protocol_closure
+6.3.j,Ljung–Box en residuos y cuadrados para autocorrelación y efectos de tipo ARCH.,pending_benchmark_execution_and_protocol_closure
+6.3.k,"Alfa 0,05 y control explícito de FWER o FDR.",pending_benchmark_execution_and_protocol_closure
+6.3.l,"P-valores numéricos sin ajustar y ajustados, tamaños de efecto e intervalos.",pending_benchmark_execution_and_protocol_closure
+6.3.m,"Número de comparaciones justificado a priori; potencia o capacidad de pruebas dado R, remisión §9.2.",pending_benchmark_execution_and_protocol_closure
+6.3.n,"Distinguir significación y relevancia práctica; no rechazar no demuestra equivalencia, usar TOST o ROPE si se afirma.",pending_benchmark_execution_and_protocol_closure
+6.4.a,Mejor modelo y explicación respaldada por ablación e interpretabilidad.,pending_benchmark_execution_and_protocol_closure
+6.4.b,Generalización y calibración comparadas.,pending_benchmark_execution_and_protocol_closure
+6.4.c,Robustez frente a perturbaciones y cambio de distribución.,pending_benchmark_execution_and_protocol_closure
+6.4.d,Significación estadística y relevancia práctica de las diferencias.,pending_benchmark_execution_and_protocol_closure
+6.4.e,Trade-off entre desempeño y coste computacional.,pending_benchmark_execution_and_protocol_closure
+6.4.f,"Cercanía al techo estimado de desempeño y margen de mejora, remisión §12.",pending_benchmark_execution_and_protocol_closure
+6.4.g,Contraste de las hipótesis de §1.,pending_benchmark_execution_and_protocol_closure
+6.4.h,"Amenazas a validez interna, externa, de constructo y estadística.",pending_benchmark_execution_and_protocol_closure
+6.4.i,Limitaciones y líneas futuras; cada afirmación exige evidencia estadística rigurosa.,pending_benchmark_execution_and_protocol_closure

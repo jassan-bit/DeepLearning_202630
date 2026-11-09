@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "archived_proposal_scope": "Initial15-row proposal only; superseded by experiments/e2_remediation_20261106 and scripts/e2_protocol_plan.py. Its pending-guide blockers describe the original snapshot, not current guide receipt.",
+  "audit_kind": "documentary_pretraining_readiness_not_training_pipeline",
+  "proposal_valid": true,
+  "proposal_status": "proposed_not_frozen",
+  "ready_to_train": false,
+  "ready_to_claim_confirmatory_test": false,
+  "new_deep_learning_fits": 0,
+  "new_Bitcoin_results": 0,
+  "minimum_total_configurations": 15,
+  "top10_candidate_count": 10,
+  "top10_family_count": 4,
+  "inherited_source_commit": "94a4b0324e93361e8928d708fdfeb50110e3686f",
+  "inherited_scientific_contract_sha256": "1464fa79d472f6755651774989b140659ee1f21daeb30032fc650a8770f4fdc4",
+  "pinned_E1_source_hashes_verified": 6,
+  "source_guide_requirements_received": 26,
+  "blockers": [
+    {
+      "id": "training_executor_missing",
+      "reason": "Este auditor no implementa ni ejecuta el pipeline de entrenamiento E2."
+    },
+    {
+      "id": "guide_7",
+      "reason": "Falta revisar la sección 7 completa y su efecto sobre el protocolo."
+    },
+    {
+      "id": "guide_9.2",
+      "reason": "Falta revisar la sección 9.2 completa y su efecto sobre el protocolo."
+    },
+    {
+      "id": "guide_10",
+      "reason": "Falta revisar la sección 10 completa y su efecto sobre el protocolo."
+    },
+    {
+      "id": "guide_11.1",
+      "reason": "Falta revisar la sección 11.1 completa y su efecto sobre el protocolo."
+    },
+    {
+      "id": "guide_13.2",
+      "reason": "Falta revisar la sección 13.2 completa y su efecto sobre el protocolo."
+    },
+    {
+      "id": "guide_14",
+      "reason": "Falta revisar la sección 14 completa y su efecto sobre el protocolo."
+    },
+    {
+      "id": "fair_HPO_scope_unresolved",
+      "reason": "Revisar sección11.1: no atribuir el nuevo HPO a las recetas E1. Si se ajustan nuevamente GRU/LSTM/TCN, conservar las tres anclas y registrar variantes E2 separadas (18configuraciones); esa ampliación no está elegida ni ejecutada."
+    },
+    {
+      "id": "compute_budget_not_profiled",
+      "reason": "Presupuesto común de tiempo no dimensionado con un perfil de hardware."
+    },
+    {
+      "id": "adapter_architecture_definitions",
+      "reason": "Definiciones exactas de los adaptadores D7 y aplicabilidad de NAS: evidencia pendiente."
+    },
+    {
+      "id": "D7_contract_and_causality_tests",
+      "reason": "Pruebas de forma, información disponible y causalidad D7: evidencia pendiente."
+    },
+    {
+      "id": "nested_indices_audit",
+      "reason": "Índices y soportes de la nueva CV anidada propuestos, todavía no generados: evidencia pendiente."
+    },
+    {
+      "id": "training_environment_lock",
+      "reason": "Lock E2 compatible con las diez implementaciones: evidencia pendiente."
+    },
+    {
+      "id": "common_hardware_profile",
+      "reason": "Perfil común de CPU/GPU/RAM y coste por ajuste sin usar test: evidencia pendiente."
+    },
+    {
+      "id": "leakage_audit",
+      "reason": "Auditoría formal de fuga de sección 10: evidencia pendiente."
+    },
+    {
+      "id": "pilot_and_power",
+      "reason": "Piloto propio de E2 y dimensionamiento de sección 9.2: evidencia pendiente."
+    },
+    {
+      "id": "frozen_protocol",
+      "reason": "Protocolo definitivo y comparación equitativa cerrados antes de ejecutar E2: evidencia pendiente."
+    }
+  ],
+  "proposed_validation_evaluation_count_inventory": {
+    "nested_inner_evaluations_per_tuned_family": 480,
+    "outer_selected_evaluations_per_tuned_family": 20,
+    "final_recipe_search_evaluations_per_tuned_family": 160,
+    "subtotal_per_tuned_family_before_pilot_and_final": 660
+  },
+  "proposed_optimizer_fit_count_inventory": {
+    "nested_inner_optimizer_fits_per_tuned_family": 960,
+    "outer_selected_optimizer_fits_per_tuned_family": 40,
+    "final_recipe_search_optimizer_fits_per_tuned_family": 320,
+    "subtotal_optimizer_fits_per_tuned_family_before_pilot_and_final": 1320,
+    "top10_subtotal_optimizer_fits_before_pilot_and_final": 13200,
+    "scope": "Propuesta, no ajustes ejecutados. Cada evaluación exige dos ajustes optimizador (early-stop y refit); no incluye Ridge, anclas, NAS condicional, piloto, definitivo, robustez o ablaciones."
+  },
+  "proposed_nested_calendar_rows": 30,
+  "actual_eligible_windows_audited": false,
+  "receipt_scope": "Existencia y hash son comprobaciones documentales; este auditor no certifica implementación, fuga, potencia o ejecución.",
+  "execution_environment_observation": {
+    "python": "3.12.14",
+    "platform": "Linux",
+    "training_environment_validated": false
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "L1": {
+    "name": "Calendar-marker alignment and batch-composition dependence",
+    "structural_mechanism": "TimeMixer channel-independent branch flattens(b,c) but repeats markers in(c,b)order via repeat; batch1 unaffected",
+    "estimand": "Mean absolute change of one fixed query forecast betweenB1 andquery+127historical contexts, averaged overH96/C7 and registered seeds",
+    "cohort": "512 validation queries, scattered at preregistered indices; resample dense original hourly origin calendar and then retain query membership",
+    "nominal_CI": 0.95,
+    "hypotheses_family": [
+      "TimeMixer meanchange<=1e-5",
+      "TimeMixer meanchange<=PatchTST meanchange",
+      "TimeMixer meanchange<=iTransformer meanchange"
+    ],
+    "pvalue_method": "Centered paired moving-block bootstrap at null boundary, one-sided; Holm across three tests",
+    "secondary_metric": "Change in MSE on the same query targets; direction not assumed; marker-free inference without retraining as mechanism control",
+    "scope": "Implementation-level limitation of the pinned original with calendar markers; not proof of future-price leakage or a theorem about all TimeMixer variants",
+    "Bitcoin_transfer": "Inherited Bitcoin inputs have no calendar markers; this defect does not by itself affect that adapter or establish an E3 research contribution"
+  },
+  "L2": {
+    "name": "Observable high-variability context error heterogeneity",
+    "input_statistic": "sqrt(mean(diff(train-standardized input96x7,axis=time)^2))",
+    "threshold": "q75 across eligible TRAIN windows only, calculated before validation errors",
+    "estimand": "Mean acrossseeds of RMSE onhighvariability validation origins minusRMSE onremainingvalidationorigins",
+    "cohort": "all2785 original validation origins, fixed chronological inference batches128(drop_lastFalse forpilotdiagnostics)",
+    "hypotheses_family": [
+      "RMSE_high−RMSE_rest<=0 for each ofTimeMixer/iTransformer/PatchTST"
+    ],
+    "nominal_CI": 0.95,
+    "pvalue_method": "Centered paired moving-block bootstrap192h, Holm across3models; sensitivity96/384",
+    "scope": "Exploratory hypothesis of a transferable regime limitation, not a promised failure or evidence of causal architecture effect",
+    "negative_result_policy": "If CI/effect do not support the hypothesis, label limitation not demonstrated; do not select a new regime threshold or replace it after results",
+    "E3_link": "Only a supported predictive limitation could motivate further regime-aware/multiscale mechanisms; requires BitcoinD7-specific validation later"
+  },
+  "parameters": {
+    "bootstrap_replicates": 4999,
+    "bootstrap_seed": 20261106,
+    "primary_block_hours": 192,
+    "sensitivity_block_hours": [
+      96,
+      384
+    ],
+    "alignment_tolerance": 1e-05,
+    "alignment_queries": 512,
+    "historical_bank_size": 127,
+    "bootstrap_method": "circular moving-block bootstrap on original hourly forecast origins; wrapped blocks are part of the declared approximation"
+  },
+  "scope": "Hypotheses and reporting rules fixed before dataset fits, distinct from resulting empirical evidence",
+  "full_section9_1_received": false
+}

@@ -1,0 +1,526 @@
+{
+  "MLP": {
+    "compiled_at_utc": "2026-11-05T14:29:18.969179+00:00",
+    "scope": "This agent screening only, not an exhaustive or combined PRISMAflow. Repositorymetadata/README/code discovery is not automatically scientificpaperinclusion.",
+    "search_summary": "search_summary.json",
+    "detailed_attempt_log": "discovery_log.json",
+    "findings": [
+      {
+        "repository": "basgir/cryptocurrencies-volatility-analysis",
+        "commit": "094be31db831f9eab16f60ac83405d40322e08cc",
+        "title_from_primary_README": "Bastien Girardet - Bachelor Thesis - Cryptocurrencies volatility forecasting using heterogeneous models based on multi-layer neural network and classical ARCH family models",
+        "year_evidence": "Author code creation2019-08-05/updated2019-10-09; thesis publication year not independently confirmed.",
+        "assets": [
+          "BTC",
+          "EOS",
+          "ETH",
+          "IOTA"
+        ],
+        "primary_material_read": [
+          "README.md",
+          "6-forecast_vol_with_ann.py"
+        ],
+        "full_scientific_paper_retrieved": false,
+        "MLP_structure_verified": true,
+        "architecture": "Model1 Dense40→20→5→1 with ReLU hidden layers,dropout0.4/0.5; other variants40→15→1 or40→1.",
+        "independent_MLP_comparator_verified": false,
+        "reason": "Every neural model includes a forecast from a classical ARCH-family model among113features; authors title/plots call it ANN–GARCH/heterogeneous. Not an independent MLP baseline.",
+        "target": "hvol14, a14-day historical volatility series, code label; exact volatility construction not separately read.",
+        "horizon": "Lagged inputs1…14 to contemporaneous target in supplied author code; no paper-level horizon recovered.",
+        "location": "6-forecast_vol_with_ann.py lines56–122 (architectures),195–244 (classical forecast feature andlagging/scaling),250–261 (train/test/tuning).",
+        "quality": [
+          "StandardScaler.fit_transform(df) precedes chronological80/20split.",
+          "Test set used as Keras validation_data and for extensive hyperparameter ranking."
+        ],
+        "decision": "code_context_only_hybrid_no_standalone_MLP_count",
+        "new_count": 0
+      },
+      {
+        "repository": "ArtysicistZ/Volatility",
+        "commit": "45c308a96e0be7a7d233cadbf6506c07d3519881",
+        "primary_material_retrieved": [
+          "README.md"
+        ],
+        "full_scientific_paper_retrieved": false,
+        "assets": [
+          "BTCUSDT"
+        ],
+        "target": "Forward10-minute realized-volatility standard deviation fromminuteOHLCV, as claimed by author README.",
+        "MLP_claim": "MLP appears as the PatchTST output head, not a separate family in the inspected results table.",
+        "decision": "software_context_only_no_independent_paper_or_MLP_comparator_verified",
+        "new_count": 0
+      },
+      {
+        "repository": "WhizIkem/Crypto-Volatility-ML",
+        "commit": "88c8b1204ce8eaef3fb707e3200ba903528422d4",
+        "primary_material_retrieved": [
+          "README.md"
+        ],
+        "full_scientific_paper_retrieved": false,
+        "assets": [
+          "BTCUSDT",
+          "ETHUSDT",
+          "SOLUSDT",
+          "BNBUSDT"
+        ],
+        "target": "Next-day log Garman–Klass volatility, stated inREADME.",
+        "decision": "software_context_only_no_independently_identified_scientific_text_or_MLP_comparator_recovered",
+        "new_count": 0,
+        "scope_note": "Not excluded merely because of nonBTCassets; the missing original research document/role verification is decisive."
+      },
+      {
+        "repository": "luispenaranda08/sigma-cast-DL",
+        "commit": "30ded8461c8c5dae738a9d5524a7cc5a5011bcbe",
+        "primary_material_retrieved": [
+          "README.md"
+        ],
+        "MLP_claim": "APIexample returns model_typeMLP; this does not identify a published independently evaluated research comparator.",
+        "decision": "software_or_course_project_context_only_original_scientific_text_not_recovered",
+        "new_count": 0
+      },
+      {
+        "repository": "NumericCamel/Master-Thesis",
+        "commit": "a50c7d0f1c08518f0e475417b25969d63292a9f3",
+        "primary_material_retrieved": [
+          "README.md",
+          "repository tree only"
+        ],
+        "target": "Binary increase/decrease ofBitcoinprice nextday; README lines267,402–404 reports classification accuracy.",
+        "decision": "exclude_continuous_volatility_scope_price_direction_classification",
+        "new_count": 0
+      },
+      {
+        "repository": "tushigamarjargal/thesis",
+        "commit": "7fcd086ffc7141f629214ad822a2cdb410911d68",
+        "primary_material_retrieved": [
+          "README.md",
+          "repository tree only"
+        ],
+        "assets": [
+          "Bitcoin",
+          "Ethereum",
+          "Tether",
+          "XRP",
+          "Litecoin"
+        ],
+        "target": "Cryptocurrency price levels, not continuousvolatility; README introduction/researchquestion.",
+        "models": "LSTM versusETS–ANNhybrid.",
+        "decision": "exclude_continuous_volatility_scope_price_forecasting",
+        "new_count": 0
+      },
+      {
+        "repository": "Adeline117/Reproducing-Quantitative-Research",
+        "commit": "37dd5363ee96fccafd700846da5fa7aae410f41d",
+        "primary_material_read": [
+          "README.md",
+          "references.bib"
+        ],
+        "target": "Bitcoinreturns andGoogleSearchvolume; VAR/Granger/IRF.",
+        "decision": "exclude_volatility_MLP_scope_returns_or_volume_not_volatility_and_no_MLP",
+        "new_count": 0
+      },
+      {
+        "repository": "MananShah25/crypto-price-prediction",
+        "primary_material_retrieved": [],
+        "http_root_status": 504,
+        "metadata_description": "Price-direction prediction using technicalindicators/logisticregression.",
+        "decision": "metadata_scope_mismatch_and_original_not_retrieved; Kristjanpoller source remains unverified",
+        "new_count": 0
+      },
+      {
+        "repository": "Robert-Ciborowski/CSC413-Final-Project",
+        "commit": "6428127689dec891fe3f03423a6639295948c470",
+        "primary_material_retrieved_by_this_agent": [
+          "repository root inventory"
+        ],
+        "primary_paper_read_by_parent": true,
+        "paper_title": "Cryptocurrency Price Distribution Prediction Using Neural Networks",
+        "parent_verified_target": "12-hour price percentiles15/25/35/50/65/75/85, not volatility.",
+        "decision": "exclude_continuous_volatility_scope_price_distribution",
+        "new_count": 0,
+        "do_not_double_count_parent_retrieval": true
+      },
+      {
+        "repository": "NguyenPhamNgocAn/AT-LSTM-MLP",
+        "commit": "9dd7d11bd9a004ddc610a5ad789edc2bf56137ad",
+        "root_files": [
+          "AT_LSTM_MLP.ipynb",
+          "README.md",
+          "cvi_2.csv"
+        ],
+        "metadata_description": "Hybrid attention/LSTM/MLP forfuturecrypto volatility.",
+        "full_scientific_paper_retrieved": false,
+        "decision": "pending_original_research_text_and_independent_comparator_role; hybrid title alone does not establish standaloneMLP",
+        "new_count": 0
+      },
+      {
+        "repository": "MhmdFasihi/crypto_volatility",
+        "commit": "f25a9c1d2f562ea57be268e53dae9c6679cbb394",
+        "material_inspected": "Rootinventoryonly; noPDF/originalstudyread.",
+        "decision": "not_further_assessed_no_eligible_original_verified",
+        "new_count": 0
+      },
+      {
+        "repository": "bjmcdonald002/crypto-forecasting",
+        "commit": "b8860b37913ed1e78cdafb1f173fcba6037d2c5a",
+        "material_inspected": "Rootinventoryonly; notebooks include xrpdata_mlp but no originalscientificpaperread.",
+        "decision": "pending_target_and_original_paper_verification_not_included_from_filename",
+        "new_count": 0
+      },
+      {
+        "primary_manuscript": "Djanga, Cucuringu and Zhang2025",
+        "full_text_read": true,
+        "primary_extraction": "djanga2025_extraction.json",
+        "direct_crypto_scope_eligible": true,
+        "BTC_subset": true,
+        "assets": 20,
+        "MLP_independent_increment": 0,
+        "CNN_increment": 0,
+        "LSTM_role": "Empirical proposedUAMtechnique; not verified as separate simpleDLbaseline.",
+        "decision": "recommend_reassessment_for_balanced_expanded_crypto_corpus_with_model_roles_exposed_not_just_favorable_MLP_papers",
+        "new_study_count_to_be_determined_by_parent": true
+      },
+      {
+        "primary_working_paper": "Bouri, Gkillas, Gupta and Pierdzioch2020, Forecasting realized volatility ofBitcoin:Theroleofthetrade war",
+        "file": "anton__Realized_volatility_of_bitcoin.pdf",
+        "sha256": "9e732d36db0d27657e97b8814db3aab511d385520ae65c82d388b95b89a88910",
+        "reading_scope": "Title,abstract,data/method overview and keyword scan; not claimed completepaperreading.",
+        "target": "Bitcoin dailyRV fromintradaydata,July2017–June2019; HAR/RFmodels.",
+        "decision": "classical_volatility_context_only_no_eligible_neural_comparator_verified",
+        "new_MLP_count": 0
+      }
+    ],
+    "known_primary_candidates_still_unrecovered": [
+      "Huang/Sangiorgi/Urquhart2024 DOI10.1016/j.intfin.2024.102064",
+      "D’Amato/Levantesi/Piscopo2022 DOI10.1016/j.physa.2022.127158",
+      "Wang/Andreeva/Martin-Barragan2023",
+      "Aaltio2022 (MLPclaimonlyinDjanga§2,notreadoriginal)",
+      "Kristjanpoller/Minutolo source (no neworiginalread)"
+    ],
+    "new_standalone_MLP_crypto_originals_verified": 0,
+    "new_publications_or_family_counts_not_inferred_from_metadata": true,
+    "no_repo_or_project_model_data_result_changes": true
+  },
+  "CNN": {
+    "recorded_at_utc": "2026-11-05T14:22:31.594862+00:00",
+    "task_scope": "Any cryptocurrency; future continuous volatility/variance; standalone shallow CNN1D comparative baseline; no price/direction substitution.",
+    "qualifying_new_crypto_CNN1D_primary_studies": [],
+    "new_qualifying_count": 0,
+    "current_BTC_subset_unchanged": true,
+    "no_claim_of_absence_in_literature": true,
+    "search_summary_combined_fresh_tracks": {
+      "distinct_query_strings": 36,
+      "retrieved_or_attempted_search_pages": 38,
+      "successful_search_pages": 34,
+      "failed_search_pages": 4,
+      "repository_occurrences_on_successful_pages": 304,
+      "deduplicated_repository_results": 245,
+      "own_repository_roots_attempted": 21,
+      "parallel_repository_roots_attempted": 21,
+      "counting_note": "GitHub repositories/index estimates are not papers. Results from both fresh search tracks deduplicated by owner/repository; historical search counts not added."
+    },
+    "admission_rules": "Full scientific document plus verifiable target and independent CNN1D role required. Original source code is retained at a separate tier; preprint and journal versions are one study, as are multiple assets.",
+    "code_only_evidence": {
+      "source_id": "CNN-CODE-20261105-01",
+      "evidence_tier": "repository_code_only_not_scientific_fulltext",
+      "title_as_declared": "Multimodal Deep Learning Architecture for Cryptocurrency Volatility Forecasting: A Comparative Benchmarking Study",
+      "repository": "https://github.com/AyoTecca/crypto-horserace",
+      "commit": "ff9094752a6539b9a14c529c71013284263213de",
+      "scientific_authors_identity": null,
+      "publication_year": null,
+      "DOI": null,
+      "journal": null,
+      "article_indexing": "unknown",
+      "paper_fulltext_read": false,
+      "independent_Conv1D_baseline_present_in_code": true,
+      "target": {
+        "name": "Volatility",
+        "type": "continuous future volatility",
+        "rolling_window_days_setting": 14,
+        "exact_RV_formula_verified": false,
+        "forecast_horizons_configured_days": [
+          1,
+          3,
+          7
+        ],
+        "default_forecast_horizon_days": 1,
+        "clock_evidence": "src/fuse_data.py lines119–130 windows end before label index; this is not evidence of a full paper evaluation"
+      },
+      "dataset_as_configured": {
+        "provider": "Yahoo Finance via yfinance",
+        "frequency": "daily",
+        "start": "2020-01-01",
+        "end": "2024-12-31",
+        "core_assets": [
+          "BTC-USD",
+          "ETH-USD",
+          "DOGE-USD",
+          "XRP-USD"
+        ],
+        "optional_assets": [
+          "SOL-USD",
+          "SHIB-USD"
+        ],
+        "actual_data_acquired_or_results_executed_verified": false,
+        "ablation_default": "PRIMARY_TICKER BTC-USD only unless RUN_ABLATIONS_FOR_ALL_TICKERS changed"
+      },
+      "architecture": {
+        "role": "independent CNN-only ablation/comparator to CNN-BiLSTM-attention, LSTM-only, GRU-only",
+        "input_shape": "(batch,14,num_features); exact feature count depends on configured available covariates",
+        "Conv1D_layers": 1,
+        "filters": 32,
+        "kernel_size": 3,
+        "padding": "same",
+        "activation": "ReLU",
+        "after_convolution": [
+          "BatchNormalization",
+          "Dropout0.4",
+          "GlobalAveragePooling1D",
+          "Dense64/ReLU",
+          "Dropout0.4",
+          "Dense1/linear"
+        ],
+        "regularization_L2": 0.0001,
+        "optimizer": "Adam",
+        "learning_rate": 0.0005,
+        "loss": "MSE",
+        "batch_size": 16,
+        "max_epochs": 100,
+        "patience": 15,
+        "evidence_files": {
+          "src/model_dl_baselines.py": "lines24–46",
+          "config.py": "lines242–273"
+        }
+      },
+      "metrics_with_verified_numeric_values": [],
+      "metrics_note": "Functions compute RMSE and MAE; no numerical benchmark evidence recovered from a scientific full paper.",
+      "quality": {
+        "test_in_early_stopping": "Not used by retrieved train_model: X_test/y_test retained only as unused compatibility arguments; fit uses final15% of training.",
+        "risk": "Feature/target scalers fit the entire training partition before Keras carves its internal validation; no explicit purged gap found in retrieved split code. Full paper and actual runs not verified.",
+        "repetitions_as_configured": [
+          7,
+          21,
+          42,
+          84,
+          126
+        ],
+        "publication_repeats_claim_verified": false
+      },
+      "deduplication": {
+        "related_existing_candidate": "Al3nzy/Crypto-Volatility-Horserace@50d67b99d13ffb176d69ba45dfee54135838c15c",
+        "CNN_builder_AST_identical": true,
+        "whole_file_identical": false,
+        "difference": "Al3nzy additionally imports/calls set_global_determinism before model construction.",
+        "decision": "Do not count these repositories as two independent studies; no identifying scientific manuscript recovered."
+      },
+      "admission": "Not added to scientific crypto-study denominator or CNN1D frequency; software-only evidence retained separately."
+    },
+    "document_identity_alert": {
+      "source_id": "S3-MISLABEL-20261105",
+      "filename": "85_Bitcoin_Volatility_Whale_Transformer_Herremans2022.pdf",
+      "repository": "jackywong1228/CTA-Quant-Papers",
+      "commit": "0c30ae8c0cdb2cc671f4a19a277633462f21cc2b",
+      "URL": "https://raw.githubusercontent.com/jackywong1228/CTA-Quant-Papers/0c30ae8c0cdb2cc671f4a19a277633462f21cc2b/85_Bitcoin_Volatility_Whale_Transformer_Herremans2022.pdf",
+      "sha256": "f947f855d7d00d6c02b09f40016f92fd6f21770f458f526eb6f22c1adfc7fefa",
+      "actual_cover_title": "Online Control of Adaptive Large Neighborhood Search Using Deep Reinforcement Learning",
+      "actual_cover_authors": [
+        "Robbert Reijnen",
+        "Yingqian Zhang",
+        "Hoong Chuin Lau",
+        "Zaharah Bukhsh"
+      ],
+      "actual_version": "arXiv:2211.00759v3 [cs.LG], 3 Apr2024",
+      "cover_page": 1,
+      "decision": "exclude_wrong_document_identity; not Herremans/Low and not crypto volatility. Filename/README are insufficient identity evidence."
+    },
+    "own_screening": [
+      {
+        "repository": "Arthur-destb38/MoSEF_DeepNLP_ImageriePourPrevisionBTC_VF",
+        "commit": "ed80aeb37e41c69e7dd219dd8d99f6263b0a965a",
+        "http_status": 200,
+        "decision_reason": "Image-based CNN representation; no primary manuscript or explicit simple numeric-series CNN1D baseline established.",
+        "reading_scope": "Repository tree and cited README/source code, not an admitted full scientific paper."
+      },
+      {
+        "repository": "AyoTecca/crypto-horserace",
+        "commit": "ff9094752a6539b9a14c529c71013284263213de",
+        "http_status": 200,
+        "decision_reason": "Independent Conv1D comparator verified only as software; manuscript absent; related existing Al3nzy builder is identical.",
+        "reading_scope": "Repository tree and cited README/source code, not an admitted full scientific paper."
+      },
+      {
+        "repository": "H-ERDEM/yzproje",
+        "commit": null,
+        "http_status": 504,
+        "decision_reason": "504 retrieval failure; eligibility unknown.",
+        "reading_scope": "Repository tree and cited README/source code, not an admitted full scientific paper."
+      },
+      {
+        "repository": "Melos020/msc-thesis-concept-drift",
+        "commit": "f60ef7e2d46f7df6dd99bffcf52087877b37a18e",
+        "http_status": 200,
+        "decision_reason": "BTC/ETH/BNB next12h volatility-regime classification; TCN, not future continuous-volatility simple CNN regression.",
+        "reading_scope": "Repository tree and cited README/source code, not an admitted full scientific paper."
+      },
+      {
+        "repository": "Nolan-lpr/Volatility-Forecasting",
+        "commit": "f9078736b5cc4ec3e4bda1454f02a3dec72ffd0c",
+        "http_status": 200,
+        "decision_reason": "Explicit standalone1D-CNN but S&P500 mini-project, not crypto; manuscript not recovered.",
+        "reading_scope": "Repository tree and cited README/source code, not an admitted full scientific paper."
+      },
+      {
+        "repository": "PragatiMaurya16/Crypto-Volatility-Prediction",
+        "commit": "f794456138b577edbc18dc1b7b4ef62725b57a3b",
+        "http_status": 200,
+        "decision_reason": "README models are RF/GradientBoosting/Ridge; temporal CNN is future work, not executed DL baseline.",
+        "reading_scope": "Repository tree and cited README/source code, not an admitted full scientific paper."
+      },
+      {
+        "repository": "PuranjaySingh449/BTC-Volatility-Prediction",
+        "commit": "1b449c78f841998b4ff29f79e17cfcea91e6e1e8",
+        "http_status": 200,
+        "decision_reason": "Proposed attention+Conv1D+BiLSTM hybrid; no standalone CNN baseline identified.",
+        "reading_scope": "Repository tree and cited README/source code, not an admitted full scientific paper."
+      },
+      {
+        "repository": "Sakshamliftin/bitcoin-whale-detection",
+        "commit": "a0b0f521dac5f5e74ca7f3860a0454c6f3597585",
+        "http_status": 200,
+        "decision_reason": "Replication project README only; no full manuscript or CNN comparator established.",
+        "reading_scope": "Repository tree and cited README/source code, not an admitted full scientific paper."
+      },
+      {
+        "repository": "TanmaySamdani19/volatility_forecasting",
+        "commit": "c6a72d9e7cf1c17c3edb848509ea8e5279f22171",
+        "http_status": 200,
+        "decision_reason": "Default S&P500 and hybrid CNN-GRU/attention, no qualifying crypto CNN-only fulltext.",
+        "reading_scope": "Repository tree and cited README/source code, not an admitted full scientific paper."
+      },
+      {
+        "repository": "VicenteCampello/Vola",
+        "commit": "89d73bcb0e64c174562834cba79b9dc51a709478",
+        "http_status": 200,
+        "decision_reason": "Conv1D+BiLSTM hybrid for volatility spikes, no simple CNN independent scientific manuscript.",
+        "reading_scope": "Repository tree and cited README/source code, not an admitted full scientific paper."
+      },
+      {
+        "repository": "chibui191/bitcoin_volatility_forecasting",
+        "commit": "d901586ed6d54c34bb6e4961d27e899eccfed19f",
+        "http_status": 200,
+        "decision_reason": "LSTM/Conv1D+BiLSTM hybrid study; no independent CNN-only model shown in retrieved author report/README.",
+        "reading_scope": "Repository tree and cited README/source code, not an admitted full scientific paper."
+      },
+      {
+        "repository": "gasidheeraj/Cryptocurrency-Volatility-Forecasting",
+        "commit": "173c72aa09e11134e7cc06b1ea78ffe084383b6c",
+        "http_status": 200,
+        "decision_reason": "Ridge/RF/XGBoost software ensemble, not a deep neural comparator.",
+        "reading_scope": "Repository tree and cited README/source code, not an admitted full scientific paper."
+      },
+      {
+        "repository": "hamzehbhamdan/BTC-ETH-Analysis",
+        "commit": "9fc6707ecc89c64bf344e876d77443fe54078282",
+        "http_status": 200,
+        "decision_reason": "README separates ARCH volatility from neural price models; qualifying CNN volatility regressor not established by scientific fulltext.",
+        "reading_scope": "Repository tree and cited README/source code, not an admitted full scientific paper."
+      },
+      {
+        "repository": "jackywong1228/CTA-Quant-Papers",
+        "commit": "0c30ae8c0cdb2cc671f4a19a277633462f21cc2b",
+        "http_status": 200,
+        "decision_reason": "Candidate S3 PDF filename is wrong; actual document unrelated. See explicit identity alert.",
+        "reading_scope": "Repository tree and cited README/source code, not an admitted full scientific paper."
+      },
+      {
+        "repository": "krishaaroraa/crypto-volatility-forecasting",
+        "commit": "3e0779f04d01dc222c9ba1f75275df3fc3e05d32",
+        "http_status": 200,
+        "decision_reason": "CNN-LSTM+MTF hybrid image model, not simple CNN1D comparator.",
+        "reading_scope": "Repository tree and cited README/source code, not an admitted full scientific paper."
+      },
+      {
+        "repository": "krishaaroraa/crypto-volatility-forecasting",
+        "commit": null,
+        "http_status": 504,
+        "decision_reason": "CNN-LSTM+MTF hybrid image model, not simple CNN1D comparator.",
+        "reading_scope": "Repository tree and cited README/source code, not an admitted full scientific paper."
+      },
+      {
+        "repository": "ldenarbonne/btc-forecast-model-validation",
+        "commit": "4afda4b08ae4586e4a7e4f53327344fab74f5be5",
+        "http_status": 200,
+        "decision_reason": "CNN-BiLSTM predicts log-returns; volatility branch is classical HAR, not a neural volatility comparator.",
+        "reading_scope": "Repository tree and cited README/source code, not an admitted full scientific paper."
+      },
+      {
+        "repository": "piyushkhanna7/VolTAGE",
+        "commit": "597d69d83f2ada4f1387538a3dbd1da8c6e40e61",
+        "http_status": 200,
+        "decision_reason": "Stock earnings-call multimodal/graph method, not cryptocurrency market.",
+        "reading_scope": "Repository tree and cited README/source code, not an admitted full scientific paper."
+      },
+      {
+        "repository": "dorienh/dorienh.github.io",
+        "commit": null,
+        "http_status": 404,
+        "decision_reason": "404 author-site repository lookup; no retrieved article.",
+        "reading_scope": "Repository tree and cited README/source code, not an admitted full scientific paper."
+      },
+      {
+        "repository": "dorienh/bitcoin_synthesizer",
+        "commit": "8570f4e8bdcfe1dd609e5f094d3d5b0059a810dc",
+        "http_status": 200,
+        "decision_reason": "Author code confirms next-day BTC volatility and LSTM/Synthesizer/Transformer; no full article PDF recovered and no independent CNN comparator found in inspected model folders.",
+        "reading_scope": "Repository tree and cited README/source code, not an admitted full scientific paper."
+      },
+      {
+        "repository": "sohjangra/IITG.ai-TimeSeriesAnalysis",
+        "commit": null,
+        "http_status": 504,
+        "decision_reason": "504 retrieval failure; scientific manuscript not recovered.",
+        "reading_scope": "Repository tree and cited README/source code, not an admitted full scientific paper."
+      },
+      {
+        "repository": "sohjangra/btc-volatility-dl",
+        "commit": "8e7fc9ab49cf5a1396cdab832af3b206a0f0b4c3",
+        "http_status": 200,
+        "decision_reason": "BTC project compares DeepVol TCN, HAR-LSTM and Jump-BiLSTM; presentation-only, no simple CNN comparator.",
+        "reading_scope": "Repository tree and cited README/source code, not an admitted full scientific paper."
+      }
+    ],
+    "parallel_screening_file": "parallel_hunt/private_evidence.json",
+    "parallel_source_manifest": "parallel_hunt/source_manifest.json",
+    "access_limits": "Only GitHub/raw/codeload allowed public routes; inherited proxy and TLS retained. No arXiv/publisher proxy, new domain tunnel, workflow action or network bypass used.",
+    "repository_mutations": 0,
+    "new_model_fits": 0,
+    "new_forecasts": 0,
+    "commits_created": 0,
+    "pushes": 0
+  },
+  "HARNet_DeepVol": {
+    "assessed_at_utc": "2026-11-05T14:17:18.473751+00:00",
+    "scope": "Original-manuscript recovery for the specific HARNet and Moreno-Pino/Zohren DeepVol references",
+    "HARNet": {
+      "tier": "T2",
+      "original_recovered": false,
+      "findings_file": "harnet/findings.json",
+      "findings_sha256": "7bc1ed16eec6b9565d2715ad9b5bbe8b50d8be180a01e4691347003a2b15c7dc",
+      "erratum_file": "harnet/harnet_scaler_erratum.json",
+      "erratum_sha256": "5c9b4610d6c8c82f1c3501ca2688f037f28a98621b80edb28f49e0178affa5ec"
+    },
+    "DeepVol": {
+      "tier": "T3",
+      "original_recovered": false,
+      "findings_file": "deepvol/findings.json",
+      "findings_sha256": "41654cb56f4934118ee9a5c9ba1de83c8b3458dc510d940a71438f7d774d44d6"
+    },
+    "new_originals": 0,
+    "new_crypto_corpus_inclusions": 0,
+    "new_BTC_subset_inclusions": 0,
+    "conclusion": "Preserve author-code/CV evidence tiers; withdraw the unsupported HARNet scaling-leakage interpretation and retain concrete source/data limitations. Failure to retrieve is not proof of nonexistence.",
+    "repository_mutated_by_this_research": false,
+    "model_training_or_prediction_execution": false
+  },
+  "scope": "Retain code-only/hybrid/price-target/identity-mismatch exclusions; excluded records never enter model frequencies."
+}

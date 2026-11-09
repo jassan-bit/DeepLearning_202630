@@ -1,0 +1,24 @@
+# Relectura completa de E1N118 a partir del PDF adjunto
+
+Se leyó íntegramente el artículo editorial de Nokar, Ebrahiminezhad y Yeganeh, DOI [10.1080/08839514.2026.2684165](https://doi.org/10.1080/08839514.2026.2684165), publicado el 15 de junio de 2026 en *Applied Artificial Intelligence*, 40(1), e2684165. El adjunto contiene una portada y las 34 páginas del artículo; no añade apéndices ni archivos incrustados. Coincide con la obra y versión editorial de la ficha anterior. No puede demostrarse igualdad binaria con aquella copia porque no se conservó su hash.
+
+La lectura comprende las 1693 líneas del texto completo, ecuaciones, tablas 1–11, figuras 1–10, declaraciones y referencias. Se verificó que la extracción existente coincide exactamente con una extracción nueva del adjunto y se examinaron visualmente las fórmulas y diagramas que determinan objetivos y riesgos de anticipación. `full_text_read: true` se refiere al artículo íntegro; el suplemento externo sigue sin recuperarse.
+
+- SHA256 del PDF: `94285a064e15c7639ccb557e3411b8cfef4329f26d4d1aa1b60717c5359d8590`.
+- Tamaño: 14 363 264 bytes; 35 páginas físicas.
+- Licencia declarada en p. 1: CC BY 4.0.
+- Fecha de comprobación: 2026-11-07 UTC.
+
+La revisión del original está cerrada al corte con **`exclude_core_final_volatility_target_not_demonstrated`**, sustituyendo el estado anterior **`seek_supplement_target_confirmation`**. El catálogo de p. 10 incluye `Future_vwvol`, rango futuro y ancho Bollinger, pero la figura 5 presenta diagnósticos de `pullback_depth`, `BB_zscore` y `VaR`; la figura 8 identifica esas mismas tres respuestas para el regresor final. Las tablas 3 y 6 confirman comparadores autónomos LSTM-TD y TCN, pero no enlazan `Future_vwvol` con el experimento final. Una métrica agregada no sería excluyente por sí sola si la respuesta continua de volatilidad estuviera confirmada. La clasificación de régimen de volatilidad constituye otra tarea. El artículo se conserva como contexto, sin incrementar las frecuencias del núcleo, aportar nueva evidencia para ranking ni modificar el n=7 histórico. La exclusión estricta se funda en el original completo leído, no en la inaccesibilidad del suplemento.
+
+La inspección visual corrige una interpretación que la extracción textual por sí sola no permite: **la ecuación 23 ya contiene una raíz cuadrada**, aunque el texto contiguo afirme que habría que añadirla. Representa la raíz del segundo momento de retornos ponderado por volumen sobre n=3 períodos, sin centrar por una media. Por tanto, la discordancia es entre la prosa y la fórmula impresa; no se debe afirmar que la ecuación publicada carece de raíz. Esta precisión no demuestra que el target fuera finalmente utilizado.
+
+También se documentaron problemas metodológicos que impiden convertir las cifras en evidencia concluyente: la ecuación 15 define `Chikou_Span(t)=C(t+d)`, y la variable derivada `Chikou_Above_Price` aparece entre las seleccionadas. Su implementación literal anticiparía precios, pero no hay código que permita verificar la alineación aplicada. Los umbrales de régimen se definen con cuantiles del total muestral; no se acredita un cálculo exclusivo en entrenamiento. Hay discordancias de horizontes, pérdida personalizada no definida frente a etiquetas MSE y valores negativos, y ventanas rolling de 500 frente a 5. Las tablas 10 y 11 repiten los resultados de R1/R2 aunque la discusión informa medias diferentes. Los detalles y las localizaciones se conservan en `review.json`.
+
+La portada incorpora un [enlace real al suplemento](https://www.tandfonline.com/doi/suppl/10.1080/08839514.2026.2684165). El índice editorial anuncia un Word de 2.3 MB, pero el lector web no permitió abrir la página de suplemento ni verificar su enlace de descarga. Las rutas `sm0001.docx` y `sm0001.pdf` comprobadas son tentativas, no enlaces verificados. El artículo remite a figuras A.1–A.20; no se supone que ese suplemento contenga respuestas o código adicionales. El [registro Zenodo](https://zenodo.org/records/18156386) sólo lista `BTC-Datasets.rar` de 644 kB; no fue descargado ni inspeccionado en esta revisión.
+
+Una reapertura futura requeriría material primario que relacione la lista efectiva de salidas finales de LSTM-TD/TCN con su horizonte y evaluación de `Future_vwvol` u otro proxy continuo de volatilidad. No se considera demostrado por referencias generales a volatilidad, variables de entrada, filtros de trading o desempeño agregado. Recuperar ese material no es una obligación pendiente para completar esta revisión.
+
+La clave bibliográfica ya existente es `nokar2026multitarget`; `reference.bib` reutiliza esa identidad y no requiere duplicar el DOI ni modificar la entrada bibliográfica histórica congelada.
+
+Este directorio contiene únicamente la ficha derivada, esta nota y la referencia BibTeX. No reproduce el PDF, su texto íntegro, resumen editorial ni información de contacto. No modifica código, libros ni commits.

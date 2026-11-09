@@ -1,0 +1,1410 @@
+{
+  "claim_limit": "Finite synthetic forward/backward mechanics only; no market performance, model ranking or generalization claim.",
+  "config": {
+    "batch_size": 8,
+    "days": 96,
+    "learning_rate": 0.001,
+    "origin_index": 72,
+    "pretrain_steps": 1,
+    "seed": 20261108,
+    "supervised_steps": 2,
+    "train_count": 32,
+    "validation_count": 8
+  },
+  "executed_model_count": 11,
+  "fold": {
+    "calendar_is_daily_without_compressed_gaps": true,
+    "features": [
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume"
+    ],
+    "history_days": 7,
+    "last_allowed_train_label_utc": "2001-03-06T00:00:00+00:00",
+    "origin_day_utc": "2001-03-14T00:00:00+00:00",
+    "origin_index": 72,
+    "train_days_utc": [
+      "2001-02-03T00:00:00+00:00",
+      "2001-02-04T00:00:00+00:00",
+      "2001-02-05T00:00:00+00:00",
+      "2001-02-06T00:00:00+00:00",
+      "2001-02-07T00:00:00+00:00",
+      "2001-02-08T00:00:00+00:00",
+      "2001-02-09T00:00:00+00:00",
+      "2001-02-10T00:00:00+00:00",
+      "2001-02-11T00:00:00+00:00",
+      "2001-02-12T00:00:00+00:00",
+      "2001-02-13T00:00:00+00:00",
+      "2001-02-14T00:00:00+00:00",
+      "2001-02-15T00:00:00+00:00",
+      "2001-02-16T00:00:00+00:00",
+      "2001-02-17T00:00:00+00:00",
+      "2001-02-18T00:00:00+00:00",
+      "2001-02-19T00:00:00+00:00",
+      "2001-02-20T00:00:00+00:00",
+      "2001-02-21T00:00:00+00:00",
+      "2001-02-22T00:00:00+00:00",
+      "2001-02-23T00:00:00+00:00",
+      "2001-02-24T00:00:00+00:00",
+      "2001-02-25T00:00:00+00:00",
+      "2001-02-26T00:00:00+00:00",
+      "2001-02-27T00:00:00+00:00",
+      "2001-02-28T00:00:00+00:00",
+      "2001-03-01T00:00:00+00:00",
+      "2001-03-02T00:00:00+00:00",
+      "2001-03-03T00:00:00+00:00",
+      "2001-03-04T00:00:00+00:00",
+      "2001-03-05T00:00:00+00:00",
+      "2001-03-06T00:00:00+00:00"
+    ],
+    "train_indices": [
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64
+    ],
+    "training_labels_at_or_before_origin_minus_8": true,
+    "validation_days_utc": [
+      "2001-03-14T00:00:00+00:00",
+      "2001-03-15T00:00:00+00:00",
+      "2001-03-16T00:00:00+00:00",
+      "2001-03-17T00:00:00+00:00",
+      "2001-03-18T00:00:00+00:00",
+      "2001-03-19T00:00:00+00:00",
+      "2001-03-20T00:00:00+00:00",
+      "2001-03-21T00:00:00+00:00"
+    ],
+    "validation_indices": [
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79
+    ],
+    "validation_used_for_optimization_or_selection": false
+  },
+  "full_current_benchmark_executed": false,
+  "generalization_or_superiority_demonstrated": false,
+  "heldout_market_data_read": false,
+  "market_data_read": false,
+  "models": [
+    {
+      "ae_protocol": null,
+      "all_losses_and_predictions_finite": true,
+      "architecture": {
+        "adapter_module": "scripts/e2_proposed_models.py",
+        "calendar_covariates_added": false,
+        "compact_synthetic_is_author_preset": false,
+        "full_benchmark_executed": false,
+        "future_values_consumed": false,
+        "hidden_state_carried_between_windows": false,
+        "implementation_kind": "own_compact_adaptation",
+        "input_shape": [
+          7,
+          5
+        ],
+        "market_training_executed": false,
+        "model": "FCN-1D",
+        "original_OHLCV_denormalization_used": false,
+        "output_link": "Softplus",
+        "output_shape": [
+          "batch"
+        ],
+        "paper_replication_claimed": false,
+        "presets": [
+          "provisional_default",
+          "compact_synthetic"
+        ],
+        "pretrained_weights": "none",
+        "prototype_identifier": "FCN1D",
+        "recipe": {
+          "dropout": 0.0,
+          "preset": "compact_synthetic",
+          "width": 8
+        },
+        "registered_parameters": 409,
+        "requires_explicit_source_root": false,
+        "same_window_moment_features": 0,
+        "source_preset": "own compact implementation; no author preset",
+        "status": "provisional_implementation_not_preregistered",
+        "target": "sigma7 / training-only y_scale",
+        "target_lags_added": false,
+        "trainable_parameters": 409,
+        "width": 8
+      },
+      "final_state_sha256": "5d5ab680d720d437347852bed9d143195855353a08a88649bd02299e2839f5d1",
+      "initial_state_sha256": "a4dc004bf41dac6a5f513f19063b6ae0feaca8762460b6ca58d03ec157ca2c19",
+      "model": "FCN-1D",
+      "parameter_count": 409,
+      "post_pretrain_state_sha256": "a4dc004bf41dac6a5f513f19063b6ae0feaca8762460b6ca58d03ec157ca2c19",
+      "pretrain_gradient_audit": null,
+      "pretrain_reconstruction_mse": [],
+      "pretrain_steps": 0,
+      "recipe": {
+        "dropout": 0.0,
+        "preset": "compact_synthetic",
+        "width": 8
+      },
+      "supervised_gradient_audit": {
+        "expected_unused_parameter_names": [],
+        "finite": true,
+        "parameter_tensors_with_gradient": 8,
+        "unexpected_missing": []
+      },
+      "supervised_scaled_target_mse": [
+        0.02589159645140171,
+        0.9891425371170044
+      ],
+      "supervised_steps": 2,
+      "synthetic_validation_mse_original_units": 3.8601109285176684e-05,
+      "trainable_parameter_count": 409
+    },
+    {
+      "ae_protocol": null,
+      "all_losses_and_predictions_finite": true,
+      "architecture": {
+        "adapter_module": "scripts/e2_proposed_models.py",
+        "calendar_covariates_added": false,
+        "compact_synthetic_is_author_preset": false,
+        "full_benchmark_executed": false,
+        "future_values_consumed": false,
+        "hidden_state_carried_between_windows": false,
+        "implementation_kind": "own_compact_adaptation",
+        "input_shape": [
+          7,
+          5
+        ],
+        "market_training_executed": false,
+        "model": "ResNet-1D",
+        "original_OHLCV_denormalization_used": false,
+        "output_link": "Softplus",
+        "output_shape": [
+          "batch"
+        ],
+        "paper_replication_claimed": false,
+        "presets": [
+          "provisional_default",
+          "compact_synthetic"
+        ],
+        "pretrained_weights": "none",
+        "prototype_identifier": "ResNet1D",
+        "recipe": {
+          "dropout": 0.0,
+          "preset": "compact_synthetic",
+          "width": 8
+        },
+        "registered_parameters": 785,
+        "requires_explicit_source_root": false,
+        "same_window_moment_features": 0,
+        "source_preset": "own compact implementation; no author preset",
+        "status": "provisional_implementation_not_preregistered",
+        "target": "sigma7 / training-only y_scale",
+        "target_lags_added": false,
+        "trainable_parameters": 785,
+        "width": 8
+      },
+      "final_state_sha256": "1899a2a1cb074f2fb1d956085abad17dff11a7f45b880b5200b94a2047e9c0aa",
+      "initial_state_sha256": "d9de0773b7577ebd335d09b7a85238be92d9a68c31a678a9076e915bdb5c397e",
+      "model": "ResNet-1D",
+      "parameter_count": 785,
+      "post_pretrain_state_sha256": "d9de0773b7577ebd335d09b7a85238be92d9a68c31a678a9076e915bdb5c397e",
+      "pretrain_gradient_audit": null,
+      "pretrain_reconstruction_mse": [],
+      "pretrain_steps": 0,
+      "recipe": {
+        "dropout": 0.0,
+        "preset": "compact_synthetic",
+        "width": 8
+      },
+      "supervised_gradient_audit": {
+        "expected_unused_parameter_names": [],
+        "finite": true,
+        "parameter_tensors_with_gradient": 12,
+        "unexpected_missing": []
+      },
+      "supervised_scaled_target_mse": [
+        0.046463705599308014,
+        1.3586630821228027
+      ],
+      "supervised_steps": 2,
+      "synthetic_validation_mse_original_units": 6.237142772646056e-05,
+      "trainable_parameter_count": 785
+    },
+    {
+      "ae_protocol": null,
+      "all_losses_and_predictions_finite": true,
+      "architecture": {
+        "adapter_module": "scripts/e2_proposed_models.py",
+        "calendar_covariates_added": false,
+        "compact_synthetic_is_author_preset": false,
+        "full_benchmark_executed": false,
+        "future_values_consumed": false,
+        "hidden_state_carried_between_windows": false,
+        "implementation_kind": "own_compact_adaptation",
+        "input_shape": [
+          7,
+          5
+        ],
+        "market_training_executed": false,
+        "model": "Inception-1D",
+        "original_OHLCV_denormalization_used": false,
+        "output_link": "Softplus",
+        "output_shape": [
+          "batch"
+        ],
+        "paper_replication_claimed": false,
+        "presets": [
+          "provisional_default",
+          "compact_synthetic"
+        ],
+        "pretrained_weights": "none",
+        "prototype_identifier": "Inception1D",
+        "recipe": {
+          "dropout": 0.0,
+          "preset": "compact_synthetic",
+          "width": 8
+        },
+        "registered_parameters": 729,
+        "requires_explicit_source_root": false,
+        "same_window_moment_features": 0,
+        "source_preset": "own compact implementation; no author preset",
+        "status": "provisional_implementation_not_preregistered",
+        "target": "sigma7 / training-only y_scale",
+        "target_lags_added": false,
+        "trainable_parameters": 729,
+        "width": 8
+      },
+      "final_state_sha256": "b491e5e3df50ed8bb90005a76cf772bc9dc255b5ff2b565ea85957ece2df2057",
+      "initial_state_sha256": "37d2c0613de0ee541dc587de7eaf9fad34e8ff3a2ee74a87ff0d14925b235048",
+      "model": "Inception-1D",
+      "parameter_count": 729,
+      "post_pretrain_state_sha256": "37d2c0613de0ee541dc587de7eaf9fad34e8ff3a2ee74a87ff0d14925b235048",
+      "pretrain_gradient_audit": null,
+      "pretrain_reconstruction_mse": [],
+      "pretrain_steps": 0,
+      "recipe": {
+        "dropout": 0.0,
+        "preset": "compact_synthetic",
+        "width": 8
+      },
+      "supervised_gradient_audit": {
+        "expected_unused_parameter_names": [],
+        "finite": true,
+        "parameter_tensors_with_gradient": 12,
+        "unexpected_missing": []
+      },
+      "supervised_scaled_target_mse": [
+        0.0727425068616867,
+        1.1815154552459717
+      ],
+      "supervised_steps": 2,
+      "synthetic_validation_mse_original_units": 4.691329547434771e-05,
+      "trainable_parameter_count": 729
+    },
+    {
+      "ae_protocol": {
+        "decoder": "used for reconstruction, not for supervised scalar prediction",
+        "optimizer": "fresh Adam state for each stage; learning rate shared",
+        "pretrain": "reconstruct full standardized 7x5 training windows using encoder and decoder",
+        "status": "provisional_synthetic_only_not_paper_hyperparameter_replication",
+        "supervised": "fine-tune encoder and scalar regression head on scaled train targets",
+        "validation_used_for_optimization_or_selection": false
+      },
+      "all_losses_and_predictions_finite": true,
+      "architecture": {
+        "adapter_module": "scripts/e2_proposed_models.py",
+        "calendar_covariates_added": false,
+        "compact_synthetic_is_author_preset": false,
+        "full_benchmark_executed": false,
+        "future_values_consumed": false,
+        "hidden_state_carried_between_windows": false,
+        "implementation_kind": "own_compact_adaptation",
+        "input_shape": [
+          7,
+          5
+        ],
+        "market_training_executed": false,
+        "model": "LSTM-autoencoder con predictor",
+        "original_OHLCV_denormalization_used": false,
+        "output_link": "Softplus",
+        "output_shape": [
+          "batch"
+        ],
+        "paper_replication_claimed": false,
+        "presets": [
+          "provisional_default",
+          "compact_synthetic"
+        ],
+        "pretrained_weights": "none",
+        "prototype_identifier": "LSTM-AE",
+        "recipe": {
+          "dropout": 0.0,
+          "preset": "compact_synthetic",
+          "width": 8
+        },
+        "registered_parameters": 1110,
+        "requires_explicit_source_root": false,
+        "same_window_moment_features": 0,
+        "source_preset": "own compact implementation; no author preset",
+        "status": "provisional_implementation_not_preregistered",
+        "target": "sigma7 / training-only y_scale",
+        "target_lags_added": false,
+        "trainable_parameters": 1110,
+        "training_stages": [
+          "fold-training-only reconstruction pretraining",
+          "supervised encoder/head finetuning; decoder unused"
+        ],
+        "width": 8
+      },
+      "final_state_sha256": "4966efbc2b3d508ebd653ed8ee7fce91565039be97c47e442ec120a82ff26fdf",
+      "initial_state_sha256": "6cb4109dbee2fb514c8f8f676b40cf14e7b062ba57a374ad79966ac90a86bb96",
+      "model": "LSTM-autoencoder con predictor",
+      "parameter_count": 1110,
+      "post_pretrain_state_sha256": "4c0ba495c36e8cca920c67110204ae7b7b96673c36f96e13ecb953a2521858a2",
+      "pretrain_gradient_audit": {
+        "expected_unused_parameter_names": [
+          "core.head.weight",
+          "core.head.bias"
+        ],
+        "finite": true,
+        "parameter_tensors_with_gradient": 10,
+        "unexpected_missing": []
+      },
+      "pretrain_reconstruction_mse": [
+        2.6524887084960938
+      ],
+      "pretrain_steps": 1,
+      "recipe": {
+        "dropout": 0.0,
+        "preset": "compact_synthetic",
+        "width": 8
+      },
+      "supervised_gradient_audit": {
+        "expected_unused_parameter_names": [
+          "core.decoder.weight_ih_l0",
+          "core.decoder.weight_hh_l0",
+          "core.decoder.bias_ih_l0",
+          "core.decoder.bias_hh_l0",
+          "core.reconstruction.weight",
+          "core.reconstruction.bias"
+        ],
+        "finite": true,
+        "parameter_tensors_with_gradient": 6,
+        "unexpected_missing": []
+      },
+      "supervised_scaled_target_mse": [
+        0.02107234112918377,
+        0.9089874029159546
+      ],
+      "supervised_steps": 2,
+      "synthetic_validation_mse_original_units": 3.449908958288718e-05,
+      "trainable_parameter_count": 1110
+    },
+    {
+      "ae_protocol": null,
+      "all_losses_and_predictions_finite": true,
+      "architecture": {
+        "backbone_metadata": {
+          "adapter_module": "scripts/e2_final_models_mlp.py",
+          "adapter_module_sha256": "beeada2f6754f0ca3ff1304ec090a7259a774cc7ea611fa912428cf9210f6c68",
+          "calendar_covariates_added": false,
+          "channels": 5,
+          "dropout": 0.0,
+          "exact_original_task_replica": false,
+          "future_values_consumed": false,
+          "history_days": 7,
+          "horizon": 1,
+          "model": "TimesNet",
+          "original_OHLCV_denormalization_used": false,
+          "registered_parameters": 1172875,
+          "source_commit": "4e938a1767106324dd753b2a44832bf870a0252e",
+          "source_files": {
+            "models/TimesNet.py": "f64c4bed1fd7347090044a0163bd4209c9f9ec1c1b19ceff47842df36b64bba7"
+          },
+          "source_files_verified_at_build": true,
+          "structural_parameters": {
+            "Inception_implementation": "Exact centered-kernel fusion; all six original parameterizations retained",
+            "d_ff": 32,
+            "d_model": 32,
+            "e_layers": 2,
+            "frequency_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "learned_temporal_extension": [
+              7,
+              8
+            ],
+            "num_kernels": 6,
+            "period_floor_rule": true,
+            "periods": [
+              8,
+              4,
+              2,
+              2
+            ],
+            "top_k": 4
+          },
+          "structural_preset_evidence": {
+            "paper": "TimesNet long-term Table7 dimension rule, d_model32 for C5",
+            "run.py": "db6dfa215520ba193fe7095380f9005949a958efa9526975410cb5d97afe3fc4",
+            "scripts/long_term_forecast/ETT_script/TimesNet_ETTh1.sh": "8490506e32ef9ee8f3a62a4286b35be552a3035d243d87104bd02e9cc381922e"
+          },
+          "target": "sigma7 / train-only y_scale",
+          "target_lags_added": false,
+          "task_adaptations": [
+            "Paper C5d_model32; FF32 from pinnedETTh1script and num_kernels6 from pinnedrun.py",
+            "Source learns D7to8 before FFT: topk5 bounded to allfour nonDC frequencies",
+            "Canonical allfrequency aggregation removes source batch-dependent topk and DC division",
+            "Full Inception2D blocks retained; final learned-token latent32 plus sameD7moments->Linear42,1+Softplus"
+          ],
+          "trainable_parameters": 1172875
+        },
+        "calendar_covariates_added": false,
+        "compact_synthetic_is_author_preset": false,
+        "full_benchmark_executed": false,
+        "future_values_consumed": false,
+        "hidden_state_carried_between_windows": false,
+        "implementation_kind": "existing_defined_literature_adapter",
+        "input_shape": [
+          7,
+          5
+        ],
+        "market_training_executed": false,
+        "model": "TimesNet",
+        "original_OHLCV_denormalization_used": false,
+        "output_link": "Softplus",
+        "output_shape": [
+          "batch"
+        ],
+        "paper_replication_claimed": false,
+        "presets": [
+          "provisional_default",
+          "compact_synthetic"
+        ],
+        "pretrained_weights": "none",
+        "recipe": {
+          "dropout": 0.0,
+          "preset": "compact_synthetic"
+        },
+        "registered_parameters": 1172875,
+        "requires_explicit_source_root": true,
+        "same_window_moment_features": 10,
+        "source_preset": "existing defined literature adapter; task changes retained",
+        "source_verification": {
+          "commit": "4e938a1767106324dd753b2a44832bf870a0252e",
+          "repository": "thuml/Time-Series-Library",
+          "verification_scope": "declared file subset, not whole repository",
+          "verified_files": {
+            "LICENSE": "8a6caa178ea3f33ebff5d7bb5558628cf5b423305dc30d3630f86564c7db94a2",
+            "layers/AutoCorrelation.py": "354b44e54bdd39380c9f5c2bfaaf3b967fdbe80dc7998741dbfdfa5d521a040c",
+            "layers/Autoformer_EncDec.py": "48745b4bb647355e9845792a855df9c59fd7df7fcc664c765351fec390c4073e",
+            "layers/Conv_Blocks.py": "16d9f2d9e4fa094dc357901e32beecda9839709bcca02625e6447186933ce4e1",
+            "layers/Crossformer_EncDec.py": "ee2cc5c8d3a44f4de67ce986e6b442488826a20fa4d8f87991941a75587936a1",
+            "layers/DWT_Decomposition.py": "422af1eec77df1b9dcfdea3d457e545c8575da69da4f505f27ba54db0c9f7764",
+            "layers/ETSformer_EncDec.py": "4ba2a0b76381602e32341fcc1a6a74ca86d2347905589fb34a74f8e54d7023e3",
+            "layers/Embed.py": "17e7c3577324c41a0da427a199c955b782fde905aabb1f7cbc3c4e15ebd4ae35",
+            "layers/FourierCorrelation.py": "cea1095b3a94764f240e6ac67280d6ea7fac9f5ef54de137cd1f5e5adab1305f",
+            "layers/MSGBlock.py": "01d3d446a214c33062ba098f251a1e49ed8a342dd4372e973a0a8c0dde5cd8c0",
+            "layers/MambaBlock.py": "cbcbbd6cbb83366e40ffe5926da16b4ca0aa11b6649e2259750994b60527a390",
+            "layers/MultiWaveletCorrelation.py": "cf0b8faf45a1b7fab4a3c1c521623c0762e2f9d7375b20ba9a9acd2142747342",
+            "layers/Pyraformer_EncDec.py": "ab92396677a9ad2e49c7bf171e15c96108d388b8898d29ee520d18dfe0bd5306",
+            "layers/SelfAttention_Family.py": "6f6592aed0753e342fc04c01db70528c2eb191eeb067cd5fd4c8d348fddcb794",
+            "layers/StandardNorm.py": "3f690dc5fc0e395d4f1ffe6396717548d18bd04f4518258308bbe5f392703f5f",
+            "layers/TimeFilter_layers.py": "3441713bdb54de1153afe3d5e746de4e251c07b545492180a073c4f275df6b9f",
+            "layers/Transformer_EncDec.py": "7b26f4459735c341f161011f6bc24b9deb8ecc3bcf61e4f15431998272a44fb4",
+            "layers/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "models/TimesNet.py": "f64c4bed1fd7347090044a0163bd4209c9f9ec1c1b19ceff47842df36b64bba7",
+            "requirements.txt": "1467f08eca3f4b749addf69042955eeb547dfb13a8a569e7e881b545c696df9f",
+            "run.py": "db6dfa215520ba193fe7095380f9005949a958efa9526975410cb5d97afe3fc4",
+            "scripts/long_term_forecast/ETT_script/TimesNet_ETTh1.sh": "8490506e32ef9ee8f3a62a4286b35be552a3035d243d87104bd02e9cc381922e",
+            "utils/ADFtest.py": "fcc30ead66778d2f70409740f8d54287fbeb032cd080695879a370722f7a4b26",
+            "utils/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "utils/augmentation.py": "17bac803a96fb6c98d0822052c1edc9f6bc72ae37eec5aa859e9e2918d537b69",
+            "utils/dtw.py": "a12084ab35783e4c09ddfadb54b0253f1fa8a3499abd88c772f93f499bcffa2a",
+            "utils/dtw_metric.py": "308c56507b01a945f38796f2f9b4bb104adc213ab574aa2693f93635c9748889",
+            "utils/losses.py": "d7f924f9abdf9dbbf097b60329a25ad727b163111014954ebf5856370a1aa116",
+            "utils/m4_summary.py": "bfc7ba06736c3919b4542b0e68a15280642d80989a7f837132121136e8a4e8a7",
+            "utils/masking.py": "02f453e52cfaec65e34132923add80e7132f188706680fa86d7bd884976e09ef",
+            "utils/metrics.py": "0a565c3f64d7cd29d9a87dee0c22d48f4a6a329476f893458cc18a35fa46a5df",
+            "utils/print_args.py": "423454ec7e2cefe6d24a458903f6080e866efdbe78c0ac2481b2cf32d44c558a",
+            "utils/timefeatures.py": "319b3da2ef15ccae95162b1b4f4a9a0b0da63fa0062a7f6006a06dd567258d85",
+            "utils/tools.py": "f47237f29d2a27570ef11871d9acdc51d1742b3bd1d8d09e5226e4140f4ad024"
+          }
+        },
+        "status": "provisional_implementation_not_preregistered",
+        "structural_resize_for_smoke": false,
+        "target": "sigma7 / training-only y_scale",
+        "target_lags_added": false,
+        "trainable_parameters": 1172875
+      },
+      "final_state_sha256": "33e8c09ddd94c33ffccba906d2e3646629e34caabfd24ebb2531f4f24b5fe316",
+      "initial_state_sha256": "7372e82d2baafa20037f57c7b2c08d82fc2e21c749d23912204f626cf45f2578",
+      "model": "TimesNet",
+      "parameter_count": 1172875,
+      "post_pretrain_state_sha256": "7372e82d2baafa20037f57c7b2c08d82fc2e21c749d23912204f626cf45f2578",
+      "pretrain_gradient_audit": null,
+      "pretrain_reconstruction_mse": [],
+      "pretrain_steps": 0,
+      "recipe": {
+        "dropout": 0.0,
+        "preset": "compact_synthetic"
+      },
+      "supervised_gradient_audit": {
+        "expected_unused_parameter_names": [],
+        "finite": true,
+        "parameter_tensors_with_gradient": 55,
+        "unexpected_missing": []
+      },
+      "supervised_scaled_target_mse": [
+        0.06065867096185684,
+        1.3182061910629272
+      ],
+      "supervised_steps": 2,
+      "synthetic_validation_mse_original_units": 5.607442813827897e-05,
+      "trainable_parameter_count": 1172875
+    },
+    {
+      "ae_protocol": null,
+      "all_losses_and_predictions_finite": true,
+      "architecture": {
+        "backbone_metadata": {
+          "adapter_module": "scripts/e2_final_models_mlp.py",
+          "adapter_module_sha256": "beeada2f6754f0ca3ff1304ec090a7259a774cc7ea611fa912428cf9210f6c68",
+          "calendar_covariates_added": false,
+          "channels": 5,
+          "dropout": 0.0,
+          "exact_original_task_replica": false,
+          "future_values_consumed": false,
+          "history_days": 7,
+          "horizon": 1,
+          "model": "TSMixer",
+          "original_OHLCV_denormalization_used": false,
+          "registered_parameters": 35044,
+          "source_commit": "d3a4bd8f0eceddda553e47085033b537935b283f",
+          "source_files": {
+            "tsmixer/tsmixer_basic/models/tsmixer.py": "84a7451f86b40b989f7ab7aa36368f24f39610ad62d7ce43e474a30a4e006159"
+          },
+          "source_files_verified_at_build": false,
+          "structural_parameters": {
+            "activation": "ReLU",
+            "backbone_dense_initialization": "Keras GlorotUniform weights, zero biases",
+            "feature_hidden": 512,
+            "mixer_blocks": 6,
+            "normalization": "Keras BatchNorm axis(time,channel), pre-norm, momentum.99,epsilon.001"
+          },
+          "structural_preset_evidence": {
+            "paper": "TSMixer complete PDF Table8 ETTh1; six blocks/H512, including reported search-range inconsistency"
+          },
+          "target": "sigma7 / train-only y_scale",
+          "target_lags_added": false,
+          "task_adaptations": [
+            "Input length7/channels5",
+            "Original temporal OHLCV output head replaced by Linear45,1+Softplus"
+          ],
+          "trainable_parameters": 35044
+        },
+        "calendar_covariates_added": false,
+        "compact_synthetic_is_author_preset": false,
+        "full_benchmark_executed": false,
+        "future_values_consumed": false,
+        "hidden_state_carried_between_windows": false,
+        "implementation_kind": "existing_defined_literature_adapter",
+        "input_shape": [
+          7,
+          5
+        ],
+        "market_training_executed": false,
+        "model": "TSMixer",
+        "original_OHLCV_denormalization_used": false,
+        "output_link": "Softplus",
+        "output_shape": [
+          "batch"
+        ],
+        "paper_replication_claimed": false,
+        "presets": [
+          "provisional_default",
+          "compact_synthetic"
+        ],
+        "pretrained_weights": "none",
+        "recipe": {
+          "dropout": 0.0,
+          "preset": "compact_synthetic"
+        },
+        "registered_parameters": 35044,
+        "requires_explicit_source_root": false,
+        "same_window_moment_features": 10,
+        "source_preset": "existing defined literature adapter; task changes retained",
+        "status": "provisional_implementation_not_preregistered",
+        "structural_resize_for_smoke": false,
+        "target": "sigma7 / training-only y_scale",
+        "target_lags_added": false,
+        "trainable_parameters": 35044
+      },
+      "final_state_sha256": "13d1fba99c696afc9fbd978f1e595371443a5af91b755302df3bb616e1eb5292",
+      "initial_state_sha256": "0f6ac74e7eb93734bc3affa9afaa0f08a61fba68150d09b855f9b4322cff103f",
+      "model": "TSMixer",
+      "parameter_count": 35044,
+      "post_pretrain_state_sha256": "0f6ac74e7eb93734bc3affa9afaa0f08a61fba68150d09b855f9b4322cff103f",
+      "pretrain_gradient_audit": null,
+      "pretrain_reconstruction_mse": [],
+      "pretrain_steps": 0,
+      "recipe": {
+        "dropout": 0.0,
+        "preset": "compact_synthetic"
+      },
+      "supervised_gradient_audit": {
+        "expected_unused_parameter_names": [],
+        "finite": true,
+        "parameter_tensors_with_gradient": 62,
+        "unexpected_missing": []
+      },
+      "supervised_scaled_target_mse": [
+        0.16959992051124573,
+        0.2970273792743683
+      ],
+      "supervised_steps": 2,
+      "synthetic_validation_mse_original_units": 6.712633312393612e-05,
+      "trainable_parameter_count": 35044
+    },
+    {
+      "ae_protocol": null,
+      "all_losses_and_predictions_finite": true,
+      "architecture": {
+        "backbone_metadata": {
+          "adapter_module": "scripts/e2_final_models_mlp.py",
+          "adapter_module_sha256": "beeada2f6754f0ca3ff1304ec090a7259a774cc7ea611fa912428cf9210f6c68",
+          "calendar_covariates_added": false,
+          "channels": 5,
+          "dropout": 0.0,
+          "exact_original_task_replica": false,
+          "future_values_consumed": false,
+          "history_days": 7,
+          "horizon": 1,
+          "model": "TiDE",
+          "original_OHLCV_denormalization_used": false,
+          "registered_parameters": 168537,
+          "source_commit": "d3a4bd8f0eceddda553e47085033b537935b283f",
+          "source_files": {
+            "tide/models.py": "ad8fd8d498809deeed9c847a169cada42134cbd0351b03e750706132a5d151c7"
+          },
+          "source_files_verified_at_build": false,
+          "structural_parameters": {
+            "RevIN": true,
+            "actual_decoder_residual_blocks": 1,
+            "actual_encoder_residual_blocks": 1,
+            "backbone_dense_initialization": "Keras GlorotUniform weights, zero biases",
+            "decoder_output_dim": 8,
+            "hidden_size": 256,
+            "layer_norm": true,
+            "learned_series_embedding": 16,
+            "series_embedding_initialization": "Keras uniform[-.05,.05]",
+            "source_num_layers_flag": 2,
+            "source_reference_horizons": [
+              336,
+              720
+            ],
+            "temporal_covariate_encoder_hidden": 64,
+            "temporal_decoder_hidden": 128,
+            "temporal_width": 4
+          },
+          "structural_preset_evidence": {
+            "paper": "TiDE Table8 ETTh1; paper source structure, not official H96 recipe",
+            "tide/scripts/etth1.sh": "55e085f1513af3a4a0ef8f7244512ee78beba5ab09540192b3cd3bb37441981c",
+            "tide/train.py": "3edd19eed01f92ef50cadca73fbe8a793c701d34edb5ea376c6bcc55e92f0854"
+          },
+          "target": "sigma7 / train-only y_scale",
+          "target_lags_added": false,
+          "task_adaptations": [
+            "Five OHLCV channel identities; past covariates reuse sameD7, absent future covariates fixedzero",
+            "Temporal decoder output latent8 with LN8 replaces source scalaroutput1/LN1 to avoid constant collapse",
+            "Global residual7to1 broadcast to latent8; Linear50,1+Softplus; no OHLCV inverse normalization"
+          ],
+          "trainable_parameters": 168537
+        },
+        "calendar_covariates_added": false,
+        "compact_synthetic_is_author_preset": false,
+        "full_benchmark_executed": false,
+        "future_values_consumed": false,
+        "hidden_state_carried_between_windows": false,
+        "implementation_kind": "existing_defined_literature_adapter",
+        "input_shape": [
+          7,
+          5
+        ],
+        "market_training_executed": false,
+        "model": "TiDE",
+        "original_OHLCV_denormalization_used": false,
+        "output_link": "Softplus",
+        "output_shape": [
+          "batch"
+        ],
+        "paper_replication_claimed": false,
+        "presets": [
+          "provisional_default",
+          "compact_synthetic"
+        ],
+        "pretrained_weights": "none",
+        "recipe": {
+          "dropout": 0.0,
+          "preset": "compact_synthetic"
+        },
+        "registered_parameters": 168537,
+        "requires_explicit_source_root": false,
+        "same_window_moment_features": 10,
+        "source_preset": "existing defined literature adapter; task changes retained",
+        "status": "provisional_implementation_not_preregistered",
+        "structural_resize_for_smoke": false,
+        "target": "sigma7 / training-only y_scale",
+        "target_lags_added": false,
+        "trainable_parameters": 168537
+      },
+      "final_state_sha256": "3ca297c8b30a4eb57753e0fd79f7e996ef1c948abc0d839bbbb156402d079b78",
+      "initial_state_sha256": "c02b7768c582df812e6a82c18abe71edc6f9ae2b5d327a6af407ed38c91913bc",
+      "model": "TiDE",
+      "parameter_count": 168537,
+      "post_pretrain_state_sha256": "c02b7768c582df812e6a82c18abe71edc6f9ae2b5d327a6af407ed38c91913bc",
+      "pretrain_gradient_audit": null,
+      "pretrain_reconstruction_mse": [],
+      "pretrain_steps": 0,
+      "recipe": {
+        "dropout": 0.0,
+        "preset": "compact_synthetic"
+      },
+      "supervised_gradient_audit": {
+        "expected_unused_parameter_names": [],
+        "finite": true,
+        "parameter_tensors_with_gradient": 39,
+        "unexpected_missing": []
+      },
+      "supervised_scaled_target_mse": [
+        0.1031312569975853,
+        0.8905379772186279
+      ],
+      "supervised_steps": 2,
+      "synthetic_validation_mse_original_units": 1.1298550115893413e-05,
+      "trainable_parameter_count": 168537
+    },
+    {
+      "ae_protocol": null,
+      "all_losses_and_predictions_finite": true,
+      "architecture": {
+        "backbone_metadata": {
+          "adapter_module": "scripts/e2_final_models_mlp.py",
+          "adapter_module_sha256": "beeada2f6754f0ca3ff1304ec090a7259a774cc7ea611fa912428cf9210f6c68",
+          "calendar_covariates_added": false,
+          "channels": 5,
+          "dropout": 0.0,
+          "exact_original_task_replica": false,
+          "future_values_consumed": false,
+          "history_days": 7,
+          "horizon": 1,
+          "model": "TimeMixer",
+          "original_OHLCV_denormalization_used": false,
+          "registered_parameters": 2615,
+          "source_commit": "e24610583b36fdd8c76cc17a8df4e65759a5f460",
+          "source_files": {
+            "models/TimeMixer.py": "817d62f4aac54c8566e560f6d3785856e31c8ee51460279ee3d0a4823f11d4be"
+          },
+          "source_files_verified_at_build": true,
+          "structural_parameters": {
+            "channel_independence": 1,
+            "d_ff": 32,
+            "d_model": 16,
+            "down_sampling_layers": 2,
+            "e_layers": 2,
+            "moving_avg": 25,
+            "pool_window": 2,
+            "scales": [
+              7,
+              3,
+              1
+            ]
+          },
+          "structural_preset_evidence": {
+            "scripts/long_term_forecast/ETT_script/TimeMixer_ETTh1_unify.sh": "13086d899b992b67cdd4409d26f686c1ac7e15e9ad4fd03dd53a2e0728554fc4"
+          },
+          "target": "sigma7 / train-only y_scale",
+          "target_lags_added": false,
+          "task_adaptations": [
+            "Published three pooling levels would produce length0; maximum validD7 pooling depth2 used",
+            "Retain PDM and scale-specific FMM latent projections; Linear90,1+Softplus, no OHLCV denorm"
+          ],
+          "trainable_parameters": 2615
+        },
+        "calendar_covariates_added": false,
+        "compact_synthetic_is_author_preset": false,
+        "full_benchmark_executed": false,
+        "future_values_consumed": false,
+        "hidden_state_carried_between_windows": false,
+        "implementation_kind": "existing_defined_literature_adapter",
+        "input_shape": [
+          7,
+          5
+        ],
+        "market_training_executed": false,
+        "model": "TimeMixer",
+        "original_OHLCV_denormalization_used": false,
+        "output_link": "Softplus",
+        "output_shape": [
+          "batch"
+        ],
+        "paper_replication_claimed": false,
+        "presets": [
+          "provisional_default",
+          "compact_synthetic"
+        ],
+        "pretrained_weights": "none",
+        "recipe": {
+          "dropout": 0.0,
+          "preset": "compact_synthetic"
+        },
+        "registered_parameters": 2615,
+        "requires_explicit_source_root": true,
+        "same_window_moment_features": 10,
+        "source_preset": "existing defined literature adapter; task changes retained",
+        "source_verification": {
+          "commit": "e24610583b36fdd8c76cc17a8df4e65759a5f460",
+          "repository": "kwuking/TimeMixer",
+          "verification_scope": "declared file subset, not whole repository",
+          "verified_files": {
+            "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+            "layers/AutoCorrelation.py": "35fc23e552419a53ebf12de5eb39a276aeb379f3f49ad5cf85ad0527a8c18feb",
+            "layers/Autoformer_EncDec.py": "48745b4bb647355e9845792a855df9c59fd7df7fcc664c765351fec390c4073e",
+            "layers/Conv_Blocks.py": "25c80a3f21bfcd403e9b3672cb1d3639b19e24d156e791060754b9ad32b90f3f",
+            "layers/DWT_Decomposition.py": "365356b4017ff144e92e655c24631bd422ec066741f5130fb6dd9e6f1a186e91",
+            "layers/Embed.py": "ab492ea2f68459bbcf3cbffdd1beb75b24d0d70248d017a313a3b470316aaa2b",
+            "layers/FourierCorrelation.py": "457afe4aa2a8ececf50bc359840edb3c9ed455cb02748b69fd01488215e186ca",
+            "layers/SelfAttention_Family.py": "34026dd7d5644a2e1dab912f2bb661c91d458015796133e681f40b98fbc10cfd",
+            "layers/StandardNorm.py": "cc1c0bc65b7b094bbe83f988fb05b86272a59638c030c3781aa52ce8880379df",
+            "layers/Transformer_EncDec.py": "7b26f4459735c341f161011f6bc24b9deb8ecc3bcf61e4f15431998272a44fb4",
+            "layers/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "models/TimeMixer.py": "817d62f4aac54c8566e560f6d3785856e31c8ee51460279ee3d0a4823f11d4be",
+            "requirements.txt": "2b7b6434c94f0e74d68ce788eb0ec25a7eb8581991f167f379558a10f21171b9",
+            "scripts/long_term_forecast/ETT_script/TimeMixer_ETTh1_unify.sh": "13086d899b992b67cdd4409d26f686c1ac7e15e9ad4fd03dd53a2e0728554fc4",
+            "utils/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "utils/data_analysis.py": "4176dc3ebb06988635085a397021d3b264056fc4251878b60abeee5b8aa94d69",
+            "utils/losses.py": "d7f924f9abdf9dbbf097b60329a25ad727b163111014954ebf5856370a1aa116",
+            "utils/m4_summary.py": "bfc7ba06736c3919b4542b0e68a15280642d80989a7f837132121136e8a4e8a7",
+            "utils/masking.py": "02f453e52cfaec65e34132923add80e7132f188706680fa86d7bd884976e09ef",
+            "utils/metrics.py": "09e243e50baa6373286d3fe9954ab99075fa254e310b99769318b666ab92806a",
+            "utils/timefeatures.py": "2414683a009c1bc0ffe8306aeca00800f95f76dc485db8121c1fc36ae87a7971",
+            "utils/tools.py": "5a16efe58607a5ac2da5694c9297cbffb7c314a16e746de028760ea822ff9376"
+          }
+        },
+        "status": "provisional_implementation_not_preregistered",
+        "structural_resize_for_smoke": false,
+        "target": "sigma7 / training-only y_scale",
+        "target_lags_added": false,
+        "trainable_parameters": 2615
+      },
+      "final_state_sha256": "ba69b2fa7cb7ece4e6bab2031b59e16294c99810491b7a2cecbde9c3d620fe07",
+      "initial_state_sha256": "9ae30becf1a2b417ed2b23ea03c513ea40147249197fb3db7ab8f4af5b58c66d",
+      "model": "TimeMixer",
+      "parameter_count": 2615,
+      "post_pretrain_state_sha256": "9ae30becf1a2b417ed2b23ea03c513ea40147249197fb3db7ab8f4af5b58c66d",
+      "pretrain_gradient_audit": null,
+      "pretrain_reconstruction_mse": [],
+      "pretrain_steps": 0,
+      "recipe": {
+        "dropout": 0.0,
+        "preset": "compact_synthetic"
+      },
+      "supervised_gradient_audit": {
+        "expected_unused_parameter_names": [],
+        "finite": true,
+        "parameter_tensors_with_gradient": 55,
+        "unexpected_missing": []
+      },
+      "supervised_scaled_target_mse": [
+        0.06218773126602173,
+        0.8021655082702637
+      ],
+      "supervised_steps": 2,
+      "synthetic_validation_mse_original_units": 2.632274318192432e-05,
+      "trainable_parameter_count": 2615
+    },
+    {
+      "ae_protocol": null,
+      "all_losses_and_predictions_finite": true,
+      "architecture": {
+        "backbone_metadata": {
+          "adapter_module": "scripts/e2_final_models_mlp.py",
+          "adapter_module_sha256": "beeada2f6754f0ca3ff1304ec090a7259a774cc7ea611fa912428cf9210f6c68",
+          "calendar_covariates_added": false,
+          "channels": 5,
+          "dropout": 0.0,
+          "exact_original_task_replica": false,
+          "future_values_consumed": false,
+          "history_days": 7,
+          "horizon": 1,
+          "model": "PatchTST",
+          "original_OHLCV_denormalization_used": false,
+          "registered_parameters": 16664,
+          "source_commit": "204c21efe0b39603ad6e2ca640ef5896646ab1a9",
+          "source_files": {
+            "layers/PatchTST_backbone.py": "df67173153787c2356bdfb6491159cd754332ef7382986efe879e1fbea8ebf26",
+            "layers/PatchTST_layers.py": "21c06c70a90c60ee2a269b5c600c702834dea22cdfd72915e6b0f8b4a28db3f6",
+            "layers/RevIN.py": "e64c0ccded9228b347134e7368420d3fb10f70c75145b5ff2d8bdd8c3af59df6",
+            "models/PatchTST.py": "49d8bb865e1226d6338842f4b33c4bc6992cefb048dc2a4a5a8c410ca708586b"
+          },
+          "source_files_verified_at_build": true,
+          "structural_parameters": {
+            "actual_observed_context": 7,
+            "batchnorm": true,
+            "d_ff": 128,
+            "d_model": 16,
+            "e_layers": 3,
+            "n_heads": 4,
+            "original_end_padding": 8,
+            "padded_context": 16,
+            "patch_len": 16,
+            "patches": 2,
+            "residual_attention": true,
+            "revin_affine": true,
+            "stride": 8
+          },
+          "structural_preset_evidence": {
+            "PatchTST_supervised/scripts/PatchTST/etth1.sh": "556c87cd7dd795094ff6cb73465e84c90686017e1535e0ba23ed43683b9b0897"
+          },
+          "target": "sigma7 / train-only y_scale",
+          "target_lags_added": false,
+          "task_adaptations": [
+            "Normalize only observedD7; left edge replication9 to fit publishedpatch16, then original rightpadding8",
+            "Original channel-independent residual-attention encoder retained, flatten160+moments10->Linear170,1+Softplus",
+            "Replicated edges are deterministic functions, not additional historical/future observations"
+          ],
+          "trainable_parameters": 16661
+        },
+        "calendar_covariates_added": false,
+        "compact_synthetic_is_author_preset": false,
+        "full_benchmark_executed": false,
+        "future_values_consumed": false,
+        "hidden_state_carried_between_windows": false,
+        "implementation_kind": "existing_defined_literature_adapter",
+        "input_shape": [
+          7,
+          5
+        ],
+        "market_training_executed": false,
+        "model": "PatchTST",
+        "original_OHLCV_denormalization_used": false,
+        "output_link": "Softplus",
+        "output_shape": [
+          "batch"
+        ],
+        "paper_replication_claimed": false,
+        "presets": [
+          "provisional_default",
+          "compact_synthetic"
+        ],
+        "pretrained_weights": "none",
+        "recipe": {
+          "dropout": 0.0,
+          "preset": "compact_synthetic"
+        },
+        "registered_parameters": 16664,
+        "requires_explicit_source_root": true,
+        "same_window_moment_features": 10,
+        "source_preset": "existing defined literature adapter; task changes retained",
+        "source_verification": {
+          "commit": "204c21efe0b39603ad6e2ca640ef5896646ab1a9",
+          "repository": "yuqinie98/PatchTST",
+          "verification_scope": "declared file subset, not whole repository",
+          "verified_files": {
+            "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+            "layers/PatchTST_backbone.py": "df67173153787c2356bdfb6491159cd754332ef7382986efe879e1fbea8ebf26",
+            "layers/PatchTST_layers.py": "21c06c70a90c60ee2a269b5c600c702834dea22cdfd72915e6b0f8b4a28db3f6",
+            "layers/RevIN.py": "e64c0ccded9228b347134e7368420d3fb10f70c75145b5ff2d8bdd8c3af59df6",
+            "models/PatchTST.py": "49d8bb865e1226d6338842f4b33c4bc6992cefb048dc2a4a5a8c410ca708586b",
+            "scripts/PatchTST/etth1.sh": "556c87cd7dd795094ff6cb73465e84c90686017e1535e0ba23ed43683b9b0897"
+          }
+        },
+        "status": "provisional_implementation_not_preregistered",
+        "structural_resize_for_smoke": false,
+        "target": "sigma7 / training-only y_scale",
+        "target_lags_added": false,
+        "trainable_parameters": 16661
+      },
+      "final_state_sha256": "12a7b8262ed2702f5f1c152121e9c0b1bef6b18d9bae2ba28a0279ff6a4b8533",
+      "initial_state_sha256": "6c170aef148cc05bcfca2ce27d0bbc2b59895d33e3b91f159491d64dacc684e4",
+      "model": "PatchTST",
+      "parameter_count": 16664,
+      "post_pretrain_state_sha256": "6c170aef148cc05bcfca2ce27d0bbc2b59895d33e3b91f159491d64dacc684e4",
+      "pretrain_gradient_audit": null,
+      "pretrain_reconstruction_mse": [],
+      "pretrain_steps": 0,
+      "recipe": {
+        "dropout": 0.0,
+        "preset": "compact_synthetic"
+      },
+      "supervised_gradient_audit": {
+        "expected_unused_parameter_names": [],
+        "finite": true,
+        "parameter_tensors_with_gradient": 55,
+        "unexpected_missing": []
+      },
+      "supervised_scaled_target_mse": [
+        0.025204753503203392,
+        0.8723969459533691
+      ],
+      "supervised_steps": 2,
+      "synthetic_validation_mse_original_units": 4.06518249184353e-05,
+      "trainable_parameter_count": 16661
+    },
+    {
+      "ae_protocol": null,
+      "all_losses_and_predictions_finite": true,
+      "architecture": {
+        "backbone_metadata": {
+          "D7_changes": [
+            "seq_len7 and five OHLCV variable tokens",
+            "preserve original normalization and full256-wide two-layer inverted encoder",
+            "replace per-covariate projector and its OHLCV denormalization with scalar task head"
+          ],
+          "author_commit": "c2426e68ca13f74aaec08045c5c724d8ad328124",
+          "author_repository": "thuml/iTransformer",
+          "author_source_files": {
+            "LICENSE": "29d2a4c09fa577780522219dc248466977f77cd420354c5e9a0e86550be2b849",
+            "layers/Embed.py": "2de7e5049a696d320a23a8bdb6e08e823cf7fa3f246a0a49555fcd729c5c8398",
+            "layers/SelfAttention_Family.py": "38ac67428d528b8e145e4944ca059b40629a8446c891142602d5aaadc38dfd9e",
+            "layers/Transformer_EncDec.py": "985c31f4ae187b08afaa9663dc960a40544b2ec33ab55389ceab3930edc1ce02",
+            "model/iTransformer.py": "6f34777a5a12c253a293f79e7e1fd5b6f79ac100b443951e051e269e7e2542db",
+            "run.py": "650873cfd6fee1f0415d4e8fd69943ad736fd1bab6495b640aa27b1a769f59f9",
+            "scripts/multivariate_forecasting/ETT/iTransformer_ETTh1.sh": "81f8409cff60b754b45ed2e76133c7e3b6e585a50c8361f04fa3daf3b6997cc0",
+            "utils/masking.py": "02f453e52cfaec65e34132923add80e7132f188706680fa86d7bd884976e09ef"
+          },
+          "backbone_family_replaced": false,
+          "calendar_inputs": false,
+          "configuration_choice_source": "official ETTh1_96_96 script d256/ff256/enc2 plus run.py heads8",
+          "dropout": 0.0,
+          "forecast_horizon_days": 1,
+          "history_days": 7,
+          "input_channels": 5,
+          "model": "iTransformer",
+          "original_OHLCV_denormalization_applied": false,
+          "output_link": "Softplus",
+          "paper_replication_claimed": false,
+          "pretrained_weights": "none",
+          "readout": "Linear(1290,1) then Softplus",
+          "readout_input_dim": 1290,
+          "same_window_moments": "five means and five population standard deviations of the same scaled D7",
+          "source_presets_inspected": [
+            "run.py",
+            "scripts/multivariate_forecasting/ETT/iTransformer_ETTh1.sh"
+          ],
+          "structure": {
+            "activation": "gelu",
+            "d_ff": 256,
+            "d_model": 256,
+            "e_layers": 2,
+            "factor": 1,
+            "n_heads": 8,
+            "use_norm": true
+          },
+          "target": "sigma7 / training-only y_scale",
+          "target_lags_added": false
+        },
+        "calendar_covariates_added": false,
+        "compact_synthetic_is_author_preset": false,
+        "full_benchmark_executed": false,
+        "future_values_consumed": false,
+        "hidden_state_carried_between_windows": false,
+        "implementation_kind": "existing_defined_literature_adapter",
+        "input_shape": [
+          7,
+          5
+        ],
+        "market_training_executed": false,
+        "model": "iTransformer",
+        "original_OHLCV_denormalization_used": false,
+        "output_link": "Softplus",
+        "output_shape": [
+          "batch"
+        ],
+        "paper_replication_claimed": false,
+        "presets": [
+          "provisional_default",
+          "compact_synthetic"
+        ],
+        "pretrained_weights": "none",
+        "recipe": {
+          "dropout": 0.0,
+          "preset": "compact_synthetic"
+        },
+        "registered_parameters": 795403,
+        "requires_explicit_source_root": true,
+        "same_window_moment_features": 10,
+        "source_preset": "existing defined literature adapter; task changes retained",
+        "source_verification": {
+          "commit": "c2426e68ca13f74aaec08045c5c724d8ad328124",
+          "repository": "thuml/iTransformer",
+          "verification_scope": "declared file subset, not whole repository",
+          "verified_files": {
+            "LICENSE": "29d2a4c09fa577780522219dc248466977f77cd420354c5e9a0e86550be2b849",
+            "layers/Embed.py": "2de7e5049a696d320a23a8bdb6e08e823cf7fa3f246a0a49555fcd729c5c8398",
+            "layers/SelfAttention_Family.py": "38ac67428d528b8e145e4944ca059b40629a8446c891142602d5aaadc38dfd9e",
+            "layers/Transformer_EncDec.py": "985c31f4ae187b08afaa9663dc960a40544b2ec33ab55389ceab3930edc1ce02",
+            "model/iTransformer.py": "6f34777a5a12c253a293f79e7e1fd5b6f79ac100b443951e051e269e7e2542db",
+            "run.py": "650873cfd6fee1f0415d4e8fd69943ad736fd1bab6495b640aa27b1a769f59f9",
+            "scripts/multivariate_forecasting/ETT/iTransformer_ETTh1.sh": "81f8409cff60b754b45ed2e76133c7e3b6e585a50c8361f04fa3daf3b6997cc0",
+            "utils/masking.py": "02f453e52cfaec65e34132923add80e7132f188706680fa86d7bd884976e09ef"
+          }
+        },
+        "status": "provisional_implementation_not_preregistered",
+        "structural_resize_for_smoke": false,
+        "target": "sigma7 / training-only y_scale",
+        "target_lags_added": false,
+        "trainable_parameters": 795403
+      },
+      "final_state_sha256": "50d4af3cb9ee9a19426aba2464f7646b4f47f7513130f19e19dd834b621c0df4",
+      "initial_state_sha256": "2c07ff73795bafa221e85281e0f1d5ec5eb073075b478dc0cf438a11e1a05f60",
+      "model": "iTransformer",
+      "parameter_count": 795403,
+      "post_pretrain_state_sha256": "2c07ff73795bafa221e85281e0f1d5ec5eb073075b478dc0cf438a11e1a05f60",
+      "pretrain_gradient_audit": null,
+      "pretrain_reconstruction_mse": [],
+      "pretrain_steps": 0,
+      "recipe": {
+        "dropout": 0.0,
+        "preset": "compact_synthetic"
+      },
+      "supervised_gradient_audit": {
+        "expected_unused_parameter_names": [],
+        "finite": true,
+        "parameter_tensors_with_gradient": 38,
+        "unexpected_missing": []
+      },
+      "supervised_scaled_target_mse": [
+        0.08216805011034012,
+        3.3695993423461914
+      ],
+      "supervised_steps": 2,
+      "synthetic_validation_mse_original_units": 0.00010039626485894637,
+      "trainable_parameter_count": 795403
+    },
+    {
+      "ae_protocol": null,
+      "all_losses_and_predictions_finite": true,
+      "architecture": {
+        "adapter_module": "scripts/e2_current_models.py",
+        "attention": "additive tanh scores; softmax over seven observed steps",
+        "calendar_covariates_added": false,
+        "compact_synthetic_is_author_preset": false,
+        "convolution_padding": "left-only zeros",
+        "full_benchmark_executed": false,
+        "future_values_consumed": false,
+        "hidden_state_carried_between_windows": false,
+        "implementation_kind": "own_causal_hybrid",
+        "input_shape": [
+          7,
+          5
+        ],
+        "market_training_executed": false,
+        "model": "CNN-1D + LSTM + atención temporal",
+        "normalization": "none across time or batch",
+        "original_OHLCV_denormalization_used": false,
+        "output_link": "Softplus",
+        "output_shape": [
+          "batch"
+        ],
+        "paper_replication_claimed": false,
+        "presets": [
+          "provisional_default",
+          "compact_synthetic"
+        ],
+        "pretrained_weights": "none",
+        "readout": "attention-weighted context",
+        "recipe": {
+          "attention_width": 8,
+          "conv_width": 8,
+          "dropout": 0.0,
+          "kernel_size": 3,
+          "lstm_layers": 1,
+          "lstm_width": 8,
+          "preset": "compact_synthetic"
+        },
+        "recurrent_direction": "unidirectional",
+        "registered_parameters": 793,
+        "requires_explicit_source_root": false,
+        "same_window_moment_features": 0,
+        "sequence_states": 7,
+        "source_preset": "own provisional architecture; no author preset",
+        "status": "provisional_implementation_not_preregistered",
+        "target": "sigma7 / training-only y_scale",
+        "target_lags_added": false,
+        "trainable_parameters": 793
+      },
+      "final_state_sha256": "da693d7f3e8188baf582391326dcdc0cfeb50a4a407881f76e975ca2d81ec043",
+      "initial_state_sha256": "004db38d874beb424f4c1dfc4764d042e7245e06e8fc9b470759c8cf9385417c",
+      "model": "CNN-1D + LSTM + atención temporal",
+      "parameter_count": 793,
+      "post_pretrain_state_sha256": "004db38d874beb424f4c1dfc4764d042e7245e06e8fc9b470759c8cf9385417c",
+      "pretrain_gradient_audit": null,
+      "pretrain_reconstruction_mse": [],
+      "pretrain_steps": 0,
+      "recipe": {
+        "attention_width": 8,
+        "conv_width": 8,
+        "dropout": 0.0,
+        "kernel_size": 3,
+        "lstm_layers": 1,
+        "lstm_width": 8,
+        "preset": "compact_synthetic"
+      },
+      "supervised_gradient_audit": {
+        "expected_unused_parameter_names": [],
+        "finite": true,
+        "parameter_tensors_with_gradient": 11,
+        "unexpected_missing": []
+      },
+      "supervised_scaled_target_mse": [
+        0.03706745058298111,
+        1.0693044662475586
+      ],
+      "supervised_steps": 2,
+      "synthetic_validation_mse_original_units": 4.235406359532976e-05,
+      "trainable_parameter_count": 793
+    }
+  ],
+  "preprocessing": {
+    "feature_order": [
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume"
+    ],
+    "history_days": 7,
+    "origin_day_utc": "2001-03-14T00:00:00+00:00",
+    "representation": "E1 relative_window via dl_data_v2.relative_features",
+    "target_centered": false,
+    "target_transform": "divide_by_positive_training_target_mean_without_centering",
+    "train_indices_sha256": "f1404decfb0252601c463884f04eb3a6f0628746f05e12615fe2460ff21787b5",
+    "train_targets_sha256": "85a7e9fc50a83534bfe2950ab3aa0bbcf296526c70e19bb46561bf242ce0c59f",
+    "train_windows_sha256": "0134110af0088473687e7035ca6e9606b8e5ba6a087a85aa9ea17b5362c86c55",
+    "version": "e2-current-synthetic-pipeline-v1",
+    "x_fit_unit": "all_positions_in_admitted_training_windows",
+    "x_fit_window_positions": 224,
+    "x_mean": [
+      -0.005438900485473174,
+      0.0005640661674400598,
+      -0.011500388895313796,
+      -0.005803443951612368,
+      8.023789894538547
+    ],
+    "x_scale": [
+      0.022972916984468794,
+      0.022997886999915833,
+      0.02325687191001483,
+      0.022788215977982328,
+      0.36347502455697284
+    ],
+    "x_std_ddof0": [
+      0.022972916984468794,
+      0.022997886999915833,
+      0.02325687191001483,
+      0.022788215977982328,
+      0.36347502455697284
+    ],
+    "y_scale": 0.00817571807793412
+  },
+  "receipt_version": "e2-current-synthetic-pipeline-v1",
+  "registered_experiment_run": false,
+  "requested_models": [
+    "FCN-1D",
+    "ResNet-1D",
+    "Inception-1D",
+    "LSTM-autoencoder con predictor",
+    "TimesNet",
+    "TSMixer",
+    "TiDE",
+    "TimeMixer",
+    "PatchTST",
+    "iTransformer",
+    "CNN-1D + LSTM + atención temporal"
+  ],
+  "runtime": {
+    "device": "cpu",
+    "numpy": "2.3.5",
+    "optional_dependencies": {
+      "einops": "0.8.1",
+      "reformer-pytorch": "1.4.4"
+    },
+    "pandas": "2.2.3",
+    "python": "3.12.14",
+    "torch": "2.15.0+cpu",
+    "torch_threads": 1
+  },
+  "skipped_model_count": 0,
+  "skipped_models": [],
+  "source_sha256": {
+    "dl_data.py": "8ea726a1d8ca7b9fa9bfcb26ee6e565b516c40a3ad1cd40e0f639c43b7f429ce",
+    "dl_data_v2.py": "bbf0ad8646afcd792b3961d0e5e5bcf9318f0fbe4377732a965c58f9557c33cb",
+    "e2_current_models.py": "78e44330118c5523bb4d23594493f584a22374f6b80cde9d3a4258d3d06844e3",
+    "e2_current_pipeline.py": "888ba5671c9cdaae8a27a855571ffc2c952f99437c3400804aff8eaf5dfeec85",
+    "e2_final_models_attention.py": "a3f1a2a7534142f505fbf36bddf92e0abf4f76d89ac1a1fb61874559e5aafa07",
+    "e2_final_models_mlp.py": "beeada2f6754f0ca3ff1304ec090a7259a774cc7ea611fa912428cf9210f6c68",
+    "e2_proposed_models.py": "d0004228ab79284c3a2b94fe768ef4f8e8a4577ecdc09e11b8342256d2be800b",
+    "smoke_e2_current_catalogue.py": "3622428ec79155656051eff5fd75dce7225dec2d90e8a2132775522e5463778e"
+  },
+  "status": "synthetic_mechanism_smoke_only",
+  "synthetic_fixture": {
+    "calendar_days": 96,
+    "calendar_end_utc": "2001-04-06T00:00:00+00:00",
+    "calendar_sha256": "1d3cb17d22f87af3770396be8e082074fe0cd06c56bae3c70330a9241384c878",
+    "calendar_start_utc": "2001-01-01T00:00:00+00:00",
+    "features_sha256": "4ff81c94df7458b1be8a13cde6081e855dff27eff0e417286766aab8bbdbe774",
+    "generator": "synthetic-ohlcv-v1",
+    "targets_sha256": "0a3930d621f4445f0d2319f014ddaec32781e26fcb6562a23fd4c973abd536af",
+    "window_dates_sha256": "973b020639f55604f9317892ab5d1d84589bc5b584dce4f1b735cc4b8cf5ef58",
+    "windows_sha256": "e6b5538deffd7ff4ba1fd3836b3fb6810ae88d148d28eb7d8f6daf7c157c67ae"
+  },
+  "synthetic_only": true,
+  "training_contract": {
+    "batches": "deterministic chronological cyclic training-only batches",
+    "checkpoint_or_registered_output_written": false,
+    "early_stopping": false,
+    "gradient_clip_norm": 1.0,
+    "hyperparameter_search": false,
+    "objective": "MSE on training-mean-scaled, noncentered targets",
+    "optimizer": "Adam",
+    "prediction_units": "original target units",
+    "provisional_recipe": true
+  }
+}

@@ -1,0 +1,824 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. Definición del Problema, Preguntas de Investigación y Dataset &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/01_punto_partida';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones" href="02_eda.html" />
+    <link rel="prev" title="Proyecto Final de Deep Learning: Entregable 2" href="../intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 2 · Bitcoin: pronóstico de volatilidad</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_literatura.html">3. Revisión Sistemática del Estado del Arte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación de los diez modelos y el candidato adicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark vigente: diez modelos y un candidato adicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Preregistro del catálogo vigente y trazabilidad experimental</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de datos y auditoría formal de fuga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. HPO y equidad para el catálogo vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Incertidumbre predictiva y análisis de errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Agregación estadística e interpretación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas del catálogo vigente y adaptación a D7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo vigente: diez modelos y candidato 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_fichas_nuevas.html">16. Fichas bibliográficas de las cuatro altas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato sincronizado de E1, E2 y E3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_integracion_sintetica.html">18. Implementación provisional y verificación sintética</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_plan_auditoria.html">19. Plan experimental propuesto y auditoría sin entrenamiento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_contraste_guia.html">20. Cotejo del plan con la guía original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_comparadores_nas.html">21. Comparadores temporales y decisión NAS por receta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22_fichas_recetas.html">22. Once fichas de recetas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_implementacion_recetas.html">23. Implementación de recetas y controles temporales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="24_ejecutor_comun.html">24. Ejecutor común y disponibilidad temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><p class="small">Entregable 2 · Jassan Arteta · 2026-30</p></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/01_punto_partida.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>1. Definición del Problema, Preguntas de Investigación y Dataset</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-formal-del-problema">1.1 Definición formal del problema</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contrato-vigente-y-procedencia-historica">1.1.1 Contrato vigente y procedencia histórica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entradas-salida-y-disponibilidad-causal">1.1.2 Entradas, salida y disponibilidad causal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#espacio-de-hipotesis-perdida-y-riesgo">1.1.3 Espacio de hipótesis, pérdida y riesgo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipo-de-tarea-y-relevancia">1.1.4 Tipo de tarea y relevancia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-margen-y-unidad-de-independencia">1.1.5 Métricas, margen y unidad de independencia</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preguntas-de-investigacion-e-hipotesis">1.2 Preguntas de investigación e hipótesis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rq1-ganancia-predictiva-relevante">1.2.1 RQ1 · Ganancia predictiva relevante</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rq2-deterioro-de-la-ventaja-en-alta-volatilidad">1.2.2 RQ2 · Deterioro de la ventaja en alta volatilidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rq3-mejora-conjunta-de-error-y-coste">1.2.3 RQ3 · Mejora conjunta de error y coste</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiplicidad-y-criterio-de-decision-comun">1.2.4 Multiplicidad y criterio de decisión común</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#justificacion-del-dataset">1.3 Justificación del dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-tamano-y-calidad">1.3.1 Selección, tamaño y calidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#procedencia-licencia-etica-y-privacidad">1.3.2 Procedencia, licencia, ética y privacidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#representatividad-sesgos-y-particion-publica">1.3.3 Representatividad, sesgos y partición pública</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descripcion-tecnica-data-card">1.4 Descripción técnica · Data Card</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-de-cierre-de-esta-seccion">1.4.1 Estado de cierre de esta sección</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="definicion-del-problema-preguntas-de-investigacion-y-dataset">
+<h1>1. Definición del Problema, Preguntas de Investigación y Dataset<a class="headerlink" href="#definicion-del-problema-preguntas-de-investigacion-y-dataset" title="Link to this heading">#</a></h1>
+<p><strong>Catálogo vigente:</strong> diez modelos de literatura y adaptaciones de familias, más <strong>CNN-1D + LSTM + atención temporal como candidato 11</strong>, sin superioridad demostrada. MLP, LSTM y GRU de E1 son referencias separadas y no se suman al catálogo. La <a class="reference internal" href="15_revision_modelos.html"><span class="std std-doc">revisión del 08/11/2026</span></a> sustituye la selección anterior; la nueva enmienda experimental está pendiente.</p>
+<p>Esta sección desarrolla las páginas 2–3 de la guía completa de 65 páginas. Se conservan la formulación y la ficha de datos; la ruta es <strong>F2a, series de tiempo</strong>, como explica la <a class="reference internal" href="07_ruta_temporal.html#e2-ruta-temporal"><span class="std std-ref">sección 7</span></a>. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0">registro histórico <code class="docutils literal notranslate"><span class="pre">599a29f</span></code></a> y el <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">piloto P0 ejecutado</span></a> se conservan para trazabilidad, sin trasladar sus candidatos, presupuesto o resultados al catálogo vigente. Los periodos heredados ya se conocían: su reutilización tiene alcance exploratorio. Los diagnósticos del EDA se presentan en la <a class="reference internal" href="02_eda.html"><span class="std std-doc">sección 2</span></a>.</p>
+<section id="definicion-formal-del-problema">
+<h2>1.1 Definición formal del problema<a class="headerlink" href="#definicion-formal-del-problema" title="Link to this heading">#</a></h2>
+<section id="contrato-vigente-y-procedencia-historica">
+<span id="e2-contrato-heredado"></span><h3>1.1.1 Contrato vigente y procedencia histórica<a class="headerlink" href="#contrato-vigente-y-procedencia-historica" title="Link to this heading">#</a></h3>
+<p><strong>La especificación vigente se sincroniza con el E1 principal de 608 fechas, no con la reserva complementaria de 60 días.</strong> Véase <a class="reference internal" href="17_contrato_sincronizado.html"><span class="std std-doc">§17</span></a>: representación relativa, escalado de entrenamiento, referencias MLP/LSTM/GRU y límites de evaluación conocida. Las tablas siguientes documentan únicamente la procedencia del registro previo y no fijan el calendario de nuevas ejecuciones.</p>
+<p>El contrato histórico utilizado por E2 procede de la <strong>fase II D7</strong> del <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/94a4b0324e93361e8928d708fdfeb50110e3686f">Entregable 1, commit <code class="docutils literal notranslate"><span class="pre">94a4b03</span></code></a>. El <a class="reference download internal" download="" href="../_downloads/90ebb817498db49047ab1aab4197df27/e1_reference.json"><span class="xref download myst">contrato descargable histórico</span></a> identifica esa procedencia. Las recetas y resultados de ese registro conservan su identidad; no definen la nueva selección de modelos ni se reasignan a las referencias actuales MLP, LSTM y GRU de E1.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Elemento heredado</p></th>
+<th class="head"><p>Definición conservada en E2</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Problema</p></td>
+<td><p>Volatilidad histórica de Bitcoin, BTCUSDT en Binance Spot; formulación heredada inicialmente denominada regresión temporal, con ruta E2 resuelta como F2a, series de tiempo</p></td>
+</tr>
+<tr class="row-odd"><td><p>Entrada</p></td>
+<td><p>D=7 días de cinco canales OHLCV; horizonte h=1 día</p></td>
+</tr>
+<tr class="row-even"><td><p>Objetivo</p></td>
+<td><p>σ₇ poblacional de siete retornos logarítmicos diarios de Close, sin anualización</p></td>
+</tr>
+<tr class="row-odd"><td><p>Referencias de E1</p></td>
+<td><p>MLP, LSTM y GRU, fuera del catálogo; receta y cohorte comparables por identificar en la nueva enmienda</p></td>
+</tr>
+<tr class="row-even"><td><p>Métrica primaria</p></td>
+<td><p>Media entre semillas de la RMSE de cada trayectoria sobre las fechas elegibles comunes, en escala original</p></td>
+</tr>
+<tr class="row-odd"><td><p>Margen absoluto</p></td>
+<td><p>δ = <strong>0,00025772842664981106</strong> unidades de volatilidad diaria</p></td>
+</tr>
+<tr class="row-even"><td><p>Unidad de independencia</p></td>
+<td><p>Una serie BTCUSDT de un proveedor; las fechas y etiquetas solapadas tienen dependencia temporal</p></td>
+</tr>
+<tr class="row-odd"><td><p>Partición</p></td>
+<td><p>Calendario de fase II descrito abajo; no se reasignan sus periodos</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Las recetas del experimento de origen se consultan en el <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/experiments/gru_lstm_tcn_planned_20261105/design.json">diseño versionado de fase II</a>. Se conserva su trazabilidad sin reproducir aquí una segunda selección de modelos.</p>
+<p>El siguiente calendario describe la procedencia histórica de los datos. La nueva enmienda debe identificar el uso de cada periodo y de cada referencia sin retrofechar decisiones.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Función</p></th>
+<th class="head"><p>Periodo UTC y regla heredada</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Historia inicial</p></td>
+<td><p>01/01–31/12/2023</p></td>
+</tr>
+<tr class="row-odd"><td><p>Optimización</p></td>
+<td><p>Enero–octubre de 2024: diez bloques mensuales forward chaining comunes, con índices de <code class="docutils literal notranslate"><span class="pre">timeseries-cv</span></code> de DidierRLopes y Filipe R. Ramos, embargo D=7 y validación interna de 90 días</p></td>
+</tr>
+<tr class="row-even"><td><p>Piloto de fase II</p></td>
+<td><p>01/11–30/12/2024: 60 fechas de desarrollo</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ajuste final</p></td>
+<td><p>Desarrollo permitido de 2023–2024; origen de cierre 01/01/2025 y etiquetas de entrenamiento hasta el 24/12/2024 por embargo</p></td>
+</tr>
+<tr class="row-even"><td><p>Reserva de fase II</p></td>
+<td><p>01/09–30/10/2026: 60 fechas, <strong>ya evaluadas en E1</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Archivo de fase I</p></td>
+<td><p>01/01/2025–31/08/2026: 608 fechas previamente evaluadas; conserva su condición de antecedente conocido</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El embargo excluye resultados de entrenamiento demasiado próximos al origen según la regla D=7; no elimina siete días aleatorios ni cambia los periodos anteriores. Los metadatos conservan los detalles y las exclusiones. No se asigna una semilla a la partición cronológica determinista.</p>
+</section>
+<section id="entradas-salida-y-disponibilidad-causal">
+<h3>1.1.2 Entradas, salida y disponibilidad causal<a class="headerlink" href="#entradas-salida-y-disponibilidad-causal" title="Link to this heading">#</a></h3>
+<p>Sea <span class="math notranslate nohighlight">\(P_t&gt;0\)</span> el cierre del día UTC <span class="math notranslate nohighlight">\(t\)</span>. Se define</p>
+<div class="math notranslate nohighlight">
+\[
+r_t=\log(P_t/P_{t-1}),\qquad
+\bar r_t=\frac{1}{7}\sum_{j=0}^{6}r_{t-j},\qquad
+Y_t=\sigma_7(t)=\sqrt{\frac{1}{7}\sum_{j=0}^{6}(r_{t-j}-\bar r_t)^2}.
+\]</div>
+<p>Se necesitan <strong>ocho cierres consecutivos para siete retornos</strong>. El denominador es 7 (<code class="docutils literal notranslate"><span class="pre">ddof=0</span></code>). No se anualiza ni se sustituye esta variable por volatilidad intradía o por el precio.</p>
+<p>Sea <span class="math notranslate nohighlight">\(Z_t=(O_t,H_t,L_t,C_t,V_t)\)</span> el OHLCV agregado del día. El pronóstico se emite al comienzo del día <span class="math notranslate nohighlight">\(t\)</span>, con</p>
+<div class="math notranslate nohighlight">
+\[
+X_t=(Z_{t-7},\ldots,Z_{t-1})\in\mathcal X\subseteq\mathbb R^{7\times5},
+\qquad Y_t\in\mathcal Y=\mathbb R_{\ge0}.
+\]</div>
+<p>Así, <span class="math notranslate nohighlight">\(r_t\)</span> y <span class="math notranslate nohighlight">\(Y_t\)</span> solo se conocen al terminar el día pronosticado. Esta convención equivale a escribir «entrada hasta <span class="math notranslate nohighlight">\(t\)</span>, objetivo <span class="math notranslate nohighlight">\(\sigma_7(t+1)\)</span>» desplazando el índice; no añade información del futuro. La volatilidad pasada puede usarse para diagnósticos por régimen, pero no se añade aquí como sexto canal del modelo.</p>
+<p>El preprocesamiento heredado usa logaritmos de OHLC relativos al último cierre conocido de la ventana y <code class="docutils literal notranslate"><span class="pre">log1p</span></code> del volumen; los escaladores se ajustan exclusivamente en entrenamiento permitido. El objetivo se divide por su media de entrenamiento y las métricas se calculan después de invertir esa transformación. Se conserva el calendario y se excluyen ventanas que dependan de días inválidos, sin unir artificialmente fechas separadas por huecos.</p>
+</section>
+<section id="espacio-de-hipotesis-perdida-y-riesgo">
+<h3>1.1.3 Espacio de hipótesis, pérdida y riesgo<a class="headerlink" href="#espacio-de-hipotesis-perdida-y-riesgo" title="Link to this heading">#</a></h3>
+<p>El catálogo vigente contiene <strong>FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder con predictor, TimesNet, TSMixer, TiDE, TimeMixer, PatchTST e iTransformer</strong>. Son modelos de la literatura o adaptaciones de familias; no se presentan como los nombres literales del curso. <strong>CNN-1D + LSTM + atención temporal</strong> es el candidato 11 que se investigará, sin afirmar que sea superior.</p>
+<p>Para esos modelos, el espacio de hipótesis es <span class="math notranslate nohighlight">\(\mathcal H=\bigcup_{m\in\mathcal M}\mathcal H_m\)</span>. Las diez redes parten del contrato <span class="math notranslate nohighlight">\(\mathcal X\subseteq\mathbb R^{7\times5}\)</span>; el híbrido propuesto usa el mismo D7×5 mediante CNN causal, LSTM unidireccional y atención sólo sobre estados observados. No incorpora historia mensual ni etiquetas rezagadas como entradas adicionales. La variable objetivo es no negativa; el enlace de salida y cualquier posprocesamiento deben fijarse por receta antes de puntuar. MLP, LSTM y GRU de E1 permanecen como referencias externas a este catálogo, con identidad experimental propia.</p>
+<p>Se conserva la pérdida cuadrática:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal L(f(X),Y)=(Y-f(X))^2,\qquad
+R_P(f)=\mathbb E_{(X,Y)\sim P}[\mathcal L(f(X),Y)].
+\]</div>
+<p>Sobre una cohorte elegible común <span class="math notranslate nohighlight">\(\mathcal T\)</span>, su versión empírica es</p>
+<div class="math notranslate nohighlight">
+\[
+\widehat R_{\mathcal T}(f)=\frac{1}{|\mathcal T|}\sum_{t\in\mathcal T}(Y_t-f(X_t))^2,
+\qquad
+\widehat\mu_m=\frac{1}{R}\sum_{s=1}^{R}\sqrt{\widehat R_{\mathcal T}(f_{m,s})}.
+\]</div>
+<p><span class="math notranslate nohighlight">\(\widehat\mu_m\)</span> es la métrica primaria. No se reemplaza por la RMSE de un ensamble ni por la raíz de la media de todos los errores mezclando semillas. La dependencia y el cambio de distribución impiden tratar el riesgo empírico histórico como una estimación iid de cualquier mercado futuro. La guía pide prueba sellada; <strong>los periodos heredados ya conocidos no cumplen esa condición para una confirmación nueva de E2</strong>.</p>
+</section>
+<section id="tipo-de-tarea-y-relevancia">
+<h3>1.1.4 Tipo de tarea y relevancia<a class="headerlink" href="#tipo-de-tarea-y-relevancia" title="Link to this heading">#</a></h3>
+<p>La clasificación metodológica de E2 es <strong>F2a, series de tiempo</strong>, resuelta tras recibir la guía completa. El <a class="reference internal" href="02_eda.html#e2-diagnostico-forward"><span class="std std-ref">diagnóstico residual de §2.2.3</span></a> aporta autocorrelación fuerte de la referencia Ridge; RT1 (PDF p32) exige reclasificar, además del diagnóstico del EDA C (p6). La <a class="reference internal" href="07_ruta_temporal.html#e2-ruta-temporal"><span class="std std-ref">sección 7</span></a> conserva esa resolución y los controles causales. Se conserva la tarea predictiva, D7×5, σ₇, h=1 y δ; la reclasificación no añade Y rezagada como canal de las diez redes. El soporte del híbrido y la función de cualquier control deben quedar explícitos en la nueva enmienda, sin ampliar el catálogo vigente.</p>
+<p>Tres trabajos respaldan la relevancia científica del pronóstico de volatilidad en criptomonedas: Miura, Pichl y Kaizoji estudian redes neuronales para volatilidad realizada <span class="bibtex-citation" id="id1">[<a class="reference internal" href="referencias.html#id2" title="Ryotaro Miura, Lukáš Pichl, and Taisei Kaizoji. Artificial Neural Networks for Realized Volatility Prediction in Cryptocurrency Time Series. In Advances in Neural Networks – ISNN 2019, volume 11554 of Lecture Notes in Computer Science, 165–172. Springer, 2019. URL: https://doi.org/10.1007/978-3-030-22796-8_18, doi:10.1007/978-3-030-22796-8_18.">Miura <em>et al.</em>, 2019</a>]</span>; Guo, Bifet y Antulov-Fantulin estudian la información de órdenes de compra y venta <span class="bibtex-citation" id="id2">[<a class="reference internal" href="referencias.html#id3" title="Tian Guo, Albert Bifet, and Nino Antulov-Fantulin. Bitcoin Volatility Forecasting with a Glimpse into Buy and Sell Orders. In 2018 IEEE International Conference on Data Mining (ICDM), 989–994. 2018. URL: https://doi.org/10.1109/ICDM.2018.00123, doi:10.1109/ICDM.2018.00123.">Guo <em>et al.</em>, 2018</a>]</span>; Akbiyik y colaboradores incorporan información de Twitter al pronóstico de volatilidad de Bitcoin <span class="bibtex-citation" id="id3">[<a class="reference internal" href="referencias.html#id4" title="M. Eren Akbiyik, Mert Erkul, Killian Kämpf, Vaiva Vasiliauskaite, and Nino Antulov-Fantulin. Ask “Who”, Not “What”: Bitcoin Volatility Forecasting with Twitter Data. In Proceedings of the Sixteenth ACM International Conference on Web Search and Data Mining (WSDM ’23). 2023. URL: https://doi.org/10.1145/3539597.3570387, doi:10.1145/3539597.3570387.">Akbiyik <em>et al.</em>, 2023</a>]</span>.</p>
+<p>Estos antecedentes motivan investigar memoria temporal, covariables y generalización. <strong>No se afirma que utilicen nuestro snapshot, idéntico objetivo σ₇ ni exactamente las entradas aquí disponibles.</strong> Tampoco constituyen por sí solos la revisión sistemática de E2 ni prueban uso del dataset exacto en una revista Q1. El interés aplicado es medir capacidad predictiva y coste bajo un benchmark académico; no se concluye rentabilidad, reducción de riesgo financiero o utilidad de trading.</p>
+</section>
+<section id="metricas-margen-y-unidad-de-independencia">
+<h3>1.1.5 Métricas, margen y unidad de independencia<a class="headerlink" href="#metricas-margen-y-unidad-de-independencia" title="Link to this heading">#</a></h3>
+<p>La primaria es RMSE; las secundarias heredadas son MAE, MSE, R², MAPE y MASE. MAPE se define solo donde el objetivo sea positivo y se reportará su cobertura; no se añadirá un épsilon arbitrario. MASE usa el denominador histórico ingenuo de lag 1 sobre pares de días consecutivos elegibles de entrenamiento; no se calcula comprimiendo huecos ni usando test para escalar.</p>
+<p>El margen absoluto heredado procede de <span class="math notranslate nohighlight">\(0,05\times0,005154568532996221\)</span>, RMSE CV de la GRU/D7 de fase I. <strong>No se recalcula como el 5 % de una nueva RMSE.</strong> Se conserva aparte la regla relativa académica de E1 frente a GRU y persistencia; no se confunde una reducción porcentual con δ absoluto. Su origen y fecha están documentados: heredar el margen no lo vuelve una decisión previa a los resultados históricos iniciales.</p>
+<p>Hay <strong>una única serie de mercado</strong> (<span class="math notranslate nohighlight">\(N_{\text{series}}=1\)</span>). Las semillas describen variabilidad del entrenamiento condicionada a los datos; no son nuevas series independientes. Las etiquetas σ₇ comparten retornos y las ventanas comparten observaciones. La comparación debe emparejar fechas y distinguir variación entre semillas de incertidumbre temporal. El remuestreo por bloques evita suponer independencia diaria, pero su diseño y sensibilidad requieren justificación en desarrollo. Ningún número de semillas de E1 o del P0 histórico acredita potencia para las nuevas comparaciones. El dimensionamiento se definirá tras congelar las recetas y las hipótesis de la nueva enmienda.</p>
+</section>
+</section>
+<section id="preguntas-de-investigacion-e-hipotesis">
+<h2>1.2 Preguntas de investigación e hipótesis<a class="headerlink" href="#preguntas-de-investigacion-e-hipotesis" title="Link to this heading">#</a></h2>
+<p>Las tres preguntas siguientes orientan el diseño vigente. <strong>Sus comparadores, familias de hipótesis y reglas de decisión todavía requieren una nueva enmienda</strong>. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0/experiments/e2_remediation_20261106/preregistration.json">registro anterior</a> se conserva como antecedente, no como preregistro de los nuevos diez modelos y el candidato 11.</p>
+<p>Para cada candidato <span class="math notranslate nohighlight">\(m\)</span>, sea <span class="math notranslate nohighlight">\(g_m=\mu_{\mathrm{ref}}-\mu_m\)</span>: valores positivos indican menor RMSE que la referencia que se identifique antes de la comparación. Las diferencias deben usar las mismas fechas elegibles y un tratamiento explícito de las semillas. MLP, LSTM y GRU de E1 aportan referencias separadas; su receta, cohorte y papel inferencial no se escogen después de mirar los resultados. El híbrido se somete a los mismos criterios de evidencia y no recibe la etiqueta de ganador por construcción.</p>
+<section id="rq1-ganancia-predictiva-relevante">
+<h3>1.2.1 RQ1 · Ganancia predictiva relevante<a class="headerlink" href="#rq1-ganancia-predictiva-relevante" title="Link to this heading">#</a></h3>
+<p><strong>Pregunta:</strong> ¿algún candidato reduce la RMSE respecto a la referencia predefinida en más que el margen heredado δ?</p>
+<div class="math notranslate nohighlight">
+\[
+H_{0,m}:g_m\le\delta,\qquad H_{1,m}:g_m&gt;\delta.
+\]</div>
+<p>El efecto mínimo es δ en unidades originales de volatilidad. La nueva enmienda deberá especificar un contraste unilateral pareado del efecto respecto a δ mediante bootstrap temporal por bloques, con las mismas fechas remuestreadas para ambos modelos y la variabilidad entre trayectorias tratada separadamente. La distribución nula se centra en la frontera <span class="math notranslate nohighlight">\(g_m=\delta\)</span>; no basta probar una diferencia contra cero. La alternativa usada para planificar potencia debe ser mayor que δ y quedar explícita antes de dimensionar; no se promete potencia de detección en la frontera de la hipótesis nula.</p>
+<p>La decisión requerirá un contraste ajustado y un límite de incertidumbre compatibles con el margen δ y con el control de multiplicidad que se registre. Se reportarán efecto absoluto, reducción relativa, intervalos y p-valores ajustados y sin ajustar. Una ganancia puntual superior a δ, por sí sola, no prueba mejora práctica con incertidumbre controlada.</p>
+</section>
+<section id="rq2-deterioro-de-la-ventaja-en-alta-volatilidad">
+<h3>1.2.2 RQ2 · Deterioro de la ventaja en alta volatilidad<a class="headerlink" href="#rq2-deterioro-de-la-ventaja-en-alta-volatilidad" title="Link to this heading">#</a></h3>
+<p><strong>Pregunta:</strong> ¿la ventaja de un candidato frente a la referencia disminuye en más de δ durante días de alta volatilidad conocida al emitir el pronóstico?</p>
+<p>El antecedente metodológico define el estrato causal <span class="math notranslate nohighlight">\(A_t=\mathbf1\{\sigma_7(t-1)&gt;q_{0,75}^{2023}\}\)</span>, con <span class="math notranslate nohighlight">\(q_{0,75}^{2023}=0,024247163097617024\)</span>, obtenido únicamente de las 350 etiquetas válidas σ₇ de 2023. Su <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/book/_static/eda_general_quality/target_profiles.csv">perfil de entrenamiento está versionado en E1</a>. El estrato usa información pasada; no es un nuevo canal de entrada ni un umbral optimizado en test.</p>
+<p>Con RMSE calculada por trayectoria dentro de cada estrato, sean <span class="math notranslate nohighlight">\(g_{m,N}\)</span> y <span class="math notranslate nohighlight">\(g_{m,A}\)</span> las ganancias en régimen normal y alto, y <span class="math notranslate nohighlight">\(d_m=g_{m,N}-g_{m,A}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+H_{0,m}:d_m\le\delta,\qquad H_{1,m}:d_m&gt;\delta.
+\]</div>
+<p>El efecto mínimo es una erosión absoluta δ de la ventaja. Se requiere bootstrap temporal pareado sobre el calendario común, conservando las etiquetas de régimen y recalculando las métricas dentro de cada estrato. La alternativa para dimensionar este contraste sigue pendiente; su frontera es δ. Se reportarán cantidades de fechas y bloques útiles por estrato; si son insuficientes, el resultado será no estimable o inconcluso. Rechazar indica deterioro relevante; <strong>no rechazar no demuestra robustez ni equivalencia</strong>.</p>
+</section>
+<section id="rq3-mejora-conjunta-de-error-y-coste">
+<h3>1.2.3 RQ3 · Mejora conjunta de error y coste<a class="headerlink" href="#rq3-mejora-conjunta-de-error-y-coste" title="Link to this heading">#</a></h3>
+<p><strong>Pregunta:</strong> ¿algún candidato mejora la RMSE en más de δ y reduce el coste de inferencia frente a la referencia predefinida?</p>
+<p>Sea <span class="math notranslate nohighlight">\(c_m\)</span> la diferencia de latencia media por ventana, candidato menos referencia, bajo el mismo hardware, precisión y batch size:</p>
+<div class="math notranslate nohighlight">
+\[
+H_{0,m}:(g_m\le\delta)\ \text{o}\ (c_m\ge0),\qquad
+H_{1,m}:(g_m&gt;\delta)\ \text{y}\ (c_m&lt;0).
+\]</div>
+<p>La afirmación conjunta requiere una prueba de intersección-unión: ambas condiciones deben quedar respaldadas; el p-valor conjunto será el máximo de los dos p-valores unilaterales válidos. El margen de error sigue siendo δ; el umbral de coste es cero, sin inventar una tolerancia financiera. El efecto de coste usado para dimensionar deberá justificarse en la nueva enmienda, sin inventar un ahorro observado. Se reportará también la magnitud e intervalo del ahorro para valorar su importancia operativa.</p>
+<p>La latencia debe medirse con entradas de desarrollo o sintéticas, sin volver a puntuar test para medir tiempos. La nueva enmienda fijará hardware, precisión, batch, calentamiento, bloques y orden intercalado; también declarará cualquier diferencia de soporte del híbrido. Las repeticiones del cronómetro no aumentan el tamaño muestral de la evaluación predictiva.</p>
+</section>
+<section id="multiplicidad-y-criterio-de-decision-comun">
+<h3>1.2.4 Multiplicidad y criterio de decisión común<a class="headerlink" href="#multiplicidad-y-criterio-de-decision-comun" title="Link to this heading">#</a></h3>
+<p>La nueva selección exige definir de nuevo qué comparaciones se harán, cómo se agruparán y qué nivel de error se asignará a cada familia. <strong>No se heredan los recuentos ni las asignaciones estadísticas del catálogo retirado.</strong> Las referencias E1 y los controles del híbrido deben tener un papel explícito, sin incorporarse como nuevos miembros del catálogo.</p>
+<p>Para RQ3 se obtiene primero el p-valor conjunto de intersección-unión; después se aplica el ajuste familiar que se registre. Los IC marginales del 95 % se distinguen de los límites simultáneos. Las pruebas de equivalencia, calibración, robustez y diagnóstico necesitan su propio alcance; no quedan cubiertas automáticamente por el ajuste de las preguntas principales.</p>
+<p>El margen absoluto δ se mantiene como referencia metodológica; la tolerancia de brecha train–validación y las alternativas de potencia deberán fijarse explícitamente. El <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">P0 histórico de §9</span></a> completó 220 trayectorias y 440 ajustes de desarrollo, pero no selecciona ni dimensiona el catálogo vigente. Aunque se controle multiplicidad, reutilizar un test conocido mantiene el alcance exploratorio.</p>
+</section>
+</section>
+<section id="justificacion-del-dataset">
+<h2>1.3 Justificación del dataset<a class="headerlink" href="#justificacion-del-dataset" title="Link to this heading">#</a></h2>
+<section id="seleccion-tamano-y-calidad">
+<h3>1.3.1 Selección, tamaño y calidad<a class="headerlink" href="#seleccion-tamano-y-calidad" title="Link to this heading">#</a></h3>
+<p>Se conserva <strong>Binance Spot BTCUSDT</strong>, obtenido de <a class="reference external" href="https://github.com/binance/binance-public-data">Binance Public Data</a> y <a class="reference external" href="https://data.binance.vision/">Binance Vision</a>. Es pertinente por ofrecer una serie continua de un mercado de criptomonedas con OHLCV y trazabilidad de archivos; permite reproducir el benchmark de E1. El tamaño bruto no se interpreta como millones de muestras supervisadas independientes.</p>
+<p>El snapshot inventariado contiene <strong>75 ZIP, 97.442.605 bytes comprimidos y 2.014.480 filas de doce campos</strong>, entre el 01/01/2023 y el 30/10/2026. Los 1.399 días del calendario corresponden a 2.014.560 minutos esperados. Se detectaron <strong>80 minutos ausentes</strong> y una anomalía adicional de <code class="docutils literal notranslate"><span class="pre">close_time</span></code> el 24/03/2023. Por ello, ese día no es elegible para OHLCV diario completo; no se imputa ni se elimina el hueco del calendario.</p>
+<p>El desarrollo 2023–2024 tiene 731 días de calendario y 730 días OHLCV completos. En 2023 hay 350 etiquetas σ₇ válidas; en 2024, 366. Las pérdidas adicionales de ventanas dependen de D, el objetivo y el embargo: los conteos de filas brutas, días y ejemplos supervisados son distintos. El ajuste final D7 de E1 utilizó 709 ejemplos elegibles; no se atribuye ese número a futuras configuraciones de E2.</p>
+<p>La literatura citada respalda el problema y distintas fuentes informativas. <strong>El uso previo de esta fuente o dataset en literatura Q1 requiere aún una referencia verificable y el cuartil de su año.</strong> El criterio de la guía no exige que un artículo haya utilizado exactamente nuestro snapshot, sus fechas o hashes; esa identidad no se confunde con el respaldo de la fuente. La matriz de estudios de E2 mantiene pendiente esta comprobación, sin usar la reputación de una editorial como sustituto de evidencia.</p>
+</section>
+<section id="procedencia-licencia-etica-y-privacidad">
+<h3>1.3.2 Procedencia, licencia, ética y privacidad<a class="headerlink" href="#procedencia-licencia-etica-y-privacidad" title="Link to this heading">#</a></h3>
+<p>Los archivos originales y sus checksums se descargan del proveedor; el <a class="reference download internal" download="" href="../_downloads/b75bb75302500badb4e9a884a6ee1129/dataset_manifest_e1.json"><span class="xref download myst">manifiesto descargable</span></a> identifica cada objeto y su integridad. Las <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/data/README.md">instrucciones y scripts de adquisición de E1</a> permiten reconstruir la fuente sin incorporar precios individuales a este capítulo.</p>
+<p>La copia de términos revisada en E1 el 03/11/2026 corresponde a <strong>Vision Dataset Terms v1.0, actualizados el 26/08/2026</strong>: establece CC BY-NC-SA 4.0 salvo designación específica y condiciones adicionales. Véanse el <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/book/_static/data_source/TERMS_AND_CONDITIONS.md">texto conservado</a> y su <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/book/_static/data_source/terms_snapshot.json">registro de procedencia</a>. No se presenta como una licencia MIT de los datos ni se retrofecha su consulta.</p>
+<p>El uso es académico y no comercial. Las velas agregadas no incluyen identificadores personales; no se intentará identificar operadores. La ausencia de datos personales no elimina sesgos del mercado ni convierte los resultados en asesoría financiera. Se mantienen la atribución y la separación entre licencia de datos y código.</p>
+</section>
+<section id="representatividad-sesgos-y-particion-publica">
+<h3>1.3.3 Representatividad, sesgos y partición pública<a class="headerlink" href="#representatividad-sesgos-y-particion-publica" title="Link to this heading">#</a></h3>
+<p>La población observada es un único par, exchange y periodo. BTCUSDT no representa otras criptomonedas, otros proveedores ni cotizaciones en moneda fiduciaria; USDT añade exposición a una stablecoin. La selección de un activo superviviente, los cambios de régimen, las interrupciones del proveedor y la cobertura histórica limitan la generalización. El volumen refleja negociación de ese mercado, sin medir todo el mercado mundial.</p>
+<p>No se ha identificado una <strong>partición oficial de machine learning para este snapshot</strong> en la fuente utilizada. Los archivos mensuales y diarios del proveedor son una organización de descarga, no folds de evaluación. Se conserva la partición temporal de E1 y su forward chaining para respetar disponibilidad causal y comparabilidad. Los periodos conocidos se documentan como tales; no se barajan fechas ni se crean nuevos grupos independientes artificiales.</p>
+</section>
+</section>
+<section id="descripcion-tecnica-data-card">
+<h2>1.4 Descripción técnica · Data Card<a class="headerlink" href="#descripcion-tecnica-data-card" title="Link to this heading">#</a></h2>
+<p>Descargar la <a class="reference download internal" download="" href="../_downloads/2f4c10b145968f6d7a4381680510d034/dataset_card.json"><span class="xref download myst">Data Card en JSON</span></a>, el <a class="reference download internal" download="" href="../_downloads/90ebb817498db49047ab1aab4197df27/e1_reference.json"><span class="xref download myst">contrato heredado</span></a> y el <a class="reference download internal" download="" href="../_downloads/b75bb75302500badb4e9a884a6ee1129/dataset_manifest_e1.json"><span class="xref download myst">manifiesto de archivos</span></a>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Campo</p></th>
+<th class="head"><p>Descripción verificable</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Identificador</p></td>
+<td><p>Snapshot E1 de Binance Spot BTCUSDT, velas de un minuto, 01/01/2023–30/10/2026</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fuente y recolección</p></td>
+<td><p>Objetos históricos mensuales/diarios de Binance Vision; adquisición y hashes registrados en el manifiesto heredado, sin afirmar una adquisición nueva de E2</p></td>
+</tr>
+<tr class="row-even"><td><p>Versión</p></td>
+<td><p>Commit E1 <code class="docutils literal notranslate"><span class="pre">94a4b0324e93361e8928d708fdfeb50110e3686f</span></code> y manifiesto SHA-256 <code class="docutils literal notranslate"><span class="pre">af723bcca2caffcbe44ae5243e2863bbcdcd39ae8cd42df491af0a2857926bb2</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Estructura bruta</p></td>
+<td><p>75 ZIP; 2.014.480 filas; doce campos de kline</p></td>
+</tr>
+<tr class="row-even"><td><p>Esquema</p></td>
+<td><p>Timestamps de apertura/cierre; OHLC, volumen, volumen cotizado, número de operaciones, volúmenes taker base/cotizado y campo ignore</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tipos</p></td>
+<td><p>Timestamps normalizados a UTC, conteo de operaciones entero y magnitudes numéricas; la unidad temporal original se verifica por archivo antes de convertir</p></td>
+</tr>
+<tr class="row-even"><td><p>Entrada del modelo</p></td>
+<td><p>Siete días consecutivos × cinco variables OHLCV; 35 valores antes de transformaciones</p></td>
+</tr>
+<tr class="row-odd"><td><p>Objetivo y horizonte</p></td>
+<td><p>σ₇ poblacional de retornos diarios; día siguiente al último día de entrada; ocho cierres necesarios</p></td>
+</tr>
+<tr class="row-even"><td><p>Etiquetado</p></td>
+<td><p>Cálculo determinista desde cierres diarios completos, sin anotadores humanos; acuerdo entre anotadores no aplica</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ruido del objetivo</p></td>
+<td><p>σ₇ es un estimador histórico dependiente del cierre y ventana elegidos; no es observación directa de volatilidad latente ni etiqueta sin error</p></td>
+</tr>
+<tr class="row-even"><td><p>Cobertura</p></td>
+<td><p>Mercado BTC/USDT en Binance Spot, operación 24/7, calendario diario UTC; no hay unidades geográficas ni población de personas</p></td>
+</tr>
+<tr class="row-odd"><td><p>Filtros</p></td>
+<td><p>Validación de timestamps y velas, agregación de días completos, retornos sobre días consecutivos, exclusión de ventanas afectadas por huecos y embargo heredado; sin imputación</p></td>
+</tr>
+<tr class="row-even"><td><p>Calidad conocida</p></td>
+<td><p>80 minutos ausentes y una anomalía adicional de cierre el 24/03/2023; un día diario incompleto</p></td>
+</tr>
+<tr class="row-odd"><td><p>Desarrollo</p></td>
+<td><p>2023–2024: 731 días de calendario, 730 OHLCV completos; etiquetas σ₇ válidas 350 en 2023 y 366 en 2024</p></td>
+</tr>
+<tr class="row-even"><td><p>Evaluación heredada</p></td>
+<td><p>Reserva fase II 01/09–30/10/2026, 60 fechas ya evaluadas; fase I 2025–agosto de 2026 también conocida</p></td>
+</tr>
+<tr class="row-odd"><td><p>Licencia</p></td>
+<td><p>Términos Vision conservados en E1, CC BY-NC-SA 4.0 con condiciones y excepciones indicadas por la fuente</p></td>
+</tr>
+<tr class="row-even"><td><p>Límites de uso</p></td>
+<td><p>Benchmark académico de una sola serie; sin afirmación de utilidad financiera ni generalización a otras criptomonedas</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El hash anterior identifica <strong>el archivo manifiesto</strong>; no es un único checksum de todos los precios concatenados. Cada ZIP tiene su comprobación individual en ese archivo. La Data Card y el contrato documentan la transferencia; el benchmark final Bitcoin D7 continúa pendiente y su ejecución se distingue del <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">P0 de desarrollo registrado en §9</span></a>. El <a class="reference download internal" download="" href="../_downloads/509b719d3c945b6db39c7464fff8dacb/execution_receipt.json"><span class="xref download myst">recibo de las veinte corridas externas de ETTh1</span></a> tiene otro alcance.</p>
+<section id="estado-de-cierre-de-esta-seccion">
+<h3>1.4.1 Estado de cierre de esta sección<a class="headerlink" href="#estado-de-cierre-de-esta-seccion" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Requisito visible</p></th>
+<th class="head"><p>Estado</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Formulación matemática, tarea, métricas, δ y unidad</p></td>
+<td><p>Documentados con la herencia de E1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Relevancia con al menos tres referencias</p></td>
+<td><p>Tres referencias de contexto citadas; no sustituyen la revisión sistemática</p></td>
+</tr>
+<tr class="row-even"><td><p>Tres RQ, hipótesis, efecto y reglas</p></td>
+<td><p>Formulación metodológica disponible; comparadores, multiplicidad y registro nuevos pendientes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Justificación y Data Card</p></td>
+<td><p>Documentadas con procedencia, versión, hashes, calidad y límites</p></td>
+</tr>
+<tr class="row-even"><td><p>Uso previo de la fuente/dataset en Q1</p></td>
+<td><p>Pendiente de referencia y cuartil por año; no exige identidad exacta del snapshot</p></td>
+</tr>
+<tr class="row-odd"><td><p>Catálogo y protocolo</p></td>
+<td><p>Diez modelos vigentes y CNN-1D + LSTM + atención temporal como candidato 11; nueva enmienda y evaluación pendientes</p></td>
+</tr>
+<tr class="row-even"><td><p>Prueba desconocida y confirmación nueva</p></td>
+<td><p>No disponibles en los periodos heredados ya evaluados</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La <a class="reference internal" href="03_literatura.html"><span class="std std-doc">revisión bibliográfica de §3</span></a> distingue las fuentes de los modelos, su adaptación a regresión de σ₇ y la evidencia aplicada a criptomonedas. Una arquitectura publicada o un original leído no acreditan su funcionamiento en este dataset. La comprobación de uso de la fuente en Q1 y el cierre bibliográfico se mantienen separados de la ejecución del nuevo benchmark.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../intro.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Proyecto Final de Deep Learning: Entregable 2</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02_eda.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-formal-del-problema">1.1 Definición formal del problema</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contrato-vigente-y-procedencia-historica">1.1.1 Contrato vigente y procedencia histórica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entradas-salida-y-disponibilidad-causal">1.1.2 Entradas, salida y disponibilidad causal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#espacio-de-hipotesis-perdida-y-riesgo">1.1.3 Espacio de hipótesis, pérdida y riesgo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipo-de-tarea-y-relevancia">1.1.4 Tipo de tarea y relevancia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-margen-y-unidad-de-independencia">1.1.5 Métricas, margen y unidad de independencia</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preguntas-de-investigacion-e-hipotesis">1.2 Preguntas de investigación e hipótesis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rq1-ganancia-predictiva-relevante">1.2.1 RQ1 · Ganancia predictiva relevante</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rq2-deterioro-de-la-ventaja-en-alta-volatilidad">1.2.2 RQ2 · Deterioro de la ventaja en alta volatilidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rq3-mejora-conjunta-de-error-y-coste">1.2.3 RQ3 · Mejora conjunta de error y coste</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiplicidad-y-criterio-de-decision-comun">1.2.4 Multiplicidad y criterio de decisión común</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#justificacion-del-dataset">1.3 Justificación del dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-tamano-y-calidad">1.3.1 Selección, tamaño y calidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#procedencia-licencia-etica-y-privacidad">1.3.2 Procedencia, licencia, ética y privacidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#representatividad-sesgos-y-particion-publica">1.3.3 Representatividad, sesgos y partición pública</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descripcion-tecnica-data-card">1.4 Descripción técnica · Data Card</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-de-cierre-de-esta-seccion">1.4.1 Estado de cierre de esta sección</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

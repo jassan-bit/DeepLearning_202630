@@ -1,0 +1,88 @@
+{
+  "protocol_id": "e2_received_corpus_screening_20261106_v1",
+  "status": "post_search_rule_assisted_first_pass_not_preregistered",
+  "date": "2026-11-06",
+  "primary_problem": "BTC volatility forecasting; financial volatility prioritized; other-domain mechanisms require transfer justification",
+  "publication_window": [
+    2019,
+    2026
+  ],
+  "outside_window_policy": "flag for date verification or justified foundational exception; never automatic exclusion on year",
+  "inputs": "Frozen received 7833 bibliographic groups and matching private abstracts; no new remote database query",
+  "reviewer_model": "One editorial workflow assisted by deterministic rules; zero independent human adjudications asserted; no fabricated Cohen kappa",
+  "decision_semantics": {
+    "retain_for_fulltext": "Recover or adjudicate full text; not included study",
+    "manual_review_pending": "Ambiguous, contextual or origin mechanism; requires human decision",
+    "exclude_title_abstract_provisional": "Machine exclusion recommendation only; human validation pending"
+  },
+  "precedence": [
+    "verified architectural originals",
+    "existing applied support",
+    "crypto volatility + forecast + deep signals",
+    "other financial volatility + forecast + deep signals",
+    "other finance target/unclear deep mechanism",
+    "local transversal conjunction",
+    "named other-domain forecasting mechanism",
+    "ambiguous forecast/origin/missing abstract",
+    "provisional exclusion"
+  ],
+  "rule_source": "scripts/screen_e2_literature.py::classify_record; features and matched terms are recorded per group",
+  "target_role_rule": "Keyword conjunction does not prove volatility target, standalone comparator, causality, performance or methodological quality; these remain unverified",
+  "fulltext_eligibility_checklist": [
+    "actual forecast target and units",
+    "standalone/hybrid/comparator role",
+    "dataset, period, frequency and horizon",
+    "architecture and layers/dimensions",
+    "split and train-only preprocessing",
+    "seeds and repetitions",
+    "metrics and uncertainty",
+    "baseline HPO fairness",
+    "code and data availability/license",
+    "year-specific venue quality",
+    "D7 transfer assumptions"
+  ],
+  "complete_review_eligibility_closed": false,
+  "new_models_trained": 0,
+  "local_transversal_queries": {
+    "T1_attention_vision": {
+      "family": "attention",
+      "modality": "vision",
+      "expression": "(\"vision transformer\" OR \"self-attention\") AND (\"computer vision\" OR image*) AND (transfer* OR adapt*)",
+      "executed_local_regex": {
+        "family": "\\b(?:vision transformers?|self[- ]attention|ViT|Swin)\\b",
+        "modality": "\\b(?:computer vision|images?|visual|vision|object detection|image classification)\\b",
+        "transfer": "\\b(?:transfer\\w*|adapt\\w*)\\b"
+      }
+    },
+    "T2_mixing_vision": {
+      "family": "mixing",
+      "modality": "vision",
+      "expression": "(\"MLP-Mixer\" OR \"token mixing\" OR \"channel mixing\") AND (vision OR image*) AND (transfer* OR adapt*)",
+      "executed_local_regex": {
+        "family": "\\b(?:MLP[- ]Mixer|token[- ]mixing|channel[- ]mixing)\\b",
+        "modality": "\\b(?:computer vision|images?|visual|vision|object detection|image classification)\\b",
+        "transfer": "\\b(?:transfer\\w*|adapt\\w*)\\b"
+      }
+    },
+    "T3_ssm_language": {
+      "family": "ssm",
+      "modality": "language",
+      "expression": "(\"selective state space\" OR Mamba) AND (language OR speech OR audio) AND (transfer* OR adapt*)",
+      "executed_local_regex": {
+        "family": "\\b(?:selective state[- ]space|selective state|structured state[- ]space|Mamba)\\b",
+        "modality": "\\b(?:language|speech|audio|text|natural language processing|NLP)\\b",
+        "transfer": "\\b(?:transfer\\w*|adapt\\w*)\\b"
+      }
+    }
+  },
+  "native_transversal_database_execution": false,
+  "transversal_local_semantics": "Case-insensitive regex conjunction over received title and distinct private abstracts. Local lexical variants are in code; not equal to native WoS TS indexing or a new global search.",
+  "coverage_limits": [
+    "374 Scopus records unreceived",
+    "WoS per-query totals/ranges and file-to-query assignment unconfirmed",
+    "Exact Scopus query/filters not encoded",
+    "Seven additional applied texts not fully extracted",
+    "Year-specific quartiles unknown"
+  ],
+  "selection_rule": "Preserve historical Top10 score intervals; expose alternatives without treating mentions as comparator frequency or assigning unknown score=0. No final replacement/rank before source verification."
+}

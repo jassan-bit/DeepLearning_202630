@@ -1,0 +1,250 @@
+{
+  "schema_version": 1,
+  "status": "development_audit_passed_real_pipeline_not_integrated",
+  "model_fits": 0,
+  "optimizer_steps": 0,
+  "HPO_trials": 0,
+  "downloads": 0,
+  "market_rows_exported": 0,
+  "sources": {
+    "results/eda_development/daily_market_development.csv": {
+      "sha256": "bf6bb5160af924aef6a15c3684aeae932df3017e8639888bb7e91ce787900171",
+      "matches_registration": true
+    },
+    "results/eda_development/daily_volatility_development.csv": {
+      "sha256": "20b96374a659eb87dadfa68aa3d6b6b5fb6bea5b10eebe6f2c186ad69861844a",
+      "matches_registration": true
+    }
+  },
+  "source_date_checks": {
+    "results/eda_development/daily_market_development.csv": {
+      "rows": 731,
+      "duplicate_dates": 0,
+      "missing_calendar_rows": 0,
+      "utc_midnight": true
+    },
+    "results/eda_development/daily_volatility_development.csv": {
+      "rows": 731,
+      "duplicate_dates": 0,
+      "missing_calendar_rows": 0,
+      "utc_midnight": true
+    }
+  },
+  "quality": {
+    "incomplete_OHLCV_days": [
+      "2023-03-24"
+    ],
+    "invalid_target_count": 15,
+    "eligible_D7_count": 716,
+    "ineligible_D7_count": 15,
+    "population7_labels_match": true,
+    "D7_is_t_minus7_through_t_minus1": true,
+    "eligibility_matches_independent_reconstruction": true,
+    "label_max_absolute_difference": 9.71445146547012e-17
+  },
+  "CV_and_pilot_folds": [
+    {
+      "origin": "2024-01-01",
+      "evaluation_end": "2024-01-31",
+      "train_count": 343,
+      "inner_train_count": 253,
+      "inner_validation_count": 83,
+      "evaluation_count_available": 31,
+      "last_train_day": "2023-12-24",
+      "last_inner_train_day": "2023-09-25",
+      "train_at_most_origin_minus8": true,
+      "future_perturbation_invariant": true,
+      "independent_scaler_reconstruction_matches": true,
+      "exact_cross_partition_window_duplicates": 0
+    },
+    {
+      "origin": "2024-02-01",
+      "evaluation_end": "2024-02-29",
+      "train_count": 374,
+      "inner_train_count": 284,
+      "inner_validation_count": 83,
+      "evaluation_count_available": 29,
+      "last_train_day": "2024-01-24",
+      "last_inner_train_day": "2023-10-26",
+      "train_at_most_origin_minus8": true,
+      "future_perturbation_invariant": true,
+      "independent_scaler_reconstruction_matches": true,
+      "exact_cross_partition_window_duplicates": 0
+    },
+    {
+      "origin": "2024-03-01",
+      "evaluation_end": "2024-03-31",
+      "train_count": 403,
+      "inner_train_count": 313,
+      "inner_validation_count": 83,
+      "evaluation_count_available": 31,
+      "last_train_day": "2024-02-22",
+      "last_inner_train_day": "2023-11-24",
+      "train_at_most_origin_minus8": true,
+      "future_perturbation_invariant": true,
+      "independent_scaler_reconstruction_matches": true,
+      "exact_cross_partition_window_duplicates": 0
+    },
+    {
+      "origin": "2024-04-01",
+      "evaluation_end": "2024-04-30",
+      "train_count": 434,
+      "inner_train_count": 344,
+      "inner_validation_count": 83,
+      "evaluation_count_available": 30,
+      "last_train_day": "2024-03-24",
+      "last_inner_train_day": "2023-12-25",
+      "train_at_most_origin_minus8": true,
+      "future_perturbation_invariant": true,
+      "independent_scaler_reconstruction_matches": true,
+      "exact_cross_partition_window_duplicates": 0
+    },
+    {
+      "origin": "2024-05-01",
+      "evaluation_end": "2024-05-31",
+      "train_count": 464,
+      "inner_train_count": 374,
+      "inner_validation_count": 83,
+      "evaluation_count_available": 31,
+      "last_train_day": "2024-04-23",
+      "last_inner_train_day": "2024-01-24",
+      "train_at_most_origin_minus8": true,
+      "future_perturbation_invariant": true,
+      "independent_scaler_reconstruction_matches": true,
+      "exact_cross_partition_window_duplicates": 0
+    },
+    {
+      "origin": "2024-06-01",
+      "evaluation_end": "2024-06-30",
+      "train_count": 495,
+      "inner_train_count": 405,
+      "inner_validation_count": 83,
+      "evaluation_count_available": 30,
+      "last_train_day": "2024-05-24",
+      "last_inner_train_day": "2024-02-24",
+      "train_at_most_origin_minus8": true,
+      "future_perturbation_invariant": true,
+      "independent_scaler_reconstruction_matches": true,
+      "exact_cross_partition_window_duplicates": 0
+    },
+    {
+      "origin": "2024-07-01",
+      "evaluation_end": "2024-07-31",
+      "train_count": 525,
+      "inner_train_count": 435,
+      "inner_validation_count": 83,
+      "evaluation_count_available": 31,
+      "last_train_day": "2024-06-23",
+      "last_inner_train_day": "2024-03-25",
+      "train_at_most_origin_minus8": true,
+      "future_perturbation_invariant": true,
+      "independent_scaler_reconstruction_matches": true,
+      "exact_cross_partition_window_duplicates": 0
+    },
+    {
+      "origin": "2024-08-01",
+      "evaluation_end": "2024-08-31",
+      "train_count": 556,
+      "inner_train_count": 466,
+      "inner_validation_count": 83,
+      "evaluation_count_available": 31,
+      "last_train_day": "2024-07-24",
+      "last_inner_train_day": "2024-04-25",
+      "train_at_most_origin_minus8": true,
+      "future_perturbation_invariant": true,
+      "independent_scaler_reconstruction_matches": true,
+      "exact_cross_partition_window_duplicates": 0
+    },
+    {
+      "origin": "2024-09-01",
+      "evaluation_end": "2024-09-30",
+      "train_count": 587,
+      "inner_train_count": 497,
+      "inner_validation_count": 83,
+      "evaluation_count_available": 30,
+      "last_train_day": "2024-08-24",
+      "last_inner_train_day": "2024-05-26",
+      "train_at_most_origin_minus8": true,
+      "future_perturbation_invariant": true,
+      "independent_scaler_reconstruction_matches": true,
+      "exact_cross_partition_window_duplicates": 0
+    },
+    {
+      "origin": "2024-10-01",
+      "evaluation_end": "2024-10-31",
+      "train_count": 617,
+      "inner_train_count": 527,
+      "inner_validation_count": 83,
+      "evaluation_count_available": 31,
+      "last_train_day": "2024-09-23",
+      "last_inner_train_day": "2024-06-25",
+      "train_at_most_origin_minus8": true,
+      "future_perturbation_invariant": true,
+      "independent_scaler_reconstruction_matches": true,
+      "exact_cross_partition_window_duplicates": 0
+    },
+    {
+      "origin": "2024-11-01",
+      "evaluation_end": "2024-12-30",
+      "train_count": 648,
+      "inner_train_count": 558,
+      "inner_validation_count": 83,
+      "evaluation_count_available": 60,
+      "last_train_day": "2024-10-24",
+      "last_inner_train_day": "2024-07-26",
+      "train_at_most_origin_minus8": true,
+      "future_perturbation_invariant": true,
+      "independent_scaler_reconstruction_matches": true,
+      "exact_cross_partition_window_duplicates": 0
+    }
+  ],
+  "proposed_pilot_support": {
+    "origin": "2024-11-08",
+    "evaluation_end": "2024-12-30",
+    "train_count": 655,
+    "inner_train_count": 565,
+    "inner_validation_count": 83,
+    "evaluation_count_available": 53,
+    "last_train_day": "2024-10-31",
+    "last_inner_train_day": "2024-08-02",
+    "train_at_most_origin_minus8": true,
+    "future_perturbation_invariant": true,
+    "independent_scaler_reconstruction_matches": true,
+    "exact_cross_partition_window_duplicates": 0,
+    "status": "proposed_support_only_not_executed",
+    "historical_E1_pilot_unchanged": true
+  },
+  "final_training_support": {
+    "origin": "2025-01-01",
+    "evaluation_end": "2026-08-31",
+    "train_count": 709,
+    "inner_train_count": 619,
+    "inner_validation_count": 83,
+    "evaluation_count_available": 0,
+    "last_train_day": "2024-12-24",
+    "last_inner_train_day": "2024-09-25",
+    "train_at_most_origin_minus8": true,
+    "future_perturbation_invariant": true,
+    "independent_scaler_reconstruction_matches": true,
+    "exact_cross_partition_window_duplicates": 0
+  },
+  "pipeline": {
+    "shared_relative_features_identity_verified": true,
+    "real_input_rejected": "Only the explicit in-memory synthetic fixture is admitted",
+    "real_end_to_end_integration": "not implemented; synthetic provenance gate retained"
+  },
+  "evaluation_2025_2026": "not read or recovered; unnecessary for development audit; 608-date real evaluation not certified",
+  "limits": [
+    "Daily derivative identity checked against historical registered hashes, not raw minute archive reaggregation.",
+    "Final support independently constructed from contract, not an executable real E2 final runner.",
+    "No prediction, performance, model-level leakage or generalization claims."
+  ],
+  "code_and_contract_sha256": {
+    "experiments/dl_r2_cv_20261104/protocol.json": "e8da0f0098acd24a58664b83d0ba499b43aa9d597a36c52da6b3325c2c3c7bec",
+    "book_e2/sections/17_contrato_sincronizado.md": "f1fc1b83b2ac2e73ccde56bb26da48da1b029c6c7559ba448917bcc4e9694113",
+    "scripts/dl_data.py": "8ea726a1d8ca7b9fa9bfcb26ee6e565b516c40a3ad1cd40e0f639c43b7f429ce",
+    "scripts/dl_data_v2.py": "bbf0ad8646afcd792b3961d0e5e5bcf9318f0fbe4377732a965c58f9557c33cb",
+    "scripts/e2_current_pipeline.py": "888ba5671c9cdaae8a27a855571ffc2c952f99437c3400804aff8eaf5dfeec85",
+    "scripts/audit_e2_real_data.py": "94d4c69800d76af47e7a8a242ded4f03f5d2db298b7e1fabeb858d197615f0b3"
+  }
+}

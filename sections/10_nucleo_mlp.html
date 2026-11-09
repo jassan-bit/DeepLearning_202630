@@ -1,0 +1,863 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>10. Estudio complementario del núcleo en sesenta días &#8212; Bitcoin: pronóstico de volatilidad</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/10_nucleo_mlp';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="11. Benchmark de 608 fechas con HPO equitativo y planificación" href="11_reejecucion_608.html" />
+    <link rel="prev" title="9. Estudio anterior GRU–LSTM–TCN: evaluación D7" href="09_estudio_planificado.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Bitcoin: pronóstico de volatilidad</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_problema_dataset.html">1. Definición del Problema y Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_estado_arte.html">3. Revisión del Estado del Arte y Extracción de los Tres Modelos Base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion_evaluacion.html">4. Implementación y evaluación de los modelos base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_benchmark.html">5. Benchmark de los modelos base y definición del baseline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_procedimiento.html">6. Guía de Procedimiento por Tipo de Problema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_limitaciones_entregables.html">7. Limitaciones inferenciales y alcance de la evidencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_entregables.html">8. Entregables: productos y evidencias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_estudio_planificado.html">9. Estudio anterior GRU–LSTM–TCN: evaluación D7</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">10. Estudio complementario del núcleo en sesenta días</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_reejecucion_608.html">11. Benchmark de 608 fechas con HPO equitativo y planificación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_errores_congelados.html">12. Análisis de errores con predicciones congeladas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="protocolo_pendiente.html">Decisiones, evidencia y alcance de E1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias y materiales</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><div class="book-credit">
+  <p class="component-author">By Jassan Arteta</p>
+  <p class="copyright">© Copyright 2026.</p>
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/10_nucleo_mlp.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>10. Estudio complementario del núcleo en sesenta días</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-de-la-nueva-ejecucion">Diseño de la nueva ejecución</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hpo-ejecutado-y-recetas-seleccionadas">HPO ejecutado y recetas seleccionadas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#piloto-ejecutado-y-dimensionamiento-publicado">Piloto ejecutado y dimensionamiento publicado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenamiento-y-analisis-fijados">Entrenamiento y análisis fijados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cronologia-y-alcance">Cronología y alcance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cierre-efectivo-y-procedencia">Cierre efectivo y procedencia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curvas-publicas-de-las-recetas-definitivas">Curvas públicas de las recetas definitivas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-de-la-evaluacion-historica-comun">Métricas de la evaluación histórica común</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparaciones-entre-inicializaciones">Comparaciones entre inicializaciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-temporal-y-margen-practico">Comparación temporal y margen práctico</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-residual-y-conclusion">Diagnóstico residual y conclusión</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="estudio-complementario-del-nucleo-en-sesenta-dias">
+<span id="final-core-mlp-e1"></span><h1>10. Estudio complementario del núcleo en sesenta días<a class="headerlink" href="#estudio-complementario-del-nucleo-en-sesenta-dias" title="Link to this heading">#</a></h1>
+<p><strong>Alcance complementario.</strong> La nueva comparación principal de E1 conserva <strong>GRU32, LSTM32 y MLP16 en las 608 fechas del 01/01/2025–31/08/2026</strong>, con HPO equitativo, piloto propio y <strong>R=309</strong> según el <a class="reference internal" href="11_reejecucion_608.html#remediation-608-e1"><span class="std std-ref">capítulo 11</span></a>. El <a class="reference internal" href="05_benchmark.html"><span class="std std-doc">capítulo 5</span></a> mantiene las diez semillas originales. Este capítulo preserva la ejecución <strong>GRU16–LSTM16–MLP32</strong>, sus 465 semillas por familia y su evaluación de sesenta fechas. Sus pesos, métricas, curvas y dimensionamiento pertenecen exclusivamente a este estudio complementario.</p>
+<p>La selección vigente de E1 reúne <strong>LSTM, MLP y GRU</strong>. En los diez experimentos cripto con reporte suficiente del corpus conciliado aparecen, respectivamente, en <strong>10, 4 y 2</strong>; TCN aparece en uno y se conserva como comparación complementaria. La <a class="reference internal" href="03_estado_arte.html#core-selection-e1"><span class="std std-ref">decisión bibliográfica</span></a> combina esta recurrencia con arquitecturas básicas: una capa oculta densa y dos celdas recurrentes de una capa. El número de parámetros se comprueba para cada receta; no se deduce simplicidad solamente del nombre de la familia.</p>
+<p>Este estudio realizó una <strong>ejecución nueva y coherente de las tres redes</strong>. Los resultados de MLP no se mezclaron con las repeticiones de GRU/LSTM del capítulo 9. La decisión posterior de priorizar el benchmark de 608 días conserva esta comparación completa, incluidos sus resultados adversos e inconclusos.</p>
+<section id="diseno-de-la-nueva-ejecucion">
+<h2>Diseño de la nueva ejecución<a class="headerlink" href="#diseno-de-la-nueva-ejecucion" title="Link to this heading">#</a></h2>
+<p>El diseño mantiene Bitcoin BTCUSDT, cinco covariables OHLCV diarias, <strong>D=7, n=7 y horizonte de un día</strong>. Conserva las funciones de preparación causal, la purga, el objetivo poblacional sin anualizar y el esquema forward chaining documentados en el libro. El periodo de desarrollo es 2023–2024.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Elemento</p></th>
+<th class="head"><p>Procedimiento común</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>HPO</p></td>
+<td><p>Ocho candidatos por familia, semillas 6101–6102, diez bloques de enero–octubre de 2024</p></td>
+</tr>
+<tr class="row-odd"><td><p>Selección</p></td>
+<td><p>Menor media del RMSE sobre 305 fechas concatenadas; desempate a tolerancia 10⁻¹² por parámetros y luego identificador</p></td>
+</tr>
+<tr class="row-even"><td><p>Piloto</p></td>
+<td><p>Diez semillas nuevas, 7101–7110, sobre 01/11–30/12/2024; recetas fijas</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dimensionamiento</p></td>
+<td><p>t no central, α*=0,05/3, potencia marginal objetivo 0,80 y cota simultánea del 80 % de la DE pareada</p></td>
+</tr>
+<tr class="row-even"><td><p>Repeticiones</p></td>
+<td><p>Máximo entre 465 y el R requerido por los tres pares del nuevo piloto; sin detener por significación</p></td>
+</tr>
+<tr class="row-odd"><td><p>Baseline</p></td>
+<td><p>Mejor receta de desarrollo entre las tres familias, congelada antes de la evaluación</p></td>
+</tr>
+<tr class="row-even"><td><p>Evaluación histórica</p></td>
+<td><p>01/09–30/10/2026, sesenta fechas; contexto de agosto; pesos fijos</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>GRU y LSTM exploran <strong>16/32 unidades</strong>; MLP explora <strong>32/128 unidades</strong>. Las tres familias cruzan esos dos anchos con LR 0,001/0,003 y dropout 0/0,1. Cada una recibe 160 segmentos de validación y <strong>320 etapas de ajuste</strong>; el HPO completo comprende <strong>960 etapas</strong>. El esfuerzo de búsqueda es el mismo, aunque el coste computacional y los parámetros sean distintos.</p>
+<p>MLP aplana la ventana ordenada de 7×5 covariables, aplica una capa densa con ReLU, dropout y una salida Softplus. Sus anchos candidatos tienen <strong>1.185 y 4.737 parámetros</strong>. Los comparadores feedforward de la literatura motivan la familia y su baja profundidad; la entrada OHLCV, el escalado, los anchos y la salida positiva son adaptaciones explícitas del proyecto, no una reproducción exacta de aquellos artículos.</p>
+<p>El margen conservado es <strong>δ=0,00025772842664981106</strong>. Procede del 5 % del RMSE CV del GRU inicial y mantiene su interpretación normativa de comparación académica. No se redefine a partir de los nuevos resultados ni se interpreta como rentabilidad o equivalencia.</p>
+</section>
+<section id="hpo-ejecutado-y-recetas-seleccionadas">
+<h2>HPO ejecutado y recetas seleccionadas<a class="headerlink" href="#hpo-ejecutado-y-recetas-seleccionadas" title="Link to this heading">#</a></h2>
+<p>El HPO cerró <strong>48 trayectorias, 480 bloques mensuales y 960 etapas de ajuste</strong>, con 305 fechas por trayectoria. Las recetas se congelaron el <strong>07/11/2026 a las 23:55:10 UTC</strong>, antes del piloto.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Familia</p></th>
+<th class="head"><p>Receta seleccionada por desarrollo</p></th>
+<th class="head text-right"><p>Parámetros</p></th>
+<th class="head text-right"><p>RMSE CV, media ± DE de dos semillas</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>GRU</strong></p></td>
+<td><p>Una capa, 16 unidades, LR 0,003, dropout 0,1</p></td>
+<td class="text-right"><p><strong>1.121</strong></p></td>
+<td class="text-right"><p><strong>0,00513620 ± 0,00003068</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>MLP</strong></p></td>
+<td><p>Una capa oculta, 32 unidades, LR 0,003, dropout 0,1</p></td>
+<td class="text-right"><p><strong>1.185</strong></p></td>
+<td class="text-right"><p><strong>0,00527943 ± 0,00003534</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>LSTM</strong></p></td>
+<td><p>Una capa, 16 unidades, LR 0,003, dropout 0</p></td>
+<td class="text-right"><p><strong>1.489</strong></p></td>
+<td class="text-right"><p><strong>0,00626389 ± 0,00021402</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El <strong>baseline de esta ejecución es GRU/D7-c03</strong>, elegido por el menor RMSE medio de desarrollo. La MLP de 32 unidades es la receta nueva: no se le atribuyen los 593 parámetros o las puntuaciones de la MLP histórica de 16 unidades. Las dos semillas de selección no constituyen el número de repeticiones de evaluación ni un intervalo de incertidumbre temporal.</p>
+</section>
+<section id="piloto-ejecutado-y-dimensionamiento-publicado">
+<h2>Piloto ejecutado y dimensionamiento publicado<a class="headerlink" href="#piloto-ejecutado-y-dimensionamiento-publicado" title="Link to this heading">#</a></h2>
+<p>El piloto completó <strong>30 trayectorias y 60 etapas</strong> con las recetas congeladas y semillas 7101–7110. Cerró el <strong>07/11/2026 a las 23:56:49 UTC</strong>. Cada ajuste utilizó 648 ejemplos permitidos, con 558 de subentrenamiento y 83 de validación interna; sus sesenta fechas de evaluación son comunes a las tres redes.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Par</p></th>
+<th class="head text-right"><p>DE pareada del piloto</p></th>
+<th class="head text-right"><p>Cota superior simultánea 80 %</p></th>
+<th class="head text-right"><p>R requerido con la cota</p></th>
+<th class="head text-right"><p>Potencia planificada a R=465</p></th>
+<th class="head text-right"><p>MDE a R=465</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>GRU–LSTM</p></td>
+<td class="text-right"><p>0,000862848</p></td>
+<td class="text-right"><p>0,001356311</p></td>
+<td class="text-right"><p>293</p></td>
+<td class="text-right"><p>0,954577</p></td>
+<td class="text-right"><p>0,000204142</p></td>
+</tr>
+<tr class="row-odd"><td><p>GRU–MLP</p></td>
+<td class="text-right"><p>0,000464106</p></td>
+<td class="text-right"><p>0,000729529</p></td>
+<td class="text-right"><p>87</p></td>
+<td class="text-right"><p>0,99999990</p></td>
+<td class="text-right"><p>0,000109803</p></td>
+</tr>
+<tr class="row-even"><td><p>LSTM–MLP</p></td>
+<td class="text-right"><p>0,000917423</p></td>
+<td class="text-right"><p>0,001442098</p></td>
+<td class="text-right"><p>331</p></td>
+<td class="text-right"><p>0,926184</p></td>
+<td class="text-right"><p>0,000217054</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El máximo requerido es <strong>331</strong>. La regla prefijada produce <strong>R final=465</strong>, semillas <strong>8101–8565</strong>, para un total de <strong>1.395 trayectorias y 2.790 etapas definitivas</strong>. El piso conservador estaba en el diseño previo; no sustituye al cálculo nuevo ni se escogió según la evaluación.</p>
+<p>El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/593b4ec943dc0f7e257d348f3145e71810f665e4/experiments/e1_core_mlp_extension_20261107/planning">plan exacto y sus métricas de origen</a> se publicaron y verificaron por GET a las <strong>23:58:35 UTC</strong>, antes de iniciar los ajustes definitivos. El SHA-256 del JSON es <strong>5c1ce3d67c72def7c337b92d846df9ea5589bc6f42802ed000dc0144b390568b</strong>. Una revisión numérica independiente con t no central de <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> confirmó los tres tamaños y sus extremos enteros.</p>
+<p>Estos valores son planificación marginal entre semillas, condicionada a normalidad y transferencia de dispersión del piloto. La alternativa de potencia es una diferencia δ frente a cero; acreditar una mejora superior al margen exige además el intervalo correspondiente. No demuestran potencia temporal del 80 %, potencia conjunta del 80 % o potencia alcanzada. Los contrastes y sensibilidades conservan su procedimiento aunque la evaluación resulte adversa.</p>
+</section>
+<section id="entrenamiento-y-analisis-fijados">
+<h2>Entrenamiento y análisis fijados<a class="headerlink" href="#entrenamiento-y-analisis-fijados" title="Link to this heading">#</a></h2>
+<p>Se utiliza <strong>AdamW</strong>, batch 32, decaimiento 0,0001, clipping 1, máximo de cien épocas, paciencia 12 y mejora mínima 0,00001. La validación interna causal elige duración; sus pesos se descartan y el reajuste comienza desde cero con la semilla de etapa más 10.000.000. Cada ajuste definitivo dispone de <strong>709 ejemplos</strong>, con 619 de subentrenamiento y 83 de validación interna. Los trabajadores y el proceso de puntuación verifican algoritmos deterministas, float32 y un hilo intra/interoperación; el proceso de registro sólo recoge metadatos.</p>
+<p>El análisis principal compara los <strong>tres pares del núcleo</strong> con t pareada, Holm-3, IC marginales y familiares, efecto d_z y sensibilidad bootstrap entre semillas. Shapiro–Wilk diagnostica las diferencias; no selecciona la prueba más favorable. Las seis métricas se calculan en la escala original tras invertir las transformaciones aprendidas del entrenamiento.</p>
+<p>El análisis temporal secundario conserva los tres pares neuronales y los tres frente a persistencia: <strong>DM con HAC de seis rezagos, corrección HLN y Holm-6</strong>. Su pérdida es la MSE diaria media de los modelos individuales, no el error de un ensemble. El bootstrap circular usa <strong>4.999 remuestras comunes de fechas</strong>, bloque principal siete y sensibilidad tres/catorce. Conserva la media de RMSE individuales como estimando y distingue IC marginales de los familiares de seis pares.</p>
+<p>BDS de dimensión dos y radio 1,5 DE, y Ljung–Box en rezagos uno/cinco, se aplican como diagnósticos exploratorios por semilla. Se conserva Holm por familia de diagnósticos y los casos indefinidos, sin interpretar rechazo como una ganancia no lineal demostrada. Las pruebas entre inicializaciones y las temporales responden a preguntas diferentes.</p>
+</section>
+<section id="cronologia-y-alcance">
+<h2>Cronología y alcance<a class="headerlink" href="#cronologia-y-alcance" title="Link to this heading">#</a></h2>
+<p>El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/91acdeae1efd92f098ff2ce9a32f90c5b0a4b98a">código y diseño</a> se publicaron y comprobaron mediante GET de GitHub el <strong>07/11/2026 a las 23:39:42 UTC</strong>. El registro nuevo se cerró a las <strong>23:40:09 UTC</strong>, con cero ajustes previos. El resultado del piloto y su dimensionamiento deben publicarse antes de los ajustes definitivos. El cierre de todos los pesos y preprocesadores debe preceder a la carga y puntuación de los datos de evaluación. Cada fase conserva firmas, semillas, versiones y fechas; los fallos no autorizan sustituir semillas o modificar silenciosamente el diseño.</p>
+<p><strong>Septiembre–octubre de 2026 ya fue evaluado en el proyecto.</strong> Esta extensión es una comparación histórica exploratoria, aunque su procedimiento se registre antes de sus propios ajustes. No convierte ese calendario en una reserva independiente para una hipótesis nueva. La repetición entre semillas caracteriza aleatoriedad de entrenamiento; no aporta cientos de periodos de mercado independientes.</p>
+<p>Se publican agregados, métricas por semilla, configuraciones, manifiestos y curvas de aprendizaje. Las observaciones de mercado, predicciones diarias, escaladores y checkpoints permanecen fuera de los paquetes públicos. La construcción del libro consume artefactos guardados y no entrena redes.</p>
+</section>
+<section id="cierre-efectivo-y-procedencia">
+<h2>Cierre efectivo y procedencia<a class="headerlink" href="#cierre-efectivo-y-procedencia" title="Link to this heading">#</a></h2>
+<p>La ejecución completó <strong>3.810 etapas nuevas</strong>: 960 de HPO, 60 de piloto y 2.790 definitivas. Se cerraron <strong>1.395 modelos, 465 por familia</strong>, antes de puntuar. Los 32 ZIP recuperados mediante el cuaderno de adquisición coinciden con los hashes del manifiesto original: <strong>6.200.358 bytes</strong> de archivos. La verificación previa de bytes no interpretó filas CSV ni calculó objetivos.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Evento verificado</p></th>
+<th class="head"><p>Fecha y hora UTC</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Fuente publicada y observada</p></td>
+<td><p>07/11/2026 23:39:42</p></td>
+</tr>
+<tr class="row-odd"><td><p>Registro nuevo</p></td>
+<td><p>07/11/2026 23:40:09</p></td>
+</tr>
+<tr class="row-even"><td><p>Recetas seleccionadas</p></td>
+<td><p>07/11/2026 23:55:10</p></td>
+</tr>
+<tr class="row-odd"><td><p>Piloto completo</p></td>
+<td><p>07/11/2026 23:56:49</p></td>
+</tr>
+<tr class="row-even"><td><p>Plan publicado y observado</p></td>
+<td><p>07/11/2026 23:58:35</p></td>
+</tr>
+<tr class="row-odd"><td><p>Plan registrado / inicio de ajustes definitivos</p></td>
+<td><p>07/11/2026 23:59:05 / 23:59:09</p></td>
+</tr>
+<tr class="row-even"><td><p>Todos los pesos y preprocesadores congelados</p></td>
+<td><p><strong>08/11/2026 00:13:36</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Puerta de acceso a las observaciones</p></td>
+<td><p><strong>08/11/2026 00:14:09</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Evaluación completa</p></td>
+<td><p>08/11/2026 00:14:18</p></td>
+</tr>
+<tr class="row-odd"><td><p>Análisis cerrado</p></td>
+<td><p>08/11/2026 00:14:48</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La <a class="reference download internal" download="" href="../_downloads/ffadbf88687422b250973f49ce122b16/chronology.json"><code class="xref download docutils literal notranslate"><span class="pre">cronología</span> <span class="pre">completa</span></code></a>, el <a class="reference download internal" download="" href="../_downloads/9521e1d643df0ba65392d8e122375f62/plan_publication.json"><code class="xref download docutils literal notranslate"><span class="pre">registro</span> <span class="pre">de</span> <span class="pre">publicación</span> <span class="pre">del</span> <span class="pre">plan</span></code></a> y el <a class="reference download internal" download="" href="../_downloads/6d2c7bf81fc8e80f646e210a2851e239/source_manifest.json"><code class="xref download docutils literal notranslate"><span class="pre">manifiesto</span> <span class="pre">de</span> <span class="pre">fuentes</span></code></a> conservan tiempos, commits y firmas. La evaluación hizo <strong>una pasada por checkpoint</strong>, con <strong>83.700 predicciones neuronales</strong> y las mismas sesenta fechas para todas las ejecuciones. Persistencia es una sola referencia determinista.</p>
+</section>
+<section id="curvas-publicas-de-las-recetas-definitivas">
+<h2>Curvas públicas de las recetas definitivas<a class="headerlink" href="#curvas-publicas-de-las-recetas-definitivas" title="Link to this heading">#</a></h2>
+<p>Se conservan <strong>44.201 registros observados de pérdida</strong>, con entrenamiento y validación interna durante la selección de duración, y entrenamiento durante el reajuste. La pérdida está en escala normalizada de desarrollo; las métricas posteriores usan unidades originales de σ₇.</p>
+<p><img alt="Curvas nuevas de GRU, LSTM y MLP: media e intervalo intercuartílico" src="../_images/learning_curves1.png" /></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo</p></th>
+<th class="head text-right"><p>Trayectorias</p></th>
+<th class="head text-right"><p>Época elegida: mediana [mín.; máx.]</p></th>
+<th class="head text-right"><p>Curvas internas que llegan a época 100</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>GRU</p></td>
+<td class="text-right"><p>465</p></td>
+<td class="text-right"><p>4 [3; 100]</p></td>
+<td class="text-right"><p>11</p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM</p></td>
+<td class="text-right"><p>465</p></td>
+<td class="text-right"><p>4 [2; 100]</p></td>
+<td class="text-right"><p>7</p></td>
+</tr>
+<tr class="row-even"><td><p>MLP</p></td>
+<td class="text-right"><p>465</p></td>
+<td class="text-right"><p>6 [2; 96]</p></td>
+<td class="text-right"><p>3</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>La composición de la media cambia con la época.</strong> Las colas de la figura sólo reúnen las trayectorias que siguen activas; no representan una corrida típica de cien épocas. La mediana de duración es cuatro/seis épocas. El reajuste empieza de nuevo con la duración seleccionada y no usa validación sobre la evaluación histórica. La pérdida en modo entrenamiento puede diferir de la calculada en modo evaluación por dropout.</p>
+<p>Los <a class="reference download internal" download="" href="../_downloads/5ed244677aa4cac3215558f1e5c459b9/learning_curves_by_run.csv"><code class="xref download docutils literal notranslate"><span class="pre">valores</span> <span class="pre">por</span> <span class="pre">corrida</span> <span class="pre">y</span> <span class="pre">época</span></code></a> y el <a class="reference download internal" download="" href="../_downloads/463a6fbd651289df8ac3241babf7ac32/learning_curve_summary.csv"><code class="xref download docutils literal notranslate"><span class="pre">resumen</span> <span class="pre">con</span> <span class="pre">número</span> <span class="pre">de</span> <span class="pre">curvas</span> <span class="pre">disponibles</span></code></a> permiten reconstruir la figura y examinar semillas concretas. Son las curvas de esta ejecución nueva, separadas de la reproducción del capítulo 9.</p>
+</section>
+<section id="metricas-de-la-evaluacion-historica-comun">
+<h2>Métricas de la evaluación histórica común<a class="headerlink" href="#metricas-de-la-evaluacion-historica-comun" title="Link to this heading">#</a></h2>
+<p>Las redes resumen <strong>465 semillas por modelo</strong> sobre el 01/09–30/10/2026. Se puntúa cada trayectoria completa y después se agregan sus métricas; no se calcula el error de un ensemble.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo</p></th>
+<th class="head text-right"><p>RMSE ± DE</p></th>
+<th class="head text-right"><p>MAE ± DE</p></th>
+<th class="head text-right"><p>MSE ± DE</p></th>
+<th class="head text-right"><p>R² ± DE</p></th>
+<th class="head text-right"><p>MAPE % ± DE</p></th>
+<th class="head text-right"><p>MASE ± DE</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>GRU</strong></p></td>
+<td class="text-right"><p><strong>0,00511696 ± 0,00077519</strong></p></td>
+<td class="text-right"><p>0,00391028 ± 0,00062417</p></td>
+<td class="text-right"><p>2,67829e−5 ± 6,86638e−6</p></td>
+<td class="text-right"><p>0,348891 ± 0,166926</p></td>
+<td class="text-right"><p>27,3519 ± 3,8175</p></td>
+<td class="text-right"><p>1,442772 ± 0,230301</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>MLP</strong></p></td>
+<td class="text-right"><p><strong>0,00516664 ± 0,00048727</strong></p></td>
+<td class="text-right"><p>0,00397196 ± 0,00041141</p></td>
+<td class="text-right"><p>2,69311e−5 ± 4,87649e−6</p></td>
+<td class="text-right"><p>0,345286 ± 0,118551</p></td>
+<td class="text-right"><p>26,2009 ± 2,4978</p></td>
+<td class="text-right"><p>1,465532 ± 0,151799</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>LSTM</strong></p></td>
+<td class="text-right"><p><strong>0,00565123 ± 0,00056569</strong></p></td>
+<td class="text-right"><p>0,00429363 ± 0,00042837</p></td>
+<td class="text-right"><p>3,22557e−5 ± 5,75066e−6</p></td>
+<td class="text-right"><p>0,215843 ± 0,139802</p></td>
+<td class="text-right"><p>29,9635 ± 2,8566</p></td>
+<td class="text-right"><p>1,584217 ± 0,158054</p></td>
+</tr>
+<tr class="row-odd"><td><p>Persistencia</p></td>
+<td class="text-right"><p>0,00384478</p></td>
+<td class="text-right"><p>0,00212123</p></td>
+<td class="text-right"><p>1,47823e−5</p></td>
+<td class="text-right"><p>0,640632</p></td>
+<td class="text-right"><p>16,4344</p></td>
+<td class="text-right"><p>0,782667</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La DE de persistencia entre inicializaciones no aplica. Los <a class="reference download internal" download="" href="../_downloads/c8410f69674c000b69304b6949abf6f0/metric_summary.csv"><code class="xref download docutils literal notranslate"><span class="pre">resúmenes</span> <span class="pre">e</span> <span class="pre">IC</span> <span class="pre">marginales</span> <span class="pre">completos</span></code></a> y las <a class="reference download internal" download="" href="../_downloads/04dbfc877dbea8a314d18020bf60f556/run_metrics.csv"><code class="xref download docutils literal notranslate"><span class="pre">métricas</span> <span class="pre">por</span> <span class="pre">semilla</span></code></a> conservan precisión, denominadores y las seis medidas.</p>
+<p><strong>Persistencia tiene el menor RMSE medio del periodo.</strong> GRU tiene el menor RMSE medio entre las redes; MLP obtiene el menor MAPE neuronal. El baseline conserva <strong>GRU/D7-c03</strong>, fijado con desarrollo antes del piloto. Estas puntuaciones no reabren la selección de receta, semilla o modelo.</p>
+</section>
+<section id="comparaciones-entre-inicializaciones">
+<h2>Comparaciones entre inicializaciones<a class="headerlink" href="#comparaciones-entre-inicializaciones" title="Link to this heading">#</a></h2>
+<p>La diferencia se orienta <strong>A−B</strong>: un valor negativo favorece A. Los IC siguientes son familiares de tres pares, condicionados al calendario.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Par A−B</p></th>
+<th class="head text-right"><p>Diferencia media de RMSE</p></th>
+<th class="head"><p>IC familiar 95 %</p></th>
+<th class="head text-right"><p>p Holm-3</p></th>
+<th class="head text-right"><p>d_z</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>GRU−LSTM</p></td>
+<td class="text-right"><p>−0,00053427</p></td>
+<td><p>[−0,00063311; −0,00043544]</p></td>
+<td class="text-right"><p>8,11394e−33</p></td>
+<td class="text-right"><p>−0,6023</p></td>
+</tr>
+<tr class="row-odd"><td><p>GRU−MLP</p></td>
+<td class="text-right"><p>−0,00004969</p></td>
+<td><p>[−0,00015182; 0,00005245]</p></td>
+<td class="text-right"><p><strong>0,243047</strong></p></td>
+<td class="text-right"><p>−0,0542</p></td>
+</tr>
+<tr class="row-even"><td><p>LSTM−MLP</p></td>
+<td class="text-right"><p>0,00048458</p></td>
+<td><p>[0,00040281; 0,00056636]</p></td>
+<td class="text-right"><p>6,05111e−38</p></td>
+<td class="text-right"><p>0,6602</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>GRU y MLP tienen menor RMSE que LSTM bajo la referencia entre semillas; sus límites de mejora absoluta superan δ. <strong>GRU−MLP no rechaza igualdad de medias y no demuestra equivalencia.</strong> El <a class="reference download internal" download="" href="../_downloads/ef723d3b730e20a318356f54ad1125ce/pairwise_rmse.csv"><code class="xref download docutils literal notranslate"><span class="pre">análisis</span> <span class="pre">pareado</span> <span class="pre">completo</span></code></a> conserva p sin ajustar, IC marginales, efecto y sensibilidad bootstrap.</p>
+<p>Shapiro–Wilk rechaza normalidad en los tres pares: p≈6,34e−18, 3,03e−15 y 3,65e−12. Las t y sus IC se interpretan como aproximaciones a R=465, con sus supuestos; los rechazos no se convierten en confirmación sobre calendarios independientes. La DE definitiva de GRU−MLP es aproximadamente <strong>1,26 veces</strong> su cota de planificación del piloto, lo que ilustra el límite de transferencia de dispersión. Se conserva el R fijado y no se afirma potencia alcanzada.</p>
+</section>
+<section id="comparacion-temporal-y-margen-practico">
+<h2>Comparación temporal y margen práctico<a class="headerlink" href="#comparacion-temporal-y-margen-practico" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Par</p></th>
+<th class="head text-right"><p>p DM sin ajustar</p></th>
+<th class="head text-right"><p>p DM Holm-6</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>GRU−LSTM</p></td>
+<td class="text-right"><p>0,035690</p></td>
+<td class="text-right"><p>0,214140</p></td>
+</tr>
+<tr class="row-odd"><td><p>GRU−MLP</p></td>
+<td class="text-right"><p>0,943755</p></td>
+<td class="text-right"><p>0,943755</p></td>
+</tr>
+<tr class="row-even"><td><p>LSTM−MLP</p></td>
+<td class="text-right"><p>0,156663</p></td>
+<td class="text-right"><p>0,346387</p></td>
+</tr>
+<tr class="row-odd"><td><p>GRU−Persistencia</p></td>
+<td class="text-right"><p>0,081732</p></td>
+<td class="text-right"><p>0,326926</p></td>
+</tr>
+<tr class="row-even"><td><p>LSTM−Persistencia</p></td>
+<td class="text-right"><p>0,053198</p></td>
+<td class="text-right"><p>0,265991</p></td>
+</tr>
+<tr class="row-odd"><td><p>MLP−Persistencia</p></td>
+<td class="text-right"><p>0,115462</p></td>
+<td class="text-right"><p>0,346387</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Ninguno de los seis DM rechaza tras Holm.</strong> La <a class="reference download internal" download="" href="../_downloads/bf459c3ba1cc20151c0794189a51f7c6/dm_pairs.csv"><code class="xref download docutils literal notranslate"><span class="pre">tabla</span> <span class="pre">DM</span> <span class="pre">completa</span></code></a> conserva estadísticos, pérdidas y covarianza de largo plazo. Sesenta fechas y dependencia más allá de seis rezagos limitan su aproximación.</p>
+<p>El bootstrap de bloque siete aporta una perspectiva distinta: el IC familiar de GRU−LSTM es <strong>[−0,00094385; −0,00013285]</strong> y el de LSTM−Persistencia <strong>[0,00007765; 0,00375369]</strong>. Ambos excluyen cero bajo sus supuestos; los otros cuatro incluyen cero. El límite familiar de mejora relativa de GRU frente a LSTM es <strong>3,79 %</strong>, inferior al umbral del 5 %. <strong>Ninguno de los seis pares acredita una mejora relativa superior al 5 % en cualquiera de sus dos orientaciones mediante ese límite familiar.</strong></p>
+<p>Los resultados de DM y bootstrap conservan sus propios estimandos y supuestos. Se publican ambos, junto a la <a class="reference download internal" download="" href="../_downloads/ace085d62b5f33df0d14a70350ef1afb/temporal_bootstrap.csv"><code class="xref download docutils literal notranslate"><span class="pre">sensibilidad</span> <span class="pre">de</span> <span class="pre">bloques</span> <span class="pre">tres/catorce</span></code></a>, sin elegir después el método o bloque más favorable. La evidencia entre semillas no sustituye esta incertidumbre temporal.</p>
+</section>
+<section id="diagnostico-residual-y-conclusion">
+<h2>Diagnóstico residual y conclusión<a class="headerlink" href="#diagnostico-residual-y-conclusion" title="Link to this heading">#</a></h2>
+<p>Los diagnósticos mantienen las mismas sesenta fechas y sus familias de multiplicidad: 1.395 pruebas BDS y 2.790 Ljung–Box. Todos los casos de esta ejecución resultan definidos.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo</p></th>
+<th class="head text-right"><p>BDS: rechazos Holm /465</p></th>
+<th class="head text-right"><p>Ljung–Box lag 1 /465</p></th>
+<th class="head text-right"><p>Ljung–Box lag 5 /465</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>GRU</p></td>
+<td class="text-right"><p>415</p></td>
+<td class="text-right"><p>415</p></td>
+<td class="text-right"><p>415</p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM</p></td>
+<td class="text-right"><p>441</p></td>
+<td class="text-right"><p>441</p></td>
+<td class="text-right"><p>450</p></td>
+</tr>
+<tr class="row-even"><td><p>MLP</p></td>
+<td class="text-right"><p>428</p></td>
+<td class="text-right"><p>441</p></td>
+<td class="text-right"><p>457</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El <a class="reference download internal" download="" href="../_downloads/5ebbc86e4ca5d53d02bfa86224e2a190/diagnostics.csv"><code class="xref download docutils literal notranslate"><span class="pre">detalle</span> <span class="pre">residual</span></code></a> muestra dependencia que permanece en numerosas corridas. El solapamiento de las etiquetas, la especificación y el régimen limitan su interpretación; un rechazo BDS no demuestra que una arquitectura avanzada vaya a mejorar el pronóstico.</p>
+<p>La selección <strong>LSTM–MLP–GRU</strong> queda respaldada conjuntamente por recurrencia, profundidad básica, capacidad declarada y mecanismos distintos, y por una ejecución comparable real. La evaluación conserva resultados adversos e inconclusos: <strong>persistencia es la mejor referencia puntual y no se acredita una mejora temporal práctica de las redes</strong>. TCN permanece en su estudio complementario; este capítulo no mezcla sus métricas con las nuevas ni recupera independencia de una reserva ya conocida.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="09_estudio_planificado.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">9. Estudio anterior GRU–LSTM–TCN: evaluación D7</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="11_reejecucion_608.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">11. Benchmark de 608 fechas con HPO equitativo y planificación</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-de-la-nueva-ejecucion">Diseño de la nueva ejecución</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hpo-ejecutado-y-recetas-seleccionadas">HPO ejecutado y recetas seleccionadas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#piloto-ejecutado-y-dimensionamiento-publicado">Piloto ejecutado y dimensionamiento publicado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenamiento-y-analisis-fijados">Entrenamiento y análisis fijados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cronologia-y-alcance">Cronología y alcance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cierre-efectivo-y-procedencia">Cierre efectivo y procedencia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curvas-publicas-de-las-recetas-definitivas">Curvas públicas de las recetas definitivas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-de-la-evaluacion-historica-comun">Métricas de la evaluación histórica común</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparaciones-entre-inicializaciones">Comparaciones entre inicializaciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-temporal-y-margen-practico">Comparación temporal y margen práctico</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-residual-y-conclusion">Diagnóstico residual y conclusión</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

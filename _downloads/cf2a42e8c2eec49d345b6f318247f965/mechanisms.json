@@ -1,0 +1,1803 @@
+{
+  "schema_version": "1.0",
+  "review_date": "2026-11-07",
+  "reviewer": "Codex, síntesis documental asistida; no revisión humana independiente",
+  "base_commit": "776229543f7a7ac0e8a5b4a10a95130f02721153",
+  "scope": "Análisis documental y estático de mecanismos y selección §3.2. No cambia código, modelos, particiones, resultados, etiquetas históricas o libro; cero nuevos ajustes y cero nuevas redes construidas.",
+  "overall_status": "structural_distinctions_supported_joint_selection_not_certified",
+  "guide_interpretation": {
+    "source": "/workspace/work/guia.txt",
+    "physical_page": 14,
+    "section": "3.2, procedimiento6",
+    "literal_requirement": "Verificar que los tres modelos no sean redundantes entre sí (deben diferir en el sesgo inductivo que incorporan).",
+    "different_broad_families_explicitly_required": false,
+    "interpretation": "La guía exige sesgos diferentes, pero no fija una taxonomía ni impone tres familias amplias distintas. La diferencia de reglas de actualización GRU/LSTM puede fundamentar una distinción dentro de la recurrencia. Interpretación mecanística explícita, no equivalencia entre todo cambio de arquitectura y diversidad suficiente.",
+    "corroborating_guide_text": "§3.2 enumera LSTM/GRU de una capa entre candidatas; §3.3 enumera MLP, RNN, LSTM, GRU, CNN por tipo. Son puntos orientativos y no prueban elegibilidad ni selección automática.",
+    "other_joint_requirements": [
+      "Comparadores independientes recuperados de la literatura del problema",
+      "Frecuencia por estudio y ordenamiento por frecuencia/complejidad (parámetros y profundidad)",
+      "Exactamente tres modelos sencillos, reproducibles y frecuentes",
+      "Configuración ausente exige búsqueda de arquitectura E2, espacio declarado antes de entrenar"
+    ],
+    "no_automatic_closure": "Demostrar diferencias estructurales no basta para satisfacer frecuencia, simplicidad y trazabilidad de la elección conjuntamente."
+  },
+  "shared_information_contract": {
+    "input": "Ventana de7días observados, cinco covariables OHLCV; lote,día,atributo, orden antiguo->reciente",
+    "prediction": "Una salida escalar no negativa con Softplus; inversión de escala pertenece al runner",
+    "stateful_across_windows": false,
+    "initial_states": "Los forward llaman encoder(values) sin h0/c0; PyTorch inicia cero por llamada. No se guarda ni transporta estado de una ventana a otra.",
+    "real_history_days": 7,
+    "TCN_theoretical_RF29_is_extra_data": false,
+    "interpretation": "GRU/LSTM tienen el mismo soporte observado D7 que TCN. La celda LSTM añade una ruta interna de memoria dentro de la ventana; no conserva historia anterior. En TCN las posiciones fuera de D7 son padding izquierdo, no observaciones.",
+    "framework_reference": [
+      "https://docs.pytorch.org/docs/stable/generated/torch.nn.GRU.html",
+      "https://docs.pytorch.org/docs/stable/generated/torch.nn.LSTM.html"
+    ],
+    "static_framework_inspection": "Docstrings de torch/nn/modules/rnn.py en el entorno de curvas2.15.0+cpu: ecuaciones GRU1216-1219, iniciales1260; LSTM840-845 e iniciales897-901. No acredita por sí solo la versión original de entrenamiento."
+  },
+  "current_phase_II_models": [
+    {
+      "family": "GRU",
+      "recipe": "c03",
+      "width": 16,
+      "history_days": 7,
+      "input_features": 5,
+      "dropout": 0.1,
+      "learning_rate": 0.003,
+      "depth": {
+        "recurrent_layers": 1,
+        "directions": 1,
+        "scalar_head_layers": 1
+      },
+      "state_coordinates": {
+        "hidden": 16,
+        "separate_cell": 0
+      },
+      "control_gates": [
+        "reset",
+        "update"
+      ],
+      "candidate_projection": "new",
+      "parameter_formula": "3H(p+H+2)+(H+1)",
+      "parameter_decomposition": {
+        "input_weights": 240,
+        "recurrent_weights": 768,
+        "input_biases": 48,
+        "recurrent_biases": 48,
+        "head_weights": 16,
+        "head_bias": 1
+      },
+      "trainable_parameters": 1121,
+      "forward_evidence": "scripts/dl_models_gru_lstm_tcn.py:29-50",
+      "inductive_mechanism": "Pesos recurrentes compartidos entre posiciones; la actualización interpola estado anterior y candidato, y el reset modula la proyección recurrente del candidato. No hay celda separada ni compuerta de salida independiente.",
+      "equations": [
+        "r_t=sigmoid(W_ir x_t+b_ir+W_hr h_(t-1)+b_hr)",
+        "z_t=sigmoid(W_iz x_t+b_iz+W_hz h_(t-1)+b_hz)",
+        "n_t=tanh(W_in x_t+b_in+r_t*(W_hn h_(t-1)+b_hn))",
+        "h_t=(1-z_t)*n_t+z_t*h_(t-1)"
+      ],
+      "equation_convention": "PyTorch reset-after; * denota producto elemento a elemento. No sustituir por reset-before de otra variante GRU.",
+      "sequence_work_order": "O(D*(pH+H^2)) con tres proyecciones y cabeza O(H); dependencia de estado secuencial en D.",
+      "catalog_consistency": {
+        "rows": 465,
+        "unique_width": 16,
+        "unique_parameter_count": 1121,
+        "check": "lectura de CSV y aritmética; sin importar torch ni construir redes"
+      }
+    },
+    {
+      "family": "LSTM",
+      "recipe": "c02",
+      "width": 16,
+      "history_days": 7,
+      "input_features": 5,
+      "dropout": 0.0,
+      "learning_rate": 0.003,
+      "depth": {
+        "recurrent_layers": 1,
+        "directions": 1,
+        "scalar_head_layers": 1
+      },
+      "state_coordinates": {
+        "hidden": 16,
+        "separate_cell": 16
+      },
+      "control_gates": [
+        "input",
+        "forget",
+        "output"
+      ],
+      "candidate_projection": "cell_candidate",
+      "parameter_formula": "4H(p+H+2)+(H+1)",
+      "parameter_decomposition": {
+        "input_weights": 320,
+        "recurrent_weights": 1024,
+        "input_biases": 64,
+        "recurrent_biases": 64,
+        "head_weights": 16,
+        "head_bias": 1
+      },
+      "trainable_parameters": 1489,
+      "forward_evidence": "scripts/dl_models.py:77-98",
+      "inductive_mechanism": "Celda aditiva separada c_t; entrada y olvido regulan su escritura/retención, y salida regula su emisión a h_t. Permite desacoplar esos controles a diferencia de la interpolación de GRU.",
+      "equations": [
+        "i_t,f_t,o_t=sigmoid(proyecciones afines independientes de x_t,h_(t-1))",
+        "g_t=tanh(W_ig x_t+b_ig+W_hg h_(t-1)+b_hg)",
+        "c_t=f_t*c_(t-1)+i_t*g_t",
+        "h_t=o_t*tanh(c_t)"
+      ],
+      "equation_convention": "Una capa PyTorch sin proyecciones; dos vectores de sesgo por cada una de las cuatro proyecciones.",
+      "sequence_work_order": "O(D*(pH+H^2)) con cuatro proyecciones y cabeza O(H); dependencia de estado secuencial en D.",
+      "catalog_consistency": {
+        "rows": 465,
+        "unique_width": 16,
+        "unique_parameter_count": 1489,
+        "check": "lectura de CSV y aritmética; sin importar torch ni construir redes"
+      }
+    },
+    {
+      "family": "TCN",
+      "recipe": "c02",
+      "width": 8,
+      "history_days": 7,
+      "input_features": 5,
+      "dropout": 0.0,
+      "learning_rate": 0.003,
+      "depth": {
+        "residual_blocks": 3,
+        "temporal_convolutions": 6,
+        "convolutions_per_block": 2,
+        "first_block_pointwise_projection": 1,
+        "scalar_head_layers": 1
+      },
+      "kernel_size": 3,
+      "dilations": [
+        1,
+        2,
+        4
+      ],
+      "padding": "Sólo izquierdo, (k-1)*d por convolución",
+      "readout": "Última posición observada -> Linear(8,1) -> Softplus",
+      "normalization": "none",
+      "parameter_formula": "5kF^2+(kp+p+8)F+1, para tres bloques de dos convoluciones, p!=F y proyección inicial",
+      "parameter_decomposition": {
+        "first_convolution_weights": 120,
+        "first_convolution_bias": 8,
+        "other_five_convolutions_weights": 960,
+        "other_five_convolutions_biases": 40,
+        "first_residual_projection_weights": 40,
+        "first_residual_projection_bias": 8,
+        "head_weights": 8,
+        "head_bias": 1
+      },
+      "trainable_parameters": 1185,
+      "forward_evidence": "scripts/dl_models_gru_lstm_tcn.py:53-118",
+      "inductive_mechanism": "Filtros temporales causales con pesos compartidos, soportes dilatados y composición no lineal residual. Mezcla retardos por convolución, sin estado que se actualice recursivamente entre fechas.",
+      "equations": [
+        "conv_d(z)_t=b+sum_(j=0)^(k-1) K_j z_(t-jd), z_(s<0)=0",
+        "B_d(z)=ReLU(Dropout(ReLU(conv2_d(Dropout(ReLU(conv1_d(z))))))+Pz)",
+        "y=Softplus(w^T B_4(B_2(B_1(x)))_last+b)"
+      ],
+      "equation_convention": "La ecuación B se detalla en pseudocódigo del README para evitar ambigüedad; P identidad salvo primera proyección5->8.",
+      "theoretical_receptive_field_formula": "1+2*(k-1)*sum(dilations)",
+      "theoretical_receptive_field": 29,
+      "maximum_observed_history": 7,
+      "sequence_work_order": "O(D*(kpF+5kF^2+pF)+F); convoluciones paralelizables entre posiciones, profundidad de seis convoluciones, dependiente del hardware.",
+      "catalog_consistency": {
+        "rows": 465,
+        "unique_width": 8,
+        "unique_parameter_count": 1185,
+        "check": "lectura de CSV y aritmética; sin importar torch ni construir redes"
+      }
+    }
+  ],
+  "attribute_separation": [
+    {
+      "attribute": "Sesgo inductivo",
+      "question": "¿Qué restricciones o reglas de cómputo estructuran cómo se combinan posiciones/atributos?",
+      "evidence": "Ecuaciones, pesos compartidos, estados y soportes causales. GRU/LSTM difieren en actualización/lectura; TCN usa convolución residual dilatada."
+    },
+    {
+      "attribute": "Cobertura de familias amplias",
+      "question": "¿Cuántas familias amplias representa la terna?",
+      "evidence": "GRU y LSTM pertenecen a la familia recurrente; TCN a la convolucional. Son dos familias amplias, no tres. Una MLP añade pesos específicos por posición."
+    },
+    {
+      "attribute": "Capacidad parametrizada",
+      "question": "¿Cuántos pesos/estados/capas tiene una receta concreta?",
+      "evidence": "1121/1489/1185 pesos propios. Menos parámetros no demuestra inclusión entre clases funcionales, independencia ni menor error."
+    },
+    {
+      "attribute": "Campo receptivo y soporte observado",
+      "question": "¿De qué posiciones puede depender la salida y qué datos reales recibe?",
+      "evidence": "TCN RF29 teórico, observadoD7; recurrentes soporteD7. No convertir RF29 en29días observados ni en diversidad por sí misma."
+    },
+    {
+      "attribute": "Paralelismo/coste",
+      "question": "¿Cómo se ejecuta el grafo?",
+      "evidence": "Recurrencia dependiente de estado frente a convolución paralelizable. Propiedad computacional, no prueba suficiente de sesgo distinto ni velocidad medida."
+    },
+    {
+      "attribute": "Ajuste epistemológico/aplicado",
+      "question": "¿Es plausible el mecanismo y coincide la tarea de la fuente con E1?",
+      "evidence": "Dependencia/heterocedasticidad favorecen considerar modelos temporales; no identifican de forma única GRU/LSTM/TCN. Objetivo, entradas, frecuencia/horizonte y mercado se documentan aparte de la familia."
+    }
+  ],
+  "pairwise_nonredundancy": [
+    {
+      "pair": [
+        "GRU",
+        "LSTM"
+      ],
+      "mechanistic_difference": "GRU integra retención/escritura mediante interpolación del estado y reset del candidato; LSTM separa celda y salida, con controles independientes de entrada, olvido y emisión. Son topologías recurrentes distintas, no simple cambio de ancho o semilla.",
+      "shared_bias": "Recurrencia causal con parámetros compartidos por posición y compuertas dependientes de la entrada.",
+      "supported_claim": "Dos parametrizaciones recurrentes con mecanismos de estado distintos bajo el mismo soporteD7.",
+      "unsupported_claims": [
+        "Tres familias amplias diferentes",
+        "Memoria anterior a la ventana sólo en LSTM",
+        "Una es universalmente más expresiva o simple que la otra por contar compuertas",
+        "Errores independientes o complementariedad predictiva demostrada",
+        "Una distancia cuantificada de sesgos suficiente según umbral de la guía"
+      ]
+    },
+    {
+      "pair": [
+        "GRU",
+        "TCN"
+      ],
+      "mechanistic_difference": "Actualización recursiva de estado con compuertas frente a composición feedforward de filtros causales compartidos, dilatación y sumas residuales.",
+      "supported_claim": "Contraste entre recurrencia con estado y convolución temporal sin estado transportado.",
+      "unsupported_claims": [
+        "TCN ve más historia real conD7",
+        "Mayor paralelismo garantiza menor error o mayor velocidad observada"
+      ]
+    },
+    {
+      "pair": [
+        "LSTM",
+        "TCN"
+      ],
+      "mechanistic_difference": "Celda recurrente aditiva y emisión controlada frente a filtros temporales de soporte finito, dilatados y residuales.",
+      "supported_claim": "Contraste entre memoria de celda interna y representación convolucional de la misma ventana.",
+      "unsupported_claims": [
+        "Toda TCN es más simple que LSTM",
+        "La no recurrencia elimina riesgo de sobreajuste"
+      ]
+    }
+  ],
+  "source_recipes": [
+    {
+      "study": "S1",
+      "citation": "Akbiyik et al.(2023), DOI10.1145/3539597.3570387",
+      "source_url": "https://github.com/meakbiyik/ask-who-not-what/blob/bcc0e4e89213da2ca3ed968574aa2d08cee39c44/paper.pdf",
+      "source_sha256": "00072c7488d436cff0b2b34ba2a00385dcc370ef3a378539d51f6221d0038c33",
+      "locations": [
+        "AppendixC, Table5 PDFp10",
+        "AppendixC, Table6 PDFp11",
+        "scripts/hpo.py create_model branches, fijado en el mismo commit"
+      ],
+      "source_io": "96x1retornos ->96pronósticos intradiarios; agregación posterior de volatilidad",
+      "source_HPO": "250trials Optuna/modelo,30épocas,train72/validation24días; ganadores sí publicados. No es HPO realizado por el proyecto.",
+      "models": [
+        {
+          "family": "LSTM",
+          "source_width": 261,
+          "source_depth": "1capa recurrente ->Dense96",
+          "dropout": 0.0237,
+          "learning_rate": 0.00521,
+          "weight_decay": 9.25e-07,
+          "loss_epsilon": 0.0364,
+          "parameters_reported": null,
+          "parameters_analytical": 299724,
+          "count_status": "Aritmético bajo convención Keras de un sesgo; p1,H261,q96. No cifra reportada de pesos."
+        },
+        {
+          "family": "GRU",
+          "source_width": 43,
+          "source_depth": "1capa recurrente ->Dense96",
+          "dropout": 0.0544,
+          "learning_rate": 0.00973,
+          "weight_decay": 1.59e-08,
+          "loss_epsilon": 0.0431,
+          "parameters_reported": null,
+          "parameters_analytical_two_bias": 10158,
+          "parameters_analytical_one_bias": 10029,
+          "count_status": "Condicional: versión/reset_after no fijado en llamada. No elegir una convención como hecho probado."
+        },
+        {
+          "family": "TCN",
+          "source_width": 287,
+          "source_depth": "6niveles de dilatación;12convoluciones bajo bloque keras-tcn estándar de dos",
+          "kernel_size": 5,
+          "dilation_base": 4,
+          "dropout": 0.217,
+          "learning_rate": 6.49e-05,
+          "weight_decay": 5.93e-06,
+          "loss_epsilon": 0.0913,
+          "skip_connections": true,
+          "normalization": "none",
+          "parameters_reported": null,
+          "parameters_analytical_conditional": 4563396,
+          "conditional_RF": 10921,
+          "count_status": "Condicional a keras-tcn de un stack,2convs/bloque,sesgos,proyección inicial y sin normalización entrenable; versión no fijada."
+        }
+      ],
+      "comparability_warning": "Los tres propios son compactaciones diferentes de las recetas S1; E1p5,q1,D7 no equivale a S1p1,q96,D96. No atribuir a S1 anchos16/16/8 ni demostrar mínima complejidad global con esta compactación."
+    },
+    {
+      "study": "S8",
+      "citation": "Miura et al.(2019), DOI10.1007/978-3-030-22796-8_18",
+      "source_url": "https://raw.githubusercontent.com/Anton21a/Thesis/8bc3aa3c96fd214b34b914d2057f4339f2c8ed1e/ML%20articles/Artificial%20Neural%20Networks.pdf",
+      "source_sha256": "2364a462ed212803e2c4b751d27d66091af5773159c601f950df17578853dfeb",
+      "locations": [
+        "p168lista de modelos",
+        "p169regularización",
+        "p171Table1"
+      ],
+      "models": [
+        {
+          "family": "MLP",
+          "source_depth_label": "4layers with dropout /4layers withBN",
+          "input_length": 10,
+          "hidden_widths": null,
+          "activation": null,
+          "parameters": null,
+          "ambiguity": "4capas no desglosa ocultas/salida; no inventar anchos/activación/dropout."
+        },
+        {
+          "family": "CNN_generic",
+          "source_depth_label": "2layers+1Dense",
+          "input_length": 6,
+          "dimensionality": null,
+          "filters": null,
+          "kernel": null,
+          "causality": null,
+          "parameters": null
+        },
+        {
+          "family": "LSTM",
+          "source_depth_label": "2layers+1Dense",
+          "input_length": 12,
+          "hidden_widths": null,
+          "directionality": null,
+          "parameters": null
+        },
+        {
+          "family": "GRU",
+          "source_depth_label": "1layer+2Dense",
+          "input_length": 5,
+          "hidden_widths": null,
+          "parameters": null
+        }
+      ],
+      "comparability_warning": "Rezagos de RV agregada180min, suma de retornos minuto cuadrados sin raíz; horizonte numérico no precisado. No es OHLCV diario/sigma7 y sus longitudes de entrada no son horizontes."
+    },
+    {
+      "study": "S2",
+      "family": "Transformer_encoder",
+      "citation": "Zeri(2026), manuscrito público sin revisión por pares acreditada",
+      "source_url": "https://github.com/tommasozeri/Forecasting-High-Frequency-Bitcoin-Volatility-Neural-Networks/blob/d69f951f2ced7273bdc4c3e5a8a4cb220c2ee5ce/paper_en/manuscript.tex",
+      "source_record": "references/literature_e1/model_extraction_review_20261103.csv",
+      "source_sha256": "b5c18d7abb7913bfbe8e83244fca1ca7782864dd68ee6087af1e975a89a7e0da",
+      "locations": [
+        "Models líneas179-189",
+        "Appendix líneas395-409",
+        "notebookcell21SelfAttReg"
+      ],
+      "source_recipe": {
+        "input_features": 41,
+        "input_positions": 48,
+        "learned_position_capacity": 96,
+        "encoder_layers": 2,
+        "d_model": 48,
+        "heads": 4,
+        "feedforward_width": 96,
+        "pooling": "last+mean",
+        "head": "Linear(96,48)->GELU->Linear(48,1)",
+        "dropout": 0.21,
+        "learning_rate": 0.0003,
+        "weight_decay": 0.0014,
+        "input_noise": 0.12
+      },
+      "parameters_reported": null,
+      "parameters_analytical": 49249,
+      "count_formula": "(p+1)d+Md+L(4d^2+2df+9d+f)+(2d*h+h)+(h*q+q), p41,d48,M96,L2,f96,h48,q1",
+      "common_io_sensitivity_only": {
+        "input_features": 5,
+        "outputs": 1,
+        "position_capacity_retained": 96,
+        "source_width_depth_retained": true,
+        "analytical_parameters": 47521,
+        "source_model_total": false,
+        "project_selected_or_trained_recipe": false
+      },
+      "comparability_warning": "El conteo49249 describe esa receta, no todo encoder posible.47521 es escenario algebraico de entrada común, no receta mínima ni modelo ejecutado. ConD7 el término cuadrático en atención no prueba inviabilidad."
+    },
+    {
+      "study": "S6",
+      "family": "Transformer_encoder",
+      "citation": "Wang et al.(s.f.), borrador no datado editorialmente",
+      "source_url": "https://github.com/cathyw111/bitcoin-volatility-forecasting/blob/61feeec81d695e19eac9c819be41d704e6279547/research-draft.pdf",
+      "source_sha256": "f849fcbf220c84a09f56641ca53500ec47bdb331fb21015e7ed85486d3174af0",
+      "locations": [
+        "§3.4PDFpp6-7",
+        "Tables1-2p7",
+        "Model1Table4p10"
+      ],
+      "source_recipe": {
+        "input": "20x5OHLCV",
+        "encoder_layers": 2,
+        "d_model": 32,
+        "heads": 4,
+        "dropout": 0.1,
+        "output": "Softplus",
+        "loss": "MSE",
+        "optimizer": "Adam",
+        "learning_rate": 0.001,
+        "batch_size": 32,
+        "max_epochs": 100,
+        "patience": 10,
+        "seed": 42
+      },
+      "parameters": null,
+      "unknown": [
+        "AnchoFFN",
+        "Pooling/readout",
+        "Parametrización posicional",
+        "Orden normalización",
+        "Construcción exacta proxyRV1D"
+      ],
+      "comparability_warning": "No rellenar FFN/readout con defaults. Su comparador positivo se conserva en la matriz pero el gate operacional y la sensibilidad se aplican homogéneamente en part_corpus."
+    },
+    {
+      "study": "E1OA-R02",
+      "citation_key": "Dudek2024VolatilityComparative",
+      "citation": "Forecasting cryptocurrencies volatility using statistical and machine learning methods: A comparative study",
+      "DOI": "10.1016/j.asoc.2023.111132",
+      "year_nominal": 2024,
+      "year_online": 2023,
+      "source_urls": [
+        "https://piotr.fiszeder.prac.umk.pl/stronaangielska.htm",
+        "https://piotr.fiszeder.prac.umk.pl/Dudek_Fiszeder_Kobus_Orzeszko_ASC.pdf",
+        "https://www.sciencedirect.com/science/article/pii/S156849462301150X"
+      ],
+      "primary_source_file_sha256": null,
+      "evidence_record": "references/literature_e1/open_access_replacement_20261107/part_open_recurrent/reviews.json",
+      "evidence_locations": [
+        "PDF §§1–5 y apéndice: cuerpo, resultados y tablas; §2.6 p5 MLP; §2.9 p6 LSTM; §§3–4.1 pp6–8.",
+        "Tablas2–3 p9,6–7 p11 y apéndice A1–A11; paginación editorial."
+      ],
+      "inspection_basis": "Hechos de la revisión primaria guardada, leída para esta síntesis; no se declara una nueva inspección remota del original.",
+      "source_recipe": {
+        "family": "MLP",
+        "depth": "Una capa oculta",
+        "input_features": 3,
+        "hidden_activation": "tanh",
+        "outputs": 7,
+        "output_activation": "linear",
+        "optimizer": "Levenberg–Marquardt",
+        "regularization": "Bayesiana",
+        "hidden_width": null,
+        "parameters": null
+      },
+      "parameters_reported": null,
+      "parameters_analytical": null,
+      "comparability_warning": "La estructura de una capa oculta está documentada y el ancho final sigue desconocido; no imputar un total ni descartar MLP por ese desconocimiento. La tarea y la selección de receta no equivalen al experimento propio.",
+      "target": "RV diaria = suma de 288 retornos logarítmicos de 5 min al cuadrado; semanal = suma de 7 RV diarias."
+    },
+    {
+      "study": "E1X001",
+      "citation_key": "Brauneis2026VolatilityHorserace",
+      "citation": "Crypto Volatility Forecasting: Mounting a HAR, Sentiment, and Machine Learning Horserace",
+      "DOI": "10.1007/s10690-024-09510-6",
+      "year_nominal": 2026,
+      "year_online": 2024,
+      "source_urls": [
+        "https://link.springer.com/article/10.1007/s10690-024-09510-6",
+        "https://link.springer.com/content/pdf/10.1007/s10690-024-09510-6.pdf"
+      ],
+      "primary_source_file_sha256": null,
+      "evidence_record": "references/literature_e1/open_access_replacement_20261107/part_open_recurrent/reviews.json",
+      "evidence_locations": [
+        "HTML §§1–6 completo; PDF pp379–407 cuerpo y licencia.",
+        "Tablas4–5 pp398–400; Tabla6 p401; Tabla7 pp402–403; Tabla8 pp404–405."
+      ],
+      "inspection_basis": "Hechos de la revisión primaria guardada, leída para esta síntesis; no se declara una nueva inspección remota del original.",
+      "source_recipe": {
+        "family": "MLP",
+        "depth": "Una capa oculta",
+        "input_features": null,
+        "hidden_activation": "sigmoid",
+        "outputs": 1,
+        "output_activation": "linear",
+        "optimizer": "No identificable en la ficha; búsqueda Bayesian optimization, TensorFlow 2",
+        "hidden_width": null,
+        "parameters": null
+      },
+      "parameters_reported": null,
+      "parameters_analytical": null,
+      "comparability_warning": "La estructura de una capa oculta está documentada y el ancho final sigue desconocido; no imputar un total ni descartar MLP por ese desconocimiento. La tarea y la selección de receta no equivalen al experimento propio.",
+      "target": "Varianza realizada6h = suma de cuadrados de retornos logarítmicos de 5 min; h1 intervalo6h."
+    }
+  ],
+  "existing_MLP_project_counterexample": {
+    "source_code": "scripts/dl_models.py:55-74",
+    "source_selected_recipe": "results/dl_benchmark_20261104/selected_configuration.json",
+    "scope": "Modelo histórico anterior; no es miembro añadido ni relabel de faseI/faseII actual. Sin nuevos ajustes.",
+    "history_days": 7,
+    "input_features": 5,
+    "width": 16,
+    "hidden_layers": 1,
+    "activation": "ReLU",
+    "dropout": 0.1,
+    "head": "Linear(16,1)->Softplus",
+    "parameters": 593,
+    "formula": "H(Dp+2)+1=16*(7*5+2)+1",
+    "interpretation": "Contraejemplo documentado a afirmar que sólo las familias actuales admiten recetas compactas. No se usa su RMSE histórico para seleccionar sustitución; no garantiza superioridad ni igualdad del HPO/pipeline actual.",
+    "source_protocol": "experiments/dl_benchmark_20261104/protocol_initial.json",
+    "protocol_registered_at_utc": "2026-11-04T14:28:17.350067+00:00",
+    "protocol_timing_claim": "Antes del primer ajuste DL del proyecto, después del EDA/revisión y de observar datos históricos de desarrollo.",
+    "protocol_integrity_before_search": "results/dl_benchmark_20261104/code_manifest_before_search.json",
+    "prefit_search": {
+      "method": "Grid exhaustivo sobre plantilla fija",
+      "widths": [
+        16,
+        32
+      ],
+      "learning_rates": [
+        0.001,
+        0.003
+      ],
+      "histories": [
+        7,
+        14,
+        21,
+        28
+      ],
+      "seeds": [
+        101,
+        202
+      ],
+      "configurations_per_family_per_history": 4
+    },
+    "selected_at_utc": "2026-11-04T14:37:30.066293+00:00",
+    "status": "Receta/HPO histórico existente; no sólo un conteo conceptual. Su igualdad con el pipeline/fitting faseII no se presupone. La declaración/metadata temporal no es una acreditación externa del registro."
+  },
+  "corpus_dependency": {
+    "status": "integrated_homogeneous_part_corpus",
+    "location": "../part_corpus/adjudications.json",
+    "primary_frequency_stratum": "crypto_construct_reference_extractable",
+    "primary_denominator": 10,
+    "all_operational_construct_denominator": 12,
+    "counting_unit": "Un experimento independiente por familia comparadora autónoma; sin componentes/propuestas ni doble voto de Dudek2025 sobre Dudek2024.",
+    "rule": "Denominadores/numeradores obtenidos del corpus homogéneo, con receta/protocolo faltantes tratados como flags aparte y sensibilidad común. No se reutiliza N7 como universo final.",
+    "frequency_strata": [
+      {
+        "id": "crypto_construct_reference_extractable",
+        "description": "Subconjunto con al menos una familia de referencia autónoma verificada; regla común a fuentes antiguas/nuevas.",
+        "denominator": 10,
+        "records": [
+          "S1",
+          "S2",
+          "S5",
+          "S7",
+          "S8",
+          "E1N138",
+          "E1X001",
+          "E1X003",
+          "E1OA-R01",
+          "E1OA-R02"
+        ],
+        "family_counts": {
+          "LSTM": {
+            "count": 10,
+            "denominator": 10,
+            "experiments": [
+              "E1N138",
+              "E1OA-R01",
+              "E1OA-R02",
+              "E1X001",
+              "E1X003",
+              "S1",
+              "S2",
+              "S5",
+              "S7",
+              "S8"
+            ]
+          },
+          "GRU": {
+            "count": 4,
+            "denominator": 10,
+            "experiments": [
+              "E1N138",
+              "S1",
+              "S2",
+              "S8"
+            ]
+          },
+          "MLP": {
+            "count": 3,
+            "denominator": 10,
+            "experiments": [
+              "E1OA-R02",
+              "E1X001",
+              "S8"
+            ]
+          },
+          "CNN_generic": {
+            "count": 1,
+            "denominator": 10,
+            "experiments": [
+              "S8"
+            ]
+          },
+          "TCN": {
+            "count": 1,
+            "denominator": 10,
+            "experiments": [
+              "S1"
+            ]
+          },
+          "Transformer_encoder": {
+            "count": 1,
+            "denominator": 10,
+            "experiments": [
+              "S2"
+            ]
+          },
+          "Temporal_Fusion_Transformer": {
+            "count": 0,
+            "denominator": 10,
+            "experiments": []
+          },
+          "WaveNet_DCCNN": {
+            "count": 0,
+            "denominator": 10,
+            "experiments": []
+          },
+          "TCN_shared_head_variant": {
+            "count": 0,
+            "denominator": 10,
+            "experiments": []
+          },
+          "Performer": {
+            "count": 0,
+            "denominator": 10,
+            "experiments": []
+          },
+          "Helformer": {
+            "count": 0,
+            "denominator": 10,
+            "experiments": []
+          },
+          "S4": {
+            "count": 0,
+            "denominator": 10,
+            "experiments": []
+          },
+          "Mamba": {
+            "count": 0,
+            "denominator": 10,
+            "experiments": []
+          },
+          "MambaStock": {
+            "count": 0,
+            "denominator": 10,
+            "experiments": []
+          },
+          "CryptoMamba": {
+            "count": 0,
+            "denominator": 10,
+            "experiments": []
+          }
+        },
+        "interpretation": "Frecuencia positiva observada de uso comparativo autónomo en este estrato; no rendimiento, prevalencia global ni garantía de calidad."
+      },
+      {
+        "id": "crypto_construct_all",
+        "description": "Todos los experimentos de constructo continuo realizado/histórico identificado, incluidas dos fuentes sin rol de base simple verificado.",
+        "denominator": 12,
+        "records": [
+          "S1",
+          "S2",
+          "S5",
+          "S7",
+          "S8",
+          "S9",
+          "E1N138",
+          "E1X001",
+          "E1X003",
+          "E1OA-R01",
+          "E1OA-R02",
+          "E1OA-T02"
+        ],
+        "family_counts": {
+          "LSTM": {
+            "count": 10,
+            "denominator": 12,
+            "experiments": [
+              "E1N138",
+              "E1OA-R01",
+              "E1OA-R02",
+              "E1X001",
+              "E1X003",
+              "S1",
+              "S2",
+              "S5",
+              "S7",
+              "S8"
+            ]
+          },
+          "GRU": {
+            "count": 4,
+            "denominator": 12,
+            "experiments": [
+              "E1N138",
+              "S1",
+              "S2",
+              "S8"
+            ]
+          },
+          "MLP": {
+            "count": 3,
+            "denominator": 12,
+            "experiments": [
+              "E1OA-R02",
+              "E1X001",
+              "S8"
+            ]
+          },
+          "CNN_generic": {
+            "count": 1,
+            "denominator": 12,
+            "experiments": [
+              "S8"
+            ]
+          },
+          "TCN": {
+            "count": 1,
+            "denominator": 12,
+            "experiments": [
+              "S1"
+            ]
+          },
+          "Transformer_encoder": {
+            "count": 1,
+            "denominator": 12,
+            "experiments": [
+              "S2"
+            ]
+          },
+          "Temporal_Fusion_Transformer": {
+            "count": 0,
+            "denominator": 12,
+            "experiments": []
+          },
+          "WaveNet_DCCNN": {
+            "count": 0,
+            "denominator": 12,
+            "experiments": []
+          },
+          "TCN_shared_head_variant": {
+            "count": 0,
+            "denominator": 12,
+            "experiments": []
+          },
+          "Performer": {
+            "count": 0,
+            "denominator": 12,
+            "experiments": []
+          },
+          "Helformer": {
+            "count": 0,
+            "denominator": 12,
+            "experiments": []
+          },
+          "S4": {
+            "count": 0,
+            "denominator": 12,
+            "experiments": []
+          },
+          "Mamba": {
+            "count": 0,
+            "denominator": 12,
+            "experiments": []
+          },
+          "MambaStock": {
+            "count": 0,
+            "denominator": 12,
+            "experiments": []
+          },
+          "CryptoMamba": {
+            "count": 0,
+            "denominator": 12,
+            "experiments": []
+          }
+        },
+        "interpretation": "Frecuencia positiva observada de uso comparativo autónomo en este estrato; no rendimiento, prevalencia global ni garantía de calidad."
+      },
+      {
+        "id": "crypto_construct_reference_reporting_sensitivity",
+        "description": "Sensibilidad al mínimo de descripción de referencia/protocolo de §3.1: se excluyen juntos S8 y E1N138 por reporte insuficiente, no solo nuevas fuentes.",
+        "denominator": 8,
+        "records": [
+          "S1",
+          "S2",
+          "S5",
+          "S7",
+          "E1X001",
+          "E1X003",
+          "E1OA-R01",
+          "E1OA-R02"
+        ],
+        "family_counts": {
+          "LSTM": {
+            "count": 8,
+            "denominator": 8,
+            "experiments": [
+              "E1OA-R01",
+              "E1OA-R02",
+              "E1X001",
+              "E1X003",
+              "S1",
+              "S2",
+              "S5",
+              "S7"
+            ]
+          },
+          "GRU": {
+            "count": 2,
+            "denominator": 8,
+            "experiments": [
+              "S1",
+              "S2"
+            ]
+          },
+          "MLP": {
+            "count": 2,
+            "denominator": 8,
+            "experiments": [
+              "E1OA-R02",
+              "E1X001"
+            ]
+          },
+          "CNN_generic": {
+            "count": 0,
+            "denominator": 8,
+            "experiments": []
+          },
+          "TCN": {
+            "count": 1,
+            "denominator": 8,
+            "experiments": [
+              "S1"
+            ]
+          },
+          "Transformer_encoder": {
+            "count": 1,
+            "denominator": 8,
+            "experiments": [
+              "S2"
+            ]
+          },
+          "Temporal_Fusion_Transformer": {
+            "count": 0,
+            "denominator": 8,
+            "experiments": []
+          },
+          "WaveNet_DCCNN": {
+            "count": 0,
+            "denominator": 8,
+            "experiments": []
+          },
+          "TCN_shared_head_variant": {
+            "count": 0,
+            "denominator": 8,
+            "experiments": []
+          },
+          "Performer": {
+            "count": 0,
+            "denominator": 8,
+            "experiments": []
+          },
+          "Helformer": {
+            "count": 0,
+            "denominator": 8,
+            "experiments": []
+          },
+          "S4": {
+            "count": 0,
+            "denominator": 8,
+            "experiments": []
+          },
+          "Mamba": {
+            "count": 0,
+            "denominator": 8,
+            "experiments": []
+          },
+          "MambaStock": {
+            "count": 0,
+            "denominator": 8,
+            "experiments": []
+          },
+          "CryptoMamba": {
+            "count": 0,
+            "denominator": 8,
+            "experiments": []
+          }
+        },
+        "interpretation": "Frecuencia positiva observada de uso comparativo autónomo en este estrato; no rendimiento, prevalencia global ni garantía de calidad."
+      },
+      {
+        "id": "crypto_construct_publication",
+        "description": "Estrato de género documental: publication; publicaciones identificadas y literatura gris no se intercambian.",
+        "denominator": 7,
+        "records": [
+          "S1",
+          "S8",
+          "E1N138",
+          "E1X001",
+          "E1X003",
+          "E1OA-R01",
+          "E1OA-R02"
+        ],
+        "family_counts": {
+          "LSTM": {
+            "count": 7,
+            "denominator": 7,
+            "experiments": [
+              "E1N138",
+              "E1OA-R01",
+              "E1OA-R02",
+              "E1X001",
+              "E1X003",
+              "S1",
+              "S8"
+            ]
+          },
+          "GRU": {
+            "count": 3,
+            "denominator": 7,
+            "experiments": [
+              "E1N138",
+              "S1",
+              "S8"
+            ]
+          },
+          "MLP": {
+            "count": 3,
+            "denominator": 7,
+            "experiments": [
+              "E1OA-R02",
+              "E1X001",
+              "S8"
+            ]
+          },
+          "CNN_generic": {
+            "count": 1,
+            "denominator": 7,
+            "experiments": [
+              "S8"
+            ]
+          },
+          "TCN": {
+            "count": 1,
+            "denominator": 7,
+            "experiments": [
+              "S1"
+            ]
+          },
+          "Transformer_encoder": {
+            "count": 0,
+            "denominator": 7,
+            "experiments": []
+          },
+          "Temporal_Fusion_Transformer": {
+            "count": 0,
+            "denominator": 7,
+            "experiments": []
+          },
+          "WaveNet_DCCNN": {
+            "count": 0,
+            "denominator": 7,
+            "experiments": []
+          },
+          "TCN_shared_head_variant": {
+            "count": 0,
+            "denominator": 7,
+            "experiments": []
+          },
+          "Performer": {
+            "count": 0,
+            "denominator": 7,
+            "experiments": []
+          },
+          "Helformer": {
+            "count": 0,
+            "denominator": 7,
+            "experiments": []
+          },
+          "S4": {
+            "count": 0,
+            "denominator": 7,
+            "experiments": []
+          },
+          "Mamba": {
+            "count": 0,
+            "denominator": 7,
+            "experiments": []
+          },
+          "MambaStock": {
+            "count": 0,
+            "denominator": 7,
+            "experiments": []
+          },
+          "CryptoMamba": {
+            "count": 0,
+            "denominator": 7,
+            "experiments": []
+          }
+        },
+        "interpretation": "Frecuencia positiva observada de uso comparativo autónomo en este estrato; no rendimiento, prevalencia global ni garantía de calidad."
+      },
+      {
+        "id": "crypto_construct_grey",
+        "description": "Estrato de género documental: grey; publicaciones identificadas y literatura gris no se intercambian.",
+        "denominator": 5,
+        "records": [
+          "S2",
+          "S5",
+          "S7",
+          "S9",
+          "E1OA-T02"
+        ],
+        "family_counts": {
+          "LSTM": {
+            "count": 3,
+            "denominator": 5,
+            "experiments": [
+              "S2",
+              "S5",
+              "S7"
+            ]
+          },
+          "GRU": {
+            "count": 1,
+            "denominator": 5,
+            "experiments": [
+              "S2"
+            ]
+          },
+          "MLP": {
+            "count": 0,
+            "denominator": 5,
+            "experiments": []
+          },
+          "CNN_generic": {
+            "count": 0,
+            "denominator": 5,
+            "experiments": []
+          },
+          "TCN": {
+            "count": 0,
+            "denominator": 5,
+            "experiments": []
+          },
+          "Transformer_encoder": {
+            "count": 1,
+            "denominator": 5,
+            "experiments": [
+              "S2"
+            ]
+          },
+          "Temporal_Fusion_Transformer": {
+            "count": 0,
+            "denominator": 5,
+            "experiments": []
+          },
+          "WaveNet_DCCNN": {
+            "count": 0,
+            "denominator": 5,
+            "experiments": []
+          },
+          "TCN_shared_head_variant": {
+            "count": 0,
+            "denominator": 5,
+            "experiments": []
+          },
+          "Performer": {
+            "count": 0,
+            "denominator": 5,
+            "experiments": []
+          },
+          "Helformer": {
+            "count": 0,
+            "denominator": 5,
+            "experiments": []
+          },
+          "S4": {
+            "count": 0,
+            "denominator": 5,
+            "experiments": []
+          },
+          "Mamba": {
+            "count": 0,
+            "denominator": 5,
+            "experiments": []
+          },
+          "MambaStock": {
+            "count": 0,
+            "denominator": 5,
+            "experiments": []
+          },
+          "CryptoMamba": {
+            "count": 0,
+            "denominator": 5,
+            "experiments": []
+          }
+        },
+        "interpretation": "Frecuencia positiva observada de uso comparativo autónomo en este estrato; no rendimiento, prevalencia global ni garantía de calidad."
+      },
+      {
+        "id": "crypto_declared_target_inclusive_sensitivity",
+        "description": "Sensibilidad inclusiva: añade S6,CryptoMamba,Sun2025 y Zahid con constructo/proxy sin conciliar. No es el denominador confirmado.",
+        "denominator": 16,
+        "records": [
+          "S1",
+          "S2",
+          "S5",
+          "S7",
+          "S8",
+          "S9",
+          "E1N138",
+          "E1X001",
+          "E1X003",
+          "E1OA-R01",
+          "E1OA-R02",
+          "E1OA-T02",
+          "S6",
+          "E1N075",
+          "E1OA-R03",
+          "PR_GARCH"
+        ],
+        "family_counts": {
+          "LSTM": {
+            "count": 12,
+            "denominator": 16,
+            "experiments": [
+              "E1N075",
+              "E1N138",
+              "E1OA-R01",
+              "E1OA-R02",
+              "E1OA-R03",
+              "E1X001",
+              "E1X003",
+              "S1",
+              "S2",
+              "S5",
+              "S7",
+              "S8"
+            ]
+          },
+          "GRU": {
+            "count": 6,
+            "denominator": 16,
+            "experiments": [
+              "E1N075",
+              "E1N138",
+              "E1OA-R03",
+              "S1",
+              "S2",
+              "S8"
+            ]
+          },
+          "MLP": {
+            "count": 3,
+            "denominator": 16,
+            "experiments": [
+              "E1OA-R02",
+              "E1X001",
+              "S8"
+            ]
+          },
+          "CNN_generic": {
+            "count": 1,
+            "denominator": 16,
+            "experiments": [
+              "S8"
+            ]
+          },
+          "TCN": {
+            "count": 1,
+            "denominator": 16,
+            "experiments": [
+              "S1"
+            ]
+          },
+          "Transformer_encoder": {
+            "count": 3,
+            "denominator": 16,
+            "experiments": [
+              "E1N075",
+              "S2",
+              "S6"
+            ]
+          },
+          "Temporal_Fusion_Transformer": {
+            "count": 1,
+            "denominator": 16,
+            "experiments": [
+              "E1N075"
+            ]
+          },
+          "WaveNet_DCCNN": {
+            "count": 0,
+            "denominator": 16,
+            "experiments": []
+          },
+          "TCN_shared_head_variant": {
+            "count": 0,
+            "denominator": 16,
+            "experiments": []
+          },
+          "Performer": {
+            "count": 1,
+            "denominator": 16,
+            "experiments": [
+              "E1N075"
+            ]
+          },
+          "Helformer": {
+            "count": 1,
+            "denominator": 16,
+            "experiments": [
+              "E1N075"
+            ]
+          },
+          "S4": {
+            "count": 1,
+            "denominator": 16,
+            "experiments": [
+              "E1N075"
+            ]
+          },
+          "Mamba": {
+            "count": 1,
+            "denominator": 16,
+            "experiments": [
+              "E1N075"
+            ]
+          },
+          "MambaStock": {
+            "count": 1,
+            "denominator": 16,
+            "experiments": [
+              "E1N075"
+            ]
+          },
+          "CryptoMamba": {
+            "count": 1,
+            "denominator": 16,
+            "experiments": [
+              "E1N075"
+            ]
+          }
+        },
+        "interpretation": "Frecuencia positiva observada de uso comparativo autónomo en este estrato; no rendimiento, prevalencia global ni garantía de calidad."
+      },
+      {
+        "id": "crypto_all_continuous_constructs_including_implied",
+        "description": "Sensibilidad de alcance: magnitud continua realizada/histórica más índice implícito cripto; conserva estratos separados para interpretación y no incluye VIX/equity.",
+        "denominator": 13,
+        "records": [
+          "S1",
+          "S2",
+          "S5",
+          "S7",
+          "S8",
+          "S9",
+          "E1N138",
+          "E1X001",
+          "E1X003",
+          "E1OA-R01",
+          "E1OA-R02",
+          "E1OA-T02",
+          "PR_CVI"
+        ],
+        "family_counts": {
+          "LSTM": {
+            "count": 11,
+            "denominator": 13,
+            "experiments": [
+              "E1N138",
+              "E1OA-R01",
+              "E1OA-R02",
+              "E1X001",
+              "E1X003",
+              "PR_CVI",
+              "S1",
+              "S2",
+              "S5",
+              "S7",
+              "S8"
+            ]
+          },
+          "GRU": {
+            "count": 4,
+            "denominator": 13,
+            "experiments": [
+              "E1N138",
+              "S1",
+              "S2",
+              "S8"
+            ]
+          },
+          "MLP": {
+            "count": 3,
+            "denominator": 13,
+            "experiments": [
+              "E1OA-R02",
+              "E1X001",
+              "S8"
+            ]
+          },
+          "CNN_generic": {
+            "count": 1,
+            "denominator": 13,
+            "experiments": [
+              "S8"
+            ]
+          },
+          "TCN": {
+            "count": 2,
+            "denominator": 13,
+            "experiments": [
+              "PR_CVI",
+              "S1"
+            ]
+          },
+          "Transformer_encoder": {
+            "count": 1,
+            "denominator": 13,
+            "experiments": [
+              "S2"
+            ]
+          },
+          "Temporal_Fusion_Transformer": {
+            "count": 0,
+            "denominator": 13,
+            "experiments": []
+          },
+          "WaveNet_DCCNN": {
+            "count": 0,
+            "denominator": 13,
+            "experiments": []
+          },
+          "TCN_shared_head_variant": {
+            "count": 0,
+            "denominator": 13,
+            "experiments": []
+          },
+          "Performer": {
+            "count": 0,
+            "denominator": 13,
+            "experiments": []
+          },
+          "Helformer": {
+            "count": 0,
+            "denominator": 13,
+            "experiments": []
+          },
+          "S4": {
+            "count": 0,
+            "denominator": 13,
+            "experiments": []
+          },
+          "Mamba": {
+            "count": 0,
+            "denominator": 13,
+            "experiments": []
+          },
+          "MambaStock": {
+            "count": 0,
+            "denominator": 13,
+            "experiments": []
+          },
+          "CryptoMamba": {
+            "count": 0,
+            "denominator": 13,
+            "experiments": []
+          }
+        },
+        "interpretation": "Frecuencia positiva observada de uso comparativo autónomo en este estrato; no rendimiento, prevalencia global ni garantía de calidad."
+      },
+      {
+        "id": "crypto_scale_standard_deviation_or_log_standard_deviation",
+        "description": "Estrato matemático varianza o desviación estándar/log; no agrega métricas.",
+        "denominator": 6,
+        "records": [
+          "S1",
+          "S2",
+          "S5",
+          "S7",
+          "E1OA-R01",
+          "E1OA-T02"
+        ],
+        "family_counts": {
+          "LSTM": {
+            "count": 5,
+            "denominator": 6,
+            "experiments": [
+              "E1OA-R01",
+              "S1",
+              "S2",
+              "S5",
+              "S7"
+            ]
+          },
+          "GRU": {
+            "count": 2,
+            "denominator": 6,
+            "experiments": [
+              "S1",
+              "S2"
+            ]
+          },
+          "MLP": {
+            "count": 0,
+            "denominator": 6,
+            "experiments": []
+          },
+          "CNN_generic": {
+            "count": 0,
+            "denominator": 6,
+            "experiments": []
+          },
+          "TCN": {
+            "count": 1,
+            "denominator": 6,
+            "experiments": [
+              "S1"
+            ]
+          },
+          "Transformer_encoder": {
+            "count": 1,
+            "denominator": 6,
+            "experiments": [
+              "S2"
+            ]
+          },
+          "Temporal_Fusion_Transformer": {
+            "count": 0,
+            "denominator": 6,
+            "experiments": []
+          },
+          "WaveNet_DCCNN": {
+            "count": 0,
+            "denominator": 6,
+            "experiments": []
+          },
+          "TCN_shared_head_variant": {
+            "count": 0,
+            "denominator": 6,
+            "experiments": []
+          },
+          "Performer": {
+            "count": 0,
+            "denominator": 6,
+            "experiments": []
+          },
+          "Helformer": {
+            "count": 0,
+            "denominator": 6,
+            "experiments": []
+          },
+          "S4": {
+            "count": 0,
+            "denominator": 6,
+            "experiments": []
+          },
+          "Mamba": {
+            "count": 0,
+            "denominator": 6,
+            "experiments": []
+          },
+          "MambaStock": {
+            "count": 0,
+            "denominator": 6,
+            "experiments": []
+          },
+          "CryptoMamba": {
+            "count": 0,
+            "denominator": 6,
+            "experiments": []
+          }
+        },
+        "interpretation": "Frecuencia positiva observada de uso comparativo autónomo en este estrato; no rendimiento, prevalencia global ni garantía de calidad."
+      },
+      {
+        "id": "crypto_scale_variance_or_quadratic_variation",
+        "description": "Estrato matemático varianza o desviación estándar/log; no agrega métricas.",
+        "denominator": 6,
+        "records": [
+          "S8",
+          "S9",
+          "E1N138",
+          "E1X001",
+          "E1X003",
+          "E1OA-R02"
+        ],
+        "family_counts": {
+          "LSTM": {
+            "count": 5,
+            "denominator": 6,
+            "experiments": [
+              "E1N138",
+              "E1OA-R02",
+              "E1X001",
+              "E1X003",
+              "S8"
+            ]
+          },
+          "GRU": {
+            "count": 2,
+            "denominator": 6,
+            "experiments": [
+              "E1N138",
+              "S8"
+            ]
+          },
+          "MLP": {
+            "count": 3,
+            "denominator": 6,
+            "experiments": [
+              "E1OA-R02",
+              "E1X001",
+              "S8"
+            ]
+          },
+          "CNN_generic": {
+            "count": 1,
+            "denominator": 6,
+            "experiments": [
+              "S8"
+            ]
+          },
+          "TCN": {
+            "count": 0,
+            "denominator": 6,
+            "experiments": []
+          },
+          "Transformer_encoder": {
+            "count": 0,
+            "denominator": 6,
+            "experiments": []
+          },
+          "Temporal_Fusion_Transformer": {
+            "count": 0,
+            "denominator": 6,
+            "experiments": []
+          },
+          "WaveNet_DCCNN": {
+            "count": 0,
+            "denominator": 6,
+            "experiments": []
+          },
+          "TCN_shared_head_variant": {
+            "count": 0,
+            "denominator": 6,
+            "experiments": []
+          },
+          "Performer": {
+            "count": 0,
+            "denominator": 6,
+            "experiments": []
+          },
+          "Helformer": {
+            "count": 0,
+            "denominator": 6,
+            "experiments": []
+          },
+          "S4": {
+            "count": 0,
+            "denominator": 6,
+            "experiments": []
+          },
+          "Mamba": {
+            "count": 0,
+            "denominator": 6,
+            "experiments": []
+          },
+          "MambaStock": {
+            "count": 0,
+            "denominator": 6,
+            "experiments": []
+          },
+          "CryptoMamba": {
+            "count": 0,
+            "denominator": 6,
+            "experiments": []
+          }
+        },
+        "interpretation": "Frecuencia positiva observada de uso comparativo autónomo en este estrato; no rendimiento, prevalencia global ni garantía de calidad."
+      }
+    ],
+    "source_sha256": "82d97124b7e829570cd1804b9be8f4f5d2edb57d080a9a4afdd2b8efda5d4c7f"
+  },
+  "selection_decision_rule": {
+    "type": "comparación multiatributo parcial, no puntuación ponderada",
+    "retrospective": true,
+    "preregistered": false,
+    "weights": null,
+    "steps": [
+      "Aplicar la misma regla de elegibilidad a todos los originales: tarea/target, papel comparador, independencia del experimento y acceso primario; mostrar sensibilidades. Separar calidad/precisión de receta de presencia de una familia.",
+      "Tabular frecuencia con denominador fijo por estrato, profundidad y parámetros publicados/derivados con supuestos, reproducibilidad, y mecanismo. No interpretar desconocido como ausencia, cero complejidad o máxima complejidad.",
+      "Separar tres objetos: receta publicada, escenario algebraico conp/q comunes, y receta propia ya congelada. La simplicidad de una adaptación propia no prueba la simplicidad mínima de su familia ni recupera una receta faltante.",
+      "Examinar terna por terna: diferencias de mecanismos por pares y cobertura amplia, además de respaldo/frecuencia y complejidad. El número de familias amplias es una sensibilidad, no una exigencia literal añadida a§3.2.",
+      "Afirmar dominancia sólo entre atributos conocidos y comparables: al menos igual respaldo/frecuencia dentro del mismo estrato, no mayor complejidad en las dimensiones comparables y al menos la misma distinción de mecanismos; mejora estricta en alguna dimensión. Si falta un atributo necesario, marcar relación indeterminada.",
+      "Si hay intercambio frecuencia/capacidad/diversidad o valores desconocidos, conservar alternativas como no resueltas. No convertir distinción estructural ni pertenencia a frontera posible en selección única demostrada.",
+      "Sólo declarar óptimo según una prioridad si ésta se hace explícita y se aplica también a alternativas. Una prioridad elegida hoy es posterior; no atribuirla al diseño previo ni usar test para escoger familias.",
+      "Mantener la terna/resultados actuales como registro experimental. Un cambio futuro de terna con receta incompleta necesita el espacio HPOE2 antes de sus nuevos ajustes, según guía; no reinterpretar los ajustes previos."
+    ],
+    "dominance_limit": "Sin una escala común de complejidad entre recetas, y con varios anchos ausentes, no se certifica una frontera Pareto numérica completa. Se reportan alternativas plausibles e incomparabilidad, no un conjunto de óptimos calculado.",
+    "illustrative_tradeoffs": [
+      {
+        "set": [
+          "GRU",
+          "LSTM",
+          "TCN"
+        ],
+        "advantage": "Aísla dos mecanismos de compuertas recurrentes y una convolución causal con recetas propias compactas.",
+        "cost": "Dos puestos comparten recurrencia; TCN tiene respaldo referencial limitado, y su ganador S1 es profundo/ancho."
+      },
+      {
+        "set": [
+          "LSTM",
+          "GRU",
+          "MLP"
+        ],
+        "advantage": "Son las tres frecuencias mayores del estrato referencial homogéneoN10(10,4,3); conserva dos recurrentes y añade mezcla densa específica por posición.",
+        "cost": "No ofrece contraste convolucional; anchos publicadosMLP incompletos. Existe receta/HPO propio histórico, sin presuponer igualdad de pipeline o presupuesto con faseII ni ejecutar nuevos ajustes."
+      },
+      {
+        "set": [
+          "MLP",
+          "LSTM",
+          "TCN"
+        ],
+        "advantage": "Tres familias amplias: pesos densos por posición, recurrencia con celda y convolución temporal.",
+        "cost": "Sacrifica el apoyo/frecuencia deGRU; no demuestra menor complejidad total ni mejor error. GRU podría ocupar el puesto recurrente bajo otra prioridad explícita."
+      },
+      {
+        "set": [
+          "LSTM",
+          "GRU",
+          "Transformer_encoder"
+        ],
+        "advantage": "Contrasta recurrencia con atención; era top3 en tabla históricaN7al contarS6. En corpus principal actualencoder1/10empataTCN y queda por debajoMLP3/10.",
+        "cost": "Ese ranking no se hereda al corpus homogéneo; la recetaS2 no es mínima yS6 incompleta. No se descarta la familia por imposibilidad o coste cuadrático conD7."
+      }
+    ],
+    "qualitative_order_caution": "La distinción entre mecanismos no tiene una escala ordinal definida por la guía. Mientras no se declare una relación de comparación cualitativa entre ternas, ese atributo hace indeterminada la dominancia; no se calcula un índice de diversidad ni una frontera de óptimos."
+  },
+  "joint_assessment": {
+    "nonredundancy_mechanistic_interpretation": "Diferencias GRU/LSTM/TCN sustentadas por ecuaciones y código;GRU/LSTM pertenecen a una misma familia amplia. Alcance acotado a reglas de representación dentro deD7.",
+    "simple_exact_project_recipes": true,
+    "published_recipe_replication": false,
+    "frequency_and_joint_optimality": "En referencias extraíbles N10: LSTM10,GRU4,MLP3,TCN1,CNN1,encoder1. N12 operacional mantiene esos numeradores; excluye dos fuentes sin rol de base simple verificado del denominador referencial. El orden por frecuencia es LSTM–GRU–MLP; la terna vigente no lo maximiza. En sensibilidad de reporte N8, GRU yMLP empatan2,TCN1. No se acredita selección conjunta única o mínima complejidad de la terna.",
+    "scientific_closure_certified": false,
+    "unjustified_closure_routes": [
+      "Reinterpretar no redundancia como tres familias amplias obligatorias",
+      "Usar menos pesos o más paralelismo como prueba suficiente de diferencia de sesgo",
+      "AtribuirRF29 a29observaciones reales",
+      "Llamar réplica a compactación propia",
+      "Imputar anchos desconocidos aMLP/Transformer",
+      "Preferir la terna por resultados de reserva observada",
+      "Inventar ponderaciones/umbrales para hacer ganar la terna"
+    ],
+    "retention_recommendation": "Conservar GRU–LSTM–TCN como registro de una comparación específica de reglas de estado y filtros temporales, con alcance condicionado. No denominarla top3 de frecuencia ni terna más simple demostrada. La corrección metodológica es explicitar la limitación y la alternativaMLP; una eventual sustitución exige verificar compatibilidad/proveniencia del benchmark existente o un estudio futuro comparable, sin relabel retrospectivo.",
+    "guide_step6_assessment": "Puede sostenerse una interpretación mecanística de diferencia de sesgos; no exige tres familias amplias. El alcance de la evidencia es dos mecanismos dentro de una familia recurrente y un mecanismo convolucional sobreD7, sin prueba empírica de complementariedad ni mínima distancia.",
+    "guide32_complete_assessment": "Parcial/condicionado: la documentación mejora la trazabilidad y la diferencia de mecanismos, pero no demuestra que estos sean conjuntamente los tres comparadores más recurrentes y sencillos frente aMLP yencoder."
+  },
+  "classical_reference_equivalence": {
+    "claim": "Equivalencia de propósito comparativo, no de capacidad formal.",
+    "explanation": "Estas redes delimitan referencias neuronales reproducibles de complejidad controlada para medir ganancia incremental. Su no linealidad y restricciones arquitectónicas no son iguales a regresión logística oSVRlineal; los clásicos continúan como contexto bajo igual contrato cuando corresponda."
+  },
+  "input_integrity": {
+    "/workspace/work/guia.txt": {
+      "sha256": "a432d61a464963f43d0eed2c195bca59a38b13b44a4324591ff80b6574535378"
+    },
+    "scripts/dl_models.py": {
+      "sha256": "e24110b57aeee201e1e9ab53519eb6b05967927ac54102fe23d3908c3fc57d69"
+    },
+    "scripts/dl_models_gru_lstm_tcn.py": {
+      "sha256": "c11af1229fec43dd7da01a21e349dc2b109d9d61d977f6df3d01cd7da736b35d"
+    },
+    "results/gru_lstm_tcn_planned_20261105/final_configurations.csv": {
+      "sha256": "a00bca3e466743f458c2ff0ccc0b3befa68d08f16509145a2c76cfb4bf645730"
+    },
+    "results/dl_benchmark_20261104/selected_configuration.json": {
+      "sha256": "5341317cb61c6d01419cfbcfcbdc1d58c72c6af51c7c5fdd11cfed2ebe088574"
+    },
+    "references/literature_e1/model_extraction_review_20261103.csv": {
+      "sha256": "8a7e5f81b860595d62442677cd85436683625470d47e0c02d5cb756051b4bc84"
+    },
+    "references/literature_e1/recovery_20261105/extraction.json": {
+      "sha256": "8827ca3e51de0f477db7d1728237702b29a838f5a17b26198476ca9d723b37b1"
+    },
+    "references/literature_e1/fichas_arquitecturas.json": {
+      "sha256": "cce089d7031613c781350a26668ca594ff300ebd1f1adb0003fd4c1be7187a99"
+    },
+    "scripts/audit_literature_models.py": {
+      "sha256": "c705e8b117b30805b4f499e03da05f1e36c35ef24f494dbc38b926ea3d9e6e9c"
+    },
+    "references/literature_e1/open_access_replacement_20261107/part_open_recurrent/reviews.json": {
+      "sha256": "71985a9924626516a33110913dd70daa6767dfba53da936c378ff651cba384c2"
+    },
+    "experiments/dl_benchmark_20261104/protocol_initial.json": {
+      "sha256": "7cbda15bd55b8a9fe4bd73b199e2b2af7ca9942e01521ddaa275c6181d43ce4f"
+    },
+    "results/dl_benchmark_20261104/code_manifest_before_search.json": {
+      "sha256": "851b0eec8f1c81ef179fece4de15b37fa8e48eba4fffd4f510db7b9530259abc"
+    },
+    "references/literature_e1/homogeneous_synthesis_20261107/part_corpus/adjudications.json": {
+      "sha256": "82d97124b7e829570cd1804b9be8f4f5d2edb57d080a9a4afdd2b8efda5d4c7f"
+    },
+    "references/literature_e1/homogeneous_synthesis_20261107/part_corpus/protocol.json": {
+      "sha256": "3ea1491a1b29e0fc712e0ccbc5c4f174b5f4449f12306fad7bc335bcdcac7fc6"
+    }
+  },
+  "validation": {
+    "new_fits": 0,
+    "new_networks_constructed": 0,
+    "code_mutated": false,
+    "book_mutated": false,
+    "static_parameter_sums_match_final_catalog": true,
+    "source_count_arithmetic": "S1yS2condicional/no reportado; ausentes preservadosnull",
+    "new_searches": 0,
+    "independent_static_review": {
+      "reviewer": "Otro agente Codex de la misma sesión; no revisión humana independiente",
+      "result": "Sumas, fórmulas propias y condicionales S1/S2, RF29/10921 y ecuaciones verificadas. Cautela: diversidad cualitativa sin relación de orden no permite dominancia calculada.",
+      "new_networks_or_fits": 0
+    }
+  },
+  "recipe_availability_gate_audit": {
+    "proposed_gate": "Al menos una receta publicada suficiente o HPO propio registrado antes de sus ajustes",
+    "TCN": "Tiene hiperparámetros ganadores publicados enS1, con dependencia no fijada que limita bitexactitud; tiene receta compacta y HPO propios.",
+    "MLP": "Sus tres fuentes dejan ancho elegido sin especificar, pero el proyecto conserva plantilla reproducible y grid propio de2026-11-04 declarado antes de sus ajustes; no puede eliminarse afirmando que carece de toda receta/HPO propio.",
+    "fairness_conclusion": "El OR no separa limpiamente ambas familias. Exigir además haber sido ajustada en faseII sería usar disponibilidad posterior, no un criterio general preexistente. Capacidad de compartir pipeline no equivale a estar ya ajustada en él.",
+    "E2_caveat": "No se acredita aquí cumplimiento íntegro de§14E2 por ninguna búsqueda ni equivalencia entre presupuestos históricos/faseII; no atribuir HPO propio al artículo ni llamar réplica a compactación."
+  },
+  "TCN_encoder_complexity_tie": {
+    "primary_frequency": "TCN1/10 yencoder1/10; dos comparadores extraíbles diferentes, no empate de desempeño.",
+    "source_recipes": {
+      "TCN_S1": {
+        "conditional_parameters": 4563396,
+        "p": 1,
+        "q": 96,
+        "width": 287,
+        "blocks": 6,
+        "convolutions": 12,
+        "dependency_version_pinned": false
+      },
+      "encoder_S2": {
+        "analytical_parameters": 49249,
+        "p": 41,
+        "q": 1,
+        "d_model": 48,
+        "layers": 2,
+        "feedforward": 96,
+        "learned_position_capacity": 96
+      }
+    },
+    "common_io_analytical_sensitivity": {
+      "p": 5,
+      "q": 1,
+      "TCN_source_width_depth_retained_conditional_parameters": 4542924,
+      "encoder_source_width_depth_positions_retained_analytical_parameters": 47521,
+      "neural_networks_constructed": 0
+    },
+    "judgment": "Las recetas fuente/escenarios de entrada común no sostienen queTCN sea menor por parámetros; además conservan anchos y tareas diferentes. Comparar TCN propia1185 con encoder original49249 sería asimétrico. No existe receta compacta de encoder comparable aquí ajustada, y no se inventa una para hacerlo perder. No se certifica menor complejidad universal deTCN ni dominancia de ninguna familia."
+  },
+  "target_scope_sensitivity_caution": "El estrato std/logstd tiene N6(LSTM5,GRU2,TCN1,encoder1,MLP0); el de varianza tieneN6(LSTM5,GRU2,MLP3,CNN1). Es una separación operativa útil, no un gate posterior para borrarMLP: ninguno iguala exactamente sigma7E1 y la guía pide relevancia al problema. Incluir CVI amplía aN13(LSTM11,GRU4,MLP3,TCN2,encoder1), sin volver equivalente volatilidad implícita y realizada."
+}

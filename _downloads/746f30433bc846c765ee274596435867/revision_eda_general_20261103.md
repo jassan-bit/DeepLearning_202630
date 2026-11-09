@@ -1,0 +1,26 @@
+# Revisión del EDA general — 03/11/2026
+
+Se revisan los puntos de la sección 2.1 de la guía, adaptados al tipo 4: regresión temporal. Se amplió el análisis con los CSV de desarrollo 2023–2024, conservando la exclusión del 24/03/2023 y sin abrir test ni ajustar modelos predictivos.
+
+| ID | Requisito | Estado | Evidencia | Límite |
+|---|---|---|---|---|
+| EDA01 | Distribución del objetivo | Ejecutado | Ocho perfiles año–ventana; histogramas/ECDF, cuantiles y cola empírica de n=7. | No mezclar n=7/14/21/28 como si fueran la misma etiqueta. |
+| EDA02 | Desbalance y entropía de clases | No aplicable | El objetivo es continuo; no hay clases ni etiquetas categóricas. | Las cuatro ventanas de volatilidad no son cuatro clases. |
+| EDA03 | Clases raras, asimetría y curtosis | Adaptado a regresión | Asimetría/curtosis y regla 1,5 IQR de 2023:3/350 frente 14/366 en 2024 para n=7. | Las marcas de cola no son errores confirmados ni motivo de eliminación automática. |
+| EDA04 | Implicación sobre pérdidas y métricas | Documentado | Se conservan MSE/RMSE; ceros de MAPE y escala original definidos. | La distribución de Y no es una medición de residuos; nuevas pérdidas requerirían protocolo propio. |
+| EDA05 | Faltantes y mecanismo con evidencia | Caracterizado; mecanismo no identificable | 80 minutos ausentes y un cierre temporal no elegible; un día excluido y propagación a retornos/etiquetas/ventanas. | Un episodio no identifica MCAR/MAR/MNAR; no se atribuye causa sin fuente independiente. |
+| EDA06 | Corrupción y rangos semánticos | Ejecutado | Controles originales de un minuto y auditoría diaria de OHLCV;730 días completos sin incoherencias detectadas. | No equivale a verificar la exactitud de los precios frente a una fuente externa. |
+| EDA07 | Duplicados exactos y casi duplicados | Adaptado y ejecutado | Unicidad de fechas y filas OHLCV completas; cero duplicados detectados en derivados. | Precios repetidos o ventanas solapadas no son duplicados erróneos; hashing perceptual no aplica. |
+| EDA08 | Ruido de etiquetas | Consistencia verificada; ruido externo no estimado | 2.924 posiciones comprobadas,2.780 etiquetas válidas reconstruidas, cero discrepancias de elegibilidad, máxima diferencia 1,027 e-15. | No estima error del proveedor ni incertidumbre del proxy; acuerdo entre anotadores no aplica al cálculo automático. |
+| EDA09 | Sesgo de representación | Documentado | Un activo, Binance Spot y cotizaciónUSDT; no representa todos los mercados. | No se crean subpoblaciones o clases artificiales para aparentar balance. |
+| EDA10 | Sesgos temporales y espaciales | Temporal ejecutado; espacial no aplicable | Comparación 2023/24, perfiles móviles y diagnósticos temporales; no hay coordenadas espaciales. | Cambios descriptivos no atribuyen causas económicas ni rupturas confirmadas. |
+| EDA11 | Sesgos semánticos o de dominio | Adaptado al dominio financiero | Fuente/mercado/cotización únicos; USDT y USD no se tratan como idénticos. | NLP, imágenes y sensores no forman parte del contrato. |
+| EDA12 | Atajos y correlaciones espurias | Documentado con evidencia | Correlaciones causales, redundancia OHLC/PCA y posible señal de régimen de los niveles de precio. | No demuestra causalidad ni anticipación del retorno desconocido; OHLCV del día de resultado no es entrada. |
+| EDA13 | Prueba de desplazamiento | Diagnóstico marginal condicional ejecutado | Seis distanciasKS;2.000 permutaciones por 14/28 días, semilla 42, Holm 12. | Condicionado a intercambiabilidad de bloques completos dadas partes fijas; no prueba exacta, conjunta, de todos los rezagos ni de test. |
+| EDA14 | Implicaciones de sesgos y desplazamiento | Documentado por análisis | Escalas solo con pasado, calendario cronológico y comparación de referencias simples antes de aumentar capacidad. | No igualar distribuciones artificialmente ni seleccionar modelo/ventana/pérdida por estos p-values. |
+| EDA15 | Conjuntos, proporciones y semilla | Documentado | 365/366/608 días sobre 1.339 asignados:27,26/27,33/45,41%;60 días adquiridos no asignados fuera denominador. | Son proporciones de calendario, no muestras; división determinista sin semilla de barajado. |
+| EDA16 | Partición según dependencia | Aplicado en preparación | EmbargoD, u≤t-D-1,5.856 registros de índices; fechas, semillas y bloques diferenciados. | Índices no son entrenamientos ni observaciones independientes. |
+| EDA17 | Distribuciones entre particiones | Desarrollo comparado; test reservado | Perfil causal 350/366 casos y seis marginales 2023/24; no se consultótest para diseñar preprocesamiento. | No rechazo no demuestra igualdad; test no se analiza antes de fijar decisiones. |
+| EDA18 | Congelar y proteger test | Reserva bruta documentada; supervisado pendiente | 20 ZIPyhashes seleccionados del manifiesto existente;0 archivos test abiertos en esta ampliación. | Faltan manifiesto supervisado, máscaras y protocolo experimental definitivo de E2. |
+
+Cada análisis se acompaña en el capítulo 2 de una decisión de preprocesamiento, un impacto en la arquitectura y los riesgos. Los contrastes por bloques son exploratorios y condicionales; no se transfieren como diseño inferencial del benchmark. La consistencia numérica no se presenta como ruido externo cero.

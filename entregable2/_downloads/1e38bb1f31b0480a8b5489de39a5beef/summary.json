@@ -1,0 +1,47 @@
+{
+  "status": "implemented_synthetic_checked_not_market_benchmark",
+  "base_published_commit": "b36f982cb98c66a869a027be323e20b6066e8691",
+  "new_market_fits": 0,
+  "nas_adjudication": null,
+  "neural_smoke": {
+    "models": 11,
+    "skips": 0,
+    "supervised_steps_each": 1,
+    "ae1_steps": 1,
+    "ae2_steps": 1,
+    "structural_resize": false
+  },
+  "test_suites": {
+    "recipe_models": {
+      "tests": 14,
+      "skipped": 0
+    },
+    "recipe_catalogue": {
+      "tests": 6,
+      "skipped": 0
+    },
+    "temporal_controls": {
+      "tests": 19,
+      "skipped": 0
+    }
+  },
+  "controls_runtime": {
+    "python": "3.12.14",
+    "statsmodels": "0.14.5",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "scipy": "1.17.0"
+  },
+  "controls_scope": "Individual APIs and synthetic tests; no CV, selection, market execution or durable forecast store",
+  "verified_code_sha256": {
+    "scripts/e2_recipe_models.py": "47380cc87e2d4b4221ee4fc97da3286990470b3304dd1d9ef990ace51c338b75",
+    "scripts/e2_recipe_catalogue.py": "bdce116cf51aa56ce34fd5041f01c7e4edd5d53a9a70e482515c9af9070dada6",
+    "scripts/smoke_e2_recipe_catalogue.py": "1975951140c0bb02259d87a25fe5db32bfe3879d72e2af160bc89b5da384adcc",
+    "scripts/e2_temporal_controls.py": "36e5a8b15e51ddf7d36397e2b6e71734afb36c6894cac0a71c9364b277fcc139",
+    "tests/test_e2_recipe_models.py": "b85ba96a29dd99ae1407870d056ed4aba2b7d5251f00fe55b3e8172cafb441dd",
+    "tests/test_e2_recipe_catalogue.py": "f70e64cbfcb3dac8629bd78a3e70ef45d1cc77b6cd6433a61f9ea676b8b76ed5",
+    "tests/test_e2_temporal_controls.py": "c33a8d9fcc5b8cb8d1888261ac2da3534f56190b4c7eee38e1f3bd1fd1cec8c5"
+  },
+  "historical_files_modified": false,
+  "backend_numerical_equivalence_certified": false
+}
