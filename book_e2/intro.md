@@ -1,5 +1,8 @@
 # Proyecto Final de Deep Learning: Entregable 2
 
+**Once propuestas concretas:** [fichas de cuerpos, adaptaciones y decisiones pendientes](sections/22_fichas_recetas.md). No se implementan ni entrenan las recetas nuevas en este corte.
+
+
 **Siguiente especificación:** [comparadores temporales, matriz NAS y costes por escenarios](sections/21_comparadores_nas.md). Propuesta sin entrenamiento, búsqueda ni cierre automático del protocolo.
 
 

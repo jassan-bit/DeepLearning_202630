@@ -1,5 +1,8 @@
 # 21. Comparadores temporales y decisión NAS por receta
 
+**Once propuestas concretas:** [fichas de cuerpos, adaptaciones y decisiones pendientes](22_fichas_recetas.md). No se implementan ni entrenan las recetas nuevas en este corte.
+
+
 **Especificación propuesta, sin ejecución.** Este corte desarrolla los dos siguientes pasos de §20: comparadores F2a y examen de arquitectura por modelo. No añade candidatos al Top 10, no declara un ganador y no inicia HPO, NAS, piloto o entrenamiento. Los prototipos actuales permanecen sin modificar.
 
 La guía exige conservar el contrato de E1 y resolver explícitamente las diferencias de información y de presupuesto. Una receta bibliográfica definida no es sinónimo de una implementación fiel; cambiar el cuerpo de una red y mantener su nombre tampoco demuestra una exención NAS. Las decisiones se separan por fuente, cuerpo implementado, adaptación de tarea y condición pendiente.

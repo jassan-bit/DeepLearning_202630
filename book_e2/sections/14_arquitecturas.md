@@ -1,5 +1,8 @@
 # 14. Arquitecturas del catálogo vigente y adaptación a D7
 
+**Once propuestas concretas:** [fichas de cuerpos, adaptaciones y decisiones pendientes](22_fichas_recetas.md). No se implementan ni entrenan las recetas nuevas en este corte.
+
+
 **Siguiente especificación:** [comparadores temporales, matriz NAS y costes por escenarios](21_comparadores_nas.md). Propuesta sin entrenamiento, búsqueda ni cierre automático del protocolo.
 
 
