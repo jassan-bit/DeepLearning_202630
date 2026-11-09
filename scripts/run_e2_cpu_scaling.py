@@ -277,7 +277,9 @@ def select_thread_policy(records):
     best = min(normalized.values())
     eligible = [count for count in THREAD_COUNTS if normalized[count] <= 1.05*best]
     return {"status": "complete_runtime_policy_selected", "selected_threads": min(eligible),
-            "family_median_work_seconds": medians, "normalized_runtime_scores": normalized,
+            "family_median_work_seconds": {name:{str(count):value for count,value in family.items()}
+                                           for name,family in medians.items()},
+            "normalized_runtime_scores": {str(count):value for count,value in normalized.items()},
             "tie_within_relative_fraction": .05, "tie_rule": "fewest_threads",
             "accuracy_used_for_selection": False, "completed_attempts": 12,
             "normalization_baseline_threads": 4,

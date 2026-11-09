@@ -1,0 +1,30 @@
+{
+  "version": "e2-cpu-profile-serialization-amendment-v1",
+  "created_utc": "2026-11-09T18:43:25.496413+00:00",
+  "status": "administrative_repair_before_scaling_fits",
+  "original_registration_commit": "d24c7d1f78038284f2bad179f6a7c8cb9cc0bdb2",
+  "original_registration_sha256": "3b54ac44f5aed956ac98fbc31c95dfcb70c1116b6cca65a8269ff11cd843ac91",
+  "trigger": "All12 registered thread fits completed; final summary serialization rejected integer JSON policy keys.",
+  "scope": "Only returned metadata dictionary keys for family_median_work_seconds and normalized_runtime_scores convert1/2/4 to strings. Calculations, medians, scores, tie rule and selected2 threads are unchanged.",
+  "algorithm_or_measurements_changed": false,
+  "new_market_fits_executed_for_repair": 0,
+  "additional_optimizer_steps": 0,
+  "completed_fits_preserved": 12,
+  "optimizer_steps_preserved": 360,
+  "original_runner_sha256": "c8fc2ff49421684d35b422345638fbc0e95f1827e52adff8cf91e4581f93cb90",
+  "new_runner_sha256": "192763746eb618a4208942d365a14d42910240cd362b1c565c85951dc402a2a5",
+  "original_source_archive": "experiments/e2_compute_optimization_20261109/frozen_sources/run_e2_cpu_scaling_preregistered.py",
+  "files_sha256": {
+    "scripts/run_e2_cpu_scaling.py": "192763746eb618a4208942d365a14d42910240cd362b1c565c85951dc402a2a5",
+    "tests/test_e2_cpu_scaling.py": "46187d757537ced1a42326b8197dab8312ca184356f27a37a0cde5d5cc61b247",
+    "scripts/repair_e2_thread_summary.py": "9472a0e0fdcaa4b938555453f14d18797469978e88779550318310e37458c506",
+    "experiments/e2_compute_optimization_20261109/frozen_sources/run_e2_cpu_scaling_preregistered.py": "c8fc2ff49421684d35b422345638fbc0e95f1827e52adff8cf91e4581f93cb90",
+    "work/thread_summary_repair.json": "9555184caa3ddece0db67adce4f091bf5f753525d3ef786d2f7032fc70d98f87",
+    "work/threads_published/summary.json": "5d8b0325be3394bb0227b1e5e9ea8b8c0a4536fb70b1901f6263d03cbdc2ac4f"
+  },
+  "recovery_receipt_path": "work/thread_summary_repair.json",
+  "reconstructed_summary_sha256": "5d8b0325be3394bb0227b1e5e9ea8b8c0a4536fb70b1901f6263d03cbdc2ac4f",
+  "retained_outcomes_events_and_error_log_unchanged": true,
+  "validation": "10 synthetic tests passed, including exclusive JSON serialization and load_runtime_policy roundtrip; repair verified all12 before/after source hashes against archived runner and current unchanged frozen cores.",
+  "scaling_launch_requires": "Publish this amendment and bind a separate launch receipt to its commit and corrected runner hash before any scaling fit."
+}

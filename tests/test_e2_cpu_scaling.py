@@ -109,9 +109,15 @@ class ProfileDomainTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             kpath,tpath=Path(directory)/"kernels.json",Path(directory)/"threads.json"
             plan={"registration_sha256":"a"*64,"registration_commit":"b"*40,"parity_suite_passed":True}
-            kpath.write_text(json.dumps({"plan":plan,"results":kernel_records()}))
+            runner.write_json_new(kpath,{"plan":plan,"results":kernel_records()})
             threadplan={**plan,"kernels_summary_sha256":runner.digest(kpath)}
-            tpath.write_text(json.dumps({"plan":threadplan,"results":thread_records()}))
+            rows=thread_records()
+            runner.write_json_new(tpath,{"plan":threadplan,"results":rows,
+                                        "thread_policy":runner.select_thread_policy(rows)})
+            persisted=json.loads(tpath.read_text())["thread_policy"]
+            self.assertEqual(set(persisted["normalized_runtime_scores"]),{"1","2","4"})
+            self.assertTrue(all(set(values)=={"1","2","4"}
+                for values in persisted["family_median_work_seconds"].values()))
             policy=runner.load_runtime_policy(kpath,tpath)
             self.assertEqual((policy["threads"],policy["crop"]),(1,True))
             threadplan["registration_commit"]="c"*40
