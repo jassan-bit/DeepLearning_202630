@@ -99,6 +99,8 @@ jobs:
         env:
           E2_ITRANSFORMER_SOURCE_ROOT: ${{ github.workspace }}/work/author_sources/iTransformer
         run: |
+          python scripts/prepare_e2_pilot_snapshot.py --root .
+          python -m unittest discover -s tests -p 'test_prepare_e2_pilot_snapshot.py' -v
           python -m unittest discover -s tests -p 'test_e2_*training*.py' -v
           python -m unittest discover -s tests -p 'test_e2_development*.py' -v
           python -m unittest discover -s tests -p 'test_e2_pilot*.py' -v

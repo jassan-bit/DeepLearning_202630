@@ -1,0 +1,746 @@
+{
+  "schema_version": 1,
+  "protocol_id": "E2-NAS-HPO-20261109-v1",
+  "status": "design_resolved_execution_blocked_until_implementation_profile_and_full_preregistration",
+  "source_commit": "d60b7a77fb00a209060ce3d2f618adfc881b7e9c",
+  "date": "2026-11-09",
+  "execution_in_this_update": {
+    "training": false,
+    "market_data_read": false,
+    "model_imports": false,
+    "configuration_planning_only": true
+  },
+  "guide_basis": {
+    "file_name": "Entregable2DeepLearningProject.pdf",
+    "sections": [
+      "4.3",
+      "9.2",
+      "11.1",
+      "11.2",
+      "14.1",
+      "14.2",
+      "14.3",
+      "14.4",
+      "14.5"
+    ],
+    "decision_note": "Ranges and T are researcher choices, not values prescribed by the guide. Six NAS decisions are conservative for adapted/own variants; published bodies remain frozen."
+  },
+  "hardware": {
+    "provider": "Codex cloud current attached environment",
+    "observed_date": "2026-11-09",
+    "cpu_model": "INTEL(R) XEON(R) PLATINUM 8573C",
+    "visible_logical_cpus": 5,
+    "cgroup_cpu_quota_vcpus": 4,
+    "cgroup_memory_bytes": 17179869184,
+    "gpu_visible": false,
+    "gpu_evidence": "nvidia-smi unavailable; no /dev/nvidia* devices",
+    "pytorch_installed": false,
+    "statsmodels_installed": false,
+    "target_device": "cpu",
+    "parallel_fits": 1,
+    "intraop_threads": 4,
+    "interop_threads": 1,
+    "fit_process_memory_limit_bytes": 12884901888,
+    "short_stage_wall_limit_seconds": 1800,
+    "full_stage_wall_limit_seconds": 7200,
+    "hour_estimate": null,
+    "currency_cost_estimate": null,
+    "limits_are_caps_not_estimates": true,
+    "future_environment_must_be_rechecked": true
+  },
+  "contract": {
+    "input_shape": [
+      7,
+      5
+    ],
+    "target": "population sigma7 unannualized h1",
+    "target_scale": "positive training-only mean",
+    "primary_metric": "mean of per-seed RMSE in original units",
+    "delta": 0.00025772842664981106,
+    "scenario": "B",
+    "cv_origins": "ten monthly origins 2024-01 through 2024-10",
+    "final_origin": "2025-01-01",
+    "inner_train_end": "origin minus98 days",
+    "inner_validation": "origin minus90 through minus8",
+    "refit_train_end": "origin minus8",
+    "final_test_role": "608 known dates; exploratory; support not yet certified",
+    "known_test_must_not_drive_selection": true
+  },
+  "common_hpo": {
+    "trials": 18,
+    "method": "seeded stratified random; frozen candidate list before fits",
+    "seed": 271101,
+    "learning_rate": [
+      1e-05,
+      0.003
+    ],
+    "weight_decay_positive": [
+      1e-06,
+      0.01
+    ],
+    "zero_weight_decay_trials": 3,
+    "batch_sizes": [
+      16,
+      32,
+      64
+    ],
+    "optimization_seeds": [
+      271201,
+      271202
+    ],
+    "optimizer": "AdamW",
+    "adam_betas": [
+      0.9,
+      0.999
+    ],
+    "adam_epsilon": 1e-08,
+    "weight_decay_scope": "weight matrices only; biases and normalization parameters exempt",
+    "loss": "MSE of sigma7 divided by positive training mean",
+    "precision": "float32",
+    "gradient_clip_norm": 1,
+    "shuffle_train_windows": true,
+    "max_epochs": 200,
+    "patience_epochs": 20,
+    "early_stopping_absolute_min_delta": 0,
+    "supervised_selection": "lowest original-unit validation RMSE; strict improvement; earliest epoch on equal score",
+    "scheduler": "cosine decay after warmup; minLR0; default warmup0; epoch caps50/200 respected",
+    "batch_singleton_rule": "if remainder1 split preceding full batch into batch_size-1 and2; keep all rows; require at least2 train examples",
+    "failure_policy": "NaN/inf/divergence/timeout/OOM consume configuration and stage allocation; preserve run records, no replacement seed/trial. Systematic implementation error blocks campaign, requires correction and affected reruns under amendment.",
+    "refit": "Fresh model, optimizers and train-only scalers. For each origin/recipe use ceil(median(best epochs)) of selected HPO configuration's two seeds (nonNAS) or winning NAS finalist's five phase2 seeds, per phase separately. Freeze those counts for every new refit seed; no outer-label early stopping. Count AE1/AE2/supervised separately.",
+    "auxiliary_objective": "MSE reconstructing X/s; fresh optimizer each AE stage; select on inner-validation reconstruction loss with same patience; full200/short50 epoch caps per stage",
+    "configuration_selection": "Smallest mean original-unit validation RMSE across the two HPO seeds; exact-score tie resolved by stable trial ID. NAS uses its distinct five-seed architecture selection rule."
+  },
+  "models": [
+    {
+      "model": "FCN-1D",
+      "base_recipe_id": "fcn1d_wang_d7_v1_proposed",
+      "search_recipe_id": "fcn1d_wang_d7_v1_proposed__hpo_v1",
+      "nas": false,
+      "decision_basis": "El cuerpo Wang 128/256/128 y kernels8/5/3 queda fijo. Port1D y cabeza σ7 son interfaz de tarea explícita; no se permite cambiar el cuerpo bajo esta decisión.",
+      "decision_scope": "E2 methodological decision; not institutional certification or scientific replication",
+      "auxiliary_phases": 0,
+      "same_window_moments": 0,
+      "source_urls": [
+        "https://arxiv.org/pdf/1611.06455",
+        "https://github.com/cauchyturing/UCR_Time_Series_Classification_Deep_Learning_Baseline/blob/3ecc8971fa768bd01ada7f3a613688255e6256c2/FCN.py#L50-L83"
+      ],
+      "hpo": {
+        "dropout_values": [
+          0
+        ],
+        "extra_axes": {}
+      },
+      "architecture": {
+        "frozen_body": "Conv1D 128/256/128; kernels 8/5/3; BN, ReLU y media temporal.",
+        "adaptation": "Port Conv2D singleton a Conv1D; D7×5 y cabeza escalar Softplus."
+      },
+      "factory_support": "new_factory_or_training_axis_support_pending",
+      "historical_parameter_count_not_applicable_to_new_nas_variant": false
+    },
+    {
+      "model": "ResNet-1D",
+      "base_recipe_id": "resnet1d_wang_d7_v1_proposed",
+      "search_recipe_id": "resnet1d_wang_d7_v1_proposed__hpo_v1",
+      "nas": false,
+      "decision_basis": "Tres bloques64/128/128 y convenciones de atajos del snapshot quedan fijos. Interfaz D7/regresión separada del cuerpo.",
+      "decision_scope": "E2 methodological decision; not institutional certification or scientific replication",
+      "auxiliary_phases": 0,
+      "same_window_moments": 0,
+      "source_urls": [
+        "https://arxiv.org/pdf/1611.06455",
+        "https://github.com/cauchyturing/UCR_Time_Series_Classification_Deep_Learning_Baseline/blob/3ecc8971fa768bd01ada7f3a613688255e6256c2/ResNet.py#L15-L94"
+      ],
+      "hpo": {
+        "dropout_values": [
+          0
+        ],
+        "extra_axes": {}
+      },
+      "architecture": {
+        "frozen_body": "Tres bloques 64/128/128, nueve convoluciones principales y tres proyecciones.",
+        "adaptation": "Port 1D; BN inicial sólo en rama principal y proyección del tercer atajo; cabeza de regresión."
+      },
+      "factory_support": "new_factory_or_training_axis_support_pending",
+      "historical_parameter_count_not_applicable_to_new_nas_variant": false
+    },
+    {
+      "model": "Inception-1D",
+      "base_recipe_id": "inception1d_single_d7_v1_proposed",
+      "search_recipe_id": "inception1d_single_d7_v1_proposed__hpo_v1",
+      "nas": false,
+      "decision_basis": "Miembro individual definido por fuente: seis módulos, ramas32 y kernels40/20/10. No se atribuye el ensemble de cinco.",
+      "decision_scope": "E2 methodological decision; not institutional certification or scientific replication",
+      "auxiliary_phases": 0,
+      "same_window_moments": 0,
+      "source_urls": [
+        "https://arxiv.org/pdf/1909.04939",
+        "https://github.com/hfawaz/InceptionTime/blob/952d115e83fb3a66d75c5858c702f8dd5eeb18b7/classifiers/inception.py#L13-L105",
+        "https://github.com/hfawaz/InceptionTime/blob/952d115e83fb3a66d75c5858c702f8dd5eeb18b7/classifiers/nne.py"
+      ],
+      "hpo": {
+        "dropout_values": [
+          0
+        ],
+        "extra_axes": {}
+      },
+      "architecture": {
+        "frozen_body": "Seis módulos, cuatro ramas de 32 canales y dos conexiones residuales; kernels 40/20/10.",
+        "adaptation": "Red individual en D7 y cabeza positiva; padding largo sobre siete observaciones."
+      },
+      "factory_support": "new_factory_or_training_axis_support_pending",
+      "historical_parameter_count_not_applicable_to_new_nas_variant": false
+    },
+    {
+      "model": "LSTM-autoencoder con predictor",
+      "base_recipe_id": "lstm_sae_25_26_d7_v1_proposed",
+      "search_recipe_id": "SAE-D7-NAS-v1",
+      "nas": true,
+      "decision_basis": "Ruta conservadora propia: receta exacta sostenida en código, texto completo no verificado y escala auxiliar adaptada. Nueva familia SAE NAS con dos fases AE y tres grupos.",
+      "decision_scope": "E2 methodological decision; not institutional certification or scientific replication",
+      "auxiliary_phases": 2,
+      "same_window_moments": 0,
+      "source_urls": [
+        "https://doi.org/10.1038/s41598-019-55320-6",
+        "https://github.com/2M-kotb/LSTM-based-Stacked-Autoencoder/blob/8668132ef6f8855dbab289c5a2b2478f871c4c4b/2layer_evaluate.py"
+      ],
+      "hpo": {
+        "dropout_values": [],
+        "extra_axes": {}
+      },
+      "architecture": {
+        "groups": [
+          "AE1 encoder width w1",
+          "AE2 encoder width w2",
+          "new dense predictor width w3"
+        ],
+        "details": "AE1: LSTM5→w1, repeat7, decoder LSTMw1→w1 y Linearw1→5+tanh. AE2 recibe vector finalAE1 repetido7, LSTMw1→w2, repeat7, decoder LSTMw2→w2 y Linearw2→5+tanh. AE1.eval(), dropout inactivo y sin gradientes al generar las entradas de AE2; pesos AE1 congelados en esa fase. En supervisado los encoders transferidos son entrenables y b1/b2 vuelven a estar activos. Predictor encoders transferidos→Densew2→w3+ReLU→Linear1+Softplus. X/s como target auxiliar; no escalar entrada encoder por s. b1/b2 aplican dropout0.2 a vector encoder y secuencia decoder antes de proyección de reconstrucción; b3 tras ReLU densa; decoders descartados en predictor. En inferencia dropout inactivo."
+      },
+      "factory_support": "new_factory_or_training_axis_support_pending",
+      "historical_parameter_count_not_applicable_to_new_nas_variant": true
+    },
+    {
+      "model": "TimesNet",
+      "base_recipe_id": "TN-D7-r1",
+      "search_recipe_id": "TN-D7-NAS-v1",
+      "nas": true,
+      "decision_basis": "Proyección7→8, frecuencias admisibles y preset mixto requieren una variante propia en lugar de exención por nombre.",
+      "decision_scope": "E2 methodological decision; not institutional certification or scientific replication",
+      "auxiliary_phases": 0,
+      "same_window_moments": 10,
+      "source_urls": [
+        "https://arxiv.org/pdf/2210.02186v3",
+        "https://github.com/thuml/Time-Series-Library/blob/4e938a1767106324dd753b2a44832bf870a0252e/scripts/long_term_forecast/ETT_script/TimesNet_ETTh1.sh"
+      ],
+      "hpo": {
+        "dropout_values": [],
+        "extra_axes": {
+          "top_k": [
+            2,
+            3,
+            4
+          ],
+          "num_kernels": [
+            2,
+            4,
+            6
+          ]
+        }
+      },
+      "architecture": {
+        "groups": [
+          "TimesBlock w1",
+          "TimesBlock w2",
+          "TimesBlock w3"
+        ],
+        "details": "Embedding temporal7→8 fijo, top_k y kernels fijados por HPO antes de NAS. Proyectar canales a wi antes de cada bloque, FF=2wi, residual dentro del mismo ancho. Diez momentos sólo al readout final. bi tras salida completa del bloque; no cambiar escalas/tiempos entre arquitecturas."
+      },
+      "factory_support": "new_factory_or_training_axis_support_pending",
+      "historical_parameter_count_not_applicable_to_new_nas_variant": true
+    },
+    {
+      "model": "TSMixer",
+      "base_recipe_id": "TSM-D7-r1",
+      "search_recipe_id": "TSM-D7-r1__hpo_v1",
+      "nas": false,
+      "decision_basis": "Cuerpo publicado de seis bloques y ancho512 fijo. Se ajusta tasa del dropout existente sin cambiar profundidad/ancho.",
+      "decision_scope": "E2 methodological decision; not institutional certification or scientific replication",
+      "auxiliary_phases": 0,
+      "same_window_moments": 10,
+      "source_urls": [
+        "https://arxiv.org/pdf/2303.06053v5",
+        "https://github.com/google-research/google-research/blob/d3a4bd8f0eceddda553e47085033b537935b283f/tsmixer/tsmixer_basic/models/tsmixer.py"
+      ],
+      "hpo": {
+        "dropout_values": [
+          0,
+          0.1,
+          0.3,
+          0.5,
+          0.7,
+          0.9
+        ],
+        "extra_axes": {}
+      },
+      "architecture": {
+        "frozen_body": "Seis bloques de mezcla y MLP de variables 512; semántica BN del port.",
+        "adaptation": "Aplanado 35 + diez momentos, Softplus y dropout inicial 0,1."
+      },
+      "factory_support": "new_factory_or_training_axis_support_pending",
+      "historical_parameter_count_not_applicable_to_new_nas_variant": false
+    },
+    {
+      "model": "TiDE",
+      "base_recipe_id": "TIDE-D7-r1",
+      "search_recipe_id": "TIDE-D7-NAS-v1",
+      "nas": true,
+      "decision_basis": "Decoder temporal8 frente a1 y covariables sustitutas cambian estructura; se trata como variante propia.",
+      "decision_scope": "E2 methodological decision; not institutional certification or scientific replication",
+      "auxiliary_phases": 0,
+      "same_window_moments": 10,
+      "source_urls": [
+        "https://arxiv.org/pdf/2304.08424v5",
+        "https://github.com/google-research/google-research/blob/d3a4bd8f0eceddda553e47085033b537935b283f/tide/models.py",
+        "https://github.com/google-research/google-research/blob/d3a4bd8f0eceddda553e47085033b537935b283f/tide/scripts/etth1.sh"
+      ],
+      "hpo": {
+        "dropout_values": [],
+        "extra_axes": {}
+      },
+      "architecture": {
+        "groups": [
+          "global residual encoder width w1",
+          "global residual decoder width w2",
+          "temporal residual decoder width w3"
+        ],
+        "details": "Correspondencia aproximada: un bloque residual encoder de ancho w1, decoder de ancho w2 y decoder temporal oculto w3; latente8 y salida temporal8 fijos, featureencoder5→64→4 e identidadvariable16 fijos. Proyecciones de entrada/salida y atajos se dimensionan al grupo; b1,b2,b3 tras la salida completa del bloque residual encoder, decoder y temporal, respectivamente. Sentinel futuro cero y diez momentos fijos."
+      },
+      "factory_support": "new_factory_or_training_axis_support_pending",
+      "historical_parameter_count_not_applicable_to_new_nas_variant": true
+    },
+    {
+      "model": "TimeMixer",
+      "base_recipe_id": "TM-D7-r1",
+      "search_recipe_id": "TM-D7-NAS-v1",
+      "nas": true,
+      "decision_basis": "Dos descensos7/3/1 y readout propio difieren del diseño fuente; se trata como variante propia.",
+      "decision_scope": "E2 methodological decision; not institutional certification or scientific replication",
+      "auxiliary_phases": 0,
+      "same_window_moments": 10,
+      "source_urls": [
+        "https://arxiv.org/pdf/2405.14616v1",
+        "https://github.com/kwuking/TimeMixer/blob/e24610583b36fdd8c76cc17a8df4e65759a5f460/scripts/long_term_forecast/ETT_script/TimeMixer_ETTh1_unify.sh"
+      ],
+      "hpo": {
+        "dropout_values": [],
+        "extra_axes": {
+          "moving_average": [
+            3,
+            7,
+            25
+          ]
+        }
+      },
+      "architecture": {
+        "groups": [
+          "PDM block width w1",
+          "PDM block width w2",
+          "PDM block width w3"
+        ],
+        "details": "Escalas7/3/1, pooling2 y dos descensos fijos. Tres PDM con proyecciones de canales hacia wi en cada escala antes de cada bloque; FF=2wi. bi tras cada PDM en todas sus escalas. FMM usa última dimensiónw3 y cabeza5*w3+10; diez momentos fijos."
+      },
+      "factory_support": "new_factory_or_training_axis_support_pending",
+      "historical_parameter_count_not_applicable_to_new_nas_variant": true
+    },
+    {
+      "model": "PatchTST",
+      "base_recipe_id": "PT-D7-r1",
+      "search_recipe_id": "PT-D7-NAS-v1",
+      "nas": true,
+      "decision_basis": "Decisión conservadora para geometría D7 replicada y cabeza conjunta propias. No se usa la exención de la configuración publicada para esta variante.",
+      "decision_scope": "E2 methodological decision; not institutional certification or scientific replication",
+      "auxiliary_phases": 0,
+      "same_window_moments": 10,
+      "source_urls": [
+        "https://arxiv.org/pdf/2211.14730v2",
+        "https://github.com/yuqinie98/PatchTST/blob/204c21efe0b39603ad6e2ca640ef5896646ab1a9/PatchTST_supervised/scripts/PatchTST/etth1.sh"
+      ],
+      "hpo": {
+        "dropout_values": [],
+        "extra_axes": {
+          "warmup_fraction": [
+            0,
+            0.05,
+            0.1
+          ]
+        }
+      },
+      "architecture": {
+        "groups": [
+          "encoder block d_model w1",
+          "encoder block d_model w2",
+          "encoder block d_model w3"
+        ],
+        "details": "Tres bloques con proyecciones lineales entre anchos; heads_i=wi/16 y FF_i=8wi. Desactivar uniformemente la acumulación de atención residual entre capas, pues cambia número de cabezas. bi activa dropout0.2 tras atención y FF del bloque; atención probabilística interna con dropout0 fijo. RevIN antes de padding9izquierda/8derecha, patch16 stride8 y dos parches fijos. Readout5*2*w3+10; cabeza sin dropout adicional."
+      },
+      "factory_support": "new_factory_or_training_axis_support_pending",
+      "historical_parameter_count_not_applicable_to_new_nas_variant": true
+    },
+    {
+      "model": "iTransformer",
+      "base_recipe_id": "IT-D7-r1",
+      "search_recipe_id": "IT-D7-r1__hpo_v1",
+      "nas": false,
+      "decision_basis": "Cuerpo publicado L2/D256/FF256/H8 fijo; embedding7 y cabeza escalar se declaran interfaz de tarea.",
+      "decision_scope": "E2 methodological decision; not institutional certification or scientific replication",
+      "auxiliary_phases": 0,
+      "same_window_moments": 10,
+      "source_urls": [
+        "https://arxiv.org/pdf/2310.06625v4",
+        "https://github.com/thuml/iTransformer/blob/c2426e68ca13f74aaec08045c5c724d8ad328124/scripts/multivariate_forecasting/ETT/iTransformer_ETTh1.sh"
+      ],
+      "hpo": {
+        "dropout_values": [
+          0,
+          0.1,
+          0.2,
+          0.3,
+          0.5
+        ],
+        "extra_axes": {
+          "warmup_fraction": [
+            0,
+            0.05,
+            0.1
+          ]
+        }
+      },
+      "architecture": {
+        "frozen_body": "Dos capas, ocho cabezas, d_model256/d_ff256; cinco tokens de variables.",
+        "adaptation": "Embedding de siete valores, retirar projector/desnormalización OHLCV; 1280 latentes + diez momentos."
+      },
+      "factory_support": "new_factory_or_training_axis_support_pending",
+      "historical_parameter_count_not_applicable_to_new_nas_variant": false
+    },
+    {
+      "model": "CNN-1D + LSTM + atención temporal",
+      "base_recipe_id": "HIB-D7-r1",
+      "search_recipe_id": "HIB-D7-NAS-v1",
+      "nas": true,
+      "decision_basis": "Composición propia sin artículo verificado que defina la receta completa.",
+      "decision_scope": "E2 methodological decision; not institutional certification or scientific replication",
+      "auxiliary_phases": 0,
+      "same_window_moments": 0,
+      "source_urls": [],
+      "hpo": {
+        "dropout_values": [],
+        "extra_axes": {
+          "kernel": [
+            2,
+            3,
+            5
+          ]
+        }
+      },
+      "architecture": {
+        "groups": [
+          "CNN channels w1",
+          "LSTM units w2",
+          "additive attention projection w3"
+        ],
+        "details": "Conv5→w1 causal/kernel elegido por HPO, ReLU y dropoutb1 sobre secuencia; LSTMw1→w2 de una capa con estado reiniciado y dropoutb2 sobre siete estados; atención Linearw2→w3+tanh/vectorw3, dropoutb3 en contexto w2 antes de Linearw2→1+Softplus. No dropout sobre pesos softmax. No momentos añadidos."
+      },
+      "factory_support": "new_factory_or_training_axis_support_pending",
+      "historical_parameter_count_not_applicable_to_new_nas_variant": true
+    }
+  ],
+  "neural_reference_profiles": [
+    {
+      "model": "MLP16",
+      "search_recipe_id": "MLP16-E1-ref-E2-HPO-v1",
+      "nas": false,
+      "auxiliary_phases": 0,
+      "same_window_moments": 0,
+      "hpo": {
+        "dropout_values": [
+          0,
+          0.1,
+          0.2,
+          0.3,
+          0.5
+        ],
+        "extra_axes": {}
+      },
+      "architecture": {
+        "body": "Frozen E1 architecture; reinitialized weights, no imported E1 results"
+      },
+      "factory_support": "training axis integration pending"
+    },
+    {
+      "model": "LSTM32",
+      "search_recipe_id": "LSTM32-E1-ref-E2-HPO-v1",
+      "nas": false,
+      "auxiliary_phases": 0,
+      "same_window_moments": 0,
+      "hpo": {
+        "dropout_values": [
+          0,
+          0.1,
+          0.2,
+          0.3,
+          0.5
+        ],
+        "extra_axes": {}
+      },
+      "architecture": {
+        "body": "Frozen E1 architecture; reinitialized weights, no imported E1 results"
+      },
+      "factory_support": "training axis integration pending"
+    },
+    {
+      "model": "GRU32",
+      "search_recipe_id": "GRU32-E1-ref-E2-HPO-v1",
+      "nas": false,
+      "auxiliary_phases": 0,
+      "same_window_moments": 0,
+      "hpo": {
+        "dropout_values": [
+          0,
+          0.1,
+          0.2,
+          0.3,
+          0.5
+        ],
+        "extra_axes": {}
+      },
+      "architecture": {
+        "body": "Frozen E1 architecture; reinitialized weights, no imported E1 results"
+      },
+      "factory_support": "training axis integration pending"
+    }
+  ],
+  "nas": {
+    "widths": [
+      16,
+      32,
+      64,
+      128,
+      256
+    ],
+    "dropout_rate": 0.2,
+    "blocks": 3,
+    "patterns": "all eight bit triplets; no pruning",
+    "phase1_architectures": 1000,
+    "phase1_seed": 271301,
+    "phase1_epochs": 50,
+    "phase2_seeds": [
+      271401,
+      271402,
+      271403,
+      271404,
+      271405
+    ],
+    "phase2_epochs": 200,
+    "reference": {
+      "widths": [
+        64,
+        64,
+        64
+      ],
+      "dropout_pattern": [
+        0,
+        1,
+        0
+      ]
+    },
+    "k_options": [
+      20,
+      40
+    ],
+    "k_before_pilot": null,
+    "k_rule": "Use global k40 for every NAS model if any model noise-pilot median pairwise Spearman correlation of full-budget ranks across5 seeds is <0.5 or not estimable; otherwise global k20. Freeze before full phase1. k40 is a resource cap, not optimality guarantee.",
+    "reference_addition": "If reference already among k distinct finalists do not repeat it; budget conservatively reserves k+1",
+    "hpo_order": "First tune nonarchitecture HPO on reference; then freeze winning nonarchitecture values before1000 NAS designs.",
+    "remaining_dropout": "all newly searched block positions controlled solely by bit pattern at p0.2; other dropout0",
+    "selection": "minimize mean validation RMSE; within delta of lowest mean or overlapping nominal95% mean-score t intervals, select fewest total predictor params, then lowest mean RMSE, then stable architecture id; overlap is tie rule, not equivalence proof",
+    "short_and_full_seed_sets_disjoint": true
+  },
+  "budget": {
+    "scope": "search, resource/noise pilots, power pilot and selected-model refits only; not total scientific campaign",
+    "scenario": "B",
+    "selection_origins": 11,
+    "outer_cv_origins": 10,
+    "final_selection_origins": 1,
+    "neural_references": 3,
+    "max_final_seeds": 30,
+    "min_final_seeds": 6,
+    "final_seed_count": null,
+    "final_seed_rule": "Choose common R between6 and30 after paired power pilot and multiplicity-aware temporal simulation targeting0.80. If requiredR>30, report achievable power/MDE and exploratory limits; do not claim achieved power0.80.",
+    "final_seeds": [
+      271801,
+      271802,
+      271803,
+      271804,
+      271805,
+      271806,
+      271807,
+      271808,
+      271809,
+      271810,
+      271811,
+      271812,
+      271813,
+      271814,
+      271815,
+      271816,
+      271817,
+      271818,
+      271819,
+      271820,
+      271821,
+      271822,
+      271823,
+      271824,
+      271825,
+      271826,
+      271827,
+      271828,
+      271829,
+      271830
+    ],
+    "noise_pilot_architectures": 12,
+    "noise_pilot_seeds": 5,
+    "noise_pilot_seed_values": [
+      271501,
+      271502,
+      271503,
+      271504,
+      271505
+    ],
+    "noise_pilot_origin_count": 1,
+    "noise_pilot_scope": "Global development-only pilot at origin2023-10-01; all inputs and labels through2023-09-23. Before earliest2024 outer origin; no2024 or final data. Reused only for global k and resource estimates, never candidate selection at later origins.",
+    "noise_pilot_architecture_selection": "reference plus smallest000 and largest111, plus9 stratified seeded unique candidates fixed before timing; all6 families share width/bit patterns",
+    "profiling_fixed_neural_stages": 8,
+    "profiling_seed": 271601,
+    "profiling_scope": "At origin2023-10-01 with same historical support as noise pilot; one full-budget fit each for five nonNAS candidates and three E1 references. NAS timings reuse noise pilot.",
+    "profiling_classical_fits": 2,
+    "power_pilot_models": 3,
+    "power_pilot_model_names": [
+      "TimeMixer",
+      "CNN-1D + LSTM + atención temporal",
+      "GRU32"
+    ],
+    "power_pilot_seeds": 5,
+    "power_pilot_seed_values": [
+      271701,
+      271702,
+      271703,
+      271704,
+      271705
+    ],
+    "power_pilot_origin_count": 1,
+    "power_pilot_scope": "after selection of recipes; development-only common held pilot; must not retroactively tune candidates",
+    "classical_hpo_systems": 2,
+    "classical_hpo_trials_each": 18,
+    "classical_refit_systems": 2,
+    "k_budget_cases": [
+      20,
+      40
+    ],
+    "R_budget_cases": [
+      6,
+      10,
+      20,
+      30
+    ],
+    "classical_search_deterministic": true,
+    "excluded_work": [
+      "negative label controls and other leakage fits",
+      "adversarial-domain permutation fits",
+      "additional disjoint calibration refits",
+      "robustness and ablations",
+      "interpretability and bootstrap/MCS/inference",
+      "independent environment reproduction",
+      "final data support certification"
+    ],
+    "wall_clock_sum_cap_only": true,
+    "noise_pilot_origin": "2023-10-01",
+    "power_pilot_origin": "2024-11-08",
+    "power_pilot_end": "2024-12-30",
+    "power_pilot_recipe_basis": "Use recipes selected at2024-10-01 inner selection; refit through2024-10-31 with frozen hyperparameters, then evaluate53 development dates2024-11-08..2024-12-30. Do not select hyperparameters/architectures on power-pilot labels. Pilot variance may not represent final-origin recipes; disclose that limit.",
+    "noise_and_resource_pilot_fixed_nonarchitecture": {
+      "learning_rate": 0.001,
+      "weight_decay": 0.0001,
+      "batch_size": 32,
+      "warmup_fraction": 0,
+      "optimizer": "AdamW using common fixed betas/epsilon/loss/normalization and epoch rules",
+      "dropout_non_nas": "existing dropout0.1 for TSMixer,iTransformer and neural references;0 for source CNNs",
+      "dropout_nas": "solely declared architecture bits at p0.2",
+      "TimesNet": {
+        "top_k": 4,
+        "num_kernels": 6
+      },
+      "TimeMixer": {
+        "moving_average": 7
+      },
+      "hybrid": {
+        "kernel": 3
+      },
+      "ridge_alpha": 1,
+      "arima_order": [
+        1,
+        0,
+        0
+      ],
+      "scope": "Fixed before2023 pilot. Never reuse HPO winners from2024 or2025 and never select candidates on pilot scores. No additional HPO."
+    }
+  },
+  "classical": {
+    "ridge_alphas": {
+      "count": 18,
+      "log10_min": -6,
+      "log10_max": 3
+    },
+    "arima": {
+      "p": [
+        0,
+        1,
+        2
+      ],
+      "d": [
+        0,
+        1
+      ],
+      "q": [
+        0,
+        1,
+        2
+      ],
+      "candidate_count": 18,
+      "fit_history": "through origin minus8",
+      "filter_state": "through day minus1, no refit"
+    },
+    "seasonal_periods": [
+      7,
+      14,
+      28
+    ],
+    "persistence_lag": 1,
+    "no_duplicate_classical_trials": true
+  },
+  "justified_fixed_axes": {
+    "all": "D7×5 and h1 inherited; no context extension, teacher forcing not applicable to scalar h1.",
+    "published_bodies": "Depth/width, kernels and normalization fixed by published-body route§14. New kernels/normalization would change recipe and decision.",
+    "transformer_heads": "iTransformer H8 fixed by source; PatchTST NAS heads=wi/16; do not independently sample invalid dimensions.",
+    "normalization": "Architecture-dependent normalization frozen per declared recipe, with train-only statistics and eval freeze.",
+    "fine_tuning": "No external pretrained weights; layerwise fine-tuning LR not applicable.",
+    "published_CNN_dropout": "No existing dropout module, keep rate0; do not add layers and still call body unchanged."
+  },
+  "execution_gates": [
+    "Implement all six new NAS family mappings and expose HPO axes in factories; validate1000 constructions per family with synthetic data",
+    "Verify normalizations, masks, complete18-system integration and dependencies in clean environment",
+    "Measure timing/memory over fixed resource pilot; sum all costs and verify Codex persistence/time limits before full campaign",
+    "Finalize R,k, full inferential preregistration, calibration and all excluded-budget components",
+    "Verify authorized final support while preserving known-test exploratory status"
+  ]
+}
+
