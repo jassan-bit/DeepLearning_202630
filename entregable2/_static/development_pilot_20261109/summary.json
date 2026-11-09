@@ -1,0 +1,89 @@
+{
+  "version": "e2-real-development-pilot-report-v1",
+  "created_at_utc": "2026-11-09T16:57:19.234132+00:00",
+  "registration_commit": "cf68db00f4d7c3626bdb517bf922265a3b229ea4",
+  "registration_sha256": "cc10ddba82f0c59cfcd8caf70e713481ec0701e71860862ed13ead0df0bf4797",
+  "protocol_sha256": "e0030c990a4afa15665aec254211b0d9e680e9ac5d92dfb8094e43e965152abe",
+  "analysis_amendment_commit": "d511a8de3b9e9d5fa559d761ce9f2ac732921a80",
+  "analysis_amendment_sha256": "025fe220405050a5cb8246bf22638e8bebc301093fcc571e878ebbdffa17ebc1",
+  "remote_provider": "Codex Cloud",
+  "device": "cpu",
+  "gpu_visible": false,
+  "development_market_training_executed": true,
+  "final_market_data_read": false,
+  "resource_attempts": 15,
+  "resource_successes": 14,
+  "resource_known_optimizer_steps": 7074,
+  "resource_unknown_optimizer_step_workers": 1,
+  "resource_measured_worker_sum_seconds": 586.7447098030043,
+  "reference_pilot": {
+    "selection": 10,
+    "refit": 10,
+    "completed_optimizer_steps": 39290,
+    "attempts": 25,
+    "failed_attempts": 5,
+    "failed_known_optimizer_steps": 3645,
+    "unknown_optimizer_step_workers": 0,
+    "safe_checkpoints": 20,
+    "known_optimizer_steps": 42935,
+    "blocked_refits_not_attempted": 5
+  },
+  "reference_paired_3x5_complete": false,
+  "conditional_analysis_models": [
+    "CNN-1D + LSTM + atención temporal",
+    "GRU32"
+  ],
+  "reference_fixed_epochs": {
+    "CNN-1D + LSTM + atención temporal": 37,
+    "GRU32": 151
+  },
+  "reference_measured_worker_sum_seconds": 1323.5868031059945,
+  "checkpoints_safely_reloaded_for_report": 20,
+  "source_hash_observations_checked": 750,
+  "k_operational": 40,
+  "reference_R_recommendation": 30,
+  "final_R": null,
+  "achieved_final_power": null,
+  "full_HPO_or_NAS_executed": false,
+  "full_campaign_hours_estimate": null,
+  "currency_cost_estimate": null,
+  "artifacts": {
+    "resources_full.json.gz": {
+      "bytes": 336895,
+      "sha256": "b6fc0c07abf09e93824e433f93ca5c2fa4b7807aada3d8e12314056d6ab10757",
+      "uncompressed_bytes": 2281503,
+      "uncompressed_sha256": "bf9f861b393aefacbcc1c824c59ee8bed59db38a0f2769cd40cecf57dc201a19"
+    },
+    "variance_full.json.gz": {
+      "bytes": 288933,
+      "sha256": "dae4c8f96be104014ee5c21cf422a4617c5e3047b18ef04c0701123be44eeb35",
+      "uncompressed_bytes": 1663760,
+      "uncompressed_sha256": "ce80590b807773c9dd97d5f1daed5851d4793123d7e918060ae144e7906b27fe"
+    },
+    "ledgers.json.gz": {
+      "bytes": 243177,
+      "sha256": "b77987c5c1a2c1005b09cf5345d17b8baae6036f38e85fb484142be25faa5bde",
+      "uncompressed_bytes": 1585078,
+      "uncompressed_sha256": "3f85f915e6b30e9f03b84720d69099edd43cb93d0ab785bf3c4e018e58084e9a"
+    },
+    "decisions.json": {
+      "sha256": "4f64f89706a4acd5e682290cca6d2d377b3c75cdf556aef93bc3732aa931ce2c",
+      "bytes": 37238
+    },
+    "resources_table.json": {
+      "sha256": "f5f1bdb7b505e8160fd67ca1dd8870a3f6fca94fd5fac77d43a5fc7855c75856",
+      "bytes": 6562
+    },
+    "checkpoints.json": {
+      "sha256": "26b66df843ffd8cee9d3131683c46ebcc3e575cdb69235bbd09ba0a51e3d935e",
+      "bytes": 10763
+    }
+  },
+  "weights_published": false,
+  "limits": [
+    "Reference-only pilot is not the complete scientific campaign.",
+    "Measured pilot time is not a validated full-campaign extrapolation.",
+    "No failed attempt is replaced and unknown steps are not set to zero.",
+    "Inference checkpoint hashes are published; synthetic/development weights are not hosted."
+  ]
+}

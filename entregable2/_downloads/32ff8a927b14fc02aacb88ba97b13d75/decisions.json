@@ -1,0 +1,1020 @@
+{
+  "k": {
+    "version": "e2-development-pilot-decisions-v1",
+    "k_recommendation": 40,
+    "status": "not_full_rank_rule_evaluated",
+    "full_rank_rule_evaluated": false,
+    "decision_basis": "conservative_upper_option_for_incomplete_or_censored_pilot",
+    "expected_rows": 360,
+    "provided_rows": 0,
+    "completed_rows": 0,
+    "missing_rows": 360,
+    "unfinished_rows": 0,
+    "per_model": {
+      "LSTM-autoencoder con predictor": {
+        "expected_rows": 60,
+        "completed_rows": 0,
+        "median_pairwise_spearman": null,
+        "pairwise_correlations": [],
+        "complete": false
+      },
+      "TimesNet": {
+        "expected_rows": 60,
+        "completed_rows": 0,
+        "median_pairwise_spearman": null,
+        "pairwise_correlations": [],
+        "complete": false
+      },
+      "TiDE": {
+        "expected_rows": 60,
+        "completed_rows": 0,
+        "median_pairwise_spearman": null,
+        "pairwise_correlations": [],
+        "complete": false
+      },
+      "TimeMixer": {
+        "expected_rows": 60,
+        "completed_rows": 0,
+        "median_pairwise_spearman": null,
+        "pairwise_correlations": [],
+        "complete": false
+      },
+      "PatchTST": {
+        "expected_rows": 60,
+        "completed_rows": 0,
+        "median_pairwise_spearman": null,
+        "pairwise_correlations": [],
+        "complete": false
+      },
+      "CNN-1D + LSTM + atención temporal": {
+        "expected_rows": 60,
+        "completed_rows": 0,
+        "median_pairwise_spearman": null,
+        "pairwise_correlations": [],
+        "complete": false
+      }
+    },
+    "limits": [
+      "k40 is not a guarantee of recovering the best of1000 architectures.",
+      "Missing or censored fits do not count as observed rank correlations."
+    ]
+  },
+  "original_postselection_R_gate": {
+    "version": "e2-development-pilot-decisions-v1",
+    "status": "original_postselection_R_not_closed",
+    "R_selected": null,
+    "achieved_power": null,
+    "blocking_reasons": [
+      "Missing actual recipes selected at the declared2024-10-01 inner origin",
+      "Missing preregistered inferential family and multiplicity specification",
+      "Original postselection power pilot is not complete"
+    ],
+    "R_cap": 30,
+    "R_scenarios": [
+      {
+        "R": 6,
+        "achieved_power": null,
+        "interpretation": "resource scenario, not achieved power"
+      },
+      {
+        "R": 10,
+        "achieved_power": null,
+        "interpretation": "resource scenario, not achieved power"
+      },
+      {
+        "R": 20,
+        "achieved_power": null,
+        "interpretation": "resource scenario, not achieved power"
+      },
+      {
+        "R": 30,
+        "achieved_power": null,
+        "interpretation": "resource scenario, not achieved power"
+      }
+    ],
+    "reference_pilot_analysis_available": true,
+    "reference_pilot_R_proposal": 30,
+    "limits": [
+      "A fixed-reference preselection pilot does not become the original postselection pilot.",
+      "R increases initialization replicates, not independent dates or markets."
+    ]
+  },
+  "reference_preselection_power": {
+    "version": "e2-development-pilot-decisions-v1",
+    "study_role": "amended_fixed_reference_preselection_pilot",
+    "achieved_final_power": null,
+    "alpha": 0.05,
+    "multiplicity_family_size": 153,
+    "per_comparison_alpha": 0.00032679738562091506,
+    "delta": 0.00025772842664981106,
+    "power_target": 0.8,
+    "models": [
+      "CNN-1D + LSTM + atención temporal",
+      "GRU32"
+    ],
+    "seed_ids": [
+      271901,
+      271902,
+      271903,
+      271904,
+      271905
+    ],
+    "calendar": [
+      "2024-11-08",
+      "2024-11-09",
+      "2024-11-10",
+      "2024-11-11",
+      "2024-11-12",
+      "2024-11-13",
+      "2024-11-14",
+      "2024-11-15",
+      "2024-11-16",
+      "2024-11-17",
+      "2024-11-18",
+      "2024-11-19",
+      "2024-11-20",
+      "2024-11-21",
+      "2024-11-22",
+      "2024-11-23",
+      "2024-11-24",
+      "2024-11-25",
+      "2024-11-26",
+      "2024-11-27",
+      "2024-11-28",
+      "2024-11-29",
+      "2024-11-30",
+      "2024-12-01",
+      "2024-12-02",
+      "2024-12-03",
+      "2024-12-04",
+      "2024-12-05",
+      "2024-12-06",
+      "2024-12-07",
+      "2024-12-08",
+      "2024-12-09",
+      "2024-12-10",
+      "2024-12-11",
+      "2024-12-12",
+      "2024-12-13",
+      "2024-12-14",
+      "2024-12-15",
+      "2024-12-16",
+      "2024-12-17",
+      "2024-12-18",
+      "2024-12-19",
+      "2024-12-20",
+      "2024-12-21",
+      "2024-12-22",
+      "2024-12-23",
+      "2024-12-24",
+      "2024-12-25",
+      "2024-12-26",
+      "2024-12-27",
+      "2024-12-28",
+      "2024-12-29",
+      "2024-12-30"
+    ],
+    "draws_per_R": 5000,
+    "block_length": 7,
+    "simulation_seed": 272001,
+    "reference_pilot_R_recommendation": 30,
+    "status": "conditional_preselection_planning_not_final_power",
+    "reference_pilot_R_decision_basis": "resource_cap_with_target_unclosed",
+    "all_observed_pilot_pairs_meet_conditional_target_by30": false,
+    "R_required_normal_upper_across_observed_pairs": 142,
+    "pairs": [
+      {
+        "models": [
+          "CNN-1D + LSTM + atención temporal",
+          "GRU32"
+        ],
+        "difference_definition": "RMSE(first)-RMSE(second)",
+        "paired_seed_differences": [
+          0.00026975403970972865,
+          -5.666412379531655e-05,
+          0.0004287234865976027,
+          0.0006441548223194422,
+          6.9623161391080615e-06
+        ],
+        "observed_mean_difference": 0.000258586108194113,
+        "sigma_d": 0.0002917327222965137,
+        "effect_delta_over_sigma_d": 0.8834402415367685,
+        "normal_R_approximation": 26,
+        "normal_R_SD_upper_sensitivity": 142,
+        "scenarios": [
+          {
+            "R": 6,
+            "conditional_simulated_rejection_probability": 0.0,
+            "conditional_simulated_null_rejection_probability": 0.0,
+            "Monte_Carlo_CI95": [
+              0.0,
+              0.0007677019450571244
+            ],
+            "conditional_MDE_normal": 0.0018542093559402385,
+            "conditional_MDE_simulated": 0.0040249909676305685,
+            "includes_temporal_floor": true
+          },
+          {
+            "R": 10,
+            "conditional_simulated_rejection_probability": 0.0002,
+            "conditional_simulated_null_rejection_probability": 0.0008,
+            "Monte_Carlo_CI95": [
+              3.530578343936526e-05,
+              0.0011320890808397363
+            ],
+            "conditional_MDE_normal": 0.0016763300184604348,
+            "conditional_MDE_simulated": 0.002444979615390918,
+            "includes_temporal_floor": true
+          },
+          {
+            "R": 20,
+            "conditional_simulated_rejection_probability": 0.0014,
+            "conditional_simulated_null_rejection_probability": 0.0006,
+            "Monte_Carlo_CI95": [
+              0.0006783326019524562,
+              0.0028872197776585087
+            ],
+            "conditional_MDE_normal": 0.0015294034219730896,
+            "conditional_MDE_simulated": 0.0018012496998510638,
+            "includes_temporal_floor": true
+          },
+          {
+            "R": 30,
+            "conditional_simulated_rejection_probability": 0.0032,
+            "conditional_simulated_null_rejection_probability": 0.002,
+            "Monte_Carlo_CI95": [
+              0.0019707278219023715,
+              0.0051920608307063874
+            ],
+            "conditional_MDE_normal": 0.001477183917434389,
+            "conditional_MDE_simulated": 0.0016474860237722648,
+            "includes_temporal_floor": true
+          }
+        ],
+        "status": "conditional_planning_only",
+        "sigma_d_upper95_normal_assumption": 0.000692093784110596,
+        "temporal_SD_floor": 0.000308199762568591,
+        "conditional_R_required_in6_to30": null,
+        "conditional_target_reached_within_cap": false,
+        "all_R_simulation_results": [
+          {
+            "R": 6,
+            "conditional_simulated_rejection_probability": 0.0,
+            "conditional_simulated_null_rejection_probability": 0.0,
+            "Monte_Carlo_CI95": [
+              0.0,
+              0.0007677019450571244
+            ],
+            "conditional_MDE_normal": 0.0018542093559402385,
+            "conditional_MDE_simulated": 0.0040249909676305685,
+            "includes_temporal_floor": true
+          },
+          {
+            "R": 7,
+            "conditional_simulated_rejection_probability": 0.0,
+            "conditional_simulated_null_rejection_probability": 0.0,
+            "Monte_Carlo_CI95": [
+              0.0,
+              0.0007677019450571244
+            ],
+            "conditional_MDE_normal": 0.0017927082998091509,
+            "conditional_MDE_simulated": 0.003320035098485069,
+            "includes_temporal_floor": true
+          },
+          {
+            "R": 8,
+            "conditional_simulated_rejection_probability": 0.0,
+            "conditional_simulated_null_rejection_probability": 0.0,
+            "Monte_Carlo_CI95": [
+              0.0,
+              0.0007677019450571244
+            ],
+            "conditional_MDE_normal": 0.0017451607612526258,
+            "conditional_MDE_simulated": 0.002906405693048036,
+            "includes_temporal_floor": true
+          },
+          {
+            "R": 9,
+            "conditional_simulated_rejection_probability": 0.0002,
+            "conditional_simulated_null_rejection_probability": 0.0002,
+            "Monte_Carlo_CI95": [
+              3.530578343936526e-05,
+              0.0011320890808397363
+            ],
+            "conditional_MDE_normal": 0.0017072640876372018,
+            "conditional_MDE_simulated": 0.0026390983102432893,
+            "includes_temporal_floor": true
+          },
+          {
+            "R": 10,
+            "conditional_simulated_rejection_probability": 0.0002,
+            "conditional_simulated_null_rejection_probability": 0.0008,
+            "Monte_Carlo_CI95": [
+              3.530578343936526e-05,
+              0.0011320890808397363
+            ],
+            "conditional_MDE_normal": 0.0016763300184604348,
+            "conditional_MDE_simulated": 0.002444979615390918,
+            "includes_temporal_floor": true
+          },
+          {
+            "R": 11,
+            "conditional_simulated_rejection_probability": 0.0,
+            "conditional_simulated_null_rejection_probability": 0.0002,
+            "Monte_Carlo_CI95": [
+              0.0,
+              0.0007677019450571244
+            ],
+            "conditional_MDE_normal": 0.0016505891684048635,
+            "conditional_MDE_simulated": 0.002311931414197595,
+            "includes_temporal_floor": true
+          },
+          {
+            "R": 12,
+            "conditional_simulated_rejection_probability": 0.001,
+            "conditional_simulated_null_rejection_probability": 0.0006,
+            "Monte_Carlo_CI95": [
+              0.00042721349110879964,
+              0.002338953050058211
+            ],
+            "conditional_MDE_normal": 0.0016288277470547256,
+            "conditional_MDE_simulated": 0.002214148947706062,
+            "includes_temporal_floor": true
+          },
+          {
+            "R": 13,
+            "conditional_simulated_rejection_probability": 0.0006,
+            "conditional_simulated_null_rejection_probability": 0.0004,
+            "Monte_Carlo_CI95": [
+              0.00020407465419434642,
+              0.001762706048528709
+            ],
+            "conditional_MDE_normal": 0.0016101845397918002,
+            "conditional_MDE_simulated": 0.002117773468720407,
+            "includes_temporal_floor": true
+          },
+          {
+            "R": 14,
+            "conditional_simulated_rejection_probability": 0.0008,
+            "conditional_simulated_null_rejection_probability": 0.0004,
+            "Monte_Carlo_CI95": [
+              0.00031114697610156263,
+              0.0020553266458434704
+            ],
+            "conditional_MDE_normal": 0.0015940311119452858,
+            "conditional_MDE_simulated": 0.0020484824989639334,
+            "includes_temporal_floor": true
+          },
+          {
+            "R": 15,
+            "conditional_simulated_rejection_probability": 0.001,
+            "conditional_simulated_null_rejection_probability": 0.0006,
+            "Monte_Carlo_CI95": [
+              0.00042721349110879964,
+              0.002338953050058211
+            ],
+            "conditional_MDE_normal": 0.001579897885421455,
+            "conditional_MDE_simulated": 0.0019954831926022433,
+            "includes_temporal_floor": true
+          },
+          {
+            "R": 16,
+            "conditional_simulated_rejection_probability": 0.0006,
+            "conditional_simulated_null_rejection_probability": 0.0012,
+            "Monte_Carlo_CI95": [
+              0.00020407465419434642,
+              0.001762706048528709
+            ],
+            "conditional_MDE_normal": 0.0015674267775737205,
+            "conditional_MDE_simulated": 0.0019381954093596523,
+            "includes_temporal_floor": true
+          },
+          {
+            "R": 17,
+            "conditional_simulated_rejection_probability": 0.001,
+            "conditional_simulated_null_rejection_probability": 0.0006,
+            "Monte_Carlo_CI95": [
+              0.00042721349110879964,
+              0.002338953050058211
+            ],
+            "conditional_MDE_normal": 0.001556339872384916,
+            "conditional_MDE_simulated": 0.0018983408948897989,
+            "includes_temporal_floor": true
+          },
+          {
+            "R": 18,
+            "conditional_simulated_rejection_probability": 0.002,
+            "conditional_simulated_null_rejection_probability": 0.0014,
+            "Monte_Carlo_CI95": [
+              0.0010867468609438852,
+              0.0036778842763330113
+            ],
+            "conditional_MDE_normal": 0.0015464181175267766,
+            "conditional_MDE_simulated": 0.0018612559723737774,
+            "includes_temporal_floor": true
+          },
+          {
+            "R": 19,
+            "conditional_simulated_rejection_probability": 0.0012,
+            "conditional_simulated_null_rejection_probability": 0.0006,
+            "Monte_Carlo_CI95": [
+              0.0005500831677591556,
+              0.002615776292629832
+            ],
+            "conditional_MDE_normal": 0.001537486486365353,
+            "conditional_MDE_simulated": 0.0018291531913372265,
+            "includes_temporal_floor": true
+          },
+          {
+            "R": 20,
+            "conditional_simulated_rejection_probability": 0.0014,
+            "conditional_simulated_null_rejection_probability": 0.0006,
+            "Monte_Carlo_CI95": [
+              0.0006783326019524562,
+              0.0028872197776585087
+            ],
+            "conditional_MDE_normal": 0.0015294034219730896,
+            "conditional_MDE_simulated": 0.0018012496998510638,
+            "includes_temporal_floor": true
+          },
+          {
+            "R": 21,
+            "conditional_simulated_rejection_probability": 0.0024,
+            "conditional_simulated_null_rejection_probability": 0.0006,
+            "Monte_Carlo_CI95": [
+              0.0013734655564128324,
+              0.004190551419308018
+            ],
+            "conditional_MDE_normal": 0.0015220531851409878,
+            "conditional_MDE_simulated": 0.0017816432592514054,
+            "includes_temporal_floor": true
+          },
+          {
+            "R": 22,
+            "conditional_simulated_rejection_probability": 0.0016,
+            "conditional_simulated_null_rejection_probability": 0.0008,
+            "Monte_Carlo_CI95": [
+              0.0008109751397282834,
+              0.0031542701591046594
+            ],
+            "conditional_MDE_normal": 0.0015153402136731358,
+            "conditional_MDE_simulated": 0.001766791909752487,
+            "includes_temporal_floor": true
+          },
+          {
+            "R": 23,
+            "conditional_simulated_rejection_probability": 0.0012,
+            "conditional_simulated_null_rejection_probability": 0.001,
+            "Monte_Carlo_CI95": [
+              0.0005500831677591556,
+              0.002615776292629832
+            ],
+            "conditional_MDE_normal": 0.0015091849011295904,
+            "conditional_MDE_simulated": 0.0017408378237785322,
+            "includes_temporal_floor": true
+          },
+          {
+            "R": 24,
+            "conditional_simulated_rejection_probability": 0.003,
+            "conditional_simulated_null_rejection_probability": 0.0016,
+            "Monte_Carlo_CI95": [
+              0.0018189297776376753,
+              0.004944165955749107
+            ],
+            "conditional_MDE_normal": 0.0015035203944526003,
+            "conditional_MDE_simulated": 0.0017244297319578225,
+            "includes_temporal_floor": true
+          },
+          {
+            "R": 25,
+            "conditional_simulated_rejection_probability": 0.0018,
+            "conditional_simulated_null_rejection_probability": 0.0008,
+            "Monte_Carlo_CI95": [
+              0.0009472935076811986,
+              0.003417644710373721
+            ],
+            "conditional_MDE_normal": 0.0014982901342574754,
+            "conditional_MDE_simulated": 0.0017121030039607813,
+            "includes_temporal_floor": true
+          },
+          {
+            "R": 26,
+            "conditional_simulated_rejection_probability": 0.002,
+            "conditional_simulated_null_rejection_probability": 0.0006,
+            "Monte_Carlo_CI95": [
+              0.0010867468609438852,
+              0.0036778842763330113
+            ],
+            "conditional_MDE_normal": 0.0014934459440634207,
+            "conditional_MDE_simulated": 0.0016949385448072956,
+            "includes_temporal_floor": true
+          },
+          {
+            "R": 27,
+            "conditional_simulated_rejection_probability": 0.0018,
+            "conditional_simulated_null_rejection_probability": 0.0006,
+            "Monte_Carlo_CI95": [
+              0.0009472935076811986,
+              0.003417644710373721
+            ],
+            "conditional_MDE_normal": 0.0014889465304843946,
+            "conditional_MDE_simulated": 0.001677880767901747,
+            "includes_temporal_floor": true
+          },
+          {
+            "R": 28,
+            "conditional_simulated_rejection_probability": 0.0024,
+            "conditional_simulated_null_rejection_probability": 0.001,
+            "Monte_Carlo_CI95": [
+              0.0013734655564128324,
+              0.004190551419308018
+            ],
+            "conditional_MDE_normal": 0.0014847562947069724,
+            "conditional_MDE_simulated": 0.0016682539205362902,
+            "includes_temporal_floor": true
+          },
+          {
+            "R": 29,
+            "conditional_simulated_rejection_probability": 0.0028,
+            "conditional_simulated_null_rejection_probability": 0.0008,
+            "Monte_Carlo_CI95": [
+              0.0016686770757911352,
+              0.00469472573837367
+            ],
+            "conditional_MDE_normal": 0.0014808443823141487,
+            "conditional_MDE_simulated": 0.0016537946786319812,
+            "includes_temporal_floor": true
+          },
+          {
+            "R": 30,
+            "conditional_simulated_rejection_probability": 0.0032,
+            "conditional_simulated_null_rejection_probability": 0.002,
+            "Monte_Carlo_CI95": [
+              0.0019707278219023715,
+              0.0051920608307063874
+            ],
+            "conditional_MDE_normal": 0.001477183917434389,
+            "conditional_MDE_simulated": 0.0016474860237722648,
+            "includes_temporal_floor": true
+          }
+        ]
+      }
+    ],
+    "independent_calendar_blocks_approx": 7.571428571428571,
+    "normal_SD_upper_factor": 2.372355691409756,
+    "limits": [
+      "This fixed-reference preselection pilot is an amendment, not the original postselection study.",
+      "The simulation is conditional planning sensitivity, not achieved final-study power or a distribution-free bound.",
+      "Power is against zero with a true difference delta; it does not prove superiority beyond the practical margin delta.",
+      "For a practical-superiority null at delta, the same effective shift corresponds to an alternative at2delta.",
+      "Multiplicity153 governs the critical value; variances of unobserved model pairs are not estimated.",
+      "Five seeds give a fragile SD estimate; its95% upper sensitivity assumes Gaussian paired seed scores.",
+      "Temporal block variability is not removed by adding initialization seeds.",
+      "Only a few calendar blocks are observed; block7 and the empirical residual model may miss future regimes.",
+      "At alpha=.05/153,5000 draws cannot resolve the two-sided Bonferroni tail empirically; the critical value is analytical.",
+      "Monte Carlo intervals are pointwise uncertainty of the simulation, not scientific confidence intervals for performance.",
+      "The selected resource proposal cannot close R for the final selected recipes or all18-system comparisons."
+    ],
+    "primary_three_model_pilot_complete": false,
+    "analysis_role": "secondary_completely_observed_models_only",
+    "included_models": [
+      "CNN-1D + LSTM + atención temporal",
+      "GRU32"
+    ],
+    "unobserved_or_incomplete_models": [
+      "TimeMixer"
+    ],
+    "analysis_amendment_commit": "d511a8de3b9e9d5fa559d761ce9f2ac732921a80",
+    "analysis_amendment_sha256": "025fe220405050a5cb8246bf22638e8bebc301093fcc571e878ebbdffa17ebc1",
+    "incomplete_model_variance_estimated": false
+  },
+  "budget_scenarios": [
+    {
+      "version": "e2-development-pilot-decisions-v1",
+      "phase_counts": {
+        "scenario": {
+          "selection_origins": 11,
+          "outer_cv_origins": 10,
+          "final_selection_origins": 1,
+          "k": 40,
+          "final_seeds_R": 6,
+          "nas_models": 6,
+          "neural_models_with_references": 14,
+          "resource_scenario_not_final_seed_decision": true
+        },
+        "full_training_phases": {
+          "hpo": {
+            "supervised": 5544,
+            "auxiliary": 792,
+            "total": 6336
+          },
+          "nas_phase2_upper_bound": {
+            "supervised": 13530,
+            "auxiliary": 4510,
+            "total": 18040
+          },
+          "neural_refits": {
+            "supervised": 924,
+            "auxiliary": 132,
+            "total": 1056
+          },
+          "noise_pilot_full_global": {
+            "supervised": 360,
+            "auxiliary": 120,
+            "total": 480
+          },
+          "fixed_neural_resource_profiles_global": {
+            "supervised": 8,
+            "auxiliary": 0,
+            "total": 8
+          },
+          "power_pilot_non_sae_models_global": {
+            "supervised": 15,
+            "auxiliary": 0,
+            "total": 15
+          }
+        },
+        "short_training_phases": {
+          "nas_phase1": {
+            "supervised": 66000,
+            "auxiliary": 22000,
+            "total": 88000
+          },
+          "noise_pilot_short_global": {
+            "supervised": 72,
+            "auxiliary": 24,
+            "total": 96
+          }
+        },
+        "full_phase_total": 25935,
+        "short_phase_total": 88096,
+        "classical_adjustments": {
+          "ridge_hpo": 198,
+          "arima_hpo": 198,
+          "deterministic_refits": 22,
+          "resource_profiling": 2,
+          "total": 420,
+          "seasonal_period_scores_not_fits": 33,
+          "persistence_parameter_fits": 0
+        },
+        "scope": "Search, global pilots/reference profiles and refits only. Counts are upper bounds, not observed work.",
+        "excluded": [
+          "diagnostic controls",
+          "robustness",
+          "ablations",
+          "calibration-specific refits",
+          "interpretability",
+          "environment setup"
+        ],
+        "limits": [
+          "Power pilot names declared non-SAE models; no auxiliary cost is hidden.",
+          "Fixed-body profiles are supervised stages; NAS profiling reuses the noise pilot.",
+          "R is a resource scenario and does not establish statistical power.",
+          "Full and short phases have different budgets and must not be added as equivalent fits.",
+          "Hardware time/memory/monetary estimates remain unmeasured.",
+          "All ten outer origins and the final selection origin are charged separately."
+        ]
+      },
+      "attempt_time_allowances": {
+        "short_stage_cap_seconds": 1800,
+        "full_stage_cap_seconds": 7200,
+        "short_phase_allowance_seconds": 158572800,
+        "full_phase_allowance_seconds": 186732000,
+        "neural_allowance_sum_seconds": 345304800,
+        "classical_timing_included": false,
+        "interpretation": "Sum of declared per-stage attempt allowances, not an estimated duration or complete-campaign wall bound"
+      },
+      "resource_run_status_counts": {},
+      "measured_conditional_projection": null,
+      "total_campaign_estimated_hours": null,
+      "total_campaign_monetary_cost": null,
+      "limits": [
+        "Reference measurements do not identify the average cost of all1000 architectures.",
+        "A censored180-second reconnaissance is distinct from the7200-second full-stage allocation.",
+        "Classical timing and all components excluded by the budget remain additional.",
+        "Boundary-checked limits alone are not hard process isolation."
+      ]
+    },
+    {
+      "version": "e2-development-pilot-decisions-v1",
+      "phase_counts": {
+        "scenario": {
+          "selection_origins": 11,
+          "outer_cv_origins": 10,
+          "final_selection_origins": 1,
+          "k": 40,
+          "final_seeds_R": 10,
+          "nas_models": 6,
+          "neural_models_with_references": 14,
+          "resource_scenario_not_final_seed_decision": true
+        },
+        "full_training_phases": {
+          "hpo": {
+            "supervised": 5544,
+            "auxiliary": 792,
+            "total": 6336
+          },
+          "nas_phase2_upper_bound": {
+            "supervised": 13530,
+            "auxiliary": 4510,
+            "total": 18040
+          },
+          "neural_refits": {
+            "supervised": 1540,
+            "auxiliary": 220,
+            "total": 1760
+          },
+          "noise_pilot_full_global": {
+            "supervised": 360,
+            "auxiliary": 120,
+            "total": 480
+          },
+          "fixed_neural_resource_profiles_global": {
+            "supervised": 8,
+            "auxiliary": 0,
+            "total": 8
+          },
+          "power_pilot_non_sae_models_global": {
+            "supervised": 15,
+            "auxiliary": 0,
+            "total": 15
+          }
+        },
+        "short_training_phases": {
+          "nas_phase1": {
+            "supervised": 66000,
+            "auxiliary": 22000,
+            "total": 88000
+          },
+          "noise_pilot_short_global": {
+            "supervised": 72,
+            "auxiliary": 24,
+            "total": 96
+          }
+        },
+        "full_phase_total": 26639,
+        "short_phase_total": 88096,
+        "classical_adjustments": {
+          "ridge_hpo": 198,
+          "arima_hpo": 198,
+          "deterministic_refits": 22,
+          "resource_profiling": 2,
+          "total": 420,
+          "seasonal_period_scores_not_fits": 33,
+          "persistence_parameter_fits": 0
+        },
+        "scope": "Search, global pilots/reference profiles and refits only. Counts are upper bounds, not observed work.",
+        "excluded": [
+          "diagnostic controls",
+          "robustness",
+          "ablations",
+          "calibration-specific refits",
+          "interpretability",
+          "environment setup"
+        ],
+        "limits": [
+          "Power pilot names declared non-SAE models; no auxiliary cost is hidden.",
+          "Fixed-body profiles are supervised stages; NAS profiling reuses the noise pilot.",
+          "R is a resource scenario and does not establish statistical power.",
+          "Full and short phases have different budgets and must not be added as equivalent fits.",
+          "Hardware time/memory/monetary estimates remain unmeasured.",
+          "All ten outer origins and the final selection origin are charged separately."
+        ]
+      },
+      "attempt_time_allowances": {
+        "short_stage_cap_seconds": 1800,
+        "full_stage_cap_seconds": 7200,
+        "short_phase_allowance_seconds": 158572800,
+        "full_phase_allowance_seconds": 191800800,
+        "neural_allowance_sum_seconds": 350373600,
+        "classical_timing_included": false,
+        "interpretation": "Sum of declared per-stage attempt allowances, not an estimated duration or complete-campaign wall bound"
+      },
+      "resource_run_status_counts": {},
+      "measured_conditional_projection": null,
+      "total_campaign_estimated_hours": null,
+      "total_campaign_monetary_cost": null,
+      "limits": [
+        "Reference measurements do not identify the average cost of all1000 architectures.",
+        "A censored180-second reconnaissance is distinct from the7200-second full-stage allocation.",
+        "Classical timing and all components excluded by the budget remain additional.",
+        "Boundary-checked limits alone are not hard process isolation."
+      ]
+    },
+    {
+      "version": "e2-development-pilot-decisions-v1",
+      "phase_counts": {
+        "scenario": {
+          "selection_origins": 11,
+          "outer_cv_origins": 10,
+          "final_selection_origins": 1,
+          "k": 40,
+          "final_seeds_R": 20,
+          "nas_models": 6,
+          "neural_models_with_references": 14,
+          "resource_scenario_not_final_seed_decision": true
+        },
+        "full_training_phases": {
+          "hpo": {
+            "supervised": 5544,
+            "auxiliary": 792,
+            "total": 6336
+          },
+          "nas_phase2_upper_bound": {
+            "supervised": 13530,
+            "auxiliary": 4510,
+            "total": 18040
+          },
+          "neural_refits": {
+            "supervised": 3080,
+            "auxiliary": 440,
+            "total": 3520
+          },
+          "noise_pilot_full_global": {
+            "supervised": 360,
+            "auxiliary": 120,
+            "total": 480
+          },
+          "fixed_neural_resource_profiles_global": {
+            "supervised": 8,
+            "auxiliary": 0,
+            "total": 8
+          },
+          "power_pilot_non_sae_models_global": {
+            "supervised": 15,
+            "auxiliary": 0,
+            "total": 15
+          }
+        },
+        "short_training_phases": {
+          "nas_phase1": {
+            "supervised": 66000,
+            "auxiliary": 22000,
+            "total": 88000
+          },
+          "noise_pilot_short_global": {
+            "supervised": 72,
+            "auxiliary": 24,
+            "total": 96
+          }
+        },
+        "full_phase_total": 28399,
+        "short_phase_total": 88096,
+        "classical_adjustments": {
+          "ridge_hpo": 198,
+          "arima_hpo": 198,
+          "deterministic_refits": 22,
+          "resource_profiling": 2,
+          "total": 420,
+          "seasonal_period_scores_not_fits": 33,
+          "persistence_parameter_fits": 0
+        },
+        "scope": "Search, global pilots/reference profiles and refits only. Counts are upper bounds, not observed work.",
+        "excluded": [
+          "diagnostic controls",
+          "robustness",
+          "ablations",
+          "calibration-specific refits",
+          "interpretability",
+          "environment setup"
+        ],
+        "limits": [
+          "Power pilot names declared non-SAE models; no auxiliary cost is hidden.",
+          "Fixed-body profiles are supervised stages; NAS profiling reuses the noise pilot.",
+          "R is a resource scenario and does not establish statistical power.",
+          "Full and short phases have different budgets and must not be added as equivalent fits.",
+          "Hardware time/memory/monetary estimates remain unmeasured.",
+          "All ten outer origins and the final selection origin are charged separately."
+        ]
+      },
+      "attempt_time_allowances": {
+        "short_stage_cap_seconds": 1800,
+        "full_stage_cap_seconds": 7200,
+        "short_phase_allowance_seconds": 158572800,
+        "full_phase_allowance_seconds": 204472800,
+        "neural_allowance_sum_seconds": 363045600,
+        "classical_timing_included": false,
+        "interpretation": "Sum of declared per-stage attempt allowances, not an estimated duration or complete-campaign wall bound"
+      },
+      "resource_run_status_counts": {},
+      "measured_conditional_projection": null,
+      "total_campaign_estimated_hours": null,
+      "total_campaign_monetary_cost": null,
+      "limits": [
+        "Reference measurements do not identify the average cost of all1000 architectures.",
+        "A censored180-second reconnaissance is distinct from the7200-second full-stage allocation.",
+        "Classical timing and all components excluded by the budget remain additional.",
+        "Boundary-checked limits alone are not hard process isolation."
+      ]
+    },
+    {
+      "version": "e2-development-pilot-decisions-v1",
+      "phase_counts": {
+        "scenario": {
+          "selection_origins": 11,
+          "outer_cv_origins": 10,
+          "final_selection_origins": 1,
+          "k": 40,
+          "final_seeds_R": 30,
+          "nas_models": 6,
+          "neural_models_with_references": 14,
+          "resource_scenario_not_final_seed_decision": true
+        },
+        "full_training_phases": {
+          "hpo": {
+            "supervised": 5544,
+            "auxiliary": 792,
+            "total": 6336
+          },
+          "nas_phase2_upper_bound": {
+            "supervised": 13530,
+            "auxiliary": 4510,
+            "total": 18040
+          },
+          "neural_refits": {
+            "supervised": 4620,
+            "auxiliary": 660,
+            "total": 5280
+          },
+          "noise_pilot_full_global": {
+            "supervised": 360,
+            "auxiliary": 120,
+            "total": 480
+          },
+          "fixed_neural_resource_profiles_global": {
+            "supervised": 8,
+            "auxiliary": 0,
+            "total": 8
+          },
+          "power_pilot_non_sae_models_global": {
+            "supervised": 15,
+            "auxiliary": 0,
+            "total": 15
+          }
+        },
+        "short_training_phases": {
+          "nas_phase1": {
+            "supervised": 66000,
+            "auxiliary": 22000,
+            "total": 88000
+          },
+          "noise_pilot_short_global": {
+            "supervised": 72,
+            "auxiliary": 24,
+            "total": 96
+          }
+        },
+        "full_phase_total": 30159,
+        "short_phase_total": 88096,
+        "classical_adjustments": {
+          "ridge_hpo": 198,
+          "arima_hpo": 198,
+          "deterministic_refits": 22,
+          "resource_profiling": 2,
+          "total": 420,
+          "seasonal_period_scores_not_fits": 33,
+          "persistence_parameter_fits": 0
+        },
+        "scope": "Search, global pilots/reference profiles and refits only. Counts are upper bounds, not observed work.",
+        "excluded": [
+          "diagnostic controls",
+          "robustness",
+          "ablations",
+          "calibration-specific refits",
+          "interpretability",
+          "environment setup"
+        ],
+        "limits": [
+          "Power pilot names declared non-SAE models; no auxiliary cost is hidden.",
+          "Fixed-body profiles are supervised stages; NAS profiling reuses the noise pilot.",
+          "R is a resource scenario and does not establish statistical power.",
+          "Full and short phases have different budgets and must not be added as equivalent fits.",
+          "Hardware time/memory/monetary estimates remain unmeasured.",
+          "All ten outer origins and the final selection origin are charged separately."
+        ]
+      },
+      "attempt_time_allowances": {
+        "short_stage_cap_seconds": 1800,
+        "full_stage_cap_seconds": 7200,
+        "short_phase_allowance_seconds": 158572800,
+        "full_phase_allowance_seconds": 217144800,
+        "neural_allowance_sum_seconds": 375717600,
+        "classical_timing_included": false,
+        "interpretation": "Sum of declared per-stage attempt allowances, not an estimated duration or complete-campaign wall bound"
+      },
+      "resource_run_status_counts": {},
+      "measured_conditional_projection": null,
+      "total_campaign_estimated_hours": null,
+      "total_campaign_monetary_cost": null,
+      "limits": [
+        "Reference measurements do not identify the average cost of all1000 architectures.",
+        "A censored180-second reconnaissance is distinct from the7200-second full-stage allocation.",
+        "Classical timing and all components excluded by the budget remain additional.",
+        "Boundary-checked limits alone are not hard process isolation."
+      ]
+    }
+  ],
+  "final_seed_count_set": false,
+  "full_noise_pilot_fits_executed": 0,
+  "full_HPO_or_NAS_executed": false
+}

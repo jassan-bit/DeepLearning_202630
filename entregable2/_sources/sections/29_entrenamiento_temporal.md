@@ -1,5 +1,7 @@
 # 29. Entrenamiento por etapas, selección temporal y perfilado CPU
 
+**Piloto real posterior:** [§30: entrenamiento de desarrollo en Codex Cloud, costes y dimensionamiento condicionado](30_piloto_nube.md). Esta sección conserva el alcance artificial del corte anterior.
+
 **Integración del 09/11/2026.** Se conectan las fábricas de [§28](28_fabricas_nas.md) con entrenamiento, selección interna, reajuste nuevo y evaluación temporal de los18 sistemas. La ejecución publicada utiliza exclusivamente datos artificiales generados por el programa.
 
 **Resultado del fixture:**14 redes y4 comparadores; **142 ajustes neuronales, 176 etapas, 1.097 pasos AdamW y 142 checkpoints guardados y recargados con seguridad**. Las 3 fechas externas artificiales se predijeron y persistieron antes de revelar sus objetivos. No son resultados de Bitcoin ni un benchmark científico.
