@@ -1,0 +1,48 @@
+name: Verificar optimización publicada sin redespliegue
+on:
+  push:
+    branches: [verify-compute31-live-20261109]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  verify-live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: 0b079b50625a936456a70695532853fc13298f31
+          persist-credentials: false
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: books-site-0b079b50625a936456a70695532853fc13298f31-1
+          path: _build/site/
+          github-token: ${{ github.token }}
+          run-id: 42690437898
+      - name: Verificar manifiesto y entradas de los tres libros
+        run: |
+          set -euo pipefail
+          python scripts/safe_publish_books.py verify-live --source-commit 0b079b50625a936456a70695532853fc13298f31 --url https://jassan-bit.github.io/DeepLearning_202630/ --attempts 24 --interval 30 | tee live-verification.json
+      - name: Comprobar capítulo y recibos nuevos por hash
+        run: |
+          python - <<'PY'
+          import hashlib,json,pathlib,urllib.request
+          base="https://jassan-bit.github.io/DeepLearning_202630/"
+          paths=["entregable2/sections/30_piloto_nube.html", "entregable2/sections/31_optimizacion_nube.html"]+[path.relative_to(pathlib.Path("_build/site")).as_posix() for path in sorted(pathlib.Path("_build/site/entregable2/_static/compute_public_20261109").iterdir()) if path.is_file()]
+          for path in paths:
+              expected=hashlib.sha256((pathlib.Path("_build/site")/path).read_bytes()).hexdigest()
+              request=urllib.request.Request(base+path+"?source_check=0b079b50625a936456a70695532853fc13298f31",headers={"Cache-Control":"no-cache","Accept-Encoding":"identity"})
+              with urllib.request.urlopen(request,timeout=30) as response:
+                  actual=hashlib.sha256(response.read()).hexdigest()
+              if actual!=expected:
+                  raise SystemExit("Public file differs: "+path)
+              print("SHA256 verified",path,actual)
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: compute31-live-verification
+          path: live-verification.json
+          if-no-files-found: ignore
+
