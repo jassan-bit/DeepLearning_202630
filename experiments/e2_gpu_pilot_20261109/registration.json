@@ -1,0 +1,125 @@
+{
+  "version": "e2-gpu-pilot-registration-v1",
+  "status": "registered_before_gpu_market_fits",
+  "registered_at_utc": "2026-11-09T20:28:13.988465+00:00",
+  "registered_at_bogota": "2026-11-09T15:28:13.988655-05:00",
+  "parent_source_commit": "0b079b50625a936456a70695532853fc13298f31",
+  "source_protocol_sha256": "e0030c990a4afa15665aec254211b0d9e680e9ac5d92dfb8094e43e965152abe",
+  "purpose": "Prepare and measure a bounded CUDA development resource pilot before any full HPO/NAS campaign. No GPU results exist at registration.",
+  "profile": {
+    "models": [
+      "LSTM-autoencoder con predictor",
+      "TimesNet",
+      "TiDE",
+      "TimeMixer",
+      "PatchTST",
+      "CNN-1D + LSTM + atención temporal",
+      "FCN-1D",
+      "ResNet-1D",
+      "Inception-1D",
+      "TSMixer",
+      "iTransformer",
+      "MLP16",
+      "LSTM32",
+      "GRU32"
+    ],
+    "cohorts": [
+      "small",
+      "large"
+    ],
+    "default_cohorts": [
+      "small"
+    ],
+    "epochs": 2,
+    "seed": 274201,
+    "optional_largest_timesnet": true
+  },
+  "resources": {
+    "parallel_fits": 1,
+    "cpu_threads": 2,
+    "interop_threads": 1,
+    "host_rss_limit_bytes": 12884901888,
+    "gpu_memory_fraction": 0.8,
+    "gpu_memory_cap_bytes": 12884901888,
+    "internal_wall_seconds": 300,
+    "external_wall_seconds": 360,
+    "campaign_wall_seconds": 900,
+    "minimum_worker_start_seconds": 5
+  },
+  "execution": {
+    "device": "cuda",
+    "dtype": "float32",
+    "amp": false,
+    "tf32": false,
+    "deterministic": true,
+    "cublas_workspace_config": ":4096:8",
+    "cudnn_benchmark": false,
+    "cpu_fallback": false
+  },
+  "fixed_recipe": {
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "batch_size": 32,
+    "warmup_fraction": 0,
+    "optimizer": "AdamW using common fixed betas/epsilon/loss/normalization and epoch rules",
+    "dropout_non_nas": "existing dropout0.1 for TSMixer,iTransformer and neural references;0 for source CNNs",
+    "dropout_nas": "solely declared architecture bits at p0.2",
+    "TimesNet": {
+      "top_k": 4,
+      "num_kernels": 6
+    },
+    "TimeMixer": {
+      "moving_average": 7
+    },
+    "hybrid": {
+      "kernel": 3
+    },
+    "ridge_alpha": 1,
+    "arima_order": [
+      1,
+      0,
+      0
+    ],
+    "scope": "Fixed before2023 pilot. Never reuse HPO winners from2024 or2025 and never select candidates on pilot scores. No additional HPO."
+  },
+  "cohorts": {
+    "small": {
+      "train_n": 161,
+      "validation_n": 83,
+      "train_end": "2023-06-25",
+      "validation_start": "2023-07-03",
+      "validation_end": "2023-09-23"
+    },
+    "large": {
+      "train_n": 619,
+      "validation_n": 83,
+      "train_end": "2024-09-25",
+      "validation_start": "2024-10-03",
+      "validation_end": "2024-12-24",
+      "origin_calendar_placeholder": "2025-01-01",
+      "numeric_2025_values_read": false
+    }
+  },
+  "development_sources": {
+    "repository": "jassan-bit/DeepLearning_202630",
+    "commit": "0b079b50625a936456a70695532853fc13298f31",
+    "files": {
+      "experiments/dl_r2_cv_20261104/protocol.json": "e8da0f0098acd24a58664b83d0ba499b43aa9d597a36c52da6b3325c2c3c7bec",
+      "results/eda_development/daily_market_development.csv": "bf6bb5160af924aef6a15c3684aeae932df3017e8639888bb7e91ce787900171",
+      "results/eda_development/daily_volatility_development.csv": "20b96374a659eb87dadfa68aa3d6b6b5fb6bea5b10eebe6f2c186ad69861844a"
+    }
+  },
+  "target": {
+    "definition": "Population sigma7 of seven daily log returns, ddof0, h1, unannualized",
+    "intraday_realized_variance": false
+  },
+  "selection_policy": "Models/cohorts/optional-largest are sealed before reading market values. Accuracy never selects execution policy or model winners.",
+  "failure_policy": "Retain failed/censored attempts and consumed resources. No replacement seed, batch fallback or retry. Known steps are retained; unknown counts remain null. Unstarted jobs under total budget are not fitted and remain explicitly not_attempted_campaign_budget.",
+  "persistence_policy": "Raw execution receipts stay in the chosen runtime storage. No automatic pushes, uploads, credential collection or deletion of historical outputs. Scientific exports use an explicit public-field allowlist.",
+  "scientific_HPO_or_NAS_executed": false,
+  "final_R": null,
+  "achieved_final_power": null,
+  "gpu_performance_measured": false,
+  "gpu_budget_hours": null,
+  "budget_interpretation": "900 seconds is a campaign admission/supervisor limit with process teardown overhead, not a promised complete-pilot or full-campaign elapsed time."
+}
