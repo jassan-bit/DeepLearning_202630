@@ -82,3 +82,57 @@ El diario contiene 327 eventos y 91 pares predicción→observación. Se publica
 3. Completar y validar la selección temporal real y la integración de calidad/faltantes sin comprimir fechas ni elegir máscaras por pérdidas.
 4. Certificar la disponibilidad final mediante el acceso autorizado, congelar protocolo y batería de inferencia. El test ya conocido sigue siendo exploratorio.
 5. Realizar una revisión independiente del entorno y del futuro ejecutor real antes de autorizar cualquier ajuste de mercado. El programa actual conserva la barrera de datos exclusivamente artificiales.
+
+## Capa fechada posterior, sin entrenamiento
+
+Una ampliación separada, `scripts/e2_real_executor.py`, implementa y prueba el
+núcleo temporal necesario para pasar del fixture a calendarios reales. **No es
+todavía la integración completa de los 18 sistemas ni una autorización para
+entrenar.** No modifica el ejecutor sintético, las recetas, las guardas de acceso
+final o las evidencias históricas descritas arriba.
+
+- Las fechas públicas son medianoches UTC explícitas. Se rechazan duplicados,
+  desorden, fechas intradía y calendarios comprimidos. La frontera del adaptador
+  ARIMA existente convierte a su representación UTC sin huso sólo al invocarlo.
+- A y B se construyen por separado y su elección debe ser explícita. A agrega
+  errores por fecha, no medias no ponderadas de RMSE por fold, y no se etiqueta
+  como OOF anidada. B conserva entrenamiento interno hasta o−98, puente de siete
+  días, validación de 83 días o−90…o−8 y reajuste nuevo hasta o−8. Se impide mezclar
+  bloques A con selección interna B.
+- La máscara común incluye todos los rezagos 1/7/14/28 antes de comparar recetas.
+  Los planes y sus máscaras se sellan; una salida incompleta o un fallo numérico
+  no permite quitar fechas. La selección conserva los candidatos fallidos y
+  exige razón y consumo declarado, sin abrir nuevas búsquedas para rescatarlos.
+- MASE emplea parejas de objetivos válidos de entrenamiento separadas por
+  exactamente un día. Un hueco no se convierte en una diferencia entre filas
+  retenidas. La escala es común a los sistemas del bloque e independiente del
+  período naive. Cero o ausencia de parejas dejan MASE no disponible; un
+  desbordamiento provoca fallo, sin epsilon oculto.
+- La reproducción recorre todas las fechas, incluso las excluidas. El control
+  de estado emite y persiste su predicción antes de observar y o un faltante;
+  las redes y naive conservan una fila de no disponibilidad cuando falta su
+  entrada. Un fallo de escritura/fsync impide revelar ese objetivo. Los
+  parámetros y escalas congelados se comprueban durante el puente y evaluación.
+
+La comprobación de desarrollo sólo decodifica los dos derivados registrados
+2023–2024 después de verificar sus hashes. Confirma **305 fechas CV**, 716
+ventanas D7 con objetivo y 666 con soporte común. El soporte de ajuste final
+conserva 709 muestras, 619 internas y 83 de validación. No ajusta escaladores o
+modelos ni calcula métricas predictivas de mercado. No abre siquiera el
+manifiesto final en esta ampliación: **las 608 fechas siguen sin certificarse**,
+con número común y días faltantes desconocidos.
+
+La batería nueva contiene **41 pruebas sintéticas**, seis de ellas aportadas
+por una revisión independiente. También pasan las once pruebas previas de
+disponibilidad. La revisión detectó y permitió corregir alias de huellas
+mutables, detección tardía de cambios durante el puente, máscaras truncadas en
+selección y desbordamiento de MASE. La frontera ARIMA se prueba con su API real
+y un doble de backend que no estima parámetros; **no acredita convergencia ni
+reproduce statsmodels**. No se reejecutó el smoke neural histórico.
+
+Siguen pendientes la integración y revisión de todas las fábricas y
+adaptadores de modelos con esta capa, el cierre A/B y NAS por receta, los
+presupuestos, la reproducción independiente del entorno completo y el acceso
+final autorizado. Las pruebas del núcleo temporal no cierran esos requisitos.
+Los comandos se añaden a `BUILD.md`; este corte no publica resultados de
+pronóstico ni declara un ganador.
