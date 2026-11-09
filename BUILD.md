@@ -639,3 +639,33 @@ La receta, adquisición de fuentes y comandos están en
 `python scripts/publish_e2_current_implementation.py --check`.
 No son entrenamientos de mercado. Las fuentes de autores quedan fuera del repo;
 los hashes y recibos públicos no incluyen datos originales o checkpoints.
+
+### Núcleo temporal E2 sobre fechas reales, sin entrenamiento
+
+`scripts/e2_real_executor.py` añade planes A/B separados, máscaras selladas,
+MASE por días consecutivos y reproducción diaria de adaptadores ya congelados.
+No contiene un entrenador ni un lanzador HPO/NAS. Su única interfaz de consola
+es una auditoría read-only de los dos derivados registrados de desarrollo.
+No admite una ruta de datos finales y no modifica las guardas históricas.
+
+```bash
+python -m unittest discover -s tests -p 'test_e2_real_executor*.py' -v
+python -m unittest discover -s tests -p 'test_e2_common_availability.py' -v
+python -m compileall -q scripts/e2_real_executor.py tests/test_e2_real_executor.py tests/test_e2_real_executor_review.py
+python scripts/e2_real_executor.py --development-preflight --output /ruta/externa/nueva/development_preflight.json
+```
+
+La carpeta padre de salida debe existir; el archivo debe ser nuevo y quedar
+fuera del repositorio. El comando verifica hashes antes de decodificar los
+derivados y después de la auditoría. Sólo exporta soporte, fechas y procedencia,
+no precios, objetivos ni estadísticas descriptivas. La reserva de 608 fechas
+queda `not_certified`, no se interpreta como ausencia de días.
+
+Las 41 pruebas nuevas y las once de disponibilidad no entrenan modelos.
+Usan numpy/pandas y `unittest`; la API FrozenARIMA se prueba con un backend
+doble sin statsmodels. `requirements-e2-dated-core.lock.txt` fija las dos
+dependencias directas observadas, no un lock transitivo ni el entorno neural.
+La prueba independiente del núcleo no certifica la integración completa de
+18 modelos, las búsquedas de la guía, la convergencia ARIMA o el libro completo.
+Los modelos, recetas, escenario A/B, presupuesto y NAS deben cerrarse antes
+de cualquier ejecución de mercado.
