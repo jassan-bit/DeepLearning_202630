@@ -1,5 +1,7 @@
 # Proyecto Final de Deep Learning: Entregable 2
 
+**Ciclo de entrenamiento integrado:** [18 sistemas, selección temporal, reajustes y perfilado CPU](sections/29_entrenamiento_temporal.md). Validación artificial con actualizaciones AdamW; sin campaña de mercado ni resultados nuevos de Bitcoin.
+
 **Fábricas NAS verificadas:** [seis familias, 6.000 casos numéricos y fases auxiliares SAE](sections/28_fabricas_nas.md). Enlace de configuraciones HPO y pruebas sintéticas; sin optimización ni mercado.
 
 **Diseño NAS/HPO para Codex:** [decisiones por receta, rangos y presupuesto contable](sections/27_nas_hpo_presupuesto.md). Seis variantes NAS y cinco cuerpos publicados fijos; planes generados sin entrenamiento. Horas pendientes de perfilado.

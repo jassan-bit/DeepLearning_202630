@@ -691,3 +691,25 @@ kernels no certifica finitez. El vínculo de los18 HPO por familia se comprueba
 numéricamente sobre referencia en la batería unitaria. Ningún checker acepta
 archivos de mercado o ejecuta optimizadores. La evidencia completa y sus límites
 están en book_e2/_static/nas_factories_20261109/summary.json.
+
+
+## Ciclo de entrenamiento y perfilado CPU de §29
+
+La fuente y los datos de este lanzador son artificiales; no sustituye la campaña
+registrada de18configuraciones/1000arquitecturas ni abre datos finales.
+
+```bash
+python -m venv work/training-venv
+work/training-venv/bin/python -m pip install -r requirements-e2-training-cpu.lock.txt
+work/training-venv/bin/python -m pip check
+work/training-venv/bin/python scripts/fetch_e2_itransformer_sources.py --output work/author_sources/iTransformer
+E2_ITRANSFORMER_SOURCE_ROOT="$PWD/work/author_sources/iTransformer" work/training-venv/bin/python -m unittest discover -s tests -p 'test_e2_*training*.py' -v
+work/training-venv/bin/python scripts/run_e2_training_synthetic.py --output work/integracion-nueva --source-root-itransformer work/author_sources/iTransformer --threads 4
+work/training-venv/bin/python scripts/profile_e2_training.py --protocol book_e2/_static/search_protocol_20261109/protocol.json --output work/perfiles-nuevos --source-root-itransformer work/author_sources/iTransformer --epochs 2 --threads 4 --include-largest-timesnet
+```
+
+Los outputs deben ser directorios nuevos. Se registran fallos sin reemplazos;
+los checkpoints son de inferencia, con carga weights_only y metadatos JSON
+nativos, no un mecanismo de reanudación de optimizadores. El watchdog de perfiles
+muestra RSS, no una garantía de aislamiento de memoria. Recibos y alcance:
+book_e2/_static/training_integration_20261109/summary.json.
