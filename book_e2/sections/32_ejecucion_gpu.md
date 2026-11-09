@@ -1,18 +1,18 @@
 # 32. Ejecución CUDA preparada y piloto de recursos
 
-**Estado: infraestructura preparada; medición GPU pendiente.** Se incorporan un backend CUDA y un notebook reproducible para medir recursos en una GPU externa. Las pruebas locales se ejecutaron en la CPU del entorno Codex; las comprobaciones que requieren CUDA real se identifican como omitidas. No hay tiempos, presupuesto en horas ni resultados de entrenamiento GPU que atribuir a esta sección.
+**Infraestructura y corte de preparación conservado.** Esta sección documenta el backend CUDA, el notebook reproducible y sus pruebas locales en la CPU de Codex. Las comprobaciones que requieren CUDA real se identifican como omitidas en ese corte. El [piloto GPU posterior de §33](33_piloto_gpu.md), ejecutado por el usuario en Colab, aporta catorce ajustes completos y mediciones reales de recursos. El presupuesto total en horas continúa abierto.
 
-El siguiente hito es ejecutar el piloto acotado, revisar sus costes y entonces resolver la viabilidad de la búsqueda registrada. Las [estimaciones CPU de §31](31_optimizacion_nube.md) siguen siendo evidencia separada. No se trasladan como una predicción de aceleración en GPU ni se sustituyen los fallos anteriores.
+Después del primer piloto, corresponde ampliar el perfilado a la cohorte grande y al extremo TimesNet antes de resolver la viabilidad de la búsqueda registrada. Las [estimaciones CPU de §31](31_optimizacion_nube.md) siguen siendo evidencia separada. No se trasladan como una predicción de aceleración en GPU ni se sustituyen los fallos anteriores.
 
 ## Abrir y preparar el notebook
 
-La ejecución GPU todavía no ha comenzado. La distribución del trabajo es la siguiente:
+La GPU se ejecuta en la plataforma elegida por el usuario. La distribución del trabajo es la siguiente:
 
 | Entorno | Papel en este corte |
 |---|---|
 | Codex Cloud actual | Preparación del código y pruebas sintéticas en CPU |
 | GitHub | Repositorio, notebook y comprobaciones de integración; no aporta una GPU a este piloto |
-| Colab o servidor CUDA del usuario | Ejecutará el piloto cuando se conecte una GPU real y se active el lanzamiento |
+| Colab o servidor CUDA del usuario | Ejecuta el piloto al conectar una GPU real y activar el lanzamiento; el primer informe T4 está en §33 |
 
 El [notebook de ejecución](https://github.com/jassan-bit/DeepLearning_202630/blob/497088cbbabcdcec39c597d41b120a1ccde9379e/notebooks/entregable2_gpu.ipynb) puede [abrirse en Colab](https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/497088cbbabcdcec39c597d41b120a1ccde9379e/notebooks/entregable2_gpu.ipynb). También puede ejecutarse en un servidor Linux x86_64 con una GPU compatible con el entorno fijado. El kernel anfitrión puede usar Python 3.13: el piloto utiliza su propio CPython 3.12.12 aislado. La disponibilidad, cuota y coste de la GPU dependen del proveedor.
 
@@ -42,7 +42,7 @@ Las fuentes oficiales de iTransformer se preparan una vez por workspace. Al repe
 
 El registro tiene SHA256 `892ad148e1a261d16b178371a8f8c71ea3af352cc4c6ac4fea934df7dc22ba87`. Se creó el 09/11/2026 a las 15:28, hora de Bogotá, con estado `registered_before_gpu_market_fits`. Su publicación precede cualquier ajuste GPU de mercado de este diseño. Este registro no acredita que el piloto ya haya corrido.
 
-El bootstrap fija `uv==0.9.5`, CPython 3.12.12 y `pip==25.3`; los wheels de uv y pip se comprueban por SHA256. El intérprete gestionado, su caché y el entorno virtual se crean dentro del workspace. Se conserva el kernel de Colab y sus paquetes. Las versiones CUDA del lock se contrastaron con los metadatos del wheel oficial Linux x86_64 para Python 3.12. La instalación completa y la ejecución en una GPU externa siguen pendientes. El preflight comprueba CUDA mediante una operación sintética y sincronización; detecta problemas de disponibilidad antes del acceso al desarrollo.
+El bootstrap fija `uv==0.9.5`, CPython 3.12.12 y `pip==25.3`; los wheels de uv y pip se comprueban por SHA256. El intérprete gestionado, su caché y el entorno virtual se crean dentro del workspace. Se conserva el kernel de Colab y sus paquetes. Las versiones CUDA del lock se contrastaron con los metadatos del wheel oficial Linux x86_64 para Python 3.12. El corte local de preparación no instaló el entorno CUDA completo; el informe posterior de §33 registra los ajustes realizados con PyTorch 2.8.0 + CUDA 12.6 en una Tesla T4. El preflight comprueba CUDA mediante una operación sintética y sincronización antes del acceso al desarrollo.
 
 ## Semántica conservada y alcance de las pruebas
 
@@ -56,14 +56,14 @@ La configuración registrada usa **FP32**, sin AMP y sin TF32, con determinismo 
 |---|---|
 | Descarga de desarrollo | Cinco pruebas pasaron y los tres payloads públicos se descargaron realmente con sus hashes exactos; no se interpretaron valores numéricos |
 | Portabilidad de las catorce arquitecturas | Catorce pruebas CPU de predicción y backward pasaron; catorce casos CUDA reales se omitieron por ausencia de GPU |
-| Semántica del entrenamiento | Once pruebas pasaron y tres casos CUDA reales se omitieron. La comparación sintética contra el motor CPU incluye estados, logs, RNG, parada, horizonte del scheduler, SAE y reajustes; la validación CUDA real queda pendiente |
+| Semántica del entrenamiento | Once pruebas pasaron y tres casos CUDA reales se omitieron en Codex. La comparación sintética contra el motor CPU incluye estados, logs, RNG, parada, horizonte del scheduler, SAE y reajustes; el informe de ajustes GPU posterior se presenta por separado en §33 |
 | Admisión y recursos | Catorce pruebas pasaron y un caso CUDA real quedó omitido; incluyen configuración, presupuesto global, contabilidad de fallos y rechazo temprano sin CUDA. No constituyen mediciones GPU |
 | Notebook | Veintitrés pruebas estructurales y de guardas pasaron, incluidas once regresiones del bootstrap y tres de la caché de fuentes; ocho celdas de código con AST válido y salidas vacías, sin ejecutar instalaciones CUDA ni un piloto de mercado en el servidor CPU |
 | Bootstrap Python aislado | Se ejecutó realmente el bootstrap del notebook: descargó CPython 3.12.12 gestionado, creó el venv e instaló pip 25.3 con hash verificado. Se comprobó desde hosts Python 3.12.14 y 3.13.9, sin instalar Torch/CUDA ni descargar mercado |
 
-El corte de preparación reúne **67 pruebas aprobadas** (44 de código y 23 del notebook) y **18 pruebas CUDA reales omitidas** por ausencia de GPU. Los resultados aprobados acreditan contratos de software en CPU y comprobaciones estructurales; no certifican una ejecución GPU.
+El corte histórico de preparación reúne **67 pruebas aprobadas** (44 de código y 23 del notebook) y **18 pruebas CUDA reales omitidas** por ausencia de GPU. Los resultados aprobados acreditan contratos de software en CPU y comprobaciones estructurales; no certifican una ejecución GPU. El informe de §33 acredita los ajustes descritos allí, sin aportar los logs de las dieciocho pruebas omitidas en este corte.
 
-El notebook incluye las pruebas sintéticas CUDA antes de descargar los CSV. Su ejecución futura comprobará dispositivos de parámetros y buffers, geometría, salida FP32, conservación de metadatos, tolerancia numérica de evaluación y gradientes finitos. Una prueba omitida aquí no se presenta como una prueba GPU aprobada.
+El notebook incluye las pruebas sintéticas CUDA antes de descargar los CSV. Estas comprueban dispositivos de parámetros y buffers, geometría, salida FP32, conservación de metadatos, tolerancia numérica de evaluación y gradientes finitos. Una prueba omitida aquí no se presenta como una prueba GPU aprobada.
 
 ## Datos admitidos
 
@@ -112,7 +112,7 @@ Cada lanzamiento utiliza un directorio nuevo. El `summary.json` y los recibos co
 
 Antes de ejecutar, puede elegirse un volumen persistente que el usuario ya haya montado. En el almacenamiento efímero de Colab, los resultados pueden perderse al reiniciar o eliminar el entorno; conviene conservar el informe antes de cerrarlo. Los estados locales y fallos anteriores no se borran para repetir un lanzamiento.
 
-Las medidas permitirán distinguir construcción, ajuste, evaluación, tiempo de proceso y memoria CUDA asignada/reservada. Las operaciones de GPU se sincronizan para medir tiempo de pared. Las horas de búsqueda se estimarán después de observar esos datos y revisar la transferencia entre cohortes; **`gpu_budget_hours` permanece `null`** en esta preparación.
+Los recibos distinguen construcción, ajuste, evaluación, tiempo de proceso y memoria CUDA asignada/reservada. Las operaciones de GPU se sincronizan para medir tiempo de pared. Las horas de búsqueda se estimarán después de ampliar el perfilado y revisar la transferencia entre cohortes; **`gpu_budget_hours` permanece `null`**.
 
 ## Ejecución manual desde la fuente congelada
 
@@ -147,6 +147,6 @@ La selección explícita `--models GRU32 TimeMixer` permite un primer subconjunt
 
 ## Qué cierra esta preparación
 
-Se entrega código CUDA, entorno dedicado, registro y notebook con activación explícita. La validación local acredita contratos de software en CPU; la verificación CUDA, los tiempos, la memoria y la completitud del piloto deben producirse en la GPU real.
+Se entrega código CUDA, entorno dedicado, registro y notebook con activación explícita. La validación local acredita contratos de software en CPU. El [informe posterior de §33](33_piloto_gpu.md) incorpora los tiempos, la memoria y la completitud de catorce referencias en una Tesla T4 real; las dieciocho pruebas CUDA omitidas en el corte local conservan ese estado histórico.
 
 La búsqueda NAS/HPO científica, los controles, el benchmark y la evaluación final siguen pendientes. Después de seleccionar recetas y comprobar su variación se resolverá el dimensionamiento de R. Se conserva **`final_R=null`**, sin afirmación de potencia final o superioridad del candidato 11. Este cambio no reinterpreta la calibración condicional ni los fallos documentados en §31.
