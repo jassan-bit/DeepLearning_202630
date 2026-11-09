@@ -1,8 +1,37 @@
-# 12. Incertidumbre predictiva y análisis de errores
+# 12. Techo de desempeño, incertidumbre y análisis de errores
 
 **Estado:** análisis P0 histórico ejecutado; incertidumbre y errores del catálogo vigente pendientes de la nueva enmienda y de su evaluación. El catálogo contiene diez modelos y CNN-1D + LSTM + atención temporal como candidato 11, sin superioridad acreditada; las referencias MLP, LSTM y GRU de E1 se mantienen aparte.
 
-Esta sección desarrolla §12.2–12.3 de la guía (PDF pp49–50). Los intervalos predictivos describen valores futuros de σ₇; los IC de RMSE describen incertidumbre de una métrica. Ni la dispersión entre semillas ni un IC de RMSE se presentan como un intervalo predictivo. La [enmienda anterior](../_static/completion_protocol/analysis_additions.json) y el [plan P0](https://github.com/jassan-bit/DeepLearning_202630/blob/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0/experiments/e2_remediation_20261106/uncertainty_errors.json) quedan como archivo de trazabilidad, sin trasladar al catálogo vigente sus cohortes, tamaños de ensamble o familias estadísticas.
+Esta sección desarrolla §12.1–12.3 de la guía (PDF pp48–50). Los intervalos predictivos describen valores futuros de σ₇; los IC de RMSE describen incertidumbre de una métrica. Ni la dispersión entre semillas ni un IC de RMSE se presentan como un intervalo predictivo. La [enmienda anterior](../_static/completion_protocol/analysis_additions.json) y el [plan P0](https://github.com/jassan-bit/DeepLearning_202630/blob/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0/experiments/e2_remediation_20261106/uncertainty_errors.json) quedan como archivo de trazabilidad, sin trasladar al catálogo vigente sus cohortes, tamaños de ensamble o familias estadísticas.
+
+## 12.1 Techo de desempeño y margen de mejora real
+
+**Estado: estimación pendiente.** La guía (§12.1, pp48–49) exige al menos una referencia de techo o predictibilidad y cuantificar el margen restante antes de interpretar diferencias entre modelos. La volatilidad σ₇ se calcula mediante una regla determinista; esto permite auditar su reconstrucción, pero no implica que pueda pronosticarse sin error con D7×5.
+
+### 12.1.1 Referencia aplicable a esta serie temporal
+
+Se propone estudiar la predictibilidad intrínseca en desarrollo mediante entropía de permutación y error fuera de muestra de predictores diversos, con selección temporal causal. Antes de estimar deben registrarse la serie analizada, transformación, dimensión y retardo de la entropía, segmentos continuos, ventanas, tratamiento de empates y tamaño efectivo; la sensibilidad a esos parámetros también debe quedar fijada.
+
+La entropía es un diagnóstico, no una cota numérica de RMSE. El error de un conjunto de modelos aporta una referencia empírica alcanzable, no prueba el error de Bayes ni un techo universal. La selección y cualquier combinación se ajustarán sólo en entrenamiento/validación admisibles. No se elegirá la referencia por su desempeño en test. La receta, los soportes y el coste del conjunto deberán registrarse si se utiliza; su propuesta no añade un modelo al catálogo por sí sola.
+
+### 12.1.2 Distancia normalizada y sentido de la métrica
+
+La expresión de la guía usa un score donde mayor es mejor. Para RMSE, donde menor es mejor, su equivalente es:
+
+$
+\gamma=\frac{e_{\mathrm{mejor}}-e_{\mathrm{techo}}}
+{e_{\mathrm{base}}-e_{\mathrm{techo}}}.
+$
+
+Aquí los tres errores deben compartir objetivo, escala, cohorte y regla de agregación; el baseline y el procedimiento de selección del mejor modelo se fijan de antemano. El término $e_{\mathrm{techo}}$ requiere una estimación defendible del error límite. Si sólo se dispone de una referencia empírica, se identificará como tal y no se declarará un techo científico demostrado.
+
+Se reportarán las estimaciones de los tres errores, incertidumbre temporal y sensibilidad de γ. Si el denominador es cero, no positivo o demasiado incierto para sostener la comparación, γ se declara no interpretable. No se recortan valores a [0,1] ni se transforma una referencia empírica superada en una afirmación de haber excedido el límite alcanzable. Tampoco se calculará γ mezclando resultados históricos con los del catálogo vigente.
+
+### 12.1.3 Ruido y criterio de cierre
+
+Se distinguirá error de reconstrucción de etiquetas, calidad de OHLCV y variabilidad futura no explicada por las entradas. La coincidencia de etiquetas reconstruidas no demuestra ausencia de incertidumbre irreducible. Si la auditoría identifica errores de etiquetas relevantes, se documentará una submuestra corregida y el análisis de sensibilidad del ranking exigido por la guía, sin corregir selectivamente casos según qué modelo favorezcan.
+
+El cierre requiere método registrado, evidencia reproducible de desarrollo, incertidumbre y límites explícitos. No hay aún un techo estimado ni una cifra de margen restante para los once candidatos. Su seguimiento está en [R10 de la matriz de cierre](25_matriz_cierre.md).
 
 ## 12.2 Cuantificación de incertidumbre
 
