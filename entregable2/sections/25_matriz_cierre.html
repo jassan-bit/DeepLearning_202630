@@ -237,6 +237,7 @@
 <li class="toctree-l1"><a class="reference internal" href="28_fabricas_nas.html">28. Fábricas NAS implementadas y verificadas sintéticamente</a></li>
 <li class="toctree-l1"><a class="reference internal" href="29_entrenamiento_temporal.html">29. Entrenamiento por etapas, selección temporal y perfilado CPU</a></li>
 <li class="toctree-l1"><a class="reference internal" href="30_piloto_nube.html">30. Piloto de desarrollo en la nube de Codex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="31_optimizacion_nube.html">31. Optimización de CPU y presupuesto de cómputo en la nube</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
 </ul>
 
@@ -438,8 +439,8 @@
 </tr>
 <tr class="row-even"><td><p>R05</p></td>
 <td><p>§§4.3 y 11, <a class="reference internal" href="11_hpo_equidad.html"><span class="std std-doc">HPO</span></a></p></td>
-<td><p>Dominios y T=18 resueltos en §27; sin HPO ejecutado</p></td>
-<td><p>Dominios enlazados en §29 y perfiles reales de referencia en <a class="reference internal" href="30_piloto_nube.html"><span class="std std-doc">§30</span></a>; faltan coste del espacio completo, otros orígenes y componentes adicionales</p></td>
+<td><p>Dominios y T=18 resueltos en §27; perfiles 85/86, proyección primaria incompleta y sensibilidad condicionada de costes en <a class="reference internal" href="31_optimizacion_nube.html"><span class="std std-doc">§31</span></a>; sin HPO ejecutado</p></td>
+<td><p>Resolver el coste del extremo TimesNet censurado, viabilidad frente a límites por etapa, retención y componentes adicionales sin medir; mantener visibles los supuestos de extrapolación</p></td>
 <td><p>Configuraciones ejecutables y presupuesto comparable, incluidos preentrenamiento y selección; revisión frente al mínimo de la guía</p></td>
 </tr>
 <tr class="row-odd"><td><p>R06</p></td>
@@ -450,8 +451,8 @@
 </tr>
 <tr class="row-even"><td><p>R07</p></td>
 <td><p>§§9 y 13, <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">preregistro</span></a></p></td>
-<td><p>Piloto registrado antes de ajustar, con dimensionamiento condicional de referencia en §30; R final pendiente</p></td>
-<td><p>Cerrar potencia para recetas seleccionadas, estimandos, familias, multiplicidad, bloques e inferencia</p></td>
+<td><p>Pilotos registrados antes de ajustar en §§30–31; nula del generador validada en §31, sin R que respalde el objetivo condicional de 0,80; R final pendiente</p></td>
+<td><p>Resolver potencia para las recetas seleccionadas y el procedimiento temporal final, además de estimandos, familias, multiplicidad, bloques e inferencia; no trasladar la calibración del simulador al mercado real</p></td>
 <td><p>Protocolo versionado con fecha real de cierre, supuestos de potencia, límites de recursos y registro de exposición previa</p></td>
 </tr>
 <tr class="row-odd"><td><p>R08</p></td>
@@ -514,6 +515,7 @@
 <h2>Producto disponible y siguiente cierre<a class="headerlink" href="#producto-disponible-y-siguiente-cierre" title="Link to this heading">#</a></h2>
 <p>La <a class="reference internal" href="26_registro_recetas.html"><span class="std std-doc">tabla por receta de §26</span></a> reúne fuentes, adaptaciones, dudas NAS, factores HPO, parámetros y estado de integración para los once candidatos y siete referencias separadas. Respalda el inventario R03–R06 y la conciliación arquitectónica local R01; no cierra el PRISMA global ni los dominios HPO o las decisiones NAS.</p>
 <p>La <a class="reference internal" href="27_nas_hpo_presupuesto.html"><span class="std std-doc">decisión posterior de §27</span></a> resuelve NAS por receta, dominios HPO y presupuesto contable para Codex. La <a class="reference internal" href="29_entrenamiento_temporal.html"><span class="std std-doc">integración de §29</span></a> enlaza las variantes, etapas, selección y reajuste de18 sistemas y publica perfiles CPU cortos. El <a class="reference internal" href="30_piloto_nube.html"><span class="std std-doc">piloto real de §30</span></a> tiene registro previo y recibos de recursos y variación de referencia. Su resultado principal quedó incompleto. k40 es conservador y R30 es un techo provisional de coste; no cierra R final, horas de campaña ni potencia para las recetas aún sin seleccionar. No se fija aquí un número de semillas, ganador, exención NAS ni techo numérico sin evidencia.</p>
+<p>La <a class="reference internal" href="31_optimizacion_nube.html"><span class="std std-doc">medición nueva de §31</span></a> registra el perfilado ampliado, un piloto nuevo de variación y la calibración condicional de planificación. La comparación observada eligió el recorte de CPU de TimesNet y dos hilos globales. Completaron 85/86 perfiles y los treinta ajustes del nuevo piloto. El fallo del extremo conserva sus costes y deja incompleta la proyección primaria. La nula del generador pasó las dieciséis validaciones de los grupos histórico y nuevo, analizados por separado; ningún R estudiado respalda el objetivo condicional de 0,80. El R final queda abierto. La sensibilidad de horas con microperfil y el almacenamiento son proyecciones condicionadas, no una campaña completada ni una política de eliminación ya implementada.</p>
 <p>La <a class="reference internal" href="20_contraste_guia.html"><span class="std std-doc">sección 20</span></a> conserva el cotejo detallado con la guía. La <a class="reference internal" href="24_ejecutor_comun.html"><span class="std std-doc">sección 24</span></a> distingue el smoke sintético del núcleo temporal posterior. Esta matriz complementa esas evidencias sin modificar sus recibos.</p>
 </section>
 </section>

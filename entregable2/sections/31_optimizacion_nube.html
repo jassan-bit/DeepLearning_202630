@@ -1,0 +1,1219 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>31. Optimización de CPU y presupuesto de cómputo en la nube &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/31_optimizacion_nube';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Referencias de contexto y revisión E2" href="referencias.html" />
+    <link rel="prev" title="30. Piloto de desarrollo en la nube de Codex" href="30_piloto_nube.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 2 · Bitcoin: pronóstico de volatilidad</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_literatura.html">3. Revisión Sistemática del Estado del Arte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación de los diez modelos y el candidato adicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark vigente: diez modelos y un candidato adicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Preregistro del catálogo vigente y trazabilidad experimental</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de datos y auditoría formal de fuga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. HPO y equidad para el catálogo vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Techo de desempeño, incertidumbre y análisis de errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Agregación estadística e interpretación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas del catálogo vigente y adaptación a D7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo vigente: diez modelos y candidato 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_fichas_nuevas.html">16. Fichas bibliográficas de las cuatro altas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato sincronizado de E1, E2 y E3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_integracion_sintetica.html">18. Implementación provisional y verificación sintética</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_plan_auditoria.html">19. Plan experimental propuesto y auditoría sin entrenamiento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_contraste_guia.html">20. Cotejo del plan con la guía original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_comparadores_nas.html">21. Comparadores temporales y decisión NAS por receta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22_fichas_recetas.html">22. Once fichas de recetas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_implementacion_recetas.html">23. Implementación de recetas y controles temporales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="24_ejecutor_comun.html">24. Ejecutor común y disponibilidad temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="25_matriz_cierre.html">25. Matriz de cierre antes del benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="26_registro_recetas.html">26. Registro por receta: fuentes, NAS, HPO e integración</a></li>
+<li class="toctree-l1"><a class="reference internal" href="27_nas_hpo_presupuesto.html">27. Decisiones NAS, rangos HPO y presupuesto para Codex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="28_fabricas_nas.html">28. Fábricas NAS implementadas y verificadas sintéticamente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="29_entrenamiento_temporal.html">29. Entrenamiento por etapas, selección temporal y perfilado CPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="30_piloto_nube.html">30. Piloto de desarrollo en la nube de Codex</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">31. Optimización de CPU y presupuesto de cómputo en la nube</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><p class="small">Entregable 2 · Jassan Arteta · 2026-30</p></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/31_optimizacion_nube.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>31. Optimización de CPU y presupuesto de cómputo en la nube</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-previo-y-continuidad-del-piloto">Registro previo y continuidad del piloto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-y-cortes-temporales">Datos y cortes temporales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimizacion-de-timesnet-y-eleccion-de-hilos">Optimización de TimesNet y elección de hilos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-observado-del-recorte">Resultado observado del recorte</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-observado-de-hilos">Resultado observado de hilos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-observado-del-escalado">Resultado observado del escalado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#incidencia-al-guardar-el-resumen-de-hilos">Incidencia al guardar el resumen de hilos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#costes-censuras-y-microperfiles">Costes, censuras y microperfiles</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#presupuesto-condicionado-de-horas-y-almacenamiento">Presupuesto condicionado de horas y almacenamiento</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sensibilidad-de-trabajo-nominal-sin-truncar-que-utiliza-el-microperfil">Sensibilidad de trabajo nominal sin truncar que utiliza el microperfil</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#almacenamiento-de-checkpoints">Almacenamiento de checkpoints</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nuevo-piloto-de-variacion-antes-de-seleccionar-recetas">Nuevo piloto de variación antes de seleccionar recetas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calibracion-monte-carlo-de-la-planificacion">Calibración Monte Carlo de la planificación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-de-la-calibracion-condicional">Resultado de la calibración condicional</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#par-historico-semillas-271901-271905">Par histórico, semillas 271901…271905</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tres-modelos-nuevos-semillas-273001-273005">Tres modelos nuevos, semillas 273001…273005</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mde-descriptiva-bajo-el-generador-r-30">MDE descriptiva bajo el generador, R=30</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-y-reproduccion">Evidencia y reproducción</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="optimizacion-de-cpu-y-presupuesto-de-computo-en-la-nube">
+<h1>31. Optimización de CPU y presupuesto de cómputo en la nube<a class="headerlink" href="#optimizacion-de-cpu-y-presupuesto-de-computo-en-la-nube" title="Link to this heading">#</a></h1>
+<p><strong>Resultado:</strong> se eligieron el recorte de CPU de TimesNet y dos hilos. Completaron 85/86 perfiles ampliados y los treinta ajustes del nuevo piloto. La nula del generador pasó sus dieciséis validaciones, pero ningún escenario de R respalda el objetivo de 0,80. El R final y el presupuesto primario siguen abiertos; las 7.375,994 horas de la sensibilidad con microperfil son trabajo nominal condicionado.</p>
+<p>El trabajo se ejecuta en el servidor remoto de <strong>Codex Cloud</strong>, con una cuota de <strong>cuatro vCPU, 16 GiB de RAM y sin GPU visible</strong>. Los ajustes son secuenciales. El entrenamiento de esta sección no utiliza la CPU del equipo del usuario.</p>
+<section id="registro-previo-y-continuidad-del-piloto">
+<h2>Registro previo y continuidad del piloto<a class="headerlink" href="#registro-previo-y-continuidad-del-piloto" title="Link to this heading">#</a></h2>
+<p>El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/d24c7d1f78038284f2bad179f6a7c8cb9cc0bdb2/experiments/e2_compute_optimization_20261109/registration.json">registro de esta medición</a> y el código se publicaron en el commit <code class="docutils literal notranslate"><span class="pre">d24c7d1f78038284f2bad179f6a7c8cb9cc0bdb2</span></code>, antes de nuevos ajustes de mercado. El SHA256 del registro es <code class="docutils literal notranslate"><span class="pre">3b54ac44f5aed956ac98fbc31c95dfcb70c1116b6cca65a8269ff11cd843ac91</span></code>. La fecha del registro es 09/11/2026, 13:24:55, hora de Bogotá; los diarios conservan además sus marcas UTC.</p>
+<p>La <a class="reference internal" href="30_piloto_nube.html"><span class="std std-doc">sección 30</span></a> conserva su resultado principal incompleto, sus cinco selecciones fallidas de TimeMixer, la censura del extremo TimesNet y sus costes. Los nuevos intentos tienen semillas y recibos propios. No se reemplaza un fallo anterior por un ajuste más rápido ni se reescribe su estado.</p>
+<p>Este trabajo mide ejecución, no selecciona una arquitectura por su RMSE. Se mantiene la receta fija anterior al piloto: AdamW, LR 0,001, WD 0,0001, batch 32 y warmup 0. Las variantes NAS conservan sus bits de dropout registrados; TimesNet mantiene <code class="docutils literal notranslate"><span class="pre">top_k=4</span></code> y seis kernels. Los resultados de HPO conocidos no se reutilizan como recetas ganadoras de esta medición.</p>
+</section>
+<section id="datos-y-cortes-temporales">
+<h2>Datos y cortes temporales<a class="headerlink" href="#datos-y-cortes-temporales" title="Link to this heading">#</a></h2>
+<p>Se usan exclusivamente los dos derivados de desarrollo 2023–2024 fijados por hash en el registro. El objetivo sigue siendo <strong>σ₇ poblacional de siete retornos logarítmicos diarios, ddof=0 y sin anualización</strong>. La barra incompleta del 24/03/2023 conserva su posición en el calendario. No se interpolan los días ni se comprime la serie.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Cohorte</p></th>
+<th class="head"><p>Origen de la selección</p></th>
+<th class="head"><p>Entrenamiento</p></th>
+<th class="head"><p>Validación</p></th>
+<th class="head"><p>Uso</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Pequeña</p></td>
+<td><p>01/10/2023</p></td>
+<td><p>161 ventanas, hasta 25/06/2023</p></td>
+<td><p>83 fechas, 03/07…23/09/2023</p></td>
+<td><p>Comparación de kernels e hilos y referencias de escalado</p></td>
+</tr>
+<tr class="row-odd"><td><p>Grande</p></td>
+<td><p>01/01/2025, sólo marcador de calendario</p></td>
+<td><p>619 ventanas, hasta 25/09/2024</p></td>
+<td><p>83 fechas, 03/10…24/12/2024</p></td>
+<td><p>Perfil de arquitecturas y cuerpos fijos</p></td>
+</tr>
+<tr class="row-even"><td><p>Selección de épocas del nuevo piloto de variación</p></td>
+<td><p>01/10/2024</p></td>
+<td><p>527 ventanas, hasta 25/06/2024</p></td>
+<td><p>83 fechas, 03/07…23/09/2024</p></td>
+<td><p>Cinco ajustes frescos por modelo</p></td>
+</tr>
+<tr class="row-odd"><td><p>Reajuste fresco del nuevo piloto</p></td>
+<td><p>08/11/2024</p></td>
+<td><p>655 ventanas, hasta 31/10/2024</p></td>
+<td><p>Sin etiquetas de evaluación para parar</p></td>
+<td><p>Predicciones en 53 fechas, 08/11…30/12/2024</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El origen de enero de 2025 permite construir el corte de desarrollo mediante posiciones futuras no disponibles; <strong>no incorpora valores de mercado de 2025</strong>. No se abren archivos de 2025–2026 ni las 608 fechas externas. Los datos de desarrollo tienen exposición histórica y no se presentan como una muestra confirmatoria intacta.</p>
+</section>
+<section id="optimizacion-de-timesnet-y-eleccion-de-hilos">
+<h2>Optimización de TimesNet y elección de hilos<a class="headerlink" href="#optimizacion-de-timesnet-y-eleccion-de-hilos" title="Link to this heading">#</a></h2>
+<p>La optimización de CPU aprovecha que los pequeños grids de TimesNet sólo utilizan una parte central de los kernels con padding de ceros. Recorta ese cálculo antes de la convolución y conserva los objetos de parámetros, sus formas, las claves de estado y los metadatos arquitectónicos. Los <strong>225.075.755 parámetros</strong> del extremo siguen presentes; el procedimiento no reduce la arquitectura ni convierte sus pesos en un modelo menor.</p>
+<p>La <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/d24c7d1f78038284f2bad179f6a7c8cb9cc0bdb2/experiments/e2_compute_optimization_20261109/cpu_conv_parity.json">prueba de equivalencia sintética</a> pasó once casos, incluidos salidas, gradientes, estado de AdamW, identidad de parámetros y conservación del RNG. Se comprobaron 36 geometrías directas en FP64 y casos FP32. Es una identidad algebraica para pesos y entradas finitos; el redondeo puede producir diferencias dentro de las tolerancias verificadas. Esa prueba acredita corrección, no una aceleración observada.</p>
+<p>La decisión de ejecución sigue tres fases registradas:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fase</p></th>
+<th class="head text-right"><p>Intentos previstos</p></th>
+<th class="head"><p>Trabajo fijo</p></th>
+<th class="head"><p>Regla de decisión</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Kernels</p></td>
+<td class="text-right"><p>8</p></td>
+<td><p>TimesNet de referencia y extremo, versión original y recortada, dos semillas; una época sobre 32 ventanas y evaluación de 83 fechas</p></td>
+<td><p>Activar el recorte sólo si completan los cuatro intentos recortados y, en ambos tamaños, su mediana del tiempo de proceso mejora al menos 5%</p></td>
+</tr>
+<tr class="row-odd"><td><p>Hilos</p></td>
+<td class="text-right"><p>12</p></td>
+<td><p>TimeMixer y TimesNet de referencia, 1/2/4 hilos, dos semillas; cinco épocas sobre la cohorte pequeña</p></td>
+<td><p>Comparar medianas de construcción+ajuste+evaluación por modelo, normalizadas por cuatro hilos; entre opciones a 5% del mínimo de la suma, elegir la de menos hilos</p></td>
+</tr>
+<tr class="row-even"><td><p>Escalado</p></td>
+<td class="text-right"><p>86</p></td>
+<td><p>72 casos NAS grandes, seis referencias NAS pequeñas y ocho cuerpos fijos grandes</p></td>
+<td><p>Dos épocas por etapa; conservar cada resultado y descomponer el coste para la proyección</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Una censura por tiempo de la versión original de TimesNet sólo aporta un límite inferior de duración a la comparación; otros fallos bloquean la activación del recorte. Si la cuadrícula de doce intentos de hilos queda incompleta, se conserva la política anterior de cuatro hilos y se registra esa falta de evidencia. Los errores predictivos no eligen kernels ni hilos.</p>
+<p>Los ocho cuerpos fijos son las cinco recetas sin NAS y las tres referencias neuronales E1. Los 72 casos NAS cubren seis familias por los doce patrones de §27: tres anclas y una muestra uniforme de cada uno de nueve estratos. El autoencoder conserva dos fases auxiliares y una supervisada, con dos épocas en cada fase.</p>
+<section id="resultado-observado-del-recorte">
+<h3>Resultado observado del recorte<a class="headerlink" href="#resultado-observado-del-recorte" title="Link to this heading">#</a></h3>
+<p>Completaron <strong>los ocho intentos</strong>, con ocho pasos AdamW conocidos y sin censuras. Se invirtió el orden de las versiones entre semillas para reducir el efecto del orden de ejecución. Los tiempos siguientes incluyen el proceso completo y no se limitan a la convolución.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Patrón TimesNet</p></th>
+<th class="head"><p>Versión CPU</p></th>
+<th class="head text-right"><p>Semilla 272301 (s)</p></th>
+<th class="head text-right"><p>Semilla 272302 (s)</p></th>
+<th class="head text-right"><p>Mediana (s)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Referencia 64/64/64, bits 010</p></td>
+<td><p>Original</p></td>
+<td class="text-right"><p>5,222</p></td>
+<td class="text-right"><p>5,135</p></td>
+<td class="text-right"><p>5,179</p></td>
+</tr>
+<tr class="row-odd"><td><p>Referencia 64/64/64, bits 010</p></td>
+<td><p>Recorte</p></td>
+<td class="text-right"><p>5,014</p></td>
+<td class="text-right"><p>4,645</p></td>
+<td class="text-right"><p>4,830</p></td>
+</tr>
+<tr class="row-even"><td><p>Extremo 256/256/256, bits 111</p></td>
+<td><p>Original</p></td>
+<td class="text-right"><p>106,770</p></td>
+<td class="text-right"><p>50,116</p></td>
+<td class="text-right"><p>78,443</p></td>
+</tr>
+<tr class="row-odd"><td><p>Extremo 256/256/256, bits 111</p></td>
+<td><p>Recorte</p></td>
+<td class="text-right"><p>19,741</p></td>
+<td class="text-right"><p>19,523</p></td>
+<td class="text-right"><p>19,632</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La reducción de la mediana fue <strong>6,74% en la referencia y 74,97% en el extremo</strong>. Completaron los cuatro procesos recortados y ambas razones recorte/original quedaron por debajo de 0,95; por tanto, la regla registrada eligió el <strong>recorte de CPU</strong> para las fases siguientes. No se utilizaron puntuaciones predictivas en esa decisión.</p>
+<p>Son dos repeticiones de un lote de 32 ventanas y una época. La dispersión observada de la versión original del extremo impide interpretar el porcentaje como una aceleración precisa y universal. Este resultado no demuestra la duración del entrenamiento completo de esa arquitectura.</p>
+</section>
+<section id="resultado-observado-de-hilos">
+<h3>Resultado observado de hilos<a class="headerlink" href="#resultado-observado-de-hilos" title="Link to this heading">#</a></h3>
+<p>Los doce ajustes completaron, con <strong>360 pasos AdamW</strong> conocidos y 215,467 segundos de procesos completos sumados. La comparación usó la versión recortada de TimesNet y mantuvo la misma configuración de cada familia.</p>
+<p>La política de hilos compara el <strong>tiempo de trabajo de construcción, ajuste y evaluación</strong>, medido por el código registrado. Ese intervalo excluye arranque, importaciones y carga de datos. Es distinto del tiempo del proceso completo empleado en la decisión de kernels y en la suma de 215,467 segundos.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p>Hilos</p></th>
+<th class="head text-right"><p>Mediana de trabajo TimeMixer (s)</p></th>
+<th class="head text-right"><p>Mediana de trabajo TimesNet (s)</p></th>
+<th class="head text-right"><p>Suma normalizada respecto de 4 hilos</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>1</p></td>
+<td class="text-right"><p>3,089</p></td>
+<td class="text-right"><p>24,842</p></td>
+<td class="text-right"><p>1,6140</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>2</p></td>
+<td class="text-right"><p>3,154</p></td>
+<td class="text-right"><p>17,086</p></td>
+<td class="text-right"><p>1,3866</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>4</p></td>
+<td class="text-right"><p>3,724</p></td>
+<td class="text-right"><p>31,663</p></td>
+<td class="text-right"><p>2,0000</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La regla registrada eligió <strong>dos hilos globales</strong>. Aunque TimeMixer fue ligeramente más rápido con uno, la suma normalizada fue menor con dos; la opción de un hilo quedó fuera del margen de empate del 5%. Las fases posteriores usan esta política común. Dos semillas de dos familias en este servidor no garantizan la misma mejora para cada arquitectura ni para futuras condiciones de carga.</p>
+</section>
+<section id="resultado-observado-del-escalado">
+<h3>Resultado observado del escalado<a class="headerlink" href="#resultado-observado-del-escalado" title="Link to this heading">#</a></h3>
+<p>Se intentaron <strong>los 86 perfiles primarios: 85 completos y un fallo por tiempo</strong>. Los seis perfiles NAS de referencia pequeños y los ocho cuerpos fijos grandes completaron. En los 72 perfiles NAS grandes, completaron 71.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Grupo primario</p></th>
+<th class="head text-right"><p>Intentos</p></th>
+<th class="head text-right"><p>Completos</p></th>
+<th class="head text-right"><p>Fallos</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Seis familias NAS × doce patrones, cohorte grande</p></td>
+<td class="text-right"><p>72</p></td>
+<td class="text-right"><p>71</p></td>
+<td class="text-right"><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Referencias de las seis familias NAS, cohorte pequeña</p></td>
+<td class="text-right"><p>6</p></td>
+<td class="text-right"><p>6</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Cinco cuerpos fijos y tres referencias neuronales E1, cohorte grande</p></td>
+<td class="text-right"><p>8</p></td>
+<td class="text-right"><p>8</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Total primario</p></td>
+<td class="text-right"><p>86</p></td>
+<td class="text-right"><p>85</p></td>
+<td class="text-right"><p>1</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El fallo fue TimesNet 256/256/256, bits 111, aun usando recorte y dos hilos. Alcanzó el límite interno de 300 segundos comprobado en fronteras del entrenamiento: dejó <strong>38 pasos conocidos</strong>, una época completa y 309,537 segundos de proceso consumidos. No fue un OOM observado. No se completó su segunda época ni la evaluación final.</p>
+<p>El microperfil separado de esa misma arquitectura completó un paso sobre 32 ventanas en <strong>29,263 segundos</strong>, con su semilla registrada y vínculo al fallo. No cambia el estado del perfil grande. Entre los 86 perfiles y ese microperfil se registraron <strong>4.255 pasos conocidos, ninguno desconocido, 1.471,760 segundos de procesos sumados —24,53 minutos— y un pico RSS muestreado de 4,685 GiB</strong>. El coste del fallo y del microperfil están incluidos en esos totales.</p>
+<p>La auditoría de huellas de las fuentes no encontró discrepancias; el resumen interno original de escalado tiene SHA256 <code class="docutils literal notranslate"><span class="pre">865abe0e8dec2dc41f57f33ea69c0f2eb04ef1ab903cbbc6483f98ad09292b4e</span></code>. Completar perfiles de dos épocas no constituye una búsqueda NAS/HPO ni demuestra que cada arquitectura complete el presupuesto científico posterior.</p>
+</section>
+<section id="incidencia-al-guardar-el-resumen-de-hilos">
+<h3>Incidencia al guardar el resumen de hilos<a class="headerlink" href="#incidencia-al-guardar-el-resumen-de-hilos" title="Link to this heading">#</a></h3>
+<p>Los doce ajustes de la comparación de hilos completaron y conservaron sus recibos individuales. Al guardar el resumen de la fase, el serializador estricto rechazó las claves enteras <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">2</span></code> y <code class="docutils literal notranslate"><span class="pre">4</span></code> del diccionario de puntuaciones. Es un fallo administrativo del reporte, separado de un fallo de entrenamiento: no invalida ni convierte en incompletos los ajustes ya registrados.</p>
+<p>La <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/c768b51fdf0077d3cf0d52e79e3db824d3453c61/experiments/e2_compute_optimization_20261109/serialization_amendment.json">enmienda administrativa</a> se publicó antes de continuar con los 86 perfiles de escalado. Cambió únicamente el tipo de las claves para permitir guardar el JSON. Diez pruebas, incluidas serialización, lectura y carga de la política de ejecución, pasaron antes de continuar.</p>
+<p>El resumen se reconstruyó a partir del plan, los doce resultados y sus cadenas de eventos inmutables. No se repitió ningún ajuste ni se cambió un tiempo. El resumen interno reconstruido tiene SHA256 <code class="docutils literal notranslate"><span class="pre">5d8b0325be3394bb0227b1e5e9ea8b8c0a4536fb70b1901f6263d03cbdc2ac4f</span></code>. Se conserva la versión original del código junto con los registros previos; la corrección no afecta los cálculos de entrenamiento ni la decisión de dos hilos.</p>
+</section>
+<section id="costes-censuras-y-microperfiles">
+<h3>Costes, censuras y microperfiles<a class="headerlink" href="#costes-censuras-y-microperfiles" title="Link to this heading">#</a></h3>
+<p>El supervisor registra tiempo de proceso, CPU y pico RSS muestreado. El perfil separa construcción, preparación, bucle de entrenamiento, evaluaciones y cierre. Los límites internos/externos son 210/240 segundos para kernels e hilos y 300/360 segundos para escalado. Se muestrea un límite de 12 GiB por grupo de procesos; el muestreo no es una barrera de asignación del kernel.</p>
+<p>Los límites cortos son instrumentos para medir recursos y no sustituyen las asignaciones científicas completa/corta de §27. Si termina externamente un proceso y no se conocen sus pasos, éstos permanecen <code class="docutils literal notranslate"><span class="pre">null</span></code>. Los costes consumidos se incluyen aunque el intento no complete.</p>
+<p>Sólo un fallo de recurso o tiempo del perfil de escalado permite un <strong>microperfil separado</strong>, con semilla 272501, una época y 32 ventanas. Se conserva su vínculo al intento original. Un microperfil mide rendimiento de ese lote; no acredita que complete la cohorte grande ni reemplaza una observación censurada. Los fallos de implementación o numéricos bloquean la proyección afectada.</p>
+</section>
+</section>
+<section id="presupuesto-condicionado-de-horas-y-almacenamiento">
+<h2>Presupuesto condicionado de horas y almacenamiento<a class="headerlink" href="#presupuesto-condicionado-de-horas-y-almacenamiento" title="Link to this heading">#</a></h2>
+<p>La estimación expande los costes de los doce perfiles de cada familia con sus probabilidades de inclusión. Las tres anclas se cuentan una vez; cada muestra aleatoria se multiplica por el tamaño de su estrato. Los pesos suman mil arquitecturas. Promediar los doce perfiles por igual distorsionaría el espacio.</p>
+<p>Se proyectan por separado el coste por paso de optimización, la evaluación de entrenamiento y la validación de cada época de selección. La preparación y el cierre se añaden una vez por etapa. Se utilizan los tamaños de entrenamiento de cada origen, los lotes de las 18 asignaciones HPO y las tres fases SAE cuando corresponden. Los escenarios conservan <strong>k=40</strong> y muestran <strong>R=6, 10, 20 y 30</strong> como asignaciones de recursos.</p>
+<p>La unidad de las proyecciones es <strong>horas de ejecución serial con dos hilos</strong>: se expande tiempo de pared medido. No representa horas por núcleo ni una suma de tiempo CPU de procesos. En los JSON de costes, <code class="docutils literal notranslate"><span class="pre">core</span></code> identifica el subtotal de HPO, NAS y reajustes; no indica una cantidad de núcleos.</p>
+<p>El fallo del extremo TimesNet impide completar el estimador primario de todas las familias: <strong>el total primario permanece <code class="docutils literal notranslate"><span class="pre">null</span></code> en los 16 escenarios</strong>, sin eliminar la muestra lenta. Para k=40, R=30, máximos 50/200 épocas y coste constante por paso, el <strong>subtotal proyectado</strong> de los trece modelos restantes es <strong>1.428,121 horas</strong>. No es tiempo observado. Ese subtotal omite TimesNet y no es una cota inferior ni una estimación total de campaña. El tiempo observado de los perfiles y su microperfil fue 24,53 minutos de procesos sumados.</p>
+<section id="sensibilidad-de-trabajo-nominal-sin-truncar-que-utiliza-el-microperfil">
+<h3>Sensibilidad de trabajo nominal sin truncar que utiliza el microperfil<a class="headerlink" href="#sensibilidad-de-trabajo-nominal-sin-truncar-que-utiliza-el-microperfil" title="Link to this heading">#</a></h3>
+<p>La siguiente tabla transfiere la tasa del microperfil al caso grande no completado. Todos sus valores son <strong>horas de ejecución serial con dos hilos del trabajo nominal HPO+NAS+reajustes</strong>, bajo supuestos adicionales sin validar. No subsanan el fallo primario ni certifican que el caso grande complete el ajuste o que quepa en memoria durante toda su trayectoria.</p>
+<p><strong>La proyección no aplica los límites científicos de 1.800 segundos por etapa corta y 7.200 por etapa completa.</strong> Suma el trabajo nominal de las épocas previstas sin truncarlo por tiempo. La demanda puede incluir trayectorias que excedan esos límites; el informe de horas no conserva máximos por trayectoria ni acredita que cada ajuste pueda completarse. Si una etapa futura alcanza el límite, queda registrada como fallo o censura con su coste consumido, sin garantizar las épocas previstas. Los límites permanecen sin cambios. Esta tabla no es una predicción de duración de una campaña completada; el fallo observado a 300 segundos tampoco es un fallo ya observado a 7.200 segundos.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p>R como escenario de recursos</p></th>
+<th class="head text-right"><p>Máximos 50/200 épocas, coste constante por paso</p></th>
+<th class="head text-right"><p>Máximos 50/200, coste proporcional al batch</p></th>
+<th class="head text-right"><p>Sensibilidad 25/100 épocas, coste constante por paso</p></th>
+<th class="head text-right"><p>Sensibilidad 25/100, coste proporcional al batch</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>6</p></td>
+<td class="text-right"><p>6.900,803</p></td>
+<td class="text-right"><p>6.855,093</p></td>
+<td class="text-right"><p>3.464,219</p></td>
+<td class="text-right"><p>3.441,364</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>10</p></td>
+<td class="text-right"><p>6.980,002</p></td>
+<td class="text-right"><p>6.934,291</p></td>
+<td class="text-right"><p>3.503,922</p></td>
+<td class="text-right"><p>3.481,067</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>20</p></td>
+<td class="text-right"><p>7.177,998</p></td>
+<td class="text-right"><p>7.132,287</p></td>
+<td class="text-right"><p>3.603,178</p></td>
+<td class="text-right"><p>3.580,323</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>30</p></td>
+<td class="text-right"><p>7.375,994</p></td>
+<td class="text-right"><p>7.330,283</p></td>
+<td class="text-right"><p>3.702,435</p></td>
+<td class="text-right"><p>3.679,579</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El primer escenario mantiene el coste medido por paso cuando cambia el batch; el segundo lo multiplica por batch/32. Son supuestos de transferencia, no límites demostrados. Ambos suponen que los finalistas NAS y las arquitecturas reajustadas cuestan como la media uniforme del espacio; no se conoce aún el coste de las recetas ganadoras. La sensibilidad 25/100 es ilustrativa: no representa una parada temprana observada ni cambia los presupuestos registrados de 50/200 épocas.</p>
+<p>La proyección HPO transfiere el perfil de referencia de cada receta; no mide cada combinación de sus 18 asignaciones. Los doce patrones perfilados corresponden al espacio de arquitectura NAS. No se verificó el mismo coste para los lotes HPO 16/32/64 ni para sus alternativas estructurales: top-k y número de kernels de TimesNet, media móvil de TimeMixer o kernel del híbrido. La variación de warmup y otros hiperparámetros tampoco garantiza una tasa de ejecución idéntica.</p>
+<p>El caso principal de sensibilidad, k=40/R=30/50–200/coste constante, suma <strong>7.375,994 horas de trabajo nominal sin truncar, equivalentes a 307,3 días sin interrupciones</strong>. Ese número dimensiona el subtotal modelado con el proxy; no es una cota superior ni un pronóstico firme. <strong>La duración de la campaña completa permanece desconocida</strong>.</p>
+<p>La comprobación de transferencia entre cohortes de referencia tampoco valida una extrapolación exacta: las razones tiempo pequeño observado/proyectado desde el grande fueron 1,073 para SAE, 1,332 TimesNet, 1,132 TiDE, 2,617 TimeMixer, 1,295 PatchTST y 2,164 híbrido. Esos seis cocientes describen el error de esa comprobación corta; no forman una banda de error de toda la campaña.</p>
+<p>Los techos contables de asignación que incluyen pilotos y perfiles globales tienen un alcance distinto de este subtotal HPO+NAS+reajustes. No validan por comparación la viabilidad ni la precisión de las horas proyectadas.</p>
+<p>Estas horas son una proyección condicionada a las tasas medidas y al modelo de escalado; no son duración observada de la campaña ni un intervalo de confianza. Una sola muestra por estrato no identifica su varianza interna. Tampoco permite declarar insesgada la duración real cuando las predicciones de coste por arquitectura tienen error. La transferencia de lotes, cohortes y épocas debe mantenerse visible.</p>
+<p>Quedan fuera de la proyección el arranque de procesos, las importaciones, la admisión de datos y la preparación de escaladores que no estén cubiertas por los temporizadores. También quedan fuera los ajustes clásicos no perfilados, escritura de checkpoints a disco, controles, robustez, calibración adicional de modelos, interpretabilidad, inferencia estadística y reproducción independiente. No se convierte esta duración en dinero sin una tarifa del servicio.</p>
+</section>
+<section id="almacenamiento-de-checkpoints">
+<h3>Almacenamiento de checkpoints<a class="headerlink" href="#almacenamiento-de-checkpoints" title="Link to this heading">#</a></h3>
+<p>El inventario de parámetros y estados se obtiene mediante construcciones <code class="docutils literal notranslate"><span class="pre">meta</span></code>, sin crear pesos CPU ni entrenar. Para la estructura fija de perfilado, conservar un checkpoint de cada una de las mil arquitecturas TimesNet en once orígenes suma <strong>2.637.798.146.720 bytes, aproximadamente 2,64 TB decimales</strong>, sólo en esa fase del cribado NAS. No incluye toda la campaña.</p>
+<p>Las proyecciones de retener todos los checkpoints y de conservar únicamente los reajustes seleccionados son escenarios distintos. Los pesos de arquitecturas ganadoras aún se desconocen, por lo que el segundo escenario debe mostrar su rango condicionado. Los tamaños son payload de estados bajo las opciones inventariadas: no incluyen cabeceras de serialización, logs, optimizadores para reanudar, salidas históricas ni todos los posibles ejes HPO. No son una cota universal del almacenamiento.</p>
+<p>Con <strong>k=40</strong> operativo, el inventario produce las siguientes asignaciones de payload. Los rangos abarcan las arquitecturas NAS posibles bajo las opciones estructurales inventariadas; las recetas ganadoras aún no se conocen.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p>R como escenario de recursos</p></th>
+<th class="head text-right"><p>Retener checkpoints de todas las etapas (TiB)</p></th>
+<th class="head text-right"><p>Retener sólo reajustes seleccionados (GiB)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>6</p></td>
+<td class="text-right"><p>2,5268…4,0453</p></td>
+<td class="text-right"><p>0,7486…57,9495</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>10</p></td>
+<td class="text-right"><p>2,5273…4,0830</p></td>
+<td class="text-right"><p>1,2476…96,5826</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>20</p></td>
+<td class="text-right"><p>2,5285…4,1773</p></td>
+<td class="text-right"><p>2,4952…193,1652</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>30</p></td>
+<td class="text-right"><p>2,5297…4,2716</p></td>
+<td class="text-right"><p>3,7428…289,7477</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Se reserva conservadoramente la referencia además de k finalistas distintos; su inclusión efectiva entre los finalistas puede reducir la asignación. Un TiB equivale a 2⁴⁰ bytes y un GiB a 2³⁰ bytes. Estos escenarios no cambian el R científico.</p>
+<p>El inventario permite decidir una política de retención antes de buscar. Esta sección no elimina checkpoints existentes ni acredita una optimización de almacenamiento ya aplicada al ejecutor.</p>
+</section>
+</section>
+<section id="nuevo-piloto-de-variacion-antes-de-seleccionar-recetas">
+<h2>Nuevo piloto de variación antes de seleccionar recetas<a class="headerlink" href="#nuevo-piloto-de-variacion-antes-de-seleccionar-recetas" title="Link to this heading">#</a></h2>
+<p>Se registraron <strong>TimeMixer, CNN-1D + LSTM + atención temporal y GRU32</strong>, con cinco semillas nuevas por modelo: 273001…273005. Los quince ajustes para seleccionar épocas usan hasta 200 épocas por etapa, paciencia 20 y la política de CPU elegida por los perfiles independientes. Cada proceso tiene un límite interno/externo de 600/660 segundos y el mismo límite RSS muestreado de 12 GiB.</p>
+<p>La campaña ejecuta primero las quince selecciones de los tres modelos y después los reajustes. Un modelo sólo recibe reajustes si completan sus cinco selecciones. Su cantidad fija de épocas es la mediana superior de las cinco mejores épocas. Los cinco reajustes reinician pesos, AdamW y escalador de entrenamiento, y no reciben etiquetas de evaluación para decidir la parada.</p>
+<p>Las predicciones de las 53 fechas se registran antes de observar cada resultado. Se verifican los hashes de las fuentes, pesos y escaladores, y la carga segura de checkpoints de inferencia. Una réplica incompleta conserva su coste y no se sustituye. El análisis primario de tres modelos y cualquier análisis de grupos completos deben identificarse por separado.</p>
+<p>La comparación con el piloto anterior cambia <strong>tres elementos</strong>: semillas nuevas, política de ejecución de CPU y límite de recursos. El límite interno/externo pasa de 150/180 a 600/660 segundos; se mantienen el máximo de 200 épocas y la paciencia de 20. Si TimeMixer completa ahora, ese cambio no puede atribuirse exclusivamente a la optimización. Las cinco selecciones fallidas de §30 siguen siendo resultados del presupuesto anterior.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo</p></th>
+<th class="head text-right"><p>Selecciones completas</p></th>
+<th class="head"><p>Mejores épocas de las cinco semillas</p></th>
+<th class="head text-right"><p>Épocas fijas para reajuste</p></th>
+<th class="head text-right"><p>Reajustes completos</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TimeMixer</p></td>
+<td class="text-right"><p>5/5</p></td>
+<td><p>64, 55, 70, 79, 56</p></td>
+<td class="text-right"><p>64</p></td>
+<td class="text-right"><p>5/5</p></td>
+</tr>
+<tr class="row-odd"><td><p>CNN-1D + LSTM + atención temporal</p></td>
+<td class="text-right"><p>5/5</p></td>
+<td><p>57, 39, 23, 54, 43</p></td>
+<td class="text-right"><p>43</p></td>
+<td class="text-right"><p>5/5</p></td>
+</tr>
+<tr class="row-even"><td><p>GRU32</p></td>
+<td class="text-right"><p>5/5</p></td>
+<td><p>164, 136, 98, 187, 109</p></td>
+<td class="text-right"><p>136</p></td>
+<td class="text-right"><p>5/5</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Completaron <strong>los treinta ajustes: quince selecciones y quince reajustes</strong>, sin fallos, pasos desconocidos, bloqueos ni reemplazos. La cuarta semilla de GRU32 completó normalmente el máximo de 200 épocas durante la selección; ese cierre por máximo de épocas no se clasifica como un fallo de tiempo.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo</p></th>
+<th class="head text-right"><p>Pasos de selección</p></th>
+<th class="head text-right"><p>Pasos de reajuste</p></th>
+<th class="head text-right"><p>Segundos de procesos completos, ambas fases</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TimeMixer</p></td>
+<td class="text-right"><p>7.208</p></td>
+<td class="text-right"><p>6.720</p></td>
+<td class="text-right"><p>1.879,332</p></td>
+</tr>
+<tr class="row-odd"><td><p>CNN-1D + LSTM + atención temporal</p></td>
+<td class="text-right"><p>5.372</p></td>
+<td class="text-right"><p>4.515</p></td>
+<td class="text-right"><p>189,340</p></td>
+</tr>
+<tr class="row-even"><td><p>GRU32</p></td>
+<td class="text-right"><p>13.379</p></td>
+<td class="text-right"><p>14.280</p></td>
+<td class="text-right"><p>207,974</p></td>
+</tr>
+<tr class="row-odd"><td><p>Total</p></td>
+<td class="text-right"><p>25.959</p></td>
+<td class="text-right"><p>25.515</p></td>
+<td class="text-right"><p>2.276,646</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los recibos suman <strong>51.474 pasos de optimización y 37,944 minutos de procesos</strong>. Es tiempo observado del nuevo piloto, separado de las proyecciones de campaña. Se verificaron <strong>30 checkpoints con carga segura y quince replays completos de 53 fechas</strong>; las 51 fuentes permanecieron invariantes. El panel de tres modelos por cinco semillas está completo. El resumen original conservado en el entorno tiene SHA256 <code class="docutils literal notranslate"><span class="pre">22c531744ef5224e9db34c70470e86ba6d49f25993e5679452565bee42feb474</span></code>.</p>
+<p>Este piloto nuevo sigue usando arquitecturas de referencia. Su variación no acredita la de las futuras recetas ganadoras de NAS/HPO ni cierra el dimensionamiento posterior a la selección.</p>
+</section>
+<section id="calibracion-monte-carlo-de-la-planificacion">
+<h2>Calibración Monte Carlo de la planificación<a class="headerlink" href="#calibracion-monte-carlo-de-la-planificacion" title="Link to this heading">#</a></h2>
+<p>La tasa nula de la simulación histórica de §30 no cumplía el nivel de referencia α/153. Se conserva ese recibo. El análisis nuevo usa una calibración explícita y una validación independiente; no interpreta la tasa histórica como potencia válida.</p>
+<p>Para cada R de 6, 10, 20 y 30 y cada par observado, se emplean tres streams distintos de <strong>200.000 realizaciones cada uno</strong>: calibración nula, validación nula y alternativas. Los pools son 272401, 272402 y 272403. Se conservan bloques circulares de siete fechas, emparejamiento de semillas y fechas, y una sensibilidad superior de la desviación entre semillas bajo supuestos normales. La variación temporal mantiene un componente que no se divide por la raíz de R.</p>
+<p>Todos los streams se centran respecto de la diferencia media observada original. La validación y las alternativas no se recentran con sus propias medias. Se aplica un crítico único a la diferencia absoluta y una regla de rechazo estricta <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Paso</p></th>
+<th class="head"><p>Criterio registrado</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Calibrar el crítico</p></td>
+<td><p>Cola absoluta de diseño α_par/2 y tolerancia binomial para el estadístico de orden, con α_par=0,05/153</p></td>
+</tr>
+<tr class="row-odd"><td><p>Validar la nula</p></td>
+<td><p>Límite superior unilateral Clopper–Pearson de una muestra independiente ≤α_par; no reajustar el crítico si falla</p></td>
+</tr>
+<tr class="row-even"><td><p>Evaluar alternativas</p></td>
+<td><p>Desplazamientos tanto +δ como −δ; límite inferior Clopper–Pearson ≥0,80 en ambos signos y todos los pares observados</p></td>
+</tr>
+<tr class="row-odd"><td><p>Recomendar un R condicionado</p></td>
+<td><p>Sólo si pasa la validación nula y ambas alternativas de todos los pares observados</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Para P pares observados y cuatro valores de R, las tolerancias son γ_cal=γ_val=0,05/(4P) y γ_alt=0,05/(8P); la última incluye los dos signos del desplazamiento. La cobertura Monte Carlo se controla por separado para las familias de calibración, validación nula y alternativas. <strong>No se afirma cobertura conjunta del 95%</strong> entre las tres. El análisis del par histórico y el grupo nuevo son también resultados separados.</p>
+<section id="resultado-de-la-calibracion-condicional">
+<h3>Resultado de la calibración condicional<a class="headerlink" href="#resultado-de-la-calibracion-condicional" title="Link to this heading">#</a></h3>
+<p>Ambos grupos coincidieron con el diseño registrado y conservaron exactamente las 53 fechas y sus cinco semillas completas. El grupo histórico se analizó por separado con híbrido y GRU32; el nuevo grupo usa TimeMixer, híbrido y GRU32. Se ejecutaron <strong>2,4 millones y 7,2 millones de realizaciones</strong>, respectivamente, sin entrenar modelos adicionales.</p>
+<p>La validación nula pasó en <strong>4/4 celdas históricas y 12/12 celdas nuevas</strong>: todos los límites superiores CP quedaron por debajo de α_par≈0,000326797. <strong>Ningún R de 6, 10, 20 o 30 respaldó el objetivo condicional de 0,80 en ambos signos y todos los pares.</strong> Tanto <code class="docutils literal notranslate"><span class="pre">conditionally_supported_R</span></code> como <code class="docutils literal notranslate"><span class="pre">final_R</span></code> permanecen <code class="docutils literal notranslate"><span class="pre">null</span></code>.</p>
+<p>Las tablas muestran proporciones, no porcentajes. Cada entrada de nula contiene tasa de rechazo y límite superior CP; cada alternativa contiene frecuencia de rechazo condicional y límite inferior CP. Los límites usan las tolerancias por familia descritas arriba y no son IC de potencia sobre el mercado real. Los números se redondean a ocho decimales; los recibos conservan su precisión original.</p>
+<section id="par-historico-semillas-271901-271905">
+<h4>Par histórico, semillas 271901…271905<a class="headerlink" href="#par-historico-semillas-271901-271905" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Par</p></th>
+<th class="head text-right"><p>R</p></th>
+<th class="head text-right"><p>Crítico absoluto</p></th>
+<th class="head"><p>Nula: tasa; LS CP</p></th>
+<th class="head"><p>+δ: frecuencia; LI CP</p></th>
+<th class="head"><p>−δ: frecuencia; LI CP</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Híbrido−GRU32</p></td>
+<td class="text-right"><p>6</p></td>
+<td class="text-right"><p>0,00281096</p></td>
+<td><p>0,00009000; 0,00015038</p></td>
+<td><p>0,00003500; 0,00001063</p></td>
+<td><p>0,00016500; 0,00010201</p></td>
+</tr>
+<tr class="row-odd"><td><p>Híbrido−GRU32</p></td>
+<td class="text-right"><p>10</p></td>
+<td class="text-right"><p>0,00240861</p></td>
+<td><p>0,00007500; 0,00013134</p></td>
+<td><p>0,00004500; 0,00001623</p></td>
+<td><p>0,00025500; 0,00017457</p></td>
+</tr>
+<tr class="row-even"><td><p>Híbrido−GRU32</p></td>
+<td class="text-right"><p>20</p></td>
+<td class="text-right"><p>0,00180032</p></td>
+<td><p>0,00018500; 0,00026567</p></td>
+<td><p>0,00025500; 0,00017457</p></td>
+<td><p>0,00048500; 0,00037077</p></td>
+</tr>
+<tr class="row-odd"><td><p>Híbrido−GRU32</p></td>
+<td class="text-right"><p>30</p></td>
+<td class="text-right"><p>0,00168370</p></td>
+<td><p>0,00010500; 0,00016911</p></td>
+<td><p>0,00026500; 0,00018284</p></td>
+<td><p>0,00032000; 0,00022885</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="tres-modelos-nuevos-semillas-273001-273005">
+<h4>Tres modelos nuevos, semillas 273001…273005<a class="headerlink" href="#tres-modelos-nuevos-semillas-273001-273005" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Par</p></th>
+<th class="head text-right"><p>R</p></th>
+<th class="head text-right"><p>Crítico absoluto</p></th>
+<th class="head"><p>Nula: tasa; LS CP</p></th>
+<th class="head"><p>+δ: frecuencia; LI CP</p></th>
+<th class="head"><p>−δ: frecuencia; LI CP</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TimeMixer−Híbrido</p></td>
+<td class="text-right"><p>6</p></td>
+<td class="text-right"><p>0,00490785</p></td>
+<td><p>0,00012500; 0,00020715</p></td>
+<td><p>0,00011500; 0,00005814</p></td>
+<td><p>0,00005000; 0,00001638</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimeMixer−Híbrido</p></td>
+<td class="text-right"><p>10</p></td>
+<td class="text-right"><p>0,00400364</p></td>
+<td><p>0,00005500; 0,00011554</p></td>
+<td><p>0,00015000; 0,00008341</p></td>
+<td><p>0,00005500; 0,00001919</p></td>
+</tr>
+<tr class="row-even"><td><p>TimeMixer−Híbrido</p></td>
+<td class="text-right"><p>20</p></td>
+<td class="text-right"><p>0,00301571</p></td>
+<td><p>0,00007000; 0,00013595</p></td>
+<td><p>0,00014500; 0,00007972</p></td>
+<td><p>0,00005000; 0,00001638</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimeMixer−Híbrido</p></td>
+<td class="text-right"><p>30</p></td>
+<td class="text-right"><p>0,00257422</p></td>
+<td><p>0,00006500; 0,00012921</p></td>
+<td><p>0,00021000; 0,00012906</p></td>
+<td><p>0,00002000; 0,00000262</p></td>
+</tr>
+<tr class="row-even"><td><p>TimeMixer−GRU32</p></td>
+<td class="text-right"><p>6</p></td>
+<td class="text-right"><p>0,00427454</p></td>
+<td><p>0,00009000; 0,00016237</p></td>
+<td><p>0,00011000; 0,00005464</p></td>
+<td><p>0,00001500; 0,00000123</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimeMixer−GRU32</p></td>
+<td class="text-right"><p>10</p></td>
+<td class="text-right"><p>0,00335855</p></td>
+<td><p>0,00004500; 0,00010155</p></td>
+<td><p>0,00014500; 0,00007972</p></td>
+<td><p>0,00002000; 0,00000262</p></td>
+</tr>
+<tr class="row-even"><td><p>TimeMixer−GRU32</p></td>
+<td class="text-right"><p>20</p></td>
+<td class="text-right"><p>0,00252572</p></td>
+<td><p>0,00013000; 0,00021343</p></td>
+<td><p>0,00022000; 0,00013688</p></td>
+<td><p>0,00001500; 0,00000123</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimeMixer−GRU32</p></td>
+<td class="text-right"><p>30</p></td>
+<td class="text-right"><p>0,00209137</p></td>
+<td><p>0,00010000; 0,00017533</p></td>
+<td><p>0,00051000; 0,00037729</p></td>
+<td><p>0,00007000; 0,00002816</p></td>
+</tr>
+<tr class="row-even"><td><p>Híbrido−GRU32</p></td>
+<td class="text-right"><p>6</p></td>
+<td class="text-right"><p>0,00181117</p></td>
+<td><p>0,00010500; 0,00018175</p></td>
+<td><p>0,00057000; 0,00042902</p></td>
+<td><p>0,00017000; 0,00009835</p></td>
+</tr>
+<tr class="row-odd"><td><p>Híbrido−GRU32</p></td>
+<td class="text-right"><p>10</p></td>
+<td class="text-right"><p>0,00158724</p></td>
+<td><p>0,00008000; 0,00014926</p></td>
+<td><p>0,00032000; 0,00021733</p></td>
+<td><p>0,00004000; 0,00001109</p></td>
+</tr>
+<tr class="row-even"><td><p>Híbrido−GRU32</p></td>
+<td class="text-right"><p>20</p></td>
+<td class="text-right"><p>0,00118257</p></td>
+<td><p>0,00009500; 0,00016887</p></td>
+<td><p>0,00067500; 0,00052055</p></td>
+<td><p>0,00013000; 0,00006881</p></td>
+</tr>
+<tr class="row-odd"><td><p>Híbrido−GRU32</p></td>
+<td class="text-right"><p>30</p></td>
+<td class="text-right"><p>0,00102079</p></td>
+<td><p>0,00007500; 0,00014263</p></td>
+<td><p>0,00134500; 0,00112213</p></td>
+<td><p>0,00015500; 0,00008711</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="mde-descriptiva-bajo-el-generador-r-30">
+<h4>MDE descriptiva bajo el generador, R=30<a class="headerlink" href="#mde-descriptiva-bajo-el-generador-r-30" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Grupo y par</p></th>
+<th class="head text-right"><p>Efecto positivo descriptivo</p></th>
+<th class="head text-right"><p>Magnitud del efecto negativo descriptivo</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Histórico: Híbrido−GRU32</p></td>
+<td class="text-right"><p>0,00198200</p></td>
+<td class="text-right"><p>0,00195598</p></td>
+</tr>
+<tr class="row-odd"><td><p>Nuevo: TimeMixer−Híbrido</p></td>
+<td class="text-right"><p>0,00302166</p></td>
+<td class="text-right"><p>0,00299627</p></td>
+</tr>
+<tr class="row-even"><td><p>Nuevo: TimeMixer−GRU32</p></td>
+<td class="text-right"><p>0,00248325</p></td>
+<td class="text-right"><p>0,00245884</p></td>
+</tr>
+<tr class="row-odd"><td><p>Nuevo: Híbrido−GRU32</p></td>
+<td class="text-right"><p>0,00118559</p></td>
+<td class="text-right"><p>0,00117826</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Estas MDE se obtienen de cuantiles del generador y son sensibilidades descriptivas; no se validaron con una nueva muestra después de elegir cada efecto. No tienen la garantía CP de las alternativas prefijadas ±δ.</p>
+<p>El efecto δ es 0,00025772842664981106. La MDE basada en cuantiles se conserva como diagnóstico descriptivo del generador simulado, sin una garantía posterior a su selección. Calibrar este generador empírico no valida automáticamente la inferencia sobre el mercado real. Tampoco estima las varianzas de los pares que no se observaron.</p>
+<p>Las probabilidades obtenidas son sensibilidades condicionales de planificación sobre datos de desarrollo. No demuestran potencia final ni superioridad del candidato 11. <strong><code class="docutils literal notranslate"><span class="pre">final_R</span></code> permanece sin fijar</strong>; R=30 conserva su papel de techo de recursos hasta resolver las recetas seleccionadas y el procedimiento temporal final.</p>
+</section>
+</section>
+</section>
+<section id="evidencia-y-reproduccion">
+<h2>Evidencia y reproducción<a class="headerlink" href="#evidencia-y-reproduccion" title="Link to this heading">#</a></h2>
+<p>La auditoría de ejecución verificó <strong>1.170 diarios y recibos, 156 cadenas de eventos y 11.492 observaciones de hashes de fuentes</strong>, sin discrepancias ni colas de eventos incompletas. Los originales permanecen en el entorno de ejecución. La publicación ofrece sus contadores y hashes junto con los resultados científicos mediante campos admitidos explícitamente, sin rutas internas, diarios completos ni pesos.</p>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="../_downloads/f089bb79751d16b688c3b118331b063f/summary.json"><span class="xref download myst">Resumen científico</span></a> y <a class="reference download internal" download="" href="../_downloads/ace3db9c200d7ca1189fd1872a7c7e1d/manifest.json"><span class="xref download myst">manifiesto de los JSON públicos</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/8ee868e3184ade6bd78a66b9a6e66903/registration_scientific.json"><span class="xref download myst">Registro científico y decisiones previas</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/497454b1a0194822f1b3aac39200d736/profiles.json"><span class="xref download myst">Perfiles por intento, tiempos, pasos, fallo y microperfil</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/ec854e8aa07876f2bf3c29e52675b714/variance.json"><span class="xref download myst">Treinta ajustes, épocas y predicciones del nuevo piloto</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/89f329d857a87792094d52da975ff90f/calibration.json"><span class="xref download myst">Calibración matemática de los grupos separados</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/926418d081b2fc0db985f158644b373d/budget.json"><span class="xref download myst">Dieciséis escenarios de presupuesto y supuestos</span></a>.</p></li>
+</ul>
+<p>El manifiesto fija los hashes de los archivos científicos públicos para verificar sus bytes. Los recibos privados conservan los hashes y la comprobación de carga segura de los treinta checkpoints; esa comprobación no requiere publicar los tensores. Los resultados científicos se pueden examinar en los resúmenes públicos; la auditoría de los diarios originales requiere el entorno de ejecución.</p>
+<p>La exportación pública pasó sus siete pruebas. El paquete de auditoría interno pasó dieciocho casos, incluidos controles sobre los resultados reales; son verificaciones separadas de la publicación de los JSON científicos.</p>
+<p>La reproducción usa Python 3.12 y el lock CPU de §29, desde una versión del repositorio que incluya la enmienda de serialización. El helper de instantáneas prepara los bytes exactos del protocolo usados por §30, comprobando hashes y conservando el respaldo del archivo histórico. Los directorios de salida deben ser nuevos; no se deben eliminar fallos para repetir un comando.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements-e2-training-cpu.lock.txt
+python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>check
+python<span class="w"> </span>scripts/prepare_e2_pilot_snapshot.py<span class="w"> </span>--root<span class="w"> </span>.
+python<span class="w"> </span>scripts/fetch_e2_itransformer_sources.py<span class="w"> </span>--output<span class="w"> </span>work/author_sources/iTransformer
+
+python<span class="w"> </span>scripts/run_e2_cpu_scaling.py<span class="w"> </span>--phase<span class="w"> </span>kernels<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data-root<span class="w"> </span>.<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--registration<span class="w"> </span>experiments/e2_compute_optimization_20261109/registration.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--registration-commit<span class="w"> </span>d24c7d1f78038284f2bad179f6a7c8cb9cc0bdb2<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--parity-evidence<span class="w"> </span>experiments/e2_compute_optimization_20261109/cpu_conv_parity.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>work/kernels_reproduction
+
+python<span class="w"> </span>scripts/run_e2_cpu_scaling.py<span class="w"> </span>--phase<span class="w"> </span>threads<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data-root<span class="w"> </span>.<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--registration<span class="w"> </span>experiments/e2_compute_optimization_20261109/registration.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--registration-commit<span class="w"> </span>d24c7d1f78038284f2bad179f6a7c8cb9cc0bdb2<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--kernels-summary<span class="w"> </span>work/kernels_reproduction/summary.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>work/threads_reproduction
+
+python<span class="w"> </span>scripts/run_e2_cpu_scaling.py<span class="w"> </span>--phase<span class="w"> </span>scaling<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data-root<span class="w"> </span>.<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--registration<span class="w"> </span>experiments/e2_compute_optimization_20261109/registration.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--registration-commit<span class="w"> </span>d24c7d1f78038284f2bad179f6a7c8cb9cc0bdb2<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--kernels-summary<span class="w"> </span>work/kernels_reproduction/summary.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--threads-summary<span class="w"> </span>work/threads_reproduction/summary.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--source-root-itransformer<span class="w"> </span>work/author_sources/iTransformer<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>work/scaling_reproduction
+
+python<span class="w"> </span>scripts/run_e2_optimized_variance.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data-root<span class="w"> </span>.<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--registration<span class="w"> </span>experiments/e2_compute_optimization_20261109/registration.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--expected-registration-sha256<span class="w"> </span>3b54ac44f5aed956ac98fbc31c95dfcb70c1116b6cca65a8269ff11cd843ac91<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--registration-commit<span class="w"> </span>d24c7d1f78038284f2bad179f6a7c8cb9cc0bdb2<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--kernels-summary<span class="w"> </span>work/kernels_reproduction/summary.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--threads-summary<span class="w"> </span>work/threads_reproduction/summary.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>work/variance_reproduction
+
+<span class="nv">E2_VARIANCE_SHA256</span><span class="o">=</span><span class="k">$(</span>sha256sum<span class="w"> </span>work/variance_reproduction/summary.json<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="w"> </span><span class="s1">' '</span><span class="w"> </span>-f<span class="w"> </span><span class="m">1</span><span class="k">)</span>
+python<span class="w"> </span>scripts/run_e2_calibration_report.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--old-variance-gzip<span class="w"> </span>book_e2/_static/development_pilot_20261109/variance_full.json.gz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--registration<span class="w"> </span>experiments/e2_compute_optimization_20261109/registration.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--new-summary<span class="w"> </span>work/variance_reproduction/summary.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--expected-new-summary-sha256<span class="w"> </span><span class="s2">"</span><span class="nv">$E2_VARIANCE_SHA256</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>work/calibration_reproduction
+</pre></div>
+</div>
+<p>Los comandos de perfilado y variación ejecutan entrenamiento real en el entorno donde se lancen. La calibración simula únicamente después de validar fechas, semillas, procedencia y replays; no ajusta modelos. Se deben completar los perfiles secuenciales antes de ejecutar simulaciones o trabajos que compitan por CPU.</p>
+<p>Para reproducir la aritmética del presupuesto, las once cohortes se toman del JSON científico público y el inventario de parámetros se reconstruye desde el código público mediante dispositivos <code class="docutils literal notranslate"><span class="pre">meta</span></code>, sin crear pesos numéricos ni entrenar:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-<span class="w"> </span><span class="s">&lt;&lt;'PY'</span>
+<span class="s">import json</span>
+<span class="s">from pathlib import Path</span>
+<span class="s">from scripts.e2_cpu_budget import meta_parameter_inventory</span>
+
+<span class="s">source = Path("book_e2/_static/compute_public_20261109/budget.json")</span>
+<span class="s">report = json.loads(source.read_text())</span>
+<span class="s">protocol = json.loads(Path("book_e2/_static/search_protocol_20261109/protocol.json").read_text())</span>
+<span class="s">output = Path("work/budget_inputs_reproduction")</span>
+<span class="s">output.mkdir(parents=True)</span>
+<span class="s">inputs = {"panels.json": {"origins": report["origins"]},</span>
+<span class="s">          "parameter_inventory.json": meta_parameter_inventory(protocol)}</span>
+<span class="s">for name, value in inputs.items():</span>
+<span class="s">    with (output / name).open("x", encoding="utf-8") as stream:</span>
+<span class="s">        json.dump(value, stream, ensure_ascii=False, sort_keys=True)</span>
+<span class="s">PY</span>
+
+python<span class="w"> </span>scripts/run_e2_budget_scenarios.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--scaling-summary<span class="w"> </span>work/scaling_reproduction/summary.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--panels<span class="w"> </span>work/budget_inputs_reproduction/panels.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--parameter-inventory<span class="w"> </span>work/budget_inputs_reproduction/parameter_inventory.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--registration<span class="w"> </span>experiments/e2_compute_optimization_20261109/registration.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>work/budget_reproduction
+</pre></div>
+</div>
+<p>Esta última reproducción recalcula escenarios con los perfiles generados por la nueva ejecución, las cohortes publicadas y el inventario meta reconstruido. No publica ni reproduce por sí sola los diarios privados de la ejecución original, ni acredita una reconstrucción independiente de la adquisición y derivación de las cohortes. La construcción editorial consume los resultados guardados y no lanza ajustes ni simulaciones. El benchmark completo, su reproducción independiente, las recetas ganadoras y el R final permanecen pendientes.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="30_piloto_nube.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">30. Piloto de desarrollo en la nube de Codex</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="referencias.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Referencias de contexto y revisión E2</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-previo-y-continuidad-del-piloto">Registro previo y continuidad del piloto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-y-cortes-temporales">Datos y cortes temporales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimizacion-de-timesnet-y-eleccion-de-hilos">Optimización de TimesNet y elección de hilos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-observado-del-recorte">Resultado observado del recorte</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-observado-de-hilos">Resultado observado de hilos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-observado-del-escalado">Resultado observado del escalado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#incidencia-al-guardar-el-resumen-de-hilos">Incidencia al guardar el resumen de hilos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#costes-censuras-y-microperfiles">Costes, censuras y microperfiles</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#presupuesto-condicionado-de-horas-y-almacenamiento">Presupuesto condicionado de horas y almacenamiento</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sensibilidad-de-trabajo-nominal-sin-truncar-que-utiliza-el-microperfil">Sensibilidad de trabajo nominal sin truncar que utiliza el microperfil</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#almacenamiento-de-checkpoints">Almacenamiento de checkpoints</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nuevo-piloto-de-variacion-antes-de-seleccionar-recetas">Nuevo piloto de variación antes de seleccionar recetas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calibracion-monte-carlo-de-la-planificacion">Calibración Monte Carlo de la planificación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-de-la-calibracion-condicional">Resultado de la calibración condicional</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#par-historico-semillas-271901-271905">Par histórico, semillas 271901…271905</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tres-modelos-nuevos-semillas-273001-273005">Tres modelos nuevos, semillas 273001…273005</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mde-descriptiva-bajo-el-generador-r-30">MDE descriptiva bajo el generador, R=30</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-y-reproduccion">Evidencia y reproducción</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

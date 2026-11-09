@@ -1,0 +1,2066 @@
+{
+  "achieved_final_power": null,
+  "critical_rule": "Strict absolute statistic greater than independent-null critical value",
+  "delta": 0.00025772842664981106,
+  "final_R": null,
+  "groups": {
+    "new": {
+      "achieved_final_power": null,
+      "calibration_MC_family_confidence": 0.95,
+      "calibration_total_absolute_tail_target": 0.00016339869281045753,
+      "cells_per_MC_family": 12,
+      "conditionally_supported_R": null,
+      "config": {
+        "R_values": [
+          6,
+          10,
+          20,
+          30
+        ],
+        "alpha": 0.05,
+        "alternative_draws": 200000,
+        "alternative_pool": 272403,
+        "batch_size": 2048,
+        "block_length": 7,
+        "calibration_draws": 200000,
+        "calibration_pool": 272401,
+        "family_mc_error": 0.05,
+        "power_target": 0.8,
+        "validation_draws": 200000,
+        "validation_pool": 272402
+      },
+      "dates": [
+        "2024-11-08",
+        "2024-11-09",
+        "2024-11-10",
+        "2024-11-11",
+        "2024-11-12",
+        "2024-11-13",
+        "2024-11-14",
+        "2024-11-15",
+        "2024-11-16",
+        "2024-11-17",
+        "2024-11-18",
+        "2024-11-19",
+        "2024-11-20",
+        "2024-11-21",
+        "2024-11-22",
+        "2024-11-23",
+        "2024-11-24",
+        "2024-11-25",
+        "2024-11-26",
+        "2024-11-27",
+        "2024-11-28",
+        "2024-11-29",
+        "2024-11-30",
+        "2024-12-01",
+        "2024-12-02",
+        "2024-12-03",
+        "2024-12-04",
+        "2024-12-05",
+        "2024-12-06",
+        "2024-12-07",
+        "2024-12-08",
+        "2024-12-09",
+        "2024-12-10",
+        "2024-12-11",
+        "2024-12-12",
+        "2024-12-13",
+        "2024-12-14",
+        "2024-12-15",
+        "2024-12-16",
+        "2024-12-17",
+        "2024-12-18",
+        "2024-12-19",
+        "2024-12-20",
+        "2024-12-21",
+        "2024-12-22",
+        "2024-12-23",
+        "2024-12-24",
+        "2024-12-25",
+        "2024-12-26",
+        "2024-12-27",
+        "2024-12-28",
+        "2024-12-29",
+        "2024-12-30"
+      ],
+      "delta": 0.00025772842664981106,
+      "final_R": null,
+      "gamma_calibration_per_cell": 0.004166666666666667,
+      "gamma_power_per_cell_direction": 0.0020833333333333333,
+      "gamma_validation_per_cell": 0.004166666666666667,
+      "joint_three_family_confidence_claimed": false,
+      "model_names": [
+        "TimeMixer",
+        "CNN-1D + LSTM + atención temporal",
+        "GRU32"
+      ],
+      "multiplicity_family_size": 153,
+      "nominal_alpha_per_comparison": 0.00032679738562091506,
+      "observed_pair_count": 3,
+      "pairs": [
+        {
+          "cells": [
+            {
+              "R": 6,
+              "alternative_noise_sha256": "4b3f752c0cbd43b43e439095f38717adadf95e7222b37595e1e5d1f2ecd8a465",
+              "alternatives": {
+                "minus_delta": {
+                  "CP_lower": 1.637988208762872e-05,
+                  "conditional_rejection_frequency": 5e-05,
+                  "draws": 200000,
+                  "effect_shift": -0.00025772842664981106,
+                  "gamma": 0.0020833333333333333,
+                  "hits": 10,
+                  "interpretation_admitted_by_null_validation": true
+                },
+                "plus_delta": {
+                  "CP_lower": 5.8137074710828794e-05,
+                  "conditional_rejection_frequency": 0.000115,
+                  "draws": 200000,
+                  "effect_shift": 0.00025772842664981106,
+                  "gamma": 0.0020833333333333333,
+                  "hits": 23,
+                  "interpretation_admitted_by_null_validation": true
+                }
+              },
+              "calibration": {
+                "allowed_exceedances_in_calibration": 18,
+                "binomial_failure_probability_bound": 0.0037775780445429624,
+                "critical_abs": 0.004907849217194048,
+                "draws": 200000,
+                "gamma": 0.004166666666666667,
+                "numpy_order_index": 199981,
+                "order_rank_1based": 199982,
+                "tail_order_k": 19,
+                "tail_target": 0.00016339869281045753
+              },
+              "calibration_noise_sha256": "0dd85949a9d749e0e6debea689561b6b32728839ab991a3148791ad9de9aa942",
+              "calibration_noise_spread": 0.012694449551288508,
+              "descriptive_MDE": {
+                "minus_effect_magnitude": 0.005669279699990612,
+                "null_validation_required_for_interpretation": true,
+                "plus_effect": 0.005683566759535588,
+                "scientific_or_distribution_free_MDE": false
+              },
+              "draws_executed": {
+                "alternative": 200000,
+                "calibration": 200000,
+                "validation": 200000
+              },
+              "minimum_direction_CP_lower": 1.637988208762872e-05,
+              "null_validated": true,
+              "status": "null_validated",
+              "streams": {
+                "alternative": {
+                  "calendar_entropy": [
+                    272403,
+                    6,
+                    0,
+                    0
+                  ],
+                  "pool": 272403,
+                  "seed_entropy": [
+                    272403,
+                    6,
+                    0,
+                    1
+                  ]
+                },
+                "calibration": {
+                  "calendar_entropy": [
+                    272401,
+                    6,
+                    0,
+                    0
+                  ],
+                  "pool": 272401,
+                  "seed_entropy": [
+                    272401,
+                    6,
+                    0,
+                    1
+                  ]
+                },
+                "validation": {
+                  "calendar_entropy": [
+                    272402,
+                    6,
+                    0,
+                    0
+                  ],
+                  "pool": 272402,
+                  "seed_entropy": [
+                    272402,
+                    6,
+                    0,
+                    1
+                  ]
+                }
+              },
+              "supports_conditional_target": false,
+              "validation": {
+                "CP_upper": 0.00020714713229122818,
+                "critical_value_retuned": false,
+                "draws": 200000,
+                "gamma": 0.004166666666666667,
+                "hits": 25,
+                "nominal_alpha": 0.00032679738562091506,
+                "rejection_frequency": 0.000125,
+                "validated": true
+              },
+              "validation_noise_sha256": "7df058ec09d0c249ea9e6dd646c4617fb014a6c7cb99b79621642429da9c5ef5"
+            },
+            {
+              "R": 10,
+              "alternative_noise_sha256": "49df00314cd51202c868ee7a539dbe5a13278c69e3b72ed229aca8942ad3c1ca",
+              "alternatives": {
+                "minus_delta": {
+                  "CP_lower": 1.919361655176431e-05,
+                  "conditional_rejection_frequency": 5.5e-05,
+                  "draws": 200000,
+                  "effect_shift": -0.00025772842664981106,
+                  "gamma": 0.0020833333333333333,
+                  "hits": 11,
+                  "interpretation_admitted_by_null_validation": true
+                },
+                "plus_delta": {
+                  "CP_lower": 8.340681980169472e-05,
+                  "conditional_rejection_frequency": 0.00015,
+                  "draws": 200000,
+                  "effect_shift": 0.00025772842664981106,
+                  "gamma": 0.0020833333333333333,
+                  "hits": 30,
+                  "interpretation_admitted_by_null_validation": true
+                }
+              },
+              "calibration": {
+                "allowed_exceedances_in_calibration": 18,
+                "binomial_failure_probability_bound": 0.0037775780445429624,
+                "critical_abs": 0.004003638381077709,
+                "draws": 200000,
+                "gamma": 0.004166666666666667,
+                "numpy_order_index": 199981,
+                "order_rank_1based": 199982,
+                "tail_order_k": 19,
+                "tail_target": 0.00016339869281045753
+              },
+              "calibration_noise_sha256": "405da50d18be6916bb499a24229d9d6da9f6abcb17333499d51434822334fcfe",
+              "calibration_noise_spread": 0.008833359325980695,
+              "descriptive_MDE": {
+                "minus_effect_magnitude": 0.004607211678564223,
+                "null_validation_required_for_interpretation": true,
+                "plus_effect": 0.0046403560074315744,
+                "scientific_or_distribution_free_MDE": false
+              },
+              "draws_executed": {
+                "alternative": 200000,
+                "calibration": 200000,
+                "validation": 200000
+              },
+              "minimum_direction_CP_lower": 1.919361655176431e-05,
+              "null_validated": true,
+              "status": "null_validated",
+              "streams": {
+                "alternative": {
+                  "calendar_entropy": [
+                    272403,
+                    10,
+                    0,
+                    0
+                  ],
+                  "pool": 272403,
+                  "seed_entropy": [
+                    272403,
+                    10,
+                    0,
+                    1
+                  ]
+                },
+                "calibration": {
+                  "calendar_entropy": [
+                    272401,
+                    10,
+                    0,
+                    0
+                  ],
+                  "pool": 272401,
+                  "seed_entropy": [
+                    272401,
+                    10,
+                    0,
+                    1
+                  ]
+                },
+                "validation": {
+                  "calendar_entropy": [
+                    272402,
+                    10,
+                    0,
+                    0
+                  ],
+                  "pool": 272402,
+                  "seed_entropy": [
+                    272402,
+                    10,
+                    0,
+                    1
+                  ]
+                }
+              },
+              "supports_conditional_target": false,
+              "validation": {
+                "CP_upper": 0.0001155432705122707,
+                "critical_value_retuned": false,
+                "draws": 200000,
+                "gamma": 0.004166666666666667,
+                "hits": 11,
+                "nominal_alpha": 0.00032679738562091506,
+                "rejection_frequency": 5.5e-05,
+                "validated": true
+              },
+              "validation_noise_sha256": "5d2da38d87ca12adfa1bd72aa50f46c1ecbc16aafa0dc2240ec93ccf402da126"
+            },
+            {
+              "R": 20,
+              "alternative_noise_sha256": "ef31c042df37ee825b42e8523a70a4f1ec091a2b1eec6bffd3a49651a9c8e16e",
+              "alternatives": {
+                "minus_delta": {
+                  "CP_lower": 1.637988208762872e-05,
+                  "conditional_rejection_frequency": 5e-05,
+                  "draws": 200000,
+                  "effect_shift": -0.00025772842664981106,
+                  "gamma": 0.0020833333333333333,
+                  "hits": 10,
+                  "interpretation_admitted_by_null_validation": true
+                },
+                "plus_delta": {
+                  "CP_lower": 7.972201692711967e-05,
+                  "conditional_rejection_frequency": 0.000145,
+                  "draws": 200000,
+                  "effect_shift": 0.00025772842664981106,
+                  "gamma": 0.0020833333333333333,
+                  "hits": 29,
+                  "interpretation_admitted_by_null_validation": true
+                }
+              },
+              "calibration": {
+                "allowed_exceedances_in_calibration": 18,
+                "binomial_failure_probability_bound": 0.0037775780445429624,
+                "critical_abs": 0.003015714446226558,
+                "draws": 200000,
+                "gamma": 0.004166666666666667,
+                "numpy_order_index": 199981,
+                "order_rank_1based": 199982,
+                "tail_order_k": 19,
+                "tail_target": 0.00016339869281045753
+              },
+              "calibration_noise_sha256": "88170dacfb7bf358135ea1de218f704f7ae356dd2118d3d73d81c1a4042d291b",
+              "calibration_noise_spread": 0.007744749955119323,
+              "descriptive_MDE": {
+                "minus_effect_magnitude": 0.0034849295734286608,
+                "null_validation_required_for_interpretation": true,
+                "plus_effect": 0.0035198612884034457,
+                "scientific_or_distribution_free_MDE": false
+              },
+              "draws_executed": {
+                "alternative": 200000,
+                "calibration": 200000,
+                "validation": 200000
+              },
+              "minimum_direction_CP_lower": 1.637988208762872e-05,
+              "null_validated": true,
+              "status": "null_validated",
+              "streams": {
+                "alternative": {
+                  "calendar_entropy": [
+                    272403,
+                    20,
+                    0,
+                    0
+                  ],
+                  "pool": 272403,
+                  "seed_entropy": [
+                    272403,
+                    20,
+                    0,
+                    1
+                  ]
+                },
+                "calibration": {
+                  "calendar_entropy": [
+                    272401,
+                    20,
+                    0,
+                    0
+                  ],
+                  "pool": 272401,
+                  "seed_entropy": [
+                    272401,
+                    20,
+                    0,
+                    1
+                  ]
+                },
+                "validation": {
+                  "calendar_entropy": [
+                    272402,
+                    20,
+                    0,
+                    0
+                  ],
+                  "pool": 272402,
+                  "seed_entropy": [
+                    272402,
+                    20,
+                    0,
+                    1
+                  ]
+                }
+              },
+              "supports_conditional_target": false,
+              "validation": {
+                "CP_upper": 0.00013595127505815522,
+                "critical_value_retuned": false,
+                "draws": 200000,
+                "gamma": 0.004166666666666667,
+                "hits": 14,
+                "nominal_alpha": 0.00032679738562091506,
+                "rejection_frequency": 7e-05,
+                "validated": true
+              },
+              "validation_noise_sha256": "950f4f4add2591d96fb701722bdf3aedba3a5909756230c629a3c078d4f64ef0"
+            },
+            {
+              "R": 30,
+              "alternative_noise_sha256": "1995a5cf51285da47820e83b7e2b121376a132cbdc3c24b45e5f4f8920734a08",
+              "alternatives": {
+                "minus_delta": {
+                  "CP_lower": 2.6234868423842348e-06,
+                  "conditional_rejection_frequency": 2e-05,
+                  "draws": 200000,
+                  "effect_shift": -0.00025772842664981106,
+                  "gamma": 0.0020833333333333333,
+                  "hits": 4,
+                  "interpretation_admitted_by_null_validation": true
+                },
+                "plus_delta": {
+                  "CP_lower": 0.00012906265682581535,
+                  "conditional_rejection_frequency": 0.00021,
+                  "draws": 200000,
+                  "effect_shift": 0.00025772842664981106,
+                  "gamma": 0.0020833333333333333,
+                  "hits": 42,
+                  "interpretation_admitted_by_null_validation": true
+                }
+              },
+              "calibration": {
+                "allowed_exceedances_in_calibration": 18,
+                "binomial_failure_probability_bound": 0.0037775780445429624,
+                "critical_abs": 0.0025742242355731946,
+                "draws": 200000,
+                "gamma": 0.004166666666666667,
+                "numpy_order_index": 199981,
+                "order_rank_1based": 199982,
+                "tail_order_k": 19,
+                "tail_target": 0.00016339869281045753
+              },
+              "calibration_noise_sha256": "cf3979a8c9cead21215569506a21047cf8a36b087ad99a3128a28aff3306836a",
+              "calibration_noise_spread": 0.005542519474425082,
+              "descriptive_MDE": {
+                "minus_effect_magnitude": 0.002996269078838901,
+                "null_validation_required_for_interpretation": true,
+                "plus_effect": 0.003021664589647994,
+                "scientific_or_distribution_free_MDE": false
+              },
+              "draws_executed": {
+                "alternative": 200000,
+                "calibration": 200000,
+                "validation": 200000
+              },
+              "minimum_direction_CP_lower": 2.6234868423842348e-06,
+              "null_validated": true,
+              "status": "null_validated",
+              "streams": {
+                "alternative": {
+                  "calendar_entropy": [
+                    272403,
+                    30,
+                    0,
+                    0
+                  ],
+                  "pool": 272403,
+                  "seed_entropy": [
+                    272403,
+                    30,
+                    0,
+                    1
+                  ]
+                },
+                "calibration": {
+                  "calendar_entropy": [
+                    272401,
+                    30,
+                    0,
+                    0
+                  ],
+                  "pool": 272401,
+                  "seed_entropy": [
+                    272401,
+                    30,
+                    0,
+                    1
+                  ]
+                },
+                "validation": {
+                  "calendar_entropy": [
+                    272402,
+                    30,
+                    0,
+                    0
+                  ],
+                  "pool": 272402,
+                  "seed_entropy": [
+                    272402,
+                    30,
+                    0,
+                    1
+                  ]
+                }
+              },
+              "supports_conditional_target": false,
+              "validation": {
+                "CP_upper": 0.00012921483788960603,
+                "critical_value_retuned": false,
+                "draws": 200000,
+                "gamma": 0.004166666666666667,
+                "hits": 13,
+                "nominal_alpha": 0.00032679738562091506,
+                "rejection_frequency": 6.5e-05,
+                "validated": true
+              },
+              "validation_noise_sha256": "8e7aff6de60fa234a16fc9f6e67ac00b7313e583a6bee6d841b1b132bb38c485"
+            }
+          ],
+          "models": [
+            "TimeMixer",
+            "CNN-1D + LSTM + atención temporal"
+          ],
+          "original_mean_difference": 0.000908852374039525,
+          "paired_seed_differences": [
+            -0.00033743904478657303,
+            0.0014322242719057906,
+            0.0007069349099937672,
+            0.0009729304814084052,
+            0.0017696112516762345
+          ],
+          "seed_residual_inflation": 2.6523742964003643,
+          "sigma_d": 0.0008082300037236865,
+          "sigma_d_upper95_normal_assumption": 0.0019174090493020157,
+          "status": "empirical_DGP_defined"
+        },
+        {
+          "cells": [
+            {
+              "R": 6,
+              "alternative_noise_sha256": "bafab466691dca0cbb2623a832beba700ba6c783f88442f1eadefcfcb18ab1b1",
+              "alternatives": {
+                "minus_delta": {
+                  "CP_lower": 1.2337630268046018e-06,
+                  "conditional_rejection_frequency": 1.5e-05,
+                  "draws": 200000,
+                  "effect_shift": -0.00025772842664981106,
+                  "gamma": 0.0020833333333333333,
+                  "hits": 3,
+                  "interpretation_admitted_by_null_validation": true
+                },
+                "plus_delta": {
+                  "CP_lower": 5.464134218596579e-05,
+                  "conditional_rejection_frequency": 0.00011,
+                  "draws": 200000,
+                  "effect_shift": 0.00025772842664981106,
+                  "gamma": 0.0020833333333333333,
+                  "hits": 22,
+                  "interpretation_admitted_by_null_validation": true
+                }
+              },
+              "calibration": {
+                "allowed_exceedances_in_calibration": 18,
+                "binomial_failure_probability_bound": 0.0037775780445429624,
+                "critical_abs": 0.004274540605960934,
+                "draws": 200000,
+                "gamma": 0.004166666666666667,
+                "numpy_order_index": 199981,
+                "order_rank_1based": 199982,
+                "tail_order_k": 19,
+                "tail_target": 0.00016339869281045753
+              },
+              "calibration_noise_sha256": "3dafd865a8178c058e2036f0923c5e701671ebd1f518702fc7a3c4b11fdca3e8",
+              "calibration_noise_spread": 0.009435794466834952,
+              "descriptive_MDE": {
+                "minus_effect_magnitude": 0.004925658884488218,
+                "null_validation_required_for_interpretation": true,
+                "plus_effect": 0.004959434968170043,
+                "scientific_or_distribution_free_MDE": false
+              },
+              "draws_executed": {
+                "alternative": 200000,
+                "calibration": 200000,
+                "validation": 200000
+              },
+              "minimum_direction_CP_lower": 1.2337630268046018e-06,
+              "null_validated": true,
+              "status": "null_validated",
+              "streams": {
+                "alternative": {
+                  "calendar_entropy": [
+                    272403,
+                    6,
+                    1,
+                    0
+                  ],
+                  "pool": 272403,
+                  "seed_entropy": [
+                    272403,
+                    6,
+                    1,
+                    1
+                  ]
+                },
+                "calibration": {
+                  "calendar_entropy": [
+                    272401,
+                    6,
+                    1,
+                    0
+                  ],
+                  "pool": 272401,
+                  "seed_entropy": [
+                    272401,
+                    6,
+                    1,
+                    1
+                  ]
+                },
+                "validation": {
+                  "calendar_entropy": [
+                    272402,
+                    6,
+                    1,
+                    0
+                  ],
+                  "pool": 272402,
+                  "seed_entropy": [
+                    272402,
+                    6,
+                    1,
+                    1
+                  ]
+                }
+              },
+              "supports_conditional_target": false,
+              "validation": {
+                "CP_upper": 0.00016237293939210166,
+                "critical_value_retuned": false,
+                "draws": 200000,
+                "gamma": 0.004166666666666667,
+                "hits": 18,
+                "nominal_alpha": 0.00032679738562091506,
+                "rejection_frequency": 9e-05,
+                "validated": true
+              },
+              "validation_noise_sha256": "ab478439e50d266227fd86823a3c95b7e6029461894f62951b8c72ba1703a49b"
+            },
+            {
+              "R": 10,
+              "alternative_noise_sha256": "b0d6b9ad900a2b3ebd262df6efc272a5b5ff9bad33b5425a50560cd3879a31e5",
+              "alternatives": {
+                "minus_delta": {
+                  "CP_lower": 2.6234868423842348e-06,
+                  "conditional_rejection_frequency": 2e-05,
+                  "draws": 200000,
+                  "effect_shift": -0.00025772842664981106,
+                  "gamma": 0.0020833333333333333,
+                  "hits": 4,
+                  "interpretation_admitted_by_null_validation": true
+                },
+                "plus_delta": {
+                  "CP_lower": 7.972201692711967e-05,
+                  "conditional_rejection_frequency": 0.000145,
+                  "draws": 200000,
+                  "effect_shift": 0.00025772842664981106,
+                  "gamma": 0.0020833333333333333,
+                  "hits": 29,
+                  "interpretation_admitted_by_null_validation": true
+                }
+              },
+              "calibration": {
+                "allowed_exceedances_in_calibration": 18,
+                "binomial_failure_probability_bound": 0.0037775780445429624,
+                "critical_abs": 0.0033585477107964615,
+                "draws": 200000,
+                "gamma": 0.004166666666666667,
+                "numpy_order_index": 199981,
+                "order_rank_1based": 199982,
+                "tail_order_k": 19,
+                "tail_target": 0.00016339869281045753
+              },
+              "calibration_noise_sha256": "0d1c8295a133fc32509017883e1078870a86c39376063b58e28a6c43bfebfe2d",
+              "calibration_noise_spread": 0.0076398154591025575,
+              "descriptive_MDE": {
+                "minus_effect_magnitude": 0.00389294442932569,
+                "null_validation_required_for_interpretation": true,
+                "plus_effect": 0.003917148033335576,
+                "scientific_or_distribution_free_MDE": false
+              },
+              "draws_executed": {
+                "alternative": 200000,
+                "calibration": 200000,
+                "validation": 200000
+              },
+              "minimum_direction_CP_lower": 2.6234868423842348e-06,
+              "null_validated": true,
+              "status": "null_validated",
+              "streams": {
+                "alternative": {
+                  "calendar_entropy": [
+                    272403,
+                    10,
+                    1,
+                    0
+                  ],
+                  "pool": 272403,
+                  "seed_entropy": [
+                    272403,
+                    10,
+                    1,
+                    1
+                  ]
+                },
+                "calibration": {
+                  "calendar_entropy": [
+                    272401,
+                    10,
+                    1,
+                    0
+                  ],
+                  "pool": 272401,
+                  "seed_entropy": [
+                    272401,
+                    10,
+                    1,
+                    1
+                  ]
+                },
+                "validation": {
+                  "calendar_entropy": [
+                    272402,
+                    10,
+                    1,
+                    0
+                  ],
+                  "pool": 272402,
+                  "seed_entropy": [
+                    272402,
+                    10,
+                    1,
+                    1
+                  ]
+                }
+              },
+              "supports_conditional_target": false,
+              "validation": {
+                "CP_upper": 0.00010154747403785442,
+                "critical_value_retuned": false,
+                "draws": 200000,
+                "gamma": 0.004166666666666667,
+                "hits": 9,
+                "nominal_alpha": 0.00032679738562091506,
+                "rejection_frequency": 4.5e-05,
+                "validated": true
+              },
+              "validation_noise_sha256": "4b0f6f115e21dcae93432341a0e2b28d21357d63f81605e062616c7b1c55328b"
+            },
+            {
+              "R": 20,
+              "alternative_noise_sha256": "664e5167584ad5d97c833e41548fa2134a9c700ee587662a45a9b7ffe3e6466c",
+              "alternatives": {
+                "minus_delta": {
+                  "CP_lower": 1.2337630268046018e-06,
+                  "conditional_rejection_frequency": 1.5e-05,
+                  "draws": 200000,
+                  "effect_shift": -0.00025772842664981106,
+                  "gamma": 0.0020833333333333333,
+                  "hits": 3,
+                  "interpretation_admitted_by_null_validation": true
+                },
+                "plus_delta": {
+                  "CP_lower": 0.00013688177753776043,
+                  "conditional_rejection_frequency": 0.00022,
+                  "draws": 200000,
+                  "effect_shift": 0.00025772842664981106,
+                  "gamma": 0.0020833333333333333,
+                  "hits": 44,
+                  "interpretation_admitted_by_null_validation": true
+                }
+              },
+              "calibration": {
+                "allowed_exceedances_in_calibration": 18,
+                "binomial_failure_probability_bound": 0.0037775780445429624,
+                "critical_abs": 0.0025257157917207684,
+                "draws": 200000,
+                "gamma": 0.004166666666666667,
+                "numpy_order_index": 199981,
+                "order_rank_1based": 199982,
+                "tail_order_k": 19,
+                "tail_target": 0.00016339869281045753
+              },
+              "calibration_noise_sha256": "48e9d65dc2c76336dec411f3183b79f8b4c7d07ce8b4acad5d1055b0c75e5f43",
+              "calibration_noise_spread": 0.005914629509972933,
+              "descriptive_MDE": {
+                "minus_effect_magnitude": 0.002936651712018395,
+                "null_validation_required_for_interpretation": true,
+                "plus_effect": 0.0029665256966603763,
+                "scientific_or_distribution_free_MDE": false
+              },
+              "draws_executed": {
+                "alternative": 200000,
+                "calibration": 200000,
+                "validation": 200000
+              },
+              "minimum_direction_CP_lower": 1.2337630268046018e-06,
+              "null_validated": true,
+              "status": "null_validated",
+              "streams": {
+                "alternative": {
+                  "calendar_entropy": [
+                    272403,
+                    20,
+                    1,
+                    0
+                  ],
+                  "pool": 272403,
+                  "seed_entropy": [
+                    272403,
+                    20,
+                    1,
+                    1
+                  ]
+                },
+                "calibration": {
+                  "calendar_entropy": [
+                    272401,
+                    20,
+                    1,
+                    0
+                  ],
+                  "pool": 272401,
+                  "seed_entropy": [
+                    272401,
+                    20,
+                    1,
+                    1
+                  ]
+                },
+                "validation": {
+                  "calendar_entropy": [
+                    272402,
+                    20,
+                    1,
+                    0
+                  ],
+                  "pool": 272402,
+                  "seed_entropy": [
+                    272402,
+                    20,
+                    1,
+                    1
+                  ]
+                }
+              },
+              "supports_conditional_target": false,
+              "validation": {
+                "CP_upper": 0.0002134294439388134,
+                "critical_value_retuned": false,
+                "draws": 200000,
+                "gamma": 0.004166666666666667,
+                "hits": 26,
+                "nominal_alpha": 0.00032679738562091506,
+                "rejection_frequency": 0.00013,
+                "validated": true
+              },
+              "validation_noise_sha256": "6d866c08d0ef5169d5418cc4171f6c9b521252df87b673eeef0b821c170064db"
+            },
+            {
+              "R": 30,
+              "alternative_noise_sha256": "f6e03147659a04125dc25b3ed2d4ca71894c36568f7aa3d6cea723188dbe1e79",
+              "alternatives": {
+                "minus_delta": {
+                  "CP_lower": 2.815858968943235e-05,
+                  "conditional_rejection_frequency": 7e-05,
+                  "draws": 200000,
+                  "effect_shift": -0.00025772842664981106,
+                  "gamma": 0.0020833333333333333,
+                  "hits": 14,
+                  "interpretation_admitted_by_null_validation": true
+                },
+                "plus_delta": {
+                  "CP_lower": 0.00037728847918189364,
+                  "conditional_rejection_frequency": 0.00051,
+                  "draws": 200000,
+                  "effect_shift": 0.00025772842664981106,
+                  "gamma": 0.0020833333333333333,
+                  "hits": 102,
+                  "interpretation_admitted_by_null_validation": true
+                }
+              },
+              "calibration": {
+                "allowed_exceedances_in_calibration": 18,
+                "binomial_failure_probability_bound": 0.0037775780445429624,
+                "critical_abs": 0.002091365510163338,
+                "draws": 200000,
+                "gamma": 0.004166666666666667,
+                "numpy_order_index": 199981,
+                "order_rank_1based": 199982,
+                "tail_order_k": 19,
+                "tail_target": 0.00016339869281045753
+              },
+              "calibration_noise_sha256": "4a9f72af09aa392730026b96b48a338bc1464bd0f9709ba6b201aa7a4cd59e82",
+              "calibration_noise_spread": 0.00475583953574824,
+              "descriptive_MDE": {
+                "minus_effect_magnitude": 0.0024588369663827037,
+                "null_validation_required_for_interpretation": true,
+                "plus_effect": 0.00248325435092578,
+                "scientific_or_distribution_free_MDE": false
+              },
+              "draws_executed": {
+                "alternative": 200000,
+                "calibration": 200000,
+                "validation": 200000
+              },
+              "minimum_direction_CP_lower": 2.815858968943235e-05,
+              "null_validated": true,
+              "status": "null_validated",
+              "streams": {
+                "alternative": {
+                  "calendar_entropy": [
+                    272403,
+                    30,
+                    1,
+                    0
+                  ],
+                  "pool": 272403,
+                  "seed_entropy": [
+                    272403,
+                    30,
+                    1,
+                    1
+                  ]
+                },
+                "calibration": {
+                  "calendar_entropy": [
+                    272401,
+                    30,
+                    1,
+                    0
+                  ],
+                  "pool": 272401,
+                  "seed_entropy": [
+                    272401,
+                    30,
+                    1,
+                    1
+                  ]
+                },
+                "validation": {
+                  "calendar_entropy": [
+                    272402,
+                    30,
+                    1,
+                    0
+                  ],
+                  "pool": 272402,
+                  "seed_entropy": [
+                    272402,
+                    30,
+                    1,
+                    1
+                  ]
+                }
+              },
+              "supports_conditional_target": false,
+              "validation": {
+                "CP_upper": 0.0001753275915296388,
+                "critical_value_retuned": false,
+                "draws": 200000,
+                "gamma": 0.004166666666666667,
+                "hits": 20,
+                "nominal_alpha": 0.00032679738562091506,
+                "rejection_frequency": 0.0001,
+                "validated": true
+              },
+              "validation_noise_sha256": "fc0102075f98882c585be8115cd465e30b4503d9716923b4c4189f273ae7acf4"
+            }
+          ],
+          "models": [
+            "TimeMixer",
+            "GRU32"
+          ],
+          "original_mean_difference": 0.0011877675362092614,
+          "paired_seed_differences": [
+            0.00018702024293004195,
+            0.0015015764846402734,
+            0.0013262697795744871,
+            0.000958319345704534,
+            0.0019656518281969703
+          ],
+          "seed_residual_inflation": 2.6523742964003643,
+          "sigma_d": 0.0006665029100434173,
+          "sigma_d_upper95_normal_assumption": 0.0015811819719826654,
+          "status": "empirical_DGP_defined"
+        },
+        {
+          "cells": [
+            {
+              "R": 6,
+              "alternative_noise_sha256": "446fcabded004aaf671de4f07ddace2b28e40ba791b70fad8dc567fe2679b1b8",
+              "alternatives": {
+                "minus_delta": {
+                  "CP_lower": 9.835213651443526e-05,
+                  "conditional_rejection_frequency": 0.00017,
+                  "draws": 200000,
+                  "effect_shift": -0.00025772842664981106,
+                  "gamma": 0.0020833333333333333,
+                  "hits": 34,
+                  "interpretation_admitted_by_null_validation": true
+                },
+                "plus_delta": {
+                  "CP_lower": 0.00042902333238107747,
+                  "conditional_rejection_frequency": 0.00057,
+                  "draws": 200000,
+                  "effect_shift": 0.00025772842664981106,
+                  "gamma": 0.0020833333333333333,
+                  "hits": 114,
+                  "interpretation_admitted_by_null_validation": true
+                }
+              },
+              "calibration": {
+                "allowed_exceedances_in_calibration": 18,
+                "binomial_failure_probability_bound": 0.0037775780445429624,
+                "critical_abs": 0.0018111692706731823,
+                "draws": 200000,
+                "gamma": 0.004166666666666667,
+                "numpy_order_index": 199981,
+                "order_rank_1based": 199982,
+                "tail_order_k": 19,
+                "tail_target": 0.00016339869281045753
+              },
+              "calibration_noise_sha256": "04c14b5c2aee298a6d51e78749ce6b400879faccfb60a3fc766c5534054a1a9b",
+              "calibration_noise_spread": 0.0040462507046836555,
+              "descriptive_MDE": {
+                "minus_effect_magnitude": 0.0020860939273963054,
+                "null_validation_required_for_interpretation": true,
+                "plus_effect": 0.0020919208905286896,
+                "scientific_or_distribution_free_MDE": false
+              },
+              "draws_executed": {
+                "alternative": 200000,
+                "calibration": 200000,
+                "validation": 200000
+              },
+              "minimum_direction_CP_lower": 9.835213651443526e-05,
+              "null_validated": true,
+              "status": "null_validated",
+              "streams": {
+                "alternative": {
+                  "calendar_entropy": [
+                    272403,
+                    6,
+                    2,
+                    0
+                  ],
+                  "pool": 272403,
+                  "seed_entropy": [
+                    272403,
+                    6,
+                    2,
+                    1
+                  ]
+                },
+                "calibration": {
+                  "calendar_entropy": [
+                    272401,
+                    6,
+                    2,
+                    0
+                  ],
+                  "pool": 272401,
+                  "seed_entropy": [
+                    272401,
+                    6,
+                    2,
+                    1
+                  ]
+                },
+                "validation": {
+                  "calendar_entropy": [
+                    272402,
+                    6,
+                    2,
+                    0
+                  ],
+                  "pool": 272402,
+                  "seed_entropy": [
+                    272402,
+                    6,
+                    2,
+                    1
+                  ]
+                }
+              },
+              "supports_conditional_target": false,
+              "validation": {
+                "CP_upper": 0.0001817518546675005,
+                "critical_value_retuned": false,
+                "draws": 200000,
+                "gamma": 0.004166666666666667,
+                "hits": 21,
+                "nominal_alpha": 0.00032679738562091506,
+                "rejection_frequency": 0.000105,
+                "validated": true
+              },
+              "validation_noise_sha256": "222d47c6c5fdf86c18360f747c2e7a1dca680529f17dceb6ceda9c7cc2aac733"
+            },
+            {
+              "R": 10,
+              "alternative_noise_sha256": "e4ed03f22683411e1f7bc446a2a48caa8cf39390c3cb8f6923e42888c97560e2",
+              "alternatives": {
+                "minus_delta": {
+                  "CP_lower": 1.1094607423206108e-05,
+                  "conditional_rejection_frequency": 4e-05,
+                  "draws": 200000,
+                  "effect_shift": -0.00025772842664981106,
+                  "gamma": 0.0020833333333333333,
+                  "hits": 8,
+                  "interpretation_admitted_by_null_validation": true
+                },
+                "plus_delta": {
+                  "CP_lower": 0.00021733098911272262,
+                  "conditional_rejection_frequency": 0.00032,
+                  "draws": 200000,
+                  "effect_shift": 0.00025772842664981106,
+                  "gamma": 0.0020833333333333333,
+                  "hits": 64,
+                  "interpretation_admitted_by_null_validation": true
+                }
+              },
+              "calibration": {
+                "allowed_exceedances_in_calibration": 18,
+                "binomial_failure_probability_bound": 0.0037775780445429624,
+                "critical_abs": 0.0015872371285840876,
+                "draws": 200000,
+                "gamma": 0.004166666666666667,
+                "numpy_order_index": 199981,
+                "order_rank_1based": 199982,
+                "tail_order_k": 19,
+                "tail_target": 0.00016339869281045753
+              },
+              "calibration_noise_sha256": "d5d818bb682947d9ebc237f110bf2f8ffe67141c12223b0ce79bb5784105a532",
+              "calibration_noise_spread": 0.0037391606942081606,
+              "descriptive_MDE": {
+                "minus_effect_magnitude": 0.0018101929136035964,
+                "null_validation_required_for_interpretation": true,
+                "plus_effect": 0.0018166158189997339,
+                "scientific_or_distribution_free_MDE": false
+              },
+              "draws_executed": {
+                "alternative": 200000,
+                "calibration": 200000,
+                "validation": 200000
+              },
+              "minimum_direction_CP_lower": 1.1094607423206108e-05,
+              "null_validated": true,
+              "status": "null_validated",
+              "streams": {
+                "alternative": {
+                  "calendar_entropy": [
+                    272403,
+                    10,
+                    2,
+                    0
+                  ],
+                  "pool": 272403,
+                  "seed_entropy": [
+                    272403,
+                    10,
+                    2,
+                    1
+                  ]
+                },
+                "calibration": {
+                  "calendar_entropy": [
+                    272401,
+                    10,
+                    2,
+                    0
+                  ],
+                  "pool": 272401,
+                  "seed_entropy": [
+                    272401,
+                    10,
+                    2,
+                    1
+                  ]
+                },
+                "validation": {
+                  "calendar_entropy": [
+                    272402,
+                    10,
+                    2,
+                    0
+                  ],
+                  "pool": 272402,
+                  "seed_entropy": [
+                    272402,
+                    10,
+                    2,
+                    1
+                  ]
+                }
+              },
+              "supports_conditional_target": false,
+              "validation": {
+                "CP_upper": 0.00014925736509349582,
+                "critical_value_retuned": false,
+                "draws": 200000,
+                "gamma": 0.004166666666666667,
+                "hits": 16,
+                "nominal_alpha": 0.00032679738562091506,
+                "rejection_frequency": 8e-05,
+                "validated": true
+              },
+              "validation_noise_sha256": "e832b35059c2c3a8258e21e392d9dbcdae42c086733414d6fdd5b3207a2173ca"
+            },
+            {
+              "R": 20,
+              "alternative_noise_sha256": "e9b4ad4d0f58307d90dca64a6a194bd991680f6d309ec7f5130754701fbb0d69",
+              "alternatives": {
+                "minus_delta": {
+                  "CP_lower": 6.880888425870484e-05,
+                  "conditional_rejection_frequency": 0.00013,
+                  "draws": 200000,
+                  "effect_shift": -0.00025772842664981106,
+                  "gamma": 0.0020833333333333333,
+                  "hits": 26,
+                  "interpretation_admitted_by_null_validation": true
+                },
+                "plus_delta": {
+                  "CP_lower": 0.0005205454001223684,
+                  "conditional_rejection_frequency": 0.000675,
+                  "draws": 200000,
+                  "effect_shift": 0.00025772842664981106,
+                  "gamma": 0.0020833333333333333,
+                  "hits": 135,
+                  "interpretation_admitted_by_null_validation": true
+                }
+              },
+              "calibration": {
+                "allowed_exceedances_in_calibration": 18,
+                "binomial_failure_probability_bound": 0.0037775780445429624,
+                "critical_abs": 0.0011825654460096721,
+                "draws": 200000,
+                "gamma": 0.004166666666666667,
+                "numpy_order_index": 199981,
+                "order_rank_1based": 199982,
+                "tail_order_k": 19,
+                "tail_target": 0.00016339869281045753
+              },
+              "calibration_noise_sha256": "c6e7a10058c5bbb30973d392ff8d59eb7f919b3a03c11964994a52ad8650705c",
+              "calibration_noise_spread": 0.0028410338456083192,
+              "descriptive_MDE": {
+                "minus_effect_magnitude": 0.0013592883211397805,
+                "null_validation_required_for_interpretation": true,
+                "plus_effect": 0.0013653980374000298,
+                "scientific_or_distribution_free_MDE": false
+              },
+              "draws_executed": {
+                "alternative": 200000,
+                "calibration": 200000,
+                "validation": 200000
+              },
+              "minimum_direction_CP_lower": 6.880888425870484e-05,
+              "null_validated": true,
+              "status": "null_validated",
+              "streams": {
+                "alternative": {
+                  "calendar_entropy": [
+                    272403,
+                    20,
+                    2,
+                    0
+                  ],
+                  "pool": 272403,
+                  "seed_entropy": [
+                    272403,
+                    20,
+                    2,
+                    1
+                  ]
+                },
+                "calibration": {
+                  "calendar_entropy": [
+                    272401,
+                    20,
+                    2,
+                    0
+                  ],
+                  "pool": 272401,
+                  "seed_entropy": [
+                    272401,
+                    20,
+                    2,
+                    1
+                  ]
+                },
+                "validation": {
+                  "calendar_entropy": [
+                    272402,
+                    20,
+                    2,
+                    0
+                  ],
+                  "pool": 272402,
+                  "seed_entropy": [
+                    272402,
+                    20,
+                    2,
+                    1
+                  ]
+                }
+              },
+              "supports_conditional_target": false,
+              "validation": {
+                "CP_upper": 0.00016886883202234295,
+                "critical_value_retuned": false,
+                "draws": 200000,
+                "gamma": 0.004166666666666667,
+                "hits": 19,
+                "nominal_alpha": 0.00032679738562091506,
+                "rejection_frequency": 9.5e-05,
+                "validated": true
+              },
+              "validation_noise_sha256": "87dca0bac29cceb43cc8e17e31f4ff685217f567e19cba26c0756e9aa0ec8b7b"
+            },
+            {
+              "R": 30,
+              "alternative_noise_sha256": "1ca931af117ca297e029e258fad805200d5295104546cab6f4db4a5a3b572e96",
+              "alternatives": {
+                "minus_delta": {
+                  "CP_lower": 8.711322268224579e-05,
+                  "conditional_rejection_frequency": 0.000155,
+                  "draws": 200000,
+                  "effect_shift": -0.00025772842664981106,
+                  "gamma": 0.0020833333333333333,
+                  "hits": 31,
+                  "interpretation_admitted_by_null_validation": true
+                },
+                "plus_delta": {
+                  "CP_lower": 0.0011221345877095573,
+                  "conditional_rejection_frequency": 0.001345,
+                  "draws": 200000,
+                  "effect_shift": 0.00025772842664981106,
+                  "gamma": 0.0020833333333333333,
+                  "hits": 269,
+                  "interpretation_admitted_by_null_validation": true
+                }
+              },
+              "calibration": {
+                "allowed_exceedances_in_calibration": 18,
+                "binomial_failure_probability_bound": 0.0037775780445429624,
+                "critical_abs": 0.0010207882584103733,
+                "draws": 200000,
+                "gamma": 0.004166666666666667,
+                "numpy_order_index": 199981,
+                "order_rank_1based": 199982,
+                "tail_order_k": 19,
+                "tail_target": 0.00016339869281045753
+              },
+              "calibration_noise_sha256": "f4daa0461278c22164d0129ae280aa50bc820f3c08562093271c8ee37f045585",
+              "calibration_noise_spread": 0.0021951699024783207,
+              "descriptive_MDE": {
+                "minus_effect_magnitude": 0.0011782624732133346,
+                "null_validation_required_for_interpretation": true,
+                "plus_effect": 0.0011855864703141567,
+                "scientific_or_distribution_free_MDE": false
+              },
+              "draws_executed": {
+                "alternative": 200000,
+                "calibration": 200000,
+                "validation": 200000
+              },
+              "minimum_direction_CP_lower": 8.711322268224579e-05,
+              "null_validated": true,
+              "status": "null_validated",
+              "streams": {
+                "alternative": {
+                  "calendar_entropy": [
+                    272403,
+                    30,
+                    2,
+                    0
+                  ],
+                  "pool": 272403,
+                  "seed_entropy": [
+                    272403,
+                    30,
+                    2,
+                    1
+                  ]
+                },
+                "calibration": {
+                  "calendar_entropy": [
+                    272401,
+                    30,
+                    2,
+                    0
+                  ],
+                  "pool": 272401,
+                  "seed_entropy": [
+                    272401,
+                    30,
+                    2,
+                    1
+                  ]
+                },
+                "validation": {
+                  "calendar_entropy": [
+                    272402,
+                    30,
+                    2,
+                    0
+                  ],
+                  "pool": 272402,
+                  "seed_entropy": [
+                    272402,
+                    30,
+                    2,
+                    1
+                  ]
+                }
+              },
+              "supports_conditional_target": false,
+              "validation": {
+                "CP_upper": 0.00014263033639118372,
+                "critical_value_retuned": false,
+                "draws": 200000,
+                "gamma": 0.004166666666666667,
+                "hits": 15,
+                "nominal_alpha": 0.00032679738562091506,
+                "rejection_frequency": 7.5e-05,
+                "validated": true
+              },
+              "validation_noise_sha256": "cac7885af4a597ff3160aaa234ecc2376aed8ead92947f63189c1112073dd9cd"
+            }
+          ],
+          "models": [
+            "CNN-1D + LSTM + atención temporal",
+            "GRU32"
+          ],
+          "original_mean_difference": 0.0002789151621697365,
+          "paired_seed_differences": [
+            0.000524459287716615,
+            6.935221273448276e-05,
+            0.00061933486958072,
+            -1.4611135703871195e-05,
+            0.00019604057652073585
+          ],
+          "seed_residual_inflation": 2.6523742964003643,
+          "sigma_d": 0.0002797856362691994,
+          "sigma_d_upper95_normal_assumption": 0.0006637510465779349,
+          "status": "empirical_DGP_defined"
+        }
+      ],
+      "power_MC_family_confidence": 0.95,
+      "resource_envelope_R": 30,
+      "seed_ids": [
+        273001,
+        273002,
+        273003,
+        273004,
+        273005
+      ],
+      "status": "ready",
+      "validation_MC_family_confidence": 0.95
+    },
+    "old": {
+      "achieved_final_power": null,
+      "calibration_MC_family_confidence": 0.95,
+      "calibration_total_absolute_tail_target": 0.00016339869281045753,
+      "cells_per_MC_family": 4,
+      "conditionally_supported_R": null,
+      "config": {
+        "R_values": [
+          6,
+          10,
+          20,
+          30
+        ],
+        "alpha": 0.05,
+        "alternative_draws": 200000,
+        "alternative_pool": 272403,
+        "batch_size": 2048,
+        "block_length": 7,
+        "calibration_draws": 200000,
+        "calibration_pool": 272401,
+        "family_mc_error": 0.05,
+        "power_target": 0.8,
+        "validation_draws": 200000,
+        "validation_pool": 272402
+      },
+      "dates": [
+        "2024-11-08",
+        "2024-11-09",
+        "2024-11-10",
+        "2024-11-11",
+        "2024-11-12",
+        "2024-11-13",
+        "2024-11-14",
+        "2024-11-15",
+        "2024-11-16",
+        "2024-11-17",
+        "2024-11-18",
+        "2024-11-19",
+        "2024-11-20",
+        "2024-11-21",
+        "2024-11-22",
+        "2024-11-23",
+        "2024-11-24",
+        "2024-11-25",
+        "2024-11-26",
+        "2024-11-27",
+        "2024-11-28",
+        "2024-11-29",
+        "2024-11-30",
+        "2024-12-01",
+        "2024-12-02",
+        "2024-12-03",
+        "2024-12-04",
+        "2024-12-05",
+        "2024-12-06",
+        "2024-12-07",
+        "2024-12-08",
+        "2024-12-09",
+        "2024-12-10",
+        "2024-12-11",
+        "2024-12-12",
+        "2024-12-13",
+        "2024-12-14",
+        "2024-12-15",
+        "2024-12-16",
+        "2024-12-17",
+        "2024-12-18",
+        "2024-12-19",
+        "2024-12-20",
+        "2024-12-21",
+        "2024-12-22",
+        "2024-12-23",
+        "2024-12-24",
+        "2024-12-25",
+        "2024-12-26",
+        "2024-12-27",
+        "2024-12-28",
+        "2024-12-29",
+        "2024-12-30"
+      ],
+      "delta": 0.00025772842664981106,
+      "final_R": null,
+      "gamma_calibration_per_cell": 0.0125,
+      "gamma_power_per_cell_direction": 0.00625,
+      "gamma_validation_per_cell": 0.0125,
+      "joint_three_family_confidence_claimed": false,
+      "model_names": [
+        "CNN-1D + LSTM + atención temporal",
+        "GRU32"
+      ],
+      "multiplicity_family_size": 153,
+      "nominal_alpha_per_comparison": 0.00032679738562091506,
+      "observed_pair_count": 1,
+      "pairs": [
+        {
+          "cells": [
+            {
+              "R": 6,
+              "alternative_noise_sha256": "50a2f51add2114ccffd584608bd5972e0871f02016ad90ca53b8831ae07be5e3",
+              "alternatives": {
+                "minus_delta": {
+                  "CP_lower": 0.00010200886418995595,
+                  "conditional_rejection_frequency": 0.000165,
+                  "draws": 200000,
+                  "effect_shift": -0.00025772842664981106,
+                  "gamma": 0.00625,
+                  "hits": 33,
+                  "interpretation_admitted_by_null_validation": true
+                },
+                "plus_delta": {
+                  "CP_lower": 1.0629898867926454e-05,
+                  "conditional_rejection_frequency": 3.5e-05,
+                  "draws": 200000,
+                  "effect_shift": 0.00025772842664981106,
+                  "gamma": 0.00625,
+                  "hits": 7,
+                  "interpretation_admitted_by_null_validation": true
+                }
+              },
+              "calibration": {
+                "allowed_exceedances_in_calibration": 20,
+                "binomial_failure_probability_bound": 0.011981426237361915,
+                "critical_abs": 0.0028109633132260073,
+                "draws": 200000,
+                "gamma": 0.0125,
+                "numpy_order_index": 199979,
+                "order_rank_1based": 199980,
+                "tail_order_k": 21,
+                "tail_target": 0.00016339869281045753
+              },
+              "calibration_noise_sha256": "ab41392c94ba48e982facdbd2d8d39872af6ffabec7ddfa965aa119c1e3523ca",
+              "calibration_noise_spread": 0.007002414667098106,
+              "descriptive_MDE": {
+                "minus_effect_magnitude": 0.003179388418142173,
+                "null_validation_required_for_interpretation": true,
+                "plus_effect": 0.0031905343955402777,
+                "scientific_or_distribution_free_MDE": false
+              },
+              "draws_executed": {
+                "alternative": 200000,
+                "calibration": 200000,
+                "validation": 200000
+              },
+              "minimum_direction_CP_lower": 1.0629898867926454e-05,
+              "null_validated": true,
+              "status": "null_validated",
+              "streams": {
+                "alternative": {
+                  "calendar_entropy": [
+                    272403,
+                    6,
+                    0,
+                    0
+                  ],
+                  "pool": 272403,
+                  "seed_entropy": [
+                    272403,
+                    6,
+                    0,
+                    1
+                  ]
+                },
+                "calibration": {
+                  "calendar_entropy": [
+                    272401,
+                    6,
+                    0,
+                    0
+                  ],
+                  "pool": 272401,
+                  "seed_entropy": [
+                    272401,
+                    6,
+                    0,
+                    1
+                  ]
+                },
+                "validation": {
+                  "calendar_entropy": [
+                    272402,
+                    6,
+                    0,
+                    0
+                  ],
+                  "pool": 272402,
+                  "seed_entropy": [
+                    272402,
+                    6,
+                    0,
+                    1
+                  ]
+                }
+              },
+              "supports_conditional_target": false,
+              "validation": {
+                "CP_upper": 0.00015038350572364528,
+                "critical_value_retuned": false,
+                "draws": 200000,
+                "gamma": 0.0125,
+                "hits": 18,
+                "nominal_alpha": 0.00032679738562091506,
+                "rejection_frequency": 9e-05,
+                "validated": true
+              },
+              "validation_noise_sha256": "1c996e48a5643b62a5a17ffd0906b36b8d17c2482be97d81d9f4db1f4c1fd108"
+            },
+            {
+              "R": 10,
+              "alternative_noise_sha256": "fff558bde90e306d85fc333a152e4ed018be2cb2ec7aa08b589ee4e864376943",
+              "alternatives": {
+                "minus_delta": {
+                  "CP_lower": 0.0001745696147484605,
+                  "conditional_rejection_frequency": 0.000255,
+                  "draws": 200000,
+                  "effect_shift": -0.00025772842664981106,
+                  "gamma": 0.00625,
+                  "hits": 51,
+                  "interpretation_admitted_by_null_validation": true
+                },
+                "plus_delta": {
+                  "CP_lower": 1.623297890456024e-05,
+                  "conditional_rejection_frequency": 4.5e-05,
+                  "draws": 200000,
+                  "effect_shift": 0.00025772842664981106,
+                  "gamma": 0.00625,
+                  "hits": 9,
+                  "interpretation_admitted_by_null_validation": true
+                }
+              },
+              "calibration": {
+                "allowed_exceedances_in_calibration": 20,
+                "binomial_failure_probability_bound": 0.011981426237361915,
+                "critical_abs": 0.002408614040472687,
+                "draws": 200000,
+                "gamma": 0.0125,
+                "numpy_order_index": 199979,
+                "order_rank_1based": 199980,
+                "tail_order_k": 21,
+                "tail_target": 0.00016339869281045753
+              },
+              "calibration_noise_sha256": "e07e17cf31e6373928b5f50230e1b2a2abcf8145a556d7503078fb9625b495d3",
+              "calibration_noise_spread": 0.005431222570703475,
+              "descriptive_MDE": {
+                "minus_effect_magnitude": 0.002728968543001663,
+                "null_validation_required_for_interpretation": true,
+                "plus_effect": 0.0027487369372712635,
+                "scientific_or_distribution_free_MDE": false
+              },
+              "draws_executed": {
+                "alternative": 200000,
+                "calibration": 200000,
+                "validation": 200000
+              },
+              "minimum_direction_CP_lower": 1.623297890456024e-05,
+              "null_validated": true,
+              "status": "null_validated",
+              "streams": {
+                "alternative": {
+                  "calendar_entropy": [
+                    272403,
+                    10,
+                    0,
+                    0
+                  ],
+                  "pool": 272403,
+                  "seed_entropy": [
+                    272403,
+                    10,
+                    0,
+                    1
+                  ]
+                },
+                "calibration": {
+                  "calendar_entropy": [
+                    272401,
+                    10,
+                    0,
+                    0
+                  ],
+                  "pool": 272401,
+                  "seed_entropy": [
+                    272401,
+                    10,
+                    0,
+                    1
+                  ]
+                },
+                "validation": {
+                  "calendar_entropy": [
+                    272402,
+                    10,
+                    0,
+                    0
+                  ],
+                  "pool": 272402,
+                  "seed_entropy": [
+                    272402,
+                    10,
+                    0,
+                    1
+                  ]
+                }
+              },
+              "supports_conditional_target": false,
+              "validation": {
+                "CP_upper": 0.00013134463634909764,
+                "critical_value_retuned": false,
+                "draws": 200000,
+                "gamma": 0.0125,
+                "hits": 15,
+                "nominal_alpha": 0.00032679738562091506,
+                "rejection_frequency": 7.5e-05,
+                "validated": true
+              },
+              "validation_noise_sha256": "3d586a9aa537d33ed0c64520c9a67a2630c983431058dc862c29bd9d5e9d5880"
+            },
+            {
+              "R": 20,
+              "alternative_noise_sha256": "82f8ede606f904707144e30c12fa0b904de4850582a0b68c07ef6f6e9fa6d053",
+              "alternatives": {
+                "minus_delta": {
+                  "CP_lower": 0.00037077050463660375,
+                  "conditional_rejection_frequency": 0.000485,
+                  "draws": 200000,
+                  "effect_shift": -0.00025772842664981106,
+                  "gamma": 0.00625,
+                  "hits": 97,
+                  "interpretation_admitted_by_null_validation": true
+                },
+                "plus_delta": {
+                  "CP_lower": 0.0001745696147484605,
+                  "conditional_rejection_frequency": 0.000255,
+                  "draws": 200000,
+                  "effect_shift": 0.00025772842664981106,
+                  "gamma": 0.00625,
+                  "hits": 51,
+                  "interpretation_admitted_by_null_validation": true
+                }
+              },
+              "calibration": {
+                "allowed_exceedances_in_calibration": 20,
+                "binomial_failure_probability_bound": 0.011981426237361915,
+                "critical_abs": 0.001800317180677717,
+                "draws": 200000,
+                "gamma": 0.0125,
+                "numpy_order_index": 199979,
+                "order_rank_1based": 199980,
+                "tail_order_k": 21,
+                "tail_target": 0.00016339869281045753
+              },
+              "calibration_noise_sha256": "3384b8375c6c9b965cf865da9869ba75cfd0b3d47569401fd4bc74e74c9320bc",
+              "calibration_noise_spread": 0.004616957462042366,
+              "descriptive_MDE": {
+                "minus_effect_magnitude": 0.0020852820642242352,
+                "null_validation_required_for_interpretation": true,
+                "plus_effect": 0.0021121074086475865,
+                "scientific_or_distribution_free_MDE": false
+              },
+              "draws_executed": {
+                "alternative": 200000,
+                "calibration": 200000,
+                "validation": 200000
+              },
+              "minimum_direction_CP_lower": 0.0001745696147484605,
+              "null_validated": true,
+              "status": "null_validated",
+              "streams": {
+                "alternative": {
+                  "calendar_entropy": [
+                    272403,
+                    20,
+                    0,
+                    0
+                  ],
+                  "pool": 272403,
+                  "seed_entropy": [
+                    272403,
+                    20,
+                    0,
+                    1
+                  ]
+                },
+                "calibration": {
+                  "calendar_entropy": [
+                    272401,
+                    20,
+                    0,
+                    0
+                  ],
+                  "pool": 272401,
+                  "seed_entropy": [
+                    272401,
+                    20,
+                    0,
+                    1
+                  ]
+                },
+                "validation": {
+                  "calendar_entropy": [
+                    272402,
+                    20,
+                    0,
+                    0
+                  ],
+                  "pool": 272402,
+                  "seed_entropy": [
+                    272402,
+                    20,
+                    0,
+                    1
+                  ]
+                }
+              },
+              "supports_conditional_target": false,
+              "validation": {
+                "CP_upper": 0.0002656664305916601,
+                "critical_value_retuned": false,
+                "draws": 200000,
+                "gamma": 0.0125,
+                "hits": 37,
+                "nominal_alpha": 0.00032679738562091506,
+                "rejection_frequency": 0.000185,
+                "validated": true
+              },
+              "validation_noise_sha256": "935381d4982efec657e2c72d242b33a72502dd619b527a531db7323859870291"
+            },
+            {
+              "R": 30,
+              "alternative_noise_sha256": "7372885a3f88eb795b90e2237ec274d335f071b3fa6175c68dbfd22373c584a8",
+              "alternatives": {
+                "minus_delta": {
+                  "CP_lower": 0.0002288506003602797,
+                  "conditional_rejection_frequency": 0.00032,
+                  "draws": 200000,
+                  "effect_shift": -0.00025772842664981106,
+                  "gamma": 0.00625,
+                  "hits": 64,
+                  "interpretation_admitted_by_null_validation": true
+                },
+                "plus_delta": {
+                  "CP_lower": 0.00018283819561507197,
+                  "conditional_rejection_frequency": 0.000265,
+                  "draws": 200000,
+                  "effect_shift": 0.00025772842664981106,
+                  "gamma": 0.00625,
+                  "hits": 53,
+                  "interpretation_admitted_by_null_validation": true
+                }
+              },
+              "calibration": {
+                "allowed_exceedances_in_calibration": 20,
+                "binomial_failure_probability_bound": 0.011981426237361915,
+                "critical_abs": 0.001683696140064621,
+                "draws": 200000,
+                "gamma": 0.0125,
+                "numpy_order_index": 199979,
+                "order_rank_1based": 199980,
+                "tail_order_k": 21,
+                "tail_target": 0.00016339869281045753
+              },
+              "calibration_noise_sha256": "f199a617a25d17ecc03d308bfec486f7b1af32693af33aeac08eb9e0ead810c1",
+              "calibration_noise_spread": 0.004285832485086762,
+              "descriptive_MDE": {
+                "minus_effect_magnitude": 0.001955981165435547,
+                "null_validation_required_for_interpretation": true,
+                "plus_effect": 0.001982002138294634,
+                "scientific_or_distribution_free_MDE": false
+              },
+              "draws_executed": {
+                "alternative": 200000,
+                "calibration": 200000,
+                "validation": 200000
+              },
+              "minimum_direction_CP_lower": 0.00018283819561507197,
+              "null_validated": true,
+              "status": "null_validated",
+              "streams": {
+                "alternative": {
+                  "calendar_entropy": [
+                    272403,
+                    30,
+                    0,
+                    0
+                  ],
+                  "pool": 272403,
+                  "seed_entropy": [
+                    272403,
+                    30,
+                    0,
+                    1
+                  ]
+                },
+                "calibration": {
+                  "calendar_entropy": [
+                    272401,
+                    30,
+                    0,
+                    0
+                  ],
+                  "pool": 272401,
+                  "seed_entropy": [
+                    272401,
+                    30,
+                    0,
+                    1
+                  ]
+                },
+                "validation": {
+                  "calendar_entropy": [
+                    272402,
+                    30,
+                    0,
+                    0
+                  ],
+                  "pool": 272402,
+                  "seed_entropy": [
+                    272402,
+                    30,
+                    0,
+                    1
+                  ]
+                }
+              },
+              "supports_conditional_target": false,
+              "validation": {
+                "CP_upper": 0.00016911149205324483,
+                "critical_value_retuned": false,
+                "draws": 200000,
+                "gamma": 0.0125,
+                "hits": 21,
+                "nominal_alpha": 0.00032679738562091506,
+                "rejection_frequency": 0.000105,
+                "validated": true
+              },
+              "validation_noise_sha256": "0465a0218d85757ee6de781ce64ad960e132958c7d8fa5ffddf1c5fbbb88ab78"
+            }
+          ],
+          "models": [
+            "CNN-1D + LSTM + atención temporal",
+            "GRU32"
+          ],
+          "original_mean_difference": 0.000258586108194113,
+          "paired_seed_differences": [
+            0.00026975403970972865,
+            -5.666412379531655e-05,
+            0.0004287234865976027,
+            0.0006441548223194422,
+            6.9623161391080615e-06
+          ],
+          "seed_residual_inflation": 2.6523742964003643,
+          "sigma_d": 0.0002917327222965137,
+          "sigma_d_upper95_normal_assumption": 0.000692093784110596,
+          "status": "empirical_DGP_defined"
+        }
+      ],
+      "power_MC_family_confidence": 0.95,
+      "resource_envelope_R": 30,
+      "seed_ids": [
+        271901,
+        271902,
+        271903,
+        271904,
+        271905
+      ],
+      "status": "ready",
+      "validation_MC_family_confidence": 0.95
+    }
+  },
+  "groups_pooled": false,
+  "interpretation": "Separate conditional empirical-DGP Monte Carlo families; no final-study power claim",
+  "version": "e2-scientific-public-v1"
+}
