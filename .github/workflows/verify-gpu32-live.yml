@@ -1,0 +1,61 @@
+name: Verificar guía GPU y notebook fijado
+on:
+  push:
+    branches: [verify-gpu32-live-20261109]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  verify-live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: 27b002717081e561ebfdb9c8aa44de505b54a35b
+          persist-credentials: false
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: books-site-27b002717081e561ebfdb9c8aa44de505b54a35b-1
+          path: _build/site/
+          github-token: ${{ github.token }}
+          run-id: 42696264267
+      - name: Verificar manifiesto y entradas de los tres libros
+        run: |
+          set -euo pipefail
+          python scripts/safe_publish_books.py verify-live --source-commit 27b002717081e561ebfdb9c8aa44de505b54a35b --url https://jassan-bit.github.io/DeepLearning_202630/ --attempts 24 --interval 30 | tee live-verification.json
+      - name: Comprobar capítulo y recibos nuevos por hash
+        run: |
+          python - <<'PY'
+          import hashlib,json,pathlib,urllib.request
+          base="https://jassan-bit.github.io/DeepLearning_202630/"
+          paths=["entregable2/sections/30_piloto_nube.html", "entregable2/sections/31_optimizacion_nube.html", "entregable2/sections/32_ejecucion_gpu.html"]+[path.relative_to(pathlib.Path("_build/site")).as_posix() for path in sorted(pathlib.Path("_build/site/entregable2/_static/compute_public_20261109").iterdir()) if path.is_file()]
+          for path in paths:
+              expected=hashlib.sha256((pathlib.Path("_build/site")/path).read_bytes()).hexdigest()
+              request=urllib.request.Request(base+path+"?source_check=27b002717081e561ebfdb9c8aa44de505b54a35b",headers={"Cache-Control":"no-cache","Accept-Encoding":"identity"})
+              with urllib.request.urlopen(request,timeout=30) as response:
+                  actual=hashlib.sha256(response.read()).hexdigest()
+              if actual!=expected:
+                  raise SystemExit("Public file differs: "+path)
+              print("SHA256 verified",path,actual)
+          PY
+      - name: Verificar notebook y código inmutables por hash
+        run: |
+          python - <<'PYVERIFY'
+          import hashlib,pathlib,urllib.request
+          root="https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/"
+          for commit,path in [("22b4b081f54fcbf2fb26a298fff59f5f01c7b7de","notebooks/entregable2_gpu.ipynb"),("728277517be653be0d0ef10fb677a68adec22bb6","scripts/e2_cuda_training.py")]:
+              expected=hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest()
+              request=urllib.request.Request(root+commit+"/"+path,headers={"Accept-Encoding":"identity"})
+              with urllib.request.urlopen(request,timeout=30) as response:
+                  actual=hashlib.sha256(response.read()).hexdigest()
+              if actual!=expected:raise SystemExit("Pinned public source differs: "+path)
+              print("Pinned SHA256 verified",path,actual)
+          PYVERIFY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: gpu32-live-verification
+          path: live-verification.json
+          if-no-files-found: ignore
+
