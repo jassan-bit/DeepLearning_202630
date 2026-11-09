@@ -1,5 +1,7 @@
 # 26. Registro por receta: fuentes, NAS, HPO e integración
 
+**Decisión posterior de diseño (09/11/2026):** [§27 fija seis variantes NAS, cinco cuerpos publicados, rangos HPO y presupuesto para Codex](27_nas_hpo_presupuesto.md). La implementación de nuevas variantes, el perfilado de horas y el preregistro completo siguen pendientes; el contenido siguiente conserva el alcance de su corte anterior.
+
 **Corte documental: 09/11/2026.** Esta tabla entrega el inventario por modelo previsto en [§25](25_matriz_cierre.md), R01 y R03–R06. Se cotejaron fichas, fábrica y recibos del [snapshot eca22e8](https://github.com/jassan-bit/DeepLearning_202630/blob/eca22e87085edca79e53f60196c8f64458659b5d/book_e2/sections/23_implementacion_recetas.md). El registro distingue una receta implementada de una receta experimental congelada: **no se ha adjudicado NAS, cerrado HPO ni ejecutado un benchmark nuevo**.
 
 [Registro estructurado JSON](../_static/recipe_register_20261109/registry.json) · {download}`Descargar registro por receta <../_static/recipe_register_20261109/registry.json>`.

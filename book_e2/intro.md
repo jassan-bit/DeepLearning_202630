@@ -1,5 +1,7 @@
 # Proyecto Final de Deep Learning: Entregable 2
 
+**Diseño NAS/HPO para Codex:** [decisiones por receta, rangos y presupuesto contable](sections/27_nas_hpo_presupuesto.md). Seis variantes NAS y cinco cuerpos publicados fijos; planes generados sin entrenamiento. Horas pendientes de perfilado.
+
 **Registro por modelo:** [fuentes, adaptaciones, NAS, HPO, parámetros e integración](sections/26_registro_recetas.md). Once recetas identificadas y siete referencias separadas; decisiones experimentales aún abiertas.
 
 **Preparación del benchmark:** [matriz de requisitos, decisiones y evidencia de cierre](sections/25_matriz_cierre.md). Orden de trabajo conforme a la guía; distingue avances parciales y pendientes antes de entrenar.
