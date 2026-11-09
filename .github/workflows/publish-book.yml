@@ -108,6 +108,8 @@ jobs:
           python -m unittest discover -s tests -p 'test_e2_cpu*.py' -v
           python -m unittest discover -s tests -p 'test_e2_calibrated*.py' -v
           python -m unittest discover -s tests -p 'test_e2_optimized*.py' -v
+          python -m unittest discover -s tests -p 'test_e2_calibration_report.py' -v
+          python -m unittest discover -s tests -p 'test_e2_compute_evidence.py' -v
   publish:
     needs: [build, nas-mechanisms, training-integration]
     # Authorized activation after gh-pages protection and a verified backup.
