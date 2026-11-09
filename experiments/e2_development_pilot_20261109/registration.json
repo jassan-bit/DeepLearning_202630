@@ -1,0 +1,104 @@
+{
+  "version": "e2-development-pilot-registration-v1",
+  "registered_at_utc": "2026-11-09T16:06:55.531812+00:00",
+  "source_base_commit": "adc2ebec6f29f80889e29e54e91fb12cc9a92703",
+  "source_protocol_sha256": "e0030c990a4afa15665aec254211b0d9e680e9ac5d92dfb8094e43e965152abe",
+  "purpose": "Measure remote Codex CPU feasibility and conditional seed variance before a scientific HPO/NAS campaign.",
+  "status": "registered_before_model_fits",
+  "hardware": {
+    "provider": "Codex Cloud attached server",
+    "device": "cpu",
+    "cpu_quota_vcpus": 4,
+    "memory_bytes": 17179869184,
+    "gpu_visible": false,
+    "parallel_fits": 1,
+    "intraop_threads": 4,
+    "interop_threads": 1
+  },
+  "source_files": {
+    "results/eda_development/daily_market_development.csv": "bf6bb5160af924aef6a15c3684aeae932df3017e8639888bb7e91ce787900171",
+    "results/eda_development/daily_volatility_development.csv": "20b96374a659eb87dadfa68aa3d6b6b5fb6bea5b10eebe6f2c186ad69861844a"
+  },
+  "source_repository": "jassan-bit/DeepLearning_202630",
+  "data_audit_disclosure": "Read-only audit may verify complete authorised 2023-2024 derivatives; training admission is phase-specific. No 2025-2026 market archive or labels are authorised by this pilot.",
+  "target": "Population standard deviation ddof0 of seven daily log returns, unannualized; not intraday realised volatility.",
+  "resources": {
+    "origin": "2023-10-01",
+    "admitted_end": "2023-09-23",
+    "models": "All 14 neural reference architectures plus largest TimesNet w256-256-256:b111; fixed published bodies remain unchanged.",
+    "fixed_recipe": "Protocol27 noise_and_resource_pilot_fixed_nonarchitecture; no HPO winner or selection on pilot model scores.",
+    "seed": 271601,
+    "max_epochs_per_stage": 200,
+    "patience_epochs": 20,
+    "internal_stage_wall_seconds": 150,
+    "external_worker_wall_seconds": 180,
+    "sampled_worker_group_rss_limit_bytes": 12884901888,
+    "amendment": "Operational reconnaissance with a smaller external process cap. Does not replace the registered full-budget noise/resource pilot or the 7200s full scientific stage cap.",
+    "failures": "Record terminal error/censoring, partial cost and no replacement seed/trial; unknown steps remain null."
+  },
+  "preselection_variance": {
+    "models": [
+      "TimeMixer",
+      "CNN-1D + LSTM + atención temporal",
+      "GRU32"
+    ],
+    "recipe": "Frozen protocol27 nonarchitecture defaults and reference architectures; not recipes selected by October HPO/NAS.",
+    "amendment": "A preselection reference pilot permitted by guide9.2. The original postselection power-pilot gate remains pending; report conditional projections, not final achieved power.",
+    "epoch_selection_origin": "2024-10-01",
+    "epoch_selection_train_end": "2024-06-25",
+    "epoch_selection_validation": [
+      "2024-07-03",
+      "2024-09-23"
+    ],
+    "epoch_selection_rule": "Five fresh selection fits per model. Ceil median of strict best supervised epochs across all five seeds; no architecture/HPO selection.",
+    "seed_pool": [
+      271901,
+      271902,
+      271903,
+      271904,
+      271905
+    ],
+    "refit_origin": "2024-11-08",
+    "fresh_refit_training_end": "2024-10-31",
+    "evaluation": [
+      "2024-11-08",
+      "2024-12-30"
+    ],
+    "evaluation_days": 53,
+    "refit_rule": "New model/optimizer/train-only scaler for each seed at fixed epochs; predict-before-observe daily; model fingerprint invariant.",
+    "max_epochs_per_stage": 200,
+    "patience_epochs": 20,
+    "internal_stage_wall_seconds": 150,
+    "external_worker_wall_seconds": 180,
+    "paired_metric": "Per-seed RMSE difference, original sigma units; common seeds and dates.",
+    "delta": 0.00025772842664981106,
+    "multiplicity": {
+      "primary_family": "All unordered pairs among 18 systems on primary RMSE",
+      "m": 153,
+      "alpha": 0.05,
+      "adjustment": "Bonferroni sizing bound, distinct from final rank/MCS inference"
+    },
+    "power_target": 0.8,
+    "R_scenarios": [
+      6,
+      10,
+      20,
+      30
+    ],
+    "simulation": {
+      "draws": 5000,
+      "seed": 272001,
+      "date_block_days": 7,
+      "sensitivity_scope": "Seed resampling and temporal-block sensitivity conditional on 53 development dates and reference recipes; not actual power of final 608-date inference."
+    },
+    "R_final_gate": "Do not set protocol final_seed_count from this reference-only pilot; report conditional R recommendation/MDE and retain original postselection gate.",
+    "wall_estimate_scope": "Profile and report measured pilot wall time plus cap-based campaign bounds. Do not extrapolate reference timing as validated total scientific campaign hours."
+  },
+  "k_gate": {
+    "original_full_noise_pilot": "12 fixed architectures x5 seeds x6 families, full budget, absent unless explicitly executed.",
+    "when_rank_stability_unavailable": "Conservative operational k40; disclose rule not fully evaluated and no guarantee of global optimum."
+  },
+  "publication": "Commit this registration to GitHub before market fitting, then publish code, receipts, decisions and limitations in the JBook.",
+  "excluded": "Full18-trial HPO,1000-design NAS,final refits,608-date evaluation,negative controls,robustness,calibration,interpretability and independent reproduction."
+}
+
