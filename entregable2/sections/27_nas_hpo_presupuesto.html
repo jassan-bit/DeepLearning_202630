@@ -65,7 +65,7 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="Referencias de contexto y revisión E2" href="referencias.html" />
+    <link rel="next" title="28. Fábricas NAS implementadas y verificadas sintéticamente" href="28_fabricas_nas.html" />
     <link rel="prev" title="26. Registro por receta: fuentes, NAS, HPO e integración" href="26_registro_recetas.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
@@ -234,6 +234,7 @@
 <li class="toctree-l1"><a class="reference internal" href="25_matriz_cierre.html">25. Matriz de cierre antes del benchmark</a></li>
 <li class="toctree-l1"><a class="reference internal" href="26_registro_recetas.html">26. Registro por receta: fuentes, NAS, HPO e integración</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">27. Decisiones NAS, rangos HPO y presupuesto para Codex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="28_fabricas_nas.html">28. Fábricas NAS implementadas y verificadas sintéticamente</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
 </ul>
 
@@ -403,6 +404,7 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="decisiones-nas-rangos-hpo-y-presupuesto-para-codex">
 <h1>27. Decisiones NAS, rangos HPO y presupuesto para Codex<a class="headerlink" href="#decisiones-nas-rangos-hpo-y-presupuesto-para-codex" title="Link to this heading">#</a></h1>
+<p><strong>Implementación posterior:</strong> <a class="reference internal" href="28_fabricas_nas.html"><span class="std std-doc">§28 implementa las seis fábricas NAS y el enlace de configuraciones</span></a>, con comprobaciones sintéticas y sin entrenamiento. Las condiciones de ejecución que siguen describen el corte de diseño; la integración del ciclo completo y el perfilado siguen pendientes.</p>
 <p><strong>Diseño E2-NAS-HPO-20261109-v1 · 09/11/2026.</strong> Esta decisión técnica resuelve las filas NAS y los dominios HPO del <a class="reference internal" href="26_registro_recetas.html"><span class="std std-doc">registro §26</span></a>. Se basa en §§11–14 de la guía aportada y sus fuentes documentadas. Los valores numéricos del ajuste son decisiones metodológicas de este diseño, no valores impuestos por el PDF.</p>
 <p><a class="reference download internal" download="" href="../_downloads/5c65d8b0daecf51e641551f3dc09bdf8/protocol.json"><span class="xref download myst">Protocolo JSON</span></a> · <a class="reference download internal" download="" href="../_downloads/2448c2bf1a75b099bc12db81d05db8ed/budget_summary.json"><span class="xref download myst">Resumen calculado del presupuesto</span></a> · <a class="reference download internal" download="" href="../_downloads/506ed640d0b884ecc679a826158bf68f/architectures.csv"><code class="xref download docutils literal notranslate"><span class="pre">Espacio</span> <span class="pre">común</span> <span class="pre">de</span> <span class="pre">1.000</span> <span class="pre">arquitecturas</span></code></a> · <a class="reference download internal" download="" href="../_downloads/298eb50d58067eb14a86df1ddec3a684/hpo_candidates.json"><code class="xref download docutils literal notranslate"><span class="pre">252</span> <span class="pre">configuraciones</span> <span class="pre">HPO</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">14</span> <span class="pre">redes</span></code></a>.</p>
 <p><strong>Este corte sólo genera planes.</strong> No importa modelos ni lee datos de mercado. No implementa todavía las seis nuevas fábricas NAS, no sustituye el preregistro inferencial completo y no ejecuta ajustes. Las implementaciones, parámetros y recibos de §§23–26 conservan su identidad histórica.</p>
@@ -724,11 +726,11 @@ python<span class="w"> </span>scripts/e2_search_plan.py<span class="w"> </span><
       </div>
     </a>
     <a class="right-next"
-       href="referencias.html"
+       href="28_fabricas_nas.html"
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">Referencias de contexto y revisión E2</p>
+        <p class="prev-next-title">28. Fábricas NAS implementadas y verificadas sintéticamente</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

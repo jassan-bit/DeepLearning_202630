@@ -1,5 +1,7 @@
 # 27. Decisiones NAS, rangos HPO y presupuesto para Codex
 
+**Implementación posterior:** [§28 implementa las seis fábricas NAS y el enlace de configuraciones](28_fabricas_nas.md), con comprobaciones sintéticas y sin entrenamiento. Las condiciones de ejecución que siguen describen el corte de diseño; la integración del ciclo completo y el perfilado siguen pendientes.
+
 **Diseño E2-NAS-HPO-20261109-v1 · 09/11/2026.** Esta decisión técnica resuelve las filas NAS y los dominios HPO del [registro §26](26_registro_recetas.md). Se basa en §§11–14 de la guía aportada y sus fuentes documentadas. Los valores numéricos del ajuste son decisiones metodológicas de este diseño, no valores impuestos por el PDF.
 
 [Protocolo JSON](../_static/search_protocol_20261109/protocol.json) · [Resumen calculado del presupuesto](../_static/search_protocol_20261109/budget_summary.json) · {download}`Espacio común de 1.000 arquitecturas <../_static/search_protocol_20261109/architectures.csv>` · {download}`252 configuraciones HPO de las 14 redes <../_static/search_protocol_20261109/hpo_candidates.json>`.
