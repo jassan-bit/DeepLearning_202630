@@ -1,5 +1,7 @@
 # 11. HPO y equidad para el catálogo vigente
 
+**Decisión posterior de diseño (09/11/2026):** [§27 fija seis variantes NAS, cinco cuerpos publicados, rangos HPO y presupuesto para Codex](27_nas_hpo_presupuesto.md). La implementación de nuevas variantes, el perfilado de horas y el preregistro completo siguen pendientes; el contenido siguiente conserva el alcance de su corte anterior.
+
 **Guía original cotejada:** [correcciones y pendientes por página](20_contraste_guia.md). La cuadrícula reducida no cubre el espacio mínimo; controles F2a, NAS condicional y batería estadística requieren completar el plan antes de entrenar.
 
 

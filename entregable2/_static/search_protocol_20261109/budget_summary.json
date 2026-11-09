@@ -1,0 +1,915 @@
+{
+  "protocol_id": "E2-NAS-HPO-20261109-v1",
+  "protocol_canonical_sha256": "1bb78579f34376fdc02e83e07247f44edc9c6b69493adee296eab9986dcf19b1",
+  "planner_version": "e2-search-plan-v1",
+  "fits_executed": 0,
+  "scope": "search, resource/noise pilots, power pilot and selected-model refits only; not total scientific campaign",
+  "k_is_not_yet_selected": true,
+  "R_is_not_yet_selected": true,
+  "noise_pilot_architecture_patterns": [
+    {
+      "pattern_id": "w64-64-64:b010",
+      "widths": [
+        64,
+        64,
+        64
+      ],
+      "dropout_pattern": [
+        0,
+        1,
+        0
+      ],
+      "dropout_rate": 0.2,
+      "is_reference": true
+    },
+    {
+      "pattern_id": "w16-16-16:b000",
+      "widths": [
+        16,
+        16,
+        16
+      ],
+      "dropout_pattern": [
+        0,
+        0,
+        0
+      ],
+      "dropout_rate": 0.2,
+      "is_reference": false
+    },
+    {
+      "pattern_id": "w256-256-256:b111",
+      "widths": [
+        256,
+        256,
+        256
+      ],
+      "dropout_pattern": [
+        1,
+        1,
+        1
+      ],
+      "dropout_rate": 0.2,
+      "is_reference": false
+    },
+    {
+      "pattern_id": "w16-64-64:b100",
+      "widths": [
+        16,
+        64,
+        64
+      ],
+      "dropout_pattern": [
+        1,
+        0,
+        0
+      ],
+      "dropout_rate": 0.2,
+      "is_reference": false
+    },
+    {
+      "pattern_id": "w32-16-16:b101",
+      "widths": [
+        32,
+        16,
+        16
+      ],
+      "dropout_pattern": [
+        1,
+        0,
+        1
+      ],
+      "dropout_rate": 0.2,
+      "is_reference": false
+    },
+    {
+      "pattern_id": "w32-64-64:b001",
+      "widths": [
+        32,
+        64,
+        64
+      ],
+      "dropout_pattern": [
+        0,
+        0,
+        1
+      ],
+      "dropout_rate": 0.2,
+      "is_reference": false
+    },
+    {
+      "pattern_id": "w64-32-16:b011",
+      "widths": [
+        64,
+        32,
+        16
+      ],
+      "dropout_pattern": [
+        0,
+        1,
+        1
+      ],
+      "dropout_rate": 0.2,
+      "is_reference": false
+    },
+    {
+      "pattern_id": "w64-32-128:b001",
+      "widths": [
+        64,
+        32,
+        128
+      ],
+      "dropout_pattern": [
+        0,
+        0,
+        1
+      ],
+      "dropout_rate": 0.2,
+      "is_reference": false
+    },
+    {
+      "pattern_id": "w128-16-64:b110",
+      "widths": [
+        128,
+        16,
+        64
+      ],
+      "dropout_pattern": [
+        1,
+        1,
+        0
+      ],
+      "dropout_rate": 0.2,
+      "is_reference": false
+    },
+    {
+      "pattern_id": "w128-128-32:b110",
+      "widths": [
+        128,
+        128,
+        32
+      ],
+      "dropout_pattern": [
+        1,
+        1,
+        0
+      ],
+      "dropout_rate": 0.2,
+      "is_reference": false
+    },
+    {
+      "pattern_id": "w256-32-64:b001",
+      "widths": [
+        256,
+        32,
+        64
+      ],
+      "dropout_pattern": [
+        0,
+        0,
+        1
+      ],
+      "dropout_rate": 0.2,
+      "is_reference": false
+    },
+    {
+      "pattern_id": "w256-256-64:b111",
+      "widths": [
+        256,
+        256,
+        64
+      ],
+      "dropout_pattern": [
+        1,
+        1,
+        1
+      ],
+      "dropout_rate": 0.2,
+      "is_reference": false
+    }
+  ],
+  "scenarios": [
+    {
+      "scenario": {
+        "selection_origins": 11,
+        "outer_cv_origins": 10,
+        "final_selection_origins": 1,
+        "k": 20,
+        "final_seeds_R": 6,
+        "nas_models": 6,
+        "neural_models_with_references": 14,
+        "resource_scenario_not_final_seed_decision": true
+      },
+      "full_training_phases": {
+        "hpo": {
+          "supervised": 5544,
+          "auxiliary": 792,
+          "total": 6336
+        },
+        "nas_phase2_upper_bound": {
+          "supervised": 6930,
+          "auxiliary": 2310,
+          "total": 9240
+        },
+        "neural_refits": {
+          "supervised": 924,
+          "auxiliary": 132,
+          "total": 1056
+        },
+        "noise_pilot_full_global": {
+          "supervised": 360,
+          "auxiliary": 120,
+          "total": 480
+        },
+        "fixed_neural_resource_profiles_global": {
+          "supervised": 8,
+          "auxiliary": 0,
+          "total": 8
+        },
+        "power_pilot_non_sae_models_global": {
+          "supervised": 15,
+          "auxiliary": 0,
+          "total": 15
+        }
+      },
+      "short_training_phases": {
+        "nas_phase1": {
+          "supervised": 66000,
+          "auxiliary": 22000,
+          "total": 88000
+        },
+        "noise_pilot_short_global": {
+          "supervised": 72,
+          "auxiliary": 24,
+          "total": 96
+        }
+      },
+      "full_phase_total": 17135,
+      "short_phase_total": 88096,
+      "classical_adjustments": {
+        "ridge_hpo": 198,
+        "arima_hpo": 198,
+        "deterministic_refits": 22,
+        "resource_profiling": 2,
+        "total": 420,
+        "seasonal_period_scores_not_fits": 33,
+        "persistence_parameter_fits": 0
+      },
+      "scope": "Search, global pilots/reference profiles and refits only. Counts are upper bounds, not observed work.",
+      "excluded": [
+        "diagnostic controls",
+        "robustness",
+        "ablations",
+        "calibration-specific refits",
+        "interpretability",
+        "environment setup"
+      ],
+      "limits": [
+        "Power pilot names declared non-SAE models; no auxiliary cost is hidden.",
+        "Fixed-body profiles are supervised stages; NAS profiling reuses the noise pilot.",
+        "R is a resource scenario and does not establish statistical power.",
+        "Full and short phases have different budgets and must not be added as equivalent fits.",
+        "Hardware time/memory/monetary estimates remain unmeasured.",
+        "All ten outer origins and the final selection origin are charged separately."
+      ]
+    },
+    {
+      "scenario": {
+        "selection_origins": 11,
+        "outer_cv_origins": 10,
+        "final_selection_origins": 1,
+        "k": 20,
+        "final_seeds_R": 10,
+        "nas_models": 6,
+        "neural_models_with_references": 14,
+        "resource_scenario_not_final_seed_decision": true
+      },
+      "full_training_phases": {
+        "hpo": {
+          "supervised": 5544,
+          "auxiliary": 792,
+          "total": 6336
+        },
+        "nas_phase2_upper_bound": {
+          "supervised": 6930,
+          "auxiliary": 2310,
+          "total": 9240
+        },
+        "neural_refits": {
+          "supervised": 1540,
+          "auxiliary": 220,
+          "total": 1760
+        },
+        "noise_pilot_full_global": {
+          "supervised": 360,
+          "auxiliary": 120,
+          "total": 480
+        },
+        "fixed_neural_resource_profiles_global": {
+          "supervised": 8,
+          "auxiliary": 0,
+          "total": 8
+        },
+        "power_pilot_non_sae_models_global": {
+          "supervised": 15,
+          "auxiliary": 0,
+          "total": 15
+        }
+      },
+      "short_training_phases": {
+        "nas_phase1": {
+          "supervised": 66000,
+          "auxiliary": 22000,
+          "total": 88000
+        },
+        "noise_pilot_short_global": {
+          "supervised": 72,
+          "auxiliary": 24,
+          "total": 96
+        }
+      },
+      "full_phase_total": 17839,
+      "short_phase_total": 88096,
+      "classical_adjustments": {
+        "ridge_hpo": 198,
+        "arima_hpo": 198,
+        "deterministic_refits": 22,
+        "resource_profiling": 2,
+        "total": 420,
+        "seasonal_period_scores_not_fits": 33,
+        "persistence_parameter_fits": 0
+      },
+      "scope": "Search, global pilots/reference profiles and refits only. Counts are upper bounds, not observed work.",
+      "excluded": [
+        "diagnostic controls",
+        "robustness",
+        "ablations",
+        "calibration-specific refits",
+        "interpretability",
+        "environment setup"
+      ],
+      "limits": [
+        "Power pilot names declared non-SAE models; no auxiliary cost is hidden.",
+        "Fixed-body profiles are supervised stages; NAS profiling reuses the noise pilot.",
+        "R is a resource scenario and does not establish statistical power.",
+        "Full and short phases have different budgets and must not be added as equivalent fits.",
+        "Hardware time/memory/monetary estimates remain unmeasured.",
+        "All ten outer origins and the final selection origin are charged separately."
+      ]
+    },
+    {
+      "scenario": {
+        "selection_origins": 11,
+        "outer_cv_origins": 10,
+        "final_selection_origins": 1,
+        "k": 20,
+        "final_seeds_R": 20,
+        "nas_models": 6,
+        "neural_models_with_references": 14,
+        "resource_scenario_not_final_seed_decision": true
+      },
+      "full_training_phases": {
+        "hpo": {
+          "supervised": 5544,
+          "auxiliary": 792,
+          "total": 6336
+        },
+        "nas_phase2_upper_bound": {
+          "supervised": 6930,
+          "auxiliary": 2310,
+          "total": 9240
+        },
+        "neural_refits": {
+          "supervised": 3080,
+          "auxiliary": 440,
+          "total": 3520
+        },
+        "noise_pilot_full_global": {
+          "supervised": 360,
+          "auxiliary": 120,
+          "total": 480
+        },
+        "fixed_neural_resource_profiles_global": {
+          "supervised": 8,
+          "auxiliary": 0,
+          "total": 8
+        },
+        "power_pilot_non_sae_models_global": {
+          "supervised": 15,
+          "auxiliary": 0,
+          "total": 15
+        }
+      },
+      "short_training_phases": {
+        "nas_phase1": {
+          "supervised": 66000,
+          "auxiliary": 22000,
+          "total": 88000
+        },
+        "noise_pilot_short_global": {
+          "supervised": 72,
+          "auxiliary": 24,
+          "total": 96
+        }
+      },
+      "full_phase_total": 19599,
+      "short_phase_total": 88096,
+      "classical_adjustments": {
+        "ridge_hpo": 198,
+        "arima_hpo": 198,
+        "deterministic_refits": 22,
+        "resource_profiling": 2,
+        "total": 420,
+        "seasonal_period_scores_not_fits": 33,
+        "persistence_parameter_fits": 0
+      },
+      "scope": "Search, global pilots/reference profiles and refits only. Counts are upper bounds, not observed work.",
+      "excluded": [
+        "diagnostic controls",
+        "robustness",
+        "ablations",
+        "calibration-specific refits",
+        "interpretability",
+        "environment setup"
+      ],
+      "limits": [
+        "Power pilot names declared non-SAE models; no auxiliary cost is hidden.",
+        "Fixed-body profiles are supervised stages; NAS profiling reuses the noise pilot.",
+        "R is a resource scenario and does not establish statistical power.",
+        "Full and short phases have different budgets and must not be added as equivalent fits.",
+        "Hardware time/memory/monetary estimates remain unmeasured.",
+        "All ten outer origins and the final selection origin are charged separately."
+      ]
+    },
+    {
+      "scenario": {
+        "selection_origins": 11,
+        "outer_cv_origins": 10,
+        "final_selection_origins": 1,
+        "k": 20,
+        "final_seeds_R": 30,
+        "nas_models": 6,
+        "neural_models_with_references": 14,
+        "resource_scenario_not_final_seed_decision": true
+      },
+      "full_training_phases": {
+        "hpo": {
+          "supervised": 5544,
+          "auxiliary": 792,
+          "total": 6336
+        },
+        "nas_phase2_upper_bound": {
+          "supervised": 6930,
+          "auxiliary": 2310,
+          "total": 9240
+        },
+        "neural_refits": {
+          "supervised": 4620,
+          "auxiliary": 660,
+          "total": 5280
+        },
+        "noise_pilot_full_global": {
+          "supervised": 360,
+          "auxiliary": 120,
+          "total": 480
+        },
+        "fixed_neural_resource_profiles_global": {
+          "supervised": 8,
+          "auxiliary": 0,
+          "total": 8
+        },
+        "power_pilot_non_sae_models_global": {
+          "supervised": 15,
+          "auxiliary": 0,
+          "total": 15
+        }
+      },
+      "short_training_phases": {
+        "nas_phase1": {
+          "supervised": 66000,
+          "auxiliary": 22000,
+          "total": 88000
+        },
+        "noise_pilot_short_global": {
+          "supervised": 72,
+          "auxiliary": 24,
+          "total": 96
+        }
+      },
+      "full_phase_total": 21359,
+      "short_phase_total": 88096,
+      "classical_adjustments": {
+        "ridge_hpo": 198,
+        "arima_hpo": 198,
+        "deterministic_refits": 22,
+        "resource_profiling": 2,
+        "total": 420,
+        "seasonal_period_scores_not_fits": 33,
+        "persistence_parameter_fits": 0
+      },
+      "scope": "Search, global pilots/reference profiles and refits only. Counts are upper bounds, not observed work.",
+      "excluded": [
+        "diagnostic controls",
+        "robustness",
+        "ablations",
+        "calibration-specific refits",
+        "interpretability",
+        "environment setup"
+      ],
+      "limits": [
+        "Power pilot names declared non-SAE models; no auxiliary cost is hidden.",
+        "Fixed-body profiles are supervised stages; NAS profiling reuses the noise pilot.",
+        "R is a resource scenario and does not establish statistical power.",
+        "Full and short phases have different budgets and must not be added as equivalent fits.",
+        "Hardware time/memory/monetary estimates remain unmeasured.",
+        "All ten outer origins and the final selection origin are charged separately."
+      ]
+    },
+    {
+      "scenario": {
+        "selection_origins": 11,
+        "outer_cv_origins": 10,
+        "final_selection_origins": 1,
+        "k": 40,
+        "final_seeds_R": 6,
+        "nas_models": 6,
+        "neural_models_with_references": 14,
+        "resource_scenario_not_final_seed_decision": true
+      },
+      "full_training_phases": {
+        "hpo": {
+          "supervised": 5544,
+          "auxiliary": 792,
+          "total": 6336
+        },
+        "nas_phase2_upper_bound": {
+          "supervised": 13530,
+          "auxiliary": 4510,
+          "total": 18040
+        },
+        "neural_refits": {
+          "supervised": 924,
+          "auxiliary": 132,
+          "total": 1056
+        },
+        "noise_pilot_full_global": {
+          "supervised": 360,
+          "auxiliary": 120,
+          "total": 480
+        },
+        "fixed_neural_resource_profiles_global": {
+          "supervised": 8,
+          "auxiliary": 0,
+          "total": 8
+        },
+        "power_pilot_non_sae_models_global": {
+          "supervised": 15,
+          "auxiliary": 0,
+          "total": 15
+        }
+      },
+      "short_training_phases": {
+        "nas_phase1": {
+          "supervised": 66000,
+          "auxiliary": 22000,
+          "total": 88000
+        },
+        "noise_pilot_short_global": {
+          "supervised": 72,
+          "auxiliary": 24,
+          "total": 96
+        }
+      },
+      "full_phase_total": 25935,
+      "short_phase_total": 88096,
+      "classical_adjustments": {
+        "ridge_hpo": 198,
+        "arima_hpo": 198,
+        "deterministic_refits": 22,
+        "resource_profiling": 2,
+        "total": 420,
+        "seasonal_period_scores_not_fits": 33,
+        "persistence_parameter_fits": 0
+      },
+      "scope": "Search, global pilots/reference profiles and refits only. Counts are upper bounds, not observed work.",
+      "excluded": [
+        "diagnostic controls",
+        "robustness",
+        "ablations",
+        "calibration-specific refits",
+        "interpretability",
+        "environment setup"
+      ],
+      "limits": [
+        "Power pilot names declared non-SAE models; no auxiliary cost is hidden.",
+        "Fixed-body profiles are supervised stages; NAS profiling reuses the noise pilot.",
+        "R is a resource scenario and does not establish statistical power.",
+        "Full and short phases have different budgets and must not be added as equivalent fits.",
+        "Hardware time/memory/monetary estimates remain unmeasured.",
+        "All ten outer origins and the final selection origin are charged separately."
+      ]
+    },
+    {
+      "scenario": {
+        "selection_origins": 11,
+        "outer_cv_origins": 10,
+        "final_selection_origins": 1,
+        "k": 40,
+        "final_seeds_R": 10,
+        "nas_models": 6,
+        "neural_models_with_references": 14,
+        "resource_scenario_not_final_seed_decision": true
+      },
+      "full_training_phases": {
+        "hpo": {
+          "supervised": 5544,
+          "auxiliary": 792,
+          "total": 6336
+        },
+        "nas_phase2_upper_bound": {
+          "supervised": 13530,
+          "auxiliary": 4510,
+          "total": 18040
+        },
+        "neural_refits": {
+          "supervised": 1540,
+          "auxiliary": 220,
+          "total": 1760
+        },
+        "noise_pilot_full_global": {
+          "supervised": 360,
+          "auxiliary": 120,
+          "total": 480
+        },
+        "fixed_neural_resource_profiles_global": {
+          "supervised": 8,
+          "auxiliary": 0,
+          "total": 8
+        },
+        "power_pilot_non_sae_models_global": {
+          "supervised": 15,
+          "auxiliary": 0,
+          "total": 15
+        }
+      },
+      "short_training_phases": {
+        "nas_phase1": {
+          "supervised": 66000,
+          "auxiliary": 22000,
+          "total": 88000
+        },
+        "noise_pilot_short_global": {
+          "supervised": 72,
+          "auxiliary": 24,
+          "total": 96
+        }
+      },
+      "full_phase_total": 26639,
+      "short_phase_total": 88096,
+      "classical_adjustments": {
+        "ridge_hpo": 198,
+        "arima_hpo": 198,
+        "deterministic_refits": 22,
+        "resource_profiling": 2,
+        "total": 420,
+        "seasonal_period_scores_not_fits": 33,
+        "persistence_parameter_fits": 0
+      },
+      "scope": "Search, global pilots/reference profiles and refits only. Counts are upper bounds, not observed work.",
+      "excluded": [
+        "diagnostic controls",
+        "robustness",
+        "ablations",
+        "calibration-specific refits",
+        "interpretability",
+        "environment setup"
+      ],
+      "limits": [
+        "Power pilot names declared non-SAE models; no auxiliary cost is hidden.",
+        "Fixed-body profiles are supervised stages; NAS profiling reuses the noise pilot.",
+        "R is a resource scenario and does not establish statistical power.",
+        "Full and short phases have different budgets and must not be added as equivalent fits.",
+        "Hardware time/memory/monetary estimates remain unmeasured.",
+        "All ten outer origins and the final selection origin are charged separately."
+      ]
+    },
+    {
+      "scenario": {
+        "selection_origins": 11,
+        "outer_cv_origins": 10,
+        "final_selection_origins": 1,
+        "k": 40,
+        "final_seeds_R": 20,
+        "nas_models": 6,
+        "neural_models_with_references": 14,
+        "resource_scenario_not_final_seed_decision": true
+      },
+      "full_training_phases": {
+        "hpo": {
+          "supervised": 5544,
+          "auxiliary": 792,
+          "total": 6336
+        },
+        "nas_phase2_upper_bound": {
+          "supervised": 13530,
+          "auxiliary": 4510,
+          "total": 18040
+        },
+        "neural_refits": {
+          "supervised": 3080,
+          "auxiliary": 440,
+          "total": 3520
+        },
+        "noise_pilot_full_global": {
+          "supervised": 360,
+          "auxiliary": 120,
+          "total": 480
+        },
+        "fixed_neural_resource_profiles_global": {
+          "supervised": 8,
+          "auxiliary": 0,
+          "total": 8
+        },
+        "power_pilot_non_sae_models_global": {
+          "supervised": 15,
+          "auxiliary": 0,
+          "total": 15
+        }
+      },
+      "short_training_phases": {
+        "nas_phase1": {
+          "supervised": 66000,
+          "auxiliary": 22000,
+          "total": 88000
+        },
+        "noise_pilot_short_global": {
+          "supervised": 72,
+          "auxiliary": 24,
+          "total": 96
+        }
+      },
+      "full_phase_total": 28399,
+      "short_phase_total": 88096,
+      "classical_adjustments": {
+        "ridge_hpo": 198,
+        "arima_hpo": 198,
+        "deterministic_refits": 22,
+        "resource_profiling": 2,
+        "total": 420,
+        "seasonal_period_scores_not_fits": 33,
+        "persistence_parameter_fits": 0
+      },
+      "scope": "Search, global pilots/reference profiles and refits only. Counts are upper bounds, not observed work.",
+      "excluded": [
+        "diagnostic controls",
+        "robustness",
+        "ablations",
+        "calibration-specific refits",
+        "interpretability",
+        "environment setup"
+      ],
+      "limits": [
+        "Power pilot names declared non-SAE models; no auxiliary cost is hidden.",
+        "Fixed-body profiles are supervised stages; NAS profiling reuses the noise pilot.",
+        "R is a resource scenario and does not establish statistical power.",
+        "Full and short phases have different budgets and must not be added as equivalent fits.",
+        "Hardware time/memory/monetary estimates remain unmeasured.",
+        "All ten outer origins and the final selection origin are charged separately."
+      ]
+    },
+    {
+      "scenario": {
+        "selection_origins": 11,
+        "outer_cv_origins": 10,
+        "final_selection_origins": 1,
+        "k": 40,
+        "final_seeds_R": 30,
+        "nas_models": 6,
+        "neural_models_with_references": 14,
+        "resource_scenario_not_final_seed_decision": true
+      },
+      "full_training_phases": {
+        "hpo": {
+          "supervised": 5544,
+          "auxiliary": 792,
+          "total": 6336
+        },
+        "nas_phase2_upper_bound": {
+          "supervised": 13530,
+          "auxiliary": 4510,
+          "total": 18040
+        },
+        "neural_refits": {
+          "supervised": 4620,
+          "auxiliary": 660,
+          "total": 5280
+        },
+        "noise_pilot_full_global": {
+          "supervised": 360,
+          "auxiliary": 120,
+          "total": 480
+        },
+        "fixed_neural_resource_profiles_global": {
+          "supervised": 8,
+          "auxiliary": 0,
+          "total": 8
+        },
+        "power_pilot_non_sae_models_global": {
+          "supervised": 15,
+          "auxiliary": 0,
+          "total": 15
+        }
+      },
+      "short_training_phases": {
+        "nas_phase1": {
+          "supervised": 66000,
+          "auxiliary": 22000,
+          "total": 88000
+        },
+        "noise_pilot_short_global": {
+          "supervised": 72,
+          "auxiliary": 24,
+          "total": 96
+        }
+      },
+      "full_phase_total": 30159,
+      "short_phase_total": 88096,
+      "classical_adjustments": {
+        "ridge_hpo": 198,
+        "arima_hpo": 198,
+        "deterministic_refits": 22,
+        "resource_profiling": 2,
+        "total": 420,
+        "seasonal_period_scores_not_fits": 33,
+        "persistence_parameter_fits": 0
+      },
+      "scope": "Search, global pilots/reference profiles and refits only. Counts are upper bounds, not observed work.",
+      "excluded": [
+        "diagnostic controls",
+        "robustness",
+        "ablations",
+        "calibration-specific refits",
+        "interpretability",
+        "environment setup"
+      ],
+      "limits": [
+        "Power pilot names declared non-SAE models; no auxiliary cost is hidden.",
+        "Fixed-body profiles are supervised stages; NAS profiling reuses the noise pilot.",
+        "R is a resource scenario and does not establish statistical power.",
+        "Full and short phases have different budgets and must not be added as equivalent fits.",
+        "Hardware time/memory/monetary estimates remain unmeasured.",
+        "All ten outer origins and the final selection origin are charged separately."
+      ]
+    }
+  ],
+  "hours_estimated": null,
+  "hardware": {
+    "provider": "Codex cloud current attached environment",
+    "observed_date": "2026-11-09",
+    "cpu_model": "INTEL(R) XEON(R) PLATINUM 8573C",
+    "visible_logical_cpus": 5,
+    "cgroup_cpu_quota_vcpus": 4,
+    "cgroup_memory_bytes": 17179869184,
+    "gpu_visible": false,
+    "gpu_evidence": "nvidia-smi unavailable; no /dev/nvidia* devices",
+    "pytorch_installed": false,
+    "statsmodels_installed": false,
+    "target_device": "cpu",
+    "parallel_fits": 1,
+    "intraop_threads": 4,
+    "interop_threads": 1,
+    "fit_process_memory_limit_bytes": 12884901888,
+    "short_stage_wall_limit_seconds": 1800,
+    "full_stage_wall_limit_seconds": 7200,
+    "hour_estimate": null,
+    "currency_cost_estimate": null,
+    "limits_are_caps_not_estimates": true,
+    "future_environment_must_be_rechecked": true
+  },
+  "noise_and_resource_pilot_fixed_nonarchitecture": {
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "batch_size": 32,
+    "warmup_fraction": 0,
+    "optimizer": "AdamW using common fixed betas/epsilon/loss/normalization and epoch rules",
+    "dropout_non_nas": "existing dropout0.1 for TSMixer,iTransformer and neural references;0 for source CNNs",
+    "dropout_nas": "solely declared architecture bits at p0.2",
+    "TimesNet": {
+      "top_k": 4,
+      "num_kernels": 6
+    },
+    "TimeMixer": {
+      "moving_average": 7
+    },
+    "hybrid": {
+      "kernel": 3
+    },
+    "ridge_alpha": 1,
+    "arima_order": [
+      1,
+      0,
+      0
+    ],
+    "scope": "Fixed before2023 pilot. Never reuse HPO winners from2024 or2025 and never select candidates on pilot scores. No additional HPO."
+  }
+}
