@@ -98,7 +98,11 @@ jobs:
       - name: Verificar etapas, fechas, comparadores, checkpoints y supervisor
         env:
           E2_ITRANSFORMER_SOURCE_ROOT: ${{ github.workspace }}/work/author_sources/iTransformer
-        run: python -m unittest discover -s tests -p 'test_e2_*training*.py' -v
+        run: |
+          python -m unittest discover -s tests -p 'test_e2_*training*.py' -v
+          python -m unittest discover -s tests -p 'test_e2_development*.py' -v
+          python -m unittest discover -s tests -p 'test_e2_pilot*.py' -v
+          python -m unittest discover -s tests -p 'test_e2_reference_variance.py' -v
   publish:
     needs: [build, nas-mechanisms, training-integration]
     # Authorized activation after gh-pages protection and a verified backup.
