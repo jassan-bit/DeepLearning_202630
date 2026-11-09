@@ -14,13 +14,15 @@ La ejecución GPU todavía no ha comenzado. La distribución del trabajo es la s
 | GitHub | Repositorio, notebook y comprobaciones de integración; no aporta una GPU a este piloto |
 | Colab o servidor CUDA del usuario | Ejecutará el piloto cuando se conecte una GPU real y se active el lanzamiento |
 
-El [notebook de ejecución](https://github.com/jassan-bit/DeepLearning_202630/blob/22b4b081f54fcbf2fb26a298fff59f5f01c7b7de/notebooks/entregable2_gpu.ipynb) puede [abrirse en Colab](https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/22b4b081f54fcbf2fb26a298fff59f5f01c7b7de/notebooks/entregable2_gpu.ipynb). También puede ejecutarse en un servidor Linux x86_64 con Python 3.12 y una GPU compatible con el entorno fijado. La disponibilidad, cuota y coste de la GPU dependen del proveedor.
+El [notebook de ejecución](https://github.com/jassan-bit/DeepLearning_202630/blob/a3d255944d3b87fcd0fd043d0f77ab1f7937404f/notebooks/entregable2_gpu.ipynb) puede [abrirse en Colab](https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/a3d255944d3b87fcd0fd043d0f77ab1f7937404f/notebooks/entregable2_gpu.ipynb). También puede ejecutarse en un servidor Linux x86_64 con una GPU compatible con el entorno fijado. El kernel anfitrión puede usar Python 3.13: el piloto utiliza su propio CPython 3.12.12 aislado. La disponibilidad, cuota y coste de la GPU dependen del proveedor.
+
+La descarga del repositorio público no requiere iniciar sesión ni autorizar una cuenta de GitHub. El botón «Guardar en GitHub» corresponde a guardar cambios propios, una operación separada de la lectura del código.
 
 El enlace fija la versión del notebook por commit; el notebook obtiene el código del commit **`728277517be653be0d0ef10fb677a68adec22bb6`**, fijado como SHA literal, y verifica el registro antes de iniciar ajustes. Usa descarga selectiva de código, dependencias y protocolos; los CSV se obtienen por un helper independiente después de verificar CUDA. No hace checkout de los archivos del período final.
 
 1. Seleccionar una GPU en la plataforma y abrir el notebook. En Colab: **Entorno de ejecución → Cambiar tipo de entorno de ejecución → GPU**, y conectar ese entorno.
-2. Ejecutar las celdas en orden con `RUN_PILOT=False`. Se comprueba la máquina y se prepara un entorno virtual aislado, separado del Torch que pudiera traer el proveedor.
-3. Verificar el preflight CUDA. Una máquina sin CUDA no admite el piloto ni activa entrenamiento CPU como sustitución.
+2. Ejecutar las celdas en orden con `RUN_PILOT=False`. Se comprueba Linux y la GPU NVIDIA, y se prepara CPython 3.12.12 mediante `uv==0.9.5` dentro del workspace. El entorno virtual usa `pip==25.3` y queda separado de los paquetes del kernel de Colab.
+3. Verificar la versión del Python aislado y el preflight CUDA. Se muestran por separado las versiones del kernel y del intérprete del piloto. Una máquina sin CUDA no admite el piloto ni activa entrenamiento CPU como sustitución.
 4. Elegir los modelos y cohortes antes de cargar observaciones. Al habilitar `RUN_PILOT=True`, se comprueban las catorce arquitecturas con ventanas sintéticas y después se descargan los tres insumos registrados.
 5. Ejecutar el piloto y revisar los resultados locales. Una nueva ejecución utiliza un directorio nuevo y conserva cualquier intento anterior.
 
@@ -38,7 +40,7 @@ Abrir el notebook o instalar dependencias no inicia la búsqueda NAS/HPO. La con
 
 El registro tiene SHA256 `892ad148e1a261d16b178371a8f8c71ea3af352cc4c6ac4fea934df7dc22ba87`. Se creó el 09/11/2026 a las 15:28, hora de Bogotá, con estado `registered_before_gpu_market_fits`. Su publicación precede cualquier ajuste GPU de mercado de este diseño. Este registro no acredita que el piloto ya haya corrido.
 
-Las versiones CUDA del lock se contrastaron con los metadatos del wheel oficial Linux x86_64 para Python 3.12. La instalación completa y la ejecución en una GPU externa siguen pendientes. El preflight comprueba CUDA mediante una operación sintética y sincronización; detecta problemas de disponibilidad antes del acceso al desarrollo.
+El bootstrap fija `uv==0.9.5`, CPython 3.12.12 y `pip==25.3`; los wheels de uv y pip se comprueban por SHA256. El intérprete gestionado, su caché y el entorno virtual se crean dentro del workspace. Se conserva el kernel de Colab y sus paquetes. Las versiones CUDA del lock se contrastaron con los metadatos del wheel oficial Linux x86_64 para Python 3.12. La instalación completa y la ejecución en una GPU externa siguen pendientes. El preflight comprueba CUDA mediante una operación sintética y sincronización; detecta problemas de disponibilidad antes del acceso al desarrollo.
 
 ## Semántica conservada y alcance de las pruebas
 
@@ -54,9 +56,10 @@ La configuración registrada usa **FP32**, sin AMP y sin TF32, con determinismo 
 | Portabilidad de las catorce arquitecturas | Catorce pruebas CPU de predicción y backward pasaron; catorce casos CUDA reales se omitieron por ausencia de GPU |
 | Semántica del entrenamiento | Once pruebas pasaron y tres casos CUDA reales se omitieron. La comparación sintética contra el motor CPU incluye estados, logs, RNG, parada, horizonte del scheduler, SAE y reajustes; la validación CUDA real queda pendiente |
 | Admisión y recursos | Catorce pruebas pasaron y un caso CUDA real quedó omitido; incluyen configuración, presupuesto global, contabilidad de fallos y rechazo temprano sin CUDA. No constituyen mediciones GPU |
-| Notebook | Nueve pruebas estructurales y de guardas pasaron; ocho celdas de código con AST válido y salidas vacías, sin ejecutar instalaciones CUDA ni un piloto de mercado en el servidor CPU |
+| Notebook | Veinte pruebas estructurales y de guardas pasaron, incluidas once regresiones del bootstrap y sus fallos; ocho celdas de código con AST válido y salidas vacías, sin ejecutar instalaciones CUDA ni un piloto de mercado en el servidor CPU |
+| Bootstrap Python aislado | Se ejecutó realmente el bootstrap del notebook: descargó CPython 3.12.12 gestionado, creó el venv e instaló pip 25.3 con hash verificado. Se comprobó desde hosts Python 3.12.14 y 3.13.9, sin instalar Torch/CUDA ni descargar mercado |
 
-El corte de preparación reúne **53 pruebas aprobadas** (44 de código y nueve del notebook) y **18 pruebas CUDA reales omitidas** por ausencia de GPU. Los resultados aprobados acreditan contratos de software en CPU y comprobaciones estructurales; no certifican una ejecución GPU.
+El corte de preparación reúne **64 pruebas aprobadas** (44 de código y 20 del notebook) y **18 pruebas CUDA reales omitidas** por ausencia de GPU. Los resultados aprobados acreditan contratos de software en CPU y comprobaciones estructurales; no certifican una ejecución GPU.
 
 El notebook incluye las pruebas sintéticas CUDA antes de descargar los CSV. Su ejecución futura comprobará dispositivos de parámetros y buffers, geometría, salida FP32, conservación de metadatos, tolerancia numérica de evaluación y gradientes finitos. Una prueba omitida aquí no se presenta como una prueba GPU aprobada.
 
@@ -95,7 +98,7 @@ La receta fija mantiene LR 0,001, WD 0,0001, batch 32 y warmup 0. TimesNet conse
 | RSS del grupo de procesos, observado por supervisor | 12 GiB |
 | Asignador PyTorch y pico de memoria CUDA asignada | Menor de 12 GiB y 80% de la memoria total |
 
-El control CUDA combina la fracción del asignador de PyTorch y el pico observado de memoria asignada; no contabiliza todas las asignaciones del driver. Los límites por fronteras de etapa y el muestreo RSS no son barreras físicas de asignación. El supervisor ajusta el tiempo del proceso al presupuesto global restante. La instalación, descarga, preflight y pruebas sintéticas se realizan antes de ese cronómetro y no están cubiertos por sus 900 segundos. El tiempo de conexión GPU del proveedor y la limpieza de procesos pueden añadir coste fuera de los ajustes; 900 segundos no promete que complete toda la lista ni una duración total exacta.
+El control CUDA combina la fracción del asignador de PyTorch y el pico observado de memoria asignada; no contabiliza todas las asignaciones del driver. Los límites por fronteras de etapa y el muestreo RSS no son barreras físicas de asignación. El supervisor ajusta el tiempo del proceso al presupuesto global restante. El bootstrap de Python, la instalación, descarga, preflight y pruebas sintéticas se realizan antes de ese cronómetro y no están cubiertos por sus 900 segundos. El tiempo de conexión GPU del proveedor y la limpieza de procesos pueden añadir coste fuera de los ajustes; 900 segundos no promete que complete toda la lista ni una duración total exacta.
 
 Los modelos, cohortes y la inclusión opcional de TimesNet extremo se sellan antes de acceder a los valores. Con las dos cohortes y el extremo habilitado, el dominio máximo es de treinta trabajos. Los procesos que no llegan a iniciarse por agotamiento global quedan como `not_attempted_campaign_budget`; no cuentan como ajustes realizados ni como fallos de entrenamiento.
 
@@ -111,11 +114,11 @@ Las medidas permitirán distinguir construcción, ajuste, evaluación, tiempo de
 
 ## Ejecución manual desde la fuente congelada
 
-El notebook realiza la instalación y verificaciones en un entorno aislado. En un servidor CUDA ya preparado, los siguientes comandos muestran el orden. El SHA de código debe coincidir con el publicado arriba; los directorios de salida deben ser nuevos.
+El notebook gestiona su Python 3.12.12 e instala las dependencias en un entorno aislado. En un servidor CUDA que ya disponga de Python 3.12, los siguientes comandos muestran el orden. El SHA de código debe coincidir con el publicado arriba; los directorios de salida deben ser nuevos.
 
 ```bash
 export CUBLAS_WORKSPACE_CONFIG=:4096:8
-python -m venv work/gpu-venv
+python3.12 -m venv work/gpu-venv
 work/gpu-venv/bin/python -m pip install -r requirements-e2-training-gpu.lock.txt
 work/gpu-venv/bin/python -m pip check
 work/gpu-venv/bin/python scripts/run_e2_gpu_pilot.py --check-environment
