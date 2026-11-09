@@ -1,12 +1,14 @@
 # Proyecto Final de Deep Learning: Entregable 2
 
+**Recursos y dimensionamiento en Codex Cloud:** [optimización de CPU y presupuesto condicionado](sections/31_optimizacion_nube.md). Completaron 85 de 86 perfiles ampliados y los treinta ajustes del nuevo piloto. Se eligieron el recorte de TimesNet y dos hilos. La nula del generador pasó su validación, pero ningún R estudiado respalda el objetivo de 0,80. La proyección primaria y el R final siguen abiertos; las horas con microperfil son una sensibilidad separada.
+
 **Piloto real en Codex Cloud:** [recursos, variación entre semillas y presupuesto condicionado](sections/30_piloto_nube.md). Ajustes sobre desarrollo 2023–2024 en la CPU del servidor remoto; sin búsqueda HPO/NAS completa ni evaluación de las 608 fechas externas.
 
 **Ciclo de entrenamiento integrado:** [18 sistemas, selección temporal, reajustes y perfilado CPU](sections/29_entrenamiento_temporal.md). Validación artificial con actualizaciones AdamW; sin campaña de mercado ni resultados nuevos de Bitcoin.
 
 **Fábricas NAS verificadas:** [seis familias, 6.000 casos numéricos y fases auxiliares SAE](sections/28_fabricas_nas.md). Enlace de configuraciones HPO y pruebas sintéticas; sin optimización ni mercado.
 
-**Diseño NAS/HPO para Codex:** [decisiones por receta, rangos y presupuesto contable](sections/27_nas_hpo_presupuesto.md). Seis variantes NAS y cinco cuerpos publicados fijos; planes generados sin entrenamiento. Perfiles de referencia publicados en §30; horas de la campaña completa aún sin estimación validada.
+**Diseño NAS/HPO para Codex:** [decisiones por receta, rangos y presupuesto contable](sections/27_nas_hpo_presupuesto.md). Seis variantes NAS y cinco cuerpos publicados fijos; planes generados sin entrenamiento. Perfiles de referencia publicados en §30; la medición ampliada y su proyección condicionada se incorporan en [§31](sections/31_optimizacion_nube.md). La duración total de la campaña sigue abierta.
 
 **Registro por modelo:** [fuentes, adaptaciones, NAS, HPO, parámetros e integración](sections/26_registro_recetas.md). Once recetas identificadas y siete referencias separadas; decisiones experimentales aún abiertas.
 
@@ -50,8 +52,8 @@ El catálogo sustituido se retira de la presentación. Estos nombres provienen d
 
 ## Qué está implementado y qué está pendiente
 
-- **Implementación provisional disponible:** los once candidatos comparten fábrica y flujo sintético; 11/11 ejecutados sin omisiones, dos pasos supervisados cada uno y un paso de reconstrucción para el autoencoder. El híbrido ya tiene código y pruebas propias. El piloto real posterior se documenta en [§30](sections/30_piloto_nube.md); el benchmark completo sigue pendiente. [Recetas y evidencia](sections/18_integracion_sintetica.md).
-- **Benchmark vigente:** sin entrenamiento integral ni resultados comparativos publicados. No hay ganador. El piloto de desarrollo de §30 tiene registro previo propio. Para la campaña completa quedan cerrar el dimensionamiento de las recetas seleccionadas, los controles, la inferencia y el presupuesto total. [Plan experimental](sections/06_benchmark_final.md).
+- **Implementación provisional disponible:** los once candidatos comparten fábrica y flujo sintético; 11/11 ejecutados sin omisiones, dos pasos supervisados cada uno y un paso de reconstrucción para el autoencoder. El híbrido ya tiene código y pruebas propias. El piloto real posterior se documenta en [§30](sections/30_piloto_nube.md) y la nueva medición de CPU en [§31](sections/31_optimizacion_nube.md); el benchmark completo sigue pendiente. [Recetas y evidencia](sections/18_integracion_sintetica.md).
+- **Benchmark vigente:** sin entrenamiento integral ni resultados comparativos publicados. No hay ganador. Los trabajos de desarrollo de §§30–31 tienen registros propios anteriores a sus ajustes. Para la campaña completa quedan cerrar el dimensionamiento de las recetas seleccionadas, los controles, la inferencia y los componentes pendientes del presupuesto total. [Plan experimental](sections/06_benchmark_final.md).
 - **Evidencia histórica real:** el piloto previo completó 220 trayectorias y 440 ajustes. El recibo del 06/11/2026 acredita HPO previo iniciado e incompleto, no ejecución actual. La réplica TimeMixer/ETTh1 es externa a Bitcoin. Estos recibos no se atribuyen al catálogo vigente. [Trazabilidad](sections/09_protocolo_registrado.md).
 
 El contrato vigente se sincroniza con E1: D7×5 derivado de OHLCV mediante `relative_window`, σ₇ poblacional sin anualización, horizonte de un día y referencia histórica principal de 608 fechas. [Contrato completo y diferencias con los recibos anteriores](sections/17_contrato_sincronizado.md). El piloto de §30 reinicializa sus modelos; los resultados históricos no se trasladan al híbrido.
