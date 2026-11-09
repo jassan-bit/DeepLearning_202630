@@ -1,0 +1,61 @@
+{
+  "version": "e2-timesnet-cpu-zero-crop-v1",
+  "passed": true,
+  "created_at_utc": "2026-11-09T18:21:56.957316+00:00",
+  "synthetic_only": true,
+  "market_data_read": false,
+  "optimizer_work": "Artificial one-step AdamW parity only; no performance benchmark",
+  "tests_run": 11,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "command": [
+    "python",
+    "scripts/e2_cpu_conv.py",
+    "--verify",
+    "--output",
+    "work/cpu_conv_parity.json"
+  ],
+  "source_sha256": {
+    "scripts/e2_cpu_conv.py": "e5f592a4a697b213ccb37e8a8946e4559afff04fac95cd3768dee2a1bdc15277",
+    "tests/test_e2_cpu_conv.py": "0ff9b762baab9ed2f621a9ae32efeca6064c829f2c1a36572d9aeeaa3862e916",
+    "scripts/e2_nas_spectral.py": "196a1233322f8741b3ad28f11ef85d815f2eebb040fbf51c99ccfa0edc2caaea",
+    "scripts/e2_nas_factory.py": "52c345990cffb8982c13eddca9cb9fceddcf6a607fdc8bdef0110f0a02437f02",
+    "scripts/e2_nas_common.py": "ba9b06acfc984b3414c9406fc577eab137d13308420e2da15d5433f6c665b618",
+    "scripts/e2_staged_training.py": "b66ac8d2beb3748f4934e55e99514f53c52eada4a4dbd2e4b597d080c9f4722b"
+  },
+  "torch": "2.8.0+cpu",
+  "dtypes_checked": [
+    "float64",
+    "float32"
+  ],
+  "direct_fp64_geometries": 36,
+  "tolerances": {
+    "convolution_fp64": {
+      "rtol": 2e-12,
+      "atol": 2e-12
+    },
+    "convolution_fp32": {
+      "rtol": 5e-05,
+      "atol": 2e-05
+    },
+    "timesnet_fp64": {
+      "rtol": 2e-10,
+      "atol": 2e-11
+    },
+    "timesnet_reference_fp32": {
+      "rtol": 0.0003,
+      "atol": 4e-05
+    },
+    "adamw_state_fp64": {
+      "rtol": 5e-10,
+      "atol": 5e-11
+    }
+  },
+  "largest_parameter_count_meta_checked": 225075755,
+  "limits": [
+    "Algebraic zero-padding identity does not imply bit-identical floating-point results.",
+    "This suite is artificial correctness evidence, not a measured runtime speedup.",
+    "CPU execution only; other devices/dtypes preserve the original forward path."
+  ]
+}

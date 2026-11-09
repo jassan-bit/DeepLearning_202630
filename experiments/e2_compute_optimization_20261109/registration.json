@@ -1,0 +1,214 @@
+{
+  "version": "e2-compute-calibration-registration-v1",
+  "status": "registered_before_new_market_fits",
+  "registered_at_utc": "2026-11-09T18:24:55.434603+00:00",
+  "registered_at_bogota": "2026-11-09T13:24:55.444774-05:00",
+  "source_base_commit": "89ac837494967631b6459893f22979e3e1bad99e",
+  "source_protocol_sha256": "e0030c990a4afa15665aec254211b0d9e680e9ac5d92dfb8094e43e965152abe",
+  "source_protocol_snapshot": "experiments/e2_development_pilot_20261109/source_protocol.json",
+  "purpose": "Optimize and measure remote Codex CPU execution; estimate conditional search allocations; independently calibrate conditional Monte Carlo planning.",
+  "hardware": {
+    "provider": "Codex Cloud attached server",
+    "device": "cpu",
+    "cpu_quota_vcpus": 4,
+    "memory_bytes": 17179869184,
+    "gpu_visible": false,
+    "parallel_fits": 1,
+    "interop_threads": 1
+  },
+  "resources": {
+    "sampled_worker_group_rss_limit_bytes": 12884901888
+  },
+  "development_sources": {
+    "results/eda_development/daily_market_development.csv": "bf6bb5160af924aef6a15c3684aeae932df3017e8639888bb7e91ce787900171",
+    "results/eda_development/daily_volatility_development.csv": "20b96374a659eb87dadfa68aa3d6b6b5fb6bea5b10eebe6f2c186ad69861844a"
+  },
+  "cpu_profile": {
+    "kernel_models": [
+      "TimesNet"
+    ],
+    "kernel_patterns": "reference_and_largest",
+    "kernel_threads": 4,
+    "kernel_epochs": 1,
+    "kernel_seeds": [
+      272301,
+      272302
+    ],
+    "kernel_internal_wall_seconds": 210,
+    "kernel_external_wall_seconds": 240,
+    "kernel_batch_windows": 32,
+    "kernel_jobs": 8,
+    "crop_parity_evidence_sha256": "52de23de9ce3fea87c28faadf8b9157f626bd3cc48c7b88fcf89902a3acd6209",
+    "kernel_selection_rule": "Require parity evidence. Four cropped workers must complete. For both reference and largest patterns, median whole-worker cropped wall must be at least5% below dense baseline. A wall-censored dense baseline gives a lower bound; other failures block enabling crop. No scores select execution policy.",
+    "optimization_scope": "CPU-only algebraically equivalent central crop of padded convolution/fused kernel bank. Parameter objects, shapes, state keys and architecture remain; floating results can differ within registered parity tolerance.",
+    "baseline_backend": "unchanged PyTorch MKLDNN/default algorithms",
+    "thread_counts": [
+      1,
+      2,
+      4
+    ],
+    "thread_models": [
+      "TimeMixer",
+      "TimesNet"
+    ],
+    "thread_epochs": 5,
+    "thread_seeds": [
+      272101,
+      272102
+    ],
+    "thread_internal_wall_seconds": 210,
+    "thread_external_wall_seconds": 240,
+    "thread_jobs": 12,
+    "thread_selection_rule": "Use selected kernel policy; require all12 complete. Sum per-model median wall normalized by that model4-thread median. Any thread count within5% of lowest aggregate score ties; choose fewest threads. Incomplete grid retains legacy4 threads and incomplete status. No predictive scores select threads.",
+    "scaling_epochs": 2,
+    "scaling_seed": 272201,
+    "scaling_internal_wall_seconds": 300,
+    "scaling_external_wall_seconds": 360,
+    "scaling_jobs": 86,
+    "scaling_domain": "6NAS families x12 registered P27 patterns at619 train+83val;6reference patterns at161train+83val;8fixed-body neural references at619train+83val. SAE2epochs eachAE1/AE2/supervised; supervised2epochs for others.",
+    "micro_seed": 272501,
+    "micro_epochs": 1,
+    "micro_batch_windows": 32,
+    "micro_fallback_rule": "Only a scaling resource/time failure permits a separate one-batch throughput profile. Keep original failure and consumed costs. This is not a replacement scientific candidate or an observed full-cohort timing. Implementation/numerical failures block the affected projection.",
+    "fixed_recipe": {
+      "learning_rate": 0.001,
+      "weight_decay": 0.0001,
+      "batch_size": 32,
+      "warmup_fraction": 0,
+      "optimizer": "AdamW using common fixed betas/epsilon/loss/normalization and epoch rules",
+      "dropout_non_nas": "existing dropout0.1 for TSMixer,iTransformer and neural references;0 for source CNNs",
+      "dropout_nas": "solely declared architecture bits at p0.2",
+      "TimesNet": {
+        "top_k": 4,
+        "num_kernels": 6
+      },
+      "TimeMixer": {
+        "moving_average": 7
+      },
+      "hybrid": {
+        "kernel": 3
+      },
+      "ridge_alpha": 1,
+      "arima_order": [
+        1,
+        0,
+        0
+      ],
+      "scope": "Fixed before2023 pilot. Never reuse HPO winners from2024 or2025 and never select candidates on pilot scores. No additional HPO."
+    },
+    "cohorts": {
+      "small": {
+        "origin": "2023-10-01",
+        "train_end": "2023-06-25",
+        "n_train": 161,
+        "validation": [
+          "2023-07-03",
+          "2023-09-23"
+        ],
+        "n_validation": 83
+      },
+      "large": {
+        "origin": "2025-01-01",
+        "train_end": "2024-09-25",
+        "n_train": 619,
+        "validation": [
+          "2024-10-03",
+          "2024-12-24"
+        ],
+        "n_validation": 83,
+        "final_period_values_read": false,
+        "future_origin_is_unavailable_calendar_placeholder": true
+      }
+    },
+    "weights_saved": false,
+    "record_cpu_wall_setup_loop_final_eval": true,
+    "failure_policy": "Never replace attempts or hide censored steps; unknown steps remain null. No existing checkpoint or receipt deletion.",
+    "memory_limit_bytes": 12884901888,
+    "crop_parity_evidence_path": "experiments/e2_compute_optimization_20261109/cpu_conv_parity.json"
+  },
+  "preselection_variance": {
+    "models": [
+      "TimeMixer",
+      "CNN-1D + LSTM + atención temporal",
+      "GRU32"
+    ],
+    "seed_pool": [
+      273001,
+      273002,
+      273003,
+      273004,
+      273005
+    ],
+    "epoch_selection_origin": "2024-10-01",
+    "epoch_selection_train_end": "2024-06-25",
+    "epoch_selection_validation": [
+      "2024-07-03",
+      "2024-09-23"
+    ],
+    "epoch_selection_rule": "Five complete fresh fixed-recipe fits per model,200epochcap/patience20;ceil median strict best epochs. Any missing seed blocks all five model refits.",
+    "refit_origin": "2024-11-08",
+    "fresh_refit_training_end": "2024-10-31",
+    "evaluation": [
+      "2024-11-08",
+      "2024-12-30"
+    ],
+    "evaluation_days": 53,
+    "fresh_refit_rule": "Fresh initialization/AdamW/train-only scaler, fixed selected epoch count,no validation input; durable forecast-before-observe and20or30 checkpoints verified with safe load.",
+    "max_epochs_per_stage": 200,
+    "patience_epochs": 20,
+    "internal_stage_wall_seconds": 600,
+    "external_worker_wall_seconds": 660,
+    "runtime_policy": "Selected global thread policy from the frozen independent resource benchmark; same for all three reference models.",
+    "replacement_for_old_failed_pilot": false,
+    "historical_development_exposure": true,
+    "final_2025_2026_values_read": false
+  },
+  "calibration": {
+    "delta": 0.00025772842664981106,
+    "alpha": 0.05,
+    "multiplicity_family_size": 153,
+    "observed_model_count_max": 3,
+    "R_values": [
+      6,
+      10,
+      20,
+      30
+    ],
+    "power_target": 0.8,
+    "dates": "53consecutive development dates2024-11-08..2024-12-30",
+    "n_calibration": 200000,
+    "n_validation": 200000,
+    "n_alternative": 200000,
+    "calibration_pool": 272401,
+    "validation_pool": 272402,
+    "alternative_pool": 272403,
+    "block_length": 7,
+    "batch_size": 2048,
+    "dgp": "Fixed observed paired per-seed RMSE differences and common circular date blocks; preserve temporal variation floor and normal-assumption upper seed SD sensitivity. Center all streams at the original observed mean, never their own validation/alternative means.",
+    "critical_rule": "One absolute-null statistic critical per R/pair, strict> rejection; design total absolute-tail alpha_pair/2. Binomial order-stat tolerance gamma_cal=.05/(4*observed_pairs).",
+    "null_validation_rule": "Independent stream, one-sided ClopperPearson upper at gamma_val=.05/(4*observed_pairs) <= nominal alpha_pair. Do not retune on failure.",
+    "alternative_rule": "Independent alternative stream under both +delta and -delta. CP lower gamma_power=.05/(8*observed_pairs). Conditional R requires every observed pair and both signs >=.80 lower bound plus validated null.",
+    "confidence_scope": "Separate95% MonteCarlo families for calibration, null validation and alternative validation; no joint95% claim and no claim of final-study power.",
+    "MDE": "Descriptive DGP quantile planning only; no postselection CP guarantee.",
+    "analysis_groups": "Reanalyse old two-model complete reference panel as historical calibration diagnostic, and separately the new complete3model5seed panel if available. No partial-seed medians; >=2 completely observed models required.",
+    "final_seed_count_set": false,
+    "resource_ceiling_R": 30,
+    "final_inference_gate_remains_open": true
+  },
+  "budget_estimation": {
+    "k_operational": 40,
+    "R_scenarios": [
+      6,
+      10,
+      20,
+      30
+    ],
+    "sampling_design": "3anchor patterns exact plus9 seeded uniform stratum samples among remaining997; HorvitzThompson expansion of predicted costs. Do not average the12 anchors/strata without weights.",
+    "epoch_scenarios": "Configured maximum short50/full200, with explicit lower-epoch sensitivity; no observed campaign-wide early-stop mean asserted.",
+    "cost_model": "Measure setup/loop/final separately; scale training steps by actual batch counts and add83-date validation per selection epoch. Add setup once per stage. Show measured error/sensitivity for extrapolation, fallback and batch-size assumptions.",
+    "statistical_limits": "One sample per stratum cannot identify within-stratum variance or a design-based CI. Predicted cost HT is not unbiased actual elapsed cost if per-model projection error exists.",
+    "storage": "Compute exact parameter/state bytes across1000NAS configs; model all-checkpoints and prospective selected-only retention scenarios. Existing outputs are never deleted.",
+    "exclusions": "Currency pricing, full diagnostic/robustness/calibration refits, interpretability, inferential runtime and independent environment reproduction; classical timings remain explicit if not measured."
+  },
+  "publication": "Publish this exact registration and code before new market optimization; preserve every old receipt and checkpoint. New evidence goes in JBook section31."
+}

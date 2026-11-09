@@ -1,7 +1,7 @@
 name: Publicar los tres Jupyter Books
 on:
   push:
-    branches: [main]
+    branches: [main, e2-compute-20261109]
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -105,6 +105,9 @@ jobs:
           python -m unittest discover -s tests -p 'test_e2_development*.py' -v
           python -m unittest discover -s tests -p 'test_e2_pilot*.py' -v
           python -m unittest discover -s tests -p 'test_e2_reference_variance.py' -v
+          python -m unittest discover -s tests -p 'test_e2_cpu*.py' -v
+          python -m unittest discover -s tests -p 'test_e2_calibrated*.py' -v
+          python -m unittest discover -s tests -p 'test_e2_optimized*.py' -v
   publish:
     needs: [build, nas-mechanisms, training-integration]
     # Authorized activation after gh-pages protection and a verified backup.
