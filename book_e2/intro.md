@@ -1,5 +1,7 @@
 # Proyecto Final de Deep Learning: Entregable 2
 
+**Ejecución CUDA preparada:** [backend GPU y notebook reproducible](sections/32_ejecucion_gpu.md). Código, entorno dedicado y piloto acotado de recursos; medición GPU pendiente. Codex preparó y probó el código en CPU; el ajuste CUDA se ejecutará al conectar una GPU en Colab u otro servidor. El notebook verifica CUDA antes de datos y requiere activar explícitamente el piloto. No hay presupuesto GPU en horas, búsqueda NAS/HPO científica ni R final cerrados.
+
 **Recursos y dimensionamiento en Codex Cloud:** [optimización de CPU y presupuesto condicionado](sections/31_optimizacion_nube.md). Completaron 85 de 86 perfiles ampliados y los treinta ajustes del nuevo piloto. Se eligieron el recorte de TimesNet y dos hilos. La nula del generador pasó su validación, pero ningún R estudiado respalda el objetivo de 0,80. La proyección primaria y el R final siguen abiertos; las horas con microperfil son una sensibilidad separada.
 
 **Piloto real en Codex Cloud:** [recursos, variación entre semillas y presupuesto condicionado](sections/30_piloto_nube.md). Ajustes sobre desarrollo 2023–2024 en la CPU del servidor remoto; sin búsqueda HPO/NAS completa ni evaluación de las 608 fechas externas.
