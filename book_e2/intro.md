@@ -1,5 +1,7 @@
 # Proyecto Final de Deep Learning: Entregable 2
 
+**Registro por modelo:** [fuentes, adaptaciones, NAS, HPO, parámetros e integración](sections/26_registro_recetas.md). Once recetas identificadas y siete referencias separadas; decisiones experimentales aún abiertas.
+
 **Preparación del benchmark:** [matriz de requisitos, decisiones y evidencia de cierre](sections/25_matriz_cierre.md). Orden de trabajo conforme a la guía; distingue avances parciales y pendientes antes de entrenar.
 
 **Ejecutor común probado:** [18 sistemas, registro previo a cada observación y auditoría de disponibilidad](sections/24_ejecutor_comun.md). Pruebas sintéticas únicamente; las 608 fechas finales siguen sin verificar.
