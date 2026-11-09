@@ -4,6 +4,7 @@ from types import SimpleNamespace
 import ast
 from contextlib import redirect_stdout
 from io import StringIO
+import hashlib
 import json
 import re
 import tempfile
@@ -99,6 +100,68 @@ class BootstrapHarness:
 
     def execute_cell(self):
         execute(next(s for s in sources() if '"--check-environment"' in s), self.namespace)
+
+
+class ITransformerHarness:
+    """Eight synthetic source files, with git/show and downloader calls faked."""
+
+    def __init__(self, directory):
+        self.root = Path(directory)
+        self.repo = self.root/"repo"
+        self.source = self.repo/"scripts/fetch_e2_itransformer_sources.py"
+        self.output = self.repo/"work/author_sources/iTransformer"
+        self.files = {"models/file%d.py" % index: ("VALUE = %d\n" % index).encode() for index in range(8)}
+        self.manifest = {"repository":"https://example.invalid/fixture.git", "commit":"f"*40,
+                         "files":{name:hashlib.sha256(data).hexdigest() for name, data in self.files.items()}}
+        self.frozen = "MANIFEST = "+repr(self.manifest)+"\nMAX_FILE_BYTES = 65536\n"
+        self.source.parent.mkdir(parents=True)
+        self.source.write_text(self.frozen)
+        self.receipt = {"status":"complete", "repository":self.manifest["repository"], "commit":self.manifest["commit"],
+                        "verified_files":self.manifest["files"], "weights_downloaded":False, "market_data_read":False}
+        self.calls = []
+        self.namespace = {"REPO":self.repo, "SOURCE_COMMIT":"a"*40, "GPU_PYTHON":"fake-gpu-python",
+                          "json":json, "sha256_file":lambda path:hashlib.sha256(Path(path).read_bytes()).hexdigest(),
+                          "run":self.run, "RUN_PILOT":False, "MODELS":None}
+        source = next(source for source in sources() if "def ensure_itransformer_sources" in source)
+        tree = ast.parse(source)
+        function = next(node for node in tree.body if isinstance(node, ast.FunctionDef)
+                        and node.name == "ensure_itransformer_sources")
+        condition = next(node for node in tree.body if isinstance(node, ast.If)
+                         and any(isinstance(child, ast.Call) and isinstance(child.func, ast.Name)
+                                 and child.func.id == "ensure_itransformer_sources" for child in ast.walk(node)))
+        execute(ast.unparse(function), self.namespace)
+        self.selection = ast.unparse(condition)
+
+    def populate(self):
+        for name, data in self.files.items():
+            path = self.output/name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(data)
+        (self.output/"source_receipt.json").write_text(json.dumps(self.receipt))
+
+    def run(self, args, **kwargs):
+        args = [str(arg) for arg in args]
+        self.calls.append((args, kwargs))
+        if args[:1] == ["git"] and "show" in args:
+            return SimpleNamespace(stdout=self.frozen)
+        if args[:2] == ["fake-gpu-python", str(self.source)]:
+            self.populate()
+            return SimpleNamespace(stdout="")
+        raise AssertionError("Unexpected command: "+repr(args))
+
+    def ensure(self):
+        execute(self.selection, self.namespace)
+
+    def snapshot(self):
+        result = {}
+        for path in self.root.rglob("*"):
+            if path.is_symlink():
+                result[str(path.relative_to(self.root))] = ("link", str(path.readlink()))
+            elif path.is_file():
+                result[str(path.relative_to(self.root))] = ("file", path.read_bytes())
+            else:
+                result[str(path.relative_to(self.root))] = ("directory",)
+        return result
 
 
 class GPUNotebookTests(unittest.TestCase):
@@ -355,6 +418,59 @@ class GPUNotebookTests(unittest.TestCase):
         self.assertIn('"scientific_report.json"', sources()[-1])
         self.assertNotRegex(joined, r'(?i)git\s+push|["\']push["\']|files\.upload|files\.download')
         self.assertNotIn("os.environ.items()", joined)
+
+    def test_itransformer_missing_cache_downloads_once_and_run_pilot_reuses_it(self):
+        with tempfile.TemporaryDirectory() as directory:
+            harness = ITransformerHarness(directory)
+            self.assertFalse(harness.output.exists())
+            harness.ensure()
+            first_snapshot = harness.snapshot()
+            harness.namespace["RUN_PILOT"] = True
+            harness.ensure()
+            downloads = [args for args, _ in harness.calls if args[0] == "fake-gpu-python"]
+            self.assertEqual(len(downloads), 1)
+            self.assertEqual(harness.snapshot(), first_snapshot)
+
+    def test_itransformer_complete_eight_file_cache_and_harmless_pycache_are_reused(self):
+        with tempfile.TemporaryDirectory() as directory:
+            harness = ITransformerHarness(directory)
+            harness.populate()
+            pycache = harness.output/"models/__pycache__/file0.cpython-312.pyc"
+            pycache.parent.mkdir()
+            pycache.write_bytes(b"synthetic bytecode")
+            before = harness.snapshot()
+            harness.ensure()
+            self.assertEqual(len(harness.manifest["files"]), 8)
+            self.assertEqual(harness.snapshot(), before)
+            self.assertFalse(any(args[0] == "fake-gpu-python" for args, _ in harness.calls))
+
+    def test_itransformer_invalid_cache_is_rejected_without_mutation_or_redownload(self):
+        for issue in ("hash", "missing", "receipt", "root-link", "parent-link", "file-link"):
+            with self.subTest(issue=issue), tempfile.TemporaryDirectory() as directory:
+                harness = ITransformerHarness(directory)
+                harness.populate()
+                selected = harness.output/"models/file0.py"
+                if issue == "hash":
+                    selected.write_bytes(b"CORRUPTED = True\n")
+                elif issue == "missing":
+                    selected.unlink()
+                elif issue == "receipt":
+                    receipt = dict(harness.receipt, commit="0"*40)
+                    (harness.output/"source_receipt.json").write_text(json.dumps(receipt))
+                elif issue in ("root-link", "parent-link"):
+                    original = harness.output if issue == "root-link" else harness.repo/"work"
+                    moved = harness.root/(issue+"-target")
+                    original.rename(moved)
+                    original.symlink_to(moved, target_is_directory=True)
+                elif issue == "file-link":
+                    moved = harness.root/"linked-file.py"
+                    selected.rename(moved)
+                    selected.symlink_to(moved)
+                before = harness.snapshot()
+                with self.assertRaises(RuntimeError):
+                    harness.ensure()
+                self.assertEqual(harness.snapshot(), before)
+                self.assertFalse(any(args[0] == "fake-gpu-python" for args, _ in harness.calls))
 
 
 if __name__ == "__main__":
