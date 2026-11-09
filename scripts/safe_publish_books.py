@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 import base64
 from hashlib import sha256
+from http.client import HTTPException
 import json
 import os
 from pathlib import Path, PurePosixPath
@@ -282,17 +283,82 @@ def publish(repo, site, source_sha, remote="origin", execute=False, report_path=
     return result
 
 
-def verify_live(site, source_sha, base_url, attempts=1, interval=30, report_path=None):
+def pages_workflow_status(repository, pages_sha):
+    """Read the exact branch deployment, without credentials or write requests.
+
+    This optional diagnostic supports public repositories. API unavailability
+    must not turn into a failed deployment or a reason to republish anything.
+    """
+    if not re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", repository):
+        raise PublicationError("A GitHub owner/repository name is required")
+    require_sha(pages_sha)
+    request = Request(
+        f"https://api.github.com/repos/{repository}/actions/runs?head_sha={pages_sha}&per_page=100",
+        headers={"Accept": "application/vnd.github+json", "Cache-Control": "no-cache",
+                 "User-Agent": "book-publication-verifier"}, method="GET")
+    with urlopen(request, timeout=30) as response:
+        payload = json.loads(response.read(2 * 1024 * 1024 + 1))
+    if not isinstance(payload, dict) or not isinstance(payload.get("workflow_runs"), list):
+        raise PublicationError("Invalid workflow status response")
+    matching = [run for run in payload["workflow_runs"] if isinstance(run, dict)
+        and run.get("head_sha") == pages_sha and run.get("head_branch") == "gh-pages"
+        and run.get("event") == "dynamic"
+        and run.get("path") == "dynamic/pages/pages-build-deployment"
+        and isinstance(run.get("id"), int) and not isinstance(run["id"], bool)
+        and isinstance(run.get("run_attempt"), int)]
+    if not matching:
+        return None
+    run = max(matching, key=lambda item: (item["id"], item["run_attempt"]))
+    return {key: run.get(key) for key in ("id", "head_sha", "status", "conclusion", "run_attempt")} | {
+        "url": f"https://github.com/{repository}/actions/runs/{run['id']}"}
+
+
+def verify_live(site, source_sha, base_url, attempts=1, interval=30, report_path=None,
+                repository=None):
     """Read back the expected manifest and the four entry pages; never roll back."""
-    validate_site(site, source_sha)
-    if urlsplit(base_url).scheme not in {"https", "http"} or attempts < 1 or interval < 0:
-        raise PublicationError("A HTTP(S) site URL and valid retry bounds are required")
+    report = load_json(report_path) if report_path else {}
+    if not isinstance(report, dict):
+        raise PublicationError("Publication report must be a JSON object")
+    # Never leave a prior successful verification in a report for a new check.
+    for key in ("verified_source_commit", "verified_entrypoints", "verification_error",
+                "observed_source_commit", "pages_workflow", "pages_diagnostic_error"):
+        report.pop(key, None)
+    report.update({"web_deployment_verified": False, "verification_status": "checking",
+                   "expected_source_commit": source_sha, "verification_attempts": 0})
+
+    def save_report():
+        if report_path:
+            Path(report_path).write_text(json.dumps(report, indent=2) + "\n")
+
+    def fail(message):
+        report.update({"web_deployment_verified": False, "verification_status": "failed",
+                       "verification_error": message})
+        save_report()
+        raise PublicationError(message)
+
+    save_report()
+    try:
+        validate_site(site, source_sha)
+        if urlsplit(base_url).scheme not in {"https", "http"} or attempts < 1 or interval < 0:
+            raise PublicationError("A HTTP(S) site URL and valid retry bounds are required")
+        pages_sha = None
+        if repository:
+            if not re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", repository):
+                raise PublicationError("A GitHub owner/repository name is required")
+            if report.get("pushed") is not True:
+                raise PublicationError("Pages diagnostics require a confirmed push report")
+            pages_sha = require_sha(report.get("candidate_pages_commit"))
+            if report.get("source_commit") != source_sha:
+                raise PublicationError("Publication report source differs from the requested source")
+    except (OSError, ValueError) as error:
+        fail(str(error))
     base_url = base_url.rstrip("/") + "/"
     expected = load_json(Path(site) / "books_manifest.json")
     paths = [book["entrypoint"] for book in expected["books"]] + ["entregables.html"]
     expected_hashes = {path: sha256((Path(site) / path).read_bytes()).hexdigest() for path in paths}
     last_error = "not checked"
     for attempt in range(attempts):
+        report["verification_attempts"] = attempt + 1
         try:
             def fetch(path):
                 request = Request(urljoin(base_url, path) + "?source_check=" + source_sha,
@@ -302,6 +368,7 @@ def verify_live(site, source_sha, base_url, attempts=1, interval=30, report_path
             manifest = json.loads(fetch("books_manifest.json"))
             if not isinstance(manifest, dict):
                 raise PublicationError("Public manifest is not a JSON object")
+            report["observed_source_commit"] = manifest.get("source_commit")
             if manifest != expected:
                 raise PublicationError("Public manifest is not the expected artifact; served source: " +
                                        str(manifest.get("source_commit")))
@@ -309,17 +376,31 @@ def verify_live(site, source_sha, base_url, attempts=1, interval=30, report_path
                 if sha256(fetch(path)).hexdigest() != digest:
                     raise PublicationError("Public page differs from the validated artifact: " + path)
             result = {"web_deployment_verified": True, "verified_source_commit": source_sha,
-                      "verified_entrypoints": paths, "site_url": base_url}
-            if report_path:
-                report = load_json(report_path)
-                report.update(result)
-                Path(report_path).write_text(json.dumps(report, indent=2) + "\n")
+                      "verified_entrypoints": paths, "site_url": base_url,
+                      "verification_status": "verified", "verification_attempts": attempt + 1}
+            report.update(result)
+            report.pop("verification_error", None)
+            save_report()
             return result
-        except (OSError, ValueError) as error:
+        except (OSError, ValueError, HTTPException) as error:
             last_error = str(error)
-            if attempt + 1 < attempts:
-                time.sleep(interval)
-    raise PublicationError("Branch publication does not confirm website delivery: " + last_error)
+        report["verification_error"] = last_error
+        if pages_sha:
+            try:
+                workflow = pages_workflow_status(repository, pages_sha)
+                report["pages_workflow"] = workflow
+                report.pop("pages_diagnostic_error", None)
+            except (OSError, ValueError, HTTPException) as error:
+                workflow = None
+                report["pages_diagnostic_error"] = str(error)
+            if (workflow and workflow["status"] == "completed"
+                    and workflow["conclusion"] in {"failure", "cancelled", "timed_out"}):
+                fail("Pages workflow for the published commit ended with " + workflow["conclusion"]
+                     + ": " + workflow["url"] + "; website delivery remains unverified: " + last_error)
+        save_report()
+        if attempt + 1 < attempts:
+            time.sleep(interval)
+    fail("Branch publication does not confirm website delivery: " + last_error)
 
 
 def main():
@@ -332,6 +413,7 @@ def main():
     parser.add_argument("--execute", action="store_true")
     parser.add_argument("--report", type=Path)
     parser.add_argument("--url")
+    parser.add_argument("--repository", help="Optional public GitHub owner/repo for read-only Pages diagnostics")
     parser.add_argument("--attempts", type=int, default=1)
     parser.add_argument("--interval", type=float, default=30)
     args = parser.parse_args()
@@ -345,7 +427,8 @@ def main():
         elif args.command == "verify-live":
             if not args.url:
                 raise PublicationError("--url is required for verify-live")
-            result = verify_live(args.site, args.source_commit, args.url, args.attempts, args.interval, args.report)
+            result = verify_live(args.site, args.source_commit, args.url, args.attempts, args.interval,
+                                 args.report, args.repository)
         else:
             result = publish(args.repo, args.site, args.source_commit, args.remote, args.execute, args.report)
         print(json.dumps(result, indent=2))
@@ -355,3 +438,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

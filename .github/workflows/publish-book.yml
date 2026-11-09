@@ -88,6 +88,7 @@ jobs:
         run: |
           python scripts/safe_publish_books.py verify-live --source-commit "$GITHUB_SHA" \
             --url "https://jassan-bit.github.io/DeepLearning_202630/" \
+            --repository "$GITHUB_REPOSITORY" \
             --attempts 24 --interval 30 --report publication-report.json
       - name: Conservar informe de publicación
         if: always()
@@ -97,3 +98,4 @@ jobs:
           path: publication-report.json
           if-no-files-found: ignore
           retention-days: 90
+
