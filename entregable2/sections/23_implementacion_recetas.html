@@ -1,0 +1,587 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>23. Implementación de recetas y controles temporales &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/23_implementacion_recetas';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Referencias de contexto y revisión E2" href="referencias.html" />
+    <link rel="prev" title="22. Once fichas de recetas propuestas" href="22_fichas_recetas.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 2 · Bitcoin: pronóstico de volatilidad</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_literatura.html">3. Revisión Sistemática del Estado del Arte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación de los diez modelos y el candidato adicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark vigente: diez modelos y un candidato adicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Preregistro del catálogo vigente y trazabilidad experimental</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de datos y auditoría formal de fuga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. HPO y equidad para el catálogo vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Incertidumbre predictiva y análisis de errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Agregación estadística e interpretación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas del catálogo vigente y adaptación a D7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo vigente: diez modelos y candidato 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_fichas_nuevas.html">16. Fichas bibliográficas de las cuatro altas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato sincronizado de E1, E2 y E3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_integracion_sintetica.html">18. Implementación provisional y verificación sintética</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_plan_auditoria.html">19. Plan experimental propuesto y auditoría sin entrenamiento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_contraste_guia.html">20. Cotejo del plan con la guía original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_comparadores_nas.html">21. Comparadores temporales y decisión NAS por receta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22_fichas_recetas.html">22. Once fichas de recetas propuestas</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">23. Implementación de recetas y controles temporales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><p class="small">Entregable 2 · Jassan Arteta · 2026-30</p></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/23_implementacion_recetas.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>23. Implementación de recetas y controles temporales</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alcance-del-nuevo-corte">Alcance del nuevo corte</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-cambia-en-la-implementacion">Qué cambia en la implementación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoencoder-fases-escala-y-limites">Autoencoder: fases, escala y límites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparadores-temporales">Comparadores temporales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-de-ejecucion-sintetica">Evidencia de ejecución sintética</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decisiones-que-siguen-abiertas">Decisiones que siguen abiertas</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="implementacion-de-recetas-y-controles-temporales">
+<h1>23. Implementación de recetas y controles temporales<a class="headerlink" href="#implementacion-de-recetas-y-controles-temporales" title="Link to this heading">#</a></h1>
+<section id="alcance-del-nuevo-corte">
+<h2>Alcance del nuevo corte<a class="headerlink" href="#alcance-del-nuevo-corte" title="Link to this heading">#</a></h2>
+<p>Este avance convierte las fichas de §22 en código verificable mediante datos artificiales. No constituye un benchmark de mercado, una selección de hiperparámetros ni una adjudicación NAS. No se han leído datos de mercado en estas pruebas y no hay resultados predictivos nuevos sobre Bitcoin.</p>
+<p>Los prototipos y recibos de §18 se conservan sin modificaciones. §22 permanece como registro fechado de las propuestas: su afirmación «sin cambios de implementación» describe aquel corte, no niega el avance documentado aquí. Los resultados históricos de E1 y de los estudios previos no se reasignan a estos cuerpos.</p>
+</section>
+<section id="que-cambia-en-la-implementacion">
+<h2>Qué cambia en la implementación<a class="headerlink" href="#que-cambia-en-la-implementacion" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>FCN-1D:</strong> cuerpo 128/256/128 con kernels 8/5/3, BN y media temporal. La cabeza escalar Softplus es una adaptación a σ₇, no la salida clasificadora original.</p></li>
+<li><p><strong>ResNet-1D:</strong> tres bloques 64/128/128, nueve convoluciones principales y tres proyecciones de atajo. Se conserva la BN inicial únicamente en la rama principal y la proyección del tercer atajo 128→128.</p></li>
+<li><p><strong>Inception-1D:</strong> seis módulos y dos conexiones residuales, cuatro ramas de 32 canales con kernels 40/20/10. Es un miembro individual, no el ensemble de cinco. El padding de max-pool excluye posiciones ausentes del máximo.</p></li>
+<li><p><strong>LSTM-autoencoder con predictor:</strong> dos preentrenamientos separados, anchos 25 y 26, reconstruyendo ambos la entrada original de cinco canales. El segundo recibe el vector final del primer encoder repetido siete veces. Se transfieren los encoders, se descartan los decoders y se ajusta el predictor con un optimizador nuevo.</p></li>
+<li><p><strong>Otros seis adaptadores y candidato CNN-LSTM-atención:</strong> se reutilizan sin alterar sus cuerpos históricos, con las dimensiones completas de las fichas y las diferencias D7 documentadas. Los seis adaptadores siguen agregando diez momentos de la misma ventana; los cuatro cuerpos nuevos y el híbrido no.</p></li>
+</ul>
+<p>Estos módulos se escribieron como implementaciones propias de las arquitecturas documentadas. No se incorporan pesos publicados ni se afirma igualdad numérica con los entrenamientos de los autores. La traducción de backend, inicialización y cabeza de regresión conserva límites explícitos; el smoke no reemplaza una reproducción independiente del resultado científico.</p>
+</section>
+<section id="autoencoder-fases-escala-y-limites">
+<h2>Autoencoder: fases, escala y límites<a class="headerlink" href="#autoencoder-fases-escala-y-limites" title="Link to this heading">#</a></h2>
+<p>El objetivo auxiliar es X/s, con s=max(1,max|X_train|), estimado exclusivamente sobre entrenamiento. La entrada del encoder no se divide por s. El mismo s se utiliza en ambas fases y no se recalcula para validación. Las observaciones de validación pueden exceder el rango de reconstrucción de los decoders LSTM; se informa sin recortar ni ajustar usando validación.</p>
+<p>El primer encoder permanece fijo durante el segundo preentrenamiento. El predictor utiliza ambos encoders con dropout 0,3 y una cabeza Softplus. No hay pérdida conjunta de reconstrucción y pronóstico. Esta escala auxiliar es una adaptación propia declarada, no una operación acreditada por el paper original ni una decisión NAS ya aceptada.</p>
+</section>
+<section id="comparadores-temporales">
+<h2>Comparadores temporales<a class="headerlink" href="#comparadores-temporales" title="Link to this heading">#</a></h2>
+<p>Las APIs individuales de §21 son un paso de implementación, no un ejecutor completo de la búsqueda clásica ni una certificación de las cohortes reales de 305, 53 o 608 fechas.</p>
+<ul class="simple">
+<li><p>Persistencia y naive estacional consultan σ₇(t−m), con m=1 y m∈{7,14,28}. No sustituyen un rezago ausente por otro valor.</p></li>
+<li><p>ARIMA ajusta parámetros y escala hasta origen−8. Después actualiza el estado con observaciones hasta t−1 sin reajustar parámetros y emite el pronóstico antes de incorporar la observación de t.</p></li>
+<li><p>El calendario conserva días faltantes. El filtro puede avanzar con una observación ausente, pero no convierte ese dato en una etiqueta evaluable.</p></li>
+<li><p>La salida conserva el valor crudo y registra el truncamiento a cero. No convergencia, salida no finita o dependencia incompatible son fallos explícitos, no un pronóstico cero ni una oportunidad de cambiar la receta.</p></li>
+<li><p>No se han implementado todavía la selección completa A/B, el registro durable de pronósticos de mercado ni la evaluación común de todos los sistemas.</p></li>
+</ul>
+</section>
+<section id="evidencia-de-ejecucion-sintetica">
+<h2>Evidencia de ejecución sintética<a class="headerlink" href="#evidencia-de-ejecucion-sintetica" title="Link to this heading">#</a></h2>
+<p><a class="reference download internal" download="" href="../_downloads/07830118eb4a21c454ec833ffc005131/synthetic_receipt.json"><span class="xref download myst">Recibo de la ejecución</span></a> · <a class="reference download internal" download="" href="../_downloads/1e38bb1f31b0480a8b5489de39a5beef/summary.json"><span class="xref download myst">Resumen y hashes</span></a> · <a class="reference download internal" download="" href="../_downloads/d634ff852b8c17b8b5d823168d62de9b/README.md"><code class="xref download docutils literal notranslate"><span class="pre">Reproducción</span> <span class="pre">y</span> <span class="pre">límites</span></code></a>.</p>
+<p>Se ejecutaron <strong>11/11 modelos, sin omisiones</strong>, sobre 96 días artificiales, 32 ventanas de entrenamiento y ocho de validación. Se realizó un paso supervisado por modelo y uno en cada fase auxiliar SAE: <strong>13 pasos en total</strong>. La validación no intervino en optimización ni selección. No se redujeron anchos o profundidad para el smoke.</p>
+<p>El flujo verificó 70 archivos fijados de los cuatro adaptadores externos. Ese alcance no equivale a verificar repositorios completos ni a certificar las fuentes de los cuatro cuerpos propios.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo</p></th>
+<th class="head text-right"><p>Parámetros del predictor</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>FCN-1D</p></td>
+<td class="text-right"><p>268,929</p></td>
+</tr>
+<tr class="row-odd"><td><p>ResNet-1D</p></td>
+<td class="text-right"><p>522,955</p></td>
+</tr>
+<tr class="row-even"><td><p>Inception-1D</p></td>
+<td class="text-right"><p>490,561</p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM-autoencoder con predictor</p></td>
+<td class="text-right"><p>8,739</p></td>
+</tr>
+<tr class="row-even"><td><p>TimesNet</p></td>
+<td class="text-right"><p>1,172,875</p></td>
+</tr>
+<tr class="row-odd"><td><p>TSMixer</p></td>
+<td class="text-right"><p>35,044</p></td>
+</tr>
+<tr class="row-even"><td><p>TiDE</p></td>
+<td class="text-right"><p>168,537</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimeMixer</p></td>
+<td class="text-right"><p>2,615</p></td>
+</tr>
+<tr class="row-even"><td><p>PatchTST</p></td>
+<td class="text-right"><p>16,664</p></td>
+</tr>
+<tr class="row-odd"><td><p>iTransformer</p></td>
+<td class="text-right"><p>795,403</p></td>
+</tr>
+<tr class="row-even"><td><p>CNN-1D + LSTM + atención temporal</p></td>
+<td class="text-right"><p>9,537</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los dos autoencoders auxiliares tienen 3.840 y 6.172 parámetros respectivamente; sus decoders no forman parte de los 8.739 parámetros del predictor transferido. Sus etapas sí deben contarse en un presupuesto posterior.</p>
+<p>Se aprobaron <strong>39 pruebas nuevas</strong>: 14 de cuerpos, seis de integración del catálogo y 19 de controles temporales. Las seis de catálogo se ejecutaron con fuentes externas verificadas; las 19 de controles, con statsmodels 0.14.5 en entorno separado. Sin esa dependencia, once pruebas de controles se omiten: una ejecución con omisiones no sustituye este resultado.</p>
+<p>Las pruebas cubren gradientes, B=1, salida finita, BN poblacional y estadísticas congeladas en evaluación, padding SAME, pooling de valores negativos, fases SAE y transferencia, escala ajustada al entrenamiento, calendario, embargos, invariancia al futuro y filtrado ARIMA sin refit. Un fixture ARIMA con hueco de entrenamiento no converge: su rechazo explícito es parte de la prueba, no un ajuste exitoso. Un fallo del backend detiene terminalmente esa instancia; no puede reintentarse ni seguir filtrando.</p>
+<p><strong>Límites de equivalencia:</strong> la Conv2D cuadrada de la fuente Wang sobre un eje singleton se traduce a Conv1D; cambian pesos inactivos, fan-in e inicialización. La BN usa una convención no fusionada de varianza poblacional, ε=0,001 y retención 0,99, sin prometer igualdad bit a bit con TensorFlow/Keras histórico. Las puertas LSTM se verifican, pero no la serialización CuDNN ni la compatibilidad de checkpoints. Estas pruebas CPU no certifican GPU o precisión mixta.</p>
+</section>
+<section id="decisiones-que-siguen-abiertas">
+<h2>Decisiones que siguen abiertas<a class="headerlink" href="#decisiones-que-siguen-abiertas" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Adjudicar por receta las dudas NAS y las adaptaciones de §22. Implementar un cuerpo no concede una exención académica.</p></li>
+<li><p>Cerrar el espacio HPO mínimo de la guía, hardware, techo de recursos y contabilidad de todas las etapas. Las dos fases SAE no son gratuitas y un tiempo sintético no estima el presupuesto de mercado.</p></li>
+<li><p>Integrar y auditar las cohortes reales comunes de los comparadores, sin escoger máscaras después de ver pérdidas.</p></li>
+<li><p>Congelar protocolo, inferencia y orden de ejecución antes de cualquier entrenamiento de mercado. El test de 608 fechas ya observado continúa siendo exploratorio.</p></li>
+<li><p>Completar las verificaciones de licencias, entorno independiente y límites de reproducción. No se afirma convergencia, potencia, cobertura ni superioridad del híbrido.</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="22_fichas_recetas.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">22. Once fichas de recetas propuestas</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="referencias.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Referencias de contexto y revisión E2</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alcance-del-nuevo-corte">Alcance del nuevo corte</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-cambia-en-la-implementacion">Qué cambia en la implementación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoencoder-fases-escala-y-limites">Autoencoder: fases, escala y límites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparadores-temporales">Comparadores temporales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-de-ejecucion-sintetica">Evidencia de ejecución sintética</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decisiones-que-siguen-abiertas">Decisiones que siguen abiertas</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

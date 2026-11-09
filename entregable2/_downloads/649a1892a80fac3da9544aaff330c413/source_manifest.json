@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "generator_script": "scripts/import_e2_wos.py",
+  "generator_sha256": "fc3847a7dab2696be2ec5fb6f6c5bb3bc2ee6e2b936edd5336ef45e628792c5f",
+  "sources": [
+    {
+      "source_file": "savedrecs.txt",
+      "bytes": 2322602,
+      "sha256": "901c724c248348a284dd49c829c0153b199b8e8d8e29e369a191ac6496554281",
+      "record_count": 302,
+      "PT_ER_integrity": "passed",
+      "final_EF": true,
+      "WoS_header": {
+        "FN": "Clarivate Analytics Web of Science",
+        "VR": "1.0"
+      },
+      "export_DA_values": [
+        "2026-11-06"
+      ],
+      "export_DA_has_time_or_timezone": false,
+      "query_assignment_hypothesis": "Q1",
+      "query_assignment_confirmed_by_export": false,
+      "record_range_in_native_result_list": null,
+      "native_full_result_count": null,
+      "occurrence_offset_zero_based": 0,
+      "PY_counts": {
+        "2017": 1,
+        "2018": 3,
+        "2019": 4,
+        "2020": 13,
+        "2021": 19,
+        "2022": 30,
+        "2023": 36,
+        "2024": 42,
+        "2025": 79,
+        "2026": 75
+      },
+      "missing_abstracts": 1,
+      "missing_DOIs": 10,
+      "missing_TC": 0
+    },
+    {
+      "source_file": "savedrecs (1).txt",
+      "bytes": 3431068,
+      "sha256": "6e3b7ec2d5b8b94b2b85aa314678714c061d449213d41c0805059ff859ec4bdb",
+      "record_count": 500,
+      "PT_ER_integrity": "passed",
+      "final_EF": true,
+      "WoS_header": {
+        "FN": "Clarivate Analytics Web of Science",
+        "VR": "1.0"
+      },
+      "export_DA_values": [
+        "2026-11-06"
+      ],
+      "export_DA_has_time_or_timezone": false,
+      "query_assignment_hypothesis": "Q2",
+      "query_assignment_confirmed_by_export": false,
+      "record_range_in_native_result_list": null,
+      "native_full_result_count": null,
+      "occurrence_offset_zero_based": 302,
+      "PY_counts": {
+        "2006": 2,
+        "2017": 1,
+        "2018": 1,
+        "2021": 2,
+        "2023": 5,
+        "2024": 28,
+        "2025": 162,
+        "2026": 283,
+        "2027": 16
+      },
+      "missing_abstracts": 0,
+      "missing_DOIs": 1,
+      "missing_TC": 0
+    },
+    {
+      "source_file": "savedrecs (2).txt",
+      "bytes": 3412925,
+      "sha256": "c5d75a485971aecb9bf941e57663732f05fd1fe8c5fb497fd899d0c87511b4f1",
+      "record_count": 500,
+      "PT_ER_integrity": "passed",
+      "final_EF": true,
+      "WoS_header": {
+        "FN": "Clarivate Analytics Web of Science",
+        "VR": "1.0"
+      },
+      "export_DA_values": [
+        "2026-11-06"
+      ],
+      "export_DA_has_time_or_timezone": false,
+      "query_assignment_hypothesis": "Q2",
+      "query_assignment_confirmed_by_export": false,
+      "record_range_in_native_result_list": null,
+      "native_full_result_count": null,
+      "occurrence_offset_zero_based": 802,
+      "PY_counts": {
+        "2006": 5,
+        "2007": 1,
+        "2008": 1,
+        "2009": 5,
+        "2010": 1,
+        "2011": 1,
+        "2012": 2,
+        "2013": 5,
+        "2014": 6,
+        "2015": 3,
+        "2016": 3,
+        "2017": 1,
+        "2018": 7,
+        "2019": 6,
+        "2020": 4,
+        "2021": 5,
+        "2022": 11,
+        "2023": 10,
+        "2024": 34,
+        "2025": 131,
+        "2026": 247,
+        "2027": 11
+      },
+      "missing_abstracts": 2,
+      "missing_DOIs": 7,
+      "missing_TC": 0
+    }
+  ],
+  "declared_queries": {
+    "Q1": "TS=((bitcoin OR ethereum OR cryptocurrenc* OR cryptoasset*)\nAND (volatility OR \"realized volatility\" OR \"realised volatility\")\nAND (\"deep learning\" OR \"neural network*\" OR transformer*\nOR LSTM OR GRU OR CNN OR TCN))",
+    "Q2": "TS=((\"time series\" OR forecasting OR \"temporal prediction\")\nAND (TSMixer OR TiDE OR TimeMixer OR PatchTST OR iTransformer\nOR Crossformer OR TimesNet OR MICN OR Mamba\nOR \"structured state space\"))"
+  },
+  "two_queries_not_a_comma_joined_query": true,
+  "query_to_file_mapping_confirmed": false,
+  "raw_exports_redistributed": false,
+  "public_derivatives": "Minimal bibliographic metadata, identifiers, counts and source positions; full abstracts, CR, email/address fields excluded",
+  "public_output_files": {
+    "records.csv": {
+      "bytes": 841173,
+      "sha256": "260cf835e511a7c343b5adc14ca591d65d5a8734554f33dee40c10ed27045ba5"
+    },
+    "model_evidence.csv": {
+      "bytes": 967848,
+      "sha256": "a7935e048a0f4b572590d3cd900aaa59be8b9c4cbf14e572db026eaf10c45059"
+    },
+    "deduplication.csv": {
+      "bytes": 600,
+      "sha256": "0d8f15bedcc703f4bddcb4d95546a53814663f742a9bd4abf165412c3a82c557"
+    },
+    "summary.json": {
+      "bytes": 4074,
+      "sha256": "527f3bddd86d8e65692da0b4b7c5f5dfc40ae7efcf20e24643e010b99f989a34"
+    },
+    "title_identifier_conflicts.json": {
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    }
+  }
+}

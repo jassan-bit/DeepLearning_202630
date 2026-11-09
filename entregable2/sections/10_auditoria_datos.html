@@ -1,0 +1,769 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>10. Contrato de datos y auditoría formal de fuga &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/10_auditoria_datos';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="11. HPO y equidad para el catálogo vigente" href="11_hpo_equidad.html" />
+    <link rel="prev" title="9. Preregistro del catálogo vigente y trazabilidad experimental" href="09_protocolo_registrado.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 2 · Bitcoin: pronóstico de volatilidad</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_literatura.html">3. Revisión Sistemática del Estado del Arte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación de los diez modelos y el candidato adicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark vigente: diez modelos y un candidato adicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Preregistro del catálogo vigente y trazabilidad experimental</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">10. Contrato de datos y auditoría formal de fuga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. HPO y equidad para el catálogo vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Incertidumbre predictiva y análisis de errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Agregación estadística e interpretación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas del catálogo vigente y adaptación a D7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo vigente: diez modelos y candidato 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_fichas_nuevas.html">16. Fichas bibliográficas de las cuatro altas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato sincronizado de E1, E2 y E3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_integracion_sintetica.html">18. Implementación provisional y verificación sintética</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_plan_auditoria.html">19. Plan experimental propuesto y auditoría sin entrenamiento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_contraste_guia.html">20. Cotejo del plan con la guía original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_comparadores_nas.html">21. Comparadores temporales y decisión NAS por receta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22_fichas_recetas.html">22. Once fichas de recetas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_implementacion_recetas.html">23. Implementación de recetas y controles temporales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><p class="small">Entregable 2 · Jassan Arteta · 2026-30</p></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/10_auditoria_datos.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>10. Contrato de datos y auditoría formal de fuga</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-ejecutada-fecha-y-frontera-de-acceso">10.1 Evidencia ejecutada, fecha y frontera de acceso</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enmienda-de-soportes-para-el-procedimiento-final">10.1.1 Enmienda de soportes para el procedimiento final</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contrato-operativo-de-las-observaciones">10.2 Contrato operativo de las observaciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#once-separaciones-auditadas">10.3 Once separaciones auditadas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correspondencia-con-las-verificaciones-obligatorias">10.4 Correspondencia con las verificaciones obligatorias</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#controles-negativos-y-de-desplazamiento-implementados">10.4.1 Controles negativos y de desplazamiento implementados</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reconstruccion-y-cierre-pendiente">10.5 Reconstrucción y cierre pendiente</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="contrato-de-datos-y-auditoria-formal-de-fuga">
+<span id="e2-auditoria-datos"></span><h1>10. Contrato de datos y auditoría formal de fuga<a class="headerlink" href="#contrato-de-datos-y-auditoria-formal-de-fuga" title="Link to this heading">#</a></h1>
+<p><strong>Alcance:</strong> los datos, controles y experimentos ya ejecutados de esta sección se conservan como evidencia histórica. No acreditan entrenamiento del catálogo vigente de diez modelos y candidato 11, definido en <a class="reference internal" href="15_revision_modelos.html"><span class="std std-doc">§15</span></a>. Cualquier presupuesto o receta anterior requiere revisión y nuevo registro antes de reutilizarse.</p>
+<p><strong>Estado:</strong> la auditoría ejecutada de soporte P0/OOF de desarrollo está aprobada. Esto no certifica todas las verificaciones del pipeline final de configuraciones del registro histórico exigidas en la tabla10.1 de la guía (PDF pp44–45). La regla de p46 exige corregir cualquier fallo y repetir el experimento afectado; no permite publicar un benchmark inválido con una nota al pie. La ausencia de un control todavía no ejecutado se informa como pendiente, sin declararlo aprobado.</p>
+<section id="evidencia-ejecutada-fecha-y-frontera-de-acceso">
+<h2>10.1 Evidencia ejecutada, fecha y frontera de acceso<a class="headerlink" href="#evidencia-ejecutada-fecha-y-frontera-de-acceso" title="Link to this heading">#</a></h2>
+<p>El <a class="reference download internal" download="" href="../_downloads/9b6093eee1456dcd4e7b3469ed90b430/data_support_audit.json"><span class="xref download myst">recibo <code class="docutils literal notranslate"><span class="pre">data_support_audit.json</span></code></span></a> se generó el <strong>06/11/2026 a las 14:52:31 UTC</strong> con <code class="docutils literal notranslate"><span class="pre">scripts/e2_remediation_data_audit.py</span></code> de la fuente registrada <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0"><code class="docutils literal notranslate"><span class="pre">599a29f</span></code></a>. Lee exclusivamente los dos derivados diarios de desarrollo 2023–2024, comprueba su integridad y produce agregados e índices, sin precios individuales en el recibo.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Comprobación</p></th>
+<th class="head"><p>Resultado y alcance</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Calendario</p></td>
+<td><p>731 fechas diarias UTC de 2023–2024, únicas y sin compresión</p></td>
+</tr>
+<tr class="row-odd"><td><p>Día OHLCV incompleto</p></td>
+<td><p>24/03/2023; la máscara conserva su posición</p></td>
+</tr>
+<tr class="row-even"><td><p>Reconstrucción σ₇</p></td>
+<td><p>Diferencia absoluta máxima0,0 en la reconstrucción comparada por este auditor; consistencia aritmética, no ausencia de ruido de proxy</p></td>
+</tr>
+<tr class="row-odd"><td><p>Orígenes de desarrollo</p></td>
+<td><p>Once: diez mensuales para OOF y uno para noviembre–diciembre</p></td>
+</tr>
+<tr class="row-even"><td><p>OOF enero–octubre de 2024</p></td>
+<td><p>305 fechas de resultado únicas</p></td>
+</tr>
+<tr class="row-odd"><td><p>P0 noviembre–30 de diciembre de 2024</p></td>
+<td><p>Sesenta fechas de resultado únicas</p></td>
+</tr>
+<tr class="row-even"><td><p>Identidades de resultados</p></td>
+<td><p>Cero intersecciones train/evaluación e inner-train/inner-validación dentro de cada separación auditada</p></td>
+</tr>
+<tr class="row-odd"><td><p>Duplicados exactos D7 cruzados</p></td>
+<td><p>Cero colisiones de contenido entre train/evaluación en los once orígenes</p></td>
+</tr>
+<tr class="row-even"><td><p>Corte temporal</p></td>
+<td><p>Última etiqueta y ajuste de escalado no posteriores a origen−8; embargo de siete días</p></td>
+</tr>
+<tr class="row-odd"><td><p>Preflight de datos</p></td>
+<td><p>Cero ajustes y cero predicciones realizados por <strong>este auditor</strong>, sin acceso a precios de test de 2025/2026</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El último contador describe el proceso de auditoría, no el estado global posterior del proyecto: <strong>P0 ya se ejecutó y analizó</strong>, con 220 trayectorias/440 ajustes de desarrollo cerrados y sus resultados en §9. No son resultados del benchmark final, ni nuevos mercados independientes.</p>
+<p>Los hashes de fuentes son:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>daily_market_development.csv
+bf6bb5160af924aef6a15c3684aeae932df3017e8639888bb7e91ce787900171
+daily_volatility_development.csv
+20b96374a659eb87dadfa68aa3d6b6b5fb6bea5b10eebe6f2c186ad69861844a
+</pre></div>
+</div>
+<p>Un hash identifica bytes y detecta cambios respecto al registro; <strong>no prueba por sí solo ausencia de fuga</strong>. El calendario, la disponibilidad, los soportes y el código de transformación requieren controles adicionales. Tampoco la ausencia de duplicados exactos excluye dependencia, casi duplicados o decisiones hechas con test.</p>
+<section id="enmienda-de-soportes-para-el-procedimiento-final">
+<h3>10.1.1 Enmienda de soportes para el procedimiento final<a class="headerlink" href="#enmienda-de-soportes-para-el-procedimiento-final" title="Link to this heading">#</a></h3>
+<p>La <a class="reference download internal" download="" href="../_downloads/47a0a31721456b70c253b9b8290a2de8/analysis_additions.json"><span class="xref download myst">enmienda preparada</span></a> reconoce selección de hiperparámetros hasta <strong>31/10/2024</strong>. P1 y A usan origen nominal 08/11, corte de ajuste/escalado/selección 31/10, embargo 01–07/11 y <strong>53 resultados 08/11–30/12</strong>. El antiguo P0 conserva sus sesenta fechas y soportes ya ejecutados; no se reescriben los recibos de <code class="docutils literal notranslate"><span class="pre">599a29f</span></code>.</p>
+<p>Para OOF final, las tres recetas históricas E1 declaran su selección hasta el 31/10 incluso en folds anteriores; esa exposición impide calificarlas como selección anidada insesgada. Los cortes mensuales de pesos, escaladores y épocas siguen vigentes para todos; las otras diecisiete configuraciones deben respetar también selección de configuración anterior al origen. La excepción histórica no permite nuevos ajustes con información futura.</p>
+<p>El código final añade auditoría de estos soportes y guardas globales: <strong>todos los pesos primarios, A y de controles negativos cerrados antes de cualquier score de calibración</strong>, calibradores sellados antes del test y misma identidad del predictor A calibrado/evaluado. La lectura posterior de historia 2025–agosto de 2026 para referencias endógenas conserva calendario y NaN, con hash/auditoría de archivos; no autoriza refit ni elimina la condición de test conocido. La ejecución integrada de esos controles todavía debe producir sus recibos.</p>
+</section>
+</section>
+<section id="contrato-operativo-de-las-observaciones">
+<h2>10.2 Contrato operativo de las observaciones<a class="headerlink" href="#contrato-operativo-de-las-observaciones" title="Link to this heading">#</a></h2>
+<p>Se hereda la <a class="reference download internal" download="" href="../_downloads/2f4c10b145968f6d7a4381680510d034/dataset_card.json"><span class="xref download myst">Data Card</span></a> y el <a class="reference download internal" download="" href="../_downloads/90ebb817498db49047ab1aab4197df27/e1_reference.json"><span class="xref download myst">contrato científico E1</span></a>, sin cambiar D7×5, objetivo, h=1, δ, unidad ni partición. La <a class="reference internal" href="07_ruta_temporal.html"><span class="std std-doc">ruta F2a</span></a> añade sus referencias explícitas; no añade Y rezagada a las redes.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Campo</p></th>
+<th class="head"><p>Regla al cargar y construir ejemplos</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Identificador temporal</p></td>
+<td><p>Fecha diaria UTC; su posición no se sustituye por número de fila retenida</p></td>
+</tr>
+<tr class="row-odd"><td><p>Covariables</p></td>
+<td><p>Cinco magnitudes OHLCV; valores finitos, OHLC positivos y coherentes, volumen no negativo en barras completas</p></td>
+</tr>
+<tr class="row-even"><td><p>Disponibilidad</p></td>
+<td><p>Para resultado t, solo barras completas t−7…t−1; no OHLCV del propio día t</p></td>
+</tr>
+<tr class="row-odd"><td><p>Etiqueta</p></td>
+<td><p>Desviación poblacional de siete retornos logarítmicos consecutivos, ocho cierres, sin anualización</p></td>
+</tr>
+<tr class="row-even"><td><p>Ausencia</p></td>
+<td><p>No imputar ni unir días separados por un hueco; excluir ejemplos dependientes de información inválida</p></td>
+</tr>
+<tr class="row-odd"><td><p>Transformación</p></td>
+<td><p>OHLC relativos al último cierre observable de la ventana y log1p de volumen; escalas y media de Y aprendidas en entrenamiento admisible</p></td>
+</tr>
+<tr class="row-even"><td><p>Selección y parada</p></td>
+<td><p>Validación interna anterior al origen, con su embargo; datos de evaluación no eligen época ni parámetros</p></td>
+</tr>
+<tr class="row-odd"><td><p>Referencias endógenas</p></td>
+<td><p>Persistencia alcanza t−8; naive semanal alcanza t−14; ARIMA usa historia declarada, con parámetros y actualizaciones separados</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El 24/03/2023 reúne 80 minutos ausentes y una vela presente con cierre temporal irregular según E1. No se presentan como 81 filas ausentes. Se conserva el día incompleto y se propaga su máscara a retornos, σ₇ y ventanas. Los recuentos detallados de calidad y elegibilidad, incluidas las 350/366 etiquetas válidas de desarrollo, permanecen en §2; 731 días no equivalen a 731 muestras supervisadas ni a 731 unidades independientes.</p>
+<p>El driver P0 descodifica para cada ajuste únicamente el prefijo admisible hasta su corte; el scoring de desarrollo es una fase posterior a los cierres programados. La auditoría previa sí inspecciona desarrollo completo para comprobar su esquema y calendarios: no se confunde ese control con una evaluación desconocida ni con permiso para ajustar escalas con validación.</p>
+</section>
+<section id="once-separaciones-auditadas">
+<h2>10.3 Once separaciones auditadas<a class="headerlink" href="#once-separaciones-auditadas" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Origen</p></th>
+<th class="head"><p>Último resultado train/escalado</p></th>
+<th class="head text-right"><p>Train elegible</p></th>
+<th class="head text-right"><p>Inner-train</p></th>
+<th class="head text-right"><p>Inner-validación</p></th>
+<th class="head text-right"><p>Evaluación</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>01/01/2024</p></td>
+<td><p>24/12/2023</p></td>
+<td class="text-right"><p>343</p></td>
+<td class="text-right"><p>253</p></td>
+<td class="text-right"><p>83</p></td>
+<td class="text-right"><p>31</p></td>
+</tr>
+<tr class="row-odd"><td><p>01/02/2024</p></td>
+<td><p>24/01/2024</p></td>
+<td class="text-right"><p>374</p></td>
+<td class="text-right"><p>284</p></td>
+<td class="text-right"><p>83</p></td>
+<td class="text-right"><p>29</p></td>
+</tr>
+<tr class="row-even"><td><p>01/03/2024</p></td>
+<td><p>22/02/2024</p></td>
+<td class="text-right"><p>403</p></td>
+<td class="text-right"><p>313</p></td>
+<td class="text-right"><p>83</p></td>
+<td class="text-right"><p>31</p></td>
+</tr>
+<tr class="row-odd"><td><p>01/04/2024</p></td>
+<td><p>24/03/2024</p></td>
+<td class="text-right"><p>434</p></td>
+<td class="text-right"><p>344</p></td>
+<td class="text-right"><p>83</p></td>
+<td class="text-right"><p>30</p></td>
+</tr>
+<tr class="row-even"><td><p>01/05/2024</p></td>
+<td><p>23/04/2024</p></td>
+<td class="text-right"><p>464</p></td>
+<td class="text-right"><p>374</p></td>
+<td class="text-right"><p>83</p></td>
+<td class="text-right"><p>31</p></td>
+</tr>
+<tr class="row-odd"><td><p>01/06/2024</p></td>
+<td><p>24/05/2024</p></td>
+<td class="text-right"><p>495</p></td>
+<td class="text-right"><p>405</p></td>
+<td class="text-right"><p>83</p></td>
+<td class="text-right"><p>30</p></td>
+</tr>
+<tr class="row-even"><td><p>01/07/2024</p></td>
+<td><p>23/06/2024</p></td>
+<td class="text-right"><p>525</p></td>
+<td class="text-right"><p>435</p></td>
+<td class="text-right"><p>83</p></td>
+<td class="text-right"><p>31</p></td>
+</tr>
+<tr class="row-odd"><td><p>01/08/2024</p></td>
+<td><p>24/07/2024</p></td>
+<td class="text-right"><p>556</p></td>
+<td class="text-right"><p>466</p></td>
+<td class="text-right"><p>83</p></td>
+<td class="text-right"><p>31</p></td>
+</tr>
+<tr class="row-even"><td><p>01/09/2024</p></td>
+<td><p>24/08/2024</p></td>
+<td class="text-right"><p>587</p></td>
+<td class="text-right"><p>497</p></td>
+<td class="text-right"><p>83</p></td>
+<td class="text-right"><p>30</p></td>
+</tr>
+<tr class="row-odd"><td><p>01/10/2024</p></td>
+<td><p>23/09/2024</p></td>
+<td class="text-right"><p>617</p></td>
+<td class="text-right"><p>527</p></td>
+<td class="text-right"><p>83</p></td>
+<td class="text-right"><p>31</p></td>
+</tr>
+<tr class="row-even"><td><p>01/11/2024</p></td>
+<td><p>24/10/2024</p></td>
+<td class="text-right"><p>648</p></td>
+<td class="text-right"><p>558</p></td>
+<td class="text-right"><p>83</p></td>
+<td class="text-right"><p>60</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los diez primeros orígenes reúnen 305 fechas OOF; la última fila representa todo el bloque P0 hasta el 30/12, no un undécimo mes OOF. La validación interna nominal de noventa días deja 83 resultados elegibles por su separación temporal; inner-train más inner-validación no suman todo train porque también existe embargo interno.</p>
+<p>El activo BTCUSDT aparece legítimamente en todas las fases: se evalúa una sola serie, no generalización a activos excluidos de entrenamiento. Para esta ruta se comprueban fechas de resultados y soportes cronológicos; no se exige inventar identificadores de mercados disjuntos. Una fecha validada puede incorporarse a un entrenamiento posterior cuando ya es pasada y respeta embargo. Ese uso expansivo no vuelve independientes los folds, las semillas o las etiquetas solapadas.</p>
+</section>
+<section id="correspondencia-con-las-verificaciones-obligatorias">
+<h2>10.4 Correspondencia con las verificaciones obligatorias<a class="headerlink" href="#correspondencia-con-las-verificaciones-obligatorias" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tabla10.1, PDF pp44–45</p></th>
+<th class="head"><p>Evidencia disponible</p></th>
+<th class="head"><p>Estado y límite</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Intersección de identificadores</p></td>
+<td><p>Índices de resultados train/evaluación e inner-train/validación en once orígenes</p></td>
+<td><p>Aprobado para P0/OOF; una serie común no se presenta como particiones iid por mercado</p></td>
+</tr>
+<tr class="row-odd"><td><p>Duplicados exactos</p></td>
+<td><p>Hash de los tensores D7 numéricos entre train/evaluación</p></td>
+<td><p>Cero colisiones en desarrollo auditado; controles finales/test por completar</p></td>
+</tr>
+<tr class="row-even"><td><p>Casi duplicados</p></td>
+<td><p>Vecinos en representación relativa, escalado de entrenamiento y umbral0,01 documentados en §2</p></td>
+<td><p>Diagnóstico de desarrollo ejecutado; sensibilidad de desempeño con/sin casos no acreditada por este recibo</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fuga temporal</p></td>
+<td><p>Train y escalado hasta origen−8; controles internos y calendario no comprimido</p></td>
+<td><p>Aprobado en once separaciones D7; cada referencia con otro soporte requiere su comprobación específica</p></td>
+</tr>
+<tr class="row-even"><td><p>Fuga espacial</p></td>
+<td><p>Un mercado sin coordenadas/unidades espaciales</p></td>
+<td><p>No aplica a la tarea F2a; no sustituirlo por un test ficticio</p></td>
+</tr>
+<tr class="row-odd"><td><p>Transformaciones</p></td>
+<td><p>Escalado de train comprobado y pruebas sintéticas de adaptadores; EDA con parámetros train-only</p></td>
+<td><p>Evidencia P0 parcial; auditoría completa de cada pipeline final pendiente</p></td>
+</tr>
+<tr class="row-even"><td><p>Atributos posteriores al evento</p></td>
+<td><p>Diccionario causal y prefijos de lectura anteriores al origen; análisis de rezagos en §2</p></td>
+<td><p>Disponibilidad documentada; revisión final y controles univariados aplicables pendientes de cierre</p></td>
+</tr>
+<tr class="row-odd"><td><p>Validación adversarial</p></td>
+<td><p>Implementación de clasificador train/evaluación con las 35 entradas, cinco folds bloqueados/purgados y gap de siete días; escalado dentro de fold</p></td>
+<td><p>Experimento final pendiente; no se sustituye por KS/Wasserstein ni se seleccionan modelos con su resultado</p></td>
+</tr>
+<tr class="row-even"><td><p>Modelos preentrenados</p></td>
+<td><p>P0 desde inicialización; adaptadores históricos revisados con fuentes/presets por hash</p></td>
+<td><p>El catálogo vigente debe verificar procedencia de pesos, archivos importados y licencias antes de entrenar</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sanidad con etiquetas permutadas</p></td>
+<td><p>Implementación para dieciséis redes y Ridge; permutación separada por bloques en train/selección de épocas; nuevas semillas y pesos cerrados antes de test</p></td>
+<td><p>Ejecución y análisis pendientes; las referencias endógenas requieren auditoría causal y perturbaciones de historia, no una regresión supervisada ficticia</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los controles de adaptadores verifican forma, gradientes finitos y que una predicción no cambie con otros orígenes en el batch. La revisión independiente y la prueba de memorización sintética del catálogo histórico se conservan para auditoría en <a class="reference internal" href="14_arquitecturas.html"><span class="std std-doc">§14</span></a>. Son controles relevantes para disponibilidad causal, pero <strong>no equivalen</strong> a entrenar con etiquetas permutadas, demostrar ausencia de atajos o aprobar automáticamente los pipelines del catálogo vigente. Si una comprobación futura falla, se conservará el fallo y se repetirá el experimento afectado tras corregir su causa; no se seleccionarán fechas favorables ni un test que produzca el resultado deseado.</p>
+<section id="controles-negativos-y-de-desplazamiento-implementados">
+<h3>10.4.1 Controles negativos y de desplazamiento implementados<a class="headerlink" href="#controles-negativos-y-de-desplazamiento-implementados" title="Link to this heading">#</a></h3>
+<p>El módulo <code class="docutils literal notranslate"><span class="pre">scripts/e2_leakage_controls.py</span></code> separa diecisiete controles supervisados —dieciséis redes y Ridge— de las referencias endógenas. Permuta etiquetas por bloques de siete observaciones admitidas, declara huecos y separa permutaciones de entrenamiento, selección temprana y validación interna. Usa semillas de permutación 690101/690118/690132, reajuste desde cero y la misma receta primaria congelada. Los <strong>diecisiete predictores de control deben cerrar junto a todos los primarios y A antes de calibración o test</strong>; no se ajusta un control después de observar resultados. Los errores se evalúan sobre la misma reserva conocida de sesenta fechas, dentro de su fase única.</p>
+<p>Se compara con el pronóstico constante de media de entrenamiento. La señal sospechosa predefinida requiere conjuntamente ganancia RMSE&gt;δ y correlación Spearman positiva, mediante IUT y <strong>Holm sobre diecisiete hipótesis, α=0,01</strong>, con 2.000 remuestreos. No rechazar no demuestra ausencia de fuga; los controles son diagnósticos con potencia y supuestos limitados, no una certificación automática.</p>
+<p>El clasificador adversarial usa las 35 entradas, cinco particiones bloqueadas/purgadas, embargo de siete días, escalado aprendido dentro de cada train y regresión logística L2 balanceada con parámetros fijos. La distribución nula usa <strong>2.000 permutaciones de etiquetas de dominio por bloques con reajuste de todos los folds</strong>. Se ejecuta tras los cierres globales; explica desplazamiento entre periodos sin retroalimentar HPO o adaptar escaladores a test. ARIMA y los dos ingenuos reciben auditoría de estado causal y perturbaciones reales de la historia observable, manteniendo coeficientes fijos. Estos controles están implementados; su ejecución y resultados no se atribuyen al preflight sintético P0.</p>
+</section>
+</section>
+<section id="reconstruccion-y-cierre-pendiente">
+<h2>10.5 Reconstrucción y cierre pendiente<a class="headerlink" href="#reconstruccion-y-cierre-pendiente" title="Link to this heading">#</a></h2>
+<p>Desde el checkout registrado, en el entorno de §8 y con una ruta de salida separada, este comando regenera el recibo agregado sin ajustar modelos:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>scripts/e2_remediation_data_audit.py<span class="w"> </span>--output<span class="w"> </span>../e2-data-audit-reproduction.json
+</pre></div>
+</div>
+<p>El <a class="reference download internal" download="" href="../_downloads/3206a16084eae75f63f143c241b74ac3/registration.json"><span class="xref download myst">registro de entrada</span></a> preserva sus hashes y el <a class="reference download internal" download="" href="../_downloads/9b6093eee1456dcd4e7b3469ed90b430/data_support_audit.json"><span class="xref download myst">recibo publicado</span></a> preserva los resultados observados. La <a class="reference download internal" download="" href="../_downloads/a421707fc03ce60be02b214170dea130/Remediacion_E2_protocolo_codigo_evidencias.zip"><span class="xref download myst">descarga unificada</span></a> incluye el procedimiento y las evidencias de esta etapa. Una reproducción puede cambiar la fecha de generación del recibo; comparar esa fecha o el hash del JSON completo no sustituye contrastar los mismos campos científicos e identidades de entrada.</p>
+<p>Antes del scoring final faltan los recibos de la auditoría completa sobre las implementaciones, las cohortes congeladas de referencias con soportes distintos, los checkpoints cerrados y los análisis registrados. Los periodos 2025–2026 conocidos de E1 siguen fuera de este preflight; su reutilización futura conserva alcance exploratorio. Un hash nuevo no crea un test nuevo y una auditoría de soporte aprobada no demuestra por sí sola generalización independiente ni superioridad predictiva.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="09_protocolo_registrado.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">9. Preregistro del catálogo vigente y trazabilidad experimental</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="11_hpo_equidad.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">11. HPO y equidad para el catálogo vigente</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-ejecutada-fecha-y-frontera-de-acceso">10.1 Evidencia ejecutada, fecha y frontera de acceso</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enmienda-de-soportes-para-el-procedimiento-final">10.1.1 Enmienda de soportes para el procedimiento final</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contrato-operativo-de-las-observaciones">10.2 Contrato operativo de las observaciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#once-separaciones-auditadas">10.3 Once separaciones auditadas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correspondencia-con-las-verificaciones-obligatorias">10.4 Correspondencia con las verificaciones obligatorias</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#controles-negativos-y-de-desplazamiento-implementados">10.4.1 Controles negativos y de desplazamiento implementados</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reconstruccion-y-cierre-pendiente">10.5 Reconstrucción y cierre pendiente</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

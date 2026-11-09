@@ -1,0 +1,314 @@
+{
+  "record_id": "S9",
+  "recorded_at_utc": "2026-11-05T14:26:34.962799+00:00",
+  "recorded_at_bogota": "2026-11-05T09:26:34.962799-05:00",
+  "previous_discovery_status": "This manuscript was known/retrieved during the earlier bridge recovery but was not included in the six-study BTC corpus. Reassessed now under the expanded all-cryptocurrency scope; not claimed as an entirely new discovery.",
+  "bibliography": {
+    "title": "Cryptocurrency Volatility Forecasting with Applications in Trading",
+    "authors": [
+      "Emmanuel Djanga",
+      "Mihai Cucuringu",
+      "Chao Zhang"
+    ],
+    "year": 2025,
+    "date_printed_on_title_page": "2025-01-26",
+    "document_type": "research manuscript / preprint, publication and peer review not verified from this copy",
+    "journal": null,
+    "DOI": null,
+    "volume": null,
+    "pages": "title page + printed pp.1–34, 35 PDF pages",
+    "identity_source": "PDF title page; author affiliations Oxford/Alan Turing/HKUST(Guangzhou) printed, not inferred from repository",
+    "WoS_article_record_verified": false,
+    "Scopus_article_record_verified": false,
+    "journal_quartile_verified": false
+  },
+  "access": {
+    "repo": "Anton21a/Thesis",
+    "commit": "8bc3aa3c96fd214b34b914d2057f4339f2c8ed1e",
+    "path": "ML articles/thesis/Cryptocurrency Volatility Forecasting with Applications in Trading.pdf",
+    "url": "https://raw.githubusercontent.com/Anton21a/Thesis/8bc3aa3c96fd214b34b914d2057f4339f2c8ed1e/ML%20articles/thesis/Cryptocurrency%20Volatility%20Forecasting%20with%20Applications%20in%20Trading.pdf",
+    "fetched_at_utc": "2026-11-05T14:15:45.955854+00:00",
+    "http_status": 200,
+    "file": "anton__Cryptocurrency_Volatility_Forecasting_with_Applications_in_Trading.pdf",
+    "sha256": "68e71e41711612bcbc75134a163b832cbd3156816ed05a4695a0227c9bdcea2b",
+    "bytes": 2602916,
+    "full_text_read": true,
+    "reading_scope": "All substantive sections1–7, references and appendicesA–C read from layout extraction; Table2 inspected visually on PDF page20.",
+    "source_relation": "Primary manuscript copy in the academic thesis bibliography Anton21a/Thesis, not a newly accessed journal landing page.",
+    "PDF_private_only": true,
+    "full_text_redistribution_permitted_claimed": false
+  },
+  "author_repository": {
+    "printed_link_text": "github.com/edjanga/crypto_volatility_commonality",
+    "actual_first_page_PDF_annotation_URL": "https://github.com/edjanga/crypto_volatility_forecasting_using_commonality_in_intraday_volatility",
+    "commit": "2bf1de74872b3cca71e1821edb68c52870ab63af",
+    "public_HEAD_verified": true,
+    "manifest": "djanga_author_code_manifest.json",
+    "read_files": [
+      "README.md",
+      "model/lab.py",
+      "model/training_schemes.py"
+    ],
+    "research_code_executed": false,
+    "README_title": "Cryptocurrency volatility forecasting using commonality in intraday volatility",
+    "README_title_differs_from_PDF": true
+  },
+  "dataset": {
+    "asset_class": "cryptocurrency",
+    "assets": [
+      "1INCHUSDT",
+      "AAVEUSDT",
+      "ADAUSDT",
+      "AVAXUSDT",
+      "BCHUSDT",
+      "BNBUSDT",
+      "BTCUSDT",
+      "DOGEUSDT",
+      "DOTUSDT",
+      "EOSUSDT",
+      "ETHUSDT",
+      "FILUSDT",
+      "HBARUSDT",
+      "LINKUSDT",
+      "LTCUSDT",
+      "MATICUSDT",
+      "SOLUSDT",
+      "UNIUSDT",
+      "XLMUSDT",
+      "XRPUSDT"
+    ],
+    "asset_count": 20,
+    "BTC_included": true,
+    "source": "tardis.dev; Binance USDT-pair data, paper§3.1 pp.4–5",
+    "venue": "Binance; Spot/futures segment not explicitly identified in paper",
+    "period": "January2021–June2023",
+    "frequency": "30-minute intraday RV, resampled/represented every5minutes; exact prose given in§3.1",
+    "target": "RV_i,t^(u)=sum_{s=t-u+1}^t r_i,s^2; r_i,s=log(P_i,s)-log(P_i,s-u),u=30minutes,as printed inEq1–2",
+    "variance_vs_standard_deviation": "Eq1 is sum of squared log returns, without sqrt/centering/population divisor. Do not equate it to project sigma7.",
+    "horizon": "Authors describe one-day-ahead intraday RV path; each midnight model predicts next day288five-minute observations; formulas use t+u, so exact horizon convention should be reconciled before replication.",
+    "winsorization": "alpha=1 percentile winsorization reported in footnote4,p.5; computation period/train-only status not stated in paper.",
+    "features": "Own RV dynamic/static lags (u,1H,6H,12H,1d,1w,1m,6m capped byL_train), cross-pair/cluster information by scheme; some HAR variants add equity session dummies/VIXM orderbook RV.",
+    "no_project_dataset_comparability_claim": true
+  },
+  "protocol": {
+    "training_schemes": [
+      "SAM(single asset)",
+      "ClustAM(cluster asset)",
+      "CAM(cross asset)",
+      "UAM(universal pooled)"
+    ],
+    "training_lookback_windows": {
+      "1w": 2016,
+      "1m": 8640,
+      "6m": 51840
+    },
+    "neural_training_internal_validation": "PaperFigure5/§4.1:80%training/20%validation ofL_train; daily rolling fit at midnight, next-day test288observations.",
+    "retrain_cadence": "daily midnight",
+    "pooling": "UAM stacks asset data, one-hot asset indicators;20assets are one study, not20papers.",
+    "model_selection": "Optuna used for tree tuning; paperAppendixA and authorcode give neural search space; best models selected fromreportedOOSQLIKE.",
+    "independent_neural_seed_repetitions": null,
+    "standard_deviations_or_metric_CIs": null,
+    "statistical_tests": "Pairwise Diebold–Mariano statistics Eq11–12 andAppendixB; forecastloss/long-runvariance/multiplicity calibration not fully documented in paper.",
+    "test_time_calendar_exact_dates": null
+  },
+  "architectures_and_roles": [
+    {
+      "family": "LSTM",
+      "source_label": "UAM LSTM",
+      "role": "Deep-learning technique in proposed universal/commonality framework; compared with classical/tree/linear approaches. Not automatically a simple DL baseline from the paper.",
+      "independent_from_GARCH": true,
+      "independent_model": true,
+      "simple_comparator_role_verified": false,
+      "paper_location": "§4.3,p.13;§4.5.1,pp.17–18;AppendixA,pp.29–30",
+      "search_space": {
+        "LSTM_hidden_size": [
+          8,
+          16,
+          32
+        ],
+        "LSTM_layer_count": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "learning_rate": [
+          0.0001,
+          0.001,
+          0.005
+        ],
+        "optional_MLP_final_layer": [
+          false,
+          true
+        ],
+        "MLP_head_width": [
+          8,
+          16,
+          32
+        ],
+        "MLP_head_layer_count": [
+          1,
+          2,
+          3
+        ],
+        "dropout": [
+          0.1,
+          0.11,
+          0.12,
+          0.13,
+          0.14,
+          0.15,
+          0.16,
+          0.17,
+          0.18,
+          0.19,
+          0.2
+        ]
+      },
+      "winning_architecture": null,
+      "paper_loss": null,
+      "paper_optimizer": null,
+      "source_code_only": {
+        "file": "model/lab.py",
+        "lines": "405–440,454–493",
+        "architecture": "nn.LSTM followed by a Linear layer or optional nn.Sequential dense/ReLU head",
+        "training_loss": "nn.MSELoss",
+        "optimizer": "torch.optim.Adam",
+        "code_is_not_proof_of_article_winning_configuration": true
+      }
+    },
+    {
+      "family": "MLP",
+      "source_label": "optional final layer of LSTM",
+      "role": "Internal output head; no independently fitted/evaluated MLP comparator verified in manuscript.",
+      "independent_model": false,
+      "counts_as_standalone_MLP": false,
+      "source_locations": [
+        "§4.5.1,p.17",
+        "AppendixA,p.30,Λ/Ω",
+        "# LSTM_NNModel inmodel/lab.py405–440"
+      ]
+    },
+    {
+      "family": "CNN",
+      "role": "No empirical CNN comparator identified; WaveNet is suggested as future work in§7,p.25.",
+      "counts_as_CNN": false
+    }
+  ],
+  "metrics": [
+    {
+      "slice": "L_train=1w",
+      "model_label_as_printed": "AR^(CAM,1w,LightGBM)",
+      "metric": "QLIKE",
+      "value": 1.11,
+      "source": "Table 2, printed p.19 / PDF page20",
+      "DL_model_metric": false,
+      "values_transcribed_not_recomputed": true
+    },
+    {
+      "slice": "L_train=1m",
+      "model_label_as_printed": "AR^(CAM,1w,LightGBM)",
+      "metric": "QLIKE",
+      "value": 0.75,
+      "source": "Table 2, printed p.19 / PDF page20",
+      "DL_model_metric": false,
+      "values_transcribed_not_recomputed": true
+    },
+    {
+      "slice": "L_train=6m",
+      "model_label_as_printed": "HAR_EQ^(CAM,6m,VIXM)",
+      "metric": "QLIKE",
+      "value": 0.76,
+      "source": "Table 2, printed p.19 / PDF page20",
+      "DL_model_metric": false,
+      "values_transcribed_not_recomputed": true
+    },
+    {
+      "slice": "low volatility regime",
+      "model_label_as_printed": "AR^(UAM,1m,LightGBM)",
+      "metric": "QLIKE",
+      "value": 0.57,
+      "source": "Table 2, printed p.19 / PDF page20",
+      "DL_model_metric": false,
+      "values_transcribed_not_recomputed": true
+    },
+    {
+      "slice": "normal volatility regime",
+      "model_label_as_printed": "HAR^(UAM,1m,LightGBM)",
+      "metric": "QLIKE",
+      "value": 0.8,
+      "source": "Table 2, printed p.19 / PDF page20",
+      "DL_model_metric": false,
+      "values_transcribed_not_recomputed": true
+    },
+    {
+      "slice": "high volatility regime",
+      "model_label_as_printed": "HAR_EQ^(CAM,6m,VIXM)",
+      "metric": "QLIKE",
+      "value": 0.84,
+      "source": "Table 2, printed p.19 / PDF page20",
+      "DL_model_metric": false,
+      "values_transcribed_not_recomputed": true
+    }
+  ],
+  "DL_specific_metrics": "No separately identified LSTM QLIKE/MSE row inTable2 orAppendixB; do not assign classical/tree best-model values to LSTM. Numerical retrieval from author result databases was not performed.",
+  "quality_and_limits": [
+    {
+      "dimension": "primary_direct_eligibility",
+      "finding": "Continuous RV forecast for20cryptoassets includingBTC; a direct appliedDLstudy should be represented in the expanded balanced corpus, with proposed/baseline roles separated."
+    },
+    {
+      "dimension": "no_family_favoritism",
+      "finding": "Do not exclude this appliedstudy just because it adds no independentMLP/CNN recurrence. Broad crypto corpus inclusion and strict baseline-frequency eligibility are separate decisions."
+    },
+    {
+      "dimension": "publication",
+      "finding": "No DOI/journal/individual index record or quartile verified; manuscript date is not an editorial acceptance date."
+    },
+    {
+      "dimension": "target",
+      "finding": "RV variance,30min aggregation,5min grid and next-day path differ from daily sigma7/h1/OHLCV; cannot rank reportedQLIKE against projectRMSE."
+    },
+    {
+      "dimension": "preprocessing",
+      "finding": "Winsorization1% and per-asset maxabs scaling are reported, but paperdoes not fully specify training-only boundaries for every transformation/clustering step. Authorcode UAMobjective computes scaling frominternaltraining dates; this does not certify everypaperstage is leakage-free."
+    },
+    {
+      "dimension": "model_selection",
+      "finding": "Best model perlookback/regime is selected fromreportedOOSscores; no separately specified post-selection finalholdout or repeatedneural seeds/CI in manuscript."
+    },
+    {
+      "dimension": "table2_label_inconsistency",
+      "finding": "Column L_train=1m prints AR^(CAM,1w,LightGBM), repeating1w label; preserve printedvalue0.75 and flag label rather than silently correcting."
+    },
+    {
+      "dimension": "method_table_alignment",
+      "finding": "§4.3names LSTM/VAR forUAM, whileTable2 andAppendixA also listUAMLightGBM. Authorcode confirms UAMLightGBM branch. Narrative does not enumerate all implementations consistently."
+    },
+    {
+      "dimension": "economic_interpretation",
+      "finding": "§5.2/AppendixC describeETH asreceiver, whereas§6.1 calls itconsistentnettransmitter. Tradingresults are downstream and not metrics ofMLPforecastsuperiority."
+    },
+    {
+      "dimension": "statistical_inference",
+      "finding": "DMstatistics reported forselectedwinnersversusSAM; dependence,horizon,postselection andmultiplicity requirecriticism, not automaticvalidity."
+    }
+  ],
+  "frequency_recommendation": {
+    "count_as_one_crypto_study_if_included": true,
+    "BTC_subset_membership": true,
+    "multiple_assets_do_not_multiply_study_count": true,
+    "strict_independent_MLP_baseline_increment": 0,
+    "strict_CNN_baseline_increment": 0,
+    "LSTM_empirical_family_used": true,
+    "LSTM_strict_simple_baseline_increment": 0,
+    "LSTM_strict_simple_baseline_increment_reason": "LSTM is the proposedUAMtechnique and is not separately identified as a simple referencebaseline; broader all-empirical-family frequency can count it with that role exposed.",
+    "strict_LSTM_baseline_increment": 0,
+    "LSTM_empirical_presence_increment": 1
+  },
+  "no_new_fit_metrics_recomputed_or_sealed_project_access": true,
+  "study_id": "S9",
+  "reference_key": "djanga2025commonality",
+  "eligibility_decision": "Included in expanded direct-cryptocurrency DL corpus by parent authorization; proposed/reference architecture roles remain explicit."
+}

@@ -1,0 +1,53 @@
+{
+  "raw_counts": {
+    "WoS": 340,
+    "Scopus": 828,
+    "IEEE": 466
+  },
+  "raw_total": 1634,
+  "unique_total": 1078,
+  "duplicates_removed": 556,
+  "raw_in_period": {
+    "WoS": 340,
+    "Scopus": 808,
+    "IEEE": 457
+  },
+  "unique_period_counts": {
+    "2019–2026": 1054,
+    "fuera_2019_2026": 24
+  },
+  "classes": {
+    "SECUNDARIO_TRANSFERIBLE": 520,
+    "INCIERTO_CONSERVAR": 138,
+    "EXCLUSION_PROPUESTA_PRECIO": 337,
+    "PRIORIDAD_PRINCIPAL": 59,
+    "FUERA_PERIODO": 24
+  },
+  "missing_abstract": 0,
+  "dedup_conflicts": 1,
+  "patterns": {
+    "btc": "\\bbitcoin\\b|\\bbtc\\b",
+    "crypto": "crypto(?:currenc\\w*|asset\\w*)|digital currenc|\\bethereum\\b",
+    "finance": "financial|stock market|equity|equities|exchange rate|financial market|asset return|S&P|S & P|commodity|forex|portfolio",
+    "dl": "deep learning|neural|\\bLSTM\\b|long short.term|\\bGRU\\b|gated recurrent|transformer|\\bCNN\\b|\\bRNN\\b|attention|\\bTCN\\b|temporal convolution",
+    "vol_target": "(?:forecast\\w*|predict\\w*|model\\w*|estimat\\w*)\\s+(?:(?:the|financial|bitcoin|cryptocurrency|realized|realised|conditional|market|stock|daily|future|asset|return|price|of)\\s+){0,5}volatil\\w*|volatil\\w*\\s+(?:forecast\\w*|predict\\w*|model\\w*|estimat\\w*)|realized volatility|realised volatility|conditional variance",
+    "hybrid": "\\bHAR\\b|heterogeneous autoregressive|\\bGARCH\\b|\\bARCH\\b|hybrid|integrat\\w*|ensemble|fusion|decompos\\w*",
+    "forecast": "forecast|predict|nowcast",
+    "price_target": "(?:forecast\\w*|predict\\w*)\\s+(?:(?:the|of|future|bitcoin|cryptocurrency|stock|closing|close|market|daily|digital|currency)\\s+){0,4}(?:price|value)|price\\s+(?:predict\\w*|forecast\\w*)",
+    "architecture": "\\bN.BEATS\\b|\\bN.HITS\\b|\\bTFT\\b|temporal fusion transformer|\\bPatchTST\\b|\\biTransformer\\b|\\bTimeMixer\\b|\\bDLinear\\b|\\bTimesNet\\b|\\bInformer\\b|\\bAutoformer\\b|\\bFEDformer\\b|\\bTimeXer\\b|\\bTiDE\\b|\\bTSMixer\\b"
+  },
+  "files": {
+    "scopus.csv": {
+      "bytes": 1956797,
+      "sha256": "79e771c536a7b5af3181a6cb6b7d30fd985e526fe2a0257c4230d2f236c2a48f"
+    },
+    "wos.txt": {
+      "bytes": 2595065,
+      "sha256": "0515f0a00d05e0aead83f56744d267ef148ccada00351f56773856b17a362d8f"
+    },
+    "ieee.csv": {
+      "bytes": 1088860,
+      "sha256": "9296715dadef0577feba64e430ce8885f7075c1142232430d99efa2f18a63e24"
+    }
+  }
+}

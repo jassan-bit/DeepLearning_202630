@@ -1,0 +1,1076 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/02_eda';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="3. Revisión Sistemática del Estado del Arte" href="03_literatura.html" />
+    <link rel="prev" title="1. Definición del Problema, Preguntas de Investigación y Dataset" href="01_punto_partida.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 2 · Bitcoin: pronóstico de volatilidad</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_literatura.html">3. Revisión Sistemática del Estado del Arte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación de los diez modelos y el candidato adicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark vigente: diez modelos y un candidato adicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Preregistro del catálogo vigente y trazabilidad experimental</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de datos y auditoría formal de fuga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. HPO y equidad para el catálogo vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Incertidumbre predictiva y análisis de errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Agregación estadística e interpretación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas del catálogo vigente y adaptación a D7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo vigente: diez modelos y candidato 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_fichas_nuevas.html">16. Fichas bibliográficas de las cuatro altas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato sincronizado de E1, E2 y E3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_integracion_sintetica.html">18. Implementación provisional y verificación sintética</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_plan_auditoria.html">19. Plan experimental propuesto y auditoría sin entrenamiento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_contraste_guia.html">20. Cotejo del plan con la guía original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_comparadores_nas.html">21. Comparadores temporales y decisión NAS por receta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22_fichas_recetas.html">22. Once fichas de recetas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_implementacion_recetas.html">23. Implementación de recetas y controles temporales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><p class="small">Entregable 2 · Jassan Arteta · 2026-30</p></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/02_eda.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda-general">2.1 EDA General</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-la-variable-objetivo">2.1.1 Análisis de la variable objetivo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calidad-duplicados-y-ruido-del-objetivo">2.1.2 Calidad, duplicados y ruido del objetivo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identificacion-de-sesgos-y-posibles-atajos">2.1.3 Identificación de sesgos y posibles atajos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#particion-auditoria-de-soportes-y-estado-del-test">2.1.4 Partición, auditoría de soportes y estado del test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cambio-de-distribucion">2.1.5 Cambio de distribución</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda-temporal-covariables-y-diagnostico-de-la-ruta-f2a">2.2 EDA temporal: covariables y diagnóstico de la ruta F2a</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-y-disponibilidad-temporal-de-covariables">2.2.1 Estructura y disponibilidad temporal de covariables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relacion-covariablesobjetivo-y-cambios-de-regimen">2.2.2 Relación covariables–objetivo y cambios de régimen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-con-residuos-de-una-referencia-forward-chaining">2.2.3 Diagnóstico con residuos de una referencia forward chaining</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trazabilidad-hallazgodecision">2.3 Trazabilidad hallazgo–decisión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduccion-y-estado-de-cierre">2.4 Reproducción y estado de cierre</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="analisis-exploratorio-de-datos-eda-orientado-a-decisiones">
+<h1>2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones<a class="headerlink" href="#analisis-exploratorio-de-datos-eda-orientado-a-decisiones" title="Link to this heading">#</a></h1>
+<p><strong>Alcance:</strong> los datos, controles y experimentos ya ejecutados de esta sección se conservan como evidencia histórica. No acreditan entrenamiento del catálogo vigente de diez modelos y candidato 11, definido en <a class="reference internal" href="15_revision_modelos.html"><span class="std std-doc">§15</span></a>. Cualquier presupuesto o receta anterior requiere revisión y nuevo registro antes de reutilizarse.</p>
+<p>El EDA de E1 se <strong>amplía y conserva</strong>. Este capítulo reutiliza sus evidencias de desarrollo y añade análisis reproducibles de transformaciones, casi duplicados, soportes temporales y residuos bajo forward chaining. Cada bloque termina con decisiones de preprocesamiento, consecuencias para arquitectura/validación y riesgos; la <a class="reference internal" href="#e2-trazabilidad-eda"><span class="std std-ref">tabla de trazabilidad</span></a> reúne esas relaciones.</p>
+<p>Se distinguen dos alcances de este EDA: <strong>desarrollo 2023–2024</strong> para diagnósticos y <strong>perfil retrospectivo de la reserva de E1 ya conocida</strong> para describir desplazamiento de distribución. Este último no selecciona arquitecturas, transformaciones, umbrales ni periodos y no convierte la reserva en una confirmación nueva. El benchmark final del panel de configuraciones del registro histórico sigue pendiente; el <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">piloto P0 de desarrollo</span></a>, registrado previamente, ya se ejecutó como otra etapa y no se presenta como ese benchmark.</p>
+<p>El contrato principal sigue siendo D=7, n=7, h=1, cinco canales OHLCV y σ₇ poblacional sin anualizar. D es historia de entrada, n es ventana del objetivo y h es horizonte: no se intercambian. Los resultados n=14/21/28 de E1 son sensibilidades de la etiqueta, no objetivos añadidos al benchmark actual. La guía completa de 65 páginas permite cerrar la clasificación como <strong>F2a, series de tiempo</strong>, según la <a class="reference internal" href="07_ruta_temporal.html#e2-ruta-temporal"><span class="std std-ref">resolución de ruta</span></a>; las covariables y etiquetas heredadas no se modifican por esa reclasificación.</p>
+<section id="eda-general">
+<h2>2.1 EDA General<a class="headerlink" href="#eda-general" title="Link to this heading">#</a></h2>
+<section id="analisis-de-la-variable-objetivo">
+<h3>2.1.1 Análisis de la variable objetivo<a class="headerlink" href="#analisis-de-la-variable-objetivo" title="Link to this heading">#</a></h3>
+<p>La distribución es continua, positiva en el desarrollo observado y asimétrica. Se conservan las unidades de retorno logarítmico diario, sin multiplicar por 100 en las tablas.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Periodo de desarrollo</p></th>
+<th class="head text-right"><p>Etiquetas σ₇</p></th>
+<th class="head text-right"><p>Media</p></th>
+<th class="head text-right"><p>Mediana</p></th>
+<th class="head text-right"><p>DE poblacional</p></th>
+<th class="head text-right"><p>Asimetría</p></th>
+<th class="head text-right"><p>Exceso de curtosis</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2023</p></td>
+<td class="text-right"><p>350</p></td>
+<td class="text-right"><p>0,018797</p></td>
+<td class="text-right"><p>0,017567</p></td>
+<td class="text-right"><p>0,008890</p></td>
+<td class="text-right"><p>0,8024</p></td>
+<td class="text-right"><p>0,4965</p></td>
+</tr>
+<tr class="row-odd"><td><p>2024</p></td>
+<td class="text-right"><p>366</p></td>
+<td class="text-right"><p>0,023661</p></td>
+<td class="text-right"><p>0,021989</p></td>
+<td class="text-right"><p>0,009767</p></td>
+<td class="text-right"><p>1,1796</p></td>
+<td class="text-right"><p>1,8431</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La cerca descriptiva <span class="math notranslate nohighlight">\(Q_{0,75}+1,5\,IQR\)</span>, ajustada solo con 2023, es 0,04370768. La exceden 3/350 días de 2023 y 14/366 de 2024. Un valor extremo no es automáticamente corrupto; tampoco estos momentos prueban una distribución de cola de potencia. Los <a class="reference download internal" download="" href="../_downloads/494b47b9e121d44a7e5925e5fee9d23e/target_profiles.csv"><span class="xref download myst">perfiles heredados</span></a> conservan cuantiles, ceros y coberturas.</p>
+<p><img alt="Percentiles y cola empírica del objetivo en desarrollo; evidencia heredada de E1" src="../_images/objetivo_7_percentiles_colas.png" /></p>
+<p><strong>Ampliación de E2: transformaciones.</strong> Se comparan identidad, logaritmo, Box–Cox y Yeo–Johnson. Sus parámetros se estiman exclusivamente con las 343 etiquetas admisibles de 2023 hasta el 24/12 y se aplican sin reajuste a 2024 para este diagnóstico. Se verifican dominio e inversión; las transformaciones no se incorporan al entrenamiento de los modelos heredados.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Transformación</p></th>
+<th class="head"><p>λ ajustada</p></th>
+<th class="head"><p>Asimetría 2023</p></th>
+<th class="head"><p>Asimetría 2024</p></th>
+<th class="head"><p>Exceso curtosis 2023</p></th>
+<th class="head"><p>Exceso curtosis 2024</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Identidad</p></td>
+<td><p>—</p></td>
+<td><p>0,8024</p></td>
+<td><p>1,1796</p></td>
+<td><p>0,4965</p></td>
+<td><p>1,8431</p></td>
+</tr>
+<tr class="row-odd"><td><p>Log</p></td>
+<td><p>0,000000</p></td>
+<td><p>-0,3909</p></td>
+<td><p>-0,0743</p></td>
+<td><p>0,0149</p></td>
+<td><p>0,1112</p></td>
+</tr>
+<tr class="row-even"><td><p>Box–Cox</p></td>
+<td><p>0,292770</p></td>
+<td><p>-0,0112</p></td>
+<td><p>0,2936</p></td>
+<td><p>-0,3620</p></td>
+<td><p>0,2014</p></td>
+</tr>
+<tr class="row-odd"><td><p>Yeo–Johnson</p></td>
+<td><p>-34,859961</p></td>
+<td><p>0,0875</p></td>
+<td><p>0,1419</p></td>
+<td><p>-0,6671</p></td>
+<td><p>-0,2030</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Parámetros ajustados con <strong>343 resultados admisibles hasta el 24/12/2023</strong>; perfiles descriptivos sobre 350 etiquetas de 2023 y 366 de 2024. La inversión de los valores observados difiere menos de <span class="math notranslate nohighlight">\(10^{-12}\)</span>. Una λ negativa en Yeo–Johnson impone un límite al rango de la rama positiva: la inversión de predicciones arbitrarias exige comprobar dominio. No se adopta esa transformación.</p>
+<p><img alt="Distribuciones del objetivo bajo transformaciones ajustadas en 2023" src="../_images/objective_transformations.png" /></p>
+<p>Para comparar sus formas, los histogramas se centran y escalan con la media y DE transformadas del entrenamiento admisible. Los valores negativos del eje de esa figura son valores estandarizados, no volatilidades negativas; las tablas anteriores conservan las unidades y momentos indicados.</p>
+<p>Una distribución más simétrica no demuestra una menor RMSE en escala original. Entrenar con MSE de log(Y), por ejemplo, cambia el problema de optimización y requiere tratar el sesgo de retransformación; invertir la predicción no recupera automáticamente la media condicional original. Si una transformación se investigara posteriormente, sus parámetros se ajustarían dentro de cada entrenamiento admisible del fold y se compararía con el mismo protocolo, sin modificar retrospectivamente E1.</p>
+<p>Los ratios de clases, clases raras, entropía de clases, <code class="docutils literal notranslate"><span class="pre">focal</span> <span class="pre">loss</span></code> y <code class="docutils literal notranslate"><span class="pre">class-balanced</span> <span class="pre">loss</span></code> no aplican a este objetivo continuo. La poca frecuencia de volatilidad extrema se aborda mediante errores por régimen y cobertura, sin barajar ni sobremuestrear fechas para alterar su prevalencia.</p>
+<p><strong>Decisión de preprocesamiento:</strong> conservar etiquetas positivas válidas y el escalado heredado por la media de entrenamiento; no recortar extremos ni adoptar una transformación nueva. <strong>Impacto en arquitectura y validación:</strong> mantener salida escalar no negativa en las recetas base y medir RMSE en escala original; cualquier alternativa debe ajustarse dentro de cada fold. <strong>Riesgos:</strong> selección por apariencia del histograma, confundir transformación con mejora predictiva y convertir eventos extremos legítimos en datos eliminados.</p>
+</section>
+<section id="calidad-duplicados-y-ruido-del-objetivo">
+<h3>2.1.2 Calidad, duplicados y ruido del objetivo<a class="headerlink" href="#calidad-duplicados-y-ruido-del-objetivo" title="Link to this heading">#</a></h3>
+<p>La auditoría de adquisición de E1 identificó 80 minutos ausentes y una vela presente con <code class="docutils literal notranslate"><span class="pre">close_time</span></code> irregular el 24/03/2023. No son 81 filas ausentes. Se excluye el día diario incompleto y las etiquetas/ventanas que dependan de él, conservando las fechas y los brutos.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Comprobación de desarrollo</p></th>
+<th class="head text-right"><p>2023</p></th>
+<th class="head text-right"><p>2024</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Días de calendario</p></td>
+<td class="text-right"><p>365</p></td>
+<td class="text-right"><p>366</p></td>
+</tr>
+<tr class="row-odd"><td><p>Días OHLCV completos</p></td>
+<td class="text-right"><p>364</p></td>
+<td class="text-right"><p>366</p></td>
+</tr>
+<tr class="row-even"><td><p>Claves diarias duplicadas</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Filas OHLCV completas idénticas</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Retornos diarios válidos</p></td>
+<td class="text-right"><p>362</p></td>
+<td class="text-right"><p>366</p></td>
+</tr>
+<tr class="row-odd"><td><p>Etiquetas σ₇ válidas</p></td>
+<td class="text-right"><p>350</p></td>
+<td class="text-right"><p>366</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>No se detectan OHLC no positivos/incoherentes ni volúmenes negativos en los días completos auditados. Las <a class="reference download internal" download="" href="../_downloads/e0932320178af6867ceb46dab0468138/quality_by_year.csv"><span class="xref download myst">comprobaciones por año</span></a> indican su denominador; cero hallazgos en ese alcance no certifica ausencia universal de errores del proveedor.</p>
+<p><img alt="Máscaras del calendario y elegibilidad de desarrollo; evidencia heredada de E1" src="../_images/mascaras_calendario_desarrollo.png" /></p>
+<p><strong>Ampliación de E2: casi duplicados.</strong> Se comparan ventanas D7 en la representación relativa de OHLC y <code class="docutils literal notranslate"><span class="pre">log1p(V)</span></code>. La distancia es la raíz de la media de diferencias estandarizadas al cuadrado; el escalado se aprende solo con ventanas de entrenamiento admisibles de 2023, hasta el 24/12. Se declara una alerta descriptiva si la distancia es ≤0,01; no se optimiza el umbral con validación. Se distinguen vecinos dentro de entrenamiento y vecinos de 2024 respecto a entrenamiento.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Comparación</p></th>
+<th class="head"><p>Consultas</p></th>
+<th class="head"><p>Referencia</p></th>
+<th class="head"><p>Alertas ≤0,01</p></th>
+<th class="head"><p>Duplicados relativos exactos</p></th>
+<th class="head"><p>Distancia mínima</p></th>
+<th class="head"><p>Mediana</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Dentro de entrenamiento inicial</p></td>
+<td><p>343</p></td>
+<td><p>343</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0,125280</p></td>
+<td><p>0,301770</p></td>
+</tr>
+<tr class="row-odd"><td><p>2024 frente a entrenamiento inicial</p></td>
+<td><p>366</p></td>
+<td><p>343</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0,183537</p></td>
+<td><p>0,373253</p></td>
+</tr>
+<tr class="row-even"><td><p>Dentro de 2024</p></td>
+<td><p>366</p></td>
+<td><p>366</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0,209485</p></td>
+<td><p>0,350097</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>No se detectan alertas bajo esa regla. El <a class="reference download internal" download="" href="../_downloads/d7bddcde71730fbcd58d54fe81ba4761/nearest_window_sensitivity.csv"><span class="xref download myst">análisis de sensibilidad del umbral</span></a> conserva otros umbrales descriptivos; no se elige uno por su resultado ni se cambia el conjunto de entrenamiento.</p>
+<p><img alt="Distancias al vecino más próximo en ventanas D7" src="../_images/nearest_window_distances.png" /></p>
+<p>La igualdad de fechas o de vectores, la proximidad de patrones y el solapamiento temporal son comprobaciones distintas. Dos ventanas bursátiles cercanas pueden ser observaciones legítimas; una distancia superior al umbral tampoco demuestra ausencia de fuga. El examen de soportes temporales de §2.1.4 complementa esta comprobación.</p>
+<p><strong>Etiquetado y ruido.</strong> E1 reconstruyó por una segunda implementación las 2.924 posiciones día–ventana de n=7/14/21/28: 2.780 etiquetas válidas, cero discrepancias de elegibilidad y error numérico máximo de aproximadamente <span class="math notranslate nohighlight">\(1,027\times10^{-15}\)</span>, frente a una tolerancia de <span class="math notranslate nohighlight">\(10^{-12}\)</span>. En n=7 son 716 etiquetas válidas. El <a class="reference download internal" download="" href="../_downloads/0866eebd63f29e558b8738408810b433/label_reconstruction_summary.csv"><span class="xref download myst">resumen de reconstrucción</span></a> verifica el algoritmo; <strong>no estima el ruido económico de la volatilidad latente</strong>.</p>
+<p>No hay anotadores humanos, por lo que acuerdo entre anotadores y detección de etiquetas de clase erróneas no aplican. La volatilidad de siete retornos es un proxy con incertidumbre por ventana finita, microestructura y proveedor. Sin una medición externa comparable o un modelo de observación identificado, no se cuantifica un ruido irreducible ni un techo de desempeño. No se sustituye esa ausencia por la precisión de la reconstrucción o por el error del mejor modelo.</p>
+<p><strong>Decisión de preprocesamiento:</strong> no imputar, comprimir huecos ni eliminar patrones parecidos automáticamente; propagar la máscara de calidad a todas las ventanas. <strong>Impacto en arquitectura y validación:</strong> todos los candidatos utilizarán la misma cohorte elegible y máscaras; se conserva la etiqueta heredada. <strong>Riesgos:</strong> confundir similitud con duplicación, solapamiento con independencia o consistencia numérica con ausencia de ruido de medición. El ruido externo queda como limitación no identificada.</p>
+</section>
+<section id="identificacion-de-sesgos-y-posibles-atajos">
+<h3>2.1.3 Identificación de sesgos y posibles atajos<a class="headerlink" href="#identificacion-de-sesgos-y-posibles-atajos" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Sesgo o atajo posible</p></th>
+<th class="head"><p>Evidencia y alcance</p></th>
+<th class="head"><p>Consecuencia técnica</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Representación</p></td>
+<td><p>Una serie BTCUSDT, un exchange y una cotización en USDT</p></td>
+<td><p>No generalizar a otras criptomonedas, exchanges o USD; no contar semillas como mercados</p></td>
+</tr>
+<tr class="row-odd"><td><p>Temporal</p></td>
+<td><p>Distribuciones y relaciones móviles cambian entre 2023 y 2024</p></td>
+<td><p>Forward chaining y análisis por régimen; no partición aleatoria</p></td>
+</tr>
+<tr class="row-even"><td><p>Adquisición</p></td>
+<td><p>Interrupción de minutos y cambio de unidad de timestamps entre años</p></td>
+<td><p>Validar unidad por archivo, normalizar a UTC y conservar calendario</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tendencia compartida</p></td>
+<td><p>Precios en nivel cambian fuertemente de escala entre periodos</p></td>
+<td><p>Conservar OHLC relativos al último cierre conocido; una correlación no prueba información causal</p></td>
+</tr>
+<tr class="row-even"><td><p>Solapamiento del objetivo</p></td>
+<td><p>σ₇ de fechas consecutivas comparte seis retornos</p></td>
+<td><p>Persistencia como referencia; incertidumbre temporal por bloques</p></td>
+</tr>
+<tr class="row-odd"><td><p>Información futura</p></td>
+<td><p>OHLCV completo del día a predecir solo existe después de su cierre</p></td>
+<td><p>Admitir únicamente barras ya cerradas; excluir escalado/selección con test</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La normalización relativa reduce la dependencia directa del nivel del precio, pero no garantiza invariancia de distribución ni elimina todos los atajos. El volumen también cambia de régimen. No se introducen variables de calendario, identificadores o covariables externas cuya disponibilidad no esté auditada.</p>
+<p><strong>Decisión de preprocesamiento:</strong> conservar normalización causal y controles de unidades; no realizar balance de clases en una regresión. <strong>Impacto en arquitectura y validación:</strong> comparar mecanismos temporales bajo las mismas entradas y orígenes, reportando resultados por segmentos de volatilidad. <strong>Riesgos:</strong> atribuir a una arquitectura lo que proviene de escala, calendario, proveedor o información futura; extrapolación a activos no observados.</p>
+</section>
+<section id="particion-auditoria-de-soportes-y-estado-del-test">
+<h3>2.1.4 Partición, auditoría de soportes y estado del test<a class="headerlink" href="#particion-auditoria-de-soportes-y-estado-del-test" title="Link to this heading">#</a></h3>
+<p>Se conserva el calendario de fase II descrito en <a class="reference internal" href="01_punto_partida.html#e2-contrato-heredado"><span class="std std-ref">§1.1.1</span></a>. Las proporciones de calendario de fase I no se usan como porcentajes de ventanas del protocolo vigente. La partición es cronológica y determinista: <strong>semilla de partición no aplicable</strong>. Los scripts de esta ampliación también son deterministas; los remuestreos heredados declaran su propia semilla.</p>
+<p>La auditoría usa los índices ya materializados de <code class="docutils literal notranslate"><span class="pre">timeseries-cv</span></code> 0.1.5, proyecto de DidierRLopes con Filipe R. Ramos. Los diez bloques enero–octubre de 2024 son una adaptación mensual de esos índices diarios con embargo D=7; no se atribuye a la librería una API mensual inexistente. Para el origen <span class="math notranslate nohighlight">\(t\)</span> se exige que toda etiqueta de entrenamiento tenga fecha <span class="math notranslate nohighlight">\(u\le t-8\)</span>.</p>
+<p>Con D=n=7, la entrada de un ejemplo <span class="math notranslate nohighlight">\(u\)</span> usa días <span class="math notranslate nohighlight">\([u-7,u-1]\)</span> y su etiqueta necesita cierres de <span class="math notranslate nohighlight">\([u-7,u]\)</span>. Se comprueban por separado identidades de resultados, precedencia, disponibilidad y soportes brutos. Una fecha que fue validación en un fold puede incorporarse a entrenamiento de un fold posterior cuando ya es pasada y cumple el embargo; ese uso expansivo es legítimo y no hace independientes los folds.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fold</p></th>
+<th class="head"><p>Entrenamiento elegible</p></th>
+<th class="head"><p>Validación</p></th>
+<th class="head"><p>Última etiqueta train</p></th>
+<th class="head"><p>Días de embargo</p></th>
+<th class="head"><p>Intersección de soporte bruto</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2024-01</p></td>
+<td><p>343</p></td>
+<td><p>31</p></td>
+<td><p>2023-12-24</p></td>
+<td><p>7</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>2024-02</p></td>
+<td><p>374</p></td>
+<td><p>29</p></td>
+<td><p>2024-01-24</p></td>
+<td><p>7</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>2024-03</p></td>
+<td><p>403</p></td>
+<td><p>31</p></td>
+<td><p>2024-02-22</p></td>
+<td><p>7</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>2024-04</p></td>
+<td><p>434</p></td>
+<td><p>30</p></td>
+<td><p>2024-03-24</p></td>
+<td><p>7</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>2024-05</p></td>
+<td><p>464</p></td>
+<td><p>31</p></td>
+<td><p>2024-04-23</p></td>
+<td><p>7</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>2024-06</p></td>
+<td><p>495</p></td>
+<td><p>30</p></td>
+<td><p>2024-05-24</p></td>
+<td><p>7</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>2024-07</p></td>
+<td><p>525</p></td>
+<td><p>31</p></td>
+<td><p>2024-06-23</p></td>
+<td><p>7</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>2024-08</p></td>
+<td><p>556</p></td>
+<td><p>31</p></td>
+<td><p>2024-07-24</p></td>
+<td><p>7</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>2024-09</p></td>
+<td><p>587</p></td>
+<td><p>30</p></td>
+<td><p>2024-08-24</p></td>
+<td><p>7</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>2024-10</p></td>
+<td><p>617</p></td>
+<td><p>31</p></td>
+<td><p>2024-09-23</p></td>
+<td><p>7</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Las <strong>305 fechas</strong> de validación son únicas y consecutivas; no se detectan violaciones de disponibilidad ni intersecciones de soportes en las separaciones externa e interna auditadas. Esto no implica independencia entre ejemplos o folds.</p>
+<p>Descargar la <a class="reference download internal" download="" href="../_downloads/e39b87783c0b09301071025011ef8097/fold_leakage_audit.csv"><span class="xref download myst">auditoría de los folds</span></a>. Estos controles comprueban el calendario y la representación analizados; no certifican por sí solos los adaptadores, las referencias endógenas y las cohortes del panel ampliado de configuraciones del registro histórico.</p>
+<p><strong>Identidad de la reserva y cronología.</strong> El manifiesto heredado tiene SHA-256 <code class="docutils literal notranslate"><span class="pre">af723bcca2caffcbe44ae5243e2863bbcdcd39ae8cd42df491af0a2857926bb2</span></code>; el derivado diario de la reserva ya evaluada tiene SHA-256 <code class="docutils literal notranslate"><span class="pre">93ec9490137eee80581f56f987067001d346a421235962da5b2e9645970adebf</span></code>. El <a class="reference download internal" download="" href="../_downloads/b17bd5c364917146aab8f51addafabdf/partition_identity.json"><span class="xref download myst">registro de identidad y alcance</span></a> enlaza la reserva y la cronología de E1 sin redistribuir ese vector de precios.</p>
+<p>E1 conserva registros de cierre de pesos anteriores a su evaluación de fase II. <strong>Ese hecho no sella nuevamente el test para E2.</strong> Las fechas 01/09–30/10/2026 ya se conocen y el perfil de §2.1.5 se calcula después de su evaluación. Un hash acredita identidad, no desconocimiento de los resultados ni ausencia de decisiones previas basadas en ellos. No existe aquí un nuevo test sellado antes de cualquier modelo de E2; las comparaciones futuras sobre esos periodos tendrán alcance exploratorio.</p>
+<p><strong>Decisión de preprocesamiento:</strong> ajustar toda transformación aprendida con entrenamiento admisible y comprobar las máscaras y soportes antes de materializar lotes. <strong>Impacto en arquitectura y validación:</strong> mismo forward chaining, embargo y cohorte para todos los candidatos; no trasladar automáticamente R=465. <strong>Riesgos:</strong> escalado global, selección por test, confundir datos históricos de entrada admisibles con nuevas etiquetas de entrenamiento o presentar el hash actual como un sellado prospectivo.</p>
+</section>
+<section id="cambio-de-distribucion">
+<h3>2.1.5 Cambio de distribución<a class="headerlink" href="#cambio-de-distribucion" title="Link to this heading">#</a></h3>
+<p><strong>Evidencia heredada de desarrollo.</strong> En el perfil causal lag 1, 2023 y 2024 tienen 350 y 366 casos completos. La distancia KS es aproximadamente 0,920–0,924 para OHLC en nivel, 0,2332 para volumen y 0,2405 para σ₇. La <a class="reference download internal" download="" href="../_downloads/f816673f7661db79409ba875a06239af/conditional_block_permutation.csv"><span class="xref download myst">permutación por bloques de 14/28 días</span></a> usa 2.000 réplicas y Holm sobre doce contrastes; sus referencias son exploratorias y condicionales, sin garantía de intercambiabilidad bajo tendencias.</p>
+<p>Para σ₇, los p-valores Monte Carlo ajustados son aproximadamente 0,06197 y 0,09395: la distancia descriptiva no se convierte en rechazo ajustado a 0,05. Tampoco el no rechazo acredita igualdad de distribuciones. Los precios en nivel sí presentan diferencias fuertes bajo ambas referencias; esto apoya examinar la representación relativa, sin demostrar que resuelva la generalización.</p>
+<p><strong>Ampliación de E2: fases y reserva conocida.</strong> Se calculan perfiles de entrenamiento 2023, validación enero–octubre de 2024, piloto 01/11–30/12/2024 y reserva conocida 01/09–30/10/2026. Se distingue el conteo de días con etiqueta del conteo de ventanas D7 completas. Además de OHLCV causal lag 1 y σ₇, se examinan los 35 componentes de la representación relativa que efectivamente recibe la red.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Periodo</p></th>
+<th class="head"><p>Etiquetas σ₇</p></th>
+<th class="head"><p>Media</p></th>
+<th class="head"><p>Mediana</p></th>
+<th class="head"><p>KS vs train admisible</p></th>
+<th class="head"><p>Wasserstein / DE train</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2023 completo</p></td>
+<td><p>350</p></td>
+<td><p>0,01879672</p></td>
+<td><p>0,01756716</p></td>
+<td><p>0,0101</p></td>
+<td><p>0,0149</p></td>
+</tr>
+<tr class="row-odd"><td><p>Validación ene–oct 2024</p></td>
+<td><p>305</p></td>
+<td><p>0,02342930</p></td>
+<td><p>0,02157384</p></td>
+<td><p>0,2322</p></td>
+<td><p>0,5102</p></td>
+</tr>
+<tr class="row-even"><td><p>Piloto nov–30 dic 2024</p></td>
+<td><p>60</p></td>
+<td><p>0,02496225</p></td>
+<td><p>0,02335663</p></td>
+<td><p>0,3931</p></td>
+<td><p>0,7014</p></td>
+</tr>
+<tr class="row-odd"><td><p>Reserva conocida sep–30 oct 2026</p></td>
+<td><p>60</p></td>
+<td><p>0,01594273</p></td>
+<td><p>0,01452699</p></td>
+<td><p>0,2764</p></td>
+<td><p>0,3457</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La referencia de distancias contiene <strong>343 ejemplos admisibles hasta el 24/12/2023</strong>; la fila descriptiva de 2023 completo contiene 350 etiquetas. Por eso la distancia de esa fila frente a la referencia no es exactamente cero. Los perfiles de ventanas y sus denominadores están separados en los CSV.</p>
+<p><img alt="Distribuciones por fase y desplazamiento respecto a entrenamiento; reserva conocida analizada retrospectivamente" src="../_images/known_distribution_shift.png" /></p>
+<p>Las <a class="reference download internal" download="" href="../_downloads/ac2fd598985ea975c52ee8931f150d09/distribution_distances.csv"><span class="xref download myst">distancias de distribución</span></a> incluyen KS y Wasserstein normalizada por la DE de la referencia admisible hasta el 24/12/2023, sin reajustar la escala con validación, piloto o reserva. Una componente constante de entrenamiento no tiene denominador positivo: su distancia normalizada se marca no definida, sin inventar un épsilon. Son distancias descriptivas, no p-valores iid ni garantías de adaptación de dominio.</p>
+<p>Frente a esa referencia, Wasserstein/DE del cierre bruto lag 1 es aproximadamente <strong>5,82 / 11,58 / 9,64</strong> en validación, piloto y reserva; para el cierre relativo lag 7 es <strong>0,21 / 0,27 / 0,36</strong>. El volumen <code class="docutils literal notranslate"><span class="pre">log1p</span></code> conserva desplazamientos <strong>0,59 / 0,47 / 1,31</strong>. Esto muestra que reducir el cambio de nivel del precio no elimina toda la deriva ni demuestra mejor capacidad predictiva.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/1578e752a9df3af0fd8b02d5909b6c17/provenance.json"><span class="xref download myst">registro de procedencia</span></a> identifica la lectura del derivado ya evaluado. No se reentrena ni se vuelven a puntuar predicciones en este paso. Las distribuciones del test se muestran para diagnosticar la evaluación histórica; no se usan para escoger una nueva configuración o una reserva más favorable.</p>
+<p><strong>Decisión de preprocesamiento:</strong> conservar las transformaciones heredadas y sus parámetros de entrenamiento; no adaptar con la reserva. <strong>Impacto en arquitectura y validación:</strong> evaluar estabilidad por fase/régimen y registrar sensibilidad a cambios de distribución; una propuesta de adaptación requeriría diseño propio compatible con el contrato. <strong>Riesgos:</strong> normalizar usando test, interpretar KS como prueba causal o explotar un perfil retrospectivo para seleccionar modelos y llamarlo confirmatorio.</p>
+</section>
+</section>
+<section id="eda-temporal-covariables-y-diagnostico-de-la-ruta-f2a">
+<h2>2.2 EDA temporal: covariables y diagnóstico de la ruta F2a<a class="headerlink" href="#eda-temporal-covariables-y-diagnostico-de-la-ruta-f2a" title="Link to this heading">#</a></h2>
+<p>Se conserva el análisis de covariables del bloque C que originó el diagnóstico. La autocorrelación residual fuerte activa RT1 (PDF p32) y la reclasificación a F2a, ahora resuelta. La <a class="reference internal" href="07_ruta_temporal.html#e2-ruta-temporal"><span class="std std-ref">sección 7.4</span></a> integra el bloque B y los diagnósticos E1 reutilizables —STL, ADF/KPSS, ACF/PACF, ARCH y BDS— con sus fechas, frecuencias y límites, sin presentarlos como análisis nuevos ni como pruebas sobre residuos del benchmark final todavía pendiente.</p>
+<section id="estructura-y-disponibilidad-temporal-de-covariables">
+<h3>2.2.1 Estructura y disponibilidad temporal de covariables<a class="headerlink" href="#estructura-y-disponibilidad-temporal-de-covariables" title="Link to this heading">#</a></h3>
+<p>La adquisición es de un minuto y la representación del modelo es diaria UTC. Se usan siete barras completas anteriores al día resultado, en orden y sin comprimir huecos. Los días inválidos afectan a sus ventanas dependientes, no solo a una fila aislada.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Cantidad</p></th>
+<th class="head"><p>Disponible al emitir el pronóstico al inicio de <span class="math notranslate nohighlight">\(t\)</span></p></th>
+<th class="head"><p>Papel</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>OHLCV completo de <span class="math notranslate nohighlight">\(t-k\)</span>, <span class="math notranslate nohighlight">\(k\ge1\)</span></p></td>
+<td><p>Sí, desde el inicio de <span class="math notranslate nohighlight">\(t-k+1\)</span></p></td>
+<td><p>Entrada causal</p></td>
+</tr>
+<tr class="row-odd"><td><p>OHLCV completo de <span class="math notranslate nohighlight">\(t\)</span></p></td>
+<td><p>No; se completa al inicio de <span class="math notranslate nohighlight">\(t+1\)</span></p></td>
+<td><p>Excluido de las entradas</p></td>
+</tr>
+<tr class="row-even"><td><p>σ₇(t), que incluye el retorno de <span class="math notranslate nohighlight">\(t\)</span></p></td>
+<td><p>No</p></td>
+<td><p>Objetivo</p></td>
+</tr>
+<tr class="row-odd"><td><p>σ₇(t−1)</p></td>
+<td><p>Sí, si todos sus cierres son válidos</p></td>
+<td><p>Diagnóstico de régimen/persistencia; no sexto canal de las redes heredadas</p></td>
+</tr>
+<tr class="row-even"><td><p>Correlación móvil que utiliza Y(t)</p></td>
+<td><p>Solo después de conocer el resultado</p></td>
+<td><p>Diagnóstico retrospectivo, no atributo disponible al emitir</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El <a class="reference download internal" download="" href="../_downloads/c2fdf5f746d277c361ec31a91aad1f57/availability_contract.csv"><span class="xref download myst">contrato de disponibilidad heredado</span></a> y la nueva auditoría por fold mantienen esta distinción. Las correlaciones diagnósticas pueden usar logaritmos de precios en nivel; no se confunden con los tensores relativos que recibe el modelo.</p>
+<p><strong>Decisión de preprocesamiento:</strong> alinear entradas hasta <span class="math notranslate nohighlight">\(t-1\)</span>, objetivo en <span class="math notranslate nohighlight">\(t\)</span> y marcas de disponibilidad; no imputar barras incompletas. <strong>Impacto en arquitectura y validación:</strong> conservar tensores <span class="math notranslate nohighlight">\(7\times5\)</span> y mecanismos temporales causales; auditar cada nuevo canal antes de introducirlo. <strong>Riesgos:</strong> desfase de un día, normalización con un cierre futuro y tratar una estadística retrospectiva como entrada contemporánea.</p>
+</section>
+<section id="relacion-covariablesobjetivo-y-cambios-de-regimen">
+<h3>2.2.2 Relación covariables–objetivo y cambios de régimen<a class="headerlink" href="#relacion-covariablesobjetivo-y-cambios-de-regimen" title="Link to this heading">#</a></h3>
+<p>E1 calculó 140 asociaciones de cinco covariables transformadas con rezagos de 1–28 días, usando una <strong>cohorte común de 308 resultados de 2023</strong> para comparar los rezagos con el mismo denominador. El volumen con rezago 1 presenta Pearson 0,50454 y Spearman 0,45311. Los máximos absolutos descriptivos de precios aparecen entre 9 y 12 días, con asociaciones bastante menores; no justifican cambiar D=7 por inspección de un máximo entre muchos.</p>
+<p><img alt="Correlaciones por rezago sobre la misma cohorte de entrenamiento; evidencia heredada de E1" src="../_images/correlaciones_rezagos_cohorte_comun.png" /></p>
+<p>Los <a class="reference download internal" download="" href="../_downloads/8c50329bbb13f106f66a71c98ca620a0/lag_correlations_common_train.csv"><span class="xref download myst">coeficientes por rezago</span></a> describen asociación, no causalidad, importancia condicional ni desempeño fuera de muestra. En particular, los logaritmos de precios en nivel comparten tendencia; un pico marginal no demuestra que el modelo necesite ese rezago.</p>
+<p>Las correlaciones móviles se estimaron en ventanas de 60 días, con al menos 50 pares válidos: 309 ventanas definidas por variable en 2023 y 366 en 2024. La mediana de la relación volumen–objetivo pasa de 0,33949 a 0,31574 y su signo es positivo en 99,03 % y 100 % de las ventanas definidas; varias relaciones de precios cambian de signo. El <a class="reference download internal" download="" href="../_downloads/500bbdbe1f3cb13c0260c1a8b70cd2e3/rolling_relationship_summary.csv"><span class="xref download myst">resumen móvil</span></a> conserva coberturas. Las ventanas se solapan y no son réplicas independientes de regímenes.</p>
+<p><strong>Decisión de preprocesamiento:</strong> conservar los cinco canales y D=7 del contrato, con la normalización causal; no seleccionar rezagos por máximos retrospectivos. <strong>Impacto en arquitectura y validación:</strong> comparar memoria recurrente/convolución causal bajo la misma historia; examinar errores por régimen y mes. <strong>Riesgos:</strong> relaciones espurias por tendencia, selección múltiple de rezagos y tratar las ventanas móviles como una prueba de cambio estructural confirmatoria.</p>
+</section>
+<section id="diagnostico-con-residuos-de-una-referencia-forward-chaining">
+<span id="e2-diagnostico-forward"></span><h3>2.2.3 Diagnóstico con residuos de una referencia forward chaining<a class="headerlink" href="#diagnostico-con-residuos-de-una-referencia-forward-chaining" title="Link to this heading">#</a></h3>
+<p>La ampliación del EDA ajustó una referencia <strong>Ridge, α=1 fijado</strong>, en cada uno de los diez folds mensuales enero–octubre de 2024. Usa exclusivamente las cinco covariables D7, los índices y el embargo heredados, y escalado aprendido en entrenamiento de cada fold. Esta ejecución diagnóstica no es una búsqueda de hiperparámetros ni una corrida del benchmark definitivo. Ridge también integra el catálogo E2, con su HPO y enlace puntual definidos por el protocolo registrado; esas reglas del benchmark no alteran las cifras diagnósticas de esta tabla. Persistencia <span class="math notranslate nohighlight">\(\widehat Y_t=Y_{t-1}\)</span> aporta una referencia causal adicional.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Referencia</p></th>
+<th class="head"><p>Fechas</p></th>
+<th class="head"><p>RMSE</p></th>
+<th class="head"><p>MAE</p></th>
+<th class="head"><p>ACF(1)</p></th>
+<th class="head"><p>ACF(7)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Ridge D7 forward</p></td>
+<td><p>305</p></td>
+<td><p>0,00576554</p></td>
+<td><p>0,00431479</p></td>
+<td><p>0,632228</p></td>
+<td><p>-0,061013</p></td>
+</tr>
+<tr class="row-odd"><td><p>Persistencia causal</p></td>
+<td><p>305</p></td>
+<td><p>0,00474310</p></td>
+<td><p>0,00292428</p></td>
+<td><p>0,033256</p></td>
+<td><p>-0,458558</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Ridge mantiene dependencia de primer rezago y pierde frente a persistencia en RMSE en estas fechas. Persistencia reduce mucho la ACF(1), pero conserva una ACF(7) negativa considerable: no elimina toda la estructura residual. Para lag 7, Ljung–Box de Ridge da Q=266,4062, p≈8,88183×10⁻⁵⁴ y p ajustado≈5,77319×10⁻⁵². El ajuste Holm corresponde a <strong>66 diagnósticos de EDA</strong> (dos referencias × once grupos, incluidos los diez meses y el total × tres rezagos), no a la familia de las RQ del benchmark.</p>
+<p><img alt="Errores y autocorrelación de la referencia bajo forward chaining" src="../_images/forward_residual_diagnostics.png" /></p>
+<p>Se reportan <a class="reference download internal" download="" href="../_downloads/d784063dc7c6c85227bdc92a77413bae/forward_reference_metrics.csv"><span class="xref download myst">métricas por fold</span></a>, <a class="reference download internal" download="" href="../_downloads/3d42d33fac39952e79743fd258a89444/forward_reference_acf.csv"><span class="xref download myst">ACF</span></a> y <a class="reference download internal" download="" href="../_downloads/8d3b9824e04f9530a0b841fafd597c8d/forward_reference_ljung_box.csv"><span class="xref download myst">Ljung–Box</span></a>, con número de observaciones, rezagos y grados de libertad declarados. La referencia se ajusta con observaciones anteriores, no sobre los residuos de validación; no se resta mecánicamente el número de 35 entradas a los grados de libertad. La aproximación chi-cuadrado es un diagnóstico exploratorio y puede ser imprecisa en meses cortos o con heterogeneidad. No se convierten fechas separadas por huecos en observaciones consecutivas; agrupar meses tampoco elimina cambios de modelo o de régimen.</p>
+<p><strong>Resolución de ruta metodológica.</strong> La autocorrelación remanente originó la alerta sobre dinámica no explicada. Con la guía completa, RT1 (PDF p32) exige reclasificar cuando los residuos de una referencia muestran autocorrelación fuerte. Por ello, el 06/11/2026 se cierra la ruta <strong>F2a, series de tiempo</strong>, documentada en la <a class="reference internal" href="07_ruta_temporal.html#e2-ruta-temporal"><span class="std std-ref">sección 7</span></a>. No se mantiene una clasificación abierta por el mero hecho de que las redes excluyan Y rezagada.</p>
+<p>Esta evidencia no demuestra que añadir Y rezagada mejore un modelo ni autoriza cambiar las entradas heredadas. Una sensibilidad con rezagos del objetivo necesitaría una decisión documentada y una evaluación de desarrollo compatible con la herencia de E1; aquí no se añade ese canal ni se cambia la partición. El solapamiento de σ₇ también contribuye a la dependencia y debe distinguirse de un mecanismo aprovechable fuera de muestra.</p>
+<p><strong>Decisión de preprocesamiento:</strong> conservar X/Y y máscaras heredadas; no añadir rezagos de Y silenciosamente. <strong>Impacto en arquitectura y validación:</strong> seguir F2a, usar incertidumbre por bloques e incluir persistencia, naive semanal y ARIMA con soporte e información endógena declarados; los residuos de cada modelo ejecutado requieren sus propios diagnósticos. <strong>Riesgos:</strong> interpretar ACF como prueba de no linealidad o de utilidad de una nueva variable, presentar Ridge como cuarto modelo base o confundir el diagnóstico de EDA con el benchmark definitivo.</p>
+</section>
+</section>
+<section id="trazabilidad-hallazgodecision">
+<span id="e2-trazabilidad-eda"></span><h2>2.3 Trazabilidad hallazgo–decisión<a class="headerlink" href="#trazabilidad-hallazgodecision" title="Link to this heading">#</a></h2>
+<p>La <a class="reference download internal" download="" href="../_downloads/e849ff4a7a2b2d305850e933a5b7a2a9/hallazgo_decision.csv"><span class="xref download myst">tabla completa descargable</span></a> registra evidencia, preprocesamiento, arquitectura, protocolo, riesgo y alcance para cada análisis. Contrastada con <strong>A.1 de la guía completa (PDF p61)</strong>, cubre sus cinco campos: hallazgo, evidencia, decisión de preprocesamiento, impacto en arquitectura/validación y riesgo/fuga. Las columnas adicionales separan protocolo, alcance y estado. El CSV se conserva íntegro como registro histórico: la fila <code class="docutils literal notranslate"><span class="pre">RESID</span></code> describe la alerta anterior al cierre de la ruta y no expresa el estado vigente. El <a class="reference download internal" download="" href="../_downloads/6f98046ca8470b7fbafed7eb2a4a8e9c/decisiones_vigentes.csv"><span class="xref download myst">registro complementario de decisiones vigentes</span></a> enlaza esa fila con la decisión <strong>F2a del 06/11/2026</strong>, documentada en la <a class="reference internal" href="07_ruta_temporal.html#e2-ruta-temporal"><span class="std std-ref">sección 7</span></a>, y registra por separado su incorporación documental del 08/11/2026. No se retrofecha ni se reescribe la evidencia histórica.</p>
+<p>Ridge α=1 fue una referencia diagnóstica del EDA, no uno de los diez modelos vigentes. Sus cifras no sustituyen resultados del nuevo catálogo ni autorizan añadirlo como candidato adicional.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Hallazgo</p></th>
+<th class="head"><p>Decisión y efecto en el diseño</p></th>
+<th class="head"><p>Riesgo que controla</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Objetivo positivo y cola derecha</p></td>
+<td><p>Mantener escala/etiqueta; reportar errores en extremos y RMSE original</p></td>
+<td><p>Recorte o transformación oportunista</p></td>
+</tr>
+<tr class="row-odd"><td><p>Un día incompleto y ventanas dependientes</p></td>
+<td><p>Máscara causal común, sin imputación ni compresión</p></td>
+<td><p>Datos inconsistentes y tamaños no comparables</p></td>
+</tr>
+<tr class="row-even"><td><p>Similitud entre ventanas distinta de identidad</p></td>
+<td><p>Auditoría de vecinos separada de la temporal; no borrado automático</p></td>
+<td><p>Falsos duplicados o falsas garantías de ausencia de fuga</p></td>
+</tr>
+<tr class="row-odd"><td><p>Reconstrucción numérica consistente</p></td>
+<td><p>Mantener algoritmo; declarar ruido externo no identificado</p></td>
+<td><p>Falso techo de desempeño</p></td>
+</tr>
+<tr class="row-even"><td><p>Una serie y cambios de régimen</p></td>
+<td><p>Alcance por mercado, forward chaining y análisis segmentado</p></td>
+<td><p>Pseudorreplicación y generalización excesiva</p></td>
+</tr>
+<tr class="row-odd"><td><p>Soportes de entrenamiento anteriores a validación</p></td>
+<td><p>Conservar índices, embargo y escalado por fold</p></td>
+<td><p>Información futura</p></td>
+</tr>
+<tr class="row-even"><td><p>Reserva ya evaluada</p></td>
+<td><p>Identidad trazable y perfil retrospectivo; alcance exploratorio</p></td>
+<td><p>Sellado retrospectivo ficticio</p></td>
+</tr>
+<tr class="row-odd"><td><p>Desplazamiento entre fases</p></td>
+<td><p>Representación causal fija y análisis de estabilidad</p></td>
+<td><p>Adaptación con test</p></td>
+</tr>
+<tr class="row-even"><td><p>Asociaciones móviles variables</p></td>
+<td><p>Comparar mecanismos con la misma información</p></td>
+<td><p>Elección de rezagos por asociación marginal</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dependencia residual</p></td>
+<td><p>Resolución F2a y referencias específicas; contrato D7 conservado</p></td>
+<td><p>Clasificación del problema por conveniencia</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="reproduccion-y-estado-de-cierre">
+<span id="e2-reproduccion-eda"></span><h2>2.4 Reproducción y estado de cierre<a class="headerlink" href="#reproduccion-y-estado-de-cierre" title="Link to this heading">#</a></h2>
+<p>Las evidencias heredadas se copian con sus hashes de procedencia y se distinguen de las calculadas en E2. Los nuevos scripts no modifican las fuentes, ni el código experimental, resultados o modelos de E1.</p>
+<p><strong>Descarga directa:</strong> <a class="reference download internal" download="" href="../_downloads/57818c9f39701d291214a63d076ecd2b/EDA_E2_codigo_tablas_figuras.zip"><code class="xref download docutils literal notranslate"><span class="pre">código,</span> <span class="pre">tablas</span> <span class="pre">y</span> <span class="pre">figuras</span> <span class="pre">del</span> <span class="pre">EDA</span> <span class="pre">en</span> <span class="pre">un</span> <span class="pre">ZIP</span></code></a>, con <a class="reference download internal" download="" href="../_downloads/1aaa63bdbd1e8f0a1ded440e260403cd/MANIFIESTO.json"><code class="xref download docutils literal notranslate"><span class="pre">manifiesto</span> <span class="pre">SHA-256</span></code></a>. Es un complemento del repositorio; el LEEME explica las entradas de desarrollo y la adquisición oficial necesarias para ejecutar. Se conservan aparte los brutos y los precios individuales de test.</p>
+<p>Desde la raíz del repositorio, con Python 3.12 y el entorno de <code class="docutils literal notranslate"><span class="pre">requirements-eda.lock.txt</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.venv-eda/bin/python<span class="w"> </span>scripts/eda_e2_decisions.py
+</pre></div>
+</div>
+<p>La reconstrucción del perfil de la reserva conocida, sus argumentos y el procedimiento de agregación sin reentrenar se documentan en el <a class="reference download internal" download="" href="../_downloads/e54f3d7d8b1c04223f44000271e1bffb/README.md"><code class="xref download docutils literal notranslate"><span class="pre">README</span> <span class="pre">de</span> <span class="pre">distribución</span></code></a>. El <a class="reference download internal" download="" href="../_downloads/d0aaa37fb5597c136719d657ab4cf6c0/README.md"><code class="xref download docutils literal notranslate"><span class="pre">README</span> <span class="pre">del</span> <span class="pre">resto</span> <span class="pre">del</span> <span class="pre">EDA</span></code></a> especifica entradas, dependencias y productos. Descargar también los <a class="reference download internal" download="" href="../_downloads/0cd7aee7dc924b5b832685aaf225bb9c/summary.json"><span class="xref download myst">resultados resumidos del EDA</span></a> y los <a class="reference download internal" download="" href="../_downloads/380d43427dbb1b6c7cb698e5604434e2/aggregated_profile.csv"><span class="xref download myst">perfiles agregados por fase</span></a>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Requisito recibido</p></th>
+<th class="head"><p>Estado y límite</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Objetivo, calidad, sesgos y duplicados</p></td>
+<td><p>Analizados con cifras, figuras, scripts y decisiones explícitas</p></td>
+</tr>
+<tr class="row-odd"><td><p>Partición y solapamiento</p></td>
+<td><p>Auditados para el calendario y representación D7 heredados; cada implementación futura deberá respetarlos</p></td>
+</tr>
+<tr class="row-even"><td><p>Comparación de distribuciones</p></td>
+<td><p>Desarrollo y reserva conocida descritos; análisis del test retrospectivo, sin selección de configuración</p></td>
+</tr>
+<tr class="row-odd"><td><p>Estructura, disponibilidad, relaciones rezagadas/móviles</p></td>
+<td><p>Evidencia E1 ampliada y trazable</p></td>
+</tr>
+<tr class="row-even"><td><p>Residuos de referencia</p></td>
+<td><p>Diagnóstico forward de desarrollo ejecutado; resolución F2a registrada en §7</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ruido externo y techo de desempeño</p></td>
+<td><p>No identificables con esta única fuente/proxy; limitación explícita, sin cota inventada</p></td>
+</tr>
+<tr class="row-even"><td><p>Sellado prospectivo de un test nuevo de E2</p></td>
+<td><p>No disponible en los periodos heredados ya conocidos</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tabla del Apéndice A y ruta completa</p></td>
+<td><p>Guía completa recibida; tabla cotejada con A.1 y ruta F2a cerrada</p></td>
+</tr>
+<tr class="row-even"><td><p>Referencias F2a</p></td>
+<td><p>Naive, naive semanal y ARIMA implementadas y verificadas con doce pruebas sintéticas en §7; no son resultados Bitcoin</p></td>
+</tr>
+<tr class="row-odd"><td><p>Benchmark del catálogo vigente</p></td>
+<td><p>Pendiente; P0 de desarrollo ejecutado y analizado por separado, sin afirmar resultados finales ni potencia acreditada</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="01_punto_partida.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">1. Definición del Problema, Preguntas de Investigación y Dataset</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="03_literatura.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">3. Revisión Sistemática del Estado del Arte</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda-general">2.1 EDA General</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-la-variable-objetivo">2.1.1 Análisis de la variable objetivo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calidad-duplicados-y-ruido-del-objetivo">2.1.2 Calidad, duplicados y ruido del objetivo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identificacion-de-sesgos-y-posibles-atajos">2.1.3 Identificación de sesgos y posibles atajos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#particion-auditoria-de-soportes-y-estado-del-test">2.1.4 Partición, auditoría de soportes y estado del test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cambio-de-distribucion">2.1.5 Cambio de distribución</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda-temporal-covariables-y-diagnostico-de-la-ruta-f2a">2.2 EDA temporal: covariables y diagnóstico de la ruta F2a</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-y-disponibilidad-temporal-de-covariables">2.2.1 Estructura y disponibilidad temporal de covariables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relacion-covariablesobjetivo-y-cambios-de-regimen">2.2.2 Relación covariables–objetivo y cambios de régimen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-con-residuos-de-una-referencia-forward-chaining">2.2.3 Diagnóstico con residuos de una referencia forward chaining</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trazabilidad-hallazgodecision">2.3 Trazabilidad hallazgo–decisión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduccion-y-estado-de-cierre">2.4 Reproducción y estado de cierre</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

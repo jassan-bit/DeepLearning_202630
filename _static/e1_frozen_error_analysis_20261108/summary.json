@@ -1,0 +1,76 @@
+{
+  "supplement_id": "e1_frozen_error_analysis_20261108",
+  "parent_study_id": "e1_608_remediation_20261107",
+  "source_execution_id": "c45f8d8879e647390b68f891141785d4ec78cfcabb41d4379cee860ffe342072",
+  "created_at_utc": "2026-11-08T01:57:45.578352+00:00",
+  "scope": "Post-hoc descriptive analysis of existing fixed predictions on the already observed608-date historical cohort; no refit, recipe selection, replacement seeds, new forecasts or new confirmatory tests",
+  "posthoc_after_original_analysis": true,
+  "original_metrics_unchanged": true,
+  "model_fits": 0,
+  "new_checkpoint_forecasts": 0,
+  "raw_market_archive_reads": 0,
+  "weights_or_scalers_loaded": 0,
+  "models": [
+    "GRU",
+    "LSTM",
+    "MLP",
+    "Persistence"
+  ],
+  "neural_runs_per_model": 309,
+  "neural_runs": 927,
+  "deterministic_reference_runs": 1,
+  "common_dates": 608,
+  "neural_prediction_rows_read": 563616,
+  "calendar_months": 20,
+  "calendar_year_segments": 2,
+  "target_regime_counts": {
+    "middle": 288,
+    "low": 233,
+    "high": 87
+  },
+  "density_grid_shape": [
+    30,
+    30
+  ],
+  "density_rows": 3600,
+  "density_support": {
+    "GRU": {
+      "pairs": 187872,
+      "dates": 608,
+      "seeds": 309,
+      "pairs_above_common_grid": 0
+    },
+    "LSTM": {
+      "pairs": 187872,
+      "dates": 608,
+      "seeds": 309,
+      "pairs_above_common_grid": 0
+    },
+    "MLP": {
+      "pairs": 187872,
+      "dates": 608,
+      "seeds": 309,
+      "pairs_above_common_grid": 0
+    },
+    "Persistence": {
+      "pairs": 608,
+      "dates": 608,
+      "seeds": 1,
+      "pairs_above_common_grid": 0
+    }
+  },
+  "segment_run_metric_rows": 24128,
+  "segment_summary_rows": 936,
+  "monthly_aggregate_rows": 80,
+  "target_range_aggregate_rows": 40,
+  "residual_structure_rows": 928,
+  "public_daily_observations_or_forecasts": false,
+  "test_driven_model_selection": false,
+  "new_confirmatory_hypothesis_tests": false,
+  "residual_sign": "forecast minus observed; positive means overprediction",
+  "segment_metric_estimand": "Average of each individual model/seed metric on matched segment dates, never an ensemble metric",
+  "illustration_estimand": "Mean forecast per month/range and across seeds; illustrative aggregation, not an ensemble benchmark score",
+  "range_assignment_caveat": "Uses observed outcome retrospectively to diagnose errors; boundaries from development; range membership unavailable at forecast time",
+  "seed_interval_caveat": "Marginal seed intervals condition on fixed dates; neither independent market intervals nor temporal/family-wise coverage",
+  "temporal_generalization": "Known historical calendar retained; no new unseen validation or temporal power claim"
+}

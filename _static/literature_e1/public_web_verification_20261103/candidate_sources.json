@@ -1,0 +1,316 @@
+[
+  {
+    "repository": "lixus7/Time-Series-Works-Conferences",
+    "checked_at": "2026-11-03T12:34:57.198453-05:00",
+    "kind": "public_author_or_curator_repository",
+    "files": [
+      {
+        "url": "https://raw.githubusercontent.com/lixus7/Time-Series-Works-Conferences/1b7f88c5a9f618ba7d300cb3b9e8626272c674d9/README.md",
+        "name": "README.md",
+        "sha256": "37e1c83a33b9c004214bba2cfe5d855230c24120319cab86cc4e64b8fafefa07",
+        "bytes": 528979,
+        "selected_lines": [
+          {
+            "line": 491,
+            "text": "| Add News |  Electricity <br> Exchange  <br> Traffic <br> Bitcoin  |     | [From News to Forecast: Integrating Event Analysis in LLM-Based Time Series Forecasting with Reflection](https://openreview.net/forum?id=DpByqSbdhI) | [Code](https://github.com/ameliawong1996/From_News_to_Forecast)  <br>![Stars](https://img.shields.io/github/stars/ameliawong1996/From_News_to_Forecast?color=critical&style=social) <br>![Forks](https://img.shields.io/github/forks/ameliawong1996/From_News_to_Forecast?color=critical&style=social)  | NIPS<br>2024"
+          },
+          {
+            "line": 888,
+            "text": "| probability & |   Stock Price  <br>  Wind Speed|         Volat        | [Volatility Based Kernels and Moving Average Means for Accurate Forecasting with Gaussian Processes](https://proceedings.mlr.press/v162/benton22a.html) |   [Code,GCode](https://github.com/g-benton/Volt)     <br>![Stars](https://img.shields.io/github/stars/g-benton/Volt?color=critical&style=social) <br>![Forks](https://img.shields.io/github/forks/g-benton/Volt?color=critical&style=social) | ICML<br>2022"
+          },
+          {
+            "line": 1370,
+            "text": "| Stock Movement<br> Prediction | NASDAQ <br> Bitcoin |    KHIT  | [Kernel-based Hybrid Interpretable Transformer for High-frequency Stock Movement Prediction](https://ieeexplore.ieee.org/document/10027785) | None | ICDM<br>2022"
+          },
+          {
+            "line": 1385,
+            "text": "| Stock Volatility <br> Forecasting |  Calls |         HTML       | [Hierarchical Transformer-based Multi-task Learning for Volatility Prediction](https://doi.org/10.1145/3366423.3380128) | [Code](https://github.com/YangLinyi/HTML-Hierarchical-Transformer-based-Multi-task-Learning-for-Volatility-Prediction)  <br>![Stars](https://img.shields.io/github/stars/YangLinyi/HTML-Hierarchical-Transformer-based-Multi-task-Learning-for-Volatility-Prediction?color=critical&style=social) <br>![Forks](https://img.shields.io/github/forks/YangLinyi/HTML-Hierarchical-Transformer-based-Multi-task-Learning-for-Volatility-Prediction?color=critical&style=social) | WWW<br>2020"
+          },
+          {
+            "line": 1436,
+            "text": "| Bitcoin   <br> Volatility  <br> Forecasting  | Twitter |        D-TCN\t    | [Ask \"Who\", Not \"What\": Bitcoin Volatility Forecasting with Twitter Data](https://doi.org/10.1145/3539597.3570387) |     [TF](https://github.com/meakbiyik/ask-who-not-what)   <br>![Stars](https://img.shields.io/github/stars/meakbiyik/ask-who-not-what?color=critical&style=social) <br>![Forks](https://img.shields.io/github/forks/meakbiyik/ask-who-not-what?color=critical&style=social) | WSDM<br>2022"
+          }
+        ]
+      }
+    ],
+    "commit": "1b7f88c5a9f618ba7d300cb3b9e8626272c674d9",
+    "status": "public_readme_retrieved",
+    "screening_state": "recovery_lead_only; no inclusion in the five-study extraction corpus"
+  },
+  {
+    "repository": "frankli073/variance_prediction",
+    "checked_at": "2026-11-03T12:34:57.198347-05:00",
+    "kind": "public_author_or_curator_repository",
+    "files": [
+      {
+        "url": "https://raw.githubusercontent.com/frankli073/variance_prediction/bb02676f325ad36627f07a96f78822d5d0cd669b/README.md",
+        "name": "README.md",
+        "sha256": "9635a086b03437dad8de2cc75fefdee25e9f7a1790894537f8d31a67e75974ab",
+        "bytes": 4546,
+        "selected_lines": [
+          {
+            "line": 3,
+            "text": "## Project Proposal for DSGA-1003: Volatility Prediction"
+          },
+          {
+            "line": 15,
+            "text": "The question we are answering is how well we can predict the short term volatility of bitcoin based on historical volatility in different time frames, returns, moving averages, and other features."
+          },
+          {
+            "line": 17,
+            "text": "Because we wonder whether volatility (almost stationary) is something that could be predicted with small errors given that it is almost impossible to predict the returns of any equity, stock, or cryptocurrency. Volatility is the core measurement of risk, which is essential for investors to adjust their asset allocation. Also, volatility highly influence the pricing of financial instruments. Accurate volatility predictions can improve the pricing models."
+          },
+          {
+            "line": 23,
+            "text": "There have been lots of Kaggle notebooks, projects done by institutional professionals, and articles written by academia in trying to predict the short term volatility of equities and cryptocurrencies."
+          },
+          {
+            "line": 25,
+            "text": "Our raw data, consists of hourly bitcoin price, will be extracted from the Binance blockchain and API. Moreover, we will engineer features like returns, volatility, and other factors based on information and financial features formula found from books on high frequency trading, academic papers, kaggle notebooks, libraries for feature engineering, and other volatility prediction projects found online."
+          },
+          {
+            "line": 29,
+            "text": "We will use the general evaluation metrics for time series regression models, such as MSE, RMSE, MAE, MAPE, and RMSPE (root mean square percentage error). On top of those general metrics, we will use **Theil's U Statistic**, which is a relative measure of forecasting accuracy that compares the proposed model's performance against a naive model, usually a random walk model. Another advanced metric we will use is **hit rate**. The hit rate can measure the proportion of times the model correctly predicted the direction of volatility change. This metric is particularly useful when the direction of change is more critical than the precise value and gives a better intuition on whether our prediction follows the general pattern or not."
+          },
+          {
+            "line": 37,
+            "text": "- Katsiampa, P. (2017). \"Volatility estimation for Bitcoin: A comparison of GARCH models.\" *Economics Letters*, 158, 3-6. This paper explores various GARCH models for estimating Bitcoin volatility, which might provide insights for your econometric model component."
+          },
+          {
+            "line": 39,
+            "text": "- Sullivan, J. C. (Year Unknown). \"Stock price volatility prediction with long short-term memory neural networks.\" *Department of Computer Science, Stanford University*. "
+          },
+          {
+            "line": 41,
+            "text": "- Bouri, E., Gupta, R., Tiwari, A. K., & Roubaud, D. (2017). \"Does Bitcoin hedge global uncertainty? Evidence from wavelet-based quantile-in-quantile regressions.\" *Finance Research Letters*, 23, 87-95."
+          },
+          {
+            "line": 45,
+            "text": "- Ncume, V., Van Zyl, T. L., & Paskaramoorthy, A. (2022). \"Volatility forecasting using Deep Learning and sentiment analysis.\" *arXiv preprint arXiv:2210.12464*. [Online]. Available: https://arxiv.org/abs/2210.12464"
+          },
+          {
+            "line": 47,
+            "text": "- Optiver Realized Volatility Prediction: [Kaggle Notebook](https://www.kaggle.com/code/gunesevitan/optiver-realized-volatility-prediction-1d-cnn)"
+          },
+          {
+            "line": 49,
+            "text": "- Optiver Realized Volatility Prediction Competition Discussion: [Kaggle Discussion](https://www.kaggle.com/competitions/optiver-realized-volatility-prediction/discussion/274970)"
+          },
+          {
+            "line": 51,
+            "text": "- Article on Volatility Prediction using ML: [Springer Link](https://link.springer.com/article/10.1007/s00500-022-07161-1)"
+          }
+        ]
+      }
+    ],
+    "commit": "bb02676f325ad36627f07a96f78822d5d0cd669b",
+    "status": "public_readme_retrieved",
+    "screening_state": "recovery_lead_only; no inclusion in the five-study extraction corpus"
+  },
+  {
+    "repository": "b-zahra/msc-cryptosent-2026",
+    "checked_at": "2026-11-03T12:34:57.198753-05:00",
+    "kind": "public_author_or_curator_repository",
+    "files": [
+      {
+        "url": "https://raw.githubusercontent.com/b-zahra/msc-cryptosent-2026/cc2ee5aee44014d71cd7d1096172c0bd096f5be1/README.md",
+        "name": "README.md",
+        "sha256": "79a6c0bc2223483993d9db27768281a701cce389dff27fbc1539b98a05196981",
+        "bytes": 3957,
+        "selected_lines": [
+          {
+            "line": 2,
+            "text": "MSc dissertation — Forecasting Bitcoin volatility using Twitter sentiment analysis. University of Essex Online."
+          },
+          {
+            "line": 8,
+            "text": "Bitcoin volatility forecasting compared to price-only baselines."
+          },
+          {
+            "line": 25,
+            "text": "  Prophet integrates sentiment most effectively in high-volatility regimes, "
+          },
+          {
+            "line": 26,
+            "text": "  while LSTM integrates sentiment most effectively in low-volatility regimes."
+          },
+          {
+            "line": 44,
+            "text": "    ├── fig_4_1_btc_price_volatility.png"
+          },
+          {
+            "line": 55,
+            "text": "1. Price data acquisition from Binance and computation of realised volatility"
+          },
+          {
+            "line": 77,
+            "text": "  [`kaushiksuresh147/bitcoin-tweets`](https://www.kaggle.com/datasets/kaushiksuresh147/bitcoin-tweets). "
+          }
+        ]
+      }
+    ],
+    "commit": "cc2ee5aee44014d71cd7d1096172c0bd096f5be1",
+    "status": "public_readme_retrieved",
+    "screening_state": "recovery_lead_only; no inclusion in the five-study extraction corpus"
+  },
+  {
+    "repository": "tommasozeri/GARCH-LSTM-with-on-chain-feats",
+    "checked_at": "2026-11-03T12:34:59.735003-05:00",
+    "kind": "public_author_or_curator_repository",
+    "files": [
+      {
+        "url": "https://raw.githubusercontent.com/tommasozeri/GARCH-LSTM-with-on-chain-feats/b296e24c0ae9ee621746f53dba85f759a4e9f6fe/README.md",
+        "name": "README.md",
+        "sha256": "bf6f5477e1739b09554a4b487f7d748bc5007ff603c63f2318904b953594603c",
+        "bytes": 10728,
+        "selected_lines": [
+          {
+            "line": 1,
+            "text": "# Long Short-Term Memory GARCH: Bitcoin Volatility Forecasting"
+          },
+          {
+            "line": 13,
+            "text": "This project implements a hybrid deep learning model that integrates a differentiable **GJR-GARCH(1,1) kernel** into an **LSTM cell** to forecast Bitcoin volatility. The approach combines classical financial econometrics with modern machine learning, leveraging on-chain metrics as exogenous features."
+          },
+          {
+            "line": 15,
+            "text": "**Core Innovation:** The GARCH kernel replaces the traditional LSTM output gate, allowing the model to capture volatility clustering while the LSTM memory gates learn long- and short-term dependencies enhanced by blockchain data."
+          },
+          {
+            "line": 192,
+            "text": "### 1. **No Leverage Effect in Bitcoin**"
+          },
+          {
+            "line": 193,
+            "text": "λ = 0.000 → Negative and positive shocks generate equivalent volatility responses, unlike equities. Consistent with the bidirectional structure of crypto markets."
+          },
+          {
+            "line": 198,
+            "text": "### 3. **Near-Integrated Volatility**"
+          },
+          {
+            "line": 199,
+            "text": "α + λ/2 + β = 0.9999 → Half-life of shocks ≈ 6,931 days. Volatility shocks are essentially permanent; no mean reversion over investment horizons."
+          },
+          {
+            "line": 246,
+            "text": "4. **Exogenous Information Matters for Regime Detection** — On-chain features (TRVOU, ETRAV) capture volatility regime shifts that pure GARCH misses."
+          },
+          {
+            "line": 253,
+            "text": "- Glosten, L. R., Jagannathan, R., & Runkle, D. E. (1993). On the relation between the expected value and the volatility of the nominal excess return on stocks. *Journal of Finance*, 48(5), 1779–1801."
+          },
+          {
+            "line": 254,
+            "text": "- Zhao, P., Zhu, H., Ng, W. S., & Lee, D. L. (2024). From GARCH to Neural Network for Volatility Forecast. *arXiv:2402.06642*."
+          },
+          {
+            "line": 255,
+            "text": "- Hansen, P. R., & Lunde, A. (2005). A forecast comparison of volatility models: Does anything beat a GARCH(1,1)? *Journal of Applied Econometrics*, 20(7), 873–889."
+          },
+          {
+            "line": 256,
+            "text": "- Katsiampa, P. (2017). Volatility estimation for Bitcoin: A comparison of GARCH models. *Economics Letters*, 158, 3–6."
+          },
+          {
+            "line": 263,
+            "text": "GARCH-LSTM-Bitcoin/"
+          }
+        ]
+      }
+    ],
+    "commit": "b296e24c0ae9ee621746f53dba85f759a4e9f6fe",
+    "status": "public_readme_retrieved",
+    "screening_state": "recovery_lead_only; no inclusion in the five-study extraction corpus"
+  },
+  {
+    "repository": "sohjangra/btc-volatility-dl",
+    "checked_at": "2026-11-03T12:35:00.668132-05:00",
+    "kind": "public_author_or_curator_repository",
+    "files": [
+      {
+        "url": "https://raw.githubusercontent.com/sohjangra/btc-volatility-dl/8e7fc9ab49cf5a1396cdab832af3b206a0f0b4c3/README.md",
+        "name": "README.md",
+        "sha256": "c749e75d4ea10be72b635ed36593d33d4984e71dad58f6780176779bc147c291",
+        "bytes": 8894,
+        "selected_lines": [
+          {
+            "line": 1,
+            "text": "# Jump-BiLSTM Volatility Forecasting & Adaptive Trend Strategy (BTC/USDT)"
+          },
+          {
+            "line": 6,
+            "text": "- Can a deep-learning model forecast Bitcoin's volatility over the next 30 minutes more accurately than the established HAR-RV model?"
+          },
+          {
+            "line": 40,
+            "text": "  z2-all-models-comparison.ipynb   Volatility-model training and comparison"
+          },
+          {
+            "line": 61,
+            "text": "    subgraph Forecasting[Phase 1: Volatility forecasting]"
+          },
+          {
+            "line": 79,
+            "text": "    H --> J[30-minute volatility forecasts]"
+          },
+          {
+            "line": 81,
+            "text": "    J --> L[Volatility factor]"
+          },
+          {
+            "line": 87,
+            "text": "        P[ATR trailing stop<br/>scaled by predicted volatility]"
+          },
+          {
+            "line": 96,
+            "text": "## Phase 1: Volatility Forecasting"
+          },
+          {
+            "line": 98,
+            "text": "The first phase predicts realised volatility 30 minutes ahead using five-minute BTC/USDT bars downloaded from KuCoin through CCXT."
+          },
+          {
+            "line": 110,
+            "text": "- ETH cross-asset volatility"
+          },
+          {
+            "line": 111,
+            "text": "- The Deribit DVOL implied-volatility index"
+          },
+          {
+            "line": 115,
+            "text": "QLIKE was used as the evaluation metric because it is commonly used for volatility forecasting and penalises underestimating volatility more heavily than overestimating it."
+          },
+          {
+            "line": 137,
+            "text": "    F --> G[30-minute-ahead realised volatility]"
+          },
+          {
+            "line": 146,
+            "text": "The second phase tests whether the volatility forecasts can improve a trend-following strategy's risk management. The strategy operates on six-hour bars aggregated from the five-minute data."
+          },
+          {
+            "line": 153,
+            "text": "- Give trades more room when predicted volatility is high and tighten the stop when predicted volatility is low."
+          },
+          {
+            "line": 159,
+            "text": "vol_factor    = predicted_volatility / median_training_predicted_volatility"
+          },
+          {
+            "line": 171,
+            "text": "| Moreira-Muir volatility scaling | Underperformed buy-and-hold | The usual volatility-return relationship appeared to be inverted in this crypto sample. |"
+          },
+          {
+            "line": 194,
+            "text": "| `predictions_5min.npz` | Saved predicted-volatility arrays |"
+          }
+        ]
+      }
+    ],
+    "commit": "8e7fc9ab49cf5a1396cdab832af3b206a0f0b4c3",
+    "status": "public_readme_retrieved",
+    "screening_state": "recovery_lead_only; no inclusion in the five-study extraction corpus"
+  }
+]

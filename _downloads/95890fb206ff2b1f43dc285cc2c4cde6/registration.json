@@ -1,0 +1,1177 @@
+{
+  "study_id": "e1_core_mlp_extension_20261107",
+  "registered_at_utc": "2026-11-07T23:40:09.424068+00:00",
+  "source_commit": "91acdeae1efd92f098ff2ce9a32f90c5b0a4b98a",
+  "design_sha256": "4c2bd3ec2e87905350b340bc7955d737856118400a1799541e36a54b5490ee0b",
+  "design": {
+    "schema_version": 1,
+    "study_id": "e1_core_mlp_extension_20261107",
+    "created_at_utc": "2026-11-07T23:38:51.121028+00:00",
+    "scope": "New coherent exploratory historical extension, registered before its new fits; September–October2026 was already evaluated historically and is not a new confirmatory holdout",
+    "models": [
+      "GRU",
+      "LSTM",
+      "MLP"
+    ],
+    "history_days": 7,
+    "target_returns_days": 7,
+    "forecast_days": 1,
+    "variant": "relative_window",
+    "data_contract": {
+      "market": "Binance Spot BTCUSDT",
+      "daily_timezone": "UTC",
+      "features": [
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume"
+      ],
+      "target": "Population standard deviation ddof=0 of seven daily log close returns; unannualized",
+      "input_support": "[outcome_day-D,outcome_day)",
+      "target_lags_added": false,
+      "missing_data": "No imputation/calendar compression; exclude dependent windows; abort if the preregistered 60-date evaluation is incomplete"
+    },
+    "training": {
+      "optimizer": "AdamW",
+      "weight_decay": 0.0001,
+      "batch_size": 32,
+      "max_epochs": 100,
+      "patience": 12,
+      "min_delta": 1e-05,
+      "gradient_clip_norm": 1.0,
+      "device": "cpu",
+      "torch_threads": 1,
+      "torch_interop_threads": 1,
+      "strict_deterministic_algorithms": true,
+      "inner_validation_calendar_days": 90,
+      "embargo_days": 7,
+      "inner_seed": "stage_seed",
+      "refit_seed": "stage_seed+10000000",
+      "batch_order_seed": "stage_seed+17",
+      "test_refit": false
+    },
+    "search": {
+      "method": "exhaustive_grid",
+      "candidates": {
+        "GRU": [
+          {
+            "candidate_id": "c00",
+            "width": 16,
+            "learning_rate": 0.001,
+            "dropout": 0.0
+          },
+          {
+            "candidate_id": "c01",
+            "width": 16,
+            "learning_rate": 0.001,
+            "dropout": 0.1
+          },
+          {
+            "candidate_id": "c02",
+            "width": 16,
+            "learning_rate": 0.003,
+            "dropout": 0.0
+          },
+          {
+            "candidate_id": "c03",
+            "width": 16,
+            "learning_rate": 0.003,
+            "dropout": 0.1
+          },
+          {
+            "candidate_id": "c04",
+            "width": 32,
+            "learning_rate": 0.001,
+            "dropout": 0.0
+          },
+          {
+            "candidate_id": "c05",
+            "width": 32,
+            "learning_rate": 0.001,
+            "dropout": 0.1
+          },
+          {
+            "candidate_id": "c06",
+            "width": 32,
+            "learning_rate": 0.003,
+            "dropout": 0.0
+          },
+          {
+            "candidate_id": "c07",
+            "width": 32,
+            "learning_rate": 0.003,
+            "dropout": 0.1
+          }
+        ],
+        "LSTM": [
+          {
+            "candidate_id": "c00",
+            "width": 16,
+            "learning_rate": 0.001,
+            "dropout": 0.0
+          },
+          {
+            "candidate_id": "c01",
+            "width": 16,
+            "learning_rate": 0.001,
+            "dropout": 0.1
+          },
+          {
+            "candidate_id": "c02",
+            "width": 16,
+            "learning_rate": 0.003,
+            "dropout": 0.0
+          },
+          {
+            "candidate_id": "c03",
+            "width": 16,
+            "learning_rate": 0.003,
+            "dropout": 0.1
+          },
+          {
+            "candidate_id": "c04",
+            "width": 32,
+            "learning_rate": 0.001,
+            "dropout": 0.0
+          },
+          {
+            "candidate_id": "c05",
+            "width": 32,
+            "learning_rate": 0.001,
+            "dropout": 0.1
+          },
+          {
+            "candidate_id": "c06",
+            "width": 32,
+            "learning_rate": 0.003,
+            "dropout": 0.0
+          },
+          {
+            "candidate_id": "c07",
+            "width": 32,
+            "learning_rate": 0.003,
+            "dropout": 0.1
+          }
+        ],
+        "MLP": [
+          {
+            "candidate_id": "c00",
+            "width": 32,
+            "learning_rate": 0.001,
+            "dropout": 0.0
+          },
+          {
+            "candidate_id": "c01",
+            "width": 32,
+            "learning_rate": 0.001,
+            "dropout": 0.1
+          },
+          {
+            "candidate_id": "c02",
+            "width": 32,
+            "learning_rate": 0.003,
+            "dropout": 0.0
+          },
+          {
+            "candidate_id": "c03",
+            "width": 32,
+            "learning_rate": 0.003,
+            "dropout": 0.1
+          },
+          {
+            "candidate_id": "c04",
+            "width": 128,
+            "learning_rate": 0.001,
+            "dropout": 0.0
+          },
+          {
+            "candidate_id": "c05",
+            "width": 128,
+            "learning_rate": 0.001,
+            "dropout": 0.1
+          },
+          {
+            "candidate_id": "c06",
+            "width": 128,
+            "learning_rate": 0.003,
+            "dropout": 0.0
+          },
+          {
+            "candidate_id": "c07",
+            "width": 128,
+            "learning_rate": 0.003,
+            "dropout": 0.1
+          }
+        ]
+      },
+      "candidate_count_per_family": 8,
+      "seeds": [
+        6101,
+        6102
+      ],
+      "months": [
+        "2024-01",
+        "2024-02",
+        "2024-03",
+        "2024-04",
+        "2024-05",
+        "2024-06",
+        "2024-07",
+        "2024-08",
+        "2024-09",
+        "2024-10"
+      ],
+      "folds_source": "results/dl_r2_cv_20261104/folds.json",
+      "evaluation": "Mean across two seeds of RMSE pooled over all January-October validation dates; not mean monthly RMSE",
+      "tie_tolerance": 1e-12,
+      "tie_break": "Within the1e-12 score tolerance: lower parameter count, candidate_id, then family name for the across-family baseline",
+      "new_fits_per_candidate_seed_month": 2,
+      "expected_new_fits": 960,
+      "selection_has_seen_development_before_study": true,
+      "baseline_selection": "Best selected-family CV score; freeze before the new pilot; never reselect using the known historical reserve",
+      "monthly_stage_seed": "base_seed+100000*month_ordinal, January2024 ordinal0; candidate jobs use the same paired base/month seeds"
+    },
+    "pilot": {
+      "seeds": [
+        7101,
+        7102,
+        7103,
+        7104,
+        7105,
+        7106,
+        7107,
+        7108,
+        7109,
+        7110
+      ],
+      "origin": "2024-11-01",
+      "start": "2024-11-01",
+      "end": "2024-12-30",
+      "evaluation_start": "2024-11-01",
+      "evaluation_end_inclusive": "2024-12-30",
+      "calendar_days": 60,
+      "policy": "Fit before origin, inner chronological selection plus fresh refit; fixed weights for all 60 dates, mimicking final evaluation",
+      "recipes_frozen_after_hpo": true,
+      "known_development_calendar": true,
+      "counts_toward_definitive": false
+    },
+    "definitive": {
+      "seed_start": 8101,
+      "origin": "2025-01-01",
+      "training_calendar_start": "2023-01-01",
+      "training_calendar_end_inclusive": "2024-12-31",
+      "training_outcome_max": "2024-12-24",
+      "policy": "For each registered new seed, inner chronological stopping before origin, then fresh refit on all permitted 2023-2024 development; no 2025-2026 training labels",
+      "all_weights_frozen_before_reserve_payload_read": true,
+      "seeds_disjoint_from_hpo_and_pilot": true,
+      "no_stopping_for_significance": true,
+      "minimum_runs": 465,
+      "R_rule": "max(465, full pilot-derived required R across the three core pairs); no hidden cap; hard failure if required R exceeds10000"
+    },
+    "reserve": {
+      "start": "2026-09-01",
+      "end": "2026-10-30",
+      "calendar_days": 60,
+      "expected_outcomes": 60,
+      "context_month": "2026-08",
+      "expected_target_archives": 31,
+      "acquisition_manifest": "data/manifests/binance_spot_BTCUSDT_1m_20230101_20261030.json",
+      "prestudy_access": "This calendar has already been scored in the original project study; development, prior scores and literature were known before this extension",
+      "allocation": "Reuse of a known historical evaluation calendar for a new exploratory model extension",
+      "interpretation": "Exploratory historical comparison; neither a new confirmatory holdout nor a live future forecast",
+      "read_policy": "Only an explicitly invoked score phase after all new weights/scalers and the published dimensional plan are verified; exactly the32 originally hashed archives including August context"
+    },
+    "statistics": {
+      "primary_metric": "rmse",
+      "delta": 0.00025772842664981106,
+      "delta_origin": "5% of original GRU/D7 CV RMSE .005154568532996221; academic planning convention fixed before this new phase, posterior to earlier test",
+      "alpha": 0.05,
+      "power": 0.8,
+      "min_runs": 10,
+      "max_runs": 10000,
+      "sd_upper_simultaneous_confidence": 0.8,
+      "sd_sensitivity_confidences": [
+        0.8,
+        0.9,
+        0.95
+      ],
+      "family_size": 3,
+      "primary_pairs": [
+        [
+          "GRU",
+          "LSTM"
+        ],
+        [
+          "GRU",
+          "MLP"
+        ],
+        [
+          "LSTM",
+          "MLP"
+        ]
+      ],
+      "primary_test": "Two-sided paired t on matched-seed pooled 60-date RMSE; Holm3; t noncentral dimensioning at conservative Bonferroni alpha=.05/3",
+      "power_scope": "At least .80 marginal planning power per comparison under Gaussian independent seed differences and transferred pilot dispersion; not joint power .80, not temporal power or unconditional future-market power",
+      "unit": "Independent random initialization/order seed paired across recipes, conditional on the same calendar; do not count days or months as independent seeds",
+      "bootstrap_draws": 4999,
+      "bootstrap_seed": 20261107,
+      "effect": "Paired Cohen d_z plus paired-seed bootstrap sensitivity; zero difference/zero variance handled explicitly",
+      "confidence_intervals": "95% marginal and Bonferroni simultaneous family intervals; intervals conditional on training randomization",
+      "normality": "Shapiro-Wilk on paired differences as diagnostic only; report all pre-specified tests, do not switch to the test yielding smaller p",
+      "temporal_secondary": {
+        "loss": "Daily MSE averaged across individual seed models, not MSE of averaged predictions",
+        "dm_hac_lags": 6,
+        "dm_horizon": 1,
+        "dm_small_sample": "Harvey-Leybourne-Newbold",
+        "dm_family_size": 6,
+        "temporal_bootstrap": "Circular moving blocks, primary length7, sensitivity3/14; 4999 replicates; paired same date resamples all recipes/seeds; preserve mean per-seed RMSE estimand",
+        "temporal_power_claimed": false,
+        "pairs": [
+          [
+            "GRU",
+            "LSTM"
+          ],
+          [
+            "GRU",
+            "MLP"
+          ],
+          [
+            "LSTM",
+            "MLP"
+          ],
+          [
+            "GRU",
+            "Persistence"
+          ],
+          [
+            "LSTM",
+            "Persistence"
+          ],
+          [
+            "MLP",
+            "Persistence"
+          ]
+        ],
+        "temporal_bootstrap_pairs": "The same six explicit temporal-secondary pairs, with paired common date resamples; seed metric aggregation preserved",
+        "temporal_bootstrap_intervals": "95% marginal and Bonferroni simultaneous six-pair intervals for primary block7; block3/14 are descriptive sensitivity, not new opportunities to choose significance"
+      },
+      "practical_relevance": "Report zero-difference evidence separately from whether relative improvement exceeds5%; do not equate significance or a favorable point estimate with a confidence bound exceeding the practical threshold",
+      "all_models_and_results_reported": true,
+      "residual_diagnostics": {
+        "scope": "Exploratory residual diagnostics over all 60 dates for each frozen neural seed; not the confirmatory primary family",
+        "BDS": {
+          "embedding_dimension": 2,
+          "epsilon_sd_multiplier": 1.5
+        },
+        "Ljung_Box": {
+          "lags": [
+            1,
+            5
+          ],
+          "model_df": 0
+        },
+        "multiplicity": "Holm separately for all3R BDS tests and all6R Ljung-Box tests; undefined tests retained in family; not a nonlinear-gain claim"
+      },
+      "temporal_bootstrap_seed": 20261108
+    },
+    "chronology": {
+      "public_code_and_design_before_hpo_required": true,
+      "freeze_selected_recipes_before_pilot": true,
+      "freeze_pilot_and_dimensioning_before_definitive_fits": true,
+      "freeze_weights_before_reserve_target_construction": true,
+      "freeze_analysis_before_reserve_read": true,
+      "old_benchmark_is_unchanged_exploratory": true,
+      "public_pilot_derived_plan_before_final_fits_required": true
+    },
+    "failure_policy": {
+      "technical_failures": "Stop and preserve original error/artifacts; no replacement of unfavorable seeds; resume only exact registered jobs after root-cause review",
+      "missing_reserve_dates": "Abort primary analysis rather than silently changing the cohort",
+      "degenerate_pilot": "Report inability to plan if paired variance cannot be estimated; never substitute an arbitrary successful power",
+      "infeasible_sample_size": "Report required R and infeasibility; never silently cap R or claim target power",
+      "protocol_changes": "Any scientific change after results starts a new version; never overwrite frozen protocol"
+    },
+    "public_export": {
+      "allowed": "Code, preregistration, configurations, aggregate metrics/inference/figures, timestamps and SHA256 manifests",
+      "excluded": "Raw minute archives, individual daily observations/predictions, learned scalers and checkpoints",
+      "fixed_seed_illustration": {
+        "seed": 8101,
+        "rule": "First definitive seed; never selected by holdout error",
+        "format": "PNG only; no machine-readable daily observations/predictions"
+      }
+    },
+    "historical_results_unchanged": true,
+    "historical_weights_unchanged": true,
+    "reuse": "Import immutable GRU/LSTM/SmallMLP classes and fit routines only; rerun all three families' HPO/pilot/final from scratch; do not mix earlier metrics or predictions",
+    "complementary_model": "TCN: retained in the separate original study; not rerun or added to the new primary family",
+    "seed_identifier_reuse": "Reuse the registered numeric seed IDs for reproducibility, but execute all three families anew; never pool these trials with the old study as additional independent benchmark samples",
+    "mlp_architecture_justification": {
+      "class": "Immutable dl_models.SmallMLP: ordered flatten(7*5), one Dense hidden layer, ReLU, dropout, Dense1, Softplus",
+      "widths": [
+        32,
+        128
+      ],
+      "parameters_by_width": {
+        "32": 1185,
+        "128": 4737
+      },
+      "capacity_rationale": "Bracket the GRU/LSTM search parameter scale with the same eight candidate/two seed/ten month effort; parameter counts need not be equal",
+      "crypto_anchors": "Garcia-Medina/Aguayo-Moreno shallow MLP and Dudek feedforward crypto comparator; their target/input/activation/selected-width differences remain explicit",
+      "relu_anchor": "Zhang et al., Volatility Forecasting with Machine Learning and Intraday Commonality, AppendixB one/two/three-hidden-layer ReLU feedforward variants; equity evidence is transfer evidence",
+      "project_adaptations": "D7 OHLCV relative windows, widths32/128, common optimizer/early stopping, positive Softplus head and positive multiplicative target scale; not an exact paper replication",
+      "evidence": "references/literature_e1/free_model_expansion_20261107/readings.json"
+    },
+    "execution": {
+      "workers": 3,
+      "start_method": "spawn",
+      "python": "3.12.14",
+      "versions": {
+        "torch": "2.15.0+cpu",
+        "numpy": "2.5.4",
+        "pandas": "3.1.0",
+        "scipy": "1.18.1",
+        "statsmodels": "0.15.0",
+        "matplotlib": "3.11.2"
+      },
+      "environment": {
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "PYTHONHASHSEED": "0"
+      },
+      "no_fits_at_preparation": true,
+      "failure_policy": "Stop on technical failure; preserve all output, do not substitute seeds or silently change the design"
+    },
+    "sources_sha256": {
+      "scripts/run_gru_lstm_tcn_planned.py": "0afd0158f80aeadba6e3528c86d540183d0599ec864dffc8c0ea0e9bafd5c9d6",
+      "scripts/planned_study_data.py": "f4b732b24a86e9879b53e7a731c0ef2b606bb49fb0a546997ab0e46448232523",
+      "scripts/planned_study_statistics.py": "703492f299649ac5f87a2c37e30f0ae5fc4253595fba0fce36ec1b1b817fcdf2",
+      "scripts/dl_models_gru_lstm_tcn.py": "c11af1229fec43dd7da01a21e349dc2b109d9d61d977f6df3d01cd7da736b35d",
+      "scripts/dl_models.py": "e24110b57aeee201e1e9ab53519eb6b05967927ac54102fe23d3908c3fc57d69",
+      "scripts/dl_data.py": "8ea726a1d8ca7b9fa9bfcb26ee6e565b516c40a3ad1cd40e0f639c43b7f429ce",
+      "scripts/dl_data_v2.py": "bbf0ad8646afcd792b3961d0e5e5bcf9318f0fbe4377732a965c58f9557c33cb",
+      "scripts/train_dl_benchmark.py": "b78e2c66f55b07567601065f411881fa7170fe931784b1f59305283fdd292679",
+      "scripts/final_fit_filipe_multihistory.py": "1267f14787e52c72a798923a1a24551f2de69887e4412bd030aae31db2848c84",
+      "scripts/load_filipe_reserved_test.py": "6f253b063cbb8482e325d7fb846bd58b5480c30bc2e6d4aa2ce4d9c4b8d0b908",
+      "scripts/gru_lstm_tcn_diagnostics.py": "8cf66f3c169d90a677ae1fe16d2b77636d19c42bfa718d0b1beec77980d49ec8",
+      "scripts/train_filipe_multihistory.py": "c3a96f60142ef6bbd5faf1dac7855f38f03e51859529adf6861ffdfb8e58d064",
+      "requirements-training.lock.txt": "a344a762f8373b4e0086e992c38a7c7ff66a8f6018f265c037053df5ccfc1077",
+      "requirements-cv.txt": "cd0bfe7b2be713cbda86e856124777c5e481f5f2bf865981e5f17b49507b8fe6",
+      "results/eda_development/daily_market_development.csv": "bf6bb5160af924aef6a15c3684aeae932df3017e8639888bb7e91ce787900171",
+      "results/eda_development/daily_volatility_development.csv": "20b96374a659eb87dadfa68aa3d6b6b5fb6bea5b10eebe6f2c186ad69861844a",
+      "results/dl_r2_cv_20261104/folds.json": "3851de7cbb388d791a0f2b3d8e9fdd8d1002e44a300927c2adc8001b8a3916c6",
+      "experiments/gru_lstm_tcn_planned_20261105/design.json": "80e804a9a4c0ae4c053f02bf62a2b4315c9ddadbb0b0e3951b09652a9964a81c",
+      "experiments/gru_lstm_tcn_planned_20261105/public_preregistration.json": "c43d88e6c12cf86d722c1e7aa09fdcd55b5c36e97502d8d256327ff149832845",
+      "experiments/gru_lstm_tcn_planned_20261105/closed_planning.json": "27d099f330ee034c861ea1e03650087719878a46d476055458804622ca913fa9",
+      "scripts/run_e1_core_mlp_extension.py": "a9ceac341bf2b606106ec1e0d6dd945afb16059e6bfe21f78eb750a532954c1d",
+      "scripts/e1_core_models_mlp.py": "19deb821dbb5a4de3c26caa882ad14decd75484bca40bf0f2ab7a29e315bf0aa",
+      "scripts/e1_core_mlp_statistics.py": "c4cadbd75752c6235b72eb6f7a82d1e55ab94bd4a0d0703dbd12c0b986650965",
+      "tests/test_e1_core_mlp_extension.py": "f3ed27357cb9ec1a765689ea316bc5c72cd6a0d24d686514bd21ce2289097cd2",
+      "tests/test_e1_core_mlp_statistics.py": "58e5420fd73b5c967327cbd94c3ff522ed708c4e7ee7df8e834388a68ba8718c",
+      "scripts/export_e1_core_mlp_extension.py": "4b644aba837a370b1a2e32ca724eea058415776adb6f5ce487085f563da67867",
+      "tests/test_e1_core_mlp_export.py": "0e3981bac2fec277e08cb69b040bea5ee31df9ec2564778eb0e8eec42b81aeac",
+      "experiments/e1_core_mlp_extension_20261107/README.md": "5e82910a87c71d439719524af513c4e569dac96f1ca24cf627487c3f43bff402",
+      "requirements-e1-curves.lock.txt": "44a0abc6b30d8387ffb879d31003419b82f032e9aa348b206ca7f4a50b37f7d4",
+      "data/manifests/binance_spot_BTCUSDT_1m_20230101_20261030.json": "af723bcca2caffcbe44ae5243e2863bbcdcd39ae8cd42df491af0a2857926bb2",
+      "references/literature_e1/free_model_expansion_20261107/readings.json": "dc7de27699bff4e1e26a0fa962f092ffcd6bed482face502d8704d3c138951c5"
+    },
+    "runtime_observed_at_preparation": {
+      "at_utc": "2026-11-07T23:38:52.842866+00:00",
+      "python": "3.12.14",
+      "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+      "versions": {
+        "torch": "2.15.0+cpu",
+        "numpy": "2.5.4",
+        "pandas": "3.1.0",
+        "scipy": "1.18.1",
+        "statsmodels": "0.15.0",
+        "matplotlib": "3.11.2"
+      },
+      "torch_config": "PyTorch built with:\n  - GCC 13.3\n  - C++ Version: 202002\n  - Intel(R) oneAPI Math Kernel Library Version 2024.2-Product Build 20240605 for Intel(R) 64 architecture applications\n  - Intel(R) MKL-DNN v3.13.3 (Git Hash b38f97eb6f2173513112f15a0481750b8a66e901)\n  - OpenMP 201511 (a.k.a. OpenMP 4.5)\n  - LAPACK is enabled (usually provided by MKL)\n  - NNPACK is enabled\n  - CPU capability usage: AVX512\n  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, COMMIT_SHA=d0f2af8b66b20da4baa50644c0cd3f887a2eae2e, CUDA_FLAGS= -DLIBCUDACXX_ENABLE_SIMPLIFIED_COMPLEX_OPERATIONS -Xfatbin -compress-all  -Wno-deprecated-gpu-targets --expt-extended-lambda -DCUB_WRAPPED_NAMESPACE=at_cuda_detail -DDISABLE_CUSPARSE_DEPRECATED -DCUDA_HAS_FP16=1 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -DC10_NODEPRECATED, CXX_COMPILER=/opt/rh/gcc-toolset-13/root/usr/bin/c++, CXX_FLAGS= -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DUSE_FBGEMM -DUSE_PYTORCH_QNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -DC10_NODEPRECATED -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=range-loop-construct -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-unknown-pragmas -Wno-unused-parameter -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wsuggest-override -Wno-psabi -Wno-error=old-style-cast -faligned-new -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-dangling-reference -Wno-error=dangling-reference -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, TORCH_VERSION=2.15.0, USE_CUDA=0, USE_CUDNN=OFF, USE_CUSPARSELT=OFF, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_GLOO=ON, USE_HIPSPARSELT=OFF, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=OFF, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, USE_ROCM_KERNEL_ASSERT=OFF, USE_XCCL=OFF, USE_XPU=OFF, \n",
+      "device": "cpu",
+      "cpu_capability": "AVX512",
+      "cpu_affinity": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "cpu_quota": "400000 100000",
+      "environment": {
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "PYTHONHASHSEED": "0"
+      },
+      "actual_threads": 1,
+      "actual_interop_threads": 5,
+      "deterministic_algorithms": false,
+      "mkldnn_enabled": true,
+      "float32_matmul_precision": "highest"
+    },
+    "new_fits_at_preparation": 0
+  },
+  "sources_sha256": {
+    "scripts/run_gru_lstm_tcn_planned.py": "0afd0158f80aeadba6e3528c86d540183d0599ec864dffc8c0ea0e9bafd5c9d6",
+    "scripts/planned_study_data.py": "f4b732b24a86e9879b53e7a731c0ef2b606bb49fb0a546997ab0e46448232523",
+    "scripts/planned_study_statistics.py": "703492f299649ac5f87a2c37e30f0ae5fc4253595fba0fce36ec1b1b817fcdf2",
+    "scripts/dl_models_gru_lstm_tcn.py": "c11af1229fec43dd7da01a21e349dc2b109d9d61d977f6df3d01cd7da736b35d",
+    "scripts/dl_models.py": "e24110b57aeee201e1e9ab53519eb6b05967927ac54102fe23d3908c3fc57d69",
+    "scripts/dl_data.py": "8ea726a1d8ca7b9fa9bfcb26ee6e565b516c40a3ad1cd40e0f639c43b7f429ce",
+    "scripts/dl_data_v2.py": "bbf0ad8646afcd792b3961d0e5e5bcf9318f0fbe4377732a965c58f9557c33cb",
+    "scripts/train_dl_benchmark.py": "b78e2c66f55b07567601065f411881fa7170fe931784b1f59305283fdd292679",
+    "scripts/final_fit_filipe_multihistory.py": "1267f14787e52c72a798923a1a24551f2de69887e4412bd030aae31db2848c84",
+    "scripts/load_filipe_reserved_test.py": "6f253b063cbb8482e325d7fb846bd58b5480c30bc2e6d4aa2ce4d9c4b8d0b908",
+    "scripts/gru_lstm_tcn_diagnostics.py": "8cf66f3c169d90a677ae1fe16d2b77636d19c42bfa718d0b1beec77980d49ec8",
+    "scripts/train_filipe_multihistory.py": "c3a96f60142ef6bbd5faf1dac7855f38f03e51859529adf6861ffdfb8e58d064",
+    "requirements-training.lock.txt": "a344a762f8373b4e0086e992c38a7c7ff66a8f6018f265c037053df5ccfc1077",
+    "requirements-cv.txt": "cd0bfe7b2be713cbda86e856124777c5e481f5f2bf865981e5f17b49507b8fe6",
+    "results/eda_development/daily_market_development.csv": "bf6bb5160af924aef6a15c3684aeae932df3017e8639888bb7e91ce787900171",
+    "results/eda_development/daily_volatility_development.csv": "20b96374a659eb87dadfa68aa3d6b6b5fb6bea5b10eebe6f2c186ad69861844a",
+    "results/dl_r2_cv_20261104/folds.json": "3851de7cbb388d791a0f2b3d8e9fdd8d1002e44a300927c2adc8001b8a3916c6",
+    "experiments/gru_lstm_tcn_planned_20261105/design.json": "80e804a9a4c0ae4c053f02bf62a2b4315c9ddadbb0b0e3951b09652a9964a81c",
+    "experiments/gru_lstm_tcn_planned_20261105/public_preregistration.json": "c43d88e6c12cf86d722c1e7aa09fdcd55b5c36e97502d8d256327ff149832845",
+    "experiments/gru_lstm_tcn_planned_20261105/closed_planning.json": "27d099f330ee034c861ea1e03650087719878a46d476055458804622ca913fa9",
+    "scripts/run_e1_core_mlp_extension.py": "a9ceac341bf2b606106ec1e0d6dd945afb16059e6bfe21f78eb750a532954c1d",
+    "scripts/e1_core_models_mlp.py": "19deb821dbb5a4de3c26caa882ad14decd75484bca40bf0f2ab7a29e315bf0aa",
+    "scripts/e1_core_mlp_statistics.py": "c4cadbd75752c6235b72eb6f7a82d1e55ab94bd4a0d0703dbd12c0b986650965",
+    "tests/test_e1_core_mlp_extension.py": "f3ed27357cb9ec1a765689ea316bc5c72cd6a0d24d686514bd21ce2289097cd2",
+    "tests/test_e1_core_mlp_statistics.py": "58e5420fd73b5c967327cbd94c3ff522ed708c4e7ee7df8e834388a68ba8718c",
+    "scripts/export_e1_core_mlp_extension.py": "4b644aba837a370b1a2e32ca724eea058415776adb6f5ce487085f563da67867",
+    "tests/test_e1_core_mlp_export.py": "0e3981bac2fec277e08cb69b040bea5ee31df9ec2564778eb0e8eec42b81aeac",
+    "experiments/e1_core_mlp_extension_20261107/README.md": "5e82910a87c71d439719524af513c4e569dac96f1ca24cf627487c3f43bff402",
+    "requirements-e1-curves.lock.txt": "44a0abc6b30d8387ffb879d31003419b82f032e9aa348b206ca7f4a50b37f7d4",
+    "data/manifests/binance_spot_BTCUSDT_1m_20230101_20261030.json": "af723bcca2caffcbe44ae5243e2863bbcdcd39ae8cd42df491af0a2857926bb2",
+    "references/literature_e1/free_model_expansion_20261107/readings.json": "dc7de27699bff4e1e26a0fa962f092ffcd6bed482face502d8704d3c138951c5"
+  },
+  "publication_verification": {
+    "observed_at_utc": "2026-11-07T23:39:42Z",
+    "sha": "91acdeae1efd92f098ff2ce9a32f90c5b0a4b98a",
+    "url": "https://github.com/jassan-bit/DeepLearning_202630/commit/91acdeae1efd92f098ff2ce9a32f90c5b0a4b98a"
+  },
+  "runtime": {
+    "at_utc": "2026-11-07T23:40:09.424211+00:00",
+    "python": "3.12.14",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "versions": {
+      "torch": "2.15.0+cpu",
+      "numpy": "2.5.4",
+      "pandas": "3.1.0",
+      "scipy": "1.18.1",
+      "statsmodels": "0.15.0",
+      "matplotlib": "3.11.2"
+    },
+    "torch_config": "PyTorch built with:\n  - GCC 13.3\n  - C++ Version: 202002\n  - Intel(R) oneAPI Math Kernel Library Version 2024.2-Product Build 20240605 for Intel(R) 64 architecture applications\n  - Intel(R) MKL-DNN v3.13.3 (Git Hash b38f97eb6f2173513112f15a0481750b8a66e901)\n  - OpenMP 201511 (a.k.a. OpenMP 4.5)\n  - LAPACK is enabled (usually provided by MKL)\n  - NNPACK is enabled\n  - CPU capability usage: AVX512\n  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, COMMIT_SHA=d0f2af8b66b20da4baa50644c0cd3f887a2eae2e, CUDA_FLAGS= -DLIBCUDACXX_ENABLE_SIMPLIFIED_COMPLEX_OPERATIONS -Xfatbin -compress-all  -Wno-deprecated-gpu-targets --expt-extended-lambda -DCUB_WRAPPED_NAMESPACE=at_cuda_detail -DDISABLE_CUSPARSE_DEPRECATED -DCUDA_HAS_FP16=1 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -DC10_NODEPRECATED, CXX_COMPILER=/opt/rh/gcc-toolset-13/root/usr/bin/c++, CXX_FLAGS= -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DUSE_FBGEMM -DUSE_PYTORCH_QNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -DC10_NODEPRECATED -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=range-loop-construct -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-unknown-pragmas -Wno-unused-parameter -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wsuggest-override -Wno-psabi -Wno-error=old-style-cast -faligned-new -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-dangling-reference -Wno-error=dangling-reference -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, TORCH_VERSION=2.15.0, USE_CUDA=0, USE_CUDNN=OFF, USE_CUSPARSELT=OFF, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_GLOO=ON, USE_HIPSPARSELT=OFF, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=OFF, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, USE_ROCM_KERNEL_ASSERT=OFF, USE_XCCL=OFF, USE_XPU=OFF, \n",
+    "device": "cpu",
+    "cpu_capability": "AVX512",
+    "cpu_affinity": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "cpu_quota": "400000 100000",
+    "environment": {
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "PYTHONHASHSEED": "0"
+    },
+    "actual_threads": 1,
+    "actual_interop_threads": 5,
+    "deterministic_algorithms": false,
+    "mkldnn_enabled": true,
+    "float32_matmul_precision": "highest"
+  },
+  "workers": 3,
+  "settings": {
+    "training": {
+      "optimizer": "AdamW",
+      "weight_decay": 0.0001,
+      "batch_size": 32,
+      "max_epochs": 100,
+      "patience": 12,
+      "min_delta": 1e-05,
+      "gradient_clip_norm": 1.0,
+      "device": "cpu",
+      "torch_threads": 1,
+      "torch_interop_threads": 1,
+      "strict_deterministic_algorithms": true,
+      "inner_validation_calendar_days": 90,
+      "embargo_days": 7,
+      "inner_seed": "stage_seed",
+      "refit_seed": "stage_seed+10000000",
+      "batch_order_seed": "stage_seed+17",
+      "test_refit": false
+    }
+  },
+  "reservation": {
+    "schema_version": 1,
+    "source_manifest": "data/manifests/binance_spot_BTCUSDT_1m_20230101_20261030.json",
+    "source_manifest_sha256": "af723bcca2caffcbe44ae5243e2863bbcdcd39ae8cd42df491af0a2857926bb2",
+    "source": "Binance Vision / Binance Spot BTCUSDT 1m",
+    "context_start": "2026-08-01",
+    "test_start": "2026-09-01",
+    "test_end_inclusive": "2026-10-30",
+    "calendar_days": 60,
+    "archive_count": 31,
+    "context_archive": {
+      "archive": "BTCUSDT-1m-2026-08.zip",
+      "kind": "monthly",
+      "relative_path": "BTCUSDT/1m/monthly/BTCUSDT-1m-2026-08.zip",
+      "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-08.zip",
+      "checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-08.zip.CHECKSUM",
+      "sha256": "acab442e02745177063031d402929703ae983715010064b40cf811c4beb843d4",
+      "bytes": 2084946,
+      "status": "verified",
+      "csv_rows": 44640,
+      "expected_minutes": 44640,
+      "first_open_utc": "2026-08-01T00:00:00+00:00",
+      "last_open_utc": "2026-08-31T23:59:00+00:00",
+      "timestamp_units": [
+        "us"
+      ]
+    },
+    "archives": [
+      {
+        "archive": "BTCUSDT-1m-2026-09.zip",
+        "kind": "monthly",
+        "relative_path": "BTCUSDT/1m/monthly/BTCUSDT-1m-2026-09.zip",
+        "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-09.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-09.zip.CHECKSUM",
+        "sha256": "7a021fb5981cfdb1a56457d68fa81360ab27350c981ddfe63112b2322df44b56",
+        "bytes": 2054117,
+        "status": "verified",
+        "csv_rows": 43200,
+        "expected_minutes": 43200,
+        "first_open_utc": "2026-09-01T00:00:00+00:00",
+        "last_open_utc": "2026-09-30T23:59:00+00:00",
+        "timestamp_units": [
+          "us"
+        ]
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-10-01.zip",
+        "kind": "daily",
+        "relative_path": "BTCUSDT/1m/daily/BTCUSDT-1m-2026-10-01.zip",
+        "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-01.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-01.zip.CHECKSUM",
+        "sha256": "bec170c60fd2745c9c6e8e9322603899b1dba61c10db4b8be4f07b58dc4683b8",
+        "bytes": 69975,
+        "status": "verified",
+        "csv_rows": 1440,
+        "expected_minutes": 1440,
+        "first_open_utc": "2026-10-01T00:00:00+00:00",
+        "last_open_utc": "2026-10-01T23:59:00+00:00",
+        "timestamp_units": [
+          "us"
+        ]
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-10-02.zip",
+        "kind": "daily",
+        "relative_path": "BTCUSDT/1m/daily/BTCUSDT-1m-2026-10-02.zip",
+        "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-02.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-02.zip.CHECKSUM",
+        "sha256": "32b8f49f574e771b6fadb7a2ec7ee24c7a32be3901793368d84ebcd4b7b93ca5",
+        "bytes": 70627,
+        "status": "verified",
+        "csv_rows": 1440,
+        "expected_minutes": 1440,
+        "first_open_utc": "2026-10-02T00:00:00+00:00",
+        "last_open_utc": "2026-10-02T23:59:00+00:00",
+        "timestamp_units": [
+          "us"
+        ]
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-10-03.zip",
+        "kind": "daily",
+        "relative_path": "BTCUSDT/1m/daily/BTCUSDT-1m-2026-10-03.zip",
+        "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-03.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-03.zip.CHECKSUM",
+        "sha256": "0c717ac59daa1e348303eaeefd9f9c0afebdc72729003d9ee6f0c090978899e2",
+        "bytes": 63560,
+        "status": "verified",
+        "csv_rows": 1440,
+        "expected_minutes": 1440,
+        "first_open_utc": "2026-10-03T00:00:00+00:00",
+        "last_open_utc": "2026-10-03T23:59:00+00:00",
+        "timestamp_units": [
+          "us"
+        ]
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-10-04.zip",
+        "kind": "daily",
+        "relative_path": "BTCUSDT/1m/daily/BTCUSDT-1m-2026-10-04.zip",
+        "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-04.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-04.zip.CHECKSUM",
+        "sha256": "329acb5d6be40dbbfac9a14836b9f475ddd3f767d4607cd66709b705d29bdb2f",
+        "bytes": 64818,
+        "status": "verified",
+        "csv_rows": 1440,
+        "expected_minutes": 1440,
+        "first_open_utc": "2026-10-04T00:00:00+00:00",
+        "last_open_utc": "2026-10-04T23:59:00+00:00",
+        "timestamp_units": [
+          "us"
+        ]
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-10-05.zip",
+        "kind": "daily",
+        "relative_path": "BTCUSDT/1m/daily/BTCUSDT-1m-2026-10-05.zip",
+        "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-05.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-05.zip.CHECKSUM",
+        "sha256": "bf4520dffb3f88f14f29bdd99ff3071e512a1301d97f99810343b5f9631c6eca",
+        "bytes": 69629,
+        "status": "verified",
+        "csv_rows": 1440,
+        "expected_minutes": 1440,
+        "first_open_utc": "2026-10-05T00:00:00+00:00",
+        "last_open_utc": "2026-10-05T23:59:00+00:00",
+        "timestamp_units": [
+          "us"
+        ]
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-10-06.zip",
+        "kind": "daily",
+        "relative_path": "BTCUSDT/1m/daily/BTCUSDT-1m-2026-10-06.zip",
+        "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-06.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-06.zip.CHECKSUM",
+        "sha256": "3cd4119a35f0709641b2220c1c8ced7126f2388b5c4afa062d577a48e498b4b6",
+        "bytes": 68383,
+        "status": "verified",
+        "csv_rows": 1440,
+        "expected_minutes": 1440,
+        "first_open_utc": "2026-10-06T00:00:00+00:00",
+        "last_open_utc": "2026-10-06T23:59:00+00:00",
+        "timestamp_units": [
+          "us"
+        ]
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-10-07.zip",
+        "kind": "daily",
+        "relative_path": "BTCUSDT/1m/daily/BTCUSDT-1m-2026-10-07.zip",
+        "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-07.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-07.zip.CHECKSUM",
+        "sha256": "dbf5247bf2af9890ead226015bd635cee5cccfb9171e55e322f151dc104952a7",
+        "bytes": 70060,
+        "status": "verified",
+        "csv_rows": 1440,
+        "expected_minutes": 1440,
+        "first_open_utc": "2026-10-07T00:00:00+00:00",
+        "last_open_utc": "2026-10-07T23:59:00+00:00",
+        "timestamp_units": [
+          "us"
+        ]
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-10-08.zip",
+        "kind": "daily",
+        "relative_path": "BTCUSDT/1m/daily/BTCUSDT-1m-2026-10-08.zip",
+        "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-08.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-08.zip.CHECKSUM",
+        "sha256": "d8766aac4db1dc64616cf4eaa481e3dcf68038695461f4f189659f169cf20326",
+        "bytes": 70693,
+        "status": "verified",
+        "csv_rows": 1440,
+        "expected_minutes": 1440,
+        "first_open_utc": "2026-10-08T00:00:00+00:00",
+        "last_open_utc": "2026-10-08T23:59:00+00:00",
+        "timestamp_units": [
+          "us"
+        ]
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-10-09.zip",
+        "kind": "daily",
+        "relative_path": "BTCUSDT/1m/daily/BTCUSDT-1m-2026-10-09.zip",
+        "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-09.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-09.zip.CHECKSUM",
+        "sha256": "35ac8b347a8999faf9f035563f0310870fc9185d94235c69b65b55d0b83ffb48",
+        "bytes": 68355,
+        "status": "verified",
+        "csv_rows": 1440,
+        "expected_minutes": 1440,
+        "first_open_utc": "2026-10-09T00:00:00+00:00",
+        "last_open_utc": "2026-10-09T23:59:00+00:00",
+        "timestamp_units": [
+          "us"
+        ]
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-10-10.zip",
+        "kind": "daily",
+        "relative_path": "BTCUSDT/1m/daily/BTCUSDT-1m-2026-10-10.zip",
+        "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-10.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-10.zip.CHECKSUM",
+        "sha256": "79f2a7bb104a0a61d33904a9d396b82795460113582050516ecb07cb9008d2ad",
+        "bytes": 63119,
+        "status": "verified",
+        "csv_rows": 1440,
+        "expected_minutes": 1440,
+        "first_open_utc": "2026-10-10T00:00:00+00:00",
+        "last_open_utc": "2026-10-10T23:59:00+00:00",
+        "timestamp_units": [
+          "us"
+        ]
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-10-11.zip",
+        "kind": "daily",
+        "relative_path": "BTCUSDT/1m/daily/BTCUSDT-1m-2026-10-11.zip",
+        "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-11.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-11.zip.CHECKSUM",
+        "sha256": "04e48ed4adf4bc4885615c69fb54b1558f451394908b06bd85190947d6e1a1cf",
+        "bytes": 64103,
+        "status": "verified",
+        "csv_rows": 1440,
+        "expected_minutes": 1440,
+        "first_open_utc": "2026-10-11T00:00:00+00:00",
+        "last_open_utc": "2026-10-11T23:59:00+00:00",
+        "timestamp_units": [
+          "us"
+        ]
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-10-12.zip",
+        "kind": "daily",
+        "relative_path": "BTCUSDT/1m/daily/BTCUSDT-1m-2026-10-12.zip",
+        "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-12.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-12.zip.CHECKSUM",
+        "sha256": "37eaf52515280dc290b144234d67827a07db99af88b17d5600d524157b2bd557",
+        "bytes": 69031,
+        "status": "verified",
+        "csv_rows": 1440,
+        "expected_minutes": 1440,
+        "first_open_utc": "2026-10-12T00:00:00+00:00",
+        "last_open_utc": "2026-10-12T23:59:00+00:00",
+        "timestamp_units": [
+          "us"
+        ]
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-10-13.zip",
+        "kind": "daily",
+        "relative_path": "BTCUSDT/1m/daily/BTCUSDT-1m-2026-10-13.zip",
+        "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-13.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-13.zip.CHECKSUM",
+        "sha256": "3ac30ef0aa565439a90878793cc5078b592877489271116002dad6d4a0062974",
+        "bytes": 69906,
+        "status": "verified",
+        "csv_rows": 1440,
+        "expected_minutes": 1440,
+        "first_open_utc": "2026-10-13T00:00:00+00:00",
+        "last_open_utc": "2026-10-13T23:59:00+00:00",
+        "timestamp_units": [
+          "us"
+        ]
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-10-14.zip",
+        "kind": "daily",
+        "relative_path": "BTCUSDT/1m/daily/BTCUSDT-1m-2026-10-14.zip",
+        "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-14.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-14.zip.CHECKSUM",
+        "sha256": "0994af8724c77f7ee9ca528b8071c733daf4b12019e54c3021f89462617e3047",
+        "bytes": 70264,
+        "status": "verified",
+        "csv_rows": 1440,
+        "expected_minutes": 1440,
+        "first_open_utc": "2026-10-14T00:00:00+00:00",
+        "last_open_utc": "2026-10-14T23:59:00+00:00",
+        "timestamp_units": [
+          "us"
+        ]
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-10-15.zip",
+        "kind": "daily",
+        "relative_path": "BTCUSDT/1m/daily/BTCUSDT-1m-2026-10-15.zip",
+        "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-15.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-15.zip.CHECKSUM",
+        "sha256": "330be29ffe380f91e02a5bf2a690c8be3c1c61d1b71f530969ff3d88a71a7864",
+        "bytes": 71221,
+        "status": "verified",
+        "csv_rows": 1440,
+        "expected_minutes": 1440,
+        "first_open_utc": "2026-10-15T00:00:00+00:00",
+        "last_open_utc": "2026-10-15T23:59:00+00:00",
+        "timestamp_units": [
+          "us"
+        ]
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-10-16.zip",
+        "kind": "daily",
+        "relative_path": "BTCUSDT/1m/daily/BTCUSDT-1m-2026-10-16.zip",
+        "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-16.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-16.zip.CHECKSUM",
+        "sha256": "1d2db287ac3749c8adfc763e34cbf3872f3acd47f886cd76851892542c286f4e",
+        "bytes": 69330,
+        "status": "verified",
+        "csv_rows": 1440,
+        "expected_minutes": 1440,
+        "first_open_utc": "2026-10-16T00:00:00+00:00",
+        "last_open_utc": "2026-10-16T23:59:00+00:00",
+        "timestamp_units": [
+          "us"
+        ]
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-10-17.zip",
+        "kind": "daily",
+        "relative_path": "BTCUSDT/1m/daily/BTCUSDT-1m-2026-10-17.zip",
+        "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-17.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-17.zip.CHECKSUM",
+        "sha256": "ce5536cff2985e8b1b36c115627c7a30cc8c43d89e2172d5bf5cf3b0dd2fc03a",
+        "bytes": 65267,
+        "status": "verified",
+        "csv_rows": 1440,
+        "expected_minutes": 1440,
+        "first_open_utc": "2026-10-17T00:00:00+00:00",
+        "last_open_utc": "2026-10-17T23:59:00+00:00",
+        "timestamp_units": [
+          "us"
+        ]
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-10-18.zip",
+        "kind": "daily",
+        "relative_path": "BTCUSDT/1m/daily/BTCUSDT-1m-2026-10-18.zip",
+        "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-18.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-18.zip.CHECKSUM",
+        "sha256": "7b4d9784e2034cb7a05860d2b67ceb74368eb5d71d8f2e16a04e00e2045cb784",
+        "bytes": 68372,
+        "status": "verified",
+        "csv_rows": 1440,
+        "expected_minutes": 1440,
+        "first_open_utc": "2026-10-18T00:00:00+00:00",
+        "last_open_utc": "2026-10-18T23:59:00+00:00",
+        "timestamp_units": [
+          "us"
+        ]
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-10-19.zip",
+        "kind": "daily",
+        "relative_path": "BTCUSDT/1m/daily/BTCUSDT-1m-2026-10-19.zip",
+        "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-19.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-19.zip.CHECKSUM",
+        "sha256": "b2fdee20be764f88cd640d933a492bcdfe833452fff1d6fb87b9ede081e8061b",
+        "bytes": 68956,
+        "status": "verified",
+        "csv_rows": 1440,
+        "expected_minutes": 1440,
+        "first_open_utc": "2026-10-19T00:00:00+00:00",
+        "last_open_utc": "2026-10-19T23:59:00+00:00",
+        "timestamp_units": [
+          "us"
+        ]
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-10-20.zip",
+        "kind": "daily",
+        "relative_path": "BTCUSDT/1m/daily/BTCUSDT-1m-2026-10-20.zip",
+        "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-20.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-20.zip.CHECKSUM",
+        "sha256": "d580973ba32d82a94f3669a3472b7a81a4ac598777df8bab88e9ff26d7924c75",
+        "bytes": 69973,
+        "status": "verified",
+        "csv_rows": 1440,
+        "expected_minutes": 1440,
+        "first_open_utc": "2026-10-20T00:00:00+00:00",
+        "last_open_utc": "2026-10-20T23:59:00+00:00",
+        "timestamp_units": [
+          "us"
+        ]
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-10-21.zip",
+        "kind": "daily",
+        "relative_path": "BTCUSDT/1m/daily/BTCUSDT-1m-2026-10-21.zip",
+        "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-21.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-21.zip.CHECKSUM",
+        "sha256": "1627cc21691c046cf16fc63011e6d929fcead8dd5509f3fa4e81f630bd9ad5ef",
+        "bytes": 69801,
+        "status": "verified",
+        "csv_rows": 1440,
+        "expected_minutes": 1440,
+        "first_open_utc": "2026-10-21T00:00:00+00:00",
+        "last_open_utc": "2026-10-21T23:59:00+00:00",
+        "timestamp_units": [
+          "us"
+        ]
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-10-22.zip",
+        "kind": "daily",
+        "relative_path": "BTCUSDT/1m/daily/BTCUSDT-1m-2026-10-22.zip",
+        "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-22.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-22.zip.CHECKSUM",
+        "sha256": "579980a81a1f58e14dfa66463232b7078aa561077d44e943cd3070ebee2ba900",
+        "bytes": 70594,
+        "status": "verified",
+        "csv_rows": 1440,
+        "expected_minutes": 1440,
+        "first_open_utc": "2026-10-22T00:00:00+00:00",
+        "last_open_utc": "2026-10-22T23:59:00+00:00",
+        "timestamp_units": [
+          "us"
+        ]
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-10-23.zip",
+        "kind": "daily",
+        "relative_path": "BTCUSDT/1m/daily/BTCUSDT-1m-2026-10-23.zip",
+        "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-23.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-23.zip.CHECKSUM",
+        "sha256": "2055ad6a88a9f2995f6b1f52dde92dbe369f2ef518ee93927b378a3b33d24168",
+        "bytes": 68959,
+        "status": "verified",
+        "csv_rows": 1440,
+        "expected_minutes": 1440,
+        "first_open_utc": "2026-10-23T00:00:00+00:00",
+        "last_open_utc": "2026-10-23T23:59:00+00:00",
+        "timestamp_units": [
+          "us"
+        ]
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-10-24.zip",
+        "kind": "daily",
+        "relative_path": "BTCUSDT/1m/daily/BTCUSDT-1m-2026-10-24.zip",
+        "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-24.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-24.zip.CHECKSUM",
+        "sha256": "9c975443231b3bfb0ecbfd95e95d82e56c07a5a12d43198c6ea9234aca254235",
+        "bytes": 67862,
+        "status": "verified",
+        "csv_rows": 1440,
+        "expected_minutes": 1440,
+        "first_open_utc": "2026-10-24T00:00:00+00:00",
+        "last_open_utc": "2026-10-24T23:59:00+00:00",
+        "timestamp_units": [
+          "us"
+        ]
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-10-25.zip",
+        "kind": "daily",
+        "relative_path": "BTCUSDT/1m/daily/BTCUSDT-1m-2026-10-25.zip",
+        "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-25.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-25.zip.CHECKSUM",
+        "sha256": "021d02ee81337e933f048c056ee8aa9b8fa5648941fe6872cc5fd3afc2222d4a",
+        "bytes": 66218,
+        "status": "verified",
+        "csv_rows": 1440,
+        "expected_minutes": 1440,
+        "first_open_utc": "2026-10-25T00:00:00+00:00",
+        "last_open_utc": "2026-10-25T23:59:00+00:00",
+        "timestamp_units": [
+          "us"
+        ]
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-10-26.zip",
+        "kind": "daily",
+        "relative_path": "BTCUSDT/1m/daily/BTCUSDT-1m-2026-10-26.zip",
+        "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-26.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-26.zip.CHECKSUM",
+        "sha256": "b8fda506a4e729059e906808d274dc4abaade0b368aadd29ebc6fc5949cfe1f5",
+        "bytes": 70303,
+        "status": "verified",
+        "csv_rows": 1440,
+        "expected_minutes": 1440,
+        "first_open_utc": "2026-10-26T00:00:00+00:00",
+        "last_open_utc": "2026-10-26T23:59:00+00:00",
+        "timestamp_units": [
+          "us"
+        ]
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-10-27.zip",
+        "kind": "daily",
+        "relative_path": "BTCUSDT/1m/daily/BTCUSDT-1m-2026-10-27.zip",
+        "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-27.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-27.zip.CHECKSUM",
+        "sha256": "37c4ecf92f7e00833cde74c5aa62bc217e2646fd0cfed054e0f874d63f92172f",
+        "bytes": 69682,
+        "status": "verified",
+        "csv_rows": 1440,
+        "expected_minutes": 1440,
+        "first_open_utc": "2026-10-27T00:00:00+00:00",
+        "last_open_utc": "2026-10-27T23:59:00+00:00",
+        "timestamp_units": [
+          "us"
+        ]
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-10-28.zip",
+        "kind": "daily",
+        "relative_path": "BTCUSDT/1m/daily/BTCUSDT-1m-2026-10-28.zip",
+        "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-28.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-28.zip.CHECKSUM",
+        "sha256": "8f8cef309938e78bea518a4df2fff9b5822ca88ff92033783588239897487f60",
+        "bytes": 69107,
+        "status": "verified",
+        "csv_rows": 1440,
+        "expected_minutes": 1440,
+        "first_open_utc": "2026-10-28T00:00:00+00:00",
+        "last_open_utc": "2026-10-28T23:59:00+00:00",
+        "timestamp_units": [
+          "us"
+        ]
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-10-29.zip",
+        "kind": "daily",
+        "relative_path": "BTCUSDT/1m/daily/BTCUSDT-1m-2026-10-29.zip",
+        "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-29.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-29.zip.CHECKSUM",
+        "sha256": "c86586d5773b5663d311e4969503228ad07b41b5c786297c0667a311aebe32a4",
+        "bytes": 71228,
+        "status": "verified",
+        "csv_rows": 1440,
+        "expected_minutes": 1440,
+        "first_open_utc": "2026-10-29T00:00:00+00:00",
+        "last_open_utc": "2026-10-29T23:59:00+00:00",
+        "timestamp_units": [
+          "us"
+        ]
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-10-30.zip",
+        "kind": "daily",
+        "relative_path": "BTCUSDT/1m/daily/BTCUSDT-1m-2026-10-30.zip",
+        "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-30.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-30.zip.CHECKSUM",
+        "sha256": "faa0a6de98c491140035b41eb1bb0821d45ace33d34c17ec0348e70c87b6eeb4",
+        "bytes": 71899,
+        "status": "verified",
+        "csv_rows": 1440,
+        "expected_minutes": 1440,
+        "first_open_utc": "2026-10-30T00:00:00+00:00",
+        "last_open_utc": "2026-10-30T23:59:00+00:00",
+        "timestamp_units": [
+          "us"
+        ]
+      }
+    ],
+    "prior_access_scope": "Acquisition inspected timestamps/schema; outcomes were not evaluated by this reservation. This is a historical holdout, not a live forecast.",
+    "payloads_opened_by_reservation": 0,
+    "stat_verification": null
+  },
+  "new_fits_before_registration": 0,
+  "reserve_price_payloads_read": 0,
+  "scope": "New coherent exploratory historical extension, registered before its new fits; September–October2026 was already evaluated historically and is not a new confirmatory holdout",
+  "registration_signature": "ba143e27f9ed2bc74d2cd5db1358833da147cd25503fd782acf29d66361f1aa6",
+  "public_projection": true,
+  "original_private_record_sha256": "692c95f5ea47dec3edccc099dd9e75e40ff196dde328c486a5c180849c944bc8",
+  "signature_scope": "Execution identity/signature belongs to the original private record, not this public projection"
+}

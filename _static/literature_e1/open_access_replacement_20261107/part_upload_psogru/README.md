@@ -1,0 +1,17 @@
+# Revisión del original aportado: E1N138
+
+Se leyó completo el original editorial de Tang, Song, Jiao y Sun, *On Forecasting Realized Volatility for Bitcoin Based on Deep Learning PSO–GRU Model*, DOI [10.1007/s10614-023-10392-5](https://doi.org/10.1007/s10614-023-10392-5): 23 páginas PDF, paginación editorial 2011–2033, volumen 63 (2024), publicación en línea 20 de abril de 2023. Se cotejaron visualmente la figura 3 y las tablas 5, 7 y 8. Esta ficha sustituye la limitación anterior de acceso sólo al resumen para E1N138.
+
+El acceso se registra como `user_supplied_complete_original`. El PDF tiene licencia editorial exclusiva; su entrega por el usuario permite esta lectura, pero **no acredita acceso abierto ni autorización para redistribuir el artículo**. Se conservan únicamente metadatos, cifras publicadas y análisis propio parafraseado. No se agrega PDF, texto íntegro, resumen editorial ni datos de contacto al repositorio.
+
+SHA256 del PDF suministrado: `6f39eb51f8c380e7b195a7f30ba1c27deba74900824a5a7b2ed1892d79d04ec7`.
+
+El objetivo es pertinente: RV diaria de Bitcoin calculada como suma de retornos logarítmicos intradiarios de cinco minutos al cuadrado, multiplicados previamente por 100, sin raíz cuadrada en la ecuación 13 (p. 2020/PDF 10). Se utilizan ventanas de 22 días y se evalúan horizontes de 1, 2 y 5 pasos. GRU y LSTM aparecen como comparadores autónomos, con resultados propios; PSO–GRU es la propuesta optimizada. No se utiliza TCN.
+
+**Decisión estricta: excluir de la síntesis elegible por descripción insuficiente de la arquitectura de referencia y del protocolo experimental**, aplicando el criterio ya existente en §3.1 de la guía. La exclusión es metodológica y no deriva de la modalidad de acceso. El artículo sí amplía la lectura completa y la evidencia exploratoria de comparadores GRU/LSTM; no añade estudios al denominador estricto ni aporta una receta reproducible para esas bases. Sólo se informa para PSO–GRU un número de capas fijado en 2, 16 neuronas, 50 épocas y lote de 128. No se describen las dimensiones y el entrenamiento de GRU/LSTM de referencia con precisión suficiente, ni el optimizador neuronal, la pérdida, una validación separada o el ajuste del preprocesamiento exclusivamente con entrenamiento.
+
+Se reportan 20 ejecuciones por cada modelo neuronal, máximos/medias/mínimos y pruebas KS/DM. Su presencia no corrige las omisiones: las tablas KS/DM omiten GRU; el pie de DM menciona un indicador GARCH-MIDAS no desarrollado en el protocolo. La figura 3 (p. 2019/PDF 9) coloca la estandarización antes de la partición y conecta tanto entrenamiento como prueba con la selección de variables. Esto implica un riesgo aparente de fuga; el original y el código no disponible no permiten determinar cómo se ejecutó realmente el ajuste.
+
+Las medias GRU/LSTM de MAE son, respectivamente: 11.189/11.677 a un paso (tabla 5, p. 2024/PDF 14), 11.529/12.229 a dos pasos (tabla 8, p. 2026/PDF 16) y 12.122/12.632 a cinco pasos (tabla 9, p. 2027/PDF 17). `review.json` conserva las seis métricas y los comparadores de contexto. Se transcriben como cifras publicadas, sin corregir inconsistencias: en la tabla 8 el RMSE mínimo de GRU (37.542) supera su media (37.421), y el MSE mínimo de LSTM (1427.330) supera su media (1417.321). No permiten afirmar una superioridad robusta o una réplica.
+
+La revisión no constituye una nueva consulta nativa en WoS, Scopus o IEEE Xplore. Se conserva la procedencia histórica E1N138 y no se contabilizan como estudios distintos las versiones en línea de 2023 y de volumen de 2024.

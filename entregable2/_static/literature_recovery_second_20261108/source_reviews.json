@@ -1,0 +1,32 @@
+{
+  "scope": "Curated paraphrases; reported results, not E2 experiments or final eligibility.",
+  "studies": [
+    {
+      "study_id": "E2-0064",
+      "source_url": "https://orca.cardiff.ac.uk/id/eprint/181110/5/Can%20machine%20learning%20models%20better%20volatility%20forecasting%20%20A%20combined%20method.pdf",
+      "version": "Published PDF in institutional repository; online 2025, volume 2026.",
+      "target": "BitVol implied volatility index with 30-day tenor. Forecast horizon is one day or mean of next five days, not a 30-day forecast.",
+      "reported_result": "Table 3: one-day LSTM RMSPE 5.70%, RMSE 3.13; TGARCH 10.51%, 5.83. Table 5: five-day DM comparison versus TGARCH p=0.053, not significant at 5%.",
+      "locator": "Printed PDF pp. 9, 11–13, 15; tables 3–5.",
+      "limits": "Different target from E2 realized-return volatility; missing-value interpolation and timing require audit. Reported 1745 days versus 1395 train +349 test remains unresolved."
+    },
+    {
+      "study_id": "E2-0285",
+      "source_url": "https://www.dorienherremans.com/sites/default/files/SSRN-id4247684.pdf",
+      "version": "SSRN 4247684 preprint, 7 October 2022, 53 pages. Author links it to IEEE DOI 10.1109/ACCESS.2025.3584243; editorial 2025 equivalence is NOT verified.",
+      "target": "Annualized return-dispersion proxy, fourth-root transformed; spike classification additionally conditions on positive return. Window N not resolved.",
+      "reported_result": "Preprint table 3: Synthesizer FD RMSE 0.101 and F1 0.463; LSTM RMSE 0.095 and F1 0.171; vanilla Transformer RMSE 0.095 and F1 0.286. Higher spike F1 is not lower forecast RMSE.",
+      "locator": "Preprint printed pp. 16–18 equations 4–5, p. 22 split; printed p. 26 (PDF file page 27), table 3.",
+      "limits": "Compare editorial version before attributing numbers to IEEE 2025. Counts 46 versus 60 spikes conflict; early missing values imputed zero. No replication."
+    },
+    {
+      "study_id": "E2-0593",
+      "source_url": "https://link.springer.com/article/10.1007/s42521-026-00229-9",
+      "version": "Open-access editorial HTML/PDF, 2026.",
+      "target": "One-day conditional volatility, lookback 30; proxy described as model-implied in section 3.2 and based on realized returns in 4.1. Exact construction unresolved.",
+      "reported_result": "Editorial HTML describes regime-dependent comparisons of standalone LSTM, GARCH and hybrids. No exact table values are reproduced here because the independent verification could not retrieve the PDF table.",
+      "locator": "Editorial HTML, sections 3.1–3.2 and 4.1; equation 5. Numerical table extraction pending independent verification.",
+      "limits": "Daily Bitcoin only; small crisis subsamples and regime-dependent winners. Audit proxy, rolling initialization and supplement/code before reproduction."
+    }
+  ]
+}

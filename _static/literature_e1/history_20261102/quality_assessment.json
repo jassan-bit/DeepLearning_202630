@@ -1,0 +1,135 @@
+[
+  {
+    "study_id": "S1",
+    "dimension": "Datos, objetivo y horizonte",
+    "status": "documentado",
+    "evidence": "paper.pdf pp.3–5; RV=100sqrt(sum(r_15min²)), pronóstico de un día",
+    "limitation": "No equivalente a desviación móvil de siete retornos diarios."
+  },
+  {
+    "study_id": "S1",
+    "dimension": "Partición y disponibilidad",
+    "status": "documentado_con_limites",
+    "evidence": "paper.pdf §5.3:96días desarrollo(72/24),48test; predicción con día anterior",
+    "limitation": "Test corto; no se certifica ausencia de toda fuga a partir del reporte."
+  },
+  {
+    "study_id": "S1",
+    "dimension": "Arquitectura y ajuste",
+    "status": "documentado",
+    "evidence": "Fig.1,§5.2,§5.3;250configuraciones/red,30épocas,AdamW; scripts/hpo.py",
+    "limitation": "Grilla y tuning descritos; configuración ganadora completa/parámetros exactos no extraídos."
+  },
+  {
+    "study_id": "S1",
+    "dimension": "Repetición e incertidumbre",
+    "status": "documentado",
+    "evidence": "Tabla2:20corridas por red, media y desviación; Fig.2 bootstrap1000",
+    "limitation": "La variabilidad entre inicializaciones no equivale a replicación de mercados."
+  },
+  {
+    "study_id": "S1",
+    "dimension": "Inferencia y multiplicidad",
+    "status": "parcial",
+    "evidence": "§5.3 compara con pruebas unilaterales; Tabla2",
+    "limitation": "La familia y corrección múltiple necesitan lectura explícita; no se infiere control por aparecer p-valores."
+  },
+  {
+    "study_id": "S1",
+    "dimension": "Reproducibilidad",
+    "status": "parcial",
+    "evidence": "Repositorio de autores,paper.pdf,scripts/hpo.py,commit bcc0e4e",
+    "limitation": "No se reprodujeron experimentos ni se certifica acceso a todas las fuentes Twitter."
+  },
+  {
+    "study_id": "S2",
+    "dimension": "Datos, objetivo y horizonte",
+    "status": "documentado",
+    "evidence": "manuscript.tex §§Data,Target;BTCUSDTperpetuo2024–2025,logRV futura30min",
+    "limitation": "Mercado derivado,objetivo logarítmico y microestructura; no comparación directa con OHLCV Spot diario."
+  },
+  {
+    "study_id": "S2",
+    "dimension": "Partición y disponibilidad",
+    "status": "documentado",
+    "evidence": "Fig.split,§Experimentaldesign;purga etiquetas yembargo6barras;escalado solo train",
+    "limitation": "Descripción no certifica ausencia de errores de implementación."
+  },
+  {
+    "study_id": "S2",
+    "dimension": "Arquitectura y ajuste",
+    "status": "documentado_con_limites",
+    "evidence": "§Models;Transformerencoder2capas4cabezas;20trials/red;8–48unidades",
+    "limitation": "No se ha acreditado una configuración ganadora única ni conteo final de parámetros del comparador."
+  },
+  {
+    "study_id": "S2",
+    "dimension": "Comparabilidad de información",
+    "status": "parcial",
+    "evidence": "§Models yFig.arch:las redes usan ventana24/48barras;linear/LightGBM última barra",
+    "limitation": "No atribuir toda ganancia frente a linear únicamente a no linealidad: cambia también la historia disponible."
+  },
+  {
+    "study_id": "S2",
+    "dimension": "Repetición e incertidumbre",
+    "status": "parcial",
+    "evidence": "§Training:semillas42/43/44,predicciones promediadas",
+    "limitation": "Tres semillas; la tabla no aporta IC entre corridas y representa un agregado de predicciones."
+  },
+  {
+    "study_id": "S2",
+    "dimension": "Inferencia y multiplicidad",
+    "status": "parcial",
+    "evidence": "§Metrics:DM unilateral frenteHAR;Newey–West5rezagos,tabModelcomparison",
+    "limitation": "H−1 no garantiza cubrir toda dependencia; múltiplesablation/comparaciones y selección de features con desarrollo."
+  },
+  {
+    "study_id": "S2",
+    "dimension": "Reproducibilidad y publicación",
+    "status": "parcial_literatura_gris",
+    "evidence": "PDF,TeX,notebook públicos;commit d69f951f",
+    "limitation": "Revisión por pares/DOI no acreditados;datos CryptoLake licenciados."
+  },
+  {
+    "study_id": "S5",
+    "dimension": "Datos, objetivo y horizonte",
+    "status": "documentado_con_inconsistencias",
+    "evidence": "M2259.docx;notebookc21–23:rolling30(log_returns.shift(-7)),divisor29",
+    "limitation": "Ventana30desplazadasietedías,no siete días totalmente futuros;fechas finales inconsistentes."
+  },
+  {
+    "study_id": "S5",
+    "dimension": "Partición y disponibilidad",
+    "status": "riesgo_aparente",
+    "evidence": "notebookc23etiquetasconshift(-7);c46splitporfecha,365val/30test",
+    "limitation": "No se identificó purga explícita: etiquetas cercanas al corte pueden incorporar retornos del siguiente bloque; no se reprodujo el estudio."
+  },
+  {
+    "study_id": "S5",
+    "dimension": "Arquitectura y ajuste",
+    "status": "documentado",
+    "evidence": "notebookc104Flatten→Dense(1);c111LSTM(20)→Dense(1),n_past14",
+    "limitation": "La red densa es lineal,sin capa oculta;no evidencia de MLP no lineal."
+  },
+  {
+    "study_id": "S5",
+    "dimension": "Repetición e incertidumbre",
+    "status": "no_reportado",
+    "evidence": "M2259.docxTabla4;notebookc111",
+    "limitation": "Sin semillas múltiples ni dispersión;no asumir que un valor puntual es media."
+  },
+  {
+    "study_id": "S5",
+    "dimension": "Inferencia y evaluación",
+    "status": "parcial",
+    "evidence": "TextoDataanalysis,Tabla4; earlystoppingval_rmspe y comparación reportada en validación",
+    "limitation": "No acredita una confirmación independiente fuera del desarrollo ni comparación inferencial."
+  },
+  {
+    "study_id": "S5",
+    "dimension": "Reproducibilidad y publicación",
+    "status": "parcial",
+    "evidence": "DOCX/notebook deautor;READMEdeclaraSpringerDOI10.1007/978-3-031-38074-7_41",
+    "limitation": "Año editorial externo no verificado;fecha DOCX no equivale al año de publicación."
+  }
+]

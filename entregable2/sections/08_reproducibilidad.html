@@ -1,0 +1,641 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>8. Reproducibilidad, ética y comunicación científica &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/08_reproducibilidad';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="9. Preregistro del catálogo vigente y trazabilidad experimental" href="09_protocolo_registrado.html" />
+    <link rel="prev" title="7. Ruta metodológica: series de tiempo y controles causales" href="07_ruta_temporal.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 2 · Bitcoin: pronóstico de volatilidad</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_literatura.html">3. Revisión Sistemática del Estado del Arte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación de los diez modelos y el candidato adicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark vigente: diez modelos y un candidato adicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">8. Reproducibilidad, ética y comunicación científica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Preregistro del catálogo vigente y trazabilidad experimental</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de datos y auditoría formal de fuga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. HPO y equidad para el catálogo vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Incertidumbre predictiva y análisis de errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Agregación estadística e interpretación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas del catálogo vigente y adaptación a D7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo vigente: diez modelos y candidato 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_fichas_nuevas.html">16. Fichas bibliográficas de las cuatro altas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato sincronizado de E1, E2 y E3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_integracion_sintetica.html">18. Implementación provisional y verificación sintética</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_plan_auditoria.html">19. Plan experimental propuesto y auditoría sin entrenamiento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_contraste_guia.html">20. Cotejo del plan con la guía original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_comparadores_nas.html">21. Comparadores temporales y decisión NAS por receta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22_fichas_recetas.html">22. Once fichas de recetas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_implementacion_recetas.html">23. Implementación de recetas y controles temporales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><p class="small">Entregable 2 · Jassan Arteta · 2026-30</p></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/08_reproducibilidad.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>8. Reproducibilidad, ética y comunicación científica</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuente-registrada-y-recibos-de-ejecucion">8.1 Fuente registrada y recibos de ejecución</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entorno-observado-y-aleatoriedad">8.2 Entorno observado y aleatoriedad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comandos-de-reproduccion-del-procedimiento-disponible">8.3 Comandos de reproducción del procedimiento disponible</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-archivada-y-requisitos-de-la-nueva-version">8.3.1 Implementación archivada y requisitos de la nueva versión</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lista-de-comprobacion-frente-al-apendice-b">8.4 Lista de comprobación frente al Apéndice B</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etica-licencias-y-comunicacion">8.5 Ética, licencias y comunicación</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="reproducibilidad-etica-y-comunicacion-cientifica">
+<span id="e2-reproducibilidad"></span><h1>8. Reproducibilidad, ética y comunicación científica<a class="headerlink" href="#reproducibilidad-etica-y-comunicacion-cientifica" title="Link to this heading">#</a></h1>
+<p>La guía completa exige un entorno fijado, semillas/configuraciones recuperables y reproducción independiente de la tabla principal (PDF pp40–41); su lista de comprobación está en el Apéndice B (p63). Esta sección distingue el <strong>catálogo vigente de diez modelos y CNN-1D + LSTM + atención temporal como candidato 11</strong>, cuya nueva enmienda está pendiente, de la evidencia histórica conservada. El procedimiento P0/OOF de desarrollo está ejecutado: los recibos verifican 220 trayectorias y 440 ajustes cerrados; los resultados se presentan en la <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">sección 9</span></a>.</p>
+<section id="fuente-registrada-y-recibos-de-ejecucion">
+<h2>8.1 Fuente registrada y recibos de ejecución<a class="headerlink" href="#fuente-registrada-y-recibos-de-ejecucion" title="Link to this heading">#</a></h2>
+<p>La fuente experimental de P0 se fijó en el commit <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0"><code class="docutils literal notranslate"><span class="pre">599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0</span></code></a>. El <a class="reference download internal" download="" href="../_downloads/3206a16084eae75f63f143c241b74ac3/registration.json"><span class="xref download myst">recibo de registro</span></a>, fechado <strong>06/11/2026, 14:52:32 UTC</strong>, vincula plan, código, dos fuentes de desarrollo y archivos de los autores mediante hashes. Registra cero ajustes de datos previos <strong>en ese directorio de salida</strong>; no afirma que nunca existieran experimentos de E1 ni que su test vuelva a ser desconocido.</p>
+<p>Se conserva un checkout separado de la fuente registrada y las salidas experimentales quedan fuera del repositorio: checkpoints, curvas, cierres, logs y predicciones no sobrescriben resultados de E1. Las mejoras documentales posteriores al registro no cambian los bytes con los que se inició P0. Los JSON de diseño conservan sus contadores iniciales: el estado observado se acredita con recibos de ejecución, no editando un plan cerrado.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/9b6093eee1456dcd4e7b3469ed90b430/data_support_audit.json"><span class="xref download myst">recibo de la auditoría de soporte</span></a> se generó antes del registro, a las <strong>14:52:31 UTC</strong>. Comprueba los once calendarios de desarrollo; no es un certificado completo de los modelos futuros. El <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">protocolo y estado de P0</span></a> y la <a class="reference internal" href="10_auditoria_datos.html"><span class="std std-doc">auditoría de datos</span></a> explican esos alcances.</p>
+</section>
+<section id="entorno-observado-y-aleatoriedad">
+<h2>8.2 Entorno observado y aleatoriedad<a class="headerlink" href="#entorno-observado-y-aleatoriedad" title="Link to this heading">#</a></h2>
+<p>El <a class="reference download internal" download="" href="../_downloads/b2a36d3b4eae6822df7965ce21ae33db/hardware_receipt.json"><span class="xref download myst">recibo de hardware</span></a> se tomó a las <strong>14:37:37 UTC</strong>, antes de los ajustes. Son datos del entorno, sin confundirlos con costes medidos por modelo.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Elemento</p></th>
+<th class="head"><p>Evidencia del entorno P0</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Sistema</p></td>
+<td><p>Debian GNU/Linux13, versión13.6; kernel6.18.57, x86_64</p></td>
+</tr>
+<tr class="row-odd"><td><p>Python</p></td>
+<td><p>3.12.14</p></td>
+</tr>
+<tr class="row-even"><td><p>Framework y paquetes principales registrados</p></td>
+<td><p>PyTorch2.15.0+cpu, NumPy2.5.4, pandas3.1.0, einops0.8.1, reformer-pytorch1.4.4</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dispositivo</p></td>
+<td><p>CPU; modelo reportado AMD EPYC9V74 80-Core Processor</p></td>
+</tr>
+<tr class="row-even"><td><p>Recursos efectivos</p></td>
+<td><p>Cinco CPU lógicas visibles; cuota cgroup400000/100000, equivalente a cuatro CPU, sin atribuir ochenta núcleos disponibles al proceso</p></td>
+</tr>
+<tr class="row-odd"><td><p>Paralelismo de trabajo</p></td>
+<td><p>Un thread numérico por ajuste; máximo dos procesos concurrentes</p></td>
+</tr>
+<tr class="row-even"><td><p>Memoria</p></td>
+<td><p>Límite cgroup34.359.738.368bytes, 32GiB; no es memoria pico medida de una red</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dependencias fijadas</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">requirements-e2-remediation.lock.txt</span></code>, que incluye <code class="docutils literal notranslate"><span class="pre">requirements-paper-guide.lock.txt</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los entornos se identifican por etapa. El archivo del entorno EDA fija statsmodels0.14.6; el archivo de remediación fija statsmodels0.15.0. Cada reproducción de las pruebas sintéticas de §7 debe identificar la versión utilizada; aprobarlas no equivale a una ejecución ARIMA sobre Bitcoin. El piloto P0 histórico ajustó únicamente sus cuatro recetas registradas; no aporta ejecuciones de los modelos incorporados al catálogo vigente.</p>
+<p>Las semillas P0 son <strong>660101–660105</strong>, emparejadas entre TimeMixer, iTransformer, PatchTST y GRU-c03. El driver fija <code class="docutils literal notranslate"><span class="pre">random</span></code>, NumPy y Torch en cada ajuste, usa un generador explícito para el orden de minibatches y activa <code class="docutils literal notranslate"><span class="pre">torch.use_deterministic_algorithms(True)</span></code>. El recibo inicial indica <code class="docutils literal notranslate"><span class="pre">deterministic_algorithms=false</span></code> <strong>al registrar</strong>, antes de llamar a esa configuración: se conservan ambos hechos en sus etapas correspondientes. Las semillas de refit y de los demás procedimientos tienen registros propios; ninguna repetición del cronómetro cuenta como nueva observación de mercado. No se promete identidad numérica entre hardware o versiones distintos sin una reproducción medida.</p>
+</section>
+<section id="comandos-de-reproduccion-del-procedimiento-disponible">
+<h2>8.3 Comandos de reproducción del procedimiento disponible<a class="headerlink" href="#comandos-de-reproduccion-del-procedimiento-disponible" title="Link to this heading">#</a></h2>
+<p>Los siguientes comandos reproducen exclusivamente el <strong>P0/OOF histórico</strong>. No ejecutan el catálogo vigente ni constituyen instrucciones para continuar el plan sustituido. Se parte del repositorio clonado, de Python3.12 y de una ruta nueva de salida. Los dos CSV diarios de desarrollo están versionados en la fuente registrada; los hashes exigidos por el plan detectan modificaciones. No es necesario descargar precios nuevos para ese piloto.</p>
+<p>Crear un checkout y un entorno separados permite conservar E1 y la ejecución original:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>worktree<span class="w"> </span>add<span class="w"> </span>--detach<span class="w"> </span>../e2-repro-registered<span class="w"> </span>599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0
+<span class="nb">cd</span><span class="w"> </span>../e2-repro-registered
+python3.12<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>../e2-repro-env
+../e2-repro-env/bin/python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements-e2-remediation.lock.txt
+</pre></div>
+</div>
+<p>Las dos fuentes oficiales se recuperan en sus commits fijados; el runner verifica los archivos concretos contra el plan antes de usarlos:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/kwuking/TimeMixer.git<span class="w"> </span>../e2-author-TimeMixer
+git<span class="w"> </span>-C<span class="w"> </span>../e2-author-TimeMixer<span class="w"> </span>checkout<span class="w"> </span>--detach<span class="w"> </span>e24610583b36fdd8c76cc17a8df4e65759a5f460
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/thuml/Time-Series-Library.git<span class="w"> </span>../e2-author-controls
+git<span class="w"> </span>-C<span class="w"> </span>../e2-author-controls<span class="w"> </span>checkout<span class="w"> </span>--detach<span class="w"> </span>4e938a1767106324dd753b2a44832bf870a0252e
+</pre></div>
+</div>
+<p>La validación documental no entrena. El preflight añade controles de los adaptadores con entradas sintéticas y una auditoría de desarrollo sin ajustes de modelos:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>../e2-repro-env/bin/python<span class="w"> </span>scripts/e2_protocol_plan.py<span class="w"> </span>validate
+../e2-repro-env/bin/python<span class="w"> </span>scripts/execute_e2_development_pilot.py<span class="w"> </span>--stage<span class="w"> </span>preflight<span class="w"> </span>--source-root<span class="w"> </span>../e2-author-TimeMixer<span class="w"> </span>--control-source-root<span class="w"> </span>../e2-author-controls<span class="w"> </span>--output-dir<span class="w"> </span>../e2-repro-output<span class="w"> </span>--workers<span class="w"> </span><span class="m">2</span>
+</pre></div>
+</div>
+<p>El flujo disponible de una sola invocación registra esa nueva reproducción, ajusta las trayectorias programadas y puntúa desarrollo <strong>después de sus cierres</strong>; posteriormente analiza las predicciones guardadas:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>../e2-repro-env/bin/python<span class="w"> </span>scripts/execute_e2_development_pilot.py<span class="w"> </span>--stage<span class="w"> </span>all<span class="w"> </span>--source-root<span class="w"> </span>../e2-author-TimeMixer<span class="w"> </span>--control-source-root<span class="w"> </span>../e2-author-controls<span class="w"> </span>--output-dir<span class="w"> </span>../e2-repro-output<span class="w"> </span>--workers<span class="w"> </span><span class="m">2</span>
+</pre></div>
+</div>
+<p>La salida debe estar fuera del repositorio. El registro rechaza intentos anteriores sin registro y cambios en entradas cerradas; no se reutiliza un directorio para ocultar una ejecución fallida. El flujo no acepta precios de evaluación posteriores a 2024 y no cambia las recetas con P0. Una reproducción completa de la <strong>tabla principal final</strong> aún no está demostrada: no se equipara este comando de desarrollo, un build del libro o una prueba sintética con ese requisito de las páginas41/63. Su discrepancia máxima deberá medirse cuando exista la tabla y una reproducción independiente válida.</p>
+<section id="implementacion-archivada-y-requisitos-de-la-nueva-version">
+<h3>8.3.1 Implementación archivada y requisitos de la nueva versión<a class="headerlink" href="#implementacion-archivada-y-requisitos-de-la-nueva-version" title="Link to this heading">#</a></h3>
+<p>La <a class="reference download internal" download="" href="../_downloads/5c39a73befc06b6ac68a0ab1b13e5ac7/completion_bundle.zip"><span class="xref download myst">descarga de implementación archivada</span></a>, su <a class="reference download internal" download="" href="../_downloads/fafb54c83e7b4ddf755b336b98d117f7/design.json"><span class="xref download myst">diseño</span></a>, su <a class="reference download internal" download="" href="../_downloads/47a0a31721456b70c253b9b8290a2de8/analysis_additions.json"><span class="xref download myst">enmienda</span></a> y su <a class="reference download internal" download="" href="../_downloads/e6afa871de0ad5cd8543ef14d185c3c4/registration.json"><span class="xref download myst">registro</span></a> conservan la procedencia del trabajo previo. Esos archivos y <code class="docutils literal notranslate"><span class="pre">scripts/run_e2_final_benchmark.py</span></code> <strong>no son el ejecutor ni el registro del catálogo vigente</strong>. Se mantienen sin alterar para que sus bytes sigan siendo verificables.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/769cadb5d12b34f5212c498756de1fcb/execution_progress.json"><span class="xref download myst">recibo parcial del 06/11/2026, 19:00:35 UTC</span></a> acredita <strong>doce trayectorias y veinticuatro ajustes cerrados de TSMixer</strong> bajo el registro anterior. Es una instantánea histórica de HPO incompleto, no un proceso cuya actividad actual esté demostrada, un resultado final ni una ejecución del nuevo catálogo. Los recibos sintéticos tampoco se convierten en resultados de mercado.</p>
+<p>La nueva enmienda deberá identificar fuentes y adaptaciones de los diez modelos, la receta CNN-1D + LSTM + atención temporal, controles, dependencias, presupuesto, selección temporal, semillas, dimensionamiento y orden de cierre. MLP, LSTM y GRU de E1 siguen siendo referencias separadas. No se transfieren automáticamente sus recetas o métricas ni las del P0 a la comparación nueva.</p>
+<p>Cada nueva ejecución requerirá fuente identificable, entorno verificable, datos e índices con hashes y una salida propia. Deben conservarse curvas, tiempos, estados de cierre y procedencia, incluidos intentos fallidos. Un build del libro, un prototipo o una prueba sintética no acredita HPO, calibración o evaluación de mercado. El número de repeticiones y el almacenamiento se planificarán antes de evaluar; no se cambia R después de observar resultados para ajustar el experimento a los recursos disponibles.</p>
+</section>
+</section>
+<section id="lista-de-comprobacion-frente-al-apendice-b">
+<h2>8.4 Lista de comprobación frente al Apéndice B<a class="headerlink" href="#lista-de-comprobacion-frente-al-apendice-b" title="Link to this heading">#</a></h2>
+<p>Los estados distinguen una especificación registrada de evidencia experimental terminada.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Ítem de p63</p></th>
+<th class="head"><p>Estado verificable</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Catálogo vigente</p></td>
+<td><p>Diez modelos de literatura/adaptaciones y CNN-1D + LSTM + atención temporal como candidato 11, sin superioridad demostrada</p></td>
+</tr>
+<tr class="row-odd"><td><p>Registro antes de los nuevos ajustes</p></td>
+<td><p>Nueva enmienda pendiente; los recibos anteriores son históricos</p></td>
+</tr>
+<tr class="row-even"><td><p>Datos, índices y particiones</p></td>
+<td><p>Procedencia heredada identificada; auditoría específica de los nuevos soportes pendiente</p></td>
+</tr>
+<tr class="row-odd"><td><p>Selección y ajuste causal</p></td>
+<td><p>Reglas metodológicas descritas; implementación común del catálogo vigente por validar</p></td>
+</tr>
+<tr class="row-even"><td><p>Presupuesto, configuraciones y R</p></td>
+<td><p>Pendientes de definir y dimensionar; no se heredan del catálogo sustituido</p></td>
+</tr>
+<tr class="row-odd"><td><p>Referencias E1</p></td>
+<td><p>MLP, LSTM y GRU separadas del catálogo; recetas y cohortes comparables por identificar</p></td>
+</tr>
+<tr class="row-even"><td><p>Software, hardware y determinismo</p></td>
+<td><p>Evidencia P0 conservada; cada ejecución nueva necesita sus propios recibos</p></td>
+</tr>
+<tr class="row-odd"><td><p>Resultados individuales y agregados</p></td>
+<td><p>P0 ejecutado e instantánea parcial de HPO histórico enlazados; sin resultados finales del catálogo vigente</p></td>
+</tr>
+<tr class="row-even"><td><p>Hipótesis, multiplicidad, efectos e IC</p></td>
+<td><p>Nuevas familias y decisiones pendientes de registrar</p></td>
+</tr>
+<tr class="row-odd"><td><p>Robustez, interpretabilidad e incertidumbre</p></td>
+<td><p>Métodos y límites descritos; validación del nuevo diseño pendiente</p></td>
+</tr>
+<tr class="row-even"><td><p>Evaluación desconocida</p></td>
+<td><p>Los periodos heredados ya se conocen y no recuperan independencia por cambiar los modelos</p></td>
+</tr>
+<tr class="row-odd"><td><p>Réplica del paper guía</p></td>
+<td><p>Evidencia TimeMixer/ETTh1 en §5, separada de Bitcoin</p></td>
+</tr>
+<tr class="row-even"><td><p>Reproducción independiente de tabla principal</p></td>
+<td><p>Pendiente; ninguna discrepancia final inventada</p></td>
+</tr>
+<tr class="row-odd"><td><p>Reproducción de un comando</p></td>
+<td><p>Disponible para el P0 histórico; no acreditada para el catálogo vigente</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="etica-licencias-y-comunicacion">
+<h2>8.5 Ética, licencias y comunicación<a class="headerlink" href="#etica-licencias-y-comunicacion" title="Link to this heading">#</a></h2>
+<p>Se mantiene el uso académico y no comercial y la procedencia de Binance Vision descritos en §1, con sus términos conservados en E1. El código de los autores conserva sus licencias y commits identificados; usar su implementación no significa reutilizar pesos preentrenados ni reproducir todas las condiciones originales. P0 inicializa sus redes, con una adaptación escalar explícita a σ₇; el resultado externo de ETTh1 no se presenta como rendimiento Bitcoin.</p>
+<p>Las velas no contienen identificadores de personas, y no se intenta reconstruir identidades de operadores. El mercado BTCUSDT de un exchange no representa otras criptomonedas, exchanges o cotizaciones: las diferencias de error por volatilidad y periodo se comunicarán con tamaños e incertidumbre. Las consecuencias de errores de pronóstico no se traducen automáticamente en rentabilidad, reducción de riesgo o recomendación de inversión.</p>
+<p>Las tablas y figuras deben identificar unidades, muestra, escala, fuente y alcance; los IC marginales se distinguen de límites simultáneos. No se presenta cero como sustituto de una medición pendiente ni un promedio sin dispersión como prueba de superioridad. Las afirmaciones bibliográficas y DOI se conservan trazables; indexación o editorial no sustituyen comprobar un original.</p>
+<p><strong>Archivo histórico:</strong> <a class="reference download internal" download="" href="../_downloads/5c39a73befc06b6ac68a0ab1b13e5ac7/completion_bundle.zip"><span class="xref download myst">implementación y enmienda anteriores</span></a>, <a class="reference download internal" download="" href="../_downloads/a421707fc03ce60be02b214170dea130/Remediacion_E2_protocolo_codigo_evidencias.zip"><span class="xref download myst">paquete unificado de protocolo, código y evidencias</span></a>, <a class="reference download internal" download="" href="../_downloads/3206a16084eae75f63f143c241b74ac3/registration.json"><span class="xref download myst">registro</span></a>, <a class="reference download internal" download="" href="../_downloads/9b6093eee1456dcd4e7b3469ed90b430/data_support_audit.json"><span class="xref download myst">soporte de datos</span></a> y <a class="reference download internal" download="" href="../_downloads/b2a36d3b4eae6822df7965ce21ae33db/hardware_receipt.json"><span class="xref download myst">entorno/hardware</span></a>.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="07_ruta_temporal.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">7. Ruta metodológica: series de tiempo y controles causales</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="09_protocolo_registrado.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">9. Preregistro del catálogo vigente y trazabilidad experimental</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuente-registrada-y-recibos-de-ejecucion">8.1 Fuente registrada y recibos de ejecución</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entorno-observado-y-aleatoriedad">8.2 Entorno observado y aleatoriedad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comandos-de-reproduccion-del-procedimiento-disponible">8.3 Comandos de reproducción del procedimiento disponible</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-archivada-y-requisitos-de-la-nueva-version">8.3.1 Implementación archivada y requisitos de la nueva versión</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lista-de-comprobacion-frente-al-apendice-b">8.4 Lista de comprobación frente al Apéndice B</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etica-licencias-y-comunicacion">8.5 Ética, licencias y comunicación</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

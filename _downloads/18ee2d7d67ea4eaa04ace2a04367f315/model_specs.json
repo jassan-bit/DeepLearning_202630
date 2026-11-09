@@ -1,0 +1,129 @@
+{
+  "models": [
+    {
+      "family": "GRU",
+      "history_days": 7,
+      "input_features": 5,
+      "input_layout": "batch,day,feature; oldest first",
+      "width": 32,
+      "dropout": 0.1,
+      "output_activation": "Softplus",
+      "output_shape": "batch",
+      "output_units": "nonnegative scaled target; inverse scale belongs to runner",
+      "parameters": {
+        "trainable": 3777,
+        "non_trainable": 0,
+        "total": 3777
+      },
+      "implementation_scope": "Compact project adaptation; not a fitted-paper replica",
+      "recurrent_layers": 1,
+      "bidirectional": false,
+      "bias_convention": "PyTorch input and recurrent biases per gate",
+      "readout": "last hidden state",
+      "dropout_location": "last hidden state before linear head",
+      "control_gates": [
+        "reset",
+        "update"
+      ],
+      "candidate_projection": "new",
+      "gate_metadata_note": "The candidate state n/new is not a third control gate; the signed source metadata is preserved privately."
+    },
+    {
+      "family": "LSTM",
+      "history_days": 7,
+      "input_features": 5,
+      "input_layout": "batch,day,feature; oldest first",
+      "width": 32,
+      "dropout": 0.1,
+      "output_activation": "Softplus",
+      "output_shape": "batch",
+      "output_units": "nonnegative scaled target; inverse scale belongs to runner",
+      "parameters": {
+        "trainable": 5025,
+        "non_trainable": 0,
+        "total": 5025
+      },
+      "recurrent_layers": 1,
+      "bidirectional": false,
+      "readout": "last hidden state",
+      "bias_convention": "two biases per gate",
+      "dropout_location": "last hidden state before linear head"
+    },
+    {
+      "family": "TCN",
+      "history_days": 7,
+      "input_features": 5,
+      "input_layout": "batch,day,feature; oldest first",
+      "width": 16,
+      "dropout": 0.1,
+      "output_activation": "Softplus",
+      "output_shape": "batch",
+      "output_units": "nonnegative scaled target; inverse scale belongs to runner",
+      "parameters": {
+        "trainable": 4289,
+        "non_trainable": 0,
+        "total": 4289
+      },
+      "implementation_scope": "Compact project adaptation; not a fitted-paper replica",
+      "residual_blocks": 3,
+      "convolution_layers": 6,
+      "convolutions_per_block": 2,
+      "kernel_size": 3,
+      "block_dilations": [
+        1,
+        2,
+        4
+      ],
+      "residual_connections": true,
+      "first_block_projection": "pointwise 1x1 when input channels differ",
+      "receptive_field_days": 29,
+      "padding": "left only: (kernel_size-1)*dilation per convolution",
+      "hidden_activation": "ReLU",
+      "readout": "last observed time position",
+      "normalization": "none",
+      "weight_normalization": false,
+      "dropout_location": "after each temporal convolution and before scalar head",
+      "encoder_layout": "batch,channel,day"
+    }
+  ],
+  "shape": "batch × D × 5 OHLCV channels, oldest first",
+  "histories": [
+    7,
+    14,
+    21,
+    28
+  ],
+  "target": "populationSD(ddof0) of seven daily UTC Close log returns, no annualization",
+  "forecast_horizon_days": 1,
+  "preprocessing": "relative-window logOHLC plus log1pVolume; training-only channel standardization and positive mean target scaling",
+  "reconstruction_scope": "Compact project adaptations; not exact replications of every published architecture",
+  "parameter_expressions": {
+    "GRU": "3*(F*W+W^2+2*W)+(W+1)",
+    "LSTM": "4*(F*W+W^2+2*W)+(W+1)",
+    "TCN": "(K*F*W+W)+(K*W^2+W)+(F*W+W)+(B-1)*2*(K*W^2+W)+(W+1); B=3,K=3"
+  },
+  "training": {
+    "optimizer": "AdamW",
+    "weight_decay": 0.0001,
+    "dropout": 0.1,
+    "batch_size": 32,
+    "max_epochs": 100,
+    "gradient_clip_norm": 1.0,
+    "early_stopping": "Minimum inner-validation scaledMSE",
+    "patience": 12,
+    "min_delta": 1e-05,
+    "refit": "Fresh model on full permitted monthly training cohort, including already observed past2024; fixed selected inner epoch count; no warm start",
+    "inner_seed": "runseed",
+    "refit_seed": "runseed+10000000",
+    "batch_order": "Deterministic generator seeded with stage seed+17; shuffled windows, chronology of sample construction remains intact",
+    "device": "cpu",
+    "torch_threads": 1,
+    "torch_interop_threads": 1,
+    "strict_deterministic_algorithms": true
+  },
+  "pilot": {
+    "new_prospective_pilot_for_GRU_TCN": false,
+    "seed_count": 10,
+    "reason": "Fixed resource-bounded screening budget, not pilot-derived 80% power"
+  }
+}

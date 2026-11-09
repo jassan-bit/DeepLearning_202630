@@ -1,0 +1,83 @@
+{
+  "scope": "Search appendix, not additional included studies or additional new BibTeX entries. The pre-existing Huang citation is preserved, not reclassified as a newly read original.",
+  "candidate_publisher": "Elsevier, as declared by the source bibliographic records; distinct from WoS/Scopus indexes.",
+  "full_text_pending": [
+    {
+      "title": "Forecasting Bitcoin volatility using machine learning techniques",
+      "authors": [
+        "Z.-C. Huang",
+        "Ilaria Sangiorgi",
+        "Andrew Urquhart"
+      ],
+      "year": 2024,
+      "journal": "Journal of International Financial Markets, Institutions & Money",
+      "volume": "97",
+      "article_number": "102064",
+      "doi": "10.1016/j.intfin.2024.102064",
+      "doi_status": "Existing project reference, not re-resolved in this retrieval.",
+      "url": "https://pure-oai.bham.ac.uk/ws/portalfiles/portal/246755355/1-s2.0-S1042443124001306-main.pdf",
+      "retrieval": "Exact author+Bitcoin, PII, DOI issues and exact title issues give zero native GitHub results; broader phrase returns unrelated or previously identified repositories.",
+      "mlp_cnn": "Unverified without full text.",
+      "decision": "pending_primary_full_text"
+    },
+    {
+      "title": "Deep learning in predicting cryptocurrency volatility",
+      "authors": [
+        "Valeria D’Amato",
+        "Susanna Levantesi",
+        "Gabriella Piscopo"
+      ],
+      "year": 2022,
+      "journal": "Physica A: Statistical Mechanics and its Applications",
+      "volume": "596",
+      "article_number": "127158",
+      "doi": "10.1016/j.physa.2022.127158",
+      "doi_status": "Explicit DOI found in secondary public repository bibliography, not resolved against publisher.",
+      "secondary_url": "https://github.com/guptarjun117/Crypto-Staking-with-Machine-Learning/blob/732742e85cc6889d49c36736d09be68dd0b3341e/README.md",
+      "retrieval": "Exact title/article/author searches identify the same secondary bibliography; repo contains README and data, no paper.",
+      "mlp_cnn": "Unverified; other local secondary discussion describes RNN.",
+      "decision": "pending_primary_full_text"
+    },
+    {
+      "title": "Machine learning approaches to forecasting cryptocurrency volatility: Considering internal and external determinants",
+      "authors": [
+        "Yijun Wang",
+        "Galina Andreeva",
+        "Belen Martin-Barragan"
+      ],
+      "year": 2023,
+      "journal": "International Review of Financial Analysis",
+      "article_number": "102914",
+      "doi_status": "Not inferred.",
+      "retrieval": "Local citation graph verifies title/authors/article. Exact author GitHub search zero; short title keywords find unrelated projects.",
+      "mlp_cnn": "Unverified; local secondary discussion describes RF/LSTM.",
+      "decision": "pending_primary_full_text"
+    }
+  ],
+  "excluded_adjacent_primary_author_material": [
+    {
+      "title": "PreBit-A multimodal model with Twitter FinBERT embeddings for extreme price movement prediction of Bitcoin",
+      "authors": [
+        "Yanzhao Zou",
+        "Dorien Herremans"
+      ],
+      "year": 2023,
+      "journal": "Expert Systems with Applications",
+      "article_number": "120838",
+      "publisher": "Elsevier, explicitly declared in author README",
+      "source": "https://github.com/AMAAI-Lab/PreBit/tree/812886c34df9f2830b7d74548a25408877183fef",
+      "readme_file": "AMAAI-Lab__PreBit.md",
+      "full_text_retrieved": false,
+      "primary_content_verified": "Author README abstract describes FinBERT sentence embeddings combined with a CNN and candlestick/technical/correlated-asset modalities; 5000 tweets per day, 2015–2021. Root tree contains only notebooks and markdown.",
+      "target": "Extreme/significant price movement classification and trading strategy, not a continuous volatility forecast. Author notebook Price_Base_Model_New_Input.ipynb cell 10 defines binary label from next-day High/current Close -1 exceeding threshold.",
+      "code_limitation": "Exploratory author notebooks contain multiple models; do not treat their architecture as the article-selected final architecture. No claim of CNN1D for continuous volatility.",
+      "decision": "adjacent_context_only_exclude_volatility_denominator",
+      "wos_scopus_article_status": "Not checked; not inferred from journal or publisher."
+    }
+  ],
+  "new_eligible_originals": 0,
+  "counts_in_BTC_corpus": false,
+  "new_BibTeX_entries_from_these_candidates": 0,
+  "guard": "Huang/D’Amato/Wang original architecture and metrics remain unassigned. PreBit predicts extreme price movements, not continuous future volatility; author notebooks are not a recovered original article.",
+  "source_metadata_sha256": "323cae57e3f4fa84cb38218f9eca7b525032ef2929d97bbfa8677126e8a78c47"
+}

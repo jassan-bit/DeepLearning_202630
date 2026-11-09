@@ -1,0 +1,233 @@
+[
+  {
+    "study_id": "S1",
+    "dimension": "Datos, objetivo y horizonte",
+    "status": "documentado",
+    "evidence": "paper.pdf pp.3–5; RV=100sqrt(sum(r_15min²)), pronóstico de un día",
+    "limitation": "No equivalente a desviación móvil de siete retornos diarios."
+  },
+  {
+    "study_id": "S1",
+    "dimension": "Partición y disponibilidad",
+    "status": "documentado_con_limites",
+    "evidence": "paper.pdf §5.3:96días desarrollo(72/24),48test; predicción con día anterior",
+    "limitation": "Test corto; no se certifica ausencia de toda fuga a partir del reporte."
+  },
+  {
+    "study_id": "S1",
+    "dimension": "Arquitectura y ajuste",
+    "status": "documentado",
+    "evidence": "Fig.1, §§5.2–5.3 y apéndice C, Tablas 5–6: 250 configuraciones/red, 30 épocas, AdamW; LSTM H261 y TCN F287/k5/base4 con hiperparámetros ganadores publicados.",
+    "limitation": "La extracción anterior omitía las tablas ganadoras. Sigue sin fijarse la versión keras-tcn; el conteo analítico de TCN depende del bloque y no sustituye una réplica."
+  },
+  {
+    "study_id": "S1",
+    "dimension": "Repetición e incertidumbre",
+    "status": "documentado",
+    "evidence": "Tabla2:20corridas por red, media y desviación; Fig.2 bootstrap1000",
+    "limitation": "La variabilidad entre inicializaciones no equivale a replicación de mercados."
+  },
+  {
+    "study_id": "S1",
+    "dimension": "Inferencia y multiplicidad",
+    "status": "parcial",
+    "evidence": "§5.3 y Tablas 2/4: Welch unilateral frente a AR-RV o TCN; múltiples redes, métricas y combinaciones de atributos.",
+    "limitation": "No se identificó una política global de corrección múltiple en lo leído; veinte/cuarenta inicializaciones no equivalen a mercados o periodos independientes."
+  },
+  {
+    "study_id": "S1",
+    "dimension": "Reproducibilidad",
+    "status": "parcial",
+    "evidence": "Repositorio de autores,paper.pdf,scripts/hpo.py,commit bcc0e4e",
+    "limitation": "No se reprodujeron experimentos ni se certifica acceso a todas las fuentes Twitter."
+  },
+  {
+    "study_id": "S2",
+    "dimension": "Datos, objetivo y horizonte",
+    "status": "documentado",
+    "evidence": "manuscript.tex §§Data,Target;BTCUSDTperpetuo2024–2025,logRV futura30min",
+    "limitation": "Mercado derivado,objetivo logarítmico y microestructura; no comparación directa con OHLCV Spot diario."
+  },
+  {
+    "study_id": "S2",
+    "dimension": "Partición y disponibilidad",
+    "status": "documentado",
+    "evidence": "Fig.split,§Experimentaldesign;purga etiquetas yembargo6barras;escalado solo train",
+    "limitation": "Descripción no certifica ausencia de errores de implementación."
+  },
+  {
+    "study_id": "S2",
+    "dimension": "Arquitectura y ajuste",
+    "status": "documentado_con_limites",
+    "evidence": "§Models y apéndice Selected hyperparameters, run B: encoder 2 capas/4 cabezas; d48, dropout0.21, lr3e-4, wd1.4e-3, ruido0.12 y ventana48; 20 trials/red.",
+    "limitation": "Configuración ganadora sí reportada; total de parámetros 49.249 derivado de las capas, no reportado por el manuscrito ni medido aquí."
+  },
+  {
+    "study_id": "S2",
+    "dimension": "Comparabilidad de información",
+    "status": "parcial",
+    "evidence": "§Models yFig.arch:las redes usan ventana24/48barras;linear/LightGBM última barra",
+    "limitation": "No atribuir toda ganancia frente a linear únicamente a no linealidad: cambia también la historia disponible."
+  },
+  {
+    "study_id": "S2",
+    "dimension": "Repetición e incertidumbre",
+    "status": "parcial",
+    "evidence": "§Training:semillas42/43/44,predicciones promediadas",
+    "limitation": "Tres semillas; la tabla no aporta IC entre corridas y representa un agregado de predicciones."
+  },
+  {
+    "study_id": "S2",
+    "dimension": "Inferencia y multiplicidad",
+    "status": "parcial",
+    "evidence": "§Metrics:DM unilateral frenteHAR;Newey–West5rezagos,tabModelcomparison",
+    "limitation": "H−1 no garantiza cubrir toda dependencia; múltiplesablation/comparaciones y selección de features con desarrollo."
+  },
+  {
+    "study_id": "S2",
+    "dimension": "Reproducibilidad y publicación",
+    "status": "parcial_literatura_gris",
+    "evidence": "PDF,TeX,notebook públicos;commit d69f951f",
+    "limitation": "Revisión por pares/DOI no acreditados;datos CryptoLake licenciados."
+  },
+  {
+    "study_id": "S5",
+    "dimension": "Datos, objetivo y horizonte",
+    "status": "documentado_con_inconsistencias",
+    "evidence": "M2259.docx;notebookc21–23:rolling30(log_returns.shift(-7)),divisor29",
+    "limitation": "Ventana30desplazadasietedías,no siete días totalmente futuros;fechas finales inconsistentes."
+  },
+  {
+    "study_id": "S5",
+    "dimension": "Partición y disponibilidad",
+    "status": "riesgo_aparente",
+    "evidence": "notebookc23etiquetasconshift(-7);c46splitporfecha,365val/30test",
+    "limitation": "No se identificó purga explícita: etiquetas cercanas al corte pueden incorporar retornos del siguiente bloque; no se reprodujo el estudio."
+  },
+  {
+    "study_id": "S5",
+    "dimension": "Arquitectura y ajuste",
+    "status": "documentado",
+    "evidence": "notebookc104Flatten→Dense(1);c111LSTM(20)→Dense(1),n_past14",
+    "limitation": "La red densa es lineal,sin capa oculta;no evidencia de MLP no lineal."
+  },
+  {
+    "study_id": "S5",
+    "dimension": "Repetición e incertidumbre",
+    "status": "no_reportado",
+    "evidence": "M2259.docxTabla4;notebookc111",
+    "limitation": "Sin semillas múltiples ni dispersión;no asumir que un valor puntual es media."
+  },
+  {
+    "study_id": "S5",
+    "dimension": "Inferencia y evaluación",
+    "status": "parcial",
+    "evidence": "TextoDataanalysis,Tabla4; earlystoppingval_rmspe y comparación reportada en validación",
+    "limitation": "No acredita una confirmación independiente fuera del desarrollo ni comparación inferencial."
+  },
+  {
+    "study_id": "S5",
+    "dimension": "Reproducibilidad y publicación",
+    "status": "parcial",
+    "evidence": "DOCX/notebook deautor;READMEdeclaraSpringerDOI10.1007/978-3-031-38074-7_41",
+    "limitation": "Año editorial externo no verificado;fecha DOCX no equivale al año de publicación."
+  },
+  {
+    "study_id": "S6",
+    "dimension": "Datos, objetivo y horizonte",
+    "status": "documentado_con_limites",
+    "evidence": "PDF §3.4 y datos: Bitcoin diario 25/03/2021–30/12/2024; 1.376 retornos declarados; objetivo RV1D y Transformer model1 con OHLCV.",
+    "limitation": "Fuente bruta y construcción exacta del proxy no suficientemente especificadas; no equiparar con σ7 diario de Binance Spot."
+  },
+  {
+    "study_id": "S6",
+    "dimension": "Partición y disponibilidad",
+    "status": "no_reconciliado",
+    "evidence": "PDF §3.4 declara 70/30 para Transformer; §4 reporta 1.173 observaciones dentro de muestra y test EGARCH de 203 días, 11/06–30/12/2024.",
+    "limitation": "Cohortes y momentos de disponibilidad de atributos no verificables sin datos o código; no certificar igualdad de test o ausencia de fuga."
+  },
+  {
+    "study_id": "S6",
+    "dimension": "Arquitectura y ajuste",
+    "status": "documentado_parcial",
+    "evidence": "Tablas 1–2, pp. 6–7: D20, d32, 4 cabezas, 2 encoder, dropout0.1, Softplus; MSE/Adam0.001, batch32, máximo100 épocas, paciencia10, semilla42.",
+    "limitation": "Ancho feedforward, pooling/lectura, orden de normalización y versión de implementación no reportados; no derivar un total de parámetros único."
+  },
+  {
+    "study_id": "S6",
+    "dimension": "Coherencia de métricas",
+    "status": "inconsistencias_reportadas",
+    "evidence": "Tabla4 p.10: model1 RMSE1.4738, R²−0.7347, QLIKE0.4369, MAE0.4369; texto afirma mejor MAE0.7399 para model9.",
+    "limitation": "La afirmación de mejor MAE contradice el menor MAE de model1; RMSE/R² no reconcilian varianza común con R² convencional. Conservar valores literales, sin corregirlos ni validarlos."
+  },
+  {
+    "study_id": "S6",
+    "dimension": "Repetición e incertidumbre",
+    "status": "no_reportado",
+    "evidence": "Tabla1: semilla42; Tabla4 sin desviación estándar o intervalos entre inicializaciones.",
+    "limitation": "Una semilla y una partición no demuestran estabilidad; no interpretar cifras puntuales como medias entre corridas."
+  },
+  {
+    "study_id": "S6",
+    "dimension": "Inferencia y multiplicidad",
+    "status": "no_ejecutado_declarado",
+    "evidence": "Introducción y §6.2, p.13: DM no ejecutado por costo computacional; nueve configuraciones comparadas descriptivamente.",
+    "limitation": "Sin contraste realizado no se acredita superioridad estadística; no atribuir diferencias únicamente a arquitectura, pues cambian atributos e información."
+  },
+  {
+    "study_id": "S6",
+    "dimension": "Reproducibilidad y publicación",
+    "status": "literatura_gris_exploratoria",
+    "evidence": "Borrador completo y presentación de un mismo estudio; commit61feeec81d695e19eac9c819be41d704e6279547 disponible en2026.",
+    "limitation": "Año editorial desconocido; no usar fecha de commit como publicación. Sin DOI, revisión por pares, datos, código de entrenamiento, pesos o logs acreditados."
+  },
+  {
+    "study_id": "S7",
+    "dimension": "Datos, objetivo y horizonte",
+    "status": "documentado_con_limites",
+    "evidence": "Informe: Investing.com/Kaggle, 18/07/2010–09/02/2024, 4.955 filas declaradas. Código líneas69–70: std móvil30.shift(−30)·sqrt365.",
+    "limitation": "El objetivo es volatilidad futura móvil de treinta retornos anualizada; no σ7 del proyecto. No se comprobaron datos de mercado ni sus recuentos por ejecución."
+  },
+  {
+    "study_id": "S7",
+    "dimension": "Partición y disponibilidad",
+    "status": "riesgo_aparente_de_fuga",
+    "evidence": "Python/Python.py371–386 ajusta MinMaxScaler de X e y a todo df_garch antes del corte cronológico 01/02/2021 y de construir train/test.",
+    "limitation": "Extremos futuros influyen en escalado; también requiere revisar purga del objetivo futuro solapado. Código leído, no ejecutado; no presentar resultados como validados."
+  },
+  {
+    "study_id": "S7",
+    "dimension": "Arquitectura y ajuste",
+    "status": "documentado_con_inconsistencias",
+    "evidence": "PDF §3.5.3: D60, LSTM64→LSTM32, dropout0.2, Dense16ReLU→Dense1; Adam1e−3, batch32, máximo200, paciencia15. Código366–415 declara8 atributos.",
+    "limitation": "PDF declara12 atributos frente a8 en código, incluida varianza EGARCH; texto early stopping por MAE frente a val_loss en código. No cerrar dimensión efectiva ni un total de parámetros sin reconciliación."
+  },
+  {
+    "study_id": "S7",
+    "dimension": "Coherencia de recuentos y métricas",
+    "status": "no_reconciliado",
+    "evidence": "PDF Tabla4.5 p.34: LSTM RMSE0.0358, MAE0.0254, MAPE13.5%; entrenamiento3.849 y test1.006 frente a total4.955.",
+    "limitation": "3.849+1.006=4.855, no4.955; cifras de autores sin reproducción. No trasladarlas a OHLCV Spot diario ni compararlas con otras escalas."
+  },
+  {
+    "study_id": "S7",
+    "dimension": "Repetición e incertidumbre",
+    "status": "no_reportado",
+    "evidence": "Código establece tf.random.set_seed(42); Tabla4.5 sin desviación ni intervalos entre corridas.",
+    "limitation": "No se identifican ejecuciones con múltiples semillas; no inferir robustez a regímenes o incertidumbre a partir de una sola cifra."
+  },
+  {
+    "study_id": "S7",
+    "dimension": "Inferencia y multiplicidad",
+    "status": "parcial_con_limite_temporal",
+    "evidence": "PDF §3.6 declara DM. Python/Python.py501–514 define comparación XGBoost–ensemble con mean(d)/(std(d)/sqrt(n)).",
+    "limitation": "La función usa varianza sin HAC pese a objetivo futuro móvil solapado; no es contraste directo de LSTM ni acredita corrección múltiple. No se recuperó un resultado numérico verificable de esa prueba."
+  },
+  {
+    "study_id": "S7",
+    "dimension": "Reproducibilidad y publicación",
+    "status": "literatura_gris_exploratoria",
+    "evidence": "Informe fechado02/06/2026 y código público; commit a98099e4125e1f80a094a46889d97bc31abfe30b.",
+    "limitation": "Sin DOI, revista, congreso o revisión por pares identificados; inclusión exploratoria no equivale a validación académica o reproducción."
+  }
+]

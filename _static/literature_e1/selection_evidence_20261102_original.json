@@ -1,0 +1,58 @@
+{
+  "status": "provisional_documentary_candidates_not_final_guide_selection",
+  "scope": "Three included full-text studies in an explicitly bounded accessible corpus; not global prevalence.",
+  "family_frequency": {
+    "LSTM_including_BiLSTM": 3,
+    "GRU": 2,
+    "TCN": 1,
+    "Transformer_encoder": 1,
+    "independent_nonlinear_MLP": 0,
+    "simple_independent_CNN1D": 0
+  },
+  "denominator": 3,
+  "rule_order": [
+    "filter verified use as comparative neural reference",
+    "separate variants and linear-only models",
+    "select at most one representative per distinct inductive family if diversity is prioritised",
+    "within each family prefer observed recurrence and reproducibility",
+    "do not claim minimal measured parameter count when winner configurations are missing"
+  ],
+  "recommended_families": [
+    "LSTM",
+    "TCN",
+    "Transformer encoder"
+  ],
+  "evidence": {
+    "LSTM": [
+      "S1",
+      "S2_BiLSTM_variant",
+      "S5"
+    ],
+    "TCN": [
+      "S1"
+    ],
+    "Transformer encoder": [
+      "S2"
+    ]
+  },
+  "omitted_higher_frequency_candidate": {
+    "family": "GRU",
+    "count": 2,
+    "reason": "Both LSTM and GRU are recurrent gated-state models; choosing only one makes the three-family diversity rule explicit. This is a trade-off, not proof that GRU is less useful."
+  },
+  "limitations": [
+    "Transformer support is a single grey manuscript; no verified peer-reviewed status.",
+    "This trio is not the three most frequent models under frequency alone: GRU is more frequent than TCN/Transformer.",
+    "A Transformer encoder has a different asymptotic cost and its simplicity cannot be assumed from frequency.",
+    "No exact compact project widths/layers should be invented as if published winners.",
+    "No own performance or experimental superiority established."
+  ],
+  "selected_families": [
+    "LSTM",
+    "TCN",
+    "Transformer encoder"
+  ],
+  "decision_recorded_at": "2026-11-02T17:46:25.959296-05:00",
+  "decision_timing": "Rule and trade-offs documented after corpus inspection; not a retrospective claim of preregistration.",
+  "guide_frequency_and_minimum_complexity_requirement_closed": false
+}

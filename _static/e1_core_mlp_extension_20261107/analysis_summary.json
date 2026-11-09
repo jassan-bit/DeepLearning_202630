@@ -1,0 +1,41 @@
+{
+  "study_id": "e1_core_mlp_extension_20261107",
+  "execution_id": "ba143e27f9ed2bc74d2cd5db1358833da147cd25503fd782acf29d66361f1aa6",
+  "models": [
+    "GRU",
+    "LSTM",
+    "MLP"
+  ],
+  "history_days": 7,
+  "target_n_days": 7,
+  "horizon_days": 1,
+  "R": 465,
+  "dates_per_trajectory": 60,
+  "neural_prediction_rows": 83700,
+  "baseline_selected_before_reserve": "GRU",
+  "selection_using_holdout": false,
+  "primary_family": "Three registered-method exploratory paired RMSE zero-null tests, Holm FWER alpha0.05",
+  "planned_delta": 0.00025772842664981106,
+  "power_target": 0.8,
+  "power_scope": "Conditional training-seed normal-difference planning; no temporal or achieved power claim",
+  "temporal_secondary_family": "Six fixed DM comparisons, Holm6; circular block7 bootstrap sensitivity3/14",
+  "normality_diagnostic_selects_tests": false,
+  "bootstrap_draws": 4999,
+  "bootstrap_seed": 20261107,
+  "temporal_bootstrap_seed": 20261108,
+  "R_required": 331,
+  "R_final": 465,
+  "final_runs_floor": 465,
+  "known_reserve_exploratory": true,
+  "fresh_confirmatory_holdout": false,
+  "financial_utility_claimed": false,
+  "delta_role": "Unchanged academic planning convention",
+  "reference_source_sha256": {
+    "planned_study_statistics.py": "703492f299649ac5f87a2c37e30f0ae5fc4253595fba0fce36ec1b1b817fcdf2",
+    "gru_lstm_tcn_diagnostics.py": "8cf66f3c169d90a677ae1fe16d2b77636d19c42bfa718d0b1beec77980d49ec8"
+  },
+  "scope": "New coherent historical exploratory extension on an already observed reserve; seed uncertainty is conditional on its fixed calendar and frozen recipes, not uncertainty over markets or a fresh confirmatory holdout.",
+  "live_prospective_forecasts": false,
+  "temporal_limitations": "Already observed historical outcome cohort of only60days; market-regime generalization and 80percent temporal power are not established",
+  "significance_is_not_practical_relevance": true
+}

@@ -1,0 +1,67 @@
+{
+  "study_id": "S8",
+  "assessment_type": "Evidence-by-dimension, without arbitrary aggregate quality score",
+  "dimensions": [
+    {
+      "dimension": "Identidad y tipo documental",
+      "status": "Documentado en fuente primaria",
+      "evidence": "Portada / p.165: autores, título, Springer2019, ISNN2019, LNCS11554, pp.165–172 y DOI; metadatos PDF concordantes.",
+      "implication": "Estudio aplicado identificable; sin atribuir indexación o cuartil no comprobados."
+    },
+    {
+      "dimension": "Relevancia al problema",
+      "status": "RV de Bitcoin con contrato distinto",
+      "evidence": "Abstract / p.165 y sección2: BTCUSD minuto; RV de tres horas = suma de retornos cuadrados; entrada de RV pasada.",
+      "implication": "Sustenta familias aplicadas a Bitcoin; no equivale a sigma7 diaria ni a OHLCV exógena."
+    },
+    {
+      "dimension": "Independencia de comparadores",
+      "status": "MLP, CNN, LSTM y GRU verificadas",
+      "evidence": "Enumeración en pp.168–169 y filas separadas en Tabla1, p.171.",
+      "implication": "Contar S8 una sola vez por familia; una cabeza Dense de LSTM no crea una MLP independiente."
+    },
+    {
+      "dimension": "Configuración de arquitectura",
+      "status": "Parcial",
+      "evidence": "Tabla1: MLP de cuatro capas, CNN de dos capas más Dense, longitudes10/6. Anchuras, activaciones e hiperparámetros completos no reportados.",
+      "implication": "No presentar las redes del proyecto como réplicas; conservar los campos desconocidos."
+    },
+    {
+      "dimension": "Dimensionalidad de CNN",
+      "status": "No reportada explícitamente",
+      "evidence": "El texto dice CNN de dos capas más Dense, sin Conv1D/Conv2D, kernel, padding o causalidad.",
+      "implication": "CNN independiente 1/6; CNN1D explícita 0/6. La secuencia RV no prueba por sí sola la dimensionalidad."
+    },
+    {
+      "dimension": "Partición y prevención de fuga",
+      "status": "Insuficientemente descritas",
+      "evidence": "p.170: diez folds para series / 100 runs y treinta inicializaciones de test. Faltan fechas, proporciones, purga, embargo y ámbito del escalado.",
+      "implication": "No certificar ausencia de fuga ni equivalencia con Filipe."
+    },
+    {
+      "dimension": "Repeticiones y dispersión",
+      "status": "Repeticiones declaradas; dispersión parcial",
+      "evidence": "Treinta inicializaciones de test y diez varianzas en cinco filas neuronales de Tabla1.",
+      "implication": "Conservar varianza; no etiquetarla como DE o IC95 ni inferir significancia."
+    },
+    {
+      "dimension": "Inferencia estadística",
+      "status": "No reportada en el capítulo",
+      "evidence": "No se describen contrastes pareados, intervalos o corrección por multiplicidad para Tabla1.",
+      "implication": "Menor RMSE puntual no demuestra superioridad estadística."
+    },
+    {
+      "dimension": "Coherencia interna",
+      "status": "Discrepancia puntual conservada",
+      "evidence": "HARRV: Tabla1 muestra lags1,6,16; la conclusión menciona2,3,4.",
+      "implication": "Atribuir los valores publicados y mantener la alerta; no armonizar la fuente retrospectivamente."
+    },
+    {
+      "dimension": "Alcance del hallazgo",
+      "status": "Una ocurrencia de respaldo aplicado",
+      "evidence": "S8 es el único estudio del corte con MLP y CNN independientes.",
+      "implication": "No declarar uso ampliamente recurrente ni selección anterior al entrenamiento."
+    }
+  ],
+  "overall": "Identifiable applied fulltext eligible for bounded comparative extraction, with important architecture/protocol and indexing unknowns"
+}

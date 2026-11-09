@@ -1,0 +1,462 @@
+[
+  {
+    "group_id": "E1OA-T01",
+    "recommended_bibtex_key": "lei2021volatilitytcn",
+    "title": "Volatility Forecasting for High-Frequency Financial Data Based on Web Search Index and Deep Learning Model",
+    "authors": [
+      "Bolin Lei",
+      "Boyu Zhang",
+      "Yuping Song"
+    ],
+    "year_online": 2021,
+    "online_date": "2021-02-05",
+    "doi": "10.3390/math9040320",
+    "venue": "Mathematics",
+    "volume": "9",
+    "issue": "4",
+    "article_number": "320",
+    "accessed_utc": "2026-11-07T03:12:15Z",
+    "source_urls": [
+      "https://www.mdpi.com/2227-7390/9/4/320",
+      "https://pdfs.semanticscholar.org/1b82/b28c49e99e9a216708516dc5d99eca0e5578.pdf"
+    ],
+    "access_level": "complete_publisher_article_ccby_copy",
+    "full_text_read": true,
+    "read_scope": "PDF completo de 17 páginas accesible; revisados introducción, método, datos, resultados, discusión, limitaciones, conclusión y tablas 1–14. Extracción textual con localizadores de página.",
+    "version": "Artículo publicado, Mathematics 2021, 9, 320; copia íntegra con DOI y declaración de licencia del original en p. 1, alojada en Semantic Scholar.",
+    "license": "CC BY 4.0, verificada en p. 1 del original; permite esta copia. El HTML/PDF editorial directo respondió 429.",
+    "doi_identity_verified": true,
+    "original_file_materialized": false,
+    "original_file_sha256": null,
+    "historical_N7_inclusion": false,
+    "part_of_original_22": false,
+    "new_to_current_review": true,
+    "stratum": "transfer_equity_daily_realized_variance",
+    "target": "RV diaria del Shanghai Securities Composite Index: suma de cuadrados de 48 retornos logarítmicos intradía de cinco minutos, multiplicados por 100; ecuaciones 10–11, p. 6. Es varianza realizada aunque el artículo la denomina volatility; no σ7 cripto.",
+    "horizon": "Un día; robustez con dos y cinco pasos diarios. Definición de agregado multihorizonte y estrategia directa/recursiva no suficientemente detalladas.",
+    "models_and_roles": {
+      "proposed": "TCN+B: TCN autónoma con factor de atención de inversores Baidu; B es predictor externo, no un bloque arquitectónico de atención.",
+      "independent_comparators": [
+        "TCN sin Baidu",
+        "LSTM+B",
+        "GARCH normal y Student-t",
+        "FIGARCH normal y Student-t",
+        "ARFIMA",
+        "HAR-RV"
+      ],
+      "tcn_independent_verified": true,
+      "gru_independent_verified": false,
+      "mlp_independent_verified": false
+    },
+    "architecture_details": {
+      "tcn": "Convoluciones causales dilatadas y conexiones residuales; dos convoluciones/ReLU por módulo, WeightNorm y dropout (§2.1, pp. 3–4). Dilatación elegida con factor 2. Tabla 6, p. 11: 11 filtros, kernel 2, ventana 20 días, Adam, MSE, batch 84, 50 épocas. Profundidad total y número de parámetros no quedan fijados inequívocamente.",
+      "simplicity_assessment": "Arquitectura convolucional autónoma y relativamente acotada; no se acredita que sea mínima ni equivalente en capacidad a E1. Sin búsqueda híbrida GARCH dentro de la TCN."
+    },
+    "protocol": {
+      "asset": "Shanghai Securities Composite Index; no cripto.",
+      "period": "2011-01-04 a 2020-11-21",
+      "daily_observations": 2403,
+      "data_sources": "Datos intradía de cinco minutos; disponibilidad declarada en JoinQuant; índice Baidu recolectado por los autores.",
+      "inputs": "Tabla 4, p. 9: once indicadores declarados, incluidos RV, volumen y técnicos, con/sin factor Baidu. Tabla 5 también incluye money, lo que exige conciliar el conteo.",
+      "split": "Tabla 6: 68% entrenamiento, 17% validación, 15% prueba. §3.3.2 describe ventanas móviles para ejemplos; el orden temporal exacto del split y política de reestimación no quedan enteramente explicitados.",
+      "selection": "§3.3.2, p. 11: el autor elige ventana de 20 días por el menor error del test entre 5/10/20/30. Riesgo de selección con evaluación confirmado en el texto.",
+      "repetitions": "No se acreditan repeticiones independientes ni dispersión por semilla.",
+      "statistics": "KS compara distribuciones de resultados en Tabla 7; no sustituye una prueba de diferencias de pérdida predictiva como DM.",
+      "execution": "Sin ejecución del código ni reproducción de resultados."
+    },
+    "metrics": [
+      {
+        "table": "8",
+        "pdf_page": 13,
+        "target": "RV diaria",
+        "horizon_days": 1,
+        "model": "TCN+B",
+        "MSE": 0.254,
+        "RMSE": 0.504,
+        "MAE": 0.331,
+        "MAPE": 199.648,
+        "MSLE": 0.045
+      },
+      {
+        "table": "8",
+        "pdf_page": 13,
+        "target": "RV diaria",
+        "horizon_days": 1,
+        "model": "TCN",
+        "MSE": 0.347,
+        "RMSE": 0.589,
+        "MAE": 0.364,
+        "MAPE": 225.211,
+        "MSLE": 0.052
+      },
+      {
+        "table": "8",
+        "pdf_page": 13,
+        "target": "RV diaria",
+        "horizon_days": 1,
+        "model": "LSTM+B",
+        "MSE": 0.393,
+        "RMSE": 0.627,
+        "MAE": 0.378,
+        "MAPE": 227.969,
+        "MSLE": 0.053
+      },
+      {
+        "table": "8",
+        "pdf_page": 13,
+        "target": "RV diaria",
+        "horizon_days": 1,
+        "model": "ARFIMA",
+        "MSE": 0.427,
+        "RMSE": 0.653,
+        "MAE": 0.326,
+        "MAPE": 440.965,
+        "MSLE": 0.081
+      }
+    ],
+    "evidence_locations": [
+      "PDF p. 1: DOI, autores, fecha y CC BY 4.0.",
+      "§2.1 pp. 3–4, Figuras 1–3: TCN residual, causal y dilatada.",
+      "§3.1 p. 6, ecuaciones 10–11: variable objetivo y escala.",
+      "§§3.2–3.3 pp. 6–11, Tablas 1–6: datos, construcción Baidu e hiperparámetros.",
+      "§3.3.2 p. 11: elección de ventana con test.",
+      "§3.4 pp. 12–14, Tablas 7–10: comparadores y resultados.",
+      "§4 pp. 14–16, Tablas 11–14: otras construcciones del factor y discrepancias de resultados.",
+      "§4.3 pp. 15–16: limitaciones de Baidu; disponibilidad de datos p. 16."
+    ],
+    "quality_issues": [
+      "Selección explícita de ventana por error de test; las cifras no acreditan evaluación final intacta.",
+      "El cribado de palabras y ponderación Baidu no se limitan explícitamente al entrenamiento; posible exposición temporal no resuelta.",
+      "Tabla 8 no respalda superioridad en todas las métricas: ARFIMA MAE 0.326 frente a 0.331 de TCN+B; en horizontes 2/5 hay otras excepciones.",
+      "TCN+B en Tabla 8 MSE 0.254/RMSE 0.504, pero Tablas 12/14 usan RMSE 0.549 y Tabla 12 MSE 0.302 para columna con igual rótulo. No se homogeneizan esas series de resultados.",
+      "Los comparadores econométricos y redes usan conjuntos de información distintos; no atribuir diferencias sólo a arquitectura.",
+      "No consta una receta total con profundidad inequívoca o repeticiones. No se compara su escala numérica con E1."
+    ],
+    "eligibility_decision": "include_transfer_stratum_with_major_protocol_reservations",
+    "eligibility_reason": "Texto completo legal y TCN autónoma comprobada para RV; útil para sostener la familia convolucional y contrastar evidencia, conservando dominio equity y reservas. No incrementar frecuencia estricta de TCN en volatilidad cripto ni declarar reemplazo homogéneo de σ7."
+  },
+  {
+    "group_id": "E1OA-T02",
+    "recommended_bibtex_key": "linde2022harstyle",
+    "title": "Realized Volatility Forecasting Using HAR-Style Neural Networks: Forecasting the Realized Volatility of Cryptocurrencies",
+    "authors": [
+      "Sebastian Tved Linde"
+    ],
+    "year_online": 2022,
+    "online_date": "2022-06-28",
+    "doi": null,
+    "venue": "Aalborg University Business School",
+    "publication_type": "M.Sc. Finance Master's Thesis",
+    "accessed_utc": "2026-11-07T03:12:15Z",
+    "source_urls": [
+      "https://projekter.aau.dk/projekter/files/484145663/thesis.pdf",
+      "https://github.com/stlinde/Thesis/tree/main/analysis"
+    ],
+    "access_level": "institutional_complete_thesis_public_access",
+    "full_text_read": true,
+    "read_scope": "Original institucional de 57 páginas: revisados marco del objetivo, datos, métodos, resultados, discusión y conclusión; Tablas 3.1–3.6, 4.1 y 5.5–5.13. No se ejecutó el notebook enlazado.",
+    "version": "Tesis de máster fechada 28-06-2022, copia institucional pública.",
+    "license": "No se verificó licencia de reutilización; acceso público institucional legal. No se redistribuye el original ni se afirma CC BY. El PDF contiene aviso genérico de copyright de Aalborg.",
+    "doi_identity_verified": false,
+    "original_file_materialized": false,
+    "original_file_sha256": null,
+    "historical_N7_inclusion": false,
+    "part_of_original_22": false,
+    "new_to_current_review": true,
+    "stratum": "grey_literature_crypto_daily_realized_volatility_dccnn",
+    "target": "Volatilidad realizada diaria, definida como raíz de suma de retornos logarítmicos intradía cuadrados (ecuación 2.10, p. 10). Se elige muestreo de cinco minutos; también se pronostica representación logarítmica. El documento alterna expresiones volatilidad/varianza y hay que conservar esa ambigüedad operativa.",
+    "horizon": "Un día adelante.",
+    "models_and_roles": {
+      "econometric": "HAR, lnHAR, HAR-J y HAR-RS-I.",
+      "proposed_independent_neural": [
+        "ANN sobre cada conjunto de predictores HAR",
+        "DCCNN causal dilatada sobre cada conjunto de predictores HAR"
+      ],
+      "tcn_independent_verified": false,
+      "tcn_family_evidence": "§4.1.2 usa el subtítulo Temporal Convolutional Network, pero denomina DCCNN a una arquitectura propia inspirada en WaveNet. Es un pronosticador neuronal independiente con predictores HAR; no se demuestra que contenga la TCN residual de E1 ni debe recodificarse automáticamente como TCN simple.",
+      "mlp_independent_verified": true,
+      "gru_independent_verified": false,
+      "lstm_independent_verified": false,
+      "identity_note": "No es HARNet de Reisenhofer, Bayer y Hautsch: autor, título, año y institución distintos. No se afirma dependencia entre ambos."
+    },
+    "architecture_details": {
+      "DCCNN": "Cinco bloques causales con dilatación 1/2/4/8/16, dropout 0.2, entrada de 32 días. Extras como J pasan por convolución 1×1; HAR-RS-I usa dos ramas de semivarianzas. Cabeza Dense32-ReLU-Dense1; Adam, LR inicial 0.03 decreciente ×0.1 cada diez épocas, MSE. Tabla 5.7: 1110 pesos para HAR/lnHAR, 1115 HAR-J, 2194 HAR-RS-I.",
+      "ANN": "Ocho capas indicadas en Tabla 4.1: anchos 8/16/32/64/32/16/8/1; LeakyReLU y dropout0.3 en dos capas, Adam, LR0.003 con reducción. Tabla5.7:5537–5545 pesos. Es MLP autónomo profundo; su etiqueta simple no significa mínima profundidad.",
+      "simplicity_assessment": "DCCNN tiene menos parámetros que ANN según el original, pero cinco bloques y cabeza no acreditan arquitectura mínima. No clasificar ANN de ocho capas como MLP simple de referencia."
+    },
+    "protocol": {
+      "assets": [
+        "BTC",
+        "ETH",
+        "ADA",
+        "BNB"
+      ],
+      "data": "Observaciones de precio de un minuto, convertidas a retornos cinco minutos para la medida RV. Fuente/exchange y tratamiento de huecos no quedan inequívocamente identificados en el texto examinado.",
+      "period": "BTC/ETH/BNB 2018-01-01 a 2021-09-21; ADA 2018-04-17 a 2021-09-21 (Tabla3.1).",
+      "split": "Se descartan primeros30 días y observación final. Tabla3.3:BTC930 train/398 forecast; ETH/BNB igual; ADA855/367. Aproximadamente70/30 temporal. No se verifica validación separada.",
+      "fitting": "HAR se recalibra en cada paso con ventana móvil; redes se entrenan una vez y se mantienen fijas (§5.2). Batch8,20épocas para redes (§5.1.2).",
+      "selection": "§5.1.2 reconoce muchas iteraciones de ajuste por prueba/error, sin registro suficiente de selección independiente del test.",
+      "repetitions": "No se acreditan múltiples semillas, repeticiones o intervalos de incertidumbre.",
+      "statistics": "Se comparan MSE y QLIKE; el propio texto reconoce que no realiza las pruebas suficientes para sostener algunas inferencias.",
+      "execution": "Sin entrenamiento, sin reproducción y sin validar el código de autor."
+    },
+    "metrics": [
+      {
+        "table": "5.12",
+        "pdf_page": 43,
+        "printed_page": 42,
+        "asset": "BTC",
+        "horizon_days": 1,
+        "metric": "MSE",
+        "values": {
+          "HAR": 0.000344,
+          "lnHAR": 0.000341,
+          "HAR-ANN": 0.000518,
+          "HAR-DCCNN": 0.000558,
+          "HAR-RS-I-DCCNN": 0.000461
+        },
+        "scale": "Valores literales de la tabla; no armonizados con E1."
+      }
+    ],
+    "evidence_locations": [
+      "Portada p.1: identidad, título, institución y fecha. Página siguiente: enlace a notebook y GitHub.",
+      "§2.1.1, pp.9–11: ecuación2.10 y muestreo5min.",
+      "§3.1, pp.19–24, Tabla3.1:activos/fechas; §3.2, pp.25–27, Tablas3.3–3.6:partición y conteos.",
+      "§4.1.1, pp.28–31:predictores HAR/jumps/semivarianzas.",
+      "§4.1.2, pp.31–32, Tabla4.1:ANN y DCCNN propias; §4.2,p.33:criterios.",
+      "§5.1.2,pp.38–40, Tabla5.7:pesos y ajuste.",
+      "§5.2,pp.41–44, Tablas5.12–5.13:resultados y distinta reestimación.",
+      "§§6–7,pp.45–47:limitaciones interpretativas y conclusión. Paginación impresa indicada salvo donde se diferencia p.PDF."
+    ],
+    "quality_issues": [
+      "Literatura gris de máster, sin condición de artículo revisado por pares verificada.",
+      "No se identifica una TCN residual exactamente igual a la de E1. ANN profunda y arquitectura DCCNN propia no cierran selección de tres bases simples.",
+      "HAR reestimado frente a redes fijas confunde comparación de arquitectura con política de adaptación.",
+      "No se acredita validación separada, repeticiones ni protocolo completo de selección pese al ajuste iterativo.",
+      "La mezcla de RV raíz, terminología varianza, lnHAR y fórmula QLIKE exige revisar escalas/inversas antes de tratar rankings como homogéneos.",
+      "Figura5.2,p.44 etiqueta BTC-HAR con escala alrededor1–1.25 aunque Tabla3.3 presenta RV BTC0.007–0.312; requiere conciliación, no se corrige especulativamente.",
+      "No se trasladan al propio estudio afirmaciones de superioridad universal: Tabla5.12 favorece HAR/lnHAR en MSE."
+    ],
+    "eligibility_decision": "include_grey_crypto_convolutional_family_context_not_strict_tcn_frequency",
+    "eligibility_reason": "Alternativa primaria abierta para estudiar DCCNN y MLP autónomas en RV cripto cuando Ferraro no está disponible. Conservar como fuente gris y respaldo de familia causal/dilatada; no sumar automáticamente TCN residual al denominador N7 ni reemplazar resultados de σ7."
+  },
+  {
+    "group_id": "E1X002",
+    "recommended_bibtex_key": "AcevedoPrins2026ArchLstm",
+    "title": "ARCH–LSTM Structural Equivalence with Hybrid Student-t Likelihood Loss for Financial Volatility Forecasting",
+    "authors": [
+      "Natalia Acevedo-Prins",
+      "Juan D. Velásquez"
+    ],
+    "year_online": 2026,
+    "doi": "10.3390/jrfm19090688",
+    "source_urls": [
+      "https://www.mdpi.com/1911-8074/19/9/688",
+      "https://github.com/Nataliaprins/arch-lstm-hybrid"
+    ],
+    "accessed_utc": "2026-11-07T03:12:15Z",
+    "access_level": "unchanged_partial_indexed_primary_and_author_code",
+    "full_text_read": false,
+    "original_file_materialized": false,
+    "new_to_current_review": false,
+    "historical_N7_inclusion": false,
+    "part_of_original_22": false,
+    "license": "La fuente editorial indexada declara CC BY; el código GitHub declara MIT. La licencia del código no establece lectura del artículo.",
+    "prior_review": "references/literature_e1/internet_closure_20261106/part_d/reviews.json E1X002",
+    "eligibility_decision": "still_pending_complete_original_not_oa_replacement_read",
+    "eligibility_reason": "HTML editorial respondió429; PDF,XML y CDN editorial no accesibles mediante herramienta. El índice recupera secciones y GitHub sigue abierto, pero no se alcanzó lectura continua de texto/tablas completos. No elevar nivel de acceso ni reutilizar cifras parciales como originales completos.",
+    "metrics": []
+  },
+  {
+    "group_id": "E1OA-T03",
+    "recommended_bibtex_key": "hortua2025vixbayesian",
+    "title": "Forecasting VIX using Bayesian deep learning",
+    "authors": [
+      "Héctor J. Hortúa",
+      "Andrés Mora-Valencia"
+    ],
+    "year_nominal": 2025,
+    "year_online": 2024,
+    "online_date": "2024-06-14",
+    "doi": "10.1007/s41060-024-00562-5",
+    "venue": "International Journal of Data Science and Analytics",
+    "volume": "20",
+    "pages": "2039–2060",
+    "accessed_utc": "2026-11-07",
+    "source_urls": [
+      "https://link.springer.com/article/10.1007/s41060-024-00562-5"
+    ],
+    "access_level": "publisher_full_text_html_tables_unavailable",
+    "full_text_read": true,
+    "full_tables_read": false,
+    "quantitative_extraction_complete": false,
+    "read_scope": "Cuerpo científico editorial HTML leído hasta las conclusiones; identidad, diseño, resultados y derechos cotejados. Los enlaces de tablas no devolvieron contenido numérico legible: no se acredita lectura de cada celda ni se extraen sus métricas.",
+    "version": "Versión editorial: publicada en línea el 14-06-2024 y asignada al volumen de 2025.",
+    "license": "CC BY 4.0 verificada en sección Rights and permissions del HTML editorial.",
+    "original_file_materialized": false,
+    "original_file_sha256": null,
+    "new_to_current_review": true,
+    "historical_N7_inclusion": false,
+    "part_of_original_22": false,
+    "stratum": "context_equity_implied_volatility_index_tcn_lstm_bayesian",
+    "target": "Nivel diario del VIX, índice de volatilidad implícita de opciones S&P 500 a 30 días; pronosticar su valor futuro no equivale a RV, varianza BTC o σ7.",
+    "horizon": "Uno, cinco y diez pasos diarios.",
+    "models_and_roles": {
+      "proposed": "WaveNet, modelo rotulado TCN y Transformer, con versiones deterministas y Bayesian last-layer RT/Flipout/MNF y calibración posterior.",
+      "tcn_independent_verified": false,
+      "tcn_hybrid_verified": true,
+      "hybrid_evidence": "§3.4: después del módulo TCN se conecta una LSTM de 64 unidades. Se clasifica como TCN–LSTM a pesar del rótulo TCN de las tablas.",
+      "independent_comparators": [
+        "Naive Forecaster",
+        "WaveNet",
+        "Transformer"
+      ],
+      "lstm_independent_verified": false,
+      "gru_independent_verified": false,
+      "mlp_independent_verified": false
+    },
+    "architecture_details": {
+      "TCN_LSTM": "Una pila TCN, 64 filtros, kernel 3, dilataciones 1/2/4/8/16 y después LSTM de 64 unidades. Las versiones bayesianas cambian la última capa mediante RT, Flipout o MNF.",
+      "simplicity_assessment": "Híbrido recurrente-convolucional con inferencia/calibración adicional en variantes probabilísticas; excluir del conteo de TCN autónoma simple."
+    },
+    "protocol": {
+      "source": "Yahoo Finance, VIX diario del 22-08-2013 al 31-07-2023; 2500 observaciones (§4).",
+      "split": "Cronológico 80/10/10: 2000 entrenamiento, 250 validación y 250 test; ventana de 20 días (§3.4).",
+      "preprocessing": "Robust scaler centrado por mediana y rango intercuartil; texto no fija inequívocamente sobre qué subconjunto se ajusta.",
+      "selection": "Grid search/Keras Tuner; Huber para deterministas y NLL+KL para probabilísticos; calibración por mínimo RMSCE. No se acredita que elección de priors/calibración use exclusivamente validación.",
+      "statistics": "DM frente a Naive y entre versiones determinista/probabilística (§5.5); no se reextrae la tabla.",
+      "repetitions": "No se verifican repeticiones independientes ni semillas.",
+      "execution": "Sin reproducir entrenamiento o métricas."
+    },
+    "metrics": [],
+    "evidence_locations": [
+      "Cabecera: autores, DOI, publicación en línea 14-06-2024, volumen 20, pp. 2039–2060 (2025).",
+      "§3.1.2: TCN; §3.4: TCN seguida de LSTM de 64 unidades, ventana, partición, scaler, pérdidas y comparadores.",
+      "§4: fuente, fechas y 2500 observaciones.",
+      "§§5.1–5.5: modelos, calibración y DM; Tablas 3–10 enlazadas pero celdas numéricas no recuperadas.",
+      "§6: conclusiones; Rights and permissions: CC BY 4.0."
+    ],
+    "quality_issues": [
+      "La etiqueta TCN no permite contar TCN autónoma: la LSTM posterior es explícita.",
+      "Dominio VIX/volatilidad implícita diferente de cripto RV y σ7.",
+      "Tablas numéricas no recuperadas: no se atribuye el RMSE del abstract como resultado de tabla verificado.",
+      "El alcance de ajuste de escala, priors y calibración no basta para certificar test intacto.",
+      "Sin repeticiones verificadas."
+    ],
+    "eligibility_decision": "include_qualitative_context_hybrid_vix_exclude_standalone_tcn_frequency",
+    "eligibility_reason": "Texto completo editorial legal con método sustantivo permite identificar una variante híbrida y evitar un falso conteo TCN; las limitaciones de acceso a tablas impiden una extracción cuantitativa completa. Conservar como contexto, sin incorporarlo como comparador autónomo de σ7.",
+    "access_timestamp_precision": "date_only",
+    "metadata_recorded_at_utc": "2026-11-07T03:25:12Z"
+  },
+  {
+    "group_id": "E1T3",
+    "recommended_bibtex_key": "morenopino2024deepvol",
+    "title": "DeepVol: Volatility Forecasting from High-Frequency Data with Dilated Causal Convolutions",
+    "authors": [
+      "Fernando Moreno-Pino",
+      "Stefan Zohren"
+    ],
+    "year_online": 2024,
+    "doi": "10.1080/14697688.2024.2387222",
+    "venue": "Quantitative Finance",
+    "accessed_utc": "2026-11-07",
+    "source_urls": [
+      "https://arxiv.org/abs/2210.04797",
+      "https://arxiv.org/pdf/2210.04797",
+      "https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html",
+      "https://doi.org/10.1080/14697688.2024.2387222"
+    ],
+    "access_level": "complete_author_deposit_arxiv_v3",
+    "full_text_read": true,
+    "read_scope": "Lectura por agente delegado del cuerpo científico hasta §6 y tablas principales; AppendixA(TablasA1/A2) inspeccionado, sin auditoría de cada fila ni referencias.",
+    "version": "arXiv:2210.04797v3, 08-08-2024, 39 páginas. Versión efectivamente leída: depósito del autor. DOI editorial corroborado, sin afirmar identidad textual exacta con la versión publicada.",
+    "license": "Licencia arXiv non-exclusive distribution 1.0, enlazada en la ficha abs; no se infiere CC BY para esta versión.",
+    "original_file_materialized": false,
+    "original_file_sha256": null,
+    "new_to_current_review": false,
+    "existing_bibliographic_key": true,
+    "historical_N7_inclusion": false,
+    "part_of_original_22": false,
+    "stratum": "transfer_equity_daily_realized_variance_attention_dcc",
+    "target": "Varianza realizada diaria RV, suma de retornos intradía de cinco minutos al cuadrado (§2, pp. 6–8), predicción para t+1; no σ7.",
+    "horizon": "Un día.",
+    "models_and_roles": {
+      "proposed": "DeepVol: convoluciones causales dilatadas residuales con atención Bahdanau.",
+      "independent_comparators": [
+        "MLP",
+        "LSTM"
+      ],
+      "other_comparators": "Familias econométricas y modelos basados en medidas realizadas; las cifras se conservan por tabla.",
+      "tcn_independent_verified": false,
+      "tcn_family_evidence": "DCC con atención propuesta; DeepVol RM es ablación con entrada de medidas realizadas, sin establecer una TCN simple.",
+      "mlp_independent_verified": true,
+      "lstm_independent_verified": true,
+      "gru_independent_verified": false
+    },
+    "architecture_details": {
+      "proposed": "§4, pp. 15–17 y Tabla 1, p. 18: dos bloques, seis capas, kernel 3, 32 canales residuales, 64 dilatados, 128 skip y 64 finales, con atención Bahdanau.",
+      "simplicity_assessment": "Modelo causal dilatado con atención; no acredita TCN mínima ni equivalencia de receta con E1."
+    },
+    "protocol": {
+      "assets": "Acciones del NASDAQ 100; no cripto. Se excluye información nocturna.",
+      "period": "30-09-2019 a 30-09-2021.",
+      "split": "Doce meses de entrenamiento; validación octubre–diciembre de 2020; test enero–septiembre de 2021 (§§5.1–5.3).",
+      "selection": "Ajuste y parada temprana con validación; Adam y QLIKE.",
+      "statistics": "MCS al 5%; §5.5 evalúa transferencia a la mitad de los tickers no vistos. Tabla 6, p. 25: HEAVY conserva mejor QLIKE en esa prueba.",
+      "repetitions": "No se verifican múltiples semillas o repeticiones independientes.",
+      "execution": "Sin reproducción ni entrenamiento."
+    },
+    "metrics": [
+      {
+        "table": "3",
+        "model": "DeepVol",
+        "MAE": 3.903,
+        "RMSE": 8.457,
+        "SMAPE": 0.279,
+        "QLIKE": 340.779,
+        "MedAE": 2.008,
+        "source_page": 21,
+        "page_numbering": "Paginación del manuscrito arXiv consultado",
+        "ME_maximum_error": 71.779
+      },
+      {
+        "table": "3",
+        "model": "LSTM",
+        "RMSE": 10.032,
+        "source_page": 21,
+        "page_numbering": "Paginación del manuscrito arXiv consultado"
+      },
+      {
+        "table": "3",
+        "model": "MLP",
+        "RMSE": 10.607,
+        "source_page": 21,
+        "page_numbering": "Paginación del manuscrito arXiv consultado"
+      }
+    ],
+    "metric_scale_note": "Valores literales de Tabla 3; §3.2 define RMSE de varianza σ² frente a predicción σ². No se verificó factor operativo de reescalado explícito. No convertir a porcentajes ni inferir unidades por su tamaño; no comparar directamente con E1.",
+    "evidence_locations": [
+      "Ficha arXiv y licencia: versión y fecha del depósito.",
+      "§2, pp. 6–8: objetivo RV y frecuencia de cinco minutos.",
+      "§3.1, p. 13: MLP y LSTM autónomos; §3.2: funciones de pérdida.",
+      "§4, pp. 15–17 y Tabla 1, p. 18: arquitectura DCC residual con atención.",
+      "§§5.1–5.3, pp. 17–21: datos, partición, selección y Tabla 3.",
+      "§5.5 y Tabla 6, pp. 24–25: transferencia a acciones no vistas.",
+      "§6: conclusiones; Appendix A, Tablas A1/A2, pp. 31–34 inspeccionadas."
+    ],
+    "quality_issues": [
+      "Actualización de acceso de T3 ya existente; cero estudio nuevo y cero nueva entrada canónica.",
+      "Depósito de autor concreto: no declarar lectura de la versión editorial sin haberla obtenido.",
+      "Acciones y varianza realizada diaria: conservar estrato de transferencia.",
+      "DCC con atención no demuestra simplicidad TCN.",
+      "Escala operativa de métricas y repeticiones no enteramente acreditadas."
+    ],
+    "eligibility_decision": "upgrade_existing_transfer_original_access_not_new_study",
+    "eligibility_reason": "Sustituye evidencia de identidad por lectura del depósito de autor completo para T3. Permite estudiar MLP, LSTM, convolución causal y transferencia; no añade frecuencia cripto ni TCN autónoma simple.",
+    "volume": "24",
+    "issue": "8",
+    "pages": "1105–1127",
+    "access_timestamp_precision": "date_only",
+    "metadata_recorded_at_utc": "2026-11-07T03:25:12Z"
+  }
+]

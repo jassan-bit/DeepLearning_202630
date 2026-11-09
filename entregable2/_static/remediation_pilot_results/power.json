@@ -1,0 +1,132 @@
+{
+  "scope": "conditional P0 training replication planning, not final post-HPO or joint temporal power",
+  "models": {
+    "TimeMixer": {
+      "source": "P0 November–December fixed-calendar paired training randomizations only",
+      "n_pilot_seeds": 5,
+      "variance_df": 4,
+      "observed_mean_gain": -0.0010729811980540506,
+      "paired_difference_SD": 0.000413697086377306,
+      "SD_ci95_normal_seed_assumption": [
+        0.0002478596340118832,
+        0.0011887815933612513
+      ],
+      "null_boundary": 0.00025772842664981106,
+      "planned_alternative_gain": 0.0005154568532996221,
+      "epsilon_beyond_null": 0.00025772842664981106,
+      "one_sided_alpha": 0.0006666666666666666,
+      "multiplicity_denominator": 30,
+      "target_conditional_power": 0.8,
+      "minimum_R": 5,
+      "cap_R": 200,
+      "point_SD_projection": {
+        "status": "within_cap_conditional_only",
+        "required_R": 48,
+        "power_at_required_R": 0.8078242707230939,
+        "power_at_cap": 0.9999999794619093
+      },
+      "optimistic_lower_SD_projection": {
+        "status": "within_cap_conditional_only",
+        "required_R": 21,
+        "power_at_required_R": 0.8255843314024345,
+        "power_at_cap": 1.0
+      },
+      "conservative_upper_SD_projection": {
+        "status": "required_R_exceeds_cap",
+        "required_R": null,
+        "required_R_lower_bound": 201,
+        "power_at_cap": 0.42767919138761734
+      },
+      "power_for_current_R5_under_planned_alternative": 0.00753549808379217,
+      "final_post_HPO_R_certified": false,
+      "joint_training_and_temporal_power_certified": false,
+      "assumptions": "Independent fitted seed randomizations; approximate normal paired RMSE differences conditional on this one calendar. SD uncertainty is large with df4. No observed gain is substituted for the planned alternative.",
+      "limitations": "P0 recipe differs from final post-HPO procedure. R is initialization replication, not independent markets or dates. Zero SD does not establish infinite precision or power."
+    },
+    "iTransformer": {
+      "source": "P0 November–December fixed-calendar paired training randomizations only",
+      "n_pilot_seeds": 5,
+      "variance_df": 4,
+      "observed_mean_gain": -0.0009970560925055046,
+      "paired_difference_SD": 0.00025709746462386555,
+      "SD_ci95_normal_seed_assumption": [
+        0.0001540356110435253,
+        0.0007387838679771344
+      ],
+      "null_boundary": 0.00025772842664981106,
+      "planned_alternative_gain": 0.0005154568532996221,
+      "epsilon_beyond_null": 0.00025772842664981106,
+      "one_sided_alpha": 0.0006666666666666666,
+      "multiplicity_denominator": 30,
+      "target_conditional_power": 0.8,
+      "minimum_R": 5,
+      "cap_R": 200,
+      "point_SD_projection": {
+        "status": "within_cap_conditional_only",
+        "required_R": 22,
+        "power_at_required_R": 0.818987415483447,
+        "power_at_cap": 1.0
+      },
+      "optimistic_lower_SD_projection": {
+        "status": "within_cap_conditional_only",
+        "required_R": 11,
+        "power_at_required_R": 0.8169324231471256,
+        "power_at_cap": 1.0
+      },
+      "conservative_upper_SD_projection": {
+        "status": "within_cap_conditional_only",
+        "required_R": 140,
+        "power_at_required_R": 0.8002248753461236,
+        "power_at_cap": 0.951624394300153
+      },
+      "power_for_current_R5_under_planned_alternative": 0.02226876831991601,
+      "final_post_HPO_R_certified": false,
+      "joint_training_and_temporal_power_certified": false,
+      "assumptions": "Independent fitted seed randomizations; approximate normal paired RMSE differences conditional on this one calendar. SD uncertainty is large with df4. No observed gain is substituted for the planned alternative.",
+      "limitations": "P0 recipe differs from final post-HPO procedure. R is initialization replication, not independent markets or dates. Zero SD does not establish infinite precision or power."
+    },
+    "PatchTST": {
+      "source": "P0 November–December fixed-calendar paired training randomizations only",
+      "n_pilot_seeds": 5,
+      "variance_df": 4,
+      "observed_mean_gain": -0.0006763669011717079,
+      "paired_difference_SD": 0.0005062704806171282,
+      "SD_ci95_normal_seed_assumption": [
+        0.00030332342230309027,
+        0.0014547963919448363
+      ],
+      "null_boundary": 0.00025772842664981106,
+      "planned_alternative_gain": 0.0005154568532996221,
+      "epsilon_beyond_null": 0.00025772842664981106,
+      "one_sided_alpha": 0.0006666666666666666,
+      "multiplicity_denominator": 30,
+      "target_conditional_power": 0.8,
+      "minimum_R": 5,
+      "cap_R": 200,
+      "point_SD_projection": {
+        "status": "within_cap_conditional_only",
+        "required_R": 69,
+        "power_at_required_R": 0.8049177406515852,
+        "power_at_cap": 0.9999512372606061
+      },
+      "optimistic_lower_SD_projection": {
+        "status": "within_cap_conditional_only",
+        "required_R": 28,
+        "power_at_required_R": 0.8039115055462057,
+        "power_at_cap": 1.0
+      },
+      "conservative_upper_SD_projection": {
+        "status": "required_R_exceeds_cap",
+        "required_R": null,
+        "required_R_lower_bound": 201,
+        "power_at_cap": 0.2309779081562245
+      },
+      "power_for_current_R5_under_planned_alternative": 0.005164585337260187,
+      "final_post_HPO_R_certified": false,
+      "joint_training_and_temporal_power_certified": false,
+      "assumptions": "Independent fitted seed randomizations; approximate normal paired RMSE differences conditional on this one calendar. SD uncertainty is large with df4. No observed gain is substituted for the planned alternative.",
+      "limitations": "P0 recipe differs from final post-HPO procedure. R is initialization replication, not independent markets or dates. Zero SD does not establish infinite precision or power."
+    }
+  },
+  "OOF_power_not_substituted_for_P0": true
+}

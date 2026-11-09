@@ -1,0 +1,179 @@
+{
+  "schema_version": 1,
+  "analysis": "Known E1 calendar post-hoc distribution profiles for E2 EDA",
+  "status": "Exploratory and descriptive; the 2026 reserve was already evaluated in E1 before this analysis",
+  "periods": {
+    "train_2023": [
+      "2023-01-01",
+      "2023-12-31"
+    ],
+    "validation_2024_Jan_Oct": [
+      "2024-01-01",
+      "2024-10-31"
+    ],
+    "pilot_2024_Nov_Dec30": [
+      "2024-11-01",
+      "2024-12-30"
+    ],
+    "known_reserve_2026_Sep_Oct30": [
+      "2026-09-01",
+      "2026-10-30"
+    ]
+  },
+  "normalization_reference": "343 eligible initial D7 training outcomes through 2023-12-24",
+  "normalization_is_model_preprocessing": false,
+  "features": 41,
+  "reference_constant_features": [
+    "relative_lag1_close"
+  ],
+  "target_profiles": [
+    {
+      "period": "train_2023",
+      "feature": "sigma_7",
+      "representation": "target",
+      "calendar_days": 365,
+      "observed_eligible_days": 350,
+      "coverage": 0.958904109589041,
+      "mean": 0.018796715781918345,
+      "sd_ddof0": 0.00888981473428369,
+      "q05": 0.007407501963897436,
+      "q25": 0.011273484848218872,
+      "median": 0.01756716376814713,
+      "q75": 0.024247163097617108,
+      "q95": 0.03613006029392782,
+      "min": 0.0029296511573168147,
+      "max": 0.050651002290510616,
+      "skew_unbiased": 0.8024477703607161,
+      "excess_kurtosis_unbiased": 0.49649755453657507
+    },
+    {
+      "period": "validation_2024_Jan_Oct",
+      "feature": "sigma_7",
+      "representation": "target",
+      "calendar_days": 305,
+      "observed_eligible_days": 305,
+      "coverage": 1.0,
+      "mean": 0.023429304168060237,
+      "sd_ddof0": 0.01022682140885494,
+      "q05": 0.010831613142948145,
+      "q25": 0.016601639836943582,
+      "median": 0.021573835665047118,
+      "q75": 0.028020324229030197,
+      "q95": 0.04234419037775806,
+      "min": 0.007441673592266482,
+      "max": 0.05959837243869294,
+      "skew_unbiased": 1.2246588758240415,
+      "excess_kurtosis_unbiased": 1.7988110474798154
+    },
+    {
+      "period": "pilot_2024_Nov_Dec30",
+      "feature": "sigma_7",
+      "representation": "target",
+      "calendar_days": 60,
+      "observed_eligible_days": 60,
+      "coverage": 1.0,
+      "mean": 0.024962247888586562,
+      "sd_ddof0": 0.0068804739619611486,
+      "q05": 0.016021740265687295,
+      "q25": 0.01993188644925436,
+      "median": 0.023356633830586587,
+      "q75": 0.0274962847408158,
+      "q95": 0.040038210920040986,
+      "min": 0.014224090806416591,
+      "max": 0.040758586960166814,
+      "skew_unbiased": 0.754582559558455,
+      "excess_kurtosis_unbiased": 0.0422300242298137
+    },
+    {
+      "period": "known_reserve_2026_Sep_Oct30",
+      "feature": "sigma_7",
+      "representation": "target",
+      "calendar_days": 60,
+      "observed_eligible_days": 60,
+      "coverage": 1.0,
+      "mean": 0.01594272620685134,
+      "sd_ddof0": 0.0064135948868548395,
+      "q05": 0.007444363190392066,
+      "q25": 0.01062798578066202,
+      "median": 0.014526988527971069,
+      "q75": 0.02134160933525276,
+      "q95": 0.02716639948607269,
+      "min": 0.004710172607031547,
+      "max": 0.03188792248130475,
+      "skew_unbiased": 0.6937630799732304,
+      "excess_kurtosis_unbiased": -0.21316801053947954
+    }
+  ],
+  "target_distances": [
+    {
+      "period": "train_2023",
+      "feature": "sigma_7",
+      "representation": "target",
+      "reference": "Admitted initial D7 training outcomes 2023-01-01 through 2023-12-24",
+      "reference_n": 343,
+      "n": 350,
+      "ks_distance": 0.01008746355685125,
+      "wasserstein": 0.0001333576775470617,
+      "wasserstein_over_train_sd": 0.014866135626744523,
+      "reference_constant": false,
+      "inferential_p_value": null,
+      "scope": "Post-hoc descriptive known-calendar comparison; no retuning"
+    },
+    {
+      "period": "validation_2024_Jan_Oct",
+      "feature": "sigma_7",
+      "representation": "target",
+      "reference": "Admitted initial D7 training outcomes 2023-01-01 through 2023-12-24",
+      "reference_n": 343,
+      "n": 305,
+      "ks_distance": 0.23217511829087606,
+      "wasserstein": 0.004576600048197857,
+      "wasserstein_over_train_sd": 0.5101795282979861,
+      "reference_constant": false,
+      "inferential_p_value": null,
+      "scope": "Post-hoc descriptive known-calendar comparison; no retuning"
+    },
+    {
+      "period": "pilot_2024_Nov_Dec30",
+      "feature": "sigma_7",
+      "representation": "target",
+      "reference": "Admitted initial D7 training outcomes 2023-01-01 through 2023-12-24",
+      "reference_n": 343,
+      "n": 60,
+      "ks_distance": 0.3930515063168124,
+      "wasserstein": 0.0062923327759804824,
+      "wasserstein_over_train_sd": 0.7014419730226981,
+      "reference_constant": false,
+      "inferential_p_value": null,
+      "scope": "Post-hoc descriptive known-calendar comparison; no retuning"
+    },
+    {
+      "period": "known_reserve_2026_Sep_Oct30",
+      "feature": "sigma_7",
+      "representation": "target",
+      "reference": "Admitted initial D7 training outcomes 2023-01-01 through 2023-12-24",
+      "reference_n": 343,
+      "n": 60,
+      "ks_distance": 0.2764334305150632,
+      "wasserstein": 0.0031008066238435196,
+      "wasserstein_over_train_sd": 0.34566447669349964,
+      "reference_constant": false,
+      "inferential_p_value": null,
+      "scope": "Post-hoc descriptive known-calendar comparison; no retuning"
+    }
+  ],
+  "models_trained": 0,
+  "predictions_rescored": 0,
+  "test_used_to_fit_transforms": false,
+  "raw_archives_opened_in_this_execution": 0,
+  "input_source_mode": "existing_already_evaluated_e1_cache",
+  "no_sealed_new_test_claim": true,
+  "unchanged_contract": "D7, sigma7, h1, metric, margin and E1 partitions retained",
+  "limits": [
+    "Single series and one provider",
+    "Different regime sample sizes",
+    "Overlapping windows and targets",
+    "Distances describe marginal distributions, not causal drift or a calibrated significance test",
+    "A lower marginal shift after representation does not establish better forecasts"
+  ]
+}

@@ -1,0 +1,213 @@
+{
+  "all_models_observe_same_7_days": true,
+  "complementary_historical_model": "TCN",
+  "complexity_assessment": "One hidden-layer MLP and one recurrent-layer GRU/LSTM; matched-order parameter ranges under the same D7/5-input/scalar-output contract. Published templates anchor the family and depth; own capacity/activation/search adaptations are explicit.",
+  "decision_date_colombia": "2026-11-07",
+  "decision_timezone": "America/Bogota",
+  "error_independence_or_predictive_complementarity_proven_by_architecture": false,
+  "experimental_execution_report": "book/sections/10_nucleo_mlp.md",
+  "fresh_unobserved_holdout_created_by_this_selection": false,
+  "global_minimum_parameter_count_or_global_prevalence_proven": false,
+  "historical_MLP_593_parameters_reused_as_current_final_recipe": false,
+  "historical_selection_and_metrics_rewritten": false,
+  "inductive_bias_assessment": {
+    "GRU": "Shared recurrent transition with reset and update gates; one evolving hidden vector over the supplied window.",
+    "LSTM": "Shared recurrent transition with a separate additive cell state and input/forget/output gating; differs from GRU despite shared recurrent family.",
+    "MLP": "Position-specific nonlinear mixing of the entire flattened D7 window; no recurrent state or temporal weight sharing."
+  },
+  "new_forecasts_performed_by_this_builder": 0,
+  "new_model_fits_performed_by_this_builder": 0,
+  "parameter_candidates": [
+    {
+      "depth": 1,
+      "family": "LSTM",
+      "input_days": 7,
+      "input_features": 5,
+      "output_units": 1,
+      "parameters": 1489,
+      "status": "prefit_architecture_candidate_not_selected_final_hyperparameters",
+      "width_candidate": 16
+    },
+    {
+      "depth": 1,
+      "family": "LSTM",
+      "input_days": 7,
+      "input_features": 5,
+      "output_units": 1,
+      "parameters": 5025,
+      "status": "prefit_architecture_candidate_not_selected_final_hyperparameters",
+      "width_candidate": 32
+    },
+    {
+      "depth": 1,
+      "family": "MLP",
+      "input_days": 7,
+      "input_features": 5,
+      "output_units": 1,
+      "parameters": 1185,
+      "status": "prefit_architecture_candidate_not_selected_final_hyperparameters",
+      "width_candidate": 32
+    },
+    {
+      "depth": 1,
+      "family": "MLP",
+      "input_days": 7,
+      "input_features": 5,
+      "output_units": 1,
+      "parameters": 4737,
+      "status": "prefit_architecture_candidate_not_selected_final_hyperparameters",
+      "width_candidate": 128
+    },
+    {
+      "depth": 1,
+      "family": "GRU",
+      "input_days": 7,
+      "input_features": 5,
+      "output_units": 1,
+      "parameters": 1121,
+      "status": "prefit_architecture_candidate_not_selected_final_hyperparameters",
+      "width_candidate": 16
+    },
+    {
+      "depth": 1,
+      "family": "GRU",
+      "input_days": 7,
+      "input_features": 5,
+      "output_units": 1,
+      "parameters": 3777,
+      "status": "prefit_architecture_candidate_not_selected_final_hyperparameters",
+      "width_candidate": 32
+    }
+  ],
+  "planned_common_search": {
+    "candidates_per_family": 8,
+    "development_folds": 10,
+    "dropout_choices": 2,
+    "hpo_seeds_per_candidate": 2,
+    "learning_rates": [
+      0.001,
+      0.003
+    ],
+    "scope": "Planning only; successful fitting and final selected hyperparameters are reported by the separate experimental execution, not inferred by this compiler.",
+    "width_choices_per_family": 2
+  },
+  "ranking": [
+    {
+      "denominator": 10,
+      "display_order_note": "Equal-frequency rows are displayed alphabetically, not ranked by unknown complexity.",
+      "experiments": [
+        "E1F-M01",
+        "E1F-M02",
+        "E1OA-R01",
+        "E1OA-R02",
+        "E1X001",
+        "E1X003",
+        "S1",
+        "S2",
+        "S5",
+        "S7"
+      ],
+      "family": "LSTM",
+      "frequency": 10,
+      "frequency_rank": 1,
+      "selected_current_core": true
+    },
+    {
+      "denominator": 10,
+      "display_order_note": "Equal-frequency rows are displayed alphabetically, not ranked by unknown complexity.",
+      "experiments": [
+        "E1F-M01",
+        "E1F-M02",
+        "E1OA-R02",
+        "E1X001"
+      ],
+      "family": "MLP",
+      "frequency": 4,
+      "frequency_rank": 2,
+      "selected_current_core": true
+    },
+    {
+      "denominator": 10,
+      "display_order_note": "Equal-frequency rows are displayed alphabetically, not ranked by unknown complexity.",
+      "experiments": [
+        "S1",
+        "S2"
+      ],
+      "family": "GRU",
+      "frequency": 2,
+      "frequency_rank": 3,
+      "selected_current_core": true
+    },
+    {
+      "denominator": 10,
+      "display_order_note": "Equal-frequency rows are displayed alphabetically, not ranked by unknown complexity.",
+      "experiments": [
+        "E1F-M02"
+      ],
+      "family": "RNN_simple",
+      "frequency": 1,
+      "frequency_rank": 4,
+      "selected_current_core": false
+    },
+    {
+      "denominator": 10,
+      "display_order_note": "Equal-frequency rows are displayed alphabetically, not ranked by unknown complexity.",
+      "experiments": [
+        "S1"
+      ],
+      "family": "TCN",
+      "frequency": 1,
+      "frequency_rank": 4,
+      "selected_current_core": false
+    },
+    {
+      "denominator": 10,
+      "display_order_note": "Equal-frequency rows are displayed alphabetically, not ranked by unknown complexity.",
+      "experiments": [
+        "S2"
+      ],
+      "family": "Transformer_encoder",
+      "frequency": 1,
+      "frequency_rank": 4,
+      "selected_current_core": false
+    },
+    {
+      "denominator": 10,
+      "display_order_note": "Equal-frequency rows are displayed alphabetically, not ranked by unknown complexity.",
+      "experiments": [],
+      "family": "CNN_generic",
+      "frequency": 0,
+      "frequency_rank": 7,
+      "selected_current_core": false
+    }
+  ],
+  "recurrent_state_carried_before_input_window": false,
+  "reserve_was_already_observed": true,
+  "same_information_contract": {
+    "explicit_lagged_volatility_inputs": false,
+    "forecast_horizon_days": 1,
+    "history_days": 7,
+    "input_features": 5,
+    "output_units": 1,
+    "target": "population_standard_deviation_of_last_7_daily_log_returns",
+    "target_ddof": 0
+  },
+  "schema_version": 1,
+  "selected_current_core_in_frequency_order": [
+    "LSTM",
+    "MLP",
+    "GRU"
+  ],
+  "selected_hyperparameters_and_new_scores": null,
+  "selection_boundary_has_no_frequency_tie": true,
+  "selection_context": "User-authorized replacement of the current core after literature reconciliation; original tests and reserve already observed. This is not a retrospective preregistration.",
+  "selection_matches_three_highest_frequencies_in_this_corpus": true,
+  "source_report_eligible_crypto_denominator": 10,
+  "source_sha256": {
+    "references/course/Entregable1DeepLearningProject.pdf": "56cffb2e0e23bbdfd28815b7c7515d2663bf501ed5d6e0656a37a76fc45e43eb",
+    "references/literature_e1/free_model_expansion_20261107/readings.json": "dc7de27699bff4e1e26a0fa962f092ffcd6bed482face502d8704d3c138951c5",
+    "references/literature_e1/homogeneous_expansion_20261107/adjudications.json": "4533125f0c5780c93f303338c9a5d8d97a1d7630fec382a4be7938663181798e",
+    "references/literature_e1/homogeneous_expansion_20261107/summary.json": "3fbc3e9b01101961bb73599484bcc581a62006d64b0ba4a2db968501b7322bc5",
+    "references/literature_e1/homogeneous_synthesis_20261107/part_mechanisms/mechanisms.json": "2a5b22c0fb1035b834389825dd7b4f173c61587f5138a9af44a636003710fa9f"
+  }
+}

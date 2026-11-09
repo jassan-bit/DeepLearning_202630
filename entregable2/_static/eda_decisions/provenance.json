@@ -1,0 +1,194 @@
+{
+  "schema_version": 1,
+  "administrative_date_colombia": "2026-11-05",
+  "calendar_timezone": "UTC",
+  "generator_script": "scripts/eda_e2_decisions.py",
+  "generator_sha256": "1b570c9641ab37e128f4cddc6370938db586ba2ce7281dcd0a984b6827ad9d47",
+  "e1_source_commit": "94a4b0324e93361e8928d708fdfeb50110e3686f",
+  "input_sha256": {
+    "results/eda_development/daily_market_development.csv": "bf6bb5160af924aef6a15c3684aeae932df3017e8639888bb7e91ce787900171",
+    "results/eda_development/daily_volatility_development.csv": "20b96374a659eb87dadfa68aa3d6b6b5fb6bea5b10eebe6f2c186ad69861844a",
+    "results/dl_r2_cv_20261104/folds.json": "3851de7cbb388d791a0f2b3d8e9fdd8d1002e44a300927c2adc8001b8a3916c6",
+    "results/gru_lstm_tcn_planned_20261105/design.json": "80e804a9a4c0ae4c053f02bf62a2b4315c9ddadbb0b0e3951b09652a9964a81c",
+    "book/_static/eda_general_quality/target_profiles.csv": "aba531cdbaa04c9f10bdec98bff63786d23d621e778386e877a48a323896e238",
+    "book/_static/eda_general_quality/quality_by_year.csv": "5fab675ab612d8e60349cab113fb773e3b1c6902b778d89a884a1fccde6f0135",
+    "book/_static/eda_general_quality/label_reconstruction_summary.csv": "49e43cbbd7e5279ad4b34bafec1b783dac4a60fb012d352335a784fc82b058c3",
+    "book/_static/eda_general_quality/window_eligibility.csv": "807feefa98087725fea959e9293b7796681dabaff5ae94bb90848209b6b7637c",
+    "book/_static/eda_general_quality/objetivo_7_percentiles_colas.png": "b544977ecb3e9a87b609e420653d894f93b3d8cfb1a25b6630a66c8ac103d579",
+    "book/_static/eda_general_quality/mascaras_calendario_desarrollo.png": "1b4927fdb552be40a12055e387fa754a94ee402830cb614832d272cccb06e00f",
+    "book/_static/eda_general_shift/marginal_distribution_differences.csv": "3bddc02e6901f7a3655c956541d6b1eb9aed05f8ef11cdc7325743dbc3649bdf",
+    "book/_static/eda_general_shift/conditional_block_permutation.csv": "e8d47a18d7e043570bb71928a40cd572ecbdd626736ca1c6b48ac2befd17f627",
+    "book/_static/eda_general_shift/marginales_causales_2023_2024.png": "abcfb381ecd49b41da594236543958ea42d400e02ab9a5c1a9c3a4468b874da8",
+    "book/_static/eda_temporal_specific/lag_peak_summary.csv": "3ad0fb4e7b8e7e91335163f3bdcdc2a726f4a21dfca4af98f97829a12f03827e",
+    "book/_static/eda_temporal_specific/lag_correlations_common_train.csv": "8891bea7df79dd8c15407685e419b33c083aaf941ac5670e0a2060a31863928e",
+    "book/_static/eda_temporal_specific/rolling_relationship_summary.csv": "fb6056bcfa19e1d96e1d25e80e295e9599414cc381b5c9401fc7d16b21b0f68c",
+    "book/_static/eda_temporal_specific/availability_contract.csv": "a2e1de846642d0d8449a1aba23238ebb00eff157abdb68f339267b51da291161",
+    "book/_static/eda_temporal_specific/correlaciones_rezagos_cohorte_comun.png": "615285a9b6ad6e74d7dee4154d3f9dd1e5ca706b73324570a0ba954a58c07cb1",
+    "book/_static/eda_doc/relacion_movil_covariables_objetivo.png": "7a8820183c383c6d9c7777b78789eb58c783f520fc83cdf48920c2922e435f35",
+    "book/_static/eda_doc/rolling_60d_correlations_development.csv": "ec63dda2cbd8dc8ee36afd73f521a07e4217a3bd5968907529faa596d4d18c49",
+    "book/_static/eda_doc/rolling_60d_pair_counts.csv": "75182c9c2ed6fb5b998750db54c8a28f9ef74608c6a359f90346c10014ee15cd"
+  },
+  "input_files_unchanged_after_execution": true,
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "scipy": "1.17.0",
+    "matplotlib": "3.10.8"
+  },
+  "random_sampling": false,
+  "split_seed": "Not applicable: archived deterministic chronological indices",
+  "data_access_scope": "Development 2023--2024 plus public metadata/artifacts only; no raw ZIP or test observation",
+  "new_deep_learning_fits": 0,
+  "diagnostic_ridge_fits": 10,
+  "outputs_under_book_e2_static": {
+    "README.md": {
+      "sha256": "2d6a233d437020ae624244b07b47230f0183a3e4a02e0c1574cb7fe52cd744f9",
+      "bytes": 2865
+    },
+    "fold_leakage_audit.csv": {
+      "sha256": "47ddf9f06d6280316ac7dd43a81b4caa83f8bd05916c627db16f9da1cc3a0686",
+      "bytes": 2979
+    },
+    "forward_reference_acf.csv": {
+      "sha256": "935b159b4366350d796f42f63f027a57473ae3cd558a5892bbc0e47c073f1d22",
+      "bytes": 27955
+    },
+    "forward_reference_configurations.json": {
+      "sha256": "c32cac14be5dcc2e08c74439800fe9faaaa601335f2971818df78b71cf580715",
+      "bytes": 29979
+    },
+    "forward_reference_ljung_box.csv": {
+      "sha256": "6ae8fef28495d5e58624797a82477c01ed17d7f400d8380f785d24975f375cbd",
+      "bytes": 17986
+    },
+    "forward_reference_metrics.csv": {
+      "sha256": "99a9538eba3a22523b95afcc777a1ae2154c01ba8ac0b2108ad04d6bba955d0f",
+      "bytes": 5083
+    },
+    "forward_reference_residuals.csv": {
+      "sha256": "6f70f27197df839b574f27f2b19fad592c14fe52a8750e0544ff04e459d8bdc6",
+      "bytes": 37074
+    },
+    "forward_residual_diagnostics.png": {
+      "sha256": "effdb590e4ffe7ab77990e91d2b88f44b5c7472459055184036e17f8d747001d",
+      "bytes": 251618
+    },
+    "forward_residual_diagnostics.svg": {
+      "sha256": "fd39b265950fe594c4e7dc28ce2e570fdfea3fc9a81fb8e7342db14289ee6235",
+      "bytes": 97606
+    },
+    "heredado/eda_covariates_documental/relacion_movil_covariables_objetivo.png": {
+      "sha256": "7a8820183c383c6d9c7777b78789eb58c783f520fc83cdf48920c2922e435f35",
+      "bytes": 272370
+    },
+    "heredado/eda_covariates_documental/rolling_60d_correlations_development.csv": {
+      "sha256": "ec63dda2cbd8dc8ee36afd73f521a07e4217a3bd5968907529faa596d4d18c49",
+      "bytes": 86520
+    },
+    "heredado/eda_covariates_documental/rolling_60d_pair_counts.csv": {
+      "sha256": "75182c9c2ed6fb5b998750db54c8a28f9ef74608c6a359f90346c10014ee15cd",
+      "bytes": 29934
+    },
+    "heredado/eda_general_quality/label_reconstruction_summary.csv": {
+      "sha256": "49e43cbbd7e5279ad4b34bafec1b783dac4a60fb012d352335a784fc82b058c3",
+      "bytes": 594
+    },
+    "heredado/eda_general_quality/mascaras_calendario_desarrollo.png": {
+      "sha256": "1b4927fdb552be40a12055e387fa754a94ee402830cb614832d272cccb06e00f",
+      "bytes": 93966
+    },
+    "heredado/eda_general_quality/objetivo_7_percentiles_colas.png": {
+      "sha256": "b544977ecb3e9a87b609e420653d894f93b3d8cfb1a25b6630a66c8ac103d579",
+      "bytes": 118496
+    },
+    "heredado/eda_general_quality/quality_by_year.csv": {
+      "sha256": "5fab675ab612d8e60349cab113fb773e3b1c6902b778d89a884a1fccde6f0135",
+      "bytes": 341
+    },
+    "heredado/eda_general_quality/target_profiles.csv": {
+      "sha256": "aba531cdbaa04c9f10bdec98bff63786d23d621e778386e877a48a323896e238",
+      "bytes": 3299
+    },
+    "heredado/eda_general_quality/window_eligibility.csv": {
+      "sha256": "807feefa98087725fea959e9293b7796681dabaff5ae94bb90848209b6b7637c",
+      "bytes": 3588
+    },
+    "heredado/eda_general_shift/conditional_block_permutation.csv": {
+      "sha256": "e8d47a18d7e043570bb71928a40cd572ecbdd626736ca1c6b48ac2befd17f627",
+      "bytes": 2477
+    },
+    "heredado/eda_general_shift/marginal_distribution_differences.csv": {
+      "sha256": "3bddc02e6901f7a3655c956541d6b1eb9aed05f8ef11cdc7325743dbc3649bdf",
+      "bytes": 1529
+    },
+    "heredado/eda_general_shift/marginales_causales_2023_2024.png": {
+      "sha256": "abcfb381ecd49b41da594236543958ea42d400e02ab9a5c1a9c3a4468b874da8",
+      "bytes": 208979
+    },
+    "heredado/eda_temporal_specific/availability_contract.csv": {
+      "sha256": "a2e1de846642d0d8449a1aba23238ebb00eff157abdb68f339267b51da291161",
+      "bytes": 365
+    },
+    "heredado/eda_temporal_specific/correlaciones_rezagos_cohorte_comun.png": {
+      "sha256": "615285a9b6ad6e74d7dee4154d3f9dd1e5ca706b73324570a0ba954a58c07cb1",
+      "bytes": 118483
+    },
+    "heredado/eda_temporal_specific/lag_correlations_common_train.csv": {
+      "sha256": "8891bea7df79dd8c15407685e419b33c083aaf941ac5670e0a2060a31863928e",
+      "bytes": 7498
+    },
+    "heredado/eda_temporal_specific/lag_peak_summary.csv": {
+      "sha256": "3ad0fb4e7b8e7e91335163f3bdcdc2a726f4a21dfca4af98f97829a12f03827e",
+      "bytes": 1285
+    },
+    "heredado/eda_temporal_specific/rolling_relationship_summary.csv": {
+      "sha256": "fb6056bcfa19e1d96e1d25e80e295e9599414cc381b5c9401fc7d16b21b0f68c",
+      "bytes": 2454
+    },
+    "nearest_window_distances.csv": {
+      "sha256": "1b3810fbde08822d62953226832682e4c07595e0146a7b35ab3daf936c8717ee",
+      "bytes": 93275
+    },
+    "nearest_window_distances.png": {
+      "sha256": "6c875ba49cd700355a625c873c7dcb98da2e84d6ecb5006f6eccbb0e4f6cf592",
+      "bytes": 89037
+    },
+    "nearest_window_distances.svg": {
+      "sha256": "e513a8480f86b47bc7678d947defe1de2118f2918beeb6a345cb1ebec3a0b319",
+      "bytes": 94671
+    },
+    "nearest_window_scaler.json": {
+      "sha256": "7302e6a933da3ea5990fdb7d9c3a3e0e1ad397b85440682585d1f825aa63b82a",
+      "bytes": 641
+    },
+    "nearest_window_sensitivity.csv": {
+      "sha256": "0cd3c0987ca99f39df796ac45ef33e4b4c61c8a1bd2adf832442c53239b2a527",
+      "bytes": 1539
+    },
+    "nearest_window_summary.csv": {
+      "sha256": "b5633db714c8f9d707398fb93ef43e5e6531737d9b6dfe8d5769febaa96e974a",
+      "bytes": 1383
+    },
+    "objective_transformations.csv": {
+      "sha256": "94f269308f88284b31dbcaf5295599e80cee936d33a011100cd167a54d609f43",
+      "bytes": 1466
+    },
+    "objective_transformations.png": {
+      "sha256": "53068a3b3dc7a3a82679a42832e3b30f73e75b4a948ffda44f180c56e3a3c476",
+      "bytes": 117589
+    },
+    "objective_transformations.svg": {
+      "sha256": "da3384d42edd2d7fc24a341006df31db31e4a5059ec4df6cb2502978b5bb2e34",
+      "bytes": 105421
+    },
+    "requirements.txt": {
+      "sha256": "d0066322d3ef6a963dfc3d2534ab36e16274c51b251f0aa9d5e6e4cdfab4504c",
+      "bytes": 60
+    },
+    "summary.json": {
+      "sha256": "a78ff91df714d0c84dba1795be0a496d60a8924ec36cc99148bac4f6845e9221",
+      "bytes": 19466
+    }
+  }
+}

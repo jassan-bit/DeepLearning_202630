@@ -1,0 +1,112 @@
+{
+  "project_reference": {
+    "provider": "BinanceVision/BinanceSpot",
+    "market": "BTCUSDT",
+    "raw_frequency": "1min",
+    "model_frequency": "diario UTC",
+    "target": "σ7poblacionalde7retornoslogdiarios,ddof0,sinanualizar",
+    "horizon": "1día",
+    "development": "2023–2024",
+    "test": "2025-01-01–2026-08-31"
+  },
+  "sources": [
+    {
+      "study_id": "S1",
+      "reference": "Akbiyik, M. E., Erkul, M., Kämpf, K., Vasiliauskaite, V. y Antulov-Fantulin, N. (2023). Ask “Who”, Not “What”: Bitcoin Volatility Forecasting with Twitter Data. WSDM 2023.",
+      "evidence_status": "included_full_text",
+      "provider_market": "PreciosBitcoin15min +Twitter; no se corrobora aquí igualdad del proveedor spot",
+      "dataset_description": "Bitcoin: precios cada 15 minutos y unos 30 millones de tweets; 144 días.",
+      "target": "Volatilidad realizada del próximo día: 100·sqrt(sum(r_15min²)). Las redes predicen 96 retornos intradiarios y después agregan.",
+      "horizon": "Un día, con 96 intervalos de 15 minutos.",
+      "same_exact_dataset_version_verified": false,
+      "direct_numeric_comparison": "No: no se acredita mismo objetivo/frecuencia/escala/periodo/partición",
+      "comparability_reason": "No directa: suma de cuadrados intradiarios frente a desviación estándar móvil de siete retornos diarios; cambian entradas, frecuencia, escala y dataset.",
+      "evidence_location": "PDF pp. 4–6, §§5.2–5.4, Fig. 1 y Tabla 2; scripts/hpo.py."
+    },
+    {
+      "study_id": "S2",
+      "reference": "Zeri, T. (octubre de 2026). Forecasting High-Frequency Bitcoin Volatility: Neural Networks, Market Microstructure and On-Chain Data. Manuscrito de investigador independiente.",
+      "evidence_status": "included_full_text_gray_literature",
+      "provider_market": "Binance Futures BTCUSDTperpetuo víaCryptoLake",
+      "dataset_description": "Binance Futures BTCUSDT perpetuo, Crypto Lake, 2024–2025; operaciones, libro, financiación, interés abierto, liquidaciones y datos on-chain.",
+      "target": "Logaritmo de la volatilidad realizada durante los próximos 30 minutos, usando el precio medio del libro de órdenes.",
+      "horizon": "30 minutos: seis barras de cinco minutos.",
+      "same_exact_dataset_version_verified": false,
+      "direct_numeric_comparison": "No: no se acredita mismo objetivo/frecuencia/escala/periodo/partición",
+      "comparability_reason": "No directa: futuro perpetuo, objetivo log-RV de 30 minutos y 41–60 atributos. Su R² respecto a media train difiere del R² estándar.",
+      "evidence_location": "PDF pp. 4–7, §§4–6; manuscript.tex, §§Models, Experimental design y Results, tabla Model comparison."
+    },
+    {
+      "study_id": "S3",
+      "reference": "Herremans, D. y Low, K. W. (2025). Forecasting Bitcoin Volatility Spikes From Whale Transactions and CryptoQuant Data Using Synthesizer Transformer Models. IEEE Access, 13, 117788–117807.",
+      "evidence_status": "context_only_author_code_full_text_pending",
+      "provider_market": "CryptoQuant +whale-alert/Twitter",
+      "dataset_description": "CryptoQuant, datos on-chain, exchange/mineros y tweets whale-alert de Bitcoin.",
+      "target": "Volatilidad del próximo día con foco en picos; definición exacta pendiente del artículo.",
+      "horizon": "Día siguiente, según el resumen de autores.",
+      "same_exact_dataset_version_verified": false,
+      "direct_numeric_comparison": "No: no se acredita mismo objetivo/frecuencia/escala/periodo/partición",
+      "comparability_reason": "Pendiente: datos CryptoQuant y tweets distintos de OHLCV Binance Spot; no se trasladan mejoras.",
+      "evidence_location": "README: cita y abstract; kw_lstm.py, líneas 11, 27 y 30. Los defaults de 64 unidades/3 capas no prueban la configuración elegida del artículo."
+    },
+    {
+      "study_id": "S4",
+      "reference": "Huang, Z.-C., Sangiorgi, I. y Urquhart, A. (2024). Forecasting Bitcoin volatility using machine learning techniques. Journal of International Financial Markets, Institutions & Money, 97, 102064.",
+      "evidence_status": "context_only_prior_reference_access_pending",
+      "provider_market": "No extraído de texto completo",
+      "dataset_description": "No auditado en esta sesión; no asumir igualdad con Binance Spot.",
+      "target": "Volatilidad de Bitcoin; definición exacta pendiente de extracción actual.",
+      "horizon": "No extraído en esta sesión.",
+      "same_exact_dataset_version_verified": false,
+      "direct_numeric_comparison": "No: no se acredita mismo objetivo/frecuencia/escala/periodo/partición",
+      "comparability_reason": "Pendiente del texto completo.",
+      "evidence_location": "Antecedente del libro; PDF de Birmingham bloqueado por proxy 403, registrado en access_checks.json."
+    },
+    {
+      "study_id": "S5",
+      "reference": "Gao, Minghong; Li, Qingchen; Tao, Zheng (manuscrito de 2023; año de publicación por verificar). Comparing the Predictive Power of Five Models on Bitcoin Volatility. Repositorio de primer autor; referencia a Springer, Learning and Analytics in Intelligent Systems, vol. 32, pp. 473–486.",
+      "evidence_status": "included_full_text_with_quality_limitations",
+      "provider_market": "YahooFinanceBTC-USD diario",
+      "dataset_description": "Yahoo Finance BTC-USD diario; 2.607 registros declarados. Fecha final inconsistente entre abstract, cuerpo y README; código conserva start/end.",
+      "target": "Volatilidad móvil de 30 días calculada como sqrt(sum(r²)/(30−1)), desplazada siete días hacia adelante; no centra retornos como el proyecto.",
+      "horizon": "Siete días; entrada LSTM de 14 observaciones de volatilidad.",
+      "same_exact_dataset_version_verified": false,
+      "direct_numeric_comparison": "No: no se acredita mismo objetivo/frecuencia/escala/periodo/partición",
+      "comparability_reason": "No directa: Yahoo BTC-USD, ventana 30 días, horizonte siete, volatilidad no centrada y métricas sobre valores escalados.",
+      "evidence_location": "M2259.docx, §§Methodology y Data analysis, tabla 4; BTC_USD.ipynb celdas 21–23,46,53,104,111."
+    },
+    {
+      "study_id": "S6",
+      "reference": "Wang, Y., Yu, Q., Peng, J., Yang, B. y Chen, Z. (s. f.). A comparative analysis of volatility predictions via EGARCH, Transformer and hybrid EGARCH-Transformer models: changes in forecasting ability after introducing sentiment factors. Borrador de investigación; versión disponible en repositorio en 2026.",
+      "evidence_status": "included_full_text_gray_literature_with_severe_limitations",
+      "provider_market": "Bitcoin OHLCV diario; proveedor no suficientemente especificado",
+      "dataset_description": "Bitcoin diario, 25/03/2021–30/12/2024; 1.376 retornos declarados; procedencia bruta no suficientemente identificada.",
+      "target": "Volatilidad realizada de un día siguiente, RV1D; la construcción exacta del proxy no se recuperó y no se equipara a sigma7 diaria.",
+      "horizon": "Un día adelante, según el texto; ventana de entrada de 20 días.",
+      "same_exact_dataset_version_verified": false,
+      "direct_numeric_comparison": "No: no se acredita mismo objetivo/frecuencia/escala/periodo/partición",
+      "comparability_reason": "No directa: proxyRV1D no definido suficientemente, periodo/escala y covariables distintos. Cohortes y definiciones de métricas no verificables; inconsistencias internas impiden usar el ranking como evidencia firme de mejora.",
+      "evidence_location": "research-draft.pdf §§3.4 y4, pp.6–10; Tablas1–2,4; Tabla4p10(model1)."
+    },
+    {
+      "study_id": "S7",
+      "reference": "Alakhouch Idriss. (2 de junio de 2026). Bitcoin Volatility Forecasting: Econometric and Machine Learning Approaches Applied to Daily Price Data (July 2010 – February 2024). Informe académico de investigación; supervisor Pr. Alj Abdelkamel.",
+      "evidence_status": "included_full_text_gray_literature_with_severe_limitations",
+      "provider_market": "Bitcoin diario; proveedor/periodo deben verificarse con fuente",
+      "dataset_description": "BTC/USD diario de Investing.com/Kaggle,18/07/2010–09/02/2024;4.955 observaciones declaradas; recuentos de partición no reconciliados.",
+      "target": "Tabla4.5: volatilidad histórica móvil30d; código: std30 de retornos desplazada−30 y anualizada por sqrt365. La alineación y la escala del reporte/código requieren reconciliación; no es sigma7 diaria del proyecto.",
+      "horizon": "El código desplaza la medida30 días hacia adelante; no se asume equivalencia con h=1 del proyecto.",
+      "same_exact_dataset_version_verified": false,
+      "direct_numeric_comparison": "No: no se acredita mismo objetivo/frecuencia/escala/periodo/partición",
+      "comparability_reason": "No directa: fuente,periodo,anualización,ventana30 y desplazamiento distintos del contrato sigma7/h1. Las métricas de autores no se reproducen aquí; riesgo de fuga y discrepancias impiden transferir mejoras.",
+      "evidence_location": "PDF§3.5.3,página impresa31; Tabla4.5,página impresa34; Python.py,líneas69–70 y366–374."
+    }
+  ],
+  "new_software_overlap": {
+    "candidate_id": "C03",
+    "same_provider_pair_raw_frequency_declared": true,
+    "same_objective_or_version": false,
+    "scientific_article_verified": false
+  },
+  "conclusion": "La literatura respalda el problema de volatilidad de Bitcoin, pero no se ha acreditado uso científico de la misma versión BinanceSpot/σ7 ni comparabilidad numérica directa. S2 comparte el nombreBinance con mercadofuturos; C03 comparteBinanceSpot1min solo como softwarecontextual."
+}
