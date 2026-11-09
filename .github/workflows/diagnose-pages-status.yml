@@ -1,0 +1,140 @@
+name: Read-only GPU32 Pages status diagnostic
+
+on:
+  push:
+    branches:
+      - diagnose-gpu32-pages-20261109
+
+permissions:
+  contents: read
+  pages: read
+
+jobs:
+  inspect-pages-status:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - name: Read deployment states after cancellation
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import re
+          import urllib.error
+          import urllib.request
+          from datetime import datetime, timezone
+
+          # GET requests only. No checkout, artifacts, models, or data downloads.
+          # A green job means the probes ran; it does not certify publication.
+          API = "https://api.github.com"
+          REPOSITORY = os.environ.get("GITHUB_REPOSITORY", "")
+          TOKEN = os.environ.get("GITHUB_TOKEN", "")
+          SHA_PATTERN = re.compile(r"[0-9a-f]{40}")
+          STATUS_PATTERN = re.compile(r"[a-z_]+")
+          TIMESTAMP_PATTERN = re.compile(
+              r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,9})?Z"
+          )
+          FIXED_DEPLOYMENTS = [
+              "7f6c5edffb53e76c3a502784563acf7b429ebb4c",
+              "0f35f5c49dbd8f7893c8b5d396701665e0184133",
+          ]
+
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self, request, response, code, message, headers, new_url):
+                  return None
+
+          opener = urllib.request.build_opener(NoRedirect())
+
+          def get_json(path):
+              request = urllib.request.Request(
+                  API + path,
+                  headers={
+                      "Accept": "application/vnd.github+json",
+                      "Authorization": "Bearer " + TOKEN,
+                      "X-GitHub-Api-Version": "2022-11-28",
+                  },
+                  method="GET",
+              )
+              try:
+                  with opener.open(request, timeout=20) as response:
+                      code = response.status
+                      payload = response.read(65537)
+                  if len(payload) > 65536:
+                      return code, None
+                  decoded = json.loads(payload)
+                  return code, decoded if isinstance(decoded, dict) else None
+              except urllib.error.HTTPError as error:
+                  # Deliberately omit headers and response bodies.
+                  return error.code, None
+              except (urllib.error.URLError, TimeoutError, OSError):
+                  return None, None
+              except (ValueError, UnicodeError):
+                  return code, None
+
+          def safe_timestamp(value):
+              if not isinstance(value, str) or not TIMESTAMP_PATTERN.fullmatch(value):
+                  return None
+              try:
+                  datetime.fromisoformat(value.replace("Z", "+00:00"))
+              except ValueError:
+                  return None
+              return value
+
+          def emit(deployment_sha, http_status, status, payload=None):
+              # Explicit allowlist; never print arbitrary API objects or errors.
+              record = {
+                  "http_status": http_status,
+                  "status": status,
+                  "checked_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+              }
+              if isinstance(deployment_sha, str) and SHA_PATTERN.fullmatch(deployment_sha):
+                  record["deployment_sha"] = deployment_sha
+              for key in ("created_at", "updated_at"):
+                  value = safe_timestamp((payload or {}).get(key))
+                  if value is not None:
+                      record[key] = value
+              print(json.dumps(record, sort_keys=True), flush=True)
+
+          if not re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", REPOSITORY) or not TOKEN:
+              emit(None, None, "invalid_configuration")
+              raise SystemExit(1)
+
+          ref_http, ref_payload = get_json(
+              "/repos/" + REPOSITORY + "/git/ref/heads/gh-pages"
+          )
+          ref_object = (ref_payload or {}).get("object")
+          head_sha = ref_object.get("sha") if isinstance(ref_object, dict) else None
+          if ref_http == 200 and isinstance(head_sha, str) and SHA_PATTERN.fullmatch(head_sha):
+              emit(head_sha, ref_http, "ref_resolved")
+          else:
+              head_sha = None
+              emit(None, ref_http, "ref_unavailable")
+
+          deployment_ids = FIXED_DEPLOYMENTS.copy()
+          if head_sha is not None and head_sha not in deployment_ids:
+              deployment_ids.append(head_sha)
+
+          for deployment_sha in deployment_ids:
+              http_status, payload = get_json(
+                  "/repos/" + REPOSITORY + "/pages/deployments/" + deployment_sha
+              )
+              if http_status is None:
+                  status = "request_failed"
+              elif http_status != 200:
+                  status = "http_error"
+              elif payload is None:
+                  status = "invalid_response"
+              else:
+                  raw_status = payload.get("status")
+                  if isinstance(raw_status, str) and STATUS_PATTERN.fullmatch(raw_status):
+                      status = raw_status
+                  elif raw_status == "":
+                      status = "empty_status"
+                  elif raw_status is None:
+                      status = "missing_status"
+                  else:
+                      status = "invalid_status"
+              emit(deployment_sha, http_status, status, payload)
+          PY
