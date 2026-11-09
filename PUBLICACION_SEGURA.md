@@ -7,21 +7,25 @@ Esta propuesta conserva E1 en la raíz, E2 en `entregable2/`, E3 en
 libros, resultados científicos, experimentos, descargas ni configuración de
 Pages. No entrena modelos.
 
-La publicación queda **bloqueada explícitamente** por `false &&` en la condición
-del trabajo `publish`. Ninguna variable existente puede activarla. Una futura
-activación autorizada debe retirar ese bloqueo mediante un cambio de código;
-además requiere la variable de repositorio `BOOK_PUBLISHING_ENABLED` con valor
-exacto `true`.
-Incorporar el parche permite sus comprobaciones automáticas, pero no autoriza
-activar esa variable, retirar el bloqueo, cambiar protecciones ni relanzar
-publicaciones históricas.
+La activación autorizada del 09/11/2026 permite publicar **solo en el primer
+intento de un nuevo push a main**. PRs, ejecuciones manuales y reruns compilan
+y verifican, pero no publican.
+La condición queda versionada en el workflow y no depende de una variable de
+configuración. Esta activación no autoriza relanzar publicaciones históricas
+ni cambiar protecciones de seguridad.
+
+Antes de activar se verificó el ruleset activo [Proteger gh-pages](https://github.com/jassan-bit/DeepLearning_202630/rules/26826297),
+sin bypass, con bloqueo de borrado y de actualizaciones no fast-forward solo
+para `refs/heads/gh-pages`. El último sitio servido, fuente `cab9143a`, se conserva
+en la [rama de respaldo](https://github.com/jassan-bit/DeepLearning_202630/tree/backup/pages-served-20261109-cab9143a),
+anclada al commit de Pages `3c539138907ca94c25af20eee6731700054651ea`.
 
 ## Barreras implementadas
 
 - Construcción y publicación en trabajos separados. Construcción con
   `contents: read`; solo el publicador recibe `contents: write`.
 - Acciones fijadas por SHA. Checkout sin credenciales persistentes.
-- PR: construcción y pruebas, nunca publicación. Push a cualquier commit de
+- PR, workflow_dispatch y reruns: construcción y pruebas, nunca publicación. Primer intento de push a cualquier commit de
   main: construcción. Se elimina el filtro por rutas para que un avance de main
   no deje una compilación obsoleta sin reemplazo.
 - Fuente fijada al SHA del run. Verificación de checkout limpio y main vigente
@@ -89,7 +93,7 @@ Este comando rechaza una rama de propuesta cuyo SHA no sea main. No se debe
 cambiar su remote para eludir una denegación de publicación. Las pruebas usan
 exclusivamente repositorios bare temporales locales para ejercitar escrituras.
 
-## Activación posterior: requiere autorización separada
+## Lista de comprobación para una activación autorizada
 
 1. Confirmar nuevamente main, gh-pages, los jobs de Pages y la versión realmente
    servida. No confundir último commit generado con último despliegue exitoso.
@@ -102,9 +106,9 @@ exclusivamente repositorios bare temporales locales para ejercitar escrituras.
 4. Revisar el parche en una rama/PR; su construcción no publica. Los workflows
    antiguos siguen teniendo código antiguo: no relanzarlos. La protección de
    rama es la barrera del servidor frente a esos force-push históricos.
-5. Solo con autorización de activación, retirar el bloqueo `false &&`, adaptar
-   su prueba de regresión y habilitar la variable; publicar desde main vigente.
-   Verificar por separado push, workflow dinámico de Pages y web.
+5. Solo con autorización de activación, habilitar en el workflow la publicación
+   de nuevos pushes a main y adaptar su prueba de regresión. Verificar por
+   separado push, workflow dinámico de Pages y web.
    No borrar ni despublicar el sitio existente para realizar esta transición.
 
 ## Recuperación

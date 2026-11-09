@@ -574,7 +574,7 @@ def test_live_verify_rejects_non_http_urls(world, monkeypatch, url):
     assert not calls
 
 
-def test_workflow_keeps_activation_gate_and_separate_permissions():
+def test_workflow_only_publishes_new_main_pushes_with_separate_permissions():
     import re
     import yaml
     path = Path(__file__).resolve().parents[1] / '.github/workflows/publish-book.yml'
@@ -585,10 +585,7 @@ def test_workflow_keeps_activation_gate_and_separate_permissions():
     assert workflow['permissions'] == {'contents': 'read'}
     deploy = workflow['jobs']['publish']
     assert deploy['permissions'] == {'contents': 'write'}
-    assert deploy['if'].lstrip().startswith('false &&')
-    assert "vars.BOOK_PUBLISHING_ENABLED == 'true'" in deploy['if']
-    assert "github.event_name != 'pull_request'" in deploy['if']
-    assert "github.ref == 'refs/heads/main'" in deploy['if']
+    assert deploy['if'].strip() == "github.event_name == 'push' && github.ref == 'refs/heads/main' && github.run_attempt == 1"
     assert deploy['concurrency'] == {'group': 'publish-book', 'cancel-in-progress': 'false'}
     for job in workflow['jobs'].values():
         for step in job['steps']:

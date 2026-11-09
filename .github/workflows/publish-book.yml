@@ -58,13 +58,10 @@ jobs:
           retention-days: 30
   publish:
     needs: build
-    # Deliberate rollout lock. Removing false requires separate authorization,
-    # gh-pages protection and a verified backup of the last served site.
-    # Repository variables alone cannot enable publication in this revision.
+    # Authorized activation after gh-pages protection and a verified backup.
+    # Only the first attempt of a new main push publishes; reruns never publish.
     if: >-
-      false && github.event_name != 'pull_request' &&
-      github.ref == 'refs/heads/main' &&
-      vars.BOOK_PUBLISHING_ENABLED == 'true'
+      github.event_name == 'push' && github.ref == 'refs/heads/main' && github.run_attempt == 1
     runs-on: ubuntu-latest
     permissions:
       contents: write
