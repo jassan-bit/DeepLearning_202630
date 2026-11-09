@@ -1,0 +1,30 @@
+{
+  "version": "e2-development-pilot-analysis-amendment-v1",
+  "registered_at_utc": "2026-11-09T16:26:20.073811+00:00",
+  "original_registration_commit": "cf68db00f4d7c3626bdb517bf922265a3b229ea4",
+  "original_registration_sha256": "cc10ddba82f0c59cfcd8caf70e713481ec0701e71860862ed13ead0df0bf4797",
+  "trigger": "The first TimeMixer epoch-selection attempt reached the registered150s checked wall cap with1198 known optimizer steps. No held-pilot replay or paired53-date power analysis had been executed.",
+  "training_changes": false,
+  "replacement_seeds_or_attempts": false,
+  "resource_caps_changed": false,
+  "primary_result": "Keep the registered three-model3x5 completion result and all failed/censored attempts. Do not mark it complete from a subset.",
+  "secondary_analysis": "If at least two of the three predefined models complete allfive selection and allfive fresh refit attempts, report conditional power/MDE planning for those completely observed models. No partial-seed/survivor median or seed replacement is permitted.",
+  "model_pool": [
+    "TimeMixer",
+    "CNN-1D + LSTM + atención temporal",
+    "GRU32"
+  ],
+  "seeds": [
+    271901,
+    271902,
+    271903,
+    271904,
+    271905
+  ],
+  "analysis_controls": "Unchanged delta, alpha/m153,5000draws,circular7-dayblocks,simulationseed272001 and R6..30 sensitivity.",
+  "timing": "Published before any fresh-refit held-pilot prediction or secondary power analysis.",
+  "interpretation": "Guide9.2 allows two or three representative models. This secondary operational analysis remains conditional on completed fixed reference recipes; it cannot estimate variability for failed models, select the final R, or establish achieved final-study power.",
+  "final_seed_count_set": false,
+  "achieved_final_power": null,
+  "reporting": "Name every excluded family and state its computational failure. Preserve original3-model incomplete status alongside any secondary2-model analysis."
+}
