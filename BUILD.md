@@ -713,3 +713,10 @@ los checkpoints son de inferencia, con carga weights_only y metadatos JSON
 nativos, no un mecanismo de reanudación de optimizadores. El watchdog de perfiles
 muestra RSS, no una garantía de aislamiento de memoria. Recibos y alcance:
 book_e2/_static/training_integration_20261109/summary.json.
+
+
+## Piloto de desarrollo en Codex Cloud
+
+La sección `book_e2/sections/30_piloto_nube.md` documenta los ajustes reales y sus límites. Prepare los bytes registrados con `python scripts/prepare_e2_pilot_snapshot.py --root .` y use los comandos de esa sección. El helper sólo admite los dos hashes de formato conocidos y conserva un respaldo exclusivo; el snapshot no cambia el JSON experimental. Los runners rechazan directorios de salida existentes y no reemplazan intentos fallidos.
+
+`book_e2/_static/development_pilot_20261109/summary.json` inventaría recibos, hashes y costes conocidos. El resultado primario de tres modelos quedó incompleto; el análisis secundario no fija R final ni acredita potencia. Los archivos de pesos permanecen en las salidas de ejecución del servidor remoto.
