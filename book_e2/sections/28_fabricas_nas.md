@@ -57,7 +57,7 @@ Los diarios conservan cada caso y su alcance. Los hashes del resumen vinculan fu
 - {download}`SAE auxiliares: 2.000 comprobaciones <../_static/nas_factories_20261109/sae_auxiliary.jsonl.gz>`.
 - {download}`TimesNet seis kernels: 1.000 casos meta <../_static/nas_factories_20261109/timesnet_six_kernel_meta.jsonl.gz>`.
 
-La batería contiene **35 pruebas unitarias e integridad de evidencia, sin omisiones**. Cubre rechazo de entradas y trials alterados, aislamiento de batch en evaluación, normalización congelada, causalidad sobre tensores transformados, atención normalizada, transferencia SAE y equivalencia de salidas/gradientes entre convoluciones Inception literales y su fusión lineal exacta. Esa fusión conserva todos los kernels y sus parámetros.
+La batería nueva contiene **35 pruebas unitarias e integridad de evidencia, sin omisiones**. La ejecución de CI incluye además seis pruebas previas de escenarios de coste: **41 en total**. Cubre rechazo de entradas y trials alterados, aislamiento de batch en evaluación, normalización congelada, causalidad sobre tensores transformados, atención normalizada, transferencia SAE y equivalencia de salidas/gradientes entre convoluciones Inception literales y su fusión lineal exacta. Esa fusión conserva todos los kernels y sus parámetros.
 
 La validación CPU se añade a CI en un job propio con dependencias fijadas. La publicación depende de esa batería y de la construcción/verificación de enlaces de los tres libros. La evidencia exhaustiva se conserva con hashes; CI no repite toda la batería de miles de casos en cada publicación.
 
