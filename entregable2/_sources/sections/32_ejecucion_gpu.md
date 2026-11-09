@@ -14,7 +14,7 @@ La ejecución GPU todavía no ha comenzado. La distribución del trabajo es la s
 | GitHub | Repositorio, notebook y comprobaciones de integración; no aporta una GPU a este piloto |
 | Colab o servidor CUDA del usuario | Ejecutará el piloto cuando se conecte una GPU real y se active el lanzamiento |
 
-El [notebook de ejecución](https://github.com/jassan-bit/DeepLearning_202630/blob/a3d255944d3b87fcd0fd043d0f77ab1f7937404f/notebooks/entregable2_gpu.ipynb) puede [abrirse en Colab](https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/a3d255944d3b87fcd0fd043d0f77ab1f7937404f/notebooks/entregable2_gpu.ipynb). También puede ejecutarse en un servidor Linux x86_64 con una GPU compatible con el entorno fijado. El kernel anfitrión puede usar Python 3.13: el piloto utiliza su propio CPython 3.12.12 aislado. La disponibilidad, cuota y coste de la GPU dependen del proveedor.
+El [notebook de ejecución](https://github.com/jassan-bit/DeepLearning_202630/blob/497088cbbabcdcec39c597d41b120a1ccde9379e/notebooks/entregable2_gpu.ipynb) puede [abrirse en Colab](https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/497088cbbabcdcec39c597d41b120a1ccde9379e/notebooks/entregable2_gpu.ipynb). También puede ejecutarse en un servidor Linux x86_64 con una GPU compatible con el entorno fijado. El kernel anfitrión puede usar Python 3.13: el piloto utiliza su propio CPython 3.12.12 aislado. La disponibilidad, cuota y coste de la GPU dependen del proveedor.
 
 La descarga del repositorio público no requiere iniciar sesión ni autorizar una cuenta de GitHub. El botón «Guardar en GitHub» corresponde a guardar cambios propios, una operación separada de la lectura del código.
 
@@ -27,6 +27,8 @@ El enlace fija la versión del notebook por commit; el notebook obtiene el códi
 5. Ejecutar el piloto y revisar los resultados locales. Una nueva ejecución utiliza un directorio nuevo y conserva cualquier intento anterior.
 
 Abrir el notebook o instalar dependencias no inicia la búsqueda NAS/HPO. La configuración predeterminada mantiene `RUN_PILOT=False`. Al activarla, el piloto admite las catorce referencias de la cohorte pequeña, con dos épocas por etapa. Puede elegirse previamente un subconjunto, por ejemplo GRU32 y TimeMixer; esa selección queda registrada antes del acceso a los valores de mercado.
+
+Las fuentes oficiales de iTransformer se preparan una vez por workspace. Al repetir las celdas, el notebook verifica los SHA256 de los ocho archivos y su recibo de origen antes de reutilizar esa caché. Si falta un archivo, cambia su contenido o aparece un enlace simbólico o código Python ajeno al manifiesto, se detiene y conserva los archivos para revisarlos. Esta caché contiene fuentes de código; cada lanzamiento del piloto mantiene su directorio nuevo y sus recibos independientes. El paso de `RUN_PILOT=False` a `True` puede utilizar la misma sesión y el mismo workspace verificados. La comprobación de integración offline con las ocho fuentes auténticas cubrió una preparación inicial y dos reutilizaciones sin nuevas descargas, sin GPU ni datos de mercado.
 
 ## Código y entorno fijados
 
@@ -56,10 +58,10 @@ La configuración registrada usa **FP32**, sin AMP y sin TF32, con determinismo 
 | Portabilidad de las catorce arquitecturas | Catorce pruebas CPU de predicción y backward pasaron; catorce casos CUDA reales se omitieron por ausencia de GPU |
 | Semántica del entrenamiento | Once pruebas pasaron y tres casos CUDA reales se omitieron. La comparación sintética contra el motor CPU incluye estados, logs, RNG, parada, horizonte del scheduler, SAE y reajustes; la validación CUDA real queda pendiente |
 | Admisión y recursos | Catorce pruebas pasaron y un caso CUDA real quedó omitido; incluyen configuración, presupuesto global, contabilidad de fallos y rechazo temprano sin CUDA. No constituyen mediciones GPU |
-| Notebook | Veinte pruebas estructurales y de guardas pasaron, incluidas once regresiones del bootstrap y sus fallos; ocho celdas de código con AST válido y salidas vacías, sin ejecutar instalaciones CUDA ni un piloto de mercado en el servidor CPU |
+| Notebook | Veintitrés pruebas estructurales y de guardas pasaron, incluidas once regresiones del bootstrap y tres de la caché de fuentes; ocho celdas de código con AST válido y salidas vacías, sin ejecutar instalaciones CUDA ni un piloto de mercado en el servidor CPU |
 | Bootstrap Python aislado | Se ejecutó realmente el bootstrap del notebook: descargó CPython 3.12.12 gestionado, creó el venv e instaló pip 25.3 con hash verificado. Se comprobó desde hosts Python 3.12.14 y 3.13.9, sin instalar Torch/CUDA ni descargar mercado |
 
-El corte de preparación reúne **64 pruebas aprobadas** (44 de código y 20 del notebook) y **18 pruebas CUDA reales omitidas** por ausencia de GPU. Los resultados aprobados acreditan contratos de software en CPU y comprobaciones estructurales; no certifican una ejecución GPU.
+El corte de preparación reúne **67 pruebas aprobadas** (44 de código y 23 del notebook) y **18 pruebas CUDA reales omitidas** por ausencia de GPU. Los resultados aprobados acreditan contratos de software en CPU y comprobaciones estructurales; no certifican una ejecución GPU.
 
 El notebook incluye las pruebas sintéticas CUDA antes de descargar los CSV. Su ejecución futura comprobará dispositivos de parámetros y buffers, geometría, salida FP32, conservación de metadatos, tolerancia numérica de evaluación y gradientes finitos. Una prueba omitida aquí no se presenta como una prueba GPU aprobada.
 
@@ -114,7 +116,7 @@ Las medidas permitirán distinguir construcción, ajuste, evaluación, tiempo de
 
 ## Ejecución manual desde la fuente congelada
 
-El notebook gestiona su Python 3.12.12 e instala las dependencias en un entorno aislado. En un servidor CUDA que ya disponga de Python 3.12, los siguientes comandos muestran el orden. El SHA de código debe coincidir con el publicado arriba; los directorios de salida deben ser nuevos.
+El notebook gestiona su Python 3.12.12 e instala las dependencias en un entorno aislado. En un servidor CUDA que ya disponga de Python 3.12, los siguientes comandos muestran el orden de una primera ejecución. El helper de descarga manual de iTransformer conserva su contrato de directorio nuevo; la verificación y reutilización de la caché al repetir celdas corresponde al notebook. El SHA de código debe coincidir con el publicado arriba; los directorios de salida deben ser nuevos.
 
 ```bash
 export CUBLAS_WORKSPACE_CONFIG=:4096:8
