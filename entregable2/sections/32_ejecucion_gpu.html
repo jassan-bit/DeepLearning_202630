@@ -240,6 +240,7 @@
 <li class="toctree-l1"><a class="reference internal" href="31_optimizacion_nube.html">31. Optimización de CPU y presupuesto de cómputo en la nube</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">32. Ejecución CUDA preparada y piloto de recursos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="33_piloto_gpu.html">33. Primer piloto de recursos en GPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="34_perfil_gpu_ampliado.html">34. Perfil GPU ampliado y viabilidad del extremo TimesNet</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
 </ul>
 
@@ -401,8 +402,8 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="ejecucion-cuda-preparada-y-piloto-de-recursos">
 <h1>32. Ejecución CUDA preparada y piloto de recursos<a class="headerlink" href="#ejecucion-cuda-preparada-y-piloto-de-recursos" title="Link to this heading">#</a></h1>
-<p><strong>Infraestructura y corte de preparación conservado.</strong> Esta sección documenta el backend CUDA, el notebook reproducible y sus pruebas locales en la CPU de Codex. Las comprobaciones que requieren CUDA real se identifican como omitidas en ese corte. El <a class="reference internal" href="33_piloto_gpu.html"><span class="std std-doc">piloto GPU posterior de §33</span></a>, ejecutado por el usuario en Colab, aporta catorce ajustes completos y mediciones reales de recursos. El presupuesto total en horas continúa abierto.</p>
-<p>Después del primer piloto, corresponde ampliar el perfilado a la cohorte grande y al extremo TimesNet antes de resolver la viabilidad de la búsqueda registrada. Las <a class="reference internal" href="31_optimizacion_nube.html"><span class="std std-doc">estimaciones CPU de §31</span></a> siguen siendo evidencia separada. No se trasladan como una predicción de aceleración en GPU ni se sustituyen los fallos anteriores.</p>
+<p><strong>Infraestructura y corte de preparación conservado.</strong> Esta sección documenta el backend CUDA, el notebook reproducible y sus pruebas locales en la CPU de Codex. Las comprobaciones que requieren CUDA real se identifican como omitidas en ese corte. El <a class="reference internal" href="33_piloto_gpu.html"><span class="std std-doc">primer piloto GPU de §33</span></a> y el <a class="reference internal" href="34_perfil_gpu_ampliado.html"><span class="std std-doc">perfil ampliado de §34</span></a>, ejecutados por el usuario en Colab, aportan mediciones reales de recursos. El presupuesto total en horas continúa abierto.</p>
+<p>La ampliación a la cohorte grande y al extremo TimesNet completó sus quince perfiles en <a class="reference internal" href="34_perfil_gpu_ampliado.html"><span class="std std-doc">§34</span></a>. El siguiente trabajo es conectar el backend CUDA a la selección NAS/HPO y completar los componentes del presupuesto antes de iniciar la búsqueda. Las <a class="reference internal" href="31_optimizacion_nube.html"><span class="std std-doc">estimaciones CPU de §31</span></a> siguen siendo evidencia separada; no se trasladan como una predicción de aceleración en GPU ni se sustituyen los fallos anteriores.</p>
 <section id="abrir-y-preparar-el-notebook">
 <h2>Abrir y preparar el notebook<a class="headerlink" href="#abrir-y-preparar-el-notebook" title="Link to this heading">#</a></h2>
 <p>La GPU se ejecuta en la plataforma elegida por el usuario. La distribución del trabajo es la siguiente:</p>
@@ -627,7 +628,7 @@ work/gpu-venv/bin/python<span class="w"> </span>scripts/run_e2_gpu_pilot.py<span
 </section>
 <section id="que-cierra-esta-preparacion">
 <h2>Qué cierra esta preparación<a class="headerlink" href="#que-cierra-esta-preparacion" title="Link to this heading">#</a></h2>
-<p>Se entrega código CUDA, entorno dedicado, registro y notebook con activación explícita. La validación local acredita contratos de software en CPU. El <a class="reference internal" href="33_piloto_gpu.html"><span class="std std-doc">informe posterior de §33</span></a> incorpora los tiempos, la memoria y la completitud de catorce referencias en una Tesla T4 real; las dieciocho pruebas CUDA omitidas en el corte local conservan ese estado histórico.</p>
+<p>Se entrega código CUDA, entorno dedicado, registro y notebook con activación explícita. La validación local acredita contratos de software en CPU. Los informes posteriores de <a class="reference internal" href="33_piloto_gpu.html"><span class="std std-doc">§33</span></a> y <a class="reference internal" href="34_perfil_gpu_ampliado.html"><span class="std std-doc">§34</span></a> incorporan los tiempos, la memoria y la completitud de las referencias y del extremo TimesNet en una Tesla T4 real; las dieciocho pruebas CUDA omitidas en el corte local conservan ese estado histórico.</p>
 <p>La búsqueda NAS/HPO científica, los controles, el benchmark y la evaluación final siguen pendientes. Después de seleccionar recetas y comprobar su variación se resolverá el dimensionamiento de R. Se conserva <strong><code class="docutils literal notranslate"><span class="pre">final_R=null</span></code></strong>, sin afirmación de potencia final o superioridad del candidato 11. Este cambio no reinterpreta la calibración condicional ni los fallos documentados en §31.</p>
 </section>
 </section>

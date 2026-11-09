@@ -1,0 +1,773 @@
+{
+  "version": "e2-gpu-pilot-v1-scientific-only",
+  "results": [
+    {
+      "job": {
+        "job_id": "gpu-profile-000",
+        "model": "LSTM-autoencoder con predictor",
+        "cohort": "large",
+        "case": "reference",
+        "seed": 274201,
+        "epochs": 2,
+        "batch_size": 32,
+        "pattern": {
+          "widths": [
+            64,
+            64,
+            64
+          ],
+          "dropout_pattern": [
+            0,
+            1,
+            0
+          ],
+          "dropout_rate": 0.2
+        }
+      },
+      "status": "success",
+      "error_code": null,
+      "optimizer_steps": 120,
+      "optimizer_steps_known_lower_bound": 120,
+      "elapsed_wall_seconds": 5.475220134999972,
+      "sampled_peak_process_group_rss_bytes": 1363247104,
+      "train_n": 619,
+      "validation_n": 83,
+      "parameter_count": 55681,
+      "state_bytes": 222724,
+      "timing": {
+        "build_seconds": 0.004961241000046357,
+        "fit_seconds": 2.279540999999881,
+        "validation_seconds": 0.005230092000147124,
+        "worker_seconds": 4.715065133999815,
+        "process_cpu_seconds": 4.868647867
+      },
+      "cuda_metrics": {
+        "max_memory_allocated_bytes": 103321600,
+        "max_memory_reserved_bytes": 125829120,
+        "effective_limit_bytes": 12509668966
+      },
+      "phases": {
+        "ae1": {
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "optimizer_steps": 40,
+          "fixed_epochs": 2,
+          "elapsed_seconds": 1.4260098790000484
+        },
+        "ae2": {
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "optimizer_steps": 40,
+          "fixed_epochs": 2,
+          "elapsed_seconds": 0.35428077500000654
+        },
+        "supervised": {
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "optimizer_steps": 40,
+          "fixed_epochs": 2,
+          "elapsed_seconds": 0.417024475000062
+        }
+      }
+    },
+    {
+      "job": {
+        "job_id": "gpu-profile-001",
+        "model": "TimesNet",
+        "cohort": "large",
+        "case": "reference",
+        "seed": 274201,
+        "epochs": 2,
+        "batch_size": 32,
+        "pattern": {
+          "widths": [
+            64,
+            64,
+            64
+          ],
+          "dropout_pattern": [
+            0,
+            1,
+            0
+          ],
+          "dropout_rate": 0.2
+        }
+      },
+      "status": "success",
+      "error_code": null,
+      "optimizer_steps": 40,
+      "optimizer_steps_known_lower_bound": 40,
+      "elapsed_wall_seconds": 9.64201614700005,
+      "sampled_peak_process_group_rss_bytes": 1697001472,
+      "train_n": 619,
+      "validation_n": 83,
+      "parameter_count": 14072363,
+      "state_bytes": 56290348,
+      "timing": {
+        "build_seconds": 0.23154338500012273,
+        "fit_seconds": 5.933366160000105,
+        "validation_seconds": 0.06287297600010788,
+        "worker_seconds": 8.83939392000002,
+        "process_cpu_seconds": 9.062180796
+      },
+      "cuda_metrics": {
+        "max_memory_allocated_bytes": 375563264,
+        "max_memory_reserved_bytes": 440401920,
+        "effective_limit_bytes": 12509668966
+      },
+      "phases": {
+        "supervised": {
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "optimizer_steps": 40,
+          "fixed_epochs": 2,
+          "elapsed_seconds": 5.931512757000064
+        }
+      }
+    },
+    {
+      "job": {
+        "job_id": "gpu-profile-002",
+        "model": "TiDE",
+        "cohort": "large",
+        "case": "reference",
+        "seed": 274201,
+        "epochs": 2,
+        "batch_size": 32,
+        "pattern": {
+          "widths": [
+            64,
+            64,
+            64
+          ],
+          "dropout_pattern": [
+            0,
+            1,
+            0
+          ],
+          "dropout_rate": 0.2
+        }
+      },
+      "status": "success",
+      "error_code": null,
+      "optimizer_steps": 40,
+      "optimizer_steps_known_lower_bound": 40,
+      "elapsed_wall_seconds": 5.710305945999835,
+      "sampled_peak_process_group_rss_bytes": 1404628992,
+      "train_n": 619,
+      "validation_n": 83,
+      "parameter_count": 18969,
+      "state_bytes": 75876,
+      "timing": {
+        "build_seconds": 0.007349743000077069,
+        "fit_seconds": 2.102767371000027,
+        "validation_seconds": 0.011106476000122711,
+        "worker_seconds": 4.939278734000027,
+        "process_cpu_seconds": 4.8966876930000005
+      },
+      "cuda_metrics": {
+        "max_memory_allocated_bytes": 68882432,
+        "max_memory_reserved_bytes": 69206016,
+        "effective_limit_bytes": 12509668966
+      },
+      "phases": {
+        "supervised": {
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "optimizer_steps": 40,
+          "fixed_epochs": 2,
+          "elapsed_seconds": 2.1015159060000315
+        }
+      }
+    },
+    {
+      "job": {
+        "job_id": "gpu-profile-003",
+        "model": "TimeMixer",
+        "cohort": "large",
+        "case": "reference",
+        "seed": 274201,
+        "epochs": 2,
+        "batch_size": 32,
+        "pattern": {
+          "widths": [
+            64,
+            64,
+            64
+          ],
+          "dropout_pattern": [
+            0,
+            1,
+            0
+          ],
+          "dropout_rate": 0.2
+        }
+      },
+      "status": "success",
+      "error_code": null,
+      "optimizer_steps": 40,
+      "optimizer_steps_known_lower_bound": 40,
+      "elapsed_wall_seconds": 8.608269384999858,
+      "sampled_peak_process_group_rss_bytes": 1628934144,
+      "train_n": 619,
+      "validation_n": 83,
+      "parameter_count": 59991,
+      "state_bytes": 239964,
+      "timing": {
+        "build_seconds": 0.016557010000042283,
+        "fit_seconds": 4.730324657999972,
+        "validation_seconds": 0.03788008800006537,
+        "worker_seconds": 7.785579417000008,
+        "process_cpu_seconds": 7.553024827
+      },
+      "cuda_metrics": {
+        "max_memory_allocated_bytes": 87341056,
+        "max_memory_reserved_bytes": 109051904,
+        "effective_limit_bytes": 12509668966
+      },
+      "phases": {
+        "supervised": {
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "optimizer_steps": 40,
+          "fixed_epochs": 2,
+          "elapsed_seconds": 4.728320617999998
+        }
+      }
+    },
+    {
+      "job": {
+        "job_id": "gpu-profile-004",
+        "model": "PatchTST",
+        "cohort": "large",
+        "case": "reference",
+        "seed": 274201,
+        "epochs": 2,
+        "batch_size": 32,
+        "pattern": {
+          "widths": [
+            64,
+            64,
+            64
+          ],
+          "dropout_pattern": [
+            0,
+            1,
+            0
+          ],
+          "dropout_rate": 0.2
+        }
+      },
+      "status": "success",
+      "error_code": null,
+      "optimizer_steps": 40,
+      "optimizer_steps_known_lower_bound": 40,
+      "elapsed_wall_seconds": 5.74562352199996,
+      "sampled_peak_process_group_rss_bytes": 1533296640,
+      "train_n": 619,
+      "validation_n": 83,
+      "parameter_count": 259221,
+      "state_bytes": 1040004,
+      "timing": {
+        "build_seconds": 0.0103800870001578,
+        "fit_seconds": 2.5197442250000677,
+        "validation_seconds": 0.014724150000120062,
+        "worker_seconds": 4.985957804999998,
+        "process_cpu_seconds": 5.099031152999999
+      },
+      "cuda_metrics": {
+        "max_memory_allocated_bytes": 86611456,
+        "max_memory_reserved_bytes": 92274688,
+        "effective_limit_bytes": 12509668966
+      },
+      "phases": {
+        "supervised": {
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "optimizer_steps": 40,
+          "fixed_epochs": 2,
+          "elapsed_seconds": 2.5184700290001274
+        }
+      }
+    },
+    {
+      "job": {
+        "job_id": "gpu-profile-005",
+        "model": "CNN-1D + LSTM + atención temporal",
+        "cohort": "large",
+        "case": "reference",
+        "seed": 274201,
+        "epochs": 2,
+        "batch_size": 32,
+        "pattern": {
+          "widths": [
+            64,
+            64,
+            64
+          ],
+          "dropout_pattern": [
+            0,
+            1,
+            0
+          ],
+          "dropout_rate": 0.2
+        }
+      },
+      "status": "success",
+      "error_code": null,
+      "optimizer_steps": 40,
+      "optimizer_steps_known_lower_bound": 40,
+      "elapsed_wall_seconds": 5.940326765999998,
+      "sampled_peak_process_group_rss_bytes": 1456271360,
+      "train_n": 619,
+      "validation_n": 83,
+      "parameter_count": 38593,
+      "state_bytes": 154372,
+      "timing": {
+        "build_seconds": 0.028160363000097277,
+        "fit_seconds": 1.8394827179999993,
+        "validation_seconds": 0.006313086000091062,
+        "worker_seconds": 5.150571359999958,
+        "process_cpu_seconds": 5.109310572
+      },
+      "cuda_metrics": {
+        "max_memory_allocated_bytes": 78298112,
+        "max_memory_reserved_bytes": 90177536,
+        "effective_limit_bytes": 12509668966
+      },
+      "phases": {
+        "supervised": {
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "optimizer_steps": 40,
+          "fixed_epochs": 2,
+          "elapsed_seconds": 1.8384400320001077
+        }
+      }
+    },
+    {
+      "job": {
+        "job_id": "gpu-profile-006",
+        "model": "FCN-1D",
+        "cohort": "large",
+        "case": "reference",
+        "seed": 274201,
+        "epochs": 2,
+        "batch_size": 32
+      },
+      "status": "success",
+      "error_code": null,
+      "optimizer_steps": 40,
+      "optimizer_steps_known_lower_bound": 40,
+      "elapsed_wall_seconds": 5.077159988999938,
+      "sampled_peak_process_group_rss_bytes": 1441558528,
+      "train_n": 619,
+      "validation_n": 83,
+      "parameter_count": 268929,
+      "state_bytes": 1079836,
+      "timing": {
+        "build_seconds": 0.008570742999836511,
+        "fit_seconds": 1.794934430000012,
+        "validation_seconds": 0.009907591999990473,
+        "worker_seconds": 4.280913195999801,
+        "process_cpu_seconds": 4.475451748
+      },
+      "cuda_metrics": {
+        "max_memory_allocated_bytes": 73103872,
+        "max_memory_reserved_bytes": 75497472,
+        "effective_limit_bytes": 12509668966
+      },
+      "phases": {
+        "supervised": {
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "optimizer_steps": 40,
+          "fixed_epochs": 2,
+          "elapsed_seconds": 1.7939591070000915
+        }
+      }
+    },
+    {
+      "job": {
+        "job_id": "gpu-profile-007",
+        "model": "ResNet-1D",
+        "cohort": "large",
+        "case": "reference",
+        "seed": 274201,
+        "epochs": 2,
+        "batch_size": 32
+      },
+      "status": "success",
+      "error_code": null,
+      "optimizer_steps": 40,
+      "optimizer_steps_known_lower_bound": 40,
+      "elapsed_wall_seconds": 7.12517876600009,
+      "sampled_peak_process_group_rss_bytes": 1468493824,
+      "train_n": 619,
+      "validation_n": 83,
+      "parameter_count": 522955,
+      "state_bytes": 2102204,
+      "timing": {
+        "build_seconds": 0.01766908400009015,
+        "fit_seconds": 3.668395129000146,
+        "validation_seconds": 0.0220311870000387,
+        "worker_seconds": 6.283772377999867,
+        "process_cpu_seconds": 6.325946021
+      },
+      "cuda_metrics": {
+        "max_memory_allocated_bytes": 81221632,
+        "max_memory_reserved_bytes": 100663296,
+        "effective_limit_bytes": 12509668966
+      },
+      "phases": {
+        "supervised": {
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "optimizer_steps": 40,
+          "fixed_epochs": 2,
+          "elapsed_seconds": 3.6670867280001858
+        }
+      }
+    },
+    {
+      "job": {
+        "job_id": "gpu-profile-008",
+        "model": "Inception-1D",
+        "cohort": "large",
+        "case": "reference",
+        "seed": 274201,
+        "epochs": 2,
+        "batch_size": 32
+      },
+      "status": "success",
+      "error_code": null,
+      "optimizer_steps": 40,
+      "optimizer_steps_known_lower_bound": 40,
+      "elapsed_wall_seconds": 6.3198019889998704,
+      "sampled_peak_process_group_rss_bytes": 1496047616,
+      "train_n": 619,
+      "validation_n": 83,
+      "parameter_count": 490561,
+      "state_bytes": 1970500,
+      "timing": {
+        "build_seconds": 0.01526280199982466,
+        "fit_seconds": 2.9443071870000495,
+        "validation_seconds": 0.026103977000047962,
+        "worker_seconds": 5.436146061000045,
+        "process_cpu_seconds": 5.628158159
+      },
+      "cuda_metrics": {
+        "max_memory_allocated_bytes": 98508288,
+        "max_memory_reserved_bytes": 104857600,
+        "effective_limit_bytes": 12509668966
+      },
+      "phases": {
+        "supervised": {
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "optimizer_steps": 40,
+          "fixed_epochs": 2,
+          "elapsed_seconds": 2.9428036530000554
+        }
+      }
+    },
+    {
+      "job": {
+        "job_id": "gpu-profile-009",
+        "model": "TSMixer",
+        "cohort": "large",
+        "case": "reference",
+        "seed": 274201,
+        "epochs": 2,
+        "batch_size": 32
+      },
+      "status": "success",
+      "error_code": null,
+      "optimizer_steps": 40,
+      "optimizer_steps_known_lower_bound": 40,
+      "elapsed_wall_seconds": 7.033869083000127,
+      "sampled_peak_process_group_rss_bytes": 1359314944,
+      "train_n": 619,
+      "validation_n": 83,
+      "parameter_count": 35044,
+      "state_bytes": 143536,
+      "timing": {
+        "build_seconds": 0.013940944000069067,
+        "fit_seconds": 3.676253292999945,
+        "validation_seconds": 0.0155590229999234,
+        "worker_seconds": 6.194120868000027,
+        "process_cpu_seconds": 6.169442292
+      },
+      "cuda_metrics": {
+        "max_memory_allocated_bytes": 75199488,
+        "max_memory_reserved_bytes": 75497472,
+        "effective_limit_bytes": 12509668966
+      },
+      "phases": {
+        "supervised": {
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "optimizer_steps": 40,
+          "fixed_epochs": 2,
+          "elapsed_seconds": 3.6744665809999333
+        }
+      }
+    },
+    {
+      "job": {
+        "job_id": "gpu-profile-010",
+        "model": "iTransformer",
+        "cohort": "large",
+        "case": "reference",
+        "seed": 274201,
+        "epochs": 2,
+        "batch_size": 32
+      },
+      "status": "success",
+      "error_code": null,
+      "optimizer_steps": 40,
+      "optimizer_steps_known_lower_bound": 40,
+      "elapsed_wall_seconds": 5.96027822699989,
+      "sampled_peak_process_group_rss_bytes": 1465290752,
+      "train_n": 619,
+      "validation_n": 83,
+      "parameter_count": 795403,
+      "state_bytes": 3181612,
+      "timing": {
+        "build_seconds": 0.914881823000087,
+        "fit_seconds": 1.5872346769999695,
+        "validation_seconds": 0.014096871999981886,
+        "worker_seconds": 5.055953921000082,
+        "process_cpu_seconds": 5.246150411
+      },
+      "cuda_metrics": {
+        "max_memory_allocated_bytes": 89550848,
+        "max_memory_reserved_bytes": 106954752,
+        "effective_limit_bytes": 12509668966
+      },
+      "phases": {
+        "supervised": {
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "optimizer_steps": 40,
+          "fixed_epochs": 2,
+          "elapsed_seconds": 1.585841925000068
+        }
+      }
+    },
+    {
+      "job": {
+        "job_id": "gpu-profile-011",
+        "model": "MLP16",
+        "cohort": "large",
+        "case": "reference",
+        "seed": 274201,
+        "epochs": 2,
+        "batch_size": 32
+      },
+      "status": "success",
+      "error_code": null,
+      "optimizer_steps": 40,
+      "optimizer_steps_known_lower_bound": 40,
+      "elapsed_wall_seconds": 5.641604676000043,
+      "sampled_peak_process_group_rss_bytes": 1289654272,
+      "train_n": 619,
+      "validation_n": 83,
+      "parameter_count": 593,
+      "state_bytes": 2372,
+      "timing": {
+        "build_seconds": 0.0028869370000847994,
+        "fit_seconds": 1.9541463630000635,
+        "validation_seconds": 0.003405245000067225,
+        "worker_seconds": 4.501995305000037,
+        "process_cpu_seconds": 4.4807384
+      },
+      "cuda_metrics": {
+        "max_memory_allocated_bytes": 68268544,
+        "max_memory_reserved_bytes": 69206016,
+        "effective_limit_bytes": 12509668966
+      },
+      "phases": {
+        "supervised": {
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "optimizer_steps": 40,
+          "fixed_epochs": 2,
+          "elapsed_seconds": 1.9531049539998548
+        }
+      }
+    },
+    {
+      "job": {
+        "job_id": "gpu-profile-012",
+        "model": "LSTM32",
+        "cohort": "large",
+        "case": "reference",
+        "seed": 274201,
+        "epochs": 2,
+        "batch_size": 32
+      },
+      "status": "success",
+      "error_code": null,
+      "optimizer_steps": 40,
+      "optimizer_steps_known_lower_bound": 40,
+      "elapsed_wall_seconds": 5.034845990999884,
+      "sampled_peak_process_group_rss_bytes": 1316110336,
+      "train_n": 619,
+      "validation_n": 83,
+      "parameter_count": 5025,
+      "state_bytes": 20100,
+      "timing": {
+        "build_seconds": 0.01889458799996646,
+        "fit_seconds": 1.4463331189999735,
+        "validation_seconds": 0.00329467200003819,
+        "worker_seconds": 4.135363561999839,
+        "process_cpu_seconds": 4.273164853
+      },
+      "cuda_metrics": {
+        "max_memory_allocated_bytes": 76581376,
+        "max_memory_reserved_bytes": 90177536,
+        "effective_limit_bytes": 12509668966
+      },
+      "phases": {
+        "supervised": {
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "optimizer_steps": 40,
+          "fixed_epochs": 2,
+          "elapsed_seconds": 1.4453942239999833
+        }
+      }
+    },
+    {
+      "job": {
+        "job_id": "gpu-profile-013",
+        "model": "GRU32",
+        "cohort": "large",
+        "case": "reference",
+        "seed": 274201,
+        "epochs": 2,
+        "batch_size": 32
+      },
+      "status": "success",
+      "error_code": null,
+      "optimizer_steps": 40,
+      "optimizer_steps_known_lower_bound": 40,
+      "elapsed_wall_seconds": 4.87998428800006,
+      "sampled_peak_process_group_rss_bytes": 1318858752,
+      "train_n": 619,
+      "validation_n": 83,
+      "parameter_count": 3777,
+      "state_bytes": 15108,
+      "timing": {
+        "build_seconds": 0.018693967000217526,
+        "fit_seconds": 1.4927772419998746,
+        "validation_seconds": 0.003464729999905103,
+        "worker_seconds": 4.060305571999834,
+        "process_cpu_seconds": 4.222710136
+      },
+      "cuda_metrics": {
+        "max_memory_allocated_bytes": 76489728,
+        "max_memory_reserved_bytes": 90177536,
+        "effective_limit_bytes": 12509668966
+      },
+      "phases": {
+        "supervised": {
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "optimizer_steps": 40,
+          "fixed_epochs": 2,
+          "elapsed_seconds": 1.4918057070001396
+        }
+      }
+    },
+    {
+      "job": {
+        "job_id": "gpu-profile-014",
+        "model": "TimesNet",
+        "cohort": "large",
+        "case": "largest",
+        "seed": 274201,
+        "epochs": 2,
+        "batch_size": 32,
+        "pattern": {
+          "widths": [
+            256,
+            256,
+            256
+          ],
+          "dropout_pattern": [
+            1,
+            1,
+            1
+          ],
+          "dropout_rate": 0.2
+        }
+      },
+      "status": "success",
+      "error_code": null,
+      "optimizer_steps": 40,
+      "optimizer_steps_known_lower_bound": 40,
+      "elapsed_wall_seconds": 58.211388441000054,
+      "sampled_peak_process_group_rss_bytes": 2773614592,
+      "train_n": 619,
+      "validation_n": 83,
+      "parameter_count": 225075755,
+      "state_bytes": 900303916,
+      "timing": {
+        "build_seconds": 3.2278044509998836,
+        "fit_seconds": 45.07512376399973,
+        "validation_seconds": 0.7633589619999839,
+        "worker_seconds": 57.17295762699996,
+        "process_cpu_seconds": 57.945487724
+      },
+      "cuda_metrics": {
+        "max_memory_allocated_bytes": 4603495424,
+        "max_memory_reserved_bytes": 5454692352,
+        "effective_limit_bytes": 12509668966
+      },
+      "phases": {
+        "supervised": {
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "optimizer_steps": 40,
+          "fixed_epochs": 2,
+          "elapsed_seconds": 45.073060598999746
+        }
+      }
+    }
+  ],
+  "registration_commit": "728277517be653be0d0ef10fb677a68adec22bb6",
+  "registration_sha256": "892ad148e1a261d16b178371a8f8c71ea3af352cc4c6ac4fea934df7dc22ba87",
+  "hardware": {
+    "device": "cuda:0",
+    "device_name": "Tesla T4",
+    "torch": "2.8.0+cu126",
+    "torch_cuda": "12.6",
+    "total_memory_bytes": 15637086208,
+    "effective_memory_limit_bytes": 12509668966,
+    "cudnn": 91002,
+    "cpu_threads": 2,
+    "interop_threads": 1,
+    "dtype": "float32",
+    "amp": false,
+    "tf32": false,
+    "deterministic": true,
+    "execution_policy_scope": "Registered fit/inference policy; not a claim that the preflight validated all model kernels",
+    "cuda_kernel_probe_passed": true
+  },
+  "profile_attempts": 15,
+  "not_attempted": 0,
+  "costs": {
+    "known_optimizer_steps": 680,
+    "unknown_optimizer_step_workers": 0,
+    "completed_attempts": 15,
+    "failed_attempts": 0,
+    "not_attempted_jobs": 0
+  },
+  "scientific_HPO_or_NAS_executed": false,
+  "final_market_values_read": false,
+  "final_R": null,
+  "full_campaign_wall_hours": null,
+  "publication_scope": "Selected numerical resource measurements and model identities only; raw receipts and logs remain local"
+}

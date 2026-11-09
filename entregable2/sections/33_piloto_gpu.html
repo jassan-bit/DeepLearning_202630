@@ -65,7 +65,7 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="Referencias de contexto y revisión E2" href="referencias.html" />
+    <link rel="next" title="34. Perfil GPU ampliado y viabilidad del extremo TimesNet" href="34_perfil_gpu_ampliado.html" />
     <link rel="prev" title="32. Ejecución CUDA preparada y piloto de recursos" href="32_ejecucion_gpu.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
@@ -240,6 +240,7 @@
 <li class="toctree-l1"><a class="reference internal" href="31_optimizacion_nube.html">31. Optimización de CPU y presupuesto de cómputo en la nube</a></li>
 <li class="toctree-l1"><a class="reference internal" href="32_ejecucion_gpu.html">32. Ejecución CUDA preparada y piloto de recursos</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">33. Primer piloto de recursos en GPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="34_perfil_gpu_ampliado.html">34. Perfil GPU ampliado y viabilidad del extremo TimesNet</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
 </ul>
 
@@ -382,7 +383,7 @@
                 <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#procedencia-y-configuracion">Procedencia y configuración</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tiempos-y-memoria-observados">Tiempos y memoria observados</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#siguiente-medicion-antes-de-presupuestar-la-busqueda">Siguiente medición antes de presupuestar la búsqueda</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ampliacion-posterior-antes-de-presupuestar-la-busqueda">Ampliación posterior antes de presupuestar la búsqueda</a></li>
 </ul>
             </nav>
         </div>
@@ -529,9 +530,9 @@
 <p>TimesNet concentra el máximo observado de memoria CUDA: <strong>358,103 MiB asignados</strong> y <strong>420 MiB reservados</strong>. El mayor RSS muestreado del grupo de procesos fue <strong>1,653 GiB</strong>, también en TimesNet. El informe declara 15.637.086.208 bytes de memoria del dispositivo y un límite efectivo de 12.509.668.966 bytes para el asignador. La holgura de este perfil pequeño no demuestra que toda arquitectura o configuración del espacio NAS quepa en la misma GPU.</p>
 <p>Los tiempos de estas dos épocas no miden convergencia ni calidad predictiva. Tampoco permiten calcular una aceleración frente a <a class="reference internal" href="31_optimizacion_nube.html"><span class="std std-doc">§31</span></a>: aquella medición utiliza otro entorno y otros cortes de perfilado. El informe acredita ajustes completados bajo su configuración; no documenta el resultado individual de las dieciocho pruebas CUDA omitidas en el corte de preparación CPU.</p>
 </section>
-<section id="siguiente-medicion-antes-de-presupuestar-la-busqueda">
-<h2>Siguiente medición antes de presupuestar la búsqueda<a class="headerlink" href="#siguiente-medicion-antes-de-presupuestar-la-busqueda" title="Link to this heading">#</a></h2>
-<p>El siguiente paso es completar el perfil registrado de la cohorte <strong><code class="docutils literal notranslate"><span class="pre">large</span></code></strong>, con 619 ventanas de entrenamiento y 83 de validación, e incluir el extremo opcional de TimesNet. En la primera celda del notebook fijado, la configuración del nuevo lanzamiento es:</p>
+<section id="ampliacion-posterior-antes-de-presupuestar-la-busqueda">
+<h2>Ampliación posterior antes de presupuestar la búsqueda<a class="headerlink" href="#ampliacion-posterior-antes-de-presupuestar-la-busqueda" title="Link to this heading">#</a></h2>
+<p>Después de este primer corte se ejecutó el perfil registrado de la cohorte <strong><code class="docutils literal notranslate"><span class="pre">large</span></code></strong>, con 619 ventanas de entrenamiento y 83 de validación, incluido el extremo opcional de TimesNet. Sus quince perfiles completos se documentan por separado en <a class="reference internal" href="34_perfil_gpu_ampliado.html"><span class="std std-doc">§34</span></a>. La configuración utilizada en la primera celda del notebook fijado fue:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">RUN_PILOT</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">MODELS</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="n">COHORTS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"large"</span><span class="p">]</span>
@@ -539,7 +540,7 @@
 </pre></div>
 </div>
 <p>La selección admite <strong>quince trabajos</strong>: catorce referencias en la cohorte grande y el extremo de TimesNet. Conserva dos épocas por etapa, semilla 274201 y los límites registrados de 300/360 segundos por etapa/proceso y 900 segundos globales. El mismo workspace permite reutilizar las fuentes y los datos verificados; el notebook crea una salida nueva y conserva el intento pequeño anterior. Las opciones se fijan antes de iniciar el perfilado.</p>
-<p>Esas mediciones deben conservar los fallos y sus costes. Permitirán revisar el escalado por tamaño y el riesgo del extremo antes de convertir la campaña en horas GPU. La configuración anterior queda documentada para ejecutarse en Colab; su resultado no forma parte del informe de este corte.</p>
+<p>El resultado posterior se conserva en su propio informe y no altera las mediciones pequeñas de este corte. La ampliación permite revisar el tamaño y el extremo observado; las dos épocas y una ejecución por perfil no cierran por sí solas el presupuesto de una campaña NAS/HPO.</p>
 <p>Después corresponde contrastar esos recursos con el espacio NAS/HPO de <a class="reference internal" href="27_nas_hpo_presupuesto.html"><span class="std std-doc">§27</span></a>, sus límites por etapa, las fases auxiliares y las repeticiones previstas. Multiplicar directamente el tiempo de este perfil pequeño por el número de configuraciones no cierra ese presupuesto. La medición de recursos tampoco fija el número de semillas necesario para la inferencia.</p>
 <p>Según el informe, no se ejecutó búsqueda científica NAS/HPO y no se abrieron valores finales de mercado. <code class="docutils literal notranslate"><span class="pre">final_R</span></code> y <code class="docutils literal notranslate"><span class="pre">full_campaign_wall_hours</span></code> son <code class="docutils literal notranslate"><span class="pre">null</span></code>. Las referencias y recetas de este piloto no pasan a ser ganadoras por haber completado sus ajustes.</p>
 </section>
@@ -585,11 +586,11 @@
       </div>
     </a>
     <a class="right-next"
-       href="referencias.html"
+       href="34_perfil_gpu_ampliado.html"
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">Referencias de contexto y revisión E2</p>
+        <p class="prev-next-title">34. Perfil GPU ampliado y viabilidad del extremo TimesNet</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -613,7 +614,7 @@
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#procedencia-y-configuracion">Procedencia y configuración</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tiempos-y-memoria-observados">Tiempos y memoria observados</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#siguiente-medicion-antes-de-presupuestar-la-busqueda">Siguiente medición antes de presupuestar la búsqueda</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ampliacion-posterior-antes-de-presupuestar-la-busqueda">Ampliación posterior antes de presupuestar la búsqueda</a></li>
 </ul>
   </nav></div>
 

@@ -1,0 +1,56 @@
+{
+  "version": "e2-user-gpu-large-pilot-import-v1",
+  "received_on_bogota": "2026-11-09",
+  "evidence_origin": "User-provided final notebook output from Google Colab",
+  "execution_provider": "Google Colab",
+  "auditor_executed_gpu_fits": false,
+  "raw_runtime_receipts_included": false,
+  "registration_commit": "728277517be653be0d0ef10fb677a68adec22bb6",
+  "registration_sha256": "892ad148e1a261d16b178371a8f8c71ea3af352cc4c6ac4fea934df7dc22ba87",
+  "notebook_commit": "497088cbbabcdcec39c597d41b120a1ccde9379e",
+  "submitted_text_sha256": "1a7ec87ebcec8ddfb5db0d53b6e7396be8ec080d2edb2a60bf8ebe31489484dc",
+  "public_files": {
+    "scientific_report.json": {
+      "bytes": 21836,
+      "sha256": "6d0e410da1204b76b1fe8b686eb9ece38be1028f03f752eeca72585b2806b8e6"
+    }
+  },
+  "earlier_small_report_sha256": "5e82e7df7b67047962519f40115bac69a4bb1cb278fac29598c477d83b683d3a",
+  "validation": {
+    "exact_published_exporter_round_trip": true,
+    "registered_job_list_matched": true,
+    "registration_bytes_matched": true,
+    "phase_step_totals_consistent": true,
+    "resource_values_finite_nonnegative": true,
+    "fourteen_reference_parameter_counts_unchanged": true,
+    "identical_reported_hardware_and_execution_policy": true,
+    "trailing_runtime_path_excluded": true
+  },
+  "derived_resource_summary": {
+    "completed_profiles": 15,
+    "failed_profiles": 0,
+    "not_attempted_profiles": 0,
+    "known_optimizer_steps": 680,
+    "unknown_optimizer_step_workers": 0,
+    "sum_supervised_process_wall_seconds": 146.40587335099963,
+    "sum_worker_seconds": 133.53737485999932,
+    "sum_fit_seconds": 83.04473133599981,
+    "reference_only_sum_process_wall_seconds": 88.19448490999957,
+    "reference_only_sum_worker_seconds": 76.36441723299936,
+    "reference_only_sum_fit_seconds": 37.969607572000086,
+    "peak_pytorch_allocated_bytes": 4603495424,
+    "peak_pytorch_reserved_bytes": 5454692352,
+    "peak_sampled_process_group_rss_bytes": 2773614592,
+    "largest_timesnet_parameters": 225075755,
+    "combined_small_large_profiles": 29,
+    "combined_small_large_known_steps": 872
+  },
+  "limitations": [
+    "Imported user evidence; this audit did not independently rerun or time the GPU fits.",
+    "Reported process-time sums exclude unreported session, installation and provider costs.",
+    "Two epochs and one observation per profile do not establish a scaling law or a full-campaign time estimate.",
+    "The largest TimesNet case tests one architecture and batch32, not every NAS/HPO geometry or batch size.",
+    "No predictive accuracy, scientific NAS/HPO selection, final-market evaluation or final R is supplied.",
+    "Raw runtime journals, full execution receipts and model weights are not included."
+  ]
+}

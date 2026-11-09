@@ -1,0 +1,678 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>34. Perfil GPU ampliado y viabilidad del extremo TimesNet &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/34_perfil_gpu_ampliado';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Referencias de contexto y revisión E2" href="referencias.html" />
+    <link rel="prev" title="33. Primer piloto de recursos en GPU" href="33_piloto_gpu.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 2 · Bitcoin: pronóstico de volatilidad</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_literatura.html">3. Revisión Sistemática del Estado del Arte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación de los diez modelos y el candidato adicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark vigente: diez modelos y un candidato adicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Preregistro del catálogo vigente y trazabilidad experimental</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de datos y auditoría formal de fuga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. HPO y equidad para el catálogo vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Techo de desempeño, incertidumbre y análisis de errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Agregación estadística e interpretación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas del catálogo vigente y adaptación a D7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo vigente: diez modelos y candidato 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_fichas_nuevas.html">16. Fichas bibliográficas de las cuatro altas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato sincronizado de E1, E2 y E3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_integracion_sintetica.html">18. Implementación provisional y verificación sintética</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_plan_auditoria.html">19. Plan experimental propuesto y auditoría sin entrenamiento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_contraste_guia.html">20. Cotejo del plan con la guía original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_comparadores_nas.html">21. Comparadores temporales y decisión NAS por receta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22_fichas_recetas.html">22. Once fichas de recetas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_implementacion_recetas.html">23. Implementación de recetas y controles temporales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="24_ejecutor_comun.html">24. Ejecutor común y disponibilidad temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="25_matriz_cierre.html">25. Matriz de cierre antes del benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="26_registro_recetas.html">26. Registro por receta: fuentes, NAS, HPO e integración</a></li>
+<li class="toctree-l1"><a class="reference internal" href="27_nas_hpo_presupuesto.html">27. Decisiones NAS, rangos HPO y presupuesto para Codex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="28_fabricas_nas.html">28. Fábricas NAS implementadas y verificadas sintéticamente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="29_entrenamiento_temporal.html">29. Entrenamiento por etapas, selección temporal y perfilado CPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="30_piloto_nube.html">30. Piloto de desarrollo en la nube de Codex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="31_optimizacion_nube.html">31. Optimización de CPU y presupuesto de cómputo en la nube</a></li>
+<li class="toctree-l1"><a class="reference internal" href="32_ejecucion_gpu.html">32. Ejecución CUDA preparada y piloto de recursos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="33_piloto_gpu.html">33. Primer piloto de recursos en GPU</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">34. Perfil GPU ampliado y viabilidad del extremo TimesNet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><p class="small">Entregable 2 · Jassan Arteta · 2026-30</p></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/34_perfil_gpu_ampliado.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>34. Perfil GPU ampliado y viabilidad del extremo TimesNet</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#procedencia-y-configuracion-conservada">Procedencia y configuración conservada</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tiempos-y-memoria-de-los-quince-perfiles">Tiempos y memoria de los quince perfiles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-con-la-cohorte-pequena">Comparación con la cohorte pequeña</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#siguiente-cierre-antes-de-nas-hpo">Siguiente cierre antes de NAS/HPO</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="perfil-gpu-ampliado-y-viabilidad-del-extremo-timesnet">
+<h1>34. Perfil GPU ampliado y viabilidad del extremo TimesNet<a class="headerlink" href="#perfil-gpu-ampliado-y-viabilidad-del-extremo-timesnet" title="Link to this heading">#</a></h1>
+<p><strong>Resultado informado: quince perfiles completados en la Tesla T4 de Colab</strong>, con cero fallos, cero trabajos sin admitir y <strong>680 pasos de optimización conocidos</strong>. Son las catorce referencias en la cohorte grande y un perfil adicional del TimesNet máximo. El usuario ejecutó el notebook y aportó el informe; Codex comprobó su correspondencia con el registro, las fases y los contadores. Este informe amplía el <a class="reference internal" href="33_piloto_gpu.html"><span class="std std-doc">piloto pequeño de §33</span></a>.</p>
+<p>El resultado respalda la viabilidad de los perfiles probados con su receta fija. La calidad predictiva, la búsqueda NAS/HPO, las horas de la campaña completa y el R final siguen pendientes.</p>
+<section id="procedencia-y-configuracion-conservada">
+<h2>Procedencia y configuración conservada<a class="headerlink" href="#procedencia-y-configuracion-conservada" title="Link to this heading">#</a></h2>
+<p>La evidencia está en el <a class="reference download internal" download="" href="../_downloads/0d8fe477688d3578222adb8e335b5f4c/scientific_report.json"><span class="xref download myst">informe científico ampliado</span></a> y su <a class="reference download internal" download="" href="../_downloads/c1ea3a40d8b1e7e83434bce0e3eae9c5/manifest.json"><span class="xref download myst">manifiesto de importación</span></a>. Se conservan los campos científicos admitidos; los diarios y recibos completos del runtime no acompañan la importación. La validación del contenido recibido no constituye una reproducción independiente de los ajustes originales.</p>
+<p>El informe público tiene SHA256 <code class="docutils literal notranslate"><span class="pre">6d0e410da1204b76b1fe8b686eb9ece38be1028f03f752eeca72585b2806b8e6</span></code>; el manifiesto tiene SHA256 <code class="docutils literal notranslate"><span class="pre">2f35450ad91dbb513672e492ef0973e312937c24ec4b1811984914dec18d250d</span></code>. Ambos pertenecen a este segundo perfilado y se conservan separados de la evidencia pequeña de §33.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Elemento</p></th>
+<th class="head"><p>Configuración registrada o informada</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Ejecutor congelado</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">728277517be653be0d0ef10fb677a68adec22bb6</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Notebook corregido</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">497088cbbabcdcec39c597d41b120a1ccde9379e</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>SHA256 del registro previo</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">892ad148e1a261d16b178371a8f8c71ea3af352cc4c6ac4fea934df7dc22ba87</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>GPU y entorno</p></td>
+<td><p>Tesla T4, PyTorch 2.8.0 + CUDA 12.6, cuDNN 91002</p></td>
+</tr>
+<tr class="row-even"><td><p>Política numérica</p></td>
+<td><p>FP32, sin AMP ni TF32, determinismo declarado</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cohorte</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">large</span></code>: 619 ventanas de entrenamiento y 83 de validación</p></td>
+</tr>
+<tr class="row-even"><td><p>Receta</p></td>
+<td><p>Semilla 274201, batch 32, dos épocas por etapa</p></td>
+</tr>
+<tr class="row-odd"><td><p>Extremo TimesNet</p></td>
+<td><p>Anchuras <code class="docutils literal notranslate"><span class="pre">[256,</span> <span class="pre">256,</span> <span class="pre">256]</span></code>, dropout <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">1,</span> <span class="pre">1]</span></code> a tasa 0,2</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Cada etapa realizó cuarenta pasos. SAE completó AE1, AE2 y la fase supervisada: <strong>120 pasos</strong>. Las otras trece referencias realizaron cuarenta cada una y el TimesNet máximo añadió cuarenta: <strong>120 + 13 × 40 + 40 = 680</strong>. No hay contadores desconocidos.</p>
+<p>Los dos informes aportados por el usuario reúnen <strong>29 perfiles y 872 pasos conocidos</strong>. Son dos campañas de recursos separadas con referencias repetidas por cohorte; no corresponden a 29 modelos diferentes. El registro previo y el informe pequeño se conservan sin cambios.</p>
+</section>
+<section id="tiempos-y-memoria-de-los-quince-perfiles">
+<h2>Tiempos y memoria de los quince perfiles<a class="headerlink" href="#tiempos-y-memoria-de-los-quince-perfiles" title="Link to this heading">#</a></h2>
+<p>La suma de tiempos de pared de los trabajos es <strong>146,406 s</strong>, la de tiempos de los workers es <strong>133,537 s</strong> y la de ajuste es <strong>83,045 s</strong>. Estas medidas tienen fronteras distintas y no deben sumarse entre sí. No incluyen de forma completa la instalación, la conexión a Colab, la sesión del proveedor ni una campaña NAS/HPO.</p>
+<p>Los valores se redondean a tres decimales. La VRAM reservada corresponde al máximo informado por el asignador de PyTorch para cada trabajo; no mide toda la memoria del dispositivo.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Perfil</p></th>
+<th class="head text-right"><p>Ajuste (s)</p></th>
+<th class="head text-right"><p>Pared del trabajo (s)</p></th>
+<th class="head text-right"><p>VRAM reservada máxima (GiB)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>LSTM-autoencoder con predictor</p></td>
+<td class="text-right"><p>2,280</p></td>
+<td class="text-right"><p>5,475</p></td>
+<td class="text-right"><p>0,117</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimesNet</p></td>
+<td class="text-right"><p>5,933</p></td>
+<td class="text-right"><p>9,642</p></td>
+<td class="text-right"><p>0,410</p></td>
+</tr>
+<tr class="row-even"><td><p>TiDE</p></td>
+<td class="text-right"><p>2,103</p></td>
+<td class="text-right"><p>5,710</p></td>
+<td class="text-right"><p>0,064</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimeMixer</p></td>
+<td class="text-right"><p>4,730</p></td>
+<td class="text-right"><p>8,608</p></td>
+<td class="text-right"><p>0,102</p></td>
+</tr>
+<tr class="row-even"><td><p>PatchTST</p></td>
+<td class="text-right"><p>2,520</p></td>
+<td class="text-right"><p>5,746</p></td>
+<td class="text-right"><p>0,086</p></td>
+</tr>
+<tr class="row-odd"><td><p>CNN-1D + LSTM + atención temporal</p></td>
+<td class="text-right"><p>1,839</p></td>
+<td class="text-right"><p>5,940</p></td>
+<td class="text-right"><p>0,084</p></td>
+</tr>
+<tr class="row-even"><td><p>FCN-1D</p></td>
+<td class="text-right"><p>1,795</p></td>
+<td class="text-right"><p>5,077</p></td>
+<td class="text-right"><p>0,070</p></td>
+</tr>
+<tr class="row-odd"><td><p>ResNet-1D</p></td>
+<td class="text-right"><p>3,668</p></td>
+<td class="text-right"><p>7,125</p></td>
+<td class="text-right"><p>0,094</p></td>
+</tr>
+<tr class="row-even"><td><p>Inception-1D</p></td>
+<td class="text-right"><p>2,944</p></td>
+<td class="text-right"><p>6,320</p></td>
+<td class="text-right"><p>0,098</p></td>
+</tr>
+<tr class="row-odd"><td><p>TSMixer</p></td>
+<td class="text-right"><p>3,676</p></td>
+<td class="text-right"><p>7,034</p></td>
+<td class="text-right"><p>0,070</p></td>
+</tr>
+<tr class="row-even"><td><p>iTransformer</p></td>
+<td class="text-right"><p>1,587</p></td>
+<td class="text-right"><p>5,960</p></td>
+<td class="text-right"><p>0,100</p></td>
+</tr>
+<tr class="row-odd"><td><p>MLP16</p></td>
+<td class="text-right"><p>1,954</p></td>
+<td class="text-right"><p>5,642</p></td>
+<td class="text-right"><p>0,064</p></td>
+</tr>
+<tr class="row-even"><td><p>LSTM32</p></td>
+<td class="text-right"><p>1,446</p></td>
+<td class="text-right"><p>5,035</p></td>
+<td class="text-right"><p>0,084</p></td>
+</tr>
+<tr class="row-odd"><td><p>GRU32</p></td>
+<td class="text-right"><p>1,493</p></td>
+<td class="text-right"><p>4,880</p></td>
+<td class="text-right"><p>0,084</p></td>
+</tr>
+<tr class="row-even"><td><p>TimesNet · máximo</p></td>
+<td class="text-right"><p>45,075</p></td>
+<td class="text-right"><p>58,211</p></td>
+<td class="text-right"><p>5,080</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El TimesNet máximo tiene <strong>225.075.755 parámetros</strong> y 900.303.916 bytes de estado. Completó el ajuste en <strong>45,075 s</strong> y el trabajo en <strong>58,211 s</strong>. Sus picos fueron <strong>4,287 GiB de VRAM asignada</strong>, <strong>5,080 GiB reservada</strong> y <strong>2,583 GiB de RSS muestreado</strong>. El límite efectivo informado para el asignador CUDA es <strong>11,651 GiB</strong>. El perfil terminó dentro del límite, con el batch y las condiciones registradas; no se han comprobado todos los extremos arquitectónicos ni todos los valores del espacio HPO.</p>
+</section>
+<section id="comparacion-con-la-cohorte-pequena">
+<h2>Comparación con la cohorte pequeña<a class="headerlink" href="#comparacion-con-la-cohorte-pequena" title="Link to this heading">#</a></h2>
+<p>Para comparar las mismas catorce referencias, el extremo adicional de TimesNet se mantiene aparte:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Medición agregada de las 14 referencias</p></th>
+<th class="head text-right"><p>Pequeña: 161/83</p></th>
+<th class="head text-right"><p>Grande: 619/83</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Pasos de optimización</p></td>
+<td class="text-right"><p>192</p></td>
+<td class="text-right"><p>640</p></td>
+</tr>
+<tr class="row-odd"><td><p>Suma de ajuste (s)</p></td>
+<td class="text-right"><p>25,508</p></td>
+<td class="text-right"><p>37,970</p></td>
+</tr>
+<tr class="row-even"><td><p>Suma de pared de los trabajos (s)</p></td>
+<td class="text-right"><p>75,688</p></td>
+<td class="text-right"><p>88,194</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La receta, la identidad y el número de parámetros de cada referencia coinciden entre los dos informes. Los pasos aumentan 3,333 veces, mientras que el ajuste agregado medido aumenta aproximadamente 1,489 veces. Algunas mediciones individuales incluso disminuyen. Hay una sola ejecución corta por caso y dos épocas; el arranque, el calentamiento y la variación de medición influyen en estos cocientes. No permiten establecer una ley de escalado ni una comparación de aceleración CPU–GPU.</p>
+<p>Los tiempos tampoco miden convergencia, errores de predicción o superioridad del candidato híbrido. El TimesNet máximo modifica anchuras y dropout respecto de la referencia; sus diferencias de coste no estiman aisladamente el efecto de uno de esos factores.</p>
+</section>
+<section id="siguiente-cierre-antes-de-nas-hpo">
+<h2>Siguiente cierre antes de NAS/HPO<a class="headerlink" href="#siguiente-cierre-antes-de-nas-hpo" title="Link to this heading">#</a></h2>
+<p>El próximo trabajo es conectar el backend CUDA con la selección científica y sellar su plan operativo. Las decisiones NAS y los dominios HPO de <a class="reference internal" href="27_nas_hpo_presupuesto.html"><span class="std std-doc">§27</span></a> permanecen fijados; estos tiempos de recursos no seleccionan nuevos dominios ni ganadores. Los dos pilotos ya aportados se conservan y no hace falta repetirlos sin cambios.</p>
+<p>El adaptador <code class="docutils literal notranslate"><span class="pre">e2_training_bindings.py</span></code> utiliza actualmente el motor CPU <code class="docutils literal notranslate"><span class="pre">e2_staged_training</span></code>. También construye entradas CPU para la inferencia. La integración requiere un enlace CUDA explícito que conserve HPO → NAS-1 → NAS-2 → reajuste, las fases SAE, la separación temporal, las semillas, los desempates y los costes de cada intento. El notebook de recursos no implementa esa secuencia al cambiar su número de épocas.</p>
+<p>Antes del lanzamiento científico corresponde:</p>
+<ol class="arabic simple">
+<li><p><strong>Verificar el adaptador y su lanzador.</strong> Integrar ajuste, selección de épocas e inferencia CUDA con pruebas artificiales y recorridos pequeños declarados, sin reinterpretarlos como una búsqueda completa.</p></li>
+<li><p><strong>Separar los límites y admitir un presupuesto global.</strong> Conservar los límites científicos de 1800/7200 segundos por etapa, separados de los 300/360 segundos y 900 segundos globales del piloto de recursos. Fijar un presupuesto por etapas y por sesión Colab antes de arrancar miles de ajustes.</p></li>
+<li><p><strong>Persistir el estado de la campaña entre trabajos.</strong> Distinguir intentos completos, fallidos e incompletos y evitar repeticiones silenciosas. Los checkpoints actuales son de inferencia y no contienen el estado del optimizador para reanudar un ajuste interrumpido.</p></li>
+<li><p><strong>Dimensionar el almacenamiento y sus costes.</strong> El estado del TimesNet máximo ocupa aproximadamente 0,839 GiB, y el piloto no guardó pesos ni midió escritura a disco. La retención de candidatos y sus tiempos requieren una política explícita; los originales históricos se conservan.</p></li>
+</ol>
+<p>El estimador existente requiere separar tasas de actualización, evaluación, preparación, finalización y clonación. El exportado GPU no contiene esa descomposición, por lo que ese uso devuelve <code class="docutils literal notranslate"><span class="pre">timing_decomposition_missing</span></code>. Tampoco están medidos todos los extremos HPO ni las posiciones arquitectónicas estratificadas por familia. Una integración acotada con instrumentación adicional puede producir esos componentes; multiplicar directamente estos microperfiles por configuraciones y épocas no cierra las horas GPU ni garantiza completar cada asignación científica.</p>
+<p>El informe mantiene <code class="docutils literal notranslate"><span class="pre">scientific_HPO_or_NAS_executed=false</span></code>, <code class="docutils literal notranslate"><span class="pre">final_market_values_read=false</span></code>, <code class="docutils literal notranslate"><span class="pre">final_R=null</span></code> y <code class="docutils literal notranslate"><span class="pre">full_campaign_wall_hours=null</span></code>. Los valores finales de mercado no se han abierto según la evidencia aportada. El R final se resolverá después de seleccionar recetas y comprobar su variación; esa tarea pendiente no impide preparar las etapas anteriores admitidas, y el reajuste final conserva su guarda de R.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="33_piloto_gpu.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">33. Primer piloto de recursos en GPU</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="referencias.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Referencias de contexto y revisión E2</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#procedencia-y-configuracion-conservada">Procedencia y configuración conservada</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tiempos-y-memoria-de-los-quince-perfiles">Tiempos y memoria de los quince perfiles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-con-la-cohorte-pequena">Comparación con la cohorte pequeña</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#siguiente-cierre-antes-de-nas-hpo">Siguiente cierre antes de NAS/HPO</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

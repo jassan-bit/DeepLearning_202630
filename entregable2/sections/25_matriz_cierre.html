@@ -240,6 +240,7 @@
 <li class="toctree-l1"><a class="reference internal" href="31_optimizacion_nube.html">31. Optimización de CPU y presupuesto de cómputo en la nube</a></li>
 <li class="toctree-l1"><a class="reference internal" href="32_ejecucion_gpu.html">32. Ejecución CUDA preparada y piloto de recursos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="33_piloto_gpu.html">33. Primer piloto de recursos en GPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="34_perfil_gpu_ampliado.html">34. Perfil GPU ampliado y viabilidad del extremo TimesNet</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
 </ul>
 
@@ -429,31 +430,31 @@
 </tr>
 <tr class="row-even"><td><p>R03</p></td>
 <td><p>§§4, 11 y 14, <a class="reference internal" href="22_fichas_recetas.html"><span class="std std-doc">recetas</span></a> y <a class="reference internal" href="23_implementacion_recetas.html"><span class="std std-doc">implementación</span></a></p></td>
-<td><p>Cuerpos implementados y probados sintéticamente; backend CUDA de <a class="reference internal" href="32_ejecucion_gpu.html"><span class="std std-doc">§32</span></a> y catorce ajustes de referencia en T4 en <a class="reference internal" href="33_piloto_gpu.html"><span class="std std-doc">§33</span></a></p></td>
+<td><p>Cuerpos implementados y probados sintéticamente; backend CUDA de <a class="reference internal" href="32_ejecucion_gpu.html"><span class="std std-doc">§32</span></a>, catorce referencias pequeñas en <a class="reference internal" href="33_piloto_gpu.html"><span class="std std-doc">§33</span></a> y quince perfiles grandes en <a class="reference internal" href="34_perfil_gpu_ampliado.html"><span class="std std-doc">§34</span></a></p></td>
 <td><p>Congelar por receta arquitectura, entrada, objetivo, pérdida, inicialización, SAE, ensemble y controles del híbrido</p></td>
 <td><p>Registro versionado por modelo, hashes de código/fuentes y correspondencia receta–implementación revisada</p></td>
 </tr>
 <tr class="row-odd"><td><p>R04</p></td>
 <td><p>§14, <a class="reference internal" href="14_arquitecturas.html"><span class="std std-doc">arquitecturas</span></a> y <a class="reference internal" href="21_comparadores_nas.html"><span class="std std-doc">matriz NAS</span></a></p></td>
-<td><p>Seis variantes NAS y cinco cuerpos fijos; fábricas verificadas en §28 y ciclo de entrenamiento integrado en §29</p></td>
-<td><p>Ejecutar la búsqueda registrada después de cerrar recursos y prerrequisitos; las pruebas estructurales de §28 no son resultados de búsqueda</p></td>
+<td><p>Seis variantes NAS y cinco cuerpos fijos; fábricas verificadas en §28 y ciclo de entrenamiento CPU integrado en §29; perfiles de recursos CUDA en §§33–34</p></td>
+<td><p>Conectar la selección NAS a CUDA y ejecutar la búsqueda registrada después de cerrar recursos y prerrequisitos; las pruebas estructurales y los perfiles no son resultados de búsqueda</p></td>
 <td><p>Decisión motivada por receta; para NAS aplicable, espacio, restricciones, fases, selección y coste registrados antes de buscar</p></td>
 </tr>
 <tr class="row-even"><td><p>R05</p></td>
 <td><p>§§4.3 y 11, <a class="reference internal" href="11_hpo_equidad.html"><span class="std std-doc">HPO</span></a></p></td>
-<td><p>Dominios y T=18 resueltos en §27; perfiles CPU 85/86 y proyección primaria incompleta en <a class="reference internal" href="31_optimizacion_nube.html"><span class="std std-doc">§31</span></a>; primer piloto GPU pequeño completo en <a class="reference internal" href="33_piloto_gpu.html"><span class="std std-doc">§33</span></a>, sin HPO ejecutado</p></td>
-<td><p>Ampliar el perfilado CUDA a la cohorte grande y al extremo TimesNet registrados; revisar límites por etapa, retención y componentes adicionales sin medir antes de fijar horas de búsqueda</p></td>
+<td><p>Dominios y T=18 resueltos en §27; perfiles CPU 85/86 y proyección primaria incompleta en <a class="reference internal" href="31_optimizacion_nube.html"><span class="std std-doc">§31</span></a>; pilotos CUDA pequeño y grande completos en <a class="reference internal" href="33_piloto_gpu.html"><span class="std std-doc">§§33</span></a>–<a class="reference internal" href="34_perfil_gpu_ampliado.html"><span class="std std-doc">34</span></a>, sin HPO ejecutado</p></td>
+<td><p>Completar el ejecutor CUDA de selección y la descomposición de tiempos/costes; revisar límites, retención y componentes sin medir antes de fijar horas de búsqueda</p></td>
 <td><p>Configuraciones ejecutables y presupuesto comparable, incluidos preentrenamiento y selección; revisión frente al mínimo de la guía</p></td>
 </tr>
 <tr class="row-odd"><td><p>R06</p></td>
 <td><p>§§4, 7 y 10, <a class="reference internal" href="17_contrato_sincronizado.html"><span class="std std-doc">contrato</span></a> y <a class="reference internal" href="24_ejecutor_comun.html"><span class="std std-doc">ejecutor</span></a></p></td>
-<td><p>Motor de18 sistemas integrado en §29; piloto real de recursos y replay de desarrollo en §30; piloto pequeño de catorce referencias CUDA en §33; campaña completa pendiente</p></td>
-<td><p>Escenario B fijado en §27; extender el piloto al experimento completo con puentes, estado ARIMA y máscara común verificados</p></td>
+<td><p>Motor CPU de18 sistemas integrado en §29; recursos y replay de desarrollo en §30; 29 perfiles CUDA de recursos en §§33–34; campaña completa pendiente</p></td>
+<td><p>Conectar el backend CUDA con HPO→NAS1→NAS2→reajuste, conservando el escenario B de §27, puentes, estado ARIMA y máscara común</p></td>
 <td><p>Plan de particiones y pruebas de integración de todas las fábricas/adaptadores, escalado train-only y persistencia previa a observación</p></td>
 </tr>
 <tr class="row-even"><td><p>R07</p></td>
 <td><p>§§9 y 13, <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">preregistro</span></a></p></td>
-<td><p>Pilotos registrados antes de ajustar en §§30–31 y §33; nula del generador validada en §31, sin R que respalde el objetivo condicional de 0,80; R final pendiente</p></td>
+<td><p>Pilotos registrados antes de ajustar en §§30–31 y §§33–34; nula del generador validada en §31, sin R que respalde el objetivo condicional de 0,80; R final pendiente</p></td>
 <td><p>Resolver potencia para las recetas seleccionadas y el procedimiento temporal final, además de estimandos, familias, multiplicidad, bloques e inferencia; no trasladar la calibración del simulador al mercado real</p></td>
 <td><p>Protocolo versionado con fecha real de cierre, supuestos de potencia, límites de recursos y registro de exposición previa</p></td>
 </tr>
@@ -483,8 +484,8 @@
 </tr>
 <tr class="row-odd"><td><p>R12</p></td>
 <td><p>§8 y Apéndice B, <a class="reference internal" href="08_reproducibilidad.html"><span class="std std-doc">reproducibilidad</span></a></p></td>
-<td><p>Versiones y pruebas CPU; entorno CUDA de <a class="reference internal" href="32_ejecucion_gpu.html"><span class="std std-doc">§32</span></a> ejecutado en Colab T4 según el informe de <a class="reference internal" href="33_piloto_gpu.html"><span class="std std-doc">§33</span></a>; reproducción independiente del benchmark pendiente</p></td>
-<td><p>Conservar informe y hashes de fuente, dependencias y registro; completar revisión de licencias y reproducción independiente del experimento completo</p></td>
+<td><p>Versiones y pruebas CPU; entorno CUDA de <a class="reference internal" href="32_ejecucion_gpu.html"><span class="std std-doc">§32</span></a> ejecutado en Colab T4 según los informes de <a class="reference internal" href="33_piloto_gpu.html"><span class="std std-doc">§33</span></a> y <a class="reference internal" href="34_perfil_gpu_ampliado.html"><span class="std std-doc">§34</span></a>; reproducción independiente del benchmark pendiente</p></td>
+<td><p>Conservar informes y hashes de fuente, dependencias y registro; completar revisión de licencias y reproducción independiente del experimento completo</p></td>
 <td><p>Entorno fijado y recibo de reproducción independiente con alcance declarado</p></td>
 </tr>
 <tr class="row-even"><td><p>R13</p></td>
@@ -519,7 +520,7 @@
 <p>La <a class="reference internal" href="27_nas_hpo_presupuesto.html"><span class="std std-doc">decisión posterior de §27</span></a> resuelve NAS por receta, dominios HPO y presupuesto contable para Codex. La <a class="reference internal" href="29_entrenamiento_temporal.html"><span class="std std-doc">integración de §29</span></a> enlaza las variantes, etapas, selección y reajuste de18 sistemas y publica perfiles CPU cortos. El <a class="reference internal" href="30_piloto_nube.html"><span class="std std-doc">piloto real de §30</span></a> tiene registro previo y recibos de recursos y variación de referencia. Su resultado principal quedó incompleto. k40 es conservador y R30 es un techo provisional de coste; no cierra R final, horas de campaña ni potencia para las recetas aún sin seleccionar. No se fija aquí un número de semillas, ganador, exención NAS ni techo numérico sin evidencia.</p>
 <p>La <a class="reference internal" href="31_optimizacion_nube.html"><span class="std std-doc">medición nueva de §31</span></a> registra el perfilado ampliado, un piloto nuevo de variación y la calibración condicional de planificación. La comparación observada eligió el recorte de CPU de TimesNet y dos hilos globales. Completaron 85/86 perfiles y los treinta ajustes del nuevo piloto. El fallo del extremo conserva sus costes y deja incompleta la proyección primaria. La nula del generador pasó las dieciséis validaciones de los grupos histórico y nuevo, analizados por separado; ningún R estudiado respalda el objetivo condicional de 0,80. El R final queda abierto. La sensibilidad de horas con microperfil y el almacenamiento son proyecciones condicionadas, no una campaña completada ni una política de eliminación ya implementada.</p>
 <p>La <a class="reference internal" href="32_ejecucion_gpu.html"><span class="std std-doc">preparación CUDA de §32</span></a> añade un backend y un notebook con fuente fijada por commit, Python 3.12.12 aislado del kernel anfitrión, datos de desarrollo verificados y activación explícita. El corte de validación local se conserva como evidencia CPU, con sus pruebas CUDA omitidas.</p>
-<p>El <a class="reference internal" href="33_piloto_gpu.html"><span class="std std-doc">primer informe GPU de §33</span></a>, aportado por el usuario desde Colab, registra catorce referencias completas en Tesla T4, dos épocas por etapa, 192 pasos y cero fallos sobre la cohorte pequeña. Su suma de tiempos de trabajos es 75,688 s; no mide la duración total de la sesión ni de una campaña NAS/HPO. Se conserva el límite registrado de 900 segundos y no se fija un presupuesto GPU en horas. El siguiente perfilado debe cubrir la cohorte grande y el extremo TimesNet antes de dimensionar la búsqueda. Esta evidencia avanza R03, R05 y R12, sin cerrar esos requisitos ni ejecutar R13.</p>
+<p>El <a class="reference internal" href="33_piloto_gpu.html"><span class="std std-doc">primer informe GPU de §33</span></a>, aportado por el usuario desde Colab, registra catorce referencias completas en Tesla T4, dos épocas por etapa, 192 pasos y cero fallos sobre la cohorte pequeña. La <a class="reference internal" href="34_perfil_gpu_ampliado.html"><span class="std std-doc">ampliación de §34</span></a> completa quince perfiles grandes, incluido el TimesNet máximo, con 680 pasos conocidos y cero fallos. Los dos informes reúnen 29 perfiles y 872 pasos, sin representar 29 modelos distintos. Sus sumas de tiempos de trabajos no miden la duración de la sesión ni de una campaña NAS/HPO. El límite de 900 segundos sigue siendo del piloto y no fija horas de búsqueda. Ahora corresponde conectar la selección a CUDA y completar la contabilidad y admisión del presupuesto; el notebook de recursos no ejecuta esa búsqueda. Esta evidencia avanza R03, R05 y R12, sin cerrar esos requisitos ni ejecutar R13.</p>
 <p>La <a class="reference internal" href="20_contraste_guia.html"><span class="std std-doc">sección 20</span></a> conserva el cotejo detallado con la guía. La <a class="reference internal" href="24_ejecutor_comun.html"><span class="std std-doc">sección 24</span></a> distingue el smoke sintético del núcleo temporal posterior. Esta matriz complementa esas evidencias sin modificar sus recibos.</p>
 </section>
 </section>

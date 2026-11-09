@@ -1,8 +1,8 @@
 # 32. Ejecución CUDA preparada y piloto de recursos
 
-**Infraestructura y corte de preparación conservado.** Esta sección documenta el backend CUDA, el notebook reproducible y sus pruebas locales en la CPU de Codex. Las comprobaciones que requieren CUDA real se identifican como omitidas en ese corte. El [piloto GPU posterior de §33](33_piloto_gpu.md), ejecutado por el usuario en Colab, aporta catorce ajustes completos y mediciones reales de recursos. El presupuesto total en horas continúa abierto.
+**Infraestructura y corte de preparación conservado.** Esta sección documenta el backend CUDA, el notebook reproducible y sus pruebas locales en la CPU de Codex. Las comprobaciones que requieren CUDA real se identifican como omitidas en ese corte. El [primer piloto GPU de §33](33_piloto_gpu.md) y el [perfil ampliado de §34](34_perfil_gpu_ampliado.md), ejecutados por el usuario en Colab, aportan mediciones reales de recursos. El presupuesto total en horas continúa abierto.
 
-Después del primer piloto, corresponde ampliar el perfilado a la cohorte grande y al extremo TimesNet antes de resolver la viabilidad de la búsqueda registrada. Las [estimaciones CPU de §31](31_optimizacion_nube.md) siguen siendo evidencia separada. No se trasladan como una predicción de aceleración en GPU ni se sustituyen los fallos anteriores.
+La ampliación a la cohorte grande y al extremo TimesNet completó sus quince perfiles en [§34](34_perfil_gpu_ampliado.md). El siguiente trabajo es conectar el backend CUDA a la selección NAS/HPO y completar los componentes del presupuesto antes de iniciar la búsqueda. Las [estimaciones CPU de §31](31_optimizacion_nube.md) siguen siendo evidencia separada; no se trasladan como una predicción de aceleración en GPU ni se sustituyen los fallos anteriores.
 
 ## Abrir y preparar el notebook
 
@@ -147,6 +147,6 @@ La selección explícita `--models GRU32 TimeMixer` permite un primer subconjunt
 
 ## Qué cierra esta preparación
 
-Se entrega código CUDA, entorno dedicado, registro y notebook con activación explícita. La validación local acredita contratos de software en CPU. El [informe posterior de §33](33_piloto_gpu.md) incorpora los tiempos, la memoria y la completitud de catorce referencias en una Tesla T4 real; las dieciocho pruebas CUDA omitidas en el corte local conservan ese estado histórico.
+Se entrega código CUDA, entorno dedicado, registro y notebook con activación explícita. La validación local acredita contratos de software en CPU. Los informes posteriores de [§33](33_piloto_gpu.md) y [§34](34_perfil_gpu_ampliado.md) incorporan los tiempos, la memoria y la completitud de las referencias y del extremo TimesNet en una Tesla T4 real; las dieciocho pruebas CUDA omitidas en el corte local conservan ese estado histórico.
 
 La búsqueda NAS/HPO científica, los controles, el benchmark y la evaluación final siguen pendientes. Después de seleccionar recetas y comprobar su variación se resolverá el dimensionamiento de R. Se conserva **`final_R=null`**, sin afirmación de potencia final o superioridad del candidato 11. Este cambio no reinterpreta la calibración condicional ni los fallos documentados en §31.
