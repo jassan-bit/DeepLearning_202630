@@ -1,5 +1,7 @@
 # 4. Implementación de los diez modelos y el candidato adicional
 
+**Integración posterior:** [§24 comprueba el recorrido sintético común de 18 sistemas](24_ejecutor_comun.md), con referencias separadas y sin ajustes de mercado.
+
 **Avance posterior:** [§23 implementa los cuerpos de §22 y los controles temporales](23_implementacion_recetas.md), con pruebas exclusivamente sintéticas y preservación de los prototipos anteriores. No es un benchmark de mercado.
 
 **Avance de software:** fábrica de los once candidatos, híbrido y flujo sintético implementados y verificados; recetas provisionales, sin datos de mercado. Véase [§18: integración y pruebas sintéticas](18_integracion_sintetica.md). No hay HPO ni benchmark vigente ejecutado.

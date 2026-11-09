@@ -1,5 +1,7 @@
 # Proyecto Final de Deep Learning: Entregable 2
 
+**Ejecutor común probado:** [18 sistemas, registro previo a cada observación y auditoría de disponibilidad](sections/24_ejecutor_comun.md). Pruebas sintéticas únicamente; las 608 fechas finales siguen sin verificar.
+
 **Implementación de las fichas:** [cuerpos completos, dos fases SAE y controles temporales](sections/23_implementacion_recetas.md). Once modelos comprobados con datos artificiales; sin entrenamiento de mercado ni decisión NAS.
 
 **Once propuestas concretas:** [fichas de cuerpos, adaptaciones y decisiones pendientes](sections/22_fichas_recetas.md). Ese corte conserva las propuestas originales; su implementación posterior se documenta en §23.
