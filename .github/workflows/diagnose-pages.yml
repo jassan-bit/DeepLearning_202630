@@ -1,0 +1,52 @@
+name: Diagnosticar Pages sin modificar su configuración
+on:
+  push:
+    branches: [diagnose-pages-20261109]
+permissions:
+  contents: read
+  pages: read
+  deployments: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Leer configuración y estados de Pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import json,os,pathlib,urllib.request,urllib.error
+          base="https://api.github.com/repos/jassan-bit/DeepLearning_202630"
+          def get(path):
+              request=urllib.request.Request(base+path,headers={"Authorization":"Bearer "+os.environ["GH_TOKEN"],"Accept":"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28"})
+              try:
+                  with urllib.request.urlopen(request,timeout=30) as response:
+                      return {"http":response.status,"request_id":response.headers.get("x-github-request-id"),"data":json.load(response)}
+              except urllib.error.HTTPError as error:
+                  return {"http":error.code,"request_id":error.headers.get("x-github-request-id"),"data":json.loads(error.read())}
+          settings=get("/pages")
+          data=settings.get("data",{})
+          result={"settings":{"http":settings["http"],"request_id":settings["request_id"],"data":{key:data.get(key) for key in ("status","cname","build_type","source","public","https_enforced","html_url","protected_domain_state","message")}}}
+          for label,sha in (("previous","19c21889e904c981545f68e2a7eb898f3242a064"),("recovery","03bcb6f5d602ccfbcb514481028f5a6d27c38557")):
+              result[label]=get("/pages/deployments/"+sha)
+          deployments=get("/deployments?environment=github-pages&per_page=5")
+          result["deployment_collection_http"]=deployments["http"]
+          if isinstance(deployments.get("data"),list):
+              result["environments"]=[]
+              for row in deployments["data"]:
+                  item={key:row.get(key) for key in ("id","sha","ref","environment","created_at")}
+                  states=get("/deployments/"+str(row["id"])+"/statuses?per_page=3")
+                  item["statuses_http"]=states["http"]
+                  if isinstance(states.get("data"),list):
+                      item["statuses"]=[{key:s.get(key) for key in ("state","description","created_at","environment_url")} for s in states["data"]]
+                  result["environments"].append(item)
+          pathlib.Path("pages-diagnostics.json").write_text(json.dumps(result,indent=2)+"\n")
+          print(json.dumps(result,indent=2))
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: pages-diagnostics
+          path: pages-diagnostics.json
+          if-no-files-found: error
