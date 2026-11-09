@@ -1,0 +1,729 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>32. Ejecución CUDA preparada y piloto de recursos &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/32_ejecucion_gpu';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Referencias de contexto y revisión E2" href="referencias.html" />
+    <link rel="prev" title="31. Optimización de CPU y presupuesto de cómputo en la nube" href="31_optimizacion_nube.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 2 · Bitcoin: pronóstico de volatilidad</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_literatura.html">3. Revisión Sistemática del Estado del Arte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación de los diez modelos y el candidato adicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark vigente: diez modelos y un candidato adicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Preregistro del catálogo vigente y trazabilidad experimental</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de datos y auditoría formal de fuga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. HPO y equidad para el catálogo vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Techo de desempeño, incertidumbre y análisis de errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Agregación estadística e interpretación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas del catálogo vigente y adaptación a D7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo vigente: diez modelos y candidato 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_fichas_nuevas.html">16. Fichas bibliográficas de las cuatro altas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato sincronizado de E1, E2 y E3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_integracion_sintetica.html">18. Implementación provisional y verificación sintética</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_plan_auditoria.html">19. Plan experimental propuesto y auditoría sin entrenamiento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_contraste_guia.html">20. Cotejo del plan con la guía original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_comparadores_nas.html">21. Comparadores temporales y decisión NAS por receta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22_fichas_recetas.html">22. Once fichas de recetas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_implementacion_recetas.html">23. Implementación de recetas y controles temporales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="24_ejecutor_comun.html">24. Ejecutor común y disponibilidad temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="25_matriz_cierre.html">25. Matriz de cierre antes del benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="26_registro_recetas.html">26. Registro por receta: fuentes, NAS, HPO e integración</a></li>
+<li class="toctree-l1"><a class="reference internal" href="27_nas_hpo_presupuesto.html">27. Decisiones NAS, rangos HPO y presupuesto para Codex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="28_fabricas_nas.html">28. Fábricas NAS implementadas y verificadas sintéticamente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="29_entrenamiento_temporal.html">29. Entrenamiento por etapas, selección temporal y perfilado CPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="30_piloto_nube.html">30. Piloto de desarrollo en la nube de Codex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="31_optimizacion_nube.html">31. Optimización de CPU y presupuesto de cómputo en la nube</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">32. Ejecución CUDA preparada y piloto de recursos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><p class="small">Entregable 2 · Jassan Arteta · 2026-30</p></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/32_ejecucion_gpu.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>32. Ejecución CUDA preparada y piloto de recursos</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#abrir-y-preparar-el-notebook">Abrir y preparar el notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-y-entorno-fijados">Código y entorno fijados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#semantica-conservada-y-alcance-de-las-pruebas">Semántica conservada y alcance de las pruebas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-admitidos">Datos admitidos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#piloto-registrado-y-presupuesto-acotado">Piloto registrado y presupuesto acotado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#revisar-y-conservar-la-salida">Revisar y conservar la salida</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecucion-manual-desde-la-fuente-congelada">Ejecución manual desde la fuente congelada</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-cierra-esta-preparacion">Qué cierra esta preparación</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="ejecucion-cuda-preparada-y-piloto-de-recursos">
+<h1>32. Ejecución CUDA preparada y piloto de recursos<a class="headerlink" href="#ejecucion-cuda-preparada-y-piloto-de-recursos" title="Link to this heading">#</a></h1>
+<p><strong>Estado: infraestructura preparada; medición GPU pendiente.</strong> Se incorporan un backend CUDA y un notebook reproducible para medir recursos en una GPU externa. Las pruebas locales se ejecutaron en la CPU del entorno Codex; las comprobaciones que requieren CUDA real se identifican como omitidas. No hay tiempos, presupuesto en horas ni resultados de entrenamiento GPU que atribuir a esta sección.</p>
+<p>El siguiente hito es ejecutar el piloto acotado, revisar sus costes y entonces resolver la viabilidad de la búsqueda registrada. Las <a class="reference internal" href="31_optimizacion_nube.html"><span class="std std-doc">estimaciones CPU de §31</span></a> siguen siendo evidencia separada. No se trasladan como una predicción de aceleración en GPU ni se sustituyen los fallos anteriores.</p>
+<section id="abrir-y-preparar-el-notebook">
+<h2>Abrir y preparar el notebook<a class="headerlink" href="#abrir-y-preparar-el-notebook" title="Link to this heading">#</a></h2>
+<p>La ejecución GPU todavía no ha comenzado. La distribución del trabajo es la siguiente:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Entorno</p></th>
+<th class="head"><p>Papel en este corte</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Codex Cloud actual</p></td>
+<td><p>Preparación del código y pruebas sintéticas en CPU</p></td>
+</tr>
+<tr class="row-odd"><td><p>GitHub</p></td>
+<td><p>Repositorio, notebook y comprobaciones de integración; no aporta una GPU a este piloto</p></td>
+</tr>
+<tr class="row-even"><td><p>Colab o servidor CUDA del usuario</p></td>
+<td><p>Ejecutará el piloto cuando se conecte una GPU real y se active el lanzamiento</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/22b4b081f54fcbf2fb26a298fff59f5f01c7b7de/notebooks/entregable2_gpu.ipynb">notebook de ejecución</a> puede <a class="reference external" href="https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/22b4b081f54fcbf2fb26a298fff59f5f01c7b7de/notebooks/entregable2_gpu.ipynb">abrirse en Colab</a>. También puede ejecutarse en un servidor Linux x86_64 con Python 3.12 y una GPU compatible con el entorno fijado. La disponibilidad, cuota y coste de la GPU dependen del proveedor.</p>
+<p>El enlace fija la versión del notebook por commit; el notebook obtiene el código del commit <strong><code class="docutils literal notranslate"><span class="pre">728277517be653be0d0ef10fb677a68adec22bb6</span></code></strong>, fijado como SHA literal, y verifica el registro antes de iniciar ajustes. Usa descarga selectiva de código, dependencias y protocolos; los CSV se obtienen por un helper independiente después de verificar CUDA. No hace checkout de los archivos del período final.</p>
+<ol class="arabic simple">
+<li><p>Seleccionar una GPU en la plataforma y abrir el notebook. En Colab: <strong>Entorno de ejecución → Cambiar tipo de entorno de ejecución → GPU</strong>, y conectar ese entorno.</p></li>
+<li><p>Ejecutar las celdas en orden con <code class="docutils literal notranslate"><span class="pre">RUN_PILOT=False</span></code>. Se comprueba la máquina y se prepara un entorno virtual aislado, separado del Torch que pudiera traer el proveedor.</p></li>
+<li><p>Verificar el preflight CUDA. Una máquina sin CUDA no admite el piloto ni activa entrenamiento CPU como sustitución.</p></li>
+<li><p>Elegir los modelos y cohortes antes de cargar observaciones. Al habilitar <code class="docutils literal notranslate"><span class="pre">RUN_PILOT=True</span></code>, se comprueban las catorce arquitecturas con ventanas sintéticas y después se descargan los tres insumos registrados.</p></li>
+<li><p>Ejecutar el piloto y revisar los resultados locales. Una nueva ejecución utiliza un directorio nuevo y conserva cualquier intento anterior.</p></li>
+</ol>
+<p>Abrir el notebook o instalar dependencias no inicia la búsqueda NAS/HPO. La configuración predeterminada mantiene <code class="docutils literal notranslate"><span class="pre">RUN_PILOT=False</span></code>. Al activarla, el piloto admite las catorce referencias de la cohorte pequeña, con dos épocas por etapa. Puede elegirse previamente un subconjunto, por ejemplo GRU32 y TimeMixer; esa selección queda registrada antes del acceso a los valores de mercado.</p>
+</section>
+<section id="codigo-y-entorno-fijados">
+<h2>Código y entorno fijados<a class="headerlink" href="#codigo-y-entorno-fijados" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Componente</p></th>
+<th class="head"><p>Función</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/728277517be653be0d0ef10fb677a68adec22bb6/scripts/e2_cuda_training.py">Backend CUDA</a></p></td>
+<td><p>Ajuste supervisado, selección de épocas, reajuste fijo y las tres etapas SAE con un dispositivo explícito</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/728277517be653be0d0ef10fb677a68adec22bb6/scripts/run_e2_gpu_pilot.py">Lanzador del piloto</a></p></td>
+<td><p>Preflight, admisión del plan, procesos secuenciales, límites y mediciones de tiempo/memoria</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/728277517be653be0d0ef10fb677a68adec22bb6/scripts/fetch_e2_development_sources.py">Descarga de desarrollo</a></p></td>
+<td><p>Tres payloads públicos inmutables y verificados por SHA256, sin analizar precios</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/728277517be653be0d0ef10fb677a68adec22bb6/requirements-e2-training-gpu.lock.txt">Entorno GPU</a></p></td>
+<td><p>PyTorch 2.8.0 + CUDA 12.6 y versiones de sus dependencias; separado de los locks CPU históricos</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/728277517be653be0d0ef10fb677a68adec22bb6/experiments/e2_gpu_pilot_20261109/registration.json">Registro del piloto</a></p></td>
+<td><p>Dominio, semillas, receta, admisiones y límites fijados antes de los ajustes GPU</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El registro tiene SHA256 <code class="docutils literal notranslate"><span class="pre">892ad148e1a261d16b178371a8f8c71ea3af352cc4c6ac4fea934df7dc22ba87</span></code>. Se creó el 09/11/2026 a las 15:28, hora de Bogotá, con estado <code class="docutils literal notranslate"><span class="pre">registered_before_gpu_market_fits</span></code>. Su publicación precede cualquier ajuste GPU de mercado de este diseño. Este registro no acredita que el piloto ya haya corrido.</p>
+<p>Las versiones CUDA del lock se contrastaron con los metadatos del wheel oficial Linux x86_64 para Python 3.12. La instalación completa y la ejecución en una GPU externa siguen pendientes. El preflight comprueba CUDA mediante una operación sintética y sincronización; detecta problemas de disponibilidad antes del acceso al desarrollo.</p>
+</section>
+<section id="semantica-conservada-y-alcance-de-las-pruebas">
+<h2>Semántica conservada y alcance de las pruebas<a class="headerlink" href="#semantica-conservada-y-alcance-de-las-pruebas" title="Link to this heading">#</a></h2>
+<p>El backend mantiene la pérdida <strong>MSE</strong>, AdamW con betas y epsilon fijados, los grupos de weight decay, el calendario coseno con el horizonte declarado, warmup, clip global 1, redistribución de minibatches unitarios y parada temprana estricta. En un reajuste fijo, las etiquetas de evaluación no participan en la parada. SAE conserva sus dos fases auxiliares y la supervisada, sus escalas de entrenamiento y sus estados separados.</p>
+<p>Los modelos y tensores admitidos se transfieren al dispositivo CUDA explícito. Los estados seleccionados pueden representarse en CPU para su persistencia segura; el piloto de recursos no guarda archivos de pesos. Se mantienen las formas, parámetros y metadatos de las arquitecturas. Las fuentes CPU históricas permanecen intactas.</p>
+<p>La configuración registrada usa <strong>FP32</strong>, sin AMP y sin TF32, con determinismo estricto y <code class="docutils literal notranslate"><span class="pre">CUBLAS_WORKSPACE_CONFIG=:4096:8</span></code> establecido antes de inicializar CUDA. Una operación determinista no soportada debe producir un fallo registrado. Estos controles no afirman identidad bit a bit entre CPU y GPU, igualdad de resultados entre plataformas ni una aceleración universal.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Verificación de preparación</p></th>
+<th class="head"><p>Evidencia local y límite</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Descarga de desarrollo</p></td>
+<td><p>Cinco pruebas pasaron y los tres payloads públicos se descargaron realmente con sus hashes exactos; no se interpretaron valores numéricos</p></td>
+</tr>
+<tr class="row-odd"><td><p>Portabilidad de las catorce arquitecturas</p></td>
+<td><p>Catorce pruebas CPU de predicción y backward pasaron; catorce casos CUDA reales se omitieron por ausencia de GPU</p></td>
+</tr>
+<tr class="row-even"><td><p>Semántica del entrenamiento</p></td>
+<td><p>Once pruebas pasaron y tres casos CUDA reales se omitieron. La comparación sintética contra el motor CPU incluye estados, logs, RNG, parada, horizonte del scheduler, SAE y reajustes; la validación CUDA real queda pendiente</p></td>
+</tr>
+<tr class="row-odd"><td><p>Admisión y recursos</p></td>
+<td><p>Catorce pruebas pasaron y un caso CUDA real quedó omitido; incluyen configuración, presupuesto global, contabilidad de fallos y rechazo temprano sin CUDA. No constituyen mediciones GPU</p></td>
+</tr>
+<tr class="row-even"><td><p>Notebook</p></td>
+<td><p>Nueve pruebas estructurales y de guardas pasaron; ocho celdas de código con AST válido y salidas vacías, sin ejecutar instalaciones CUDA ni un piloto de mercado en el servidor CPU</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El corte de preparación reúne <strong>53 pruebas aprobadas</strong> (44 de código y nueve del notebook) y <strong>18 pruebas CUDA reales omitidas</strong> por ausencia de GPU. Los resultados aprobados acreditan contratos de software en CPU y comprobaciones estructurales; no certifican una ejecución GPU.</p>
+<p>El notebook incluye las pruebas sintéticas CUDA antes de descargar los CSV. Su ejecución futura comprobará dispositivos de parámetros y buffers, geometría, salida FP32, conservación de metadatos, tolerancia numérica de evaluación y gradientes finitos. Una prueba omitida aquí no se presenta como una prueba GPU aprobada.</p>
+</section>
+<section id="datos-admitidos">
+<h2>Datos admitidos<a class="headerlink" href="#datos-admitidos" title="Link to this heading">#</a></h2>
+<p>El helper sólo solicita tres archivos del commit <code class="docutils literal notranslate"><span class="pre">0b079b50625a936456a70695532853fc13298f31</span></code> del repositorio público. Conserva un archivo existente si coincide con el hash y se detiene ante un contenido diferente, en lugar de reemplazarlo silenciosamente.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Insumo</p></th>
+<th class="head"><p>SHA256</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Protocolo E1 <code class="docutils literal notranslate"><span class="pre">experiments/dl_r2_cv_20261104/protocol.json</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">e8da0f0098acd24a58664b83d0ba499b43aa9d597a36c52da6b3325c2c3c7bec</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">daily_market_development.csv</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bf6bb5160af924aef6a15c3684aeae932df3017e8639888bb7e91ce787900171</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">daily_volatility_development.csv</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">20b96374a659eb87dadfa68aa3d6b6b5fb6bea5b10eebe6f2c186ad69861844a</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El objetivo sigue siendo <strong>σ₇ poblacional de siete retornos logarítmicos diarios, ddof=0, horizonte de un día y sin anualización</strong>. No se redefine como varianza realizada intradía. La barra incompleta del 24/03/2023 conserva su posición en el calendario. El loader verifica el derivado y admite sólo el prefijo de cada cohorte; no interpola ni comprime fechas.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Cohorte</p></th>
+<th class="head"><p>Entrenamiento</p></th>
+<th class="head"><p>Validación</p></th>
+<th class="head"><p>Uso</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">small</span></code>, predeterminada</p></td>
+<td><p>161 ventanas, hasta 25/06/2023</p></td>
+<td><p>83 fechas, 03/07…23/09/2023</p></td>
+<td><p>Primer perfil de recursos</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">large</span></code>, opcional</p></td>
+<td><p>619 ventanas, hasta 25/09/2024</p></td>
+<td><p>83 fechas, 03/10…24/12/2024</p></td>
+<td><p>Comprobar transferencia de coste a una cohorte mayor</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La cohorte grande utiliza el 01/01/2025 como marcador de calendario no disponible. No incorpora valores numéricos de 2025. Los archivos de 2025–2026 y las 608 fechas finales permanecen fuera de esta ejecución. Los datos de desarrollo tienen exposición histórica; el piloto no se presenta como un experimento confirmatorio intacto.</p>
+</section>
+<section id="piloto-registrado-y-presupuesto-acotado">
+<h2>Piloto registrado y presupuesto acotado<a class="headerlink" href="#piloto-registrado-y-presupuesto-acotado" title="Link to this heading">#</a></h2>
+<p>Se perfilan las seis referencias NAS —SAE, TimesNet, TiDE, TimeMixer, PatchTST e híbrido— y ocho cuerpos fijos —FCN-1D, ResNet-1D, Inception-1D, TSMixer, iTransformer, MLP16, LSTM32 y GRU32—. Son catorce modelos; la referencia NAS conserva anchos 64/64/64 y bits 010. La semilla del piloto es <strong>274201</strong>, nueva respecto de §§30–31.</p>
+<p>La receta fija mantiene LR 0,001, WD 0,0001, batch 32 y warmup 0. TimesNet conserva <code class="docutils literal notranslate"><span class="pre">top_k=4</span></code> y seis kernels; TimeMixer, media móvil 7; el híbrido, kernel 3. No se usan recetas elegidas por HPO previo ni el error predictivo para seleccionar una política de ejecución. El autoencoder ejecuta dos épocas en cada una de sus tres fases; las demás referencias ejecutan dos épocas supervisadas. La validación se evalúa por su coste, no para elegir ganadores.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Control</p></th>
+<th class="head text-right"><p>Asignación registrada</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Ajustes simultáneos</p></td>
+<td class="text-right"><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Hilos CPU / interop</p></td>
+<td class="text-right"><p>2 / 1</p></td>
+</tr>
+<tr class="row-even"><td><p>Límite interno por etapa / externo por proceso</p></td>
+<td class="text-right"><p>300 / 360 s</p></td>
+</tr>
+<tr class="row-odd"><td><p>Presupuesto global de admisión y supervisión</p></td>
+<td class="text-right"><p>900 s</p></td>
+</tr>
+<tr class="row-even"><td><p>Tiempo mínimo restante para admitir otro proceso</p></td>
+<td class="text-right"><p>5 s</p></td>
+</tr>
+<tr class="row-odd"><td><p>RSS del grupo de procesos, observado por supervisor</p></td>
+<td class="text-right"><p>12 GiB</p></td>
+</tr>
+<tr class="row-even"><td><p>Asignador PyTorch y pico de memoria CUDA asignada</p></td>
+<td class="text-right"><p>Menor de 12 GiB y 80% de la memoria total</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El control CUDA combina la fracción del asignador de PyTorch y el pico observado de memoria asignada; no contabiliza todas las asignaciones del driver. Los límites por fronteras de etapa y el muestreo RSS no son barreras físicas de asignación. El supervisor ajusta el tiempo del proceso al presupuesto global restante. La instalación, descarga, preflight y pruebas sintéticas se realizan antes de ese cronómetro y no están cubiertos por sus 900 segundos. El tiempo de conexión GPU del proveedor y la limpieza de procesos pueden añadir coste fuera de los ajustes; 900 segundos no promete que complete toda la lista ni una duración total exacta.</p>
+<p>Los modelos, cohortes y la inclusión opcional de TimesNet extremo se sellan antes de acceder a los valores. Con las dos cohortes y el extremo habilitado, el dominio máximo es de treinta trabajos. Los procesos que no llegan a iniciarse por agotamiento global quedan como <code class="docutils literal notranslate"><span class="pre">not_attempted_campaign_budget</span></code>; no cuentan como ajustes realizados ni como fallos de entrenamiento.</p>
+<p>Un timeout, OOM u otro error conserva su intento y coste. No hay sustitución automática de semilla, reducción de batch ni reintento. Si una actualización queda incompleta, el conteo total de pasos permanece desconocido y se conserva por separado el límite inferior conocido. Los perfiles incompletos no se convierten en entrenamientos terminados.</p>
+</section>
+<section id="revisar-y-conservar-la-salida">
+<h2>Revisar y conservar la salida<a class="headerlink" href="#revisar-y-conservar-la-salida" title="Link to this heading">#</a></h2>
+<p>Cada lanzamiento utiliza un directorio nuevo. El <code class="docutils literal notranslate"><span class="pre">summary.json</span></code> y los recibos completos permanecen en el almacenamiento elegido del entorno. El <code class="docutils literal notranslate"><span class="pre">scientific_report.json</span></code> selecciona explícitamente identidades de modelos, estado, pasos, tiempos, memoria y fases, sin copiar comandos, rutas internas ni diarios completos. No se hace push ni subida automática a GitHub u otra aplicación.</p>
+<p>Antes de ejecutar, puede elegirse un volumen persistente que el usuario ya haya montado. En el almacenamiento efímero de Colab, los resultados pueden perderse al reiniciar o eliminar el entorno; conviene conservar el informe antes de cerrarlo. Los estados locales y fallos anteriores no se borran para repetir un lanzamiento.</p>
+<p>Las medidas permitirán distinguir construcción, ajuste, evaluación, tiempo de proceso y memoria CUDA asignada/reservada. Las operaciones de GPU se sincronizan para medir tiempo de pared. Las horas de búsqueda se estimarán después de observar esos datos y revisar la transferencia entre cohortes; <strong><code class="docutils literal notranslate"><span class="pre">gpu_budget_hours</span></code> permanece <code class="docutils literal notranslate"><span class="pre">null</span></code></strong> en esta preparación.</p>
+</section>
+<section id="ejecucion-manual-desde-la-fuente-congelada">
+<h2>Ejecución manual desde la fuente congelada<a class="headerlink" href="#ejecucion-manual-desde-la-fuente-congelada" title="Link to this heading">#</a></h2>
+<p>El notebook realiza la instalación y verificaciones en un entorno aislado. En un servidor CUDA ya preparado, los siguientes comandos muestran el orden. El SHA de código debe coincidir con el publicado arriba; los directorios de salida deben ser nuevos.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">CUBLAS_WORKSPACE_CONFIG</span><span class="o">=</span>:4096:8
+python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>work/gpu-venv
+work/gpu-venv/bin/python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements-e2-training-gpu.lock.txt
+work/gpu-venv/bin/python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>check
+work/gpu-venv/bin/python<span class="w"> </span>scripts/run_e2_gpu_pilot.py<span class="w"> </span>--check-environment
+
+work/gpu-venv/bin/python<span class="w"> </span>scripts/prepare_e2_pilot_snapshot.py<span class="w"> </span>--root<span class="w"> </span>.
+work/gpu-venv/bin/python<span class="w"> </span>scripts/fetch_e2_itransformer_sources.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>work/author_sources/iTransformer
+<span class="nv">E2_ITRANSFORMER_SOURCE_ROOT</span><span class="o">=</span>work/author_sources/iTransformer<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>work/gpu-venv/bin/python<span class="w"> </span>-m<span class="w"> </span>unittest<span class="w"> </span>discover<span class="w"> </span>-s<span class="w"> </span>tests<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span>test_e2_cuda_models.py<span class="w"> </span>-v
+
+work/gpu-venv/bin/python<span class="w"> </span>scripts/fetch_e2_development_sources.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>work/development_source
+work/gpu-venv/bin/python<span class="w"> </span>scripts/run_e2_gpu_pilot.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data-root<span class="w"> </span>work/development_source<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--registration<span class="w"> </span>experiments/e2_gpu_pilot_20261109/registration.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--expected-registration-sha256<span class="w"> </span>892ad148e1a261d16b178371a8f8c71ea3af352cc4c6ac4fea934df7dc22ba87<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--registration-commit<span class="w"> </span>728277517be653be0d0ef10fb677a68adec22bb6<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--source-root-itransformer<span class="w"> </span>work/author_sources/iTransformer<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>work/gpu-pilot-nuevo
+</pre></div>
+</div>
+<p>La selección explícita <code class="docutils literal notranslate"><span class="pre">--models</span> <span class="pre">GRU32</span> <span class="pre">TimeMixer</span></code> permite un primer subconjunto dentro del dominio registrado. <code class="docutils literal notranslate"><span class="pre">--cohorts</span> <span class="pre">small</span> <span class="pre">large</span></code> añade la cohorte grande; <code class="docutils literal notranslate"><span class="pre">--include-largest</span></code> exige que TimesNet esté seleccionado y añade su extremo. Esas opciones se fijan antes del lanzamiento y no se adaptan a las puntuaciones observadas.</p>
+</section>
+<section id="que-cierra-esta-preparacion">
+<h2>Qué cierra esta preparación<a class="headerlink" href="#que-cierra-esta-preparacion" title="Link to this heading">#</a></h2>
+<p>Se entrega código CUDA, entorno dedicado, registro y notebook con activación explícita. La validación local acredita contratos de software en CPU; la verificación CUDA, los tiempos, la memoria y la completitud del piloto deben producirse en la GPU real.</p>
+<p>La búsqueda NAS/HPO científica, los controles, el benchmark y la evaluación final siguen pendientes. Después de seleccionar recetas y comprobar su variación se resolverá el dimensionamiento de R. Se conserva <strong><code class="docutils literal notranslate"><span class="pre">final_R=null</span></code></strong>, sin afirmación de potencia final o superioridad del candidato 11. Este cambio no reinterpreta la calibración condicional ni los fallos documentados en §31.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="31_optimizacion_nube.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">31. Optimización de CPU y presupuesto de cómputo en la nube</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="referencias.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Referencias de contexto y revisión E2</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#abrir-y-preparar-el-notebook">Abrir y preparar el notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-y-entorno-fijados">Código y entorno fijados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#semantica-conservada-y-alcance-de-las-pruebas">Semántica conservada y alcance de las pruebas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-admitidos">Datos admitidos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#piloto-registrado-y-presupuesto-acotado">Piloto registrado y presupuesto acotado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#revisar-y-conservar-la-salida">Revisar y conservar la salida</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecucion-manual-desde-la-fuente-congelada">Ejecución manual desde la fuente congelada</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-cierra-esta-preparacion">Qué cierra esta preparación</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
