@@ -1,0 +1,46 @@
+{
+  "version": "e2-user-gpu-pilot-import-v1",
+  "received_on_bogota": "2026-11-09",
+  "evidence_origin": "User-provided final notebook output from Google Colab",
+  "execution_provider": "Google Colab",
+  "auditor_executed_gpu_fits": false,
+  "raw_runtime_receipts_included": false,
+  "registration_commit": "728277517be653be0d0ef10fb677a68adec22bb6",
+  "registration_sha256": "892ad148e1a261d16b178371a8f8c71ea3af352cc4c6ac4fea934df7dc22ba87",
+  "notebook_commit": "497088cbbabcdcec39c597d41b120a1ccde9379e",
+  "submitted_text_sha256": "f22b8402a959883211aa5b9fd865175ca826996e54709606964bfb60070d705e",
+  "public_files": {
+    "scientific_report.json": {
+      "bytes": 20404,
+      "sha256": "5e82e7df7b67047962519f40115bac69a4bb1cb278fac29598c477d83b683d3a"
+    }
+  },
+  "validation": {
+    "exact_published_exporter_round_trip": true,
+    "registered_job_list_matched": true,
+    "registration_bytes_matched": true,
+    "phase_step_totals_consistent": true,
+    "resource_values_finite_nonnegative": true,
+    "trailing_runtime_path_excluded": true
+  },
+  "derived_resource_summary": {
+    "completed_profiles": 14,
+    "failed_profiles": 0,
+    "not_attempted_profiles": 0,
+    "known_optimizer_steps": 192,
+    "unknown_optimizer_step_workers": 0,
+    "sum_supervised_process_wall_seconds": 75.68826908400047,
+    "sum_worker_seconds": 63.22179384300034,
+    "sum_fit_seconds": 25.508213285999773,
+    "peak_pytorch_allocated_bytes": 375497728,
+    "peak_pytorch_reserved_bytes": 440401920,
+    "peak_sampled_process_group_rss_bytes": 1775091712
+  },
+  "limitations": [
+    "Imported user evidence; this audit did not independently rerun or time the GPU fits.",
+    "Durations are sums of reported per-process measurements, not total Colab, provider or campaign time.",
+    "Small-cohort two-epoch reference profiles do not determine final campaign hours or maximum-architecture feasibility.",
+    "No prediction accuracy metrics, scientific NAS/HPO selection, final-market evaluation or final R are supplied.",
+    "Raw runtime journals, full execution receipts and model weights are not included."
+  ]
+}
