@@ -54,9 +54,9 @@ TimesNet concentra el máximo observado de memoria CUDA: **358,103 MiB asignados
 
 Los tiempos de estas dos épocas no miden convergencia ni calidad predictiva. Tampoco permiten calcular una aceleración frente a [§31](31_optimizacion_nube.md): aquella medición utiliza otro entorno y otros cortes de perfilado. El informe acredita ajustes completados bajo su configuración; no documenta el resultado individual de las dieciocho pruebas CUDA omitidas en el corte de preparación CPU.
 
-## Siguiente medición antes de presupuestar la búsqueda
+## Ampliación posterior antes de presupuestar la búsqueda
 
-El siguiente paso es completar el perfil registrado de la cohorte **`large`**, con 619 ventanas de entrenamiento y 83 de validación, e incluir el extremo opcional de TimesNet. En la primera celda del notebook fijado, la configuración del nuevo lanzamiento es:
+Después de este primer corte se ejecutó el perfil registrado de la cohorte **`large`**, con 619 ventanas de entrenamiento y 83 de validación, incluido el extremo opcional de TimesNet. Sus quince perfiles completos se documentan por separado en [§34](34_perfil_gpu_ampliado.md). La configuración utilizada en la primera celda del notebook fijado fue:
 
 ```python
 RUN_PILOT = True
@@ -67,7 +67,7 @@ INCLUDE_LARGEST = True
 
 La selección admite **quince trabajos**: catorce referencias en la cohorte grande y el extremo de TimesNet. Conserva dos épocas por etapa, semilla 274201 y los límites registrados de 300/360 segundos por etapa/proceso y 900 segundos globales. El mismo workspace permite reutilizar las fuentes y los datos verificados; el notebook crea una salida nueva y conserva el intento pequeño anterior. Las opciones se fijan antes de iniciar el perfilado.
 
-Esas mediciones deben conservar los fallos y sus costes. Permitirán revisar el escalado por tamaño y el riesgo del extremo antes de convertir la campaña en horas GPU. La configuración anterior queda documentada para ejecutarse en Colab; su resultado no forma parte del informe de este corte.
+El resultado posterior se conserva en su propio informe y no altera las mediciones pequeñas de este corte. La ampliación permite revisar el tamaño y el extremo observado; las dos épocas y una ejecución por perfil no cierran por sí solas el presupuesto de una campaña NAS/HPO.
 
 Después corresponde contrastar esos recursos con el espacio NAS/HPO de [§27](27_nas_hpo_presupuesto.md), sus límites por etapa, las fases auxiliares y las repeticiones previstas. Multiplicar directamente el tiempo de este perfil pequeño por el número de configuraciones no cierra ese presupuesto. La medición de recursos tampoco fija el número de semillas necesario para la inferencia.
 
