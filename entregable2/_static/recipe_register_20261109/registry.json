@@ -1,0 +1,878 @@
+{
+  "schema_version": 1,
+  "status": "documented_recipe_inventory_not_frozen_experimental_protocol",
+  "created_date": "2026-11-09",
+  "source_commit": "eca22e87085edca79e53f60196c8f64458659b5d",
+  "evidence_basis": "Repository documents, code and historical synthetic receipts inspected; no new model execution.",
+  "guide_basis": {
+    "path": "book_e2/sections/20_contraste_guia.md",
+    "sections": [
+      "3",
+      "4",
+      "9",
+      "11.2",
+      "14"
+    ],
+    "pages_hpo": [
+      47
+    ],
+    "pages_nas": [
+      52,
+      53,
+      54,
+      55,
+      56
+    ]
+  },
+  "execution_in_this_update": {
+    "market_data_read": false,
+    "new_market_fits": 0,
+    "new_synthetic_steps": 0,
+    "hpo_executed": false,
+    "nas_executed": false
+  },
+  "common_contract": {
+    "input_shape": [
+      7,
+      5
+    ],
+    "input": "relative_window OHLCV, t-7 through t-1",
+    "target": "population sigma7 unannualized",
+    "horizon_days": 1,
+    "target_scale": "positive training-only mean",
+    "output": "Softplus scalar times training target scale",
+    "primary_metric": "RMSE",
+    "evaluation_support_final_verified": false,
+    "previously_observed_final_evaluation": "exploratory"
+  },
+  "evidence_paths": {
+    "cards": "book_e2/_static/recipe_cards_20261109/cards.json",
+    "receipt": "book_e2/_static/recipe_implementation_20261109/synthetic_receipt.json",
+    "factory": "scripts/e2_recipe_catalogue.py",
+    "real_core": "scripts/e2_real_executor.py",
+    "literature": "book_e2/sections/03_literatura.md",
+    "fulltext": "book_e2/_static/literature_fulltext/models.json"
+  },
+  "nas_conditional_requirements": {
+    "applies_to_recipe_without_defined_architecture": true,
+    "blocks": 3,
+    "widths": [
+      16,
+      32,
+      64,
+      128,
+      256
+    ],
+    "dropout_patterns": 8,
+    "dropout_rate": 0.2,
+    "unique_architectures": 1000,
+    "reference": {
+      "widths": [
+        64,
+        64,
+        64
+      ],
+      "dropout_pattern": [
+        0,
+        1,
+        0
+      ]
+    },
+    "phase1_seeds": 1,
+    "phase2_min_finalists": 10,
+    "phase2_include_reference_if_not_selected": true,
+    "phase2_min_seeds": 5,
+    "phase2_seeds_distinct_from_phase1": true,
+    "adjudicated_recipe_count": 0,
+    "selected_model_count": null
+  },
+  "hpo_profiles": {
+    "COMMON": {
+      "required_axes": [
+        "learning_rate_log",
+        "weight_decay",
+        "dropout",
+        "batch_size",
+        "depth",
+        "width"
+      ],
+      "numeric_domains": null,
+      "optimizer": null,
+      "loss": null,
+      "epochs": null,
+      "early_stopping": null,
+      "search_method": null,
+      "trial_budget": null,
+      "hardware": null,
+      "failure_policy": null
+    },
+    "CNN": {
+      "additional_axes": [
+        "kernel",
+        "normalization",
+        "resolution"
+      ],
+      "constraints": [
+        "Input remains D7×5; resolution changes cannot silently add observations.",
+        "Depth/width variation must be reconciled with defined-body versus NAS decision."
+      ]
+    },
+    "REC": {
+      "additional_axes": [
+        "cell_type",
+        "bidirectionality",
+        "teacher_forcing_if_applicable"
+      ],
+      "constraints": [
+        "Current predictor is scalar h1, not autoregressive seq2seq; justify teacher forcing as not applicable.",
+        "Count AE1, AE2 and supervised optimization separately."
+      ]
+    },
+    "PERIOD": {
+      "additional_axes": [
+        "number_of_periods",
+        "convolution_kernels",
+        "embedding",
+        "number_of_blocks"
+      ],
+      "constraints": [
+        "Admissible frequency count bounded by transformed D7 geometry."
+      ]
+    },
+    "MLP": {
+      "additional_axes": [
+        "mixing_block_count",
+        "feature_mlp_width",
+        "normalization"
+      ],
+      "constraints": [
+        "Reconcile source body and changed dropout before search."
+      ]
+    },
+    "TIDE": {
+      "additional_axes": [
+        "encoder_decoder_width",
+        "latent_width",
+        "temporal_decoder_width",
+        "residual_block_structure"
+      ],
+      "constraints": [
+        "Changing decoder structure depends on NAS decision; no future OHLCV inputs."
+      ]
+    },
+    "MULTISCALE": {
+      "additional_axes": [
+        "scale_count",
+        "pooling_factor",
+        "decomposition",
+        "embedding",
+        "pdm_block_count"
+      ],
+      "constraints": [
+        "Every scale must remain nonempty for seven real days."
+      ]
+    },
+    "TRANSFORMER": {
+      "additional_axes": [
+        "attention_heads",
+        "context",
+        "warmup",
+        "layerwise_lr_if_finetuning"
+      ],
+      "constraints": [
+        "D7 is inherited and fixed; do not extend context silently.",
+        "Embedding width must be divisible by head count.",
+        "No external pretrained weights in this recipe; justify layerwise finetuning LR as not applicable."
+      ]
+    },
+    "HYBRID": {
+      "additional_axes": [
+        "cnn_kernel_channels",
+        "lstm_width_layers",
+        "attention_width",
+        "dropout_locations"
+      ],
+      "constraints": [
+        "NAS mapping w1/w2/w3 and three dropout locations are not implemented by naming the factors."
+      ]
+    }
+  },
+  "models": [
+    {
+      "model": "FCN-1D",
+      "recipe_id": "fcn1d_wang_d7_v1_proposed",
+      "role": "top10_candidate",
+      "body_summary": "Conv1D 128/256/128; kernels 8/5/3; BN, ReLU y media temporal.",
+      "adaptation": "Port Conv2D singleton a Conv1D; D7×5 y cabeza escalar Softplus.",
+      "source_urls": [
+        "https://arxiv.org/pdf/1611.06455",
+        "https://github.com/cauchyturing/UCR_Time_Series_Classification_Deep_Learning_Baseline/blob/3ecc8971fa768bd01ada7f3a613688255e6256c2/FCN.py#L50-L83"
+      ],
+      "fulltext_version": null,
+      "bibliographic_limit": "Fuente de clasificación; no acredita eficacia de regresión BTC ni equivalencia numérica del port.",
+      "same_window_moment_features": 0,
+      "head_input_features": 128,
+      "implementation": {
+        "factory": "scripts/e2_recipe_catalogue.py",
+        "source_module": "scripts/e2_recipe_models.py",
+        "synthetic_recipe_verified": true,
+        "receipt_path": "book_e2/_static/recipe_implementation_20261109/synthetic_receipt.json",
+        "historical_supervised_steps": 1,
+        "historical_auxiliary_steps": 0,
+        "market_runner_integration_complete": false,
+        "source_weight_equivalence_claimed": false
+      },
+      "nas": {
+        "evidence_group": "defined_body_task_bridge",
+        "applies": null,
+        "exemption_granted": false,
+        "decision_to_resolve": "Documentar traducción y cabeza para resolver la vía de cuerpo publicado; no heredar decisión del compacto."
+      },
+      "hpo": {
+        "profiles": [
+          "COMMON",
+          "CNN"
+        ],
+        "space_status": "required_axes_documented_numeric_domains_and_budget_pending",
+        "numeric_domains": null,
+        "search_executed": false
+      },
+      "cost": {
+        "predictor_parameter_count": 268929,
+        "parameter_count_scope": "all predictor parameters in historical synthetic receipt, not necessarily all trainable",
+        "auxiliary_parameter_counts": [],
+        "phases_per_training_stage": [
+          "supervised"
+        ],
+        "market_wall_seconds": null,
+        "market_peak_memory_bytes": null,
+        "market_flops": null,
+        "hardware": null,
+        "complete_budget_closed": false
+      }
+    },
+    {
+      "model": "ResNet-1D",
+      "recipe_id": "resnet1d_wang_d7_v1_proposed",
+      "role": "top10_candidate",
+      "body_summary": "Tres bloques 64/128/128, nueve convoluciones principales y tres proyecciones.",
+      "adaptation": "Port 1D; BN inicial sólo en rama principal y proyección del tercer atajo; cabeza de regresión.",
+      "source_urls": [
+        "https://arxiv.org/pdf/1611.06455",
+        "https://github.com/cauchyturing/UCR_Time_Series_Classification_Deep_Learning_Baseline/blob/3ecc8971fa768bd01ada7f3a613688255e6256c2/ResNet.py#L15-L94"
+      ],
+      "fulltext_version": null,
+      "bibliographic_limit": "Fuente de clasificación; snapshot no certifica código exacto de entrenamiento del artículo.",
+      "same_window_moment_features": 0,
+      "head_input_features": 128,
+      "implementation": {
+        "factory": "scripts/e2_recipe_catalogue.py",
+        "source_module": "scripts/e2_recipe_models.py",
+        "synthetic_recipe_verified": true,
+        "receipt_path": "book_e2/_static/recipe_implementation_20261109/synthetic_receipt.json",
+        "historical_supervised_steps": 1,
+        "historical_auxiliary_steps": 0,
+        "market_runner_integration_complete": false,
+        "source_weight_equivalence_claimed": false
+      },
+      "nas": {
+        "evidence_group": "defined_body_task_bridge",
+        "applies": null,
+        "exemption_granted": false,
+        "decision_to_resolve": "Resolver cuerpo publicado con convenciones del snapshot y adaptación de tarea."
+      },
+      "hpo": {
+        "profiles": [
+          "COMMON",
+          "CNN"
+        ],
+        "space_status": "required_axes_documented_numeric_domains_and_budget_pending",
+        "numeric_domains": null,
+        "search_executed": false
+      },
+      "cost": {
+        "predictor_parameter_count": 522955,
+        "parameter_count_scope": "all predictor parameters in historical synthetic receipt, not necessarily all trainable",
+        "auxiliary_parameter_counts": [],
+        "phases_per_training_stage": [
+          "supervised"
+        ],
+        "market_wall_seconds": null,
+        "market_peak_memory_bytes": null,
+        "market_flops": null,
+        "hardware": null,
+        "complete_budget_closed": false
+      }
+    },
+    {
+      "model": "Inception-1D",
+      "recipe_id": "inception1d_single_d7_v1_proposed",
+      "role": "top10_candidate",
+      "body_summary": "Seis módulos, cuatro ramas de 32 canales y dos conexiones residuales; kernels 40/20/10.",
+      "adaptation": "Red individual en D7 y cabeza positiva; padding largo sobre siete observaciones.",
+      "source_urls": [
+        "https://arxiv.org/pdf/1909.04939",
+        "https://github.com/hfawaz/InceptionTime/blob/952d115e83fb3a66d75c5858c702f8dd5eeb18b7/classifiers/inception.py#L13-L105",
+        "https://github.com/hfawaz/InceptionTime/blob/952d115e83fb3a66d75c5858c702f8dd5eeb18b7/classifiers/nne.py"
+      ],
+      "fulltext_version": null,
+      "bibliographic_limit": "No reproduce el ensemble original de cinco redes.",
+      "same_window_moment_features": 0,
+      "head_input_features": 128,
+      "implementation": {
+        "factory": "scripts/e2_recipe_catalogue.py",
+        "source_module": "scripts/e2_recipe_models.py",
+        "synthetic_recipe_verified": true,
+        "receipt_path": "book_e2/_static/recipe_implementation_20261109/synthetic_receipt.json",
+        "historical_supervised_steps": 1,
+        "historical_auxiliary_steps": 0,
+        "market_runner_integration_complete": false,
+        "source_weight_equivalence_claimed": false
+      },
+      "nas": {
+        "evidence_group": "defined_body_task_bridge",
+        "applies": null,
+        "exemption_granted": false,
+        "decision_to_resolve": "Resolver aceptación de un miembro individual y geometría D7 frente al ensemble publicado."
+      },
+      "hpo": {
+        "profiles": [
+          "COMMON",
+          "CNN"
+        ],
+        "space_status": "required_axes_documented_numeric_domains_and_budget_pending",
+        "numeric_domains": null,
+        "search_executed": false
+      },
+      "cost": {
+        "predictor_parameter_count": 490561,
+        "parameter_count_scope": "all predictor parameters in historical synthetic receipt, not necessarily all trainable",
+        "auxiliary_parameter_counts": [],
+        "phases_per_training_stage": [
+          "supervised"
+        ],
+        "market_wall_seconds": null,
+        "market_peak_memory_bytes": null,
+        "market_flops": null,
+        "hardware": null,
+        "complete_budget_closed": false
+      }
+    },
+    {
+      "model": "LSTM-autoencoder con predictor",
+      "recipe_id": "lstm_sae_25_26_d7_v1_proposed",
+      "role": "top10_candidate",
+      "body_summary": "Encoders LSTM 25/26; dos preentrenamientos separados y transferencia al predictor.",
+      "adaptation": "Ambas fases reconstruyen X/s; segundo encoder recibe vector repetido; escala auxiliar propia; Softplus.",
+      "source_urls": [
+        "https://doi.org/10.1038/s41598-019-55320-6",
+        "https://github.com/2M-kotb/LSTM-based-Stacked-Autoencoder/blob/8668132ef6f8855dbab289c5a2b2478f871c4c4b/2layer_evaluate.py"
+      ],
+      "fulltext_version": null,
+      "bibliographic_limit": "Paper no recuperado íntegramente en el expediente; diseño exacto sustentado en código del autor.",
+      "same_window_moment_features": 0,
+      "head_input_features": 26,
+      "implementation": {
+        "factory": "scripts/e2_recipe_catalogue.py",
+        "source_module": "scripts/e2_recipe_models.py",
+        "synthetic_recipe_verified": true,
+        "receipt_path": "book_e2/_static/recipe_implementation_20261109/synthetic_receipt.json",
+        "historical_supervised_steps": 1,
+        "historical_auxiliary_steps": 2,
+        "market_runner_integration_complete": false,
+        "source_weight_equivalence_claimed": false
+      },
+      "nas": {
+        "evidence_group": "author_code_variant_paper_pending",
+        "applies": null,
+        "exemption_granted": false,
+        "decision_to_resolve": "Recuperar texto completo verificable y adjudicar variante de código, escala y transferencia."
+      },
+      "hpo": {
+        "profiles": [
+          "COMMON",
+          "REC"
+        ],
+        "space_status": "required_axes_documented_numeric_domains_and_budget_pending",
+        "numeric_domains": null,
+        "search_executed": false
+      },
+      "cost": {
+        "predictor_parameter_count": 8739,
+        "parameter_count_scope": "all predictor parameters in historical synthetic receipt, not necessarily all trainable",
+        "auxiliary_parameter_counts": [
+          3840,
+          6172
+        ],
+        "phases_per_training_stage": [
+          "AE1",
+          "AE2",
+          "supervised"
+        ],
+        "market_wall_seconds": null,
+        "market_peak_memory_bytes": null,
+        "market_flops": null,
+        "hardware": null,
+        "complete_budget_closed": false
+      }
+    },
+    {
+      "model": "TimesNet",
+      "recipe_id": "TN-D7-r1",
+      "role": "top10_candidate",
+      "body_summary": "Dos bloques, d_model32 y d_ff32; proyección temporal 7→8 latente.",
+      "adaptation": "Cuatro frecuencias admisibles frente a top-k5 fuente, cabeza sobre último token y diez momentos.",
+      "source_urls": [
+        "https://arxiv.org/pdf/2210.02186v3",
+        "https://github.com/thuml/Time-Series-Library/blob/4e938a1767106324dd753b2a44832bf870a0252e/scripts/long_term_forecast/ETT_script/TimesNet_ETTh1.sh"
+      ],
+      "fulltext_version": "2210.02186v3",
+      "bibliographic_limit": "Preset mezcla decisiones documentadas; no corresponde a una única fila publicada.",
+      "same_window_moment_features": 10,
+      "head_input_features": 42,
+      "implementation": {
+        "factory": "scripts/e2_recipe_catalogue.py",
+        "source_module": "scripts/e2_current_models.py",
+        "synthetic_recipe_verified": true,
+        "receipt_path": "book_e2/_static/recipe_implementation_20261109/synthetic_receipt.json",
+        "historical_supervised_steps": 1,
+        "historical_auxiliary_steps": 0,
+        "market_runner_integration_complete": false,
+        "source_weight_equivalence_claimed": false
+      },
+      "nas": {
+        "evidence_group": "structural_adaptation_review",
+        "applies": null,
+        "exemption_granted": false,
+        "decision_to_resolve": "Adjudicar cambios estructurales de frecuencias y puente D7, no sólo la cabeza."
+      },
+      "hpo": {
+        "profiles": [
+          "COMMON",
+          "PERIOD"
+        ],
+        "space_status": "required_axes_documented_numeric_domains_and_budget_pending",
+        "numeric_domains": null,
+        "search_executed": false
+      },
+      "cost": {
+        "predictor_parameter_count": 1172875,
+        "parameter_count_scope": "all predictor parameters in historical synthetic receipt, not necessarily all trainable",
+        "auxiliary_parameter_counts": [],
+        "phases_per_training_stage": [
+          "supervised"
+        ],
+        "market_wall_seconds": null,
+        "market_peak_memory_bytes": null,
+        "market_flops": null,
+        "hardware": null,
+        "complete_budget_closed": false
+      }
+    },
+    {
+      "model": "TSMixer",
+      "recipe_id": "TSM-D7-r1",
+      "role": "top10_candidate",
+      "body_summary": "Seis bloques de mezcla y MLP de variables 512; semántica BN del port.",
+      "adaptation": "Aplanado 35 + diez momentos, Softplus y dropout inicial 0,1.",
+      "source_urls": [
+        "https://arxiv.org/pdf/2303.06053v5",
+        "https://github.com/google-research/google-research/blob/d3a4bd8f0eceddda553e47085033b537935b283f/tsmixer/tsmixer_basic/models/tsmixer.py"
+      ],
+      "fulltext_version": "2303.06053v5",
+      "bibliographic_limit": "Fuente ETTh1 usa dropout0,9; receta0,1 no es réplica del preset.",
+      "same_window_moment_features": 10,
+      "head_input_features": 45,
+      "implementation": {
+        "factory": "scripts/e2_recipe_catalogue.py",
+        "source_module": "scripts/e2_current_models.py",
+        "synthetic_recipe_verified": true,
+        "receipt_path": "book_e2/_static/recipe_implementation_20261109/synthetic_receipt.json",
+        "historical_supervised_steps": 1,
+        "historical_auxiliary_steps": 0,
+        "market_runner_integration_complete": false,
+        "source_weight_equivalence_claimed": false
+      },
+      "nas": {
+        "evidence_group": "defined_body_task_bridge",
+        "applies": null,
+        "exemption_granted": false,
+        "decision_to_resolve": "Resolver cuerpo publicado y cabeza conjunta; conciliar discrepancias de dropout y rango de ancho."
+      },
+      "hpo": {
+        "profiles": [
+          "COMMON",
+          "MLP"
+        ],
+        "space_status": "required_axes_documented_numeric_domains_and_budget_pending",
+        "numeric_domains": null,
+        "search_executed": false
+      },
+      "cost": {
+        "predictor_parameter_count": 35044,
+        "parameter_count_scope": "all predictor parameters in historical synthetic receipt, not necessarily all trainable",
+        "auxiliary_parameter_counts": [],
+        "phases_per_training_stage": [
+          "supervised"
+        ],
+        "market_wall_seconds": null,
+        "market_peak_memory_bytes": null,
+        "market_flops": null,
+        "hardware": null,
+        "complete_budget_closed": false
+      }
+    },
+    {
+      "model": "TiDE",
+      "recipe_id": "TIDE-D7-r1",
+      "role": "top10_candidate",
+      "body_summary": "Preset encoder/decoder 256, latente8 y decoder temporal128.",
+      "adaptation": "Sentinel futuro cero, decoder temporal emite8 frente a1; 40 latentes + diez momentos.",
+      "source_urls": [
+        "https://arxiv.org/pdf/2304.08424v5",
+        "https://github.com/google-research/google-research/blob/d3a4bd8f0eceddda553e47085033b537935b283f/tide/models.py",
+        "https://github.com/google-research/google-research/blob/d3a4bd8f0eceddda553e47085033b537935b283f/tide/scripts/etth1.sh"
+      ],
+      "fulltext_version": "2304.08424v5",
+      "bibliographic_limit": "Preset 256/8/128 procede H336/H720; no equivale al preset H96.",
+      "same_window_moment_features": 10,
+      "head_input_features": 50,
+      "implementation": {
+        "factory": "scripts/e2_recipe_catalogue.py",
+        "source_module": "scripts/e2_current_models.py",
+        "synthetic_recipe_verified": true,
+        "receipt_path": "book_e2/_static/recipe_implementation_20261109/synthetic_receipt.json",
+        "historical_supervised_steps": 1,
+        "historical_auxiliary_steps": 0,
+        "market_runner_integration_complete": false,
+        "source_weight_equivalence_claimed": false
+      },
+      "nas": {
+        "evidence_group": "structural_adaptation_review",
+        "applies": null,
+        "exemption_granted": false,
+        "decision_to_resolve": "Adjudicar decoder y covariables sustitutas como adaptación estructural o diseño propio."
+      },
+      "hpo": {
+        "profiles": [
+          "COMMON",
+          "TIDE"
+        ],
+        "space_status": "required_axes_documented_numeric_domains_and_budget_pending",
+        "numeric_domains": null,
+        "search_executed": false
+      },
+      "cost": {
+        "predictor_parameter_count": 168537,
+        "parameter_count_scope": "all predictor parameters in historical synthetic receipt, not necessarily all trainable",
+        "auxiliary_parameter_counts": [],
+        "phases_per_training_stage": [
+          "supervised"
+        ],
+        "market_wall_seconds": null,
+        "market_peak_memory_bytes": null,
+        "market_flops": null,
+        "hardware": null,
+        "complete_budget_closed": false
+      }
+    },
+    {
+      "model": "TimeMixer",
+      "recipe_id": "TM-D7-r1",
+      "role": "top10_candidate",
+      "body_summary": "PDM/FMM, dos bloques, d_model16/d_ff32; escalas7/3/1.",
+      "adaptation": "Dos descensos en vez de tres para evitar escala vacía; 80 latentes + diez momentos.",
+      "source_urls": [
+        "https://arxiv.org/pdf/2405.14616v1",
+        "https://github.com/kwuking/TimeMixer/blob/e24610583b36fdd8c76cc17a8df4e65759a5f460/scripts/long_term_forecast/ETT_script/TimeMixer_ETTh1_unify.sh"
+      ],
+      "fulltext_version": "2405.14616v1",
+      "bibliographic_limit": "Réplica histórica ETTh1 no valida esta receta D7 de Bitcoin.",
+      "same_window_moment_features": 10,
+      "head_input_features": 90,
+      "implementation": {
+        "factory": "scripts/e2_recipe_catalogue.py",
+        "source_module": "scripts/e2_current_models.py",
+        "synthetic_recipe_verified": true,
+        "receipt_path": "book_e2/_static/recipe_implementation_20261109/synthetic_receipt.json",
+        "historical_supervised_steps": 1,
+        "historical_auxiliary_steps": 0,
+        "market_runner_integration_complete": false,
+        "source_weight_equivalence_claimed": false
+      },
+      "nas": {
+        "evidence_group": "structural_adaptation_review",
+        "applies": null,
+        "exemption_granted": false,
+        "decision_to_resolve": "Adjudicar reducción de escalas y readout; necesidad geométrica no concede exención."
+      },
+      "hpo": {
+        "profiles": [
+          "COMMON",
+          "MULTISCALE"
+        ],
+        "space_status": "required_axes_documented_numeric_domains_and_budget_pending",
+        "numeric_domains": null,
+        "search_executed": false
+      },
+      "cost": {
+        "predictor_parameter_count": 2615,
+        "parameter_count_scope": "all predictor parameters in historical synthetic receipt, not necessarily all trainable",
+        "auxiliary_parameter_counts": [],
+        "phases_per_training_stage": [
+          "supervised"
+        ],
+        "market_wall_seconds": null,
+        "market_peak_memory_bytes": null,
+        "market_flops": null,
+        "hardware": null,
+        "complete_budget_closed": false
+      }
+    },
+    {
+      "model": "PatchTST",
+      "recipe_id": "PT-D7-r1",
+      "role": "top10_candidate",
+      "body_summary": "Tres capas, cuatro cabezas, d_model16/d_ff128; patch16, stride8.",
+      "adaptation": "RevIN antes del padding; dos parches de datos replicados de D7; 160 latentes + diez momentos.",
+      "source_urls": [
+        "https://arxiv.org/pdf/2211.14730v2",
+        "https://github.com/yuqinie98/PatchTST/blob/204c21efe0b39603ad6e2ca640ef5896646ab1a9/PatchTST_supervised/scripts/PatchTST/etth1.sh"
+      ],
+      "fulltext_version": "2211.14730v2",
+      "bibliographic_limit": "Dos parches no contienen 32 observaciones independientes; dropout difiere de fuentes.",
+      "same_window_moment_features": 10,
+      "head_input_features": 170,
+      "implementation": {
+        "factory": "scripts/e2_recipe_catalogue.py",
+        "source_module": "scripts/e2_current_models.py",
+        "synthetic_recipe_verified": true,
+        "receipt_path": "book_e2/_static/recipe_implementation_20261109/synthetic_receipt.json",
+        "historical_supervised_steps": 1,
+        "historical_auxiliary_steps": 0,
+        "market_runner_integration_complete": false,
+        "source_weight_equivalence_claimed": false
+      },
+      "nas": {
+        "evidence_group": "patch_geometry_review",
+        "applies": null,
+        "exemption_granted": false,
+        "decision_to_resolve": "Resolver geometría corta y cabeza conjunta; exención del modelo publicado no se extiende automáticamente."
+      },
+      "hpo": {
+        "profiles": [
+          "COMMON",
+          "TRANSFORMER"
+        ],
+        "space_status": "required_axes_documented_numeric_domains_and_budget_pending",
+        "numeric_domains": null,
+        "search_executed": false
+      },
+      "cost": {
+        "predictor_parameter_count": 16664,
+        "parameter_count_scope": "all predictor parameters in historical synthetic receipt, not necessarily all trainable",
+        "auxiliary_parameter_counts": [],
+        "phases_per_training_stage": [
+          "supervised"
+        ],
+        "market_wall_seconds": null,
+        "market_peak_memory_bytes": null,
+        "market_flops": null,
+        "hardware": null,
+        "complete_budget_closed": false
+      }
+    },
+    {
+      "model": "iTransformer",
+      "recipe_id": "IT-D7-r1",
+      "role": "top10_candidate",
+      "body_summary": "Dos capas, ocho cabezas, d_model256/d_ff256; cinco tokens de variables.",
+      "adaptation": "Embedding de siete valores, retirar projector/desnormalización OHLCV; 1280 latentes + diez momentos.",
+      "source_urls": [
+        "https://arxiv.org/pdf/2310.06625v4",
+        "https://github.com/thuml/iTransformer/blob/c2426e68ca13f74aaec08045c5c724d8ad328124/scripts/multivariate_forecasting/ETT/iTransformer_ETTh1.sh"
+      ],
+      "fulltext_version": "2310.06625v4",
+      "bibliographic_limit": "Preset fuente H96 adaptado; atención entre cinco variables, no siete días.",
+      "same_window_moment_features": 10,
+      "head_input_features": 1290,
+      "implementation": {
+        "factory": "scripts/e2_recipe_catalogue.py",
+        "source_module": "scripts/e2_current_models.py",
+        "synthetic_recipe_verified": true,
+        "receipt_path": "book_e2/_static/recipe_implementation_20261109/synthetic_receipt.json",
+        "historical_supervised_steps": 1,
+        "historical_auxiliary_steps": 0,
+        "market_runner_integration_complete": false,
+        "source_weight_equivalence_claimed": false
+      },
+      "nas": {
+        "evidence_group": "defined_body_task_bridge",
+        "applies": null,
+        "exemption_granted": false,
+        "decision_to_resolve": "Resolver embedding7 y cabeza de tarea con momentos como puente admisible."
+      },
+      "hpo": {
+        "profiles": [
+          "COMMON",
+          "TRANSFORMER"
+        ],
+        "space_status": "required_axes_documented_numeric_domains_and_budget_pending",
+        "numeric_domains": null,
+        "search_executed": false
+      },
+      "cost": {
+        "predictor_parameter_count": 795403,
+        "parameter_count_scope": "all predictor parameters in historical synthetic receipt, not necessarily all trainable",
+        "auxiliary_parameter_counts": [],
+        "phases_per_training_stage": [
+          "supervised"
+        ],
+        "market_wall_seconds": null,
+        "market_peak_memory_bytes": null,
+        "market_flops": null,
+        "hardware": null,
+        "complete_budget_closed": false
+      }
+    },
+    {
+      "model": "CNN-1D + LSTM + atención temporal",
+      "recipe_id": "HIB-D7-r1",
+      "role": "additional_candidate",
+      "body_summary": "CNN causal32/k3 → LSTM32 → atención aditiva16; cabeza escalar.",
+      "adaptation": "Composición propia, estado reiniciado por ventana y sin momentos adicionales.",
+      "source_urls": [],
+      "fulltext_version": null,
+      "bibliographic_limit": "No hay artículo verificado para la receta completa; composición no demuestra novedad ni superioridad.",
+      "same_window_moment_features": 0,
+      "head_input_features": 32,
+      "implementation": {
+        "factory": "scripts/e2_recipe_catalogue.py",
+        "source_module": "scripts/e2_current_models.py",
+        "synthetic_recipe_verified": true,
+        "receipt_path": "book_e2/_static/recipe_implementation_20261109/synthetic_receipt.json",
+        "historical_supervised_steps": 1,
+        "historical_auxiliary_steps": 0,
+        "market_runner_integration_complete": false,
+        "source_weight_equivalence_claimed": false
+      },
+      "nas": {
+        "evidence_group": "own_composition",
+        "applies": null,
+        "exemption_granted": false,
+        "decision_to_resolve": "Si se evalúa como diseño propio E2, aplicar propuesta §14: w1 CNN, w2 LSTM, w3 atención; falta resolver e implementar tres dropouts."
+      },
+      "hpo": {
+        "profiles": [
+          "COMMON",
+          "HYBRID"
+        ],
+        "space_status": "required_axes_documented_numeric_domains_and_budget_pending",
+        "numeric_domains": null,
+        "search_executed": false
+      },
+      "cost": {
+        "predictor_parameter_count": 9537,
+        "parameter_count_scope": "all predictor parameters in historical synthetic receipt, not necessarily all trainable",
+        "auxiliary_parameter_counts": [],
+        "phases_per_training_stage": [
+          "supervised"
+        ],
+        "market_wall_seconds": null,
+        "market_peak_memory_bytes": null,
+        "market_flops": null,
+        "hardware": null,
+        "complete_budget_closed": false
+      }
+    }
+  ],
+  "references": [
+    {
+      "model": "MLP16",
+      "role": "E1_reference_reinitialized",
+      "selection": "Document and freeze E2 training opportunities separately.",
+      "market_runner_integration_complete": false,
+      "complete_budget_closed": false
+    },
+    {
+      "model": "LSTM32",
+      "role": "E1_reference_reinitialized",
+      "selection": "Document and freeze E2 training opportunities separately.",
+      "market_runner_integration_complete": false,
+      "complete_budget_closed": false
+    },
+    {
+      "model": "GRU32",
+      "role": "E1_reference_reinitialized",
+      "selection": "Document and freeze E2 training opportunities separately.",
+      "market_runner_integration_complete": false,
+      "complete_budget_closed": false
+    },
+    {
+      "model": "Persistencia",
+      "role": "trivial_baseline",
+      "lag_days": 1,
+      "search_required": false,
+      "market_runner_integration_complete": false,
+      "complete_budget_closed": false
+    },
+    {
+      "model": "Ridge",
+      "role": "linear_reference",
+      "smoke_alpha": 1,
+      "alpha_search_domain": null,
+      "market_runner_integration_complete": false,
+      "complete_budget_closed": false
+    },
+    {
+      "model": "Naive estacional",
+      "role": "temporal_baseline",
+      "period_candidates": [
+        7,
+        14,
+        28
+      ],
+      "smoke_period": 7,
+      "selection_executed": false,
+      "market_runner_integration_complete": false,
+      "complete_budget_closed": false
+    },
+    {
+      "model": "ARIMA",
+      "role": "classical_temporal_baseline",
+      "order_candidates": {
+        "p": [
+          0,
+          1,
+          2
+        ],
+        "d": [
+          0,
+          1
+        ],
+        "q": [
+          0,
+          1,
+          2
+        ]
+      },
+      "candidate_order_count": 18,
+      "smoke_order": [
+        1,
+        0,
+        0
+      ],
+      "selection_executed": false,
+      "market_runner_integration_complete": false,
+      "complete_budget_closed": false
+    }
+  ],
+  "remaining_gates": [
+    "PRISMA and Top10 eligibility reconciliation",
+    "Per-recipe NAS adjudication",
+    "Numeric HPO domains, allowed architecture changes and complete fair budget",
+    "Complete 18-system market integration and causal audit",
+    "A/B design and full preregistration with power and inferential families",
+    "Independent environment reproduction and final-support verification"
+  ]
+}

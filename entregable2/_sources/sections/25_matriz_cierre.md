@@ -35,8 +35,10 @@ El catálogo mantiene diez modelos y el candidato CNN-1D + LSTM + atención temp
 4. **Verificación:** completar R08–R09 y R12 conforme al orden registrado. Las pruebas con ajustes de mercado necesitan su propio protocolo previo; este documento no las ejecuta. Acceso final y evaluación mantienen las guardas existentes.
 5. **Experimento y reporte:** ejecutar R13 y las mediciones de R10–R11, después completar R14. Conservar fallos, resultados nulos y cambios como enmiendas fechadas.
 
-## Próximo producto concreto
+## Producto disponible y siguiente cierre
 
-Preparar una **tabla por receta** que reúna fuente, adaptación, decisión NAS, espacio HPO, coste y estado de integración (R03–R06), junto con la conciliación bibliográfica que la respalda (R01). Luego completar la nueva enmienda R07. No se fija aquí un número de semillas, ganador, exención NAS ni techo numérico sin evidencia.
+La [tabla por receta de §26](26_registro_recetas.md) reúne fuentes, adaptaciones, dudas NAS, factores HPO, parámetros y estado de integración para los once candidatos y siete referencias separadas. Respalda el inventario R03–R06 y la conciliación arquitectónica local R01; no cierra el PRISMA global ni los dominios HPO o las decisiones NAS.
+
+El siguiente cierre es resolver NAS por receta, convertir los factores HPO en espacios ejecutables y presupuestados y completar integración/auditoría antes de la nueva enmienda R07. No se fija aquí un número de semillas, ganador, exención NAS ni techo numérico sin evidencia.
 
 La [sección 20](20_contraste_guia.md) conserva el cotejo detallado con la guía. La [sección 24](24_ejecutor_comun.md) distingue el smoke sintético del núcleo temporal posterior. Esta matriz complementa esas evidencias sin modificar sus recibos.
