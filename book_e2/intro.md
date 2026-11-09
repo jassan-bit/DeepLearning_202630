@@ -1,5 +1,7 @@
 # Proyecto Final de Deep Learning: Entregable 2
 
+**Fábricas NAS verificadas:** [seis familias, 6.000 casos numéricos y fases auxiliares SAE](sections/28_fabricas_nas.md). Enlace de configuraciones HPO y pruebas sintéticas; sin optimización ni mercado.
+
 **Diseño NAS/HPO para Codex:** [decisiones por receta, rangos y presupuesto contable](sections/27_nas_hpo_presupuesto.md). Seis variantes NAS y cinco cuerpos publicados fijos; planes generados sin entrenamiento. Horas pendientes de perfilado.
 
 **Registro por modelo:** [fuentes, adaptaciones, NAS, HPO, parámetros e integración](sections/26_registro_recetas.md). Once recetas identificadas y siete referencias separadas; decisiones experimentales aún abiertas.

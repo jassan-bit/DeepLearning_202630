@@ -669,3 +669,25 @@ La prueba independiente del núcleo no certifica la integración completa de
 18 modelos, las búsquedas de la guía, la convergencia ARIMA o el libro completo.
 Los modelos, recetas, escenario A/B, presupuesto y NAS deben cerrarse antes
 de cualquier ejecución de mercado.
+
+
+## Fábricas NAS de §28: validación CPU sin entrenamiento
+
+El nuevo entorno no sustituye los locks de los experimentos históricos.
+
+```bash
+python -m venv work/nas-venv
+work/nas-venv/bin/python -m pip install -r requirements-nas-cpu.lock.txt
+work/nas-venv/bin/python -m pip check
+work/nas-venv/bin/python -m unittest discover -s tests -p 'test_e2_nas_*.py' -v
+work/nas-venv/bin/python scripts/check_e2_nas_factory.py --protocol book_e2/_static/search_protocol_20261109/protocol.json --mode numeric --output work/nas-numeric-nuevo --threads 1
+work/nas-venv/bin/python scripts/check_e2_nas_factory.py --protocol book_e2/_static/search_protocol_20261109/protocol.json --mode meta --model TimesNet --output work/nas-meta-nuevo --threads 1
+work/nas-venv/bin/python scripts/check_e2_nas_auxiliary.py --protocol book_e2/_static/search_protocol_20261109/protocol.json --output work/nas-aux-nuevo --threads 1
+```
+
+Los outputs deben ser directorios nuevos. Cada familia numérica usa un trial
+estructural registrado (TimesNet usa dos kernels); el recorrido meta de seis
+kernels no certifica finitez. El vínculo de los18 HPO por familia se comprueba
+numéricamente sobre referencia en la batería unitaria. Ningún checker acepta
+archivos de mercado o ejecuta optimizadores. La evidencia completa y sus límites
+están en book_e2/_static/nas_factories_20261109/summary.json.

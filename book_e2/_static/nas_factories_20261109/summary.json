@@ -1,0 +1,686 @@
+{
+  "status": "synthetic_factories_checked_not_market_runner_or_search",
+  "source_commit": "8f6d16f5a4838cd428b605c1430e75caebad34f7",
+  "protocol_id": "E2-NAS-HPO-20261109-v1",
+  "synthetic_only": true,
+  "market_data_read": false,
+  "optimizer_steps": 0,
+  "numeric_predictor_configurations": 6000,
+  "numeric_auxiliary_configurations": 2000,
+  "numeric_reference_hpo_bindings": 108,
+  "meta_six_kernel_configurations": 1000,
+  "model_counts": {
+    "LSTM-autoencoder con predictor": {
+      "checked": 1000,
+      "expected": 1000,
+      "parameter_count_min": 3937,
+      "parameter_count_max": 861697,
+      "registered_hpo_trial": {
+        "trial_id": "SAE-D7-NAS-v1:hpo-000",
+        "recipe_id": "SAE-D7-NAS-v1",
+        "learning_rate": 0.001211955339457244,
+        "weight_decay": 4.226272938767752e-05,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "batch_size": 64,
+        "architecture_reference": {
+          "widths": [
+            64,
+            64,
+            64
+          ],
+          "dropout_pattern": [
+            0,
+            1,
+            0
+          ],
+          "dropout_rate": 0.2
+        }
+      },
+      "numerical_finiteness_checked": true
+    },
+    "TiDE": {
+      "checked": 1000,
+      "expected": 1000,
+      "parameter_count_min": 3945,
+      "parameter_count_max": 171225,
+      "registered_hpo_trial": {
+        "trial_id": "TIDE-D7-NAS-v1:hpo-000",
+        "recipe_id": "TIDE-D7-NAS-v1",
+        "learning_rate": 0.00018408648533116664,
+        "weight_decay": 1.8391793599492197e-06,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "batch_size": 64,
+        "architecture_reference": {
+          "widths": [
+            64,
+            64,
+            64
+          ],
+          "dropout_pattern": [
+            0,
+            1,
+            0
+          ],
+          "dropout_rate": 0.2
+        }
+      },
+      "numerical_finiteness_checked": true
+    },
+    "PatchTST": {
+      "checked": 1000,
+      "expected": 1000,
+      "parameter_count_min": 17205,
+      "parameter_count_max": 4084245,
+      "registered_hpo_trial": {
+        "trial_id": "PT-D7-NAS-v1:hpo-000",
+        "recipe_id": "PT-D7-NAS-v1",
+        "learning_rate": 2.3151493766739426e-05,
+        "weight_decay": 8.815971721310597e-05,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "batch_size": 32,
+        "warmup_fraction": 0,
+        "architecture_reference": {
+          "widths": [
+            64,
+            64,
+            64
+          ],
+          "dropout_pattern": [
+            0,
+            1,
+            0
+          ],
+          "dropout_rate": 0.2
+        }
+      },
+      "numerical_finiteness_checked": true
+    },
+    "CNN-1D + LSTM + atención temporal": {
+      "checked": 1000,
+      "expected": 1000,
+      "parameter_count_min": 2897,
+      "parameter_count_max": 599297,
+      "registered_hpo_trial": {
+        "trial_id": "HIB-D7-NAS-v1:hpo-000",
+        "recipe_id": "HIB-D7-NAS-v1",
+        "learning_rate": 3.700723870136817e-05,
+        "weight_decay": 3.2239097867721123e-06,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "batch_size": 64,
+        "kernel": 5,
+        "architecture_reference": {
+          "widths": [
+            64,
+            64,
+            64
+          ],
+          "dropout_pattern": [
+            0,
+            1,
+            0
+          ],
+          "dropout_rate": 0.2
+        }
+      },
+      "numerical_finiteness_checked": true
+    },
+    "TimesNet": {
+      "checked": 1000,
+      "expected": 1000,
+      "parameter_count_min": 32747,
+      "parameter_count_max": 8011307,
+      "registered_hpo_trial": {
+        "trial_id": "TN-D7-NAS-v1:hpo-000",
+        "recipe_id": "TN-D7-NAS-v1",
+        "learning_rate": 0.0005872737708369186,
+        "weight_decay": 9.86164173719435e-05,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "batch_size": 32,
+        "num_kernels": 2,
+        "top_k": 3,
+        "architecture_reference": {
+          "widths": [
+            64,
+            64,
+            64
+          ],
+          "dropout_pattern": [
+            0,
+            1,
+            0
+          ],
+          "dropout_rate": 0.2
+        }
+      },
+      "numerical_finiteness_checked": true
+    },
+    "TimeMixer": {
+      "checked": 1000,
+      "expected": 1000,
+      "parameter_count_min": 4647,
+      "parameter_count_max": 926487,
+      "registered_hpo_trial": {
+        "trial_id": "TM-D7-NAS-v1:hpo-000",
+        "recipe_id": "TM-D7-NAS-v1",
+        "learning_rate": 0.0019746590933921726,
+        "weight_decay": 0.002485137889649854,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "batch_size": 64,
+        "moving_average": 7,
+        "architecture_reference": {
+          "widths": [
+            64,
+            64,
+            64
+          ],
+          "dropout_pattern": [
+            0,
+            1,
+            0
+          ],
+          "dropout_rate": 0.2
+        }
+      },
+      "numerical_finiteness_checked": true
+    }
+  },
+  "source_sha256": {
+    "requirements-nas-cpu.lock.txt": "5a2891e70f0be66a87f08d8ad5a753c9ec1e8d4ddacd905be8b0d121738b2e2c",
+    "scripts/check_e2_nas_auxiliary.py": "d418e0a9de631f59a2dfd1b3a3b12ad38cdfefa4f028058915d0d0b714afc5e9",
+    "scripts/check_e2_nas_factory.py": "249882c26cf2d17359de8156a2f19fb6079ba6dad57f030436c0df56df69bba7",
+    "scripts/e2_nas_attention.py": "693e46c2891d356e553eb9d2565f1a8f491440b85680e2d9e5bcc74a9f50c187",
+    "scripts/e2_nas_autoencoder.py": "c2889a7c18b8dbc1c4741304c73c0d4ec83e0e620f0c38a00d05b484ec6530ca",
+    "scripts/e2_nas_common.py": "ba9b06acfc984b3414c9406fc577eab137d13308420e2da15d5433f6c665b618",
+    "scripts/e2_nas_factory.py": "52c345990cffb8982c13eddca9cb9fceddcf6a607fdc8bdef0110f0a02437f02",
+    "scripts/e2_nas_spectral.py": "196a1233322f8741b3ad28f11ef85d815f2eebb040fbf51c99ccfa0edc2caaea",
+    "scripts/e2_search_plan.py": "7169d56f67a07b3ab6d55bd1730dabdec5fe4a54e1f3385ba0db9e84cc3a2314"
+  },
+  "unit_tests": {
+    "tests": 35,
+    "failures": 0,
+    "skipped": 0
+  },
+  "receipts": {
+    "predictors_sae_tide": {
+      "version": "e2-nas-conformance-v1",
+      "mode": "numeric",
+      "status": "complete",
+      "synthetic_only": true,
+      "market_data_read": false,
+      "optimizer_steps": 0,
+      "hpo_search_executed": false,
+      "nas_search_executed": false,
+      "fixture": "one fixed artificial [1,7,5] window; training mode for dropout/normalization",
+      "fixture_sha256": "5747f1412f7b89dad776b271a995955d7e8b5d3ce95afe02fa54bbe01402ae17",
+      "runtime": {
+        "torch": "2.8.0+cpu",
+        "python": "3.12.14",
+        "device": "cpu",
+        "threads": 1
+      },
+      "protocol_file_sha256": "e0030c990a4afa15665aec254211b0d9e680e9ac5d92dfb8094e43e965152abe",
+      "source_sha256": {
+        "check_e2_nas_factory.py": "249882c26cf2d17359de8156a2f19fb6079ba6dad57f030436c0df56df69bba7",
+        "e2_nas_attention.py": "693e46c2891d356e553eb9d2565f1a8f491440b85680e2d9e5bcc74a9f50c187",
+        "e2_nas_autoencoder.py": "c2889a7c18b8dbc1c4741304c73c0d4ec83e0e620f0c38a00d05b484ec6530ca",
+        "e2_nas_common.py": "ba9b06acfc984b3414c9406fc577eab137d13308420e2da15d5433f6c665b618",
+        "e2_nas_factory.py": "52c345990cffb8982c13eddca9cb9fceddcf6a607fdc8bdef0110f0a02437f02",
+        "e2_nas_spectral.py": "196a1233322f8741b3ad28f11ef85d815f2eebb040fbf51c99ccfa0edc2caaea",
+        "e2_search_plan.py": "7169d56f67a07b3ab6d55bd1730dabdec5fe4a54e1f3385ba0db9e84cc3a2314"
+      },
+      "models": {
+        "LSTM-autoencoder con predictor": {
+          "checked": 1000,
+          "expected": 1000,
+          "parameter_count_min": 3937,
+          "parameter_count_max": 861697,
+          "registered_hpo_trial": {
+            "trial_id": "SAE-D7-NAS-v1:hpo-000",
+            "recipe_id": "SAE-D7-NAS-v1",
+            "learning_rate": 0.001211955339457244,
+            "weight_decay": 4.226272938767752e-05,
+            "optimization_seeds": [
+              271201,
+              271202
+            ],
+            "batch_size": 64,
+            "architecture_reference": {
+              "widths": [
+                64,
+                64,
+                64
+              ],
+              "dropout_pattern": [
+                0,
+                1,
+                0
+              ],
+              "dropout_rate": 0.2
+            }
+          },
+          "numerical_finiteness_checked": true
+        },
+        "TiDE": {
+          "checked": 1000,
+          "expected": 1000,
+          "parameter_count_min": 3945,
+          "parameter_count_max": 171225,
+          "registered_hpo_trial": {
+            "trial_id": "TIDE-D7-NAS-v1:hpo-000",
+            "recipe_id": "TIDE-D7-NAS-v1",
+            "learning_rate": 0.00018408648533116664,
+            "weight_decay": 1.8391793599492197e-06,
+            "optimization_seeds": [
+              271201,
+              271202
+            ],
+            "batch_size": 64,
+            "architecture_reference": {
+              "widths": [
+                64,
+                64,
+                64
+              ],
+              "dropout_pattern": [
+                0,
+                1,
+                0
+              ],
+              "dropout_rate": 0.2
+            }
+          },
+          "numerical_finiteness_checked": true
+        }
+      },
+      "failures": [],
+      "ledger_sha256": "7af4212c8cb8d3a0488bf90bfe31e59436f104ac4295fde537f43473dccf1857",
+      "limits": [
+        "Conformance is not optimization, predictive performance or power.",
+        "Numeric coverage uses one registered HPO row per family.",
+        "Meta checks do not establish finiteness or data-dependent numerical correctness.",
+        "Not the Cartesian product of1000 architectures and18 HPO rows."
+      ]
+    },
+    "predictors_attention": {
+      "version": "e2-nas-conformance-v1",
+      "mode": "numeric",
+      "status": "complete",
+      "synthetic_only": true,
+      "market_data_read": false,
+      "optimizer_steps": 0,
+      "hpo_search_executed": false,
+      "nas_search_executed": false,
+      "fixture": "one fixed artificial [1,7,5] window; training mode for dropout/normalization",
+      "fixture_sha256": "5747f1412f7b89dad776b271a995955d7e8b5d3ce95afe02fa54bbe01402ae17",
+      "runtime": {
+        "torch": "2.8.0+cpu",
+        "python": "3.12.14",
+        "device": "cpu",
+        "threads": 1
+      },
+      "protocol_file_sha256": "e0030c990a4afa15665aec254211b0d9e680e9ac5d92dfb8094e43e965152abe",
+      "source_sha256": {
+        "check_e2_nas_factory.py": "249882c26cf2d17359de8156a2f19fb6079ba6dad57f030436c0df56df69bba7",
+        "e2_nas_attention.py": "693e46c2891d356e553eb9d2565f1a8f491440b85680e2d9e5bcc74a9f50c187",
+        "e2_nas_autoencoder.py": "c2889a7c18b8dbc1c4741304c73c0d4ec83e0e620f0c38a00d05b484ec6530ca",
+        "e2_nas_common.py": "ba9b06acfc984b3414c9406fc577eab137d13308420e2da15d5433f6c665b618",
+        "e2_nas_factory.py": "52c345990cffb8982c13eddca9cb9fceddcf6a607fdc8bdef0110f0a02437f02",
+        "e2_nas_spectral.py": "196a1233322f8741b3ad28f11ef85d815f2eebb040fbf51c99ccfa0edc2caaea",
+        "e2_search_plan.py": "7169d56f67a07b3ab6d55bd1730dabdec5fe4a54e1f3385ba0db9e84cc3a2314"
+      },
+      "models": {
+        "PatchTST": {
+          "checked": 1000,
+          "expected": 1000,
+          "parameter_count_min": 17205,
+          "parameter_count_max": 4084245,
+          "registered_hpo_trial": {
+            "trial_id": "PT-D7-NAS-v1:hpo-000",
+            "recipe_id": "PT-D7-NAS-v1",
+            "learning_rate": 2.3151493766739426e-05,
+            "weight_decay": 8.815971721310597e-05,
+            "optimization_seeds": [
+              271201,
+              271202
+            ],
+            "batch_size": 32,
+            "warmup_fraction": 0,
+            "architecture_reference": {
+              "widths": [
+                64,
+                64,
+                64
+              ],
+              "dropout_pattern": [
+                0,
+                1,
+                0
+              ],
+              "dropout_rate": 0.2
+            }
+          },
+          "numerical_finiteness_checked": true
+        },
+        "CNN-1D + LSTM + atención temporal": {
+          "checked": 1000,
+          "expected": 1000,
+          "parameter_count_min": 2897,
+          "parameter_count_max": 599297,
+          "registered_hpo_trial": {
+            "trial_id": "HIB-D7-NAS-v1:hpo-000",
+            "recipe_id": "HIB-D7-NAS-v1",
+            "learning_rate": 3.700723870136817e-05,
+            "weight_decay": 3.2239097867721123e-06,
+            "optimization_seeds": [
+              271201,
+              271202
+            ],
+            "batch_size": 64,
+            "kernel": 5,
+            "architecture_reference": {
+              "widths": [
+                64,
+                64,
+                64
+              ],
+              "dropout_pattern": [
+                0,
+                1,
+                0
+              ],
+              "dropout_rate": 0.2
+            }
+          },
+          "numerical_finiteness_checked": true
+        }
+      },
+      "failures": [],
+      "ledger_sha256": "7f432895886c66241fe340cb9b327af19b0b45eec6099c01c0973f3be49e84d8",
+      "limits": [
+        "Conformance is not optimization, predictive performance or power.",
+        "Numeric coverage uses one registered HPO row per family.",
+        "Meta checks do not establish finiteness or data-dependent numerical correctness.",
+        "Not the Cartesian product of1000 architectures and18 HPO rows."
+      ]
+    },
+    "predictors_spectral": {
+      "version": "e2-nas-conformance-v1",
+      "mode": "numeric",
+      "status": "complete",
+      "synthetic_only": true,
+      "market_data_read": false,
+      "optimizer_steps": 0,
+      "hpo_search_executed": false,
+      "nas_search_executed": false,
+      "fixture": "one fixed artificial [1,7,5] window; training mode for dropout/normalization",
+      "fixture_sha256": "5747f1412f7b89dad776b271a995955d7e8b5d3ce95afe02fa54bbe01402ae17",
+      "runtime": {
+        "torch": "2.8.0+cpu",
+        "python": "3.12.14",
+        "device": "cpu",
+        "threads": 1
+      },
+      "protocol_file_sha256": "e0030c990a4afa15665aec254211b0d9e680e9ac5d92dfb8094e43e965152abe",
+      "source_sha256": {
+        "check_e2_nas_factory.py": "249882c26cf2d17359de8156a2f19fb6079ba6dad57f030436c0df56df69bba7",
+        "e2_nas_attention.py": "693e46c2891d356e553eb9d2565f1a8f491440b85680e2d9e5bcc74a9f50c187",
+        "e2_nas_autoencoder.py": "c2889a7c18b8dbc1c4741304c73c0d4ec83e0e620f0c38a00d05b484ec6530ca",
+        "e2_nas_common.py": "ba9b06acfc984b3414c9406fc577eab137d13308420e2da15d5433f6c665b618",
+        "e2_nas_factory.py": "52c345990cffb8982c13eddca9cb9fceddcf6a607fdc8bdef0110f0a02437f02",
+        "e2_nas_spectral.py": "196a1233322f8741b3ad28f11ef85d815f2eebb040fbf51c99ccfa0edc2caaea",
+        "e2_search_plan.py": "7169d56f67a07b3ab6d55bd1730dabdec5fe4a54e1f3385ba0db9e84cc3a2314"
+      },
+      "models": {
+        "TimesNet": {
+          "checked": 1000,
+          "expected": 1000,
+          "parameter_count_min": 32747,
+          "parameter_count_max": 8011307,
+          "registered_hpo_trial": {
+            "trial_id": "TN-D7-NAS-v1:hpo-000",
+            "recipe_id": "TN-D7-NAS-v1",
+            "learning_rate": 0.0005872737708369186,
+            "weight_decay": 9.86164173719435e-05,
+            "optimization_seeds": [
+              271201,
+              271202
+            ],
+            "batch_size": 32,
+            "num_kernels": 2,
+            "top_k": 3,
+            "architecture_reference": {
+              "widths": [
+                64,
+                64,
+                64
+              ],
+              "dropout_pattern": [
+                0,
+                1,
+                0
+              ],
+              "dropout_rate": 0.2
+            }
+          },
+          "numerical_finiteness_checked": true
+        },
+        "TimeMixer": {
+          "checked": 1000,
+          "expected": 1000,
+          "parameter_count_min": 4647,
+          "parameter_count_max": 926487,
+          "registered_hpo_trial": {
+            "trial_id": "TM-D7-NAS-v1:hpo-000",
+            "recipe_id": "TM-D7-NAS-v1",
+            "learning_rate": 0.0019746590933921726,
+            "weight_decay": 0.002485137889649854,
+            "optimization_seeds": [
+              271201,
+              271202
+            ],
+            "batch_size": 64,
+            "moving_average": 7,
+            "architecture_reference": {
+              "widths": [
+                64,
+                64,
+                64
+              ],
+              "dropout_pattern": [
+                0,
+                1,
+                0
+              ],
+              "dropout_rate": 0.2
+            }
+          },
+          "numerical_finiteness_checked": true
+        }
+      },
+      "failures": [],
+      "ledger_sha256": "d96e8807ae1afca944b49700c56a1a611b075fb8f099096c8bc4338d8b577cb6",
+      "limits": [
+        "Conformance is not optimization, predictive performance or power.",
+        "Numeric coverage uses one registered HPO row per family.",
+        "Meta checks do not establish finiteness or data-dependent numerical correctness.",
+        "Not the Cartesian product of1000 architectures and18 HPO rows."
+      ]
+    },
+    "timesnet_six_kernel_meta": {
+      "version": "e2-nas-conformance-v1",
+      "mode": "meta",
+      "status": "complete",
+      "synthetic_only": true,
+      "market_data_read": false,
+      "optimizer_steps": 0,
+      "hpo_search_executed": false,
+      "nas_search_executed": false,
+      "fixture": "one fixed artificial [1,7,5] window; training mode for dropout/normalization",
+      "fixture_sha256": "5747f1412f7b89dad776b271a995955d7e8b5d3ce95afe02fa54bbe01402ae17",
+      "runtime": {
+        "torch": "2.8.0+cpu",
+        "python": "3.12.14",
+        "device": "meta",
+        "threads": 1
+      },
+      "protocol_file_sha256": "e0030c990a4afa15665aec254211b0d9e680e9ac5d92dfb8094e43e965152abe",
+      "source_sha256": {
+        "check_e2_nas_factory.py": "249882c26cf2d17359de8156a2f19fb6079ba6dad57f030436c0df56df69bba7",
+        "e2_nas_attention.py": "693e46c2891d356e553eb9d2565f1a8f491440b85680e2d9e5bcc74a9f50c187",
+        "e2_nas_autoencoder.py": "c2889a7c18b8dbc1c4741304c73c0d4ec83e0e620f0c38a00d05b484ec6530ca",
+        "e2_nas_common.py": "ba9b06acfc984b3414c9406fc577eab137d13308420e2da15d5433f6c665b618",
+        "e2_nas_factory.py": "52c345990cffb8982c13eddca9cb9fceddcf6a607fdc8bdef0110f0a02437f02",
+        "e2_nas_spectral.py": "196a1233322f8741b3ad28f11ef85d815f2eebb040fbf51c99ccfa0edc2caaea",
+        "e2_search_plan.py": "7169d56f67a07b3ab6d55bd1730dabdec5fe4a54e1f3385ba0db9e84cc3a2314"
+      },
+      "models": {
+        "TimesNet": {
+          "checked": 1000,
+          "expected": 1000,
+          "parameter_count_min": 881195,
+          "parameter_count_max": 225075755,
+          "registered_hpo_trial": null,
+          "numerical_finiteness_checked": false
+        }
+      },
+      "failures": [],
+      "ledger_sha256": "c67df9a616341a5544b9f41c03769aab7b716ba5e3a65a2ae75ef27d47c2190d",
+      "limits": [
+        "Conformance is not optimization, predictive performance or power.",
+        "Numeric coverage uses one registered HPO row per family.",
+        "Meta checks do not establish finiteness or data-dependent numerical correctness.",
+        "Not the Cartesian product of1000 architectures and18 HPO rows."
+      ]
+    },
+    "sae_auxiliary": {
+      "version": "e2-sae-auxiliary-conformance-v1",
+      "status": "complete",
+      "mode": "numeric",
+      "architectures_each_phase": {
+        "1": 1000,
+        "2": 1000
+      },
+      "total_auxiliary_constructions": 2000,
+      "optimizer_steps": 0,
+      "market_data_read": false,
+      "hpo_search_executed": false,
+      "nas_search_executed": false,
+      "numerical_finiteness_checked": true,
+      "protocol_file_sha256": "e0030c990a4afa15665aec254211b0d9e680e9ac5d92dfb8094e43e965152abe",
+      "source_sha256": {
+        "scripts/e2_nas_common.py": "ba9b06acfc984b3414c9406fc577eab137d13308420e2da15d5433f6c665b618",
+        "scripts/e2_nas_autoencoder.py": "c2889a7c18b8dbc1c4741304c73c0d4ec83e0e620f0c38a00d05b484ec6530ca",
+        "scripts/e2_search_plan.py": "7169d56f67a07b3ab6d55bd1730dabdec5fe4a54e1f3385ba0db9e84cc3a2314",
+        "scripts/check_e2_nas_auxiliary.py": "d418e0a9de631f59a2dfd1b3a3b12ad38cdfefa4f028058915d0d0b714afc5e9"
+      },
+      "ledger_sha256": "de051fc7482d6e7d8e2072f60cf5c1d5ddc7c966dade0a434c9ee974d5026c75",
+      "failures": [],
+      "runtime": {
+        "torch": "2.8.0+cpu",
+        "python": "3.12.14",
+        "device": "cpu",
+        "threads": 1
+      },
+      "fixture_seed": 280701,
+      "fixture": "B1,7,C linear values in[-0.9,0.9]; C5 in AE1, Cw1 in AE2; training mode",
+      "limits": [
+        "No pretraining or optimizer execution.",
+        "Fold staging and transfer tested separately on numerical fixtures.",
+        "Phase-two fixture is not a learned AE1 representation.",
+        "Auxiliary subgraphs may repeat when only w3 or b3 changes; all1000 parent architecture IDs are checked."
+      ]
+    }
+  },
+  "artifacts": {
+    "predictors_sae_tide.jsonl.gz": {
+      "gzip_sha256": "65a1ce690aba3e91c475ae7296ff9c8e14e29f908310e414eb592c46f3ab3fa6",
+      "uncompressed_sha256": "7af4212c8cb8d3a0488bf90bfe31e59436f104ac4295fde537f43473dccf1857",
+      "bytes": 38842,
+      "records": 2000
+    },
+    "predictors_attention.jsonl.gz": {
+      "gzip_sha256": "c2bad86e9b6b7d7e60c3503c042fa638fb3d618fa86b75cd1d1b454530c9573b",
+      "uncompressed_sha256": "7f432895886c66241fe340cb9b327af19b0b45eec6099c01c0973f3be49e84d8",
+      "bytes": 39159,
+      "records": 2000
+    },
+    "predictors_spectral.jsonl.gz": {
+      "gzip_sha256": "90fbd481bee88eb206c6c5dd1a3780df58d286a37d7e72c31f5bb2254bd658be",
+      "uncompressed_sha256": "d96e8807ae1afca944b49700c56a1a611b075fb8f099096c8bc4338d8b577cb6",
+      "bytes": 39259,
+      "records": 2000
+    },
+    "timesnet_six_kernel_meta.jsonl.gz": {
+      "gzip_sha256": "5a6564ef1366fc84a0f6d76b3384573b4bc9932fd8b5de6c74a1fb04ef172ad5",
+      "uncompressed_sha256": "c67df9a616341a5544b9f41c03769aab7b716ba5e3a65a2ae75ef27d47c2190d",
+      "bytes": 19670,
+      "records": 1000
+    },
+    "sae_auxiliary.jsonl.gz": {
+      "gzip_sha256": "3cd5c3c9d44580565edba3f55fcb88260291ddb41ca0f3a244c20f330ab976ff",
+      "uncompressed_sha256": "de051fc7482d6e7d8e2072f60cf5c1d5ddc7c966dade0a434c9ee974d5026c75",
+      "bytes": 5489,
+      "records": 2000
+    }
+  },
+  "largest_timesnet_numeric": {
+    "architecture_id": "TN-D7-NAS-v1:w256-256-256:b111",
+    "widths": [
+      256,
+      256,
+      256
+    ],
+    "dropout_pattern": [
+      1,
+      1,
+      1
+    ],
+    "mode": "numeric",
+    "parameter_count": 225075755,
+    "connected_trainable_parameters": 225075755,
+    "output_shape": [
+      1
+    ],
+    "input_gradient_shape": [
+      1,
+      7,
+      5
+    ],
+    "all_parameter_gradients_connected": true,
+    "numerical_finiteness_checked": true,
+    "registered_hpo_trial_id": "TN-D7-NAS-v1:hpo-005",
+    "structure_options": {
+      "top_k": 3,
+      "num_kernels": 6
+    },
+    "seconds": 28.28524337099998
+  },
+  "peak_process_rss_kib": 2335892,
+  "limits": [
+    "One artificial B1 window and one registered structural HPO row per exhaustive family; no optimizer or training axes executed.",
+    "The full18x1000 HPO/architecture cross product is not claimed.",
+    "TimesNet exhaustive numeric row uses two kernels; six-kernel width space is checked on meta and maximum tested numerically.",
+    "Meta verifies geometry/autograd only; it does not establish numerical finiteness.",
+    "Connected finite gradients need not be nonzero; TimeMixer length1 scale is degenerate.",
+    "Auxiliary AE2 fixtures are artificial inputs; staging/transfer behavior is covered separately by unit tests.",
+    "No market integration, HPO/NAS fitting, power or practical resource budget is established."
+  ]
+}
