@@ -1,5 +1,8 @@
 # 20. Cotejo del plan con la guía original
 
+**Siguiente especificación:** [comparadores temporales, matriz NAS y costes por escenarios](21_comparadores_nas.md). Propuesta sin entrenamiento, búsqueda ni cierre automático del protocolo.
+
+
 **Fuente:** Proyecto Final de Deep Learning: Entregable 2, PDF original de 65 páginas aportado por el usuario el 08/11/2026, nombre `Entregable 2DeepLearningProject(3).pdf`. Las referencias siguientes son páginas impresas, coincidentes con el número de página del archivo en los pasajes cotejados. Se leyó su texto íntegro; no se distribuye el PDF original ni se modifica su contenido.
 
 [Registro estructurado del cotejo](../_static/e2_guide_alignment_20261108.json).

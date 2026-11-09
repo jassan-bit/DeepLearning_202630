@@ -1,5 +1,8 @@
 # Proyecto Final de Deep Learning: Entregable 2
 
+**Siguiente especificación:** [comparadores temporales, matriz NAS y costes por escenarios](sections/21_comparadores_nas.md). Propuesta sin entrenamiento, búsqueda ni cierre automático del protocolo.
+
+
 **Guía original cotejada:** [correcciones y pendientes por página](sections/20_contraste_guia.md). La cuadrícula reducida no cubre el espacio mínimo; controles F2a, NAS condicional y batería estadística requieren completar el plan antes de entrenar.
 
 

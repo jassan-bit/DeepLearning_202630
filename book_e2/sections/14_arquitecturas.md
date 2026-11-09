@@ -1,5 +1,8 @@
 # 14. Arquitecturas del catálogo vigente y adaptación a D7
 
+**Siguiente especificación:** [comparadores temporales, matriz NAS y costes por escenarios](21_comparadores_nas.md). Propuesta sin entrenamiento, búsqueda ni cierre automático del protocolo.
+
+
 **Guía original cotejada:** [correcciones y pendientes por página](20_contraste_guia.md). La cuadrícula reducida no cubre el espacio mínimo; controles F2a, NAS condicional y batería estadística requieren completar el plan antes de entrenar.
 
 
@@ -37,7 +40,7 @@ Las [fichas bibliográficas](16_fichas_nuevas.md) distinguen los resultados publ
 | FCN-1D | Tres convoluciones 3/3/1, ancho 16, ReLU y pooling promedio | La fuente usa otros kernels/anchos y batch normalization |
 | ResNet-1D | Dos bloques con convoluciones 3/3 y proyección de atajo | Menor profundidad y receta distinta de la fuente |
 | Inception-1D | Un módulo compacto con ramas 1/3/5, bottleneck y max-pooling | No es el ensemble publicado ni conserva sus kernels y profundidad |
-| LSTM-autoencoder con predictor | Encoder y decoder LSTM, latente repetido, reconstrucción y cabeza Softplus | La fuente respalda preentrenamiento seguido de ajuste supervisado; el prototipo no integra esa política |
+| LSTM-autoencoder con predictor | Encoder y decoder LSTM, latente repetido, reconstrucción y cabeza Softplus | La fuente usa preentrenamiento apilado; el flujo común prueba dos fases sintéticas, pero no reproduce ese cuerpo ni su entrenamiento de mercado |
 
 Los cuatro usan ancho predeterminado 16 y salida positiva. Son elecciones de prototipado, no valores seleccionados por HPO ni configuraciones atribuidas al profesor. Una pérdida conjunta de reconstrucción/predicción sería una adaptación propia; no se deduce del test de gradientes, que combina objetivos sólo para comprobar conexiones.
 
