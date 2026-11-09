@@ -235,6 +235,7 @@
 <li class="toctree-l1"><a class="reference internal" href="26_registro_recetas.html">26. Registro por receta: fuentes, NAS, HPO e integración</a></li>
 <li class="toctree-l1"><a class="reference internal" href="27_nas_hpo_presupuesto.html">27. Decisiones NAS, rangos HPO y presupuesto para Codex</a></li>
 <li class="toctree-l1"><a class="reference internal" href="28_fabricas_nas.html">28. Fábricas NAS implementadas y verificadas sintéticamente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="29_entrenamiento_temporal.html">29. Entrenamiento por etapas, selección temporal y perfilado CPU</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
 </ul>
 
@@ -437,12 +438,12 @@
 <tr class="row-even"><td><p>R05</p></td>
 <td><p>§§4.3 y 11, <a class="reference internal" href="11_hpo_equidad.html"><span class="std std-doc">HPO</span></a></p></td>
 <td><p>Dominios y T=18 resueltos en §27; sin HPO ejecutado</p></td>
-<td><p>Integrar ejes y perfilar el presupuesto en Codex</p></td>
+<td><p>Dominios enlazados y perfiles cortos publicados en <a class="reference internal" href="29_entrenamiento_temporal.html"><span class="std std-doc">§29</span></a>; falta perfilar cohortes y presupuesto reales</p></td>
 <td><p>Configuraciones ejecutables y presupuesto comparable, incluidos preentrenamiento y selección; revisión frente al mínimo de la guía</p></td>
 </tr>
 <tr class="row-odd"><td><p>R06</p></td>
 <td><p>§§4, 7 y 10, <a class="reference internal" href="17_contrato_sincronizado.html"><span class="std std-doc">contrato</span></a> y <a class="reference internal" href="24_ejecutor_comun.html"><span class="std std-doc">ejecutor</span></a></p></td>
-<td><p>Núcleo temporal probado; integración real incompleta</p></td>
+<td><p>Motor de18 sistemas integrado y probado artificialmente en §29; mercado pendiente</p></td>
 <td><p>Cerrar alternativa A/B, selección causal, puentes, faltantes, estado ARIMA y máscara común sin comprimir calendario</p></td>
 <td><p>Plan de particiones y pruebas de integración de todas las fábricas/adaptadores, escalado train-only y persistencia previa a observación</p></td>
 </tr>
@@ -511,7 +512,7 @@
 <section id="producto-disponible-y-siguiente-cierre">
 <h2>Producto disponible y siguiente cierre<a class="headerlink" href="#producto-disponible-y-siguiente-cierre" title="Link to this heading">#</a></h2>
 <p>La <a class="reference internal" href="26_registro_recetas.html"><span class="std std-doc">tabla por receta de §26</span></a> reúne fuentes, adaptaciones, dudas NAS, factores HPO, parámetros y estado de integración para los once candidatos y siete referencias separadas. Respalda el inventario R03–R06 y la conciliación arquitectónica local R01; no cierra el PRISMA global ni los dominios HPO o las decisiones NAS.</p>
-<p>La <a class="reference internal" href="27_nas_hpo_presupuesto.html"><span class="std std-doc">decisión posterior de §27</span></a> resuelve NAS por receta, dominios HPO y presupuesto contable para Codex. El siguiente cierre es implementar las variantes, perfilar horas/memoria y completar integración/auditoría antes de la nueva enmienda R07. No se fija aquí un número de semillas, ganador, exención NAS ni techo numérico sin evidencia.</p>
+<p>La <a class="reference internal" href="27_nas_hpo_presupuesto.html"><span class="std std-doc">decisión posterior de §27</span></a> resuelve NAS por receta, dominios HPO y presupuesto contable para Codex. La <a class="reference internal" href="29_entrenamiento_temporal.html"><span class="std std-doc">integración de §29</span></a> enlaza las variantes, etapas, selección y reajuste de18 sistemas y publica perfiles CPU cortos. El siguiente cierre es el preregistro de pilotos de desarrollo y su presupuesto real antes de la campaña; la muestra artificial no fija k/R ni horas totales. No se fija aquí un número de semillas, ganador, exención NAS ni techo numérico sin evidencia.</p>
 <p>La <a class="reference internal" href="20_contraste_guia.html"><span class="std std-doc">sección 20</span></a> conserva el cotejo detallado con la guía. La <a class="reference internal" href="24_ejecutor_comun.html"><span class="std std-doc">sección 24</span></a> distingue el smoke sintético del núcleo temporal posterior. Esta matriz complementa esas evidencias sin modificar sus recibos.</p>
 </section>
 </section>

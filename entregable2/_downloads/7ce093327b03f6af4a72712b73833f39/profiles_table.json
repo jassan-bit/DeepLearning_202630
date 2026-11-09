@@ -1,0 +1,278 @@
+{
+  "version": "e2-synthetic-training-profile-derived-v1",
+  "source_summary_sha256": "e153f72173c19715a4598157e6ed16f283c8d657d7f324f769e25b5df7b9321e",
+  "synthetic_only": true,
+  "market_data_read": false,
+  "successful_workers": 15,
+  "requested_workers": 15,
+  "optimizer_steps_total": 33,
+  "all_phase_selected_states_changed": true,
+  "source_sha256": {
+    "scripts/dl_models.py": "e24110b57aeee201e1e9ab53519eb6b05967927ac54102fe23d3908c3fc57d69",
+    "scripts/dl_models_gru_lstm_tcn.py": "c11af1229fec43dd7da01a21e349dc2b109d9d61d977f6df3d01cd7da736b35d",
+    "scripts/e2_final_models_attention.py": "a3f1a2a7534142f505fbf36bddf92e0abf4f76d89ac1a1fb61874559e5aafa07",
+    "scripts/e2_final_models_mlp.py": "beeada2f6754f0ca3ff1304ec090a7259a774cc7ea611fa912428cf9210f6c68",
+    "scripts/e2_nas_attention.py": "693e46c2891d356e553eb9d2565f1a8f491440b85680e2d9e5bcc74a9f50c187",
+    "scripts/e2_nas_autoencoder.py": "c2889a7c18b8dbc1c4741304c73c0d4ec83e0e620f0c38a00d05b484ec6530ca",
+    "scripts/e2_nas_common.py": "ba9b06acfc984b3414c9406fc577eab137d13308420e2da15d5433f6c665b618",
+    "scripts/e2_nas_factory.py": "52c345990cffb8982c13eddca9cb9fceddcf6a607fdc8bdef0110f0a02437f02",
+    "scripts/e2_nas_spectral.py": "196a1233322f8741b3ad28f11ef85d815f2eebb040fbf51c99ccfa0edc2caaea",
+    "scripts/e2_recipe_models.py": "47380cc87e2d4b4221ee4fc97da3286990470b3304dd1d9ef990ace51c338b75",
+    "scripts/e2_search_plan.py": "7169d56f67a07b3ab6d55bd1730dabdec5fe4a54e1f3385ba0db9e84cc3a2314",
+    "scripts/e2_staged_training.py": "b66ac8d2beb3748f4934e55e99514f53c52eada4a4dbd2e4b597d080c9f4722b",
+    "scripts/e2_training_models.py": "46be0644e0ed9d966163b17f171092e81b6a82dd734efc7954d6104f5ee5360b",
+    "scripts/profile_e2_training.py": "989c20070d6496b83505ccd5d47c96719a120935c675d552b62695ade3604089"
+  },
+  "results": [
+    {
+      "model": "FCN-1D",
+      "largest_timesnet": false,
+      "status": "success",
+      "phase_optimizer_steps": {
+        "supervised": 2
+      },
+      "phase_selected_state_changed": {
+        "supervised": true
+      },
+      "parameter_count": 268929,
+      "elapsed_build_and_fit_seconds": 1.5563458390006417,
+      "isolated_worker_wall_seconds": 4.219755955000437,
+      "worker_os_peak_rss_bytes": 337903616,
+      "sampled_process_group_peak_rss_bytes": 336240640
+    },
+    {
+      "model": "ResNet-1D",
+      "largest_timesnet": false,
+      "status": "success",
+      "phase_optimizer_steps": {
+        "supervised": 2
+      },
+      "phase_selected_state_changed": {
+        "supervised": true
+      },
+      "parameter_count": 522955,
+      "elapsed_build_and_fit_seconds": 2.580716577000203,
+      "isolated_worker_wall_seconds": 5.206841754000379,
+      "worker_os_peak_rss_bytes": 348557312,
+      "sampled_process_group_peak_rss_bytes": 348921856
+    },
+    {
+      "model": "Inception-1D",
+      "largest_timesnet": false,
+      "status": "success",
+      "phase_optimizer_steps": {
+        "supervised": 2
+      },
+      "phase_selected_state_changed": {
+        "supervised": true
+      },
+      "parameter_count": 490561,
+      "elapsed_build_and_fit_seconds": 1.7882386050005152,
+      "isolated_worker_wall_seconds": 4.532836086000316,
+      "worker_os_peak_rss_bytes": 355381248,
+      "sampled_process_group_peak_rss_bytes": 355844096
+    },
+    {
+      "model": "LSTM-autoencoder con predictor",
+      "largest_timesnet": false,
+      "status": "success",
+      "phase_optimizer_steps": {
+        "ae1": 2,
+        "ae2": 2,
+        "supervised": 2
+      },
+      "phase_selected_state_changed": {
+        "ae1": true,
+        "ae2": true,
+        "supervised": true
+      },
+      "parameter_count": 55681,
+      "elapsed_build_and_fit_seconds": 1.6204877910004143,
+      "isolated_worker_wall_seconds": 4.5933748319994265,
+      "worker_os_peak_rss_bytes": 340684800,
+      "sampled_process_group_peak_rss_bytes": 340787200
+    },
+    {
+      "model": "TimesNet",
+      "largest_timesnet": false,
+      "status": "success",
+      "phase_optimizer_steps": {
+        "supervised": 2
+      },
+      "phase_selected_state_changed": {
+        "supervised": true
+      },
+      "parameter_count": 504107,
+      "elapsed_build_and_fit_seconds": 1.6447854820007706,
+      "isolated_worker_wall_seconds": 4.040894081999795,
+      "worker_os_peak_rss_bytes": 364453888,
+      "sampled_process_group_peak_rss_bytes": 364847104
+    },
+    {
+      "model": "TSMixer",
+      "largest_timesnet": false,
+      "status": "success",
+      "phase_optimizer_steps": {
+        "supervised": 2
+      },
+      "phase_selected_state_changed": {
+        "supervised": true
+      },
+      "parameter_count": 35044,
+      "elapsed_build_and_fit_seconds": 1.4048173959999986,
+      "isolated_worker_wall_seconds": 3.7986384720006754,
+      "worker_os_peak_rss_bytes": 326365184,
+      "sampled_process_group_peak_rss_bytes": 326619136
+    },
+    {
+      "model": "TiDE",
+      "largest_timesnet": false,
+      "status": "success",
+      "phase_optimizer_steps": {
+        "supervised": 2
+      },
+      "phase_selected_state_changed": {
+        "supervised": true
+      },
+      "parameter_count": 18969,
+      "elapsed_build_and_fit_seconds": 1.3272913620003237,
+      "isolated_worker_wall_seconds": 3.70622859300056,
+      "worker_os_peak_rss_bytes": 320204800,
+      "sampled_process_group_peak_rss_bytes": 321388544
+    },
+    {
+      "model": "TimeMixer",
+      "largest_timesnet": false,
+      "status": "success",
+      "phase_optimizer_steps": {
+        "supervised": 2
+      },
+      "phase_selected_state_changed": {
+        "supervised": true
+      },
+      "parameter_count": 59991,
+      "elapsed_build_and_fit_seconds": 1.783896793999702,
+      "isolated_worker_wall_seconds": 4.496002580000095,
+      "worker_os_peak_rss_bytes": 351277056,
+      "sampled_process_group_peak_rss_bytes": 351727616
+    },
+    {
+      "model": "PatchTST",
+      "largest_timesnet": false,
+      "status": "success",
+      "phase_optimizer_steps": {
+        "supervised": 2
+      },
+      "phase_selected_state_changed": {
+        "supervised": true
+      },
+      "parameter_count": 259221,
+      "elapsed_build_and_fit_seconds": 1.7485921110001073,
+      "isolated_worker_wall_seconds": 4.738771803999953,
+      "worker_os_peak_rss_bytes": 338612224,
+      "sampled_process_group_peak_rss_bytes": 339734528
+    },
+    {
+      "model": "iTransformer",
+      "largest_timesnet": false,
+      "status": "success",
+      "phase_optimizer_steps": {
+        "supervised": 2
+      },
+      "phase_selected_state_changed": {
+        "supervised": true
+      },
+      "parameter_count": 795403,
+      "elapsed_build_and_fit_seconds": 2.6528164760002255,
+      "isolated_worker_wall_seconds": 5.901402548000078,
+      "worker_os_peak_rss_bytes": 361136128,
+      "sampled_process_group_peak_rss_bytes": 361373696
+    },
+    {
+      "model": "CNN-1D + LSTM + atención temporal",
+      "largest_timesnet": false,
+      "status": "success",
+      "phase_optimizer_steps": {
+        "supervised": 2
+      },
+      "phase_selected_state_changed": {
+        "supervised": true
+      },
+      "parameter_count": 39233,
+      "elapsed_build_and_fit_seconds": 1.4653994099999181,
+      "isolated_worker_wall_seconds": 4.752154356000574,
+      "worker_os_peak_rss_bytes": 340533248,
+      "sampled_process_group_peak_rss_bytes": 341704704
+    },
+    {
+      "model": "MLP16",
+      "largest_timesnet": false,
+      "status": "success",
+      "phase_optimizer_steps": {
+        "supervised": 2
+      },
+      "phase_selected_state_changed": {
+        "supervised": true
+      },
+      "parameter_count": 593,
+      "elapsed_build_and_fit_seconds": 1.4655259430001024,
+      "isolated_worker_wall_seconds": 4.111631435000163,
+      "worker_os_peak_rss_bytes": 314744832,
+      "sampled_process_group_peak_rss_bytes": 315904000
+    },
+    {
+      "model": "LSTM32",
+      "largest_timesnet": false,
+      "status": "success",
+      "phase_optimizer_steps": {
+        "supervised": 2
+      },
+      "phase_selected_state_changed": {
+        "supervised": true
+      },
+      "parameter_count": 5025,
+      "elapsed_build_and_fit_seconds": 1.4477781289997438,
+      "isolated_worker_wall_seconds": 3.9137294629999815,
+      "worker_os_peak_rss_bytes": 329498624,
+      "sampled_process_group_peak_rss_bytes": 330027008
+    },
+    {
+      "model": "GRU32",
+      "largest_timesnet": false,
+      "status": "success",
+      "phase_optimizer_steps": {
+        "supervised": 2
+      },
+      "phase_selected_state_changed": {
+        "supervised": true
+      },
+      "parameter_count": 3777,
+      "elapsed_build_and_fit_seconds": 1.35839014999965,
+      "isolated_worker_wall_seconds": 4.769364971999494,
+      "worker_os_peak_rss_bytes": 318570496,
+      "sampled_process_group_peak_rss_bytes": 319774720
+    },
+    {
+      "model": "TimesNet",
+      "largest_timesnet": true,
+      "status": "success",
+      "phase_optimizer_steps": {
+        "supervised": 1
+      },
+      "phase_selected_state_changed": {
+        "supervised": true
+      },
+      "parameter_count": 225075755,
+      "elapsed_build_and_fit_seconds": 61.27287225100008,
+      "isolated_worker_wall_seconds": 63.907993233000525,
+      "worker_os_peak_rss_bytes": 4984201216,
+      "sampled_process_group_peak_rss_bytes": 4984623104
+    }
+  ],
+  "limits": [
+    "State hashes include parameters and buffers; changed state is not a predictive improvement claim.",
+    "Small synthetic profiles do not close full-campaign time or storage budget.",
+    "RSS watchdog is sampled, not a kernel allocation limit.",
+    "Counts describe this published-source replay; intermediate source-validation replays are separate local records."
+  ]
+}

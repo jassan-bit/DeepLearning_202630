@@ -1,5 +1,7 @@
 # 28. Fábricas NAS implementadas y verificadas sintéticamente
 
+**Integración posterior:** [§29 conecta entrenamiento por etapas, selección, reajuste y replay de18 sistemas](29_entrenamiento_temporal.md), con datos artificiales y perfilado CPU acotado. Las limitaciones que siguen corresponden al corte de fábricas de este capítulo.
+
 **Corte del 09/11/2026.** Se implementan las seis variantes nuevas de [§27](27_nas_hpo_presupuesto.md) y su enlace con las configuraciones registradas. Los cuerpos y recibos históricos de §§18–26 permanecen intactos.
 
 **Resultado:** 6.000 casos numéricos de predictores, las mil combinaciones del espacio para cada una de las dos fases auxiliares SAE, 108 enlaces HPO sobre referencia y una comprobación adicional del extremo grande de TimesNet. **Cero pasos de optimizador, cero lectura de mercado y ninguna búsqueda HPO/NAS ejecutada.** Son pruebas de mecanismos, no entrenamientos ni resultados de pronóstico.
