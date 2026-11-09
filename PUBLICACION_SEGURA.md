@@ -60,6 +60,14 @@ anclada al commit de Pages `3c539138907ca94c25af20eee6731700054651ea`.
   El artefacto de
   sitio se conserva 30 días y el informe 90, sujetos a políticas de GitHub.
   Los plazos no son una copia de seguridad permanente.
+- Cada verificación web invalida cualquier éxito anterior del informe y guarda
+  intentos, fuente observada y error. Un fallo nunca deja un `true` antiguo.
+  Para el repositorio público, la consulta opcional `--repository` lee el run
+  dinámico de Pages correspondiente al SHA de `gh-pages` confirmado en el
+  informe. Si ese run termina fallido, se detiene la espera y conserva su enlace.
+  Un run exitoso no sustituye la verificación HTTP, ni la ausencia del run o un
+  error de API demuestran fallo de despliegue. No se hacen reruns ni escrituras
+  mediante esta consulta, y no usa tokens ni requiere nuevos permisos.
 
 ## Comandos de comprobación
 
@@ -130,6 +138,16 @@ exclusivamente repositorios bare temporales locales para ejercitar escrituras.
 
 ## Límites conocidos
 
+- El 09/11/2026, Pages aceptó el artefacto de `24655c78` (fuente `dbe4dbbe`),
+  pero su acción administrada permaneció en `syncing_files` y canceló al agotar
+  600.000 ms. El último sitio exitoso `f75ca5bb` (fuente `0ba75598`) tenía también
+  2.080 archivos: solo cinco archivos y 8.643 bytes separan ambos árboles.
+  Esto no demuestra una causa por tamaño. Las descargas permanecen idénticas.
+  El nuevo diagnóstico corrige los informes, no afirma reparar el servicio.
+  No se reducen controles, se borran recursos ni se aumenta el timeout como
+  supuesto arreglo: `deploy-pages` v5 limita internamente la espera a 10 minutos.
+  Si otra publicación nueva falla, conservar ambos runs para soporte de GitHub.
+
 - main y gh-pages no se actualizan en una misma transacción. Se comprueban antes
   y después del push, pero main puede avanzar inmediatamente después de una
   comprobación. Esto detecta carreras observables; no garantiza que el sitio
@@ -159,8 +177,14 @@ exclusivamente repositorios bare temporales locales para ejercitar escrituras.
 
 ## Fuentes técnicas
 
+- [Run de Pages fallido del 09/11/2026](https://github.com/jassan-bit/DeepLearning_202630/actions/runs/42624893393).
+- [Último run de Pages exitoso comparado](https://github.com/jassan-bit/DeepLearning_202630/actions/runs/42552918643).
+- [Límite y cancelación en el SHA exacto de deploy-pages v5](https://github.com/actions/deploy-pages/blob/368f82528645a54fb793d4d04e342629a3f51346/src/internal/deployment.js).
+- [Límites oficiales de Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits).
+
 - [Reruns y SHA original](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/re-run-workflows-and-jobs).
 - [Concurrencia](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency).
 - [Protección de ramas](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches).
 - [Fuente de publicación y GITHUB_TOKEN](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
 - [Workflows oficiales de Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
+

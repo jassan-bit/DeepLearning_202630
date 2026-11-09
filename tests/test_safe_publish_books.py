@@ -1,5 +1,6 @@
 """Publication safety regressions. All remotes are temporary local bare repositories."""
 import copy
+from http.client import IncompleteRead
 import json
 import os
 from pathlib import Path
@@ -558,6 +559,121 @@ def test_live_verify_bounded_retry_accepts_later_delivery(world, monkeypatch):
     assert sleeps == [0]
 
 
+def test_failed_reverification_clears_previous_success(world, monkeypatch, tmp_path):
+    mock_web(world, monkeypatch, {'books_manifest.json': OSError('offline')})
+    report = tmp_path / 'old-success.json'
+    report.write_text(json.dumps({'pushed': True, 'web_deployment_verified': True,
+        'verified_source_commit': world['old'], 'verified_entrypoints': ['old.html']}))
+    with expect_error(pub.PublicationError):
+        pub.verify_live(world['site'], world['sha'], 'https://example.invalid/books/', report_path=report)
+    saved = json.loads(report.read_text())
+    assert saved['pushed'] is True and saved['web_deployment_verified'] is False
+    assert saved['verification_status'] == 'failed' and saved['verification_attempts'] == 1
+    assert saved['verification_error'].endswith('offline')
+    assert 'verified_source_commit' not in saved and 'verified_entrypoints' not in saved
+
+
+def test_local_validation_failure_clears_previous_success(world, tmp_path):
+    report = tmp_path / 'old-success.json'
+    report.write_text(json.dumps({'web_deployment_verified': True}))
+    (world['site'] / 'intro.html').write_text('changed')
+    with expect_error(pub.PublicationError):
+        pub.verify_live(world['site'], world['sha'], 'https://example.invalid/books/', report_path=report)
+    assert json.loads(report.read_text())['verification_status'] == 'failed'
+    assert json.loads(report.read_text())['web_deployment_verified'] is False
+
+
+@cases('state', ['failure', 'cancelled', 'timed_out', 'success', 'pending', 'missing', 'offline', 'truncated'])
+def test_pages_diagnostic_never_claims_web_success_or_republishes(world, monkeypatch, tmp_path, state):
+    before = heads(world)
+    manifest = json.loads((world['site'] / 'books_manifest.json').read_text())
+    manifest['source_commit'] = world['old']
+    calls = mock_web(world, monkeypatch, {'books_manifest.json': json.dumps(manifest).encode()})
+    report = tmp_path / 'publication.json'
+    report.write_text(json.dumps({'source_commit': world['sha'], 'pushed': True,
+                                 'candidate_pages_commit': world['base']}))
+    diagnostics = []
+    def diagnostic(repository, pages_sha):
+        diagnostics.append((repository, pages_sha))
+        if state == 'offline': raise OSError('API unavailable')
+        if state == 'truncated': raise IncompleteRead(b'{', 100)
+        if state == 'missing': return None
+        return {'id': 123, 'head_sha': pages_sha, 'status': 'in_progress' if state == 'pending' else 'completed',
+                'conclusion': None if state == 'pending' else state, 'run_attempt': 1,
+                'url': 'https://github.com/owner/repo/actions/runs/123'}
+    monkeypatch.setattr(pub, 'pages_workflow_status', diagnostic)
+    monkeypatch.setattr(pub.time, 'sleep', lambda interval: None)
+    with expect_error(pub.PublicationError):
+        pub.verify_live(world['site'], world['sha'], 'https://example.invalid/books/',
+                        attempts=3, interval=0, report_path=report, repository='owner/repo')
+    saved = json.loads(report.read_text())
+    terminal = state in {'failure', 'cancelled', 'timed_out'}
+    count = 1 if terminal else 3
+    assert diagnostics == [('owner/repo', world['base'])] * count
+    assert calls == ['books_manifest.json'] * count
+    assert saved['observed_source_commit'] == world['old']
+    assert saved['verification_attempts'] == count and saved['verification_status'] == 'failed'
+    assert saved['pushed'] is True and saved['web_deployment_verified'] is False
+    assert heads(world) == before
+    if terminal: assert '/actions/runs/123' in saved['verification_error']
+    if state == 'offline': assert saved['pages_diagnostic_error'] == 'API unavailable'
+    if state == 'truncated': assert 'IncompleteRead' in saved['pages_diagnostic_error']
+
+
+def test_truncated_web_response_is_recorded_and_retried(world, monkeypatch, tmp_path):
+    responses = iter([IncompleteRead(b'{', 100), (world['site'] / 'books_manifest.json').read_bytes()])
+    calls = mock_web(world, monkeypatch, {'books_manifest.json': lambda: next(responses)})
+    report = tmp_path / 'publication.json'
+    report.write_text(json.dumps({'pushed': True}))
+    observations = []
+    monkeypatch.setattr(pub.time, 'sleep', lambda interval: observations.append(json.loads(report.read_text())))
+    result = pub.verify_live(world['site'], world['sha'], 'https://example.invalid/books/',
+                             attempts=2, interval=0, report_path=report)
+    assert result['web_deployment_verified'] is True and result['verification_attempts'] == 2
+    assert calls.count('books_manifest.json') == 2
+    assert observations[0]['verification_attempts'] == 1
+    assert 'IncompleteRead' in observations[0]['verification_error']
+    assert observations[0]['web_deployment_verified'] is False
+
+
+def test_pages_status_is_read_only_and_selects_only_exact_dynamic_commit(world, monkeypatch):
+    base = {'id': 2, 'head_sha': world['base'], 'head_branch': 'gh-pages', 'event': 'dynamic',
+        'path': 'dynamic/pages/pages-build-deployment', 'run_attempt': 2,
+        'status': 'completed', 'conclusion': 'failure'}
+    runs = [dict(base, id=1, conclusion='success'), base]
+    for key, value in [('head_sha', world['old']), ('head_branch', 'main'),
+                       ('event', 'push'), ('path', '.github/workflows/publish-book.yml')]:
+        runs.append(dict(base, id=999, **{key: value}))
+    def fetch(request, timeout):
+        assert request.get_method() == 'GET' and timeout == 30
+        assert request.get_header('Authorization') is None
+        assert request.full_url == ('https://api.github.com/repos/owner/repo/actions/runs?head_sha='
+                                    + world['base'] + '&per_page=100')
+        return io.BytesIO(json.dumps({'workflow_runs': runs}).encode())
+    monkeypatch.setattr(pub, 'urlopen', fetch)
+    result = pub.pages_workflow_status('owner/repo', world['base'])
+    assert result['id'] == 2 and result['conclusion'] == 'failure' and result['run_attempt'] == 2
+    assert result['url'] == 'https://github.com/owner/repo/actions/runs/2'
+
+
+@cases('mutation', ['unconfirmed', 'source', 'missing-sha', 'repository'])
+def test_pages_diagnostics_rejects_mismatched_publication_context(world, monkeypatch, tmp_path, mutation):
+    calls = mock_web(world, monkeypatch)
+    report = tmp_path / 'publication.json'
+    payload = {'source_commit': world['sha'], 'pushed': True, 'candidate_pages_commit': world['base']}
+    repository = 'owner/repo'
+    if mutation == 'unconfirmed': payload['pushed'] = None
+    elif mutation == 'source': payload['source_commit'] = world['old']
+    elif mutation == 'missing-sha': payload.pop('candidate_pages_commit')
+    else: repository = 'owner/repo?injected=1'
+    report.write_text(json.dumps(payload))
+    with expect_error(pub.PublicationError):
+        pub.verify_live(world['site'], world['sha'], 'https://example.invalid/books/',
+                        report_path=report, repository=repository)
+    assert calls == []
+    assert json.loads(report.read_text())['verification_status'] == 'failed'
+
+
 def test_live_verify_retry_exhaustion_is_bounded(world, monkeypatch):
     calls = mock_web(world, monkeypatch, {'books_manifest.json': OSError('offline')})
     sleeps = []
@@ -625,3 +741,4 @@ _install_cases()
 
 if __name__ == '__main__':
     unittest.main()
+
