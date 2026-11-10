@@ -1,0 +1,130 @@
+{
+  "version": "e2-cuda-search-runner-v1",
+  "plan_sha256": "4eae2d2ff9ef6f83a2f9eb0dc5ba647208d695e1665a8e522d812fed67893bda",
+  "status": "paused_session_budget",
+  "scope": "registered_neural_selection_only",
+  "completed_jobs": 1144,
+  "failed_jobs": 0,
+  "known_optimizer_steps": 1363240,
+  "unknown_optimizer_step_jobs": 0,
+  "completed_selections": [
+    {
+      "model": "FCN-1D",
+      "origin": "2024-01-01",
+      "winner_id": "hpo:fcn1d_wang_d7_v1_proposed__hpo_v1:hpo-014",
+      "winner": {
+        "architecture": null,
+        "model": "FCN-1D",
+        "stage": "hpo",
+        "trial": {
+          "batch_size": 16,
+          "dropout": 0,
+          "learning_rate": 0.0022863713941408325,
+          "optimization_seeds": [
+            271201,
+            271202
+          ],
+          "recipe_id": "fcn1d_wang_d7_v1_proposed__hpo_v1",
+          "trial_id": "fcn1d_wang_d7_v1_proposed__hpo_v1:hpo-014",
+          "weight_decay": 3.893998034679985e-05
+        }
+      },
+      "fixed_epochs": {
+        "supervised": 33
+      },
+      "selection_signature": "09060246803e28bd462a65e5c17f5fe0f11e35ef8283703ec66c5146b27dcf4d",
+      "attempts": 36,
+      "selection_rule": "mean_rmse"
+    },
+    {
+      "model": "ResNet-1D",
+      "origin": "2024-01-01",
+      "winner_id": "hpo:resnet1d_wang_d7_v1_proposed__hpo_v1:hpo-003",
+      "winner": {
+        "architecture": null,
+        "model": "ResNet-1D",
+        "stage": "hpo",
+        "trial": {
+          "batch_size": 16,
+          "dropout": 0,
+          "learning_rate": 0.0020133709144460605,
+          "optimization_seeds": [
+            271201,
+            271202
+          ],
+          "recipe_id": "resnet1d_wang_d7_v1_proposed__hpo_v1",
+          "trial_id": "resnet1d_wang_d7_v1_proposed__hpo_v1:hpo-003",
+          "weight_decay": 1.488484865554002e-05
+        }
+      },
+      "fixed_epochs": {
+        "supervised": 32
+      },
+      "selection_signature": "0a0253cf2d3c9b99600c3445d413d9364e9f46684edc20d7a47f859339ce1f24",
+      "attempts": 36,
+      "selection_rule": "mean_rmse"
+    },
+    {
+      "model": "Inception-1D",
+      "origin": "2024-01-01",
+      "winner_id": "hpo:inception1d_single_d7_v1_proposed__hpo_v1:hpo-006",
+      "winner": {
+        "architecture": null,
+        "model": "Inception-1D",
+        "stage": "hpo",
+        "trial": {
+          "batch_size": 16,
+          "dropout": 0,
+          "learning_rate": 0.00042674176387436704,
+          "optimization_seeds": [
+            271201,
+            271202
+          ],
+          "recipe_id": "inception1d_single_d7_v1_proposed__hpo_v1",
+          "trial_id": "inception1d_single_d7_v1_proposed__hpo_v1:hpo-006",
+          "weight_decay": 4.32016959943578e-06
+        }
+      },
+      "fixed_epochs": {
+        "supervised": 51
+      },
+      "selection_signature": "355ca4817ef6fc8a3db537f92dc6735522adf4f5ecc42bddf5dc8f584aa51d8f",
+      "attempts": 36,
+      "selection_rule": "mean_rmse"
+    }
+  ],
+  "coverage": {
+    "selected_models": 14,
+    "selected_origins": 11,
+    "full_registry_models": 14,
+    "full_registry_origins": 11,
+    "partial_models": false,
+    "partial_origins": false,
+    "final_refit_included": false,
+    "classical_models_included": false,
+    "final_market_values_read": false
+  },
+  "budget": {
+    "version": "e2-search-session-v1",
+    "plan_sha256": "4eae2d2ff9ef6f83a2f9eb0dc5ba647208d695e1665a8e522d812fed67893bda",
+    "completed_jobs": 1144,
+    "charged_wall_seconds": 71271.33058337684,
+    "campaign_budget_seconds": 86400.0,
+    "remaining_campaign_seconds": 15128.669416623161,
+    "storage_used_bytes": 8800646,
+    "max_storage_bytes": 10737418240,
+    "recovered_result_commits": [],
+    "conservative_unclosed_session_charges": {},
+    "directory_fsync_supported": true,
+    "paused_reason": "session_budget"
+  },
+  "scientific_HPO_or_NAS_executed": true,
+  "final_market_values_read": false,
+  "final_R": null,
+  "full_campaign_wall_hours": null,
+  "remote_repository": "jassan-bit/DeepLearning_202630",
+  "remote_branch": "campaigns/e2-cuda-selection-v1",
+  "checkpoint_policy": "selection_metadata_only_refit_separate",
+  "pause_reason": "session_budget",
+  "retry_after_seconds": null
+}
