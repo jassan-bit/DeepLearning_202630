@@ -1,10 +1,12 @@
 # Proyecto Final de Deep Learning: Entregable 2
 
-**Selección CUDA con continuación en GitHub:** [ejecutor HPO/NAS, presupuesto y notebook](sections/35_busqueda_cuda_reanudable.md). Se conservan los dominios científicos y se incorporan límites iniciales de 8 horas por sesión y 24 horas acumuladas, con metadatos de campaña en una rama dedicada del repositorio. El software se verifica con datos sintéticos; su ejecución científica GPU y la comparación predictiva siguen pendientes.
+**Campaña CUDA en curso — corte del 10/11/2026, 09:56:42 de Bogotá (14:56:42 UTC):** [avance confirmado y cobertura por modelo](sections/36_avance_campana_cuda.md). La selección HPO/NAS sobre desarrollo 2023–2024 ya se ejecuta en una Tesla T4 de Colab y conserva **906 resultados confirmados: 144 HPO y 762 NAS-1**, todos del primer origen (`2024-01-01`). El plan incluye diez modelos base, la propuesta CNN-1D + LSTM + atención y tres controles neuronales de E1; al corte, sólo cuatro modelos aportan resultados y el candidato 11 aún no comenzó. No hay una comparación final del catálogo ni un ganador del benchmark final. Las 24 horas son un límite operativo, no una promesa de completar la búsqueda.
 
-**Perfil GPU ampliado completado en Colab:** [cohorte grande y TimesNet máximo](sections/34_perfil_gpu_ampliado.md). El segundo informe del usuario registra 15/15 perfiles completos, cero fallos y 680 pasos de optimización en Tesla T4. El TimesNet de 225 millones de parámetros completó dos épocas con un máximo de 5,080 GiB reservados por PyTorch. Estos perfiles miden recursos de la receta fijada; el presupuesto total de búsqueda y el R final siguen abiertos. La integración del ejecutor se presenta en [§35](sections/35_busqueda_cuda_reanudable.md).
+**Preparación histórica de la selección CUDA:** [ejecutor HPO/NAS, presupuesto y notebook](sections/35_busqueda_cuda_reanudable.md). El corte del 09/11/2026 documenta el software y su validación sintética; el avance científico posterior se presenta en §36. Se conservan los dominios registrados y los límites de 8 horas por sesión y 24 horas acumuladas, sin ampliación autorizada.
 
-**Primer piloto GPU conservado:** [catorce referencias y sus recursos](sections/33_piloto_gpu.md). El primer informe registra 14/14 ajustes completos, cero fallos y 192 pasos sobre la cohorte pequeña. Ambos informes proceden de ejecuciones del usuario en Colab; Codex revisó sus importaciones. Los dos cortes reúnen 29 perfiles y 872 pasos conocidos, sin resultados comparativos de calidad predictiva.
+**Perfiles históricos de recursos GPU:** [cohorte grande y TimesNet máximo](sections/34_perfil_gpu_ampliado.md). El segundo informe del usuario registra 15/15 perfiles completos, cero fallos y 680 pasos de optimización en Tesla T4. El TimesNet de 225 millones de parámetros completó dos épocas con un máximo de 5,080 GiB reservados por PyTorch. Estos perfiles miden recursos de una receta fijada; no son resultados de selección HPO/NAS. El presupuesto total de búsqueda y el R final siguen abiertos.
+
+**Primer piloto GPU histórico:** [catorce referencias y sus recursos](sections/33_piloto_gpu.md). El primer informe registra 14/14 ajustes completos, cero fallos y 192 pasos sobre la cohorte pequeña. Ambos informes proceden de ejecuciones del usuario en Colab; Codex revisó sus importaciones. Los dos cortes históricos reúnen **29 perfiles y 872 pasos conocidos**, sin resultados comparativos de calidad predictiva; no se suman a los intentos de la campaña de §36.
 
 **Infraestructura CUDA reproducible:** [backend GPU y notebook](sections/32_ejecucion_gpu.md). Fuente fijada por commit, Python 3.12.12 aislado del kernel de Colab, datos verificados y preparación de fuentes reutilizable. El corte de pruebas CPU de esa sección se conserva separado del piloto GPU posterior.
 
@@ -41,7 +43,7 @@
 
 ## Catálogo vigente
 
-Esta presentación considera únicamente los siguientes diez modelos:
+El catálogo distingue los siguientes diez modelos base, una propuesta adicional y tres controles neuronales de E1:
 
 1. **FCN-1D**.
 2. **ResNet-1D**.
@@ -56,12 +58,12 @@ Esta presentación considera únicamente los siguientes diez modelos:
 
 **Candidato 11: CNN-1D + LSTM + atención temporal.** Su superioridad no está demostrada. Es una hipótesis que debe compararse con controles y puede arrojar resultados negativos.
 
-El catálogo sustituido se retira de la presentación. Estos nombres provienen de la literatura y de adaptaciones a las familias del curso; no son una transcripción literal de sus modelos. MLP, LSTM y GRU de E1 son referencias separadas. [Especificación y límites del catálogo](sections/15_revision_modelos.md).
+El catálogo sustituido se retira de la presentación. Estos nombres provienen de la literatura y de adaptaciones a las familias del curso; no son una transcripción literal de sus modelos. **MLP16, LSTM32 y GRU32 de E1** son controles separados. La campaña CUDA incluye esos tres controles junto con los diez modelos base y la propuesta: **catorce sistemas neuronales**. Los cuatro comparadores restantes del benchmark de dieciocho sistemas conservan su tratamiento separado. [Especificación y límites del catálogo](sections/15_revision_modelos.md).
 
 ## Qué está implementado y qué está pendiente
 
 - **Implementación provisional disponible:** los once candidatos comparten fábrica y flujo sintético; 11/11 ejecutados sin omisiones, dos pasos supervisados cada uno y un paso de reconstrucción para el autoencoder. El híbrido ya tiene código y pruebas propias. El piloto real posterior se documenta en [§30](sections/30_piloto_nube.md), la medición de CPU en [§31](sections/31_optimizacion_nube.md) y los perfiles GPU en [§33](sections/33_piloto_gpu.md) y [§34](sections/34_perfil_gpu_ampliado.md); el benchmark completo sigue pendiente. [Recetas y evidencia](sections/18_integracion_sintetica.md).
-- **Benchmark vigente:** sin entrenamiento integral ni resultados comparativos publicados. No hay ganador. Los trabajos de desarrollo de §§30–31 y los pilotos CUDA de §§33–34 tienen registros propios anteriores a sus ajustes. La [integración CUDA de §35](sections/35_busqueda_cuda_reanudable.md) prepara la selección recuperable; para la campaña completa quedan su ejecución científica, el dimensionamiento de las recetas seleccionadas, los controles, la inferencia y los componentes pendientes del presupuesto total. [Plan experimental](sections/06_benchmark_final.md).
+- **Benchmark vigente:** la selección científica CUDA está en curso, con [cobertura parcial verificable en §36](sections/36_avance_campana_cuda.md). Todavía no hay benchmark integral ni ganador de la comparación final. Los trabajos de desarrollo de §§30–31 y los pilotos de recursos de §§33–34 conservan registros propios anteriores a sus ajustes. La [preparación de §35](sections/35_busqueda_cuda_reanudable.md) y los resultados de la campaña actual son evidencias distintas. Quedan completar la selección registrada, dimensionar las recetas seleccionadas, fijar R y realizar los reajustes, controles e inferencia finales. [Plan experimental](sections/06_benchmark_final.md).
 - **Evidencia histórica real:** el piloto previo completó 220 trayectorias y 440 ajustes. El recibo del 06/11/2026 acredita HPO previo iniciado e incompleto, no ejecución actual. La réplica TimeMixer/ETTh1 es externa a Bitcoin. Estos recibos no se atribuyen al catálogo vigente. [Trazabilidad](sections/09_protocolo_registrado.md).
 
 El contrato vigente se sincroniza con E1: D7×5 derivado de OHLCV mediante `relative_window`, σ₇ poblacional sin anualización, horizonte de un día y referencia histórica principal de 608 fechas. [Contrato completo y diferencias con los recibos anteriores](sections/17_contrato_sincronizado.md). El piloto de §30 reinicializa sus modelos; los resultados históricos no se trasladan al híbrido.
@@ -79,5 +81,6 @@ El contrato vigente se sincroniza con E1: D7×5 derivado de OHLCV mediante `rela
 - [Ruta temporal](sections/07_ruta_temporal.md), [reproducibilidad](sections/08_reproducibilidad.md) y [registro histórico](sections/09_protocolo_registrado.md).
 - [Auditoría de datos](sections/10_auditoria_datos.md), [HPO](sections/11_hpo_equidad.md), [incertidumbre](sections/12_incertidumbre_errores.md), [inferencia](sections/13_agregacion_estadistica.md) y [arquitecturas](sections/14_arquitecturas.md).
 - [Diez modelos y candidato 11](sections/15_revision_modelos.md), [fichas de las cuatro nuevas arquitecturas](sections/16_fichas_nuevas.md).
+- [Preparación histórica del ejecutor CUDA](sections/35_busqueda_cuda_reanudable.md) y [avance parcial de la campaña del 10/11/2026](sections/36_avance_campana_cuda.md).
 
 Los protocolos, muestras, scripts y recibos anteriores se preservan como evidencia inmutable. No se reetiquetan como entrenamientos del diseño actual ni se declara cerrada la revisión bibliográfica.

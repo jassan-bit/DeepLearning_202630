@@ -1,0 +1,314 @@
+{
+  "version": "e2-cuda-campaign-progress-public-v1",
+  "snapshot_kind": "frozen_partial_progress_not_live_dashboard",
+  "repository": "jassan-bit/DeepLearning_202630",
+  "campaign_branch": "campaigns/e2-cuda-selection-v1",
+  "campaign_prefix": "campaigns/e2-cuda-selection-v1",
+  "snapshot_commit": "0cbd8f4a115d76d208668d199c6cda84f5d72583",
+  "snapshot_commit_at_utc": "2026-11-10T14:56:42+00:00",
+  "snapshot_commit_at_bogota": "2026-11-10T09:56:42-05:00",
+  "inspected_at_utc": "2026-11-10T15:02:29.841497+00:00",
+  "scientific_source_commit": "564ba4762f84a800b02fa4c734f5752a169f5223",
+  "registration_sha256": "78c3c5b8ca042a347aaa80d642f3affd8b5911e8697d8747a2de915d1c3194a9",
+  "plan_sha256": "4eae2d2ff9ef6f83a2f9eb0dc5ba647208d695e1665a8e522d812fed67893bda",
+  "hardware": {
+    "amp": false,
+    "cpu_threads": 2,
+    "cuda_kernel_probe_passed": true,
+    "cudnn": 91002,
+    "deterministic": true,
+    "device": "cuda:0",
+    "device_name": "Tesla T4",
+    "dtype": "float32",
+    "effective_memory_limit_bytes": 12509668966,
+    "execution_policy_scope": "Registered fit/inference policy; not a claim that the preflight validated all model kernels",
+    "interop_threads": 1,
+    "tf32": false,
+    "torch": "2.8.0+cu126",
+    "torch_cuda": "12.6",
+    "total_memory_bytes": 15637086208
+  },
+  "initial_limits": {
+    "session_hours": 8,
+    "campaign_hours": 24,
+    "budget_extension_recorded": false
+  },
+  "planned_coverage": {
+    "base_models": 10,
+    "proposed_candidate_11": "CNN-1D + LSTM + atención temporal",
+    "e1_control_models": [
+      "MLP16",
+      "LSTM32",
+      "GRU32"
+    ],
+    "neural_models": 14,
+    "origins": 11,
+    "hpo_jobs": 5544,
+    "nas1_jobs": 66000,
+    "nas2_jobs_upper_bound": 13530,
+    "jobs_upper_bound": 85074
+  },
+  "confirmed_logical_results": {
+    "total": 906,
+    "completed": 906,
+    "failed": 0,
+    "models_with_results": 4,
+    "origins_with_results": {
+      "2024-01-01": 906
+    },
+    "by_stage": {
+      "nas1": 762,
+      "hpo": 144
+    },
+    "known_optimizer_steps_lower_bound": 1079816,
+    "confirmed_results_with_unknown_steps": 0
+  },
+  "model_progress": [
+    {
+      "model": "FCN-1D",
+      "catalog_role": "base",
+      "hpo": 36,
+      "nas1": 0,
+      "nas2": 0,
+      "total": 36,
+      "completed": 36,
+      "failed": 0,
+      "origins": [
+        "2024-01-01"
+      ]
+    },
+    {
+      "model": "ResNet-1D",
+      "catalog_role": "base",
+      "hpo": 36,
+      "nas1": 0,
+      "nas2": 0,
+      "total": 36,
+      "completed": 36,
+      "failed": 0,
+      "origins": [
+        "2024-01-01"
+      ]
+    },
+    {
+      "model": "Inception-1D",
+      "catalog_role": "base",
+      "hpo": 36,
+      "nas1": 0,
+      "nas2": 0,
+      "total": 36,
+      "completed": 36,
+      "failed": 0,
+      "origins": [
+        "2024-01-01"
+      ]
+    },
+    {
+      "model": "LSTM-autoencoder con predictor",
+      "catalog_role": "base",
+      "hpo": 36,
+      "nas1": 762,
+      "nas2": 0,
+      "total": 798,
+      "completed": 798,
+      "failed": 0,
+      "origins": [
+        "2024-01-01"
+      ]
+    },
+    {
+      "model": "TimesNet",
+      "catalog_role": "base",
+      "hpo": 0,
+      "nas1": 0,
+      "nas2": 0,
+      "total": 0,
+      "completed": 0,
+      "failed": 0,
+      "origins": []
+    },
+    {
+      "model": "TSMixer",
+      "catalog_role": "base",
+      "hpo": 0,
+      "nas1": 0,
+      "nas2": 0,
+      "total": 0,
+      "completed": 0,
+      "failed": 0,
+      "origins": []
+    },
+    {
+      "model": "TiDE",
+      "catalog_role": "base",
+      "hpo": 0,
+      "nas1": 0,
+      "nas2": 0,
+      "total": 0,
+      "completed": 0,
+      "failed": 0,
+      "origins": []
+    },
+    {
+      "model": "TimeMixer",
+      "catalog_role": "base",
+      "hpo": 0,
+      "nas1": 0,
+      "nas2": 0,
+      "total": 0,
+      "completed": 0,
+      "failed": 0,
+      "origins": []
+    },
+    {
+      "model": "PatchTST",
+      "catalog_role": "base",
+      "hpo": 0,
+      "nas1": 0,
+      "nas2": 0,
+      "total": 0,
+      "completed": 0,
+      "failed": 0,
+      "origins": []
+    },
+    {
+      "model": "iTransformer",
+      "catalog_role": "base",
+      "hpo": 0,
+      "nas1": 0,
+      "nas2": 0,
+      "total": 0,
+      "completed": 0,
+      "failed": 0,
+      "origins": []
+    },
+    {
+      "model": "CNN-1D + LSTM + atención temporal",
+      "catalog_role": "candidate_11",
+      "hpo": 0,
+      "nas1": 0,
+      "nas2": 0,
+      "total": 0,
+      "completed": 0,
+      "failed": 0,
+      "origins": []
+    },
+    {
+      "model": "MLP16",
+      "catalog_role": "e1_control",
+      "hpo": 0,
+      "nas1": 0,
+      "nas2": 0,
+      "total": 0,
+      "completed": 0,
+      "failed": 0,
+      "origins": []
+    },
+    {
+      "model": "LSTM32",
+      "catalog_role": "e1_control",
+      "hpo": 0,
+      "nas1": 0,
+      "nas2": 0,
+      "total": 0,
+      "completed": 0,
+      "failed": 0,
+      "origins": []
+    },
+    {
+      "model": "GRU32",
+      "catalog_role": "e1_control",
+      "hpo": 0,
+      "nas1": 0,
+      "nas2": 0,
+      "total": 0,
+      "completed": 0,
+      "failed": 0,
+      "origins": []
+    }
+  ],
+  "last_finished_job": {
+    "job_id": "f9d3a46882287ded81111949fa77046f82d83b8239db6a0669c51956420e4cfc",
+    "finished_at_utc": "2026-11-10T14:56:42.904294+00:00",
+    "identity": {
+      "candidate_id": "nas1:SAE-D7-NAS-v1:hpo-011:SAE-D7-NAS-v1:w128-256-16:b001",
+      "model": "LSTM-autoencoder con predictor",
+      "origin": "2024-01-01",
+      "payload_sha256": "79e63734d8a1c161b8ab30e31113690f47c5162558fc3889df0ef8a3cc65b485",
+      "prepared_signature": "6edac641ad283391d906273ef1f999dee644626d2a8336b6d73849641618ba77",
+      "seed": 271301,
+      "stage": "nas1"
+    },
+    "status": "completed"
+  },
+  "started_without_confirmed_result_at_cut": [],
+  "event_count": 1825,
+  "snapshot_record_count": 2732,
+  "snapshot_record_bytes": 6961089,
+  "snapshot_sha256": "96b9f4d66c54c9c50e30f5291248e441e558b5b8f0f1373efbdb4fc768d20f2f",
+  "inventory_root_sha256": "1e5823848fc4d96ca75199aea6e67e14593f9700a5f83c9df4b3a958ccbed792",
+  "recovery_history": [
+    {
+      "incident": "R1",
+      "phase": "completed",
+      "completed_at_utc": "2026-11-10T11:43:09.114319+00:00",
+      "job_id": "3775f65fd049666c641c1131e94726e12e98143f91a755075c07ac6761dd668b",
+      "receipt_sha256": "acd3040e71ac4745db14fd61943a63e33e3105cb9c72f8a2172e92ddaeeede22",
+      "authorization_sha256": "7545da0cd424ebe84b3f5adb415849d1521711e47632084ca678ef09ed9b7fea",
+      "controller_source_commit": "b2d8cc9ca196f08670c1121efb89549c1838e38d",
+      "campaign_result_commit": "27caf0f482ce68c874d9add5a749a351ef39bd59",
+      "result_sha256": "455e4534da3d620d4b1a6c46844f5465011c1beef942afbe2ce10566e51d0c4f",
+      "original_unknown_attempt": {
+        "elapsed_seconds": null,
+        "optimizer_steps": null,
+        "optimizer_steps_known_lower_bound": 0,
+        "outcome": "unknown",
+        "partial_optimizer_update_may_have_occurred": true
+      },
+      "physical_retry_fit_seconds": 19.489905056999987,
+      "new_physical_attempt_only": true
+    },
+    {
+      "incident": "R2",
+      "phase": "completed",
+      "completed_at_utc": "2026-11-10T12:37:00.276853+00:00",
+      "job_id": "e98bca476404aa9d15236e51623ab2ee738c0cce6d43cc85513c07b8fa45fd5d",
+      "receipt_sha256": "d10fbf420393016434203ecad456723ff948ead97f1c09c6687580a505288a2a",
+      "authorization_sha256": "2a6f8a5dd149dde9216a5d2186f30aae8166f97be422d5f7ae9127b2eabdc10e",
+      "controller_source_commit": "20248e2917746962f92dccbcf89ae1874f6cbad2",
+      "campaign_result_commit": "72e989fa930bba4e02300622fc1c8d63fb41c4ee",
+      "result_sha256": "27e2c9a818708cf8ae805cf710052aa41f03d8a8c53507a78375081296197e2e",
+      "original_unknown_attempt": {
+        "elapsed_seconds": null,
+        "optimizer_steps": null,
+        "optimizer_steps_known_lower_bound": 0,
+        "outcome": "unknown",
+        "partial_optimizer_update_may_have_occurred": true
+      },
+      "physical_retry_fit_seconds": 17.402275465999992,
+      "new_physical_attempt_only": true
+    }
+  ],
+  "historical_resource_profiles_excluded_from_result_count": 29,
+  "earlier_unknown_physical_attempts": 2,
+  "unclosed_session_allocation_is_not_observed_training_time": true,
+  "validation": {
+    "public_record_schema": "passed",
+    "snapshot_merkle_inventory": "passed",
+    "frozen_A3_ledger_crosslinks": "passed",
+    "implementation_hashes_verified": 61,
+    "recovery_result_links": "passed",
+    "new_GPU_fits_during_publication": 0,
+    "campaign_remote_writes_during_publication": 0
+  },
+  "interpretation": {
+    "count_unit": "logical_configuration_and_seed_attempt_results",
+    "SAE_optimization_phases_per_attempt": 3,
+    "full_search_complete": false,
+    "benchmark_final_complete": false,
+    "candidate_11_started": false,
+    "candidate_11_superiority_demonstrated": false,
+    "final_market_values_read": false,
+    "final_R": null
+  }
+}

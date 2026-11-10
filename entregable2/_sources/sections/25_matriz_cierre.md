@@ -2,6 +2,8 @@
 
 **Corte documental: 09/11/2026.** Fuente de requisitos: *Entregable2DeepLearningProject.pdf*, aportado por el usuario, especialmente §§3–4 y §§9–14 y Apéndices A–B. Esta matriz organiza el trabajo autorizado de preparación; no constituye un preregistro experimental ni acredita ejecuciones nuevas.
 
+Los estados de esta matriz corresponden a ese corte documental. El [avance posterior de la selección CUDA se documenta en §36](36_avance_campana_cuda.md); aquí se conservan la evidencia de preparación y sus pendientes originales.
+
 ## Cómo interpretar el estado
 
 **Parcial** significa que hay evidencia reutilizable, pero no satisface todo el requisito del catálogo vigente. **Pendiente** exige decisiones o mediciones nuevas. Un requisito se cierra con un artefacto verificable y revisión de su correspondencia con el experimento; una descripción del método o una prueba sintética no bastan.

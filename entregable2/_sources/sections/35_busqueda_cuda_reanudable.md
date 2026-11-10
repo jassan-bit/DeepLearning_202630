@@ -1,10 +1,14 @@
 # 35. Selección CUDA con presupuesto y continuación en GitHub
 
-**Se incorpora un ejecutor HPO → NAS-1 → NAS-2 para los catorce sistemas neuronales, con resultados recuperables entre sesiones de Colab.** Conserva los dominios de [§27](27_nas_hpo_presupuesto.md), sus semillas, la separación temporal y las reglas de selección. El usuario fijó **8 horas por sesión y 24 horas acumuladas** como límites iniciales y eligió guardar las campañas en [su repositorio de GitHub](https://github.com/jassan-bit/DeepLearning_202630).
+**Preparación del 09/11/2026:** se incorporó un ejecutor HPO → NAS-1 → NAS-2 para los catorce sistemas neuronales, con resultados recuperables entre sesiones de Colab. Conserva los dominios de [§27](27_nas_hpo_presupuesto.md), sus semillas, la separación temporal y las reglas de selección. El usuario fijó **8 horas por sesión y 24 horas acumuladas** como límites iniciales y eligió guardar las campañas en [su repositorio de GitHub](https://github.com/jassan-bit/DeepLearning_202630).
 
-Este corte entrega software y su validación sintética. No acredita una búsqueda científica GPU ya ejecutada ni un ganador. Los [29 perfiles de recursos de §§33–34](34_perfil_gpu_ampliado.md) conservan su evidencia separada. La comparación final de dieciocho sistemas, los controles pendientes y el R final no se cierran con esta entrega.
+Ese corte entregó software y validación sintética; todavía no acreditaba una búsqueda científica GPU ejecutada. El avance posterior sobre desarrollo se documenta en [§36](36_avance_campana_cuda.md). Los [29 perfiles de recursos y 872 pasos conocidos de §§33–34](34_perfil_gpu_ampliado.md) conservan su evidencia histórica separada. La comparación final de dieciocho sistemas, los controles pendientes y el R final siguen abiertos.
 
-## Empezar en Colab
+:::{warning}
+**Campaña en curso al corte del 10/11/2026.** Para recuperar la vista del entrenamiento activo, vuelve a conectar la sesión existente de Colab. No pulses **Ejecutar todas**, no inicies otra máquina ni autorices otro reintento por una desconexión del navegador. Las instrucciones siguientes documentan la puesta en marcha inicial; no deben repetirse sobre esa ejecución. Consulta el [estado parcial y sus límites en §36](36_avance_campana_cuda.md). La campaña conserva 8/24 horas y no tiene autorizada una ampliación.
+:::
+
+## Puesta en marcha inicial del ejecutor
 
 El [notebook de búsqueda](https://github.com/jassan-bit/DeepLearning_202630/blob/72e3525adce1956eaba57b30f4a780da5aea10c1/notebooks/entregable2_busqueda_gpu.ipynb) puede [abrirse en Colab](https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/72e3525adce1956eaba57b30f4a780da5aea10c1/notebooks/entregable2_busqueda_gpu.ipynb). Utiliza el código congelado en `564ba4762f84a800b02fa4c734f5752a169f5223` y el registro `experiments/e2_cuda_search_20261109/registration.json`, con SHA256 `78c3c5b8ca042a347aaa80d642f3affd8b5911e8697d8747a2de915d1c3194a9`.
 
@@ -52,7 +56,7 @@ Para los catorce sistemas y once orígenes, el plan enumera **5544 oportunidades
 
 Las 24 horas son un techo operativo inicial: **no predicen la duración completa ni prometen terminar el dominio**. El reloj de una sesión comienza al admitir su primer trabajo nuevo y contabiliza los ajustes y la gestión posterior. La instalación, la conexión al proveedor y la preparación previa no constituyen duración observada de búsqueda ni una estimación del coste total de Colab. Los topes científicos de 1800/7200 segundos se conservan separados de los antiguos límites del piloto de recursos.
 
-Si no queda asignación suficiente para reservar el siguiente trabajador, la sesión se pausa antes de ese intento. Una pausa no permite elegir un ganador entre candidatos o semillas pendientes. Para ampliar el límite global, se conserva `CAMPAIGN_HOURS=24` y se fija `EXTEND_CAMPAIGN_HOURS` a un valor mayor: se añade una enmienda antes del trabajo adicional, sin reescribir el plan original ni modificar candidatos y semillas.
+Si no queda asignación suficiente para reservar el siguiente trabajador, la sesión se pausa antes de ese intento. Una pausa no permite elegir un ganador entre candidatos o semillas pendientes. La interfaz general contempla ampliar el límite global conservando `CAMPAIGN_HOURS=24` y fijando `EXTEND_CAMPAIGN_HOURS` a un valor mayor: exige añadir una enmienda antes del trabajo adicional, sin reescribir el plan original ni modificar candidatos y semillas. **Esta posibilidad de la API no constituye una autorización: la campaña del corte de §36 mantiene el límite acumulado original de 24 horas.**
 
 La reserva puede producir una pausa antes de consumir todas las horas disponibles. Un intento SAE de presupuesto completo reserva tres etapas de 7200 segundos más el margen operativo: 6 horas y 5 minutos. Esa reserva permite admitir el trabajo entero; no predice que necesite ese tiempo ni divide automáticamente un ajuste entre sesiones.
 
@@ -68,7 +72,7 @@ La credencial se utiliza sólo en el proceso de sincronización. No forma parte 
 
 ## Continuar una campaña
 
-En otra sesión de Colab, abrir el mismo notebook fijado y conservar `CAMPAIGN_NAME`, fuente, repositorio, modelos, orígenes y controles iniciales. Configurar el secreto, conectar la GPU y ejecutar las celdas. El cliente recupera el estado de GitHub, valida sus hashes y reconstruye los resultados completados para continuar la selección sin volver a entrenarlos.
+Este apartado describe el procedimiento general de continuación entre sesiones, no una indicación de relanzar la campaña activa de [§36](36_avance_campana_cuda.md). Cuando una sesión anterior ya terminó y se ha comprobado su estado, se conserva el mismo notebook fijado, `CAMPAIGN_NAME`, fuente, repositorio, modelos, orígenes y controles iniciales. El cliente puede recuperar el estado de GitHub, validar sus hashes y reconstruir los resultados completados para continuar la selección sin volver a entrenarlos. Un inicio sin resultado recuperable requiere la reconciliación indicada a continuación.
 
 | Estado encontrado | Tratamiento |
 |---|---|
@@ -123,12 +127,12 @@ La descripción de hardware CPU del protocolo histórico se preserva. El registr
 
 El límite lógico local de metadatos es de 10 GiB. Como guardas de transferencia, el cliente acota por separado cada registro JSON a 8 MiB, el snapshot agregado a 2 GiB y la descarga comprimida a 1 GiB. Son controles del cliente y no reservas de capacidad ni una ampliación de las cuotas de GitHub.
 
-## Validación y límites del corte
+## Validación histórica de preparación: 09/11/2026
 
 El [recibo público de preparación](../_static/cuda_search_preparation_20261109/validation.json), con SHA256 `e573207de91bcb6b31d22ccab167accc983ca5f4dc544997039078c4290a130b`, reúne los identificadores de fuente, los conteos de pruebas y el resultado de la recuperación pública del código y su plan.
 
-El corte nuevo reúne **123 casos: 122 aprobados y un caso CUDA real omitido** por ausencia de GPU en el ejecutor de preparación. Son 106 casos de código (105 aprobados y uno omitido) y diecisiete del notebook aprobados. Cubren selección y reajustes sintéticos, fases SAE, contabilidad de fallos y pasos desconocidos, presupuestos, recuperación de resultados, sincronización simulada con GitHub, transferencia Git contra repositorios locales de prueba, cambios concurrentes y exclusión de credenciales y rutas internas. El notebook comprueba el modo plan sin dependencias GPU y las guardas antes del lanzamiento. El caso CUDA omitido se mantiene identificado; los perfiles T4 de §§33–34 no se presentan como ejecución de este nuevo orquestador.
+El corte histórico de preparación reunió **123 casos: 122 aprobados y un caso CUDA real omitido** por ausencia de GPU en ese ejecutor. Son 106 casos de código (105 aprobados y uno omitido) y diecisiete del notebook aprobados. Cubren selección y reajustes sintéticos, fases SAE, contabilidad de fallos y pasos desconocidos, presupuestos, recuperación de resultados, sincronización simulada con GitHub, transferencia Git contra repositorios locales de prueba, cambios concurrentes y exclusión de credenciales y rutas internas. El notebook comprueba el modo plan sin dependencias GPU y las guardas antes del lanzamiento. El caso CUDA omitido se mantiene identificado; los perfiles T4 de §§33–34 no se presentan como ejecución de este nuevo orquestador. Estos conteos de pruebas no se suman a los resultados científicos posteriores.
 
 También se recuperó realmente la fuente pública fijada, se verificaron los 61 hashes de implementación y el registro, y se ejecutó su plan estándar con los paquetes de sitio desactivados. El recorrido confirmó los catorce modelos y once orígenes, sin materializar CSV, crear una campaña, pedir credenciales de campaña, instalar paquetes ni inicializar CUDA. Esta prueba comprueba la descarga pública y la planificación; no publica resultados de entrenamiento.
 
-La búsqueda científica GPU se ejecutará en Colab después de superar sus comprobaciones CUDA. En esta entrega no se aportan nuevos ajustes científicos de mercado, errores predictivos, ganadores NAS/HPO ni afirmaciones de superioridad del candidato 11. El reajuste final registrado conserva la guarda que exige fijar primero el R del protocolo de potencia. Los valores finales de 2025–2026 y `final_R` permanecen fuera del lanzamiento de selección.
+El corte del 09/11/2026 dejó preparada la búsqueda científica GPU en Colab, sin aportar todavía nuevos ajustes de mercado ni ganadores NAS/HPO. La ejecución posterior y su cobertura incompleta se describen en [§36: avance de la campaña CUDA](36_avance_campana_cuda.md). El reajuste final registrado conserva la guarda que exige fijar primero el R del protocolo de potencia; los valores finales de 2025–2026 y `final_R` permanecen fuera del lanzamiento de selección. Ninguno de estos avances demuestra superioridad del candidato 11.
