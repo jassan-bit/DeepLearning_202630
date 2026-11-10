@@ -67,11 +67,11 @@ Los tiempos tampoco miden convergencia, errores de predicción o superioridad de
 
 ## Siguiente cierre antes de NAS/HPO
 
-El próximo trabajo es conectar el backend CUDA con la selección científica y sellar su plan operativo. Las decisiones NAS y los dominios HPO de [§27](27_nas_hpo_presupuesto.md) permanecen fijados; estos tiempos de recursos no seleccionan nuevos dominios ni ganadores. Los dos pilotos ya aportados se conservan y no hace falta repetirlos sin cambios.
+La [sección 35](35_busqueda_cuda_reanudable.md) incorpora posteriormente el enlace CUDA para la selección, la admisión por presupuesto y la continuación de campañas en GitHub. El siguiente cierre exige verificar y ejecutar ese orquestador en Colab con sus controles, antes de presentar una búsqueda científica completada. Las decisiones NAS y los dominios HPO de [§27](27_nas_hpo_presupuesto.md) permanecen fijados; estos tiempos de recursos no seleccionan nuevos dominios ni ganadores. Los dos pilotos ya aportados se conservan y no hace falta repetirlos sin cambios.
 
-El adaptador `e2_training_bindings.py` utiliza actualmente el motor CPU `e2_staged_training`. También construye entradas CPU para la inferencia. La integración requiere un enlace CUDA explícito que conserve HPO → NAS-1 → NAS-2 → reajuste, las fases SAE, la separación temporal, las semillas, los desempates y los costes de cada intento. El notebook de recursos no implementa esa secuencia al cambiar su número de épocas.
+El adaptador histórico `e2_training_bindings.py` conserva el motor CPU `e2_staged_training`; el nuevo enlace CUDA se documenta por separado en §35. También construye entradas CPU para la inferencia. El enlace posterior de §35 conserva HPO → NAS-1 → NAS-2 y las interfaces de reajuste, las fases SAE, la separación temporal, las semillas, los desempates y los costes de cada intento. El notebook de recursos no implementa esa secuencia al cambiar su número de épocas.
 
-Antes del lanzamiento científico corresponde:
+El corte de recursos identificó estas tareas previas al lanzamiento científico; la implementación posterior se documenta en §35:
 
 1. **Verificar el adaptador y su lanzador.** Integrar ajuste, selección de épocas e inferencia CUDA con pruebas artificiales y recorridos pequeños declarados, sin reinterpretarlos como una búsqueda completa.
 2. **Separar los límites y admitir un presupuesto global.** Conservar los límites científicos de 1800/7200 segundos por etapa, separados de los 300/360 segundos y 900 segundos globales del piloto de recursos. Fijar un presupuesto por etapas y por sesión Colab antes de arrancar miles de ajustes.
