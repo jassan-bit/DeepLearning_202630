@@ -35,9 +35,13 @@ class RecordingMirror:
     """Local acknowledgement model; never calls GitHub or a network client."""
     def __init__(self):
         self.started=set();self.finished=set();self.order=[];self.sealed=False
+        self.status_acknowledged=False;self.closed=False
 
     def restore(self,directory):
         return None
+
+    def close(self):
+        self.closed=True;self.order.append(('close',None))
 
     def check_capacity(self,*,required_requests):
         if required_requests<1:raise AssertionError('Capacity must reserve positive requests')
@@ -49,6 +53,8 @@ class RecordingMirror:
             payload=(Path(directory)/relative).read_bytes()
             record=validate_record(relative,payload)
             if relative=='campaign.json':self.sealed=True
+            if relative=='status.json':
+                self.status_acknowledged=True;self.order.append(('status_ack',None))
             if record.get('kind')=='job_started':
                 self.started.add(record['job_id']);self.order.append(('started_ack',record['job_id']))
             if relative.startswith('results/'):
@@ -107,7 +113,7 @@ import sys,os,runpy,importlib.abc
 from pathlib import Path
 class BlockImports(importlib.abc.MetaPathFinder):
  def find_spec(self,fullname,path=None,target=None):
-  if fullname.split('.')[0] in {{'torch','numpy','pandas','scipy','e2_github_campaign','e2_search_session','e2_development_data','e2_temporal_training'}}:
+  if fullname.split('.')[0] in {{'torch','numpy','pandas','scipy','e2_github_campaign','e2_github_git_transport','e2_search_session','e2_development_data','e2_temporal_training'}}:
    raise AssertionError('plan-only imported execution dependency: '+fullname)
 sys.meta_path.insert(0,BlockImports())
 def audit(event,args):
@@ -391,7 +397,7 @@ runpy.run_path({str(script)!r},run_name='__main__')
               patch.object(runner,'verify_source'),patch.object(runner,'cuda_hardware',return_value=plan['hardware_binding']),
               patch.object(admission,'build_plan',return_value=plan),patch.object(runner,'prepare_panel',side_effect=panel),
               patch.object(runner,'isolated_trial',side_effect=worker),
-              patch('e2_github_campaign.GitHubCampaignMirror',return_value=mirror),
+              patch('e2_github_git_transport.GitCampaignMirror',return_value=mirror),
               patch('e2_training_bindings.run_neural_selection',side_effect=orchestrator),redirect_stdout(StringIO())):
             code=runner.execute(args)
         self.assertEqual(code,5)
@@ -400,16 +406,18 @@ runpy.run_path({str(script)!r},run_name='__main__')
         self.assertEqual(state['completed_selections'],[]);self.assertEqual(winners,[])
         self.assertEqual((state['completed_jobs'],state['failed_jobs'],state['known_optimizer_steps'],state['unknown_optimizer_step_jobs']),(1,1,2,1))
         self.assertEqual(len(mirror.finished),1)
+        self.assertTrue(mirror.status_acknowledged);self.assertTrue(mirror.closed)
+        self.assertLess(mirror.order.index(('status_ack',None)),mirror.order.index(('close',None)))
 
     def test_execution_without_secret_or_with_wrong_source_stops_before_market_and_remote(self):
         args=SimpleNamespace(github_repository=admission.REPOSITORY,source_commit='a'*40)
         with (patch.dict(os.environ,{},clear=True),patch.object(runner,'verify_source') as source,
-                patch.object(runner,'prepare_panel') as data,patch('e2_github_campaign.GitHubCampaignMirror') as mirror):
+                patch.object(runner,'prepare_panel') as data,patch('e2_github_git_transport.GitCampaignMirror') as mirror):
             with self.assertRaisesRegex(ValueError,'github_secret_required'):runner.execute(args)
             source.assert_not_called();data.assert_not_called();mirror.assert_not_called()
         with (patch.dict(os.environ,{'GITHUB_TOKEN':'not-a-real-secret'}),patch.object(runner,'verify_source',side_effect=ValueError('pin mismatch')),
                 patch.object(runner,'cuda_hardware') as hardware,patch.object(runner,'prepare_panel') as data,
-                patch('e2_github_campaign.GitHubCampaignMirror') as mirror):
+                patch('e2_github_git_transport.GitCampaignMirror') as mirror):
             with self.assertRaisesRegex(ValueError,'pin mismatch'):runner.execute(args)
             hardware.assert_not_called();data.assert_not_called();mirror.assert_not_called()
 
@@ -424,7 +432,7 @@ runpy.run_path({str(script)!r},run_name='__main__')
             with (self.subTest(issue=issue),patch.dict(os.environ,{'GITHUB_TOKEN':'not-a-real-secret'}),
                   patch.object(runner,'verify_source'),patch.object(runner,'cuda_hardware') as hardware,
                   patch.object(runner,'prepare_panel') as data,
-                  patch('e2_github_campaign.GitHubCampaignMirror') as mirror):
+                  patch('e2_github_git_transport.GitCampaignMirror') as mirror):
                 with self.assertRaisesRegex(ValueError,'published_scientific_admission_required'):
                     runner.execute(args)
                 hardware.assert_not_called();data.assert_not_called();mirror.assert_not_called()

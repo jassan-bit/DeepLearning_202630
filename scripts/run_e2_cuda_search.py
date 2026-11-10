@@ -325,9 +325,7 @@ def report(plan,session,status,selections,repository,branch,*,pause_reason=None,
         'pause_reason':pause_reason,'retry_after_seconds':retry_after_seconds}
 
 def execute(args):
-    from e2_search_session import SearchSession,SessionPaused,UnresolvedAttempt
-    from e2_github_campaign import GitHubCampaignMirror,CampaignSyncError
-    from e2_temporal_training import SelectionAborted
+    from e2_github_git_transport import GitCampaignMirror
     if args.github_repository!=admission.REPOSITORY:raise ValueError('registered_repository_required')
     if not os.environ.get('GITHUB_TOKEN'):raise ValueError('github_secret_required')
     verify_source(args.source_commit)
@@ -341,9 +339,19 @@ def execute(args):
         device=args.device,hardware=hardware,expected_registration_sha256=args.expected_registration_sha256,
         github_branch=args.github_branch,github_prefix=args.github_prefix)
     directory=Path(args.output)
-    mirror=GitHubCampaignMirror(args.github_repository,args.github_branch,args.github_prefix,
+    mirror=GitCampaignMirror(args.github_repository,args.github_branch,args.github_prefix,
         max_snapshot_bytes=min(int(args.storage_gib*1024**3),2*1024**3))
-    mirror.restore(directory)
+    try:
+        mirror.restore(directory)
+        return execute_session(args,plan,directory,mirror)
+    finally:
+        close=getattr(mirror,'close',None)
+        if callable(close):close()
+
+def execute_session(args,plan,directory,mirror):
+    from e2_search_session import SearchSession,SessionPaused,UnresolvedAttempt
+    from e2_github_campaign import CampaignSyncError
+    from e2_temporal_training import SelectionAborted
     session=None;status='not_started';selections=[];exit_code=0
     pause_reason=None;retry_after_seconds=None
     try:
