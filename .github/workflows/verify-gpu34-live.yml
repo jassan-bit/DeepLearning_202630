@@ -1,0 +1,77 @@
+name: Verificar los dos pilotos GPU publicados
+on:
+  push:
+    branches: [verify-gpu34-live-20261109]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  verify-live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: c0425f359fcd090fda04a68cb5519cd1d05a648d
+          persist-credentials: false
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: books-site-c0425f359fcd090fda04a68cb5519cd1d05a648d-1
+          path: _build/site/
+          github-token: ${{ github.token }}
+          run-id: 42709213061
+      - name: Verificar versión servida de los tres libros
+        run: |
+          set -euo pipefail
+          python scripts/safe_publish_books.py verify-live --source-commit c0425f359fcd090fda04a68cb5519cd1d05a648d --url https://jassan-bit.github.io/DeepLearning_202630/ --attempts 24 --interval 30 | tee live-verification.json
+      - name: Verificar capítulo, evidencia GPU y recibos anteriores por hash
+        run: |
+          python - <<'PY'
+          import hashlib,json,pathlib,urllib.request
+          base="https://jassan-bit.github.io/DeepLearning_202630/"
+          site=pathlib.Path("_build/site")
+          paths=["entregable2/sections/30_piloto_nube.html","entregable2/sections/31_optimizacion_nube.html","entregable2/sections/32_ejecucion_gpu.html","entregable2/sections/33_piloto_gpu.html","entregable2/sections/34_perfil_gpu_ampliado.html"]
+          for directory in ["compute_public_20261109","gpu_pilot_public_20261109","gpu_pilot_large_public_20261109"]:
+              paths += [p.relative_to(site).as_posix() for p in sorted((site/"entregable2/_static"/directory).iterdir()) if p.is_file()]
+          for path in paths:
+              expected=hashlib.sha256((site/path).read_bytes()).hexdigest()
+              request=urllib.request.Request(base+path+"?source_check=c0425f359fcd090fda04a68cb5519cd1d05a648d",headers={"Cache-Control":"no-cache","Accept-Encoding":"identity"})
+              with urllib.request.urlopen(request,timeout=30) as response:
+                  actual=hashlib.sha256(response.read()).hexdigest()
+              if actual!=expected:raise SystemExit("Public file differs: "+path)
+              print("SHA256 verified",path,actual)
+          report=json.loads((site/"entregable2/_static/gpu_pilot_public_20261109/scientific_report.json").read_text())
+          manifest=json.loads((site/"entregable2/_static/gpu_pilot_public_20261109/manifest.json").read_text())
+          assert len(report["results"])==14 and all(row["status"]=="success" for row in report["results"])
+          assert sum(row["optimizer_steps"] for row in report["results"])==192
+          expected=manifest["public_files"]["scientific_report.json"]["sha256"]
+          assert hashlib.sha256((site/"entregable2/_static/gpu_pilot_public_20261109/scientific_report.json").read_bytes()).hexdigest()==expected
+          print("Public GPU evidence consistent: 14 profiles, 192 optimizer steps")
+          directory=site/"entregable2/_static/gpu_pilot_large_public_20261109"
+          large=json.loads((directory/"scientific_report.json").read_text())
+          large_manifest=json.loads((directory/"manifest.json").read_text())
+          assert len(large["results"])==15 and all(row["status"]=="success" for row in large["results"])
+          assert sum(row["optimizer_steps"] for row in large["results"])==680
+          assert hashlib.sha256((directory/"scientific_report.json").read_bytes()).hexdigest()==large_manifest["public_files"]["scientific_report.json"]["sha256"]
+          assert large["results"][-1]["job"]["case"]=="largest"
+          assert large["results"][-1]["parameter_count"]==225075755
+          print("Public GPU evidence consistent: 15 large profiles, 680 optimizer steps")
+          PY
+      - name: Verificar notebook y ejecutor inmutables
+        run: |
+          python - <<'PY'
+          import hashlib,pathlib,urllib.request
+          root="https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/"
+          for commit,path in [("497088cbbabcdcec39c597d41b120a1ccde9379e","notebooks/entregable2_gpu.ipynb"),("728277517be653be0d0ef10fb677a68adec22bb6","scripts/e2_cuda_training.py")]:
+              expected=hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest()
+              with urllib.request.urlopen(root+commit+"/"+path,timeout=30) as response:
+                  actual=hashlib.sha256(response.read()).hexdigest()
+              if actual!=expected:raise SystemExit("Pinned source differs: "+path)
+              print("Pinned SHA256 verified",path,actual)
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: gpu34-live-verification
+          path: live-verification.json
+          if-no-files-found: ignore
