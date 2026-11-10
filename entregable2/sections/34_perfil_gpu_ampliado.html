@@ -65,7 +65,7 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="Referencias de contexto y revisión E2" href="referencias.html" />
+    <link rel="next" title="35. Selección CUDA con presupuesto y continuación en GitHub" href="35_busqueda_cuda_reanudable.html" />
     <link rel="prev" title="33. Primer piloto de recursos en GPU" href="33_piloto_gpu.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
@@ -241,6 +241,7 @@
 <li class="toctree-l1"><a class="reference internal" href="32_ejecucion_gpu.html">32. Ejecución CUDA preparada y piloto de recursos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="33_piloto_gpu.html">33. Primer piloto de recursos en GPU</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">34. Perfil GPU ampliado y viabilidad del extremo TimesNet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="35_busqueda_cuda_reanudable.html">35. Selección CUDA con presupuesto y continuación en GitHub</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
 </ul>
 
@@ -565,9 +566,9 @@
 </section>
 <section id="siguiente-cierre-antes-de-nas-hpo">
 <h2>Siguiente cierre antes de NAS/HPO<a class="headerlink" href="#siguiente-cierre-antes-de-nas-hpo" title="Link to this heading">#</a></h2>
-<p>El próximo trabajo es conectar el backend CUDA con la selección científica y sellar su plan operativo. Las decisiones NAS y los dominios HPO de <a class="reference internal" href="27_nas_hpo_presupuesto.html"><span class="std std-doc">§27</span></a> permanecen fijados; estos tiempos de recursos no seleccionan nuevos dominios ni ganadores. Los dos pilotos ya aportados se conservan y no hace falta repetirlos sin cambios.</p>
-<p>El adaptador <code class="docutils literal notranslate"><span class="pre">e2_training_bindings.py</span></code> utiliza actualmente el motor CPU <code class="docutils literal notranslate"><span class="pre">e2_staged_training</span></code>. También construye entradas CPU para la inferencia. La integración requiere un enlace CUDA explícito que conserve HPO → NAS-1 → NAS-2 → reajuste, las fases SAE, la separación temporal, las semillas, los desempates y los costes de cada intento. El notebook de recursos no implementa esa secuencia al cambiar su número de épocas.</p>
-<p>Antes del lanzamiento científico corresponde:</p>
+<p>La <a class="reference internal" href="35_busqueda_cuda_reanudable.html"><span class="std std-doc">sección 35</span></a> incorpora posteriormente el enlace CUDA para la selección, la admisión por presupuesto y la continuación de campañas en GitHub. El siguiente cierre exige verificar y ejecutar ese orquestador en Colab con sus controles, antes de presentar una búsqueda científica completada. Las decisiones NAS y los dominios HPO de <a class="reference internal" href="27_nas_hpo_presupuesto.html"><span class="std std-doc">§27</span></a> permanecen fijados; estos tiempos de recursos no seleccionan nuevos dominios ni ganadores. Los dos pilotos ya aportados se conservan y no hace falta repetirlos sin cambios.</p>
+<p>El adaptador histórico <code class="docutils literal notranslate"><span class="pre">e2_training_bindings.py</span></code> conserva el motor CPU <code class="docutils literal notranslate"><span class="pre">e2_staged_training</span></code>; el nuevo enlace CUDA se documenta por separado en §35. También construye entradas CPU para la inferencia. El enlace posterior de §35 conserva HPO → NAS-1 → NAS-2 y las interfaces de reajuste, las fases SAE, la separación temporal, las semillas, los desempates y los costes de cada intento. El notebook de recursos no implementa esa secuencia al cambiar su número de épocas.</p>
+<p>El corte de recursos identificó estas tareas previas al lanzamiento científico; la implementación posterior se documenta en §35:</p>
 <ol class="arabic simple">
 <li><p><strong>Verificar el adaptador y su lanzador.</strong> Integrar ajuste, selección de épocas e inferencia CUDA con pruebas artificiales y recorridos pequeños declarados, sin reinterpretarlos como una búsqueda completa.</p></li>
 <li><p><strong>Separar los límites y admitir un presupuesto global.</strong> Conservar los límites científicos de 1800/7200 segundos por etapa, separados de los 300/360 segundos y 900 segundos globales del piloto de recursos. Fijar un presupuesto por etapas y por sesión Colab antes de arrancar miles de ajustes.</p></li>
@@ -619,11 +620,11 @@
       </div>
     </a>
     <a class="right-next"
-       href="referencias.html"
+       href="35_busqueda_cuda_reanudable.html"
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">Referencias de contexto y revisión E2</p>
+        <p class="prev-next-title">35. Selección CUDA con presupuesto y continuación en GitHub</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

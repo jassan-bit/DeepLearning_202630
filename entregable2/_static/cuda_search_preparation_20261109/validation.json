@@ -1,0 +1,86 @@
+{
+  "version": "e2-cuda-selection-preparation-validation-v1",
+  "status": "preparation_passed_with_one_real_cuda_case_skipped",
+  "source_commit": "564ba4762f84a800b02fa4c734f5752a169f5223",
+  "notebook_commit": "72e3525adce1956eaba57b30f4a780da5aea10c1",
+  "notebook_sha256": "c48868dbefaa7e65d4da27b3f9942aecdcb2798d611f015d690ad6fb88ed84c0",
+  "registration_sha256": "78c3c5b8ca042a347aaa80d642f3affd8b5911e8697d8747a2de915d1c3194a9",
+  "registration_path": "experiments/e2_cuda_search_20261109/registration.json",
+  "new_tests": {
+    "core": {
+      "run": 106,
+      "passed": 105,
+      "real_cuda_skipped": 1
+    },
+    "notebook": {
+      "run": 17,
+      "passed": 17,
+      "skipped": 0
+    },
+    "total": {
+      "run": 123,
+      "passed": 122,
+      "real_cuda_skipped": 1
+    }
+  },
+  "transport_validation": {
+    "default": "Git fetch/push on campaign branch",
+    "local_bare_git_tests": 10,
+    "local_bare_git_tests_passed": 10,
+    "actual_github_campaign_writes_performed": false,
+    "credential_values_included": false
+  },
+  "public_source_plan_smoke": {
+    "version": "e2-search35-public-sparse-plan-smoke-v1",
+    "status": "passed",
+    "source_commit": "564ba4762f84a800b02fa4c734f5752a169f5223",
+    "registration_sha256": "78c3c5b8ca042a347aaa80d642f3affd8b5911e8697d8747a2de915d1c3194a9",
+    "implementation_hashes_verified": 61,
+    "planning_counts": {
+      "hpo_attempts": 5544,
+      "nas1_attempts": 66000,
+      "nas2_attempts_upper_bound": 13530,
+      "selection_attempts_upper_bound": 85074
+    },
+    "selected_models": 14,
+    "selected_origins": 11,
+    "plan_sha256": "49e4b46a6ebc616d15bbc4de84a7541ace4564fa566403b80d6c5eb20ccfc039",
+    "notebook_sha256": "c48868dbefaa7e65d4da27b3f9942aecdcb2798d611f015d690ad6fb88ed84c0",
+    "host_python": "3.12.14",
+    "python_site_packages_disabled_for_planning": true,
+    "public_git_fetches": 1,
+    "materialized_csv_files": 0,
+    "campaign_files_created": 0,
+    "campaign_directory_created": false,
+    "gpu_fits_executed": 0,
+    "cuda_initialized": false,
+    "packages_installed": false,
+    "campaign_authentication_requested": false,
+    "market_values_read": false,
+    "scientific_HPO_or_NAS_executed": false,
+    "final_R": null
+  },
+  "admitted_initial_controls": {
+    "session_seconds": 28800,
+    "campaign_seconds": 86400,
+    "storage_bytes": 10737418240,
+    "repository": "jassan-bit/DeepLearning_202630",
+    "default_campaign_branch": "campaigns/e2-cuda-selection-v1",
+    "selection_checkpoint_policy": "metadata_only"
+  },
+  "scientific_execution": {
+    "new_scientific_gpu_fits_executed": 0,
+    "market_model_selection_completed": false,
+    "final_market_values_read": false,
+    "final_R": null,
+    "full_campaign_wall_hours": null
+  },
+  "limits": [
+    "The new real-CUDA test was skipped in the CPU preparation environment; earlier user-run T4 resource pilots are separate evidence.",
+    "Local Git tests and a real public source fetch do not certify that a future Colab credential can write campaign records to GitHub.",
+    "The source smoke ran the plan only, with site packages disabled and no market values, campaign authentication, package installation or GPU fitting.",
+    "Eight-hour sessions and the initial twenty-four-hour campaign ceiling are operational limits, not a forecast of full-domain completion.",
+    "No new scientific HPO/NAS market results, selected winner, final-market evaluation or final R are supplied."
+  ],
+  "publication_scope": "Explicit source identifiers, numerical counts and preparation checks only; no raw logs, host paths or credentials."
+}
