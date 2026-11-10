@@ -384,6 +384,7 @@
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-cuenta-este-avance">Qué cuenta este avance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-guardado-y-actividad-de-la-sesion">Estado guardado y actividad de la sesión</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cobertura-de-los-catorce-sistemas">Cobertura de los catorce sistemas</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dominio-pendiente-y-presupuesto">Dominio pendiente y presupuesto</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recuperaciones-registradas-y-costes-desconocidos">Recuperaciones registradas y costes desconocidos</a></li>
@@ -401,14 +402,14 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="avance-parcial-de-la-campana-cuda">
 <h1>36. Avance parcial de la campaña CUDA<a class="headerlink" href="#avance-parcial-de-la-campana-cuda" title="Link to this heading">#</a></h1>
-<p><strong>Corte congelado del 10/11/2026, 09:56:42 de Bogotá (14:56:42 UTC): 906 resultados científicos confirmados, correspondientes a cuatro modelos y al primer origen de selección.</strong> La búsqueda se ejecuta en una Tesla T4 de Google Colab con el código científico A3. Este capítulo incorpora evidencia posterior a la <a class="reference internal" href="35_busqueda_cuda_reanudable.html"><span class="std std-doc">preparación histórica de §35</span></a>; sus cifras describen el commit indicado, no un contador en vivo.</p>
-<p>El corte contiene <strong>144 resultados HPO y 762 NAS-1; todavía no hay resultados NAS-2</strong>. Los diez modelos restantes del plan, incluida la propuesta CNN-1D + LSTM + atención temporal, no tienen resultados en este corte. No se ha completado la búsqueda ni la comparación final del benchmark, y no se ha demostrado superioridad del candidato 11.</p>
-<p>:::{warning}
-<strong>Recuperar la vista de la sesión activa no requiere iniciar otra búsqueda.</strong> Si el navegador perdió la conexión, vuelve a conectar la sesión existente de Colab y conserva su caché. No pulses <strong>Ejecutar todas</strong>, no abras otra máquina para entrenar la misma campaña ni inicies un reintento por una pérdida de conexión de la interfaz. Una campaña que sigue confirmando resultados en GitHub puede continuar aunque el navegador muestre «Conectando». Los límites siguen siendo 8 horas por sesión y 24 horas acumuladas, sin ampliación autorizada.
+<p><strong>Corte congelado del 10/11/2026, 18:00:19 de Bogotá (23:00:19 UTC): 1.497 resultados científicos completados, cero resultados fallidos, cinco modelos y el primer origen de selección.</strong> La búsqueda HPO → NAS-1 → NAS-2 usa una Tesla T4 de Google Colab y el código científico A3. Este capítulo sustituye el corte de 906 resultados de las 09:56:42, conservado como <a class="reference download internal" download="" href="../_downloads/6d25fbd34fcef1605d5b6491a4d02337/summary.json"><span class="xref download myst">resumen histórico</span></a>. Las cifras proceden del commit fijado y no son telemetría en vivo.</p>
+<p>El corte contiene <strong>180 resultados HPO, 1.117 NAS-1 y 200 NAS-2</strong>. El LSTM-autoencoder con predictor registra sus 1.000 intentos NAS-1 y 200 NAS-2 del primer origen. TimesNet ya tiene 36 resultados HPO y 117 de los 1.000 intentos NAS-1 de ese origen. Los nueve sistemas restantes del plan, incluida la propuesta CNN-1D + LSTM + atención temporal, todavía no aportan resultados en este corte. No hay un ganador del benchmark final ni superioridad demostrada del candidato 11.</p>
+<p>:::{note}
+<strong>Actividad reciente confirmada:</strong> el último trabajo terminó a las <strong>18:00:17 de Bogotá</strong>; el siguiente quedó registrado como iniciado a las <strong>18:00:19</strong>. Esto acredita avance de la campaña GPU hasta el corte. La inspección de procesos del servidor CPU de Codex Cloud describe otro entorno y otra ejecución; no permite concluir que Colab esté detenido. La publicación del libro no reinicia ni interviene en la sesión de Colab.
 :::</p>
 <section id="que-cuenta-este-avance">
 <h2>Qué cuenta este avance<a class="headerlink" href="#que-cuenta-este-avance" title="Link to this heading">#</a></h2>
-<p>Un resultado corresponde a <strong>un intento lógico de configuración y semilla</strong>, dentro de un modelo, una etapa y un origen. No representa un modelo evaluado en todos los cortes. En el LSTM-autoencoder con predictor, cada intento incluye sus tres etapas de optimización; no se multiplica por tres el conteo de resultados.</p>
+<p>Un resultado corresponde a <strong>un intento lógico de configuración y semilla</strong>, dentro de un modelo, una etapa y un origen. No representa un modelo evaluado en todos los cortes. En el LSTM-autoencoder, cada intento incluye tres etapas de optimización; no se multiplica por tres el conteo de resultados.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Evidencia del corte</p></th>
@@ -417,38 +418,74 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Resultados lógicos confirmados</p></td>
-<td><p>906</p></td>
+<td><p><strong>1.497</strong></p></td>
 </tr>
 <tr class="row-odd"><td><p>Estado de esos resultados</p></td>
-<td><p>906 <code class="docutils literal notranslate"><span class="pre">completed</span></code>; 0 <code class="docutils literal notranslate"><span class="pre">failed</span></code></p></td>
+<td><p><strong>1.497 <code class="docutils literal notranslate"><span class="pre">completed</span></code>; 0 <code class="docutils literal notranslate"><span class="pre">failed</span></code></strong></p></td>
 </tr>
 <tr class="row-even"><td><p>HPO / NAS-1 / NAS-2</p></td>
-<td><p>144 / 762 / 0</p></td>
+<td><p><strong>180 / 1.117 / 200</strong></p></td>
 </tr>
-<tr class="row-odd"><td><p>Modelos con resultados</p></td>
-<td><p>4 de los 14 del plan</p></td>
+<tr class="row-odd"><td><p>Pasos de optimización conocidos</p></td>
+<td><p><strong>2.160.176</strong>; ningún resultado confirmado con pasos desconocidos</p></td>
 </tr>
-<tr class="row-even"><td><p>Orígenes con resultados</p></td>
+<tr class="row-even"><td><p>Modelos con resultados</p></td>
+<td><p><strong>5 de los 14</strong> del plan</p></td>
+</tr>
+<tr class="row-odd"><td><p>Orígenes con resultados</p></td>
 <td><p>Sólo <code class="docutils literal notranslate"><span class="pre">2024-01-01</span></code>, el primero de once</p></td>
 </tr>
-<tr class="row-odd"><td><p>Eventos del diario</p></td>
-<td><p>1825</p></td>
+<tr class="row-even"><td><p>Eventos del diario</p></td>
+<td><p><strong>3.015</strong></p></td>
 </tr>
-<tr class="row-even"><td><p>Último resultado terminado</p></td>
-<td><p>10/11/2026, 14:56:42 UTC; NAS-1 del LSTM-autoencoder</p></td>
+<tr class="row-odd"><td><p>Último resultado terminado</p></td>
+<td><p><strong>10/11/2026, 18:00:17 de Bogotá</strong>; NAS-1 de TimesNet</p></td>
+</tr>
+<tr class="row-even"><td><p>Inicio posterior al último cierre</p></td>
+<td><p><strong>18:00:19 de Bogotá</strong>, evento <code class="docutils literal notranslate"><span class="pre">000003014</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p>Inicios sin resultado confirmado en este commit</p></td>
-<td><p>Ninguno: el corte quedó entre trabajos</p></td>
+<td><p><strong>Uno</strong>, iniciado al final del corte; por sí solo no es un fallo ni un atasco</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>La ausencia de un inicio pendiente en ese commit <strong>no significa que terminó la campaña</strong>: el siguiente trabajo puede comenzar después del corte. Tampoco los cero resultados con estado <code class="docutils literal notranslate"><span class="pre">failed</span></code> prueban que todos los intentos físicos anteriores hayan terminado bien; se conservan dos intentos de desenlace desconocido, descritos más adelante.</p>
+<p>Los cero resultados con estado <code class="docutils literal notranslate"><span class="pre">failed</span></code> describen los resultados lógicos confirmados. No prueban que todos los intentos físicos anteriores hayan terminado bien: se conservan dos intentos interrumpidos de desenlace y coste desconocidos, descritos más adelante.</p>
+</section>
+<section id="estado-guardado-y-actividad-de-la-sesion">
+<h2>Estado guardado y actividad de la sesión<a class="headerlink" href="#estado-guardado-y-actividad-de-la-sesion" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">status.json</span></code> se escribe cuando el ejecutor cierra o pausa una sesión; <strong>no es un heartbeat que se actualice tras cada entrenamiento</strong>. En el commit de este capítulo conserva <code class="docutils literal notranslate"><span class="pre">paused_session_budget</span></code> y <strong>1.280 trabajos</strong>, correspondientes a un cierre anterior. El diario y los resultados posteriores confirman <strong>1.497</strong> y el siguiente inicio; por tanto, esa pausa guardada no identifica el estado de la sesión posterior al corte antiguo.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Señal</p></th>
+<th class="head"><p>Qué permite concluir</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Colab muestra «En ejecución» y una T4</p></td>
+<td><p>El runtime indica una ejecución activa; el contador de la interfaz no es el número de modelos completados</p></td>
+</tr>
+<tr class="row-odd"><td><p>Nuevos eventos <code class="docutils literal notranslate"><span class="pre">job_finished</span></code> y recibos en GitHub</p></td>
+<td><p>Confirman trabajos científicos terminados hasta sus fechas</p></td>
+</tr>
+<tr class="row-even"><td><p>Último evento <code class="docutils literal notranslate"><span class="pre">job_started</span></code> sin resultado al corte</p></td>
+<td><p>Hay un trabajo abierto en ese instante; no demuestra un fallo</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">status.json</span></code> con menos resultados que el diario</p></td>
+<td><p>Resume una salida anterior y debe contrastarse con los eventos posteriores</p></td>
+</tr>
+<tr class="row-even"><td><p>No aparecen procesos en Codex Cloud</p></td>
+<td><p>Describe el servidor CPU inspeccionado, no la máquina de Colab</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El <a class="reference download internal" download="" href="../_downloads/14b635398a59a89cd14b33b2edd954a0/summary_20261110_180019.json"><span class="xref download myst">resumen descargable</span></a> distingue estas señales y conserva sus fechas. Este capítulo no afirma una utilización GPU medida en tiempo real ni garantiza continuidad del kernel después del corte.</p>
 </section>
 <section id="cobertura-de-los-catorce-sistemas">
 <h2>Cobertura de los catorce sistemas<a class="headerlink" href="#cobertura-de-los-catorce-sistemas" title="Link to this heading">#</a></h2>
 <p>El plan reúne <strong>diez modelos base, un candidato propuesto y tres controles neuronales de E1</strong>. Los cuatro comparadores restantes del benchmark de dieciocho sistemas mantienen su tratamiento separado y no forman parte de esta tabla de selección CUDA.</p>
-<p>Todos los resultados de la tabla pertenecen al origen <code class="docutils literal notranslate"><span class="pre">2024-01-01</span></code>. En cada modelo, el HPO de un origen comprende 18 configuraciones y dos semillas: <strong>36 intentos</strong>. La familia SAE lleva 762 de las 1000 arquitecturas de NAS-1 de ese origen. El guion indica que NAS no aplica a una arquitectura que el protocolo mantiene fija; su conteo de resultados NAS es cero.</p>
+<p>Todos los resultados de la tabla pertenecen al origen <code class="docutils literal notranslate"><span class="pre">2024-01-01</span></code>. En cada modelo, el HPO de un origen comprende 18 configuraciones y dos semillas: <strong>36 intentos</strong>. El guion indica que NAS no aplica a una estructura que el protocolo mantiene fija; su conteo NAS es cero.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Modelo</p></th>
@@ -465,70 +502,70 @@
 <td class="text-right"><p>36</p></td>
 <td class="text-right"><p>—</p></td>
 <td class="text-right"><p>—</p></td>
-<td><p>HPO del primer origen completo; quedan los demás orígenes</p></td>
+<td><p>HPO del primer origen completo; quedan diez orígenes</p></td>
 </tr>
 <tr class="row-odd"><td><p>ResNet-1D</p></td>
 <td><p>Base</p></td>
 <td class="text-right"><p>36</p></td>
 <td class="text-right"><p>—</p></td>
 <td class="text-right"><p>—</p></td>
-<td><p>HPO del primer origen completo; quedan los demás orígenes</p></td>
+<td><p>HPO del primer origen completo; quedan diez orígenes</p></td>
 </tr>
 <tr class="row-even"><td><p>Inception-1D</p></td>
 <td><p>Base</p></td>
 <td class="text-right"><p>36</p></td>
 <td class="text-right"><p>—</p></td>
 <td class="text-right"><p>—</p></td>
-<td><p>HPO del primer origen completo; quedan los demás orígenes</p></td>
+<td><p>HPO del primer origen completo; quedan diez orígenes</p></td>
 </tr>
 <tr class="row-odd"><td><p>LSTM-autoencoder con predictor</p></td>
 <td><p>Base</p></td>
 <td class="text-right"><p>36</p></td>
-<td class="text-right"><p>762</p></td>
-<td class="text-right"><p>0</p></td>
-<td><p>HPO del primer origen completo; NAS-1 parcial, 762/1000</p></td>
+<td class="text-right"><p>1.000</p></td>
+<td class="text-right"><p>200</p></td>
+<td><p>Etapas del primer origen confirmadas; no equivale a completar los once orígenes</p></td>
 </tr>
 <tr class="row-even"><td><p>TimesNet</p></td>
 <td><p>Base</p></td>
+<td class="text-right"><p>36</p></td>
+<td class="text-right"><p>117</p></td>
 <td class="text-right"><p>0</p></td>
-<td class="text-right"><p>0</p></td>
-<td class="text-right"><p>0</p></td>
-<td><p>Sin resultados confirmados todavía</p></td>
+<td><p>HPO del primer origen completo; NAS-1 parcial, 117/1.000</p></td>
 </tr>
 <tr class="row-odd"><td><p>TSMixer</p></td>
 <td><p>Base</p></td>
 <td class="text-right"><p>0</p></td>
 <td class="text-right"><p>—</p></td>
 <td class="text-right"><p>—</p></td>
-<td><p>Sin resultados confirmados todavía</p></td>
+<td><p>Sin resultados confirmados todavía en esta campaña</p></td>
 </tr>
 <tr class="row-even"><td><p>TiDE</p></td>
 <td><p>Base</p></td>
 <td class="text-right"><p>0</p></td>
 <td class="text-right"><p>0</p></td>
 <td class="text-right"><p>0</p></td>
-<td><p>Sin resultados confirmados todavía</p></td>
+<td><p>Sin resultados confirmados todavía en esta campaña</p></td>
 </tr>
 <tr class="row-odd"><td><p>TimeMixer</p></td>
 <td><p>Base</p></td>
 <td class="text-right"><p>0</p></td>
 <td class="text-right"><p>0</p></td>
 <td class="text-right"><p>0</p></td>
-<td><p>Sin resultados confirmados todavía</p></td>
+<td><p>Sin resultados confirmados todavía en esta campaña</p></td>
 </tr>
 <tr class="row-even"><td><p>PatchTST</p></td>
 <td><p>Base</p></td>
 <td class="text-right"><p>0</p></td>
 <td class="text-right"><p>0</p></td>
 <td class="text-right"><p>0</p></td>
-<td><p>Sin resultados confirmados todavía</p></td>
+<td><p>Sin resultados confirmados todavía en esta campaña</p></td>
 </tr>
 <tr class="row-odd"><td><p>iTransformer</p></td>
 <td><p>Base</p></td>
 <td class="text-right"><p>0</p></td>
 <td class="text-right"><p>—</p></td>
 <td class="text-right"><p>—</p></td>
-<td><p>Sin resultados confirmados todavía</p></td>
+<td><p>Sin resultados confirmados todavía en esta campaña</p></td>
 </tr>
 <tr class="row-even"><td><p>CNN-1D + LSTM + atención temporal</p></td>
 <td><p>Candidato 11</p></td>
@@ -542,43 +579,44 @@
 <td class="text-right"><p>0</p></td>
 <td class="text-right"><p>—</p></td>
 <td class="text-right"><p>—</p></td>
-<td><p>Sin resultados confirmados todavía</p></td>
+<td><p>Sin resultados confirmados todavía en esta campaña</p></td>
 </tr>
 <tr class="row-even"><td><p>LSTM32</p></td>
 <td><p>Control E1</p></td>
 <td class="text-right"><p>0</p></td>
 <td class="text-right"><p>—</p></td>
 <td class="text-right"><p>—</p></td>
-<td><p>Sin resultados confirmados todavía</p></td>
+<td><p>Sin resultados confirmados todavía en esta campaña</p></td>
 </tr>
 <tr class="row-odd"><td><p>GRU32</p></td>
 <td><p>Control E1</p></td>
 <td class="text-right"><p>0</p></td>
 <td class="text-right"><p>—</p></td>
 <td class="text-right"><p>—</p></td>
-<td><p>Sin resultados confirmados todavía</p></td>
+<td><p>Sin resultados confirmados todavía en esta campaña</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>Total confirmado</strong></p></td>
 <td><p></p></td>
-<td class="text-right"><p><strong>144</strong></p></td>
-<td class="text-right"><p><strong>762</strong></p></td>
-<td class="text-right"><p><strong>0</strong></p></td>
-<td><p><strong>906 resultados del primer origen</strong></p></td>
+<td class="text-right"><p><strong>180</strong></p></td>
+<td class="text-right"><p><strong>1.117</strong></p></td>
+<td class="text-right"><p><strong>200</strong></p></td>
+<td><p><strong>1.497 resultados del primer origen</strong></p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>Completar el HPO de ese primer origen permite aplicar la regla interna de selección de su configuración. No acredita que FCN-1D, ResNet-1D o Inception-1D hayan completado los once orígenes, ni permite compararlos como ganadores del benchmark final. El candidato 11 sigue siendo una hipótesis por contrastar; sus cero resultados no se sustituyen por los del piloto histórico.</p>
+<p>Los 200 resultados NAS-2 del autoencoder corresponden a cuarenta finalistas y cinco semillas. El máximo de 205 por modelo y origen admite una referencia adicional cuando no esté ya entre los finalistas; no implica que aquí falten cinco resultados. Completar una selección de desarrollo de un origen no permite declarar un ganador entre los catorce sistemas o del benchmark final. Los ganadores y sus métricas sólo se publican al resolver sus dominios y semillas correspondientes.</p>
 </section>
 <section id="dominio-pendiente-y-presupuesto">
 <h2>Dominio pendiente y presupuesto<a class="headerlink" href="#dominio-pendiente-y-presupuesto" title="Link to this heading">#</a></h2>
-<p>Se conservan los dominios registrados: <strong>5544 oportunidades HPO</strong>, <strong>66.000 NAS-1</strong> y <strong>hasta 13.530 NAS-2</strong>, para catorce sistemas y once orígenes. El máximo conjunto de <strong>85.074 intentos</strong> es un límite del espacio enumerado, no una cantidad de entrenamientos ya realizados ni una previsión temporal. Los diez orígenes restantes aún no aportan resultados al corte.</p>
-<p>La ejecución continúa con los límites originales de <strong>8 horas por sesión y 24 horas acumuladas</strong>. No se registró una ampliación. Esos límites pueden provocar una pausa con candidatos, semillas u orígenes pendientes; no garantizan terminar el espacio. La asignación conservadora de una sesión sin cierre confirmado es una regla contable: no se presenta como tiempo de entrenamiento observado ni como consumo facturado por Colab.</p>
-<p>El trabajo numérico confirmado usa CUDA, FP32 y política determinista, sin AMP ni TF32. La fuente y los datos de desarrollo permanecen fijados; los valores finales de mercado de 2025–2026 no se abren para esta selección. <code class="docutils literal notranslate"><span class="pre">final_R</span></code> sigue sin fijarse. Una pausa no habilita elegir entre candidatos o semillas cuya comparación registrada esté pendiente. Antes de los reajustes y la evaluación final todavía corresponde resolver la selección, dimensionar las recetas seleccionadas y fijar R mediante el protocolo de potencia.</p>
+<p>Se conservan los dominios registrados: <strong>5.544 oportunidades HPO</strong>, <strong>66.000 NAS-1</strong> y <strong>hasta 13.530 NAS-2</strong>, para catorce sistemas y once orígenes. El máximo conjunto de <strong>85.074 intentos</strong> es un límite del espacio enumerado; no es un número de entrenamientos realizados ni una previsión temporal. NAS-2 tiene cardinalidad condicional, y el plan no incluye los reajustes ni comparadores finales: no se presenta una fracción simple de ese máximo como porcentaje de terminación del proyecto. Los diez orígenes restantes aún no aportan resultados al corte.</p>
+<p>Los límites <strong>iniciales</strong> fueron <strong>8 horas por sesión y 24 horas acumuladas</strong>. El diario registra una ampliación global de <strong>24 a 36 horas</strong>, el <strong>10/11/2026 a las 11:52:56 de Bogotá (16:52:56 UTC)</strong>, con motivo <code class="docutils literal notranslate"><span class="pre">operator_requested_budget_extension</span></code>. La evidencia es el <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/3628e28dd9724939e0554c16c93917a784dcf5aa/campaigns/e2-cuda-selection-v1/events/000002303.json">evento <code class="docutils literal notranslate"><span class="pre">000002303</span></code></a>, SHA256 <code class="docutils literal notranslate"><span class="pre">899ab1bc8c440b0e90be19abc38e3f22785aaa87902b8b531752080ad444cf9a</span></code>. El límite de sesión permanece en <strong>8 horas</strong>. Documentar esta extensión ya registrada no modifica el presupuesto ni concede una ampliación adicional.</p>
+<p>Estos límites pueden provocar pausas con candidatos, semillas u orígenes pendientes; no prometen completar el espacio. La carga conservadora de sesiones sin cierre confirmado es una regla contable: no se presenta como duración GPU observada ni consumo facturado. El presupuesto de <code class="docutils literal notranslate"><span class="pre">status.json</span></code> es el del cierre antiguo; tampoco se usa para inferir el consumo observado de la sesión abierta.</p>
+<p>El trabajo confirmado usa CUDA, FP32 y política determinista, sin AMP ni TF32. La fuente y el desarrollo permanecen fijados; los valores finales de mercado de 2025–2026 no se abren para esta selección. <code class="docutils literal notranslate"><span class="pre">final_R</span></code> sigue sin fijarse. Antes de los reajustes y la evaluación final corresponde completar la selección, dimensionar las recetas y fijar R mediante el protocolo de potencia.</p>
 </section>
 <section id="recuperaciones-registradas-y-costes-desconocidos">
 <h2>Recuperaciones registradas y costes desconocidos<a class="headerlink" href="#recuperaciones-registradas-y-costes-desconocidos" title="Link to this heading">#</a></h2>
-<p>La campaña conserva dos reconciliaciones manuales de intentos que habían quedado iniciados sin un resultado recuperable. Cada una autorizó un nuevo intento físico del mismo trabajo lógico, con su configuración y semilla originales. Los nuevos resultados están confirmados y enlazados al diario; los intentos interrumpidos anteriores conservan <strong>desenlace, duración y pasos de optimización desconocidos</strong>.</p>
+<p>La campaña conserva dos reconciliaciones manuales de intentos que habían quedado iniciados sin resultado recuperable. Cada una autorizó un nuevo intento físico del mismo trabajo lógico, con configuración y semilla originales. Los nuevos resultados están confirmados; los intentos interrumpidos anteriores conservan <strong>desenlace, duración y pasos desconocidos</strong>.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Reconciliación</p></th>
@@ -601,13 +639,13 @@
 </tbody>
 </table>
 </div>
-<p>Un límite inferior conocido de cero pasos <strong>no equivale a observar un coste cero</strong>. Los tiempos del nuevo intento físico tampoco reconstruyen lo ocurrido en el anterior. La contabilidad y los recibos de ambas recuperaciones se mantienen separados; el éxito de la reconciliación no habilita reintentos automáticos de otros trabajos ni una extensión del presupuesto.</p>
-<p>Los <strong>29 perfiles de recursos y 872 pasos conocidos de §§33–34</strong> pertenecen a los pilotos históricos, y los <strong>123 casos de preparación de §35</strong> son validaciones de software. Ninguno de esos conteos se añade a los 906 resultados científicos de esta campaña.</p>
+<p>Un límite inferior conocido de cero pasos no equivale a observar coste cero. El tiempo del nuevo intento tampoco reconstruye el anterior. Los recibos se conservan separados y no habilitan reintentos automáticos de otros trabajos.</p>
+<p>Los <strong>29 perfiles y 872 pasos de §§33–34</strong>, los <strong>123 casos sintéticos de §35</strong> y los resultados de la ejecución CPU anterior tienen otros ámbitos. Ninguno se suma a los 1.497 resultados de esta campaña. Su estado tampoco describe la actividad del Colab actual.</p>
 </section>
 <section id="evidencia-reproducible-del-corte">
 <h2>Evidencia reproducible del corte<a class="headerlink" href="#evidencia-reproducible-del-corte" title="Link to this heading">#</a></h2>
-<p>El <a class="reference download internal" download="" href="../_downloads/6d25fbd34fcef1605d5b6491a4d02337/summary.json"><span class="xref download myst">resumen público en JSON</span></a> contiene los conteos por modelo y etapa, el último trabajo confirmado, los enlaces entre recuperaciones y resultados y las comprobaciones de integridad. Su SHA256 es:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>f5f1868524eceddc6cd23e7978ab9856d96e185080b4b65dc52f041b3fc4cac1
+<p>El <a class="reference download internal" download="" href="../_downloads/14b635398a59a89cd14b33b2edd954a0/summary_20261110_180019.json"><span class="xref download myst">resumen público JSON</span></a> incluye conteos por modelo/etapa, pasos conocidos, último resultado, inicio abierto, extensión del presupuesto, diferencia con el estado guardado y comprobaciones de integridad. Su SHA256 es:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>606e91de0ebe0e62a6e79fd8a2978dd8ab71c03a3013af6756b3e4793786335f
 </pre></div>
 </div>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -618,7 +656,13 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Estado de campaña utilizado</p></td>
-<td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/0cbd8f4a115d76d208668d199c6cda84f5d72583/campaigns/e2-cuda-selection-v1">Commit <code class="docutils literal notranslate"><span class="pre">0cbd8f4a115d76d208668d199c6cda84f5d72583</span></code></a></p></td>
+<td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/3628e28dd9724939e0554c16c93917a784dcf5aa/campaigns/e2-cuda-selection-v1">Commit <code class="docutils literal notranslate"><span class="pre">3628e28dd9724939e0554c16c93917a784dcf5aa</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Último resultado confirmado</p></td>
+<td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/3628e28dd9724939e0554c16c93917a784dcf5aa/campaigns/e2-cuda-selection-v1/events/000003013.json">Evento <code class="docutils literal notranslate"><span class="pre">000003013</span></code></a>, 18:00:17 de Bogotá</p></td>
+</tr>
+<tr class="row-even"><td><p>Inicio posterior</p></td>
+<td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/3628e28dd9724939e0554c16c93917a784dcf5aa/campaigns/e2-cuda-selection-v1/events/000003014.json">Evento <code class="docutils literal notranslate"><span class="pre">000003014</span></code></a>, 18:00:19 de Bogotá</p></td>
 </tr>
 <tr class="row-odd"><td><p>Código científico A3</p></td>
 <td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/564ba4762f84a800b02fa4c734f5752a169f5223">Commit <code class="docutils literal notranslate"><span class="pre">564ba4762f84a800b02fa4c734f5752a169f5223</span></code></a></p></td>
@@ -632,7 +676,7 @@
 </tbody>
 </table>
 </div>
-<p>La lectura del corte verificó el esquema público de los registros, el inventario Merkle, los enlaces del diario mediante el código A3 y los enlaces de las dos recuperaciones. También comprobó los <strong>61 hashes de implementación científica</strong>. La actualización del libro no ejecutó ajustes GPU, no abrió CSV ni escribió en la rama de campaña; documenta los resultados que Colab ya había confirmado.</p>
+<p>La lectura validó los esquemas de registros, inventario Merkle, enlaces del diario y de las dos recuperaciones, los <strong>61 hashes científicos</strong> y la conciliación de todos los conteos. La actualización del libro no ejecutó ajustes GPU, no abrió CSV ni escribió en la rama de campaña. El <a class="reference download internal" download="" href="../_downloads/6d25fbd34fcef1605d5b6491a4d02337/summary.json"><span class="xref download myst">corte previo de 906 resultados</span></a> se conserva identificado; no es el estado más reciente de esta página.</p>
 </section>
 </section>
 
@@ -703,6 +747,7 @@
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-cuenta-este-avance">Qué cuenta este avance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-guardado-y-actividad-de-la-sesion">Estado guardado y actividad de la sesión</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cobertura-de-los-catorce-sistemas">Cobertura de los catorce sistemas</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dominio-pendiente-y-presupuesto">Dominio pendiente y presupuesto</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recuperaciones-registradas-y-costes-desconocidos">Recuperaciones registradas y costes desconocidos</a></li>
