@@ -2,7 +2,7 @@
 
 **Resultado informado: quince perfiles completados en la Tesla T4 de Colab**, con cero fallos, cero trabajos sin admitir y **680 pasos de optimización conocidos**. Son las catorce referencias en la cohorte grande y un perfil adicional del TimesNet máximo. El usuario ejecutó el notebook y aportó el informe; Codex comprobó su correspondencia con el registro, las fases y los contadores. Este informe amplía el [piloto pequeño de §33](33_piloto_gpu.md).
 
-El resultado respalda la viabilidad de los perfiles probados con su receta fija. La calidad predictiva, la búsqueda NAS/HPO, las horas de la campaña completa y el R final siguen pendientes.
+El resultado respalda la viabilidad de los perfiles probados con su receta fija. El avance posterior de la búsqueda NAS/HPO se documenta en [§36](36_avance_campana_cuda.md). La comparación predictiva final, las horas de la campaña completa y el R final siguen pendientes.
 
 ## Procedencia y configuración conservada
 
