@@ -1,0 +1,44 @@
+{
+  "version": "e2-manual-recovery-authorization-v1",
+  "status": "registered_before_recovery_execution",
+  "registered_at_utc": "2026-11-10T11:09:03.388597+00:00",
+  "registered_at_bogota": "2026-11-10T06:09:03.388925-05:00",
+  "repository": "jassan-bit/DeepLearning_202630",
+  "campaign_branch": "campaigns/e2-cuda-selection-v1",
+  "campaign_prefix": "campaigns/e2-cuda-selection-v1",
+  "sealed_campaign_head": "5648b8305174a827d1ffa0a90ce58dab1ad5b71c",
+  "plan_sha256": "4eae2d2ff9ef6f83a2f9eb0dc5ba647208d695e1665a8e522d812fed67893bda",
+  "scientific_source_commit": "564ba4762f84a800b02fa4c734f5752a169f5223",
+  "scientific_registration_sha256": "78c3c5b8ca042a347aaa80d642f3affd8b5911e8697d8747a2de915d1c3194a9",
+  "previous_completed_jobs": 494,
+  "target": {
+    "job_id": "3775f65fd049666c641c1131e94726e12e98143f91a755075c07ac6761dd668b",
+    "job_payload_sha256": "0eb5d72e23cb399edb41275467b3ae05c6cc856999f192c4cb254d25de49bf34",
+    "started_event_sha256": "5afba2cd98646e734799c0ae7ef3bdbc86d4688eda63648354d8a2c757ead1f5",
+    "sequence": 989,
+    "old_session_id": "9bc856c8bdb34536ad8f01de065e2261",
+    "reservation_seconds": 5700
+  },
+  "original_unknown_attempt": {
+    "outcome": "unknown",
+    "elapsed_seconds": null,
+    "optimizer_steps": null,
+    "optimizer_steps_known_lower_bound": 0,
+    "partial_optimizer_update_may_have_occurred": true
+  },
+  "decision": "manual_retry_same_sealed_logical_job_once_after_colab_local_cache_absent",
+  "evidence": "User ran the read-only Colab diagnostic and reported campaign cache absent and zero local result files.",
+  "limits": {
+    "session_seconds": 28800,
+    "campaign_seconds": 86400,
+    "old_session_conservative_allocation_seconds": 28800,
+    "budget_extension_authorized": false
+  },
+  "ledger_interpretation": "Manual logical-job reconciliation using a newly observed physical retry. Original physical outcome, duration and optimizer steps remain unknown. The result session/start fields bind the original sealed logical job; the job_finished event identifies the new physical recovery session. External immutable receipts record the new execution, the conservative original allocation, and any prior-observation lower bounds separately from current repair time.",
+  "receipt_branch": "recoveries/e2-cuda-selection-v1/20261110",
+  "implementation_sha256": {
+    "scripts/e2_manual_reconciliation.py": "ce41736c5134c6f7ef1a8af8274ce1946bd87bf01c6f71d6051e2313f5a7fa50",
+    "scripts/e2_recovery_receipts.py": "b7838a9bb442ed3341ef0d99783f7a00a8bfd2e71632c4887428a472cde58761",
+    "scripts/run_e2_cuda_recovery.py": "0102f25cef194cb59e635ae75eab1750bec9f8bde9921c87eddb40a00e12d461"
+  }
+}
