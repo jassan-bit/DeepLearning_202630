@@ -1,0 +1,44 @@
+{
+  "version": "e2-manual-recovery-authorization-v2",
+  "status": "registered_before_recovery_execution",
+  "registered_at_utc": "2026-11-10T12:27:36.894776+00:00",
+  "registered_at_bogota": "2026-11-10T07:27:36.894776-05:00",
+  "repository": "jassan-bit/DeepLearning_202630",
+  "campaign_branch": "campaigns/e2-cuda-selection-v1",
+  "campaign_prefix": "campaigns/e2-cuda-selection-v1",
+  "sealed_campaign_head": "5122af43c9dab0b9a20e79622a5047bacd316db6",
+  "plan_sha256": "4eae2d2ff9ef6f83a2f9eb0dc5ba647208d695e1665a8e522d812fed67893bda",
+  "scientific_source_commit": "564ba4762f84a800b02fa4c734f5752a169f5223",
+  "scientific_registration_sha256": "78c3c5b8ca042a347aaa80d642f3affd8b5911e8697d8747a2de915d1c3194a9",
+  "previous_completed_jobs": 501,
+  "target": {
+    "job_id": "e98bca476404aa9d15236e51623ab2ee738c0cce6d43cc85513c07b8fa45fd5d",
+    "job_payload_sha256": "a75359a62eca2f1e142857561657667fd9d5dd23b76d69c6749fb2ccc774cbb9",
+    "started_event_sha256": "4b91d270d4499930736ca53fe0033f5826ab628f90de602cc50312acfcbc4f20",
+    "sequence": 1009,
+    "old_session_id": "5b86b68a8fc84257b644cf8c95636d7e",
+    "reservation_seconds": 5700
+  },
+  "original_unknown_attempt": {
+    "outcome": "unknown",
+    "elapsed_seconds": null,
+    "optimizer_steps": null,
+    "optimizer_steps_known_lower_bound": 0,
+    "partial_optimizer_update_may_have_occurred": true
+  },
+  "decision": "manual_retry_same_sealed_logical_job_once_after_confirmed_executor_and_outcome_absent",
+  "evidence": "User read-only Colab diagnostic reported zero active search processes, 501 local results and zero readable temporary worker receipts. R1 prior recovery completed receipt acd3040e71ac4745db14fd61943a63e33e3105cb9c72f8a2172e92ddaeeede22 is preserved; this decision targets only the later unresolved job.",
+  "limits": {
+    "session_seconds": 28800,
+    "campaign_seconds": 86400,
+    "old_session_conservative_allocation_seconds": 28709.822159437,
+    "budget_extension_authorized": false
+  },
+  "ledger_interpretation": "Manual logical-job reconciliation using a newly observed physical retry of the later unresolved job. All 501 confirmed results, all earlier events and R1 external receipts remain unchanged. Earlier interrupted physical outcomes and this lost physical outcome remain unknown. The result session/start fields bind this original sealed logical job; job_finished identifies the new physical recovery session. The old session is conservatively allocated exactly its sealed fractional duration, not a newly invented eight hours, and the global 24-hour limit is unchanged.",
+  "receipt_branch": "recoveries/e2-cuda-selection-v1/20261110-r2",
+  "implementation_sha256": {
+    "scripts/e2_manual_reconciliation_v2.py": "f2b35ac4f0ff6a8e461852b5e0b3f0764242d273eec95dd631b7bd108c7677fc",
+    "scripts/e2_recovery_receipts_v2.py": "0a2538988a4b36669d9b01a4fe8c8c3260b94d26dd7e5a78872a79aa0f1a8e02",
+    "scripts/run_e2_cuda_recovery_v2.py": "9b177b473c79da1d6202936836fb5c101a345c5829556a0382a7468ada9ffcfe"
+  }
+}
