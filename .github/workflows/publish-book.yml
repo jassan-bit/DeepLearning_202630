@@ -112,6 +112,10 @@ jobs:
           python -m unittest discover -s tests -p 'test_e2_compute_evidence.py' -v
           python -m unittest discover -s tests -p 'test_e2_public_evidence.py' -v
           python -m unittest discover -s tests -p 'test_e2_cuda_models.py' -v
+          python -m unittest discover -s tests -p 'test_e2_cuda_bindings.py' -v
+          python -m unittest discover -s tests -p 'test_e2_search_session.py' -v
+          python -m unittest discover -s tests -p 'test_e2_github_campaign.py' -v
+          python -m unittest discover -s tests -p 'test_e2_cuda_search.py' -v
           python -m unittest discover -s tests -p 'test_e2_gpu*.py' -v
           python -m unittest discover -s tests -p 'test_fetch_e2_development_sources.py' -v
   publish:
