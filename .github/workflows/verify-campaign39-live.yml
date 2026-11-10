@@ -1,0 +1,84 @@
+name: Verificar avance CUDA y tres libros publicados
+on:
+  push:
+    branches: [verify-campaign39-live-20261110]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  verify-live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ee57fbc349e7cc1f8f1c5b8ba5bb91660079d086
+          persist-credentials: false
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: books-site-ee57fbc349e7cc1f8f1c5b8ba5bb91660079d086-1
+          path: _build/site/
+          github-token: ${{ github.token }}
+          run-id: 42841787785
+      - name: Verificar el manifiesto y las cuatro entradas públicas
+        run: |
+          set -euo pipefail
+          python scripts/safe_publish_books.py verify-live --source-commit ee57fbc349e7cc1f8f1c5b8ba5bb91660079d086 \
+            --url https://jassan-bit.github.io/DeepLearning_202630/ \
+            --attempts 24 --interval 30 | tee live-verification.json
+      - name: Verificar capítulo 36 y resumen congelado por SHA256
+        run: |
+          python - <<'PY'
+          import hashlib,json,pathlib,urllib.request
+          source="ee57fbc349e7cc1f8f1c5b8ba5bb91660079d086"
+          base="https://jassan-bit.github.io/DeepLearning_202630/"
+          site=pathlib.Path("_build/site")
+          chapter="entregable2/sections/36_avance_campana_cuda.html"
+          summary_path="entregable2/_static/cuda_campaign_progress_20261110/summary.json"
+          summary_sha="f5f1868524eceddc6cd23e7978ab9856d96e185080b4b65dc52f041b3fc4cac1"
+          manifest=json.loads((site/"books_manifest.json").read_text())
+          assert manifest["source_commit"]==source
+          verified={}
+          for path in (chapter,summary_path):
+              expected=(site/path).read_bytes()
+              digest=hashlib.sha256(expected).hexdigest()
+              if path==summary_path:
+                  assert digest==summary_sha,"Unexpected artifact summary"
+              request=urllib.request.Request(base+path+"?source_check="+source,
+                  headers={"Cache-Control":"no-cache","Accept-Encoding":"identity",
+                           "User-Agent":"book-publication-verifier"})
+              with urllib.request.urlopen(request,timeout=30) as response:
+                  actual=response.read(10*1024*1024+1)
+              assert len(actual)<=10*1024*1024,"Oversized public response"
+              assert hashlib.sha256(actual).hexdigest()==digest,"Public file differs: "+path
+              verified[path]=digest
+          summary=json.loads((site/summary_path).read_bytes())
+          assert summary["snapshot_kind"]=="frozen_partial_progress_not_live_dashboard"
+          assert summary["plan_sha256"]=="4eae2d2ff9ef6f83a2f9eb0dc5ba647208d695e1665a8e522d812fed67893bda"
+          assert summary["scientific_source_commit"]=="564ba4762f84a800b02fa4c734f5752a169f5223"
+          assert summary["registration_sha256"]=="78c3c5b8ca042a347aaa80d642f3affd8b5911e8697d8747a2de915d1c3194a9"
+          counts=summary["confirmed_logical_results"]
+          assert (counts["total"],counts["completed"],counts["failed"])==(906,906,0)
+          stages=counts["by_stage"]
+          assert set(stages)<={"hpo","nas1","nas2"}
+          assert (stages.get("hpo",0),stages.get("nas1",0),stages.get("nas2",0))==(144,762,0)
+          assert sum(stages.values())==906
+          assert summary["interpretation"]["final_R"] is None
+          assert summary["interpretation"]["final_market_values_read"] is False
+          assert summary["interpretation"]["benchmark_final_complete"] is False
+          assert summary["validation"]["implementation_hashes_verified"]==61
+          assert summary["initial_limits"]=={"session_hours":8,"campaign_hours":24,"budget_extension_recorded":False}
+          report=json.loads(pathlib.Path("live-verification.json").read_text())
+          report.update({"verified_additional_sha256":verified,"confirmed_logical_results":906,
+              "confirmed_stage_counts":{"hpo":144,"nas1":762,"nas2":0},
+              "progress_snapshot_commit":summary["snapshot_commit"],"final_R":None,
+              "final_market_values_read":False,"new_GPU_fits":0,"campaign_remote_writes":0})
+          pathlib.Path("live-verification.json").write_text(json.dumps(report,sort_keys=True,indent=2)+"\n")
+          print(json.dumps(report,sort_keys=True,indent=2))
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: campaign39-live-verification
+          path: live-verification.json
+          if-no-files-found: ignore
