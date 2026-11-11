@@ -11,7 +11,7 @@ import unittest
 from unittest.mock import patch
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"scripts"))
-from e2_github_campaign import CampaignConflict,CampaignSyncError
+from e2_github_campaign import CampaignConflict,CampaignRateLimited,CampaignSyncError
 from e2_github_git_transport import GitCampaignMirror,GitDataTransport
 from e2_search_session import SearchSession,UnresolvedAttempt
 
@@ -47,6 +47,25 @@ def outcome(index):
 
 
 class GitTransportTests(unittest.TestCase):
+    def test_commit_hash_containing_429_is_not_an_http_rate_limit(self):
+        transport=object.__new__(GitDataTransport)
+        transport._known_head="a"*40
+        transport._ref="refs/heads/campaigns/test35"
+        result=subprocess.CompletedProcess([],1,b"! [rejected] abc429def -> campaigns/test35 (fetch first)",b"")
+        with patch.object(transport,"_object",return_value=b"parent "+b"a"*40+b"\n\nmessage"), \
+             patch.object(transport,"_run",return_value=result):
+            self.assertEqual(transport._push("b"*40,create=False)[0],409)
+
+    def test_explicit_http_429_still_pauses_transport(self):
+        transport=object.__new__(GitDataTransport)
+        transport._known_head="a"*40
+        transport._ref="refs/heads/campaigns/test35"
+        result=subprocess.CompletedProcess([],1,b"",b"fatal: The requested URL returned error: 429")
+        with patch.object(transport,"_object",return_value=b"parent "+b"a"*40+b"\n\nmessage"), \
+             patch.object(transport,"_run",return_value=result):
+            with self.assertRaises(CampaignRateLimited):
+                transport._push("b"*40,create=False)
+
     def test_real_git_three_job_roundtrip_and_resume_without_repeated_callbacks(self):
         with tempfile.TemporaryDirectory() as tmp:
             remote=remote_repository(tmp);first=Path(tmp)/"first";second=Path(tmp)/"second";calls=[]

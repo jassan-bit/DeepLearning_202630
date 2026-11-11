@@ -172,7 +172,11 @@ class GitDataTransport:
         result=self._run(["push","--porcelain","origin",sha+":"+self._ref],timeout=60,allow_failure=True)
         if result.returncode:
             error=(result.stdout+result.stderr).lower()
-            if b"rate limit" in error or b"too many requests" in error or b"429" in error:raise CampaignRateLimited()
+            # A hexadecimal commit ID can contain 429. Only an HTTP status
+            # diagnostic, not an arbitrary substring, establishes that code.
+            if (b"rate limit" in error or b"too many requests" in error
+                    or re.search(rb"(?:http(?:/\d(?:\.\d)?)?\s+|returned error:\s*)429\b", error)):
+                raise CampaignRateLimited()
             if any(term in error for term in (b"[rejected]",b"non-fast-forward",b"fetch first",b"stale info")):
                 return 409,{},{}
             raise CampaignSyncError("git_push_unconfirmed")
