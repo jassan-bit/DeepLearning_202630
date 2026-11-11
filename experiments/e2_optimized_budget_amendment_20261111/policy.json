@@ -1,0 +1,28 @@
+{
+  "version": "e2-optimized-explicit-budget-amendment-policy-v1",
+  "date": "2026-11-11",
+  "status": "available_not_authorized_or_executed",
+  "authorization": "Only explicit total-hours input entered by the user in Colab, plus the confirmed-by-user CLI flag, permits a new append-only event. Publishing code does not authorize an increase.",
+  "campaign": "campaigns/e2-cuda-crop-11-v2",
+  "existing_controller_commit": "8e3ab6cfb1b3fc3c804f0c914fa5d92b661058d9",
+  "initial_combined_limit_hours": 48,
+  "requested_combined_limit_hours": null,
+  "formula": "new optimized effective cap = user requested combined total seconds minus immutable legacy spent seconds",
+  "preserved": [
+    "campaign.json bytes and plan hash",
+    "legacy cache and spent history",
+    "existing results and completed attempts",
+    "models, eleven origins, seeds, stage epoch and time caps",
+    "registered mathematical implementation"
+  ],
+  "guardrails": [
+    "no active/unclosed session",
+    "no unresolved attempt",
+    "closed budget-pause status required",
+    "no reductions",
+    "equal requested current total is idempotent",
+    "non-force Git acknowledgement before any resume",
+    "no new scientific fit or session start in metadata helper"
+  ],
+  "disclosure": "Operational budget amendment only; it is not a guarantee of completing the scientific benchmark or of Colab GPU availability."
+}
