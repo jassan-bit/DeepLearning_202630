@@ -6,7 +6,7 @@
 |---|---|---|
 | 10/11/2026, 02:24:57 UTC | [Registro CUDA de selección](https://github.com/jassan-bit/DeepLearning_202630/blob/181b9e58032c0011e46dcbe334400568fb82c258/experiments/e2_cuda_search_20261109/registration.json) | 14 redes, once orígenes y dominios HPO/NAS, registrado antes de sus ajustes CUDA; no incluye comparadores/reajustes finales ni R |
 | 11/11/2026 | [Optimización y corrección JSON](https://github.com/jassan-bit/DeepLearning_202630/blob/8e3ab6cfb1b3fc3c804f0c914fa5d92b661058d9/experiments/e2_implementation_optimization_11_origins_20261111/registration_json_metadata_fix.json) | Preserva dominio y saldo; corrige representación del perfil y registra implementación |
-| Corte 11/11/2026, 13:31:53 Bogotá | [Corte histórico conservado en §41](41_avance_optimizacion_11_origenes.md#e2-cuda-cut-20261111-133153) | Evidencia de selección parcial; no benchmark completo |
+| Corte 11/11/2026, 13:31:53 Bogotá | {ref}`Corte histórico conservado en §41 <e2-cuda-cut-20261111-133153>` | Evidencia de selección parcial; no benchmark completo |
 | Pendiente | Enmienda de potencia/R, comparadores, soportes y familias finales | Fechar antes de futuras etapas afectadas y declarar resultados ya conocidos; no será preregistro retroactivo de la selección |
 
 Se conserva RMSE, δ heredado, D7×5 y calendario original. Esta aclaración no modifica registros, semillas ni presupuesto. [Auditoría y trabajo paralelo (§42)](42_auditoria_y_trabajo_paralelo.md).
