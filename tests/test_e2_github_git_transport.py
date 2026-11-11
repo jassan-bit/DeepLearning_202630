@@ -12,7 +12,7 @@ from unittest.mock import patch
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"scripts"))
 from e2_github_campaign import CampaignConflict,CampaignRateLimited,CampaignSyncError
-from e2_github_git_transport import GitCampaignMirror,GitDataTransport
+from e2_github_git_transport_v2 import GitCampaignMirror,GitDataTransport
 from e2_search_session import SearchSession,UnresolvedAttempt
 
 PLAN={"version":"e2-cuda-search-plan-v1","source_commit":"a"*40,"protocol_sha256":"b"*64,
