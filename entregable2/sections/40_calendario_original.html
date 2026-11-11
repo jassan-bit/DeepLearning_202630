@@ -65,7 +65,7 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="Referencias de contexto y revisión E2" href="referencias.html" />
+    <link rel="next" title="41. Ejecución optimizada: avance verificable de once orígenes" href="41_avance_optimizacion_11_origenes.html" />
     <link rel="prev" title="39. Optimizar tiempo sin recortar las exigencias de E2" href="39_optimizacion_tiempo.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
@@ -247,6 +247,7 @@
 <li class="toctree-l1"><a class="reference internal" href="38_cumplimiento_guia.html">38. Exigencias de la guía, evidencia y pendientes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="39_optimizacion_tiempo.html">39. Optimizar tiempo sin recortar las exigencias de E2</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">40. Calendario original y optimizaciones de implementación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="41_avance_optimizacion_11_origenes.html">41. Ejecución optimizada: avance verificable de once orígenes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
 </ul>
 
@@ -445,9 +446,10 @@
 </section>
 <section id="uso-y-estado">
 <h2>Uso y estado<a class="headerlink" href="#uso-y-estado" title="Link to this heading">#</a></h2>
+<p><strong>Ejecución documentada:</strong> el <a class="reference internal" href="41_avance_optimizacion_11_origenes.html"><span class="std std-doc">corte del 11/11/2026, 13:31:53 de Bogotá (§41)</span></a> confirma 234 ajustes HPO nuevos completados en la T4, sin fallos en esos registros. La preparación ya dio paso a entrenamiento de mercado; sigue siendo selección parcial, sin benchmark final ni R cerrado.</p>
 <p>El notebook vigente es <a class="reference external" href="https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/main/notebooks/entregable2_optimizacion_11_origenes.ipynb">entregable2_optimizacion_11_origenes.ipynb</a>, enlazado desde la portada. Debe comprobarse el cierre del controlador anterior antes de iniciarlo; nunca deben correr dos simultáneamente. El código publicado no modifica la sesión privada de Colab. Las versiones de tres orígenes se conservan como antecedentes y no se recomiendan para nuevas ejecuciones.</p>
-<p>Las pruebas CPU cubren equivalencia funcional/gradientes, modelos con dropout y AdamW, reutilización sin callbacks nuevos, cobertura de los once orígenes, esquema del diario y conservación del presupuesto. La medición CUDA se realiza en la T4 del usuario antes de nuevos ajustes. No se afirma cumplimiento integral de E2 ni se promete una calificación por publicar esta decisión.</p>
-<p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e2_implementation_optimization_11_origins_20261111/registration.json">Registro v2</a> · <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/run_e2_optimized_selection_v2.py">Ejecutor v2</a> · <a class="reference internal" href="38_cumplimiento_guia.html"><span class="std std-doc">Matriz de requisitos pendientes</span></a>.</p>
+<p>Las pruebas CPU cubren equivalencia funcional/gradientes, modelos con dropout y AdamW, reutilización sin callbacks nuevos, cobertura de los once orígenes, esquema del diario y conservación del presupuesto. La medición CUDA sintética de esta admisión se realizó en la T4 antes de los nuevos ajustes y figura en el plan sellado de la campaña. Sólo mide los casos del bloque TimesNet declarados; no demuestra una aceleración global del entrenamiento. No se afirma cumplimiento integral de E2 ni se promete una calificación por publicar esta decisión.</p>
+<p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/8e3ab6cfb1b3fc3c804f0c914fa5d92b661058d9/experiments/e2_implementation_optimization_11_origins_20261111/registration_json_metadata_fix.json">Registro vigente con corrección JSON</a> · <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/1ca723348f3fd64ad0e48c899b8fa3f0f09ac5c3/experiments/e2_implementation_optimization_11_origins_20261111/registration.json">Registro v2 anterior</a> · <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/run_e2_optimized_selection_v2.py">Ejecutor v2</a> · <a class="reference internal" href="38_cumplimiento_guia.html"><span class="std std-doc">Matriz de requisitos pendientes</span></a>.</p>
 </section>
 </section>
 
@@ -491,11 +493,11 @@
       </div>
     </a>
     <a class="right-next"
-       href="referencias.html"
+       href="41_avance_optimizacion_11_origenes.html"
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">Referencias de contexto y revisión E2</p>
+        <p class="prev-next-title">41. Ejecución optimizada: avance verificable de once orígenes</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

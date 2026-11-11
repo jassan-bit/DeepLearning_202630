@@ -1,6 +1,6 @@
 # 6. Benchmark vigente: diez modelos y un candidato adicional
 
-**Vigencia al 11/11/2026:** Hay selección CUDA parcial documentada en §36; el benchmark final, R y el ranking siguen pendientes. Los estados «sin HPO» de abajo pertenecen al corte del 08/11/2026, no al estado actual. [Matriz de exigencias y evidencia](38_cumplimiento_guia.md) · [Enmienda de calendario](37_ajuste_guia.md).
+**Vigencia al 11/11/2026:** Hay selección CUDA parcial documentada en [§36](36_avance_campana_cuda.md) y un corte vigente con 234 ajustes HPO nuevos completados en [§41](41_avance_optimizacion_11_origenes.md); el benchmark final, R y el ranking siguen pendientes. Los estados «sin HPO» de abajo pertenecen al corte del 08/11/2026, no al estado actual. [Matriz de exigencias y evidencia](38_cumplimiento_guia.md) · [Calendario vigente de once orígenes](40_calendario_original.md).
 
 
 **Actualización de planificación:** [§19: auditoría real de desarrollo y plan propuesto](19_plan_auditoria.md). Sin entrenamiento de mercado, HPO ni preregistro nuevo.
