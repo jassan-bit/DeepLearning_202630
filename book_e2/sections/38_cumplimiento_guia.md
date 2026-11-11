@@ -1,0 +1,92 @@
+# 38. Exigencias de la guía, evidencia y pendientes
+
+**Corte documental: 11/11/2026.** Fuente: *Entregable2DeepLearningProject.pdf*, 65 páginas, aportado nuevamente por el usuario. SHA256 del PDF:
+
+```text
+93499dcfda6a36d9621524a81821470017ba114ca6b08241a35de5a54f74a654
+```
+
+Las referencias usan páginas impresas. Esta actualización organiza el informe y no ejecuta mercado, no inicia Colab y no certifica cumplimiento integral.
+
+## Qué exige el PDF y qué decidió el proyecto
+
+| Elemento | Exigencia de la guía | Decisión propia vigente |
+|---|---|---|
+| Catálogo | Top 10 con ≥4 familias y referencias adicionales | Diez modelos base, candidato 11, tres controles E1 y cuatro comparadores |
+| Validación temporal | Origen móvil, embargo, ajuste sin futuro y esquema común | Tres selecciones: enero/octubre de 2024 y enero de 2025; menor cobertura que el plan de once |
+| Aplicación de NAS | Sólo diseños no definidos por su fuente; cuerpo publicado definido exento | Seis variantes propias con NAS y cinco cuerpos publicados fijos; exenciones justificadas por receta |
+| NAS fase 1 | Todas las 1.000 arquitecturas, una semilla, presupuesto reducido | Máximo 50 épocas por fase y parada temprana |
+| NAS fase 2 | k≥10 según ruido, referencia y ≥5 semillas diferentes de fase 1 | k=40, cinco semillas y máximo 200 épocas por fase |
+| HPO | Espacios/ejes aplicables justificados y mismo esfuerzo | 18 configuraciones y dos semillas por red/origen; ejes de §27 |
+| Repeticiones finales | ≥5 ejecuciones; ≥6 cuando se usan pruebas de rangos y dimensionamiento por potencia | R todavía sin cerrar; los escenarios de coste no fijan R |
+| Coste | Estimar antes de buscar; declarar y justificar desviaciones | Techo de 23.202 intentos de búsqueda neuronal; horas totales y coste monetario no acreditados |
+
+**La enmienda de tres orígenes no es una aprobación del profesor ni una cifra exigida por la guía.** Es una reducción de recursos que se declara con su pérdida de resolución temporal. La conformidad depende también de la ejecución, auditoría, inferencia y entrega completas. El plan sellado de once orígenes se conserva como identidad de los trabajos originales; el programador limita explícitamente cuáles recorre y el informe marca cobertura parcial. [Alcance exacto de la enmienda](37_ajuste_guia.md).
+
+## Diversidad del Top 10
+
+La siguiente taxonomía funcional es una decisión explícita del proyecto basada en los cuerpos de [§26](26_registro_recetas.md). Una familia no se multiplica por cambiar el nombre de un modelo; las adaptaciones a D7 se declaran por separado.
+
+| Familia funcional | Modelos del Top 10 | Mecanismo que justifica la asignación |
+|---|---|---|
+| Convolucional | FCN-1D, ResNet-1D, Inception-1D, TimesNet | Convoluciones temporales; en TimesNet, transformaciones por periodicidad y convoluciones 2D en TimesBlock |
+| Recurrente con representación autoencoder | LSTM-autoencoder con predictor | Codificadores/decodificadores LSTM y transferencia a predictor |
+| Mezcla mediante MLP / encoder-decoder denso | TSMixer, TiDE, TimeMixer | Mezcla temporal/de variables, proyecciones densas y, en TimeMixer, descomposición multiescala |
+| Atención Transformer | PatchTST, iTransformer | Atención sobre parches o tokens de variables |
+
+Así se documentan **cuatro familias dentro de los diez modelos**, sin contar el híbrido candidato ni los controles E1. Esta clasificación no cierra la tabla de puntajes, la selección bibliográfica, las fichas/diagramas ni la evaluación experimental exigidas por la guía; G05 permanece parcial.
+
+## Matriz de evidencia
+
+**Parcial** significa que existe evidencia reutilizable, pero quedan condiciones por verificar. **Diseño documentado** no significa ejecución completada. **Pendiente** no se rellena con cifras de E1, ETTh1, artículos o datos sintéticos. Los estados se apoyan en lo documentado en los capítulos enlazados; no equivalen a una nueva auditoría de todos los artefactos.
+
+| ID | Guía | Exigencia | Estado del catálogo vigente | Evidencia y trabajo para cerrar |
+|---|---|---|---|---|
+| G01 | §1, pp. 1–2 | Problema, RQ, hipótesis, primaria, δ y criterio de decisión | **Parcial** | [Evidencia documentada](01_punto_partida.md). Cerrar correspondencia RQ–contraste–unidad–criterio en el preregistro vigente; declarar exposición al test. |
+| G02 | §2, pp. 3–9 | EDA que determina decisiones y su trazabilidad | **Parcial** | [Evidencia documentada](02_eda.md). Vincular cada transformación y clasificación F2a con evidencia del EDA; no trasladar diagnósticos de otro modelo. |
+| G03 | §3.1, pp. 9–10 | Búsqueda reproducible, PRISMA, extracción y calidad | **Parcial** | [Evidencia documentada](03_literatura.md). Cerrar elegibilidad, duplicados y razones; conservar cadenas, fechas y conteos nativos. arXiv es complementario. |
+| G04 | §3.1, p. 10 | Al menos tres cadenas transversales y tabla de mecanismos transferibles | **Pendiente de cierre** | [Evidencia documentada](03_literatura.md). Acreditar consultas ejecutadas y fuentes primarias; una cadena propuesta no cuenta como búsqueda. |
+| G05 | §3.2–3.3, pp. 11–12 | Top 10, ≥4 familias, puntajes completos y ficha/diagrama por modelo | **Parcial** | [Evidencia documentada](15_revision_modelos.md). Taxonomía de cuatro familias documentada en §38; completar puntajes reproducibles, excluidos y diagramas. No contar el candidato 11 para reparar la diversidad del Top 10. |
+| G06 | §§3.2, 7.4 F2a, pp. 11, 30–31 | Tres bases E1 y baselines naive, estacional y ARIMA o ETS | **Implementación parcial** | [Evidencia documentada](07_ruta_temporal.md). Ejecutar comparadores con soporte común y ajuste justo. Los resultados E1 conocidos no sustituyen reajustes de E2. |
+| G07 | §§4.1, 7.4 F2a, pp. 12–13, 30–31 | Cronología, origen móvil, embargo y disponibilidad de covariables | **Diseño documentado** | [Evidencia documentada](37_ajuste_guia.md). Aplicar los tres orígenes a todos los modelos y reportar por origen. Verificar activación del programador; el calendario no es un mandato literal del PDF. |
+| G08 | §10, pp. 44–46 | Data Card, contrato y auditoría formal de fuga | **Parcial** | [Evidencia documentada](10_auditoria_datos.md). Completar evidencias aplicables de duplicados, atributos sospechosos, controles negativos y auditoría adversarial; no declarar auditoría completa por verificar hashes. |
+| G09 | §§4.3, 9, pp. 14, 42–43 | Preregistro real, repeticiones y potencia ≥0,80 o limitación/MDE | **Pendiente de cierre** | [Evidencia documentada](13_agregacion_estadistica.md). Fijar familias, bloques, δg, R y criterio antes de nuevos contrastes. Piloto ≥5 semillas en 2–3 modelos. No heredar R ni afirmar potencia por alcanzar un techo. |
+| G10 | §11, pp. 46–48 | Mismo esfuerzo de HPO y registro de tiempo, fallos y recetas | **Implementación y selección parciales** | [Evidencia documentada](11_hpo_equidad.md). Completar búsqueda y selección de todos los modelos; justificar rangos/ejes aplicables y mantener recibos de fallos sin sustituciones silenciosas. |
+| G11 | §14, pp. 52–58 | NAS condicional: 1.000 diseños, dos fases, finalistas y selección sólo con validación | **Selección parcial** | [Evidencia documentada](14_arquitecturas.md). Completar dominios NAS de variantes propias, justificar exenciones, reportar todo el espacio, efectos, parsimonia y riesgo del ganador. k≥10 y ≥5 semillas de confirmación; k40 es decisión propia. |
+| G12 | §5, pp. 16–17 | Réplica parcial, limitación cuantificada y piloto en ≥3 del Top 10 | **Evidencia externa parcial** | [Evidencia documentada](05_paper_guia.md). Conservar réplica TimeMixer/ETTh1; documentar métrica, magnitud e IC de la limitación y sus límites de transferencia a Bitcoin. No convertir el híbrido en solución validada. |
+| G13 | §6 y Apéndice A, pp. 17–20, 61–62 | Tabla de benchmark con medias, DE, IC y costes; ranking y Pareto | **Pendiente de resultados finales** | [Evidencia documentada](06_benchmark_final.md). Evaluar todos los sistemas en soporte común con R fijado; añadir parámetros, FLOPs, latencia, recursos, calibración y robustez. No rellenar con métricas de otros estudios. |
+| G14 | §§6.3, 7.3, 7.4 F2a, pp. 18–19, 21–31 | Bondad de ajuste, sobreajuste y diferencias con pruebas admisibles | **Código/plan parciales** | [Evidencia documentada](13_agregacion_estadistica.md). Preespecificar batería pertinente, al menos tres pruebas admisibles por contraste confirmatorio, supuestos y multiplicidad. Incluir diagnósticos temporales, calibración y DM-HLN donde corresponda; no tratar semillas/orígenes solapados como datasets iid. |
+| G15 | §§7.3, 13, pp. 22–27, 50–51 | IC, efectos y remuestreo que respete dependencia | **Pendiente de análisis final** | [Evidencia documentada](13_agregacion_estadistica.md). Justificar bloques temporales, ≥2.000 remuestreos para IC y ≥10.000 para contraste pareado aplicable; reportar p exactos y ajustados, efecto e IC, unidad y familia. |
+| G16 | §4.6, p. 16 | Robustez con ≥3 severidades por perturbación y cambio de distribución | **Pendiente para benchmark vigente** | [Evidencia documentada](12_incertidumbre_errores.md). Registrar perturbaciones causales sin cambiar el objetivo, severidades y curvas de degradación; evaluar recetas seleccionadas. |
+| G17 | §4.6, p. 16 | Explicabilidad del Top 3, fidelidad y estabilidad entre semillas | **Pendiente de identificar Top 3** | [Evidencia documentada](12_incertidumbre_errores.md). Aplicar técnica pertinente con borrado/inserción y estabilidad; mapas de atención aislados no acreditan fidelidad. |
+| G18 | §4.6, p. 16 | Ablación del mejor modelo con ≥3 componentes e inferencia | **Pendiente de identificar ganador** | [Evidencia documentada](06_benchmark_final.md). Aislar tres aportes con las mismas semillas y controles; no asumir que el híbrido será el mejor. |
+| G19 | §12, pp. 48–50 | Referencia de techo/margen γ, incertidumbre y errores por segmentos | **Parcial** | [Evidencia documentada](12_incertidumbre_errores.md). Justificar referencia y γ sin llamar a persistencia techo de Bayes; calibración disjunta, cobertura y ≥100 casos estratificados por modelo principal, según aplicabilidad. |
+| G20 | §8, pp. 40–41; Entregables, pp. 58–59 | Entorno fijado, código, datos/instrucciones, reproducción y entregables | **Parcial** | [Evidencia documentada](08_reproducibilidad.md). Ejecutar reproducción integral en entorno limpio, completar Apéndice B y empaquetar artefactos. Contenedor opcional en E2; obligatoriedad de E3 no se presenta como requisito E2. |
+| G21 | §6.4, p. 20; estructura, p. 62 | Resumen ≤250 palabras, discusión por RQ, conclusiones y amenazas | **Provisional** | [Evidencia documentada](06_benchmark_final.md). Redactar resumen final con cifras y responder hipótesis sólo tras análisis; conservar explícitos resultados negativos, incertidumbre y limitaciones. |
+
+## Orden para completar la entrega
+
+1. **Cerrar el método:** consolidar preregistro/enmiendas con fecha real, taxonomía y puntajes Top 10, auditoría de fuga, unidades/familias de contraste y presupuesto completo. Registrar cualquier cambio antes de nuevos trabajos afectados; no afirmar preregistro retroactivo.
+2. **Completar selección y dimensionamiento:** comprobar qué programador está activo, terminar HPO/NAS del calendario declarado y fijar R con el piloto de potencia. Conservar fallos y costes desconocidos. El contador de intentos no es un porcentaje de terminación del proyecto.
+3. **Completar evaluación común:** reajustar modelos/referencias, cerrar soporte y calendario de evaluación y producir tablas con IC, costes y diagnósticos. El test conocido mantiene interpretación exploratoria.
+4. **Completar análisis exigidos:** inferencia temporal con multiplicidad, robustez, incertidumbre/calibración, explicabilidad del Top 3, ablaciones del mejor y análisis de errores.
+5. **Cerrar informe y reproducción:** responder cada RQ, distinguir significancia de relevancia práctica, completar discusión/amenazas, ejecutar reproducción limpia y generar las descargas verificadas.
+
+El orden anterior es el trabajo que resta; no declara que el método esté cerrado porque ya existan ajustes parciales.
+
+## Paquete de entrega y estructura del informe
+
+| Entregable del PDF | Evidencia que debe acompañarlo |
+|---|---|
+| Jupyter Book reproducible | Resumen final ≤250 palabras; introducción/RQ; datos/EDA/auditoría; revisión/PRISMA/paper guía; métodos/preregistro; resultados; discusión; conclusiones; referencias y apéndices |
+| Código completo | EDA, modelos, baselines, auditoría, entrenamiento, pruebas de ajuste/sobreajuste, inferencia, robustez, incertidumbre e interpretabilidad |
+| Datos o adquisición verificable | Data Card, contrato, procedencia, fechas, permisos/instrucciones y comprobación de hashes |
+| Preregistro y registro experimental | Versiones fechadas, configuraciones, semillas, intentos/fallos, métricas y recursos por ejecución; desviaciones explícitas |
+| Ficha de ruta F2a | Partición, disponibilidad, métricas y evidencia de pruebas de bondad de ajuste, sobreajuste y diferencias (Tablas A, B y C) |
+| Benchmark y eficiencia | Tablas de Apéndice A, efectos/IC, p ajustados, comparación frente a baselines, Pareto y limitaciones |
+| Informe NAS aplicable | Las 1.000 arquitecturas, ambas fases, finalistas/referencia, selección, sesgo del ganador, efectos e inventario reproducible |
+| Paper guía e insumo para E3 | Réplica parcial verificable, limitación cuantificada con IC y mecanismos transferibles con fuentes originales |
+| Incertidumbre y techo | Referencia justificada, margen γ, calibración y cobertura, errores estratificados y límites |
+| Lista de reproducción y defensa | Apéndice B completado con evidencia de entorno limpio y presentación oral de las decisiones |
+
+[Lista estructurada de requisitos](../_static/guide_compliance_20261111/requirements.json). Cada ID mantiene el vínculo entre requisito, estado y evidencia de cierre. La guía pondera problema/EDA/preregistro 15 %, revisión/paper/gap 15 %, implementación/NAS/rigor 25 %, benchmark/inferencia 20 %, ruta/robustez/incertidumbre/interpretabilidad 15 % y reproducción/redacción/defensa 10 % (p. 59). No se calcula una calificación ni un porcentaje de cumplimiento a partir del número de filas o de entrenamientos.

@@ -1,5 +1,8 @@
 # 27. Decisiones NAS, rangos HPO y presupuesto para Codex
 
+**Vigencia al 11/11/2026:** El calendario de once selecciones y los totales de este capítulo corresponden al diseño original del 09/11/2026. La enmienda de §37 programa tres selecciones y un máximo de 23.202 intentos neuronales. Configuraciones y recibos originales se conservan; horas, coste total y R no quedan resueltos por reducir el calendario. [Matriz de exigencias y evidencia](38_cumplimiento_guia.md) · [Enmienda de calendario](37_ajuste_guia.md).
+
+
 **Implementación posterior:** [§28 implementa las seis fábricas NAS y el enlace de configuraciones](28_fabricas_nas.md), con comprobaciones sintéticas y sin entrenamiento. Las condiciones de ejecución que siguen describen el corte de diseño; la integración del ciclo completo y el perfilado siguen pendientes.
 
 **Diseño E2-NAS-HPO-20261109-v1 · 09/11/2026.** Esta decisión técnica resuelve las filas NAS y los dominios HPO del [registro §26](26_registro_recetas.md). Se basa en §§11–14 de la guía aportada y sus fuentes documentadas. Los valores numéricos del ajuste son decisiones metodológicas de este diseño, no valores impuestos por el PDF.

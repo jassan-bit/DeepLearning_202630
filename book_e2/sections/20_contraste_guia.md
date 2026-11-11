@@ -1,5 +1,8 @@
 # 20. Cotejo del plan con la guía original
 
+**Vigencia al 11/11/2026:** El PDF aportado nuevamente el 11/11/2026 tiene SHA256 93499dcfda6a36d9621524a81821470017ba114ca6b08241a35de5a54f74a654. La revisión vigente de exigencias/evidencias está en §38; este capítulo conserva el cotejo y estado histórico del 08/11/2026. [Matriz de exigencias y evidencia](38_cumplimiento_guia.md) · [Enmienda de calendario](37_ajuste_guia.md).
+
+
 **Siguiente especificación:** [comparadores temporales, matriz NAS y costes por escenarios](21_comparadores_nas.md). Propuesta sin entrenamiento, búsqueda ni cierre automático del protocolo.
 
 

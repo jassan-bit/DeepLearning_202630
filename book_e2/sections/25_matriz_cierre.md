@@ -1,5 +1,8 @@
 # 25. Matriz de cierre antes del benchmark
 
+**Vigencia al 11/11/2026:** Esta matriz conserva el corte del 09/11/2026. La matriz documental vigente está en §38, con requisitos del PDF, evidencias parciales y condiciones de cierre; no se presentan los pendientes antiguos como prueba de ausencia de avances posteriores. [Matriz de exigencias y evidencia](38_cumplimiento_guia.md) · [Enmienda de calendario](37_ajuste_guia.md).
+
+
 **Corte documental: 09/11/2026.** Fuente de requisitos: *Entregable2DeepLearningProject.pdf*, aportado por el usuario, especialmente §§3–4 y §§9–14 y Apéndices A–B. Esta matriz organiza el trabajo autorizado de preparación; no constituye un preregistro experimental ni acredita ejecuciones nuevas.
 
 Los estados de esta matriz corresponden a ese corte documental. El [avance posterior de la selección CUDA se documenta en §36](36_avance_campana_cuda.md); aquí se conservan la evidencia de preparación y sus pendientes originales.
