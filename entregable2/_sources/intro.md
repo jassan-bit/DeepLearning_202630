@@ -1,5 +1,7 @@
 # Proyecto Final de Deep Learning: Entregable 2
 
+**Optimización de tiempo registrada:** [§39 conserva las arquitecturas y las exigencias NAS](sections/39_optimizacion_tiempo.md), prioriza los modelos de cuerpo fijo y prepara un cálculo selectivo de TimesNet que sólo se habilita tras medirlo en la GPU real. El escenario de 8.742 intentos no se aplica: no se han acreditado cuatro nuevas exenciones. No cambia automáticamente el Colab activo.
+
 **Deep Learning · 2026-30 · Jassan Arteta**
 
 ## Estado de la entrega y guía de lectura

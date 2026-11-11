@@ -1,0 +1,70 @@
+{
+  "version": "timesnet-support-crop-v1",
+  "device": "cpu",
+  "torch": "2.8.0+cpu",
+  "device_name": "CPU",
+  "repeats": 5,
+  "synthetic_only": true,
+  "market_data_read": false,
+  "optimizer_included": false,
+  "end_to_end_training_speedup_measured": false,
+  "rows": [
+    {
+      "width": 16,
+      "batch": 8,
+      "num_kernels": 6,
+      "parameters": 293184,
+      "original_seconds": 0.007691406999583705,
+      "cropped_seconds": 0.008276730999568827,
+      "speedup": 0.9292807752220517,
+      "forward_and_gradient_parity": true
+    },
+    {
+      "width": 32,
+      "batch": 8,
+      "num_kernels": 6,
+      "parameters": 1172096,
+      "original_seconds": 0.02054654899984598,
+      "cropped_seconds": 0.01920376300040516,
+      "speedup": 1.0699230666100437,
+      "forward_and_gradient_parity": true
+    },
+    {
+      "width": 64,
+      "batch": 8,
+      "num_kernels": 6,
+      "parameters": 4687104,
+      "original_seconds": 0.10018423099973006,
+      "cropped_seconds": 0.062226545000157785,
+      "speedup": 1.609991861182009,
+      "forward_and_gradient_parity": true
+    },
+    {
+      "width": 128,
+      "batch": 8,
+      "num_kernels": 6,
+      "parameters": 18745856,
+      "original_seconds": 0.3202366240002448,
+      "cropped_seconds": 0.3325495779990888,
+      "speedup": 0.9629740802170623,
+      "forward_and_gradient_parity": true
+    },
+    {
+      "width": 256,
+      "batch": 8,
+      "num_kernels": 6,
+      "parameters": 74978304,
+      "original_seconds": 2.141197958000703,
+      "cropped_seconds": 1.6048418169993965,
+      "speedup": 1.3342112196478912,
+      "forward_and_gradient_parity": true
+    }
+  ],
+  "fast_widths": [
+    32,
+    64,
+    256
+  ],
+  "cuda_gate_passed": false,
+  "scope": "Preliminary CPU kernel microprofile with batch8 before case-specific GPU admission; not a CUDA activation receipt or end-to-end training estimate."
+}
