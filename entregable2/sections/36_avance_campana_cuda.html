@@ -383,6 +383,8 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actualizacion-del-11-11-2026-continuacion-confirmada">Actualización del 11/11/2026: continuación confirmada</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#corte-historico-conservado-10-11-2026-21-34-11">Corte histórico conservado: 10/11/2026, 21:34:11</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-cuenta-este-avance">Qué cuenta este avance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-guardado-y-actividad-de-la-sesion">Estado guardado y actividad de la sesión</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cobertura-de-los-catorce-sistemas">Cobertura de los catorce sistemas</a></li>
@@ -402,11 +404,55 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="avance-parcial-de-la-campana-cuda">
 <h1>36. Avance parcial de la campaña CUDA<a class="headerlink" href="#avance-parcial-de-la-campana-cuda" title="Link to this heading">#</a></h1>
+<section id="actualizacion-del-11-11-2026-continuacion-confirmada">
+<h2>Actualización del 11/11/2026: continuación confirmada<a class="headerlink" href="#actualizacion-del-11-11-2026-continuacion-confirmada" title="Link to this heading">#</a></h2>
+<p><strong>Corte fijado a las 06:55:42 de Bogotá (11:55:42 UTC).</strong> El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/bc2abe85742f3c035deba1a433a853a21553f70c/campaigns/e2-cuda-selection-v1">estado de campaña fijado</a> contiene <strong>1.748 archivos de resultados lógicos</strong>, frente a los 1.561 del corte anterior: <strong>187 registros adicionales</strong>. Este recuento del inventario no sustituye una nueva auditoría integral de todos los hashes, estados y pasos. Las comprobaciones integrales descritas más abajo pertenecen al corte histórico de 1.561.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Señal comprobada</p></th>
+<th class="head"><p>Evidencia del nuevo corte</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Último resultado confirmado</p></td>
+<td><p>TimesNet, NAS-1, origen <code class="docutils literal notranslate"><span class="pre">2024-01-01</span></code>, semilla 271301; estado <code class="docutils literal notranslate"><span class="pre">completed</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Entrenamiento de ese resultado</p></td>
+<td><p>736 pasos de optimización, 46 épocas ejecutadas, mejor época 26</p></td>
+</tr>
+<tr class="row-even"><td><p>Cierre del trabajo</p></td>
+<td><p>11/11/2026, <strong>06:55:41 de Bogotá</strong>, <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/bc2abe85742f3c035deba1a433a853a21553f70c/campaigns/e2-cuda-selection-v1/events/000003525.json">evento 000003525</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Trabajo siguiente</p></td>
+<td><p>Inicio a las <strong>06:55:42</strong>, <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/bc2abe85742f3c035deba1a433a853a21553f70c/campaigns/e2-cuda-selection-v1/events/000003526.json">evento 000003526</a>; sin resultado confirmado en este corte</p></td>
+</tr>
+<tr class="row-even"><td><p>Estado guardado anterior</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">paused_campaign_budget</span></code>, 1.744 resultados, cero fallidos en ese resumen</p></td>
+</tr>
+<tr class="row-odd"><td><p>Continuación posterior</p></td>
+<td><p>Cuatro archivos de resultados adicionales y un nuevo inicio respecto de ese resumen</p></td>
+</tr>
+<tr class="row-even"><td><p>Selecciones registradas en el resumen</p></td>
+<td><p>FCN-1D, ResNet-1D, Inception-1D y LSTM-autoencoder, para el primer origen</p></td>
+</tr>
+<tr class="row-odd"><td><p>Benchmark final</p></td>
+<td><p>Pendiente; <code class="docutils literal notranslate"><span class="pre">final_R:</span> <span class="pre">null</span></code>, sin reajustes finales incluidos</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/bc2abe85742f3c035deba1a433a853a21553f70c/campaigns/e2-cuda-selection-v1/results/5b6504f0662cf85e1169b18b1fb2048fe2b7cf494af43bad3ced1099777027a5.json">recibo del último resultado</a> registra aproximadamente <strong>183,984 segundos de callback</strong> y <strong>178,266 segundos de ejecución del modelo</strong>. Son medidas de ese ajuste, no del coste total de campaña. Los 1.748 registros no equivalen a 1.748 modelos distintos ni a completar todos los orígenes.</p>
+<p>El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/bc2abe85742f3c035deba1a433a853a21553f70c/campaigns/e2-cuda-selection-v1/events/000003516.json">evento 000003516</a> registra una ampliación de <strong>36 a 48 horas acumuladas</strong>, el <strong>11/11/2026 a las 06:40:17 de Bogotá</strong>. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/bc2abe85742f3c035deba1a433a853a21553f70c/campaigns/e2-cuda-selection-v1/events/000003517.json">evento 000003517</a> abre una sesión a las <strong>06:42:53</strong>, con presupuesto de <strong>8 horas</strong>. La pausa de <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/bc2abe85742f3c035deba1a433a853a21553f70c/campaigns/e2-cuda-selection-v1/status.json"><code class="docutils literal notranslate"><span class="pre">status.json</span></code></a> precede a esa ampliación y no describe la sesión reanudada. Esta actualización documenta decisiones ya registradas; no concede otra ampliación ni interviene en Colab.</p>
+<p>Los recibos confirman avance hasta sus fechas. No se observó directamente la sesión privada de Colab ni se midió la utilización GPU en vivo. Continúa la selección de desarrollo; no se declara un ganador final ni superioridad del híbrido. El <a class="reference download internal" download="" href="../_downloads/4f7cffdf306546fe4687fdc065dbf951/summary_20261111_065542.json"><span class="xref download myst">resumen de este corte</span></a> conserva procedencia y límites.</p>
+</section>
+<section id="corte-historico-conservado-10-11-2026-21-34-11">
+<h2>Corte histórico conservado: 10/11/2026, 21:34:11<a class="headerlink" href="#corte-historico-conservado-10-11-2026-21-34-11" title="Link to this heading">#</a></h2>
 <p><strong>Corte congelado del 10/11/2026, 21:34:11 de Bogotá (11/11/2026, 02:34:11 UTC): 1.561 resultados científicos completados, cero resultados lógicos fallidos, cinco modelos y el primer origen de selección.</strong> La búsqueda HPO → NAS-1 → NAS-2 usa una Tesla T4 de Google Colab y el código científico A3. La recuperación R3 completó el intento pendiente y la selección continuó después. Los cortes anteriores de <a class="reference download internal" download="" href="../_downloads/14b635398a59a89cd14b33b2edd954a0/summary_20261110_180019.json"><span class="xref download myst">1.497 resultados, a las 18:00:19</span></a>, y <a class="reference download internal" download="" href="../_downloads/6d25fbd34fcef1605d5b6491a4d02337/summary.json"><span class="xref download myst">906 resultados, a las 09:56:42</span></a>, se conservan como evidencia histórica. Las cifras proceden del commit fijado y no son telemetría en vivo.</p>
 <p>El corte contiene <strong>180 resultados HPO, 1.181 NAS-1 y 200 NAS-2</strong>. El LSTM-autoencoder con predictor registra sus 1.000 intentos NAS-1 y 200 NAS-2 del primer origen. TimesNet ya tiene 36 resultados HPO y 181 de los 1.000 intentos NAS-1 de ese origen. Los nueve sistemas restantes del plan, incluida la propuesta CNN-1D + LSTM + atención temporal, todavía no aportan resultados en este corte. No hay un ganador del benchmark final ni superioridad demostrada del candidato 11.</p>
 <p>:::{note}
 <strong>Actividad reciente confirmada:</strong> el último trabajo terminó a las <strong>21:34:09 de Bogotá</strong>; el siguiente quedó registrado como iniciado a las <strong>21:34:11</strong>. R3 conserva sus recibos físicos de inicio, observación y confirmación, y la continuación aporta resultados posteriores. Esto acredita avance de la campaña GPU hasta el corte. La inspección de procesos del servidor CPU de Codex Cloud describe otro entorno y otra ejecución. La publicación del libro no reinicia ni interviene en la sesión de Colab.
 :::</p>
+</section>
 <section id="que-cuenta-este-avance">
 <h2>Qué cuenta este avance<a class="headerlink" href="#que-cuenta-este-avance" title="Link to this heading">#</a></h2>
 <p>Un resultado corresponde a <strong>un intento lógico de configuración y semilla</strong>, dentro de un modelo, una etapa y un origen. No representa un modelo evaluado en todos los cortes. En el LSTM-autoencoder, cada intento incluye tres etapas de optimización; no se multiplica por tres el conteo de resultados.</p>
@@ -759,6 +805,8 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actualizacion-del-11-11-2026-continuacion-confirmada">Actualización del 11/11/2026: continuación confirmada</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#corte-historico-conservado-10-11-2026-21-34-11">Corte histórico conservado: 10/11/2026, 21:34:11</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-cuenta-este-avance">Qué cuenta este avance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-guardado-y-actividad-de-la-sesion">Estado guardado y actividad de la sesión</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cobertura-de-los-catorce-sistemas">Cobertura de los catorce sistemas</a></li>
