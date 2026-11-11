@@ -29,6 +29,9 @@ El ejecutor v2 usa una campaña separada, `campaigns/e2-cuda-crop-11-v2`, ligada
 
 ## Uso y estado
 
+**Pausa por presupuesto:** volver a ejecutar la sección 8 sin cambiar el saldo puede producir la misma pausa, incluso con tiempo positivo si no alcanza la reserva completa de otro ajuste. La sección 11 del notebook permite una **enmienda manual**, sólo mediante un NUEVO LÍMITE TOTAL introducido por el usuario. Registra un evento append-only y confirma GitHub antes de reanudar; conserva plan, gasto anterior y resultados, y el mismo límite no se suma dos veces. Abrir o publicar la celda no autoriza ninguna ampliación. El límite inicial de 48 horas permanece en el historial; una ampliación efectiva deberá reportarse como desviación operativa, sin cambiar arquitectura, semillas o requisitos de E2.
+
+
 **Ejecución documentada:** el [corte del 11/11/2026, 13:31:53 de Bogotá (§41)](41_avance_optimizacion_11_origenes.md) confirma 234 ajustes HPO nuevos completados en la T4, sin fallos en esos registros. La preparación ya dio paso a entrenamiento de mercado; sigue siendo selección parcial, sin benchmark final ni R cerrado.
 
 
