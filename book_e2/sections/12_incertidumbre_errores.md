@@ -1,5 +1,7 @@
 # 12. Techo de desempeño, incertidumbre y análisis de errores
 
+**Vigencia documental (11/11/2026):** existe selección HPO/NAS registrada y ejecutada para el catálogo actual; las afirmaciones de ausencia de HPO o de falta de registro de selección corresponden a cortes anteriores. El benchmark final, R y su cierre inferencial siguen pendientes. [Registro y alcance actuales (§9)](09_protocolo_registrado.md) · [Calendario (§40)](40_calendario_original.md) · [Corte de resultados (§41)](41_avance_optimizacion_11_origenes.md) · [Auditoría y trabajo paralelo (§42)](42_auditoria_y_trabajo_paralelo.md).
+
 **Estado:** análisis P0 histórico ejecutado; incertidumbre y errores del catálogo vigente pendientes de la nueva enmienda y de su evaluación. El catálogo contiene diez modelos y CNN-1D + LSTM + atención temporal como candidato 11, sin superioridad acreditada; las referencias MLP, LSTM y GRU de E1 se mantienen aparte.
 
 Esta sección desarrolla §12.1–12.3 de la guía (PDF pp48–50). Los intervalos predictivos describen valores futuros de σ₇; los IC de RMSE describen incertidumbre de una métrica. Ni la dispersión entre semillas ni un IC de RMSE se presentan como un intervalo predictivo. La [enmienda anterior](../_static/completion_protocol/analysis_additions.json) y el [plan P0](https://github.com/jassan-bit/DeepLearning_202630/blob/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0/experiments/e2_remediation_20261106/uncertainty_errors.json) quedan como archivo de trazabilidad, sin trasladar al catálogo vigente sus cohortes, tamaños de ensamble o familias estadísticas.

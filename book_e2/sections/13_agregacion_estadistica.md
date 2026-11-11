@@ -1,5 +1,7 @@
 # 13. Agregación estadística e interpretación
 
+**Vigencia documental (11/11/2026):** existe selección HPO/NAS registrada y ejecutada para el catálogo actual; las afirmaciones de ausencia de HPO o de falta de registro de selección corresponden a cortes anteriores. El benchmark final, R y su cierre inferencial siguen pendientes. [Registro y alcance actuales (§9)](09_protocolo_registrado.md) · [Calendario (§40)](40_calendario_original.md) · [Corte de resultados (§41)](41_avance_optimizacion_11_origenes.md) · [Auditoría y trabajo paralelo (§42)](42_auditoria_y_trabajo_paralelo.md).
+
 **Estado:** la nueva enmienda estadística para los diez modelos y CNN-1D + LSTM + atención temporal como candidato 11 está pendiente. MLP, LSTM y GRU de E1 son referencias separadas. El [diagnóstico P0 ejecutado](09_protocolo_registrado.md) conserva su identidad histórica; sus reglas y resultados no se convierten en evidencia del catálogo vigente ni en superioridad del híbrido.
 
 ## 13.1 Qué se estima y qué se remuestrea

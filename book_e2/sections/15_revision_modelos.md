@@ -1,5 +1,7 @@
 # 15. Catálogo vigente: diez modelos y candidato 11
 
+**Vigencia documental (11/11/2026):** existe selección HPO/NAS registrada y ejecutada para el catálogo actual; las afirmaciones de ausencia de HPO o de falta de registro de selección corresponden a cortes anteriores. El benchmark final, R y su cierre inferencial siguen pendientes. [Registro y alcance actuales (§9)](09_protocolo_registrado.md) · [Calendario (§40)](40_calendario_original.md) · [Corte de resultados (§41)](41_avance_optimizacion_11_origenes.md) · [Auditoría y trabajo paralelo (§42)](42_auditoria_y_trabajo_paralelo.md).
+
 **Avance de software:** fábrica de los once candidatos, híbrido y flujo sintético implementados y verificados; recetas provisionales, sin datos de mercado. Véase [§18: integración y pruebas sintéticas](18_integracion_sintetica.md). No hay HPO ni benchmark vigente ejecutado.
 
 **Selección vigente del 8 de noviembre de 2026. Estado: catálogo editorial aprobado, no benchmark ejecutado ni enmienda experimental registrada.** Esta página recoge el cambio de selección solicitado: combinar arquitecturas trabajadas en el curso con mecanismos de la literatura y estudiar un modelo adicional. La selección editorial por sí sola no acredita implementación; §18 documenta ahora los once candidatos implementados provisionalmente y sus pruebas sintéticas. No hay entrenamiento de mercado ni superioridad demostrada. La correspondencia exacta con las configuraciones del profesor y las fuentes primarias de las nuevas adaptaciones debe documentarse antes de congelar el diseño.

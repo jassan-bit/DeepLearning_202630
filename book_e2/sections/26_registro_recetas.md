@@ -1,5 +1,9 @@
 # 26. Registro por receta: fuentes, NAS, HPO e integración
 
+**Vigencia documental (11/11/2026):** existe selección HPO/NAS registrada y ejecutada para el catálogo actual; las afirmaciones de ausencia de HPO o de falta de registro de selección corresponden a cortes anteriores. El benchmark final, R y su cierre inferencial siguen pendientes. [Registro y alcance actuales (§9)](09_protocolo_registrado.md) · [Calendario (§40)](40_calendario_original.md) · [Corte de resultados (§41)](41_avance_optimizacion_11_origenes.md) · [Auditoría y trabajo paralelo (§42)](42_auditoria_y_trabajo_paralelo.md).
+
+La adjudicación vigente conserva seis familias NAS y las oportunidades de [§27](27_nas_hpo_presupuesto.md); las tablas anteriores de preparación pendiente no sustituyen ese protocolo.
+
 **Decisión posterior de diseño (09/11/2026):** [§27 fija seis variantes NAS, cinco cuerpos publicados, rangos HPO y presupuesto para Codex](27_nas_hpo_presupuesto.md). La implementación de nuevas variantes, el perfilado de horas y el preregistro completo siguen pendientes; el contenido siguiente conserva el alcance de su corte anterior.
 
 **Corte documental: 09/11/2026.** Esta tabla entrega el inventario por modelo previsto en [§25](25_matriz_cierre.md), R01 y R03–R06. Se cotejaron fichas, fábrica y recibos del [snapshot eca22e8](https://github.com/jassan-bit/DeepLearning_202630/blob/eca22e87085edca79e53f60196c8f64458659b5d/book_e2/sections/23_implementacion_recetas.md). El registro distingue una receta implementada de una receta experimental congelada: **no se ha adjudicado NAS, cerrado HPO ni ejecutado un benchmark nuevo**.

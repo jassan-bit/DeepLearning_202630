@@ -1,5 +1,7 @@
 # 4. Implementación de los diez modelos y el candidato adicional
 
+**Vigencia documental (11/11/2026):** existe selección HPO/NAS registrada y ejecutada para el catálogo actual; las afirmaciones de ausencia de HPO o de falta de registro de selección corresponden a cortes anteriores. El benchmark final, R y su cierre inferencial siguen pendientes. [Registro y alcance actuales (§9)](09_protocolo_registrado.md) · [Calendario (§40)](40_calendario_original.md) · [Corte de resultados (§41)](41_avance_optimizacion_11_origenes.md) · [Auditoría y trabajo paralelo (§42)](42_auditoria_y_trabajo_paralelo.md).
+
 **Integración posterior:** [§24 comprueba el recorrido sintético común de 18 sistemas](24_ejecutor_comun.md), con referencias separadas y sin ajustes de mercado.
 
 **Avance posterior:** [§23 implementa los cuerpos de §22 y los controles temporales](23_implementacion_recetas.md), con pruebas exclusivamente sintéticas y preservación de los prototipos anteriores. No es un benchmark de mercado.

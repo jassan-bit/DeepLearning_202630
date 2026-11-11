@@ -1,5 +1,7 @@
 # 14. Arquitecturas del catálogo vigente y adaptación a D7
 
+**Vigencia documental (11/11/2026):** existe selección HPO/NAS registrada y ejecutada para el catálogo actual; las afirmaciones de ausencia de HPO o de falta de registro de selección corresponden a cortes anteriores. El benchmark final, R y su cierre inferencial siguen pendientes. [Registro y alcance actuales (§9)](09_protocolo_registrado.md) · [Calendario (§40)](40_calendario_original.md) · [Corte de resultados (§41)](41_avance_optimizacion_11_origenes.md) · [Auditoría y trabajo paralelo (§42)](42_auditoria_y_trabajo_paralelo.md).
+
 **Vigencia al 11/11/2026:** Se conservan los cinco cuerpos publicados y las seis variantes NAS. No se conceden cuatro exenciones nuevas ni se recortan arquitecturas; se mantiene el calendario original. [Decisión y ejecutor vigentes](40_calendario_original.md).
 
 

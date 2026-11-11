@@ -1,4 +1,18 @@
-# 9. Preregistro del catálogo vigente y trazabilidad experimental
+# 9. Registro de selección, cierre pendiente y trazabilidad
+
+**Vigencia al 11/11/2026:** hay registro prospectivo de selección neuronal. El cierre de evaluación/inferencia final todavía está pendiente; los párrafos del 08/11 conservados más abajo son antecedentes.
+
+| Fecha real | Evidencia | Alcance |
+|---|---|---|
+| 10/11/2026, 02:24:57 UTC | [Registro CUDA de selección](https://github.com/jassan-bit/DeepLearning_202630/blob/181b9e58032c0011e46dcbe334400568fb82c258/experiments/e2_cuda_search_20261109/registration.json) | 14 redes, once orígenes y dominios HPO/NAS, registrado antes de sus ajustes CUDA; no incluye comparadores/reajustes finales ni R |
+| 11/11/2026 | [Optimización y corrección JSON](https://github.com/jassan-bit/DeepLearning_202630/blob/8e3ab6cfb1b3fc3c804f0c914fa5d92b661058d9/experiments/e2_implementation_optimization_11_origins_20261111/registration_json_metadata_fix.json) | Preserva dominio y saldo; corrige representación del perfil y registra implementación |
+| Corte 11/11/2026, 13:31:53 Bogotá | [Resultados confirmados de §41](41_avance_optimizacion_11_origenes.md) | Evidencia de selección parcial; no benchmark completo |
+| Pendiente | Enmienda de potencia/R, comparadores, soportes y familias finales | Fechar antes de futuras etapas afectadas y declarar resultados ya conocidos; no será preregistro retroactivo de la selección |
+
+Se conserva RMSE, δ heredado, D7×5 y calendario original. Esta aclaración no modifica registros, semillas ni presupuesto. [Auditoría y trabajo paralelo (§42)](42_auditoria_y_trabajo_paralelo.md).
+
+## Antecedentes de diseño al 08/11/2026
+
 
 **Actualización de planificación:** [§19: auditoría real de desarrollo y plan propuesto](19_plan_auditoria.md). Sin entrenamiento de mercado, HPO ni preregistro nuevo.
 
@@ -6,7 +20,9 @@
 
 Esta sección sustituye las reglas prospectivas del catálogo retirado por las decisiones que deben cerrarse para el actual. Los protocolos y recibos históricos se mantienen intactos y se enlazan al final. **No se fijan ni se simulan nuevos presupuestos, candidatos HPO, búsquedas NAS o repeticiones R mediante esta revisión documental.**
 
-## 9.1 Qué está definido y qué falta registrar
+## 9.1 Antecedente del 08/11: decisiones que entonces faltaban registrar
+
+**Tabla histórica:** el estado de selección de esta tabla fue sustituido por el registro CUDA y las evidencias enlazadas arriba. Los cierres finales de potencia/R, comparadores e inferencia continúan pendientes en su propio ámbito.
 
 | Decisión | Punto de partida vigente | Cierre necesario antes de entrenamiento de mercado |
 |---|---|---|

@@ -1,6 +1,10 @@
 (e2-reproducibilidad)=
 # 8. Reproducibilidad, ética y comunicación científica
 
+**Vigencia documental (11/11/2026):** existe selección HPO/NAS registrada y ejecutada para el catálogo actual; las afirmaciones de ausencia de HPO o de falta de registro de selección corresponden a cortes anteriores. El benchmark final, R y su cierre inferencial siguen pendientes. [Registro y alcance actuales (§9)](09_protocolo_registrado.md) · [Calendario (§40)](40_calendario_original.md) · [Corte de resultados (§41)](41_avance_optimizacion_11_origenes.md) · [Auditoría y trabajo paralelo (§42)](42_auditoria_y_trabajo_paralelo.md).
+
+La tabla histórica de §8.4 conserva su ámbito. La auditoría actual añade [las 21 filas del Apéndice B](../_static/guide_audit_20261111_181b9e5/appendix_B.csv), sin considerar aprobados sus pendientes. El comando P0 no reproduce por sí solo los 18 sistemas actuales.
+
 **Vigencia al 11/11/2026:** La guía exige reproducción integral en entorno limpio y Apéndice B completado. La compilación del libro acredita construcción y enlaces, no reproducción del benchmark. El contenedor es opcional en E2 (p. 41). La lista vigente de artefactos y condiciones de cierre está en §38. [Matriz de exigencias y evidencia](38_cumplimiento_guia.md) · [Enmienda de calendario](37_ajuste_guia.md).
 
 
