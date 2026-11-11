@@ -1,11 +1,11 @@
 {
   "version": "e2-cuda-search-runner-v1",
   "plan_sha256": "4eae2d2ff9ef6f83a2f9eb0dc5ba647208d695e1665a8e522d812fed67893bda",
-  "status": "paused_session_budget",
+  "status": "paused_campaign_budget",
   "scope": "registered_neural_selection_only",
-  "completed_jobs": 1280,
+  "completed_jobs": 1744,
   "failed_jobs": 0,
-  "known_optimizer_steps": 1850144,
+  "known_optimizer_steps": 2320832,
   "unknown_optimizer_step_jobs": 0,
   "completed_selections": [
     {
@@ -91,6 +91,63 @@
       "selection_signature": "355ca4817ef6fc8a3db537f92dc6735522adf4f5ecc42bddf5dc8f584aa51d8f",
       "attempts": 36,
       "selection_rule": "mean_rmse"
+    },
+    {
+      "model": "LSTM-autoencoder con predictor",
+      "origin": "2024-01-01",
+      "winner_id": "nas2:SAE-D7-NAS-v1:hpo-011:SAE-D7-NAS-v1:w128-256-16:b111",
+      "winner": {
+        "architecture": {
+          "architecture_id": "SAE-D7-NAS-v1:w128-256-16:b111",
+          "dropout_pattern": [
+            1,
+            1,
+            1
+          ],
+          "dropout_rate": 0.2,
+          "is_reference": false,
+          "recipe_id": "SAE-D7-NAS-v1",
+          "widths": [
+            128,
+            256,
+            16
+          ]
+        },
+        "model": "LSTM-autoencoder con predictor",
+        "stage": "nas2",
+        "trial": {
+          "architecture_reference": {
+            "dropout_pattern": [
+              0,
+              1,
+              0
+            ],
+            "dropout_rate": 0.2,
+            "widths": [
+              64,
+              64,
+              64
+            ]
+          },
+          "batch_size": 32,
+          "learning_rate": 0.0011106515170884405,
+          "optimization_seeds": [
+            271201,
+            271202
+          ],
+          "recipe_id": "SAE-D7-NAS-v1",
+          "trial_id": "SAE-D7-NAS-v1:hpo-011",
+          "weight_decay": 8.419658498362257e-05
+        }
+      },
+      "fixed_epochs": {
+        "ae1": 187,
+        "ae2": 189,
+        "supervised": 22
+      },
+      "selection_signature": "660d2704b3518267019434d3c53fde1989a1784116559aadea37a97861b501e6",
+      "attempts": 200,
+      "selection_rule": "nas_parsimony"
     }
   ],
   "coverage": {
@@ -107,16 +164,16 @@
   "budget": {
     "version": "e2-search-session-v1",
     "plan_sha256": "4eae2d2ff9ef6f83a2f9eb0dc5ba647208d695e1665a8e522d812fed67893bda",
-    "completed_jobs": 1280,
-    "charged_wall_seconds": 78191.56851205791,
+    "completed_jobs": 1744,
+    "charged_wall_seconds": 127531.361246654,
     "campaign_budget_seconds": 129600.0,
-    "remaining_campaign_seconds": 51408.431487942085,
-    "storage_used_bytes": 9858560,
+    "remaining_campaign_seconds": 2068.638753345993,
+    "storage_used_bytes": 13258528,
     "max_storage_bytes": 10737418240,
     "recovered_result_commits": [],
     "conservative_unclosed_session_charges": {},
     "directory_fsync_supported": true,
-    "paused_reason": "session_budget"
+    "paused_reason": "campaign_budget"
   },
   "scientific_HPO_or_NAS_executed": true,
   "final_market_values_read": false,
@@ -125,6 +182,6 @@
   "remote_repository": "jassan-bit/DeepLearning_202630",
   "remote_branch": "campaigns/e2-cuda-selection-v1",
   "checkpoint_policy": "selection_metadata_only_refit_separate",
-  "pause_reason": "session_budget",
+  "pause_reason": "campaign_budget",
   "retry_after_seconds": null
 }
