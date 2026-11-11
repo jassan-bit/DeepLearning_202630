@@ -1,6 +1,8 @@
 (e2-ruta-temporal)=
 # 7. Ruta metodológica: series de tiempo y controles causales
 
+**Vigencia documental (11/11/2026):** existe selección HPO/NAS registrada y ejecutada para el catálogo actual; las afirmaciones de ausencia de HPO o de falta de registro de selección corresponden a cortes anteriores. El benchmark final, R y su cierre inferencial siguen pendientes. [Registro y alcance actuales (§9)](09_protocolo_registrado.md) · [Calendario (§40)](40_calendario_original.md) · [Corte de resultados (§41)](41_avance_optimizacion_11_origenes.md) · [Auditoría y trabajo paralelo (§42)](42_auditoria_y_trabajo_paralelo.md).
+
 **Vigencia al 11/11/2026:** Se conserva F2a y el calendario original de once orígenes; la propuesta de tres no es operativa. No cambian embargo, disponibilidad ni el carácter conocido del test. [Decisión y ejecutor vigentes](40_calendario_original.md).
 
 

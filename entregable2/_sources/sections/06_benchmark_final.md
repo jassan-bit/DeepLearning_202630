@@ -1,5 +1,7 @@
 # 6. Benchmark vigente: diez modelos y un candidato adicional
 
+**Vigencia documental (11/11/2026):** existe selección HPO/NAS registrada y ejecutada para el catálogo actual; las afirmaciones de ausencia de HPO o de falta de registro de selección corresponden a cortes anteriores. El benchmark final, R y su cierre inferencial siguen pendientes. [Registro y alcance actuales (§9)](09_protocolo_registrado.md) · [Calendario (§40)](40_calendario_original.md) · [Corte de resultados (§41)](41_avance_optimizacion_11_origenes.md) · [Auditoría y trabajo paralelo (§42)](42_auditoria_y_trabajo_paralelo.md).
+
 **Vigencia al 11/11/2026:** Hay selección CUDA parcial documentada en [§36](36_avance_campana_cuda.md) y un corte vigente con 234 ajustes HPO nuevos completados en [§41](41_avance_optimizacion_11_origenes.md); el benchmark final, R y el ranking siguen pendientes. Los estados «sin HPO» de abajo pertenecen al corte del 08/11/2026, no al estado actual. [Matriz de exigencias y evidencia](38_cumplimiento_guia.md) · [Calendario vigente de once orígenes](40_calendario_original.md).
 
 
@@ -70,7 +72,9 @@ La comparación temporal puede requerir DM y Model Confidence Set conforme a la 
 
 La reserva ya consultada en etapas anteriores conserva carácter **exploratorio**. Registrar nuevos ajustes no elimina esa exposición. No hay evidencia actual para afirmar generalización a otros activos o regímenes.
 
-## 6.5 Condiciones de cierre
+## 6.5 Condiciones de cierre: tabla histórica del 08/11
+
+Los estados de implementación/HPO de esta tabla son antecedentes. Para selección ejecutada consultar [§41](41_avance_optimizacion_11_origenes.md); el benchmark y análisis finales siguen pendientes.
 
 | Etapa del catálogo vigente | Evidencia necesaria | Estado |
 |---|---|---|

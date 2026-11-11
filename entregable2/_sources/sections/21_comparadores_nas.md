@@ -1,5 +1,9 @@
 # 21. Comparadores temporales y decisión NAS por receta
 
+**Vigencia documental (11/11/2026):** existe selección HPO/NAS registrada y ejecutada para el catálogo actual; las afirmaciones de ausencia de HPO o de falta de registro de selección corresponden a cortes anteriores. El benchmark final, R y su cierre inferencial siguen pendientes. [Registro y alcance actuales (§9)](09_protocolo_registrado.md) · [Calendario (§40)](40_calendario_original.md) · [Corte de resultados (§41)](41_avance_optimizacion_11_origenes.md) · [Auditoría y trabajo paralelo (§42)](42_auditoria_y_trabajo_paralelo.md).
+
+La adjudicación vigente conserva seis familias NAS y las oportunidades de [§27](27_nas_hpo_presupuesto.md); las tablas anteriores de preparación pendiente no sustituyen ese protocolo.
+
 **Once propuestas concretas:** [fichas de cuerpos, adaptaciones y decisiones pendientes](22_fichas_recetas.md). No se implementan ni entrenan las recetas nuevas en este corte.
 
 

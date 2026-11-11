@@ -1,0 +1,199 @@
+{
+  "scope": "Auditoría documental, no certificación de cumplimiento ni reproducción final",
+  "source_commit": "181b9e58032c0011e46dcbe334400568fb82c258",
+  "guide_sha256": "93499dcfda6a36d9621524a81821470017ba114ca6b08241a35de5a54f74a654",
+  "items": [
+    {
+      "id": "B01",
+      "guide_pdf_page": 63,
+      "requirement": "Preregistro fechado y versionado antes del primer entrenamiento.",
+      "audit_status": "Parcial",
+      "can_prepare_or_document_now": "Consolidar manifiesto cronológico de registros/enmiendas reales sin preregistro retroactivo; separar fases aún abiertas.",
+      "evidence_section": "book_e2/sections/09_protocolo_registrado.md",
+      "certified_complete": false
+    },
+    {
+      "id": "B02",
+      "guide_pdf_page": 63,
+      "requirement": "Hash del dataset y del conjunto de prueba registrados.",
+      "audit_status": "Parcial",
+      "can_prepare_or_document_now": "Enlazar hashes reales de desarrollo y de reserva; no confundir hash con auditoría de contenido o independencia.",
+      "evidence_section": "book_e2/sections/17_contrato_sincronizado.md",
+      "certified_complete": false
+    },
+    {
+      "id": "B03",
+      "guide_pdf_page": 63,
+      "requirement": "Auditoría de fuga ejecutada y anexa, con todos los criterios aprobados.",
+      "audit_status": "Parcial",
+      "can_prepare_or_document_now": "Indexar controles ejecutados/pendientes y sus recibos; no certificar auditoría global por pruebas sintéticas.",
+      "evidence_section": "book_e2/sections/10_auditoria_datos.md",
+      "certified_complete": false
+    },
+    {
+      "id": "B04",
+      "guide_pdf_page": 63,
+      "requirement": "Particiones y semillas guardadas y regenerables.",
+      "audit_status": "Parcial",
+      "can_prepare_or_document_now": "Publicar mapa de splits, semillas, generador y hashes/firmas existentes; preparar verificador de regeneración.",
+      "evidence_section": "book_e2/sections/07_ruta_temporal.md",
+      "certified_complete": false
+    },
+    {
+      "id": "B05",
+      "guide_pdf_page": 63,
+      "requirement": "Un único pipeline por modelo; ningún ajuste fuera de train.",
+      "audit_status": "Parcial",
+      "can_prepare_or_document_now": "Mapear receta→fábrica→trainer→ejecutor→pruebas; separar drivers históricos del catálogo vigente.",
+      "evidence_section": "book_e2/sections/29_entrenamiento_temporal.md",
+      "certified_complete": false
+    },
+    {
+      "id": "B06",
+      "guide_pdf_page": 63,
+      "requirement": "Mismo presupuesto de ajuste para todos los modelos; todas las configuraciones registradas.",
+      "audit_status": "Parcial",
+      "can_prepare_or_document_now": "Generar CSV de trials con config/semilla/origen/coste/estado y dominios registrados; conservar intentos fallidos.",
+      "evidence_section": "book_e2/sections/11_hpo_equidad.md",
+      "certified_complete": false
+    },
+    {
+      "id": "B07",
+      "guide_pdf_page": 63,
+      "requirement": "Al menos 5 ejecuciones por modelo (6 si se usan pruebas por rangos) y resultados por ejecución guardados.",
+      "audit_status": "Pendiente",
+      "can_prepare_or_document_now": "Preparar formato por réplica; las 2 semillas HPO no satisfacen R final por modelo.",
+      "evidence_section": "book_e2/sections/13_agregacion_estadistica.md",
+      "certified_complete": false
+    },
+    {
+      "id": "B08",
+      "guide_pdf_page": 63,
+      "requirement": "Análisis de potencia y justificación del número de ejecuciones.",
+      "audit_status": "Pendiente",
+      "can_prepare_or_document_now": "Preparar protocolo/entradas del piloto de potencia; no fijar R desde el saldo o resultados finales.",
+      "evidence_section": "book_e2/sections/13_agregacion_estadistica.md",
+      "certified_complete": false
+    },
+    {
+      "id": "B09",
+      "guide_pdf_page": 63,
+      "requirement": "Baselines trivial y clásico fuerte, y los tres modelos base del Entregable 1, ajustados con el mismo presupuesto.",
+      "audit_status": "Parcial",
+      "can_prepare_or_document_now": "Indexar comparadores y referencias E1; mantener pendiente evaluación real común.",
+      "evidence_section": "book_e2/sections/21_comparadores_nas.md",
+      "certified_complete": false
+    },
+    {
+      "id": "B10",
+      "guide_pdf_page": 63,
+      "requirement": "Versiones exactas de software, hardware y determinismo documentados.",
+      "audit_status": "Parcial",
+      "can_prepare_or_document_now": "Consolidar recibo CUDA actual y añadir metadatos OS/imagen sin cambiar entorno activo.",
+      "evidence_section": "book_e2/sections/41_avance_optimizacion_11_origenes.md",
+      "certified_complete": false
+    },
+    {
+      "id": "B11",
+      "guide_pdf_page": 63,
+      "requirement": "Pruebas de las Tablas A, B y C reportadas con p exactos, ajustados, IC y tamaños de efecto.",
+      "audit_status": "Pendiente",
+      "can_prepare_or_document_now": "Preparar tablas, funciones y pruebas sintéticas con supuestos/IC/efectos; no generar p-values finales.",
+      "evidence_section": "book_e2/sections/13_agregacion_estadistica.md",
+      "certified_complete": false
+    },
+    {
+      "id": "B12",
+      "guide_pdf_page": 63,
+      "requirement": "Familias de comparaciones y corrección múltiple declaradas a priori.",
+      "audit_status": "Pendiente",
+      "can_prepare_or_document_now": "Documentar familias/unidades/bloques y decisión real antes de nuevos contrastes afectados.",
+      "evidence_section": "book_e2/sections/01_punto_partida.md",
+      "certified_complete": false
+    },
+    {
+      "id": "B13",
+      "guide_pdf_page": 63,
+      "requirement": "Techo de desempeño estimado y distancia normalizada γ reportada.",
+      "audit_status": "Pendiente",
+      "can_prepare_or_document_now": "Justificar referencia compatible con serie temporal; no llamar a persistencia techo de Bayes.",
+      "evidence_section": "book_e2/sections/12_incertidumbre_errores.md",
+      "certified_complete": false
+    },
+    {
+      "id": "B14",
+      "guide_pdf_page": 63,
+      "requirement": "Modelos con arquitectura no definida identificados; espacio declarado antes de entrenar; fase 1 con las 1000 arquitecturas; k finalistas con al menos 5 ejecuciones.",
+      "audit_status": "Parcial",
+      "can_prepare_or_document_now": "Publicar inventario enumerado y denominadores por modelo/origen; no declarar NAS completo con primer caso.",
+      "evidence_section": "book_e2/sections/27_nas_hpo_presupuesto.md",
+      "certified_complete": false
+    },
+    {
+      "id": "B15",
+      "guide_pdf_page": 63,
+      "requirement": "Arquitectura ganadora elegida solo con validación, con finalistas indistinguibles y análisis del sesgo del ganador y de la correlación entre fases.",
+      "audit_status": "Pendiente",
+      "can_prepare_or_document_now": "Preparar reporte de finalistas, parsimonia, ruido/correlación y sesgo; ganador depende de selección completa.",
+      "evidence_section": "book_e2/sections/27_nas_hpo_presupuesto.md",
+      "certified_complete": false
+    },
+    {
+      "id": "B16",
+      "guide_pdf_page": 63,
+      "requirement": "Robustez con al menos tres niveles de severidad; interpretabilidad con prueba de fidelidad y estabilidad.",
+      "audit_status": "Pendiente",
+      "can_prepare_or_document_now": "Preparar perturbaciones/3 severidades/fidelidad/estabilidad y pruebas sintéticas; aplicar después a modelos seleccionados.",
+      "evidence_section": "book_e2/sections/12_incertidumbre_errores.md",
+      "certified_complete": false
+    },
+    {
+      "id": "B17",
+      "guide_pdf_page": 63,
+      "requirement": "Incertidumbre cuantificada en los tres mejores modelos con cobertura empírica.",
+      "audit_status": "Pendiente",
+      "can_prepare_or_document_now": "Preparar calibración y cobertura disjuntas; identificar Top3 después de selección.",
+      "evidence_section": "book_e2/sections/12_incertidumbre_errores.md",
+      "certified_complete": false
+    },
+    {
+      "id": "B18",
+      "guide_pdf_page": 63,
+      "requirement": "Un solo acceso al conjunto de prueba por ejecución, con modelo y umbrales ya fijados.",
+      "audit_status": "Limitación explícita y control futuro pendiente",
+      "can_prepare_or_document_now": "Documentar exposición histórica y guardas de scoring; la reserva conocida no recupera independencia.",
+      "evidence_section": "book_e2/sections/17_contrato_sincronizado.md",
+      "certified_complete": false
+    },
+    {
+      "id": "B19",
+      "guide_pdf_page": 63,
+      "requirement": "Replicación parcial del paper guía con criterio de éxito definido a priori y limitación identificada.",
+      "audit_status": "Parcial",
+      "can_prepare_or_document_now": "Conservar recibos ETTh1 y criterio real de éxito; cerrar sus límites de transferencia sin inventar Bitcoin.",
+      "evidence_section": "book_e2/sections/05_paper_guia.md",
+      "certified_complete": false
+    },
+    {
+      "id": "B20",
+      "guide_pdf_page": 63,
+      "requirement": "Reproducción independiente de la tabla principal con discrepancia máxima reportada.",
+      "audit_status": "Pendiente",
+      "can_prepare_or_document_now": "Preparar verificador de tabla y discrepancia; esperar tabla final y reproducción válida.",
+      "evidence_section": "book_e2/sections/08_reproducibilidad.md",
+      "certified_complete": false
+    },
+    {
+      "id": "B21",
+      "guide_pdf_page": 63,
+      "requirement": "Código ejecutable de extremo a extremo con un solo comando y entorno reproducible.",
+      "audit_status": "Parcial",
+      "can_prepare_or_document_now": "Publicar runbook de selección vigente y contrato de cierre; --all histórico no ejecuta catálogo vigente.",
+      "evidence_section": "book_e2/sections/08_reproducibilidad.md",
+      "certified_complete": false
+    }
+  ],
+  "version": "e2-guide-appendix-B-audit-v1",
+  "date": "2026-11-11",
+  "all_items_certified_complete": false
+}

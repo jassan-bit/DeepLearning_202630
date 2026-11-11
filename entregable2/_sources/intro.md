@@ -6,6 +6,8 @@
 
 **Avance experimental verificado: 234 ajustes HPO nuevos completados, sin fallos, al 11/11/2026 a las 13:31:53 de Bogotá.** Se suman a 1.802 registros anteriores: **2.036 registros de resultados** entre ambos historiales. Son corridas de selección, no modelos finales ni una entrega terminada. [Detalle y fuentes del corte (§41)](sections/41_avance_optimizacion_11_origenes.md).
 
+**Auditoría contra la guía:** [§42: qué podemos completar mientras entrena Colab](sections/42_auditoria_y_trabajo_paralelo.md). Incluye prioridades, 21 ítems del Apéndice B y plantillas de reporte; distingue preparación de cumplimiento.
+
 ## Estado de la entrega y guía de lectura
 
 **Actualización documental del 11/11/2026, cotejada con la guía de 65 páginas aportada por el usuario.** El libro contiene código, revisión bibliográfica, preparación experimental y resultados parciales de selección. **El benchmark final no está terminado y no se declara cumplimiento integral de la guía.**

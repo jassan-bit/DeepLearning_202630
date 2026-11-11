@@ -1,5 +1,7 @@
 # 17. Contrato sincronizado de E1, E2 y E3
 
+**Vigencia documental (11/11/2026):** existe selección HPO/NAS registrada y ejecutada para el catálogo actual; las afirmaciones de ausencia de HPO o de falta de registro de selección corresponden a cortes anteriores. El benchmark final, R y su cierre inferencial siguen pendientes. [Registro y alcance actuales (§9)](09_protocolo_registrado.md) · [Calendario (§40)](40_calendario_original.md) · [Corte de resultados (§41)](41_avance_optimizacion_11_origenes.md) · [Auditoría y trabajo paralelo (§42)](42_auditoria_y_trabajo_paralelo.md).
+
 **Actualización editorial del 08/11/2026.** El candidato activo de continuidad es **CNN-1D + LSTM + atención temporal**. Sustituye HAR + red residual, cuyo código y recibos permanecen históricos e inactivos. Esta página no es un preregistro, no registra entrenamiento de mercado ni modifica resultados; la implementación provisional y el smoke se documentan en [§18](18_integracion_sintetica.md).
 
 ## 17.1 Qué aporta cada entregable
