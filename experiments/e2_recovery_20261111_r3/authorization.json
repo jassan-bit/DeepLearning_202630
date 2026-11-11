@@ -1,0 +1,46 @@
+{
+  "version": "e2-manual-recovery-authorization-v3",
+  "status": "registered_before_recovery_execution",
+  "registered_at_utc": "2026-11-11T01:35:43.486271+00:00",
+  "registered_at_bogota": "2026-11-10T20:35:43.486271-05:00",
+  "repository": "jassan-bit/DeepLearning_202630",
+  "campaign_branch": "campaigns/e2-cuda-selection-v1",
+  "campaign_prefix": "campaigns/e2-cuda-selection-v1",
+  "sealed_campaign_head": "f3c19e8589c3341d4cffb78f948687c64c90ad0c",
+  "plan_sha256": "4eae2d2ff9ef6f83a2f9eb0dc5ba647208d695e1665a8e522d812fed67893bda",
+  "scientific_source_commit": "564ba4762f84a800b02fa4c734f5752a169f5223",
+  "scientific_registration_sha256": "78c3c5b8ca042a347aaa80d642f3affd8b5911e8697d8747a2de915d1c3194a9",
+  "previous_completed_jobs": 1552,
+  "target": {
+    "job_id": "4c391a70d987e8d418877f621c82a8ad16a0d224a0ebdca637abdea4a5447ea9",
+    "job_payload_sha256": "a53166ac0a81992ec6c7e1f74acd069cdaf87b115e5b7f0725ae7effe23b5326",
+    "started_event_sha256": "b990ae9edfc0ae8adcb478dc9f4c76ce63033f496bd68c09f15ad596485ba815",
+    "sequence": 3124,
+    "old_session_id": "cac1f6e083ad42f1a7a9e4f24fd57c80",
+    "reservation_seconds": 2100.0
+  },
+  "original_unknown_attempt": {
+    "outcome": "unknown",
+    "elapsed_seconds": null,
+    "optimizer_steps": null,
+    "optimizer_steps_known_lower_bound": 0,
+    "partial_optimizer_update_may_have_occurred": true
+  },
+  "decision": "manual_retry_same_sealed_logical_job_once_after_confirmed_executor_and_outcome_absent",
+  "evidence": "User-provided read-only diagnostics in the currently connected Colab runtime report RUN_SEARCH undefined, no matching run_e2_cuda_search.py processes, no campaign at /content/entregable2_gpu_workspace/search-campaigns/e2-cuda-selection-v1, and no durable target result at that registered path. The public campaign remains pinned to f3c19e8589c3341d4cffb78f948687c64c90ad0c with 1552 durable logical results and exactly one unresolved start. This records the concrete recovery decision within the previously requested project continuation; it does not claim a new human approval or that all other disks and runtimes were inspected. Prior R1/R2 evidence remains unchanged.",
+  "limits": {
+    "session_seconds": 28800,
+    "initial_campaign_seconds": 86400,
+    "campaign_seconds": 129600,
+    "budget_extension_event_sha256": "899ab1bc8c440b0e90be19abc38e3f22785aaa87902b8b531752080ad444cf9a",
+    "old_session_conservative_allocation_seconds": 28800,
+    "budget_extension_authorized": false
+  },
+  "ledger_interpretation": "Manual logical-job reconciliation using one newly observed physical retry of the unresolved job. All 1552 confirmed results, earlier events, and R1/R2 external receipts remain unchanged. The interrupted physical outcome, elapsed time and optimizer steps remain unknown. Result session/start fields bind the original sealed logical job; job_finished identifies the new physical recovery session. The old session is conservatively allocated its sealed 28800 seconds, not labelled measured GPU time. Original controls retain 86400 seconds; the already recorded extension event yields an effective 129600 seconds. R3 creates no further budget amendment.",
+  "receipt_branch": "recoveries/e2-cuda-selection-v1/20261111-r3",
+  "implementation_sha256": {
+    "scripts/e2_manual_reconciliation_v3.py": "6833c74172cf136874d50e0b9516f5a156c2e2cc5e8d61adcc8fc761e5f1340a",
+    "scripts/e2_recovery_receipts_v3.py": "48e86e567ac7412fabd4cbaa16adbdbe9046fc036426a25141582afd0cb8ace6",
+    "scripts/run_e2_cuda_recovery_v3.py": "55f4f1017e87f5c688758a61771f4770c0582d8f452543c5efde268f881f77c6"
+  }
+}
