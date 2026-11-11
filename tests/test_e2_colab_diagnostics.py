@@ -55,6 +55,7 @@ class DiagnosticTests(unittest.TestCase):
         opt.install_public_schema = lambda module: calls.append('install_schema')
         opt.require_no_previous_optimization = lambda mirror: calls.append('previous_checked')
         opt.validate_profile = lambda value: calls.append('profile_validated')
+        opt.json_native_profile = lambda value: json.loads(json.dumps(value))
 
         public = types.ModuleType('e2_github_campaign')
         def validate(value):
@@ -105,6 +106,7 @@ class DiagnosticTests(unittest.TestCase):
                 raise AssertionError('TRAINING ATTEMPTED')
         session_module = types.ModuleType('e2_search_session')
         session_module.SearchSession = FakeSession
+        session_module._json_value = lambda value: json.loads(json.dumps(value))
         modules = {m.__name__:m for m in (opt,public,crop,transport,session_module)}
         with tempfile.TemporaryDirectory() as root:
             args = types.SimpleNamespace(controller_root=Path(root),engine_root=Path(root)/'engine',controller_commit='e'*40)

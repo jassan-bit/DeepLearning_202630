@@ -27,7 +27,7 @@ BRANCH = "campaigns/e2-cuda-crop-11-v2"
 OLD_BRANCH = "campaigns/e2-cuda-selection-v1"
 ORIGINS = tuple("2024-%02d-01" % month for month in range(1,11))+("2025-01-01",)
 VERSION = "e2-cuda-crop-plan-v2"
-REGISTRATION = ROOT/"experiments/e2_implementation_optimization_11_origins_20261111/registration.json"
+REGISTRATION = ROOT/"experiments/e2_implementation_optimization_11_origins_20261111/registration_json_metadata_fix.json"
 FILES = ("scripts/e2_timesnet_exact_crop.py", "scripts/run_e2_optimized_selection_v2.py")
 
 
@@ -49,6 +49,16 @@ def canonical(value):
 
 def digest(value):
     return hashlib.sha256(canonical(value)).hexdigest()
+
+
+def json_native_profile(profile):
+    """Freeze the serialized metadata, not PyTorch's str-subclass wrappers.
+
+    torch.__version__ is a TorchVersion in real profiles. It serializes like
+    str, but the strict ledger rejects subclasses. This roundtrip preserves
+    the canonical JSON bytes/hash and all measured values and dispatch cases.
+    """
+    return json.loads(canonical(profile))
 
 
 def read_registration():
@@ -347,7 +357,7 @@ def execute(args):
             import e2_timesnet_exact_crop as crop
             print(json.dumps({"stage":"synthetic_cuda_resource_profile","cases":15,
                 "market_training_started":False}),flush=True)
-            profile=crop.benchmark(device="cuda:0",repeats=5)
+            profile=json_native_profile(crop.benchmark(device="cuda:0",repeats=5))
             print(json.dumps({"resource_profile":profile},ensure_ascii=False),flush=True)
         old=GitCampaignMirror(REPOSITORY,OLD_BRANCH,OLD_BRANCH);mirrors.append(old)
         old.restore(args.legacy_cache)

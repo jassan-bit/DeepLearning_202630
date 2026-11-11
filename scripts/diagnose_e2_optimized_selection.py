@@ -36,7 +36,7 @@ def diagnose(args):
         raise ValueError("github_secret_required")
     import e2_github_campaign as public
     from e2_github_git_transport import GitCampaignMirror
-    from e2_search_session import SearchSession
+    from e2_search_session import SearchSession, _json_value
     opt.install_public_schema(public)
     mirrors = []
     legacy = None
@@ -63,7 +63,7 @@ def diagnose(args):
             else:
                 stage("perfil sintetico CUDA; NO entrenamiento de mercado")
                 import e2_timesnet_exact_crop as crop
-                profile = crop.benchmark(device="cuda:0", repeats=5)
+                profile = opt.json_native_profile(crop.benchmark(device="cuda:0", repeats=5))
                 opt.validate_profile(profile)
                 print(json.dumps({"fast_cases": profile["fast_cases"]}), flush=True)
             stage("lectura y verificacion de copia temporal del historial")
@@ -100,6 +100,7 @@ def diagnose(args):
                 raise ValueError("legacy_snapshot_advanced_after_optimized_campaign_seal")
             stage("validacion del plan antes de sellar")
             public._validate_plan(plan)
+            _json_value(plan)  # Exercise the exact strict ledger boundary as well.
             print(json.dumps({"diagnostic": "passed_pre_seal_checks",
                 "previous_completed_jobs": len(legacy.completed_job_ids),
                 "remaining_seconds": remaining, "market_training_started": False,

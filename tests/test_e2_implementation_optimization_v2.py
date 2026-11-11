@@ -154,6 +154,60 @@ class PolicyTests(unittest.TestCase):
             report['reused_jobs']=-1
             with self.assertRaises(ValueError):public.validate_record('status.json',optimized.canonical(report))
 
+    def test_real_profile_torchversion_is_normalized_before_the_strict_ledger(self):
+        from e2_search_session import InvalidPlan,SearchSession
+        # Exercise the real profiler output, rather than a JSON-loaded fixture:
+        # torch.__version__ is a str subclass rejected by the frozen ledger.
+        raw=crop.benchmark(device='cpu',widths=(2,),batch_sizes=(2,),repeats=1)
+        self.assertIsInstance(raw['torch'],str)
+        self.assertIsNot(type(raw['torch']),str)
+        plan={'version':'synthetic-profile-only','optimization':{'profile':raw}}
+        with tempfile.TemporaryDirectory() as tmp:
+            output=Path(tmp)/'ledger'
+            with self.assertRaisesRegex(InvalidPlan,'JSON-native values'):
+                SearchSession(output,plan,session_budget_seconds=10,
+                    campaign_budget_seconds=20,max_storage_bytes=10*1024**2)
+            self.assertFalse(output.exists())
+            native=optimized.json_native_profile(raw)
+            self.assertIs(type(native['torch']),str)
+            self.assertEqual(native['torch'],str(torch.__version__))
+            # Conversion changes Python type only, preserving public bytes/hash.
+            self.assertEqual(optimized.canonical(native),optimized.canonical(raw))
+            self.assertEqual(optimized.digest(native),optimized.digest(raw))
+            plan['optimization']['profile']=native
+            with SearchSession(output,plan,session_budget_seconds=10,
+                    campaign_budget_seconds=20,max_storage_bytes=10*1024**2) as session:
+                self.assertEqual(session.completed_job_ids,())
+                self.assertEqual(session.charged_wall_seconds,0.)
+            persisted=json.loads((output/'campaign.json').read_text())
+            self.assertEqual(persisted['plan'],plan)
+
+    def test_torchversion_cuda_profile_can_seal_and_roundtrip_public_records(self):
+        from torch.torch_version import TorchVersion
+        import e2_github_campaign as public
+        from e2_search_session import SearchSession
+        optimized.install_public_schema(public)
+        plan=self.synthetic_plan()
+        raw=plan['optimization']['profile']
+        raw['torch']=TorchVersion('2.8.0+cu126')
+        self.assertIsNot(type(raw['torch']),str)
+        # Semantic profile checks alone did not catch the serialization failure.
+        optimized.validate_profile(raw)
+        public._validate_plan(plan)
+        normalized=optimized.json_native_profile(raw)
+        self.assertEqual(optimized.digest(raw),optimized.digest(normalized))
+        plan['optimization']['profile']=normalized
+        with tempfile.TemporaryDirectory() as tmp:
+            with SearchSession(tmp,plan,session_budget_seconds=28800,
+                    campaign_budget_seconds=172700.,max_storage_bytes=10*1024**3) as session:
+                session._start_session()
+                self.assertEqual(session.completed_job_ids,())
+            for path in Path(tmp).rglob('*.json'):
+                public.validate_record(path.relative_to(tmp).as_posix(),path.read_bytes())
+            persisted=json.loads((Path(tmp)/'campaign.json').read_text())
+            self.assertEqual(persisted['plan'],plan)
+            self.assertEqual(persisted['plan_sha256'],optimized.digest(plan))
+
     def test_admission_clock_preserves_setup_time_without_sleep(self):
         clock=optimized.AdmissionClock(100.)
         with patch.object(optimized.time,'monotonic',return_value=125.):
