@@ -1,0 +1,25 @@
+{
+  "version": "e2-session-supervision-policy-v1",
+  "date": "2026-11-11",
+  "authorized_combined_limit_hours": 56,
+  "authorization_commit": "25fcf0282cc67465056883f03684184ac8b2bdb6",
+  "frozen_controller_commit": "8e3ab6cfb1b3fc3c804f0c914fa5d92b661058d9",
+  "automatic_restart_only": [
+    "paused_session_budget with return_code0 and matching finite budget report"
+  ],
+  "never": [
+    "extend_campaign_budget",
+    "kill current controller",
+    "retry unresolved attempts",
+    "retry runtime/sync/interruption failures",
+    "bypass provider limits"
+  ],
+  "stops_at": [
+    "global campaign budget or insufficient reservation",
+    "combined cap above56",
+    "no new result progress",
+    "nonzero exit",
+    "other final status"
+  ],
+  "provider_continuity_guaranteed": false
+}

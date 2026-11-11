@@ -29,6 +29,9 @@ El ejecutor v2 usa una campaña separada, `campaigns/e2-cuda-crop-11-v2`, ligada
 
 ## Uso y estado
 
+**Supervisión opcional dentro del límite autorizado:** la sección 12 del notebook espera al controlador actual y puede reanudar automáticamente sólo las pausas limpias por límite de sesión, con un techo combinado de **56 horas ya autorizadas**. No añade tiempo ni cambia el código científico. Se detiene ante presupuesto global insuficiente para otra reserva, errores, conciliación o falta de progreso; no evita desconexiones ni cierres de Colab. Las 56 horas son acumuladas, no adicionales. La ampliación manual a 56 quedó registrada en el [commit de enmienda](https://github.com/jassan-bit/DeepLearning_202630/commit/25fcf0282cc67465056883f03684184ac8b2bdb6).
+
+
 **Pausa por presupuesto:** volver a ejecutar la sección 8 sin cambiar el saldo puede producir la misma pausa, incluso con tiempo positivo si no alcanza la reserva completa de otro ajuste. La sección 11 del notebook permite una **enmienda manual**, sólo mediante un NUEVO LÍMITE TOTAL introducido por el usuario. Registra un evento append-only y confirma GitHub antes de reanudar; conserva plan, gasto anterior y resultados, y el mismo límite no se suma dos veces. Abrir o publicar la celda no autoriza ninguna ampliación. El límite inicial de 48 horas permanece en el historial; una ampliación efectiva deberá reportarse como desviación operativa, sin cambiar arquitectura, semillas o requisitos de E2.
 
 
