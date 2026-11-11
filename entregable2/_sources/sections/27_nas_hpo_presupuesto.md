@@ -12,6 +12,8 @@
 
 **Este corte sólo genera planes.** No importa modelos ni lee datos de mercado. No implementa todavía las seis nuevas fábricas NAS, no sustituye el preregistro inferencial completo y no ejecuta ajustes. Las implementaciones, parámetros y recibos de §§23–26 conservan su identidad histórica.
 
+**Vigencia de las configuraciones descargables:** el archivo HPO enlazado arriba se conserva como artefacto histórico de diseño. Para los valores del protocolo ejecutable activo, consultar [la exportación regenerada y verificada](../_static/optimized_progress_20261111_213112/registered_hpo_configs.json) y [los 546 ensayos con su configuración](../_static/optimized_progress_20261111_213112/trials.csv). Se verificó cada payload contra su huella de campaña; no se eligieron nuevos hiperparámetros ni se entrenó para producir esta tabla. Los IDs por sí solos no sustituyen la huella/versionado del payload.
+
 ## 27.1 NAS resuelto por receta
 
 La guía distingue un cuerpo definido por la fuente de un diseño propio o sin arquitectura verificable; no exige adjudicación del profesor para documentar esta decisión. Se congelan cinco cuerpos publicados y se asigna NAS a seis variantes mediante una interpretación conservadora explícita. Es una decisión del diseño E2, no una certificación de equivalencia con los autores ni de aceptación institucional.

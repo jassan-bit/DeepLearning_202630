@@ -25,14 +25,17 @@ Se conserva la optimización funcional selectiva de TimesNet descrita en [§39](
 
 Se priorizan los sistemas con cuerpo fijo/referencias en los **once** orígenes y después las familias NAS, conservando sus oportunidades de ajuste. Se reutilizan resultados anteriores sólo con identidad de trabajo, configuración, semilla y soporte coincidentes. No se cuentan como nuevos ajustes ni nuevos pasos GPU.
 
-El ejecutor v2 usa una campaña separada, `campaigns/e2-cuda-crop-11-v2`, ligada al código y perfil de recursos. Conserva el historial A3 y el saldo del límite original de 48 horas: **no reinicia ni amplía ese presupuesto**. Si no alcanza, pausa; una pausa no equivale a cumplir el benchmark. Para acabar podría ser necesario disponer de más recursos autorizados, en lugar de recortar requisitos sin evidencia.
+El ejecutor v2 usa una campaña separada, `campaigns/e2-cuda-crop-11-v2`, ligada al código y perfil de recursos. Conserva el historial A3 y el saldo transferido del límite inicial de 48 horas: **no reinicia ni amplía automáticamente el presupuesto**. El 11/11 se registró la ampliación manual autorizada a 56 horas acumuladas; [§41](41_avance_optimizacion_11_origenes.md) conserva su evento y contabilidad. Si no alcanza, pausa; una pausa no equivale a cumplir el benchmark. Para acabar podría ser necesario disponer de más recursos autorizados, en lugar de recortar requisitos sin evidencia.
 
 ## Uso y estado
+
+**Supervisión opcional dentro del límite autorizado:** la sección 12 del notebook espera al controlador actual y puede reanudar automáticamente sólo las pausas limpias por límite de sesión, con un techo combinado de **56 horas ya autorizadas**. No añade tiempo ni cambia el código científico. Se detiene ante presupuesto global insuficiente para otra reserva, errores, conciliación o falta de progreso; no evita desconexiones ni cierres de Colab. Las 56 horas son acumuladas, no adicionales. La ampliación manual a 56 quedó registrada en el [commit de enmienda](https://github.com/jassan-bit/DeepLearning_202630/commit/25fcf0282cc67465056883f03684184ac8b2bdb6).
+
 
 **Pausa por presupuesto:** volver a ejecutar la sección 8 sin cambiar el saldo puede producir la misma pausa, incluso con tiempo positivo si no alcanza la reserva completa de otro ajuste. La sección 11 del notebook permite una **enmienda manual**, sólo mediante un NUEVO LÍMITE TOTAL introducido por el usuario. Registra un evento append-only y confirma GitHub antes de reanudar; conserva plan, gasto anterior y resultados, y el mismo límite no se suma dos veces. Abrir o publicar la celda no autoriza ninguna ampliación. El límite inicial de 48 horas permanece en el historial; una ampliación efectiva deberá reportarse como desviación operativa, sin cambiar arquitectura, semillas o requisitos de E2.
 
 
-**Ejecución documentada:** el [corte del 11/11/2026, 13:31:53 de Bogotá (§41)](41_avance_optimizacion_11_origenes.md) confirma 234 ajustes HPO nuevos completados en la T4, sin fallos en esos registros. La preparación ya dio paso a entrenamiento de mercado; sigue siendo selección parcial, sin benchmark final ni R cerrado.
+**Ejecución documentada:** el [corte del 11/11/2026, 16:31:12 de Bogotá (§41)](41_avance_optimizacion_11_origenes.md) confirma 546 ajustes HPO nuevos completados en la T4, sin fallos en esos registros. La preparación ya dio paso a entrenamiento de mercado; sigue siendo selección parcial, sin benchmark final ni R cerrado.
 
 
 El notebook vigente es [entregable2_optimizacion_11_origenes.ipynb](https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/main/notebooks/entregable2_optimizacion_11_origenes.ipynb), enlazado desde la portada. Debe comprobarse el cierre del controlador anterior antes de iniciarlo; nunca deben correr dos simultáneamente. El código publicado no modifica la sesión privada de Colab. Las versiones de tres orígenes se conservan como antecedentes y no se recomiendan para nuevas ejecuciones.
