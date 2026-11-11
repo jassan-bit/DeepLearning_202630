@@ -1,0 +1,41 @@
+{
+  "amendment_id": "E2-GUIDE-SCHEDULE-20261111-v1",
+  "date": "2026-11-11",
+  "status": "published_schedule_not_automatically_applied_to_active_colab",
+  "guide_pages": [
+    13,
+    30,
+    53,
+    54,
+    55
+  ],
+  "decision": "Three chronological selection origins instead of eleven; identical budget across all models. Architecture spaces unchanged.",
+  "origins": [
+    "2024-01-01",
+    "2024-10-01",
+    "2025-01-01"
+  ],
+  "origin_choice_basis": "Calendar and preservation of the October recipe basis for the existing development power pilot; no ranking or test metrics used.",
+  "original_plan_sha256": "4eae2d2ff9ef6f83a2f9eb0dc5ba647208d695e1665a8e522d812fed67893bda",
+  "original_jobs_remain_immutable": true,
+  "nas_families": 6,
+  "nas1_architectures_per_family_origin": 1000,
+  "nas2_k": 40,
+  "nas2_seeds": 5,
+  "hpo_trials": 18,
+  "hpo_seeds": 2,
+  "old_search_upper_bound": 85074,
+  "new_search_upper_bound": 23202,
+  "final_R": null,
+  "later_origin_changes_are_not_comparable_to_original_eleven_origin_aggregate": true,
+  "not_included": [
+    "final refits",
+    "classical comparators",
+    "robustness",
+    "ablation",
+    "calibration",
+    "final inference"
+  ],
+  "known_test_remains_exploratory": true,
+  "runtime_transition": "Stop old controller gracefully; never run both schedulers. Unresolved attempts block automatic restart. No budget extension."
+}
