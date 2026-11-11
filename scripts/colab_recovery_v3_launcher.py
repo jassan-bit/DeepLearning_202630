@@ -392,7 +392,9 @@ def run_launcher(namespace):
         python, data = _verify_prepared_files(workspace, engine)
         _verify_engine(engine, clean)
         _verify_hardware(python, engine, clean)
-        controller = workspace / "recovery-v3-source"
+        # Keep every immutable controller checkout, including a failed earlier
+        # R3 launch. A corrected published pin must not rewrite that evidence.
+        controller = workspace / ("recovery-v3-source-" + commit[:12])
         authorization = _checkout_controller(controller, commit, auth_sha, clean)
         preview = _run(_command(python, controller, engine, commit, authorization, auth_sha, campaign, execute=False), clean,
                        cwd=controller, capture=True)

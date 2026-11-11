@@ -76,7 +76,7 @@ class LauncherTests(unittest.TestCase):
         self.python.write_text("prepared-python-placeholder")
         self.data = self.workspace / "development_cache"
         self.data.mkdir()
-        self.controller = self.workspace / "recovery-v3-source"
+        self.controller = self.workspace / ("recovery-v3-source-" + "a" * 12)
         self.controller.mkdir()
         self.auth = self.controller / launcher._AUTHORIZATION_PATH
         self.auth.parent.mkdir(parents=True)
@@ -389,6 +389,38 @@ while time.monotonic()<deadline: time.sleep(.01)
         self.assertNotEqual(first["external_report"], second["external_report"])
         self.assertEqual(Path(first["external_report"]).read_bytes(), first_bytes)
         self.assertEqual(len(self.ns["E2_RECOVERY_V3_RUN_HISTORY"]), 2)
+
+    def test_corrected_pin_preserves_old_controller_caches_and_blocked_report(self):
+        legacy = self.workspace / "recovery-v3-source"
+        legacy.mkdir()
+        (legacy / "controller.py").write_bytes(b"# earlier unversioned R3 cache\n")
+        previous_pin = self.workspace / ("recovery-v3-source-" + "c" * 12)
+        previous_pin.mkdir()
+        (previous_pin / "authorization.json").write_bytes(b'{"previous": "sealed"}\n')
+        old_report = self.campaign.parent / "recovery-v3-prior-blocked.json"
+        old_report.write_bytes(b'{"status":"blocked_recovery","error_code":"private_or_unapproved_text"}\n')
+        old_record = {"external_report": str(old_report), "status": "blocked_recovery", "returncode": 2,
+                      "controller_source_commit": "c" * 40, "pid": 2333}
+        self.ns["E2_RECOVERY_V3_RUN_HISTORY"] = [dict(old_record)]
+        self.ns["E2_RECOVERY_V3_ACTIVE_PROCESS"] = SimpleNamespace(poll=lambda: 2)
+        self.ns["E2_RECOVERY_V3_LAST_PID"] = 2333
+        original = {p: p.read_bytes() for root in (legacy, previous_pin) for p in root.rglob("*") if p.is_file()}
+        original[old_report] = old_report.read_bytes()
+        with self.prepared(payload={"status": "selection_paused", "logical_completed_jobs": 1552}), \
+             patch.object(launcher, "_checkout_controller", return_value=self.auth) as checkout:
+            result = launcher.run_launcher(self.ns)
+        expected_controller = self.workspace / ("recovery-v3-source-" + self.ns["RECOVERY_COMMIT"][:12])
+        self.assertEqual(expected_controller, self.controller)
+        self.assertEqual(checkout.call_count, 2)
+        self.assertTrue(all(call.args[0] == expected_controller for call in checkout.call_args_list))
+        self.assertEqual(self.processes[0].kwargs["cwd"], expected_controller)
+        self.assertEqual(Path(self.processes[0].command[1]).parent.parent, expected_controller)
+        for p, payload in original.items():
+            self.assertEqual(p.read_bytes(), payload, str(p))
+        self.assertEqual(self.ns["E2_RECOVERY_V3_RUN_HISTORY"][0], old_record)
+        self.assertEqual(len(self.ns["E2_RECOVERY_V3_RUN_HISTORY"]), 2)
+        self.assertNotEqual(result["external_report"], str(old_report))
+        self.assertEqual(result["logical_completed_jobs"], 1552)
 
     def test_missing_report_is_unknown_not_a_zero_result(self):
         with self.prepared():

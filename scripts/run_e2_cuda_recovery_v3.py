@@ -648,6 +648,10 @@ def preflight(args, *, phase_callback=None, authorization_callback=None):
     if git_head(ROOT) != args.controller_source_commit:
         raise ValueError('controller_checkout_does_not_match_pin')
     engine = load_engine(args.engine_root)
+    # Apply the complete public receipt schema, including privacy filtering,
+    # before CUDA admission or restoring/creating any remote campaign state.
+    mark('authorization_publication_validation')
+    engine.receipts.validate_authorization(authorization)
     mark('scientific_source_validation')
     engine.frozen.verify_source(SOURCE)
     registration_raw, registered = read_json(engine.admission.REGISTRATION)

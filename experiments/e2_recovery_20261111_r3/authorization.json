@@ -1,8 +1,8 @@
 {
   "version": "e2-manual-recovery-authorization-v3",
   "status": "registered_before_recovery_execution",
-  "registered_at_utc": "2026-11-11T01:35:43.486271+00:00",
-  "registered_at_bogota": "2026-11-10T20:35:43.486271-05:00",
+  "registered_at_utc": "2026-11-11T01:57:03.956960+00:00",
+  "registered_at_bogota": "2026-11-10T20:57:03.956960-05:00",
   "repository": "jassan-bit/DeepLearning_202630",
   "campaign_branch": "campaigns/e2-cuda-selection-v1",
   "campaign_prefix": "campaigns/e2-cuda-selection-v1",
@@ -27,7 +27,7 @@
     "partial_optimizer_update_may_have_occurred": true
   },
   "decision": "manual_retry_same_sealed_logical_job_once_after_confirmed_executor_and_outcome_absent",
-  "evidence": "User-provided read-only diagnostics in the currently connected Colab runtime report RUN_SEARCH undefined, no matching run_e2_cuda_search.py processes, no campaign at /content/entregable2_gpu_workspace/search-campaigns/e2-cuda-selection-v1, and no durable target result at that registered path. The public campaign remains pinned to f3c19e8589c3341d4cffb78f948687c64c90ad0c with 1552 durable logical results and exactly one unresolved start. This records the concrete recovery decision within the previously requested project continuation; it does not claim a new human approval or that all other disks and runtimes were inspected. Prior R1/R2 evidence remains unchanged.",
+  "evidence": "User-provided read-only diagnostics in the currently connected Colab runtime report RUN_SEARCH undefined, no matching run_e2_cuda_search.py processes, no campaign at the notebook registered cache location, and no durable target result at that registered path. The public campaign remains pinned to f3c19e8589c3341d4cffb78f948687c64c90ad0c with 1552 durable logical results and exactly one unresolved start. This records the concrete recovery decision within the previously requested project continuation; it does not claim a new human approval or that all other disks and runtimes were inspected. Prior R1/R2 evidence remains unchanged. The first R3 launcher invocation stopped before claiming any physical recovery because its authorization narrative contained a local filesystem location; the public narrative is now corrected while the privacy validator is preserved.",
   "limits": {
     "session_seconds": 28800,
     "initial_campaign_seconds": 86400,
@@ -41,6 +41,6 @@
   "implementation_sha256": {
     "scripts/e2_manual_reconciliation_v3.py": "6833c74172cf136874d50e0b9516f5a156c2e2cc5e8d61adcc8fc761e5f1340a",
     "scripts/e2_recovery_receipts_v3.py": "48e86e567ac7412fabd4cbaa16adbdbe9046fc036426a25141582afd0cb8ace6",
-    "scripts/run_e2_cuda_recovery_v3.py": "55f4f1017e87f5c688758a61771f4770c0582d8f452543c5efde268f881f77c6"
+    "scripts/run_e2_cuda_recovery_v3.py": "47fd6bd302fa8f94c23ba2eb26b601aca45d65dd0f67466c378b5861ad7a206f"
   }
 }

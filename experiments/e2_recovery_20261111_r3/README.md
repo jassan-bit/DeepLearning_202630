@@ -4,6 +4,8 @@ Los diagnósticos de solo lectura del Colab conectado muestran `RUN_SEARCH` sin 
 
 `authorization.json` registra una decisión concreta de recuperación dentro de la continuación del proyecto solicitada. No representa un entrenamiento ya realizado ni una aprobación humana adicional. El desenlace, duración y pasos del intento anterior siguen desconocidos. El controlador admite una sola repetición física de su configuración y semilla originales; el recibo físico observado debe confirmarse antes de escribir la reconciliación lógica. Un recibo iniciado sin observación bloquea otra repetición automática.
 
+La primera invocación R3 terminó con `private_or_unapproved_text` antes de reclamar un recibo físico: el texto de evidencia incluía una ubicación local que el filtro público rechaza. La corrección describe la ubicación sin publicar la ruta, mantiene el filtro y valida la autorización completa antes de restaurar la campaña. Los controladores se conservan en cachés identificadas por commit para mantener el checkout y los informes anteriores.
+
 ## Presupuesto y fuente
 
 - Motor científico A3: `564ba4762f84a800b02fa4c734f5752a169f5223`; registro `78c3c5b8ca042a347aaa80d642f3affd8b5911e8697d8747a2de915d1c3194a9`.

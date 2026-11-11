@@ -2,10 +2,11 @@
 import base64
 from copy import deepcopy
 import hashlib
+import json
 from pathlib import Path
 import sys
 import unittest
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 from urllib.parse import unquote,urlsplit
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -132,6 +133,30 @@ def completed(client,actual):
 
 
 class RecoveryReceiptsV3Tests(unittest.TestCase):
+    def test_registered_authorization_actual_bytes_validate_without_network(self):
+        raw=(ROOT/"experiments/e2_recovery_20261111_r3/authorization.json").read_bytes()
+        registered=json.loads(raw)
+        self.assertIs(receipts.validate_authorization(registered),registered)
+        transport=Mock(side_effect=AssertionError("Authorization validation must not access the network"))
+        client=receipts.RecoveryReceiptStore(registered["repository"],registered["receipt_branch"],
+            hashlib.sha256(raw).hexdigest(),registered["sealed_campaign_head"],
+            token="offline-test-token",transport=transport,authorization_bytes=raw)
+        self.assertTrue(client._authorization_verified)
+        self.assertEqual(client._authorization,registered)
+        transport.assert_not_called()
+
+    def test_registered_authorization_embedded_absolute_path_still_fails_before_network(self):
+        raw=(ROOT/"experiments/e2_recovery_20261111_r3/authorization.json").read_bytes()
+        registered=json.loads(raw)
+        registered["evidence"]+=" Campaign cache absent at /content/entregable2_gpu_workspace/search-campaigns/e2-cuda-selection-v1."
+        unsafe_raw=receipts.canonical(registered)
+        transport=Mock(side_effect=AssertionError("Unsafe authorization must fail before network access"))
+        with self.assertRaisesRegex(receipts.CampaignSyncError,"^private_or_unapproved_text$"):
+            receipts.RecoveryReceiptStore(registered["repository"],registered["receipt_branch"],
+                hashlib.sha256(unsafe_raw).hexdigest(),registered["sealed_campaign_head"],
+                token="offline-test-token",transport=transport,authorization_bytes=unsafe_raw)
+        transport.assert_not_called()
+
     def test_both_incidents_bind_exact_distinct_authorized_targets_and_float_allocation(self):
         for incident in (R1,R2):
             with self.subTest(incident=incident["count"]):

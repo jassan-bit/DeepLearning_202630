@@ -272,8 +272,36 @@ runpy.run_path(sys.argv[0],run_name='__main__')
                 source_hashes=Mock(return_value={'scripts/frozen.py':'a'*64}),
                 build_plan=Mock(return_value={'sealed':'synthetic'})),
             transport=SimpleNamespace(GitCampaignMirror=Mock()),
-            receipts=SimpleNamespace(RecoveryReceiptStore=Mock()))
+            receipts=SimpleNamespace(RecoveryReceiptStore=Mock(),validate_authorization=Mock()))
         return engine, hashlib.sha256(raw).hexdigest()
+
+    def test_full_published_authorization_privacy_precedes_cuda_and_campaign_restore(self):
+        # Use the actual R3 authority and real publication validator. Earlier
+        # synthetic preflight fixtures omitted the free-text evidence field,
+        # which allowed an absolute path to reach receipt-store construction.
+        import e2_recovery_receipts_v3 as real_receipts
+        published=json.loads((CONTROLLER/'experiments/e2_recovery_20261111_r3/authorization.json').read_text())
+        fields={key:deepcopy(value) for key,value in published.items() if key!='implementation_sha256'}
+        fields['evidence']='Read-only diagnostic reported no campaign at /content/entregable2_gpu_workspace/search-campaigns/e2-cuda-selection-v1.'
+        root,path,sha,authorization=self.fixture_authorization(**fields)
+        engine,_=self.fake_preflight_engine()
+        engine.receipts.validate_authorization=real_receipts.validate_authorization
+        args=self.args()
+        args.authorization=path
+        args.expected_authorization_sha256=sha
+        with patch.object(recovery,'ROOT',root), \
+                patch.object(recovery,'git_head',return_value='a'*40), \
+                patch.object(recovery,'load_engine',return_value=engine):
+            code,final,report=self.invoke(args)
+        self.assertEqual((code,report['status'],report['error_code'],report['error_phase']),
+            (2,'blocked_preflight','private_or_unapproved_text','authorization_publication_validation'))
+        engine.frozen.verify_source.assert_not_called()
+        engine.frozen.cuda_hardware.assert_not_called()
+        engine.admission.build_plan.assert_not_called()
+        engine.transport.GitCampaignMirror.assert_not_called()
+        engine.receipts.RecoveryReceiptStore.assert_not_called()
+        self.assertFalse((self.base/'cache').exists())
+        self.assertNotIn('/content/',json.dumps(final)+json.dumps(report))
 
     def test_no_gpu_or_quota_means_zero_receipt_claims_ledger_appends_or_fits(self):
         engine, registration_sha = self.fake_preflight_engine(RuntimeError('cuda_unavailable'))
