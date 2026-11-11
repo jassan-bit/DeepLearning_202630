@@ -1,0 +1,426 @@
+{
+  "version": "e2-cuda-campaign-progress-public-v1",
+  "snapshot_kind": "frozen_partial_progress_not_live_dashboard",
+  "repository": "jassan-bit/DeepLearning_202630",
+  "campaign_branch": "campaigns/e2-cuda-selection-v1",
+  "campaign_prefix": "campaigns/e2-cuda-selection-v1",
+  "snapshot_commit": "e4ed85f04b178f9e9e9a69534071044a12ca0461",
+  "snapshot_commit_at_utc": "2026-11-11T02:34:11+00:00",
+  "snapshot_commit_at_bogota": "2026-11-10T21:34:11-05:00",
+  "inspected_at_utc": "2026-11-11T02:40:50.802184+00:00",
+  "scientific_source_commit": "564ba4762f84a800b02fa4c734f5752a169f5223",
+  "registration_sha256": "78c3c5b8ca042a347aaa80d642f3affd8b5911e8697d8747a2de915d1c3194a9",
+  "plan_sha256": "4eae2d2ff9ef6f83a2f9eb0dc5ba647208d695e1665a8e522d812fed67893bda",
+  "hardware": {
+    "amp": false,
+    "cpu_threads": 2,
+    "cuda_kernel_probe_passed": true,
+    "cudnn": 91002,
+    "deterministic": true,
+    "device": "cuda:0",
+    "device_name": "Tesla T4",
+    "dtype": "float32",
+    "effective_memory_limit_bytes": 12509668966,
+    "execution_policy_scope": "Registered fit/inference policy; not a claim that the preflight validated all model kernels",
+    "interop_threads": 1,
+    "tf32": false,
+    "torch": "2.8.0+cu126",
+    "torch_cuda": "12.6",
+    "total_memory_bytes": 15637086208
+  },
+  "initial_limits": {
+    "session_hours": 8,
+    "campaign_hours": 24,
+    "budget_extension_recorded": true
+  },
+  "planned_coverage": {
+    "base_models": 10,
+    "proposed_candidate_11": "CNN-1D + LSTM + atención temporal",
+    "e1_control_models": [
+      "MLP16",
+      "LSTM32",
+      "GRU32"
+    ],
+    "neural_models": 14,
+    "origins": 11,
+    "hpo_jobs": 5544,
+    "nas1_jobs": 66000,
+    "nas2_jobs_upper_bound": 13530,
+    "jobs_upper_bound": 85074
+  },
+  "confirmed_logical_results": {
+    "total": 1561,
+    "completed": 1561,
+    "failed": 0,
+    "models_with_results": 5,
+    "origins_with_results": {
+      "2024-01-01": 1561
+    },
+    "by_stage": {
+      "hpo": 180,
+      "nas1": 1181,
+      "nas2": 200
+    },
+    "known_optimizer_steps_lower_bound": 2202416,
+    "confirmed_results_with_unknown_steps": 0
+  },
+  "model_progress": [
+    {
+      "model": "FCN-1D",
+      "catalog_role": "base",
+      "hpo": 36,
+      "nas1": 0,
+      "nas2": 0,
+      "total": 36,
+      "completed": 36,
+      "failed": 0,
+      "origins": [
+        "2024-01-01"
+      ]
+    },
+    {
+      "model": "ResNet-1D",
+      "catalog_role": "base",
+      "hpo": 36,
+      "nas1": 0,
+      "nas2": 0,
+      "total": 36,
+      "completed": 36,
+      "failed": 0,
+      "origins": [
+        "2024-01-01"
+      ]
+    },
+    {
+      "model": "Inception-1D",
+      "catalog_role": "base",
+      "hpo": 36,
+      "nas1": 0,
+      "nas2": 0,
+      "total": 36,
+      "completed": 36,
+      "failed": 0,
+      "origins": [
+        "2024-01-01"
+      ]
+    },
+    {
+      "model": "LSTM-autoencoder con predictor",
+      "catalog_role": "base",
+      "hpo": 36,
+      "nas1": 1000,
+      "nas2": 200,
+      "total": 1236,
+      "completed": 1236,
+      "failed": 0,
+      "origins": [
+        "2024-01-01"
+      ]
+    },
+    {
+      "model": "TimesNet",
+      "catalog_role": "base",
+      "hpo": 36,
+      "nas1": 181,
+      "nas2": 0,
+      "total": 217,
+      "completed": 217,
+      "failed": 0,
+      "origins": [
+        "2024-01-01"
+      ]
+    },
+    {
+      "model": "TSMixer",
+      "catalog_role": "base",
+      "hpo": 0,
+      "nas1": 0,
+      "nas2": 0,
+      "total": 0,
+      "completed": 0,
+      "failed": 0,
+      "origins": []
+    },
+    {
+      "model": "TiDE",
+      "catalog_role": "base",
+      "hpo": 0,
+      "nas1": 0,
+      "nas2": 0,
+      "total": 0,
+      "completed": 0,
+      "failed": 0,
+      "origins": []
+    },
+    {
+      "model": "TimeMixer",
+      "catalog_role": "base",
+      "hpo": 0,
+      "nas1": 0,
+      "nas2": 0,
+      "total": 0,
+      "completed": 0,
+      "failed": 0,
+      "origins": []
+    },
+    {
+      "model": "PatchTST",
+      "catalog_role": "base",
+      "hpo": 0,
+      "nas1": 0,
+      "nas2": 0,
+      "total": 0,
+      "completed": 0,
+      "failed": 0,
+      "origins": []
+    },
+    {
+      "model": "iTransformer",
+      "catalog_role": "base",
+      "hpo": 0,
+      "nas1": 0,
+      "nas2": 0,
+      "total": 0,
+      "completed": 0,
+      "failed": 0,
+      "origins": []
+    },
+    {
+      "model": "CNN-1D + LSTM + atención temporal",
+      "catalog_role": "candidate_11",
+      "hpo": 0,
+      "nas1": 0,
+      "nas2": 0,
+      "total": 0,
+      "completed": 0,
+      "failed": 0,
+      "origins": []
+    },
+    {
+      "model": "MLP16",
+      "catalog_role": "e1_control",
+      "hpo": 0,
+      "nas1": 0,
+      "nas2": 0,
+      "total": 0,
+      "completed": 0,
+      "failed": 0,
+      "origins": []
+    },
+    {
+      "model": "LSTM32",
+      "catalog_role": "e1_control",
+      "hpo": 0,
+      "nas1": 0,
+      "nas2": 0,
+      "total": 0,
+      "completed": 0,
+      "failed": 0,
+      "origins": []
+    },
+    {
+      "model": "GRU32",
+      "catalog_role": "e1_control",
+      "hpo": 0,
+      "nas1": 0,
+      "nas2": 0,
+      "total": 0,
+      "completed": 0,
+      "failed": 0,
+      "origins": []
+    }
+  ],
+  "last_finished_job": {
+    "job_id": "2c26da07163044719168bbc4e76757f7bb4fc3639dd03cc32c1f92bccdb5d134",
+    "finished_at_utc": "2026-11-11T02:34:09.081682+00:00",
+    "identity": {
+      "candidate_id": "nas1:TN-D7-NAS-v1:hpo-010:TN-D7-NAS-v1:w16-256-64:b100",
+      "model": "TimesNet",
+      "origin": "2024-01-01",
+      "payload_sha256": "60ef7c2e0755a587df9e5fe6e75d657949b8054b2e22b7516cc6590a26f5200a",
+      "prepared_signature": "6edac641ad283391d906273ef1f999dee644626d2a8336b6d73849641618ba77",
+      "seed": 271301,
+      "stage": "nas1"
+    },
+    "status": "completed"
+  },
+  "started_without_confirmed_result_at_cut": [
+    {
+      "job_id": "bc767452d5814cd64a7a23de0e025b4c59fd769d18c21a3dfa6c1747021be490",
+      "started_at_utc": "2026-11-11T02:34:11.217212+00:00",
+      "started_event_sequence": 3148,
+      "reservation_seconds": 2100.0,
+      "session_id": "7caa37a29f1043348af9b4d861c838ca",
+      "interpretation": "Started without a committed result in this immutable cut; not a failed or stuck job by itself"
+    }
+  ],
+  "event_count": 3149,
+  "snapshot_record_count": 4712,
+  "snapshot_record_bytes": 11931350,
+  "snapshot_sha256": "10ca3f7b1e8054063092fa29871748c9f1e0e80cd536106205db576edf77b052",
+  "inventory_root_sha256": "04051a74493be090884b1016c4f9e487ee32a2f22479e2d935b1dd8b8476892b",
+  "recovery_history": [
+    {
+      "incident": "R1",
+      "phase": "completed",
+      "completed_at_utc": "2026-11-10T11:43:09.114319+00:00",
+      "job_id": "3775f65fd049666c641c1131e94726e12e98143f91a755075c07ac6761dd668b",
+      "receipt_sha256": "acd3040e71ac4745db14fd61943a63e33e3105cb9c72f8a2172e92ddaeeede22",
+      "authorization_sha256": "7545da0cd424ebe84b3f5adb415849d1521711e47632084ca678ef09ed9b7fea",
+      "controller_source_commit": "b2d8cc9ca196f08670c1121efb89549c1838e38d",
+      "campaign_result_commit": "27caf0f482ce68c874d9add5a749a351ef39bd59",
+      "result_sha256": "455e4534da3d620d4b1a6c46844f5465011c1beef942afbe2ce10566e51d0c4f",
+      "original_unknown_attempt": {
+        "elapsed_seconds": null,
+        "optimizer_steps": null,
+        "optimizer_steps_known_lower_bound": 0,
+        "outcome": "unknown",
+        "partial_optimizer_update_may_have_occurred": true
+      },
+      "physical_retry_fit_seconds": 19.489905056999987,
+      "new_physical_attempt_only": true
+    },
+    {
+      "incident": "R2",
+      "phase": "completed",
+      "completed_at_utc": "2026-11-10T12:37:00.276853+00:00",
+      "job_id": "e98bca476404aa9d15236e51623ab2ee738c0cce6d43cc85513c07b8fa45fd5d",
+      "receipt_sha256": "d10fbf420393016434203ecad456723ff948ead97f1c09c6687580a505288a2a",
+      "authorization_sha256": "2a6f8a5dd149dde9216a5d2186f30aae8166f97be422d5f7ae9127b2eabdc10e",
+      "controller_source_commit": "20248e2917746962f92dccbcf89ae1874f6cbad2",
+      "campaign_result_commit": "72e989fa930bba4e02300622fc1c8d63fb41c4ee",
+      "result_sha256": "27e2c9a818708cf8ae805cf710052aa41f03d8a8c53507a78375081296197e2e",
+      "original_unknown_attempt": {
+        "elapsed_seconds": null,
+        "optimizer_steps": null,
+        "optimizer_steps_known_lower_bound": 0,
+        "outcome": "unknown",
+        "partial_optimizer_update_may_have_occurred": true
+      },
+      "physical_retry_fit_seconds": 17.402275465999992,
+      "new_physical_attempt_only": true
+    },
+    {
+      "incident": "R3",
+      "phase": "completed",
+      "completed_at_utc": "2026-11-11T02:08:05.446096+00:00",
+      "job_id": "4c391a70d987e8d418877f621c82a8ad16a0d224a0ebdca637abdea4a5447ea9",
+      "receipt_sha256": "dadf8cefc68406a25b264c43f616fef34521800089454c5bb93eb7b5827b2490",
+      "authorization_sha256": "5d99c0d05036a318c7851a66a65327f9bf78568bca973179c678f0847a9b3199",
+      "controller_source_commit": "ed3406ab53dc1a5c4f36d9bc5d34d2476dc4377a",
+      "campaign_result_commit": "6e61ea6d0b673dbc659669fa2175db0ec8fff444",
+      "result_sha256": "4a5f37555d6cfb355b6a547f9efb3a71f5db5880869d221acdc62122923a7fb3",
+      "original_unknown_attempt": {
+        "elapsed_seconds": null,
+        "optimizer_steps": null,
+        "optimizer_steps_known_lower_bound": 0,
+        "outcome": "unknown",
+        "partial_optimizer_update_may_have_occurred": true
+      },
+      "physical_retry_fit_seconds": 183.34228795699983,
+      "new_physical_attempt_only": true,
+      "observed_at_utc": "2026-11-11T02:07:57.821050+00:00",
+      "optimizer_steps": 736,
+      "training_elapsed_seconds": 178.723069872,
+      "worker_supervisor_elapsed_seconds": 183.33098116100018,
+      "cuda_metrics": {
+        "effective_limit_bytes": 12509668966,
+        "max_memory_allocated_bytes": 1155727872,
+        "max_memory_reserved_bytes": 1577058304
+      },
+      "epochs_completed": 46,
+      "selected_best_epoch": 26,
+      "elapsed_scope": "physical_retry_fit_seconds is the new physical callback wall time; training and supervisor fields have their own boundaries. None reconstructs the original interrupted physical attempt."
+    }
+  ],
+  "historical_resource_profiles_excluded_from_result_count": 29,
+  "earlier_unknown_physical_attempts": 3,
+  "unclosed_session_allocation_is_not_observed_training_time": true,
+  "validation": {
+    "public_record_schema": "passed",
+    "snapshot_merkle_inventory": "passed",
+    "frozen_A3_ledger_crosslinks": "passed",
+    "implementation_hashes_verified": 61,
+    "recovery_result_links": "passed",
+    "new_GPU_fits_during_publication": 0,
+    "campaign_remote_writes_during_publication": 0,
+    "all_summary_counts_reconciled": true,
+    "R3_physical_receipts_and_result_links": "passed"
+  },
+  "interpretation": {
+    "count_unit": "logical_configuration_and_seed_attempt_results",
+    "SAE_optimization_phases_per_attempt": 3,
+    "full_search_complete": false,
+    "benchmark_final_complete": false,
+    "candidate_11_started": false,
+    "candidate_11_superiority_demonstrated": false,
+    "final_market_values_read": false,
+    "final_R": null
+  },
+  "recorded_budget_extensions": [
+    {
+      "kind": "campaign_budget_extended",
+      "new_budget_seconds": 129600.0,
+      "plan_sha256": "4eae2d2ff9ef6f83a2f9eb0dc5ba647208d695e1665a8e522d812fed67893bda",
+      "previous_budget_seconds": 86400.0,
+      "previous_sha256": "6782f79a4576dc564e2afc92acb1e9123d23e343562e4d70e0e369ab442fa802",
+      "reason": "operator_requested_budget_extension",
+      "sequence": 2303,
+      "sha256": "899ab1bc8c440b0e90be19abc38e3f22785aaa87902b8b531752080ad444cf9a",
+      "utc": "2026-11-10T16:52:56.444093+00:00",
+      "version": "e2-search-session-v1"
+    }
+  ],
+  "current_recorded_limits": {
+    "campaign_hours": 36.0,
+    "session_hours": 8,
+    "scope": "Journal limits; not elapsed GPU training or billing. Current open-session allocation is not observed training duration."
+  },
+  "stored_status_file": {
+    "status": "paused_session_budget",
+    "completed_jobs": 1280,
+    "pause_reason": "session_budget",
+    "is_older_than_committed_results": true,
+    "interpretation": "Written only at session exit; superseded as current activity evidence by later started/finished events. Do not label the current Colab session paused from this file alone."
+  },
+  "latest_activity_event": {
+    "kind": "job_started",
+    "utc": "2026-11-11T02:34:11.217212+00:00",
+    "sequence": 3148,
+    "job_id": "bc767452d5814cd64a7a23de0e025b4c59fd769d18c21a3dfa6c1747021be490"
+  },
+  "activity_scope": "Recent journal activity at the frozen cut, not a live GPU-utilization reading or a promise that the kernel is still running at page-view time.",
+  "recovery_r3_evidence": {
+    "receipts_branch": "recoveries/e2-cuda-selection-v1/20261111-r3",
+    "receipts_snapshot_commit": "e85ade24c23ad4912161a548d63cce03843e0f25",
+    "receipt_prefix": "recovery/5d99c0d05036a318c7851a66a65327f9bf78568bca973179c678f0847a9b3199/",
+    "phase_receipt_sha256": {
+      "completed": "dadf8cefc68406a25b264c43f616fef34521800089454c5bb93eb7b5827b2490",
+      "observed": "ac697866cafcdc5c9a83da6e1f9579cdc0e6fdb63f8209461f731eb86fb0caa1",
+      "started": "412f261e53876472750e61aaacbaf2c546a33a87f448013deb9bba168af131cc"
+    },
+    "notebook_commit": "34c46d0a8e0664f6afccf77542c4038c990ca3f7",
+    "admission_correction": {
+      "earlier_invocation_status": "blocked_recovery",
+      "error_code": "private_or_unapproved_text",
+      "phase": "recovery_receipt_inspection",
+      "fit_performed_before_that_block": false,
+      "interpretation": "A public narrative formatting rejection before any physical recovery claim; corrected without relaxing the privacy filter."
+    },
+    "controller_tests_passed": 111,
+    "test_scope": "Offline recovery, receipt, budget and launch tests; these are not scientific HPO/NAS jobs."
+  },
+  "historical_cuts_preserved": [
+    {
+      "path": "summary.json",
+      "confirmed_results": 906,
+      "sha256": "f5f1868524eceddc6cd23e7978ab9856d96e185080b4b65dc52f041b3fc4cac1"
+    },
+    {
+      "path": "summary_20261110_180019.json",
+      "confirmed_results": 1497,
+      "sha256": "606e91de0ebe0e62a6e79fd8a2978dd8ab71c03a3013af6756b3e4793786335f"
+    }
+  ],
+  "completed_logical_result_increase_since_previous_published_cut": 64
+}
