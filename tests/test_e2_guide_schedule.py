@@ -1,6 +1,8 @@
 """Amendment tests without CUDA, market data, or credentials."""
 import copy
+import hashlib
 import importlib.util
+import json
 from pathlib import Path
 import sys
 import types
@@ -89,6 +91,17 @@ class ScheduleTests(unittest.TestCase):
     def test_plan_only_has_no_training_dependencies(self):
         with patch("builtins.print"):
             self.assertEqual(schedule.main(["--plan-only"]), 0)
+
+    def test_notebook_pins_scheduler_and_is_opt_in(self):
+        root = Path(__file__).resolve().parents[1]
+        notebook = json.loads((root/"notebooks/entregable2_calendario_guia.ipynb").read_text())
+        for cell in notebook["cells"]:
+            if cell["cell_type"] == "code":
+                compile("".join(cell["source"]), cell["id"], "exec")
+        launch = "".join(next(c for c in notebook["cells"] if c["id"] == "guide-launch")["source"])
+        self.assertIn("RUN_AMENDED_SCHEDULE = False", launch)
+        self.assertIn(hashlib.sha256((root/"scripts/e2_guide_schedule.py").read_bytes()).hexdigest(), launch)
+        self.assertNotIn("--retry-lost-once", launch)
 
 
 if __name__ == "__main__":

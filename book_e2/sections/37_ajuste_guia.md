@@ -2,7 +2,7 @@
 
 **Enmienda del 11/11/2026: tres orígenes de selección en lugar de once.** La guía pide origen móvil y el mismo esfuerzo entre modelos (p. 30), pero no fija once selecciones mensuales. Se conservan `2024-01-01`, `2024-10-01` y `2025-01-01`: dos orígenes de desarrollo y la selección anterior al test histórico. Octubre conserva la base de recetas del piloto de potencia existente. La elección usa calendario y dependencias del diseño, no rankings ni métricas de prueba.
 
-**Este cambio está implementado en un nuevo programador; no cambia una sesión de Colab que ya está ejecutándose.** El notebook de transición se enlaza abajo cuando queda fijado al código publicado. No se ha entrenado un modelo nuevo durante esta modificación.
+**Este cambio está implementado en un nuevo programador; no cambia una sesión de Colab que ya está ejecutándose.** [Abrir notebook de transición en Colab](https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/main/notebooks/entregable2_calendario_guia.ipynb). Su programador se descarga de un commit inmutable y se verifica por SHA256. No se ha entrenado un modelo nuevo durante esta modificación.
 
 ## Qué exige la guía y qué conservamos
 
