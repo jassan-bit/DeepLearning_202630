@@ -4,8 +4,8 @@
 
 Ese corte entregó software y validación sintética; todavía no acreditaba una búsqueda científica GPU ejecutada. El avance posterior sobre desarrollo se documenta en [§36](36_avance_campana_cuda.md). Los [29 perfiles de recursos y 872 pasos conocidos de §§33–34](34_perfil_gpu_ampliado.md) conservan su evidencia histórica separada. La comparación final de dieciocho sistemas, los controles pendientes y el R final siguen abiertos.
 
-:::{warning}
-**Campaña en curso al corte del 10/11/2026.** Para recuperar la vista del entrenamiento activo, vuelve a conectar la sesión existente de Colab. No pulses **Ejecutar todas**, no inicies otra máquina ni autorices otro reintento por una desconexión del navegador. Las instrucciones siguientes documentan la puesta en marcha inicial; no deben repetirse sobre esa ejecución. Consulta el [estado parcial y sus límites en §36](36_avance_campana_cuda.md). Los límites iniciales 8/24 se conservan como antecedente; el diario posterior registra 8 horas por sesión y una ampliación global a 36 horas, descrita con su evento en §36.
+:::{note}
+**Comprobar la sesión antes de continuar.** Una sesión activa se conserva y se consulta su salida; reconectar el navegador no exige relanzar la búsqueda. Cuando el kernel ya no tiene ejecutor, se contrasta la caché local con los recibos remotos antes de recuperar el avance. El [corte de §36](36_avance_campana_cuda.md) documenta la recuperación R3 completada y la continuación posterior. Las instrucciones de puesta en marcha inicial se conservan como antecedente. El diario mantiene 8 horas por sesión y la ampliación global ya registrada de 24 a 36 horas.
 :::
 
 ## Puesta en marcha inicial del ejecutor
@@ -81,7 +81,24 @@ Este apartado describe el procedimiento general de continuación entre sesiones,
 | Resultado local terminado, todavía sin confirmación remota | En el mismo entorno puede sincronizarse sin repetir el ajuste; conservar esa caché local |
 | Inicio confirmado, sin resultado recuperable | Se bloquea la campaña para reconciliar el intento; no se transforma en un ensayo no realizado ni se reintenta automáticamente |
 
-La recuperación es **entre trabajos completados**. Los checkpoints de inferencia no contienen el estado del optimizador para continuar una época interrumpida. Si una sesión no tiene cierre confirmado, su asignación puede contabilizarse de forma conservadora; esa carga no se etiqueta como tiempo de entrenamiento observado. La pérdida del runtime antes de confirmar el resultado remoto puede exigir reconciliación manual.
+La recuperación es **entre trabajos completados**. Los checkpoints de inferencia no contienen el estado del optimizador para continuar una época interrumpida. Si una sesión no tiene cierre confirmado, su asignación puede contabilizarse de forma conservadora; esa carga no se etiqueta como tiempo de entrenamiento observado. La pérdida del runtime antes de confirmar el resultado remoto puede exigir reconciliación manual. El ejecutor general bloquea un inicio sin resultado: la restauración de archivos por sí sola no resuelve ese intento ni autoriza repetirlo.
+
+## Recuperación R3 verificada
+
+El 10/11/2026, los diagnósticos de sólo lectura del Colab conectado mostraron la configuración sin cargar, ningún proceso de búsqueda y ausencia de la campaña en su ruta local registrada. GitHub conservaba **1.552 resultados** y un único inicio sin resultado recuperable. R3 registró una decisión específica para ese trabajo de TimesNet, con su configuración y semilla originales. El desenlace, duración y pasos de su intento interrumpido permanecen **desconocidos**.
+
+El [notebook R3 corregido](https://github.com/jassan-bit/DeepLearning_202630/blob/34c46d0a8e0664f6afccf77542c4038c990ca3f7/notebooks/entregable2_recuperacion_r3.ipynb), también [disponible en Colab](https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/34c46d0a8e0664f6afccf77542c4038c990ca3f7/notebooks/entregable2_recuperacion_r3.ipynb), fija el [controlador `ed3406a`](https://github.com/jassan-bit/DeepLearning_202630/tree/ed3406ab53dc1a5c4f36d9bc5d34d2476dc4377a) y su [autorización](https://github.com/jassan-bit/DeepLearning_202630/blob/ed3406ab53dc1a5c4f36d9bc5d34d2476dc4377a/experiments/e2_recovery_20261111_r3/authorization.json), SHA256 `5d99c0d05036a318c7851a66a65327f9bf78568bca973179c678f0847a9b3199`. El motor científico A3 y sus 61 archivos registrados permanecen sin cambios.
+
+La recuperación se preparó de dos formas según el estado de la VM:
+
+- **VM sin preparación:** el notebook conserva los pasos 1–7 para recuperar la fuente A3, el Python aislado y los derivados de desarrollo. La sección 8 restaura y valida la campaña remota antes de admitir el trabajo autorizado.
+- **VM ya preparada:** se conservan el entorno, los datos y los resultados recuperados; se ejecuta sólo la sección 8 con los identificadores corregidos. Los controladores se guardan en directorios separados por commit, conservando los informes anteriores.
+
+Las opciones de R3 son `RUN_SEARCH=True` y `RETRY_LOST_ONCE=True`. Se mantienen **`CAMPAIGN_HOURS=24` y `EXTEND_CAMPAIGN_HOURS=None`**: el diario reconstruye automáticamente las **36 horas efectivas** de la ampliación existente. R3 no reinicia el presupuesto ni concede horas adicionales. La ejecución fue una sola repetición física del trabajo pendiente, seguida de la selección ordinaria; sus recibos confirmados se describen en §36.
+
+La primera invocación R3 se bloqueó antes de reclamar el ajuste porque su texto de evidencia incluía una ubicación local rechazada por el filtro público. La corrección conserva el filtro, valida la autorización completa antes de restaurar la campaña y tiene pruebas con los bytes reales del registro. Las **111 pruebas de recuperación**, sin ajustes científicos, comprueban conservación de resultados, presupuesto ampliado, recibos de creación única, caché ausente y cierre del proceso; no se suman a los entrenamientos ni a los pasos de optimización.
+
+Este notebook documenta **un incidente concreto ya recuperado**. Un nuevo inicio sin resultado de otro trabajo requiere su propia reconciliación; R3 no habilita reintentos automáticos generales. Un bloque `inspection_only` es la revisión anterior al lanzamiento, y un PID acredita que se lanzó el controlador. La ejecución física se confirma mediante el resultado observado y sus recibos posteriores; la continuidad de la selección se contrasta con los nuevos eventos de campaña.
 
 ## Comandos y componentes
 
