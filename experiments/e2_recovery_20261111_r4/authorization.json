@@ -1,0 +1,46 @@
+{
+  "version": "e2-manual-recovery-authorization-v4",
+  "status": "registered_before_recovery_execution",
+  "registered_at_utc": "2026-11-11T14:32:54.980576+00:00",
+  "registered_at_bogota": "2026-11-11T09:32:54.980576-05:00",
+  "repository": "jassan-bit/DeepLearning_202630",
+  "campaign_branch": "campaigns/e2-cuda-selection-v1",
+  "campaign_prefix": "campaigns/e2-cuda-selection-v1",
+  "sealed_campaign_head": "e397b493def8f783e5be43d743af87861d6ad53f",
+  "plan_sha256": "4eae2d2ff9ef6f83a2f9eb0dc5ba647208d695e1665a8e522d812fed67893bda",
+  "scientific_source_commit": "564ba4762f84a800b02fa4c734f5752a169f5223",
+  "scientific_registration_sha256": "78c3c5b8ca042a347aaa80d642f3affd8b5911e8697d8747a2de915d1c3194a9",
+  "previous_completed_jobs": 1801,
+  "target": {
+    "job_id": "acace045a403bc4bb9a8962c5069b8c5c7a41228606ced185c62320e2795c6be",
+    "job_payload_sha256": "3c5a9ef0fe9801f20b6594ced6f595a073f2f9abfc9f480e3693ac06abc09e5e",
+    "started_event_sha256": "2feb7aea129c3b8c6c818ca0081b7bd360018acbb02de2914e39d07ec8e7def7",
+    "sequence": 3632,
+    "old_session_id": "9e20387794c34c78b4e1aedde37b1f87",
+    "reservation_seconds": 2100.0
+  },
+  "original_unknown_attempt": {
+    "outcome": "unknown",
+    "elapsed_seconds": null,
+    "optimizer_steps": null,
+    "optimizer_steps_known_lower_bound": 0,
+    "partial_optimizer_update_may_have_occurred": true
+  },
+  "decision": "manual_retry_same_sealed_logical_job_once_after_confirmed_executor_and_outcome_absent",
+  "evidence": "The user reported an empty matching search-process list in the prepared Colab after the amended scheduler exited with code 3. The pinned public journal contains 1801 results and one unresolved start. This is an acutely scoped continuation of the requested project work, not a claim that every runtime or disk was inspected. The operator must opt in to the single physical retry. Old result, time and optimizer steps remain unknown.",
+  "limits": {
+    "session_seconds": 28800,
+    "initial_campaign_seconds": 86400,
+    "campaign_seconds": 172800,
+    "budget_extension_event_sha256": "8e4c97675ca79bcf2abc136e42a3db43cad07176175972a61cdb2a9f7fd0dda3",
+    "old_session_conservative_allocation_seconds": 28800,
+    "budget_extension_authorized": false
+  },
+  "ledger_interpretation": "Recover only the named logical job with at most one new physical attempt. Preserve all 1801 results and original events. Keep unknown original physical cost separate from observed retry cost. Conservatively charge the old eight-hour session allocation, which is not measured GPU time. Preserve the recorded 24-to-36 and 36-to-48 hour extensions. Stop after reconciliation; the three-origin scheduler is a separate launch. No additional budget extension.",
+  "receipt_branch": "recoveries/e2-cuda-selection-v1/20261111-r4",
+  "implementation_sha256": {
+    "scripts/e2_manual_reconciliation_v4.py": "8c1d3ff99f279fbe30c0bcbd074a86c78bee2b73e3270f8c056017a02a502799",
+    "scripts/e2_recovery_receipts_v4.py": "e5757c17270038a183cbdf78633f2d473504c01270d9b6e3293d006ceadac9a7",
+    "scripts/run_e2_cuda_recovery_v4.py": "5c1c3325213b979e656c28d215d1e489bab3d6def25c43868fd977f37e72d8a7"
+  }
+}
