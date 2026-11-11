@@ -1,5 +1,8 @@
 # 14. Arquitecturas del catálogo vigente y adaptación a D7
 
+**Vigencia al 11/11/2026:** Se mantienen cinco cuerpos publicados fijos y seis variantes NAS propias, con las fábricas y evidencia parcial de §§28–36. La enmienda de §37 reduce orígenes, no convierte variantes propias en arquitecturas publicadas exentas. [Matriz de exigencias y evidencia](38_cumplimiento_guia.md) · [Enmienda de calendario](37_ajuste_guia.md).
+
+
 **Decisión posterior de diseño (09/11/2026):** [§27 fija seis variantes NAS, cinco cuerpos publicados, rangos HPO y presupuesto para Codex](27_nas_hpo_presupuesto.md). La implementación de nuevas variantes, el perfilado de horas y el preregistro completo siguen pendientes; el contenido siguiente conserva el alcance de su corte anterior.
 
 **Once propuestas concretas:** [fichas de cuerpos, adaptaciones y decisiones pendientes](22_fichas_recetas.md). No se implementan ni entrenan las recetas nuevas en este corte.

@@ -1,6 +1,9 @@
 (e2-reproducibilidad)=
 # 8. Reproducibilidad, ética y comunicación científica
 
+**Vigencia al 11/11/2026:** La guía exige reproducción integral en entorno limpio y Apéndice B completado. La compilación del libro acredita construcción y enlaces, no reproducción del benchmark. El contenedor es opcional en E2 (p. 41). La lista vigente de artefactos y condiciones de cierre está en §38. [Matriz de exigencias y evidencia](38_cumplimiento_guia.md) · [Enmienda de calendario](37_ajuste_guia.md).
+
+
 La guía completa exige un entorno fijado, semillas/configuraciones recuperables y reproducción independiente de la tabla principal (PDF pp40–41); su lista de comprobación está en el Apéndice B (p63). Esta sección distingue el **catálogo vigente de diez modelos y CNN-1D + LSTM + atención temporal como candidato 11**, cuya nueva enmienda está pendiente, de la evidencia histórica conservada. El procedimiento P0/OOF de desarrollo está ejecutado: los recibos verifican 220 trayectorias y 440 ajustes cerrados; los resultados se presentan en la [sección 9](09_protocolo_registrado.md).
 
 ## 8.1 Fuente registrada y recibos de ejecución

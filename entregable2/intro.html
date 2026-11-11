@@ -247,6 +247,7 @@
 <li class="toctree-l1"><a class="reference internal" href="sections/35_busqueda_cuda_reanudable.html">35. Selección CUDA con presupuesto y continuación en GitHub</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sections/36_avance_campana_cuda.html">36. Avance parcial de la campaña CUDA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sections/37_ajuste_guia.html">37. Ajuste de cómputo conforme a la guía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/38_cumplimiento_guia.html">38. Exigencias de la guía, evidencia y pendientes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sections/referencias.html">Referencias de contexto y revisión E2</a></li>
 </ul>
 
@@ -387,10 +388,11 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#catalogo-vigente">Catálogo vigente</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-esta-implementado-y-que-esta-pendiente">Qué está implementado y qué está pendiente</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-bibliografica">Evidencia bibliográfica</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ruta-de-lectura">Ruta de lectura</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-de-la-entrega-y-guia-de-lectura">Estado de la entrega y guía de lectura</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problema-contrato-y-referencias">Problema, contrato y referencias</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-vigente-guia-y-computo">Diseño vigente, guía y cómputo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-parciales-y-limites">Resultados parciales y límites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recorrido-recomendado">Recorrido recomendado</a></li>
 </ul>
             </nav>
         </div>
@@ -404,70 +406,90 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="proyecto-final-de-deep-learning-entregable-2">
 <h1>Proyecto Final de Deep Learning: Entregable 2<a class="headerlink" href="#proyecto-final-de-deep-learning-entregable-2" title="Link to this heading">#</a></h1>
-<p><strong>Ajuste del diseño al 11/11/2026:</strong> <a class="reference internal" href="sections/37_ajuste_guia.html"><span class="std std-doc">tres orígenes de selección en lugar de once</span></a>, con máximo de <strong>23.202 intentos</strong> frente a 85.074 (reducción del 72,7 %). Se conservan los espacios NAS requeridos y los resultados previos. El nuevo programador debe iniciarse después de cerrar el anterior: esta publicación no cambia el Colab activo. Los avances siguientes conservan sus cortes históricos.</p>
-<p><strong>Corte del 11/11/2026, 06:55:42 de Bogotá (11:55:42 UTC):</strong> la campaña CUDA conserva <strong>1.748 archivos de resultados</strong>, 187 más que el corte histórico de 1.561. El último ajuste confirmado corresponde a <strong>TimesNet, NAS-1, origen <code class="docutils literal notranslate"><span class="pre">2024-01-01</span></code></strong>: terminó a las <strong>06:55:41</strong>, con estado <code class="docutils literal notranslate"><span class="pre">completed</span></code>, <strong>736 pasos de optimización</strong> y 46 épocas ejecutadas (mejor época: 26). El siguiente trabajo quedó iniciado a las <strong>06:55:42</strong>. Son registros fechados de entrenamiento real; no miden actividad del kernel después del corte ni completan el benchmark final. <a class="reference internal" href="sections/36_avance_campana_cuda.html"><span class="std std-doc">Avance y evidencias de §36</span></a>.</p>
-<p><strong>Reanudación y presupuesto:</strong> el diario registra una ampliación operativa de <strong>36 a 48 horas acumuladas</strong>, el 11/11 a las <strong>06:40:17 de Bogotá</strong>, y una sesión nueva a las <strong>06:42:53</strong>, con límite de <strong>8 horas</strong>. El <code class="docutils literal notranslate"><span class="pre">status.json</span></code> conserva la pausa anterior por presupuesto, con 1.744 resultados; los cuatro resultados posteriores y el nuevo inicio acreditan continuación. Documentar la ampliación existente no cambia el presupuesto ni reinicia Colab. Las horas son límites contables, no consumo GPU medido o facturado.</p>
-<p><strong>Alcance científico:</strong> continúa la selección HPO/NAS de desarrollo. FCN-1D, ResNet-1D, Inception-1D y LSTM-autoencoder tienen selección registrada para el primer origen; TimesNet sigue en NAS-1. No hay comparación integral terminada, ganador final ni R definitivo. La recuperación R3 y los cortes anteriores se conservan en <a class="reference internal" href="sections/35_busqueda_cuda_reanudable.html"><span class="std std-doc">§35</span></a> y <a class="reference internal" href="sections/36_avance_campana_cuda.html"><span class="std std-doc">§36</span></a>.</p>
-<p><strong>Perfiles históricos de recursos GPU:</strong> <a class="reference internal" href="sections/34_perfil_gpu_ampliado.html"><span class="std std-doc">cohorte grande y TimesNet máximo</span></a>. El segundo informe del usuario registra 15/15 perfiles completos, cero fallos y 680 pasos de optimización en Tesla T4. El TimesNet de 225 millones de parámetros completó dos épocas con un máximo de 5,080 GiB reservados por PyTorch. Estos perfiles miden recursos de una receta fijada; no son resultados de selección HPO/NAS. El cómputo necesario para completar la búsqueda y el R final siguen abiertos.</p>
-<p><strong>Primer piloto GPU histórico:</strong> <a class="reference internal" href="sections/33_piloto_gpu.html"><span class="std std-doc">catorce referencias y sus recursos</span></a>. El primer informe registra 14/14 ajustes completos, cero fallos y 192 pasos sobre la cohorte pequeña. Ambos informes proceden de ejecuciones del usuario en Colab; Codex revisó sus importaciones. Los dos cortes históricos reúnen <strong>29 perfiles y 872 pasos conocidos</strong>, sin resultados comparativos de calidad predictiva; no se suman a los intentos de la campaña de §36.</p>
-<p><strong>Infraestructura CUDA reproducible:</strong> <a class="reference internal" href="sections/32_ejecucion_gpu.html"><span class="std std-doc">backend GPU y notebook</span></a>. Fuente fijada por commit, Python 3.12.12 aislado del kernel de Colab, datos verificados y preparación de fuentes reutilizable. El corte de pruebas CPU de esa sección se conserva separado del piloto GPU posterior.</p>
-<p><strong>Recursos y dimensionamiento en Codex Cloud:</strong> <a class="reference internal" href="sections/31_optimizacion_nube.html"><span class="std std-doc">optimización de CPU y presupuesto condicionado</span></a>. Completaron 85 de 86 perfiles ampliados y los treinta ajustes del nuevo piloto. Se eligieron el recorte de TimesNet y dos hilos. La nula del generador pasó su validación, pero ningún R estudiado respalda el objetivo de 0,80. La proyección primaria y el R final siguen abiertos; las horas con microperfil son una sensibilidad separada.</p>
-<p><strong>Piloto real en Codex Cloud:</strong> <a class="reference internal" href="sections/30_piloto_nube.html"><span class="std std-doc">recursos, variación entre semillas y presupuesto condicionado</span></a>. Ajustes sobre desarrollo 2023–2024 en la CPU del servidor remoto; sin búsqueda HPO/NAS completa ni evaluación de las 608 fechas externas.</p>
-<p><strong>Ciclo de entrenamiento integrado:</strong> <a class="reference internal" href="sections/29_entrenamiento_temporal.html"><span class="std std-doc">18 sistemas, selección temporal, reajustes y perfilado CPU</span></a>. Validación artificial con actualizaciones AdamW; sin campaña de mercado ni resultados nuevos de Bitcoin.</p>
-<p><strong>Fábricas NAS verificadas:</strong> <a class="reference internal" href="sections/28_fabricas_nas.html"><span class="std std-doc">seis familias, 6.000 casos numéricos y fases auxiliares SAE</span></a>. Enlace de configuraciones HPO y pruebas sintéticas; sin optimización ni mercado.</p>
-<p><strong>Diseño NAS/HPO para Codex:</strong> <a class="reference internal" href="sections/27_nas_hpo_presupuesto.html"><span class="std std-doc">decisiones por receta, rangos y presupuesto contable</span></a>. Seis variantes NAS y cinco cuerpos publicados fijos; planes generados sin entrenamiento. Perfiles de referencia publicados en §30; la medición ampliada y su proyección condicionada se incorporan en <a class="reference internal" href="sections/31_optimizacion_nube.html"><span class="std std-doc">§31</span></a>. La duración total de la campaña sigue abierta.</p>
-<p><strong>Registro por modelo:</strong> <a class="reference internal" href="sections/26_registro_recetas.html"><span class="std std-doc">fuentes, adaptaciones, NAS, HPO, parámetros e integración</span></a>. Once recetas identificadas y siete referencias separadas; decisiones experimentales aún abiertas.</p>
-<p><strong>Preparación del benchmark:</strong> <a class="reference internal" href="sections/25_matriz_cierre.html"><span class="std std-doc">matriz de requisitos, decisiones y evidencia de cierre</span></a>. Orden de trabajo conforme a la guía; distingue avances parciales y pendientes antes de entrenar.</p>
-<p><strong>Ejecutor común probado:</strong> <a class="reference internal" href="sections/24_ejecutor_comun.html"><span class="std std-doc">18 sistemas, registro previo a cada observación y auditoría de disponibilidad</span></a>. Pruebas sintéticas únicamente; las 608 fechas finales siguen sin verificar.</p>
-<p><strong>Implementación de las fichas:</strong> <a class="reference internal" href="sections/23_implementacion_recetas.html"><span class="std std-doc">cuerpos completos, dos fases SAE y controles temporales</span></a>. Once modelos comprobados con datos artificiales; sin entrenamiento de mercado ni decisión NAS.</p>
-<p><strong>Once propuestas concretas:</strong> <a class="reference internal" href="sections/22_fichas_recetas.html"><span class="std std-doc">fichas de cuerpos, adaptaciones y decisiones pendientes</span></a>. Ese corte conserva las propuestas originales; su implementación posterior se documenta en §23.</p>
-<p><strong>Siguiente especificación:</strong> <a class="reference internal" href="sections/21_comparadores_nas.html"><span class="std std-doc">comparadores temporales, matriz NAS y costes por escenarios</span></a>. Propuesta sin entrenamiento, búsqueda ni cierre automático del protocolo.</p>
-<p><strong>Guía original cotejada:</strong> <a class="reference internal" href="sections/20_contraste_guia.html"><span class="std std-doc">correcciones y pendientes por página</span></a>. La cuadrícula reducida no cubre el espacio mínimo; controles F2a, NAS condicional y batería estadística requieren completar el plan antes de entrenar.</p>
-<p><strong>Actualización de planificación:</strong> <a class="reference internal" href="sections/19_plan_auditoria.html"><span class="std std-doc">§19: auditoría real de desarrollo y plan propuesto</span></a>. Sin entrenamiento de mercado, HPO ni preregistro nuevo.</p>
 <p><strong>Deep Learning · 2026-30 · Jassan Arteta</strong></p>
-<section id="catalogo-vigente">
-<h2>Catálogo vigente<a class="headerlink" href="#catalogo-vigente" title="Link to this heading">#</a></h2>
-<p>El catálogo distingue los siguientes diez modelos base, una propuesta adicional y tres controles neuronales de E1:</p>
+<section id="estado-de-la-entrega-y-guia-de-lectura">
+<h2>Estado de la entrega y guía de lectura<a class="headerlink" href="#estado-de-la-entrega-y-guia-de-lectura" title="Link to this heading">#</a></h2>
+<p><strong>Actualización documental del 11/11/2026, cotejada con la guía de 65 páginas aportada por el usuario.</strong> El libro contiene código, revisión bibliográfica, preparación experimental y resultados parciales de selección. <strong>El benchmark final no está terminado y no se declara cumplimiento integral de la guía.</strong></p>
+<p>La <a class="reference internal" href="sections/38_cumplimiento_guia.html"><span class="std std-doc">matriz vigente de exigencias, evidencias y pendientes</span></a> organiza la entrega según la guía y distingue requisitos del PDF, decisiones propias y resultados observados. Cada requisito se cierra con evidencia verificable; describirlo o disponer de código no acredita su ejecución.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Componente</p></th>
+<th class="head"><p>Estado documental verificable</p></th>
+<th class="head"><p>Dónde revisar</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Problema, datos, EDA y ruta temporal</p></td>
+<td><p>Contrato definido; auditoría completa del benchmark pendiente</p></td>
+<td><p><a class="reference internal" href="sections/01_punto_partida.html"><span class="std std-doc">Problema</span></a>, <a class="reference internal" href="sections/02_eda.html"><span class="std std-doc">EDA</span></a>, <a class="reference internal" href="sections/07_ruta_temporal.html"><span class="std std-doc">F2a</span></a>, <a class="reference internal" href="sections/17_contrato_sincronizado.html"><span class="std std-doc">contrato</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Revisión sistemática y Top 10</p></td>
+<td><p>Búsquedas y lecturas parciales; cierre de elegibilidad y puntajes por completar</p></td>
+<td><p><a class="reference internal" href="sections/03_literatura.html"><span class="std std-doc">Literatura</span></a>, <a class="reference internal" href="sections/15_revision_modelos.html"><span class="std std-doc">catálogo</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>Implementación y HPO/NAS</p></td>
+<td><p>Fábricas y pruebas disponibles; selección CUDA parcial</p></td>
+<td><p><a class="reference internal" href="sections/26_registro_recetas.html"><span class="std std-doc">Recetas</span></a>, <a class="reference internal" href="sections/28_fabricas_nas.html"><span class="std std-doc">fábricas</span></a>, <a class="reference internal" href="sections/36_avance_campana_cuda.html"><span class="std std-doc">avance fechado</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Réplica del paper guía</p></td>
+<td><p>Evidencia externa de TimeMixer/ETTh1; no sustituye Bitcoin D7</p></td>
+<td><p><a class="reference internal" href="sections/05_paper_guia.html"><span class="std std-doc">Réplica y limitaciones</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>Benchmark e inferencia</p></td>
+<td><p>Pendientes de recetas seleccionadas, R, reajustes y evaluación común</p></td>
+<td><p><a class="reference internal" href="sections/06_benchmark_final.html"><span class="std std-doc">Benchmark</span></a>, <a class="reference internal" href="sections/13_agregacion_estadistica.html"><span class="std std-doc">inferencia</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Robustez, incertidumbre e interpretabilidad</p></td>
+<td><p>Preparación parcial; resultados del catálogo completo pendientes</p></td>
+<td><p><a class="reference internal" href="sections/12_incertidumbre_errores.html"><span class="std std-doc">Incertidumbre y errores</span></a>, <a class="reference internal" href="sections/38_cumplimiento_guia.html"><span class="std std-doc">matriz de cierre</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>Reproducibilidad y entrega</p></td>
+<td><p>Fuentes y procedimientos disponibles; reproducción integral pendiente</p></td>
+<td><p><a class="reference internal" href="sections/08_reproducibilidad.html"><span class="std std-doc">Reproducibilidad</span></a>, <a class="reference internal" href="sections/38_cumplimiento_guia.html"><span class="std std-doc">lista de entrega</span></a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="problema-contrato-y-referencias">
+<h2>Problema, contrato y referencias<a class="headerlink" href="#problema-contrato-y-referencias" title="Link to this heading">#</a></h2>
+<p>Se estudia <strong>OHLCV diario D7×5 → σ₇</strong>, desviación estándar poblacional de siete retornos logarítmicos diarios de Close, <strong>sin anualización y con horizonte de un día</strong>. Se conserva RMSE como métrica primaria heredada de E1 y <strong>δ=0,00025772842664981106</strong>; las recomendaciones de métricas temporales no cambian por silencio ese contrato. Las métricas auxiliares y sus denominadores deben declararse antes de evaluar.</p>
+<p>La ruta es <strong>F2a, series de tiempo</strong>: partición cronológica, embargo y transformaciones ajustadas sólo con el pasado. Las <strong>608 fechas históricas conocidas</strong> mantienen carácter exploratorio; una actualización editorial o un nuevo programador no recuperan independencia del test. <a class="reference internal" href="sections/17_contrato_sincronizado.html"><span class="std std-doc">Contrato y límites</span></a>.</p>
+<p>El catálogo comprende diez modelos base:</p>
 <ol class="arabic simple">
-<li><p><strong>FCN-1D</strong>.</p></li>
-<li><p><strong>ResNet-1D</strong>.</p></li>
-<li><p><strong>Inception-1D</strong>.</p></li>
-<li><p><strong>LSTM-autoencoder con predictor</strong>.</p></li>
-<li><p><strong>TimesNet</strong>.</p></li>
-<li><p><strong>TSMixer</strong>.</p></li>
-<li><p><strong>TiDE</strong>.</p></li>
-<li><p><strong>TimeMixer</strong>.</p></li>
-<li><p><strong>PatchTST</strong>.</p></li>
-<li><p><strong>iTransformer</strong>.</p></li>
+<li><p>FCN-1D.</p></li>
+<li><p>ResNet-1D.</p></li>
+<li><p>Inception-1D.</p></li>
+<li><p>LSTM-autoencoder con predictor.</p></li>
+<li><p>TimesNet.</p></li>
+<li><p>TSMixer.</p></li>
+<li><p>TiDE.</p></li>
+<li><p>TimeMixer.</p></li>
+<li><p>PatchTST.</p></li>
+<li><p>iTransformer.</p></li>
 </ol>
-<p><strong>Candidato 11: CNN-1D + LSTM + atención temporal.</strong> Su superioridad no está demostrada. Es una hipótesis que debe compararse con controles y puede arrojar resultados negativos.</p>
-<p>El catálogo sustituido se retira de la presentación. Estos nombres provienen de la literatura y de adaptaciones a las familias del curso; no son una transcripción literal de sus modelos. <strong>MLP16, LSTM32 y GRU32 de E1</strong> son controles separados. La campaña CUDA incluye esos tres controles junto con los diez modelos base y la propuesta: <strong>catorce sistemas neuronales</strong>. Los cuatro comparadores restantes del benchmark de dieciocho sistemas conservan su tratamiento separado. <a class="reference internal" href="sections/15_revision_modelos.html"><span class="std std-doc">Especificación y límites del catálogo</span></a>.</p>
+<p><strong>CNN-1D + LSTM + atención temporal es el candidato adicional 11</strong>, no un ganador demostrado. Los controles <strong>MLP16, LSTM32 y GRU32 de E1</strong> son referencias adicionales, con pesos reinicializados. Persistencia, naive estacional, ARIMA y Ridge completan los cuatro comparadores del diseño de dieciocho sistemas; no se cuentan dentro del Top 10. La taxonomía funcional del Top 10 distingue convolucionales, recurrentes/autoencoder, mezcladores MLP y atención; <a class="reference internal" href="sections/38_cumplimiento_guia.html"><span class="std std-doc">§38 explicita la asignación</span></a>. El candidato adicional no se utiliza para completar ese recuento. <a class="reference internal" href="sections/15_revision_modelos.html"><span class="std std-doc">Catálogo y adaptaciones</span></a>.</p>
 </section>
-<section id="que-esta-implementado-y-que-esta-pendiente">
-<h2>Qué está implementado y qué está pendiente<a class="headerlink" href="#que-esta-implementado-y-que-esta-pendiente" title="Link to this heading">#</a></h2>
+<section id="diseno-vigente-guia-y-computo">
+<h2>Diseño vigente, guía y cómputo<a class="headerlink" href="#diseno-vigente-guia-y-computo" title="Link to this heading">#</a></h2>
+<p>La <a class="reference internal" href="sections/37_ajuste_guia.html"><span class="std std-doc">enmienda de §37</span></a> programa <strong>tres orígenes de selección</strong>: <code class="docutils literal notranslate"><span class="pre">2024-01-01</span></code>, <code class="docutils literal notranslate"><span class="pre">2024-10-01</span></code> y <code class="docutils literal notranslate"><span class="pre">2025-01-01</span></code>, frente a los once del plan anterior. Conserva el contrato y el origen móvil, pero reduce la cobertura temporal. Tres orígenes son una decisión del proyecto, <strong>no un número impuesto ni aprobado por el PDF</strong>.</p>
+<p>El máximo de búsqueda neuronal pasa de <strong>85.074 a 23.202 intentos lógicos</strong> (72,7 % menos). No es una estimación de horas ni el coste total: faltan reajustes, comparadores, robustez, ablaciones, calibración e inferencia. La búsqueda de <strong>1.000 arquitecturas aplica sólo a diseños no definidos por su fuente</strong>. Nuestras seis variantes NAS conservan ese espacio; los cinco cuerpos publicados mantienen su exención justificada. Las 18 configuraciones HPO, k=40 y los máximos de 50/200 épocas son elecciones registradas del proyecto. <a class="reference internal" href="sections/38_cumplimiento_guia.html"><span class="std std-doc">Exigencias y decisiones</span></a>.</p>
+<p>El <a class="reference external" href="https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/main/notebooks/entregable2_calendario_guia.ipynb">notebook de transición</a> conserva los resultados compatibles. <strong>La publicación del libro no cambia el Colab activo:</strong> no se afirma que la enmienda ya esté ejecutándose. Hay que cerrar el controlador anterior y revisar su informe antes de iniciar el nuevo; un intento sin resultado no se repite automáticamente.</p>
+</section>
+<section id="resultados-parciales-y-limites">
+<h2>Resultados parciales y límites<a class="headerlink" href="#resultados-parciales-y-limites" title="Link to this heading">#</a></h2>
+<p>El <a class="reference internal" href="sections/36_avance_campana_cuda.html"><span class="std std-doc">corte documentado en §36</span></a>, del <strong>11/11/2026 a las 06:55:42 de Bogotá</strong>, contiene <strong>1.748 archivos de resultados</strong>. Registra selección del primer origen para FCN-1D, ResNet-1D, Inception-1D y LSTM-autoencoder y avance NAS-1 de TimesNet. Es un corte histórico, no el contador actual ni evidencia de activación del calendario reducido. Los resultados de E1, los perfiles de recursos y la réplica ETTh1 conservan su propio ámbito.</p>
+<p><strong>No hay ranking final, superioridad demostrada del híbrido ni R definitivo.</strong> La <a class="reference internal" href="sections/38_cumplimiento_guia.html"><span class="std std-doc">matriz de cumplimiento</span></a> indica las evidencias necesarias antes de publicar conclusiones.</p>
+</section>
+<section id="recorrido-recomendado">
+<h2>Recorrido recomendado<a class="headerlink" href="#recorrido-recomendado" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><strong>Implementación provisional disponible:</strong> los once candidatos comparten fábrica y flujo sintético; 11/11 ejecutados sin omisiones, dos pasos supervisados cada uno y un paso de reconstrucción para el autoencoder. El híbrido ya tiene código y pruebas propias. El piloto real posterior se documenta en <a class="reference internal" href="sections/30_piloto_nube.html"><span class="std std-doc">§30</span></a>, la medición de CPU en <a class="reference internal" href="sections/31_optimizacion_nube.html"><span class="std std-doc">§31</span></a> y los perfiles GPU en <a class="reference internal" href="sections/33_piloto_gpu.html"><span class="std std-doc">§33</span></a> y <a class="reference internal" href="sections/34_perfil_gpu_ampliado.html"><span class="std std-doc">§34</span></a>; el benchmark completo sigue pendiente. <a class="reference internal" href="sections/18_integracion_sintetica.html"><span class="std std-doc">Recetas y evidencia</span></a>.</p></li>
-<li><p><strong>Benchmark vigente:</strong> la selección científica CUDA está en curso, con <a class="reference internal" href="sections/36_avance_campana_cuda.html"><span class="std std-doc">cobertura parcial verificable en §36</span></a>. Todavía no hay benchmark integral ni ganador de la comparación final. Los trabajos de desarrollo de §§30–31 y los pilotos de recursos de §§33–34 conservan registros propios anteriores a sus ajustes. La <a class="reference internal" href="sections/35_busqueda_cuda_reanudable.html"><span class="std std-doc">preparación de §35</span></a> y los resultados de la campaña actual son evidencias distintas. Quedan completar la selección registrada, dimensionar las recetas seleccionadas, fijar R y realizar los reajustes, controles e inferencia finales. <a class="reference internal" href="sections/06_benchmark_final.html"><span class="std std-doc">Plan experimental</span></a>.</p></li>
-<li><p><strong>Evidencia histórica real:</strong> el piloto previo completó 220 trayectorias y 440 ajustes. El recibo del 06/11/2026 acredita HPO previo iniciado e incompleto, no ejecución actual. La réplica TimeMixer/ETTh1 es externa a Bitcoin. Estos recibos no se atribuyen al catálogo vigente. <a class="reference internal" href="sections/09_protocolo_registrado.html"><span class="std std-doc">Trazabilidad</span></a>.</p></li>
+<li><p><strong>Problema y literatura:</strong> <a class="reference internal" href="sections/01_punto_partida.html"><span class="std std-doc">§1</span></a>, <a class="reference internal" href="sections/02_eda.html"><span class="std std-doc">§2</span></a>, <a class="reference internal" href="sections/03_literatura.html"><span class="std std-doc">§3</span></a> y <a class="reference internal" href="sections/05_paper_guia.html"><span class="std std-doc">§5: paper guía</span></a>.</p></li>
+<li><p><strong>Método y modelos:</strong> <a class="reference internal" href="sections/07_ruta_temporal.html"><span class="std std-doc">§7: ruta F2a</span></a>, <a class="reference internal" href="sections/10_auditoria_datos.html"><span class="std std-doc">§10: auditoría</span></a>, <a class="reference internal" href="sections/11_hpo_equidad.html"><span class="std std-doc">§11: equidad</span></a>, <a class="reference internal" href="sections/14_arquitecturas.html"><span class="std std-doc">§14: arquitecturas</span></a> y <a class="reference internal" href="sections/26_registro_recetas.html"><span class="std std-doc">§26: recetas</span></a>.</p></li>
+<li><p><strong>Ejecución y evidencia:</strong> <a class="reference internal" href="sections/29_entrenamiento_temporal.html"><span class="std std-doc">§29: entrenamiento</span></a>, <a class="reference internal" href="sections/35_busqueda_cuda_reanudable.html"><span class="std std-doc">§35: CUDA</span></a>, <a class="reference internal" href="sections/36_avance_campana_cuda.html"><span class="std std-doc">§36: cortes de avance</span></a> y <a class="reference internal" href="sections/37_ajuste_guia.html"><span class="std std-doc">§37: enmienda</span></a>.</p></li>
+<li><p><strong>Entrega y cierre:</strong> <a class="reference internal" href="sections/06_benchmark_final.html"><span class="std std-doc">§6: benchmark</span></a>, <a class="reference internal" href="sections/12_incertidumbre_errores.html"><span class="std std-doc">§12: incertidumbre</span></a>, <a class="reference internal" href="sections/13_agregacion_estadistica.html"><span class="std std-doc">§13: inferencia</span></a>, <a class="reference internal" href="sections/08_reproducibilidad.html"><span class="std std-doc">§8: reproducción</span></a> y <a class="reference internal" href="sections/38_cumplimiento_guia.html"><span class="std std-doc">§38: exigencias de la guía</span></a>.</p></li>
 </ul>
-<p>El contrato vigente se sincroniza con E1: D7×5 derivado de OHLCV mediante <code class="docutils literal notranslate"><span class="pre">relative_window</span></code>, σ₇ poblacional sin anualización, horizonte de un día y referencia histórica principal de 608 fechas. <a class="reference internal" href="sections/17_contrato_sincronizado.html"><span class="std std-doc">Contrato completo y diferencias con los recibos anteriores</span></a>. El piloto de §30 reinicializa sus modelos; los resultados históricos no se trasladan al híbrido.</p>
-</section>
-<section id="evidencia-bibliografica">
-<h2>Evidencia bibliográfica<a class="headerlink" href="#evidencia-bibliografica" title="Link to this heading">#</a></h2>
-<p><strong>Ampliación bibliográfica del 08/11/2026:</strong> la <a class="reference internal" href="sections/03_literatura.html"><span class="std std-doc">sección 3</span></a> incorpora una ronda nueva de WoS, Scopus e IEEE (<strong>1.634 ocurrencias → 1.078 grupos</strong>) y cuatro consultas arXiv (<strong>1.199 apariciones → 1.004 IDs</strong>). Los universos se mantienen separados hasta conciliarlos. Hay triaje provisional, tres lecturas focales y fuentes para las nuevas propuestas; no se declara elegibilidad global cerrada ni se modifican resultados experimentales.</p>
-<p><strong>Avance de revisión bibliográfica:</strong> los 59 prioritarios ya tienen lectura individual asistida por IA: 40 candidatos a texto completo, 17 inciertos y dos secundarios. La lectura de exclusiones propuestas alcanza 337/337: las 295 posteriores aportan 184 fuera del núcleo, 98 secundarios, 12 inciertos y un candidato directo. De los 40 candidatos iniciales, se examinaron 22: ocho textos completos (seis editoriales y dos preprints con equivalencia editorial pendiente) y catorce accesos parciales/no recuperados; 18 siguen sin búsqueda individual. No son inclusiones finales ni doble revisión humana. <a class="reference internal" href="sections/03_literatura.html"><span class="std std-doc">Conteos y límites</span></a>.</p>
-</section>
-<section id="ruta-de-lectura">
-<h2>Ruta de lectura<a class="headerlink" href="#ruta-de-lectura" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><a class="reference internal" href="sections/01_punto_partida.html"><span class="std std-doc">Problema, datos e hipótesis</span></a>, <a class="reference internal" href="sections/02_eda.html"><span class="std std-doc">EDA</span></a> y <a class="reference internal" href="sections/03_literatura.html"><span class="std std-doc">literatura</span></a>.</p></li>
-<li><p><a class="reference internal" href="sections/04_implementacion.html"><span class="std std-doc">Implementación</span></a>, <a class="reference internal" href="sections/05_paper_guia.html"><span class="std std-doc">réplica externa</span></a> y <a class="reference internal" href="sections/06_benchmark_final.html"><span class="std std-doc">benchmark pendiente</span></a>.</p></li>
-<li><p><a class="reference internal" href="sections/07_ruta_temporal.html"><span class="std std-doc">Ruta temporal</span></a>, <a class="reference internal" href="sections/08_reproducibilidad.html"><span class="std std-doc">reproducibilidad</span></a> y <a class="reference internal" href="sections/09_protocolo_registrado.html"><span class="std std-doc">registro histórico</span></a>.</p></li>
-<li><p><a class="reference internal" href="sections/10_auditoria_datos.html"><span class="std std-doc">Auditoría de datos</span></a>, <a class="reference internal" href="sections/11_hpo_equidad.html"><span class="std std-doc">HPO</span></a>, <a class="reference internal" href="sections/12_incertidumbre_errores.html"><span class="std std-doc">incertidumbre</span></a>, <a class="reference internal" href="sections/13_agregacion_estadistica.html"><span class="std std-doc">inferencia</span></a> y <a class="reference internal" href="sections/14_arquitecturas.html"><span class="std std-doc">arquitecturas</span></a>.</p></li>
-<li><p><a class="reference internal" href="sections/15_revision_modelos.html"><span class="std std-doc">Diez modelos y candidato 11</span></a>, <a class="reference internal" href="sections/16_fichas_nuevas.html"><span class="std std-doc">fichas de las cuatro nuevas arquitecturas</span></a>.</p></li>
-<li><p><a class="reference internal" href="sections/35_busqueda_cuda_reanudable.html"><span class="std std-doc">Preparación histórica del ejecutor CUDA</span></a> y <a class="reference internal" href="sections/36_avance_campana_cuda.html"><span class="std std-doc">avance parcial de la campaña del 10/11/2026</span></a>.</p></li>
-</ul>
-<p>Los protocolos, muestras, scripts y recibos anteriores se preservan como evidencia inmutable. No se reetiquetan como entrenamientos del diseño actual ni se declara cerrada la revisión bibliográfica.</p>
+<p>Los capítulos con cortes anteriores conservan sus fechas y recibos. Las notas de vigencia distinguen la preparación histórica del diseño actual; no se trasladan resultados entre protocolos ni se rellenan tablas con cifras de otros experimentos.</p>
 </section>
 <div class="toctree-wrapper compound">
 </div>
@@ -530,10 +552,11 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#catalogo-vigente">Catálogo vigente</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-esta-implementado-y-que-esta-pendiente">Qué está implementado y qué está pendiente</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-bibliografica">Evidencia bibliográfica</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ruta-de-lectura">Ruta de lectura</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-de-la-entrega-y-guia-de-lectura">Estado de la entrega y guía de lectura</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problema-contrato-y-referencias">Problema, contrato y referencias</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-vigente-guia-y-computo">Diseño vigente, guía y cómputo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-parciales-y-limites">Resultados parciales y límites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recorrido-recomendado">Recorrido recomendado</a></li>
 </ul>
   </nav></div>
 
