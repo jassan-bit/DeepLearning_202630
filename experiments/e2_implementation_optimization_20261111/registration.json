@@ -1,0 +1,44 @@
+{
+  "version": "e2-implementation-optimization-registration-v1",
+  "status": "registered_before_new_market_fits",
+  "date": "2026-11-11",
+  "source_engine_commit": "564ba4762f84a800b02fa4c734f5752a169f5223",
+  "legacy_min_commit": "0ecd8b851059abbbe370899d03093191c9815f7f",
+  "guide_basis": "E2 sections 11 and 14: preserve scientific model and equal search opportunities; profile actual cost. No new published-body exemption.",
+  "origins": [
+    "2024-01-01",
+    "2024-10-01",
+    "2025-01-01"
+  ],
+  "neural_models": 14,
+  "nas_families": 6,
+  "nas_architectures_per_family_origin": 1000,
+  "k": 40,
+  "hpo_trials": 18,
+  "hpo_seeds": 2,
+  "nas_confirmation_seeds": 5,
+  "epochs": [
+    50,
+    200
+  ],
+  "upper_bound_attempts": 23202,
+  "wave_order": "all fixed-body/reference models across three origins, then all NAS models across three origins",
+  "profile_rule": "Five timed synthetic forward-backward repeats for each of five widths and batches16/32/64, with six kernels. Dispatch cropped computation only for measured width/batch cases with >=1.05 median speedup and passing output/gradient parity. Kernel counts2/4 and unprofiled batches retain exact legacy dispatch. No market score used.",
+  "cost_limit": "transfer only unspent original registered 48-hour wall budget; no automatic extension or reset",
+  "reuse_rule": "immutable verified ancestor snapshot at or after R4 completion; exact original job, seed, split and payload binding; reused outcomes are never counted as new optimizer work",
+  "numerical_scope": "mathematical equality, bounded floating-point differences; not bitwise training-trajectory equality. Preserve implementation provenance; final refits must use a common declared implementation.",
+  "exclusions": [
+    "final refits",
+    "R dimensioning",
+    "final benchmark",
+    "robustness",
+    "ablations",
+    "calibration",
+    "inference"
+  ],
+  "implementation_sha256": {
+    "scripts/e2_timesnet_exact_crop.py": "044621b37cfd7cce225e59e4ec63e998501dae59e4609bd1e6ab6356af0c4066",
+    "scripts/run_e2_optimized_selection.py": "e3eaf9ff02dd7d6cc786b48c19d44c4adb3a6b413bc75004b751489d05f2f27a"
+  },
+  "accounting_note": "Successful admission, resource profiling and cached replay are charged through an anchored session clock. Rejected preflight may consume external resources without a scientific campaign record. Final publication tail follows the frozen ledger boundary."
+}
