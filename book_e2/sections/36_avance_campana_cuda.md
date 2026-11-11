@@ -1,5 +1,28 @@
 # 36. Avance parcial de la campaña CUDA
 
+## Actualización del 11/11/2026: continuación confirmada
+
+**Corte fijado a las 06:55:42 de Bogotá (11:55:42 UTC).** El [estado de campaña fijado](https://github.com/jassan-bit/DeepLearning_202630/tree/bc2abe85742f3c035deba1a433a853a21553f70c/campaigns/e2-cuda-selection-v1) contiene **1.748 archivos de resultados lógicos**, frente a los 1.561 del corte anterior: **187 registros adicionales**. Este recuento del inventario no sustituye una nueva auditoría integral de todos los hashes, estados y pasos. Las comprobaciones integrales descritas más abajo pertenecen al corte histórico de 1.561.
+
+| Señal comprobada | Evidencia del nuevo corte |
+|---|---|
+| Último resultado confirmado | TimesNet, NAS-1, origen `2024-01-01`, semilla 271301; estado `completed` |
+| Entrenamiento de ese resultado | 736 pasos de optimización, 46 épocas ejecutadas, mejor época 26 |
+| Cierre del trabajo | 11/11/2026, **06:55:41 de Bogotá**, [evento 000003525](https://github.com/jassan-bit/DeepLearning_202630/blob/bc2abe85742f3c035deba1a433a853a21553f70c/campaigns/e2-cuda-selection-v1/events/000003525.json) |
+| Trabajo siguiente | Inicio a las **06:55:42**, [evento 000003526](https://github.com/jassan-bit/DeepLearning_202630/blob/bc2abe85742f3c035deba1a433a853a21553f70c/campaigns/e2-cuda-selection-v1/events/000003526.json); sin resultado confirmado en este corte |
+| Estado guardado anterior | `paused_campaign_budget`, 1.744 resultados, cero fallidos en ese resumen |
+| Continuación posterior | Cuatro archivos de resultados adicionales y un nuevo inicio respecto de ese resumen |
+| Selecciones registradas en el resumen | FCN-1D, ResNet-1D, Inception-1D y LSTM-autoencoder, para el primer origen |
+| Benchmark final | Pendiente; `final_R: null`, sin reajustes finales incluidos |
+
+El [recibo del último resultado](https://github.com/jassan-bit/DeepLearning_202630/blob/bc2abe85742f3c035deba1a433a853a21553f70c/campaigns/e2-cuda-selection-v1/results/5b6504f0662cf85e1169b18b1fb2048fe2b7cf494af43bad3ced1099777027a5.json) registra aproximadamente **183,984 segundos de callback** y **178,266 segundos de ejecución del modelo**. Son medidas de ese ajuste, no del coste total de campaña. Los 1.748 registros no equivalen a 1.748 modelos distintos ni a completar todos los orígenes.
+
+El [evento 000003516](https://github.com/jassan-bit/DeepLearning_202630/blob/bc2abe85742f3c035deba1a433a853a21553f70c/campaigns/e2-cuda-selection-v1/events/000003516.json) registra una ampliación de **36 a 48 horas acumuladas**, el **11/11/2026 a las 06:40:17 de Bogotá**. El [evento 000003517](https://github.com/jassan-bit/DeepLearning_202630/blob/bc2abe85742f3c035deba1a433a853a21553f70c/campaigns/e2-cuda-selection-v1/events/000003517.json) abre una sesión a las **06:42:53**, con presupuesto de **8 horas**. La pausa de [`status.json`](https://github.com/jassan-bit/DeepLearning_202630/blob/bc2abe85742f3c035deba1a433a853a21553f70c/campaigns/e2-cuda-selection-v1/status.json) precede a esa ampliación y no describe la sesión reanudada. Esta actualización documenta decisiones ya registradas; no concede otra ampliación ni interviene en Colab.
+
+Los recibos confirman avance hasta sus fechas. No se observó directamente la sesión privada de Colab ni se midió la utilización GPU en vivo. Continúa la selección de desarrollo; no se declara un ganador final ni superioridad del híbrido. El [resumen de este corte](../_static/cuda_campaign_progress_20261111/summary_20261111_065542.json) conserva procedencia y límites.
+
+## Corte histórico conservado: 10/11/2026, 21:34:11
+
 **Corte congelado del 10/11/2026, 21:34:11 de Bogotá (11/11/2026, 02:34:11 UTC): 1.561 resultados científicos completados, cero resultados lógicos fallidos, cinco modelos y el primer origen de selección.** La búsqueda HPO → NAS-1 → NAS-2 usa una Tesla T4 de Google Colab y el código científico A3. La recuperación R3 completó el intento pendiente y la selección continuó después. Los cortes anteriores de [1.497 resultados, a las 18:00:19](../_static/cuda_campaign_progress_20261110/summary_20261110_180019.json), y [906 resultados, a las 09:56:42](../_static/cuda_campaign_progress_20261110/summary.json), se conservan como evidencia histórica. Las cifras proceden del commit fijado y no son telemetría en vivo.
 
 El corte contiene **180 resultados HPO, 1.181 NAS-1 y 200 NAS-2**. El LSTM-autoencoder con predictor registra sus 1.000 intentos NAS-1 y 200 NAS-2 del primer origen. TimesNet ya tiene 36 resultados HPO y 181 de los 1.000 intentos NAS-1 de ese origen. Los nueve sistemas restantes del plan, incluida la propuesta CNN-1D + LSTM + atención temporal, todavía no aportan resultados en este corte. No hay un ganador del benchmark final ni superioridad demostrada del candidato 11.
