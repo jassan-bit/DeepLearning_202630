@@ -1,6 +1,7 @@
 # 27. Decisiones NAS, rangos HPO y presupuesto para Codex
 
-**Vigencia al 11/11/2026:** El calendario de once selecciones y los totales de este capítulo corresponden al diseño original del 09/11/2026. La enmienda de §37 programa tres selecciones y un máximo de 23.202 intentos neuronales. Configuraciones y recibos originales se conservan; horas, coste total y R no quedan resueltos por reducir el calendario. [Matriz de exigencias y evidencia](38_cumplimiento_guia.md) · [Enmienda de calendario](37_ajuste_guia.md).
+**Vigencia al 11/11/2026:** Se conserva el calendario original de once selecciones, con máximo de 85.074 intentos neuronales. Los conteos de etapas auxiliares de este capítulo son otra unidad. La propuesta de tres no es operativa; R y el presupuesto completo siguen pendientes. [Decisión y ejecutor vigentes](40_calendario_original.md).
+
 
 
 **Implementación posterior:** [§28 implementa las seis fábricas NAS y el enlace de configuraciones](28_fabricas_nas.md), con comprobaciones sintéticas y sin entrenamiento. Las condiciones de ejecución que siguen describen el corte de diseño; la integración del ciclo completo y el perfilado siguen pendientes.

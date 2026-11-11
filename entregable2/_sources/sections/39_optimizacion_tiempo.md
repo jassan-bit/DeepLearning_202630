@@ -1,5 +1,8 @@
 # 39. Optimizar tiempo sin recortar las exigencias de E2
 
+**Vigencia:** la reducción a tres orígenes no es operativa. Se conserva el calendario original de once y se aplican sólo optimizaciones de implementación: [decisión vigente en §40](40_calendario_original.md). Los conteos y procedimientos de tres orígenes que siguen se conservan como antecedentes, no como instrucciones para nuevas ejecuciones.
+
+
 **Enmienda de implementación del 11/11/2026.** Se preservan las catorce redes, cuatro comparadores, contrato D7×5, tres orígenes, seis familias NAS y sus espacios registrados. La actualización no activa un Colab privado ni declara terminado el benchmark. [Exigencias y pendientes de E2](38_cumplimiento_guia.md).
 
 ## Decisión sobre las arquitecturas publicadas

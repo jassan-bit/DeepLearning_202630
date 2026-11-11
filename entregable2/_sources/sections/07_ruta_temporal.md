@@ -1,7 +1,8 @@
 (e2-ruta-temporal)=
 # 7. Ruta metodológica: series de tiempo y controles causales
 
-**Vigencia al 11/11/2026:** La ruta F2a sigue vigente. La enmienda de §37 reduce las selecciones a tres orígenes comunes y conserva octubre como base del piloto; no cambia el carácter conocido del test ni acredita su activación en Colab. [Matriz de exigencias y evidencia](38_cumplimiento_guia.md) · [Enmienda de calendario](37_ajuste_guia.md).
+**Vigencia al 11/11/2026:** Se conserva F2a y el calendario original de once orígenes; la propuesta de tres no es operativa. No cambian embargo, disponibilidad ni el carácter conocido del test. [Decisión y ejecutor vigentes](40_calendario_original.md).
+
 
 
 **Guía original cotejada:** [correcciones y pendientes por página](20_contraste_guia.md). La cuadrícula reducida no cubre el espacio mínimo; controles F2a, NAS condicional y batería estadística requieren completar el plan antes de entrenar.

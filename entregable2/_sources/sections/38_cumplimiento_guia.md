@@ -13,15 +13,15 @@ Las referencias usan páginas impresas. Esta actualización organiza el informe 
 | Elemento | Exigencia de la guía | Decisión propia vigente |
 |---|---|---|
 | Catálogo | Top 10 con ≥4 familias y referencias adicionales | Diez modelos base, candidato 11, tres controles E1 y cuatro comparadores |
-| Validación temporal | Origen móvil, embargo, ajuste sin futuro y esquema común | Tres selecciones: enero/octubre de 2024 y enero de 2025; menor cobertura que el plan de once |
+| Validación temporal | Origen móvil, embargo, ajuste sin futuro y esquema común | Once selecciones originales: enero–octubre de 2024 y enero de 2025; reducción a tres pendiente de justificar |
 | Aplicación de NAS | Sólo diseños no definidos por su fuente; cuerpo publicado definido exento | Seis variantes propias con NAS y cinco cuerpos publicados fijos; exenciones justificadas por receta |
 | NAS fase 1 | Todas las 1.000 arquitecturas, una semilla, presupuesto reducido | Máximo 50 épocas por fase y parada temprana |
 | NAS fase 2 | k≥10 según ruido, referencia y ≥5 semillas diferentes de fase 1 | k=40, cinco semillas y máximo 200 épocas por fase |
 | HPO | Espacios/ejes aplicables justificados y mismo esfuerzo | 18 configuraciones y dos semillas por red/origen; ejes de §27 |
 | Repeticiones finales | ≥5 ejecuciones; ≥6 cuando se usan pruebas de rangos y dimensionamiento por potencia | R todavía sin cerrar; los escenarios de coste no fijan R |
-| Coste | Estimar antes de buscar; declarar y justificar desviaciones | Techo de 23.202 intentos de búsqueda neuronal; horas totales y coste monetario no acreditados |
+| Coste | Estimar antes de buscar; declarar y justificar desviaciones | Techo de 85.074 intentos de búsqueda neuronal; horas totales y coste monetario no acreditados |
 
-**La enmienda de tres orígenes no es una aprobación del profesor ni una cifra exigida por la guía.** Es una reducción de recursos que se declara con su pérdida de resolución temporal. La conformidad depende también de la ejecución, auditoría, inferencia y entrega completas. El plan sellado de once orígenes se conserva como identidad de los trabajos originales; el programador limita explícitamente cuáles recorre y el informe marca cobertura parcial. [Alcance exacto de la enmienda](37_ajuste_guia.md).
+**La propuesta de tres orígenes no es operativa; [§40 conserva los once originales](40_calendario_original.md).** La suficiencia de una reducción temporal tendría que justificarse antes de considerarla definitiva. Se mantienen los espacios y oportunidades de búsqueda; sólo se optimizan implementación y orden de ejecución. Ninguna actualización editorial certifica cumplimiento integral ni aceptación institucional.
 
 ## Diversidad del Top 10
 
@@ -48,7 +48,7 @@ Así se documentan **cuatro familias dentro de los diez modelos**, sin contar el
 | G04 | §3.1, p. 10 | Al menos tres cadenas transversales y tabla de mecanismos transferibles | **Pendiente de cierre** | [Evidencia documentada](03_literatura.md). Acreditar consultas ejecutadas y fuentes primarias; una cadena propuesta no cuenta como búsqueda. |
 | G05 | §3.2–3.3, pp. 11–12 | Top 10, ≥4 familias, puntajes completos y ficha/diagrama por modelo | **Parcial** | [Evidencia documentada](15_revision_modelos.md). Taxonomía de cuatro familias documentada en §38; completar puntajes reproducibles, excluidos y diagramas. No contar el candidato 11 para reparar la diversidad del Top 10. |
 | G06 | §§3.2, 7.4 F2a, pp. 11, 30–31 | Tres bases E1 y baselines naive, estacional y ARIMA o ETS | **Implementación parcial** | [Evidencia documentada](07_ruta_temporal.md). Ejecutar comparadores con soporte común y ajuste justo. Los resultados E1 conocidos no sustituyen reajustes de E2. |
-| G07 | §§4.1, 7.4 F2a, pp. 12–13, 30–31 | Cronología, origen móvil, embargo y disponibilidad de covariables | **Diseño documentado** | [Evidencia documentada](37_ajuste_guia.md). Aplicar los tres orígenes a todos los modelos y reportar por origen. Verificar activación del programador; el calendario no es un mandato literal del PDF. |
+| G07 | §§4.1, 7.4 F2a, pp. 12–13, 30–31 | Cronología, origen móvil, embargo y disponibilidad de covariables | **Diseño documentado** | [Evidencia documentada](37_ajuste_guia.md). Aplicar los once orígenes originales a todos los modelos y reportar por origen. Verificar activación del programador; el calendario no es un mandato literal del PDF. |
 | G08 | §10, pp. 44–46 | Data Card, contrato y auditoría formal de fuga | **Parcial** | [Evidencia documentada](10_auditoria_datos.md). Completar evidencias aplicables de duplicados, atributos sospechosos, controles negativos y auditoría adversarial; no declarar auditoría completa por verificar hashes. |
 | G09 | §§4.3, 9, pp. 14, 42–43 | Preregistro real, repeticiones y potencia ≥0,80 o limitación/MDE | **Pendiente de cierre** | [Evidencia documentada](13_agregacion_estadistica.md). Fijar familias, bloques, δg, R y criterio antes de nuevos contrastes. Piloto ≥5 semillas en 2–3 modelos. No heredar R ni afirmar potencia por alcanzar un techo. |
 | G10 | §11, pp. 46–48 | Mismo esfuerzo de HPO y registro de tiempo, fallos y recetas | **Implementación y selección parciales** | [Evidencia documentada](11_hpo_equidad.md). Completar búsqueda y selección de todos los modelos; justificar rangos/ejes aplicables y mantener recibos de fallos sin sustituciones silenciosas. |
@@ -89,4 +89,6 @@ El orden anterior es el trabajo que resta; no declara que el método esté cerra
 | Incertidumbre y techo | Referencia justificada, margen γ, calibración y cobertura, errores estratificados y límites |
 | Lista de reproducción y defensa | Apéndice B completado con evidencia de entorno limpio y presentación oral de las decisiones |
 
-[Lista estructurada de requisitos](../_static/guide_compliance_20261111/requirements.json). Cada ID mantiene el vínculo entre requisito, estado y evidencia de cierre. La guía pondera problema/EDA/preregistro 15 %, revisión/paper/gap 15 %, implementación/NAS/rigor 25 %, benchmark/inferencia 20 %, ruta/robustez/incertidumbre/interpretabilidad 15 % y reproducción/redacción/defensa 10 % (p. 59). No se calcula una calificación ni un porcentaje de cumplimiento a partir del número de filas o de entrenamientos.
+[Lista estructurada de requisitos](../_static/guide_compliance_20261111/requirements_11_origins_v2.json). Cada ID mantiene el vínculo entre requisito, estado y evidencia de cierre. La guía pondera problema/EDA/preregistro 15 %, revisión/paper/gap 15 %, implementación/NAS/rigor 25 %, benchmark/inferencia 20 %, ruta/robustez/incertidumbre/interpretabilidad 15 % y reproducción/redacción/defensa 10 % (p. 59). No se calcula una calificación ni un porcentaje de cumplimiento a partir del número de filas o de entrenamientos.
+
+El [corte documental anterior a la decisión de conservar once orígenes](../_static/guide_compliance_20261111/requirements.json) se conserva como descarga histórica, con sus bytes originales; no sustituye la lista vigente v2.

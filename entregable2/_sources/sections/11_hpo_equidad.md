@@ -1,6 +1,7 @@
 # 11. HPO y equidad para el catálogo vigente
 
-**Vigencia al 11/11/2026:** Los dominios HPO/NAS de §27 ya tienen implementación y resultados parciales posteriores. Se mantienen 18 configuraciones, semillas y esfuerzo por receta; §37 limita el calendario a tres orígenes. Las afirmaciones «sin HPO» siguientes conservan su corte histórico. [Matriz de exigencias y evidencia](38_cumplimiento_guia.md) · [Enmienda de calendario](37_ajuste_guia.md).
+**Vigencia al 11/11/2026:** Se conservan los dominios, semillas y oportunidades HPO/NAS en los once orígenes originales. La reducción a tres queda pendiente; sólo se optimiza implementación y orden. [Decisión y ejecutor vigentes](40_calendario_original.md).
+
 
 
 **Decisión posterior de diseño (09/11/2026):** [§27 fija seis variantes NAS, cinco cuerpos publicados, rangos HPO y presupuesto para Codex](27_nas_hpo_presupuesto.md). La implementación de nuevas variantes, el perfilado de horas y el preregistro completo siguen pendientes; el contenido siguiente conserva el alcance de su corte anterior.

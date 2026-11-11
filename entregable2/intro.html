@@ -249,6 +249,7 @@
 <li class="toctree-l1"><a class="reference internal" href="sections/37_ajuste_guia.html">37. Ajuste de cómputo conforme a la guía</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sections/38_cumplimiento_guia.html">38. Exigencias de la guía, evidencia y pendientes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sections/39_optimizacion_tiempo.html">39. Optimizar tiempo sin recortar las exigencias de E2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/40_calendario_original.html">40. Calendario original y optimizaciones de implementación</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sections/referencias.html">Referencias de contexto y revisión E2</a></li>
 </ul>
 
@@ -407,7 +408,7 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="proyecto-final-de-deep-learning-entregable-2">
 <h1>Proyecto Final de Deep Learning: Entregable 2<a class="headerlink" href="#proyecto-final-de-deep-learning-entregable-2" title="Link to this heading">#</a></h1>
-<p><strong>Optimización de tiempo registrada:</strong> <a class="reference internal" href="sections/39_optimizacion_tiempo.html"><span class="std std-doc">§39 conserva las arquitecturas y las exigencias NAS</span></a>, prioriza los modelos de cuerpo fijo y prepara un cálculo selectivo de TimesNet que sólo se habilita tras medirlo en la GPU real. El escenario de 8.742 intentos no se aplica: no se han acreditado cuatro nuevas exenciones. No cambia automáticamente el Colab activo.</p>
+<p><strong>Decisión vigente: conservar los once orígenes originales y todas las exigencias de E2.</strong> Sólo se optimizan implementación, orden de ejecución y reutilización compatible. La reducción a tres orígenes queda como propuesta no operativa hasta justificar su suficiencia. <a class="reference internal" href="sections/40_calendario_original.html"><span class="std std-doc">Calendario y ejecutor vigentes (§40)</span></a>.</p>
 <p><strong>Deep Learning · 2026-30 · Jassan Arteta</strong></p>
 <section id="estado-de-la-entrega-y-guia-de-lectura">
 <h2>Estado de la entrega y guía de lectura<a class="headerlink" href="#estado-de-la-entrega-y-guia-de-lectura" title="Link to this heading">#</a></h2>
@@ -474,9 +475,9 @@
 </section>
 <section id="diseno-vigente-guia-y-computo">
 <h2>Diseño vigente, guía y cómputo<a class="headerlink" href="#diseno-vigente-guia-y-computo" title="Link to this heading">#</a></h2>
-<p>La <a class="reference internal" href="sections/37_ajuste_guia.html"><span class="std std-doc">enmienda de §37</span></a> programa <strong>tres orígenes de selección</strong>: <code class="docutils literal notranslate"><span class="pre">2024-01-01</span></code>, <code class="docutils literal notranslate"><span class="pre">2024-10-01</span></code> y <code class="docutils literal notranslate"><span class="pre">2025-01-01</span></code>, frente a los once del plan anterior. Conserva el contrato y el origen móvil, pero reduce la cobertura temporal. Tres orígenes son una decisión del proyecto, <strong>no un número impuesto ni aprobado por el PDF</strong>.</p>
-<p>El máximo de búsqueda neuronal pasa de <strong>85.074 a 23.202 intentos lógicos</strong> (72,7 % menos). No es una estimación de horas ni el coste total: faltan reajustes, comparadores, robustez, ablaciones, calibración e inferencia. La búsqueda de <strong>1.000 arquitecturas aplica sólo a diseños no definidos por su fuente</strong>. Nuestras seis variantes NAS conservan ese espacio; los cinco cuerpos publicados mantienen su exención justificada. Las 18 configuraciones HPO, k=40 y los máximos de 50/200 épocas son elecciones registradas del proyecto. <a class="reference internal" href="sections/38_cumplimiento_guia.html"><span class="std std-doc">Exigencias y decisiones</span></a>.</p>
-<p>El <a class="reference external" href="https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/main/notebooks/entregable2_calendario_guia.ipynb">notebook de transición</a> conserva los resultados compatibles. <strong>La publicación del libro no cambia el Colab activo:</strong> no se afirma que la enmienda ya esté ejecutándose. Hay que cerrar el controlador anterior y revisar su informe antes de iniciar el nuevo; un intento sin resultado no se repite automáticamente.</p>
+<p>El calendario vigente conserva diez selecciones mensuales enero–octubre de 2024 y la selección de enero de 2025: <strong>once orígenes comunes</strong>, con máximo de <strong>85.074 intentos neuronales de selección</strong>. Es una decisión del diseño original, no una cifra literal del PDF. La <a class="reference internal" href="sections/37_ajuste_guia.html"><span class="std std-doc">propuesta de tres orígenes de §37</span></a> queda pendiente de justificación y no debe considerarse definitiva.</p>
+<p>Se mantienen las seis variantes NAS y los cinco cuerpos publicados con exención justificada, las 18 configuraciones HPO, k=40 y máximos de 50/200 épocas. La optimización funcional se activa por caso sólo tras medirla en la GPU real. <a class="reference internal" href="sections/40_calendario_original.html"><span class="std std-doc">Alcance y límites (§40)</span></a>.</p>
+<p>El notebook vigente de once orígenes se enlaza en §40. No cambia por sí solo el Colab activo: hay que esperar el cierre del controlador anterior. Conserva los resultados compatibles y sólo transfiere el saldo del límite original de 48 horas; no garantiza terminar todas las corridas ni amplía el presupuesto.</p>
 </section>
 <section id="resultados-parciales-y-limites">
 <h2>Resultados parciales y límites<a class="headerlink" href="#resultados-parciales-y-limites" title="Link to this heading">#</a></h2>

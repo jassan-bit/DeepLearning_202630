@@ -1,0 +1,180 @@
+{
+  "version": "e2-guide-compliance-documentary-v2-eleven-origins",
+  "date": "2026-11-11",
+  "guide_file": "Entregable2DeepLearningProject.pdf",
+  "guide_sha256": "93499dcfda6a36d9621524a81821470017ba114ca6b08241a35de5a54f74a654",
+  "guide_pages": 65,
+  "scope": "documentary_alignment_not_execution_or_full_audit",
+  "full_compliance_certified": false,
+  "requirements": [
+    {
+      "id": "G01",
+      "guide_reference": "§1, pp. 1–2",
+      "requirement": "Problema, RQ, hipótesis, primaria, δ y criterio de decisión",
+      "status": "Parcial",
+      "evidence_section": "01_punto_partida.md",
+      "closure_needed": "Cerrar correspondencia RQ–contraste–unidad–criterio en el preregistro vigente; declarar exposición al test."
+    },
+    {
+      "id": "G02",
+      "guide_reference": "§2, pp. 3–9",
+      "requirement": "EDA que determina decisiones y su trazabilidad",
+      "status": "Parcial",
+      "evidence_section": "02_eda.md",
+      "closure_needed": "Vincular cada transformación y clasificación F2a con evidencia del EDA; no trasladar diagnósticos de otro modelo."
+    },
+    {
+      "id": "G03",
+      "guide_reference": "§3.1, pp. 9–10",
+      "requirement": "Búsqueda reproducible, PRISMA, extracción y calidad",
+      "status": "Parcial",
+      "evidence_section": "03_literatura.md",
+      "closure_needed": "Cerrar elegibilidad, duplicados y razones; conservar cadenas, fechas y conteos nativos. arXiv es complementario."
+    },
+    {
+      "id": "G04",
+      "guide_reference": "§3.1, p. 10",
+      "requirement": "Al menos tres cadenas transversales y tabla de mecanismos transferibles",
+      "status": "Pendiente de cierre",
+      "evidence_section": "03_literatura.md",
+      "closure_needed": "Acreditar consultas ejecutadas y fuentes primarias; una cadena propuesta no cuenta como búsqueda."
+    },
+    {
+      "id": "G05",
+      "guide_reference": "§3.2–3.3, pp. 11–12",
+      "requirement": "Top 10, ≥4 familias, puntajes completos y ficha/diagrama por modelo",
+      "status": "Parcial",
+      "evidence_section": "15_revision_modelos.md",
+      "closure_needed": "Taxonomía de cuatro familias documentada en §38; completar puntajes reproducibles, excluidos y diagramas. No contar el candidato 11 para reparar la diversidad del Top 10."
+    },
+    {
+      "id": "G06",
+      "guide_reference": "§§3.2, 7.4 F2a, pp. 11, 30–31",
+      "requirement": "Tres bases E1 y baselines naive, estacional y ARIMA o ETS",
+      "status": "Implementación parcial",
+      "evidence_section": "07_ruta_temporal.md",
+      "closure_needed": "Ejecutar comparadores con soporte común y ajuste justo. Los resultados E1 conocidos no sustituyen reajustes de E2."
+    },
+    {
+      "id": "G07",
+      "guide_reference": "§§4.1, 7.4 F2a, pp. 12–13, 30–31",
+      "requirement": "Cronología, origen móvil, embargo y disponibilidad de covariables",
+      "status": "Diseño documentado",
+      "evidence_section": "37_ajuste_guia.md",
+      "closure_needed": "Aplicar los once orígenes originales a todos los modelos y reportar por origen. Verificar activación del programador; el calendario no es un mandato literal del PDF."
+    },
+    {
+      "id": "G08",
+      "guide_reference": "§10, pp. 44–46",
+      "requirement": "Data Card, contrato y auditoría formal de fuga",
+      "status": "Parcial",
+      "evidence_section": "10_auditoria_datos.md",
+      "closure_needed": "Completar evidencias aplicables de duplicados, atributos sospechosos, controles negativos y auditoría adversarial; no declarar auditoría completa por verificar hashes."
+    },
+    {
+      "id": "G09",
+      "guide_reference": "§§4.3, 9, pp. 14, 42–43",
+      "requirement": "Preregistro real, repeticiones y potencia ≥0,80 o limitación/MDE",
+      "status": "Pendiente de cierre",
+      "evidence_section": "13_agregacion_estadistica.md",
+      "closure_needed": "Fijar familias, bloques, δg, R y criterio antes de nuevos contrastes. Piloto ≥5 semillas en 2–3 modelos. No heredar R ni afirmar potencia por alcanzar un techo."
+    },
+    {
+      "id": "G10",
+      "guide_reference": "§11, pp. 46–48",
+      "requirement": "Mismo esfuerzo de HPO y registro de tiempo, fallos y recetas",
+      "status": "Implementación y selección parciales",
+      "evidence_section": "11_hpo_equidad.md",
+      "closure_needed": "Completar búsqueda y selección de todos los modelos; justificar rangos/ejes aplicables y mantener recibos de fallos sin sustituciones silenciosas."
+    },
+    {
+      "id": "G11",
+      "guide_reference": "§14, pp. 52–58",
+      "requirement": "NAS condicional: 1.000 diseños, dos fases, finalistas y selección sólo con validación",
+      "status": "Selección parcial",
+      "evidence_section": "14_arquitecturas.md",
+      "closure_needed": "Completar dominios NAS de variantes propias, justificar exenciones, reportar todo el espacio, efectos, parsimonia y riesgo del ganador. k≥10 y ≥5 semillas de confirmación; k40 es decisión propia."
+    },
+    {
+      "id": "G12",
+      "guide_reference": "§5, pp. 16–17",
+      "requirement": "Réplica parcial, limitación cuantificada y piloto en ≥3 del Top 10",
+      "status": "Evidencia externa parcial",
+      "evidence_section": "05_paper_guia.md",
+      "closure_needed": "Conservar réplica TimeMixer/ETTh1; documentar métrica, magnitud e IC de la limitación y sus límites de transferencia a Bitcoin. No convertir el híbrido en solución validada."
+    },
+    {
+      "id": "G13",
+      "guide_reference": "§6 y Apéndice A, pp. 17–20, 61–62",
+      "requirement": "Tabla de benchmark con medias, DE, IC y costes; ranking y Pareto",
+      "status": "Pendiente de resultados finales",
+      "evidence_section": "06_benchmark_final.md",
+      "closure_needed": "Evaluar todos los sistemas en soporte común con R fijado; añadir parámetros, FLOPs, latencia, recursos, calibración y robustez. No rellenar con métricas de otros estudios."
+    },
+    {
+      "id": "G14",
+      "guide_reference": "§§6.3, 7.3, 7.4 F2a, pp. 18–19, 21–31",
+      "requirement": "Bondad de ajuste, sobreajuste y diferencias con pruebas admisibles",
+      "status": "Código/plan parciales",
+      "evidence_section": "13_agregacion_estadistica.md",
+      "closure_needed": "Preespecificar batería pertinente, al menos tres pruebas admisibles por contraste confirmatorio, supuestos y multiplicidad. Incluir diagnósticos temporales, calibración y DM-HLN donde corresponda; no tratar semillas/orígenes solapados como datasets iid."
+    },
+    {
+      "id": "G15",
+      "guide_reference": "§§7.3, 13, pp. 22–27, 50–51",
+      "requirement": "IC, efectos y remuestreo que respete dependencia",
+      "status": "Pendiente de análisis final",
+      "evidence_section": "13_agregacion_estadistica.md",
+      "closure_needed": "Justificar bloques temporales, ≥2.000 remuestreos para IC y ≥10.000 para contraste pareado aplicable; reportar p exactos y ajustados, efecto e IC, unidad y familia."
+    },
+    {
+      "id": "G16",
+      "guide_reference": "§4.6, p. 16",
+      "requirement": "Robustez con ≥3 severidades por perturbación y cambio de distribución",
+      "status": "Pendiente para benchmark vigente",
+      "evidence_section": "12_incertidumbre_errores.md",
+      "closure_needed": "Registrar perturbaciones causales sin cambiar el objetivo, severidades y curvas de degradación; evaluar recetas seleccionadas."
+    },
+    {
+      "id": "G17",
+      "guide_reference": "§4.6, p. 16",
+      "requirement": "Explicabilidad del Top 3, fidelidad y estabilidad entre semillas",
+      "status": "Pendiente de identificar Top 3",
+      "evidence_section": "12_incertidumbre_errores.md",
+      "closure_needed": "Aplicar técnica pertinente con borrado/inserción y estabilidad; mapas de atención aislados no acreditan fidelidad."
+    },
+    {
+      "id": "G18",
+      "guide_reference": "§4.6, p. 16",
+      "requirement": "Ablación del mejor modelo con ≥3 componentes e inferencia",
+      "status": "Pendiente de identificar ganador",
+      "evidence_section": "06_benchmark_final.md",
+      "closure_needed": "Aislar tres aportes con las mismas semillas y controles; no asumir que el híbrido será el mejor."
+    },
+    {
+      "id": "G19",
+      "guide_reference": "§12, pp. 48–50",
+      "requirement": "Referencia de techo/margen γ, incertidumbre y errores por segmentos",
+      "status": "Parcial",
+      "evidence_section": "12_incertidumbre_errores.md",
+      "closure_needed": "Justificar referencia y γ sin llamar a persistencia techo de Bayes; calibración disjunta, cobertura y ≥100 casos estratificados por modelo principal, según aplicabilidad."
+    },
+    {
+      "id": "G20",
+      "guide_reference": "§8, pp. 40–41; Entregables, pp. 58–59",
+      "requirement": "Entorno fijado, código, datos/instrucciones, reproducción y entregables",
+      "status": "Parcial",
+      "evidence_section": "08_reproducibilidad.md",
+      "closure_needed": "Ejecutar reproducción integral en entorno limpio, completar Apéndice B y empaquetar artefactos. Contenedor opcional en E2; obligatoriedad de E3 no se presenta como requisito E2."
+    },
+    {
+      "id": "G21",
+      "guide_reference": "§6.4, p. 20; estructura, p. 62",
+      "requirement": "Resumen ≤250 palabras, discusión por RQ, conclusiones y amenazas",
+      "status": "Provisional",
+      "evidence_section": "06_benchmark_final.md",
+      "closure_needed": "Redactar resumen final con cifras y responder hipótesis sólo tras análisis; conservar explícitos resultados negativos, incertidumbre y limitaciones."
+    }
+  ],
+  "calendar_policy": "Original eleven-origin schedule retained; three-origin proposal not operative pending justification."
+}

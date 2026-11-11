@@ -1,6 +1,6 @@
 # Proyecto Final de Deep Learning: Entregable 2
 
-**Optimización de tiempo registrada:** [§39 conserva las arquitecturas y las exigencias NAS](sections/39_optimizacion_tiempo.md), prioriza los modelos de cuerpo fijo y prepara un cálculo selectivo de TimesNet que sólo se habilita tras medirlo en la GPU real. El escenario de 8.742 intentos no se aplica: no se han acreditado cuatro nuevas exenciones. No cambia automáticamente el Colab activo.
+**Decisión vigente: conservar los once orígenes originales y todas las exigencias de E2.** Sólo se optimizan implementación, orden de ejecución y reutilización compatible. La reducción a tres orígenes queda como propuesta no operativa hasta justificar su suficiencia. [Calendario y ejecutor vigentes (§40)](sections/40_calendario_original.md).
 
 **Deep Learning · 2026-30 · Jassan Arteta**
 
@@ -43,11 +43,11 @@ El catálogo comprende diez modelos base:
 
 ## Diseño vigente, guía y cómputo
 
-La [enmienda de §37](sections/37_ajuste_guia.md) programa **tres orígenes de selección**: `2024-01-01`, `2024-10-01` y `2025-01-01`, frente a los once del plan anterior. Conserva el contrato y el origen móvil, pero reduce la cobertura temporal. Tres orígenes son una decisión del proyecto, **no un número impuesto ni aprobado por el PDF**.
+El calendario vigente conserva diez selecciones mensuales enero–octubre de 2024 y la selección de enero de 2025: **once orígenes comunes**, con máximo de **85.074 intentos neuronales de selección**. Es una decisión del diseño original, no una cifra literal del PDF. La [propuesta de tres orígenes de §37](sections/37_ajuste_guia.md) queda pendiente de justificación y no debe considerarse definitiva.
 
-El máximo de búsqueda neuronal pasa de **85.074 a 23.202 intentos lógicos** (72,7 % menos). No es una estimación de horas ni el coste total: faltan reajustes, comparadores, robustez, ablaciones, calibración e inferencia. La búsqueda de **1.000 arquitecturas aplica sólo a diseños no definidos por su fuente**. Nuestras seis variantes NAS conservan ese espacio; los cinco cuerpos publicados mantienen su exención justificada. Las 18 configuraciones HPO, k=40 y los máximos de 50/200 épocas son elecciones registradas del proyecto. [Exigencias y decisiones](sections/38_cumplimiento_guia.md).
+Se mantienen las seis variantes NAS y los cinco cuerpos publicados con exención justificada, las 18 configuraciones HPO, k=40 y máximos de 50/200 épocas. La optimización funcional se activa por caso sólo tras medirla en la GPU real. [Alcance y límites (§40)](sections/40_calendario_original.md).
 
-El [notebook de transición](https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/main/notebooks/entregable2_calendario_guia.ipynb) conserva los resultados compatibles. **La publicación del libro no cambia el Colab activo:** no se afirma que la enmienda ya esté ejecutándose. Hay que cerrar el controlador anterior y revisar su informe antes de iniciar el nuevo; un intento sin resultado no se repite automáticamente.
+El notebook vigente de once orígenes se enlaza en §40. No cambia por sí solo el Colab activo: hay que esperar el cierre del controlador anterior. Conserva los resultados compatibles y sólo transfiere el saldo del límite original de 48 horas; no garantiza terminar todas las corridas ni amplía el presupuesto.
 
 ## Resultados parciales y límites
 
