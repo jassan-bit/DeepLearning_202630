@@ -1,0 +1,1096 @@
+{
+  "policy_id": "e2-published-bodies-d7-v1",
+  "schema_version": 1,
+  "created_at_utc": "2026-11-12T12:20:30.056939+00:00",
+  "decision_date": "2026-11-12",
+  "status": "reviewed_bodies_pending_campaign_migration",
+  "authorization": "User requested verification of published bodies, compatible D7 adaptations, and NAS only where required. This prospective amendment does not claim preregistration before earlier results.",
+  "parent_main": "c43a4e18f3d75f47246bd9eb9e9da35b9f8a8f9c",
+  "parent_catalogue": "experiments/e2_required_catalogue_20261112/catalogue.json",
+  "guide": {
+    "file_sha256": "93499dcfda6a36d9621524a81821470017ba114ca6b08241a35de5a54f74a654",
+    "requirements": [
+      {
+        "section": "3.3",
+        "page": 12,
+        "rule": "Identify whether the article defines layers and dimensions."
+      },
+      {
+        "section": "11",
+        "page": 46,
+        "rule": "Prefer official code; declare adaptations and verify implementation."
+      },
+      {
+        "section": "14",
+        "pages": [
+          52,
+          53
+        ],
+        "rule": "Use defined published bodies; apply NAS where a design remains unspecified."
+      }
+    ]
+  },
+  "contract": {
+    "input_shape": [
+      7,
+      5
+    ],
+    "input_channels": [
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume"
+    ],
+    "horizon": 1,
+    "target": "non-annualized population sigma7; caller restores training-only target scale",
+    "target_history_added": false,
+    "future_market_covariates_added": false
+  },
+  "models": [
+    {
+      "model_id": "FCN-1D",
+      "recipe_id": "fcn1d_wang_d7_v1_proposed__hpo_v1",
+      "nas_required": false,
+      "role": "Top10",
+      "decision": "published_body_retained",
+      "fixed_body": true,
+      "body_definition": {
+        "blocks": 3,
+        "channels": [
+          128,
+          256,
+          128
+        ],
+        "kernels": [
+          8,
+          5,
+          3
+        ],
+        "normalization": "source batch normalization",
+        "activation": "ReLU",
+        "pool": "global average"
+      },
+      "adaptations": [
+        "D7 length and five OHLCV channels",
+        "Singleton-spatial Conv2D temporal body ported to Conv1D with source SAME padding",
+        "Positive scalar regression head replaces classification output"
+      ],
+      "primary_evidence": [
+        {
+          "kind": "paper",
+          "url": "https://arxiv.org/pdf/1611.06455v4",
+          "locators": [
+            "Section II.B, physical PDF pp2-3"
+          ]
+        },
+        {
+          "kind": "author_code",
+          "url": "https://github.com/cauchyturing/UCR_Time_Series_Classification_Deep_Learning_Baseline/blob/3ecc8971fa768bd01ada7f3a613688255e6256c2/FCN.py",
+          "locators": [
+            "Full FCN construction"
+          ]
+        }
+      ],
+      "implementation": "scripts/e2_training_models.py",
+      "historical_recipe_id": "fcn1d_wang_d7_v1_proposed__hpo_v1",
+      "reuse": {
+        "eligible_for_exact_compatibility_check": true,
+        "old_results_can_be_relabelled_as_this_recipe": false,
+        "required_match": [
+          "recipe",
+          "architecture",
+          "data",
+          "split",
+          "seed",
+          "execution_policy"
+        ],
+        "reason": "Recipe retained; no automatic reuse without exact compatibility checks."
+      },
+      "paper_task_or_backend_replication_claimed": false,
+      "limits": [
+        "Semantic port checks do not certify original Keras/PyTorch backend numerical equivalence."
+      ]
+    },
+    {
+      "model_id": "ResNet-1D",
+      "recipe_id": "resnet1d_wang_d7_v1_proposed__hpo_v1",
+      "nas_required": false,
+      "role": "Top10",
+      "decision": "published_body_retained",
+      "fixed_body": true,
+      "body_definition": {
+        "residual_blocks": 3,
+        "channels": [
+          64,
+          128,
+          128
+        ],
+        "kernels_per_block": [
+          8,
+          5,
+          3
+        ],
+        "projected_shortcuts": 3,
+        "pool": "global average"
+      },
+      "adaptations": [
+        "D7 length and five OHLCV channels",
+        "Source initial batch normalization and projected shortcuts retained",
+        "Positive scalar regression head replaces classification output"
+      ],
+      "primary_evidence": [
+        {
+          "kind": "paper",
+          "url": "https://arxiv.org/pdf/1611.06455v4",
+          "locators": [
+            "Section II.C, physical PDF p3"
+          ]
+        },
+        {
+          "kind": "author_code",
+          "url": "https://github.com/cauchyturing/UCR_Time_Series_Classification_Deep_Learning_Baseline/blob/3ecc8971fa768bd01ada7f3a613688255e6256c2/ResNet.py",
+          "locators": [
+            "Full residual construction"
+          ]
+        }
+      ],
+      "implementation": "scripts/e2_training_models.py",
+      "historical_recipe_id": "resnet1d_wang_d7_v1_proposed__hpo_v1",
+      "reuse": {
+        "eligible_for_exact_compatibility_check": true,
+        "old_results_can_be_relabelled_as_this_recipe": false,
+        "required_match": [
+          "recipe",
+          "architecture",
+          "data",
+          "split",
+          "seed",
+          "execution_policy"
+        ],
+        "reason": "Recipe retained; no automatic reuse without exact compatibility checks."
+      },
+      "paper_task_or_backend_replication_claimed": false,
+      "limits": [
+        "Semantic port checks do not certify original Keras/PyTorch backend numerical equivalence."
+      ]
+    },
+    {
+      "model_id": "Inception-1D",
+      "recipe_id": "inception1d_single_d7_v1_proposed__hpo_v1",
+      "nas_required": false,
+      "role": "Top10",
+      "decision": "published_body_retained",
+      "fixed_body": true,
+      "body_definition": {
+        "individual_network": true,
+        "inception_modules": 6,
+        "temporal_kernels": [
+          40,
+          20,
+          10
+        ],
+        "bottleneck_channels": 32,
+        "filters_per_branch": 32,
+        "residual_every": 3,
+        "pool": "global average"
+      },
+      "adaptations": [
+        "D7 length and five OHLCV channels with explicit temporal padding",
+        "One defined network; the separate five-member ensemble is not silently claimed",
+        "Positive scalar regression head"
+      ],
+      "primary_evidence": [
+        {
+          "kind": "paper",
+          "url": "https://arxiv.org/pdf/1909.04939v3",
+          "locators": [
+            "Section3.1, pp5-7, individual body",
+            "Section3.2,p7, separate ensemble"
+          ]
+        },
+        {
+          "kind": "author_code",
+          "url": "https://github.com/hfawaz/InceptionTime/blob/952d115e83fb3a66d75c5858c702f8dd5eeb18b7/classifiers/inception.py",
+          "locators": [
+            "Inception module and six-module build_model"
+          ]
+        }
+      ],
+      "implementation": "scripts/e2_training_models.py",
+      "historical_recipe_id": "inception1d_single_d7_v1_proposed__hpo_v1",
+      "reuse": {
+        "eligible_for_exact_compatibility_check": true,
+        "old_results_can_be_relabelled_as_this_recipe": false,
+        "required_match": [
+          "recipe",
+          "architecture",
+          "data",
+          "split",
+          "seed",
+          "execution_policy"
+        ],
+        "reason": "Recipe retained; no automatic reuse without exact compatibility checks."
+      },
+      "paper_task_or_backend_replication_claimed": false,
+      "limits": [
+        "Semantic port checks do not certify original Keras/PyTorch backend numerical equivalence."
+      ]
+    },
+    {
+      "model_id": "LSTM-autoencoder con predictor",
+      "recipe_id": "SAE-D7-PUBLISHED-v1",
+      "nas_required": false,
+      "role": "Top10",
+      "decision": "published_body_restored",
+      "fixed_body": true,
+      "body_definition": {
+        "lstm_encoder_units": [
+          25,
+          26
+        ],
+        "auxiliary_decoder_channels": 5,
+        "extra_nas_dense_group": false,
+        "dropout": 0.3,
+        "training_stages": [
+          "AE1",
+          "AE2_with_encoder1_frozen",
+          "transfer_and_supervised_fine_tuning"
+        ]
+      },
+      "adaptations": [
+        "Source lag25 adapted to D7; five OHLCV channels replace the source multivariate task channels",
+        "Both auxiliary phases reconstruct the original X/s; s is fit on training inputs only",
+        "Fresh optimizers per phase and exact encoder transfer",
+        "Positive scalar sigma7/target_scale head; caller owns target-scale inversion"
+      ],
+      "primary_evidence": [
+        {
+          "kind": "paper",
+          "url": "https://doi.org/10.1038/s41598-019-55320-6",
+          "locators": [
+            "Architecture and learning,pp7-8",
+            "Table2,p11, two LSTM encoders25/26 and dropout0.3"
+          ]
+        },
+        {
+          "kind": "author_hosted_article_text",
+          "url": "https://www.academia.edu/111461009/Unsupervised_Pre_training_of_a_Deep_LSTM_based_Stacked_Autoencoder_for_Multivariate_Time_Series_Forecasting_Problems",
+          "locators": [
+            "Author-hosted full article text: architecture/learning pp7-8 and Table2p11"
+          ],
+          "pdf_downloaded_or_hashed": false
+        },
+        {
+          "kind": "author_code",
+          "url": "https://github.com/2M-kotb/LSTM-based-Stacked-Autoencoder/blob/8668132ef6f8855dbab289c5a2b2478f871c4c4b/2layer_evaluate.py",
+          "locators": [
+            "line138 hidden_layers",
+            "lines211-224 AE construction and original-target reconstruction",
+            "lines232-260 encoder transfer and predictor"
+          ],
+          "sha256": "a374ab646ebb77f7e3d508bbc49bd75879ea93bf06cc3fa79f314348cb5d5b40",
+          "bytes": 10949
+        }
+      ],
+      "implementation": "scripts/e2_published_sae.py",
+      "historical_recipe_id": "SAE-D7-NAS-v1",
+      "reuse": {
+        "eligible_for_exact_compatibility_check": false,
+        "old_results_can_be_relabelled_as_this_recipe": false,
+        "required_match": [
+          "recipe",
+          "architecture",
+          "data",
+          "split",
+          "seed",
+          "execution_policy"
+        ],
+        "reason": "New body and recipe identity; prior NAS observations remain historical."
+      },
+      "paper_task_or_backend_replication_claimed": false,
+      "limits": [
+        "The article was read through author-hosted web text; no new PDF hash is asserted.",
+        "Task adaptations are not a replication of the original multivariate forecasting experiment."
+      ]
+    },
+    {
+      "model_id": "TimesNet",
+      "recipe_id": "TN-D7-PUBLISHED-v1",
+      "nas_required": false,
+      "role": "Top10",
+      "decision": "published_body_restored",
+      "fixed_body": true,
+      "body_definition": {
+        "timesblocks": 2,
+        "d_model": 32,
+        "d_ff": 32,
+        "num_kernels": 6,
+        "top_k": 3,
+        "dropout": 0.1,
+        "source_forecast_projection_preserved": true,
+        "task_head": "Linear(5,1)+Softplus"
+      },
+      "adaptations": [
+        "Source temporal projection7->8 for D7+H1",
+        "Select only non-DC frequencies, including constant-spectrum ties; k3 is in the published k1..5 study",
+        "Keep source batch-mean frequency selection during training; evaluate one window per body invocation to avoid later-window influence",
+        "Keep source floor(T/f), explicitly differing from the paper ceil formula",
+        "Complete source forecasting yields five features; external scalar head predicts sigma7/target_scale",
+        "Keep but freeze official branches unused with absent time marks; no moment-feature bridge"
+      ],
+      "primary_evidence": [
+        {
+          "kind": "paper",
+          "url": "https://arxiv.org/abs/2210.02186v3",
+          "locators": [
+            "Sections3.1-3.2",
+            "Table7,p14",
+            "AppendixB,Figure8,k1..5"
+          ]
+        },
+        {
+          "kind": "author_code",
+          "url": "https://github.com/thuml/Time-Series-Library/blob/4e938a1767106324dd753b2a44832bf870a0252e/models/TimesNet.py",
+          "locators": [
+            "FFT_for_Period",
+            "TimesBlock",
+            "Model.forecast"
+          ]
+        },
+        {
+          "kind": "author_code",
+          "url": "https://github.com/thuml/Time-Series-Library/blob/4e938a1767106324dd753b2a44832bf870a0252e/scripts/long_term_forecast/ETT_script/TimesNet_ETTh1.sh",
+          "locators": [
+            "Published source configuration"
+          ]
+        },
+        {
+          "kind": "author_code",
+          "url": "https://github.com/thuml/Time-Series-Library/blob/4e938a1767106324dd753b2a44832bf870a0252e/run.py",
+          "locators": [
+            "d_ff and num_kernels defaults"
+          ]
+        }
+      ],
+      "implementation": "scripts/e2_published_periodic.py",
+      "historical_recipe_id": "TN-D7-NAS-v1",
+      "reuse": {
+        "eligible_for_exact_compatibility_check": false,
+        "old_results_can_be_relabelled_as_this_recipe": false,
+        "required_match": [
+          "recipe",
+          "architecture",
+          "data",
+          "split",
+          "seed",
+          "execution_policy"
+        ],
+        "reason": "New body and recipe identity; prior NAS observations remain historical."
+      },
+      "paper_task_or_backend_replication_claimed": false,
+      "prior_fulltext_receipt": {
+        "registry": "book_e2/_static/literature_fulltext/models.json",
+        "source_version": "2210.02186v3",
+        "source_url": "https://arxiv.org/abs/2210.02186v3",
+        "pdf_sha256": "a45cb3d35c7b4db7091439ee714fd43dd6cd9e8f2fb1867f5463ae0433aebbd1",
+        "verification_scope": "Existing full-text receipt retained; not a newly downloaded PDF in this amendment."
+      },
+      "limits": [
+        "D7,k3 and scalar target are declared task adaptations; no exact original-task replication.",
+        "Inference B1 is part of the recipe and must be reflected in cost/latency measurement."
+      ],
+      "pinned_author_source_provenance": {
+        "manifest": "experiments/e2_completion_20261106/design.json",
+        "source_location": {
+          "repository": "thuml/Time-Series-Library",
+          "commit": "4e938a1767106324dd753b2a44832bf870a0252e"
+        },
+        "file_count": 34,
+        "scope": "Only the declared pinned files; not a whole repository or original-task reproduction."
+      }
+    },
+    {
+      "model_id": "TSMixer",
+      "recipe_id": "TSM-D7-r1__hpo_v1",
+      "nas_required": false,
+      "role": "Top10",
+      "decision": "published_body_retained",
+      "fixed_body": true,
+      "body_definition": {
+        "mixer_blocks": 6,
+        "temporal_projection": [
+          7,
+          7
+        ],
+        "feature_mlp": [
+          5,
+          512,
+          5
+        ],
+        "residuals": true,
+        "normalization": "source Keras-axis batch normalization"
+      },
+      "adaptations": [
+        "D7 length and five OHLCV variables",
+        "Existing scalar head and ten mean/std features from the same D7 window are retained explicitly",
+        "No architecture change or result relabelling in this amendment"
+      ],
+      "primary_evidence": [
+        {
+          "kind": "paper",
+          "url": "https://arxiv.org/abs/2303.06053v5",
+          "locators": [
+            "Table8,ETTh1 six blocks/H512; prior full-text review records search-range inconsistency"
+          ]
+        },
+        {
+          "kind": "author_code",
+          "url": "https://github.com/google-research/google-research/blob/d3a4bd8f0eceddda553e47085033b537935b283f/tsmixer/tsmixer_basic/models/tsmixer.py",
+          "locators": [
+            "res_block",
+            "build_model"
+          ]
+        }
+      ],
+      "implementation": "scripts/e2_training_models.py",
+      "historical_recipe_id": "TSM-D7-r1__hpo_v1",
+      "reuse": {
+        "eligible_for_exact_compatibility_check": true,
+        "old_results_can_be_relabelled_as_this_recipe": false,
+        "required_match": [
+          "recipe",
+          "architecture",
+          "data",
+          "split",
+          "seed",
+          "execution_policy"
+        ],
+        "reason": "Recipe retained; no automatic reuse without exact compatibility checks."
+      },
+      "paper_task_or_backend_replication_claimed": false,
+      "prior_fulltext_receipt": {
+        "registry": "book_e2/_static/literature_fulltext/models.json",
+        "source_version": "2303.06053v5",
+        "source_url": "https://arxiv.org/abs/2303.06053v5",
+        "pdf_sha256": "864079eb9702bca1f27f540819052af94625b226cd5a652a02638800f95b365e",
+        "verification_scope": "Existing full-text receipt retained; not a newly downloaded PDF in this amendment."
+      },
+      "limits": [
+        "Independent PyTorch port; no new TensorFlow/PyTorch backend equivalence certification."
+      ],
+      "pinned_author_source_provenance": {
+        "manifest": "experiments/e2_completion_20261106/design.json",
+        "source_location": {
+          "repository": "google-research/google-research",
+          "commit": "d3a4bd8f0eceddda553e47085033b537935b283f"
+        },
+        "file_count": 2,
+        "scope": "Only the declared pinned files; not a whole repository or original-task reproduction."
+      }
+    },
+    {
+      "model_id": "TiDE",
+      "recipe_id": "TIDE-D7-NAS-v1",
+      "nas_required": true,
+      "role": "Top10",
+      "decision": "nas_required_for_current_variant",
+      "fixed_body": false,
+      "body_definition": {
+        "fixed_body_admitted": false,
+        "current_variant": "TIDE-D7-NAS-v1",
+        "nas_groups": 3,
+        "published_r0_candidate_activated": false
+      },
+      "adaptations": [
+        "Retain the currently registered TiDE NAS family, including its declared task-specific decoder/covariate representation",
+        "The r0 proposal leaves a hidden dynamic-feature subnetwork inactive under source zero-bias/ReLU initialization",
+        "Do not add calendar features or target lags without another input-contract amendment"
+      ],
+      "primary_evidence": [
+        {
+          "kind": "paper",
+          "url": "https://arxiv.org/abs/2304.08424v5",
+          "locators": [
+            "Section4.1,pp4-5, dynamic covariate encoder",
+            "Section4.2,p6, dense/temporal decoders and covariate highway"
+          ]
+        },
+        {
+          "kind": "author_code",
+          "url": "https://github.com/google-research/google-research/blob/d3a4bd8f0eceddda553e47085033b537935b283f/tide/models.py",
+          "locators": [
+            "MLPResidual lines29-61",
+            "Time feature encoder/temporal decoder lines145-155",
+            "Past and future covariates lines172-212"
+          ]
+        },
+        {
+          "kind": "author_code",
+          "url": "https://github.com/google-research/google-research/blob/d3a4bd8f0eceddda553e47085033b537935b283f/tide/train.py",
+          "locators": [
+            "Defaults lines54-71",
+            "Model construction lines182-198"
+          ]
+        },
+        {
+          "kind": "local_audit",
+          "url": "experiments/e2_published_architectures_20261112/tide_compatibility_audit.json",
+          "locators": [
+            "Four-step local analogue probe and conservative compatibility decision"
+          ]
+        }
+      ],
+      "implementation": "scripts/e2_nas_autoencoder.py",
+      "historical_recipe_id": "TIDE-D7-NAS-v1",
+      "reuse": {
+        "eligible_for_exact_compatibility_check": true,
+        "old_results_can_be_relabelled_as_this_recipe": false,
+        "required_match": [
+          "recipe",
+          "architecture",
+          "data",
+          "split",
+          "seed",
+          "execution_policy"
+        ],
+        "reason": "Recipe retained; no automatic reuse without exact compatibility checks."
+      },
+      "paper_task_or_backend_replication_claimed": false,
+      "prior_fulltext_receipt": {
+        "registry": "book_e2/_static/literature_fulltext/models.json",
+        "source_version": "2304.08424v5",
+        "source_url": "https://arxiv.org/abs/2304.08424v5",
+        "pdf_sha256": "eee9d9e3248f262a137e6cf63920137263f3bbbe22cd8608e5eec77882af1999",
+        "verification_scope": "Existing full-text receipt retained; not a newly downloaded PDF in this amendment."
+      },
+      "limits": [
+        "No published-body exemption is granted for the retained variant.",
+        "The official TensorFlow TiDE model was not executed in the r0 analogue probe."
+      ],
+      "pinned_author_source_provenance": {
+        "manifest": "experiments/e2_completion_20261106/design.json",
+        "source_location": {
+          "repository": "google-research/google-research",
+          "commit": "d3a4bd8f0eceddda553e47085033b537935b283f"
+        },
+        "file_count": 4,
+        "scope": "Only the declared pinned files; not a whole repository or original-task reproduction."
+      }
+    },
+    {
+      "model_id": "TimeMixer",
+      "recipe_id": "TM-D7-PUBLISHED-v1",
+      "nas_required": false,
+      "role": "Top10",
+      "decision": "published_body_restored",
+      "fixed_body": true,
+      "body_definition": {
+        "preset": "M4 Monthly short-context body",
+        "pdm_blocks": 4,
+        "d_model": 32,
+        "d_ff": 32,
+        "down_sampling_layers": 1,
+        "down_sampling_window": 2,
+        "down_sampling_method": "avg",
+        "scale_lengths": [
+          7,
+          3
+        ],
+        "moving_average": 25,
+        "channel_independence": 1,
+        "use_norm": 1,
+        "dropout": 0.1,
+        "full_fmm_and_output_projection": true,
+        "task_head": "Linear(5,1)+Softplus"
+      },
+      "adaptations": [
+        "D7 length and H1 scalar target; adopt published M1 short-context configuration rather than invent a pooling depth",
+        "Retain PDM season/trend mixing and every FMM predictor and source forecast-output sum",
+        "Use the complete five-variable forecast as body features for the external scalar head",
+        "Keep but freeze official unused temporal-embedding/PDM-layer_norm parameters; do not delete body blocks",
+        "No same-window moment-feature bridge or future covariates"
+      ],
+      "primary_evidence": [
+        {
+          "kind": "paper",
+          "url": "https://arxiv.org/abs/2405.14616v1",
+          "locators": [
+            "Section3",
+            "Table7,p14, short-context M1 configurations"
+          ]
+        },
+        {
+          "kind": "author_code",
+          "url": "https://github.com/kwuking/TimeMixer/blob/e24610583b36fdd8c76cc17a8df4e65759a5f460/models/TimeMixer.py",
+          "locators": [
+            "PastDecomposableMixing",
+            "MultiScaleSeasonMixing",
+            "MultiScaleTrendMixing",
+            "Model.forecast"
+          ]
+        },
+        {
+          "kind": "author_code",
+          "url": "https://github.com/kwuking/TimeMixer/blob/e24610583b36fdd8c76cc17a8df4e65759a5f460/scripts/short_term_forecast/M4/TimeMixer.sh",
+          "locators": [
+            "Monthly/Yearly/Weekly/Hourly d_model32,d_ff32,four PDM,M1,average factor2"
+          ],
+          "sha256": "f164c24fedacc7d8479b42df9802c76db6ab887f280688890c830ab356ea02ee",
+          "bytes": 3924
+        },
+        {
+          "kind": "author_code",
+          "url": "https://github.com/kwuking/TimeMixer/blob/e24610583b36fdd8c76cc17a8df4e65759a5f460/run.py",
+          "locators": [
+            "channel_independence1,use_norm1,moving_avg25,use_future_temporal_feature0 defaults"
+          ],
+          "sha256": "2d945cae47154e08e2a0aa8f794e2a25fb1bd5ce8ff3e070d2692326fe197024",
+          "bytes": 9696
+        }
+      ],
+      "implementation": "scripts/e2_published_periodic.py",
+      "historical_recipe_id": "TM-D7-NAS-v1",
+      "reuse": {
+        "eligible_for_exact_compatibility_check": false,
+        "old_results_can_be_relabelled_as_this_recipe": false,
+        "required_match": [
+          "recipe",
+          "architecture",
+          "data",
+          "split",
+          "seed",
+          "execution_policy"
+        ],
+        "reason": "New body and recipe identity; prior NAS observations remain historical."
+      },
+      "paper_task_or_backend_replication_claimed": false,
+      "prior_fulltext_receipt": {
+        "registry": "book_e2/_static/literature_fulltext/models.json",
+        "source_version": "2405.14616v1",
+        "source_url": "https://arxiv.org/abs/2405.14616v1",
+        "pdf_sha256": "a599b338e44af70d8e9c87be3c5417bde7864b2c92074e1346703f3e2b641e3d",
+        "verification_scope": "Existing full-text receipt retained; not a newly downloaded PDF in this amendment."
+      },
+      "limits": [
+        "The task is Bitcoin D7 scalar regression, not M4 or ETTh1 numerical reproduction."
+      ],
+      "pinned_author_source_provenance": {
+        "manifest": "experiments/e2_completion_20261106/design.json",
+        "source_location": {
+          "repository": "kwuking/TimeMixer",
+          "commit": "e24610583b36fdd8c76cc17a8df4e65759a5f460"
+        },
+        "file_count": 22,
+        "scope": "Only the declared pinned files; not a whole repository or original-task reproduction."
+      }
+    },
+    {
+      "model_id": "PatchTST",
+      "recipe_id": "PT-D7-PUBLISHED-v1",
+      "nas_required": false,
+      "role": "Top10",
+      "decision": "published_body_restored",
+      "fixed_body": true,
+      "body_definition": {
+        "encoder_layers": 3,
+        "n_heads": 4,
+        "d_model": 16,
+        "d_ff": 128,
+        "residual_attention": true,
+        "source_flatten_head_preserved": true,
+        "patch_len": 3,
+        "stride": 2,
+        "padding_patch": "end",
+        "end_padding": 2,
+        "patch_count": 4,
+        "revin_observed_context": 7,
+        "dropout": 0.3,
+        "fc_dropout": 0.3,
+        "head_dropout": 0.0,
+        "task_head": "Linear(5,1)+Softplus before OHLCV denormalization"
+      },
+      "adaptations": [
+        "D7 P3/S2/endpad2 geometry was already proposed in the prior full-text dossier; it is not the source ETTh1 P16/S8 preset",
+        "Exactly four patches [0:3],[2:5],[4:7],[6,6,6], with no left padding",
+        "Preserve official encoder/qkv/residual score attention and full shared Flatten_Head",
+        "RevIN uses seven observed days; scalar head receives the five native head outputs before input-channel denormalization",
+        "No moment-feature bridge, calendar covariates or target-history features"
+      ],
+      "primary_evidence": [
+        {
+          "kind": "paper",
+          "url": "https://arxiv.org/abs/2211.14730v2",
+          "locators": [
+            "AppendixA.1.4,p14, small ETTh1/ETTh2/ILI encoder preset"
+          ]
+        },
+        {
+          "kind": "author_code",
+          "url": "https://github.com/yuqinie98/PatchTST/blob/204c21efe0b39603ad6e2ca640ef5896646ab1a9/PatchTST_supervised/layers/PatchTST_backbone.py",
+          "locators": [
+            "PatchTST_backbone",
+            "TSTEncoderLayer",
+            "Flatten_Head"
+          ]
+        },
+        {
+          "kind": "author_code",
+          "url": "https://github.com/yuqinie98/PatchTST/blob/204c21efe0b39603ad6e2ca640ef5896646ab1a9/PatchTST_supervised/scripts/PatchTST/etth1.sh",
+          "locators": [
+            "d16,FF128,4heads,3layers,P16/S8,dropout0.3/fc0.3/head0"
+          ]
+        },
+        {
+          "kind": "prior_review",
+          "url": "book_e2/_static/literature_fulltext/models.json",
+          "locators": [
+            "PatchTST.extraction.btc_adaptation_proposal.patch_config=P3/S2/endpad2"
+          ]
+        }
+      ],
+      "implementation": "scripts/e2_published_patchtst.py",
+      "historical_recipe_id": "PT-D7-NAS-v1",
+      "reuse": {
+        "eligible_for_exact_compatibility_check": false,
+        "old_results_can_be_relabelled_as_this_recipe": false,
+        "required_match": [
+          "recipe",
+          "architecture",
+          "data",
+          "split",
+          "seed",
+          "execution_policy"
+        ],
+        "reason": "New body and recipe identity; prior NAS observations remain historical."
+      },
+      "paper_task_or_backend_replication_claimed": false,
+      "prior_fulltext_receipt": {
+        "registry": "book_e2/_static/literature_fulltext/models.json",
+        "source_version": "2211.14730v2",
+        "source_url": "https://arxiv.org/abs/2211.14730v2",
+        "pdf_sha256": "ffd4021d25b4959883242f256b0fe4ec42f477f66db78c61bfacf7baa7848b0e",
+        "verification_scope": "Existing full-text receipt retained; not a newly downloaded PDF in this amendment."
+      },
+      "limits": [
+        "Exemption is adjudicated for the fixed source body with a documented D7 interface; it is not an exact long-context published preset or original-task replica."
+      ],
+      "pinned_author_source_provenance": {
+        "manifest": "experiments/e2_completion_20261106/design.json",
+        "source_location": {
+          "repository": "yuqinie98/PatchTST",
+          "commit": "204c21efe0b39603ad6e2ca640ef5896646ab1a9"
+        },
+        "file_count": 6,
+        "scope": "Only the declared pinned files; not a whole repository or original-task reproduction."
+      }
+    },
+    {
+      "model_id": "iTransformer",
+      "recipe_id": "IT-D7-r1__hpo_v1",
+      "nas_required": false,
+      "role": "Top10",
+      "decision": "published_body_retained",
+      "fixed_body": true,
+      "body_definition": {
+        "encoder_layers": 2,
+        "d_model": 256,
+        "d_ff": 256,
+        "n_heads": 8,
+        "variable_tokens": 5,
+        "inverted_temporal_embedding": [
+          7,
+          256
+        ]
+      },
+      "adaptations": [
+        "D7 histories of five OHLCV variables become five variable tokens",
+        "Existing scalar task head and same-window moments remain explicit",
+        "Source OHLCV output projection/denormalization is replaced by the retained scalar-task head"
+      ],
+      "primary_evidence": [
+        {
+          "kind": "paper",
+          "url": "https://arxiv.org/abs/2310.06625v4",
+          "locators": [
+            "Inverted embedding and encoder definition; prior full-text dossier"
+          ]
+        },
+        {
+          "kind": "author_code",
+          "url": "https://github.com/thuml/iTransformer/blob/c2426e68ca13f74aaec08045c5c724d8ad328124/model/iTransformer.py",
+          "locators": [
+            "Model.forecast encoder path"
+          ]
+        },
+        {
+          "kind": "author_code",
+          "url": "https://github.com/thuml/iTransformer/blob/c2426e68ca13f74aaec08045c5c724d8ad328124/layers/Embed.py",
+          "locators": [
+            "DataEmbedding_inverted"
+          ]
+        }
+      ],
+      "implementation": "scripts/e2_training_models.py",
+      "historical_recipe_id": "IT-D7-r1__hpo_v1",
+      "reuse": {
+        "eligible_for_exact_compatibility_check": true,
+        "old_results_can_be_relabelled_as_this_recipe": false,
+        "required_match": [
+          "recipe",
+          "architecture",
+          "data",
+          "split",
+          "seed",
+          "execution_policy"
+        ],
+        "reason": "Recipe retained; no automatic reuse without exact compatibility checks."
+      },
+      "paper_task_or_backend_replication_claimed": false,
+      "prior_fulltext_receipt": {
+        "registry": "book_e2/_static/literature_fulltext/models.json",
+        "source_version": "2310.06625v4",
+        "source_url": "https://arxiv.org/abs/2310.06625v4",
+        "pdf_sha256": "83e889795af52c672090255493266e3ea93e7b2a32c528f58074f2f9f757ffc5",
+        "verification_scope": "Existing full-text receipt retained; not a newly downloaded PDF in this amendment."
+      },
+      "pinned_author_source_provenance": {
+        "manifest": "experiments/e2_completion_20261106/design.json",
+        "source_location": {
+          "repository": "thuml/iTransformer",
+          "commit": "c2426e68ca13f74aaec08045c5c724d8ad328124"
+        },
+        "file_count": 8,
+        "scope": "Only the declared pinned files; not a whole repository or original-task reproduction."
+      }
+    },
+    {
+      "model_id": "MLP16",
+      "recipe_id": "MLP16-E1-ref-E2-HPO-v1",
+      "nas_required": false,
+      "role": "E1_reference",
+      "decision": "E1_body_retained",
+      "fixed_body": true,
+      "body_definition": {
+        "kind": "MLP",
+        "hidden_units": 16,
+        "weights_reinitialized": true
+      },
+      "adaptations": [
+        "Retain the fixed E1-reference body and registered E2 HPO recipe",
+        "Reinitialize weights for E2; prior E1 scores do not replace E2 evaluation",
+        "Use the common D7x5 input and positive scalar-target contract"
+      ],
+      "primary_evidence": [
+        {
+          "kind": "prior_registry",
+          "url": "references/literature_e2/completion_20261106/inherited_E1_body_reverification.json",
+          "locators": [
+            "Existing inherited-body verification"
+          ]
+        },
+        {
+          "kind": "registered_protocol",
+          "url": "book_e2/_static/search_protocol_20261109/protocol.json",
+          "locators": [
+            "neural_reference_profiles model=MLP16"
+          ]
+        }
+      ],
+      "implementation": "scripts/e2_training_models.py",
+      "historical_recipe_id": "MLP16-E1-ref-E2-HPO-v1",
+      "reuse": {
+        "eligible_for_exact_compatibility_check": true,
+        "old_results_can_be_relabelled_as_this_recipe": false,
+        "required_match": [
+          "recipe",
+          "architecture",
+          "data",
+          "split",
+          "seed",
+          "execution_policy"
+        ],
+        "reason": "Recipe retained; no automatic reuse without exact compatibility checks."
+      },
+      "paper_task_or_backend_replication_claimed": false
+    },
+    {
+      "model_id": "LSTM32",
+      "recipe_id": "LSTM32-E1-ref-E2-HPO-v1",
+      "nas_required": false,
+      "role": "E1_reference",
+      "decision": "E1_body_retained",
+      "fixed_body": true,
+      "body_definition": {
+        "kind": "LSTM",
+        "hidden_units": 32,
+        "weights_reinitialized": true
+      },
+      "adaptations": [
+        "Retain the fixed E1-reference body and registered E2 HPO recipe",
+        "Reinitialize weights for E2; prior E1 scores do not replace E2 evaluation",
+        "Use the common D7x5 input and positive scalar-target contract"
+      ],
+      "primary_evidence": [
+        {
+          "kind": "prior_registry",
+          "url": "references/literature_e2/completion_20261106/inherited_E1_body_reverification.json",
+          "locators": [
+            "Existing inherited-body verification"
+          ]
+        },
+        {
+          "kind": "registered_protocol",
+          "url": "book_e2/_static/search_protocol_20261109/protocol.json",
+          "locators": [
+            "neural_reference_profiles model=LSTM32"
+          ]
+        }
+      ],
+      "implementation": "scripts/e2_training_models.py",
+      "historical_recipe_id": "LSTM32-E1-ref-E2-HPO-v1",
+      "reuse": {
+        "eligible_for_exact_compatibility_check": true,
+        "old_results_can_be_relabelled_as_this_recipe": false,
+        "required_match": [
+          "recipe",
+          "architecture",
+          "data",
+          "split",
+          "seed",
+          "execution_policy"
+        ],
+        "reason": "Recipe retained; no automatic reuse without exact compatibility checks."
+      },
+      "paper_task_or_backend_replication_claimed": false
+    },
+    {
+      "model_id": "GRU32",
+      "recipe_id": "GRU32-E1-ref-E2-HPO-v1",
+      "nas_required": false,
+      "role": "E1_reference",
+      "decision": "E1_body_retained",
+      "fixed_body": true,
+      "body_definition": {
+        "kind": "GRU",
+        "hidden_units": 32,
+        "weights_reinitialized": true
+      },
+      "adaptations": [
+        "Retain the fixed E1-reference body and registered E2 HPO recipe",
+        "Reinitialize weights for E2; prior E1 scores do not replace E2 evaluation",
+        "Use the common D7x5 input and positive scalar-target contract"
+      ],
+      "primary_evidence": [
+        {
+          "kind": "prior_registry",
+          "url": "references/literature_e2/completion_20261106/inherited_E1_body_reverification.json",
+          "locators": [
+            "Existing inherited-body verification"
+          ]
+        },
+        {
+          "kind": "registered_protocol",
+          "url": "book_e2/_static/search_protocol_20261109/protocol.json",
+          "locators": [
+            "neural_reference_profiles model=GRU32"
+          ]
+        }
+      ],
+      "implementation": "scripts/e2_training_models.py",
+      "historical_recipe_id": "GRU32-E1-ref-E2-HPO-v1",
+      "reuse": {
+        "eligible_for_exact_compatibility_check": true,
+        "old_results_can_be_relabelled_as_this_recipe": false,
+        "required_match": [
+          "recipe",
+          "architecture",
+          "data",
+          "split",
+          "seed",
+          "execution_policy"
+        ],
+        "reason": "Recipe retained; no automatic reuse without exact compatibility checks."
+      },
+      "paper_task_or_backend_replication_claimed": false
+    }
+  ],
+  "counts": {
+    "top10": 10,
+    "defined_top10": 9,
+    "nas_top10": 1,
+    "e1_references": 3,
+    "classical": 3,
+    "total": 16
+  },
+  "NAS_required_models": [
+    "TiDE"
+  ],
+  "hpo": {
+    "opportunities_per_model_origin": 18,
+    "retained_axes": [
+      "learning_rate",
+      "weight_decay",
+      "batch_size"
+    ],
+    "seed_pool_changed": false,
+    "epoch_limits_changed": false,
+    "retained_recipes_all_axes_unchanged": true,
+    "restored_body_policy": "Retain the registered eighteen LR/WD/batch points and seeds; assign new recipe/trial IDs and fix old structural/dropout knobs to the published body. Do not claim identical full HPO domains to the previous NAS variant.",
+    "restored_fixed_dropout": {
+      "LSTM-autoencoder con predictor": 0.3,
+      "TimesNet": 0.1,
+      "TimeMixer": 0.1,
+      "PatchTST": 0.3
+    },
+    "PatchTST_fc_dropout": 0.3,
+    "PatchTST_head_dropout": 0.0
+  },
+  "retained_NAS_policy": {
+    "model": "TiDE",
+    "recipe_id": "TIDE-D7-NAS-v1",
+    "domain_edited": false,
+    "phase1_architectures": 1000,
+    "phase1_seed_count": 1,
+    "registered_k": 40,
+    "phase2_seed_count": 5,
+    "maximum_phase1_epochs": 50,
+    "maximum_full_epochs": 200,
+    "source_protocol": "book_e2/_static/search_protocol_20261109/protocol.json"
+  },
+  "campaign": {
+    "sealed_campaign_branch": "campaigns/e2-cuda-crop-11-v2",
+    "sealed_scientific_source": "564ba4762f84a800b02fa4c734f5752a169f5223",
+    "sealed_controller_source": "8e3ab6cfb1b3fc3c804f0c914fa5d92b661058d9",
+    "modified": false,
+    "private_colab_modified": false,
+    "migration_required_before_new_recipe_execution": true,
+    "origins_changed": false,
+    "origins_count": 11,
+    "k_changed": false,
+    "seeds_changed": false,
+    "epochs_changed": false,
+    "total_budget_changed": false,
+    "R": null,
+    "historical_results_deleted": false,
+    "historical_results_relabelled": false
+  },
+  "synthetic_verification": "see verification.json",
+  "market_training_executed_by_this_amendment": false,
+  "GPU_integration_claimed": false,
+  "full_guide_compliance_claimed": false,
+  "evidence_limits": [
+    "A source-defined body plus declared D7 interface is not an original-task numerical replication.",
+    "CNN/TSMixer semantic PyTorch ports do not claim original TensorFlow backend numerical equivalence.",
+    "SAE article text was read through an author-hosted channel; no newly downloaded PDF hash is invented.",
+    "TiDE r0 was tested as a local mathematical analogue, not as execution of the official TensorFlow model.",
+    "New recipes do not inherit prior NAS fit results merely by sharing the model name."
+  ],
+  "supporting_source_manifest": "experiments/e2_published_architectures_20261112/supporting_sources.json",
+  "execution_readiness": {
+    "constructors_and_synthetic_training": "implemented_for_verification",
+    "published_training_adapter_scope": "explicit CPU fixture only in step2",
+    "GPU_fit_inference_and_orchestrator": "pending versioned integration and campaign migration",
+    "market_fits_authorized_or_started_by_this_amendment": false
+  }
+}
