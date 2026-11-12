@@ -4,13 +4,13 @@
 
 **Deep Learning · 2026-30 · Jassan Arteta**
 
-**Avance experimental verificado: 1.067 ajustes HPO nuevos completados, sin fallos, al 11/11/2026 a las 21:54:51 de Bogotá.** Se suman a 1.802 registros anteriores: **2.869 registros de resultados** entre ambos historiales. Son corridas de selección, no modelos finales ni una entrega terminada. [Detalle y fuentes del corte (§41)](sections/41_avance_optimizacion_11_origenes.md).
+**Avance experimental verificado: 1.484 ajustes HPO nuevos completados, sin fallos, al 12/11/2026 a las 02:29:43 de Bogotá.** Se suman a 1.802 registros anteriores: **3.286 registros de resultados** entre ambos historiales. **Estado al cierre del corte: pausada por límite de sesión, con cierre limpio.** Se conserva el techo autorizado de 64 horas y quedan unas 4 h 9 min de saldo. Son corridas de selección; el benchmark final sigue pendiente. [Detalle y fuentes (§41)](sections/41_avance_optimizacion_11_origenes.md).
 
 **Auditoría contra la guía:** [§42: qué podemos completar mientras entrena Colab](sections/42_auditoria_y_trabajo_paralelo.md). Incluye prioridades, 21 ítems del Apéndice B y plantillas de reporte; distingue preparación de cumplimiento.
 
 ## Estado de la entrega y guía de lectura
 
-**Actualización documental del 11/11/2026, cotejada con la guía de 65 páginas aportada por el usuario.** El libro contiene código, revisión bibliográfica, preparación experimental y resultados parciales de selección. **El benchmark final no está terminado y no se declara cumplimiento integral de la guía.**
+**Actualización documental al 12/11/2026.** Se conserva el contraste con la guía de 65 páginas aportada por el usuario. El libro contiene código, revisión bibliográfica, preparación experimental y resultados parciales de selección. **El benchmark final no está terminado y no se declara cumplimiento integral de la guía.**
 
 La [matriz vigente de exigencias, evidencias y pendientes](sections/38_cumplimiento_guia.md) organiza la entrega según la guía y distingue requisitos del PDF, decisiones propias y resultados observados. Cada requisito se cierra con evidencia verificable; describirlo o disponer de código no acredita su ejecución.
 
@@ -18,7 +18,7 @@ La [matriz vigente de exigencias, evidencias y pendientes](sections/38_cumplimie
 |---|---|---|
 | Problema, datos, EDA y ruta temporal | Contrato definido; auditoría completa del benchmark pendiente | [Problema](sections/01_punto_partida.md), [EDA](sections/02_eda.md), [F2a](sections/07_ruta_temporal.md), [contrato](sections/17_contrato_sincronizado.md) |
 | Revisión sistemática y Top 10 | Búsquedas y lecturas parciales; cierre de elegibilidad y puntajes por completar | [Literatura](sections/03_literatura.md), [catálogo](sections/15_revision_modelos.md) |
-| Implementación y HPO/NAS | 1.067 ajustes HPO nuevos completados en el corte vigente; selección completa pendiente | [Recetas](sections/26_registro_recetas.md), [fábricas](sections/28_fabricas_nas.md), [avance vigente](sections/41_avance_optimizacion_11_origenes.md), [corte histórico](sections/36_avance_campana_cuda.md) |
+| Implementación y HPO/NAS | 1.484 ajustes HPO nuevos completados en el corte vigente; selección completa pendiente | [Recetas](sections/26_registro_recetas.md), [fábricas](sections/28_fabricas_nas.md), [avance vigente](sections/41_avance_optimizacion_11_origenes.md), [corte histórico](sections/36_avance_campana_cuda.md) |
 | Réplica del paper guía | Evidencia externa de TimeMixer/ETTh1; no sustituye Bitcoin D7 | [Réplica y limitaciones](sections/05_paper_guia.md) |
 | Benchmark e inferencia | Pendientes de recetas seleccionadas, R, reajustes y evaluación común | [Benchmark](sections/06_benchmark_final.md), [inferencia](sections/13_agregacion_estadistica.md) |
 | Robustez, incertidumbre e interpretabilidad | Preparación parcial; resultados del catálogo completo pendientes | [Incertidumbre y errores](sections/12_incertidumbre_errores.md), [matriz de cierre](sections/38_cumplimiento_guia.md) |
@@ -55,7 +55,7 @@ El notebook vigente de once orígenes se enlaza en §40. El historial conserva e
 
 ## Resultados parciales y límites
 
-El [corte vigente de §41](sections/41_avance_optimizacion_11_origenes.md) se fija al commit `1cc1da2a43a4ed056de18677875f99e3cb7a869a`. La primera ola de ocho modelos/referencias con arquitectura fija tiene cobertura HPO cerrada de enero a abril de 2024. En mayo, FCN-1D registra 23 de 36 ajustes. Los 1.067 resultados nuevos tienen estado `completed`; el total combinado de 2.869 incluye 1.802 registros históricos cuyos estados no se reauditán aquí. La recuperación completó un ajuste de TSMixer y después se confirmaron otras 177 corridas. El último evento del corte cierra un ajuste de FCN-1D; esta página no comprueba en vivo el kernel de Colab. El CSV conserva las configuraciones y costes verificados, e identifica el resultado recuperado; no contiene un ranking final.
+El [corte vigente de §41](sections/41_avance_optimizacion_11_origenes.md) se fija al commit `dfd7d3c035c015aac9cad454b1aec30f190a631d`. La primera ola de ocho redes/referencias con cuerpo fijo tiene cobertura HPO cerrada de enero a mayo de 2024. En junio, FCN-1D, ResNet-1D, Inception-1D y TSMixer registran 36/36 cada uno; iTransformer lleva 8/36. Los 1.484 resultados nuevos tienen estado `completed`; el total combinado de 3.286 incluye 1.802 registros históricos cuyos estados no se reauditán aquí. El controlador pausó limpiamente porque la siguiente reserva completa no cabía en el tiempo de esa sesión. El informe de campaña está actualizado; este libro publica un corte fijo, sin comprobar en vivo el kernel de Colab. El CSV mantiene configuraciones, costes y la identificación del ajuste recuperado; no contiene un ranking final.
 
 
 El [corte documentado en §36](sections/36_avance_campana_cuda.md), del **11/11/2026 a las 06:55:42 de Bogotá**, contiene **1.748 archivos de resultados**. Registra selección del primer origen para FCN-1D, ResNet-1D, Inception-1D y LSTM-autoencoder y avance NAS-1 de TimesNet. Es un corte histórico, no el contador actual ni evidencia de activación del calendario reducido. Los resultados de E1, los perfiles de recursos y la réplica ETTh1 conservan su propio ámbito.
