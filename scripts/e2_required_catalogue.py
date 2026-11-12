@@ -12,8 +12,8 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-CATALOGUE_PATH = ROOT / "experiments/e2_required_catalogue_20261112/catalogue.json"
-VERSION = "e2-required-catalogue-16-v1"
+CATALOGUE_PATH = ROOT / "experiments/e2_published_architectures_20261112/catalogue.json"
+VERSION = "e2-required-catalogue-16-v2"
 TOP10 = (
     "FCN-1D", "ResNet-1D", "Inception-1D", "LSTM-autoencoder con predictor",
     "TimesNet", "TSMixer", "TiDE", "TimeMixer", "PatchTST", "iTransformer",
@@ -63,9 +63,9 @@ def require_models(names, *, neural_only=False):
 def build_required_neural_model(name, trial, **kwargs):
     require_models((name,), neural_only=True)
     if __package__:
-        from . import e2_training_models as registry
+        from . import e2_published_registry as registry
     else:
-        import e2_training_models as registry
+        import e2_published_registry as registry
     return registry.build_train_model(name, trial, **kwargs)
 
 
@@ -73,9 +73,9 @@ def run_required_neural_selection(prepared, name, adapter, **kwargs):
     """Keep the registered recipe/domains; exclude the extra hybrid before fits."""
     require_models((name,), neural_only=True)
     if __package__:
-        from . import e2_training_bindings as bindings
+        from . import e2_published_training as bindings
     else:
-        import e2_training_bindings as bindings
+        import e2_published_training as bindings
     return bindings.run_neural_selection(prepared, name, adapter, **kwargs)
 
 
@@ -83,9 +83,9 @@ def run_required_neural_refits(prepared, selection, adapter, seeds, **kwargs):
     """Check the winning system's scope before any fresh final refit."""
     require_models((selection.winner.payload["model"],), neural_only=True)
     if __package__:
-        from . import e2_training_bindings as bindings
+        from . import e2_published_training as bindings
     else:
-        import e2_training_bindings as bindings
+        import e2_published_training as bindings
     return bindings.run_selected_refits(prepared, selection, adapter, seeds, **kwargs)
 
 

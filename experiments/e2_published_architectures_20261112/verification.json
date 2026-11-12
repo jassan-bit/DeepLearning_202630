@@ -1,0 +1,69 @@
+{
+  "version": "e2-published-architecture-verification-v1",
+  "verified_at_utc": "2026-11-12T12:27:24.588049+00:00",
+  "parent_main": "c43a4e18f3d75f47246bd9eb9e9da35b9f8a8f9c",
+  "scope": "CPU synthetic semantic checks, source parity, D7 adaptation, fixed SAE staging, conditional NAS routing and historical evidence integrity; no market training",
+  "runtime": {
+    "python": "3.12.14",
+    "torch": "2.8.0+cpu",
+    "einops": "0.8.1",
+    "device": "cpu"
+  },
+  "tests": {
+    "run": 67,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 67,
+    "patterns": [
+      "test_e2_published*.py",
+      "test_e2_required_catalogue.py",
+      "test_e2_recipe_models.py",
+      "test_e2_training_evidence.py"
+    ]
+  },
+  "author_files_verified": 76,
+  "supporting_files_verified": 3,
+  "policy_sha256": "a1c9440046af34c2b70bef9c05229dff2c6d863aa06ae191ed02c2de6d8bf0f2",
+  "source_sha256": {
+    "scripts/e2_published_registry.py": "0704784aa0bb2887908d12ad12345094c8f6a707918aa695dbc11cda88092fec",
+    "scripts/e2_published_training.py": "0dbf59911611c57bb04690680f7930c80864202226d7f3dec6a9710608203263",
+    "scripts/e2_published_periodic.py": "a0ead3e4c394cb7d832e50e2821e0c73a3bb09652ed5e977a87f119941517af9",
+    "scripts/e2_published_patchtst.py": "99aae30754cf33fe12883b4af2f4f957cfc32ec9f4bcc2eb71dfb34b39974d5f",
+    "scripts/e2_published_sae.py": "0436d73f9724bb065dc3642f18218cb35cda5e9abfa4de5090f8c5d69eb6c1aa",
+    "scripts/e2_required_catalogue.py": "e1197b23df247735e4aab5b0a70e633e8a8a8712c79fc0db60b1b0f34310abb7",
+    "scripts/fetch_e2_published_sources.py": "4e51d63ffcabb075377b137e68c20926648de0a5fce7e5115a5ce98ec0551e17"
+  },
+  "nas_required_models": [
+    "TiDE"
+  ],
+  "counts": {
+    "defined_top10": 9,
+    "nas_top10": 1,
+    "required_systems": 16
+  },
+  "semantic_checks": [
+    "author output/input-gradient/parameter-gradient parity for restored attention and periodic bodies",
+    "four D7 patches and source residual attention",
+    "TimesNet non-DC FFT and causal singleton inference",
+    "TimeMixer 7/3 scales and full FMM branches",
+    "fixed SAE 25/26 units and both reconstruction stages before supervised fit",
+    "train-only auxiliary scaling, frozen transfer, fresh optimizers and checkpoints",
+    "eighteen HPO opportunities, new recipe IDs and rejection of old NAS aliases",
+    "post-fit prediction failures preserve completed cost and checkpoint",
+    "TiDE empty-covariate degeneracy remains NAS-required",
+    "unchanged historical recipe and training evidence sources"
+  ],
+  "market_data_read": false,
+  "market_training_executed": false,
+  "gpu_integration_observed": false,
+  "sealed_campaign_modified": false,
+  "private_colab_session_modified": false,
+  "final_R_fixed": false,
+  "final_benchmark_executed": false,
+  "remaining_limits": [
+    "GPU fitting/inference and orchestration need a versioned campaign migration before new market fits",
+    "Synthetic parity and sanity do not establish market accuracy or full guide compliance",
+    "New restored recipe results cannot be replaced by historic NAS outcomes"
+  ]
+}

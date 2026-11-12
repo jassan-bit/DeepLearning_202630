@@ -2,6 +2,8 @@
 
 **Catálogo obligatorio vigente (12/11/2026): 16 sistemas: diez modelos del Top 10, tres referencias E1 y tres comparadores temporales.** El híbrido adicional y Ridge quedan fuera del alcance obligatorio. [Catálogo y enmienda de alcance (§43)](sections/43_catalogo_obligatorio.md). Se conservan los once orígenes y las demás exigencias de E2; la reducción a tres orígenes sigue siendo una propuesta no operativa. La campaña sellada de Colab todavía corresponde al catálogo anterior de catorce redes: esta publicación no modifica la sesión privada.
 
+**Arquitecturas y NAS (12/11/2026):** la ruta prospectiva conserva o restaura nueve cuerpos publicados del Top 10 y mantiene NAS para la variante TiDE. Las cuatro restauraciones tienen recetas nuevas y adaptaciones D7 explícitas; sus resultados anteriores no se renombran. [Adjudicación, fuentes y pruebas (§44)](sections/44_arquitecturas_publicadas.md).
+
 **Deep Learning · 2026-30 · Jassan Arteta**
 
 **Avance experimental verificado: 1.484 ajustes HPO nuevos completados, sin fallos, al 12/11/2026 a las 02:29:43 de Bogotá.** Se suman a 1.802 registros anteriores: **3.286 registros de resultados** entre ambos historiales. **Estado al cierre del corte: pausada por límite de sesión, con cierre limpio.** Se conserva el techo autorizado de 64 horas y quedan unas 4 h 9 min de saldo. Son corridas de selección; el benchmark final sigue pendiente. [Detalle y fuentes (§41)](sections/41_avance_optimizacion_11_origenes.md).
@@ -18,7 +20,7 @@ La [matriz vigente de exigencias, evidencias y pendientes](sections/38_cumplimie
 |---|---|---|
 | Problema, datos, EDA y ruta temporal | Contrato definido; auditoría completa del benchmark pendiente | [Problema](sections/01_punto_partida.md), [EDA](sections/02_eda.md), [F2a](sections/07_ruta_temporal.md), [contrato](sections/17_contrato_sincronizado.md) |
 | Revisión sistemática y Top 10 | Búsquedas y lecturas parciales; cierre de elegibilidad y puntajes por completar | [Literatura](sections/03_literatura.md), [catálogo](sections/15_revision_modelos.md) |
-| Implementación y HPO/NAS | 1.484 ajustes HPO nuevos completados en el corte vigente; selección completa pendiente | [Recetas](sections/26_registro_recetas.md), [fábricas](sections/28_fabricas_nas.md), [avance vigente](sections/41_avance_optimizacion_11_origenes.md), [corte histórico](sections/36_avance_campana_cuda.md) |
+| Implementación y HPO/NAS | Política prospectiva: nueve cuerpos definidos del Top 10 y NAS para TiDE; selección y migración del controlador pendientes | [Arquitecturas y verificación](sections/44_arquitecturas_publicadas.md), [avance del plan sellado](sections/41_avance_optimizacion_11_origenes.md), [recetas históricas](sections/26_registro_recetas.md) |
 | Réplica del paper guía | Evidencia externa de TimeMixer/ETTh1; no sustituye Bitcoin D7 | [Réplica y limitaciones](sections/05_paper_guia.md) |
 | Benchmark e inferencia | Pendientes de recetas seleccionadas, R, reajustes y evaluación común | [Benchmark](sections/06_benchmark_final.md), [inferencia](sections/13_agregacion_estadistica.md) |
 | Robustez, incertidumbre e interpretabilidad | Preparación parcial; resultados del catálogo completo pendientes | [Incertidumbre y errores](sections/12_incertidumbre_errores.md), [matriz de cierre](sections/38_cumplimiento_guia.md) |
@@ -49,7 +51,7 @@ Los controles **MLP16, LSTM32 y GRU32 de E1** son las tres referencias adicional
 
 El calendario conserva diez selecciones mensuales enero–octubre de 2024 y la selección de enero de 2025: **once orígenes comunes**. La campaña sellada anterior mantiene su máximo registrado de **85.074 intentos neuronales de selección**; ese total incluye el híbrido ahora opcional y no es el cómputo del catálogo obligatorio de 16. Es una decisión del diseño original, no una cifra literal del PDF. La [propuesta de tres orígenes de §37](sections/37_ajuste_guia.md) queda pendiente de justificación y no debe considerarse definitiva.
 
-El plan sellado anterior contiene seis variantes NAS y cinco cuerpos publicados con exención justificada, 18 configuraciones HPO, k=40 y máximos de 50/200 épocas. La nueva enmienda sólo retira el híbrido y Ridge del alcance obligatorio; no cambia las políticas aplicables a los sistemas retenidos ni declara migrada la campaña. La optimización funcional se activa por caso sólo tras medirla en la GPU real. [Alcance y límites (§40)](sections/40_calendario_original.md).
+El plan sellado anterior contiene seis variantes NAS y cinco cuerpos publicados con exención justificada, 18 configuraciones HPO, k=40 y máximos de 50/200 épocas. La [enmienda de arquitectura de §44](sections/44_arquitecturas_publicadas.md) restaura cuatro cuerpos definidos y mantiene NAS para TiDE en la ruta prospectiva del catálogo obligatorio. Conserva las 18 oportunidades HPO y los ejes aplicables, con los knobs estructurales de las restauraciones fijados al cuerpo publicado y recetas nuevas. No declara migrada la campaña ni cambia sus orígenes, semillas, épocas o presupuesto. [Alcance histórico y límites (§40)](sections/40_calendario_original.md).
 
 El notebook vigente de once orígenes se enlaza en §40. El historial conserva el techo inicial de 48 horas y las ampliaciones manuales a 56 y **64 horas acumuladas**, autorizadas antes de nuevos ajustes. La recuperación de la desconexión se registró y completó sin borrar los resultados anteriores; el intento original permanece con desenlace desconocido. No hay ampliación automática ni garantía de terminar todas las corridas. [Presupuesto y recibos actuales](sections/41_avance_optimizacion_11_origenes.md).
 
@@ -65,7 +67,7 @@ El [corte documentado en §36](sections/36_avance_campana_cuda.md), del **11/11/
 ## Recorrido recomendado
 
 - **Problema y literatura:** [§1](sections/01_punto_partida.md), [§2](sections/02_eda.md), [§3](sections/03_literatura.md) y [§5: paper guía](sections/05_paper_guia.md).
-- **Catálogo obligatorio:** [§43: los 16 sistemas y la enmienda de alcance](sections/43_catalogo_obligatorio.md).
+- **Catálogo obligatorio y arquitectura:** [§43: los 16 sistemas](sections/43_catalogo_obligatorio.md) y [§44: cuerpos publicados, adaptaciones D7 y NAS aplicable](sections/44_arquitecturas_publicadas.md).
 - **Método y modelos:** [§7: ruta F2a](sections/07_ruta_temporal.md), [§10: auditoría](sections/10_auditoria_datos.md), [§11: equidad](sections/11_hpo_equidad.md), [§14: arquitecturas](sections/14_arquitecturas.md) y [§26: recetas](sections/26_registro_recetas.md).
 - **Ejecución y evidencia:** [§29: entrenamiento](sections/29_entrenamiento_temporal.md), [§35: CUDA](sections/35_busqueda_cuda_reanudable.md), [§36: corte histórico](sections/36_avance_campana_cuda.md), [§40: calendario vigente](sections/40_calendario_original.md) y [§41: ejecución y avance](sections/41_avance_optimizacion_11_origenes.md).
 - **Entrega y cierre:** [§6: benchmark](sections/06_benchmark_final.md), [§12: incertidumbre](sections/12_incertidumbre_errores.md), [§13: inferencia](sections/13_agregacion_estadistica.md), [§8: reproducción](sections/08_reproducibilidad.md) y [§38: exigencias de la guía](sections/38_cumplimiento_guia.md).

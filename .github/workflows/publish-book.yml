@@ -99,13 +99,17 @@ jobs:
           python -m pip check
       - name: Recuperar ocho fuentes inmutables de iTransformer
         run: python scripts/fetch_e2_itransformer_sources.py --output work/author_sources/iTransformer
+      - name: Recuperar cuerpos publicados y evidencia de presets
+        run: python scripts/fetch_e2_published_sources.py --output work/published_author_sources
       - name: Verificar etapas, fechas, comparadores, checkpoints y supervisor
         env:
           E2_ITRANSFORMER_SOURCE_ROOT: ${{ github.workspace }}/work/author_sources/iTransformer
+          E2_PUBLISHED_SOURCE_ROOTS: ${{ github.workspace }}/work/published_author_sources/source_roots.json
         run: |
           python scripts/prepare_e2_pilot_snapshot.py --root .
           python -m unittest discover -s tests -p 'test_prepare_e2_pilot_snapshot.py' -v
           python -m unittest discover -s tests -p 'test_e2_*training*.py' -v
+          python -m unittest discover -s tests -p 'test_e2_published*.py' -v
           python -m unittest discover -s tests -p 'test_e2_development*.py' -v
           python -m unittest discover -s tests -p 'test_e2_pilot*.py' -v
           python -m unittest discover -s tests -p 'test_e2_reference_variance.py' -v

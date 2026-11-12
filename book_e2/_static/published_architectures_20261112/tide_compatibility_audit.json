@@ -1,0 +1,240 @@
+{
+  "version": "e2-tide-compatibility-audit-v1",
+  "created_at_utc": "2026-11-12T12:09:53.759153+00:00",
+  "decision": {
+    "model": "TiDE",
+    "nas_required": true,
+    "active_recipe_id": "TIDE-D7-NAS-v1",
+    "published_r0_candidate_activated": false,
+    "published_body_exemption_granted": false,
+    "basis": "Conservative compatibility decision for the fixed D7 OHLCV contract: the r=0 source-compatible proposal leaves a permanently inactive hidden feature subnetwork under the source-style zero-bias/ReLU initialization. No replacement TiDE body is implemented by this audit."
+  },
+  "source": {
+    "repository": "google-research/google-research",
+    "commit": "d3a4bd8f0eceddda553e47085033b537935b283f",
+    "license": "Apache-2.0",
+    "files": [
+      {
+        "repository_path": "tide/models.py",
+        "sha256": "ad8fd8d498809deeed9c847a169cada42134cbd0351b03e750706132a5d151c7",
+        "bytes": 10828,
+        "url": "https://github.com/google-research/google-research/blob/d3a4bd8f0eceddda553e47085033b537935b283f/tide/models.py",
+        "locators": [
+          {
+            "lines": [
+              29,
+              61
+            ],
+            "finding": "MLPResidual uses Dense-ReLU, Dense output, Dense skip and optional LayerNorm; no initializer overrides."
+          },
+          {
+            "lines": [
+              64,
+              81
+            ],
+            "finding": "[64,4] constructs one residual block whose incoming dimension follows the supplied feature tensor."
+          },
+          {
+            "lines": [
+              145,
+              155
+            ],
+            "finding": "Time feature encoder is retained and temporal decoder emits one scalar per horizon step."
+          },
+          {
+            "lines": [
+              172,
+              212
+            ],
+            "finding": "Both past and future dynamic features pass through the same time encoder; their encodings enter the dense encoder and final temporal decoder."
+          }
+        ]
+      },
+      {
+        "repository_path": "tide/train.py",
+        "sha256": "3edd19eed01f92ef50cadca73fbe8a793c701d34edb5ea376c6bcc55e92f0854",
+        "bytes": 9865,
+        "url": "https://github.com/google-research/google-research/blob/d3a4bd8f0eceddda553e47085033b537935b283f/tide/train.py",
+        "locators": [
+          {
+            "lines": [
+              54,
+              71
+            ],
+            "finding": "Official defaults include hidden256, num_layers2, decoder_output_dim4, final_decoder_hidden64, transformFalse, layer_normFalse."
+          },
+          {
+            "lines": [
+              182,
+              198
+            ],
+            "finding": "Creates hidden_dims=[hidden_size]*num_layers, time_encoder_dims=[64,4] and passes transformation/normalization flags."
+          }
+        ]
+      },
+      {
+        "repository_path": "tide/scripts/etth1.sh",
+        "sha256": "55e085f1513af3a4a0ef8f7244512ee78beba5ab09540192b3cd3bb37441981c",
+        "bytes": 1501,
+        "url": "https://github.com/google-research/google-research/blob/d3a4bd8f0eceddda553e47085033b537935b283f/tide/scripts/etth1.sh",
+        "locators": [
+          {
+            "lines": [
+              18,
+              54
+            ],
+            "finding": "ETTh1 presets use transformTrue and layer_normTrue; those task presets are distinct from the unactivated defaults candidate."
+          }
+        ]
+      },
+      {
+        "repository_path": "LICENSE",
+        "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "bytes": 11358,
+        "url": "https://github.com/google-research/google-research/blob/d3a4bd8f0eceddda553e47085033b537935b283f/LICENSE",
+        "locators": []
+      }
+    ],
+    "source_bytes_verified_locally": true,
+    "official_tensorflow_model_executed": false
+  },
+  "paper": {
+    "title": "Long-term Forecasting with TiDE: Time-series Dense Encoder",
+    "url": "https://arxiv.org/abs/2304.08424v5",
+    "doi": "10.48550/arXiv.2304.08424",
+    "fulltext_pdf_sha256_from_prior_registry": "eee9d9e3248f262a137e6cf63920137263f3bbbe22cd8608e5eec77882af1999",
+    "prior_review_path": "book_e2/_static/literature_fulltext/models.json",
+    "locators": [
+      {
+        "pdf_page": 4,
+        "section": "4.1",
+        "description": "Per-time projection of dynamic covariates."
+      },
+      {
+        "pdf_page": 5,
+        "section": "4.1",
+        "figure": 1,
+        "description": "Concatenation of history, projected past/future covariates and static attributes into encoder."
+      },
+      {
+        "pdf_page": 6,
+        "section": "4.2",
+        "description": "Dense and temporal decoders, direct future-covariate highway and global linear residual."
+      }
+    ],
+    "verification_scope": "Paper descriptions and locators are cited from the existing full-text review; the original PDF was not newly downloaded or re-read during this narrow compatibility probe."
+  },
+  "unactivated_candidate": {
+    "input_shape": [
+      7,
+      5
+    ],
+    "interpretation": "Treat the five observed OHLCV channels as five shared-body scalar series, emit five one-step forecasts and use an external Linear(5,1)+Softplus task head. No sigma7 history is supplied.",
+    "dynamic_covariates": 0,
+    "static_series_id_embedding_dim": 16,
+    "hidden_dims": [
+      256,
+      256
+    ],
+    "time_encoder_dims": [
+      64,
+      4
+    ],
+    "decoder_output_dim": 4,
+    "final_decoder_hidden": 64,
+    "transform": false,
+    "layer_norm": false,
+    "preset_basis": "Coherent official train.py defaults, not the ETTh1 selected configuration and not a numerical paper reproduction.",
+    "reason_not_activated": "For r=0, the [64,4] residual time encoder has zero-width input matrices. The zero hidden bias passes through ReLU at zero, preventing learning of the hidden bias and subsequent hidden projection; only output/skip biases can learn. Removing or fusing this branch, changing its initialization, or adding covariates would require a separate explicit adaptation, which is not approved as a published-body restoration here."
+  },
+  "probe": {
+    "scope": "Bounded PyTorch transcription of only the official residual-block operations for zero dynamic features; not a full TiDE run, not an execution of the official TensorFlow implementation and not market training.",
+    "runtime": {
+      "python_torch": "2.8.0+cpu",
+      "device": "cpu",
+      "dtype": "float32"
+    },
+    "initialization": "Glorot-uniform linear matrices and zero biases, matching the Keras-style initialization assumed for the source Dense calls without overrides.",
+    "seed": 27,
+    "batch_size": 8,
+    "input_shape": [
+      8,
+      0
+    ],
+    "hidden_width": 64,
+    "output_width": 4,
+    "optimizer": "Adam",
+    "learning_rate": 0.01,
+    "target": "synthetic all-ones [8,4] tensor",
+    "steps": [
+      {
+        "step": 0,
+        "loss": 1.0,
+        "hidden_bias_gradient_nonzero": false,
+        "hidden_projection_gradient_nonzero": false,
+        "output_bias_gradient_nonzero": true,
+        "skip_bias_gradient_nonzero": true,
+        "hidden_bias_gradient_l1": 0.0,
+        "hidden_projection_gradient_l1": 0.0
+      },
+      {
+        "step": 1,
+        "loss": 0.9604000449180603,
+        "hidden_bias_gradient_nonzero": false,
+        "hidden_projection_gradient_nonzero": false,
+        "output_bias_gradient_nonzero": true,
+        "skip_bias_gradient_nonzero": true,
+        "hidden_bias_gradient_l1": 0.0,
+        "hidden_projection_gradient_l1": 0.0
+      },
+      {
+        "step": 2,
+        "loss": 0.9216222167015076,
+        "hidden_bias_gradient_nonzero": false,
+        "hidden_projection_gradient_nonzero": false,
+        "output_bias_gradient_nonzero": true,
+        "skip_bias_gradient_nonzero": true,
+        "hidden_bias_gradient_l1": 0.0,
+        "hidden_projection_gradient_l1": 0.0
+      },
+      {
+        "step": 3,
+        "loss": 0.8836802840232849,
+        "hidden_bias_gradient_nonzero": false,
+        "hidden_projection_gradient_nonzero": false,
+        "output_bias_gradient_nonzero": true,
+        "skip_bias_gradient_nonzero": true,
+        "hidden_bias_gradient_l1": 0.0,
+        "hidden_projection_gradient_l1": 0.0
+      }
+    ],
+    "zero_element_input_weight_matrices": {
+      "lin_a.weight": [
+        64,
+        0
+      ],
+      "lin_res.weight": [
+        4,
+        0
+      ]
+    },
+    "conclusion": "The four observed steps reduce synthetic loss through output/skip biases while hidden-bias and hidden-projection gradients remain exactly zero. This is a demonstration of degeneracy for this initialization, not a claim that the source model cannot represent a function with empty covariates."
+  },
+  "contract_boundary": {
+    "input": "Seven past daily observations of OHLCV only; no target lags.",
+    "adding_calendar_covariates": "Calendar values can be known in advance, but supplying them introduces information outside the registered D7x5 OHLCV-only interface. It requires a prospective common-input/protocol amendment and cannot be smuggled into this compatibility restoration.",
+    "adding_future_ohlcv": "Real future OHLCV is unavailable at forecast time and is not admitted.",
+    "adding_sigma7_history": "Would change the inherited no-target-lags contract.",
+    "empty_covariates_are_not_observed_zero_ohlcv": "The r=0 probe uses zero-width tensors, not an invented future OHLCV observation or a zero-valued future-market sentinel."
+  },
+  "execution_scope": {
+    "market_data_read": false,
+    "market_training_executed": false,
+    "new_hpo_executed": false,
+    "new_nas_executed": false,
+    "production_body_files_created": false,
+    "historical_files_modified": false,
+    "campaign_or_budget_modified": false,
+    "probe_only_optimizer_steps": 4
+  }
+}
