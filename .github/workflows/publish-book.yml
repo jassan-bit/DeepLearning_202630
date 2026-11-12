@@ -38,6 +38,7 @@ jobs:
           python tests/test_e2_colab_diagnostics.py
           python tests/test_e2_session_supervisor.py
           python -m unittest discover -s tests -p test_e2_search_plan.py -v
+          python -m unittest discover -s tests -p test_e2_required_catalogue.py -v
           python scripts/e2_search_plan.py --protocol book_e2/_static/search_protocol_20261109/protocol.json --k 40 --final-seeds 30
       - name: Construir y verificar los tres libros independientes
         run: |

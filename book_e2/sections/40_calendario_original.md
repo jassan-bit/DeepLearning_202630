@@ -1,8 +1,10 @@
 # 40. Calendario original y optimizaciones de implementación
 
-**Decisión vigente del 11/11/2026:** conservar el calendario original de **once orígenes**, todas las arquitecturas y las exigencias de E2. La reducción a tres orígenes de §37 queda como **propuesta no operativa, pendiente de justificar suficiencia temporal e inferencial**. Que la guía no imponga once no demuestra que tres basten.
+**Enmienda posterior (12/11/2026):** el [catálogo obligatorio de §43](43_catalogo_obligatorio.md) se reduce a **16 sistemas: 13 redes y tres comparadores**. Híbrido adicional y Ridge son opcionales. Este capítulo conserva el plan sellado anterior de catorce redes y su techo de 85.074 intentos como antecedente; la publicación no cambia la sesión de Colab ni elimina resultados. No se modifican los once orígenes ni las demás políticas en este paso.
 
-## Qué se conserva
+**Decisión registrada el 11/11/2026, anterior a la enmienda de catálogo:** conservar el calendario original de **once orígenes**, todas las arquitecturas y las exigencias de E2. La reducción a tres orígenes de §37 queda como **propuesta no operativa, pendiente de justificar suficiencia temporal e inferencial**. Que la guía no imponga once no demuestra que tres basten.
+
+## Qué conserva el plan sellado anterior
 
 - Selecciones mensuales de enero a octubre de 2024 y selección de enero de 2025: once orígenes comunes para todos los modelos.
 - Top 10, candidato adicional, tres referencias neuronales E1 y cuatro comparadores; las cuatro familias del Top 10 se documentan en §38.

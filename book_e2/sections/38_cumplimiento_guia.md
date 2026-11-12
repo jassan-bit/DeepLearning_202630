@@ -1,6 +1,6 @@
 # 38. Exigencias de la guía, evidencia y pendientes
 
-**Corte documental: 11/11/2026.** Fuente: *Entregable2DeepLearningProject.pdf*, 65 páginas, aportado nuevamente por el usuario. SHA256 del PDF:
+**Actualización de alcance: 12/11/2026; matriz de evidencia del corte 11/11/2026.** Fuente: *Entregable2DeepLearningProject.pdf*, 65 páginas, aportado nuevamente por el usuario. SHA256 del PDF:
 
 ```text
 93499dcfda6a36d9621524a81821470017ba114ca6b08241a35de5a54f74a654
@@ -12,16 +12,18 @@ Las referencias usan páginas impresas. Esta actualización organiza el informe 
 
 | Elemento | Exigencia de la guía | Decisión propia vigente |
 |---|---|---|
-| Catálogo | Top 10 con ≥4 familias y referencias adicionales | Diez modelos base, candidato 11, tres controles E1 y cuatro comparadores |
+| Catálogo | Top 10 con ≥4 familias, tres referencias E1 y comparadores F2a | **16 obligatorios:** diez modelos, MLP16/LSTM32/GRU32 y naive/estacional/ARIMA; híbrido adicional y Ridge opcionales (§43) |
 | Validación temporal | Origen móvil, embargo, ajuste sin futuro y esquema común | Once selecciones originales: enero–octubre de 2024 y enero de 2025; reducción a tres pendiente de justificar |
-| Aplicación de NAS | Sólo diseños no definidos por su fuente; cuerpo publicado definido exento | Seis variantes propias con NAS y cinco cuerpos publicados fijos; exenciones justificadas por receta |
+| Aplicación de NAS | Sólo diseños no definidos por su fuente; cuerpo publicado definido exento | El plan sellado anterior contiene seis variantes NAS; al excluir el híbrido quedan cinco variantes retenidas. La revisión de arquitectura/exenciones sigue pendiente y este paso no la resuelve |
 | NAS fase 1 | Todas las 1.000 arquitecturas, una semilla, presupuesto reducido | Máximo 50 épocas por fase y parada temprana |
 | NAS fase 2 | k≥10 según ruido, referencia y ≥5 semillas diferentes de fase 1 | k=40, cinco semillas y máximo 200 épocas por fase |
 | HPO | Espacios/ejes aplicables justificados y mismo esfuerzo | 18 configuraciones y dos semillas por red/origen; ejes de §27 |
 | Repeticiones finales | ≥5 ejecuciones; ≥6 cuando se usan pruebas de rangos y dimensionamiento por potencia | R todavía sin cerrar; los escenarios de coste no fijan R |
-| Coste | Estimar antes de buscar; declarar y justificar desviaciones | Techo de 85.074 intentos de búsqueda neuronal; horas totales y coste monetario no acreditados |
+| Coste | Estimar antes de buscar; declarar y justificar desviaciones | 85.074 es el techo de la campaña sellada anterior de 14 redes; no el cómputo del catálogo obligatorio nuevo. Conserva recibos, coste y presupuesto autorizado (§41) |
 
-**La propuesta de tres orígenes no es operativa; [§40 conserva los once originales](40_calendario_original.md).** La suficiencia de una reducción temporal tendría que justificarse antes de considerarla definitiva. Se mantienen los espacios y oportunidades de búsqueda; sólo se optimizan implementación y orden de ejecución. Ninguna actualización editorial certifica cumplimiento integral ni aceptación institucional.
+**La [enmienda de catálogo de §43](43_catalogo_obligatorio.md) retira únicamente el híbrido y Ridge del alcance obligatorio.** No cambia calendario, k, semillas ni presupuesto de los sistemas retenidos, ni reescribe los registros anteriores. La campaña de Colab sellada con 14 redes aún debe aplicar una transición explícita.
+
+**La propuesta de tres orígenes no es operativa; [§40 conserva los once originales](40_calendario_original.md).** La suficiencia de una reducción temporal tendría que justificarse antes de considerarla definitiva. Para los sistemas retenidos se mantienen los espacios y oportunidades de búsqueda registrados; la enmienda de catálogo se documenta por separado. Ninguna actualización editorial certifica cumplimiento integral ni aceptación institucional.
 
 ## Diversidad del Top 10
 
@@ -89,6 +91,6 @@ El orden anterior es el trabajo que resta; no declara que el método esté cerra
 | Incertidumbre y techo | Referencia justificada, margen γ, calibración y cobertura, errores estratificados y límites |
 | Lista de reproducción y defensa | Apéndice B completado con evidencia de entorno limpio y presentación oral de las decisiones |
 
-[Lista estructurada de requisitos](../_static/guide_compliance_20261111/requirements_11_origins_v2.json). Cada ID mantiene el vínculo entre requisito, estado y evidencia de cierre. La guía pondera problema/EDA/preregistro 15 %, revisión/paper/gap 15 %, implementación/NAS/rigor 25 %, benchmark/inferencia 20 %, ruta/robustez/incertidumbre/interpretabilidad 15 % y reproducción/redacción/defensa 10 % (p. 59). No se calcula una calificación ni un porcentaje de cumplimiento a partir del número de filas o de entrenamientos.
+[Lista estructurada de requisitos, corte anterior a la reducción del catálogo](../_static/guide_compliance_20261111/requirements_11_origins_v2.json). El catálogo vigente de 16 sistemas se encuentra en [§43](43_catalogo_obligatorio.md). Cada ID mantiene el vínculo entre requisito, estado y evidencia de cierre. La guía pondera problema/EDA/preregistro 15 %, revisión/paper/gap 15 %, implementación/NAS/rigor 25 %, benchmark/inferencia 20 %, ruta/robustez/incertidumbre/interpretabilidad 15 % y reproducción/redacción/defensa 10 % (p. 59). No se calcula una calificación ni un porcentaje de cumplimiento a partir del número de filas o de entrenamientos.
 
-El [corte documental anterior a la decisión de conservar once orígenes](../_static/guide_compliance_20261111/requirements.json) se conserva como descarga histórica, con sus bytes originales; no sustituye la lista vigente v2.
+El [corte documental anterior a la decisión de conservar once orígenes](../_static/guide_compliance_20261111/requirements.json) se conserva como descarga histórica, con sus bytes originales. Ambos cortes estructurados se leen junto con la enmienda vigente de catálogo de §43.

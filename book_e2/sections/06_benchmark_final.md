@@ -1,6 +1,23 @@
-# 6. Benchmark vigente: diez modelos y un candidato adicional
+# 6. Benchmark obligatorio: dieciséis sistemas
 
-**Vigencia documental (12/11/2026):** existe selección HPO/NAS registrada para el catálogo actual, con ejecución parcial documentada; las afirmaciones de ausencia de HPO o de falta de registro de selección corresponden a cortes anteriores. El benchmark final, R y su cierre inferencial siguen pendientes. [Registro y alcance actuales (§9)](09_protocolo_registrado.md) · [Calendario (§40)](40_calendario_original.md) · [Corte de resultados (§41)](41_avance_optimizacion_11_origenes.md) · [Auditoría y trabajo paralelo (§42)](42_auditoria_y_trabajo_paralelo.md).
+**Alcance vigente del 12/11/2026:** diez modelos del Top 10, tres referencias E1 y tres comparadores: **16 sistemas**. El híbrido adicional y Ridge quedan como opcionales/históricos. La enmienda de [§43](43_catalogo_obligatorio.md) registra el catálogo requerido; la selección ya sellada conserva su historial de catorce redes y necesita una transición explícita para aplicar el alcance nuevo. El benchmark final continúa pendiente.
+
+## Catálogo que debe cubrir la tabla final
+
+| Bloque | Sistemas obligatorios | Cantidad |
+|---|---|---:|
+| Top 10, cuatro familias | FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder con predictor, TimesNet, TSMixer, TiDE, TimeMixer, PatchTST, iTransformer | 10 |
+| Referencias E1 | MLP16, LSTM32, GRU32 | 3 |
+| Comparadores F2a | Persistence (naive), SeasonalNaive (estacional), ARIMA | 3 |
+| **Total** | **13 redes y 3 comparadores** | **16** |
+
+La [plantilla A.2 vigente de 16 sistemas](../_static/required_catalogue_20261112/benchmark_A2_template.csv) conserva vacíos los resultados no medidos. Se necesitan recetas seleccionadas, repeticiones justificadas, soporte común, métricas, IC y costes. Retirar dos sistemas opcionales no cierra esas evidencias.
+
+## Antecedentes documentales del diseño de dieciocho sistemas
+
+Los párrafos y tablas siguientes conservan la evolución del diseño anterior. Sus once candidatos, el estudio del híbrido y las obligaciones asociadas no amplían el catálogo obligatorio vigente de dieciséis sistemas.
+
+**Corte anterior a la enmienda de alcance (12/11/2026):** existe selección HPO/NAS registrada para el catálogo anterior, con ejecución parcial documentada; las afirmaciones de ausencia de HPO o de falta de registro de selección corresponden a cortes anteriores. El benchmark final, R y su cierre inferencial siguen pendientes. [Registro y alcance actuales (§9)](09_protocolo_registrado.md) · [Calendario (§40)](40_calendario_original.md) · [Corte de resultados (§41)](41_avance_optimizacion_11_origenes.md) · [Auditoría y trabajo paralelo (§42)](42_auditoria_y_trabajo_paralelo.md).
 
 **Vigencia al 12/11/2026:** Hay selección CUDA parcial documentada en [§36](36_avance_campana_cuda.md) y un corte vigente con 1.484 ajustes HPO nuevos completados en [§41](41_avance_optimizacion_11_origenes.md). La campaña quedó pausada por límite de sesión en ese corte; el benchmark final, R y el ranking siguen pendientes. Los estados «sin HPO» de abajo pertenecen al corte del 08/11/2026, no al estado actual. [Matriz de exigencias y evidencia](38_cumplimiento_guia.md) · [Calendario vigente de once orígenes](40_calendario_original.md).
 
@@ -13,7 +30,7 @@
 
 Se conservan cuatro prototipos compactos y un corrector con HAR externo, ahora histórico inactivo, con diez pruebas sintéticas documentadas. El nuevo híbrido tiene receta provisional: está implementado provisionalmente y probado con datos sintéticos, sin entrenamiento de mercado. Las diez pruebas anteriores no lo validan; sus nuevos controles están en §18. Los seis adaptadores existentes se integraron sin reducir sus mecanismos y pasaron el smoke sintético; la auditoría del flujo de mercado sigue pendiente. No se han ejecutado el HPO, el dimensionamiento ni la evaluación de este conjunto. Las métricas de E1, P0 o ETTh1 y las de artículos externos no rellenan sus resultados.
 
-## 6.1 Tabla de los once candidatos
+## 6.1 Tabla histórica de los once candidatos
 
 | N.º | Modelo | Estado de implementación para este diseño | RMSE y coste de mercado |
 |---|---|---|---|
@@ -48,9 +65,9 @@ Las métricas secundarias y diagnósticos se fijarán en el nuevo preregistro. A
 
 Cada resultado debe acompañarse de receta, origen, semilla, número de fechas, escala, fallos y procedencia de los pesos. Repetir una predicción determinista para una resta pareada no crea entrenamientos independientes.
 
-## 6.3 Cómo evaluar al candidato 11
+## 6.3 Estudio opcional del candidato 11
 
-CNN-1D + LSTM + atención temporal sólo podrá presentarse como mejor bajo una comparación definida y respaldada por datos. El diseño enlaza convoluciones 1D causales que conservan siete posiciones, LSTM unidireccional con `return_sequences=True`, atención temporal sobre esos siete estados observados, vector de contexto y cabeza escalar de σ₇. Antes de entrenar se necesitan:
+CNN-1D + LSTM + atención temporal sólo podrá presentarse como mejor bajo una comparación definida y respaldada por datos. El diseño enlaza convoluciones 1D causales que conservan siete posiciones, LSTM unidireccional con `return_sequences=True`, atención temporal sobre esos siete estados observados, vector de contexto y cabeza escalar de σ₇. Este estudio queda fuera del alcance obligatorio. Si se retoma, antes de entrenar se necesitan:
 
 1. **Receta y salida:** definir dimensiones, kernels, profundidad, función de atención, enlace y pérdida sin presentarlos como hiperparámetros ya elegidos. Es una adaptación propuesta, no una reproducción exacta verificada del curso o de una publicación.
 2. **Validación causal:** comprobar la ventana y sus transformaciones, padding exclusivamente izquierdo, estado recurrente reiniciado y ausencia de información futura. La atención no añade observaciones fuera de D7.
@@ -76,7 +93,7 @@ La reserva ya consultada en etapas anteriores conserva carácter **exploratorio*
 
 Los estados de implementación/HPO de esta tabla son antecedentes. Para selección ejecutada consultar [§41](41_avance_optimizacion_11_origenes.md); el benchmark y análisis finales siguen pendientes.
 
-| Etapa del catálogo vigente | Evidencia necesaria | Estado |
+| Etapa del catálogo anterior, corte 08/11 | Evidencia necesaria | Estado histórico |
 |---|---|---|
 | Recetas y fuentes | Arquitecturas, adaptaciones, objetivos y controles del híbrido identificados | Pendiente de congelación |
 | Pipeline | Integración de los once candidatos y controles, causalidad, escalado y fallos comprobados | Once candidatos implementados provisionalmente y smoke sintético verificado (§18); desarrollo real auditado (§19), ejecutor de mercado aún sin integrar |

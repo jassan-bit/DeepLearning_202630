@@ -1,5 +1,7 @@
 # 41. Ejecución optimizada: avance verificable de once orígenes
 
+**Alcance posterior al corte:** desde el 12/11/2026 el [catálogo obligatorio es de 16 sistemas (§43)](43_catalogo_obligatorio.md), sin híbrido adicional ni Ridge. Los contadores de este capítulo corresponden a la campaña sellada anterior de catorce redes. Conservan sus fuentes y significado; no prueban que Colab haya aplicado la enmienda.
+
 **Corte fijo vigente: 12/11/2026, 02:29:43 de Bogotá (07:29:43 UTC).** La campaña quedó **pausada por límite de sesión, con cierre limpio**. Este corte describe registros de GitHub y no comprueba el kernel de Colab en vivo. Se conservan los once orígenes, los catorce sistemas neuronales y todos los requisitos de E2. La propuesta de tres orígenes no es operativa.
 
 ## Resultados confirmados

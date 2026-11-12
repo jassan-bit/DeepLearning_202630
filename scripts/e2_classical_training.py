@@ -35,7 +35,7 @@ class ClassicalSelectionFailure(RuntimeError):
 
 @dataclass(frozen=True)
 class ClassicalSelection:
-    ridge_alpha: float
+    ridge_alpha: float | None
     arima_order: tuple[int, int, int]
     seasonal_period: int
     ledger: tuple[dict, ...]
@@ -59,10 +59,14 @@ class ClassicalSelection:
     def validate(self):
         if dated.canonical_hash(self._identity()) != self._seal:
             raise ValueError("Classical selection receipt changed after sealing")
+        expected = set(SYSTEM_NAMES) - ({"Ridge"} if self.ridge_alpha is None else set())
+        if (set(self.selected_scores) != expected
+                or {row.get("system") for row in self.ledger} != expected):
+            raise ValueError("Selection ledger and scores must agree with the declared Ridge inclusion")
 
     def record(self):
         self.validate()
-        return {"version": VERSION, "status": "selected_on_inner_validation",
+        result = {"version": VERSION, "status": "selected_on_inner_validation",
                 "ridge_alpha": self.ridge_alpha, "arima_order": list(self.arima_order),
                 "seasonal_period": self.seasonal_period,
                 "selected_scores": deepcopy(self.selected_scores),
@@ -70,6 +74,9 @@ class ClassicalSelection:
                 "arima_domain": [list(order) for order in self.arima_domain],
                 "full_18_order_domain": self.arima_domain == controls.ORDERS,
                 "ledger": deepcopy(list(self.ledger))}
+        if self.ridge_alpha is None:
+            result.update(include_ridge=False, excluded_systems=["Ridge"])
+        return result
 
 
 @dataclass(frozen=True)
@@ -246,12 +253,17 @@ def _naive_validation(panel, prepared, period, prediction_sink=None):
 
 
 def select_classical(panel, prepared, *, source_commit, orders=controls.ORDERS,
-                     prediction_sink=None):
-    """Select all classical systems without touching outer labels for selection.
+                     prediction_sink=None, include_ridge=True):
+    """Select classical systems without touching outer labels for selection.
 
+    The historical default includes Ridge. With include_ridge=False, neither
+    selection nor the subsequent refit executes Ridge; ridge_alpha=None seals
+    that exclusion. ARIMA and both naive comparators remain mandatory.
     Default ARIMA exhausts all18 orders. A declared subset is supported only as
     an explicitly recorded bounded fixture; no failed order is replaced.
     """
+    if type(include_ridge) is not bool:
+        raise ValueError("include_ridge must be an explicit boolean")
     prepared.validate()
     orders = tuple(orders)
     if (not source_commit or not orders or len(set(orders)) != len(orders)
@@ -262,7 +274,7 @@ def select_classical(panel, prepared, *, source_commit, orders=controls.ORDERS,
     ledger, winners, scores = [], {}, {}
     ridge_successes, arima_successes, seasonal_successes = [], [], []
 
-    for i, alpha in enumerate(RIDGE_ALPHAS):
+    for i, alpha in enumerate(RIDGE_ALPHAS if include_ridge else ()):
         start = time.perf_counter()
         row = {"system": "Ridge", "candidate_id": f"ridge-{i:02d}",
                "alpha": alpha, "fit_count": 1, "status": "started"}
@@ -328,18 +340,23 @@ def select_classical(panel, prepared, *, source_commit, orders=controls.ORDERS,
         persistence.update(status="failed", rmse=None, reason=str(error),
                            error_type=type(error).__name__)
     ledger.append(persistence)
-    if not ridge_successes or not arima_successes or not seasonal_successes or persistence["status"] != "completed":
+    if ((include_ridge and not ridge_successes) or not arima_successes
+            or not seasonal_successes or persistence["status"] != "completed"):
         raise ClassicalSelectionFailure(
             "At least one classical family has no valid candidate; no fallback or date deletion",
             {"version": VERSION, "status": "failed", "prepared_signature": prepared.signature,
              "ledger": ledger, "retry_or_fallback": False})
-    ridge_score, _, alpha = min(ridge_successes)
+    alpha = None
+    selected_scores = {}
+    if include_ridge:
+        ridge_score, _, alpha = min(ridge_successes)
+        selected_scores["Ridge"] = ridge_score
     arima_score, _, order = min(arima_successes)
     seasonal_score, period = min(seasonal_successes)
+    selected_scores.update(ARIMA=arima_score, SeasonalNaive=seasonal_score,
+                           Persistence=persistence["rmse"])
     return ClassicalSelection(alpha, order, period, tuple(deepcopy(ledger)),
-        {"Ridge": ridge_score, "ARIMA": arima_score,
-         "SeasonalNaive": seasonal_score, "Persistence": persistence["rmse"]},
-        prepared.signature, orders)
+        selected_scores, prepared.signature, orders)
 
 
 def _ridge_system(model, scaler):
@@ -358,35 +375,41 @@ def _ridge_system(model, scaler):
 
 
 def refit_classical(panel, prepared, selection, *, source_commit):
-    """Fresh fits at outer cutoff; bridge filtering is delegated to dated replay."""
+    """Fresh fits at outer cutoff, retaining the selection's Ridge inclusion.
+
+    ridge_alpha=None forbids a Ridge refit. Bridge filtering is delegated to
+    dated replay; the historical four-system selection remains unchanged.
+    """
     prepared.validate()
     if (not isinstance(selection, ClassicalSelection)
             or selection.prepared_signature != prepared.signature
-            or selection.ridge_alpha not in RIDGE_ALPHAS
+            or (selection.ridge_alpha is not None and selection.ridge_alpha not in RIDGE_ALPHAS)
             or selection.arima_order not in selection.arima_domain
             or selection.seasonal_period not in controls.PERIODS or not source_commit):
         raise ValueError("Selection identity/parameters differ from prepared B")
     selection.validate()
-    ridge_start = time.perf_counter()
-    ridge = fit_ridge(prepared.refit_train, selection.ridge_alpha)
-    ridge_receipt = {**ridge.record(), "fit_count": 1, "fresh_fit": True,
-                     "coefficients": ridge.coefficients.tolist(),
-                     "cutoff": prepared.outer_plan.cutoff.isoformat(),
-                     "scaler": prepared.refit_train.scaler.record(),
-                     "elapsed_seconds": time.perf_counter()-ridge_start}
+    include_ridge = selection.ridge_alpha is not None
+    if include_ridge:
+        ridge_start = time.perf_counter()
+        ridge = fit_ridge(prepared.refit_train, selection.ridge_alpha)
+        ridge_receipt = {**ridge.record(), "fit_count": 1, "fresh_fit": True,
+                         "coefficients": ridge.coefficients.tolist(),
+                         "cutoff": prepared.outer_plan.cutoff.isoformat(),
+                         "scaler": prepared.refit_train.scaler.record(),
+                         "elapsed_seconds": time.perf_counter()-ridge_start}
     arima = controls.FrozenARIMA.fit(_history(panel).loc[:prepared.outer_plan.cutoff],
             prepared.outer_plan.origin, selection.arima_order, source_commit=source_commit)
-    systems = (_ridge_system(ridge, prepared.refit_train.scaler),
+    systems = ((_ridge_system(ridge, prepared.refit_train.scaler),) if include_ridge else ()) + (
                dated.frozen_arima_system(arima, prepared.outer_plan),
                dated.FrozenSystem("SeasonalNaive", "naive", lag=selection.seasonal_period),
                dated.FrozenSystem("Persistence", "naive", lag=1))
     for system in systems:
         system.validate()
-    receipts = {"Ridge": ridge_receipt,
-                "ARIMA": {**deepcopy(arima.receipt), "fit_count": 1, "fresh_fit": True,
+    receipts = {"Ridge": ridge_receipt} if include_ridge else {}
+    receipts.update({"ARIMA": {**deepcopy(arima.receipt), "fit_count": 1, "fresh_fit": True,
                           "bridge_not_filtered_yet": True},
                 "SeasonalNaive": {"period": selection.seasonal_period, "fit_count": 0},
                 "Persistence": {"period": 1, "fit_count": 0},
-                "selection_ledger": selection.record(), "new_parameter_fits": 2}
-    return ClassicalRefits(systems, receipts, {"Ridge": ridge, "ARIMA": arima})
-
+                "selection_ledger": selection.record(), "new_parameter_fits": 2 if include_ridge else 1})
+    fitted_models = {"Ridge": ridge, "ARIMA": arima} if include_ridge else {"ARIMA": arima}
+    return ClassicalRefits(systems, receipts, fitted_models)

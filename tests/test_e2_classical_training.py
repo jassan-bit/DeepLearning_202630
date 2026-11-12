@@ -1,5 +1,6 @@
 """Classical chronology/selection tests on synthetic panels and an explicit ARIMA double."""
 from copy import deepcopy
+from dataclasses import replace
 from pathlib import Path
 from types import SimpleNamespace
 import sys
@@ -114,6 +115,59 @@ class ClassicalTrainingTests(unittest.TestCase):
             self.assertEqual(fit["cutoff"],controls.day(self.prepared.origin)-98*controls.DAY)
         self.assertTrue(result.record()["full_18_order_domain"])
 
+    def test_required_comparators_skip_every_ridge_fit_and_refit(self):
+        expected={"ARIMA","SeasonalNaive","Persistence"}
+        with patch.object(classic,"fit_ridge",side_effect=AssertionError("Ridge must not run")) as ridge:
+            selected=classic.select_classical(self.panel,self.prepared,source_commit="synthetic",
+                                               include_ridge=False)
+            self.assertIsNone(selected.ridge_alpha)
+            self.assertEqual(set(selected.selected_scores),expected)
+            self.assertEqual({row["system"] for row in selected.ledger},expected)
+            self.assertEqual(len([row for row in selected.ledger if row["system"]=="ARIMA"]),18)
+            self.assertTrue(selected.record()["full_18_order_domain"])
+            self.assertFalse(selected.record()["include_ridge"])
+            self.assertEqual(selected.record()["excluded_systems"],["Ridge"])
+            result=classic.refit_classical(self.panel,self.prepared,selected,source_commit="synthetic")
+            ridge.assert_not_called()
+        self.assertEqual({system.name for system in result.systems},expected)
+        self.assertEqual(result.receipts["new_parameter_fits"],1)
+        self.assertEqual(set(result.fitted_models),{"ARIMA"})
+        self.assertNotIn("Ridge",result.receipts)
+        self.assertIsNone(result.receipts["selection_ledger"]["ridge_alpha"])
+        self.assertEqual(len(ARIMADouble.fits),19)
+        self.assertEqual(ARIMADouble.fits[-1]["last_supplied"],controls.day(self.prepared.outer_plan.cutoff))
+
+    def test_ridge_exclusion_is_explicit_and_cannot_be_reintroduced_by_alpha_only(self):
+        selected=classic.select_classical(self.panel,self.prepared,source_commit="synthetic",
+                                           orders=((0,0,0),),include_ridge=False)
+        contradictory=replace(selected,ridge_alpha=classic.RIDGE_ALPHAS[0])
+        before=len(ARIMADouble.fits)
+        with patch.object(classic,"fit_ridge",side_effect=AssertionError("No fit before validation")) as ridge:
+            with self.assertRaisesRegex(ValueError,"Ridge inclusion"):
+                classic.refit_classical(self.panel,self.prepared,contradictory,source_commit="synthetic")
+            ridge.assert_not_called()
+        self.assertEqual(len(ARIMADouble.fits),before)
+        for value in (None,0,1,"False"):
+            with self.subTest(include_ridge=value):
+                with self.assertRaisesRegex(ValueError,"explicit boolean"):
+                    classic.select_classical(self.panel,self.prepared,source_commit="synthetic",
+                                               include_ridge=value)
+        self.assertEqual(len(ARIMADouble.fits),before)
+
+    def test_historical_default_and_explicit_ridge_inclusion_keep_identical_receipts(self):
+        with patch.object(classic.time,"perf_counter",return_value=10.):
+            default=classic.select_classical(self.panel,self.prepared,source_commit="synthetic",
+                                              orders=((0,0,0),))
+            explicit=classic.select_classical(self.panel,self.prepared,source_commit="synthetic",
+                                               orders=((0,0,0),),include_ridge=True)
+        self.assertEqual(default.record(),explicit.record())
+        self.assertEqual(default._seal,explicit._seal)
+        self.assertEqual(set(default.record()),{"version","status","ridge_alpha","arima_order",
+            "seasonal_period","selected_scores","prepared_signature","arima_domain",
+            "full_18_order_domain","ledger"})
+        self.assertNotIn("include_ridge",default.record())
+        self.assertIsNotNone(default.ridge_alpha)
+
     def test_arima_forecasts_every_calendar_day_and_common_mask_stays_fixed(self):
         panel,prepared=fixture(validation_gap=True)
         events=[]
@@ -213,4 +267,3 @@ class ClassicalTrainingTests(unittest.TestCase):
 
 if __name__=="__main__":
     unittest.main()
-

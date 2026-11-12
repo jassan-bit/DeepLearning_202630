@@ -1,0 +1,153 @@
+{
+  "version": "e2-required-catalogue-16-v1",
+  "decision_date": "2026-11-12",
+  "status": "required_catalogue_closed_experiments_incomplete",
+  "authorization": "User explicitly requested Top10 + three E1 references + naive, seasonal naive and ARIMA/ETS, excluding the additional hybrid and Ridge from mandatory scope.",
+  "guide": {
+    "file_sha256": "93499dcfda6a36d9621524a81821470017ba114ca6b08241a35de5a54f74a654",
+    "requirements": [
+      {
+        "section": "3.2",
+        "page": 11,
+        "requirement": "Ten selected models spanning at least four families, plus three E1 references."
+      },
+      {
+        "section": "7.4 F2a",
+        "page": 30,
+        "requirement": "Naive, seasonal naive, and ARIMA or ETS comparators; this project uses ARIMA."
+      }
+    ]
+  },
+  "systems": [
+    {
+      "model_id": "FCN-1D",
+      "role": "Top10",
+      "family": "convolutional"
+    },
+    {
+      "model_id": "ResNet-1D",
+      "role": "Top10",
+      "family": "convolutional"
+    },
+    {
+      "model_id": "Inception-1D",
+      "role": "Top10",
+      "family": "convolutional"
+    },
+    {
+      "model_id": "LSTM-autoencoder con predictor",
+      "role": "Top10",
+      "family": "recurrent_autoencoder"
+    },
+    {
+      "model_id": "TimesNet",
+      "role": "Top10",
+      "family": "convolutional"
+    },
+    {
+      "model_id": "TSMixer",
+      "role": "Top10",
+      "family": "mlp_mixing"
+    },
+    {
+      "model_id": "TiDE",
+      "role": "Top10",
+      "family": "mlp_mixing"
+    },
+    {
+      "model_id": "TimeMixer",
+      "role": "Top10",
+      "family": "mlp_mixing"
+    },
+    {
+      "model_id": "PatchTST",
+      "role": "Top10",
+      "family": "transformer_attention"
+    },
+    {
+      "model_id": "iTransformer",
+      "role": "Top10",
+      "family": "transformer_attention"
+    },
+    {
+      "model_id": "MLP16",
+      "role": "E1_reference",
+      "family": "mlp"
+    },
+    {
+      "model_id": "LSTM32",
+      "role": "E1_reference",
+      "family": "recurrent"
+    },
+    {
+      "model_id": "GRU32",
+      "role": "E1_reference",
+      "family": "recurrent"
+    },
+    {
+      "model_id": "Persistence",
+      "role": "classical_comparator",
+      "family": "naive"
+    },
+    {
+      "model_id": "SeasonalNaive",
+      "role": "classical_comparator",
+      "family": "seasonal_naive"
+    },
+    {
+      "model_id": "ARIMA",
+      "role": "classical_comparator",
+      "family": "statistical"
+    }
+  ],
+  "counts": {
+    "top10": 10,
+    "top10_families": 4,
+    "e1_references": 3,
+    "neural": 13,
+    "classical": 3,
+    "total": 16
+  },
+  "excluded_from_required_scope": [
+    {
+      "model_id": "CNN-1D + LSTM + atención temporal",
+      "status": "optional_historical",
+      "reason": "Additional eleventh candidate; not needed for the guide Top10."
+    },
+    {
+      "model_id": "Ridge",
+      "status": "optional_historical",
+      "reason": "Additional comparator; ARIMA supplies the required statistical comparator."
+    }
+  ],
+  "amendment": {
+    "parent_main": "88c22c544d3351a7b2055b62b541c6a45ee867be",
+    "effective_for": "Future mandatory execution through scripts/e2_required_catalogue.py and the current benchmark template.",
+    "frozen_scientific_source": "564ba4762f84a800b02fa4c734f5752a169f5223",
+    "frozen_optimized_controller": "8e3ab6cfb1b3fc3c804f0c914fa5d92b661058d9",
+    "sealed_campaign_branch": "campaigns/e2-cuda-crop-11-v2",
+    "sealed_campaign_models": 14,
+    "sealed_campaign_modified": false,
+    "private_colab_session_modified": false,
+    "required_selection_controller_migration": "pending_before_a_campaign_using_the_new_scope",
+    "results_deleted": false,
+    "history_relabelled": false,
+    "origins_changed": false,
+    "hpo_domains_changed": false,
+    "nas_domains_changed": false,
+    "k_changed": false,
+    "seeds_changed": false,
+    "epochs_changed": false,
+    "total_budget_changed": false,
+    "other_guide_requirements_waived": false
+  },
+  "execution": {
+    "module": "scripts/e2_required_catalogue.py",
+    "neural_selection_entrypoint": "run_required_neural_selection",
+    "classical_selection_entrypoint": "select_required_classical",
+    "classical_refit_entrypoint": "refit_required_classical",
+    "historical_registry": "scripts/e2_training_models.py",
+    "historical_final_benchmark": "scripts/run_e2_final_benchmark.py",
+    "historical_final_benchmark_is_current_executor": false
+  }
+}

@@ -1,6 +1,6 @@
 # Proyecto Final de Deep Learning: Entregable 2
 
-**Decisión vigente: conservar los once orígenes originales y todas las exigencias de E2.** Sólo se optimizan implementación, orden de ejecución y reutilización compatible. La reducción a tres orígenes queda como propuesta no operativa hasta justificar su suficiencia. [Calendario y ejecutor vigentes (§40)](sections/40_calendario_original.md).
+**Catálogo obligatorio vigente (12/11/2026): 16 sistemas: diez modelos del Top 10, tres referencias E1 y tres comparadores temporales.** El híbrido adicional y Ridge quedan fuera del alcance obligatorio. [Catálogo y enmienda de alcance (§43)](sections/43_catalogo_obligatorio.md). Se conservan los once orígenes y las demás exigencias de E2; la reducción a tres orígenes sigue siendo una propuesta no operativa. La campaña sellada de Colab todavía corresponde al catálogo anterior de catorce redes: esta publicación no modifica la sesión privada.
 
 **Deep Learning · 2026-30 · Jassan Arteta**
 
@@ -43,13 +43,13 @@ El catálogo comprende diez modelos base:
 9. PatchTST.
 10. iTransformer.
 
-**CNN-1D + LSTM + atención temporal es el candidato adicional 11**, no un ganador demostrado. Los controles **MLP16, LSTM32 y GRU32 de E1** son referencias adicionales, con pesos reinicializados. Persistencia, naive estacional, ARIMA y Ridge completan los cuatro comparadores del diseño de dieciocho sistemas; no se cuentan dentro del Top 10. La taxonomía funcional del Top 10 distingue convolucionales, recurrentes/autoencoder, mezcladores MLP y atención; [§38 explicita la asignación](sections/38_cumplimiento_guia.md). El candidato adicional no se utiliza para completar ese recuento. [Catálogo y adaptaciones](sections/15_revision_modelos.md).
+Los controles **MLP16, LSTM32 y GRU32 de E1** son las tres referencias adicionales, con pesos reinicializados. **Persistencia (naive), naive estacional y ARIMA** completan los tres comparadores: **13 redes + 3 comparadores = 16 sistemas**. El Top 10 comprende cuatro familias: convolucionales, recurrentes/autoencoder, mezcladores MLP y atención; [§38 explicita la asignación](sections/38_cumplimiento_guia.md). **CNN-1D + LSTM + atención temporal y Ridge son opcionales/históricos y no forman parte de la entrega obligatoria.** Sus implementaciones y recibos se conservan. [Catálogo vigente y fuentes ejecutables (§43)](sections/43_catalogo_obligatorio.md).
 
 ## Diseño vigente, guía y cómputo
 
-El calendario vigente conserva diez selecciones mensuales enero–octubre de 2024 y la selección de enero de 2025: **once orígenes comunes**, con máximo de **85.074 intentos neuronales de selección**. Es una decisión del diseño original, no una cifra literal del PDF. La [propuesta de tres orígenes de §37](sections/37_ajuste_guia.md) queda pendiente de justificación y no debe considerarse definitiva.
+El calendario conserva diez selecciones mensuales enero–octubre de 2024 y la selección de enero de 2025: **once orígenes comunes**. La campaña sellada anterior mantiene su máximo registrado de **85.074 intentos neuronales de selección**; ese total incluye el híbrido ahora opcional y no es el cómputo del catálogo obligatorio de 16. Es una decisión del diseño original, no una cifra literal del PDF. La [propuesta de tres orígenes de §37](sections/37_ajuste_guia.md) queda pendiente de justificación y no debe considerarse definitiva.
 
-Se mantienen las seis variantes NAS y los cinco cuerpos publicados con exención justificada, las 18 configuraciones HPO, k=40 y máximos de 50/200 épocas. La optimización funcional se activa por caso sólo tras medirla en la GPU real. [Alcance y límites (§40)](sections/40_calendario_original.md).
+El plan sellado anterior contiene seis variantes NAS y cinco cuerpos publicados con exención justificada, 18 configuraciones HPO, k=40 y máximos de 50/200 épocas. La nueva enmienda sólo retira el híbrido y Ridge del alcance obligatorio; no cambia las políticas aplicables a los sistemas retenidos ni declara migrada la campaña. La optimización funcional se activa por caso sólo tras medirla en la GPU real. [Alcance y límites (§40)](sections/40_calendario_original.md).
 
 El notebook vigente de once orígenes se enlaza en §40. El historial conserva el techo inicial de 48 horas y las ampliaciones manuales a 56 y **64 horas acumuladas**, autorizadas antes de nuevos ajustes. La recuperación de la desconexión se registró y completó sin borrar los resultados anteriores; el intento original permanece con desenlace desconocido. No hay ampliación automática ni garantía de terminar todas las corridas. [Presupuesto y recibos actuales](sections/41_avance_optimizacion_11_origenes.md).
 
@@ -65,6 +65,7 @@ El [corte documentado en §36](sections/36_avance_campana_cuda.md), del **11/11/
 ## Recorrido recomendado
 
 - **Problema y literatura:** [§1](sections/01_punto_partida.md), [§2](sections/02_eda.md), [§3](sections/03_literatura.md) y [§5: paper guía](sections/05_paper_guia.md).
+- **Catálogo obligatorio:** [§43: los 16 sistemas y la enmienda de alcance](sections/43_catalogo_obligatorio.md).
 - **Método y modelos:** [§7: ruta F2a](sections/07_ruta_temporal.md), [§10: auditoría](sections/10_auditoria_datos.md), [§11: equidad](sections/11_hpo_equidad.md), [§14: arquitecturas](sections/14_arquitecturas.md) y [§26: recetas](sections/26_registro_recetas.md).
 - **Ejecución y evidencia:** [§29: entrenamiento](sections/29_entrenamiento_temporal.md), [§35: CUDA](sections/35_busqueda_cuda_reanudable.md), [§36: corte histórico](sections/36_avance_campana_cuda.md), [§40: calendario vigente](sections/40_calendario_original.md) y [§41: ejecución y avance](sections/41_avance_optimizacion_11_origenes.md).
 - **Entrega y cierre:** [§6: benchmark](sections/06_benchmark_final.md), [§12: incertidumbre](sections/12_incertidumbre_errores.md), [§13: inferencia](sections/13_agregacion_estadistica.md), [§8: reproducción](sections/08_reproducibilidad.md) y [§38: exigencias de la guía](sections/38_cumplimiento_guia.md).
