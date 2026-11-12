@@ -1,11 +1,11 @@
 {
   "version": "e2-cuda-search-runner-v1",
   "plan_sha256": "877a8ab4a0d34599f43c5dd16a90fe87fe03d37fe535466bf8e009c379cce742",
-  "status": "paused_session_budget",
+  "status": "paused_campaign_budget",
   "scope": "new_fits_only_eleven_origin_implementation_optimization",
-  "completed_jobs": 1484,
+  "completed_jobs": 1705,
   "failed_jobs": 0,
-  "known_optimizer_steps": 1845434,
+  "known_optimizer_steps": 2245556,
   "unknown_optimizer_step_jobs": 0,
   "completed_selections": [
     {
@@ -1244,6 +1244,175 @@
       "selection_signature": "f9b5a401d384fcb68aa678db1b1e43426629a4a1bd1766121ae42f418d406d65",
       "attempts": 36,
       "selection_rule": "mean_rmse"
+    },
+    {
+      "model": "iTransformer",
+      "origin": "2024-06-01",
+      "winner_id": "hpo:IT-D7-r1__hpo_v1:hpo-007",
+      "winner": {
+        "architecture": null,
+        "model": "iTransformer",
+        "stage": "hpo",
+        "trial": {
+          "batch_size": 16,
+          "dropout": 0.3,
+          "learning_rate": 0.0024351218185910935,
+          "optimization_seeds": [
+            271201,
+            271202
+          ],
+          "recipe_id": "IT-D7-r1__hpo_v1",
+          "trial_id": "IT-D7-r1__hpo_v1:hpo-007",
+          "warmup_fraction": 0,
+          "weight_decay": 0.0009190165913202242
+        }
+      },
+      "fixed_epochs": {
+        "supervised": 26
+      },
+      "selection_signature": "b70e3179a8f65ded83a3f8c79294820500f1d76327be239b59d815e588aac367",
+      "attempts": 36,
+      "selection_rule": "mean_rmse"
+    },
+    {
+      "model": "MLP16",
+      "origin": "2024-06-01",
+      "winner_id": "hpo:MLP16-E1-ref-E2-HPO-v1:hpo-014",
+      "winner": {
+        "architecture": null,
+        "model": "MLP16",
+        "stage": "hpo",
+        "trial": {
+          "batch_size": 32,
+          "dropout": 0.1,
+          "learning_rate": 0.0017754463589820036,
+          "optimization_seeds": [
+            271201,
+            271202
+          ],
+          "recipe_id": "MLP16-E1-ref-E2-HPO-v1",
+          "trial_id": "MLP16-E1-ref-E2-HPO-v1:hpo-014",
+          "weight_decay": 0.001915726739870103
+        }
+      },
+      "fixed_epochs": {
+        "supervised": 104
+      },
+      "selection_signature": "d5eee9a8861c33aff01ed15aec8bd80a224ea4ea3820a7298e4bc1c4cf8f75fc",
+      "attempts": 36,
+      "selection_rule": "mean_rmse"
+    },
+    {
+      "model": "LSTM32",
+      "origin": "2024-06-01",
+      "winner_id": "hpo:LSTM32-E1-ref-E2-HPO-v1:hpo-002",
+      "winner": {
+        "architecture": null,
+        "model": "LSTM32",
+        "stage": "hpo",
+        "trial": {
+          "batch_size": 16,
+          "dropout": 0.1,
+          "learning_rate": 0.0012419948473507585,
+          "optimization_seeds": [
+            271201,
+            271202
+          ],
+          "recipe_id": "LSTM32-E1-ref-E2-HPO-v1",
+          "trial_id": "LSTM32-E1-ref-E2-HPO-v1:hpo-002",
+          "weight_decay": 4.192071534440324e-05
+        }
+      },
+      "fixed_epochs": {
+        "supervised": 146
+      },
+      "selection_signature": "58d8f734f97b829430e802122f7bef4bb20091ce461958d89c255f6e5374d050",
+      "attempts": 36,
+      "selection_rule": "mean_rmse"
+    },
+    {
+      "model": "GRU32",
+      "origin": "2024-06-01",
+      "winner_id": "hpo:GRU32-E1-ref-E2-HPO-v1:hpo-014",
+      "winner": {
+        "architecture": null,
+        "model": "GRU32",
+        "stage": "hpo",
+        "trial": {
+          "batch_size": 32,
+          "dropout": 0.2,
+          "learning_rate": 0.0029323251850430997,
+          "optimization_seeds": [
+            271201,
+            271202
+          ],
+          "recipe_id": "GRU32-E1-ref-E2-HPO-v1",
+          "trial_id": "GRU32-E1-ref-E2-HPO-v1:hpo-014",
+          "weight_decay": 0.0
+        }
+      },
+      "fixed_epochs": {
+        "supervised": 131
+      },
+      "selection_signature": "6b46ab40ec6e6b4fc2d916cca923763614ed36414e6b376d416c6a62152e0e21",
+      "attempts": 36,
+      "selection_rule": "mean_rmse"
+    },
+    {
+      "model": "FCN-1D",
+      "origin": "2024-07-01",
+      "winner_id": "hpo:fcn1d_wang_d7_v1_proposed__hpo_v1:hpo-007",
+      "winner": {
+        "architecture": null,
+        "model": "FCN-1D",
+        "stage": "hpo",
+        "trial": {
+          "batch_size": 16,
+          "dropout": 0,
+          "learning_rate": 0.0005695394539643588,
+          "optimization_seeds": [
+            271201,
+            271202
+          ],
+          "recipe_id": "fcn1d_wang_d7_v1_proposed__hpo_v1",
+          "trial_id": "fcn1d_wang_d7_v1_proposed__hpo_v1:hpo-007",
+          "weight_decay": 0.0010040757709281222
+        }
+      },
+      "fixed_epochs": {
+        "supervised": 37
+      },
+      "selection_signature": "63c3b43b12c2f182565e293a39b04fb9169c4bebe354c60d872346e2582e3406",
+      "attempts": 36,
+      "selection_rule": "mean_rmse"
+    },
+    {
+      "model": "ResNet-1D",
+      "origin": "2024-07-01",
+      "winner_id": "hpo:resnet1d_wang_d7_v1_proposed__hpo_v1:hpo-003",
+      "winner": {
+        "architecture": null,
+        "model": "ResNet-1D",
+        "stage": "hpo",
+        "trial": {
+          "batch_size": 16,
+          "dropout": 0,
+          "learning_rate": 0.0020133709144460605,
+          "optimization_seeds": [
+            271201,
+            271202
+          ],
+          "recipe_id": "resnet1d_wang_d7_v1_proposed__hpo_v1",
+          "trial_id": "resnet1d_wang_d7_v1_proposed__hpo_v1:hpo-003",
+          "weight_decay": 1.488484865554002e-05
+        }
+      },
+      "fixed_epochs": {
+        "supervised": 31
+      },
+      "selection_signature": "1a7f9abe23de9ffa9b4f9bb773eca4fea5e1c77bb3e7b33c8bad6e1f49a45b80",
+      "attempts": 36,
+      "selection_rule": "mean_rmse"
     }
   ],
   "coverage": {
@@ -1260,16 +1429,16 @@
   "budget": {
     "version": "e2-search-session-v1",
     "plan_sha256": "877a8ab4a0d34599f43c5dd16a90fe87fe03d37fe535466bf8e009c379cce742",
-    "completed_jobs": 1484,
-    "charged_wall_seconds": 58895.59699197598,
+    "completed_jobs": 1705,
+    "charged_wall_seconds": 66374.95698550006,
     "campaign_budget_seconds": 73846.96746607224,
-    "remaining_campaign_seconds": 14951.370474096257,
-    "storage_used_bytes": 10762816,
+    "remaining_campaign_seconds": 7472.0104805721785,
+    "storage_used_bytes": 12388416,
     "max_storage_bytes": 10737418240,
     "recovered_result_commits": [],
     "conservative_unclosed_session_charges": {},
     "directory_fsync_supported": true,
-    "paused_reason": "session_budget"
+    "paused_reason": "campaign_budget"
   },
   "scientific_HPO_or_NAS_executed": true,
   "final_market_values_read": false,
@@ -1278,9 +1447,9 @@
   "remote_repository": "jassan-bit/DeepLearning_202630",
   "remote_branch": "campaigns/e2-cuda-crop-11-v2",
   "checkpoint_policy": "selection_metadata_only_refit_separate",
-  "pause_reason": "session_budget",
+  "pause_reason": "campaign_budget",
   "retry_after_seconds": null,
   "reused_jobs": 108,
-  "total_available_unique_jobs": 3286,
-  "combined_charged_seconds": 215448.62952590373
+  "total_available_unique_jobs": 3507,
+  "combined_charged_seconds": 222927.98951942782
 }
