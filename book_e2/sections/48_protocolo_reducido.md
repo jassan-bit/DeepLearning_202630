@@ -23,7 +23,7 @@ Cada red recibe las mismas seis plazas **C01–C06**, una semilla efectiva de op
 | C05 | 10 |
 | C06 | 15 |
 
-**Plazas comunes no significa seis tuplas numéricas idénticas entre arquitecturas.** El generador original es específico por receta. Se conserva una regla común, el número de oportunidades y los espacios aplicables; el [CSV de configuraciones](../_static/reduced_protocol_20261112/hpo_configurations.csv) expone LR, weight decay, batch y demás campos por modelo/plaza. Los cuatro cuerpos restaurados mantienen los parámetros estructurales y dropout de su fuente.
+**Plazas comunes no significa seis tuplas numéricas idénticas entre arquitecturas.** El generador original es específico por receta. Se conserva una regla común, el número de oportunidades y los espacios aplicables; el [CSV de configuraciones](../_static/reduced_protocol_20261112/hpo_configurations_registered_bytes_v2.csv) expone LR, weight decay, batch y demás campos por modelo/plaza. Los cuatro cuerpos restaurados mantienen los parámetros estructurales y dropout de su fuente.
 
 La elección usa exclusivamente metadatos HPO: cobertura de batch **16/32/64**, weight decay cero y positivo, y warmup cero; después maximiza la menor cobertura normalizada del intervalo logarítmico de LR entre recetas, con desempates deterministas. No utiliza RMSE, rankings de modelos ni tiempos observados para elegir los seis puntos. El subconjunto no representa cobertura completa del dominio original.
 
@@ -69,9 +69,11 @@ La guía pide heredar la partición de E1; **no exige cien días prospectivos nu
 
 Las doce redes con cuerpo actualmente definido tienen su identidad de receta. **TiDE permanece bloqueado para la ejecución reducida** hasta verificar una receta publicada compatible y registrar su identidad propia. Las seis filas TiDE heredadas identifican puntos HPO de procedencia; no convierten la variante NAS en un cuerpo publicado. Si la arquitectura continúa requiriendo NAS, el requisito aplicable de la guía permanece y no se elimina por urgencia.
 
-La comprobación local identifica **Python 3.12.14 y Torch 2.8.0+cpu, sin CUDA disponible**. Esto no describe la GPU privada de Colab. El [notebook de una celda para verificarla](https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/main/notebooks/entregable2_comprobar_protocolo_reducido.ipynb) sólo genera un diagnóstico; no entrena ni instala paquetes.
+El [diagnóstico de Colab recibido a las 12:59 p. m. de Bogotá](../_static/reduced_protocol_20261112/colab_runtime_20261112T175910.json) confirma una **Tesla T4 de 15.360 MiB** y una pequeña prueba CUDA correcta, sin controladores de búsqueda activos. El usuario pegó el informe de su sesión privada y su hash se verificó; el agente no accedió directamente al kernel. **No estaba entrenando**: cero pasos de optimizador.
 
-La comprobación local identifica el entorno realmente disponible. La GPU de la sesión privada debe verificarse en Colab: disponibilidad, versiones, dispositivo y una pequeña prueba CUDA. Una prueba de matriz no acredita todos los kernels de los modelos ni inicia HPO/NAS.
+La disponibilidad de hardware no cierra la compatibilidad: el intérprete seleccionado era **Python 3.13.16 / Torch 2.14.1+cu130 / CUDA 13.0**, mientras la política registrada requiere **Python 3.12 / Torch 2.8.0+cu126 / CUDA 12.6**. Debe prepararse el intérprete aislado y repetir el diagnóstico. La [celda de preparación del entorno](https://github.com/jassan-bit/DeepLearning_202630/blob/main/notebooks/preparar_e2_reducido_runtime_colab.py) instala las dependencias fijadas en una carpeta nueva, conserva el kernel y repite la comprobación; no inicia HPO ni cambia el presupuesto. Los flags observados antes de la prueba no acreditan la política de ajuste; la prueba de matriz tampoco valida todos los kernels de los modelos. El [recibo de procedencia](../_static/reduced_protocol_20261112/colab_runtime_receipt.json) conserva estas limitaciones.
+
+El entorno del agente permanece en **Python 3.12.14 y Torch 2.8.0+cpu, sin CUDA**. El [notebook de diagnóstico](https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/main/notebooks/entregable2_comprobar_protocolo_reducido.ipynb) no entrena ni instala paquetes. El informe recibido no estaba conservado en Drive; esta copia pública preserva su evidencia, no los datos ni pesos de la sesión.
 
 ## Qué acredita la comprobación de caché y presupuesto
 
@@ -85,8 +87,12 @@ El techo permanece en **64 horas acumuladas**, con todos los cargos anteriores: 
 
 ## Archivos de este registro
 
-- [Protocolo reducido](../_static/reduced_protocol_20261112/protocol.json) · [configuraciones completas](../_static/reduced_protocol_20261112/configurations.json) · [configuraciones CSV](../_static/reduced_protocol_20261112/hpo_configurations.csv) · [calendario](../_static/reduced_protocol_20261112/calendar.csv).
+- [Protocolo reducido](../_static/reduced_protocol_20261112/protocol.json) · [configuraciones completas](../_static/reduced_protocol_20261112/configurations.json) · [configuraciones CSV](../_static/reduced_protocol_20261112/hpo_configurations_registered_bytes_v2.csv) · [calendario](../_static/reduced_protocol_20261112/calendar_registered_bytes_v2.csv).
 - [Auditoría de datos y caché](../_static/reduced_protocol_20261112/data_cache_audit.json) · [presupuesto conciliado](../_static/reduced_protocol_20261112/budget_reconciliation.json) · [entorno local observado](../_static/reduced_protocol_20261112/environment_local.json).
 - [Recibo de fuentes y hashes](../_static/reduced_protocol_20261112/registration.json) · [registro Git y fecha real](../_static/reduced_protocol_20261112/git_registration.json) · [verificación](../_static/reduced_protocol_20261112/verification.json).
 
 El cierre de este primer paso es un registro verificable de reglas y comprobaciones. Los recibos de ejecución posteriores deberán acreditar GPU, arquitectura pendiente, presupuesto admitido, ajustes y resultados; esta página no los reemplaza.
+
+## Procedencia de las descargas CSV
+
+Las descargas vigentes de configuraciones y calendario conservan los bytes CRLF vinculados por el registro científico. La primera publicación normalizó esos saltos de línea a LF sin cambiar valores; sus URL se preservan como historial: [configuraciones de la primera publicación](../_static/reduced_protocol_20261112/hpo_configurations.csv) y [calendario de la primera publicación](../_static/reduced_protocol_20261112/calendar.csv). La [conciliación de URL y hashes](../_static/reduced_protocol_20261112/publication_url_versioning.json) permite distinguir ambas representaciones. No cambia el protocolo ni sus fuentes registradas.
