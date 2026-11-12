@@ -17,7 +17,8 @@ import subprocess
 import sys
 
 ENGINE_COMMIT = "1e8745497b484518f766b6da5c19be8362d9add7"
-VERSION = "e2-reduced-github-funding-controller-v1"
+VERSION = "e2-reduced-setup-metadata-controller-v1"
+FUNDING_COMMIT = "f540227c23c572b9ca7fb36920588727b029484a"
 
 
 def _engine_root(path):
@@ -37,7 +38,7 @@ def _extension_root(path, commit):
         raise ValueError("The funding extension is bound to another protocol/engine")
     required = ("scripts/run_e2_reduced_github72_delivery.py", "scripts/e2_registered_budget_extension.py",
                 "scripts/e2_reduced_github_state.py", "scripts/e2_reduced_github_restore.py",
-                "scripts/reconcile_e2_github_completed.py")
+                "scripts/reconcile_e2_github_completed.py", "scripts/e2_known_setup_failure_selection.py")
     for relative in required:
         target = root / relative
         if (not target.resolve().is_relative_to(root.resolve()) or target.is_symlink()
@@ -129,9 +130,9 @@ def main(argv=None):
         # The constructor factory validates the prior explicit authorization;
         # a draft registration never reaches GitHub writes or a GPU worker.
         subprocess.run(["git", "-C", str(engine), "fetch", "--filter=blob:none", "--depth", "1",
-            "origin", extension_args.extension_commit], check=True, capture_output=True, text=True)
+            "origin", FUNDING_COMMIT], check=True, capture_output=True, text=True)
         constructor = make_funded_budget_class(registration.get("funding_policy"),
-            funding_registration_commit=extension_args.extension_commit, funding_git_root=engine)
+            funding_registration_commit=FUNDING_COMMIT, funding_git_root=engine)
         State = funded_state_class(GitHubState, constructor)
         client = GitHubBackup()
         client.preflight()
@@ -143,6 +144,9 @@ def main(argv=None):
                 migration_registration_commit=ENGINE_COMMIT,
                 inherited_ledgers=args.inherited_ledger) as budget:
             state.snapshot("registered_funding_continuation")
+            import run_e2_reduced_selection as selection
+            from e2_known_setup_failure_selection import run_selection
+            selection.run_selection = run_selection
             scientific.execute_delivery(args, budget, state)
         return 0
     except (KeyboardInterrupt, Exception) as error:

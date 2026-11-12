@@ -1,0 +1,70 @@
+{
+  "version": "e2-setup-metadata-fix-registration-v1",
+  "status": "registered_before_execution",
+  "protocol_id": "e2-reduced-delivery-v1",
+  "engine_commit": "1e8745497b484518f766b6da5c19be8362d9add7",
+  "funding_registration_commit": "f540227c23c572b9ca7fb36920588727b029484a",
+  "github_primary_transport_commit": "7ad290ada4ef9908aecfe042b610251206d9b099",
+  "recorded_at_utc": "2026-11-12T21:36:21.377938+00:00",
+  "funding_policy": {
+    "version": "e2-registered-budget-extension-v1",
+    "engine_commit": "1e8745497b484518f766b6da5c19be8362d9add7",
+    "initial_total_hours": 64,
+    "authorized_total_hours": 72,
+    "added_seconds": 28800,
+    "budget_reset": false,
+    "worker_caps_changed": false,
+    "status": "authorized_by_user",
+    "authorization": {
+      "source": "explicit_user_confirmation",
+      "approved_total_hours": 72,
+      "evidence_sha256": "d6390f2764b861643f9861e473b07f3154890b0a035675648743b10bac65e59f"
+    },
+    "sha256": "a1cf19c7a4c88f525afa5d7369546b4e31a898447cee56830ec520bd542e350f"
+  },
+  "persistent_destination": "github",
+  "Google_Drive_used": false,
+  "changes_models_seeds_or_data_contract": false,
+  "new_budget_authorization": false,
+  "budget_reset": false,
+  "metadata_materialization": {
+    "path": "book_e2/_static/current_implementation_20261108/source_design.json",
+    "engine_commit": "1e8745497b484518f766b6da5c19be8362d9add7",
+    "bytes": 18811,
+    "sha256": "ce0a76304186fabf922f8e1351ea2e9d44db49f1714f44cd1fe2df04baeb3dbe",
+    "scope": "Exact omitted author-verification metadata for TimesNet/TimeMixer; no market values"
+  },
+  "known_failed_opportunity": {
+    "attempt_id": "10098dda29216054585354395d2d8ef4b81c44ad31361b4c11cabf09ee998c41",
+    "model_id": "TimesNet",
+    "fold_origin": "2024-01-01",
+    "configuration_id": "C01",
+    "seed": 271201,
+    "worker_spec_sha256": "4a65560c0028dd67f792e1642135dd7276c0cf84c93f3911af97c2b5d2b700aa",
+    "worker_failure_file_sha256": "6f6b5a692ff123b0654694d4d761a6624da75b1ce6641dd154da9dd1dd15ddb5",
+    "budget_charge_sha256": "12dce4b730af1b18c1fee7ff948a6c93144ff29455b4cdd9178549d0b4023947",
+    "charged_seconds_preserved": 10.937776180000583,
+    "policy": "Retain failed opportunity, its original bytes and cost; no retry or replacement. Its configuration remains ineligible under the unchanged complete-three-fold selection criterion. Continue all other originally planned opportunities after fixing the metadata materialization.",
+    "status": "failed",
+    "automatic_retry": false,
+    "replacement_performed": false,
+    "validation_count": 83,
+    "validation_count_scope": "admitted_calendar_not_predictions",
+    "predictions_produced": 0
+  },
+  "scientific_child_entrypoint_unchanged": true,
+  "final_results_claimed": false,
+  "synthetic_tests_passed": 10,
+  "files_sha256": {
+    "notebooks/run_e2_reduced_setup_fix_colab.py": "bb9c0684604955ac0e7dc4d23900befc08acfe065b593e89c3982e7fc9a03171",
+    "scripts/e2_known_setup_failure_selection.py": "efdd9446d420bbcfc3ec66dd516ba1e824eba070c9303293858720c50c56b8aa",
+    "scripts/e2_reduced_github_restore.py": "0ece3c8617b37218a43679b4eb66e4c495d6ff485cb3e6a3bb852128a056374e",
+    "scripts/e2_reduced_github_state.py": "ebf11587a7b3219e2801d0f420c86b4ec5ebe7113f74c40c6388a136bed03b6d",
+    "scripts/e2_registered_budget_extension.py": "900182afb3a29550e51bf4420f362ec986d14cff45f9824ee8e7669aaee3dae4",
+    "scripts/reconcile_e2_github_completed.py": "f9fe82417b338774d8106f0d57de8587aaed2b9050a766ec915d9ff2e7092424",
+    "scripts/run_e2_reduced_github72_delivery.py": "574e70433843d213ba252fc430d2aa411c30237d763f13923e7669c2c0267958",
+    "tests/test_e2_setup_fix_launcher.py": "15e18500c2a1e8371ad1d65ecabd49016424eddec46ea0fcc1c23783a3a0e253",
+    "tests/test_known_setup_failure_selection.py": "87de78ec286febb4d48c5fb587c1366a9338ca7de8ecdde8bcca699bfd7911af"
+  },
+  "real_failure_receipt_validation": "Passed against actual GitHub failure receipt, four original artifacts, backup manifest and canonical cost; no fit or market data opened."
+}
