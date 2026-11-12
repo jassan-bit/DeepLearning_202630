@@ -1,0 +1,91 @@
+{
+  "version": "e2-resource-continuation-registration-v1",
+  "status": "registered_before_execution",
+  "protocol_id": "e2-reduced-delivery-v1",
+  "engine_commit": "1e8745497b484518f766b6da5c19be8362d9add7",
+  "funding_registration_commit": "f540227c23c572b9ca7fb36920588727b029484a",
+  "github_primary_transport_commit": "7ad290ada4ef9908aecfe042b610251206d9b099",
+  "previous_setup_extension_commit": "2fc486f97463984c7d8c058ccde34bae479a68ad",
+  "funding_policy": {
+    "version": "e2-registered-budget-extension-v1",
+    "engine_commit": "1e8745497b484518f766b6da5c19be8362d9add7",
+    "initial_total_hours": 64,
+    "authorized_total_hours": 72,
+    "added_seconds": 28800,
+    "budget_reset": false,
+    "worker_caps_changed": false,
+    "status": "authorized_by_user",
+    "authorization": {
+      "source": "explicit_user_confirmation",
+      "approved_total_hours": 72,
+      "evidence_sha256": "d6390f2764b861643f9861e473b07f3154890b0a035675648743b10bac65e59f"
+    },
+    "sha256": "a1cf19c7a4c88f525afa5d7369546b4e31a898447cee56830ec520bd542e350f"
+  },
+  "resource_policy": {
+    "version": "e2-registered-resource-extension-v1",
+    "engine_commit": "1e8745497b484518f766b6da5c19be8362d9add7",
+    "funding_registration_commit": "f540227c23c572b9ca7fb36920588727b029484a",
+    "initial_phase_wall_seconds": 600,
+    "stage_wall_seconds": 1800,
+    "worker_overhead_seconds": 60,
+    "max_optimization_phases": 3,
+    "max_epochs": 200,
+    "patience_epochs": 20,
+    "authorized_total_hours": 72,
+    "budget_reset": false,
+    "new_opportunities_only": true,
+    "scientific_retry_allowed": false,
+    "models_seeds_data_unchanged": true,
+    "prior_failed_attempts_retried": false,
+    "sha256": "55bdc97156f3ea8524f74e2e077f66ace6ced49a79cc51fc07d2d4972b2a5d23"
+  },
+  "persistent_destination": "github",
+  "Google_Drive_used": false,
+  "new_campaign_credit_granted": false,
+  "budget_reset": false,
+  "models_seeds_data_target_metrics_unchanged": true,
+  "optimizer_max_epochs": 200,
+  "patience_epochs": 20,
+  "prior_failed_attempts_retried": false,
+  "phase_limit_scope": "Prospective1800-second ceiling for newly admitted workers only; completed and failed600-second opportunities remain terminal and unchanged. Same total72-hour cumulative budget. This is a disclosed resource-policy amendment, not a claim of identical compute availability.",
+  "failure_policy": "Preserve the exact setup failure and synchronized wall-limit failures, complete optimizer-step evidence, artifacts and cost. Mark HPO rows failed with no predictions or replacement, exclude incomplete configurations using the unchanged three-fold selector, and continue remaining originally planned opportunities. Unknown errors, unresolved leases and exhausted campaign budget still pause.",
+  "transport_policy": "Preserve all old asset URLs and manifests. New weights use sixteen deterministic SHA256-partitioned prereleases. Retry transient reads, content-addressed Git object creation, and named transfers with identity verification; reconcile uncertain branch updates via intended SHA with force=false. Never repeat an optimizer fit.",
+  "known_failures_preserved": [
+    {
+      "attempt_id": "10098dda29216054585354395d2d8ef4b81c44ad31361b4c11cabf09ee998c41",
+      "kind": "omitted_pinned_source_metadata_setup",
+      "optimizer_steps": 0
+    },
+    {
+      "attempt_id": "9f7b59ed82fc0df667298fdca8ca6d5b18e3aa4d6767fd584962d0dd5390aaa2",
+      "kind": "synchronized600_second_phase_wall_limit",
+      "optimizer_steps": 749,
+      "epochs_completed": 107,
+      "cost_receipt_sha256": "ffa0230f796115d46486501822371cc6d69fb8d9b4bc2115d1c2d1e774a301f0",
+      "charged_seconds": 613.7289963609983
+    }
+  ],
+  "synthetic_tests_passed": 38,
+  "new_model_training_by_preparation": false,
+  "all_sixteen_systems_final_benchmark_complete": false,
+  "files_sha256": {
+    "experiments/e2_resource_continuation_20261112/resource_policy.json": "a02a7895688bb451d3d99932a08131fdf0180410b9b75a8d209b59b0c768f798",
+    "notebooks/run_e2_reduced_resource_fix_colab.py": "8cff5a2212f57bec7f8d3d44767c27c63b3edde63b7e86f6edb7158a252bcfda",
+    "scripts/e2_known_setup_failure_selection.py": "efdd9446d420bbcfc3ec66dd516ba1e824eba070c9303293858720c50c56b8aa",
+    "scripts/e2_reduced_github_restore.py": "0ece3c8617b37218a43679b4eb66e4c495d6ff485cb3e6a3bb852128a056374e",
+    "scripts/e2_reduced_github_state.py": "ebf11587a7b3219e2801d0f420c86b4ec5ebe7113f74c40c6388a136bed03b6d",
+    "scripts/e2_registered_budget_extension.py": "900182afb3a29550e51bf4420f362ec986d14cff45f9824ee8e7669aaee3dae4",
+    "scripts/e2_registered_resource_extension.py": "df8f61cd555f0da009d24220cb07676013b11c876c4dee460472dba5bad95a9e",
+    "scripts/e2_resilient_github_backup.py": "819aef64cfaa59630ee489fc7939d8b1d5ee9766608145b2fe3a4f0522544a64",
+    "scripts/e2_resource_failure_selection.py": "0090fc517091dffec713979a5997d646c5f51a82a49513583526c62039c45252",
+    "scripts/e2_resource_worker.py": "539f043b8a3fb1b9dccbdf9ec73bde63be175baf076fbb6995930cbf70a49a81",
+    "scripts/reconcile_e2_github_completed.py": "f9fe82417b338774d8106f0d57de8587aaed2b9050a766ec915d9ff2e7092424",
+    "scripts/run_e2_reduced_github72_delivery.py": "51d133379a8661ca892ac502190ac18e9eca06f45d7d80a3b4d5c22e044a2841",
+    "tests/test_e2_resilient_github_backup.py": "cc081753638eff5d0eebbb78d316b8ed1a5596fcd72cf1e86d387cead655faf3",
+    "tests/test_e2_resource_budget_extension.py": "882e990f0d9e309cb93dcabdf5bb3dde4f4b9313ce3ef9aa87d7b77ff7b8087d",
+    "tests/test_e2_resource_failure_selection.py": "9560a955e170e8e61a27e8048fc209355fe95aad9544fc0c8a1e8f0a586ee932",
+    "tests/test_e2_resource_fix_launcher.py": "162f3066b6df9c7c30cf8a2645178ae0dd7d8d55a32a4445c47c2fe9822d7106",
+    "tests/test_e2_resource_worker.py": "f01363194f204745b8c25dd76c72b60a372ab371def2d65f96df8053a6f68bd2"
+  }
+}

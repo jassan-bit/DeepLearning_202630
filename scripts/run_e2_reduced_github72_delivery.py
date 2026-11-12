@@ -17,7 +17,7 @@ import subprocess
 import sys
 
 ENGINE_COMMIT = "1e8745497b484518f766b6da5c19be8362d9add7"
-VERSION = "e2-reduced-setup-metadata-controller-v1"
+VERSION = "e2-reduced-resource-continuation-controller-v1"
 FUNDING_COMMIT = "f540227c23c572b9ca7fb36920588727b029484a"
 
 
@@ -38,7 +38,10 @@ def _extension_root(path, commit):
         raise ValueError("The funding extension is bound to another protocol/engine")
     required = ("scripts/run_e2_reduced_github72_delivery.py", "scripts/e2_registered_budget_extension.py",
                 "scripts/e2_reduced_github_state.py", "scripts/e2_reduced_github_restore.py",
-                "scripts/reconcile_e2_github_completed.py", "scripts/e2_known_setup_failure_selection.py")
+                "scripts/reconcile_e2_github_completed.py", "scripts/e2_known_setup_failure_selection.py",
+                "scripts/e2_resource_failure_selection.py", "scripts/e2_registered_resource_extension.py",
+                "scripts/e2_resource_worker.py", "scripts/e2_resilient_github_backup.py",
+                "experiments/e2_resource_continuation_20261112/resource_policy.json")
     for relative in required:
         target = root / relative
         if (not target.resolve().is_relative_to(root.resolve()) or target.is_symlink()
@@ -96,6 +99,24 @@ def funded_state_class(base_class, budget_constructor):
     return FundedState
 
 
+def resource_worker_router(supervisor, engine, extension, extension_commit):
+    """Route only registered E entrypoints to the prospective resource wrapper."""
+    engine=Path(engine).resolve();extension=Path(extension).resolve()
+    modes={engine/'scripts/run_e2_reduced_selection.py':'selection',
+           engine/'scripts/e2_reduced_final.py':'final'}
+    def dispatch(command,*args,**kwargs):
+        command=list(command)
+        if (len(command)!=5 or str(command[1])!='-u' or str(command[3])!='--worker-spec'
+                or Path(command[2]).resolve() not in modes):
+            raise ValueError('Unexpected scientific child invocation; nothing was launched')
+        mode=modes[Path(command[2]).resolve()]
+        routed=[command[0],'-u',extension/'scripts/e2_resource_worker.py',
+            '--mode',mode,'--engine-root',engine,'--extension-root',extension,
+            '--extension-commit',extension_commit,'--worker-spec',command[4]]
+        return supervisor(routed,*args,**kwargs)
+    return dispatch
+
+
 def main(argv=None):
     gate = argparse.ArgumentParser(add_help=False)
     gate.add_argument("--engine-root", type=Path, required=True)
@@ -122,19 +143,24 @@ def main(argv=None):
         raise ValueError("Execution requires every registered source/data/cache/budget path")
     if args.migration_registration_commit != ENGINE_COMMIT:
         raise ValueError("Retain the original migration registration and prior costs")
-    from e2_reduced_github_backup import GitHubBackup
+    from e2_resilient_github_backup import ResilientGitHubBackup
     from e2_reduced_github_state import GitHubState
     from e2_registered_budget_extension import make_funded_budget_class
+    from e2_registered_resource_extension import make_resource_budget_class
     from reconcile_e2_github_completed import reconcile_completed_local
     try:
         # The constructor factory validates the prior explicit authorization;
         # a draft registration never reaches GitHub writes or a GPU worker.
-        subprocess.run(["git", "-C", str(engine), "fetch", "--filter=blob:none", "--depth", "1",
-            "origin", FUNDING_COMMIT], check=True, capture_output=True, text=True)
-        constructor = make_funded_budget_class(registration.get("funding_policy"),
+        for registered in (FUNDING_COMMIT, extension_args.extension_commit):
+            subprocess.run(["git", "-C", str(engine), "fetch", "--filter=blob:none", "--depth", "1",
+                "origin", registered], check=True, capture_output=True, text=True)
+        funded = make_funded_budget_class(registration.get("funding_policy"),
             funding_registration_commit=FUNDING_COMMIT, funding_git_root=engine)
+        constructor = make_resource_budget_class(funded, registration.get("resource_policy"),
+            registration_commit=extension_args.extension_commit, registration_root=engine,
+            extension_root=extension)
         State = funded_state_class(GitHubState, constructor)
-        client = GitHubBackup()
+        client = ResilientGitHubBackup()
         client.preflight()
         reconcile_completed_local(args.output, client)
         state = State(args.output, client)
@@ -144,8 +170,15 @@ def main(argv=None):
                 migration_registration_commit=ENGINE_COMMIT,
                 inherited_ledgers=args.inherited_ledger) as budget:
             state.snapshot("registered_funding_continuation")
+            print(json.dumps({"event":"resource_policy_applied",
+                "phase_wall_seconds":budget.stage_wall_seconds,
+                "resource_registration_commit":extension_args.extension_commit,
+                "funding_registration_commit":FUNDING_COMMIT,
+                "new_budget_credit":False}),flush=True)
             import run_e2_reduced_selection as selection
-            from e2_known_setup_failure_selection import run_selection
+            from e2_resource_failure_selection import run_selection
+            selection.supervise_command = resource_worker_router(selection.supervise_command,
+                engine, extension, extension_args.extension_commit)
             selection.run_selection = run_selection
             scientific.execute_delivery(args, budget, state)
         return 0
