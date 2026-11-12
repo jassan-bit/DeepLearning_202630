@@ -209,10 +209,11 @@
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="47_entrega_consolidada.html">47. Entrega consolidada con la evidencia disponible</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_literatura.html">3. Revisión Sistemática del Estado del Arte</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación de los diez modelos y el candidato adicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación: catálogo obligatorio y antecedentes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark obligatorio: dieciséis sistemas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
@@ -250,10 +251,11 @@
 <li class="toctree-l1"><a class="reference internal" href="39_optimizacion_tiempo.html">39. Optimizar tiempo sin recortar las exigencias de E2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="40_calendario_original.html">40. Calendario original y optimizaciones de implementación</a></li>
 <li class="toctree-l1"><a class="reference internal" href="41_avance_optimizacion_11_origenes.html">41. Ejecución optimizada: avance verificable de once orígenes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html">42. Auditoría de E2 y trabajo que puede adelantarse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html">42. Preparación complementaria a partir de evidencia existente</a></li>
 <li class="toctree-l1"><a class="reference internal" href="43_catalogo_obligatorio.html">43. Catálogo obligatorio: dieciséis sistemas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="44_arquitecturas_publicadas.html">44. Cuerpos publicados, adaptaciones D7 y aplicación de NAS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="45_enmienda_protocolo.html">45. Enmienda del protocolo: calendario común, presupuesto y prueba final</a></li>
+<li class="toctree-l1"><a class="reference internal" href="46_artefactos_y_pilotos.html">46. Preparación técnica opcional: artefactos y pilotos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
 </ul>
 
@@ -423,7 +425,7 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="analisis-exploratorio-de-datos-eda-orientado-a-decisiones">
 <h1>2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones<a class="headerlink" href="#analisis-exploratorio-de-datos-eda-orientado-a-decisiones" title="Link to this heading">#</a></h1>
-<p><strong>Alcance:</strong> los datos, controles y experimentos ya ejecutados de esta sección se conservan como evidencia histórica. No acreditan entrenamiento del catálogo vigente de diez modelos y candidato 11, definido en <a class="reference internal" href="15_revision_modelos.html"><span class="std std-doc">§15</span></a>. Cualquier presupuesto o receta anterior requiere revisión y nuevo registro antes de reutilizarse.</p>
+<p><strong>Alcance:</strong> los datos, controles y experimentos ya ejecutados de esta sección se conservan como evidencia histórica. No acreditan entrenamiento del benchmark común del catálogo obligatorio de 16 sistemas, definido en <a class="reference internal" href="43_catalogo_obligatorio.html"><span class="std std-doc">§43</span></a>. Cualquier presupuesto o receta anterior requiere revisión y nuevo registro antes de reutilizarse.</p>
 <p>El EDA de E1 se <strong>amplía y conserva</strong>. Este capítulo reutiliza sus evidencias de desarrollo y añade análisis reproducibles de transformaciones, casi duplicados, soportes temporales y residuos bajo forward chaining. Cada bloque termina con decisiones de preprocesamiento, consecuencias para arquitectura/validación y riesgos; la <a class="reference internal" href="#e2-trazabilidad-eda"><span class="std std-ref">tabla de trazabilidad</span></a> reúne esas relaciones.</p>
 <p>Se distinguen dos alcances de este EDA: <strong>desarrollo 2023–2024</strong> para diagnósticos y <strong>perfil retrospectivo de la reserva de E1 ya conocida</strong> para describir desplazamiento de distribución. Este último no selecciona arquitecturas, transformaciones, umbrales ni periodos y no convierte la reserva en una confirmación nueva. El benchmark final del panel de configuraciones del registro histórico sigue pendiente; el <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">piloto P0 de desarrollo</span></a>, registrado previamente, ya se ejecutó como otra etapa y no se presenta como ese benchmark.</p>
 <p>El contrato principal sigue siendo D=7, n=7, h=1, cinco canales OHLCV y σ₇ poblacional sin anualizar. D es historia de entrada, n es ventana del objetivo y h es horizonte: no se intercambian. Los resultados n=14/21/28 de E1 son sensibilidades de la etiqueta, no objetivos añadidos al benchmark actual. La guía completa de 65 páginas permite cerrar la clasificación como <strong>F2a, series de tiempo</strong>, según la <a class="reference internal" href="07_ruta_temporal.html#e2-ruta-temporal"><span class="std std-ref">resolución de ruta</span></a>; las covariables y etiquetas heredadas no se modifican por esa reclasificación.</p>

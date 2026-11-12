@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>42. Auditoría de E2 y trabajo que puede adelantarse &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
+    <title>42. Preparación complementaria a partir de evidencia existente &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
   
   
   
@@ -207,10 +207,11 @@
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="47_entrega_consolidada.html">47. Entrega consolidada con la evidencia disponible</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_literatura.html">3. Revisión Sistemática del Estado del Arte</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación de los diez modelos y el candidato adicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación: catálogo obligatorio y antecedentes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark obligatorio: dieciséis sistemas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
@@ -248,10 +249,11 @@
 <li class="toctree-l1"><a class="reference internal" href="39_optimizacion_tiempo.html">39. Optimizar tiempo sin recortar las exigencias de E2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="40_calendario_original.html">40. Calendario original y optimizaciones de implementación</a></li>
 <li class="toctree-l1"><a class="reference internal" href="41_avance_optimizacion_11_origenes.html">41. Ejecución optimizada: avance verificable de once orígenes</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">42. Auditoría de E2 y trabajo que puede adelantarse</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">42. Preparación complementaria a partir de evidencia existente</a></li>
 <li class="toctree-l1"><a class="reference internal" href="43_catalogo_obligatorio.html">43. Catálogo obligatorio: dieciséis sistemas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="44_arquitecturas_publicadas.html">44. Cuerpos publicados, adaptaciones D7 y aplicación de NAS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="45_enmienda_protocolo.html">45. Enmienda del protocolo: calendario común, presupuesto y prueba final</a></li>
+<li class="toctree-l1"><a class="reference internal" href="46_artefactos_y_pilotos.html">46. Preparación técnica opcional: artefactos y pilotos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
 </ul>
 
@@ -382,7 +384,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>42. Auditoría de E2 y trabajo que puede adelantarse</h1>
+    <h1>42. Preparación complementaria a partir de evidencia existente</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -392,11 +394,11 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dictamen">Dictamen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dictamen-del-corte-auditado">Dictamen del corte auditado</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evitar-retrabajo">Evitar retrabajo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reutilizar-lo-que-ya-existe">Reutilizar lo que ya existe</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparacion-realizada-ahora">Preparación realizada ahora</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#orden-de-trabajo">Orden de trabajo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparacion-documental-realizada-en-el-corte-auditado">Preparación documental realizada en el corte auditado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plan-historico-y-pendientes-experimentales-no-ejecutados">Plan histórico y pendientes experimentales no ejecutados</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-y-plan-verificable">Evidencia y plan verificable</a></li>
 </ul>
             </nav>
@@ -409,19 +411,21 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="auditoria-de-e2-y-trabajo-que-puede-adelantarse">
-<h1>42. Auditoría de E2 y trabajo que puede adelantarse<a class="headerlink" href="#auditoria-de-e2-y-trabajo-que-puede-adelantarse" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="preparacion-complementaria-a-partir-de-evidencia-existente">
+<h1>42. Preparación complementaria a partir de evidencia existente<a class="headerlink" href="#preparacion-complementaria-a-partir-de-evidencia-existente" title="Link to this heading">#</a></h1>
 <p><strong>Actualización de catálogo (12/11/2026):</strong> se adopta el <a class="reference internal" href="43_catalogo_obligatorio.html"><span class="std std-doc">alcance obligatorio de 16 sistemas de §43</span></a>. El híbrido adicional y Ridge quedan como opcionales/históricos. Esta auditoría y sus descargas mantienen el corte anterior de 18 sistemas; para preparar el benchmark se utiliza la <a class="reference download internal" download="" href="../_downloads/f531ace1494720cbbc47c0c77186fd01/benchmark_A2_template.csv"><span class="xref download myst">nueva plantilla de 16 filas</span></a>. Los demás pendientes de la guía continúan abiertos.</p>
 <p><strong>Corte de auditoría: 11/11/2026.</strong> Se compara el JBook del commit 181b9e58032c0011e46dcbe334400568fb82c258 con la guía adjunta de <strong>65 páginas</strong>, SHA256 <strong>93499dcfda6a36d9621524a81821470017ba114ca6b08241a35de5a54f74a654</strong>. Las páginas citadas son las impresas del PDF. Es auditoría documental y de código, sin nuevas corridas ni cambios de Colab; no certifica cumplimiento ni calificación.</p>
-<section id="dictamen">
-<h2>Dictamen<a class="headerlink" href="#dictamen" title="Link to this heading">#</a></h2>
-<p><strong>Hay trabajo importante que podemos completar mientras entrena Colab.</strong> Ya existen contrato D7×5, EDA con trazabilidad A.1, recetas/pruebas, tracking propio, selección HPO/NAS registrada y réplica externa con piloto. Faltan cierres bibliográficos, coherencia documental y un puente de análisis para el catálogo vigente. Terminar corridas no resuelve esas deudas.</p>
+<p><strong>Cierre documental del 12/11/2026:</strong> se presenta la evidencia disponible, sus límites y los requisitos pendientes. El plan de trabajo del corte anterior se conserva como historial; no es una instrucción de iniciar nuevas corridas para esta entrega. El protocolo posterior está registrado en <a class="reference internal" href="45_enmienda_protocolo.html"><span class="std std-doc">§45</span></a>, sin que el registro demuestre su ejecución.</p>
+<section id="dictamen-del-corte-auditado">
+<h2>Dictamen del corte auditado<a class="headerlink" href="#dictamen-del-corte-auditado" title="Link to this heading">#</a></h2>
+<p><strong>La evidencia existente permite consolidar documentación sin iniciar nuevos entrenamientos.</strong> Ya existen contrato D7×5, EDA con trazabilidad A.1, recetas/pruebas, tracking propio, selección HPO/NAS registrada y réplica externa con piloto. Faltan cierres bibliográficos, coherencia documental y un puente de análisis para el catálogo vigente. Terminar corridas no resuelve esas deudas.</p>
+<p>La tabla siguiente conserva las acciones propuestas en el corte del 11/11; sus dependencias experimentales no se consideran completadas en el cierre actual.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Prioridad</p></th>
+<tr class="row-odd"><th class="head"><p>Prioridad histórica</p></th>
 <th class="head"><p>Guía</p></th>
 <th class="head"><p>Hallazgo</p></th>
-<th class="head"><p>Acción que puede adelantarse</p></th>
+<th class="head"><p>Acción propuesta en ese corte</p></th>
 <th class="head"><p>Dependencia real</p></th>
 </tr>
 </thead>
@@ -441,7 +445,7 @@
 <tr class="row-even"><td><p><strong>P0</strong></p></td>
 <td><p>pp. 17–19, 44–51, 63</p></td>
 <td><p>Drivers de análisis/controles conservan modelos retirados</p></td>
-<td><p>Adaptadores versionados del catálogo actual y pruebas de artefactos/soportes</p></td>
+<td><p>Adaptadores versionados del catálogo de ese corte y pruebas de artefactos/soportes</p></td>
 <td><p>Tener un script llamado final no acredita integración</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>P1</strong></p></td>
@@ -492,8 +496,8 @@
 </section>
 <section id="evitar-retrabajo">
 <h2>Evitar retrabajo<a class="headerlink" href="#evitar-retrabajo" title="Link to this heading">#</a></h2>
-<p><strong>Curvas:</strong> la guía p. 13 exige train/validación por modelo. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/181b9e58032c0011e46dcbe334400568fb82c258/scripts/e2_cuda_training.py">trainer CUDA</a> genera logs, pero <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/181b9e58032c0011e46dcbe334400568fb82c258/scripts/run_e2_cuda_search.py">el exportador de selección</a> conserva resúmenes de fases y el worker usa un directorio temporal. Los JSON públicos no permiten reconstruir curvas por época. Debemos preparar la persistencia para próximos ajustes finales; no implica repetir toda la HPO ni modificar el controlador activo.</p>
-<p><strong>Integración, corte del 11/11/2026:</strong> había <strong>14 sistemas neuronales y cuatro comparadores: 18 sistemas</strong>. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/181b9e58032c0011e46dcbe334400568fb82c258/scripts/run_e2_final_benchmark.py">driver final histórico</a> y <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/181b9e58032c0011e46dcbe334400568fb82c258/scripts/e2_final_statistics.py">su estadística</a> aún codifican 20 identidades/familias anteriores; los <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/181b9e58032c0011e46dcbe334400568fb82c258/scripts/e2_leakage_controls.py">controles de fuga</a> tampoco equivalen a la auditoría de las 14 redes de ese corte. Podemos preparar ahora adaptadores y pruebas sintéticas de identidad, calendario, máscara común, pares y fallos. Ejecutar el comando histórico completo no cierra este benchmark.</p>
+<p><strong>Curvas:</strong> la guía p. 13 exige train/validación por modelo. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/181b9e58032c0011e46dcbe334400568fb82c258/scripts/e2_cuda_training.py">trainer CUDA</a> genera logs, pero <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/181b9e58032c0011e46dcbe334400568fb82c258/scripts/run_e2_cuda_search.py">el exportador de selección</a> conserva resúmenes de fases y el worker usa un directorio temporal. Los JSON públicos no permiten reconstruir curvas por época. La persistencia por época era un pendiente para futuros ajustes; no se reconstruyen curvas inexistentes ni se repite la HPO en este cierre.</p>
+<p><strong>Integración, corte del 11/11/2026:</strong> había <strong>14 sistemas neuronales y cuatro comparadores: 18 sistemas</strong>. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/181b9e58032c0011e46dcbe334400568fb82c258/scripts/run_e2_final_benchmark.py">driver final histórico</a> y <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/181b9e58032c0011e46dcbe334400568fb82c258/scripts/e2_final_statistics.py">su estadística</a> aún codifican 20 identidades/familias anteriores; los <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/181b9e58032c0011e46dcbe334400568fb82c258/scripts/e2_leakage_controls.py">controles de fuga</a> tampoco equivalen a la auditoría de las 14 redes de ese corte. La auditoría propuso adaptadores y pruebas sintéticas de identidad, calendario, máscara común, pares y fallos. Ejecutar el comando histórico completo no cierra este benchmark.</p>
 <p><strong>Top 10:</strong> la tabla de puntajes no incluye FCN-1D, ResNet-1D, Inception-1D ni LSTM-autoencoder actuales. Hay seis fichas con diagramas gráficos y cuatro altas con esquemas ASCII: no faltan todos los diagramas. Deben distinguirse fuente y adaptación: ensemble Inception frente a un miembro, cabezas propuestas lineales frente a Softplus y fases del autoencoder. Toda reconstrucción bibliográfica actual se fecha como tal, sin hacerla pasar por decisión previa al entrenamiento observado.</p>
 </section>
 <section id="reutilizar-lo-que-ya-existe">
@@ -501,12 +505,12 @@
 <ul class="simple">
 <li><p><strong>EDA/A.1:</strong> <a class="reference internal" href="02_eda.html"><span class="std std-doc">§2</span></a> ya contiene la tabla y la enmienda F2a. Consolidar el mapa evidencia–decisión no exige repetir STL/ADF/KPSS sin motivo. Los residuos P0 no se atribuyen a modelos nuevos.</p></li>
 <li><p><strong>Paper guía:</strong> <a class="reference internal" href="05_paper_guia.html"><span class="std std-doc">§5</span></a> conserva réplica TimeMixer/ETTh1 y piloto TimeMixer/iTransformer/PatchTST con recibos. Puede redactarse el cierre de su alcance sin repetir ETTh1; no demuestra una limitación Bitcoin automáticamente.</p></li>
-<li><p><strong>Tracking:</strong> la guía admite MLflow, W&amp;B u otra herramienta (p. 14). Documentar el diario GitHub y exportar trials es más útil que migrar herramientas durante la búsqueda.</p></li>
-<li><p><strong>Contrato:</strong> conservar D7×5, RMSE, δ heredado, embargo y once orígenes registrados. Once es decisión del proyecto; la guía exige origen móvil, no ese número literal. La propuesta de tres no es operativa.</p></li>
+<li><p><strong>Tracking:</strong> la guía admite MLflow, W&amp;B u otra herramienta (p. 14). Documentar el diario GitHub y exportar trials es más útil que migrar herramientas al cerrar el informe.</p></li>
+<li><p><strong>Contrato:</strong> conservar D7×5, RMSE, δ heredado y embargo. Los once orígenes pertenecen al plan histórico. §45 registra tres anclas HPO y diez reajustes mensuales, todavía sin cierre de ejecución. La guía exige origen móvil, no un número literal de búsquedas.</p></li>
 </ul>
 </section>
-<section id="preparacion-realizada-ahora">
-<h2>Preparación realizada ahora<a class="headerlink" href="#preparacion-realizada-ahora" title="Link to this heading">#</a></h2>
+<section id="preparacion-documental-realizada-en-el-corte-auditado">
+<h2>Preparación documental realizada en el corte auditado<a class="headerlink" href="#preparacion-documental-realizada-en-el-corte-auditado" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Notas de vigencia y <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">cronología de selección (§9)</span></a>, separada del cierre inferencial pendiente.</p></li>
 <li><p>Tres fuentes bibliográficas para las cuatro altas (FCN/ResNet comparten fuente). InceptionTime y LSTM-SAE tienen DOI editorial verificado; Wang se identifica como preprint oficial con DOI arXiv, dejando separada la verificación editorial pendiente. No se declara revisión sistemática cerrada.</p></li>
@@ -514,13 +518,13 @@
 <li><p><a class="reference download internal" download="" href="../_downloads/64ee0a5c3cedfad0270d30d1f6125e73/benchmark_A2_template.csv"><span class="xref download myst">A.2 histórica: 18 filas del benchmark</span></a>, <a class="reference download internal" download="" href="../_downloads/b10a53ca7d6887b7bbb8409333c2e922/contrasts_A3_template.csv"><span class="xref download myst">A.3: tabla de contrastes</span></a> y <a class="reference download internal" download="" href="../_downloads/cdb05f0a06228064e1ed8a6831cb51f9/RQ_working_matrix.csv"><span class="xref download myst">matriz de trabajo de tres RQ</span></a>. Las métricas finales, p-valores y R quedan vacíos. Son plantillas, no resultados ni preregistro nuevo.</p></li>
 </ol>
 </section>
-<section id="orden-de-trabajo">
-<h2>Orden de trabajo<a class="headerlink" href="#orden-de-trabajo" title="Link to this heading">#</a></h2>
-<p><strong>Sin nuevos ajustes:</strong> completar fichas/bibliografía/puntajes; conciliar consultas/PRISMA; consolidar EDA/contrato, entorno/licencias/tracking y el alcance de la réplica. Las notas de vigencia y plantillas ya quedan preparadas en esta revisión.</p>
-<p><strong>Código CPU/fixtures en paralelo:</strong> persistencia de curvas, esquemas y adaptadores del catálogo actual; auditoría de soportes/firmas; transformadores de robustez y contratos de calibración/casos. Preparar y probar software no equivale a ejecutar ni aprobar el análisis científico.</p>
+<section id="plan-historico-y-pendientes-experimentales-no-ejecutados">
+<h2>Plan histórico y pendientes experimentales no ejecutados<a class="headerlink" href="#plan-historico-y-pendientes-experimentales-no-ejecutados" title="Link to this heading">#</a></h2>
+<p><strong>Preparación documental del plan anterior, sin nuevos ajustes:</strong> completar fichas/bibliografía/puntajes; conciliar consultas/PRISMA; consolidar EDA/contrato, entorno/licencias/tracking y el alcance de la réplica. Las notas de vigencia y plantillas ya quedan preparadas en esta revisión.</p>
+<p><strong>Software contemplado por el plan anterior:</strong> persistencia de curvas, esquemas y adaptadores del catálogo de ese corte; auditoría de soportes/firmas; transformadores de robustez y contratos de calibración/casos. Preparar y probar software no equivale a ejecutar ni aprobar el análisis científico.</p>
 <p><strong>Antes de futuras fases afectadas:</strong> fechar comparadores/familias, δg, unidades/bloques, exclusiones, potencia/R y calibración, declarando resultados ya conocidos. El piloto de potencia requiere al menos cinco semillas en dos o tres modelos representativos (p. 43); no se fijará R por el saldo ni retroactivamente.</p>
-<p><strong>Con evidencia final:</strong> benchmark/IC, inferencia/Pareto, robustez, incertidumbre Top 3, casos, tres ablaciones del mejor modelo y reproducción independiente. El ganador podría no ser el híbrido: sus controles no bastan si gana otro. Las 608 fechas conocidas conservan alcance exploratorio. El resumen final de ≤250 palabras y las conclusiones necesitan esas cifras.</p>
-<p>Dejar método, fuentes, contratos y plantillas listos ahora reduce retrabajo; no elimina las actualizaciones que genuinamente dependen de resultados.</p>
+<p><strong>Con evidencia final:</strong> benchmark/IC, inferencia/Pareto, robustez, incertidumbre Top 3, casos, tres ablaciones del mejor modelo y reproducción independiente. El ganador podría no ser el híbrido: sus controles no bastan si gana otro. Las 608 fechas conocidas conservan alcance exploratorio. El cierre actual puede resumir las cifras parciales y responder cada RQ como no resuelta cuando corresponda; no formula conclusiones comparativas sin esas evidencias.</p>
+<p>El cierre reúne método, fuentes, contratos y resultados disponibles. Las dependencias experimentales anteriores se declaran como pendientes, sin convertirlas en resultados ni en autorización de nuevas corridas.</p>
 </section>
 <section id="evidencia-y-plan-verificable">
 <h2>Evidencia y plan verificable<a class="headerlink" href="#evidencia-y-plan-verificable" title="Link to this heading">#</a></h2>
@@ -599,11 +603,11 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dictamen">Dictamen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dictamen-del-corte-auditado">Dictamen del corte auditado</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evitar-retrabajo">Evitar retrabajo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reutilizar-lo-que-ya-existe">Reutilizar lo que ya existe</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparacion-realizada-ahora">Preparación realizada ahora</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#orden-de-trabajo">Orden de trabajo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparacion-documental-realizada-en-el-corte-auditado">Preparación documental realizada en el corte auditado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plan-historico-y-pendientes-experimentales-no-ejecutados">Plan histórico y pendientes experimentales no ejecutados</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-y-plan-verificable">Evidencia y plan verificable</a></li>
 </ul>
   </nav></div>

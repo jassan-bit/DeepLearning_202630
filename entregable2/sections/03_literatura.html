@@ -67,7 +67,7 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="4. Implementación de los diez modelos y el candidato adicional" href="04_implementacion.html" />
+    <link rel="next" title="4. Implementación: catálogo obligatorio y antecedentes" href="04_implementacion.html" />
     <link rel="prev" title="2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones" href="02_eda.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
@@ -209,10 +209,11 @@
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="47_entrega_consolidada.html">47. Entrega consolidada con la evidencia disponible</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Revisión Sistemática del Estado del Arte</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación de los diez modelos y el candidato adicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación: catálogo obligatorio y antecedentes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark obligatorio: dieciséis sistemas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
@@ -250,10 +251,11 @@
 <li class="toctree-l1"><a class="reference internal" href="39_optimizacion_tiempo.html">39. Optimizar tiempo sin recortar las exigencias de E2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="40_calendario_original.html">40. Calendario original y optimizaciones de implementación</a></li>
 <li class="toctree-l1"><a class="reference internal" href="41_avance_optimizacion_11_origenes.html">41. Ejecución optimizada: avance verificable de once orígenes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html">42. Auditoría de E2 y trabajo que puede adelantarse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html">42. Preparación complementaria a partir de evidencia existente</a></li>
 <li class="toctree-l1"><a class="reference internal" href="43_catalogo_obligatorio.html">43. Catálogo obligatorio: dieciséis sistemas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="44_arquitecturas_publicadas.html">44. Cuerpos publicados, adaptaciones D7 y aplicación de NAS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="45_enmienda_protocolo.html">45. Enmienda del protocolo: calendario común, presupuesto y prueba final</a></li>
+<li class="toctree-l1"><a class="reference internal" href="46_artefactos_y_pilotos.html">46. Preparación técnica opcional: artefactos y pilotos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
 </ul>
 
@@ -443,7 +445,7 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="revision-sistematica-del-estado-del-arte">
 <h1>3. Revisión Sistemática del Estado del Arte<a class="headerlink" href="#revision-sistematica-del-estado-del-arte" title="Link to this heading">#</a></h1>
-<p><strong>Catálogo vigente:</strong> diez modelos y CNN-1D + LSTM + atención temporal como candidato 11, definidos en <a class="reference internal" href="15_revision_modelos.html"><span class="std std-doc">§15</span></a>, sin superioridad demostrada. Los conteos bibliográficos siguientes son cortes fechados; no acreditan ejecución del benchmark ni se transfieren entre versiones de modelos.</p>
+<p><strong>Catálogo vigente (12/11/2026):</strong> <a class="reference internal" href="43_catalogo_obligatorio.html"><span class="std std-doc">dieciséis sistemas obligatorios (§43)</span></a>: diez modelos del Top 10, tres referencias E1 y Persistence, SeasonalNaive y ARIMA. El híbrido CNN-1D + LSTM + atención temporal y Ridge son antecedentes opcionales. <a class="reference internal" href="44_arquitecturas_publicadas.html"><span class="std std-doc">§44</span></a> conserva o restaura nueve cuerpos definidos y mantiene NAS para TiDE. La selección HPO/NAS ya ejecutada corresponde al plan anterior de catorce redes; sus resultados no acreditan los cuatro cuerpos restaurados. Los conteos bibliográficos siguientes son cortes fechados y no acreditan el benchmark final.</p>
 <section id="actualizacion-del-08-11-2026-busquedas-nativas-y-evidencia-para-la-revision">
 <h2>Actualización del 08/11/2026: búsquedas nativas y evidencia para la revisión<a class="headerlink" href="#actualizacion-del-08-11-2026-busquedas-nativas-y-evidencia-para-la-revision" title="Link to this heading">#</a></h2>
 <p>Esta ronda complementa el expediente del 05–06/11 sin reemplazarlo. <strong>Una exportación nueva no corrige automáticamente una búsqueda anterior incompleta.</strong> Los 374 registros no recibidos del universo Scopus histórico de 7.874 siguen siendo una limitación de aquella consulta mientras no se concilien sus identificadores y alcance. Del mismo modo, los resultados de IEEE y arXiv de esta ronda no deben añadirse directamente a los 7.833 grupos históricos: primero se necesita deduplicación entre rondas y adjudicación de versiones de un mismo estudio.</p>
@@ -639,7 +641,7 @@
 <p><strong>Resultado bibliográfico:</strong> selección provisional de <strong>diez modelos de Deep Learning para pronosticar la volatilidad de Bitcoin</strong>, con exportaciones de <strong>WoS y Scopus</strong>, lectura de <strong>diez originales completos —215 páginas físicas—</strong> y código de autores identificado por commit y hash. La ampliación del <strong>06/11/2026</strong> añade un cribado local por reglas de los <strong>7.833 grupos recibidos</strong>, con decisión provisional y motivo por registro; no cierra la elegibilidad global por texto completo.</p>
 <p>Las fichas, el flujo inicial y los contadores bibliográficos del <strong>05/11/2026</strong> se conservan como evidencia histórica. La <a class="reference internal" href="05_paper_guia.html"><span class="std std-doc">sección 5</span></a> documenta después la réplica externa de TimeMixer y el piloto de tres modelos en ETTh1. En la etapa actual se implementaron adaptadores D7 para el piloto P0 de desarrollo, cuya ejecución completó 220 trayectorias y 440 ajustes bajo el <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">protocolo registrado</span></a>; esto todavía no acredita el benchmark final, la búsqueda HPO ni la potencia del procedimiento definitivo.</p>
 <p><strong>Estado de la revisión:</strong> recepción, deduplicación, extracción de diez originales y primera pasada por reglas sobre todos los grupos recibidos completadas. Permanecen abiertos la cobertura de las consultas, la validación editorial de las decisiones provisionales, la elegibilidad por texto completo, los siete cuerpos aplicados de apoyo y los cuartiles por año. También se ejecutaron tres consultas <strong>locales</strong> sobre los registros recibidos; siguen pendientes sus búsquedas nativas WoS/Scopus y los originales de los mecanismos de origen. No se presenta un PRISMA global cerrado.</p>
-<p>La selección vigente se limita al catálogo de §15. Los requisitos de referencias y controles de la guía deben reconciliarse explícitamente antes del nuevo registro, sin añadir modelos tácitos.</p>
+<p>El catálogo de §15 documenta la propuesta de aquel corte. El alcance obligatorio posterior se fija en <a class="reference internal" href="43_catalogo_obligatorio.html"><span class="std std-doc">§43</span></a>, las identidades arquitectónicas en <a class="reference internal" href="44_arquitecturas_publicadas.html"><span class="std std-doc">§44</span></a> y el calendario común en la <a class="reference internal" href="45_enmienda_protocolo.html"><span class="std std-doc">enmienda registrada de §45</span></a>.</p>
 <p>Los protocolos anteriores conservan su valor histórico; sus conteos y recetas no definen la selección vigente.</p>
 </section>
 <section id="estrategia-de-busqueda-y-trazabilidad">
@@ -859,7 +861,7 @@ AND (language OR speech OR audio) AND (transfer* OR adapt*))
 </section>
 <section id="catalogo-vigente-para-bitcoin">
 <h2>3.2 Catálogo vigente para Bitcoin<a class="headerlink" href="#catalogo-vigente-para-bitcoin" title="Link to this heading">#</a></h2>
-<p>La lista anterior y su ranking se retiran de la presentación. La selección vigente es única:</p>
+<p>El Top 10 vigente conserva estos diez nombres; la identidad de sus cuerpos y adaptaciones se consulta en <a class="reference internal" href="44_arquitecturas_publicadas.html"><span class="std std-doc">§44</span></a>. Esta lista no es un ranking de resultados:</p>
 <ol class="arabic simple">
 <li><p><strong>FCN-1D</strong>.</p></li>
 <li><p><strong>ResNet-1D</strong>.</p></li>
@@ -872,11 +874,11 @@ AND (language OR speech OR audio) AND (transfer* OR adapt*))
 <li><p><strong>PatchTST</strong>.</p></li>
 <li><p><strong>iTransformer</strong>.</p></li>
 </ol>
-<p><strong>11. CNN-1D + LSTM + atención temporal</strong>, candidato adicional sin superioridad demostrada. La <a class="reference internal" href="15_revision_modelos.html"><span class="std std-doc">sección 15</span></a> establece alcance y controles. No hay resultados del benchmark completo que permitan ordenar estos modelos por desempeño.</p>
+<p>MLP16, LSTM32 y GRU32, más Persistence, SeasonalNaive y ARIMA, completan los <strong>dieciséis sistemas obligatorios</strong>. <strong>CNN-1D + LSTM + atención temporal</strong> conserva su ficha como candidato adicional opcional, sin superioridad demostrada; Ridge también queda fuera del alcance obligatorio. La <a class="reference internal" href="15_revision_modelos.html"><span class="std std-doc">sección 15</span></a> conserva la propuesta histórica. No hay resultados del benchmark completo que permitan ordenar los modelos vigentes por desempeño.</p>
 </section>
 <section id="fuentes-y-adaptacion-de-los-modelos-vigentes">
 <h2>3.3 Fuentes y adaptación de los modelos vigentes<a class="headerlink" href="#fuentes-y-adaptacion-de-los-modelos-vigentes" title="Link to this heading">#</a></h2>
-<p>Las <a class="reference internal" href="16_fichas_nuevas.html"><span class="std std-doc">fichas de FCN-1D, ResNet-1D, Inception-1D y LSTM-autoencoder con predictor</span></a> separan arquitectura original, evidencia de otras tareas y adaptación a regresión. Las siguientes seis fichas conservan información de las fuentes y decisiones previas útiles, <strong>no certifican su integración en el nuevo runner ni trasladan registros experimentales al diseño vigente</strong>.</p>
+<p>Las <a class="reference internal" href="16_fichas_nuevas.html"><span class="std std-doc">fichas de FCN-1D, ResNet-1D, Inception-1D y LSTM-autoencoder con predictor</span></a> separan arquitectura original, evidencia de otras tareas y adaptación a regresión. Las siguientes seis fichas conservan información de las fuentes y decisiones previas útiles. Sus descripciones de implementaciones pertenecen al corte bibliográfico indicado; la restauración posterior de SAE, TimesNet, TimeMixer y PatchTST se documenta en <a class="reference internal" href="44_arquitecturas_publicadas.html"><span class="std std-doc">§44</span></a>. <strong>No certifican la ejecución de esas recetas nuevas ni transfieren a ellas resultados del diseño anterior.</strong></p>
 <section id="timesnet-fuente-y-adaptacion">
 <h3>TimesNet · fuente y adaptación<a class="headerlink" href="#timesnet-fuente-y-adaptacion" title="Link to this heading">#</a></h3>
 <p><strong>Familia:</strong> Convolución multiescala / variación2D.</p>
@@ -1057,7 +1059,7 @@ H^{(0)}=X^\top W_e,\qquad H^{(\ell+1)}=\operatorname{Encoder}(H^{(\ell)}),\qquad
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">4. Implementación de los diez modelos y el candidato adicional</p>
+        <p class="prev-next-title">4. Implementación: catálogo obligatorio y antecedentes</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

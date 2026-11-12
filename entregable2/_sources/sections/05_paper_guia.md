@@ -1,6 +1,6 @@
 # 5. Paper Guía y Replicación
 
-**Alcance:** los datos, controles y experimentos ya ejecutados de esta sección se conservan como evidencia histórica. No acreditan entrenamiento del catálogo vigente de diez modelos y candidato 11, definido en [§15](15_revision_modelos.md). Cualquier presupuesto o receta anterior requiere revisión y nuevo registro antes de reutilizarse.
+**Alcance:** los datos, controles y experimentos ya ejecutados de esta sección se conservan como evidencia histórica. No acreditan el benchmark del catálogo obligatorio vigente de 16 sistemas, definido en [§43](43_catalogo_obligatorio.md), ni las recetas restauradas de [§44](44_arquitecturas_publicadas.md). Cualquier presupuesto o receta anterior requiere revisión y nuevo registro antes de reutilizarse.
 
 Este capítulo desarrolla la sección 5 de la guía completa de 65 páginas, recibida después de sus dos capturas iniciales (página16 y continuación). Distingue la réplica externa de ETTh1 del benchmark Bitcoin D7. El diseño, las fuentes, las cinco semillas y el criterio de comparación se registraron antes de los ajustes con datos.
 
@@ -240,4 +240,4 @@ La reproducción separa `validate`, `register`, cinco `fit`, un `score` posterio
 | Preregistro completo de §9.1 | Guía completa recibida; cronología acotada de la réplica comprobable y revisión integral de sus requisitos separada del protocolo Bitcoin |
 | Motivación para E3 | Condiciones y candidatos de investigación documentados; originalidad y validación D7 pendientes |
 
-Estos experimentos suman **veinte ajustes externos de modelos**. La revisión de adaptadores previa es histórica y no acredita la integración del catálogo vigente; el recibo del 06/11 acredita inicio de HPO, todavía sin cierre publicado; potencia y benchmark Bitcoin de §4 no tienen resultados finales publicados. Se preservan la métrica, test y margen heredados. La enmienda histórica separaba 53 fechas de P1/calibración; no fija el diseño del catálogo vigente, cuya nueva enmienda está pendiente.
+Estos experimentos suman **veinte ajustes externos de modelos**. La revisión de adaptadores previa es histórica y no acredita la integración del catálogo vigente; el recibo del 06/11 acredita inicio de HPO, todavía sin cierre publicado; potencia y benchmark Bitcoin de §4 no tienen resultados finales publicados. Se preservan la métrica, test y margen heredados. La enmienda histórica separaba 53 fechas de P1/calibración; no fija el diseño del catálogo vigente. El protocolo nuevo está registrado en [§45](45_enmienda_protocolo.md), con ejecución y cierre experimental pendientes.

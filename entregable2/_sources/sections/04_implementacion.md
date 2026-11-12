@@ -1,20 +1,24 @@
-# 4. Implementación de los diez modelos y el candidato adicional
+# 4. Implementación: catálogo obligatorio y antecedentes
 
-**Vigencia documental (11/11/2026):** existe selección HPO/NAS registrada y ejecutada para el catálogo actual; las afirmaciones de ausencia de HPO o de falta de registro de selección corresponden a cortes anteriores. El benchmark final, R y su cierre inferencial siguen pendientes. [Registro y alcance actuales (§9)](09_protocolo_registrado.md) · [Calendario (§40)](40_calendario_original.md) · [Corte de resultados (§41)](41_avance_optimizacion_11_origenes.md) · [Auditoría y trabajo paralelo (§42)](42_auditoria_y_trabajo_paralelo.md).
+**Vigencia documental (12/11/2026):** la selección HPO/NAS ejecutada parcialmente corresponde al plan histórico de catorce redes. El catálogo obligatorio vigente es de **16 sistemas**, con las identidades de [§43](43_catalogo_obligatorio.md), las arquitecturas de [§44](44_arquitecturas_publicadas.md) y el protocolo registrado de [§45](45_enmienda_protocolo.md). Esos registros históricos no cierran el benchmark vigente ni acreditan las cuatro recetas restauradas. R y el cierre inferencial siguen pendientes. [Corte verificable de resultados (§41)](41_avance_optimizacion_11_origenes.md).
+
+El híbrido adicional y Ridge se conservan como opcionales/históricos. Este capítulo archiva los prototipos e integraciones anteriores; el inventario vigente se consulta en §§43–45.
+
+## Antecedentes de implementación, corte del 08–11/11/2026
 
 **Integración posterior:** [§24 comprueba el recorrido sintético común de 18 sistemas](24_ejecutor_comun.md), con referencias separadas y sin ajustes de mercado.
 
 **Avance posterior:** [§23 implementa los cuerpos de §22 y los controles temporales](23_implementacion_recetas.md), con pruebas exclusivamente sintéticas y preservación de los prototipos anteriores. No es un benchmark de mercado.
 
-**Avance de software:** fábrica de los once candidatos, híbrido y flujo sintético implementados y verificados; recetas provisionales, sin datos de mercado. Véase [§18: integración y pruebas sintéticas](18_integracion_sintetica.md). No hay HPO ni benchmark vigente ejecutado.
+**Avance de software:** fábrica de los once candidatos, híbrido y flujo sintético implementados y verificados; recetas provisionales, sin datos de mercado. Véase [§18: integración y pruebas sintéticas](18_integracion_sintetica.md). En el corte sintético de §18 todavía no se había ejecutado la selección posterior de §41; el benchmark vigente sigue sin terminar.
 
-**Catálogo vigente al 08/11/2026:** FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder con predictor, TimesNet, TSMixer, TiDE, TimeMixer, PatchTST e iTransformer. El modelo 11 activo es **CNN-1D + LSTM + atención temporal**, un diseño editorial propuesto, implementado provisionalmente y probado con datos sintéticos, sin entrenamiento de mercado y sin superioridad demostrada. HAR + red residual queda como prototipo histórico inactivo. Esta selección sustituye el catálogo anterior en la presentación de E2; sus registros experimentales se conservan sólo como trazabilidad.
+**Catálogo histórico al 08/11/2026:** FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder con predictor, TimesNet, TSMixer, TiDE, TimeMixer, PatchTST e iTransformer. En ese corte, el modelo 11 propuesto era **CNN-1D + LSTM + atención temporal**, un diseño editorial propuesto, implementado provisionalmente y probado con datos sintéticos, sin entrenamiento de mercado y sin superioridad demostrada. HAR + red residual queda como prototipo histórico inactivo. Esta selección sustituye el catálogo anterior en la presentación de E2; sus registros experimentales se conservan sólo como trazabilidad.
 
-**Estado real:** se conservan cuatro prototipos compactos y el corrector HAR anterior, aislados del ejecutor histórico, con diez pruebas sintéticas documentadas. Esas pruebas no cubren el nuevo híbrido CNN-1D + LSTM + atención temporal. Los otros seis modelos tienen código histórico que necesita integración y validación en el nuevo diseño. **No hay entrenamiento de mercado, HPO, dimensionamiento de repeticiones ni resultados finales del catálogo vigente.**
+**Estado del prototipo al 08/11/2026:** se conservan cuatro prototipos compactos y el corrector HAR anterior, aislados del ejecutor histórico, con diez pruebas sintéticas documentadas. Esas pruebas no cubren el nuevo híbrido CNN-1D + LSTM + atención temporal. Los otros seis modelos tienen código histórico que necesita integración y validación en el nuevo diseño. **Ese corte no incluía entrenamiento de mercado, HPO, dimensionamiento ni resultados finales de esos prototipos.** La selección parcial posterior permanece separada de este antecedente.
 
 ## 4.0 Implementación preliminar y alcance
 
-El código previo se conserva en [redes propuestas](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/e2_proposed_models.py), [guardas temporales](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/e2_proposed_temporal.py) y [pruebas sintéticas](https://github.com/jassan-bit/DeepLearning_202630/blob/main/tests/test_e2_proposed_benchmark.py). No implementa un ejecutor completo de entrenamiento, selección y evaluación ni contiene el nuevo híbrido activo.
+El código previo se conserva en [redes propuestas](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/e2_proposed_models.py), [guardas temporales](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/e2_proposed_temporal.py) y [pruebas sintéticas](https://github.com/jassan-bit/DeepLearning_202630/blob/main/tests/test_e2_proposed_benchmark.py). No implementa un ejecutor completo de entrenamiento, selección y evaluación ni contiene el híbrido histórico opcional.
 
 Las [fichas bibliográficas](16_fichas_nuevas.md) describen fuentes y adaptaciones posibles. No son la receta de los prototipos compactos ni configuraciones ya seleccionadas:
 
@@ -25,7 +29,7 @@ Las [fichas bibliográficas](16_fichas_nuevas.md) describen fuentes y adaptacion
 | Inception-1D | Bottleneck, ramas 1/3/5 y max-pooling, una red compacta | No reproduce los módulos ni el ensemble de InceptionTime |
 | LSTM-autoencoder con predictor | Encoder LSTM, decoder de latente repetido y cabeza escalar; reconstrucción y predicción separadas | Sin política integrada de preentrenamiento, congelado, selección de épocas o ajuste supervisado |
 | HAR + red residual, histórico inactivo | Corrección firmada de D7×5 añadida a un pronóstico HAR externo; truncamiento a cero en inferencia | Se conserva sin activarlo ni transferir sus pruebas al nuevo candidato |
-| CNN-1D + LSTM + atención temporal, candidato activo | Prototipo y pruebas sintéticas disponibles | Construir y verificar el flujo causal, la atención sobre siete estados y la cabeza de σ₇ antes de entrenar |
+| CNN-1D + LSTM + atención temporal, candidato histórico opcional | Prototipo y pruebas sintéticas disponibles | Construir y verificar el flujo causal, la atención sobre siete estados y la cabeza de σ₇ antes de entrenar |
 
 Las cuatro redes reciben `(batch,7,5)` y producen `(batch,)` mediante Softplus. Son decisiones del prototipo, no valores atribuidos a los artículos. El padding simétrico opera dentro de una ventana ya observada: no añade historia ni constituye por sí mismo una convolución causal intraventana.
 
@@ -35,7 +39,7 @@ Los diez modelos y el híbrido activo comparten el [contrato sincronizado E1–E
 
 El flujo propuesto es **convoluciones 1D causales que conservan siete posiciones → LSTM unidireccional con `return_sequences=True` → atención temporal sólo sobre los siete estados observados → vector de contexto → cabeza escalar de σ₇**. La convolución utiliza padding sólo a la izquierda cuando sea necesario; no incorpora días anteriores a D7 como datos nuevos. La atención resume la ventana disponible y no consulta la etiqueta futura. Anchos, kernels, profundidad, función de atención, enlace de salida e hiperparámetros definitivos quedan pendientes de definición y registro.
 
-Los controles propuestos son **CNN sola**, **LSTM sola** y **CNN–LSTM sin atención**, con el mismo soporte y calendario. Son ablaciones del híbrido, no nuevas posiciones del catálogo. El soporte HAR 1/7/22 y el cross-fitting residual pertenecen al prototipo anterior y dejan de ser requisitos del candidato activo.
+Los controles propuestos son **CNN sola**, **LSTM sola** y **CNN–LSTM sin atención**, con el mismo soporte y calendario. Son ablaciones del híbrido, no nuevas posiciones del catálogo. El soporte HAR 1/7/22 y el cross-fitting residual pertenecen al prototipo anterior y dejan de ser requisitos del candidato histórico opcional.
 
 ## 4.2 Seis adaptadores integrados: controles antes de mercado
 
@@ -68,7 +72,7 @@ El corrector HAR histórico inactivo calcula `max(0, HAR + corrección)`. Si la 
 
 Las pruebas nuevas deberán cubrir formas, gradientes, independencia de los acompañantes del batch, checkpoint y causalidad, además de duplicados pertinentes y controles negativos. Son verificaciones propuestas, todavía no ejecutadas para el híbrido. Un fallo requiere corrección y nueva verificación; no se resuelve describiéndolo como limitación menor.
 
-## 4.5 Secuencia necesaria del nuevo experimento
+## 4.5 Secuencia histórica propuesta para el experimento anterior
 
 - Fijar fuentes, correspondencia con el curso y recetas de los diez modelos y del candidato 11; distinguir adaptación propia de reproducción. Resolver la condición NAS conforme a [§14](14_arquitecturas.md).
 - Implementar CNN-1D + LSTM + atención temporal y sus ablaciones conforme al contrato común. Integrar los seis adaptadores en un ejecutor nuevo sin modificar el código ni los protocolos históricos.
@@ -76,7 +80,7 @@ Las pruebas nuevas deberán cubrir formas, gradientes, independencia de los acom
 - Validar el pipeline y publicar su propio preregistro antes de ajustes de mercado. Definir selección temporal, congelación de recetas y dimensionamiento sin trasladar un R o presupuesto anterior.
 - Cerrar pesos y, cuando correspondan, calibradores antes de evaluar; publicar resultados y costes medidos, también fallos y desenlaces desfavorables.
 
-El desarrollo y la reserva histórica ya observados no recuperan cegamiento al cambiar los modelos. Una evaluación sobre esa reserva mantendrá alcance exploratorio.
+La secuencia anterior se conserva como antecedente, sin instruir nuevas corridas para el cierre documental actual. El desarrollo y la reserva histórica ya observados no recuperan cegamiento al cambiar los modelos. Una evaluación sobre esa reserva mantendrá alcance exploratorio.
 
 ## 4.6 Trazabilidad sin reactivar el catálogo retirado
 

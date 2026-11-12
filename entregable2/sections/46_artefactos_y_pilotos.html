@@ -1,0 +1,596 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>46. Preparación técnica opcional: artefactos y pilotos &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/46_artefactos_y_pilotos';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Referencias de contexto y revisión E2" href="referencias.html" />
+    <link rel="prev" title="45. Enmienda del protocolo: calendario común, presupuesto y prueba final" href="45_enmienda_protocolo.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 2 · Bitcoin: pronóstico de volatilidad</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="47_entrega_consolidada.html">47. Entrega consolidada con la evidencia disponible</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_literatura.html">3. Revisión Sistemática del Estado del Arte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación: catálogo obligatorio y antecedentes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark obligatorio: dieciséis sistemas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Registro de selección, cierre pendiente y trazabilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de datos y auditoría formal de fuga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. HPO y equidad para el catálogo vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Techo de desempeño, incertidumbre y análisis de errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Agregación estadística e interpretación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas del catálogo vigente y adaptación a D7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo vigente: diez modelos y candidato 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_fichas_nuevas.html">16. Fichas bibliográficas de las cuatro altas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato sincronizado de E1, E2 y E3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_integracion_sintetica.html">18. Implementación provisional y verificación sintética</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_plan_auditoria.html">19. Plan experimental propuesto y auditoría sin entrenamiento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_contraste_guia.html">20. Cotejo del plan con la guía original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_comparadores_nas.html">21. Comparadores temporales y decisión NAS por receta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22_fichas_recetas.html">22. Once fichas de recetas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_implementacion_recetas.html">23. Implementación de recetas y controles temporales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="24_ejecutor_comun.html">24. Ejecutor común y disponibilidad temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="25_matriz_cierre.html">25. Matriz de cierre antes del benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="26_registro_recetas.html">26. Registro por receta: fuentes, NAS, HPO e integración</a></li>
+<li class="toctree-l1"><a class="reference internal" href="27_nas_hpo_presupuesto.html">27. Decisiones NAS, rangos HPO y presupuesto para Codex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="28_fabricas_nas.html">28. Fábricas NAS implementadas y verificadas sintéticamente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="29_entrenamiento_temporal.html">29. Entrenamiento por etapas, selección temporal y perfilado CPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="30_piloto_nube.html">30. Piloto de desarrollo en la nube de Codex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="31_optimizacion_nube.html">31. Optimización de CPU y presupuesto de cómputo en la nube</a></li>
+<li class="toctree-l1"><a class="reference internal" href="32_ejecucion_gpu.html">32. Ejecución CUDA preparada y piloto de recursos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="33_piloto_gpu.html">33. Primer piloto de recursos en GPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="34_perfil_gpu_ampliado.html">34. Perfil GPU ampliado y viabilidad del extremo TimesNet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="35_busqueda_cuda_reanudable.html">35. Selección CUDA con presupuesto y continuación en GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="36_avance_campana_cuda.html">36. Avance parcial de la campaña CUDA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="37_ajuste_guia.html">37. Ajuste de cómputo conforme a la guía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="38_cumplimiento_guia.html">38. Exigencias de la guía, evidencia y pendientes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="39_optimizacion_tiempo.html">39. Optimizar tiempo sin recortar las exigencias de E2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="40_calendario_original.html">40. Calendario original y optimizaciones de implementación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="41_avance_optimizacion_11_origenes.html">41. Ejecución optimizada: avance verificable de once orígenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html">42. Preparación complementaria a partir de evidencia existente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="43_catalogo_obligatorio.html">43. Catálogo obligatorio: dieciséis sistemas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="44_arquitecturas_publicadas.html">44. Cuerpos publicados, adaptaciones D7 y aplicación de NAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="45_enmienda_protocolo.html">45. Enmienda del protocolo: calendario común, presupuesto y prueba final</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">46. Preparación técnica opcional: artefactos y pilotos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><p class="small">Entregable 2 · Jassan Arteta · 2026-30</p></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/46_artefactos_y_pilotos.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>46. Preparación técnica opcional: artefactos y pilotos</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-queda-preparado">Qué queda preparado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-se-guarda-y-donde">Qué se guarda y dónde</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#presupuesto-admision-antes-de-datos-y-ajustes">Presupuesto: admisión antes de datos y ajustes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-en-la-continuacion-del-trabajo">Uso en la continuación del trabajo</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="preparacion-tecnica-opcional-artefactos-y-pilotos">
+<h1>46. Preparación técnica opcional: artefactos y pilotos<a class="headerlink" href="#preparacion-tecnica-opcional-artefactos-y-pilotos" title="Link to this heading">#</a></h1>
+<p><strong>Estado: preparado, sin ejecución de pilotos nuevos acreditada.</strong> El cierre del informe con la evidencia disponible se presenta en <a class="reference internal" href="47_entrega_consolidada.html"><span class="std std-doc">§47</span></a>; esta página conserva una ruta técnica para trabajo posterior. No se solicita ampliar el presupuesto ni iniciar otra campaña para redactar los resultados y límites actuales.</p>
+<p>La conexión de una GPU no demuestra que exista entrenamiento. Los <strong>1.705 resultados del plan anterior</strong> pertenecen a su campaña histórica; no son corridas de los pilotos descritos aquí. <strong>R y k no se han determinado con esta preparación.</strong> Los ejemplos y verificaciones CPU no sustituyen los pilotos de mercado ni justifican copiar sus decisiones.</p>
+<section id="que-queda-preparado">
+<h2>Qué queda preparado<a class="headerlink" href="#que-queda-preparado" title="Link to this heading">#</a></h2>
+<p>El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/run_e2_amended_pilots.py">controlador de pilotos</a> separa la comprobación de admisión de la ejecución. Sin <code class="docutils literal notranslate"><span class="pre">--execute</span></code> comprueba protocolo, fuentes, GPU real y saldo conciliado; no abre los CSV de desarrollo ni ajusta modelos. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/notebooks/run_e2_pilots_colab.py">lanzador de Colab</a> conserva ese modo predeterminado y guarda sus artefactos en Google Drive.</p>
+<p>El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/notebooks/entregable2_pilotos_artefactos.ipynb">notebook técnico</a> tiene una sola celda de lanzamiento, <code class="docutils literal notranslate"><span class="pre">EXECUTE_PILOTS=False</span></code> y fuente/digest de publicación explícitos. Su uso posterior requiere esos pines válidos y el cierre normal de cualquier controlador anterior. No modifica la sesión privada actual, no evita las desconexiones de Colab y no tiene fallback de entrenamiento CPU.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Etapa preparada</p></th>
+<th class="head"><p>Trabajo previsto</p></th>
+<th class="head"><p>Qué permite decidir al completarse</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Ruido TiDE</p></td>
+<td><p>12 arquitecturas × 5 semillas = <strong>60 ajustes</strong>, en desarrollo anterior a 2024</p></td>
+<td><p>k20/k40 mediante la regla de estabilidad de rangos registrada</p></td>
+</tr>
+<tr class="row-odd"><td><p>HPO previa al piloto de potencia</p></td>
+<td><p>TimeMixer, PatchTST y GRU32 × 18 configuraciones × 2 semillas = <strong>108 ajustes</strong>, ancla octubre de 2024</p></td>
+<td><p>Recetas y épocas de esos tres representantes; no cierra el HPO de las trece redes</p></td>
+</tr>
+<tr class="row-even"><td><p>Potencia</p></td>
+<td><p>Tres representantes × cinco semillas = <strong>15 ajustes</strong>; bloque 08/11–30/12/2024, 53 días calendario</p></td>
+<td><p>Dimensionamiento común de R, con incertidumbre y condiciones de potencia declaradas</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La cota es de <strong>183 ajustes optimizadores</strong> antes de reutilización compatible. Las fases separadas de predicción, replay y análisis añaden trabajo y tiempo, aunque no añadan ajustes de pesos. El piloto de ruido no equivale al NAS completo de 1.000 arquitecturas de TiDE y los quince ajustes no son el benchmark final.</p>
+<p>Se conservan los límites registrados: hasta 200 épocas en estos ajustes completos, paciencia y horizonte de scheduler declarados. El piloto de potencia utiliza épocas fijadas por la mediana de las dos semillas HPO ganadoras; no usa sus etiquetas para parada temprana. Las predicciones y el cálculo estadístico se realizan después de congelar todos los pesos necesarios del piloto.</p>
+</section>
+<section id="que-se-guarda-y-donde">
+<h2>Qué se guarda y dónde<a class="headerlink" href="#que-se-guarda-y-donde" title="Link to this heading">#</a></h2>
+<p>La carpeta científica predeterminada es:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/content/drive/MyDrive/DeepLearning_202630/E2/amended-pilots-v1
+</pre></div>
+</div>
+<p>La preparación reutilizable queda en la carpeta hermana <code class="docutils literal notranslate"><span class="pre">amended-pilots-assets</span></code>: fuentes autorales fijadas, derivados admitidos, información del entorno y registros del lanzador. El código se reconstruye por su commit; la VM de Colab es transitoria y no es el destino de conservación de los resultados.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Artefacto</p></th>
+<th class="head"><p>Contenido y límite</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">execution_spec.json</span></code></p></td>
+<td><p>Configuración, etapas, semillas y límites de esta ruta</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">preflights/&lt;fecha&gt;.json</span></code> y <code class="docutils literal notranslate"><span class="pre">preflight.json</span></code></p></td>
+<td><p>Comprobaciones fechadas; el segundo es la vista actual de admisión</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">budget_evidence/</span></code> y <code class="docutils literal notranslate"><span class="pre">ledger/</span></code></p></td>
+<td><p>Evidencia conciliada de los diarios, reservas y tiempo cobrado</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">attempts/&lt;identidad&gt;/</span></code></p></td>
+<td><p>Especificación del trabajo, log, arquitectura cuando corresponda, predicciones, replay y resultado terminal</p></td>
+</tr>
+<tr class="row-even"><td><p>Artefactos por identidad</p></td>
+<td><p>Pesos iniciales y checkpoints, estados de optimizador/RNG y curvas/eventos por época con sus hashes</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">october_winners.json</span></code></p></td>
+<td><p>Ganadores HPO de los representantes cuando está completa esa etapa</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">k_decision.json</span></code> / <code class="docutils literal notranslate"><span class="pre">R_decision.json</span></code></p></td>
+<td><p>Sólo se escriben como decisiones científicas válidas tras completar y verificar el piloto correspondiente</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Las curvas se conservan en eventos JSONL y recibos por etapa; no se atribuye un CSV de curvas que todavía no se haya exportado. Los fallos, pausas e intentos sin desenlace se preservan. Un proceso interrumpido no se repite automáticamente al reconectar ni se convierte en una corrida completada por encontrar un archivo parcial.</p>
+</section>
+<section id="presupuesto-admision-antes-de-datos-y-ajustes">
+<h2>Presupuesto: admisión antes de datos y ajustes<a class="headerlink" href="#presupuesto-admision-antes-de-datos-y-ajustes" title="Link to this heading">#</a></h2>
+<p>El techo sigue en <strong>64 horas acumuladas</strong>, incluyendo el gasto anterior. El replay de los diarios consultados arroja aproximadamente <strong>7.472 segundos</strong> disponibles, frente a una reserva original de <strong>7.500 segundos</strong> para admitir el siguiente trabajador completo. La ejecución debe volver a comprobar ese saldo y cualquier sesión abierta; esta página no lo convierte en un saldo en vivo.</p>
+<p>Si siguen vigentes esos valores, el controlador devuelve <strong>código 3, <code class="docutils literal notranslate"><span class="pre">paused_budget_insufficient</span></code></strong>, incluso con la GPU correctamente conectada. Conserva <code class="docutils literal notranslate"><span class="pre">ready=false</span></code>, no inicia el nuevo ajuste y no abre los CSV de desarrollo mediante el lanzador. No reduce la reserva para encajar por segundos, no borra el gasto anterior y no concede tiempo adicional.</p>
+<p>La activación del ejecutor de pilotos está deshabilitada en esta entrega, incluso con <code class="docutils literal notranslate"><span class="pre">--execute</span></code>: requiere aceptación CUDA real y revisión de la integración de overhead/caché con el ledger. No se recomienda activarlo durante este cierre. El código 3 también puede identificar ese bloqueo.</p>
+<p>El código 0 de una preparación sólo significa que la admisión pasó; con ejecución desactivada no hubo entrenamiento. El código 2 requiere revisar el motivo y conservar los recibos. Ningún código de salida, por sí solo, demuestra que E2 esté completo o que R/k estén cerrados.</p>
+</section>
+<section id="uso-en-la-continuacion-del-trabajo">
+<h2>Uso en la continuación del trabajo<a class="headerlink" href="#uso-en-la-continuacion-del-trabajo" title="Link to this heading">#</a></h2>
+<p>La secuencia técnica disponible para una futura continuación es <strong>pilotos → selección pendiente → evaluación común → tablas de resultados</strong>. El trabajo inmediato de cierre utiliza los resultados ya existentes y declara lo que éstos permiten concluir. Cuando se retome la ejecución, deberán conservarse la identidad de las recetas, el saldo conciliado y la separación entre datos conocidos y prueba prospectiva de <a class="reference internal" href="45_enmienda_protocolo.html"><span class="std std-doc">§45</span></a>.</p>
+<p>Esta preparación no acredita corridas nuevas sobre GPU, no fija R o k y no añade resultados de mercado al informe. Las decisiones que falten permanecen identificadas como limitaciones o pendientes, en vez de rellenarse con datos sintéticos o métricas de otra receta.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="45_enmienda_protocolo.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">45. Enmienda del protocolo: calendario común, presupuesto y prueba final</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="referencias.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Referencias de contexto y revisión E2</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-queda-preparado">Qué queda preparado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-se-guarda-y-donde">Qué se guarda y dónde</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#presupuesto-admision-antes-de-datos-y-ajustes">Presupuesto: admisión antes de datos y ajustes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-en-la-continuacion-del-trabajo">Uso en la continuación del trabajo</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -207,10 +207,11 @@
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="47_entrega_consolidada.html">47. Entrega consolidada con la evidencia disponible</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_literatura.html">3. Revisión Sistemática del Estado del Arte</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación de los diez modelos y el candidato adicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación: catálogo obligatorio y antecedentes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark obligatorio: dieciséis sistemas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
@@ -248,10 +249,11 @@
 <li class="toctree-l1"><a class="reference internal" href="39_optimizacion_tiempo.html">39. Optimizar tiempo sin recortar las exigencias de E2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="40_calendario_original.html">40. Calendario original y optimizaciones de implementación</a></li>
 <li class="toctree-l1"><a class="reference internal" href="41_avance_optimizacion_11_origenes.html">41. Ejecución optimizada: avance verificable de once orígenes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html">42. Auditoría de E2 y trabajo que puede adelantarse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html">42. Preparación complementaria a partir de evidencia existente</a></li>
 <li class="toctree-l1"><a class="reference internal" href="43_catalogo_obligatorio.html">43. Catálogo obligatorio: dieciséis sistemas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="44_arquitecturas_publicadas.html">44. Cuerpos publicados, adaptaciones D7 y aplicación de NAS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="45_enmienda_protocolo.html">45. Enmienda del protocolo: calendario común, presupuesto y prueba final</a></li>
+<li class="toctree-l1"><a class="reference internal" href="46_artefactos_y_pilotos.html">46. Preparación técnica opcional: artefactos y pilotos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
 </ul>
 
@@ -392,12 +394,12 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-version-se-esta-evaluando">26.1 Qué versión se está evaluando</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuentes-y-adaptacion-por-modelo">26.2 Fuentes y adaptación por modelo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-versiones-documenta-este-inventario-historico">26.1 Qué versiones documenta este inventario histórico</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuentes-y-adaptacion-por-modelo-corte-del-09-11-2026">26.2 Fuentes y adaptación por modelo: corte del 09/11/2026</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-nas-por-receta">26.3 Decisión NAS por receta</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hpo-factores-que-deben-convertirse-en-espacios-ejecutables">26.4 HPO: factores que deben convertirse en espacios ejecutables</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coste-e-integracion-evidencia-disponible">26.5 Coste e integración: evidencia disponible</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#las-siete-referencias-siguen-separadas">26.6 Las siete referencias siguen separadas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#las-referencias-seis-obligatorias-y-ridge-historico-opcional">26.6 Las referencias: seis obligatorias y Ridge histórico opcional</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-queda-listo-y-que-sigue">26.7 Qué queda listo y qué sigue</a></li>
 </ul>
             </nav>
@@ -412,25 +414,25 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="registro-por-receta-fuentes-nas-hpo-e-integracion">
 <h1>26. Registro por receta: fuentes, NAS, HPO e integración<a class="headerlink" href="#registro-por-receta-fuentes-nas-hpo-e-integracion" title="Link to this heading">#</a></h1>
-<p><strong>Vigencia documental (11/11/2026):</strong> existe selección HPO/NAS registrada y ejecutada para el catálogo actual; las afirmaciones de ausencia de HPO o de falta de registro de selección corresponden a cortes anteriores. El benchmark final, R y su cierre inferencial siguen pendientes. <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">Registro y alcance actuales (§9)</span></a> · <a class="reference internal" href="40_calendario_original.html"><span class="std std-doc">Calendario (§40)</span></a> · <a class="reference internal" href="41_avance_optimizacion_11_origenes.html"><span class="std std-doc">Corte de resultados (§41)</span></a> · <a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html"><span class="std std-doc">Auditoría y trabajo paralelo (§42)</span></a>.</p>
-<p>La adjudicación vigente conserva seis familias NAS y las oportunidades de <a class="reference internal" href="27_nas_hpo_presupuesto.html"><span class="std std-doc">§27</span></a>; las tablas anteriores de preparación pendiente no sustituyen ese protocolo.</p>
-<p><strong>Decisión posterior de diseño (09/11/2026):</strong> <a class="reference internal" href="27_nas_hpo_presupuesto.html"><span class="std std-doc">§27 fija seis variantes NAS, cinco cuerpos publicados, rangos HPO y presupuesto para Codex</span></a>. La implementación de nuevas variantes, el perfilado de horas y el preregistro completo siguen pendientes; el contenido siguiente conserva el alcance de su corte anterior.</p>
+<p><strong>Vigencia documental (12/11/2026):</strong> el <a class="reference internal" href="43_catalogo_obligatorio.html"><span class="std std-doc">catálogo obligatorio (§43)</span></a> contiene dieciséis sistemas; híbrido y Ridge son opcionales. <a class="reference internal" href="44_arquitecturas_publicadas.html"><span class="std std-doc">§44</span></a> conserva o restaura nueve cuerpos definidos del Top 10 y mantiene NAS para TiDE. La selección HPO/NAS ejecutada corresponde al plan anterior de catorce redes; no acredita las nuevas recetas SAE, TimesNet, TimeMixer y PatchTST. El benchmark final, k, R y el cierre inferencial siguen pendientes. <a class="reference internal" href="45_enmienda_protocolo.html"><span class="std std-doc">Enmienda registrada (§45)</span></a> · <a class="reference internal" href="41_avance_optimizacion_11_origenes.html"><span class="std std-doc">Corte histórico de resultados (§41)</span></a>.</p>
+<p>Las seis familias NAS de <a class="reference internal" href="27_nas_hpo_presupuesto.html"><span class="std std-doc">§27</span></a> identifican el plan anterior. Las tablas que siguen documentan el inventario del 09/11/2026: sus IDs, parámetros, estados de integración y decisiones abiertas se interpretan a esa fecha. Las nuevas identidades <code class="docutils literal notranslate"><span class="pre">SAE-D7-PUBLISHED-v1</span></code>, <code class="docutils literal notranslate"><span class="pre">TN-D7-PUBLISHED-v1</span></code>, <code class="docutils literal notranslate"><span class="pre">TM-D7-PUBLISHED-v1</span></code> y <code class="docutils literal notranslate"><span class="pre">PT-D7-PUBLISHED-v1</span></code> y sus adaptaciones se consultan en §44; los recibos anteriores conservan su identidad.</p>
+<p><strong>Secuencia histórica:</strong> <a class="reference internal" href="27_nas_hpo_presupuesto.html"><span class="std std-doc">§27 fijó seis variantes NAS y cinco cuerpos publicados</span></a>; sus ejecuciones posteriores se publican por separado. La decisión vigente de §44 y el calendario de §45 rigen el trabajo nuevo afectado y no modifican los artefactos de aquellos cortes.</p>
 <p><strong>Corte documental: 09/11/2026.</strong> Esta tabla entrega el inventario por modelo previsto en <a class="reference internal" href="25_matriz_cierre.html"><span class="std std-doc">§25</span></a>, R01 y R03–R06. Se cotejaron fichas, fábrica y recibos del <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/eca22e87085edca79e53f60196c8f64458659b5d/book_e2/sections/23_implementacion_recetas.md">snapshot eca22e8</a>. El registro distingue una receta implementada de una receta experimental congelada: <strong>no se ha adjudicado NAS, cerrado HPO ni ejecutado un benchmark nuevo</strong>.</p>
 <p><a class="reference download internal" download="" href="../_downloads/cc4d0fdc142df631029c81f13a0f3df2/registry.json"><span class="xref download myst">Registro estructurado JSON</span></a> · <a class="reference download internal" download="" href="../_downloads/cc4d0fdc142df631029c81f13a0f3df2/registry.json"><code class="xref download docutils literal notranslate"><span class="pre">Descargar</span> <span class="pre">registro</span> <span class="pre">por</span> <span class="pre">receta</span></code></a>.</p>
-<section id="que-version-se-esta-evaluando">
-<h2>26.1 Qué versión se está evaluando<a class="headerlink" href="#que-version-se-esta-evaluando" title="Link to this heading">#</a></h2>
+<section id="que-versiones-documenta-este-inventario-historico">
+<h2>26.1 Qué versiones documenta este inventario histórico<a class="headerlink" href="#que-versiones-documenta-este-inventario-historico" title="Link to this heading">#</a></h2>
 <p>Las <a class="reference internal" href="22_fichas_recetas.html"><span class="std std-doc">fichas de §22</span></a> se implementaron en <a class="reference internal" href="23_implementacion_recetas.html"><span class="std std-doc">§23</span></a> mediante <code class="docutils literal notranslate"><span class="pre">scripts/e2_recipe_catalogue.py</span></code>. Se conservan sus IDs, incluidos los sufijos <code class="docutils literal notranslate"><span class="pre">proposed</span></code>, para enlazar especificación, código y recibo sin cambiar retrospectivamente identidades.</p>
 <p>La <a class="reference download internal" download="" href="../_downloads/736e50bd90ec7448b1582c400b5c3d5f/nas_matrix.json"><span class="xref download myst">matriz NAS de §21</span></a> es un corte anterior: sus descripciones de FCN, ResNet e Inception compactas no describen los cuerpos restaurados de §23. Este registro aporta la síntesis posterior; el JSON histórico permanece intacto. El SAE también tiene ahora dos fases de reconstrucción implementadas.</p>
 <p>Contrato compartido: D7×5 OHLCV con <code class="docutils literal notranslate"><span class="pre">relative_window</span></code>, h=1, σ₇ poblacional sin anualizar, escaladores ajustados sólo al entrenamiento y salida escalar Softplus multiplicada por la media positiva del objetivo de entrenamiento. <strong>Los seis adaptadores agregan diez momentos de la misma ventana; los cuatro cuerpos restaurados y el híbrido no.</strong> Las entradas informativas son comunes, pero esta asimetría del readout debe controlarse; no se presenta como comparación de backbones puros.</p>
 </section>
-<section id="fuentes-y-adaptacion-por-modelo">
-<h2>26.2 Fuentes y adaptación por modelo<a class="headerlink" href="#fuentes-y-adaptacion-por-modelo" title="Link to this heading">#</a></h2>
+<section id="fuentes-y-adaptacion-por-modelo-corte-del-09-11-2026">
+<h2>26.2 Fuentes y adaptación por modelo: corte del 09/11/2026<a class="headerlink" href="#fuentes-y-adaptacion-por-modelo-corte-del-09-11-2026" title="Link to this heading">#</a></h2>
 <p>Los enlaces bibliográficos identifican originales arquitectónicos; no acreditan elegibilidad final del Top 10 ni resultados en Bitcoin. Los snapshots de código y las versiones exactas de los seis textos están en el JSON descargable y las fichas.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Modelo / ID de receta</p></th>
 <th class="head"><p>Fuente</p></th>
-<th class="head"><p>Cuerpo y adaptación de la receta vigente</p></th>
+<th class="head"><p>Cuerpo y adaptación de la receta de aquel corte</p></th>
 </tr>
 </thead>
 <tbody>
@@ -486,7 +488,7 @@
 </section>
 <section id="decision-nas-por-receta">
 <h2>26.3 Decisión NAS por receta<a class="headerlink" href="#decision-nas-por-receta" title="Link to this heading">#</a></h2>
-<p>La columna siguiente identifica la vía de decisión y su fundamento. <strong>Todas las decisiones finales siguen abiertas</strong> (<code class="docutils literal notranslate"><span class="pre">applies:</span> <span class="pre">null</span></code>, sin exenciones concedidas). La implementación sintética no decide la admisibilidad académica de una adaptación.</p>
+<p>La columna siguiente identifica la vía de decisión y su fundamento <strong>en el registro histórico</strong> (<code class="docutils literal notranslate"><span class="pre">applies:</span> <span class="pre">null</span></code>, sin exenciones concedidas a esa fecha). La adjudicación posterior de §44 sustituye esas decisiones para el trabajo nuevo: nueve cuerpos definidos y TiDE NAS. La implementación sintética, por sí sola, no decide la admisibilidad académica de una adaptación.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Modelo</p></th>
@@ -543,7 +545,7 @@
 </table>
 </div>
 <p>Cuando corresponda §14 de la guía: tres bloques, cinco anchos {16,32,64,128,256} por bloque y ocho patrones binarios de dropout p=0,2 producen <strong>1.000 arquitecturas únicas</strong>. La referencia es (64,64,64) con patrón (0,1,0). Primero se ajustan los otros hiperparámetros sobre la referencia; después fase 1 con los mil diseños y una semilla, y fase 2 con k≥10 finalistas, más referencia si no está incluida, y al menos cinco semillas distintas de fase 1. La traducción de bloques a cada familia y las restricciones requieren especificación previa; enumerar nombres o repetir diseños no satisface la cardinalidad.</p>
-<p>No se fija cuántas recetas entran a NAS ni se concede exención por conservar un nombre publicado. En particular, el mapeo CNN/LSTM/atención del híbrido sigue propuesto: aún faltan la implementación de los tres anchos variables y las tres ubicaciones de dropout requeridas.</p>
+<p>Este inventario no fijaba cuántas recetas entraban a NAS. La adjudicación vigente fija TiDE como único NAS obligatorio; el híbrido queda opcional. La presencia de un nombre publicado nunca sustituye la verificación del cuerpo y de su adaptación.</p>
 </section>
 <section id="hpo-factores-que-deben-convertirse-en-espacios-ejecutables">
 <h2>26.4 HPO: factores que deben convertirse en espacios ejecutables<a class="headerlink" href="#hpo-factores-que-deben-convertirse-en-espacios-ejecutables" title="Link to this heading">#</a></h2>
@@ -669,8 +671,9 @@
 <p>§23 acredita once pasos supervisados y dos auxiliares sobre datos artificiales. <a class="reference internal" href="24_ejecutor_comun.html"><span class="std std-doc">§24</span></a> acredita un recorrido sintético de <strong>18 sistemas</strong> y, en una capa posterior, un núcleo temporal real probado. Sigue pendiente conectar y auditar todas las fábricas y adaptadores con ese núcleo. No se extrapolan los tiempos de un paso artificial a entrenamientos completos.</p>
 <p>El presupuesto completo debe separar HPO, NAS cuando aplique, selección interna, refits, piloto de potencia, calibración, controles de fuga, robustez y ablaciones. Requiere hardware, mediciones comparables, límites y contabilidad de fallos. Parámetros pequeños no garantizan menor latencia; tiempos o memoria aún no medidos se registran como desconocidos.</p>
 </section>
-<section id="las-siete-referencias-siguen-separadas">
-<h2>26.6 Las siete referencias siguen separadas<a class="headerlink" href="#las-siete-referencias-siguen-separadas" title="Link to this heading">#</a></h2>
+<section id="las-referencias-seis-obligatorias-y-ridge-historico-opcional">
+<h2>26.6 Las referencias: seis obligatorias y Ridge histórico opcional<a class="headerlink" href="#las-referencias-seis-obligatorias-y-ridge-historico-opcional" title="Link to this heading">#</a></h2>
+<p>MLP16, LSTM32, GRU32, Persistence, SeasonalNaive y ARIMA son las seis referencias/comparadores que completan el catálogo obligatorio de dieciséis. La tabla conserva las configuraciones sintéticas del 09/11/2026; no acredita sus resultados finales. Ridge permanece para trazabilidad y no requiere nuevas corridas para cerrar el catálogo obligatorio.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Sistema de referencia</p></th>
@@ -695,9 +698,9 @@
 <td><p>σ₇(t−1)</p></td>
 <td><p>Auditoría causal y soporte común; no necesita búsqueda de periodo</p></td>
 </tr>
-<tr class="row-even"><td><p>Ridge</p></td>
+<tr class="row-even"><td><p>Ridge, opcional histórico</p></td>
 <td><p>α=1 en smoke</p></td>
-<td><p>Dominio de α y selección temporal aún no congelados</p></td>
+<td><p>Fuera del alcance obligatorio vigente</p></td>
 </tr>
 <tr class="row-odd"><td><p>Naive estacional</p></td>
 <td><p>m=7 en smoke</p></td>
@@ -714,8 +717,8 @@
 </section>
 <section id="que-queda-listo-y-que-sigue">
 <h2>26.7 Qué queda listo y qué sigue<a class="headerlink" href="#que-queda-listo-y-que-sigue" title="Link to this heading">#</a></h2>
-<p>Queda disponible una identidad verificable por receta: fuente, adaptación, duda NAS, factores HPO, parámetros, fases y alcance de integración. R01 cuenta con conciliación arquitectónica local, <strong>no con cierre de elegibilidad global</strong>; R03–R06 cuentan con inventario, no con congelación experimental.</p>
-<p>El siguiente cierre es resolver las filas NAS y convertir los factores HPO en dominios ejecutables y presupuestados, conservando D7 y las referencias E1. Después corresponde completar integración, auditoría y la nueva enmienda de <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">§9</span></a>, con potencia, inferencia y exposición previa explícitas.</p>
+<p>Este inventario aporta una identidad verificable por receta de su corte: fuente, adaptación, duda NAS, factores HPO, parámetros, fases y alcance de integración. El cierre bibliográfico global sigue separado de la adjudicación arquitectónica posterior y de la ejecución experimental.</p>
+<p>La adjudicación y los dominios actuales están documentados en §44–§45. El siguiente cierre operativo es conciliar presupuesto e intentos anteriores, completar la integración y ejecutar los pilotos y ajustes pendientes de las recetas vigentes, conservando D7, las referencias E1, la exposición conocida y todos los artefactos. El trabajo de <a class="reference internal" href="46_artefactos_y_pilotos.html"><span class="std std-doc">§46</span></a> prepara esa ejecución; no aporta por sí solo nuevos resultados de mercado.</p>
 <p>La disponibilidad común de las 608 fechas finales sigue sin certificarse y el periodo conocido conserva alcance exploratorio. Este registro no abre esa reserva ni publica resultados de pronóstico.</p>
 </section>
 </section>
@@ -786,12 +789,12 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-version-se-esta-evaluando">26.1 Qué versión se está evaluando</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuentes-y-adaptacion-por-modelo">26.2 Fuentes y adaptación por modelo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-versiones-documenta-este-inventario-historico">26.1 Qué versiones documenta este inventario histórico</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuentes-y-adaptacion-por-modelo-corte-del-09-11-2026">26.2 Fuentes y adaptación por modelo: corte del 09/11/2026</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-nas-por-receta">26.3 Decisión NAS por receta</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hpo-factores-que-deben-convertirse-en-espacios-ejecutables">26.4 HPO: factores que deben convertirse en espacios ejecutables</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coste-e-integracion-evidencia-disponible">26.5 Coste e integración: evidencia disponible</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#las-siete-referencias-siguen-separadas">26.6 Las siete referencias siguen separadas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#las-referencias-seis-obligatorias-y-ridge-historico-opcional">26.6 Las referencias: seis obligatorias y Ridge histórico opcional</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-queda-listo-y-que-sigue">26.7 Qué queda listo y qué sigue</a></li>
 </ul>
   </nav></div>

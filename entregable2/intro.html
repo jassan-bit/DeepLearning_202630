@@ -67,7 +67,7 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Búsqueda" href="search.html" />
-    <link rel="next" title="1. Definición del Problema, Preguntas de Investigación y Dataset" href="sections/01_punto_partida.html" />
+    <link rel="next" title="47. Entrega consolidada con la evidencia disponible" href="sections/47_entrega_consolidada.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
   <meta name="docsearch:version" content="" />
@@ -210,10 +210,11 @@
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="sections/47_entrega_consolidada.html">47. Entrega consolidada con la evidencia disponible</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sections/01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sections/02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sections/03_literatura.html">3. Revisión Sistemática del Estado del Arte</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sections/04_implementacion.html">4. Implementación de los diez modelos y el candidato adicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/04_implementacion.html">4. Implementación: catálogo obligatorio y antecedentes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sections/05_paper_guia.html">5. Paper Guía y Replicación</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sections/06_benchmark_final.html">6. Benchmark obligatorio: dieciséis sistemas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sections/07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
@@ -251,10 +252,11 @@
 <li class="toctree-l1"><a class="reference internal" href="sections/39_optimizacion_tiempo.html">39. Optimizar tiempo sin recortar las exigencias de E2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sections/40_calendario_original.html">40. Calendario original y optimizaciones de implementación</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sections/41_avance_optimizacion_11_origenes.html">41. Ejecución optimizada: avance verificable de once orígenes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sections/42_auditoria_y_trabajo_paralelo.html">42. Auditoría de E2 y trabajo que puede adelantarse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/42_auditoria_y_trabajo_paralelo.html">42. Preparación complementaria a partir de evidencia existente</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sections/43_catalogo_obligatorio.html">43. Catálogo obligatorio: dieciséis sistemas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sections/44_arquitecturas_publicadas.html">44. Cuerpos publicados, adaptaciones D7 y aplicación de NAS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sections/45_enmienda_protocolo.html">45. Enmienda del protocolo: calendario común, presupuesto y prueba final</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/46_artefactos_y_pilotos.html">46. Preparación técnica opcional: artefactos y pilotos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sections/referencias.html">Referencias de contexto y revisión E2</a></li>
 </ul>
 
@@ -395,11 +397,10 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-de-la-entrega-y-guia-de-lectura">Estado de la entrega y guía de lectura</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problema-contrato-y-referencias">Problema, contrato y referencias</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-vigente-guia-y-computo">Diseño vigente, guía y cómputo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-parciales-y-limites">Resultados parciales y límites</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recorrido-recomendado">Recorrido recomendado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-del-trabajo">Resumen del trabajo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guia-de-lectura">Guía de lectura</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#catalogo-y-protocolo-vigentes">Catálogo y protocolo vigentes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-de-cierre">Evidencia de cierre</a></li>
 </ul>
             </nav>
         </div>
@@ -413,99 +414,64 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="proyecto-final-de-deep-learning-entregable-2">
 <h1>Proyecto Final de Deep Learning: Entregable 2<a class="headerlink" href="#proyecto-final-de-deep-learning-entregable-2" title="Link to this heading">#</a></h1>
-<p><strong>Catálogo obligatorio vigente (12/11/2026): 16 sistemas: diez modelos del Top 10, tres referencias E1 y tres comparadores temporales.</strong> El híbrido adicional y Ridge quedan fuera del alcance obligatorio. <a class="reference internal" href="sections/43_catalogo_obligatorio.html"><span class="std std-doc">Catálogo y enmienda de alcance (§43)</span></a>. La <a class="reference internal" href="sections/45_enmienda_protocolo.html"><span class="std std-doc">enmienda del protocolo de §45</span></a> fija tres anclas HPO y conserva diez orígenes mensuales de evaluación con reajuste común. La campaña sellada de Colab todavía corresponde al plan anterior de catorce redes: esta publicación no modifica la sesión privada.</p>
-<p><strong>Arquitecturas y NAS (12/11/2026):</strong> la ruta prospectiva conserva o restaura nueve cuerpos publicados del Top 10 y mantiene NAS para la variante TiDE. Las cuatro restauraciones tienen recetas nuevas y adaptaciones D7 explícitas; sus resultados anteriores no se renombran. <a class="reference internal" href="sections/44_arquitecturas_publicadas.html"><span class="std std-doc">Adjudicación, fuentes y pruebas (§44)</span></a>.</p>
-<p><strong>Protocolo temporal (12/11/2026):</strong> HPO común en enero, julio y octubre de 2024; una sola NAS inicial para TiDE; reajustes mensuales sin repetir búsquedas. El techo sigue siendo 64 horas acumuladas, con saldo actual pendiente de conciliación. Los periodos históricos ya evaluados se separan de una prueba independiente prospectiva. <a class="reference internal" href="sections/45_enmienda_protocolo.html"><span class="std std-doc">Calendario, criterios y pendientes (§45)</span></a>.</p>
 <p><strong>Deep Learning · 2026-30 · Jassan Arteta</strong></p>
-<p><strong>Avance experimental verificado: 1.484 ajustes HPO nuevos completados, sin fallos, al 12/11/2026 a las 02:29:43 de Bogotá.</strong> Se suman a 1.802 registros anteriores: <strong>3.286 registros de resultados</strong> entre ambos historiales. <strong>Estado al cierre del corte: pausada por límite de sesión, con cierre limpio.</strong> El saldo de unas 4 h 9 min pertenece exclusivamente a ese corte histórico; el saldo actual debe conciliarse antes de ejecutar la enmienda, dentro del techo acumulado de 64 horas. Son corridas de selección; el benchmark final sigue pendiente. <a class="reference internal" href="sections/41_avance_optimizacion_11_origenes.html"><span class="std std-doc">Detalle y fuentes (§41)</span></a>.</p>
-<p><strong>Auditoría contra la guía:</strong> <a class="reference internal" href="sections/42_auditoria_y_trabajo_paralelo.html"><span class="std std-doc">§42: qué podemos completar mientras entrena Colab</span></a>. Incluye prioridades, 21 ítems del Apéndice B y plantillas de reporte; distingue preparación de cumplimiento.</p>
-<section id="estado-de-la-entrega-y-guia-de-lectura">
-<h2>Estado de la entrega y guía de lectura<a class="headerlink" href="#estado-de-la-entrega-y-guia-de-lectura" title="Link to this heading">#</a></h2>
-<p><strong>Actualización documental al 12/11/2026.</strong> Se conserva el contraste con la guía de 65 páginas aportada por el usuario. El libro contiene código, revisión bibliográfica, preparación experimental y resultados parciales de selección. <strong>El benchmark final no está terminado y no se declara cumplimiento integral de la guía.</strong></p>
-<p>La <a class="reference internal" href="sections/38_cumplimiento_guia.html"><span class="std std-doc">matriz vigente de exigencias, evidencias y pendientes</span></a> organiza la entrega según la guía y distingue requisitos del PDF, decisiones propias y resultados observados. Cada requisito se cierra con evidencia verificable; describirlo o disponer de código no acredita su ejecución.</p>
+<p><strong>Versión de entrega consolidada con la evidencia disponible al 12/11/2026.</strong> Se reúnen problema, EDA, literatura, implementaciones, experimentos ejecutados y conclusiones. Este cierre utiliza resultados guardados y no inicia nuevas corridas.</p>
+<p><strong><a class="reference internal" href="sections/47_entrega_consolidada.html"><span class="std std-doc">Leer el informe consolidado, resultados y conclusiones (§47)</span></a></strong> · <strong><a class="reference download internal" download="" href="_downloads/80525faefdf76d3e2b06ee4792209944/Entregable2_evidencia_disponible.zip"><span class="xref download myst">Descargar el paquete de entrega</span></a></strong></p>
+<section id="resumen-del-trabajo">
+<h2>Resumen del trabajo<a class="headerlink" href="#resumen-del-trabajo" title="Link to this heading">#</a></h2>
+<p>Se estudia el pronóstico diario de volatilidad de Bitcoin: <strong>siete días de OHLCV → σ₇ poblacional de retornos de Close</strong>, horizonte de un día y sin anualización. Se heredan de E1 la RMSE primaria, el margen δ=0,00025772842664981106 y el tratamiento temporal de los datos.</p>
+<p>El libro aporta un EDA orientado a decisiones, revisión bibliográfica, modelos y adaptaciones D7, una réplica parcial de TimeMixer en ETTh1 y selección experimental trazable. Los historiales conservan <strong>1.705 resultados de la campaña optimizada y 1.802 registros anteriores: 3.507 registros acumulados</strong>. Son resultados de selección y antecedentes identificados; no equivalen a una evaluación final común de los dieciséis sistemas.</p>
+<p>La réplica ETTh1, con cinco semillas, satisface su criterio previo de compatibilidad numérica. El antecedente E1 muestra persistencia competitiva frente a sus tres redes. Estos experimentos tienen tareas, calendarios y recetas propios; no se transfieren a modelos E2 con otra identidad.</p>
+<p>La entrega declara sus límites: <strong>todavía no hay un benchmark final completo de dieciséis sistemas ni un ganador demostrado del catálogo vigente</strong>. Los requisitos sin evidencia quedan identificados para una revisión posterior.</p>
+</section>
+<section id="guia-de-lectura">
+<h2>Guía de lectura<a class="headerlink" href="#guia-de-lectura" title="Link to this heading">#</a></h2>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Componente</p></th>
-<th class="head"><p>Estado documental verificable</p></th>
+<tr class="row-odd"><th class="head"><p>Contenido</p></th>
 <th class="head"><p>Dónde revisar</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Problema, datos, EDA y ruta temporal</p></td>
-<td><p>Contrato definido; auditoría completa del benchmark pendiente</p></td>
-<td><p><a class="reference internal" href="sections/01_punto_partida.html"><span class="std std-doc">Problema</span></a>, <a class="reference internal" href="sections/02_eda.html"><span class="std std-doc">EDA</span></a>, <a class="reference internal" href="sections/07_ruta_temporal.html"><span class="std std-doc">F2a</span></a>, <a class="reference internal" href="sections/17_contrato_sincronizado.html"><span class="std std-doc">contrato</span></a></p></td>
+<tr class="row-even"><td><p>Resultados disponibles, discusión, conclusiones y archivos</p></td>
+<td><p><strong><a class="reference internal" href="sections/47_entrega_consolidada.html"><span class="std std-doc">Informe consolidado (§47)</span></a></strong></p></td>
 </tr>
-<tr class="row-odd"><td><p>Revisión sistemática y Top 10</p></td>
-<td><p>Búsquedas y lecturas parciales; cierre de elegibilidad y puntajes por completar</p></td>
-<td><p><a class="reference internal" href="sections/03_literatura.html"><span class="std std-doc">Literatura</span></a>, <a class="reference internal" href="sections/15_revision_modelos.html"><span class="std std-doc">catálogo</span></a></p></td>
+<tr class="row-odd"><td><p>Problema, hipótesis, datos y contrato heredado</p></td>
+<td><p><a class="reference internal" href="sections/01_punto_partida.html"><span class="std std-doc">§1</span></a> · <a class="reference internal" href="sections/17_contrato_sincronizado.html"><span class="std std-doc">§17</span></a></p></td>
 </tr>
-<tr class="row-even"><td><p>Implementación y HPO/NAS</p></td>
-<td><p>Política prospectiva: nueve cuerpos definidos del Top 10 y NAS para TiDE; selección y migración del controlador pendientes</p></td>
-<td><p><a class="reference internal" href="sections/44_arquitecturas_publicadas.html"><span class="std std-doc">Arquitecturas y verificación</span></a>, <a class="reference internal" href="sections/41_avance_optimizacion_11_origenes.html"><span class="std std-doc">avance del plan sellado</span></a>, <a class="reference internal" href="sections/26_registro_recetas.html"><span class="std std-doc">recetas históricas</span></a></p></td>
+<tr class="row-even"><td><p>EDA y auditoría temporal</p></td>
+<td><p><a class="reference internal" href="sections/02_eda.html"><span class="std std-doc">§2</span></a> · <a class="reference internal" href="sections/10_auditoria_datos.html"><span class="std std-doc">§10</span></a></p></td>
 </tr>
-<tr class="row-odd"><td><p>Réplica del paper guía</p></td>
-<td><p>Evidencia externa de TimeMixer/ETTh1; no sustituye Bitcoin D7</p></td>
-<td><p><a class="reference internal" href="sections/05_paper_guia.html"><span class="std std-doc">Réplica y limitaciones</span></a></p></td>
+<tr class="row-odd"><td><p>Literatura, catálogo y arquitecturas</p></td>
+<td><p><a class="reference internal" href="sections/03_literatura.html"><span class="std std-doc">§3</span></a> · <a class="reference internal" href="sections/43_catalogo_obligatorio.html"><span class="std std-doc">§43</span></a> · <a class="reference internal" href="sections/44_arquitecturas_publicadas.html"><span class="std std-doc">§44</span></a></p></td>
 </tr>
-<tr class="row-even"><td><p>Benchmark e inferencia</p></td>
-<td><p>Pendientes de recetas seleccionadas, R, reajustes y evaluación común</p></td>
-<td><p><a class="reference internal" href="sections/06_benchmark_final.html"><span class="std std-doc">Benchmark</span></a>, <a class="reference internal" href="sections/13_agregacion_estadistica.html"><span class="std std-doc">inferencia</span></a></p></td>
+<tr class="row-even"><td><p>Protocolo y criterios registrados</p></td>
+<td><p><a class="reference internal" href="sections/45_enmienda_protocolo.html"><span class="std std-doc">§45</span></a></p></td>
 </tr>
-<tr class="row-odd"><td><p>Robustez, incertidumbre e interpretabilidad</p></td>
-<td><p>Preparación parcial; resultados del catálogo completo pendientes</p></td>
-<td><p><a class="reference internal" href="sections/12_incertidumbre_errores.html"><span class="std std-doc">Incertidumbre y errores</span></a>, <a class="reference internal" href="sections/38_cumplimiento_guia.html"><span class="std std-doc">matriz de cierre</span></a></p></td>
+<tr class="row-odd"><td><p>Réplica TimeMixer ETTh1: ejecución y métricas</p></td>
+<td><p><a class="reference internal" href="sections/05_paper_guia.html"><span class="std std-doc">§5</span></a></p></td>
 </tr>
-<tr class="row-even"><td><p>Reproducibilidad y entrega</p></td>
-<td><p>Fuentes y procedimientos disponibles; reproducción integral pendiente</p></td>
-<td><p><a class="reference internal" href="sections/08_reproducibilidad.html"><span class="std std-doc">Reproducibilidad</span></a>, <a class="reference internal" href="sections/38_cumplimiento_guia.html"><span class="std std-doc">lista de entrega</span></a></p></td>
+<tr class="row-even"><td><p>Benchmark: evidencia existente y alcance</p></td>
+<td><p><a class="reference internal" href="sections/06_benchmark_final.html"><span class="std std-doc">§6</span></a> · <a class="reference internal" href="sections/41_avance_optimizacion_11_origenes.html"><span class="std std-doc">Cortes históricos (§41)</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Reproducibilidad y exigencias de la guía</p></td>
+<td><p><a class="reference internal" href="sections/08_reproducibilidad.html"><span class="std std-doc">§8</span></a> · <a class="reference internal" href="sections/38_cumplimiento_guia.html"><span class="std std-doc">§38</span></a></p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </section>
-<section id="problema-contrato-y-referencias">
-<h2>Problema, contrato y referencias<a class="headerlink" href="#problema-contrato-y-referencias" title="Link to this heading">#</a></h2>
-<p>Se estudia <strong>OHLCV diario D7×5 → σ₇</strong>, desviación estándar poblacional de siete retornos logarítmicos diarios de Close, <strong>sin anualización y con horizonte de un día</strong>. Se conserva RMSE como métrica primaria heredada de E1 y <strong>δ=0,00025772842664981106</strong>; las recomendaciones de métricas temporales no cambian por silencio ese contrato. Las métricas auxiliares y sus denominadores deben declararse antes de evaluar.</p>
-<p>La ruta es <strong>F2a, series de tiempo</strong>: partición cronológica, embargo y transformaciones ajustadas sólo con el pasado. Las <strong>608 fechas históricas conocidas</strong> mantienen carácter exploratorio; una actualización editorial o un nuevo programador no recuperan independencia del test. <a class="reference internal" href="sections/17_contrato_sincronizado.html"><span class="std std-doc">Contrato y límites</span></a>.</p>
-<p>El catálogo comprende diez modelos base:</p>
-<ol class="arabic simple">
-<li><p>FCN-1D.</p></li>
-<li><p>ResNet-1D.</p></li>
-<li><p>Inception-1D.</p></li>
-<li><p>LSTM-autoencoder con predictor.</p></li>
-<li><p>TimesNet.</p></li>
-<li><p>TSMixer.</p></li>
-<li><p>TiDE.</p></li>
-<li><p>TimeMixer.</p></li>
-<li><p>PatchTST.</p></li>
-<li><p>iTransformer.</p></li>
-</ol>
-<p>Los controles <strong>MLP16, LSTM32 y GRU32 de E1</strong> son las tres referencias adicionales, con pesos reinicializados. <strong>Persistencia (naive), naive estacional y ARIMA</strong> completan los tres comparadores: <strong>13 redes + 3 comparadores = 16 sistemas</strong>. El Top 10 comprende cuatro familias: convolucionales, recurrentes/autoencoder, mezcladores MLP y atención; <a class="reference internal" href="sections/38_cumplimiento_guia.html"><span class="std std-doc">§38 explicita la asignación</span></a>. <strong>CNN-1D + LSTM + atención temporal y Ridge son opcionales/históricos y no forman parte de la entrega obligatoria.</strong> Sus implementaciones y recibos se conservan. <a class="reference internal" href="sections/43_catalogo_obligatorio.html"><span class="std std-doc">Catálogo vigente y fuentes ejecutables (§43)</span></a>.</p>
+<section id="catalogo-y-protocolo-vigentes">
+<h2>Catálogo y protocolo vigentes<a class="headerlink" href="#catalogo-y-protocolo-vigentes" title="Link to this heading">#</a></h2>
+<p>Los <strong>16 sistemas obligatorios</strong> son <strong>FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder con predictor, TimesNet, TSMixer, TiDE, TimeMixer, PatchTST e iTransformer</strong>; las referencias <strong>MLP16, LSTM32 y GRU32</strong>; y <strong>persistencia, naive estacional y ARIMA</strong>. El híbrido CNN-LSTM-atención y Ridge conservan alcance opcional/histórico.</p>
+<p>La política mantiene nueve cuerpos definidos del Top 10 y NAS para TiDE. Las restauraciones de SAE, TimesNet, TimeMixer y PatchTST tienen recetas nuevas; los ajustes anteriores no se renombran como resultados de esos cuerpos. <a class="reference internal" href="sections/44_arquitecturas_publicadas.html"><span class="std std-doc">Fuentes y adaptaciones (§44)</span></a>.</p>
+<p>La enmienda registrada distingue <strong>tres anclas HPO</strong> —enero, julio y octubre de 2024— de <strong>diez reajustes mensuales de evaluación</strong>. Conserva embargo, equidad y selección causal. Los periodos históricos evaluados mantienen carácter conocido y exploratorio. <a class="reference internal" href="sections/45_enmienda_protocolo.html"><span class="std std-doc">Protocolo (§45)</span></a>.</p>
 </section>
-<section id="diseno-vigente-guia-y-computo">
-<h2>Diseño vigente, guía y cómputo<a class="headerlink" href="#diseno-vigente-guia-y-computo" title="Link to this heading">#</a></h2>
-<p>La <a class="reference internal" href="sections/45_enmienda_protocolo.html"><span class="std std-doc">enmienda vigente de §45</span></a> distingue <strong>tres búsquedas HPO comunes</strong> —01/01, 01/07 y 01/10/2024— de <strong>diez reajustes mensuales de evaluación</strong> —enero a octubre de 2024—. Cada origen usa únicamente la receta que ya estaba disponible: enero–junio utiliza enero, julio–septiembre utiliza julio y octubre utiliza octubre. TiDE tiene una sola NAS inicial; su arquitectura queda congelada antes de la primera evaluación externa. El refit histórico de enero de 2025 usa la receta de octubre, sin otra búsqueda.</p>
-<p>La decisión reduce repeticiones de búsqueda y conserva la evaluación de origen móvil, el embargo de siete días, las 18 oportunidades HPO por red/ancla y las demás exigencias. La guía no obliga a once búsquedas completas; tres anclas tampoco garantizan suficiencia por sí solas. La cobertura y sus límites se reportarán por origen. Esta enmienda sustituye el calendario prospectivo anterior; no adopta sin cambios la propuesta histórica de §37.</p>
-<p>La cota nueva es <strong>hasta 2.609 ajustes neuronales de selección</strong>, antes de reutilización compatible y sin pilotos, reajustes o análisis complementarios. Incluye 1.404 HPO, 1.000 NAS-1 TiDE y hasta 205 NAS-2 con k=40; los ajustes SAE incluyen etapas auxiliares y ARIMA añade 54 ajustes de selección. El máximo de <strong>85.074</strong> de <a class="reference internal" href="sections/40_calendario_original.html"><span class="std std-doc">§40</span></a> conserva el significado del plan sellado anterior de catorce redes; ninguna de las dos cifras es un mínimo literal del PDF.</p>
-<p>El techo autorizado permanece en <strong>64 horas acumuladas</strong>, conservando el gasto de ambas campañas y los intentos inciertos. No se asignan otras 64 horas al migrar. R, el piloto de ruido, el saldo actual, la integración GPU y la prueba independiente siguen pendientes de sus evidencias de cierre. El notebook histórico de once orígenes no aplica automáticamente la nueva política. <a class="reference internal" href="sections/45_enmienda_protocolo.html"><span class="std std-doc">Registro y pendientes de §45</span></a> · <a class="reference internal" href="sections/41_avance_optimizacion_11_origenes.html"><span class="std std-doc">Corte histórico de recibos</span></a>.</p>
-</section>
-<section id="resultados-parciales-y-limites">
-<h2>Resultados parciales y límites<a class="headerlink" href="#resultados-parciales-y-limites" title="Link to this heading">#</a></h2>
-<p>El <a class="reference internal" href="sections/41_avance_optimizacion_11_origenes.html"><span class="std std-doc">corte vigente de §41</span></a> se fija al commit <code class="docutils literal notranslate"><span class="pre">dfd7d3c035c015aac9cad454b1aec30f190a631d</span></code>. La primera ola de ocho redes/referencias con cuerpo fijo tiene cobertura HPO cerrada de enero a mayo de 2024. En junio, FCN-1D, ResNet-1D, Inception-1D y TSMixer registran 36/36 cada uno; iTransformer lleva 8/36. Los 1.484 resultados nuevos tienen estado <code class="docutils literal notranslate"><span class="pre">completed</span></code>; el total combinado de 3.286 incluye 1.802 registros históricos cuyos estados no se reauditán aquí. El controlador pausó limpiamente porque la siguiente reserva completa no cabía en el tiempo de esa sesión. El informe de campaña está actualizado; este libro publica un corte fijo, sin comprobar en vivo el kernel de Colab. El CSV mantiene configuraciones, costes y la identificación del ajuste recuperado; no contiene un ranking final.</p>
-<p>El <a class="reference internal" href="sections/36_avance_campana_cuda.html"><span class="std std-doc">corte documentado en §36</span></a>, del <strong>11/11/2026 a las 06:55:42 de Bogotá</strong>, contiene <strong>1.748 archivos de resultados</strong>. Registra selección del primer origen para FCN-1D, ResNet-1D, Inception-1D y LSTM-autoencoder y avance NAS-1 de TimesNet. Es un corte histórico, no el contador actual ni evidencia de activación del calendario reducido. Los resultados de E1, los perfiles de recursos y la réplica ETTh1 conservan su propio ámbito.</p>
-<p><strong>No hay ranking final, superioridad demostrada del híbrido ni R definitivo.</strong> La <a class="reference internal" href="sections/38_cumplimiento_guia.html"><span class="std std-doc">matriz de cumplimiento</span></a> indica las evidencias necesarias antes de publicar conclusiones.</p>
-</section>
-<section id="recorrido-recomendado">
-<h2>Recorrido recomendado<a class="headerlink" href="#recorrido-recomendado" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><strong>Problema y literatura:</strong> <a class="reference internal" href="sections/01_punto_partida.html"><span class="std std-doc">§1</span></a>, <a class="reference internal" href="sections/02_eda.html"><span class="std std-doc">§2</span></a>, <a class="reference internal" href="sections/03_literatura.html"><span class="std std-doc">§3</span></a> y <a class="reference internal" href="sections/05_paper_guia.html"><span class="std std-doc">§5: paper guía</span></a>.</p></li>
-<li><p><strong>Catálogo obligatorio y arquitectura:</strong> <a class="reference internal" href="sections/43_catalogo_obligatorio.html"><span class="std std-doc">§43: los 16 sistemas</span></a> y <a class="reference internal" href="sections/44_arquitecturas_publicadas.html"><span class="std std-doc">§44: cuerpos publicados, adaptaciones D7 y NAS aplicable</span></a>.</p></li>
-<li><p><strong>Protocolo y separación de datos:</strong> <a class="reference internal" href="sections/45_enmienda_protocolo.html"><span class="std std-doc">§45: calendario común, presupuesto, métricas y prueba prospectiva</span></a>.</p></li>
-<li><p><strong>Método y modelos:</strong> <a class="reference internal" href="sections/07_ruta_temporal.html"><span class="std std-doc">§7: ruta F2a</span></a>, <a class="reference internal" href="sections/10_auditoria_datos.html"><span class="std std-doc">§10: auditoría</span></a>, <a class="reference internal" href="sections/11_hpo_equidad.html"><span class="std std-doc">§11: equidad</span></a>, <a class="reference internal" href="sections/14_arquitecturas.html"><span class="std std-doc">§14: arquitecturas</span></a> y <a class="reference internal" href="sections/26_registro_recetas.html"><span class="std std-doc">§26: recetas</span></a>.</p></li>
-<li><p><strong>Ejecución y evidencia:</strong> <a class="reference internal" href="sections/29_entrenamiento_temporal.html"><span class="std std-doc">§29: entrenamiento</span></a>, <a class="reference internal" href="sections/35_busqueda_cuda_reanudable.html"><span class="std std-doc">§35: CUDA</span></a>, <a class="reference internal" href="sections/36_avance_campana_cuda.html"><span class="std std-doc">§36: corte histórico</span></a>, <a class="reference internal" href="sections/40_calendario_original.html"><span class="std std-doc">§40: calendario histórico</span></a> y <a class="reference internal" href="sections/41_avance_optimizacion_11_origenes.html"><span class="std std-doc">§41: ejecución y avance</span></a>.</p></li>
-<li><p><strong>Entrega y cierre:</strong> <a class="reference internal" href="sections/06_benchmark_final.html"><span class="std std-doc">§6: benchmark</span></a>, <a class="reference internal" href="sections/12_incertidumbre_errores.html"><span class="std std-doc">§12: incertidumbre</span></a>, <a class="reference internal" href="sections/13_agregacion_estadistica.html"><span class="std std-doc">§13: inferencia</span></a>, <a class="reference internal" href="sections/08_reproducibilidad.html"><span class="std std-doc">§8: reproducción</span></a> y <a class="reference internal" href="sections/38_cumplimiento_guia.html"><span class="std std-doc">§38: exigencias de la guía</span></a>.</p></li>
-</ul>
-<p>Los capítulos con cortes anteriores conservan sus fechas y recibos. Las notas de vigencia distinguen la preparación histórica del diseño actual; no se trasladan resultados entre protocolos ni se rellenan tablas con cifras de otros experimentos.</p>
+<section id="evidencia-de-cierre">
+<h2>Evidencia de cierre<a class="headerlink" href="#evidencia-de-cierre" title="Link to this heading">#</a></h2>
+<p>El corte de selección se fija al commit <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/795844308c07cbc160d3dd1feb6284b5f443bb20"><code class="docutils literal notranslate"><span class="pre">795844308c07</span></code></a>, con cierre registrado el <strong>12/11/2026 a las 12:53:37 UTC</strong>. Contiene cincuenta selecciones modelo/origen del plan anterior; sus contadores no prueban ejecución de las recetas restauradas o de la enmienda nueva.</p>
+<p>La <a class="reference download internal" download="" href="_downloads/67b82e7a409627c6ee42fdeb2c754772/selection_snapshot.json"><span class="xref download myst">instantánea</span></a> y el <a class="reference download internal" download="" href="_downloads/6ca26317065fcd35bce27c2c538005c2/trials.csv"><span class="xref download myst">CSV de ensayos</span></a> conservan el detalle. La conciliación mantiene el techo de <strong>64 horas acumuladas</strong>, sin tiempo nuevo. Esta publicación no comprueba ni modifica el kernel privado de Colab.</p>
+<p>La revisión global de requisitos queda en <a class="reference internal" href="sections/38_cumplimiento_guia.html"><span class="std std-doc">§38</span></a>. Los capítulos anteriores conservan su fecha y ámbito. La <a class="reference internal" href="sections/46_artefactos_y_pilotos.html"><span class="std std-doc">preparación técnica de pilotos (§46)</span></a> es un apéndice opcional para una continuación posterior.</p>
 </section>
 <div class="toctree-wrapper compound">
 </div>
@@ -542,11 +508,11 @@
                   
 <div class="prev-next-area">
     <a class="right-next"
-       href="sections/01_punto_partida.html"
+       href="sections/47_entrega_consolidada.html"
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">1. Definición del Problema, Preguntas de Investigación y Dataset</p>
+        <p class="prev-next-title">47. Entrega consolidada con la evidencia disponible</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -568,11 +534,10 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-de-la-entrega-y-guia-de-lectura">Estado de la entrega y guía de lectura</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problema-contrato-y-referencias">Problema, contrato y referencias</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-vigente-guia-y-computo">Diseño vigente, guía y cómputo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-parciales-y-limites">Resultados parciales y límites</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recorrido-recomendado">Recorrido recomendado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-del-trabajo">Resumen del trabajo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guia-de-lectura">Guía de lectura</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#catalogo-y-protocolo-vigentes">Catálogo y protocolo vigentes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-de-cierre">Evidencia de cierre</a></li>
 </ul>
   </nav></div>
 

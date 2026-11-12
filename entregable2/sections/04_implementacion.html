@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>4. Implementación de los diez modelos y el candidato adicional &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
+    <title>4. Implementación: catálogo obligatorio y antecedentes &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
   
   
   
@@ -207,10 +207,11 @@
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="47_entrega_consolidada.html">47. Entrega consolidada con la evidencia disponible</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_literatura.html">3. Revisión Sistemática del Estado del Arte</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Implementación de los diez modelos y el candidato adicional</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Implementación: catálogo obligatorio y antecedentes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark obligatorio: dieciséis sistemas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
@@ -248,10 +249,11 @@
 <li class="toctree-l1"><a class="reference internal" href="39_optimizacion_tiempo.html">39. Optimizar tiempo sin recortar las exigencias de E2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="40_calendario_original.html">40. Calendario original y optimizaciones de implementación</a></li>
 <li class="toctree-l1"><a class="reference internal" href="41_avance_optimizacion_11_origenes.html">41. Ejecución optimizada: avance verificable de once orígenes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html">42. Auditoría de E2 y trabajo que puede adelantarse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html">42. Preparación complementaria a partir de evidencia existente</a></li>
 <li class="toctree-l1"><a class="reference internal" href="43_catalogo_obligatorio.html">43. Catálogo obligatorio: dieciséis sistemas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="44_arquitecturas_publicadas.html">44. Cuerpos publicados, adaptaciones D7 y aplicación de NAS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="45_enmienda_protocolo.html">45. Enmienda del protocolo: calendario común, presupuesto y prueba final</a></li>
+<li class="toctree-l1"><a class="reference internal" href="46_artefactos_y_pilotos.html">46. Preparación técnica opcional: artefactos y pilotos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
 </ul>
 
@@ -382,7 +384,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>4. Implementación de los diez modelos y el candidato adicional</h1>
+    <h1>4. Implementación: catálogo obligatorio y antecedentes</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -392,12 +394,13 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#antecedentes-de-implementacion-corte-del-0811-11-2026">Antecedentes de implementación, corte del 08–11/11/2026</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-preliminar-y-alcance">4.0 Implementación preliminar y alcance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contrato-de-informacion">4.1 Contrato de información</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seis-adaptadores-integrados-controles-antes-de-mercado">4.2 Seis adaptadores integrados: controles antes de mercado</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-sinteticas-historicas-que-acreditan-y-que-no">4.3 Pruebas sintéticas históricas: qué acreditan y qué no</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guardas-temporales-antes-de-cualquier-ajuste">4.4 Guardas temporales antes de cualquier ajuste</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#secuencia-necesaria-del-nuevo-experimento">4.5 Secuencia necesaria del nuevo experimento</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#secuencia-historica-propuesta-para-el-experimento-anterior">4.5 Secuencia histórica propuesta para el experimento anterior</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trazabilidad-sin-reactivar-el-catalogo-retirado">4.6 Trazabilidad sin reactivar el catálogo retirado</a></li>
 </ul>
             </nav>
@@ -410,17 +413,21 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="implementacion-de-los-diez-modelos-y-el-candidato-adicional">
-<h1>4. Implementación de los diez modelos y el candidato adicional<a class="headerlink" href="#implementacion-de-los-diez-modelos-y-el-candidato-adicional" title="Link to this heading">#</a></h1>
-<p><strong>Vigencia documental (11/11/2026):</strong> existe selección HPO/NAS registrada y ejecutada para el catálogo actual; las afirmaciones de ausencia de HPO o de falta de registro de selección corresponden a cortes anteriores. El benchmark final, R y su cierre inferencial siguen pendientes. <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">Registro y alcance actuales (§9)</span></a> · <a class="reference internal" href="40_calendario_original.html"><span class="std std-doc">Calendario (§40)</span></a> · <a class="reference internal" href="41_avance_optimizacion_11_origenes.html"><span class="std std-doc">Corte de resultados (§41)</span></a> · <a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html"><span class="std std-doc">Auditoría y trabajo paralelo (§42)</span></a>.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="implementacion-catalogo-obligatorio-y-antecedentes">
+<h1>4. Implementación: catálogo obligatorio y antecedentes<a class="headerlink" href="#implementacion-catalogo-obligatorio-y-antecedentes" title="Link to this heading">#</a></h1>
+<p><strong>Vigencia documental (12/11/2026):</strong> la selección HPO/NAS ejecutada parcialmente corresponde al plan histórico de catorce redes. El catálogo obligatorio vigente es de <strong>16 sistemas</strong>, con las identidades de <a class="reference internal" href="43_catalogo_obligatorio.html"><span class="std std-doc">§43</span></a>, las arquitecturas de <a class="reference internal" href="44_arquitecturas_publicadas.html"><span class="std std-doc">§44</span></a> y el protocolo registrado de <a class="reference internal" href="45_enmienda_protocolo.html"><span class="std std-doc">§45</span></a>. Esos registros históricos no cierran el benchmark vigente ni acreditan las cuatro recetas restauradas. R y el cierre inferencial siguen pendientes. <a class="reference internal" href="41_avance_optimizacion_11_origenes.html"><span class="std std-doc">Corte verificable de resultados (§41)</span></a>.</p>
+<p>El híbrido adicional y Ridge se conservan como opcionales/históricos. Este capítulo archiva los prototipos e integraciones anteriores; el inventario vigente se consulta en §§43–45.</p>
+<section id="antecedentes-de-implementacion-corte-del-0811-11-2026">
+<h2>Antecedentes de implementación, corte del 08–11/11/2026<a class="headerlink" href="#antecedentes-de-implementacion-corte-del-0811-11-2026" title="Link to this heading">#</a></h2>
 <p><strong>Integración posterior:</strong> <a class="reference internal" href="24_ejecutor_comun.html"><span class="std std-doc">§24 comprueba el recorrido sintético común de 18 sistemas</span></a>, con referencias separadas y sin ajustes de mercado.</p>
 <p><strong>Avance posterior:</strong> <a class="reference internal" href="23_implementacion_recetas.html"><span class="std std-doc">§23 implementa los cuerpos de §22 y los controles temporales</span></a>, con pruebas exclusivamente sintéticas y preservación de los prototipos anteriores. No es un benchmark de mercado.</p>
-<p><strong>Avance de software:</strong> fábrica de los once candidatos, híbrido y flujo sintético implementados y verificados; recetas provisionales, sin datos de mercado. Véase <a class="reference internal" href="18_integracion_sintetica.html"><span class="std std-doc">§18: integración y pruebas sintéticas</span></a>. No hay HPO ni benchmark vigente ejecutado.</p>
-<p><strong>Catálogo vigente al 08/11/2026:</strong> FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder con predictor, TimesNet, TSMixer, TiDE, TimeMixer, PatchTST e iTransformer. El modelo 11 activo es <strong>CNN-1D + LSTM + atención temporal</strong>, un diseño editorial propuesto, implementado provisionalmente y probado con datos sintéticos, sin entrenamiento de mercado y sin superioridad demostrada. HAR + red residual queda como prototipo histórico inactivo. Esta selección sustituye el catálogo anterior en la presentación de E2; sus registros experimentales se conservan sólo como trazabilidad.</p>
-<p><strong>Estado real:</strong> se conservan cuatro prototipos compactos y el corrector HAR anterior, aislados del ejecutor histórico, con diez pruebas sintéticas documentadas. Esas pruebas no cubren el nuevo híbrido CNN-1D + LSTM + atención temporal. Los otros seis modelos tienen código histórico que necesita integración y validación en el nuevo diseño. <strong>No hay entrenamiento de mercado, HPO, dimensionamiento de repeticiones ni resultados finales del catálogo vigente.</strong></p>
+<p><strong>Avance de software:</strong> fábrica de los once candidatos, híbrido y flujo sintético implementados y verificados; recetas provisionales, sin datos de mercado. Véase <a class="reference internal" href="18_integracion_sintetica.html"><span class="std std-doc">§18: integración y pruebas sintéticas</span></a>. En el corte sintético de §18 todavía no se había ejecutado la selección posterior de §41; el benchmark vigente sigue sin terminar.</p>
+<p><strong>Catálogo histórico al 08/11/2026:</strong> FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder con predictor, TimesNet, TSMixer, TiDE, TimeMixer, PatchTST e iTransformer. En ese corte, el modelo 11 propuesto era <strong>CNN-1D + LSTM + atención temporal</strong>, un diseño editorial propuesto, implementado provisionalmente y probado con datos sintéticos, sin entrenamiento de mercado y sin superioridad demostrada. HAR + red residual queda como prototipo histórico inactivo. Esta selección sustituye el catálogo anterior en la presentación de E2; sus registros experimentales se conservan sólo como trazabilidad.</p>
+<p><strong>Estado del prototipo al 08/11/2026:</strong> se conservan cuatro prototipos compactos y el corrector HAR anterior, aislados del ejecutor histórico, con diez pruebas sintéticas documentadas. Esas pruebas no cubren el nuevo híbrido CNN-1D + LSTM + atención temporal. Los otros seis modelos tienen código histórico que necesita integración y validación en el nuevo diseño. <strong>Ese corte no incluía entrenamiento de mercado, HPO, dimensionamiento ni resultados finales de esos prototipos.</strong> La selección parcial posterior permanece separada de este antecedente.</p>
+</section>
 <section id="implementacion-preliminar-y-alcance">
 <h2>4.0 Implementación preliminar y alcance<a class="headerlink" href="#implementacion-preliminar-y-alcance" title="Link to this heading">#</a></h2>
-<p>El código previo se conserva en <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/e2_proposed_models.py">redes propuestas</a>, <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/e2_proposed_temporal.py">guardas temporales</a> y <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/tests/test_e2_proposed_benchmark.py">pruebas sintéticas</a>. No implementa un ejecutor completo de entrenamiento, selección y evaluación ni contiene el nuevo híbrido activo.</p>
+<p>El código previo se conserva en <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/e2_proposed_models.py">redes propuestas</a>, <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/e2_proposed_temporal.py">guardas temporales</a> y <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/tests/test_e2_proposed_benchmark.py">pruebas sintéticas</a>. No implementa un ejecutor completo de entrenamiento, selección y evaluación ni contiene el híbrido histórico opcional.</p>
 <p>Las <a class="reference internal" href="16_fichas_nuevas.html"><span class="std std-doc">fichas bibliográficas</span></a> describen fuentes y adaptaciones posibles. No son la receta de los prototipos compactos ni configuraciones ya seleccionadas:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -450,7 +457,7 @@
 <td><p>Corrección firmada de D7×5 añadida a un pronóstico HAR externo; truncamiento a cero en inferencia</p></td>
 <td><p>Se conserva sin activarlo ni transferir sus pruebas al nuevo candidato</p></td>
 </tr>
-<tr class="row-odd"><td><p>CNN-1D + LSTM + atención temporal, candidato activo</p></td>
+<tr class="row-odd"><td><p>CNN-1D + LSTM + atención temporal, candidato histórico opcional</p></td>
 <td><p>Prototipo y pruebas sintéticas disponibles</p></td>
 <td><p>Construir y verificar el flujo causal, la atención sobre siete estados y la cabeza de σ₇ antes de entrenar</p></td>
 </tr>
@@ -463,7 +470,7 @@
 <h2>4.1 Contrato de información<a class="headerlink" href="#contrato-de-informacion" title="Link to this heading">#</a></h2>
 <p>Los diez modelos y el híbrido activo comparten el <a class="reference internal" href="17_contrato_sincronizado.html"><span class="std std-doc">contrato sincronizado E1–E2–E3</span></a>: <strong>D7×5 derivado de OHLCV mediante <code class="docutils literal notranslate"><span class="pre">relative_window</span></code> → σ₇, con h=1</strong>. No son niveles OHLCV crudos. σ₇ es la desviación poblacional de siete retornos logarítmicos diarios, <code class="docutils literal notranslate"><span class="pre">ddof=0</span></code>, sin anualización. La evaluación debe usar unidades originales y cualquier transformación aprendida se ajusta exclusivamente en el entrenamiento permitido de cada fold. No se añaden rezagos del objetivo ni historia adicional.</p>
 <p>El flujo propuesto es <strong>convoluciones 1D causales que conservan siete posiciones → LSTM unidireccional con <code class="docutils literal notranslate"><span class="pre">return_sequences=True</span></code> → atención temporal sólo sobre los siete estados observados → vector de contexto → cabeza escalar de σ₇</strong>. La convolución utiliza padding sólo a la izquierda cuando sea necesario; no incorpora días anteriores a D7 como datos nuevos. La atención resume la ventana disponible y no consulta la etiqueta futura. Anchos, kernels, profundidad, función de atención, enlace de salida e hiperparámetros definitivos quedan pendientes de definición y registro.</p>
-<p>Los controles propuestos son <strong>CNN sola</strong>, <strong>LSTM sola</strong> y <strong>CNN–LSTM sin atención</strong>, con el mismo soporte y calendario. Son ablaciones del híbrido, no nuevas posiciones del catálogo. El soporte HAR 1/7/22 y el cross-fitting residual pertenecen al prototipo anterior y dejan de ser requisitos del candidato activo.</p>
+<p>Los controles propuestos son <strong>CNN sola</strong>, <strong>LSTM sola</strong> y <strong>CNN–LSTM sin atención</strong>, con el mismo soporte y calendario. Son ablaciones del híbrido, no nuevas posiciones del catálogo. El soporte HAR 1/7/22 y el cross-fitting residual pertenecen al prototipo anterior y dejan de ser requisitos del candidato histórico opcional.</p>
 </section>
 <section id="seis-adaptadores-integrados-controles-antes-de-mercado">
 <h2>4.2 Seis adaptadores integrados: controles antes de mercado<a class="headerlink" href="#seis-adaptadores-integrados-controles-antes-de-mercado" title="Link to this heading">#</a></h2>
@@ -514,8 +521,8 @@
 </ol>
 <p>Las pruebas nuevas deberán cubrir formas, gradientes, independencia de los acompañantes del batch, checkpoint y causalidad, además de duplicados pertinentes y controles negativos. Son verificaciones propuestas, todavía no ejecutadas para el híbrido. Un fallo requiere corrección y nueva verificación; no se resuelve describiéndolo como limitación menor.</p>
 </section>
-<section id="secuencia-necesaria-del-nuevo-experimento">
-<h2>4.5 Secuencia necesaria del nuevo experimento<a class="headerlink" href="#secuencia-necesaria-del-nuevo-experimento" title="Link to this heading">#</a></h2>
+<section id="secuencia-historica-propuesta-para-el-experimento-anterior">
+<h2>4.5 Secuencia histórica propuesta para el experimento anterior<a class="headerlink" href="#secuencia-historica-propuesta-para-el-experimento-anterior" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Fijar fuentes, correspondencia con el curso y recetas de los diez modelos y del candidato 11; distinguir adaptación propia de reproducción. Resolver la condición NAS conforme a <a class="reference internal" href="14_arquitecturas.html"><span class="std std-doc">§14</span></a>.</p></li>
 <li><p>Implementar CNN-1D + LSTM + atención temporal y sus ablaciones conforme al contrato común. Integrar los seis adaptadores en un ejecutor nuevo sin modificar el código ni los protocolos históricos.</p></li>
@@ -523,7 +530,7 @@
 <li><p>Validar el pipeline y publicar su propio preregistro antes de ajustes de mercado. Definir selección temporal, congelación de recetas y dimensionamiento sin trasladar un R o presupuesto anterior.</p></li>
 <li><p>Cerrar pesos y, cuando correspondan, calibradores antes de evaluar; publicar resultados y costes medidos, también fallos y desenlaces desfavorables.</p></li>
 </ul>
-<p>El desarrollo y la reserva histórica ya observados no recuperan cegamiento al cambiar los modelos. Una evaluación sobre esa reserva mantendrá alcance exploratorio.</p>
+<p>La secuencia anterior se conserva como antecedente, sin instruir nuevas corridas para el cierre documental actual. El desarrollo y la reserva histórica ya observados no recuperan cegamiento al cambiar los modelos. Una evaluación sobre esa reserva mantendrá alcance exploratorio.</p>
 </section>
 <section id="trazabilidad-sin-reactivar-el-catalogo-retirado">
 <h2>4.6 Trazabilidad sin reactivar el catálogo retirado<a class="headerlink" href="#trazabilidad-sin-reactivar-el-catalogo-retirado" title="Link to this heading">#</a></h2>
@@ -598,12 +605,13 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#antecedentes-de-implementacion-corte-del-0811-11-2026">Antecedentes de implementación, corte del 08–11/11/2026</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-preliminar-y-alcance">4.0 Implementación preliminar y alcance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contrato-de-informacion">4.1 Contrato de información</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seis-adaptadores-integrados-controles-antes-de-mercado">4.2 Seis adaptadores integrados: controles antes de mercado</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-sinteticas-historicas-que-acreditan-y-que-no">4.3 Pruebas sintéticas históricas: qué acreditan y qué no</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guardas-temporales-antes-de-cualquier-ajuste">4.4 Guardas temporales antes de cualquier ajuste</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#secuencia-necesaria-del-nuevo-experimento">4.5 Secuencia necesaria del nuevo experimento</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#secuencia-historica-propuesta-para-el-experimento-anterior">4.5 Secuencia histórica propuesta para el experimento anterior</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trazabilidad-sin-reactivar-el-catalogo-retirado">4.6 Trazabilidad sin reactivar el catálogo retirado</a></li>
 </ul>
   </nav></div>

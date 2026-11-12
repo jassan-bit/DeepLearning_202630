@@ -1,10 +1,12 @@
 # 41. Ejecución optimizada: avance verificable de once orígenes
 
+**Corte posterior incorporado a la entrega:** el [informe consolidado (§47)](47_entrega_consolidada.md) publica **1.705 resultados optimizados, 3.507 registros combinados y cincuenta selecciones locales**, con fuente fija del 12/11/2026 a las 12:53:37 UTC. Este capítulo conserva los cortes anteriores y sus archivos originales.
+
 **Vigencia posterior del 12/11/2026:** la [enmienda de protocolo de §45](45_enmienda_protocolo.md) fija **tres anclas HPO, una NAS inicial TiDE y diez reajustes mensuales de evaluación**. Este capítulo conserva el plan sellado de once búsquedas y su corte de recibos como antecedente. Sus instrucciones de continuación y su saldo describen ese estado histórico; no aplican ni acreditan la migración al protocolo nuevo. La sesión privada de Colab permanece independiente de esta publicación.
 
 **Alcance posterior al corte:** desde el 12/11/2026 el [catálogo obligatorio es de 16 sistemas (§43)](43_catalogo_obligatorio.md), sin híbrido adicional ni Ridge. Los contadores de este capítulo corresponden a la campaña sellada anterior de catorce redes. Conservan sus fuentes y significado; no prueban que Colab haya aplicado la enmienda.
 
-**Corte fijo vigente: 12/11/2026, 02:29:43 de Bogotá (07:29:43 UTC).** La campaña quedó **pausada por límite de sesión, con cierre limpio**. Este corte describe registros de GitHub y no comprueba el kernel de Colab en vivo. En ese corte se conservaban los once orígenes y los catorce sistemas neuronales. La propuesta histórica de §37 no se había activado; la posterior política vigente de §45 se registra por separado.
+**Corte fijo histórico de este capítulo: 12/11/2026, 02:29:43 de Bogotá (07:29:43 UTC).** La campaña quedó **pausada por límite de sesión, con cierre limpio**. Este corte describe registros de GitHub y no comprueba el kernel de Colab en vivo. En ese corte se conservaban los once orígenes y los catorce sistemas neuronales. La propuesta histórica de §37 no se había activado; la posterior política vigente de §45 se registra por separado.
 
 ## Resultados confirmados
 
@@ -81,7 +83,7 @@ Se verificaron los **836 eventos nuevos** desde el corte anterior: 417 inicios y
 
 Faltan selecciones de otros modelos/orígenes y NAS, dimensionamiento de R con piloto compatible, comparadores y reajustes finales, evaluación común, inferencia temporal, robustez, incertidumbre, explicabilidad, ablaciones y reproducción independiente. **No hay ranking final ni cumplimiento integral acreditado por estos conteos.** Las 608 fechas históricas conocidas mantienen alcance exploratorio. [Auditoría y trabajo paralelo (§42)](42_auditoria_y_trabajo_paralelo.md).
 
-## Fuentes del corte vigente
+## Fuentes del corte histórico
 
 - Commit fijo de campaña: dfd7d3c035c015aac9cad454b1aec30f190a631d.
 - Plan: 877a8ab4a0d34599f43c5dd16a90fe87fe03d37fe535466bf8e009c379cce742.

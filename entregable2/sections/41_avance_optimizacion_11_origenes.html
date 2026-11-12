@@ -65,7 +65,7 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="42. Auditoría de E2 y trabajo que puede adelantarse" href="42_auditoria_y_trabajo_paralelo.html" />
+    <link rel="next" title="42. Preparación complementaria a partir de evidencia existente" href="42_auditoria_y_trabajo_paralelo.html" />
     <link rel="prev" title="40. Calendario original y optimizaciones de implementación" href="40_calendario_original.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
@@ -207,10 +207,11 @@
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="47_entrega_consolidada.html">47. Entrega consolidada con la evidencia disponible</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_literatura.html">3. Revisión Sistemática del Estado del Arte</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación de los diez modelos y el candidato adicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación: catálogo obligatorio y antecedentes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark obligatorio: dieciséis sistemas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
@@ -248,10 +249,11 @@
 <li class="toctree-l1"><a class="reference internal" href="39_optimizacion_tiempo.html">39. Optimizar tiempo sin recortar las exigencias de E2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="40_calendario_original.html">40. Calendario original y optimizaciones de implementación</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">41. Ejecución optimizada: avance verificable de once orígenes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html">42. Auditoría de E2 y trabajo que puede adelantarse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html">42. Preparación complementaria a partir de evidencia existente</a></li>
 <li class="toctree-l1"><a class="reference internal" href="43_catalogo_obligatorio.html">43. Catálogo obligatorio: dieciséis sistemas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="44_arquitecturas_publicadas.html">44. Cuerpos publicados, adaptaciones D7 y aplicación de NAS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="45_enmienda_protocolo.html">45. Enmienda del protocolo: calendario común, presupuesto y prueba final</a></li>
+<li class="toctree-l1"><a class="reference internal" href="46_artefactos_y_pilotos.html">46. Preparación técnica opcional: artefactos y pilotos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
 </ul>
 
@@ -398,7 +400,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contabilidad-al-cierre-del-corte">Contabilidad al cierre del corte</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuraciones-costes-y-trazabilidad">Configuraciones, costes y trazabilidad</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pendientes-de-e2">Pendientes de E2</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuentes-del-corte-vigente">Fuentes del corte vigente</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuentes-del-corte-historico">Fuentes del corte histórico</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#corte-anterior-conservado-11-11-21-54-51-de-bogota">Corte anterior conservado: 11/11, 21:54:51 de Bogotá</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#corte-anterior-conservado-19-32-18-de-bogota">Corte anterior conservado: 19:32:18 de Bogotá</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#corte-anterior-conservado-16-31-12-de-bogota">Corte anterior conservado: 16:31:12 de Bogotá</a></li>
@@ -416,9 +418,10 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="ejecucion-optimizada-avance-verificable-de-once-origenes">
 <h1>41. Ejecución optimizada: avance verificable de once orígenes<a class="headerlink" href="#ejecucion-optimizada-avance-verificable-de-once-origenes" title="Link to this heading">#</a></h1>
+<p><strong>Corte posterior incorporado a la entrega:</strong> el <a class="reference internal" href="47_entrega_consolidada.html"><span class="std std-doc">informe consolidado (§47)</span></a> publica <strong>1.705 resultados optimizados, 3.507 registros combinados y cincuenta selecciones locales</strong>, con fuente fija del 12/11/2026 a las 12:53:37 UTC. Este capítulo conserva los cortes anteriores y sus archivos originales.</p>
 <p><strong>Vigencia posterior del 12/11/2026:</strong> la <a class="reference internal" href="45_enmienda_protocolo.html"><span class="std std-doc">enmienda de protocolo de §45</span></a> fija <strong>tres anclas HPO, una NAS inicial TiDE y diez reajustes mensuales de evaluación</strong>. Este capítulo conserva el plan sellado de once búsquedas y su corte de recibos como antecedente. Sus instrucciones de continuación y su saldo describen ese estado histórico; no aplican ni acreditan la migración al protocolo nuevo. La sesión privada de Colab permanece independiente de esta publicación.</p>
 <p><strong>Alcance posterior al corte:</strong> desde el 12/11/2026 el <a class="reference internal" href="43_catalogo_obligatorio.html"><span class="std std-doc">catálogo obligatorio es de 16 sistemas (§43)</span></a>, sin híbrido adicional ni Ridge. Los contadores de este capítulo corresponden a la campaña sellada anterior de catorce redes. Conservan sus fuentes y significado; no prueban que Colab haya aplicado la enmienda.</p>
-<p><strong>Corte fijo vigente: 12/11/2026, 02:29:43 de Bogotá (07:29:43 UTC).</strong> La campaña quedó <strong>pausada por límite de sesión, con cierre limpio</strong>. Este corte describe registros de GitHub y no comprueba el kernel de Colab en vivo. En ese corte se conservaban los once orígenes y los catorce sistemas neuronales. La propuesta histórica de §37 no se había activado; la posterior política vigente de §45 se registra por separado.</p>
+<p><strong>Corte fijo histórico de este capítulo: 12/11/2026, 02:29:43 de Bogotá (07:29:43 UTC).</strong> La campaña quedó <strong>pausada por límite de sesión, con cierre limpio</strong>. Este corte describe registros de GitHub y no comprueba el kernel de Colab en vivo. En ese corte se conservaban los once orígenes y los catorce sistemas neuronales. La propuesta histórica de §37 no se había activado; la posterior política vigente de §45 se registra por separado.</p>
 <section id="resultados-confirmados">
 <h2>Resultados confirmados<a class="headerlink" href="#resultados-confirmados" title="Link to this heading">#</a></h2>
 <p>El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/dfd7d3c035c015aac9cad454b1aec30f190a631d">commit de campaña dfd7d3c035c0</a> contiene <strong>1.484 resultados nuevos, todos completed y sin fallos entre esos registros</strong>. Se conservaron las huellas de los 1.067 recibos anteriores y se comprobaron los <strong>417 añadidos</strong>. Suman <strong>1.845.434 pasos conocidos de optimizador</strong>. Son resultados lógicos de ajustes HPO; la duración y los pasos del intento original interrumpido siguen desconocidos.</p>
@@ -576,8 +579,8 @@
 <h2>Pendientes de E2<a class="headerlink" href="#pendientes-de-e2" title="Link to this heading">#</a></h2>
 <p>Faltan selecciones de otros modelos/orígenes y NAS, dimensionamiento de R con piloto compatible, comparadores y reajustes finales, evaluación común, inferencia temporal, robustez, incertidumbre, explicabilidad, ablaciones y reproducción independiente. <strong>No hay ranking final ni cumplimiento integral acreditado por estos conteos.</strong> Las 608 fechas históricas conocidas mantienen alcance exploratorio. <a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html"><span class="std std-doc">Auditoría y trabajo paralelo (§42)</span></a>.</p>
 </section>
-<section id="fuentes-del-corte-vigente">
-<h2>Fuentes del corte vigente<a class="headerlink" href="#fuentes-del-corte-vigente" title="Link to this heading">#</a></h2>
+<section id="fuentes-del-corte-historico">
+<h2>Fuentes del corte histórico<a class="headerlink" href="#fuentes-del-corte-historico" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Commit fijo de campaña: dfd7d3c035c015aac9cad454b1aec30f190a631d.</p></li>
 <li><p>Plan: 877a8ab4a0d34599f43c5dd16a90fe87fe03d37fe535466bf8e009c379cce742.</p></li>
@@ -669,7 +672,7 @@
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">42. Auditoría de E2 y trabajo que puede adelantarse</p>
+        <p class="prev-next-title">42. Preparación complementaria a partir de evidencia existente</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -697,7 +700,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contabilidad-al-cierre-del-corte">Contabilidad al cierre del corte</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuraciones-costes-y-trazabilidad">Configuraciones, costes y trazabilidad</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pendientes-de-e2">Pendientes de E2</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuentes-del-corte-vigente">Fuentes del corte vigente</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuentes-del-corte-historico">Fuentes del corte histórico</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#corte-anterior-conservado-11-11-21-54-51-de-bogota">Corte anterior conservado: 11/11, 21:54:51 de Bogotá</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#corte-anterior-conservado-19-32-18-de-bogota">Corte anterior conservado: 19:32:18 de Bogotá</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#corte-anterior-conservado-16-31-12-de-bogota">Corte anterior conservado: 16:31:12 de Bogotá</a></li>

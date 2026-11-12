@@ -68,7 +68,7 @@
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
     <link rel="next" title="2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones" href="02_eda.html" />
-    <link rel="prev" title="Proyecto Final de Deep Learning: Entregable 2" href="../intro.html" />
+    <link rel="prev" title="47. Entrega consolidada con la evidencia disponible" href="47_entrega_consolidada.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
   <meta name="docsearch:version" content="" />
@@ -209,10 +209,11 @@
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="47_entrega_consolidada.html">47. Entrega consolidada con la evidencia disponible</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_literatura.html">3. Revisión Sistemática del Estado del Arte</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación de los diez modelos y el candidato adicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación: catálogo obligatorio y antecedentes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark obligatorio: dieciséis sistemas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
@@ -250,10 +251,11 @@
 <li class="toctree-l1"><a class="reference internal" href="39_optimizacion_tiempo.html">39. Optimizar tiempo sin recortar las exigencias de E2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="40_calendario_original.html">40. Calendario original y optimizaciones de implementación</a></li>
 <li class="toctree-l1"><a class="reference internal" href="41_avance_optimizacion_11_origenes.html">41. Ejecución optimizada: avance verificable de once orígenes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html">42. Auditoría de E2 y trabajo que puede adelantarse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html">42. Preparación complementaria a partir de evidencia existente</a></li>
 <li class="toctree-l1"><a class="reference internal" href="43_catalogo_obligatorio.html">43. Catálogo obligatorio: dieciséis sistemas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="44_arquitecturas_publicadas.html">44. Cuerpos publicados, adaptaciones D7 y aplicación de NAS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="45_enmienda_protocolo.html">45. Enmienda del protocolo: calendario común, presupuesto y prueba final</a></li>
+<li class="toctree-l1"><a class="reference internal" href="46_artefactos_y_pilotos.html">46. Preparación técnica opcional: artefactos y pilotos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
 </ul>
 
@@ -432,8 +434,8 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="definicion-del-problema-preguntas-de-investigacion-y-dataset">
 <h1>1. Definición del Problema, Preguntas de Investigación y Dataset<a class="headerlink" href="#definicion-del-problema-preguntas-de-investigacion-y-dataset" title="Link to this heading">#</a></h1>
-<p><strong>Vigencia documental (11/11/2026):</strong> existe selección HPO/NAS registrada y ejecutada para el catálogo actual; las afirmaciones de ausencia de HPO o de falta de registro de selección corresponden a cortes anteriores. El benchmark final, R y su cierre inferencial siguen pendientes. <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">Registro y alcance actuales (§9)</span></a> · <a class="reference internal" href="40_calendario_original.html"><span class="std std-doc">Calendario (§40)</span></a> · <a class="reference internal" href="41_avance_optimizacion_11_origenes.html"><span class="std std-doc">Corte de resultados (§41)</span></a> · <a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html"><span class="std std-doc">Auditoría y trabajo paralelo (§42)</span></a>.</p>
-<p><strong>Catálogo vigente:</strong> diez modelos de literatura y adaptaciones de familias, más <strong>CNN-1D + LSTM + atención temporal como candidato 11</strong>, sin superioridad demostrada. MLP, LSTM y GRU de E1 son referencias separadas y no se suman al catálogo. La <a class="reference internal" href="15_revision_modelos.html"><span class="std std-doc">revisión del 08/11/2026</span></a> sustituye la selección anterior; la nueva enmienda experimental está pendiente.</p>
+<p><strong>Vigencia documental (12/11/2026):</strong> existe selección HPO/NAS ejecutada del plan anterior de catorce redes. No acredita las cuatro recetas restauradas de SAE, TimesNet, TimeMixer y PatchTST, ni el benchmark final del catálogo vigente. k, R y el cierre inferencial siguen pendientes. <a class="reference internal" href="43_catalogo_obligatorio.html"><span class="std std-doc">Catálogo obligatorio (§43)</span></a> · <a class="reference internal" href="44_arquitecturas_publicadas.html"><span class="std std-doc">Arquitecturas (§44)</span></a> · <a class="reference internal" href="45_enmienda_protocolo.html"><span class="std std-doc">Enmienda registrada (§45)</span></a> · <a class="reference internal" href="41_avance_optimizacion_11_origenes.html"><span class="std std-doc">Corte histórico de resultados (§41)</span></a>.</p>
+<p><strong>Catálogo obligatorio vigente: dieciséis sistemas.</strong> Diez modelos de literatura y adaptaciones, las referencias MLP16, LSTM32 y GRU32 de E1, y Persistence, SeasonalNaive y ARIMA. Las referencias E1 se cuentan aparte del Top 10 y forman parte de los dieciséis. El híbrido CNN-1D + LSTM + atención temporal y Ridge quedan como antecedentes opcionales. La ruta prospectiva conserva o restaura nueve cuerpos definidos del Top 10 y mantiene NAS para TiDE; la <a class="reference internal" href="45_enmienda_protocolo.html"><span class="std std-doc">enmienda del 12/11/2026</span></a> ya está registrada, con ejecución pendiente.</p>
 <p>Esta sección desarrolla las páginas 2–3 de la guía completa de 65 páginas. Se conservan la formulación y la ficha de datos; la ruta es <strong>F2a, series de tiempo</strong>, como explica la <a class="reference internal" href="07_ruta_temporal.html#e2-ruta-temporal"><span class="std std-ref">sección 7</span></a>. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0">registro histórico <code class="docutils literal notranslate"><span class="pre">599a29f</span></code></a> y el <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">piloto P0 ejecutado</span></a> se conservan para trazabilidad, sin trasladar sus candidatos, presupuesto o resultados al catálogo vigente. Los periodos heredados ya se conocían: su reutilización tiene alcance exploratorio. Los diagnósticos del EDA se presentan en la <a class="reference internal" href="02_eda.html"><span class="std std-doc">sección 2</span></a>.</p>
 <section id="definicion-formal-del-problema">
 <h2>1.1 Definición formal del problema<a class="headerlink" href="#definicion-formal-del-problema" title="Link to this heading">#</a></h2>
@@ -458,7 +460,7 @@
 <td><p>σ₇ poblacional de siete retornos logarítmicos diarios de Close, sin anualización</p></td>
 </tr>
 <tr class="row-odd"><td><p>Referencias de E1</p></td>
-<td><p>MLP, LSTM y GRU, fuera del catálogo; receta y cohorte comparables por identificar en la nueva enmienda</p></td>
+<td><p>MLP16, LSTM32 y GRU32, fuera del Top 10 e incluidas en los dieciséis sistemas; receta y calendario común definidos en §43–§45</p></td>
 </tr>
 <tr class="row-even"><td><p>Métrica primaria</p></td>
 <td><p>Media entre semillas de la RMSE de cada trayectoria sobre las fechas elegibles comunes, en escala original</p></td>
@@ -476,7 +478,7 @@
 </table>
 </div>
 <p>Las recetas del experimento de origen se consultan en el <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/experiments/gru_lstm_tcn_planned_20261105/design.json">diseño versionado de fase II</a>. Se conserva su trazabilidad sin reproducir aquí una segunda selección de modelos.</p>
-<p>El siguiente calendario describe la procedencia histórica de los datos. La nueva enmienda debe identificar el uso de cada periodo y de cada referencia sin retrofechar decisiones.</p>
+<p>El siguiente calendario describe la procedencia histórica de los datos. La <a class="reference internal" href="45_enmienda_protocolo.html"><span class="std std-doc">enmienda registrada de §45</span></a> identifica el uso actual de cada periodo y de cada referencia sin retrofechar decisiones.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Función</p></th>
@@ -528,8 +530,8 @@ X_t=(Z_{t-7},\ldots,Z_{t-1})\in\mathcal X\subseteq\mathbb R^{7\times5},
 </section>
 <section id="espacio-de-hipotesis-perdida-y-riesgo">
 <h3>1.1.3 Espacio de hipótesis, pérdida y riesgo<a class="headerlink" href="#espacio-de-hipotesis-perdida-y-riesgo" title="Link to this heading">#</a></h3>
-<p>El catálogo vigente contiene <strong>FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder con predictor, TimesNet, TSMixer, TiDE, TimeMixer, PatchTST e iTransformer</strong>. Son modelos de la literatura o adaptaciones de familias; no se presentan como los nombres literales del curso. <strong>CNN-1D + LSTM + atención temporal</strong> es el candidato 11 que se investigará, sin afirmar que sea superior.</p>
-<p>Para esos modelos, el espacio de hipótesis es <span class="math notranslate nohighlight">\(\mathcal H=\bigcup_{m\in\mathcal M}\mathcal H_m\)</span>. Las diez redes parten del contrato <span class="math notranslate nohighlight">\(\mathcal X\subseteq\mathbb R^{7\times5}\)</span>; el híbrido propuesto usa el mismo D7×5 mediante CNN causal, LSTM unidireccional y atención sólo sobre estados observados. No incorpora historia mensual ni etiquetas rezagadas como entradas adicionales. La variable objetivo es no negativa; el enlace de salida y cualquier posprocesamiento deben fijarse por receta antes de puntuar. MLP, LSTM y GRU de E1 permanecen como referencias externas a este catálogo, con identidad experimental propia.</p>
+<p>El Top 10 vigente contiene <strong>FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder con predictor, TimesNet, TSMixer, TiDE, TimeMixer, PatchTST e iTransformer</strong>. Son modelos de la literatura o adaptaciones de familias; no se presentan como los nombres literales del curso. <strong>CNN-1D + LSTM + atención temporal</strong> conserva una propuesta histórica opcional, sin superioridad demostrada y sin obligación de completar nuevas corridas para el catálogo requerido.</p>
+<p>Para esos modelos, el espacio de hipótesis es <span class="math notranslate nohighlight">\(\mathcal H=\bigcup_{m\in\mathcal M}\mathcal H_m\)</span>. Las diez redes y las tres referencias E1 parten del contrato <span class="math notranslate nohighlight">\(\mathcal X\subseteq\mathbb R^{7\times5}\)</span>. No incorporan historia mensual ni etiquetas rezagadas como entradas adicionales. La variable objetivo es no negativa; el enlace de salida y cualquier posprocesamiento se fijan por receta antes de puntuar. MLP16, LSTM32 y GRU32 mantienen sus cuerpos E1, se reinicializan y conservan identidad experimental propia dentro del catálogo obligatorio.</p>
 <p>Se conserva la pérdida cuadrática:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -547,7 +549,7 @@ R_P(f)=\mathbb E_{(X,Y)\sim P}[\mathcal L(f(X),Y)].
 </section>
 <section id="tipo-de-tarea-y-relevancia">
 <h3>1.1.4 Tipo de tarea y relevancia<a class="headerlink" href="#tipo-de-tarea-y-relevancia" title="Link to this heading">#</a></h3>
-<p>La clasificación metodológica de E2 es <strong>F2a, series de tiempo</strong>, resuelta tras recibir la guía completa. El <a class="reference internal" href="02_eda.html#e2-diagnostico-forward"><span class="std std-ref">diagnóstico residual de §2.2.3</span></a> aporta autocorrelación fuerte de la referencia Ridge; RT1 (PDF p32) exige reclasificar, además del diagnóstico del EDA C (p6). La <a class="reference internal" href="07_ruta_temporal.html#e2-ruta-temporal"><span class="std std-ref">sección 7</span></a> conserva esa resolución y los controles causales. Se conserva la tarea predictiva, D7×5, σ₇, h=1 y δ; la reclasificación no añade Y rezagada como canal de las diez redes. El soporte del híbrido y la función de cualquier control deben quedar explícitos en la nueva enmienda, sin ampliar el catálogo vigente.</p>
+<p>La clasificación metodológica de E2 es <strong>F2a, series de tiempo</strong>, resuelta tras recibir la guía completa. El <a class="reference internal" href="02_eda.html#e2-diagnostico-forward"><span class="std std-ref">diagnóstico residual de §2.2.3</span></a> aporta autocorrelación fuerte de la referencia histórica Ridge; RT1 (PDF p32) exige reclasificar, además del diagnóstico del EDA C (p6). La <a class="reference internal" href="07_ruta_temporal.html#e2-ruta-temporal"><span class="std std-ref">sección 7</span></a> conserva esa resolución y los controles causales. Se conserva la tarea predictiva, D7×5, σ₇, h=1 y δ; la reclasificación no añade Y rezagada como canal de las redes. El calendario y el soporte de los comparadores obligatorios se fijan en §45; retirar Ridge del alcance obligatorio no elimina su diagnóstico histórico.</p>
 <p>Tres trabajos respaldan la relevancia científica del pronóstico de volatilidad en criptomonedas: Miura, Pichl y Kaizoji estudian redes neuronales para volatilidad realizada <span class="bibtex-citation" id="id1">[<a class="reference internal" href="referencias.html#id2" title="Ryotaro Miura, Lukáš Pichl, and Taisei Kaizoji. Artificial Neural Networks for Realized Volatility Prediction in Cryptocurrency Time Series. In Advances in Neural Networks – ISNN 2019, volume 11554 of Lecture Notes in Computer Science, 165–172. Springer, 2019. URL: https://doi.org/10.1007/978-3-030-22796-8_18, doi:10.1007/978-3-030-22796-8_18.">Miura <em>et al.</em>, 2019</a>]</span>; Guo, Bifet y Antulov-Fantulin estudian la información de órdenes de compra y venta <span class="bibtex-citation" id="id2">[<a class="reference internal" href="referencias.html#id3" title="Tian Guo, Albert Bifet, and Nino Antulov-Fantulin. Bitcoin Volatility Forecasting with a Glimpse into Buy and Sell Orders. In 2018 IEEE International Conference on Data Mining (ICDM), 989–994. 2018. URL: https://doi.org/10.1109/ICDM.2018.00123, doi:10.1109/ICDM.2018.00123.">Guo <em>et al.</em>, 2018</a>]</span>; Akbiyik y colaboradores incorporan información de Twitter al pronóstico de volatilidad de Bitcoin <span class="bibtex-citation" id="id3">[<a class="reference internal" href="referencias.html#id4" title="M. Eren Akbiyik, Mert Erkul, Killian Kämpf, Vaiva Vasiliauskaite, and Nino Antulov-Fantulin. Ask “Who”, Not “What”: Bitcoin Volatility Forecasting with Twitter Data. In Proceedings of the Sixteenth ACM International Conference on Web Search and Data Mining (WSDM ’23). 2023. URL: https://doi.org/10.1145/3539597.3570387, doi:10.1145/3539597.3570387.">Akbiyik <em>et al.</em>, 2023</a>]</span>.</p>
 <p>Estos antecedentes motivan investigar memoria temporal, covariables y generalización. <strong>No se afirma que utilicen nuestro snapshot, idéntico objetivo σ₇ ni exactamente las entradas aquí disponibles.</strong> Tampoco constituyen por sí solos la revisión sistemática de E2 ni prueban uso del dataset exacto en una revista Q1. El interés aplicado es medir capacidad predictiva y coste bajo un benchmark académico; no se concluye rentabilidad, reducción de riesgo financiero o utilidad de trading.</p>
 </section>
@@ -555,13 +557,13 @@ R_P(f)=\mathbb E_{(X,Y)\sim P}[\mathcal L(f(X),Y)].
 <h3>1.1.5 Métricas, margen y unidad de independencia<a class="headerlink" href="#metricas-margen-y-unidad-de-independencia" title="Link to this heading">#</a></h3>
 <p>La primaria es RMSE; las secundarias heredadas son MAE, MSE, R², MAPE y MASE. MAPE se define solo donde el objetivo sea positivo y se reportará su cobertura; no se añadirá un épsilon arbitrario. MASE usa el denominador histórico ingenuo de lag 1 sobre pares de días consecutivos elegibles de entrenamiento; no se calcula comprimiendo huecos ni usando test para escalar.</p>
 <p>El margen absoluto heredado procede de <span class="math notranslate nohighlight">\(0,05\times0,005154568532996221\)</span>, RMSE CV de la GRU/D7 de fase I. <strong>No se recalcula como el 5 % de una nueva RMSE.</strong> Se conserva aparte la regla relativa académica de E1 frente a GRU y persistencia; no se confunde una reducción porcentual con δ absoluto. Su origen y fecha están documentados: heredar el margen no lo vuelve una decisión previa a los resultados históricos iniciales.</p>
-<p>Hay <strong>una única serie de mercado</strong> (<span class="math notranslate nohighlight">\(N_{\text{series}}=1\)</span>). Las semillas describen variabilidad del entrenamiento condicionada a los datos; no son nuevas series independientes. Las etiquetas σ₇ comparten retornos y las ventanas comparten observaciones. La comparación debe emparejar fechas y distinguir variación entre semillas de incertidumbre temporal. El remuestreo por bloques evita suponer independencia diaria, pero su diseño y sensibilidad requieren justificación en desarrollo. Ningún número de semillas de E1 o del P0 histórico acredita potencia para las nuevas comparaciones. El dimensionamiento se definirá tras congelar las recetas y las hipótesis de la nueva enmienda.</p>
+<p>Hay <strong>una única serie de mercado</strong> (<span class="math notranslate nohighlight">\(N_{\text{series}}=1\)</span>). Las semillas describen variabilidad del entrenamiento condicionada a los datos; no son nuevas series independientes. Las etiquetas σ₇ comparten retornos y las ventanas comparten observaciones. La comparación debe emparejar fechas y distinguir variación entre semillas de incertidumbre temporal. El remuestreo por bloques evita suponer independencia diaria, pero su diseño y sensibilidad requieren justificación en desarrollo. Ningún número de semillas de E1 o del P0 histórico acredita potencia para las nuevas comparaciones. §45 registra el procedimiento de dimensionamiento; su ejecución con las recetas seleccionadas y el valor de R siguen pendientes.</p>
 </section>
 </section>
 <section id="preguntas-de-investigacion-e-hipotesis">
 <h2>1.2 Preguntas de investigación e hipótesis<a class="headerlink" href="#preguntas-de-investigacion-e-hipotesis" title="Link to this heading">#</a></h2>
-<p>Las tres preguntas siguientes orientan el diseño vigente. <strong>Sus comparadores, familias de hipótesis y reglas de decisión todavía requieren una nueva enmienda</strong>. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0/experiments/e2_remediation_20261106/preregistration.json">registro anterior</a> se conserva como antecedente, no como preregistro de los nuevos diez modelos y el candidato 11.</p>
-<p>Para cada candidato <span class="math notranslate nohighlight">\(m\)</span>, sea <span class="math notranslate nohighlight">\(g_m=\mu_{\mathrm{ref}}-\mu_m\)</span>: valores positivos indican menor RMSE que la referencia que se identifique antes de la comparación. Las diferencias deben usar las mismas fechas elegibles y un tratamiento explícito de las semillas. MLP, LSTM y GRU de E1 aportan referencias separadas; su receta, cohorte y papel inferencial no se escogen después de mirar los resultados. El híbrido se somete a los mismos criterios de evidencia y no recibe la etiqueta de ganador por construcción.</p>
+<p>Las tres preguntas conservan la formulación científica original. La <a class="reference internal" href="45_enmienda_protocolo.html"><span class="std std-doc">enmienda de §45</span></a> concreta RQ1 en <strong>veinte contrastes primarios del Top 10 frente a GRU32 y Persistence</strong>, con ajuste Holm; RQ2 y RQ3 se mantienen como análisis secundarios exploratorios y no reciben automáticamente la potencia ni el control familiar de RQ1. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0/experiments/e2_remediation_20261106/preregistration.json">registro anterior</a> conserva su alcance histórico. Las hipótesis del híbrido opcional quedan fuera de la familia primaria vigente.</p>
+<p>Para cada candidato <span class="math notranslate nohighlight">\(m\)</span>, sea <span class="math notranslate nohighlight">\(g_m=\mu_{\mathrm{ref}}-\mu_m\)</span>: valores positivos indican menor RMSE que la referencia predefinida. Las diferencias deben usar las mismas fechas elegibles y un tratamiento explícito de las semillas. MLP16, LSTM32 y GRU32 aportan referencias separadas; su receta, cohorte y papel inferencial no se escogen después de mirar los resultados. Ningún candidato recibe la etiqueta de ganador por construcción.</p>
 <section id="rq1-ganancia-predictiva-relevante">
 <h3>1.2.1 RQ1 · Ganancia predictiva relevante<a class="headerlink" href="#rq1-ganancia-predictiva-relevante" title="Link to this heading">#</a></h3>
 <p><strong>Pregunta:</strong> ¿algún candidato reduce la RMSE respecto a la referencia predefinida en más que el margen heredado δ?</p>
@@ -569,7 +571,7 @@ R_P(f)=\mathbb E_{(X,Y)\sim P}[\mathcal L(f(X),Y)].
 \[
 H_{0,m}:g_m\le\delta,\qquad H_{1,m}:g_m&gt;\delta.
 \]</div>
-<p>El efecto mínimo es δ en unidades originales de volatilidad. La nueva enmienda deberá especificar un contraste unilateral pareado del efecto respecto a δ mediante bootstrap temporal por bloques, con las mismas fechas remuestreadas para ambos modelos y la variabilidad entre trayectorias tratada separadamente. La distribución nula se centra en la frontera <span class="math notranslate nohighlight">\(g_m=\delta\)</span>; no basta probar una diferencia contra cero. La alternativa usada para planificar potencia debe ser mayor que δ y quedar explícita antes de dimensionar; no se promete potencia de detección en la frontera de la hipótesis nula.</p>
+<p>El efecto mínimo es δ en unidades originales de volatilidad. §45 registra un contraste unilateral pareado respecto a δ mediante bootstrap temporal por bloques, con las mismas fechas remuestreadas para ambos modelos y la variabilidad entre trayectorias tratada separadamente. La distribución nula se centra en la frontera <span class="math notranslate nohighlight">\(g_m=\delta\)</span>; no basta probar una diferencia contra cero. La alternativa registrada para planificar potencia es <span class="math notranslate nohighlight">\(2\delta\)</span>; no se promete potencia de detección en la frontera de la hipótesis nula ni potencia ya demostrada.</p>
 <p>La decisión requerirá un contraste ajustado y un límite de incertidumbre compatibles con el margen δ y con el control de multiplicidad que se registre. Se reportarán efecto absoluto, reducción relativa, intervalos y p-valores ajustados y sin ajustar. Una ganancia puntual superior a δ, por sí sola, no prueba mejora práctica con incertidumbre controlada.</p>
 </section>
 <section id="rq2-deterioro-de-la-ventaja-en-alta-volatilidad">
@@ -592,13 +594,13 @@ H_{0,m}:d_m\le\delta,\qquad H_{1,m}:d_m&gt;\delta.
 H_{0,m}:(g_m\le\delta)\ \text{o}\ (c_m\ge0),\qquad
 H_{1,m}:(g_m&gt;\delta)\ \text{y}\ (c_m&lt;0).
 \]</div>
-<p>La afirmación conjunta requiere una prueba de intersección-unión: ambas condiciones deben quedar respaldadas; el p-valor conjunto será el máximo de los dos p-valores unilaterales válidos. El margen de error sigue siendo δ; el umbral de coste es cero, sin inventar una tolerancia financiera. El efecto de coste usado para dimensionar deberá justificarse en la nueva enmienda, sin inventar un ahorro observado. Se reportará también la magnitud e intervalo del ahorro para valorar su importancia operativa.</p>
-<p>La latencia debe medirse con entradas de desarrollo o sintéticas, sin volver a puntuar test para medir tiempos. La nueva enmienda fijará hardware, precisión, batch, calentamiento, bloques y orden intercalado; también declarará cualquier diferencia de soporte del híbrido. Las repeticiones del cronómetro no aumentan el tamaño muestral de la evaluación predictiva.</p>
+<p>La afirmación conjunta requiere una prueba de intersección-unión: ambas condiciones deben quedar respaldadas; el p-valor conjunto será el máximo de los dos p-valores unilaterales válidos. El margen de error sigue siendo δ; el umbral de coste es cero, sin inventar una tolerancia financiera. Su dimensionamiento específico no está cerrado; no se inventa un ahorro observado ni se transfiere a RQ3 la potencia planificada para RQ1. Se reportará también la magnitud e intervalo del ahorro para valorar su importancia operativa.</p>
+<p>La latencia debe medirse con entradas de desarrollo o sintéticas, sin volver a puntuar test para medir tiempos. Se deben documentar hardware, precisión, batch, calentamiento, bloques y orden intercalado de cada medición. El híbrido opcional conserva sus propios controles si se analiza. Las repeticiones del cronómetro no aumentan el tamaño muestral de la evaluación predictiva.</p>
 </section>
 <section id="multiplicidad-y-criterio-de-decision-comun">
 <h3>1.2.4 Multiplicidad y criterio de decisión común<a class="headerlink" href="#multiplicidad-y-criterio-de-decision-comun" title="Link to this heading">#</a></h3>
-<p>La nueva selección exige definir de nuevo qué comparaciones se harán, cómo se agruparán y qué nivel de error se asignará a cada familia. <strong>No se heredan los recuentos ni las asignaciones estadísticas del catálogo retirado.</strong> Las referencias E1 y los controles del híbrido deben tener un papel explícito, sin incorporarse como nuevos miembros del catálogo.</p>
-<p>Para RQ3 se obtiene primero el p-valor conjunto de intersección-unión; después se aplica el ajuste familiar que se registre. Los IC marginales del 95 % se distinguen de los límites simultáneos. Las pruebas de equivalencia, calibración, robustez y diagnóstico necesitan su propio alcance; no quedan cubiertas automáticamente por el ajuste de las preguntas principales.</p>
+<p>La familia primaria vigente contiene veinte comparaciones del Top 10 frente a GRU32 y Persistence y utiliza Holm con nivel familiar 0,05, según §45. <strong>No se heredan los recuentos ni las asignaciones estadísticas del catálogo retirado.</strong> Las referencias E1 y los comparadores sí forman parte de los dieciséis sistemas obligatorios; el híbrido y Ridge no forman parte de esa familia primaria.</p>
+<p>RQ2 y RQ3 conservan alcance exploratorio. Si se comunica el contraste conjunto de RQ3, se obtiene primero el p-valor de intersección-unión y se declara su multiplicidad y sus límites; no se incorpora silenciosamente al ajuste primario. Los IC marginales del 95 % se distinguen de los límites simultáneos. Las pruebas de equivalencia, calibración, robustez y diagnóstico necesitan su propio alcance; no quedan cubiertas automáticamente por el ajuste de las preguntas principales.</p>
 <p>El margen absoluto δ se mantiene como referencia metodológica; la tolerancia de brecha train–validación y las alternativas de potencia deberán fijarse explícitamente. El <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">P0 histórico de §9</span></a> completó 220 trayectorias y 440 ajustes de desarrollo, pero no selecciona ni dimensiona el catálogo vigente. Aunque se controle multiplicidad, reutilizar un test conocido mantiene el alcance exploratorio.</p>
 </section>
 </section>
@@ -704,7 +706,7 @@ H_{1,m}:(g_m&gt;\delta)\ \text{y}\ (c_m&lt;0).
 <td><p>Tres referencias de contexto citadas; no sustituyen la revisión sistemática</p></td>
 </tr>
 <tr class="row-even"><td><p>Tres RQ, hipótesis, efecto y reglas</p></td>
-<td><p>Formulación metodológica disponible; comparadores, multiplicidad y registro nuevos pendientes</p></td>
+<td><p>RQ1 registrada con veinte contrastes primarios; RQ2/RQ3 exploratorias; ejecución y potencia pendientes</p></td>
 </tr>
 <tr class="row-odd"><td><p>Justificación y Data Card</p></td>
 <td><p>Documentadas con procedencia, versión, hashes, calidad y límites</p></td>
@@ -713,7 +715,7 @@ H_{1,m}:(g_m&gt;\delta)\ \text{y}\ (c_m&lt;0).
 <td><p>Pendiente de referencia y cuartil por año; no exige identidad exacta del snapshot</p></td>
 </tr>
 <tr class="row-odd"><td><p>Catálogo y protocolo</p></td>
-<td><p>Diez modelos vigentes y CNN-1D + LSTM + atención temporal como candidato 11; nueva enmienda y evaluación pendientes</p></td>
+<td><p>Dieciséis sistemas obligatorios; nueve cuerpos definidos y TiDE NAS; enmienda registrada, transición y evaluación pendientes</p></td>
 </tr>
 <tr class="row-even"><td><p>Prueba desconocida y confirmación nueva</p></td>
 <td><p>No disponibles en los periodos heredados ya evaluados</p></td>
@@ -757,12 +759,12 @@ H_{1,m}:(g_m&gt;\delta)\ \text{y}\ (c_m&lt;0).
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../intro.html"
+       href="47_entrega_consolidada.html"
        title="página anterior">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">anterior</p>
-        <p class="prev-next-title">Proyecto Final de Deep Learning: Entregable 2</p>
+        <p class="prev-next-title">47. Entrega consolidada con la evidencia disponible</p>
       </div>
     </a>
     <a class="right-next"

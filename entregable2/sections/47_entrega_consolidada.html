@@ -1,0 +1,694 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>47. Entrega consolidada con la evidencia disponible &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/47_entrega_consolidada';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="1. Definición del Problema, Preguntas de Investigación y Dataset" href="01_punto_partida.html" />
+    <link rel="prev" title="Proyecto Final de Deep Learning: Entregable 2" href="../intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 2 · Bitcoin: pronóstico de volatilidad</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">47. Entrega consolidada con la evidencia disponible</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_literatura.html">3. Revisión Sistemática del Estado del Arte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación: catálogo obligatorio y antecedentes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark obligatorio: dieciséis sistemas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Registro de selección, cierre pendiente y trazabilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de datos y auditoría formal de fuga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. HPO y equidad para el catálogo vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Techo de desempeño, incertidumbre y análisis de errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Agregación estadística e interpretación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas del catálogo vigente y adaptación a D7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo vigente: diez modelos y candidato 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_fichas_nuevas.html">16. Fichas bibliográficas de las cuatro altas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato sincronizado de E1, E2 y E3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_integracion_sintetica.html">18. Implementación provisional y verificación sintética</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_plan_auditoria.html">19. Plan experimental propuesto y auditoría sin entrenamiento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_contraste_guia.html">20. Cotejo del plan con la guía original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_comparadores_nas.html">21. Comparadores temporales y decisión NAS por receta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22_fichas_recetas.html">22. Once fichas de recetas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_implementacion_recetas.html">23. Implementación de recetas y controles temporales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="24_ejecutor_comun.html">24. Ejecutor común y disponibilidad temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="25_matriz_cierre.html">25. Matriz de cierre antes del benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="26_registro_recetas.html">26. Registro por receta: fuentes, NAS, HPO e integración</a></li>
+<li class="toctree-l1"><a class="reference internal" href="27_nas_hpo_presupuesto.html">27. Decisiones NAS, rangos HPO y presupuesto para Codex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="28_fabricas_nas.html">28. Fábricas NAS implementadas y verificadas sintéticamente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="29_entrenamiento_temporal.html">29. Entrenamiento por etapas, selección temporal y perfilado CPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="30_piloto_nube.html">30. Piloto de desarrollo en la nube de Codex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="31_optimizacion_nube.html">31. Optimización de CPU y presupuesto de cómputo en la nube</a></li>
+<li class="toctree-l1"><a class="reference internal" href="32_ejecucion_gpu.html">32. Ejecución CUDA preparada y piloto de recursos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="33_piloto_gpu.html">33. Primer piloto de recursos en GPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="34_perfil_gpu_ampliado.html">34. Perfil GPU ampliado y viabilidad del extremo TimesNet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="35_busqueda_cuda_reanudable.html">35. Selección CUDA con presupuesto y continuación en GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="36_avance_campana_cuda.html">36. Avance parcial de la campaña CUDA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="37_ajuste_guia.html">37. Ajuste de cómputo conforme a la guía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="38_cumplimiento_guia.html">38. Exigencias de la guía, evidencia y pendientes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="39_optimizacion_tiempo.html">39. Optimizar tiempo sin recortar las exigencias de E2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="40_calendario_original.html">40. Calendario original y optimizaciones de implementación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="41_avance_optimizacion_11_origenes.html">41. Ejecución optimizada: avance verificable de once orígenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html">42. Preparación complementaria a partir de evidencia existente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="43_catalogo_obligatorio.html">43. Catálogo obligatorio: dieciséis sistemas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="44_arquitecturas_publicadas.html">44. Cuerpos publicados, adaptaciones D7 y aplicación de NAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="45_enmienda_protocolo.html">45. Enmienda del protocolo: calendario común, presupuesto y prueba final</a></li>
+<li class="toctree-l1"><a class="reference internal" href="46_artefactos_y_pilotos.html">46. Preparación técnica opcional: artefactos y pilotos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><p class="small">Entregable 2 · Jassan Arteta · 2026-30</p></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/47_entrega_consolidada.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>47. Entrega consolidada con la evidencia disponible</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen">Resumen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenido-de-la-entrega">Contenido de la entrega</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-existentes-de-seleccion">Resultados existentes de selección</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#antecedente-e1-en-las-608-fechas-conocidas">Antecedente E1 en las 608 fechas conocidas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#replica-ejecutada-del-paper-guia">Réplica ejecutada del paper guía</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discusion-y-conclusiones">Discusión y conclusiones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limites-del-cierre">Límites del cierre</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivos-de-entrega">Archivos de entrega</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="entrega-consolidada-con-la-evidencia-disponible">
+<h1>47. Entrega consolidada con la evidencia disponible<a class="headerlink" href="#entrega-consolidada-con-la-evidencia-disponible" title="Link to this heading">#</a></h1>
+<p><strong>Cierre solicitado: utilizar los experimentos y archivos existentes, sin iniciar nuevas corridas.</strong> Este capítulo reúne resultados, discusión, conclusiones y archivos. Los diseños anteriores permanecen identificados en sus capítulos originales.</p>
+<section id="resumen">
+<h2>Resumen<a class="headerlink" href="#resumen" title="Link to this heading">#</a></h2>
+<p>Se estudia el pronóstico diario de volatilidad de Bitcoin mediante siete días de OHLCV y horizonte de un día. El objetivo es la desviación estándar poblacional de siete retornos logarítmicos, sin anualización. Se conserva el contrato de E1 y su margen de relevancia práctica. El trabajo aporta un EDA orientado a decisiones, revisión de literatura, implementaciones y adaptaciones D7, una réplica parcial de TimeMixer en ETTh1 y evidencia trazable de selección experimental. El corte disponible reúne 1.705 resultados de la campaña optimizada y 1.802 registros anteriores: 3.507 registros entre ambos historiales. No representan 3.507 modelos finales ni una comparación terminada de los dieciséis sistemas obligatorios. La réplica externa, con cinco semillas, cumple su criterio previo de compatibilidad numérica; no demuestra precisión sobre Bitcoin. El antecedente E1 muestra que la persistencia es un comparador exigente. Los resultados disponibles sostienen conclusiones sobre datos, mecanismos y ejecución, pero no permiten proclamar un ganador del catálogo vigente. Se entrega la evidencia existente con configuraciones, costes, métricas y fuentes, sin completar tablas con resultados sintéticos o de recetas diferentes.</p>
+</section>
+<section id="contenido-de-la-entrega">
+<h2>Contenido de la entrega<a class="headerlink" href="#contenido-de-la-entrega" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Componente</p></th>
+<th class="head"><p>Evidencia disponible</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Problema y contrato</p></td>
+<td><p>D7×5 → σ₇, RMSE, δ=0,00025772842664981106, unidad temporal y preguntas: <a class="reference internal" href="01_punto_partida.html"><span class="std std-doc">§1</span></a>, <a class="reference internal" href="17_contrato_sincronizado.html"><span class="std std-doc">§17</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Datos y EDA</p></td>
+<td><p>Calidad, reconstrucción de etiquetas, transformaciones, dependencia, desplazamiento y decisiones: <a class="reference internal" href="02_eda.html"><span class="std std-doc">§2</span></a>, <a class="reference internal" href="10_auditoria_datos.html"><span class="std std-doc">§10</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>Literatura y modelos</p></td>
+<td><p>Revisión, diez candidatos de cuatro familias, tres referencias E1 y tres comparadores: <a class="reference internal" href="03_literatura.html"><span class="std std-doc">§3</span></a>, <a class="reference internal" href="43_catalogo_obligatorio.html"><span class="std std-doc">§43</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Arquitecturas y protocolo</p></td>
+<td><p>Fuentes verificables, adaptación D7, nueve cuerpos definidos, NAS TiDE y calendario registrado: <a class="reference internal" href="44_arquitecturas_publicadas.html"><span class="std std-doc">§44</span></a>, <a class="reference internal" href="45_enmienda_protocolo.html"><span class="std std-doc">§45</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>Experimentos ejecutados</p></td>
+<td><p>Réplica/piloto ETTh1, antecedentes E1 y selección histórica con identidades separadas: <a class="reference internal" href="05_paper_guia.html"><span class="std std-doc">§5</span></a>, <a class="reference internal" href="41_avance_optimizacion_11_origenes.html"><span class="std std-doc">§41</span></a> y tablas siguientes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Reproducción y archivos</p></td>
+<td><p>Configuraciones, métricas, curvas disponibles, recibos y dependencias: <a class="reference internal" href="08_reproducibilidad.html"><span class="std std-doc">§8</span></a> y descargas al final</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="resultados-existentes-de-seleccion">
+<h2>Resultados existentes de selección<a class="headerlink" href="#resultados-existentes-de-seleccion" title="Link to this heading">#</a></h2>
+<p>El corte más reciente corresponde al commit <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/795844308c07cbc160d3dd1feb6284b5f443bb20"><code class="docutils literal notranslate"><span class="pre">795844308c07</span></code></a>, cerrado el <strong>12/11/2026 a las 12:53:37 UTC</strong>. Su diario quedó <code class="docutils literal notranslate"><span class="pre">paused_campaign_budget</span></code>, con cierre de sesión registrado. Son archivos versionados, no una lectura en vivo de Colab.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Indicador</p></th>
+<th class="head"><p>Resultado verificado e interpretación</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Campaña optimizada</p></td>
+<td><p><strong>1.705 resultados completados; cero fallos</strong> entre esos resultados</p></td>
+</tr>
+<tr class="row-odd"><td><p>Historial anterior</p></td>
+<td><p><strong>1.802 registros</strong>, conservando sus recetas y contabilidad</p></td>
+</tr>
+<tr class="row-even"><td><p>Total entre historiales</p></td>
+<td><p><strong>3.507 registros</strong>; no equivale a sistemas o réplicas finales</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pasos de optimizador conocidos de la campaña optimizada</p></td>
+<td><p><strong>2.245.556</strong>; el intento físico original perdido conserva su incertidumbre</p></td>
+</tr>
+<tr class="row-even"><td><p>Selecciones modelo/origen cerradas</p></td>
+<td><p><strong>50</strong>, incluidas las que utilizan resultados compatibles del historial</p></td>
+</tr>
+<tr class="row-odd"><td><p>Enero–junio de 2024</p></td>
+<td><p>HPO cerrado para FCN, ResNet, Inception, TSMixer, iTransformer, MLP16, LSTM32 y GRU32</p></td>
+</tr>
+<tr class="row-even"><td><p>Julio de 2024</p></td>
+<td><p>FCN y ResNet cerrados; Inception, <strong>13/36</strong> intentos</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pilotos nuevos durante este cierre</p></td>
+<td><p><strong>0</strong>; R y k vigentes no quedan determinados</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Cada dominio HPO modelo/origen comprende 18 configuraciones y dos semillas. Esa pareja permite seleccionar configuraciones; <strong>no satisface las repeticiones finales ni el piloto de potencia de E2</strong>. Los 108 ajustes FCN/ResNet/Inception de enero son reutilizados y no se suman otra vez a los 1.705 nuevos.</p>
+<p>Las recetas restauradas de SAE, TimesNet, TimeMixer y PatchTST tienen identidades nuevas; los resultados de sus variantes anteriores no se trasladan a ellas. Las métricas internas de selección tampoco se presentan como errores de prueba final común. <a class="reference download internal" download="" href="../_downloads/67b82e7a409627c6ee42fdeb2c754772/selection_snapshot.json"><span class="xref download myst">Instantánea</span></a> · <a class="reference download internal" download="" href="../_downloads/6ca26317065fcd35bce27c2c538005c2/trials.csv"><span class="xref download myst">CSV de ensayos</span></a> · <a class="reference download internal" download="" href="../_downloads/4d3e38a0a9d93abdf916068b41a003c7/source_index.json"><span class="xref download myst">Procedencia</span></a>.</p>
+</section>
+<section id="antecedente-e1-en-las-608-fechas-conocidas">
+<h2>Antecedente E1 en las 608 fechas conocidas<a class="headerlink" href="#antecedente-e1-en-las-608-fechas-conocidas" title="Link to this heading">#</a></h2>
+<p>Esta tabla corresponde <strong>exclusivamente a E1</strong>, con sus recetas y semillas. Contextualiza la dificultad del problema; no rellena resultados de los diez candidatos E2.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Sistema E1</p></th>
+<th class="head text-right"><p>Semillas</p></th>
+<th class="head text-right"><p>RMSE media</p></th>
+<th class="head text-right"><p>DE entre semillas</p></th>
+<th class="head"><p>IC95 % de la media entre semillas</p></th>
+<th class="head text-right"><p>MAE media</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>GRU32</p></td>
+<td class="text-right"><p>309</p></td>
+<td class="text-right"><p>0,005212686</p></td>
+<td class="text-right"><p>0,001121207</p></td>
+<td><p>[0,005087180; 0,005338192]</p></td>
+<td class="text-right"><p>0,003732332</p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM32</p></td>
+<td class="text-right"><p>309</p></td>
+<td class="text-right"><p>0,006251147</p></td>
+<td class="text-right"><p>0,000795628</p></td>
+<td><p>[0,006162086; 0,006340209]</p></td>
+<td class="text-right"><p>0,004417266</p></td>
+</tr>
+<tr class="row-even"><td><p>MLP16</p></td>
+<td class="text-right"><p>309</p></td>
+<td class="text-right"><p>0,005228132</p></td>
+<td class="text-right"><p>0,000541108</p></td>
+<td><p>[0,005167561; 0,005288702]</p></td>
+<td class="text-right"><p>0,003865300</p></td>
+</tr>
+<tr class="row-odd"><td><p>Persistencia</p></td>
+<td class="text-right"><p>Determinista</p></td>
+<td class="text-right"><p><strong>0,004085596</strong></p></td>
+<td class="text-right"><p>No aplica</p></td>
+<td><p>Sin réplicas artificiales</p></td>
+<td class="text-right"><p><strong>0,002353164</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los IC de las redes describen incertidumbre de entrenamiento condicionada al calendario fijo. No incluyen nuevos mercados ni hacen independientes las 608 fechas conocidas. La persistencia tiene una trayectoria determinista; la ausencia de DE entre semillas no elimina su incertidumbre temporal. <a class="reference download internal" download="" href="../_downloads/d001aff97ab4b64994aa177083c9bad5/e1_reference_metrics.csv"><span class="xref download myst">Tabla fuente y alcance</span></a>.</p>
+<p><strong>Interpretación:</strong> en este antecedente, el RMSE de persistencia es menor que la media de cada referencia neuronal. La complejidad de una arquitectura no basta para justificar su uso. Esta diferencia descriptiva no resuelve los contrastes del catálogo vigente ni acredita superioridad futura.</p>
+</section>
+<section id="replica-ejecutada-del-paper-guia">
+<h2>Réplica ejecutada del paper guía<a class="headerlink" href="#replica-ejecutada-del-paper-guia" title="Link to this heading">#</a></h2>
+<p>TimeMixer se replicó en <strong>ETTh1</strong>, historia y horizonte 96, siete variables y cinco semillas: otra tarea y otra escala de métricas.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Métrica ETTh1</p></th>
+<th class="head text-right"><p>Referencia publicada</p></th>
+<th class="head text-right"><p>Réplica, media ± DE</p></th>
+<th class="head"><p>IC95 % de la media</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>MSE</p></td>
+<td class="text-right"><p>0,375</p></td>
+<td class="text-right"><p>0,377838 ± 0,002870</p></td>
+<td><p>[0,374274; 0,381401]</p></td>
+</tr>
+<tr class="row-odd"><td><p>MAE</p></td>
+<td class="text-right"><p>0,400</p></td>
+<td class="text-right"><p>0,401082 ± 0,003473</p></td>
+<td><p>[0,396769; 0,405394]</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La discrepancia MSE es +0,002838, aproximadamente +0,757 %. Su intervalo queda dentro de la tolerancia registrada: <strong>réplica parcial numéricamente compatible</strong>, con diferencias de entorno y alcance declaradas. No es una mejora del artículo ni un entrenamiento de la receta Bitcoin restaurada. El piloto asociado localiza una dependencia de los marcadores respecto al contexto del batch en esa implementación; no se generaliza a toda la familia multiescala. <a class="reference internal" href="05_paper_guia.html"><span class="std std-doc">Método, curvas, análisis y descarga</span></a>.</p>
+</section>
+<section id="discusion-y-conclusiones">
+<h2>Discusión y conclusiones<a class="headerlink" href="#discusion-y-conclusiones" title="Link to this heading">#</a></h2>
+<p><strong>Ganancia predictiva:</strong> los resultados disponibles no permiten elegir un ganador entre los dieciséis sistemas vigentes. El antecedente E1 muestra un naive competitivo. Los resultados HPO acreditan selección real, cuyo estimando difiere del error final fuera de selección. Por ello, la RQ de mejora predictiva del catálogo E2 permanece sin una respuesta confirmatoria.</p>
+<p><strong>Dependencia y regímenes:</strong> el EDA documenta un día OHLCV incompleto en 2023 y etiquetas solapadas. Las decisiones defendibles son conservar calendario y máscaras, ajustar transformadores únicamente en entrenamiento y utilizar evaluación temporal con embargo. La asimetría y el desplazamiento justifican errores por periodos; no autorizan a tratar fechas o semillas como mercados independientes. La ventaja del catálogo en alta volatilidad aún no se ha demostrado.</p>
+<p><strong>Arquitectura y coste:</strong> la réplica ETTh1 respalda reproducibilidad parcial de un mecanismo y permite localizar una limitación de implementación. Las adaptaciones D7 conservan identidad explícita. Los perfiles y la optimización sintética aportan evidencia técnica, pero no demuestran una mejora global de coste/precisión del benchmark Bitcoin. La RQ conjunta de error y coste requiere una comparación común todavía ausente.</p>
+<p>Se entrega una cadena trazable de <strong>datos → decisiones → modelos y protocolo → experimentos disponibles → interpretación</strong>. La conclusión sostenible es mantener evaluación temporal y persistencia como referencias exigentes. Con lo existente no está demostrada la superioridad del Top 10 ni del híbrido histórico.</p>
+</section>
+<section id="limites-del-cierre">
+<h2>Límites del cierre<a class="headerlink" href="#limites-del-cierre" title="Link to this heading">#</a></h2>
+<p>Se cierra la versión documental con lo existente. <strong>No se certifica cumplimiento integral de la guía.</strong> El benchmark común de dieciséis sistemas, NAS TiDE, R/k compatibles, inferencia del catálogo completo, robustez, incertidumbre/explicabilidad comparables y reproducción independiente de la tabla principal carecen todavía de evidencia suficiente para marcarlos como completados. La <a class="reference internal" href="38_cumplimiento_guia.html"><span class="std std-doc">matriz de requisitos</span></a> conserva el detalle para una revisión posterior; esta lista no ordena otra campaña durante el cierre.</p>
+<p>Los pesos privados no están incluidos en las descargas públicas verificadas: inventarios y hashes no sustituyen sus bytes. Los periodos históricos de 608 y 60 fechas ya fueron examinados y no se presentan como prueba virgen.</p>
+<p>La contabilidad conciliada conserva <strong>222.927,99 segundos cargados</strong>, aproximadamente <strong>61 h 55 min</strong>, dentro de 64 horas. El saldo observado es <strong>7.472,01 segundos</strong>. La <a class="reference download internal" download="" href="../_downloads/612414ad552d3b009be9e2e8d6f253d1/budget_reconciliation.json"><span class="xref download myst">evidencia presupuestaria</span></a> no concede tiempo ni demuestra actividad actual. Este cierre no inicia ajustes ni amplía el límite.</p>
+</section>
+<section id="archivos-de-entrega">
+<h2>Archivos de entrega<a class="headerlink" href="#archivos-de-entrega" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="../_downloads/80525faefdf76d3e2b06ee4792209944/Entregable2_evidencia_disponible.zip"><span class="xref download myst">Paquete: informe, tablas, configuraciones y procedencia</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/e13960c7aa7fa219be931a73ace0c5dc/delivery_manifest.json"><span class="xref download myst">Manifiesto de archivos y alcance</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/6ca26317065fcd35bce27c2c538005c2/trials.csv"><span class="xref download myst">Ensayos</span></a> · <a class="reference download internal" download="" href="../_downloads/67b82e7a409627c6ee42fdeb2c754772/selection_snapshot.json"><span class="xref download myst">Resumen de selección</span></a> · <a class="reference download internal" download="" href="../_downloads/4d3e38a0a9d93abdf916068b41a003c7/source_index.json"><span class="xref download myst">Índice de fuentes</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/d001aff97ab4b64994aa177083c9bad5/e1_reference_metrics.csv"><span class="xref download myst">Antecedente E1</span></a> · <a class="reference internal" href="05_paper_guia.html"><span class="std std-doc">Réplica y curvas ETTh1</span></a> · <a class="reference internal" href="08_reproducibilidad.html"><span class="std std-doc">Reproducción</span></a>.</p></li>
+</ul>
+<p>La <a class="reference internal" href="46_artefactos_y_pilotos.html"><span class="std std-doc">preparación técnica de pilotos (§46)</span></a> queda como apéndice opcional para una continuación posterior.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../intro.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Proyecto Final de Deep Learning: Entregable 2</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="01_punto_partida.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">1. Definición del Problema, Preguntas de Investigación y Dataset</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen">Resumen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenido-de-la-entrega">Contenido de la entrega</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-existentes-de-seleccion">Resultados existentes de selección</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#antecedente-e1-en-las-608-fechas-conocidas">Antecedente E1 en las 608 fechas conocidas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#replica-ejecutada-del-paper-guia">Réplica ejecutada del paper guía</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discusion-y-conclusiones">Discusión y conclusiones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limites-del-cierre">Límites del cierre</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivos-de-entrega">Archivos de entrega</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

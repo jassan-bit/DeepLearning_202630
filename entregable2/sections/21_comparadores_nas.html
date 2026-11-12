@@ -207,10 +207,11 @@
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="47_entrega_consolidada.html">47. Entrega consolidada con la evidencia disponible</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_literatura.html">3. Revisión Sistemática del Estado del Arte</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación de los diez modelos y el candidato adicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación: catálogo obligatorio y antecedentes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark obligatorio: dieciséis sistemas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
@@ -248,10 +249,11 @@
 <li class="toctree-l1"><a class="reference internal" href="39_optimizacion_tiempo.html">39. Optimizar tiempo sin recortar las exigencias de E2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="40_calendario_original.html">40. Calendario original y optimizaciones de implementación</a></li>
 <li class="toctree-l1"><a class="reference internal" href="41_avance_optimizacion_11_origenes.html">41. Ejecución optimizada: avance verificable de once orígenes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html">42. Auditoría de E2 y trabajo que puede adelantarse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html">42. Preparación complementaria a partir de evidencia existente</a></li>
 <li class="toctree-l1"><a class="reference internal" href="43_catalogo_obligatorio.html">43. Catálogo obligatorio: dieciséis sistemas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="44_arquitecturas_publicadas.html">44. Cuerpos publicados, adaptaciones D7 y aplicación de NAS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="45_enmienda_protocolo.html">45. Enmienda del protocolo: calendario común, presupuesto y prueba final</a></li>
+<li class="toctree-l1"><a class="reference internal" href="46_artefactos_y_pilotos.html">46. Preparación técnica opcional: artefactos y pilotos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
 </ul>
 
@@ -396,7 +398,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dos-escenarios-de-seleccion-no-acumulativos">Dos escenarios de selección, no acumulativos</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-fuentes-y-decisiones-nas">21.2 Matriz de fuentes y decisiones NAS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-historica-de-fuentes-y-decisiones-nas">21.2 Matriz histórica de fuentes y decisiones NAS</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coste-por-escenarios-no-tiempos-inventados">21.3 Coste por escenarios, no tiempos inventados</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-queda-antes-de-ejecutar">21.4 Qué queda antes de ejecutar</a></li>
 </ul>
@@ -412,14 +414,14 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="comparadores-temporales-y-decision-nas-por-receta">
 <h1>21. Comparadores temporales y decisión NAS por receta<a class="headerlink" href="#comparadores-temporales-y-decision-nas-por-receta" title="Link to this heading">#</a></h1>
-<p><strong>Vigencia documental (11/11/2026):</strong> existe selección HPO/NAS registrada y ejecutada para el catálogo actual; las afirmaciones de ausencia de HPO o de falta de registro de selección corresponden a cortes anteriores. El benchmark final, R y su cierre inferencial siguen pendientes. <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">Registro y alcance actuales (§9)</span></a> · <a class="reference internal" href="40_calendario_original.html"><span class="std std-doc">Calendario (§40)</span></a> · <a class="reference internal" href="41_avance_optimizacion_11_origenes.html"><span class="std std-doc">Corte de resultados (§41)</span></a> · <a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html"><span class="std std-doc">Auditoría y trabajo paralelo (§42)</span></a>.</p>
-<p>La adjudicación vigente conserva seis familias NAS y las oportunidades de <a class="reference internal" href="27_nas_hpo_presupuesto.html"><span class="std std-doc">§27</span></a>; las tablas anteriores de preparación pendiente no sustituyen ese protocolo.</p>
-<p><strong>Once propuestas concretas:</strong> <a class="reference internal" href="22_fichas_recetas.html"><span class="std std-doc">fichas de cuerpos, adaptaciones y decisiones pendientes</span></a>. No se implementan ni entrenan las recetas nuevas en este corte.</p>
+<p><strong>Vigencia documental (12/11/2026):</strong> el <a class="reference internal" href="43_catalogo_obligatorio.html"><span class="std std-doc">catálogo obligatorio es de dieciséis sistemas (§43)</span></a>. La <a class="reference internal" href="44_arquitecturas_publicadas.html"><span class="std std-doc">adjudicación vigente (§44)</span></a> conserva o restaura nueve cuerpos definidos del Top 10 y mantiene NAS únicamente para la variante TiDE. Existe selección HPO/NAS ejecutada del plan anterior de catorce redes; no acredita resultados de las cuatro recetas restauradas. El benchmark final, k, R y el cierre inferencial siguen pendientes. <a class="reference internal" href="45_enmienda_protocolo.html"><span class="std std-doc">Enmienda registrada (§45)</span></a> · <a class="reference internal" href="41_avance_optimizacion_11_origenes.html"><span class="std std-doc">Corte histórico de resultados (§41)</span></a>.</p>
+<p>Las seis familias NAS de <a class="reference internal" href="27_nas_hpo_presupuesto.html"><span class="std std-doc">§27</span></a> pertenecen al plan anterior. Las especificaciones y tablas siguientes conservan el corte de preparación del 08–09/11/2026; sus pendientes y decisiones propuestas se interpretan a esa fecha. No sustituyen las identidades, el calendario ni las decisiones de §43–§45.</p>
+<p><strong>Once propuestas del corte histórico:</strong> <a class="reference internal" href="22_fichas_recetas.html"><span class="std std-doc">fichas de cuerpos y adaptaciones</span></a>. El híbrido adicional queda como opcional en el alcance actual.</p>
 <p><strong>Especificación propuesta, sin ejecución.</strong> Este corte desarrolla los dos siguientes pasos de §20: comparadores F2a y examen de arquitectura por modelo. No añade candidatos al Top 10, no declara un ganador y no inicia HPO, NAS, piloto o entrenamiento. Los prototipos actuales permanecen sin modificar.</p>
 <p>La guía exige conservar el contrato de E1 y resolver explícitamente las diferencias de información y de presupuesto. Una receta bibliográfica definida no es sinónimo de una implementación fiel; cambiar el cuerpo de una red y mantener su nombre tampoco demuestra una exención NAS. Las decisiones se separan por fuente, cuerpo implementado, adaptación de tarea y condición pendiente.</p>
 <section id="comparadores-exigidos-por-f2a">
 <h2>21.1 Comparadores exigidos por F2a<a class="headerlink" href="#comparadores-exigidos-por-f2a" title="Link to this heading">#</a></h2>
-<p>Se propone <strong>naive estacional y ARIMA no estacional</strong>, sin añadir ETS como búsqueda oculta. La elección ARIMA se apoya en su separación documentada entre estimación de parámetros y filtrado causal de nuevas observaciones; no demuestra superioridad frente a ETS. Los diez modelos y el híbrido permanecen iguales. Con las tres bases de E1, Ridge y persistencia, son al menos 18 sistemas separados de las ablaciones.</p>
+<p>Se conserva <strong>naive estacional y ARIMA no estacional</strong>, además de persistencia. La elección ARIMA se apoya en su separación documentada entre estimación de parámetros y filtrado causal de nuevas observaciones; no demuestra superioridad frente a ETS. Con los diez modelos y las tres referencias de E1, el alcance obligatorio es de <strong>16 sistemas</strong>. Híbrido y Ridge son opcionales y no se necesitan para completar ese catálogo. La especificación descargable siguiente conserva la propuesta histórica.</p>
 <p><a class="reference download internal" download="" href="../_downloads/5a4124b7364a3378a39515c88305804f/controls.md"><code class="xref download docutils literal notranslate"><span class="pre">Especificación</span> <span class="pre">completa</span> <span class="pre">de</span> <span class="pre">controles,</span> <span class="pre">pruebas</span> <span class="pre">pendientes</span> <span class="pre">y</span> <span class="pre">fuentes</span></code></a>.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -451,9 +453,9 @@
 <p>Convergencia, inicialización, límites y fallos deben quedar registrados. Propuesta inicial: una inicialización determinista, L-BFGS máximo 200 iteraciones, sin reinicios; al menos 90 etiquetas válidas como umbral de ingeniería, no garantía estadística. Si un candidato falla, conserva recibo y consumo; no borrar fechas favorables, ampliar rangos ni rescatar un ganador usando el test. Toda esta política debe validarse antes de datos reales.</p>
 </section>
 </section>
-<section id="matriz-de-fuentes-y-decisiones-nas">
-<h2>21.2 Matriz de fuentes y decisiones NAS<a class="headerlink" href="#matriz-de-fuentes-y-decisiones-nas" title="Link to this heading">#</a></h2>
-<p>La revisión comprobó diseños publicados y código real, separando fuente y adaptación. <strong>Ninguna fila concede por sí sola una exención académica ni fija m.</strong> La guía no define el umbral preciso entre una adaptación de tarea y una arquitectura nueva. Se recomienda recuperar un cuerpo publicado cuando sea viable y mantener visible cualquier decisión propia. El código provisional no se modifica en este corte.</p>
+<section id="matriz-historica-de-fuentes-y-decisiones-nas">
+<h2>21.2 Matriz histórica de fuentes y decisiones NAS<a class="headerlink" href="#matriz-historica-de-fuentes-y-decisiones-nas" title="Link to this heading">#</a></h2>
+<p>La revisión de este corte comprobó diseños publicados y código real, separando fuente y adaptación; todavía no fijaba m. Las diferencias de la tabla describen aquellas implementaciones, incluidas variantes luego sustituidas. La adjudicación posterior de <a class="reference internal" href="44_arquitecturas_publicadas.html"><span class="std std-doc">§44</span></a> fija <strong>m=1, TiDE</strong>, para el diseño vigente y documenta las cuatro restauraciones con identidades nuevas. No se renombran los resultados anteriores como resultados de esos cuerpos.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Modelo</p></th>
@@ -525,7 +527,7 @@
 <p>Los cuatro prototipos compactos cambian más que la cabeza. Para FCN/ResNet/Inception hay diseños primarios explícitos; restaurarlos exige especificar normalización, kernels, bloques y miembro individual frente a ensemble. Para LSTM-SAE se verificó código del autor con variantes definidas, pero no se recuperó el cuerpo del artículo de forma verificable en esta revisión: no se concede exención a partir de una tabla no releída.</p>
 <p>Entre los seis adaptadores, TSMixer e iTransformer preservan mejor el cuerpo de una configuración fuente, mientras TimesNet, TiDE y TimeMixer presentan cambios estructurales de D7 y PatchTST cambia geometría de parches. Los seis incorporan diez momentos de la misma ventana a la cabeza. No son días adicionales ni pesos preentrenados, pero sí diferencias que deben adjudicarse y controlarse.</p>
 <p>El candidato CNN-LSTM-atención carece de una fuente exacta verificada para su receta completa. Proponer tres bloques CNN/LSTM/atención con anchos independientes es una posible correspondencia para §14, aún no aprobada ni implementada. No se presume originalidad ni ausencia de trabajos semejantes.</p>
-<p><strong>Decisión siguiente recomendada:</strong> fijar por escrito la receta fuente o adaptada de cada fila y someter las adaptaciones ambiguas a adjudicación metodológica. Sólo entonces elegir m y enumerar los mil diseños únicos donde proceda. No iniciar NAS para los once por defecto, ni omitirla por conservar el nombre del paper.</p>
+<p><strong>Resolución posterior:</strong> <a class="reference internal" href="44_arquitecturas_publicadas.html"><span class="std std-doc">§44</span></a> documenta la receta fuente o adaptada de cada fila y el único dominio NAS obligatorio, TiDE. Las recomendaciones de recuperación de cuerpos y adjudicación del corte anterior conservan su trazabilidad; no autorizan NAS para los once por defecto.</p>
 </section>
 <section id="coste-por-escenarios-no-tiempos-inventados">
 <h2>21.3 Coste por escenarios, no tiempos inventados<a class="headerlink" href="#coste-por-escenarios-no-tiempos-inventados" title="Link to this heading">#</a></h2>
@@ -579,12 +581,12 @@
 </tbody>
 </table>
 </div>
-<p><strong>m no ha sido adjudicado.</strong> Los escenarios no clasifican modelos por decreto ni autorizan once búsquedas. <a class="reference download internal" download="" href="../_downloads/b6368b4060dec03e6ffac1b9141d5f41/cost_scenarios.json"><span class="xref download myst">Cálculos reproducibles</span></a>.</p>
+<p><strong>La tabla es aritmética histórica:</strong> la adjudicación vigente fija m=1 para TiDE, y <a class="reference internal" href="45_enmienda_protocolo.html"><span class="std std-doc">§45</span></a> registra una sola NAS inicial. k se fija mediante el piloto de ruido; el ejemplo k=10 de esta tabla no sustituye esa regla. Los escenarios no autorizan once búsquedas. <a class="reference download internal" download="" href="../_downloads/b6368b4060dec03e6ffac1b9141d5f41/cost_scenarios.json"><span class="xref download myst">Cálculos reproducibles</span></a>.</p>
 <p>La guía ofrece m=4, k=10, R₂=5 como ejemplo: 4.000 trayectorias cortas y hasta 220 completas (p55). Reproducir ese cálculo no autoriza el cómputo ni afirma que cuatro sea el número de modelos aplicable a este catálogo. R₂ tampoco es el R final de la comparación.</p>
 </section>
 <section id="que-queda-antes-de-ejecutar">
 <h2>21.4 Qué queda antes de ejecutar<a class="headerlink" href="#que-queda-antes-de-ejecutar" title="Link to this heading">#</a></h2>
-<p>Cerrar la condición arquitectónica por receta, validar los comparadores y su soporte, completar el espacio HPO, resolver recursos y registrar decisiones con fecha real. La reserva histórica conocida no recupera condición confirmatoria. Un presupuesto insuficiente se documenta; no se recortan silenciosamente arquitecturas, semillas o fallos.</p>
+<p>La condición arquitectónica y el calendario ya están registrados en §44–§45. Para ejecutar la ruta vigente faltan conciliar el presupuesto y los resultados compatibles, completar la transición del controlador y acreditar comparadores, pilotos y ajustes con sus artefactos. La reserva histórica conocida no recupera condición confirmatoria. Un presupuesto insuficiente se documenta; no se recortan silenciosamente arquitecturas, semillas o fallos.</p>
 </section>
 </section>
 
@@ -658,7 +660,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dos-escenarios-de-seleccion-no-acumulativos">Dos escenarios de selección, no acumulativos</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-fuentes-y-decisiones-nas">21.2 Matriz de fuentes y decisiones NAS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-historica-de-fuentes-y-decisiones-nas">21.2 Matriz histórica de fuentes y decisiones NAS</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coste-por-escenarios-no-tiempos-inventados">21.3 Coste por escenarios, no tiempos inventados</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-queda-antes-de-ejecutar">21.4 Qué queda antes de ejecutar</a></li>
 </ul>

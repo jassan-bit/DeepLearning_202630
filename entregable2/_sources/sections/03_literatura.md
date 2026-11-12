@@ -1,6 +1,6 @@
 # 3. Revisión Sistemática del Estado del Arte
 
-**Catálogo vigente:** diez modelos y CNN-1D + LSTM + atención temporal como candidato 11, definidos en [§15](15_revision_modelos.md), sin superioridad demostrada. Los conteos bibliográficos siguientes son cortes fechados; no acreditan ejecución del benchmark ni se transfieren entre versiones de modelos.
+**Catálogo vigente (12/11/2026):** [dieciséis sistemas obligatorios (§43)](43_catalogo_obligatorio.md): diez modelos del Top 10, tres referencias E1 y Persistence, SeasonalNaive y ARIMA. El híbrido CNN-1D + LSTM + atención temporal y Ridge son antecedentes opcionales. [§44](44_arquitecturas_publicadas.md) conserva o restaura nueve cuerpos definidos y mantiene NAS para TiDE. La selección HPO/NAS ya ejecutada corresponde al plan anterior de catorce redes; sus resultados no acreditan los cuatro cuerpos restaurados. Los conteos bibliográficos siguientes son cortes fechados y no acreditan el benchmark final.
 
 ## Actualización del 08/11/2026: búsquedas nativas y evidencia para la revisión
 
@@ -128,7 +128,7 @@ Las fichas, el flujo inicial y los contadores bibliográficos del **05/11/2026**
 
 **Estado de la revisión:** recepción, deduplicación, extracción de diez originales y primera pasada por reglas sobre todos los grupos recibidos completadas. Permanecen abiertos la cobertura de las consultas, la validación editorial de las decisiones provisionales, la elegibilidad por texto completo, los siete cuerpos aplicados de apoyo y los cuartiles por año. También se ejecutaron tres consultas **locales** sobre los registros recibidos; siguen pendientes sus búsquedas nativas WoS/Scopus y los originales de los mecanismos de origen. No se presenta un PRISMA global cerrado.
 
-La selección vigente se limita al catálogo de §15. Los requisitos de referencias y controles de la guía deben reconciliarse explícitamente antes del nuevo registro, sin añadir modelos tácitos.
+El catálogo de §15 documenta la propuesta de aquel corte. El alcance obligatorio posterior se fija en [§43](43_catalogo_obligatorio.md), las identidades arquitectónicas en [§44](44_arquitecturas_publicadas.md) y el calendario común en la [enmienda registrada de §45](45_enmienda_protocolo.md).
 
 Los protocolos anteriores conservan su valor histórico; sus conteos y recetas no definen la selección vigente.
 
@@ -286,7 +286,7 @@ El [registro de condiciones de cierre](../_static/literature_completion/closure_
 
 ## 3.2 Catálogo vigente para Bitcoin
 
-La lista anterior y su ranking se retiran de la presentación. La selección vigente es única:
+El Top 10 vigente conserva estos diez nombres; la identidad de sus cuerpos y adaptaciones se consulta en [§44](44_arquitecturas_publicadas.md). Esta lista no es un ranking de resultados:
 
 1. **FCN-1D**.
 2. **ResNet-1D**.
@@ -299,11 +299,11 @@ La lista anterior y su ranking se retiran de la presentación. La selección vig
 9. **PatchTST**.
 10. **iTransformer**.
 
-**11. CNN-1D + LSTM + atención temporal**, candidato adicional sin superioridad demostrada. La [sección 15](15_revision_modelos.md) establece alcance y controles. No hay resultados del benchmark completo que permitan ordenar estos modelos por desempeño.
+MLP16, LSTM32 y GRU32, más Persistence, SeasonalNaive y ARIMA, completan los **dieciséis sistemas obligatorios**. **CNN-1D + LSTM + atención temporal** conserva su ficha como candidato adicional opcional, sin superioridad demostrada; Ridge también queda fuera del alcance obligatorio. La [sección 15](15_revision_modelos.md) conserva la propuesta histórica. No hay resultados del benchmark completo que permitan ordenar los modelos vigentes por desempeño.
 
 ## 3.3 Fuentes y adaptación de los modelos vigentes
 
-Las [fichas de FCN-1D, ResNet-1D, Inception-1D y LSTM-autoencoder con predictor](16_fichas_nuevas.md) separan arquitectura original, evidencia de otras tareas y adaptación a regresión. Las siguientes seis fichas conservan información de las fuentes y decisiones previas útiles, **no certifican su integración en el nuevo runner ni trasladan registros experimentales al diseño vigente**.
+Las [fichas de FCN-1D, ResNet-1D, Inception-1D y LSTM-autoencoder con predictor](16_fichas_nuevas.md) separan arquitectura original, evidencia de otras tareas y adaptación a regresión. Las siguientes seis fichas conservan información de las fuentes y decisiones previas útiles. Sus descripciones de implementaciones pertenecen al corte bibliográfico indicado; la restauración posterior de SAE, TimesNet, TimeMixer y PatchTST se documenta en [§44](44_arquitecturas_publicadas.md). **No certifican la ejecución de esas recetas nuevas ni transfieren a ellas resultados del diseño anterior.**
 
 ### TimesNet · fuente y adaptación
 
