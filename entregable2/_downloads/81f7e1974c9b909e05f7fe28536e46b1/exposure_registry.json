@@ -1,0 +1,165 @@
+{
+  "version": "e2-exposure-registry-v1",
+  "created_at_utc": "2026-11-12T13:21:28.273520+00:00",
+  "parent_main": "75dff4ffea3c5d5a275eab6a0ac3872ea1147346",
+  "scope": "Metadata and published-exposure audit only; no new market prices or targets read",
+  "source_manifest": {
+    "path": "data/manifests/binance_spot_BTCUSDT_1m_20230101_20261030.json",
+    "sha256": "af723bcca2caffcbe44ae5243e2863bbcdcd39ae8cd42df491af0a2857926bb2",
+    "archive_count": 75,
+    "start_inclusive": "2023-01-01",
+    "end_inclusive": "2026-10-30",
+    "availability_after_end": "not acquired or verified by this registry"
+  },
+  "known_data": [
+    {
+      "role": "development",
+      "start": "2023-01-01",
+      "end_inclusive": "2024-12-31",
+      "exposure_status": "already_used_for_development_and_selection",
+      "independent_test": false
+    },
+    {
+      "role": "historical_primary_608",
+      "start": "2025-01-01",
+      "end_inclusive": "2026-08-31",
+      "calendar_days": 608,
+      "exposure_status": "already_scored_in_E1",
+      "interpretation": "historical_exploratory",
+      "independent_test": false
+    },
+    {
+      "role": "historical_secondary_60",
+      "start": "2026-09-01",
+      "end_inclusive": "2026-10-30",
+      "calendar_days": 60,
+      "exposure_status": "already_scored_in_E1_and_extensions",
+      "interpretation": "historical_exploratory; may serve known calibration under a separately frozen prospective procedure",
+      "independent_test": false
+    }
+  ],
+  "observed_access_evidence": {
+    "study_id": "e1_608_remediation_20261107",
+    "chronology_path": "book/_static/e1_608_remediation_20261107/chronology.json",
+    "first_raw_price_access_in_that_study": "2026-11-08T01:28:33.804741+00:00",
+    "score_complete_in_that_study": "2026-11-08T01:28:54.959700+00:00",
+    "not_a_claim_of_first_global_or_human_access": true
+  },
+  "existing_virgin_holdout_accredited": false,
+  "prospective_test": {
+    "status": "unbound_until_complete_registered_global_freeze",
+    "start": null,
+    "end_inclusive": null,
+    "calendar_days": 100,
+    "start_rule": "first UTC calendar day strictly after global freeze; amendment registration must not follow freeze",
+    "late_first_binding_prohibited": true,
+    "fixed_end_rule": "start + 99 calendar days",
+    "minimum_eligible_cases_for_error_analysis": 100,
+    "quality_loss_policy": "Report incomplete coverage/limitation; never automatically extend or select replacement dates using scores",
+    "required_global_freeze": [
+      "all sixteen mandatory system IDs",
+      "common power-reviewed R in 6..30 and exact fresh seed prefix 271801..271830",
+      "recipe, weight/rule, preprocessing and calibration manifest hashes",
+      "analysis plan and amended protocol hashes",
+      "HPO/NAS labels no later than 2024-09-23; power-pilot labels no later than 2024-12-30",
+      "fresh prospective refits no later than 2026-08-24",
+      "known calibration calendar 2026-09-01..2026-10-30 closed before freeze"
+    ]
+  },
+  "prospective_training_and_calibration": {
+    "training_label_end_max": "2026-08-24",
+    "embargo_dates": [
+      "2026-08-25",
+      "2026-08-26",
+      "2026-08-27",
+      "2026-08-28",
+      "2026-08-29",
+      "2026-08-30",
+      "2026-08-31"
+    ],
+    "embargo_label_days": 7,
+    "calibration_start": "2026-09-01",
+    "calibration_end_inclusive": "2026-10-30",
+    "calibration_calendar_days": 60,
+    "hpo_nas_label_end_max": "2024-09-23",
+    "power_pilot_label_end_max": "2024-12-30",
+    "new_labels_or_calendar_covariates_added_to_model_contract": false
+  },
+  "inference_bridge": {
+    "start": "2026-10-31",
+    "end_rule": "prospective_test_start minus one day",
+    "requires_registered_binding": true,
+    "dates_must_be_past_closed_UTC_days": true,
+    "admitted_uses": [
+      "past D7 observations",
+      "causal state updates with ARIMA coefficients fixed"
+    ],
+    "prohibited_uses": [
+      "model refit",
+      "hyperparameter or architecture selection",
+      "scaler adjustment",
+      "calibrator fitting"
+    ],
+    "source_payload_availability_not_established": true
+  },
+  "distinct_weight_cohorts": {
+    "historical_E2_Jan2025_replay": {
+      "training_label_end_max": "2024-12-24",
+      "evaluation": "known 2025-01-01..2026-10-30; exploratory only"
+    },
+    "prospective_refit": {
+      "training_label_end_max": "2026-08-24",
+      "must_not_be_relabelled_as_out_of_sample_historical_608_weights": true
+    }
+  },
+  "sources": [
+    {
+      "path": "data/manifests/binance_spot_BTCUSDT_1m_20230101_20261030.json",
+      "sha256": "af723bcca2caffcbe44ae5243e2863bbcdcd39ae8cd42df491af0a2857926bb2"
+    },
+    {
+      "path": "book/_static/e1_608_remediation_20261107/chronology.json",
+      "sha256": "1d1d370a915f83ed84101eda54de913964aaac560c5e8ddf7302b8d701508a14"
+    },
+    {
+      "path": "book/_static/e1_608_remediation_20261107/analysis_summary.json",
+      "sha256": "ef72372bd2ae54a29d4fdc8fda5585956d7f9464d88a1192eb9845d06889963e"
+    },
+    {
+      "path": "book/_static/e1_core_mlp_extension_20261107/analysis_summary.json",
+      "sha256": "ac7a881670b9a88f168706bd491d1f950740f13ab52202bcc5ed99cd1019b928"
+    },
+    {
+      "path": "experiments/e1_core_mlp_extension_20261107/design.json",
+      "sha256": "4c2bd3ec2e87905350b340bc7955d737856118400a1799541e36a54b5490ee0b"
+    },
+    {
+      "path": "experiments/e2_remediation_20261106/preregistration.json",
+      "sha256": "b8c84979fccec4fc282810e489d2d666f7f0562d587403e04bf3c2e923073cb3"
+    },
+    {
+      "path": "book_e2/sections/17_contrato_sincronizado.md",
+      "sha256": "f0c7972ddf78e80c5c53cc3a3f1a7a4123783d9591e820b056adbbb5560eaff3"
+    },
+    {
+      "path": "scripts/e2_development_data.py",
+      "sha256": "056dc0eff0722bed0b65ecd9b27b3c0c5a2a2bab2d44a8cfd9730fdb38b87d5d"
+    },
+    {
+      "path": "scripts/e2_final_test_data.py",
+      "sha256": "f8671f4c6b249f801b03334636ea51618607edfd7fd94ccceb1bcd32e79dcb54"
+    },
+    {
+      "path": "scripts/planned_study_data.py",
+      "sha256": "f4b732b24a86e9879b53e7a731c0ef2b606bb49fb0a546997ab0e46448232523"
+    }
+  ],
+  "limitations": [
+    "A zero-payload counter for a reservation function is not evidence of zero prior global exposure.",
+    "A metadata hash or attestation is not proof that private files exist, the stated fits occurred, or a human never viewed data.",
+    "Historical dates remain exploratory after changing seeds, architecture recipes, file hashes or protocol labels.",
+    "Data dates beyond the acquisition manifest are not declared downloaded, verified or eligible."
+  ],
+  "market_payloads_read_by_this_audit": 0,
+  "new_market_training_executed": false
+}

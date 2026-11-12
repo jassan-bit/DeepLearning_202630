@@ -1,0 +1,930 @@
+{
+  "protocol_id": "e2-resource-temporal-amendment-v1",
+  "schema_version": 1,
+  "parent_source_commit": "75dff4ffea3c5d5a275eab6a0ac3872ea1147346",
+  "status": "prospective_amendment_registered_execution_gates_pending",
+  "authorization": "User requested a common justified temporal calendar, embargo, HPO budget, metrics, selection criteria and separation of known data from final test; explicitly rejected assuming eleven full searches.",
+  "registration_scope": "Prospective amendment for affected future work, with previously observed data and prior fits explicitly disclosed; not retroactive original preregistration.",
+  "guide": {
+    "sha256": "93499dcfda6a36d9621524a81821470017ba114ca6b08241a35de5a54f74a654",
+    "locators": [
+      "F2a p30: common rolling-origin evaluation and embargo, without a literal eleven-search count",
+      "Section11 p46: fair HPO opportunities or budget",
+      "Section14.5 p56: full search in every outer fold when cost permits",
+      "Section9 p43: pilot-based power, delta, multiplicity and honest resource limitations"
+    ]
+  },
+  "systems": [
+    {
+      "model_id": "FCN-1D",
+      "role": "Top10",
+      "family": "convolutional"
+    },
+    {
+      "model_id": "ResNet-1D",
+      "role": "Top10",
+      "family": "convolutional"
+    },
+    {
+      "model_id": "Inception-1D",
+      "role": "Top10",
+      "family": "convolutional"
+    },
+    {
+      "model_id": "LSTM-autoencoder con predictor",
+      "role": "Top10",
+      "family": "recurrent_autoencoder"
+    },
+    {
+      "model_id": "TimesNet",
+      "role": "Top10",
+      "family": "convolutional"
+    },
+    {
+      "model_id": "TSMixer",
+      "role": "Top10",
+      "family": "mlp_mixing"
+    },
+    {
+      "model_id": "TiDE",
+      "role": "Top10",
+      "family": "mlp_mixing"
+    },
+    {
+      "model_id": "TimeMixer",
+      "role": "Top10",
+      "family": "mlp_mixing"
+    },
+    {
+      "model_id": "PatchTST",
+      "role": "Top10",
+      "family": "transformer_attention"
+    },
+    {
+      "model_id": "iTransformer",
+      "role": "Top10",
+      "family": "transformer_attention"
+    },
+    {
+      "model_id": "MLP16",
+      "role": "E1_reference",
+      "family": "mlp"
+    },
+    {
+      "model_id": "LSTM32",
+      "role": "E1_reference",
+      "family": "recurrent"
+    },
+    {
+      "model_id": "GRU32",
+      "role": "E1_reference",
+      "family": "recurrent"
+    },
+    {
+      "model_id": "Persistence",
+      "role": "classical_comparator",
+      "family": "naive"
+    },
+    {
+      "model_id": "SeasonalNaive",
+      "role": "classical_comparator",
+      "family": "seasonal_naive"
+    },
+    {
+      "model_id": "ARIMA",
+      "role": "classical_comparator",
+      "family": "statistical"
+    }
+  ],
+  "neural_systems": [
+    "FCN-1D",
+    "ResNet-1D",
+    "Inception-1D",
+    "LSTM-autoencoder con predictor",
+    "TimesNet",
+    "TSMixer",
+    "TiDE",
+    "TimeMixer",
+    "PatchTST",
+    "iTransformer",
+    "MLP16",
+    "LSTM32",
+    "GRU32"
+  ],
+  "classical_systems": [
+    "Persistence",
+    "SeasonalNaive",
+    "ARIMA"
+  ],
+  "contract": {
+    "input_shape": [
+      7,
+      5
+    ],
+    "target": "population sigma7 unannualized h1",
+    "target_scale": "positive training-only mean",
+    "primary_metric": "mean of per-seed RMSE in original units",
+    "delta": 0.00025772842664981106,
+    "scenario": "B",
+    "cv_origins": "Ten monthly refits January-October 2024; only three HPO updates",
+    "final_origin": "2025-01-01 historical exploratory refit; independent future origin bound only after global freeze",
+    "inner_train_end": "origin minus98 days",
+    "inner_validation": "origin minus90 through minus8",
+    "refit_train_end": "origin minus8",
+    "final_test_role": "Known 608+60 dates remain exploratory; future independent test is a separately bound prospective cohort",
+    "known_test_must_not_drive_selection": true
+  },
+  "architecture_policy_id": "e2-published-bodies-d7-v1",
+  "architecture_policy_path": "experiments/e2_published_architectures_20261112/architecture_policy.json",
+  "source_metadata_sha256": {
+    "experiments/e2_published_architectures_20261112/architecture_policy.json": "a1c9440046af34c2b70bef9c05229dff2c6d863aa06ae191ed02c2de6d8bf0f2",
+    "experiments/e2_published_architectures_20261112/catalogue.json": "6fd3a9abb9706bfce9a4557e4afefa5fcd8395be0da98eb9aec1bbe59a7bb1b3",
+    "book_e2/_static/search_protocol_20261109/protocol.json": "5195337af13f4193da16bf4499c8396586c621d4ab084a5b296a297f2141edeb",
+    "data/manifests/binance_spot_BTCUSDT_1m_20230101_20261030.json": "af723bcca2caffcbe44ae5243e2863bbcdcd39ae8cd42df491af0a2857926bb2",
+    "book/_static/e1_608_remediation_20261107/chronology.json": "1d1d370a915f83ed84101eda54de913964aaac560c5e8ddf7302b8d701508a14"
+  },
+  "calendar": {
+    "hpo_anchors": [
+      "2024-01-01",
+      "2024-07-01",
+      "2024-10-01"
+    ],
+    "outer_development_origins": [
+      "2024-01-01",
+      "2024-02-01",
+      "2024-03-01",
+      "2024-04-01",
+      "2024-05-01",
+      "2024-06-01",
+      "2024-07-01",
+      "2024-08-01",
+      "2024-09-01",
+      "2024-10-01"
+    ],
+    "nas_origin": "2024-01-01",
+    "inner": {
+      "train_cutoff_offset_days": -98,
+      "validation_start_offset_days": -90,
+      "validation_end_offset_days": -8
+    },
+    "embargo_days": 7,
+    "recipe_rule": "latest_hpo_anchor_at_or_before_origin",
+    "historical_final_origin": "2025-01-01",
+    "historical_final_end": "2026-08-31",
+    "power_pilot": {
+      "origin": "2024-11-08",
+      "end": "2024-12-30",
+      "train_label_end": "2024-10-31",
+      "models": [
+        "TimeMixer",
+        "PatchTST",
+        "GRU32"
+      ],
+      "seeds": [
+        271701,
+        271702,
+        271703,
+        271704,
+        271705
+      ]
+    }
+  },
+  "calendar_justification": {
+    "anchors": "Initial deployment, midyear update and pre-power-pilot update. Disjoint 83-day local validation windows and identical update schedule for all systems; this is a fixed coverage/cost decision, not proof that three anchors suffice.",
+    "outer_refits": "Retain ten disjoint monthly evaluations and fresh expanding-history fits; carry only the most recently available recipe forward.",
+    "no_retrospective_future_recipe": "A July/October recipe may never be used for an earlier outer forecast.",
+    "stability_report": "Report errors, winner/configuration changes and uncertainty by origin; no post-test anchor additions without a new amendment.",
+    "interpretation": "Causal staged-update rolling-origin procedure; not full nested HPO/NAS repeated in every fold."
+  },
+  "hpo": {
+    "trials": 18,
+    "method": "seeded stratified random; frozen candidate list before fits",
+    "seed": 271101,
+    "learning_rate": [
+      1e-05,
+      0.003
+    ],
+    "weight_decay_positive": [
+      1e-06,
+      0.01
+    ],
+    "zero_weight_decay_trials": 3,
+    "batch_sizes": [
+      16,
+      32,
+      64
+    ],
+    "optimization_seeds": [
+      271201,
+      271202
+    ],
+    "optimizer": "AdamW",
+    "adam_betas": [
+      0.9,
+      0.999
+    ],
+    "adam_epsilon": 1e-08,
+    "weight_decay_scope": "weight matrices only; biases and normalization parameters exempt",
+    "loss": "MSE of sigma7 divided by positive training mean",
+    "precision": "float32",
+    "gradient_clip_norm": 1,
+    "shuffle_train_windows": true,
+    "max_epochs": 200,
+    "patience_epochs": 20,
+    "early_stopping_absolute_min_delta": 0,
+    "supervised_selection": "lowest original-unit validation RMSE; strict improvement; earliest epoch on equal score",
+    "scheduler": "cosine decay after warmup; minLR0; default warmup0; epoch caps50/200 respected",
+    "batch_singleton_rule": "if remainder1 split preceding full batch into batch_size-1 and2; keep all rows; require at least2 train examples",
+    "failure_policy": "NaN/inf/divergence/timeout/OOM consume configuration and stage allocation; preserve run records, no replacement seed/trial. Systematic implementation error blocks campaign, requires correction and affected reruns under amendment.",
+    "refit": "Fresh model, optimizers and train-only scalers. For each origin/recipe use ceil(median(best epochs)) of selected HPO configuration's two seeds (nonNAS) or winning NAS finalist's five phase2 seeds, per phase separately. Freeze those counts for every new refit seed; no outer-label early stopping. Count AE1/AE2/supervised separately.",
+    "auxiliary_objective": "MSE reconstructing X/s; fresh optimizer each AE stage; select on inner-validation reconstruction loss with same patience; full200/short50 epoch caps per stage",
+    "configuration_selection": "Smallest mean original-unit validation RMSE across the two HPO seeds; exact-score tie resolved by stable trial ID. NAS uses its distinct five-seed architecture selection rule.",
+    "selection_scope": "LOCAL at each registered anchor, never pooled over later anchors",
+    "opportunity_rule": "18 fixed candidate points per neural model per anchor, two fixed paired seeds",
+    "source_of_points": "scripts/e2_published_registry.py::registered_trials at parent commit 75dff4ffea3c5d5a275eab6a0ac3872ea1147346",
+    "restored_structural_axes": "Fixed under the published architecture policy; no old NAS recipe aliases",
+    "epochs_to_refit": "ceil(median(best epochs)) separately by optimization phase; two HPO seeds, or five initial TiDE NAS2 seeds"
+  },
+  "classical": {
+    "ARIMA": {
+      "orders": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          2
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          1
+        ],
+        [
+          2,
+          0,
+          2
+        ],
+        [
+          2,
+          1,
+          0
+        ],
+        [
+          2,
+          1,
+          1
+        ],
+        [
+          2,
+          1,
+          2
+        ]
+      ],
+      "trials_per_anchor": 18,
+      "selection": "lowest common validation RMSE; stable order-grid ID on exact tie",
+      "coefficient_updates_after_refit": false,
+      "causal_state_updates_after_forecast": true
+    },
+    "SeasonalNaive": {
+      "periods": [
+        7,
+        14,
+        28
+      ],
+      "selection": "lowest common validation RMSE; stable shorter-period order on exact tie",
+      "parameter_fits": 0
+    },
+    "Persistence": {
+      "lag": 1,
+      "hyperparameter_search": false
+    },
+    "deterministic_outputs_not_independent_seed_replicates": true,
+    "Ridge_required": false
+  },
+  "nas": {
+    "widths": [
+      16,
+      32,
+      64,
+      128,
+      256
+    ],
+    "dropout_rate": 0.2,
+    "blocks": 3,
+    "patterns": "all eight bit triplets; no pruning",
+    "phase1_architectures": 1000,
+    "phase1_seed": 271301,
+    "phase1_epochs": 50,
+    "phase2_seeds": [
+      271401,
+      271402,
+      271403,
+      271404,
+      271405
+    ],
+    "phase2_epochs": 200,
+    "reference": {
+      "widths": [
+        64,
+        64,
+        64
+      ],
+      "dropout_pattern": [
+        0,
+        1,
+        0
+      ]
+    },
+    "k_options": [
+      20,
+      40
+    ],
+    "k_before_pilot": null,
+    "k_rule": "TiDE only: k40 if the median pairwise Spearman rank correlation over 12 designs and five full-budget pilot seeds is below0.5 or not estimable; otherwise k20. Freeze before NAS1.",
+    "reference_addition": "If reference already among k distinct finalists do not repeat it; budget conservatively reserves k+1",
+    "hpo_order": "First tune nonarchitecture HPO on reference; then freeze winning nonarchitecture values before1000 NAS designs.",
+    "remaining_dropout": "all newly searched block positions controlled solely by bit pattern at p0.2; other dropout0",
+    "selection": "minimize mean validation RMSE; within delta of lowest mean or overlapping nominal95% mean-score t intervals, select fewest total predictor params, then lowest mean RMSE, then stable architecture id; overlap is tie rule, not equivalence proof",
+    "short_and_full_seed_sets_disjoint": true,
+    "models": [
+      "TiDE"
+    ],
+    "origin": "2024-01-01",
+    "repeated_per_outer_fold": false,
+    "order": [
+      "initial local reference-body HPO",
+      "full initial NAS1 domain",
+      "frozen finalists including reference once",
+      "NAS2 five seeds",
+      "freeze initial architecture before first outer forecast"
+    ],
+    "later_anchors": "HPO on the SAME initial NAS winner, never return to reference and never rerun full NAS",
+    "epoch_rule": {
+      "2024-01-01": "phasewise ceil median of the five winning NAS2 best epochs",
+      "2024-07-01": "phasewise ceil median of the two local HPO best epochs on frozen initial architecture",
+      "2024-10-01": "phasewise ceil median of the two local HPO best epochs on frozen initial architecture"
+    },
+    "k_execution_status": "blocked_until_noise_pilot_and_k_receipt",
+    "technical_tie_is_not_equivalence": true,
+    "indistinguishable_set": "TOST/ROPE/MCS with applicable assumptions and recorded uncertainty remains a separate required analysis; nominal CI overlap alone is not equivalence",
+    "full_outer_fold_NAS_omission_basis": "Guide section14.5 p56 makes repeating full NAS per outer fold conditional on cost; report initial-regime architecture and temporal stability limitations"
+  },
+  "noise_pilot": {
+    "origin": "2023-10-01",
+    "last_admitted_label": "2023-09-23",
+    "model": "TiDE",
+    "architectures": 12,
+    "architecture_selection": "reference plus smallest000 and largest111, plus9 stratified seeded unique candidates fixed before timing; one retained TiDE family",
+    "seeds": [
+      271501,
+      271502,
+      271503,
+      271504,
+      271505
+    ],
+    "epochs": 200,
+    "nonarchitecture": {
+      "learning_rate": 0.001,
+      "weight_decay": 0.0001,
+      "batch_size": 32,
+      "warmup_fraction": 0
+    },
+    "purpose": "Only resource/rank-noise estimates and k, never candidate/model selection; no HPO winner from later data is used."
+  },
+  "metrics": {
+    "primary": "mean of individual-seed RMSE in original unannualized sigma7 units on the same frozen eligible dates",
+    "development_aggregation": "For each paired seed concatenate eligible January-October outer dates, compute its RMSE, then average seeds. Also report each origin separately.",
+    "historical_and_prospective_tables_separate": true,
+    "secondary": [
+      "MAE",
+      "MSE",
+      "R2",
+      "MAPE",
+      "MASE",
+      "RMSSE",
+      "RMSE_ratio_to_Persistence"
+    ],
+    "MAPE": "Only y>0, disclose eligible coverage; retain zero labels for primary RMSE.",
+    "scales": "MASE and RMSSE denominators use only consecutive daily pairs of finite admissible training targets, never jump gaps or use evaluation labels.",
+    "invalid_denominators": "Return unavailable with reason and coverage, never substitute zero/epsilon silently.",
+    "deterministic_baselines": "One deterministic trajectory per cohort; no fabricated independent seed replications.",
+    "common_support": "Same predeclared quality/calendar mask across all systems; no date deletion because a model failed."
+  },
+  "selection": {
+    "hpo": "Minimize mean validation RMSE over exactly the two paired seeds at that anchor; exact tie by stable trial ID.",
+    "epochs": "Strict improvement/earliest checkpoint; refit per-phase ceil median of best epochs from relevant HPO or initial NAS2 seeds.",
+    "nas": "Retain registered parsimony tie rule and separate formal indistinguishability analysis; reference exactly once.",
+    "outer_labels": "Never select hyperparameters, architecture or early stopping from an outer/final label.",
+    "development_top3": "Choose analysis targets from development-only results, before prospective final labels; final-test-driven follow-ups remain explicitly exploratory."
+  },
+  "inference": {
+    "primary_family_id": "top10_vs_GRU32_and_Persistence",
+    "family_size": 20,
+    "contrasts": [
+      {
+        "contrast_id": "FCN-1D__vs__GRU32",
+        "model": "FCN-1D",
+        "baseline": "GRU32",
+        "gain": "mean_seed_RMSE_baseline - mean_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "contrast_id": "FCN-1D__vs__Persistence",
+        "model": "FCN-1D",
+        "baseline": "Persistence",
+        "gain": "mean_seed_RMSE_baseline - mean_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "contrast_id": "ResNet-1D__vs__GRU32",
+        "model": "ResNet-1D",
+        "baseline": "GRU32",
+        "gain": "mean_seed_RMSE_baseline - mean_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "contrast_id": "ResNet-1D__vs__Persistence",
+        "model": "ResNet-1D",
+        "baseline": "Persistence",
+        "gain": "mean_seed_RMSE_baseline - mean_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "contrast_id": "Inception-1D__vs__GRU32",
+        "model": "Inception-1D",
+        "baseline": "GRU32",
+        "gain": "mean_seed_RMSE_baseline - mean_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "contrast_id": "Inception-1D__vs__Persistence",
+        "model": "Inception-1D",
+        "baseline": "Persistence",
+        "gain": "mean_seed_RMSE_baseline - mean_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "contrast_id": "LSTM-autoencoder con predictor__vs__GRU32",
+        "model": "LSTM-autoencoder con predictor",
+        "baseline": "GRU32",
+        "gain": "mean_seed_RMSE_baseline - mean_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "contrast_id": "LSTM-autoencoder con predictor__vs__Persistence",
+        "model": "LSTM-autoencoder con predictor",
+        "baseline": "Persistence",
+        "gain": "mean_seed_RMSE_baseline - mean_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "contrast_id": "TimesNet__vs__GRU32",
+        "model": "TimesNet",
+        "baseline": "GRU32",
+        "gain": "mean_seed_RMSE_baseline - mean_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "contrast_id": "TimesNet__vs__Persistence",
+        "model": "TimesNet",
+        "baseline": "Persistence",
+        "gain": "mean_seed_RMSE_baseline - mean_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "contrast_id": "TSMixer__vs__GRU32",
+        "model": "TSMixer",
+        "baseline": "GRU32",
+        "gain": "mean_seed_RMSE_baseline - mean_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "contrast_id": "TSMixer__vs__Persistence",
+        "model": "TSMixer",
+        "baseline": "Persistence",
+        "gain": "mean_seed_RMSE_baseline - mean_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "contrast_id": "TiDE__vs__GRU32",
+        "model": "TiDE",
+        "baseline": "GRU32",
+        "gain": "mean_seed_RMSE_baseline - mean_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "contrast_id": "TiDE__vs__Persistence",
+        "model": "TiDE",
+        "baseline": "Persistence",
+        "gain": "mean_seed_RMSE_baseline - mean_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "contrast_id": "TimeMixer__vs__GRU32",
+        "model": "TimeMixer",
+        "baseline": "GRU32",
+        "gain": "mean_seed_RMSE_baseline - mean_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "contrast_id": "TimeMixer__vs__Persistence",
+        "model": "TimeMixer",
+        "baseline": "Persistence",
+        "gain": "mean_seed_RMSE_baseline - mean_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "contrast_id": "PatchTST__vs__GRU32",
+        "model": "PatchTST",
+        "baseline": "GRU32",
+        "gain": "mean_seed_RMSE_baseline - mean_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "contrast_id": "PatchTST__vs__Persistence",
+        "model": "PatchTST",
+        "baseline": "Persistence",
+        "gain": "mean_seed_RMSE_baseline - mean_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "contrast_id": "iTransformer__vs__GRU32",
+        "model": "iTransformer",
+        "baseline": "GRU32",
+        "gain": "mean_seed_RMSE_baseline - mean_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "contrast_id": "iTransformer__vs__Persistence",
+        "model": "iTransformer",
+        "baseline": "Persistence",
+        "gain": "mean_seed_RMSE_baseline - mean_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      }
+    ],
+    "family_wise_alpha": 0.05,
+    "multiplicity": "Holm across all twenty primary contrasts",
+    "practical_margin_delta": 0.00025772842664981106,
+    "planning_true_gain": 0.0005154568532996221,
+    "planning_effect_explanation": "The primary null already includes delta; simulate true gain2delta, giving a delta-sized separation from the null boundary. Power0.80 is not claimed at true gain=delta.",
+    "other_pairwise_comparisons": "Exploratory, explicitly labelled, with effects/CI and a separate complete Holm family if tested; never substitute their p-values for primary tests.",
+    "primary_temporal_block_days": 14,
+    "diagnostic_block_days": [
+      7,
+      28
+    ],
+    "resampling": "Paired seed and temporal-block resampling on common dates; deterministic baseline resampled over time only.",
+    "bootstrap_minimum_draws_for_CI": 2000,
+    "minimum_draws_for_paired_contrasts": 10000,
+    "three_admissible_tests_status": "pending implementation and assumption checks before independent-final access; temporal block bootstrap and suitable forecast-loss tests are not assumed valid merely by being named.",
+    "finalist_equivalence_status": "TOST/ROPE/MCS applicability and reporting pending; overlapping nominal intervals are not proof.",
+    "nas_family_control": "The NAS finalist family is separate and labelled; no claim of one globalFWER across every secondary/NAS contrast."
+  },
+  "power": {
+    "R": null,
+    "minimum_R": 6,
+    "maximum_R": 30,
+    "seed_pool": [
+      271801,
+      271802,
+      271803,
+      271804,
+      271805,
+      271806,
+      271807,
+      271808,
+      271809,
+      271810,
+      271811,
+      271812,
+      271813,
+      271814,
+      271815,
+      271816,
+      271817,
+      271818,
+      271819,
+      271820,
+      271821,
+      271822,
+      271823,
+      271824,
+      271825,
+      271826,
+      271827,
+      271828,
+      271829,
+      271830
+    ],
+    "pilot_models": [
+      "TimeMixer",
+      "PatchTST",
+      "GRU32"
+    ],
+    "pilot_seeds": [
+      271701,
+      271702,
+      271703,
+      271704,
+      271705
+    ],
+    "pilot_origin": "2024-11-08",
+    "pilot_end": "2024-12-30",
+    "pilot_train_cutoff": "2024-10-31",
+    "recipe_basis": "October2024 HPO; power-pilot labels may determine R/dependence/MDE but cannot retune recipes.",
+    "target": 0.8,
+    "simulations_at_least": 2000,
+    "acceptance": "Choose smallest common R6..30 whose predeclared multiplicity-aware paired temporal simulation has Wilson95% lower power bound at least0.80 under true gain2delta; hold bias/dependence assumptions fixed before final access.",
+    "if_no_R_meets_target": "Report achieved power/MDE and resource limitation. Do not assert power0.80 or silently add seeds; any increase beyond pool/cap needs an explicit amendment.",
+    "temporal_transport_limit": "Pilot2024 does not by itself establish power in a future2026/2027 regime; one hundred calendar dates do not guarantee temporal power.",
+    "power_definition": "Minimum marginal power over the prespecified representative contrasts/scenarios, never probability of rejecting at least one null. Use Bonferroni0.05/20 for conservative planning; Holm remains the final twenty-test procedure.",
+    "representative_contrasts": [
+      {
+        "model": "TimeMixer",
+        "baseline": "GRU32"
+      },
+      {
+        "model": "TimeMixer",
+        "baseline": "Persistence"
+      },
+      {
+        "model": "PatchTST",
+        "baseline": "GRU32"
+      },
+      {
+        "model": "PatchTST",
+        "baseline": "Persistence"
+      }
+    ],
+    "unpiloted_contrasts": "Use a declared conservative pilot variance/dependence envelope as a planning proxy; disclose that only representative models were piloted. Do not claim measured power for all unobserved models or a future regime.",
+    "monte_carlo_interval": "One-sided95% Wilson lower bound (z1.6448536269514722) describes Monte Carlo error only, not uncertainty in pilot variance estimates or transport to future data.",
+    "MDE_units": "Raw minimum detectable gain equals margin delta plus the detectable separation from the margin null.",
+    "short_pilot_limit": "The53-day pilot contains few independent14-day blocks; report sensitivity and uncertainty rather than treating Monte Carlo draws as additional data."
+  },
+  "data_roles": {
+    "development": {
+      "start": "2023-01-01",
+      "end": "2024-12-31",
+      "known": true
+    },
+    "historical_608": {
+      "start": "2025-01-01",
+      "end": "2026-08-31",
+      "calendar_days": 608,
+      "already_evaluated": true,
+      "interpretation": "exploratory historical E2 replay, not independent confirmatory test",
+      "training_cutoff_for_historical_weights": "2024-12-24"
+    },
+    "historical_60": {
+      "start": "2026-09-01",
+      "end": "2026-10-30",
+      "calendar_days": 60,
+      "already_evaluated": true,
+      "interpretation": "known reserve; may support declared future calibration, never relabel as virgin test"
+    },
+    "independent_final": {
+      "status": "prospective_pending_global_freeze",
+      "start": null,
+      "end": null,
+      "start_rule": "EXACTLY the UTC day after global freeze; register the binding BEFORE that day starts. A late binding is rejected, not silently shifted.",
+      "calendar_days": 100,
+      "minimum_eligible_error_cases": 100,
+      "automatic_extension": false,
+      "coverage_limit": "If any exclusions leave fewer than100 eligible cases, report the shortfall and leave that error-analysis criterion open; never extend based on performance.",
+      "future_weight_training_end": "2026-08-24",
+      "calibration_start": "2026-09-01",
+      "calibration_end": "2026-10-30",
+      "training_calibration_embargo": [
+        "2026-08-25",
+        "2026-08-31"
+      ],
+      "inference_bridge_start": "2026-10-31",
+      "inference_bridge_end_rule": "T minus one day",
+      "bridge_policy": "New bridge data have not been acquired by this amendment; admit only causally observed OHLCV/ARIMA state, never weights, scalers, calibration or HPO updates.",
+      "lineage": "New future-fit weights trained on known labels throughAug24 2026 are distinct from historical Jan2025 weights. They must not re-score608known dates as out-of-sample.",
+      "freeze_requirements": [
+        "all sixteen model recipe/weight/scaler bundles",
+        "common R and seed list with power receipt",
+        "calibrators fitted only on the known calibration block",
+        "analysis plan and source/data identities",
+        "hash and physical artifact verification on the executing worker",
+        "cohort binding before its first target date"
+      ]
+    },
+    "no_existing_historical_virgin_test_certified": true,
+    "new_market_payloads_read_by_registration": 0
+  },
+  "budget": {
+    "authorized_total_hours": 64.0,
+    "authorized_total_seconds": 230400.0,
+    "authorization_history_total_hours": [
+      48,
+      56,
+      64
+    ],
+    "fresh_budget_granted_by_this_amendment": false,
+    "inherited_campaign_branches": [
+      "campaigns/e2-cuda-selection-v1",
+      "campaigns/e2-cuda-crop-11-v2"
+    ],
+    "remaining_seconds": null,
+    "state": "reconciliation_required",
+    "accounting": "Preserve all consumed/reserved/unknown-attempt charges from both prior ledgers and any open session; a new plan/version does not reset time.",
+    "admission": "No new market job until a migration receipt reconciles current heads, consumed and reserved seconds. Admit only if the whole registered reservation fits the shared remaining allowance.",
+    "insufficient_budget": "Record incomplete work/limitation; no automatic extension, seed replacement, retry, ledger deletion or false completion.",
+    "scope": "All amended continuation training work charges the same remaining authorized campaign allowance; the inventory below is not a promise that it fits.",
+    "consumed_seconds": null,
+    "reserved_seconds": null
+  },
+  "workload_upper_bounds": {
+    "scope": "prospective_selection_upper_bound_before_compatible_reuse",
+    "neural_systems": 13,
+    "hpo_anchors": 3,
+    "trials_per_neural_anchor": 18,
+    "hpo_seeds": 2,
+    "neural_hpo_logical_fits": 1404,
+    "TiDE_nas_searches": 1,
+    "nas_phase1_architectures": 1000,
+    "nas_phase1_logical_fits": 1000,
+    "nas_phase2_k": 40,
+    "nas_phase2_seeds": 5,
+    "nas_phase2_reference_upper_bound": 1,
+    "nas_phase2_logical_fit_upper_bound": 205,
+    "neural_selection_logical_fit_upper_bound": 2609,
+    "SAE_additional_auxiliary_optimizer_stages": 216,
+    "neural_selection_optimizer_stage_upper_bound": 2825,
+    "ARIMA_candidate_fits": 54,
+    "seasonal_naive_validation_rules": 9,
+    "naive_optimizer_fits": 0,
+    "registered_k_default": 40,
+    "inventory_does_not_authorize_k_change": true,
+    "observed_completed_fits": null,
+    "compatible_reuse_deducted": false,
+    "wall_hours_estimated": null,
+    "excluded_work": [
+      "resource/noise pilots",
+      "power pilot",
+      "monthly selected-recipe refits",
+      "historical/final evaluation refits",
+      "ablations",
+      "robustness",
+      "uncertainty, explanation and inference",
+      "clean reproduction"
+    ]
+  },
+  "compatibility": "Reuse only exact recipe, architecture, optimizer point, data/prepared tensors, origin, seed, stage and execution-policy identities; four restored bodies cannot reuse old NAS outcomes under new IDs. Later TiDE HPO must match the frozen initial winning architecture, not merely its model name.",
+  "execution_gates": [
+    {
+      "id": "registration",
+      "state": "satisfied_when_this_version_is_committed",
+      "closure": "Git commit binds protocol, source hashes and registration receipt before affected new fits."
+    },
+    {
+      "id": "budget_reconciliation",
+      "state": "pending",
+      "closure": "Both prior ledgers and active/unknown reservations reconciled without resetting the64h total."
+    },
+    {
+      "id": "noise_pilot_k",
+      "state": "pending",
+      "closure": "Twelve TiDE designs, five pilot seeds, rank-noise rule and frozen k receipt before NAS1."
+    },
+    {
+      "id": "power_R",
+      "state": "pending",
+      "closure": "Three-model paired pilot, explicit twenty-contrast family, temporal simulation, common R and achieved power/MDE receipt."
+    },
+    {
+      "id": "GPU_controller_migration",
+      "state": "pending",
+      "closure": "Versioned CUDA fit/inference controller consumes the new schedule/recipe lineage and passes real-GPU preflight."
+    },
+    {
+      "id": "data_admission",
+      "state": "pending",
+      "closure": "Known data roles and new causal bridge source manifests, derivative hashes and common supports audited on the worker."
+    },
+    {
+      "id": "inference_and_indistinguishability",
+      "state": "pending",
+      "closure": "Admissible contrast battery, assumptions, equivalence/MCS procedure and analysis code fixed before independent-final data."
+    },
+    {
+      "id": "prospective_global_freeze",
+      "state": "pending",
+      "closure": "Actual material checkpoint/calibrator verification plus all-system global-freeze receipt and cohort binding beforeT."
+    },
+    {
+      "id": "prospective_final_maturity",
+      "state": "pending",
+      "closure": "One hundred fixed calendar target days have closed; common support and first-access chronology verified."
+    }
+  ],
+  "exposure_registry": "experiments/e2_protocol_amendment_20261112/exposure_registry.json",
+  "selection_budget_policy": "experiments/e2_protocol_amendment_20261112/selection_budget_policy.json",
+  "private_colab_session_modified": false,
+  "sealed_campaign_modified": false,
+  "new_market_training_executed": false,
+  "full_guide_compliance_claimed": false,
+  "prepared_at_utc": "2026-11-12T13:22:57.301644+00:00",
+  "registration_time_source": "git_registration.json committed_at_utc is the actual immutable registration time; prepared_at_utc only dates document preparation. A future worker must bind the freeze to the actual Git registration timestamp."
+}

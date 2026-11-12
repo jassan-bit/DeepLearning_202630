@@ -65,7 +65,7 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="Referencias de contexto y revisión E2" href="referencias.html" />
+    <link rel="next" title="45. Enmienda del protocolo: calendario común, presupuesto y prueba final" href="45_enmienda_protocolo.html" />
     <link rel="prev" title="43. Catálogo obligatorio: dieciséis sistemas" href="43_catalogo_obligatorio.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
@@ -251,6 +251,7 @@
 <li class="toctree-l1"><a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html">42. Auditoría de E2 y trabajo que puede adelantarse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="43_catalogo_obligatorio.html">43. Catálogo obligatorio: dieciséis sistemas</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">44. Cuerpos publicados, adaptaciones D7 y aplicación de NAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="45_enmienda_protocolo.html">45. Enmienda del protocolo: calendario común, presupuesto y prueba final</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
 </ul>
 
@@ -549,7 +550,7 @@
 </table>
 </div>
 <p>FCN-1D, ResNet-1D, Inception-1D, TSMixer, iTransformer y las tres referencias E1 conservan sus recetas; sólo se reutiliza un resultado cuando coincidan arquitectura, receta, datos, partición, semillas y política de ejecución. TiDE conserva su identidad NAS. Los recibos anteriores se mantienen como evidencia del diseño que realmente se ejecutó.</p>
-<p>Se conservan las <strong>18 oportunidades HPO</strong>, los ejes de tasa de aprendizaje, weight decay y batch, las semillas y los límites de entrenamiento registrados. En las restauraciones, los knobs estructurales antiguos se fijan al cuerpo publicado: SAE usa dropout 0,3; TimesNet y TimeMixer, 0,1; PatchTST usa dropout de encoder y <code class="docutils literal notranslate"><span class="pre">fc_dropout</span></code> 0,3 y <code class="docutils literal notranslate"><span class="pre">head_dropout</span></code> 0. Por ello no se afirma que todos sus dominios sean idénticos a los de la variante NAS. Los cuerpos conservados mantienen sus ejes existentes. Esta enmienda no cambia los once orígenes, k, épocas, presupuesto autorizado o R; tampoco recalcula aquí un total de corridas como si fuera un mínimo literal de la guía.</p>
+<p>Se conservan las <strong>18 oportunidades HPO</strong>, los ejes de tasa de aprendizaje, weight decay y batch, las semillas y los límites de entrenamiento registrados. En las restauraciones, los knobs estructurales antiguos se fijan al cuerpo publicado: SAE usa dropout 0,3; TimesNet y TimeMixer, 0,1; PatchTST usa dropout de encoder y <code class="docutils literal notranslate"><span class="pre">fc_dropout</span></code> 0,3 y <code class="docutils literal notranslate"><span class="pre">head_dropout</span></code> 0. Por ello no se afirma que todos sus dominios sean idénticos a los de la variante NAS. Los cuerpos conservados mantienen sus ejes existentes. La adjudicación de cuerpos conservó inicialmente los once orígenes. La <a class="reference internal" href="45_enmienda_protocolo.html"><span class="std std-doc">enmienda temporal posterior de §45</span></a> registra tres anclas HPO y una sola NAS inicial TiDE, con reajustes mensuales; conserva límites de épocas, semillas, gasto y techo autorizado. k y R siguen sujetos a sus pilotos y ninguna cota de corridas se presenta como un mínimo literal de la guía.</p>
 </section>
 <section id="registro-y-aplicacion">
 <h2>Registro y aplicación<a class="headerlink" href="#registro-y-aplicacion" title="Link to this heading">#</a></h2>
@@ -561,7 +562,7 @@
 <li><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e2_published_architectures_20261112/architecture_policy.json">Registro versionado en el repositorio</a>.</p></li>
 <li><p>Implementaciones: <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/e2_published_registry.py">registro</a>, <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/e2_published_periodic.py">TimesNet/TimeMixer</a>, <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/e2_published_patchtst.py">PatchTST</a>, <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/e2_published_sae.py">SAE</a> y <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/e2_published_training.py">entrenamiento</a>.</p></li>
 </ul>
-<p>La política prospectiva deja NAS para <strong>una variante del Top 10: TiDE</strong>. Las exenciones se justifican para las recetas concretas descritas; añadir bloques propios, alterar sus mecanismos o usar otra receta requiere otra adjudicación. Esto no equivale a haber terminado esa búsqueda, el HPO o la evaluación final. Antes de reanudar con estas recetas, el controlador debe incorporar la nueva política y conciliar caché y saldo. Publicar el libro o importar un constructor no migra la campaña activa de Colab.</p>
+<p>La política prospectiva deja NAS para <strong>una variante del Top 10: TiDE</strong>. Las exenciones se justifican para las recetas concretas descritas; añadir bloques propios, alterar sus mecanismos o usar otra receta requiere otra adjudicación. Esto no equivale a haber terminado esa búsqueda, el HPO o la evaluación final. Antes de reanudar con estas recetas, el controlador debe incorporar esta política y el <a class="reference internal" href="45_enmienda_protocolo.html"><span class="std std-doc">calendario de §45</span></a>, y conciliar caché y saldo. Publicar el libro o importar un constructor no migra la campaña activa de Colab.</p>
 </section>
 </section>
 
@@ -605,11 +606,11 @@
       </div>
     </a>
     <a class="right-next"
-       href="referencias.html"
+       href="45_enmienda_protocolo.html"
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">Referencias de contexto y revisión E2</p>
+        <p class="prev-next-title">45. Enmienda del protocolo: calendario común, presupuesto y prueba final</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

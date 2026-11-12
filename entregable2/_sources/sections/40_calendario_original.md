@@ -1,6 +1,8 @@
 # 40. Calendario original y optimizaciones de implementación
 
-**Enmienda posterior (12/11/2026):** el [catálogo obligatorio de §43](43_catalogo_obligatorio.md) se reduce a **16 sistemas: 13 redes y tres comparadores**. Híbrido adicional y Ridge son opcionales. Este capítulo conserva el plan sellado anterior de catorce redes y su techo de 85.074 intentos como antecedente; la publicación no cambia la sesión de Colab ni elimina resultados. No se modifican los once orígenes ni las demás políticas en este paso.
+**Vigencia posterior del 12/11/2026:** la [enmienda de protocolo de §45](45_enmienda_protocolo.md) fija **tres anclas HPO, una NAS inicial TiDE y diez reajustes mensuales de evaluación**. Este capítulo conserva el plan sellado de once búsquedas y su corte de recibos como antecedente. Sus instrucciones de continuación y su saldo describen ese estado histórico; no aplican ni acreditan la migración al protocolo nuevo. La sesión privada de Colab permanece independiente de esta publicación.
+
+**Enmienda posterior (12/11/2026):** el [catálogo obligatorio de §43](43_catalogo_obligatorio.md) se reduce a **16 sistemas: 13 redes y tres comparadores**. Híbrido adicional y Ridge son opcionales. Este capítulo conserva el plan sellado anterior de catorce redes y su techo de 85.074 intentos como antecedente; la publicación no cambia la sesión de Colab ni elimina resultados. Ese paso de catálogo aún no modificaba los once orígenes; el cambio temporal posterior queda registrado en §45.
 
 **Decisión registrada el 11/11/2026, anterior a la enmienda de catálogo:** conservar el calendario original de **once orígenes**, todas las arquitecturas y las exigencias de E2. La reducción a tres orígenes de §37 queda como **propuesta no operativa, pendiente de justificar suficiencia temporal e inferencial**. Que la guía no imponga once no demuestra que tres basten.
 

@@ -1,8 +1,10 @@
 # 41. Ejecución optimizada: avance verificable de once orígenes
 
+**Vigencia posterior del 12/11/2026:** la [enmienda de protocolo de §45](45_enmienda_protocolo.md) fija **tres anclas HPO, una NAS inicial TiDE y diez reajustes mensuales de evaluación**. Este capítulo conserva el plan sellado de once búsquedas y su corte de recibos como antecedente. Sus instrucciones de continuación y su saldo describen ese estado histórico; no aplican ni acreditan la migración al protocolo nuevo. La sesión privada de Colab permanece independiente de esta publicación.
+
 **Alcance posterior al corte:** desde el 12/11/2026 el [catálogo obligatorio es de 16 sistemas (§43)](43_catalogo_obligatorio.md), sin híbrido adicional ni Ridge. Los contadores de este capítulo corresponden a la campaña sellada anterior de catorce redes. Conservan sus fuentes y significado; no prueban que Colab haya aplicado la enmienda.
 
-**Corte fijo vigente: 12/11/2026, 02:29:43 de Bogotá (07:29:43 UTC).** La campaña quedó **pausada por límite de sesión, con cierre limpio**. Este corte describe registros de GitHub y no comprueba el kernel de Colab en vivo. Se conservan los once orígenes, los catorce sistemas neuronales y todos los requisitos de E2. La propuesta de tres orígenes no es operativa.
+**Corte fijo vigente: 12/11/2026, 02:29:43 de Bogotá (07:29:43 UTC).** La campaña quedó **pausada por límite de sesión, con cierre limpio**. Este corte describe registros de GitHub y no comprueba el kernel de Colab en vivo. En ese corte se conservaban los once orígenes y los catorce sistemas neuronales. La propuesta histórica de §37 no se había activado; la posterior política vigente de §45 se registra por separado.
 
 ## Resultados confirmados
 

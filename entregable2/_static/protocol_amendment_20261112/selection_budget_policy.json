@@ -1,0 +1,208 @@
+{
+  "version": "e2-local-selection-budget-policy-v1",
+  "decision_date": "2026-11-12",
+  "status": "rules_recorded_execution_gates_pending",
+  "implementation": "scripts/e2_amended_metrics.py",
+  "implementation_version": "e2-amended-metrics-v1",
+  "primary_metric": {
+    "name": "mean_per_seed_RMSE",
+    "units": "original population sigma7 of daily Close log returns; unannualized",
+    "definition": "Arithmetic mean of RMSE computed separately for every independently fitted neural seed on the exact common support. Not ensemble RMSE and not sqrt of pooled seed MSE.",
+    "delta": 0.00025772842664981106,
+    "zero_targets": "included in every primary score",
+    "missing_predictions": "reject the run; no silent date deletion or finite replacement"
+  },
+  "secondary_metrics": {
+    "names": [
+      "MAE",
+      "MSE",
+      "R2",
+      "MAPE_percent",
+      "MASE",
+      "RMSSE",
+      "RMRMSE"
+    ],
+    "R2": "1 - MSE/mean((y-mean(y))^2); undefined for constant targets",
+    "MAPE_percent": "100*mean(abs(error)/y) only for y>0; report eligible count and coverage",
+    "MASE": "MAE / mean(abs(y_t-y_(t-1))) from finite consecutive dated training pairs only",
+    "RMSSE": "sqrt(MSE / mean((y_t-y_(t-1))^2)) from the same eligible dated training pairs",
+    "RMRMSE": "RMSE / Persistence RMSE on the same scoring dates; final primary ratio is mean-per-seed RMSE / deterministic Persistence RMSE",
+    "zero_or_missing_denominators": "None plus a stated reason; never an epsilon fallback"
+  },
+  "HPO": {
+    "scope": "local_per_anchor",
+    "anchor_dates": "defined by the parent temporal protocol; never pooled for one global three-anchor HPO winner",
+    "configurations_per_neural_anchor": 18,
+    "optimization_seeds": [
+      271201,
+      271202
+    ],
+    "configuration_selection": "lowest local arithmetic mean of the two individual validation RMSEs; exact tie -> lowest stable trial_id",
+    "failed_configuration": "remains in ledger, consumes its opportunity; no replacement seed or trial",
+    "epoch_selection": "strict improvement of original-unit validation RMSE, first checkpoint on ties",
+    "maximum_epochs": 200,
+    "patience_epochs": 20,
+    "short_NAS_epochs": 50,
+    "optimizer": "AdamW",
+    "precision": "float32",
+    "gradient_clip_norm": 1,
+    "LR_log_range": [
+      1e-05,
+      0.003
+    ],
+    "positive_WD_log_range": [
+      1e-06,
+      0.01
+    ],
+    "zero_WD_points": 3,
+    "batch_sizes": [
+      16,
+      32,
+      64
+    ],
+    "strong_classical": "ARIMA eighteen orders p0..2,d0..1,q0..2, deterministic; seasonal naive periods7/14/28 selected locally; Persistence lag1 fixed",
+    "selection_helper_default_scope": "registered_domains",
+    "registered_trial_id_domain": "The caller must supply the exact eighteen unique IDs returned by the pinned model registry; all eighteen rows must be explicitly completed or failed with a reason.",
+    "incomplete_or_foreign_ledger": "Abort before selecting a winner; no partial search may impersonate the registered HPO.",
+    "fatal_or_systematic_failure": "Abort selection, even if other configurations completed.",
+    "synthetic_fixture": "Explicit scope admits bounded subsets only; reports registered_selection_complete=false and does not close HPO.",
+    "selection_helper_receipts": "Criteria only; run artifact bytes and receipts must be independently verified."
+  },
+  "NAS": {
+    "models": [
+      "TiDE"
+    ],
+    "architecture_count": 1000,
+    "phase1_seeds": [
+      271301
+    ],
+    "phase1_epochs": 50,
+    "phase2_seeds": [
+      271401,
+      271402,
+      271403,
+      271404,
+      271405
+    ],
+    "phase2_epochs": 200,
+    "reference": {
+      "widths": [
+        64,
+        64,
+        64
+      ],
+      "dropout_pattern": [
+        0,
+        1,
+        0
+      ]
+    },
+    "k": null,
+    "k_gate": "freeze after development-only rank-noise pilot and before NAS1",
+    "noise_pilot": {
+      "origin": "2023-10-01",
+      "latest_label": "2023-09-23",
+      "architecture_count": 12,
+      "seeds": [
+        271501,
+        271502,
+        271503,
+        271504,
+        271505
+      ],
+      "rule": "k40 if any required model median of all ten pairwise seed-rank Spearman correlations is <0.5 or undefined; otherwise k20. A constant ranking or incomplete/censored table cannot be discarded to obtain stability."
+    },
+    "finalist_reference_policy": "top k distinct completed finalists; add reference only if not already present; reserve at most k+1",
+    "selection": "minimum mean validation RMSE; technical ties to the best if difference<=delta or nominal95% mean-score CI overlaps; fewest parameters, then lower mean RMSE, then stable architecture_id",
+    "nominal_CI_overlap_is_equivalence_proof": false,
+    "additional_required_reporting": [
+      "TOST/ROPE/MCS indistinguishable finalist set",
+      "phase1-phase2 rank correlation",
+      "winner-selection optimism and limits"
+    ],
+    "selection_helper_scope": {
+      "criteria_only": true,
+      "phase2_ledger_verified": false,
+      "does_not_certify_NAS_completion": true,
+      "remaining_gate": "The caller must verify the full finalist/seed ledger, phase1 accounting and receipts before declaring NAS selected."
+    }
+  },
+  "R_planning": {
+    "R": null,
+    "minimum_R": 6,
+    "maximum_R": 30,
+    "target_power": 0.8,
+    "pilot_models": [
+      "TimeMixer",
+      "PatchTST",
+      "GRU32"
+    ],
+    "pilot_seeds": [
+      271701,
+      271702,
+      271703,
+      271704,
+      271705
+    ],
+    "pilot_origin": "2024-11-08",
+    "pilot_end": "2024-12-30",
+    "pilot_rule": "After selection, freeze recipes first; use only the held development pilot for dependence- and multiplicity-aware paired power planning. Do not retune hyperparameters on pilot outcomes.",
+    "insufficient_power": "if required_R>30 or resources do not allow it, report achieved planning sensitivity and MDE; never claim power0.8 merely because R is between6 and30",
+    "final_seeds": "separate registered pool271801..271830; prefix selected only after R is fixed"
+  },
+  "cumulative_budget": {
+    "limit_hours_total": 64,
+    "authorization_history_total_hours": [
+      48,
+      56,
+      64
+    ],
+    "ledger_sources": [
+      "campaigns/e2-cuda-selection-v1",
+      "campaigns/e2-cuda-crop-11-v2"
+    ],
+    "consumed_seconds": null,
+    "remaining_seconds": null,
+    "status": "reconciliation_required",
+    "rules": [
+      "Keep charges from both historical ledgers, overhead and conservative lost-session charges",
+      "Unknown consumption cannot become zero",
+      "Reserve the complete next fit before admitting it; a deficit blocks admission",
+      "This amendment neither resets charges nor authorizes more hours"
+    ]
+  },
+  "cache_reuse": {
+    "identity_fields": [
+      "model_id",
+      "origin",
+      "recipe_id",
+      "model_source_sha256",
+      "hpo_sha256",
+      "architecture_id",
+      "architecture_sha256",
+      "data_sha256",
+      "prepared_signature",
+      "seed",
+      "execution_policy_sha256"
+    ],
+    "result_status": "completed",
+    "all_identity_fields_must_match": true,
+    "actual_artifact_bytes_must_be_verified_separately": true,
+    "restored_recipes_never_alias_old_NAS_ids": [
+      "SAE-D7-PUBLISHED-v1",
+      "TN-D7-PUBLISHED-v1",
+      "TM-D7-PUBLISHED-v1",
+      "PT-D7-PUBLISHED-v1"
+    ],
+    "TiDE_reference_HPO_rule": "The same trial at a different selected architecture is not the reference-architecture HPO fit; both architecture_id and architecture_sha256 must match"
+  },
+  "execution": {
+    "market_payloads_read": false,
+    "models_trained": false,
+    "private_colab_session_modified": false,
+    "budget_extended": false,
+    "final_R_fixed": false,
+    "NAS_k_fixed": false,
+    "scope": "Rules and pure-helper verification only; live training requires the parent protocol gates and ledger reconciliation"
+  }
+}

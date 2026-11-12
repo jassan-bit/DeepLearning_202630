@@ -1,0 +1,744 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>45. Enmienda del protocolo: calendario común, presupuesto y prueba final &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/45_enmienda_protocolo';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Referencias de contexto y revisión E2" href="referencias.html" />
+    <link rel="prev" title="44. Cuerpos publicados, adaptaciones D7 y aplicación de NAS" href="44_arquitecturas_publicadas.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 2 · Bitcoin: pronóstico de volatilidad</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_literatura.html">3. Revisión Sistemática del Estado del Arte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación de los diez modelos y el candidato adicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark obligatorio: dieciséis sistemas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Registro de selección, cierre pendiente y trazabilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de datos y auditoría formal de fuga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. HPO y equidad para el catálogo vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Techo de desempeño, incertidumbre y análisis de errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Agregación estadística e interpretación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas del catálogo vigente y adaptación a D7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo vigente: diez modelos y candidato 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_fichas_nuevas.html">16. Fichas bibliográficas de las cuatro altas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato sincronizado de E1, E2 y E3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_integracion_sintetica.html">18. Implementación provisional y verificación sintética</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_plan_auditoria.html">19. Plan experimental propuesto y auditoría sin entrenamiento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_contraste_guia.html">20. Cotejo del plan con la guía original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_comparadores_nas.html">21. Comparadores temporales y decisión NAS por receta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22_fichas_recetas.html">22. Once fichas de recetas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_implementacion_recetas.html">23. Implementación de recetas y controles temporales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="24_ejecutor_comun.html">24. Ejecutor común y disponibilidad temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="25_matriz_cierre.html">25. Matriz de cierre antes del benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="26_registro_recetas.html">26. Registro por receta: fuentes, NAS, HPO e integración</a></li>
+<li class="toctree-l1"><a class="reference internal" href="27_nas_hpo_presupuesto.html">27. Decisiones NAS, rangos HPO y presupuesto para Codex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="28_fabricas_nas.html">28. Fábricas NAS implementadas y verificadas sintéticamente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="29_entrenamiento_temporal.html">29. Entrenamiento por etapas, selección temporal y perfilado CPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="30_piloto_nube.html">30. Piloto de desarrollo en la nube de Codex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="31_optimizacion_nube.html">31. Optimización de CPU y presupuesto de cómputo en la nube</a></li>
+<li class="toctree-l1"><a class="reference internal" href="32_ejecucion_gpu.html">32. Ejecución CUDA preparada y piloto de recursos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="33_piloto_gpu.html">33. Primer piloto de recursos en GPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="34_perfil_gpu_ampliado.html">34. Perfil GPU ampliado y viabilidad del extremo TimesNet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="35_busqueda_cuda_reanudable.html">35. Selección CUDA con presupuesto y continuación en GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="36_avance_campana_cuda.html">36. Avance parcial de la campaña CUDA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="37_ajuste_guia.html">37. Ajuste de cómputo conforme a la guía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="38_cumplimiento_guia.html">38. Exigencias de la guía, evidencia y pendientes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="39_optimizacion_tiempo.html">39. Optimizar tiempo sin recortar las exigencias de E2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="40_calendario_original.html">40. Calendario original y optimizaciones de implementación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="41_avance_optimizacion_11_origenes.html">41. Ejecución optimizada: avance verificable de once orígenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html">42. Auditoría de E2 y trabajo que puede adelantarse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="43_catalogo_obligatorio.html">43. Catálogo obligatorio: dieciséis sistemas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="44_arquitecturas_publicadas.html">44. Cuerpos publicados, adaptaciones D7 y aplicación de NAS</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">45. Enmienda del protocolo: calendario común, presupuesto y prueba final</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><p class="small">Entregable 2 · Jassan Arteta · 2026-30</p></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/45_enmienda_protocolo.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>45. Enmienda del protocolo: calendario común, presupuesto y prueba final</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-se-cambia-el-calendario">Por qué se cambia el calendario</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calendario-comun-de-seleccion-y-evaluacion">Calendario común de selección y evaluación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#embargo-y-disponibilidad">Embargo y disponibilidad</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hpo-y-una-sola-nas-tide">HPO y una sola NAS TiDE</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#criterios-de-seleccion">Criterios de selección</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#presupuesto-y-contabilidad">Presupuesto y contabilidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-y-unidad-de-analisis">Métricas y unidad de análisis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#familia-primaria-y-criterios-inferenciales">Familia primaria y criterios inferenciales</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#potencia-y-repeticiones-pendientes">Potencia y repeticiones pendientes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-conocidos-y-prueba-independiente">Datos conocidos y prueba independiente</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linaje-historico-y-linaje-prospectivo">Linaje histórico y linaje prospectivo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regla-de-la-cohorte-prospectiva">Regla de la cohorte prospectiva</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-archivos-y-criterios-de-cierre">Registro, archivos y criterios de cierre</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="enmienda-del-protocolo-calendario-comun-presupuesto-y-prueba-final">
+<h1>45. Enmienda del protocolo: calendario común, presupuesto y prueba final<a class="headerlink" href="#enmienda-del-protocolo-calendario-comun-presupuesto-y-prueba-final" title="Link to this heading">#</a></h1>
+<p><strong>Enmienda prospectiva del 12/11/2026:</strong> se mantiene el <a class="reference internal" href="43_catalogo_obligatorio.html"><span class="std std-doc">catálogo obligatorio de dieciséis sistemas</span></a> y la <a class="reference internal" href="44_arquitecturas_publicadas.html"><span class="std std-doc">adjudicación de nueve cuerpos definidos y TiDE NAS</span></a>. Se registran <strong>tres anclas HPO comunes, una sola NAS inicial para TiDE y diez reajustes mensuales de evaluación</strong>. El refit histórico de enero de 2025 utiliza una receta ya seleccionada, sin otra búsqueda.</p>
+<p>Esta enmienda rige el trabajo nuevo afectado. Los resultados y las fechas de acceso anteriores conservan su procedencia; el registro actual no se presenta como un preregistro anterior a todas las ejecuciones de E2. La publicación tampoco modifica el proceso ni las variables de una sesión privada de Colab.</p>
+<section id="por-que-se-cambia-el-calendario">
+<h2>Por qué se cambia el calendario<a class="headerlink" href="#por-que-se-cambia-el-calendario" title="Link to this heading">#</a></h2>
+<p>La ruta F2a exige origen móvil, embargo, disponibilidad causal y el mismo esquema para todos los sistemas (guía, pp. 30–31). <strong>No fija once búsquedas completas.</strong> La repetición de NAS en cada fold externo aparece en §14.5, p. 56, como una extensión que se realiza <strong>«cuando el costo lo permita»</strong>. Por eso se distingue seleccionar una receta de reajustar sus pesos con más pasado disponible.</p>
+<p>Las tres anclas cubren el inicio del estudio, una actualización semestral y una actualización anterior al bloque reservado para potencia. Sus validaciones tienen 83 días y no se solapan. La elección conserva una evaluación mensual más amplia y reduce búsquedas repetidas; <strong>no demuestra por sí sola que tres anclas sean suficientes para todos los regímenes</strong>. Se reportarán métricas por origen, cambios de receta y estabilidad temporal. Una cobertura insuficiente se declarará como limitación; no se añadirán anclas después de observar la prueba final.</p>
+<p>La propuesta histórica de §37 y el <a class="reference internal" href="40_calendario_original.html"><span class="std std-doc">plan sellado de §40</span></a> conservan sus fechas. Esta enmienda no activa sin cambios aquella propuesta: fija otro calendario y mantiene los reajustes mensuales.</p>
+</section>
+<section id="calendario-comun-de-seleccion-y-evaluacion">
+<h2>Calendario común de selección y evaluación<a class="headerlink" href="#calendario-comun-de-seleccion-y-evaluacion" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Ancla HPO</p></th>
+<th class="head"><p>Entrenamiento interno hasta</p></th>
+<th class="head"><p>Validación interna, ambos extremos incluidos</p></th>
+<th class="head"><p>Primer uso de la receta</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>01/01/2024</p></td>
+<td><p>25/09/2023</p></td>
+<td><p>03/10–24/12/2023</p></td>
+<td><p>Enero–junio de 2024</p></td>
+</tr>
+<tr class="row-odd"><td><p>01/07/2024</p></td>
+<td><p>25/03/2024</p></td>
+<td><p>02/04–23/06/2024</p></td>
+<td><p>Julio–septiembre de 2024</p></td>
+</tr>
+<tr class="row-even"><td><p>01/10/2024</p></td>
+<td><p>25/06/2024</p></td>
+<td><p>03/07–23/09/2024</p></td>
+<td><p>Octubre de 2024 y refit histórico de enero de 2025</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>En cada ancla, los trece sistemas neuronales reciben las mismas oportunidades HPO y los comparadores ajustables usan la misma validación temporal. La selección es <strong>local al ancla</strong>; no se agrega información de anclas posteriores para elegir una receta que se aplique a meses anteriores.</p>
+<p>La evaluación de desarrollo conserva los <strong>diez bloques mensuales disjuntos de enero a octubre de 2024</strong>, con un origen al inicio de cada mes. En cada origen se reajustan pesos y transformaciones desde cero con el pasado admisible, utilizando la receta más reciente que ya estaba disponible. <strong>Reajuste mensual no significa nueva HPO ni nueva NAS.</strong> El calendario tiene 305 días objetivo antes de aplicar la máscara de calidad común; el número elegible se acredita con los datos, no con ese conteo de calendario.</p>
+<p>El refit histórico del <strong>01/01/2025</strong> usa la receta seleccionada en octubre y etiquetas de entrenamiento hasta el <strong>24/12/2024</strong>. Sus pesos y escaladores quedan fijos para la evaluación histórica principal de 608 fechas. No se ejecuta HPO sobre octubre–diciembre para este refit, porque se preserva la separación del piloto de potencia.</p>
+<p>Este procedimiento es un origen móvil con actualización de receta por anclas previamente fijadas. No se denomina validación anidada con búsqueda completa en cada fold, ni se aplica retrospectivamente un ganador de octubre o enero de 2025 a meses anteriores.</p>
+<section id="embargo-y-disponibilidad">
+<h3>Embargo y disponibilidad<a class="headerlink" href="#embargo-y-disponibilidad" title="Link to this heading">#</a></h3>
+<p>Para un origen de pronóstico <code class="docutils literal notranslate"><span class="pre">o</span></code>, la última etiqueta de entrenamiento es <strong><code class="docutils literal notranslate"><span class="pre">o−8</span> <span class="pre">días</span></code></strong>. Se excluyen de entrenamiento las siete etiquetas <strong><code class="docutils literal notranslate"><span class="pre">o−7,…,o−1</span></code></strong>. La validación interna se extiende de <code class="docutils literal notranslate"><span class="pre">o−90</span></code> a <code class="docutils literal notranslate"><span class="pre">o−8</span></code>, con entrenamiento interno hasta <code class="docutils literal notranslate"><span class="pre">o−98</span></code>.</p>
+<p>La ventana predictora contiene las siete barras OHLCV observadas anteriores al día objetivo. Las observaciones del puente pueden alimentar esa ventana y el estado causal de los comparadores, sin actualizar pesos, escaladores o hiperparámetros. La etiqueta σ₇ requiere ocho cierres y comparte retornos con etiquetas próximas; por eso se conserva este embargo incluso con horizonte de un día. No se comprimen huecos del calendario ni se ajustan transformaciones con evaluación.</p>
+</section>
+</section>
+<section id="hpo-y-una-sola-nas-tide">
+<h2>HPO y una sola NAS TiDE<a class="headerlink" href="#hpo-y-una-sola-nas-tide" title="Link to this heading">#</a></h2>
+<p>Se conservan <strong>18 configuraciones HPO por red y ancla</strong>, con dos semillas: <strong>271201 y 271202</strong>. Los puntos de tasa de aprendizaje, weight decay y batch mantienen sus oportunidades registradas. Las restauraciones de §44 tienen los knobs estructurales fijados al cuerpo fuente y recetas nuevas; los sistemas conservados mantienen sus dominios aplicables.</p>
+<p>El límite de cada ajuste completo sigue en <strong>200 épocas</strong>, paciencia <strong>20</strong>, mejora estricta y primer checkpoint en caso de igualdad. Se conservan AdamW, FP32, clipping y scheduler registrados. Los fallos consumen su intento y se conservan; no se sustituyen silenciosamente configuraciones o semillas.</p>
+<p>Para TiDE se aplica esta secuencia:</p>
+<ol class="arabic simple">
+<li><p>HPO de enero de 2024 sobre la arquitectura de referencia registrada.</p></li>
+<li><p>Congelación de los hiperparámetros ganadores y evaluación de <strong>las 1.000 arquitecturas NAS-1</strong>, con semilla 271301 y máximo de 50 épocas.</p></li>
+<li><p>Confirmación de los finalistas y la referencia, sin duplicarla, con las cinco semillas <strong>271401–271405</strong>, distintas de NAS-1, y máximo de 200 épocas.</p></li>
+<li><p>Congelación de la arquitectura ganadora antes del primer bloque externo. Las HPO de julio y octubre ajustan hiperparámetros sobre <strong>esa arquitectura ya congelada</strong>; no vuelven a ejecutar NAS.</p></li>
+</ol>
+<p>La arquitectura TiDE queda elegida bajo las condiciones iniciales de desarrollo, sin afirmar que sea óptima para todos los regímenes posteriores. La clave de una HPO posterior debe incluir la arquitectura congelada: un resultado obtenido sobre la referencia no equivale a uno sobre la ganadora.</p>
+<p>El piloto de ruido conserva doce arquitecturas y cinco semillas, anteriores a la primera evaluación de 2024. Fija <strong>k20 o k40</strong> mediante la regla registrada de correlación de rangos; correlación mediana inferior a 0,5 o no estimable conduce a k40. Se congela k antes de NAS-1. La cota presupuestaria reserva k40; no se usa k10 sólo por urgencia.</p>
+<section id="criterios-de-seleccion">
+<h3>Criterios de selección<a class="headerlink" href="#criterios-de-seleccion" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>HPO local:</strong> menor media de las RMSE individuales de las dos semillas, sobre la validación común del ancla; empate exacto por ID estable.</p></li>
+<li><p><strong>Épocas de refit:</strong> mediana redondeada hacia arriba de las mejores épocas de las semillas ganadoras, por fase. Para TiDE en enero se usan las cinco semillas de NAS-2; en julio y octubre se usan las dos semillas HPO sobre la arquitectura ganadora de enero. Los otros cuerpos definidos usan sus dos semillas HPO. SAE conserva AE1, AE2 y supervisado como tres etapas reales.</p></li>
+<li><p><strong>NAS:</strong> menor RMSE medio de confirmación; el empate técnico por δ o solapamiento de IC nominales permite la regla de parsimonia por parámetros, seguida de métrica e ID estable.</p></li>
+</ul>
+<p><strong>Solapar IC no demuestra equivalencia.</strong> El informe NAS todavía debe acreditar el conjunto indistinguible mediante el análisis pertinente TOST/ROPE/MCS, la correlación entre fases y el sesgo del ganador. Esos análisis no se dan por cerrados con la regla de selección.</p>
+<p>ARIMA compara <strong>18 órdenes</strong> <code class="docutils literal notranslate"><span class="pre">(p=0..2,</span> <span class="pre">d=0..1,</span> <span class="pre">q=0..2)</span></code> en cada ancla. SeasonalNaive selecciona entre periodos <strong>7/14/28</strong> y Persistence conserva lag 1. Los sistemas deterministas no adquieren réplicas independientes por repetirlos con etiquetas de semilla distintas.</p>
+</section>
+</section>
+<section id="presupuesto-y-contabilidad">
+<h2>Presupuesto y contabilidad<a class="headerlink" href="#presupuesto-y-contabilidad" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Selección neuronal programada</p></th>
+<th class="head text-right"><p>Cota de ajustes lógicos</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>HPO: 13 redes × 18 configuraciones × 2 semillas × 3 anclas</p></td>
+<td class="text-right"><p>1.404</p></td>
+</tr>
+<tr class="row-odd"><td><p>NAS-1 TiDE: 1.000 arquitecturas × una semilla</p></td>
+<td class="text-right"><p>1.000</p></td>
+</tr>
+<tr class="row-even"><td><p>NAS-2 TiDE: hasta 41 candidatos distintos × cinco semillas, con k40</p></td>
+<td class="text-right"><p>205</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Total máximo de selección neuronal</strong></p></td>
+<td class="text-right"><p><strong>2.609</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La cota es anterior a descontar reutilización compatible. <strong>No es el número de modelos finales, un mínimo literal del PDF ni una estimación de horas.</strong> SAE añade dos etapas auxiliares por ajuste HPO: hasta 216 etapas adicionales y <strong>2.825 fases de optimización</strong> para esta selección. ARIMA añade <strong>54 ajustes</strong>. Los pilotos, perfiles, reajustes mensuales y finales, controles, ablaciones, reproducción y análisis complementarios quedan fuera de esas cotas de selección y deben contabilizarse por separado.</p>
+<p>El límite autorizado conserva su historia <strong>48 → 56 → 64 horas acumuladas</strong>. Migrar de plan no concede otras 64 horas. Deben conciliarse los diarios de <code class="docutils literal notranslate"><span class="pre">campaigns/e2-cuda-selection-v1</span></code> y <code class="docutils literal notranslate"><span class="pre">campaigns/e2-cuda-crop-11-v2</span></code>, incluidos sesiones abiertas, reservas y trabajo de desenlace incierto. El saldo de unas 4 h 9 min de §41 pertenece a un corte histórico; <strong>el saldo actual queda sin fijar hasta la conciliación</strong>. No se amplía automáticamente el presupuesto ni se garantiza terminar el plan dentro del saldo.</p>
+<p>La reutilización requiere coincidencia de receta, arquitectura, datos/partición, configuración, semilla y política de ejecución. Las cuatro recetas restauradas de §44 no heredan los resultados de sus variantes NAS anteriores. Los ajustes compatibles reutilizados conservan sus recibos y no se cuentan como trabajo nuevo.</p>
+</section>
+<section id="metricas-y-unidad-de-analisis">
+<h2>Métricas y unidad de análisis<a class="headerlink" href="#metricas-y-unidad-de-analisis" title="Link to this heading">#</a></h2>
+<p>La primaria se conserva: <strong>media entre semillas de las RMSE individuales, en unidades originales de σ₇</strong>, con <strong>δ = 0,00025772842664981106</strong>. No es la RMSE de un ensemble ni la raíz de una MSE agregada entre semillas.</p>
+<p>Para resumir el origen móvil, cada semilla concatena sus fechas elegibles de los diez bloques mensuales y calcula una RMSE sobre esa trayectoria; después se resume entre semillas. Se reporta también cada origen. Los diez meses de una misma serie no se tratan como diez datasets independientes ni se convierten en réplicas iid por repetir semillas.</p>
+<p>Las secundarias registradas son <strong>MAE, MSE, R², MAPE, MASE, RMSSE y razón de RMSE frente a Persistence</strong>. MAPE usa sólo objetivos positivos e informa cobertura. MASE y RMSSE utilizan diferencias entre etiquetas de días consecutivos elegibles del entrenamiento permitido, sin saltar huecos del calendario. Un denominador cero o ausente produce «no disponible» y su motivo; no se modifica la primaria ni se eliminan sus objetivos cero para favorecer una métrica secundaria.</p>
+<section id="familia-primaria-y-criterios-inferenciales">
+<h3>Familia primaria y criterios inferenciales<a class="headerlink" href="#familia-primaria-y-criterios-inferenciales" title="Link to this heading">#</a></h3>
+<p>La familia primaria consta de <strong>veinte contrastes</strong>: cada uno de los diez modelos del Top 10 frente a <strong>GRU32</strong> y frente a <strong>Persistence</strong>. Se controla <strong>FWER = 0,05 mediante Holm</strong>. Para cada comparación se define la ganancia como <code class="docutils literal notranslate"><span class="pre">RMSE_baseline</span> <span class="pre">−</span> <span class="pre">RMSE_modelo</span></code>: la hipótesis nula es <strong>ganancia ≤ δ</strong> y la alternativa es <strong>ganancia &gt; δ</strong>. ARIMA, SeasonalNaive y los demás contrastes conservan su papel de comparación o análisis secundario; no se introducen como otra familia primaria elegida después de mirar resultados.</p>
+<p>La familia se aplica a la cohorte prospectiva declarada. Los mismos contrastes históricos se reportan por separado como exploratorios, con su máscara y linaje de pesos; no sustituyen la confirmación. Persistence aporta una trayectoria determinista y no adquiere réplicas independientes por copiarla entre semillas.</p>
+<p>Los IC, efectos y contrastes deben respetar la dependencia temporal. Se registra <strong>bootstrap temporal por bloques de catorce días</strong>, con emparejamiento de semillas y fechas. Los bloques de <strong>7 y 28 días</strong> se usan sólo como sensibilidad diagnóstica, no para elegir el p-valor más favorable. La batería de tres pruebas admisibles requiere verificar sus supuestos y completar su implementación/evaluación; no se declara aprobada por registrar esta política. También siguen pendientes el conjunto indistinguible TOST/ROPE/MCS y los análisis de sesgo del ganador. El solapamiento de IC usado para seleccionar no los reemplaza.</p>
+</section>
+</section>
+<section id="potencia-y-repeticiones-pendientes">
+<h2>Potencia y repeticiones pendientes<a class="headerlink" href="#potencia-y-repeticiones-pendientes" title="Link to this heading">#</a></h2>
+<p>El piloto queda en <strong>08/11–30/12/2024</strong>, con recetas congeladas en octubre y entrenamiento hasta <strong>31/10/2024</strong>. Se utilizan <strong>TimeMixer, PatchTST y GRU32</strong>, con al menos las cinco semillas pareadas <strong>271701–271705</strong>. Su bloque queda después de la última validación HPO, que termina el 23 de septiembre. Sus etiquetas sirven para dimensionar, no para volver a elegir arquitectura o hiperparámetros.</p>
+<p><strong>R sigue sin fijar.</strong> Se seleccionará un R común dentro del rango operativo registrado <strong>6–30</strong> mediante el piloto pareado, bootstrap temporal de catorce días y la familia primaria de veinte contrastes con Holm. La planificación utiliza una <strong>alternativa de ganancia 2δ</strong>: su separación respecto al margen nulo δ es δ. No se promete potencia 0,80 para una ganancia situada exactamente en la frontera nula δ.</p>
+<p>El criterio de planificación exige que el <strong>límite inferior de Wilson de la potencia simulada sea al menos 0,80</strong>, no sólo su estimación puntual. El mínimo de seis ejecuciones no demuestra potencia. El piloto de 2024 y sus tres representantes tampoco garantizan el comportamiento de todos los modelos ni el régimen de una prueba en 2026–2027. Si el R necesario excede el techo operativo o los recursos, se reportan potencia alcanzable, MDE y la limitación; no se afirma haber alcanzado 0,80 por utilizar treinta semillas.</p>
+</section>
+<section id="datos-conocidos-y-prueba-independiente">
+<h2>Datos conocidos y prueba independiente<a class="headerlink" href="#datos-conocidos-y-prueba-independiente" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Periodo o etapa</p></th>
+<th class="head"><p>Estado de exposición y uso registrado</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2023–2024</p></td>
+<td><p>Desarrollo conocido: selección, evaluación temporal y piloto con roles separados</p></td>
+</tr>
+<tr class="row-odd"><td><p>01/01/2025–31/08/2026, 608 fechas</p></td>
+<td><p>Ya evaluado en E1; evaluación histórica exploratoria del nuevo ajuste, fuera de la selección actual</p></td>
+</tr>
+<tr class="row-even"><td><p>01/09/2026–30/10/2026, 60 fechas</p></td>
+<td><p>También evaluado previamente; reserva histórica conocida, no test virgen</p></td>
+</tr>
+<tr class="row-odd"><td><p>Prueba independiente nueva</p></td>
+<td><p>Prospectiva; comienza después de la congelación global y todavía no tiene fechas materiales certificadas</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El manifiesto disponible termina el 30/10/2026. El <a class="reference download internal" download="" href="../_downloads/81f7e1974c9b909e05f7fe28536e46b1/exposure_registry.json"><span class="xref download myst">registro de exposición</span></a> conserva las evidencias de accesos y evaluaciones. Que una función reserve metadatos sin abrir precios sólo describe esa función: no borra la exposición histórica del proyecto. Cambiar semillas, plan o nombre del conjunto no restablece independencia.</p>
+<section id="linaje-historico-y-linaje-prospectivo">
+<h3>Linaje histórico y linaje prospectivo<a class="headerlink" href="#linaje-historico-y-linaje-prospectivo" title="Link to this heading">#</a></h3>
+<p>El benchmark histórico utiliza pesos reajustados al 01/01/2025 con entrenamiento hasta el 24/12/2024 y receta de octubre. La confirmación prospectiva tendrá <strong>otros pesos</strong>: se permite utilizar el pasado conocido hasta <strong>24/08/2026</strong> para su ajuste; se excluyen las etiquetas del <strong>25–31/08</strong> y se reserva <strong>01/09–30/10/2026</strong> para calibración. Los hiperparámetros y la arquitectura ya deben estar congelados antes de ese reajuste y esa calibración.</p>
+<p>Esos pesos prospectivos no pueden presentarse como entrenados sólo en 2024 ni utilizarse para reevaluar las 608 fechas como si quedaran fuera de su entrenamiento. Los dos linajes se mantienen separados en configuraciones, hashes y tablas.</p>
+</section>
+<section id="regla-de-la-cohorte-prospectiva">
+<h3>Regla de la cohorte prospectiva<a class="headerlink" href="#regla-de-la-cohorte-prospectiva" title="Link to this heading">#</a></h3>
+<p>El primer día objetivo <strong>T es exactamente el primer día UTC posterior a la congelación global</strong>; no es una fecha mínima a partir de la cual se pueda elegir después otro comienzo. La congelación debe ser posterior al registro y acreditar los dieciséis sistemas, todos los pesos y escaladores, R y semillas comunes, recetas, calibradores y plan de análisis. <strong>El recibo y la vinculación de fechas deben quedar registrados antes de T.</strong> Un recibo antiguo no permite reservar retrospectivamente una cohorte cuyo primer día ya comenzó. Las fechas permanecen sin materializar hasta que exista esa vinculación válida.</p>
+<p>Las observaciones entre el corte conocido <strong>30/10/2026</strong> y <strong>T−1</strong> constituyen un puente de información aún no adquirido en este registro. Sólo podrán aportar OHLCV pasado disponible en cada origen y el estado causal de ARIMA; no se usan para reajustar pesos, escaladores, calibradores o hiperparámetros. Su adquisición y disponibilidad deben acreditarse, conservando el linaje de ajuste hasta el 24/08 y calibración de septiembre–octubre.</p>
+<p>Se fija antes de observar resultados una duración de <strong>100 días calendario consecutivos</strong>, de T a T+99. Sólo equivale a cien casos elegibles si no se pierden días por calidad o soporte común; no garantiza potencia. No se detiene ni prolonga el periodo según sus métricas. Si quedan menos de cien casos elegibles, se informa la insuficiencia y el análisis de cien casos por modelo principal permanece pendiente; no se extiende automáticamente la cohorte para cambiar el resultado.</p>
+<p>Durante la prueba, cada predicción usa sólo información disponible en su origen y se persiste antes de observar su etiqueta. Se mantienen fijos pesos, escaladores y calibradores; las actualizaciones causales de estado de los comparadores conservan su registro. La adquisición futura, la máscara común y la separación de acceso todavía deben ejecutarse y verificarse. Registrar esta regla no acredita que ya exista una prueba independiente concluida.</p>
+</section>
+</section>
+<section id="registro-archivos-y-criterios-de-cierre">
+<h2>Registro, archivos y criterios de cierre<a class="headerlink" href="#registro-archivos-y-criterios-de-cierre" title="Link to this heading">#</a></h2>
+<p>La hora de registro real es la del primer commit inmutable, identificada por el <a class="reference download internal" download="" href="../_downloads/5ed6a3d76fb6d52af89ce830109b7664/git_registration.json"><span class="xref download myst">recibo Git</span></a>. <code class="docutils literal notranslate"><span class="pre">prepared_at_utc</span></code> sólo fecha la preparación del documento. El ejecutor deberá usar la hora del recibo Git al vincular la congelación; los hashes de una declaración no sustituyen la comprobación de los archivos de pesos y calibradores.</p>
+<p>El selector HPO registrado exige las dieciocho oportunidades identificadas, completadas o fallidas con motivo. Una pausa con un registro parcial no produce un ganador definitivo; los subconjuntos se admiten únicamente como fixtures sintéticas explícitas. Las comprobaciones de calendario y criterios no acreditan por sí solas todos los recibos de ejecución.</p>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="../_downloads/7e0e35d1062b8c5be45c8cc444c2aa69/protocol.json"><span class="xref download myst">Protocolo estructurado</span></a> y <a class="reference download internal" download="" href="../_downloads/b02fc51d89efc81482a08600e8c9f696/registration.json"><span class="xref download myst">registro de la enmienda</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/854c8af33db31aa3a625b607b960c985/calendar.csv"><span class="xref download myst">Calendario común descargable</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/81f7e1974c9b909e05f7fe28536e46b1/exposure_registry.json"><span class="xref download myst">Exposición y roles de datos</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/383f3f6cf4b92bc3b3f75b31fcb3ecc9/selection_budget_policy.json"><span class="xref download myst">Política de selección y presupuesto</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/d7c800e979dfcb7e7bd9be2ef7d705b2/verification.json"><span class="xref download myst">Verificación del protocolo y sus límites</span></a>.</p></li>
+<li><p>Código: <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/e2_amended_calendar.py">calendario</a>, <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/e2_amended_data_guard.py">separación de datos</a>, <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/e2_amended_metrics.py">métricas</a> y <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/e2_protocol_amendment.py">registro</a>.</p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Pendiente</p></th>
+<th class="head"><p>Evidencia para darlo por cerrado</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Migrar el controlador GPU</p></td>
+<td><p>Plan versionado aplicado, identidad de recetas/arquitecturas y máscara común verificadas, sin dos controladores activos</p></td>
+</tr>
+<tr class="row-odd"><td><p>Conciliar presupuesto y caché</p></td>
+<td><p>Ambos diarios y reservas conciliados; saldo derivado del techo acumulado, resultados compatibles identificados e intentos inciertos preservados</p></td>
+</tr>
+<tr class="row-even"><td><p>Fijar k y completar NAS TiDE</p></td>
+<td><p>Piloto de ruido, finalistas/referencia congelados, ambas fases completas y análisis del conjunto indistinguible/sesgo</p></td>
+</tr>
+<tr class="row-odd"><td><p>Completar HPO y reajustes</p></td>
+<td><p>Dieciocho oportunidades por red/ancla, comparadores comunes, fallos y costes íntegros, uso causal de cada receta</p></td>
+</tr>
+<tr class="row-even"><td><p>Fijar R y demostrar su alcance</p></td>
+<td><p>Piloto pareado, bloques de 14 días y veinte contrastes Holm; alternativa 2δ, límite Wilson y potencia/MDE con sus límites reportados</p></td>
+</tr>
+<tr class="row-odd"><td><p>Congelar y materializar la prueba prospectiva</p></td>
+<td><p>Recibo global y vinculación antes de T, comienzo exacto al día siguiente, artefactos/hash, puente adquirido y acceso causal auditados</p></td>
+</tr>
+<tr class="row-even"><td><p>Completar evaluación y guía</p></td>
+<td><p>Tablas con métricas/IC/costes, inferencia admisible, robustez, incertidumbre, explicabilidad, ablaciones, errores y reproducción con evidencia</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los pendientes se revisarán hasta completar sus criterios; no se sustituyen por casillas marcadas, contador de corridas o registro documental. Los capítulos y descargas anteriores conservan sus bytes. Esta enmienda no inicia entrenamiento de mercado, no modifica la sesión de Colab y no acredita por sí sola cumplimiento integral de E2.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="44_arquitecturas_publicadas.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">44. Cuerpos publicados, adaptaciones D7 y aplicación de NAS</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="referencias.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Referencias de contexto y revisión E2</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-se-cambia-el-calendario">Por qué se cambia el calendario</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calendario-comun-de-seleccion-y-evaluacion">Calendario común de selección y evaluación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#embargo-y-disponibilidad">Embargo y disponibilidad</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hpo-y-una-sola-nas-tide">HPO y una sola NAS TiDE</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#criterios-de-seleccion">Criterios de selección</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#presupuesto-y-contabilidad">Presupuesto y contabilidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-y-unidad-de-analisis">Métricas y unidad de análisis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#familia-primaria-y-criterios-inferenciales">Familia primaria y criterios inferenciales</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#potencia-y-repeticiones-pendientes">Potencia y repeticiones pendientes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-conocidos-y-prueba-independiente">Datos conocidos y prueba independiente</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linaje-historico-y-linaje-prospectivo">Linaje histórico y linaje prospectivo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regla-de-la-cohorte-prospectiva">Regla de la cohorte prospectiva</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-archivos-y-criterios-de-cierre">Registro, archivos y criterios de cierre</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
