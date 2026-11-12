@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>6. Benchmark vigente: diez modelos y un candidato adicional &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
+    <title>6. Benchmark obligatorio: dieciséis sistemas &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
   
   
   
@@ -214,7 +214,7 @@
 <li class="toctree-l1"><a class="reference internal" href="03_literatura.html">3. Revisión Sistemática del Estado del Arte</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación de los diez modelos y el candidato adicional</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Benchmark vigente: diez modelos y un candidato adicional</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Benchmark obligatorio: dieciséis sistemas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Registro de selección, cierre pendiente y trazabilidad</a></li>
@@ -251,6 +251,7 @@
 <li class="toctree-l1"><a class="reference internal" href="40_calendario_original.html">40. Calendario original y optimizaciones de implementación</a></li>
 <li class="toctree-l1"><a class="reference internal" href="41_avance_optimizacion_11_origenes.html">41. Ejecución optimizada: avance verificable de once orígenes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html">42. Auditoría de E2 y trabajo que puede adelantarse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="43_catalogo_obligatorio.html">43. Catálogo obligatorio: dieciséis sistemas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
 </ul>
 
@@ -381,7 +382,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>6. Benchmark vigente: diez modelos y un candidato adicional</h1>
+    <h1>6. Benchmark obligatorio: dieciséis sistemas</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -391,9 +392,11 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-de-los-once-candidatos">6.1 Tabla de los once candidatos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#catalogo-que-debe-cubrir-la-tabla-final">Catálogo que debe cubrir la tabla final</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#antecedentes-documentales-del-diseno-de-dieciocho-sistemas">Antecedentes documentales del diseño de dieciocho sistemas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-historica-de-los-once-candidatos">6.1 Tabla histórica de los once candidatos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-debe-medir-una-comparacion-valida">6.2 Qué debe medir una comparación válida</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-evaluar-al-candidato-11">6.3 Cómo evaluar al candidato 11</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estudio-opcional-del-candidato-11">6.3 Estudio opcional del candidato 11</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#incertidumbre-eficiencia-y-limites">6.4 Incertidumbre, eficiencia y límites</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#condiciones-de-cierre-tabla-historica-del-08-11">6.5 Condiciones de cierre: tabla histórica del 08/11</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-historica-separada">6.6 Evidencia histórica separada</a></li>
@@ -408,16 +411,52 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="benchmark-vigente-diez-modelos-y-un-candidato-adicional">
-<h1>6. Benchmark vigente: diez modelos y un candidato adicional<a class="headerlink" href="#benchmark-vigente-diez-modelos-y-un-candidato-adicional" title="Link to this heading">#</a></h1>
-<p><strong>Vigencia documental (12/11/2026):</strong> existe selección HPO/NAS registrada para el catálogo actual, con ejecución parcial documentada; las afirmaciones de ausencia de HPO o de falta de registro de selección corresponden a cortes anteriores. El benchmark final, R y su cierre inferencial siguen pendientes. <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">Registro y alcance actuales (§9)</span></a> · <a class="reference internal" href="40_calendario_original.html"><span class="std std-doc">Calendario (§40)</span></a> · <a class="reference internal" href="41_avance_optimizacion_11_origenes.html"><span class="std std-doc">Corte de resultados (§41)</span></a> · <a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html"><span class="std std-doc">Auditoría y trabajo paralelo (§42)</span></a>.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="benchmark-obligatorio-dieciseis-sistemas">
+<h1>6. Benchmark obligatorio: dieciséis sistemas<a class="headerlink" href="#benchmark-obligatorio-dieciseis-sistemas" title="Link to this heading">#</a></h1>
+<p><strong>Alcance vigente del 12/11/2026:</strong> diez modelos del Top 10, tres referencias E1 y tres comparadores: <strong>16 sistemas</strong>. El híbrido adicional y Ridge quedan como opcionales/históricos. La enmienda de <a class="reference internal" href="43_catalogo_obligatorio.html"><span class="std std-doc">§43</span></a> registra el catálogo requerido; la selección ya sellada conserva su historial de catorce redes y necesita una transición explícita para aplicar el alcance nuevo. El benchmark final continúa pendiente.</p>
+<section id="catalogo-que-debe-cubrir-la-tabla-final">
+<h2>Catálogo que debe cubrir la tabla final<a class="headerlink" href="#catalogo-que-debe-cubrir-la-tabla-final" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bloque</p></th>
+<th class="head"><p>Sistemas obligatorios</p></th>
+<th class="head text-right"><p>Cantidad</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Top 10, cuatro familias</p></td>
+<td><p>FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder con predictor, TimesNet, TSMixer, TiDE, TimeMixer, PatchTST, iTransformer</p></td>
+<td class="text-right"><p>10</p></td>
+</tr>
+<tr class="row-odd"><td><p>Referencias E1</p></td>
+<td><p>MLP16, LSTM32, GRU32</p></td>
+<td class="text-right"><p>3</p></td>
+</tr>
+<tr class="row-even"><td><p>Comparadores F2a</p></td>
+<td><p>Persistence (naive), SeasonalNaive (estacional), ARIMA</p></td>
+<td class="text-right"><p>3</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Total</strong></p></td>
+<td><p><strong>13 redes y 3 comparadores</strong></p></td>
+<td class="text-right"><p><strong>16</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La <a class="reference download internal" download="" href="../_downloads/f531ace1494720cbbc47c0c77186fd01/benchmark_A2_template.csv"><span class="xref download myst">plantilla A.2 vigente de 16 sistemas</span></a> conserva vacíos los resultados no medidos. Se necesitan recetas seleccionadas, repeticiones justificadas, soporte común, métricas, IC y costes. Retirar dos sistemas opcionales no cierra esas evidencias.</p>
+</section>
+<section id="antecedentes-documentales-del-diseno-de-dieciocho-sistemas">
+<h2>Antecedentes documentales del diseño de dieciocho sistemas<a class="headerlink" href="#antecedentes-documentales-del-diseno-de-dieciocho-sistemas" title="Link to this heading">#</a></h2>
+<p>Los párrafos y tablas siguientes conservan la evolución del diseño anterior. Sus once candidatos, el estudio del híbrido y las obligaciones asociadas no amplían el catálogo obligatorio vigente de dieciséis sistemas.</p>
+<p><strong>Corte anterior a la enmienda de alcance (12/11/2026):</strong> existe selección HPO/NAS registrada para el catálogo anterior, con ejecución parcial documentada; las afirmaciones de ausencia de HPO o de falta de registro de selección corresponden a cortes anteriores. El benchmark final, R y su cierre inferencial siguen pendientes. <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">Registro y alcance actuales (§9)</span></a> · <a class="reference internal" href="40_calendario_original.html"><span class="std std-doc">Calendario (§40)</span></a> · <a class="reference internal" href="41_avance_optimizacion_11_origenes.html"><span class="std std-doc">Corte de resultados (§41)</span></a> · <a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html"><span class="std std-doc">Auditoría y trabajo paralelo (§42)</span></a>.</p>
 <p><strong>Vigencia al 12/11/2026:</strong> Hay selección CUDA parcial documentada en <a class="reference internal" href="36_avance_campana_cuda.html"><span class="std std-doc">§36</span></a> y un corte vigente con 1.484 ajustes HPO nuevos completados en <a class="reference internal" href="41_avance_optimizacion_11_origenes.html"><span class="std std-doc">§41</span></a>. La campaña quedó pausada por límite de sesión en ese corte; el benchmark final, R y el ranking siguen pendientes. Los estados «sin HPO» de abajo pertenecen al corte del 08/11/2026, no al estado actual. <a class="reference internal" href="38_cumplimiento_guia.html"><span class="std std-doc">Matriz de exigencias y evidencia</span></a> · <a class="reference internal" href="40_calendario_original.html"><span class="std std-doc">Calendario vigente de once orígenes</span></a>.</p>
 <p><strong>Actualización de planificación:</strong> <a class="reference internal" href="19_plan_auditoria.html"><span class="std std-doc">§19: auditoría real de desarrollo y plan propuesto</span></a>. Sin entrenamiento de mercado, HPO ni preregistro nuevo.</p>
 <p><strong>Avance de software:</strong> fábrica de los once candidatos, híbrido y flujo sintético implementados y verificados; recetas provisionales, sin datos de mercado. Véase <a class="reference internal" href="18_integracion_sintetica.html"><span class="std std-doc">§18: integración y pruebas sintéticas</span></a>. No hay HPO ni benchmark vigente ejecutado.</p>
 <p><strong>Estado al 08/11/2026: sin resultados de mercado del nuevo catálogo.</strong> La presentación de E2 considera únicamente los diez modelos indicados abajo y CNN-1D + LSTM + atención temporal como candidato 11. La expresión «modelo superior» representa la mejora que se desea investigar; no es una conclusión respaldada por evidencia.</p>
 <p>Se conservan cuatro prototipos compactos y un corrector con HAR externo, ahora histórico inactivo, con diez pruebas sintéticas documentadas. El nuevo híbrido tiene receta provisional: está implementado provisionalmente y probado con datos sintéticos, sin entrenamiento de mercado. Las diez pruebas anteriores no lo validan; sus nuevos controles están en §18. Los seis adaptadores existentes se integraron sin reducir sus mecanismos y pasaron el smoke sintético; la auditoría del flujo de mercado sigue pendiente. No se han ejecutado el HPO, el dimensionamiento ni la evaluación de este conjunto. Las métricas de E1, P0 o ETTh1 y las de artículos externos no rellenan sus resultados.</p>
-<section id="tabla-de-los-once-candidatos">
-<h2>6.1 Tabla de los once candidatos<a class="headerlink" href="#tabla-de-los-once-candidatos" title="Link to this heading">#</a></h2>
+</section>
+<section id="tabla-historica-de-los-once-candidatos">
+<h2>6.1 Tabla histórica de los once candidatos<a class="headerlink" href="#tabla-historica-de-los-once-candidatos" title="Link to this heading">#</a></h2>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>N.º</p></th>
@@ -500,9 +539,9 @@ q_{m,s}=\sqrt{|\mathcal T|^{-1}\sum_{t\in\mathcal T}(Y_t-\widehat Y_{m,s,t})^2},
 <p>Las métricas secundarias y diagnósticos se fijarán en el nuevo preregistro. Al informar MAE, MSE, R², MAPE o MASE, se declararán denominadores, cobertura y valores no estimables. MAPE no oculta objetivos cero; MASE usa únicamente pares temporales elegibles del entrenamiento, sin comprimir huecos. Si se evalúan varianza o QLIKE, debe registrarse la transformación de σ₇ y cualquier suelo numérico antes de puntuar.</p>
 <p>Cada resultado debe acompañarse de receta, origen, semilla, número de fechas, escala, fallos y procedencia de los pesos. Repetir una predicción determinista para una resta pareada no crea entrenamientos independientes.</p>
 </section>
-<section id="como-evaluar-al-candidato-11">
-<h2>6.3 Cómo evaluar al candidato 11<a class="headerlink" href="#como-evaluar-al-candidato-11" title="Link to this heading">#</a></h2>
-<p>CNN-1D + LSTM + atención temporal sólo podrá presentarse como mejor bajo una comparación definida y respaldada por datos. El diseño enlaza convoluciones 1D causales que conservan siete posiciones, LSTM unidireccional con <code class="docutils literal notranslate"><span class="pre">return_sequences=True</span></code>, atención temporal sobre esos siete estados observados, vector de contexto y cabeza escalar de σ₇. Antes de entrenar se necesitan:</p>
+<section id="estudio-opcional-del-candidato-11">
+<h2>6.3 Estudio opcional del candidato 11<a class="headerlink" href="#estudio-opcional-del-candidato-11" title="Link to this heading">#</a></h2>
+<p>CNN-1D + LSTM + atención temporal sólo podrá presentarse como mejor bajo una comparación definida y respaldada por datos. El diseño enlaza convoluciones 1D causales que conservan siete posiciones, LSTM unidireccional con <code class="docutils literal notranslate"><span class="pre">return_sequences=True</span></code>, atención temporal sobre esos siete estados observados, vector de contexto y cabeza escalar de σ₇. Este estudio queda fuera del alcance obligatorio. Si se retoma, antes de entrenar se necesitan:</p>
 <ol class="arabic simple">
 <li><p><strong>Receta y salida:</strong> definir dimensiones, kernels, profundidad, función de atención, enlace y pérdida sin presentarlos como hiperparámetros ya elegidos. Es una adaptación propuesta, no una reproducción exacta verificada del curso o de una publicación.</p></li>
 <li><p><strong>Validación causal:</strong> comprobar la ventana y sus transformaciones, padding exclusivamente izquierdo, estado recurrente reiniciado y ausencia de información futura. La atención no añade observaciones fuera de D7.</p></li>
@@ -525,9 +564,9 @@ q_{m,s}=\sqrt{|\mathcal T|^{-1}\sum_{t\in\mathcal T}(Y_t-\widehat Y_{m,s,t})^2},
 <p>Los estados de implementación/HPO de esta tabla son antecedentes. Para selección ejecutada consultar <a class="reference internal" href="41_avance_optimizacion_11_origenes.html"><span class="std std-doc">§41</span></a>; el benchmark y análisis finales siguen pendientes.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Etapa del catálogo vigente</p></th>
+<tr class="row-odd"><th class="head"><p>Etapa del catálogo anterior, corte 08/11</p></th>
 <th class="head"><p>Evidencia necesaria</p></th>
-<th class="head"><p>Estado</p></th>
+<th class="head"><p>Estado histórico</p></th>
 </tr>
 </thead>
 <tbody>
@@ -632,9 +671,11 @@ q_{m,s}=\sqrt{|\mathcal T|^{-1}\sum_{t\in\mathcal T}(Y_t-\widehat Y_{m,s,t})^2},
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-de-los-once-candidatos">6.1 Tabla de los once candidatos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#catalogo-que-debe-cubrir-la-tabla-final">Catálogo que debe cubrir la tabla final</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#antecedentes-documentales-del-diseno-de-dieciocho-sistemas">Antecedentes documentales del diseño de dieciocho sistemas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-historica-de-los-once-candidatos">6.1 Tabla histórica de los once candidatos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-debe-medir-una-comparacion-valida">6.2 Qué debe medir una comparación válida</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-evaluar-al-candidato-11">6.3 Cómo evaluar al candidato 11</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estudio-opcional-del-candidato-11">6.3 Estudio opcional del candidato 11</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#incertidumbre-eficiencia-y-limites">6.4 Incertidumbre, eficiencia y límites</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#condiciones-de-cierre-tabla-historica-del-08-11">6.5 Condiciones de cierre: tabla histórica del 08/11</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-historica-separada">6.6 Evidencia histórica separada</a></li>
