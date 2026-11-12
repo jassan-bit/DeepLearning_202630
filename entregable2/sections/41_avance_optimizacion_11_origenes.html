@@ -394,6 +394,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tracking-de-configuraciones-y-recursos">Tracking de configuraciones y recursos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pendientes-de-e2">Pendientes de E2</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuentes-del-corte-vigente">Fuentes del corte vigente</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#corte-anterior-conservado-16-31-12-de-bogota">Corte anterior conservado: 16:31:12 de Bogotá</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#corte-anterior-conservado-13-31-53-de-bogota">Corte anterior conservado: 13:31:53 de Bogotá</a></li>
 </ul>
             </nav>
@@ -408,16 +409,17 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="ejecucion-optimizada-avance-verificable-de-once-origenes">
 <h1>41. Ejecución optimizada: avance verificable de once orígenes<a class="headerlink" href="#ejecucion-optimizada-avance-verificable-de-once-origenes" title="Link to this heading">#</a></h1>
-<p><strong>Corte fijo vigente: 11/11/2026, 16:31:12 de Bogotá (21:31:12 UTC).</strong> Se describen registros confirmados en GitHub; esta página no es un panel conectado al kernel de Colab. Se conservan once orígenes y todos los requisitos. La propuesta de tres no es operativa.</p>
+<p><strong>Corte fijo vigente: 11/11/2026, 19:32:18 de Bogotá (12/11/2026, 00:32:18 UTC).</strong> Se describen registros confirmados en GitHub; esta página no es un panel conectado al kernel de Colab. Se conservan once orígenes y todos los requisitos. La propuesta de tres no es operativa.</p>
 <section id="resultados-confirmados">
 <h2>Resultados confirmados<a class="headerlink" href="#resultados-confirmados" title="Link to this heading">#</a></h2>
-<p>Se revisaron los <strong>546 archivos nuevos de resultados</strong> del <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/fe7af8ea2c03843a184d0c890a5d4d3734c2db20">commit de campaña fe7af8ea2c03</a>. Los <strong>546 tienen estado completed; no hay fallos entre esos resultados</strong>. Registran 570.750 pasos conocidos de optimizador. Son ajustes HPO, no 546 modelos finales.</p>
+<p>Se revisaron los <strong>881 archivos nuevos de resultados</strong> del <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/38211c3ca8289539ac8697a1b8d406cb0d7480b7">commit de campaña 38211c3ca828</a>. Los <strong>881 tienen estado completed; no hay fallos entre esos resultados</strong>. Registran 959.115 pasos conocidos de optimizador. Son ajustes HPO, no 881 modelos finales.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Modelo o referencia</p></th>
 <th class="head text-right"><p>Enero 2024</p></th>
 <th class="head text-right"><p>Febrero 2024</p></th>
 <th class="head text-right"><p>Marzo 2024</p></th>
+<th class="head text-right"><p>Abril 2024</p></th>
 </tr>
 </thead>
 <tbody>
@@ -425,23 +427,28 @@
 <td class="text-right"><p>36/36 histórico†</p></td>
 <td class="text-right"><p><strong>36/36</strong></p></td>
 <td class="text-right"><p><strong>36/36</strong></p></td>
+<td class="text-right"><p><strong>36/36</strong></p></td>
 </tr>
 <tr class="row-odd"><td><p>ResNet-1D</p></td>
 <td class="text-right"><p>36/36 histórico†</p></td>
+<td class="text-right"><p><strong>36/36</strong></p></td>
 <td class="text-right"><p><strong>36/36</strong></p></td>
 <td class="text-right"><p><strong>36/36</strong></p></td>
 </tr>
 <tr class="row-even"><td><p>Inception-1D</p></td>
 <td class="text-right"><p>36/36 histórico†</p></td>
 <td class="text-right"><p><strong>36/36</strong></p></td>
-<td class="text-right"><p><strong>6/36</strong></p></td>
+<td class="text-right"><p><strong>36/36</strong></p></td>
+<td class="text-right"><p><strong>36/36</strong></p></td>
 </tr>
 <tr class="row-odd"><td><p>TSMixer</p></td>
 <td class="text-right"><p><strong>36/36</strong></p></td>
 <td class="text-right"><p><strong>36/36</strong></p></td>
-<td class="text-right"><p>Sin resultado nuevo en este corte</p></td>
+<td class="text-right"><p><strong>36/36</strong></p></td>
+<td class="text-right"><p><strong>17/36</strong></p></td>
 </tr>
 <tr class="row-even"><td><p>iTransformer</p></td>
+<td class="text-right"><p><strong>36/36</strong></p></td>
 <td class="text-right"><p><strong>36/36</strong></p></td>
 <td class="text-right"><p><strong>36/36</strong></p></td>
 <td class="text-right"><p>Sin resultado nuevo en este corte</p></td>
@@ -449,9 +456,11 @@
 <tr class="row-odd"><td><p>MLP16, referencia E1</p></td>
 <td class="text-right"><p><strong>36/36</strong></p></td>
 <td class="text-right"><p><strong>36/36</strong></p></td>
+<td class="text-right"><p><strong>36/36</strong></p></td>
 <td class="text-right"><p>Sin resultado nuevo en este corte</p></td>
 </tr>
 <tr class="row-even"><td><p>LSTM32, referencia E1</p></td>
+<td class="text-right"><p><strong>36/36</strong></p></td>
 <td class="text-right"><p><strong>36/36</strong></p></td>
 <td class="text-right"><p><strong>36/36</strong></p></td>
 <td class="text-right"><p>Sin resultado nuevo en este corte</p></td>
@@ -459,20 +468,21 @@
 <tr class="row-odd"><td><p>GRU32, referencia E1</p></td>
 <td class="text-right"><p><strong>36/36</strong></p></td>
 <td class="text-right"><p><strong>36/36</strong></p></td>
+<td class="text-right"><p><strong>36/36</strong></p></td>
 <td class="text-right"><p>Sin resultado nuevo en este corte</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>El denominador <strong>36 = 18 configuraciones × 2 semillas</strong>, para un modelo y un origen. Las semillas son 271201 y 271202. La primera ola de ocho redes/referencias fijas tiene cobertura HPO cerrada para enero y febrero; no equivale a cerrar todos los modelos, los once orígenes, NAS o el benchmark final.</p>
-<p>† La selección de enero para FCN/ResNet/Inception se acredita con el historial compatible y los recibos de selección anteriores; sus intentos no se suman a los 546 nuevos. Esta actualización no vuelve a auditar los estados individuales de todos los 1.802 registros históricos.</p>
-<p>El total entre historiales es <strong>1.802 anteriores + 546 nuevos = 2.348 registros de resultados</strong>. No se presenta como 2.348 éxitos auditados, modelos diferentes o modelos finales. La reutilización tampoco se contabiliza como entrenamiento nuevo.</p>
+<p>El denominador <strong>36 = 18 configuraciones × 2 semillas</strong>, para un modelo y un origen. Las semillas son 271201 y 271202. La primera ola de ocho redes/referencias fijas tiene cobertura HPO cerrada para enero, febrero y marzo; no equivale a cerrar todos los modelos, los once orígenes, NAS o el benchmark final.</p>
+<p>† La selección de enero para FCN/ResNet/Inception se acredita con el historial compatible y los recibos de selección anteriores; sus intentos no se suman a los 881 nuevos. Esta actualización no vuelve a auditar los estados individuales de todos los 1.802 registros históricos.</p>
+<p>El total entre historiales es <strong>1.802 anteriores + 881 nuevos = 2.683 registros de resultados</strong>. No se presenta como 2.683 éxitos auditados, modelos diferentes o modelos finales. La reutilización tampoco se contabiliza como entrenamiento nuevo.</p>
 </section>
 <section id="ultima-evidencia-y-presupuesto-autorizado">
 <h2>Última evidencia y presupuesto autorizado<a class="headerlink" href="#ultima-evidencia-y-presupuesto-autorizado" title="Link to this heading">#</a></h2>
-<p>La última corrida cerrada en el snapshot corresponde a <strong>Inception-1D, marzo de 2024</strong>, semilla 271202. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/fe7af8ea2c03843a184d0c890a5d4d3734c2db20/campaigns/e2-cuda-crop-11-v2/events/000001097.json">evento final, job_started, secuencia 1097</a> inicia otro ajuste a las <strong>16:31:12</strong>; todavía no tiene resultado en el corte. Acredita ese inicio publicado, no la salud actual de la VM. El status derivado puede conservar el último cierre mientras siguen publicándose eventos/resultados.</p>
+<p>La última corrida cerrada en el snapshot corresponde a <strong>TSMixer, abril de 2024</strong>, configuración hpo-008 y semilla 271201. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/38211c3ca8289539ac8697a1b8d406cb0d7480b7/campaigns/e2-cuda-crop-11-v2/events/000001767.json">evento final, job_started, secuencia 1767</a> inicia otro ajuste a las <strong>19:32:17</strong>; todavía no tiene resultado en el corte. Acredita ese inicio publicado, no la salud actual de la VM. El status derivado conserva el resumen anterior de 331 resultados y budget_extended_awaiting_resume; está desactualizado frente a estos eventos/resultados y no acredita una pausa actual.</p>
 <p>La pausa anterior fue <strong>por presupuesto</strong>, tras 331 corridas nuevas, sin fallos. Quedaban aproximadamente 7.498,24 segundos y la siguiente reserva completa requería 7.500. Volver a ejecutar sin cambiar el saldo habría producido la misma pausa.</p>
-<p>El usuario autorizó explícitamente pasar de <strong>48 a 56 horas acumuladas</strong>. Se registró antes de nuevos ajustes mediante <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/fe7af8ea2c03843a184d0c890a5d4d3734c2db20/campaigns/e2-cuda-crop-11-v2/events/000000665.json">el evento de enmienda 665</a>, a las <strong>15:07:41 de Bogotá</strong>, y quedó confirmado en el <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/25fcf0282cc67465056883f03684184ac8b2bdb6">commit de autorización</a>. Se añaden ocho horas; no se reinician el plan, el historial ni el consumo.</p>
+<p>El usuario autorizó explícitamente pasar de <strong>48 a 56 horas acumuladas</strong>. Se registró antes de nuevos ajustes mediante <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/38211c3ca8289539ac8697a1b8d406cb0d7480b7/campaigns/e2-cuda-crop-11-v2/events/000000665.json">el evento de enmienda 665</a>, a las <strong>15:07:41 de Bogotá</strong>, y quedó confirmado en el <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/25fcf0282cc67465056883f03684184ac8b2bdb6">commit de autorización</a>. Se añaden ocho horas; no se reinician el plan, el historial ni el consumo.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Contabilidad al corte</p></th>
@@ -486,17 +496,17 @@
 <tr class="row-odd"><td><p>Consumo previo heredado</p></td>
 <td class="text-right"><p>156.553,03 s</p></td>
 </tr>
-<tr class="row-even"><td><p>Cargos de los 546 resultados nuevos</p></td>
-<td class="text-right"><p>13.747,21 s</p></td>
+<tr class="row-even"><td><p>Cargos de los 881 resultados nuevos</p></td>
+<td class="text-right"><p>24.613,16 s</p></td>
 </tr>
 <tr class="row-odd"><td><p>Overhead de la sesión cerrada</p></td>
 <td class="text-right"><p>2,17 s</p></td>
 </tr>
 <tr class="row-even"><td><p>Consumo combinado conocido</p></td>
-<td class="text-right"><p>170.302,41 s, aproximadamente 47 h 18 min</p></td>
+<td class="text-right"><p>181.168,36 s, aproximadamente 50 h 19 min</p></td>
 </tr>
 <tr class="row-odd"><td><p>Saldo todavía no contabilizado: límite superior</p></td>
-<td class="text-right"><p><strong>31.297,59 s, aproximadamente 8 h 42 min</strong></p></td>
+<td class="text-right"><p><strong>20.431,64 s, aproximadamente 5 h 41 min</strong></p></td>
 </tr>
 </tbody>
 </table>
@@ -505,26 +515,37 @@
 </section>
 <section id="tracking-de-configuraciones-y-recursos">
 <h2>Tracking de configuraciones y recursos<a class="headerlink" href="#tracking-de-configuraciones-y-recursos" title="Link to this heading">#</a></h2>
-<p>Se añade un <a class="reference download internal" download="" href="../_downloads/d54d511e9aa46e3467fe2dec4b7faf3a/trials.csv"><span class="xref download myst">CSV de los 546 ensayos</span></a> con modelo, origen, ID, semilla, batch, LR, weight decay, dropout/warmup aplicables, estado, pasos y tiempos. Cada configuración fue regenerada con <strong>el código y protocolo congelados de la fuente A3</strong> y su payload se cotejó contra la huella del resultado: <strong>546 de 546 coincidencias exactas</strong>.</p>
+<p>Se añade un <a class="reference download internal" download="" href="../_downloads/8ca7aca71682a34488a4599969aa4b3a/trials.csv"><span class="xref download myst">CSV de los 881 ensayos</span></a> con modelo, origen, ID, semilla, batch, LR, weight decay, dropout/warmup aplicables, estado, pasos y tiempos. Cada configuración fue regenerada con <strong>el código y protocolo congelados de la fuente A3</strong> y su payload se cotejó contra la huella del resultado: <strong>881 de 881 coincidencias exactas</strong>.</p>
 <p>La <a class="reference download internal" download="" href="../_downloads/c30b92c0a745bbc72ed8a68f5c9d1b37/registered_hpo_configs.json"><span class="xref download myst">exportación de las 252 configuraciones del protocolo activo</span></a> identifica su fuente y serialización. El artefacto HPO anterior de <a class="reference internal" href="27_nas_hpo_presupuesto.html"><span class="std std-doc">§27</span></a> conserva una versión de diseño y no se usó como autoridad para este CSV. No se seleccionaron configuraciones nuevas ni se ejecutaron ajustes para generar el reporte.</p>
 <p>Los segundos del CSV son cargos por intento y tiempo de callback; no equivalen por sí solos a latencia de inferencia, FLOPs, factura o huella energética. El entorno registrado sigue siendo <strong>Tesla T4, PyTorch 2.8.0+cu126, CUDA 12.6 y FP32 determinista</strong>, con AMP/TF32 desactivados. La optimización selectiva TimesNet deriva de un perfil sintético; no se declara aceleración global de E2.</p>
 </section>
 <section id="pendientes-de-e2">
 <h2>Pendientes de E2<a class="headerlink" href="#pendientes-de-e2" title="Link to this heading">#</a></h2>
 <p>Faltan selecciones de modelos/orígenes y NAS, dimensionamiento de R con piloto compatible, comparadores y reajustes finales, evaluación común, inferencia temporal, robustez, incertidumbre, explicabilidad, ablaciones y reproducción independiente. <strong>No hay ranking final ni cumplimiento integral acreditado por estos conteos.</strong> Las 608 fechas conocidas mantienen alcance exploratorio. <a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html"><span class="std std-doc">Auditoría y trabajo paralelo (§42)</span></a>.</p>
+<p>Se comprobaron también los <strong>670 eventos añadidos desde el corte anterior</strong>: 335 inicios y 335 cierres de ajuste, con enlaces de hash consecutivos. No hay una nueva enmienda de presupuesto ni cierre de sesión en ese tramo.</p>
 </section>
 <section id="fuentes-del-corte-vigente">
 <h2>Fuentes del corte vigente<a class="headerlink" href="#fuentes-del-corte-vigente" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Commit fijo: fe7af8ea2c03843a184d0c890a5d4d3734c2db20.</p></li>
+<li><p>Commit fijo: 38211c3ca8289539ac8697a1b8d406cb0d7480b7.</p></li>
 <li><p>Plan: 877a8ab4a0d34599f43c5dd16a90fe87fe03d37fe535466bf8e009c379cce742.</p></li>
-<li><p><a class="reference download internal" download="" href="../_downloads/52a0f9d2975a24b1068a35222a8749b7/summary.json"><span class="xref download myst">Resumen estructurado</span></a> · <a class="reference download internal" download="" href="../_downloads/520c7c51ef7d34fb955f7ae3ae29dfbd/source_index.json"><span class="xref download myst">Índice de 546 resultados y ocho eventos de referencia</span></a>.</p></li>
-<li><p><a class="reference download internal" download="" href="../_downloads/d54d511e9aa46e3467fe2dec4b7faf3a/trials.csv"><span class="xref download myst">Ensayos/configuraciones CSV</span></a> · <a class="reference download internal" download="" href="../_downloads/c30b92c0a745bbc72ed8a68f5c9d1b37/registered_hpo_configs.json"><span class="xref download myst">Configuraciones activas regeneradas</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/79484219e78936bd7d51337f52f4628a/summary.json"><span class="xref download myst">Resumen estructurado</span></a> · <a class="reference download internal" download="" href="../_downloads/7eaee1cbc376202370011af01d2bf948/source_index.json"><span class="xref download myst">Índice de 881 resultados y ocho eventos de referencia</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/8ca7aca71682a34488a4599969aa4b3a/trials.csv"><span class="xref download myst">Ensayos/configuraciones CSV</span></a> · <a class="reference download internal" download="" href="../_downloads/c30b92c0a745bbc72ed8a68f5c9d1b37/registered_hpo_configs.json"><span class="xref download myst">Configuraciones activas regeneradas</span></a>.</p></li>
+</ul>
+</section>
+<section id="corte-anterior-conservado-16-31-12-de-bogota">
+<span id="e2-cuda-cut-20261111-163112"></span><h2>Corte anterior conservado: 16:31:12 de Bogotá<a class="headerlink" href="#corte-anterior-conservado-16-31-12-de-bogota" title="Link to this heading">#</a></h2>
+<p>El corte del commit fe7af8ea2c03843a184d0c890a5d4d3734c2db20 registraba <strong>546 resultados nuevos y 2.348 combinados</strong>. El corte vigente añade <strong>335 resultados nuevos</strong>, sin cambios en los blobs de esos 546 recibos. Los datos y enlaces del corte anterior se conservan.</p>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="../_downloads/52a0f9d2975a24b1068a35222a8749b7/summary.json"><span class="xref download myst">Resumen histórico de 546 ajustes</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/520c7c51ef7d34fb955f7ae3ae29dfbd/source_index.json"><span class="xref download myst">Índice histórico de 546 resultados y ocho eventos</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/d54d511e9aa46e3467fe2dec4b7faf3a/trials.csv"><span class="xref download myst">CSV histórico de 546 ensayos</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/c30b92c0a745bbc72ed8a68f5c9d1b37/registered_hpo_configs.json"><span class="xref download myst">Configuraciones activas regeneradas, fuente común de ambos CSV</span></a>.</p></li>
 </ul>
 </section>
 <section id="corte-anterior-conservado-13-31-53-de-bogota">
 <span id="e2-cuda-cut-20261111-133153"></span><h2>Corte anterior conservado: 13:31:53 de Bogotá<a class="headerlink" href="#corte-anterior-conservado-13-31-53-de-bogota" title="Link to this heading">#</a></h2>
-<p>El corte del commit df4415af338e2fab793c74b7732392c51c0fa6f6 registraba <strong>234 resultados nuevos y 2.036 combinados</strong>. El corte vigente añade <strong>312 resultados nuevos</strong> a ese registro documental. Ambos conservan su fecha, fuente y alcance.</p>
+<p>El corte del commit df4415af338e2fab793c74b7732392c51c0fa6f6 registraba <strong>234 resultados nuevos y 2.036 combinados</strong>. El corte de las 16:31:12 añadió 312 resultados a ese registro documental; cada corte conserva su fecha, fuente y alcance.</p>
 <ul class="simple">
 <li><p><a class="reference download internal" download="" href="../_downloads/4fa42cf0afaf76b15671895e21de2aba/summary.json"><span class="xref download myst">Resumen histórico de 234 ajustes</span></a>.</p></li>
 <li><p><a class="reference download internal" download="" href="../_downloads/0053f4c83cd35eab435ed5c3472d5a00/source_index.json"><span class="xref download myst">Índice histórico de 234 resultados y cuatro eventos</span></a>.</p></li>
@@ -604,6 +625,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tracking-de-configuraciones-y-recursos">Tracking de configuraciones y recursos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pendientes-de-e2">Pendientes de E2</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuentes-del-corte-vigente">Fuentes del corte vigente</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#corte-anterior-conservado-16-31-12-de-bogota">Corte anterior conservado: 16:31:12 de Bogotá</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#corte-anterior-conservado-13-31-53-de-bogota">Corte anterior conservado: 13:31:53 de Bogotá</a></li>
 </ul>
   </nav></div>
