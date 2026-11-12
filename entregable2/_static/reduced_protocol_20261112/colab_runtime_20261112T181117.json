@@ -1,0 +1,100 @@
+{
+  "budget": {
+    "authorized_total_hours": 64,
+    "budget_reset": false,
+    "evidence_file_sha256": "dfcccad150ce9cdb90859c745ae4d64f07bfcec6a9d0e2cfc21050a5cab972b5",
+    "fresh_remote_heads_checked_here": false,
+    "historical_charged_seconds": 222927.98951942776,
+    "historical_heads": {
+      "campaigns/e2-cuda-crop-11-v2": "795844308c07cbc160d3dd1feb6284b5f443bb20",
+      "campaigns/e2-cuda-selection-v1": "0ecd8b851059abbbe370899d03093191c9815f7f"
+    },
+    "ledger_records_checked": 0,
+    "ledger_scope": null,
+    "local_pilot_charged_seconds": 0.0,
+    "other_mounts_or_private_ledgers_checked": false,
+    "reconciliation_sha256": "fdcb6f63a059eb15311f399fbc5034c02bbf95d5b43fc9d19917f97988720b13",
+    "remaining_seconds": 7472.010480572237,
+    "status": "budget_snapshot_verified",
+    "training_authorized": false,
+    "unclosed_reservations": {}
+  },
+  "budget_extended": false,
+  "data_and_cache_audit_performed_here": false,
+  "final_market_values_read": false,
+  "market_training_started": false,
+  "observed_at_utc": "2026-11-12T18:11:17.882619+00:00",
+  "runtime": {
+    "CPU_training_fallback_performed": false,
+    "all_model_kernels_validated": false,
+    "amp": false,
+    "cpu_threads": 1,
+    "cuda_available": true,
+    "cuda_device_count": 1,
+    "cuda_kernel_probe_passed": true,
+    "cuda_total_memory_bytes": 15637086208,
+    "cudnn": 91002,
+    "cudnn_tf32": true,
+    "deterministic": false,
+    "device": "cuda:0",
+    "device_name": "Tesla T4",
+    "dtype": "float32",
+    "effective_memory_limit_bytes": 12509668966,
+    "effective_memory_limit_scope": "Registered80%-VRAM allocator threshold, not an enforced hardware quota",
+    "expected_policy": {
+      "python_major_minor": [
+        3,
+        12
+      ],
+      "torch": "2.8.0+cu126",
+      "torch_cuda": "12.6"
+    },
+    "flags_scope": "Observed before the temporary CUDA probe; no training policy applied here",
+    "interop_threads": 1,
+    "market_training_started": false,
+    "optimizer_steps": 0,
+    "other_controller_pids": [],
+    "physical_gpu_probe": {
+      "devices": [
+        {
+          "memory_mib": 15360,
+          "name": "Tesla T4"
+        }
+      ],
+      "status": "driver_devices_visible"
+    },
+    "probe": {
+      "amp": false,
+      "cpu_threads": 1,
+      "deterministic": true,
+      "device": "cuda:0",
+      "dtype": "torch.float32",
+      "interop_threads": 1,
+      "optimizer_steps": 0,
+      "passed": true,
+      "scope": "Tiny CUDA matrix probe; not all model-kernel acceptance",
+      "shape": [
+        4,
+        4
+      ],
+      "tf32": false
+    },
+    "production_policy_compatible": true,
+    "python": "3.12.12",
+    "python_executable": "/content/entregable2_gpu_workspace/reduced-runtime-py312-cu126-v1/venv-py312-cu126/bin/python",
+    "python_major_minor": [
+      3,
+      12
+    ],
+    "status": "cuda_runtime_policy_verified",
+    "tf32": false,
+    "torch": "2.8.0+cu126",
+    "torch_cuda": "12.6",
+    "total_memory_bytes": 15637086208
+  },
+  "scientific_HPO_or_NAS_executed": false,
+  "scope": "Runtime/budget diagnostics only; not source/data/cache or model-kernel acceptance",
+  "training_authorized": false,
+  "version": "e2-reduced-environment-check-v1",
+  "sha256": "57e7fd79eba741b06c5304dd0edfefd891ce9c7ea2697fba285b8d99f60f1f38"
+}
