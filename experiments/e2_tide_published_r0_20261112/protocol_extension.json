@@ -1,0 +1,111 @@
+{
+  "extension_id": "e2-tide-source-default-r0-extension-v1",
+  "prepared_at_utc": "2026-11-12T18:20:29.050675+00:00",
+  "status": "prepared_pending_actual_Git_registration_before_new_fits",
+  "parent_scientific_registration_commit": "c056c1cfb8ac771b32b13bf1382b9afc5e813912",
+  "parent_protocol_id": "e2-reduced-delivery-v1",
+  "model_id": "TiDE",
+  "new_recipe_id": "TIDE-D7-PUBLISHED-R0-v2",
+  "supersedes_only": "The TiDE execution gate and TiDE configuration identities for this reduced campaign; historical architecture adjudication and all its evidence remain unchanged.",
+  "author_source": {
+    "repository": "google-research/google-research",
+    "commit": "d3a4bd8f0eceddda553e47085033b537935b283f",
+    "files_sha256": {
+      "tide/models.py": "ad8fd8d498809deeed9c847a169cada42134cbd0351b03e750706132a5d151c7",
+      "tide/train.py": "3edd19eed01f92ef50cadca73fbe8a793c701d34edb5ea376c6bcc55e92f0854",
+      "tide/scripts/etth1.sh": "55e085f1513af3a4a0ef8f7244512ee78beba5ab09540192b3cd3bb37441981c",
+      "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    }
+  },
+  "body_definition": {
+    "hidden_dims": [
+      256,
+      256
+    ],
+    "time_encoder_dims": [
+      64,
+      4
+    ],
+    "decoder_output_dim": 4,
+    "final_decoder_hidden": 64,
+    "transform": false,
+    "layer_norm": false,
+    "dropout_rate": 0.0,
+    "series_embedding_dim": 16
+  },
+  "decision": "Use the complete source-defined official default graph with r=0; no structural architecture choices remain unspecified for this fixed recipe. No NAS exemption is inferred from speed or deadline.",
+  "reason_prior_probe_does_not_require_undefined_architecture_NAS": "The zero-gradient hidden covariate subnetwork is a disclosed consequence of r=0 and source initialization. Its existence does not make the body dimensions undefined. This extension retains that subnetwork, all original operations and the same initialization policy rather than pruning, fusing or modifying it.",
+  "adaptations": [
+    "Seven observed days instead of source long context; horizon one",
+    "Five OHLCV channels are five scalar series sharing the complete source body, identified only by fixed channel position embeddings",
+    "Zero dynamic and categorical covariates are zero-width tensors; no future OHLCV, calendar values, target history or fabricated observed zeros",
+    "External Linear(5,1)+Softplus head predicts positive scaled sigma7; caller restores training-only scale",
+    "Source default transform=False/layer_norm=False/dropout=0; this does not reproduce the paper selected ETTh1 preset"
+  ],
+  "inactive_parameter_limit": "Source r0 zero-bias/ReLU initialization leaves time_encoder.lin_a bias and lin_b weight with zero task gradients. No claim that every parameter receives nonzero updates.",
+  "initialization": "Keras Dense Glorot-uniform weights and zero biases; embedding Uniform(-.05,.05); shared-weight parity does not claim identical framework seeded draws",
+  "verification": {
+    "source_official_TensorFlow_executed": true,
+    "tensorflow": "2.20.0",
+    "tf_keras": "2.20.1",
+    "Torch": "2.8.0+cpu",
+    "all_passed": true,
+    "gradient_tensors": 27,
+    "maximum_absolute_error": 2.384185791015625e-07,
+    "scope": "Source-default TiDE body L7/H1/r0/num_ts5, FP32 CPU shared weights; scalar task readout tested separately",
+    "optimizer_steps": 0
+  },
+  "HPO": {
+    "six_parent_indices": [
+      5,
+      7,
+      8,
+      9,
+      10,
+      15
+    ],
+    "slots": [
+      "C01",
+      "C02",
+      "C03",
+      "C04",
+      "C05",
+      "C06"
+    ],
+    "seed": [
+      271201
+    ],
+    "folds": [
+      "2024-01-01",
+      "2024-07-01",
+      "2024-10-01"
+    ],
+    "optimizer_values_preserved": true,
+    "dropout_fixed": 0.0,
+    "architecture_or_old_NAS_knobs_retained": false,
+    "old_TiDE_NAS_outcomes_reusable": false,
+    "domain_sha256": "83581605e8966e5e3ea7593ee90945669d966a64c2a4ea80fea6f4a58e62ca69"
+  },
+  "unchanged": [
+    "D7x5 OHLCV-only contract",
+    "Sigma7 population ddof0, nonannualized, h1",
+    "RMSE in original units and delta0.00025772842664981106",
+    "Six common slots, one HPO seed, three common folds",
+    "Final fit/calibration/evaluation dates, R6 and pilot rule",
+    "Shared64h total cap and all historical charges"
+  ],
+  "old_frozen_registered_files_modified": false,
+  "new_market_fits_started": false,
+  "new_optimizer_steps": 0,
+  "source_paper_numerical_reproduction_claimed": false,
+  "GPU_model_kernel_parity_claimed": false,
+  "registration_files_sha256": {
+    "scripts/e2_published_tide.py": "5ba7a01a30c52793b566a44525e4f5ccfaf0254e9c6cdd2667c56a34319c747a",
+    "scripts/verify_e2_tide_source_parity.py": "99d490523896fd0536ad99efa0e0334051e25b32cdc157b207d5866a93e8467d",
+    "tests/test_e2_published_tide_r0.py": "68576d750ca3d8f15b9748e61d0c018f56825a5691e54679eda09aa4c6710875",
+    "experiments/e2_tide_published_r0_20261112/configurations.json": "de8215b331a9ce88aacb01f4e6dc5b650b1c083c33cb1c87f02456134093f68c",
+    "experiments/e2_tide_published_r0_20261112/source_parity.json": "684e710fc6ee94cb4bab3bde482a147ac0f4af9932b86a21062dd18478fedd9a",
+    "experiments/e2_tide_published_r0_20261112/LICENSE.TiDE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+  },
+  "paper_verification_scope": "Prior full-text receipt retained (2304.08424v5, SHA eee9d9e3248f262a137e6cf63920137263f3bbbe22cd8608e5eec77882af1999); this narrow extension newly read the complete pinned author model and defaults, and executed the official graph. No claim of a newly downloaded/re-read paper."
+}

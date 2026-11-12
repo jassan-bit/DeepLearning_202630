@@ -1,0 +1,295 @@
+{
+  "version": "e2-tide-official-source-parity-v1",
+  "tensorflow": "2.20.0",
+  "tf_keras": "2.20.1",
+  "torch_runtime": {
+    "torch": "2.8.0+cpu",
+    "python": "3.12.14",
+    "parameters": 163378
+  },
+  "official_source_executed": true,
+  "scope": "Source-default TiDE body L7/H1/r0/num_ts5, FP32 CPU shared weights; scalar task readout tested separately",
+  "forward_loss_input_and_parameter_gradients": true,
+  "atol": 2e-06,
+  "rtol": 2e-05,
+  "test_batch_scalar_series": 10,
+  "comparisons": [
+    {
+      "tensor": "output",
+      "shape": [
+        10,
+        1
+      ],
+      "max_absolute_error": 1.7881393432617188e-07,
+      "allclose": true
+    },
+    {
+      "tensor": "loss",
+      "shape": [],
+      "max_absolute_error": 0.0,
+      "allclose": true
+    },
+    {
+      "tensor": "input_gradient",
+      "shape": [
+        10,
+        7
+      ],
+      "max_absolute_error": 5.960464477539063e-08,
+      "allclose": true
+    },
+    {
+      "tensor": "grad_encoder.lin_a.weight",
+      "shape": [
+        256,
+        55
+      ],
+      "max_absolute_error": 4.0978193283081055e-08,
+      "allclose": true
+    },
+    {
+      "tensor": "grad_encoder.lin_a.bias",
+      "shape": [
+        256
+      ],
+      "max_absolute_error": 3.725290298461914e-08,
+      "allclose": true
+    },
+    {
+      "tensor": "grad_encoder.lin_b.weight",
+      "shape": [
+        256,
+        256
+      ],
+      "max_absolute_error": 7.450580596923828e-09,
+      "allclose": true
+    },
+    {
+      "tensor": "grad_encoder.lin_b.bias",
+      "shape": [
+        256
+      ],
+      "max_absolute_error": 2.9802322387695312e-08,
+      "allclose": true
+    },
+    {
+      "tensor": "grad_encoder.lin_res.weight",
+      "shape": [
+        256,
+        55
+      ],
+      "max_absolute_error": 2.9802322387695312e-08,
+      "allclose": true
+    },
+    {
+      "tensor": "grad_encoder.lin_res.bias",
+      "shape": [
+        256
+      ],
+      "max_absolute_error": 2.9802322387695312e-08,
+      "allclose": true
+    },
+    {
+      "tensor": "grad_decoder.lin_a.weight",
+      "shape": [
+        256,
+        256
+      ],
+      "max_absolute_error": 2.2351741790771484e-08,
+      "allclose": true
+    },
+    {
+      "tensor": "grad_decoder.lin_a.bias",
+      "shape": [
+        256
+      ],
+      "max_absolute_error": 1.4901161193847656e-08,
+      "allclose": true
+    },
+    {
+      "tensor": "grad_decoder.lin_b.weight",
+      "shape": [
+        4,
+        256
+      ],
+      "max_absolute_error": 1.555308699607849e-07,
+      "allclose": true
+    },
+    {
+      "tensor": "grad_decoder.lin_b.bias",
+      "shape": [
+        4
+      ],
+      "max_absolute_error": 2.9802322387695312e-08,
+      "allclose": true
+    },
+    {
+      "tensor": "grad_decoder.lin_res.weight",
+      "shape": [
+        4,
+        256
+      ],
+      "max_absolute_error": 8.940696716308594e-08,
+      "allclose": true
+    },
+    {
+      "tensor": "grad_decoder.lin_res.bias",
+      "shape": [
+        4
+      ],
+      "max_absolute_error": 2.9802322387695312e-08,
+      "allclose": true
+    },
+    {
+      "tensor": "grad_time_encoder.lin_a.weight",
+      "shape": [
+        64,
+        0
+      ],
+      "max_absolute_error": 0.0,
+      "allclose": true
+    },
+    {
+      "tensor": "grad_time_encoder.lin_a.bias",
+      "shape": [
+        64
+      ],
+      "max_absolute_error": 0.0,
+      "allclose": true
+    },
+    {
+      "tensor": "grad_time_encoder.lin_b.weight",
+      "shape": [
+        4,
+        64
+      ],
+      "max_absolute_error": 0.0,
+      "allclose": true
+    },
+    {
+      "tensor": "grad_time_encoder.lin_b.bias",
+      "shape": [
+        4
+      ],
+      "max_absolute_error": 8.940696716308594e-08,
+      "allclose": true
+    },
+    {
+      "tensor": "grad_time_encoder.lin_res.weight",
+      "shape": [
+        4,
+        0
+      ],
+      "max_absolute_error": 0.0,
+      "allclose": true
+    },
+    {
+      "tensor": "grad_time_encoder.lin_res.bias",
+      "shape": [
+        4
+      ],
+      "max_absolute_error": 8.940696716308594e-08,
+      "allclose": true
+    },
+    {
+      "tensor": "grad_final_decoder.lin_a.weight",
+      "shape": [
+        64,
+        8
+      ],
+      "max_absolute_error": 8.940696716308594e-08,
+      "allclose": true
+    },
+    {
+      "tensor": "grad_final_decoder.lin_a.bias",
+      "shape": [
+        64
+      ],
+      "max_absolute_error": 2.9802322387695312e-08,
+      "allclose": true
+    },
+    {
+      "tensor": "grad_final_decoder.lin_b.weight",
+      "shape": [
+        1,
+        64
+      ],
+      "max_absolute_error": 1.1920928955078125e-07,
+      "allclose": true
+    },
+    {
+      "tensor": "grad_final_decoder.lin_b.bias",
+      "shape": [
+        1
+      ],
+      "max_absolute_error": 1.1920928955078125e-07,
+      "allclose": true
+    },
+    {
+      "tensor": "grad_final_decoder.lin_res.weight",
+      "shape": [
+        1,
+        8
+      ],
+      "max_absolute_error": 2.384185791015625e-07,
+      "allclose": true
+    },
+    {
+      "tensor": "grad_final_decoder.lin_res.bias",
+      "shape": [
+        1
+      ],
+      "max_absolute_error": 1.1920928955078125e-07,
+      "allclose": true
+    },
+    {
+      "tensor": "grad_linear.weight",
+      "shape": [
+        1,
+        7
+      ],
+      "max_absolute_error": 2.384185791015625e-07,
+      "allclose": true
+    },
+    {
+      "tensor": "grad_linear.bias",
+      "shape": [
+        1
+      ],
+      "max_absolute_error": 1.1920928955078125e-07,
+      "allclose": true
+    },
+    {
+      "tensor": "grad_ts_embs.weight",
+      "shape": [
+        5,
+        16
+      ],
+      "max_absolute_error": 2.9802322387695312e-08,
+      "allclose": true
+    }
+  ],
+  "all_passed": true,
+  "parameter_gradient_tensors": 27,
+  "optimizer_constructed": false,
+  "optimizer_steps": 0,
+  "market_values_read": false,
+  "source_initialization_draws_bitwise_equivalent_claimed": false,
+  "initialization_policy": "Both source Dense and port use Glorot-uniform kernels/zero biases, embedding uniform(-.05,.05); framework RNG streams are not claimed identical",
+  "GPU_kernel_parity_claimed": false,
+  "recipe_id": "TIDE-D7-PUBLISHED-R0-v2",
+  "source": {
+    "repository": "google-research/google-research",
+    "commit": "d3a4bd8f0eceddda553e47085033b537935b283f",
+    "files_sha256": {
+      "tide/models.py": "ad8fd8d498809deeed9c847a169cada42134cbd0351b03e750706132a5d151c7",
+      "tide/train.py": "3edd19eed01f92ef50cadca73fbe8a793c701d34edb5ea376c6bcc55e92f0854",
+      "tide/scripts/etth1.sh": "55e085f1513af3a4a0ef8f7244512ee78beba5ab09540192b3cd3bb37441981c",
+      "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    "license": "Apache-2.0",
+    "verification_scope": "Four declared files, not the complete repository"
+  },
+  "verification_implementation_sha256": "99d490523896fd0536ad99efa0e0334051e25b32cdc157b207d5866a93e8467d",
+  "port_implementation_sha256": "5ba7a01a30c52793b566a44525e4f5ccfaf0254e9c6cdd2667c56a34319c747a"
+}
