@@ -4,7 +4,7 @@
 
 **Deep Learning · 2026-30 · Jassan Arteta**
 
-**Avance experimental verificado: 881 ajustes HPO nuevos completados, sin fallos, al 11/11/2026 a las 19:32:18 de Bogotá.** Se suman a 1.802 registros anteriores: **2.683 registros de resultados** entre ambos historiales. Son corridas de selección, no modelos finales ni una entrega terminada. [Detalle y fuentes del corte (§41)](sections/41_avance_optimizacion_11_origenes.md).
+**Avance experimental verificado: 1.067 ajustes HPO nuevos completados, sin fallos, al 11/11/2026 a las 21:54:51 de Bogotá.** Se suman a 1.802 registros anteriores: **2.869 registros de resultados** entre ambos historiales. Son corridas de selección, no modelos finales ni una entrega terminada. [Detalle y fuentes del corte (§41)](sections/41_avance_optimizacion_11_origenes.md).
 
 **Auditoría contra la guía:** [§42: qué podemos completar mientras entrena Colab](sections/42_auditoria_y_trabajo_paralelo.md). Incluye prioridades, 21 ítems del Apéndice B y plantillas de reporte; distingue preparación de cumplimiento.
 
@@ -18,7 +18,7 @@ La [matriz vigente de exigencias, evidencias y pendientes](sections/38_cumplimie
 |---|---|---|
 | Problema, datos, EDA y ruta temporal | Contrato definido; auditoría completa del benchmark pendiente | [Problema](sections/01_punto_partida.md), [EDA](sections/02_eda.md), [F2a](sections/07_ruta_temporal.md), [contrato](sections/17_contrato_sincronizado.md) |
 | Revisión sistemática y Top 10 | Búsquedas y lecturas parciales; cierre de elegibilidad y puntajes por completar | [Literatura](sections/03_literatura.md), [catálogo](sections/15_revision_modelos.md) |
-| Implementación y HPO/NAS | 881 ajustes HPO nuevos completados en el corte vigente; selección completa pendiente | [Recetas](sections/26_registro_recetas.md), [fábricas](sections/28_fabricas_nas.md), [avance vigente](sections/41_avance_optimizacion_11_origenes.md), [corte histórico](sections/36_avance_campana_cuda.md) |
+| Implementación y HPO/NAS | 1.067 ajustes HPO nuevos completados en el corte vigente; selección completa pendiente | [Recetas](sections/26_registro_recetas.md), [fábricas](sections/28_fabricas_nas.md), [avance vigente](sections/41_avance_optimizacion_11_origenes.md), [corte histórico](sections/36_avance_campana_cuda.md) |
 | Réplica del paper guía | Evidencia externa de TimeMixer/ETTh1; no sustituye Bitcoin D7 | [Réplica y limitaciones](sections/05_paper_guia.md) |
 | Benchmark e inferencia | Pendientes de recetas seleccionadas, R, reajustes y evaluación común | [Benchmark](sections/06_benchmark_final.md), [inferencia](sections/13_agregacion_estadistica.md) |
 | Robustez, incertidumbre e interpretabilidad | Preparación parcial; resultados del catálogo completo pendientes | [Incertidumbre y errores](sections/12_incertidumbre_errores.md), [matriz de cierre](sections/38_cumplimiento_guia.md) |
@@ -51,11 +51,11 @@ El calendario vigente conserva diez selecciones mensuales enero–octubre de 202
 
 Se mantienen las seis variantes NAS y los cinco cuerpos publicados con exención justificada, las 18 configuraciones HPO, k=40 y máximos de 50/200 épocas. La optimización funcional se activa por caso sólo tras medirla en la GPU real. [Alcance y límites (§40)](sections/40_calendario_original.md).
 
-El notebook vigente de once orígenes se enlaza en §40. No cambia por sí solo el Colab activo: hay que esperar el cierre del controlador anterior. Conserva los resultados compatibles y el historial del límite inicial de 48 horas. La ampliación manual a **56 horas acumuladas**, autorizada el 11/11, está registrada antes de reanudar; no hay ampliación automática ni garantía de terminar todas las corridas. [Presupuesto y recibos actuales](sections/41_avance_optimizacion_11_origenes.md).
+El notebook vigente de once orígenes se enlaza en §40. El historial conserva el techo inicial de 48 horas y las ampliaciones manuales a 56 y **64 horas acumuladas**, autorizadas antes de nuevos ajustes. La recuperación de la desconexión se registró y completó sin borrar los resultados anteriores; el intento original permanece con desenlace desconocido. No hay ampliación automática ni garantía de terminar todas las corridas. [Presupuesto y recibos actuales](sections/41_avance_optimizacion_11_origenes.md).
 
 ## Resultados parciales y límites
 
-El [corte vigente de §41](sections/41_avance_optimizacion_11_origenes.md) se fija al commit `38211c3ca8289539ac8697a1b8d406cb0d7480b7`. La primera ola de ocho modelos/referencias con arquitectura fija tiene cobertura HPO cerrada en enero, febrero y marzo de 2024. En abril, FCN-1D, ResNet-1D e Inception-1D completaron 36 ajustes cada uno; TSMixer registra 17 de 36. Los 881 resultados nuevos tienen estado `completed`; el total combinado de 2.683 incluye 1.802 registros históricos cuyos estados no se reauditán aquí. El último evento publicado inicia otra corrida, sin resultado en ese snapshot; no es una comprobación en vivo de Colab. Se añade un CSV de ensayos y configuraciones verificado por huellas; no contiene un ranking final.
+El [corte vigente de §41](sections/41_avance_optimizacion_11_origenes.md) se fija al commit `1cc1da2a43a4ed056de18677875f99e3cb7a869a`. La primera ola de ocho modelos/referencias con arquitectura fija tiene cobertura HPO cerrada de enero a abril de 2024. En mayo, FCN-1D registra 23 de 36 ajustes. Los 1.067 resultados nuevos tienen estado `completed`; el total combinado de 2.869 incluye 1.802 registros históricos cuyos estados no se reauditán aquí. La recuperación completó un ajuste de TSMixer y después se confirmaron otras 177 corridas. El último evento del corte cierra un ajuste de FCN-1D; esta página no comprueba en vivo el kernel de Colab. El CSV conserva las configuraciones y costes verificados, e identifica el resultado recuperado; no contiene un ranking final.
 
 
 El [corte documentado en §36](sections/36_avance_campana_cuda.md), del **11/11/2026 a las 06:55:42 de Bogotá**, contiene **1.748 archivos de resultados**. Registra selección del primer origen para FCN-1D, ResNet-1D, Inception-1D y LSTM-autoencoder y avance NAS-1 de TimesNet. Es un corte histórico, no el contador actual ni evidencia de activación del calendario reducido. Los resultados de E1, los perfiles de recursos y la réplica ETTh1 conservan su propio ámbito.
