@@ -1,14 +1,14 @@
 (e2-reproducibilidad)=
 # 8. Reproducibilidad, ética y comunicación científica
 
-**Vigencia documental (11/11/2026):** existe selección HPO/NAS registrada y ejecutada para el catálogo actual; las afirmaciones de ausencia de HPO o de falta de registro de selección corresponden a cortes anteriores. El benchmark final, R y su cierre inferencial siguen pendientes. [Registro y alcance actuales (§9)](09_protocolo_registrado.md) · [Calendario (§40)](40_calendario_original.md) · [Corte de resultados (§41)](41_avance_optimizacion_11_origenes.md) · [Auditoría y trabajo paralelo (§42)](42_auditoria_y_trabajo_paralelo.md).
+**Vigencia documental (12/11/2026):** la selección HPO/NAS ejecutada parcialmente corresponde al plan histórico de catorce redes. El catálogo obligatorio vigente es de **16 sistemas**, con las identidades de [§43](43_catalogo_obligatorio.md), las arquitecturas de [§44](44_arquitecturas_publicadas.md) y el protocolo registrado de [§45](45_enmienda_protocolo.md). Esos registros históricos no cierran el benchmark vigente ni acreditan las cuatro recetas restauradas. R y el cierre inferencial siguen pendientes. [Corte verificable de resultados (§41)](41_avance_optimizacion_11_origenes.md).
 
-La tabla histórica de §8.4 conserva su ámbito. La auditoría actual añade [las 21 filas del Apéndice B](../_static/guide_audit_20261111_181b9e5/appendix_B.csv), sin considerar aprobados sus pendientes. El comando P0 no reproduce por sí solo los 18 sistemas actuales.
+La tabla histórica de §8.4 conserva su ámbito. La auditoría actual añade [las 21 filas del Apéndice B](../_static/guide_audit_20261111_181b9e5/appendix_B.csv), sin considerar aprobados sus pendientes. El comando P0 no reproduce por sí solo los 16 sistemas obligatorios vigentes; los 18 sistemas pertenecían al diseño anterior.
 
 **Vigencia al 11/11/2026:** La guía exige reproducción integral en entorno limpio y Apéndice B completado. La compilación del libro acredita construcción y enlaces, no reproducción del benchmark. El contenedor es opcional en E2 (p. 41). La lista vigente de artefactos y condiciones de cierre está en §38. [Matriz de exigencias y evidencia](38_cumplimiento_guia.md) · [Enmienda de calendario](37_ajuste_guia.md).
 
 
-La guía completa exige un entorno fijado, semillas/configuraciones recuperables y reproducción independiente de la tabla principal (PDF pp40–41); su lista de comprobación está en el Apéndice B (p63). Esta sección distingue el **catálogo vigente de diez modelos y CNN-1D + LSTM + atención temporal como candidato 11**, cuya nueva enmienda está pendiente, de la evidencia histórica conservada. El procedimiento P0/OOF de desarrollo está ejecutado: los recibos verifican 220 trayectorias y 440 ajustes cerrados; los resultados se presentan en la [sección 9](09_protocolo_registrado.md).
+La guía completa exige un entorno fijado, semillas/configuraciones recuperables y reproducción independiente de la tabla principal (PDF pp40–41); su lista de comprobación está en el Apéndice B (p63). Esta sección distingue el **catálogo obligatorio vigente de 16 sistemas** y el protocolo ya registrado en §§43–45 de la evidencia histórica conservada. El híbrido adicional y Ridge son opcionales/históricos; las enmiendas registradas no acreditan ejecución integral. El procedimiento P0/OOF de desarrollo está ejecutado: los recibos verifican 220 trayectorias y 440 ajustes cerrados; los resultados se presentan en la [sección 9](09_protocolo_registrado.md).
 
 ## 8.1 Fuente registrada y recibos de ejecución
 
@@ -90,7 +90,7 @@ Los estados distinguen una especificación registrada de evidencia experimental 
 
 | Ítem de p63 | Estado verificable |
 |---|---|
-| Catálogo vigente | Diez modelos de literatura/adaptaciones y CNN-1D + LSTM + atención temporal como candidato 11, sin superioridad demostrada |
+| Catálogo del corte histórico | Diez modelos de literatura/adaptaciones y CNN-1D + LSTM + atención temporal como candidato 11, sin superioridad demostrada; sustituido por los 16 sistemas obligatorios de §43 |
 | Registro antes de los nuevos ajustes | Nueva enmienda pendiente; los recibos anteriores son históricos |
 | Datos, índices y particiones | Procedencia heredada identificada; auditoría específica de los nuevos soportes pendiente |
 | Selección y ajuste causal | Reglas metodológicas descritas; implementación común del catálogo vigente por validar |

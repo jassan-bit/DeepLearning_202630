@@ -1,6 +1,6 @@
 # 2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones
 
-**Alcance:** los datos, controles y experimentos ya ejecutados de esta sección se conservan como evidencia histórica. No acreditan entrenamiento del catálogo vigente de diez modelos y candidato 11, definido en [§15](15_revision_modelos.md). Cualquier presupuesto o receta anterior requiere revisión y nuevo registro antes de reutilizarse.
+**Alcance:** los datos, controles y experimentos ya ejecutados de esta sección se conservan como evidencia histórica. No acreditan entrenamiento del benchmark común del catálogo obligatorio de 16 sistemas, definido en [§43](43_catalogo_obligatorio.md). Cualquier presupuesto o receta anterior requiere revisión y nuevo registro antes de reutilizarse.
 
 El EDA de E1 se **amplía y conserva**. Este capítulo reutiliza sus evidencias de desarrollo y añade análisis reproducibles de transformaciones, casi duplicados, soportes temporales y residuos bajo forward chaining. Cada bloque termina con decisiones de preprocesamiento, consecuencias para arquitectura/validación y riesgos; la {ref}`tabla de trazabilidad <e2-trazabilidad-eda>` reúne esas relaciones.
 

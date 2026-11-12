@@ -1,16 +1,16 @@
 # 26. Registro por receta: fuentes, NAS, HPO e integración
 
-**Vigencia documental (11/11/2026):** existe selección HPO/NAS registrada y ejecutada para el catálogo actual; las afirmaciones de ausencia de HPO o de falta de registro de selección corresponden a cortes anteriores. El benchmark final, R y su cierre inferencial siguen pendientes. [Registro y alcance actuales (§9)](09_protocolo_registrado.md) · [Calendario (§40)](40_calendario_original.md) · [Corte de resultados (§41)](41_avance_optimizacion_11_origenes.md) · [Auditoría y trabajo paralelo (§42)](42_auditoria_y_trabajo_paralelo.md).
+**Vigencia documental (12/11/2026):** el [catálogo obligatorio (§43)](43_catalogo_obligatorio.md) contiene dieciséis sistemas; híbrido y Ridge son opcionales. [§44](44_arquitecturas_publicadas.md) conserva o restaura nueve cuerpos definidos del Top 10 y mantiene NAS para TiDE. La selección HPO/NAS ejecutada corresponde al plan anterior de catorce redes; no acredita las nuevas recetas SAE, TimesNet, TimeMixer y PatchTST. El benchmark final, k, R y el cierre inferencial siguen pendientes. [Enmienda registrada (§45)](45_enmienda_protocolo.md) · [Corte histórico de resultados (§41)](41_avance_optimizacion_11_origenes.md).
 
-La adjudicación vigente conserva seis familias NAS y las oportunidades de [§27](27_nas_hpo_presupuesto.md); las tablas anteriores de preparación pendiente no sustituyen ese protocolo.
+Las seis familias NAS de [§27](27_nas_hpo_presupuesto.md) identifican el plan anterior. Las tablas que siguen documentan el inventario del 09/11/2026: sus IDs, parámetros, estados de integración y decisiones abiertas se interpretan a esa fecha. Las nuevas identidades `SAE-D7-PUBLISHED-v1`, `TN-D7-PUBLISHED-v1`, `TM-D7-PUBLISHED-v1` y `PT-D7-PUBLISHED-v1` y sus adaptaciones se consultan en §44; los recibos anteriores conservan su identidad.
 
-**Decisión posterior de diseño (09/11/2026):** [§27 fija seis variantes NAS, cinco cuerpos publicados, rangos HPO y presupuesto para Codex](27_nas_hpo_presupuesto.md). La implementación de nuevas variantes, el perfilado de horas y el preregistro completo siguen pendientes; el contenido siguiente conserva el alcance de su corte anterior.
+**Secuencia histórica:** [§27 fijó seis variantes NAS y cinco cuerpos publicados](27_nas_hpo_presupuesto.md); sus ejecuciones posteriores se publican por separado. La decisión vigente de §44 y el calendario de §45 rigen el trabajo nuevo afectado y no modifican los artefactos de aquellos cortes.
 
 **Corte documental: 09/11/2026.** Esta tabla entrega el inventario por modelo previsto en [§25](25_matriz_cierre.md), R01 y R03–R06. Se cotejaron fichas, fábrica y recibos del [snapshot eca22e8](https://github.com/jassan-bit/DeepLearning_202630/blob/eca22e87085edca79e53f60196c8f64458659b5d/book_e2/sections/23_implementacion_recetas.md). El registro distingue una receta implementada de una receta experimental congelada: **no se ha adjudicado NAS, cerrado HPO ni ejecutado un benchmark nuevo**.
 
 [Registro estructurado JSON](../_static/recipe_register_20261109/registry.json) · {download}`Descargar registro por receta <../_static/recipe_register_20261109/registry.json>`.
 
-## 26.1 Qué versión se está evaluando
+## 26.1 Qué versiones documenta este inventario histórico
 
 Las [fichas de §22](22_fichas_recetas.md) se implementaron en [§23](23_implementacion_recetas.md) mediante `scripts/e2_recipe_catalogue.py`. Se conservan sus IDs, incluidos los sufijos `proposed`, para enlazar especificación, código y recibo sin cambiar retrospectivamente identidades.
 
@@ -18,11 +18,11 @@ La [matriz NAS de §21](../_static/controls_nas_20261108/nas_matrix.json) es un 
 
 Contrato compartido: D7×5 OHLCV con `relative_window`, h=1, σ₇ poblacional sin anualizar, escaladores ajustados sólo al entrenamiento y salida escalar Softplus multiplicada por la media positiva del objetivo de entrenamiento. **Los seis adaptadores agregan diez momentos de la misma ventana; los cuatro cuerpos restaurados y el híbrido no.** Las entradas informativas son comunes, pero esta asimetría del readout debe controlarse; no se presenta como comparación de backbones puros.
 
-## 26.2 Fuentes y adaptación por modelo
+## 26.2 Fuentes y adaptación por modelo: corte del 09/11/2026
 
 Los enlaces bibliográficos identifican originales arquitectónicos; no acreditan elegibilidad final del Top 10 ni resultados en Bitcoin. Los snapshots de código y las versiones exactas de los seis textos están en el JSON descargable y las fichas.
 
-| Modelo / ID de receta | Fuente | Cuerpo y adaptación de la receta vigente |
+| Modelo / ID de receta | Fuente | Cuerpo y adaptación de la receta de aquel corte |
 |---|---|---|
 | **FCN-1D** · `fcn1d_wang_d7_v1_proposed` | [Wang et al. · FCN](https://arxiv.org/abs/1611.06455) | Conv1D 128/256/128; kernels 8/5/3; BN, ReLU y media temporal. Port Conv2D singleton a Conv1D; D7×5 y cabeza escalar Softplus. |
 | **ResNet-1D** · `resnet1d_wang_d7_v1_proposed` | [Wang et al. · ResNet](https://arxiv.org/abs/1611.06455) | Tres bloques 64/128/128, nueve convoluciones principales y tres proyecciones. Port 1D; BN inicial sólo en rama principal y proyección del tercer atajo; cabeza de regresión. |
@@ -42,7 +42,7 @@ Hay diferencias que deben conservarse al justificar la selección: FCN/ResNet pr
 
 ## 26.3 Decisión NAS por receta
 
-La columna siguiente identifica la vía de decisión y su fundamento. **Todas las decisiones finales siguen abiertas** (`applies: null`, sin exenciones concedidas). La implementación sintética no decide la admisibilidad académica de una adaptación.
+La columna siguiente identifica la vía de decisión y su fundamento **en el registro histórico** (`applies: null`, sin exenciones concedidas a esa fecha). La adjudicación posterior de §44 sustituye esas decisiones para el trabajo nuevo: nueve cuerpos definidos y TiDE NAS. La implementación sintética, por sí sola, no decide la admisibilidad académica de una adaptación.
 
 | Modelo | Clasificación documental actual | Decisión que falta resolver |
 |---|---|---|
@@ -60,7 +60,7 @@ La columna siguiente identifica la vía de decisión y su fundamento. **Todas la
 
 Cuando corresponda §14 de la guía: tres bloques, cinco anchos {16,32,64,128,256} por bloque y ocho patrones binarios de dropout p=0,2 producen **1.000 arquitecturas únicas**. La referencia es (64,64,64) con patrón (0,1,0). Primero se ajustan los otros hiperparámetros sobre la referencia; después fase 1 con los mil diseños y una semilla, y fase 2 con k≥10 finalistas, más referencia si no está incluida, y al menos cinco semillas distintas de fase 1. La traducción de bloques a cada familia y las restricciones requieren especificación previa; enumerar nombres o repetir diseños no satisface la cardinalidad.
 
-No se fija cuántas recetas entran a NAS ni se concede exención por conservar un nombre publicado. En particular, el mapeo CNN/LSTM/atención del híbrido sigue propuesto: aún faltan la implementación de los tres anchos variables y las tres ubicaciones de dropout requeridas.
+Este inventario no fijaba cuántas recetas entraban a NAS. La adjudicación vigente fija TiDE como único NAS obligatorio; el híbrido queda opcional. La presencia de un nombre publicado nunca sustituye la verificación del cuerpo y de su adaptación.
 
 ## 26.4 HPO: factores que deben convertirse en espacios ejecutables
 
@@ -110,7 +110,9 @@ El SAE tiene además autoencoders auxiliares de **3.840 y 6.172 parámetros**; s
 
 El presupuesto completo debe separar HPO, NAS cuando aplique, selección interna, refits, piloto de potencia, calibración, controles de fuga, robustez y ablaciones. Requiere hardware, mediciones comparables, límites y contabilidad de fallos. Parámetros pequeños no garantizan menor latencia; tiempos o memoria aún no medidos se registran como desconocidos.
 
-## 26.6 Las siete referencias siguen separadas
+## 26.6 Las referencias: seis obligatorias y Ridge histórico opcional
+
+MLP16, LSTM32, GRU32, Persistence, SeasonalNaive y ARIMA son las seis referencias/comparadores que completan el catálogo obligatorio de dieciséis. La tabla conserva las configuraciones sintéticas del 09/11/2026; no acredita sus resultados finales. Ridge permanece para trazabilidad y no requiere nuevas corridas para cerrar el catálogo obligatorio.
 
 | Sistema de referencia | Configuración que sí se probó sintéticamente | Selección o cierre pendiente |
 |---|---|---|
@@ -118,7 +120,7 @@ El presupuesto completo debe separar HPO, NAS cuando aplique, selección interna
 | LSTM32 de E1 | Arquitectura E1, inicializada de nuevo para E2 | Igual requisito; declarar costes y soportes |
 | GRU32 de E1 | Arquitectura E1, inicializada de nuevo para E2 | Igual requisito; declarar costes y soportes |
 | Persistencia | σ₇(t−1) | Auditoría causal y soporte común; no necesita búsqueda de periodo |
-| Ridge | α=1 en smoke | Dominio de α y selección temporal aún no congelados |
+| Ridge, opcional histórico | α=1 en smoke | Fuera del alcance obligatorio vigente |
 | Naive estacional | m=7 en smoke | Seleccionar entre {7,14,28} según desarrollo; no afirmar estacionalidad demostrada |
 | ARIMA | (1,0,0) en smoke | Espacio propuesto p,q∈{0,1,2}, d∈{0,1}: 18 órdenes; cerrar selección A/B, fallos y cómputo |
 
@@ -126,8 +128,8 @@ El naive estacional es un sistema con tres periodos candidatos; ARIMA es un sist
 
 ## 26.7 Qué queda listo y qué sigue
 
-Queda disponible una identidad verificable por receta: fuente, adaptación, duda NAS, factores HPO, parámetros, fases y alcance de integración. R01 cuenta con conciliación arquitectónica local, **no con cierre de elegibilidad global**; R03–R06 cuentan con inventario, no con congelación experimental.
+Este inventario aporta una identidad verificable por receta de su corte: fuente, adaptación, duda NAS, factores HPO, parámetros, fases y alcance de integración. El cierre bibliográfico global sigue separado de la adjudicación arquitectónica posterior y de la ejecución experimental.
 
-El siguiente cierre es resolver las filas NAS y convertir los factores HPO en dominios ejecutables y presupuestados, conservando D7 y las referencias E1. Después corresponde completar integración, auditoría y la nueva enmienda de [§9](09_protocolo_registrado.md), con potencia, inferencia y exposición previa explícitas.
+La adjudicación y los dominios actuales están documentados en §44–§45. El siguiente cierre operativo es conciliar presupuesto e intentos anteriores, completar la integración y ejecutar los pilotos y ajustes pendientes de las recetas vigentes, conservando D7, las referencias E1, la exposición conocida y todos los artefactos. El trabajo de [§46](46_artefactos_y_pilotos.md) prepara esa ejecución; no aporta por sí solo nuevos resultados de mercado.
 
 La disponibilidad común de las 608 fechas finales sigue sin certificarse y el periodo conocido conserva alcance exploratorio. Este registro no abre esa reserva ni publica resultados de pronóstico.

@@ -2,6 +2,8 @@
 
 **Alcance vigente del 12/11/2026:** diez modelos del Top 10, tres referencias E1 y tres comparadores: **16 sistemas**. El híbrido adicional y Ridge quedan como opcionales/históricos. La enmienda de [§43](43_catalogo_obligatorio.md) registra el catálogo requerido; la selección ya sellada conserva su historial de catorce redes y necesita una transición explícita para aplicar el alcance nuevo. El benchmark final continúa pendiente.
 
+**Entrega con la evidencia disponible:** [§47 reúne resultados, artefactos y conclusiones del cierre](47_entrega_consolidada.md). El corte consolidado conserva **1.705 resultados HPO nuevos y 1.802 registros históricos: 3.507 registros de resultados**. Ocho recetas del plan histórico completaron cobertura HPO de enero a junio; esa cobertura acredita selección ejecutada, sin constituir un ranking final de los 16 sistemas. Las métricas E1, cuando se presentan como antecedente de sus 608 fechas conocidas, mantienen ese ámbito.
+
 ## Catálogo que debe cubrir la tabla final
 
 | Bloque | Sistemas obligatorios | Cantidad |
@@ -19,16 +21,16 @@ Los párrafos y tablas siguientes conservan la evolución del diseño anterior. 
 
 **Corte anterior a la enmienda de alcance (12/11/2026):** existe selección HPO/NAS registrada para el catálogo anterior, con ejecución parcial documentada; las afirmaciones de ausencia de HPO o de falta de registro de selección corresponden a cortes anteriores. El benchmark final, R y su cierre inferencial siguen pendientes. [Registro y alcance actuales (§9)](09_protocolo_registrado.md) · [Calendario (§40)](40_calendario_original.md) · [Corte de resultados (§41)](41_avance_optimizacion_11_origenes.md) · [Auditoría y trabajo paralelo (§42)](42_auditoria_y_trabajo_paralelo.md).
 
-**Vigencia al 12/11/2026:** Hay selección CUDA parcial documentada en [§36](36_avance_campana_cuda.md) y un corte vigente con 1.484 ajustes HPO nuevos completados en [§41](41_avance_optimizacion_11_origenes.md). La campaña quedó pausada por límite de sesión en ese corte; el benchmark final, R y el ranking siguen pendientes. Los estados «sin HPO» de abajo pertenecen al corte del 08/11/2026, no al estado actual. [Matriz de exigencias y evidencia](38_cumplimiento_guia.md) · [Calendario vigente de once orígenes](40_calendario_original.md).
+**Corte histórico anterior del 12/11/2026:** hay selección CUDA parcial documentada en [§36](36_avance_campana_cuda.md) y un corte con 1.484 ajustes HPO nuevos completados en [§41](41_avance_optimizacion_11_origenes.md). El corte de entrega posterior se resume en §47. La campaña quedó pausada por límite de sesión en ese corte; el benchmark final, R y el ranking siguen pendientes. Los estados «sin HPO» de abajo pertenecen al corte del 08/11/2026, no al estado actual. [Matriz de exigencias y evidencia](38_cumplimiento_guia.md) · [Calendario histórico de once orígenes](40_calendario_original.md).
 
 
 **Actualización de planificación:** [§19: auditoría real de desarrollo y plan propuesto](19_plan_auditoria.md). Sin entrenamiento de mercado, HPO ni preregistro nuevo.
 
-**Avance de software:** fábrica de los once candidatos, híbrido y flujo sintético implementados y verificados; recetas provisionales, sin datos de mercado. Véase [§18: integración y pruebas sintéticas](18_integracion_sintetica.md). No hay HPO ni benchmark vigente ejecutado.
+**Avance de software:** fábrica de los once candidatos, híbrido y flujo sintético implementados y verificados; recetas provisionales, sin datos de mercado. Véase [§18: integración y pruebas sintéticas](18_integracion_sintetica.md). En ese corte sintético todavía no se había ejecutado la selección parcial posterior de §41; el benchmark vigente continúa pendiente.
 
 **Estado al 08/11/2026: sin resultados de mercado del nuevo catálogo.** La presentación de E2 considera únicamente los diez modelos indicados abajo y CNN-1D + LSTM + atención temporal como candidato 11. La expresión «modelo superior» representa la mejora que se desea investigar; no es una conclusión respaldada por evidencia.
 
-Se conservan cuatro prototipos compactos y un corrector con HAR externo, ahora histórico inactivo, con diez pruebas sintéticas documentadas. El nuevo híbrido tiene receta provisional: está implementado provisionalmente y probado con datos sintéticos, sin entrenamiento de mercado. Las diez pruebas anteriores no lo validan; sus nuevos controles están en §18. Los seis adaptadores existentes se integraron sin reducir sus mecanismos y pasaron el smoke sintético; la auditoría del flujo de mercado sigue pendiente. No se han ejecutado el HPO, el dimensionamiento ni la evaluación de este conjunto. Las métricas de E1, P0 o ETTh1 y las de artículos externos no rellenan sus resultados.
+Se conservan cuatro prototipos compactos y un corrector con HAR externo, ahora histórico inactivo, con diez pruebas sintéticas documentadas. El nuevo híbrido tiene receta provisional: está implementado provisionalmente y probado con datos sintéticos, sin entrenamiento de mercado. Las diez pruebas anteriores no lo validan; sus nuevos controles están en §18. Los seis adaptadores existentes se integraron sin reducir sus mecanismos y pasaron el smoke sintético; la auditoría del flujo de mercado sigue pendiente. En ese corte del 08/11 no se habían ejecutado el HPO, el dimensionamiento ni la evaluación de ese conjunto. La selección histórica posterior se documenta en §41. Las métricas de E1, P0 o ETTh1 y las de artículos externos no rellenan sus resultados.
 
 ## 6.1 Tabla histórica de los once candidatos
 
