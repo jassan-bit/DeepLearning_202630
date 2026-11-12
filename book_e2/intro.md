@@ -2,6 +2,8 @@
 
 **Deep Learning · 2026-30 · Jassan Arteta**
 
+**Protocolo reducido del 12/11/2026:** [§48 registra seis plazas HPO por red, una semilla y tres folds internos](sections/48_protocolo_reducido.md), preservando el contrato de E1 y los dieciséis sistemas. Para el trabajo nuevo afectado sustituye el calendario anterior descrito más abajo. La aceptación GPU y de TiDE, la admisión presupuestaria y las nuevas ejecuciones permanecen condicionadas a sus comprobaciones; este registro no añade resultados al informe consolidado.
+
 **Versión de entrega consolidada con la evidencia disponible al 12/11/2026.** Se reúnen problema, EDA, literatura, implementaciones, experimentos ejecutados y conclusiones. Este cierre utiliza resultados guardados y no inicia nuevas corridas.
 
 **[Leer el informe consolidado, resultados y conclusiones (§47)](sections/47_entrega_consolidada.md)** · **[Descargar el paquete de entrega](_static/delivery_20261112/Entregable2_evidencia_disponible.zip)**

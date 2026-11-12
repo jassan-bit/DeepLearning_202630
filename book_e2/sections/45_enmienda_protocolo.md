@@ -1,5 +1,7 @@
 # 45. Enmienda del protocolo: calendario común, presupuesto y prueba final
 
+**Registro anterior conservado:** para el trabajo nuevo afectado, la [enmienda reducida de §48](48_protocolo_reducido.md) establece seis plazas HPO, una semilla y selección global sobre tres folds internos para la evaluación heredada posterior. Este capítulo y sus archivos mantienen intactas sus reglas originales y su procedencia; la nueva enmienda no acredita ejecución ni modifica automáticamente Colab.
+
 **Enmienda prospectiva del 12/11/2026:** se mantiene el [catálogo obligatorio de dieciséis sistemas](43_catalogo_obligatorio.md) y la [adjudicación de nueve cuerpos definidos y TiDE NAS](44_arquitecturas_publicadas.md). Se registran **tres anclas HPO comunes, una sola NAS inicial para TiDE y diez reajustes mensuales de evaluación**. El refit histórico de enero de 2025 utiliza una receta ya seleccionada, sin otra búsqueda.
 
 Esta enmienda rige el trabajo nuevo afectado. Los resultados y las fechas de acceso anteriores conservan su procedencia; el registro actual no se presenta como un preregistro anterior a todas las ejecuciones de E2. La publicación tampoco modifica el proceso ni las variables de una sesión privada de Colab.
