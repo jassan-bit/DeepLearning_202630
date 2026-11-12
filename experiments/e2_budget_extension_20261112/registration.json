@@ -1,0 +1,44 @@
+{
+  "version": "e2-budget-extension-registration-v1",
+  "status": "authorized_by_user",
+  "protocol_id": "e2-reduced-delivery-v1",
+  "engine_commit": "1e8745497b484518f766b6da5c19be8362d9add7",
+  "github_primary_transport_commit": "7ad290ada4ef9908aecfe042b610251206d9b099",
+  "funding_policy": {
+    "version": "e2-registered-budget-extension-v1",
+    "engine_commit": "1e8745497b484518f766b6da5c19be8362d9add7",
+    "initial_total_hours": 64,
+    "authorized_total_hours": 72,
+    "added_seconds": 28800,
+    "budget_reset": false,
+    "worker_caps_changed": false,
+    "status": "authorized_by_user",
+    "authorization": {
+      "source": "explicit_user_confirmation",
+      "approved_total_hours": 72,
+      "evidence_sha256": "d6390f2764b861643f9861e473b07f3154890b0a035675648743b10bac65e59f"
+    },
+    "sha256": "a1cf19c7a4c88f525afa5d7369546b4e31a898447cee56830ec520bd542e350f"
+  },
+  "files_sha256": {
+    "notebooks/run_e2_reduced_github72_colab.py": "6a970b13cd04efa176293ab54c30f2f73608e86769fa1f75463937eb3044c875",
+    "scripts/e2_reduced_github_restore.py": "0ece3c8617b37218a43679b4eb66e4c495d6ff485cb3e6a3bb852128a056374e",
+    "scripts/e2_reduced_github_state.py": "ebf11587a7b3219e2801d0f420c86b4ec5ebe7113f74c40c6388a136bed03b6d",
+    "scripts/e2_registered_budget_extension.py": "900182afb3a29550e51bf4420f362ec986d14cff45f9824ee8e7669aaee3dae4",
+    "scripts/reconcile_e2_github_completed.py": "f9fe82417b338774d8106f0d57de8587aaed2b9050a766ec915d9ff2e7092424",
+    "scripts/run_e2_reduced_github72_delivery.py": "ae4f214101aa0c48c3f7040a569bf9336bc4f07b1c025d3745bb5edbac842988",
+    "tests/test_e2_budget72_launcher.py": "a2eef1b4396280dab29855aa702491a08f0915524e68b94c7b2a2f78bd3cd524",
+    "tests/test_e2_completed_upload_reconciliation.py": "df377b970c99762c67df1d1afe71f40609385f354a35867e984be4f521b1e5a8",
+    "tests/test_e2_registered_budget_extension.py": "da9cc2390fc14e4447f29301ac7cf17c193eafed9016ca7817a6723ab53671d0",
+    "experiments/e2_budget_extension_20261112/authorization.json": "d6390f2764b861643f9861e473b07f3154890b0a035675648743b10bac65e59f",
+    "experiments/e2_budget_extension_20261112/funding_authorization.json": "f0ae9e3a9f0618728e558e56cec6cc7893251cc390352b356ddac427ec2c48da"
+  },
+  "synthetic_tests_passed": 19,
+  "changes_models_seeds_or_data_contract": false,
+  "Google_Drive_used": false,
+  "purpose": "Queued clean continuation after the original controller stops; no interruption or signal is sent to the current fit. Draft funding is rejected before any optimizer work.",
+  "new_real_model_training_by_preparation": false,
+  "authorization_evidence_path": "experiments/e2_budget_extension_20261112/authorization.json",
+  "authorization_evidence_sha256": "d6390f2764b861643f9861e473b07f3154890b0a035675648743b10bac65e59f",
+  "reconciliation_scope": "Verify and back up one already successful local fit matching an open remote lease; preserve exact existing charge and optimizer work, then continue. No scientific fit is repeated."
+}
