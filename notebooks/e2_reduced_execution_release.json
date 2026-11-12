@@ -1,6 +1,6 @@
 {
   "version": "e2-reduced-execution-release-v1",
-  "status": "ready",
+  "status": "superseded_github_only",
   "protocol_id": "e2-reduced-delivery-v1",
   "source_commit": "1e8745497b484518f766b6da5c19be8362d9add7",
   "migration_registration_commit": "1e8745497b484518f766b6da5c19be8362d9add7",
@@ -13,5 +13,6 @@
   "budget_reset": false,
   "results_branch": "results/e2-reduced-delivery-v1",
   "results_release_tag": "e2-reduced-results-20261112-v1",
-  "checks_scope": "62 synthetic/mocked or pinned-source parity tests passed before release; real CUDA fitting remains subject to the actual registered worker and budget checks."
+  "checks_scope": "62 synthetic/mocked or pinned-source parity tests passed before release; real CUDA fitting remains subject to the actual registered worker and budget checks.",
+  "reason": "User requires GitHub as the sole persistent destination. The earlier launcher required Drive and is superseded; the new launcher will use only local transient /content plus GitHub."
 }
