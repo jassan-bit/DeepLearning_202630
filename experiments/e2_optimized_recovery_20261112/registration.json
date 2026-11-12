@@ -1,0 +1,52 @@
+{
+  "version": "e2-optimized-colab-loss-recovery-registration-v1",
+  "status": "registered_before_any_recovery_execution",
+  "created_at_utc": "2026-11-12T01:24:40.037106+00:00",
+  "repository": "jassan-bit/DeepLearning_202630",
+  "campaign_branch": "campaigns/e2-cuda-crop-11-v2",
+  "sealed_campaign_head": "30c121072f97917c234fea2269dad50d00113850",
+  "plan_sha256": "877a8ab4a0d34599f43c5dd16a90fe87fe03d37fe535466bf8e009c379cce742",
+  "scientific_source_commit": "564ba4762f84a800b02fa4c734f5752a169f5223",
+  "optimization_source_commit": "8e3ab6cfb1b3fc3c804f0c914fa5d92b661058d9",
+  "target": {
+    "job_id": "2228300649374ed72f7d223cafafe60815fc7a20767979d96f6f709b1dcad2fe",
+    "job_payload_sha256": "65bd47f453de7b7cf501b6ba3f2e485893891fe036711154860c5c1af0095a9c",
+    "started_event_sha256": "cb313756ba677a378ee96f9ec572c56b5cfde0d29dbc5ba4728f8aeba045c8cc",
+    "sequence": 1783,
+    "old_session_id": "9f75b7f0c76e4e88993f03ef2c296531",
+    "reservation_seconds": 7500.0
+  },
+  "previous_completed_jobs": 889,
+  "currently_authorized_combined_total_hours": 56,
+  "new_combined_total_hours": null,
+  "explicit_new_total_required_before_execution": true,
+  "budget_extension_performed": false,
+  "physical_retry_executed": false,
+  "old_session_conservative_allocation_seconds": 28800,
+  "original_unknown_attempt": {
+    "outcome": "unknown",
+    "elapsed_seconds": null,
+    "optimizer_steps": null,
+    "optimizer_steps_known_lower_bound": 0,
+    "partial_optimizer_update_may_have_occurred": true
+  },
+  "decision": "retry_same_sealed_logical_job_once_after_executor_and_outcome_absence_confirmed",
+  "receipt_branch": "recoveries/e2-cuda-crop-11-v2/colab-loss-20261112-r1",
+  "physical_retry_limit": 1,
+  "implementation_sha256": {
+    "scripts/e2_optimized_reconciliation_v1.py": "b46d960c91e1f951a79914fca4641743dcaf6068feea22df8f50c8f0ec8ad3d5",
+    "scripts/e2_optimized_recovery_git_v1.py": "1769ae1068cab96d0ea279fbfe57b3ab53f208abefd2f3d86b9cd86016946de0",
+    "scripts/run_e2_optimized_recovery_v1.py": "6e4d2e0c7b7e7846e83f416103645b49d7d1c3b3e153085371c0f944082e841e",
+    "notebooks/recover_e2_colab_loss_20261112.py": "88e90259d5e252477e66fea362d2a6c9f14cc19df69980df93f93b654eb661df"
+  },
+  "validation": {
+    "stdlib_safety_cases": 29,
+    "frozen_real_snapshot_validated": true,
+    "market_fits_executed_for_validation": 0,
+    "cuda_execution_performed": false,
+    "scope": "CPU ledger, crash, concurrent Git claims, replay and deadline accounting; real GPU outcome pending Colab"
+  },
+  "scientific_plan_changes": false,
+  "final_market_values_read": false,
+  "final_R": null
+}
