@@ -60,7 +60,7 @@ class RequiredCatalogueTests(unittest.TestCase):
 
     def test_required_classical_selection_cannot_request_ridge(self):
         module = SimpleNamespace(select_classical=Mock(return_value="selected"))
-        with patch.dict(sys.modules, {"e2_classical_training": module}):
+        with patch.dict(sys.modules, {"e2_required_classical_training": module}):
             self.assertEqual(required.select_required_classical("panel", "prepared", source_commit="source"), "selected")
             with self.assertRaises(ValueError):
                 required.select_required_classical("panel", "prepared", include_ridge=True)
@@ -79,7 +79,7 @@ class RequiredCatalogueTests(unittest.TestCase):
         module = SimpleNamespace(refit_classical=Mock())
         historical = SimpleNamespace(ridge_alpha=1.0, selected_scores={name: 1.0 for name in (*required.CLASSICAL, "Ridge")})
         valid = SimpleNamespace(ridge_alpha=None, selected_scores={name: 1.0 for name in required.CLASSICAL})
-        with patch.dict(sys.modules, {"e2_classical_training": module}):
+        with patch.dict(sys.modules, {"e2_required_classical_training": module}):
             with self.assertRaises(ValueError):
                 required.refit_required_classical(None, None, historical)
             required.refit_required_classical("panel", "prepared", valid, source_commit="source")

@@ -18,6 +18,9 @@ python scripts/e2_required_catalogue.py
 La API `run_required_neural_selection` rechaza el híbrido antes del entrenamiento.
 `select_required_classical` omite los 18 ajustes Ridge y `refit_required_classical`
 omite su reajuste. Las APIs históricas mantienen su comportamiento previo.
+La implementación prospectiva está en `scripts/e2_required_classical_training.py`;
+`scripts/e2_classical_training.py` conserva exactamente sus bytes históricos,
+vinculados a los recibos publicados y al registro CUDA.
 
 Esta enmienda cierra **qué sistemas son obligatorios**, no los experimentos ni
 los demás requisitos. Mantiene recetas, HPO, NAS aplicable, orígenes, semillas,

@@ -95,9 +95,9 @@ def select_required_classical(panel, prepared, **kwargs):
     if "include_ridge" in kwargs:
         raise ValueError("Ridge is excluded from the mandatory catalogue")
     if __package__:
-        from . import e2_classical_training as classical
+        from . import e2_required_classical_training as classical
     else:
-        import e2_classical_training as classical
+        import e2_required_classical_training as classical
     return classical.select_classical(panel, prepared, include_ridge=False, **kwargs)
 
 
@@ -107,9 +107,9 @@ def refit_required_classical(panel, prepared, selection, **kwargs):
     if selection.ridge_alpha is not None or set(selection.selected_scores) != set(CLASSICAL):
         raise ValueError("Use a three-comparator selection without Ridge")
     if __package__:
-        from . import e2_classical_training as classical
+        from . import e2_required_classical_training as classical
     else:
-        import e2_classical_training as classical
+        import e2_required_classical_training as classical
     return classical.refit_classical(panel, prepared, selection, **kwargs)
 
 
