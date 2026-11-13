@@ -1,0 +1,131 @@
+{
+  "Google_Drive_used": false,
+  "active_worker": {
+    "admitted_at_america_bogota": "2026-11-13T09:38:50.868663-05:00",
+    "admitted_at_utc": "2026-11-13T14:38:50.868663+00:00",
+    "kind": "neural-final",
+    "model": "GRU32",
+    "private_kernel_liveness_inspected": false,
+    "remote_reservation_confirmed": true,
+    "seed": 271804
+  },
+  "artifacts": {
+    "manifest": "manifest.json",
+    "neural_progress": "neural_progress.csv",
+    "source_evidence": "source_evidence.json"
+  },
+  "budget": {
+    "active_reservations": {
+      "354fc001f111d258fc80c8bf224b6de868f5539740aea2f6f28a0102e3ca8ae3": 1860.0
+    },
+    "authorized_total_hours": 80,
+    "available_hours_after_active_reservation": 5.821674957168121,
+    "available_seconds_after_active_reservation": 20958.029845805235,
+    "balance_scope": "Unconsumed allowance from recorded closed costs; available allowance additionally withholds the entire active 1860-second reservation. Current worker elapsed time is not a measured closed charge.",
+    "budget_reset": false,
+    "completed_charges": 248,
+    "consumed_hours": 73.6616583761652,
+    "funding_continuation_commit": "41da88cf600aadc0319214465c94a85335e2b1b7",
+    "historical_charged_seconds": 222927.98951942776,
+    "last_event_america_bogota": "2026-11-13T09:38:50.868663-05:00",
+    "last_event_sha256": "c753f959e73f781c1f09b0f7b822b9655cae9e29068d3a4bae379fdb3538ff34",
+    "last_event_utc": "2026-11-13T14:38:50.868663+00:00",
+    "ledger_records_checked": 1024,
+    "original_approval_timestamp_utc": "2026-11-13T09:54:17.605263+00:00",
+    "reduced_ledger_charged_and_overhead_seconds": 42253.980634767,
+    "remaining_hours_before_active_reservation": 6.338341623834787,
+    "remaining_is_not_runtime_estimate": true,
+    "remaining_seconds_before_active_reservation": 22818.029845805235,
+    "reservations": 249,
+    "reserved_seconds": 1860.0,
+    "sha256_chain_verified": true,
+    "unknown_outcome_reservations": {}
+  },
+  "classical_comparators": {
+    "final_fits_completed": 0,
+    "final_fits_planned": 3,
+    "selection_fits_completed": 0,
+    "selection_fits_planned": 63,
+    "systems": [
+      "Persistence",
+      "SeasonalNaive",
+      "ARIMA"
+    ]
+  },
+  "control_reason": "lease_reserved_before_worker",
+  "control_state_id": "5d56efbbf96eba65d2654b0879085a5efc5bbeb140b7b1763b5dc168b56fd97b",
+  "final_refits": {
+    "active_model": "GRU32",
+    "active_seed": 271804,
+    "completed": 75,
+    "completed_models": [
+      "FCN-1D",
+      "ResNet-1D",
+      "Inception-1D",
+      "LSTM-autoencoder con predictor",
+      "TimesNet",
+      "TSMixer",
+      "TiDE",
+      "TimeMixer",
+      "PatchTST",
+      "iTransformer",
+      "MLP16",
+      "LSTM32"
+    ],
+    "next_seed": 271805,
+    "next_unadmitted_model": "GRU32",
+    "pending": 3,
+    "planned": 78,
+    "reference_completed": 15,
+    "reference_pending": 3,
+    "reference_planned": 18,
+    "top10_completed": 60,
+    "top10_pending": 0,
+    "top10_planned": 60
+  },
+  "final_scoring": {
+    "completed": false,
+    "final_A2_metrics_available": false,
+    "systems_required": 16
+  },
+  "hpo": {
+    "closed": 234,
+    "known_failed": 2,
+    "pending": 0,
+    "planned": 234,
+    "reference_planned": 54,
+    "reference_successful": 54,
+    "successful": 231,
+    "top10_planned": 180,
+    "top10_successful": 177,
+    "unknown_outcome": 1
+  },
+  "observed_at_america_bogota": "2026-11-13T09:40:00.695849-05:00",
+  "observed_at_utc": "2026-11-13T14:40:00.695849+00:00",
+  "persistent_destination": "github",
+  "pilots": {
+    "completed": 0,
+    "models": [
+      "iTransformer",
+      "GRU32"
+    ],
+    "pending": 10,
+    "planned": 10,
+    "seeds_per_model": 5
+  },
+  "predictor_freeze": {
+    "completed": false,
+    "required_predictors": 81
+  },
+  "remote_training_admission_confirmed": true,
+  "results_commit": "fb7dd9347ee39d384a339469d00ee99820d47bf4",
+  "scope_notes": [
+    "HPO successes are training/validation results, not final testing metrics.",
+    "TimesNet keeps two known failures; TSMixer keeps one closed opportunity with unknown outcome.",
+    "The 75 completed final refits do not constitute a finished benchmark or full assignment compliance.",
+    "Historical final E1 dates were already known; this update does not assert a blind test.",
+    "GitHub records an active GRU32 admission; this dated snapshot does not inspect the private Colab kernel in real time."
+  ],
+  "selection_status": "completed_all_13_neural_models",
+  "version": "e2-final-progress-snapshot-v2"
+}
