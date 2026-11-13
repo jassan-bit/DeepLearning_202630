@@ -30,6 +30,19 @@ def regular(path):
     path=Path(path).absolute()
     if any(p.is_symlink() for p in (path,*path.parents)):raise ValueError('Fresh runtime paths must be regular')
     return path
+def prepared_python(path):
+    """Accept the normal venv executable link, without relaxing artifact paths.
+
+    Keep its lexical venv path: resolving it before execution would discard the
+    interpreter's pyvenv.cfg and therefore change its installed package profile.
+    """
+    path=Path(path).absolute();regular(path.parent)
+    try:target=path.resolve(strict=True)
+    except (OSError,RuntimeError) as error:raise ValueError('Prepared base Python executable is absent or invalid') from error
+    regular(target)
+    if not target.is_file() or not os.access(target,os.X_OK):
+        raise ValueError('Prepared base Python target must be a regular executable file')
+    return path
 def once(path,raw):
     path=regular(path);path.parent.mkdir(parents=True,exist_ok=True)
     if path.exists():
@@ -101,8 +114,7 @@ def _boot_id():return Path('/proc/sys/kernel/random/boot_id').read_text().strip(
 def restore_clean_runtime(old_module,original_output,posthoc_output,environment_adapter_root,existing_python,deadline):
     """Rebuild identical runtime bytes/profile and a fresh current-boot admission."""
     old=old_module;posthoc=regular(posthoc_output);original_output=regular(original_output)
-    adapter=regular(environment_adapter_root);existing_python=regular(existing_python)
-    if not existing_python.is_file():raise ValueError('Prepared base Python3.12 executable is absent')
+    adapter=regular(environment_adapter_root);existing_python=prepared_python(existing_python)
     if old.file_sha(Path(old.__file__))!=CONTROLLER_SHA:raise ValueError('Original posthoc controller bytes changed')
     full,receipt_raw,binding=select_runtime(old,posthoc);receipt=json.loads(receipt_raw)
     clean=regular(posthoc/'reproduction/clean');source=regular(receipt['clean_source']);python=regular(receipt['clean_python'])
@@ -124,6 +136,14 @@ def restore_clean_runtime(old_module,original_output,posthoc_output,environment_
         raise ValueError('Exact historical environment adapter bytes are required')
     clean.mkdir(parents=True,exist_ok=True);lock=clean/'environment.lock.txt';once(lock,lock_raw)
     env=old.clean_environment();log=clean/'fresh_environment_install.log';checkout_log=clean/'fresh_checkout.log'
+    boot=_boot_id()
+    if re.fullmatch('[0-9a-f-]{36}',boot) is None:raise ValueError('Fresh runtime boot identity is unavailable')
+    probes=clean/'fresh_runtime_probes'/boot;probes.mkdir(parents=True,exist_ok=True)
+    base_profile=_probe(old,existing_python,'profile',probes/'prepared_packages.json',env,deadline,log)
+    if base_profile.get('python')!=[3,12,12] or base_profile.get('packages',{}).get('torch')!='2.8.0+cu126':
+        raise ValueError('Prepared base Python3.12.12/Torch2.8cu126 profile differs')
+    base_runtime=_probe(old,existing_python,'runtime',probes/'prepared_runtime.json',env,deadline,log)
+    if base_runtime!=receipt['runtime']:raise ValueError('Prepared base A100 runtime differs from the historical runtime')
     created_source=not source.exists()
     if created_source:
         for command in (['git','init','--quiet',source],['git','-C',source,'remote','add','origin',REPOSITORY],
@@ -143,16 +163,17 @@ def restore_clean_runtime(old_module,original_output,posthoc_output,environment_
     created_venv=not python.exists()
     if created_venv:
         old.run_bounded([existing_python,'-I','-m','venv','--copies',clean/'venv'],env=env,timeout=_remaining(deadline,180),log=log)
+    cfg=regular(clean/'venv/pyvenv.cfg').read_text().lower()
+    if 'include-system-site-packages = false' not in cfg:raise ValueError('Fresh runtime must not inherit system packages')
+    install_packages=created_venv or not (clean/'clean_runtime.json').exists()
+    if install_packages:
+        if any((clean/'fresh_runtime_admissions').rglob('admission.json')):
+            raise ValueError('Existing runtime admission without its historical receipt; preserved')
         # The base setup uses pip; retaining its default HTTP cache avoids
         # downloading the same CUDA wheels again into a second cache format.
         old.run_bounded([python,'-I','-m','pip','install','--disable-pip-version-check','--no-deps','--requirement',lock,
                          '--index-url','https://pypi.org/simple','--extra-index-url','https://download.pytorch.org/whl/cu126'],
                         env=env,timeout=_remaining(deadline-5),log=log)
-    cfg=regular(clean/'venv/pyvenv.cfg').read_text().lower()
-    if 'include-system-site-packages = false' not in cfg:raise ValueError('Fresh runtime must not inherit system packages')
-    boot=_boot_id()
-    if re.fullmatch('[0-9a-f-]{36}',boot) is None:raise ValueError('Fresh runtime boot identity is unavailable')
-    probes=clean/'fresh_runtime_probes'/boot;probes.mkdir(parents=True,exist_ok=True)
     observed_profile=_probe(old,python,'profile',probes/'packages.json',env,deadline,log)
     if observed_profile!=profile:raise ValueError('Actual clean packages differ from the historical worker profile')
     observed_runtime=_probe(old,python,'runtime',probes/'runtime.json',env,deadline,log)
@@ -169,7 +190,8 @@ def restore_clean_runtime(old_module,original_output,posthoc_output,environment_
         'boot_id':boot,'historical_runtime_receipt_sha256':RUNTIME_SHA,'historical_package_lock_sha256':LOCK_SHA,
         'synthetic_acceptance_sha256':ACCEPTANCE_SHA,'fresh_synthetic_probe_executed':True,
         'new_source_checkout_created_this_call':created_source,'new_venv_created_this_call':created_venv,
-        'actual_package_install_method':'pip_exact_lock_official_indexes_with_default_cache' if created_venv else 'existing_exact_environment_verified',
+        'actual_package_install_method':'pip_exact_lock_official_indexes_with_default_cache' if install_packages else 'existing_exact_environment_verified',
+        'prepared_python':str(existing_python),'observed_prepared_package_profile':base_profile,'observed_prepared_runtime':base_runtime,
         'observed_package_profile':observed_profile,'observed_runtime':observed_runtime,'completed_worker_binding':binding,
         'helper_sha256':old.file_sha(Path(__file__)),'historical_receipt_relabelled_as_new':False,
         'original_benchmark_modified':False,'optimizer_steps':0,'training_performed':False,'ledger_modified_here':False}

@@ -24,8 +24,15 @@ original con su verificación de resultados completados. Los diagnósticos ya
 terminados se reutilizan; no se vuelven a entrenar las corridas verificadas.
 Una interrupción de entrenamiento conserva su reserva para conciliación.
 
-Validación local: 48 pruebas de software, incluyendo selección de artefactos,
+Validación local: 53 pruebas de software, incluyendo selección de artefactos,
 integridad del caché, CLI, conservación del runtime, límites de plazo, señales
 y cierre real de un subproceso y su descendiente. No se ejecutó una restauración
 real ni entrenamiento de mercado en la A100 privada del usuario desde este
 workspace. La primera ejecución real debe realizarse en Colab.
+
+Corrección del ejecutable base: se admite el enlace normal de `venv/bin/python`
+con padres regulares y destino ejecutable, preservando la ruta del entorno y
+verificando su Python/Torch/A100. El Python limpio conserva `--copies` y los
+artefactos mantienen su prohibición de enlaces. Una instalación de paquetes
+incompleta puede continuarse únicamente si todavía no tiene recibo ni admisión
+ambiental; los resultados y cargos anteriores permanecen intactos.

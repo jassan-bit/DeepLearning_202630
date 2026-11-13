@@ -1,4 +1,4 @@
-import hashlib,json,sys,tempfile,time,unittest
+import hashlib,json,subprocess,sys,tempfile,time,unittest,venv
 from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import Mock,patch
@@ -16,6 +16,7 @@ class RuntimeTests(unittest.TestCase):
         self.original_source=base/('reduced-source-'+m.ENGINE);self.original_source.mkdir()
         self.clean=self.posthoc/'reproduction/clean';self.source=self.clean/'source';self.python=self.clean/'venv/bin/python'
         self.existing=base/'base-python';self.existing.write_bytes(b'base profile might contain scipy1.17.1; never copied')
+        self.existing.chmod(0o700)
         self.adapter=base/'environment-adapter';(self.adapter/'scripts').mkdir(parents=True)
         bootstrap=self.adapter/'scripts/e2_posthoc_clean_worker_bootstrap.py';bootstrap.write_bytes(b'exact historical bootstrap')
         env_adapter=self.adapter/'scripts/e2_posthoc_environment_adapter.py';env_adapter.write_bytes(b'exact historical adapter')
@@ -87,7 +88,8 @@ class RuntimeTests(unittest.TestCase):
         admission=json.loads(next((self.clean/'fresh_runtime_admissions').rglob('admission.json')).read_bytes())
         self.assertFalse(admission['historical_receipt_relabelled_as_new']);self.assertEqual(admission['optimizer_steps'],0)
         self.assertEqual(admission['actual_package_install_method'],'pip_exact_lock_official_indexes_with_default_cache')
-        self.assertTrue(all(call.args[1]==self.python for call in self.probe_calls));self.old.verify_clean_runtime.assert_called_once_with(self.full)
+        self.assertEqual([call.args[1] for call in self.probe_calls],[self.existing,self.existing,self.python,self.python])
+        self.old.verify_clean_runtime.assert_called_once_with(self.full)
         self.assertFalse(any('--worker-spec' in [str(x) for x in call.args[0]] for call in self.old.run_bounded.call_args_list))
     def test_completed_worker_and_completed_setup_bindings_are_required(self):
         self.result['worker_spec_sha256']='0'*64;(self.job/'result.json').write_bytes(m.canonical(self.result)+b'\n')
@@ -99,13 +101,36 @@ class RuntimeTests(unittest.TestCase):
         self.assertFalse(self.old.run_bounded.called)
     def test_observed_distribution_drift_stops_before_historical_receipt_publication(self):
         changed=json.loads(json.dumps(self.profile));changed['packages']['scipy']='1.17.1'
-        with self.assertRaisesRegex(ValueError,'packages differ'):self.restore(probe=lambda *args:changed)
+        with self.assertRaisesRegex(ValueError,'packages differ'):
+            self.restore(probe=lambda old,python,kind,*a:(changed if python==self.python else self.profile) if kind=='profile' else self.runtime)
         self.assertFalse((self.clean/'clean_runtime.json').exists());self.old.verify_clean_runtime.assert_not_called()
     def test_observed_gpu_runtime_must_equal_original(self):
         changed=dict(self.runtime,gpu='Tesla T4')
         with self.assertRaisesRegex(ValueError,'A100 runtime differs'):
             self.restore(probe=lambda old,python,kind,*a:self.profile if kind=='profile' else changed)
         self.assertFalse((self.clean/'clean_runtime.json').exists())
+    def test_real_symlink_venv_preserves_its_package_context(self):
+        real=Path(self.tmp.name)/'real-prepared-venv';venv.EnvBuilder(with_pip=False,symlinks=True).create(real)
+        python=real/'bin/python'
+        self.assertTrue(python.is_symlink());self.assertEqual(m.prepared_python(python),python)
+        value=json.loads(subprocess.check_output([str(m.prepared_python(python)),'-I','-c',
+            'import json,sys;print(json.dumps({"prefix":sys.prefix,"python":list(sys.version_info[:3])}))'],text=True))
+        self.assertEqual(value['prefix'],str(real));self.assertEqual(value['python'],list(sys.version_info[:3]))
+        # The same symlink is accepted only for this executable, never an artifact.
+        with self.assertRaisesRegex(ValueError,'regular'):m.regular(python)
+        self.existing=python;self.assertEqual(self.restore(),self.full)
+    def test_prepared_interpreter_requires_regular_parents_and_executable_target(self):
+        linked_parent=Path(self.tmp.name)/'linked-parent';linked_parent.symlink_to(self.existing.parent,target_is_directory=True)
+        with self.assertRaisesRegex(ValueError,'regular'):m.prepared_python(linked_parent/self.existing.name)
+        self.existing.chmod(0o600)
+        with self.assertRaisesRegex(ValueError,'executable'):m.prepared_python(self.existing)
+        dangling=Path(self.tmp.name)/'missing-python';dangling.symlink_to('missing-target')
+        with self.assertRaisesRegex(ValueError,'absent or invalid'):m.prepared_python(dangling)
+    def test_wrong_prepared_interpreter_profile_stops_before_venv_creation(self):
+        wrong={'python':[3,13,0],'packages':{'torch':'2.8.0+cu126'}}
+        with self.assertRaisesRegex(ValueError,'Prepared base.*profile differs'):
+            self.restore(probe=lambda *args:wrong)
+        self.assertFalse(self.old.run_bounded.called);self.assertFalse((self.clean/'clean_runtime.json').exists())
     def test_synthetic_acceptance_must_be_regenerated_byte_identically(self):
         self.wrong_acceptance=True
         with self.assertRaisesRegex(ValueError,'byte-identical'):self.restore()
@@ -114,6 +139,19 @@ class RuntimeTests(unittest.TestCase):
         self.python.parent.mkdir(parents=True);self.python.write_bytes(b'preexisting')
         (self.clean/'venv/pyvenv.cfg').write_text('include-system-site-packages = true\n')
         with self.assertRaisesRegex(ValueError,'system packages'):self.restore()
+        self.assertFalse(any('pip' in [str(x) for x in call.args[0]] for call in self.old.run_bounded.call_args_list))
+    def test_partial_venv_without_historical_receipt_retries_exact_package_install(self):
+        self.python.parent.mkdir(parents=True);self.python.write_bytes(b'partial clean executable')
+        (self.clean/'venv/pyvenv.cfg').write_text('include-system-site-packages = false\n')
+        self.assertEqual(self.restore(),self.full)
+        commands=[[str(x) for x in call.args[0]] for call in self.old.run_bounded.call_args_list]
+        self.assertTrue(any('pip' in command and '--requirement' in command for command in commands))
+        self.assertFalse(any('venv' in command for command in commands))
+    def test_existing_historical_receipt_never_triggers_package_reinstallation(self):
+        self.python.parent.mkdir(parents=True);self.python.write_bytes(b'existing clean executable')
+        (self.clean/'venv/pyvenv.cfg').write_text('include-system-site-packages = false\n')
+        (self.clean/'clean_runtime.json').write_bytes(self.receipt_raw)
+        self.assertEqual(self.restore(),self.full)
         self.assertFalse(any('pip' in [str(x) for x in call.args[0]] for call in self.old.run_bounded.call_args_list))
     def test_deadline_and_symlink_guards_preserve_existing_inputs(self):
         with self.assertRaises(TimeoutError):m._remaining(time.monotonic()-1)
