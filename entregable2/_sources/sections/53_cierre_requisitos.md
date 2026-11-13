@@ -1,6 +1,6 @@
 # 53. Cierre de requisitos y experimentos complementarios
 
-**Actualización del 13/11/2026.** Esta página separa resultados ya obtenidos de las ejecuciones complementarias preparadas para la A100. Los suplementos son posteriores al conocimiento del periodo de prueba. No reemplazan la A2, sus veinte contrastes primarios, los predictores congelados ni los registros históricos.
+**Actualización del 13/11/2026.** Esta página separa resultados ya obtenidos de las ejecuciones complementarias iniciadas en la A100. Los suplementos son posteriores al conocimiento del periodo de prueba. No reemplazan la A2, sus veinte contrastes primarios, los predictores congelados ni los registros históricos.
 
 ## Evidencias que ya pueden revisarse
 
@@ -12,7 +12,9 @@
 | Eficiencia | [§51](51_eficiencia_costes.md): parámetros y tiempos originales medidos, costes por fases y frentes de Pareto con su alcance. | FLOPs, energía, dinero y latencia no medidos siguen ausentes. El perfil nuevo de inferencia requiere su propia ejecución y hardware observado. |
 | Reproducción y presentación | Se actualizan los estados de los capítulos centrales y se mantienen todas las descargas originales. | Compilar el libro y reproducir la aritmética de los pronósticos no equivalen a entrenar de nuevo todo el benchmark en un entorno limpio. |
 
-## Ejecuciones A100 preparadas: sin resultados atribuidos todavía
+## Ejecuciones A100 iniciadas: cierre agregado todavía pendiente
+
+El [corte de progreso verificado](../_static/e2_posthoc_progress_20261113/status.json), con [tabla por modelo](../_static/e2_posthoc_progress_20261113/progress.csv) y [manifiesto](../_static/e2_posthoc_progress_20261113/manifest.json), acredita **68 de 79 predictores congelados con diagnósticos individuales terminados y respaldados**. Incluye las seis semillas de cada uno de los diez modelos principales. Es un corte fechado y vinculado a un commit inmutable de la rama de resultados, no un monitor en vivo. No contiene todavía el recibo del agregado completo de robustez ni registros de los nuevos ajustes. Las tres consultas nativas previas ya devolvieron metadatos, documentados en §52.
 
 El código complementario trabaja en un directorio separado y conserva **GitHub como único destino persistente**. Antes de admitir cómputo comprueba los modelos y archivos originales. Usa una contabilidad adicional vinculada al diario original cerrado, con el mismo límite acumulado autorizado de **80 horas**. No reinicia cargos ni añade crédito.
 
@@ -28,4 +30,4 @@ La reproducción y las ablaciones suman **99 ajustes nuevos planificados**, no r
 
 El periodo de prueba ya se conocía en E1 y se ha analizado en E2. Una ejecución nueva no recupera cegamiento prospectivo. Las hipótesis complementarias deben conservar su fecha real y su condición posterior. Tampoco es posible convertir retrospectivamente un margen δg ausente en un margen registrado antes de los experimentos originales.
 
-Las evidencias nuevas se incorporarán con sus recibos de GitHub, tiempos y resultados efectivamente medidos. Hasta entonces, los frentes experimentales de esta sección conservan el estado **preparado para ejecución**. La [matriz de cumplimiento](38_cumplimiento_guia.md) distingue ese estado de un requisito cerrado.
+Las evidencias nuevas se incorporarán con sus recibos de GitHub, tiempos y resultados efectivamente medidos. El estado actual es **robustez en ejecución, con recibos individuales; reproducción y ablaciones pendientes de ejecución**. La [matriz de cumplimiento](38_cumplimiento_guia.md) distingue ese estado de un requisito cerrado.

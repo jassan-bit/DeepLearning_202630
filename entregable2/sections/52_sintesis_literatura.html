@@ -408,7 +408,7 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#puntajes-completos-incertidumbre-y-sensibilidad">52.3 Puntajes completos, incertidumbre y sensibilidad</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mecanismos-transferibles-y-busquedas-efectivamente-intentadas">52.4 Mecanismos transferibles y búsquedas efectivamente intentadas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mecanismos-transferibles-y-busquedas-nativas-ejecutadas">52.4 Mecanismos transferibles y búsquedas nativas ejecutadas</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brecha-contrastable-derivada-de-la-extraccion">52.5 Brecha contrastable derivada de la extracción</a></li>
 </ul>
             </nav>
@@ -658,8 +658,8 @@
 <p>La <a class="reference download internal" download="" href="../_downloads/023788b789c16bddef901fb97c886453/score_sensitivity.csv"><span class="xref download myst">sensibilidad a cuatro ponderaciones</span></a> incluye pesos iguales, énfasis en implementación y énfasis en desempeño. <strong>Ningún escenario identifica un orden único:</strong> para cada sistema el rango conservador sigue siendo 1–10. Es evidencia de selección insuficientemente determinada, no un empate experimental.</p>
 <p>La <a class="reference download internal" download="" href="../_downloads/6851a2bf178e1b200fcdc65f37e8be9c/excluded_originals_context.csv"><span class="xref download myst">tabla de originales excluidos</span></a> conserva Informer, Autoformer, Crossformer y S-Mamba. Crossformer tiene 1.675 citas verificadas en ese corte y S-Mamba 313; las cantidades ausentes para Informer y Autoformer quedan desconocidas. Su exclusión responde al alcance actual y a la cobertura funcional de familias, no a inferioridad demostrada. La justificación mundial de los más citados excluidos permanece abierta porque la cobertura de candidatos y citas es incompleta.</p>
 </section>
-<section id="mecanismos-transferibles-y-busquedas-efectivamente-intentadas">
-<h2>52.4 Mecanismos transferibles y búsquedas efectivamente intentadas<a class="headerlink" href="#mecanismos-transferibles-y-busquedas-efectivamente-intentadas" title="Link to this heading">#</a></h2>
+<section id="mecanismos-transferibles-y-busquedas-nativas-ejecutadas">
+<h2>52.4 Mecanismos transferibles y búsquedas nativas ejecutadas<a class="headerlink" href="#mecanismos-transferibles-y-busquedas-nativas-ejecutadas" title="Link to this heading">#</a></h2>
 <p>La <a class="reference download internal" download="" href="../_downloads/bf0099663c8d3293461de348a2ab7a1c/transverse_mechanisms.csv"><span class="xref download myst">matriz de mecanismos</span></a> conecta fuentes de origen con una propiedad compartida y una limitación concreta. Los textos de origen se identificaron por las referencias de los originales y sus fuentes primarias enlazadas; no se atribuye hoy una nueva lectura completa a todos ellos.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -694,14 +694,44 @@ all:attention AND all:"image patches" AND (all:transfer OR all:adaptation)
 all:"LSTM autoencoder" AND all:industrial AND (all:transfer OR all:adaptation)
 </pre></div>
 </div>
-<p>Las tres fallaron por <code class="docutils literal notranslate"><span class="pre">Tunnel</span> <span class="pre">connection</span> <span class="pre">failed:</span> <span class="pre">403</span> <span class="pre">Forbidden</span></code>; el conector web tampoco recuperó sus URLs API. El <a class="reference download internal" download="" href="../_downloads/cf1140b97f5800071b63cb69c21e4328/native_query_attempts.json"><span class="xref download myst">registro de intentos</span></a> conserva fecha, URL, cadena y error; <strong>totales y registros recibidos son <code class="docutils literal notranslate"><span class="pre">null</span></code></strong>. Las búsquedas web auxiliares no acreditan el requisito de búsqueda transversal nativa ni proporcionan denominadores sustituibles. Esta obligación de §3.1 continúa abierta.</p>
+<p>Los intentos de las <strong>18:52:37 UTC</strong> fallaron por <code class="docutils literal notranslate"><span class="pre">Tunnel</span> <span class="pre">connection</span> <span class="pre">failed:</span> <span class="pre">403</span> <span class="pre">Forbidden</span></code>; el conector web tampoco recuperó sus URLs API. Su <a class="reference download internal" download="" href="../_downloads/cf1140b97f5800071b63cb69c21e4328/native_query_attempts.json"><span class="xref download myst">registro histórico</span></a> conserva los conteos <code class="docutils literal notranslate"><span class="pre">null</span></code> de aquella ejecución fallida.</p>
+<p><strong>Recuperación nativa posterior desde Colab, 19:29:26–19:29:33 UTC.</strong> Las mismas cadenas se ejecutaron realmente contra la API arXiv, sin filtro de fechas, con <code class="docutils literal notranslate"><span class="pre">start=0,max_results=10</span></code>. El <a class="reference download internal" download="" href="../_downloads/f37b449ca9ca84cadcfc04bf3b1bb06e/source_summary.json"><span class="xref download myst">resumen verificado del recibo</span></a>, la <a class="reference download internal" download="" href="../_downloads/b9441e15880ffeab5d6ee45acd93e328/query_counts.csv"><span class="xref download myst">tabla de consultas</span></a> y el <a class="reference download internal" download="" href="../_downloads/ce6295a027b4745c3a7148ebff2cbead/manifest.json"><span class="xref download myst">manifiesto del suplemento</span></a> documentan esta ronda separada.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Consulta</p></th>
+<th class="head"><p>Hora UTC del 13/11</p></th>
+<th class="head text-right"><p>Total nativo</p></th>
+<th class="head text-right"><p>Metadatos recuperados</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Residuales, visión y transferencia/adaptación</p></td>
+<td><p>19:29:26</p></td>
+<td class="text-right"><p>106</p></td>
+<td class="text-right"><p>10</p></td>
+</tr>
+<tr class="row-odd"><td><p>Atención, parches de imagen y transferencia/adaptación</p></td>
+<td><p>19:29:30</p></td>
+<td class="text-right"><p>78</p></td>
+<td class="text-right"><p>10</p></td>
+</tr>
+<tr class="row-even"><td><p>LSTM-autoencoder, industria y transferencia/adaptación</p></td>
+<td><p>19:29:33</p></td>
+<td class="text-right"><p>3</p></td>
+<td class="text-right"><p>3</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El recibo está fijado en el commit <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/04d0947b1b043b7d389a742d7c3e06a97338d5b4/runs/posthoc-native-search-v1/artifacts/native_transverse_receipt.json"><code class="docutils literal notranslate"><span class="pre">04d0947b1b043b7d389a742d7c3e06a97338d5b4</span></code></a>, con SHA-256 <code class="docutils literal notranslate"><span class="pre">1593584d6fd37d999f300f2879b7fb8213565062162d7fa287a5da9e904a8329</span></code>. Los 17 derivados anteriores permanecen como corte previo; sus valores desconocidos no se reescriben.</p>
+<p>Esta ronda acredita <strong>identificación nativa y recuperación parcial de metadatos</strong>. La suma de totales, 187, no es una unión deduplicada ni un número de estudios incluidos; las 23 ocurrencias recuperadas tampoco son 23 estudios elegibles. El número de estudios únicos permanece desconocido. Siguen pendientes la recuperación de las páginas restantes, la deduplicación entre consultas y rondas, el cribado y la adjudicación por texto completo. Las búsquedas web auxiliares conservan su alcance complementario; la revisión global y el flujo PRISMA siguen parciales.</p>
 </section>
 <section id="brecha-contrastable-derivada-de-la-extraccion">
 <h2>52.5 Brecha contrastable derivada de la extracción<a class="headerlink" href="#brecha-contrastable-derivada-de-la-extraccion" title="Link to this heading">#</a></h2>
 <p><strong>En los nueve estudios primarios que sustentan el catálogo vigente no se identificó una evaluación de estos mecanismos para pronosticar σ₇ no anualizada a h=1 usando exclusivamente siete días OHLCV de Bitcoin, con presupuesto común e inferencia temporal pareada.</strong> La <a class="reference download internal" download="" href="../_downloads/65be2dc0e2b88df874c4993ffcfff7f8/gap_falsification_matrix.csv"><span class="xref download myst">matriz de refutación</span></a> enlaza cada sistema con su tarea, dataset y localizador que sostienen esa delimitación. Basta localizar en cualquiera de esos estudios una evaluación que sí cumpla esas condiciones para corregir la afirmación. La revisión global pendiente impide extenderla a toda la literatura.</p>
 <p>La evidencia financiera complementaria de §3 reduce aún más el alcance de la brecha: TimeMixer ya se ha aplicado a BTCUSD, pero con volatilidad móvil de <strong>21 días anualizada</strong> (<a class="reference external" href="https://arxiv.org/abs/2410.09062">arXiv:2410.09062</a>, §3/Tabla 4); otros estudios usan retornos al cuadrado, volatilidad intradía o implícita. Estos objetivos no se convierten en σ₇ por compartir el término volatilidad. Por ello, la contribución comprobable es estimar la transferencia bajo el contrato E2 y estudiar sus límites de contexto, régimen y coste.</p>
 <p>La brecha se conecta con <a class="reference internal" href="01_punto_partida.html"><span class="std std-doc">RQ1–RQ3 de §1</span></a>: ganancia RMSE superior al δ heredado frente a GRU32/Persistence, erosión por régimen y mejora conjunta de error/coste. Las pruebas y multiplicidad siguen <a class="reference internal" href="45_enmienda_protocolo.html"><span class="std std-doc">§45</span></a>; los resultados futuros mantienen el alcance exploratorio del test conocido. Esta síntesis no cambia δ, no añade una hipótesis confirmatoria retroactiva y no selecciona todavía una arquitectura original de E3.</p>
-<p>Para reproducir los derivados: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">scripts/e2_literature_closure.py</span> <span class="pre">--check</span></code>. Quedan sin resolver la elegibilidad global con motivos por etapa, la conciliación de rondas/versiones, las búsquedas transversales nativas, la verificación de calidad editorial por año y la selección comparativa frente al universo de candidatos. Los intervalos y campos desconocidos hacen visibles esas limitaciones.</p>
+<p>Para reproducir los derivados del primer corte: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">scripts/e2_literature_closure.py</span> <span class="pre">--check</span></code>. El suplemento de identificación nativa posterior conserva su propio manifiesto y procedencia inmutable. Quedan sin resolver la elegibilidad global con motivos por etapa, la conciliación de rondas/versiones, la recuperación y evaluación transversal completas, la verificación de calidad editorial por año y la selección comparativa frente al universo de candidatos. Los intervalos y campos desconocidos hacen visibles esas limitaciones.</p>
 </section>
 </section>
 
@@ -777,7 +807,7 @@ all:"LSTM autoencoder" AND all:industrial AND (all:transfer OR all:adaptation)
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#puntajes-completos-incertidumbre-y-sensibilidad">52.3 Puntajes completos, incertidumbre y sensibilidad</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mecanismos-transferibles-y-busquedas-efectivamente-intentadas">52.4 Mecanismos transferibles y búsquedas efectivamente intentadas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mecanismos-transferibles-y-busquedas-nativas-ejecutadas">52.4 Mecanismos transferibles y búsquedas nativas ejecutadas</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brecha-contrastable-derivada-de-la-extraccion">52.5 Brecha contrastable derivada de la extracción</a></li>
 </ul>
   </nav></div>
