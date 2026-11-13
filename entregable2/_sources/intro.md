@@ -2,11 +2,11 @@
 
 **Deep Learning · 2026-30 · Jassan Arteta**
 
-**Avance verificado al 12/11/2026, 22:22 de Bogotá.** La campaña reducida registra **97 corridas HPO exitosas: 60 entrenamientos nuevos y 37 resultados anteriores reutilizados**. Hay **dos fallos conocidos y un intento con desenlace desconocido**, conservados sin repetirlos. El corte acredita dos ajustes nuevos completados en **NVIDIA A100-SXM4-80GB**. [Instantánea y procedencia](_static/e2_progress_20261113/progress_snapshot.json) · [CSV de entrenamiento y validación](_static/e2_progress_20261113/top10_training_validation.csv).
+**Avance verificado al 13/11/2026, 07:24:48 de Bogotá.** La selección de configuraciones está cerrada para las **trece redes** del catálogo. Se conservan **231 corridas HPO exitosas de 234 oportunidades**, dos fallos conocidos y un intento con desenlace desconocido, sin repetirlos. Ya están guardados **18 de los 78 ajustes finales previstos**: seis semillas de FCN-1D, seis de ResNet-1D y seis de Inception-1D. [Instantánea y procedencia](_static/e2_progress_final_20261113/progress_snapshot.json) · [Avance de las trece redes, CSV](_static/e2_progress_final_20261113/neural_progress.csv).
 
-**Protocolo vigente:** diez candidatos, tres referencias E1 y tres comparadores, **16 sistemas**. Se mantienen seis configuraciones HPO por red, una semilla y tres orígenes internos; el presupuesto autorizado es de **72 horas acumuladas**, con un máximo prospectivo de **30 minutos por fase**. La transición de T4 a A100 conserva los resultados históricos y sus cargos; GitHub es el destino persistente. [Reglas, fuentes y actualizaciones (§48)](sections/48_protocolo_reducido.md).
+**Protocolo vigente:** diez candidatos, tres referencias E1 y tres comparadores, **16 sistemas**. Se mantienen seis configuraciones HPO por red, una semilla y tres orígenes internos; el presupuesto autorizado y aplicado es de **80 horas acumuladas**, con un máximo prospectivo de **30 minutos por fase**. Las transiciones y reanudaciones conservan los resultados históricos y sus cargos; GitHub es el destino persistente. [Reglas, fuentes y actualizaciones (§48)](sections/48_protocolo_reducido.md).
 
-**El testing final sigue pendiente.** Los recibos actuales acreditan entrenamiento y validación interna; todavía no aportan la tabla final A2 ni un ganador del catálogo. Los cortes consolidados anteriores conservan su fecha y alcance.
+**El testing final sigue pendiente.** Los recibos actuales acreditan selección mediante validación interna y los primeros ajustes finales; todavía no aportan la tabla A2 ni un ganador del catálogo. Completar las seis semillas de una red no cierra su evaluación. Los cortes consolidados anteriores conservan su fecha y alcance.
 
 **Versión de entrega consolidada con la evidencia disponible al 12/11/2026.** Se reúnen problema, EDA, literatura, implementaciones, experimentos ejecutados y conclusiones. Este cierre utiliza resultados guardados y no inicia nuevas corridas.
 
@@ -35,34 +35,42 @@ La entrega declara sus límites: **todavía no hay un benchmark final completo d
 | Benchmark: evidencia existente y alcance | [§6](sections/06_benchmark_final.md) · [Cortes históricos (§41)](sections/41_avance_optimizacion_11_origenes.md) |
 | Reproducibilidad y exigencias de la guía | [§8](sections/08_reproducibilidad.md) · [§38](sections/38_cumplimiento_guia.md) |
 
-## Avance de entrenamiento y validación
+## Avance de selección y ajustes finales
 
-**Corte de consulta: 12/11/2026, 22:22 de Bogotá; última admisión registrada a las 22:20:06.** Cada candidato tiene 18 oportunidades HPO previstas: **C01–C06 × enero, julio y octubre de 2024**. Una corrida exitosa incluye entrenamiento y evaluación en las 83 fechas comunes de validación de su origen. Las cifras de la tabla son conteos, no valores de RMSE de training o testing.
+**Corte de consulta: 13/11/2026, 07:24:48 de Bogotá.** Cada red tiene 18 oportunidades HPO: **C01–C06 × enero, julio y octubre de 2024**. Una corrida exitosa incluye entrenamiento y evaluación en las 83 fechas comunes de validación de su origen. Las seis repeticiones finales pertenecen a una etapa distinta, con la receta ganadora ya fijada. Las cifras siguientes son conteos, no RMSE de training o testing.
 
-| Modelo | Nuevos completados | Reutilizados | Validaciones exitosas | Fallos conocidos | Desenlace desconocido | Por cerrar |
-|---|---:|---:|---:|---:|---:|---:|
-| FCN-1D | 6 | 12 | **18/18** | 0 | 0 | 0 |
-| ResNet-1D | 6 | 12 | **18/18** | 0 | 0 | 0 |
-| Inception-1D | 11 | 7 | **18/18** | 0 | 0 | 0 |
-| LSTM-autoencoder con predictor | 18 | 0 | **18/18** | 0 | 0 | 0 |
-| TimesNet | 16 | 0 | **16/18** | 2 | 0 | 0 |
-| TSMixer | 3 | 6 | **9/18** | 0 | 1 | 8 |
-| TiDE | 0 | 0 | **0/18** | 0 | 0 | 18 |
-| TimeMixer | 0 | 0 | **0/18** | 0 | 0 | 18 |
-| PatchTST | 0 | 0 | **0/18** | 0 | 0 | 18 |
-| iTransformer | 0 | 0 | **0/18** | 0 | 0 | 18 |
-| **Total Top 10** | **60** | **37** | **97/180** | **2** | **1** | **80** |
+| Modelo | HPO exitoso | Configuración elegida | Ajustes finales guardados | Ajustes finales pendientes |
+|---|---:|:---:|---:|---:|
+| FCN-1D | 18/18 | C02 | **6/6** | 0 |
+| ResNet-1D | 18/18 | C05 | **6/6** | 0 |
+| Inception-1D | 18/18 | C05 | **6/6** | 0 |
+| LSTM-autoencoder con predictor | 18/18 | C06 | 0/6 | 6 |
+| TimesNet | 16/18 | C05 | 0/6 | 6 |
+| TSMixer | 17/18 | C03 | 0/6 | 6 |
+| TiDE | 18/18 | C01 | 0/6 | 6 |
+| TimeMixer | 18/18 | C01 | 0/6 | 6 |
+| PatchTST | 18/18 | C02 | 0/6 | 6 |
+| iTransformer | 18/18 | C02 | 0/6 | 6 |
+| **Total Top 10** | **177/180** | **10 recetas** | **18/60** | **42** |
+| MLP16, referencia E1 | 18/18 | C05 | 0/6 | 6 |
+| LSTM32, referencia E1 | 18/18 | C01 | 0/6 | 6 |
+| GRU32, referencia E1 | 18/18 | C03 | 0/6 | 6 |
+| **Total de trece redes** | **231/234** | **13 recetas** | **18/78** | **60** |
 
-Se cerraron **100 de las 180 oportunidades del Top 10**, contando los fallos; las **80 sin cierre incluyen una admitida y 79 aún no admitidas**. La última admisión del corte corresponde a **TSMixer C05, julio de 2024, en A100**; una reserva no acredita por sí sola progreso del optimizador en tiempo real. Los dos ajustes A100 completados son TSMixer C03 y C04 de julio. La caché reutiliza resultados de selección ya auditados, sin proporcionar pesos finales.
+Las **234 oportunidades HPO están contabilizadas**. TimesNet conserva dos fallos y TSMixer un intento con desenlace desconocido; las configuraciones afectadas no aportan una puntuación completa ni se sustituyen por nuevas oportunidades. Las trece recetas ganadoras tienen sus tres folds de validación completos. La selección cerrada no convierte las incidencias en éxitos.
 
-Las referencias **MLP16, LSTM32 y GRU32** conservan otras **54 oportunidades HPO**, todavía sin cierre en este corte. Por tanto, las trece redes suman **234 oportunidades**, de las que quedan 134 sin cerrar. Persistence, SeasonalNaive y ARIMA completan el catálogo de 16 sistemas y su comparación final sigue pendiente. Los ceros describen esta campaña reducida, sin borrar los antecedentes históricos.
+El siguiente ajuste final pendiente corresponde al **LSTM-autoencoder**. Al corte, el control remoto conserva un cierre sin reservas abiertas y no confirma una nueva corrida después de los 18 ajustes guardados. La salida más reciente aportada de Colab indica restauración de artefactos; preparar el entorno o restaurar GitHub no acredita entrenamiento nuevo. El estado se publica como una instantánea fechada, sin atribuir actividad en vivo al kernel privado.
 
-[Tabla de las trece redes (CSV)](_static/e2_progress_20261113/all13_hpo_progress.csv) · [Instantánea JSON](_static/e2_progress_20261113/progress_snapshot.json) · [Fuentes y hashes](_static/e2_progress_20261113/source_evidence.json) · [Manifiesto de estos archivos](_static/e2_progress_20261113/manifest.json) · [Control remoto más reciente en GitHub](https://github.com/jassan-bit/DeepLearning_202630/blob/results/e2-reduced-delivery-v1/control/github-primary-v1/head.json).
+Los **10 pilotos pendientes** son cinco semillas de iTransformer y cinco de GRU32 para estimar variabilidad, potencia y diferencia mínima detectable; son adicionales a los 78 ajustes finales. Persistence, SeasonalNaive y ARIMA completan los 16 sistemas y todavía necesitan sus comparaciones registradas y la evaluación común.
+
+[Tabla de las trece redes (CSV)](_static/e2_progress_final_20261113/neural_progress.csv) · [Instantánea JSON](_static/e2_progress_final_20261113/progress_snapshot.json) · [Fuentes y hashes](_static/e2_progress_final_20261113/source_evidence.json) · [Manifiesto](_static/e2_progress_final_20261113/manifest.json) · [Control remoto más reciente en GitHub](https://github.com/jassan-bit/DeepLearning_202630/blob/results/e2-reduced-delivery-v1/control/github-primary-v1/head.json).
+
+El [corte anterior del 12/11, 22:22](_static/e2_progress_20261113/progress_snapshot.json) conserva sus descargas originales: [Top 10, CSV](_static/e2_progress_20261113/top10_training_validation.csv), [trece redes, CSV](_static/e2_progress_20261113/all13_hpo_progress.csv), [fuentes](_static/e2_progress_20261113/source_evidence.json) y [manifiesto](_static/e2_progress_20261113/manifest.json). Esos archivos documentan el avance de aquel momento.
 
 ## Trabajo pendiente para cerrar E2
 
-1. Cerrar el HPO de las trece redes y seleccionar cada configuración exclusivamente con validación.
-2. Completar los pilotos de semillas/potencia, justificar las repeticiones y ejecutar los reajustes finales con sus curvas, pesos, configuraciones y recursos.
+1. Completar los **60 ajustes finales pendientes** de las trece redes, conservando sus curvas, pesos, configuraciones y recursos. La selección HPO ya está cerrada.
+2. Ejecutar los **10 pilotos** y reportar potencia y diferencia mínima detectable con **R=6**, fijado por recursos; no afirmar potencia alcanzada antes de medirla.
 3. Congelar predictores y calibradores, evaluar el soporte común y rellenar la tabla A2 con métricas, incertidumbre, costes y contrastes.
 4. Verificar los análisis de robustez, interpretabilidad, ablaciones y reproducibilidad que exige la guía. La [matriz de requisitos (§38)](sections/38_cumplimiento_guia.md) distingue evidencia y pendientes.
 
@@ -78,7 +86,7 @@ El protocolo reducido usa **tres folds HPO** —enero, julio y octubre de 2024�
 
 El corte de selección se fija al commit [`795844308c07`](https://github.com/jassan-bit/DeepLearning_202630/commit/795844308c07cbc160d3dd1feb6284b5f443bb20), con cierre registrado el **12/11/2026 a las 12:53:37 UTC**. Contiene cincuenta selecciones modelo/origen del plan anterior; sus contadores no prueban ejecución de las recetas restauradas o de la enmienda nueva.
 
-La [instantánea](_static/delivery_20261112/selection_snapshot.json) y el [CSV de ensayos](_static/delivery_20261112/trials.csv) conservan ese detalle histórico, cuyo límite era de **64 horas**. La campaña vigente utiliza las **72 horas acumuladas autorizadas**, sin reiniciar consumos, y la transición A100 documentada en §48. Esta actualización verifica recibos remotos; no inspecciona ni modifica directamente el kernel privado de Colab.
+La [instantánea](_static/delivery_20261112/selection_snapshot.json) y el [CSV de ensayos](_static/delivery_20261112/trials.csv) conservan ese detalle histórico, cuyo límite era de **64 horas**. La campaña vigente utiliza las **80 horas acumuladas autorizadas**, sin reiniciar consumos, y la transición A100 documentada en §48. Esta actualización verifica recibos remotos; no inspecciona ni modifica directamente el kernel privado de Colab.
 
 La revisión global de requisitos queda en [§38](sections/38_cumplimiento_guia.md). Los capítulos anteriores conservan su fecha y ámbito. La [preparación técnica de pilotos (§46)](sections/46_artefactos_y_pilotos.md) conserva el alcance del registro anterior; los pilotos y reajustes del plan reducido se describen en [§48](sections/48_protocolo_reducido.md).
 

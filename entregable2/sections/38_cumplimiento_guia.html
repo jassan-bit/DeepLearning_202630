@@ -207,7 +207,7 @@
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="48_protocolo_reducido.html">48. Protocolo reducido para la entrega del 12 de noviembre</a></li>
+<li class="toctree-l1"><a class="reference internal" href="48_protocolo_reducido.html">48. Protocolo reducido y seguimiento de la ejecución</a></li>
 <li class="toctree-l1"><a class="reference internal" href="47_entrega_consolidada.html">47. Entrega consolidada con la evidencia disponible</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
@@ -413,9 +413,9 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="exigencias-de-la-guia-evidencia-y-pendientes">
 <h1>38. Exigencias de la guía, evidencia y pendientes<a class="headerlink" href="#exigencias-de-la-guia-evidencia-y-pendientes" title="Link to this heading">#</a></h1>
-<p><strong>Actualización de evidencia al 12/11/2026, 22:22 de Bogotá:</strong> la <a class="reference internal" href="../intro.html"><span class="std std-doc">portada</span></a> y <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a> recogen el avance HPO y la transición A100 con sus recibos. Esa evidencia no cierra por sí sola las obligaciones de testing, potencia, robustez, interpretabilidad, ablaciones o reproducción. La matriz siguiente conserva su fecha de revisión; cada pendiente requiere sus artefactos antes de declararse cumplido.</p>
+<p><strong>Actualización de evidencia al 13/11/2026, 07:24:48 de Bogotá:</strong> la <a class="reference internal" href="../intro.html"><span class="std std-doc">portada</span></a>, el <a class="reference download internal" download="" href="../_downloads/6b591460334600e6cfd90d4009d2a7c3/neural_progress.csv"><span class="xref download myst">avance de las trece redes</span></a> y <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a> acreditan <strong>13 selecciones cerradas y 18/78 ajustes finales guardados</strong>. Se contabilizan 231 éxitos HPO, dos fallos y un desenlace desconocido. El presupuesto aplicado es de 80 horas acumuladas. Esta evidencia no cierra por sí sola testing, potencia, robustez, interpretabilidad, ablaciones o reproducción; cada requisito necesita sus propios artefactos.</p>
 <p><strong>Versión de entrega con lo disponible:</strong> resultados, discusión, conclusiones y descargas en <a class="reference internal" href="47_entrega_consolidada.html"><span class="std std-doc">§47</span></a>. Esta matriz conserva los requisitos sin evidencia para revisión posterior; el cierre documental no los convierte en experimentos completados ni ordena nuevas corridas.</p>
-<p><strong>Actualización de alcance: 12/11/2026; matriz de evidencia del corte 11/11/2026.</strong> Fuente: <em>Entregable2DeepLearningProject.pdf</em>, 65 páginas, aportado nuevamente por el usuario. SHA256 del PDF:</p>
+<p><strong>Requisitos de la guía conservados; decisiones y avance actualizados al corte indicado.</strong> Las matrices estructuradas del 11/11/2026 se mantienen como antecedentes descargables. Fuente: <em>Entregable2DeepLearningProject.pdf</em>, 65 páginas, aportado nuevamente por el usuario. SHA256 del PDF:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>93499dcfda6a36d9621524a81821470017ba114ca6b08241a35de5a54f74a654
 </pre></div>
 </div>
@@ -436,37 +436,37 @@
 </tr>
 <tr class="row-odd"><td><p>Validación temporal</p></td>
 <td><p>Origen móvil, embargo, ajuste sin futuro y esquema común</p></td>
-<td><p><strong>§45:</strong> tres anclas HPO (enero/julio/octubre de 2024), diez orígenes mensuales de evaluación con receta causal y un refit histórico en enero de 2025 sin nueva búsqueda</p></td>
+<td><p><strong>§48:</strong> tres folds HPO (enero/julio/octubre de 2024), un corte de ajuste final común al 31/10/2024, calibración separada y evaluación sobre las 608 fechas conocidas de E1. El calendario anterior de diez refits mensuales queda en §45 como antecedente; la evaluación vigente aún debe ejecutarse</p></td>
 </tr>
 <tr class="row-even"><td><p>Aplicación de NAS</p></td>
 <td><p>Sólo diseños no definidos por su fuente; cuerpo publicado definido exento</p></td>
-<td><p><strong>Política prospectiva de §44:</strong> nueve cuerpos definidos del Top 10, con cuatro restauraciones de receta nueva; TiDE conserva la variante NAS. El plan sellado anterior permanece sin migrar</p></td>
+<td><p>Recetas publicadas y adaptaciones D7 identificadas en §44/§48, incluida TiDE <strong>TIDE-D7-PUBLISHED-R0-v2</strong>. La exención depende de justificar el cuerpo utilizado; el uso de una referencia bibliográfica no exime por sí solo una adaptación indefinida</p></td>
 </tr>
 <tr class="row-odd"><td><p>NAS fase 1</p></td>
-<td><p>Todas las 1.000 arquitecturas, una semilla, presupuesto reducido</p></td>
-<td><p>Máximo 50 épocas por fase y parada temprana</p></td>
+<td><p>Si corresponde NAS: las 1.000 arquitecturas, una semilla y presupuesto reducido</p></td>
+<td><p>La guía mantiene esta obligación condicional. Las seis plazas HPO de §48 no constituyen una búsqueda NAS de 1.000 arquitecturas</p></td>
 </tr>
 <tr class="row-even"><td><p>NAS fase 2</p></td>
-<td><p>k≥10 según ruido, referencia y ≥5 semillas diferentes de fase 1</p></td>
-<td><p>k de 20/40 según piloto registrado; cota conservadora k40, referencia una sola vez, cinco semillas y máximo 200 épocas por fase</p></td>
+<td><p>Si corresponde NAS: k≥10 según ruido, referencia y ≥5 semillas diferentes de fase 1</p></td>
+<td><p>Conservar el control de ruido, la referencia y la confirmación completa. Los planes k20/40 de §45 son antecedentes; no se presentan como una NAS ejecutada en esta campaña reducida</p></td>
 </tr>
 <tr class="row-odd"><td><p>HPO</p></td>
 <td><p>Espacios/ejes aplicables justificados y mismo esfuerzo</p></td>
-<td><p>18 oportunidades y dos semillas por red en cada una de las tres anclas; LR/WD/batch y ejes aplicables. Las restauraciones fijan knobs estructurales/dropout al cuerpo fuente (§44); §45 declara calendario, selección y contabilidad</p></td>
+<td><p><strong>Selección cerrada:</strong> seis configuraciones × una semilla × tres folds por red, 234 oportunidades en trece redes. Cada ganador tiene sus tres folds completos; las incidencias conservan su estado, sin reemplazo</p></td>
 </tr>
 <tr class="row-even"><td><p>Repeticiones finales</p></td>
 <td><p>≥5 ejecuciones; ≥6 cuando se usan pruebas de rangos y dimensionamiento por potencia</p></td>
-<td><p>R todavía sin cerrar; los escenarios de coste no fijan R</p></td>
+<td><p><strong>R=6 fijado por recursos</strong>, con 18/78 reajustes guardados. Piloto de cinco semillas en iTransformer y GRU32 pendiente para medir potencia/MDE; no se afirma potencia de 0,80</p></td>
 </tr>
 <tr class="row-odd"><td><p>Coste</p></td>
 <td><p>Estimar antes de buscar; declarar y justificar desviaciones</p></td>
-<td><p>Cota prospectiva de selección ≤2.609 ajustes neuronales, más 54 ARIMA y trabajo adicional declarado. Techo acumulado de 64 horas; saldo actual pendiente de conciliación. 85.074 conserva alcance histórico (§40)</p></td>
+<td><p><strong>80 horas acumuladas autorizadas y aplicadas</strong>, sin reiniciar cargos. La selección conserva 173 intentos nuevos (170 exitosos y tres incidencias) y 61 reutilizaciones. Los ajustes finales, pilotos y comparadores se contabilizan aparte; los techos anteriores mantienen su fecha</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p><strong>La <a class="reference internal" href="43_catalogo_obligatorio.html"><span class="std std-doc">enmienda de catálogo de §43</span></a> retira el híbrido y Ridge del alcance obligatorio.</strong> La <a class="reference internal" href="44_arquitecturas_publicadas.html"><span class="std std-doc">enmienda de arquitectura de §44</span></a> conserva cinco cuerpos del Top 10, restaura cuatro con identidades nuevas y mantiene NAS para TiDE. La posterior <a class="reference internal" href="45_enmienda_protocolo.html"><span class="std std-doc">enmienda del protocolo de §45</span></a> registra tres anclas HPO, una NAS inicial TiDE y evaluación mensual causal. Conserva semillas, límites, gasto e historial; no reescribe los resultados anteriores. La campaña de Colab sellada con 14 redes aún debe aplicar una transición explícita.</p>
-<p><strong>La política prospectiva vigente está en <a class="reference internal" href="45_enmienda_protocolo.html"><span class="std std-doc">§45</span></a>: tres anclas de búsqueda y diez orígenes de evaluación con reajuste.</strong> Se justifica por cobertura temporal y coste, con resultados desagregados y límites por comprobar. Es una enmienda distinta de la propuesta de §37; <a class="reference internal" href="40_calendario_original.html"><span class="std std-doc">§40 conserva el plan sellado anterior</span></a>. El registro no acredita ejecución completa, potencia alcanzada ni aceptación institucional.</p>
+<p><strong>La <a class="reference internal" href="43_catalogo_obligatorio.html"><span class="std std-doc">enmienda de catálogo de §43</span></a> retira el híbrido y Ridge del alcance obligatorio.</strong> Las enmiendas de <a class="reference internal" href="44_arquitecturas_publicadas.html"><span class="std std-doc">arquitectura (§44)</span></a> y <a class="reference internal" href="45_enmienda_protocolo.html"><span class="std std-doc">protocolo (§45)</span></a> conservan su secuencia histórica. El <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">ejecutor reducido y sus actualizaciones (§48)</span></a> ya aplican el catálogo de trece redes y tres comparadores, y registran la receta publicada TiDE r=0 con identidad y limitaciones propias. Los resultados de la antigua variante NAS no se renombran como resultados de esta receta.</p>
+<p><strong>Las reglas ejecutadas de la campaña reducida están en <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>.</strong> La selección ya produjo trece ganadores y el ajuste final es parcial; todavía faltan la evaluación común y los análisis. <a class="reference internal" href="40_calendario_original.html"><span class="std std-doc">§40</span></a> y §45 conservan los calendarios anteriores. Registrar una enmienda y cerrar HPO no acredita por sí solo potencia, cumplimiento integral de la guía ni aceptación institucional de las desviaciones.</p>
 </section>
 <section id="diversidad-del-top-10">
 <h2>Diversidad del Top 10<a class="headerlink" href="#diversidad-del-top-10" title="Link to this heading">#</a></h2>
@@ -552,8 +552,8 @@
 <tr class="row-even"><td><p>G07</p></td>
 <td><p>§§4.1, 7.4 F2a, pp. 12–13, 30–31</p></td>
 <td><p>Cronología, origen móvil, embargo y disponibilidad de covariables</p></td>
-<td><p><strong>Diseño documentado</strong></p></td>
-<td><p><a class="reference internal" href="45_enmienda_protocolo.html"><span class="std std-doc">Calendario común de §45</span></a>. Aplicar las tres anclas HPO y los diez reajustes mensuales con la receta más reciente disponible, embargo y máscaras comunes; reportar por origen. Migración y ejecución pendientes; once búsquedas no son mandato literal del PDF.</p></td>
+<td><p><strong>Selección temporal ejecutada; evaluación pendiente</strong></p></td>
+<td><p><a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">Calendario vigente de §48</span></a>: tres folds internos, ajuste final común, embargo y calibración separados. Acreditar causalidad, soporte y desagregación temporal en la evaluación; justificar su alcance frente a la guía. Los diez refits mensuales de §45 son antecedentes; once búsquedas no son mandato literal del PDF.</p></td>
 </tr>
 <tr class="row-odd"><td><p>G08</p></td>
 <td><p>§10, pp. 44–46</p></td>
@@ -564,20 +564,20 @@
 <tr class="row-even"><td><p>G09</p></td>
 <td><p>§§4.3, 9, pp. 14, 42–43</p></td>
 <td><p>Preregistro real, repeticiones y potencia ≥0,80 o limitación/MDE</p></td>
-<td><p><strong>Pendiente de cierre</strong></p></td>
-<td><p><a class="reference internal" href="13_agregacion_estadistica.html"><span class="std std-doc">Evidencia documentada</span></a>. Completar implementación y dimensionamiento de la familia primaria de veinte contrastes de §45 (Top 10 frente a GRU32 y Persistence, Holm FWER 0,05), bloques de 14 días, δ y R antes de nuevos contrastes. Piloto de cinco semillas pareadas en TimeMixer/PatchTST/GRU32, 08/11–30/12/2024, separado de HPO. R sigue pendiente en 6–30: alternativa planificada 2δ y límite inferior Wilson de potencia ≥0,80, con sensibilidad temporal declarada; no heredar R ni afirmar potencia por alcanzar un techo.</p></td>
+<td><p><strong>R registrado; potencia pendiente</strong></p></td>
+<td><p><a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">Protocolo vigente de §48</span></a>: R=6 por recursos, diez ajustes piloto —cinco semillas de iTransformer y cinco de GRU32— sobre 08/11–30/12/2024, separados de HPO y testing. Ejecutar el piloto y reportar potencia/MDE y sensibilidad temporal para la familia primaria registrada. No afirmar potencia de 0,80 ni aumentar semillas automáticamente si el análisis no la sostiene.</p></td>
 </tr>
 <tr class="row-odd"><td><p>G10</p></td>
 <td><p>§11, pp. 46–48</p></td>
 <td><p>Mismo esfuerzo de HPO y registro de tiempo, fallos y recetas</p></td>
-<td><p><strong>Implementación y selección parciales</strong></p></td>
-<td><p><a class="reference internal" href="11_hpo_equidad.html"><span class="std std-doc">Evidencia documentada</span></a>. Completar búsqueda y selección de todos los modelos; justificar rangos/ejes aplicables y mantener recibos de fallos sin sustituciones silenciosas.</p></td>
+<td><p><strong>Selección reducida cerrada; justificación parcial</strong></p></td>
+<td><p><a class="reference download internal" download="" href="../_downloads/6834ef402375bb26a1fed0a912c9caba/progress_snapshot.json"><span class="xref download myst">Evidencia del corte</span></a>: trece ganadores de seis plazas × tres folds. Conservar la justificación de rangos/ejes y la reducción del dominio, la caché auditada, los costes y los tres intentos sin resultado válido. No convertirlos en éxitos ni reemplazarlos silenciosamente.</p></td>
 </tr>
 <tr class="row-even"><td><p>G11</p></td>
 <td><p>§14, pp. 52–58</p></td>
 <td><p>NAS condicional: 1.000 diseños, dos fases, finalistas y selección sólo con validación</p></td>
-<td><p><strong>Adjudicación documentada; selección vigente pendiente</strong></p></td>
-<td><p><a class="reference internal" href="44_arquitecturas_publicadas.html"><span class="std std-doc">Política y fuentes de §44</span></a>: nueve cuerpos definidos y TiDE NAS. La campaña histórica conserva otras recetas; migrar antes de nuevos ajustes afectados. Para TiDE, §45 registra una sola búsqueda inicial con 1.000 arquitecturas, dos fases, referencia y confirmación; k≥10 y ≥5 semillas. El piloto fija k20/40 antes de NAS-1. Completar conjunto indistinguible y sesgo del ganador; solapar IC no demuestra equivalencia.</p></td>
+<td><p><strong>Fuentes y adaptaciones documentadas; revisión condicional</strong></p></td>
+<td><p><a class="reference internal" href="44_arquitecturas_publicadas.html"><span class="std std-doc">Fuentes de §44</span></a> y <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">actualización de §48</span></a>, incluida la receta TiDE publicada r=0 y su paridad funcional. Justificar que cada cuerpo adaptado está suficientemente definido; si no lo está, la NAS de la guía sigue siendo exigible. El HPO reducido no acredita NAS exhaustiva ni una confirmación de finalistas.</p></td>
 </tr>
 <tr class="row-odd"><td><p>G12</p></td>
 <td><p>§5, pp. 16–17</p></td>
@@ -647,8 +647,8 @@
 <h2>Orden para completar la entrega<a class="headerlink" href="#orden-para-completar-la-entrega" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><strong>Cerrar el método:</strong> consolidar preregistro/enmiendas con fecha real, taxonomía y puntajes Top 10, auditoría de fuga, unidades/familias de contraste y presupuesto completo. Registrar cualquier cambio antes de nuevos trabajos afectados; no afirmar preregistro retroactivo.</p></li>
-<li><p><strong>Completar selección y dimensionamiento:</strong> migrar el controlador conservando saldo y caché compatible, ejecutar HPO/NAS del calendario de §45 y fijar R con el piloto de potencia. Conservar fallos y costes desconocidos. El contador de intentos no es un porcentaje de terminación del proyecto.</p></li>
-<li><p><strong>Completar evaluación común:</strong> reajustar modelos/referencias, cerrar soporte y calendario de evaluación y producir tablas con IC, costes y diagnósticos. El test conocido mantiene interpretación exploratoria.</p></li>
+<li><p><strong>Completar dimensionamiento y ajustes finales:</strong> la selección reducida está cerrada. Restan 60 reajustes neuronales y los diez pilotos para medir potencia/MDE de R=6; conservar las incidencias y sus costes. Resolver cualquier requisito NAS que siga siendo aplicable, sin llamar NAS a las seis plazas HPO. El contador de intentos no es un porcentaje de terminación del proyecto.</p></li>
+<li><p><strong>Completar evaluación común:</strong> ejecutar los comparadores, congelar pesos y calibradores, cerrar soporte y producir tablas con IC, costes y diagnósticos. El test conocido mantiene interpretación retrospectiva y exploratoria.</p></li>
 <li><p><strong>Completar análisis exigidos:</strong> inferencia temporal con multiplicidad, robustez, incertidumbre/calibración, explicabilidad del Top 3, ablaciones del mejor y análisis de errores.</p></li>
 <li><p><strong>Cerrar informe y reproducción:</strong> responder cada RQ, distinguir significancia de relevancia práctica, completar discusión/amenazas, ejecutar reproducción limpia y generar las descargas verificadas.</p></li>
 </ol>
@@ -697,7 +697,7 @@
 </table>
 </div>
 <p><a class="reference download internal" download="" href="../_downloads/15548ded62b173e0673968b2932b3c94/requirements_11_origins_v2.json"><span class="xref download myst">Lista estructurada de requisitos, corte anterior a la reducción del catálogo</span></a>. El catálogo vigente de 16 sistemas se encuentra en <a class="reference internal" href="43_catalogo_obligatorio.html"><span class="std std-doc">§43</span></a>. Cada ID mantiene el vínculo entre requisito, estado y evidencia de cierre. La guía pondera problema/EDA/preregistro 15 %, revisión/paper/gap 15 %, implementación/NAS/rigor 25 %, benchmark/inferencia 20 %, ruta/robustez/incertidumbre/interpretabilidad 15 % y reproducción/redacción/defensa 10 % (p. 59). No se calcula una calificación ni un porcentaje de cumplimiento a partir del número de filas o de entrenamientos.</p>
-<p>El <a class="reference download internal" download="" href="../_downloads/6162e7e449ed322b9e580fef68ce9c48/requirements.json"><span class="xref download myst">corte documental anterior a la decisión de conservar once orígenes</span></a> se conserva como descarga histórica, con sus bytes originales. Ambos cortes estructurados se leen junto con las enmiendas de catálogo (§43), arquitectura (§44) y protocolo (§45).</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/6162e7e449ed322b9e580fef68ce9c48/requirements.json"><span class="xref download myst">corte documental anterior a la decisión de conservar once orígenes</span></a> se conserva como descarga histórica, con sus bytes originales. Ambos cortes estructurados se leen junto con las enmiendas de catálogo (§43), arquitectura (§44), el protocolo anterior (§45) y la ejecución reducida vigente (§48).</p>
 </section>
 </section>
 

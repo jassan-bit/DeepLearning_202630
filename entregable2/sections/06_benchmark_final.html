@@ -209,7 +209,7 @@
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="48_protocolo_reducido.html">48. Protocolo reducido para la entrega del 12 de noviembre</a></li>
+<li class="toctree-l1"><a class="reference internal" href="48_protocolo_reducido.html">48. Protocolo reducido y seguimiento de la ejecución</a></li>
 <li class="toctree-l1"><a class="reference internal" href="47_entrega_consolidada.html">47. Entrega consolidada con la evidencia disponible</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
@@ -398,6 +398,7 @@
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#catalogo-que-debe-cubrir-la-tabla-final">Catálogo que debe cubrir la tabla final</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#del-ajuste-final-a-la-tabla-a2">Del ajuste final a la tabla A2</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#antecedentes-documentales-del-diseno-de-dieciocho-sistemas">Antecedentes documentales del diseño de dieciocho sistemas</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-historica-de-los-once-candidatos">6.1 Tabla histórica de los once candidatos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-debe-medir-una-comparacion-valida">6.2 Qué debe medir una comparación válida</a></li>
@@ -418,8 +419,9 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="benchmark-obligatorio-dieciseis-sistemas">
 <h1>6. Benchmark obligatorio: dieciséis sistemas<a class="headerlink" href="#benchmark-obligatorio-dieciseis-sistemas" title="Link to this heading">#</a></h1>
-<p><strong>Actualización verificada al 12/11/2026, 22:22 de Bogotá:</strong> la campaña reducida conserva 97 validaciones HPO exitosas, dos fallos conocidos y un desenlace desconocido. La tabla de entrenamiento y validación está en la <a class="reference internal" href="../intro.html"><span class="std std-doc">portada</span></a>; los cambios a A100 y el presupuesto de 72 horas están en <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>. <strong>La tabla final A2 y el testing común siguen pendientes</strong>; los cortes siguientes conservan su ámbito histórico.</p>
-<p><strong>Alcance vigente del 12/11/2026:</strong> diez modelos del Top 10, tres referencias E1 y tres comparadores: <strong>16 sistemas</strong>. El híbrido adicional y Ridge quedan como opcionales/históricos. La enmienda de <a class="reference internal" href="43_catalogo_obligatorio.html"><span class="std std-doc">§43</span></a> registra el catálogo requerido; la selección ya sellada conserva su historial de catorce redes y necesita una transición explícita para aplicar el alcance nuevo. El benchmark final continúa pendiente.</p>
+<p><strong>Actualización verificada al 13/11/2026, 07:24:48 de Bogotá:</strong> están cerradas las selecciones de las trece redes, con <strong>231 oportunidades HPO exitosas de 234</strong>, dos fallos conocidos de TimesNet y un desenlace desconocido de TSMixer. Se guardaron <strong>18 ajustes finales A100</strong>: seis semillas de FCN-1D, seis de ResNet-1D y seis de Inception-1D. La <a class="reference internal" href="../intro.html"><span class="std std-doc">tabla por modelo</span></a> y el <a class="reference download internal" download="" href="../_downloads/6b591460334600e6cfd90d4009d2a7c3/neural_progress.csv"><span class="xref download myst">CSV del corte</span></a> distinguen selección y ajuste final. El presupuesto aplicado es de <strong>80 horas acumuladas</strong>; <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a> conserva sus pruebas y las reglas de continuación.</p>
+<p><strong>La tabla final A2 y el testing común siguen pendientes.</strong> Los 18 ajustes guardados no son 18 sistemas evaluados: son tres redes con seis semillas cada una, aún sin puntuar en la evaluación común. No hay un ranking final ni un ganador demostrado del catálogo.</p>
+<p><strong>Alcance vigente:</strong> diez modelos del Top 10, tres referencias E1 y tres comparadores: <strong>16 sistemas</strong>. El híbrido adicional y Ridge quedan como opcionales/históricos. La enmienda de <a class="reference internal" href="43_catalogo_obligatorio.html"><span class="std std-doc">§43</span></a> registra el catálogo requerido; el ejecutor reducido de <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a> ya cerró sus trece recetas neuronales sin renombrar las selecciones del catálogo anterior. El benchmark final continúa pendiente.</p>
 <p><strong>Entrega con la evidencia disponible:</strong> <a class="reference internal" href="47_entrega_consolidada.html"><span class="std std-doc">§47 reúne resultados, artefactos y conclusiones del cierre</span></a>. El corte consolidado conserva <strong>1.705 resultados HPO nuevos y 1.802 registros históricos: 3.507 registros de resultados</strong>. Ocho recetas del plan histórico completaron cobertura HPO de enero a junio; esa cobertura acredita selección ejecutada, sin constituir un ranking final de los 16 sistemas. Las métricas E1, cuando se presentan como antecedente de sus 608 fechas conocidas, mantienen ese ámbito.</p>
 <section id="catalogo-que-debe-cubrir-la-tabla-final">
 <h2>Catálogo que debe cubrir la tabla final<a class="headerlink" href="#catalogo-que-debe-cubrir-la-tabla-final" title="Link to this heading">#</a></h2>
@@ -451,6 +453,42 @@
 </table>
 </div>
 <p>La <a class="reference download internal" download="" href="../_downloads/f531ace1494720cbbc47c0c77186fd01/benchmark_A2_template.csv"><span class="xref download myst">plantilla A.2 vigente de 16 sistemas</span></a> conserva vacíos los resultados no medidos. Se necesitan recetas seleccionadas, repeticiones justificadas, soporte común, métricas, IC y costes. Retirar dos sistemas opcionales no cierra esas evidencias.</p>
+</section>
+<section id="del-ajuste-final-a-la-tabla-a2">
+<h2>Del ajuste final a la tabla A2<a class="headerlink" href="#del-ajuste-final-a-la-tabla-a2" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Etapa del protocolo reducido</p></th>
+<th class="head"><p>Evidencia al corte</p></th>
+<th class="head"><p>Pendiente</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Selección por validación interna</p></td>
+<td><p>Trece recetas ganadoras, con 249 predicciones de validación por receta</p></td>
+<td><p>Conservar las incidencias y el dominio reducido al interpretar los resultados</p></td>
+</tr>
+<tr class="row-odd"><td><p>Reajustes de las trece redes</p></td>
+<td><p><strong>18/78</strong> guardados en A100</p></td>
+<td><p><strong>60</strong> ajustes; LSTM-autoencoder es el siguiente modelo pendiente</p></td>
+</tr>
+<tr class="row-even"><td><p>Piloto de variabilidad y potencia</p></td>
+<td><p>Sin resultados del piloto actual</p></td>
+<td><p><strong>10 ajustes:</strong> cinco semillas de iTransformer y cinco de GRU32; informar potencia y MDE con R=6</p></td>
+</tr>
+<tr class="row-odd"><td><p>Comparadores y congelación</p></td>
+<td><p>Sin cierre de los tres comparadores ni de los 81 predictores</p></td>
+<td><p>Ejecutar selección y ajuste de comparadores; congelar pesos, escaladores y calibradores</p></td>
+</tr>
+<tr class="row-even"><td><p>Evaluación e inferencia</p></td>
+<td><p>Sin scoring común ni tabla A2 medida</p></td>
+<td><p>Puntuar los 16 sistemas en el mismo soporte y producir métricas, incertidumbre, contrastes y costes</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Las calibraciones y los pilotos usan desarrollo anterior a la evaluación; no reemplazan las métricas de testing. La política actual conserva <strong>R=6 por recursos</strong>, y el piloto debe informar su potencia o limitación, sin atribuirle un resultado aún no medido. Las 608 fechas heredadas ya fueron conocidas en E1, de modo que el análisis final conserva interpretación retrospectiva.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/1f8255b5cd14f0538ba7ae74a969dad9/source_evidence.json"><span class="xref download myst">estado y sus fuentes congeladas</span></a> permiten comprobar este avance. El control remoto seguía cerrado sin reservas abiertas al corte; el último mensaje privado de Colab reportaba restauración. La publicación del libro no inicia entrenamientos ni convierte esa restauración en una corrida confirmada.</p>
 </section>
 <section id="antecedentes-documentales-del-diseno-de-dieciocho-sistemas">
 <h2>Antecedentes documentales del diseño de dieciocho sistemas<a class="headerlink" href="#antecedentes-documentales-del-diseno-de-dieciocho-sistemas" title="Link to this heading">#</a></h2>
@@ -679,6 +717,7 @@ q_{m,s}=\sqrt{|\mathcal T|^{-1}\sum_{t\in\mathcal T}(Y_t-\widehat Y_{m,s,t})^2},
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#catalogo-que-debe-cubrir-la-tabla-final">Catálogo que debe cubrir la tabla final</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#del-ajuste-final-a-la-tabla-a2">Del ajuste final a la tabla A2</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#antecedentes-documentales-del-diseno-de-dieciocho-sistemas">Antecedentes documentales del diseño de dieciocho sistemas</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-historica-de-los-once-candidatos">6.1 Tabla histórica de los once candidatos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-debe-medir-una-comparacion-valida">6.2 Qué debe medir una comparación válida</a></li>
