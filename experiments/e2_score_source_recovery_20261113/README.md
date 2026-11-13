@@ -1,0 +1,15 @@
+# Continue final data acquisition after the missing private E1 CSV
+
+All 78 neural final refits, ten development pilots, three final classical predictors and the complete 81-predictor freeze were closed before this recovery. The first scoring worker failed with `HTTP Error 404: Not Found` while attempting to fetch the private E1 daily derivative from the frozen engine's public Git tree. The derivative is absent from that tree. This failure precedes the original data loader, final data decoding, inference and benchmark analysis.
+
+The original failed worker, its `scoring_started.json`, specification, log, failure and 18.68105469799957-second budget charge remain unchanged. The unknown optimizer-step field in its historical receipt is preserved; recovery does not replace it with zero. A separate, registered scoring worker continues acquisition before the first scientific evaluation. It uses the same physical freeze and the existing cumulative 80-hour consent. No selection, training, calibration, pilot or classical refit is requested.
+
+The failed specification already authorized the original loader's raw archive path and downloads. Recovery supplies an explicitly absent daily-file path, avoiding the incorrect public-CSV request, and retains the original `private_raw_E1` archive root. The unchanged loader verifies the twenty registered January 2025 through August 2026 Binance monthly archives by size and SHA256 before aggregating them. The same 608-date inherited E1 calendar, December 31 causal bridge, support rules and target definition remain in force. September and October 2026 are not admitted.
+
+Raw archive provenance is exact. The regenerated CSV is not claimed to have the historical derivative's binary serialization: the E1 and E2 pandas versions differ. The original loader's raw branch already records the newly generated derivative's own checksum. This is the existing retrospective E1 period, not a newly blinded or prospective sample.
+
+The recovery checks the exact original failure, budget chain and freeze, and rejects unexpected partial predictions, results or first-access/data-cache markers. It keeps the original scoring output directory and uses `score-worker-source-recovery-v1` for the continuation. A completed continuation is verified and reused; a partial scientific continuation is retained and blocked rather than evaluated again automatically.
+
+The original ARIMA receipt correction and resource worker remain active. A bounded archive transport adapter reports progress and retries only transient network failures; it does not repeat model fitting or final scoring. Hash mismatches, HTTP404, invalid paths and scientific errors remain failures. GitHub remains the only persistent destination. Raw data stay in the existing private temporary Colab cache, outside public result backups.
+
+The runtime files, failure policy and validation evidence are bound in `registration.json`. Development checks use metadata and synthetic fixtures; no final market payload was read or evaluation executed in the development workspace.
