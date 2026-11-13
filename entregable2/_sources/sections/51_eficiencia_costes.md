@@ -69,7 +69,7 @@ La suma de reservas por intento es **597 540 s (165,9833 h)**: son techos sucesi
 
 Los registros finales contienen máximos observados de memoria CUDA asignada/reservada y RSS, conservados en el CSV por fase. El campo de alcance CUDA es `since_callers_last_reset`: se trata de máximos del proceso desde el último reinicio del contador. No constituyen una medición aislada de memoria de cada predictor ni memoria de inferencia. El límite del allocator del 80 % de VRAM es un umbral registrado de admisión, no el pico medido ni una cuota física impuesta.
 
-No existen temporizaciones aisladas de inferencia en los archivos originales de predicciones utilizados aquí. `inference_seconds`, `inference_latency_ms` y `FLOPs` quedan en `null`; no se deducen a partir del número de parámetros, del presupuesto o del tiempo de entrenamiento. Un perfil posterior, con datos sintéticos, warmup y sincronización explícita, deberá publicarse con su hardware y protocolo propios. No reemplazaría una medición de inferencia de los predictores congelados sobre la carga original.
+No existen temporizaciones aisladas de inferencia en los archivos originales de predicciones utilizados aquí. Sus campos `inference_seconds`, `inference_latency_ms` y `FLOPs` conservan `null`; no se deducen del número de parámetros ni del tiempo de entrenamiento. La medición posterior de [§54](54_robustez_interpretabilidad.md) ya aporta **78 perfiles reales de los predictores congelados en A100**, con entrada D7 residente, batch1, calentamiento y eventos CUDA. Se mantiene como evidencia nueva con hardware y alcance propios; no reescribe esos campos históricos ni mide FLOPs.
 
 ## Artefactos y reproducción
 

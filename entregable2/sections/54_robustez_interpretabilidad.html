@@ -1,0 +1,739 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>54. Robustez e interpretabilidad: resultados reales de los predictores congelados &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/54_robustez_interpretabilidad';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="7. Ruta metodológica: series de tiempo y controles causales" href="07_ruta_temporal.html" />
+    <link rel="prev" title="53. Cierre de requisitos y experimentos complementarios" href="53_cierre_requisitos.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 2 · Bitcoin: pronóstico de volatilidad</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="48_protocolo_reducido.html">48. Protocolo reducido y seguimiento de la ejecución</a></li>
+<li class="toctree-l1"><a class="reference internal" href="47_entrega_consolidada.html">47. Entrega consolidada con la evidencia disponible</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_literatura.html">3. Revisión Sistemática del Estado del Arte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación: catálogo obligatorio y antecedentes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark obligatorio: dieciséis sistemas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="49_diagnosticos_f2a.html">49. Diagnósticos F2a posteriores al benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="50_comparaciones_f2a.html">50. Comparaciones F2a posteriores: DM, MCS y rangos por semilla</a></li>
+<li class="toctree-l1"><a class="reference internal" href="51_eficiencia_costes.html">51. Eficiencia, coste observado y compromisos de Pareto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="52_sintesis_literatura.html">52. Síntesis verificable de literatura y selección vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="53_cierre_requisitos.html">53. Cierre de requisitos y experimentos complementarios</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">54. Robustez e interpretabilidad: resultados reales de los predictores congelados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Registro de selección, cierre pendiente y trazabilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de datos y auditoría formal de fuga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. HPO y equidad para el catálogo vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Techo de desempeño, incertidumbre y análisis de errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Agregación estadística e interpretación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas del catálogo vigente y adaptación a D7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo vigente: diez modelos y candidato 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_fichas_nuevas.html">16. Fichas bibliográficas de las cuatro altas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato sincronizado de E1, E2 y E3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_integracion_sintetica.html">18. Implementación provisional y verificación sintética</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_plan_auditoria.html">19. Plan experimental propuesto y auditoría sin entrenamiento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_contraste_guia.html">20. Cotejo del plan con la guía original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_comparadores_nas.html">21. Comparadores temporales y decisión NAS por receta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22_fichas_recetas.html">22. Once fichas de recetas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_implementacion_recetas.html">23. Implementación de recetas y controles temporales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="24_ejecutor_comun.html">24. Ejecutor común y disponibilidad temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="25_matriz_cierre.html">25. Matriz de cierre antes del benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="26_registro_recetas.html">26. Registro por receta: fuentes, NAS, HPO e integración</a></li>
+<li class="toctree-l1"><a class="reference internal" href="27_nas_hpo_presupuesto.html">27. Decisiones NAS, rangos HPO y presupuesto para Codex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="28_fabricas_nas.html">28. Fábricas NAS implementadas y verificadas sintéticamente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="29_entrenamiento_temporal.html">29. Entrenamiento por etapas, selección temporal y perfilado CPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="30_piloto_nube.html">30. Piloto de desarrollo en la nube de Codex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="31_optimizacion_nube.html">31. Optimización de CPU y presupuesto de cómputo en la nube</a></li>
+<li class="toctree-l1"><a class="reference internal" href="32_ejecucion_gpu.html">32. Ejecución CUDA preparada y piloto de recursos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="33_piloto_gpu.html">33. Primer piloto de recursos en GPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="34_perfil_gpu_ampliado.html">34. Perfil GPU ampliado y viabilidad del extremo TimesNet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="35_busqueda_cuda_reanudable.html">35. Selección CUDA con presupuesto y continuación en GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="36_avance_campana_cuda.html">36. Avance parcial de la campaña CUDA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="37_ajuste_guia.html">37. Ajuste de cómputo conforme a la guía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="38_cumplimiento_guia.html">38. Exigencias de la guía, evidencia y pendientes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="39_optimizacion_tiempo.html">39. Optimizar tiempo sin recortar las exigencias de E2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="40_calendario_original.html">40. Calendario original y optimizaciones de implementación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="41_avance_optimizacion_11_origenes.html">41. Ejecución optimizada: avance verificable de once orígenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html">42. Preparación complementaria a partir de evidencia existente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="43_catalogo_obligatorio.html">43. Catálogo obligatorio: dieciséis sistemas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="44_arquitecturas_publicadas.html">44. Cuerpos publicados, adaptaciones D7 y aplicación de NAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="45_enmienda_protocolo.html">45. Enmienda del protocolo: calendario común, presupuesto y prueba final</a></li>
+<li class="toctree-l1"><a class="reference internal" href="46_artefactos_y_pilotos.html">46. Preparación técnica opcional: artefactos y pilotos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><p class="small">Entregable 2 · Jassan Arteta · 2026-30</p></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/54_robustez_interpretabilidad.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>54. Robustez e interpretabilidad: resultados reales de los predictores congelados</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-ejecutada-y-procedencia">Evidencia ejecutada y procedencia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-se-perturbo">Qué se perturbó</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#degradacion-incertidumbre-y-resultados-adversos">Degradación, incertidumbre y resultados adversos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oclusion-fidelidad-y-estabilidad-de-las-explicaciones">Oclusión, fidelidad y estabilidad de las explicaciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perfil-de-inferencia-y-limites-del-cierre">Perfil de inferencia y límites del cierre</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="robustez-e-interpretabilidad-resultados-reales-de-los-predictores-congelados">
+<h1>54. Robustez e interpretabilidad: resultados reales de los predictores congelados<a class="headerlink" href="#robustez-e-interpretabilidad-resultados-reales-de-los-predictores-congelados" title="Link to this heading">#</a></h1>
+<p><strong>La ejecución A100 completó los diagnósticos de 79 predictores y su agregado.</strong> Las perturbaciones muestran fragilidad: con un 10 % de celdas alteradas por valores extremos, la RMSE del autoencoder aumenta <strong>585,40 %</strong>, la de GRU32 <strong>513,98 %</strong> y la de TimeMixer <strong>1.552,52 %</strong>. La cobertura de sus intervalos congelados cae al <strong>22,12 %, 32,07 % y 19,13 %</strong>, respectivamente. Una posición favorable en la evaluación original no garantiza resistencia a estas perturbaciones.</p>
+<p>Los resultados son posteriores a conocer la prueba y condicionados a una sola cronología. Utilizan predictores existentes, objetivos y calibradores congelados; <strong>la <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">A2 original</span></a> y sus veinte contrastes no cambian</strong>. Tampoco constituyen evidencia causal sobre el mercado ni acreditan estabilidad prospectiva.</p>
+<section id="evidencia-ejecutada-y-procedencia">
+<h2>Evidencia ejecutada y procedencia<a class="headerlink" href="#evidencia-ejecutada-y-procedencia" title="Link to this heading">#</a></h2>
+<p>El agregado contiene <strong>78 predictores neurales —trece sistemas por seis semillas— y un ARIMA determinista</strong>. Los 79 reprodujeron sus proyecciones originales antes de admitir los diagnósticos. Se obtuvieron <strong>78 perfiles de inferencia GPU</strong>, <strong>468 filas de robustez</strong> y explicaciones de <strong>tres sistemas: autoencoder, GRU32 y ARIMA</strong>. Persistence y SeasonalNaive no forman parte de esta ejecución de diagnósticos; no se contabilizan como pruebas de estrés completadas.</p>
+<p>El registro fija las 608 fechas del 01/01/2025 al 31/08/2026 y la configuración publicada <code class="docutils literal notranslate"><span class="pre">ae1a2d4f96807a20ea92c313297a5c09512a4817</span></code>. La ejecución se identifica como <code class="docutils literal notranslate"><span class="pre">posthoc-8295dc64b34339856f7f3dfd</span></code>. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/12cccdec2c454fd1510c1ac940edb61c115f0b39/runs/posthoc-8295dc64b34339856f7f3dfd">commit de resultados</a> conserva sus artefactos. El resumen restaurado y verificado tiene SHA256:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>e9df7b0f89370f807d6387574d8195161353b8d5fe4da40e99b60d9a2c1587bd
+</pre></div>
+</div>
+<p>La <a class="reference download internal" download="" href="../_downloads/2f3b5340b252463ff4a0dbac69a456bb/source_evidence.json"><span class="xref download myst">procedencia y verificación de fuentes</span></a> y el <a class="reference download internal" download="" href="../_downloads/1a9d0a4a909eb36c48a3f0eb3f8a519b/status.json"><span class="xref download myst">estado de ejecución</span></a> distinguen los diagnósticos realizados del entrenamiento pendiente. El entorno medido fue <strong>NVIDIA A100-SXM4-80GB, Python 3.12.12 y Torch 2.8.0+cu126</strong>, en FP32, sin AMP ni TF32. Los tiempos individuales suman <strong>2.358,53 segundos</strong> y el agregado informa <strong>3.441,86 segundos</strong> de invocación; son alcances distintos que incluyen gestión y respaldos entre predictores. Ninguno sustituye el diario presupuestario acumulado.</p>
+</section>
+<section id="que-se-perturbo">
+<h2>Qué se perturbó<a class="headerlink" href="#que-se-perturbo" title="Link to this heading">#</a></h2>
+<p>Para cada red se modifica su tensor de entrada D7, de <strong>7 rezagos × 5 variables OHLCV</strong>, después del escalado original. La mediana y la desviación estándar por coordenada se obtienen exclusivamente de las ventanas de entrenamiento. No se ajustan nuevos parámetros a partir de la prueba.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Perturbación</p></th>
+<th class="head"><p>Operación registrada</p></th>
+<th class="head"><p>Tres severidades</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Ruido</p></td>
+<td><p>Ruido gaussiano por celda, multiplicado por su desviación estándar de entrenamiento</p></td>
+<td><p>0,10; 0,30; 0,50</p></td>
+</tr>
+<tr class="row-odd"><td><p>Valores extremos</p></td>
+<td><p>Selección aleatoria de celdas y desplazamiento de ±5 desviaciones estándar</p></td>
+<td><p>Probabilidades 0,01; 0,05; 0,10</p></td>
+</tr>
+<tr class="row-even"><td><p>Faltantes simulados</p></td>
+<td><p>Sustitución de las celdas seleccionadas por su mediana de entrenamiento</p></td>
+<td><p>Probabilidades 0,05; 0,15; 0,30</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cambio de nivel</p></td>
+<td><p>Desplazamiento positivo de las entradas desde el índice 365, correspondiente al 01/01/2026</p></td>
+<td><p>0,25; 0,50; 1,00 desviaciones estándar</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La semilla de perturbación es <code class="docutils literal notranslate"><span class="pre">271901</span></code>. Los cambios de las ventanas son <strong>independientes por pronóstico</strong>: no reconstruyen una trayectoria OHLCV coherente, pueden romper relaciones entre apertura, máximo, mínimo y cierre y no representan intervenciones económicas. La condición denominada cambio estructural es un desplazamiento sintético de entradas con fecha fijada; no demuestra resistencia a un quiebre real del proceso generador. La imputación por mediana es una regla de estrés ya fijada, no una política validada para faltantes operativos.</p>
+<p>Los <strong>objetivos permanecen intactos</strong> y cada predictor conserva su radio residual <strong>q</strong>. Se evalúan cambios en la RMSE media de las seis semillas, cobertura y anchura nominal <strong>2q</strong>. La cobertura se calcula con el criterio (|\hat y-y|\leq q); no se recalibra el intervalo tras la perturbación. La anchura nominal que informa este productor no incorpora el recorte del extremo inferior en cero usado en otras tablas, por lo que no debe confundirse con esa anchura truncada.</p>
+</section>
+<section id="degradacion-incertidumbre-y-resultados-adversos">
+<h2>Degradación, incertidumbre y resultados adversos<a class="headerlink" href="#degradacion-incertidumbre-y-resultados-adversos" title="Link to this heading">#</a></h2>
+<p>Las <strong>468 filas</strong> corresponden a <strong>13 redes × 12 condiciones de estrés × 3 longitudes de bloque</strong>. Cada combinación usa <strong>2.000 remuestreos circulares</strong> de fechas, con bloques de <strong>7, 14 o 28 días</strong>. Se preserva el emparejamiento de fechas y las seis trayectorias fijas; las semillas no se convierten en mercados independientes. El cambio evaluado es la RMSE media por semilla perturbada menos su referencia original.</p>
+<p>Los IC son descriptivos y condicionados a estas semillas y esta cronología; no son intervalos simultáneos ni contrastes ajustados de las 468 filas. Las tres longitudes reutilizan los mismos efectos puntuales y constituyen sensibilidad del remuestreo, no tres replicaciones independientes. Su interpretación requiere que los bloques representen adecuadamente la dependencia temporal. La <a class="reference download internal" download="" href="../_downloads/1cc86cf0adb83be55bcd4c9863d779fb/robustness.csv"><span class="xref download myst">tabla completa de robustez</span></a> conserva las tres longitudes.</p>
+<p>En la severidad máxima de cada condición, los resultados siguientes utilizan <strong>bloques de 14 días</strong>. La cobertura es la observada con q congelado; los porcentajes de degradación se expresan respecto a la RMSE original de cada sistema.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Sistema y condición</p></th>
+<th class="head text-right"><p>RMSE perturbada</p></th>
+<th class="head text-right"><p>Aumento de RMSE</p></th>
+<th class="head text-right"><p>Cobertura</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Autoencoder, ruido 0,50</p></td>
+<td class="text-right"><p>0,0114691</p></td>
+<td class="text-right"><p>201,55 %</p></td>
+<td class="text-right"><p>49,18 %</p></td>
+</tr>
+<tr class="row-odd"><td><p>GRU32, ruido 0,50</p></td>
+<td class="text-right"><p>0,0081564</p></td>
+<td class="text-right"><p>103,85 %</p></td>
+<td class="text-right"><p>72,67 %</p></td>
+</tr>
+<tr class="row-even"><td><p>TimeMixer, ruido 0,50</p></td>
+<td class="text-right"><p>0,0164706</p></td>
+<td class="text-right"><p>267,56 %</p></td>
+<td class="text-right"><p>28,92 %</p></td>
+</tr>
+<tr class="row-odd"><td><p>Autoencoder, extremos 0,10</p></td>
+<td class="text-right"><p>0,0260687</p></td>
+<td class="text-right"><p>585,40 %</p></td>
+<td class="text-right"><p>22,12 %</p></td>
+</tr>
+<tr class="row-even"><td><p>GRU32, extremos 0,10</p></td>
+<td class="text-right"><p>0,0245663</p></td>
+<td class="text-right"><p>513,98 %</p></td>
+<td class="text-right"><p>32,07 %</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimeMixer, extremos 0,10</p></td>
+<td class="text-right"><p>0,0740510</p></td>
+<td class="text-right"><p>1.552,52 %</p></td>
+<td class="text-right"><p>19,13 %</p></td>
+</tr>
+<tr class="row-even"><td><p>Autoencoder, faltantes 0,30</p></td>
+<td class="text-right"><p>0,0069458</p></td>
+<td class="text-right"><p>82,62 %</p></td>
+<td class="text-right"><p>81,61 %</p></td>
+</tr>
+<tr class="row-odd"><td><p>GRU32, faltantes 0,30</p></td>
+<td class="text-right"><p>0,0060639</p></td>
+<td class="text-right"><p>51,55 %</p></td>
+<td class="text-right"><p>88,35 %</p></td>
+</tr>
+<tr class="row-even"><td><p>TimeMixer, faltantes 0,30</p></td>
+<td class="text-right"><p>0,0125695</p></td>
+<td class="text-right"><p>180,50 %</p></td>
+<td class="text-right"><p>72,51 %</p></td>
+</tr>
+<tr class="row-odd"><td><p>Autoencoder, cambio de nivel 1,00</p></td>
+<td class="text-right"><p>0,0040731</p></td>
+<td class="text-right"><p>7,09 %</p></td>
+<td class="text-right"><p>95,61 %</p></td>
+</tr>
+<tr class="row-even"><td><p>GRU32, cambio de nivel 1,00</p></td>
+<td class="text-right"><p>0,0043831</p></td>
+<td class="text-right"><p>9,55 %</p></td>
+<td class="text-right"><p>95,31 %</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimeMixer, cambio de nivel 1,00</p></td>
+<td class="text-right"><p>0,0052910</p></td>
+<td class="text-right"><p>18,07 %</p></td>
+<td class="text-right"><p>87,64 %</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Por ejemplo, ante extremos al 10 %, el aumento absoluto del autoencoder es <strong>0,0222653</strong>, con IC nominal de bloque14 <strong>[0,0206109; 0,0239833]</strong>. Para TimeMixer es <strong>0,0695700 [0,0657042; 0,0732189]</strong>. Son deterioros importantes dentro del estrés simulado. La conservación de q deja visible que los intervalos originales no mantienen su cobertura en esas condiciones.</p>
+<p>Se resume también la curva mediante el área trapezoidal de la degradación relativa, comenzando en severidad cero y dividida por la severidad máxima. Un área menor describe menos degradación en esa escala concreta. No equivale a la degradación en la severidad máxima ni a una probabilidad de fallo; las escalas de condiciones distintas no son intercambiables.</p>
+<p><img alt="Áreas normalizadas de degradación por sistema y condición" src="../_images/robustness_areas.svg" /></p>
+<p>En la escala porcentual del gráfico, el área del autoencoder es <strong>76,43 % para ruido y 364,15 % para extremos</strong>; GRU32 obtiene <strong>37,82 % y 308,44 %</strong>. TimeMixer alcanza <strong>97,84 % y 925,01 %</strong>, y TimesNet <strong>66,00 % y 787,75 %</strong>. Estos resultados impiden presentar a los modelos mejor situados en la referencia como uniformemente resistentes. Las <a class="reference download internal" download="" href="../_downloads/1997e810ce1f73239345003221f24838/normalized_degradation_areas.csv"><span class="xref download myst">52 áreas —13 sistemas por cuatro condiciones—</span></a> permiten revisar todos los sistemas.</p>
+<p><strong>PatchTST exige una interpretación especialmente cauta.</strong> Su área de ruido es negativa, pero parte de una RMSE original alta, <strong>0,0101393</strong>. Con ruido 0,50 el cambio observado es <strong>−0,0002431</strong>, cuyo IC de bloque14 <strong>[−0,0008074; 0,0001990]</strong> incluye cero. Una respuesta poco sensible, o una reducción puntual del error tras añadir ruido, no acredita una buena predicción ni autoriza declararlo ganador de robustez.</p>
+</section>
+<section id="oclusion-fidelidad-y-estabilidad-de-las-explicaciones">
+<h2>Oclusión, fidelidad y estabilidad de las explicaciones<a class="headerlink" href="#oclusion-fidelidad-y-estabilidad-de-las-explicaciones" title="Link to this heading">#</a></h2>
+<p>Se seleccionaron <strong>24 fechas equiespaciadas</strong>, desde el índice 7 hasta el 607, sin selección por pérdidas u objetivos. En las dos redes se sustituye una coordenada D7 cada vez por su mediana de entrenamiento. El cambio absoluto de la predicción determina el orden de importancia para cada observación. Las curvas de eliminación sustituyen progresivamente las coordenadas; las de inserción las restituyen desde la referencia. Se compara ese orden con un orden aleatorio de semilla fija.</p>
+<p>ARIMA se explica por separado mediante sus <strong>siete rezagos del objetivo σ₇</strong>, preservando el estado anterior del filtro y sus coeficientes. Sus explicaciones no son importancias OHLCV y sus siete coordenadas no se comparan directamente con las 35 de las redes. El índice inicial 7 permite disponer de todos los rezagos posteriores al estado original congelado.</p>
+<p><img alt="Curvas de fidelidad por productor y referencia aleatoria" src="../_images/explanation_fidelity.svg" /></p>
+<p>Las curvas medias muestran que eliminar primero las coordenadas ordenadas cambia más la predicción, y que insertarlas recupera antes la respuesta original que el orden aleatorio. Por ejemplo, al eliminar aproximadamente <strong>un séptimo de las coordenadas</strong>, el cambio absoluto medio del autoencoder es <strong>0,007675</strong>, frente a <strong>0,002565</strong> con el orden aleatorio; para GRU32 es <strong>0,005216</strong>, frente a <strong>0,001484</strong>. Son promedios entre semillas sobre las mismas 24 fechas, en unidades de la predicción.</p>
+<p>La ventaja no es uniforme: entre los seis puntos interiores de eliminación y las seis semillas, hay <strong>2 de 36 combinaciones del autoencoder y 7 de 36 de GRU32</strong> en las que el cambio ordenado es menor que el aleatorio. La eliminación tampoco tiene por qué ser monótona cuando interactúan las entradas. La <a class="reference download internal" download="" href="../_downloads/e461a0c28aa2975f2f4857592d0f4c20/fidelity_producer_summary.csv"><span class="xref download myst">tabla de fidelidad por productor</span></a> conserva los resultados que sustentan estas observaciones.</p>
+<p>El orden se obtiene mediante oclusión y su fidelidad se mide con perturbaciones relacionadas sobre <strong>las mismas fechas</strong>. Por tanto, se evalúa coherencia con la respuesta de ese predictor, no una validación independiente de la explicación. El orden aleatorio es una referencia de una semilla fijada, no una distribución extensa de controles aleatorios. Ninguna de estas curvas identifica causas de volatilidad, utilidad económica de intervenir una variable o validez de una explicación en futuros periodos.</p>
+<p>La estabilidad se calcula como correlación de Spearman entre los vectores de magnitud media de las explicaciones de cada semilla. Cada red produce <strong>15 parejas de semillas</strong>, no quince muestras independientes de mercado:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Productor</p></th>
+<th class="head text-right"><p>Semillas</p></th>
+<th class="head text-right"><p>Parejas</p></th>
+<th class="head text-right"><p>Spearman medio</p></th>
+<th class="head text-right"><p>Spearman mínimo</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Autoencoder</p></td>
+<td class="text-right"><p>6</p></td>
+<td class="text-right"><p>15</p></td>
+<td class="text-right"><p>0,73102</p></td>
+<td class="text-right"><p>0,35518</p></td>
+</tr>
+<tr class="row-odd"><td><p>GRU32</p></td>
+<td class="text-right"><p>6</p></td>
+<td class="text-right"><p>15</p></td>
+<td class="text-right"><p>0,83815</p></td>
+<td class="text-right"><p>0,65882</p></td>
+</tr>
+<tr class="row-even"><td><p>ARIMA</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>No estimable</p></td>
+<td class="text-right"><p>No estimable</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>GRU32 presenta mayor concordancia descriptiva entre semillas en esta muestra; el mínimo del autoencoder muestra que algunas parejas discrepan de forma apreciable. ARIMA tiene <strong>R=1</strong> y su estabilidad entre semillas <strong>no está definida (<code class="docutils literal notranslate"><span class="pre">null</span></code>)</strong>; ese valor no representa una correlación cero ni estabilidad perfecta. Estos resúmenes no acreditan estabilidad temporal fuera de las 24 fechas.</p>
+</section>
+<section id="perfil-de-inferencia-y-limites-del-cierre">
+<h2>Perfil de inferencia y límites del cierre<a class="headerlink" href="#perfil-de-inferencia-y-limites-del-cierre" title="Link to this heading">#</a></h2>
+<p>Cada perfil utiliza <strong>32 pasadas de calentamiento y 100 repeticiones</strong>, con <strong>batch=1</strong> y entrada residente en GPU. El tiempo se mide mediante eventos CUDA durante el forward del modelo. Excluye transferencia de datos, preprocesamiento, carga del modelo y latencia de un servicio completo. El cuadro y el gráfico muestran la <strong>media de las seis medianas por semilla</strong> y su rango mínimo–máximo; no son la mediana conjunta de todas las repeticiones ni un IC poblacional.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Sistema</p></th>
+<th class="head text-right"><p>Parámetros</p></th>
+<th class="head text-right"><p>Media de medianas, ms</p></th>
+<th class="head text-right"><p>Rango de medianas, ms</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>MLP16</p></td>
+<td class="text-right"><p>593</p></td>
+<td class="text-right"><p>0,32324</p></td>
+<td class="text-right"><p>0,31898–0,32717</p></td>
+</tr>
+<tr class="row-odd"><td><p>GRU32</p></td>
+<td class="text-right"><p>3.777</p></td>
+<td class="text-right"><p>0,42854</p></td>
+<td class="text-right"><p>0,41421–0,44186</p></td>
+</tr>
+<tr class="row-even"><td><p>Autoencoder</p></td>
+<td class="text-right"><p>8.739</p></td>
+<td class="text-right"><p>0,84019</p></td>
+<td class="text-right"><p>0,82944–0,85606</p></td>
+</tr>
+<tr class="row-odd"><td><p>PatchTST</p></td>
+<td class="text-right"><p>16.388</p></td>
+<td class="text-right"><p>5,28205</p></td>
+<td class="text-right"><p>5,23366–5,32634</p></td>
+</tr>
+<tr class="row-even"><td><p>TimeMixer</p></td>
+<td class="text-right"><p>9.447</p></td>
+<td class="text-right"><p>7,65790</p></td>
+<td class="text-right"><p>7,60934–7,75168</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimesNet</p></td>
+<td class="text-right"><p>1.173.099</p></td>
+<td class="text-right"><p>9,13152</p></td>
+<td class="text-right"><p>9,07674–9,17709</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img alt="Latencia de forward GPU en las trece redes" src="../_images/inference_latency.svg" /></p>
+<p>El <a class="reference download internal" download="" href="../_downloads/4a2e3fdcb5bed843a2453eca99dc979f/inference_profiles_by_model.csv"><span class="xref download myst">perfil completo por sistema</span></a> conserva los trece modelos. La cantidad de parámetros no determina por sí sola la latencia: TimeMixer tiene menos parámetros que PatchTST, pero tarda más en esta medición. Los picos de memoria informados corresponden al forward después del calentamiento; incluyen espacios de trabajo y distinguen memoria asignada de reservada por el allocator. No son el pico de entrenamiento ni el consumo completo del proceso. <strong>FLOPs y energía permanecen sin medir</strong>. ARIMA no tiene un perfil GPU comparable en este agregado.</p>
+<p>Este capítulo documenta inferencia y diagnósticos realmente completados. <strong>La preparación posterior del entorno limpio falló aproximadamente a los trece segundos, antes de admitir nuevos ajustes.</strong> Los cargos se conservan y el diagnóstico del fallo depende de los registros de esa ejecución. No se han completado ni se atribuyen aquí las <strong>81 reproducciones ni las 18 ablaciones con entrenamiento</strong>. Las oclusiones son pruebas de respuesta de pesos existentes, distintas de esas ablaciones pendientes.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="53_cierre_requisitos.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">53. Cierre de requisitos y experimentos complementarios</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="07_ruta_temporal.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">7. Ruta metodológica: series de tiempo y controles causales</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-ejecutada-y-procedencia">Evidencia ejecutada y procedencia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-se-perturbo">Qué se perturbó</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#degradacion-incertidumbre-y-resultados-adversos">Degradación, incertidumbre y resultados adversos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oclusion-fidelidad-y-estabilidad-de-las-explicaciones">Oclusión, fidelidad y estabilidad de las explicaciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perfil-de-inferencia-y-limites-del-cierre">Perfil de inferencia y límites del cierre</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
