@@ -400,8 +400,10 @@
                 <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-del-trabajo">Resumen del trabajo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guia-de-lectura">Guía de lectura</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#avance-de-entrenamiento-y-validacion">Avance de entrenamiento y validación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trabajo-pendiente-para-cerrar-e2">Trabajo pendiente para cerrar E2</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#catalogo-y-protocolo-vigentes">Catálogo y protocolo vigentes</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-de-cierre">Evidencia de cierre</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-historica-de-cierre">Evidencia histórica de cierre</a></li>
 </ul>
             </nav>
         </div>
@@ -416,8 +418,9 @@
   <section class="tex2jax_ignore mathjax_ignore" id="proyecto-final-de-deep-learning-entregable-2">
 <h1>Proyecto Final de Deep Learning: Entregable 2<a class="headerlink" href="#proyecto-final-de-deep-learning-entregable-2" title="Link to this heading">#</a></h1>
 <p><strong>Deep Learning · 2026-30 · Jassan Arteta</strong></p>
-<p><strong>Ejecución reducida registrada el 12/11/2026:</strong> <a class="reference internal" href="sections/48_protocolo_reducido.html"><span class="std std-doc">§48 reúne el protocolo y sus actualizaciones</span></a>: seis plazas HPO por red, una semilla y tres folds internos, con los dieciséis sistemas y el contrato E1 conservados. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/1e8745497b484518f766b6da5c19be8362d9add7">motor científico</a> y la <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/7ad290ada4ef9908aecfe042b610251206d9b099">extensión de almacenamiento exclusivo en GitHub</a> están publicados. El diagnóstico recibido de la T4 confirma versiones compatibles y TiDE dispone de una receta publicada verificada; los recibos de ajuste deberán acreditar la ejecución real y el presupuesto utilizado.</p>
-<p><strong>Estado de ejecución y evidencia:</strong> la campaña ya publica su <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/results/e2-reduced-delivery-v1/control/github-primary-v1/head.json">control remoto en GitHub</a> y recibos de reutilización de caché y de ajustes nuevos. Este <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/results/e2-reduced-delivery-v1/runs/08472340feeb25d36cfe22449165e62a5d11029724c94b645cf324ac8109b639/receipt.json">recibo FCN-1D</a> registra un ajuste HPO completado con pasos de optimizador. Estos resultados internos todavía no equivalen a métricas finales. El informe consolidado conserva su corte anterior; el benchmark final y sus métricas siguen pendientes de resultados verificados.</p>
+<p><strong>Avance verificado al 12/11/2026, 22:22 de Bogotá.</strong> La campaña reducida registra <strong>97 corridas HPO exitosas: 60 entrenamientos nuevos y 37 resultados anteriores reutilizados</strong>. Hay <strong>dos fallos conocidos y un intento con desenlace desconocido</strong>, conservados sin repetirlos. El corte acredita dos ajustes nuevos completados en <strong>NVIDIA A100-SXM4-80GB</strong>. <a class="reference download internal" download="" href="_downloads/11d257bfd18631cca7aa8d0714302d6a/progress_snapshot.json"><span class="xref download myst">Instantánea y procedencia</span></a> · <a class="reference download internal" download="" href="_downloads/de7e690d385a88520b03b7b5c5feb327/top10_training_validation.csv"><span class="xref download myst">CSV de entrenamiento y validación</span></a>.</p>
+<p><strong>Protocolo vigente:</strong> diez candidatos, tres referencias E1 y tres comparadores, <strong>16 sistemas</strong>. Se mantienen seis configuraciones HPO por red, una semilla y tres orígenes internos; el presupuesto autorizado es de <strong>72 horas acumuladas</strong>, con un máximo prospectivo de <strong>30 minutos por fase</strong>. La transición de T4 a A100 conserva los resultados históricos y sus cargos; GitHub es el destino persistente. <a class="reference internal" href="sections/48_protocolo_reducido.html"><span class="std std-doc">Reglas, fuentes y actualizaciones (§48)</span></a>.</p>
+<p><strong>El testing final sigue pendiente.</strong> Los recibos actuales acreditan entrenamiento y validación interna; todavía no aportan la tabla final A2 ni un ganador del catálogo. Los cortes consolidados anteriores conservan su fecha y alcance.</p>
 <p><strong>Versión de entrega consolidada con la evidencia disponible al 12/11/2026.</strong> Se reúnen problema, EDA, literatura, implementaciones, experimentos ejecutados y conclusiones. Este cierre utiliza resultados guardados y no inicia nuevas corridas.</p>
 <p><strong><a class="reference internal" href="sections/47_entrega_consolidada.html"><span class="std std-doc">Leer el informe consolidado, resultados y conclusiones (§47)</span></a></strong> · <strong><a class="reference download internal" download="" href="_downloads/80525faefdf76d3e2b06ee4792209944/Entregable2_evidencia_disponible.zip"><span class="xref download myst">Descargar el paquete de entrega</span></a></strong></p>
 <section id="resumen-del-trabajo">
@@ -464,16 +467,135 @@
 </table>
 </div>
 </section>
+<section id="avance-de-entrenamiento-y-validacion">
+<h2>Avance de entrenamiento y validación<a class="headerlink" href="#avance-de-entrenamiento-y-validacion" title="Link to this heading">#</a></h2>
+<p><strong>Corte de consulta: 12/11/2026, 22:22 de Bogotá; última admisión registrada a las 22:20:06.</strong> Cada candidato tiene 18 oportunidades HPO previstas: <strong>C01–C06 × enero, julio y octubre de 2024</strong>. Una corrida exitosa incluye entrenamiento y evaluación en las 83 fechas comunes de validación de su origen. Las cifras de la tabla son conteos, no valores de RMSE de training o testing.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo</p></th>
+<th class="head text-right"><p>Nuevos completados</p></th>
+<th class="head text-right"><p>Reutilizados</p></th>
+<th class="head text-right"><p>Validaciones exitosas</p></th>
+<th class="head text-right"><p>Fallos conocidos</p></th>
+<th class="head text-right"><p>Desenlace desconocido</p></th>
+<th class="head text-right"><p>Por cerrar</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>FCN-1D</p></td>
+<td class="text-right"><p>6</p></td>
+<td class="text-right"><p>12</p></td>
+<td class="text-right"><p><strong>18/18</strong></p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>ResNet-1D</p></td>
+<td class="text-right"><p>6</p></td>
+<td class="text-right"><p>12</p></td>
+<td class="text-right"><p><strong>18/18</strong></p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Inception-1D</p></td>
+<td class="text-right"><p>11</p></td>
+<td class="text-right"><p>7</p></td>
+<td class="text-right"><p><strong>18/18</strong></p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM-autoencoder con predictor</p></td>
+<td class="text-right"><p>18</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p><strong>18/18</strong></p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>TimesNet</p></td>
+<td class="text-right"><p>16</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p><strong>16/18</strong></p></td>
+<td class="text-right"><p>2</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>TSMixer</p></td>
+<td class="text-right"><p>3</p></td>
+<td class="text-right"><p>6</p></td>
+<td class="text-right"><p><strong>9/18</strong></p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>8</p></td>
+</tr>
+<tr class="row-even"><td><p>TiDE</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p><strong>0/18</strong></p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>18</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimeMixer</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p><strong>0/18</strong></p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>18</p></td>
+</tr>
+<tr class="row-even"><td><p>PatchTST</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p><strong>0/18</strong></p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>18</p></td>
+</tr>
+<tr class="row-odd"><td><p>iTransformer</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p><strong>0/18</strong></p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>18</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Total Top 10</strong></p></td>
+<td class="text-right"><p><strong>60</strong></p></td>
+<td class="text-right"><p><strong>37</strong></p></td>
+<td class="text-right"><p><strong>97/180</strong></p></td>
+<td class="text-right"><p><strong>2</strong></p></td>
+<td class="text-right"><p><strong>1</strong></p></td>
+<td class="text-right"><p><strong>80</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Se cerraron <strong>100 de las 180 oportunidades del Top 10</strong>, contando los fallos; las <strong>80 sin cierre incluyen una admitida y 79 aún no admitidas</strong>. La última admisión del corte corresponde a <strong>TSMixer C05, julio de 2024, en A100</strong>; una reserva no acredita por sí sola progreso del optimizador en tiempo real. Los dos ajustes A100 completados son TSMixer C03 y C04 de julio. La caché reutiliza resultados de selección ya auditados, sin proporcionar pesos finales.</p>
+<p>Las referencias <strong>MLP16, LSTM32 y GRU32</strong> conservan otras <strong>54 oportunidades HPO</strong>, todavía sin cierre en este corte. Por tanto, las trece redes suman <strong>234 oportunidades</strong>, de las que quedan 134 sin cerrar. Persistence, SeasonalNaive y ARIMA completan el catálogo de 16 sistemas y su comparación final sigue pendiente. Los ceros describen esta campaña reducida, sin borrar los antecedentes históricos.</p>
+<p><a class="reference download internal" download="" href="_downloads/c5cc7f687c3aa600f332765e263d5148/all13_hpo_progress.csv"><span class="xref download myst">Tabla de las trece redes (CSV)</span></a> · <a class="reference download internal" download="" href="_downloads/11d257bfd18631cca7aa8d0714302d6a/progress_snapshot.json"><span class="xref download myst">Instantánea JSON</span></a> · <a class="reference download internal" download="" href="_downloads/816c57e7bb03a2ff3150892211b7177f/source_evidence.json"><span class="xref download myst">Fuentes y hashes</span></a> · <a class="reference download internal" download="" href="_downloads/6cf0010638b15666badf3a87d7c84d39/manifest.json"><span class="xref download myst">Manifiesto de estos archivos</span></a> · <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/results/e2-reduced-delivery-v1/control/github-primary-v1/head.json">Control remoto más reciente en GitHub</a>.</p>
+</section>
+<section id="trabajo-pendiente-para-cerrar-e2">
+<h2>Trabajo pendiente para cerrar E2<a class="headerlink" href="#trabajo-pendiente-para-cerrar-e2" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Cerrar el HPO de las trece redes y seleccionar cada configuración exclusivamente con validación.</p></li>
+<li><p>Completar los pilotos de semillas/potencia, justificar las repeticiones y ejecutar los reajustes finales con sus curvas, pesos, configuraciones y recursos.</p></li>
+<li><p>Congelar predictores y calibradores, evaluar el soporte común y rellenar la tabla A2 con métricas, incertidumbre, costes y contrastes.</p></li>
+<li><p>Verificar los análisis de robustez, interpretabilidad, ablaciones y reproducibilidad que exige la guía. La <a class="reference internal" href="sections/38_cumplimiento_guia.html"><span class="std std-doc">matriz de requisitos (§38)</span></a> distingue evidencia y pendientes.</p></li>
+</ol>
+</section>
 <section id="catalogo-y-protocolo-vigentes">
 <h2>Catálogo y protocolo vigentes<a class="headerlink" href="#catalogo-y-protocolo-vigentes" title="Link to this heading">#</a></h2>
 <p>Los <strong>16 sistemas obligatorios</strong> son <strong>FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder con predictor, TimesNet, TSMixer, TiDE, TimeMixer, PatchTST e iTransformer</strong>; las referencias <strong>MLP16, LSTM32 y GRU32</strong>; y <strong>persistencia, naive estacional y ARIMA</strong>. El híbrido CNN-LSTM-atención y Ridge conservan alcance opcional/histórico.</p>
 <p>La ejecución actual incorpora los cuerpos definidos del catálogo, incluida la nueva receta <strong>TIDE-D7-PUBLISHED-R0-v2</strong>, vinculada a la fuente oficial y a su <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/1e8745497b484518f766b6da5c19be8362d9add7/experiments/e2_tide_published_r0_20261112/source_parity.json">evidencia de paridad</a>. Las restauraciones de SAE, TimesNet, TimeMixer, PatchTST y TiDE tienen identidades propias; los ajustes anteriores no se renombran como resultados de esos cuerpos. <a class="reference internal" href="sections/44_arquitecturas_publicadas.html"><span class="std std-doc">Fuentes y adaptaciones (§44)</span></a> conserva el corte previo; la actualización está en <a class="reference internal" href="sections/48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>.</p>
 <p>El protocolo reducido usa <strong>tres folds HPO</strong> —enero, julio y octubre de 2024— para seleccionar una receta global por red. El ajuste final común termina el <strong>31/10/2024</strong>; la calibración queda en noviembre–diciembre y la evaluación hereda las 608 fechas conocidas de E1. Conserva embargo y transformaciones ajustadas sólo con entrenamiento. Los diez reajustes mensuales del <a class="reference internal" href="sections/45_enmienda_protocolo.html"><span class="std std-doc">protocolo anterior (§45)</span></a> permanecen como antecedente; para las nuevas ejecuciones rige <a class="reference internal" href="sections/48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>.</p>
 </section>
-<section id="evidencia-de-cierre">
-<h2>Evidencia de cierre<a class="headerlink" href="#evidencia-de-cierre" title="Link to this heading">#</a></h2>
+<section id="evidencia-historica-de-cierre">
+<h2>Evidencia histórica de cierre<a class="headerlink" href="#evidencia-historica-de-cierre" title="Link to this heading">#</a></h2>
 <p>El corte de selección se fija al commit <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/795844308c07cbc160d3dd1feb6284b5f443bb20"><code class="docutils literal notranslate"><span class="pre">795844308c07</span></code></a>, con cierre registrado el <strong>12/11/2026 a las 12:53:37 UTC</strong>. Contiene cincuenta selecciones modelo/origen del plan anterior; sus contadores no prueban ejecución de las recetas restauradas o de la enmienda nueva.</p>
-<p>La <a class="reference download internal" download="" href="_downloads/67b82e7a409627c6ee42fdeb2c754772/selection_snapshot.json"><span class="xref download myst">instantánea</span></a> y el <a class="reference download internal" download="" href="_downloads/6ca26317065fcd35bce27c2c538005c2/trials.csv"><span class="xref download myst">CSV de ensayos</span></a> conservan el detalle. La conciliación mantiene el techo de <strong>64 horas acumuladas</strong>, sin tiempo nuevo. Esta publicación no comprueba ni modifica el kernel privado de Colab.</p>
+<p>La <a class="reference download internal" download="" href="_downloads/67b82e7a409627c6ee42fdeb2c754772/selection_snapshot.json"><span class="xref download myst">instantánea</span></a> y el <a class="reference download internal" download="" href="_downloads/6ca26317065fcd35bce27c2c538005c2/trials.csv"><span class="xref download myst">CSV de ensayos</span></a> conservan ese detalle histórico, cuyo límite era de <strong>64 horas</strong>. La campaña vigente utiliza las <strong>72 horas acumuladas autorizadas</strong>, sin reiniciar consumos, y la transición A100 documentada en §48. Esta actualización verifica recibos remotos; no inspecciona ni modifica directamente el kernel privado de Colab.</p>
 <p>La revisión global de requisitos queda en <a class="reference internal" href="sections/38_cumplimiento_guia.html"><span class="std std-doc">§38</span></a>. Los capítulos anteriores conservan su fecha y ámbito. La <a class="reference internal" href="sections/46_artefactos_y_pilotos.html"><span class="std std-doc">preparación técnica de pilotos (§46)</span></a> conserva el alcance del registro anterior; los pilotos y reajustes del plan reducido se describen en <a class="reference internal" href="sections/48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>.</p>
 </section>
 <div class="toctree-wrapper compound">
@@ -539,8 +661,10 @@
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-del-trabajo">Resumen del trabajo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guia-de-lectura">Guía de lectura</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#avance-de-entrenamiento-y-validacion">Avance de entrenamiento y validación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trabajo-pendiente-para-cerrar-e2">Trabajo pendiente para cerrar E2</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#catalogo-y-protocolo-vigentes">Catálogo y protocolo vigentes</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-de-cierre">Evidencia de cierre</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-historica-de-cierre">Evidencia histórica de cierre</a></li>
 </ul>
   </nav></div>
 

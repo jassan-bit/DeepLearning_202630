@@ -1,5 +1,7 @@
 # 6. Benchmark obligatorio: dieciséis sistemas
 
+**Actualización verificada al 12/11/2026, 22:22 de Bogotá:** la campaña reducida conserva 97 validaciones HPO exitosas, dos fallos conocidos y un desenlace desconocido. La tabla de entrenamiento y validación está en la [portada](../intro.md); los cambios a A100 y el presupuesto de 72 horas están en [§48](48_protocolo_reducido.md). **La tabla final A2 y el testing común siguen pendientes**; los cortes siguientes conservan su ámbito histórico.
+
 **Alcance vigente del 12/11/2026:** diez modelos del Top 10, tres referencias E1 y tres comparadores: **16 sistemas**. El híbrido adicional y Ridge quedan como opcionales/históricos. La enmienda de [§43](43_catalogo_obligatorio.md) registra el catálogo requerido; la selección ya sellada conserva su historial de catorce redes y necesita una transición explícita para aplicar el alcance nuevo. El benchmark final continúa pendiente.
 
 **Entrega con la evidencia disponible:** [§47 reúne resultados, artefactos y conclusiones del cierre](47_entrega_consolidada.md). El corte consolidado conserva **1.705 resultados HPO nuevos y 1.802 registros históricos: 3.507 registros de resultados**. Ocho recetas del plan histórico completaron cobertura HPO de enero a junio; esa cobertura acredita selección ejecutada, sin constituir un ranking final de los 16 sistemas. Las métricas E1, cuando se presentan como antecedente de sus 608 fechas conocidas, mantienen ese ámbito.

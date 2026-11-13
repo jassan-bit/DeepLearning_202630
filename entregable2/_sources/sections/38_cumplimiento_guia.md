@@ -1,5 +1,7 @@
 # 38. Exigencias de la guía, evidencia y pendientes
 
+**Actualización de evidencia al 12/11/2026, 22:22 de Bogotá:** la [portada](../intro.md) y [§48](48_protocolo_reducido.md) recogen el avance HPO y la transición A100 con sus recibos. Esa evidencia no cierra por sí sola las obligaciones de testing, potencia, robustez, interpretabilidad, ablaciones o reproducción. La matriz siguiente conserva su fecha de revisión; cada pendiente requiere sus artefactos antes de declararse cumplido.
+
 **Versión de entrega con lo disponible:** resultados, discusión, conclusiones y descargas en [§47](47_entrega_consolidada.md). Esta matriz conserva los requisitos sin evidencia para revisión posterior; el cierre documental no los convierte en experimentos completados ni ordena nuevas corridas.
 
 **Actualización de alcance: 12/11/2026; matriz de evidencia del corte 11/11/2026.** Fuente: *Entregable2DeepLearningProject.pdf*, 65 páginas, aportado nuevamente por el usuario. SHA256 del PDF:
