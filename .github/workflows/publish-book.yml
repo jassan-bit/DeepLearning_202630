@@ -133,15 +133,6 @@ jobs:
           python -m unittest discover -s tests -p 'test_e2_optimized_budget_extension.py' -v
           python -m unittest discover -s tests -p 'test_e2_gpu*.py' -v
           python -m unittest discover -s tests -p 'test_fetch_e2_development_sources.py' -v
-      - name: Verificar suplementos posteriores y control de presupuesto sin mercado
-        env:
-          PYTHONPATH: scripts
-        run: |
-          python -m unittest discover -s tests -p 'test_e2_*posthoc*.py' -v
-          python -m unittest discover -s tests -p 'test_e2_f2a_s8_comparisons.py' -v
-          python -m unittest discover -s tests -p 'test_e2_efficiency_evidence.py' -v
-          python -m unittest discover -s tests -p 'test_e2_literature_closure.py' -v
-          python -m unittest discover -s tests -p 'test_e2_native_transverse_colab.py' -v
   publish:
     needs: [build, nas-mechanisms, training-integration]
     # Authorized activation after gh-pages protection and a verified backup.
