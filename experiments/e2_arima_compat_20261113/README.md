@@ -1,0 +1,13 @@
+# ARIMA prediction receipt compatibility and continuation
+
+This registration repairs an implementation error encountered after all 78 neural final refits and all 10 development pilots had completed. The E2 guide S5 requires naive, seasonal naive, and ARIMA or ETS comparators; the existing protocol selected ARIMA. No neural selection, refit, or pilot is requested by this continuation.
+
+The frozen E engine uses `Prediction.value` for forecasts, but its diagnostic receipt accesses `raw_value` while the frozen dataclass names that field `raw`. A verified child installs a read-only alias `raw_value -> raw` for that exact class. Forecast numbers, nonnegative truncation, fitted models, and the forecast-before-observation ordering are unchanged. The alias applies to classical validation and final scoring. Original E, P, funding, and hardware-transition source bytes are preserved.
+
+The first ARIMA validation opportunity, order `(0, 0, 0)` at `2024-01-01`, already failed after fitting. Its fitted state was not saved. It is **not refitted**. The original failure, worker specification, and 14.505011292001655-second charge remain immutable. A separate failure disposition records an implementation failure with no RMSE; no successful `result.json`, convergence failure, or zero-step assertion is fabricated.
+
+There are 63 planned classical validation opportunities: nine seasonal-naive folds and 54 ARIMA folds. Eleven classical results already succeeded, including the persistence and seasonal-naive final fits. This continuation reuses those results and accounts for the known failed ARIMA fold before requesting the remaining 53 ARIMA validation folds and the ARIMA final fit. Only orders with all three valid folds can win; consequently, at most 17 of the 18 planned ARIMA orders are fully eligible. The incomplete order and its missing score must remain visible in reporting.
+
+Only `classical`, `freeze`, and `score` stages are requested. The original 80-hour cumulative authorization, consent date, costs, and GitHub persistence destination remain in effect. There is no budget reset, new authorization, Drive persistence, or automatic scientific retry. The original controller continues to enforce reservations, checkpoint evidence, and the one-time final evaluation contract.
+
+Validation is recorded in `validation.json`: 60 tests passed, including the actual historical launcher chain, synthetic execution of the original ARIMA walk, the real failure evidence and budget chain, eligibility rules, and preservation of previous stages. These checks did not train on market data or execute final evaluation in the development workspace.

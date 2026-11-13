@@ -1,0 +1,25 @@
+{
+  "version": "e2-arima-compat-validation-v1",
+  "observed_at_utc": "2026-11-13T15:29:40.065436+00:00",
+  "test_command": "PYTHONPATH=tests:scripts python -m unittest test_e2_arima_prediction_compat test_e2_arima_classical_continuation test_e2_arima_resume_launcher test_e2_final80_resume_launcher test_e2_sealed_transition_resume test_e2_verified_local_restore test_e2_confirmed_budget_continuation test_e2_final_continuation_colab -v",
+  "tests_passed": 60,
+  "new_tests_passed": 20,
+  "prior_regression_tests_passed": 40,
+  "test_log_sha256": "c232413217de284a9acefa31542bb9505da00aa927d1cb8e09cf0f7bc60b11ab",
+  "real_failure_records_verified": true,
+  "real_failure_evidence_sha256": {
+    "worker_spec.json": "4277979498072acfd3095533ee24931561826fa26ed531f7fd553541682a45fa",
+    "worker_failure.json": "3d2a02d4194d3a1d36931c04bd78c04a2c9fc3e70bca8f38da702be624180718",
+    "pilot_budget.jsonl": "5fa5d83d06df66cce91a79634d79da7f97381235551b29436525205e5a76bdb5"
+  },
+  "original_attribute_error_reproduced": true,
+  "synthetic_original_arima_walk_verified": true,
+  "forecast_numbers_and_truncation_preserved": true,
+  "actual_prior_launcher_chain_verified": true,
+  "remaining_comparator_schedule_tested": true,
+  "failed_fit_repeated": false,
+  "market_training_performed_here": false,
+  "final_evaluation_performed_here": false,
+  "budget_changed_here": false,
+  "guide_compliance_complete_claimed": false
+}
