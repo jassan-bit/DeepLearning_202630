@@ -1,0 +1,808 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>52. Síntesis verificable de literatura y selección vigente &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/52_sintesis_literatura';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="53. Cierre de requisitos y experimentos complementarios" href="53_cierre_requisitos.html" />
+    <link rel="prev" title="51. Eficiencia, coste observado y compromisos de Pareto" href="51_eficiencia_costes.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 2 · Bitcoin: pronóstico de volatilidad</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="48_protocolo_reducido.html">48. Protocolo reducido y seguimiento de la ejecución</a></li>
+<li class="toctree-l1"><a class="reference internal" href="47_entrega_consolidada.html">47. Entrega consolidada con la evidencia disponible</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_literatura.html">3. Revisión Sistemática del Estado del Arte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación: catálogo obligatorio y antecedentes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark obligatorio: dieciséis sistemas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="49_diagnosticos_f2a.html">49. Diagnósticos F2a posteriores al benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="50_comparaciones_f2a.html">50. Comparaciones F2a posteriores: DM, MCS y rangos por semilla</a></li>
+<li class="toctree-l1"><a class="reference internal" href="51_eficiencia_costes.html">51. Eficiencia, coste observado y compromisos de Pareto</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">52. Síntesis verificable de literatura y selección vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="53_cierre_requisitos.html">53. Cierre de requisitos y experimentos complementarios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Registro de selección, cierre pendiente y trazabilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de datos y auditoría formal de fuga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. HPO y equidad para el catálogo vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Techo de desempeño, incertidumbre y análisis de errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Agregación estadística e interpretación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas del catálogo vigente y adaptación a D7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo vigente: diez modelos y candidato 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_fichas_nuevas.html">16. Fichas bibliográficas de las cuatro altas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato sincronizado de E1, E2 y E3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_integracion_sintetica.html">18. Implementación provisional y verificación sintética</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_plan_auditoria.html">19. Plan experimental propuesto y auditoría sin entrenamiento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_contraste_guia.html">20. Cotejo del plan con la guía original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_comparadores_nas.html">21. Comparadores temporales y decisión NAS por receta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22_fichas_recetas.html">22. Once fichas de recetas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_implementacion_recetas.html">23. Implementación de recetas y controles temporales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="24_ejecutor_comun.html">24. Ejecutor común y disponibilidad temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="25_matriz_cierre.html">25. Matriz de cierre antes del benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="26_registro_recetas.html">26. Registro por receta: fuentes, NAS, HPO e integración</a></li>
+<li class="toctree-l1"><a class="reference internal" href="27_nas_hpo_presupuesto.html">27. Decisiones NAS, rangos HPO y presupuesto para Codex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="28_fabricas_nas.html">28. Fábricas NAS implementadas y verificadas sintéticamente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="29_entrenamiento_temporal.html">29. Entrenamiento por etapas, selección temporal y perfilado CPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="30_piloto_nube.html">30. Piloto de desarrollo en la nube de Codex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="31_optimizacion_nube.html">31. Optimización de CPU y presupuesto de cómputo en la nube</a></li>
+<li class="toctree-l1"><a class="reference internal" href="32_ejecucion_gpu.html">32. Ejecución CUDA preparada y piloto de recursos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="33_piloto_gpu.html">33. Primer piloto de recursos en GPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="34_perfil_gpu_ampliado.html">34. Perfil GPU ampliado y viabilidad del extremo TimesNet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="35_busqueda_cuda_reanudable.html">35. Selección CUDA con presupuesto y continuación en GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="36_avance_campana_cuda.html">36. Avance parcial de la campaña CUDA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="37_ajuste_guia.html">37. Ajuste de cómputo conforme a la guía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="38_cumplimiento_guia.html">38. Exigencias de la guía, evidencia y pendientes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="39_optimizacion_tiempo.html">39. Optimizar tiempo sin recortar las exigencias de E2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="40_calendario_original.html">40. Calendario original y optimizaciones de implementación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="41_avance_optimizacion_11_origenes.html">41. Ejecución optimizada: avance verificable de once orígenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html">42. Preparación complementaria a partir de evidencia existente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="43_catalogo_obligatorio.html">43. Catálogo obligatorio: dieciséis sistemas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="44_arquitecturas_publicadas.html">44. Cuerpos publicados, adaptaciones D7 y aplicación de NAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="45_enmienda_protocolo.html">45. Enmienda del protocolo: calendario común, presupuesto y prueba final</a></li>
+<li class="toctree-l1"><a class="reference internal" href="46_artefactos_y_pilotos.html">46. Preparación técnica opcional: artefactos y pilotos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><p class="small">Entregable 2 · Jassan Arteta · 2026-30</p></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/52_sintesis_literatura.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>52. Síntesis verificable de literatura y selección vigente</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dos-cohortes-con-denominadores-diferentes">52.1 Dos cohortes con denominadores diferentes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-resultados-sustentan-realmente-los-diez-sistemas">52.2 Qué resultados sustentan realmente los diez sistemas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calidad-de-reporte-y-reproduccion">Calidad de reporte y reproducción</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#puntajes-completos-incertidumbre-y-sensibilidad">52.3 Puntajes completos, incertidumbre y sensibilidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mecanismos-transferibles-y-busquedas-efectivamente-intentadas">52.4 Mecanismos transferibles y búsquedas efectivamente intentadas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brecha-contrastable-derivada-de-la-extraccion">52.5 Brecha contrastable derivada de la extracción</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="sintesis-verificable-de-literatura-y-seleccion-vigente">
+<h1>52. Síntesis verificable de literatura y selección vigente<a class="headerlink" href="#sintesis-verificable-de-literatura-y-seleccion-vigente" title="Link to this heading">#</a></h1>
+<p><strong>Corte documental del 13/11/2026.</strong> La revisión permite sostener mecanismos candidatos y una brecha de evaluación concreta. La elegibilidad global continúa sin determinar. Esta síntesis reúne evidencia ya extraída y una lectura adicional de fuentes primarias; el <a class="reference download internal" download="" href="../_downloads/23dc1309cb3f16c4f4a22794c60c8218/manifest.json"><span class="xref download myst">expediente reproducible</span></a> conserva las entradas y sus huellas. No añade ajustes ni resultados Bitcoin.</p>
+<section id="dos-cohortes-con-denominadores-diferentes">
+<h2>52.1 Dos cohortes con denominadores diferentes<a class="headerlink" href="#dos-cohortes-con-denominadores-diferentes" title="Link to this heading">#</a></h2>
+<p>La cohorte arquitectónica histórica contiene <strong>diez estudios originales completos, 215 páginas físicas</strong>. Sus identidades se recuperaron de forma dirigida. El <a class="reference download internal" download="" href="../_downloads/05b6e81618a0024586fd52619e9ce409/directed_originals10.csv"><span class="xref download myst">registro por estudio</span></a> permite cerrar una evaluación local para síntesis de mecanismos: diez identidades distintas, diez textos completos recibidos, diez evaluados y diez admitidos con limitaciones de reporte. No hubo duplicados ni exclusiones <strong>dentro de esas diez identidades fijadas</strong>. Este tramo no representa el cribado del universo bibliográfico.</p>
+<p>El Top 10 vigente de <a class="reference internal" href="43_catalogo_obligatorio.html"><span class="std std-doc">§43</span></a> corresponde a <strong>diez sistemas y nueve estudios primarios</strong>: FCN y ResNet comparten Wang et al. Sólo seis sistemas coinciden con la cohorte histórica: TimesNet, TSMixer, TiDE, TimeMixer, PatchTST e iTransformer. Wang se conserva como fuente fundacional de 2016, fuera de la ventana nominal 2019–2026, por definir los cuerpos convolucionales transferidos. La fuente de Inception comenzó en 2019 y la versión examinada es de 2020.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Cobertura del Top 10 vigente</p></th>
+<th class="head text-right"><p>Estudios distintos</p></th>
+<th class="head"><p>Alcance acreditado</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Seis originales modernos</p></td>
+<td class="text-right"><p>6</p></td>
+<td><p>Extracción previa de PDF completo y apéndices, con recibos</p></td>
+</tr>
+<tr class="row-odd"><td><p>Wang, FCN y ResNet</p></td>
+<td class="text-right"><p>1</p></td>
+<td><p>Texto principal HTML completo, tablas y apéndice de contrastes examinados hoy</p></td>
+</tr>
+<tr class="row-even"><td><p>InceptionTime</p></td>
+<td class="text-right"><p>1</p></td>
+<td><p>Texto principal HTML completo, tablas y pies de figuras examinados hoy</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sagheer y Kotb, LSTM-SAE</p></td>
+<td class="text-right"><p>1</p></td>
+<td><p>Texto principal completo y tablas examinados hoy en PMC; sin recibo de un PDF descargado</p></td>
+</tr>
+<tr class="row-even"><td><p>Total vigente</p></td>
+<td class="text-right"><p><strong>9</strong></p></td>
+<td><p>Seis recibos de PDF completo y tres revisiones de texto principal web; no se inventa verificación visual de nuevos PDFs</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El <a class="reference download internal" download="" href="../_downloads/beca50254124a2929a5c578b3b022da1/bounded_flow.json"><span class="xref download myst">flujo local estructurado</span></a> mantiene <code class="docutils literal notranslate"><span class="pre">global_eligible_studies=null</span></code> y <code class="docutils literal notranslate"><span class="pre">global_included_studies=null</span></code>. Los 374 registros no recibidos de la consulta Scopus histórica, la conciliación entre rondas y las adjudicaciones pendientes de <a class="reference internal" href="03_literatura.html"><span class="std std-doc">§3</span></a> conservan sus denominadores. No se calcula κ: no hay dos revisores humanos independientes acreditados.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/e7cf164ead18e782fa699e535e59e843/additional_source_reading_ledger.json"><span class="xref download myst">registro de las tres lecturas adicionales</span></a> documenta versiones, canal de acceso y alcance asistido por IA. No redistribuye los textos completos.</p>
+</section>
+<section id="que-resultados-sustentan-realmente-los-diez-sistemas">
+<h2>52.2 Qué resultados sustentan realmente los diez sistemas<a class="headerlink" href="#que-resultados-sustentan-realmente-los-diez-sistemas" title="Link to this heading">#</a></h2>
+<p>La <a class="reference download internal" download="" href="../_downloads/fd1b9613c7b7c55d4d288fe3590a69c2/current10_extraction.csv"><span class="xref download myst">hoja vigente de extracción, CSV</span></a> y su <a class="reference download internal" download="" href="../_downloads/b656fc459ec8337465209199b11d1325/current10_extraction.json"><span class="xref download myst">versión JSON</span></a> contienen identidad, versión, localizador, arquitectura, adaptación, código, calidad y costes documentados. La política de <a class="reference internal" href="44_arquitecturas_publicadas.html"><span class="std std-doc">§44</span></a>, actualizada por <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>, fija los diez cuerpos: TiDE usa <strong>TIDE-D7-PUBLISHED-R0-v2</strong>, conservando separada su variante NAS histórica. Los diagramas, ecuaciones y recibos de los seis originales modernos permanecen en §3 y los de las cuatro altas en <a class="reference internal" href="16_fichas_nuevas.html"><span class="std std-doc">§16</span></a>; las adaptaciones publicadas actuales se documentan en §44/§48.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Sistema vigente</p></th>
+<th class="head"><p>Resultado externo localizado</p></th>
+<th class="head"><p>Interpretación y límite</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>FCN-1D</p></td>
+<td><p>Wang, Tabla I, Adiac: error de clasificación <strong>0,143</strong></p></td>
+<td><p>Serie univariante completa; sustituir softmax por regresión cambia la tarea</p></td>
+</tr>
+<tr class="row-odd"><td><p>ResNet-1D</p></td>
+<td><p>Misma tabla y dataset: <strong>0,174</strong></p></td>
+<td><p>Comparación dentro del mismo artículo; no es error de volatilidad</p></td>
+</tr>
+<tr class="row-even"><td><p>Inception-1D</p></td>
+<td><p>InceptionTime, §5/Fig. 10: <strong>54/8/23</strong> victorias/empates/derrotas frente a ResNet(5), p&lt;0,01</p></td>
+<td><p>Resultado del <strong>ensemble de cinco redes</strong>; el sistema vigente usa una red individual</p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM-autoencoder con predictor</p></td>
+<td><p>Sagheer/Kotb, Tabla 2, PM2.5, dos capas: <strong>RMSE 24,041; MAE 12,060</strong></p></td>
+<td><p>Pronóstico siguiente con lag 25 e historia del objetivo; DLSTM obtiene menor RMSE: 23,750</p></td>
+</tr>
+<tr class="row-even"><td><p>TimesNet</p></td>
+<td><p>ETTh1 L96/H96, Tabla 13, PDF p.21: <strong>MSE 0,384; MAE 0,402</strong></p></td>
+<td><p>Periodicidad y convolución 2D; selección de frecuencias por batch exige controlar la inferencia</p></td>
+</tr>
+<tr class="row-odd"><td><p>TSMixer</p></td>
+<td><p>ETTh1 L512/H96, Tabla 3, PDF p.10: <strong>0,361; 0,392</strong></p></td>
+<td><p>Mezcla temporal y de canales; la mezcla de variables no mejora todas las filas del artículo</p></td>
+</tr>
+<tr class="row-even"><td><p>TiDE</p></td>
+<td><p>ETTh1 L720/H96, Tabla 2, PDF p.8: <strong>0,375; 0,398</strong></p></td>
+<td><p>Historia del objetivo y covariables conocidas; E2 usa el cuerpo fuente r=0 y una cabeza escalar declarada</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimeMixer</p></td>
+<td><p>ETTh1 L96/H96, Tabla 13, PDF p.17: <strong>0,375; 0,400</strong></p></td>
+<td><p>Configuración unificada; el cuerpo D7 vigente usa el preset corto documentado en §44</p></td>
+</tr>
+<tr class="row-even"><td><p>PatchTST</p></td>
+<td><p>ETTh1 L512/H96, /64, Tabla 3, PDF p.7: <strong>0,370; 0,400</strong></p></td>
+<td><p>P16/S8 de esta fila no cabe directamente en siete días</p></td>
+</tr>
+<tr class="row-odd"><td><p>iTransformer</p></td>
+<td><p>ETTh1 L96/H96, Tabla 10, PDF p.23: <strong>0,386; 0,405</strong></p></td>
+<td><p>Tokens de variables; cinco variables no heredan automáticamente una ventaja de escalabilidad</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los pares modernos son MSE/MAE. <strong>No se ordenan modelos comparando estas filas</strong>: cambian contexto, partición, escalado y tarea. Las fuentes nuevas son <a class="reference external" href="https://arxiv.org/html/1611.06455v4">Wang et al., v4</a>, <a class="reference external" href="https://arxiv.org/html/1909.04939v3">InceptionTime, v3</a> y <a class="reference external" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6911101/">Sagheer/Kotb, texto primario PMC</a>. Wang declara normalización con estadísticas de entrenamiento y selección del checkpoint por pérdida de entrenamiento; sus contrastes entre datasets no miden incertidumbre entre semillas. InceptionTime emplea Friedman y Wilcoxon-Holm sobre clasificación. En SAE, Hyperopt usa RMSE de validación; las cantidades publicadas de bike suman 17.378 frente a 17.379 declaradas, y los conteos de partición no establecen por sí solos orden cronológico. Se conserva esa discrepancia.</p>
+<section id="calidad-de-reporte-y-reproduccion">
+<h3>Calidad de reporte y reproducción<a class="headerlink" href="#calidad-de-reporte-y-reproduccion" title="Link to this heading">#</a></h3>
+<p>La <a class="reference download internal" download="" href="../_downloads/3ca401f220e0512e3b0e36b24bce37d8/quality_coverage_architectural10.csv"><span class="xref download myst">cobertura metodológica</span></a> usa exclusivamente los <strong>diez originales históricos completos</strong>, con el alcance de la fila numérica seleccionada:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Campo</p></th>
+<th class="head"><p>Hallazgo con denominador explícito</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Scaler ajustado sólo en entrenamiento</p></td>
+<td><p>Reportado en 2/10; NR en 8/10</p></td>
+</tr>
+<tr class="row-odd"><td><p>Identificadores numéricos de semillas</p></td>
+<td><p>Reportados en 1/10; NR en 9/10</p></td>
+</tr>
+<tr class="row-even"><td><p>Repeticiones de la condición seleccionada</p></td>
+<td><p>Reportadas en 7/10; NR en 2/10; NV en 1/10</p></td>
+</tr>
+<tr class="row-odd"><td><p>Incertidumbre de esa misma fila</p></td>
+<td><p>Reportada en 1/10; NR en 9/10</p></td>
+</tr>
+<tr class="row-even"><td><p>Inferencia formal de esa comparación</p></td>
+<td><p>Parcial en 1/10; NR en 9/10</p></td>
+</tr>
+<tr class="row-odd"><td><p>Igual presupuesto HPO</p></td>
+<td><p>NR en 10/10</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>NR</strong> expresa ausencia de reporte en la versión y alcance examinados; <strong>NV</strong>, ausencia de verificación. Estos conteos no demuestran fuga, cero repeticiones ni mala calidad predictiva. La implementación de autor tiene identidad documentada para 10/10 sistemas vigentes, que representan 9/9 estudios. Las descargas originales de datasets y la reproducción ejecutable de esos nueve estudios no se validaron uniformemente; no se publica una proporción conjunta de código y datos reproducidos. Cuartiles por revista y año siguen sin verificar.</p>
+<p>Las tres lecturas web añaden valoración propia, separada del denominador anterior. Wang no informa semillas ni repeticiones exactas y excluye HPO/CV de sus baselines, sin acreditar igualdad frente a comparadores importados. Inception informa varias ejecuciones sin número exacto y no precisa la población del ajuste de normalización; los cinco miembros del ensemble no son cinco ensembles repetidos. SAE no informa semillas, repeticiones ni incertidumbre; el coste de convergencia descrito cubre fine-tuning y deja un coste adicional de preentrenamiento. Estos límites se conservan en cada fila de extracción.</p>
+<p>La <a class="reference internal" href="05_paper_guia.html"><span class="std std-doc">réplica de §5</span></a> merece crédito experimental separado: cinco semillas de TimeMixer en ETTh1 produjeron MSE <strong>0,377838</strong>, con IC95 % de discrepancia <strong>[−0,000726; 0,006401]</strong>, compatible con la tolerancia registrada. También existe un piloto de tres modelos. Esa reproducción parcial y el diagnóstico de marcadores fortalecen la trazabilidad operativa; mantienen su alcance ETTh1 y no asignan un efecto Bitcoin a TimeMixer.</p>
+</section>
+</section>
+<section id="puntajes-completos-incertidumbre-y-sensibilidad">
+<h2>52.3 Puntajes completos, incertidumbre y sensibilidad<a class="headerlink" href="#puntajes-completos-incertidumbre-y-sensibilidad" title="Link to this heading">#</a></h2>
+<p>La tabla siguiente es una <strong>auditoría de soporte fijada el 13/11</strong>, posterior al catálogo autorizado del 12/11. No reconstruye una selección previa ni convierte una preferencia autorizada en un óptimo bibliográfico. El <a class="reference download internal" download="" href="../_downloads/40b805d9064b92934df9e48652a24021/support_score_protocol.json"><span class="xref download myst">protocolo de puntaje</span></a> declara:</p>
+<div class="math notranslate nohighlight">
+\[S=100(0{,}15C+0{,}15U+0{,}25P+0{,}25A+0{,}20F).\]</div>
+<p><code class="docutils literal notranslate"><span class="pre">C</span></code> es citación Scopus por año, normalizada por <strong>487</strong>, el mayor valor observado con esta convención de edad: 2.435 citas de PatchTST divididas por cinco años. Se conserva el corte recibido de citas de noviembre 2026, sin fingir consulta viva. Para edad y recencia se toma el primer año arXiv de la identidad verificada; cuando no existe esa identidad se usa el año de publicación documentado. Esta convención se declara ahora; las tablas anteriores conservan sus valores. <code class="docutils literal notranslate"><span class="pre">U=clip((año−2019)/7,0,1)</span></code>. <code class="docutils literal notranslate"><span class="pre">P</span></code> requiere desempeño comparable en el objetivo, horizonte, información y protocolo E2. <code class="docutils literal notranslate"><span class="pre">A=1</span></code> documenta una identidad de código autoral fijada. <code class="docutils literal notranslate"><span class="pre">F=1/n_familia</span></code> explicita representatividad dentro del catálogo: cuatro convolucionales, tres MLP, un recurrente/AE y dos de atención. La diversidad mínima de cuatro familias se verifica aparte.</p>
+<p><code class="docutils literal notranslate"><span class="pre">P</span></code> permanece desconocido para todos los originales; <code class="docutils literal notranslate"><span class="pre">C</span></code> también para los cuatro sistemas añadidos. <strong>No se imputan cero ni uno</strong>. Los extremos siguientes sólo evalúan algebraicamente esos desconocidos dentro de [0,1]. La <a class="reference download internal" download="" href="../_downloads/bbb4899287c7569df72c0841748693ec/current10_support_scores.csv"><span class="xref download myst">tabla completa de componentes</span></a> conserva valores, citas originales, edades, intervalos y rangos admisibles.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Sistema</p></th>
+<th class="head text-right"><p>C</p></th>
+<th class="head text-right"><p>U</p></th>
+<th class="head text-right"><p>A</p></th>
+<th class="head text-right"><p>F</p></th>
+<th class="head"><p>P</p></th>
+<th class="head"><p>Intervalo S</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>FCN-1D</p></td>
+<td class="text-right"><p>NV</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>0,250</p></td>
+<td><p>NV</p></td>
+<td><p>[30,00; 70,00]</p></td>
+</tr>
+<tr class="row-odd"><td><p>ResNet-1D</p></td>
+<td class="text-right"><p>NV</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>0,250</p></td>
+<td><p>NV</p></td>
+<td><p>[30,00; 70,00]</p></td>
+</tr>
+<tr class="row-even"><td><p>Inception-1D</p></td>
+<td class="text-right"><p>NV</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>0,250</p></td>
+<td><p>NV</p></td>
+<td><p>[30,00; 70,00]</p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM-autoencoder con predictor</p></td>
+<td class="text-right"><p>NV</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>1,000</p></td>
+<td><p>NV</p></td>
+<td><p>[45,00; 85,00]</p></td>
+</tr>
+<tr class="row-even"><td><p>TimesNet</p></td>
+<td class="text-right"><p>0,764</p></td>
+<td class="text-right"><p>0,429</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>0,250</p></td>
+<td><p>NV</p></td>
+<td><p>[47,89; 72,89]</p></td>
+</tr>
+<tr class="row-odd"><td><p>TSMixer</p></td>
+<td class="text-right"><p>0,125</p></td>
+<td class="text-right"><p>0,571</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>0,333</p></td>
+<td><p>NV</p></td>
+<td><p>[42,11; 67,11]</p></td>
+</tr>
+<tr class="row-even"><td><p>TiDE</p></td>
+<td class="text-right"><p>0,126</p></td>
+<td class="text-right"><p>0,571</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>0,333</p></td>
+<td><p>NV</p></td>
+<td><p>[42,12; 67,12]</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimeMixer</p></td>
+<td class="text-right"><p>0,417</p></td>
+<td class="text-right"><p>0,714</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>0,333</p></td>
+<td><p>NV</p></td>
+<td><p>[48,63; 73,63]</p></td>
+</tr>
+<tr class="row-even"><td><p>PatchTST</p></td>
+<td class="text-right"><p>1,000</p></td>
+<td class="text-right"><p>0,429</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>0,500</p></td>
+<td><p>NV</p></td>
+<td><p>[56,43; 81,43]</p></td>
+</tr>
+<tr class="row-odd"><td><p>iTransformer</p></td>
+<td class="text-right"><p>0,693</p></td>
+<td class="text-right"><p>0,571</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>0,500</p></td>
+<td><p>NV</p></td>
+<td><p>[53,96; 78,96]</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La <a class="reference download internal" download="" href="../_downloads/023788b789c16bddef901fb97c886453/score_sensitivity.csv"><span class="xref download myst">sensibilidad a cuatro ponderaciones</span></a> incluye pesos iguales, énfasis en implementación y énfasis en desempeño. <strong>Ningún escenario identifica un orden único:</strong> para cada sistema el rango conservador sigue siendo 1–10. Es evidencia de selección insuficientemente determinada, no un empate experimental.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/6851a2bf178e1b200fcdc65f37e8be9c/excluded_originals_context.csv"><span class="xref download myst">tabla de originales excluidos</span></a> conserva Informer, Autoformer, Crossformer y S-Mamba. Crossformer tiene 1.675 citas verificadas en ese corte y S-Mamba 313; las cantidades ausentes para Informer y Autoformer quedan desconocidas. Su exclusión responde al alcance actual y a la cobertura funcional de familias, no a inferioridad demostrada. La justificación mundial de los más citados excluidos permanece abierta porque la cobertura de candidatos y citas es incompleta.</p>
+</section>
+<section id="mecanismos-transferibles-y-busquedas-efectivamente-intentadas">
+<h2>52.4 Mecanismos transferibles y búsquedas efectivamente intentadas<a class="headerlink" href="#mecanismos-transferibles-y-busquedas-efectivamente-intentadas" title="Link to this heading">#</a></h2>
+<p>La <a class="reference download internal" download="" href="../_downloads/bf0099663c8d3293461de348a2ab7a1c/transverse_mechanisms.csv"><span class="xref download myst">matriz de mecanismos</span></a> conecta fuentes de origen con una propiedad compartida y una limitación concreta. Los textos de origen se identificaron por las referencias de los originales y sus fuentes primarias enlazadas; no se atribuye hoy una nueva lectura completa a todos ellos.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Mecanismo y origen</p></th>
+<th class="head"><p>Fuente primaria</p></th>
+<th class="head"><p>Transferencia y condición D7</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Convolución, residuales y pooling; visión</p></td>
+<td><p><a class="reference external" href="https://arxiv.org/abs/1411.4038">Long et al.</a>, <a class="reference external" href="https://arxiv.org/abs/1512.03385">He et al.</a> → Wang</p></td>
+<td><p>Localidad y optimización residual; controlar padding y campo receptivo</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ramas con escalas distintas; visión</p></td>
+<td><p><a class="reference external" href="https://arxiv.org/abs/1602.07261">Szegedy et al.</a> → InceptionTime</p></td>
+<td><p>Detectar patrones a distintas escalas; kernels 40/20/10 exceden siete observaciones</p></td>
+</tr>
+<tr class="row-even"><td><p>Tokens de segmentos; visión</p></td>
+<td><p><a class="reference external" href="https://arxiv.org/abs/2010.11929">ViT</a>, <a class="reference external" href="https://arxiv.org/abs/2103.14030">Swin</a> → PatchTST/Crossformer</p></td>
+<td><p>Relaciones entre segmentos observados; redefinir parches válidos sin añadir días</p></td>
+</tr>
+<tr class="row-odd"><td><p>Mezcla de posiciones y canales; visión</p></td>
+<td><p><a class="reference external" href="https://arxiv.org/abs/2105.01601">MLP-Mixer</a> → TSMixer</p></td>
+<td><p>Separar ejes temporal y de variables; contrastar mediante ablación la mezcla entre canales</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El 13/11 a las <strong>18:52:37 UTC</strong> se intentaron tres consultas nativas arXiv, sin filtro de fecha, <code class="docutils literal notranslate"><span class="pre">start=0,max_results=10</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>all:"residual network" AND all:vision AND (all:transfer OR all:adaptation)
+all:attention AND all:"image patches" AND (all:transfer OR all:adaptation)
+all:"LSTM autoencoder" AND all:industrial AND (all:transfer OR all:adaptation)
+</pre></div>
+</div>
+<p>Las tres fallaron por <code class="docutils literal notranslate"><span class="pre">Tunnel</span> <span class="pre">connection</span> <span class="pre">failed:</span> <span class="pre">403</span> <span class="pre">Forbidden</span></code>; el conector web tampoco recuperó sus URLs API. El <a class="reference download internal" download="" href="../_downloads/cf1140b97f5800071b63cb69c21e4328/native_query_attempts.json"><span class="xref download myst">registro de intentos</span></a> conserva fecha, URL, cadena y error; <strong>totales y registros recibidos son <code class="docutils literal notranslate"><span class="pre">null</span></code></strong>. Las búsquedas web auxiliares no acreditan el requisito de búsqueda transversal nativa ni proporcionan denominadores sustituibles. Esta obligación de §3.1 continúa abierta.</p>
+</section>
+<section id="brecha-contrastable-derivada-de-la-extraccion">
+<h2>52.5 Brecha contrastable derivada de la extracción<a class="headerlink" href="#brecha-contrastable-derivada-de-la-extraccion" title="Link to this heading">#</a></h2>
+<p><strong>En los nueve estudios primarios que sustentan el catálogo vigente no se identificó una evaluación de estos mecanismos para pronosticar σ₇ no anualizada a h=1 usando exclusivamente siete días OHLCV de Bitcoin, con presupuesto común e inferencia temporal pareada.</strong> La <a class="reference download internal" download="" href="../_downloads/65be2dc0e2b88df874c4993ffcfff7f8/gap_falsification_matrix.csv"><span class="xref download myst">matriz de refutación</span></a> enlaza cada sistema con su tarea, dataset y localizador que sostienen esa delimitación. Basta localizar en cualquiera de esos estudios una evaluación que sí cumpla esas condiciones para corregir la afirmación. La revisión global pendiente impide extenderla a toda la literatura.</p>
+<p>La evidencia financiera complementaria de §3 reduce aún más el alcance de la brecha: TimeMixer ya se ha aplicado a BTCUSD, pero con volatilidad móvil de <strong>21 días anualizada</strong> (<a class="reference external" href="https://arxiv.org/abs/2410.09062">arXiv:2410.09062</a>, §3/Tabla 4); otros estudios usan retornos al cuadrado, volatilidad intradía o implícita. Estos objetivos no se convierten en σ₇ por compartir el término volatilidad. Por ello, la contribución comprobable es estimar la transferencia bajo el contrato E2 y estudiar sus límites de contexto, régimen y coste.</p>
+<p>La brecha se conecta con <a class="reference internal" href="01_punto_partida.html"><span class="std std-doc">RQ1–RQ3 de §1</span></a>: ganancia RMSE superior al δ heredado frente a GRU32/Persistence, erosión por régimen y mejora conjunta de error/coste. Las pruebas y multiplicidad siguen <a class="reference internal" href="45_enmienda_protocolo.html"><span class="std std-doc">§45</span></a>; los resultados futuros mantienen el alcance exploratorio del test conocido. Esta síntesis no cambia δ, no añade una hipótesis confirmatoria retroactiva y no selecciona todavía una arquitectura original de E3.</p>
+<p>Para reproducir los derivados: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">scripts/e2_literature_closure.py</span> <span class="pre">--check</span></code>. Quedan sin resolver la elegibilidad global con motivos por etapa, la conciliación de rondas/versiones, las búsquedas transversales nativas, la verificación de calidad editorial por año y la selección comparativa frente al universo de candidatos. Los intervalos y campos desconocidos hacen visibles esas limitaciones.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="51_eficiencia_costes.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">51. Eficiencia, coste observado y compromisos de Pareto</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="53_cierre_requisitos.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">53. Cierre de requisitos y experimentos complementarios</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dos-cohortes-con-denominadores-diferentes">52.1 Dos cohortes con denominadores diferentes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-resultados-sustentan-realmente-los-diez-sistemas">52.2 Qué resultados sustentan realmente los diez sistemas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calidad-de-reporte-y-reproduccion">Calidad de reporte y reproducción</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#puntajes-completos-incertidumbre-y-sensibilidad">52.3 Puntajes completos, incertidumbre y sensibilidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mecanismos-transferibles-y-busquedas-efectivamente-intentadas">52.4 Mecanismos transferibles y búsquedas efectivamente intentadas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brecha-contrastable-derivada-de-la-extraccion">52.5 Brecha contrastable derivada de la extracción</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

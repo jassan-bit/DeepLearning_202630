@@ -219,6 +219,10 @@
 <li class="toctree-l1"><a class="reference internal" href="sections/05_paper_guia.html">5. Paper Guía y Replicación</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sections/06_benchmark_final.html">6. Benchmark obligatorio: dieciséis sistemas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sections/49_diagnosticos_f2a.html">49. Diagnósticos F2a posteriores al benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/50_comparaciones_f2a.html">50. Comparaciones F2a posteriores: DM, MCS y rangos por semilla</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/51_eficiencia_costes.html">51. Eficiencia, coste observado y compromisos de Pareto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/52_sintesis_literatura.html">52. Síntesis verificable de literatura y selección vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/53_cierre_requisitos.html">53. Cierre de requisitos y experimentos complementarios</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sections/07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sections/08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sections/09_protocolo_registrado.html">9. Registro de selección, cierre pendiente y trazabilidad</a></li>
@@ -423,6 +427,7 @@
 <p><strong>Evaluación final completada. Corte verificado: 13/11/2026, 11:58:36 de Bogotá.</strong> Se evaluaron los <strong>16 sistemas en las mismas 608 fechas</strong>. Están guardados los <strong>78 ajustes finales neuronales</strong>, los <strong>10 pilotos</strong>, los tres comparadores y la congelación de <strong>81 predictores</strong>, con pesos, escaladores y calibradores. La ejecución terminó con código de salida <strong>0</strong> y respaldo verificado en <strong>GitHub</strong>.</p>
 <p><strong><a class="reference internal" href="sections/06_benchmark_final.html"><span class="std std-doc">Resultados finales y discusión (§6)</span></a></strong> · <strong><a class="reference download internal" download="" href="_downloads/878959cd45a45cb509b9c4065aa9d38c/benchmark_A2.csv"><span class="xref download myst">Tabla A2 medida, CSV</span></a></strong> · <strong><a class="reference download internal" download="" href="_downloads/f211a7f0ff0fed486ceb4ad9aa0b8722/primary_contrasts.csv"><span class="xref download myst">20 contrastes primarios</span></a></strong> · <strong><a class="reference download internal" download="" href="_downloads/52f2fcae145fe2461705ed2322b492ea/source_evidence.json"><span class="xref download myst">Fuentes y hashes</span></a></strong></p>
 <p><strong>Diagnósticos F2a añadidos el 13/11/2026:</strong> <a class="reference internal" href="sections/49_diagnosticos_f2a.html"><span class="std std-doc">§49</span></a> documenta ajuste, brechas observadas, residuos, calibración y estabilidad temporal sobre los pronósticos guardados. La familia exploratoria tiene <strong>826 contrastes y 707 rechazos tras Holm</strong>. Se detecta dependencia residual en las 81 trayectorias; los 31 rechazos de cobertura son por sobrecobertura. No se acredita ausencia de sobreajuste ni estabilidad por falta de rechazo. Los resultados primarios se conservan.</p>
+<p><strong>Suplementos de cierre:</strong> <a class="reference internal" href="sections/50_comparaciones_f2a.html"><span class="std std-doc">Comparaciones DM/MCS y rangos (§50)</span></a> · <a class="reference internal" href="sections/51_eficiencia_costes.html"><span class="std std-doc">Costes medidos y Pareto (§51)</span></a> · <a class="reference internal" href="sections/52_sintesis_literatura.html"><span class="std std-doc">Síntesis bibliográfica delimitada (§52)</span></a> · <a class="reference internal" href="sections/53_cierre_requisitos.html"><span class="std std-doc">Ejecuciones complementarias y límites (§53)</span></a>. Las tres primeras aportan resultados; la reproducción, robustez, explicaciones y ablaciones conservan estado preparado hasta recibir evidencia de su ejecución.</p>
 <section id="resumen">
 <h2>Resumen<a class="headerlink" href="#resumen" title="Link to this heading">#</a></h2>
 <p>Se estudia el pronóstico diario de volatilidad de Bitcoin a partir de siete días de OHLCV, con horizonte de un día y objetivo σ₇ poblacional de retornos de Close, sin anualización. El benchmark reúne diez candidatos de cuatro familias, tres referencias neuronales de E1 y tres comparadores estadísticos. La selección reducida usa seis configuraciones y tres orígenes internos por red; cada receta neuronal final se repite con seis semillas. Los 16 sistemas se evalúan sobre las mismas 608 fechas conocidas de E1, manteniendo congelados los pesos, escaladores, calibradores y el análisis.</p>
@@ -454,6 +459,12 @@
 </tr>
 <tr class="row-odd"><td><p>Auditoría F2a posterior</p></td>
 <td><p><strong>81 trayectorias</strong>, 826 contrastes exploratorios, curvas de los 78 ajustes finales y 29 de 39 ajustes HPO seleccionados; <a class="reference internal" href="sections/49_diagnosticos_f2a.html"><span class="std std-doc">resultados y límites (§49)</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>Comparaciones F2a posteriores</p></td>
+<td><p>DM–HLN/HAC14, MCS y rangos condicionados: <a class="reference internal" href="sections/50_comparaciones_f2a.html"><span class="std std-doc">§50</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Eficiencia observada</p></td>
+<td><p>78 ajustes finales: 5.765,09 segundos de fases instrumentadas, parámetros y Pareto: <a class="reference internal" href="sections/51_eficiencia_costes.html"><span class="std std-doc">§51</span></a></p></td>
 </tr>
 <tr class="row-even"><td><p>Persistencia</p></td>
 <td><p>Resultados y comprobaciones de integridad en <strong>GitHub</strong></p></td>
@@ -519,9 +530,9 @@
 <section id="que-falta-para-cerrar-la-guia">
 <h2>Qué falta para cerrar la guía<a class="headerlink" href="#que-falta-para-cerrar-la-guia" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
-<li><p>Completar la batería comparativa F2a S8 y los requisitos de inferencia que siguen abiertos. Los diagnósticos S7 de §49 ya están ejecutados, con resultados desfavorables de adecuación residual; faltan el margen de sobreajuste prerregistrado δg y los elementos no estimables con los artefactos actuales.</p></li>
+<li><p>Conservar el alcance exploratorio de las comparaciones F2a ya ejecutadas en §50 y de los diagnósticos S7 de §49. La ausencia de un margen δg anterior al experimento no puede corregirse retrospectivamente; los elementos no estimables deben permanecer declarados.</p></li>
 <li><p>Acreditar robustez con severidades, explicabilidad con fidelidad y estabilidad, y ablaciones de componentes bajo las condiciones de la guía.</p></li>
-<li><p>Cerrar eficiencia y costes por modelo, trazabilidad bibliográfica/metodológica y reproducción independiente de los resultados.</p></li>
+<li><p>Completar los perfiles de inferencia que no están en los recibos de costes de §51, el cierre global de literatura que excede el corpus delimitado de §52 y la reproducción independiente registrada en §53.</p></li>
 <li><p>Revisar discusión, conclusiones, apéndices y enlaces de entrega. Los requisitos sin evidencia deben permanecer declarados; las métricas de prueba no se usan para volver a seleccionar modelos.</p></li>
 </ol>
 <p>La <a class="reference internal" href="sections/38_cumplimiento_guia.html"><span class="std std-doc">matriz de §38</span></a> detalla las prioridades y qué puede aprovechar los artefactos actuales. El resultado nulo de los contrastes se conserva en las conclusiones.</p>

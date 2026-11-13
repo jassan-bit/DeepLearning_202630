@@ -216,6 +216,10 @@
 <li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark obligatorio: dieciséis sistemas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="49_diagnosticos_f2a.html">49. Diagnósticos F2a posteriores al benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="50_comparaciones_f2a.html">50. Comparaciones F2a posteriores: DM, MCS y rangos por semilla</a></li>
+<li class="toctree-l1"><a class="reference internal" href="51_eficiencia_costes.html">51. Eficiencia, coste observado y compromisos de Pareto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="52_sintesis_literatura.html">52. Síntesis verificable de literatura y selección vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="53_cierre_requisitos.html">53. Cierre de requisitos y experimentos complementarios</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Registro de selección, cierre pendiente y trazabilidad</a></li>
@@ -402,7 +406,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convolucionales-y-autoencoder">Convolucionales y autoencoder</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#timesnet-y-timemixer">TimesNet y TimeMixer</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tsmixer-itransformer-y-patchtst">TSMixer, iTransformer y PatchTST</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-tide-conserva-nas">Por qué TiDE conserva NAS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#antecedente-por-que-la-variante-tide-propia-conservaba-nas">Antecedente: por qué la variante TiDE propia conservaba NAS</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verificacion-identidades-y-reutilizacion">Verificación, identidades y reutilización</a></li>
@@ -420,7 +424,8 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="cuerpos-publicados-adaptaciones-d7-y-aplicacion-de-nas">
 <h1>44. Cuerpos publicados, adaptaciones D7 y aplicación de NAS<a class="headerlink" href="#cuerpos-publicados-adaptaciones-d7-y-aplicacion-de-nas" title="Link to this heading">#</a></h1>
-<p><strong>Enmienda metodológica del 12/11/2026:</strong> se mantiene el <a class="reference internal" href="43_catalogo_obligatorio.html"><span class="std std-doc">catálogo obligatorio de 16 sistemas</span></a> y se adjudica la arquitectura de cada red antes de ejecutar los nuevos ajustes afectados. La ruta prospectiva conserva o restaura <strong>nueve cuerpos definidos del Top 10</strong>; <strong>TiDE mantiene su variante propia y requiere NAS</strong>. Las tres referencias E1 conservan sus cuerpos fijos y no requieren NAS estructural.</p>
+<p><strong>Estado vigente al 13/11/2026:</strong> están ejecutadas las trece recetas neuronales del catálogo de dieciséis sistemas. Los nueve cuerpos definidos inicialmente se completan con <strong>TiDE TIDE-D7-PUBLISHED-R0-v2</strong>, cuya <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">paridad funcional y registro anterior al ajuste</span></a> acreditan su identidad propia. La decisión inicial de mantener una variante TiDE NAS se conserva debajo como antecedente, sin atribuirle los resultados de la receta publicada.</p>
+<p><strong>Antecedente conservado:</strong> <strong>Enmienda metodológica del 12/11/2026:</strong> se mantiene el <a class="reference internal" href="43_catalogo_obligatorio.html"><span class="std std-doc">catálogo obligatorio de 16 sistemas</span></a> y se adjudica la arquitectura de cada red antes de ejecutar los nuevos ajustes afectados. La ruta prospectiva conserva o restaura <strong>nueve cuerpos definidos del Top 10</strong>; <strong>TiDE mantiene su variante propia y requiere NAS</strong>. Las tres referencias E1 conservan sus cuerpos fijos y no requieren NAS estructural.</p>
 <p>Esta decisión no modifica la campaña sellada ni la sesión privada de Colab. Sus seis familias NAS y sus resultados pertenecen al diseño anterior. La transición a las recetas de este capítulo debe conservar el historial, el tiempo consumido y los intentos sin desenlace; <a class="reference internal" href="41_avance_optimizacion_11_origenes.html"><span class="std std-doc">§41</span></a> sigue publicando un corte histórico identificado.</p>
 <section id="criterio-usado-para-decidir">
 <h2>Criterio usado para decidir<a class="headerlink" href="#criterio-usado-para-decidir" title="Link to this heading">#</a></h2>
@@ -469,9 +474,9 @@
 <td><p>Exento: cuerpo definido</p></td>
 </tr>
 <tr class="row-even"><td><p>TiDE</p></td>
-<td><p>Se conserva <strong>TIDE-D7-NAS-v1</strong>, con sus grupos y dominio registrados</p></td>
-<td><p>La variante vigente modifica decoder y representación de covariables; no se atribuye al cuerpo publicado sin evidencia suficiente</p></td>
-<td><p><strong>Requerido</strong> para esta variante</p></td>
+<td><p><strong>TIDE-D7-PUBLISHED-R0-v2</strong>, grafo publicado y paridad funcional registrados en §48</p></td>
+<td><p>D7, cinco canales, decoder publicado y rama r=0 inactiva declarada; la variante TIDE-D7-NAS-v1 conserva otra identidad histórica</p></td>
+<td><p>Exento para la receta publicada actual; requerido para la antigua variante propia</p></td>
 </tr>
 <tr class="row-odd"><td><p>TimeMixer</p></td>
 <td><p><strong>Restauración fija:</strong> preset corto M4, cuatro PDM, <code class="docutils literal notranslate"><span class="pre">d_model=32</span></code>, <code class="docutils literal notranslate"><span class="pre">d_ff=32</span></code>, un descenso medio de factor dos y FMM completo</p></td>
@@ -514,10 +519,10 @@
 <p>PatchTST restaura <a class="reference external" href="https://github.com/yuqinie98/PatchTST/blob/204c21efe0b39603ad6e2ca640ef5896646ab1a9/PatchTST_supervised/layers/PatchTST_backbone.py">el backbone oficial</a> y la configuración pequeña de encoder documentada en el artículo, apéndice A.1.4, p. 14, y <a class="reference external" href="https://github.com/yuqinie98/PatchTST/blob/204c21efe0b39603ad6e2ca640ef5896646ab1a9/PatchTST_supervised/scripts/PatchTST/etth1.sh">preset ETTh1</a>. <strong>Patch 3/stride 2 es una adaptación de la interfaz D7, no el preset ETTh1 exacto de patch 16/stride 8.</strong> Ese preset largo no cabe nativamente en siete días.</p>
 <p>La geometría P3/S2 ya estaba propuesta en el <a class="reference download internal" download="" href="../_downloads/013b4b6f0250828e732e100ec4c8e675/models.json"><span class="xref download myst">expediente de lectura anterior</span></a>. Produce <code class="docutils literal notranslate"><span class="pre">[0:3]</span></code>, <code class="docutils literal notranslate"><span class="pre">[2:5]</span></code>, <code class="docutils literal notranslate"><span class="pre">[4:7]</span></code> y <code class="docutils literal notranslate"><span class="pre">[6,6,6]</span></code> con padding final del último observado. No se agregan nueve días ficticios por la izquierda. RevIN se ajusta dentro de cada ventana de siete observaciones; los scores de atención residual entre capas y el <code class="docutils literal notranslate"><span class="pre">Flatten_Head</span></code> oficial se conservan. La cabeza de σ₇ recibe sus cinco salidas antes de la desnormalización de covariables.</p>
 </section>
-<section id="por-que-tide-conserva-nas">
-<h3>Por qué TiDE conserva NAS<a class="headerlink" href="#por-que-tide-conserva-nas" title="Link to this heading">#</a></h3>
+<section id="antecedente-por-que-la-variante-tide-propia-conservaba-nas">
+<h3>Antecedente: por qué la variante TiDE propia conservaba NAS<a class="headerlink" href="#antecedente-por-que-la-variante-tide-propia-conservaba-nas" title="Link to this heading">#</a></h3>
 <p>El <a class="reference external" href="https://github.com/google-research/google-research/blob/d3a4bd8f0eceddda553e47085033b537935b283f/tide/models.py">código TiDE fijado</a> y <a class="reference external" href="https://github.com/google-research/google-research/blob/d3a4bd8f0eceddda553e47085033b537935b283f/tide/train.py">sus opciones de entrenamiento</a> no validan automáticamente la variante D7 vigente. Ésta modifica el decoder temporal, representa covariables futuras no disponibles mediante sentinels y utiliza un puente propio.</p>
-<p>Se examinó la alternativa sin covariables dinámicas (<code class="docutils literal notranslate"><span class="pre">r=0</span></code>). Con entrada vacía, biases cero y ReLU de la fuente, parte del encoder temporal queda permanentemente sin gradiente: la supuesta covariable se reduce a constantes aprendidas. Omitir esa subred o cambiar su inicialización sería otra adaptación propia. Añadir calendario o lags del objetivo modificaría el contrato de entradas y exigiría una enmienda aparte. Por ello <strong>no se activa una exención para TiDE</strong> y se conserva <code class="docutils literal notranslate"><span class="pre">TIDE-D7-NAS-v1</span></code> con su búsqueda registrada.</p>
+<p>Se examinó la alternativa sin covariables dinámicas (<code class="docutils literal notranslate"><span class="pre">r=0</span></code>). Con entrada vacía, biases cero y ReLU de la fuente, parte del encoder temporal queda permanentemente sin gradiente: la supuesta covariable se reduce a constantes aprendidas. Omitir esa subred o cambiar su inicialización sería otra adaptación propia. Añadir calendario o lags del objetivo modificaría el contrato de entradas y exigiría una enmienda aparte. Esa decisión inicial conservó <code class="docutils literal notranslate"><span class="pre">TIDE-D7-NAS-v1</span></code> con su búsqueda registrada. Posteriormente, la receta publicada <strong>TIDE-D7-PUBLISHED-R0-v2</strong> fijó el grafo completo y la inicialización de la fuente, documentó la rama r=0 inactiva y acreditó paridad funcional antes del ajuste (§48); sus resultados no se atribuyen a la variante NAS.</p>
 </section>
 </section>
 <section id="verificacion-identidades-y-reutilizacion">
@@ -553,7 +558,7 @@
 </tbody>
 </table>
 </div>
-<p>FCN-1D, ResNet-1D, Inception-1D, TSMixer, iTransformer y las tres referencias E1 conservan sus recetas; sólo se reutiliza un resultado cuando coincidan arquitectura, receta, datos, partición, semillas y política de ejecución. TiDE conserva su identidad NAS. Los recibos anteriores se mantienen como evidencia del diseño que realmente se ejecutó.</p>
+<p>FCN-1D, ResNet-1D, Inception-1D, TSMixer, iTransformer y las tres referencias E1 conservan sus recetas; sólo se reutiliza un resultado cuando coincidan arquitectura, receta, datos, partición, semillas y política de ejecución. La variante histórica TiDE-NAS conserva su identidad; la receta publicada actual tiene otro registro. Los recibos anteriores se mantienen como evidencia del diseño que realmente se ejecutó.</p>
 <p>Se conservan las <strong>18 oportunidades HPO</strong>, los ejes de tasa de aprendizaje, weight decay y batch, las semillas y los límites de entrenamiento registrados. En las restauraciones, los knobs estructurales antiguos se fijan al cuerpo publicado: SAE usa dropout 0,3; TimesNet y TimeMixer, 0,1; PatchTST usa dropout de encoder y <code class="docutils literal notranslate"><span class="pre">fc_dropout</span></code> 0,3 y <code class="docutils literal notranslate"><span class="pre">head_dropout</span></code> 0. Por ello no se afirma que todos sus dominios sean idénticos a los de la variante NAS. Los cuerpos conservados mantienen sus ejes existentes. La adjudicación de cuerpos conservó inicialmente los once orígenes. La <a class="reference internal" href="45_enmienda_protocolo.html"><span class="std std-doc">enmienda temporal posterior de §45</span></a> registra tres anclas HPO y una sola NAS inicial TiDE, con reajustes mensuales; conserva límites de épocas, semillas, gasto y techo autorizado. k y R siguen sujetos a sus pilotos y ninguna cota de corridas se presenta como un mínimo literal de la guía.</p>
 </section>
 <section id="registro-y-aplicacion">
@@ -642,7 +647,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convolucionales-y-autoencoder">Convolucionales y autoencoder</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#timesnet-y-timemixer">TimesNet y TimeMixer</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tsmixer-itransformer-y-patchtst">TSMixer, iTransformer y PatchTST</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-tide-conserva-nas">Por qué TiDE conserva NAS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#antecedente-por-que-la-variante-tide-propia-conservaba-nas">Antecedente: por qué la variante TiDE propia conservaba NAS</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verificacion-identidades-y-reutilizacion">Verificación, identidades y reutilización</a></li>

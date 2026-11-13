@@ -66,7 +66,7 @@
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
     <link rel="next" title="8. Reproducibilidad, ética y comunicación científica" href="08_reproducibilidad.html" />
-    <link rel="prev" title="49. Diagnósticos F2a posteriores al benchmark" href="49_diagnosticos_f2a.html" />
+    <link rel="prev" title="53. Cierre de requisitos y experimentos complementarios" href="53_cierre_requisitos.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
   <meta name="docsearch:version" content="" />
@@ -216,6 +216,10 @@
 <li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark obligatorio: dieciséis sistemas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="49_diagnosticos_f2a.html">49. Diagnósticos F2a posteriores al benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="50_comparaciones_f2a.html">50. Comparaciones F2a posteriores: DM, MCS y rangos por semilla</a></li>
+<li class="toctree-l1"><a class="reference internal" href="51_eficiencia_costes.html">51. Eficiencia, coste observado y compromisos de Pareto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="52_sintesis_literatura.html">52. Síntesis verificable de literatura y selección vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="53_cierre_requisitos.html">53. Cierre de requisitos y experimentos complementarios</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">7. Ruta metodológica: series de tiempo y controles causales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Registro de selección, cierre pendiente y trazabilidad</a></li>
@@ -414,7 +418,7 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="ruta-metodologica-series-de-tiempo-y-controles-causales">
 <span id="e2-ruta-temporal"></span><h1>7. Ruta metodológica: series de tiempo y controles causales<a class="headerlink" href="#ruta-metodologica-series-de-tiempo-y-controles-causales" title="Link to this heading">#</a></h1>
-<p><strong>Estado vigente al 13/11/2026:</strong> el benchmark reducido está completado en <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">§6</span></a>, con el calendario efectivamente ejecutado de <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>. La auditoría posterior de ajuste, residuos, calibración y estabilidad temporal está en <a class="reference internal" href="49_diagnosticos_f2a.html"><span class="std std-doc">§49</span></a>; la batería comparativa S8 sigue parcial. Los estados y calendarios del 11–12/11 conservados debajo son antecedentes, no el estado actual de ejecución.</p>
+<p><strong>Estado vigente al 13/11/2026:</strong> el benchmark reducido está completado en <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">§6</span></a>, con el calendario efectivamente ejecutado de <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>. La auditoría posterior de ajuste, residuos, calibración y estabilidad temporal está en <a class="reference internal" href="49_diagnosticos_f2a.html"><span class="std std-doc">§49</span></a>; las comparaciones S8 se documentan en <a class="reference internal" href="50_comparaciones_f2a.html"><span class="std std-doc">§50</span></a>, mientras robustez y otros requisitos conservan su estado en <a class="reference internal" href="53_cierre_requisitos.html"><span class="std std-doc">§53</span></a>. Los estados y calendarios del 11–12/11 conservados debajo son antecedentes, no el estado actual de ejecución.</p>
 <p><strong>Vigencia documental (12/11/2026):</strong> la selección HPO/NAS ejecutada parcialmente corresponde al plan histórico de catorce redes. El catálogo obligatorio vigente es de <strong>16 sistemas</strong>, con las identidades de <a class="reference internal" href="43_catalogo_obligatorio.html"><span class="std std-doc">§43</span></a>, las arquitecturas de <a class="reference internal" href="44_arquitecturas_publicadas.html"><span class="std std-doc">§44</span></a> y el protocolo registrado de <a class="reference internal" href="45_enmienda_protocolo.html"><span class="std std-doc">§45</span></a>. Esos registros históricos no cierran el benchmark vigente ni acreditan las cuatro recetas restauradas. R y el cierre inferencial siguen pendientes. <a class="reference internal" href="41_avance_optimizacion_11_origenes.html"><span class="std std-doc">Corte verificable de resultados (§41)</span></a>.</p>
 <p><strong>Calendario registrado al 12/11/2026:</strong> se conserva F2a. <a class="reference internal" href="45_enmienda_protocolo.html"><span class="std std-doc">§45</span></a> registra tres anclas HPO y diez orígenes mensuales de evaluación con reajuste; su ejecución vigente sigue pendiente. El <a class="reference internal" href="40_calendario_original.html"><span class="std std-doc">plan de once búsquedas de §40</span></a> es histórico. Se conservan embargo, disponibilidad y carácter conocido del test.</p>
 <p><strong>Guía original cotejada:</strong> <a class="reference internal" href="20_contraste_guia.html"><span class="std std-doc">correcciones y pendientes por página</span></a>. La cuadrícula reducida no cubre el espacio mínimo; controles F2a, NAS condicional y batería estadística requieren completar el plan antes de entrenar.</p>
@@ -521,12 +525,12 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="49_diagnosticos_f2a.html"
+       href="53_cierre_requisitos.html"
        title="página anterior">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">anterior</p>
-        <p class="prev-next-title">49. Diagnósticos F2a posteriores al benchmark</p>
+        <p class="prev-next-title">53. Cierre de requisitos y experimentos complementarios</p>
       </div>
     </a>
     <a class="right-next"

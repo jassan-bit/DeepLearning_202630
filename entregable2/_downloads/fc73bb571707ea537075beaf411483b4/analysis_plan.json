@@ -1,0 +1,71 @@
+{
+  "version": "e2-f2a-s8-plan-v1",
+  "declared_at_utc": "2026-11-13",
+  "status": "post_hoc_design_declared_before_new_computation_not_preregistration",
+  "input_sha256": "65ae74b547a6073b2c286dea8039a2e7a1b1f6063b1d9ac0eb760c9ce727d187",
+  "original_primary_contrasts": {
+    "count": 20,
+    "action": "read_only_hash_before_and_after_no_recomputation"
+  },
+  "scope": {
+    "systems": 16,
+    "neural_systems": 13,
+    "neural_seeds": 6,
+    "trajectories": 81,
+    "dates": 608,
+    "horizon": 1
+  },
+  "loss": "daily arithmetic mean of individual squared errors across each system's frozen seed trajectories; deterministic systems have one trajectory; seeds are fixed, never resampled for temporal comparisons",
+  "estimand_change": "mean_date(mean_seed(squared_error)) differs from original mean_seed(sqrt(mean_date(squared_error))) and from squared ensemble error; no original RMSE margin applied to MSE units",
+  "dm": {
+    "pairs": 120,
+    "alternative": "two_sided",
+    "H0": "mean daily loss difference equals zero",
+    "HAC": "Bartlett Newey-West",
+    "maxlags": 14,
+    "HAC_small_sample_correction": false,
+    "HLN_h": 1,
+    "reference": "Student t with T-1 df",
+    "family": "all120_pairs_Holm_alpha05",
+    "interval": "nominal unadjusted 95pct HLN_t interval for mean MSE difference"
+  },
+  "mcs": {
+    "test": "Hansen T_R",
+    "alpha": 0.1,
+    "confidence": 0.9,
+    "bootstrap": "centered common-index circular moving blocks",
+    "block_days": 14,
+    "draws": 10000,
+    "rng_seed": 202611132,
+    "elimination": "argmax_i max_j mean_loss_diff_ij / bootstrap_SE_ij",
+    "p_correction": "(1+exceedances)/(B+1)",
+    "model_p": "cumulative maximum of sequential EPA p-values",
+    "retain_raw_bootstrap": false
+  },
+  "friedman": {
+    "scope": "conditional optimization seed-rank diagnostic, never market inference",
+    "blocks": "six numeric seed identifiers shared a priori by thirteen neural recipes",
+    "deterministic_comparators": "excluded; never copied to create trials",
+    "metric": "original per-seed RMSE computed arithmetically from frozen predictions",
+    "omnibus": "Friedman tie-corrected and Iman-Davenport F approximation; validity requires independent seed vectors and exchangeable within-block rankings under H0",
+    "posthoc": "two-sided exact Wilcoxon signed-rank, Holm78, only if Iman-Davenport p<0.05; report conditional symmetry and pairing assumptions and small-n resolution",
+    "if_not_admissible": "report rank descriptions and explicit limitation; no iid quarter substitution",
+    "permutation": "10000 within-row independent model-label permutations; conditional exchangeability null; plus-one tail p",
+    "permutation_seed": 202611133
+  },
+  "limitations": [
+    "post hoc and known chronology",
+    "one asset and one shared test chronology",
+    "weak dependence/local stationarity assumptions and adequate block/HAC span required",
+    "conditional seed diagnostic is not Friedman across independent datasets",
+    "no guarantee of generalization, equivalence, absence of overfit, or prospective success"
+  ],
+  "prohibited": [
+    "refit",
+    "retune",
+    "model inference",
+    "alter frozen predictions",
+    "recompute original benchmark hypotheses",
+    "treat dates or calendar quarters as independent Friedman blocks"
+  ]
+}

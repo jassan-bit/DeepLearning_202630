@@ -1,8 +1,12 @@
 # 14. Arquitecturas del catálogo vigente y adaptación a D7
 
-**Vigencia documental (11/11/2026):** existe selección HPO/NAS registrada y ejecutada para el catálogo actual; las afirmaciones de ausencia de HPO o de falta de registro de selección corresponden a cortes anteriores. El benchmark final, R y su cierre inferencial siguen pendientes. [Registro y alcance actuales (§9)](09_protocolo_registrado.md) · [Calendario (§40)](40_calendario_original.md) · [Corte de resultados (§41)](41_avance_optimizacion_11_origenes.md) · [Auditoría y trabajo paralelo (§42)](42_auditoria_y_trabajo_paralelo.md).
+**Estado vigente al 13/11/2026:** el catálogo ejecutado conserva los diez cuerpos publicados documentados en [§44](44_arquitecturas_publicadas.md) y su actualización de [§48](48_protocolo_reducido.md), incluida **TIDE-D7-PUBLISHED-R0-v2**. La NAS de 1.000 diseños sigue siendo una obligación condicional para cuerpos no definidos; las seis plazas HPO no se presentan como NAS. El [benchmark final](06_benchmark_final.md) ya está completado. Las decisiones y estados anteriores de este capítulo permanecen como antecedentes fechados.
 
-**Vigencia al 11/11/2026:** Se conservan los cinco cuerpos publicados y las seis variantes NAS. No se conceden cuatro exenciones nuevas ni se recortan arquitecturas; se mantiene el calendario original. [Decisión y ejecutor vigentes](40_calendario_original.md).
+**Antecedente conservado:** **Vigencia documental (11/11/2026):** existe selección HPO/NAS registrada y ejecutada para el catálogo actual; las afirmaciones de ausencia de HPO o de falta de registro de selección corresponden a cortes anteriores. El benchmark final, R y su cierre inferencial siguen pendientes. [Registro y alcance actuales (§9)](09_protocolo_registrado.md) · [Calendario (§40)](40_calendario_original.md) · [Corte de resultados (§41)](41_avance_optimizacion_11_origenes.md) · [Auditoría y trabajo paralelo (§42)](42_auditoria_y_trabajo_paralelo.md).
+
+## Antecedentes de arquitectura hasta el 11/11/2026
+
+**Decisión histórica al 11/11/2026:** Se conservan los cinco cuerpos publicados y las seis variantes NAS. No se conceden cuatro exenciones nuevas ni se recortan arquitecturas; se mantiene el calendario original. [Decisión y ejecutor vigentes](40_calendario_original.md).
 
 
 

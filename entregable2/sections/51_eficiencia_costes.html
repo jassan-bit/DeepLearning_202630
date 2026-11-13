@@ -1,0 +1,734 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>51. Eficiencia, coste observado y compromisos de Pareto &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/51_eficiencia_costes';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="52. Síntesis verificable de literatura y selección vigente" href="52_sintesis_literatura.html" />
+    <link rel="prev" title="50. Comparaciones F2a posteriores: DM, MCS y rangos por semilla" href="50_comparaciones_f2a.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 2 · Bitcoin: pronóstico de volatilidad</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="48_protocolo_reducido.html">48. Protocolo reducido y seguimiento de la ejecución</a></li>
+<li class="toctree-l1"><a class="reference internal" href="47_entrega_consolidada.html">47. Entrega consolidada con la evidencia disponible</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_literatura.html">3. Revisión Sistemática del Estado del Arte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación: catálogo obligatorio y antecedentes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark obligatorio: dieciséis sistemas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="49_diagnosticos_f2a.html">49. Diagnósticos F2a posteriores al benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="50_comparaciones_f2a.html">50. Comparaciones F2a posteriores: DM, MCS y rangos por semilla</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">51. Eficiencia, coste observado y compromisos de Pareto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="52_sintesis_literatura.html">52. Síntesis verificable de literatura y selección vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="53_cierre_requisitos.html">53. Cierre de requisitos y experimentos complementarios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Registro de selección, cierre pendiente y trazabilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de datos y auditoría formal de fuga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. HPO y equidad para el catálogo vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Techo de desempeño, incertidumbre y análisis de errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Agregación estadística e interpretación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas del catálogo vigente y adaptación a D7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo vigente: diez modelos y candidato 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_fichas_nuevas.html">16. Fichas bibliográficas de las cuatro altas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato sincronizado de E1, E2 y E3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_integracion_sintetica.html">18. Implementación provisional y verificación sintética</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_plan_auditoria.html">19. Plan experimental propuesto y auditoría sin entrenamiento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_contraste_guia.html">20. Cotejo del plan con la guía original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_comparadores_nas.html">21. Comparadores temporales y decisión NAS por receta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22_fichas_recetas.html">22. Once fichas de recetas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_implementacion_recetas.html">23. Implementación de recetas y controles temporales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="24_ejecutor_comun.html">24. Ejecutor común y disponibilidad temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="25_matriz_cierre.html">25. Matriz de cierre antes del benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="26_registro_recetas.html">26. Registro por receta: fuentes, NAS, HPO e integración</a></li>
+<li class="toctree-l1"><a class="reference internal" href="27_nas_hpo_presupuesto.html">27. Decisiones NAS, rangos HPO y presupuesto para Codex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="28_fabricas_nas.html">28. Fábricas NAS implementadas y verificadas sintéticamente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="29_entrenamiento_temporal.html">29. Entrenamiento por etapas, selección temporal y perfilado CPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="30_piloto_nube.html">30. Piloto de desarrollo en la nube de Codex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="31_optimizacion_nube.html">31. Optimización de CPU y presupuesto de cómputo en la nube</a></li>
+<li class="toctree-l1"><a class="reference internal" href="32_ejecucion_gpu.html">32. Ejecución CUDA preparada y piloto de recursos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="33_piloto_gpu.html">33. Primer piloto de recursos en GPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="34_perfil_gpu_ampliado.html">34. Perfil GPU ampliado y viabilidad del extremo TimesNet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="35_busqueda_cuda_reanudable.html">35. Selección CUDA con presupuesto y continuación en GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="36_avance_campana_cuda.html">36. Avance parcial de la campaña CUDA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="37_ajuste_guia.html">37. Ajuste de cómputo conforme a la guía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="38_cumplimiento_guia.html">38. Exigencias de la guía, evidencia y pendientes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="39_optimizacion_tiempo.html">39. Optimizar tiempo sin recortar las exigencias de E2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="40_calendario_original.html">40. Calendario original y optimizaciones de implementación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="41_avance_optimizacion_11_origenes.html">41. Ejecución optimizada: avance verificable de once orígenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html">42. Preparación complementaria a partir de evidencia existente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="43_catalogo_obligatorio.html">43. Catálogo obligatorio: dieciséis sistemas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="44_arquitecturas_publicadas.html">44. Cuerpos publicados, adaptaciones D7 y aplicación de NAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="45_enmienda_protocolo.html">45. Enmienda del protocolo: calendario común, presupuesto y prueba final</a></li>
+<li class="toctree-l1"><a class="reference internal" href="46_artefactos_y_pilotos.html">46. Preparación técnica opcional: artefactos y pilotos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><p class="small">Entregable 2 · Jassan Arteta · 2026-30</p></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/51_eficiencia_costes.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>51. Eficiencia, coste observado y compromisos de Pareto</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-se-midio">Qué se midió</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-por-modelo">Resultado por modelo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pareto-observado">Pareto observado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#presupuesto-medido-y-reservas">Presupuesto medido y reservas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memoria-inferencia-y-limites-de-la-evidencia">Memoria, inferencia y límites de la evidencia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#artefactos-y-reproduccion">Artefactos y reproducción</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="eficiencia-coste-observado-y-compromisos-de-pareto">
+<h1>51. Eficiencia, coste observado y compromisos de Pareto<a class="headerlink" href="#eficiencia-coste-observado-y-compromisos-de-pareto" title="Link to this heading">#</a></h1>
+<p>Los registros originales permiten cuantificar el coste de las fases de entrenamiento de los <strong>78 ajustes finales</strong>: <strong>5 765,09 s (1,6014 h)</strong>, sumados sobre 13 modelos y seis semillas. Esta cantidad corresponde a fases instrumentadas del entrenamiento final. El presupuesto contable cerrado de la campaña es <strong>74,9530 h de 80 h autorizadas</strong> e incluye historia previa, trabajos y tiempo del controlador. Las dos cifras describen ámbitos diferentes y no se suman.</p>
+<p>Esta auditoría es posterior al cierre: lee metadatos, verifica hashes y conserva la tabla A2 original. No entrena modelos, descarga pesos, ejecuta inferencias ni vuelve a calcular sus métricas. Los resultados siguen vinculados al commit científico <code class="docutils literal notranslate"><span class="pre">1e8745497b484518f766b6da5c19be8362d9add7</span></code> y al commit inmutable de resultados <code class="docutils literal notranslate"><span class="pre">50cb634e9eb163b09f9607982842144ba9f74c87</span></code>.</p>
+<section id="que-se-midio">
+<h2>Qué se midió<a class="headerlink" href="#que-se-midio" title="Link to this heading">#</a></h2>
+<p>Se verificaron los manifiestos y los metadatos de 78 ajustes finales y 39 ajustes HPO de las recetas finalmente elegidas, además de la identidad de los <strong>81 checkpoints congelados</strong>. En los modelos neuronales, cada coste final se vincula al hash del checkpoint congelado que originó la evaluación A2. Los tres predictores deterministas permanecen en el inventario de calidad, con recursos desconocidos representados como <code class="docutils literal notranslate"><span class="pre">null</span></code>.</p>
+<p>El tiempo utilizado es <code class="docutils literal notranslate"><span class="pre">phase_records[*].elapsed_seconds</span></code>, coincidente con <code class="docutils literal notranslate"><span class="pre">known_cost_seconds</span></code>: reloj de pared con sincronización CUDA. Incluye actualizaciones, evaluación del riesgo durante las épocas y escritura durable de checkpoints. Excluye la búsqueda de hiperparámetros, la persistencia de predicciones finales y el controlador exterior. Por tanto, no mide exclusivamente kernels del optimizador ni latencia de inferencia. Los pasos son actualizaciones observadas del optimizador y se suman entre fases.</p>
+<p>Todos los ajustes finales instrumentados se ejecutaron en <strong>NVIDIA A100-SXM4-80GB</strong>, con dos hilos CPU, precisión <code class="docutils literal notranslate"><span class="pre">float32</span></code>, determinismo activado y AMP/TF32 desactivados, según sus registros. La columna de parámetros cuenta el predictor seleccionado; en SAE, los decodificadores auxiliares de preentrenamiento no forman parte de ese predictor. El coste temporal sí incluye ambas fases auxiliares y la supervisada.</p>
+</section>
+<section id="resultado-por-modelo">
+<h2>Resultado por modelo<a class="headerlink" href="#resultado-por-modelo" title="Link to this heading">#</a></h2>
+<p>La calidad es el RMSE A2 original, media de seis semillas sobre las <strong>608 fechas comunes</strong>. El tiempo medio y su desviación estándar muestral describen variación entre semillas, con recetas y números de épocas ya congelados. Los pasos por semilla coinciden en las seis ejecuciones finales de cada modelo. La última columna es solamente la suma de los tres ajustes internos de la receta ganadora; no estima el coste completo de seleccionarla.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo</p></th>
+<th class="head text-right"><p>Parámetros</p></th>
+<th class="head text-right"><p>RMSE A2</p></th>
+<th class="head text-right"><p>Tiempo final/semilla, s (media ± DE)</p></th>
+<th class="head text-right"><p>Tiempo final, suma 6 semillas, s</p></th>
+<th class="head text-right"><p>Pasos/semilla, todas las fases</p></th>
+<th class="head text-right"><p>HPO de receta elegida, s</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>FCN-1D</p></td>
+<td class="text-right"><p>268,929</p></td>
+<td class="text-right"><p>0.004566</p></td>
+<td class="text-right"><p>22.28 ± 0.18</p></td>
+<td class="text-right"><p>133.68</p></td>
+<td class="text-right"><p>1,312</p></td>
+<td class="text-right"><p>61.94</p></td>
+</tr>
+<tr class="row-odd"><td><p>ResNet-1D</p></td>
+<td class="text-right"><p>522,955</p></td>
+<td class="text-right"><p>0.004544</p></td>
+<td class="text-right"><p>49.72 ± 0.55</p></td>
+<td class="text-right"><p>298.32</p></td>
+<td class="text-right"><p>1,148</p></td>
+<td class="text-right"><p>144.59</p></td>
+</tr>
+<tr class="row-even"><td><p>Inception-1D</p></td>
+<td class="text-right"><p>490,561</p></td>
+<td class="text-right"><p>0.004362</p></td>
+<td class="text-right"><p>52.09 ± 0.31</p></td>
+<td class="text-right"><p>312.53</p></td>
+<td class="text-right"><p>1,050</p></td>
+<td class="text-right"><p>156.17</p></td>
+</tr>
+<tr class="row-odd"><td><p>SAE (LSTM-autoencoder con predictor)</p></td>
+<td class="text-right"><p>8,739</p></td>
+<td class="text-right"><p>0.003803</p></td>
+<td class="text-right"><p>157.08 ± 1.07</p></td>
+<td class="text-right"><p>942.49</p></td>
+<td class="text-right"><p>17,507</p></td>
+<td class="text-right"><p>376.32</p></td>
+</tr>
+<tr class="row-even"><td><p>TimesNet</p></td>
+<td class="text-right"><p>1,173,099</p></td>
+<td class="text-right"><p>0.004805</p></td>
+<td class="text-right"><p>271.95 ± 2.21</p></td>
+<td class="text-right"><p>1631.69</p></td>
+<td class="text-right"><p>1,435</p></td>
+<td class="text-right"><p>1016.65</p></td>
+</tr>
+<tr class="row-odd"><td><p>TSMixer</p></td>
+<td class="text-right"><p>35,044</p></td>
+<td class="text-right"><p>0.004975</p></td>
+<td class="text-right"><p>37.92 ± 0.28</p></td>
+<td class="text-right"><p>227.52</p></td>
+<td class="text-right"><p>882</p></td>
+<td class="text-right"><p>143.36</p></td>
+</tr>
+<tr class="row-even"><td><p>TiDE</p></td>
+<td class="text-right"><p>163,384</p></td>
+<td class="text-right"><p>0.005772</p></td>
+<td class="text-right"><p>33.62 ± 0.20</p></td>
+<td class="text-right"><p>201.72</p></td>
+<td class="text-right"><p>1,681</p></td>
+<td class="text-right"><p>121.81</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimeMixer</p></td>
+<td class="text-right"><p>9,447</p></td>
+<td class="text-right"><p>0.004481</p></td>
+<td class="text-right"><p>142.72 ± 0.54</p></td>
+<td class="text-right"><p>856.33</p></td>
+<td class="text-right"><p>2,706</p></td>
+<td class="text-right"><p>402.81</p></td>
+</tr>
+<tr class="row-even"><td><p>PatchTST</p></td>
+<td class="text-right"><p>16,388</p></td>
+<td class="text-right"><p>0.010139</p></td>
+<td class="text-right"><p>76.38 ± 0.36</p></td>
+<td class="text-right"><p>458.30</p></td>
+<td class="text-right"><p>1,927</p></td>
+<td class="text-right"><p>256.00</p></td>
+</tr>
+<tr class="row-odd"><td><p>iTransformer</p></td>
+<td class="text-right"><p>795,403</p></td>
+<td class="text-right"><p>0.005254</p></td>
+<td class="text-right"><p>53.01 ± 0.23</p></td>
+<td class="text-right"><p>318.04</p></td>
+<td class="text-right"><p>1,845</p></td>
+<td class="text-right"><p>199.84</p></td>
+</tr>
+<tr class="row-even"><td><p>MLP16</p></td>
+<td class="text-right"><p>593</p></td>
+<td class="text-right"><p>0.004517</p></td>
+<td class="text-right"><p>9.98 ± 0.13</p></td>
+<td class="text-right"><p>59.85</p></td>
+<td class="text-right"><p>1,197</p></td>
+<td class="text-right"><p>28.56</p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM32</p></td>
+<td class="text-right"><p>5,025</p></td>
+<td class="text-right"><p>0.004664</p></td>
+<td class="text-right"><p>8.90 ± 0.14</p></td>
+<td class="text-right"><p>53.41</p></td>
+<td class="text-right"><p>682</p></td>
+<td class="text-right"><p>21.11</p></td>
+</tr>
+<tr class="row-even"><td><p>GRU32</p></td>
+<td class="text-right"><p>3,777</p></td>
+<td class="text-right"><p>0.004001</p></td>
+<td class="text-right"><p>45.20 ± 0.16</p></td>
+<td class="text-right"><p>271.20</p></td>
+<td class="text-right"><p>5,863</p></td>
+<td class="text-right"><p>78.67</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>En SAE, la suma de seis semillas se descompone en <strong>373,79 s para AE1</strong>, <strong>378,45 s para AE2</strong> y <strong>190,25 s para la fase supervisada</strong>, total <strong>942,49 s</strong>. Omitir el preentrenamiento reduciría indebidamente su coste reportado. Las demás arquitecturas tienen una fase supervisada.</p>
+<p>Los 39 ajustes HPO seleccionados suman <strong>3 007,84 s (0,8355 h)</strong>. Proceden de tres orígenes internos (<code class="docutils literal notranslate"><span class="pre">2024-01-01</span></code>, <code class="docutils literal notranslate"><span class="pre">2024-07-01</span></code>, <code class="docutils literal notranslate"><span class="pre">2024-10-01</span></code>) y una semilla de optimización (<code class="docutils literal notranslate"><span class="pre">271201</span></code>). Su temporización mezcla A100, Tesla T4 y diez resultados históricos admitidos desde caché, con políticas de checkpoints distintas. Esta suma es descriptiva de los registros recuperados: no permite ordenar arquitecturas por eficiencia de búsqueda. <code class="docutils literal notranslate"><span class="pre">full_selection_seconds</span></code> queda en <code class="docutils literal notranslate"><span class="pre">null</span></code> para todos los modelos porque este inventario no contiene una atribución exhaustiva de todas las configuraciones y operaciones previas a la selección.</p>
+</section>
+<section id="pareto-observado">
+<h2>Pareto observado<a class="headerlink" href="#pareto-observado" title="Link to this heading">#</a></h2>
+<figure class="align-default" id="fig-e2-quality-cost-pareto">
+<img alt="Dos gráficos del RMSE A2 frente al tiempo final medio por semilla y frente al número de parámetros. La frontera observada se destaca en naranja." src="../_images/quality_cost_pareto.svg" />
+<figcaption>
+<p><span class="caption-number">Figura 1 </span><span class="caption-text">Compromisos descriptivos entre error y coste. El eje temporal incluye evaluación y checkpoints. Los predictores deterministas carecen de medidas de recursos comparables y quedan fuera de ambas fronteras.</span><a class="headerlink" href="#fig-e2-quality-cost-pareto" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Se minimizan simultáneamente RMSE y coste. Un modelo domina a otro si no empeora ninguna coordenada y mejora al menos una. Con tiempo final medio por semilla, la frontera observada contiene <strong>LSTM32, MLP16, GRU32 y SAE</strong>. Con parámetros, contiene <strong>MLP16, GRU32 y SAE</strong>. SAE obtiene el menor RMSE puntual; MLP16 emplea menos parámetros y GRU32 ofrece un compromiso intermedio. LSTM32 entra en la frontera temporal por su menor tiempo observado, pero GRU32 lo domina en error y parámetros.</p>
+<p>Estas fronteras dependen de las recetas elegidas y de la carga final congelada: distintos números de épocas y, para SAE, tres fases. La figura no es una comparación a igual número de actualizaciones ni a igual presupuesto de búsqueda. La dominancia es sobre estimaciones puntuales: no demuestra superioridad estadística ni incorpora incertidumbre de la selección. Una media de RMSE entre seis semillas describe los seis predictores evaluados individualmente; no es el error de un ensamble.</p>
+<p>Persistence, SeasonalNaive y ARIMA conservan sus resultados A2 originales y una ejecución determinista por sistema. Sus tiempos y parámetros comparables no están presentes en esta evidencia. Se mantienen como desconocidos; asignarles coste cero fabricaría una frontera distinta.</p>
+</section>
+<section id="presupuesto-medido-y-reservas">
+<h2>Presupuesto medido y reservas<a class="headerlink" href="#presupuesto-medido-y-reservas" title="Link to this heading">#</a></h2>
+<p>La auditoría vuelve a verificar los <strong>1 368 eventos</strong> de la cadena del ledger y su último hash <code class="docutils literal notranslate"><span class="pre">9cef7a0b5a295c55051fd3279cfd7493efe3cedde53545dee8fb3398971db9ba</span></code>. Las <strong>329 reservas</strong> están cerradas. El total autorizado de 80 h constituye un límite, no una medición del consumo.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Componente contable</p></th>
+<th class="head text-right"><p>Segundos</p></th>
+<th class="head text-right"><p>Horas</p></th>
+<th class="head"><p>Interpretación</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Cargos históricos heredados</p></td>
+<td class="text-right"><p>222 927,99</p></td>
+<td class="text-right"><p>61,9244</p></td>
+<td><p>Historia anterior incorporada al ledger</p></td>
+</tr>
+<tr class="row-odd"><td><p>Trabajadores del ledger actual</p></td>
+<td class="text-right"><p>35 387,88</p></td>
+<td class="text-right"><p>9,8300</p></td>
+<td><p>Tiempo cargado de trabajos actuales</p></td>
+</tr>
+<tr class="row-even"><td><p>Controlador y overhead actuales</p></td>
+<td class="text-right"><p>11 515,04</p></td>
+<td class="text-right"><p>3,1986</p></td>
+<td><p>Tiempo registrado fuera de trabajadores</p></td>
+</tr>
+<tr class="row-odd"><td><p>Total cargado cerrado</p></td>
+<td class="text-right"><p>269 830,91</p></td>
+<td class="text-right"><p>74,9530</p></td>
+<td><p>Suma de los tres componentes anteriores</p></td>
+</tr>
+<tr class="row-even"><td><p>Saldo frente al límite autorizado</p></td>
+<td class="text-right"><p>18 169,09</p></td>
+<td class="text-right"><p>5,0470</p></td>
+<td><p>Presupuesto disponible al cierre</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La suma de reservas por intento es <strong>597 540 s (165,9833 h)</strong>: son techos sucesivos de admisión, no horas consumidas. No se incorpora esa suma al total cargado. Ni el total contable ni la duración de las fases equivalen a GPU-horas activas, consumo eléctrico o importe monetario. No hay una tarifa y telemetría energética verificadas; esos campos permanecen en <code class="docutils literal notranslate"><span class="pre">null</span></code>.</p>
+</section>
+<section id="memoria-inferencia-y-limites-de-la-evidencia">
+<h2>Memoria, inferencia y límites de la evidencia<a class="headerlink" href="#memoria-inferencia-y-limites-de-la-evidencia" title="Link to this heading">#</a></h2>
+<p>Los registros finales contienen máximos observados de memoria CUDA asignada/reservada y RSS, conservados en el CSV por fase. El campo de alcance CUDA es <code class="docutils literal notranslate"><span class="pre">since_callers_last_reset</span></code>: se trata de máximos del proceso desde el último reinicio del contador. No constituyen una medición aislada de memoria de cada predictor ni memoria de inferencia. El límite del allocator del 80 % de VRAM es un umbral registrado de admisión, no el pico medido ni una cuota física impuesta.</p>
+<p>No existen temporizaciones aisladas de inferencia en los archivos originales de predicciones utilizados aquí. <code class="docutils literal notranslate"><span class="pre">inference_seconds</span></code>, <code class="docutils literal notranslate"><span class="pre">inference_latency_ms</span></code> y <code class="docutils literal notranslate"><span class="pre">FLOPs</span></code> quedan en <code class="docutils literal notranslate"><span class="pre">null</span></code>; no se deducen a partir del número de parámetros, del presupuesto o del tiempo de entrenamiento. Un perfil posterior, con datos sintéticos, warmup y sincronización explícita, deberá publicarse con su hardware y protocolo propios. No reemplazaría una medición de inferencia de los predictores congelados sobre la carga original.</p>
+</section>
+<section id="artefactos-y-reproduccion">
+<h2>Artefactos y reproducción<a class="headerlink" href="#artefactos-y-reproduccion" title="Link to this heading">#</a></h2>
+<p>Los archivos descargables conservan el detalle y sus límites:</p>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="../_downloads/267bbd7cb577bfab772e9b78f2144298/model_efficiency.csv"><span class="xref download myst">Costes por modelo, CSV</span></a> y <a class="reference download internal" download="" href="../_downloads/f6d4e41e20bcc5da1499353278460b94/model_efficiency.json"><span class="xref download myst">JSON</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/e63015ddc7b521892fad7e8decdef46a/phase_resources.csv"><span class="xref download myst">Tiempos, pasos, hardware y memoria por fase</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/31a5a5d6852152282593e4f975ee2b5e/benchmark_A2_original.csv"><span class="xref download myst">A2 original, sin recalcular</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/3ddc30cfefd9ecb421cd5410053c16c3/source_evidence.json"><span class="xref download myst">Proveniencia, hashes, ámbito y presupuesto conciliado</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/4279c018df9f48335ed77cec3415bcf8/quality_cost_pareto.svg"><span class="xref download myst">Pareto SVG</span></a> y <a class="reference download internal" download="" href="../_downloads/914fea66e0220561f0b5c05b8c8c2a1a/quality_cost_pareto.png"><span class="xref download myst">PNG</span></a>.</p></li>
+</ul>
+<p>El colector <code class="docutils literal notranslate"><span class="pre">scripts/collect_e2_efficiency_evidence.py</span></code> opera sin red y requiere el inventario original de entrenamiento, los dos ZIP de metadatos y el ledger cerrado. Verifica bytes, SHA256, identidad de recetas y checkpoints, seis semillas completas, fases y pasos reconciliados y la cadena contable. <code class="docutils literal notranslate"><span class="pre">scripts/collect_e2_f2a_training_evidence.py</span></code> reconstruye las identidades registradas de los ajustes HPO sin importar código de entrenamiento. Los orígenes inmutables y hashes de cada fuente se conservan en <code class="docutils literal notranslate"><span class="pre">source_evidence.json</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>scripts/collect_e2_efficiency_evidence.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--training-evidence<span class="w"> </span>/workspace/outputs/e2-f2a-audit-20261113/training_evidence<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--metadata-dir<span class="w"> </span>/tmp/e2-final-evidence-meta<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ledger<span class="w"> </span>/tmp/e2-final-evidence-meta/terminal_budget.jsonl<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output-dir<span class="w"> </span>/workspace/outputs/e2-guide-closure-20261113/efficiency
+python<span class="w"> </span>-m<span class="w"> </span>unittest<span class="w"> </span>discover<span class="w"> </span>-s<span class="w"> </span>tests<span class="w"> </span>-p<span class="w"> </span>test_e2_efficiency_evidence.py<span class="w"> </span>-v
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="50_comparaciones_f2a.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">50. Comparaciones F2a posteriores: DM, MCS y rangos por semilla</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="52_sintesis_literatura.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">52. Síntesis verificable de literatura y selección vigente</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-se-midio">Qué se midió</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-por-modelo">Resultado por modelo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pareto-observado">Pareto observado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#presupuesto-medido-y-reservas">Presupuesto medido y reservas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memoria-inferencia-y-limites-de-la-evidencia">Memoria, inferencia y límites de la evidencia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#artefactos-y-reproduccion">Artefactos y reproducción</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

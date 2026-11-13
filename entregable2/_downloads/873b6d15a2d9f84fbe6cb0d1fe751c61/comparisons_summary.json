@@ -1,0 +1,539 @@
+{
+  "assumptions": [
+    "Post hoc exploratory p-values conditional on already known chronology",
+    "Weak dependence/local stationarity, adequate HAC14 and circular block14 span",
+    "HLN h1 correction combined with longer HAC14 is an approximate sensitivity analysis",
+    "Sigma7 target overlap motivates serial adjustment, not horizon7",
+    "No inference across independent markets, no equivalence claim, no overfit clearance"
+  ],
+  "conditional_posthoc_Holm_rejections": 0,
+  "conditional_seed_rank_test": {
+    "Friedman_Q": 46.989010989011035,
+    "Iman_Davenport_F": 9.39367311072059,
+    "Iman_Davenport_F_is_infinite": false,
+    "Iman_Davenport_df": [
+      12,
+      60
+    ],
+    "Iman_Davenport_p": 7.027866295448469e-10,
+    "assumptions": [
+      "Independent seed vectors conditional on fixed data and recipes",
+      "Within-block model-rank exchangeability for permutation null",
+      "Same seed labels alone do not establish matching or shared random effects",
+      "Pairwise signed-rank inference additionally requires symmetric seed differences"
+    ],
+    "blocks": 6,
+    "chi2_df": 12,
+    "chi2_p": 4.682127763194481e-06,
+    "deterministic_comparators_excluded": true,
+    "metric": "per_seed_RMSE",
+    "minimum_exact_bilateral_p_no_ties": 0.03125,
+    "permutation_draws": 10000,
+    "permutation_p": 9.999000099990002e-05,
+    "permutation_seed": 202611133,
+    "population_Friedman_over_independent_series_or_origins": false,
+    "posthoc_executed": true,
+    "posthoc_family_size": 78,
+    "posthoc_gate": "Iman_Davenport_p_lt_0.05",
+    "scope": "conditional_optimization_diagnostic_not_independent_markets",
+    "systems": 13,
+    "tie_correction": 1.0
+  },
+  "dm": {
+    "alternative": "two-sided",
+    "family_size": 120,
+    "horizon": 1,
+    "maxlags": 14,
+    "reject_Holm05": 35,
+    "unavailable": 0
+  },
+  "input_sha256": "65ae74b547a6073b2c286dea8039a2e7a1b1f6063b1d9ac0eb760c9ce727d187",
+  "loss": "mean fixed-seed individual squared error per date; original sigma7 units squared",
+  "maximum_per_seed_RMSE_verification_difference": 5.204170427930421e-18,
+  "mcs": {
+    "alpha": 0.1,
+    "block_days": 14,
+    "common_bootstrap_indices": true,
+    "confidence": 0.9,
+    "draws": 10000,
+    "elimination": "e_R",
+    "membership": [
+      {
+        "MCS_pvalue": 0.20457954204579543,
+        "confidence_level": 0.9,
+        "elimination_order_step": 14,
+        "mean_MSE": 2.0908111245285584e-05,
+        "model": "FCN-1D",
+        "retained_at_alpha": true
+      },
+      {
+        "MCS_pvalue": 0.0816918308169183,
+        "confidence_level": 0.9,
+        "elimination_order_step": 11,
+        "mean_MSE": 2.0881963342893113e-05,
+        "model": "ResNet-1D",
+        "retained_at_alpha": false
+      },
+      {
+        "MCS_pvalue": 0.015798420157984203,
+        "confidence_level": 0.9,
+        "elimination_order_step": 10,
+        "mean_MSE": 1.9108106065380986e-05,
+        "model": "Inception-1D",
+        "retained_at_alpha": false
+      },
+      {
+        "MCS_pvalue": 1.0,
+        "confidence_level": 0.9,
+        "elimination_order_step": null,
+        "mean_MSE": 1.4516270974883927e-05,
+        "model": "LSTM-autoencoder con predictor",
+        "retained_at_alpha": true
+      },
+      {
+        "MCS_pvalue": 0.0053994600539946005,
+        "confidence_level": 0.9,
+        "elimination_order_step": 6,
+        "mean_MSE": 2.3384365729831773e-05,
+        "model": "TimesNet",
+        "retained_at_alpha": false
+      },
+      {
+        "MCS_pvalue": 0.008399160083991601,
+        "confidence_level": 0.9,
+        "elimination_order_step": 7,
+        "mean_MSE": 2.4929536780877493e-05,
+        "model": "TSMixer",
+        "retained_at_alpha": false
+      },
+      {
+        "MCS_pvalue": 9.999000099990002e-05,
+        "confidence_level": 0.9,
+        "elimination_order_step": 1,
+        "mean_MSE": 3.4358009203774806e-05,
+        "model": "TiDE",
+        "retained_at_alpha": false
+      },
+      {
+        "MCS_pvalue": 0.015798420157984203,
+        "confidence_level": 0.9,
+        "elimination_order_step": 8,
+        "mean_MSE": 2.0515375178676974e-05,
+        "model": "TimeMixer",
+        "retained_at_alpha": false
+      },
+      {
+        "MCS_pvalue": 0.0031996800319968005,
+        "confidence_level": 0.9,
+        "elimination_order_step": 3,
+        "mean_MSE": 0.00010285345707087965,
+        "model": "PatchTST",
+        "retained_at_alpha": false
+      },
+      {
+        "MCS_pvalue": 0.003999600039996,
+        "confidence_level": 0.9,
+        "elimination_order_step": 4,
+        "mean_MSE": 2.7610397781839028e-05,
+        "model": "iTransformer",
+        "retained_at_alpha": false
+      },
+      {
+        "MCS_pvalue": 0.004399560043995601,
+        "confidence_level": 0.9,
+        "elimination_order_step": 5,
+        "mean_MSE": 2.045674553096671e-05,
+        "model": "MLP16",
+        "retained_at_alpha": false
+      },
+      {
+        "MCS_pvalue": 9.999000099990002e-05,
+        "confidence_level": 0.9,
+        "elimination_order_step": 2,
+        "mean_MSE": 2.1763957614048837e-05,
+        "model": "LSTM32",
+        "retained_at_alpha": false
+      },
+      {
+        "MCS_pvalue": 0.14558544145585442,
+        "confidence_level": 0.9,
+        "elimination_order_step": 12,
+        "mean_MSE": 1.6035558726620818e-05,
+        "model": "GRU32",
+        "retained_at_alpha": true
+      },
+      {
+        "MCS_pvalue": 0.20457954204579543,
+        "confidence_level": 0.9,
+        "elimination_order_step": 13,
+        "mean_MSE": 1.669209358863719e-05,
+        "model": "Persistence",
+        "retained_at_alpha": true
+      },
+      {
+        "MCS_pvalue": 0.015798420157984203,
+        "confidence_level": 0.9,
+        "elimination_order_step": 9,
+        "mean_MSE": 0.0001475877012227213,
+        "model": "SeasonalNaive",
+        "retained_at_alpha": false
+      },
+      {
+        "MCS_pvalue": 0.44285571442855715,
+        "confidence_level": 0.9,
+        "elimination_order_step": 15,
+        "mean_MSE": 1.5379140889238745e-05,
+        "model": "ARIMA",
+        "retained_at_alpha": true
+      }
+    ],
+    "null_centered": true,
+    "retained": [
+      "FCN-1D",
+      "LSTM-autoencoder con predictor",
+      "GRU32",
+      "Persistence",
+      "ARIMA"
+    ],
+    "seed": 202611132,
+    "sequence_continued_for_model_pvalues": true,
+    "statistic": "T_R",
+    "status": "estimable",
+    "steps": [
+      {
+        "EPA_reject_at_alpha": true,
+        "T_R": 7.115608047719156,
+        "candidate_e_R": "TiDE",
+        "excluded_at_alpha": true,
+        "models": [
+          "FCN-1D",
+          "ResNet-1D",
+          "Inception-1D",
+          "LSTM-autoencoder con predictor",
+          "TimesNet",
+          "TSMixer",
+          "TiDE",
+          "TimeMixer",
+          "PatchTST",
+          "iTransformer",
+          "MLP16",
+          "LSTM32",
+          "GRU32",
+          "Persistence",
+          "SeasonalNaive",
+          "ARIMA"
+        ],
+        "n_models": 16,
+        "p_monotone": 9.999000099990002e-05,
+        "p_raw": 9.999000099990002e-05,
+        "step": 1
+      },
+      {
+        "EPA_reject_at_alpha": true,
+        "T_R": 5.81464584351209,
+        "candidate_e_R": "LSTM32",
+        "excluded_at_alpha": true,
+        "models": [
+          "FCN-1D",
+          "ResNet-1D",
+          "Inception-1D",
+          "LSTM-autoencoder con predictor",
+          "TimesNet",
+          "TSMixer",
+          "TimeMixer",
+          "PatchTST",
+          "iTransformer",
+          "MLP16",
+          "LSTM32",
+          "GRU32",
+          "Persistence",
+          "SeasonalNaive",
+          "ARIMA"
+        ],
+        "n_models": 15,
+        "p_monotone": 9.999000099990002e-05,
+        "p_raw": 9.999000099990002e-05,
+        "step": 2
+      },
+      {
+        "EPA_reject_at_alpha": true,
+        "T_R": 4.4002884009833,
+        "candidate_e_R": "PatchTST",
+        "excluded_at_alpha": true,
+        "models": [
+          "FCN-1D",
+          "ResNet-1D",
+          "Inception-1D",
+          "LSTM-autoencoder con predictor",
+          "TimesNet",
+          "TSMixer",
+          "TimeMixer",
+          "PatchTST",
+          "iTransformer",
+          "MLP16",
+          "GRU32",
+          "Persistence",
+          "SeasonalNaive",
+          "ARIMA"
+        ],
+        "n_models": 14,
+        "p_monotone": 0.0031996800319968005,
+        "p_raw": 0.0031996800319968005,
+        "step": 3
+      },
+      {
+        "EPA_reject_at_alpha": true,
+        "T_R": 4.290201067721806,
+        "candidate_e_R": "iTransformer",
+        "excluded_at_alpha": true,
+        "models": [
+          "FCN-1D",
+          "ResNet-1D",
+          "Inception-1D",
+          "LSTM-autoencoder con predictor",
+          "TimesNet",
+          "TSMixer",
+          "TimeMixer",
+          "iTransformer",
+          "MLP16",
+          "GRU32",
+          "Persistence",
+          "SeasonalNaive",
+          "ARIMA"
+        ],
+        "n_models": 13,
+        "p_monotone": 0.003999600039996,
+        "p_raw": 0.003999600039996,
+        "step": 4
+      },
+      {
+        "EPA_reject_at_alpha": true,
+        "T_R": 4.226800258657915,
+        "candidate_e_R": "MLP16",
+        "excluded_at_alpha": true,
+        "models": [
+          "FCN-1D",
+          "ResNet-1D",
+          "Inception-1D",
+          "LSTM-autoencoder con predictor",
+          "TimesNet",
+          "TSMixer",
+          "TimeMixer",
+          "MLP16",
+          "GRU32",
+          "Persistence",
+          "SeasonalNaive",
+          "ARIMA"
+        ],
+        "n_models": 12,
+        "p_monotone": 0.004399560043995601,
+        "p_raw": 0.004399560043995601,
+        "step": 5
+      },
+      {
+        "EPA_reject_at_alpha": true,
+        "T_R": 4.086416595563989,
+        "candidate_e_R": "TimesNet",
+        "excluded_at_alpha": true,
+        "models": [
+          "FCN-1D",
+          "ResNet-1D",
+          "Inception-1D",
+          "LSTM-autoencoder con predictor",
+          "TimesNet",
+          "TSMixer",
+          "TimeMixer",
+          "GRU32",
+          "Persistence",
+          "SeasonalNaive",
+          "ARIMA"
+        ],
+        "n_models": 11,
+        "p_monotone": 0.0053994600539946005,
+        "p_raw": 0.0053994600539946005,
+        "step": 6
+      },
+      {
+        "EPA_reject_at_alpha": true,
+        "T_R": 3.844907266094047,
+        "candidate_e_R": "TSMixer",
+        "excluded_at_alpha": true,
+        "models": [
+          "FCN-1D",
+          "ResNet-1D",
+          "Inception-1D",
+          "LSTM-autoencoder con predictor",
+          "TSMixer",
+          "TimeMixer",
+          "GRU32",
+          "Persistence",
+          "SeasonalNaive",
+          "ARIMA"
+        ],
+        "n_models": 10,
+        "p_monotone": 0.008399160083991601,
+        "p_raw": 0.008399160083991601,
+        "step": 7
+      },
+      {
+        "EPA_reject_at_alpha": true,
+        "T_R": 3.465043100845298,
+        "candidate_e_R": "TimeMixer",
+        "excluded_at_alpha": true,
+        "models": [
+          "FCN-1D",
+          "ResNet-1D",
+          "Inception-1D",
+          "LSTM-autoencoder con predictor",
+          "TimeMixer",
+          "GRU32",
+          "Persistence",
+          "SeasonalNaive",
+          "ARIMA"
+        ],
+        "n_models": 9,
+        "p_monotone": 0.015798420157984203,
+        "p_raw": 0.015798420157984203,
+        "step": 8
+      },
+      {
+        "EPA_reject_at_alpha": true,
+        "T_R": 3.4321756879748953,
+        "candidate_e_R": "SeasonalNaive",
+        "excluded_at_alpha": true,
+        "models": [
+          "FCN-1D",
+          "ResNet-1D",
+          "Inception-1D",
+          "LSTM-autoencoder con predictor",
+          "GRU32",
+          "Persistence",
+          "SeasonalNaive",
+          "ARIMA"
+        ],
+        "n_models": 8,
+        "p_monotone": 0.015798420157984203,
+        "p_raw": 0.013898610138986101,
+        "step": 9
+      },
+      {
+        "EPA_reject_at_alpha": true,
+        "T_R": 3.3838258910471217,
+        "candidate_e_R": "Inception-1D",
+        "excluded_at_alpha": true,
+        "models": [
+          "FCN-1D",
+          "ResNet-1D",
+          "Inception-1D",
+          "LSTM-autoencoder con predictor",
+          "GRU32",
+          "Persistence",
+          "ARIMA"
+        ],
+        "n_models": 7,
+        "p_monotone": 0.015798420157984203,
+        "p_raw": 0.014498550144985502,
+        "step": 10
+      },
+      {
+        "EPA_reject_at_alpha": true,
+        "T_R": 2.439734641232516,
+        "candidate_e_R": "ResNet-1D",
+        "excluded_at_alpha": true,
+        "models": [
+          "FCN-1D",
+          "ResNet-1D",
+          "LSTM-autoencoder con predictor",
+          "GRU32",
+          "Persistence",
+          "ARIMA"
+        ],
+        "n_models": 6,
+        "p_monotone": 0.0816918308169183,
+        "p_raw": 0.0816918308169183,
+        "step": 11
+      },
+      {
+        "EPA_reject_at_alpha": false,
+        "T_R": 2.0485204182106513,
+        "candidate_e_R": "GRU32",
+        "excluded_at_alpha": false,
+        "models": [
+          "FCN-1D",
+          "LSTM-autoencoder con predictor",
+          "GRU32",
+          "Persistence",
+          "ARIMA"
+        ],
+        "n_models": 5,
+        "p_monotone": 0.14558544145585442,
+        "p_raw": 0.14558544145585442,
+        "step": 12
+      },
+      {
+        "EPA_reject_at_alpha": false,
+        "T_R": 1.6910284922025804,
+        "candidate_e_R": "Persistence",
+        "excluded_at_alpha": false,
+        "models": [
+          "FCN-1D",
+          "LSTM-autoencoder con predictor",
+          "Persistence",
+          "ARIMA"
+        ],
+        "n_models": 4,
+        "p_monotone": 0.20457954204579543,
+        "p_raw": 0.20457954204579543,
+        "step": 13
+      },
+      {
+        "EPA_reject_at_alpha": false,
+        "T_R": 1.6162731706727569,
+        "candidate_e_R": "FCN-1D",
+        "excluded_at_alpha": false,
+        "models": [
+          "FCN-1D",
+          "LSTM-autoencoder con predictor",
+          "ARIMA"
+        ],
+        "n_models": 3,
+        "p_monotone": 0.20457954204579543,
+        "p_raw": 0.1780821917808219,
+        "step": 14
+      },
+      {
+        "EPA_reject_at_alpha": false,
+        "T_R": 0.7573695928303353,
+        "candidate_e_R": "ARIMA",
+        "excluded_at_alpha": false,
+        "models": [
+          "LSTM-autoencoder con predictor",
+          "ARIMA"
+        ],
+        "n_models": 2,
+        "p_monotone": 0.44285571442855715,
+        "p_raw": 0.44285571442855715,
+        "step": 15
+      }
+    ],
+    "variance": "mean squared centered bootstrap pair differences"
+  },
+  "model_inference": false,
+  "original_analysis_sha256_after": "5276613f21eccd23aab062acdee4be3b121e127ab704a35aa71c016d4baf5b45",
+  "original_analysis_sha256_before": "5276613f21eccd23aab062acdee4be3b121e127ab704a35aa71c016d4baf5b45",
+  "original_benchmark_repeated": false,
+  "original_primary_contrasts_sha256": "82cfd5d6820eed33e1e8578dba62545935d1836f78e1d495020d9ab9efbd8041",
+  "original_primary_count": 20,
+  "original_primary_metric": "mean seed RMSE; unchanged, not the temporal loss estimand",
+  "plan_sha256": "cc4acd3e18cc1d00a445f7a9dc37800c4456fc4f290e4b54c862f499052aad87",
+  "post_hoc": true,
+  "runtime": {
+    "Python": "3.12.14",
+    "numpy": "2.3.5",
+    "scipy": "1.16.3"
+  },
+  "scientific_fit": false,
+  "scope": "known single market chronology 2025-01-01 through 2026-08-31",
+  "seeds_resampled_in_temporal_tests": false,
+  "version": "e2-f2a-s8-posthoc-comparisons-v1"
+}
