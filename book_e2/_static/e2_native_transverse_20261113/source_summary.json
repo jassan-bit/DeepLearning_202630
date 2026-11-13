@@ -1,0 +1,41 @@
+{
+  "version": "e2-native-transverse-actual-identification-v1",
+  "source_commit": "04d0947b1b043b7d389a742d7c3e06a97338d5b4",
+  "source_path": "runs/posthoc-native-search-v1/artifacts/native_transverse_receipt.json",
+  "source_manifest": "runs/posthoc-native-search-v1/manifest.json",
+  "original_asset_sha256": "1593584d6fd37d999f300f2879b7fb8213565062162d7fa287a5da9e904a8329",
+  "queries": [
+    {
+      "query_id": "vision_residual",
+      "query": "all:\"residual network\" AND all:vision AND (all:transfer OR all:adaptation)",
+      "url": "https://export.arxiv.org/api/query?search_query=all%3A%22residual+network%22+AND+all%3Avision+AND+%28all%3Atransfer+OR+all%3Aadaptation%29&start=0&max_results=10",
+      "observed_at_utc": "2026-11-13T19:29:26.777902+00:00",
+      "status": "native_metadata_retrieved",
+      "native_total": 106,
+      "retrieved_records": 10,
+      "native_response_sha256": "6ffdeee58f8c0783b467d7258ce6de1f11231a014827a1af3b7a77c9af7b2017"
+    },
+    {
+      "query_id": "vision_patches",
+      "query": "all:attention AND all:\"image patches\" AND (all:transfer OR all:adaptation)",
+      "url": "https://export.arxiv.org/api/query?search_query=all%3Aattention+AND+all%3A%22image+patches%22+AND+%28all%3Atransfer+OR+all%3Aadaptation%29&start=0&max_results=10",
+      "observed_at_utc": "2026-11-13T19:29:30.327660+00:00",
+      "status": "native_metadata_retrieved",
+      "native_total": 78,
+      "retrieved_records": 10,
+      "native_response_sha256": "0b754e91c28548942ca8dce97a424a4dd43ce1dcec0773f3b872950d8b9b9ce5"
+    },
+    {
+      "query_id": "industrial_recurrent",
+      "query": "all:\"LSTM autoencoder\" AND all:industrial AND (all:transfer OR all:adaptation)",
+      "url": "https://export.arxiv.org/api/query?search_query=all%3A%22LSTM+autoencoder%22+AND+all%3Aindustrial+AND+%28all%3Atransfer+OR+all%3Aadaptation%29&start=0&max_results=10",
+      "observed_at_utc": "2026-11-13T19:29:33.855979+00:00",
+      "status": "native_metadata_retrieved",
+      "native_total": 3,
+      "retrieved_records": 3,
+      "native_response_sha256": "471ece920b46c883e54f62c346089152f8b359d07da43f7eac4cfca8abc065c5"
+    }
+  ],
+  "scope": "Native identification counts and first ten metadata records; no full eligibility or global PRISMA closure",
+  "unique_study_count": null
+}

@@ -85,7 +85,7 @@ La [sensibilidad a cuatro ponderaciones](../_static/e2_literature_closure_202611
 
 La [tabla de originales excluidos](../_static/e2_literature_closure_20261113/excluded_originals_context.csv) conserva Informer, Autoformer, Crossformer y S-Mamba. Crossformer tiene 1.675 citas verificadas en ese corte y S-Mamba 313; las cantidades ausentes para Informer y Autoformer quedan desconocidas. Su exclusión responde al alcance actual y a la cobertura funcional de familias, no a inferioridad demostrada. La justificación mundial de los más citados excluidos permanece abierta porque la cobertura de candidatos y citas es incompleta.
 
-## 52.4 Mecanismos transferibles y búsquedas efectivamente intentadas
+## 52.4 Mecanismos transferibles y búsquedas nativas ejecutadas
 
 La [matriz de mecanismos](../_static/e2_literature_closure_20261113/transverse_mechanisms.csv) conecta fuentes de origen con una propiedad compartida y una limitación concreta. Los textos de origen se identificaron por las referencias de los originales y sus fuentes primarias enlazadas; no se atribuye hoy una nueva lectura completa a todos ellos.
 
@@ -104,7 +104,19 @@ all:attention AND all:"image patches" AND (all:transfer OR all:adaptation)
 all:"LSTM autoencoder" AND all:industrial AND (all:transfer OR all:adaptation)
 ```
 
-Las tres fallaron por `Tunnel connection failed: 403 Forbidden`; el conector web tampoco recuperó sus URLs API. El [registro de intentos](../_static/e2_literature_closure_20261113/native_query_attempts.json) conserva fecha, URL, cadena y error; **totales y registros recibidos son `null`**. Las búsquedas web auxiliares no acreditan el requisito de búsqueda transversal nativa ni proporcionan denominadores sustituibles. Esta obligación de §3.1 continúa abierta.
+Los intentos de las **18:52:37 UTC** fallaron por `Tunnel connection failed: 403 Forbidden`; el conector web tampoco recuperó sus URLs API. Su [registro histórico](../_static/e2_literature_closure_20261113/native_query_attempts.json) conserva los conteos `null` de aquella ejecución fallida.
+
+**Recuperación nativa posterior desde Colab, 19:29:26–19:29:33 UTC.** Las mismas cadenas se ejecutaron realmente contra la API arXiv, sin filtro de fechas, con `start=0,max_results=10`. El [resumen verificado del recibo](../_static/e2_native_transverse_20261113/source_summary.json), la [tabla de consultas](../_static/e2_native_transverse_20261113/query_counts.csv) y el [manifiesto del suplemento](../_static/e2_native_transverse_20261113/manifest.json) documentan esta ronda separada.
+
+| Consulta | Hora UTC del 13/11 | Total nativo | Metadatos recuperados |
+|---|---|---:|---:|
+| Residuales, visión y transferencia/adaptación | 19:29:26 | 106 | 10 |
+| Atención, parches de imagen y transferencia/adaptación | 19:29:30 | 78 | 10 |
+| LSTM-autoencoder, industria y transferencia/adaptación | 19:29:33 | 3 | 3 |
+
+El recibo está fijado en el commit [`04d0947b1b043b7d389a742d7c3e06a97338d5b4`](https://github.com/jassan-bit/DeepLearning_202630/blob/04d0947b1b043b7d389a742d7c3e06a97338d5b4/runs/posthoc-native-search-v1/artifacts/native_transverse_receipt.json), con SHA-256 `1593584d6fd37d999f300f2879b7fb8213565062162d7fa287a5da9e904a8329`. Los 17 derivados anteriores permanecen como corte previo; sus valores desconocidos no se reescriben.
+
+Esta ronda acredita **identificación nativa y recuperación parcial de metadatos**. La suma de totales, 187, no es una unión deduplicada ni un número de estudios incluidos; las 23 ocurrencias recuperadas tampoco son 23 estudios elegibles. El número de estudios únicos permanece desconocido. Siguen pendientes la recuperación de las páginas restantes, la deduplicación entre consultas y rondas, el cribado y la adjudicación por texto completo. Las búsquedas web auxiliares conservan su alcance complementario; la revisión global y el flujo PRISMA siguen parciales.
 
 ## 52.5 Brecha contrastable derivada de la extracción
 
@@ -114,4 +126,4 @@ La evidencia financiera complementaria de §3 reduce aún más el alcance de la 
 
 La brecha se conecta con [RQ1–RQ3 de §1](01_punto_partida.md): ganancia RMSE superior al δ heredado frente a GRU32/Persistence, erosión por régimen y mejora conjunta de error/coste. Las pruebas y multiplicidad siguen [§45](45_enmienda_protocolo.md); los resultados futuros mantienen el alcance exploratorio del test conocido. Esta síntesis no cambia δ, no añade una hipótesis confirmatoria retroactiva y no selecciona todavía una arquitectura original de E3.
 
-Para reproducir los derivados: `python scripts/e2_literature_closure.py --check`. Quedan sin resolver la elegibilidad global con motivos por etapa, la conciliación de rondas/versiones, las búsquedas transversales nativas, la verificación de calidad editorial por año y la selección comparativa frente al universo de candidatos. Los intervalos y campos desconocidos hacen visibles esas limitaciones.
+Para reproducir los derivados del primer corte: `python scripts/e2_literature_closure.py --check`. El suplemento de identificación nativa posterior conserva su propio manifiesto y procedencia inmutable. Quedan sin resolver la elegibilidad global con motivos por etapa, la conciliación de rondas/versiones, la recuperación y evaluación transversal completas, la verificación de calidad editorial por año y la selección comparativa frente al universo de candidatos. Los intervalos y campos desconocidos hacen visibles esas limitaciones.

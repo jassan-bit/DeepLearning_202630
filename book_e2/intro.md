@@ -8,7 +8,7 @@
 
 **Diagnósticos F2a añadidos el 13/11/2026:** [§49](sections/49_diagnosticos_f2a.md) documenta ajuste, brechas observadas, residuos, calibración y estabilidad temporal sobre los pronósticos guardados. La familia exploratoria tiene **826 contrastes y 707 rechazos tras Holm**. Se detecta dependencia residual en las 81 trayectorias; los 31 rechazos de cobertura son por sobrecobertura. No se acredita ausencia de sobreajuste ni estabilidad por falta de rechazo. Los resultados primarios se conservan.
 
-**Suplementos de cierre:** [Comparaciones DM/MCS y rangos (§50)](sections/50_comparaciones_f2a.md) · [Costes medidos y Pareto (§51)](sections/51_eficiencia_costes.md) · [Síntesis bibliográfica delimitada (§52)](sections/52_sintesis_literatura.md) · [Ejecuciones complementarias y límites (§53)](sections/53_cierre_requisitos.md). Las tres primeras aportan resultados; la reproducción, robustez, explicaciones y ablaciones conservan estado preparado hasta recibir evidencia de su ejecución.
+**Suplementos de cierre:** [Comparaciones DM/MCS y rangos (§50)](sections/50_comparaciones_f2a.md) · [Costes medidos y Pareto (§51)](sections/51_eficiencia_costes.md) · [Síntesis bibliográfica delimitada (§52)](sections/52_sintesis_literatura.md) · [Ejecuciones complementarias y límites (§53)](sections/53_cierre_requisitos.md). Las tres primeras aportan resultados. La robustez está en ejecución con recibos individuales de GitHub; su agregado, la reproducción y las ablaciones todavía no se declaran completados.
 
 ## Resumen
 
