@@ -1,0 +1,106 @@
+{
+  "Google_Drive_used": false,
+  "artifacts": {
+    "manifest": "manifest.json",
+    "neural_progress": "neural_progress.csv",
+    "source_evidence": "source_evidence.json"
+  },
+  "budget": {
+    "authorized_total_hours": 80,
+    "budget_reset": false,
+    "completed_charges": 191,
+    "consumed_hours": 71.48109553922188,
+    "funding_continuation_commit": "41da88cf600aadc0319214465c94a85335e2b1b7",
+    "historical_charged_seconds": 222927.98951942776,
+    "last_event_america_bogota": "2026-11-13T05:12:01.276300-05:00",
+    "last_event_sha256": "b98438d891a3ce0c07bbceba4365fd4f8ed262a09b423ee3ee93d335fc343fb8",
+    "last_event_utc": "2026-11-13T10:12:01.276300+00:00",
+    "ledger_records_checked": 791,
+    "original_approval_timestamp_utc": "2026-11-13T09:54:17.605263+00:00",
+    "reduced_ledger_charged_and_overhead_seconds": 34403.954421771,
+    "remaining_hours_at_last_remote_closure": 8.518904460778122,
+    "remaining_is_not_runtime_estimate": true,
+    "remaining_seconds_at_last_remote_closure": 30668.056058801238,
+    "reservations": 191,
+    "sha256_chain_verified": true,
+    "unresolved_reservations": {}
+  },
+  "classical_comparators": {
+    "final_fits_completed": 0,
+    "final_fits_planned": 3,
+    "selection_fits_completed": 0,
+    "selection_fits_planned": 63,
+    "systems": [
+      "Persistence",
+      "SeasonalNaive",
+      "ARIMA"
+    ]
+  },
+  "control_reason": "shared_budget_closed",
+  "control_state_id": "51d9079b6993826a27f278ca28bf29b43e5c332c22546b4f24f8ba59e0e8ae25",
+  "final_refits": {
+    "completed": 18,
+    "completed_models": [
+      "FCN-1D",
+      "ResNet-1D",
+      "Inception-1D"
+    ],
+    "next_seed": 271801,
+    "next_unadmitted_model": "LSTM-autoencoder con predictor",
+    "pending": 60,
+    "planned": 78,
+    "reference_completed": 0,
+    "reference_pending": 18,
+    "reference_planned": 18,
+    "top10_completed": 18,
+    "top10_pending": 42,
+    "top10_planned": 60
+  },
+  "final_scoring": {
+    "completed": false,
+    "final_A2_metrics_available": false,
+    "systems_required": 16
+  },
+  "hpo": {
+    "closed": 234,
+    "known_failed": 2,
+    "pending": 0,
+    "planned": 234,
+    "reference_planned": 54,
+    "reference_successful": 54,
+    "successful": 231,
+    "top10_planned": 180,
+    "top10_successful": 177,
+    "unknown_outcome": 1
+  },
+  "local_Colab_status_last_reported_by_user": "restoring_verified_artifacts_from_GitHub",
+  "local_status_is_not_a_remote_training_confirmation": true,
+  "observed_at_america_bogota": "2026-11-13T07:24:48-05:00",
+  "observed_at_utc": "2026-11-13T12:24:48Z",
+  "persistent_destination": "github",
+  "pilots": {
+    "completed": 0,
+    "models": [
+      "iTransformer",
+      "GRU32"
+    ],
+    "pending": 10,
+    "planned": 10,
+    "seeds_per_model": 5
+  },
+  "predictor_freeze": {
+    "completed": false,
+    "required_predictors": 81
+  },
+  "remote_training_admission_confirmed": false,
+  "results_commit": "a74909df91cf99561da2313525a26f2ccde76ca1",
+  "scope_notes": [
+    "HPO successes are training/validation results, not final testing metrics.",
+    "TimesNet keeps two known failures; TSMixer keeps one closed opportunity with unknown outcome.",
+    "The 18 completed final refits do not constitute a finished benchmark or full assignment compliance.",
+    "Historical final E1 dates were already known; this update does not assert a blind test.",
+    "The Colab restoration report is attributed to the user; the frozen remote state has no new lease or resume admission."
+  ],
+  "selection_status": "completed_all_13_neural_models",
+  "version": "e2-final-progress-snapshot-v1"
+}
