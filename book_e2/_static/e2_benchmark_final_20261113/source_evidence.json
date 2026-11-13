@@ -1,0 +1,188 @@
+{
+  "budget": {
+    "current_ledger_charged_and_overhead_seconds": 46902.919508477,
+    "effective_total_hours": 80,
+    "historical_charged_seconds": 222927.98951942776,
+    "ledger_hash_chain_verified": true,
+    "ledger_source_bytes": 1335175,
+    "ledger_source_path": "shared_budget/pilot_budget.jsonl",
+    "ledger_source_sha256": "27aa2336518432d1d873098a3b2e0e5dc039dc501e15caa17599fce7d1cc6c30",
+    "records": 1368,
+    "remaining_hours": 5.046969714470906,
+    "remaining_seconds": 18169.090972095262,
+    "terminal_America_Bogota": "2026-11-13T11:56:30.735717-05:00",
+    "terminal_event_file": "terminal_budget_event.json",
+    "terminal_event_sha256": "9cef7a0b5a295c55051fd3279cfd7493efe3cedde53545dee8fb3398971db9ba",
+    "terminal_sequence": 1367,
+    "terminal_utc": "2026-11-13T16:56:30.735717+00:00",
+    "total_charged_hours": 74.9530302855291,
+    "total_charged_seconds": 269830.90902790474,
+    "unclosed_reservations": 0
+  },
+  "completion": {
+    "classical_final_predictors": 3,
+    "common_dates": 608,
+    "data_admission_completed_at_utc": "2026-11-13T16:50:56.751273+00:00",
+    "development_pilot_fits": 10,
+    "frozen_predictors": 81,
+    "independent_prospective_confirmation": false,
+    "known_historical_E1_calendar": true,
+    "neural_final_fits": 78,
+    "retuning_after_final_access": false,
+    "score_status": "completed",
+    "systems": 16
+  },
+  "control_metadata_deltas": 762,
+  "control_reason": "shared_budget_closed",
+  "control_state_id": "b0e27cf2f64bbd65c7ff9db09a25fe41a35f57c8515acf2058df258a3f0d791a",
+  "derivations": {
+    "classical_selection_summary.csv": "Counts of the exact selection ledgers, grouped by candidate parameters. A candidate is eligible only with completed results on all three registered CV folds. Persistence is fixed lag1.",
+    "primary_contrasts.csv": "Exact 20 primary_contrasts rows from benchmark_analysis.json; CI95 flattened into lower/upper columns. No statistical recomputation.",
+    "rmse_comparison.png": "Raster export of the same scientific chart.",
+    "rmse_comparison.svg": "Sorted display of reported A2 RMSE means and seed SD. SD is not a confidence interval; deterministic R1 systems use squares without invented SD."
+  },
+  "exact_source_artifacts": {
+    "arima_implementation_failure.json": {
+      "bytes": 156,
+      "scientific_output_path": "final/classical-cv/6c395251bcaf9062/1f8780bc6fc9c663/2024-01-01/worker_failure.json",
+      "sha256": "3d2a02d4194d3a1d36931c04bd78c04a2c9fc3e70bca8f38da702be624180718"
+    },
+    "benchmark_A2.csv": {
+      "bytes": 2596,
+      "scientific_output_path": "final/score-worker-source-recovery-v1/scientific_outputs/benchmark_A2.csv",
+      "sha256": "879e2ce52709657a06bc6c009f0cd553423f2eaa0bbdf16dc7f5844dfec9fcc1"
+    },
+    "benchmark_analysis.json": {
+      "bytes": 54683,
+      "scientific_output_path": "final/score-worker-source-recovery-v1/scientific_outputs/benchmark_analysis.json",
+      "sha256": "73206e1aa5bf004b7e0f884ba3685c0bdfbed209425c6397a68fa280c04ff637"
+    },
+    "data_admission.json": {
+      "bytes": 15173,
+      "scientific_output_path": "final/score-worker-source-recovery-v1/scientific_outputs/data_admission.json",
+      "sha256": "1d430f16a4d363055800fb4ec62cc4a7bc9062a131e3a792324b8440e5cebd9c"
+    },
+    "final_freeze.json": {
+      "bytes": 69457,
+      "scientific_output_path": "final/final_freeze.json",
+      "sha256": "c0e9e2589dca9fa03b341bb72f87d8b541d33b4721715622daeae4438dbd60b4"
+    },
+    "original_score_source_failure.json": {
+      "bytes": 128,
+      "scientific_output_path": "final/score-worker/worker_failure.json",
+      "sha256": "3f11f5ac3c0dbd2c002ce59c3ddd2222951d3cdcf44f32949a5dad9036e16e5c"
+    },
+    "pilot_power_MDE.json": {
+      "bytes": 1997,
+      "scientific_output_path": "final/pilot_power_MDE.json",
+      "sha256": "63f0f960f27f669380f9e336064f0274b026ed7a31d595a6c8df465c4781fcd4"
+    },
+    "pre_payload_failure_disposition.json": {
+      "bytes": 1784,
+      "scientific_output_path": "final/scoring_source_recovery/pre_payload_failure_disposition.json",
+      "sha256": "2fd9f653963277dd0b6e5c0fc98a305da0f5d56cb59ff0e3726612eed8c1dc55"
+    },
+    "score_result.json": {
+      "bytes": 90297,
+      "scientific_output_path": "final/score-worker-source-recovery-v1/result.json",
+      "sha256": "625f72776d69cc7a11766c48d30a43e761e79023864f8e46d1ee62062e2f8461"
+    },
+    "selection_ARIMA.json": {
+      "bytes": 11736,
+      "scientific_output_path": "final/classical-selections/6c395251bcaf9062.json",
+      "sha256": "70478650b91ed96931b50f2d5fbefc79f0598e4f9541b0f7cbf3c41b780d8ca5"
+    },
+    "selection_Persistence.json": {
+      "bytes": 148,
+      "scientific_output_path": "final/classical-selections/d8e68f610a342f25.json",
+      "sha256": "d50ca5963a0fa6f89723046a6db313e4d37aee81896152f2479c79911d34448c"
+    },
+    "selection_SeasonalNaive.json": {
+      "bytes": 1992,
+      "scientific_output_path": "final/classical-selections/94232f9b673bddd8.json",
+      "sha256": "c00bb4230cec1336477502bfa78c1e4a7df09a5607fc6374a59500cb2ecfd445"
+    }
+  },
+  "failure_disclosures": [
+    {
+      "configuration": {
+        "order": [
+          0,
+          0,
+          0
+        ]
+      },
+      "evidence": "arima_implementation_failure.json",
+      "fold": "2024-01-01",
+      "model": "ARIMA",
+      "original_failed_attempt_preserved": true,
+      "reason": "'Prediction' object has no attribute 'raw_value'",
+      "scientific_fit_repeated": false,
+      "selection_consequence": "This candidate is ineligible because only two of its three CV folds completed; it is not classified as numerical nonconvergence.",
+      "status": "implementation_failed"
+    },
+    {
+      "evidence": "pre_payload_failure_disposition.json",
+      "neural_refits_requested": false,
+      "original_charged_seconds": 18.68105469799957,
+      "original_failed_attempt_preserved": true,
+      "phase": "original final scoring source acquisition",
+      "reason": "HTTP Error 404: Not Found",
+      "scientific_score_repeated": false,
+      "status": "failed_before_raw_payload"
+    }
+  ],
+  "public_package_scope": "Verified aggregate metrics, statistical reports, protocol freeze and metadata receipts only. No raw OHLCV, per-date market labels, model weights or retraining.",
+  "scientific_engine_commit": "1e8745497b484518f766b6da5c19be8362d9add7",
+  "snapshot_cutoff_America_Bogota": "2026-11-13T11:58:36-05:00",
+  "snapshot_cutoff_utc": "2026-11-13T16:58:36+00:00",
+  "source_backups": {
+    "final": {
+      "artifact_count": 246,
+      "attempt_id": "final-freeze-c0e9e2589dca9fa03b34",
+      "branch": "results/e2-reduced-delivery-v1",
+      "existing_identical_result": false,
+      "manifest_path": "runs/final-freeze-c0e9e2589dca9fa03b34/manifest.json",
+      "manifest_sha256": "c9291f27ad2bb61a0fe756edfb27e27c3cd19e9f27a16d15995992e6990d8fc0",
+      "release_tag": "e2-reduced-results-20261112-v1",
+      "remote_commit": "aef7ff7f3557c50e1760117e9c3803a3847a2919",
+      "repository": "jassan-bit/DeepLearning_202630",
+      "retry_scientific_fit": false,
+      "status": "backed_up",
+      "version": "e2-reduced-github-backup-v1"
+    },
+    "final/score-worker-source-recovery-v1": {
+      "artifact_count": 697,
+      "attempt_id": "32baef93d28ced17503b787b8fe5ea0e765391a50962242e8ac0900670ee8dec",
+      "branch": "results/e2-reduced-delivery-v1",
+      "existing_identical_result": false,
+      "manifest_path": "runs/32baef93d28ced17503b787b8fe5ea0e765391a50962242e8ac0900670ee8dec/manifest.json",
+      "manifest_sha256": "d72d82cc098a24eb35db3610777f8dce84c56a3e1e000fe20cab9d81c1b57ae3",
+      "release_tag": "e2-reduced-results-20261112-v1",
+      "remote_commit": "8d12ca00af6fdcf56ee0537e46f15c986eb672bc",
+      "repository": "jassan-bit/DeepLearning_202630",
+      "retry_scientific_fit": false,
+      "status": "backed_up",
+      "version": "e2-reduced-github-backup-v1"
+    },
+    "final/scoring_source_recovery": {
+      "artifact_count": 1,
+      "attempt_id": "score-source-recovery-admission-ff53264094dc1e03fe8586b6aaabeb7b",
+      "branch": "results/e2-reduced-delivery-v1",
+      "existing_identical_result": false,
+      "manifest_path": "runs/score-source-recovery-admission-ff53264094dc1e03fe8586b6aaabeb7b/manifest.json",
+      "manifest_sha256": "c76a2e953a255047a8e1694c6ba5cd6232b247512555db6f155a1eb2aeb5c9e8",
+      "release_tag": "e2-reduced-results-20261112-v1",
+      "remote_commit": "8adfa1314f59e92b459e68784532d9dfa1f46c82",
+      "repository": "jassan-bit/DeepLearning_202630",
+      "retry_scientific_fit": false,
+      "status": "backed_up",
+      "version": "e2-reduced-github-backup-v1"
+    }
+  },
+  "source_branch": "results/e2-reduced-delivery-v1",
+  "source_commit": "50cb634e9eb163b09f9607982842144ba9f74c87",
+  "source_control_head_artifact_sha256": "e80782430e2d9a9bc1e3077491e691cb555109f49d0d6a816be209e62d1c2b4f",
+  "source_repository": "jassan-bit/DeepLearning_202630",
+  "version": "e2-benchmark-final-public-evidence-v1"
+}
