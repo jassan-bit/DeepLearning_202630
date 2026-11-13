@@ -1,8 +1,8 @@
 # 6. Benchmark obligatorio: dieciséis sistemas
 
-**Actualización verificada al 13/11/2026, 07:24:48 de Bogotá:** están cerradas las selecciones de las trece redes, con **231 oportunidades HPO exitosas de 234**, dos fallos conocidos de TimesNet y un desenlace desconocido de TSMixer. Se guardaron **18 ajustes finales A100**: seis semillas de FCN-1D, seis de ResNet-1D y seis de Inception-1D. La [tabla por modelo](../intro.md) y el [CSV del corte](../_static/e2_progress_final_20261113/neural_progress.csv) distinguen selección y ajuste final. El presupuesto aplicado es de **80 horas acumuladas**; [§48](48_protocolo_reducido.md) conserva sus pruebas y las reglas de continuación.
+**Actualización verificada al 13/11/2026, 09:40:00 de Bogotá:** están cerradas las selecciones de las trece redes, con **231 oportunidades HPO exitosas de 234**, dos fallos conocidos de TimesNet y un desenlace desconocido de TSMixer. Se guardaron **75 ajustes finales A100**: seis semillas de cada uno de los diez candidatos, seis de MLP16, seis de LSTM32 y tres de GRU32. La [tabla por modelo](../intro.md) y el [CSV del corte](../_static/e2_progress_final_20261113_v2/neural_progress.csv) distinguen selección y ajuste final. El presupuesto aplicado es de **80 horas acumuladas**; [§48](48_protocolo_reducido.md) conserva sus pruebas y las reglas de continuación.
 
-**La tabla final A2 y el testing común siguen pendientes.** Los 18 ajustes guardados no son 18 sistemas evaluados: son tres redes con seis semillas cada una, aún sin puntuar en la evaluación común. No hay un ranking final ni un ganador demostrado del catálogo.
+**La tabla final A2 y el testing común siguen pendientes.** Los 75 ajustes guardados son repeticiones de las trece redes, aún sin puntuar en la evaluación común. Los diez candidatos y dos referencias completaron seis semillas; GRU32 conserva tres de seis. No hay un ranking final ni un ganador demostrado del catálogo.
 
 **Alcance vigente:** diez modelos del Top 10, tres referencias E1 y tres comparadores: **16 sistemas**. El híbrido adicional y Ridge quedan como opcionales/históricos. La enmienda de [§43](43_catalogo_obligatorio.md) registra el catálogo requerido; el ejecutor reducido de [§48](48_protocolo_reducido.md) ya cerró sus trece recetas neuronales sin renombrar las selecciones del catálogo anterior. El benchmark final continúa pendiente.
 
@@ -24,14 +24,14 @@ La [plantilla A.2 vigente de 16 sistemas](../_static/required_catalogue_20261112
 | Etapa del protocolo reducido | Evidencia al corte | Pendiente |
 |---|---|---|
 | Selección por validación interna | Trece recetas ganadoras, con 249 predicciones de validación por receta | Conservar las incidencias y el dominio reducido al interpretar los resultados |
-| Reajustes de las trece redes | **18/78** guardados en A100 | **60** ajustes; LSTM-autoencoder es el siguiente modelo pendiente |
+| Reajustes de las trece redes | **75/78** guardados en A100; Top 10 **60/60** | **3** ajustes de GRU32; la cuarta corrida está admitida al corte |
 | Piloto de variabilidad y potencia | Sin resultados del piloto actual | **10 ajustes:** cinco semillas de iTransformer y cinco de GRU32; informar potencia y MDE con R=6 |
 | Comparadores y congelación | Sin cierre de los tres comparadores ni de los 81 predictores | Ejecutar selección y ajuste de comparadores; congelar pesos, escaladores y calibradores |
 | Evaluación e inferencia | Sin scoring común ni tabla A2 medida | Puntuar los 16 sistemas en el mismo soporte y producir métricas, incertidumbre, contrastes y costes |
 
 Las calibraciones y los pilotos usan desarrollo anterior a la evaluación; no reemplazan las métricas de testing. La política actual conserva **R=6 por recursos**, y el piloto debe informar su potencia o limitación, sin atribuirle un resultado aún no medido. Las 608 fechas heredadas ya fueron conocidas en E1, de modo que el análisis final conserva interpretación retrospectiva.
 
-El [estado y sus fuentes congeladas](../_static/e2_progress_final_20261113/source_evidence.json) permiten comprobar este avance. El control remoto seguía cerrado sin reservas abiertas al corte; el último mensaje privado de Colab reportaba restauración. La publicación del libro no inicia entrenamientos ni convierte esa restauración en una corrida confirmada.
+El [estado y sus fuentes congeladas](../_static/e2_progress_final_20261113_v2/source_evidence.json) permiten comprobar este avance. El control remoto registra una reserva activa para GRU32, semilla 271804, posterior a los 75 ajustes guardados. La admisión de esa corrida no se cuenta como un resultado completo ni confirma su avance paso a paso en el kernel privado. La publicación del libro no inicia entrenamientos.
 
 ## Antecedentes documentales del diseño de dieciocho sistemas
 

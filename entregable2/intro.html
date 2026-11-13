@@ -418,9 +418,9 @@
   <section class="tex2jax_ignore mathjax_ignore" id="proyecto-final-de-deep-learning-entregable-2">
 <h1>Proyecto Final de Deep Learning: Entregable 2<a class="headerlink" href="#proyecto-final-de-deep-learning-entregable-2" title="Link to this heading">#</a></h1>
 <p><strong>Deep Learning · 2026-30 · Jassan Arteta</strong></p>
-<p><strong>Avance verificado al 13/11/2026, 07:24:48 de Bogotá.</strong> La selección de configuraciones está cerrada para las <strong>trece redes</strong> del catálogo. Se conservan <strong>231 corridas HPO exitosas de 234 oportunidades</strong>, dos fallos conocidos y un intento con desenlace desconocido, sin repetirlos. Ya están guardados <strong>18 de los 78 ajustes finales previstos</strong>: seis semillas de FCN-1D, seis de ResNet-1D y seis de Inception-1D. <a class="reference download internal" download="" href="_downloads/6834ef402375bb26a1fed0a912c9caba/progress_snapshot.json"><span class="xref download myst">Instantánea y procedencia</span></a> · <a class="reference download internal" download="" href="_downloads/6b591460334600e6cfd90d4009d2a7c3/neural_progress.csv"><span class="xref download myst">Avance de las trece redes, CSV</span></a>.</p>
+<p><strong>Avance verificado al 13/11/2026, 09:40:00 de Bogotá.</strong> La selección de configuraciones está cerrada para las <strong>trece redes</strong> del catálogo. Se conservan <strong>231 corridas HPO exitosas de 234 oportunidades</strong>, dos fallos conocidos y un intento con desenlace desconocido, sin repetirlos. Ya están guardados <strong>75 de los 78 ajustes finales previstos</strong>: los diez candidatos completaron seis semillas cada uno, al igual que MLP16 y LSTM32; GRU32 conserva tres de sus seis ajustes. <a class="reference download internal" download="" href="_downloads/0ae100cd2a0619f54f0c8946be08669a/progress_snapshot.json"><span class="xref download myst">Instantánea y procedencia</span></a> · <a class="reference download internal" download="" href="_downloads/433b5f0ed32850e57f4599ab43226966/neural_progress.csv"><span class="xref download myst">Avance de las trece redes, CSV</span></a>.</p>
 <p><strong>Protocolo vigente:</strong> diez candidatos, tres referencias E1 y tres comparadores, <strong>16 sistemas</strong>. Se mantienen seis configuraciones HPO por red, una semilla y tres orígenes internos; el presupuesto autorizado y aplicado es de <strong>80 horas acumuladas</strong>, con un máximo prospectivo de <strong>30 minutos por fase</strong>. Las transiciones y reanudaciones conservan los resultados históricos y sus cargos; GitHub es el destino persistente. <a class="reference internal" href="sections/48_protocolo_reducido.html"><span class="std std-doc">Reglas, fuentes y actualizaciones (§48)</span></a>.</p>
-<p><strong>El testing final sigue pendiente.</strong> Los recibos actuales acreditan selección mediante validación interna y los primeros ajustes finales; todavía no aportan la tabla A2 ni un ganador del catálogo. Completar las seis semillas de una red no cierra su evaluación. Los cortes consolidados anteriores conservan su fecha y alcance.</p>
+<p><strong>El testing final sigue pendiente.</strong> Los recibos actuales acreditan selección mediante validación interna y los ajustes finales guardados; todavía no aportan la tabla A2 ni un ganador del catálogo. Completar las seis semillas de una red no cierra su evaluación. Los cortes consolidados anteriores conservan su fecha y alcance.</p>
 <p><strong>Versión de entrega consolidada con la evidencia disponible al 12/11/2026.</strong> Se reúnen problema, EDA, literatura, implementaciones, experimentos ejecutados y conclusiones. Este cierre utiliza resultados guardados y no inicia nuevas corridas.</p>
 <p><strong><a class="reference internal" href="sections/47_entrega_consolidada.html"><span class="std std-doc">Leer el informe consolidado, resultados y conclusiones (§47)</span></a></strong> · <strong><a class="reference download internal" download="" href="_downloads/80525faefdf76d3e2b06ee4792209944/Entregable2_evidencia_disponible.zip"><span class="xref download myst">Descargar el paquete de entrega</span></a></strong></p>
 <section id="resumen-del-trabajo">
@@ -469,7 +469,7 @@
 </section>
 <section id="avance-de-seleccion-y-ajustes-finales">
 <h2>Avance de selección y ajustes finales<a class="headerlink" href="#avance-de-seleccion-y-ajustes-finales" title="Link to this heading">#</a></h2>
-<p><strong>Corte de consulta: 13/11/2026, 07:24:48 de Bogotá.</strong> Cada red tiene 18 oportunidades HPO: <strong>C01–C06 × enero, julio y octubre de 2024</strong>. Una corrida exitosa incluye entrenamiento y evaluación en las 83 fechas comunes de validación de su origen. Las seis repeticiones finales pertenecen a una etapa distinta, con la receta ganadora ya fijada. Las cifras siguientes son conteos, no RMSE de training o testing.</p>
+<p><strong>Corte de consulta: 13/11/2026, 09:40:00 de Bogotá.</strong> Cada red tiene 18 oportunidades HPO: <strong>C01–C06 × enero, julio y octubre de 2024</strong>. Una corrida exitosa incluye entrenamiento y evaluación en las 83 fechas comunes de validación de su origen. Las seis repeticiones finales pertenecen a una etapa distinta, con la receta ganadora ya fijada. Las cifras siguientes son conteos, no RMSE de training o testing.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Modelo</p></th>
@@ -501,88 +501,89 @@
 <tr class="row-odd"><td><p>LSTM-autoencoder con predictor</p></td>
 <td class="text-right"><p>18/18</p></td>
 <td class="text-center"><p>C06</p></td>
-<td class="text-right"><p>0/6</p></td>
-<td class="text-right"><p>6</p></td>
+<td class="text-right"><p><strong>6/6</strong></p></td>
+<td class="text-right"><p>0</p></td>
 </tr>
 <tr class="row-even"><td><p>TimesNet</p></td>
 <td class="text-right"><p>16/18</p></td>
 <td class="text-center"><p>C05</p></td>
-<td class="text-right"><p>0/6</p></td>
-<td class="text-right"><p>6</p></td>
+<td class="text-right"><p><strong>6/6</strong></p></td>
+<td class="text-right"><p>0</p></td>
 </tr>
 <tr class="row-odd"><td><p>TSMixer</p></td>
 <td class="text-right"><p>17/18</p></td>
 <td class="text-center"><p>C03</p></td>
-<td class="text-right"><p>0/6</p></td>
-<td class="text-right"><p>6</p></td>
+<td class="text-right"><p><strong>6/6</strong></p></td>
+<td class="text-right"><p>0</p></td>
 </tr>
 <tr class="row-even"><td><p>TiDE</p></td>
 <td class="text-right"><p>18/18</p></td>
 <td class="text-center"><p>C01</p></td>
-<td class="text-right"><p>0/6</p></td>
-<td class="text-right"><p>6</p></td>
+<td class="text-right"><p><strong>6/6</strong></p></td>
+<td class="text-right"><p>0</p></td>
 </tr>
 <tr class="row-odd"><td><p>TimeMixer</p></td>
 <td class="text-right"><p>18/18</p></td>
 <td class="text-center"><p>C01</p></td>
-<td class="text-right"><p>0/6</p></td>
-<td class="text-right"><p>6</p></td>
+<td class="text-right"><p><strong>6/6</strong></p></td>
+<td class="text-right"><p>0</p></td>
 </tr>
 <tr class="row-even"><td><p>PatchTST</p></td>
 <td class="text-right"><p>18/18</p></td>
 <td class="text-center"><p>C02</p></td>
-<td class="text-right"><p>0/6</p></td>
-<td class="text-right"><p>6</p></td>
+<td class="text-right"><p><strong>6/6</strong></p></td>
+<td class="text-right"><p>0</p></td>
 </tr>
 <tr class="row-odd"><td><p>iTransformer</p></td>
 <td class="text-right"><p>18/18</p></td>
 <td class="text-center"><p>C02</p></td>
-<td class="text-right"><p>0/6</p></td>
-<td class="text-right"><p>6</p></td>
+<td class="text-right"><p><strong>6/6</strong></p></td>
+<td class="text-right"><p>0</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>Total Top 10</strong></p></td>
 <td class="text-right"><p><strong>177/180</strong></p></td>
 <td class="text-center"><p><strong>10 recetas</strong></p></td>
-<td class="text-right"><p><strong>18/60</strong></p></td>
-<td class="text-right"><p><strong>42</strong></p></td>
+<td class="text-right"><p><strong>60/60</strong></p></td>
+<td class="text-right"><p><strong>0</strong></p></td>
 </tr>
 <tr class="row-odd"><td><p>MLP16, referencia E1</p></td>
 <td class="text-right"><p>18/18</p></td>
 <td class="text-center"><p>C05</p></td>
-<td class="text-right"><p>0/6</p></td>
-<td class="text-right"><p>6</p></td>
+<td class="text-right"><p><strong>6/6</strong></p></td>
+<td class="text-right"><p>0</p></td>
 </tr>
 <tr class="row-even"><td><p>LSTM32, referencia E1</p></td>
 <td class="text-right"><p>18/18</p></td>
 <td class="text-center"><p>C01</p></td>
-<td class="text-right"><p>0/6</p></td>
-<td class="text-right"><p>6</p></td>
+<td class="text-right"><p><strong>6/6</strong></p></td>
+<td class="text-right"><p>0</p></td>
 </tr>
 <tr class="row-odd"><td><p>GRU32, referencia E1</p></td>
 <td class="text-right"><p>18/18</p></td>
 <td class="text-center"><p>C03</p></td>
-<td class="text-right"><p>0/6</p></td>
-<td class="text-right"><p>6</p></td>
+<td class="text-right"><p>3/6</p></td>
+<td class="text-right"><p>3</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>Total de trece redes</strong></p></td>
 <td class="text-right"><p><strong>231/234</strong></p></td>
 <td class="text-center"><p><strong>13 recetas</strong></p></td>
-<td class="text-right"><p><strong>18/78</strong></p></td>
-<td class="text-right"><p><strong>60</strong></p></td>
+<td class="text-right"><p><strong>75/78</strong></p></td>
+<td class="text-right"><p><strong>3</strong></p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <p>Las <strong>234 oportunidades HPO están contabilizadas</strong>. TimesNet conserva dos fallos y TSMixer un intento con desenlace desconocido; las configuraciones afectadas no aportan una puntuación completa ni se sustituyen por nuevas oportunidades. Las trece recetas ganadoras tienen sus tres folds de validación completos. La selección cerrada no convierte las incidencias en éxitos.</p>
-<p>El siguiente ajuste final pendiente corresponde al <strong>LSTM-autoencoder</strong>. Al corte, el control remoto conserva un cierre sin reservas abiertas y no confirma una nueva corrida después de los 18 ajustes guardados. La salida más reciente aportada de Colab indica restauración de artefactos; preparar el entorno o restaurar GitHub no acredita entrenamiento nuevo. El estado se publica como una instantánea fechada, sin atribuir actividad en vivo al kernel privado.</p>
+<p>Los <strong>diez candidatos principales ya tienen 6/6 ajustes finales guardados</strong>. Entre las referencias, MLP16 y LSTM32 también completaron sus seis ajustes; <strong>GRU32 tiene 3/6</strong>. Al corte, el control remoto registra la admisión de su cuarta corrida, semilla <strong>271804</strong>, a las <strong>09:38:50 de Bogotá</strong>. Una reserva no se cuenta como resultado guardado: siguen pendientes tres cierres de GRU32. Esta es una instantánea fechada de los recibos de GitHub, sin inspección directa del kernel privado.</p>
 <p>Los <strong>10 pilotos pendientes</strong> son cinco semillas de iTransformer y cinco de GRU32 para estimar variabilidad, potencia y diferencia mínima detectable; son adicionales a los 78 ajustes finales. Persistence, SeasonalNaive y ARIMA completan los 16 sistemas y todavía necesitan sus comparaciones registradas y la evaluación común.</p>
-<p><a class="reference download internal" download="" href="_downloads/6b591460334600e6cfd90d4009d2a7c3/neural_progress.csv"><span class="xref download myst">Tabla de las trece redes (CSV)</span></a> · <a class="reference download internal" download="" href="_downloads/6834ef402375bb26a1fed0a912c9caba/progress_snapshot.json"><span class="xref download myst">Instantánea JSON</span></a> · <a class="reference download internal" download="" href="_downloads/1f8255b5cd14f0538ba7ae74a969dad9/source_evidence.json"><span class="xref download myst">Fuentes y hashes</span></a> · <a class="reference download internal" download="" href="_downloads/d0a7356fc0de25b028ccc2df2e644d27/manifest.json"><span class="xref download myst">Manifiesto</span></a> · <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/results/e2-reduced-delivery-v1/control/github-primary-v1/head.json">Control remoto más reciente en GitHub</a>.</p>
+<p><a class="reference download internal" download="" href="_downloads/433b5f0ed32850e57f4599ab43226966/neural_progress.csv"><span class="xref download myst">Tabla de las trece redes (CSV)</span></a> · <a class="reference download internal" download="" href="_downloads/0ae100cd2a0619f54f0c8946be08669a/progress_snapshot.json"><span class="xref download myst">Instantánea JSON</span></a> · <a class="reference download internal" download="" href="_downloads/ce2322748961f074d4caa1cadf35d2af/source_evidence.json"><span class="xref download myst">Fuentes y hashes</span></a> · <a class="reference download internal" download="" href="_downloads/8615084d8ab6f942fe4ba757ad5c9329/manifest.json"><span class="xref download myst">Manifiesto</span></a> · <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/results/e2-reduced-delivery-v1/control/github-primary-v1/head.json">Control remoto más reciente en GitHub</a>.</p>
+<p>El <a class="reference download internal" download="" href="_downloads/6834ef402375bb26a1fed0a912c9caba/progress_snapshot.json"><span class="xref download myst">corte anterior del 13/11, 07:24</span></a> conserva su <a class="reference download internal" download="" href="_downloads/6b591460334600e6cfd90d4009d2a7c3/neural_progress.csv"><span class="xref download myst">tabla de trece redes</span></a>, <a class="reference download internal" download="" href="_downloads/1f8255b5cd14f0538ba7ae74a969dad9/source_evidence.json"><span class="xref download myst">fuentes</span></a> y <a class="reference download internal" download="" href="_downloads/d0a7356fc0de25b028ccc2df2e644d27/manifest.json"><span class="xref download myst">manifiesto</span></a>. Sus conteos corresponden a aquel momento.</p>
 <p>El <a class="reference download internal" download="" href="_downloads/11d257bfd18631cca7aa8d0714302d6a/progress_snapshot.json"><span class="xref download myst">corte anterior del 12/11, 22:22</span></a> conserva sus descargas originales: <a class="reference download internal" download="" href="_downloads/de7e690d385a88520b03b7b5c5feb327/top10_training_validation.csv"><span class="xref download myst">Top 10, CSV</span></a>, <a class="reference download internal" download="" href="_downloads/c5cc7f687c3aa600f332765e263d5148/all13_hpo_progress.csv"><span class="xref download myst">trece redes, CSV</span></a>, <a class="reference download internal" download="" href="_downloads/816c57e7bb03a2ff3150892211b7177f/source_evidence.json"><span class="xref download myst">fuentes</span></a> y <a class="reference download internal" download="" href="_downloads/6cf0010638b15666badf3a87d7c84d39/manifest.json"><span class="xref download myst">manifiesto</span></a>. Esos archivos documentan el avance de aquel momento.</p>
 </section>
 <section id="trabajo-pendiente-para-cerrar-e2">
 <h2>Trabajo pendiente para cerrar E2<a class="headerlink" href="#trabajo-pendiente-para-cerrar-e2" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
-<li><p>Completar los <strong>60 ajustes finales pendientes</strong> de las trece redes, conservando sus curvas, pesos, configuraciones y recursos. La selección HPO ya está cerrada.</p></li>
+<li><p>Completar los <strong>3 ajustes finales pendientes de GRU32</strong>, conservando sus curvas, pesos, configuraciones y recursos. La selección HPO ya está cerrada.</p></li>
 <li><p>Ejecutar los <strong>10 pilotos</strong> y reportar potencia y diferencia mínima detectable con <strong>R=6</strong>, fijado por recursos; no afirmar potencia alcanzada antes de medirla.</p></li>
 <li><p>Congelar predictores y calibradores, evaluar el soporte común y rellenar la tabla A2 con métricas, incertidumbre, costes y contrastes.</p></li>
 <li><p>Verificar los análisis de robustez, interpretabilidad, ablaciones y reproducibilidad que exige la guía. La <a class="reference internal" href="sections/38_cumplimiento_guia.html"><span class="std std-doc">matriz de requisitos (§38)</span></a> distingue evidencia y pendientes.</p></li>
