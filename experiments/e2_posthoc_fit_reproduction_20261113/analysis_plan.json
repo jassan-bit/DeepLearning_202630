@@ -1,0 +1,19 @@
+{
+  "version": "e2-posthoc-clean-fit-reproduction-plan-v1",
+  "declared_at_utc": "2026-11-13",
+  "status": "implementation_prepared_not_market_executed",
+  "scientific_commit": "1e8745497b484518f766b6da5c19be8362d9add7",
+  "original_ledger_sha256": "27aa2336518432d1d873098a3b2e0e5dc039dc501e15caa17599fce7d1cc6c30",
+  "original_records": 1368,
+  "total_authorized_hours": 80,
+  "original_charged_seconds": 269830.90902790474,
+  "remaining_seconds_before_posthoc": 18169.090972095262,
+  "new_budget_authorization": false,
+  "budget_reset": false,
+  "sequence": ["native metadata queries", "frozen predictor diagnostics", "clean source checkout and genuinely new isolated environment", "six fresh full SAE fits", "six dropout-zero SAE fits", "six single-encoder SAE fits", "six SAE fits without auxiliary pretraining", "remaining 75 fresh frozen final fits"],
+  "source_and_environment": {"main_source": "new sparse checkout of original exact scientific commit; immutable Git objects may be shared", "venv": "new --copies no-system-site-packages venv", "package_versions": "every actually installed original distribution pinned exactly; new installation from cache or official indexes", "runtime": "Python3.12.12 Torch2.8.0+cu126 CUDA12.6 A100", "upstream_sources": "original hash-verified author-source roots reused read only; no claim of fresh upstream downloads"},
+  "reproduction": {"neural_fresh_fits": 78, "classical_fresh_final_fits": 3, "seeds": [271801,271802,271803,271804,271805,271806], "recipes": "exact original worker_specs, winners and frozen phase epochs", "selection_repeated": false, "comparisons": "neural state tensors bitwise; classical fitted parameters exact; calibration53 and test608 prediction maximum absolute difference <=1e-10", "serialization_file_bytes_required_equal": false},
+  "ablations": {"baseline": "six newly reproduced full SAE fits", "conditions": ["remove_auxiliary_pretraining", "remove_second_encoder", "dropout_zero"], "new_fits": 18, "winner_dropout_guard": 0.3, "training_cutoff": "2024-10-31", "HPO": false, "fixed_phase_epochs": "same remaining stages as frozen original SAE", "statistic": "mean across six per-seed RMSE, ablated minus full", "inference": "10000 centered paired-seed and calendar circular-block14 bootstrap draws, nominal percentile95 intervals, two-sided p and Holm3", "inference_scope": "post hoc conditional on one known market chronology; no new winner or prospectively confirmatory claim"},
+  "cost_control": {"per_optimizer_phase_seconds": 1800, "worker_overhead_seconds": 60, "no_automatic_retry": true, "unknown_interruption": "full reservation remains unavailable and reopening blocks", "all_setup_IO_backup_elapsed": "charged in same additive journal; final invocation elapsed reconciliation", "new_remote_control": "control/e2-guide-closure-posthoc-v1", "old_remote_control": "read only", "remote_before_compute": "CAS publish reservation before returning admission", "result_before_release": "upload completed weights and curves before completed charge is published"},
+  "limits": ["Actual A100/market execution remains required", "Stop before any unaffordable worst-case reservation", "Clean environment installation can fail or exceed its bounded allowance", "Post hoc known test labels do not become newly sealed holdout", "Six seeds are optimization replicates, not independent markets"]
+}

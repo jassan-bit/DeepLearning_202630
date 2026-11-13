@@ -1,6 +1,8 @@
 # 4. Implementación: catálogo obligatorio y antecedentes
 
-**Vigencia documental (12/11/2026):** la selección HPO/NAS ejecutada parcialmente corresponde al plan histórico de catorce redes. El catálogo obligatorio vigente es de **16 sistemas**, con las identidades de [§43](43_catalogo_obligatorio.md), las arquitecturas de [§44](44_arquitecturas_publicadas.md) y el protocolo registrado de [§45](45_enmienda_protocolo.md). Esos registros históricos no cierran el benchmark vigente ni acreditan las cuatro recetas restauradas. R y el cierre inferencial siguen pendientes. [Corte verificable de resultados (§41)](41_avance_optimizacion_11_origenes.md).
+**Estado de ejecución al 13/11/2026:** se completaron las trece recetas neuronales, sus 78 ajustes finales y los tres comparadores del catálogo obligatorio. Las implementaciones y cuerpos publicados vigentes se identifican en [§48](48_protocolo_reducido.md), y los resultados medidos están en [§6](06_benchmark_final.md). Los prototipos y estados de integración conservados más abajo corresponden a sus fechas históricas.
+
+**Antecedente conservado:** **Vigencia documental (12/11/2026):** la selección HPO/NAS ejecutada parcialmente corresponde al plan histórico de catorce redes. El catálogo obligatorio vigente es de **16 sistemas**, con las identidades de [§43](43_catalogo_obligatorio.md), las arquitecturas de [§44](44_arquitecturas_publicadas.md) y el protocolo registrado de [§45](45_enmienda_protocolo.md). Esos registros históricos no cierran el benchmark vigente ni acreditan las cuatro recetas restauradas. R y el cierre inferencial siguen pendientes. [Corte verificable de resultados (§41)](41_avance_optimizacion_11_origenes.md).
 
 El híbrido adicional y Ridge se conservan como opcionales/históricos. Este capítulo archiva los prototipos e integraciones anteriores; el inventario vigente se consulta en §§43–45.
 

@@ -158,7 +158,7 @@ Los hashes se mantienen en dominios distintos: el archivo `selected_model.pt`, e
 | Estabilidad temporal | Métricas por trimestre y ventanas de 90 días, más contraste HAC de pérdidas trimestrales. Giacomini–Rossi sigue pendiente. |
 | Ausencia de sobreajuste con margen, Tabla B | **No establecida**: δg originalmente indefinido y comparaciones temporales descriptivas. No rechazo no equivale a ausencia. |
 | PIT uniforme | **No estimable con estos artefactos**: un intervalo residual del 90 % no define una CDF predictiva completa. La variación entre semillas tampoco es una distribución predictiva. |
-| Comparaciones específicas F2a/S8 | DM con corrección HLN, MCS y Friedman con post-hoc siguen pendientes; esta auditoría no los sustituye con sus diagnósticos residuales. |
+| Comparaciones específicas F2a/S8 | Ejecutadas posteriormente en [§50](50_comparaciones_f2a.md): DM–HLN, MCS y rangos condicionados. Tienen hipótesis y familias propias; no sustituyen los diagnósticos residuales ni las comparaciones primarias. |
 | Robustez, ablaciones e interpretabilidad | Continúan en la [matriz de cumplimiento](38_cumplimiento_guia.md); no se ejecutaron mediante esta auditoría. |
 
 La ejecución cierra los diagnósticos indicados, con sus resultados desfavorables y sus supuestos. **No cierra toda la ruta F2a ni acredita adecuación global o confirmación prospectiva.**

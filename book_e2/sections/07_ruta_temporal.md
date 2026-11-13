@@ -1,7 +1,7 @@
 (e2-ruta-temporal)=
 # 7. Ruta metodológica: series de tiempo y controles causales
 
-**Estado vigente al 13/11/2026:** el benchmark reducido está completado en [§6](06_benchmark_final.md), con el calendario efectivamente ejecutado de [§48](48_protocolo_reducido.md). La auditoría posterior de ajuste, residuos, calibración y estabilidad temporal está en [§49](49_diagnosticos_f2a.md); la batería comparativa S8 sigue parcial. Los estados y calendarios del 11–12/11 conservados debajo son antecedentes, no el estado actual de ejecución.
+**Estado vigente al 13/11/2026:** el benchmark reducido está completado en [§6](06_benchmark_final.md), con el calendario efectivamente ejecutado de [§48](48_protocolo_reducido.md). La auditoría posterior de ajuste, residuos, calibración y estabilidad temporal está en [§49](49_diagnosticos_f2a.md); las comparaciones S8 se documentan en [§50](50_comparaciones_f2a.md), mientras robustez y otros requisitos conservan su estado en [§53](53_cierre_requisitos.md). Los estados y calendarios del 11–12/11 conservados debajo son antecedentes, no el estado actual de ejecución.
 
 **Vigencia documental (12/11/2026):** la selección HPO/NAS ejecutada parcialmente corresponde al plan histórico de catorce redes. El catálogo obligatorio vigente es de **16 sistemas**, con las identidades de [§43](43_catalogo_obligatorio.md), las arquitecturas de [§44](44_arquitecturas_publicadas.md) y el protocolo registrado de [§45](45_enmienda_protocolo.md). Esos registros históricos no cierran el benchmark vigente ni acreditan las cuatro recetas restauradas. R y el cierre inferencial siguen pendientes. [Corte verificable de resultados (§41)](41_avance_optimizacion_11_origenes.md).
 

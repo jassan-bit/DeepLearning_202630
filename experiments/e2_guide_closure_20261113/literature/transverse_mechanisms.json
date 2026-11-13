@@ -1,0 +1,52 @@
+[
+  {
+    "D7_limit": "padding and receptive fields dominate a seven-day context; classification CAM and accuracy do not become volatility explanations/results",
+    "mechanism": "residual_convolution_and_global_pool",
+    "origin": "vision: image segmentation/object recognition",
+    "origin_fulltext_read_this_round": false,
+    "origin_urls": [
+      "https://arxiv.org/abs/1411.4038",
+      "https://arxiv.org/abs/1512.03385"
+    ],
+    "primary_origin": "Long et al., Fully Convolutional Networks for Semantic Segmentation; He et al., Deep Residual Learning for Image Recognition",
+    "shared_property": "local neighborhoods and residual optimization",
+    "transfer_bridge": "Wang1611.06455v4 II.B-C; current FCN/ResNet policy"
+  },
+  {
+    "D7_limit": "40/20/10 kernels exceed seven observations; preserve padding and test contribution; single network differs from ensemble",
+    "mechanism": "parallel_receptive_fields",
+    "origin": "vision: Inception image recognition",
+    "origin_fulltext_read_this_round": false,
+    "origin_urls": [
+      "https://arxiv.org/abs/1602.07261"
+    ],
+    "primary_origin": "Szegedy et al., Inception-v4, Inception-ResNet and the Impact of Residual Connections on Learning",
+    "shared_property": "parallel filters capture patterns at different scales",
+    "transfer_bridge": "InceptionTime1909.04939v3 sections3.1-3.2"
+  },
+  {
+    "D7_limit": "P16/S8 from PatchTST/64 does not directly fit D7; temporal axes are not interchangeable with variables",
+    "mechanism": "patch_token_attention",
+    "origin": "vision: image patches",
+    "origin_fulltext_read_this_round": false,
+    "origin_urls": [
+      "https://arxiv.org/abs/2010.11929",
+      "https://arxiv.org/abs/2103.14030"
+    ],
+    "primary_origin": "Dosovitskiy et al., An Image Is Worth16x16 Words; Liu et al., Swin Transformer",
+    "shared_property": "segments of observed inputs become tokens",
+    "transfer_bridge": "previously extracted PatchTST section3.1; Crossformer origin trace pp3,10-11"
+  },
+  {
+    "D7_limit": "short context does not inherit long-series efficiency or accuracy; TSMixer feature-mixing ablation can lose",
+    "mechanism": "token_channel_mixing",
+    "origin": "vision: token/channel MLP mixing",
+    "origin_fulltext_read_this_round": false,
+    "origin_urls": [
+      "https://arxiv.org/abs/2105.01601"
+    ],
+    "primary_origin": "Tolstikhin et al., MLP-Mixer: An All-MLP Architecture for Vision",
+    "shared_property": "mix positions and channels separately",
+    "transfer_bridge": "TSMixer fulltext reference p15; origin_mechanism_trace.json"
+  }
+]

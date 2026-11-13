@@ -8,6 +8,8 @@
 
 **Diagnósticos F2a añadidos el 13/11/2026:** [§49](sections/49_diagnosticos_f2a.md) documenta ajuste, brechas observadas, residuos, calibración y estabilidad temporal sobre los pronósticos guardados. La familia exploratoria tiene **826 contrastes y 707 rechazos tras Holm**. Se detecta dependencia residual en las 81 trayectorias; los 31 rechazos de cobertura son por sobrecobertura. No se acredita ausencia de sobreajuste ni estabilidad por falta de rechazo. Los resultados primarios se conservan.
 
+**Suplementos de cierre:** [Comparaciones DM/MCS y rangos (§50)](sections/50_comparaciones_f2a.md) · [Costes medidos y Pareto (§51)](sections/51_eficiencia_costes.md) · [Síntesis bibliográfica delimitada (§52)](sections/52_sintesis_literatura.md) · [Ejecuciones complementarias y límites (§53)](sections/53_cierre_requisitos.md). Las tres primeras aportan resultados; la reproducción, robustez, explicaciones y ablaciones conservan estado preparado hasta recibir evidencia de su ejecución.
+
 ## Resumen
 
 Se estudia el pronóstico diario de volatilidad de Bitcoin a partir de siete días de OHLCV, con horizonte de un día y objetivo σ₇ poblacional de retornos de Close, sin anualización. El benchmark reúne diez candidatos de cuatro familias, tres referencias neuronales de E1 y tres comparadores estadísticos. La selección reducida usa seis configuraciones y tres orígenes internos por red; cada receta neuronal final se repite con seis semillas. Los 16 sistemas se evalúan sobre las mismas 608 fechas conocidas de E1, manteniendo congelados los pesos, escaladores, calibradores y el análisis.
@@ -24,6 +26,8 @@ El LSTM-autoencoder con predictor obtiene el menor RMSE medio observado, **0,003
 | Comparadores y congelación | **3/3 comparadores**, 81 predictores congelados antes de admitir datos finales |
 | Evaluación y análisis registrados | **16/16 sistemas, 608/608 fechas**, tabla A2 y 20 contrastes primarios |
 | Auditoría F2a posterior | **81 trayectorias**, 826 contrastes exploratorios, curvas de los 78 ajustes finales y 29 de 39 ajustes HPO seleccionados; [resultados y límites (§49)](sections/49_diagnosticos_f2a.md) |
+| Comparaciones F2a posteriores | DM–HLN/HAC14, MCS y rangos condicionados: [§50](sections/50_comparaciones_f2a.md) |
+| Eficiencia observada | 78 ajustes finales: 5.765,09 segundos de fases instrumentadas, parámetros y Pareto: [§51](sections/51_eficiencia_costes.md) |
 | Persistencia | Resultados y comprobaciones de integridad en **GitHub** |
 
 El piloto estima una potencia condicional de **12,30 %** para una ganancia de **2δ**, por debajo del objetivo de 80 %. Con R=6, la ganancia mínima estimada para esa potencia es **0,00087867**. Son cálculos sobre cinco semillas emparejadas de dos modelos y 53 fechas de desarrollo; no garantizan potencia temporal ni para todo el Top 10. R=6 se conserva por recursos, sin ampliar repeticiones después de observar la prueba.
@@ -62,9 +66,9 @@ La campaña mantiene sus **80 horas acumuladas autorizadas**, sin reiniciar carg
 
 ## Qué falta para cerrar la guía
 
-1. Completar la batería comparativa F2a S8 y los requisitos de inferencia que siguen abiertos. Los diagnósticos S7 de §49 ya están ejecutados, con resultados desfavorables de adecuación residual; faltan el margen de sobreajuste prerregistrado δg y los elementos no estimables con los artefactos actuales.
+1. Conservar el alcance exploratorio de las comparaciones F2a ya ejecutadas en §50 y de los diagnósticos S7 de §49. La ausencia de un margen δg anterior al experimento no puede corregirse retrospectivamente; los elementos no estimables deben permanecer declarados.
 2. Acreditar robustez con severidades, explicabilidad con fidelidad y estabilidad, y ablaciones de componentes bajo las condiciones de la guía.
-3. Cerrar eficiencia y costes por modelo, trazabilidad bibliográfica/metodológica y reproducción independiente de los resultados.
+3. Completar los perfiles de inferencia que no están en los recibos de costes de §51, el cierre global de literatura que excede el corpus delimitado de §52 y la reproducción independiente registrada en §53.
 4. Revisar discusión, conclusiones, apéndices y enlaces de entrega. Los requisitos sin evidencia deben permanecer declarados; las métricas de prueba no se usan para volver a seleccionar modelos.
 
 La [matriz de §38](sections/38_cumplimiento_guia.md) detalla las prioridades y qué puede aprovechar los artefactos actuales. El resultado nulo de los contrastes se conserva en las conclusiones.

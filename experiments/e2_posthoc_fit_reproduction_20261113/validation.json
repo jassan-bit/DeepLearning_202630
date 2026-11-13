@@ -1,0 +1,31 @@
+{
+  "GPU_executed": false,
+  "actual_synthetic_model_fits": 3,
+  "checks": [
+    "anchored80hbalance",
+    "sequentialreservationlock",
+    "partial/interruptedcostpreservation",
+    "staleremoteCASrestore",
+    "newcontrolnamespaceoriginalpointerunchanged",
+    "reservationuploadfailureblockscompute",
+    "threeactualSAEphasegeometriesandcheckpoints",
+    "statecomparison",
+    "pairedbootstrap10000andHolm3",
+    "code/configartifactbinding",
+    "newvenvcopiesinterpreter",
+    "boundedchildreaping",
+    "dryrunnoIOfits"
+  ],
+  "command": "/workspace/work/e2-opt-venv/bin/python -m unittest tests.test_e2_posthoc_fit_reproduction -v",
+  "independent_read_only_review": "parent closure_f2a_s8 independently reran all14tests and reviewed originalworker APIs",
+  "market_fits_executed": false,
+  "original_freeze_modified": false,
+  "runtime": {
+    "Python": "3.12.14",
+    "numpy": "2.3.5",
+    "torch": "2.8.0+cpu"
+  },
+  "status": "synthetic_checks_passed_actual_A100_execution_required",
+  "synthetic_epochs_per_phase": 1,
+  "tests": 14
+}
