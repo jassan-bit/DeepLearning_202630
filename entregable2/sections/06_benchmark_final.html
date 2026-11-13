@@ -67,7 +67,7 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="7. Ruta metodológica: series de tiempo y controles causales" href="07_ruta_temporal.html" />
+    <link rel="next" title="49. Diagnósticos F2a posteriores al benchmark" href="49_diagnosticos_f2a.html" />
     <link rel="prev" title="5. Paper Guía y Replicación" href="05_paper_guia.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
@@ -217,6 +217,7 @@
 <li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación: catálogo obligatorio y antecedentes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Benchmark obligatorio: dieciséis sistemas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="49_diagnosticos_f2a.html">49. Diagnósticos F2a posteriores al benchmark</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Registro de selección, cierre pendiente y trazabilidad</a></li>
@@ -427,6 +428,7 @@
 <p><strong>Alcance:</strong> diez candidatos, tres referencias E1 y tres comparadores: <strong>16 sistemas</strong>. El híbrido adicional y Ridge conservan alcance opcional/histórico. Las reglas y decisiones previas siguen en <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>; el <a class="reference internal" href="47_entrega_consolidada.html"><span class="std std-doc">informe consolidado y su actualización final</span></a> separan estos resultados de los antecedentes de selección y de E1.</p>
 <section id="tabla-a2-metricas-finales-medidas">
 <h2>Tabla A2: métricas finales medidas<a class="headerlink" href="#tabla-a2-metricas-finales-medidas" title="Link to this heading">#</a></h2>
+<p><strong>Auditoría complementaria del 13/11/2026:</strong> <a class="reference internal" href="49_diagnosticos_f2a.html"><span class="std std-doc">§49</span></a> añade curvas de ajuste y diagnósticos de residuos, calibración y estabilidad temporal usando las predicciones congeladas. Es un análisis exploratorio posterior, con su propia familia Holm de 826 hipótesis. No altera esta A2, sus veinte contrastes primarios ni la selección de modelos; tampoco acredita adecuación por falta de rechazo.</p>
 <p>La métrica primaria es la <strong>media de las RMSE individuales de las seis semillas</strong>, en unidades originales de σ₇; <strong>no es la RMSE de un ensamble</strong>. Las redes tienen R=6 y cada comparador determinista una trayectoria, R=1. La tabla se ordena por RMSE ascendente para facilitar la lectura, sin una nueva selección ni ajuste tras observar la evaluación. Todas las filas utilizan <strong>n=608</strong>; sMAPE y cobertura se muestran en porcentaje.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -916,11 +918,11 @@ q_{m,s}=\sqrt{|\mathcal T|^{-1}\sum_{t\in\mathcal T}(Y_t-\widehat Y_{m,s,t})^2},
       </div>
     </a>
     <a class="right-next"
-       href="07_ruta_temporal.html"
+       href="49_diagnosticos_f2a.html"
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">7. Ruta metodológica: series de tiempo y controles causales</p>
+        <p class="prev-next-title">49. Diagnósticos F2a posteriores al benchmark</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

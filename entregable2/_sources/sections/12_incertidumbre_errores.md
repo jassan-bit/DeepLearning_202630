@@ -1,5 +1,7 @@
 # 12. Techo de desempeño, incertidumbre y análisis de errores
 
+**Estado vigente al 13/11/2026:** la [A2 final de §6](06_benchmark_final.md) ya contiene las métricas e intervalos de 16 sistemas. [§49](49_diagnosticos_f2a.md) añade cobertura con incertidumbre temporal, calibración y desagregación trimestral sobre predicciones guardadas. La referencia de techo, cobertura condicional completa y clasificación de errores requerida siguen pendientes. Los estados anteriores conservados debajo son históricos.
+
 **Vigencia documental (11/11/2026):** existe selección HPO/NAS registrada y ejecutada para el catálogo actual; las afirmaciones de ausencia de HPO o de falta de registro de selección corresponden a cortes anteriores. El benchmark final, R y su cierre inferencial siguen pendientes. [Registro y alcance actuales (§9)](09_protocolo_registrado.md) · [Calendario (§40)](40_calendario_original.md) · [Corte de resultados (§41)](41_avance_optimizacion_11_origenes.md) · [Auditoría y trabajo paralelo (§42)](42_auditoria_y_trabajo_paralelo.md).
 
 **Estado:** análisis P0 histórico ejecutado; incertidumbre y errores del catálogo vigente pendientes de la nueva enmienda y de su evaluación. El catálogo contiene diez modelos y CNN-1D + LSTM + atención temporal como candidato 11, sin superioridad acreditada; las referencias MLP, LSTM y GRU de E1 se mantienen aparte.

@@ -1,0 +1,187 @@
+{
+  "PIT": {
+    "reason": "Only a frozen90% absolute-residual interval exists; no full predictive CDF. Seed variation is not a predictive distribution.",
+    "status": "not_estimable"
+  },
+  "assumptions": "Exploratory nominal asymptotic p-values; overlapping sigma7 targets and serial dependence limit calibration. HAC14 assumes adequate bandwidth and weak dependence. Holm does not repair invalid marginal-test assumptions. Seeds share one market chronology and are not independent market samples.",
+  "calendar_dates": 608,
+  "calendar_end": "2026-08-31",
+  "calendar_start": "2025-01-01",
+  "calibration_final_descriptive": {
+    "absence_of_overfitting_established": false,
+    "count": 81,
+    "decreases": 41,
+    "delta_g": null,
+    "increases": 40
+  },
+  "coverage_rejections": {
+    "count": 31,
+    "coverage_max": 0.9786184210526315,
+    "coverage_min": 0.9457236842105263,
+    "direction": "overcoverage only"
+  },
+  "diagnostics_by_test": [
+    {
+      "direction_and_limit": "residual dependence or conditional heteroskedasticity; nominal assumptions apply",
+      "do_not_reject_Holm826": 0,
+      "estimable": 81,
+      "overcoverage_rejections": 0,
+      "procedures": 81,
+      "raw_p_numeric_underflow_zeros": 2,
+      "reject_Holm826": 81,
+      "test": "LB_residual_lag7",
+      "undercoverage_rejections": 0
+    },
+    {
+      "direction_and_limit": "residual dependence or conditional heteroskedasticity; nominal assumptions apply",
+      "do_not_reject_Holm826": 0,
+      "estimable": 81,
+      "overcoverage_rejections": 0,
+      "procedures": 81,
+      "raw_p_numeric_underflow_zeros": 3,
+      "reject_Holm826": 81,
+      "test": "LB_residual_lag14",
+      "undercoverage_rejections": 0
+    },
+    {
+      "direction_and_limit": "residual dependence or conditional heteroskedasticity; nominal assumptions apply",
+      "do_not_reject_Holm826": 1,
+      "estimable": 81,
+      "overcoverage_rejections": 0,
+      "procedures": 81,
+      "raw_p_numeric_underflow_zeros": 0,
+      "reject_Holm826": 80,
+      "test": "LB_squared_lag7",
+      "undercoverage_rejections": 0
+    },
+    {
+      "direction_and_limit": "residual dependence or conditional heteroskedasticity; nominal assumptions apply",
+      "do_not_reject_Holm826": 1,
+      "estimable": 81,
+      "overcoverage_rejections": 0,
+      "procedures": 81,
+      "raw_p_numeric_underflow_zeros": 1,
+      "reject_Holm826": 80,
+      "test": "LB_squared_lag14",
+      "undercoverage_rejections": 0
+    },
+    {
+      "direction_and_limit": "residual dependence or conditional heteroskedasticity; nominal assumptions apply",
+      "do_not_reject_Holm826": 3,
+      "estimable": 81,
+      "overcoverage_rejections": 0,
+      "procedures": 81,
+      "raw_p_numeric_underflow_zeros": 0,
+      "reject_Holm826": 78,
+      "test": "ARCH_LM_lag7",
+      "undercoverage_rejections": 0
+    },
+    {
+      "direction_and_limit": "residual dependence or conditional heteroskedasticity; nominal assumptions apply",
+      "do_not_reject_Holm826": 2,
+      "estimable": 81,
+      "overcoverage_rejections": 0,
+      "procedures": 81,
+      "raw_p_numeric_underflow_zeros": 0,
+      "reject_Holm826": 79,
+      "test": "BDS_dim2",
+      "undercoverage_rejections": 0
+    },
+    {
+      "direction_and_limit": "residual dependence or conditional heteroskedasticity; nominal assumptions apply",
+      "do_not_reject_Holm826": 2,
+      "estimable": 81,
+      "overcoverage_rejections": 0,
+      "procedures": 81,
+      "raw_p_numeric_underflow_zeros": 0,
+      "reject_Holm826": 79,
+      "test": "BDS_dim3",
+      "undercoverage_rejections": 0
+    },
+    {
+      "direction_and_limit": "departure from normality; nominal under serial dependence",
+      "do_not_reject_Holm826": 0,
+      "estimable": 81,
+      "overcoverage_rejections": 0,
+      "procedures": 81,
+      "raw_p_numeric_underflow_zeros": 29,
+      "reject_Holm826": 81,
+      "test": "Jarque_Bera",
+      "undercoverage_rejections": 0
+    },
+    {
+      "direction_and_limit": "joint intercept/slope departure; coefficients are descriptive",
+      "do_not_reject_Holm826": 44,
+      "estimable": 81,
+      "overcoverage_rejections": 0,
+      "procedures": 81,
+      "raw_p_numeric_underflow_zeros": 0,
+      "reject_Holm826": 37,
+      "test": "Mincer_Zarnowitz",
+      "undercoverage_rejections": 0
+    },
+    {
+      "direction_and_limit": "overcoverage only",
+      "do_not_reject_Holm826": 50,
+      "estimable": 81,
+      "overcoverage_rejections": 31,
+      "procedures": 81,
+      "raw_p_numeric_underflow_zeros": 0,
+      "reject_Holm826": 31,
+      "test": "Coverage90_HAC",
+      "undercoverage_rejections": 0
+    },
+    {
+      "direction_and_limit": "no adjusted rejection; does not establish stability",
+      "do_not_reject_Holm826": 16,
+      "estimable": 16,
+      "overcoverage_rejections": 0,
+      "procedures": 16,
+      "raw_p_numeric_underflow_zeros": 0,
+      "reject_Holm826": 0,
+      "test": "Calendar_quarter_loss_stability",
+      "undercoverage_rejections": 0
+    }
+  ],
+  "estimable": 826,
+  "family": {
+    "adjustment": "Holm",
+    "alpha": 0.05,
+    "interpretation": "Approximate exploratory control conditional on valid marginal p-values; does not extend or alter original Holm20 family",
+    "size": 826,
+    "undefined_counted_conservatively": true
+  },
+  "fits_performed": 0,
+  "frozen_predictors": 81,
+  "input_sha256": "65ae74b547a6073b2c286dea8039a2e7a1b1f6063b1d9ac0eb760c9ce727d187",
+  "model_inference_calls": 0,
+  "non_estimable": 0,
+  "numeric_underflow": {
+    "Jarque_Bera_raw_p_zeros": 29,
+    "display_note": "29 raw Jarque–Bera p-values underflow to zero; describe as p < 1e-300; preserve original zeros in raw files"
+  },
+  "original_RMSE_max_absolute_difference": 5.204170427930421e-18,
+  "original_analysis_modified": false,
+  "original_primary_comparisons_unchanged": 20,
+  "original_twenty_comparisons_repeated": false,
+  "overfit": {
+    "absence_of_overfitting_established": false,
+    "delta_g": null,
+    "reason": "No a priori overfit margin or saved per-date, batch1 training predictions. Calibration/final changes cannot identify model overfitting.",
+    "status": "not_estimable"
+  },
+  "post_hoc": true,
+  "quarterly_non_rejection_establishes_stability": false,
+  "quarterly_rejections": 0,
+  "rejected_Holm": 707,
+  "scope": "exploratory post hoc audit of saved frozen predictions",
+  "scope_limits": [
+    "Residual iid/normality tests are nominal asymptotic diagnostics, not proof of usable predictability.",
+    "Failure to reject does not establish normality, calibration, stability, or equivalence.",
+    "Calendar stability is not an implemented Giacomini-Rossi test.",
+    "This audit does not close robustness, interpretability, ablation, or the full F2a battery."
+  ],
+  "systems": 16,
+  "tests": 826,
+  "version": "e2-f2a-posthoc-audit-v1"
+}

@@ -6,6 +6,8 @@ La versión científica anterior y sus recibos permanecen en [§45](45_enmienda_
 
 ## Estado vigente: benchmark común completado
 
+**Actualización posterior de diagnóstico:** [§49](49_diagnosticos_f2a.md) conserva una auditoría F2a de los pronósticos y curvas ya guardados, con procedencia y familia exploratoria propias. No modifica el protocolo primario, la congelación, el presupuesto autorizado ni el número de ajustes. Los diagnósticos ejecutados y sus limitaciones se distinguen de los requisitos todavía abiertos.
+
 **Verificación del cierre: 13/11/2026, 11:58:36 de Bogotá (16:58:36 UTC).** Están completados los **78 ajustes finales A100**, los **diez pilotos de desarrollo**, los **tres predictores clásicos finales** y la evaluación común de **16 sistemas sobre 608 fechas**. La [A2 medida](../_static/e2_benchmark_final_20261113/benchmark_A2.csv), el [análisis](../_static/e2_benchmark_final_20261113/benchmark_analysis.json) y la [procedencia](../_static/e2_benchmark_final_20261113/source_evidence.json) documentan el cierre. El resultado es retrospectivo; no acredita por sí solo todos los diagnósticos y entregables de la guía.
 
 Las trece redes aportan seis semillas finales cada una: **60/60 ajustes de los diez candidatos y 18/18 de MLP16/LSTM32/GRU32**. Los pilotos son cinco semillas de iTransformer y cinco de GRU32 y se contabilizan aparte. Persistence, SeasonalNaive y ARIMA aportan un predictor determinista cada uno. La [congelación física](../_static/e2_benchmark_final_20261113/final_freeze.json) vinculó **81 predictores**, sus escaladores y sus calibradores antes de admitir los datos de la evaluación actual.

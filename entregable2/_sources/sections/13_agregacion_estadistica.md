@@ -1,5 +1,7 @@
 # 13. Agregación estadística e interpretación
 
+**Estado vigente al 13/11/2026:** el [benchmark de §6](06_benchmark_final.md) cerró R=6 para trece redes, tres comparadores deterministas y veinte contrastes primarios. La [auditoría F2a de §49](49_diagnosticos_f2a.md) añade una familia exploratoria separada de 826 hipótesis; no altera la familia primaria ni convierte las semillas en mercados independientes. DM-HLN, MCS y las demás comparaciones F2a S8 todavía requieren justificación y evidencia. Los estados históricos conservados debajo no describen el cierre vigente.
+
 **Vigencia documental (11/11/2026):** existe selección HPO/NAS registrada y ejecutada para el catálogo actual; las afirmaciones de ausencia de HPO o de falta de registro de selección corresponden a cortes anteriores. El benchmark final, R y su cierre inferencial siguen pendientes. [Registro y alcance actuales (§9)](09_protocolo_registrado.md) · [Calendario (§40)](40_calendario_original.md) · [Corte de resultados (§41)](41_avance_optimizacion_11_origenes.md) · [Auditoría y trabajo paralelo (§42)](42_auditoria_y_trabajo_paralelo.md).
 
 **Estado:** la nueva enmienda estadística para los diez modelos y CNN-1D + LSTM + atención temporal como candidato 11 está pendiente. MLP, LSTM y GRU de E1 son referencias separadas. El [diagnóstico P0 ejecutado](09_protocolo_registrado.md) conserva su identidad histórica; sus reglas y resultados no se convierten en evidencia del catálogo vigente ni en superioridad del híbrido.
