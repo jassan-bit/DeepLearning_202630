@@ -397,8 +397,11 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#catalogo-que-debe-cubrir-la-tabla-final">Catálogo que debe cubrir la tabla final</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#del-ajuste-final-a-la-tabla-a2">Del ajuste final a la tabla A2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-a2-metricas-finales-medidas">Tabla A2: métricas finales medidas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencias-practicas-incertidumbre-y-multiplicidad">Diferencias prácticas, incertidumbre y multiplicidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calibracion-y-resultados-negativos">Calibración y resultados negativos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecucion-calendario-y-desviaciones-documentadas">Ejecución, calendario y desviaciones documentadas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivos-actuales-y-cortes-historicos">Archivos actuales y cortes históricos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#antecedentes-documentales-del-diseno-de-dieciocho-sistemas">Antecedentes documentales del diseño de dieciocho sistemas</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-historica-de-los-once-candidatos">6.1 Tabla histórica de los once candidatos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-debe-medir-una-comparacion-valida">6.2 Qué debe medir una comparación válida</a></li>
@@ -419,86 +422,309 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="benchmark-obligatorio-dieciseis-sistemas">
 <h1>6. Benchmark obligatorio: dieciséis sistemas<a class="headerlink" href="#benchmark-obligatorio-dieciseis-sistemas" title="Link to this heading">#</a></h1>
-<p><strong>Actualización verificada al 13/11/2026, 09:40:00 de Bogotá:</strong> están cerradas las selecciones de las trece redes, con <strong>231 oportunidades HPO exitosas de 234</strong>, dos fallos conocidos de TimesNet y un desenlace desconocido de TSMixer. Se guardaron <strong>75 ajustes finales A100</strong>: seis semillas de cada uno de los diez candidatos, seis de MLP16, seis de LSTM32 y tres de GRU32. La <a class="reference internal" href="../intro.html"><span class="std std-doc">tabla por modelo</span></a> y el <a class="reference download internal" download="" href="../_downloads/433b5f0ed32850e57f4599ab43226966/neural_progress.csv"><span class="xref download myst">CSV del corte</span></a> distinguen selección y ajuste final. El presupuesto aplicado es de <strong>80 horas acumuladas</strong>; <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a> conserva sus pruebas y las reglas de continuación.</p>
-<p><strong>La tabla final A2 y el testing común siguen pendientes.</strong> Los 75 ajustes guardados son repeticiones de las trece redes, aún sin puntuar en la evaluación común. Los diez candidatos y dos referencias completaron seis semillas; GRU32 conserva tres de seis. No hay un ranking final ni un ganador demostrado del catálogo.</p>
-<p><strong>Alcance vigente:</strong> diez modelos del Top 10, tres referencias E1 y tres comparadores: <strong>16 sistemas</strong>. El híbrido adicional y Ridge quedan como opcionales/históricos. La enmienda de <a class="reference internal" href="43_catalogo_obligatorio.html"><span class="std std-doc">§43</span></a> registra el catálogo requerido; el ejecutor reducido de <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a> ya cerró sus trece recetas neuronales sin renombrar las selecciones del catálogo anterior. El benchmark final continúa pendiente.</p>
-<p><strong>Entrega con la evidencia disponible:</strong> <a class="reference internal" href="47_entrega_consolidada.html"><span class="std std-doc">§47 reúne resultados, artefactos y conclusiones del cierre</span></a>. El corte consolidado conserva <strong>1.705 resultados HPO nuevos y 1.802 registros históricos: 3.507 registros de resultados</strong>. Ocho recetas del plan histórico completaron cobertura HPO de enero a junio; esa cobertura acredita selección ejecutada, sin constituir un ranking final de los 16 sistemas. Las métricas E1, cuando se presentan como antecedente de sus 608 fechas conocidas, mantienen ese ámbito.</p>
-<section id="catalogo-que-debe-cubrir-la-tabla-final">
-<h2>Catálogo que debe cubrir la tabla final<a class="headerlink" href="#catalogo-que-debe-cubrir-la-tabla-final" title="Link to this heading">#</a></h2>
+<p><strong>Resultados finales verificados al 13/11/2026, 11:58:36 de Bogotá.</strong> Se completaron los <strong>78 ajustes finales</strong> de las trece redes, los <strong>10 pilotos</strong>, los tres comparadores y la congelación de <strong>81 predictores</strong>. La evaluación común ya aporta resultados de los <strong>16 sistemas sobre las mismas 608 fechas elegibles</strong>, del 01/01/2025 al 31/08/2026. <a class="reference download internal" download="" href="../_downloads/878959cd45a45cb509b9c4065aa9d38c/benchmark_A2.csv"><span class="xref download myst">Tabla A2 original, CSV</span></a> · <a class="reference download internal" download="" href="../_downloads/484b3adee08dabb2bf49a80094c5a0f8/benchmark_analysis.json"><span class="xref download myst">Análisis completo</span></a> · <a class="reference download internal" download="" href="../_downloads/1f149477d437c56efd6a2818d858b2bb/data_admission.json"><span class="xref download myst">Admisión de datos</span></a>.</p>
+<p>El <strong>LSTM-autoencoder con predictor tiene la menor RMSE media observada</strong>, seguido de ARIMA y GRU32. La persistencia presenta el menor MAE y la menor sMAPE. Este orden descriptivo no demuestra superioridad universal: <strong>ninguno de los 20 contrastes primarios de mejora práctica rechazó su hipótesis nula tras Holm</strong>. La discusión, los resultados negativos y las limitaciones forman parte de la entrega.</p>
+<p><strong>Alcance:</strong> diez candidatos, tres referencias E1 y tres comparadores: <strong>16 sistemas</strong>. El híbrido adicional y Ridge conservan alcance opcional/histórico. Las reglas y decisiones previas siguen en <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>; el <a class="reference internal" href="47_entrega_consolidada.html"><span class="std std-doc">informe consolidado y su actualización final</span></a> separan estos resultados de los antecedentes de selección y de E1.</p>
+<section id="tabla-a2-metricas-finales-medidas">
+<h2>Tabla A2: métricas finales medidas<a class="headerlink" href="#tabla-a2-metricas-finales-medidas" title="Link to this heading">#</a></h2>
+<p>La métrica primaria es la <strong>media de las RMSE individuales de las seis semillas</strong>, en unidades originales de σ₇; <strong>no es la RMSE de un ensamble</strong>. Las redes tienen R=6 y cada comparador determinista una trayectoria, R=1. La tabla se ordena por RMSE ascendente para facilitar la lectura, sin una nueva selección ni ajuste tras observar la evaluación. Todas las filas utilizan <strong>n=608</strong>; sMAPE y cobertura se muestran en porcentaje.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Bloque</p></th>
-<th class="head"><p>Sistemas obligatorios</p></th>
-<th class="head text-right"><p>Cantidad</p></th>
+<tr class="row-odd"><th class="head"><p>Sistema</p></th>
+<th class="head text-right"><p>RMSE media</p></th>
+<th class="head text-right"><p>DE entre semillas</p></th>
+<th class="head text-right"><p>MAE</p></th>
+<th class="head text-right"><p>sMAPE (%)</p></th>
+<th class="head text-right"><p>R² medio</p></th>
+<th class="head text-right"><p>Cobertura 90 % (%)</p></th>
+<th class="head text-right"><p>Anchura media</p></th>
+<th class="head text-right"><p>R</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Top 10, cuatro familias</p></td>
-<td><p>FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder con predictor, TimesNet, TSMixer, TiDE, TimeMixer, PatchTST, iTransformer</p></td>
-<td class="text-right"><p>10</p></td>
+<tr class="row-even"><td><p>LSTM-autoencoder con predictor</p></td>
+<td class="text-right"><p>0,003803430</p></td>
+<td class="text-right"><p>0,000245424</p></td>
+<td class="text-right"><p>0,002776358</p></td>
+<td class="text-right"><p>16,336</p></td>
+<td class="text-right"><p>0,851816</p></td>
+<td class="text-right"><p>96,519</p></td>
+<td class="text-right"><p>0,016126309</p></td>
+<td class="text-right"><p>6</p></td>
 </tr>
-<tr class="row-odd"><td><p>Referencias E1</p></td>
-<td><p>MLP16, LSTM32, GRU32</p></td>
-<td class="text-right"><p>3</p></td>
+<tr class="row-odd"><td><p>ARIMA</p></td>
+<td class="text-right"><p>0,003921625</p></td>
+<td class="text-right"><p>—</p></td>
+<td class="text-right"><p>0,002499710</p></td>
+<td class="text-right"><p>14,277</p></td>
+<td class="text-right"><p>0,843008</p></td>
+<td class="text-right"><p>94,572</p></td>
+<td class="text-right"><p>0,015443316</p></td>
+<td class="text-right"><p>1</p></td>
 </tr>
-<tr class="row-even"><td><p>Comparadores F2a</p></td>
-<td><p>Persistence (naive), SeasonalNaive (estacional), ARIMA</p></td>
-<td class="text-right"><p>3</p></td>
+<tr class="row-even"><td><p>GRU32</p></td>
+<td class="text-right"><p>0,004001162</p></td>
+<td class="text-right"><p>0,000177508</p></td>
+<td class="text-right"><p>0,003033701</p></td>
+<td class="text-right"><p>17,906</p></td>
+<td class="text-right"><p>0,836307</p></td>
+<td class="text-right"><p>96,902</p></td>
+<td class="text-right"><p>0,017453497</p></td>
+<td class="text-right"><p>6</p></td>
 </tr>
-<tr class="row-odd"><td><p><strong>Total</strong></p></td>
-<td><p><strong>13 redes y 3 comparadores</strong></p></td>
-<td class="text-right"><p><strong>16</strong></p></td>
+<tr class="row-odd"><td><p>Persistence</p></td>
+<td class="text-right"><p>0,004085596</p></td>
+<td class="text-right"><p>—</p></td>
+<td class="text-right"><p>0,002353164</p></td>
+<td class="text-right"><p>13,229</p></td>
+<td class="text-right"><p>0,829605</p></td>
+<td class="text-right"><p>93,257</p></td>
+<td class="text-right"><p>0,015117306</p></td>
+<td class="text-right"><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>Inception-1D</p></td>
+<td class="text-right"><p>0,004362441</p></td>
+<td class="text-right"><p>0,000304390</p></td>
+<td class="text-right"><p>0,003175615</p></td>
+<td class="text-right"><p>18,192</p></td>
+<td class="text-right"><p>0,804942</p></td>
+<td class="text-right"><p>91,365</p></td>
+<td class="text-right"><p>0,014553549</p></td>
+<td class="text-right"><p>6</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimeMixer</p></td>
+<td class="text-right"><p>0,004481091</p></td>
+<td class="text-right"><p>0,000722658</p></td>
+<td class="text-right"><p>0,003433893</p></td>
+<td class="text-right"><p>19,636</p></td>
+<td class="text-right"><p>0,790577</p></td>
+<td class="text-right"><p>93,640</p></td>
+<td class="text-right"><p>0,015716682</p></td>
+<td class="text-right"><p>6</p></td>
+</tr>
+<tr class="row-even"><td><p>MLP16</p></td>
+<td class="text-right"><p>0,004517496</p></td>
+<td class="text-right"><p>0,000242434</p></td>
+<td class="text-right"><p>0,003484249</p></td>
+<td class="text-right"><p>19,799</p></td>
+<td class="text-right"><p>0,791175</p></td>
+<td class="text-right"><p>96,464</p></td>
+<td class="text-right"><p>0,019781805</p></td>
+<td class="text-right"><p>6</p></td>
+</tr>
+<tr class="row-odd"><td><p>ResNet-1D</p></td>
+<td class="text-right"><p>0,004543602</p></td>
+<td class="text-right"><p>0,000534018</p></td>
+<td class="text-right"><p>0,003215392</p></td>
+<td class="text-right"><p>17,984</p></td>
+<td class="text-right"><p>0,786834</p></td>
+<td class="text-right"><p>91,036</p></td>
+<td class="text-right"><p>0,013405047</p></td>
+<td class="text-right"><p>6</p></td>
+</tr>
+<tr class="row-even"><td><p>FCN-1D</p></td>
+<td class="text-right"><p>0,004566151</p></td>
+<td class="text-right"><p>0,000264664</p></td>
+<td class="text-right"><p>0,003026539</p></td>
+<td class="text-right"><p>16,743</p></td>
+<td class="text-right"><p>0,786567</p></td>
+<td class="text-right"><p>90,269</p></td>
+<td class="text-right"><p>0,012210834</p></td>
+<td class="text-right"><p>6</p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM32</p></td>
+<td class="text-right"><p>0,004664330</p></td>
+<td class="text-right"><p>0,000097866</p></td>
+<td class="text-right"><p>0,003713159</p></td>
+<td class="text-right"><p>21,341</p></td>
+<td class="text-right"><p>0,777831</p></td>
+<td class="text-right"><p>97,094</p></td>
+<td class="text-right"><p>0,019656346</p></td>
+<td class="text-right"><p>6</p></td>
+</tr>
+<tr class="row-even"><td><p>TimesNet</p></td>
+<td class="text-right"><p>0,004805500</p></td>
+<td class="text-right"><p>0,000591479</p></td>
+<td class="text-right"><p>0,003501517</p></td>
+<td class="text-right"><p>19,450</p></td>
+<td class="text-right"><p>0,761290</p></td>
+<td class="text-right"><p>92,516</p></td>
+<td class="text-right"><p>0,016313454</p></td>
+<td class="text-right"><p>6</p></td>
+</tr>
+<tr class="row-odd"><td><p>TSMixer</p></td>
+<td class="text-right"><p>0,004975357</p></td>
+<td class="text-right"><p>0,000458730</p></td>
+<td class="text-right"><p>0,003541890</p></td>
+<td class="text-right"><p>19,389</p></td>
+<td class="text-right"><p>0,745516</p></td>
+<td class="text-right"><p>92,763</p></td>
+<td class="text-right"><p>0,018125754</p></td>
+<td class="text-right"><p>6</p></td>
+</tr>
+<tr class="row-even"><td><p>iTransformer</p></td>
+<td class="text-right"><p>0,005254319</p></td>
+<td class="text-right"><p>0,000055107</p></td>
+<td class="text-right"><p>0,003973499</p></td>
+<td class="text-right"><p>21,926</p></td>
+<td class="text-right"><p>0,718150</p></td>
+<td class="text-right"><p>85,033</p></td>
+<td class="text-right"><p>0,014448571</p></td>
+<td class="text-right"><p>6</p></td>
+</tr>
+<tr class="row-odd"><td><p>TiDE</p></td>
+<td class="text-right"><p>0,005771842</p></td>
+<td class="text-right"><p>0,001119206</p></td>
+<td class="text-right"><p>0,004122466</p></td>
+<td class="text-right"><p>23,440</p></td>
+<td class="text-right"><p>0,649269</p></td>
+<td class="text-right"><p>92,462</p></td>
+<td class="text-right"><p>0,019351808</p></td>
+<td class="text-right"><p>6</p></td>
+</tr>
+<tr class="row-even"><td><p>PatchTST</p></td>
+<td class="text-right"><p>0,010139304</p></td>
+<td class="text-right"><p>0,000239935</p></td>
+<td class="text-right"><p>0,007666813</p></td>
+<td class="text-right"><p>39,020</p></td>
+<td class="text-right"><p>-0,049941</p></td>
+<td class="text-right"><p>92,873</p></td>
+<td class="text-right"><p>0,030684902</p></td>
+<td class="text-right"><p>6</p></td>
+</tr>
+<tr class="row-odd"><td><p>SeasonalNaive</p></td>
+<td class="text-right"><p>0,012148568</p></td>
+<td class="text-right"><p>—</p></td>
+<td class="text-right"><p>0,008520579</p></td>
+<td class="text-right"><p>42,129</p></td>
+<td class="text-right"><p>-0,506593</p></td>
+<td class="text-right"><p>92,928</p></td>
+<td class="text-right"><p>0,037180183</p></td>
+<td class="text-right"><p>1</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>La <a class="reference download internal" download="" href="../_downloads/f531ace1494720cbbc47c0c77186fd01/benchmark_A2_template.csv"><span class="xref download myst">plantilla A.2 vigente de 16 sistemas</span></a> conserva vacíos los resultados no medidos. Se necesitan recetas seleccionadas, repeticiones justificadas, soporte común, métricas, IC y costes. Retirar dos sistemas opcionales no cierra esas evidencias.</p>
+<p><img alt="RMSE media de los dieciséis sistemas con variación entre semillas" src="../_images/rmse_comparison.svg" /></p>
+<p><strong>Figura.</strong> RMSE media observada; las barras representan <strong>±1 DE entre semillas</strong>, no intervalos de confianza. Los comparadores deterministas se distinguen con otra marca y no reciben barras artificiales de variación entre semillas. La tabla y el CSV conservan la precisión y el alcance de cada métrica.</p>
+<p>La DE describe variación entre inicializaciones. «—» indica que no existe una DE entre semillas para R=1; no significa incertidumbre temporal nula. El CSV conserva toda la precisión numérica y los nombres originales de los sistemas.</p>
+<p>Los IC t del 95 % de la RMSE media de las redes describen <strong>variación de optimización condicionada a esta cronología</strong>. No representan nuevos mercados ni sustituyen el remuestreo temporal de los contrastes. Como referencia:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Sistema</p></th>
+<th class="head"><p>IC95 % t entre semillas de la RMSE media</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>LSTM-autoencoder con predictor</p></td>
+<td><p>[0,003545873; 0,004060986]</p></td>
+</tr>
+<tr class="row-odd"><td><p>GRU32</p></td>
+<td><p>[0,003814880; 0,004187445]</p></td>
+</tr>
+<tr class="row-even"><td><p>ARIMA</p></td>
+<td><p>No aplica: una trayectoria determinista</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los otros intervalos entre semillas están en el <a class="reference download internal" download="" href="../_downloads/484b3adee08dabb2bf49a80094c5a0f8/benchmark_analysis.json"><span class="xref download myst">análisis completo</span></a>.</p>
 </section>
-<section id="del-ajuste-final-a-la-tabla-a2">
-<h2>Del ajuste final a la tabla A2<a class="headerlink" href="#del-ajuste-final-a-la-tabla-a2" title="Link to this heading">#</a></h2>
+<section id="diferencias-practicas-incertidumbre-y-multiplicidad">
+<h2>Diferencias prácticas, incertidumbre y multiplicidad<a class="headerlink" href="#diferencias-practicas-incertidumbre-y-multiplicidad" title="Link to this heading">#</a></h2>
+<p>La familia primaria contiene <strong>20 comparaciones</strong>: cada uno de los diez candidatos frente a <strong>GRU32</strong> y frente a <strong>Persistence</strong>. La ganancia se define como RMSE del comparador menos RMSE del candidato; se contrasta una mejora mayor que <strong>δ=0,00025772842664981106</strong>. El procedimiento principal usa <strong>bootstrap móvil pareado de semillas y posiciones del calendario</strong>, bloques de <strong>14 días</strong>, <strong>4.999 réplicas</strong> y corrección <strong>Holm</strong> sobre la familia. Conserva los supuestos de dependencia local y trayectorias de semillas intercambiables; no se presenta como una prueba exacta de tamaño finito.</p>
+<p><strong>Los veinte p ajustados son 1,0000: no se rechaza la ausencia de mejora práctica en ninguna comparación primaria.</strong> El mejor valor puntual de RMSE no basta para una afirmación confirmatoria. Para el LSTM-autoencoder:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Etapa del protocolo reducido</p></th>
-<th class="head"><p>Evidencia al corte</p></th>
-<th class="head"><p>Pendiente</p></th>
+<tr class="row-odd"><th class="head"><p>Comparador</p></th>
+<th class="head text-right"><p>Ganancia puntual de RMSE</p></th>
+<th class="head"><p>IC95 % bootstrap de la ganancia</p></th>
+<th class="head text-right"><p>p unilateral</p></th>
+<th class="head text-right"><p>p Holm</p></th>
+<th class="head"><p>Rechazo FWER 0,05</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Selección por validación interna</p></td>
-<td><p>Trece recetas ganadoras, con 249 predicciones de validación por receta</p></td>
-<td><p>Conservar las incidencias y el dominio reducido al interpretar los resultados</p></td>
+<tr class="row-even"><td><p>GRU32</p></td>
+<td class="text-right"><p>0,000197733</p></td>
+<td><p>[-0,000137309; 0,000547141]</p></td>
+<td class="text-right"><p>0,6480</p></td>
+<td class="text-right"><p>1,0000</p></td>
+<td><p>No</p></td>
 </tr>
-<tr class="row-odd"><td><p>Reajustes de las trece redes</p></td>
-<td><p><strong>75/78</strong> guardados en A100; Top 10 <strong>60/60</strong></p></td>
-<td><p><strong>3</strong> ajustes de GRU32; la cuarta corrida está admitida al corte</p></td>
-</tr>
-<tr class="row-even"><td><p>Piloto de variabilidad y potencia</p></td>
-<td><p>Sin resultados del piloto actual</p></td>
-<td><p><strong>10 ajustes:</strong> cinco semillas de iTransformer y cinco de GRU32; informar potencia y MDE con R=6</p></td>
-</tr>
-<tr class="row-odd"><td><p>Comparadores y congelación</p></td>
-<td><p>Sin cierre de los tres comparadores ni de los 81 predictores</p></td>
-<td><p>Ejecutar selección y ajuste de comparadores; congelar pesos, escaladores y calibradores</p></td>
-</tr>
-<tr class="row-even"><td><p>Evaluación e inferencia</p></td>
-<td><p>Sin scoring común ni tabla A2 medida</p></td>
-<td><p>Puntuar los 16 sistemas en el mismo soporte y producir métricas, incertidumbre, contrastes y costes</p></td>
+<tr class="row-odd"><td><p>Persistence</p></td>
+<td class="text-right"><p>0,000282166</p></td>
+<td><p>[-0,000168947; 0,000724185]</p></td>
+<td class="text-right"><p>0,4426</p></td>
+<td class="text-right"><p>1,0000</p></td>
+<td><p>No</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>Las calibraciones y los pilotos usan desarrollo anterior a la evaluación; no reemplazan las métricas de testing. La política actual conserva <strong>R=6 por recursos</strong>, y el piloto debe informar su potencia o limitación, sin atribuirle un resultado aún no medido. Las 608 fechas heredadas ya fueron conocidas en E1, de modo que el análisis final conserva interpretación retrospectiva.</p>
-<p>El <a class="reference download internal" download="" href="../_downloads/ce2322748961f074d4caa1cadf35d2af/source_evidence.json"><span class="xref download myst">estado y sus fuentes congeladas</span></a> permiten comprobar este avance. El control remoto registra una reserva activa para GRU32, semilla 271804, posterior a los 75 ajustes guardados. La admisión de esa corrida no se cuenta como un resultado completo ni confirma su avance paso a paso en el kernel privado. La publicación del libro no inicia entrenamientos.</p>
+<p>Frente a persistencia, la mejora puntual es de aproximadamente <strong>6,91 %</strong>, y la ganancia supera δ; sin embargo, su intervalo incluye cero y no queda respaldada tras la corrección de multiplicidad. Frente a GRU32, la mejora puntual es aproximadamente <strong>4,94 %</strong>, pero la diferencia es menor que δ y su intervalo también incluye cero. <strong>Ausencia de rechazo no demuestra equivalencia ni ausencia de efectos.</strong> ARIMA ocupa el segundo lugar descriptivo, pero SAE frente a ARIMA no pertenece a estos veinte contrastes primarios.</p>
+<p>La batería registrada también publica una t pareada entre semillas y una enumeración de cambios de signo como <strong>diagnósticos condicionados al calendario</strong>, además de sensibilidades temporales con bloques de 7 y 28 días. Los dos diagnósticos entre semillas tampoco producen rechazos tras sus correcciones reportadas. La enumeración no demuestra por sí misma el supuesto de simetría; las sensibilidades temporales de 7 y 28 días se presentan sin ajuste y no sustituyen la inferencia primaria. <a class="reference download internal" download="" href="../_downloads/f211a7f0ff0fed486ceb4ad9aa0b8722/primary_contrasts.csv"><span class="xref download myst">Veinte contrastes primarios, CSV</span></a> · <a class="reference download internal" download="" href="../_downloads/484b3adee08dabb2bf49a80094c5a0f8/benchmark_analysis.json"><span class="xref download myst">Batería y sensibilidades completas</span></a>.</p>
+</section>
+<section id="calibracion-y-resultados-negativos">
+<h2>Calibración y resultados negativos<a class="headerlink" href="#calibracion-y-resultados-negativos" title="Link to this heading">#</a></h2>
+<p>Los intervalos predictivos nominales del 90 % se calibraron en desarrollo y permanecieron congelados durante la evaluación. La cobertura media de <strong>iTransformer es 85,03 %</strong>, inferior al nominal; la de <strong>LSTM32 es 97,09 %</strong> y la de SAE <strong>96,52 %</strong>. La sobrecobertura no implica automáticamente una mejor predicción: debe leerse junto con la anchura de los intervalos. FCN-1D queda cerca del nominal, con 90,27 %.</p>
+<p><strong>Persistence obtiene el menor MAE, 0,002353164, y la menor sMAPE, 13,23 %.</strong> SAE mejora el orden por RMSE, no todas las métricas. PatchTST y SeasonalNaive tienen R² medios negativos en este soporte; se conservan como resultados del protocolo, sin elegir otra configuración o recalibrar a partir del periodo evaluado.</p>
+</section>
+<section id="ejecucion-calendario-y-desviaciones-documentadas">
+<h2>Ejecución, calendario y desviaciones documentadas<a class="headerlink" href="#ejecucion-calendario-y-desviaciones-documentadas" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Etapa</p></th>
+<th class="head"><p>Evidencia final</p></th>
+<th class="head"><p>Alcance y límites</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Selección interna</p></td>
+<td><p>Trece recetas cerradas; 231 oportunidades HPO exitosas de 234</p></td>
+<td><p>Dos fallos conocidos y un desenlace desconocido conservados; ninguna sustitución de oportunidad</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ajustes neuronales finales</p></td>
+<td><p><strong>78/78</strong>: seis por red</p></td>
+<td><p>Configuraciones fijadas por validación; entrenamiento y transformaciones finales hasta el 31/10/2024</p></td>
+</tr>
+<tr class="row-even"><td><p>Piloto de potencia y variabilidad</p></td>
+<td><p><strong>10/10</strong>, cinco semillas de iTransformer y cinco de GRU32</p></td>
+<td><p>R=6 permanece una decisión por recursos; <a class="reference download internal" download="" href="../_downloads/04053dcd40476adcda1aecc3977915e8/pilot_power_MDE.json"><span class="xref download myst">piloto y MDE</span></a> documentan su alcance, sin una garantía universal de potencia</p></td>
+</tr>
+<tr class="row-odd"><td><p>Comparadores</p></td>
+<td><p>Persistence, SeasonalNaive y ARIMA evaluados</p></td>
+<td><p>La selección ARIMA conserva una incidencia de implementación, descrita abajo</p></td>
+</tr>
+<tr class="row-even"><td><p>Congelación</p></td>
+<td><p><strong>81 predictores</strong>, con pesos, escaladores y calibradores fijados antes de puntuar</p></td>
+<td><p><a class="reference download internal" download="" href="../_downloads/f8db31dfb4cd9da09a27596c7df67a1f/final_freeze.json"><span class="xref download myst">Recibo de congelación</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Evaluación común</p></td>
+<td><p><strong>16/16 sistemas</strong>, 608 de 608 fechas elegibles</p></td>
+<td><p>Métricas, cobertura y contrastes publicados; evaluación histórica conocida</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La búsqueda ARIMA programó <strong>18 órdenes × 3 folds = 54 oportunidades</strong>: 51 aportaron una validación válida, dos no convergieron y una falló por implementación. <strong>ARIMA(0,0,0) en el fold de enero de 2024 consumió esa oportunidad y no se repitió</strong>. Quedaron <strong>15 de 18 órdenes con los tres folds válidos</strong>; la receta seleccionada fue <strong>ARIMA(2,0,1)</strong>. No se presenta el dominio completo como exitoso ni se borra la incidencia. SeasonalNaive seleccionó periodo <strong>7</strong> entre tres periodos, con sus nueve validaciones válidas. La <a class="reference download internal" download="" href="../_downloads/52f2fcae145fe2461705ed2322b492ea/source_evidence.json"><span class="xref download myst">procedencia final</span></a> conserva los recibos y decisiones.</p>
+<p>La evaluación hereda las <strong>608 fechas ya conocidas de E1</strong>, del 01/01/2025 al 31/08/2026. La <a class="reference download internal" download="" href="../_downloads/1f149477d437c56efd6a2818d858b2bb/data_admission.json"><span class="xref download myst">admisión</span></a> declara exposición previa, puente causal del 31/12/2024, ausencia de refit o retuning tras acceder al periodo evaluado y congelación previa. <strong>No es una prueba ciega recuperada ni una confirmación prospectiva independiente.</strong> El análisis sigue siendo retrospectivo, aunque la selección y la calibración actuales permanezcan separadas de estas fechas.</p>
+<p>El benchmark completado no certifica todos los requisitos de E2. Los análisis de robustez, interpretabilidad, ablaciones, costes comparables y reproducción independiente deben revisarse en la <a class="reference internal" href="38_cumplimiento_guia.html"><span class="std std-doc">matriz de la guía</span></a>, sin convertir métricas no medidas en ceros ni completar requisitos por la sola existencia de A2.</p>
+</section>
+<section id="archivos-actuales-y-cortes-historicos">
+<h2>Archivos actuales y cortes históricos<a class="headerlink" href="#archivos-actuales-y-cortes-historicos" title="Link to this heading">#</a></h2>
+<p><a class="reference download internal" download="" href="../_downloads/878959cd45a45cb509b9c4065aa9d38c/benchmark_A2.csv"><span class="xref download myst">Tabla A2, CSV</span></a> · <a class="reference download internal" download="" href="../_downloads/484b3adee08dabb2bf49a80094c5a0f8/benchmark_analysis.json"><span class="xref download myst">Análisis JSON</span></a> · <a class="reference download internal" download="" href="../_downloads/1f149477d437c56efd6a2818d858b2bb/data_admission.json"><span class="xref download myst">Admisión de datos</span></a> · <a class="reference download internal" download="" href="../_downloads/f8db31dfb4cd9da09a27596c7df67a1f/final_freeze.json"><span class="xref download myst">Congelación</span></a> · <a class="reference download internal" download="" href="../_downloads/04053dcd40476adcda1aecc3977915e8/pilot_power_MDE.json"><span class="xref download myst">Piloto y MDE</span></a> · <a class="reference download internal" download="" href="../_downloads/52f2fcae145fe2461705ed2322b492ea/source_evidence.json"><span class="xref download myst">Fuentes</span></a> · <a class="reference download internal" download="" href="../_downloads/9977a2d95f86d9baa43380cbba292294/manifest.json"><span class="xref download myst">Manifiesto de descargas</span></a>.</p>
+<p>Se conservan la <a class="reference download internal" download="" href="../_downloads/f531ace1494720cbbc47c0c77186fd01/benchmark_A2_template.csv"><span class="xref download myst">plantilla histórica de A2</span></a>, vacía en su corte original, y las descargas de avance de las <a class="reference download internal" download="" href="../_downloads/433b5f0ed32850e57f4599ab43226966/neural_progress.csv"><span class="xref download myst">trece redes a las 09:40</span></a> con sus <a class="reference download internal" download="" href="../_downloads/ce2322748961f074d4caa1cadf35d2af/source_evidence.json"><span class="xref download myst">fuentes congeladas</span></a>. Sus estados pendientes describen aquellas fechas y no reemplazan la tabla medida de esta actualización.</p>
 </section>
 <section id="antecedentes-documentales-del-diseno-de-dieciocho-sistemas">
 <h2>Antecedentes documentales del diseño de dieciocho sistemas<a class="headerlink" href="#antecedentes-documentales-del-diseno-de-dieciocho-sistemas" title="Link to this heading">#</a></h2>
 <p>Los párrafos y tablas siguientes conservan la evolución del diseño anterior. Sus once candidatos, el estudio del híbrido y las obligaciones asociadas no amplían el catálogo obligatorio vigente de dieciséis sistemas.</p>
-<p><strong>Corte anterior a la enmienda de alcance (12/11/2026):</strong> existe selección HPO/NAS registrada para el catálogo anterior, con ejecución parcial documentada; las afirmaciones de ausencia de HPO o de falta de registro de selección corresponden a cortes anteriores. El benchmark final, R y su cierre inferencial siguen pendientes. <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">Registro y alcance actuales (§9)</span></a> · <a class="reference internal" href="40_calendario_original.html"><span class="std std-doc">Calendario (§40)</span></a> · <a class="reference internal" href="41_avance_optimizacion_11_origenes.html"><span class="std std-doc">Corte de resultados (§41)</span></a> · <a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html"><span class="std std-doc">Auditoría y trabajo paralelo (§42)</span></a>.</p>
-<p><strong>Corte histórico anterior del 12/11/2026:</strong> hay selección CUDA parcial documentada en <a class="reference internal" href="36_avance_campana_cuda.html"><span class="std std-doc">§36</span></a> y un corte con 1.484 ajustes HPO nuevos completados en <a class="reference internal" href="41_avance_optimizacion_11_origenes.html"><span class="std std-doc">§41</span></a>. El corte de entrega posterior se resume en §47. La campaña quedó pausada por límite de sesión en ese corte; el benchmark final, R y el ranking siguen pendientes. Los estados «sin HPO» de abajo pertenecen al corte del 08/11/2026, no al estado actual. <a class="reference internal" href="38_cumplimiento_guia.html"><span class="std std-doc">Matriz de exigencias y evidencia</span></a> · <a class="reference internal" href="40_calendario_original.html"><span class="std std-doc">Calendario histórico de once orígenes</span></a>.</p>
+<p><strong>Corte anterior a la enmienda de alcance (12/11/2026):</strong> existe selección HPO/NAS registrada para el catálogo anterior, con ejecución parcial documentada; las afirmaciones de ausencia de HPO o de falta de registro de selección corresponden a cortes anteriores. En aquel corte, el benchmark final, R y su cierre inferencial seguían pendientes. <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">Registro y alcance actuales (§9)</span></a> · <a class="reference internal" href="40_calendario_original.html"><span class="std std-doc">Calendario (§40)</span></a> · <a class="reference internal" href="41_avance_optimizacion_11_origenes.html"><span class="std std-doc">Corte de resultados (§41)</span></a> · <a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html"><span class="std std-doc">Auditoría y trabajo paralelo (§42)</span></a>.</p>
+<p><strong>Corte histórico anterior del 12/11/2026:</strong> hay selección CUDA parcial documentada en <a class="reference internal" href="36_avance_campana_cuda.html"><span class="std std-doc">§36</span></a> y un corte con 1.484 ajustes HPO nuevos completados en <a class="reference internal" href="41_avance_optimizacion_11_origenes.html"><span class="std std-doc">§41</span></a>. El corte de entrega posterior se resume en §47. La campaña quedó pausada por límite de sesión en ese corte; el benchmark final, R y el ranking seguían pendientes en aquel corte. Los estados «sin HPO» de abajo pertenecen al corte del 08/11/2026, no al estado actual. <a class="reference internal" href="38_cumplimiento_guia.html"><span class="std std-doc">Matriz de exigencias y evidencia</span></a> · <a class="reference internal" href="40_calendario_original.html"><span class="std std-doc">Calendario histórico de once orígenes</span></a>.</p>
 <p><strong>Actualización de planificación:</strong> <a class="reference internal" href="19_plan_auditoria.html"><span class="std std-doc">§19: auditoría real de desarrollo y plan propuesto</span></a>. Sin entrenamiento de mercado, HPO ni preregistro nuevo.</p>
-<p><strong>Avance de software:</strong> fábrica de los once candidatos, híbrido y flujo sintético implementados y verificados; recetas provisionales, sin datos de mercado. Véase <a class="reference internal" href="18_integracion_sintetica.html"><span class="std std-doc">§18: integración y pruebas sintéticas</span></a>. En ese corte sintético todavía no se había ejecutado la selección parcial posterior de §41; el benchmark vigente continúa pendiente.</p>
+<p><strong>Avance de software:</strong> fábrica de los once candidatos, híbrido y flujo sintético implementados y verificados; recetas provisionales, sin datos de mercado. Véase <a class="reference internal" href="18_integracion_sintetica.html"><span class="std std-doc">§18: integración y pruebas sintéticas</span></a>. En ese corte sintético todavía no se había ejecutado la selección parcial posterior de §41; el benchmark seguía pendiente en aquel corte.</p>
 <p><strong>Estado al 08/11/2026: sin resultados de mercado del nuevo catálogo.</strong> La presentación de E2 considera únicamente los diez modelos indicados abajo y CNN-1D + LSTM + atención temporal como candidato 11. La expresión «modelo superior» representa la mejora que se desea investigar; no es una conclusión respaldada por evidencia.</p>
-<p>Se conservan cuatro prototipos compactos y un corrector con HAR externo, ahora histórico inactivo, con diez pruebas sintéticas documentadas. El nuevo híbrido tiene receta provisional: está implementado provisionalmente y probado con datos sintéticos, sin entrenamiento de mercado. Las diez pruebas anteriores no lo validan; sus nuevos controles están en §18. Los seis adaptadores existentes se integraron sin reducir sus mecanismos y pasaron el smoke sintético; la auditoría del flujo de mercado sigue pendiente. En ese corte del 08/11 no se habían ejecutado el HPO, el dimensionamiento ni la evaluación de ese conjunto. La selección histórica posterior se documenta en §41. Las métricas de E1, P0 o ETTh1 y las de artículos externos no rellenan sus resultados.</p>
+<p>Se conservan cuatro prototipos compactos y un corrector con HAR externo, ahora histórico inactivo, con diez pruebas sintéticas documentadas. El nuevo híbrido tiene receta provisional: está implementado provisionalmente y probado con datos sintéticos, sin entrenamiento de mercado. Las diez pruebas anteriores no lo validan; sus nuevos controles están en §18. Los seis adaptadores existentes se integraron sin reducir sus mecanismos y pasaron el smoke sintético; la auditoría del flujo de mercado seguía pendiente en aquel corte. En ese corte del 08/11 no se habían ejecutado el HPO, el dimensionamiento ni la evaluación de ese conjunto. La selección histórica posterior se documenta en §41. Las métricas de E1, P0 o ETTh1 y las de artículos externos no rellenan sus resultados.</p>
 </section>
 <section id="tabla-historica-de-los-once-candidatos">
 <h2>6.1 Tabla histórica de los once candidatos<a class="headerlink" href="#tabla-historica-de-los-once-candidatos" title="Link to this heading">#</a></h2>
@@ -599,14 +825,14 @@ q_{m,s}=\sqrt{|\mathcal T|^{-1}\sum_{t\in\mathcal T}(Y_t-\widehat Y_{m,s,t})^2},
 <section id="incertidumbre-eficiencia-y-limites">
 <h2>6.4 Incertidumbre, eficiencia y límites<a class="headerlink" href="#incertidumbre-eficiencia-y-limites" title="Link to this heading">#</a></h2>
 <p><strong>Calendario y semillas representan incertidumbres distintas.</strong> Los remuestreos temporales deben usar bloques comunes de fechas y recalcular cada RMSE antes de agregar. La variación entre semillas describe el entrenamiento condicionado a un calendario; no equivale a observar más mercados. Longitudes de bloque, sensibilidades, número de remuestreos y familias requieren especificación propia, no copia automática del diseño retirado.</p>
-<p>Los intervalos del score no son intervalos predictivos de σ₇. Una rama de calibración exige separación del ajuste y de la selección, un predictor congelado y reglas anteriores al ranking. Su diseño y ejecución para estos once candidatos están pendientes.</p>
+<p>Los intervalos del score no son intervalos predictivos de σ₇. Una rama de calibración exige separación del ajuste y de la selección, un predictor congelado y reglas anteriores al ranking. Su diseño y ejecución para aquellos once candidatos estaban pendientes en ese registro histórico.</p>
 <p>Los costes se medirán con hardware, precisión y protocolo comunes: búsqueda, preentrenamiento, ajuste final, preprocesamiento e inferencia separados. Parámetros, memoria, latencia y FLOPs/MACs deben indicar método y operaciones omitidas. Una magnitud no medida es ausente, no cero. Las fronteras de Pareto y la dominancia puntual tampoco demuestran superioridad con incertidumbre.</p>
 <p>La comparación temporal puede requerir DM y Model Confidence Set conforme a la guía, con pérdidas y unidades apropiadas. DM sobre pérdidas cuadráticas no prueba por sí mismo una ganancia práctica de RMSE. El MCS no establece equivalencia. No se fabricarán datasets independientes usando semillas o meses solapados para pruebas globales entre datasets.</p>
 <p>La reserva ya consultada en etapas anteriores conserva carácter <strong>exploratorio</strong>. Registrar nuevos ajustes no elimina esa exposición. No hay evidencia actual para afirmar generalización a otros activos o regímenes.</p>
 </section>
 <section id="condiciones-de-cierre-tabla-historica-del-08-11">
 <h2>6.5 Condiciones de cierre: tabla histórica del 08/11<a class="headerlink" href="#condiciones-de-cierre-tabla-historica-del-08-11" title="Link to this heading">#</a></h2>
-<p>Los estados de implementación/HPO de esta tabla son antecedentes. Para selección ejecutada consultar <a class="reference internal" href="41_avance_optimizacion_11_origenes.html"><span class="std std-doc">§41</span></a>; el benchmark y análisis finales siguen pendientes.</p>
+<p>Los estados de implementación/HPO de esta tabla son antecedentes. Para selección ejecutada consultar <a class="reference internal" href="41_avance_optimizacion_11_origenes.html"><span class="std std-doc">§41</span></a>; el benchmark y los análisis finales seguían pendientes en aquel corte. La tabla medida actual se presenta al inicio de esta sección.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Etapa del catálogo anterior, corte 08/11</p></th>
@@ -642,7 +868,7 @@ q_{m,s}=\sqrt{|\mathcal T|^{-1}\sum_{t\in\mathcal T}(Y_t-\widehat Y_{m,s,t})^2},
 </tbody>
 </table>
 </div>
-<p>La <a class="reference internal" href="04_implementacion.html"><span class="std std-doc">implementación</span></a>, el <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">preregistro pendiente</span></a>, la <a class="reference internal" href="11_hpo_equidad.html"><span class="std std-doc">equidad de HPO</span></a> y las <a class="reference internal" href="14_arquitecturas.html"><span class="std std-doc">arquitecturas</span></a> desarrollan estas condiciones. El <a class="reference download internal" download="" href="../_downloads/011de7ff547e4a661fbe452900458403/next_phases.json"><span class="xref download myst">plan editorial de fases</span></a> es una ayuda de trabajo, no un preregistro ni un recibo de ejecución.</p>
+<p>La <a class="reference internal" href="04_implementacion.html"><span class="std std-doc">implementación</span></a>, el <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">preregistro histórico</span></a>, la <a class="reference internal" href="11_hpo_equidad.html"><span class="std std-doc">equidad de HPO</span></a> y las <a class="reference internal" href="14_arquitecturas.html"><span class="std std-doc">arquitecturas</span></a> desarrollan estas condiciones. El <a class="reference download internal" download="" href="../_downloads/011de7ff547e4a661fbe452900458403/next_phases.json"><span class="xref download myst">plan editorial de fases</span></a> es una ayuda de trabajo, no un preregistro ni un recibo de ejecución.</p>
 </section>
 <section id="evidencia-historica-separada">
 <h2>6.6 Evidencia histórica separada<a class="headerlink" href="#evidencia-historica-separada" title="Link to this heading">#</a></h2>
@@ -716,8 +942,11 @@ q_{m,s}=\sqrt{|\mathcal T|^{-1}\sum_{t\in\mathcal T}(Y_t-\widehat Y_{m,s,t})^2},
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#catalogo-que-debe-cubrir-la-tabla-final">Catálogo que debe cubrir la tabla final</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#del-ajuste-final-a-la-tabla-a2">Del ajuste final a la tabla A2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-a2-metricas-finales-medidas">Tabla A2: métricas finales medidas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencias-practicas-incertidumbre-y-multiplicidad">Diferencias prácticas, incertidumbre y multiplicidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calibracion-y-resultados-negativos">Calibración y resultados negativos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecucion-calendario-y-desviaciones-documentadas">Ejecución, calendario y desviaciones documentadas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivos-actuales-y-cortes-historicos">Archivos actuales y cortes históricos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#antecedentes-documentales-del-diseno-de-dieciocho-sistemas">Antecedentes documentales del diseño de dieciocho sistemas</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-historica-de-los-once-candidatos">6.1 Tabla histórica de los once candidatos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-debe-medir-una-comparacion-valida">6.2 Qué debe medir una comparación válida</a></li>

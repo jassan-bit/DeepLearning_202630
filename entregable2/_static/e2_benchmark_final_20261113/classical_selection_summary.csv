@@ -1,0 +1,4 @@
+model,selected_parameters,selection_metric,candidate_configurations,eligible_configurations,CV_fold_rows,completed_CV_fold_rows,numerical_failure_CV_fold_rows,implementation_failure_CV_fold_rows,calibration_used_for_selection,eligibility_rule
+Persistence,"{""lag"":1}",pooled_original_unit_CV_RMSE,1,1,0,0,0,0,False,fixed lag1; no hyperparameter selection
+SeasonalNaive,"{""period"":7}",pooled_original_unit_CV_RMSE,3,3,9,9,0,0,False,completed on all three registered CV folds
+ARIMA,"{""order"":[2,0,1]}",pooled_original_unit_CV_RMSE,18,15,54,51,2,1,False,completed on all three registered CV folds

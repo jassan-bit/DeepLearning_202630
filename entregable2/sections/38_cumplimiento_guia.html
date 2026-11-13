@@ -398,7 +398,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-exige-el-pdf-y-que-decidio-el-proyecto">Qué exige el PDF y qué decidió el proyecto</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diversidad-del-top-10">Diversidad del Top 10</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-evidencia">Matriz de evidencia</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#orden-para-completar-la-entrega">Orden para completar la entrega</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cierre-prioritario-con-los-artefactos-disponibles">Cierre prioritario con los artefactos disponibles</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paquete-de-entrega-y-estructura-del-informe">Paquete de entrega y estructura del informe</a></li>
 </ul>
             </nav>
@@ -413,7 +413,8 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="exigencias-de-la-guia-evidencia-y-pendientes">
 <h1>38. Exigencias de la guía, evidencia y pendientes<a class="headerlink" href="#exigencias-de-la-guia-evidencia-y-pendientes" title="Link to this heading">#</a></h1>
-<p><strong>Actualización de evidencia al 13/11/2026, 09:40:00 de Bogotá:</strong> la <a class="reference internal" href="../intro.html"><span class="std std-doc">portada</span></a>, el <a class="reference download internal" download="" href="../_downloads/433b5f0ed32850e57f4599ab43226966/neural_progress.csv"><span class="xref download myst">avance de las trece redes</span></a> y <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a> acreditan <strong>13 selecciones cerradas y 75/78 ajustes finales guardados</strong>. Se contabilizan 231 éxitos HPO, dos fallos y un desenlace desconocido. El presupuesto aplicado es de 80 horas acumuladas. Esta evidencia no cierra por sí sola testing, potencia, robustez, interpretabilidad, ablaciones o reproducción; cada requisito necesita sus propios artefactos.</p>
+<p><strong>Actualización verificada al 13/11/2026, 11:58:36 de Bogotá:</strong> están cerrados los <strong>78 ajustes finales de las trece redes, los diez pilotos y los tres comparadores finales</strong>. La <a class="reference download internal" download="" href="../_downloads/878959cd45a45cb509b9c4065aa9d38c/benchmark_A2.csv"><span class="xref download myst">tabla A2 medida</span></a> evalúa <strong>16 sistemas sobre las mismas 608 fechas</strong>, después de <a class="reference download internal" download="" href="../_downloads/f8db31dfb4cd9da09a27596c7df67a1f/final_freeze.json"><span class="xref download myst">congelar los 81 predictores</span></a>. Se conservan 231 éxitos HPO, dos fallos conocidos y un desenlace desconocido. El presupuesto acumulado sigue en 80 horas. <a class="reference download internal" download="" href="../_downloads/484b3adee08dabb2bf49a80094c5a0f8/benchmark_analysis.json"><span class="xref download myst">Análisis registrado</span></a> · <a class="reference download internal" download="" href="../_downloads/52f2fcae145fe2461705ed2322b492ea/source_evidence.json"><span class="xref download myst">Procedencia del cierre</span></a>.</p>
+<p><strong>El benchmark está ejecutado; la guía no se considera cumplida íntegramente.</strong> La evaluación es retrospectiva sobre el periodo ya conocido de E1. El piloto midió potencia insuficiente para el efecto planificado con R=6. La batería temporal completa, los costes por modelo, la robustez, la explicabilidad, las ablaciones y la reproducción limpia requieren sus evidencias específicas. Los cortes de <a class="reference download internal" download="" href="../_downloads/433b5f0ed32850e57f4599ab43226966/neural_progress.csv"><span class="xref download myst">avance anterior</span></a> conservan su alcance histórico.</p>
 <p><strong>Versión de entrega con lo disponible:</strong> resultados, discusión, conclusiones y descargas en <a class="reference internal" href="47_entrega_consolidada.html"><span class="std std-doc">§47</span></a>. Esta matriz conserva los requisitos sin evidencia para revisión posterior; el cierre documental no los convierte en experimentos completados ni ordena nuevas corridas.</p>
 <p><strong>Requisitos de la guía conservados; decisiones y avance actualizados al corte indicado.</strong> Las matrices estructuradas del 11/11/2026 se mantienen como antecedentes descargables. Fuente: <em>Entregable2DeepLearningProject.pdf</em>, 65 páginas, aportado nuevamente por el usuario. SHA256 del PDF:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>93499dcfda6a36d9621524a81821470017ba114ca6b08241a35de5a54f74a654
@@ -436,7 +437,7 @@
 </tr>
 <tr class="row-odd"><td><p>Validación temporal</p></td>
 <td><p>Origen móvil, embargo, ajuste sin futuro y esquema común</p></td>
-<td><p><strong>§48:</strong> tres folds HPO (enero/julio/octubre de 2024), un corte de ajuste final común al 31/10/2024, calibración separada y evaluación sobre las 608 fechas conocidas de E1. El calendario anterior de diez refits mensuales queda en §45 como antecedente; la evaluación vigente aún debe ejecutarse</p></td>
+<td><p><strong>§48 ejecutado:</strong> tres folds HPO, corte de ajuste final al 31/10/2024, calibración separada y scoring común sobre las 608 fechas conocidas de E1. La admisión y la congelación están registradas; permanece la justificación del alcance de este corte común frente al origen móvil de la guía. Los diez refits mensuales de §45 son antecedentes</p></td>
 </tr>
 <tr class="row-even"><td><p>Aplicación de NAS</p></td>
 <td><p>Sólo diseños no definidos por su fuente; cuerpo publicado definido exento</p></td>
@@ -456,7 +457,7 @@
 </tr>
 <tr class="row-even"><td><p>Repeticiones finales</p></td>
 <td><p>≥5 ejecuciones; ≥6 cuando se usan pruebas de rangos y dimensionamiento por potencia</p></td>
-<td><p><strong>R=6 fijado por recursos</strong>, con 75/78 reajustes guardados; los diez candidatos ya tienen 6/6, y restan tres ajustes de GRU32. Piloto de cinco semillas en iTransformer y GRU32 pendiente para medir potencia/MDE; no se afirma potencia de 0,80</p></td>
+<td><p><strong>78/78 reajustes guardados: R=6 por red.</strong> El piloto completó cinco semillas de iTransformer y cinco de GRU32. Su planificación condicional estima potencia <strong>0,123</strong> al efecto planificado, inferior a 0,80; se conserva R=6 por recursos, sin ampliar semillas automáticamente ni afirmar equivalencia</p></td>
 </tr>
 <tr class="row-odd"><td><p>Coste</p></td>
 <td><p>Estimar antes de buscar; declarar y justificar desviaciones</p></td>
@@ -466,7 +467,7 @@
 </table>
 </div>
 <p><strong>La <a class="reference internal" href="43_catalogo_obligatorio.html"><span class="std std-doc">enmienda de catálogo de §43</span></a> retira el híbrido y Ridge del alcance obligatorio.</strong> Las enmiendas de <a class="reference internal" href="44_arquitecturas_publicadas.html"><span class="std std-doc">arquitectura (§44)</span></a> y <a class="reference internal" href="45_enmienda_protocolo.html"><span class="std std-doc">protocolo (§45)</span></a> conservan su secuencia histórica. El <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">ejecutor reducido y sus actualizaciones (§48)</span></a> ya aplican el catálogo de trece redes y tres comparadores, y registran la receta publicada TiDE r=0 con identidad y limitaciones propias. Los resultados de la antigua variante NAS no se renombran como resultados de esta receta.</p>
-<p><strong>Las reglas ejecutadas de la campaña reducida están en <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>.</strong> La selección ya produjo trece ganadores y el ajuste final es parcial; todavía faltan la evaluación común y los análisis. <a class="reference internal" href="40_calendario_original.html"><span class="std std-doc">§40</span></a> y §45 conservan los calendarios anteriores. Registrar una enmienda y cerrar HPO no acredita por sí solo potencia, cumplimiento integral de la guía ni aceptación institucional de las desviaciones.</p>
+<p><strong>Las reglas y el cierre de la campaña reducida están en <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>.</strong> La selección produjo trece recetas, se completaron los reajustes y el scoring común, y ya existe una tabla de resultados. <a class="reference internal" href="40_calendario_original.html"><span class="std std-doc">§40</span></a> y §45 conservan los calendarios anteriores. La ejecución y sus enmiendas no acreditan por sí solas cumplimiento integral de la guía ni aceptación institucional de sus desviaciones.</p>
 </section>
 <section id="diversidad-del-top-10">
 <h2>Diversidad del Top 10<a class="headerlink" href="#diversidad-del-top-10" title="Link to this heading">#</a></h2>
@@ -546,14 +547,14 @@
 <tr class="row-odd"><td><p>G06</p></td>
 <td><p>§§3.2, 7.4 F2a, pp. 11, 30–31</p></td>
 <td><p>Tres bases E1 y baselines naive, estacional y ARIMA o ETS</p></td>
-<td><p><strong>Implementación parcial</strong></p></td>
-<td><p><a class="reference internal" href="07_ruta_temporal.html"><span class="std std-doc">Evidencia documentada</span></a>. Ejecutar comparadores con soporte común y ajuste justo. Los resultados E1 conocidos no sustituyen reajustes de E2.</p></td>
+<td><p><strong>Comparación común ejecutada; auditoría de ajuste parcial</strong></p></td>
+<td><p><a class="reference download internal" download="" href="../_downloads/878959cd45a45cb509b9c4065aa9d38c/benchmark_A2.csv"><span class="xref download myst">A2 medida</span></a>: MLP16/LSTM32/GRU32 se reajustaron con seis semillas; Persistence, SeasonalNaive y ARIMA tienen un predictor determinista cada uno. ARIMA conservó 51/54 folds con RMSE válida, dos faltas de convergencia y un fallo de implementación sin repetir; 15/18 órdenes resultaron elegibles y ganó (2,0,1). Explicar el esfuerzo de ajuste y no confundir R=1 determinista con estimación de variabilidad por semilla.</p></td>
 </tr>
 <tr class="row-even"><td><p>G07</p></td>
 <td><p>§§4.1, 7.4 F2a, pp. 12–13, 30–31</p></td>
 <td><p>Cronología, origen móvil, embargo y disponibilidad de covariables</p></td>
-<td><p><strong>Selección temporal ejecutada; evaluación pendiente</strong></p></td>
-<td><p><a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">Calendario vigente de §48</span></a>: tres folds internos, ajuste final común, embargo y calibración separados. Acreditar causalidad, soporte y desagregación temporal en la evaluación; justificar su alcance frente a la guía. Los diez refits mensuales de §45 son antecedentes; once búsquedas no son mandato literal del PDF.</p></td>
+<td><p><strong>Evaluación común ejecutada; justificación temporal parcial</strong></p></td>
+<td><p><a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">Calendario y admisión de §48</span></a>: tres folds internos, ajuste final común, embargo, calibración y soporte común de 608 fechas. Completar desagregación y diagnósticos temporales; justificar el alcance del corte común frente a la guía. Los diez refits mensuales de §45 son antecedentes; once búsquedas no son mandato literal del PDF.</p></td>
 </tr>
 <tr class="row-odd"><td><p>G08</p></td>
 <td><p>§10, pp. 44–46</p></td>
@@ -564,8 +565,8 @@
 <tr class="row-even"><td><p>G09</p></td>
 <td><p>§§4.3, 9, pp. 14, 42–43</p></td>
 <td><p>Preregistro real, repeticiones y potencia ≥0,80 o limitación/MDE</p></td>
-<td><p><strong>R registrado; potencia pendiente</strong></p></td>
-<td><p><a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">Protocolo vigente de §48</span></a>: R=6 por recursos, diez ajustes piloto —cinco semillas de iTransformer y cinco de GRU32— sobre 08/11–30/12/2024, separados de HPO y testing. Ejecutar el piloto y reportar potencia/MDE y sensibilidad temporal para la familia primaria registrada. No afirmar potencia de 0,80 ni aumentar semillas automáticamente si el análisis no la sostiene.</p></td>
+<td><p><strong>Piloto ejecutado; potencia limitada</strong></p></td>
+<td><p><a class="reference download internal" download="" href="../_downloads/04053dcd40476adcda1aecc3977915e8/pilot_power_MDE.json"><span class="xref download myst">Piloto y MDE</span></a>: cinco pares de semillas, dos representantes y 53 fechas de desarrollo. Con R=6 y α=0,0025, potencia condicional <strong>0,123</strong> para una ganancia de 2δ; ganancia mínima para potencia 0,80 <strong>0,000878674</strong>. Se declara la limitación; no se generaliza esa potencia a todos los contrastes ni se amplía R tras ver prueba.</p></td>
 </tr>
 <tr class="row-odd"><td><p>G10</p></td>
 <td><p>§11, pp. 46–48</p></td>
@@ -588,20 +589,20 @@
 <tr class="row-even"><td><p>G13</p></td>
 <td><p>§6 y Apéndice A, pp. 17–20, 61–62</p></td>
 <td><p>Tabla de benchmark con medias, DE, IC y costes; ranking y Pareto</p></td>
-<td><p><strong>Pendiente de resultados finales</strong></p></td>
-<td><p><a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">Evidencia documentada</span></a>. Evaluar todos los sistemas en soporte común con R fijado; añadir parámetros, FLOPs, latencia, recursos, calibración y robustez. No rellenar con métricas de otros estudios.</p></td>
+<td><p><strong>A2 ejecutada; tabla integral parcial</strong></p></td>
+<td><p><a class="reference download internal" download="" href="../_downloads/878959cd45a45cb509b9c4065aa9d38c/benchmark_A2.csv"><span class="xref download myst">A2 medida</span></a> contiene RMSE media por semilla, DE, secundarias, cobertura y anchura de intervalos; R=6 para redes y R=1 para clásicos. Completar IC del score por modelo, parámetros, FLOPs, latencia, memoria, tiempos y Pareto a partir de artefactos verificables. La DE entre semillas no sustituye al IC del score.</p></td>
 </tr>
 <tr class="row-odd"><td><p>G14</p></td>
 <td><p>§§6.3, 7.3, 7.4 F2a, pp. 18–19, 21–31</p></td>
 <td><p>Bondad de ajuste, sobreajuste y diferencias con pruebas admisibles</p></td>
-<td><p><strong>Código/plan parciales</strong></p></td>
-<td><p><a class="reference internal" href="13_agregacion_estadistica.html"><span class="std std-doc">Evidencia documentada</span></a>. Preespecificar batería pertinente, al menos tres pruebas admisibles por contraste confirmatorio, supuestos y multiplicidad. Incluir diagnósticos temporales, calibración y DM-HLN donde corresponda; no tratar semillas/orígenes solapados como datasets iid.</p></td>
+<td><p><strong>Familia registrada ejecutada; batería de la guía parcial</strong></p></td>
+<td><p><a class="reference download internal" download="" href="../_downloads/484b3adee08dabb2bf49a80094c5a0f8/benchmark_analysis.json"><span class="xref download myst">Análisis final</span></a>: 20 contrastes primarios por bootstrap temporal con Holm; t y cambio de signo por semilla figuran como diagnósticos condicionados al mismo calendario. El indicador interno de tres pruebas no acredita por sí solo la combinación de tres pruebas distintas y admisibles de §7.3. Auditar supuestos/unidades y completar Tablas A/B/C, residuos, estabilidad temporal y comparación validación–prueba; no tratar seis semillas como seis mercados independientes.</p></td>
 </tr>
 <tr class="row-even"><td><p>G15</p></td>
 <td><p>§§7.3, 13, pp. 22–27, 50–51</p></td>
 <td><p>IC, efectos y remuestreo que respete dependencia</p></td>
-<td><p><strong>Pendiente de análisis final</strong></p></td>
-<td><p><a class="reference internal" href="13_agregacion_estadistica.html"><span class="std std-doc">Evidencia documentada</span></a>. Justificar bloques temporales, ≥2.000 remuestreos para IC y ≥10.000 para contraste pareado aplicable; reportar p exactos y ajustados, efecto e IC, unidad y familia.</p></td>
+<td><p><strong>Efectos e IC calculados; desviación de remuestreo declarada</strong></p></td>
+<td><p><a class="reference download internal" download="" href="../_downloads/f211a7f0ff0fed486ceb4ad9aa0b8722/primary_contrasts.csv"><span class="xref download myst">Contrastes primarios</span></a>: bloques de 14 días y <strong>4.999</strong> remuestreos, IC95 y p de Monte Carlo ajustados por Holm en la familia de 20. Las sensibilidades de 7/28 días son diagnósticas sin ajuste. Se supera el mínimo de 2.000 para IC, pero no los 10.000 de la prueba pareada aplicable de Tabla C; documentar la desviación y cualquier análisis adicional de predicciones fijas como posterior, sin retocar modelos ni repetir selección.</p></td>
 </tr>
 <tr class="row-odd"><td><p>G16</p></td>
 <td><p>§4.6, p. 16</p></td>
@@ -612,20 +613,20 @@
 <tr class="row-even"><td><p>G17</p></td>
 <td><p>§4.6, p. 16</p></td>
 <td><p>Explicabilidad del Top 3, fidelidad y estabilidad entre semillas</p></td>
-<td><p><strong>Pendiente de identificar Top 3</strong></p></td>
-<td><p><a class="reference internal" href="12_incertidumbre_errores.html"><span class="std std-doc">Evidencia documentada</span></a>. Aplicar técnica pertinente con borrado/inserción y estabilidad; mapas de atención aislados no acreditan fidelidad.</p></td>
+<td><p><strong>Ranking disponible; explicación pendiente</strong></p></td>
+<td><p><a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">Resultados</span></a>: declarar el Top 3 al que se aplica la explicación y usar una técnica pertinente, con borrado/inserción y estabilidad entre semillas. Puede trabajarse con pesos congelados; mapas de atención aislados no acreditan fidelidad. No sustituir una clasificación descriptiva por superioridad inferencial.</p></td>
 </tr>
 <tr class="row-odd"><td><p>G18</p></td>
 <td><p>§4.6, p. 16</p></td>
 <td><p>Ablación del mejor modelo con ≥3 componentes e inferencia</p></td>
-<td><p><strong>Pendiente de identificar ganador</strong></p></td>
-<td><p><a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">Evidencia documentada</span></a>. Aislar tres aportes con las mismas semillas y controles; no asumir que el híbrido será el mejor.</p></td>
+<td><p><strong>Pendiente</strong></p></td>
+<td><p>LSTM-autoencoder tiene la menor RMSE observada. Aún no consta una ablación de tres componentes con iguales semillas e inferencia por diferencia. La retirada de una entrada o módulo sólo en inferencia es un diagnóstico, no prueba de una ablación entrenada comparable. El cierre documental no ejecuta nuevas ablaciones ni cambia la receta principal a partir de la prueba.</p></td>
 </tr>
 <tr class="row-even"><td><p>G19</p></td>
 <td><p>§12, pp. 48–50</p></td>
 <td><p>Referencia de techo/margen γ, incertidumbre y errores por segmentos</p></td>
-<td><p><strong>Parcial</strong></p></td>
-<td><p><a class="reference internal" href="12_incertidumbre_errores.html"><span class="std std-doc">Evidencia documentada</span></a>. Justificar referencia y γ sin llamar a persistencia techo de Bayes; calibración disjunta, cobertura y ≥100 casos estratificados por modelo principal, según aplicabilidad.</p></td>
+<td><p><strong>Cobertura calculada; diagnóstico y techo parciales</strong></p></td>
+<td><p><a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">A2 y análisis</span></a> publican cobertura nominal 90 % y anchura media con calibración de desarrollo separada. Falta justificar referencia/γ sin llamar a persistencia techo de Bayes, revisar cobertura condicional y dependencia temporal, y documentar ≥100 errores estratificados por modelo principal y sus categorías. Cobertura marginal alta no demuestra calibración condicional ni suficiencia del modelo.</p></td>
 </tr>
 <tr class="row-odd"><td><p>G20</p></td>
 <td><p>§8, pp. 40–41; Entregables, pp. 58–59</p></td>
@@ -636,23 +637,23 @@
 <tr class="row-even"><td><p>G21</p></td>
 <td><p>§6.4, p. 20; estructura, p. 62</p></td>
 <td><p>Resumen ≤250 palabras, discusión por RQ, conclusiones y amenazas</p></td>
-<td><p><strong>Provisional</strong></p></td>
-<td><p><a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">Evidencia documentada</span></a>. Redactar resumen final con cifras y responder hipótesis sólo tras análisis; conservar explícitos resultados negativos, incertidumbre y limitaciones.</p></td>
+<td><p><strong>Resultados y discusión actualizados; revisión editorial parcial</strong></p></td>
+<td><p><a class="reference internal" href="47_entrega_consolidada.html"><span class="std std-doc">Informe consolidado</span></a> y <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">benchmark</span></a>: responder RQ con los contrastes y conservar resultados negativos, incertidumbre, baja potencia y exposición histórica. Revisar extensión del resumen y coherencia de todos los capítulos antes de la entrega.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </section>
-<section id="orden-para-completar-la-entrega">
-<h2>Orden para completar la entrega<a class="headerlink" href="#orden-para-completar-la-entrega" title="Link to this heading">#</a></h2>
+<section id="cierre-prioritario-con-los-artefactos-disponibles">
+<h2>Cierre prioritario con los artefactos disponibles<a class="headerlink" href="#cierre-prioritario-con-los-artefactos-disponibles" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
-<li><p><strong>Cerrar el método:</strong> consolidar preregistro/enmiendas con fecha real, taxonomía y puntajes Top 10, auditoría de fuga, unidades/familias de contraste y presupuesto completo. Registrar cualquier cambio antes de nuevos trabajos afectados; no afirmar preregistro retroactivo.</p></li>
-<li><p><strong>Completar dimensionamiento y ajustes finales:</strong> la selección reducida está cerrada. Restan 60 reajustes neuronales y los diez pilotos para medir potencia/MDE de R=6; conservar las incidencias y sus costes. Resolver cualquier requisito NAS que siga siendo aplicable, sin llamar NAS a las seis plazas HPO. El contador de intentos no es un porcentaje de terminación del proyecto.</p></li>
-<li><p><strong>Completar evaluación común:</strong> ejecutar los comparadores, congelar pesos y calibradores, cerrar soporte y producir tablas con IC, costes y diagnósticos. El test conocido mantiene interpretación retrospectiva y exploratoria.</p></li>
-<li><p><strong>Completar análisis exigidos:</strong> inferencia temporal con multiplicidad, robustez, incertidumbre/calibración, explicabilidad del Top 3, ablaciones del mejor y análisis de errores.</p></li>
-<li><p><strong>Cerrar informe y reproducción:</strong> responder cada RQ, distinguir significancia de relevancia práctica, completar discusión/amenazas, ejecutar reproducción limpia y generar las descargas verificadas.</p></li>
+<li><p><strong>Consolidar resultados y trazabilidad:</strong> usar la A2 real, los 78 recibos de ajuste, los tres predictores clásicos, el piloto y la congelación. Conservar enmiendas con fecha real, fallos, costes, exposición previa y el carácter retrospectivo del análisis; no reabrir HPO ni aumentar R automáticamente.</p></li>
+<li><p><strong>Completar el reporte cuantitativo:</strong> agregar costes y parámetros desde los recibos, distinguir lo medido de lo estimado y generar Pareto sólo para métricas verificadas. Añadir IC del score, segmentos temporales, cobertura condicional y taxonomía de errores a partir de las predicciones ya fijadas. No inventar FLOPs, memoria o latencia ausentes.</p></li>
+<li><p><strong>Auditar la inferencia:</strong> contrastar la batería registrada con §7.3, documentar los 4.999 remuestreos y los supuestos de dependencia. Los análisis adicionales permitidos sobre predicciones congeladas deben identificarse como posteriores; no cambian el ranking registrado, la receta, las semillas ni la familia primaria retrospectivamente.</p></li>
+<li><p><strong>Separar diagnósticos que faltan:</strong> robustez con tres severidades y explicaciones con fidelidad/estabilidad pueden evaluarse usando los pesos congelados. Las ablaciones comparables de tres componentes aún no constan; no se presentan como realizadas ni se sustituyen por una gráfica. Cualquier requisito que no pueda cerrarse con los artefactos existentes queda explícitamente pendiente, sin ordenar aquí nuevas corridas.</p></li>
+<li><p><strong>Cerrar informe y reproducción:</strong> comprobar respuestas por RQ, resumen ≤250 palabras, limitaciones y referencias; completar Apéndice B con una reproducción en entorno limpio y discrepancia máxima reportada. La presencia de archivos y hashes por sí sola no acredita esa reproducción.</p></li>
 </ol>
-<p>El orden anterior es el trabajo que resta; no declara que el método esté cerrado porque ya existan ajustes parciales.</p>
+<p>Este orden prioriza análisis y documentación reutilizables. El benchmark ejecutado no es un porcentaje de cumplimiento integral ni demuestra equivalencia o adecuación de los modelos.</p>
 </section>
 <section id="paquete-de-entrega-y-estructura-del-informe">
 <h2>Paquete de entrega y estructura del informe<a class="headerlink" href="#paquete-de-entrega-y-estructura-del-informe" title="Link to this heading">#</a></h2>
@@ -770,7 +771,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-exige-el-pdf-y-que-decidio-el-proyecto">Qué exige el PDF y qué decidió el proyecto</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diversidad-del-top-10">Diversidad del Top 10</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-evidencia">Matriz de evidencia</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#orden-para-completar-la-entrega">Orden para completar la entrega</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cierre-prioritario-con-los-artefactos-disponibles">Cierre prioritario con los artefactos disponibles</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paquete-de-entrega-y-estructura-del-informe">Paquete de entrega y estructura del informe</a></li>
 </ul>
   </nav></div>

@@ -395,6 +395,9 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-principal-del-benchmark-final">Resultado principal del benchmark final</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-se-entrega-ahora-y-que-sigue-abierto">Qué se entrega ahora y qué sigue abierto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-historico-cierre-documental-del-12-11-2026">Archivo histórico: cierre documental del 12/11/2026</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen">Resumen</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenido-de-la-entrega">Contenido de la entrega</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-existentes-de-seleccion">Resultados existentes de selección</a></li>
@@ -416,7 +419,28 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="entrega-consolidada-con-la-evidencia-disponible">
 <h1>47. Entrega consolidada con la evidencia disponible<a class="headerlink" href="#entrega-consolidada-con-la-evidencia-disponible" title="Link to this heading">#</a></h1>
+<p><strong>Actualización final verificada al 13/11/2026, 11:58:36 de Bogotá.</strong> El benchmark común ya está ejecutado: <strong>78 ajustes neuronales finales, 10 pilotos, tres comparadores y 81 predictores congelados</strong> dieron lugar a resultados de los <strong>16 sistemas en las mismas 608 fechas conocidas de E1</strong>. La <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">tabla principal y el análisis actualizado (§6)</span></a> contienen las métricas completas, los contrastes, la calibración y las desviaciones registradas. El archivo documental del 12 de noviembre se conserva más abajo con su alcance original.</p>
+<section id="resultado-principal-del-benchmark-final">
+<h2>Resultado principal del benchmark final<a class="headerlink" href="#resultado-principal-del-benchmark-final" title="Link to this heading">#</a></h2>
+<p>El <strong>LSTM-autoencoder con predictor presenta la menor RMSE media observada: 0,003803430</strong>, con DE entre semillas <strong>0,000245424</strong>. ARIMA obtiene <strong>0,003921625</strong> y GRU32 <strong>0,004001162</strong>. La persistencia obtiene el menor <strong>MAE, 0,002353164</strong>, y la menor <strong>sMAPE, 13,23 %</strong>. Cada posición corresponde a la métrica indicada; no se proclama un ganador universal.</p>
+<p>La métrica primaria promedia las RMSE de las seis semillas de cada red, no las predicciones de un ensamble. La evaluación utiliza R=6 para las trece redes y una trayectoria por comparador determinista. El IC95 % t de SAE, <strong>[0,003545873; 0,004060986]</strong>, describe variación entre semillas condicionada a este calendario; no sustituye incertidumbre temporal ni datos independientes.</p>
+<p><strong>Ninguno de los 20 contrastes primarios de mejora práctica rechazó tras Holm; todos sus p ajustados son 1,0000.</strong> El bootstrap principal conserva bloques de 14 días y 4.999 réplicas. La mejora puntual SAE frente a persistencia es de <strong>6,91 %</strong>, pero su IC de ganancia incluye cero. Frente a GRU32, la diferencia puntual es menor que δ. Por tanto, la conclusión confirmatoria es limitada: <strong>la menor RMSE observada no demuestra una mejora práctica general, y la ausencia de rechazo tampoco demuestra equivalencia</strong>. Las sensibilidades, diagnósticos entre semillas y limitaciones se publican junto a la tabla.</p>
+</section>
+<section id="que-se-entrega-ahora-y-que-sigue-abierto">
+<h2>Qué se entrega ahora y qué sigue abierto<a class="headerlink" href="#que-se-entrega-ahora-y-que-sigue-abierto" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Ejecutado:</strong> selección de trece recetas, 78/78 ajustes finales, 10/10 pilotos, tres comparadores, congelación y evaluación común de dieciséis sistemas; <a class="reference download internal" download="" href="../_downloads/878959cd45a45cb509b9c4065aa9d38c/benchmark_A2.csv"><span class="xref download myst">métricas A2 originales</span></a>.</p></li>
+<li><p><strong>Auditable:</strong> <a class="reference download internal" download="" href="../_downloads/484b3adee08dabb2bf49a80094c5a0f8/benchmark_analysis.json"><span class="xref download myst">análisis y contrastes</span></a>, <a class="reference download internal" download="" href="../_downloads/1f149477d437c56efd6a2818d858b2bb/data_admission.json"><span class="xref download myst">admisión de datos</span></a>, <a class="reference download internal" download="" href="../_downloads/f8db31dfb4cd9da09a27596c7df67a1f/final_freeze.json"><span class="xref download myst">congelación</span></a>, <a class="reference download internal" download="" href="../_downloads/04053dcd40476adcda1aecc3977915e8/pilot_power_MDE.json"><span class="xref download myst">piloto y MDE</span></a>, <a class="reference download internal" download="" href="../_downloads/52f2fcae145fe2461705ed2322b492ea/source_evidence.json"><span class="xref download myst">procedencia</span></a> y <a class="reference download internal" download="" href="../_downloads/9977a2d95f86d9baa43380cbba292294/manifest.json"><span class="xref download myst">manifiesto</span></a>.</p></li>
+<li><p><strong>Limitaciones conservadas:</strong> evaluación retrospectiva en el calendario ya conocido de E1; ninguna recuperación de cegamiento; R=6 por recursos y alcance del piloto declarado; dos fallos HPO y un desenlace desconocido; fallo ARIMA(0,0,0) de enero sin repetir la oportunidad, dos no convergencias y 15/18 órdenes completamente elegibles; ARIMA(2,0,1) y periodo estacional 7 seleccionados por validación. Los intervalos y los resultados negativos también se reportan.</p></li>
+<li><p><strong>Requisitos que aún deben comprobarse:</strong> robustez, interpretabilidad, ablaciones, comparación de recursos y reproducción independiente. Completar el benchmark no equivale por sí solo a completar toda la guía; la <a class="reference internal" href="38_cumplimiento_guia.html"><span class="std std-doc">matriz de cumplimiento (§38)</span></a> mantiene las evidencias y carencias.</p></li>
+</ul>
+<p>No se modificaron pesos, escaladores, calibradores ni hiperparámetros después de observar la evaluación para favorecer estas conclusiones. No se selecciona otra receta por el orden final de A2.</p>
+</section>
+<section id="archivo-historico-cierre-documental-del-12-11-2026">
+<h2>Archivo histórico: cierre documental del 12/11/2026<a class="headerlink" href="#archivo-historico-cierre-documental-del-12-11-2026" title="Link to this heading">#</a></h2>
+<p><strong>Todo el texto y las descargas que siguen conservan el corte del 12 de noviembre.</strong> Sus estados «benchmark pendiente», sus contadores y su saldo presupuestario corresponden a ese antecedente. La actualización de arriba y §6 presentan el benchmark ejecutado del 13 de noviembre; el paquete ZIP histórico se mantiene sin sobrescribir sus bytes.</p>
 <p><strong>Cierre solicitado: utilizar los experimentos y archivos existentes, sin iniciar nuevas corridas.</strong> Este capítulo reúne resultados, discusión, conclusiones y archivos. Los diseños anteriores permanecen identificados en sus capítulos originales.</p>
+</section>
 <section id="resumen">
 <h2>Resumen<a class="headerlink" href="#resumen" title="Link to this heading">#</a></h2>
 <p>Se estudia el pronóstico diario de volatilidad de Bitcoin mediante siete días de OHLCV y horizonte de un día. El objetivo es la desviación estándar poblacional de siete retornos logarítmicos, sin anualización. Se conserva el contrato de E1 y su margen de relevancia práctica. El trabajo aporta un EDA orientado a decisiones, revisión de literatura, implementaciones y adaptaciones D7, una réplica parcial de TimeMixer en ETTh1 y evidencia trazable de selección experimental. El corte disponible reúne 1.705 resultados de la campaña optimizada y 1.802 registros anteriores: 3.507 registros entre ambos historiales. No representan 3.507 modelos finales ni una comparación terminada de los dieciséis sistemas obligatorios. La réplica externa, con cinco semillas, cumple su criterio previo de compatibilidad numérica; no demuestra precisión sobre Bitcoin. El antecedente E1 muestra que la persistencia es un comparador exigente. Los resultados disponibles sostienen conclusiones sobre datos, mecanismos y ejecución, pero no permiten proclamar un ganador del catálogo vigente. Se entrega la evidencia existente con configuraciones, costes, métricas y fuentes, sin completar tablas con resultados sintéticos o de recetas diferentes.</p>
@@ -454,7 +478,7 @@
 </section>
 <section id="resultados-existentes-de-seleccion">
 <h2>Resultados existentes de selección<a class="headerlink" href="#resultados-existentes-de-seleccion" title="Link to this heading">#</a></h2>
-<p>El corte más reciente corresponde al commit <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/795844308c07cbc160d3dd1feb6284b5f443bb20"><code class="docutils literal notranslate"><span class="pre">795844308c07</span></code></a>, cerrado el <strong>12/11/2026 a las 12:53:37 UTC</strong>. Su diario quedó <code class="docutils literal notranslate"><span class="pre">paused_campaign_budget</span></code>, con cierre de sesión registrado. Son archivos versionados, no una lectura en vivo de Colab.</p>
+<p>El corte de este archivo histórico corresponde al commit <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/795844308c07cbc160d3dd1feb6284b5f443bb20"><code class="docutils literal notranslate"><span class="pre">795844308c07</span></code></a>, cerrado el <strong>12/11/2026 a las 12:53:37 UTC</strong>. Su diario quedó <code class="docutils literal notranslate"><span class="pre">paused_campaign_budget</span></code>, con cierre de sesión registrado. Son archivos versionados, no una lectura en vivo de Colab.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Indicador</p></th>
@@ -658,6 +682,9 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-principal-del-benchmark-final">Resultado principal del benchmark final</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-se-entrega-ahora-y-que-sigue-abierto">Qué se entrega ahora y qué sigue abierto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-historico-cierre-documental-del-12-11-2026">Archivo histórico: cierre documental del 12/11/2026</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen">Resumen</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenido-de-la-entrega">Contenido de la entrega</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-existentes-de-seleccion">Resultados existentes de selección</a></li>

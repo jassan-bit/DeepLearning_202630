@@ -2,93 +2,86 @@
 
 **Deep Learning · 2026-30 · Jassan Arteta**
 
-**Avance verificado al 13/11/2026, 09:40:00 de Bogotá.** La selección de configuraciones está cerrada para las **trece redes** del catálogo. Se conservan **231 corridas HPO exitosas de 234 oportunidades**, dos fallos conocidos y un intento con desenlace desconocido, sin repetirlos. Ya están guardados **75 de los 78 ajustes finales previstos**: los diez candidatos completaron seis semillas cada uno, al igual que MLP16 y LSTM32; GRU32 conserva tres de sus seis ajustes. [Instantánea y procedencia](_static/e2_progress_final_20261113_v2/progress_snapshot.json) · [Avance de las trece redes, CSV](_static/e2_progress_final_20261113_v2/neural_progress.csv).
+**Evaluación final completada. Corte verificado: 13/11/2026, 11:58:36 de Bogotá.** Se evaluaron los **16 sistemas en las mismas 608 fechas**. Están guardados los **78 ajustes finales neuronales**, los **10 pilotos**, los tres comparadores y la congelación de **81 predictores**, con pesos, escaladores y calibradores. La ejecución terminó con código de salida **0** y respaldo verificado en **GitHub**.
 
-**Protocolo vigente:** diez candidatos, tres referencias E1 y tres comparadores, **16 sistemas**. Se mantienen seis configuraciones HPO por red, una semilla y tres orígenes internos; el presupuesto autorizado y aplicado es de **80 horas acumuladas**, con un máximo prospectivo de **30 minutos por fase**. Las transiciones y reanudaciones conservan los resultados históricos y sus cargos; GitHub es el destino persistente. [Reglas, fuentes y actualizaciones (§48)](sections/48_protocolo_reducido.md).
+**[Resultados finales y discusión (§6)](sections/06_benchmark_final.md)** · **[Tabla A2 medida, CSV](_static/e2_benchmark_final_20261113/benchmark_A2.csv)** · **[20 contrastes primarios](_static/e2_benchmark_final_20261113/primary_contrasts.csv)** · **[Fuentes y hashes](_static/e2_benchmark_final_20261113/source_evidence.json)**
 
-**El testing final sigue pendiente.** Los recibos actuales acreditan selección mediante validación interna y los ajustes finales guardados; todavía no aportan la tabla A2 ni un ganador del catálogo. Completar las seis semillas de una red no cierra su evaluación. Los cortes consolidados anteriores conservan su fecha y alcance.
+## Resumen
 
-**Versión de entrega consolidada con la evidencia disponible al 12/11/2026.** Se reúnen problema, EDA, literatura, implementaciones, experimentos ejecutados y conclusiones. Este cierre utiliza resultados guardados y no inicia nuevas corridas.
+Se estudia el pronóstico diario de volatilidad de Bitcoin a partir de siete días de OHLCV, con horizonte de un día y objetivo σ₇ poblacional de retornos de Close, sin anualización. El benchmark reúne diez candidatos de cuatro familias, tres referencias neuronales de E1 y tres comparadores estadísticos. La selección reducida usa seis configuraciones y tres orígenes internos por red; cada receta neuronal final se repite con seis semillas. Los 16 sistemas se evalúan sobre las mismas 608 fechas conocidas de E1, manteniendo congelados los pesos, escaladores, calibradores y el análisis.
 
-**[Leer el informe consolidado, resultados y conclusiones (§47)](sections/47_entrega_consolidada.md)** · **[Descargar el paquete de entrega](_static/delivery_20261112/Entregable2_evidencia_disponible.zip)**
+El LSTM-autoencoder con predictor obtiene el menor RMSE medio observado, **0,00380343**, seguido de ARIMA, **0,00392162**, y GRU32, **0,00400116**. Persistencia obtiene el menor MAE y sMAPE. Ninguno de los 20 contrastes primarios demuestra la mejora práctica registrada con corrección de Holm; esto tampoco establece equivalencia. Los resultados describen una evaluación retrospectiva del calendario heredado y no una prueba prospectiva nueva. El piloto no alcanza la potencia objetivo para el efecto planificado. El informe conserva el presupuesto acumulado de 80 horas, los fallos y sus cargos. Quedan requisitos de robustez, explicabilidad, ablaciones, eficiencia, diagnóstico estadístico y reproducción por cerrar o verificar.
 
-## Resumen del trabajo
+## Qué quedó completado
 
-Se estudia el pronóstico diario de volatilidad de Bitcoin: **siete días de OHLCV → σ₇ poblacional de retornos de Close**, horizonte de un día y sin anualización. Se heredan de E1 la RMSE primaria, el margen δ=0,00025772842664981106 y el tratamiento temporal de los datos.
+| Etapa | Resultado verificado |
+|---|---|
+| Selección de trece redes | **13 recetas cerradas**; 231 éxitos HPO de 234 oportunidades, dos fallos y un desenlace desconocido conservados |
+| Ajustes finales de diez candidatos y tres referencias | **78/78**, seis semillas por red |
+| Pilotos de variabilidad y potencia | **10/10**, cinco semillas de iTransformer y cinco de GRU32; [informe medido](_static/e2_benchmark_final_20261113/pilot_power_MDE.json) |
+| Comparadores y congelación | **3/3 comparadores**, 81 predictores congelados antes de admitir datos finales |
+| Evaluación y análisis registrados | **16/16 sistemas, 608/608 fechas**, tabla A2 y 20 contrastes primarios |
+| Persistencia | Resultados y comprobaciones de integridad en **GitHub** |
 
-El libro aporta un EDA orientado a decisiones, revisión bibliográfica, modelos y adaptaciones D7, una réplica parcial de TimeMixer en ETTh1 y selección experimental trazable. Los historiales conservan **1.705 resultados de la campaña optimizada y 1.802 registros anteriores: 3.507 registros acumulados**. Son resultados de selección y antecedentes identificados; no equivalen a una evaluación final común de los dieciséis sistemas.
+El piloto estima una potencia condicional de **12,30 %** para una ganancia de **2δ**, por debajo del objetivo de 80 %. Con R=6, la ganancia mínima estimada para esa potencia es **0,00087867**. Son cálculos sobre cinco semillas emparejadas de dos modelos y 53 fechas de desarrollo; no garantizan potencia temporal ni para todo el Top 10. R=6 se conserva por recursos, sin ampliar repeticiones después de observar la prueba.
 
-La réplica ETTh1, con cinco semillas, satisface su criterio previo de compatibilidad numérica. El antecedente E1 muestra persistencia competitiva frente a sus tres redes. Estos experimentos tienen tareas, calendarios y recetas propios; no se transfieren a modelos E2 con otra identidad.
+Completar el benchmark no acredita cumplimiento integral de la guía. La [matriz de exigencias (§38)](sections/38_cumplimiento_guia.md) distingue los resultados existentes de las condiciones pendientes. Esta actualización documental utiliza los artefactos ya guardados.
 
-La entrega declara sus límites: **todavía no hay un benchmark final completo de dieciséis sistemas ni un ganador demostrado del catálogo vigente**. Los requisitos sin evidencia quedan identificados para una revisión posterior.
+## Cómo interpretar los resultados
+
+La métrica primaria de cada red es la **media de sus seis RMSE individuales**, no la RMSE de un ensamble. La desviación y el IC entre semillas describen variabilidad de optimización condicionada a esta cronología. Los tres comparadores deterministas aportan una trayectoria cada uno; no se presentan como seis entrenamientos independientes.
+
+La mejora puntual del autoencoder frente a persistencia es **0,00028217 de RMSE (6,91 %)**, con IC bootstrap temporal **[−0,00016895; 0,00072419]**. Aunque la estimación supera el margen heredado δ=0,00025772842664981106, su incertidumbre no demuestra superioridad práctica. Frente a GRU32 la mejora puntual es **0,00019773**, menor que δ. Los **20 p ajustados por Holm son 1,0** en la familia primaria registrada.
+
+El análisis usa bootstrap pareado en bloques de 14 días, 4.999 remuestreos y sensibilidad diagnóstica a 7 y 28 días. Los diagnósticos por semillas no convierten esas repeticiones en mercados independientes. Los límites de esta batería frente a lo solicitado por la guía se explican en §38. No se cambian recetas ni calibradores después de observar la prueba.
 
 ## Guía de lectura
 
 | Contenido | Dónde revisar |
 |---|---|
-| Resultados disponibles, discusión, conclusiones y archivos | **[Informe consolidado (§47)](sections/47_entrega_consolidada.md)** |
+| Tabla A2, incertidumbre, intervalos y discusión final | **[Benchmark final (§6)](sections/06_benchmark_final.md)** |
+| Informe consolidado y antecedentes del cierre documental | [§47](sections/47_entrega_consolidada.md) |
 | Problema, hipótesis, datos y contrato heredado | [§1](sections/01_punto_partida.md) · [§17](sections/17_contrato_sincronizado.md) |
 | EDA y auditoría temporal | [§2](sections/02_eda.md) · [§10](sections/10_auditoria_datos.md) |
-| Literatura, catálogo y arquitecturas | [§3](sections/03_literatura.md) · [§43](sections/43_catalogo_obligatorio.md) · [§44](sections/44_arquitecturas_publicadas.md) |
-| Protocolo y criterios registrados | [§48, actual](sections/48_protocolo_reducido.md) · [§45, anterior](sections/45_enmienda_protocolo.md) |
-| Réplica TimeMixer ETTh1: ejecución y métricas | [§5](sections/05_paper_guia.md) |
-| Benchmark: evidencia existente y alcance | [§6](sections/06_benchmark_final.md) · [Cortes históricos (§41)](sections/41_avance_optimizacion_11_origenes.md) |
-| Reproducibilidad y exigencias de la guía | [§8](sections/08_reproducibilidad.md) · [§38](sections/38_cumplimiento_guia.md) |
+| Literatura, catálogo y cuerpos publicados | [§3](sections/03_literatura.md) · [§43](sections/43_catalogo_obligatorio.md) · [§44](sections/44_arquitecturas_publicadas.md) |
+| Protocolo reducido, ejecución y desviaciones | [§48](sections/48_protocolo_reducido.md) |
+| Réplica TimeMixer en ETTh1 y límites de transferencia | [§5](sections/05_paper_guia.md) |
+| Requisitos aún pendientes y reproducción | **[Matriz de la guía (§38)](sections/38_cumplimiento_guia.md)** · [§8](sections/08_reproducibilidad.md) |
 
-## Avance de selección y ajustes finales
+## Catálogo y alcance temporal
 
-**Corte de consulta: 13/11/2026, 09:40:00 de Bogotá.** Cada red tiene 18 oportunidades HPO: **C01–C06 × enero, julio y octubre de 2024**. Una corrida exitosa incluye entrenamiento y evaluación en las 83 fechas comunes de validación de su origen. Las seis repeticiones finales pertenecen a una etapa distinta, con la receta ganadora ya fijada. Las cifras siguientes son conteos, no RMSE de training o testing.
+Los diez candidatos son **FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder con predictor, TimesNet, TSMixer, TiDE, TimeMixer, PatchTST e iTransformer**. Las referencias son **MLP16, LSTM32 y GRU32**; los comparadores son **Persistence, SeasonalNaive y ARIMA**. El híbrido adicional y Ridge conservan alcance opcional e histórico.
 
-| Modelo | HPO exitoso | Configuración elegida | Ajustes finales guardados | Ajustes finales pendientes |
-|---|---:|:---:|---:|---:|
-| FCN-1D | 18/18 | C02 | **6/6** | 0 |
-| ResNet-1D | 18/18 | C05 | **6/6** | 0 |
-| Inception-1D | 18/18 | C05 | **6/6** | 0 |
-| LSTM-autoencoder con predictor | 18/18 | C06 | **6/6** | 0 |
-| TimesNet | 16/18 | C05 | **6/6** | 0 |
-| TSMixer | 17/18 | C03 | **6/6** | 0 |
-| TiDE | 18/18 | C01 | **6/6** | 0 |
-| TimeMixer | 18/18 | C01 | **6/6** | 0 |
-| PatchTST | 18/18 | C02 | **6/6** | 0 |
-| iTransformer | 18/18 | C02 | **6/6** | 0 |
-| **Total Top 10** | **177/180** | **10 recetas** | **60/60** | **0** |
-| MLP16, referencia E1 | 18/18 | C05 | **6/6** | 0 |
-| LSTM32, referencia E1 | 18/18 | C01 | **6/6** | 0 |
-| GRU32, referencia E1 | 18/18 | C03 | 3/6 | 3 |
-| **Total de trece redes** | **231/234** | **13 recetas** | **75/78** | **3** |
+La selección usa enero, julio y octubre de 2024; el ajuste final común termina el **31/10/2024**, seguido de embargo y calibración separada. La evaluación comprende **01/01/2025–31/08/2026**, el calendario heredado ya conocido en E1. Su interpretación es retrospectiva. La [admisión de datos](_static/e2_benchmark_final_20261113/data_admission.json) documenta las veinte fuentes originales verificadas, el puente causal de diciembre y el soporte común sin comprimir fechas.
 
-Las **234 oportunidades HPO están contabilizadas**. TimesNet conserva dos fallos y TSMixer un intento con desenlace desconocido; las configuraciones afectadas no aportan una puntuación completa ni se sustituyen por nuevas oportunidades. Las trece recetas ganadoras tienen sus tres folds de validación completos. La selección cerrada no convierte las incidencias en éxitos.
+La campaña mantiene sus **80 horas acumuladas autorizadas**, sin reiniciar cargos. Las incidencias HPO y el fallo de implementación de ARIMA quedan contabilizados; el ARIMA ganador, de orden (2,0,1), se elige entre **15 de los 18 órdenes** con tres folds válidos. Se conservan dos incidencias de no convergencia y el fallo de implementación, sin repetirlos. Las correcciones de adquisición y respaldo no alteran los predictores congelados. La [congelación](_static/e2_benchmark_final_20261113/final_freeze.json) y el [análisis completo](_static/e2_benchmark_final_20261113/benchmark_analysis.json) permiten revisar ese alcance.
 
-Los **diez candidatos principales ya tienen 6/6 ajustes finales guardados**. Entre las referencias, MLP16 y LSTM32 también completaron sus seis ajustes; **GRU32 tiene 3/6**. Al corte, el control remoto registra la admisión de su cuarta corrida, semilla **271804**, a las **09:38:50 de Bogotá**. Una reserva no se cuenta como resultado guardado: siguen pendientes tres cierres de GRU32. Esta es una instantánea fechada de los recibos de GitHub, sin inspección directa del kernel privado.
+## Qué falta para cerrar la guía
 
-Los **10 pilotos pendientes** son cinco semillas de iTransformer y cinco de GRU32 para estimar variabilidad, potencia y diferencia mínima detectable; son adicionales a los 78 ajustes finales. Persistence, SeasonalNaive y ARIMA completan los 16 sistemas y todavía necesitan sus comparaciones registradas y la evaluación común.
+1. Completar y revisar la inferencia y los diagnósticos temporales exigidos, diferenciándolos de los contrastes ya ejecutados.
+2. Acreditar robustez con severidades, explicabilidad con fidelidad y estabilidad, y ablaciones de componentes bajo las condiciones de la guía.
+3. Cerrar eficiencia y costes por modelo, trazabilidad bibliográfica/metodológica y reproducción independiente de los resultados.
+4. Revisar discusión, conclusiones, apéndices y enlaces de entrega. Los requisitos sin evidencia deben permanecer declarados; las métricas de prueba no se usan para volver a seleccionar modelos.
 
-[Tabla de las trece redes (CSV)](_static/e2_progress_final_20261113_v2/neural_progress.csv) · [Instantánea JSON](_static/e2_progress_final_20261113_v2/progress_snapshot.json) · [Fuentes y hashes](_static/e2_progress_final_20261113_v2/source_evidence.json) · [Manifiesto](_static/e2_progress_final_20261113_v2/manifest.json) · [Control remoto más reciente en GitHub](https://github.com/jassan-bit/DeepLearning_202630/blob/results/e2-reduced-delivery-v1/control/github-primary-v1/head.json).
+La [matriz de §38](sections/38_cumplimiento_guia.md) detalla las prioridades y qué puede aprovechar los artefactos actuales. El resultado nulo de los contrastes se conserva en las conclusiones.
 
-El [corte anterior del 13/11, 07:24](_static/e2_progress_final_20261113/progress_snapshot.json) conserva su [tabla de trece redes](_static/e2_progress_final_20261113/neural_progress.csv), [fuentes](_static/e2_progress_final_20261113/source_evidence.json) y [manifiesto](_static/e2_progress_final_20261113/manifest.json). Sus conteos corresponden a aquel momento.
+## Cortes históricos y descargas conservadas
 
-El [corte anterior del 12/11, 22:22](_static/e2_progress_20261113/progress_snapshot.json) conserva sus descargas originales: [Top 10, CSV](_static/e2_progress_20261113/top10_training_validation.csv), [trece redes, CSV](_static/e2_progress_20261113/all13_hpo_progress.csv), [fuentes](_static/e2_progress_20261113/source_evidence.json) y [manifiesto](_static/e2_progress_20261113/manifest.json). Esos archivos documentan el avance de aquel momento.
+Los cortes anteriores mantienen sus fechas y archivos. Sus conteos parciales y paquetes no sustituyen a la tabla final del 13/11. Las campañas históricas conservaron 1.705 resultados optimizados y 1.802 registros previos: son antecedentes de selección, no nuevas evaluaciones finales. Los protocolos anteriores se consultan en [§40](sections/40_calendario_original.md), [§41](sections/41_avance_optimizacion_11_origenes.md), [§45](sections/45_enmienda_protocolo.md) y [§46](sections/46_artefactos_y_pilotos.md).
 
-## Trabajo pendiente para cerrar E2
-
-1. Completar los **3 ajustes finales pendientes de GRU32**, conservando sus curvas, pesos, configuraciones y recursos. La selección HPO ya está cerrada.
-2. Ejecutar los **10 pilotos** y reportar potencia y diferencia mínima detectable con **R=6**, fijado por recursos; no afirmar potencia alcanzada antes de medirla.
-3. Congelar predictores y calibradores, evaluar el soporte común y rellenar la tabla A2 con métricas, incertidumbre, costes y contrastes.
-4. Verificar los análisis de robustez, interpretabilidad, ablaciones y reproducibilidad que exige la guía. La [matriz de requisitos (§38)](sections/38_cumplimiento_guia.md) distingue evidencia y pendientes.
-
-## Catálogo y protocolo vigentes
-
-Los **16 sistemas obligatorios** son **FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder con predictor, TimesNet, TSMixer, TiDE, TimeMixer, PatchTST e iTransformer**; las referencias **MLP16, LSTM32 y GRU32**; y **persistencia, naive estacional y ARIMA**. El híbrido CNN-LSTM-atención y Ridge conservan alcance opcional/histórico.
-
-La ejecución actual incorpora los cuerpos definidos del catálogo, incluida la nueva receta **TIDE-D7-PUBLISHED-R0-v2**, vinculada a la fuente oficial y a su [evidencia de paridad](https://github.com/jassan-bit/DeepLearning_202630/blob/1e8745497b484518f766b6da5c19be8362d9add7/experiments/e2_tide_published_r0_20261112/source_parity.json). Las restauraciones de SAE, TimesNet, TimeMixer, PatchTST y TiDE tienen identidades propias; los ajustes anteriores no se renombran como resultados de esos cuerpos. [Fuentes y adaptaciones (§44)](sections/44_arquitecturas_publicadas.md) conserva el corte previo; la actualización está en [§48](sections/48_protocolo_reducido.md).
-
-El protocolo reducido usa **tres folds HPO** —enero, julio y octubre de 2024— para seleccionar una receta global por red. El ajuste final común termina el **31/10/2024**; la calibración queda en noviembre–diciembre y la evaluación hereda las 608 fechas conocidas de E1. Conserva embargo y transformaciones ajustadas sólo con entrenamiento. Los diez reajustes mensuales del [protocolo anterior (§45)](sections/45_enmienda_protocolo.md) permanecen como antecedente; para las nuevas ejecuciones rige [§48](sections/48_protocolo_reducido.md).
-
-## Evidencia histórica de cierre
-
-El corte de selección se fija al commit [`795844308c07`](https://github.com/jassan-bit/DeepLearning_202630/commit/795844308c07cbc160d3dd1feb6284b5f443bb20), con cierre registrado el **12/11/2026 a las 12:53:37 UTC**. Contiene cincuenta selecciones modelo/origen del plan anterior; sus contadores no prueban ejecución de las recetas restauradas o de la enmienda nueva.
-
-La [instantánea](_static/delivery_20261112/selection_snapshot.json) y el [CSV de ensayos](_static/delivery_20261112/trials.csv) conservan ese detalle histórico, cuyo límite era de **64 horas**. La campaña vigente utiliza las **80 horas acumuladas autorizadas**, sin reiniciar consumos, y la transición A100 documentada en §48. Esta actualización verifica recibos remotos; no inspecciona ni modifica directamente el kernel privado de Colab.
-
-La revisión global de requisitos queda en [§38](sections/38_cumplimiento_guia.md). Los capítulos anteriores conservan su fecha y ámbito. La [preparación técnica de pilotos (§46)](sections/46_artefactos_y_pilotos.md) conserva el alcance del registro anterior; los pilotos y reajustes del plan reducido se describen en [§48](sections/48_protocolo_reducido.md).
-
+- [Instantánea y procedencia](_static/e2_progress_final_20261113_v2/progress_snapshot.json)
+- [Avance de las trece redes, CSV](_static/e2_progress_final_20261113_v2/neural_progress.csv)
+- [Descargar el paquete de entrega](_static/delivery_20261112/Entregable2_evidencia_disponible.zip)
+- [Fuentes y hashes](_static/e2_progress_final_20261113_v2/source_evidence.json)
+- [Manifiesto](_static/e2_progress_final_20261113_v2/manifest.json)
+- [corte anterior del 13/11, 07:24](_static/e2_progress_final_20261113/progress_snapshot.json)
+- [tabla de trece redes](_static/e2_progress_final_20261113/neural_progress.csv)
+- [fuentes](_static/e2_progress_final_20261113/source_evidence.json)
+- [manifiesto](_static/e2_progress_final_20261113/manifest.json)
+- [corte anterior del 12/11, 22:22](_static/e2_progress_20261113/progress_snapshot.json)
+- [Top 10, CSV](_static/e2_progress_20261113/top10_training_validation.csv)
+- [trece redes, CSV](_static/e2_progress_20261113/all13_hpo_progress.csv)
+- [fuentes](_static/e2_progress_20261113/source_evidence.json)
+- [manifiesto](_static/e2_progress_20261113/manifest.json)
+- [instantánea](_static/delivery_20261112/selection_snapshot.json)
+- [CSV de ensayos](_static/delivery_20261112/trials.csv)

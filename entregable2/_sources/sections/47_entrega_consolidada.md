@@ -1,5 +1,28 @@
 # 47. Entrega consolidada con la evidencia disponible
 
+**Actualización final verificada al 13/11/2026, 11:58:36 de Bogotá.** El benchmark común ya está ejecutado: **78 ajustes neuronales finales, 10 pilotos, tres comparadores y 81 predictores congelados** dieron lugar a resultados de los **16 sistemas en las mismas 608 fechas conocidas de E1**. La [tabla principal y el análisis actualizado (§6)](06_benchmark_final.md) contienen las métricas completas, los contrastes, la calibración y las desviaciones registradas. El archivo documental del 12 de noviembre se conserva más abajo con su alcance original.
+
+## Resultado principal del benchmark final
+
+El **LSTM-autoencoder con predictor presenta la menor RMSE media observada: 0,003803430**, con DE entre semillas **0,000245424**. ARIMA obtiene **0,003921625** y GRU32 **0,004001162**. La persistencia obtiene el menor **MAE, 0,002353164**, y la menor **sMAPE, 13,23 %**. Cada posición corresponde a la métrica indicada; no se proclama un ganador universal.
+
+La métrica primaria promedia las RMSE de las seis semillas de cada red, no las predicciones de un ensamble. La evaluación utiliza R=6 para las trece redes y una trayectoria por comparador determinista. El IC95 % t de SAE, **[0,003545873; 0,004060986]**, describe variación entre semillas condicionada a este calendario; no sustituye incertidumbre temporal ni datos independientes.
+
+**Ninguno de los 20 contrastes primarios de mejora práctica rechazó tras Holm; todos sus p ajustados son 1,0000.** El bootstrap principal conserva bloques de 14 días y 4.999 réplicas. La mejora puntual SAE frente a persistencia es de **6,91 %**, pero su IC de ganancia incluye cero. Frente a GRU32, la diferencia puntual es menor que δ. Por tanto, la conclusión confirmatoria es limitada: **la menor RMSE observada no demuestra una mejora práctica general, y la ausencia de rechazo tampoco demuestra equivalencia**. Las sensibilidades, diagnósticos entre semillas y limitaciones se publican junto a la tabla.
+
+## Qué se entrega ahora y qué sigue abierto
+
+- **Ejecutado:** selección de trece recetas, 78/78 ajustes finales, 10/10 pilotos, tres comparadores, congelación y evaluación común de dieciséis sistemas; [métricas A2 originales](../_static/e2_benchmark_final_20261113/benchmark_A2.csv).
+- **Auditable:** [análisis y contrastes](../_static/e2_benchmark_final_20261113/benchmark_analysis.json), [admisión de datos](../_static/e2_benchmark_final_20261113/data_admission.json), [congelación](../_static/e2_benchmark_final_20261113/final_freeze.json), [piloto y MDE](../_static/e2_benchmark_final_20261113/pilot_power_MDE.json), [procedencia](../_static/e2_benchmark_final_20261113/source_evidence.json) y [manifiesto](../_static/e2_benchmark_final_20261113/manifest.json).
+- **Limitaciones conservadas:** evaluación retrospectiva en el calendario ya conocido de E1; ninguna recuperación de cegamiento; R=6 por recursos y alcance del piloto declarado; dos fallos HPO y un desenlace desconocido; fallo ARIMA(0,0,0) de enero sin repetir la oportunidad, dos no convergencias y 15/18 órdenes completamente elegibles; ARIMA(2,0,1) y periodo estacional 7 seleccionados por validación. Los intervalos y los resultados negativos también se reportan.
+- **Requisitos que aún deben comprobarse:** robustez, interpretabilidad, ablaciones, comparación de recursos y reproducción independiente. Completar el benchmark no equivale por sí solo a completar toda la guía; la [matriz de cumplimiento (§38)](38_cumplimiento_guia.md) mantiene las evidencias y carencias.
+
+No se modificaron pesos, escaladores, calibradores ni hiperparámetros después de observar la evaluación para favorecer estas conclusiones. No se selecciona otra receta por el orden final de A2.
+
+## Archivo histórico: cierre documental del 12/11/2026
+
+**Todo el texto y las descargas que siguen conservan el corte del 12 de noviembre.** Sus estados «benchmark pendiente», sus contadores y su saldo presupuestario corresponden a ese antecedente. La actualización de arriba y §6 presentan el benchmark ejecutado del 13 de noviembre; el paquete ZIP histórico se mantiene sin sobrescribir sus bytes.
+
 **Cierre solicitado: utilizar los experimentos y archivos existentes, sin iniciar nuevas corridas.** Este capítulo reúne resultados, discusión, conclusiones y archivos. Los diseños anteriores permanecen identificados en sus capítulos originales.
 
 ## Resumen
@@ -19,7 +42,7 @@ Se estudia el pronóstico diario de volatilidad de Bitcoin mediante siete días 
 
 ## Resultados existentes de selección
 
-El corte más reciente corresponde al commit [`795844308c07`](https://github.com/jassan-bit/DeepLearning_202630/commit/795844308c07cbc160d3dd1feb6284b5f443bb20), cerrado el **12/11/2026 a las 12:53:37 UTC**. Su diario quedó `paused_campaign_budget`, con cierre de sesión registrado. Son archivos versionados, no una lectura en vivo de Colab.
+El corte de este archivo histórico corresponde al commit [`795844308c07`](https://github.com/jassan-bit/DeepLearning_202630/commit/795844308c07cbc160d3dd1feb6284b5f443bb20), cerrado el **12/11/2026 a las 12:53:37 UTC**. Su diario quedó `paused_campaign_budget`, con cierre de sesión registrado. Son archivos versionados, no una lectura en vivo de Colab.
 
 | Indicador | Resultado verificado e interpretación |
 |---|---|
