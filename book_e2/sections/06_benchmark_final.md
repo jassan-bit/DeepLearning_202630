@@ -8,6 +8,8 @@ El **LSTM-autoencoder con predictor tiene la menor RMSE media observada**, segui
 
 ## Tabla A2: métricas finales medidas
 
+**Auditoría complementaria del 13/11/2026:** [§49](49_diagnosticos_f2a.md) añade curvas de ajuste y diagnósticos de residuos, calibración y estabilidad temporal usando las predicciones congeladas. Es un análisis exploratorio posterior, con su propia familia Holm de 826 hipótesis. No altera esta A2, sus veinte contrastes primarios ni la selección de modelos; tampoco acredita adecuación por falta de rechazo.
+
 La métrica primaria es la **media de las RMSE individuales de las seis semillas**, en unidades originales de σ₇; **no es la RMSE de un ensamble**. Las redes tienen R=6 y cada comparador determinista una trayectoria, R=1. La tabla se ordena por RMSE ascendente para facilitar la lectura, sin una nueva selección ni ajuste tras observar la evaluación. Todas las filas utilizan **n=608**; sMAPE y cobertura se muestran en porcentaje.
 
 | Sistema | RMSE media | DE entre semillas | MAE | sMAPE (%) | R² medio | Cobertura 90 % (%) | Anchura media | R |

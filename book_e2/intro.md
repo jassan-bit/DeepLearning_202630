@@ -6,6 +6,8 @@
 
 **[Resultados finales y discusión (§6)](sections/06_benchmark_final.md)** · **[Tabla A2 medida, CSV](_static/e2_benchmark_final_20261113/benchmark_A2.csv)** · **[20 contrastes primarios](_static/e2_benchmark_final_20261113/primary_contrasts.csv)** · **[Fuentes y hashes](_static/e2_benchmark_final_20261113/source_evidence.json)**
 
+**Diagnósticos F2a añadidos el 13/11/2026:** [§49](sections/49_diagnosticos_f2a.md) documenta ajuste, brechas observadas, residuos, calibración y estabilidad temporal sobre los pronósticos guardados. La familia exploratoria tiene **826 contrastes y 707 rechazos tras Holm**. Se detecta dependencia residual en las 81 trayectorias; los 31 rechazos de cobertura son por sobrecobertura. No se acredita ausencia de sobreajuste ni estabilidad por falta de rechazo. Los resultados primarios se conservan.
+
 ## Resumen
 
 Se estudia el pronóstico diario de volatilidad de Bitcoin a partir de siete días de OHLCV, con horizonte de un día y objetivo σ₇ poblacional de retornos de Close, sin anualización. El benchmark reúne diez candidatos de cuatro familias, tres referencias neuronales de E1 y tres comparadores estadísticos. La selección reducida usa seis configuraciones y tres orígenes internos por red; cada receta neuronal final se repite con seis semillas. Los 16 sistemas se evalúan sobre las mismas 608 fechas conocidas de E1, manteniendo congelados los pesos, escaladores, calibradores y el análisis.
@@ -21,6 +23,7 @@ El LSTM-autoencoder con predictor obtiene el menor RMSE medio observado, **0,003
 | Pilotos de variabilidad y potencia | **10/10**, cinco semillas de iTransformer y cinco de GRU32; [informe medido](_static/e2_benchmark_final_20261113/pilot_power_MDE.json) |
 | Comparadores y congelación | **3/3 comparadores**, 81 predictores congelados antes de admitir datos finales |
 | Evaluación y análisis registrados | **16/16 sistemas, 608/608 fechas**, tabla A2 y 20 contrastes primarios |
+| Auditoría F2a posterior | **81 trayectorias**, 826 contrastes exploratorios, curvas de los 78 ajustes finales y 29 de 39 ajustes HPO seleccionados; [resultados y límites (§49)](sections/49_diagnosticos_f2a.md) |
 | Persistencia | Resultados y comprobaciones de integridad en **GitHub** |
 
 El piloto estima una potencia condicional de **12,30 %** para una ganancia de **2δ**, por debajo del objetivo de 80 %. Con R=6, la ganancia mínima estimada para esa potencia es **0,00087867**. Son cálculos sobre cinco semillas emparejadas de dos modelos y 53 fechas de desarrollo; no garantizan potencia temporal ni para todo el Top 10. R=6 se conserva por recursos, sin ampliar repeticiones después de observar la prueba.
@@ -40,6 +43,7 @@ El análisis usa bootstrap pareado en bloques de 14 días, 4.999 remuestreos y s
 | Contenido | Dónde revisar |
 |---|---|
 | Tabla A2, incertidumbre, intervalos y discusión final | **[Benchmark final (§6)](sections/06_benchmark_final.md)** |
+| Ajuste, sobreajuste, residuos, calibración y estabilidad temporal | **[Diagnósticos F2a posteriores (§49)](sections/49_diagnosticos_f2a.md)** |
 | Informe consolidado y antecedentes del cierre documental | [§47](sections/47_entrega_consolidada.md) |
 | Problema, hipótesis, datos y contrato heredado | [§1](sections/01_punto_partida.md) · [§17](sections/17_contrato_sincronizado.md) |
 | EDA y auditoría temporal | [§2](sections/02_eda.md) · [§10](sections/10_auditoria_datos.md) |
@@ -58,7 +62,7 @@ La campaña mantiene sus **80 horas acumuladas autorizadas**, sin reiniciar carg
 
 ## Qué falta para cerrar la guía
 
-1. Completar y revisar la inferencia y los diagnósticos temporales exigidos, diferenciándolos de los contrastes ya ejecutados.
+1. Completar la batería comparativa F2a S8 y los requisitos de inferencia que siguen abiertos. Los diagnósticos S7 de §49 ya están ejecutados, con resultados desfavorables de adecuación residual; faltan el margen de sobreajuste prerregistrado δg y los elementos no estimables con los artefactos actuales.
 2. Acreditar robustez con severidades, explicabilidad con fidelidad y estabilidad, y ablaciones de componentes bajo las condiciones de la guía.
 3. Cerrar eficiencia y costes por modelo, trazabilidad bibliográfica/metodológica y reproducción independiente de los resultados.
 4. Revisar discusión, conclusiones, apéndices y enlaces de entrega. Los requisitos sin evidencia deben permanecer declarados; las métricas de prueba no se usan para volver a seleccionar modelos.
