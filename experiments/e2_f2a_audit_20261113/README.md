@@ -1,0 +1,13 @@
+# Secondary F2a diagnostic audit
+
+This work addresses residual adequacy, point/interval calibration, temporal stability and existing fit/validation evidence for the completed E2 benchmark. The original 16 systems, 81 predictors, 608 dates, A2 metrics and twenty primary contrasts remain unchanged. The new plan is explicitly post hoc and does not recover prospective blinding.
+
+The input exporter reads the original Colab daily cache and saved predictions/calibrators. It authenticates the source checkout, completed result, freeze, cached-data receipt and support, and reproduces all 81 original seed RMSE values within 1e-10 before creating a new derived-input artifact. It never loads weights, fits models, performs model inference, downloads raw data, installs a runtime or restores a campaign. A missing or changed cache blocks the export. The GitHub token travels through subprocess stdin and is not written to artifacts.
+
+Only derived targets, existing forecasts, calibration vectors and provenance hashes are exported to a new GitHub run. Original scientific files and the results control pointer remain unchanged. Raw OHLCV, weights and credentials are excluded.
+
+The CPU audit uses individual predictor residuals for Ljung–Box, squared-residual Ljung–Box, ARCH-LM, BDS, Jarque–Bera, Mincer–Zarnowitz with HAC covariance and 90% coverage. Calendar-quarter stability uses the mean of individual-seed squared losses, not an ensemble forecast. A separate exploratory Holm family contains 826 opportunities; undefined tests keep null p-values and reasons while remaining in the conservative family size. Calendar-block intervals and descriptive calibration-to-test comparisons retain temporal support.
+
+Original epoch logs provide fit/validation curves where actually preserved. Cached HPO outcomes without epoch logs are reported as unavailable. SAE reconstruction phases remain separate from supervised target RMSE. No unset overfit margin is invented, and no non-rejection is interpreted as proof of no overfitting. A single residual interval does not define a predictive CDF; PIT therefore remains non-estimable.
+
+At this preparation commit, no actual final-target input has been exported by this workspace and no new diagnostic p-values are presented. Eleven focused synthetic tests validate the exporter source gates, complete predictor/calibration checks and the real GitHub backup receipt path. The statistical audit is validated separately before producing actual diagnostic results. Once the cached input is available, the audit runs on CPU with the pinned dependencies and records runtime and source identities.

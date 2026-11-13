@@ -1,0 +1,79 @@
+{
+  "version": "e2-f2a-posthoc-plan-v1",
+  "declared_at_utc": "2026-11-13T17:54:03.197474+00:00",
+  "scope": "Secondary post hoc F2a diagnostics on the original frozen predictions; not a prospective preregistration",
+  "source_benchmark_commit": "265ad10738423fac7e0d185f725de09c5f627ec6",
+  "engine_commit": "1e8745497b484518f766b6da5c19be8362d9add7",
+  "source_control_state_id": "b0e27cf2f64bbd65c7ff9db09a25fe41a35f57c8515acf2058df258a3f0d791a",
+  "original_score_result_sha256": "625f72776d69cc7a11766c48d30a43e761e79023864f8e46d1ee62062e2f8461",
+  "freeze_sha256": "c0e9e2589dca9fa03b341bb72f87d8b541d33b4721715622daeae4438dbd60b4",
+  "systems": 16,
+  "predictors": 81,
+  "calendar_dates": 608,
+  "dates": [
+    "2025-01-01",
+    "2026-08-31"
+  ],
+  "original_primary_twenty_contrasts_unchanged": true,
+  "model_fitting_allowed": false,
+  "new_model_inference_allowed": false,
+  "model_selection_allowed": false,
+  "calibrator_refitting_allowed": false,
+  "source_read": "Existing cache and saved prediction/calibration/epoch artifacts only",
+  "export_persistence": "GitHub; separate derived-input run, no raw OHLCV or weights",
+  "diagnostics": {
+    "residual_definition": "observed target minus original saved forecast, per individual predictor",
+    "ljung_box_residual_lags": [
+      7,
+      14
+    ],
+    "ljung_box_squared_residual_lags": [
+      7,
+      14
+    ],
+    "arch_lm_lags": 7,
+    "arch_lm_ddof": 0,
+    "bds_dimensions": [
+      2,
+      3
+    ],
+    "bds_radius_sample_sd_multiple": 1.5,
+    "jarque_bera": true,
+    "mincer_zarnowitz_null": "intercept=0 and slope=1",
+    "HAC_lags": 14,
+    "coverage_nominal": 0.9,
+    "coverage_intervals": "Original frozen q; [max(0,prediction-q),prediction+q]",
+    "stability_test": "Calendar-quarter indicator joint Wald test on daily mean of individual-seed squared errors; HAC14",
+    "stability_systems": 16,
+    "quarterly_windows": "2025Q1 through partial2026Q3",
+    "rolling_calendar_days": 90
+  },
+  "multiplicity": {
+    "scope": "One separate exploratory family; no alteration of primary benchmark Holm decisions",
+    "fixed_family_size": 826,
+    "alpha": 0.05,
+    "correction": "Holm",
+    "undefined_tests": "null p-value with reason; conservative inclusion in family size"
+  },
+  "uncertainty": {
+    "coverage_CI": "moving calendar-block bootstrap",
+    "calibration_to_test_gap": "Separate-calendar moving-block descriptive comparison, not paired-date inference",
+    "block_days": 14,
+    "draws": 2000
+  },
+  "limitations": [
+    "Classical residual p-values are approximate and require their assumptions; Holm does not validate assumptions",
+    "Seeds are optimization trajectories, not independent markets",
+    "No predictive CDF exists, so PIT remains non-estimable",
+    "No predeclared delta_g exists for the active protocol; no confirmatory absence-of-overfit claim",
+    "HPO learning curves reflect selection and do not independently validate final predictors",
+    "No per-date training predictions are available under the no-reinference restriction"
+  ],
+  "budget": {
+    "existing_campaign_total_hours": 80,
+    "reset": false,
+    "extended": false,
+    "benchmark_remaining_seconds_at_closed_anchor": 18169.090972095262,
+    "additional_audit_CPU_elapsed_seconds_to_be_reported_separately": true
+  }
+}
