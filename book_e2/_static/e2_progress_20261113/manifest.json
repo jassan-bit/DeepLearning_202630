@@ -1,0 +1,30 @@
+{
+  "version": "e2-progress-artifact-manifest-v1",
+  "source_commit": "c60e71b1157fe4c5d41c98ba73f9f3d208aa8f2e",
+  "control_state_id": "f1aa6611ec8fc59e8f00058e9b757f75dd8aac362b4d2a39db1850f35378a7a8",
+  "files": {
+    "progress_snapshot.json": {
+      "sha256": "c0da2ddfc06be753a16911a77a8be23d0591a8885cac41004c117e9312031c29",
+      "bytes": 11069
+    },
+    "source_evidence.json": {
+      "sha256": "235ffb8d63df52037b2ff876846353314689e4532b6e34327f28c04f2460f2db",
+      "bytes": 78141
+    },
+    "top10_training_validation.csv": {
+      "sha256": "118e82b8a60fbdb5fb657e84f38717fc0b3fe4fe9e135bcf36c999477b0db6d8",
+      "bytes": 603
+    },
+    "all13_hpo_progress.csv": {
+      "sha256": "82f709f96c0adb30b66c68230e0edbd002f0221cb67c93617ecae4de585709ad",
+      "bytes": 730
+    }
+  },
+  "validation": {
+    "top10_success_equals_new_plus_reuse": true,
+    "failed_plus_unknown_plus_success_equals_closed": true,
+    "closed_plus_not_closed_equals_planned": true,
+    "active_is_part_of_not_closed": true,
+    "numerical_train_or_test_metrics_created": false
+  }
+}
