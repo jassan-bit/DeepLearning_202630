@@ -1,6 +1,6 @@
 # 47. Entrega consolidada con la evidencia disponible
 
-**Consolidación vigente del 14/11:** [§60](60_calibracion_temporal_condicional.md) añade políticas temporales y cobertura condicional; [§61](61_reproduccion_consolidada.md), auditoría de entrega y Apéndice B; [§62](62_cierre_literatura_focal.md), decisiones bibliográficas focales; [§63](63_ensamble_calibracion.md), referencia empírica de ensemble. Los resultados adversos y límites prospectivos se conservan.
+**Consolidación vigente:** [§60](60_calibracion_temporal_condicional.md) añade políticas temporales y cobertura condicional; [§61](61_reproduccion_consolidada.md), auditoría de entrega y Apéndice B; [§62](62_cierre_literatura_focal.md), flujo de 9.559 grupos recibidos y 42 estudios aplicados únicos; [§63](63_ensamble_calibracion.md), referencia empírica de ensemble. Los resultados adversos y límites prospectivos se conservan.
 
 **Actualización de evidencias del 13/11/2026:** [§49](49_diagnosticos_f2a.md) añade los diagnósticos F2a sobre las predicciones originales. Los resultados de §6 siguen siendo el benchmark primario; los suplementos posteriores conservan sus propias hipótesis y límites.
 

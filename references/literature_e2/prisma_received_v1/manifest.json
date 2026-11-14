@@ -1,0 +1,338 @@
+{
+  "abstract_hash_validation": "Every claimed screening abstract hash must match a validated base or recovered abstract; no abstract retrieval or copying is performed.",
+  "artifacts": [
+    {
+      "bytes": 3141,
+      "name": "README.md",
+      "sha256": "dea44bda445e376ee30a2e5735654638383de86729abec97a833fb9526ba4554"
+    },
+    {
+      "bytes": 1471,
+      "name": "audit.json",
+      "sha256": "339ef5ba93267a8051c0d0bd51fd77a305539e42634d5078878240211489872f"
+    },
+    {
+      "bytes": 1298988,
+      "name": "full_reports_compact.jsonl",
+      "sha256": "38f69d11e644aa0c05115c5def7d0dd50d6d6fad94e79db65289e9f79ef4f226"
+    },
+    {
+      "bytes": 344,
+      "name": "identity_links.csv",
+      "sha256": "90713727f356a2379054d03ae3aa799cbfcefc43e4f7532c46f050d2ef08cf45"
+    },
+    {
+      "bytes": 37,
+      "name": "operational_pending.csv",
+      "sha256": "004af53de3aebda3fa1746381838e7631f0f6667e3634cf5283d4495af9549a1"
+    },
+    {
+      "bytes": 720163,
+      "name": "quality_12_dimensions.csv",
+      "sha256": "ac20fd29f26ff0f3dc7fd4e1aa0940a73df17883d8c52e9455283d904f688445"
+    },
+    {
+      "bytes": 273358,
+      "name": "quality_applied_studies.csv",
+      "sha256": "47dca5fcc38118634332e7ff6486ee833b59c412a13542d140349a8a85957986"
+    },
+    {
+      "bytes": 1577,
+      "name": "received_flow.json",
+      "sha256": "4ffb5dc017df73eb3e6d3a594928c81abee2357af8e7249e5d0bd0b4ef4ba0b2"
+    },
+    {
+      "bytes": 5416802,
+      "name": "received_groups_9559.csv",
+      "sha256": "29a651e34bcd0256e1ddc36141ed2ddd57252d04060c41094bb53927523d4ed0"
+    },
+    {
+      "bytes": 3598,
+      "name": "report_adjudication_history.json",
+      "sha256": "a0b75ed2ac927039ce2af912d95ed316da0fdf43972d9e85f11f3b19dc97693e"
+    },
+    {
+      "bytes": 116329,
+      "name": "retrieval_attempts.csv",
+      "sha256": "387e49b6945d72402bee55515878566c78d8698985d145da67ead73ca7de414b"
+    },
+    {
+      "bytes": 1416984,
+      "name": "study_identities.csv",
+      "sha256": "271a44b50e03a8cfa7a53e8997e0236080bd45aba3430550ca77528767f332ef"
+    }
+  ],
+  "builder_sha256": "5353dde53e184bb8de0dbe78b7e41eed58b85f0005eb4007d2837e0b950fa348",
+  "historical_coverage_limits": [
+    "Missing 374 Scopus occurrences remain a search coverage deviation, never scientific exclusions.",
+    "Query-to-WoS-batch/range mapping unverified where original history did not establish it.",
+    "Neither restored abstracts nor updated citation snapshots retrospectively change scientific selection/test chronology."
+  ],
+  "identity_policy": "study_id is a deterministic surrogate key for an exact/documented bibliographic identity component; components are not verified empirical studies. Applied inclusion is a separate adjudicated property.",
+  "original_A2_sha256": "879e2ce52709657a06bc6c009f0cd553423f2eaa0bbdf16dc7f5844dfec9fcc1",
+  "semantic_screening": "AI-assisted semantic reviews recorded in source files; no independent human double-review or kappa claim",
+  "source_snapshot_policy": "one byte snapshot per file; no filesystem timestamps in deterministic products",
+  "sources": [
+    {
+      "bytes": 525875,
+      "name": "arxiv_abstract_review.jsonl",
+      "sha256": "28cfcab095f151b8a2d6e86c4ae254c717cab3aec9341f337b3debfe49a49caa",
+      "source_id": "arxiv_abstract_review"
+    },
+    {
+      "bytes": 6032,
+      "name": "fulltext_reviews_arxiv_decision_history.jsonl",
+      "sha256": "8188959063ecd417992a9c7c4505db098915a9316c49c4789dd71f8b2baa9952",
+      "source_id": "arxiv_decision_history"
+    },
+    {
+      "bytes": 1827030,
+      "name": "screening_ready_530.jsonl",
+      "sha256": "662a055e88072ec8b14806ccee5a3e789fd2d6dc7dbe522eb1d36025bea9fc31",
+      "source_id": "arxiv_recovered_530_material"
+    },
+    {
+      "bytes": 1077588,
+      "name": "title_decisions_974.jsonl",
+      "sha256": "90300a81fc3a5cebf42617d8392da6621c52447640ea660341878e117e5f17af",
+      "source_id": "arxiv_title_screening_974"
+    },
+    {
+      "bytes": 15060,
+      "name": "attempts_1_part_0_12.jsonl",
+      "sha256": "091405406ebe944c3595170b80168100f07e805c3ef7bbdd6fee661d1e46b640",
+      "source_id": "attempts_1_part_0_12"
+    },
+    {
+      "bytes": 9843,
+      "name": "attempts_1_part_13_25_39_51.jsonl",
+      "sha256": "22aa340c53046a490e4e2a2c99bc45f91cda6e27459699aff55e9a74d3dbcd21",
+      "source_id": "attempts_1_part_13_25_39_51"
+    },
+    {
+      "bytes": 225835,
+      "name": "crypto_review_0.jsonl",
+      "sha256": "3a40c3a1d418a0259756468b91247f023655e52298b4a91806beed88b87553cb",
+      "source_id": "crypto_review_0"
+    },
+    {
+      "bytes": 203071,
+      "name": "crypto_review_1.jsonl",
+      "sha256": "25c904790e7a4a1fb7671d78b7f1d44da856f9e8080ebfa1683f475cecc51429",
+      "source_id": "crypto_review_1"
+    },
+    {
+      "bytes": 186672,
+      "name": "crypto_review_2.jsonl",
+      "sha256": "5a96f56fe37318b039996befbbfc8e4e294b1a8e55ca98c2a43a0dfc679b07f7",
+      "source_id": "crypto_review_2"
+    },
+    {
+      "bytes": 23275591,
+      "name": "group_materials.jsonl",
+      "sha256": "e18e2661d724935e8295f2aaed6ad8fc79a38428569957b6995385cbf92ac12e",
+      "source_id": "fixed_group_materials"
+    },
+    {
+      "bytes": 188207,
+      "name": "focal_current_review.jsonl",
+      "sha256": "697fb3be1c5e98f8b780f64365df0e936ff7ae8637abf6b0d8633cc9a3ef5933",
+      "source_id": "focal_current_review"
+    },
+    {
+      "bytes": 140378,
+      "name": "focal_missing_title_review.jsonl",
+      "sha256": "781240f5a9b8d22e28c4e3a0534952dc073e4c035581633e996787aa78266b87",
+      "source_id": "focal_initial_title_review"
+    },
+    {
+      "bytes": 27978,
+      "name": "recovered_abstracts.jsonl",
+      "sha256": "22d0e6284654803f5156bc1cf103549a20fe06f515812da61c40f498d5c900c4",
+      "source_id": "focal_recovered_abstract_material"
+    },
+    {
+      "bytes": 28740,
+      "name": "fulltext_attempts_0.jsonl",
+      "sha256": "405c4a9f7d1324df1d336f06dca7f57f390985c0be5dafcdf98beea90c9d2d13",
+      "source_id": "fulltext_attempts_0"
+    },
+    {
+      "bytes": 4773,
+      "name": "fulltext_attempts_1_root_26_38.jsonl",
+      "sha256": "2022dcacbbc765f28c6829a8f07f118747b3d5ed2260ed097f6e459bb715d056",
+      "source_id": "fulltext_attempts_1_root_26_38"
+    },
+    {
+      "bytes": 23431,
+      "name": "fulltext_attempts_arxiv.jsonl",
+      "sha256": "27d46f936eb370420513b584110f0d08de0308f4b39b0ef5486c0165448906a3",
+      "source_id": "fulltext_attempts_arxiv"
+    },
+    {
+      "bytes": 34763,
+      "name": "fulltext_attempts_focal_remaining_0.jsonl",
+      "sha256": "116a18056f21e9b39626dfedb5e04e73057286579dcdccb55480543ee8aa3622",
+      "source_id": "fulltext_attempts_focal_remaining_0"
+    },
+    {
+      "bytes": 17886,
+      "name": "fulltext_attempts_focal_remaining_1.jsonl",
+      "sha256": "0f3783709330d4f9f7b4756a1b887d383c4c64031a30f84730a8b028bf10e019",
+      "source_id": "fulltext_attempts_focal_remaining_1"
+    },
+    {
+      "bytes": 10050,
+      "name": "fulltext_attempts_other1_focal3.jsonl",
+      "sha256": "be6a35facc0018d97856ef8f029ead0164da2878b25b0eec2e8a9b69cff3b354",
+      "source_id": "fulltext_attempts_other1_focal3"
+    },
+    {
+      "bytes": 33991,
+      "name": "fulltext_attempts_other_0.jsonl",
+      "sha256": "08920d8dfa78afa89226a3b7ed1b7bdb2dd9cdc6f26d903b9042026fdc3864cc",
+      "source_id": "fulltext_attempts_other_0"
+    },
+    {
+      "bytes": 107242,
+      "name": "fulltext_attempts_other_2.jsonl",
+      "sha256": "8083d3758791e4d6098de5ae12b1a3f95d66077a28f00168ce9881b5fdceef1b",
+      "source_id": "fulltext_attempts_other_2"
+    },
+    {
+      "bytes": 5073,
+      "name": "fulltext_attempts_uncovered7.jsonl",
+      "sha256": "529762c4f3de585db48823003ca4b65cfb60c3798d545a8e907de50a24ba01e0",
+      "source_id": "fulltext_attempts_uncovered7"
+    },
+    {
+      "bytes": 82675,
+      "name": "fulltext_reviews_0.jsonl",
+      "sha256": "6a7ebf6dc8731104a11d60ecce92a9ea83608238266a07da1aed8a4373aee89b",
+      "source_id": "fulltext_reviews_0"
+    },
+    {
+      "bytes": 27281,
+      "name": "fulltext_reviews_1_part_0_12.jsonl",
+      "sha256": "a8a9fe5d6d2d798e8df2ba1d5d9edd13f0e3ac8c699d9d5131e1e968faef6285",
+      "source_id": "fulltext_reviews_1_part_0_12"
+    },
+    {
+      "bytes": 49952,
+      "name": "fulltext_reviews_1_part_13_25_39_51.jsonl",
+      "sha256": "446d372989963ba249757ba3e3286f343516b62d79f0ad15c2df182fe5a140b6",
+      "source_id": "fulltext_reviews_1_part_13_25_39_51"
+    },
+    {
+      "bytes": 25440,
+      "name": "fulltext_reviews_1_root_26_38.jsonl",
+      "sha256": "5e08abfdcf5152781395efb3cbe7e9461d9a3162148f3821758b844aafefa834",
+      "source_id": "fulltext_reviews_1_root_26_38"
+    },
+    {
+      "bytes": 63362,
+      "name": "fulltext_reviews_arxiv.jsonl",
+      "sha256": "89b2450d161cd9a041659873f54671f9fc06a4acb938891952a4873c9190994b",
+      "source_id": "fulltext_reviews_arxiv"
+    },
+    {
+      "bytes": 40550,
+      "name": "fulltext_reviews_focal_remaining_0.jsonl",
+      "sha256": "0cc11b7ca014cb030256c0f24d9951faf717979fe968a1de99b0a38c14a6e20b",
+      "source_id": "fulltext_reviews_focal_remaining_0"
+    },
+    {
+      "bytes": 32739,
+      "name": "fulltext_reviews_focal_remaining_1.jsonl",
+      "sha256": "71dd4587c76c50e773ab18f1c15bb080ebcf30b5f14f844241be695af2997b14",
+      "source_id": "fulltext_reviews_focal_remaining_1"
+    },
+    {
+      "bytes": 17310,
+      "name": "fulltext_reviews_other1_focal3.jsonl",
+      "sha256": "964b5fb4b093f3680f0b100eab26aad57f7a1407925d9ce0faf7c7a447773336",
+      "source_id": "fulltext_reviews_other1_focal3"
+    },
+    {
+      "bytes": 45901,
+      "name": "fulltext_reviews_other_0.jsonl",
+      "sha256": "c3fde7ae12f4d0e9374dc7f4bd46519c49973f581920fbeda4049ab5d4814ade",
+      "source_id": "fulltext_reviews_other_0"
+    },
+    {
+      "bytes": 123291,
+      "name": "fulltext_reviews_other_2.jsonl",
+      "sha256": "f8ae8a62913525ae85562bc3fd84fc0efa7c9a628f5143703b65bb69cb4fdeea",
+      "source_id": "fulltext_reviews_other_2"
+    },
+    {
+      "bytes": 14364,
+      "name": "fulltext_reviews_uncovered7.jsonl",
+      "sha256": "a2a759f2ec01f5aed100eafc1340a5df7c19db38aff1c58cd931d29ad61e8e75",
+      "source_id": "fulltext_reviews_uncovered7"
+    },
+    {
+      "bytes": 3871085,
+      "name": "source_nodes.csv",
+      "sha256": "a4bc60fbb1c2fe4fbd1e204403fcab65764bd0757bb9b6e393ce24b2483e0f01",
+      "source_id": "historical_source_nodes"
+    },
+    {
+      "bytes": 4259,
+      "name": "fulltext_adjudication_neural_sde.json",
+      "sha256": "3cc7e8a00ea68354a1f477414558668acaa486c27c8f2dc3c25f13f00d89b34b",
+      "source_id": "neural_sde_adjudication"
+    },
+    {
+      "bytes": 1574080,
+      "name": "other_title_review_0.jsonl",
+      "sha256": "f74e38ae10eaa60e36b575783bb8edc44b9375ea2ea71b354abadf0041265b95",
+      "source_id": "other_title_review_0"
+    },
+    {
+      "bytes": 1417833,
+      "name": "other_title_review_1.jsonl",
+      "sha256": "8e0d0cd47f78ac9e9bbc4b40c844e850de759f12dea94e744daab3357c2fca19",
+      "source_id": "other_title_review_1"
+    },
+    {
+      "bytes": 1549501,
+      "name": "other_title_review_2.jsonl",
+      "sha256": "ef5fcd7f98c953c95c368fd90ff9e5a8cf3ff8b507ab5688294a9cf74fd51844",
+      "source_id": "other_title_review_2"
+    },
+    {
+      "bytes": 35768,
+      "name": "eligibility.json",
+      "sha256": "3f038b0ddd87818c735647e094614e9146998bf6469bd61952277ea10ed67955",
+      "source_id": "prior_primary_eligibility_30"
+    },
+    {
+      "bytes": 71750,
+      "name": "quality_extraction_matrix_17.json",
+      "sha256": "8bfcf2320495dc07158dc392da542120f1dcbe809602984371bc1f500ff9eb08",
+      "source_id": "prior_quality_17"
+    },
+    {
+      "bytes": 89951,
+      "name": "historical43_source_roles.json",
+      "sha256": "2afd1663dc80cdda9fe2432ae52938dedf2e437036ad8f0311b2cc0381928f80",
+      "source_id": "published_preprint_final_identity_evidence"
+    },
+    {
+      "bytes": 3418,
+      "name": "screening_protocol.json",
+      "sha256": "b1fe04c0af63a5042414d2566adea4d36b3b54fa2d590d680336f3b7a70a86a7",
+      "source_id": "retrospective_screening_protocol"
+    },
+    {
+      "bytes": 5643,
+      "name": "fulltext_adjudication_sentiment_igarch.json",
+      "sha256": "0dc0964f14a61950df2212e6b77cdb70108f19ea11081dcdbccb5f12f4d3cef2",
+      "source_id": "sentiment_igarch_adjudication"
+    }
+  ],
+  "strict_ready": true,
+  "temporal_status": "retrospective documentary reconciliation; not bibliographic preregistration",
+  "version": "e2-received-prisma-final-v1"
+}

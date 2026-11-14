@@ -16,7 +16,7 @@
 
 **Cierre documental:** [calibración temporal y cobertura condicional (§60)](sections/60_calibracion_temporal_condicional.md) · [entrega reproducible y Apéndice B actual (§61)](sections/61_reproduccion_consolidada.md) · [elegibilidad focal y P contextual (§62)](sections/62_cierre_literatura_focal.md) · [referencia empírica de ensemble (§63)](sections/63_ensamble_calibracion.md). La cobertura global se acerca al 90 % con ACI, aunque persiste infracobertura en rangos altos. El ensemble proporciona una referencia puntual más baja, con diferencias no concluyentes tras Holm.
 
-**Estado bibliográfico vigente:** [§62](sections/62_cierre_literatura_focal.md) incorpora los cuatro originales antes no recuperados, **17 inclusiones aplicadas, once exclusiones y dos contextos adjudicados**, con cero accesos/revisiones focales pendientes. Publica calidad, comparación por estratos y límites de prioridad global. Las cadenas originales se recuperaron de GitHub; el flujo PRISMA global sigue incompleto por exportaciones privadas y cribado. Datos/código tienen publicación pública identificada para 9/9 fuentes del catálogo.
+**Estado bibliográfico vigente:** [§62](sections/62_cierre_literatura_focal.md) publica el **flujo reconciliado de 9.559 grupos recibidos**, **42 estudios aplicados únicos**, calidad en doce dimensiones y cero pendientes operativos. Se conservan 174 registros con informe no recuperado y elegibilidad desconocida. Las versiones y los alias se distinguen; la cobertura histórica sigue limitada por 374 registros Scopus no recibidos y rangos/totales WoS no confirmados. Los puntajes del catálogo y sus límites de comparabilidad permanecen explícitos.
 
 ## Resumen
 
@@ -24,7 +24,7 @@ Se estudia el pronóstico diario de volatilidad de Bitcoin usando siete días de
 
 El LSTM-autoencoder obtiene la menor RMSE media observada, **0,00380343**, seguido de ARIMA, **0,00392162**, y GRU32, **0,00400116**. Persistencia presenta el menor MAE y sMAPE. Ninguno de los veinte contrastes primarios demuestra la mejora práctica registrada tras Holm; tampoco se establece equivalencia. La repetición de los 81 predictores reproduce sus resultados con discrepancia máxima cero. Las 18 ablaciones muestran degradación significativa al retirar el dropout supervisado; las otras dos comparaciones no son concluyentes.
 
-Se publican residuos, calibración, comparaciones temporales, robustez, explicaciones del Top 3, perfiles A100, costes y Pareto. La evaluación es retrospectiva y el piloto no alcanza la potencia objetivo. El cierre conserva **84 horas totales autorizadas**, todos los cargos y los resultados negativos. Permanecen abiertos el cierre bibliográfico global y δg previo; el nuevo proxy empírico de ensemble tiene incertidumbre amplia y no identifica riesgo Bayes. El conteo FLOPs cubre matrices y convoluciones, con exclusiones declaradas.
+Se publican residuos, calibración, comparaciones temporales, robustez, explicaciones del Top 3, perfiles A100, costes y Pareto. La evaluación es retrospectiva y el piloto no alcanza la potencia objetivo. El cierre conserva **84 horas totales autorizadas**, todos los cargos y los resultados negativos. El flujo bibliográfico recibido está reconciliado con límites de cobertura y acceso; δg previo permanece ausente; el nuevo proxy empírico de ensemble tiene incertidumbre amplia y no identifica riesgo Bayes. El conteo FLOPs cubre matrices y convoluciones, con exclusiones declaradas.
 
 ## Qué quedó completado
 
@@ -43,7 +43,7 @@ Se publican residuos, calibración, comparaciones temporales, robustez, explicac
 | Refinamiento numérico y estabilidad | **20.000 remuestreos** de los mismos veinte contrastes; Giacomini–Rossi y constancia separados: [§56](sections/56_inferencia_estabilidad_final.md) |
 | Errores y dificultad | **6.080 etiquetas**, 100 fechas por cada modelo principal, IC temporales y entropía ordinal; γ ideal con límites: [§57](sections/57_errores_techo.md) |
 | Operaciones de inferencia | FLOPs core D7×5 de **13 recetas** y Pareto, con exclusiones: [§58](sections/58_flops_predictores.md) |
-| Literatura recibida | **9.559 grupos conciliados**, roles de 20 fuentes y puntajes con incógnitas explícitas: [§59](sections/59_auditoria_literatura_final.md) |
+| Literatura recibida | **9.559 grupos cribados, 42 estudios aplicados**, doce dimensiones y disposiciones de acceso: [§62](sections/62_cierre_literatura_focal.md) |
 | Cierre contable | **84 h autorizadas**, **80,2561 h contabilizadas**, saldo **3 h 44 min 38 s**, sin reservas abiertas |
 | Persistencia | Resultados y comprobaciones de integridad en **GitHub** |
 
@@ -84,7 +84,7 @@ El cierre complementario mantiene un límite de **84 horas acumuladas autorizada
 
 ## Qué falta para cerrar la guía
 
-1. Completar la elegibilidad global de la literatura, recuperar los 374 registros Scopus ausentes y resolver los componentes bibliométricos desconocidos. [§59](sections/59_auditoria_literatura_final.md) cierra la contabilidad de lo recibido y distingue el puntaje anterior de su sensibilidad contextual.
+1. Conservar los límites de cobertura y acceso de la literatura: 374 registros Scopus no recibidos y totales/rangos WoS no confirmados. El [flujo del corpus recibido (§62)](sections/62_cierre_literatura_focal.md) está reconciliado; los informes inaccesibles mantienen elegibilidad desconocida y los puntajes del catálogo tienen interpretación condicional.
 2. Conservar las desviaciones que no pueden corregirse después: δg no se definió previamente, la potencia fue insuficiente y la prueba ya se conocía desde E1. Giacomini–Rossi y el refinamiento de 20.000 réplicas están calculados en [§56](sections/56_inferencia_estabilidad_final.md); no crean un experimento prospectivo.
 3. [§63](sections/63_ensamble_calibracion.md) añade una referencia empírica ajustada sólo en calibración y γ=0,28757; su incertidumbre no confirma una superioridad ni un techo óptimo. [§57](sections/57_errores_techo.md) conserva entropía ordinal y las referencias anteriores, sin convertirlas en ruido Bayes. La taxonomía de residuos es automática y posterior, con 100 fechas auditables por modelo.
 4. Los FLOPs de [§58](sections/58_flops_predictores.md) cubren matrices y convoluciones, con FFT, activaciones y otras operaciones excluidas. Energía, dinero y coste total del servicio no se midieron. El [Apéndice B actual](sections/61_reproduccion_consolidada.md) mantiene estados verificables y un comando de auditoría; la defensa oral conserva su evaluación propia.
