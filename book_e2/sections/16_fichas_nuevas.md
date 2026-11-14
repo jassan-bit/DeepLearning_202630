@@ -1,23 +1,29 @@
-# Fichas bibliográficas de las cuatro altas propuestas
+(fichas-bibliograficas-de-las-cuatro-altas-propuestas)=
+# Fichas bibliográficas de FCN, ResNet, Inception y LSTM-autoencoder
 
 > **Archivo de antecedentes:** documento **§16** del registro anterior. Conserva su fecha, alcance y resultados históricos. [Ver organización del informe](concordancia_guia.md).
 
-**Orientación de entrega del 14/11/2026:** el protocolo ejecutado es [§48](48_protocolo_reducido.md), los resultados comunes están en [§6](06_benchmark_final.md), la reproducción registrada en [§55](55_reproduccion_ablaciones.md) y el Apéndice B actual en [§61](61_reproduccion_consolidada.md). Las cifras científicas y los recibos históricos conservan su fecha y su alcance.
+**Lectura vigente:** el protocolo ejecutado es [§48](48_protocolo_reducido.md), los resultados comunes están en [§6](06_benchmark_final.md), la reproducción registrada en [§55](55_reproduccion_ablaciones.md) y el Apéndice B actual en [§61](61_reproduccion_consolidada.md). Las cifras científicas y los recibos históricos conservan su fecha y su alcance.
 
 **Antecedente de planificación del 11/11/2026:** ese corte fue sustituido por la ejecución documentada en [§48](48_protocolo_reducido.md). Su texto exacto se conserva en el archivo enlazado al final; no describe trabajos finales pendientes.
 
 **Fuente y adaptación:** los esquemas/propuestas del 08/11 se conservan como antecedentes bibliográficos. Para la receta ejecutada consultar [§44](44_arquitecturas_publicadas.md) y la actualización de [§48](48_protocolo_reducido.md); §§26–28 conservan decisiones previas: no equiparar el ensemble original de Inception a un miembro, las cabezas lineales propuestas a la Softplus vigente ni confundir fases del autoencoder. Fuentes formalizadas: {cite:p}`e2_wang_fcn_resnet,e2_inceptiontime,e2_lstm_sae`. Wang se identifica como preprint 2016 con DOI arXiv, separado de la referencia IJCNN 2017 cuya verificación editorial sigue parcial.
 
-Consulta de fuentes primarias: 8 noviembre 2026. Este archivo es material bibliográfico para integrar, no una afirmación de resultados experimentales E2. **NR** significa no reportado o no verificado en las fuentes inspeccionadas; se especifica cuál. Páginas contadas desde 1 en los PDF enlazados. Se separan evidencia publicada, derivación analítica y propuesta de adaptación. Las adaptaciones descritas son propuestas bibliográficas, no configuraciones congeladas del ejecutor registrado. El contrato neural vigente de E2 usa D7×5 OHLCV y una salida escalar σ₇; por tanto, aquí L=7, C=5 y H=1 serían la especialización correspondiente. Un kernel de longitud 8, 10, 20 o 40 exige padding o una modificación explícita: no incorpora observaciones anteriores a esos siete días. No se heredan las recetas, pruebas ni recibos de los modelos sustituidos.
+Las cuatro redes ya forman parte del benchmark ejecutado de [16 sistemas](06_benchmark_final.md): seis inicializaciones por receta neuronal, 608 fechas comunes y predictores congelados. La [extracción vigente](../_static/e2_literature_closure_20261113/current10_extraction.csv) y la [síntesis actual](62_cierre_literatura_focal.md) completan la lectura primaria inicial del 08/11. Los diagramas y las fórmulas de propuesta conservados debajo explican el mecanismo; su cabeza lineal y la pérdida conjunta propuesta para SAE no describen las recetas finales.
 
-El [avance de implementación de §4.0](04_implementacion.md) documenta por separado los prototipos compactos y sus diferencias respecto de estas fuentes; las fórmulas de coste de las fichas no son mediciones de esos prototipos.
+La receta ejecutada usa D7×5 OHLCV, salida escalar con Softplus y escalado de entrenamiento. FCN y ResNet mantienen sus cuerpos definidos; Inception es una red individual de seis módulos, no el ensemble de cinco; SAE usa AE1 → AE2 con el primer encoder congelado → transferencia → ajuste supervisado, con encoders 25/26 y sin pérdida conjunta de reconstrucción durante la etapa predictiva. Las identidades, fuentes fijadas y diferencias de tarea están en [§44](44_arquitecturas_publicadas.md) y [§48](48_protocolo_reducido.md). Un kernel mayor que siete se aplica con padding declarado y no aporta días adicionales.
+
+**NR** significa no reportado en la versión y condición examinadas; **NV**, no verificado. Las notas iniciales que agrupaban ambos casos se interpretan con esa distinción y con la matriz actual, sin convertir una falta de verificación en ausencia del dato en el artículo. Las páginas del PDF se cuentan desde 1. Se separan resultado publicado, derivación analítica, propuesta inicial y receta ejecutada.
+
+La [implementación vigente](04_implementacion.md) distingue prototipos y cuerpos publicados. Los parámetros y tiempos medidos de las recetas finales están en [§51](51_eficiencia_costes.md), los perfiles batch 1 A100 en [§54](54_robustez_interpretabilidad.md) y los FLOPs core en [§58](58_flops_predictores.md). Las fórmulas de coste de estas fichas son derivaciones analíticas, no mediciones de los artículos ni sustitutos de esos registros.
 
 ## Contexto común de evaluación
 
 FCN, ResNet e InceptionTime nacieron para clasificación de series completas. Sustituir softmax por salida lineal no convierte sus resultados UCR en evidencia de forecasting. El LSTM-SAE identificado sí pronostica, pero no evalúa BTC ni acredita automáticamente un autoencoder de pérdida conjunta. Comparar los cuatro exige la misma variable objetivo, ventana histórica, horizonte, particiones temporales, transformación y presupuesto de búsqueda. No ordenar modelos mezclando MPCE, accuracy y RMSE de distintos datasets.
 
-Notación propuesta: X_t ∈ R^(L×C) contiene exclusivamente observaciones hasta t; y_t ∈ R^H contiene los objetivos futuros definidos por el protocolo; B es tamaño de batch, N número de ventanas, L longitud, C canales y H salidas. Para cualquier adaptación de regresión: ŷ_t = W z_t + b, y L_pred = (NH)^−1 Σ_t ||y_t−ŷ_t||². Estas fórmulas son la especificación E2 propuesta, no una cita de los clasificadores originales. Si E2 define otro objetivo o MAE/Huber, debe declararlo sin atribuírselo al paper.
+En la notación histórica de las propuestas, t es el último instante observado. El contrato ejecutado expresa el pronóstico al inicio del día de resultado t: X_t contiene los siete días cerrados t−7,…,t−1 y Y_t incluye el retorno de t. B es tamaño de batch, N número de ventanas, L longitud, C canales y H salidas. La cabeza lineal propuesta ŷ_t = W z_t + b y L_pred = (NH)^−1 Σ_t ||y_t−ŷ_t||² se conservan como antecedente; el ejecutor utiliza salida escalar positiva y MSE en la escala de entrenamiento, con RMSE reportada en unidades originales. No se atribuye esa adaptación a los clasificadores originales.
 
+(e2-lit-fcn)=
 ## FCN 1D
 
 ### Fuente y evidencia publicada
@@ -43,6 +49,7 @@ Cambio explícito: salida lineal/MSE y objetivo futuro en lugar de softmax/entro
 
 Coste derivado, no medición publicada: O(BL Σ_j k_j C_(j−1)C_j) por pasada de convoluciones, activaciones O(BL Σ_j C_j); entrenamiento añade backward y estados del optimizador. Para Conv1D propuesta, pesos convolucionales sin bias/BN/cabeza = 1024C + 262144. Campo receptivo local antes de GAP = 1+(8−1)+(5−1)+(3−1)=14 puntos; GAP agrega toda la ventana, pero no convierte esos filtros en interacciones locales de longitud L. Latencia, RAM/VRAM, FLOPs publicados comparables con E2: **NR**. Ventaja a probar: baseline convolucional simple y paralelizable; límites: dependencia del escalado, deriva y pérdida de posición por GAP.
 
+(e2-lit-resnet)=
 ## ResNet 1D
 
 ### Fuente y evidencia publicada
@@ -62,6 +69,7 @@ Cambios E2 propuestos: Conv1D explícita; cabeza lineal H; pérdida supervisada 
 
 Coste derivado: O(BL Σ_9conv k_j C_(j−1)C_j), más las proyecciones 1×1. La suma residual cuesta O(BLC); activaciones y backward de nueve convoluciones incrementan memoria frente a tres capas de ancho comparable, sin asegurar un multiplicador fijo. Campo receptivo máximo de la ruta de nueve conv de stride 1 = 1+3[(8−1)+(5−1)+(3−1)] = 40; rutas shortcut tienen campos menores. Son cálculos de la adaptación Conv1D, no mediciones del script Conv2D. Parámetros exactos dependen de BN, bias y proyecciones: contar sobre el modelo final. Fuente de datos y licencia son las del apartado FCN. Licencia propia separada: **NR**. Riesgos a contrastar: sobreajuste, gasto mayor y sensibilidad a BN con batches pequeños o regímenes distintos.
 
+(e2-lit-inception)=
 ## InceptionTime adaptado a regresión
 
 ### Fuente y evidencia publicada
@@ -89,8 +97,9 @@ I(h) = ReLU(BN(concat(C_10(B(h)), C_20(B(h)), C_40(B(h)), C_1(MaxPool(h))))).
 
 [Repositorio oficial](https://github.com/hfawaz/InceptionTime) publica GPL-3.0 y resultados CSV para 85/128 datasets. La licencia del código no debe confundirse con la de cada dataset UCR: esta última **NR** en esta inspección. No copiar código GPL sin revisar compatibilidad del proyecto. El artículo, sus figuras y datasets tienen derechos independientes.
 
-Coste derivado por módulo con M canales, bottleneck b y f filtros por rama: convoluciones aproximadamente BL[Mb + bf(10+20+40) + Mf], más pooling, BN y residuales. Cuando no se aplica bottleneck, sustituir b por M en las ramas y eliminar Mb. Con f=32 salen 128 canales. Cinco miembros multiplican aproximadamente por cinco el cómputo secuencial de una arquitectura idéntica; no es una predicción exacta de segundos, y entrenarlos a la vez exige más memoria. Medir aparte latencia de un miembro y ensemble. Riesgos razonados: presupuesto cinco veces mayor, kernels demasiado largos respecto a L, promediado que oculte sesgo común; faltan resultados propios para justificar ese coste.
+Coste derivado por módulo con M canales, bottleneck b y f filtros por rama: convoluciones aproximadamente BL[Mb + bf(10+20+40) + Mf], más pooling, BN y residuales. Cuando no se aplica bottleneck, sustituir b por M en las ramas y eliminar Mb. Con f=32 salen 128 canales. Cinco miembros multiplican aproximadamente por cinco el cómputo secuencial de una arquitectura idéntica; no es una predicción exacta de segundos, y entrenarlos a la vez exige más memoria. Medir aparte latencia de un miembro y ensemble. Riesgos del ensemble original: presupuesto aproximadamente cinco veces mayor, kernels largos respecto a L y promedio que oculte sesgo común. E2 evalúa una red individual; su coste medido no se multiplica por cinco ni se atribuye al ensemble publicado. La {ref}`comparación de artefactos de autor <e2-lit-inception-single>` separa ambas construcciones y sus datasets.
 
+(e2-lit-sae)=
 ## LSTM-autoencoder con predictor
 
 ### Fuente identificada y distinción necesaria
@@ -114,20 +123,20 @@ Ecuación recurrente resumida: c_s = f_s⊙c_(s−1)+i_s⊙ĉ_s; h_s=o_s⊙tanh(
 
 ### Código, datos, coste y límites
 
-[Repositorio del autor](https://github.com/2M-kotb/LSTM-based-Stacked-Autoencoder): scripts para 1/2/3 capas, búsqueda y evaluación; pollution.csv; Keras 2.1.5, tensorflow-gpu 1.10.0, Hyperopt 0.1.1. Licencia del código: **NR**, sin LICENSE visible en raíz. Licencia del CSV: **NR**, no asumir que hereda CC BY del artículo. Disponibilidad pública verificada, reproducción actual no ejecutada. Intervalos, split exacto, horizonte de Tabla 1 y rendimiento temporal de hardware: **NR en esta inspección**; no completar por conjetura.
+[Repositorio del autor](https://github.com/2M-kotb/LSTM-based-Stacked-Autoencoder): scripts para 1/2/3 capas, búsqueda y evaluación; pollution.csv; Keras 2.1.5, tensorflow-gpu 1.10.0, Hyperopt 0.1.1. El [script fuente fijado](https://github.com/2M-kotb/LSTM-based-Stacked-Autoencoder/blob/8668132ef6f8855dbab289c5a2b2478f871c4c4b/2layer_evaluate.py) y la lectura primaria posterior sustentan la receta actual. Licencia del código: **NR** en la raíz inspeccionada; licencia del CSV: **NV**, sin asumir que hereda CC BY del artículo. El [registro actual de disponibilidad](../_static/e2_literature_delivery_closure_20261114_v3/quality/current_nine_data_access.csv) identifica UCI Beijing PM2.5 y distingue 43.824 observaciones brutas de las 43.800 preparadas que informa la fuente. No se reprodujeron los datos, splits ni experimentos originales del artículo; la reproducción de E2 publicada en §55 tiene otro objeto. Las incógnitas de la inspección inicial no sustituyen la extracción posterior de Tabla 2 y del protocolo.
 
 Coste derivado de una capa LSTM de ancho d y entrada C: 4d(C+d+1) parámetros con una convención de bias único; implementación con dos sesgos cambia el conteo. Operaciones por secuencia O(Ld(C+d)); entrenamiento conjunto suma decoder y cabeza, además de backward. Activaciones O(BLd) por capa como orden orientativo, no pico real de VRAM. La recurrencia impone dependencia secuencial en L, así que igual número de parámetros no implica igual latencia que CNN. Inferencia sólo con encoder+cabeza puede descartar decoder si la implementación lo permite. Riesgos razonados: reconstrucción puede dedicar capacidad a variaciones que no ayudan al objetivo; λ introduce otra decisión; pretraining añade coste y potencial fuga.
 
 ## Registro de extracción y límites
 
-- Wang PDF pp. 2–4: arquitectura/protocolo/Tabla I leídos directamente. Scripts oficiales FCN.py y ResNet.py inspeccionados; no ejecutados ni fijados a commit. Raíz inspeccionada para licencia, sin conclusión jurídica sobre derechos no visibles.
-- InceptionTime PDF pp. 5–12: arquitectura, Fig. 6 y hardware inspeccionados; código inception.py y raíz oficial inspeccionados. Enlaces master son mutables: al implementar, fijar SHA y dependencias.
-- Sagheer/Kotb: PDF primario y metadatos recuperados; acceso posterior del editor tuvo redirección técnica. Tabla 1 recuperada del resultado indexado del PDF primario, con encabezados y valores. No se utilizaron números de tablas 2–6 tomados de espejos secundarios. Tabla 1 es suficiente como ejemplo publicado; los campos NR no significan que el artículo completo carezca de ellos.
+- Wang PDF pp. 2–4: arquitectura/protocolo/Tabla I leídos en la inspección inicial. Los scripts oficiales FCN.py y ResNet.py se fijaron después al commit `3ecc8971fa768bd01ada7f3a613688255e6256c2` para verificar los cuerpos adaptados. Esa verificación no reproduce la clasificación UCR original. La inspección de licencia mantiene su alcance propio.
+- InceptionTime PDF pp. 5–12: arquitectura, Fig. 6 y hardware inspeccionados. El cuerpo fuente se fijó posteriormente al commit `952d115e83fb3a66d75c5858c702f8dd5eeb18b7`; los enlaces master de la ficha inicial conservan su condición mutable. Los {ref}`resultados de autor de redes individuales y ensemble <e2-lit-inception-single>` son evidencia adicional con otro denominador.
+- Sagheer/Kotb: la inspección inicial usó metadatos y Tabla 1 del PDF primario indexado. La lectura posterior del [texto primario PMC](https://pmc.ncbi.nlm.nih.gov/articles/PMC6911101/) examinó además métodos y tablas, incluida Tabla 2 de PM2.5, con localizadores en la extracción actual. El alcance inicial se conserva sin borrar la evidencia posterior; NR/NV no significan ausencia global en el artículo.
 - En esta revisión bibliográfica no se entrenó ningún modelo, no se midió consumo real, no se evaluó BTC, no se revisó la licencia específica de fuentes de mercado, no se hizo backtest. Cualquier shortlist es metodológica, no recomendación financiera ni demostración de rentabilidad.
 
 ## Recomendación de integración
 
-Los cuatro aportan mecanismos diferenciados, pero FCN, ResNet e Inception son convolucionales y LSTM-AE es recurrente: no acreditan por sí solos cuatro familias. Usar FCN como control simple, ResNet como prueba de profundidad residual, Inception como prueba multiescala y LSTM-AE como prueba de representación con reconstrucción. Es un criterio experimental propio. Antes de cerrar la nueva selección experimental, se debe enlazar cada ficha con la clase/configuración real E2, documentar diferencias y registrar por modelo: parámetros, semillas, folds, MAE/RMSE en unidades originales, benchmark ingenuo común, segundos de entrenamiento, latencia batch 1 y memoria pico. Todo eso continúa **pendiente de medición**, no forma parte de los resultados bibliográficos.
+Los cuatro aportan mecanismos diferenciados, pero FCN, ResNet e Inception son convolucionales y LSTM-AE es recurrente: no acreditan por sí solos cuatro familias. El Top 10 completo añade MLP y atención, con cuatro familias documentadas en [§3](03_literatura.md). La integración ya está ejecutada: las fuentes se vinculan a clases/configuraciones en §44/§48; las seis semillas y los resultados de la cohorte común están en §6; parámetros y tiempos en §51; latencia batch 1 y memoria en §54; FLOPs core en §58. Las tres ablaciones del autoencoder y su inferencia posterior están en [§55](55_reproduccion_ablaciones.md). Estos productos son evidencia propia de E2 y no rellenan costes o resultados no reportados por los artículos. La [lista vigente del punto 3](../_static/e2_literature_current_v1/guide_checklist.csv) separa esos alcances.
 
 
 ## Archivo de la versión anterior

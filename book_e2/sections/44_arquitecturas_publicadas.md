@@ -71,7 +71,7 @@ La comprobación de estas adaptaciones incluye correspondencia con fuentes fijad
 
 **Verificación local CPU: 67 comprobaciones aprobadas, sin fallos ni omisiones.** Se verificaron 76 archivos autorales fijados y tres archivos auxiliares de evidencia. El recibo identifica versiones, pruebas y hashes; no informa entrenamiento de mercado ni integración observada sobre GPU.
 
-El nuevo adaptador de entrenamiento se habilita en este paso para **fixtures CPU explícitas**. La integración conjunta de ajuste, inferencia y orquestación GPU queda pendiente de la migración versionada del controlador. La disponibilidad de un helper SAE para CUDA no acredita por sí sola esa integración ni una corrida de mercado.
+**Alcance de aquel recibo CPU:** el adaptador se habilitó inicialmente para fixtures explícitas; en ese corte la integración GPU aún no estaba ejecutada. La campaña posterior de [§48](48_protocolo_reducido.md) ya registra ajuste, inferencia y orquestación de las trece recetas neuronales, con resultados comunes en [§6](06_benchmark_final.md). El recibo CPU no se reinterpreta como prueba GPU: las ejecuciones posteriores conservan sus propios recibos y hashes.
 
 Las cuatro restauraciones tienen identidades nuevas:
 
