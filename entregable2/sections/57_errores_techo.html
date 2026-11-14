@@ -1,0 +1,794 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>57. Taxonomía de errores y referencias de predictibilidad &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/57_errores_techo';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="58. Coste de operaciones de los predictores congelados" href="58_flops_predictores.html" />
+    <link rel="prev" title="56. Inferencia refinada y estabilidad temporal" href="56_inferencia_estabilidad_final.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 2 · Bitcoin: pronóstico de volatilidad</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="48_protocolo_reducido.html">48. Protocolo reducido y seguimiento de la ejecución</a></li>
+<li class="toctree-l1"><a class="reference internal" href="47_entrega_consolidada.html">47. Entrega consolidada con la evidencia disponible</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_literatura.html">3. Revisión Sistemática del Estado del Arte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación: catálogo obligatorio y antecedentes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark obligatorio: dieciséis sistemas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="49_diagnosticos_f2a.html">49. Diagnósticos F2a posteriores al benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="50_comparaciones_f2a.html">50. Comparaciones F2a posteriores: DM, MCS y rangos por semilla</a></li>
+<li class="toctree-l1"><a class="reference internal" href="51_eficiencia_costes.html">51. Eficiencia, coste observado y compromisos de Pareto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="52_sintesis_literatura.html">52. Síntesis verificable de literatura y selección vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="53_cierre_requisitos.html">53. Cierre de requisitos y experimentos complementarios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="54_robustez_interpretabilidad.html">54. Robustez e interpretabilidad: resultados reales de los predictores congelados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="55_reproduccion_ablaciones.html">55. Reproducción numérica y ablaciones completadas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="56_inferencia_estabilidad_final.html">56. Inferencia refinada y estabilidad temporal</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">57. Taxonomía de errores y referencias de predictibilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="58_flops_predictores.html">58. Coste de operaciones de los predictores congelados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="59_auditoria_literatura_final.html">59. Auditoría final de la literatura recibida</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Registro de selección, cierre pendiente y trazabilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de datos y auditoría formal de fuga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. HPO y equidad para el catálogo vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Techo de desempeño, incertidumbre y análisis de errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Agregación estadística e interpretación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas del catálogo vigente y adaptación a D7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo vigente: diez modelos y candidato 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_fichas_nuevas.html">16. Fichas bibliográficas de las cuatro altas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato sincronizado de E1, E2 y E3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_integracion_sintetica.html">18. Implementación provisional y verificación sintética</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_plan_auditoria.html">19. Plan experimental propuesto y auditoría sin entrenamiento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_contraste_guia.html">20. Cotejo del plan con la guía original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_comparadores_nas.html">21. Comparadores temporales y decisión NAS por receta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22_fichas_recetas.html">22. Once fichas de recetas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_implementacion_recetas.html">23. Implementación de recetas y controles temporales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="24_ejecutor_comun.html">24. Ejecutor común y disponibilidad temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="25_matriz_cierre.html">25. Matriz de cierre antes del benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="26_registro_recetas.html">26. Registro por receta: fuentes, NAS, HPO e integración</a></li>
+<li class="toctree-l1"><a class="reference internal" href="27_nas_hpo_presupuesto.html">27. Decisiones NAS, rangos HPO y presupuesto para Codex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="28_fabricas_nas.html">28. Fábricas NAS implementadas y verificadas sintéticamente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="29_entrenamiento_temporal.html">29. Entrenamiento por etapas, selección temporal y perfilado CPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="30_piloto_nube.html">30. Piloto de desarrollo en la nube de Codex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="31_optimizacion_nube.html">31. Optimización de CPU y presupuesto de cómputo en la nube</a></li>
+<li class="toctree-l1"><a class="reference internal" href="32_ejecucion_gpu.html">32. Ejecución CUDA preparada y piloto de recursos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="33_piloto_gpu.html">33. Primer piloto de recursos en GPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="34_perfil_gpu_ampliado.html">34. Perfil GPU ampliado y viabilidad del extremo TimesNet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="35_busqueda_cuda_reanudable.html">35. Selección CUDA con presupuesto y continuación en GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="36_avance_campana_cuda.html">36. Avance parcial de la campaña CUDA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="37_ajuste_guia.html">37. Ajuste de cómputo conforme a la guía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="38_cumplimiento_guia.html">38. Exigencias de la guía, evidencia y pendientes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="39_optimizacion_tiempo.html">39. Optimizar tiempo sin recortar las exigencias de E2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="40_calendario_original.html">40. Calendario original y optimizaciones de implementación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="41_avance_optimizacion_11_origenes.html">41. Ejecución optimizada: avance verificable de once orígenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html">42. Preparación complementaria a partir de evidencia existente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="43_catalogo_obligatorio.html">43. Catálogo obligatorio: dieciséis sistemas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="44_arquitecturas_publicadas.html">44. Cuerpos publicados, adaptaciones D7 y aplicación de NAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="45_enmienda_protocolo.html">45. Enmienda del protocolo: calendario común, presupuesto y prueba final</a></li>
+<li class="toctree-l1"><a class="reference internal" href="46_artefactos_y_pilotos.html">46. Preparación técnica opcional: artefactos y pilotos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><p class="small">Entregable 2 · Jassan Arteta · 2026-30</p></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/57_errores_techo.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>57. Taxonomía de errores y referencias de predictibilidad</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#categorias-y-muestra-auditable">Categorías y muestra auditable</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias-de-predictibilidad-y-distancia">Referencias de predictibilidad y distancia γ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivos-auditables">Archivos auditables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#insumos-para-repetir-los-calculos">Insumos para repetir los cálculos</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="taxonomia-de-errores-y-referencias-de-predictibilidad">
+<h1>57. Taxonomía de errores y referencias de predictibilidad<a class="headerlink" href="#taxonomia-de-errores-y-referencias-de-predictibilidad" title="Link to this heading">#</a></h1>
+<p>Este complemento se calculó después de conocer el test y sus resultados originales. Las reglas se conservaron antes de generar sus etiquetas automáticas. No es un prerregistro del experimento original ni una revisión humana. Sólo utiliza pronósticos guardados y la volatilidad de desarrollo 2023–2024: no hubo entrenamiento, inferencia de modelos ni ajuste de pesos.</p>
+<p>Las <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/4361275cbc52e2f6362349557b471cda110bbefc/experiments/e2_error_ceiling_final_audit_20261114/analysis_plan.json">reglas versionadas</a> se fijaron el 13/11 a las 23:19:49 de Bogotá, antes del etiquetado. El protocolo local se exportó el 13/11 a las 23:23:42 de Bogotá. Exportación congelada SHA-256: 65ae74b547a6073b2c286dea8039a2e7a1b1f6063b1d9ac0eb760c9ce727d187.</p>
+<section id="categorias-y-muestra-auditable">
+<h2>Categorías y muestra auditable<a class="headerlink" href="#categorias-y-muestra-auditable" title="Link to this heading">#</a></h2>
+<p>La unidad principal es una fecha por modelo; se usa la media aritmética de sus seis pronósticos congelados. Es un predictor agregado diagnóstico y no sustituye la tabla A2, cuya estadística sigue siendo la media de los RMSE individuales. Se publican además las etiquetas por semilla y su concordancia para hacer visible la cancelación de errores en la media.</p>
+<p>Con e = pronóstico − observado, los cortes son a = 0.00130577631562 y b = 0.00728725980319: Q50 y Q90 de los 714 cambios absolutos diarios consecutivos del objetivo de desarrollo. No se atraviesan huecos. Son escalas descriptivas, no márgenes confirmatorios de relevancia ni ruido irreducible.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Categoría exclusiva</p></th>
+<th class="head"><p>Regla</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Banda pequeña</p></td>
+<td><p>abs(e) ≤ a</p></td>
+</tr>
+<tr class="row-odd"><td><p>Subestimación moderada</p></td>
+<td><p>a &lt; abs(e) ≤ b y e &lt; 0</p></td>
+</tr>
+<tr class="row-even"><td><p>Sobreestimación moderada</p></td>
+<td><p>a &lt; abs(e) ≤ b y e ≥ 0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Subestimación grande</p></td>
+<td><p>abs(e) &gt; b y e &lt; 0</p></td>
+</tr>
+<tr class="row-even"><td><p>Sobreestimación grande</p></td>
+<td><p>abs(e) &gt; b y e ≥ 0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Se etiquetaron las 608 fechas de cada uno de los diez modelos: <strong>6.080 casos fecha-modelo</strong>. La muestra conserva <strong>100 fechas distintas por modelo</strong>, con las seis semillas por fecha (<strong>600 errores individuales por modelo</strong>). Son casos con residuos continuos; no se afirma que cada uno sea un fallo grave. La selección común se estratificó por año y régimen observado del objetivo, con Q25/Q75 calculados sólo en desarrollo y semilla 272101. No depende de los errores. Estos regímenes son descriptivos, no entradas de predicción ni causas económicas.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo</p></th>
+<th class="head text-right"><p>Fechas etiquetadas</p></th>
+<th class="head text-right"><p>Fechas auditables</p></th>
+<th class="head text-right"><p>Casos individuales (seis semillas)</p></th>
+<th class="head text-right"><p>Concordancia de etiquetas</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>FCN-1D</p></td>
+<td class="text-right"><p>608</p></td>
+<td class="text-right"><p>100</p></td>
+<td class="text-right"><p>600</p></td>
+<td class="text-right"><p>75.2%</p></td>
+</tr>
+<tr class="row-odd"><td><p>ResNet-1D</p></td>
+<td class="text-right"><p>608</p></td>
+<td class="text-right"><p>100</p></td>
+<td class="text-right"><p>600</p></td>
+<td class="text-right"><p>67.2%</p></td>
+</tr>
+<tr class="row-even"><td><p>Inception-1D</p></td>
+<td class="text-right"><p>608</p></td>
+<td class="text-right"><p>100</p></td>
+<td class="text-right"><p>600</p></td>
+<td class="text-right"><p>70.0%</p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM-autoencoder con predictor</p></td>
+<td class="text-right"><p>608</p></td>
+<td class="text-right"><p>100</p></td>
+<td class="text-right"><p>600</p></td>
+<td class="text-right"><p>81.6%</p></td>
+</tr>
+<tr class="row-even"><td><p>TimesNet</p></td>
+<td class="text-right"><p>608</p></td>
+<td class="text-right"><p>100</p></td>
+<td class="text-right"><p>600</p></td>
+<td class="text-right"><p>70.8%</p></td>
+</tr>
+<tr class="row-odd"><td><p>TSMixer</p></td>
+<td class="text-right"><p>608</p></td>
+<td class="text-right"><p>100</p></td>
+<td class="text-right"><p>600</p></td>
+<td class="text-right"><p>76.5%</p></td>
+</tr>
+<tr class="row-even"><td><p>TiDE</p></td>
+<td class="text-right"><p>608</p></td>
+<td class="text-right"><p>100</p></td>
+<td class="text-right"><p>600</p></td>
+<td class="text-right"><p>56.6%</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimeMixer</p></td>
+<td class="text-right"><p>608</p></td>
+<td class="text-right"><p>100</p></td>
+<td class="text-right"><p>600</p></td>
+<td class="text-right"><p>69.5%</p></td>
+</tr>
+<tr class="row-even"><td><p>PatchTST</p></td>
+<td class="text-right"><p>608</p></td>
+<td class="text-right"><p>100</p></td>
+<td class="text-right"><p>600</p></td>
+<td class="text-right"><p>76.8%</p></td>
+</tr>
+<tr class="row-odd"><td><p>iTransformer</p></td>
+<td class="text-right"><p>608</p></td>
+<td class="text-right"><p>100</p></td>
+<td class="text-right"><p>600</p></td>
+<td class="text-right"><p>91.3%</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Las frecuencias del calendario completo son recuentos exactos de este conjunto finito. Los IC del 95% son intervalos marginales de sensibilidad temporal: 10.000 remuestreos de bloques circulares de 14 días, con sensibilidad a 7 y 28 días. Suponen dependencia corta y estacionariedad aproximada; no son incertidumbre de contar estos 608 días ni garantizan cobertura simultánea de todas las categorías. Los cambios de régimen limitan la extrapolación. Un intervalo [0 %, 0 %] de una categoría no observada es una degeneración del bootstrap empírico; no demuestra probabilidad poblacional cero.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo</p></th>
+<th class="head text-right"><p>Banda pequeña</p></th>
+<th class="head text-right"><p>Subest. moderada</p></th>
+<th class="head text-right"><p>Sobreest. moderada</p></th>
+<th class="head text-right"><p>Subest. grande</p></th>
+<th class="head text-right"><p>Sobreest. grande</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>FCN-1D</p></td>
+<td class="text-right"><p>35.0% [30.8%, 39.3%]</p></td>
+<td class="text-right"><p>24.8% [19.7%, 30.1%]</p></td>
+<td class="text-right"><p>35.0% [29.3%, 41.3%]</p></td>
+<td class="text-right"><p>5.1% [2.1%, 8.9%]</p></td>
+<td class="text-right"><p>0.0% [0.0%, 0.0%]</p></td>
+</tr>
+<tr class="row-odd"><td><p>ResNet-1D</p></td>
+<td class="text-right"><p>32.4% [28.1%, 36.8%]</p></td>
+<td class="text-right"><p>16.4% [12.7%, 20.4%]</p></td>
+<td class="text-right"><p>46.4% [40.3%, 52.8%]</p></td>
+<td class="text-right"><p>4.6% [2.0%, 8.1%]</p></td>
+<td class="text-right"><p>0.2% [0.0%, 0.5%]</p></td>
+</tr>
+<tr class="row-even"><td><p>Inception-1D</p></td>
+<td class="text-right"><p>33.2% [29.1%, 37.2%]</p></td>
+<td class="text-right"><p>19.7% [15.3%, 24.5%]</p></td>
+<td class="text-right"><p>42.3% [36.0%, 48.8%]</p></td>
+<td class="text-right"><p>4.3% [2.0%, 7.4%]</p></td>
+<td class="text-right"><p>0.5% [0.0%, 1.2%]</p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM-autoencoder con predictor</p></td>
+<td class="text-right"><p>31.1% [26.0%, 36.2%]</p></td>
+<td class="text-right"><p>17.9% [13.7%, 22.4%]</p></td>
+<td class="text-right"><p>46.9% [40.1%, 53.8%]</p></td>
+<td class="text-right"><p>3.9% [1.8%, 6.7%]</p></td>
+<td class="text-right"><p>0.2% [0.0%, 0.5%]</p></td>
+</tr>
+<tr class="row-even"><td><p>TimesNet</p></td>
+<td class="text-right"><p>25.3% [21.2%, 29.4%]</p></td>
+<td class="text-right"><p>19.4% [14.3%, 24.8%]</p></td>
+<td class="text-right"><p>49.8% [42.8%, 57.1%]</p></td>
+<td class="text-right"><p>3.1% [1.6%, 4.9%]</p></td>
+<td class="text-right"><p>2.3% [0.7%, 4.4%]</p></td>
+</tr>
+<tr class="row-odd"><td><p>TSMixer</p></td>
+<td class="text-right"><p>30.3% [24.8%, 35.9%]</p></td>
+<td class="text-right"><p>37.3% [30.9%, 43.4%]</p></td>
+<td class="text-right"><p>21.7% [16.6%, 27.5%]</p></td>
+<td class="text-right"><p>10.4% [6.2%, 15.0%]</p></td>
+<td class="text-right"><p>0.3% [0.0%, 0.8%]</p></td>
+</tr>
+<tr class="row-even"><td><p>TiDE</p></td>
+<td class="text-right"><p>28.0% [23.4%, 32.7%]</p></td>
+<td class="text-right"><p>36.3% [29.9%, 42.9%]</p></td>
+<td class="text-right"><p>26.3% [21.2%, 31.9%]</p></td>
+<td class="text-right"><p>7.6% [4.3%, 11.3%]</p></td>
+<td class="text-right"><p>1.8% [0.7%, 3.3%]</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimeMixer</p></td>
+<td class="text-right"><p>23.4% [19.2%, 27.6%]</p></td>
+<td class="text-right"><p>16.8% [12.3%, 21.4%]</p></td>
+<td class="text-right"><p>56.2% [48.8%, 63.8%]</p></td>
+<td class="text-right"><p>3.0% [1.2%, 5.3%]</p></td>
+<td class="text-right"><p>0.7% [0.2%, 1.3%]</p></td>
+</tr>
+<tr class="row-even"><td><p>PatchTST</p></td>
+<td class="text-right"><p>10.7% [7.6%, 14.0%]</p></td>
+<td class="text-right"><p>12.2% [7.9%, 16.8%]</p></td>
+<td class="text-right"><p>33.2% [27.8%, 38.7%]</p></td>
+<td class="text-right"><p>11.0% [5.3%, 17.4%]</p></td>
+<td class="text-right"><p>32.9% [25.3%, 41.1%]</p></td>
+</tr>
+<tr class="row-odd"><td><p>iTransformer</p></td>
+<td class="text-right"><p>22.9% [18.4%, 27.5%]</p></td>
+<td class="text-right"><p>21.5% [16.3%, 27.1%]</p></td>
+<td class="text-right"><p>41.0% [34.0%, 48.4%]</p></td>
+<td class="text-right"><p>10.5% [5.9%, 15.8%]</p></td>
+<td class="text-right"><p>4.1% [2.3%, 6.2%]</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los archivos detallados conservan los pesos de inclusión N_h/n_h, frecuencias muestrales ponderadas, la concordancia de semillas y correlación/intersección/Jaccard de errores grandes para los 45 pares de modelos. Las categorías describen residuos; no sustituyen una taxonomía semántica anotada por expertos.</p>
+</section>
+<section id="referencias-de-predictibilidad-y-distancia">
+<h2>Referencias de predictibilidad y distancia γ<a class="headerlink" href="#referencias-de-predictibilidad-y-distancia" title="Link to this heading">#</a></h2>
+<p>Se calculó entropía de permutación de Bandt y Pompe (2002; <a class="reference external" href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.88.174102">DOI 10.1103/PhysRevLett.88.174102</a>), con órdenes 3, 4 y 5 y retardo 1, sin atravesar faltantes. Es complejidad ordinal, no una conversión a error Bayes, un porcentaje de predictibilidad o un RMSE mínimo alcanzable.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Periodo</p></th>
+<th class="head text-right"><p>Orden</p></th>
+<th class="head text-right"><p>Ventanas</p></th>
+<th class="head text-right"><p>Entropía normalizada</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>development_2023_2024</p></td>
+<td class="text-right"><p>3</p></td>
+<td class="text-right"><p>712</p></td>
+<td class="text-right"><p>0.971268</p></td>
+</tr>
+<tr class="row-odd"><td><p>development_2023_2024</p></td>
+<td class="text-right"><p>4</p></td>
+<td class="text-right"><p>710</p></td>
+<td class="text-right"><p>0.934492</p></td>
+</tr>
+<tr class="row-even"><td><p>development_2023_2024</p></td>
+<td class="text-right"><p>5</p></td>
+<td class="text-right"><p>708</p></td>
+<td class="text-right"><p>0.897266</p></td>
+</tr>
+<tr class="row-odd"><td><p>known_test_2025_2026</p></td>
+<td class="text-right"><p>3</p></td>
+<td class="text-right"><p>606</p></td>
+<td class="text-right"><p>0.954079</p></td>
+</tr>
+<tr class="row-even"><td><p>known_test_2025_2026</p></td>
+<td class="text-right"><p>4</p></td>
+<td class="text-right"><p>605</p></td>
+<td class="text-right"><p>0.918404</p></td>
+</tr>
+<tr class="row-odd"><td><p>known_test_2025_2026</p></td>
+<td class="text-right"><p>5</p></td>
+<td class="text-right"><p>604</p></td>
+<td class="text-right"><p>0.875382</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El ensemble uniforme de los diez modelos, emparejado por semilla y sin ajustar pesos, alcanza RMSE medio <strong>0.0041200562</strong>. SAE conserva <strong>0.0038034296</strong> y Persistence <strong>0.0040855959</strong>. El ensemble resulta peor: <strong>no constituye un techo empírico válido</strong>. Se conserva el resultado negativo, sin buscar una combinación más favorable.</p>
+<p>Con s = −RMSE, la fórmula de la guía se orienta así:</p>
+<div class="math notranslate nohighlight">
+\[\gamma = \frac{RMSE_{mejor}-RMSE_{referencia}}{RMSE_{base}-RMSE_{referencia}}.\]</div>
+<p>Con el ensemble, el cociente algebraico es 9.188146; el denominador es negativo y <strong>no se interpreta como fracción pendiente</strong>. Frente a la cota matemática ideal RMSE = 0, <strong>γ_ideal = 0.930936</strong>, IC temporal de 14 días [0.844480, 1.029743]. Es la fracción del error de Persistence que permanece respecto a una predicción perfecta; <strong>no estima la brecha frente a un techo real alcanzable</strong>. El IC incluye 1 y puede superar 1 cuando en las cronologías remuestreadas SAE no mejora a Persistence; no se trunca. El riesgo Bayes y el ruido irreducible permanecen sin identificar.</p>
+<p>El complemento documenta las referencias ensayadas, la distancia condicionada y sus límites; no acredita un techo de desempeño identificado. No modifica la ausencia de superioridad práctica confirmada ni convierte el test conocido desde E1 en prueba independiente.</p>
+</section>
+<section id="archivos-auditables">
+<h2>Archivos auditables<a class="headerlink" href="#archivos-auditables" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="../_downloads/e5b2981c2c1cff63e149a337d2342c46/taxonomy_protocol.json"><span class="xref download myst">taxonomy_protocol.json</span></a>: reglas, fecha, umbrales, semillas y alcance post hoc.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/0971a98e34892f2ced453e82e9ddb397/all_6080_date_model_labels.csv"><span class="xref download myst">all_6080_date_model_labels.csv</span></a>: etiquetas del calendario completo.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/fda29f9b7f389457d438bab9d8ff2c0f/audit_100_dates_per_main_model.csv"><span class="xref download myst">audit_100_dates_per_main_model.csv</span></a> y <a class="reference download internal" download="" href="../_downloads/a4cb19026730fdd61ad9fa7d744ad667/audit_600_seed_cases_per_main_model.csv"><span class="xref download myst">audit_600_seed_cases_per_main_model.csv</span></a>: muestra y semillas.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/3b7295a3965c020f82d9f1c1d28b1b40/error_category_frequencies.csv"><span class="xref download myst">error_category_frequencies.csv</span></a>: frecuencias e IC de 7, 14 y 28 días.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/52524b1f12d00e6e79afe3226e4a1252/shared_error_diversity.csv"><span class="xref download myst">shared_error_diversity.csv</span></a>: solapamiento y correlación de los 45 pares.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/ddb158c20dfb0b8377eb6cc1a34606da/permutation_entropy.csv"><span class="xref download myst">permutation_entropy.csv</span></a> y <a class="reference download internal" download="" href="../_downloads/398616b2fc3fd428b1d0e877bf31027b/ceiling_gamma_references.json"><span class="xref download myst">ceiling_gamma_references.json</span></a>: referencias y límites de γ.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/86c92127b40a1548a823a5154b3fa745/manifest.json"><span class="xref download myst">manifest.json</span></a>: hashes y declaración de ausencia de ajuste/inferencia.</p></li>
+</ul>
+</section>
+<section id="insumos-para-repetir-los-calculos">
+<h2>Insumos para repetir los cálculos<a class="headerlink" href="#insumos-para-repetir-los-calculos" title="Link to this heading">#</a></h2>
+<p>Los <a class="reference download internal" download="" href="../_downloads/093ac7687f5fa6dc7f774b231591547c/e2_f2a_input.json"><span class="xref download myst">pronósticos congelados exactos</span></a>, el <a class="reference download internal" download="" href="../_downloads/f790064a27a16b02f69ba89b6a6c7f9d/daily_volatility_development.csv"><span class="xref download myst">objetivo de desarrollo</span></a> y el <a class="reference download internal" download="" href="../_downloads/756f78194f862137773983a9f95d8911/manifest.json"><span class="xref download myst">manifiesto de procedencia</span></a> permiten repetir el análisis sin cargar pesos ni volver a entrenar. Las brechas usan el <a class="reference download internal" download="" href="../_downloads/93d5104f8f5efe13c7e3e5941200893d/fit_overfit_summary.csv"><span class="xref download myst">resumen de ajustes ya publicado</span></a>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>scripts/e2_error_ceiling_final_audit.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--input<span class="w"> </span>book_e2/_static/e2_final_audit_inputs_20261114/e2_f2a_input.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--development<span class="w"> </span>book_e2/_static/e2_final_audit_inputs_20261114/daily_volatility_development.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--plan<span class="w"> </span>experiments/e2_error_ceiling_final_audit_20261114/analysis_plan.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--draws<span class="w"> </span><span class="m">10000</span><span class="w"> </span>--output<span class="w"> </span>work/error_audit_repeat
+</pre></div>
+</div>
+<p>Estos programas usan los hashes declarados. La generación de etiquetas y estadísticas en CPU se mantiene separada de los cargos históricos de los ajustes A100; no se registra como una nueva corrida del modelo.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="56_inferencia_estabilidad_final.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">56. Inferencia refinada y estabilidad temporal</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="58_flops_predictores.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">58. Coste de operaciones de los predictores congelados</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#categorias-y-muestra-auditable">Categorías y muestra auditable</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias-de-predictibilidad-y-distancia">Referencias de predictibilidad y distancia γ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivos-auditables">Archivos auditables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#insumos-para-repetir-los-calculos">Insumos para repetir los cálculos</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

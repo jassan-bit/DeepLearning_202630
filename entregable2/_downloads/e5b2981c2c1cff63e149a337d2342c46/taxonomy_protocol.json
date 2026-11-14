@@ -1,0 +1,104 @@
+{
+  "version": "e2-error-ceiling-posthoc-audit-v1",
+  "registered_at": "2026-11-13T23:23:42.193648-05:00",
+  "status": "posthoc_rules_recorded_before_automatic_label_generation",
+  "test_and_original_scores_already_known": true,
+  "original_preregistration_claimed": false,
+  "manual_human_annotation_claimed": false,
+  "scientific_fit": false,
+  "model_inference": false,
+  "weight_selection": false,
+  "input_sha256": "65ae74b547a6073b2c286dea8039a2e7a1b1f6063b1d9ac0eb760c9ce727d187",
+  "development_sha256": "20b96374a659eb87dadfa68aa3d6b6b5fb6bea5b10eebe6f2c186ad69861844a",
+  "script_sha256": "17ba041fd707398535e0edac479c009b3dc8301491bacc607e5b3e3726125fca",
+  "models": [
+    "FCN-1D",
+    "ResNet-1D",
+    "Inception-1D",
+    "LSTM-autoencoder con predictor",
+    "TimesNet",
+    "TSMixer",
+    "TiDE",
+    "TimeMixer",
+    "PatchTST",
+    "iTransformer"
+  ],
+  "seeds": [
+    271801,
+    271802,
+    271803,
+    271804,
+    271805,
+    271806
+  ],
+  "published_plan_sha256": "d2211f9e8ee9a403db7e3f246519098c95598cf0721acb995d3a658bb2ac7137",
+  "published_plan_path": "experiments/e2_error_ceiling_final_audit_20261114/analysis_plan.json",
+  "published_plan_commit": "4361275cbc52e2f6362349557b471cda110bbefc",
+  "thresholds": {
+    "source_years": [
+      2023,
+      2024
+    ],
+    "finite_target_days": 716,
+    "consecutive_finite_change_pairs": 714,
+    "absolute_daily_change_q50": 0.00130577631562305,
+    "absolute_daily_change_q90": 0.00728725980318611,
+    "target_q25": 0.0145339530353525,
+    "target_q75": 0.026321030514470774,
+    "quantile_method": "linear",
+    "missing_observations_bridged": false,
+    "scope": "Development reference scale, not an irreducible noise floor"
+  },
+  "taxonomy_unit": "Date/model error of arithmetic mean of six frozen seed forecasts",
+  "seed_guardrail": "Keep six individual-seed labels and seed agreement separately",
+  "original_A2_metric_preserved": "Mean of individual seed RMSE, not RMSE of mean forecast",
+  "categories_in_order": [
+    "small_reference_band",
+    "moderate_underestimate",
+    "moderate_overestimate",
+    "large_underestimate",
+    "large_overestimate"
+  ],
+  "rules": [
+    "e=mean(frozen seed forecasts)-y; a=abs(e)",
+    "small iff a<=Q50",
+    "moderate_under iff Q50<a<=Q90,e<0",
+    "moderate_over iff Q50<a<=Q90,e>=0",
+    "large_under iff a>Q90,e<0",
+    "large_over iff a>Q90,e>=0"
+  ],
+  "category_scope": "Exclusive residual descriptions, not causal explanations or expert assessment",
+  "sample": {
+    "dates_per_model": 100,
+    "common_sample": true,
+    "seed": 272101,
+    "strata": "year x observed target regime using development Q25/Q75",
+    "allocation": "One per stratum plus proportional residual capacity and largest remainders",
+    "error_dependent_selection": false,
+    "individual_seed_cases_per_model": 600
+  },
+  "intervals": {
+    "method": "circular moving block percentile bootstrap",
+    "draws": 10000,
+    "block_days_primary": 14,
+    "sensitivity_block_days": [
+      7,
+      28
+    ],
+    "seed": 272102,
+    "scope": "Marginal 95% temporal sensitivity conditional on frozen predictors; not finite-calendar counting uncertainty",
+    "assumptions": "Short dependence and approximate stationarity; structural breaks limit extrapolation"
+  },
+  "ensemble": "Uniform ten main models, matched seed IDs, no outcome-based weight tuning",
+  "entropy": {
+    "orders": [
+      3,
+      4,
+      5
+    ],
+    "delay": 1,
+    "doi": "10.1103/PhysRevLett.88.174102"
+  },
+  "ideal_reference": "Zero forecast error is mathematical bound, not identified attainable/Bayes ceiling",
+  "gamma_bootstrap_seed": 272103
+}

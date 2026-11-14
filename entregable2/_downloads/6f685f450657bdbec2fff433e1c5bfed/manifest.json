@@ -1,0 +1,88 @@
+{
+  "version": "e2-frozen-core-flops-audit-release-v1",
+  "observed_at_utc": "2026-11-14T04:20:51.120397+00:00",
+  "scientific_commit": "1e8745497b484518f766b6da5c19be8362d9add7",
+  "scope": {
+    "batch_size": 1,
+    "input_shape": [
+      1,
+      7,
+      5
+    ],
+    "mode": "eval",
+    "synthetic_inputs_only": true,
+    "trained_checkpoint_loaded": false,
+    "market_data_read": false,
+    "optimizer_created": false,
+    "training_performed": false,
+    "new_budget_credit": false,
+    "latency_or_energy_comparison": false
+  },
+  "runtime": {
+    "torch": "2.8.0+cpu",
+    "device": "cpu",
+    "dtype": "float32",
+    "mkldnn_fused_recurrence": false
+  },
+  "constructor_sha256": {
+    "scripts/e2_reduced_fit.py": "64e83d0a2a39920ae470252b8eb81c8f78429817fed978bd22f64866fdfb8f5f",
+    "scripts/e2_published_registry.py": "0704784aa0bb2887908d12ad12345094c8f6a707918aa695dbc11cda88092fec",
+    "scripts/e2_training_models.py": "46be0644e0ed9d966163b17f171092e81b6a82dd734efc7954d6104f5ee5360b",
+    "scripts/e2_recipe_models.py": "47380cc87e2d4b4221ee4fc97da3286990470b3304dd1d9ef990ace51c338b75",
+    "scripts/e2_published_periodic.py": "a0ead3e4c394cb7d832e50e2821e0c73a3bb09652ed5e977a87f119941517af9",
+    "scripts/e2_published_patchtst.py": "99aae30754cf33fe12883b4af2f4f957cfc32ec9f4bcc2eb71dfb34b39974d5f",
+    "scripts/e2_published_sae.py": "0436d73f9724bb065dc3642f18218cb35cda5e9abfa4de5090f8c5d69eb6c1aa",
+    "scripts/e2_published_tide.py": "5ba7a01a30c52793b566a44525e4f5ccfaf0254e9c6cdd2667c56a34319c747a",
+    "scripts/e2_final_models_mlp.py": "beeada2f6754f0ca3ff1304ec090a7259a774cc7ea611fa912428cf9210f6c68",
+    "scripts/e2_final_models_attention.py": "a3f1a2a7534142f505fbf36bddf92e0abf4f76d89ac1a1fb61874559e5aafa07",
+    "scripts/dl_models.py": "e24110b57aeee201e1e9ab53519eb6b05967927ac54102fe23d3908c3fc57d69",
+    "scripts/dl_models_gru_lstm_tcn.py": "c11af1229fec43dd7da01a21e349dc2b109d9d61d977f6df3d01cd7da736b35d"
+  },
+  "source_metadata_sha256": {
+    "book_e2/_static/current_implementation_20261108/source_design.json": "ce0a76304186fabf922f8e1351ea2e9d44db49f1714f44cd1fe2df04baeb3dbe",
+    "experiments/e2_published_architectures_20261112/architecture_policy.json": "a1c9440046af34c2b70bef9c05229dff2c6d863aa06ae191ed02c2de6d8bf0f2"
+  },
+  "code_sha256": {
+    "scripts/e2_flops_final_audit.py": "208fba4e78ff18e4a9fba6ddc024ed102f81adc4548de5e5880e6572cf33b3cb",
+    "tests/test_e2_flops_final_audit.py": "1de45f73098d398794ae28b753543b730a720f6aebed2085f7c0f3b59405ee28"
+  },
+  "frozen_receipt_sha256": {
+    "FCN-1D": "f5292599c9dcdebba85837ad3489324f8ed53986ba2fa71f8bacbb3109f34e69",
+    "ResNet-1D": "d5a37190375ca3ee1c90fe290e7da49b45a8127cb8d917f28179d0f613c85e81",
+    "Inception-1D": "caa705193806bd72ced27eaae94ce17fe12acf8272e4e6959b1bae461d7ba6a2",
+    "LSTM-autoencoder con predictor": "d3982dc7e4fffd88f44f3ac5db6e62a93c2245a650e098a74e0ad168500978d6",
+    "TimesNet": "89a14ccb24b9790a724cc6c76c1f49a1f9c06f62a2b6b2c948fd5e79016df787",
+    "TSMixer": "0996c06fcfdec1ea92b16093bc75daa650fdfd042c741caa1b0b02975fdaa49d",
+    "TiDE": "8499d24a71eb267d9bb793f3abaf858a078927f5791783787b5c44bc5be7acb3",
+    "TimeMixer": "c7aae54bd6ebd88f58c8fcf65c4b4bea4f46855d0efbe4808d0aec655f490a2b",
+    "PatchTST": "59a97463d0f3dfbd1a11e29f4e993750a47c530ff5e48073645e8c7d31bbf15b",
+    "iTransformer": "038e2ed58d2992f058acbed612408d751c235f1a825af40aff8de90e355a0419",
+    "MLP16": "1eb1a286de7f3be23f6b286ab0c0206c630c3b0b9af508a0205611498649f5e3",
+    "LSTM32": "339a07c2c014d212039f895248f952b8f906750867efc4785ef1b4b2885b6505",
+    "GRU32": "e08b00dc086beef2cbb72a039b0d840598f9c342cdeb93ed0582731747d4b11b"
+  },
+  "verification": {
+    "model_count": 13,
+    "synthetic_forward_count": 39,
+    "seeded_factory_parameters_match_receipts": true,
+    "three_probe_costs_equal_for_each_model": true,
+    "unit_tests_passed": 5,
+    "market_data_read": false,
+    "checkpoint_weights_loaded": false,
+    "all_kernel_FLOPs_measured": false,
+    "complete_dynamic_route_coverage_claimed": false,
+    "primary_A2_sha256": "879e2ce52709657a06bc6c009f0cd553423f2eaa0bbdf16dc7f5844dfec9fcc1"
+  },
+  "reproduction_command": "python scripts/e2_flops_final_audit.py --scientific-source <checkout> --architecture-inputs frozen_architecture_inputs.json --source-roots <verified_author_source_roots.json> --output <destination> --benchmark <frozen_benchmark_A2.csv>",
+  "files_sha256": {
+    "flops_audit.json": "3a2b3398770f615b4e1fba24c3b5570a770c807269d44fd6062ea24be97b5453",
+    "flops_by_model.csv": "dc87d3c6d2e9d880fe62fcfd6448abb4c4126ff106accf49bd2875e4547c5dc0",
+    "frozen_architecture_inputs.json": "da004139cfc4663ce1d9a13c88a422df8865b53f6448fbdf015da0244f9f51cf",
+    "pareto_core_flops_rmse.csv": "d5d99d3c72354f568fd923ab946a5f9937ea6eb69e18b194240b670605e49c9c",
+    "pareto_core_flops_rmse.svg": "0e7590e3fe5b6f93ce57b3da8579ed4bb3385a14e39dee49ecb2368fcbf71384",
+    "pareto_receipt.json": "9545be8884153c507c37662052ada4aab7a198979c33366c5eaf0e094da0c132",
+    "proposed_chapter.md": "b5c2b18d31512709a383045d054a45f439216a80e4806189ff4b2c12187337b2",
+    "proposed_flops_section.md": "b5c2b18d31512709a383045d054a45f439216a80e4806189ff4b2c12187337b2",
+    "tests.log": "35d369f666956169392b546888c2ceef6ad4c718c7a36ce744a369be39131d59"
+  }
+}

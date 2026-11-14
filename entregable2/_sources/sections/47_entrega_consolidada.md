@@ -6,6 +6,8 @@
 
 **Cierre complementario al 13/11/2026, 22:42:55 de Bogotá.** [§55](55_reproduccion_ablaciones.md) documenta **99/99 ajustes nuevos completados: 81 reproducciones en entorno limpio con sus comprobaciones numéricas aprobadas y 18 ablaciones entrenadas del autoencoder**. Las discrepancias máximas registradas en calibración y prueba fueron **0**; esta repetición numérica no aporta una nueva evaluación predictiva independiente. El diario quedó cerrado, sin reservas abiertas, con **80,2561 horas acumuladas consumidas de 84 autorizadas**. La ampliación conserva los cargos y resultados previos. Las conclusiones de esta etapa son posteriores al conocimiento de la prueba; la A2 original y su familia primaria permanecen sin cambios.
 
+**Verificación numérica posterior:** [§56](56_inferencia_estabilidad_final.md) reproduce exactamente los veinte resultados originales de 4.999 remuestreos y recalcula las mismas hipótesis, δ, semillas y Holm con **20.000 réplicas**. Los veinte p ajustados siguen siendo 1,0. Es un refinamiento posterior de precisión, separado del archivo primario original y sin nueva selección.
+
 ## Resultado principal del benchmark final
 
 El **LSTM-autoencoder con predictor presenta la menor RMSE media observada: 0,003803430**, con DE entre semillas **0,000245424**. ARIMA obtiene **0,003921625** y GRU32 **0,004001162**. La persistencia obtiene el menor **MAE, 0,002353164**, y la menor **sMAPE, 13,23 %**. Cada posición corresponde a la métrica indicada; no se proclama un ganador universal.

@@ -1,0 +1,968 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>56. Inferencia refinada y estabilidad temporal &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/56_inferencia_estabilidad_final';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="57. Taxonomía de errores y referencias de predictibilidad" href="57_errores_techo.html" />
+    <link rel="prev" title="55. Reproducción numérica y ablaciones completadas" href="55_reproduccion_ablaciones.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 2 · Bitcoin: pronóstico de volatilidad</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="48_protocolo_reducido.html">48. Protocolo reducido y seguimiento de la ejecución</a></li>
+<li class="toctree-l1"><a class="reference internal" href="47_entrega_consolidada.html">47. Entrega consolidada con la evidencia disponible</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_literatura.html">3. Revisión Sistemática del Estado del Arte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación: catálogo obligatorio y antecedentes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark obligatorio: dieciséis sistemas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="49_diagnosticos_f2a.html">49. Diagnósticos F2a posteriores al benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="50_comparaciones_f2a.html">50. Comparaciones F2a posteriores: DM, MCS y rangos por semilla</a></li>
+<li class="toctree-l1"><a class="reference internal" href="51_eficiencia_costes.html">51. Eficiencia, coste observado y compromisos de Pareto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="52_sintesis_literatura.html">52. Síntesis verificable de literatura y selección vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="53_cierre_requisitos.html">53. Cierre de requisitos y experimentos complementarios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="54_robustez_interpretabilidad.html">54. Robustez e interpretabilidad: resultados reales de los predictores congelados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="55_reproduccion_ablaciones.html">55. Reproducción numérica y ablaciones completadas</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">56. Inferencia refinada y estabilidad temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="57_errores_techo.html">57. Taxonomía de errores y referencias de predictibilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="58_flops_predictores.html">58. Coste de operaciones de los predictores congelados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="59_auditoria_literatura_final.html">59. Auditoría final de la literatura recibida</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Registro de selección, cierre pendiente y trazabilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de datos y auditoría formal de fuga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. HPO y equidad para el catálogo vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Techo de desempeño, incertidumbre y análisis de errores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Agregación estadística e interpretación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas del catálogo vigente y adaptación a D7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo vigente: diez modelos y candidato 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_fichas_nuevas.html">16. Fichas bibliográficas de las cuatro altas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato sincronizado de E1, E2 y E3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_integracion_sintetica.html">18. Implementación provisional y verificación sintética</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_plan_auditoria.html">19. Plan experimental propuesto y auditoría sin entrenamiento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_contraste_guia.html">20. Cotejo del plan con la guía original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_comparadores_nas.html">21. Comparadores temporales y decisión NAS por receta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22_fichas_recetas.html">22. Once fichas de recetas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_implementacion_recetas.html">23. Implementación de recetas y controles temporales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="24_ejecutor_comun.html">24. Ejecutor común y disponibilidad temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="25_matriz_cierre.html">25. Matriz de cierre antes del benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="26_registro_recetas.html">26. Registro por receta: fuentes, NAS, HPO e integración</a></li>
+<li class="toctree-l1"><a class="reference internal" href="27_nas_hpo_presupuesto.html">27. Decisiones NAS, rangos HPO y presupuesto para Codex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="28_fabricas_nas.html">28. Fábricas NAS implementadas y verificadas sintéticamente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="29_entrenamiento_temporal.html">29. Entrenamiento por etapas, selección temporal y perfilado CPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="30_piloto_nube.html">30. Piloto de desarrollo en la nube de Codex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="31_optimizacion_nube.html">31. Optimización de CPU y presupuesto de cómputo en la nube</a></li>
+<li class="toctree-l1"><a class="reference internal" href="32_ejecucion_gpu.html">32. Ejecución CUDA preparada y piloto de recursos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="33_piloto_gpu.html">33. Primer piloto de recursos en GPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="34_perfil_gpu_ampliado.html">34. Perfil GPU ampliado y viabilidad del extremo TimesNet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="35_busqueda_cuda_reanudable.html">35. Selección CUDA con presupuesto y continuación en GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="36_avance_campana_cuda.html">36. Avance parcial de la campaña CUDA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="37_ajuste_guia.html">37. Ajuste de cómputo conforme a la guía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="38_cumplimiento_guia.html">38. Exigencias de la guía, evidencia y pendientes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="39_optimizacion_tiempo.html">39. Optimizar tiempo sin recortar las exigencias de E2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="40_calendario_original.html">40. Calendario original y optimizaciones de implementación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="41_avance_optimizacion_11_origenes.html">41. Ejecución optimizada: avance verificable de once orígenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html">42. Preparación complementaria a partir de evidencia existente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="43_catalogo_obligatorio.html">43. Catálogo obligatorio: dieciséis sistemas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="44_arquitecturas_publicadas.html">44. Cuerpos publicados, adaptaciones D7 y aplicación de NAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="45_enmienda_protocolo.html">45. Enmienda del protocolo: calendario común, presupuesto y prueba final</a></li>
+<li class="toctree-l1"><a class="reference internal" href="46_artefactos_y_pilotos.html">46. Preparación técnica opcional: artefactos y pilotos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><p class="small">Entregable 2 · Jassan Arteta · 2026-30</p></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/56_inferencia_estabilidad_final.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>56. Inferencia refinada y estabilidad temporal</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-familia-primaria-completa-ahora-con-20-000-sorteos">La familia primaria completa, ahora con 20.000 sorteos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#giacominirossi-y-un-diagnostico-distinto-de-constancia">Giacomini–Rossi y un diagnóstico distinto de constancia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-permiten-las-brechas-guardadas-y-que-sigue-sin-acreditarse">Qué permiten las brechas guardadas y qué sigue sin acreditarse</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alcance-final-de-la-evidencia">Alcance final de la evidencia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#insumos-para-repetir-los-calculos">Insumos para repetir los cálculos</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="inferencia-refinada-y-estabilidad-temporal">
+<h1>56. Inferencia refinada y estabilidad temporal<a class="headerlink" href="#inferencia-refinada-y-estabilidad-temporal" title="Link to this heading">#</a></h1>
+<p>El refinamiento de los <strong>20 contrastes primarios con 20.000 remuestreos</strong> conserva las conclusiones: <strong>ningún modelo principal demuestra una mejora mayor que δ frente a GRU32 o Persistence tras Holm20</strong>. Se verificaron exactamente los 20 resultados originales de 4.999 sorteos antes de ampliar la resolución Monte Carlo. Se conservan ambos análisis y sus fechas; no se reentrenó, recalibró ni generó una predicción nueva.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/d79ed0dea95edbbce5dd1b3f2a6e6f59/analysis_plan.json"><span class="xref download myst">plan de este análisis</span></a> se registró antes del cálculo en el <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/60cd2bb23f6da22797e2c3a7bf8225250753f903">commit <code class="docutils literal notranslate"><span class="pre">60cd2bb</span></code></a>, el 14 de noviembre de 2026 a las 04:17:23 UTC, equivalente al 13 de noviembre a las 23:17:23 en Bogotá. Este registro ordena la ampliación computacional y los diagnósticos posteriores; no convierte en previo al conocimiento de E1 un análisis realizado después.</p>
+<section id="la-familia-primaria-completa-ahora-con-20-000-sorteos">
+<h2>La familia primaria completa, ahora con 20.000 sorteos<a class="headerlink" href="#la-familia-primaria-completa-ahora-con-20-000-sorteos" title="Link to this heading">#</a></h2>
+<p>Se mantuvieron la métrica <strong>media del RMSE individual de las seis semillas</strong>, las 608 fechas, el margen práctico <strong>δ = 0,00025772842664981106</strong>, los mismos pares, semillas del generador y bloques circulares de 14 días sobre el calendario. Se reutilizó literalmente <code class="docutils literal notranslate"><span class="pre">bootstrap_contrast</span></code> del motor de análisis original. Cada réplica remuestrea conjuntamente las semillas emparejadas y las posiciones temporales; Persistence conserva su única trayectoria determinista. No se cambió por RMSE del ensamble ni por MSE.</p>
+<p>Los <a class="reference download internal" download="" href="../_downloads/ade8c2cd1865a24134a7aa488a525658/original_4999_exact_checks.csv"><span class="xref download myst">20 cotejos exactos con B = 4.999</span></a> coinciden en ganancia, δ, IC95, p bruto y p ajustado. El <a class="reference download internal" download="" href="../_downloads/8ebda3c2fb61b64a3ae7de5e2fffcbf0/primary_refinement_20000.csv"><span class="xref download myst">refinamiento completo B = 20.000</span></a> mantiene <strong>p ajustado = 1 en los 20 contrastes</strong>. El menor p bruto es 0,44278, correspondiente al LSTM-autoencoder frente a Persistence: ganancia de RMSE 0,00028217 e IC95 [−0,00016922; 0,00072001]. Por tanto, aumentar los sorteos subsana la resolución computacional insuficiente; no cambia la falta de evidencia de superioridad práctica.</p>
+<p>La ganancia positiva significa menor RMSE del candidato. Los intervalos siguientes son los percentiles bootstrap marginales, no intervalos simultáneos de la familia.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Candidato</p></th>
+<th class="head"><p>Referencia</p></th>
+<th class="head text-right"><p>Ganancia RMSE</p></th>
+<th class="head"><p>IC95 de la ganancia</p></th>
+<th class="head text-right"><p>p bruto B20.000</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>FCN-1D</p></td>
+<td><p>GRU32</p></td>
+<td class="text-right"><p>-0.000565</p></td>
+<td><p>[-0.001483; 0.000257]</p></td>
+<td class="text-right"><p>0.9618</p></td>
+</tr>
+<tr class="row-odd"><td><p>FCN-1D</p></td>
+<td><p>Persistence</p></td>
+<td class="text-right"><p>-0.000481</p></td>
+<td><p>[-0.001204; 0.000156]</p></td>
+<td class="text-right"><p>0.9772</p></td>
+</tr>
+<tr class="row-even"><td><p>ResNet-1D</p></td>
+<td><p>GRU32</p></td>
+<td class="text-right"><p>-0.000542</p></td>
+<td><p>[-0.001308; 0.000078]</p></td>
+<td class="text-right"><p>0.9789</p></td>
+</tr>
+<tr class="row-odd"><td><p>ResNet-1D</p></td>
+<td><p>Persistence</p></td>
+<td class="text-right"><p>-0.000458</p></td>
+<td><p>[-0.001138; 0.000131]</p></td>
+<td class="text-right"><p>0.9790</p></td>
+</tr>
+<tr class="row-even"><td><p>Inception-1D</p></td>
+<td><p>GRU32</p></td>
+<td class="text-right"><p>-0.000361</p></td>
+<td><p>[-0.000819; 0.000069]</p></td>
+<td class="text-right"><p>0.9945</p></td>
+</tr>
+<tr class="row-odd"><td><p>Inception-1D</p></td>
+<td><p>Persistence</p></td>
+<td class="text-right"><p>-0.000277</p></td>
+<td><p>[-0.000747; 0.000170]</p></td>
+<td class="text-right"><p>0.9871</p></td>
+</tr>
+<tr class="row-even"><td><p>LSTM-autoencoder con predictor</p></td>
+<td><p>GRU32</p></td>
+<td class="text-right"><p>0.000198</p></td>
+<td><p>[-0.000135; 0.000551]</p></td>
+<td class="text-right"><p>0.6461</p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM-autoencoder con predictor</p></td>
+<td><p>Persistence</p></td>
+<td class="text-right"><p>0.000282</p></td>
+<td><p>[-0.000169; 0.000720]</p></td>
+<td class="text-right"><p>0.4428</p></td>
+</tr>
+<tr class="row-even"><td><p>TimesNet</p></td>
+<td><p>GRU32</p></td>
+<td class="text-right"><p>-0.000804</p></td>
+<td><p>[-0.001534; -0.000075]</p></td>
+<td class="text-right"><p>0.9968</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimesNet</p></td>
+<td><p>Persistence</p></td>
+<td class="text-right"><p>-0.000720</p></td>
+<td><p>[-0.001343; -0.000097]</p></td>
+<td class="text-right"><p>0.9989</p></td>
+</tr>
+<tr class="row-even"><td><p>TSMixer</p></td>
+<td><p>GRU32</p></td>
+<td class="text-right"><p>-0.000974</p></td>
+<td><p>[-0.001723; -0.000291]</p></td>
+<td class="text-right"><p>0.9987</p></td>
+</tr>
+<tr class="row-odd"><td><p>TSMixer</p></td>
+<td><p>Persistence</p></td>
+<td class="text-right"><p>-0.000890</p></td>
+<td><p>[-0.001445; -0.000373]</p></td>
+<td class="text-right"><p>0.9999</p></td>
+</tr>
+<tr class="row-even"><td><p>TiDE</p></td>
+<td><p>GRU32</p></td>
+<td class="text-right"><p>-0.001771</p></td>
+<td><p>[-0.002836; -0.000836]</p></td>
+<td class="text-right"><p>0.9998</p></td>
+</tr>
+<tr class="row-odd"><td><p>TiDE</p></td>
+<td><p>Persistence</p></td>
+<td class="text-right"><p>-0.001686</p></td>
+<td><p>[-0.002722; -0.000767]</p></td>
+<td class="text-right"><p>0.9996</p></td>
+</tr>
+<tr class="row-even"><td><p>TimeMixer</p></td>
+<td><p>GRU32</p></td>
+<td class="text-right"><p>-0.000480</p></td>
+<td><p>[-0.001233; 0.000190]</p></td>
+<td class="text-right"><p>0.9732</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimeMixer</p></td>
+<td><p>Persistence</p></td>
+<td class="text-right"><p>-0.000395</p></td>
+<td><p>[-0.001141; 0.000326]</p></td>
+<td class="text-right"><p>0.9575</p></td>
+</tr>
+<tr class="row-even"><td><p>PatchTST</p></td>
+<td><p>GRU32</p></td>
+<td class="text-right"><p>-0.006138</p></td>
+<td><p>[-0.008075; -0.004337]</p></td>
+<td class="text-right"><p>1.0000</p></td>
+</tr>
+<tr class="row-odd"><td><p>PatchTST</p></td>
+<td><p>Persistence</p></td>
+<td class="text-right"><p>-0.006054</p></td>
+<td><p>[-0.007789; -0.004397]</p></td>
+<td class="text-right"><p>1.0000</p></td>
+</tr>
+<tr class="row-even"><td><p>iTransformer</p></td>
+<td><p>GRU32</p></td>
+<td class="text-right"><p>-0.001253</p></td>
+<td><p>[-0.001883; -0.000681]</p></td>
+<td class="text-right"><p>1.0000</p></td>
+</tr>
+<tr class="row-odd"><td><p>iTransformer</p></td>
+<td><p>Persistence</p></td>
+<td class="text-right"><p>-0.001169</p></td>
+<td><p>[-0.001751; -0.000628]</p></td>
+<td class="text-right"><p>1.0000</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="giacominirossi-y-un-diagnostico-distinto-de-constancia">
+<h2>Giacomini–Rossi y un diagnóstico distinto de constancia<a class="headerlink" href="#giacominirossi-y-un-diagnostico-distinto-de-constancia" title="Link to this heading">#</a></h2>
+<p>Se implementó el estadístico de fluctuación de <strong>Giacomini y Rossi (2010)</strong> siguiendo la ecuación 3 de <a class="reference external" href="https://www.crei.cat/wp-content/uploads/2016/07/Rossi_Soupre_Revised-1.pdf">Rossi y Soupre (2017), pp. 3–5</a>. La nota 3 admite estimación fija o mediante ventanas móviles; la sección 3.2 exige únicamente realizaciones y pronósticos. Los pesos congelados son, por ello, compatibles con este contraste. Las ventanas móviles aquí recorren <strong>las pérdidas de los pronósticos existentes</strong> y no representan nuevos ajustes de parámetros.</p>
+<p>Para cada par se calculó la diferencia diaria entre las pérdidas cuadráticas individuales medias de sus semillas. Esta pérdida aditiva no es la diferencia entre los RMSE primarios. Con <span class="math notranslate nohighlight">\(d_t=L_{candidato,t}-L_{referencia,t}\)</span>, se calculó:</p>
+<div class="math notranslate nohighlight">
+\[
+F_{t,m}=\frac{\sum_{j=t-m+1}^{t}d_j}{\widehat\sigma\sqrt{m}},
+\qquad GR=\max_t |F_{t,m}|.
+\]</div>
+<p>Se fijaron <strong>m = 182 días</strong>, <span class="math notranslate nohighlight">\(\mu\)</span> nominal = 0,3 y efectivo = 182/608 = 0,299342; se obtienen 427 ventanas superpuestas. <span class="math notranslate nohighlight">\(\widehat\sigma^2\)</span> es la varianza de largo plazo global, con HAC Bartlett y 14 rezagos. El estadístico observado de GR <strong>no se centra</strong>: su nulo es igualdad de capacidad predictiva en cada fecha, <span class="math notranslate nohighlight">\(E[d_t]=0\)</span>. Un rechazo también puede surgir de una ventaja o desventaja constante; no acredita por sí solo un quiebre.</p>
+<p>La calibración principal de estos diagnósticos es una <strong>adaptación bootstrap</strong> declarada: 20.000 bloques circulares de 14 días de <span class="math notranslate nohighlight">\(d_t-\bar d\)</span>, reestimando HAC en cada réplica. Se añadió, con nombre separado, un contraste de <strong>constancia de la diferencia media</strong>, cuyo estadístico sí centra cada trayectoria por su propia media. Los 20 contrastes de igualdad predictiva y los 20 de constancia se ajustaron conjuntamente mediante <strong>Holm40</strong>. La dependencia corta y una aproximación adecuada mediante HAC global son supuestos; el procedimiento no garantiza validez ante cambios arbitrarios de la varianza.</p>
+<p><strong>Resultado: cero rechazos tras Holm40 en ambos tipos de contraste.</strong> El menor p ajustado de igualdad predictiva es 0,25999, para TSMixer frente a Persistence (GR = 3,96318). Todos los p ajustados de constancia son 1. Estos resultados no demuestran equivalencia, estabilidad universal ni ausencia de sobreajuste.</p>
+<p>Como referencia separada, la <a class="reference external" href="https://crei.cat/wp-content/uploads/2016/07/AFUM.pdf">tabla A.2 de Rossi (2013), p. 93</a> da el crítico GR bilateral 3,012 para <span class="math notranslate nohighlight">\(\mu=0,3\)</span>. <strong>Nueve de los veinte pares lo superan sin corrección</strong>. Esa inspección no equivale a las decisiones bootstrap ajustadas ni permite declarar que todos los modelos son estables.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Candidato</p></th>
+<th class="head"><p>Referencia</p></th>
+<th class="head text-right"><p>GR máximo</p></th>
+<th class="head text-right"><p>p EPA bruto</p></th>
+<th class="head text-right"><p>p EPA Holm40</p></th>
+<th class="head text-right"><p>p constancia Holm40</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>FCN-1D</p></td>
+<td><p>GRU32</p></td>
+<td class="text-right"><p>1.903</p></td>
+<td class="text-right"><p>0.5340</p></td>
+<td class="text-right"><p>1.0000</p></td>
+<td class="text-right"><p>1.0000</p></td>
+</tr>
+<tr class="row-odd"><td><p>FCN-1D</p></td>
+<td><p>Persistence</p></td>
+<td class="text-right"><p>2.888</p></td>
+<td class="text-right"><p>0.2028</p></td>
+<td class="text-right"><p>1.0000</p></td>
+<td class="text-right"><p>1.0000</p></td>
+</tr>
+<tr class="row-even"><td><p>ResNet-1D</p></td>
+<td><p>GRU32</p></td>
+<td class="text-right"><p>2.428</p></td>
+<td class="text-right"><p>0.3087</p></td>
+<td class="text-right"><p>1.0000</p></td>
+<td class="text-right"><p>1.0000</p></td>
+</tr>
+<tr class="row-odd"><td><p>ResNet-1D</p></td>
+<td><p>Persistence</p></td>
+<td class="text-right"><p>3.563</p></td>
+<td class="text-right"><p>0.0286</p></td>
+<td class="text-right"><p>1.0000</p></td>
+<td class="text-right"><p>1.0000</p></td>
+</tr>
+<tr class="row-even"><td><p>Inception-1D</p></td>
+<td><p>GRU32</p></td>
+<td class="text-right"><p>2.340</p></td>
+<td class="text-right"><p>0.3304</p></td>
+<td class="text-right"><p>1.0000</p></td>
+<td class="text-right"><p>1.0000</p></td>
+</tr>
+<tr class="row-odd"><td><p>Inception-1D</p></td>
+<td><p>Persistence</p></td>
+<td class="text-right"><p>3.889</p></td>
+<td class="text-right"><p>0.0077</p></td>
+<td class="text-right"><p>0.3022</p></td>
+<td class="text-right"><p>1.0000</p></td>
+</tr>
+<tr class="row-even"><td><p>LSTM-autoencoder con predictor</p></td>
+<td><p>GRU32</p></td>
+<td class="text-right"><p>2.124</p></td>
+<td class="text-right"><p>0.4334</p></td>
+<td class="text-right"><p>1.0000</p></td>
+<td class="text-right"><p>1.0000</p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM-autoencoder con predictor</p></td>
+<td><p>Persistence</p></td>
+<td class="text-right"><p>2.153</p></td>
+<td class="text-right"><p>0.4229</p></td>
+<td class="text-right"><p>1.0000</p></td>
+<td class="text-right"><p>1.0000</p></td>
+</tr>
+<tr class="row-even"><td><p>TimesNet</p></td>
+<td><p>GRU32</p></td>
+<td class="text-right"><p>2.786</p></td>
+<td class="text-right"><p>0.1290</p></td>
+<td class="text-right"><p>1.0000</p></td>
+<td class="text-right"><p>1.0000</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimesNet</p></td>
+<td><p>Persistence</p></td>
+<td class="text-right"><p>3.184</p></td>
+<td class="text-right"><p>0.0507</p></td>
+<td class="text-right"><p>1.0000</p></td>
+<td class="text-right"><p>1.0000</p></td>
+</tr>
+<tr class="row-even"><td><p>TSMixer</p></td>
+<td><p>GRU32</p></td>
+<td class="text-right"><p>2.737</p></td>
+<td class="text-right"><p>0.1435</p></td>
+<td class="text-right"><p>1.0000</p></td>
+<td class="text-right"><p>1.0000</p></td>
+</tr>
+<tr class="row-odd"><td><p>TSMixer</p></td>
+<td><p>Persistence</p></td>
+<td class="text-right"><p>3.963</p></td>
+<td class="text-right"><p>0.0065</p></td>
+<td class="text-right"><p>0.2600</p></td>
+<td class="text-right"><p>1.0000</p></td>
+</tr>
+<tr class="row-even"><td><p>TiDE</p></td>
+<td><p>GRU32</p></td>
+<td class="text-right"><p>2.963</p></td>
+<td class="text-right"><p>0.1122</p></td>
+<td class="text-right"><p>1.0000</p></td>
+<td class="text-right"><p>1.0000</p></td>
+</tr>
+<tr class="row-odd"><td><p>TiDE</p></td>
+<td><p>Persistence</p></td>
+<td class="text-right"><p>4.211</p></td>
+<td class="text-right"><p>0.0119</p></td>
+<td class="text-right"><p>0.4522</p></td>
+<td class="text-right"><p>1.0000</p></td>
+</tr>
+<tr class="row-even"><td><p>TimeMixer</p></td>
+<td><p>GRU32</p></td>
+<td class="text-right"><p>3.111</p></td>
+<td class="text-right"><p>0.0606</p></td>
+<td class="text-right"><p>1.0000</p></td>
+<td class="text-right"><p>1.0000</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimeMixer</p></td>
+<td><p>Persistence</p></td>
+<td class="text-right"><p>2.272</p></td>
+<td class="text-right"><p>0.3420</p></td>
+<td class="text-right"><p>1.0000</p></td>
+<td class="text-right"><p>1.0000</p></td>
+</tr>
+<tr class="row-even"><td><p>PatchTST</p></td>
+<td><p>GRU32</p></td>
+<td class="text-right"><p>3.092</p></td>
+<td class="text-right"><p>0.1152</p></td>
+<td class="text-right"><p>1.0000</p></td>
+<td class="text-right"><p>1.0000</p></td>
+</tr>
+<tr class="row-odd"><td><p>PatchTST</p></td>
+<td><p>Persistence</p></td>
+<td class="text-right"><p>3.224</p></td>
+<td class="text-right"><p>0.0993</p></td>
+<td class="text-right"><p>1.0000</p></td>
+<td class="text-right"><p>1.0000</p></td>
+</tr>
+<tr class="row-even"><td><p>iTransformer</p></td>
+<td><p>GRU32</p></td>
+<td class="text-right"><p>3.226</p></td>
+<td class="text-right"><p>0.0522</p></td>
+<td class="text-right"><p>1.0000</p></td>
+<td class="text-right"><p>1.0000</p></td>
+</tr>
+<tr class="row-odd"><td><p>iTransformer</p></td>
+<td><p>Persistence</p></td>
+<td class="text-right"><p>2.737</p></td>
+<td class="text-right"><p>0.1668</p></td>
+<td class="text-right"><p>1.0000</p></td>
+<td class="text-right"><p>1.0000</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img alt="Trayectorias de fluctuación relativa" src="../_images/GR_fluctuation_paths.svg" /></p>
+<p>Las líneas discontinuas son el crítico original sin ajuste; las decisiones válidas para la familia se reportan en la tabla. Se publican los <a class="reference download internal" download="" href="../_downloads/3cb3e99e8fe7ddc0239842c21eef7a99/relative_fluctuation_tests.csv"><span class="xref download myst">estadísticos, críticos bootstrap y p completos</span></a>, las <a class="reference download internal" download="" href="../_downloads/c5247de0128fc14fd0293bcd8471bd35/relative_fluctuation_paths.csv"><span class="xref download myst">8.540 ventanas</span></a> y la <a class="reference download internal" download="" href="../_downloads/dfdb2da7a0d5233fb72851fdb5064284/source_evidence.json"><span class="xref download myst">evidencia metodológica de las fuentes primarias</span></a>.</p>
+</section>
+<section id="que-permiten-las-brechas-guardadas-y-que-sigue-sin-acreditarse">
+<h2>Qué permiten las brechas guardadas y qué sigue sin acreditarse<a class="headerlink" href="#que-permiten-las-brechas-guardadas-y-que-sigue-sin-acreditarse" title="Link to this heading">#</a></h2>
+<p><strong>No existió un margen δg de sobreajuste definido antes del análisis.</strong> Este requisito no puede cumplirse retrospectivamente cambiando el nombre de un umbral. Se publican únicamente las brechas descriptivas entre el riesgo de entrenamiento guardado y las 53 fechas de calibración de cada predictor final: <span class="math notranslate nohighlight">\(g=RMSE_{calibración}-RMSE_{train}\)</span>. El entrenamiento se evaluó al finalizar la época con su tamaño de lote configurado; las predicciones de calibración se guardaron con lote 1. Además de esa diferencia numérica posible, los periodos son distintos. La calibración no se presenta como una nueva validación independiente.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/b937532cf52537486c02ba1f51c031dc/gap_tolerance_sensitivity_descriptive.csv"><span class="xref download myst">sensibilidad de tolerancias</span></a> muestra los márgenes ilustrativos δ, 2δ, 5δ y 10δ sin seleccionar uno como criterio confirmatorio. La tabla muestra cómo cambia el número de semillas con brecha inferior al margen; no es una prueba de no inferioridad ni permite declarar la ausencia de sobreajuste.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo</p></th>
+<th class="head text-right"><p>Brecha media</p></th>
+<th class="head text-right"><p>Semillas g &lt; δ</p></th>
+<th class="head text-right"><p>g &lt; 2δ</p></th>
+<th class="head text-right"><p>g &lt; 5δ</p></th>
+<th class="head text-right"><p>g &lt; 10δ</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>FCN-1D</p></td>
+<td class="text-right"><p>0.001753</p></td>
+<td class="text-right"><p>0/6</p></td>
+<td class="text-right"><p>0/6</p></td>
+<td class="text-right"><p>1/6</p></td>
+<td class="text-right"><p>6/6</p></td>
+</tr>
+<tr class="row-odd"><td><p>ResNet-1D</p></td>
+<td class="text-right"><p>0.001920</p></td>
+<td class="text-right"><p>0/6</p></td>
+<td class="text-right"><p>0/6</p></td>
+<td class="text-right"><p>0/6</p></td>
+<td class="text-right"><p>5/6</p></td>
+</tr>
+<tr class="row-even"><td><p>Inception-1D</p></td>
+<td class="text-right"><p>0.001947</p></td>
+<td class="text-right"><p>0/6</p></td>
+<td class="text-right"><p>0/6</p></td>
+<td class="text-right"><p>1/6</p></td>
+<td class="text-right"><p>5/6</p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM-autoencoder con predictor</p></td>
+<td class="text-right"><p>0.000427</p></td>
+<td class="text-right"><p>1/6</p></td>
+<td class="text-right"><p>5/6</p></td>
+<td class="text-right"><p>6/6</p></td>
+<td class="text-right"><p>6/6</p></td>
+</tr>
+<tr class="row-even"><td><p>TimesNet</p></td>
+<td class="text-right"><p>0.001968</p></td>
+<td class="text-right"><p>0/6</p></td>
+<td class="text-right"><p>0/6</p></td>
+<td class="text-right"><p>1/6</p></td>
+<td class="text-right"><p>4/6</p></td>
+</tr>
+<tr class="row-odd"><td><p>TSMixer</p></td>
+<td class="text-right"><p>0.000108</p></td>
+<td class="text-right"><p>5/6</p></td>
+<td class="text-right"><p>5/6</p></td>
+<td class="text-right"><p>6/6</p></td>
+<td class="text-right"><p>6/6</p></td>
+</tr>
+<tr class="row-even"><td><p>TiDE</p></td>
+<td class="text-right"><p>0.002185</p></td>
+<td class="text-right"><p>0/6</p></td>
+<td class="text-right"><p>0/6</p></td>
+<td class="text-right"><p>0/6</p></td>
+<td class="text-right"><p>4/6</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimeMixer</p></td>
+<td class="text-right"><p>0.000334</p></td>
+<td class="text-right"><p>3/6</p></td>
+<td class="text-right"><p>5/6</p></td>
+<td class="text-right"><p>6/6</p></td>
+<td class="text-right"><p>6/6</p></td>
+</tr>
+<tr class="row-even"><td><p>PatchTST</p></td>
+<td class="text-right"><p>-0.001858</p></td>
+<td class="text-right"><p>6/6</p></td>
+<td class="text-right"><p>6/6</p></td>
+<td class="text-right"><p>6/6</p></td>
+<td class="text-right"><p>6/6</p></td>
+</tr>
+<tr class="row-odd"><td><p>iTransformer</p></td>
+<td class="text-right"><p>-0.001516</p></td>
+<td class="text-right"><p>6/6</p></td>
+<td class="text-right"><p>6/6</p></td>
+<td class="text-right"><p>6/6</p></td>
+<td class="text-right"><p>6/6</p></td>
+</tr>
+<tr class="row-even"><td><p>MLP16</p></td>
+<td class="text-right"><p>0.000935</p></td>
+<td class="text-right"><p>0/6</p></td>
+<td class="text-right"><p>1/6</p></td>
+<td class="text-right"><p>5/6</p></td>
+<td class="text-right"><p>6/6</p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM32</p></td>
+<td class="text-right"><p>0.001391</p></td>
+<td class="text-right"><p>0/6</p></td>
+<td class="text-right"><p>0/6</p></td>
+<td class="text-right"><p>2/6</p></td>
+<td class="text-right"><p>6/6</p></td>
+</tr>
+<tr class="row-even"><td><p>GRU32</p></td>
+<td class="text-right"><p>0.000573</p></td>
+<td class="text-right"><p>0/6</p></td>
+<td class="text-right"><p>4/6</p></td>
+<td class="text-right"><p>6/6</p></td>
+<td class="text-right"><p>6/6</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Las <a class="reference download internal" download="" href="../_downloads/536f8d3b93c861394cb6aa46527a9104/saved_training_calibration_gaps.csv"><span class="xref download myst">78 brechas por semilla y sus tamaños de lote</span></a> permiten auditar el cálculo. Una brecha negativa puede reflejar distinta dificultad de los periodos; no prueba una ausencia general de sobreajuste.</p>
+</section>
+<section id="alcance-final-de-la-evidencia">
+<h2>Alcance final de la evidencia<a class="headerlink" href="#alcance-final-de-la-evidencia" title="Link to this heading">#</a></h2>
+<p>Este cierre corrige el número de remuestreos y añade una implementación auditada de fluctuación relativa, además de sensibilidad explícita de las brechas. <strong>El calendario de prueba seguía siendo conocido desde E1 y δg seguía sin definición previa.</strong> La reproducción exacta, las correcciones múltiples y estos diagnósticos fortalecen la trazabilidad del resultado retrospectivo; no crean un nuevo periodo ciego ni satisfacen por sí solos las cuatro condiciones conjuntas de adecuación de la guía.</p>
+<p>Los <a class="reference download internal" download="" href="../_downloads/4c0b52b82df953376a0c06d7cbd8e73c/summary.json"><span class="xref download myst">resultados resumidos</span></a> y el <a class="reference download internal" download="" href="../_downloads/0181f00e5bce2fe51dec298eb9a2f432/manifest.json"><span class="xref download myst">manifiesto SHA256</span></a> documentan los insumos y las fuentes. La publicación original de 4.999 sorteos permanece disponible como registro histórico; este capítulo es su refinamiento computacional separado y fechado.</p>
+</section>
+<section id="insumos-para-repetir-los-calculos">
+<h2>Insumos para repetir los cálculos<a class="headerlink" href="#insumos-para-repetir-los-calculos" title="Link to this heading">#</a></h2>
+<p>Los <a class="reference download internal" download="" href="../_downloads/093ac7687f5fa6dc7f774b231591547c/e2_f2a_input.json"><span class="xref download myst">pronósticos congelados exactos</span></a>, el <a class="reference download internal" download="" href="../_downloads/f790064a27a16b02f69ba89b6a6c7f9d/daily_volatility_development.csv"><span class="xref download myst">objetivo de desarrollo</span></a> y el <a class="reference download internal" download="" href="../_downloads/756f78194f862137773983a9f95d8911/manifest.json"><span class="xref download myst">manifiesto de procedencia</span></a> permiten repetir el análisis sin cargar pesos ni volver a entrenar. Las brechas usan el <a class="reference download internal" download="" href="../_downloads/93d5104f8f5efe13c7e3e5941200893d/fit_overfit_summary.csv"><span class="xref download myst">resumen de ajustes ya publicado</span></a>.</p>
+<p>Desde la raíz del repositorio, con los insumos incluidos en <code class="docutils literal notranslate"><span class="pre">book_e2/_static/e2_final_audit_inputs_20261114</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>scripts/e2_temporal_final_audit.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--input<span class="w"> </span>book_e2/_static/e2_final_audit_inputs_20261114/e2_f2a_input.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--training-summary<span class="w"> </span>book_e2/_static/e2_f2a_audit_20261113/fit_overfit_summary.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--plan<span class="w"> </span>experiments/e2_temporal_final_audit_20261114/analysis_plan.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--plan-registration-commit<span class="w"> </span>60cd2bb23f6da22797e2c3a7bf8225250753f903<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>work/temporal_audit_repeat
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="55_reproduccion_ablaciones.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">55. Reproducción numérica y ablaciones completadas</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="57_errores_techo.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">57. Taxonomía de errores y referencias de predictibilidad</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-familia-primaria-completa-ahora-con-20-000-sorteos">La familia primaria completa, ahora con 20.000 sorteos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#giacominirossi-y-un-diagnostico-distinto-de-constancia">Giacomini–Rossi y un diagnóstico distinto de constancia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-permiten-las-brechas-guardadas-y-que-sigue-sin-acreditarse">Qué permiten las brechas guardadas y qué sigue sin acreditarse</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alcance-final-de-la-evidencia">Alcance final de la evidencia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#insumos-para-repetir-los-calculos">Insumos para repetir los cálculos</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

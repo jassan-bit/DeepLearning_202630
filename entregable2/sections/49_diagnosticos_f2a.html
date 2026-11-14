@@ -222,6 +222,10 @@
 <li class="toctree-l1"><a class="reference internal" href="53_cierre_requisitos.html">53. Cierre de requisitos y experimentos complementarios</a></li>
 <li class="toctree-l1"><a class="reference internal" href="54_robustez_interpretabilidad.html">54. Robustez e interpretabilidad: resultados reales de los predictores congelados</a></li>
 <li class="toctree-l1"><a class="reference internal" href="55_reproduccion_ablaciones.html">55. Reproducción numérica y ablaciones completadas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="56_inferencia_estabilidad_final.html">56. Inferencia refinada y estabilidad temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="57_errores_techo.html">57. Taxonomía de errores y referencias de predictibilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="58_flops_predictores.html">58. Coste de operaciones de los predictores congelados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="59_auditoria_literatura_final.html">59. Auditoría final de la literatura recibida</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Registro de selección, cierre pendiente y trazabilidad</a></li>
@@ -699,7 +703,7 @@
 </div>
 <p>Cada RMSE trimestral de una red es la media de las RMSE individuales, igual que en A2. El <a class="reference download internal" download="" href="../_downloads/0a14830bc79b39139ca47956b16fe0b6/quarterly_metrics.csv"><span class="xref download myst">CSV trimestral</span></a> conserva las <strong>112 filas sistema-trimestre</strong>, fechas, MAE, sesgo, cobertura y anchura. También se calcularon <strong>8.304 filas de ventanas móviles de 90 días</strong>: son descripciones fuertemente solapadas, no nuevas réplicas ni contrastes independientes.</p>
 <p><img alt="Evolución de RMSE en ventanas móviles de 90 días" src="../_images/temporal_rmse.svg" /></p>
-<p>Este contraste de calendario y estas curvas <strong>no implementan el test de Giacomini–Rossi</strong>. La estabilidad bajo esa prueba específica sigue pendiente.</p>
+<p>Este contraste de calendario y estas curvas <strong>no implementan el test de Giacomini–Rossi</strong>. El suplemento posterior de <a class="reference internal" href="56_inferencia_estabilidad_final.html"><span class="std std-doc">§56</span></a> calcula su estadístico de fluctuación, conserva la referencia asintótica original y documenta una calibración bootstrap de 20.000 réplicas. No rechazo tras corrección no demuestra estabilidad.</p>
 </section>
 <section id="curvas-originales-de-ajuste-y-alcance-de-la-brecha">
 <h2>Curvas originales de ajuste y alcance de la brecha<a class="headerlink" href="#curvas-originales-de-ajuste-y-alcance-de-la-brecha" title="Link to this heading">#</a></h2>
@@ -828,7 +832,7 @@
 <td><p>Recuperadas para 78 ajustes finales y 29 HPO; 10 HPO sin pérdidas originales, declarados explícitamente. Fases SAE separadas.</p></td>
 </tr>
 <tr class="row-even"><td><p>Estabilidad temporal</p></td>
-<td><p>Métricas por trimestre y ventanas de 90 días, más contraste HAC de pérdidas trimestrales. Giacomini–Rossi sigue pendiente.</p></td>
+<td><p>Métricas por trimestre y ventanas de 90 días, más contraste HAC de pérdidas trimestrales. Giacomini–Rossi se añade posteriormente en <a class="reference internal" href="56_inferencia_estabilidad_final.html"><span class="std std-doc">§56</span></a>, con sus supuestos y límites.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Ausencia de sobreajuste con margen, Tabla B</p></td>
 <td><p><strong>No establecida</strong>: δg originalmente indefinido y comparaciones temporales descriptivas. No rechazo no equivale a ausencia.</p></td>

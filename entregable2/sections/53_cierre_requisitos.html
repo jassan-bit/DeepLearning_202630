@@ -222,6 +222,10 @@
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">53. Cierre de requisitos y experimentos complementarios</a></li>
 <li class="toctree-l1"><a class="reference internal" href="54_robustez_interpretabilidad.html">54. Robustez e interpretabilidad: resultados reales de los predictores congelados</a></li>
 <li class="toctree-l1"><a class="reference internal" href="55_reproduccion_ablaciones.html">55. Reproducción numérica y ablaciones completadas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="56_inferencia_estabilidad_final.html">56. Inferencia refinada y estabilidad temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="57_errores_techo.html">57. Taxonomía de errores y referencias de predictibilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="58_flops_predictores.html">58. Coste de operaciones de los predictores congelados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="59_auditoria_literatura_final.html">59. Auditoría final de la literatura recibida</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Registro de selección, cierre pendiente y trazabilidad</a></li>
@@ -430,7 +434,7 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Comparaciones F2a</p></td>
-<td><p><a class="reference internal" href="50_comparaciones_f2a.html"><span class="std std-doc">§50</span></a>: 120 DM–HLN/HAC14 con Holm, MCS por bloques con 10.000 remuestreos y rangos condicionales entre semillas.</p></td>
+<td><p><a class="reference internal" href="50_comparaciones_f2a.html"><span class="std std-doc">§50</span></a>: DM–HLN/HAC14, MCS y rangos; <a class="reference internal" href="56_inferencia_estabilidad_final.html"><span class="std std-doc">§56</span></a>: 20.000 remuestreos de la misma familia primaria, Giacomini–Rossi y constancia separados.</p></td>
 <td><p>Son comparaciones posteriores con estimandos propios. El diagnóstico entre semillas no representa otros mercados; δg no se había definido para las pruebas originales.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Ajuste y calibración</p></td>
@@ -439,17 +443,21 @@
 </tr>
 <tr class="row-even"><td><p>Literatura</p></td>
 <td><p><a class="reference internal" href="52_sintesis_literatura.html"><span class="std std-doc">§52</span></a>: diez sistemas actuales vinculados a nueve estudios, extracción, calidad, corpus delimitado, soporte cuantificado y sensibilidad de puntuaciones.</p></td>
-<td><p>El flujo global de todos los registros históricos y las decisiones pendientes no se convierten en una revisión cerrada. Las puntuaciones documentales actuales no se presentan como decisiones previas al benchmark.</p></td>
+<td><p><a class="reference internal" href="59_auditoria_literatura_final.html"><span class="std std-doc">§59</span></a> concilia 9.559 grupos, roles y componentes con incógnitas. El flujo global y la elegibilidad permanecen parciales. Las puntuaciones documentales actuales no se presentan como decisiones previas al benchmark.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Eficiencia</p></td>
 <td><p><a class="reference internal" href="51_eficiencia_costes.html"><span class="std std-doc">§51</span></a>: parámetros y tiempos originales medidos, costes por fases y frentes de Pareto; <a class="reference internal" href="54_robustez_interpretabilidad.html"><span class="std std-doc">§54</span></a>: perfil nuevo de inferencia A100 de los 78 predictores neuronales.</p></td>
-<td><p>FLOPs, energía y dinero siguen sin medir. El forward CUDA con entrada residente excluye preprocesamiento y transferencia.</p></td>
+<td><p><a class="reference internal" href="58_flops_predictores.html"><span class="std std-doc">§58</span></a> añade FLOPs core para las trece redes; excluye FFT, activaciones y otros kernels. Energía y dinero siguen sin medir. El forward CUDA con entrada residente excluye preprocesamiento y transferencia.</p></td>
 </tr>
-<tr class="row-even"><td><p>Reproducción y presentación</p></td>
+<tr class="row-even"><td><p>Errores y dificultad</p></td>
+<td><p><a class="reference internal" href="57_errores_techo.html"><span class="std std-doc">§57</span></a>: 6.080 etiquetas, 100 fechas y seis semillas por modelo principal, frecuencias con IC y entropía ordinal.</p></td>
+<td><p>Taxonomía automática posterior; γ frente a cota ideal no identifica techo Bayes. El ensemble uniforme no produjo una referencia válida.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Reproducción y presentación</p></td>
 <td><p><a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a>: 81/81 predictores reajustados en un checkout y entorno nuevos; criterio registrado de reproducción aprobado y discrepancia máxima absoluta de predicción <strong>0</strong> en calibración y prueba. Se conservan las descargas originales.</p></td>
 <td><p>La reproducción del entrenamiento no recupera una prueba ciega ni aprueba por sí sola los pendientes del Apéndice B.</p></td>
 </tr>
-<tr class="row-odd"><td><p>Ablaciones entrenadas</p></td>
+<tr class="row-even"><td><p>Ablaciones entrenadas</p></td>
 <td><p><a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a>: tres componentes del autoencoder, seis semillas por variante, 18/18 ajustes y bootstrap pareado temporal de 10.000 remuestreos.</p></td>
 <td><p>Análisis posterior sobre el calendario conocido; no sustituye la familia primaria ni autoriza retuning. Dos comparaciones no concluyentes no acreditan equivalencia.</p></td>
 </tr>
@@ -476,7 +484,7 @@
 <section id="limites-que-una-ejecucion-posterior-no-puede-borrar">
 <h2>Límites que una ejecución posterior no puede borrar<a class="headerlink" href="#limites-que-una-ejecucion-posterior-no-puede-borrar" title="Link to this heading">#</a></h2>
 <p>El periodo de prueba ya se conocía en E1 y se ha analizado en E2. Una ejecución nueva no recupera cegamiento prospectivo. Las hipótesis complementarias deben conservar su fecha real y su condición posterior. Tampoco es posible convertir retrospectivamente un margen δg ausente en un margen registrado antes de los experimentos originales.</p>
-<p>El estado actual es <strong>robustez, explicaciones, perfil, 81 reproducciones y 18 ablaciones completados</strong>, con recibos y resultados verificados en <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a>. Persisten requisitos de literatura global, techo y distancia γ, taxonomía de errores, FLOPs y elementos de la ruta F2a; las desviaciones originales de preregistro, potencia y exposición al periodo de prueba permanecen declaradas. La <a class="reference internal" href="38_cumplimiento_guia.html"><span class="std std-doc">matriz de cumplimiento</span></a> distingue este cierre experimental del cumplimiento integral del entregable.</p>
+<p>El estado actual es <strong>robustez, explicaciones, perfil, 81 reproducciones y 18 ablaciones completados</strong>, con recibos y resultados verificados en <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a>. Los suplementos §§56–59 completan inferencia B=20.000, fluctuación temporal, taxonomía operativa, FLOPs core y conciliación del corpus recibido. Permanecen la elegibilidad bibliográfica global y componentes desconocidos del puntaje, un techo empírico alcanzable y las desviaciones de δg previo, potencia y exposición al periodo de prueba. Las operaciones FLOPs excluidas no se presentan como medidas. La <a class="reference internal" href="38_cumplimiento_guia.html"><span class="std std-doc">matriz de cumplimiento</span></a> distingue este cierre experimental del cumplimiento integral del entregable.</p>
 </section>
 </section>
 

@@ -2,7 +2,7 @@
 
 **Deep Learning · 2026-30 · Jassan Arteta**
 
-**Evaluación final y experimentos complementarios completados. Corte verificado: 13/11/2026, 22:42:55 de Bogotá.** La tabla A2 reúne **16 sistemas sobre las mismas 608 fechas**. El plan complementario cerró **99/99 ajustes: 81 reproducciones y 18 ablaciones**, con todas las comprobaciones de reproducción aprobadas y sin reservas abiertas. Se conservan los resultados originales y los respaldos en **GitHub**.
+**Evaluación final y experimentos complementarios completados. Cierre A100 verificado: 13/11/2026, 22:42:55 de Bogotá; suplementos estadísticos y documentales del 13/11, posteriores a las 23:17.** La tabla A2 reúne **16 sistemas sobre las mismas 608 fechas**. El plan complementario cerró **99/99 ajustes: 81 reproducciones y 18 ablaciones**, con todas las comprobaciones de reproducción aprobadas y sin reservas abiertas. Se conservan los resultados originales y los respaldos en **GitHub**.
 
 **[Resultados finales (§6)](sections/06_benchmark_final.md)** · **[Tabla A2 medida, CSV](_static/e2_benchmark_final_20261113/benchmark_A2.csv)** · **[Reproducción y ablaciones (§55)](sections/55_reproduccion_ablaciones.md)** · **[Estado y presupuesto final](_static/e2_reproduction_ablations_20261113/status.json)**
 
@@ -12,13 +12,15 @@
 
 **Otros suplementos completados:** [ajuste y calibración (§49)](sections/49_diagnosticos_f2a.md) · [DM/MCS y rangos (§50)](sections/50_comparaciones_f2a.md) · [costes y Pareto (§51)](sections/51_eficiencia_costes.md) · [síntesis bibliográfica (§52)](sections/52_sintesis_literatura.md) · [estado de requisitos (§53)](sections/53_cierre_requisitos.md) · [robustez y explicaciones del Top 3 (§54)](sections/54_robustez_interpretabilidad.md). Los diagnósticos incluyen **79 predictores, 468 filas de robustez y 78 perfiles de inferencia A100**.
 
+**Suplementos finales:** [20.000 remuestreos y Giacomini–Rossi (§56)](sections/56_inferencia_estabilidad_final.md) · [6.080 etiquetas de errores y 100 fechas por modelo (§57)](sections/57_errores_techo.md) · [FLOPs core de las trece redes (§58)](sections/58_flops_predictores.md) · [conciliación de 9.559 grupos bibliográficos (§59)](sections/59_auditoria_literatura_final.md). Son análisis posteriores con fecha y alcance propios, sin nuevas corridas ni sustitución de A2.
+
 ## Resumen
 
 Se estudia el pronóstico diario de volatilidad de Bitcoin usando siete días de OHLCV, horizonte de un día y objetivo σ₇ poblacional de retornos de Close, sin anualización. Se comparan diez candidatos de cuatro familias, tres referencias neuronales de E1 y tres comparadores estadísticos. La selección reducida utiliza seis configuraciones y tres orígenes internos por red; cada receta neuronal final tiene seis semillas. Los 16 sistemas comparten 608 fechas de evaluación conocidas desde E1.
 
 El LSTM-autoencoder obtiene la menor RMSE media observada, **0,00380343**, seguido de ARIMA, **0,00392162**, y GRU32, **0,00400116**. Persistencia presenta el menor MAE y sMAPE. Ninguno de los veinte contrastes primarios demuestra la mejora práctica registrada tras Holm; tampoco se establece equivalencia. La repetición de los 81 predictores reproduce sus resultados con discrepancia máxima cero. Las 18 ablaciones muestran degradación significativa al retirar el dropout supervisado; las otras dos comparaciones no son concluyentes.
 
-Se publican residuos, calibración, comparaciones temporales, robustez, explicaciones del Top 3, perfiles A100, costes y Pareto. La evaluación es retrospectiva y el piloto no alcanza la potencia objetivo. El cierre conserva **84 horas totales autorizadas**, todos los cargos y los resultados negativos. Permanecen abiertos el cierre bibliográfico global y requisitos específicos de diagnóstico, eficiencia y análisis de errores.
+Se publican residuos, calibración, comparaciones temporales, robustez, explicaciones del Top 3, perfiles A100, costes y Pareto. La evaluación es retrospectiva y el piloto no alcanza la potencia objetivo. El cierre conserva **84 horas totales autorizadas**, todos los cargos y los resultados negativos. Permanecen abiertos el cierre bibliográfico global, el margen δg previo y un techo empírico validado. El conteo FLOPs cubre matrices y convoluciones, con exclusiones declaradas.
 
 ## Qué quedó completado
 
@@ -34,6 +36,10 @@ Se publican residuos, calibración, comparaciones temporales, robustez, explicac
 | Eficiencia observada | 78 ajustes finales: 5.765,09 segundos de fases instrumentadas, parámetros y Pareto: [§51](sections/51_eficiencia_costes.md) |
 | Reproducción numérica de los predictores | **81/81**, todas las comprobaciones aprobadas; máxima diferencia de pronósticos **0**: [§55](sections/55_reproduccion_ablaciones.md) |
 | Ablaciones entrenadas del autoencoder | **18/18**, tres componentes × seis semillas; bootstrap de 10.000 réplicas y Holm: [comparaciones](_static/e2_reproduction_ablations_20261113/ablation_comparisons.csv) |
+| Refinamiento numérico y estabilidad | **20.000 remuestreos** de los mismos veinte contrastes; Giacomini–Rossi y constancia separados: [§56](sections/56_inferencia_estabilidad_final.md) |
+| Errores y dificultad | **6.080 etiquetas**, 100 fechas por cada modelo principal, IC temporales y entropía ordinal; γ ideal con límites: [§57](sections/57_errores_techo.md) |
+| Operaciones de inferencia | FLOPs core D7×5 de **13 recetas** y Pareto, con exclusiones: [§58](sections/58_flops_predictores.md) |
+| Literatura recibida | **9.559 grupos conciliados**, roles de 20 fuentes y puntajes con incógnitas explícitas: [§59](sections/59_auditoria_literatura_final.md) |
 | Cierre contable | **84 h autorizadas**, **80,2561 h contabilizadas**, saldo **3 h 44 min 38 s**, sin reservas abiertas |
 | Persistencia | Resultados y comprobaciones de integridad en **GitHub** |
 
@@ -47,7 +53,7 @@ La métrica primaria de cada red es la **media de sus seis RMSE individuales**, 
 
 La mejora puntual del autoencoder frente a persistencia es **0,00028217 de RMSE (6,91 %)**, con IC bootstrap temporal **[−0,00016895; 0,00072419]**. Aunque la estimación supera el margen heredado δ=0,00025772842664981106, su incertidumbre no demuestra superioridad práctica. Frente a GRU32 la mejora puntual es **0,00019773**, menor que δ. Los **20 p ajustados por Holm son 1,0** en la familia primaria registrada.
 
-El análisis usa bootstrap pareado en bloques de 14 días, 4.999 remuestreos y sensibilidad diagnóstica a 7 y 28 días. Los diagnósticos por semillas no convierten esas repeticiones en mercados independientes. Los límites de esta batería frente a lo solicitado por la guía se explican en §38. No se cambian recetas ni calibradores después de observar la prueba.
+El análisis original conserva bootstrap pareado en bloques de 14 días y 4.999 remuestreos. [§56](sections/56_inferencia_estabilidad_final.md) reproduce exactamente sus veinte contrastes y añade **20.000 réplicas con las mismas hipótesis y Holm**, sin cambiar la conclusión: todos los p ajustados son 1,0. Se mantienen la sensibilidad a 7 y 28 días y la fecha posterior del refinamiento. Los diagnósticos por semillas no convierten esas repeticiones en mercados independientes. Los límites de esta batería frente a lo solicitado por la guía se explican en §38. No se cambian recetas ni calibradores después de observar la prueba.
 
 ## Guía de lectura
 
@@ -74,12 +80,12 @@ El cierre complementario mantiene un límite de **84 horas acumuladas autorizada
 
 ## Qué falta para cerrar la guía
 
-1. Completar los elementos específicos de F2a que siguen abiertos, incluida Giacomini–Rossi. La ausencia de un margen δg anterior al experimento debe permanecer declarada; no puede transformarse retrospectivamente en un preregistro. Los 4.999 remuestreos primarios se conservan como desviación original, distinta de los 10.000 usados en los análisis posteriores.
-2. Cerrar el flujo global PRISMA, la elegibilidad y los componentes bibliográficos desconocidos del Top 10. La síntesis de §52 mantiene su alcance delimitado.
-3. Completar FLOPs, la referencia de techo y distancia γ y la taxonomía de al menos cien errores por modelo principal, con las condiciones y límites de la guía.
-4. Revisar la discusión, los apéndices y la defensa técnica, conservando los resultados nulos, la potencia limitada y el carácter retrospectivo del calendario. La reproducción y las ablaciones completadas no recuperan una prueba prospectiva ciega.
+1. Completar la elegibilidad global de la literatura, recuperar los 374 registros Scopus ausentes y resolver los componentes bibliométricos desconocidos. [§59](sections/59_auditoria_literatura_final.md) cierra la contabilidad de lo recibido y distingue el puntaje anterior de su sensibilidad contextual.
+2. Conservar las desviaciones que no pueden corregirse después: δg no se definió previamente, la potencia fue insuficiente y la prueba ya se conocía desde E1. Giacomini–Rossi y el refinamiento de 20.000 réplicas están calculados en [§56](sections/56_inferencia_estabilidad_final.md); no crean un experimento prospectivo.
+3. El techo de error alcanzable sigue sin identificar. [§57](sections/57_errores_techo.md) aporta entropía ordinal, el resultado negativo del ensemble y γ frente a la cota ideal, sin convertirla en ruido Bayes. La taxonomía de residuos es automática y posterior, con 100 fechas auditables por modelo.
+4. Los FLOPs de [§58](sections/58_flops_predictores.md) cubren matrices y convoluciones, con FFT, activaciones y otras operaciones excluidas. Energía, dinero y coste total del servicio no se midieron. Revisar la defensa técnica y mantener estos límites.
 
-La [matriz de §38](sections/38_cumplimiento_guia.md) conserva estos límites. El cierre de 99 ajustes es el del plan complementario registrado, no un porcentaje de cumplimiento integral de E2.
+La [matriz de §38](sections/38_cumplimiento_guia.md) distingue cada evidencia de sus condiciones pendientes. El cierre de 99 ajustes corresponde al plan complementario; no es un porcentaje de cumplimiento integral de E2.
 
 ## Cortes históricos y descargas conservadas
 

@@ -105,7 +105,7 @@ Cada RMSE trimestral de una red es la media de las RMSE individuales, igual que 
 
 ![Evolución de RMSE en ventanas móviles de 90 días](../_static/e2_f2a_audit_20261113/temporal_rmse.svg)
 
-Este contraste de calendario y estas curvas **no implementan el test de Giacomini–Rossi**. La estabilidad bajo esa prueba específica sigue pendiente.
+Este contraste de calendario y estas curvas **no implementan el test de Giacomini–Rossi**. El suplemento posterior de [§56](56_inferencia_estabilidad_final.md) calcula su estadístico de fluctuación, conserva la referencia asintótica original y documenta una calibración bootstrap de 20.000 réplicas. No rechazo tras corrección no demuestra estabilidad.
 
 ## Curvas originales de ajuste y alcance de la brecha
 
@@ -155,7 +155,7 @@ Los hashes se mantienen en dominios distintos: el archivo `selected_model.pt`, e
 | Mincer–Zarnowitz | Ejecutado con contraste conjunto e inferencia HAC14; 37/81 rechazos Holm. |
 | Cobertura de intervalos | Cobertura empírica, IC por bloques y contraste de igualdad HAC ejecutados. No equivalen a PIT ni a pruebas Kupiec/Christoffersen no implementadas aquí. |
 | Curvas de ajuste y validación | Recuperadas para 78 ajustes finales y 29 HPO; 10 HPO sin pérdidas originales, declarados explícitamente. Fases SAE separadas. |
-| Estabilidad temporal | Métricas por trimestre y ventanas de 90 días, más contraste HAC de pérdidas trimestrales. Giacomini–Rossi sigue pendiente. |
+| Estabilidad temporal | Métricas por trimestre y ventanas de 90 días, más contraste HAC de pérdidas trimestrales. Giacomini–Rossi se añade posteriormente en [§56](56_inferencia_estabilidad_final.md), con sus supuestos y límites. |
 | Ausencia de sobreajuste con margen, Tabla B | **No establecida**: δg originalmente indefinido y comparaciones temporales descriptivas. No rechazo no equivale a ausencia. |
 | PIT uniforme | **No estimable con estos artefactos**: un intervalo residual del 90 % no define una CDF predictiva completa. La variación entre semillas tampoco es una distribución predictiva. |
 | Comparaciones específicas F2a/S8 | Ejecutadas posteriormente en [§50](50_comparaciones_f2a.md): DM–HLN, MCS y rangos condicionados. Tienen hipótesis y familias propias; no sustituyen los diagnósticos residuales ni las comparaciones primarias. |

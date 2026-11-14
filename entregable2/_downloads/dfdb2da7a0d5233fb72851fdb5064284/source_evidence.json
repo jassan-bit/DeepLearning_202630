@@ -1,0 +1,58 @@
+{
+  "retrieved_at_utc": "2026-11-14",
+  "method": "author_primary_source_review_no_training",
+  "original_paper": {
+    "authors": "Raffaella Giacomini and Barbara Rossi",
+    "year": 2010,
+    "title": "Forecast comparisons in unstable environments",
+    "journal": "Journal of Applied Econometrics25(4):595–620",
+    "doi": "10.1002/jae.1177"
+  },
+  "author_implementation": {
+    "authors": "Barbara Rossi and Matthieu Soupre",
+    "date": "2017-02-10",
+    "title": "Implementing Tests For Forecast Evaluation in the Presence of Instabilities",
+    "url": "https://www.crei.cat/wp-content/uploads/2016/07/Rossi_Soupre_Revised-1.pdf",
+    "locators": {
+      "printed_p3_note3": "Models estimated using a fixed or rolling scheme with fixed estimation-sample size; recursive schemes excluded.",
+      "printed_p4_section3.1_equation3": "F_t,m equals the uncentered local loss-difference sum divided by sqrt(m) and global HAC long-run standard deviation; H0 equal expected loss at every forecast date.",
+      "printed_p5_section3.2": "Command requires realizations and forecasts; parameters and knowledge of generating models are unnecessary."
+    }
+  },
+  "critical_value_reference": {
+    "author": "Barbara Rossi",
+    "year": 2013,
+    "title": "Advances in Forecasting Under Instability",
+    "url": "https://crei.cat/wp-content/uploads/2016/07/AFUM.pdf",
+    "locator": "Appendix1 TableA.2 printed/PDF p93",
+    "mu_nominal": 0.3,
+    "two_sided_alpha05_critical": 3.012
+  },
+  "corroborating_author_review": {
+    "author": "Barbara Rossi",
+    "year": 2021,
+    "title": "Forecasting in the Presence of Instabilities",
+    "url": "https://econ-papers.upf.edu/papers/1711.pdf",
+    "locator": "Technical Appendix Algorithm7, printedp56/PDFp57; footnote89"
+  },
+  "implementation_scope": {
+    "mu_nominal": 0.3,
+    "mu_effective": 0.2993421052631579,
+    "window_days": 182,
+    "calendar_days": 608,
+    "overlapping_loss_windows": 427,
+    "fixed_predictor_forecasts_admissible": true,
+    "new_parameter_refits": false,
+    "GR_EPA_observed_centered": false,
+    "bootstrap_variant": "centered circular14,20000 replicates,globalBartlettHAC14 reestimated in each replicate",
+    "null_assumptions": "weak dependence and a suitable stable global long-run variance approximation under the null; not automatic robustness to arbitrary nonstationary heteroskedasticity",
+    "constant_mean_diagnostic_is_original_GR": false,
+    "loss_scope": "daily mean of individual fixed-seed squared losses; not the benchmark mean individual-seed RMSE nor squared error of an ensemble"
+  },
+  "interpretation_guards": [
+    "An EPA rejection can result from a constant nonzero loss difference and does not by itself demonstrate a temporal break.",
+    "A non-rejection is not evidence of equivalence, stationarity, absence of overfit, or calibration.",
+    "The test chronology was already known from E1; no new blind test was created.",
+    "Bootstrap critical values are an explicit posthoc calibration adaptation; the original table threshold is separate and unadjusted."
+  ]
+}

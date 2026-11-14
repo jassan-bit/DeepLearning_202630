@@ -1,0 +1,1175 @@
+[
+  {
+    "model": "iTransformer",
+    "architecture": {
+      "D7_changes": [
+        "seq_len7 and five OHLCV variable tokens",
+        "preserve original normalization and full256-wide two-layer inverted encoder",
+        "replace per-covariate projector and its OHLCV denormalization with scalar task head"
+      ],
+      "actual_parameter_count": 795403,
+      "author_commit": "c2426e68ca13f74aaec08045c5c724d8ad328124",
+      "author_repository": "thuml/iTransformer",
+      "author_source_files": {
+        "LICENSE": "29d2a4c09fa577780522219dc248466977f77cd420354c5e9a0e86550be2b849",
+        "layers/Embed.py": "2de7e5049a696d320a23a8bdb6e08e823cf7fa3f246a0a49555fcd729c5c8398",
+        "layers/SelfAttention_Family.py": "38ac67428d528b8e145e4944ca059b40629a8446c891142602d5aaadc38dfd9e",
+        "layers/Transformer_EncDec.py": "985c31f4ae187b08afaa9663dc960a40544b2ec33ab55389ceab3930edc1ce02",
+        "model/iTransformer.py": "6f34777a5a12c253a293f79e7e1fd5b6f79ac100b443951e051e269e7e2542db",
+        "run.py": "650873cfd6fee1f0415d4e8fd69943ad736fd1bab6495b640aa27b1a769f59f9",
+        "scripts/multivariate_forecasting/ETT/iTransformer_ETTh1.sh": "81f8409cff60b754b45ed2e76133c7e3b6e585a50c8361f04fa3daf3b6997cc0",
+        "utils/masking.py": "02f453e52cfaec65e34132923add80e7132f188706680fa86d7bd884976e09ef"
+      },
+      "backbone_family_replaced": false,
+      "calendar_inputs": false,
+      "configuration_choice_source": "official ETTh1_96_96 script d256/ff256/enc2 plus run.py heads8",
+      "dropout": 0.3,
+      "forecast_horizon_days": 1,
+      "frozen_body_parameter_count": 795403,
+      "history_days": 7,
+      "iTransformer_existing_dropout_rate_bridge": false,
+      "initialization_seed": 271802,
+      "input_channels": 5,
+      "input_shape": [
+        7,
+        5
+      ],
+      "market_data_read": false,
+      "model": "iTransformer",
+      "nas": false,
+      "original_OHLCV_denormalization_applied": false,
+      "output": "positive sigma7/a; inversion belongs to caller",
+      "output_link": "Softplus",
+      "paper_replication_claimed": false,
+      "pretrained_weights": "none",
+      "readout": "Linear(1290,1) then Softplus",
+      "readout_input_dim": 1290,
+      "registered_trial_id": "IT-D7-r1__hpo_v1:hpo-007",
+      "requested_existing_dropout": 0.3,
+      "role": "E2_candidate",
+      "same_window_moments": "five means and five population standard deviations of the same scaled D7",
+      "source_presets_inspected": [
+        "run.py",
+        "scripts/multivariate_forecasting/ETT/iTransformer_ETTh1.sh"
+      ],
+      "source_roots_verified": true,
+      "structure": {
+        "activation": "gelu",
+        "d_ff": 256,
+        "d_model": 256,
+        "e_layers": 2,
+        "factor": 1,
+        "n_heads": 8,
+        "use_norm": true
+      },
+      "target": "sigma7 / training-only y_scale",
+      "target_lags_added": false,
+      "training_axes_applied": false,
+      "training_hpo_record": {
+        "batch_size": 16,
+        "dropout": 0.3,
+        "learning_rate": 0.0024351218185910935,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "IT-D7-r1__hpo_v1",
+        "trial_id": "IT-D7-r1__hpo_v1:hpo-007",
+        "warmup_fraction": 0,
+        "weight_decay": 0.0009190165913202242
+      },
+      "training_recipe_id": "IT-D7-r1__hpo_v1",
+      "training_registry_version": "e2-training-registry-v1",
+      "weights_pretrained": false,
+      "weights_reused": false
+    },
+    "result_path": "/workspace/outputs/e2-final99-source-20261113/metadata/reproduction/jobs/posthoc-reproduction-26f04accac1c928efd1b9c18/result.json",
+    "seed": 271802,
+    "trial": {
+      "batch_size": 16,
+      "dropout": 0.3,
+      "learning_rate": 0.0024351218185910935,
+      "optimization_seeds": [
+        271201,
+        271202
+      ],
+      "recipe_id": "IT-D7-r1__hpo_v1",
+      "trial_id": "IT-D7-r1__hpo_v1:hpo-007",
+      "warmup_fraction": 0,
+      "weight_decay": 0.0009190165913202242
+    },
+    "result_sha256": "038e2ed58d2992f058acbed612408d751c235f1a825af40aff8de90e355a0419"
+  },
+  {
+    "model": "Inception-1D",
+    "architecture": {
+      "actual_parameter_count": 490561,
+      "dropout": 0.0,
+      "frozen_body_parameter_count": 490561,
+      "iTransformer_existing_dropout_rate_bridge": false,
+      "initialization_seed": 271805,
+      "input_shape": [
+        7,
+        5
+      ],
+      "market_data_read": false,
+      "model": "Inception-1D",
+      "nas": false,
+      "output": "positive sigma7/a; inversion belongs to caller",
+      "registered_trial_id": "inception1d_single_d7_v1_proposed__hpo_v1:hpo-010",
+      "requested_existing_dropout": 0.0,
+      "role": "E2_candidate",
+      "source_roots_verified": false,
+      "training_axes_applied": false,
+      "training_hpo_record": {
+        "batch_size": 32,
+        "dropout": 0,
+        "learning_rate": 0.0007394620646713903,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "inception1d_single_d7_v1_proposed__hpo_v1",
+        "trial_id": "inception1d_single_d7_v1_proposed__hpo_v1:hpo-010",
+        "weight_decay": 1.818489584292255e-06
+      },
+      "training_recipe_id": "inception1d_single_d7_v1_proposed__hpo_v1",
+      "training_registry_version": "e2-training-registry-v1",
+      "weights_pretrained": false,
+      "weights_reused": false
+    },
+    "result_path": "/workspace/outputs/e2-final99-source-20261113/metadata/reproduction/jobs/posthoc-reproduction-fa82feb8430152cce58012c7/result.json",
+    "seed": 271805,
+    "trial": {
+      "batch_size": 32,
+      "dropout": 0,
+      "learning_rate": 0.0007394620646713903,
+      "optimization_seeds": [
+        271201,
+        271202
+      ],
+      "recipe_id": "inception1d_single_d7_v1_proposed__hpo_v1",
+      "trial_id": "inception1d_single_d7_v1_proposed__hpo_v1:hpo-010",
+      "weight_decay": 1.818489584292255e-06
+    },
+    "result_sha256": "caa705193806bd72ced27eaae94ce17fe12acf8272e4e6959b1bae461d7ba6a2"
+  },
+  {
+    "model": "PatchTST",
+    "architecture": {
+      "actual_dropout": {
+        "encoder": 0.3,
+        "fc": 0.3,
+        "head": 0.0
+      },
+      "actual_parameter_count": 16388,
+      "architecture_policy_id": "e2-published-bodies-d7-v1",
+      "author_repository": "yuqinie98/PatchTST",
+      "body": "original supervised TSTiEncoder and Flatten_Head",
+      "calendar_covariates_added": false,
+      "d_ff": 128,
+      "d_model": 16,
+      "dropout": 0.3,
+      "encoder_layers": 3,
+      "exact_published_long_context_preset": false,
+      "head_dropout": 0.0,
+      "horizon": 1,
+      "initialization_seed": 271801,
+      "input_shape": [
+        7,
+        5
+      ],
+      "left_padding": 0,
+      "market_data_read": false,
+      "model": "PatchTST",
+      "n_heads": 4,
+      "nas": false,
+      "normalization": "author BatchNorm, post-norm",
+      "output": "positive sigma7 / training-only target scale",
+      "padding": "author end replication of last observed value",
+      "paper_replication_claimed": false,
+      "patch_count": 4,
+      "patch_len": 3,
+      "published_source_preset": {
+        "dropout": 0.3,
+        "evidence": "scripts/PatchTST/etth1.sh at the verified author commit",
+        "fc_dropout": 0.3,
+        "head_dropout": 0.0,
+        "patch_len": 16,
+        "seq_len": 336,
+        "stride": 8
+      },
+      "recipe_id": "PT-D7-PUBLISHED-v1",
+      "registered_trial_id": "PT-D7-PUBLISHED-v1:hpo-007",
+      "residual_attention": true,
+      "restored_published_body": true,
+      "revin_statistics_scope": "seven actual observed days before padding",
+      "right_padding": 2,
+      "same_window_moment_features": 0,
+      "scalar_readout": "Linear(5,1) then Softplus before OHLCV denormalization",
+      "source_commit": "204c21efe0b39603ad6e2ca640ef5896646ab1a9",
+      "source_files_verified_at_build": true,
+      "source_flatten_head_preserved": true,
+      "source_verification": {
+        "commit": "204c21efe0b39603ad6e2ca640ef5896646ab1a9",
+        "repository": "yuqinie98/PatchTST",
+        "verification_scope": "declared file subset, not whole repository",
+        "verified_files": {
+          "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+          "layers/PatchTST_backbone.py": "df67173153787c2356bdfb6491159cd754332ef7382986efe879e1fbea8ebf26",
+          "layers/PatchTST_layers.py": "21c06c70a90c60ee2a269b5c600c702834dea22cdfd72915e6b0f8b4a28db3f6",
+          "layers/RevIN.py": "e64c0ccded9228b347134e7368420d3fb10f70c75145b5ff2d8bdd8c3af59df6",
+          "models/PatchTST.py": "49d8bb865e1226d6338842f4b33c4bc6992cefb048dc2a4a5a8c410ca708586b",
+          "scripts/PatchTST/etth1.sh": "556c87cd7dd795094ff6cb73465e84c90686017e1535e0ba23ed43683b9b0897"
+        }
+      },
+      "stride": 2,
+      "structural_architecture_search": false,
+      "target_lags_added": false,
+      "task_adaptations": [
+        "Observed context 7 instead of source ETTh1 336; fixed P3/S2 rather than P16/S8",
+        "P3/S2 D7 geometry follows the prior documentary adaptation proposal",
+        "Five OHLCV channel predictions combined into one scalar before source denormalization"
+      ],
+      "training_axes_applied": false,
+      "training_hpo_record": {
+        "batch_size": 16,
+        "dropout": 0.3,
+        "learning_rate": 0.0014458517173583036,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "PT-D7-PUBLISHED-v1",
+        "trial_id": "PT-D7-PUBLISHED-v1:hpo-007",
+        "warmup_fraction": 0.1,
+        "weight_decay": 0.0
+      },
+      "training_recipe_id": "PT-D7-PUBLISHED-v1",
+      "weights_pretrained": false,
+      "weights_reused": false
+    },
+    "result_path": "/workspace/outputs/e2-final99-source-20261113/metadata/reproduction/jobs/posthoc-reproduction-e19b959e54b71fd6be98e16d/result.json",
+    "seed": 271801,
+    "trial": {
+      "batch_size": 16,
+      "dropout": 0.3,
+      "learning_rate": 0.0014458517173583036,
+      "optimization_seeds": [
+        271201,
+        271202
+      ],
+      "recipe_id": "PT-D7-PUBLISHED-v1",
+      "trial_id": "PT-D7-PUBLISHED-v1:hpo-007",
+      "warmup_fraction": 0.1,
+      "weight_decay": 0.0
+    },
+    "result_sha256": "59a97463d0f3dfbd1a11e29f4e993750a47c530ff5e48073645e8c7d31bbf15b"
+  },
+  {
+    "model": "TimesNet",
+    "architecture": {
+      "actual_parameter_count": 1173099,
+      "architecture_policy_id": "e2-published-bodies-d7-v1",
+      "architecture_search": false,
+      "body_output_shape": [
+        1,
+        5
+      ],
+      "factory_version": "e2-published-periodic-v1",
+      "fft_dc_guard": "Exclude bin0 from topk domain, including constant/tied spectra",
+      "fft_effective_length": 8,
+      "fft_selection": "pinned batch-mean topk over non-DC bins; no per-example replacement",
+      "fixed_body": {
+        "d_ff": 32,
+        "d_model": 32,
+        "layers": 2
+      },
+      "fixed_top_k": 3,
+      "frozen_parameter_reason": "Official branches not called with x_mark=None; TimeMixer PDM.layer_norm is registered but never called upstream",
+      "frozen_unused_source_parameters": [
+        "enc_embedding.temporal_embedding.embed.weight"
+      ],
+      "future_covariates": false,
+      "historical_recipe_replaced": false,
+      "inference_batch_size1_enforced": true,
+      "inference_policy": "In eval, invoke the unchanged forecasting body separately for each window in caller order, preventing later windows from influencing FFT selection",
+      "initialization_seed": 271802,
+      "input_shape": [
+        7,
+        5
+      ],
+      "model": "TimesNet",
+      "nas": false,
+      "num_kernels": 6,
+      "output": "positive sigma7/a; caller restores target units",
+      "paper_replication_claimed": false,
+      "period_rounding": "floor matches pinned author code; paper equation uses ceil",
+      "preset_source": "TimesNet v3 Appendix B k1..5; Table7 two layers and d_model rule; pinned run.py/ETTh1 d_ff32 and six kernels",
+      "recipe_id": "TN-D7-PUBLISHED-v1",
+      "registered_trial_id": "TN-D7-PUBLISHED-v1:hpo-010",
+      "restored_published_body": true,
+      "same_window_moments": 0,
+      "source_forecast_complete": true,
+      "source_verification": {
+        "commit": "4e938a1767106324dd753b2a44832bf870a0252e",
+        "repository": "thuml/Time-Series-Library",
+        "verification_scope": "Every declared file for this author tree, not the whole repository",
+        "verified_files": [
+          {
+            "path": "LICENSE",
+            "sha256": "8a6caa178ea3f33ebff5d7bb5558628cf5b423305dc30d3630f86564c7db94a2"
+          },
+          {
+            "path": "layers/AutoCorrelation.py",
+            "sha256": "354b44e54bdd39380c9f5c2bfaaf3b967fdbe80dc7998741dbfdfa5d521a040c"
+          },
+          {
+            "path": "layers/Autoformer_EncDec.py",
+            "sha256": "48745b4bb647355e9845792a855df9c59fd7df7fcc664c765351fec390c4073e"
+          },
+          {
+            "path": "layers/Conv_Blocks.py",
+            "sha256": "16d9f2d9e4fa094dc357901e32beecda9839709bcca02625e6447186933ce4e1"
+          },
+          {
+            "path": "layers/Crossformer_EncDec.py",
+            "sha256": "ee2cc5c8d3a44f4de67ce986e6b442488826a20fa4d8f87991941a75587936a1"
+          },
+          {
+            "path": "layers/DWT_Decomposition.py",
+            "sha256": "422af1eec77df1b9dcfdea3d457e545c8575da69da4f505f27ba54db0c9f7764"
+          },
+          {
+            "path": "layers/ETSformer_EncDec.py",
+            "sha256": "4ba2a0b76381602e32341fcc1a6a74ca86d2347905589fb34a74f8e54d7023e3"
+          },
+          {
+            "path": "layers/Embed.py",
+            "sha256": "17e7c3577324c41a0da427a199c955b782fde905aabb1f7cbc3c4e15ebd4ae35"
+          },
+          {
+            "path": "layers/FourierCorrelation.py",
+            "sha256": "cea1095b3a94764f240e6ac67280d6ea7fac9f5ef54de137cd1f5e5adab1305f"
+          },
+          {
+            "path": "layers/MSGBlock.py",
+            "sha256": "01d3d446a214c33062ba098f251a1e49ed8a342dd4372e973a0a8c0dde5cd8c0"
+          },
+          {
+            "path": "layers/MambaBlock.py",
+            "sha256": "cbcbbd6cbb83366e40ffe5926da16b4ca0aa11b6649e2259750994b60527a390"
+          },
+          {
+            "path": "layers/MultiWaveletCorrelation.py",
+            "sha256": "cf0b8faf45a1b7fab4a3c1c521623c0762e2f9d7375b20ba9a9acd2142747342"
+          },
+          {
+            "path": "layers/Pyraformer_EncDec.py",
+            "sha256": "ab92396677a9ad2e49c7bf171e15c96108d388b8898d29ee520d18dfe0bd5306"
+          },
+          {
+            "path": "layers/SelfAttention_Family.py",
+            "sha256": "6f6592aed0753e342fc04c01db70528c2eb191eeb067cd5fd4c8d348fddcb794"
+          },
+          {
+            "path": "layers/StandardNorm.py",
+            "sha256": "3f690dc5fc0e395d4f1ffe6396717548d18bd04f4518258308bbe5f392703f5f"
+          },
+          {
+            "path": "layers/TimeFilter_layers.py",
+            "sha256": "3441713bdb54de1153afe3d5e746de4e251c07b545492180a073c4f275df6b9f"
+          },
+          {
+            "path": "layers/Transformer_EncDec.py",
+            "sha256": "7b26f4459735c341f161011f6bc24b9deb8ecc3bcf61e4f15431998272a44fb4"
+          },
+          {
+            "path": "layers/__init__.py",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "models/TimesNet.py",
+            "sha256": "f64c4bed1fd7347090044a0163bd4209c9f9ec1c1b19ceff47842df36b64bba7"
+          },
+          {
+            "path": "requirements.txt",
+            "sha256": "1467f08eca3f4b749addf69042955eeb547dfb13a8a569e7e881b545c696df9f"
+          },
+          {
+            "path": "run.py",
+            "sha256": "db6dfa215520ba193fe7095380f9005949a958efa9526975410cb5d97afe3fc4"
+          },
+          {
+            "path": "scripts/long_term_forecast/ETT_script/TimesNet_ETTh1.sh",
+            "sha256": "8490506e32ef9ee8f3a62a4286b35be552a3035d243d87104bd02e9cc381922e"
+          },
+          {
+            "path": "utils/ADFtest.py",
+            "sha256": "fcc30ead66778d2f70409740f8d54287fbeb032cd080695879a370722f7a4b26"
+          },
+          {
+            "path": "utils/__init__.py",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "utils/augmentation.py",
+            "sha256": "17bac803a96fb6c98d0822052c1edc9f6bc72ae37eec5aa859e9e2918d537b69"
+          },
+          {
+            "path": "utils/dtw.py",
+            "sha256": "a12084ab35783e4c09ddfadb54b0253f1fa8a3499abd88c772f93f499bcffa2a"
+          },
+          {
+            "path": "utils/dtw_metric.py",
+            "sha256": "308c56507b01a945f38796f2f9b4bb104adc213ab574aa2693f93635c9748889"
+          },
+          {
+            "path": "utils/losses.py",
+            "sha256": "d7f924f9abdf9dbbf097b60329a25ad727b163111014954ebf5856370a1aa116"
+          },
+          {
+            "path": "utils/m4_summary.py",
+            "sha256": "bfc7ba06736c3919b4542b0e68a15280642d80989a7f837132121136e8a4e8a7"
+          },
+          {
+            "path": "utils/masking.py",
+            "sha256": "02f453e52cfaec65e34132923add80e7132f188706680fa86d7bd884976e09ef"
+          },
+          {
+            "path": "utils/metrics.py",
+            "sha256": "0a565c3f64d7cd29d9a87dee0c22d48f4a6a329476f893458cc18a35fa46a5df"
+          },
+          {
+            "path": "utils/print_args.py",
+            "sha256": "423454ec7e2cefe6d24a458903f6080e866efdbe78c0ac2481b2cf32d44c558a"
+          },
+          {
+            "path": "utils/timefeatures.py",
+            "sha256": "319b3da2ef15ccae95162b1b4f4a9a0b0da63fa0062a7f6006a06dd567258d85"
+          },
+          {
+            "path": "utils/tools.py",
+            "sha256": "f47237f29d2a27570ef11871d9acdc51d1742b3bd1d8d09e5226e4140f4ad024"
+          }
+        ]
+      },
+      "task_head": "Linear(5,1)+Softplus outside the complete forecasting body",
+      "training_axes_applied": false,
+      "training_hpo_record": {
+        "batch_size": 16,
+        "dropout": 0.1,
+        "learning_rate": 0.0028381684707835583,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "TN-D7-PUBLISHED-v1",
+        "trial_id": "TN-D7-PUBLISHED-v1:hpo-010",
+        "weight_decay": 1.1922133659036039e-05
+      },
+      "training_recipe_id": "TN-D7-PUBLISHED-v1",
+      "weights_pretrained": false,
+      "weights_reused": false
+    },
+    "result_path": "/workspace/outputs/e2-final99-source-20261113/metadata/reproduction/jobs/posthoc-reproduction-53cddcff7260fbc44b4d2478/result.json",
+    "seed": 271802,
+    "trial": {
+      "batch_size": 16,
+      "dropout": 0.1,
+      "learning_rate": 0.0028381684707835583,
+      "optimization_seeds": [
+        271201,
+        271202
+      ],
+      "recipe_id": "TN-D7-PUBLISHED-v1",
+      "trial_id": "TN-D7-PUBLISHED-v1:hpo-010",
+      "weight_decay": 1.1922133659036039e-05
+    },
+    "result_sha256": "89a14ccb24b9790a724cc6c76c1f49a1f9c06f62a2b6b2c948fd5e79016df787"
+  },
+  {
+    "model": "TimeMixer",
+    "architecture": {
+      "actual_parameter_count": 9447,
+      "architecture_policy_id": "e2-published-bodies-d7-v1",
+      "architecture_search": false,
+      "body_output_shape": [
+        1,
+        5
+      ],
+      "down_sampling_layers": 1,
+      "factory_version": "e2-published-periodic-v1",
+      "fixed_body": {
+        "d_ff": 32,
+        "d_model": 32,
+        "layers": 4
+      },
+      "frozen_parameter_reason": "Official branches not called with x_mark=None; TimeMixer PDM.layer_norm is registered but never called upstream",
+      "frozen_unused_source_parameters": [
+        "pdm_blocks.0.layer_norm.weight",
+        "pdm_blocks.0.layer_norm.bias",
+        "pdm_blocks.1.layer_norm.weight",
+        "pdm_blocks.1.layer_norm.bias",
+        "pdm_blocks.2.layer_norm.weight",
+        "pdm_blocks.2.layer_norm.bias",
+        "pdm_blocks.3.layer_norm.weight",
+        "pdm_blocks.3.layer_norm.bias",
+        "enc_embedding.temporal_embedding.embed.weight"
+      ],
+      "future_covariates": false,
+      "historical_recipe_replaced": false,
+      "initialization_seed": 271803,
+      "input_shape": [
+        7,
+        5
+      ],
+      "model": "TimeMixer",
+      "moving_average": 25,
+      "nas": false,
+      "output": "positive sigma7/a; caller restores target units",
+      "paper_replication_claimed": false,
+      "preset_source": "TimeMixer v1 Table7 M4 short-term; pinned M4 Monthly script: four PDM, d_model32, d_ff32, M1, avg2",
+      "preset_source_url": "https://github.com/kwuking/TimeMixer/blob/e24610583b36fdd8c76cc17a8df4e65759a5f460/scripts/short_term_forecast/M4/TimeMixer.sh",
+      "recipe_id": "TM-D7-PUBLISHED-v1",
+      "registered_trial_id": "TM-D7-PUBLISHED-v1:hpo-005",
+      "restored_published_body": true,
+      "same_window_moments": 0,
+      "scale_lengths": [
+        7,
+        3
+      ],
+      "source_forecast_complete": true,
+      "source_verification": {
+        "commit": "e24610583b36fdd8c76cc17a8df4e65759a5f460",
+        "repository": "kwuking/TimeMixer",
+        "verification_scope": "Every declared file for this author tree, not the whole repository",
+        "verified_files": [
+          {
+            "path": "LICENSE",
+            "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+          },
+          {
+            "path": "layers/AutoCorrelation.py",
+            "sha256": "35fc23e552419a53ebf12de5eb39a276aeb379f3f49ad5cf85ad0527a8c18feb"
+          },
+          {
+            "path": "layers/Autoformer_EncDec.py",
+            "sha256": "48745b4bb647355e9845792a855df9c59fd7df7fcc664c765351fec390c4073e"
+          },
+          {
+            "path": "layers/Conv_Blocks.py",
+            "sha256": "25c80a3f21bfcd403e9b3672cb1d3639b19e24d156e791060754b9ad32b90f3f"
+          },
+          {
+            "path": "layers/DWT_Decomposition.py",
+            "sha256": "365356b4017ff144e92e655c24631bd422ec066741f5130fb6dd9e6f1a186e91"
+          },
+          {
+            "path": "layers/Embed.py",
+            "sha256": "ab492ea2f68459bbcf3cbffdd1beb75b24d0d70248d017a313a3b470316aaa2b"
+          },
+          {
+            "path": "layers/FourierCorrelation.py",
+            "sha256": "457afe4aa2a8ececf50bc359840edb3c9ed455cb02748b69fd01488215e186ca"
+          },
+          {
+            "path": "layers/SelfAttention_Family.py",
+            "sha256": "34026dd7d5644a2e1dab912f2bb661c91d458015796133e681f40b98fbc10cfd"
+          },
+          {
+            "path": "layers/StandardNorm.py",
+            "sha256": "cc1c0bc65b7b094bbe83f988fb05b86272a59638c030c3781aa52ce8880379df"
+          },
+          {
+            "path": "layers/Transformer_EncDec.py",
+            "sha256": "7b26f4459735c341f161011f6bc24b9deb8ecc3bcf61e4f15431998272a44fb4"
+          },
+          {
+            "path": "layers/__init__.py",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "models/TimeMixer.py",
+            "sha256": "817d62f4aac54c8566e560f6d3785856e31c8ee51460279ee3d0a4823f11d4be"
+          },
+          {
+            "path": "requirements.txt",
+            "sha256": "2b7b6434c94f0e74d68ce788eb0ec25a7eb8581991f167f379558a10f21171b9"
+          },
+          {
+            "path": "scripts/long_term_forecast/ETT_script/TimeMixer_ETTh1_unify.sh",
+            "sha256": "13086d899b992b67cdd4409d26f686c1ac7e15e9ad4fd03dd53a2e0728554fc4"
+          },
+          {
+            "path": "utils/__init__.py",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "utils/data_analysis.py",
+            "sha256": "4176dc3ebb06988635085a397021d3b264056fc4251878b60abeee5b8aa94d69"
+          },
+          {
+            "path": "utils/losses.py",
+            "sha256": "d7f924f9abdf9dbbf097b60329a25ad727b163111014954ebf5856370a1aa116"
+          },
+          {
+            "path": "utils/m4_summary.py",
+            "sha256": "bfc7ba06736c3919b4542b0e68a15280642d80989a7f837132121136e8a4e8a7"
+          },
+          {
+            "path": "utils/masking.py",
+            "sha256": "02f453e52cfaec65e34132923add80e7132f188706680fa86d7bd884976e09ef"
+          },
+          {
+            "path": "utils/metrics.py",
+            "sha256": "09e243e50baa6373286d3fe9954ab99075fa254e310b99769318b666ab92806a"
+          },
+          {
+            "path": "utils/timefeatures.py",
+            "sha256": "2414683a009c1bc0ffe8306aeca00800f95f76dc485db8121c1fc36ae87a7971"
+          },
+          {
+            "path": "utils/tools.py",
+            "sha256": "5a16efe58607a5ac2da5694c9297cbffb7c314a16e746de028760ea822ff9376"
+          }
+        ]
+      },
+      "task_head": "Linear(5,1)+Softplus outside the complete forecasting body",
+      "training_axes_applied": false,
+      "training_hpo_record": {
+        "batch_size": 16,
+        "dropout": 0.1,
+        "learning_rate": 0.0006677459949385749,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "TM-D7-PUBLISHED-v1",
+        "trial_id": "TM-D7-PUBLISHED-v1:hpo-005",
+        "weight_decay": 2.0903286086513016e-05
+      },
+      "training_recipe_id": "TM-D7-PUBLISHED-v1",
+      "weights_pretrained": false,
+      "weights_reused": false
+    },
+    "result_path": "/workspace/outputs/e2-final99-source-20261113/metadata/reproduction/jobs/posthoc-reproduction-66b4786c6ffdb2ee1dce6fe5/result.json",
+    "seed": 271803,
+    "trial": {
+      "batch_size": 16,
+      "dropout": 0.1,
+      "learning_rate": 0.0006677459949385749,
+      "optimization_seeds": [
+        271201,
+        271202
+      ],
+      "recipe_id": "TM-D7-PUBLISHED-v1",
+      "trial_id": "TM-D7-PUBLISHED-v1:hpo-005",
+      "weight_decay": 2.0903286086513016e-05
+    },
+    "result_sha256": "c7aae54bd6ebd88f58c8fcf65c4b4bea4f46855d0efbe4808d0aec655f490a2b"
+  },
+  {
+    "model": "MLP16",
+    "architecture": {
+      "actual_parameter_count": 593,
+      "dropout": 0.0,
+      "frozen_body_parameter_count": 593,
+      "iTransformer_existing_dropout_rate_bridge": false,
+      "initialization_seed": 271802,
+      "input_shape": [
+        7,
+        5
+      ],
+      "market_data_read": false,
+      "model": "MLP16",
+      "nas": false,
+      "output": "positive sigma7/a; inversion belongs to caller",
+      "registered_trial_id": "MLP16-E1-ref-E2-HPO-v1:hpo-010",
+      "requested_existing_dropout": 0.0,
+      "role": "reinitialized_E1_reference",
+      "source_roots_verified": false,
+      "training_axes_applied": false,
+      "training_hpo_record": {
+        "batch_size": 32,
+        "dropout": 0,
+        "learning_rate": 0.0015009848657423612,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "MLP16-E1-ref-E2-HPO-v1",
+        "trial_id": "MLP16-E1-ref-E2-HPO-v1:hpo-010",
+        "weight_decay": 0.00074420992767983
+      },
+      "training_recipe_id": "MLP16-E1-ref-E2-HPO-v1",
+      "training_registry_version": "e2-training-registry-v1",
+      "weights_pretrained": false,
+      "weights_reused": false
+    },
+    "result_path": "/workspace/outputs/e2-final99-source-20261113/metadata/reproduction/jobs/posthoc-reproduction-28c2307c97e575af654a25be/result.json",
+    "seed": 271802,
+    "trial": {
+      "batch_size": 32,
+      "dropout": 0,
+      "learning_rate": 0.0015009848657423612,
+      "optimization_seeds": [
+        271201,
+        271202
+      ],
+      "recipe_id": "MLP16-E1-ref-E2-HPO-v1",
+      "trial_id": "MLP16-E1-ref-E2-HPO-v1:hpo-010",
+      "weight_decay": 0.00074420992767983
+    },
+    "result_sha256": "1eb1a286de7f3be23f6b286ab0c0206c630c3b0b9af508a0205611498649f5e3"
+  },
+  {
+    "model": "LSTM32",
+    "architecture": {
+      "actual_parameter_count": 5025,
+      "dropout": 0.3,
+      "frozen_body_parameter_count": 5025,
+      "iTransformer_existing_dropout_rate_bridge": false,
+      "initialization_seed": 271804,
+      "input_shape": [
+        7,
+        5
+      ],
+      "market_data_read": false,
+      "model": "LSTM32",
+      "nas": false,
+      "output": "positive sigma7/a; inversion belongs to caller",
+      "registered_trial_id": "LSTM32-E1-ref-E2-HPO-v1:hpo-005",
+      "requested_existing_dropout": 0.3,
+      "role": "reinitialized_E1_reference",
+      "source_roots_verified": false,
+      "training_axes_applied": false,
+      "training_hpo_record": {
+        "batch_size": 64,
+        "dropout": 0.3,
+        "learning_rate": 0.002356406147809842,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "LSTM32-E1-ref-E2-HPO-v1",
+        "trial_id": "LSTM32-E1-ref-E2-HPO-v1:hpo-005",
+        "weight_decay": 0.0
+      },
+      "training_recipe_id": "LSTM32-E1-ref-E2-HPO-v1",
+      "training_registry_version": "e2-training-registry-v1",
+      "weights_pretrained": false,
+      "weights_reused": false
+    },
+    "result_path": "/workspace/outputs/e2-final99-source-20261113/metadata/reproduction/jobs/posthoc-reproduction-46825676592f7a544463805a/result.json",
+    "seed": 271804,
+    "trial": {
+      "batch_size": 64,
+      "dropout": 0.3,
+      "learning_rate": 0.002356406147809842,
+      "optimization_seeds": [
+        271201,
+        271202
+      ],
+      "recipe_id": "LSTM32-E1-ref-E2-HPO-v1",
+      "trial_id": "LSTM32-E1-ref-E2-HPO-v1:hpo-005",
+      "weight_decay": 0.0
+    },
+    "result_sha256": "339a07c2c014d212039f895248f952b8f906750867efc4785ef1b4b2885b6505"
+  },
+  {
+    "model": "TSMixer",
+    "architecture": {
+      "actual_parameter_count": 35044,
+      "dropout": 0.3,
+      "frozen_body_parameter_count": 35044,
+      "iTransformer_existing_dropout_rate_bridge": false,
+      "initialization_seed": 271806,
+      "input_shape": [
+        7,
+        5
+      ],
+      "market_data_read": false,
+      "model": "TSMixer",
+      "nas": false,
+      "output": "positive sigma7/a; inversion belongs to caller",
+      "registered_trial_id": "TSM-D7-r1__hpo_v1:hpo-008",
+      "requested_existing_dropout": 0.3,
+      "role": "E2_candidate",
+      "source_roots_verified": false,
+      "training_axes_applied": false,
+      "training_hpo_record": {
+        "batch_size": 32,
+        "dropout": 0.3,
+        "learning_rate": 0.0011417384292299172,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "TSM-D7-r1__hpo_v1",
+        "trial_id": "TSM-D7-r1__hpo_v1:hpo-008",
+        "weight_decay": 7.976479621456176e-06
+      },
+      "training_recipe_id": "TSM-D7-r1__hpo_v1",
+      "training_registry_version": "e2-training-registry-v1",
+      "weights_pretrained": false,
+      "weights_reused": false
+    },
+    "result_path": "/workspace/outputs/e2-final99-source-20261113/metadata/reproduction/jobs/posthoc-reproduction-01d13eb8389ed596a8dcad9c/result.json",
+    "seed": 271806,
+    "trial": {
+      "batch_size": 32,
+      "dropout": 0.3,
+      "learning_rate": 0.0011417384292299172,
+      "optimization_seeds": [
+        271201,
+        271202
+      ],
+      "recipe_id": "TSM-D7-r1__hpo_v1",
+      "trial_id": "TSM-D7-r1__hpo_v1:hpo-008",
+      "weight_decay": 7.976479621456176e-06
+    },
+    "result_sha256": "0996c06fcfdec1ea92b16093bc75daa650fdfd042c741caa1b0b02975fdaa49d"
+  },
+  {
+    "model": "TiDE",
+    "architecture": {
+      "actual_parameter_count": 163384,
+      "all_parameters_expected_to_have_nonzero_gradients": false,
+      "body_output_shape": [
+        1,
+        5
+      ],
+      "categorical_covariate_count": 0,
+      "dropout": 0.0,
+      "dynamic_covariate_count": 0,
+      "horizon": 1,
+      "inactive_initialization_consequence": "At source zero-bias/ReLU initialization, time_encoder.lin_a bias and lin_b weight have zero task gradients; source graph is retained without pruning or reinitialization",
+      "initialization_seed": 271805,
+      "input_shape": [
+        7,
+        5
+      ],
+      "model": "TiDE",
+      "nas": false,
+      "no_calendar_covariates_added": true,
+      "no_future_ohlcv_added": true,
+      "no_moment_features_added": true,
+      "no_target_history_added": true,
+      "output": "sigma7 / caller-owned positive training-only target scale",
+      "paper_original_task_replication_claimed": false,
+      "r0_inactive_branch_retained": true,
+      "readout": "Linear(5,1) then Softplus",
+      "recipe_id": "TIDE-D7-PUBLISHED-R0-v2",
+      "registered_trial_id": "TIDE-D7-PUBLISHED-R0-v2:hpo-005",
+      "restored_published_body": true,
+      "semantic_backend_port": "TensorFlow/Keras to PyTorch; see separate parity receipt",
+      "series_count": 5,
+      "series_ids": "fixed OHLCV positions; not extra market inputs",
+      "source": {
+        "commit": "d3a4bd8f0eceddda553e47085033b537935b283f",
+        "files_sha256": {
+          "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "tide/models.py": "ad8fd8d498809deeed9c847a169cada42134cbd0351b03e750706132a5d151c7",
+          "tide/scripts/etth1.sh": "55e085f1513af3a4a0ef8f7244512ee78beba5ab09540192b3cd3bb37441981c",
+          "tide/train.py": "3edd19eed01f92ef50cadca73fbe8a793c701d34edb5ea376c6bcc55e92f0854"
+        },
+        "license": "Apache-2.0",
+        "repository": "google-research/google-research",
+        "verification_scope": "Four declared files, not the complete repository"
+      },
+      "source_default_preset": {
+        "decoder_output_dim": 4,
+        "dropout_rate": 0.0,
+        "final_decoder_hidden": 64,
+        "hidden_dims": [
+          256,
+          256
+        ],
+        "layer_norm": false,
+        "series_embedding_dim": 16,
+        "time_encoder_dims": [
+          64,
+          4
+        ],
+        "transform": false
+      },
+      "source_forecast_graph_complete": true,
+      "source_selected_ETTh1_preset_reproduced": false,
+      "structural_architecture_search": false,
+      "training_axes_applied": false,
+      "training_hpo_record": {
+        "batch_size": 16,
+        "dropout": 0.0,
+        "learning_rate": 0.00013961276714916928,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "TIDE-D7-PUBLISHED-R0-v2",
+        "trial_id": "TIDE-D7-PUBLISHED-R0-v2:hpo-005",
+        "weight_decay": 2.7796158898151984e-05
+      },
+      "training_recipe_id": "TIDE-D7-PUBLISHED-R0-v2",
+      "weights_pretrained": false,
+      "weights_reused": false
+    },
+    "result_path": "/workspace/outputs/e2-final99-source-20261113/metadata/reproduction/jobs/posthoc-reproduction-dff3bdf935e0b4ca66a540c9/result.json",
+    "seed": 271805,
+    "trial": {
+      "batch_size": 16,
+      "dropout": 0.0,
+      "learning_rate": 0.00013961276714916928,
+      "optimization_seeds": [
+        271201,
+        271202
+      ],
+      "recipe_id": "TIDE-D7-PUBLISHED-R0-v2",
+      "trial_id": "TIDE-D7-PUBLISHED-R0-v2:hpo-005",
+      "weight_decay": 2.7796158898151984e-05
+    },
+    "result_sha256": "8499d24a71eb267d9bb793f3abaf858a078927f5791783787b5c44bc5be7acb3"
+  },
+  {
+    "model": "ResNet-1D",
+    "architecture": {
+      "actual_parameter_count": 522955,
+      "dropout": 0.0,
+      "frozen_body_parameter_count": 522955,
+      "iTransformer_existing_dropout_rate_bridge": false,
+      "initialization_seed": 271804,
+      "input_shape": [
+        7,
+        5
+      ],
+      "market_data_read": false,
+      "model": "ResNet-1D",
+      "nas": false,
+      "output": "positive sigma7/a; inversion belongs to caller",
+      "registered_trial_id": "resnet1d_wang_d7_v1_proposed__hpo_v1:hpo-010",
+      "requested_existing_dropout": 0.0,
+      "role": "E2_candidate",
+      "source_roots_verified": false,
+      "training_axes_applied": false,
+      "training_hpo_record": {
+        "batch_size": 16,
+        "dropout": 0,
+        "learning_rate": 0.0007579440150228985,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "resnet1d_wang_d7_v1_proposed__hpo_v1",
+        "trial_id": "resnet1d_wang_d7_v1_proposed__hpo_v1:hpo-010",
+        "weight_decay": 0.0
+      },
+      "training_recipe_id": "resnet1d_wang_d7_v1_proposed__hpo_v1",
+      "training_registry_version": "e2-training-registry-v1",
+      "weights_pretrained": false,
+      "weights_reused": false
+    },
+    "result_path": "/workspace/outputs/e2-final99-source-20261113/metadata/reproduction/jobs/posthoc-reproduction-602ee9c32db21c0952b18b4d/result.json",
+    "seed": 271804,
+    "trial": {
+      "batch_size": 16,
+      "dropout": 0,
+      "learning_rate": 0.0007579440150228985,
+      "optimization_seeds": [
+        271201,
+        271202
+      ],
+      "recipe_id": "resnet1d_wang_d7_v1_proposed__hpo_v1",
+      "trial_id": "resnet1d_wang_d7_v1_proposed__hpo_v1:hpo-010",
+      "weight_decay": 0.0
+    },
+    "result_sha256": "d5a37190375ca3ee1c90fe290e7da49b45a8127cb8d917f28179d0f613c85e81"
+  },
+  {
+    "model": "LSTM-autoencoder con predictor",
+    "architecture": {
+      "actual_parameter_count": 8739,
+      "adaptations": [
+        "lag25 to D7",
+        "source eight variables to five OHLCV channels",
+        "training-only auxiliary reconstruction target X/s",
+        "scalar volatility output with Softplus and caller-owned target scaling"
+      ],
+      "additional_nas_dense_group": false,
+      "auxiliary_decoder_output_channels": 5,
+      "auxiliary_scale": 6.436119079589844,
+      "dropout": 0.3,
+      "dropout_policy": "Existing supervised dropout modules only; no auxiliary dropout",
+      "initialization_seed": 271804,
+      "input_shape": [
+        7,
+        5
+      ],
+      "market_training_claimed": false,
+      "model": "LSTM-autoencoder con predictor",
+      "moment_features_added": false,
+      "nas_required_for_this_fixed_body": false,
+      "pretraining_executed": true,
+      "pretraining_required": true,
+      "published_hidden_units": [
+        25,
+        26
+      ],
+      "published_reference_dropout": 0.3,
+      "recipe_id": "SAE-D7-PUBLISHED-v1",
+      "registered_trial_id": "SAE-D7-PUBLISHED-v1:hpo-015",
+      "source": {
+        "author_commit": "8668132ef6f8855dbab289c5a2b2478f871c4c4b",
+        "author_file": "2layer_evaluate.py",
+        "author_hosted_text_url": "https://www.academia.edu/111461009/Unsupervised_Pre_training_of_a_Deep_LSTM_based_Stacked_Autoencoder_for_Multivariate_Time_Series_Forecasting_Problems",
+        "author_locators": "hidden_layers lines138; AE construction/targets lines211-224; encoder transfer/predictor lines232-260",
+        "author_repository": "https://github.com/2M-kotb/LSTM-based-Stacked-Autoencoder",
+        "author_weights_reused": false,
+        "backend_or_original_experiment_replication_claimed": false,
+        "independent_port": "scripts/e2_recipe_models.py",
+        "independent_port_sha256": "47380cc87e2d4b4221ee4fc97da3286990470b3304dd1d9ef990ace51c338b75",
+        "paper_doi": "10.1038/s41598-019-55320-6",
+        "paper_url": "https://www.nature.com/articles/s41598-019-55320-6",
+        "pdf_downloaded_or_hashed": false,
+        "verified_at_date": "2026-11-12",
+        "verified_scope": "Architecture/learning sections pp7-8 and Table2 p11, author-hosted article text; pinned author implementation"
+      },
+      "target_history_added": false,
+      "training_hpo_record": {
+        "batch_size": 16,
+        "dropout": 0.3,
+        "learning_rate": 0.0017219847334995647,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "SAE-D7-PUBLISHED-v1",
+        "trial_id": "SAE-D7-PUBLISHED-v1:hpo-015",
+        "weight_decay": 0.002593603165890561
+      },
+      "training_recipe_id": "SAE-D7-PUBLISHED-v1"
+    },
+    "result_path": "/workspace/outputs/e2-final99-source-20261113/metadata/reproduction/jobs/posthoc-reproduction-f4ce82fb6aab493775fc54da/result.json",
+    "seed": 271804,
+    "trial": {
+      "batch_size": 16,
+      "dropout": 0.3,
+      "learning_rate": 0.0017219847334995647,
+      "optimization_seeds": [
+        271201,
+        271202
+      ],
+      "recipe_id": "SAE-D7-PUBLISHED-v1",
+      "trial_id": "SAE-D7-PUBLISHED-v1:hpo-015",
+      "weight_decay": 0.002593603165890561
+    },
+    "result_sha256": "d3982dc7e4fffd88f44f3ac5db6e62a93c2245a650e098a74e0ad168500978d6"
+  },
+  {
+    "model": "FCN-1D",
+    "architecture": {
+      "actual_parameter_count": 268929,
+      "dropout": 0.0,
+      "frozen_body_parameter_count": 268929,
+      "iTransformer_existing_dropout_rate_bridge": false,
+      "initialization_seed": 271804,
+      "input_shape": [
+        7,
+        5
+      ],
+      "market_data_read": false,
+      "model": "FCN-1D",
+      "nas": false,
+      "output": "positive sigma7/a; inversion belongs to caller",
+      "registered_trial_id": "fcn1d_wang_d7_v1_proposed__hpo_v1:hpo-007",
+      "requested_existing_dropout": 0.0,
+      "role": "E2_candidate",
+      "source_roots_verified": false,
+      "training_axes_applied": false,
+      "training_hpo_record": {
+        "batch_size": 16,
+        "dropout": 0,
+        "learning_rate": 0.0005695394539643588,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "fcn1d_wang_d7_v1_proposed__hpo_v1",
+        "trial_id": "fcn1d_wang_d7_v1_proposed__hpo_v1:hpo-007",
+        "weight_decay": 0.0010040757709281222
+      },
+      "training_recipe_id": "fcn1d_wang_d7_v1_proposed__hpo_v1",
+      "training_registry_version": "e2-training-registry-v1",
+      "weights_pretrained": false,
+      "weights_reused": false
+    },
+    "result_path": "/workspace/outputs/e2-final99-source-20261113/metadata/reproduction/jobs/posthoc-reproduction-d0e054e3481f323eb8830175/result.json",
+    "seed": 271804,
+    "trial": {
+      "batch_size": 16,
+      "dropout": 0,
+      "learning_rate": 0.0005695394539643588,
+      "optimization_seeds": [
+        271201,
+        271202
+      ],
+      "recipe_id": "fcn1d_wang_d7_v1_proposed__hpo_v1",
+      "trial_id": "fcn1d_wang_d7_v1_proposed__hpo_v1:hpo-007",
+      "weight_decay": 0.0010040757709281222
+    },
+    "result_sha256": "f5292599c9dcdebba85837ad3489324f8ed53986ba2fa71f8bacbb3109f34e69"
+  },
+  {
+    "model": "GRU32",
+    "architecture": {
+      "actual_parameter_count": 3777,
+      "dropout": 0.1,
+      "frozen_body_parameter_count": 3777,
+      "iTransformer_existing_dropout_rate_bridge": false,
+      "initialization_seed": 271805,
+      "input_shape": [
+        7,
+        5
+      ],
+      "market_data_read": false,
+      "model": "GRU32",
+      "nas": false,
+      "output": "positive sigma7/a; inversion belongs to caller",
+      "registered_trial_id": "GRU32-E1-ref-E2-HPO-v1:hpo-008",
+      "requested_existing_dropout": 0.1,
+      "role": "reinitialized_E1_reference",
+      "source_roots_verified": false,
+      "training_axes_applied": false,
+      "training_hpo_record": {
+        "batch_size": 16,
+        "dropout": 0.1,
+        "learning_rate": 0.00045773135527551936,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "GRU32-E1-ref-E2-HPO-v1",
+        "trial_id": "GRU32-E1-ref-E2-HPO-v1:hpo-008",
+        "weight_decay": 0.006658367249304354
+      },
+      "training_recipe_id": "GRU32-E1-ref-E2-HPO-v1",
+      "training_registry_version": "e2-training-registry-v1",
+      "weights_pretrained": false,
+      "weights_reused": false
+    },
+    "result_path": "/workspace/outputs/e2-final99-source-20261113/metadata/reproduction/jobs/posthoc-reproduction-c1762110dfa36b8168fce29e/result.json",
+    "seed": 271805,
+    "trial": {
+      "batch_size": 16,
+      "dropout": 0.1,
+      "learning_rate": 0.00045773135527551936,
+      "optimization_seeds": [
+        271201,
+        271202
+      ],
+      "recipe_id": "GRU32-E1-ref-E2-HPO-v1",
+      "trial_id": "GRU32-E1-ref-E2-HPO-v1:hpo-008",
+      "weight_decay": 0.006658367249304354
+    },
+    "result_sha256": "e08b00dc086beef2cbb72a039b0d840598f9c342cdeb93ed0582731747d4b11b"
+  }
+]
