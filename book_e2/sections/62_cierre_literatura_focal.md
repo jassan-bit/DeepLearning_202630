@@ -95,3 +95,13 @@ python scripts/audit_e2_literature_actions.py
 Quedan dos tareas documentales que esta actualización no puede dar por realizadas: obtener los cuatro originales aplicados pendientes y cerrar la trazabilidad/decisiones del flujo global. Las dudas de etiqueta de los otros dos estudios requieren aclaración verificable del propio estudio; un nuevo PDF idéntico no las resuelve. La selección previa por puntaje tampoco se recupera retrospectivamente.
 
 Se conserva la {download}`síntesis focal anterior <../_static/e2_literature_delivery_closure_20261114_v2/eligibility/focused_synthesis.md>` y el [paquete v2](../_static/e2_literature_delivery_closure_20261114_v2/manifest.json), con sus estados de 13/7/8/2 y 45/50 intactos como antecedente. La revisión actual es asistida por IA, sin doble revisión humana independiente. No hubo nuevos entrenamientos ni evaluación de modelos de mercado.
+
+Descargas del corte anterior conservadas para mantener sus URL y distinguir el antecedente del estado vigente:
+
+- {download}`Decisiones aplicadas v2 <../_static/e2_literature_delivery_closure_20261114_v2/eligibility/applied_target_decisions.csv>`
+- {download}`Fuentes de mecanismos v2 <../_static/e2_literature_delivery_closure_20261114_v2/eligibility/mechanism_source_decisions.csv>`
+- {download}`Roles de los 43 recibos previos <../_static/e2_literature_delivery_closure_20261114_v2/eligibility/historical43_source_roles.csv>`
+- {download}`Enlaces E1–E2 <../_static/e2_literature_delivery_closure_20261114_v2/cross_entregable/cross_entregable_primary_links.csv>`
+- {download}`Regla P9 anterior <../_static/e2_literature_delivery_closure_20261114_v2/citation_score/contextual_p/preferred_intrapaper_scenario_rule.json>`
+- {download}`Puntuaciones anteriores <../_static/e2_literature_delivery_closure_20261114_v2/citation_score/conditional_score_by_scenario.csv>`
+- {download}`Auditoría de citas anterior <../_static/e2_literature_delivery_closure_20261114_v2/citation_score/citation_reconciliation_manifest.json>`
