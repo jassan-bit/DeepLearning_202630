@@ -1,0 +1,30 @@
+{
+  "P_formula": "(max_source_MSE_in_stratum - source_MSE)/(max_source_MSE_in_stratum-min_source_MSE_in_stratum)",
+  "date": "2026-11-14",
+  "final_test_A2_used": false,
+  "guide_interpretation": "Guide3.2 asks comparable datasets, not exact Bitcoin sigma7; these external results may inform context without becoming BTC effectiveness evidence.",
+  "missing_rule": "P stays null for different tasks/datasets, singletons, or constant strata; no cross-task rank or zero imputation",
+  "original_C_U_A_F_unchanged": true,
+  "original_P_preserved": true,
+  "present_catalogue_membership_not_caused_by_these_scores": true,
+  "protocol_differences": [
+    "lookback96/512/720",
+    "TiDE declares7:1:2 while TSMixer ETT12/4/4months",
+    "PatchTST split not reported in verified PDF",
+    "global metric scaling/fit population unresolved in several papers",
+    "seeds, uncertainty and equal baseline-HPO effort not harmonized"
+  ],
+  "ranking_is_not_a_controlled_benchmark": true,
+  "scenarios": [
+    "six nominal ETTh1,H96 sources across their reported lookbacks",
+    "ETTh1,H96 with separate L96,L512,L720 strata"
+  ],
+  "status": "new_posthoc_sensitivity_not_original_selection_score",
+  "weights": {
+    "A": 0.25,
+    "C": 0.15,
+    "F": 0.2,
+    "P": 0.25,
+    "U": 0.15
+  }
+}

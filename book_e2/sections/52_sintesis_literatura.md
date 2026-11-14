@@ -1,5 +1,7 @@
 # 52. Síntesis verificable de literatura y selección vigente
 
+**Addendum vigente:** [§59](59_auditoria_literatura_final.md) añade la conciliación entre rondas, sin reemplazar los derivados de esta página: **9.559 grupos bibliográficos recibidos** y seis grupos adicionales de fuentes dirigidas. Los **36/50 componentes observados del puntaje original** se conservan; se añade una sensibilidad retrospectiva de P para seis fuentes ETTh1/H96, y para cinco al estratificar por lookback. La guía permite datasets comparables distintos de Bitcoin, pero compartir dataset y horizonte no demuestra igualdad de split, escala o esfuerzo; los límites se publican junto a cada alternativa. El catálogo no fue seleccionado previamente por estos nuevos puntajes. La elegibilidad y el PRISMA global siguen incompletos; los 374 registros Scopus no recibidos permanecen como déficit de cobertura. **Fecha del corte:** 14/11/2026 a las 04:14 UTC en el recibo, equivalente al 13/11/2026 a las 23:14 en Bogotá (UTC−5). Los cortes y descargables siguientes conservan su identidad histórica.
+
 **Corte documental del 13/11/2026.** La revisión permite sostener mecanismos candidatos y una brecha de evaluación concreta. La elegibilidad global continúa sin determinar. Esta síntesis reúne evidencia ya extraída y una lectura adicional de fuentes primarias; el [expediente reproducible](../_static/e2_literature_closure_20261113/manifest.json) conserva las entradas y sus huellas. No añade ajustes ni resultados Bitcoin.
 
 ## 52.1 Dos cohortes con denominadores diferentes

@@ -1,0 +1,78 @@
+{
+  "version": "e2-temporal-final-audit-v1",
+  "created_at_utc": "2026-11-14T04:17:23Z",
+  "input_sha256": "65ae74b547a6073b2c286dea8039a2e7a1b1f6063b1d9ac0eb760c9ce727d187",
+  "scientific_engine_commit": "1e8745497b484518f766b6da5c19be8362d9add7",
+  "analysis_status": "posthoc_computational_refinement_and_temporal_diagnostics",
+  "primary": {
+    "draws": 20000,
+    "original_draws": 4999,
+    "seed_base": 271901,
+    "block_days": 14,
+    "delta": 0.00025772842664981106,
+    "method": "unchanged_e2_reduced_final_analysis.bootstrap_contrast",
+    "family": "TOP10 x GRU32,Persistence",
+    "family_size": 20,
+    "multiplicity": "Holm20",
+    "verify_original_4999_before_refinement": true
+  },
+  "fluctuation": {
+    "draws": 20000,
+    "seed_base": 2026111401,
+    "block_days": 14,
+    "hac_lags": 14,
+    "mu": 0.3,
+    "window_days": 182,
+    "family": "same20contrasts",
+    "loss": "daily_mean_individual_seed_squared_error",
+    "GR_null": "equal_predictive_ability_at_every_date",
+    "GR_statistic": "max_abs_uncentered_local_sum_div_sqrt_m_div_global_HAC_sigma",
+    "additional_diagnostic": "centered_local_sum_under_constant_relative_mean_null_not_original_GR",
+    "multiplicity": "Holm40_combining_20_EPA_and_20_constancy_diagnostics",
+    "bootstrap": "centered_circular_calendar_blocks_reestimate_HAC_each_draw",
+    "original_asymptotic_critical_two_sided_05_mu03": 3.012
+  },
+  "gap_sensitivity": {
+    "margins_delta_multipliers": [
+      1,
+      2,
+      5,
+      10
+    ],
+    "data": "saved_final_training_and_calibration_RMSE_metadata",
+    "method": "descriptive_only_no_new_noninferiority_test",
+    "a_priori_margin_available": false,
+    "training_vs_calibration_batch_difference_disclosed": true
+  },
+  "guardrails": {
+    "new_model_fits": false,
+    "new_inference": false,
+    "new_predictions": false,
+    "original4999_overwritten": false,
+    "retuning_allowed": false,
+    "retrospective_test_calendar_already_known_from_E1": true,
+    "rolling_parameter_refits_claimed": false
+  },
+  "sources": [
+    {
+      "citation": "Giacomini and Rossi (2010), Forecast comparisons in unstable environments, JAE25(4):595-620",
+      "doi": "10.1002/jae.1177"
+    },
+    {
+      "citation": "Rossi and Soupre (2017), Implementing Tests For Forecast Evaluation in the Presence of Instabilities",
+      "url": "https://www.crei.cat/wp-content/uploads/2016/07/Rossi_Soupre_Revised-1.pdf",
+      "locators": "printed p3 note3 fixed/rolling; p4 section3.1 equation3; p5 section3.2 forecasts and realizations"
+    },
+    {
+      "citation": "Rossi (2021), Forecasting in the Presence of Instabilities",
+      "url": "https://econ-papers.upf.edu/papers/1711.pdf",
+      "locators": "Technical Appendix Algorithm7"
+    },
+    {
+      "citation": "Rossi (2013), Advances in Forecasting Under Instability",
+      "url": "https://crei.cat/wp-content/uploads/2016/07/AFUM.pdf",
+      "locators": "Appendix1 TableA.2 p93, two-sided critical3.012 at mu0.3"
+    }
+  ],
+  "created_at_america_bogota": "2026-11-13T23:17:23-05:00"
+}

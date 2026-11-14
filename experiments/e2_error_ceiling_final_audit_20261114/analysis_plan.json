@@ -1,0 +1,70 @@
+{
+  "version": "e2-error-ceiling-final-audit-v1",
+  "created_at_utc": "2026-11-14T04:19:49Z",
+  "created_at_america_bogota": "2026-11-13T23:19:49-05:00",
+  "status": "posthoc_taxonomy_execution_plan_after_test_exposure",
+  "input_sha256": "65ae74b547a6073b2c286dea8039a2e7a1b1f6063b1d9ac0eb760c9ce727d187",
+  "taxonomy": {
+    "predictor": "arithmetic_mean_of_six_frozen_seed_predictions_diagnostic_not_A2_primary",
+    "residual": "prediction_minus_y",
+    "development_thresholds": {
+      "daily_pairs": 714,
+      "L_abs_change_sigma7_Q50": 0.00130577631562305,
+      "H_abs_change_sigma7_Q90": 0.00728725980318611,
+      "missing": "consecutive_finite_pairs_only_no_gap_compression"
+    },
+    "exclusive_categories": [
+      "small: abs(e)<=L",
+      "moderate_underprediction: L<abs(e)<=H and e<0",
+      "moderate_overprediction: L<abs(e)<=H and e>=0",
+      "large_underprediction: abs(e)>H and e<0",
+      "large_overprediction: abs(e)>H and e>=0"
+    ],
+    "all_dates": 608,
+    "models": 10,
+    "seed_concordance": [
+      271801,
+      271802,
+      271803,
+      271804,
+      271805,
+      271806
+    ]
+  },
+  "sample": {
+    "dates": 100,
+    "common_across_models": true,
+    "strata": "calendar_year x realized_target_regime",
+    "regime_thresholds_development": [
+      0.0145339530353525,
+      0.026321030514470774
+    ],
+    "allocation": "proportional_minimum_one_per_stratum_then_largest_remainder",
+    "seed": 272101,
+    "human_review_claimed": false
+  },
+  "uncertainty": {
+    "draws": 10000,
+    "primary_block_days": 14,
+    "sensitivity_block_days": [
+      7,
+      28
+    ],
+    "frequency_seed": 272102,
+    "gamma_ideal_seed": 272103,
+    "scope": "temporal_dependence_assumptions_required_not_exact_population_coverage"
+  },
+  "ceiling": {
+    "uniform_ensemble_preliminary_already_inspected": true,
+    "ensemble_selected_for_better_test_performance": false,
+    "perfect_zero_loss_bound_is_mathematical_only": true,
+    "irreducible_Bayes_noise_identified": false
+  },
+  "guardrails": {
+    "new_fits": false,
+    "new_market_inference": false,
+    "original_A2_replaced": false,
+    "categories_predefined_before_original_test": false,
+    "causal_error_explanations_claimed": false
+  }
+}

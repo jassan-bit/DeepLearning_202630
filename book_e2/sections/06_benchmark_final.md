@@ -8,6 +8,8 @@ El **LSTM-autoencoder con predictor tiene la menor RMSE media observada**, segui
 
 **Alcance:** diez candidatos, tres referencias E1 y tres comparadores: **16 sistemas**. El híbrido adicional y Ridge conservan alcance opcional/histórico. Las reglas y decisiones previas siguen en [§48](48_protocolo_reducido.md); el [informe consolidado y su actualización final](47_entrega_consolidada.md) separan estos resultados de los antecedentes de selección y de E1.
 
+**Verificación numérica posterior:** [§56](56_inferencia_estabilidad_final.md) reproduce exactamente los veinte resultados originales de 4.999 remuestreos y recalcula las mismas hipótesis, δ, semillas y Holm con **20.000 réplicas**. Los veinte p ajustados siguen siendo 1,0. Es un refinamiento posterior de precisión, separado del archivo primario original y sin nueva selección.
+
 ## Tabla A2: métricas finales medidas
 
 **Auditoría complementaria del 13/11/2026:** [§49](49_diagnosticos_f2a.md) añade curvas de ajuste y diagnósticos de residuos, calibración y estabilidad temporal usando las predicciones congeladas. Es un análisis exploratorio posterior, con su propia familia Holm de 826 hipótesis. No altera esta A2, sus veinte contrastes primarios ni la selección de modelos; tampoco acredita adecuación por falta de rechazo.

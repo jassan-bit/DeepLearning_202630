@@ -1,0 +1,560 @@
+{
+  "version": "e2-primary-source-role-adjudication-v1",
+  "created_at_utc": "2026-11-14T04:15:02.930195+00:00",
+  "systems": 10,
+  "distinct_studies": 9,
+  "source_extraction": "book_e2/_static/e2_literature_closure_20261113/current10_extraction.json",
+  "scope": "Retrospective role adjudication over the current implemented catalogue; not original search screening or a new full-text review.",
+  "rules": {
+    "include": "Existing verified extraction identifies a published primary architectural mechanism used by a current implemented model, its source task and dataset, a source locator and an explicit transfer limitation.",
+    "direct_evidence": "Requires comparable BTC daily sigma7 task, horizon, target and information set; none of these nine source studies is labelled direct evidence by the existing extraction.",
+    "foundational_exception": "Wang 2016 lies outside the ordinary2017–2026 window; retain as an explicitly declared foundational architecture source for FCN and ResNet, counted once.",
+    "exclusion_from_performance_ranking": "Do not rank unrelated UCR classification, pollution forecasting and benchmark long-horizon forecasting metrics as target-task comparable P.",
+    "selection_independence": "Final test A2 or E2 model scores are not read or used to choose bibliographic sources."
+  },
+  "invented_native_search_membership": false,
+  "new_full_text_review_claimed": false,
+  "new_human_review_claimed": false,
+  "records": [
+    {
+      "study_id": "10.48550/arXiv.1611.06455",
+      "title": "Time Series Classification from Scratch with Deep Neural Networks: A Strong Baseline",
+      "authors": "Zhiguang Wang; Weizhong Yan; Tim Oates",
+      "models": [
+        "FCN-1D",
+        "ResNet-1D"
+      ],
+      "source_url": "https://arxiv.org/html/1611.06455v4",
+      "source_version": "1611.06455v4",
+      "original_year": 2016,
+      "families": [
+        "convolutional"
+      ],
+      "decision": "include_as_architecture_transfer_source",
+      "evidence_role": "mechanism_architecture_and_adaptation_context",
+      "direct_sigma7_evidence": false,
+      "date_window_status": "explicit_foundational_exception_2016",
+      "decision_basis": "Published architecture source in the existing verified extraction; source task and reported datasets differ from BTC daily sigma7. Decision is retrospective and does not establish eligibility in the original native searches.",
+      "existing_read_level": "complete_primary_main_HTML_20261113_including_tables_and_Wang_appendix_not_PDF_visual_verification",
+      "new_reading_performed_in_this_adjudication": false,
+      "human_reviewer_claimed": false,
+      "retrospective_adjudication_date_utc": "2026-11-14T04:15:02.930115+00:00",
+      "source_task": "univariate series classification",
+      "source_dataset": "UCR44; selected example Adiac",
+      "model_specific_reported_evidence": [
+        {
+          "model": "FCN-1D",
+          "metric_1": "test error rate",
+          "value_1": 0.143,
+          "metric_2": "ResNet test error rate, same dataset",
+          "value_2": 0.174,
+          "metric_locator": "Table I, Adiac row; III.A-B",
+          "critical_limit": "Minimum-training-loss checkpoint; proposed baselines exclude HPO/CV, without proving equal effort against imported comparators. Wilcoxon rank-sum and paired PCE tests concern datasets, not seed uncertainty.",
+          "adaptations": [
+            "D7 length and five OHLCV channels",
+            "Singleton-spatial Conv2D temporal body ported to Conv1D with source SAME padding",
+            "Positive scalar regression head replaces classification output"
+          ]
+        },
+        {
+          "model": "ResNet-1D",
+          "metric_1": "test error rate",
+          "value_1": 0.174,
+          "metric_2": "FCN test error rate, same dataset",
+          "value_2": 0.143,
+          "metric_locator": "Table I, Adiac row; III.A-B",
+          "critical_limit": "One shared source study with FCN; two systems are not two independent studies.",
+          "adaptations": [
+            "D7 length and five OHLCV channels",
+            "Source initial batch normalization and projected shortcuts retained",
+            "Positive scalar regression head replaces classification output"
+          ]
+        }
+      ],
+      "performance_component_P": null,
+      "performance_component_reason": "External task / dataset / information-set metrics are not a comparable BTC sigma7 performance ranking. Missing is not zero.",
+      "citation_component_C": "not_adjudicated_here",
+      "scientific_claim_boundary": "Architecture transfer is supported; external superiority and blind final-test confirmation are not inferred."
+    },
+    {
+      "study_id": "10.48550/arXiv.1909.04939",
+      "title": "InceptionTime: Finding AlexNet for Time Series Classification",
+      "authors": "Hassan Ismail Fawaz et al.",
+      "models": [
+        "Inception-1D"
+      ],
+      "source_url": "https://arxiv.org/html/1909.04939v3",
+      "source_version": "1909.04939v3",
+      "original_year": 2019,
+      "families": [
+        "convolutional"
+      ],
+      "decision": "include_as_architecture_transfer_source",
+      "evidence_role": "mechanism_architecture_and_adaptation_context",
+      "direct_sigma7_evidence": false,
+      "date_window_status": "within_2017_2026_window",
+      "decision_basis": "Published architecture source in the existing verified extraction; source task and reported datasets differ from BTC daily sigma7. Decision is retrospective and does not establish eligibility in the original native searches.",
+      "existing_read_level": "complete_primary_main_HTML_20261113_including_tables_and_captions_not_PDF_visual_verification",
+      "new_reading_performed_in_this_adjudication": false,
+      "human_reviewer_claimed": false,
+      "retrospective_adjudication_date_utc": "2026-11-14T04:15:02.930144+00:00",
+      "source_task": "series classification; reported result is five-network ensemble",
+      "source_dataset": "UCR85",
+      "model_specific_reported_evidence": [
+        {
+          "model": "Inception-1D",
+          "metric_1": "wins/ties/losses versus ResNet(5)",
+          "value_1": "54/8/23",
+          "metric_2": "published p-value",
+          "value_2": "<0.01",
+          "metric_locator": "Sections4-5; Figure10; Section6 defaults; Section3.2 ensemble",
+          "critical_limit": "Median over multiple runs is reported without exact count. Five members per ensemble are not five repeated ensembles. Friedman/Wilcoxon-Holm concern classification ensembles; current single-network regression inherits no ensemble score.",
+          "adaptations": [
+            "D7 length and five OHLCV channels with explicit temporal padding",
+            "One defined network; the separate five-member ensemble is not silently claimed",
+            "Positive scalar regression head"
+          ]
+        }
+      ],
+      "performance_component_P": null,
+      "performance_component_reason": "External task / dataset / information-set metrics are not a comparable BTC sigma7 performance ranking. Missing is not zero.",
+      "citation_component_C": "not_adjudicated_here",
+      "scientific_claim_boundary": "Architecture transfer is supported; external superiority and blind final-test confirmation are not inferred."
+    },
+    {
+      "study_id": "10.1038/s41598-019-55320-6",
+      "title": "Unsupervised Pre-training of a Deep LSTM-based Stacked Autoencoder for Multivariate Time Series Forecasting Problems",
+      "authors": "Alaa Sagheer; Mostafa Kotb",
+      "models": [
+        "LSTM-autoencoder con predictor"
+      ],
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6911101/",
+      "source_version": "Scientific Reports2019; PMC full main text accessed20261113",
+      "original_year": 2019,
+      "families": [
+        "recurrent_autoencoder"
+      ],
+      "decision": "include_as_architecture_transfer_source",
+      "evidence_role": "mechanism_architecture_and_adaptation_context",
+      "direct_sigma7_evidence": false,
+      "date_window_status": "within_2017_2026_window",
+      "decision_basis": "Published architecture source in the existing verified extraction; source task and reported datasets differ from BTC daily sigma7. Decision is retrospective and does not establish eligibility in the original native searches.",
+      "existing_read_level": "complete_primary_main_web_text_20261113_no_PDF_receipt_claimed",
+      "new_reading_performed_in_this_adjudication": false,
+      "human_reviewer_claimed": false,
+      "retrospective_adjudication_date_utc": "2026-11-14T04:15:02.930155+00:00",
+      "source_task": "next-step scalar forecasting with historical target information; lag25",
+      "source_dataset": "Beijing PM2.5; 30660/4380/8760 reported train/validation/test observations",
+      "model_specific_reported_evidence": [
+        {
+          "model": "LSTM-autoencoder con predictor",
+          "metric_1": "RMSE",
+          "value_1": 24.041,
+          "metric_2": "MAE",
+          "value_2": 12.06,
+          "metric_locator": "Table2, two-layer LSTM-SAE; Methodology; Datasets; Parameters selection; Discussion",
+          "critical_limit": "Two-layer DLSTM RMSE23.750 is lower; SAE is not best for every metric. Hyperopt uses validation RMSE but equal budgets are unreported. Chronological partition is not established by counts.",
+          "adaptations": [
+            "Source lag25 adapted to D7; five OHLCV channels replace the source multivariate task channels",
+            "Both auxiliary phases reconstruct the original X/s; s is fit on training inputs only",
+            "Fresh optimizers per phase and exact encoder transfer",
+            "Positive scalar sigma7/target_scale head; caller owns target-scale inversion"
+          ]
+        }
+      ],
+      "performance_component_P": null,
+      "performance_component_reason": "External task / dataset / information-set metrics are not a comparable BTC sigma7 performance ranking. Missing is not zero.",
+      "citation_component_C": "not_adjudicated_here",
+      "scientific_claim_boundary": "Architecture transfer is supported; external superiority and blind final-test confirmation are not inferred."
+    },
+    {
+      "study_id": "10.48550/arXiv.2210.02186",
+      "title": "TimesNet: Temporal 2D-Variation Modeling for General Time Series Analysis",
+      "authors": [
+        "Haixu Wu",
+        "Tengge Hu",
+        "Yong Liu",
+        "Hang Zhou",
+        "Jianmin Wang",
+        "Mingsheng Long"
+      ],
+      "models": [
+        "TimesNet"
+      ],
+      "source_url": "https://arxiv.org/abs/2210.02186v3",
+      "source_version": "2210.02186v3",
+      "original_year": 2022,
+      "families": [
+        "convolutional"
+      ],
+      "decision": "include_as_architecture_transfer_source",
+      "evidence_role": "mechanism_architecture_and_adaptation_context",
+      "direct_sigma7_evidence": false,
+      "date_window_status": "within_2017_2026_window",
+      "decision_basis": "Published architecture source in the existing verified extraction; source task and reported datasets differ from BTC daily sigma7. Decision is retrospective and does not establish eligibility in the original native searches.",
+      "existing_read_level": "prior_complete_PDF_and_appendices_extraction",
+      "new_reading_performed_in_this_adjudication": false,
+      "human_reviewer_claimed": false,
+      "retrospective_adjudication_date_utc": "2026-11-14T04:15:02.930162+00:00",
+      "source_task": "multivariate forecasting of the seven ETTh1 variables",
+      "source_dataset": "ETTh1",
+      "model_specific_reported_evidence": [
+        {
+          "model": "TimesNet",
+          "metric_1": "MSE",
+          "value_1": "0.384",
+          "metric_2": "MAE",
+          "value_2": "0.402",
+          "metric_locator": [
+            {
+              "pdf_page": 21,
+              "printed_page": "21",
+              "section": "Appendix I",
+              "table": "13"
+            }
+          ],
+          "critical_limit": "External forecast result; different task and information set from BTC sigma7.",
+          "adaptations": [
+            "Source temporal projection7->8 for D7+H1",
+            "Select only non-DC frequencies, including constant-spectrum ties; k3 is in the published k1..5 study",
+            "Keep source batch-mean frequency selection during training; evaluate one window per body invocation to avoid later-window influence",
+            "Keep source floor(T/f), explicitly differing from the paper ceil formula",
+            "Complete source forecasting yields five features; external scalar head predicts sigma7/target_scale",
+            "Keep but freeze official branches unused with absent time marks; no moment-feature bridge"
+          ]
+        }
+      ],
+      "performance_component_P": null,
+      "performance_component_reason": "External task / dataset / information-set metrics are not a comparable BTC sigma7 performance ranking. Missing is not zero.",
+      "citation_component_C": "not_adjudicated_here",
+      "scientific_claim_boundary": "Architecture transfer is supported; external superiority and blind final-test confirmation are not inferred."
+    },
+    {
+      "study_id": "10.48550/arXiv.2303.06053",
+      "title": "TSMixer: An All-MLP Architecture for Time Series Forecasting",
+      "authors": [
+        "Si-An Chen",
+        "Chun-Liang Li",
+        "Nathanael C. Yoder",
+        "Sercan Ö. Arık",
+        "Tomas Pfister"
+      ],
+      "models": [
+        "TSMixer"
+      ],
+      "source_url": "https://arxiv.org/abs/2303.06053v5",
+      "source_version": "2303.06053v5",
+      "original_year": 2023,
+      "families": [
+        "mlp_mixing"
+      ],
+      "decision": "include_as_architecture_transfer_source",
+      "evidence_role": "mechanism_architecture_and_adaptation_context",
+      "direct_sigma7_evidence": false,
+      "date_window_status": "within_2017_2026_window",
+      "decision_basis": "Published architecture source in the existing verified extraction; source task and reported datasets differ from BTC daily sigma7. Decision is retrospective and does not establish eligibility in the original native searches.",
+      "existing_read_level": "prior_complete_PDF_and_appendices_extraction",
+      "new_reading_performed_in_this_adjudication": false,
+      "human_reviewer_claimed": false,
+      "retrospective_adjudication_date_utc": "2026-11-14T04:15:02.930167+00:00",
+      "source_task": "multivariate forecasting of the seven ETTh1 variables",
+      "source_dataset": "ETTh1",
+      "model_specific_reported_evidence": [
+        {
+          "model": "TSMixer",
+          "metric_1": "MSE",
+          "value_1": "0.361",
+          "metric_2": "MAE",
+          "value_2": "0.392",
+          "metric_locator": [
+            {
+              "pdf_page": 10,
+              "printed_page": "10",
+              "table": "3"
+            },
+            {
+              "pdf_page": 11,
+              "printed_page": "11",
+              "section": "5"
+            },
+            {
+              "pdf_page": 20,
+              "printed_page": "20",
+              "section": "C.1"
+            }
+          ],
+          "critical_limit": "External forecast result; different task and information set from BTC sigma7.",
+          "adaptations": [
+            "D7 length and five OHLCV variables",
+            "Existing scalar head and ten mean/std features from the same D7 window are retained explicitly",
+            "No architecture change or result relabelling in this amendment"
+          ]
+        }
+      ],
+      "performance_component_P": null,
+      "performance_component_reason": "External task / dataset / information-set metrics are not a comparable BTC sigma7 performance ranking. Missing is not zero.",
+      "citation_component_C": "not_adjudicated_here",
+      "scientific_claim_boundary": "Architecture transfer is supported; external superiority and blind final-test confirmation are not inferred."
+    },
+    {
+      "study_id": "10.48550/arXiv.2304.08424",
+      "title": "Long-term Forecasting with TiDE: Time-series Dense Encoder",
+      "authors": [
+        "Abhimanyu Das",
+        "Weihao Kong",
+        "Andrew Leach",
+        "Shaan Mathur",
+        "Rajat Sen",
+        "Rose Yu"
+      ],
+      "models": [
+        "TiDE"
+      ],
+      "source_url": "https://arxiv.org/abs/2304.08424v5",
+      "source_version": "2304.08424v5",
+      "original_year": 2023,
+      "families": [
+        "mlp_mixing"
+      ],
+      "decision": "include_as_architecture_transfer_source",
+      "evidence_role": "mechanism_architecture_and_adaptation_context",
+      "direct_sigma7_evidence": false,
+      "date_window_status": "within_2017_2026_window",
+      "decision_basis": "Published architecture source in the existing verified extraction; source task and reported datasets differ from BTC daily sigma7. Decision is retrospective and does not establish eligibility in the original native searches.",
+      "existing_read_level": "prior_complete_PDF_and_appendices_extraction",
+      "new_reading_performed_in_this_adjudication": false,
+      "human_reviewer_claimed": false,
+      "retrospective_adjudication_date_utc": "2026-11-14T04:15:02.930174+00:00",
+      "source_task": "multivariate forecasting of the seven ETTh1 variables",
+      "source_dataset": "ETTh1",
+      "model_specific_reported_evidence": [
+        {
+          "model": "TiDE",
+          "metric_1": "MSE",
+          "value_1": "0.375",
+          "metric_2": "MAE",
+          "value_2": "0.398",
+          "metric_locator": [
+            {
+              "pdf_page": 8,
+              "printed_page": "8",
+              "table": 2
+            },
+            {
+              "pdf_page": 7,
+              "printed_page": "7",
+              "section": "5.1"
+            },
+            {
+              "pdf_page": 19,
+              "printed_page": "19",
+              "table": 5
+            },
+            {
+              "pdf_page": 21,
+              "printed_page": "21",
+              "table": 8
+            }
+          ],
+          "critical_limit": "External forecast result; different task and information set from BTC sigma7.",
+          "adaptations": [
+            "Seven observed days instead of source long context; horizon one",
+            "Five OHLCV channels are five scalar series sharing the complete source body, identified only by fixed channel position embeddings",
+            "Zero dynamic and categorical covariates are zero-width tensors; no future OHLCV, calendar values, target history or fabricated observed zeros",
+            "External Linear(5,1)+Softplus head predicts positive scaled sigma7; caller restores training-only scale",
+            "Source default transform=False/layer_norm=False/dropout=0; this does not reproduce the paper selected ETTh1 preset"
+          ]
+        }
+      ],
+      "performance_component_P": null,
+      "performance_component_reason": "External task / dataset / information-set metrics are not a comparable BTC sigma7 performance ranking. Missing is not zero.",
+      "citation_component_C": "not_adjudicated_here",
+      "scientific_claim_boundary": "Architecture transfer is supported; external superiority and blind final-test confirmation are not inferred."
+    },
+    {
+      "study_id": "10.48550/arXiv.2405.14616",
+      "title": "TimeMixer: Decomposable Multiscale Mixing for Time Series Forecasting",
+      "authors": [
+        "Shiyu Wang",
+        "Haixu Wu",
+        "Xiaoming Shi",
+        "Tengge Hu",
+        "Huakun Luo",
+        "Lintao Ma",
+        "James Y. Zhang",
+        "Jun Zhou"
+      ],
+      "models": [
+        "TimeMixer"
+      ],
+      "source_url": "https://arxiv.org/abs/2405.14616v1",
+      "source_version": "2405.14616v1",
+      "original_year": 2024,
+      "families": [
+        "mlp_mixing"
+      ],
+      "decision": "include_as_architecture_transfer_source",
+      "evidence_role": "mechanism_architecture_and_adaptation_context",
+      "direct_sigma7_evidence": false,
+      "date_window_status": "within_2017_2026_window",
+      "decision_basis": "Published architecture source in the existing verified extraction; source task and reported datasets differ from BTC daily sigma7. Decision is retrospective and does not establish eligibility in the original native searches.",
+      "existing_read_level": "prior_complete_PDF_and_appendices_extraction",
+      "new_reading_performed_in_this_adjudication": false,
+      "human_reviewer_claimed": false,
+      "retrospective_adjudication_date_utc": "2026-11-14T04:15:02.930180+00:00",
+      "source_task": "multivariate forecasting of the seven ETTh1 variables",
+      "source_dataset": "ETTh1",
+      "model_specific_reported_evidence": [
+        {
+          "model": "TimeMixer",
+          "metric_1": "MSE",
+          "value_1": "0.375",
+          "metric_2": "MAE",
+          "value_2": "0.400",
+          "metric_locator": [
+            {
+              "columns": "TimeMixer(Ours),MSE/MAE",
+              "pdf_page": 17,
+              "row": "ETTh1,96",
+              "section": "Apéndice E",
+              "table": "13"
+            }
+          ],
+          "critical_limit": "External forecast result; different task and information set from BTC sigma7.",
+          "adaptations": [
+            "D7 length and H1 scalar target; adopt published M1 short-context configuration rather than invent a pooling depth",
+            "Retain PDM season/trend mixing and every FMM predictor and source forecast-output sum",
+            "Use the complete five-variable forecast as body features for the external scalar head",
+            "Keep but freeze official unused temporal-embedding/PDM-layer_norm parameters; do not delete body blocks",
+            "No same-window moment-feature bridge or future covariates"
+          ]
+        }
+      ],
+      "performance_component_P": null,
+      "performance_component_reason": "External task / dataset / information-set metrics are not a comparable BTC sigma7 performance ranking. Missing is not zero.",
+      "citation_component_C": "not_adjudicated_here",
+      "scientific_claim_boundary": "Architecture transfer is supported; external superiority and blind final-test confirmation are not inferred."
+    },
+    {
+      "study_id": "10.48550/arXiv.2211.14730",
+      "title": "A Time Series is Worth 64 Words: Long-term Forecasting with Transformers",
+      "authors": [
+        "Yuqi Nie",
+        "Nam H. Nguyen",
+        "Phanwadee Sinthong",
+        "Jayant Kalagnanam"
+      ],
+      "models": [
+        "PatchTST"
+      ],
+      "source_url": "https://arxiv.org/abs/2211.14730v2",
+      "source_version": "2211.14730v2",
+      "original_year": 2022,
+      "families": [
+        "transformer_attention"
+      ],
+      "decision": "include_as_architecture_transfer_source",
+      "evidence_role": "mechanism_architecture_and_adaptation_context",
+      "direct_sigma7_evidence": false,
+      "date_window_status": "within_2017_2026_window",
+      "decision_basis": "Published architecture source in the existing verified extraction; source task and reported datasets differ from BTC daily sigma7. Decision is retrospective and does not establish eligibility in the original native searches.",
+      "existing_read_level": "prior_complete_PDF_and_appendices_extraction",
+      "new_reading_performed_in_this_adjudication": false,
+      "human_reviewer_claimed": false,
+      "retrospective_adjudication_date_utc": "2026-11-14T04:15:02.930185+00:00",
+      "source_task": "multivariate forecasting of the seven ETTh1 variables",
+      "source_dataset": "ETTh1",
+      "model_specific_reported_evidence": [
+        {
+          "model": "PatchTST",
+          "metric_1": "MSE",
+          "value_1": "0.370",
+          "metric_2": "MAE",
+          "value_2": "0.400",
+          "metric_locator": [
+            {
+              "columns": "PatchTST/64,MSE/MAE",
+              "pdf_page": 7,
+              "row": "ETTh1,96",
+              "section": "§4.1",
+              "table": "3"
+            }
+          ],
+          "critical_limit": "External forecast result; different task and information set from BTC sigma7.",
+          "adaptations": [
+            "D7 P3/S2/endpad2 geometry was already proposed in the prior full-text dossier; it is not the source ETTh1 P16/S8 preset",
+            "Exactly four patches [0:3],[2:5],[4:7],[6,6,6], with no left padding",
+            "Preserve official encoder/qkv/residual score attention and full shared Flatten_Head",
+            "RevIN uses seven observed days; scalar head receives the five native head outputs before input-channel denormalization",
+            "No moment-feature bridge, calendar covariates or target-history features"
+          ]
+        }
+      ],
+      "performance_component_P": null,
+      "performance_component_reason": "External task / dataset / information-set metrics are not a comparable BTC sigma7 performance ranking. Missing is not zero.",
+      "citation_component_C": "not_adjudicated_here",
+      "scientific_claim_boundary": "Architecture transfer is supported; external superiority and blind final-test confirmation are not inferred."
+    },
+    {
+      "study_id": "10.48550/arXiv.2310.06625",
+      "title": "iTransformer: Inverted Transformers Are Effective for Time Series Forecasting",
+      "authors": [
+        "Yong Liu",
+        "Tengge Hu",
+        "Haoran Zhang",
+        "Haixu Wu",
+        "Shiyu Wang",
+        "Lintao Ma",
+        "Mingsheng Long"
+      ],
+      "models": [
+        "iTransformer"
+      ],
+      "source_url": "https://arxiv.org/abs/2310.06625v4",
+      "source_version": "2310.06625v4",
+      "original_year": 2023,
+      "families": [
+        "transformer_attention"
+      ],
+      "decision": "include_as_architecture_transfer_source",
+      "evidence_role": "mechanism_architecture_and_adaptation_context",
+      "direct_sigma7_evidence": false,
+      "date_window_status": "within_2017_2026_window",
+      "decision_basis": "Published architecture source in the existing verified extraction; source task and reported datasets differ from BTC daily sigma7. Decision is retrospective and does not establish eligibility in the original native searches.",
+      "existing_read_level": "prior_complete_PDF_and_appendices_extraction",
+      "new_reading_performed_in_this_adjudication": false,
+      "human_reviewer_claimed": false,
+      "retrospective_adjudication_date_utc": "2026-11-14T04:15:02.930191+00:00",
+      "source_task": "multivariate forecasting of the seven ETTh1 variables",
+      "source_dataset": "ETTh1",
+      "model_specific_reported_evidence": [
+        {
+          "model": "iTransformer",
+          "metric_1": "MSE",
+          "value_1": "0.386",
+          "metric_2": "MAE",
+          "value_2": "0.405",
+          "metric_locator": [
+            {
+              "detail": "Visually checked both metric columns and table caption; fixed L96",
+              "pdf_pages": [
+                23
+              ],
+              "section_or_table": "Table 10, ETTh1, 96 row"
+            }
+          ],
+          "critical_limit": "External forecast result; different task and information set from BTC sigma7.",
+          "adaptations": [
+            "D7 histories of five OHLCV variables become five variable tokens",
+            "Existing scalar task head and same-window moments remain explicit",
+            "Source OHLCV output projection/denormalization is replaced by the retained scalar-task head"
+          ]
+        }
+      ],
+      "performance_component_P": null,
+      "performance_component_reason": "External task / dataset / information-set metrics are not a comparable BTC sigma7 performance ranking. Missing is not zero.",
+      "citation_component_C": "not_adjudicated_here",
+      "scientific_claim_boundary": "Architecture transfer is supported; external superiority and blind final-test confirmation are not inferred."
+    }
+  ]
+}
