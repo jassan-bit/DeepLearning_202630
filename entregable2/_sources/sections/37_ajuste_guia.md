@@ -1,4 +1,6 @@
-# 37. Ajuste de cómputo conforme a la guía
+# Ajuste de cómputo conforme a la guía
+
+> **Archivo de antecedentes:** documento **§37** del registro anterior. Conserva su fecha, alcance y resultados históricos. [Ver organización del informe](concordancia_guia.md).
 
 **Vigencia:** la reducción a tres orígenes no es operativa. Se conserva el calendario original de once y se aplican sólo optimizaciones de implementación: [decisión vigente en §40](40_calendario_original.md). Los conteos y procedimientos de tres orígenes que siguen se conservan como antecedentes, no como instrucciones para nuevas ejecuciones.
 

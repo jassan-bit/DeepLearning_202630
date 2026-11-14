@@ -1,5 +1,6 @@
+(contrato-de-datos-y-auditoria-formal-de-fuga)=
 (e2-auditoria-datos)=
-# 10. Contrato de datos y auditoría formal de fuga
+# 10. Contrato de Datos y Auditoría Formal de Fuga de Información
 
 **Orientación de entrega del 14/11/2026:** el protocolo ejecutado es [§48](48_protocolo_reducido.md), los resultados comunes están en [§6](06_benchmark_final.md), la reproducción registrada en [§55](55_reproduccion_ablaciones.md) y el Apéndice B actual en [§61](61_reproduccion_consolidada.md). Las cifras científicas y los recibos históricos conservan su fecha y su alcance.
 **Alcance vigente:** esta página separa el preflight histórico P0 de los controles de la ejecución final. La [admisión actual](../_static/e2_benchmark_final_20261113/data_admission.json), la [congelación](../_static/e2_benchmark_final_20261113/final_freeze.json) y el [protocolo de §48](48_protocolo_reducido.md) acreditan soporte, identidades y secuencia de la campaña de dieciséis sistemas. No equivalen a la aprobación de todos los criterios de la auditoría integral de fuga.

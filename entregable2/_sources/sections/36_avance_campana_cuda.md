@@ -1,4 +1,6 @@
-# 36. Avance parcial de la campaña CUDA
+# Avance parcial de la campaña CUDA
+
+> **Archivo de antecedentes:** documento **§36** del registro anterior. Conserva su fecha, alcance y resultados históricos. [Ver organización del informe](concordancia_guia.md).
 
 ## Actualización del 11/11/2026: continuación confirmada
 

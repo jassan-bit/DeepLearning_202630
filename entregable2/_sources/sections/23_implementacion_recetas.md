@@ -1,4 +1,6 @@
-# 23. Implementación de recetas y controles temporales
+# Implementación de recetas y controles temporales
+
+> **Archivo de antecedentes:** documento **§23** del registro anterior. Conserva su fecha, alcance y resultados históricos. [Ver organización del informe](concordancia_guia.md).
 
 ## Alcance del nuevo corte
 

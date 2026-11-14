@@ -1,4 +1,6 @@
-# 21. Comparadores temporales y decisión NAS por receta
+# Comparadores temporales y decisión NAS por receta
+
+> **Archivo de antecedentes:** documento **§21** del registro anterior. Conserva su fecha, alcance y resultados históricos. [Ver organización del informe](concordancia_guia.md).
 
 **Vigencia documental (12/11/2026):** el [catálogo obligatorio es de dieciséis sistemas (§43)](43_catalogo_obligatorio.md). La [adjudicación vigente (§44)](44_arquitecturas_publicadas.md) conserva o restaura nueve cuerpos definidos del Top 10 y mantiene NAS únicamente para la variante TiDE. Existe selección HPO/NAS ejecutada del plan anterior de catorce redes; no acredita resultados de las cuatro recetas restauradas. El benchmark final, k, R y el cierre inferencial siguen pendientes. [Enmienda registrada (§45)](45_enmienda_protocolo.md) · [Corte histórico de resultados (§41)](41_avance_optimizacion_11_origenes.md).
 
@@ -11,7 +13,7 @@ Las seis familias NAS de [§27](27_nas_hpo_presupuesto.md) pertenecen al plan an
 
 La guía exige conservar el contrato de E1 y resolver explícitamente las diferencias de información y de presupuesto. Una receta bibliográfica definida no es sinónimo de una implementación fiel; cambiar el cuerpo de una red y mantener su nombre tampoco demuestra una exención NAS. Las decisiones se separan por fuente, cuerpo implementado, adaptación de tarea y condición pendiente.
 
-## 21.1 Comparadores exigidos por F2a
+## Comparadores exigidos por F2a
 
 Se conserva **naive estacional y ARIMA no estacional**, además de persistencia. La elección ARIMA se apoya en su separación documentada entre estimación de parámetros y filtrado causal de nuevas observaciones; no demuestra superioridad frente a ETS. Con los diez modelos y las tres referencias de E1, el alcance obligatorio es de **16 sistemas**. Híbrido y Ridge son opcionales y no se necesitan para completar ese catálogo. La especificación descargable siguiente conserva la propuesta histórica.
 
@@ -38,7 +40,7 @@ B, alternativa si se decide evaluar selección anidada por origen:18 ajustes int
 
 Convergencia, inicialización, límites y fallos deben quedar registrados. Propuesta inicial: una inicialización determinista, L-BFGS máximo 200 iteraciones, sin reinicios; al menos 90 etiquetas válidas como umbral de ingeniería, no garantía estadística. Si un candidato falla, conserva recibo y consumo; no borrar fechas favorables, ampliar rangos ni rescatar un ganador usando el test. Toda esta política debe validarse antes de datos reales.
 
-## 21.2 Matriz histórica de fuentes y decisiones NAS
+## Matriz histórica de fuentes y decisiones NAS
 
 La revisión de este corte comprobó diseños publicados y código real, separando fuente y adaptación; todavía no fijaba m. Las diferencias de la tabla describen aquellas implementaciones, incluidas variantes luego sustituidas. La adjudicación posterior de [§44](44_arquitecturas_publicadas.md) fija **m=1, TiDE**, para el diseño vigente y documenta las cuatro restauraciones con identidades nuevas. No se renombran los resultados anteriores como resultados de esos cuerpos.
 
@@ -68,7 +70,7 @@ El candidato CNN-LSTM-atención carece de una fuente exacta verificada para su r
 **Resolución posterior:** [§44](44_arquitecturas_publicadas.md) documenta la receta fuente o adaptada de cada fila y el único dominio NAS obligatorio, TiDE. Las recomendaciones de recuperación de cuerpos y adjudicación del corte anterior conservan su trazabilidad; no autorizan NAS para los once por defecto.
 
 
-## 21.3 Coste por escenarios, no tiempos inventados
+## Coste por escenarios, no tiempos inventados
 
 La calculadora `scripts/e2_nas_cost_scenarios.py` sólo realiza aritmética: no importa frameworks de entrenamiento ni lee observaciones. Para m modelos sometidos a NAS, F orígenes que repiten toda la búsqueda, k finalistas y R₂ semillas de fase 2:
 
@@ -92,6 +94,6 @@ Una trayectoria significa el pipeline completo correspondiente. Preentrenamiento
 
 La guía ofrece m=4, k=10, R₂=5 como ejemplo: 4.000 trayectorias cortas y hasta 220 completas (p55). Reproducir ese cálculo no autoriza el cómputo ni afirma que cuatro sea el número de modelos aplicable a este catálogo. R₂ tampoco es el R final de la comparación.
 
-## 21.4 Qué queda antes de ejecutar
+## Qué queda antes de ejecutar
 
 La condición arquitectónica y el calendario ya están registrados en §44–§45. Para ejecutar la ruta vigente faltan conciliar el presupuesto y los resultados compatibles, completar la transición del controlador y acreditar comparadores, pilotos y ajustes con sus artefactos. La reserva histórica conocida no recupera condición confirmatoria. Un presupuesto insuficiente se documenta; no se recortan silenciosamente arquitecturas, semillas o fallos.

@@ -1,4 +1,6 @@
-# 20. Cotejo del plan con la guía original
+# Cotejo del plan con la guía original
+
+> **Archivo de antecedentes:** documento **§20** del registro anterior. Conserva su fecha, alcance y resultados históricos. [Ver organización del informe](concordancia_guia.md).
 
 **Vigencia al 11/11/2026:** El PDF aportado nuevamente el 11/11/2026 tiene SHA256 93499dcfda6a36d9621524a81821470017ba114ca6b08241a35de5a54f74a654. La revisión vigente de exigencias/evidencias está en §38; este capítulo conserva el cotejo y estado histórico del 08/11/2026. [Matriz de exigencias y evidencia](38_cumplimiento_guia.md) · [Enmienda de calendario](37_ajuste_guia.md).
 
@@ -12,7 +14,7 @@
 
 Este cotejo corrige el alcance del borrador de §19. No ejecuta el plan, no convierte retrospectivamente decisiones en preregistro y no certifica cumplimiento integral. La auditoría acotada de desarrollo y sus resultados siguen vigentes; los recibos previos permanecen intactos.
 
-## 20.1 Correcciones que afectan el próximo paso
+## Correcciones que afectan el próximo paso
 
 | Disposición de la guía | Estado comprobado y consecuencia para E2 |
 |---|---|
@@ -28,7 +30,7 @@ Este cotejo corrige el alcance del borrador de §19. No ejecuta el plan, no conv
 | Limitación del paper guía con métrica, magnitud e IC; piloto en≥ 3 del Top 10 (pp16–17) | Se conserva la réplica y el piloto externo de tres modelos de §5: TimeMixer, iTransformer y PatchTST. Acreditan L1 operativa bajo ETTh1, no una limitación predictiva Bitcoin ni motivación validada del híbrido. La transferencia al contrato D7 sigue pendiente. |
 | Robustez: 3 severidades; explicar Top 3; aislar 3 componentes (p16) | La ablación recae sobre el mejor modelo, que aún no se ha identificado, no necesariamente sobre el candidato 11. La interpretabilidad corresponde a los tres mejores y requiere fidelidad y estabilidad entre semillas. Los tres controles compactos existentes no aíslan tres componentes. Intervenciones de un bloque y controles de momentos siguen pendientes; no contar su propuesta como ejecución. |
 
-## 20.2 Búsqueda arquitectónica: puerta previa, no ejecución implícita
+## Búsqueda arquitectónica: puerta previa, no ejecución implícita
 
 La guía distingue diseño definido por el artículo de una familia sin arquitectura especificada (p52). La configuración publicada de PatchTST aparece como ejemplo de exención (p53), pero no permite declarar exenta cualquier variante propia. Por cada receta se debe registrar fuente, capas/dimensiones originales, diferencias reales y decisión fundamentada. Las seis implementaciones reutilizadas y cuatro prototipos compactos no tienen el mismo grado de fidelidad.
 
@@ -38,7 +40,7 @@ La selección arquitectónica usa validación y parsimonia cuando hay empate té
 
 Por tanto,2.400 etapas neuronales+40 ajustes Ridge y 300 etapas piloto de §19 son **subtotales de un escenario reducido**, no una estimación completa de guía. No incluyen NAS, ampliación HPO, controles temporales, robustez ni ablaciones. No se ha solicitado ni iniciado ese cómputo.
 
-## 20.3 Ruta temporal y batería estadística pendiente
+## Ruta temporal y batería estadística pendiente
 
 La ruta F2a continúa vigente; no se elimina la dependencia temporal cambiando la etiqueta a regresión tabular. La selección del periodo naive estacional y del clásico ARIMA o ETS debe basarse en desarrollo y quedar congelada; no se inventa que periodo 7 sea estacionalidad demostrada. Declarar historia disponible, política de actualización/refit y máscara de evaluación común. No se agregan rezagos del objetivo como canales de las redes sin una enmienda explícita.
 
@@ -46,7 +48,7 @@ La guía incluye DM con corrección HLN, Ljung–Box, ARCH-LM, BDS y calibració
 
 Los contrastes de brecha train-validación necesitan margen δg fijado previamente (pp25,42), aún pendiente. No aceptar un modelo sólo por superar un promedio: revisar ajuste, sobreajuste, estabilidad, calibración y referencias (p22). La ausencia de significancia no prueba equivalencia (p19). No se trasladan p-valores o diagnósticos de E1 a estas redes.
 
-## 20.4 Orden de trabajo sin entrenar todavía
+## Orden de trabajo sin entrenar todavía
 
 1. Completar matriz fuente–diseño–NAS por receta y revisar cobertura de las cuatro familias y puntajes del Top 10.
 2. Especificar espacios HPO mínimos y controles F2a; distinguir presupuesto de tiempo, intentos y fases AE/NAS. Estimar recursos antes de autorización de ejecución.

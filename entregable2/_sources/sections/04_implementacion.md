@@ -1,4 +1,5 @@
-# 4. Implementación: catálogo obligatorio y antecedentes
+(implementacion-catalogo-obligatorio-y-antecedentes)=
+# 4. Implementación de Modelos Benchmark
 
 **Estado de ejecución al 13/11/2026:** se completaron las trece recetas neuronales, sus 78 ajustes finales y los tres comparadores del catálogo obligatorio. Las implementaciones y cuerpos publicados vigentes se identifican en [§48](48_protocolo_reducido.md), y los resultados medidos están en [§6](06_benchmark_final.md). Los prototipos y estados de integración conservados más abajo corresponden a sus fechas históricas.
 

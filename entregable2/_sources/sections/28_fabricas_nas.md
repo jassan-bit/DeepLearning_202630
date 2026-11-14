@@ -1,4 +1,6 @@
-# 28. Fábricas NAS implementadas y verificadas sintéticamente
+# Fábricas NAS implementadas y verificadas sintéticamente
+
+> **Archivo de antecedentes:** documento **§28** del registro anterior. Conserva su fecha, alcance y resultados históricos. [Ver organización del informe](concordancia_guia.md).
 
 **Integración posterior:** [§29 conecta entrenamiento por etapas, selección, reajuste y replay de18 sistemas](29_entrenamiento_temporal.md), con datos artificiales y perfilado CPU acotado. Las limitaciones que siguen corresponden al corte de fábricas de este capítulo.
 
@@ -8,7 +10,7 @@
 
 [Resumen y hashes](../_static/nas_factories_20261109/summary.json) · [108 casos de referencia y extremo TimesNet](../_static/nas_factories_20261109/reference_and_maximum.json).
 
-## 28.1 Qué se implementó
+## Qué se implementó
 
 - `e2_nas_common.py`: contrato no vacío [B,7,5], configuración inmutable W³/bits, momentos poblacionales y dropout por bloque.
 - `e2_nas_factory.py`: construcción con IDs de familia, arquitectura y trial. `build_from_plan` rechaza configuraciones no incluidas entre las18 registradas, IDs mezclados, anchos inválidos o factores ajenos a la receta.
@@ -20,7 +22,7 @@ Todos los predictores retornan σ₇/a positiva. El ajuste de a y de los escalad
 
 Las proyecciones entre grupos son aprendidas incluso si los anchos coinciden. Los nuevos LSTM usan la inicialización uniforme nativa de PyTorch; SAE/TiDE usan Dense Xavier con bias cero, TimesNet usa inicialización Kaiming de sus convoluciones de períodos y PatchTST/híbrido conservan las inicializaciones declaradas en su código. Estas reglas son fijas dentro de cada espacio; no se afirma equivalencia numérica con las publicaciones ni con las recetas anteriores.
 
-## 28.2 Cobertura numérica exhaustiva del espacio W³/bits
+## Cobertura numérica exhaustiva del espacio W³/bits
 
 Cada familia recorrió las1.000 combinaciones, sin omisiones ni poda: batch artificial de una ventana, modo entrenamiento para activar dropout/normalización, forward y backward. Se verificaron forma [B], salida positiva finita, gradiente de entrada y conexión/finitez del gradiente de cada parámetro entrenable.
 
@@ -39,7 +41,7 @@ En particular, TimesNet usa en este recorrido el trial registrado con **top-k3 y
 
 Los gradientes conectados y finitos pueden ser cero en ciertos componentes o ejemplos. La escala de longitud1 de TimeMixer pierde contraste temporal por su normalización; eso permanece documentado como limitación, no como observación adicional o señal útil demostrada.
 
-## 28.3 Extensión a HPO, geometría máxima y fases SAE
+## Extensión a HPO, geometría máxima y fases SAE
 
 **HPO:** se construyó la referencia (64,64,64), patrón (0,1,0), con cada una de las18 configuraciones registradas por familia: **108 forward/backward numéricos**. Esto comprueba el enlace de IDs y las opciones estructurales, incluidos top-k, número de kernels, media móvil y kernel causal. El entrenamiento AdamW y sus reglas aún requieren integración separada.
 
@@ -49,7 +51,7 @@ Los gradientes conectados y finitos pueden ser cero en ciertos componentes o eje
 
 Las pruebas específicas de etapas verifican escala s ajustada sólo al train copiado, reconstrucción de X/s sin escalar la entrada del encoder, AE1 en evaluación/sin gradientes al preparar AE2 y transferencia de ambos encoders sin decoders ni alias. El predictor transferido vuelve a permitir ajuste supervisado de encoders.
 
-## 28.4 Evidencia completa descargable
+## Evidencia completa descargable
 
 Los diarios conservan cada caso y su alcance. Los hashes del resumen vinculan fuente, protocolo, datos artificiales y archivos comprimidos; no certifican resultados predictivos.
 
@@ -63,7 +65,7 @@ La batería nueva contiene **35 pruebas unitarias e integridad de evidencia, sin
 
 La validación CPU se añade a CI en un job propio con dependencias fijadas. La publicación depende de esa batería y de la construcción/verificación de enlaces de los tres libros. La evidencia exhaustiva se conserva con hashes; CI no repite toda la batería de miles de casos en cada publicación.
 
-## 28.5 Reproducción sin mercado
+## Reproducción sin mercado
 
 Desde un checkout del repositorio:
 
@@ -85,7 +87,7 @@ work/nas-venv/bin/python scripts/check_e2_nas_auxiliary.py \
 
 Los directorios de recibos deben ser nuevos; no se sobrescriben. No se aceptan archivos de mercado como entrada a esos checkers. Se generan tensores artificiales dentro del programa; no se instalan ni ejecutan los scripts históricos de entrenamiento.
 
-## 28.6 Qué falta antes de entrenar
+## Qué falta antes de entrenar
 
 La fábrica ya construye las seis familias y acepta las configuraciones estructurales registradas. **No es aún el ejecutor completo de selección y entrenamiento de18 sistemas.** Faltan:
 

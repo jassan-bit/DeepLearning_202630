@@ -1,4 +1,6 @@
-# 34. Perfil GPU ampliado y viabilidad del extremo TimesNet
+# Perfil GPU ampliado y viabilidad del extremo TimesNet
+
+> **Archivo de antecedentes:** documento **§34** del registro anterior. Conserva su fecha, alcance y resultados históricos. [Ver organización del informe](concordancia_guia.md).
 
 **Resultado informado: quince perfiles completados en la Tesla T4 de Colab**, con cero fallos, cero trabajos sin admitir y **680 pasos de optimización conocidos**. Son las catorce referencias en la cohorte grande y un perfil adicional del TimesNet máximo. El usuario ejecutó el notebook y aportó el informe; Codex comprobó su correspondencia con el registro, las fases y los contadores. Este informe amplía el [piloto pequeño de §33](33_piloto_gpu.md).
 

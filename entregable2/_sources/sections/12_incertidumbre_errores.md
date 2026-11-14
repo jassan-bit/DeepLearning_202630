@@ -1,4 +1,5 @@
-# 12. Incertidumbre, errores y referencias de dificultad
+(incertidumbre-errores-y-referencias-de-dificultad)=
+# 12. Techo de Desempeño, Incertidumbre y Análisis de Errores
 
 **Estado vigente del 14/11/2026:** existen intervalos y cobertura empírica para los 16 sistemas, diagnósticos F2a, robustez, explicaciones, tres ablaciones entrenadas y una taxonomía de residuos de los diez modelos principales. Los artefactos actuales están en [§§49–59](53_cierre_requisitos.md). Esta página distingue los resultados existentes de las garantías que no están acreditadas.
 

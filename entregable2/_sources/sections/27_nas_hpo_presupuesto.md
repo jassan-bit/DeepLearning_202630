@@ -1,4 +1,6 @@
-# 27. Decisiones NAS, rangos HPO y presupuesto para Codex
+# Decisiones NAS, rangos HPO y presupuesto para Codex
+
+> **Archivo de antecedentes:** documento **§27** del registro anterior. Conserva su fecha, alcance y resultados históricos. [Ver organización del informe](concordancia_guia.md).
 
 **Vigencia al 11/11/2026:** Se conserva el calendario original de once selecciones, con máximo de 85.074 intentos neuronales. Los conteos de etapas auxiliares de este capítulo son otra unidad. La propuesta de tres no es operativa; R y el presupuesto completo siguen pendientes. [Decisión y ejecutor vigentes](40_calendario_original.md).
 
@@ -14,7 +16,7 @@
 
 **Vigencia de las configuraciones descargables:** el archivo HPO enlazado arriba se conserva como artefacto histórico de diseño. Para los valores del protocolo ejecutable activo, consultar [la exportación regenerada y verificada](../_static/optimized_progress_20261111_213112/registered_hpo_configs.json) y [los 546 ensayos con su configuración](../_static/optimized_progress_20261111_213112/trials.csv). Se verificó cada payload contra su huella de campaña; no se eligieron nuevos hiperparámetros ni se entrenó para producir esta tabla. Los IDs por sí solos no sustituyen la huella/versionado del payload.
 
-## 27.1 NAS resuelto por receta
+## NAS resuelto por receta
 
 La guía distingue un cuerpo definido por la fuente de un diseño propio o sin arquitectura verificable; no exige adjudicación del profesor para documentar esta decisión. Se congelan cinco cuerpos publicados y se asigna NAS a seis variantes mediante una interpretación conservadora explícita. Es una decisión del diseño E2, no una certificación de equivalencia con los autores ni de aceptación institucional.
 
@@ -36,7 +38,7 @@ Los cinco cuerpos sin NAS **no cambian profundidad, ancho, kernels, normalizaci�
 
 Para PatchTST se elige conservadoramente NAS por la geometría D7 replicada y la cabeza propia; no se extiende la exención de la configuración publicada por el solo nombre. Para SAE, el texto exacto sin verificar impide fundar la ruta publicada únicamente en el DOI. Esta decisión no convierte las nuevas variantes en réplicas de los cuerpos originales.
 
-## 27.2 Espacio NAS y nuevas variantes
+## Espacio NAS y nuevas variantes
 
 Cada familia NAS recorre W³×{0,1}³ con W={16,32,64,128,256}: **1.000 configuraciones, 125 sin dropout y 875 con al menos una posición activa**. No se descartan formas crecientes, decrecientes o mixtas. Cada bᵢ activa dropout0,2; los otros dropouts de estas variantes quedan en0. No se busca además una tasa de dropout en HPO.
 
@@ -92,7 +94,7 @@ Los pilotos globales de ruido/perfilado usan una receta previa fija: LR=0,001, W
 
 Las semillas de HPO, cribado, confirmación, piloto de ruido, perfilado, piloto de potencia y reajustes pertenecen a conjuntos separados. Su lista exacta está en el JSON.
 
-## 27.3 Dominios HPO y reglas de entrenamiento
+## Dominios HPO y reglas de entrenamiento
 
 Se elige T=18 para permitir el espacio completo de dieciocho órdenes ARIMA sin inflar configuraciones repetidas. Cada red y Ridge recibe dieciocho configuraciones distintas; las redes usan dos semillas por configuración. Naive estacional agota tres periodos y persistencia no tiene parámetros ajustables.
 
@@ -125,7 +127,7 @@ Si queda un batch final de una observación, se redistribuyen las últimas muest
 
 NaN, divergencia, timeout y falta de memoria consumen el intento; no generan una configuración o semilla sustituta. Una causa sistemática de implementación bloquea la campaña y exige corregir y repetir lo afectado mediante enmienda. Se conservan los fallos y el coste.
 
-## 27.4 Selección temporal y repeticiones
+## Selección temporal y repeticiones
 
 Se fija **escenario B**: selección interna y reajuste nuevo en cada origen. Son diez orígenes mensuales enero–octubre2024 más una selección final en01/01/2025: once selecciones presupuestadas, sin añadir una duodécima para el piloto. Se conserva entrenamiento interno hasta o−98, validación o−90…o−8 y reajuste hasta o−8.
 
@@ -137,7 +139,7 @@ R final será común, entre6 y30, dimensionado con el piloto y simulación tempo
 
 Las 608 fechas conocidas conservan carácter exploratorio; el diseño B no borra su exposición. Su soporte común tampoco se certifica con esta planificación.
 
-## 27.5 Presupuesto contable y entorno observado
+## Presupuesto contable y entorno observado
 
 El entorno Codex inspeccionado tiene cuota de **4 vCPU**, límite de **16 GiB**, CPU Xeon Platinum8573C y ninguna GPU visible. PyTorch y statsmodels no están instalados en ese entorno. Son observaciones de esta instancia, no garantías para futuras sesiones.
 
@@ -163,7 +165,7 @@ Con k20 y R30 son **88.096 etapas cortas y21.359 completas**, más420 ajustes cl
 
 Para convertir etapas a horas se medirán tiempos/memoria por familia y arquitectura, incluyendo representaciones y decoders SAE. Los tiempos de las variantes NAS se obtienen del piloto de ruido; las otras ocho redes y los dos clásicos tienen perfiles explícitos. Se sumarán los costes de los once orígenes, con todos sus intentos y fallos. **Horas y coste monetario siguen sin estimar**: ni disponer de CPU en Codex ni multiplicar un smoke por1.000 permite calcularlos.
 
-## 27.6 Reproducir el plan sin entrenar
+## Reproducir el plan sin entrenar
 
 El generador usa sólo biblioteca estándar; no instala dependencias, carga mercado ni importa frameworks de modelos.
 
@@ -178,7 +180,7 @@ python scripts/e2_search_plan.py \
 
 El archivo de salida debe ser nuevo: no se sobrescribe. El generador enumera1000 configuraciones por familia,18 HPO por red, dominios clásicos y cotas de coste. Su éxito prueba coherencia del plan; **no demuestra que todas las redes se construyan ni que puedan entrenarse**.
 
-## 27.7 Condiciones antes del primer ajuste
+## Condiciones antes del primer ajuste
 
 1. Implementar los seis mapeos NAS y los ejes HPO en fábricas versionadas; probar sintéticamente las1.000 construcciones de cada familia, gradientes y normalización sin pérdida de cardinalidad.
 2. Completar la integración causal de los18 sistemas y fijar dependencias reproducibles. Comprobar el entorno Codex de ejecución otra vez.

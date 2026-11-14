@@ -1,10 +1,12 @@
-# 18. Implementación provisional y verificación sintética
+# Implementación provisional y verificación sintética
+
+> **Archivo de antecedentes:** documento **§18** del registro anterior. Conserva su fecha, alcance y resultados históricos. [Ver organización del informe](concordancia_guia.md).
 
 **Actualización de planificación:** [§19: auditoría real de desarrollo y plan propuesto](19_plan_auditoria.md). Sin entrenamiento de mercado, HPO ni preregistro nuevo.
 
 **08/11/2026: los once candidatos están conectados a una fábrica y un flujo común de pruebas sintéticas.** Esto no es entrenamiento Bitcoin, HPO, dimensionamiento, preregistro ni benchmark completo. No hay ganador ni superioridad demostrada. Los runners, protocolos y resultados históricos permanecen intactos.
 
-## 18.1 Código disponible y recetas explícitas
+## Código disponible y recetas explícitas
 
 - `scripts/e2_current_models.py`: fábrica exclusiva de los diez modelos y CNN-1D + LSTM + atención temporal; tres ablaciones separadas del catálogo.
 - `scripts/e2_current_pipeline.py`: generación sintética, controles de calendario/ventanas, escalado sólo con entrenamiento, ajuste mínimo y predicciones en unidades originales.
@@ -28,7 +30,7 @@ Las [recetas ejecutadas y metadatos](../_static/current_implementation_20261108/
 
 Los seis adaptadores conservan **diez momentos de la misma ventana** en sus cabezas. Los cuatro prototipos y el híbrido no los concatenan: es una diferencia declarada de representación, no información externa ni igualdad arquitectónica demostrada. Las fuentes exigidas se verifican por hashes del subconjunto declarado, incluidos archivos de dependencias; esto no certifica el repositorio completo. Las fuentes ausentes o alteradas provocan error: no se reemplazan modelos por otros ni se omiten silenciosamente.
 
-## 18.2 Qué ocurrió realmente
+## Qué ocurrió realmente
 
 El [recibo sintético](../_static/current_implementation_20261108/synthetic_receipt.json) contiene **11/11 modelos ejecutados y cero omitidos**. El generador produjo 96 días UTC ficticios de 2001; el fold usa 32 ventanas de entrenamiento y ocho de validación. Se hicieron **dos pasos supervisados por modelo**, batch8, Adam LR0,001 y clipping1. El autoencoder recibió además **un paso de reconstrucción previo**, con un optimizador nuevo para el ajuste supervisado.
 
@@ -36,7 +38,7 @@ Todas las salidas y pérdidas fueron finitas. Las cifras de pérdida del recibo 
 
 La reconstrucción del autoencoder usa sólo ventanas del entrenamiento. Su decoder participa en esa fase, no en la predicción supervisada escalar; que no tenga gradiente durante el ajuste del predictor es intencional. No se confunde esta secuencia con una pérdida conjunta respaldada por el artículo original.
 
-## 18.3 Controles verificados
+## Controles verificados
 
 - Formas D7×5 y una salida no negativa por ventana; valores finitos, gradientes, roundtrip de estado en memoria y estado recurrente reiniciado.
 - Atención temporal sobre **siete estados**, pesos normalizados en el eje temporal y gradientes a CNN, LSTM, atención y cabeza.
@@ -48,7 +50,7 @@ La reconstrucción del autoencoder usa sólo ventanas del entrenamiento. Su deco
 
 Los controles no prueban ausencia de toda fuga en un runner de mercado aún no ejecutado. Las tres ablaciones son verificaciones de componentes, no resultados comparativos. CNN sola y LSTM sola usan el último estado; CNN–LSTM sin atención también cambia la agregación respecto del contexto ponderado, por lo que no se interpreta como una intervención causal pura sobre rendimiento.
 
-## 18.4 Reproducibilidad y siguientes pasos
+## Reproducibilidad y siguientes pasos
 
 El {download}`paquete documental <../_static/current_implementation_20261108/README.md>`, el [manifiesto público](../_static/current_implementation_20261108/manifest.json) y el [subconjunto de fuentes fijadas](../_static/current_implementation_20261108/source_design.json) permiten reproducir la preparación y los controles. Se mantiene un entorno separado, documentado por versiones; no se afirma reproducir el entorno original de los autores.
 

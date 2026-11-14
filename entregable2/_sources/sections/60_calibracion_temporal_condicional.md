@@ -1,4 +1,6 @@
-# 60. Calibración temporal y cobertura condicional
+# Calibración temporal y cobertura condicional
+
+> **Ubicación:** complemento del [capítulo 12](12_incertidumbre_errores.md). Identificador documental anterior: **§60**; [ver concordancia](concordancia_guia.md).
 
 Este suplemento ejecuta **dos políticas de intervalos adaptadas al paso del tiempo** sobre los 81 predictores ya guardados. No se reentrenan ni se vuelven a ejecutar los modelos. La A2, sus pronósticos puntuales y los calibradores originales permanecen intactos. El plan se publicó antes del cálculo en el [commit `8d9cc8c`](https://github.com/jassan-bit/DeepLearning_202630/commit/8d9cc8c3397242a07378fb1a678196dab36744da). Es un análisis posterior sobre el test ya conocido desde E1; no recupera un periodo ciego ni el margen δg previo ausente.
 

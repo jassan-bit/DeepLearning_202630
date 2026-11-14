@@ -1,4 +1,6 @@
-# 26. Registro por receta: fuentes, NAS, HPO e integración
+# Registro por receta: fuentes, NAS, HPO e integración
+
+> **Archivo de antecedentes:** documento **§26** del registro anterior. Conserva su fecha, alcance y resultados históricos. [Ver organización del informe](concordancia_guia.md).
 
 **Vigencia documental (12/11/2026):** el [catálogo obligatorio (§43)](43_catalogo_obligatorio.md) contiene dieciséis sistemas; híbrido y Ridge son opcionales. [§44](44_arquitecturas_publicadas.md) conserva o restaura nueve cuerpos definidos del Top 10 y mantiene NAS para TiDE. La selección HPO/NAS ejecutada corresponde al plan anterior de catorce redes; no acredita las nuevas recetas SAE, TimesNet, TimeMixer y PatchTST. El benchmark final, k, R y el cierre inferencial siguen pendientes. [Enmienda registrada (§45)](45_enmienda_protocolo.md) · [Corte histórico de resultados (§41)](41_avance_optimizacion_11_origenes.md).
 
@@ -10,7 +12,7 @@ Las seis familias NAS de [§27](27_nas_hpo_presupuesto.md) identifican el plan a
 
 [Registro estructurado JSON](../_static/recipe_register_20261109/registry.json) · {download}`Descargar registro por receta <../_static/recipe_register_20261109/registry.json>`.
 
-## 26.1 Qué versiones documenta este inventario histórico
+## Qué versiones documenta este inventario histórico
 
 Las [fichas de §22](22_fichas_recetas.md) se implementaron en [§23](23_implementacion_recetas.md) mediante `scripts/e2_recipe_catalogue.py`. Se conservan sus IDs, incluidos los sufijos `proposed`, para enlazar especificación, código y recibo sin cambiar retrospectivamente identidades.
 
@@ -18,7 +20,7 @@ La [matriz NAS de §21](../_static/controls_nas_20261108/nas_matrix.json) es un 
 
 Contrato compartido: D7×5 OHLCV con `relative_window`, h=1, σ₇ poblacional sin anualizar, escaladores ajustados sólo al entrenamiento y salida escalar Softplus multiplicada por la media positiva del objetivo de entrenamiento. **Los seis adaptadores agregan diez momentos de la misma ventana; los cuatro cuerpos restaurados y el híbrido no.** Las entradas informativas son comunes, pero esta asimetría del readout debe controlarse; no se presenta como comparación de backbones puros.
 
-## 26.2 Fuentes y adaptación por modelo: corte del 09/11/2026
+## Fuentes y adaptación por modelo: corte del 09/11/2026
 
 Los enlaces bibliográficos identifican originales arquitectónicos; no acreditan elegibilidad final del Top 10 ni resultados en Bitcoin. Los snapshots de código y las versiones exactas de los seis textos están en el JSON descargable y las fichas.
 
@@ -40,7 +42,7 @@ Los enlaces bibliográficos identifican originales arquitectónicos; no acredita
 
 Hay diferencias que deben conservarse al justificar la selección: FCN/ResNet proceden de clasificación; Inception es un solo miembro y no el ensemble de cinco; TSMixer usa dropout inicial distinto de la fuente; TiDE cambia la salida del decoder temporal; TimeMixer reduce escalas; PatchTST replica datos de siete días para formar parches. Los límites individuales se incluyen en el JSON. Ninguna de estas fuentes demuestra superioridad de la receta D7.
 
-## 26.3 Decisión NAS por receta
+## Decisión NAS por receta
 
 La columna siguiente identifica la vía de decisión y su fundamento **en el registro histórico** (`applies: null`, sin exenciones concedidas a esa fecha). La adjudicación posterior de §44 sustituye esas decisiones para el trabajo nuevo: nueve cuerpos definidos y TiDE NAS. La implementación sintética, por sí sola, no decide la admisibilidad académica de una adaptación.
 
@@ -62,7 +64,7 @@ Cuando corresponda §14 de la guía: tres bloques, cinco anchos {16,32,64,128,25
 
 Este inventario no fijaba cuántas recetas entraban a NAS. La adjudicación vigente fija TiDE como único NAS obligatorio; el híbrido queda opcional. La presencia de un nombre publicado nunca sustituye la verificación del cuerpo y de su adaptación.
 
-## 26.4 HPO: factores que deben convertirse en espacios ejecutables
+## HPO: factores que deben convertirse en espacios ejecutables
 
 El mínimo de §11.2 de la guía incluye **learning rate en escala logarítmica, weight decay, dropout, batch, profundidad y ancho**, con ejes específicos por familia. El cotejo de [§20](20_contraste_guia.md) explica por qué la cuadrícula reducida anterior no basta.
 
@@ -86,7 +88,7 @@ Para Transformers deben revisarse cabezas, contexto y warmup, y learning rate po
 
 No se variarán profundidad y ancho silenciosamente dentro de un cuerpo que se quiera declarar predefinido: el alcance permitido de HPO y su relación con NAS debe resolverse por receta. La fábrica vigente construye las recetas del smoke; eso no acredita implementación de todos estos ejes.
 
-## 26.5 Coste e integración: evidencia disponible
+## Coste e integración: evidencia disponible
 
 Los parámetros se transcriben del [recibo de §23](../_static/recipe_implementation_20261109/synthetic_receipt.json). Son todos los parámetros del predictor contabilizados por el código, **no necesariamente todos entrenables**, ni FLOPs, memoria pico o horas de mercado. No se reejecutaron los modelos en este corte documental.
 
@@ -110,7 +112,7 @@ El SAE tiene además autoencoders auxiliares de **3.840 y 6.172 parámetros**; s
 
 El presupuesto completo debe separar HPO, NAS cuando aplique, selección interna, refits, piloto de potencia, calibración, controles de fuga, robustez y ablaciones. Requiere hardware, mediciones comparables, límites y contabilidad de fallos. Parámetros pequeños no garantizan menor latencia; tiempos o memoria aún no medidos se registran como desconocidos.
 
-## 26.6 Las referencias: seis obligatorias y Ridge histórico opcional
+## Las referencias: seis obligatorias y Ridge histórico opcional
 
 MLP16, LSTM32, GRU32, Persistence, SeasonalNaive y ARIMA son las seis referencias/comparadores que completan el catálogo obligatorio de dieciséis. La tabla conserva las configuraciones sintéticas del 09/11/2026; no acredita sus resultados finales. Ridge permanece para trazabilidad y no requiere nuevas corridas para cerrar el catálogo obligatorio.
 
@@ -126,7 +128,7 @@ MLP16, LSTM32, GRU32, Persistence, SeasonalNaive y ARIMA son las seis referencia
 
 El naive estacional es un sistema con tres periodos candidatos; ARIMA es un sistema con dieciocho órdenes candidatos. No se cuentan como modelos adicionales del Top 10. Sus espacios propuestos no están ejecutados por haber probado una receta. ARIMA exige conservar calendario, filtrar el puente sin refit y registrar no convergencia, sin sustituirla por un pronóstico cero.
 
-## 26.7 Qué queda listo y qué sigue
+## Qué queda listo y qué sigue
 
 Este inventario aporta una identidad verificable por receta de su corte: fuente, adaptación, duda NAS, factores HPO, parámetros, fases y alcance de integración. El cierre bibliográfico global sigue separado de la adjudicación arquitectónica posterior y de la ejecución experimental.
 

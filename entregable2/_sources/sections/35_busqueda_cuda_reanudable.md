@@ -1,4 +1,6 @@
-# 35. Selección CUDA con presupuesto y continuación en GitHub
+# Selección CUDA con presupuesto y continuación en GitHub
+
+> **Archivo de antecedentes:** documento **§35** del registro anterior. Conserva su fecha, alcance y resultados históricos. [Ver organización del informe](concordancia_guia.md).
 
 **Preparación del 09/11/2026:** se incorporó un ejecutor HPO → NAS-1 → NAS-2 para los catorce sistemas neuronales, con resultados recuperables entre sesiones de Colab. Conserva los dominios de [§27](27_nas_hpo_presupuesto.md), sus semillas, la separación temporal y las reglas de selección. El usuario fijó **8 horas por sesión y 24 horas acumuladas** como límites iniciales y eligió guardar las campañas en [su repositorio de GitHub](https://github.com/jassan-bit/DeepLearning_202630).
 

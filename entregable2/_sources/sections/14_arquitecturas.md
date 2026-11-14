@@ -1,4 +1,5 @@
-# 14. Arquitecturas ejecutadas y condición de NAS
+(arquitecturas-ejecutadas-y-condicion-de-nas)=
+# 14. Búsqueda de Arquitectura cuando No Hay Diseño Predefinido
 
 **Estado vigente del 14/11/2026:** el catálogo obligatorio ejecutado contiene diez cuerpos de literatura/adaptaciones y tres referencias neuronales de E1. Las identidades, fuentes primarias y adaptaciones D7 de los diez candidatos se adjudican en [§44](44_arquitecturas_publicadas.md) y la actualización de [§48](48_protocolo_reducido.md), incluida **TIDE-D7-PUBLISHED-R0-v2**. El benchmark final está cerrado.
 

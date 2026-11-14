@@ -1,4 +1,5 @@
-# 6. Benchmark obligatorio: dieciséis sistemas
+(benchmark-obligatorio-dieciseis-sistemas)=
+# 6. Benchmark Final
 
 **Resultados finales verificados al 13/11/2026, 11:58:36 de Bogotá.** Se completaron los **78 ajustes finales** de las trece redes, los **10 pilotos**, los tres comparadores y la congelación de **81 predictores**. La evaluación común ya aporta resultados de los **16 sistemas sobre las mismas 608 fechas elegibles**, del 01/01/2025 al 31/08/2026. [Tabla A2 original, CSV](../_static/e2_benchmark_final_20261113/benchmark_A2.csv) · [Análisis completo](../_static/e2_benchmark_final_20261113/benchmark_analysis.json) · [Admisión de datos](../_static/e2_benchmark_final_20261113/data_admission.json).
 

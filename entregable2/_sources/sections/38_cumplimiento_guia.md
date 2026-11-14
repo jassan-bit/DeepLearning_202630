@@ -1,4 +1,6 @@
-# 38. Exigencias de la guía, evidencia y pendientes
+# Exigencias de la guía, evidencia y pendientes
+
+> **Ubicación:** complemento del [capítulo 8](08_reproducibilidad.md). Identificador documental anterior: **§38**; [ver concordancia](concordancia_guia.md).
 
 **Cierre complementario verificado: 13/11/2026, 22:42:55 de Bogotá.** Se completaron 81/81 reproducciones y 18/18 ablaciones; el criterio de reproducción del productor fue aprobado. El límite vigente es de 84 horas totales. [Resultados y procedencia de §55](55_reproduccion_ablaciones.md).
 

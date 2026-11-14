@@ -1,4 +1,6 @@
-# 33. Primer piloto de recursos en GPU
+# Primer piloto de recursos en GPU
+
+> **Archivo de antecedentes:** documento **§33** del registro anterior. Conserva su fecha, alcance y resultados históricos. [Ver organización del informe](concordancia_guia.md).
 
 **Resultado observado: catorce referencias completaron el piloto en una Tesla T4 de Colab.** El usuario ejecutó el notebook y compartió el informe de su última celda. El informe registra catorce intentos exitosos, cero fallos, cero trabajos sin admitir y **192 pasos de optimización conocidos**, sin contadores desconocidos. Codex revisó la coherencia del informe recibido; estos ajustes no se ejecutaron en la CPU de Codex ni en GitHub.
 

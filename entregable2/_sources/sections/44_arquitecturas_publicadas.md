@@ -1,4 +1,6 @@
-# 44. Cuerpos publicados, adaptaciones D7 y aplicación de NAS
+# Cuerpos publicados, adaptaciones D7 y aplicación de NAS
+
+> **Ubicación:** complemento del [capítulo 14](14_arquitecturas.md). Identificador documental anterior: **§44**; [ver concordancia](concordancia_guia.md).
 
 **Estado vigente al 13/11/2026:** están ejecutadas las trece recetas neuronales del catálogo de dieciséis sistemas. Los nueve cuerpos definidos inicialmente se completan con **TiDE TIDE-D7-PUBLISHED-R0-v2**, cuya [paridad funcional y registro anterior al ajuste](48_protocolo_reducido.md) acreditan su identidad propia. La decisión inicial de mantener una variante TiDE NAS se conserva debajo como antecedente, sin atribuirle los resultados de la receta publicada.
 

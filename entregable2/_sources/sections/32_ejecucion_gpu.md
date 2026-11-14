@@ -1,4 +1,6 @@
-# 32. Ejecución CUDA preparada y piloto de recursos
+# Ejecución CUDA preparada y piloto de recursos
+
+> **Archivo de antecedentes:** documento **§32** del registro anterior. Conserva su fecha, alcance y resultados históricos. [Ver organización del informe](concordancia_guia.md).
 
 **Infraestructura y corte de preparación conservado.** Esta sección documenta el backend CUDA, el notebook reproducible y sus pruebas locales en la CPU de Codex. Las comprobaciones que requieren CUDA real se identifican como omitidas en ese corte. El [primer piloto GPU de §33](33_piloto_gpu.md) y el [perfil ampliado de §34](34_perfil_gpu_ampliado.md), ejecutados por el usuario en Colab, aportan mediciones reales de recursos. El presupuesto total en horas continúa abierto.
 

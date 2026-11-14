@@ -1,5 +1,6 @@
+(reproducibilidad-de-la-entrega-vigente)=
 (e2-reproducibilidad)=
-# 8. Reproducibilidad de la entrega vigente
+# 8. Reproducibilidad, Ética y Comunicación Científica
 
 **Estado documental del 14/11/2026:** la tabla principal compara **16 sistemas sobre 608 fechas**. La reproducción registrada de sus **81 predictores** se completó en un checkout remoto y un entorno Python nuevos, con discrepancia máxima absoluta de predicción **0** en calibración y prueba. También se completaron **18 ablaciones**. Los recibos y sus límites se presentan en [§55](55_reproduccion_ablaciones.md). El Apéndice B vigente está en [§61](61_reproduccion_consolidada.md), con estados completos, parciales, no aplicables e incumplimientos identificados.
 

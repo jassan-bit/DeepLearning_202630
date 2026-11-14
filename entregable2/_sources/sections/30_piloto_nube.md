@@ -1,4 +1,6 @@
-# 30. Piloto de desarrollo en la nube de Codex
+# Piloto de desarrollo en la nube de Codex
+
+> **Archivo de antecedentes:** documento **§30** del registro anterior. Conserva su fecha, alcance y resultados históricos. [Ver organización del informe](concordancia_guia.md).
 
 **Resultado:** las 14 referencias completaron el reconocimiento. El extremo TimesNet se censuró por tiempo. El piloto principal de tres modelos quedó incompleto; el análisis secundario usa las cinco semillas completas del híbrido y GRU32. k=40 es conservador y R=30 es un techo provisional de coste; el R final permanece abierto.
 

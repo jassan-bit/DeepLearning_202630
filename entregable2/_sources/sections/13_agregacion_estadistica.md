@@ -1,4 +1,5 @@
-# 13. Estimandos, agregación e inferencia actual
+(estimandos-agregacion-e-inferencia-actual)=
+# 13. Estrategia de Agregación y Modelado Estadístico
 
 **Estado vigente del 14/11/2026:** la A2 compara **16 sistemas y 608 fechas**, con R=6 para las trece redes y R=1 para los tres comparadores deterministas. El [refinamiento de §56](56_inferencia_estabilidad_final.md) usa 20.000 sorteos de la misma familia primaria; los análisis posteriores se identifican por su estimando y su familia.
 

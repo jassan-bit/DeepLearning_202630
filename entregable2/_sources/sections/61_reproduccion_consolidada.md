@@ -1,4 +1,6 @@
-# 61. Entrega reproducible y Apéndice B actual
+# Entrega reproducible y Apéndice B actual
+
+> **Ubicación:** complemento del [capítulo 8](08_reproducibilidad.md). Identificador documental anterior: **§61**; [ver concordancia](concordancia_guia.md).
 
 **Corte documental del 14/11/2026, Bogotá.** Este capítulo reúne la evidencia actual de la entrega: **16 sistemas, 608 fechas, 81 predictores reproducidos y 18 ablaciones**. Los estados no se infieren del número de entrenamientos ni de la compilación del libro. La lista conserva los **21 ítems literales de la guía, página 63**, y distingue lo completo dentro de su alcance de lo parcial, no aplicable o no acreditado.
 

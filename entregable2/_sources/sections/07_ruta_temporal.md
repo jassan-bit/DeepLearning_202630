@@ -1,5 +1,6 @@
+(ruta-metodologica-series-de-tiempo-y-controles-causales)=
 (e2-ruta-temporal)=
-# 7. Ruta metodológica: series de tiempo y controles causales
+# 7. Ruta Metodológica según el Tipo de Problema
 
 **Orientación de entrega del 14/11/2026:** el protocolo ejecutado es [§48](48_protocolo_reducido.md), los resultados comunes están en [§6](06_benchmark_final.md), la reproducción registrada en [§55](55_reproduccion_ablaciones.md) y el Apéndice B actual en [§61](61_reproduccion_consolidada.md). Las cifras científicas y los recibos históricos conservan su fecha y su alcance.
 

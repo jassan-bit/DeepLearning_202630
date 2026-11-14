@@ -1,4 +1,6 @@
-# 42. Preparación complementaria a partir de evidencia existente
+# Preparación complementaria a partir de evidencia existente
+
+> **Archivo de antecedentes:** documento **§42** del registro anterior. Conserva su fecha, alcance y resultados históricos. [Ver organización del informe](concordancia_guia.md).
 
 **Actualización de catálogo (12/11/2026):** se adopta el [alcance obligatorio de 16 sistemas de §43](43_catalogo_obligatorio.md). El híbrido adicional y Ridge quedan como opcionales/históricos. Esta auditoría y sus descargas mantienen el corte anterior de 18 sistemas; para preparar el benchmark se utiliza la [nueva plantilla de 16 filas](../_static/required_catalogue_20261112/benchmark_A2_template.csv). Los demás pendientes de la guía continúan abiertos.
 

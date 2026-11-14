@@ -1,4 +1,6 @@
-# 29. Entrenamiento por etapas, selección temporal y perfilado CPU
+# Entrenamiento por etapas, selección temporal y perfilado CPU
+
+> **Archivo de antecedentes:** documento **§29** del registro anterior. Conserva su fecha, alcance y resultados históricos. [Ver organización del informe](concordancia_guia.md).
 
 **Piloto real posterior:** [§30: entrenamiento de desarrollo en Codex Cloud, costes y dimensionamiento condicionado](30_piloto_nube.md). Esta sección conserva el alcance artificial del corte anterior.
 
@@ -8,7 +10,7 @@
 
 [Resumen y hashes](../_static/training_integration_20261109/summary.json) · [Perfiles CPU legibles](../_static/training_integration_20261109/profiles_table.json) · [Fuentes iTransformer verificadas](../_static/training_integration_20261109/author_source_receipt.json).
 
-## 29.1 Registro común de catorce redes
+## Registro común de catorce redes
 
 `e2_training_models.py` construye las once candidatas y las tres referencias E1 con pesos nuevos. Mantiene dimensiones y conteos de los cinco cuerpos publicados y las referencias; las seis familias NAS reciben una arquitectura explícita y un trial registrado.
 
@@ -16,7 +18,7 @@ iTransformer usa los ocho archivos de autor fijados por commit y SHA256. El help
 
 La marca de fábrica `training_axes_applied=False` describe construcción. Cada recibo de ajuste registra por separado los hiperparámetros efectivamente aplicados, etapas y pasos; no se utiliza esa marca para negar el entrenamiento posterior.
 
-## 29.2 AdamW y las tres fases SAE
+## AdamW y las tres fases SAE
 
 `e2_staged_training.py` implementa:
 
@@ -31,7 +33,7 @@ Los fallos se codifican como geometría, gradiente ausente, no finitez, recurso 
 
 Los límites internos se comprueban en fronteras de operaciones. El supervisor de perfiles añade un watchdog de tiempo y RSS del grupo de procesos; no se describe como aislamiento de memoria inviolable.
 
-## 29.3 Selección temporal y búsqueda por fases
+## Selección temporal y búsqueda por fases
 
 `e2_temporal_training.py` prepara el escenarioB con entrenamiento interno hasta o−98, validación o−90…o−8 y entrenamiento de reajuste hasta o−8. Cada callback recibe copias del split permitido. Se conserva el calendario y la máscara común, con rezagos1/7/14/28 para las referencias.
 
@@ -43,7 +45,7 @@ El alcance registrado rechaza reducir las18 configuraciones, las1.000 arquitectu
 
 Los callbacks son una frontera de API y copias de datos, no una protección frente a código externo que cierre deliberadamente sobre otros arrays.
 
-## 29.4 Cuatro comparadores clásicos integrados
+## Cuatro comparadores clásicos integrados
 
 `e2_classical_training.py` selecciona18 valores Ridge,18 órdenes ARIMA y tres periodos naive; persistencia no recibe intentos ficticios. Ridge usa las mismas ventanas y escaladores, con intercepto no penalizado.
 
@@ -51,7 +53,7 @@ ARIMA se ajusta con el backend fijado statsmodels0.14.5 y sólo el prefijo permi
 
 El reajuste clásico es fresco. Los recibos guardan coeficientes Ridge, parámetros/estado y versión ARIMA. No se afirma que esos recibos sean por sí solos un formato completo para restaurar cualquier proceso interno de statsmodels.
 
-## 29.5 Qué se ejecutó realmente
+## Qué se ejecutó realmente
 
 La prueba de software recorre un origen de un calendario artificial del año2001, con una barra marcada como inválida:
 
@@ -73,7 +75,7 @@ Los checkpoints de predictor se crean de forma exclusiva, se sincronizan a disco
 
 La evaluación usa el ejecutor fechado previo: comprueba pesos, escaladores, modos train/eval y tasas de dropout, escribe el lote de pronósticos con fsync y después revela el objetivo. Los recibos de métricas artificiales sólo acreditan el flujo del software; no se usan para ordenar modelos científicos.
 
-## 29.6 Perfilado acotado en Codex
+## Perfilado acotado en Codex
 
 Se completaron15 procesos aislados: las14 redes en la referencia correspondiente y un caso TimesNet máximo. Cada referencia usó16 ventanas de entrenamiento y ocho de validación artificiales, dos épocas; SAE contabilizó sus tres etapas. El extremo usó un batch y una época fija. En total hubo **33 pasos AdamW adicionales al fixture integrado**, con cambios de estado en todas las etapas y optimizadores iniciales vacíos.
 
@@ -101,7 +103,7 @@ El caso de225.075.755 parámetros consumió **61.273s** de construcción+ajuste 
 
 Estos tiempos varían entre sesiones. Incluyen costes de inicialización, validación y checkpoints del perfil; no equivalen a latencia pura de un paso ni permiten multiplicar linealmente hasta200 épocas, once orígenes o miles de búsquedas. **Horas y coste monetario de la campaña siguen sin estimar.** El perfil tampoco prueba persistencia de una ejecución larga de Codex ni la memoria necesaria para conservar simultáneamente todas las réplicas finales. La campaña deberá definir carga secuencial de checkpoints o una política equivalente antes de fijar ese presupuesto.
 
-## 29.7 Evidencia, pruebas y reproducción
+## Evidencia, pruebas y reproducción
 
 La batería nueva contiene **59 pruebas**, sin omisiones: etapas, splits y máscaras, parsimonia, fuentes fijadas, cuatro comparadores, fallos, checkpoints, supervisor y correspondencia de los recibos con el código. CI las ejecuta además de las verificaciones NAS y de publicación existentes.
 
@@ -129,7 +131,7 @@ work/training-venv/bin/python scripts/profile_e2_training.py \
 
 Los directorios de salida deben ser nuevos. Esos dos lanzadores generan sus datos artificiales dentro del programa; no aceptan archivos de mercado. Las funciones de entrenamiento en memoria no conceden autorización para abrir datos protegidos.
 
-## 29.8 Próximo cierre científico
+## Próximo cierre científico
 
 El motor ya enlaza selección, fases SAE, reajuste y replay. Antes de la campaña real corresponde cerrar el preregistro de los pilotos de desarrollo, ejecutar el piloto de ruido/potencia y perfilar cohortes y presupuestos reales; después fijar k/R y completar inferencia, calibración, robustez y controles.
 

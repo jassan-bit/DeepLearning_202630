@@ -1,4 +1,6 @@
-# 49. Diagnósticos F2a posteriores al benchmark
+# Diagnósticos F2a posteriores al benchmark
+
+> **Ubicación:** complemento del [capítulo 7](07_ruta_temporal.md). Identificador documental anterior: **§49**; [ver concordancia](concordancia_guia.md).
 
 **Auditoría ejecutada el 13/11/2026, después de conocer el periodo de prueba.** Los residuos de los 81 predictores congelados presentan dependencia temporal y desviaciones de normalidad. La nueva familia exploratoria produce **707 rechazos de 826 contrastes**, después del ajuste Holm a α=0,05. Estos resultados cuestionan la adecuación residual; no justifican declarar buen ajuste, estabilidad o ausencia de sobreajuste.
 

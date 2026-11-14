@@ -1,4 +1,6 @@
-# 31. Optimización de CPU y presupuesto de cómputo en la nube
+# Optimización de CPU y presupuesto de cómputo en la nube
+
+> **Archivo de antecedentes:** documento **§31** del registro anterior. Conserva su fecha, alcance y resultados históricos. [Ver organización del informe](concordancia_guia.md).
 
 **Resultado:** se eligieron el recorte de CPU de TimesNet y dos hilos. Completaron 85/86 perfiles ampliados y los treinta ajustes del nuevo piloto. La nula del generador pasó sus dieciséis validaciones, pero ningún escenario de R respalda el objetivo de 0,80. El R final y el presupuesto primario siguen abiertos; las 7.375,994 horas de la sensibilidad con microperfil son trabajo nominal condicionado.
 

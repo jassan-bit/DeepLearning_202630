@@ -1,4 +1,6 @@
-# 51. Eficiencia, coste observado y compromisos de Pareto
+# Eficiencia, coste observado y compromisos de Pareto
+
+> **Ubicación:** complemento del [capítulo 11](11_hpo_equidad.md). Identificador documental anterior: **§51**; [ver concordancia](concordancia_guia.md).
 
 Los registros originales permiten cuantificar el coste de las fases de entrenamiento de los **78 ajustes finales**: **5 765,09 s (1,6014 h)**, sumados sobre 13 modelos y seis semillas. Esta cantidad corresponde a fases instrumentadas del entrenamiento final. El presupuesto contable cerrado de la campaña es **74,9530 h de 80 h autorizadas** e incluye historia previa, trabajos y tiempo del controlador. Las dos cifras describen ámbitos diferentes y no se suman.
 

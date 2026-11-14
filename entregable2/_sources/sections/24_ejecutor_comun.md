@@ -1,4 +1,6 @@
-# 24. Ejecutor común y disponibilidad temporal
+# Ejecutor común y disponibilidad temporal
+
+> **Archivo de antecedentes:** documento **§24** del registro anterior. Conserva su fecha, alcance y resultados históricos. [Ver organización del informe](concordancia_guia.md).
 
 ## Alcance y separación de evidencias
 

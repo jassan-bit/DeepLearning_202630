@@ -1,4 +1,6 @@
-# 53. Cierre de requisitos y experimentos complementarios
+# Cierre de requisitos y experimentos complementarios
+
+> **Ubicación:** complemento del [capítulo 8](08_reproducibilidad.md). Identificador documental anterior: **§53**; [ver concordancia](concordancia_guia.md).
 
 **Actualización del 14/11/2026, Bogotá:** La consolidación actual presenta un comando de auditoría sin red/GPU y el Apéndice B vigente; §§60/62/63 añaden calibración causal y cobertura condicional, elegibilidad focal y un proxy empírico de ensemble con incertidumbre. No se recuperan δg previo ni un test ciego. [Detalle](61_reproduccion_consolidada.md).
 

@@ -1,4 +1,6 @@
-# 48. Protocolo reducido y seguimiento de la ejecución
+# Protocolo reducido y seguimiento de la ejecución
+
+> **Ubicación:** complemento del [capítulo 9](09_protocolo_registrado.md). Identificador documental anterior: **§48**; [ver concordancia](concordancia_guia.md).
 
 **Cierre complementario vigente: 13/11/2026, 22:42:55 de Bogotá.** Se completaron **81 reproducciones en entorno limpio y 18 ablaciones entrenadas (99/99 ajustes del plan)**, con las comprobaciones numéricas registradas aprobadas para las 81 reproducciones y discrepancias máximas **0** en calibración y prueba. [§55](55_reproduccion_ablaciones.md) presenta los recibos, las discrepancias y las comparaciones, sin cambiar la A2. El límite efectivo es de **84 horas totales**, tras la ampliación de cuatro horas; los registros de 64, 72 y 80 horas que siguen conservan su alcance histórico y todos sus cargos.
 
