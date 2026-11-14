@@ -1,0 +1,31 @@
+model,P_weight,C,U,A,F,P_global,score_lower,score_upper,best_rank,worst_rank,guaranteed_above,guaranteed_below,nonP_component_ratios_preserved,historical_weights_changed,scenario
+FCN-1D,0.1,0.4196378570095203,0.0,1.0,0.25,"unidentified; independently bounded[0,1]",43.553481426171366,53.553481426171366,6,10,,LSTM-autoencoder con predictor | TimesNet | TimeMixer | PatchTST | iTransformer,True,False,declared_sensitivity_only
+ResNet-1D,0.1,0.4196378570095203,0.0,1.0,0.25,"unidentified; independently bounded[0,1]",43.553481426171366,53.553481426171366,6,10,,LSTM-autoencoder con predictor | TimesNet | TimeMixer | PatchTST | iTransformer,True,False,declared_sensitivity_only
+Inception-1D,0.1,0.45200205338809035,0.0,1.0,0.25,"unidentified; independently bounded[0,1]",44.13603696098563,54.13603696098563,6,10,,LSTM-autoencoder con predictor | TimesNet | TimeMixer | PatchTST | iTransformer,True,False,declared_sensitivity_only
+LSTM-autoencoder con predictor,0.1,0.08239219712525668,0.0,1.0,1.0,"unidentified; independently bounded[0,1]",55.48305954825462,65.48305954825463,2,7,FCN-1D | ResNet-1D | Inception-1D,PatchTST,True,False,declared_sensitivity_only
+TimesNet,0.1,0.7745379876796714,0.42857142857142855,1.0,0.25,"unidentified; independently bounded[0,1]",57.655969492519795,67.6559694925198,2,7,FCN-1D | ResNet-1D | Inception-1D,PatchTST,True,False,declared_sensitivity_only
+TSMixer,0.1,0.12679671457905545,0.5714285714285714,1.0,0.3333333333333333,"unidentified; independently bounded[0,1]",50.56805514813728,60.56805514813728,3,10,,PatchTST | iTransformer,True,False,declared_sensitivity_only
+TiDE,0.1,0.12679671457905545,0.5714285714285714,1.0,0.3333333333333333,"unidentified; independently bounded[0,1]",50.56805514813728,60.56805514813728,3,10,,PatchTST | iTransformer,True,False,declared_sensitivity_only
+TimeMixer,0.1,0.4236824093086927,0.7142857142857143,1.0,0.3333333333333333,"unidentified; independently bounded[0,1]",58.48342622469932,68.48342622469931,1,7,FCN-1D | ResNet-1D | Inception-1D,,True,False,declared_sensitivity_only
+PatchTST,0.1,1.0,0.42857142857142855,1.0,0.5,"unidentified; independently bounded[0,1]",67.71428571428572,77.71428571428572,1,3,FCN-1D | ResNet-1D | Inception-1D | LSTM-autoencoder con predictor | TimesNet | TSMixer | TiDE,,True,False,declared_sensitivity_only
+iTransformer,0.1,0.7073921971252567,0.5714285714285714,1.0,0.5,"unidentified; independently bounded[0,1]",65.01877383396891,75.01877383396891,1,5,FCN-1D | ResNet-1D | Inception-1D | TSMixer | TiDE,,True,False,declared_sensitivity_only
+FCN-1D,0.25,0.4196378570095203,0.0,1.0,0.25,"unidentified; independently bounded[0,1]",36.2945678551428,61.2945678551428,1,10,,,True,False,principal
+ResNet-1D,0.25,0.4196378570095203,0.0,1.0,0.25,"unidentified; independently bounded[0,1]",36.2945678551428,61.2945678551428,1,10,,,True,False,principal
+Inception-1D,0.25,0.45200205338809035,0.0,1.0,0.25,"unidentified; independently bounded[0,1]",36.78003080082136,61.78003080082136,1,10,,,True,False,principal
+LSTM-autoencoder con predictor,0.25,0.08239219712525668,0.0,1.0,1.0,"unidentified; independently bounded[0,1]",46.23588295687885,71.23588295687884,1,10,,,True,False,principal
+TimesNet,0.25,0.7745379876796714,0.42857142857142855,1.0,0.25,"unidentified; independently bounded[0,1]",48.046641243766494,73.04664124376649,1,10,,,True,False,principal
+TSMixer,0.25,0.12679671457905545,0.5714285714285714,1.0,0.3333333333333333,"unidentified; independently bounded[0,1]",42.140045956781066,67.14004595678107,1,10,,,True,False,principal
+TiDE,0.25,0.12679671457905545,0.5714285714285714,1.0,0.3333333333333333,"unidentified; independently bounded[0,1]",42.140045956781066,67.14004595678107,1,10,,,True,False,principal
+TimeMixer,0.25,0.4236824093086927,0.7142857142857143,1.0,0.3333333333333333,"unidentified; independently bounded[0,1]",48.73618852058277,73.73618852058277,1,10,,,True,False,principal
+PatchTST,0.25,1.0,0.42857142857142855,1.0,0.5,"unidentified; independently bounded[0,1]",56.42857142857142,81.42857142857142,1,10,,,True,False,principal
+iTransformer,0.25,0.7073921971252567,0.5714285714285714,1.0,0.5,"unidentified; independently bounded[0,1]",54.18231152830742,79.18231152830742,1,10,,,True,False,principal
+FCN-1D,0.4,0.4196378570095203,0.0,1.0,0.25,"unidentified; independently bounded[0,1]",29.03565428411424,69.03565428411424,1,10,,,True,False,declared_sensitivity_only
+ResNet-1D,0.4,0.4196378570095203,0.0,1.0,0.25,"unidentified; independently bounded[0,1]",29.03565428411424,69.03565428411424,1,10,,,True,False,declared_sensitivity_only
+Inception-1D,0.4,0.45200205338809035,0.0,1.0,0.25,"unidentified; independently bounded[0,1]",29.424024640657084,69.42402464065708,1,10,,,True,False,declared_sensitivity_only
+LSTM-autoencoder con predictor,0.4,0.08239219712525668,0.0,1.0,1.0,"unidentified; independently bounded[0,1]",36.98870636550308,76.98870636550308,1,10,,,True,False,declared_sensitivity_only
+TimesNet,0.4,0.7745379876796714,0.42857142857142855,1.0,0.25,"unidentified; independently bounded[0,1]",38.437312995013194,78.4373129950132,1,10,,,True,False,declared_sensitivity_only
+TSMixer,0.4,0.12679671457905545,0.5714285714285714,1.0,0.3333333333333333,"unidentified; independently bounded[0,1]",33.71203676542485,73.71203676542484,1,10,,,True,False,declared_sensitivity_only
+TiDE,0.4,0.12679671457905545,0.5714285714285714,1.0,0.3333333333333333,"unidentified; independently bounded[0,1]",33.71203676542485,73.71203676542484,1,10,,,True,False,declared_sensitivity_only
+TimeMixer,0.4,0.4236824093086927,0.7142857142857143,1.0,0.3333333333333333,"unidentified; independently bounded[0,1]",38.988950816466215,78.98895081646621,1,10,,,True,False,declared_sensitivity_only
+PatchTST,0.4,1.0,0.42857142857142855,1.0,0.5,"unidentified; independently bounded[0,1]",45.14285714285714,85.14285714285714,1,10,,,True,False,declared_sensitivity_only
+iTransformer,0.4,0.7073921971252567,0.5714285714285714,1.0,0.5,"unidentified; independently bounded[0,1]",43.34584922264594,83.34584922264594,1,10,,,True,False,declared_sensitivity_only

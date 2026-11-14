@@ -2,7 +2,7 @@
 
 **Actualización del 14/11/2026, Bogotá:** La consolidación actual presenta un comando de auditoría sin red/GPU y el Apéndice B vigente; §§60/62/63 añaden calibración causal y cobertura condicional, elegibilidad focal y un proxy empírico de ensemble con incertidumbre. No se recuperan δg previo ni un test ciego. [Detalle](61_reproduccion_consolidada.md).
 
-**Cierre documental vigente:** [§62](62_cierre_literatura_focal.md) añade un escenario de 50/50 componentes, corte Scopus uniforme, calidad de nueve fuentes y catorce inclusiones aplicadas. Datos y código tienen publicación pública identificada para 9/9 fuentes. PRISMA global y selección prospectiva permanecen abiertos.
+**Cierre documental vigente:** [§62](62_cierre_literatura_focal.md) acredita la revisión de los cuatro originales y el cierre de las treinta decisiones focales por rol, con **17 inclusiones aplicadas y cero accesos pendientes**. La comparación se estratifica; la guía no exige preregistro bibliográfico. El flujo global permanece incompleto y conserva su tarea de recuperación. Los dos contextos con efecto no identificado tienen revisión cerrada y limitación explícita.
 
 **Cierre complementario verificado: 13/11/2026, 22:42:55 de Bogotá; 99/99 ajustes completados.** Son **81 reproducciones** de los predictores y **18 ablaciones** del autoencoder; el resumen registra `reproduction_passed=true`, sin fallos de reproducción ni trabajos pendientes. [§55](55_reproduccion_ablaciones.md) reúne los resultados, discrepancias y procedencia de ese cierre en A100. Los suplementos son posteriores al conocimiento del periodo de prueba. No reemplazan la A2, sus veinte contrastes primarios, los predictores congelados ni los registros históricos.
 
