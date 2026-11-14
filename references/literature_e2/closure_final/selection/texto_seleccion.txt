@@ -1,0 +1,33 @@
+Selección documental con comparaciones estratificadas
+
+La guía §3.2 pide literalmente: «Criterios de priorización con puntaje explícito y reproducible: citación normalizada por antigüedad, recencia, desempeño reportado en datasets comparables, disponibilidad de implementación y representatividad de la familia. Reportar la tabla de puntajes completa, no solo el resultado». También exige exactamente diez modelos, al menos cuatro familias y justificar los modelos excluidos más citados. Ese apartado no exige un preregistro bibliográfico ni dice que el puntaje deba preceder al benchmark. La cronología retrospectiva se conserva como hecho; no debe evaluarse como incumplimiento de un preregistro bibliográfico que el texto no establece. Tampoco se afirma que este cálculo haya causado la selección ya realizada.
+
+Solución aplicada
+
+Se reemplaza el orden global de los P heterogéneos por paneles separados por tarea, dataset, horizonte, lookback, métrica y fuente/tabla. Dentro de un panel con rango no degenerado se calcula P=(máxima pérdida−pérdida)/(máxima pérdida−mínima pérdida), usando todos sus comparadores. S_local mantiene los pesos C/U/P/A/F publicados. Su orden sólo describe candidatos del mismo panel; no es un ranking predictivo ni una comparación con igual HPO demostrada. Los componentes globalmente no comparables quedan no identificados y no se imputan.
+
+El archivo stratified_scores.csv contiene los cálculos y localizadores; stratum_coverage.csv muestra los denominadores. La red Inception individual y el ensemble se conservan como dos variantes del mismo archivo UCR2018/128, aparte de UCR44/MPCE. Al separar estrictamente el lookback de Beijing, SAE-2 queda solo en L25 frente a los otros modelos L30: P comparable en ese estrato no se identifica. El P previo RMSE=0 y sus sensibilidades MAE/SMAPE permanecen antecedentes descriptivos del pool mixto, sin convertirse en evidencia a lookback constante.
+
+Resultados ETTh1, H96, L96, MSE
+
+Tabla 10 de iTransformer: cuatro sistemas actuales, tres familias. TimesNet=0,384; iTransformer=0,386; PatchTST=0,414; TiDE=0,479. Puntajes locales respectivos:72,33;78,28;78,01;57,88. El orden por puntaje combina cinco criterios y difiere del orden por MSE; no representa significación estadística.
+Tabla 13 de TimeMixer: tres sistemas actuales, tres familias. TimeMixer=0,375; TimesNet=0,384; PatchTST=0,460. Puntajes locales:73,74;72,59;77,09.
+Tabla 23 de TimeMixer, columnas unificadas: TimeMixer=0,375 y TSMixer=0,387; dos sistemas de una familia MLP. Puntajes locales:73,74 y60,16. La vinculación L96 procede del protocolo unificado documentado; no se verifican por eso los bytes de splits o igual presupuesto.
+
+Ninguna de estas tablas contiene los seis modelos. Su unión los cubre nominalmente, pero no constituye un pool único ni prueba controlada de dos familias: las Tablas10/13 incluyen tres familias actuales y la23 una. PatchTST cambia de0,414 a0,460 entre fuentes pese al mismo dataset/horizonte/lookback nominal; DLinear cambia de0,386 a0,397 y FEDformer de0,376 a0,395. No se deduce transitividad entre resultados de tablas diferentes ni equivalencia de sus HPO, escalado o implementaciones. La tabla TSMixer L512 permanece un estrato distinto.
+
+Rangos globales con P no identificado
+
+Se define B=100(0,15C+0,15U+0,25A+0,20F). El posible S_global pertenece a[B;B+25] cuando P_global∈[0,1]. Los extremos son límites algebraicos, no imputaciones, IC ni nuevas observaciones. Con los pesos originales los diez intervalos de rango son1–10 y no existe ningún par con dominancia robusta de puntaje. La tabla robust_global_P_bounds.csv contiene los intervalos exactos y las relaciones de robust_dominance.csv. Por ejemplo, FCN[36,29;61,29], SAE[46,24;71,24], PatchTST[56,43;81,43] e iTransformer[54,18;79,18].
+
+La sensibilidad declarada reduce o aumenta sólo el peso de P y preserva las razones entre los otros cuatro pesos. Con pesoP=0,10 hay21 relaciones de dominancia documental; PatchTST tiene rango1–3 e iTransformer1–5. Con pesoP=0,40 vuelven a desaparecer todas las dominancias robustas. No se elige el peso favorable ni se altera el histórico principal0,25. El orden depende de preferencias y de información de desempeño aún no calibrada; los datos no identifican un mejor Top10 global por esta suma.
+
+Justificación evaluable del catálogo
+
+catalogue_selection_rationale.csv justifica cada sistema por el mecanismo que aporta, su fuente/código y transferencia explícita a D7. La cobertura consta de cuatro convolucionales, un recurrente/autoencoder, tres MLP y dos sistemas de atención. No se cuenta dos veces Wang como estudio ni se multiplican familias por cambiar nombres. Estas son razones de diseño y representatividad, no superioridad frente a candidatos omitidos.
+
+named_exclusions_preserved.csv conserva los cuatro comparadores históricos y sus citas conocidas. Informer, Autoformer y Crossformer permanecen antecedentes de atención y S-Mamba de estados; su exclusión responde al alcance autorizado y a las funciones priorizadas del catálogo, no a inferioridad ni dominancia demostradas. Las cifras ausentes de citas de Informer/Autoformer no son cero y no se certifica un censo global de todos los muy citados excluidos.
+
+Estado de cierre
+
+Esta solución entrega comparación estratificada, tabla de criterios completa con no identificación explícita, rangos y razones por modelo, sin un ranking global inválido. La guía permite datasets comparables distintos de Bitcoin; no autoriza equiparar utilidad de clasificación, PM2.5 y ETTh1 por compartir un número normalizado. No hay incumplimiento demostrable de preregistro bibliográfico en §3.2. Sí se conserva como limitación de la selección documentada que no se demuestra prioridad global de estos diez frente al universo de candidatos ni igualdad de todos sus protocolos. Ese límite describe lo que esta selección permite concluir; no se presenta como una tarea futura capaz de convertirla en una decisión prospectiva. El cribado global y el listado exhaustivo de excluidos siguen con su alcance propio. No se utiliza A2, no se reajustan modelos y no se modifica ningún antecedente.

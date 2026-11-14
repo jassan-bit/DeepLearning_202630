@@ -1,0 +1,17 @@
+stratum_id,task,dataset,lookback,horizon,metric,source_candidates,current_model_count,current_models,families_current,same_source_pool_only
+wang_UCR44_TableI_MPCE_11__L,univariate series classification; aggregate over 44 datasets,UCR44,,,MPCE,11,2,FCN-1D | ResNet-1D,convolutional,True
+sae_Beijing_Table2_4_RMSE__L30,hourly next-step scalar forecasting,Beijing PM2.5,30,1,RMSE,3,0,,,True
+sae_Beijing_Table2_4_RMSE__L25,hourly next-step scalar forecasting,Beijing PM2.5,25,1,RMSE,1,1,LSTM-autoencoder con predictor,recurrent_autoencoder,True
+sae_Beijing_Table2_4_MAE__L30,hourly next-step scalar forecasting,Beijing PM2.5,30,1,MAE,3,0,,,True
+sae_Beijing_Table2_4_MAE__L25,hourly next-step scalar forecasting,Beijing PM2.5,25,1,MAE,1,1,LSTM-autoencoder con predictor,recurrent_autoencoder,True
+sae_Beijing_Table2_4_SMAPE__L30,hourly next-step scalar forecasting,Beijing PM2.5,30,1,SMAPE,3,0,,,True
+sae_Beijing_Table2_4_SMAPE__L25,hourly next-step scalar forecasting,Beijing PM2.5,25,1,SMAPE,1,1,LSTM-autoencoder con predictor,recurrent_autoencoder,True
+itransformer_ETTh1_H96_L96_Table10_11_MSE__L96,multivariate forecast of all seven variables,ETTh1,96,96,MSE,11,4,PatchTST | TiDE | TimesNet | iTransformer,convolutional | mlp_mixing | transformer_attention,True
+itransformer_ETTh1_H96_L96_Table10_11_MAE__L96,multivariate forecast of all seven variables,ETTh1,96,96,MAE,11,4,PatchTST | TiDE | TimesNet | iTransformer,convolutional | mlp_mixing | transformer_attention,True
+timemixer_ETTh1_H96_L96_Table13_11_MSE__L96,multivariate forecast of all seven variables,ETTh1,96,96,MSE,11,3,PatchTST | TimeMixer | TimesNet,convolutional | mlp_mixing | transformer_attention,True
+timemixer_ETTh1_H96_L96_Table13_11_MAE__L96,multivariate forecast of all seven variables,ETTh1,96,96,MAE,11,3,PatchTST | TimeMixer | TimesNet,convolutional | mlp_mixing | transformer_attention,True
+timemixer_ETTh1_H96_L96_Table23_4_MSE__L96,multivariate forecast of all seven variables,ETTh1,96,96,MSE,4,2,TSMixer | TimeMixer,mlp_mixing,True
+timemixer_ETTh1_H96_L96_Table23_4_MAE__L96,multivariate forecast of all seven variables,ETTh1,96,96,MAE,4,2,TSMixer | TimeMixer,mlp_mixing,True
+tsmixer_ETTh1_H96_L512_Table3_7_MSE__L512,multivariate forecast of all seven variables,ETTh1,512,96,MSE,7,2,PatchTST | TSMixer,mlp_mixing | transformer_attention,True
+tsmixer_ETTh1_H96_L512_Table3_7_MAE__L512,multivariate forecast of all seven variables,ETTh1,512,96,MAE,7,2,PatchTST | TSMixer,mlp_mixing | transformer_attention,True
+author_UCR128_two_variants__Larchive-provided variable sequence lengths,mean classification error over all128datasets,UCR2018/128,archive-provided variable sequence lengths,NA,mean_classification_error,2,1,Inception-1D,convolutional,True

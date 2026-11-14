@@ -1,0 +1,64 @@
+# 3. Revisión Sistemática del Estado del Arte
+
+**Resultado de esta etapa:** selección bibliográfica de **diez modelos de Deep Learning para pronosticar la volatilidad de Bitcoin**, con exportaciones de **WoS y Scopus**, lectura de **diez originales completos —215 páginas físicas—** y código de autores identificado por commit y hash. Las adaptaciones a D7×5 → σ₇ todavía no se han implementado ni entrenado.
+
+**Estado de la revisión:** recepción, deduplicación, lectura y extracción del subcorpus de diez arquitecturas ejecutadas. Continúan abiertos la cobertura global de las consultas, el cribado de los 7.833 grupos, los textos completos de los estudios aplicados de apoyo, los cuartiles por año y las tres búsquedas transversales. Se distingue esta selección trazable de un PRISMA global cerrado.
+
+La disposición más específica de §3.2 de la guía exige el Top 10 **adicional** a GRU, LSTM y TCN de E1, una referencia no profunda y otra trivial: **mínimo quince configuraciones**. Las cuatro familias deben estar representadas dentro de los diez modelos propuestos, sin contar esas referencias.
+
+## 3.1 Estrategia de búsqueda y trazabilidad
+
+### 3.1.1 Cadenas aportadas y procedencia
+
+El usuario ejecutó búsquedas manuales y aportó tres exportaciones nativas WoS de texto plano, con registro completo y referencias citadas. También proporcionó estas dos cadenas:
+
+**Q1 · Aplicación: criptomonedas y volatilidad.**
+
+```text
+TS=((bitcoin OR ethereum OR cryptocurrenc* OR cryptoasset*)
+AND (volatility OR "realized volatility" OR "realised volatility")
+AND ("deep learning" OR "neural network*" OR transformer*
+OR LSTM OR GRU OR CNN OR TCN))
+```
+
+**Q2 · Familias y mecanismos candidatos.**
+
+```text
+TS=(("time series" OR forecasting OR "temporal prediction")
+AND (TSMixer OR TiDE OR TimeMixer OR PatchTST OR iTransformer
+OR Crossformer OR TimesNet OR MICN OR Mamba
+OR "structured state space"))
+```
+
+Se conservan como dos consultas, no como una cadena unida mediante una coma. Q2 es la consulta efectivamente aportada: **Informer y Autoformer se identificaron en la evidencia examinada y se ampliaron mediante fuentes de autores; no se atribuye a esa Q2 una búsqueda nominal que no contiene.**
+
+| Archivo recibido | Registros completos PT–ER | Evidencia disponible |
+|---|---:|---|
+| `savedrecs.txt` | 302 | Cantidad coincidente con la captura WoS de 302 resultados |
+| `savedrecs (1).txt` | 500 | Lote exportado; rango global no confirmado |
+| `savedrecs (2).txt` | 500 | Lote exportado; rango global no confirmado |
+| Total de ocurrencias recibidas | **1.302** | No equivale al universo global desconocido de las dos consultas |
+
+Los TXT no incorporan la cadena ni el rango global de exportación. La asociación archivo–consulta se mantiene como inferencia pendiente de confirmación; no impide analizar los registros como un conjunto recibido. Los originales se preservan fuera de los archivos públicos. Se publican metadatos bibliográficos derivados, identificadores, conteos y hashes, sin reproducir el conjunto de abstracts, referencias, emails o direcciones.
+
+**Fechas:** el campo WoS `DA` indica **2026-11-06**, sin hora ni zona. La recepción administrativa se registra como **2026-11-05, America/Bogota**. No se convierte el campo DA en una fecha/hora de ejecución de la consulta que el archivo no proporciona. El [manifiesto de procedencia](../_static/literature_wos/source_manifest.json) conserva las identidades de los tres archivos.
+
+### 3.1.2 Bases, periodo y cobertura
+
+| Fuente | Estado verificable de esta etapa |
+|---|---|
+| Web of Science | Tres exportaciones nativas: 1.302 ocurrencias y 1.298 grupos bibliográficos; total global y rangos de Q2 no confirmados |
+| Scopus | CSV nativo con **7.500 registros de 7.874 mostrados** en título/resumen/palabras clave: 95,25 % recibido y **374 no recibidos**. Los 2.845 resultados de la captura anterior en Keywords corresponden a otra cobertura y no se suman |
+| IEEE Xplore y arXiv | Capturas de páginas de búsqueda sin exportación de resultados. Los PDF recuperados directamente de arXiv/OpenReview son originales leídos, sin acreditarlos como una búsqueda sistemática adicional |
+| GitHub de autores | Diez backbones con código, revisiones y hashes verificados; fuente primaria de implementación, sin contarlo como base bibliográfica adicional |
+
+La guía exige al menos dos bases y permite arXiv como complemento. **Se recibieron exportaciones nativas de dos bases: WoS y Scopus.** La cobertura parcial no se convierte en exhaustividad. El [manifiesto Scopus](../_static/literature_scopus/source_manifest.json) conserva hash, nombre y procedencia; el [resumen combinado](../_static/literature_scopus/summary.json) permite comprobar las cuentas. Los intentos del asistente a plataformas académicas fueron bloqueados por la red; las exportaciones nativas proceden del trabajo manual del usuario.
+
+El periodo principal propuesto es **2019–2026**, con trabajos fundacionales anteriores justificados por separado. Las exportaciones WoS recibidas contienen años nominales **2006–2027**, por lo que no se afirma que ya estén filtradas a ese intervalo. Sobre los 1.298 grupos bibliográficos WoS deduplicados:
+
+- 1.222 tienen año nominal 2019–2026.
+- 26 tienen año nominal fuera del intervalo y *Early Access* 2019–2026: requieren verificar la fecha efectiva, sin descartarlos solo por el volumen de 2027.
+- 49 quedan fuera de la ventana y requieren justificación fundacional o exclusión.
+- Uno no tiene la ventana de publicación confirmada con los campos disponibles.
+
+Scopus contiene años nominales 1997–2027, incluidos 112 registros de 2027 sin fecha explícita de Early Access: deben verificarse antes de declararlos elegibles. No se traslada automáticamente a Scopus la fecha de publicación anticipada disponible en WoS. La cadena completa y los filtros efectivos del CSV no están embebidos en el archivo; se conserva la consulta aportada y la captura, sin inventar filtros o rangos. No se extrapolan frecuencias de estas exportaciones parciales a toda la literatura.

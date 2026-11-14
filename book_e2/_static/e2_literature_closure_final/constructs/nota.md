@@ -1,0 +1,14 @@
+**La revisión de ambas fuentes está cerrada para la entrega.** Su uso contextual está adjudicado, la calidad y las contradicciones están documentadas y no quedan tareas de acceso ni de revisión. La identificación del efecto aplicado permanece sin verificar. Una aclaración de autor es opcional y no bloquea este cierre documental.
+
+| Fuente | Rol adjudicado | Efecto aplicado | Acceso pendiente | Revisión pendiente | Aclaración autor |
+|---|---|---|---|---|---|
+| Zahid, DOI10.3390/risks10120237 | Contexto, cerrado | No verificado | No | No | Opcional |
+| CryptoMamba-SSM, DOI10.1109/OJCS.2026.3651226 | Contexto, cerrado | No verificado | No | No | Opcional |
+
+El campo histórico y científico `applied_eligibility=pendiente` se conserva conforme al protocolo v2: expresa que la operacionalización empírica no está verificada. **No representa una tarea abierta que el estudiante deba resolver sin nueva evidencia.** Los campos actuales de entrega distinguen ese estado de conocimiento del trabajo documental ya completado: `role_adjudication=closed_context`, `applied_effect_identification=unverified`, `outstanding_access_task=false`, `outstanding_review_task=false` y `author_clarification_optional=true`. Esto no modifica criterios de inclusión ni fuerza una decisión científica.
+
+La guía§3.1, página10, pide criterios explícitos, extracción estructurada, pertinencia, evaluación de calidad y razones de las decisiones. No exige eliminar toda incertidumbre de los informes originales ni obtener aclaraciones de autor para conservar una fuente contextual. Interpretar sus carencias como límites documentados satisface el trabajo de valoración que sí puede completarse; no certifica replicabilidad o eficacia que el informe no permite verificar. Esta es una interpretación de requisitos, no una certificación institucional.
+
+En Zahid quedan sin conciliar datos diarios, agregación intradía y alineación de horizontes: [original editorial](https://www.mdpi.com/2227-9091/10/12/237), §§3.1–3.3/ecuaciones12–14 y §4.3. En CryptoMamba-SSM no se identifica estimador, escala y transformación por tabla: [manuscrito aceptado](https://www.researchgate.net/publication/399710354_CryptoMamba-SSM_Linear_Complexity_State_Space_Models_for_Cryptocurrency_Volatility_Prediction), III.E/ecuaciones18–20, tabla2, B.1/ecuación21 y H.1. No se infieren etiquetas ni se confunde incertidumbre predictiva con varianza de retornos.
+
+La [matriz normativa](normative_3_1_matrix.csv) identifica para cada requisito qué está hecho y qué limitación científica se conserva. El [estado actual de entrega](current_delivery_state.csv) contiene las dos filas integrables. No se necesita otra copia idéntica de los originales. Ambos estudios permanecen fuera del conteo de inclusiones aplicadas y del pooling; sus contradicciones permanecen visibles.
