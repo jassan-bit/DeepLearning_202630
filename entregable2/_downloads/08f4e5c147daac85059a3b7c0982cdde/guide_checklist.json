@@ -1,0 +1,327 @@
+{
+  "version": "e2-eda-current-guide-checklist-v1",
+  "scope": "Guía §2.1 + bloques B y C y requisito obligatorio de trazabilidad; reutilización E1 y descripción retrospectiva separadas",
+  "operations": {
+    "model_fits": 0,
+    "model_inferences": 0,
+    "new_predictions": 0,
+    "raw_archives_opened": 0,
+    "historical_artifacts_modified": false
+  },
+  "interpretation": {
+    "inherited_partition": "accepted; no new test is required to retain E1 inheritance; prior exposure remains disclosed",
+    "label_noise": "external noise of sigma7 and attainable ceiling remain unidentified; reconstruction precision does not close this limitation",
+    "posthoc": "current target profiles and final residual diagnostics are not presented as pre-benchmark EDA decisions",
+    "independence": "disjoint outcome IDs do not imply disjoint raw supports or temporal independence"
+  },
+  "requirement_count": 34,
+  "decision_traceability": "decision_traceability.csv",
+  "requirements": [
+    {
+      "requirement_id": "EDA-00",
+      "guide_section": "2",
+      "requirement": "El EDA debe ser exhaustivo, reproducible y orientado a decisiones de modelado. El EDA del Entregable 1 se amplía aquí; no se descarta.",
+      "status": "covered_with_limits",
+      "source": "decision_traceability.csv; guide_checklist.json; partition_audit.json; summary.json",
+      "scope": "Herencia E1 y ampliación documental/descriptiva E2",
+      "chapter_section": "2; 2.3; 2.4"
+    },
+    {
+      "requirement_id": "GEN-OBJ-DIST",
+      "guide_section": "2.1",
+      "requirement": "Distribución (histogramas, densidades o conteos por clase).",
+      "status": "covered",
+      "source": "../eda_decisions/heredado/eda_general_quality/target_profiles.csv; target_profiles.csv; target_ecdf.svg",
+      "scope": "Desarrollo heredado y perfil posterior del calendario vigente",
+      "chapter_section": "2.1.1; 2.1.5"
+    },
+    {
+      "requirement_id": "GEN-OBJ-CLASSES",
+      "guide_section": "2.1",
+      "requirement": "Ratio de desbalance y detección de clases raras; entropía de la distribución de clases.",
+      "status": "not_applicable",
+      "source": "../eda_decisions/heredado/eda_general_quality/target_profiles.csv",
+      "scope": "σ₇ continua",
+      "chapter_section": "2.1.1"
+    },
+    {
+      "requirement_id": "GEN-OBJ-TRANSFORM",
+      "guide_section": "2.1",
+      "requirement": "En objetivos continuos: asimetría, curtosis, colas pesadas y posible transformación (log, Box–Cox, Yeo–Johnson).",
+      "status": "covered_with_limits",
+      "source": "../eda_decisions/objective_transformations.csv; ../eda_decisions/heredado/eda_general_quality/target_profiles.csv",
+      "scope": "Diagnóstico histórico de desarrollo; sin elección por test",
+      "chapter_section": "2.1.1"
+    },
+    {
+      "requirement_id": "GEN-OBJ-IMPLICATION",
+      "guide_section": "2.1",
+      "requirement": "Implicación: resampling, ponderación de pérdidas (focal loss, class-balanced loss) y métricas robustas al desbalance.",
+      "status": "not_applicable_with_regression_decision",
+      "source": "../eda_decisions/heredado/eda_general_quality/target_profiles.csv; ../eda_traceability/hallazgo_decision.csv",
+      "scope": "Regresión continua con dependencia temporal",
+      "chapter_section": "2.1.1"
+    },
+    {
+      "requirement_id": "GEN-QUALITY-MISSING",
+      "guide_section": "2.1",
+      "requirement": "Valores faltantes, datos corruptos o inconsistentes.",
+      "status": "covered",
+      "source": "../eda_decisions/heredado/eda_general_quality/quality_by_year.csv; ../eda_decisions/heredado/eda_general_quality/window_eligibility.csv",
+      "scope": "Desarrollo E1 2023/2024",
+      "chapter_section": "2.1.2"
+    },
+    {
+      "requirement_id": "GEN-QUALITY-DUPLICATES",
+      "guide_section": "2.1",
+      "requirement": "Duplicados exactos y casi duplicados (near-duplicates), críticos en imágenes y texto.",
+      "status": "covered_with_limits",
+      "source": "../eda_decisions/nearest_window_summary.csv; ../eda_decisions/nearest_window_sensitivity.csv; ../eda_decisions/heredado/eda_general_quality/quality_by_year.csv",
+      "scope": "Train inicial343 y desarrollo de 2024, n=366; no auditoría nueva de vecinos del test de 608 fechas",
+      "chapter_section": "2.1.2"
+    },
+    {
+      "requirement_id": "GEN-QUALITY-NOISE",
+      "guide_section": "2.1",
+      "requirement": "Estimación de ruido de etiquetas (por ejemplo, mediante validación cruzada de confianza o inspección manual de una muestra estratificada) y su efecto sobre el techo de desempeño (Sección 12).",
+      "status": "limitation_not_identified",
+      "source": "../eda_decisions/heredado/eda_general_quality/label_reconstruction_summary.csv; ../e2_error_ceiling_final_audit_20261114/ceiling_gamma_references.json",
+      "scope": "Limitación real; sin anotadores humanos ni medición externa comparable",
+      "chapter_section": "2.1.2; 2.2.4; 2.4"
+    },
+    {
+      "requirement_id": "GEN-BIAS-TYPES",
+      "guide_section": "2.1",
+      "requirement": "Sesgos de representación, temporales, semánticos y de adquisición.",
+      "status": "covered_with_limits",
+      "source": "../eda_decisions/heredado/eda_general_quality/quality_by_year.csv; ../eda_decisions/heredado/eda_temporal_specific/rolling_relationship_summary.csv",
+      "scope": "Una serie y periodos observados",
+      "chapter_section": "2.1.3"
+    },
+    {
+      "requirement_id": "GEN-BIAS-SHORTCUTS",
+      "guide_section": "2.1",
+      "requirement": "Correlaciones espurias entre atributos irrelevantes y la etiqueta (shortcut learning).",
+      "status": "covered_with_limits",
+      "source": "../eda_decisions/heredado/eda_temporal_specific/lag_correlations_common_train.csv; ../eda_decisions/heredado/eda_temporal_specific/availability_contract.csv",
+      "scope": "Asociaciones de desarrollo y contrato causal",
+      "chapter_section": "2.1.3; 2.2.1; 2.2.2"
+    },
+    {
+      "requirement_id": "GEN-BIAS-IMPLICATION",
+      "guide_section": "2.1",
+      "requirement": "Implicación: balanceo, recolección adicional, validación estratificada o por grupos.",
+      "status": "covered_with_limits",
+      "source": "../eda_decisions/heredado/eda_temporal_specific/rolling_relationship_summary.csv; partition_audit.json",
+      "scope": "Elección pertinente para regresión de una serie",
+      "chapter_section": "2.1.3"
+    },
+    {
+      "requirement_id": "GEN-SPLIT-DEFINED",
+      "guide_section": "2.1",
+      "requirement": "Conjuntos de entrenamiento, validación y prueba definidos explícitamente y con semilla documentada.",
+      "status": "covered",
+      "source": "partition_audit.json; ../reduced_protocol_20261112/calendar_registered_bytes_v2.csv",
+      "scope": "Protocolo ejecutado actual",
+      "chapter_section": "2.1.4"
+    },
+    {
+      "requirement_id": "GEN-SPLIT-STRATEGY",
+      "guide_section": "2.1",
+      "requirement": "Estrategia justificada: aleatoria, estratificada, por grupos (group k-fold), temporal (rolling origin) o espacial por bloques.",
+      "status": "covered",
+      "source": "partition_audit.json; ../reduced_protocol_20261112/protocol.json",
+      "scope": "Calendario actual; diez folds/305 fechas conservados como antecedentes",
+      "chapter_section": "2.1.4; 2.2.3"
+    },
+    {
+      "requirement_id": "GEN-SPLIT-AUDIT",
+      "guide_section": "2.1",
+      "requirement": "Verificación empírica de que no existe solapamiento entre particiones (leakage audit, Sección 10).",
+      "status": "covered_with_limits",
+      "source": "partition_audit.json; ../e2_benchmark_final_20261113/data_admission.json",
+      "scope": "Fechas, máscaras, firmas y recibos guardados; sin reabrir tensores privados",
+      "chapter_section": "2.1.4"
+    },
+    {
+      "requirement_id": "GEN-SPLIT-SEALED",
+      "guide_section": "2.1",
+      "requirement": "El conjunto de prueba se sella (se almacena su hash) antes de entrenar cualquier modelo.",
+      "status": "inherited_partition_accepted",
+      "source": "../e2_benchmark_final_20261113/final_freeze.json; ../e2_benchmark_final_20261113/data_admission.json; partition_audit.json",
+      "scope": "Partición heredada aceptada; alcance retrospectivo explícito",
+      "chapter_section": "2.1.4; 2.4"
+    },
+    {
+      "requirement_id": "GEN-SHIFT-COMPARE",
+      "guide_section": "2.1",
+      "requirement": "Comparación de distribuciones entre train, validación y test (por ejemplo, pruebas de Kolmogorov–Smirnov, MMD o clasificador adversarial).",
+      "status": "covered_with_limits",
+      "source": "target_profiles.csv; target_ecdf.svg; inherited_annual_profiles.csv; summary.json",
+      "scope": "Descripción posterior; covariables anuales heredadas con referencia distinta",
+      "chapter_section": "2.1.5"
+    },
+    {
+      "requirement_id": "GEN-SHIFT-IMPLICATION",
+      "guide_section": "2.1",
+      "requirement": "Implicación: necesidad de adaptación de dominio o de evaluación en escenarios fuera de distribución.",
+      "status": "covered_with_limits",
+      "source": "target_profiles.csv; inherited_annual_profiles.csv; ../eda_known_shift/distribution_distances.csv",
+      "scope": "Diagnóstico actual y antecedente explícitamente separados",
+      "chapter_section": "2.1.5"
+    },
+    {
+      "requirement_id": "B-STL",
+      "guide_section": "2.2.B",
+      "requirement": "Visualización temporal: descomposición en tendencia, estacionalidad y ruido (STL o equivalente).",
+      "status": "covered_inherited",
+      "source": "https://jassan-bit.github.io/DeepLearning_202630/sections/02_eda.html; https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/main/results/eda_development/summary.json",
+      "scope": "EDA E1 de entrenamiento; reutilización declarada",
+      "chapter_section": "2.2.4; 7.4"
+    },
+    {
+      "requirement_id": "B-STATIONARITY",
+      "guide_section": "2.2.B",
+      "requirement": "Estacionariedad: análisis visual y pruebas formales (ADF, KPSS); implicación en diferenciación o transformaciones.",
+      "status": "covered_inherited_with_limits",
+      "source": "https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/main/results/eda_development/stationarity_daily.csv; https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/main/results/eda_development/stationarity_volatility.csv; https://jassan-bit.github.io/DeepLearning_202630/sections/02_eda.html",
+      "scope": "Tramos diarios continuos de entrenamiento E1",
+      "chapter_section": "2.2.4; 7.4"
+    },
+    {
+      "requirement_id": "B-DEPENDENCE",
+      "guide_section": "2.2.B",
+      "requirement": "Dependencia temporal: ACF, PACF, identificación de rezagos relevantes y posible dependencia de largo alcance.",
+      "status": "covered_inherited_with_limits",
+      "source": "https://jassan-bit.github.io/DeepLearning_202630/sections/02_eda.html; https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/main/results/eda_development/summary.json",
+      "scope": "Frecuencia diaria de entrenamiento; otras frecuencias identificadas aparte",
+      "chapter_section": "2.2.4; 7.4"
+    },
+    {
+      "requirement_id": "B-ARCH-BDS",
+      "guide_section": "2.2.B",
+      "requirement": "Heterocedasticidad y no linealidad: pruebas ARCH y BDS sobre la serie o sus residuos iniciales.",
+      "status": "covered_inherited_with_limits",
+      "source": "https://jassan-bit.github.io/DeepLearning_202630/sections/02_eda.html; https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/main/results/eda_development/summary.json; ../e2_f2a_audit_20261113/diagnostics_by_test.csv",
+      "scope": "E1 heredado; post hoc final separado",
+      "chapter_section": "2.2.4; 7.4"
+    },
+    {
+      "requirement_id": "B-OUTLIERS-CHANGES",
+      "guide_section": "2.2.B",
+      "requirement": "Outliers y cambios estructurales: detección de picos, anomalías y puntos de cambio; evaluación de su impacto.",
+      "status": "covered_inherited_with_limits",
+      "source": "https://jassan-bit.github.io/DeepLearning_202630/sections/02_eda.html; https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/main/results/eda_development/summary.json; ../eda_decisions/heredado/eda_general_quality/quality_by_year.csv",
+      "scope": "Desarrollo E1; diagnóstico exploratorio",
+      "chapter_section": "2.1.2; 2.2.4; 7.4"
+    },
+    {
+      "requirement_id": "B-FREQUENCY",
+      "guide_section": "2.2.B",
+      "requirement": "Frecuencia y granularidad: intervalo temporal, huecos y estrategia de imputación sin fuga de información futura.",
+      "status": "covered",
+      "source": "../eda_decisions/heredado/eda_general_quality/window_eligibility.csv; ../eda_decisions/heredado/eda_temporal_specific/availability_contract.csv; partition_audit.json",
+      "scope": "E1 desarrollo y comprobación actual de fechas",
+      "chapter_section": "2.1.2; 2.2.1; 2.2.4"
+    },
+    {
+      "requirement_id": "B-PREDICTABILITY",
+      "guide_section": "2.2.B",
+      "requirement": "Predictibilidad intrínseca: entropía de permutación o error de un pronóstico ingenuo como cota informal del margen de mejora.",
+      "status": "covered_with_limits",
+      "source": "../eda_decisions/forward_reference_metrics.csv; ../e2_error_ceiling_final_audit_20261114/permutation_entropy.csv",
+      "scope": "Referencia informal de desarrollo; entropía final post hoc explícita",
+      "chapter_section": "2.2.3; 2.2.4; 7.4"
+    },
+    {
+      "requirement_id": "B-IMPLICATION",
+      "guide_section": "2.2.B",
+      "requirement": "Implicación: definición de ventanas temporales y horizontes de pronóstico, y evitar data leakage temporal.",
+      "status": "covered",
+      "source": "partition_audit.json; ../eda_decisions/heredado/eda_temporal_specific/availability_contract.csv",
+      "scope": "Contrato científico heredado y protocolo ejecutado",
+      "chapter_section": "2; 2.1.4; 2.2.4"
+    },
+    {
+      "requirement_id": "C-STRUCTURE",
+      "guide_section": "2.2.C",
+      "requirement": "Estructura temporal de las covariables: frecuencia, regularidad y huecos; desfases entre la marca de tiempo de las covariables y la del objetivo.",
+      "status": "covered_inherited",
+      "source": "../eda_decisions/heredado/eda_temporal_specific/availability_contract.csv; ../eda_decisions/heredado/eda_general_quality/window_eligibility.csv",
+      "scope": "Desarrollo y contrato temporal heredado",
+      "chapter_section": "2.2.1"
+    },
+    {
+      "requirement_id": "C-AVAILABILITY",
+      "guide_section": "2.2.C",
+      "requirement": "Disponibilidad en el momento de predecir: cada covariable debe estar disponible cuando se hace la predicción; una covariable que solo se conoce después del evento es fuga.",
+      "status": "covered",
+      "source": "../eda_decisions/heredado/eda_temporal_specific/availability_contract.csv; partition_audit.json",
+      "scope": "Contrato causal del benchmark",
+      "chapter_section": "2.2.1"
+    },
+    {
+      "requirement_id": "C-RELATIONSHIPS",
+      "guide_section": "2.2.C",
+      "requirement": "Relación covariables–objetivo: correlaciones cruzadas con rezagos de las covariables; deriva de la relación (cambios de régimen) con estimaciones en ventanas móviles.",
+      "status": "covered_inherited_with_limits",
+      "source": "../eda_decisions/heredado/eda_temporal_specific/lag_correlations_common_train.csv; ../eda_decisions/heredado/eda_temporal_specific/rolling_relationship_summary.csv",
+      "scope": "Asociaciones exploratorias de desarrollo de 2023/2024",
+      "chapter_section": "2.2.2"
+    },
+    {
+      "requirement_id": "C-ROUTE",
+      "guide_section": "2.2.C",
+      "requirement": "Diagnóstico del tipo de problema: autocorrelación de los residuos de un modelo de referencia; si es alta, el problema requiere rezagos del objetivo y corresponde a series de tiempo.",
+      "status": "covered_route_resolved",
+      "source": "../eda_decisions/forward_reference_acf.csv; ../eda_decisions/forward_reference_ljung_box.csv; ../eda_traceability/decisiones_vigentes.csv",
+      "scope": "Diagnóstico histórico que originó reclasificación; decisión ya cerrada",
+      "chapter_section": "2.2.3; 7.1"
+    },
+    {
+      "requirement_id": "C-IMPLICATION",
+      "guide_section": "2.2.C",
+      "requirement": "Implicación: ventana de rezagos de las covariables, partición cronológica estricta con embargo y riesgo de fuga temporal.",
+      "status": "covered",
+      "source": "partition_audit.json; ../eda_decisions/heredado/eda_temporal_specific/availability_contract.csv",
+      "scope": "Protocolo temporal vigente",
+      "chapter_section": "2.1.4; 2.2.1; 7.2; 7.3"
+    },
+    {
+      "requirement_id": "TRACE-PREPROCESSING",
+      "guide_section": "2 obligatorio",
+      "requirement": "Cada análisis del EDA debe concluir con una sección explícita de: Decisión de preprocesamiento derivada.",
+      "status": "covered",
+      "source": "decision_traceability.csv",
+      "scope": "Trazabilidad actual de evidencia heredada y actualización descriptiva",
+      "chapter_section": "2.1; 2.2; 2.3"
+    },
+    {
+      "requirement_id": "TRACE-IMPACT",
+      "guide_section": "2 obligatorio",
+      "requirement": "Impacto en la arquitectura del modelo y en el protocolo de validación.",
+      "status": "covered",
+      "source": "decision_traceability.csv",
+      "scope": "Trazabilidad explícita actual",
+      "chapter_section": "2.1; 2.2; 2.3"
+    },
+    {
+      "requirement_id": "TRACE-RISKS",
+      "guide_section": "2 obligatorio",
+      "requirement": "Riesgos identificados (incluyendo posibles fuentes de data leakage).",
+      "status": "covered",
+      "source": "decision_traceability.csv; partition_audit.json",
+      "scope": "Trazabilidad explícita actual",
+      "chapter_section": "2.1; 2.2; 2.3"
+    },
+    {
+      "requirement_id": "TRACE-APPENDIX-A",
+      "guide_section": "2 obligatorio",
+      "requirement": "Cada hallazgo del EDA se registra en la tabla de trazabilidad hallazgo–decisión del Apéndice A.",
+      "status": "covered",
+      "source": "decision_traceability.csv; ../eda_traceability/hallazgo_decision.csv; ../eda_traceability/decisiones_vigentes.csv",
+      "scope": "Registro actual complementario; historia preservada",
+      "chapter_section": "2.3"
+    }
+  ]
+}

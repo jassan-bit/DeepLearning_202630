@@ -452,6 +452,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-y-disponibilidad-temporal-de-covariables">2.2.1 Estructura y disponibilidad temporal de covariables</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relacion-covariablesobjetivo-y-cambios-de-regimen">2.2.2 Relación covariables–objetivo y cambios de régimen</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-con-residuos-de-una-referencia-forward-chaining">2.2.3 Diagnóstico con residuos de una referencia forward chaining</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#series-de-tiempo-evidencia-heredada-y-decisiones-del-bloque-b">2.2.4 Series de tiempo: evidencia heredada y decisiones del bloque B</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trazabilidad-hallazgodecision">2.3 Trazabilidad hallazgo–decisión</a></li>
@@ -470,10 +471,10 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="analisis-exploratorio-de-datos-eda-orientado-a-decisiones">
 <h1>2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones<a class="headerlink" href="#analisis-exploratorio-de-datos-eda-orientado-a-decisiones" title="Link to this heading">#</a></h1>
-<p><strong>Orientación de entrega del 14/11/2026:</strong> el protocolo ejecutado es <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>, los resultados comunes están en <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">§6</span></a>, la reproducción registrada en <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a> y el Apéndice B actual en <a class="reference internal" href="61_reproduccion_consolidada.html"><span class="std std-doc">§61</span></a>. Las cifras científicas y los recibos históricos conservan su fecha y su alcance.</p>
-<p><strong>Alcance:</strong> los datos, controles y experimentos ya ejecutados de esta sección se conservan como evidencia histórica. No acreditan entrenamiento del benchmark común del catálogo obligatorio de 16 sistemas, definido en <a class="reference internal" href="43_catalogo_obligatorio.html"><span class="std std-doc">§43</span></a>. Cualquier presupuesto o receta anterior requiere revisión y nuevo registro antes de reutilizarse.</p>
+<p><strong>Lectura vigente:</strong> el protocolo ejecutado es <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>, los resultados comunes están en <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">§6</span></a>, la reproducción registrada en <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a> y el Apéndice B actual en <a class="reference internal" href="61_reproduccion_consolidada.html"><span class="std std-doc">§61</span></a>. El <a class="reference download internal" download="" href="../_downloads/0147c71fd2bfb2c531096d43445c0eb5/README.md"><code class="xref download docutils literal notranslate"><span class="pre">índice</span> <span class="pre">de</span> <span class="pre">evidencias</span> <span class="pre">del</span> <span class="pre">EDA</span></code></a> reúne la auditoría del calendario actual, los perfiles descriptivos y la trazabilidad de la guía. Las cifras científicas y los recibos históricos conservan su fecha y su alcance.</p>
+<p><strong>Alcance:</strong> este capítulo distingue el EDA de desarrollo heredado de E1 y ampliado en E2, la comprobación documental de la partición ejecutada y los perfiles retrospectivos calculados con datos ya admitidos. El benchmark de <a class="reference internal" href="43_catalogo_obligatorio.html"><span class="std std-doc">16 sistemas</span></a> está completado; sus resultados pertenecen a §6. Esta actualización no entrena modelos, no cambia recetas y no convierte los análisis posteriores en decisiones anteriores al benchmark.</p>
 <p>El EDA de E1 se <strong>amplía y conserva</strong>. Este capítulo reutiliza sus evidencias de desarrollo y añade análisis reproducibles de transformaciones, casi duplicados, soportes temporales y residuos bajo forward chaining. Cada bloque termina con decisiones de preprocesamiento, consecuencias para arquitectura/validación y riesgos; la <a class="reference internal" href="#e2-trazabilidad-eda"><span class="std std-ref">tabla de trazabilidad</span></a> reúne esas relaciones.</p>
-<p>Se distinguen dos alcances de este EDA: <strong>desarrollo 2023–2024</strong> para diagnósticos y <strong>perfil retrospectivo de la reserva de E1 ya conocida</strong> para describir desplazamiento de distribución. Este último no selecciona arquitecturas, transformaciones, umbrales ni periodos y no convierte la reserva en una confirmación nueva. El panel de configuraciones del registro histórico y el benchmark vigente de <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">§6</span></a> conservan identidades diferentes; el <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">piloto P0 de desarrollo</span></a>, registrado previamente, ya se ejecutó como otra etapa y no se presenta como ese benchmark.</p>
+<p>El <strong>desarrollo 2023–2024</strong> aporta los diagnósticos de diseño. La partición vigente conserva <strong>655 ejemplos de entrenamiento final, 53 de calibración y 608 de evaluación heredada de E1</strong>. Sus perfiles posteriores describen desplazamiento; no seleccionan arquitecturas, transformaciones, umbrales ni periodos. La antigua reserva de septiembre–octubre de 2026 y el <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">piloto P0</span></a> conservan su identidad histórica y no se presentan como el test o el piloto actuales.</p>
 <p>El contrato principal sigue siendo D=7, n=7, h=1, cinco canales OHLCV y σ₇ poblacional sin anualizar. D es historia de entrada, n es ventana del objetivo y h es horizonte: no se intercambian. Los resultados n=14/21/28 de E1 son sensibilidades de la etiqueta, no objetivos añadidos al benchmark actual. La guía completa de 65 páginas permite cerrar la clasificación como <strong>F2a, series de tiempo</strong>, según la <a class="reference internal" href="07_ruta_temporal.html#e2-ruta-temporal"><span class="std std-ref">resolución de ruta</span></a>; las covariables y etiquetas heredadas no se modifican por esa reclasificación.</p>
 <section id="eda-general">
 <h2>2.1 EDA General<a class="headerlink" href="#eda-general" title="Link to this heading">#</a></h2>
@@ -648,7 +649,7 @@
 <p>La igualdad de fechas o de vectores, la proximidad de patrones y el solapamiento temporal son comprobaciones distintas. Dos ventanas bursátiles cercanas pueden ser observaciones legítimas; una distancia superior al umbral tampoco demuestra ausencia de fuga. El examen de soportes temporales de §2.1.4 complementa esta comprobación.</p>
 <p><strong>Etiquetado y ruido.</strong> E1 reconstruyó por una segunda implementación las 2.924 posiciones día–ventana de n=7/14/21/28: 2.780 etiquetas válidas, cero discrepancias de elegibilidad y error numérico máximo de aproximadamente <span class="math notranslate nohighlight">\(1,027\times10^{-15}\)</span>, frente a una tolerancia de <span class="math notranslate nohighlight">\(10^{-12}\)</span>. En n=7 son 716 etiquetas válidas. El <a class="reference download internal" download="" href="../_downloads/0866eebd63f29e558b8738408810b433/label_reconstruction_summary.csv"><span class="xref download myst">resumen de reconstrucción</span></a> verifica el algoritmo; <strong>no estima el ruido económico de la volatilidad latente</strong>.</p>
 <p>No hay anotadores humanos, por lo que acuerdo entre anotadores y detección de etiquetas de clase erróneas no aplican. La volatilidad de siete retornos es un proxy con incertidumbre por ventana finita, microestructura y proveedor. Sin una medición externa comparable o un modelo de observación identificado, no se cuantifica un ruido irreducible ni un techo de desempeño. No se sustituye esa ausencia por la precisión de la reconstrucción o por el error del mejor modelo.</p>
-<p><strong>Decisión de preprocesamiento:</strong> no imputar, comprimir huecos ni eliminar patrones parecidos automáticamente; propagar la máscara de calidad a todas las ventanas. <strong>Impacto en arquitectura y validación:</strong> todos los candidatos utilizarán la misma cohorte elegible y máscaras; se conserva la etiqueta heredada. <strong>Riesgos:</strong> confundir similitud con duplicación, solapamiento con independencia o consistencia numérica con ausencia de ruido de medición. El ruido externo queda como limitación no identificada.</p>
+<p><strong>Decisión de preprocesamiento:</strong> no imputar, comprimir huecos ni eliminar patrones parecidos automáticamente; propagar la máscara de calidad a todas las ventanas. <strong>Impacto en arquitectura y validación:</strong> los sistemas comparados comparten la cohorte elegible y las máscaras; se conserva la etiqueta heredada. <strong>Riesgos:</strong> confundir similitud con duplicación, solapamiento con independencia o consistencia numérica con ausencia de ruido de medición. El ruido externo queda como limitación no identificada.</p>
 </section>
 <section id="identificacion-de-sesgos-y-posibles-atajos">
 <h3>2.1.3 Identificación de sesgos y posibles atajos<a class="headerlink" href="#identificacion-de-sesgos-y-posibles-atajos" title="Link to this heading">#</a></h3>
@@ -692,157 +693,134 @@
 </section>
 <section id="particion-auditoria-de-soportes-y-estado-del-test">
 <h3>2.1.4 Partición, auditoría de soportes y estado del test<a class="headerlink" href="#particion-auditoria-de-soportes-y-estado-del-test" title="Link to this heading">#</a></h3>
-<p>Se conserva el calendario de fase II descrito en <a class="reference internal" href="01_punto_partida.html#e2-contrato-heredado"><span class="std std-ref">§1.1.1</span></a>. Las proporciones de calendario de fase I no se usan como porcentajes de ventanas del protocolo vigente. La partición es cronológica y determinista: <strong>semilla de partición no aplicable</strong>. Los scripts de esta ampliación también son deterministas; los remuestreos heredados declaran su propia semilla.</p>
-<p>La auditoría usa los índices ya materializados de <code class="docutils literal notranslate"><span class="pre">timeseries-cv</span></code> 0.1.5, proyecto de DidierRLopes con Filipe R. Ramos. Los diez bloques enero–octubre de 2024 son una adaptación mensual de esos índices diarios con embargo D=7; no se atribuye a la librería una API mensual inexistente. Para el origen <span class="math notranslate nohighlight">\(t\)</span> se exige que toda etiqueta de entrenamiento tenga fecha <span class="math notranslate nohighlight">\(u\le t-8\)</span>.</p>
-<p>Con D=n=7, la entrada de un ejemplo <span class="math notranslate nohighlight">\(u\)</span> usa días <span class="math notranslate nohighlight">\([u-7,u-1]\)</span> y su etiqueta necesita cierres de <span class="math notranslate nohighlight">\([u-7,u]\)</span>. Se comprueban por separado identidades de resultados, precedencia, disponibilidad y soportes brutos. Una fecha que fue validación en un fold puede incorporarse a entrenamiento de un fold posterior cuando ya es pasada y cumple el embargo; ese uso expansivo es legítimo y no hace independientes los folds.</p>
+<p>El calendario ejecutado es el de <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>, compatible con el <a class="reference internal" href="01_punto_partida.html#e2-contrato-heredado"><span class="std std-ref">contrato heredado</span></a>. La partición es cronológica y determinista: <strong>semilla de partición no aplicable</strong>. La semilla HPO <strong>271201</strong> y las seis finales <strong>271801–271806</strong> controlan el entrenamiento; no aleatorizan fechas. La <a class="reference download internal" download="" href="../_downloads/45b782999a6cc36148dfe4b5de22a508/partition_audit.json"><span class="xref download myst">auditoría vigente</span></a> comprueba fechas, máscaras, firmas de preparación y recibos guardados, sin abrir archivos brutos ni volver a ejecutar modelos.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Fold</p></th>
-<th class="head"><p>Entrenamiento elegible</p></th>
-<th class="head"><p>Validación</p></th>
+<tr class="row-odd"><th class="head"><p>Origen del fold HPO</p></th>
+<th class="head text-right"><p>Entrenamiento elegible</p></th>
 <th class="head"><p>Última etiqueta train</p></th>
-<th class="head"><p>Días de embargo</p></th>
-<th class="head"><p>Intersección de soporte bruto</p></th>
+<th class="head"><p>Validación interna, inclusive</p></th>
+<th class="head text-right"><p>Fechas de validación</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>2024-01</p></td>
-<td><p>343</p></td>
-<td><p>31</p></td>
-<td><p>2023-12-24</p></td>
-<td><p>7</p></td>
-<td><p>0</p></td>
+<tr class="row-even"><td><p>01/01/2024</p></td>
+<td class="text-right"><p>253</p></td>
+<td><p>25/09/2023</p></td>
+<td><p>03/10–24/12/2023</p></td>
+<td class="text-right"><p>83</p></td>
 </tr>
-<tr class="row-odd"><td><p>2024-02</p></td>
-<td><p>374</p></td>
-<td><p>29</p></td>
-<td><p>2024-01-24</p></td>
-<td><p>7</p></td>
-<td><p>0</p></td>
+<tr class="row-odd"><td><p>01/07/2024</p></td>
+<td class="text-right"><p>435</p></td>
+<td><p>25/03/2024</p></td>
+<td><p>02/04–23/06/2024</p></td>
+<td class="text-right"><p>83</p></td>
 </tr>
-<tr class="row-even"><td><p>2024-03</p></td>
-<td><p>403</p></td>
-<td><p>31</p></td>
-<td><p>2024-02-22</p></td>
-<td><p>7</p></td>
-<td><p>0</p></td>
-</tr>
-<tr class="row-odd"><td><p>2024-04</p></td>
-<td><p>434</p></td>
-<td><p>30</p></td>
-<td><p>2024-03-24</p></td>
-<td><p>7</p></td>
-<td><p>0</p></td>
-</tr>
-<tr class="row-even"><td><p>2024-05</p></td>
-<td><p>464</p></td>
-<td><p>31</p></td>
-<td><p>2024-04-23</p></td>
-<td><p>7</p></td>
-<td><p>0</p></td>
-</tr>
-<tr class="row-odd"><td><p>2024-06</p></td>
-<td><p>495</p></td>
-<td><p>30</p></td>
-<td><p>2024-05-24</p></td>
-<td><p>7</p></td>
-<td><p>0</p></td>
-</tr>
-<tr class="row-even"><td><p>2024-07</p></td>
-<td><p>525</p></td>
-<td><p>31</p></td>
-<td><p>2024-06-23</p></td>
-<td><p>7</p></td>
-<td><p>0</p></td>
-</tr>
-<tr class="row-odd"><td><p>2024-08</p></td>
-<td><p>556</p></td>
-<td><p>31</p></td>
-<td><p>2024-07-24</p></td>
-<td><p>7</p></td>
-<td><p>0</p></td>
-</tr>
-<tr class="row-even"><td><p>2024-09</p></td>
-<td><p>587</p></td>
-<td><p>30</p></td>
-<td><p>2024-08-24</p></td>
-<td><p>7</p></td>
-<td><p>0</p></td>
-</tr>
-<tr class="row-odd"><td><p>2024-10</p></td>
-<td><p>617</p></td>
-<td><p>31</p></td>
-<td><p>2024-09-23</p></td>
-<td><p>7</p></td>
-<td><p>0</p></td>
+<tr class="row-even"><td><p>01/10/2024</p></td>
+<td class="text-right"><p>527</p></td>
+<td><p>25/06/2024</p></td>
+<td><p>03/07–23/09/2024</p></td>
+<td class="text-right"><p>83</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>Las <strong>305 fechas</strong> de validación son únicas y consecutivas; no se detectan violaciones de disponibilidad ni intersecciones de soportes en las separaciones externa e interna auditadas. Esto no implica independencia entre ejemplos o folds.</p>
-<p>Descargar la <a class="reference download internal" download="" href="../_downloads/e39b87783c0b09301071025011ef8097/fold_leakage_audit.csv"><span class="xref download myst">auditoría de los folds</span></a>. Estos controles comprueban el calendario y la representación analizados; no certifican por sí solos los adaptadores, las referencias endógenas y las cohortes del panel ampliado de configuraciones del registro histórico.</p>
-<p><strong>Identidad de la reserva y cronología.</strong> El manifiesto heredado tiene SHA-256 <code class="docutils literal notranslate"><span class="pre">af723bcca2caffcbe44ae5243e2863bbcdcd39ae8cd42df491af0a2857926bb2</span></code>; el derivado diario de la reserva ya evaluada tiene SHA-256 <code class="docutils literal notranslate"><span class="pre">93ec9490137eee80581f56f987067001d346a421235962da5b2e9645970adebf</span></code>. El <a class="reference download internal" download="" href="../_downloads/b17bd5c364917146aab8f51addafabdf/partition_identity.json"><span class="xref download myst">registro de identidad y alcance</span></a> enlaza la reserva y la cronología de E1 sin redistribuir ese vector de precios.</p>
-<p>E1 conserva registros de cierre de pesos anteriores a su evaluación de fase II. <strong>Ese hecho no sella nuevamente el test para E2.</strong> Las fechas 01/09–30/10/2026 ya se conocen y el perfil de §2.1.5 se calcula después de su evaluación. Un hash acredita identidad, no desconocimiento de los resultados ni ausencia de decisiones previas basadas en ellos. No existe aquí un nuevo test sellado antes de cualquier modelo de E2; las comparaciones futuras sobre esos periodos tendrán alcance exploratorio.</p>
-<p><strong>Decisión de preprocesamiento:</strong> ajustar toda transformación aprendida con entrenamiento admisible y comprobar las máscaras y soportes antes de materializar lotes. <strong>Impacto en arquitectura y validación:</strong> mismo forward chaining, embargo y cohorte para todos los candidatos; no trasladar automáticamente R=465. <strong>Riesgos:</strong> escalado global, selección por test, confundir datos históricos de entrada admisibles con nuevas etiquetas de entrenamiento o presentar el hash actual como un sellado prospectivo.</p>
+<p>Los tres folds aportan <strong>249 fechas concatenadas de selección</strong>, no resultados del test final. El embargo excluye siete fechas de objetivo entre cada entrenamiento y su validación; las transformaciones se ajustan con el entrenamiento admisible de ese fold. Una fecha validada en un fold puede integrar un entrenamiento posterior cuando ya es pasada; los entrenamientos expansivos se solapan y no son réplicas independientes.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Etapa final</p></th>
+<th class="head"><p>Periodo de etiquetas, inclusive</p></th>
+<th class="head text-right"><p>Ejemplos elegibles</p></th>
+<th class="head"><p>Uso</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Entrenamiento</p></td>
+<td><p>08/01/2023–31/10/2024, con máscara de calidad</p></td>
+<td class="text-right"><p>655</p></td>
+<td><p>Ajuste de pesos y transformaciones</p></td>
+</tr>
+<tr class="row-odd"><td><p>Embargo</p></td>
+<td><p>01–07/11/2024</p></td>
+<td class="text-right"><p>—</p></td>
+<td><p>Sin etiquetas de ajuste ni calibración</p></td>
+</tr>
+<tr class="row-even"><td><p>Calibración y piloto</p></td>
+<td><p>08/11–30/12/2024</p></td>
+<td class="text-right"><p>53</p></td>
+<td><p>Calibradores y diagnóstico de desarrollo; sin HPO</p></td>
+</tr>
+<tr class="row-odd"><td><p>Puente</p></td>
+<td><p>31/12/2024</p></td>
+<td class="text-right"><p>—</p></td>
+<td><p>Observaciones históricas causales; sin ajuste ni recalibración</p></td>
+</tr>
+<tr class="row-even"><td><p>Evaluación heredada de E1</p></td>
+<td><p>01/01/2025–31/08/2026</p></td>
+<td class="text-right"><p>608</p></td>
+<td><p>Mismos pesos, escaladores y calibradores congelados</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Con D=n=7, <span class="math notranslate nohighlight">\(X_t\)</span> usa OHLCV de <span class="math notranslate nohighlight">\([t-7,t-1]\)</span> y <span class="math notranslate nohighlight">\(Y_t\)</span> necesita ocho cierres de <span class="math notranslate nohighlight">\([t-7,t]\)</span>. La auditoría distingue <strong>IDs de ejemplos</strong>, soportes de entradas y soportes de etiquetas. En las separaciones entrenamiento→validación HPO y entrenamiento final→calibración no se intersectan los cierres de las etiquetas. Los IDs de calibración y test también son disjuntos, pero sus soportes brutos <strong>sí se comparten</strong>: <span class="math notranslate nohighlight">\(Y_{30/12/2024}\)</span> y <span class="math notranslate nohighlight">\(Y_{01/01/2025}\)</span> reutilizan seis cierres y cinco retornos. Es reutilización causal legítima en un pronóstico rolling; no demuestra independencia ni implica por sí sola fuga. Las referencias endógenas pueden reutilizar historia disponible con parámetros congelados; su mayor soporte se declara en §7.</p>
+<p><strong>Auditoría ancestral conservada.</strong> La <a class="reference download internal" download="" href="../_downloads/e39b87783c0b09301071025011ef8097/fold_leakage_audit.csv"><span class="xref download myst">tabla original de diez folds mensuales</span></a> documenta enero–octubre de 2024 y 305 fechas del EDA Ridge/persistencia. Se conserva con sus bytes y sus controles originales; no representa los tres folds HPO ni las 608 fechas del benchmark actual. Los índices históricos usaron <code class="docutils literal notranslate"><span class="pre">timeseries-cv</span></code> 0.1.5, proyecto de DidierRLopes con Filipe R. Ramos, y una adaptación mensual propia; no se atribuye a la librería una API mensual.</p>
+<p><strong>Identidad y exposición previa.</strong> La <a class="reference download internal" download="" href="../_downloads/1f149477d437c56efd6a2818d858b2bb/data_admission.json"><span class="xref download myst">admisión vigente de datos</span></a> y la <a class="reference download internal" download="" href="../_downloads/f8db31dfb4cd9da09a27596c7df67a1f/final_freeze.json"><span class="xref download myst">congelación de 81 predictores</span></a> vinculan el periodo de 608 fechas, sus hashes y la ausencia de reajuste posterior al acceso de esta campaña. La partición de E1 se hereda; no se exige otra reserva para conservar esa herencia. Su exposición histórica sigue declarada y no se recupera cegamiento prospectivo. El <a class="reference download internal" download="" href="../_downloads/b17bd5c364917146aab8f51addafabdf/partition_identity.json"><span class="xref download myst">registro anterior de identidad</span></a> pertenece a la reserva de septiembre–octubre de 2026 y mantiene su alcance histórico, incluido el estado del benchmark de aquel corte. Un hash acredita identidad, no desconocimiento de resultados.</p>
+<p><strong>Decisión de preprocesamiento:</strong> conservar máscaras, calendario y transformaciones ajustadas con cada entrenamiento admisible. <strong>Impacto en arquitectura y validación:</strong> comparar los 16 sistemas en la cohorte común y distinguir selección interna, calibración y scoring con pesos fijos. <strong>Riesgos:</strong> escalado global, selección por test, confundir historia causal con etiquetas de ajuste o IDs disjuntos con independencia de soportes.</p>
 </section>
 <section id="cambio-de-distribucion">
 <h3>2.1.5 Cambio de distribución<a class="headerlink" href="#cambio-de-distribucion" title="Link to this heading">#</a></h3>
 <p><strong>Evidencia heredada de desarrollo.</strong> En el perfil causal lag 1, 2023 y 2024 tienen 350 y 366 casos completos. La distancia KS es aproximadamente 0,920–0,924 para OHLC en nivel, 0,2332 para volumen y 0,2405 para σ₇. La <a class="reference download internal" download="" href="../_downloads/f816673f7661db79409ba875a06239af/conditional_block_permutation.csv"><span class="xref download myst">permutación por bloques de 14/28 días</span></a> usa 2.000 réplicas y Holm sobre doce contrastes; sus referencias son exploratorias y condicionales, sin garantía de intercambiabilidad bajo tendencias.</p>
 <p>Para σ₇, los p-valores Monte Carlo ajustados son aproximadamente 0,06197 y 0,09395: la distancia descriptiva no se convierte en rechazo ajustado a 0,05. Tampoco el no rechazo acredita igualdad de distribuciones. Los precios en nivel sí presentan diferencias fuertes bajo ambas referencias; esto apoya examinar la representación relativa, sin demostrar que resuelva la generalización.</p>
-<p><strong>Ampliación de E2: fases y reserva conocida.</strong> Se calculan perfiles de entrenamiento 2023, validación enero–octubre de 2024, piloto 01/11–30/12/2024 y reserva conocida 01/09–30/10/2026. Se distingue el conteo de días con etiqueta del conteo de ventanas D7 completas. Además de OHLCV causal lag 1 y σ₇, se examinan los 35 componentes de la representación relativa que efectivamente recibe la red.</p>
+<p><strong>Perfiles del calendario vigente.</strong> La <a class="reference download internal" download="" href="../_downloads/9cb9c5126694ce9a1d266238ff2c7719/target_profiles.csv"><span class="xref download myst">tabla descriptiva actual del objetivo</span></a> contiene nueve filas: entrenamiento/validación de cada uno de los tres folds HPO y entrenamiento final/calibración/evaluación. Conserva sus denominadores <strong>253/83, 435/83, 527/83 y 655/53/608</strong>, fechas, momentos y distancias descriptivas. El <a class="reference download internal" download="" href="../_downloads/dd8809cd238916adcfa6cefb385692ca/summary.json"><span class="xref download myst">resumen y la procedencia</span></a> separan la reconstrucción de perfiles a partir de derivados existentes de cualquier ajuste predictivo. Los folds expansivos no se agrupan como observaciones independientes.</p>
+<p><img alt="Distribuciones empíricas de σ₇ del entrenamiento final, calibración y evaluación heredada; diagnóstico retrospectivo" src="../_images/target_ecdf.svg" /></p>
+<p>La ECDF compara <strong>655/53/608 etiquetas</strong> en su escala original. Las distancias KS y Wasserstein del CSV son resúmenes de diferencia, <strong>sin p-valores ni inferencia iid</strong>. Sus referencias corresponden al entrenamiento de cada comparación; no se aprende una nueva transformación con calibración o test. Este perfil se calcula después de conocer la evaluación: describe dificultad y desplazamiento, sin cambiar recetas, umbrales ni fechas.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Periodo</p></th>
-<th class="head"><p>Etiquetas σ₇</p></th>
-<th class="head"><p>Media</p></th>
-<th class="head"><p>Mediana</p></th>
-<th class="head"><p>KS vs train admisible</p></th>
-<th class="head"><p>Wasserstein / DE train</p></th>
+<tr class="row-odd"><th class="head"><p>Partición final</p></th>
+<th class="head text-right"><p>n</p></th>
+<th class="head text-right"><p>Media σ₇</p></th>
+<th class="head text-right"><p>Mediana σ₇</p></th>
+<th class="head text-right"><p>Distancia KS frente a train final</p></th>
+<th class="head text-right"><p>Wasserstein / DE train final</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>2023 completo</p></td>
-<td><p>350</p></td>
-<td><p>0,01879672</p></td>
-<td><p>0,01756716</p></td>
-<td><p>0,0101</p></td>
-<td><p>0,0149</p></td>
+<tr class="row-even"><td><p>Entrenamiento</p></td>
+<td class="text-right"><p>655</p></td>
+<td class="text-right"><p>0,02095388</p></td>
+<td class="text-right"><p>0,01960572</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
 </tr>
-<tr class="row-odd"><td><p>Validación ene–oct 2024</p></td>
-<td><p>305</p></td>
-<td><p>0,02342930</p></td>
-<td><p>0,02157384</p></td>
-<td><p>0,2322</p></td>
-<td><p>0,5102</p></td>
+<tr class="row-odd"><td><p>Calibración</p></td>
+<td class="text-right"><p>53</p></td>
+<td class="text-right"><p>0,02511173</p></td>
+<td class="text-right"><p>0,02417553</p></td>
+<td class="text-right"><p>0,352096</p></td>
+<td class="text-right"><p>0,492181</p></td>
 </tr>
-<tr class="row-even"><td><p>Piloto nov–30 dic 2024</p></td>
-<td><p>60</p></td>
-<td><p>0,02496225</p></td>
-<td><p>0,02335663</p></td>
-<td><p>0,3931</p></td>
-<td><p>0,7014</p></td>
-</tr>
-<tr class="row-odd"><td><p>Reserva conocida sep–30 oct 2026</p></td>
-<td><p>60</p></td>
-<td><p>0,01594273</p></td>
-<td><p>0,01452699</p></td>
-<td><p>0,2764</p></td>
-<td><p>0,3457</p></td>
+<tr class="row-even"><td><p>Evaluación heredada</p></td>
+<td class="text-right"><p>608</p></td>
+<td class="text-right"><p>0,01887752</p></td>
+<td class="text-right"><p>0,01669688</p></td>
+<td class="text-right"><p>0,150397</p></td>
+<td class="text-right"><p>0,250287</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>La referencia de distancias contiene <strong>343 ejemplos admisibles hasta el 24/12/2023</strong>; la fila descriptiva de 2023 completo contiene 350 etiquetas. Por eso la distancia de esa fila frente a la referencia no es exactamente cero. Los perfiles de ventanas y sus denominadores están separados en los CSV.</p>
-<p><img alt="Distribuciones por fase y desplazamiento respecto a entrenamiento; reserva conocida analizada retrospectivamente" src="../_images/known_distribution_shift.png" /></p>
-<p>Las <a class="reference download internal" download="" href="../_downloads/ac2fd598985ea975c52ee8931f150d09/distribution_distances.csv"><span class="xref download myst">distancias de distribución</span></a> incluyen KS y Wasserstein normalizada por la DE de la referencia admisible hasta el 24/12/2023, sin reajustar la escala con validación, piloto o reserva. Una componente constante de entrenamiento no tiene denominador positivo: su distancia normalizada se marca no definida, sin inventar un épsilon. Son distancias descriptivas, no p-valores iid ni garantías de adaptación de dominio.</p>
-<p>Frente a esa referencia, Wasserstein/DE del cierre bruto lag 1 es aproximadamente <strong>5,82 / 11,58 / 9,64</strong> en validación, piloto y reserva; para el cierre relativo lag 7 es <strong>0,21 / 0,27 / 0,36</strong>. El volumen <code class="docutils literal notranslate"><span class="pre">log1p</span></code> conserva desplazamientos <strong>0,59 / 0,47 / 1,31</strong>. Esto muestra que reducir el cambio de nivel del precio no elimina toda la deriva ni demuestra mejor capacidad predictiva.</p>
-<p>El <a class="reference download internal" download="" href="../_downloads/1578e752a9df3af0fd8b02d5909b6c17/provenance.json"><span class="xref download myst">registro de procedencia</span></a> identifica la lectura del derivado ya evaluado. No se reentrena ni se vuelven a puntuar predicciones en este paso. Las distribuciones del test se muestran para diagnosticar la evaluación histórica; no se usan para escoger una nueva configuración o una reserva más favorable.</p>
+<p><strong>Covariables: perfil anual heredado.</strong> La <a class="reference download internal" download="" href="../_downloads/5f33c8f768171cba4a8fe6971d55365f/inherited_annual_profiles.csv"><span class="xref download myst">copia íntegra del perfil anual de E1</span></a> compara 2023, 2024, 2025 (<strong>365 fechas</strong>) y enero–agosto de 2026 (<strong>243 fechas</strong>). Contiene OHLCV del mismo día, retorno, <code class="docutils literal notranslate"><span class="pre">log1p</span></code> de volumen y σ₇; su referencia de escala es el desarrollo observado hasta <strong>03/12/2024</strong>. Por ello es un perfil retrospectivo de variables brutas, no el tensor causal de 35 componentes D7×5 ni una comparación recalculada con el entrenamiento final hasta octubre. Se conservan sus periodos separados y no se mezclan sus distancias con las del CSV actual del objetivo. No autoriza usar OHLCV de <span class="math notranslate nohighlight">\(t\)</span> para predecir <span class="math notranslate nohighlight">\(Y_t\)</span>.</p>
+<p><strong>Antecedente de 60 días conservado.</strong> El <a class="reference download internal" download="" href="../_downloads/380d43427dbb1b6c7cb698e5604434e2/aggregated_profile.csv"><span class="xref download myst">perfil histórico por fases</span></a>, sus <a class="reference download internal" download="" href="../_downloads/ac2fd598985ea975c52ee8931f150d09/distribution_distances.csv"><span class="xref download myst">distancias</span></a>, la <a class="reference download internal" download="" href="../_downloads/44863e6f9d5c4329c67688ab56209292/known_distribution_shift.png"><span class="xref download myst">figura original</span></a> y el <a class="reference download internal" download="" href="../_downloads/1578e752a9df3af0fd8b02d5909b6c17/provenance.json"><span class="xref download myst">registro de procedencia</span></a> describen otra comparación: train admisible de 343 ejemplos hasta el 24/12/2023, validación enero–octubre de 2024, piloto 01/11–30/12/2024 y reserva 01/09–30/10/2026, de 60 días cada uno de estos dos últimos periodos. Incluyen perfiles de OHLCV lag 1 y de componentes relativos. Sus cifras y bytes no cambian; septiembre–octubre de 2026 no integra las 608 fechas de la evaluación actual y no fue abierto para el scoring de esta campaña.</p>
+<p>:::{dropdown} Figura histórica: comparación con la reserva de 60 días
+<img alt="Perfiles históricos de desarrollo, piloto y reserva de septiembre–octubre de 2026; no corresponden al calendario actual de 608 fechas" src="../_images/known_distribution_shift.png" />
+:::</p>
 <p><strong>Decisión de preprocesamiento:</strong> conservar las transformaciones heredadas y sus parámetros de entrenamiento; no adaptar con la reserva. <strong>Impacto en arquitectura y validación:</strong> evaluar estabilidad por fase/régimen y registrar sensibilidad a cambios de distribución; una propuesta de adaptación requeriría diseño propio compatible con el contrato. <strong>Riesgos:</strong> normalizar usando test, interpretar KS como prueba causal o explotar un perfil retrospectivo para seleccionar modelos y llamarlo confirmatorio.</p>
 </section>
 </section>
 <section id="eda-temporal-covariables-y-diagnostico-de-la-ruta-f2a">
 <h2>2.2 EDA temporal: covariables y diagnóstico de la ruta F2a<a class="headerlink" href="#eda-temporal-covariables-y-diagnostico-de-la-ruta-f2a" title="Link to this heading">#</a></h2>
-<p>Se conserva el análisis de covariables del bloque C que originó el diagnóstico. La autocorrelación residual fuerte activa RT1 (PDF p32) y la reclasificación a F2a, ahora resuelta. La <a class="reference internal" href="07_ruta_temporal.html#e2-ruta-temporal"><span class="std std-ref">sección 7.4</span></a> integra el bloque B y los diagnósticos E1 reutilizables —STL, ADF/KPSS, ACF/PACF, ARCH y BDS— con sus fechas, frecuencias y límites, sin presentarlos como análisis nuevos ni como pruebas sobre residuos del benchmark final todavía pendiente.</p>
+<p>Se conserva el análisis de covariables del bloque C que originó el diagnóstico. La autocorrelación residual fuerte activa RT1 (PDF p32) y la reclasificación a F2a, ahora resuelta. Los apartados siguientes desarrollan <strong>C, regresión temporal con covariables</strong>, y <strong>B, series de tiempo</strong>. La <a class="reference internal" href="07_ruta_temporal.html#e2-ruta-temporal"><span class="std std-ref">sección 7</span></a> enlaza esa evidencia con el protocolo ejecutado. Los diagnósticos E1 y la referencia inicial del EDA conservan su fecha; los de las 81 trayectorias finales en <a class="reference internal" href="49_diagnosticos_f2a.html"><span class="std std-doc">§49</span></a> son posteriores al benchmark.</p>
 <section id="estructura-y-disponibilidad-temporal-de-covariables">
 <h3>2.2.1 Estructura y disponibilidad temporal de covariables<a class="headerlink" href="#estructura-y-disponibilidad-temporal-de-covariables" title="Link to this heading">#</a></h3>
 <p>La adquisición es de un minuto y la representación del modelo es diaria UTC. Se usan siete barras completas anteriores al día resultado, en orden y sin comprimir huecos. Los días inválidos afectan a sus ventanas dependientes, no solo a una fila aislada.</p>
@@ -890,7 +868,7 @@
 </section>
 <section id="diagnostico-con-residuos-de-una-referencia-forward-chaining">
 <span id="e2-diagnostico-forward"></span><h3>2.2.3 Diagnóstico con residuos de una referencia forward chaining<a class="headerlink" href="#diagnostico-con-residuos-de-una-referencia-forward-chaining" title="Link to this heading">#</a></h3>
-<p>La ampliación del EDA ajustó una referencia <strong>Ridge, α=1 fijado</strong>, en cada uno de los diez folds mensuales enero–octubre de 2024. Usa exclusivamente las cinco covariables D7, los índices y el embargo heredados, y escalado aprendido en entrenamiento de cada fold. Esta ejecución diagnóstica no es una búsqueda de hiperparámetros ni una corrida del benchmark definitivo. Ridge también integra el catálogo E2, con su HPO y enlace puntual definidos por el protocolo registrado; esas reglas del benchmark no alteran las cifras diagnósticas de esta tabla. Persistencia <span class="math notranslate nohighlight">\(\widehat Y_t=Y_{t-1}\)</span> aporta una referencia causal adicional.</p>
+<p>La ampliación inicial del EDA ajustó una referencia <strong>Ridge, α=1 fijado</strong>, en cada uno de los diez folds mensuales enero–octubre de 2024. Usa exclusivamente las cinco covariables D7, los índices y el embargo de aquel diagnóstico, y escalado aprendido en entrenamiento de cada fold. Es una referencia de desarrollo sin HPO, ajena al catálogo obligatorio vigente de 16 sistemas. Sus <strong>305 fechas</strong> pertenecen a ese diseño histórico; no son las 249 fechas de selección ni las 608 de prueba actuales. Persistencia <span class="math notranslate nohighlight">\(\widehat Y_t=Y_{t-1}\)</span> aporta una referencia causal adicional.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Referencia</p></th>
@@ -926,10 +904,72 @@
 <p>Esta evidencia no demuestra que añadir Y rezagada mejore un modelo ni autoriza cambiar las entradas heredadas. Una sensibilidad con rezagos del objetivo necesitaría una decisión documentada y una evaluación de desarrollo compatible con la herencia de E1; aquí no se añade ese canal ni se cambia la partición. El solapamiento de σ₇ también contribuye a la dependencia y debe distinguirse de un mecanismo aprovechable fuera de muestra.</p>
 <p><strong>Decisión de preprocesamiento:</strong> conservar X/Y y máscaras heredadas; no añadir rezagos de Y silenciosamente. <strong>Impacto en arquitectura y validación:</strong> seguir F2a, usar incertidumbre por bloques e incluir persistencia, naive semanal y ARIMA con soporte e información endógena declarados; los residuos de cada modelo ejecutado requieren sus propios diagnósticos. <strong>Riesgos:</strong> interpretar ACF como prueba de no linealidad o de utilidad de una nueva variable, presentar Ridge como cuarto modelo base o confundir el diagnóstico de EDA con el benchmark definitivo.</p>
 </section>
+<section id="series-de-tiempo-evidencia-heredada-y-decisiones-del-bloque-b">
+<span id="e2-eda-series-heredado"></span><h3>2.2.4 Series de tiempo: evidencia heredada y decisiones del bloque B<a class="headerlink" href="#series-de-tiempo-evidencia-heredada-y-decisiones-del-bloque-b" title="Link to this heading">#</a></h3>
+<p>La ruta F2a requiere el bloque B además del análisis de covariables. Se reutilizan los análisis ejecutados del <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/sections/02_eda.html">EDA de E1, §§2.5.1–2.5.6</a>, conservando sus frecuencias, tramos y supuestos. Las <a class="reference external" href="https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/main/results/eda_development/stationarity_daily.csv">especificaciones ADF/KPSS diarias</a>, las <a class="reference external" href="https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/main/results/eda_development/stationarity_volatility.csv">del objetivo</a> y el <a class="reference external" href="https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/main/results/eda_development/summary.json">resumen ejecutado</a> permiten comprobar los resultados sin repetirlos.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Análisis y evidencia</p></th>
+<th class="head"><p>Decisión de preprocesamiento</p></th>
+<th class="head"><p>Impacto en arquitectura</p></th>
+<th class="head"><p>Impacto en validación</p></th>
+<th class="head"><p>Riesgos y límite</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Tendencia, estacionalidad y ruido:</strong> STL robusto de log-cierres diarios, 25/03–31/12/2023, periodo 7; E1 §2.5.1</p></td>
+<td><p>Conservar representación relativa causal; no usar el suavizado centrado de STL como entrada</p></td>
+<td><p>Comparar mecanismos temporales bajo la misma ventana D7</p></td>
+<td><p>Evaluar por tiempo y régimen; no seleccionar una temporada por inspección de STL</p></td>
+<td><p>El periodo semanal impuesto no demuestra estacionalidad; su residuo no estima ruido irreducible</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Estacionariedad:</strong> ADF con constante y 7 rezagos; KPSS con constante y rezagos automáticos. σ₇, 01/04–31/12/2023, n=275: pADF≈0,002423 y pKPSS&gt;0,10; E1 §2.5.2</p></td>
+<td><p>Mantener etiqueta y escala; no diferenciar automáticamente Y</p></td>
+<td><p>No añadir una capa o transformación por un único contraste</p></td>
+<td><p>Interpretar conjuntamente ambos tests, con su tramo y especificación</p></td>
+<td><p>Compatibilidad con estacionariedad en ese tramo no garantiza estabilidad en 2024–2026; no rechazo no prueba el supuesto</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Dependencia temporal:</strong> ACF, PACF y periodograma de retornos diarios, 26/03–31/12/2023, n=281, 28 rezagos; E1 §2.5.3</p></td>
+<td><p>Mantener calendario y D7 heredados; distinguir retornos de σ₇</p></td>
+<td><p>Comparar memoria recurrente, convolución y atención con idéntica historia</p></td>
+<td><p>Conservar orden temporal y remuestreo por bloques</p></td>
+<td><p>Bandas por rezago aproximadas; no seleccionar D por el mayor pico ni trasladar diagnósticos de minuto a día</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Heterocedasticidad y dependencia residual:</strong> ARCH-LM de retornos diarios centrados, 7 rezagos, p≈0,341; BDS y Ljung–Box por fold/semilla de los modelos históricos de E1; E1 §§2.5.3/2.5.6</p></td>
+<td><p>Preservar extremos válidos y escalado aprendido con train</p></td>
+<td><p>Mantener comparadores simples; diagnosticar cada predictor ejecutado</p></td>
+<td><p>Distinguir pruebas de la serie y pruebas de residuos guardados; conservar multiplicidad y casos no definidos</p></td>
+<td><p>ARCH no rechazado no acredita homocedasticidad; BDS contrasta iid y no identifica exclusivamente no linealidad</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Picos, anomalías y cambios:</strong> máscaras de continuidad, extremos conservados y candidato CUSUM 15/10/2023 sin confirmación; E1 §§2.5.1/2.5.5</p></td>
+<td><p>Excluir corrupción según máscara, sin borrar eventos por magnitud del error</p></td>
+<td><p>No atribuir capacidad adicional a una ruptura no confirmada</p></td>
+<td><p>Analizar errores por régimen y estabilidad, sin mover fronteras del test</p></td>
+<td><p>Un candidato descriptivo no demuestra ruptura ni causa económica</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Frecuencia y granularidad:</strong> adquisición de un minuto, agregación diaria UTC y un día incompleto de desarrollo; §§2.1.2/2.2.1</p></td>
+<td><p>No imputar con el futuro ni comprimir huecos; propagar invalidez a soportes dependientes</p></td>
+<td><p>Tensor fijo 7×5 de días completos anteriores</p></td>
+<td><p>Cohorte común por disponibilidad; embargo de siete fechas de objetivo</p></td>
+<td><p>Confundir siete filas con siete días consecutivos o incluir la barra de <span class="math notranslate nohighlight">\(t\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Predictibilidad intrínseca informal:</strong> persistencia forward en 305 fechas de desarrollo, RMSE=0,00474310 y MAE=0,00292428; §2.2.3</p></td>
+<td><p>Conservar σ₇ y la referencia causal <span class="math notranslate nohighlight">\(Y_{t-1}\)</span></p></td>
+<td><p>Exigir contexto frente al pronóstico ingenuo antes de atribuir ganancia a Deep Learning</p></td>
+<td><p>Comparar sobre las mismas fechas; el resultado histórico no sustituye la A2 de 608 fechas</p></td>
+<td><p>Error ingenuo como referencia informal del margen de mejora, sin interpretarlo como techo de Bayes</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La <a class="reference internal" href="49_diagnosticos_f2a.html"><span class="std std-doc">auditoría final de §49</span></a> ya ejecutó Ljung–Box, ARCH-LM, BDS y Jarque–Bera sobre <strong>81 trayectorias</strong> del benchmark congelado. Esa evidencia posterior permite discutir residuos de los modelos actuales; no se presenta como EDA previo ni modifica la decisión F2a. <a class="reference internal" href="57_errores_techo.html"><span class="std std-doc">§57</span></a> añade entropía de permutación con órdenes 3/4/5 y retardo 1, sin atravesar huecos, también como análisis posterior. Complejidad ordinal y error de persistencia no identifican un ruido externo ni un error mínimo alcanzable.</p>
+<p><strong>Decisión de preprocesamiento:</strong> conservar transformaciones causales, etiqueta y máscaras de E1. <strong>Impacto en arquitectura y validación:</strong> aplicar F2a con entradas D7 comunes, referencias temporales y controles de disponibilidad del protocolo ejecutado. <strong>Riesgos:</strong> elegir ventanas por picos retrospectivos, trasladar pruebas entre frecuencias o presentar diagnósticos finales como decisiones tomadas antes del entrenamiento.</p>
+</section>
 </section>
 <section id="trazabilidad-hallazgodecision">
 <span id="e2-trazabilidad-eda"></span><h2>2.3 Trazabilidad hallazgo–decisión<a class="headerlink" href="#trazabilidad-hallazgodecision" title="Link to this heading">#</a></h2>
-<p>La <a class="reference download internal" download="" href="../_downloads/e849ff4a7a2b2d305850e933a5b7a2a9/hallazgo_decision.csv"><span class="xref download myst">tabla completa descargable</span></a> registra evidencia, preprocesamiento, arquitectura, protocolo, riesgo y alcance para cada análisis. Contrastada con <strong>A.1 de la guía completa (PDF p61)</strong>, cubre sus cinco campos: hallazgo, evidencia, decisión de preprocesamiento, impacto en arquitectura/validación y riesgo/fuga. Las columnas adicionales separan protocolo, alcance y estado. El CSV se conserva íntegro como registro histórico: la fila <code class="docutils literal notranslate"><span class="pre">RESID</span></code> describe la alerta anterior al cierre de la ruta y no expresa el estado vigente. El <a class="reference download internal" download="" href="../_downloads/6f98046ca8470b7fbafed7eb2a4a8e9c/decisiones_vigentes.csv"><span class="xref download myst">registro complementario de decisiones vigentes</span></a> enlaza esa fila con la decisión <strong>F2a del 06/11/2026</strong>, documentada en la <a class="reference internal" href="07_ruta_temporal.html#e2-ruta-temporal"><span class="std std-ref">sección 7</span></a>, y registra por separado su incorporación documental del 08/11/2026. No se retrofecha ni se reescribe la evidencia histórica.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/0a2eab76f76eb444b160b02d9efd84c3/decision_traceability.csv"><span class="xref download myst">trazabilidad vigente descargable</span></a> registra los requisitos de <strong>2.1, B y C</strong>, su evidencia, decisión de preprocesamiento, impacto en arquitectura, validación, riesgos y alcance. La <a class="reference download internal" download="" href="../_downloads/570546555c0771d2610a4aaa09d07c76/guide_checklist.csv"><span class="xref download myst">lista de cotejo CSV</span></a> y su <a class="reference download internal" download="" href="../_downloads/08f4e5c147daac85059a3b7c0982cdde/guide_checklist.json"><span class="xref download myst">versión JSON</span></a> distinguen evidencia heredada, actualización descriptiva, no aplicabilidad y limitaciones. Cubren los campos de <strong>A.1 de la guía completa (PDF p61)</strong> sin atribuir cumplimiento a una casilla vacía.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/e849ff4a7a2b2d305850e933a5b7a2a9/hallazgo_decision.csv"><span class="xref download myst">tabla anterior</span></a> se conserva íntegra como registro histórico. Su fila <code class="docutils literal notranslate"><span class="pre">RESID</span></code> describe la alerta anterior al cierre de la ruta. El <a class="reference download internal" download="" href="../_downloads/6f98046ca8470b7fbafed7eb2a4a8e9c/decisiones_vigentes.csv"><span class="xref download myst">registro complementario anterior</span></a> enlaza esa fila con la decisión <strong>F2a del 06/11/2026</strong>, documentada en la <a class="reference internal" href="07_ruta_temporal.html#e2-ruta-temporal"><span class="std std-ref">sección 7</span></a>, y distingue su incorporación documental del 08/11/2026. Las referencias de aquel registro a Ridge en un catálogo anterior conservan ese alcance; no incorporan Ridge al catálogo obligatorio vigente.</p>
 <p>Ridge α=1 fue una referencia diagnóstica del EDA, no uno de los diez modelos vigentes. Sus cifras no sustituyen resultados del nuevo catálogo ni autorizan añadirlo como candidato adicional.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -985,13 +1025,13 @@
 </section>
 <section id="reproduccion-y-estado-de-cierre">
 <span id="e2-reproduccion-eda"></span><h2>2.4 Reproducción y estado de cierre<a class="headerlink" href="#reproduccion-y-estado-de-cierre" title="Link to this heading">#</a></h2>
-<p>Las evidencias heredadas se copian con sus hashes de procedencia y se distinguen de las calculadas en E2. Los nuevos scripts no modifican las fuentes, ni el código experimental, resultados o modelos de E1.</p>
-<p><strong>Descarga directa:</strong> <a class="reference download internal" download="" href="../_downloads/57818c9f39701d291214a63d076ecd2b/EDA_E2_codigo_tablas_figuras.zip"><code class="xref download docutils literal notranslate"><span class="pre">código,</span> <span class="pre">tablas</span> <span class="pre">y</span> <span class="pre">figuras</span> <span class="pre">del</span> <span class="pre">EDA</span> <span class="pre">en</span> <span class="pre">un</span> <span class="pre">ZIP</span></code></a>, con <a class="reference download internal" download="" href="../_downloads/1aaa63bdbd1e8f0a1ded440e260403cd/MANIFIESTO.json"><code class="xref download docutils literal notranslate"><span class="pre">manifiesto</span> <span class="pre">SHA-256</span></code></a>. Es un complemento del repositorio; el LEEME explica las entradas de desarrollo y la adquisición oficial necesarias para ejecutar. Se conservan aparte los brutos y los precios individuales de test.</p>
-<p>Desde la raíz del repositorio, con Python 3.12 y el entorno de <code class="docutils literal notranslate"><span class="pre">requirements-eda.lock.txt</span></code>:</p>
+<p>Las evidencias heredadas conservan sus hashes de procedencia y se distinguen de los productos actuales. El <a class="reference download internal" download="" href="../_downloads/0147c71fd2bfb2c531096d43445c0eb5/README.md"><code class="xref download docutils literal notranslate"><span class="pre">índice</span> <span class="pre">de</span> <span class="pre">evidencias</span> <span class="pre">vigente</span></code></a> reúne perfiles, auditoría, lista de cotejo y fuentes. Los scripts <code class="docutils literal notranslate"><span class="pre">scripts/audit_e2_eda_partition.py</span></code> y <code class="docutils literal notranslate"><span class="pre">scripts/e2_eda_current_profiles.py</span></code> trabajan con derivados y registros ya existentes: no entrenan, no ejecutan inferencia, no abren ZIP brutos ni modifican fuentes o modelos. La auditoría no vuelve a leer tensores privados de entrenamiento; comprueba sus fechas, máscaras y firmas registradas.</p>
+<p><strong>Descargas históricas conservadas:</strong> <a class="reference download internal" download="" href="../_downloads/57818c9f39701d291214a63d076ecd2b/EDA_E2_codigo_tablas_figuras.zip"><code class="xref download docutils literal notranslate"><span class="pre">código,</span> <span class="pre">tablas</span> <span class="pre">y</span> <span class="pre">figuras</span> <span class="pre">del</span> <span class="pre">EDA</span> <span class="pre">anterior</span> <span class="pre">en</span> <span class="pre">un</span> <span class="pre">ZIP</span></code></a>, con su <a class="reference download internal" download="" href="../_downloads/1aaa63bdbd1e8f0a1ded440e260403cd/MANIFIESTO.json"><code class="xref download docutils literal notranslate"><span class="pre">manifiesto</span> <span class="pre">SHA-256</span> <span class="pre">original</span></code></a>. El archivo no se presenta como paquete del nuevo perfil; el LEEME conserva las entradas de desarrollo y la adquisición oficial de aquel corte. Los brutos y los precios individuales de test se conservan aparte.</p>
+<p>La reproducción del <strong>EDA histórico</strong> conserva este comando, desde la raíz del repositorio, con Python 3.12 y <code class="docutils literal notranslate"><span class="pre">requirements-eda.lock.txt</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.venv-eda/bin/python<span class="w"> </span>scripts/eda_e2_decisions.py
 </pre></div>
 </div>
-<p>La reconstrucción del perfil de la reserva conocida, sus argumentos y el procedimiento de agregación sin reentrenar se documentan en el <a class="reference download internal" download="" href="../_downloads/e54f3d7d8b1c04223f44000271e1bffb/README.md"><code class="xref download docutils literal notranslate"><span class="pre">README</span> <span class="pre">de</span> <span class="pre">distribución</span></code></a>. El <a class="reference download internal" download="" href="../_downloads/d0aaa37fb5597c136719d657ab4cf6c0/README.md"><code class="xref download docutils literal notranslate"><span class="pre">README</span> <span class="pre">del</span> <span class="pre">resto</span> <span class="pre">del</span> <span class="pre">EDA</span></code></a> especifica entradas, dependencias y productos. Descargar también los <a class="reference download internal" download="" href="../_downloads/0cd7aee7dc924b5b832685aaf225bb9c/summary.json"><span class="xref download myst">resultados resumidos del EDA</span></a> y los <a class="reference download internal" download="" href="../_downloads/380d43427dbb1b6c7cb698e5604434e2/aggregated_profile.csv"><span class="xref download myst">perfiles agregados por fase</span></a>.</p>
+<p>La reconstrucción del <strong>perfil histórico de la reserva de 60 días</strong> se documenta en el <a class="reference download internal" download="" href="../_downloads/e54f3d7d8b1c04223f44000271e1bffb/README.md"><code class="xref download docutils literal notranslate"><span class="pre">README</span> <span class="pre">de</span> <span class="pre">distribución</span> <span class="pre">anterior</span></code></a>. El <a class="reference download internal" download="" href="../_downloads/d0aaa37fb5597c136719d657ab4cf6c0/README.md"><code class="xref download docutils literal notranslate"><span class="pre">README</span> <span class="pre">del</span> <span class="pre">resto</span> <span class="pre">del</span> <span class="pre">EDA</span> <span class="pre">anterior</span></code></a> especifica sus entradas, dependencias y productos. Permanecen disponibles los <a class="reference download internal" download="" href="../_downloads/0cd7aee7dc924b5b832685aaf225bb9c/summary.json"><span class="xref download myst">resultados resumidos de aquel EDA</span></a> y sus <a class="reference download internal" download="" href="../_downloads/380d43427dbb1b6c7cb698e5604434e2/aggregated_profile.csv"><span class="xref download myst">perfiles agregados por fase</span></a>. Para la partición de 655/53/608 ejemplos, consultar el <a class="reference download internal" download="" href="../_downloads/dd8809cd238916adcfa6cefb385692ca/summary.json"><span class="xref download myst">resumen actual</span></a> y la <a class="reference download internal" download="" href="../_downloads/45b782999a6cc36148dfe4b5de22a508/partition_audit.json"><span class="xref download myst">auditoría actual</span></a>.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Requisito recibido</p></th>
@@ -1003,10 +1043,10 @@
 <td><p>Analizados con cifras, figuras, scripts y decisiones explícitas</p></td>
 </tr>
 <tr class="row-odd"><td><p>Partición y solapamiento</p></td>
-<td><p>Auditados para el calendario y representación D7 heredados; cada implementación futura deberá respetarlos</p></td>
+<td><p>Tres folds HPO y partición final auditados mediante registros existentes; IDs disjuntos y reutilización causal de soportes distinguidos</p></td>
 </tr>
 <tr class="row-even"><td><p>Comparación de distribuciones</p></td>
-<td><p>Desarrollo y reserva conocida descritos; análisis del test retrospectivo, sin selección de configuración</p></td>
+<td><p>Nueve perfiles actuales del objetivo y ECDF 655/53/608; covariables brutas en perfil anual E1 separado; descripción retrospectiva sin selección</p></td>
 </tr>
 <tr class="row-odd"><td><p>Estructura, disponibilidad, relaciones rezagadas/móviles</p></td>
 <td><p>Evidencia E1 ampliada y trazable</p></td>
@@ -1014,20 +1054,26 @@
 <tr class="row-even"><td><p>Residuos de referencia</p></td>
 <td><p>Diagnóstico forward de desarrollo ejecutado; resolución F2a registrada en §7</p></td>
 </tr>
-<tr class="row-odd"><td><p>Ruido externo y techo de desempeño</p></td>
-<td><p>No identificables con esta única fuente/proxy; limitación explícita, sin cota inventada</p></td>
+<tr class="row-odd"><td><p>Series de tiempo, bloque B</p></td>
+<td><p>STL, ADF/KPSS, ACF/PACF, ARCH/BDS, cambios, frecuencia y predictibilidad informal desarrollados en §2.2.4 con evidencia E1 reutilizada</p></td>
 </tr>
-<tr class="row-even"><td><p>Sellado prospectivo de un test nuevo de E2</p></td>
-<td><p>No disponible en los periodos heredados ya conocidos</p></td>
+<tr class="row-even"><td><p>Ruido externo y techo de desempeño</p></td>
+<td><p>No identificados con esta única fuente/proxy; limitación explícita que la reconstrucción numérica no cierra</p></td>
 </tr>
-<tr class="row-odd"><td><p>Tabla del Apéndice A y ruta completa</p></td>
+<tr class="row-odd"><td><p>Partición y test heredados</p></td>
+<td><p>Herencia E1 aceptada; identidad, congelación actual y exposición previa documentadas, sin exigir otra reserva ni afirmar cegamiento recuperado</p></td>
+</tr>
+<tr class="row-even"><td><p>Tabla del Apéndice A y ruta completa</p></td>
 <td><p>Guía completa recibida; tabla cotejada con A.1 y ruta F2a cerrada</p></td>
 </tr>
-<tr class="row-even"><td><p>Referencias F2a</p></td>
-<td><p>Naive, naive semanal y ARIMA implementadas y verificadas con doce pruebas sintéticas en §7; no son resultados Bitcoin</p></td>
+<tr class="row-odd"><td><p>Referencias F2a</p></td>
+<td><p>Persistence, SeasonalNaive y ARIMA evaluadas sobre las 608 fechas comunes; las pruebas sintéticas previas siguen siendo antecedentes</p></td>
 </tr>
-<tr class="row-odd"><td><p>Benchmark del catálogo vigente</p></td>
-<td><p>Pendiente; P0 de desarrollo ejecutado y analizado por separado, sin afirmar resultados finales ni potencia acreditada</p></td>
+<tr class="row-even"><td><p>Benchmark del catálogo vigente</p></td>
+<td><p>Completado en §6: 16 sistemas, 81 predictores y 608 fechas; sin superioridad práctica confirmada tras Holm y con alcance retrospectivo</p></td>
+</tr>
+<tr class="row-odd"><td><p>Residuos de modelos finales</p></td>
+<td><p>81 trayectorias diagnosticadas en §49; análisis posterior separado del EDA que motivó F2a</p></td>
 </tr>
 </tbody>
 </table>
@@ -1117,6 +1163,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-y-disponibilidad-temporal-de-covariables">2.2.1 Estructura y disponibilidad temporal de covariables</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relacion-covariablesobjetivo-y-cambios-de-regimen">2.2.2 Relación covariables–objetivo y cambios de régimen</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-con-residuos-de-una-referencia-forward-chaining">2.2.3 Diagnóstico con residuos de una referencia forward chaining</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#series-de-tiempo-evidencia-heredada-y-decisiones-del-bloque-b">2.2.4 Series de tiempo: evidencia heredada y decisiones del bloque B</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trazabilidad-hallazgodecision">2.3 Trazabilidad hallazgo–decisión</a></li>

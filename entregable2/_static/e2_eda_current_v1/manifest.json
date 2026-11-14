@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "version": "e2-eda-current-evidence-v1",
+  "reviewed_source_commit": "1fb87625b2de56ae823fd393cbd12398f735a926",
+  "scientific_engine_commit": "1e8745497b484518f766b6da5c19be8362d9add7",
+  "scope": "Current EDA documentation, saved-partition audit and posthoc descriptive target profiles; historical artifacts retained",
+  "operations": {
+    "model_fits": 0,
+    "model_inference_calls": 0,
+    "predictive_rescoring": false,
+    "raw_archives_opened": 0,
+    "new_p_values": 0,
+    "retuning": false,
+    "test_cached_targets_read_for_description": true
+  },
+  "requirements": 34,
+  "frozen_benchmark": {
+    "path": "book_e2/_static/e2_benchmark_final_20261113/benchmark_A2.csv",
+    "sha256": "879e2ce52709657a06bc6c009f0cd553423f2eaa0bbdf16dc7f5844dfec9fcc1",
+    "modified": false
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 4258,
+      "sha256": "f5a39985f3baab262e3ad219d27331d67b0a8d9c3d5571dc4b01761ea3eebe96"
+    },
+    {
+      "path": "decision_traceability.csv",
+      "bytes": 23721,
+      "sha256": "1e1a3b7e6ac37a039dab5257302527eff60837913a23d8483cb1c15994bba2f2"
+    },
+    {
+      "path": "guide_checklist.csv",
+      "bytes": 11656,
+      "sha256": "b614afaff57192f1f253e3052609b138c63199b9b073bc97ead5a3e0bd7ddd31"
+    },
+    {
+      "path": "guide_checklist.json",
+      "bytes": 18405,
+      "sha256": "3b4d2bc5be40d582db12f4a8eb33ef5cd6301ea9eaeab1a007e0cf43b7ffd671"
+    },
+    {
+      "path": "inherited_annual_profiles.csv",
+      "bytes": 9080,
+      "sha256": "60dd1a4fb48f3239752988115985e6cdb14d22f194ecf713de5344b54375ab7c"
+    },
+    {
+      "path": "partition_audit.json",
+      "bytes": 47671,
+      "sha256": "69ac07eebcfad0e946d2edaaf433871e4045696b95035e7b5252cf3409a7e02f"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 5676,
+      "sha256": "6c6cfda5d3828d0f03a02a2b7b56f26298b7b24c80f80741c689f9a133159b1d"
+    },
+    {
+      "path": "target_ecdf.svg",
+      "bytes": 99928,
+      "sha256": "0ce34df5f758b6c52b17b12e5d59f6e20410f694a532aa0febec6902b8fb7f78"
+    },
+    {
+      "path": "target_profiles.csv",
+      "bytes": 4659,
+      "sha256": "d24612c50586bf9b065a543054aabaf42bb529b9a012c3794be9ea0d2540ffea"
+    }
+  ],
+  "scripts": [
+    {
+      "path": "scripts/audit_e2_eda_partition.py",
+      "bytes": 17469,
+      "sha256": "8bfa8ab0f53af2c7a1c5ff0d8beceba286c2f19925b1ad3214b321542acd0b0e"
+    },
+    {
+      "path": "scripts/e2_eda_current_profiles.py",
+      "bytes": 18500,
+      "sha256": "7d2a438689dfea2bd15ce4b6e4a974e3042fce09823cb7ca763d49a56e3f969c"
+    }
+  ],
+  "source_hashes": "partition_audit.json#/evidence and summary.json#/input_sha256",
+  "limitations": "The checklist distinguishes inherited evidence, non-applicability and measurement limits. It is not a blanket scientific pass; external proxy noise and an attainable performance ceiling remain unidentified."
+}
