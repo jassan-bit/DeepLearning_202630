@@ -1,4 +1,6 @@
-# 62. Elegibilidad, selección documental y brecha sustentada
+# Elegibilidad, selección documental y brecha sustentada
+
+> **Ubicación:** complemento del [capítulo 3](03_literatura.md). Identificador documental anterior: **§62**; [ver concordancia](concordancia_guia.md).
 
 **Estado documental vigente.** El **flujo tipo PRISMA del corpus recibido queda reconciliado**: los **9.559 grupos** tienen cribado y disposición final, con **42 estudios aplicados únicos**, **120 evaluaciones primarias focales o reutilizadas** y **cero pendientes operativos**. Se documentan **174 registros cuyo informe no se recuperó**, con elegibilidad desconocida. La cobertura de las búsquedas históricas permanece limitada: faltan 374 registros Scopus mostrados y no se conocen todos los totales/rangos de WoS. El cierre del flujo recibido no acredita exhaustividad de las bases.
 

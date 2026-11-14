@@ -1,4 +1,5 @@
-# 9. Registros, enmiendas y cierre de la ejecución
+(registros-enmiendas-y-cierre-de-la-ejecucion)=
+# 9. Preregistro, Potencia Estadística y Control de Decisiones
 
 **Estado vigente del 14/11/2026:** están cerrados la selección reducida, los **78 ajustes finales neuronales**, los **diez pilotos**, los **tres comparadores** y la evaluación común de los **16 sistemas**. Se completaron además **81 reproducciones y 18 ablaciones**. [§48](48_protocolo_reducido.md) reúne los registros y transiciones del ejecutor; [§55](55_reproduccion_ablaciones.md), los recibos del cierre complementario.
 

@@ -1,4 +1,6 @@
-# 63. Referencia empírica mediante un ensemble ajustado en calibración
+# Referencia empírica mediante un ensemble ajustado en calibración
+
+> **Ubicación:** complemento del [capítulo 12](12_incertidumbre_errores.md). Identificador documental anterior: **§63**; [ver concordancia](concordancia_guia.md).
 
 Se construyó **una única combinación convexa de los dieciséis sistemas**, usando solamente las 53 fechas de calibración del 08/11–30/12/2024 para aprender sus pesos. Los pronósticos originales y los resultados de A2 se conservan. El [plan](../_static/e2_calibration_ensemble_20261114/analysis_plan.json) fue versionado en el [commit 8d9cc8c](https://github.com/jassan-bit/DeepLearning_202630/commit/8d9cc8c3397242a07378fb1a678196dab36744da) antes de este ajuste, aunque el periodo de prueba y sus resultados originales ya eran conocidos. Es un suplemento retrospectivo.
 

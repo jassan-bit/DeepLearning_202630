@@ -1,10 +1,12 @@
-# 52. Síntesis verificable de literatura y selección vigente
+# Síntesis verificable de literatura y selección vigente
+
+> **Archivo de antecedentes:** documento **§52** del registro anterior. Conserva su fecha, alcance y resultados históricos. [Ver organización del informe](concordancia_guia.md).
 
 **Estado vigente en [§62](62_cierre_literatura_focal.md):** el flujo del corpus recibido está reconciliado: **9.559 grupos cribados y 42 estudios aplicados únicos**, con doce dimensiones de extracción y disposiciones de acceso explícitas. Los puntajes de los diez sistemas son calculables dentro de sus escenarios; la comparabilidad global permanece condicionada. **Esta página conserva el corte histórico y sus derivados**; sus estados parciales se interpretan en ese corte, sin sustituir el registro vigente.
 
 **Corte documental del 13/11/2026.** La revisión permite sostener mecanismos candidatos y una brecha de evaluación concreta. La elegibilidad global continúa sin determinar. Esta síntesis reúne evidencia ya extraída y una lectura adicional de fuentes primarias; el [expediente reproducible](../_static/e2_literature_closure_20261113/manifest.json) conserva las entradas y sus huellas. No añade ajustes ni resultados Bitcoin.
 
-## 52.1 Dos cohortes con denominadores diferentes
+## Dos cohortes con denominadores diferentes
 
 La cohorte arquitectónica histórica contiene **diez estudios originales completos, 215 páginas físicas**. Sus identidades se recuperaron de forma dirigida. El [registro por estudio](../_static/e2_literature_closure_20261113/directed_originals10.csv) permite cerrar una evaluación local para síntesis de mecanismos: diez identidades distintas, diez textos completos recibidos, diez evaluados y diez admitidos con limitaciones de reporte. No hubo duplicados ni exclusiones **dentro de esas diez identidades fijadas**. Este tramo no representa el cribado del universo bibliográfico.
 
@@ -22,7 +24,7 @@ El [flujo local estructurado](../_static/e2_literature_closure_20261113/bounded_
 
 El [registro de las tres lecturas adicionales](../_static/e2_literature_closure_20261113/additional_source_reading_ledger.json) documenta versiones, canal de acceso y alcance asistido por IA. No redistribuye los textos completos.
 
-## 52.2 Qué resultados sustentan realmente los diez sistemas
+## Qué resultados sustentan realmente los diez sistemas
 
 La [hoja vigente de extracción, CSV](../_static/e2_literature_closure_20261113/current10_extraction.csv) y su [versión JSON](../_static/e2_literature_closure_20261113/current10_extraction.json) contienen identidad, versión, localizador, arquitectura, adaptación, código, calidad y costes documentados. La política de [§44](44_arquitecturas_publicadas.md), actualizada por [§48](48_protocolo_reducido.md), fija los diez cuerpos: TiDE usa **TIDE-D7-PUBLISHED-R0-v2**, conservando separada su variante NAS histórica. Los diagramas, ecuaciones y recibos de los seis originales modernos permanecen en §3 y los de las cuatro altas en [§16](16_fichas_nuevas.md); las adaptaciones publicadas actuales se documentan en §44/§48.
 
@@ -60,7 +62,7 @@ Las tres lecturas web añaden valoración propia, separada del denominador anter
 
 La [réplica de §5](05_paper_guia.md) merece crédito experimental separado: cinco semillas de TimeMixer en ETTh1 produjeron MSE **0,377838**, con IC95 % de discrepancia **[−0,000726; 0,006401]**, compatible con la tolerancia registrada. También existe un piloto de tres modelos. Esa reproducción parcial y el diagnóstico de marcadores fortalecen la trazabilidad operativa; mantienen su alcance ETTh1 y no asignan un efecto Bitcoin a TimeMixer.
 
-## 52.3 Puntajes completos, incertidumbre y sensibilidad
+## Puntajes completos, incertidumbre y sensibilidad
 
 La tabla siguiente es una **auditoría de soporte fijada el 13/11**, posterior al catálogo autorizado del 12/11. No reconstruye una selección previa ni convierte una preferencia autorizada en un óptimo bibliográfico. El [protocolo de puntaje](../_static/e2_literature_closure_20261113/support_score_protocol.json) declara:
 
@@ -87,7 +89,7 @@ La [sensibilidad a cuatro ponderaciones](../_static/e2_literature_closure_202611
 
 La [tabla de originales excluidos](../_static/e2_literature_closure_20261113/excluded_originals_context.csv) conserva Informer, Autoformer, Crossformer y S-Mamba. Crossformer tiene 1.675 citas verificadas en ese corte y S-Mamba 313; las cantidades ausentes para Informer y Autoformer quedan desconocidas. Su exclusión responde al alcance actual y a la cobertura funcional de familias, no a inferioridad demostrada. La justificación mundial de los más citados excluidos permanece abierta porque la cobertura de candidatos y citas es incompleta.
 
-## 52.4 Mecanismos transferibles y búsquedas nativas ejecutadas
+## Mecanismos transferibles y búsquedas nativas ejecutadas
 
 La [matriz de mecanismos](../_static/e2_literature_closure_20261113/transverse_mechanisms.csv) conecta fuentes de origen con una propiedad compartida y una limitación concreta. Los textos de origen se identificaron por las referencias de los originales y sus fuentes primarias enlazadas; no se atribuye hoy una nueva lectura completa a todos ellos.
 
@@ -120,7 +122,7 @@ El recibo está fijado en el commit [`04d0947b1b043b7d389a742d7c3e06a97338d5b4`]
 
 Esta ronda acredita **identificación nativa y recuperación parcial de metadatos**. La suma de totales, 187, no es una unión deduplicada ni un número de estudios incluidos; las 23 ocurrencias recuperadas tampoco son 23 estudios elegibles. El número de estudios únicos permanece desconocido. Siguen pendientes la recuperación de las páginas restantes, la deduplicación entre consultas y rondas, el cribado y la adjudicación por texto completo. Las búsquedas web auxiliares conservan su alcance complementario; la revisión global y el flujo PRISMA siguen parciales.
 
-## 52.5 Brecha contrastable derivada de la extracción
+## Brecha contrastable derivada de la extracción
 
 **En los nueve estudios primarios que sustentan el catálogo vigente no se identificó una evaluación de estos mecanismos para pronosticar σ₇ no anualizada a h=1 usando exclusivamente siete días OHLCV de Bitcoin, con presupuesto común e inferencia temporal pareada.** La [matriz de refutación](../_static/e2_literature_closure_20261113/gap_falsification_matrix.csv) enlaza cada sistema con su tarea, dataset y localizador que sostienen esa delimitación. Basta localizar en cualquiera de esos estudios una evaluación que sí cumpla esas condiciones para corregir la afirmación. La revisión global pendiente impide extenderla a toda la literatura.
 

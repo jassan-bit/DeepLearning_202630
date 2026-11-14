@@ -18,6 +18,12 @@
 
 **Estado bibliográfico vigente:** [§62](sections/62_cierre_literatura_focal.md) publica el **flujo reconciliado de 9.559 grupos recibidos**, **42 estudios aplicados únicos**, calidad en doce dimensiones y cero pendientes operativos. Se conservan 174 registros con informe no recuperado y elegibilidad desconocida. Las versiones y los alias se distinguen; la cobertura histórica sigue limitada por 374 registros Scopus no recibidos y rangos/totales WoS no confirmados. Los puntajes del catálogo y sus límites de comparabilidad permanecen explícitos.
 
+## Organización del informe
+
+El índice principal sigue los **catorce capítulos de la guía de E2, en su mismo orden**. Los documentos complementarios aparecen bajo el tema correspondiente; los avances y diseños anteriores se reúnen en el [archivo de antecedentes](sections/archivo_antecedentes.md).
+
+Las menciones históricas **§15–§63** identifican documentos de trabajo, no capítulos adicionales de la guía. La [tabla de concordancia](sections/concordancia_guia.md) permite localizar cada uno en la organización actual. Los enlaces, resultados y descargas anteriores se conservan.
+
 ## Resumen
 
 Se estudia el pronóstico diario de volatilidad de Bitcoin usando siete días de OHLCV, horizonte de un día y objetivo σ₇ poblacional de retornos de Close, sin anualización. Se comparan diez candidatos de cuatro familias, tres referencias neuronales de E1 y tres comparadores estadísticos. La selección reducida utiliza seis configuraciones y tres orígenes internos por red; cada receta neuronal final tiene seis semillas. Los 16 sistemas comparten 608 fechas de evaluación conocidas desde E1.

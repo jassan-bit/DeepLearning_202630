@@ -1,4 +1,6 @@
-# 58. Coste de operaciones de los predictores congelados
+# Coste de operaciones de los predictores congelados
+
+> **Ubicación:** complemento del [capítulo 11](11_hpo_equidad.md). Identificador documental anterior: **§58**; [ver concordancia](concordancia_guia.md).
 
 Se auditaron los **13 cuerpos neuronales realmente seleccionados** (10 principales y las tres referencias de E1), con ventanas D7×5, batch 1, float32 y `eval`. Se usaron las recetas ganadoras de los recibos de reproducción y se verificó que los constructores coincidieran byte a byte con el commit científico `1e8745497b484518f766b6da5c19be8362d9add7`. Los validadores originales comprobaron los archivos de autor requeridos.
 

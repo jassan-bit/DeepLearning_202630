@@ -1,4 +1,6 @@
-# 59. Auditoría final de la literatura recibida
+# Auditoría final de la literatura recibida
+
+> **Archivo de antecedentes:** documento **§59** del registro anterior. Conserva su fecha, alcance y resultados históricos. [Ver organización del informe](concordancia_guia.md).
 
 **Estado vigente en [§62](62_cierre_literatura_focal.md):** el flujo del corpus recibido está reconciliado: **9.559 grupos cribados y 42 estudios aplicados únicos**, con doce dimensiones de extracción y disposiciones de acceso explícitas. Los puntajes de los diez sistemas son calculables dentro de sus escenarios; la comparabilidad global permanece condicionada. **Esta página conserva el corte histórico y sus derivados**; sus estados parciales se interpretan en ese corte, sin sustituir el registro vigente.
 

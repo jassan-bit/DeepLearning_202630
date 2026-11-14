@@ -1,16 +1,18 @@
-# 19. Plan experimental propuesto y auditoría sin entrenamiento
+# Plan experimental propuesto y auditoría sin entrenamiento
+
+> **Archivo de antecedentes:** documento **§19** del registro anterior. Conserva su fecha, alcance y resultados históricos. [Ver organización del informe](concordancia_guia.md).
 
 **Cotejo posterior con la guía original de 65 páginas recibida el 08/11/2026:** este borrador queda condicionado por las correcciones de [§20](20_contraste_guia.md). La cuadrícula reducida y el total de16 sistemas no cubren todos los requisitos; no son el plan definitivo autorizado.
 
 **Corte del 08/11/2026.** Este documento registra decisiones y comprobaciones posteriores a resultados históricos conocidos. **No es un preregistro prospectivo, no acredita HPO ni piloto del catálogo vigente y no demuestra superioridad.** Los protocolos y resultados de E1 y de versiones anteriores permanecen sin cambios. La ejecución requiere cerrar las condiciones pendientes y registrar una enmienda con su exposición previa antes de nuevos ajustes.
 
-## 19.1 Alcance y condición de entrada
+## Alcance y condición de entrada
 
 El catálogo comprende los diez modelos de §15 y el candidato adicional CNN-1D + LSTM + atención temporal. Las referencias separadas son MLP16, LSTM32 y GRU32 vigentes de E1, Ridge como control no profundo propuesto y persistencia causal. El borrador inicial contaba quince configuraciones de benchmark más el candidato once: **dieciséis sistemas**, no dieciséis arquitecturas nuevas ni una lista que reintroduzca modelos retirados. La ruta F2a vigente añade naive estacional y ARIMA o ETS (PDF p30): manteniendo Ridge, la propuesta debe contemplar al menos 18 sistemas, con recetas y coste de esos controles pendientes. Las ablaciones son controles adicionales y no cuentan como nuevos modelos del Top 10.
 
 La entrada y el objetivo permanecen D7×5 OHLCV relativo, σ₇ poblacional sin anualización y horizonte uno conforme a §17. La receta de software es una adaptación y no una reproducción literal de los artículos. La guía recibida se conserva como registro histórico: sus selecciones antiguas, TCN, R y estados de ejecución no sustituyen este catálogo ni el E1 vigente. El PDF original ya se cotejó posteriormente; las páginas y correcciones actuales están en §20. El JSON histórico de recepción no se reescribe retroactivamente.
 
-## 19.2 Auditoría del snapshot
+## Auditoría del snapshot
 
 Se auditó el snapshot diario de desarrollo2023–2024 mediante `scripts/audit_e2_real_data.py`, contrastando sus SHA256 con el registro histórico y reconstruyendo etiquetas y escaladores. [Recibo agregado](../_static/plan_audit_20261108/audit.json).
 
@@ -31,7 +33,7 @@ La auditoría usa los derivados diarios existentes, **no reagrega los archivos o
 
 El flujo actual rechaza correctamente este snapshot por su guarda `synthetic_only`; no se retiró la guarda ni se cambió su procedencia para pasar pruebas. Sólo la función matemática de transformación es compartida. **Datos de desarrollo auditados no equivale a flujo de entrenamiento real integrado.**
 
-## 19.3 Recetas y presupuesto propuestos
+## Recetas y presupuesto propuestos
 
 Se propone usar `provisional_default` de §18 como estructura fija, sin ensemble InceptionTime, sin variación de profundidad ni NAS declarada. Los cuatro prototipos usan ancho16 y dropout0; el híbrido CNN32/LSTM32/atención16, kernel3, una capa LSTM y dropout0,1. Las seis adaptaciones mantienen sus mecanismos y heads documentados. Los valores son puntos de partida del diseño, **no óptimos validados**.
 
@@ -71,7 +73,7 @@ Tras congelar receta, se propone un piloto auxiliar 08/11–30/12/2024 (53 fecha
 
 **Decisiones descritas, no preregistradas ni cerradas como cumplimiento de la guía:** objetivo/soportes heredados, catálogo, estructura provisional, cuadrícula propuesta y contabilidad, separación de fases AE, no test para selección. **Puertas aún abiertas:** ejecutor real integrado y auditado, controles de momentos, NAS/guía, hardware/tiempos, política de calibración/robustez, dimensionamiento R e inferencia. Cerrar un borrador no equivale a autorizar las2.400 etapas ni a cumplir la guía completa.
 
-## 19.4 Límites de inferencia y próximos pasos
+## Límites de inferencia y próximos pasos
 
 La reserva de 608 fechas (01/01/2025–31/08/2026) ya es conocida y sólo puede informar comparación exploratoria. La reserva anterior de 60 fechas (01/09–30/10/2026) también fue observada. Ni volver a sellar archivos ni cambiar semillas recupera independencia respecto de decisiones previas. No se utiliza ninguna de ellas para elegir recetas, épocas, presupuesto o márgenes. Una afirmación confirmatoria futura exige un soporte temporal realmente no observado, congelado antes de examinar sus resultados; aquí no se inventa ese soporte.
 

@@ -1,4 +1,6 @@
-# 56. Inferencia refinada y estabilidad temporal
+# Inferencia refinada y estabilidad temporal
+
+> **Ubicación:** complemento del [capítulo 13](13_agregacion_estadistica.md). Identificador documental anterior: **§56**; [ver concordancia](concordancia_guia.md).
 
 El refinamiento de los **20 contrastes primarios con 20.000 remuestreos** conserva las conclusiones: **ningún modelo principal demuestra una mejora mayor que δ frente a GRU32 o Persistence tras Holm20**. Se verificaron exactamente los 20 resultados originales de 4.999 sorteos antes de ampliar la resolución Monte Carlo. Se conservan ambos análisis y sus fechas; no se reentrenó, recalibró ni generó una predicción nueva.
 

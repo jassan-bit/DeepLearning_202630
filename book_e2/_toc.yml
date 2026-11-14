@@ -1,67 +1,152 @@
 format: jb-book
 root: intro
-chapters:
-  - file: sections/48_protocolo_reducido
-  - file: sections/47_entrega_consolidada
-  - file: sections/01_punto_partida
-  - file: sections/02_eda
-  - file: sections/03_literatura
-  - file: sections/04_implementacion
-  - file: sections/05_paper_guia
-  - file: sections/06_benchmark_final
-  - file: sections/49_diagnosticos_f2a
-  - file: sections/50_comparaciones_f2a
-  - file: sections/51_eficiencia_costes
-  - file: sections/52_sintesis_literatura
-  - file: sections/53_cierre_requisitos
-  - file: sections/54_robustez_interpretabilidad
-  - file: sections/55_reproduccion_ablaciones
-  - file: sections/56_inferencia_estabilidad_final
-  - file: sections/57_errores_techo
-  - file: sections/58_flops_predictores
-  - file: sections/59_auditoria_literatura_final
-  - file: sections/60_calibracion_temporal_condicional
-  - file: sections/61_reproduccion_consolidada
-  - file: sections/62_cierre_literatura_focal
-  - file: sections/63_ensamble_calibracion
-  - file: sections/07_ruta_temporal
-  - file: sections/08_reproducibilidad
-  - file: sections/09_protocolo_registrado
-  - file: sections/10_auditoria_datos
-  - file: sections/11_hpo_equidad
-  - file: sections/12_incertidumbre_errores
-  - file: sections/13_agregacion_estadistica
-  - file: sections/14_arquitecturas
-  - file: sections/15_revision_modelos
-  - file: sections/16_fichas_nuevas
-  - file: sections/17_contrato_sincronizado
-  - file: sections/18_integracion_sintetica
-  - file: sections/19_plan_auditoria
-  - file: sections/20_contraste_guia
-  - file: sections/21_comparadores_nas
-  - file: sections/22_fichas_recetas
-  - file: sections/23_implementacion_recetas
-  - file: sections/24_ejecutor_comun
-  - file: sections/25_matriz_cierre
-  - file: sections/26_registro_recetas
-  - file: sections/27_nas_hpo_presupuesto
-  - file: sections/28_fabricas_nas
-  - file: sections/29_entrenamiento_temporal
-  - file: sections/30_piloto_nube
-  - file: sections/31_optimizacion_nube
-  - file: sections/32_ejecucion_gpu
-  - file: sections/33_piloto_gpu
-  - file: sections/34_perfil_gpu_ampliado
-  - file: sections/35_busqueda_cuda_reanudable
-  - file: sections/36_avance_campana_cuda
-  - file: sections/37_ajuste_guia
-  - file: sections/38_cumplimiento_guia
-  - file: sections/39_optimizacion_tiempo
-  - file: sections/40_calendario_original
-  - file: sections/41_avance_optimizacion_11_origenes
-  - file: sections/42_auditoria_y_trabajo_paralelo
-  - file: sections/43_catalogo_obligatorio
-  - file: sections/44_arquitecturas_publicadas
-  - file: sections/45_enmienda_protocolo
-  - file: sections/46_artefactos_y_pilotos
-  - file: sections/referencias
+parts:
+  - caption: Informe según la guía de E2
+    numbered: false
+    chapters:
+      - file: sections/01_punto_partida
+        title: "1. Definición del Problema, Preguntas de Investigación y Dataset"
+        sections:
+          - file: sections/17_contrato_sincronizado
+            title: "Contrato vigente y relación entre E1, E2 y E3"
+      - file: sections/02_eda
+        title: "2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones"
+      - file: sections/03_literatura
+        title: "3. Revisión Sistemática del Estado del Arte"
+        sections:
+          - file: sections/62_cierre_literatura_focal
+            title: "Elegibilidad, selección documental y brecha sustentada"
+      - file: sections/04_implementacion
+        title: "4. Implementación de Modelos Benchmark"
+        sections:
+          - file: sections/43_catalogo_obligatorio
+            title: "Catálogo obligatorio: dieciséis sistemas"
+          - file: sections/15_revision_modelos
+            title: "Catálogo ejecutado y procedencia bibliográfica"
+      - file: sections/05_paper_guia
+        title: "5. Paper Guía y Replicación"
+      - file: sections/06_benchmark_final
+        title: "6. Benchmark Final"
+      - file: sections/07_ruta_temporal
+        title: "7. Ruta Metodológica según el Tipo de Problema"
+        sections:
+          - file: sections/49_diagnosticos_f2a
+            title: "Diagnósticos F2a posteriores al benchmark"
+          - file: sections/54_robustez_interpretabilidad
+            title: "Robustez e interpretabilidad: resultados reales de los predictores congelados"
+      - file: sections/08_reproducibilidad
+        title: "8. Reproducibilidad, Ética y Comunicación Científica"
+        sections:
+          - file: sections/61_reproduccion_consolidada
+            title: "Entrega reproducible y Apéndice B actual"
+          - file: sections/55_reproduccion_ablaciones
+            title: "Reproducción numérica y ablaciones completadas"
+          - file: sections/38_cumplimiento_guia
+            title: "Exigencias de la guía, evidencia y pendientes"
+          - file: sections/53_cierre_requisitos
+            title: "Cierre de requisitos y experimentos complementarios"
+          - file: sections/47_entrega_consolidada
+            title: "Entrega consolidada con la evidencia disponible"
+      - file: sections/09_protocolo_registrado
+        title: "9. Preregistro, Potencia Estadística y Control de Decisiones"
+        sections:
+          - file: sections/48_protocolo_reducido
+            title: "Protocolo reducido y seguimiento de la ejecución"
+          - file: sections/45_enmienda_protocolo
+            title: "Enmienda del protocolo: calendario común, presupuesto y prueba final"
+      - file: sections/10_auditoria_datos
+        title: "10. Contrato de Datos y Auditoría Formal de Fuga de Información"
+      - file: sections/11_hpo_equidad
+        title: "11. Protocolo de Entrenamiento, Ajuste y Costo Computacional"
+        sections:
+          - file: sections/51_eficiencia_costes
+            title: "Eficiencia, coste observado y compromisos de Pareto"
+          - file: sections/58_flops_predictores
+            title: "Coste de operaciones de los predictores congelados"
+      - file: sections/12_incertidumbre_errores
+        title: "12. Techo de Desempeño, Incertidumbre y Análisis de Errores"
+        sections:
+          - file: sections/60_calibracion_temporal_condicional
+            title: "Calibración temporal y cobertura condicional"
+          - file: sections/57_errores_techo
+            title: "Taxonomía de errores y referencias de predictibilidad"
+          - file: sections/63_ensamble_calibracion
+            title: "Referencia empírica mediante un ensemble ajustado en calibración"
+      - file: sections/13_agregacion_estadistica
+        title: "13. Estrategia de Agregación y Modelado Estadístico"
+        sections:
+          - file: sections/50_comparaciones_f2a
+            title: "Comparaciones F2a posteriores: DM, MCS y rangos por semilla"
+          - file: sections/56_inferencia_estabilidad_final
+            title: "Inferencia refinada y estabilidad temporal"
+      - file: sections/14_arquitecturas
+        title: "14. Búsqueda de Arquitectura cuando No Hay Diseño Predefinido"
+        sections:
+          - file: sections/44_arquitecturas_publicadas
+            title: "Cuerpos publicados, adaptaciones D7 y aplicación de NAS"
+  - caption: Material de consulta y referencias
+    numbered: false
+    chapters:
+      - file: sections/concordancia_guia
+        title: "Organización y concordancia"
+      - file: sections/archivo_antecedentes
+        title: "Archivo de antecedentes"
+        sections:
+          - file: sections/16_fichas_nuevas
+            title: "Fichas bibliográficas de las cuatro altas propuestas"
+          - file: sections/18_integracion_sintetica
+            title: "Implementación provisional y verificación sintética"
+          - file: sections/19_plan_auditoria
+            title: "Plan experimental propuesto y auditoría sin entrenamiento"
+          - file: sections/20_contraste_guia
+            title: "Cotejo del plan con la guía original"
+          - file: sections/21_comparadores_nas
+            title: "Comparadores temporales y decisión NAS por receta"
+          - file: sections/22_fichas_recetas
+            title: "Once fichas de recetas propuestas"
+          - file: sections/23_implementacion_recetas
+            title: "Implementación de recetas y controles temporales"
+          - file: sections/24_ejecutor_comun
+            title: "Ejecutor común y disponibilidad temporal"
+          - file: sections/25_matriz_cierre
+            title: "Matriz de cierre antes del benchmark"
+          - file: sections/26_registro_recetas
+            title: "Registro por receta: fuentes, NAS, HPO e integración"
+          - file: sections/27_nas_hpo_presupuesto
+            title: "Decisiones NAS, rangos HPO y presupuesto para Codex"
+          - file: sections/28_fabricas_nas
+            title: "Fábricas NAS implementadas y verificadas sintéticamente"
+          - file: sections/29_entrenamiento_temporal
+            title: "Entrenamiento por etapas, selección temporal y perfilado CPU"
+          - file: sections/30_piloto_nube
+            title: "Piloto de desarrollo en la nube de Codex"
+          - file: sections/31_optimizacion_nube
+            title: "Optimización de CPU y presupuesto de cómputo en la nube"
+          - file: sections/32_ejecucion_gpu
+            title: "Ejecución CUDA preparada y piloto de recursos"
+          - file: sections/33_piloto_gpu
+            title: "Primer piloto de recursos en GPU"
+          - file: sections/34_perfil_gpu_ampliado
+            title: "Perfil GPU ampliado y viabilidad del extremo TimesNet"
+          - file: sections/35_busqueda_cuda_reanudable
+            title: "Selección CUDA con presupuesto y continuación en GitHub"
+          - file: sections/36_avance_campana_cuda
+            title: "Avance parcial de la campaña CUDA"
+          - file: sections/37_ajuste_guia
+            title: "Ajuste de cómputo conforme a la guía"
+          - file: sections/39_optimizacion_tiempo
+            title: "Optimizar tiempo sin recortar las exigencias de E2"
+          - file: sections/40_calendario_original
+            title: "Calendario original y optimizaciones de implementación"
+          - file: sections/41_avance_optimizacion_11_origenes
+            title: "Ejecución optimizada: avance verificable de once orígenes"
+          - file: sections/42_auditoria_y_trabajo_paralelo
+            title: "Preparación complementaria a partir de evidencia existente"
+          - file: sections/46_artefactos_y_pilotos
+            title: "Preparación técnica opcional: artefactos y pilotos"
+          - file: sections/52_sintesis_literatura
+            title: "Síntesis verificable de literatura y selección vigente"
+          - file: sections/59_auditoria_literatura_final
+            title: "Auditoría final de la literatura recibida"
+      - file: sections/referencias
+        title: Referencias

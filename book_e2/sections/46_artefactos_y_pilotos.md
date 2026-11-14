@@ -1,4 +1,6 @@
-# 46. Preparación técnica opcional: artefactos y pilotos
+# Preparación técnica opcional: artefactos y pilotos
+
+> **Archivo de antecedentes:** documento **§46** del registro anterior. Conserva su fecha, alcance y resultados históricos. [Ver organización del informe](concordancia_guia.md).
 
 **Estado: preparado, sin ejecución de pilotos nuevos acreditada.** El cierre del informe con la evidencia disponible se presenta en [§47](47_entrega_consolidada.md); esta página conserva una ruta técnica para trabajo posterior. No se solicita ampliar el presupuesto ni iniciar otra campaña para redactar los resultados y límites actuales.
 

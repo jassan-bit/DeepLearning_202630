@@ -1,4 +1,6 @@
-# 43. Catálogo obligatorio: dieciséis sistemas
+# Catálogo obligatorio: dieciséis sistemas
+
+> **Ubicación:** complemento del [capítulo 4](04_implementacion.md). Identificador documental anterior: **§43**; [ver concordancia](concordancia_guia.md).
 
 **Decisión de alcance del 12/11/2026, autorizada por el usuario:** completar **diez modelos del Top 10, tres referencias de E1 y tres comparadores temporales**. Son **13 redes y 3 comparadores: 16 sistemas**. El híbrido adicional y Ridge quedan fuera del alcance obligatorio; sus implementaciones, configuraciones y resultados previos se conservan como antecedentes opcionales.
 

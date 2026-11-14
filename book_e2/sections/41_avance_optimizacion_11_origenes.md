@@ -1,4 +1,6 @@
-# 41. Ejecución optimizada: avance verificable de once orígenes
+# Ejecución optimizada: avance verificable de once orígenes
+
+> **Archivo de antecedentes:** documento **§41** del registro anterior. Conserva su fecha, alcance y resultados históricos. [Ver organización del informe](concordancia_guia.md).
 
 **Corte posterior incorporado a la entrega:** el [informe consolidado (§47)](47_entrega_consolidada.md) publica **1.705 resultados optimizados, 3.507 registros combinados y cincuenta selecciones locales**, con fuente fija del 12/11/2026 a las 12:53:37 UTC. Este capítulo conserva los cortes anteriores y sus archivos originales.
 

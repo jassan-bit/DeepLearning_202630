@@ -1,4 +1,6 @@
-# 54. Robustez e interpretabilidad: resultados reales de los predictores congelados
+# Robustez e interpretabilidad: resultados reales de los predictores congelados
+
+> **Ubicación:** complemento del [capítulo 7](07_ruta_temporal.md). Identificador documental anterior: **§54**; [ver concordancia](concordancia_guia.md).
 
 **La ejecución A100 completó los diagnósticos de 79 predictores y su agregado.** Las perturbaciones muestran fragilidad: con un 10 % de celdas alteradas por valores extremos, la RMSE del autoencoder aumenta **585,40 %**, la de GRU32 **513,98 %** y la de TimeMixer **1.552,52 %**. La cobertura de sus intervalos congelados cae al **22,12 %, 32,07 % y 19,13 %**, respectivamente. Una posición favorable en la evaluación original no garantiza resistencia a estas perturbaciones.
 

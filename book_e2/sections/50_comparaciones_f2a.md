@@ -1,4 +1,6 @@
-# 50. Comparaciones F2a posteriores: DM, MCS y rangos por semilla
+# Comparaciones F2a posteriores: DM, MCS y rangos por semilla
+
+> **Ubicación:** complemento del [capítulo 13](13_agregacion_estadistica.md). Identificador documental anterior: **§50**; [ver concordancia](concordancia_guia.md).
 
 **Análisis ejecutado el 13/11/2026 sobre pronósticos congelados.** La nueva familia DM–HLN rechaza **35 de 120 igualdades de pérdida media**, con Holm a α=0,05. El Model Confidence Set al **90 % conserva cinco sistemas: FCN-1D, LSTM-autoencoder con predictor, GRU32, Persistence y ARIMA**. El diagnóstico de rangos entre las trece redes detecta heterogeneidad global entre ejecuciones, pero sus 78 comparaciones Wilcoxon no rechazan después de Holm.
 

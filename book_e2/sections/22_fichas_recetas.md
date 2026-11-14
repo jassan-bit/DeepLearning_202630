@@ -1,4 +1,6 @@
-# 22. Once fichas de recetas propuestas
+# Once fichas de recetas propuestas
+
+> **Archivo de antecedentes:** documento **§22** del registro anterior. Conserva su fecha, alcance y resultados históricos. [Ver organización del informe](concordancia_guia.md).
 
 **Estado: propuestas concretas para adjudicar el diseño, no cambios de implementación ni entrenamiento.** Este corte no modifica los scripts de modelos, no ejecuta forwards o ajustes y no concede exenciones NAS. Las pruebas sintéticas de §18 pertenecen a aquellas versiones, no certifican los nuevos cuerpos propuestos aquí. El catálogo de diez modelos y el candidato CNN-LSTM-atención se conserva.
 
@@ -24,7 +26,7 @@
 - Se propone conservar cero dropout en los tres cuerpos CNN fuente. El dropout 0,3 del SAE se coloca como se especifica abajo. El HPO de §11.2 sigue pendiente: estos valores son una receta de referencia, no una búsqueda completada ni permiso para omitir factores requeridos.
 - Los SHA enlazados son snapshots verificados del código de autor, no certificaciones del código exacto utilizado en la publicación. La traducción Conv2D con dimensión singleton a Conv1D se declara; no se promete cargar checkpoints originales como si sus tensores fueran idénticos.
 
-## 22.1 FCN-1D con cuerpo publicado y cabeza de regresión
+## FCN-1D con cuerpo publicado y cabeza de regresión
 
 **ID de receta:** `fcn1d_wang_d7_v1_proposed`.
 
@@ -47,7 +49,7 @@ Sin pooling intermedio, capas adicionales, canales estadísticos, ensemble ni pe
 
 **NAS:** hay diseño explícito en paper y código. Esta propuesta ofrece una vía de cuerpo publicado con adaptación de tarea, pendiente de adjudicar. No afirmar exención de la receta sin documentar la traducción y el nuevo cabezal. Si se conserva el compacto actual, su clasificación se resuelve por separado conforme a §14, pp. 52–56.
 
-## 22.2 ResNet-1D con tres bloques publicados
+## ResNet-1D con tres bloques publicados
 
 **ID de receta:** `resnet1d_wang_d7_v1_proposed`.
 
@@ -70,7 +72,7 @@ Son nueve convoluciones principales más tres proyecciones de atajo. No confundi
 
 **NAS:** cuerpo definido, pero la adopción multivariada 1D y cabeza de regresión se declaran y adjudican. No exención por el nombre ResNet. El compacto actual de dos bloques y cuatro convoluciones principales permanece como implementación distinta hasta que se autorice y verifique una sustitución.
 
-## 22.3 Inception-1D como red individual de seis módulos
+## Inception-1D como red individual de seis módulos
 
 **ID de receta:** `inception1d_single_d7_v1_proposed`.
 
@@ -94,7 +96,7 @@ Mantener kernels40/20/10 con padding19/20,9/10 y4/5 respectivamente. Muchos tér
 
 **NAS:** el cuerpo individual está definido en fuente, aunque el método InceptionTime completo incluye ensemble. Someter la adaptación individual, D7 y cabeza a adjudicación; no afirmar réplica del ensemble ni exención de la variante compacta actual de un único módulo.
 
-## 22.4 LSTM-autoencoder con predictor de dos encoders
+## LSTM-autoencoder con predictor de dos encoders
 
 **ID de receta:** `lstm_sae_25_26_d7_v1_proposed`.
 
@@ -120,7 +122,7 @@ Las fases AE no llevan dropout añadido. Para el port se proponen puertas sigmoi
 
 **NAS:** existe un diseño concreto en código de autor, pero la condición de §14 habla del paper y este no quedó certificado; además se proponen adaptaciones. Mantener `adjudicación pendiente`, sin eximir por el nombre LSTM-AE ni concluir ausencia de diseño. Si se exige §14, registrar una correspondencia completa de tres bloques y mil arquitecturas: no llamar NAS al preset25/26 ni inventar silenciosamente una tercera capa.
 
-## 22.5 TimesNet: adaptador D7 explícito
+## TimesNet: adaptador D7 explícito
 
 **Propuesta TN-D7-r1.** Mantener el adaptador actual como receta concreta, no atribuirle una reproducción literal. Entrada [B,7,5]; normalización por ventana con media y varianza poblacional, ε=10⁻⁵; embedding a 32; proyección temporal aprendida 7→8; dos TimesBlocks, d_model32, d_ff32, seis kernels Inception2D y GELU, con normalización de capa. En cada bloque usar las cuatro frecuencias no DC de longitud 8, periodos 8/4/2/2, pesos por amplitud de cada ejemplo y agregación residual. Leer el último token latente 32, concatenar diez momentos de la D7 escalada y aplicar Linear(42,1)+Softplus. Dropout inicial propuesto0,1, pendiente de HPO.
 
@@ -130,7 +132,7 @@ Las fases AE no llevan dropout añadido. Para el port se proponen puertas sigmoi
 
 **Verificación y recursos pendientes.** Revalidar forma, cuatro frecuencias, periodos y pesos, equivalencia algebraica de las convoluciones fusionadas, gradientes y batch-invariancia en evaluación; detectar dependencia artificial de padding. Perfilar memoria, FFT, convoluciones 2D y latencia en hardware común, incluyendo entrenamiento futuro. El cuerpo coincide con software provisional existente; esta ficha no ejecuta ni modifica ese software ni valida desempeño de mercado.
 
-## 22.6 TSMixer: cuerpo fuente y cabeza escalar
+## TSMixer: cuerpo fuente y cabeza escalar
 
 **Propuesta TSM-D7-r1.** Seis bloques residuales de mezcla temporal y de canales. En cada bloque: BatchNorm sobre el batch para cada posición temporal/canal (momentum 0,99 en convención Keras, no el parámetro homónimo de PyTorch; ε0,001), Linear temporal7→7, ReLU y dropout; segunda normalización, MLP5→512→5 con ReLU y dropout. Aplanar35 activaciones; concatenar cinco medias y cinco DE de la ventana escalada; Linear(45,1)+Softplus. Dropout inicial 0,1. No variables calendario ni covariables futuras.
 
@@ -140,7 +142,7 @@ Las fases AE no llevan dropout añadido. Para el port se proponen puertas sigmoi
 
 **Verificación y recursos pendientes.** Comprobar equivalencia del port PyTorch con la normalización Keras, estadísticas sólo del entrenamiento y evaluación invariante al acompañamiento de batch. Batch1 no prueba entrenamiento útil: puede anular la variación normalizada. Medir memoria y latencia de seis bloques/MLP 512; comparar variante sin momentos como control separado pendiente. Coincide con el cuerpo del adaptador provisional, no con entrenamiento ya ejecutado.
 
-## 22.7 TiDE: variante latente8 declarada
+## TiDE: variante latente8 declarada
 
 **Propuesta TIDE-D7-r1.** Normalización por ventana y transformación afín aprendida por canal. Embedding de identidad de variable16; feature encoder residual5→64→4. Concatenar historia de siete pasos, covariables observadas transformadas y embedding; encoder residual55→256→256, decoder residual256→256→8 y decoder temporal residual(8+4)→128→8. La covariable futura es un sentinel cero transformado, no OHLCV futuro. Añadir proyección residual7→1 por variable, difundida sobre sus ocho coordenadas latentes; concatenar los40 valores latentes (5×8) y diez momentos; Linear(50,1)+Softplus. Dropout 0,1, LayerNorm ε0,001.
 
@@ -150,7 +152,7 @@ Las fases AE no llevan dropout añadido. Para el port se proponen puertas sigmoi
 
 **Verificación y recursos pendientes.** Pruebas de ausencia de colapso escalar, contribución de encoder/decoder/residual, sentinel sin valores futuros y cinco identidades de variables; equivalencia de semántica `num_layers`. Perfilar memoria de capas256 y operaciones por ventana. La receta coincide con el adaptador provisional; no se ejecuta una variante nueva en esta ficha.
 
-## 22.8 TimeMixer: tres escalas para siete días
+## TimeMixer: tres escalas para siete días
 
 **Propuesta TM-D7-r1.** Canal-independiente; pooling promedio factor2 con dos descensos para longitudes7→3→1; normalización por escala, embedding a16; dos bloques PDM de mezcla pasado estacional/tendencia, d_ff32; descomposición por media móvil25 con padding de bordes. FMM con una proyección temporal a horizonte1 por escala; sumar representaciones resultantes [B,5,16]. Concatenar80 latentes y diez momentos; Linear(90,1)+Softplus. Dropout 0,1. Sin covariables calendario ni proyección final a OHLCV.
 
@@ -160,7 +162,7 @@ Las fases AE no llevan dropout añadido. Para el port se proponen puertas sigmoi
 
 **Verificación y recursos pendientes.** Comprobar longitudes7/3/1, información y gradientes por escala, degeneración de normalización en longitud1, orden de mezcla y ausencia de calendario futuro. Perfilar escalas, operaciones y memoria. El código actual proporciona un punto de partida mecánico, no evidencia de que tres escalas sean útiles en BTC.
 
-## 22.9 PatchTST: cuerpo pequeño con geometría D7
+## PatchTST: cuerpo pequeño con geometría D7
 
 **Propuesta PT-D7-r1.** RevIN sobre los siete días reales, con afín y sin restar sólo el último. Replicar nueve posiciones a la izquierda para longitud16 y ocho al final; patch16, stride8: dos parches por cada una de cinco variables. Encoder pequeño: tres capas, cuatro cabezas, d_model16, FF128, GELU, normalización BatchNorm y atención residual. Aplanar5×2×16=160 latentes y agregar diez momentos; Linear(170,1)+Softplus. Dropout inicial 0,1 en el cuerpo; la cabeza conjunta Linear(170,1) no incluye dropout. El head del autor y su dropout se retiran. Sin descomposición adicional.
 
@@ -170,7 +172,7 @@ Las fases AE no llevan dropout añadido. Para el port se proponen puertas sigmoi
 
 **Verificación y recursos pendientes.** Normalizar antes del padding; verificar dos parches, posiciones replicadas, independencia entre canales del cuerpo y mezcla sólo en readout. Probar variación de entradas y gradientes para detectar degeneración de parches casi redundantes. Medir memoria, latencia y coste de tres capas; no heredar rendimiento del contexto 336.
 
-## 22.10 iTransformer: cinco tokens de variables
+## iTransformer: cinco tokens de variables
 
 **Propuesta IT-D7-r1.** Normalización por ventana (varianza poblacional+10⁻⁵); embedding de cada serie de siete valores a256, creando cinco tokens OHLCV. Dos capas encoder de atención invertida, ocho cabezas, d_model256, FF256, GELU, normalizaciones de la fuente y dropout 0,1. Aplanar5×256=1.280, añadir diez momentos y aplicar Linear(1290,1)+Softplus. Se elimina el projector y la desnormalización que predecían cada variable original.
 
@@ -180,7 +182,7 @@ Las fases AE no llevan dropout añadido. Para el port se proponen puertas sigmoi
 
 **Verificación y recursos pendientes.** Confirmar atención entre cinco variables, no siete días; orden estable de canales y shapes, consistencia del port con el autor, efecto de normalización y gradientes. Perfilar dimensión 256, parámetros/memoria y latencia bajo hardware común; comparar cabeza sin momentos por separado. No se han ejecutado comparaciones de mercado.
 
-## 22.11 CNN-1D + LSTM + atención temporal
+## CNN-1D + LSTM + atención temporal
 
 **Propuesta HIB-D7-r1.** Entrada [B,7,5]; Conv1D causal5→32, kernel 3, stride 1, padding cero sólo a izquierda2 y ReLU. LSTM unidireccional32→32 de una capa, con estados iniciales cero en cada ventana y salida de los siete estados. Atención aditiva: Linear(32,16)+tanh, vector puntuador16→1 sin sesgo, softmax sobre el eje temporal; suma ponderada de siete estados. Dropout 0,1 sobre contexto32; Linear(32,1)+Softplus. No concatenar momentos ni arrastrar estado entre ventanas. No pooling previo a atención.
 
@@ -190,7 +192,7 @@ Las fases AE no llevan dropout añadido. Para el port se proponen puertas sigmoi
 
 **Verificación y recursos pendientes.** Siete pesos no negativos que suman1, gradientes a los tres bloques, estados reiniciados, prefijos transformados causales y salida positiva. Las ablaciones que aíslan bloques (LSTM+atención, CNN+atención, CNN+LSTM+pooling uniforme) todavía deben implementarse y presupuestarse; los controles antiguos no las sustituyen. Estimar memoria/tiempo de NAS tras definir su alcance, no multiplicar el smoke por 1.000 como coste real.
 
-## 22.12 Decisiones y costes todavía pendientes
+## Decisiones y costes todavía pendientes
 
 Se proponen cuerpos publicados para FCN/ResNet y la red Inception individual; SAE adopta una variante de código del autor con adaptaciones explícitas. Ninguno sustituye todavía a su prototipo en el repositorio. Las seis recetas de literatura y el híbrido se especifican a partir de los adaptadores existentes, sin atribuirles reproducción experimental ni entrenamiento de mercado.
 

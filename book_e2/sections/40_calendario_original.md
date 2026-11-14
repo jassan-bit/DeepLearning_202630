@@ -1,4 +1,6 @@
-# 40. Calendario original y optimizaciones de implementación
+# Calendario original y optimizaciones de implementación
+
+> **Archivo de antecedentes:** documento **§40** del registro anterior. Conserva su fecha, alcance y resultados históricos. [Ver organización del informe](concordancia_guia.md).
 
 **Vigencia posterior del 12/11/2026:** la [enmienda de protocolo de §45](45_enmienda_protocolo.md) fija **tres anclas HPO, una NAS inicial TiDE y diez reajustes mensuales de evaluación**. Este capítulo conserva el plan sellado de once búsquedas y su corte de recibos como antecedente. Sus instrucciones de continuación y su saldo describen ese estado histórico; no aplican ni acreditan la migración al protocolo nuevo. La sesión privada de Colab permanece independiente de esta publicación.
 

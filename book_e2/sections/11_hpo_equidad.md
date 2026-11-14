@@ -1,4 +1,5 @@
-# 11. Selección HPO ejecutada y equidad
+(seleccion-hpo-ejecutada-y-equidad)=
+# 11. Protocolo de Entrenamiento, Ajuste y Costo Computacional
 
 **Estado vigente del 14/11/2026:** la selección reducida de las **trece redes obligatorias** está cerrada. La comparación final utiliza los diez candidatos, las tres referencias E1 y los comparadores Persistence, SeasonalNaive y ARIMA. No hay un candidato 11 adicional activo dentro de la obligación de E2. Las recetas y recibos se consultan en [§48](48_protocolo_reducido.md).
 

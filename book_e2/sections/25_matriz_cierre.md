@@ -1,4 +1,6 @@
-# 25. Matriz de cierre antes del benchmark
+# Matriz de cierre antes del benchmark
+
+> **Archivo de antecedentes:** documento **§25** del registro anterior. Conserva su fecha, alcance y resultados históricos. [Ver organización del informe](concordancia_guia.md).
 
 **Vigencia al 11/11/2026:** Esta matriz conserva el corte del 09/11/2026. La matriz documental vigente está en §38, con requisitos del PDF, evidencias parciales y condiciones de cierre; no se presentan los pendientes antiguos como prueba de ausencia de avances posteriores. [Matriz de exigencias y evidencia](38_cumplimiento_guia.md) · [Enmienda de calendario](37_ajuste_guia.md).
 

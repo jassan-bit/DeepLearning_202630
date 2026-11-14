@@ -1,4 +1,6 @@
-# 57. Taxonomía de errores y referencias de predictibilidad
+# Taxonomía de errores y referencias de predictibilidad
+
+> **Ubicación:** complemento del [capítulo 12](12_incertidumbre_errores.md). Identificador documental anterior: **§57**; [ver concordancia](concordancia_guia.md).
 
 **Actualización del 14/11/2026, Bogotá:** Una nueva referencia de ensemble aprende sus pesos sólo en calibración: RMSE puntual 0,00368953 y γempírico 0,28757, con incertidumbre amplia y sin rechazos tras Holm. Se conserva el resultado negativo del ensemble uniforme de este capítulo. [Detalle](63_ensamble_calibracion.md).
 

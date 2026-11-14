@@ -1,4 +1,6 @@
-# 45. Enmienda del protocolo: calendario común, presupuesto y prueba final
+# Enmienda del protocolo: calendario común, presupuesto y prueba final
+
+> **Ubicación:** complemento del [capítulo 9](09_protocolo_registrado.md). Identificador documental anterior: **§45**; [ver concordancia](concordancia_guia.md).
 
 **Registro anterior conservado:** para el trabajo nuevo afectado, la [enmienda reducida de §48](48_protocolo_reducido.md) establece seis plazas HPO, una semilla y selección global sobre tres folds internos para la evaluación heredada posterior. Este capítulo y sus archivos mantienen intactas sus reglas originales y su procedencia; la nueva enmienda no acredita ejecución ni modifica automáticamente Colab.
 
