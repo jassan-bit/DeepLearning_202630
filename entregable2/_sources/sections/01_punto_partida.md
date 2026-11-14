@@ -2,7 +2,7 @@
 
 **Estado de ejecución al 13/11/2026:** el [benchmark reducido](06_benchmark_final.md) está completado para dieciséis sistemas y 608 fechas, con seis semillas por red. [§48](48_protocolo_reducido.md) documenta las recetas y el protocolo ejecutados; [§49](49_diagnosticos_f2a.md) contiene los diagnósticos posteriores. La arquitectura vigente de TiDE es **TIDE-D7-PUBLISHED-R0-v2**, acreditada antes de sus ajustes; las variantes NAS anteriores mantienen otra identidad.
 
-**Antecedente conservado:** **Vigencia documental (12/11/2026):** existe selección HPO/NAS ejecutada del plan anterior de catorce redes. No acredita las cuatro recetas restauradas de SAE, TimesNet, TimeMixer y PatchTST, ni el benchmark final del catálogo vigente. k, R y el cierre inferencial siguen pendientes. [Catálogo obligatorio (§43)](43_catalogo_obligatorio.md) · [Arquitecturas (§44)](44_arquitecturas_publicadas.md) · [Enmienda registrada (§45)](45_enmienda_protocolo.md) · [Corte histórico de resultados (§41)](41_avance_optimizacion_11_origenes.md).
+**Antecedente de planificación del 12/11/2026:** ese corte fue sustituido por la ejecución documentada en [§48](48_protocolo_reducido.md). Su texto exacto se conserva en el archivo enlazado al final; no describe trabajos finales pendientes.
 
 **Catálogo obligatorio vigente: dieciséis sistemas.** Diez modelos de literatura y adaptaciones, las referencias MLP16, LSTM32 y GRU32 de E1, y Persistence, SeasonalNaive y ARIMA. Las referencias E1 se cuentan aparte del Top 10 y forman parte de los dieciséis. El híbrido CNN-1D + LSTM + atención temporal y Ridge quedan como antecedentes opcionales. La [enmienda del 12/11/2026](45_enmienda_protocolo.md) conserva el antecedente de transición; el cuerpo TiDE publicado, el calendario reducido y la ejecución efectiva están documentados en §48.
 
@@ -103,7 +103,7 @@ La primaria es RMSE; las secundarias heredadas son MAE, MSE, R², MAPE y MASE. M
 
 El margen absoluto heredado procede de $0,05\times0,005154568532996221$, RMSE CV de la GRU/D7 de fase I. **No se recalcula como el 5 % de una nueva RMSE.** Se conserva aparte la regla relativa académica de E1 frente a GRU y persistencia; no se confunde una reducción porcentual con δ absoluto. Su origen y fecha están documentados: heredar el margen no lo vuelve una decisión previa a los resultados históricos iniciales.
 
-Hay **una única serie de mercado** ($N_{\text{series}}=1$). Las semillas describen variabilidad del entrenamiento condicionada a los datos; no son nuevas series independientes. Las etiquetas σ₇ comparten retornos y las ventanas comparten observaciones. La comparación debe emparejar fechas y distinguir variación entre semillas de incertidumbre temporal. El remuestreo por bloques evita suponer independencia diaria, pero su diseño y sensibilidad requieren justificación en desarrollo. Ningún número de semillas de E1 o del P0 histórico acredita potencia para las nuevas comparaciones. §45 registra el procedimiento de dimensionamiento; su ejecución con las recetas seleccionadas y el valor de R siguen pendientes.
+Hay **una única serie de mercado** ($N_{\text{series}}=1$). Las semillas describen variabilidad del entrenamiento condicionada a los datos; no son nuevas series independientes. Las etiquetas σ₇ comparten retornos y las ventanas comparten observaciones. La comparación debe emparejar fechas y distinguir variación entre semillas de incertidumbre temporal. El remuestreo por bloques evita suponer independencia diaria, pero su diseño y sensibilidad requieren justificación en desarrollo. Ningún número de semillas de E1 o del P0 histórico acredita potencia para las nuevas comparaciones. El procedimiento vigente de [§48](48_protocolo_reducido.md) completó el piloto y fijó R=6 por recursos; su potencia condicional estimada fue 0,123, inferior al objetivo de 0,80.
 
 ## 1.2 Preguntas de investigación e hipótesis
 
@@ -158,7 +158,7 @@ La familia primaria vigente contiene veinte comparaciones del Top 10 frente a GR
 
 RQ2 y RQ3 conservan alcance exploratorio. Si se comunica el contraste conjunto de RQ3, se obtiene primero el p-valor de intersección-unión y se declara su multiplicidad y sus límites; no se incorpora silenciosamente al ajuste primario. Los IC marginales del 95 % se distinguen de los límites simultáneos. Las pruebas de equivalencia, calibración, robustez y diagnóstico necesitan su propio alcance; no quedan cubiertas automáticamente por el ajuste de las preguntas principales.
 
-El margen absoluto δ se mantiene como referencia metodológica; la tolerancia de brecha train–validación y las alternativas de potencia deberán fijarse explícitamente. El [P0 histórico de §9](09_protocolo_registrado.md) completó 220 trayectorias y 440 ajustes de desarrollo, pero no selecciona ni dimensiona el catálogo vigente. Aunque se controle multiplicidad, reutilizar un test conocido mantiene el alcance exploratorio.
+El margen absoluto δ se mantiene como referencia metodológica; no existió una tolerancia δg de brecha train–validación previa y las alternativas posteriores se reportan únicamente como sensibilidad descriptiva en [§56](56_inferencia_estabilidad_final.md). El [P0 histórico de §9](09_protocolo_registrado.md) completó 220 trayectorias y 440 ajustes de desarrollo, pero no selecciona ni dimensiona el catálogo vigente. Aunque se controle multiplicidad, reutilizar un test conocido mantiene el alcance exploratorio.
 
 ## 1.3 Justificación del dataset
 
@@ -210,7 +210,7 @@ Descargar la [Data Card en JSON](../_static/dataset_card.json), el [contrato her
 | Licencia | Términos Vision conservados en E1, CC BY-NC-SA 4.0 con condiciones y excepciones indicadas por la fuente |
 | Límites de uso | Benchmark académico de una sola serie; sin afirmación de utilidad financiera ni generalización a otras criptomonedas |
 
-El hash anterior identifica **el archivo manifiesto**; no es un único checksum de todos los precios concatenados. Cada ZIP tiene su comprobación individual en ese archivo. La Data Card y el contrato documentan la transferencia; el benchmark final Bitcoin D7 continúa pendiente y su ejecución se distingue del [P0 de desarrollo registrado en §9](09_protocolo_registrado.md). El [recibo de las veinte corridas externas de ETTh1](../_static/paper_guide_evidence/execution_receipt.json) tiene otro alcance.
+El hash anterior identifica **el archivo manifiesto**; no es un único checksum de todos los precios concatenados. Cada ZIP tiene su comprobación individual en ese archivo. La Data Card y el contrato documentan la transferencia; el [benchmark final Bitcoin D7](06_benchmark_final.md) ya compara dieciséis sistemas sobre 608 fechas; se distingue del P0 histórico de desarrollo archivado en §9. El [recibo de las veinte corridas externas de ETTh1](../_static/paper_guide_evidence/execution_receipt.json) tiene otro alcance.
 
 ### 1.4.1 Estado de cierre de esta sección
 
@@ -218,10 +218,15 @@ El hash anterior identifica **el archivo manifiesto**; no es un único checksum 
 |---|---|
 | Formulación matemática, tarea, métricas, δ y unidad | Documentados con la herencia de E1 |
 | Relevancia con al menos tres referencias | Tres referencias de contexto citadas; no sustituyen la revisión sistemática |
-| Tres RQ, hipótesis, efecto y reglas | RQ1 registrada con veinte contrastes primarios; RQ2/RQ3 exploratorias; ejecución y potencia pendientes |
+| Tres RQ, hipótesis, efecto y reglas | RQ1 ejecutada con veinte contrastes; refinamiento B=20.000 de §56. RQ2/RQ3 exploratorias; potencia piloto insuficiente y declarada |
 | Justificación y Data Card | Documentadas con procedencia, versión, hashes, calidad y límites |
 | Uso previo de la fuente/dataset en Q1 | Pendiente de referencia y cuartil por año; no exige identidad exacta del snapshot |
-| Catálogo y protocolo | Dieciséis sistemas obligatorios; nueve cuerpos definidos y TiDE NAS; enmienda registrada, transición y evaluación pendientes |
+| Catálogo y protocolo | Dieciséis sistemas evaluados; cuerpos actuales adjudicados, incluida TiDE publicada r=0; protocolo ejecutado en §48 |
 | Prueba desconocida y confirmación nueva | No disponibles en los periodos heredados ya evaluados |
 
 La [revisión bibliográfica de §3](03_literatura.md) distingue las fuentes de los modelos, su adaptación a regresión de σ₇ y la evidencia aplicada a criptomonedas. Una arquitectura publicada o un original leído no acreditan su funcionamiento en este dataset. La comprobación de uso de la fuente en Q1 y el cierre bibliográfico se mantienen separados de la ejecución del nuevo benchmark.
+
+
+## Archivo de la versión anterior
+
+La {download}`versión exacta anterior a esta consolidación <../_static/e2_delivery_reproduction_20261114/archived_chapters/01_punto_partida.md>` se conserva con su SHA256 en el [manifiesto de archivo](../_static/e2_delivery_reproduction_20261114/chapter_archive_manifest.json). Sus estados pendientes describen el corte original.

@@ -65,8 +65,8 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="11. HPO y equidad para el catálogo vigente" href="11_hpo_equidad.html" />
-    <link rel="prev" title="9. Registro de selección, cierre pendiente y trazabilidad" href="09_protocolo_registrado.html" />
+    <link rel="next" title="11. Selección HPO ejecutada y equidad" href="11_hpo_equidad.html" />
+    <link rel="prev" title="9. Registros, enmiendas y cierre de la ejecución" href="09_protocolo_registrado.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
   <meta name="docsearch:version" content="" />
@@ -226,17 +226,21 @@
 <li class="toctree-l1"><a class="reference internal" href="57_errores_techo.html">57. Taxonomía de errores y referencias de predictibilidad</a></li>
 <li class="toctree-l1"><a class="reference internal" href="58_flops_predictores.html">58. Coste de operaciones de los predictores congelados</a></li>
 <li class="toctree-l1"><a class="reference internal" href="59_auditoria_literatura_final.html">59. Auditoría final de la literatura recibida</a></li>
+<li class="toctree-l1"><a class="reference internal" href="60_calibracion_temporal_condicional.html">60. Calibración temporal y cobertura condicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="61_reproduccion_consolidada.html">61. Entrega reproducible y Apéndice B actual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="62_cierre_literatura_focal.html">62. Elegibilidad focal y puntuación bibliográfica contextual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="63_ensamble_calibracion.html">63. Referencia empírica mediante un ensemble ajustado en calibración</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
-<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Registro de selección, cierre pendiente y trazabilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad de la entrega vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Registros, enmiendas y cierre de la ejecución</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">10. Contrato de datos y auditoría formal de fuga</a></li>
-<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. HPO y equidad para el catálogo vigente</a></li>
-<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Techo de desempeño, incertidumbre y análisis de errores</a></li>
-<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Agregación estadística e interpretación</a></li>
-<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas del catálogo vigente y adaptación a D7</a></li>
-<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo vigente: diez modelos y candidato 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. Selección HPO ejecutada y equidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Incertidumbre, errores y referencias de dificultad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Estimandos, agregación e inferencia actual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas ejecutadas y condición de NAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo ejecutado y procedencia bibliográfica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="16_fichas_nuevas.html">16. Fichas bibliográficas de las cuatro altas propuestas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato sincronizado de E1, E2 y E3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato vigente y relación entre E1, E2 y E3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="18_integracion_sintetica.html">18. Implementación provisional y verificación sintética</a></li>
 <li class="toctree-l1"><a class="reference internal" href="19_plan_auditoria.html">19. Plan experimental propuesto y auditoría sin entrenamiento</a></li>
 <li class="toctree-l1"><a class="reference internal" href="20_contraste_guia.html">20. Cotejo del plan con la guía original</a></li>
@@ -413,10 +417,11 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contrato-operativo-de-las-observaciones">10.2 Contrato operativo de las observaciones</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#once-separaciones-auditadas">10.3 Once separaciones auditadas</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correspondencia-con-las-verificaciones-obligatorias">10.4 Correspondencia con las verificaciones obligatorias</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#controles-negativos-y-de-desplazamiento-implementados">10.4.1 Controles negativos y de desplazamiento implementados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#controles-negativos-del-diseno-historico">10.4.1 Controles negativos del diseño histórico</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reconstruccion-y-cierre-pendiente">10.5 Reconstrucción y cierre pendiente</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reconstruccion-del-preflight-historico-y-limites-actuales">10.5 Reconstrucción del preflight histórico y límites actuales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-de-la-version-anterior">Archivo de la versión anterior</a></li>
 </ul>
             </nav>
         </div>
@@ -430,7 +435,8 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="contrato-de-datos-y-auditoria-formal-de-fuga">
 <span id="e2-auditoria-datos"></span><h1>10. Contrato de datos y auditoría formal de fuga<a class="headerlink" href="#contrato-de-datos-y-auditoria-formal-de-fuga" title="Link to this heading">#</a></h1>
-<p><strong>Alcance:</strong> los datos, controles y experimentos ya ejecutados de esta sección se conservan como evidencia histórica. No acreditan entrenamiento del catálogo vigente de diez modelos y candidato 11, definido en <a class="reference internal" href="15_revision_modelos.html"><span class="std std-doc">§15</span></a>. Cualquier presupuesto o receta anterior requiere revisión y nuevo registro antes de reutilizarse.</p>
+<p><strong>Orientación de entrega del 14/11/2026:</strong> el protocolo ejecutado es <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>, los resultados comunes están en <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">§6</span></a>, la reproducción registrada en <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a> y el Apéndice B actual en <a class="reference internal" href="61_reproduccion_consolidada.html"><span class="std std-doc">§61</span></a>. Las cifras científicas y los recibos históricos conservan su fecha y su alcance.
+<strong>Alcance vigente:</strong> esta página separa el preflight histórico P0 de los controles de la ejecución final. La <a class="reference download internal" download="" href="../_downloads/1f149477d437c56efd6a2818d858b2bb/data_admission.json"><span class="xref download myst">admisión actual</span></a>, la <a class="reference download internal" download="" href="../_downloads/f8db31dfb4cd9da09a27596c7df67a1f/final_freeze.json"><span class="xref download myst">congelación</span></a> y el <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">protocolo de §48</span></a> acreditan soporte, identidades y secuencia de la campaña de dieciséis sistemas. No equivalen a la aprobación de todos los criterios de la auditoría integral de fuga.</p>
 <p><strong>Estado:</strong> la auditoría ejecutada de soporte P0/OOF de desarrollo está aprobada. Esto no certifica todas las verificaciones del pipeline final de configuraciones del registro histórico exigidas en la tabla10.1 de la guía (PDF pp44–45). La regla de p46 exige corregir cualquier fallo y repetir el experimento afectado; no permite publicar un benchmark inválido con una nota al pie. La ausencia de un control todavía no ejecutado se informa como pendiente, sin declararlo aprobado.</p>
 <section id="evidencia-ejecutada-fecha-y-frontera-de-acceso">
 <h2>10.1 Evidencia ejecutada, fecha y frontera de acceso<a class="headerlink" href="#evidencia-ejecutada-fecha-y-frontera-de-acceso" title="Link to this heading">#</a></h2>
@@ -681,21 +687,25 @@ daily_volatility_development.csv
 </table>
 </div>
 <p>Los controles de adaptadores verifican forma, gradientes finitos y que una predicción no cambie con otros orígenes en el batch. La revisión independiente y la prueba de memorización sintética del catálogo histórico se conservan para auditoría en <a class="reference internal" href="14_arquitecturas.html"><span class="std std-doc">§14</span></a>. Son controles relevantes para disponibilidad causal, pero <strong>no equivalen</strong> a entrenar con etiquetas permutadas, demostrar ausencia de atajos o aprobar automáticamente los pipelines del catálogo vigente. Si una comprobación futura falla, se conservará el fallo y se repetirá el experimento afectado tras corregir su causa; no se seleccionarán fechas favorables ni un test que produzca el resultado deseado.</p>
-<section id="controles-negativos-y-de-desplazamiento-implementados">
-<h3>10.4.1 Controles negativos y de desplazamiento implementados<a class="headerlink" href="#controles-negativos-y-de-desplazamiento-implementados" title="Link to this heading">#</a></h3>
+<section id="controles-negativos-del-diseno-historico">
+<h3>10.4.1 Controles negativos del diseño histórico<a class="headerlink" href="#controles-negativos-del-diseno-historico" title="Link to this heading">#</a></h3>
 <p>El módulo <code class="docutils literal notranslate"><span class="pre">scripts/e2_leakage_controls.py</span></code> separa diecisiete controles supervisados —dieciséis redes y Ridge— de las referencias endógenas. Permuta etiquetas por bloques de siete observaciones admitidas, declara huecos y separa permutaciones de entrenamiento, selección temprana y validación interna. Usa semillas de permutación 690101/690118/690132, reajuste desde cero y la misma receta primaria congelada. Los <strong>diecisiete predictores de control deben cerrar junto a todos los primarios y A antes de calibración o test</strong>; no se ajusta un control después de observar resultados. Los errores se evalúan sobre la misma reserva conocida de sesenta fechas, dentro de su fase única.</p>
 <p>Se compara con el pronóstico constante de media de entrenamiento. La señal sospechosa predefinida requiere conjuntamente ganancia RMSE&gt;δ y correlación Spearman positiva, mediante IUT y <strong>Holm sobre diecisiete hipótesis, α=0,01</strong>, con 2.000 remuestreos. No rechazar no demuestra ausencia de fuga; los controles son diagnósticos con potencia y supuestos limitados, no una certificación automática.</p>
-<p>El clasificador adversarial usa las 35 entradas, cinco particiones bloqueadas/purgadas, embargo de siete días, escalado aprendido dentro de cada train y regresión logística L2 balanceada con parámetros fijos. La distribución nula usa <strong>2.000 permutaciones de etiquetas de dominio por bloques con reajuste de todos los folds</strong>. Se ejecuta tras los cierres globales; explica desplazamiento entre periodos sin retroalimentar HPO o adaptar escaladores a test. ARIMA y los dos ingenuos reciben auditoría de estado causal y perturbaciones reales de la historia observable, manteniendo coeficientes fijos. Estos controles están implementados; su ejecución y resultados no se atribuyen al preflight sintético P0.</p>
+<p>El clasificador adversarial usa las 35 entradas, cinco particiones bloqueadas/purgadas, embargo de siete días, escalado aprendido dentro de cada train y regresión logística L2 balanceada con parámetros fijos. La distribución nula usa <strong>2.000 permutaciones de etiquetas de dominio por bloques con reajuste de todos los folds</strong>. Se ejecuta tras los cierres globales; explica desplazamiento entre periodos sin retroalimentar HPO o adaptar escaladores a test. ARIMA y los dos ingenuos reciben auditoría de estado causal y perturbaciones reales de la historia observable, manteniendo coeficientes fijos. Estos controles pertenecen al diseño histórico y están implementados; no se atribuyen al preflight P0 ni se declaran ejecutados para los dieciséis sistemas de la entrega actual.</p>
 </section>
 </section>
-<section id="reconstruccion-y-cierre-pendiente">
-<h2>10.5 Reconstrucción y cierre pendiente<a class="headerlink" href="#reconstruccion-y-cierre-pendiente" title="Link to this heading">#</a></h2>
+<section id="reconstruccion-del-preflight-historico-y-limites-actuales">
+<h2>10.5 Reconstrucción del preflight histórico y límites actuales<a class="headerlink" href="#reconstruccion-del-preflight-historico-y-limites-actuales" title="Link to this heading">#</a></h2>
 <p>Desde el checkout registrado, en el entorno de §8 y con una ruta de salida separada, este comando regenera el recibo agregado sin ajustar modelos:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>scripts/e2_remediation_data_audit.py<span class="w"> </span>--output<span class="w"> </span>../e2-data-audit-reproduction.json
 </pre></div>
 </div>
 <p>El <a class="reference download internal" download="" href="../_downloads/3206a16084eae75f63f143c241b74ac3/registration.json"><span class="xref download myst">registro de entrada</span></a> preserva sus hashes y el <a class="reference download internal" download="" href="../_downloads/9b6093eee1456dcd4e7b3469ed90b430/data_support_audit.json"><span class="xref download myst">recibo publicado</span></a> preserva los resultados observados. La <a class="reference download internal" download="" href="../_downloads/a421707fc03ce60be02b214170dea130/Remediacion_E2_protocolo_codigo_evidencias.zip"><span class="xref download myst">descarga unificada</span></a> incluye el procedimiento y las evidencias de esta etapa. Una reproducción puede cambiar la fecha de generación del recibo; comparar esa fecha o el hash del JSON completo no sustituye contrastar los mismos campos científicos e identidades de entrada.</p>
-<p>Antes del scoring final faltan los recibos de la auditoría completa sobre las implementaciones, las cohortes congeladas de referencias con soportes distintos, los checkpoints cerrados y los análisis registrados. Los periodos 2025–2026 conocidos de E1 siguen fuera de este preflight; su reutilización futura conserva alcance exploratorio. Un hash nuevo no crea un test nuevo y una auditoría de soporte aprobada no demuestra por sí sola generalización independiente ni superioridad predictiva.</p>
+<p>El scoring actual está cerrado y sus predictores, cohortes y checkpoints tienen recibos propios en §§6/48/55. Permanece parcial la auditoría integral de todos los criterios y controles negativos sobre ese pipeline; no se declara aprobada por el preflight de soporte. El periodo 2025–2026 conocido de E1 conserva alcance retrospectivo. Un hash nuevo no crea un test nuevo y una auditoría de soporte no demuestra generalización independiente.</p>
+</section>
+<section id="archivo-de-la-version-anterior">
+<h2>Archivo de la versión anterior<a class="headerlink" href="#archivo-de-la-version-anterior" title="Link to this heading">#</a></h2>
+<p>La <a class="reference download internal" download="" href="../_downloads/0bb83725b2c4e9615fcaa26581d2dc4b/10_auditoria_datos.md"><code class="xref download docutils literal notranslate"><span class="pre">versión</span> <span class="pre">exacta</span> <span class="pre">anterior</span> <span class="pre">a</span> <span class="pre">esta</span> <span class="pre">consolidación</span></code></a> se conserva con su SHA256 en el <a class="reference download internal" download="" href="../_downloads/a375c47d06b822516dc7b9dafd245bd1/chapter_archive_manifest.json"><span class="xref download myst">manifiesto de archivo</span></a>. Sus estados pendientes describen el corte original.</p>
 </section>
 </section>
 
@@ -735,7 +745,7 @@ daily_volatility_development.csv
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">anterior</p>
-        <p class="prev-next-title">9. Registro de selección, cierre pendiente y trazabilidad</p>
+        <p class="prev-next-title">9. Registros, enmiendas y cierre de la ejecución</p>
       </div>
     </a>
     <a class="right-next"
@@ -743,7 +753,7 @@ daily_volatility_development.csv
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">11. HPO y equidad para el catálogo vigente</p>
+        <p class="prev-next-title">11. Selección HPO ejecutada y equidad</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -772,10 +782,11 @@ daily_volatility_development.csv
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contrato-operativo-de-las-observaciones">10.2 Contrato operativo de las observaciones</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#once-separaciones-auditadas">10.3 Once separaciones auditadas</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correspondencia-con-las-verificaciones-obligatorias">10.4 Correspondencia con las verificaciones obligatorias</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#controles-negativos-y-de-desplazamiento-implementados">10.4.1 Controles negativos y de desplazamiento implementados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#controles-negativos-del-diseno-historico">10.4.1 Controles negativos del diseño histórico</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reconstruccion-y-cierre-pendiente">10.5 Reconstrucción y cierre pendiente</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reconstruccion-del-preflight-historico-y-limites-actuales">10.5 Reconstrucción del preflight histórico y límites actuales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-de-la-version-anterior">Archivo de la versión anterior</a></li>
 </ul>
   </nav></div>
 

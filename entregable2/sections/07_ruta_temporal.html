@@ -65,8 +65,8 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="8. Reproducibilidad, ética y comunicación científica" href="08_reproducibilidad.html" />
-    <link rel="prev" title="59. Auditoría final de la literatura recibida" href="59_auditoria_literatura_final.html" />
+    <link rel="next" title="8. Reproducibilidad de la entrega vigente" href="08_reproducibilidad.html" />
+    <link rel="prev" title="63. Referencia empírica mediante un ensemble ajustado en calibración" href="63_ensamble_calibracion.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
   <meta name="docsearch:version" content="" />
@@ -226,17 +226,21 @@
 <li class="toctree-l1"><a class="reference internal" href="57_errores_techo.html">57. Taxonomía de errores y referencias de predictibilidad</a></li>
 <li class="toctree-l1"><a class="reference internal" href="58_flops_predictores.html">58. Coste de operaciones de los predictores congelados</a></li>
 <li class="toctree-l1"><a class="reference internal" href="59_auditoria_literatura_final.html">59. Auditoría final de la literatura recibida</a></li>
+<li class="toctree-l1"><a class="reference internal" href="60_calibracion_temporal_condicional.html">60. Calibración temporal y cobertura condicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="61_reproduccion_consolidada.html">61. Entrega reproducible y Apéndice B actual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="62_cierre_literatura_focal.html">62. Elegibilidad focal y puntuación bibliográfica contextual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="63_ensamble_calibracion.html">63. Referencia empírica mediante un ensemble ajustado en calibración</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">7. Ruta metodológica: series de tiempo y controles causales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
-<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Registro de selección, cierre pendiente y trazabilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad de la entrega vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Registros, enmiendas y cierre de la ejecución</a></li>
 <li class="toctree-l1"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de datos y auditoría formal de fuga</a></li>
-<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. HPO y equidad para el catálogo vigente</a></li>
-<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Techo de desempeño, incertidumbre y análisis de errores</a></li>
-<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Agregación estadística e interpretación</a></li>
-<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas del catálogo vigente y adaptación a D7</a></li>
-<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo vigente: diez modelos y candidato 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. Selección HPO ejecutada y equidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Incertidumbre, errores y referencias de dificultad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Estimandos, agregación e inferencia actual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas ejecutadas y condición de NAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo ejecutado y procedencia bibliográfica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="16_fichas_nuevas.html">16. Fichas bibliográficas de las cuatro altas propuestas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato sincronizado de E1, E2 y E3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato vigente y relación entre E1, E2 y E3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="18_integracion_sintetica.html">18. Implementación provisional y verificación sintética</a></li>
 <li class="toctree-l1"><a class="reference internal" href="19_plan_auditoria.html">19. Plan experimental propuesto y auditoría sin entrenamiento</a></li>
 <li class="toctree-l1"><a class="reference internal" href="20_contraste_guia.html">20. Cotejo del plan con la guía original</a></li>
@@ -411,6 +415,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#politica-causal-de-ajuste-y-actualizacion">7.3 Política causal de ajuste y actualización</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda-temporal-heredado-evidencia-reutilizada-y-cobertura">7.4 EDA temporal heredado: evidencia reutilizada y cobertura</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verificacion-y-estado">7.5 Verificación y estado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-de-la-version-anterior">Archivo de la versión anterior</a></li>
 </ul>
             </nav>
         </div>
@@ -424,11 +429,12 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="ruta-metodologica-series-de-tiempo-y-controles-causales">
 <span id="e2-ruta-temporal"></span><h1>7. Ruta metodológica: series de tiempo y controles causales<a class="headerlink" href="#ruta-metodologica-series-de-tiempo-y-controles-causales" title="Link to this heading">#</a></h1>
+<p><strong>Orientación de entrega del 14/11/2026:</strong> el protocolo ejecutado es <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>, los resultados comunes están en <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">§6</span></a>, la reproducción registrada en <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a> y el Apéndice B actual en <a class="reference internal" href="61_reproduccion_consolidada.html"><span class="std std-doc">§61</span></a>. Las cifras científicas y los recibos históricos conservan su fecha y su alcance.</p>
 <p><strong>Estado vigente al 13/11/2026:</strong> el benchmark reducido está completado en <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">§6</span></a>, con el calendario efectivamente ejecutado de <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>. La auditoría posterior de ajuste, residuos, calibración y estabilidad temporal está en <a class="reference internal" href="49_diagnosticos_f2a.html"><span class="std std-doc">§49</span></a>; las comparaciones S8 se documentan en <a class="reference internal" href="50_comparaciones_f2a.html"><span class="std std-doc">§50</span></a>, mientras robustez y otros requisitos conservan su estado en <a class="reference internal" href="53_cierre_requisitos.html"><span class="std std-doc">§53</span></a>. Los estados y calendarios del 11–12/11 conservados debajo son antecedentes, no el estado actual de ejecución.</p>
-<p><strong>Vigencia documental (12/11/2026):</strong> la selección HPO/NAS ejecutada parcialmente corresponde al plan histórico de catorce redes. El catálogo obligatorio vigente es de <strong>16 sistemas</strong>, con las identidades de <a class="reference internal" href="43_catalogo_obligatorio.html"><span class="std std-doc">§43</span></a>, las arquitecturas de <a class="reference internal" href="44_arquitecturas_publicadas.html"><span class="std std-doc">§44</span></a> y el protocolo registrado de <a class="reference internal" href="45_enmienda_protocolo.html"><span class="std std-doc">§45</span></a>. Esos registros históricos no cierran el benchmark vigente ni acreditan las cuatro recetas restauradas. R y el cierre inferencial siguen pendientes. <a class="reference internal" href="41_avance_optimizacion_11_origenes.html"><span class="std std-doc">Corte verificable de resultados (§41)</span></a>.</p>
-<p><strong>Calendario registrado al 12/11/2026:</strong> se conserva F2a. <a class="reference internal" href="45_enmienda_protocolo.html"><span class="std std-doc">§45</span></a> registra tres anclas HPO y diez orígenes mensuales de evaluación con reajuste; su ejecución vigente sigue pendiente. El <a class="reference internal" href="40_calendario_original.html"><span class="std std-doc">plan de once búsquedas de §40</span></a> es histórico. Se conservan embargo, disponibilidad y carácter conocido del test.</p>
-<p><strong>Guía original cotejada:</strong> <a class="reference internal" href="20_contraste_guia.html"><span class="std std-doc">correcciones y pendientes por página</span></a>. La cuadrícula reducida no cubre el espacio mínimo; controles F2a, NAS condicional y batería estadística requieren completar el plan antes de entrenar.</p>
-<p>La ruta vigente es <strong>F2a, series de tiempo</strong>, decidida el 06/11/2026 tras recibir la guía completa de 65 páginas. El <a class="reference internal" href="43_catalogo_obligatorio.html"><span class="std std-doc">catálogo obligatorio de 16 sistemas</span></a> conserva esa clasificación, el objetivo y las precauciones causales. La enmienda del protocolo está registrada en §45; registrarla no acredita ejecución. El híbrido adicional y Ridge son opcionales/históricos, sin superioridad demostrada.</p>
+<p><strong>Antecedente de planificación del 12/11/2026:</strong> ese corte fue sustituido por la ejecución documentada en <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>. Su texto exacto se conserva en el archivo enlazado al final; no describe trabajos finales pendientes.</p>
+<p><strong>Calendario ejecutado:</strong> el procedimiento de <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a> usó tres folds de selección y un ajuste final común con política de pesos fijos. Los diez reajustes mensuales propuestos en §45 y las once búsquedas de §40 son antecedentes. La disponibilidad causal, el embargo y el carácter conocido del test se conservan.</p>
+<p><strong>Guía y aplicación:</strong> los controles F2a actuales están en §§49–57. La NAS es condicional a cuerpos sin arquitectura definida; las seis plazas HPO de §48 no constituyen NAS. Los planes anteriores se conservan como antecedentes y no ordenan nuevas corridas.</p>
+<p>La ruta vigente es <strong>F2a, series de tiempo</strong>, decidida el 06/11/2026 tras recibir la guía completa de 65 páginas. El <a class="reference internal" href="43_catalogo_obligatorio.html"><span class="std std-doc">catálogo obligatorio de 16 sistemas</span></a> conserva esa clasificación, el objetivo y las precauciones causales. El protocolo efectivamente ejecutado y sus enmiendas están en §48, y los recibos finales en §§6/55. El híbrido adicional y Ridge son opcionales/históricos, sin superioridad demostrada.</p>
 <p>El <a class="reference download internal" download="" href="../_downloads/6f98046ca8470b7fbafed7eb2a4a8e9c/decisiones_vigentes.csv"><span class="xref download myst">registro de decisiones del EDA</span></a> conserva la procedencia de la reclasificación y la fila histórica <code class="docutils literal notranslate"><span class="pre">RESID</span></code>. Su incorporación documental el 08/11/2026 no es una decisión experimental retroactiva.</p>
 <section id="motivo-de-la-reclasificacion-y-contrato-que-se-conserva">
 <h2>7.1 Motivo de la reclasificación y contrato que se conserva<a class="headerlink" href="#motivo-de-la-reclasificacion-y-contrato-que-se-conserva" title="Link to this heading">#</a></h2>
@@ -498,6 +504,10 @@
 <p>El módulo histórico <code class="docutils literal notranslate"><span class="pre">scripts/e2_temporal_baselines.py</span></code> y sus pruebas sintéticas se conservan sin cambios para reproducir sus controles de calendario, embargo y actualización. Su existencia no constituye la implementación del catálogo vigente ni una ejecución de Bitcoin del nuevo diseño.</p>
 <p>Estado: <strong>ruta temporal definida; soportes, controles e implementación del nuevo catálogo pendientes de la nueva enmienda</strong>. El <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">P0 ejecutado</span></a> mantiene su identidad histórica. No se hereda su presupuesto, no se declara un ganador y no se certifica el cierre de todos los requisitos F2a.</p>
 </section>
+<section id="archivo-de-la-version-anterior">
+<h2>Archivo de la versión anterior<a class="headerlink" href="#archivo-de-la-version-anterior" title="Link to this heading">#</a></h2>
+<p>La <a class="reference download internal" download="" href="../_downloads/5136eff260bc113c16e56fe200b2d109/07_ruta_temporal.md"><code class="xref download docutils literal notranslate"><span class="pre">versión</span> <span class="pre">exacta</span> <span class="pre">anterior</span> <span class="pre">a</span> <span class="pre">esta</span> <span class="pre">consolidación</span></code></a> se conserva con su SHA256 en el <a class="reference download internal" download="" href="../_downloads/a375c47d06b822516dc7b9dafd245bd1/chapter_archive_manifest.json"><span class="xref download myst">manifiesto de archivo</span></a>. Sus estados pendientes describen el corte original.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -531,12 +541,12 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="59_auditoria_literatura_final.html"
+       href="63_ensamble_calibracion.html"
        title="página anterior">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">anterior</p>
-        <p class="prev-next-title">59. Auditoría final de la literatura recibida</p>
+        <p class="prev-next-title">63. Referencia empírica mediante un ensemble ajustado en calibración</p>
       </div>
     </a>
     <a class="right-next"
@@ -544,7 +554,7 @@
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">8. Reproducibilidad, ética y comunicación científica</p>
+        <p class="prev-next-title">8. Reproducibilidad de la entrega vigente</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -571,6 +581,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#politica-causal-de-ajuste-y-actualizacion">7.3 Política causal de ajuste y actualización</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda-temporal-heredado-evidencia-reutilizada-y-cobertura">7.4 EDA temporal heredado: evidencia reutilizada y cobertura</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verificacion-y-estado">7.5 Verificación y estado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-de-la-version-anterior">Archivo de la versión anterior</a></li>
 </ul>
   </nav></div>
 

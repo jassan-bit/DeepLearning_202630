@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>13. Agregación estadística e interpretación &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
+    <title>13. Estimandos, agregación e inferencia actual &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
   
   
   
@@ -61,14 +61,12 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'sections/13_agregacion_estadistica';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="14. Arquitecturas del catálogo vigente y adaptación a D7" href="14_arquitecturas.html" />
-    <link rel="prev" title="12. Techo de desempeño, incertidumbre y análisis de errores" href="12_incertidumbre_errores.html" />
+    <link rel="next" title="14. Arquitecturas ejecutadas y condición de NAS" href="14_arquitecturas.html" />
+    <link rel="prev" title="12. Incertidumbre, errores y referencias de dificultad" href="12_incertidumbre_errores.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
   <meta name="docsearch:version" content="" />
@@ -228,17 +226,21 @@
 <li class="toctree-l1"><a class="reference internal" href="57_errores_techo.html">57. Taxonomía de errores y referencias de predictibilidad</a></li>
 <li class="toctree-l1"><a class="reference internal" href="58_flops_predictores.html">58. Coste de operaciones de los predictores congelados</a></li>
 <li class="toctree-l1"><a class="reference internal" href="59_auditoria_literatura_final.html">59. Auditoría final de la literatura recibida</a></li>
+<li class="toctree-l1"><a class="reference internal" href="60_calibracion_temporal_condicional.html">60. Calibración temporal y cobertura condicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="61_reproduccion_consolidada.html">61. Entrega reproducible y Apéndice B actual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="62_cierre_literatura_focal.html">62. Elegibilidad focal y puntuación bibliográfica contextual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="63_ensamble_calibracion.html">63. Referencia empírica mediante un ensemble ajustado en calibración</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
-<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Registro de selección, cierre pendiente y trazabilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad de la entrega vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Registros, enmiendas y cierre de la ejecución</a></li>
 <li class="toctree-l1"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de datos y auditoría formal de fuga</a></li>
-<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. HPO y equidad para el catálogo vigente</a></li>
-<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Techo de desempeño, incertidumbre y análisis de errores</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">13. Agregación estadística e interpretación</a></li>
-<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas del catálogo vigente y adaptación a D7</a></li>
-<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo vigente: diez modelos y candidato 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. Selección HPO ejecutada y equidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Incertidumbre, errores y referencias de dificultad</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">13. Estimandos, agregación e inferencia actual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas ejecutadas y condición de NAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo ejecutado y procedencia bibliográfica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="16_fichas_nuevas.html">16. Fichas bibliográficas de las cuatro altas propuestas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato sincronizado de E1, E2 y E3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato vigente y relación entre E1, E2 y E3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="18_integracion_sintetica.html">18. Implementación provisional y verificación sintética</a></li>
 <li class="toctree-l1"><a class="reference internal" href="19_plan_auditoria.html">19. Plan experimental propuesto y auditoría sin entrenamiento</a></li>
 <li class="toctree-l1"><a class="reference internal" href="20_contraste_guia.html">20. Cotejo del plan con la guía original</a></li>
@@ -398,7 +400,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>13. Agregación estadística e interpretación</h1>
+    <h1>13. Estimandos, agregación e inferencia actual</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -408,14 +410,11 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-se-estima-y-que-se-remuestrea">13.1 Qué se estima y qué se remuestrea</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inferencia-del-diagnostico-p0-historico">13.2 Inferencia del diagnóstico P0 histórico</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#potencia-condicional-y-dimensionamiento-nuevo">13.3 Potencia condicional y dimensionamiento nuevo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#familias-de-hipotesis-y-diagnosticos">13.4 Familias de hipótesis y diagnósticos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-adicionales-con-alcance-propio">13.4.1 Análisis adicionales con alcance propio</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-verificable">13.5 Evidencia verificable</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-se-estima">13.1 Qué se estima</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#familia-primaria-y-refinamiento">13.2 Familia primaria y refinamiento</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparaciones-y-diagnosticos-posteriores">13.3 Comparaciones y diagnósticos posteriores</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#potencia-brechas-y-lenguaje-de-conclusion">13.4 Potencia, brechas y lenguaje de conclusión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-de-la-version-anterior">Archivo de la versión anterior</a></li>
 </ul>
             </nav>
         </div>
@@ -427,76 +426,32 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="agregacion-estadistica-e-interpretacion">
-<h1>13. Agregación estadística e interpretación<a class="headerlink" href="#agregacion-estadistica-e-interpretacion" title="Link to this heading">#</a></h1>
-<p><strong>Estado vigente al 13/11/2026:</strong> el <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">benchmark de §6</span></a> cerró R=6 para trece redes, tres comparadores deterministas y veinte contrastes primarios. La <a class="reference internal" href="49_diagnosticos_f2a.html"><span class="std std-doc">auditoría F2a de §49</span></a> añade una familia exploratoria separada de 826 hipótesis; no altera la familia primaria ni convierte las semillas en mercados independientes. <a class="reference internal" href="50_comparaciones_f2a.html"><span class="std std-doc">§50</span></a> aporta DM–HLN, MCS y rangos condicionados, con hipótesis distintas de las primarias y aplicabilidad limitada al calendario observado. Los estados históricos conservados debajo no describen el cierre vigente.</p>
-<p><strong>Vigencia documental (11/11/2026):</strong> existe selección HPO/NAS registrada y ejecutada para el catálogo actual; las afirmaciones de ausencia de HPO o de falta de registro de selección corresponden a cortes anteriores. El benchmark final, R y su cierre inferencial siguen pendientes. <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">Registro y alcance actuales (§9)</span></a> · <a class="reference internal" href="40_calendario_original.html"><span class="std std-doc">Calendario (§40)</span></a> · <a class="reference internal" href="41_avance_optimizacion_11_origenes.html"><span class="std std-doc">Corte de resultados (§41)</span></a> · <a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html"><span class="std std-doc">Auditoría y trabajo paralelo (§42)</span></a>.</p>
-<p><strong>Estado:</strong> la nueva enmienda estadística para los diez modelos y CNN-1D + LSTM + atención temporal como candidato 11 está pendiente. MLP, LSTM y GRU de E1 son referencias separadas. El <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">diagnóstico P0 ejecutado</span></a> conserva su identidad histórica; sus reglas y resultados no se convierten en evidencia del catálogo vigente ni en superioridad del híbrido.</p>
-<section id="que-se-estima-y-que-se-remuestrea">
-<h2>13.1 Qué se estima y qué se remuestrea<a class="headerlink" href="#que-se-estima-y-que-se-remuestrea" title="Link to this heading">#</a></h2>
-<p>Para cada modelo <span class="math notranslate nohighlight">\(m\)</span> y semilla <span class="math notranslate nohighlight">\(s\)</span> se calcula <span class="math notranslate nohighlight">\(\operatorname{RMSE}_{ms}=\sqrt{N^{-1}\sum_t(y_t-\widehat y_{mst})^2}\)</span>. La métrica primaria es la <strong>media de esas RMSE</strong> entre semillas. La RMSE de un ensamble de pronósticos es otro estimando y se identifica por separado. Tampoco se promedian sin ponderación RMSE mensuales para sustituir la pérdida sobre todas las fechas elegibles.</p>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Unidad</p></th>
-<th class="head"><p>Función</p></th>
-<th class="head"><p>Límite</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Semilla emparejada</p></td>
-<td><p>Variación de inicialización/optimización con calendario fijo</p></td>
-<td><p>No es otra trayectoria de mercado</p></td>
-</tr>
-<tr class="row-odd"><td><p>Origen diario</p></td>
-<td><p>Error predictivo sobre σ₇</p></td>
-<td><p>Etiquetas, covariables y regímenes dependen temporalmente</p></td>
-</tr>
-<tr class="row-even"><td><p>Fold mensual forward</p></td>
-<td><p>Predictor congelado durante el mes, entrenado solo con historia admisible</p></td>
-<td><p>Los folds comparten entrenamiento; no son datasets independientes</p></td>
-</tr>
-<tr class="row-odd"><td><p>Serie BTCUSDT</p></td>
-<td><p>Dominio de aplicación de este experimento</p></td>
-<td><p>No permite estimar varianza entre activos, bolsas o mercados</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>La nueva enmienda debe identificar la selección temporal de cada receta. Si una referencia histórica utilizó resultados posteriores a alguno de sus orígenes OOF, esa exposición debe declararse; no se le atribuye selección anidada causal por cambiar el nombre o ejecutar semillas nuevas. La identidad de las referencias E1, sus cohortes y sus métricas se conserva por separado.</p>
-<p>Los modelos se comparan sobre fechas comunes y con tratamiento explícito de las semillas. Si un control es determinista, repetir aritméticamente su trayectoria no genera observaciones independientes ni una DE de entrenamiento estimada. Los faltantes mantienen su posición en el calendario y se excluyen de la métrica únicamente mediante una máscara común auditada. El híbrido usa las mismas entradas D7×5; cualquier cambio de información exige declararlo antes de evaluar.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="estimandos-agregacion-e-inferencia-actual">
+<h1>13. Estimandos, agregación e inferencia actual<a class="headerlink" href="#estimandos-agregacion-e-inferencia-actual" title="Link to this heading">#</a></h1>
+<p><strong>Estado vigente del 14/11/2026:</strong> la A2 compara <strong>16 sistemas y 608 fechas</strong>, con R=6 para las trece redes y R=1 para los tres comparadores deterministas. El <a class="reference internal" href="56_inferencia_estabilidad_final.html"><span class="std std-doc">refinamiento de §56</span></a> usa 20.000 sorteos de la misma familia primaria; los análisis posteriores se identifican por su estimando y su familia.</p>
+<section id="que-se-estima">
+<h2>13.1 Qué se estima<a class="headerlink" href="#que-se-estima" title="Link to this heading">#</a></h2>
+<p>Para un modelo m y semilla s se calcula la RMSE de toda su trayectoria sobre las 608 fechas comunes. La primaria de una red es la media de sus seis RMSE individuales. La RMSE del pronóstico promedio es otro estimando. No se promedian RMSE mensuales sin ponderación para sustituir el error del calendario completo.</p>
+<p>Hay una sola serie de mercado. Las seis semillas describen variación de optimización, no seis mercados independientes. Se emparejan las fechas y las semillas cuando corresponde; los comparadores deterministas conservan una única trayectoria. Las máscaras mantienen las posiciones reales del calendario sin comprimir huecos.</p>
 </section>
-<section id="inferencia-del-diagnostico-p0-historico">
-<h2>13.2 Inferencia del diagnóstico P0 histórico<a class="headerlink" href="#inferencia-del-diagnostico-p0-historico" title="Link to this heading">#</a></h2>
-<p>Este procedimiento pertenece al registro anterior; no es la inferencia registrada para el catálogo vigente. El análisis de P0 usa un panel modelo×semilla×fecha y bootstrap circular sobre <strong>bloques del calendario</strong>, con índices comunes entre modelos. Se conserva el emparejamiento y la pertenencia al régimen se filtra después de remuestrear; no se concatenan días de alta volatilidad separados como si fueran contiguos. El bloque principal es de siete días; catorce y veintiocho días son sensibilidades registradas, con <strong>4.999</strong> réplicas y semilla Monte Carlo 20261106. La elección de bloques para el benchmark definitivo deberá justificarse en desarrollo antes de su scoring.</p>
-<p>El gap registrado contrasta, para TimeMixer, iTransformer y PatchTST, <span class="math notranslate nohighlight">\(H_0:G_m\leq\delta\)</span> frente a <span class="math notranslate nohighlight">\(H_1:G_m&gt;\delta\)</span>, donde <span class="math notranslate nohighlight">\(G_m\)</span> es la media entre semillas de RMSE en alta volatilidad menos RMSE en el resto. Se utiliza exclusivamente OOF enero–octubre de 2024, Holm sobre tres hipótesis y <strong>α=0,01</strong>. Noviembre–diciembre aporta descripción y variación de entrenamiento; no se abre otra oportunidad para rechazar el mismo gap. El estadístico bajo la nula se centra en su frontera δ; no se transforma un contraste contra cero en una afirmación de mejora práctica.</p>
-<p>La clasificación usa σ₇(t−1) y un umbral q₇₅=<strong>0,024247163097617024</strong> calculado en entrenamiento de 2023. Esa variable contextual no se añade como entrada de las redes. Si un estrato queda vacío, el resultado es no estimable. La dependencia, no estacionariedad y la escasez de episodios limitan la precisión aunque existan cientos de filas.</p>
-<p>Los intervalos descriptivos nominales al 95 % no se presentan como simultáneos ni sustituyen los p ajustados. Una diferencia entre regímenes no demuestra una causa arquitectónica, una solución transferible ni superioridad global. Un gap no demostrado se informa como tal; no se escoge después otro calendario, otra receta o un umbral más favorable.</p>
+<section id="familia-primaria-y-refinamiento">
+<h2>13.2 Familia primaria y refinamiento<a class="headerlink" href="#familia-primaria-y-refinamiento" title="Link to this heading">#</a></h2>
+<p>La familia tiene <strong>20 comparaciones</strong>: cada candidato frente a GRU32 y Persistence. La ganancia es RMSE de la referencia menos RMSE del candidato; el margen práctico es <strong>δ=0,00025772842664981106</strong>. Se usa bootstrap pareado de semillas y posiciones temporales, bloque principal de 14 días y Holm20.</p>
+<p>El cálculo original de 4.999 réplicas queda disponible. <a class="reference internal" href="56_inferencia_estabilidad_final.html"><span class="std std-doc">§56</span></a> lo reproduce exactamente antes de recalcular las mismas hipótesis y el mismo estimando con <strong>20.000 réplicas</strong>. Los veinte p Holm siguen siendo 1. Este refinamiento mejora la resolución Monte Carlo; no cambia recetas, márgenes ni el carácter retrospectivo de la prueba.</p>
 </section>
-<section id="potencia-condicional-y-dimensionamiento-nuevo">
-<h2>13.3 Potencia condicional y dimensionamiento nuevo<a class="headerlink" href="#potencia-condicional-y-dimensionamiento-nuevo" title="Link to this heading">#</a></h2>
-<p>Las proyecciones de semillas del P0 se hicieron con ganancias emparejadas sobre un calendario fijo. Su método y supuestos se conservan en el <a class="reference download internal" download="" href="../_downloads/a421707fc03ce60be02b214170dea130/Remediacion_E2_protocolo_codigo_evidencias.zip"><span class="xref download myst">paquete histórico</span></a>. Esas aproximaciones condicionales no estiman automáticamente potencia temporal ni dimensionan los modelos incorporados ahora.</p>
-<p>El dimensionamiento nuevo requiere recetas congeladas, comparadores definidos y efectos de planificación explícitos respecto a las fronteras de las hipótesis. Debe distinguir capacidad entre semillas y capacidad temporal, incorporar las familias completas y, cuando corresponda, la decisión conjunta de error y coste. Las simulaciones deberán declarar sus supuestos, controlar el error bajo la nula y cuantificar la incertidumbre de la potencia estimada.</p>
-<p><strong>No hay un R ni un presupuesto experimental nuevo fijados en esta actualización.</strong> No se heredan tamaños de piloto, rejillas de R o asignaciones de cómputo del catálogo sustituido. Si el diseño no alcanza la potencia buscada, se informarán su límite y el efecto detectable; un número redondo de semillas no certifica suficiencia.</p>
-<p>La variación entre modelos y semillas se reportará por separado. Un modelo mixto o descomposición de varianza deberá declarar efectos, identificabilidad y estimador; no se atribuyen componentes de varianza entre mercados a una única serie. Las pérdidas diarias y los folds con entrenamiento solapado requieren una estrategia temporal justificada.</p>
+<section id="comparaciones-y-diagnosticos-posteriores">
+<h2>13.3 Comparaciones y diagnósticos posteriores<a class="headerlink" href="#comparaciones-y-diagnosticos-posteriores" title="Link to this heading">#</a></h2>
+<p><a class="reference internal" href="50_comparaciones_f2a.html"><span class="std std-doc">§50</span></a> aporta DM–HLN/HAC14 y MCS sobre pérdidas cuadráticas diarias, además de rangos condicionados a semillas. Son objetivos distintos de una mejora práctica de RMSE mayor que δ. <a class="reference internal" href="56_inferencia_estabilidad_final.html"><span class="std std-doc">§56</span></a> separa Giacomini–Rossi bajo igualdad predictiva de un diagnóstico centrado de constancia; ajusta conjuntamente 40 hipótesis. Un rechazo de igualdad puede deberse a una ventaja persistente y no demostrar un quiebre. Un no rechazo no demuestra equivalencia ni estabilidad universal.</p>
+<p>Las <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">ablaciones</span></a> usan 10.000 remuestreos y Holm3, conservando sus seis pares de semillas. La taxonomía de <a class="reference internal" href="57_errores_techo.html"><span class="std std-doc">§57</span></a> informa IC marginales de frecuencias bajo dependencia local; no ofrece cobertura simultánea de todas las categorías ni define causas de error.</p>
 </section>
-<section id="familias-de-hipotesis-y-diagnosticos">
-<h2>13.4 Familias de hipótesis y diagnósticos<a class="headerlink" href="#familias-de-hipotesis-y-diagnosticos" title="Link to this heading">#</a></h2>
-<p>El <a class="reference download internal" download="" href="../_downloads/c43ed0c31c71b99655b1063c15477973/preregistration.json"><span class="xref download myst">preregistro anterior</span></a> y la <a class="reference download internal" download="" href="../_downloads/47a0a31721456b70c253b9b8290a2de8/analysis_additions.json"><span class="xref download myst">enmienda archivada</span></a> permanecen accesibles para verificar su procedencia. <strong>Sus recuentos de hipótesis y asignaciones de error no están vigentes para la nueva selección.</strong> La nueva enmienda deberá fijar cada comparación, su referencia, pertenencia a familia y nivel de error antes de observar los resultados relevantes.</p>
-<p>La <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">sección 6</span></a> describe el papel de las comparaciones predictivas, eficiencia y diagnósticos residuales. Un contraste DM requiere declarar horizonte, dependencia y, si corresponde, corrección HLN. Ljung–Box o BDS no se usan para escoger después el contraste que resulte significativo. Un rechazo de iid no identifica por sí solo no linealidad.</p>
-<p>Para afirmar mejora simultánea de error y coste se necesita una prueba de intersección-unión: su p-valor conjunto conserva el mayor p válido de ambos componentes antes del ajuste familiar. La latencia se mide con calentamiento, bloques y orden intercalado en el mismo hardware; sus repeticiones no se mezclan con la variabilidad de la RMSE.</p>
-<p>La ausencia de rechazo no prueba equivalencia ni ausencia de sobreajuste. Una afirmación de equivalencia necesita un margen justificado, un contraste registrado y un intervalo compatible con ese margen. Un diagrama de diferencia crítica o Friedman no convierte semillas del mismo mercado en datasets independientes.</p>
-<section id="analisis-adicionales-con-alcance-propio">
-<h3>13.4.1 Análisis adicionales con alcance propio<a class="headerlink" href="#analisis-adicionales-con-alcance-propio" title="Link to this heading">#</a></h3>
-<p>La brecha train–validación debe usar métricas y soportes comparables. No rechazar un exceso de brecha es inconcluso, no una certificación de generalización. Las pruebas de equivalencia, PIT, ablaciones, controles negativos y diagnósticos de distribución necesitan objetivos y familias propios; no quedan incluidos automáticamente en el ajuste de las preguntas principales.</p>
-<p>Las ablaciones de CNN-1D + LSTM + atención temporal deberán aislar el aporte de convolución, memoria y atención con soporte D7×5 idéntico. Son controles del candidato 11, no nuevas incorporaciones al catálogo. Los resultados desfavorables se conservan y no se sustituye la receta después de evaluar para sostener una superioridad presupuesta.</p>
-<p>La probabilidad de superioridad, un contraste HAC alternativo o una frontera de Pareto deben conservar su alcance condicionado y supuestos. Un IC de calendario sobre pesos fijos no incluye automáticamente incertidumbre de HPO o entre activos. Una referencia determinista tampoco adquiere variación de inicialización por duplicar sus filas.</p>
+<section id="potencia-brechas-y-lenguaje-de-conclusion">
+<h2>13.4 Potencia, brechas y lenguaje de conclusión<a class="headerlink" href="#potencia-brechas-y-lenguaje-de-conclusion" title="Link to this heading">#</a></h2>
+<p>El piloto de cinco pares de semillas estimó potencia <strong>0,123</strong> para el efecto planificado con R=6, frente al objetivo 0,80. Su alcance se limita a dos representantes y 53 fechas de desarrollo. No se amplían repeticiones después de observar la prueba para buscar un resultado favorable.</p>
+<p>No hubo un margen de sobreajuste δg definido previamente. Las 78 brechas guardadas y las tolerancias ilustrativas de <a class="reference internal" href="56_inferencia_estabilidad_final.html"><span class="std std-doc">§56</span></a> son descriptivas; no acreditan no inferioridad train–validación. La calibración no se presenta como una nueva validación independiente. Menor RMSE observada, ausencia de rechazo y compatibilidad numérica de una réplica son conclusiones diferentes.</p>
 </section>
-</section>
-<section id="evidencia-verificable">
-<h2>13.5 Evidencia verificable<a class="headerlink" href="#evidencia-verificable" title="Link to this heading">#</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">scripts/analyze_e2_remediation_pilot.py</span></code> y el <a class="reference download internal" download="" href="../_downloads/a421707fc03ce60be02b214170dea130/Remediacion_E2_protocolo_codigo_evidencias.zip"><span class="xref download myst">paquete P0</span></a> conservan el procedimiento histórico, sus comprobaciones de identidad, semillas, cohortes, hashes y cierre antes del scoring. Los resultados P0 se enlazan en §9. Las pruebas sintéticas acreditan comportamiento del software, no resultados nuevos de Bitcoin.</p>
-<p>La <a class="reference download internal" download="" href="../_downloads/5c39a73befc06b6ac68a0ab1b13e5ac7/completion_bundle.zip"><span class="xref download myst">implementación estadística archivada</span></a> conserva <code class="docutils literal notranslate"><span class="pre">e2_final_statistics.py</span></code> y su runner sin modificarlos. No es una implementación validada del nuevo catálogo por el hecho de seguir disponible. La nueva enmienda y cualquier adaptación necesitarán validación y recibos propios antes de afirmar resultados.</p>
-<p>La <a class="reference internal" href="12_incertidumbre_errores.html"><span class="std std-doc">sección 12</span></a> distingue intervalos predictivos de σ₇, IC de métricas y análisis de casos únicos. Un IC de RMSE o la dispersión entre semillas no sustituyen la incertidumbre predictiva. Reutilizar periodos conocidos mantiene el alcance exploratorio, incluso con multiplicidad controlada.</p>
+<section id="archivo-de-la-version-anterior">
+<h2>Archivo de la versión anterior<a class="headerlink" href="#archivo-de-la-version-anterior" title="Link to this heading">#</a></h2>
+<p>La <a class="reference download internal" download="" href="../_downloads/c9430dc2daad9e337649230625d07d13/13_agregacion_estadistica.md"><code class="xref download docutils literal notranslate"><span class="pre">versión</span> <span class="pre">exacta</span> <span class="pre">anterior</span> <span class="pre">a</span> <span class="pre">esta</span> <span class="pre">consolidación</span></code></a> se conserva con sus estados y fechas históricos. El <a class="reference download internal" download="" href="../_downloads/a375c47d06b822516dc7b9dafd245bd1/chapter_archive_manifest.json"><span class="xref download myst">manifiesto de archivo</span></a> fija su commit y SHA256. Esos antecedentes no sustituyen el protocolo ejecutado de <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a> ni su Apéndice B actual de <a class="reference internal" href="61_reproduccion_consolidada.html"><span class="std std-doc">§61</span></a>.</p>
 </section>
 </section>
 
@@ -536,7 +491,7 @@
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">anterior</p>
-        <p class="prev-next-title">12. Techo de desempeño, incertidumbre y análisis de errores</p>
+        <p class="prev-next-title">12. Incertidumbre, errores y referencias de dificultad</p>
       </div>
     </a>
     <a class="right-next"
@@ -544,7 +499,7 @@
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">14. Arquitecturas del catálogo vigente y adaptación a D7</p>
+        <p class="prev-next-title">14. Arquitecturas ejecutadas y condición de NAS</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -566,14 +521,11 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-se-estima-y-que-se-remuestrea">13.1 Qué se estima y qué se remuestrea</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inferencia-del-diagnostico-p0-historico">13.2 Inferencia del diagnóstico P0 histórico</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#potencia-condicional-y-dimensionamiento-nuevo">13.3 Potencia condicional y dimensionamiento nuevo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#familias-de-hipotesis-y-diagnosticos">13.4 Familias de hipótesis y diagnósticos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-adicionales-con-alcance-propio">13.4.1 Análisis adicionales con alcance propio</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-verificable">13.5 Evidencia verificable</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-se-estima">13.1 Qué se estima</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#familia-primaria-y-refinamiento">13.2 Familia primaria y refinamiento</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparaciones-y-diagnosticos-posteriores">13.3 Comparaciones y diagnósticos posteriores</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#potencia-brechas-y-lenguaje-de-conclusion">13.4 Potencia, brechas y lenguaje de conclusión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-de-la-version-anterior">Archivo de la versión anterior</a></li>
 </ul>
   </nav></div>
 

@@ -1,5 +1,7 @@
 # 5. Paper Guía y Replicación
 
+**Orientación de entrega del 14/11/2026:** el protocolo ejecutado es [§48](48_protocolo_reducido.md), los resultados comunes están en [§6](06_benchmark_final.md), la reproducción registrada en [§55](55_reproduccion_ablaciones.md) y el Apéndice B actual en [§61](61_reproduccion_consolidada.md). Las cifras científicas y los recibos históricos conservan su fecha y su alcance.
+
 **Alcance:** los datos, controles y experimentos ya ejecutados de esta sección se conservan como evidencia histórica. No acreditan el benchmark del catálogo obligatorio vigente de 16 sistemas, definido en [§43](43_catalogo_obligatorio.md), ni las recetas restauradas de [§44](44_arquitecturas_publicadas.md). Cualquier presupuesto o receta anterior requiere revisión y nuevo registro antes de reutilizarse.
 
 Este capítulo desarrolla la sección 5 de la guía completa de 65 páginas, recibida después de sus dos capturas iniciales (página16 y continuación). Distingue la réplica externa de ETTh1 del benchmark Bitcoin D7. El diseño, las fuentes, las cinco semillas y el criterio de comparación se registraron antes de los ajustes con datos.
@@ -103,7 +105,7 @@ El pooling y la media móvil operan sobre la ventana observada completa. No se d
 | TimesNet | Transforma periodicidades en representaciones 2D y aplica convoluciones; TimeMixer usa pooling y MLP temporales |
 | PatchTST e iTransformer | Atención sobre parches o variables; mecanismos distintos de PDM/FMM |
 | FCN-1D, ResNet-1D e Inception-1D | Extracción convolucional; requieren adaptación de regresión y soporte D7 |
-| LSTM-autoencoder con predictor | Representación recurrente y reconstrucción; receta supervisada por fijar |
+| LSTM-autoencoder con predictor | Representación recurrente y reconstrucción; receta actual restaurada y fases registradas en §§44/48 |
 
 MLP, LSTM y GRU de E1 son referencias separadas. Elegir TimeMixer como guía no lo convierte en ganador del catálogo vigente.
 
@@ -148,7 +150,7 @@ La discrepancia no se atribuye causalmente a una única diferencia. Hay cambios 
 
 El archivo oficial tiene 17.420 filas horarias regulares, siete canales y sin faltantes numéricos. El protocolo original usa las primeras 14.400 filas; las 3.020 restantes no se reasignan a un nuevo test. Las fechas del archivo no declaran zona horaria. La tabla 6 del manuscrito imprime 15 minutos para ETTh1; el CSV verificado tiene intervalos de **una hora**. Se conserva esta diferencia documental y se utiliza la fuente efectiva del experimento.
 
-La ejecución valida la cadena externa de adquisición con hashes, ventanas, escalado train-only, backbone original, optimización, cierre de checkpoints, scoring y agregación de métricas. **No valida por sí sola el adaptador Bitcoin D7**, su cabeza de volatilidad, los otros modelos ni el HPO completo. La nueva revisión de §14 aporta evidencia de implementación propia de los diez adaptadores; sus resultados de mercado siguen pendientes.
+La ejecución valida la cadena externa de adquisición con hashes, ventanas, escalado train-only, backbone original, optimización, cierre de checkpoints, scoring y agregación de métricas. **No valida por sí sola el adaptador Bitcoin D7**, su cabeza de volatilidad, los otros modelos ni el HPO completo. Los cuerpos actuales y sus resultados propios se documentan en [§44](44_arquitecturas_publicadas.md), [§48](48_protocolo_reducido.md) y [§6](06_benchmark_final.md); esta réplica externa conserva su alcance específico.
 
 ## 5.4 Limitaciones: piloto cuantificado en tres modelos
 
@@ -240,4 +242,9 @@ La reproducción separa `validate`, `register`, cinco `fit`, un `score` posterio
 | Preregistro completo de §9.1 | Guía completa recibida; cronología acotada de la réplica comprobable y revisión integral de sus requisitos separada del protocolo Bitcoin |
 | Motivación para E3 | Condiciones y candidatos de investigación documentados; originalidad y validación D7 pendientes |
 
-Estos experimentos suman **veinte ajustes externos de modelos**. La revisión de adaptadores previa es histórica y no acredita la integración del catálogo vigente; el recibo del 06/11 acredita inicio de HPO, todavía sin cierre publicado; potencia y benchmark Bitcoin de §4 no tienen resultados finales publicados. Se preservan la métrica, test y margen heredados. La enmienda histórica separaba 53 fechas de P1/calibración; no fija el diseño del catálogo vigente. El protocolo nuevo está registrado en [§45](45_enmienda_protocolo.md), con ejecución y cierre experimental pendientes.
+Estos experimentos suman **veinte ajustes externos de modelos** y conservan su registro, calendario y criterio propios. La evaluación Bitcoin actual, sus 78 ajustes finales y el piloto de potencia están publicados en [§48](48_protocolo_reducido.md) y [§6](06_benchmark_final.md). La réplica ETTh1 no rellena sus métricas ni acredita transferencia automática. Los cambios de calendario y los cortes previos permanecen en el archivo histórico.
+
+
+## Archivo de la versión anterior
+
+La {download}`versión exacta anterior a esta consolidación <../_static/e2_delivery_reproduction_20261114/archived_chapters/05_paper_guia.md>` se conserva con su SHA256 en el [manifiesto de archivo](../_static/e2_delivery_reproduction_20261114/chapter_archive_manifest.json). Sus estados pendientes describen el corte original.

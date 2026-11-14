@@ -1,6 +1,8 @@
 (e2-auditoria-datos)=
 # 10. Contrato de datos y auditoría formal de fuga
-**Alcance:** los datos, controles y experimentos ya ejecutados de esta sección se conservan como evidencia histórica. No acreditan entrenamiento del catálogo vigente de diez modelos y candidato 11, definido en [§15](15_revision_modelos.md). Cualquier presupuesto o receta anterior requiere revisión y nuevo registro antes de reutilizarse.
+
+**Orientación de entrega del 14/11/2026:** el protocolo ejecutado es [§48](48_protocolo_reducido.md), los resultados comunes están en [§6](06_benchmark_final.md), la reproducción registrada en [§55](55_reproduccion_ablaciones.md) y el Apéndice B actual en [§61](61_reproduccion_consolidada.md). Las cifras científicas y los recibos históricos conservan su fecha y su alcance.
+**Alcance vigente:** esta página separa el preflight histórico P0 de los controles de la ejecución final. La [admisión actual](../_static/e2_benchmark_final_20261113/data_admission.json), la [congelación](../_static/e2_benchmark_final_20261113/final_freeze.json) y el [protocolo de §48](48_protocolo_reducido.md) acreditan soporte, identidades y secuencia de la campaña de dieciséis sistemas. No equivalen a la aprobación de todos los criterios de la auditoría integral de fuga.
 
 
 **Estado:** la auditoría ejecutada de soporte P0/OOF de desarrollo está aprobada. Esto no certifica todas las verificaciones del pipeline final de configuraciones del registro histórico exigidas en la tabla10.1 de la guía (PDF pp44–45). La regla de p46 exige corregir cualquier fallo y repetir el experimento afectado; no permite publicar un benchmark inválido con una nota al pie. La ausencia de un control todavía no ejecutado se informa como pendiente, sin declararlo aprobado.
@@ -99,15 +101,15 @@ El activo BTCUSDT aparece legítimamente en todas las fases: se evalúa una sola
 
 Los controles de adaptadores verifican forma, gradientes finitos y que una predicción no cambie con otros orígenes en el batch. La revisión independiente y la prueba de memorización sintética del catálogo histórico se conservan para auditoría en [§14](14_arquitecturas.md). Son controles relevantes para disponibilidad causal, pero **no equivalen** a entrenar con etiquetas permutadas, demostrar ausencia de atajos o aprobar automáticamente los pipelines del catálogo vigente. Si una comprobación futura falla, se conservará el fallo y se repetirá el experimento afectado tras corregir su causa; no se seleccionarán fechas favorables ni un test que produzca el resultado deseado.
 
-### 10.4.1 Controles negativos y de desplazamiento implementados
+### 10.4.1 Controles negativos del diseño histórico
 
 El módulo `scripts/e2_leakage_controls.py` separa diecisiete controles supervisados —dieciséis redes y Ridge— de las referencias endógenas. Permuta etiquetas por bloques de siete observaciones admitidas, declara huecos y separa permutaciones de entrenamiento, selección temprana y validación interna. Usa semillas de permutación 690101/690118/690132, reajuste desde cero y la misma receta primaria congelada. Los **diecisiete predictores de control deben cerrar junto a todos los primarios y A antes de calibración o test**; no se ajusta un control después de observar resultados. Los errores se evalúan sobre la misma reserva conocida de sesenta fechas, dentro de su fase única.
 
 Se compara con el pronóstico constante de media de entrenamiento. La señal sospechosa predefinida requiere conjuntamente ganancia RMSE>δ y correlación Spearman positiva, mediante IUT y **Holm sobre diecisiete hipótesis, α=0,01**, con 2.000 remuestreos. No rechazar no demuestra ausencia de fuga; los controles son diagnósticos con potencia y supuestos limitados, no una certificación automática.
 
-El clasificador adversarial usa las 35 entradas, cinco particiones bloqueadas/purgadas, embargo de siete días, escalado aprendido dentro de cada train y regresión logística L2 balanceada con parámetros fijos. La distribución nula usa **2.000 permutaciones de etiquetas de dominio por bloques con reajuste de todos los folds**. Se ejecuta tras los cierres globales; explica desplazamiento entre periodos sin retroalimentar HPO o adaptar escaladores a test. ARIMA y los dos ingenuos reciben auditoría de estado causal y perturbaciones reales de la historia observable, manteniendo coeficientes fijos. Estos controles están implementados; su ejecución y resultados no se atribuyen al preflight sintético P0.
+El clasificador adversarial usa las 35 entradas, cinco particiones bloqueadas/purgadas, embargo de siete días, escalado aprendido dentro de cada train y regresión logística L2 balanceada con parámetros fijos. La distribución nula usa **2.000 permutaciones de etiquetas de dominio por bloques con reajuste de todos los folds**. Se ejecuta tras los cierres globales; explica desplazamiento entre periodos sin retroalimentar HPO o adaptar escaladores a test. ARIMA y los dos ingenuos reciben auditoría de estado causal y perturbaciones reales de la historia observable, manteniendo coeficientes fijos. Estos controles pertenecen al diseño histórico y están implementados; no se atribuyen al preflight P0 ni se declaran ejecutados para los dieciséis sistemas de la entrega actual.
 
-## 10.5 Reconstrucción y cierre pendiente
+## 10.5 Reconstrucción del preflight histórico y límites actuales
 
 Desde el checkout registrado, en el entorno de §8 y con una ruta de salida separada, este comando regenera el recibo agregado sin ajustar modelos:
 
@@ -117,4 +119,9 @@ python scripts/e2_remediation_data_audit.py --output ../e2-data-audit-reproducti
 
 El [registro de entrada](../_static/remediation_preflight/registration.json) preserva sus hashes y el [recibo publicado](../_static/remediation_preflight/data_support_audit.json) preserva los resultados observados. La [descarga unificada](../_static/remediation_download/Remediacion_E2_protocolo_codigo_evidencias.zip) incluye el procedimiento y las evidencias de esta etapa. Una reproducción puede cambiar la fecha de generación del recibo; comparar esa fecha o el hash del JSON completo no sustituye contrastar los mismos campos científicos e identidades de entrada.
 
-Antes del scoring final faltan los recibos de la auditoría completa sobre las implementaciones, las cohortes congeladas de referencias con soportes distintos, los checkpoints cerrados y los análisis registrados. Los periodos 2025–2026 conocidos de E1 siguen fuera de este preflight; su reutilización futura conserva alcance exploratorio. Un hash nuevo no crea un test nuevo y una auditoría de soporte aprobada no demuestra por sí sola generalización independiente ni superioridad predictiva.
+El scoring actual está cerrado y sus predictores, cohortes y checkpoints tienen recibos propios en §§6/48/55. Permanece parcial la auditoría integral de todos los criterios y controles negativos sobre ese pipeline; no se declara aprobada por el preflight de soporte. El periodo 2025–2026 conocido de E1 conserva alcance retrospectivo. Un hash nuevo no crea un test nuevo y una auditoría de soporte no demuestra generalización independiente.
+
+
+## Archivo de la versión anterior
+
+La {download}`versión exacta anterior a esta consolidación <../_static/e2_delivery_reproduction_20261114/archived_chapters/10_auditoria_datos.md>` se conserva con su SHA256 en el [manifiesto de archivo](../_static/e2_delivery_reproduction_20261114/chapter_archive_manifest.json). Sus estados pendientes describen el corte original.

@@ -1,0 +1,617 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>63. Referencia empírica mediante un ensemble ajustado en calibración &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/63_ensamble_calibracion';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="7. Ruta metodológica: series de tiempo y controles causales" href="07_ruta_temporal.html" />
+    <link rel="prev" title="62. Elegibilidad focal y puntuación bibliográfica contextual" href="62_cierre_literatura_focal.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 2 · Bitcoin: pronóstico de volatilidad</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="48_protocolo_reducido.html">48. Protocolo reducido y seguimiento de la ejecución</a></li>
+<li class="toctree-l1"><a class="reference internal" href="47_entrega_consolidada.html">47. Entrega consolidada con la evidencia disponible</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_literatura.html">3. Revisión Sistemática del Estado del Arte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación: catálogo obligatorio y antecedentes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark obligatorio: dieciséis sistemas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="49_diagnosticos_f2a.html">49. Diagnósticos F2a posteriores al benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="50_comparaciones_f2a.html">50. Comparaciones F2a posteriores: DM, MCS y rangos por semilla</a></li>
+<li class="toctree-l1"><a class="reference internal" href="51_eficiencia_costes.html">51. Eficiencia, coste observado y compromisos de Pareto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="52_sintesis_literatura.html">52. Síntesis verificable de literatura y selección vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="53_cierre_requisitos.html">53. Cierre de requisitos y experimentos complementarios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="54_robustez_interpretabilidad.html">54. Robustez e interpretabilidad: resultados reales de los predictores congelados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="55_reproduccion_ablaciones.html">55. Reproducción numérica y ablaciones completadas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="56_inferencia_estabilidad_final.html">56. Inferencia refinada y estabilidad temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="57_errores_techo.html">57. Taxonomía de errores y referencias de predictibilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="58_flops_predictores.html">58. Coste de operaciones de los predictores congelados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="59_auditoria_literatura_final.html">59. Auditoría final de la literatura recibida</a></li>
+<li class="toctree-l1"><a class="reference internal" href="60_calibracion_temporal_condicional.html">60. Calibración temporal y cobertura condicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="61_reproduccion_consolidada.html">61. Entrega reproducible y Apéndice B actual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="62_cierre_literatura_focal.html">62. Elegibilidad focal y puntuación bibliográfica contextual</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">63. Referencia empírica mediante un ensemble ajustado en calibración</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad de la entrega vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Registros, enmiendas y cierre de la ejecución</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de datos y auditoría formal de fuga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. Selección HPO ejecutada y equidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Incertidumbre, errores y referencias de dificultad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Estimandos, agregación e inferencia actual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas ejecutadas y condición de NAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo ejecutado y procedencia bibliográfica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_fichas_nuevas.html">16. Fichas bibliográficas de las cuatro altas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato vigente y relación entre E1, E2 y E3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_integracion_sintetica.html">18. Implementación provisional y verificación sintética</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_plan_auditoria.html">19. Plan experimental propuesto y auditoría sin entrenamiento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_contraste_guia.html">20. Cotejo del plan con la guía original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_comparadores_nas.html">21. Comparadores temporales y decisión NAS por receta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22_fichas_recetas.html">22. Once fichas de recetas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_implementacion_recetas.html">23. Implementación de recetas y controles temporales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="24_ejecutor_comun.html">24. Ejecutor común y disponibilidad temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="25_matriz_cierre.html">25. Matriz de cierre antes del benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="26_registro_recetas.html">26. Registro por receta: fuentes, NAS, HPO e integración</a></li>
+<li class="toctree-l1"><a class="reference internal" href="27_nas_hpo_presupuesto.html">27. Decisiones NAS, rangos HPO y presupuesto para Codex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="28_fabricas_nas.html">28. Fábricas NAS implementadas y verificadas sintéticamente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="29_entrenamiento_temporal.html">29. Entrenamiento por etapas, selección temporal y perfilado CPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="30_piloto_nube.html">30. Piloto de desarrollo en la nube de Codex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="31_optimizacion_nube.html">31. Optimización de CPU y presupuesto de cómputo en la nube</a></li>
+<li class="toctree-l1"><a class="reference internal" href="32_ejecucion_gpu.html">32. Ejecución CUDA preparada y piloto de recursos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="33_piloto_gpu.html">33. Primer piloto de recursos en GPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="34_perfil_gpu_ampliado.html">34. Perfil GPU ampliado y viabilidad del extremo TimesNet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="35_busqueda_cuda_reanudable.html">35. Selección CUDA con presupuesto y continuación en GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="36_avance_campana_cuda.html">36. Avance parcial de la campaña CUDA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="37_ajuste_guia.html">37. Ajuste de cómputo conforme a la guía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="38_cumplimiento_guia.html">38. Exigencias de la guía, evidencia y pendientes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="39_optimizacion_tiempo.html">39. Optimizar tiempo sin recortar las exigencias de E2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="40_calendario_original.html">40. Calendario original y optimizaciones de implementación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="41_avance_optimizacion_11_origenes.html">41. Ejecución optimizada: avance verificable de once orígenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html">42. Preparación complementaria a partir de evidencia existente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="43_catalogo_obligatorio.html">43. Catálogo obligatorio: dieciséis sistemas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="44_arquitecturas_publicadas.html">44. Cuerpos publicados, adaptaciones D7 y aplicación de NAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="45_enmienda_protocolo.html">45. Enmienda del protocolo: calendario común, presupuesto y prueba final</a></li>
+<li class="toctree-l1"><a class="reference internal" href="46_artefactos_y_pilotos.html">46. Preparación técnica opcional: artefactos y pilotos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><p class="small">Entregable 2 · Jassan Arteta · 2026-30</p></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/63_ensamble_calibracion.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>63. Referencia empírica mediante un ensemble ajustado en calibración</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-y-separacion-de-datos">Construcción y separación de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-en-las-mismas-608-fechas">Resultado en las mismas 608 fechas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distancia-frente-a-una-referencia-alcanzable-e-incertidumbre">Distancia frente a una referencia alcanzable e incertidumbre</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#artefactos-y-reproduccion">Artefactos y reproducción</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="referencia-empirica-mediante-un-ensemble-ajustado-en-calibracion">
+<h1>63. Referencia empírica mediante un ensemble ajustado en calibración<a class="headerlink" href="#referencia-empirica-mediante-un-ensemble-ajustado-en-calibracion" title="Link to this heading">#</a></h1>
+<p>Se construyó <strong>una única combinación convexa de los dieciséis sistemas</strong>, usando solamente las 53 fechas de calibración del 08/11–30/12/2024 para aprender sus pesos. Los pronósticos originales y los resultados de A2 se conservan. El <a class="reference download internal" download="" href="../_downloads/2821328a5279596bdde83a9ef3c60a0c/analysis_plan.json"><span class="xref download myst">plan</span></a> fue versionado en el <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/8d9cc8c3397242a07378fb1a678196dab36744da">commit 8d9cc8c</a> antes de este ajuste, aunque el periodo de prueba y sus resultados originales ya eran conocidos. Es un suplemento retrospectivo.</p>
+<section id="construccion-y-separacion-de-datos">
+<h2>Construcción y separación de datos<a class="headerlink" href="#construccion-y-separacion-de-datos" title="Link to this heading">#</a></h2>
+<p>Los pesos son comunes a las seis semillas, no negativos y suman uno. Los comparadores deterministas repiten su trayectoria al emparejarse con cada semilla neuronal; esto no los convierte en seis ejecuciones independientes. Se minimizó la MSE de calibración media de las seis trayectorias del ensemble, normalizada por la media finita de σ₇ del desarrollo 2023–2024, con penalización fija 1e-4 hacia pesos uniformes. Se realizó una sola optimización SLSQP con gradiente analítico, tolerancia 1e-12 y máximo 1000 iteraciones; no hubo HPO, prueba de múltiples penalizaciones ni selección del ensemble según su RMSE de prueba.</p>
+<p>Se efectuó <strong>un ajuste estadístico de los pesos de combinación en CPU</strong>, con duración observada de aproximadamente 2 segundos. No se reajustó ninguna de las trece redes ni de los tres comparadores, ni se cargaron sus pesos para realizar nuevas inferencias. Los pronósticos del ensemble son combinaciones de las trayectorias ya guardadas. Los calibradores originales permanecen intactos. Estos costes CPU se documentan separados de los cargos históricos A100.</p>
+<p>Ocho pesos son superiores a 1e-9; corresponden a FCN, ResNet, Inception, SAE, TimesNet, TimeMixer, iTransformer y Persistence. Los <a class="reference download internal" download="" href="../_downloads/9b62eae676be5339295da198984cd4fe/weights.csv"><span class="xref download myst">dieciséis pesos y sus ceros numéricos</span></a> se publican completos. La optimización terminó en 43 iteraciones. La <a class="reference download internal" download="" href="../_downloads/f1b173f3f9726ed82b06feeb8a8cfc78/independent_fit_audit.json"><span class="xref download myst">auditoría independiente de factibilidad y condiciones KKT</span></a> verifica suma 1, no negatividad, residuo activo máximo 4,73e-7 y holgura inactiva positiva. Las diferencias en validación de 2024 explican por qué un modelo con buena posición en la A2 puede recibir peso cero aquí; no se modificaron pesos para favorecer su posición en 2025–2026.</p>
+</section>
+<section id="resultado-en-las-mismas-608-fechas">
+<h2>Resultado en las mismas 608 fechas<a class="headerlink" href="#resultado-en-las-mismas-608-fechas" title="Link to this heading">#</a></h2>
+<p>La métrica conserva el estimando de A2: <strong>media de seis RMSE individuales</strong>, una por ensemble emparejado con semilla. No se calcula la RMSE de promediar las seis predicciones.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Sistema</p></th>
+<th class="head text-right"><p>RMSE media</p></th>
+<th class="head"><p>IC95 temporal marginal, bloques 14 días</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Ensemble ajustado en calibración</p></td>
+<td class="text-right"><p>0,003689532</p></td>
+<td><p>[0,003043221;0,004419618]</p></td>
+</tr>
+<tr class="row-odd"><td><p>SAE original</p></td>
+<td class="text-right"><p>0,003803430</p></td>
+<td><p>[0,003176916;0,004566666]</p></td>
+</tr>
+<tr class="row-even"><td><p>Persistence original</p></td>
+<td class="text-right"><p>0,004085596</p></td>
+<td><p>[0,003313647;0,004960634]</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La RMSE de calibración del ensemble es 0,003186257. Su error en prueba es mayor, lo que se conserva como resultado; no se volvieron a aprender sus pesos. El SAE continúa siendo el mejor modelo individual observado del catálogo original. La combinación complementaria no se añade a A2 ni modifica el catálogo obligatorio de 16 sistemas.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Referencia</p></th>
+<th class="head text-right"><p>Ganancia RMSE de la combinación</p></th>
+<th class="head"><p>IC95 marginal de la ganancia</p></th>
+<th class="head text-right"><p>p Holm (2 contrastes)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>SAE</p></td>
+<td class="text-right"><p>0,000113898</p></td>
+<td><p>[−0,000213924;0,000426550]</p></td>
+<td class="text-right"><p>0,243776</p></td>
+</tr>
+<tr class="row-odd"><td><p>Persistence</p></td>
+<td class="text-right"><p>0,000396064</p></td>
+<td><p>[0,000022275;0,000817232]</p></td>
+<td class="text-right"><p>0,063794</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Son dos contrastes posteriores de ganancia mayor que cero, con 10.000 remuestreos pareados de semillas y bloques circulares de 14 días, y Holm sobre ambos. <strong>Ninguno rechaza a 0,05 después de Holm.</strong> Los IC son marginales, no simultáneos. No se contrastó aquí superar el margen práctico δ ni se sustituyeron los veinte contrastes originales. Se conservan las sensibilidades a 7 y 28 días en el <a class="reference download internal" download="" href="../_downloads/1b38ed1bbe9d03d2d4f0f57bc5e9e083/summary.json"><span class="xref download myst">resumen completo</span></a>. Los pesos aprendidos permanecen fijos durante el remuestreo: la inferencia está condicionada a esa calibración y no incorpora la incertidumbre de volver a estimarlos en otra muestra.</p>
+</section>
+<section id="distancia-frente-a-una-referencia-alcanzable-e-incertidumbre">
+<h2>Distancia frente a una referencia alcanzable e incertidumbre<a class="headerlink" href="#distancia-frente-a-una-referencia-alcanzable-e-incertidumbre" title="Link to this heading">#</a></h2>
+<p>La construcción proporciona una <strong>referencia empírica alcanzable bajo este procedimiento</strong>, con RMSE puntual menor que la del SAE y Persistence. Usando esa referencia como proxy operativa, la fórmula orientada a pérdida es:</p>
+<div class="math notranslate nohighlight">
+\[
+\gamma_{emp}=\frac{RMSE_{SAE}-RMSE_{ensemble}}{RMSE_{Persistence}-RMSE_{ensemble}}=0,287574.
+\]</div>
+<p>Este número expresa la fracción puntual del margen Persistence–ensemble que aún separa al SAE de esta combinación concreta. <strong>No identifica el riesgo Bayes ni un techo óptimo sobre todos los predictores.</strong></p>
+<p>La incertidumbre del cociente es grande: el intervalo percentil de su valor algebraico es <strong>[−1,49210;2,37128]</strong> con bloques de 14 días. Sólo 6.588 de 10.000 réplicas conservan el orden <code class="docutils literal notranslate"><span class="pre">ensemble</span> <span class="pre">&lt;</span> <span class="pre">SAE</span> <span class="pre">&lt;</span> <span class="pre">Persistence</span></code>. Se conservaron todas las réplicas algebraicamente definidas, incluidas las que cambian el orden o el signo del denominador; no se truncó el intervalo a [0,1] ni se condicionó silenciosamente a los resultados favorables. Por ello no se interpreta este intervalo como una fracción poblacional estable ni se concluye que quede exactamente 28,8 % de margen real.</p>
+<p>El ensemble uniforme de <a class="reference internal" href="57_errores_techo.html"><span class="std std-doc">§57</span></a> permanece como resultado anterior negativo, con otra identidad. Esta construcción de pesos es nueva y tiene su protocolo propio; no se elige retrospectivamente entre ambas para declarar un techo demostrado. Se mantienen el calendario conocido desde E1, la ausencia de δg previo y la incertidumbre sobre generalización futura.</p>
+</section>
+<section id="artefactos-y-reproduccion">
+<h2>Artefactos y reproducción<a class="headerlink" href="#artefactos-y-reproduccion" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="../_downloads/2821328a5279596bdde83a9ef3c60a0c/analysis_plan.json"><span class="xref download myst">Plan registrado</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/9b62eae676be5339295da198984cd4fe/weights.csv"><span class="xref download myst">Pesos aprendidos</span></a> y <a class="reference download internal" download="" href="../_downloads/2a992904f1f037893f39f70df96c0623/ensemble_saved_forecasts.csv"><span class="xref download myst">pronósticos derivados</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/f07bd5eef18582d03a6f1887af5c59b7/contrasts.csv"><span class="xref download myst">Dos contrastes e intervalos</span></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/1b38ed1bbe9d03d2d4f0f57bc5e9e083/summary.json"><span class="xref download myst">Resumen completo y sensibilidad</span></a> y <a class="reference download internal" download="" href="../_downloads/be71053ad7ed6d4fb7d4abc8191f615f/manifest.json"><span class="xref download myst">manifiesto</span></a>.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>scripts/e2_calibration_ensemble.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--input<span class="w"> </span>book_e2/_static/e2_final_audit_inputs_20261114/e2_f2a_input.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--development<span class="w"> </span>book_e2/_static/e2_final_audit_inputs_20261114/daily_volatility_development.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--plan<span class="w"> </span>experiments/e2_calibration_ensemble_20261114/analysis_plan.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--registration<span class="w"> </span>8d9cc8c3397242a07378fb1a678196dab36744da<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>work/calibration_ensemble_repetition
+</pre></div>
+</div>
+<p>La repetición vuelve a ajustar los pesos estadísticos con la misma calibración. La auditoría documental de <a class="reference internal" href="61_reproduccion_consolidada.html"><span class="std std-doc">§61</span></a> comprueba los artefactos guardados sin ese ajuste; ambos procedimientos tienen alcances distintos.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="62_cierre_literatura_focal.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">62. Elegibilidad focal y puntuación bibliográfica contextual</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="07_ruta_temporal.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">7. Ruta metodológica: series de tiempo y controles causales</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-y-separacion-de-datos">Construcción y separación de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-en-las-mismas-608-fechas">Resultado en las mismas 608 fechas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distancia-frente-a-una-referencia-alcanzable-e-incertidumbre">Distancia frente a una referencia alcanzable e incertidumbre</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#artefactos-y-reproduccion">Artefactos y reproducción</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,844 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>60. Calibración temporal y cobertura condicional &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/60_calibracion_temporal_condicional';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="61. Entrega reproducible y Apéndice B actual" href="61_reproduccion_consolidada.html" />
+    <link rel="prev" title="59. Auditoría final de la literatura recibida" href="59_auditoria_literatura_final.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 2 · Bitcoin: pronóstico de volatilidad</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="48_protocolo_reducido.html">48. Protocolo reducido y seguimiento de la ejecución</a></li>
+<li class="toctree-l1"><a class="reference internal" href="47_entrega_consolidada.html">47. Entrega consolidada con la evidencia disponible</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_literatura.html">3. Revisión Sistemática del Estado del Arte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_implementacion.html">4. Implementación: catálogo obligatorio y antecedentes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark obligatorio: dieciséis sistemas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="49_diagnosticos_f2a.html">49. Diagnósticos F2a posteriores al benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="50_comparaciones_f2a.html">50. Comparaciones F2a posteriores: DM, MCS y rangos por semilla</a></li>
+<li class="toctree-l1"><a class="reference internal" href="51_eficiencia_costes.html">51. Eficiencia, coste observado y compromisos de Pareto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="52_sintesis_literatura.html">52. Síntesis verificable de literatura y selección vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="53_cierre_requisitos.html">53. Cierre de requisitos y experimentos complementarios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="54_robustez_interpretabilidad.html">54. Robustez e interpretabilidad: resultados reales de los predictores congelados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="55_reproduccion_ablaciones.html">55. Reproducción numérica y ablaciones completadas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="56_inferencia_estabilidad_final.html">56. Inferencia refinada y estabilidad temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="57_errores_techo.html">57. Taxonomía de errores y referencias de predictibilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="58_flops_predictores.html">58. Coste de operaciones de los predictores congelados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="59_auditoria_literatura_final.html">59. Auditoría final de la literatura recibida</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">60. Calibración temporal y cobertura condicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="61_reproduccion_consolidada.html">61. Entrega reproducible y Apéndice B actual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="62_cierre_literatura_focal.html">62. Elegibilidad focal y puntuación bibliográfica contextual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="63_ensamble_calibracion.html">63. Referencia empírica mediante un ensemble ajustado en calibración</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad de la entrega vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Registros, enmiendas y cierre de la ejecución</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de datos y auditoría formal de fuga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. Selección HPO ejecutada y equidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Incertidumbre, errores y referencias de dificultad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Estimandos, agregación e inferencia actual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas ejecutadas y condición de NAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo ejecutado y procedencia bibliográfica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_fichas_nuevas.html">16. Fichas bibliográficas de las cuatro altas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato vigente y relación entre E1, E2 y E3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_integracion_sintetica.html">18. Implementación provisional y verificación sintética</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_plan_auditoria.html">19. Plan experimental propuesto y auditoría sin entrenamiento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_contraste_guia.html">20. Cotejo del plan con la guía original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_comparadores_nas.html">21. Comparadores temporales y decisión NAS por receta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22_fichas_recetas.html">22. Once fichas de recetas propuestas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_implementacion_recetas.html">23. Implementación de recetas y controles temporales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="24_ejecutor_comun.html">24. Ejecutor común y disponibilidad temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="25_matriz_cierre.html">25. Matriz de cierre antes del benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="26_registro_recetas.html">26. Registro por receta: fuentes, NAS, HPO e integración</a></li>
+<li class="toctree-l1"><a class="reference internal" href="27_nas_hpo_presupuesto.html">27. Decisiones NAS, rangos HPO y presupuesto para Codex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="28_fabricas_nas.html">28. Fábricas NAS implementadas y verificadas sintéticamente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="29_entrenamiento_temporal.html">29. Entrenamiento por etapas, selección temporal y perfilado CPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="30_piloto_nube.html">30. Piloto de desarrollo en la nube de Codex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="31_optimizacion_nube.html">31. Optimización de CPU y presupuesto de cómputo en la nube</a></li>
+<li class="toctree-l1"><a class="reference internal" href="32_ejecucion_gpu.html">32. Ejecución CUDA preparada y piloto de recursos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="33_piloto_gpu.html">33. Primer piloto de recursos en GPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="34_perfil_gpu_ampliado.html">34. Perfil GPU ampliado y viabilidad del extremo TimesNet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="35_busqueda_cuda_reanudable.html">35. Selección CUDA con presupuesto y continuación en GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="36_avance_campana_cuda.html">36. Avance parcial de la campaña CUDA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="37_ajuste_guia.html">37. Ajuste de cómputo conforme a la guía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="38_cumplimiento_guia.html">38. Exigencias de la guía, evidencia y pendientes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="39_optimizacion_tiempo.html">39. Optimizar tiempo sin recortar las exigencias de E2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="40_calendario_original.html">40. Calendario original y optimizaciones de implementación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="41_avance_optimizacion_11_origenes.html">41. Ejecución optimizada: avance verificable de once orígenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html">42. Preparación complementaria a partir de evidencia existente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="43_catalogo_obligatorio.html">43. Catálogo obligatorio: dieciséis sistemas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="44_arquitecturas_publicadas.html">44. Cuerpos publicados, adaptaciones D7 y aplicación de NAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="45_enmienda_protocolo.html">45. Enmienda del protocolo: calendario común, presupuesto y prueba final</a></li>
+<li class="toctree-l1"><a class="reference internal" href="46_artefactos_y_pilotos.html">46. Preparación técnica opcional: artefactos y pilotos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias de contexto y revisión E2</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><p class="small">Entregable 2 · Jassan Arteta · 2026-30</p></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/60_calibracion_temporal_condicional.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>60. Calibración temporal y cobertura condicional</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-calibracion-habia-y-que-se-anade">Qué calibración había y qué se añade</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aci-actualizacion-despues-de-observar-nunca-antes-de-pronosticar">ACI: actualización después de observar, nunca antes de pronosticar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cobertura-y-eficiencia-de-los-16-sistemas">Cobertura y eficiencia de los 16 sistemas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cobertura-por-grupos-disponibles-al-origen">Cobertura por grupos disponibles al origen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#incertidumbre-temporal-contrastes-y-multiplicidad">Incertidumbre temporal, contrastes y multiplicidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduccion-controles-y-alcance">Reproducción, controles y alcance</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="calibracion-temporal-y-cobertura-condicional">
+<h1>60. Calibración temporal y cobertura condicional<a class="headerlink" href="#calibracion-temporal-y-cobertura-condicional" title="Link to this heading">#</a></h1>
+<p>Este suplemento ejecuta <strong>dos políticas de intervalos adaptadas al paso del tiempo</strong> sobre los 81 predictores ya guardados. No se reentrenan ni se vuelven a ejecutar los modelos. La A2, sus pronósticos puntuales y los calibradores originales permanecen intactos. El plan se publicó antes del cálculo en el <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/8d9cc8c3397242a07378fb1a678196dab36744da">commit <code class="docutils literal notranslate"><span class="pre">8d9cc8c</span></code></a>. Es un análisis posterior sobre el test ya conocido desde E1; no recupera un periodo ciego ni el margen δg previo ausente.</p>
+<p><strong>Resultado principal:</strong> las políticas móviles acercan las coberturas globales al 90 % nominal y modifican la longitud de los intervalos. La cobertura por rango sigue siendo desigual. Una frecuencia global cercana al 90 % no certifica calibración condicional ni ausencia de sobreajuste. No se elige una política ganadora con estos resultados.</p>
+<section id="que-calibracion-habia-y-que-se-anade">
+<h2>Qué calibración había y qué se añade<a class="headerlink" href="#que-calibracion-habia-y-que-se-anade" title="Link to this heading">#</a></h2>
+<p>El intervalo original usa el residuo absoluto de <strong>53 fechas de calibración, 08/11–30/12/2024</strong>, separado del entrenamiento final y de la prueba. El radio es el estadístico de orden <strong>49</strong>, obtenido con <span class="math notranslate nohighlight">\(\lceil(53+1)0,9\rceil\)</span>, y el extremo inferior se trunca en cero. Se verificó ese radio en los <strong>81 predictores</strong> antes del nuevo cálculo.</p>
+<p>La separación temporal evita ajustar ese radio con las etiquetas futuras, pero no crea intercambiabilidad. Las ventanas y el objetivo σ₇ se solapan y el mercado cambia. El calibrador congelado no incorporaba adaptación a esos cambios. En los 53 residuos la mediana entre predictores de la correlación descriptiva a lag1 es 0,200; no es una prueba de independencia ni una estimación del ruido Bayes. Dividir 53 residuos en bloques completos de siete deja sólo siete bloques: el rango corregido para 90 % sería 8, superior a 7. Ese ejercicio no produce un radio finito con garantía distribucional; tampoco demuestra independencia entre bloques. La escasez de calibración y estos supuestos permanecen explícitos. <a class="reference download internal" download="" href="../_downloads/cfe828cfa99693de6ca3417ead35d8e7/calibration_support_diagnostics.csv"><span class="xref download myst">Diagnóstico de soporte de calibración</span></a>.</p>
+<p>Las tres políticas comparadas se fijaron antes de calcular sus resultados:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Política</p></th>
+<th class="head"><p>Información utilizada para emitir el intervalo del día <span class="math notranslate nohighlight">\(t\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Original congelado</p></td>
+<td><p>El mismo radio de 53 residuos de 2024, durante todo el test.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Móvil 53, α fijo</p></td>
+<td><p>Los 53 residuos disponibles más recientes, todos con fecha anterior a <span class="math notranslate nohighlight">\(t\)</span>; α=0,10.</p></td>
+</tr>
+<tr class="row-even"><td><p>ACI53</p></td>
+<td><p>La misma ventana de residuos y una actualización secuencial de α, con γ=0,005 fijado de la fuente primaria.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="aci-actualizacion-despues-de-observar-nunca-antes-de-pronosticar">
+<h2>ACI: actualización después de observar, nunca antes de pronosticar<a class="headerlink" href="#aci-actualizacion-despues-de-observar-nunca-antes-de-pronosticar" title="Link to this heading">#</a></h2>
+<p>La política ACI sigue la retroalimentación de <a class="reference external" href="https://arxiv.org/html/2106.00170v3">Gibbs y Candès (2021), sección 2, ecuación 2</a>. La sección 2.1 utiliza γ=0,005; se adopta ese valor sin buscar el mejor γ en la prueba. Se comienza con <span class="math notranslate nohighlight">\(\alpha_1=0,10\)</span> y, una vez emitido el intervalo y conocido el resultado del día, se actualiza:</p>
+<div class="math notranslate nohighlight">
+\[\alpha_{t+1}=\alpha_t+0,005\left(0,10-\mathbf 1\{Y_t\notin C_t\}\right).\]</div>
+<p>El objetivo del día <span class="math notranslate nohighlight">\(t\)</span> entra únicamente en la historia usada a partir de <span class="math notranslate nohighlight">\(t+1\)</span>. El primer día de prueba usa los 53 residuos originales hasta el 30/12/2024. <strong>No hay residuo ni pronóstico del 31/12/2024 en ese conjunto y no se inventa.</strong> La volatilidad observada real del 31/12/2024 sí está en el CSV de desarrollo y puede utilizarse para describir el régimen conocido al origen del 01/01/2025.</p>
+<p>En cada política móvil se toma el rango <span class="math notranslate nohighlight">\(k_t=\lceil(n+1)(1-\alpha_t)\rceil\)</span> de los 53 residuos anteriores. Esta corrección conserva el rango49 inicial del protocolo E2; es una adaptación explícita del cuantil empírico de la fuente, no una réplica completa de su experimento GARCH. Se mantienen los pronósticos E2 existentes.</p>
+<p><strong>No se recorta α a [0,1].</strong> Cuando el rango excede los residuos disponibles o α≤0, el conjunto es [0,+∞); cuando α≥1, es vacío. Sus anchuras o pérdidas no finitas se conservan como tales; no se omiten para mejorar promedios. En las 147.744 emisiones de esta ejecución no aparecieron conjuntos completos ni vacíos. Las pruebas sintéticas verifican ambos extremos y la identidad de actualización.</p>
+<p>La proposición 4.1 del artículo controla la frecuencia agregada a largo plazo mediante esa retroalimentación. Su cota genérica para 608 días y estos parámetros es aproximadamente 0,298: no establece cobertura exacta del 90 % en este horizonte ni en cada subgrupo. ACI puede acercar frecuencias sin garantizar intervalos útiles para cualquier secuencia. Se reportan también anchura, score de intervalo y pérdidas pinball.</p>
+</section>
+<section id="cobertura-y-eficiencia-de-los-16-sistemas">
+<h2>Cobertura y eficiencia de los 16 sistemas<a class="headerlink" href="#cobertura-y-eficiencia-de-los-16-sistemas" title="Link to this heading">#</a></h2>
+<p>Las cifras son medias sobre las emisiones individuales de las semillas, en el mismo calendario de 608 días; los clásicos aportan una trayectoria. No se forman intervalos de un ensamble ni se cambia la métrica primaria de A2.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Sistema</p></th>
+<th class="head text-right"><p>Original: cobertura</p></th>
+<th class="head text-right"><p>Móvil 53: cobertura</p></th>
+<th class="head text-right"><p>ACI53: cobertura</p></th>
+<th class="head text-right"><p>Longitud media ACI53</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>FCN-1D</p></td>
+<td class="text-right"><p>90.27 %</p></td>
+<td class="text-right"><p>89.72 %</p></td>
+<td class="text-right"><p>89.69 %</p></td>
+<td class="text-right"><p>0.014863</p></td>
+</tr>
+<tr class="row-odd"><td><p>ResNet-1D</p></td>
+<td class="text-right"><p>91.04 %</p></td>
+<td class="text-right"><p>89.80 %</p></td>
+<td class="text-right"><p>89.94 %</p></td>
+<td class="text-right"><p>0.015221</p></td>
+</tr>
+<tr class="row-even"><td><p>Inception-1D</p></td>
+<td class="text-right"><p>91.37 %</p></td>
+<td class="text-right"><p>89.64 %</p></td>
+<td class="text-right"><p>89.56 %</p></td>
+<td class="text-right"><p>0.014444</p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM-autoencoder con predictor</p></td>
+<td class="text-right"><p>96.52 %</p></td>
+<td class="text-right"><p>90.02 %</p></td>
+<td class="text-right"><p>89.94 %</p></td>
+<td class="text-right"><p>0.011965</p></td>
+</tr>
+<tr class="row-even"><td><p>TimesNet</p></td>
+<td class="text-right"><p>92.52 %</p></td>
+<td class="text-right"><p>90.68 %</p></td>
+<td class="text-right"><p>89.78 %</p></td>
+<td class="text-right"><p>0.015201</p></td>
+</tr>
+<tr class="row-odd"><td><p>TSMixer</p></td>
+<td class="text-right"><p>92.76 %</p></td>
+<td class="text-right"><p>90.54 %</p></td>
+<td class="text-right"><p>90.16 %</p></td>
+<td class="text-right"><p>0.016794</p></td>
+</tr>
+<tr class="row-even"><td><p>TiDE</p></td>
+<td class="text-right"><p>92.46 %</p></td>
+<td class="text-right"><p>90.32 %</p></td>
+<td class="text-right"><p>89.94 %</p></td>
+<td class="text-right"><p>0.018917</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimeMixer</p></td>
+<td class="text-right"><p>93.64 %</p></td>
+<td class="text-right"><p>90.21 %</p></td>
+<td class="text-right"><p>89.75 %</p></td>
+<td class="text-right"><p>0.014576</p></td>
+</tr>
+<tr class="row-even"><td><p>PatchTST</p></td>
+<td class="text-right"><p>92.87 %</p></td>
+<td class="text-right"><p>89.36 %</p></td>
+<td class="text-right"><p>89.36 %</p></td>
+<td class="text-right"><p>0.031769</p></td>
+</tr>
+<tr class="row-odd"><td><p>iTransformer</p></td>
+<td class="text-right"><p>85.03 %</p></td>
+<td class="text-right"><p>89.86 %</p></td>
+<td class="text-right"><p>89.97 %</p></td>
+<td class="text-right"><p>0.017743</p></td>
+</tr>
+<tr class="row-even"><td><p>MLP16</p></td>
+<td class="text-right"><p>96.46 %</p></td>
+<td class="text-right"><p>90.84 %</p></td>
+<td class="text-right"><p>90.32 %</p></td>
+<td class="text-right"><p>0.015178</p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM32</p></td>
+<td class="text-right"><p>97.09 %</p></td>
+<td class="text-right"><p>90.65 %</p></td>
+<td class="text-right"><p>90.41 %</p></td>
+<td class="text-right"><p>0.015031</p></td>
+</tr>
+<tr class="row-even"><td><p>GRU32</p></td>
+<td class="text-right"><p>96.90 %</p></td>
+<td class="text-right"><p>90.71 %</p></td>
+<td class="text-right"><p>90.46 %</p></td>
+<td class="text-right"><p>0.012834</p></td>
+</tr>
+<tr class="row-odd"><td><p>Persistence</p></td>
+<td class="text-right"><p>93.26 %</p></td>
+<td class="text-right"><p>91.45 %</p></td>
+<td class="text-right"><p>90.79 %</p></td>
+<td class="text-right"><p>0.013784</p></td>
+</tr>
+<tr class="row-even"><td><p>SeasonalNaive</p></td>
+<td class="text-right"><p>92.93 %</p></td>
+<td class="text-right"><p>87.83 %</p></td>
+<td class="text-right"><p>88.82 %</p></td>
+<td class="text-right"><p>0.036050</p></td>
+</tr>
+<tr class="row-odd"><td><p>ARIMA</p></td>
+<td class="text-right"><p>94.57 %</p></td>
+<td class="text-right"><p>91.12 %</p></td>
+<td class="text-right"><p>90.30 %</p></td>
+<td class="text-right"><p>0.013062</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><a class="reference download internal" download="" href="../_downloads/30bdd2e85c158de788148701867cd728/model_metrics.csv"><span class="xref download myst">Métricas por modelo</span></a> · <a class="reference download internal" download="" href="../_downloads/b6a7c9293f4fb9feb7cc073824aa51db/predictor_metrics.csv"><span class="xref download myst">243 filas predictor-política</span></a>.</p>
+<p>En el Top 3 observado, SAE pasa de 96,52 % de cobertura a 89,94 % con ACI; GRU32 de 96,90 % a 90,46 %; ARIMA de 94,57 % a 90,30 %. iTransformer pasa de 85,03 % a 89,97 %. Son descripciones retrospectivas, no una comparación confirmatoria de superioridad entre políticas.</p>
+<p><img alt="Cobertura global y longitud de intervalos del Top 3" src="../_images/top3_global_coverage_width.svg" /></p>
+<p>El score de intervalo al 90 % penaliza tanto anchura como errores fuera del intervalo:</p>
+<div class="math notranslate nohighlight">
+\[IS_{0,10}(l,u;y)=(u-l)+20(l-y)\mathbf 1\{y&lt;l\}+20(y-u)\mathbf 1\{y&gt;u\}.\]</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo</p></th>
+<th class="head text-right"><p>Original: score</p></th>
+<th class="head text-right"><p>Móvil 53: score</p></th>
+<th class="head text-right"><p>ACI53: score</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>SAE</p></td>
+<td class="text-right"><p>0.019030</p></td>
+<td class="text-right"><p>0.016998</p></td>
+<td class="text-right"><p>0.017072</p></td>
+</tr>
+<tr class="row-odd"><td><p>GRU32</p></td>
+<td class="text-right"><p>0.019734</p></td>
+<td class="text-right"><p>0.017262</p></td>
+<td class="text-right"><p>0.017337</p></td>
+</tr>
+<tr class="row-even"><td><p>ARIMA</p></td>
+<td class="text-right"><p>0.019900</p></td>
+<td class="text-right"><p>0.019385</p></td>
+<td class="text-right"><p>0.019918</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>SAE y GRU32 muestran menor score observado con ambas políticas móviles que con el radio congelado. En ARIMA, el score ACI es 0,019918 frente a 0,019900 original: acercar la cobertura al 90 % <strong>no implica mejorar todo criterio de eficiencia</strong>. No se retoca el método para corregir esa diferencia. Los CSV conservan además pinball en los extremos nominales 0,05 y 0,95. Estos dos extremos no definen una CDF completa; no se fabrica CRPS o PIT a partir de ellos.</p>
+</section>
+<section id="cobertura-por-grupos-disponibles-al-origen">
+<h2>Cobertura por grupos disponibles al origen<a class="headerlink" href="#cobertura-por-grupos-disponibles-al-origen" title="Link to this heading">#</a></h2>
+<p>Se fijaron dos segmentaciones antes del cálculo: <strong>rango del pronóstico</strong> bajo/medio/alto mediante Q25/Q75 de los 53 pronósticos de calibración de cada predictor; y <strong>régimen de volatilidad del día anterior</strong>, mediante Q25/Q75 de σ₇ de desarrollo 2023–2024. Ambas variables están disponibles al emitir el pronóstico. Los cortes de calibración no se redefinen para obtener grupos del mismo tamaño en la prueba: las diferencias de distribución quedan visibles. Se añaden los siete trimestres de evaluación; 2026Q3 comprende sólo julio y agosto. <a class="reference download internal" download="" href="../_downloads/f5437afd0a43eb2b710a66dea0595f8a/group_thresholds.csv"><span class="xref download myst">Umbrales por predictor</span></a>.</p>
+<p>La unidad inferencial sigue siendo el calendario de una única serie. Para un grupo, se divide el número de emisiones cubiertas por el número de emisiones que pertenecen al grupo, agregando las semillas fijas. Los cortes de rango del pronóstico son propios de cada predictor-semilla; por ello la cobertura de grupo es una razón de emisiones individuales agrupadas, no el promedio sin ponderación de las seis coberturas condicionales. Las fechas sin membresía permanecen en el calendario con peso cero. No se tratan las seis semillas como seis mercados ni se comprimen los huecos del grupo.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo</p></th>
+<th class="head text-right"><p>Rango alto del pronóstico: original</p></th>
+<th class="head text-right"><p>Móvil 53</p></th>
+<th class="head text-right"><p>ACI53</p></th>
+<th class="head"><p>IC95 temporal de ACI53</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>SAE</p></td>
+<td class="text-right"><p>89.31 %</p></td>
+<td class="text-right"><p>85.12 %</p></td>
+<td class="text-right"><p>87.21 %</p></td>
+<td><p>[76.92 %; 94.88 %]</p></td>
+</tr>
+<tr class="row-odd"><td><p>GRU32</p></td>
+<td class="text-right"><p>89.35 %</p></td>
+<td class="text-right"><p>84.22 %</p></td>
+<td class="text-right"><p>83.65 %</p></td>
+<td><p>[74.04 %; 92.09 %]</p></td>
+</tr>
+<tr class="row-even"><td><p>ARIMA</p></td>
+<td class="text-right"><p>89.87 %</p></td>
+<td class="text-right"><p>86.08 %</p></td>
+<td class="text-right"><p>86.08 %</p></td>
+<td><p>[76.74 %; 94.44 %]</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>La cobertura de los pronósticos altos permanece por debajo del 90 % en los tres casos.</strong> La falta de rechazo de algunos contrastes no elimina esa infracobertura observada. La segmentación por el objetivo realizado se publica aparte como descripción retrospectiva: ese objetivo no era conocido al origen y no se utiliza para adaptar intervalos ni declarar cobertura condicional predictiva. <a class="reference download internal" download="" href="../_downloads/9217fc21c1224bfc86907afdcb5e6075/realized_target_regimes_descriptive.csv"><span class="xref download myst">Rangos del objetivo realizado</span></a>.</p>
+<p><img alt="Cobertura del Top 3 por rango del pronóstico" src="../_images/top3_prediction_range_coverage.svg" /></p>
+</section>
+<section id="incertidumbre-temporal-contrastes-y-multiplicidad">
+<h2>Incertidumbre temporal, contrastes y multiplicidad<a class="headerlink" href="#incertidumbre-temporal-contrastes-y-multiplicidad" title="Link to this heading">#</a></h2>
+<p>Los IC marginales del 95 % usan <strong>10.000 remuestreos circulares</strong>, bloque principal 14 días y sensibilidad predefinida a 7/28. Para los grupos de pronóstico y volatilidad rezagada se remuestrea conjuntamente el calendario completo; para cada trimestre, sus días consecutivos. Se conservan las correspondencias entre políticas, predictores, membresías y aciertos. Los caminos adaptativos realizados permanecen fijos: <strong>el bootstrap no simula una nueva ejecución ACI bajo otra secuencia de retroalimentación</strong>. Sus intervalos describen sensibilidad temporal de estas emisiones, no la distribución completa del algoritmo online en mercados nuevos.</p>
+<p>Se calcularon <strong>672 celdas</strong>:16 sistemas × 3 políticas×14 grupos(global, tres rangos de pronóstico, tres regímenes rezagados y siete trimestres). Cada celda considera dos hipótesis distintas: igualdad a 90 % y cobertura mínima de90 %. La aproximación normal utiliza influencia de la razón de cobertura y covarianza HAC Bartlett con14 rezagos, conservando el calendario. Se requieren al menos20 fechas con membresía y varianza no degenerada.</p>
+<p>La familia conjunta tiene <strong>1.344 oportunidades de contraste, no 1.344 modelos</strong>, ajustadas una sola vez con Holm. Son estimables1.336; las ocho no estimables se conservan con estado propio y contribuyen con p=1 al tamaño de la familia, sin atribuirles una decisión científica. Holm no corrige una mala aproximación marginal: los p requieren dependencia suficientemente corta y soporte adecuado.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Política</p></th>
+<th class="head text-right"><p>Rechazos de igualdad a 90 %</p></th>
+<th class="head text-right"><p>Rechazos de cobertura mínima</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Original congelado</p></td>
+<td class="text-right"><p>70</p></td>
+<td class="text-right"><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>Móvil 53, α fijo</p></td>
+<td class="text-right"><p>4</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>ACI53, γ=0,005</p></td>
+<td class="text-right"><p>2</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los dos rechazos de infracobertura del método original corresponden a iTransformer en rango alto de pronóstico y régimen alto de volatilidad previa. Los dos rechazos ACI son de <strong>sobrecobertura</strong>, en PatchTST/régimen medio e iTransformer/2025Q2. Ninguno acredita igualdad, equivalencia o calibración universal en las otras celdas.</p>
+<p>No hubo réplicas bootstrap sin miembros de grupo en este conjunto. El código registra y etiqueta esos casos cuando ocurren; no los sustituye por cero. Un IC degenerado de una categoría con todos los casos cubiertos tampoco demuestra probabilidad poblacional uno. <a class="reference download internal" download="" href="../_downloads/d0d24b46cd5821b64a4db29051ccae4f/conditional_coverage_CI.csv"><span class="xref download myst">Los2.016 IC de cobertura</span></a> · <a class="reference download internal" download="" href="../_downloads/3ae4cb31fdfd4e6e9a4182156678c0bf/coverage_HAC_Holm1344.csv"><span class="xref download myst">Familia de1.344 contrastes</span></a>.</p>
+</section>
+<section id="reproduccion-controles-y-alcance">
+<h2>Reproducción, controles y alcance<a class="headerlink" href="#reproduccion-controles-y-alcance" title="Link to this heading">#</a></h2>
+<p>Se verificaron81 radios originales, la cronología y147.744 pasos de calibración causal. Ocho pruebas sintéticas comprueban el rango49, conjuntos infinitos/vacíos, identidad ACI, rezagos de calendario, remuestreo de razones sin comprimir fechas, Holm y el control de futuro: alterar objetivos actuales/futuros no puede modificar el intervalo ya emitido. La ejecución usa aritmética CPU sobre datos guardados, sin acceso a pesos ni creación de optimizadores.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>scripts/e2_conditional_calibration.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--input<span class="w"> </span>book_e2/_static/e2_final_audit_inputs_20261114/e2_f2a_input.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--development<span class="w"> </span>book_e2/_static/e2_final_audit_inputs_20261114/daily_volatility_development.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--plan<span class="w"> </span>experiments/e2_conditional_calibration_20261114/analysis_plan.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>work/conditional_calibration_repeat
+python<span class="w"> </span>scripts/plot_e2_conditional_calibration.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--folder<span class="w"> </span>work/conditional_calibration_repeat
+</pre></div>
+</div>
+<p>La evidencia permite acreditar <strong>una adaptación temporal realmente ejecutada y evaluación por rangos/subgrupos</strong>, con resultados adversos conservados. No demuestra cobertura condicional garantizada, ruido irreducible identificado, ausencia de sobreajuste o validez prospectiva. Los requisitos de δg previo y test desconocido mantienen los límites documentados en <a class="reference internal" href="56_inferencia_estabilidad_final.html"><span class="std std-doc">§56</span></a>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Archivo</p></th>
+<th class="head"><p>Contenido</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference download internal" download="" href="../_downloads/9b57a5e3a0ba5172eeb2c0dc0c64d7e7/analysis_plan.json"><span class="xref download myst">analysis_plan.json</span></a></p></td>
+<td><p>Reglas publicadas antes de este cálculo posterior.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference download internal" download="" href="../_downloads/30bdd2e85c158de788148701867cd728/model_metrics.csv"><span class="xref download myst">model_metrics.csv</span></a></p></td>
+<td><p>48 filas de cobertura, anchura, pinball y score por sistema/política.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference download internal" download="" href="../_downloads/176bba943aaf7130ce6f119fb39d0839/conditional_metrics.csv"><span class="xref download myst">conditional_metrics.csv</span></a></p></td>
+<td><p>672 celdas; tamaños, métricas e hipótesis.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference download internal" download="" href="../_downloads/d0d24b46cd5821b64a4db29051ccae4f/conditional_coverage_CI.csv"><span class="xref download myst">conditional_coverage_CI.csv</span></a></p></td>
+<td><p>2.016 IC temporales con B=10.000 y bloques7/14/28.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference download internal" download="" href="../_downloads/3ae4cb31fdfd4e6e9a4182156678c0bf/coverage_HAC_Holm1344.csv"><span class="xref download myst">coverage_HAC_Holm1344.csv</span></a></p></td>
+<td><p>p brutos/ajustados, estimabilidad y decisiones.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference download internal" download="" href="../_downloads/93a022fb15fc4054553d5c7c9cca5322/predictor_group_coverage.csv"><span class="xref download myst">predictor_group_coverage.csv</span></a></p></td>
+<td><p>Cobertura individual de cada predictor por grupo.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference download internal" download="" href="../_downloads/ae98cf5795e7a92110a87ab3c10d69be/daily_interval_trace.csv.gz"><span class="xref download myst">daily_interval_trace.csv.gz</span></a></p></td>
+<td><p>147.744 emisiones: fecha, última información, α, radio, estado y acierto; y/p se conservan en el input inmutable.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference download internal" download="" href="../_downloads/cfe828cfa99693de6ca3417ead35d8e7/calibration_support_diagnostics.csv"><span class="xref download myst">calibration_support_diagnostics.csv</span></a></p></td>
+<td><p>Soporte, rango49 y dependencia descriptiva de los 53 residuos.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference download internal" download="" href="../_downloads/a11cd2c832e10ddfee872f697ffaa6d6/source_evidence.json"><span class="xref download myst">source_evidence.json</span></a></p></td>
+<td><p>Fuente primaria, adaptaciones y alcance de las garantías.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference download internal" download="" href="../_downloads/a3b60fdb8af2f2ecbfe440df87849d24/summary.json"><span class="xref download myst">summary.json</span></a></p></td>
+<td><p>Resumen, supuestos y recursosCPU observados.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference download internal" download="" href="../_downloads/b4768ea45a9c2529bdc9af1ccabca606/manifest.json"><span class="xref download myst">manifest.json</span></a></p></td>
+<td><p>Hashes de insumos, código y productos.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="59_auditoria_literatura_final.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">59. Auditoría final de la literatura recibida</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="61_reproduccion_consolidada.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">61. Entrega reproducible y Apéndice B actual</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-calibracion-habia-y-que-se-anade">Qué calibración había y qué se añade</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aci-actualizacion-despues-de-observar-nunca-antes-de-pronosticar">ACI: actualización después de observar, nunca antes de pronosticar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cobertura-y-eficiencia-de-los-16-sistemas">Cobertura y eficiencia de los 16 sistemas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cobertura-por-grupos-disponibles-al-origen">Cobertura por grupos disponibles al origen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#incertidumbre-temporal-contrastes-y-multiplicidad">Incertidumbre temporal, contrastes y multiplicidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduccion-controles-y-alcance">Reproducción, controles y alcance</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -2,9 +2,9 @@
 
 **Estado de ejecución al 13/11/2026:** se completaron las trece recetas neuronales, sus 78 ajustes finales y los tres comparadores del catálogo obligatorio. Las implementaciones y cuerpos publicados vigentes se identifican en [§48](48_protocolo_reducido.md), y los resultados medidos están en [§6](06_benchmark_final.md). Los prototipos y estados de integración conservados más abajo corresponden a sus fechas históricas.
 
-**Antecedente conservado:** **Vigencia documental (12/11/2026):** la selección HPO/NAS ejecutada parcialmente corresponde al plan histórico de catorce redes. El catálogo obligatorio vigente es de **16 sistemas**, con las identidades de [§43](43_catalogo_obligatorio.md), las arquitecturas de [§44](44_arquitecturas_publicadas.md) y el protocolo registrado de [§45](45_enmienda_protocolo.md). Esos registros históricos no cierran el benchmark vigente ni acreditan las cuatro recetas restauradas. R y el cierre inferencial siguen pendientes. [Corte verificable de resultados (§41)](41_avance_optimizacion_11_origenes.md).
+**Antecedente de planificación del 12/11/2026:** ese corte fue sustituido por la ejecución documentada en [§48](48_protocolo_reducido.md). Su texto exacto se conserva en el archivo enlazado al final; no describe trabajos finales pendientes.
 
-El híbrido adicional y Ridge se conservan como opcionales/históricos. Este capítulo archiva los prototipos e integraciones anteriores; el inventario vigente se consulta en §§43–45.
+El híbrido adicional y Ridge se conservan como opcionales/históricos. Este capítulo archiva los prototipos e integraciones anteriores; el inventario vigente se consulta en §§43–44 y el protocolo efectivamente ejecutado en §48.
 
 ## Antecedentes de implementación, corte del 08–11/11/2026
 
@@ -12,7 +12,7 @@ El híbrido adicional y Ridge se conservan como opcionales/históricos. Este cap
 
 **Avance posterior:** [§23 implementa los cuerpos de §22 y los controles temporales](23_implementacion_recetas.md), con pruebas exclusivamente sintéticas y preservación de los prototipos anteriores. No es un benchmark de mercado.
 
-**Avance de software:** fábrica de los once candidatos, híbrido y flujo sintético implementados y verificados; recetas provisionales, sin datos de mercado. Véase [§18: integración y pruebas sintéticas](18_integracion_sintetica.md). En el corte sintético de §18 todavía no se había ejecutado la selección posterior de §41; el benchmark vigente sigue sin terminar.
+**Avance de software:** fábrica de los once candidatos, híbrido y flujo sintético implementados y verificados; recetas provisionales, sin datos de mercado. Véase [§18: integración y pruebas sintéticas](18_integracion_sintetica.md). En el corte sintético de §18 todavía no se había ejecutado la selección posterior de §41; el benchmark de aquel diseño aún no estaba terminado; el catálogo actual se cerró en §6.
 
 **Catálogo histórico al 08/11/2026:** FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder con predictor, TimesNet, TSMixer, TiDE, TimeMixer, PatchTST e iTransformer. En ese corte, el modelo 11 propuesto era **CNN-1D + LSTM + atención temporal**, un diseño editorial propuesto, implementado provisionalmente y probado con datos sintéticos, sin entrenamiento de mercado y sin superioridad demostrada. HAR + red residual queda como prototipo histórico inactivo. Esta selección sustituye el catálogo anterior en la presentación de E2; sus registros experimentales se conservan sólo como trazabilidad.
 
@@ -89,3 +89,8 @@ La secuencia anterior se conserva como antecedente, sin instruir nuevas corridas
 El [recibo P0/OOF](../_static/remediation_preflight/execution_summary.json) documenta **220 trayectorias y 440 ajustes históricos**. El [recibo HPO del 06/11/2026](../_static/completion_preflight/execution_progress.json) documenta un inicio parcial de una ejecución anterior, no actividad actual ni cierre. Ninguno corresponde al catálogo vigente.
 
 Los protocolos, fuentes, candidatos y resultados originales permanecen intactos: [registro P0](../_static/remediation_protocol/preregistration.json), [registro de la enmienda histórica](../_static/completion_preflight/registration.json) y [paquete histórico de implementación](../_static/completion_download/completion_bundle.zip). Se enlazan para auditar lo que ocurrió, no como obligaciones futuras ni resultados transferibles. El estado del nuevo preregistro está en [§9](09_protocolo_registrado.md), la comparación en [§6](06_benchmark_final.md) y la equidad del ajuste en [§11](11_hpo_equidad.md).
+
+
+## Archivo de la versión anterior
+
+La {download}`versión exacta anterior a esta consolidación <../_static/e2_delivery_reproduction_20261114/archived_chapters/04_implementacion.md>` se conserva con su SHA256 en el [manifiesto de archivo](../_static/e2_delivery_reproduction_20261114/chapter_archive_manifest.json). Sus estados pendientes describen el corte original.

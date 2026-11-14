@@ -1,0 +1,122 @@
+{
+  "version": "e2-delivery-readonly-audit-v1",
+  "status": "verified",
+  "observed_at_utc": "2026-11-14T11:24:48.407923+00:00",
+  "scope": "readonly_frozen_delivery_arithmetic_and_bound_reports_not_new_model_reproduction",
+  "runtime": {
+    "python": "3.12.14",
+    "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "dependencies": "Python standard library only"
+  },
+  "manifest_checks": [
+    {
+      "folder": "e2_benchmark_final_20261113",
+      "manifest_sha256": "c32ebce7953cf7fd21f774b012bb4db3f4477726cfa56ad74f46a451b9c58e43",
+      "verified_files": 18
+    },
+    {
+      "folder": "e2_reproduction_ablations_20261113",
+      "manifest_sha256": "0243eaa3bb304575e73d6583a7cf1768d83b41242c2af9f17a03425b2180c05f",
+      "verified_files": 13
+    },
+    {
+      "folder": "e2_final_audit_inputs_20261114",
+      "manifest_sha256": "a4cfa04e2ddb93dad5108708eb99b0dd51b542db5825ae133b490dcecc990152",
+      "verified_files": 2
+    },
+    {
+      "folder": "e2_f2a_audit_20261113",
+      "manifest_sha256": "593fcf2e2fb32d9e431ac90c84aa7bb9c48dbc373d95cbc5720657118de2a631",
+      "verified_files": 21
+    },
+    {
+      "folder": "e2_f2a_s8_20261113",
+      "manifest_sha256": "b504a18ec85a4432ce0361b187c701775e31a32b7405e9b721f8bcb8dd36d1f8",
+      "verified_files": 8
+    },
+    {
+      "folder": "e2_flops_final_audit_20261114",
+      "manifest_sha256": "e37d37436ccd95c602b7348c8c5347302f2b14850761663535879412f8677496",
+      "verified_files": 9
+    },
+    {
+      "folder": "e2_error_ceiling_final_audit_20261114",
+      "manifest_sha256": "428930ae2b0189b46820c910af6d5e5076cf011eb99c11ad15b1baf7e2a22b1c",
+      "verified_files": 12
+    },
+    {
+      "folder": "e2_temporal_final_audit_20261114",
+      "manifest_sha256": "fceb602c9b20fb9d29e7072ef22d371ab193eac1f18a73e848a2ce53f2f461e2",
+      "verified_files": 13
+    },
+    {
+      "folder": "e2_literature_final_audit_20261114",
+      "manifest_sha256": "c7191af6e00f1acd1214da2851ebd307350badd7b0edb187029bf452ca6fd610",
+      "verified_files": 17
+    },
+    {
+      "folder": "e2_calibration_ensemble_20261114",
+      "manifest_sha256": "6749d1a0d7293f108ee5b5ef609b7e3478b44002134ebec1da77a093e941d24c",
+      "verified_files": 6
+    },
+    {
+      "folder": "e2_conditional_calibration_20261114",
+      "manifest_sha256": "8618cd36a41ff2fce9ed5e3e2d76c41d71ef9afb179ec0cccb6e8166bcf65c35",
+      "verified_files": 20
+    },
+    {
+      "folder": "e2_literature_delivery_closure_20261114_v2",
+      "manifest_sha256": "0088efa5bbda6fc1eaf42e3b5c9192858d5d419cbff20038e9a524f0a3a62289",
+      "verified_files": 56
+    }
+  ],
+  "verified_manifest_files": 195,
+  "required_supplements_enforced": true,
+  "missing_optional_supplement_manifests": [],
+  "frozen_prediction_sha256": "65ae74b547a6073b2c286dea8039a2e7a1b1f6063b1d9ac0eb760c9ce727d187",
+  "original_A2_sha256": "879e2ce52709657a06bc6c009f0cd553423f2eaa0bbdf16dc7f5844dfec9fcc1",
+  "calendar_days": 608,
+  "original_predictors": 81,
+  "systems": 16,
+  "recomputed_max_A2_RMSE_difference": 2.6020852139652106e-18,
+  "per_model_A2_RMSE_difference": {
+    "FCN-1D": 0.0,
+    "ResNet-1D": 1.734723475976807e-18,
+    "Inception-1D": 8.673617379884035e-19,
+    "LSTM-autoencoder con predictor": 0.0,
+    "TimesNet": 1.734723475976807e-18,
+    "TSMixer": 0.0,
+    "TiDE": 2.6020852139652106e-18,
+    "TimeMixer": 1.734723475976807e-18,
+    "PatchTST": 0.0,
+    "iTransformer": 1.734723475976807e-18,
+    "MLP16": 8.673617379884035e-19,
+    "LSTM32": 0.0,
+    "GRU32": 8.673617379884035e-19,
+    "Persistence": 8.673617379884035e-19,
+    "SeasonalNaive": 0.0,
+    "ARIMA": 0.0
+  },
+  "recorded_model_reproduction": {
+    "recorded_reproduction_fits": 81,
+    "recorded_ablation_fits": 18,
+    "recorded_max_prediction_difference": 0,
+    "source_results_commit": "d604ede6bf0978e14a1b1d7bafaae6250fb8ed07",
+    "producer_tensor_checks_reexecuted_by_this_command": false,
+    "original_budget_closed": true
+  },
+  "recorded_primary_refinement": {
+    "primary_family": 20,
+    "refinement_draws": 20000,
+    "refinement_Holm_rejections": 0,
+    "bootstrap_reexecuted_by_this_command": false
+  },
+  "methodological_approval_claimed": false,
+  "new_model_fits": 0,
+  "new_model_inference": false,
+  "network_access": false,
+  "historical_blinding_recovered": false,
+  "a_priori_delta_g_recovered": false,
+  "elapsed_seconds": 0.12153875999501906
+}

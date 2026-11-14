@@ -1,5 +1,7 @@
 # 59. Auditoría final de la literatura recibida
 
+**Actualización del 14/11/2026, Bogotá:** La actualización focal adjudica 30 objetivos, reutiliza 43 recibos primarios deE 1 con solapamientos explícitos y amplía la sensibilidad contextual a P de 9 modelos. El puntaje anterior permanece intacto; el PRISMA global y cuatro C siguen parciales. [Detalle](62_cierre_literatura_focal.md).
+
 La conciliación del **14/11/2026 UTC (13/11 de Bogotá)** resuelve el solapamiento entre los corpus recibidos y hace explícitos los límites del cribado y de los puntajes. Es una auditoría retrospectiva: no constituye un nuevo prerregistro ni convierte los resultados del benchmark en criterios de selección bibliográfica. Las búsquedas, versiones y lecturas previas se conservan.
 
 ## Flujo con denominadores verificables

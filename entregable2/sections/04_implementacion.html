@@ -226,17 +226,21 @@
 <li class="toctree-l1"><a class="reference internal" href="57_errores_techo.html">57. Taxonomía de errores y referencias de predictibilidad</a></li>
 <li class="toctree-l1"><a class="reference internal" href="58_flops_predictores.html">58. Coste de operaciones de los predictores congelados</a></li>
 <li class="toctree-l1"><a class="reference internal" href="59_auditoria_literatura_final.html">59. Auditoría final de la literatura recibida</a></li>
+<li class="toctree-l1"><a class="reference internal" href="60_calibracion_temporal_condicional.html">60. Calibración temporal y cobertura condicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="61_reproduccion_consolidada.html">61. Entrega reproducible y Apéndice B actual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="62_cierre_literatura_focal.html">62. Elegibilidad focal y puntuación bibliográfica contextual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="63_ensamble_calibracion.html">63. Referencia empírica mediante un ensemble ajustado en calibración</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
-<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Registro de selección, cierre pendiente y trazabilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad de la entrega vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Registros, enmiendas y cierre de la ejecución</a></li>
 <li class="toctree-l1"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de datos y auditoría formal de fuga</a></li>
-<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. HPO y equidad para el catálogo vigente</a></li>
-<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Techo de desempeño, incertidumbre y análisis de errores</a></li>
-<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Agregación estadística e interpretación</a></li>
-<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas del catálogo vigente y adaptación a D7</a></li>
-<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo vigente: diez modelos y candidato 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. Selección HPO ejecutada y equidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Incertidumbre, errores y referencias de dificultad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Estimandos, agregación e inferencia actual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas ejecutadas y condición de NAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo ejecutado y procedencia bibliográfica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="16_fichas_nuevas.html">16. Fichas bibliográficas de las cuatro altas propuestas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato sincronizado de E1, E2 y E3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato vigente y relación entre E1, E2 y E3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="18_integracion_sintetica.html">18. Implementación provisional y verificación sintética</a></li>
 <li class="toctree-l1"><a class="reference internal" href="19_plan_auditoria.html">19. Plan experimental propuesto y auditoría sin entrenamiento</a></li>
 <li class="toctree-l1"><a class="reference internal" href="20_contraste_guia.html">20. Cotejo del plan con la guía original</a></li>
@@ -414,6 +418,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guardas-temporales-antes-de-cualquier-ajuste">4.4 Guardas temporales antes de cualquier ajuste</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#secuencia-historica-propuesta-para-el-experimento-anterior">4.5 Secuencia histórica propuesta para el experimento anterior</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trazabilidad-sin-reactivar-el-catalogo-retirado">4.6 Trazabilidad sin reactivar el catálogo retirado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-de-la-version-anterior">Archivo de la versión anterior</a></li>
 </ul>
             </nav>
         </div>
@@ -428,13 +433,13 @@
   <section class="tex2jax_ignore mathjax_ignore" id="implementacion-catalogo-obligatorio-y-antecedentes">
 <h1>4. Implementación: catálogo obligatorio y antecedentes<a class="headerlink" href="#implementacion-catalogo-obligatorio-y-antecedentes" title="Link to this heading">#</a></h1>
 <p><strong>Estado de ejecución al 13/11/2026:</strong> se completaron las trece recetas neuronales, sus 78 ajustes finales y los tres comparadores del catálogo obligatorio. Las implementaciones y cuerpos publicados vigentes se identifican en <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>, y los resultados medidos están en <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">§6</span></a>. Los prototipos y estados de integración conservados más abajo corresponden a sus fechas históricas.</p>
-<p><strong>Antecedente conservado:</strong> <strong>Vigencia documental (12/11/2026):</strong> la selección HPO/NAS ejecutada parcialmente corresponde al plan histórico de catorce redes. El catálogo obligatorio vigente es de <strong>16 sistemas</strong>, con las identidades de <a class="reference internal" href="43_catalogo_obligatorio.html"><span class="std std-doc">§43</span></a>, las arquitecturas de <a class="reference internal" href="44_arquitecturas_publicadas.html"><span class="std std-doc">§44</span></a> y el protocolo registrado de <a class="reference internal" href="45_enmienda_protocolo.html"><span class="std std-doc">§45</span></a>. Esos registros históricos no cierran el benchmark vigente ni acreditan las cuatro recetas restauradas. R y el cierre inferencial siguen pendientes. <a class="reference internal" href="41_avance_optimizacion_11_origenes.html"><span class="std std-doc">Corte verificable de resultados (§41)</span></a>.</p>
-<p>El híbrido adicional y Ridge se conservan como opcionales/históricos. Este capítulo archiva los prototipos e integraciones anteriores; el inventario vigente se consulta en §§43–45.</p>
+<p><strong>Antecedente de planificación del 12/11/2026:</strong> ese corte fue sustituido por la ejecución documentada en <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>. Su texto exacto se conserva en el archivo enlazado al final; no describe trabajos finales pendientes.</p>
+<p>El híbrido adicional y Ridge se conservan como opcionales/históricos. Este capítulo archiva los prototipos e integraciones anteriores; el inventario vigente se consulta en §§43–44 y el protocolo efectivamente ejecutado en §48.</p>
 <section id="antecedentes-de-implementacion-corte-del-0811-11-2026">
 <h2>Antecedentes de implementación, corte del 08–11/11/2026<a class="headerlink" href="#antecedentes-de-implementacion-corte-del-0811-11-2026" title="Link to this heading">#</a></h2>
 <p><strong>Integración posterior:</strong> <a class="reference internal" href="24_ejecutor_comun.html"><span class="std std-doc">§24 comprueba el recorrido sintético común de 18 sistemas</span></a>, con referencias separadas y sin ajustes de mercado.</p>
 <p><strong>Avance posterior:</strong> <a class="reference internal" href="23_implementacion_recetas.html"><span class="std std-doc">§23 implementa los cuerpos de §22 y los controles temporales</span></a>, con pruebas exclusivamente sintéticas y preservación de los prototipos anteriores. No es un benchmark de mercado.</p>
-<p><strong>Avance de software:</strong> fábrica de los once candidatos, híbrido y flujo sintético implementados y verificados; recetas provisionales, sin datos de mercado. Véase <a class="reference internal" href="18_integracion_sintetica.html"><span class="std std-doc">§18: integración y pruebas sintéticas</span></a>. En el corte sintético de §18 todavía no se había ejecutado la selección posterior de §41; el benchmark vigente sigue sin terminar.</p>
+<p><strong>Avance de software:</strong> fábrica de los once candidatos, híbrido y flujo sintético implementados y verificados; recetas provisionales, sin datos de mercado. Véase <a class="reference internal" href="18_integracion_sintetica.html"><span class="std std-doc">§18: integración y pruebas sintéticas</span></a>. En el corte sintético de §18 todavía no se había ejecutado la selección posterior de §41; el benchmark de aquel diseño aún no estaba terminado; el catálogo actual se cerró en §6.</p>
 <p><strong>Catálogo histórico al 08/11/2026:</strong> FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder con predictor, TimesNet, TSMixer, TiDE, TimeMixer, PatchTST e iTransformer. En ese corte, el modelo 11 propuesto era <strong>CNN-1D + LSTM + atención temporal</strong>, un diseño editorial propuesto, implementado provisionalmente y probado con datos sintéticos, sin entrenamiento de mercado y sin superioridad demostrada. HAR + red residual queda como prototipo histórico inactivo. Esta selección sustituye el catálogo anterior en la presentación de E2; sus registros experimentales se conservan sólo como trazabilidad.</p>
 <p><strong>Estado del prototipo al 08/11/2026:</strong> se conservan cuatro prototipos compactos y el corrector HAR anterior, aislados del ejecutor histórico, con diez pruebas sintéticas documentadas. Esas pruebas no cubren el nuevo híbrido CNN-1D + LSTM + atención temporal. Los otros seis modelos tienen código histórico que necesita integración y validación en el nuevo diseño. <strong>Ese corte no incluía entrenamiento de mercado, HPO, dimensionamiento ni resultados finales de esos prototipos.</strong> La selección parcial posterior permanece separada de este antecedente.</p>
 </section>
@@ -550,6 +555,10 @@
 <p>El <a class="reference download internal" download="" href="../_downloads/ffb6cca2e10be87b868950e0c777e030/execution_summary.json"><span class="xref download myst">recibo P0/OOF</span></a> documenta <strong>220 trayectorias y 440 ajustes históricos</strong>. El <a class="reference download internal" download="" href="../_downloads/769cadb5d12b34f5212c498756de1fcb/execution_progress.json"><span class="xref download myst">recibo HPO del 06/11/2026</span></a> documenta un inicio parcial de una ejecución anterior, no actividad actual ni cierre. Ninguno corresponde al catálogo vigente.</p>
 <p>Los protocolos, fuentes, candidatos y resultados originales permanecen intactos: <a class="reference download internal" download="" href="../_downloads/c43ed0c31c71b99655b1063c15477973/preregistration.json"><span class="xref download myst">registro P0</span></a>, <a class="reference download internal" download="" href="../_downloads/e6afa871de0ad5cd8543ef14d185c3c4/registration.json"><span class="xref download myst">registro de la enmienda histórica</span></a> y <a class="reference download internal" download="" href="../_downloads/5c39a73befc06b6ac68a0ab1b13e5ac7/completion_bundle.zip"><span class="xref download myst">paquete histórico de implementación</span></a>. Se enlazan para auditar lo que ocurrió, no como obligaciones futuras ni resultados transferibles. El estado del nuevo preregistro está en <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">§9</span></a>, la comparación en <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">§6</span></a> y la equidad del ajuste en <a class="reference internal" href="11_hpo_equidad.html"><span class="std std-doc">§11</span></a>.</p>
 </section>
+<section id="archivo-de-la-version-anterior">
+<h2>Archivo de la versión anterior<a class="headerlink" href="#archivo-de-la-version-anterior" title="Link to this heading">#</a></h2>
+<p>La <a class="reference download internal" download="" href="../_downloads/4b8240dcb1b03748f5f7cc46e2fc9d61/04_implementacion.md"><code class="xref download docutils literal notranslate"><span class="pre">versión</span> <span class="pre">exacta</span> <span class="pre">anterior</span> <span class="pre">a</span> <span class="pre">esta</span> <span class="pre">consolidación</span></code></a> se conserva con su SHA256 en el <a class="reference download internal" download="" href="../_downloads/a375c47d06b822516dc7b9dafd245bd1/chapter_archive_manifest.json"><span class="xref download myst">manifiesto de archivo</span></a>. Sus estados pendientes describen el corte original.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -626,6 +635,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guardas-temporales-antes-de-cualquier-ajuste">4.4 Guardas temporales antes de cualquier ajuste</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#secuencia-historica-propuesta-para-el-experimento-anterior">4.5 Secuencia histórica propuesta para el experimento anterior</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trazabilidad-sin-reactivar-el-catalogo-retirado">4.6 Trazabilidad sin reactivar el catálogo retirado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-de-la-version-anterior">Archivo de la versión anterior</a></li>
 </ul>
   </nav></div>
 

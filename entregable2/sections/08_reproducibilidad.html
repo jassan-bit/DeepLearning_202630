@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>8. Reproducibilidad, ética y comunicación científica &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
+    <title>8. Reproducibilidad de la entrega vigente &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
   
   
   
@@ -65,7 +65,7 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="9. Registro de selección, cierre pendiente y trazabilidad" href="09_protocolo_registrado.html" />
+    <link rel="next" title="9. Registros, enmiendas y cierre de la ejecución" href="09_protocolo_registrado.html" />
     <link rel="prev" title="7. Ruta metodológica: series de tiempo y controles causales" href="07_ruta_temporal.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
@@ -226,17 +226,21 @@
 <li class="toctree-l1"><a class="reference internal" href="57_errores_techo.html">57. Taxonomía de errores y referencias de predictibilidad</a></li>
 <li class="toctree-l1"><a class="reference internal" href="58_flops_predictores.html">58. Coste de operaciones de los predictores congelados</a></li>
 <li class="toctree-l1"><a class="reference internal" href="59_auditoria_literatura_final.html">59. Auditoría final de la literatura recibida</a></li>
+<li class="toctree-l1"><a class="reference internal" href="60_calibracion_temporal_condicional.html">60. Calibración temporal y cobertura condicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="61_reproduccion_consolidada.html">61. Entrega reproducible y Apéndice B actual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="62_cierre_literatura_focal.html">62. Elegibilidad focal y puntuación bibliográfica contextual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="63_ensamble_calibracion.html">63. Referencia empírica mediante un ensemble ajustado en calibración</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">8. Reproducibilidad, ética y comunicación científica</a></li>
-<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Registro de selección, cierre pendiente y trazabilidad</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">8. Reproducibilidad de la entrega vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Registros, enmiendas y cierre de la ejecución</a></li>
 <li class="toctree-l1"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de datos y auditoría formal de fuga</a></li>
-<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. HPO y equidad para el catálogo vigente</a></li>
-<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Techo de desempeño, incertidumbre y análisis de errores</a></li>
-<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Agregación estadística e interpretación</a></li>
-<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas del catálogo vigente y adaptación a D7</a></li>
-<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo vigente: diez modelos y candidato 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. Selección HPO ejecutada y equidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Incertidumbre, errores y referencias de dificultad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Estimandos, agregación e inferencia actual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas ejecutadas y condición de NAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo ejecutado y procedencia bibliográfica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="16_fichas_nuevas.html">16. Fichas bibliográficas de las cuatro altas propuestas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato sincronizado de E1, E2 y E3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato vigente y relación entre E1, E2 y E3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="18_integracion_sintetica.html">18. Implementación provisional y verificación sintética</a></li>
 <li class="toctree-l1"><a class="reference internal" href="19_plan_auditoria.html">19. Plan experimental propuesto y auditoría sin entrenamiento</a></li>
 <li class="toctree-l1"><a class="reference internal" href="20_contraste_guia.html">20. Cotejo del plan con la guía original</a></li>
@@ -396,7 +400,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>8. Reproducibilidad, ética y comunicación científica</h1>
+    <h1>8. Reproducibilidad de la entrega vigente</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -406,14 +410,12 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuente-registrada-y-recibos-de-ejecucion">8.1 Fuente registrada y recibos de ejecución</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entorno-observado-y-aleatoriedad">8.2 Entorno observado y aleatoriedad</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comandos-de-reproduccion-del-procedimiento-disponible">8.3 Comandos de reproducción del procedimiento disponible</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-archivada-y-requisitos-de-aquel-corte">8.3.1 Implementación archivada y requisitos de aquel corte</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lista-historica-de-comprobacion-frente-al-apendice-b">8.4 Lista histórica de comprobación frente al Apéndice B</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etica-licencias-y-comunicacion">8.5 Ética, licencias y comunicación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#punto-de-entrada-de-la-entrega">8.1 Punto de entrada de la entrega</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entorno-y-fuentes-cientificas">8.2 Entorno y fuentes científicas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reconstruccion-y-analisis-de-pronosticos-guardados">8.3 Reconstrucción y análisis de pronósticos guardados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduccion-del-entrenamiento-y-presupuesto">8.4 Reproducción del entrenamiento y presupuesto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limites-de-la-reproduccion">8.5 Límites de la reproducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-de-la-version-anterior">Archivo de la versión anterior</a></li>
 </ul>
             </nav>
         </div>
@@ -425,160 +427,71 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="reproducibilidad-etica-y-comunicacion-cientifica">
-<span id="e2-reproducibilidad"></span><h1>8. Reproducibilidad, ética y comunicación científica<a class="headerlink" href="#reproducibilidad-etica-y-comunicacion-cientifica" title="Link to this heading">#</a></h1>
-<p><strong>Auditoría F2a posterior, 13/11/2026:</strong> <a class="reference internal" href="49_diagnosticos_f2a.html"><span class="std std-doc">§49</span></a> incluye la entrada inmutable, código CPU, versiones y artefactos para reproducir los diagnósticos sobre pronósticos existentes. Se verificaron las 81 RMSE originales con diferencia máxima de 5,204170427930421×10⁻¹⁸. Esta reproducción aritmética y estadística no sustituye la reproducción independiente del entrenamiento completo.</p>
-<p><strong>Cierre observado al 13/11/2026, 11:58:36 de Bogotá:</strong> el benchmark original ya está completado para <strong>16 sistemas y 608 fechas</strong>. Sus <a class="reference download internal" download="" href="../_downloads/878959cd45a45cb509b9c4065aa9d38c/benchmark_A2.csv"><span class="xref download myst">métricas A2</span></a>, <a class="reference download internal" download="" href="../_downloads/484b3adee08dabb2bf49a80094c5a0f8/benchmark_analysis.json"><span class="xref download myst">análisis e incertidumbre</span></a>, <a class="reference download internal" download="" href="../_downloads/f8db31dfb4cd9da09a27596c7df67a1f/final_freeze.json"><span class="xref download myst">congelación de los 81 predictores</span></a> y <a class="reference download internal" download="" href="../_downloads/52f2fcae145fe2461705ed2322b492ea/source_evidence.json"><span class="xref download myst">fuentes verificadas</span></a> tienen hashes en el <a class="reference download internal" download="" href="../_downloads/9977a2d95f86d9baa43380cbba292294/manifest.json"><span class="xref download myst">manifiesto de la publicación</span></a>. El código de salida fue 0 y el respaldo persistente es GitHub. La evidencia actual de método y resultados está en <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a> y <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">§6</span></a>.</p>
-<p>La ejecución final observó <strong>Python 3.12.12, PyTorch 2.8.0+cu126, CUDA 12.6 y NVIDIA A100-SXM4-80GB</strong>, con FP32, algoritmos deterministas, AMP desactivado y TF32 desactivado. El motor científico conserva el commit <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/1e8745497b484518f766b6da5c19be8362d9add7"><code class="docutils literal notranslate"><span class="pre">1e8745497b48</span></code></a>; las transiciones y adaptadores de adquisición, recibo ARIMA y respaldo se identifican por separado en las fuentes de la publicación. No se presume identidad numérica entre hardware o versiones diferentes.</p>
-<p><strong>Reproducción independiente ejecutada, cierre del 13/11/2026 a las 22:42:55 de Bogotá:</strong> se completaron <strong>81/81 reajustes de reproducción</strong> —78 neuronales y tres comparadores— en un checkout y un entorno Python separados. El resumen del productor registra <code class="docutils literal notranslate"><span class="pre">reproduction_passed=true</span></code>, sin fallos de reproducción ni trabajos pendientes. La discrepancia máxima absoluta de predicción es <strong>0</strong> tanto en calibración como en las 608 fechas de prueba; las 78 redes conservaron los tensores bit a bit y los tres comparadores sus parámetros exactos. <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a> presenta las discrepancias medidas, los criterios de comparación y los recibos verificados. También se completaron <strong>18/18 ablaciones entrenadas</strong> del autoencoder, con seis semillas por variante. Se conservan la A2 original, sus predictores y sus decisiones de selección. El límite acumulado vigente es de <strong>84 horas</strong>, con el ancla y los cargos de las 80 horas anteriores conservados. El diario final registra <strong>80,2561 horas cargadas</strong>, saldo de <strong>3 h 44 min 38 s</strong> y ninguna reserva abierta; estos valores proceden del cierre del diario, posterior al resumen de entrenamiento.</p>
-<p>La auditoría aritmética de §49 y esta reproducción del entrenamiento tienen alcances distintos. El periodo evaluado ya era conocido en E1: repetir el ajuste no crea una prueba prospectiva ni recupera cegamiento. El cierre de cómputo tampoco aprueba automáticamente todo el Apéndice B. La <a class="reference internal" href="38_cumplimiento_guia.html"><span class="std std-doc">matriz actual de obligaciones</span></a> conserva los requisitos metodológicos abiertos. Los comandos P0/OOF y la tabla §8.4 que siguen son antecedentes históricos; no son instrucciones para repetir la ejecución final.</p>
-<p><strong>Corte histórico de planificación (12/11/2026):</strong> la selección HPO/NAS ejecutada parcialmente corresponde al plan histórico de catorce redes. El catálogo obligatorio vigente es de <strong>16 sistemas</strong>, con las identidades de <a class="reference internal" href="43_catalogo_obligatorio.html"><span class="std std-doc">§43</span></a>, las arquitecturas de <a class="reference internal" href="44_arquitecturas_publicadas.html"><span class="std std-doc">§44</span></a> y el protocolo registrado de <a class="reference internal" href="45_enmienda_protocolo.html"><span class="std std-doc">§45</span></a>. Esos registros históricos no cierran el benchmark vigente ni acreditan las cuatro recetas restauradas. R y el cierre inferencial siguen pendientes. <a class="reference internal" href="41_avance_optimizacion_11_origenes.html"><span class="std std-doc">Corte verificable de resultados (§41)</span></a>.</p>
-<p>La tabla histórica de §8.4 conserva su ámbito. La auditoría actual añade <a class="reference download internal" download="" href="../_downloads/1cb1f4309d060c15ef1a7905b5aeaff4/appendix_B.csv"><span class="xref download myst">las 21 filas del Apéndice B</span></a>, sin considerar aprobados sus pendientes. El comando P0 no reproduce por sí solo los 16 sistemas obligatorios vigentes; los 18 sistemas pertenecían al diseño anterior.</p>
-<p><strong>Corte histórico al 11/11/2026:</strong> La guía exige reproducción integral en entorno limpio y Apéndice B completado. La compilación del libro acredita construcción y enlaces, no reproducción del benchmark. El contenedor es opcional en E2 (p. 41). La lista vigente de artefactos y condiciones de cierre está en §38. <a class="reference internal" href="38_cumplimiento_guia.html"><span class="std std-doc">Matriz de exigencias y evidencia</span></a> · <a class="reference internal" href="37_ajuste_guia.html"><span class="std std-doc">Enmienda de calendario</span></a>.</p>
-<p>La guía completa exige un entorno fijado, semillas/configuraciones recuperables y reproducción independiente de la tabla principal (PDF pp40–41); su lista de comprobación está en el Apéndice B (p63). Esta sección distingue el <strong>catálogo obligatorio vigente de 16 sistemas</strong> y el protocolo ya registrado en §§43–45 de la evidencia histórica conservada. El híbrido adicional y Ridge son opcionales/históricos; las enmiendas registradas no acreditan ejecución integral. El procedimiento P0/OOF de desarrollo está ejecutado: los recibos verifican 220 trayectorias y 440 ajustes cerrados; los resultados se presentan en la <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">sección 9</span></a>.</p>
-<section id="fuente-registrada-y-recibos-de-ejecucion">
-<h2>8.1 Fuente registrada y recibos de ejecución<a class="headerlink" href="#fuente-registrada-y-recibos-de-ejecucion" title="Link to this heading">#</a></h2>
-<p>La fuente experimental de P0 se fijó en el commit <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0"><code class="docutils literal notranslate"><span class="pre">599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0</span></code></a>. El <a class="reference download internal" download="" href="../_downloads/3206a16084eae75f63f143c241b74ac3/registration.json"><span class="xref download myst">recibo de registro</span></a>, fechado <strong>06/11/2026, 14:52:32 UTC</strong>, vincula plan, código, dos fuentes de desarrollo y archivos de los autores mediante hashes. Registra cero ajustes de datos previos <strong>en ese directorio de salida</strong>; no afirma que nunca existieran experimentos de E1 ni que su test vuelva a ser desconocido.</p>
-<p>Se conserva un checkout separado de la fuente registrada y las salidas experimentales quedan fuera del repositorio: checkpoints, curvas, cierres, logs y predicciones no sobrescriben resultados de E1. Las mejoras documentales posteriores al registro no cambian los bytes con los que se inició P0. Los JSON de diseño conservan sus contadores iniciales: el estado observado se acredita con recibos de ejecución, no editando un plan cerrado.</p>
-<p>El <a class="reference download internal" download="" href="../_downloads/9b6093eee1456dcd4e7b3469ed90b430/data_support_audit.json"><span class="xref download myst">recibo de la auditoría de soporte</span></a> se generó antes del registro, a las <strong>14:52:31 UTC</strong>. Comprueba los once calendarios de desarrollo; no es un certificado completo de los modelos futuros. El <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">protocolo y estado de P0</span></a> y la <a class="reference internal" href="10_auditoria_datos.html"><span class="std std-doc">auditoría de datos</span></a> explican esos alcances.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="reproducibilidad-de-la-entrega-vigente">
+<span id="e2-reproducibilidad"></span><h1>8. Reproducibilidad de la entrega vigente<a class="headerlink" href="#reproducibilidad-de-la-entrega-vigente" title="Link to this heading">#</a></h1>
+<p><strong>Estado documental del 14/11/2026:</strong> la tabla principal compara <strong>16 sistemas sobre 608 fechas</strong>. La reproducción registrada de sus <strong>81 predictores</strong> se completó en un checkout remoto y un entorno Python nuevos, con discrepancia máxima absoluta de predicción <strong>0</strong> en calibración y prueba. También se completaron <strong>18 ablaciones</strong>. Los recibos y sus límites se presentan en <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a>. El Apéndice B vigente está en <a class="reference internal" href="61_reproduccion_consolidada.html"><span class="std std-doc">§61</span></a>, con estados completos, parciales, no aplicables e incumplimientos identificados.</p>
+<section id="punto-de-entrada-de-la-entrega">
+<h2>8.1 Punto de entrada de la entrega<a class="headerlink" href="#punto-de-entrada-de-la-entrega" title="Link to this heading">#</a></h2>
+<p>Desde la raíz del repositorio, con Python 3.12 o posterior:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>scripts/audit_e2_delivery.py<span class="w"> </span>--require-supplements<span class="w"> </span>--output<span class="w"> </span>work/e2_delivery_audit.json
+</pre></div>
+</div>
+<p>Este comando funciona <strong>sin red, GPU ni paquetes externos</strong>. Verifica los manifiestos y archivos publicados, reconstruye las 81 RMSE a partir de los pronósticos congelados y las 16 medias de A2, valida calendario/semillas, comprueba los informes de 81 reproducciones y 18 ablaciones y el refinamiento de los veinte contrastes a 20.000 remuestreos. El informe registra el entorno de esta ejecución y sus discrepancias.</p>
+<p>El comando ejecuta una auditoría aritmética y de integridad. <strong>No vuelve a entrenar ni a generar pronósticos, no repite los sorteos bootstrap y no deserializa pesos.</strong> La repetición de los 81 ajustes y las comparaciones tensoriales ya fueron ejecutadas por los workers A100 y están acreditadas separadamente en §55. La auditoría no declara aprobados los requisitos metodológicos pendientes.</p>
 </section>
-<section id="entorno-observado-y-aleatoriedad">
-<h2>8.2 Entorno observado y aleatoriedad<a class="headerlink" href="#entorno-observado-y-aleatoriedad" title="Link to this heading">#</a></h2>
-<p>El <a class="reference download internal" download="" href="../_downloads/b2a36d3b4eae6822df7965ce21ae33db/hardware_receipt.json"><span class="xref download myst">recibo de hardware</span></a> se tomó a las <strong>14:37:37 UTC</strong>, antes de los ajustes. Son datos del entorno, sin confundirlos con costes medidos por modelo.</p>
+<section id="entorno-y-fuentes-cientificas">
+<h2>8.2 Entorno y fuentes científicas<a class="headerlink" href="#entorno-y-fuentes-cientificas" title="Link to this heading">#</a></h2>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Elemento</p></th>
-<th class="head"><p>Evidencia del entorno P0</p></th>
+<tr class="row-odd"><th class="head"><p>Etapa</p></th>
+<th class="head"><p>Entorno o fuente identificada</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Sistema</p></td>
-<td><p>Debian GNU/Linux13, versión13.6; kernel6.18.57, x86_64</p></td>
+<tr class="row-even"><td><p>Ajuste final y reproducción neuronal</p></td>
+<td><p>Python <strong>3.12.12</strong>, Torch <strong>2.8.0+cu126</strong>, CUDA <strong>12.6</strong>, NVIDIA <strong>A100-SXM4-80GB</strong></p></td>
 </tr>
-<tr class="row-odd"><td><p>Python</p></td>
-<td><p>3.12.14</p></td>
+<tr class="row-odd"><td><p>Política registrada</p></td>
+<td><p>FP32, algoritmos deterministas; AMP y TF32 desactivados; semillas explícitas</p></td>
 </tr>
-<tr class="row-even"><td><p>Framework y paquetes principales registrados</p></td>
-<td><p>PyTorch2.15.0+cpu, NumPy2.5.4, pandas3.1.0, einops0.8.1, reformer-pytorch1.4.4</p></td>
+<tr class="row-even"><td><p>Motor científico</p></td>
+<td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/1e8745497b484518f766b6da5c19be8362d9add7"><code class="docutils literal notranslate"><span class="pre">1e8745497b484518f766b6da5c19be8362d9add7</span></code></a></p></td>
 </tr>
-<tr class="row-odd"><td><p>Dispositivo</p></td>
-<td><p>CPU; modelo reportado AMD EPYC9V74 80-Core Processor</p></td>
+<tr class="row-odd"><td><p>Resultados complementarios cerrados</p></td>
+<td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/d604ede6bf0978e14a1b1d7bafaae6250fb8ed07"><code class="docutils literal notranslate"><span class="pre">d604ede6bf0978e14a1b1d7bafaae6250fb8ed07</span></code></a></p></td>
 </tr>
-<tr class="row-even"><td><p>Recursos efectivos</p></td>
-<td><p>Cinco CPU lógicas visibles; cuota cgroup400000/100000, equivalente a cuatro CPU, sin atribuir ochenta núcleos disponibles al proceso</p></td>
+<tr class="row-even"><td><p>Reproducción registrada</p></td>
+<td><p>Nuevo checkout y venv sin paquetes del sistema; <a class="reference download internal" download="" href="../_downloads/6011ed2c7a68b2874269fc1bef4ecb8a/historical_clean_runtime.json"><span class="xref download myst">recibo del entorno</span></a></p></td>
 </tr>
-<tr class="row-odd"><td><p>Paralelismo de trabajo</p></td>
-<td><p>Un thread numérico por ajuste; máximo dos procesos concurrentes</p></td>
-</tr>
-<tr class="row-even"><td><p>Memoria</p></td>
-<td><p>Límite cgroup34.359.738.368bytes, 32GiB; no es memoria pico medida de una red</p></td>
-</tr>
-<tr class="row-odd"><td><p>Dependencias fijadas</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">requirements-e2-remediation.lock.txt</span></code>, que incluye <code class="docutils literal notranslate"><span class="pre">requirements-paper-guide.lock.txt</span></code></p></td>
+<tr class="row-odd"><td><p>Persistencia</p></td>
+<td><p><strong>GitHub</strong>, con inventarios y recibos por intento; sin Google Drive</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>Los entornos se identifican por etapa. El archivo del entorno EDA fija statsmodels0.14.6; el archivo de remediación fija statsmodels0.15.0. Cada reproducción de las pruebas sintéticas de §7 debe identificar la versión utilizada; aprobarlas no equivale a una ejecución ARIMA sobre Bitcoin. El piloto P0 histórico ajustó únicamente sus cuatro recetas registradas; no aporta ejecuciones de los modelos incorporados al catálogo vigente.</p>
-<p>Las semillas P0 son <strong>660101–660105</strong>, emparejadas entre TimeMixer, iTransformer, PatchTST y GRU-c03. El driver fija <code class="docutils literal notranslate"><span class="pre">random</span></code>, NumPy y Torch en cada ajuste, usa un generador explícito para el orden de minibatches y activa <code class="docutils literal notranslate"><span class="pre">torch.use_deterministic_algorithms(True)</span></code>. El recibo inicial indica <code class="docutils literal notranslate"><span class="pre">deterministic_algorithms=false</span></code> <strong>al registrar</strong>, antes de llamar a esa configuración: se conservan ambos hechos en sus etapas correspondientes. Las semillas de refit y de los demás procedimientos tienen registros propios; ninguna repetición del cronómetro cuenta como nueva observación de mercado. No se promete identidad numérica entre hardware o versiones distintos sin una reproducción medida.</p>
+<p>No se promete igualdad numérica entre hardware o versiones distintos. Los recibos acreditan la reproducción efectivamente observada, condicionada a esas versiones y a la misma cronología. El <a class="reference download internal" download="" href="../_downloads/afee7b04698a67089fe9282e1e5017f4/manifest.json"><span class="xref download myst">manifiesto de resultados</span></a> y la <a class="reference download internal" download="" href="../_downloads/d9b02dc823cad6ab2e06f54c1a0ece3f/source_evidence.json"><span class="xref download myst">procedencia por ajuste</span></a> enlazan las tablas con los resultados productores.</p>
 </section>
-<section id="comandos-de-reproduccion-del-procedimiento-disponible">
-<h2>8.3 Comandos de reproducción del procedimiento disponible<a class="headerlink" href="#comandos-de-reproduccion-del-procedimiento-disponible" title="Link to this heading">#</a></h2>
-<p>Los siguientes comandos reproducen exclusivamente el <strong>P0/OOF histórico</strong>. No ejecutan el catálogo vigente ni constituyen instrucciones para continuar el plan sustituido. Se parte del repositorio clonado, de Python3.12 y de una ruta nueva de salida. Los dos CSV diarios de desarrollo están versionados en la fuente registrada; los hashes exigidos por el plan detectan modificaciones. No es necesario descargar precios nuevos para ese piloto.</p>
-<p>Crear un checkout y un entorno separados permite conservar E1 y la ejecución original:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>worktree<span class="w"> </span>add<span class="w"> </span>--detach<span class="w"> </span>../e2-repro-registered<span class="w"> </span>599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0
-<span class="nb">cd</span><span class="w"> </span>../e2-repro-registered
-python3.12<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>../e2-repro-env
-../e2-repro-env/bin/python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements-e2-remediation.lock.txt
+<section id="reconstruccion-y-analisis-de-pronosticos-guardados">
+<h2>8.3 Reconstrucción y análisis de pronósticos guardados<a class="headerlink" href="#reconstruccion-y-analisis-de-pronosticos-guardados" title="Link to this heading">#</a></h2>
+<p>Los <a class="reference download internal" download="" href="../_downloads/756f78194f862137773983a9f95d8911/manifest.json"><span class="xref download myst">insumos congelados públicos</span></a> permiten repetir cálculos sin descargar precios nuevos. <a class="reference internal" href="56_inferencia_estabilidad_final.html"><span class="std std-doc">§56</span></a> incluye el comando completo para recalcular los veinte contrastes con 20.000 réplicas y la fluctuación Giacomini–Rossi. <a class="reference internal" href="57_errores_techo.html"><span class="std std-doc">§57</span></a> incluye el comando de la taxonomía y las referencias de dificultad. Sus resultados son posteriores y no reemplazan los originales ni modifican recetas o calibradores.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/878959cd45a45cb509b9c4065aa9d38c/benchmark_A2.csv"><span class="xref download myst">tabla A2</span></a> conserva su SHA256 <code class="docutils literal notranslate"><span class="pre">879e2ce52709657a06bc6c009f0cd553423f2eaa0bbdf16dc7f5844dfec9fcc1</span></code>. El auditor de entrega comprueba ese digest antes de reconstruir sus métricas. Las métricas son medias de RMSE individuales, no la RMSE de promediar pronósticos.</p>
+</section>
+<section id="reproduccion-del-entrenamiento-y-presupuesto">
+<h2>8.4 Reproducción del entrenamiento y presupuesto<a class="headerlink" href="#reproduccion-del-entrenamiento-y-presupuesto" title="Link to this heading">#</a></h2>
+<p>La ejecución original y los 81 reajustes de reproducción están cerrados. El límite autorizado fue <strong>84 horas acumuladas</strong>, conservando todos los cargos previos; el diario final contiene <strong>351 eventos</strong>, <strong>80,2561 horas cargadas</strong> y ninguna reserva abierta. Es contabilidad de tiempo de campaña, no GPU activa, energía o dinero. El <a class="reference download internal" download="" href="../_downloads/0afa4747e855182beac75b95af584f23/budget_final.json"><span class="xref download myst">balance cerrado</span></a> conserva sus hashes.</p>
+<p>Las instrucciones antiguas P0/OOF y sus comandos <code class="docutils literal notranslate"><span class="pre">--stage</span> <span class="pre">all</span></code> se archivan al final de esta página; corresponden a otros modelos y otro periodo. No se presentan como un comando para reproducir el benchmark actual ni se propone relanzar el controlador cerrado. Un replay futuro del entrenamiento requeriría una salida independiente y autorización presupuestaria propia, conservando los resultados anteriores.</p>
+</section>
+<section id="limites-de-la-reproduccion">
+<h2>8.5 Límites de la reproducción<a class="headerlink" href="#limites-de-la-reproduccion" title="Link to this heading">#</a></h2>
+<p>La guía acepta reproducción por otra persona <strong>o en un entorno limpio</strong>. Los 81 reajustes acreditan la segunda vía; no crean un test nuevo. El periodo 2025–2026 ya se conocía desde E1. El margen δg previo, la potencia objetivo y otras condiciones del Apéndice B no quedan aprobados por una discrepancia numérica cero. La calibración y los análisis estadísticos requieren sus propios supuestos y evidencias.</p>
+<p>El programa de auditoría se comprueba con pruebas de manipulación de hashes, calendarios, semillas, estimando y número de remuestreos:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>unittest<span class="w"> </span>tests.test_audit_e2_delivery<span class="w"> </span>-v
 </pre></div>
 </div>
-<p>Las dos fuentes oficiales se recuperan en sus commits fijados; el runner verifica los archivos concretos contra el plan antes de usarlos:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/kwuking/TimeMixer.git<span class="w"> </span>../e2-author-TimeMixer
-git<span class="w"> </span>-C<span class="w"> </span>../e2-author-TimeMixer<span class="w"> </span>checkout<span class="w"> </span>--detach<span class="w"> </span>e24610583b36fdd8c76cc17a8df4e65759a5f460
-git<span class="w"> </span>clone<span class="w"> </span>https://github.com/thuml/Time-Series-Library.git<span class="w"> </span>../e2-author-controls
-git<span class="w"> </span>-C<span class="w"> </span>../e2-author-controls<span class="w"> </span>checkout<span class="w"> </span>--detach<span class="w"> </span>4e938a1767106324dd753b2a44832bf870a0252e
-</pre></div>
-</div>
-<p>La validación documental no entrena. El preflight añade controles de los adaptadores con entradas sintéticas y una auditoría de desarrollo sin ajustes de modelos:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>../e2-repro-env/bin/python<span class="w"> </span>scripts/e2_protocol_plan.py<span class="w"> </span>validate
-../e2-repro-env/bin/python<span class="w"> </span>scripts/execute_e2_development_pilot.py<span class="w"> </span>--stage<span class="w"> </span>preflight<span class="w"> </span>--source-root<span class="w"> </span>../e2-author-TimeMixer<span class="w"> </span>--control-source-root<span class="w"> </span>../e2-author-controls<span class="w"> </span>--output-dir<span class="w"> </span>../e2-repro-output<span class="w"> </span>--workers<span class="w"> </span><span class="m">2</span>
-</pre></div>
-</div>
-<p>El flujo disponible de una sola invocación registra esa nueva reproducción, ajusta las trayectorias programadas y puntúa desarrollo <strong>después de sus cierres</strong>; posteriormente analiza las predicciones guardadas:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>../e2-repro-env/bin/python<span class="w"> </span>scripts/execute_e2_development_pilot.py<span class="w"> </span>--stage<span class="w"> </span>all<span class="w"> </span>--source-root<span class="w"> </span>../e2-author-TimeMixer<span class="w"> </span>--control-source-root<span class="w"> </span>../e2-author-controls<span class="w"> </span>--output-dir<span class="w"> </span>../e2-repro-output<span class="w"> </span>--workers<span class="w"> </span><span class="m">2</span>
-</pre></div>
-</div>
-<p>La salida debe estar fuera del repositorio. El registro rechaza intentos anteriores sin registro y cambios en entradas cerradas; no se reutiliza un directorio para ocultar una ejecución fallida. El flujo no acepta precios de evaluación posteriores a 2024 y no cambia las recetas con P0. Este comando acredita exclusivamente el procedimiento P0 de desarrollo. La reproducción posterior de los <strong>81 predictores de la tabla principal</strong> y sus discrepancias medidas se documentan en <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a>; un build del libro o una prueba sintética no son esa evidencia.</p>
-<section id="implementacion-archivada-y-requisitos-de-aquel-corte">
-<h3>8.3.1 Implementación archivada y requisitos de aquel corte<a class="headerlink" href="#implementacion-archivada-y-requisitos-de-aquel-corte" title="Link to this heading">#</a></h3>
-<p>La <a class="reference download internal" download="" href="../_downloads/5c39a73befc06b6ac68a0ab1b13e5ac7/completion_bundle.zip"><span class="xref download myst">descarga de implementación archivada</span></a>, su <a class="reference download internal" download="" href="../_downloads/fafb54c83e7b4ddf755b336b98d117f7/design.json"><span class="xref download myst">diseño</span></a>, su <a class="reference download internal" download="" href="../_downloads/47a0a31721456b70c253b9b8290a2de8/analysis_additions.json"><span class="xref download myst">enmienda</span></a> y su <a class="reference download internal" download="" href="../_downloads/e6afa871de0ad5cd8543ef14d185c3c4/registration.json"><span class="xref download myst">registro</span></a> conservan la procedencia del trabajo previo. Esos archivos y <code class="docutils literal notranslate"><span class="pre">scripts/run_e2_final_benchmark.py</span></code> <strong>no son el ejecutor ni el registro del catálogo vigente</strong>. Se mantienen sin alterar para que sus bytes sigan siendo verificables.</p>
-<p>El <a class="reference download internal" download="" href="../_downloads/769cadb5d12b34f5212c498756de1fcb/execution_progress.json"><span class="xref download myst">recibo parcial del 06/11/2026, 19:00:35 UTC</span></a> acredita <strong>doce trayectorias y veinticuatro ajustes cerrados de TSMixer</strong> bajo el registro anterior. Es una instantánea histórica de HPO incompleto, no un proceso cuya actividad actual esté demostrada, un resultado final ni una ejecución del nuevo catálogo. Los recibos sintéticos tampoco se convierten en resultados de mercado.</p>
-<p><strong>Plan histórico previo al catálogo vigente:</strong> la enmienda entonces propuesta debía identificar fuentes y adaptaciones de los diez modelos, la receta CNN-1D + LSTM + atención temporal, controles, dependencias, presupuesto, selección temporal, semillas, dimensionamiento y orden de cierre. MLP, LSTM y GRU de E1 siguen siendo referencias separadas. No se transfieren automáticamente sus recetas o métricas ni las del P0 a la comparación nueva.</p>
-<p>Cada nueva ejecución requerirá fuente identificable, entorno verificable, datos e índices con hashes y una salida propia. Deben conservarse curvas, tiempos, estados de cierre y procedencia, incluidos intentos fallidos. Un build del libro, un prototipo o una prueba sintética no acredita HPO, calibración o evaluación de mercado. El número de repeticiones y el almacenamiento se planificarán antes de evaluar; no se cambia R después de observar resultados para ajustar el experimento a los recursos disponibles.</p>
 </section>
-</section>
-<section id="lista-historica-de-comprobacion-frente-al-apendice-b">
-<h2>8.4 Lista histórica de comprobación frente al Apéndice B<a class="headerlink" href="#lista-historica-de-comprobacion-frente-al-apendice-b" title="Link to this heading">#</a></h2>
-<p><strong>Ámbito histórico de P0 y del catálogo sustituido.</strong> Las filas siguientes conservan el estado de aquella planificación; sus pendientes no describen el cierre actual. Para el catálogo vigente se deben consultar la matriz de <a class="reference internal" href="38_cumplimiento_guia.html"><span class="std std-doc">§38</span></a>, los recibos de <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a> y la distinción entre reproducción numérica aprobada y requisitos metodológicos todavía parciales.</p>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Ítem de p63</p></th>
-<th class="head"><p>Estado verificable</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Catálogo del corte histórico</p></td>
-<td><p>Diez modelos de literatura/adaptaciones y CNN-1D + LSTM + atención temporal como candidato 11, sin superioridad demostrada; sustituido por los 16 sistemas obligatorios de §43</p></td>
-</tr>
-<tr class="row-odd"><td><p>Registro antes de los nuevos ajustes</p></td>
-<td><p>Nueva enmienda pendiente; los recibos anteriores son históricos</p></td>
-</tr>
-<tr class="row-even"><td><p>Datos, índices y particiones</p></td>
-<td><p>Procedencia heredada identificada; auditoría específica de los nuevos soportes pendiente</p></td>
-</tr>
-<tr class="row-odd"><td><p>Selección y ajuste causal</p></td>
-<td><p>Reglas metodológicas descritas; implementación común del catálogo vigente por validar</p></td>
-</tr>
-<tr class="row-even"><td><p>Presupuesto, configuraciones y R</p></td>
-<td><p>Pendientes de definir y dimensionar; no se heredan del catálogo sustituido</p></td>
-</tr>
-<tr class="row-odd"><td><p>Referencias E1</p></td>
-<td><p>MLP, LSTM y GRU separadas del catálogo; recetas y cohortes comparables por identificar</p></td>
-</tr>
-<tr class="row-even"><td><p>Software, hardware y determinismo</p></td>
-<td><p>Evidencia P0 conservada; cada ejecución nueva necesita sus propios recibos</p></td>
-</tr>
-<tr class="row-odd"><td><p>Resultados individuales y agregados</p></td>
-<td><p>P0 ejecutado e instantánea parcial de HPO histórico enlazados; sin resultados finales del catálogo vigente</p></td>
-</tr>
-<tr class="row-even"><td><p>Hipótesis, multiplicidad, efectos e IC</p></td>
-<td><p>Nuevas familias y decisiones pendientes de registrar</p></td>
-</tr>
-<tr class="row-odd"><td><p>Robustez, interpretabilidad e incertidumbre</p></td>
-<td><p>Métodos y límites descritos; validación del nuevo diseño pendiente</p></td>
-</tr>
-<tr class="row-even"><td><p>Evaluación desconocida</p></td>
-<td><p>Los periodos heredados ya se conocen y no recuperan independencia por cambiar los modelos</p></td>
-</tr>
-<tr class="row-odd"><td><p>Réplica del paper guía</p></td>
-<td><p>Evidencia TimeMixer/ETTh1 en §5, separada de Bitcoin</p></td>
-</tr>
-<tr class="row-even"><td><p>Reproducción independiente de tabla principal</p></td>
-<td><p>Pendiente; ninguna discrepancia final inventada</p></td>
-</tr>
-<tr class="row-odd"><td><p>Reproducción de un comando</p></td>
-<td><p>Disponible para el P0 histórico; no acreditada para el catálogo vigente</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section id="etica-licencias-y-comunicacion">
-<h2>8.5 Ética, licencias y comunicación<a class="headerlink" href="#etica-licencias-y-comunicacion" title="Link to this heading">#</a></h2>
-<p>Se mantiene el uso académico y no comercial y la procedencia de Binance Vision descritos en §1, con sus términos conservados en E1. El código de los autores conserva sus licencias y commits identificados; usar su implementación no significa reutilizar pesos preentrenados ni reproducir todas las condiciones originales. P0 inicializa sus redes, con una adaptación escalar explícita a σ₇; el resultado externo de ETTh1 no se presenta como rendimiento Bitcoin.</p>
-<p>Las velas no contienen identificadores de personas, y no se intenta reconstruir identidades de operadores. El mercado BTCUSDT de un exchange no representa otras criptomonedas, exchanges o cotizaciones: las diferencias de error por volatilidad y periodo se comunicarán con tamaños e incertidumbre. Las consecuencias de errores de pronóstico no se traducen automáticamente en rentabilidad, reducción de riesgo o recomendación de inversión.</p>
-<p>Las tablas y figuras deben identificar unidades, muestra, escala, fuente y alcance; los IC marginales se distinguen de límites simultáneos. No se presenta cero como sustituto de una medición pendiente ni un promedio sin dispersión como prueba de superioridad. Las afirmaciones bibliográficas y DOI se conservan trazables; indexación o editorial no sustituyen comprobar un original.</p>
-<p><strong>Archivo histórico:</strong> <a class="reference download internal" download="" href="../_downloads/5c39a73befc06b6ac68a0ab1b13e5ac7/completion_bundle.zip"><span class="xref download myst">implementación y enmienda anteriores</span></a>, <a class="reference download internal" download="" href="../_downloads/a421707fc03ce60be02b214170dea130/Remediacion_E2_protocolo_codigo_evidencias.zip"><span class="xref download myst">paquete unificado de protocolo, código y evidencias</span></a>, <a class="reference download internal" download="" href="../_downloads/3206a16084eae75f63f143c241b74ac3/registration.json"><span class="xref download myst">registro</span></a>, <a class="reference download internal" download="" href="../_downloads/9b6093eee1456dcd4e7b3469ed90b430/data_support_audit.json"><span class="xref download myst">soporte de datos</span></a> y <a class="reference download internal" download="" href="../_downloads/b2a36d3b4eae6822df7965ce21ae33db/hardware_receipt.json"><span class="xref download myst">entorno/hardware</span></a>.</p>
+<section id="archivo-de-la-version-anterior">
+<h2>Archivo de la versión anterior<a class="headerlink" href="#archivo-de-la-version-anterior" title="Link to this heading">#</a></h2>
+<p>La <a class="reference download internal" download="" href="../_downloads/1582b19f1e8b917c397bc982ca6d9c9b/08_reproducibilidad.md"><code class="xref download docutils literal notranslate"><span class="pre">versión</span> <span class="pre">exacta</span> <span class="pre">anterior</span> <span class="pre">a</span> <span class="pre">esta</span> <span class="pre">consolidación</span></code></a> se conserva con sus estados y fechas históricos. El <a class="reference download internal" download="" href="../_downloads/a375c47d06b822516dc7b9dafd245bd1/chapter_archive_manifest.json"><span class="xref download myst">manifiesto de archivo</span></a> fija su commit y SHA256. Esos antecedentes no sustituyen el protocolo ejecutado de <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a> ni su Apéndice B actual de <a class="reference internal" href="61_reproduccion_consolidada.html"><span class="std std-doc">§61</span></a>.</p>
 </section>
 </section>
 
@@ -626,7 +539,7 @@ git<span class="w"> </span>-C<span class="w"> </span>../e2-author-controls<span 
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">9. Registro de selección, cierre pendiente y trazabilidad</p>
+        <p class="prev-next-title">9. Registros, enmiendas y cierre de la ejecución</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -648,14 +561,12 @@ git<span class="w"> </span>-C<span class="w"> </span>../e2-author-controls<span 
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuente-registrada-y-recibos-de-ejecucion">8.1 Fuente registrada y recibos de ejecución</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entorno-observado-y-aleatoriedad">8.2 Entorno observado y aleatoriedad</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comandos-de-reproduccion-del-procedimiento-disponible">8.3 Comandos de reproducción del procedimiento disponible</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-archivada-y-requisitos-de-aquel-corte">8.3.1 Implementación archivada y requisitos de aquel corte</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lista-historica-de-comprobacion-frente-al-apendice-b">8.4 Lista histórica de comprobación frente al Apéndice B</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etica-licencias-y-comunicacion">8.5 Ética, licencias y comunicación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#punto-de-entrada-de-la-entrega">8.1 Punto de entrada de la entrega</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entorno-y-fuentes-cientificas">8.2 Entorno y fuentes científicas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reconstruccion-y-analisis-de-pronosticos-guardados">8.3 Reconstrucción y análisis de pronósticos guardados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduccion-del-entrenamiento-y-presupuesto">8.4 Reproducción del entrenamiento y presupuesto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limites-de-la-reproduccion">8.5 Límites de la reproducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-de-la-version-anterior">Archivo de la versión anterior</a></li>
 </ul>
   </nav></div>
 

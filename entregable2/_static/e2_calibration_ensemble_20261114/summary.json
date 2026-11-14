@@ -1,0 +1,175 @@
+{
+  "version": "e2-calibration-fitted-diverse-ensemble-v1",
+  "registered_commit": "8d9cc8c3397242a07378fb1a678196dab36744da",
+  "posthoc": true,
+  "original_A2_changed": false,
+  "original_calibrators_changed": false,
+  "new_neural_fits": 0,
+  "new_model_inference": 0,
+  "new_statistical_weight_fits": 1,
+  "weights_fit_only_on_calibration53": true,
+  "test_used_to_choose_method_or_weights": false,
+  "calibration_dates": [
+    "2024-11-08",
+    "2024-11-09",
+    "2024-11-10",
+    "2024-11-11",
+    "2024-11-12",
+    "2024-11-13",
+    "2024-11-14",
+    "2024-11-15",
+    "2024-11-16",
+    "2024-11-17",
+    "2024-11-18",
+    "2024-11-19",
+    "2024-11-20",
+    "2024-11-21",
+    "2024-11-22",
+    "2024-11-23",
+    "2024-11-24",
+    "2024-11-25",
+    "2024-11-26",
+    "2024-11-27",
+    "2024-11-28",
+    "2024-11-29",
+    "2024-11-30",
+    "2024-12-01",
+    "2024-12-02",
+    "2024-12-03",
+    "2024-12-04",
+    "2024-12-05",
+    "2024-12-06",
+    "2024-12-07",
+    "2024-12-08",
+    "2024-12-09",
+    "2024-12-10",
+    "2024-12-11",
+    "2024-12-12",
+    "2024-12-13",
+    "2024-12-14",
+    "2024-12-15",
+    "2024-12-16",
+    "2024-12-17",
+    "2024-12-18",
+    "2024-12-19",
+    "2024-12-20",
+    "2024-12-21",
+    "2024-12-22",
+    "2024-12-23",
+    "2024-12-24",
+    "2024-12-25",
+    "2024-12-26",
+    "2024-12-27",
+    "2024-12-28",
+    "2024-12-29",
+    "2024-12-30"
+  ],
+  "calibration_ensemble_mean_RMSE": 0.003186256639089575,
+  "test_mean_individual_seed_RMSE": {
+    "ensemble": 0.0036895319245579465,
+    "SAE": 0.003803429612358448,
+    "Persistence": 0.004085595867023217
+  },
+  "gamma": {
+    "raw_algebraic_gamma": 0.2875739889159152,
+    "interpretable_empirical_reference_order": true,
+    "gamma_remaining_fraction": 0.2875739889159152,
+    "empirical_reference_is_Bayes_or_optimal_ceiling": false
+  },
+  "same_known_test_as_E1": true,
+  "empirical_reference_scope": "one explicitly fitted and separately registered attainable ensemble, not Bayes risk or an optimum over all ensembles",
+  "fit": {
+    "solver": "SLSQP",
+    "success": true,
+    "message": "Optimization terminated successfully",
+    "iterations": 43,
+    "calibration_scaled_objective": 0.022441235750878717,
+    "uniform_scaled_objective": 0.031035369972925678,
+    "constraint_sum": 1.0,
+    "minimum_weight": 0.0,
+    "numerical_feasibility_adjustment_L1": 0.0,
+    "ridge": 0.0001,
+    "development_target_mean_scale": 0.021283234850735196,
+    "optimizations": 1,
+    "test_targets_used_for_weights": false,
+    "new_statistical_weight_fit": true
+  },
+  "bootstrap": [
+    {
+      "block_days": 14,
+      "draws": 10000,
+      "risk_CI95": {
+        "ensemble": [
+          0.0030432213532183864,
+          0.004419617859012068
+        ],
+        "SAE": [
+          0.003176916044500598,
+          0.004566666117204017
+        ],
+        "Persistence": [
+          0.0033136473951659575,
+          0.004960633538832754
+        ]
+      },
+      "algebraic_gamma_defined_replicates": 10000,
+      "algebraic_gamma_CI95": [
+        -1.4921008161406322,
+        2.3712816235497707
+      ],
+      "reference_order_valid_replicates": 6588,
+      "gamma_interval_scope": "algebraic_only_if_reference_order_or_denominator_change; never silently restrict to favorable replicates"
+    },
+    {
+      "block_days": 7,
+      "draws": 10000,
+      "risk_CI95": {
+        "ensemble": [
+          0.003114274789868752,
+          0.0043706444888211024
+        ],
+        "SAE": [
+          0.003226847426458862,
+          0.004526580505201315
+        ],
+        "Persistence": [
+          0.003437754611197078,
+          0.004803851991052662
+        ]
+      },
+      "algebraic_gamma_defined_replicates": 10000,
+      "algebraic_gamma_CI95": [
+        -1.17565579851215,
+        2.452442525427031
+      ],
+      "reference_order_valid_replicates": 6556,
+      "gamma_interval_scope": "algebraic_only_if_reference_order_or_denominator_change; never silently restrict to favorable replicates"
+    },
+    {
+      "block_days": 28,
+      "draws": 10000,
+      "risk_CI95": {
+        "ensemble": [
+          0.003025986258865304,
+          0.004467008372840485
+        ],
+        "SAE": [
+          0.0031558058924033446,
+          0.004639337216730395
+        ],
+        "Persistence": [
+          0.0032611275847635682,
+          0.0050570559684929356
+        ]
+      },
+      "algebraic_gamma_defined_replicates": 10000,
+      "algebraic_gamma_CI95": [
+        -1.2303277462960738,
+        2.190167182239316
+      ],
+      "reference_order_valid_replicates": 6522,
+      "gamma_interval_scope": "algebraic_only_if_reference_order_or_denominator_change; never silently restrict to favorable replicates"
+    }
+  ],
+  "CPU_analysis_wall_seconds": 2.006516784982523
+}

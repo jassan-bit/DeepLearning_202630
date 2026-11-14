@@ -14,13 +14,15 @@
 
 **Suplementos finales:** [20.000 remuestreos y Giacomini–Rossi (§56)](sections/56_inferencia_estabilidad_final.md) · [6.080 etiquetas de errores y 100 fechas por modelo (§57)](sections/57_errores_techo.md) · [FLOPs core de las trece redes (§58)](sections/58_flops_predictores.md) · [conciliación de 9.559 grupos bibliográficos (§59)](sections/59_auditoria_literatura_final.md). Son análisis posteriores con fecha y alcance propios, sin nuevas corridas ni sustitución de A2.
 
+**Cierre documental del 14/11:** [calibración temporal y cobertura condicional (§60)](sections/60_calibracion_temporal_condicional.md) · [entrega reproducible y Apéndice B actual (§61)](sections/61_reproduccion_consolidada.md) · [elegibilidad focal y P contextual (§62)](sections/62_cierre_literatura_focal.md) · [referencia empírica de ensemble (§63)](sections/63_ensamble_calibracion.md). La cobertura global se acerca al 90 % con ACI, aunque persiste infracobertura en rangos altos. El ensemble proporciona una referencia puntual más baja, con diferencias no concluyentes tras Holm.
+
 ## Resumen
 
 Se estudia el pronóstico diario de volatilidad de Bitcoin usando siete días de OHLCV, horizonte de un día y objetivo σ₇ poblacional de retornos de Close, sin anualización. Se comparan diez candidatos de cuatro familias, tres referencias neuronales de E1 y tres comparadores estadísticos. La selección reducida utiliza seis configuraciones y tres orígenes internos por red; cada receta neuronal final tiene seis semillas. Los 16 sistemas comparten 608 fechas de evaluación conocidas desde E1.
 
 El LSTM-autoencoder obtiene la menor RMSE media observada, **0,00380343**, seguido de ARIMA, **0,00392162**, y GRU32, **0,00400116**. Persistencia presenta el menor MAE y sMAPE. Ninguno de los veinte contrastes primarios demuestra la mejora práctica registrada tras Holm; tampoco se establece equivalencia. La repetición de los 81 predictores reproduce sus resultados con discrepancia máxima cero. Las 18 ablaciones muestran degradación significativa al retirar el dropout supervisado; las otras dos comparaciones no son concluyentes.
 
-Se publican residuos, calibración, comparaciones temporales, robustez, explicaciones del Top 3, perfiles A100, costes y Pareto. La evaluación es retrospectiva y el piloto no alcanza la potencia objetivo. El cierre conserva **84 horas totales autorizadas**, todos los cargos y los resultados negativos. Permanecen abiertos el cierre bibliográfico global, el margen δg previo y un techo empírico validado. El conteo FLOPs cubre matrices y convoluciones, con exclusiones declaradas.
+Se publican residuos, calibración, comparaciones temporales, robustez, explicaciones del Top 3, perfiles A100, costes y Pareto. La evaluación es retrospectiva y el piloto no alcanza la potencia objetivo. El cierre conserva **84 horas totales autorizadas**, todos los cargos y los resultados negativos. Permanecen abiertos el cierre bibliográfico global y δg previo; el nuevo proxy empírico de ensemble tiene incertidumbre amplia y no identifica riesgo Bayes. El conteo FLOPs cubre matrices y convoluciones, con exclusiones declaradas.
 
 ## Qué quedó completado
 
@@ -82,8 +84,8 @@ El cierre complementario mantiene un límite de **84 horas acumuladas autorizada
 
 1. Completar la elegibilidad global de la literatura, recuperar los 374 registros Scopus ausentes y resolver los componentes bibliométricos desconocidos. [§59](sections/59_auditoria_literatura_final.md) cierra la contabilidad de lo recibido y distingue el puntaje anterior de su sensibilidad contextual.
 2. Conservar las desviaciones que no pueden corregirse después: δg no se definió previamente, la potencia fue insuficiente y la prueba ya se conocía desde E1. Giacomini–Rossi y el refinamiento de 20.000 réplicas están calculados en [§56](sections/56_inferencia_estabilidad_final.md); no crean un experimento prospectivo.
-3. El techo de error alcanzable sigue sin identificar. [§57](sections/57_errores_techo.md) aporta entropía ordinal, el resultado negativo del ensemble y γ frente a la cota ideal, sin convertirla en ruido Bayes. La taxonomía de residuos es automática y posterior, con 100 fechas auditables por modelo.
-4. Los FLOPs de [§58](sections/58_flops_predictores.md) cubren matrices y convoluciones, con FFT, activaciones y otras operaciones excluidas. Energía, dinero y coste total del servicio no se midieron. Revisar la defensa técnica y mantener estos límites.
+3. [§63](sections/63_ensamble_calibracion.md) añade una referencia empírica ajustada sólo en calibración y γ=0,28757; su incertidumbre no confirma una superioridad ni un techo óptimo. [§57](sections/57_errores_techo.md) conserva entropía ordinal y las referencias anteriores, sin convertirlas en ruido Bayes. La taxonomía de residuos es automática y posterior, con 100 fechas auditables por modelo.
+4. Los FLOPs de [§58](sections/58_flops_predictores.md) cubren matrices y convoluciones, con FFT, activaciones y otras operaciones excluidas. Energía, dinero y coste total del servicio no se midieron. El [Apéndice B actual](sections/61_reproduccion_consolidada.md) mantiene estados verificables y un comando de auditoría; la defensa oral conserva su evaluación propia.
 
 La [matriz de §38](sections/38_cumplimiento_guia.md) distingue cada evidencia de sus condiciones pendientes. El cierre de 99 ajustes corresponde al plan complementario; no es un porcentaje de cumplimiento integral de E2.
 

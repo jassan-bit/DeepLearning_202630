@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>12. Techo de desempeño, incertidumbre y análisis de errores &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
+    <title>12. Incertidumbre, errores y referencias de dificultad &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
   
   
   
@@ -61,14 +61,12 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'sections/12_incertidumbre_errores';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="13. Agregación estadística e interpretación" href="13_agregacion_estadistica.html" />
-    <link rel="prev" title="11. HPO y equidad para el catálogo vigente" href="11_hpo_equidad.html" />
+    <link rel="next" title="13. Estimandos, agregación e inferencia actual" href="13_agregacion_estadistica.html" />
+    <link rel="prev" title="11. Selección HPO ejecutada y equidad" href="11_hpo_equidad.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
   <meta name="docsearch:version" content="" />
@@ -228,17 +226,21 @@
 <li class="toctree-l1"><a class="reference internal" href="57_errores_techo.html">57. Taxonomía de errores y referencias de predictibilidad</a></li>
 <li class="toctree-l1"><a class="reference internal" href="58_flops_predictores.html">58. Coste de operaciones de los predictores congelados</a></li>
 <li class="toctree-l1"><a class="reference internal" href="59_auditoria_literatura_final.html">59. Auditoría final de la literatura recibida</a></li>
+<li class="toctree-l1"><a class="reference internal" href="60_calibracion_temporal_condicional.html">60. Calibración temporal y cobertura condicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="61_reproduccion_consolidada.html">61. Entrega reproducible y Apéndice B actual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="62_cierre_literatura_focal.html">62. Elegibilidad focal y puntuación bibliográfica contextual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="63_ensamble_calibracion.html">63. Referencia empírica mediante un ensemble ajustado en calibración</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
-<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Registro de selección, cierre pendiente y trazabilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad de la entrega vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Registros, enmiendas y cierre de la ejecución</a></li>
 <li class="toctree-l1"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de datos y auditoría formal de fuga</a></li>
-<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. HPO y equidad para el catálogo vigente</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">12. Techo de desempeño, incertidumbre y análisis de errores</a></li>
-<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Agregación estadística e interpretación</a></li>
-<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas del catálogo vigente y adaptación a D7</a></li>
-<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo vigente: diez modelos y candidato 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. Selección HPO ejecutada y equidad</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">12. Incertidumbre, errores y referencias de dificultad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Estimandos, agregación e inferencia actual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas ejecutadas y condición de NAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo ejecutado y procedencia bibliográfica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="16_fichas_nuevas.html">16. Fichas bibliográficas de las cuatro altas propuestas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato sincronizado de E1, E2 y E3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato vigente y relación entre E1, E2 y E3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="18_integracion_sintetica.html">18. Implementación provisional y verificación sintética</a></li>
 <li class="toctree-l1"><a class="reference internal" href="19_plan_auditoria.html">19. Plan experimental propuesto y auditoría sin entrenamiento</a></li>
 <li class="toctree-l1"><a class="reference internal" href="20_contraste_guia.html">20. Cotejo del plan con la guía original</a></li>
@@ -398,7 +400,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>12. Techo de desempeño, incertidumbre y análisis de errores</h1>
+    <h1>12. Incertidumbre, errores y referencias de dificultad</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -408,23 +410,11 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#techo-de-desempeno-y-margen-de-mejora-real">12.1 Techo de desempeño y margen de mejora real</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#referencia-aplicable-a-esta-serie-temporal">12.1.1 Referencia aplicable a esta serie temporal</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distancia-normalizada-y-sentido-de-la-metrica">12.1.2 Distancia normalizada y sentido de la métrica</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ruido-y-criterio-de-cierre">12.1.3 Ruido y criterio de cierre</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cuantificacion-de-incertidumbre">12.2 Cuantificación de incertidumbre</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predictor-congelado-y-calibracion-disjunta">12.2.1 Predictor congelado y calibración disjunta</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intervalos-temporales-y-evaluacion">12.2.2 Intervalos temporales y evaluación</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#casos-de-error-unidad-taxonomia-y-muestreo">12.3 Casos de error: unidad, taxonomía y muestreo</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requisitos-del-nuevo-analisis">12.3.1 Requisitos del nuevo análisis</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-p0-historico-ejecutado">12.3.2 Análisis P0 histórico ejecutado</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduccion-de-la-evidencia-historica">12.3.3 Reproducción de la evidencia histórica</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intervalos-y-calibracion-originales">12.1 Intervalos y calibración originales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#robustez-y-explicaciones">12.2 Robustez y explicaciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#taxonomia-operativa-y-muestra-auditable">12.3 Taxonomía operativa y muestra auditable</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#techo-y-distancia">12.4 Techo y distancia γ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-de-la-version-anterior">Archivo de la versión anterior</a></li>
 </ul>
             </nav>
         </div>
@@ -436,131 +426,34 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="techo-de-desempeno-incertidumbre-y-analisis-de-errores">
-<h1>12. Techo de desempeño, incertidumbre y análisis de errores<a class="headerlink" href="#techo-de-desempeno-incertidumbre-y-analisis-de-errores" title="Link to this heading">#</a></h1>
-<p><strong>Estado vigente al 13/11/2026:</strong> la <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">A2 final de §6</span></a> ya contiene las métricas e intervalos de 16 sistemas. <a class="reference internal" href="49_diagnosticos_f2a.html"><span class="std std-doc">§49</span></a> añade cobertura con incertidumbre temporal, calibración y desagregación trimestral sobre predicciones guardadas. La referencia de techo, cobertura condicional completa y clasificación de errores requerida siguen pendientes. Los estados anteriores conservados debajo son históricos.</p>
-<p><strong>Vigencia documental (11/11/2026):</strong> existe selección HPO/NAS registrada y ejecutada para el catálogo actual; las afirmaciones de ausencia de HPO o de falta de registro de selección corresponden a cortes anteriores. El benchmark final, R y su cierre inferencial siguen pendientes. <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">Registro y alcance actuales (§9)</span></a> · <a class="reference internal" href="40_calendario_original.html"><span class="std std-doc">Calendario (§40)</span></a> · <a class="reference internal" href="41_avance_optimizacion_11_origenes.html"><span class="std std-doc">Corte de resultados (§41)</span></a> · <a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html"><span class="std std-doc">Auditoría y trabajo paralelo (§42)</span></a>.</p>
-<p><strong>Estado:</strong> análisis P0 histórico ejecutado; incertidumbre y errores del catálogo vigente pendientes de la nueva enmienda y de su evaluación. El catálogo contiene diez modelos y CNN-1D + LSTM + atención temporal como candidato 11, sin superioridad acreditada; las referencias MLP, LSTM y GRU de E1 se mantienen aparte.</p>
-<p>Esta sección desarrolla §12.1–12.3 de la guía (PDF pp48–50). Los intervalos predictivos describen valores futuros de σ₇; los IC de RMSE describen incertidumbre de una métrica. Ni la dispersión entre semillas ni un IC de RMSE se presentan como un intervalo predictivo. La <a class="reference download internal" download="" href="../_downloads/47a0a31721456b70c253b9b8290a2de8/analysis_additions.json"><span class="xref download myst">enmienda anterior</span></a> y el <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0/experiments/e2_remediation_20261106/uncertainty_errors.json">plan P0</a> quedan como archivo de trazabilidad, sin trasladar al catálogo vigente sus cohortes, tamaños de ensamble o familias estadísticas.</p>
-<section id="techo-de-desempeno-y-margen-de-mejora-real">
-<h2>12.1 Techo de desempeño y margen de mejora real<a class="headerlink" href="#techo-de-desempeno-y-margen-de-mejora-real" title="Link to this heading">#</a></h2>
-<p><strong>Estado: estimación pendiente.</strong> La guía (§12.1, pp48–49) exige al menos una referencia de techo o predictibilidad y cuantificar el margen restante antes de interpretar diferencias entre modelos. La volatilidad σ₇ se calcula mediante una regla determinista; esto permite auditar su reconstrucción, pero no implica que pueda pronosticarse sin error con D7×5.</p>
-<section id="referencia-aplicable-a-esta-serie-temporal">
-<h3>12.1.1 Referencia aplicable a esta serie temporal<a class="headerlink" href="#referencia-aplicable-a-esta-serie-temporal" title="Link to this heading">#</a></h3>
-<p>Se propone estudiar la predictibilidad intrínseca en desarrollo mediante entropía de permutación y error fuera de muestra de predictores diversos, con selección temporal causal. Antes de estimar deben registrarse la serie analizada, transformación, dimensión y retardo de la entropía, segmentos continuos, ventanas, tratamiento de empates y tamaño efectivo; la sensibilidad a esos parámetros también debe quedar fijada.</p>
-<p>La entropía es un diagnóstico, no una cota numérica de RMSE. El error de un conjunto de modelos aporta una referencia empírica alcanzable, no prueba el error de Bayes ni un techo universal. La selección y cualquier combinación se ajustarán sólo en entrenamiento/validación admisibles. No se elegirá la referencia por su desempeño en test. La receta, los soportes y el coste del conjunto deberán registrarse si se utiliza; su propuesta no añade un modelo al catálogo por sí sola.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="incertidumbre-errores-y-referencias-de-dificultad">
+<h1>12. Incertidumbre, errores y referencias de dificultad<a class="headerlink" href="#incertidumbre-errores-y-referencias-de-dificultad" title="Link to this heading">#</a></h1>
+<p><strong>Estado vigente del 14/11/2026:</strong> existen intervalos y cobertura empírica para los 16 sistemas, diagnósticos F2a, robustez, explicaciones, tres ablaciones entrenadas y una taxonomía de residuos de los diez modelos principales. Los artefactos actuales están en <a class="reference internal" href="53_cierre_requisitos.html"><span class="std std-doc">§§49–59</span></a>. Esta página distingue los resultados existentes de las garantías que no están acreditadas.</p>
+<section id="intervalos-y-calibracion-originales">
+<h2>12.1 Intervalos y calibración originales<a class="headerlink" href="#intervalos-y-calibracion-originales" title="Link to this heading">#</a></h2>
+<p>Los predictores neuronales conservan seis trayectorias y los comparadores una. Antes del scoring se fijó por predictor un cuantil de residuos absolutos sobre <strong>53 fechas de calibración</strong>. Se reportan cobertura nominal del 90 % y anchura de intervalos. El <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">benchmark</span></a> y la <a class="reference internal" href="49_diagnosticos_f2a.html"><span class="std std-doc">auditoría de calibración</span></a> mantienen los calibradores y sus resultados adversos.</p>
+<p>El uso de una cronología dependiente limita la garantía de un calibrador basado en intercambiabilidad. Cuantificar cobertura observada no demuestra cobertura condicional ni validez para cualquier régimen futuro. Los intervalos de cobertura por bloques reflejan sensibilidad temporal bajo sus propios supuestos; no convierten el procedimiento de calibración original en uno adaptado por bloques. Tampoco se inventa PIT sin una CDF predictiva completa. El suplemento de <a class="reference internal" href="60_calibracion_temporal_condicional.html"><span class="std std-doc">§60</span></a> añade cobertura por condiciones y variantes temporales causales sin modificar los calibradores originales; conserva las infracoberturas observadas y no selecciona una variante usando el test.</p>
 </section>
-<section id="distancia-normalizada-y-sentido-de-la-metrica">
-<h3>12.1.2 Distancia normalizada y sentido de la métrica<a class="headerlink" href="#distancia-normalizada-y-sentido-de-la-metrica" title="Link to this heading">#</a></h3>
-<p>La expresión de la guía usa un score donde mayor es mejor. Para RMSE, donde menor es mejor, su equivalente es:</p>
-<p><span class="math notranslate nohighlight">\(
-\gamma=\frac{e_{\mathrm{mejor}}-e_{\mathrm{techo}}}
-{e_{\mathrm{base}}-e_{\mathrm{techo}}}.
-\)</span></p>
-<p>Aquí los tres errores deben compartir objetivo, escala, cohorte y regla de agregación; el baseline y el procedimiento de selección del mejor modelo se fijan de antemano. El término <span class="math notranslate nohighlight">\(e_{\mathrm{techo}}\)</span> requiere una estimación defendible del error límite. Si sólo se dispone de una referencia empírica, se identificará como tal y no se declarará un techo científico demostrado.</p>
-<p>Se reportarán las estimaciones de los tres errores, incertidumbre temporal y sensibilidad de γ. Si el denominador es cero, no positivo o demasiado incierto para sostener la comparación, γ se declara no interpretable. No se recortan valores a [0,1] ni se transforma una referencia empírica superada en una afirmación de haber excedido el límite alcanzable. Tampoco se calculará γ mezclando resultados históricos con los del catálogo vigente.</p>
+<section id="robustez-y-explicaciones">
+<h2>12.2 Robustez y explicaciones<a class="headerlink" href="#robustez-y-explicaciones" title="Link to this heading">#</a></h2>
+<p><a class="reference internal" href="54_robustez_interpretabilidad.html"><span class="std std-doc">§54</span></a> publica cuatro tipos de perturbación, cada uno con tres severidades, sobre los predictores congelados. Se conservan objetivos, pesos y calibradores. Las alteraciones de ventanas independientes son escenarios de estrés de entrada; pueden romper la coherencia de una trayectoria OHLCV y no se describen como intervenciones económicas reales.</p>
+<p>SAE, GRU32 y ARIMA, el Top 3 observado por RMSE, tienen diagnósticos de oclusión, borrado/inserción y un orden aleatorio de referencia en 24 fechas. Las redes disponen de seis semillas; ARIMA determinista no tiene variación de optimización por semilla. La fidelidad medida sobre esas fechas no se interpreta como causalidad ni validación independiente del explicador.</p>
+<p>Las <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">18 ablaciones de §55</span></a> retiran tres componentes de SAE, con seis semillas por variante. Retirar el dropout empeora la RMSE con evidencia ajustada; las otras dos comparaciones son no concluyentes. No se vuelve a elegir el modelo a partir de estas pruebas posteriores.</p>
 </section>
-<section id="ruido-y-criterio-de-cierre">
-<h3>12.1.3 Ruido y criterio de cierre<a class="headerlink" href="#ruido-y-criterio-de-cierre" title="Link to this heading">#</a></h3>
-<p>Se distinguirá error de reconstrucción de etiquetas, calidad de OHLCV y variabilidad futura no explicada por las entradas. La coincidencia de etiquetas reconstruidas no demuestra ausencia de incertidumbre irreducible. Si la auditoría identifica errores de etiquetas relevantes, se documentará una submuestra corregida y el análisis de sensibilidad del ranking exigido por la guía, sin corregir selectivamente casos según qué modelo favorezcan.</p>
-<p>El cierre requiere método registrado, evidencia reproducible de desarrollo, incertidumbre y límites explícitos. No hay aún un techo estimado ni una cifra de margen restante para los once candidatos. Su seguimiento está en <a class="reference internal" href="25_matriz_cierre.html"><span class="std std-doc">R10 de la matriz de cierre</span></a>.</p>
+<section id="taxonomia-operativa-y-muestra-auditable">
+<h2>12.3 Taxonomía operativa y muestra auditable<a class="headerlink" href="#taxonomia-operativa-y-muestra-auditable" title="Link to this heading">#</a></h2>
+<p><a class="reference internal" href="57_errores_techo.html"><span class="std std-doc">§57</span></a> etiqueta <strong>6.080 fechas-modelo</strong> y publica <strong>100 fechas distintas por modelo</strong>, con sus seis residuos individuales: 600 casos por modelo. Las categorías de magnitud/signo usan umbrales de desarrollo y reglas registradas antes del etiquetado automático, después de conocer el test. No se presentan como anotaciones humanas o causas semánticas.</p>
+<p>Las frecuencias y sus IC temporales se calculan con 10.000 remuestreos y bloques de 7/14/28 días. Las categorías no observadas pueden producir IC empíricos [0,0], que no implican probabilidad poblacional cero. Se conservan los pesos de muestreo y la concordancia entre semillas.</p>
 </section>
+<section id="techo-y-distancia">
+<h2>12.4 Techo y distancia γ<a class="headerlink" href="#techo-y-distancia" title="Link to this heading">#</a></h2>
+<p>Se calculó entropía ordinal como referencia de complejidad. El ensemble uniforme de los diez modelos resultó peor que SAE y Persistence, por lo que no aporta un techo empírico válido. Frente a la cota matemática de RMSE cero, γ ideal es <strong>0,93094</strong>, con IC temporal <strong>[0,84448; 1,02974]</strong>. Ese cociente no identifica ruido irreducible ni un error mínimo alcanzable; se conserva el resultado negativo sin buscar otra combinación favorable sobre el test.</p>
+<p>El nuevo <a class="reference internal" href="63_ensamble_calibracion.html"><span class="std std-doc">proxy empírico de §63</span></a> ajusta una combinación convexa sólo con los 53 pronósticos de calibración guardados, sin reentrenar las redes. Su RMSE puntual es 0,00368953 y γ del proxy 0,28757; el IC algebraico [−1,49210; 2,37128] y el orden favorable en 6.588/10.000 remuestreos muestran que no es una referencia estable. No se estima riesgo Bayes ni se cambia A2.</p>
+<p>El alcance de las referencias anteriores está documentado en <a class="reference internal" href="57_errores_techo.html"><span class="std std-doc">§57</span></a>. El <a class="reference internal" href="61_reproduccion_consolidada.html"><span class="std std-doc">Apéndice B actual</span></a> mantiene este requisito parcial, junto con el margen δg previo ausente y las limitaciones de calibración temporal.</p>
 </section>
-<section id="cuantificacion-de-incertidumbre">
-<h2>12.2 Cuantificación de incertidumbre<a class="headerlink" href="#cuantificacion-de-incertidumbre" title="Link to this heading">#</a></h2>
-<section id="predictor-congelado-y-calibracion-disjunta">
-<h3>12.2.1 Predictor congelado y calibración disjunta<a class="headerlink" href="#predictor-congelado-y-calibracion-disjunta" title="Link to this heading">#</a></h3>
-<p>Un predictor ajustado con etiquetas de un periodo no puede calibrarse usando los errores de ese mismo periodo como si fueran residuos fuera de muestra. Por ejemplo, el ajuste histórico principal podía usar resultados hasta el 24/12/2024; sus errores de noviembre–diciembre no constituyen automáticamente calibración disjunta.</p>
-<p>La nueva enmienda deberá separar selección, ajuste, calibración y evaluación. Para cada modelo que reciba intervalos se requiere:</p>
-<ul class="simple">
-<li><p>Identificar receta, soporte, escalador, pesos y cualquier combinación de miembros antes de observar sus residuos de calibración.</p></li>
-<li><p>Fijar fechas de selección y ajuste, embargo y calibración, con etiquetas causalmente separadas. Las etiquetas σ₇ de calibración se solapan entre sí y no se suponen independientes.</p></li>
-<li><p>Mantener exactamente el mismo predictor durante calibración y evaluación. Un refit o un cambio en el número de miembros necesita otra justificación y no hereda los intervalos anteriores.</p></li>
-<li><p>Cerrar y registrar los calibradores antes de evaluar. Los timestamps reales de cierre se conservan en UTC y no se confunden con los orígenes del replay.</p></li>
-<li><p>Definir de antemano cómo se cubrirá a los modelos que finalmente se reporten, para evitar seleccionar una receta y descubrir después que no tiene calibración válida.</p></li>
-</ul>
-<p>La incertidumbre de una media de pronósticos se atribuye a esa media, no a otra trayectoria ni al predictor reajustado. El error puntual del predictor calibrado se informa junto al primario sobre las mismas fechas; esa comparación no sustituye la media primaria de RMSE por semilla. La exposición histórica de recetas E1 a los datos debe declararse sin asignarles fechas de selección ficticias.</p>
-</section>
-<section id="intervalos-temporales-y-evaluacion">
-<h3>12.2.2 Intervalos temporales y evaluación<a class="headerlink" href="#intervalos-temporales-y-evaluacion" title="Link to this heading">#</a></h3>
-<p>Para un predictor congelado A, los residuos absolutos de calibración son <span class="math notranslate nohighlight">\(s_i=|y_i-\widehat y_i^A|\)</span>. Un procedimiento residual puede construir <span class="math notranslate nohighlight">\([\max(0,\widehat y^A-q_\alpha),\widehat y^A+q_\alpha]\)</span>, con el cuantil, ponderaciones y tratamiento de masa finita definidos antes de evaluar. La nueva enmienda deberá fijar esos parámetros y las coberturas nominales; no se heredan automáticamente del plan sustituido. Si la muestra no permite un radio estimable, se informa ese límite en lugar de inventar un intervalo útil.</p>
-<p>Una calibración inspirada en el enfoque conforme no garantiza cobertura exacta si faltan sus supuestos. La dependencia de σ₇, el cambio de régimen, la selección de modelos y la separación temporal entre calibración y evaluación limitan la transferencia. Los pesos de recencia no prueban intercambiabilidad ni son cocientes de densidades por el mero hecho de ponderar. Una evaluación retrospectiva tampoco se presenta como una ventana online actualizada con etiquetas futuras.</p>
-<p>La evaluación debe informar cobertura empírica frente a nominal, anchura media, score de intervalo y pérdidas pinball de las cotas. WIS combina intervalos con un pronóstico identificado del cuantil 0,5; no convierte cualquier media en la verdadera mediana condicional. <strong>CRPS requiere una distribución predictiva declarada.</strong> Una CDF empírica de residuos firmados y un intervalo simétrico basado en residuos absolutos son objetos diferentes. La variabilidad de optimización no es por sí sola una distribución de futuras volatilidades.</p>
-<p>La cobertura condicional requiere grupos causales y umbrales fijados con datos admisibles antes de calibrar. Un grupo vacío o demasiado pequeño se informa como no estimable, sin asignarle cobertura cero. El remuestreo mantiene el calendario y filtra los grupos después de extraer bloques; no concatena fechas separadas como si fueran vecinas. Las longitudes de bloque, repeticiones y sensibilidades deberán justificarse y registrarse para el diseño vigente.</p>
-<p>Los IC descriptivos no son simultáneos por defecto. El nivel de cobertura predictiva, el nivel de error de una familia de contrastes y el margen δ de RMSE tienen funciones distintas. Si se incluyen PIT, distancia respecto a uniforme o pendiente/intercepto de calibración, se declararán su inferencia temporal y multiplicidad; la referencia iid de Kolmogorov–Smirnov no se aplica automáticamente a residuos dependientes.</p>
-<p>Los casos de menor confianza pueden identificarse por anchura predictiva únicamente cuando dispongan de una calibración válida para su origen. No se asigna retrospectivamente confianza OOF de 2024 usando residuos futuros de noviembre–diciembre.</p>
-</section>
-</section>
-<section id="casos-de-error-unidad-taxonomia-y-muestreo">
-<h2>12.3 Casos de error: unidad, taxonomía y muestreo<a class="headerlink" href="#casos-de-error-unidad-taxonomia-y-muestreo" title="Link to this heading">#</a></h2>
-<section id="requisitos-del-nuevo-analisis">
-<h3>12.3.1 Requisitos del nuevo análisis<a class="headerlink" href="#requisitos-del-nuevo-analisis" title="Link to this heading">#</a></h3>
-<p>La unidad es un <strong>origen diario único</strong>, no cada semilla. Cinco semillas sobre cien fechas siguen siendo cien casos. El requisito de al menos cien casos auditables por modelo debe comprobarse sobre fechas elegibles comunes, manteniendo las posiciones de días no elegibles vacías.</p>
-<p>La nueva enmienda debe fijar el panel OOF, sus cortes y la selección temporal anidada. Un fold mensual mantiene la identidad de su <code class="docutils literal notranslate"><span class="pre">run_id</span></code>, checkpoint, escalador y soporte durante el mes; no recibe un refit diario oculto. Toda exposición histórica de una receta a resultados posteriores a un origen OOF se declara y limita su interpretación.</p>
-<p>Las categorías de error deben definirse con una referencia de entrenamiento identificada, no con los errores que luego se analizarán ni con el test. La magnitud puede estratificarse mediante cuantiles de esa referencia y la dirección distinguir subestimación consistente, sobreestimación consistente o signos mezclados entre semillas. Esto evita que errores grandes de signo opuesto desaparezcan al promediar pronósticos. Los umbrales exactos y los empates requieren una regla previa; δ no se transforma en una tolerancia arbitraria por caso.</p>
-<p>Se clasifica el panel completo y, si se extrae una muestra de auditoría estratificada sin reemplazo, se conserva la probabilidad de inclusión. Las frecuencias poblacionales del panel no se estiman como porcentajes sin ponderar de una muestra estratificada. Los casos y predicciones individuales quedan en la evidencia privada; los agregados públicos identifican denominadores, categorías e incertidumbre temporal.</p>
-<p>El solapamiento de errores grandes, Jaccard por pares y correlación de errores firmados pueden describir complementariedad. Un ensamble que se compara con su mejor miembro en el mismo OOF conserva el sesgo de esa referencia elegida y no prueba una ganancia futura. El análisis de errores del P0 ya ejecutado sirve como antecedente, sin sustituir los casos del catálogo vigente ni seleccionar retrospectivamente a sus mejores modelos.</p>
-</section>
-<section id="analisis-p0-historico-ejecutado">
-<h3>12.3.2 Análisis P0 histórico ejecutado<a class="headerlink" href="#analisis-p0-historico-ejecutado" title="Link to this heading">#</a></h3>
-<p>Este análisis pertenece al registro anterior y no evalúa el catálogo vigente. Se analizaron <strong>305 fechas únicas por cada una de las cuatro recetas</strong>, conservando cinco semillas y los diez checkpoints mensuales por receta. La taxonomía se fijó a las <strong>15:14:04 UTC</strong>, antes del primer scoring OOF, usando los <strong>341 errores de persistencia</strong> admisibles de 09/01–24/12/2023. Sus umbrales son <strong>q₅₀=0,00101245</strong> y <strong>q₉₀=0,00683008</strong>; no se estimaron con errores de 2024 ni cambiando δ.</p>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Receta P0</p></th>
-<th class="head text-right"><p>Fechas únicas clasificadas</p></th>
-<th class="head text-right"><p>Casos únicos en muestra privada</p></th>
-<th class="head text-right"><p>Errores grandes, total</p></th>
-<th class="head text-right"><p>Subestimaciones grandes consistentes</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>TimeMixer</p></td>
-<td class="text-right"><p>305</p></td>
-<td class="text-right"><p>100</p></td>
-<td class="text-right"><p>68 (22,30 %)</p></td>
-<td class="text-right"><p>61</p></td>
-</tr>
-<tr class="row-odd"><td><p>iTransformer</p></td>
-<td class="text-right"><p>305</p></td>
-<td class="text-right"><p>100</p></td>
-<td class="text-right"><p>73 (23,93 %)</p></td>
-<td class="text-right"><p>61</p></td>
-</tr>
-<tr class="row-even"><td><p>PatchTST</p></td>
-<td class="text-right"><p>305</p></td>
-<td class="text-right"><p>100</p></td>
-<td class="text-right"><p>54 (17,70 %)</p></td>
-<td class="text-right"><p>49</p></td>
-</tr>
-<tr class="row-odd"><td><p>GRU</p></td>
-<td class="text-right"><p>305</p></td>
-<td class="text-right"><p>100</p></td>
-<td class="text-right"><p>38 (12,46 %)</p></td>
-<td class="text-right"><p>23</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>Los casos se clasificaron automáticamente en las siete categorías registradas; la muestra estratificada de cien fechas sin reemplazo por modelo conserva pesos de inclusión en el ledger privado. Esto acredita análisis cuantitativo P0 y disponibilidad de cien casos auditables, <strong>no cien explicaciones causales escritas ni el análisis de los tres mejores finales</strong>. La tabla usa como denominador las 305 fechas completas, no la muestra estratificada. Las categorías y sus IC nominales por bloques de catorce días, con 2.000 remuestreos, están en el <a class="reference download internal" download="" href="../_downloads/2c665821c8952ba4610705ea837335ac/error_summary.json"><span class="xref download myst">resumen agregado</span></a>.</p>
-<p>Las categorías sin casos tienen frecuencia observada cero; un intervalo bootstrap degenerado [0,0] solo refleja esta muestra y no acredita probabilidad poblacional nula.</p>
-<p>Los errores grandes de las tres recetas neuronales candidatas de P0 se concentran descriptivamente en subestimación consistente, aunque el patrón también aparece en GRU. El ensamble exploratorio de pesos iguales obtuvo RMSE <strong>0,00569964</strong>, frente a <strong>0,00478278</strong> del mejor miembro medio entre semillas en el mismo OOF: su ganancia fue <strong>−0,00091685</strong>. Estos son estimandos de ensamble, distintos de la media primaria de RMSE por semilla, y <strong>no respaldan una mejora por combinar los cuatro modelos</strong>.</p>
-<p>Se publican la <a class="reference download internal" download="" href="../_downloads/fddfbfab1c56524cb85ad93918e2a7ba/training_taxonomy.json"><span class="xref download myst">taxonomía y su procedencia</span></a> y el <a class="reference download internal" download="" href="../_downloads/a3b386e80fa8a5405a5466c54b396e8e/analysis_receipt.json"><span class="xref download myst">recibo de análisis</span></a>. Los casos individuales se conservan privados. Los cuatro modelos P0 no se renombran los tres mejores del benchmark ni sus errores se convierten en intervalos predictivos calibrados.</p>
-</section>
-<section id="reproduccion-de-la-evidencia-historica">
-<h3>12.3.3 Reproducción de la evidencia histórica<a class="headerlink" href="#reproduccion-de-la-evidencia-historica" title="Link to this heading">#</a></h3>
-<p>Los comandos siguientes se conservan para la reproducción del <strong>procedimiento P0 anterior</strong>:</p>
-<p>El módulo histórico <code class="docutils literal notranslate"><span class="pre">scripts/e2_predictive_uncertainty.py</span></code> contiene validadores de soportes, calibración ponderada, métricas predictivas, remuestreo por bloques y análisis OOF. El comando por defecto solo describe el plan; no carga datos ni escribe resultados:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>scripts/e2_predictive_uncertainty.py
-python<span class="w"> </span>tests/test_e2_predictive_uncertainty.py
-</pre></div>
-</div>
-<p>Las funciones numéricas usan NumPy; los tests trabajan con fixtures sintéticos. Su éxito verifica software y restricciones del procedimiento, no acredita cobertura ni cien errores nuevos de cada modelo. Cualquier evaluación nueva requiere las predicciones y los recibos causalmente admisibles indicados en el plan.</p>
-<p>Los OOF P0 registrados ya existen; la entrada explícita siguiente permite reproducir el análisis de su CSV y una taxonomía aprendida solo en entrenamiento; los identificadores deben coincidir con la cohorte efectiva, no con una selección posterior de ganadores:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>scripts/e2_predictive_uncertainty.py<span class="w"> </span>--oof-csv<span class="w"> </span>RUTA_PRIVADA/oof_predictions.csv<span class="w"> </span>--taxonomy-json<span class="w"> </span>RUTA_PRIVADA/training_taxonomy.json<span class="w"> </span>--models<span class="w"> </span>MODELOS_REGISTRADOS<span class="w"> </span>--seeds<span class="w"> </span>SEMILLAS_REGISTRADAS<span class="w"> </span>--private-output<span class="w"> </span>../e2_private/error_analysis
-</pre></div>
-</div>
-<p>La CLI exige los hashes y timestamps de checkpoints presentes en el CSV y su cierre antes del primer scoring, y escribe solo en una carpeta privada nueva fuera del repositorio. Produce un resumen agregado, un ledger privado de cien casos por modelo y un recibo de hashes; no vuelve a entrenar. Los hashes identifican insumos, pero no prueban por sí solos que sus declaraciones científicas sean verdaderas. El modo actual admite P0 diagnóstico; no lo presenta como un benchmark final ni decide los tres mejores modelos.</p>
-</section>
+<section id="archivo-de-la-version-anterior">
+<h2>Archivo de la versión anterior<a class="headerlink" href="#archivo-de-la-version-anterior" title="Link to this heading">#</a></h2>
+<p>La <a class="reference download internal" download="" href="../_downloads/b908eebaffc860bef9b93249bf6a2208/12_incertidumbre_errores.md"><code class="xref download docutils literal notranslate"><span class="pre">versión</span> <span class="pre">exacta</span> <span class="pre">anterior</span> <span class="pre">a</span> <span class="pre">esta</span> <span class="pre">consolidación</span></code></a> se conserva con sus estados y fechas históricos. El <a class="reference download internal" download="" href="../_downloads/a375c47d06b822516dc7b9dafd245bd1/chapter_archive_manifest.json"><span class="xref download myst">manifiesto de archivo</span></a> fija su commit y SHA256. Esos antecedentes no sustituyen el protocolo ejecutado de <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a> ni su Apéndice B actual de <a class="reference internal" href="61_reproduccion_consolidada.html"><span class="std std-doc">§61</span></a>.</p>
 </section>
 </section>
 
@@ -600,7 +493,7 @@ python<span class="w"> </span>tests/test_e2_predictive_uncertainty.py
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">anterior</p>
-        <p class="prev-next-title">11. HPO y equidad para el catálogo vigente</p>
+        <p class="prev-next-title">11. Selección HPO ejecutada y equidad</p>
       </div>
     </a>
     <a class="right-next"
@@ -608,7 +501,7 @@ python<span class="w"> </span>tests/test_e2_predictive_uncertainty.py
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">13. Agregación estadística e interpretación</p>
+        <p class="prev-next-title">13. Estimandos, agregación e inferencia actual</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -630,23 +523,11 @@ python<span class="w"> </span>tests/test_e2_predictive_uncertainty.py
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#techo-de-desempeno-y-margen-de-mejora-real">12.1 Techo de desempeño y margen de mejora real</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#referencia-aplicable-a-esta-serie-temporal">12.1.1 Referencia aplicable a esta serie temporal</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distancia-normalizada-y-sentido-de-la-metrica">12.1.2 Distancia normalizada y sentido de la métrica</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ruido-y-criterio-de-cierre">12.1.3 Ruido y criterio de cierre</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cuantificacion-de-incertidumbre">12.2 Cuantificación de incertidumbre</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predictor-congelado-y-calibracion-disjunta">12.2.1 Predictor congelado y calibración disjunta</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intervalos-temporales-y-evaluacion">12.2.2 Intervalos temporales y evaluación</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#casos-de-error-unidad-taxonomia-y-muestreo">12.3 Casos de error: unidad, taxonomía y muestreo</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requisitos-del-nuevo-analisis">12.3.1 Requisitos del nuevo análisis</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-p0-historico-ejecutado">12.3.2 Análisis P0 histórico ejecutado</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduccion-de-la-evidencia-historica">12.3.3 Reproducción de la evidencia histórica</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intervalos-y-calibracion-originales">12.1 Intervalos y calibración originales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#robustez-y-explicaciones">12.2 Robustez y explicaciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#taxonomia-operativa-y-muestra-auditable">12.3 Taxonomía operativa y muestra auditable</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#techo-y-distancia">12.4 Techo y distancia γ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-de-la-version-anterior">Archivo de la versión anterior</a></li>
 </ul>
   </nav></div>
 

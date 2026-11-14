@@ -228,17 +228,21 @@
 <li class="toctree-l1"><a class="reference internal" href="57_errores_techo.html">57. Taxonomía de errores y referencias de predictibilidad</a></li>
 <li class="toctree-l1"><a class="reference internal" href="58_flops_predictores.html">58. Coste de operaciones de los predictores congelados</a></li>
 <li class="toctree-l1"><a class="reference internal" href="59_auditoria_literatura_final.html">59. Auditoría final de la literatura recibida</a></li>
+<li class="toctree-l1"><a class="reference internal" href="60_calibracion_temporal_condicional.html">60. Calibración temporal y cobertura condicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="61_reproduccion_consolidada.html">61. Entrega reproducible y Apéndice B actual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="62_cierre_literatura_focal.html">62. Elegibilidad focal y puntuación bibliográfica contextual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="63_ensamble_calibracion.html">63. Referencia empírica mediante un ensemble ajustado en calibración</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
-<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Registro de selección, cierre pendiente y trazabilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad de la entrega vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Registros, enmiendas y cierre de la ejecución</a></li>
 <li class="toctree-l1"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de datos y auditoría formal de fuga</a></li>
-<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. HPO y equidad para el catálogo vigente</a></li>
-<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Techo de desempeño, incertidumbre y análisis de errores</a></li>
-<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Agregación estadística e interpretación</a></li>
-<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas del catálogo vigente y adaptación a D7</a></li>
-<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo vigente: diez modelos y candidato 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. Selección HPO ejecutada y equidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Incertidumbre, errores y referencias de dificultad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Estimandos, agregación e inferencia actual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas ejecutadas y condición de NAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo ejecutado y procedencia bibliográfica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="16_fichas_nuevas.html">16. Fichas bibliográficas de las cuatro altas propuestas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato sincronizado de E1, E2 y E3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato vigente y relación entre E1, E2 y E3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="18_integracion_sintetica.html">18. Implementación provisional y verificación sintética</a></li>
 <li class="toctree-l1"><a class="reference internal" href="19_plan_auditoria.html">19. Plan experimental propuesto y auditoría sin entrenamiento</a></li>
 <li class="toctree-l1"><a class="reference internal" href="20_contraste_guia.html">20. Cotejo del plan con la guía original</a></li>
@@ -433,6 +437,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-de-cierre-de-esta-seccion">1.4.1 Estado de cierre de esta sección</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-de-la-version-anterior">Archivo de la versión anterior</a></li>
 </ul>
             </nav>
         </div>
@@ -447,7 +452,7 @@
   <section class="tex2jax_ignore mathjax_ignore" id="definicion-del-problema-preguntas-de-investigacion-y-dataset">
 <h1>1. Definición del Problema, Preguntas de Investigación y Dataset<a class="headerlink" href="#definicion-del-problema-preguntas-de-investigacion-y-dataset" title="Link to this heading">#</a></h1>
 <p><strong>Estado de ejecución al 13/11/2026:</strong> el <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">benchmark reducido</span></a> está completado para dieciséis sistemas y 608 fechas, con seis semillas por red. <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a> documenta las recetas y el protocolo ejecutados; <a class="reference internal" href="49_diagnosticos_f2a.html"><span class="std std-doc">§49</span></a> contiene los diagnósticos posteriores. La arquitectura vigente de TiDE es <strong>TIDE-D7-PUBLISHED-R0-v2</strong>, acreditada antes de sus ajustes; las variantes NAS anteriores mantienen otra identidad.</p>
-<p><strong>Antecedente conservado:</strong> <strong>Vigencia documental (12/11/2026):</strong> existe selección HPO/NAS ejecutada del plan anterior de catorce redes. No acredita las cuatro recetas restauradas de SAE, TimesNet, TimeMixer y PatchTST, ni el benchmark final del catálogo vigente. k, R y el cierre inferencial siguen pendientes. <a class="reference internal" href="43_catalogo_obligatorio.html"><span class="std std-doc">Catálogo obligatorio (§43)</span></a> · <a class="reference internal" href="44_arquitecturas_publicadas.html"><span class="std std-doc">Arquitecturas (§44)</span></a> · <a class="reference internal" href="45_enmienda_protocolo.html"><span class="std std-doc">Enmienda registrada (§45)</span></a> · <a class="reference internal" href="41_avance_optimizacion_11_origenes.html"><span class="std std-doc">Corte histórico de resultados (§41)</span></a>.</p>
+<p><strong>Antecedente de planificación del 12/11/2026:</strong> ese corte fue sustituido por la ejecución documentada en <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>. Su texto exacto se conserva en el archivo enlazado al final; no describe trabajos finales pendientes.</p>
 <p><strong>Catálogo obligatorio vigente: dieciséis sistemas.</strong> Diez modelos de literatura y adaptaciones, las referencias MLP16, LSTM32 y GRU32 de E1, y Persistence, SeasonalNaive y ARIMA. Las referencias E1 se cuentan aparte del Top 10 y forman parte de los dieciséis. El híbrido CNN-1D + LSTM + atención temporal y Ridge quedan como antecedentes opcionales. La <a class="reference internal" href="45_enmienda_protocolo.html"><span class="std std-doc">enmienda del 12/11/2026</span></a> conserva el antecedente de transición; el cuerpo TiDE publicado, el calendario reducido y la ejecución efectiva están documentados en §48.</p>
 <p>Esta sección desarrolla las páginas 2–3 de la guía completa de 65 páginas. Se conservan la formulación y la ficha de datos; la ruta es <strong>F2a, series de tiempo</strong>, como explica la <a class="reference internal" href="07_ruta_temporal.html#e2-ruta-temporal"><span class="std std-ref">sección 7</span></a>. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0">registro histórico <code class="docutils literal notranslate"><span class="pre">599a29f</span></code></a> y el <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">piloto P0 ejecutado</span></a> se conservan para trazabilidad, sin trasladar sus candidatos, presupuesto o resultados al catálogo vigente. Los periodos heredados ya se conocían: su reutilización tiene alcance exploratorio. Los diagnósticos del EDA se presentan en la <a class="reference internal" href="02_eda.html"><span class="std std-doc">sección 2</span></a>.</p>
 <section id="definicion-formal-del-problema">
@@ -570,7 +575,7 @@ R_P(f)=\mathbb E_{(X,Y)\sim P}[\mathcal L(f(X),Y)].
 <h3>1.1.5 Métricas, margen y unidad de independencia<a class="headerlink" href="#metricas-margen-y-unidad-de-independencia" title="Link to this heading">#</a></h3>
 <p>La primaria es RMSE; las secundarias heredadas son MAE, MSE, R², MAPE y MASE. MAPE se define solo donde el objetivo sea positivo y se reportará su cobertura; no se añadirá un épsilon arbitrario. MASE usa el denominador histórico ingenuo de lag 1 sobre pares de días consecutivos elegibles de entrenamiento; no se calcula comprimiendo huecos ni usando test para escalar.</p>
 <p>El margen absoluto heredado procede de <span class="math notranslate nohighlight">\(0,05\times0,005154568532996221\)</span>, RMSE CV de la GRU/D7 de fase I. <strong>No se recalcula como el 5 % de una nueva RMSE.</strong> Se conserva aparte la regla relativa académica de E1 frente a GRU y persistencia; no se confunde una reducción porcentual con δ absoluto. Su origen y fecha están documentados: heredar el margen no lo vuelve una decisión previa a los resultados históricos iniciales.</p>
-<p>Hay <strong>una única serie de mercado</strong> (<span class="math notranslate nohighlight">\(N_{\text{series}}=1\)</span>). Las semillas describen variabilidad del entrenamiento condicionada a los datos; no son nuevas series independientes. Las etiquetas σ₇ comparten retornos y las ventanas comparten observaciones. La comparación debe emparejar fechas y distinguir variación entre semillas de incertidumbre temporal. El remuestreo por bloques evita suponer independencia diaria, pero su diseño y sensibilidad requieren justificación en desarrollo. Ningún número de semillas de E1 o del P0 histórico acredita potencia para las nuevas comparaciones. §45 registra el procedimiento de dimensionamiento; su ejecución con las recetas seleccionadas y el valor de R siguen pendientes.</p>
+<p>Hay <strong>una única serie de mercado</strong> (<span class="math notranslate nohighlight">\(N_{\text{series}}=1\)</span>). Las semillas describen variabilidad del entrenamiento condicionada a los datos; no son nuevas series independientes. Las etiquetas σ₇ comparten retornos y las ventanas comparten observaciones. La comparación debe emparejar fechas y distinguir variación entre semillas de incertidumbre temporal. El remuestreo por bloques evita suponer independencia diaria, pero su diseño y sensibilidad requieren justificación en desarrollo. Ningún número de semillas de E1 o del P0 histórico acredita potencia para las nuevas comparaciones. El procedimiento vigente de <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a> completó el piloto y fijó R=6 por recursos; su potencia condicional estimada fue 0,123, inferior al objetivo de 0,80.</p>
 </section>
 </section>
 <section id="preguntas-de-investigacion-e-hipotesis">
@@ -614,7 +619,7 @@ H_{1,m}:(g_m&gt;\delta)\ \text{y}\ (c_m&lt;0).
 <h3>1.2.4 Multiplicidad y criterio de decisión común<a class="headerlink" href="#multiplicidad-y-criterio-de-decision-comun" title="Link to this heading">#</a></h3>
 <p>La familia primaria vigente contiene veinte comparaciones del Top 10 frente a GRU32 y Persistence y utiliza Holm con nivel familiar 0,05, según §45. <strong>No se heredan los recuentos ni las asignaciones estadísticas del catálogo retirado.</strong> Las referencias E1 y los comparadores sí forman parte de los dieciséis sistemas obligatorios; el híbrido y Ridge no forman parte de esa familia primaria.</p>
 <p>RQ2 y RQ3 conservan alcance exploratorio. Si se comunica el contraste conjunto de RQ3, se obtiene primero el p-valor de intersección-unión y se declara su multiplicidad y sus límites; no se incorpora silenciosamente al ajuste primario. Los IC marginales del 95 % se distinguen de los límites simultáneos. Las pruebas de equivalencia, calibración, robustez y diagnóstico necesitan su propio alcance; no quedan cubiertas automáticamente por el ajuste de las preguntas principales.</p>
-<p>El margen absoluto δ se mantiene como referencia metodológica; la tolerancia de brecha train–validación y las alternativas de potencia deberán fijarse explícitamente. El <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">P0 histórico de §9</span></a> completó 220 trayectorias y 440 ajustes de desarrollo, pero no selecciona ni dimensiona el catálogo vigente. Aunque se controle multiplicidad, reutilizar un test conocido mantiene el alcance exploratorio.</p>
+<p>El margen absoluto δ se mantiene como referencia metodológica; no existió una tolerancia δg de brecha train–validación previa y las alternativas posteriores se reportan únicamente como sensibilidad descriptiva en <a class="reference internal" href="56_inferencia_estabilidad_final.html"><span class="std std-doc">§56</span></a>. El <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">P0 histórico de §9</span></a> completó 220 trayectorias y 440 ajustes de desarrollo, pero no selecciona ni dimensiona el catálogo vigente. Aunque se controle multiplicidad, reutilizar un test conocido mantiene el alcance exploratorio.</p>
 </section>
 </section>
 <section id="justificacion-del-dataset">
@@ -702,7 +707,7 @@ H_{1,m}:(g_m&gt;\delta)\ \text{y}\ (c_m&lt;0).
 </tbody>
 </table>
 </div>
-<p>El hash anterior identifica <strong>el archivo manifiesto</strong>; no es un único checksum de todos los precios concatenados. Cada ZIP tiene su comprobación individual en ese archivo. La Data Card y el contrato documentan la transferencia; el benchmark final Bitcoin D7 continúa pendiente y su ejecución se distingue del <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">P0 de desarrollo registrado en §9</span></a>. El <a class="reference download internal" download="" href="../_downloads/509b719d3c945b6db39c7464fff8dacb/execution_receipt.json"><span class="xref download myst">recibo de las veinte corridas externas de ETTh1</span></a> tiene otro alcance.</p>
+<p>El hash anterior identifica <strong>el archivo manifiesto</strong>; no es un único checksum de todos los precios concatenados. Cada ZIP tiene su comprobación individual en ese archivo. La Data Card y el contrato documentan la transferencia; el <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">benchmark final Bitcoin D7</span></a> ya compara dieciséis sistemas sobre 608 fechas; se distingue del P0 histórico de desarrollo archivado en §9. El <a class="reference download internal" download="" href="../_downloads/509b719d3c945b6db39c7464fff8dacb/execution_receipt.json"><span class="xref download myst">recibo de las veinte corridas externas de ETTh1</span></a> tiene otro alcance.</p>
 <section id="estado-de-cierre-de-esta-seccion">
 <h3>1.4.1 Estado de cierre de esta sección<a class="headerlink" href="#estado-de-cierre-de-esta-seccion" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -719,7 +724,7 @@ H_{1,m}:(g_m&gt;\delta)\ \text{y}\ (c_m&lt;0).
 <td><p>Tres referencias de contexto citadas; no sustituyen la revisión sistemática</p></td>
 </tr>
 <tr class="row-even"><td><p>Tres RQ, hipótesis, efecto y reglas</p></td>
-<td><p>RQ1 registrada con veinte contrastes primarios; RQ2/RQ3 exploratorias; ejecución y potencia pendientes</p></td>
+<td><p>RQ1 ejecutada con veinte contrastes; refinamiento B=20.000 de §56. RQ2/RQ3 exploratorias; potencia piloto insuficiente y declarada</p></td>
 </tr>
 <tr class="row-odd"><td><p>Justificación y Data Card</p></td>
 <td><p>Documentadas con procedencia, versión, hashes, calidad y límites</p></td>
@@ -728,7 +733,7 @@ H_{1,m}:(g_m&gt;\delta)\ \text{y}\ (c_m&lt;0).
 <td><p>Pendiente de referencia y cuartil por año; no exige identidad exacta del snapshot</p></td>
 </tr>
 <tr class="row-odd"><td><p>Catálogo y protocolo</p></td>
-<td><p>Dieciséis sistemas obligatorios; nueve cuerpos definidos y TiDE NAS; enmienda registrada, transición y evaluación pendientes</p></td>
+<td><p>Dieciséis sistemas evaluados; cuerpos actuales adjudicados, incluida TiDE publicada r=0; protocolo ejecutado en §48</p></td>
 </tr>
 <tr class="row-even"><td><p>Prueba desconocida y confirmación nueva</p></td>
 <td><p>No disponibles en los periodos heredados ya evaluados</p></td>
@@ -738,6 +743,10 @@ H_{1,m}:(g_m&gt;\delta)\ \text{y}\ (c_m&lt;0).
 </div>
 <p>La <a class="reference internal" href="03_literatura.html"><span class="std std-doc">revisión bibliográfica de §3</span></a> distingue las fuentes de los modelos, su adaptación a regresión de σ₇ y la evidencia aplicada a criptomonedas. Una arquitectura publicada o un original leído no acreditan su funcionamiento en este dataset. La comprobación de uso de la fuente en Q1 y el cierre bibliográfico se mantienen separados de la ejecución del nuevo benchmark.</p>
 </section>
+</section>
+<section id="archivo-de-la-version-anterior">
+<h2>Archivo de la versión anterior<a class="headerlink" href="#archivo-de-la-version-anterior" title="Link to this heading">#</a></h2>
+<p>La <a class="reference download internal" download="" href="../_downloads/c235c184f54a71bd5edc80ffe7f6ed7f/01_punto_partida.md"><code class="xref download docutils literal notranslate"><span class="pre">versión</span> <span class="pre">exacta</span> <span class="pre">anterior</span> <span class="pre">a</span> <span class="pre">esta</span> <span class="pre">consolidación</span></code></a> se conserva con su SHA256 en el <a class="reference download internal" download="" href="../_downloads/a375c47d06b822516dc7b9dafd245bd1/chapter_archive_manifest.json"><span class="xref download myst">manifiesto de archivo</span></a>. Sus estados pendientes describen el corte original.</p>
 </section>
 </section>
 
@@ -832,6 +841,7 @@ H_{1,m}:(g_m&gt;\delta)\ \text{y}\ (c_m&lt;0).
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-de-cierre-de-esta-seccion">1.4.1 Estado de cierre de esta sección</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-de-la-version-anterior">Archivo de la versión anterior</a></li>
 </ul>
   </nav></div>
 

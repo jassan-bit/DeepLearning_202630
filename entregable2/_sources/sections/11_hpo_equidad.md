@@ -1,87 +1,30 @@
-# 11. HPO y equidad para el catálogo vigente
+# 11. Selección HPO ejecutada y equidad
 
-**Vigencia al 11/11/2026:** Se conservan los dominios, semillas y oportunidades HPO/NAS en los once orígenes originales. La reducción a tres queda pendiente; sólo se optimiza implementación y orden. [Decisión y ejecutor vigentes](40_calendario_original.md).
+**Estado vigente del 14/11/2026:** la selección reducida de las **trece redes obligatorias** está cerrada. La comparación final utiliza los diez candidatos, las tres referencias E1 y los comparadores Persistence, SeasonalNaive y ARIMA. No hay un candidato 11 adicional activo dentro de la obligación de E2. Las recetas y recibos se consultan en [§48](48_protocolo_reducido.md).
+
+## 11.1 Dominio y oportunidades conservadas
+
+Cada red recibió **seis configuraciones y los mismos tres orígenes internos**: enero, julio y octubre de 2024, con semilla HPO 271201. Son **234 oportunidades**: 231 resultados válidos, dos fallos conocidos y un desenlace desconocido. Cada ganador dispone de tres folds completos. Se mantuvieron las incidencias sin sustituirlas para favorecer un modelo.
+
+La selección usa exclusivamente las métricas de validación de los folds admitidos. Los dominios de seis plazas proceden de una reducción explícita de la búsqueda histórica, no de una afirmación de exploración exhaustiva. Los 61 resultados reutilizados requieren identidad de receta, configuración, firma de datos y trabajador compatible; no se convierten en nuevos ajustes. La cobertura de curvas HPO seleccionadas permanece incompleta: se recuperaron 29 de 39 registros, mientras los 78 ajustes finales sí conservan sus curvas en [§49](49_diagnosticos_f2a.md).
+
+## 11.2 Presupuesto común y diferencias estructurales
+
+El número de plazas y folds es común para las redes. SAE conserva sus fases de preentrenamiento y supervisión propias; igualdad de oportunidades no implica igual número de parámetros, pasos o segundos. Los límites de admisión y la transición T4–A100 se registraron por separado. Los [costes medidos](51_eficiencia_costes.md), el [perfil A100](54_robustez_interpretabilidad.md) y los [FLOPs core](58_flops_predictores.md) describen magnitudes diferentes.
+
+ARIMA evaluó **18 órdenes × tres folds**, con 51 resultados válidos, dos no convergencias y un fallo de implementación que consumió su oportunidad. Quince órdenes tuvieron tres folds válidos y ganó (2,0,1). SeasonalNaive eligió periodo 7 entre tres periodos. Los comparadores deterministas aportan una trayectoria cada uno, sin duplicarlos como seis entrenamientos independientes. El ajuste clásico y el neuronal tienen dominios diferentes; no se certifica igualdad de coste global únicamente por compartir la cohorte final.
+
+## 11.3 Arquitectura definida y NAS condicional
+
+Los cuerpos actuales están adjudicados en [§44](44_arquitecturas_publicadas.md) y la actualización TiDE r=0 de [§48](48_protocolo_reducido.md). Sus identidades y adaptaciones D7 se preservan. La exigencia de **1.000 arquitecturas y dos fases NAS** corresponde a cuerpos no definidos por sus fuentes. Las seis plazas HPO no se presentan como cumplimiento de NAS. Introducir una arquitectura indefinida nueva exigiría su protocolo propio; no se hace en este cierre.
+
+## 11.4 Ajustes finales y alcance de las comparaciones
+
+Cada red se reinicializó con **seis semillas, 271801–271806**, después de elegir su configuración por validación. La A2 promedia las seis RMSE individuales sobre las mismas 608 fechas; la fase de selección no se mezcla con las ejecuciones finales. La potencia estimada del piloto fue insuficiente para el efecto planificado. La ausencia de rechazo se interpreta como resultado no concluyente y no como equivalencia.
+
+El periodo evaluado ya se conocía en E1. Se declara su alcance retrospectivo y no se elige una receta distinta usando el ranking final. La [matriz de cumplimiento](38_cumplimiento_guia.md) mantiene las condiciones metodológicas parciales, incluida la auditoría integral de fuga y la cobertura del dominio reducido.
 
 
+## Archivo de la versión anterior
 
-**Decisión posterior de diseño (09/11/2026):** [§27 fija seis variantes NAS, cinco cuerpos publicados, rangos HPO y presupuesto para Codex](27_nas_hpo_presupuesto.md). La implementación de nuevas variantes, el perfilado de horas y el preregistro completo siguen pendientes; el contenido siguiente conserva el alcance de su corte anterior.
-
-**Guía original cotejada:** [correcciones y pendientes por página](20_contraste_guia.md). La cuadrícula reducida no cubre el espacio mínimo; controles F2a, NAS condicional y batería estadística requieren completar el plan antes de entrenar.
-
-
-**Actualización de planificación:** [§19: auditoría real de desarrollo y plan propuesto](19_plan_auditoria.md). Sin entrenamiento de mercado, HPO ni preregistro nuevo.
-
-**Avance de software:** fábrica de los once candidatos, híbrido y flujo sintético implementados y verificados; recetas provisionales, sin datos de mercado. Véase [§18: integración y pruebas sintéticas](18_integracion_sintetica.md). No hay HPO ni benchmark vigente ejecutado.
-
-**Estado al 08/11/2026: no hay HPO propio del nuevo catálogo.** Los diez modelos vigentes son FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder con predictor, TimesNet, TSMixer, TiDE, TimeMixer, PatchTST e iTransformer. CNN-1D + LSTM + atención temporal es el candidato adicional activo, no un ganador ni un modelo con presupuesto preferente.
-
-Esta sección define las condiciones que debe satisfacer el nuevo diseño, **no un plan HPO ya registrado**. El número de configuraciones por receta, los límites de cómputo, los espacios, las semillas y R siguen pendientes de definición. Los diez modelos y el híbrido están seleccionados editorialmente, pero este último está implementado provisionalmente y probado con datos sintéticos, sin entrenamiento de mercado. No se reutilizan las asignaciones ni los compromisos de búsqueda del catálogo retirado.
-
-## 11.1 Presupuesto comparable y completo
-
-El preregistro debe fijar una unidad de comparación, hardware y entorno, límites por receta y reglas ante fallos antes de iniciar búsquedas. Igualar sólo el número de candidatos no asegura igualdad de coste ni de oportunidad de selección. Se deben publicar tanto la asignación como el consumo real.
-
-| Componente | Trabajo que debe entrar en la contabilidad |
-|---|---|
-| FCN-1D y ResNet-1D | Selección de receta, ajuste de épocas y reajustes de cada configuración/fold |
-| Inception-1D | Todas las redes si se adopta un ensemble; distinguirlo de una receta de un miembro |
-| LSTM-autoencoder con predictor | Preentrenamiento de reconstrucción, selección de esa fase, ajuste supervisado y cualquier reajuste |
-| TimesNet, TSMixer, TiDE, TimeMixer, PatchTST e iTransformer | Integración validada, HPO de su adaptación y cada ajuste previsto |
-| CNN-1D + LSTM + atención temporal | Selección, entrenamiento de los bloques CNN/LSTM/atención y cabeza, reajustes y ablaciones registradas |
-
-La preparación de software se puede informar por separado del coste de entrenamiento, sin ocultar las etapas que sí usan datos para seleccionar modelos. Una receta inicializada o preentrenada con información externa debe declarar origen, acceso, licencia y alcance temporal; no se presupone que exista tal recurso aquí.
-
-No se darán más intentos a una familia por resultados desfavorables. Timeouts, NaN, divergencias y ejecuciones incompletas consumen el presupuesto según una regla previa. Sólo se reanuda la misma configuración/semilla ante una interrupción externa documentada, con su coste acumulado; no se sustituyen semillas de peor desempeño.
-
-## 11.2 Espacios y recetas por congelar
-
-Las arquitecturas se fijarán a partir de fuentes y adaptaciones verificadas, con una justificación individual de lo que es estructura, hiperparámetro de optimización y modificación de tarea. Los defaults compactos de [§4](04_implementacion.md) no son ganadores seleccionados ni réplicas literales de las fuentes.
-
-El registro de cada espacio debe indicar parámetros variables, valores fijos, distribución o cuadrícula, restricciones, orden o semilla de generación, número de oportunidades y parada. Las elecciones de optimizador, pérdida, learning rate, batch, regularización y épocas no se heredan por silencio del experimento histórico.
-
-Para el autoencoder deben cerrarse preentrenamiento secuencial frente a otra estrategia, política de congelado y escalado de objetivos. Una pérdida conjunta sería una adaptación propia que requiere justificación. Para Inception-1D debe resolverse red individual frente a ensemble antes de comparar costes. Para el híbrido deben fijarse anchos, kernels, profundidad, función de atención, enlace y entrenamiento. La estructura propuesta es CNN causal → LSTM unidireccional con secuencia de salida → atención sobre siete estados observados → contexto → cabeza escalar; no se han elegido hiperparámetros definitivos.
-
-Una fuente puede justificar un punto de partida; no demuestra que ese punto sea óptimo para Bitcoin D7. Si el óptimo observado cae en el borde del espacio o el presupuesto resulta insuficiente, se reportará esa limitación. No se amplía un rango después de mirar la evaluación.
-
-La condición de búsqueda arquitectónica se resolverá por modelo en [§14](14_arquitecturas.md). No se inventa una búsqueda NAS realizada ni se hereda una exención de otra receta.
-
-## 11.3 Selección temporal sin fuga
-
-Cada origen externo necesita sus propios bloques internos de selección, completamente anteriores a su límite permitido. Escaladores, imputaciones, selección de épocas, preentrenamiento y ajuste supervisado se aprenden exclusivamente en ese ámbito. Un estado o checkpoint entrenado posteriormente no puede viajar a un fold anterior.
-
-El ejecutor nuevo debe comprobar soportes reales, huecos y disponibilidad de D7×5 `relative_window`, σ₇ poblacional y h=1 conforme al [contrato sincronizado E1–E2–E3](17_contrato_sincronizado.md); no basta confiar en metadatos declarados. La referencia E1 usa etiquetas hasta o−8 y embargo de siete días; el nuevo manifiesto deberá documentar y verificar sus folds y cortes. Retirar HAR no elimina las restricciones temporales del contrato común.
-
-La selección por RMSE debe concatenar las fechas elegibles de cada trayectoria, calcular su RMSE en escala original y después promediar entre semillas. No equivale al promedio no ponderado de RMSE mensuales ni al error de un ensemble no especificado. El nuevo protocolo fijará desempates sin crearlos por redondeo.
-
-La evaluación OOF del procedimiento de selección se distingue de la búsqueda final de una receta con desarrollo. El piloto para dimensionar repeticiones debe corresponder a las recetas congeladas que se desea evaluar. Los datos destinados a calibración predictiva necesitan su separación propia y no se reutilizan inadvertidamente para selección.
-
-## 11.4 Controles específicos del candidato 11
-
-El nuevo híbrido dispone de implementación provisional y pruebas propias en §18, sin evaluación de mercado. Las diez pruebas sintéticas previas corresponden a cuatro redes compactas y a HAR + red residual, que se conserva como código histórico inactivo. No validan el nuevo flujo CNN/LSTM/atención.
-
-Los controles propuestos son **CNN sola**, **LSTM sola** y **CNN–LSTM sin atención**. Deben compartir el contrato de entrada, objetivo, cortes y calendario del híbrido; las diferencias de capacidad y coste se documentarán para interpretar cada ablación. La variante sin atención necesitará una regla de lectura predefinida, sin escogerla tras observar el test.
-
-Sus recetas, oportunidades de selección y costes deben registrarse antes de la búsqueda. Estos controles no amplían tácitamente el catálogo de diez modelos más candidato 11. No se requieren estimación HAR, soporte de 22 días ni cross-fitting de residuos para el nuevo híbrido; conservar el código anterior no los reactiva.
-
-## 11.5 Medición de eficiencia
-
-Se separarán tiempo de búsqueda, preentrenamiento, selección de épocas, reajuste, entrenamiento definitivo, preprocesamiento e inferencia. El protocolo común debe fijar precisión, threads, calentamiento, lotes, orden de temporización y repeticiones antes de medir.
-
-Parámetros, FLOPs/MACs, memoria pico y throughput requieren método, versiones y operaciones no soportadas. Menos parámetros no garantiza menor latencia. Un total no estimable se presenta como tal; un subtotal no se rotula como total y una energía no medida no vale cero.
-
-Las fronteras de Pareto se construirán con error y costes efectivamente observados. Una afirmación de equivalencia o de menor coste necesita margen, comparador e incertidumbre predefinidos; no basta no rechazar una diferencia de error. El coste por mejora conservará signos y unidades y será no estimable cuando su denominador sea inestable.
-
-## 11.6 Estado y evidencia de cierre
-
-| Requisito del nuevo HPO | Estado |
-|---|---|
-| Recetas y espacios de los once candidatos | Sin congelar |
-| Presupuesto, hardware, semillas y límites | Sin preregistro propio |
-| Runner integrado, flujo CNN/LSTM/atención y ablaciones auditados | Smoke sintético cerrado en §18; auditoría del pipeline de mercado pendiente |
-| Preflight y registro anterior al primer ajuste de mercado | Pendientes |
-| Búsquedas completas y consumo real | No ejecutados |
-| Recetas seleccionadas y dimensionamiento de R | No disponibles |
-
-El [recibo del 06/11/2026](../_static/completion_preflight/execution_progress.json) acredita sólo un HPO histórico iniciado e incompleto. No confirma actividad actual ni cuenta como búsqueda de este catálogo. Sus [espacios originales](../_static/completion_protocol/hpo.json), [candidatos originales](../_static/completion_protocol/candidate_registry.json) y [registro](../_static/completion_preflight/registration.json) se conservan para auditoría, sin transferir sus asignaciones al nuevo diseño. Los 440 ajustes P0/OOF también son antecedentes, no un nuevo presupuesto consumido.
-
-El orden de registro y evaluación está en [§9](09_protocolo_registrado.md); el estado por modelo, en [§6](06_benchmark_final.md). Hasta cerrar esos requisitos no corresponde anunciar entrenamiento justo, HPO terminado, potencia suficiente ni superioridad del híbrido.
+La {download}`versión exacta anterior a esta consolidación <../_static/e2_delivery_reproduction_20261114/archived_chapters/11_hpo_equidad.md>` se conserva con sus estados y fechas históricos. El [manifiesto de archivo](../_static/e2_delivery_reproduction_20261114/chapter_archive_manifest.json) fija su commit y SHA256. Esos antecedentes no sustituyen el protocolo ejecutado de [§48](48_protocolo_reducido.md) ni su Apéndice B actual de [§61](61_reproduccion_consolidada.md).

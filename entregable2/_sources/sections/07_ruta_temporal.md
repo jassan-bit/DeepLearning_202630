@@ -1,18 +1,20 @@
 (e2-ruta-temporal)=
 # 7. Ruta metodológica: series de tiempo y controles causales
 
+**Orientación de entrega del 14/11/2026:** el protocolo ejecutado es [§48](48_protocolo_reducido.md), los resultados comunes están en [§6](06_benchmark_final.md), la reproducción registrada en [§55](55_reproduccion_ablaciones.md) y el Apéndice B actual en [§61](61_reproduccion_consolidada.md). Las cifras científicas y los recibos históricos conservan su fecha y su alcance.
+
 **Estado vigente al 13/11/2026:** el benchmark reducido está completado en [§6](06_benchmark_final.md), con el calendario efectivamente ejecutado de [§48](48_protocolo_reducido.md). La auditoría posterior de ajuste, residuos, calibración y estabilidad temporal está en [§49](49_diagnosticos_f2a.md); las comparaciones S8 se documentan en [§50](50_comparaciones_f2a.md), mientras robustez y otros requisitos conservan su estado en [§53](53_cierre_requisitos.md). Los estados y calendarios del 11–12/11 conservados debajo son antecedentes, no el estado actual de ejecución.
 
-**Vigencia documental (12/11/2026):** la selección HPO/NAS ejecutada parcialmente corresponde al plan histórico de catorce redes. El catálogo obligatorio vigente es de **16 sistemas**, con las identidades de [§43](43_catalogo_obligatorio.md), las arquitecturas de [§44](44_arquitecturas_publicadas.md) y el protocolo registrado de [§45](45_enmienda_protocolo.md). Esos registros históricos no cierran el benchmark vigente ni acreditan las cuatro recetas restauradas. R y el cierre inferencial siguen pendientes. [Corte verificable de resultados (§41)](41_avance_optimizacion_11_origenes.md).
+**Antecedente de planificación del 12/11/2026:** ese corte fue sustituido por la ejecución documentada en [§48](48_protocolo_reducido.md). Su texto exacto se conserva en el archivo enlazado al final; no describe trabajos finales pendientes.
 
-**Calendario registrado al 12/11/2026:** se conserva F2a. [§45](45_enmienda_protocolo.md) registra tres anclas HPO y diez orígenes mensuales de evaluación con reajuste; su ejecución vigente sigue pendiente. El [plan de once búsquedas de §40](40_calendario_original.md) es histórico. Se conservan embargo, disponibilidad y carácter conocido del test.
-
-
-
-**Guía original cotejada:** [correcciones y pendientes por página](20_contraste_guia.md). La cuadrícula reducida no cubre el espacio mínimo; controles F2a, NAS condicional y batería estadística requieren completar el plan antes de entrenar.
+**Calendario ejecutado:** el procedimiento de [§48](48_protocolo_reducido.md) usó tres folds de selección y un ajuste final común con política de pesos fijos. Los diez reajustes mensuales propuestos en §45 y las once búsquedas de §40 son antecedentes. La disponibilidad causal, el embargo y el carácter conocido del test se conservan.
 
 
-La ruta vigente es **F2a, series de tiempo**, decidida el 06/11/2026 tras recibir la guía completa de 65 páginas. El [catálogo obligatorio de 16 sistemas](43_catalogo_obligatorio.md) conserva esa clasificación, el objetivo y las precauciones causales. La enmienda del protocolo está registrada en §45; registrarla no acredita ejecución. El híbrido adicional y Ridge son opcionales/históricos, sin superioridad demostrada.
+
+**Guía y aplicación:** los controles F2a actuales están en §§49–57. La NAS es condicional a cuerpos sin arquitectura definida; las seis plazas HPO de §48 no constituyen NAS. Los planes anteriores se conservan como antecedentes y no ordenan nuevas corridas.
+
+
+La ruta vigente es **F2a, series de tiempo**, decidida el 06/11/2026 tras recibir la guía completa de 65 páginas. El [catálogo obligatorio de 16 sistemas](43_catalogo_obligatorio.md) conserva esa clasificación, el objetivo y las precauciones causales. El protocolo efectivamente ejecutado y sus enmiendas están en §48, y los recibos finales en §§6/55. El híbrido adicional y Ridge son opcionales/históricos, sin superioridad demostrada.
 
 El [registro de decisiones del EDA](../_static/eda_traceability/decisiones_vigentes.csv) conserva la procedencia de la reclasificación y la fila histórica `RESID`. Su incorporación documental el 08/11/2026 no es una decisión experimental retroactiva.
 
@@ -63,3 +65,8 @@ Los CSV heredados `results/eda_development/stationarity_daily.csv`, `stationarit
 El módulo histórico `scripts/e2_temporal_baselines.py` y sus pruebas sintéticas se conservan sin cambios para reproducir sus controles de calendario, embargo y actualización. Su existencia no constituye la implementación del catálogo vigente ni una ejecución de Bitcoin del nuevo diseño.
 
 Estado: **ruta temporal definida; soportes, controles e implementación del nuevo catálogo pendientes de la nueva enmienda**. El [P0 ejecutado](09_protocolo_registrado.md) mantiene su identidad histórica. No se hereda su presupuesto, no se declara un ganador y no se certifica el cierre de todos los requisitos F2a.
+
+
+## Archivo de la versión anterior
+
+La {download}`versión exacta anterior a esta consolidación <../_static/e2_delivery_reproduction_20261114/archived_chapters/07_ruta_temporal.md>` se conserva con su SHA256 en el [manifiesto de archivo](../_static/e2_delivery_reproduction_20261114/chapter_archive_manifest.json). Sus estados pendientes describen el corte original.

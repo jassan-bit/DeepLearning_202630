@@ -65,8 +65,8 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="17. Contrato sincronizado de E1, E2 y E3" href="17_contrato_sincronizado.html" />
-    <link rel="prev" title="15. Catálogo vigente: diez modelos y candidato 11" href="15_revision_modelos.html" />
+    <link rel="next" title="17. Contrato vigente y relación entre E1, E2 y E3" href="17_contrato_sincronizado.html" />
+    <link rel="prev" title="15. Catálogo ejecutado y procedencia bibliográfica" href="15_revision_modelos.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
   <meta name="docsearch:version" content="" />
@@ -226,17 +226,21 @@
 <li class="toctree-l1"><a class="reference internal" href="57_errores_techo.html">57. Taxonomía de errores y referencias de predictibilidad</a></li>
 <li class="toctree-l1"><a class="reference internal" href="58_flops_predictores.html">58. Coste de operaciones de los predictores congelados</a></li>
 <li class="toctree-l1"><a class="reference internal" href="59_auditoria_literatura_final.html">59. Auditoría final de la literatura recibida</a></li>
+<li class="toctree-l1"><a class="reference internal" href="60_calibracion_temporal_condicional.html">60. Calibración temporal y cobertura condicional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="61_reproduccion_consolidada.html">61. Entrega reproducible y Apéndice B actual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="62_cierre_literatura_focal.html">62. Elegibilidad focal y puntuación bibliográfica contextual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="63_ensamble_calibracion.html">63. Referencia empírica mediante un ensemble ajustado en calibración</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
-<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Registro de selección, cierre pendiente y trazabilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad de la entrega vigente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Registros, enmiendas y cierre de la ejecución</a></li>
 <li class="toctree-l1"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de datos y auditoría formal de fuga</a></li>
-<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. HPO y equidad para el catálogo vigente</a></li>
-<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Techo de desempeño, incertidumbre y análisis de errores</a></li>
-<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Agregación estadística e interpretación</a></li>
-<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas del catálogo vigente y adaptación a D7</a></li>
-<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo vigente: diez modelos y candidato 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_hpo_equidad.html">11. Selección HPO ejecutada y equidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_incertidumbre_errores.html">12. Incertidumbre, errores y referencias de dificultad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_agregacion_estadistica.html">13. Estimandos, agregación e inferencia actual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas ejecutadas y condición de NAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_revision_modelos.html">15. Catálogo ejecutado y procedencia bibliográfica</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">16. Fichas bibliográficas de las cuatro altas propuestas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato sincronizado de E1, E2 y E3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_contrato_sincronizado.html">17. Contrato vigente y relación entre E1, E2 y E3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="18_integracion_sintetica.html">18. Implementación provisional y verificación sintética</a></li>
 <li class="toctree-l1"><a class="reference internal" href="19_plan_auditoria.html">19. Plan experimental propuesto y auditoría sin entrenamiento</a></li>
 <li class="toctree-l1"><a class="reference internal" href="20_contraste_guia.html">20. Cotejo del plan con la guía original</a></li>
@@ -433,6 +437,7 @@
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-de-extraccion-y-limites">Registro de extracción y límites</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recomendacion-de-integracion">Recomendación de integración</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-de-la-version-anterior">Archivo de la versión anterior</a></li>
 </ul>
             </nav>
         </div>
@@ -446,8 +451,9 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="fichas-bibliograficas-de-las-cuatro-altas-propuestas">
 <h1>16. Fichas bibliográficas de las cuatro altas propuestas<a class="headerlink" href="#fichas-bibliograficas-de-las-cuatro-altas-propuestas" title="Link to this heading">#</a></h1>
-<p><strong>Vigencia documental (11/11/2026):</strong> existe selección HPO/NAS registrada y ejecutada para el catálogo actual; las afirmaciones de ausencia de HPO o de falta de registro de selección corresponden a cortes anteriores. El benchmark final, R y su cierre inferencial siguen pendientes. <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">Registro y alcance actuales (§9)</span></a> · <a class="reference internal" href="40_calendario_original.html"><span class="std std-doc">Calendario (§40)</span></a> · <a class="reference internal" href="41_avance_optimizacion_11_origenes.html"><span class="std std-doc">Corte de resultados (§41)</span></a> · <a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html"><span class="std std-doc">Auditoría y trabajo paralelo (§42)</span></a>.</p>
-<p><strong>Fuente y adaptación:</strong> los esquemas/propuestas del 08/11 se conservan como antecedentes bibliográficos. Para la receta ejecutada consultar <a class="reference internal" href="26_registro_recetas.html"><span class="std std-doc">§26</span></a>–<a class="reference internal" href="28_fabricas_nas.html"><span class="std std-doc">§28</span></a>: no equiparar el ensemble original de Inception a un miembro, las cabezas lineales propuestas a la Softplus vigente ni confundir fases del autoencoder. Fuentes formalizadas: <span class="bibtex-citation" id="id1">[<a class="reference internal" href="referencias.html#id29" title="Alaa Sagheer and Mostafa Kotb. Unsupervised Pre-training of a Deep LSTM-based Stacked Autoencoder for Multivariate Time Series Forecasting Problems. Scientific Reports, 9:19038, 2019. Articulo 19038, publicado el 13 de diciembre de 2019. Describe preentrenamiento no supervisado seguido de ajuste supervisado; no acredita una perdida conjunta de reconstruccion y prediccion. URL: https://www.nature.com/articles/s41598-019-55320-6, doi:10.1038/s41598-019-55320-6.">Sagheer and Kotb, 2019</a>, <a class="reference internal" href="referencias.html#id27" title="Zhiguang Wang, Weizhong Yan, and Tim Oates. Time Series Classification from Scratch with Deep Neural Networks: A Strong Baseline. 2016. Preprint v4, revisado el 14 de diciembre de 2016, fuente compartida de FCN y ResNet. El DOI identifica el preprint; no se presenta como DOI editorial de IJCNN 2017. URL: https://arxiv.org/abs/1611.06455v4, arXiv:1611.06455, doi:10.48550/arXiv.1611.06455.">Wang <em>et al.</em>, 2016</a>, <a class="reference internal" href="referencias.html#id28" title="Hassan Ismail Fawaz, Benjamin Lucas, Germain Forestier, Charlotte Pelletier, Daniel F. Schmidt, Jonathan Weber, Geoffrey I. Webb, Lhassane Idoumghar, Pierre-Alain Muller, and François Petitjean. InceptionTime: Finding AlexNet for time series classification. Data Mining and Knowledge Discovery, 34:1936–1962, 2020. Version editorial publicada el 7 de septiembre de 2020. La adaptacion E2 de un miembro se distingue del ensemble original. URL: https://link.springer.com/article/10.1007/s10618-020-00710-y, doi:10.1007/s10618-020-00710-y.">Ismail Fawaz <em>et al.</em>, 2020</a>]</span>. Wang se identifica como preprint 2016 con DOI arXiv, separado de la referencia IJCNN 2017 cuya verificación editorial sigue parcial.</p>
+<p><strong>Orientación de entrega del 14/11/2026:</strong> el protocolo ejecutado es <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>, los resultados comunes están en <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">§6</span></a>, la reproducción registrada en <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a> y el Apéndice B actual en <a class="reference internal" href="61_reproduccion_consolidada.html"><span class="std std-doc">§61</span></a>. Las cifras científicas y los recibos históricos conservan su fecha y su alcance.</p>
+<p><strong>Antecedente de planificación del 11/11/2026:</strong> ese corte fue sustituido por la ejecución documentada en <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>. Su texto exacto se conserva en el archivo enlazado al final; no describe trabajos finales pendientes.</p>
+<p><strong>Fuente y adaptación:</strong> los esquemas/propuestas del 08/11 se conservan como antecedentes bibliográficos. Para la receta ejecutada consultar <a class="reference internal" href="44_arquitecturas_publicadas.html"><span class="std std-doc">§44</span></a> y la actualización de <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>; §§26–28 conservan decisiones previas: no equiparar el ensemble original de Inception a un miembro, las cabezas lineales propuestas a la Softplus vigente ni confundir fases del autoencoder. Fuentes formalizadas: <span class="bibtex-citation" id="id1">[<a class="reference internal" href="referencias.html#id29" title="Alaa Sagheer and Mostafa Kotb. Unsupervised Pre-training of a Deep LSTM-based Stacked Autoencoder for Multivariate Time Series Forecasting Problems. Scientific Reports, 9:19038, 2019. Articulo 19038, publicado el 13 de diciembre de 2019. Describe preentrenamiento no supervisado seguido de ajuste supervisado; no acredita una perdida conjunta de reconstruccion y prediccion. URL: https://www.nature.com/articles/s41598-019-55320-6, doi:10.1038/s41598-019-55320-6.">Sagheer and Kotb, 2019</a>, <a class="reference internal" href="referencias.html#id27" title="Zhiguang Wang, Weizhong Yan, and Tim Oates. Time Series Classification from Scratch with Deep Neural Networks: A Strong Baseline. 2016. Preprint v4, revisado el 14 de diciembre de 2016, fuente compartida de FCN y ResNet. El DOI identifica el preprint; no se presenta como DOI editorial de IJCNN 2017. URL: https://arxiv.org/abs/1611.06455v4, arXiv:1611.06455, doi:10.48550/arXiv.1611.06455.">Wang <em>et al.</em>, 2016</a>, <a class="reference internal" href="referencias.html#id28" title="Hassan Ismail Fawaz, Benjamin Lucas, Germain Forestier, Charlotte Pelletier, Daniel F. Schmidt, Jonathan Weber, Geoffrey I. Webb, Lhassane Idoumghar, Pierre-Alain Muller, and François Petitjean. InceptionTime: Finding AlexNet for time series classification. Data Mining and Knowledge Discovery, 34:1936–1962, 2020. Version editorial publicada el 7 de septiembre de 2020. La adaptacion E2 de un miembro se distingue del ensemble original. URL: https://link.springer.com/article/10.1007/s10618-020-00710-y, doi:10.1007/s10618-020-00710-y.">Ismail Fawaz <em>et al.</em>, 2020</a>]</span>. Wang se identifica como preprint 2016 con DOI arXiv, separado de la referencia IJCNN 2017 cuya verificación editorial sigue parcial.</p>
 <p>Consulta de fuentes primarias: 8 noviembre 2026. Este archivo es material bibliográfico para integrar, no una afirmación de resultados experimentales E2. <strong>NR</strong> significa no reportado o no verificado en las fuentes inspeccionadas; se especifica cuál. Páginas contadas desde 1 en los PDF enlazados. Se separan evidencia publicada, derivación analítica y propuesta de adaptación. Las adaptaciones descritas son propuestas bibliográficas, no configuraciones congeladas del ejecutor registrado. El contrato neural vigente de E2 usa D7×5 OHLCV y una salida escalar σ₇; por tanto, aquí L=7, C=5 y H=1 serían la especialización correspondiente. Un kernel de longitud 8, 10, 20 o 40 exige padding o una modificación explícita: no incorpora observaciones anteriores a esos siete días. No se heredan las recetas, pruebas ni recibos de los modelos sustituidos.</p>
 <p>El <a class="reference internal" href="04_implementacion.html"><span class="std std-doc">avance de implementación de §4.0</span></a> documenta por separado los prototipos compactos y sus diferencias respecto de estas fuentes; las fórmulas de coste de las fichas no son mediciones de esos prototipos.</p>
 <section id="contexto-comun-de-evaluacion">
@@ -565,6 +571,10 @@ L_recon = (NLC)^−1 Σ_t ||X_t−D(E(X_t))||_F²,
 <h2>Recomendación de integración<a class="headerlink" href="#recomendacion-de-integracion" title="Link to this heading">#</a></h2>
 <p>Los cuatro aportan mecanismos diferenciados, pero FCN, ResNet e Inception son convolucionales y LSTM-AE es recurrente: no acreditan por sí solos cuatro familias. Usar FCN como control simple, ResNet como prueba de profundidad residual, Inception como prueba multiescala y LSTM-AE como prueba de representación con reconstrucción. Es un criterio experimental propio. Antes de cerrar la nueva selección experimental, se debe enlazar cada ficha con la clase/configuración real E2, documentar diferencias y registrar por modelo: parámetros, semillas, folds, MAE/RMSE en unidades originales, benchmark ingenuo común, segundos de entrenamiento, latencia batch 1 y memoria pico. Todo eso continúa <strong>pendiente de medición</strong>, no forma parte de los resultados bibliográficos.</p>
 </section>
+<section id="archivo-de-la-version-anterior">
+<h2>Archivo de la versión anterior<a class="headerlink" href="#archivo-de-la-version-anterior" title="Link to this heading">#</a></h2>
+<p>La <a class="reference download internal" download="" href="../_downloads/ac424fee3e8f9c773dea2e848a77487d/16_fichas_nuevas.md"><code class="xref download docutils literal notranslate"><span class="pre">versión</span> <span class="pre">exacta</span> <span class="pre">anterior</span> <span class="pre">a</span> <span class="pre">esta</span> <span class="pre">consolidación</span></code></a> se conserva con su SHA256 en el <a class="reference download internal" download="" href="../_downloads/a375c47d06b822516dc7b9dafd245bd1/chapter_archive_manifest.json"><span class="xref download myst">manifiesto de archivo</span></a>. Sus estados pendientes describen el corte original.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -603,7 +613,7 @@ L_recon = (NLC)^−1 Σ_t ||X_t−D(E(X_t))||_F²,
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">anterior</p>
-        <p class="prev-next-title">15. Catálogo vigente: diez modelos y candidato 11</p>
+        <p class="prev-next-title">15. Catálogo ejecutado y procedencia bibliográfica</p>
       </div>
     </a>
     <a class="right-next"
@@ -611,7 +621,7 @@ L_recon = (NLC)^−1 Σ_t ||X_t−D(E(X_t))||_F²,
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">17. Contrato sincronizado de E1, E2 y E3</p>
+        <p class="prev-next-title">17. Contrato vigente y relación entre E1, E2 y E3</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -660,6 +670,7 @@ L_recon = (NLC)^−1 Σ_t ||X_t−D(E(X_t))||_F²,
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-de-extraccion-y-limites">Registro de extracción y límites</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recomendacion-de-integracion">Recomendación de integración</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-de-la-version-anterior">Archivo de la versión anterior</a></li>
 </ul>
   </nav></div>
 

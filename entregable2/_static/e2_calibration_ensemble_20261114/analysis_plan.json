@@ -1,0 +1,69 @@
+{
+  "version": "e2-calibration-fitted-diverse-ensemble-v1",
+  "created_at_utc": "2026-11-14T11:09:16Z",
+  "created_at_america_bogota": "2026-11-14T06:09:16-05:00",
+  "status": "posthoc_separately_registered_reference_not_original_selection",
+  "input_sha256": "65ae74b547a6073b2c286dea8039a2e7a1b1f6063b1d9ac0eb760c9ce727d187",
+  "development_sha256": "20b96374a659eb87dadfa68aa3d6b6b5fb6bea5b10eebe6f2c186ad69861844a",
+  "models": "all16_in_frozen_SYSTEMS_order",
+  "seeds": [
+    271801,
+    271802,
+    271803,
+    271804,
+    271805,
+    271806
+  ],
+  "calibration_dates": "2024-11-08 through 2024-12-30,53dates",
+  "weight_fit": {
+    "objective": "mean_over6seeds53dates_squared_error_of_weighted_model_forecasts_div_development_mean_sigma7_squared_plus_ridge_to_uniform16",
+    "scale": "mean_of_all_finite_sigma7_development2023_2024",
+    "ridge": 0.0001,
+    "constraints": "w>=0,sum(w)=1",
+    "shared_weights_across_seeds": true,
+    "classical_predictions_repeated_across_seed_positions": true,
+    "solver": "scipy.optimize.minimize_SLSQP_analytic_gradient",
+    "initial_weights": "uniform16",
+    "ftol": 1e-12,
+    "maxiter": 1000,
+    "optimizations": 1,
+    "HPO": false,
+    "test_targets_used": false
+  },
+  "evaluation": {
+    "dates": 608,
+    "metric": "mean_six_individual_ensemble_RMSE_same_estimand_as_A2",
+    "comparisons": [
+      "ensemble_vs_frozen_SAE",
+      "ensemble_vs_Persistence"
+    ],
+    "null": "RMSE_gain<=0",
+    "primary_bootstrap": {
+      "draws": 10000,
+      "calendar_block_days": 14,
+      "paired_seed_resampling": true,
+      "seed": 272201,
+      "multiplicity": "Holm2"
+    },
+    "sensitivity_block_days": [
+      7,
+      28
+    ],
+    "gamma_baseline": "Persistence",
+    "gamma_best": "original_SAE_unchanged",
+    "gamma_reference": "this_single_calibration_fitted_ensemble",
+    "gamma_validity": "only_if_RMSE_reference<RMSE_SAE<RMSE_Persistence",
+    "winner_or_recipe_selection": false
+  },
+  "guardrails": {
+    "new_neural_fits": 0,
+    "new_model_inference": 0,
+    "new_statistical_weight_fit": 1,
+    "original_A2_replaced": false,
+    "original_calibrators_replaced": false,
+    "search_until_reference_beats_SAE": false,
+    "negative_result_published": true,
+    "all_original_test_results_already_known": true,
+    "empirical_reference_is_Bayes_or_optimal_ceiling": false
+  }
+}

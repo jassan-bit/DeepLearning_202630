@@ -1,0 +1,3596 @@
+[
+  {
+    "source_id": "10.1016/j.neucom.2024.129178",
+    "title": "S-Mamba original",
+    "models": [
+      "S-Mamba"
+    ],
+    "current_Top10_system_source": false,
+    "decision": "incluido",
+    "role": "comparador_mecanismo_historico",
+    "rationale": "Original completo y resultado documentados; se conserva como comparador arquitectónico disponible, sin incorporarlo al Top10 vigente ni excluirlo por no ocupar un puesto.",
+    "source_url": "https://arxiv.org/abs/2403.11144v3",
+    "source_version": "2403.11144v3",
+    "evidence_pointers": [
+      "references/literature_e2/completion_20261106/architectural_originals_eligibility.csv#model=S-Mamba",
+      "references/literature_e2/fulltext_20261105/fulltext_manifest.json#model=S-Mamba"
+    ],
+    "evidence_locators": "Fila modelo en metrics.csv y quality_matrix.csv del paquete fulltext_20261105",
+    "source_read_level": "Recibo previo de PDF completo y apéndices; no lectura nueva hoy",
+    "quality": {
+      "baseline_effort": "NR",
+      "benchmark_data_download_validated": "NV",
+      "equal_hpo_budget": "NR",
+      "formal_tests": "NR",
+      "original_paper_numerically_reproduced": "NV",
+      "repetitions": "NR",
+      "scaling": "partial",
+      "seed_ids": "NR",
+      "split": "NR",
+      "train_only_scaler": "NR",
+      "variance_selected_pair": "NR"
+    },
+    "limitations": "Dominio/dataset/horizonte/escala distintos de BTC sigma7; límites de reporte preservados en quality_matrix.csv. No prueba inferioridad por haber sido desplazado del catálogo.",
+    "foundational_2016_exception": false,
+    "direct_E2_effectiveness_established": false,
+    "new_manuscript_reading_claimed": false,
+    "adjudication_date": "2026-11-14",
+    "independent_human_double_review": false
+  },
+  {
+    "source_id": "10.1038/s41598-019-55320-6",
+    "title": "Unsupervised Pre-training of a Deep LSTM-based Stacked Autoencoder for Multivariate Time Series Forecasting Problems",
+    "models": [
+      "LSTM-autoencoder con predictor"
+    ],
+    "current_Top10_system_source": true,
+    "decision": "incluido",
+    "role": "mecanismo_arquitectonico",
+    "rationale": "Fuente primaria del mecanismo, evidencia de arquitectura y resultado localizada y código de autor identificado. Se admite para transferencia explícita, no para eficacia BTC.",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6911101/",
+    "source_version": "Scientific Reports2019; PMC full main text accessed20261113",
+    "evidence_pointers": [
+      "book_e2/_static/e2_literature_closure_20261113/current10_extraction.json#study_id=10.1038/s41598-019-55320-6"
+    ],
+    "evidence_locators": "Table2, two-layer LSTM-SAE; Methodology; Datasets; Parameters selection; Discussion",
+    "source_read_level": "complete_primary_main_web_text_20261113_no_PDF_receipt_claimed",
+    "quality": {
+      "equal_hpo_budget": "NR",
+      "formal_tests": "NR",
+      "repetitions": "NR",
+      "seed_ids": "NR",
+      "split": "reported",
+      "train_only_scaler": "NV",
+      "variance_selected_pair": "NR"
+    },
+    "limitations": "Two-layer DLSTM RMSE23.750 is lower; SAE is not best for every metric. Hyperopt uses validation RMSE but equal budgets are unreported. Chronological partition is not established by counts.",
+    "foundational_2016_exception": false,
+    "direct_E2_effectiveness_established": false,
+    "new_manuscript_reading_claimed": false,
+    "adjudication_date": "2026-11-14",
+    "independent_human_double_review": false
+  },
+  {
+    "source_id": "10.1609/aaai.v35i12.17325",
+    "title": "Informer original",
+    "models": [
+      "Informer"
+    ],
+    "current_Top10_system_source": false,
+    "decision": "incluido",
+    "role": "comparador_mecanismo_historico",
+    "rationale": "Original completo y resultado documentados; se conserva como comparador arquitectónico disponible, sin incorporarlo al Top10 vigente ni excluirlo por no ocupar un puesto.",
+    "source_url": "https://arxiv.org/abs/2012.07436v3",
+    "source_version": "2012.07436v3",
+    "evidence_pointers": [
+      "references/literature_e2/completion_20261106/architectural_originals_eligibility.csv#model=Informer",
+      "references/literature_e2/fulltext_20261105/fulltext_manifest.json#model=Informer"
+    ],
+    "evidence_locators": "Fila modelo en metrics.csv y quality_matrix.csv del paquete fulltext_20261105",
+    "source_read_level": "Recibo previo de PDF completo y apéndices; no lectura nueva hoy",
+    "quality": {
+      "baseline_effort": "partial",
+      "benchmark_data_download_validated": "NV",
+      "equal_hpo_budget": "NR",
+      "formal_tests": "NR",
+      "original_paper_numerically_reproduced": "NV",
+      "repetitions": "reported",
+      "scaling": "reported",
+      "seed_ids": "NR",
+      "split": "reported",
+      "train_only_scaler": "NR",
+      "variance_selected_pair": "NR"
+    },
+    "limitations": "Dominio/dataset/horizonte/escala distintos de BTC sigma7; límites de reporte preservados en quality_matrix.csv. No prueba inferioridad por haber sido desplazado del catálogo.",
+    "foundational_2016_exception": false,
+    "direct_E2_effectiveness_established": false,
+    "new_manuscript_reading_claimed": false,
+    "adjudication_date": "2026-11-14",
+    "independent_human_double_review": false
+  },
+  {
+    "source_id": "10.48550/arXiv.1611.06455",
+    "title": "Time Series Classification from Scratch with Deep Neural Networks: A Strong Baseline",
+    "models": [
+      "FCN-1D",
+      "ResNet-1D"
+    ],
+    "current_Top10_system_source": true,
+    "decision": "incluido",
+    "role": "mecanismo_arquitectonico",
+    "rationale": "Fuente primaria del mecanismo, evidencia de arquitectura y resultado localizada y código de autor identificado. Se admite para transferencia explícita, no para eficacia BTC.",
+    "source_url": "https://arxiv.org/html/1611.06455v4",
+    "source_version": "1611.06455v4",
+    "evidence_pointers": [
+      "book_e2/_static/e2_literature_closure_20261113/current10_extraction.json#study_id=10.48550/arXiv.1611.06455"
+    ],
+    "evidence_locators": "Table I, Adiac row; III.A-B",
+    "source_read_level": "complete_primary_main_HTML_20261113_including_tables_and_Wang_appendix_not_PDF_visual_verification",
+    "quality": {
+      "equal_hpo_budget": "NR",
+      "formal_tests": "reported_other_scope",
+      "repetitions": "NR",
+      "seed_ids": "NR",
+      "split": "reported",
+      "train_only_scaler": "reported",
+      "variance_selected_pair": "NR"
+    },
+    "limitations": "Minimum-training-loss checkpoint; proposed baselines exclude HPO/CV, without proving equal effort against imported comparators. Wilcoxon rank-sum and paired PCE tests concern datasets, not seed uncertainty.",
+    "foundational_2016_exception": true,
+    "direct_E2_effectiveness_established": false,
+    "new_manuscript_reading_claimed": false,
+    "adjudication_date": "2026-11-14",
+    "independent_human_double_review": false
+  },
+  {
+    "source_id": "10.48550/arXiv.1909.04939",
+    "title": "InceptionTime: Finding AlexNet for Time Series Classification",
+    "models": [
+      "Inception-1D"
+    ],
+    "current_Top10_system_source": true,
+    "decision": "incluido",
+    "role": "mecanismo_arquitectonico",
+    "rationale": "Fuente primaria del mecanismo, evidencia de arquitectura y resultado localizada y código de autor identificado. Se admite para transferencia explícita, no para eficacia BTC.",
+    "source_url": "https://arxiv.org/html/1909.04939v3",
+    "source_version": "1909.04939v3",
+    "evidence_pointers": [
+      "book_e2/_static/e2_literature_closure_20261113/current10_extraction.json#study_id=10.48550/arXiv.1909.04939"
+    ],
+    "evidence_locators": "Sections4-5; Figure10; Section6 defaults; Section3.2 ensemble",
+    "source_read_level": "complete_primary_main_HTML_20261113_including_tables_and_captions_not_PDF_visual_verification",
+    "quality": {
+      "equal_hpo_budget": "NR",
+      "formal_tests": "reported_other_scope",
+      "repetitions": "partial",
+      "seed_ids": "NR",
+      "split": "reported",
+      "train_only_scaler": "NR",
+      "variance_selected_pair": "NR"
+    },
+    "limitations": "Median over multiple runs is reported without exact count. Five members per ensemble are not five repeated ensembles. Friedman/Wilcoxon-Holm concern classification ensembles; current single-network regression inherits no ensemble score.",
+    "foundational_2016_exception": false,
+    "direct_E2_effectiveness_established": false,
+    "new_manuscript_reading_claimed": false,
+    "adjudication_date": "2026-11-14",
+    "independent_human_double_review": false
+  },
+  {
+    "source_id": "10.48550/arXiv.2106.13008",
+    "title": "Autoformer original",
+    "models": [
+      "Autoformer"
+    ],
+    "current_Top10_system_source": false,
+    "decision": "incluido",
+    "role": "comparador_mecanismo_historico",
+    "rationale": "Original completo y resultado documentados; se conserva como comparador arquitectónico disponible, sin incorporarlo al Top10 vigente ni excluirlo por no ocupar un puesto.",
+    "source_url": "https://arxiv.org/abs/2106.13008v5",
+    "source_version": "2106.13008v5",
+    "evidence_pointers": [
+      "references/literature_e2/completion_20261106/architectural_originals_eligibility.csv#model=Autoformer",
+      "references/literature_e2/fulltext_20261105/fulltext_manifest.json#model=Autoformer"
+    ],
+    "evidence_locators": "Fila modelo en metrics.csv y quality_matrix.csv del paquete fulltext_20261105",
+    "source_read_level": "Recibo previo de PDF completo y apéndices; no lectura nueva hoy",
+    "quality": {
+      "baseline_effort": "partial",
+      "benchmark_data_download_validated": "NV",
+      "equal_hpo_budget": "NR",
+      "formal_tests": "NR",
+      "original_paper_numerically_reproduced": "NV",
+      "repetitions": "reported",
+      "scaling": "NR",
+      "seed_ids": "NR",
+      "split": "reported",
+      "train_only_scaler": "NR",
+      "variance_selected_pair": "NR"
+    },
+    "limitations": "Dominio/dataset/horizonte/escala distintos de BTC sigma7; límites de reporte preservados en quality_matrix.csv. No prueba inferioridad por haber sido desplazado del catálogo.",
+    "foundational_2016_exception": false,
+    "direct_E2_effectiveness_established": false,
+    "new_manuscript_reading_claimed": false,
+    "adjudication_date": "2026-11-14",
+    "independent_human_double_review": false
+  },
+  {
+    "source_id": "10.48550/arXiv.2210.02186",
+    "title": "TimesNet: Temporal 2D-Variation Modeling for General Time Series Analysis",
+    "models": [
+      "TimesNet"
+    ],
+    "current_Top10_system_source": true,
+    "decision": "incluido",
+    "role": "mecanismo_arquitectonico",
+    "rationale": "Fuente primaria del mecanismo, evidencia de arquitectura y resultado localizada y código de autor identificado. Se admite para transferencia explícita, no para eficacia BTC.",
+    "source_url": "https://arxiv.org/abs/2210.02186v3",
+    "source_version": "2210.02186v3",
+    "evidence_pointers": [
+      "book_e2/_static/e2_literature_closure_20261113/current10_extraction.json#study_id=10.48550/arXiv.2210.02186"
+    ],
+    "evidence_locators": [
+      {
+        "pdf_page": 21,
+        "printed_page": "21",
+        "section": "Appendix I",
+        "table": "13"
+      }
+    ],
+    "source_read_level": "prior_complete_PDF_and_appendices_extraction",
+    "quality": {
+      "baseline_effort": {
+        "evidence": {
+          "equal_search_budget": {
+            "reason": "Estos controles no demuestran igualdad de presupuesto HPO, búsqueda o cómputo.",
+            "status": "NR"
+          },
+          "reported_controls": {
+            "locators": [
+              {
+                "pdf_page": 12,
+                "printed_page": "12",
+                "section": "Appendix A"
+              },
+              {
+                "pdf_page": 21,
+                "printed_page": "21",
+                "section": "Appendix I",
+                "table": "13"
+              },
+              {
+                "pdf_page": 22,
+                "printed_page": "22",
+                "section": "Appendix I",
+                "table": "14"
+              }
+            ],
+            "value": "Reproducciones basadas en configuración de paper/código oficial; mismo embedding/proyección y entrada/salida. Table13 nota cambios de input/output para LightTS y DLinear por desajuste original; M4 N-BEATS sin ensemble."
+          }
+        },
+        "note": "",
+        "status": "partial",
+        "value": {
+          "equal_search_budget": {
+            "reason": "Estos controles no demuestran igualdad de presupuesto HPO, búsqueda o cómputo.",
+            "status": "NR"
+          },
+          "reported_controls": {
+            "locators": [
+              {
+                "pdf_page": 12,
+                "printed_page": "12",
+                "section": "Appendix A"
+              },
+              {
+                "pdf_page": 21,
+                "printed_page": "21",
+                "section": "Appendix I",
+                "table": "13"
+              },
+              {
+                "pdf_page": 22,
+                "printed_page": "22",
+                "section": "Appendix I",
+                "table": "14"
+              }
+            ],
+            "value": "Reproducciones basadas en configuración de paper/código oficial; mismo embedding/proyección y entrada/salida. Table13 nota cambios de input/output para LightTS y DLinear por desajuste original; M4 N-BEATS sin ensemble."
+          }
+        }
+      },
+      "benchmark_data_download_validated": {
+        "evidence": "This task inspected documents, not downloaded benchmark datasets.",
+        "note": "",
+        "status": "NV",
+        "value": null
+      },
+      "equal_hpo_budget": {
+        "evidence": {
+          "equal_search_budget": {
+            "reason": "Estos controles no demuestran igualdad de presupuesto HPO, búsqueda o cómputo.",
+            "status": "NR"
+          },
+          "reported_controls": {
+            "locators": [
+              {
+                "pdf_page": 12,
+                "printed_page": "12",
+                "section": "Appendix A"
+              },
+              {
+                "pdf_page": 21,
+                "printed_page": "21",
+                "section": "Appendix I",
+                "table": "13"
+              },
+              {
+                "pdf_page": 22,
+                "printed_page": "22",
+                "section": "Appendix I",
+                "table": "14"
+              }
+            ],
+            "value": "Reproducciones basadas en configuración de paper/código oficial; mismo embedding/proyección y entrada/salida. Table13 nota cambios de input/output para LightTS y DLinear por desajuste original; M4 N-BEATS sin ensemble."
+          }
+        },
+        "note": "Shared context or architecture controls do not prove equal search trials/compute.",
+        "status": "NR",
+        "value": null
+      },
+      "formal_tests": {
+        "evidence": {
+          "reason": "No reportado en el texto completo del PDF suministrado.",
+          "status": "NR"
+        },
+        "note": "No verified formal inferential comparison for the selected row.",
+        "status": "NR",
+        "value": null
+      },
+      "original_paper_numerically_reproduced": {
+        "evidence": "No model fitting or inference was performed in this documentary review.",
+        "note": "",
+        "status": "NV",
+        "value": null
+      },
+      "repetitions": {
+        "evidence": {
+          "confidence_intervals": {
+            "reason": "No reportado en el texto completo del PDF suministrado.",
+            "status": "NR"
+          },
+          "repetitions": {
+            "locators": [
+              {
+                "pdf_page": 12,
+                "printed_page": "12",
+                "section": "Appendix A"
+              }
+            ],
+            "value": 3
+          },
+          "seed_values": {
+            "reason": "No reportado en el texto completo del PDF suministrado.",
+            "status": "NR"
+          },
+          "significance_tests": {
+            "reason": "No reportado en el texto completo del PDF suministrado.",
+            "status": "NR"
+          }
+        },
+        "note": "Main selected variant; robustness studies can use a different variant or scope.",
+        "status": "reported",
+        "value": 3
+      },
+      "scaling": {
+        "evidence": {
+          "metric_units": {
+            "reason": "No se documenta explícitamente si los MSE/MAE de Table13 son unidades físicas o unidades del dataset estandarizado. No reconstruirlo desde el código posterior.",
+            "status": "NR"
+          },
+          "reported": {
+            "locators": [
+              {
+                "pdf_page": 12,
+                "printed_page": "12",
+                "section": "Appendix A"
+              }
+            ],
+            "value": "Adopta Series Stationarization para controlar distribution shift; no explicita aquí la fórmula ni el escalador global del dataset."
+          },
+          "train_only_dataset_scaler": {
+            "reason": "No reportado en el texto completo del PDF suministrado.",
+            "status": "NR"
+          }
+        },
+        "note": "",
+        "status": "partial",
+        "value": {
+          "metric_units": {
+            "reason": "No se documenta explícitamente si los MSE/MAE de Table13 son unidades físicas o unidades del dataset estandarizado. No reconstruirlo desde el código posterior.",
+            "status": "NR"
+          },
+          "reported": {
+            "locators": [
+              {
+                "pdf_page": 12,
+                "printed_page": "12",
+                "section": "Appendix A"
+              }
+            ],
+            "value": "Adopta Series Stationarization para controlar distribution shift; no explicita aquí la fórmula ni el escalador global del dataset."
+          },
+          "train_only_dataset_scaler": {
+            "reason": "No reportado en el texto completo del PDF suministrado.",
+            "status": "NR"
+          }
+        }
+      },
+      "scope": "Selected canonical ETTh1 row unless a different scope is explicit in evidence",
+      "seed_ids": {
+        "evidence": {
+          "confidence_intervals": {
+            "reason": "No reportado en el texto completo del PDF suministrado.",
+            "status": "NR"
+          },
+          "repetitions": {
+            "locators": [
+              {
+                "pdf_page": 12,
+                "printed_page": "12",
+                "section": "Appendix A"
+              }
+            ],
+            "value": 3
+          },
+          "seed_values": {
+            "reason": "No reportado en el texto completo del PDF suministrado.",
+            "status": "NR"
+          },
+          "significance_tests": {
+            "reason": "No reportado en el texto completo del PDF suministrado.",
+            "status": "NR"
+          }
+        },
+        "note": "",
+        "status": "NR",
+        "value": null
+      },
+      "split": {
+        "evidence": {
+          "exact_dates_and_scaler_fit_boundaries": {
+            "reason": "No se detallan fechas de corte ni ajuste por partición del escalador en este PDF.",
+            "status": "NR"
+          },
+          "reported": {
+            "locators": [
+              {
+                "pdf_page": 6,
+                "printed_page": "6",
+                "section": "4.2"
+              },
+              {
+                "pdf_page": 14,
+                "printed_page": "14",
+                "section": "Appendix A",
+                "table": "6"
+              }
+            ],
+            "value": "Se reportan tamaños Train/Validation/Test en Table6; ver datasets. Ventanas deslizantes para cada serie long-term continua."
+          }
+        },
+        "note": "",
+        "status": "reported",
+        "value": {
+          "exact_dates_and_scaler_fit_boundaries": {
+            "reason": "No se detallan fechas de corte ni ajuste por partición del escalador en este PDF.",
+            "status": "NR"
+          },
+          "reported": {
+            "locators": [
+              {
+                "pdf_page": 6,
+                "printed_page": "6",
+                "section": "4.2"
+              },
+              {
+                "pdf_page": 14,
+                "printed_page": "14",
+                "section": "Appendix A",
+                "table": "6"
+              }
+            ],
+            "value": "Se reportan tamaños Train/Validation/Test en Table6; ver datasets. Ventanas deslizantes para cada serie long-term continua."
+          }
+        }
+      },
+      "train_only_scaler": {
+        "evidence": {
+          "metric_units": {
+            "reason": "No se documenta explícitamente si los MSE/MAE de Table13 son unidades físicas o unidades del dataset estandarizado. No reconstruirlo desde el código posterior.",
+            "status": "NR"
+          },
+          "reported": {
+            "locators": [
+              {
+                "pdf_page": 12,
+                "printed_page": "12",
+                "section": "Appendix A"
+              }
+            ],
+            "value": "Adopta Series Stationarization para controlar distribution shift; no explicita aquí la fórmula ni el escalador global del dataset."
+          },
+          "train_only_dataset_scaler": {
+            "reason": "No reportado en el texto completo del PDF suministrado.",
+            "status": "NR"
+          }
+        },
+        "note": "Internal model normalization does not establish train-only dataset scaling.",
+        "status": "NR",
+        "value": null
+      },
+      "variance_selected_pair": {
+        "evidence": {
+          "confidence_intervals": {
+            "reason": "No reportado en el texto completo del PDF suministrado.",
+            "status": "NR"
+          },
+          "repetitions": {
+            "locators": [
+              {
+                "pdf_page": 12,
+                "printed_page": "12",
+                "section": "Appendix A"
+              }
+            ],
+            "value": 3
+          },
+          "seed_values": {
+            "reason": "No reportado en el texto completo del PDF suministrado.",
+            "status": "NR"
+          },
+          "significance_tests": {
+            "reason": "No reportado en el texto completo del PDF suministrado.",
+            "status": "NR"
+          }
+        },
+        "note": "SD for another variant, dataset, or horizon aggregate is not uncertainty for this selected row.",
+        "status": "NR",
+        "value": null
+      }
+    },
+    "limitations": "External forecast result; different task and information set from BTC sigma7.",
+    "foundational_2016_exception": false,
+    "direct_E2_effectiveness_established": false,
+    "new_manuscript_reading_claimed": false,
+    "adjudication_date": "2026-11-14",
+    "independent_human_double_review": false
+  },
+  {
+    "source_id": "10.48550/arXiv.2211.14730",
+    "title": "A Time Series is Worth 64 Words: Long-term Forecasting with Transformers",
+    "models": [
+      "PatchTST"
+    ],
+    "current_Top10_system_source": true,
+    "decision": "incluido",
+    "role": "mecanismo_arquitectonico",
+    "rationale": "Fuente primaria del mecanismo, evidencia de arquitectura y resultado localizada y código de autor identificado. Se admite para transferencia explícita, no para eficacia BTC.",
+    "source_url": "https://arxiv.org/abs/2211.14730v2",
+    "source_version": "2211.14730v2",
+    "evidence_pointers": [
+      "book_e2/_static/e2_literature_closure_20261113/current10_extraction.json#study_id=10.48550/arXiv.2211.14730"
+    ],
+    "evidence_locators": [
+      {
+        "columns": "PatchTST/64,MSE/MAE",
+        "pdf_page": 7,
+        "row": "ETTh1,96",
+        "section": "§4.1",
+        "table": "3"
+      }
+    ],
+    "source_read_level": "prior_complete_PDF_and_appendices_extraction",
+    "quality": {
+      "baseline_effort": {
+        "evidence": {
+          "baselines": [
+            "DLinear",
+            "FEDformer",
+            "Autoformer",
+            "Informer",
+            "Pyraformer",
+            "LogTrans",
+            "BTSF",
+            "TS2Vec",
+            "TNC",
+            "TS-TCC"
+          ],
+          "caution": "Existe ajuste explícito de contexto para tres baselines, pero budget equivalente en trials/tiempo, resto de hiperparámetros/repeticiones y criterio exacto para escoger mejor score de búsqueda no quedan completos; no afirmar igualdad de cómputo.",
+          "locators": [
+            {
+              "pdf_page": 6,
+              "section": "§4.1"
+            },
+            {
+              "pdf_page": 8,
+              "section": "§4.2"
+            },
+            {
+              "pdf_page": 13,
+              "section": "ApéndiceA.1.1–A.1.3"
+            }
+          ],
+          "main": "Cita resultados de Zeng etal.2022, TransformersL96 y DLinearL336 por defecto; reejecuta FEDformer/Autoformer/Informer conL{24,48,96,192,336,720} y escoge mejor score por dataset/horizonte. ILI: defaultsTransformers36,DLinear104; búsqueda{24,36,48,60,104,144}.",
+          "omitted_baselines": "ARIMA/LSTM/TCN/DeepAR excluidos por inferioridad alegada en trabajos anteriores. Exchange-rate excluido por cautela respecto a predictibilidad financiera y fuerza de randomwalk/último valor.",
+          "selfsup": "ParaBTSF/TS2Vec/TNC/TS-TCC aplica sólo linear probing a representación aprendida; scores contrastivos citados de otros artículos. Separa pretraining propio y transferenciaTraffic→ETTh1, yElectricity→otrosdatasets."
+        },
+        "note": "",
+        "status": "partial",
+        "value": {
+          "baselines": [
+            "DLinear",
+            "FEDformer",
+            "Autoformer",
+            "Informer",
+            "Pyraformer",
+            "LogTrans",
+            "BTSF",
+            "TS2Vec",
+            "TNC",
+            "TS-TCC"
+          ],
+          "caution": "Existe ajuste explícito de contexto para tres baselines, pero budget equivalente en trials/tiempo, resto de hiperparámetros/repeticiones y criterio exacto para escoger mejor score de búsqueda no quedan completos; no afirmar igualdad de cómputo.",
+          "locators": [
+            {
+              "pdf_page": 6,
+              "section": "§4.1"
+            },
+            {
+              "pdf_page": 8,
+              "section": "§4.2"
+            },
+            {
+              "pdf_page": 13,
+              "section": "ApéndiceA.1.1–A.1.3"
+            }
+          ],
+          "main": "Cita resultados de Zeng etal.2022, TransformersL96 y DLinearL336 por defecto; reejecuta FEDformer/Autoformer/Informer conL{24,48,96,192,336,720} y escoge mejor score por dataset/horizonte. ILI: defaultsTransformers36,DLinear104; búsqueda{24,36,48,60,104,144}.",
+          "omitted_baselines": "ARIMA/LSTM/TCN/DeepAR excluidos por inferioridad alegada en trabajos anteriores. Exchange-rate excluido por cautela respecto a predictibilidad financiera y fuerza de randomwalk/último valor.",
+          "selfsup": "ParaBTSF/TS2Vec/TNC/TS-TCC aplica sólo linear probing a representación aprendida; scores contrastivos citados de otros artículos. Separa pretraining propio y transferenciaTraffic→ETTh1, yElectricity→otrosdatasets."
+        }
+      },
+      "benchmark_data_download_validated": {
+        "evidence": "This task inspected documents, not downloaded benchmark datasets.",
+        "note": "",
+        "status": "NV",
+        "value": null
+      },
+      "equal_hpo_budget": {
+        "evidence": {
+          "baselines": [
+            "DLinear",
+            "FEDformer",
+            "Autoformer",
+            "Informer",
+            "Pyraformer",
+            "LogTrans",
+            "BTSF",
+            "TS2Vec",
+            "TNC",
+            "TS-TCC"
+          ],
+          "caution": "Existe ajuste explícito de contexto para tres baselines, pero budget equivalente en trials/tiempo, resto de hiperparámetros/repeticiones y criterio exacto para escoger mejor score de búsqueda no quedan completos; no afirmar igualdad de cómputo.",
+          "locators": [
+            {
+              "pdf_page": 6,
+              "section": "§4.1"
+            },
+            {
+              "pdf_page": 8,
+              "section": "§4.2"
+            },
+            {
+              "pdf_page": 13,
+              "section": "ApéndiceA.1.1–A.1.3"
+            }
+          ],
+          "main": "Cita resultados de Zeng etal.2022, TransformersL96 y DLinearL336 por defecto; reejecuta FEDformer/Autoformer/Informer conL{24,48,96,192,336,720} y escoge mejor score por dataset/horizonte. ILI: defaultsTransformers36,DLinear104; búsqueda{24,36,48,60,104,144}.",
+          "omitted_baselines": "ARIMA/LSTM/TCN/DeepAR excluidos por inferioridad alegada en trabajos anteriores. Exchange-rate excluido por cautela respecto a predictibilidad financiera y fuerza de randomwalk/último valor.",
+          "selfsup": "ParaBTSF/TS2Vec/TNC/TS-TCC aplica sólo linear probing a representación aprendida; scores contrastivos citados de otros artículos. Separa pretraining propio y transferenciaTraffic→ETTh1, yElectricity→otrosdatasets."
+        },
+        "note": "Shared context or architecture controls do not prove equal search trials/compute.",
+        "status": "NR",
+        "value": null
+      },
+      "formal_tests": {
+        "evidence": {
+          "detail": "No hay contraste formal identificado, p-valores ni correcciones por comparación múltiple.",
+          "scope_checked_pdf_pages": [
+            1,
+            24
+          ],
+          "status": "NR"
+        },
+        "note": "No verified formal inferential comparison for the selected row.",
+        "status": "NR",
+        "value": null
+      },
+      "original_paper_numerically_reproduced": {
+        "evidence": "No model fitting or inference was performed in this documentary review.",
+        "note": "",
+        "status": "NV",
+        "value": null
+      },
+      "repetitions": {
+        "evidence": {
+          "confidence_intervals": {
+            "detail": "IC no reportados; barras deerror y DE no sonIC.",
+            "scope_checked_pdf_pages": [
+              1,
+              24
+            ],
+            "status": "NR"
+          },
+          "examples": [
+            {
+              "dataset": "ETTh1",
+              "horizon": 96,
+              "mae_mean": 0.3999,
+              "mae_std": 0.0004,
+              "mse_mean": 0.3752,
+              "mse_std": 0.0008,
+              "variant": "supervisado/42"
+            },
+            {
+              "dataset": "ETTh1",
+              "horizon": 96,
+              "mae_mean": 0.4001,
+              "mae_std": 0.0023,
+              "mse_mean": 0.37,
+              "mse_std": 0.0035,
+              "variant": "autosupervisado/42"
+            }
+          ],
+          "formal_statistical_tests": {
+            "detail": "No hay contraste formal identificado, p-valores ni correcciones por comparación múltiple.",
+            "scope_checked_pdf_pages": [
+              1,
+              24
+            ],
+            "status": "NR"
+          },
+          "locators": [
+            {
+              "pdf_page": 18,
+              "section": "ApéndiceA.6.1"
+            },
+            {
+              "pdf_page": 20,
+              "section": "ApéndiceA.6.1",
+              "table": "14"
+            },
+            {
+              "figure": "7",
+              "pdf_page": 24,
+              "section": "ApéndiceA.7"
+            }
+          ],
+          "main_result_repeats": 1,
+          "main_seed": 2021,
+          "selfsup_robustness": "Preentrena una vez y realiza5 fine-tunings con distintas selecciones aleatorias de batch; no5 pretrainings independientes.",
+          "std_reported": true,
+          "supervised_robustness_seeds": [
+            2019,
+            2020,
+            2021,
+            2022,
+            2023
+          ]
+        },
+        "note": "Main selected variant; robustness studies can use a different variant or scope.",
+        "status": "reported",
+        "value": 1
+      },
+      "scaling": {
+        "evidence": {
+          "global_scaler": {
+            "detail": "No explicita scaler global ni ajuste sobre train. No atribuir z-score global train-only por costumbre del benchmark.",
+            "scope_checked_pdf_pages": [
+              1,
+              24
+            ],
+            "status": "NR"
+          },
+          "instance_normalization": "Sí reportada por instancia/ventana y canal con inversión a la salida del mismo canal; §3.1p5.",
+          "metric_units": {
+            "detail": "Unidades físicas/normalizadas exactas de las tablas no explicitadas; no confundir inversa de instance norm con prueba de evaluación en unidades físicas.",
+            "scope_checked_pdf_pages": [
+              1,
+              24
+            ],
+            "status": "NR"
+          },
+          "temporal_split": {
+            "detail": "No reporta proporciones/fechas/tamaños Train/Validation/Test. ApéndiceA.7.1 p21 afirma selección del mejor modelo por validación, pero no especifica el split.",
+            "scope_checked_pdf_pages": [
+              1,
+              24
+            ],
+            "status": "NR"
+          }
+        },
+        "note": "",
+        "status": "partial",
+        "value": {
+          "global_scaler": {
+            "detail": "No explicita scaler global ni ajuste sobre train. No atribuir z-score global train-only por costumbre del benchmark.",
+            "scope_checked_pdf_pages": [
+              1,
+              24
+            ],
+            "status": "NR"
+          },
+          "instance_normalization": "Sí reportada por instancia/ventana y canal con inversión a la salida del mismo canal; §3.1p5.",
+          "metric_units": {
+            "detail": "Unidades físicas/normalizadas exactas de las tablas no explicitadas; no confundir inversa de instance norm con prueba de evaluación en unidades físicas.",
+            "scope_checked_pdf_pages": [
+              1,
+              24
+            ],
+            "status": "NR"
+          },
+          "temporal_split": {
+            "detail": "No reporta proporciones/fechas/tamaños Train/Validation/Test. ApéndiceA.7.1 p21 afirma selección del mejor modelo por validación, pero no especifica el split.",
+            "scope_checked_pdf_pages": [
+              1,
+              24
+            ],
+            "status": "NR"
+          }
+        }
+      },
+      "scope": "Selected canonical ETTh1 row unless a different scope is explicit in evidence",
+      "seed_ids": {
+        "evidence": {
+          "confidence_intervals": {
+            "detail": "IC no reportados; barras deerror y DE no sonIC.",
+            "scope_checked_pdf_pages": [
+              1,
+              24
+            ],
+            "status": "NR"
+          },
+          "examples": [
+            {
+              "dataset": "ETTh1",
+              "horizon": 96,
+              "mae_mean": 0.3999,
+              "mae_std": 0.0004,
+              "mse_mean": 0.3752,
+              "mse_std": 0.0008,
+              "variant": "supervisado/42"
+            },
+            {
+              "dataset": "ETTh1",
+              "horizon": 96,
+              "mae_mean": 0.4001,
+              "mae_std": 0.0023,
+              "mse_mean": 0.37,
+              "mse_std": 0.0035,
+              "variant": "autosupervisado/42"
+            }
+          ],
+          "formal_statistical_tests": {
+            "detail": "No hay contraste formal identificado, p-valores ni correcciones por comparación múltiple.",
+            "scope_checked_pdf_pages": [
+              1,
+              24
+            ],
+            "status": "NR"
+          },
+          "locators": [
+            {
+              "pdf_page": 18,
+              "section": "ApéndiceA.6.1"
+            },
+            {
+              "pdf_page": 20,
+              "section": "ApéndiceA.6.1",
+              "table": "14"
+            },
+            {
+              "figure": "7",
+              "pdf_page": 24,
+              "section": "ApéndiceA.7"
+            }
+          ],
+          "main_result_repeats": 1,
+          "main_seed": 2021,
+          "selfsup_robustness": "Preentrena una vez y realiza5 fine-tunings con distintas selecciones aleatorias de batch; no5 pretrainings independientes.",
+          "std_reported": true,
+          "supervised_robustness_seeds": [
+            2019,
+            2020,
+            2021,
+            2022,
+            2023
+          ]
+        },
+        "note": "",
+        "status": "reported",
+        "value": [
+          2021
+        ]
+      },
+      "split": {
+        "evidence": {
+          "global_scaler": {
+            "detail": "No explicita scaler global ni ajuste sobre train. No atribuir z-score global train-only por costumbre del benchmark.",
+            "scope_checked_pdf_pages": [
+              1,
+              24
+            ],
+            "status": "NR"
+          },
+          "instance_normalization": "Sí reportada por instancia/ventana y canal con inversión a la salida del mismo canal; §3.1p5.",
+          "metric_units": {
+            "detail": "Unidades físicas/normalizadas exactas de las tablas no explicitadas; no confundir inversa de instance norm con prueba de evaluación en unidades físicas.",
+            "scope_checked_pdf_pages": [
+              1,
+              24
+            ],
+            "status": "NR"
+          },
+          "temporal_split": {
+            "detail": "No reporta proporciones/fechas/tamaños Train/Validation/Test. ApéndiceA.7.1 p21 afirma selección del mejor modelo por validación, pero no especifica el split.",
+            "scope_checked_pdf_pages": [
+              1,
+              24
+            ],
+            "status": "NR"
+          }
+        },
+        "note": "",
+        "status": "NR",
+        "value": null
+      },
+      "train_only_scaler": {
+        "evidence": {
+          "global_scaler": {
+            "detail": "No explicita scaler global ni ajuste sobre train. No atribuir z-score global train-only por costumbre del benchmark.",
+            "scope_checked_pdf_pages": [
+              1,
+              24
+            ],
+            "status": "NR"
+          },
+          "instance_normalization": "Sí reportada por instancia/ventana y canal con inversión a la salida del mismo canal; §3.1p5.",
+          "metric_units": {
+            "detail": "Unidades físicas/normalizadas exactas de las tablas no explicitadas; no confundir inversa de instance norm con prueba de evaluación en unidades físicas.",
+            "scope_checked_pdf_pages": [
+              1,
+              24
+            ],
+            "status": "NR"
+          },
+          "temporal_split": {
+            "detail": "No reporta proporciones/fechas/tamaños Train/Validation/Test. ApéndiceA.7.1 p21 afirma selección del mejor modelo por validación, pero no especifica el split.",
+            "scope_checked_pdf_pages": [
+              1,
+              24
+            ],
+            "status": "NR"
+          }
+        },
+        "note": "Internal model normalization does not establish train-only dataset scaling.",
+        "status": "NR",
+        "value": null
+      },
+      "variance_selected_pair": {
+        "evidence": {
+          "confidence_intervals": {
+            "detail": "IC no reportados; barras deerror y DE no sonIC.",
+            "scope_checked_pdf_pages": [
+              1,
+              24
+            ],
+            "status": "NR"
+          },
+          "examples": [
+            {
+              "dataset": "ETTh1",
+              "horizon": 96,
+              "mae_mean": 0.3999,
+              "mae_std": 0.0004,
+              "mse_mean": 0.3752,
+              "mse_std": 0.0008,
+              "variant": "supervisado/42"
+            },
+            {
+              "dataset": "ETTh1",
+              "horizon": 96,
+              "mae_mean": 0.4001,
+              "mae_std": 0.0023,
+              "mse_mean": 0.37,
+              "mse_std": 0.0035,
+              "variant": "autosupervisado/42"
+            }
+          ],
+          "formal_statistical_tests": {
+            "detail": "No hay contraste formal identificado, p-valores ni correcciones por comparación múltiple.",
+            "scope_checked_pdf_pages": [
+              1,
+              24
+            ],
+            "status": "NR"
+          },
+          "locators": [
+            {
+              "pdf_page": 18,
+              "section": "ApéndiceA.6.1"
+            },
+            {
+              "pdf_page": 20,
+              "section": "ApéndiceA.6.1",
+              "table": "14"
+            },
+            {
+              "figure": "7",
+              "pdf_page": 24,
+              "section": "ApéndiceA.7"
+            }
+          ],
+          "main_result_repeats": 1,
+          "main_seed": 2021,
+          "selfsup_robustness": "Preentrena una vez y realiza5 fine-tunings con distintas selecciones aleatorias de batch; no5 pretrainings independientes.",
+          "std_reported": true,
+          "supervised_robustness_seeds": [
+            2019,
+            2020,
+            2021,
+            2022,
+            2023
+          ]
+        },
+        "note": "SD for another variant, dataset, or horizon aggregate is not uncertainty for this selected row.",
+        "status": "NR",
+        "value": null
+      }
+    },
+    "limitations": "External forecast result; different task and information set from BTC sigma7.",
+    "foundational_2016_exception": false,
+    "direct_E2_effectiveness_established": false,
+    "new_manuscript_reading_claimed": false,
+    "adjudication_date": "2026-11-14",
+    "independent_human_double_review": false
+  },
+  {
+    "source_id": "10.48550/arXiv.2303.06053",
+    "title": "TSMixer: An All-MLP Architecture for Time Series Forecasting",
+    "models": [
+      "TSMixer"
+    ],
+    "current_Top10_system_source": true,
+    "decision": "incluido",
+    "role": "mecanismo_arquitectonico",
+    "rationale": "Fuente primaria del mecanismo, evidencia de arquitectura y resultado localizada y código de autor identificado. Se admite para transferencia explícita, no para eficacia BTC.",
+    "source_url": "https://arxiv.org/abs/2303.06053v5",
+    "source_version": "2303.06053v5",
+    "evidence_pointers": [
+      "book_e2/_static/e2_literature_closure_20261113/current10_extraction.json#study_id=10.48550/arXiv.2303.06053"
+    ],
+    "evidence_locators": [
+      {
+        "pdf_page": 10,
+        "printed_page": "10",
+        "table": "3"
+      },
+      {
+        "pdf_page": 11,
+        "printed_page": "11",
+        "section": "5"
+      },
+      {
+        "pdf_page": 20,
+        "printed_page": "20",
+        "section": "C.1"
+      }
+    ],
+    "source_read_level": "prior_complete_PDF_and_appendices_extraction",
+    "quality": {
+      "baseline_effort": {
+        "evidence": {
+          "LTSF": "FEDformer/Autoformer/Informer/PatchTST con asterisco copiados de Nie2023 en Table3. RevIN y L512 elegidos para comparar con PatchTST. TMix-Only/Linear/TFT también presentes. No todos son reentrenamientos con igual presupuesto.",
+          "M5": "Basado en GluonTS; TFT/DeepAR de GluonTS; autores implementan PatchTST/FEDformer/TSMixer y modifican modelos si hace falta para binomial negativa. Top8/repeats5 se aplica a todos según C.2. Diferencias de framework en timing(Table6: TFTMXNet vs restoPyTorch).",
+          "guaranteed_equal_HPO_budget_across_all_papers": "NR; no reclamar comparación universal de costo presupuestario.",
+          "locators": [
+            {
+              "pdf_page": 10,
+              "printed_page": "10",
+              "table": "3"
+            },
+            {
+              "pdf_page": 11,
+              "printed_page": "11",
+              "section": "5.1"
+            },
+            {
+              "pdf_page": 13,
+              "printed_page": "13",
+              "table": "6"
+            },
+            {
+              "pdf_page": 21,
+              "printed_page": "21",
+              "section": "C.2"
+            }
+          ]
+        },
+        "note": "",
+        "status": "partial",
+        "value": {
+          "LTSF": "FEDformer/Autoformer/Informer/PatchTST con asterisco copiados de Nie2023 en Table3. RevIN y L512 elegidos para comparar con PatchTST. TMix-Only/Linear/TFT también presentes. No todos son reentrenamientos con igual presupuesto.",
+          "M5": "Basado en GluonTS; TFT/DeepAR de GluonTS; autores implementan PatchTST/FEDformer/TSMixer y modifican modelos si hace falta para binomial negativa. Top8/repeats5 se aplica a todos según C.2. Diferencias de framework en timing(Table6: TFTMXNet vs restoPyTorch).",
+          "guaranteed_equal_HPO_budget_across_all_papers": "NR; no reclamar comparación universal de costo presupuestario.",
+          "locators": [
+            {
+              "pdf_page": 10,
+              "printed_page": "10",
+              "table": "3"
+            },
+            {
+              "pdf_page": 11,
+              "printed_page": "11",
+              "section": "5.1"
+            },
+            {
+              "pdf_page": 13,
+              "printed_page": "13",
+              "table": "6"
+            },
+            {
+              "pdf_page": 21,
+              "printed_page": "21",
+              "section": "C.2"
+            }
+          ]
+        }
+      },
+      "benchmark_data_download_validated": {
+        "evidence": "This task inspected documents, not downloaded benchmark datasets.",
+        "note": "",
+        "status": "NV",
+        "value": null
+      },
+      "equal_hpo_budget": {
+        "evidence": {
+          "LTSF": "FEDformer/Autoformer/Informer/PatchTST con asterisco copiados de Nie2023 en Table3. RevIN y L512 elegidos para comparar con PatchTST. TMix-Only/Linear/TFT también presentes. No todos son reentrenamientos con igual presupuesto.",
+          "M5": "Basado en GluonTS; TFT/DeepAR de GluonTS; autores implementan PatchTST/FEDformer/TSMixer y modifican modelos si hace falta para binomial negativa. Top8/repeats5 se aplica a todos según C.2. Diferencias de framework en timing(Table6: TFTMXNet vs restoPyTorch).",
+          "guaranteed_equal_HPO_budget_across_all_papers": "NR; no reclamar comparación universal de costo presupuestario.",
+          "locators": [
+            {
+              "pdf_page": 10,
+              "printed_page": "10",
+              "table": "3"
+            },
+            {
+              "pdf_page": 11,
+              "printed_page": "11",
+              "section": "5.1"
+            },
+            {
+              "pdf_page": 13,
+              "printed_page": "13",
+              "table": "6"
+            },
+            {
+              "pdf_page": 21,
+              "printed_page": "21",
+              "section": "C.2"
+            }
+          ]
+        },
+        "note": "Shared context or architecture controls do not prove equal search trials/compute.",
+        "status": "NR",
+        "value": null
+      },
+      "formal_tests": {
+        "evidence": "NR tras lectura completa: sin tests formales, valoresp ni intervalos de confianza. “Significant” en texto no equivale a prueba estadística reportada.",
+        "note": "No verified formal inferential comparison for the selected row.",
+        "status": "NR",
+        "value": null
+      },
+      "original_paper_numerically_reproduced": {
+        "evidence": "No model fitting or inference was performed in this documentary review.",
+        "note": "",
+        "status": "NV",
+        "value": null
+      },
+      "repetitions": {
+        "evidence": {
+          "LTSF_repetitions": "NR",
+          "LTSF_seed_values": "NR",
+          "LTSF_variance_CI": "NR: Table3 contiene estimaciones puntuales, no errorbars ni número de runs.",
+          "M5_repetitions": 5,
+          "M5_seed_values": "NR: indica5 randomseeds distintos, no sus enteros.",
+          "M5_variance": "Media±desviación estándar, no standarderror; Table4 explícito5 seeds, Table5 interpreta el mismo protocoloC.2.",
+          "locators": [
+            {
+              "pdf_page": 10,
+              "printed_page": "10",
+              "table": "3"
+            },
+            {
+              "pdf_page": 12,
+              "printed_page": "12",
+              "table": "4–5"
+            },
+            {
+              "pdf_page": 21,
+              "printed_page": "21",
+              "section": "C.2"
+            }
+          ],
+          "statistical_tests": "NR tras lectura completa: sin tests formales, valoresp ni intervalos de confianza. “Significant” en texto no equivale a prueba estadística reportada."
+        },
+        "note": "Main selected variant; robustness studies can use a different variant or scope.",
+        "status": "NR",
+        "value": null
+      },
+      "scaling": {
+        "evidence": {
+          "LTSF_global": "Cada covariate se estandariza independientemente; datos estandarizados se usan para entrenamiento/evaluación y NO se desescala para métricas.",
+          "LTSF_local": "RevIN antes/después del modelo, para comparación con PatchTST; no elimina global scaling.",
+          "M5": "Sin global normalization; ventas de cada producto divididas por su media para input, output reescalado.",
+          "fitting_population": "NR: el PDF no explicita el subconjunto con el que calcula media/std globales ni el intervalo de la media de ventas M5. No etiquetar train-only como hecho original.",
+          "locators": [
+            {
+              "pdf_page": 11,
+              "printed_page": "11",
+              "section": "5"
+            },
+            {
+              "pdf_page": 17,
+              "printed_page": "17",
+              "section": "B.1"
+            },
+            {
+              "pdf_page": 18,
+              "printed_page": "18",
+              "section": "B.1–B.2"
+            },
+            {
+              "pdf_page": 20,
+              "printed_page": "20",
+              "section": "C.1"
+            }
+          ],
+          "model_normalization": "BatchNorm 2D pre-residual en LTSF; LayerNorm 2D post-residual en Ext/M5."
+        },
+        "note": "",
+        "status": "reported",
+        "value": {
+          "LTSF_global": "Cada covariate se estandariza independientemente; datos estandarizados se usan para entrenamiento/evaluación y NO se desescala para métricas.",
+          "LTSF_local": "RevIN antes/después del modelo, para comparación con PatchTST; no elimina global scaling.",
+          "M5": "Sin global normalization; ventas de cada producto divididas por su media para input, output reescalado.",
+          "fitting_population": "NR: el PDF no explicita el subconjunto con el que calcula media/std globales ni el intervalo de la media de ventas M5. No etiquetar train-only como hecho original.",
+          "locators": [
+            {
+              "pdf_page": 11,
+              "printed_page": "11",
+              "section": "5"
+            },
+            {
+              "pdf_page": 17,
+              "printed_page": "17",
+              "section": "B.1"
+            },
+            {
+              "pdf_page": 18,
+              "printed_page": "18",
+              "section": "B.1–B.2"
+            },
+            {
+              "pdf_page": 20,
+              "printed_page": "20",
+              "section": "C.1"
+            }
+          ],
+          "model_normalization": "BatchNorm 2D pre-residual en LTSF; LayerNorm 2D post-residual en Ext/M5."
+        }
+      },
+      "scope": "Selected canonical ETTh1 row unless a different scope is explicit in evidence",
+      "seed_ids": {
+        "evidence": {
+          "LTSF_repetitions": "NR",
+          "LTSF_seed_values": "NR",
+          "LTSF_variance_CI": "NR: Table3 contiene estimaciones puntuales, no errorbars ni número de runs.",
+          "M5_repetitions": 5,
+          "M5_seed_values": "NR: indica5 randomseeds distintos, no sus enteros.",
+          "M5_variance": "Media±desviación estándar, no standarderror; Table4 explícito5 seeds, Table5 interpreta el mismo protocoloC.2.",
+          "locators": [
+            {
+              "pdf_page": 10,
+              "printed_page": "10",
+              "table": "3"
+            },
+            {
+              "pdf_page": 12,
+              "printed_page": "12",
+              "table": "4–5"
+            },
+            {
+              "pdf_page": 21,
+              "printed_page": "21",
+              "section": "C.2"
+            }
+          ],
+          "statistical_tests": "NR tras lectura completa: sin tests formales, valoresp ni intervalos de confianza. “Significant” en texto no equivale a prueba estadística reportada."
+        },
+        "note": "",
+        "status": "NR",
+        "value": null
+      },
+      "split": {
+        "evidence": {
+          "ETT": "12/4/4 meses train/validation/test, agrupando ETTh1/h2 y ETTm1/m2 en Table2.",
+          "M5": "1886/28/28 días train/validation/test, que suman los1942pasos indicados en Table2.",
+          "Weather_Electricity_Traffic": "7:2:1 train/validation/test TAL COMO ESTÁ IMPRESO en Table2 y confirmado visualmente. No cambiar a un split convencional de otro paper.",
+          "absolute_dates": "NR: no se dan fechas calendario exactas de fronteras en el texto completo; remite a datasets/referencias.",
+          "locators": [
+            {
+              "pdf_page": 10,
+              "printed_page": "10",
+              "table": "2"
+            },
+            {
+              "pdf_page": 20,
+              "printed_page": "20",
+              "section": "C.1"
+            },
+            {
+              "pdf_page": 21,
+              "printed_page": "21",
+              "section": "C.2"
+            }
+          ]
+        },
+        "note": "",
+        "status": "reported",
+        "value": {
+          "ETT": "12/4/4 meses train/validation/test, agrupando ETTh1/h2 y ETTm1/m2 en Table2.",
+          "M5": "1886/28/28 días train/validation/test, que suman los1942pasos indicados en Table2.",
+          "Weather_Electricity_Traffic": "7:2:1 train/validation/test TAL COMO ESTÁ IMPRESO en Table2 y confirmado visualmente. No cambiar a un split convencional de otro paper.",
+          "absolute_dates": "NR: no se dan fechas calendario exactas de fronteras en el texto completo; remite a datasets/referencias.",
+          "locators": [
+            {
+              "pdf_page": 10,
+              "printed_page": "10",
+              "table": "2"
+            },
+            {
+              "pdf_page": 20,
+              "printed_page": "20",
+              "section": "C.1"
+            },
+            {
+              "pdf_page": 21,
+              "printed_page": "21",
+              "section": "C.2"
+            }
+          ]
+        }
+      },
+      "train_only_scaler": {
+        "evidence": {
+          "LTSF_global": "Cada covariate se estandariza independientemente; datos estandarizados se usan para entrenamiento/evaluación y NO se desescala para métricas.",
+          "LTSF_local": "RevIN antes/después del modelo, para comparación con PatchTST; no elimina global scaling.",
+          "M5": "Sin global normalization; ventas de cada producto divididas por su media para input, output reescalado.",
+          "fitting_population": "NR: el PDF no explicita el subconjunto con el que calcula media/std globales ni el intervalo de la media de ventas M5. No etiquetar train-only como hecho original.",
+          "locators": [
+            {
+              "pdf_page": 11,
+              "printed_page": "11",
+              "section": "5"
+            },
+            {
+              "pdf_page": 17,
+              "printed_page": "17",
+              "section": "B.1"
+            },
+            {
+              "pdf_page": 18,
+              "printed_page": "18",
+              "section": "B.1–B.2"
+            },
+            {
+              "pdf_page": 20,
+              "printed_page": "20",
+              "section": "C.1"
+            }
+          ],
+          "model_normalization": "BatchNorm 2D pre-residual en LTSF; LayerNorm 2D post-residual en Ext/M5."
+        },
+        "note": "Internal model normalization does not establish train-only dataset scaling.",
+        "status": "NR",
+        "value": null
+      },
+      "variance_selected_pair": {
+        "evidence": {
+          "LTSF_repetitions": "NR",
+          "LTSF_seed_values": "NR",
+          "LTSF_variance_CI": "NR: Table3 contiene estimaciones puntuales, no errorbars ni número de runs.",
+          "M5_repetitions": 5,
+          "M5_seed_values": "NR: indica5 randomseeds distintos, no sus enteros.",
+          "M5_variance": "Media±desviación estándar, no standarderror; Table4 explícito5 seeds, Table5 interpreta el mismo protocoloC.2.",
+          "locators": [
+            {
+              "pdf_page": 10,
+              "printed_page": "10",
+              "table": "3"
+            },
+            {
+              "pdf_page": 12,
+              "printed_page": "12",
+              "table": "4–5"
+            },
+            {
+              "pdf_page": 21,
+              "printed_page": "21",
+              "section": "C.2"
+            }
+          ],
+          "statistical_tests": "NR tras lectura completa: sin tests formales, valoresp ni intervalos de confianza. “Significant” en texto no equivale a prueba estadística reportada."
+        },
+        "note": "SD for another variant, dataset, or horizon aggregate is not uncertainty for this selected row.",
+        "status": "NR",
+        "value": null
+      }
+    },
+    "limitations": "External forecast result; different task and information set from BTC sigma7.",
+    "foundational_2016_exception": false,
+    "direct_E2_effectiveness_established": false,
+    "new_manuscript_reading_claimed": false,
+    "adjudication_date": "2026-11-14",
+    "independent_human_double_review": false
+  },
+  {
+    "source_id": "10.48550/arXiv.2304.08424",
+    "title": "Long-term Forecasting with TiDE: Time-series Dense Encoder",
+    "models": [
+      "TiDE"
+    ],
+    "current_Top10_system_source": true,
+    "decision": "incluido",
+    "role": "mecanismo_arquitectonico",
+    "rationale": "Fuente primaria del mecanismo, evidencia de arquitectura y resultado localizada y código de autor identificado. Se admite para transferencia explícita, no para eficacia BTC.",
+    "source_url": "https://arxiv.org/abs/2304.08424v5",
+    "source_version": "2304.08424v5",
+    "evidence_pointers": [
+      "book_e2/_static/e2_literature_closure_20261113/current10_extraction.json#study_id=10.48550/arXiv.2304.08424"
+    ],
+    "evidence_locators": [
+      {
+        "pdf_page": 8,
+        "printed_page": "8",
+        "table": 2
+      },
+      {
+        "pdf_page": 7,
+        "printed_page": "7",
+        "section": "5.1"
+      },
+      {
+        "pdf_page": 19,
+        "printed_page": "19",
+        "table": 5
+      },
+      {
+        "pdf_page": 21,
+        "printed_page": "21",
+        "table": 8
+      }
+    ],
+    "source_read_level": "prior_complete_PDF_and_appendices_extraction",
+    "quality": {
+      "baseline_effort": {
+        "evidence": {
+          "limits": [
+            "Most baseline metrics imported from PatchTST paper; DLinear explicitly reported from original paper; no matched HPO trial budgets.",
+            "Covariate availability differs: TiDE uses time-derived covariates, DLinear had them disabled because they hurt linear model; M5 PatchTST had no covariates, TiDE/DeepAR use covariates.",
+            "Long-term Table2 caption broadly says rest from Nie et al.; §5.1 specifically says DLinear from Zeng et al. Record this provenance wording rather than claim all rerun."
+          ],
+          "locators": [
+            {
+              "pdf_page": 3,
+              "printed_page": "3",
+              "section": "2"
+            },
+            {
+              "pdf_page": 7,
+              "printed_page": "7",
+              "section": "5.1 and footnote 1"
+            },
+            {
+              "pdf_page": 8,
+              "printed_page": "8",
+              "table": 2
+            },
+            {
+              "pdf_page": 9,
+              "printed_page": "9",
+              "section": "5.2"
+            },
+            {
+              "pdf_page": 10,
+              "printed_page": "10",
+              "section": "5.3"
+            }
+          ],
+          "reported_controls": [
+            "Same test sets and multivariate task, same MSE training loss for long-term results.",
+            "Authors corrected a test-dataloader bug affecting especially small ETTh1/ETTh2 in imported PatchTST results (p7 footnote).",
+            "Efficiency comparison uses same Autoformer data loader, same NVIDIA T4 machine, batch8 and Electricity."
+          ]
+        },
+        "note": "",
+        "status": "partial",
+        "value": {
+          "limits": [
+            "Most baseline metrics imported from PatchTST paper; DLinear explicitly reported from original paper; no matched HPO trial budgets.",
+            "Covariate availability differs: TiDE uses time-derived covariates, DLinear had them disabled because they hurt linear model; M5 PatchTST had no covariates, TiDE/DeepAR use covariates.",
+            "Long-term Table2 caption broadly says rest from Nie et al.; §5.1 specifically says DLinear from Zeng et al. Record this provenance wording rather than claim all rerun."
+          ],
+          "locators": [
+            {
+              "pdf_page": 3,
+              "printed_page": "3",
+              "section": "2"
+            },
+            {
+              "pdf_page": 7,
+              "printed_page": "7",
+              "section": "5.1 and footnote 1"
+            },
+            {
+              "pdf_page": 8,
+              "printed_page": "8",
+              "table": 2
+            },
+            {
+              "pdf_page": 9,
+              "printed_page": "9",
+              "section": "5.2"
+            },
+            {
+              "pdf_page": 10,
+              "printed_page": "10",
+              "section": "5.3"
+            }
+          ],
+          "reported_controls": [
+            "Same test sets and multivariate task, same MSE training loss for long-term results.",
+            "Authors corrected a test-dataloader bug affecting especially small ETTh1/ETTh2 in imported PatchTST results (p7 footnote).",
+            "Efficiency comparison uses same Autoformer data loader, same NVIDIA T4 machine, batch8 and Electricity."
+          ]
+        }
+      },
+      "benchmark_data_download_validated": {
+        "evidence": "This task inspected documents, not downloaded benchmark datasets.",
+        "note": "",
+        "status": "NV",
+        "value": null
+      },
+      "equal_hpo_budget": {
+        "evidence": {
+          "limits": [
+            "Most baseline metrics imported from PatchTST paper; DLinear explicitly reported from original paper; no matched HPO trial budgets.",
+            "Covariate availability differs: TiDE uses time-derived covariates, DLinear had them disabled because they hurt linear model; M5 PatchTST had no covariates, TiDE/DeepAR use covariates.",
+            "Long-term Table2 caption broadly says rest from Nie et al.; §5.1 specifically says DLinear from Zeng et al. Record this provenance wording rather than claim all rerun."
+          ],
+          "locators": [
+            {
+              "pdf_page": 3,
+              "printed_page": "3",
+              "section": "2"
+            },
+            {
+              "pdf_page": 7,
+              "printed_page": "7",
+              "section": "5.1 and footnote 1"
+            },
+            {
+              "pdf_page": 8,
+              "printed_page": "8",
+              "table": 2
+            },
+            {
+              "pdf_page": 9,
+              "printed_page": "9",
+              "section": "5.2"
+            },
+            {
+              "pdf_page": 10,
+              "printed_page": "10",
+              "section": "5.3"
+            }
+          ],
+          "reported_controls": [
+            "Same test sets and multivariate task, same MSE training loss for long-term results.",
+            "Authors corrected a test-dataloader bug affecting especially small ETTh1/ETTh2 in imported PatchTST results (p7 footnote).",
+            "Efficiency comparison uses same Autoformer data loader, same NVIDIA T4 machine, batch8 and Electricity."
+          ]
+        },
+        "note": "Shared context or architecture controls do not prove equal search trials/compute.",
+        "status": "NR",
+        "value": null
+      },
+      "formal_tests": {
+        "evidence": "No named paired test, p-values, multiple-testing correction or confidence level reported. Paper defines bold best/indistinguishable using two-standard-error intervals; do not call this a formal significance test with a verified p-value.",
+        "note": "No verified formal inferential comparison for the selected row.",
+        "status": "NR",
+        "value": null
+      },
+      "original_paper_numerically_reproduced": {
+        "evidence": "No model fitting or inference was performed in this documentary review.",
+        "note": "",
+        "status": "NV",
+        "value": null
+      },
+      "repetitions": {
+        "evidence": {
+          "ETTh1_H96_SE": {
+            "MAE": 0.0002,
+            "MSE": 0.0003
+          },
+          "formal_tests": "No named paired test, p-values, multiple-testing correction or confidence level reported. Paper defines bold best/indistinguishable using two-standard-error intervals; do not call this a formal significance test with a verified p-value.",
+          "locators": [
+            {
+              "pdf_page": 7,
+              "printed_page": "7",
+              "section": "5.1"
+            },
+            {
+              "pdf_page": 8,
+              "printed_page": "8",
+              "table": 2
+            },
+            {
+              "pdf_page": 9,
+              "printed_page": "9",
+              "table": 3
+            },
+            {
+              "pdf_page": 17,
+              "printed_page": "17",
+              "section": "A.2"
+            },
+            {
+              "pdf_page": 19,
+              "printed_page": "19",
+              "table": 5
+            }
+          ],
+          "long_term_aggregation": "Mean over 5 independent runs; Table5 provides standard errors, not standard deviations.",
+          "long_term_runs": 5,
+          "m5_dispersion": "Standard errors.",
+          "m5_runs": 3,
+          "numeric_seed_values": "NR",
+          "split_repetitions": "NR",
+          "synthetic_dispersion": "Text says standard deviations.",
+          "synthetic_runs": 3
+        },
+        "note": "Main selected variant; robustness studies can use a different variant or scope.",
+        "status": "reported",
+        "value": 5
+      },
+      "scaling": {
+        "evidence": {
+          "locators": [
+            {
+              "pdf_page": 7,
+              "printed_page": "7",
+              "section": "5.1"
+            },
+            {
+              "pdf_page": 8,
+              "printed_page": "8",
+              "table": 2
+            },
+            {
+              "pdf_page": 20,
+              "printed_page": "20",
+              "section": "B.2 / B.3"
+            },
+            {
+              "pdf_page": 21,
+              "printed_page": "21",
+              "table": 8
+            }
+          ],
+          "reported": "Standard normalize with mean and standard deviations from training period; evaluation Table 2 on this normalized scale. Time features separately normalized [-0.5,0.5]. Optional RevIN tuned per dataset (ETTh1 True).",
+          "scaler_ddof": "NR"
+        },
+        "note": "",
+        "status": "reported",
+        "value": {
+          "locators": [
+            {
+              "pdf_page": 7,
+              "printed_page": "7",
+              "section": "5.1"
+            },
+            {
+              "pdf_page": 8,
+              "printed_page": "8",
+              "table": 2
+            },
+            {
+              "pdf_page": 20,
+              "printed_page": "20",
+              "section": "B.2 / B.3"
+            },
+            {
+              "pdf_page": 21,
+              "printed_page": "21",
+              "table": 8
+            }
+          ],
+          "reported": "Standard normalize with mean and standard deviations from training period; evaluation Table 2 on this normalized scale. Time features separately normalized [-0.5,0.5]. Optional RevIN tuned per dataset (ETTh1 True).",
+          "scaler_ddof": "NR"
+        }
+      },
+      "scope": "Selected canonical ETTh1 row unless a different scope is explicit in evidence",
+      "seed_ids": {
+        "evidence": {
+          "ETTh1_H96_SE": {
+            "MAE": 0.0002,
+            "MSE": 0.0003
+          },
+          "formal_tests": "No named paired test, p-values, multiple-testing correction or confidence level reported. Paper defines bold best/indistinguishable using two-standard-error intervals; do not call this a formal significance test with a verified p-value.",
+          "locators": [
+            {
+              "pdf_page": 7,
+              "printed_page": "7",
+              "section": "5.1"
+            },
+            {
+              "pdf_page": 8,
+              "printed_page": "8",
+              "table": 2
+            },
+            {
+              "pdf_page": 9,
+              "printed_page": "9",
+              "table": 3
+            },
+            {
+              "pdf_page": 17,
+              "printed_page": "17",
+              "section": "A.2"
+            },
+            {
+              "pdf_page": 19,
+              "printed_page": "19",
+              "table": 5
+            }
+          ],
+          "long_term_aggregation": "Mean over 5 independent runs; Table5 provides standard errors, not standard deviations.",
+          "long_term_runs": 5,
+          "m5_dispersion": "Standard errors.",
+          "m5_runs": 3,
+          "numeric_seed_values": "NR",
+          "split_repetitions": "NR",
+          "synthetic_dispersion": "Text says standard deviations.",
+          "synthetic_runs": 3
+        },
+        "note": "",
+        "status": "NR",
+        "value": null
+      },
+      "split": {
+        "evidence": {
+          "exact_calendar_boundaries": "NR",
+          "locators": [
+            {
+              "pdf_page": 7,
+              "printed_page": "7",
+              "section": "5.1"
+            }
+          ],
+          "reported": "7:1:2 train:validation:test for ALL long-term datasets, per §5.1. Do not silently replace ETT with a conventional alternate split."
+        },
+        "note": "",
+        "status": "reported",
+        "value": {
+          "exact_calendar_boundaries": "NR",
+          "locators": [
+            {
+              "pdf_page": 7,
+              "printed_page": "7",
+              "section": "5.1"
+            }
+          ],
+          "reported": "7:1:2 train:validation:test for ALL long-term datasets, per §5.1. Do not silently replace ETT with a conventional alternate split."
+        }
+      },
+      "train_only_scaler": {
+        "evidence": {
+          "locators": [
+            {
+              "pdf_page": 7,
+              "printed_page": "7",
+              "section": "5.1"
+            },
+            {
+              "pdf_page": 8,
+              "printed_page": "8",
+              "table": 2
+            },
+            {
+              "pdf_page": 20,
+              "printed_page": "20",
+              "section": "B.2 / B.3"
+            },
+            {
+              "pdf_page": 21,
+              "printed_page": "21",
+              "table": 8
+            }
+          ],
+          "reported": "Standard normalize with mean and standard deviations from training period; evaluation Table 2 on this normalized scale. Time features separately normalized [-0.5,0.5]. Optional RevIN tuned per dataset (ETTh1 True).",
+          "scaler_ddof": "NR"
+        },
+        "note": "Internal model normalization does not establish train-only dataset scaling.",
+        "status": "reported",
+        "value": true
+      },
+      "variance_selected_pair": {
+        "evidence": {
+          "ETTh1_H96_SE": {
+            "MAE": 0.0002,
+            "MSE": 0.0003
+          },
+          "formal_tests": "No named paired test, p-values, multiple-testing correction or confidence level reported. Paper defines bold best/indistinguishable using two-standard-error intervals; do not call this a formal significance test with a verified p-value.",
+          "locators": [
+            {
+              "pdf_page": 7,
+              "printed_page": "7",
+              "section": "5.1"
+            },
+            {
+              "pdf_page": 8,
+              "printed_page": "8",
+              "table": 2
+            },
+            {
+              "pdf_page": 9,
+              "printed_page": "9",
+              "table": 3
+            },
+            {
+              "pdf_page": 17,
+              "printed_page": "17",
+              "section": "A.2"
+            },
+            {
+              "pdf_page": 19,
+              "printed_page": "19",
+              "table": 5
+            }
+          ],
+          "long_term_aggregation": "Mean over 5 independent runs; Table5 provides standard errors, not standard deviations.",
+          "long_term_runs": 5,
+          "m5_dispersion": "Standard errors.",
+          "m5_runs": 3,
+          "numeric_seed_values": "NR",
+          "split_repetitions": "NR",
+          "synthetic_dispersion": "Text says standard deviations.",
+          "synthetic_runs": 3
+        },
+        "note": "SD for another variant, dataset, or horizon aggregate is not uncertainty for this selected row.",
+        "status": "reported",
+        "value": {
+          "MAE": "0.0002",
+          "MSE": "0.0003",
+          "kind": "standard_error"
+        }
+      }
+    },
+    "limitations": "External forecast result; different task and information set from BTC sigma7.",
+    "foundational_2016_exception": false,
+    "direct_E2_effectiveness_established": false,
+    "new_manuscript_reading_claimed": false,
+    "adjudication_date": "2026-11-14",
+    "independent_human_double_review": false
+  },
+  {
+    "source_id": "10.48550/arXiv.2310.06625",
+    "title": "iTransformer: Inverted Transformers Are Effective for Time Series Forecasting",
+    "models": [
+      "iTransformer"
+    ],
+    "current_Top10_system_source": true,
+    "decision": "incluido",
+    "role": "mecanismo_arquitectonico",
+    "rationale": "Fuente primaria del mecanismo, evidencia de arquitectura y resultado localizada y código de autor identificado. Se admite para transferencia explícita, no para eficacia BTC.",
+    "source_url": "https://arxiv.org/abs/2310.06625v4",
+    "source_version": "2310.06625v4",
+    "evidence_pointers": [
+      "book_e2/_static/e2_literature_closure_20261113/current10_extraction.json#study_id=10.48550/arXiv.2310.06625"
+    ],
+    "evidence_locators": [
+      {
+        "detail": "Visually checked both metric columns and table caption; fixed L96",
+        "pdf_pages": [
+          23
+        ],
+        "section_or_table": "Table 10, ETTh1, 96 row"
+      }
+    ],
+    "source_read_level": "prior_complete_PDF_and_appendices_extraction",
+    "quality": {
+      "baseline_effort": {
+        "evidence": "Fixed L=96 for comparisons and original-paper/code configurations via TimesNet repository give explicit protocol consistency. Paper does not document equal search trial/compute budgets or per-dataset selected hyperparameters for every method; fixed L may disadvantage methods tuned for longer contexts. No independent replication performed.",
+        "note": "",
+        "status": "partial",
+        "value": "Fixed L=96 for comparisons and original-paper/code configurations via TimesNet repository give explicit protocol consistency. Paper does not document equal search trial/compute budgets or per-dataset selected hyperparameters for every method; fixed L may disadvantage methods tuned for longer contexts. No independent replication performed."
+      },
+      "benchmark_data_download_validated": {
+        "evidence": "This task inspected documents, not downloaded benchmark datasets.",
+        "note": "",
+        "status": "NV",
+        "value": null
+      },
+      "equal_hpo_budget": {
+        "evidence": "Fixed L=96 for comparisons and original-paper/code configurations via TimesNet repository give explicit protocol consistency. Paper does not document equal search trial/compute budgets or per-dataset selected hyperparameters for every method; fixed L may disadvantage methods tuned for longer contexts. No independent replication performed.",
+        "note": "Shared context or architecture controls do not prove equal search trials/compute.",
+        "status": "NR",
+        "value": null
+      },
+      "formal_tests": {
+        "evidence": "NR after complete PDF reading",
+        "note": "No verified formal inferential comparison for the selected row.",
+        "status": "NR",
+        "value": null
+      },
+      "original_paper_numerically_reproduced": {
+        "evidence": "No model fitting or inference was performed in this documentary review.",
+        "note": "",
+        "status": "NV",
+        "value": null
+      },
+      "repetitions": {
+        "evidence": {
+          "confidence_intervals": "NR after complete PDF reading",
+          "dispersion": "Mean±standard deviation from five distinct random seeds in Table 5; e.g. ETTh2 H96 MSE0.297±0.002, MAE0.349±0.001",
+          "locator": {
+            "detail": "Five-seed standard deviations",
+            "pdf_pages": [
+              14
+            ],
+            "section_or_table": "A.2, Table 5"
+          },
+          "reported_repetitions": 5,
+          "scope": "Robustness Table 5 for ECL, ETTh2, Exchange, Solar-Energy, Traffic, Weather",
+          "seed_values": "NR after complete PDF reading",
+          "selected_ETTh1_row_dispersion": "NR; Table 5 does not contain ETTh1",
+          "statistical_tests": "NR after complete PDF reading"
+        },
+        "note": "iTransformer reports five robustness runs for six other datasets; selected ETTh1 repetitions not independently established.",
+        "status": "NV",
+        "value": null
+      },
+      "scaling": {
+        "evidence": {
+          "code_locator": "thuml/iTransformer @ c2426e68ca13f74aaec08045c5c724d8ad328124, model/iTransformer.py lines 42–69",
+          "dataset_scaler": "Exact dataset scaler formula and fit scope not independently specified in this PDF; data processing follows TimesNet. Do not promote inherited protocol to directly verified train-only scaling.",
+          "internal_normalization": "Layer normalization of per-variate latent representations: §3.2/Eq2; optional input per-sample temporal mean/variance and output de-normalization independently verified in official code, separate from the PDF evidence."
+        },
+        "note": "",
+        "status": "partial",
+        "value": {
+          "code_locator": "thuml/iTransformer @ c2426e68ca13f74aaec08045c5c724d8ad328124, model/iTransformer.py lines 42–69",
+          "dataset_scaler": "Exact dataset scaler formula and fit scope not independently specified in this PDF; data processing follows TimesNet. Do not promote inherited protocol to directly verified train-only scaling.",
+          "internal_normalization": "Layer normalization of per-variate latent representations: §3.2/Eq2; optional input per-sample temporal mean/variance and output de-normalization independently verified in official code, separate from the PDF evidence."
+        }
+      },
+      "scope": "Selected canonical ETTh1 row unless a different scope is explicit in evidence",
+      "seed_ids": {
+        "evidence": {
+          "confidence_intervals": "NR after complete PDF reading",
+          "dispersion": "Mean±standard deviation from five distinct random seeds in Table 5; e.g. ETTh2 H96 MSE0.297±0.002, MAE0.349±0.001",
+          "locator": {
+            "detail": "Five-seed standard deviations",
+            "pdf_pages": [
+              14
+            ],
+            "section_or_table": "A.2, Table 5"
+          },
+          "reported_repetitions": 5,
+          "scope": "Robustness Table 5 for ECL, ETTh2, Exchange, Solar-Energy, Traffic, Weather",
+          "seed_values": "NR after complete PDF reading",
+          "selected_ETTh1_row_dispersion": "NR; Table 5 does not contain ETTh1",
+          "statistical_tests": "NR after complete PDF reading"
+        },
+        "note": "",
+        "status": "NR",
+        "value": null
+      },
+      "split": {
+        "evidence": {
+          "datasets": [
+            {
+              "H_reported_table": [
+                96,
+                192,
+                336,
+                720
+              ],
+              "L": 96,
+              "frequency_as_printed": "1h",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "ETTh1",
+              "target": "7 variables of electricity transformer",
+              "train_validation_test_sizes_as_printed": [
+                8545,
+                2881,
+                2881
+              ],
+              "variables": 7
+            },
+            {
+              "H_reported_table": [
+                96,
+                192,
+                336,
+                720
+              ],
+              "L": 96,
+              "frequency_as_printed": "1h",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "ETTh2",
+              "target": "7 variables of electricity transformer",
+              "train_validation_test_sizes_as_printed": [
+                8545,
+                2881,
+                2881
+              ],
+              "variables": 7
+            },
+            {
+              "H_reported_table": [
+                96,
+                192,
+                336,
+                720
+              ],
+              "L": 96,
+              "frequency_as_printed": "15min",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "ETTm1",
+              "target": "7 variables of electricity transformer",
+              "train_validation_test_sizes_as_printed": [
+                34465,
+                11521,
+                11521
+              ],
+              "variables": 7
+            },
+            {
+              "H_reported_table": [
+                96,
+                192,
+                336,
+                720
+              ],
+              "L": 96,
+              "frequency_as_printed": "15min",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "ETTm2",
+              "target": "7 variables of electricity transformer",
+              "train_validation_test_sizes_as_printed": [
+                34465,
+                11521,
+                11521
+              ],
+              "variables": 7
+            },
+            {
+              "H_reported_table": [
+                96,
+                192,
+                336,
+                720
+              ],
+              "L": 96,
+              "frequency_as_printed": "1d",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "Exchange",
+              "target": "daily exchange rates",
+              "train_validation_test_sizes_as_printed": [
+                5120,
+                665,
+                1422
+              ],
+              "variables": 8
+            },
+            {
+              "H_reported_table": [
+                96,
+                192,
+                336,
+                720
+              ],
+              "L": 96,
+              "frequency_as_printed": "10min",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "Weather",
+              "target": "meteorological variables",
+              "train_validation_test_sizes_as_printed": [
+                36792,
+                5271,
+                10540
+              ],
+              "variables": 21
+            },
+            {
+              "H_reported_table": [
+                96,
+                192,
+                336,
+                720
+              ],
+              "L": 96,
+              "frequency_as_printed": "1h",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "ECL",
+              "target": "electricity consumption",
+              "train_validation_test_sizes_as_printed": [
+                18317,
+                2633,
+                5261
+              ],
+              "variables": 321
+            },
+            {
+              "H_reported_table": [
+                96,
+                192,
+                336,
+                720
+              ],
+              "L": 96,
+              "frequency_as_printed": "1h",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "Traffic",
+              "target": "road occupancy",
+              "train_validation_test_sizes_as_printed": [
+                12185,
+                1757,
+                3509
+              ],
+              "variables": 862
+            },
+            {
+              "H_reported_table": [
+                96,
+                192,
+                336,
+                720
+              ],
+              "L": 96,
+              "frequency_as_printed": "10min",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "Solar-Energy",
+              "target": "PV generation",
+              "train_validation_test_sizes_as_printed": [
+                36601,
+                5161,
+                10417
+              ],
+              "variables": 137
+            },
+            {
+              "H_reported_table": [
+                12,
+                24,
+                48,
+                96
+              ],
+              "L": 96,
+              "frequency_as_printed": "5min",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "PEMS03",
+              "target": "traffic network",
+              "train_validation_test_sizes_as_printed": [
+                15617,
+                5135,
+                5135
+              ],
+              "variables": 358
+            },
+            {
+              "H_reported_table": [
+                12,
+                24,
+                48,
+                96
+              ],
+              "L": 96,
+              "frequency_as_printed": "5min",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "PEMS04",
+              "target": "traffic network",
+              "train_validation_test_sizes_as_printed": [
+                10172,
+                3375,
+                3375
+              ],
+              "variables": 307
+            },
+            {
+              "H_reported_table": [
+                12,
+                24,
+                48,
+                96
+              ],
+              "L": 96,
+              "frequency_as_printed": "5min",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "PEMS07",
+              "target": "traffic network",
+              "train_validation_test_sizes_as_printed": [
+                16911,
+                5622,
+                5622
+              ],
+              "variables": 883
+            },
+            {
+              "H_reported_table": [
+                12,
+                24,
+                48,
+                96
+              ],
+              "L": 96,
+              "frequency_as_printed": "5min",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "PEMS08",
+              "target": "traffic network",
+              "train_validation_test_sizes_as_printed": [
+                10690,
+                3548,
+                3548
+              ],
+              "variables": 170
+            },
+            {
+              "H_reported_table": [
+                12,
+                24,
+                72,
+                144
+              ],
+              "L": 144,
+              "frequency_as_printed": "10min",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "Market-Merchant",
+              "target": "Alipay server load",
+              "train_validation_test_sizes_as_printed": [
+                7045,
+                1429,
+                1429
+              ],
+              "variables": 285
+            },
+            {
+              "H_reported_table": [
+                12,
+                24,
+                72,
+                144
+              ],
+              "L": 144,
+              "frequency_as_printed": "10min",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "Market-Wealth",
+              "target": "Alipay server load",
+              "train_validation_test_sizes_as_printed": [
+                7045,
+                1429,
+                1429
+              ],
+              "variables": 485
+            },
+            {
+              "H_reported_table": [
+                12,
+                24,
+                72,
+                144
+              ],
+              "L": 144,
+              "frequency_as_printed": "10min",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "Market-Finance",
+              "target": "Alipay server load",
+              "train_validation_test_sizes_as_printed": [
+                7045,
+                1429,
+                1429
+              ],
+              "variables": 405
+            },
+            {
+              "H_reported_table": [
+                12,
+                24,
+                72,
+                144
+              ],
+              "L": 144,
+              "frequency_as_printed": "10min",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "Market-Terminal",
+              "target": "Alipay server load",
+              "train_validation_test_sizes_as_printed": [
+                7045,
+                1429,
+                1429
+              ],
+              "variables": 307
+            },
+            {
+              "H_reported_table": [
+                12,
+                24,
+                72,
+                144
+              ],
+              "L": 144,
+              "frequency_as_printed": "10min",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "Market-Payment",
+              "target": "Alipay server load",
+              "train_validation_test_sizes_as_printed": [
+                7045,
+                1429,
+                1429
+              ],
+              "variables": 759
+            },
+            {
+              "H_reported_table": [
+                12,
+                24,
+                72,
+                144
+              ],
+              "L": 144,
+              "frequency_as_printed": "10min",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "Market-Customer",
+              "target": "Alipay server load",
+              "train_validation_test_sizes_as_printed": [
+                7045,
+                1429,
+                1429
+              ],
+              "variables": 395
+            }
+          ],
+          "split": {
+            "locator": {
+              "detail": "Paper states chronological split to avoid leakage; reported counts preserved exactly",
+              "pdf_pages": [
+                13,
+                14
+              ],
+              "section_or_table": "A.1, Table 4"
+            },
+            "method": "Strict chronological train/validation/test following TimesNet protocol; dataset-specific counts Table 4"
+          }
+        },
+        "note": "",
+        "status": "reported",
+        "value": {
+          "datasets": [
+            {
+              "H_reported_table": [
+                96,
+                192,
+                336,
+                720
+              ],
+              "L": 96,
+              "frequency_as_printed": "1h",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "ETTh1",
+              "target": "7 variables of electricity transformer",
+              "train_validation_test_sizes_as_printed": [
+                8545,
+                2881,
+                2881
+              ],
+              "variables": 7
+            },
+            {
+              "H_reported_table": [
+                96,
+                192,
+                336,
+                720
+              ],
+              "L": 96,
+              "frequency_as_printed": "1h",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "ETTh2",
+              "target": "7 variables of electricity transformer",
+              "train_validation_test_sizes_as_printed": [
+                8545,
+                2881,
+                2881
+              ],
+              "variables": 7
+            },
+            {
+              "H_reported_table": [
+                96,
+                192,
+                336,
+                720
+              ],
+              "L": 96,
+              "frequency_as_printed": "15min",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "ETTm1",
+              "target": "7 variables of electricity transformer",
+              "train_validation_test_sizes_as_printed": [
+                34465,
+                11521,
+                11521
+              ],
+              "variables": 7
+            },
+            {
+              "H_reported_table": [
+                96,
+                192,
+                336,
+                720
+              ],
+              "L": 96,
+              "frequency_as_printed": "15min",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "ETTm2",
+              "target": "7 variables of electricity transformer",
+              "train_validation_test_sizes_as_printed": [
+                34465,
+                11521,
+                11521
+              ],
+              "variables": 7
+            },
+            {
+              "H_reported_table": [
+                96,
+                192,
+                336,
+                720
+              ],
+              "L": 96,
+              "frequency_as_printed": "1d",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "Exchange",
+              "target": "daily exchange rates",
+              "train_validation_test_sizes_as_printed": [
+                5120,
+                665,
+                1422
+              ],
+              "variables": 8
+            },
+            {
+              "H_reported_table": [
+                96,
+                192,
+                336,
+                720
+              ],
+              "L": 96,
+              "frequency_as_printed": "10min",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "Weather",
+              "target": "meteorological variables",
+              "train_validation_test_sizes_as_printed": [
+                36792,
+                5271,
+                10540
+              ],
+              "variables": 21
+            },
+            {
+              "H_reported_table": [
+                96,
+                192,
+                336,
+                720
+              ],
+              "L": 96,
+              "frequency_as_printed": "1h",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "ECL",
+              "target": "electricity consumption",
+              "train_validation_test_sizes_as_printed": [
+                18317,
+                2633,
+                5261
+              ],
+              "variables": 321
+            },
+            {
+              "H_reported_table": [
+                96,
+                192,
+                336,
+                720
+              ],
+              "L": 96,
+              "frequency_as_printed": "1h",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "Traffic",
+              "target": "road occupancy",
+              "train_validation_test_sizes_as_printed": [
+                12185,
+                1757,
+                3509
+              ],
+              "variables": 862
+            },
+            {
+              "H_reported_table": [
+                96,
+                192,
+                336,
+                720
+              ],
+              "L": 96,
+              "frequency_as_printed": "10min",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "Solar-Energy",
+              "target": "PV generation",
+              "train_validation_test_sizes_as_printed": [
+                36601,
+                5161,
+                10417
+              ],
+              "variables": 137
+            },
+            {
+              "H_reported_table": [
+                12,
+                24,
+                48,
+                96
+              ],
+              "L": 96,
+              "frequency_as_printed": "5min",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "PEMS03",
+              "target": "traffic network",
+              "train_validation_test_sizes_as_printed": [
+                15617,
+                5135,
+                5135
+              ],
+              "variables": 358
+            },
+            {
+              "H_reported_table": [
+                12,
+                24,
+                48,
+                96
+              ],
+              "L": 96,
+              "frequency_as_printed": "5min",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "PEMS04",
+              "target": "traffic network",
+              "train_validation_test_sizes_as_printed": [
+                10172,
+                3375,
+                3375
+              ],
+              "variables": 307
+            },
+            {
+              "H_reported_table": [
+                12,
+                24,
+                48,
+                96
+              ],
+              "L": 96,
+              "frequency_as_printed": "5min",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "PEMS07",
+              "target": "traffic network",
+              "train_validation_test_sizes_as_printed": [
+                16911,
+                5622,
+                5622
+              ],
+              "variables": 883
+            },
+            {
+              "H_reported_table": [
+                12,
+                24,
+                48,
+                96
+              ],
+              "L": 96,
+              "frequency_as_printed": "5min",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "PEMS08",
+              "target": "traffic network",
+              "train_validation_test_sizes_as_printed": [
+                10690,
+                3548,
+                3548
+              ],
+              "variables": 170
+            },
+            {
+              "H_reported_table": [
+                12,
+                24,
+                72,
+                144
+              ],
+              "L": 144,
+              "frequency_as_printed": "10min",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "Market-Merchant",
+              "target": "Alipay server load",
+              "train_validation_test_sizes_as_printed": [
+                7045,
+                1429,
+                1429
+              ],
+              "variables": 285
+            },
+            {
+              "H_reported_table": [
+                12,
+                24,
+                72,
+                144
+              ],
+              "L": 144,
+              "frequency_as_printed": "10min",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "Market-Wealth",
+              "target": "Alipay server load",
+              "train_validation_test_sizes_as_printed": [
+                7045,
+                1429,
+                1429
+              ],
+              "variables": 485
+            },
+            {
+              "H_reported_table": [
+                12,
+                24,
+                72,
+                144
+              ],
+              "L": 144,
+              "frequency_as_printed": "10min",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "Market-Finance",
+              "target": "Alipay server load",
+              "train_validation_test_sizes_as_printed": [
+                7045,
+                1429,
+                1429
+              ],
+              "variables": 405
+            },
+            {
+              "H_reported_table": [
+                12,
+                24,
+                72,
+                144
+              ],
+              "L": 144,
+              "frequency_as_printed": "10min",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "Market-Terminal",
+              "target": "Alipay server load",
+              "train_validation_test_sizes_as_printed": [
+                7045,
+                1429,
+                1429
+              ],
+              "variables": 307
+            },
+            {
+              "H_reported_table": [
+                12,
+                24,
+                72,
+                144
+              ],
+              "L": 144,
+              "frequency_as_printed": "10min",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "Market-Payment",
+              "target": "Alipay server load",
+              "train_validation_test_sizes_as_printed": [
+                7045,
+                1429,
+                1429
+              ],
+              "variables": 759
+            },
+            {
+              "H_reported_table": [
+                12,
+                24,
+                72,
+                144
+              ],
+              "L": 144,
+              "frequency_as_printed": "10min",
+              "locator": {
+                "detail": "Dataset descriptions; split sizes transcribed without reinterpretation as independent windows",
+                "pdf_pages": [
+                  14
+                ],
+                "section_or_table": "Table 4"
+              },
+              "name": "Market-Customer",
+              "target": "Alipay server load",
+              "train_validation_test_sizes_as_printed": [
+                7045,
+                1429,
+                1429
+              ],
+              "variables": 395
+            }
+          ],
+          "split": {
+            "locator": {
+              "detail": "Paper states chronological split to avoid leakage; reported counts preserved exactly",
+              "pdf_pages": [
+                13,
+                14
+              ],
+              "section_or_table": "A.1, Table 4"
+            },
+            "method": "Strict chronological train/validation/test following TimesNet protocol; dataset-specific counts Table 4"
+          }
+        }
+      },
+      "train_only_scaler": {
+        "evidence": {
+          "code_locator": "thuml/iTransformer @ c2426e68ca13f74aaec08045c5c724d8ad328124, model/iTransformer.py lines 42–69",
+          "dataset_scaler": "Exact dataset scaler formula and fit scope not independently specified in this PDF; data processing follows TimesNet. Do not promote inherited protocol to directly verified train-only scaling.",
+          "internal_normalization": "Layer normalization of per-variate latent representations: §3.2/Eq2; optional input per-sample temporal mean/variance and output de-normalization independently verified in official code, separate from the PDF evidence."
+        },
+        "note": "Internal model normalization does not establish train-only dataset scaling.",
+        "status": "NR",
+        "value": null
+      },
+      "variance_selected_pair": {
+        "evidence": {
+          "confidence_intervals": "NR after complete PDF reading",
+          "dispersion": "Mean±standard deviation from five distinct random seeds in Table 5; e.g. ETTh2 H96 MSE0.297±0.002, MAE0.349±0.001",
+          "locator": {
+            "detail": "Five-seed standard deviations",
+            "pdf_pages": [
+              14
+            ],
+            "section_or_table": "A.2, Table 5"
+          },
+          "reported_repetitions": 5,
+          "scope": "Robustness Table 5 for ECL, ETTh2, Exchange, Solar-Energy, Traffic, Weather",
+          "seed_values": "NR after complete PDF reading",
+          "selected_ETTh1_row_dispersion": "NR; Table 5 does not contain ETTh1",
+          "statistical_tests": "NR after complete PDF reading"
+        },
+        "note": "SD for another variant, dataset, or horizon aggregate is not uncertainty for this selected row.",
+        "status": "NR",
+        "value": null
+      }
+    },
+    "limitations": "External forecast result; different task and information set from BTC sigma7.",
+    "foundational_2016_exception": false,
+    "direct_E2_effectiveness_established": false,
+    "new_manuscript_reading_claimed": false,
+    "adjudication_date": "2026-11-14",
+    "independent_human_double_review": false
+  },
+  {
+    "source_id": "10.48550/arXiv.2405.14616",
+    "title": "TimeMixer: Decomposable Multiscale Mixing for Time Series Forecasting",
+    "models": [
+      "TimeMixer"
+    ],
+    "current_Top10_system_source": true,
+    "decision": "incluido",
+    "role": "mecanismo_arquitectonico",
+    "rationale": "Fuente primaria del mecanismo, evidencia de arquitectura y resultado localizada y código de autor identificado. Se admite para transferencia explícita, no para eficacia BTC.",
+    "source_url": "https://arxiv.org/abs/2405.14616v1",
+    "source_version": "2405.14616v1",
+    "evidence_pointers": [
+      "book_e2/_static/e2_literature_closure_20261113/current10_extraction.json#study_id=10.48550/arXiv.2405.14616"
+    ],
+    "evidence_locators": [
+      {
+        "columns": "TimeMixer(Ours),MSE/MAE",
+        "pdf_page": 17,
+        "row": "ETTh1,96",
+        "section": "Apéndice E",
+        "table": "13"
+      }
+    ],
+    "source_read_level": "prior_complete_PDF_and_appendices_extraction",
+    "quality": {
+      "baseline_effort": {
+        "evidence": {
+          "additional_baselines": "ApéndiceG/Tabla23 usa código oficial para Scaleformer/MTSMixer; TSMixer reproducido en PyTorch. Mismo marco unificado y búsqueda declarada. No es una nueva medición del paper original de TSMixer.",
+          "baseline_names": [
+            "PatchTST",
+            "TimesNet",
+            "SCINet",
+            "Crossformer",
+            "MICN",
+            "FiLM",
+            "DLinear",
+            "LightTS",
+            "FEDformer",
+            "Non-stationary Transformer",
+            "Pyraformer",
+            "Autoformer",
+            "Informer",
+            "N-HiTS",
+            "N-BEATS",
+            "Scaleformer",
+            "MTSMixer",
+            "TSMixer"
+          ],
+          "locators": [
+            {
+              "pdf_page": 6,
+              "section": "§4"
+            },
+            {
+              "pdf_page": 7,
+              "section": "§4.1",
+              "table": "4, nota"
+            },
+            {
+              "pdf_page": 15,
+              "section": "Apéndice E"
+            },
+            {
+              "pdf_page": 22,
+              "section": "Apéndice G"
+            },
+            {
+              "pdf_page": 23,
+              "section": "Apéndice G",
+              "table": "23"
+            }
+          ],
+          "nbeats": "En M4 retira el ensamble especial de N-BEATS para comparar modelos de predicción puros.",
+          "search_budget_trials": {
+            "detail": "Número de evaluaciones y coste total del ajuste por modelo no reportados.",
+            "scope_checked_pdf_pages": [
+              1,
+              28
+            ],
+            "status": "NR"
+          },
+          "searched": "Tabla14 separa búsqueda de contexto{96,192,336,512}, LR10^-5…0.05, encoder layers1…5,d_model16…512,epochs10…100. No ofrece número total de trials, estrategia de búsqueda o configuración ganadora por celda; igualdad exacta de cómputo no demostrada.",
+          "unified": "Resultados principales con input96 alineado para todos; ApéndiceE declara alineación también de batchsize y epochs. Promedios de tres repeticiones. Tabla2 promedia cuatro horizontes; Tabla13 muestra cada horizonte. No confundir al PatchTST reproducido con input96 (.460/.447 para ETTh1h96) con el PatchTST/64 original input512 (.370/.400)."
+        },
+        "note": "",
+        "status": "partial",
+        "value": {
+          "additional_baselines": "ApéndiceG/Tabla23 usa código oficial para Scaleformer/MTSMixer; TSMixer reproducido en PyTorch. Mismo marco unificado y búsqueda declarada. No es una nueva medición del paper original de TSMixer.",
+          "baseline_names": [
+            "PatchTST",
+            "TimesNet",
+            "SCINet",
+            "Crossformer",
+            "MICN",
+            "FiLM",
+            "DLinear",
+            "LightTS",
+            "FEDformer",
+            "Non-stationary Transformer",
+            "Pyraformer",
+            "Autoformer",
+            "Informer",
+            "N-HiTS",
+            "N-BEATS",
+            "Scaleformer",
+            "MTSMixer",
+            "TSMixer"
+          ],
+          "locators": [
+            {
+              "pdf_page": 6,
+              "section": "§4"
+            },
+            {
+              "pdf_page": 7,
+              "section": "§4.1",
+              "table": "4, nota"
+            },
+            {
+              "pdf_page": 15,
+              "section": "Apéndice E"
+            },
+            {
+              "pdf_page": 22,
+              "section": "Apéndice G"
+            },
+            {
+              "pdf_page": 23,
+              "section": "Apéndice G",
+              "table": "23"
+            }
+          ],
+          "nbeats": "En M4 retira el ensamble especial de N-BEATS para comparar modelos de predicción puros.",
+          "search_budget_trials": {
+            "detail": "Número de evaluaciones y coste total del ajuste por modelo no reportados.",
+            "scope_checked_pdf_pages": [
+              1,
+              28
+            ],
+            "status": "NR"
+          },
+          "searched": "Tabla14 separa búsqueda de contexto{96,192,336,512}, LR10^-5…0.05, encoder layers1…5,d_model16…512,epochs10…100. No ofrece número total de trials, estrategia de búsqueda o configuración ganadora por celda; igualdad exacta de cómputo no demostrada.",
+          "unified": "Resultados principales con input96 alineado para todos; ApéndiceE declara alineación también de batchsize y epochs. Promedios de tres repeticiones. Tabla2 promedia cuatro horizontes; Tabla13 muestra cada horizonte. No confundir al PatchTST reproducido con input96 (.460/.447 para ETTh1h96) con el PatchTST/64 original input512 (.370/.400)."
+        }
+      },
+      "benchmark_data_download_validated": {
+        "evidence": "This task inspected documents, not downloaded benchmark datasets.",
+        "note": "",
+        "status": "NV",
+        "value": null
+      },
+      "equal_hpo_budget": {
+        "evidence": {
+          "additional_baselines": "ApéndiceG/Tabla23 usa código oficial para Scaleformer/MTSMixer; TSMixer reproducido en PyTorch. Mismo marco unificado y búsqueda declarada. No es una nueva medición del paper original de TSMixer.",
+          "baseline_names": [
+            "PatchTST",
+            "TimesNet",
+            "SCINet",
+            "Crossformer",
+            "MICN",
+            "FiLM",
+            "DLinear",
+            "LightTS",
+            "FEDformer",
+            "Non-stationary Transformer",
+            "Pyraformer",
+            "Autoformer",
+            "Informer",
+            "N-HiTS",
+            "N-BEATS",
+            "Scaleformer",
+            "MTSMixer",
+            "TSMixer"
+          ],
+          "locators": [
+            {
+              "pdf_page": 6,
+              "section": "§4"
+            },
+            {
+              "pdf_page": 7,
+              "section": "§4.1",
+              "table": "4, nota"
+            },
+            {
+              "pdf_page": 15,
+              "section": "Apéndice E"
+            },
+            {
+              "pdf_page": 22,
+              "section": "Apéndice G"
+            },
+            {
+              "pdf_page": 23,
+              "section": "Apéndice G",
+              "table": "23"
+            }
+          ],
+          "nbeats": "En M4 retira el ensamble especial de N-BEATS para comparar modelos de predicción puros.",
+          "search_budget_trials": {
+            "detail": "Número de evaluaciones y coste total del ajuste por modelo no reportados.",
+            "scope_checked_pdf_pages": [
+              1,
+              28
+            ],
+            "status": "NR"
+          },
+          "searched": "Tabla14 separa búsqueda de contexto{96,192,336,512}, LR10^-5…0.05, encoder layers1…5,d_model16…512,epochs10…100. No ofrece número total de trials, estrategia de búsqueda o configuración ganadora por celda; igualdad exacta de cómputo no demostrada.",
+          "unified": "Resultados principales con input96 alineado para todos; ApéndiceE declara alineación también de batchsize y epochs. Promedios de tres repeticiones. Tabla2 promedia cuatro horizontes; Tabla13 muestra cada horizonte. No confundir al PatchTST reproducido con input96 (.460/.447 para ETTh1h96) con el PatchTST/64 original input512 (.370/.400)."
+        },
+        "note": "Shared context or architecture controls do not prove equal search trials/compute.",
+        "status": "NR",
+        "value": null
+      },
+      "formal_tests": {
+        "evidence": "ApéndiceC afirma statistical significance test y Tablas9–11 tienen columna Confidence Interval (99% en ETTh1, 95%/99% según dataset). No describe nombre de prueba, hipótesis, p-valores ni extremos de intervalo. Conservar como porcentajes reportados; no convertirlos en un IC calculable ni garantía de significancia reproducible.",
+        "note": "TimeMixer prints significance/CI claims but no named test, p-values or interval endpoints.",
+        "status": "partial",
+        "value": null
+      },
+      "original_paper_numerically_reproduced": {
+        "evidence": "No model fitting or inference was performed in this documentary review.",
+        "note": "",
+        "status": "NV",
+        "value": null
+      },
+      "repetitions": {
+        "evidence": {
+          "locators": [
+            {
+              "pdf_page": 6,
+              "section": "§4"
+            },
+            {
+              "pdf_page": 13,
+              "section": "Apéndice A"
+            },
+            {
+              "pdf_page": 14,
+              "section": "Apéndice C"
+            },
+            {
+              "pdf_page": 15,
+              "section": "Apéndice C",
+              "tables": [
+                "9",
+                "10",
+                "11"
+              ]
+            }
+          ],
+          "named_test_pvalues_interval_bounds": {
+            "detail": "Nombre de prueba, p-valores y extremos de IC no reportados.",
+            "scope_checked_pdf_pages": [
+              1,
+              28
+            ],
+            "status": "NR"
+          },
+          "repeats": 3,
+          "seed_identifiers": {
+            "detail": "IDs de semillas no reportados.",
+            "scope_checked_pdf_pages": [
+              1,
+              28
+            ],
+            "status": "NR"
+          },
+          "source_inconsistency": "Tabla9 llama segundo mejor PatchTST y da ETTm1 MSE.400, mientras Tablas2/13 dan .406 para PatchTST; no usar .400 para reemplazar silenciosamente la tabla principal.",
+          "statistical_report": "ApéndiceC afirma statistical significance test y Tablas9–11 tienen columna Confidence Interval (99% en ETTh1, 95%/99% según dataset). No describe nombre de prueba, hipótesis, p-valores ni extremos de intervalo. Conservar como porcentajes reportados; no convertirlos en un IC calculable ni garantía de significancia reproducible.",
+          "std_example": {
+            "dataset": "ETTh1",
+            "locator": {
+              "pdf_page": 15,
+              "section": "Apéndice C",
+              "table": "9"
+            },
+            "mae_mean": 0.44,
+            "mae_std": 0.005,
+            "mse_mean": 0.447,
+            "mse_std": 0.002,
+            "scope": "promedio cuatro horizontes96/192/336/720; no h96 individual"
+          },
+          "std_reported": true
+        },
+        "note": "Main selected variant; robustness studies can use a different variant or scope.",
+        "status": "reported",
+        "value": 3
+      },
+      "scaling": {
+        "evidence": {
+          "declared_split_sizes": "Tabla6 presenta tamaños Train/Validation/Test (arriba). No explicita fechas de corte ni procedimiento de ventanas ni una proporción global única.",
+          "normalization": {
+            "detail": "No reporta scaler global, normalización de entrada/métrica ni sobre qué partición se ajusta. No atribuir estandarización train-only al artículo por costumbre del benchmark.",
+            "scope_checked_pdf_pages": [
+              1,
+              28
+            ],
+            "status": "NR"
+          },
+          "temporal_split_dates": {
+            "detail": "Fechas de corte/protocolo exacto de partición temporal no detallados en el PDF completo.",
+            "scope_checked_pdf_pages": [
+              1,
+              28
+            ],
+            "status": "NR"
+          }
+        },
+        "note": "",
+        "status": "NR",
+        "value": null
+      },
+      "scope": "Selected canonical ETTh1 row unless a different scope is explicit in evidence",
+      "seed_ids": {
+        "evidence": {
+          "locators": [
+            {
+              "pdf_page": 6,
+              "section": "§4"
+            },
+            {
+              "pdf_page": 13,
+              "section": "Apéndice A"
+            },
+            {
+              "pdf_page": 14,
+              "section": "Apéndice C"
+            },
+            {
+              "pdf_page": 15,
+              "section": "Apéndice C",
+              "tables": [
+                "9",
+                "10",
+                "11"
+              ]
+            }
+          ],
+          "named_test_pvalues_interval_bounds": {
+            "detail": "Nombre de prueba, p-valores y extremos de IC no reportados.",
+            "scope_checked_pdf_pages": [
+              1,
+              28
+            ],
+            "status": "NR"
+          },
+          "repeats": 3,
+          "seed_identifiers": {
+            "detail": "IDs de semillas no reportados.",
+            "scope_checked_pdf_pages": [
+              1,
+              28
+            ],
+            "status": "NR"
+          },
+          "source_inconsistency": "Tabla9 llama segundo mejor PatchTST y da ETTm1 MSE.400, mientras Tablas2/13 dan .406 para PatchTST; no usar .400 para reemplazar silenciosamente la tabla principal.",
+          "statistical_report": "ApéndiceC afirma statistical significance test y Tablas9–11 tienen columna Confidence Interval (99% en ETTh1, 95%/99% según dataset). No describe nombre de prueba, hipótesis, p-valores ni extremos de intervalo. Conservar como porcentajes reportados; no convertirlos en un IC calculable ni garantía de significancia reproducible.",
+          "std_example": {
+            "dataset": "ETTh1",
+            "locator": {
+              "pdf_page": 15,
+              "section": "Apéndice C",
+              "table": "9"
+            },
+            "mae_mean": 0.44,
+            "mae_std": 0.005,
+            "mse_mean": 0.447,
+            "mse_std": 0.002,
+            "scope": "promedio cuatro horizontes96/192/336/720; no h96 individual"
+          },
+          "std_reported": true
+        },
+        "note": "",
+        "status": "NR",
+        "value": null
+      },
+      "split": {
+        "evidence": {
+          "declared_split_sizes": "Tabla6 presenta tamaños Train/Validation/Test (arriba). No explicita fechas de corte ni procedimiento de ventanas ni una proporción global única.",
+          "normalization": {
+            "detail": "No reporta scaler global, normalización de entrada/métrica ni sobre qué partición se ajusta. No atribuir estandarización train-only al artículo por costumbre del benchmark.",
+            "scope_checked_pdf_pages": [
+              1,
+              28
+            ],
+            "status": "NR"
+          },
+          "temporal_split_dates": {
+            "detail": "Fechas de corte/protocolo exacto de partición temporal no detallados en el PDF completo.",
+            "scope_checked_pdf_pages": [
+              1,
+              28
+            ],
+            "status": "NR"
+          }
+        },
+        "note": "",
+        "status": "reported",
+        "value": {
+          "declared_split_sizes": "Tabla6 presenta tamaños Train/Validation/Test (arriba). No explicita fechas de corte ni procedimiento de ventanas ni una proporción global única.",
+          "normalization": {
+            "detail": "No reporta scaler global, normalización de entrada/métrica ni sobre qué partición se ajusta. No atribuir estandarización train-only al artículo por costumbre del benchmark.",
+            "scope_checked_pdf_pages": [
+              1,
+              28
+            ],
+            "status": "NR"
+          },
+          "temporal_split_dates": {
+            "detail": "Fechas de corte/protocolo exacto de partición temporal no detallados en el PDF completo.",
+            "scope_checked_pdf_pages": [
+              1,
+              28
+            ],
+            "status": "NR"
+          }
+        }
+      },
+      "train_only_scaler": {
+        "evidence": {
+          "declared_split_sizes": "Tabla6 presenta tamaños Train/Validation/Test (arriba). No explicita fechas de corte ni procedimiento de ventanas ni una proporción global única.",
+          "normalization": {
+            "detail": "No reporta scaler global, normalización de entrada/métrica ni sobre qué partición se ajusta. No atribuir estandarización train-only al artículo por costumbre del benchmark.",
+            "scope_checked_pdf_pages": [
+              1,
+              28
+            ],
+            "status": "NR"
+          },
+          "temporal_split_dates": {
+            "detail": "Fechas de corte/protocolo exacto de partición temporal no detallados en el PDF completo.",
+            "scope_checked_pdf_pages": [
+              1,
+              28
+            ],
+            "status": "NR"
+          }
+        },
+        "note": "Internal model normalization does not establish train-only dataset scaling.",
+        "status": "NR",
+        "value": null
+      },
+      "variance_selected_pair": {
+        "evidence": {
+          "locators": [
+            {
+              "pdf_page": 6,
+              "section": "§4"
+            },
+            {
+              "pdf_page": 13,
+              "section": "Apéndice A"
+            },
+            {
+              "pdf_page": 14,
+              "section": "Apéndice C"
+            },
+            {
+              "pdf_page": 15,
+              "section": "Apéndice C",
+              "tables": [
+                "9",
+                "10",
+                "11"
+              ]
+            }
+          ],
+          "named_test_pvalues_interval_bounds": {
+            "detail": "Nombre de prueba, p-valores y extremos de IC no reportados.",
+            "scope_checked_pdf_pages": [
+              1,
+              28
+            ],
+            "status": "NR"
+          },
+          "repeats": 3,
+          "seed_identifiers": {
+            "detail": "IDs de semillas no reportados.",
+            "scope_checked_pdf_pages": [
+              1,
+              28
+            ],
+            "status": "NR"
+          },
+          "source_inconsistency": "Tabla9 llama segundo mejor PatchTST y da ETTm1 MSE.400, mientras Tablas2/13 dan .406 para PatchTST; no usar .400 para reemplazar silenciosamente la tabla principal.",
+          "statistical_report": "ApéndiceC afirma statistical significance test y Tablas9–11 tienen columna Confidence Interval (99% en ETTh1, 95%/99% según dataset). No describe nombre de prueba, hipótesis, p-valores ni extremos de intervalo. Conservar como porcentajes reportados; no convertirlos en un IC calculable ni garantía de significancia reproducible.",
+          "std_example": {
+            "dataset": "ETTh1",
+            "locator": {
+              "pdf_page": 15,
+              "section": "Apéndice C",
+              "table": "9"
+            },
+            "mae_mean": 0.44,
+            "mae_std": 0.005,
+            "mse_mean": 0.447,
+            "mse_std": 0.002,
+            "scope": "promedio cuatro horizontes96/192/336/720; no h96 individual"
+          },
+          "std_reported": true
+        },
+        "note": "SD for another variant, dataset, or horizon aggregate is not uncertainty for this selected row.",
+        "status": "NR",
+        "value": null
+      }
+    },
+    "limitations": "External forecast result; different task and information set from BTC sigma7.",
+    "foundational_2016_exception": false,
+    "direct_E2_effectiveness_established": false,
+    "new_manuscript_reading_claimed": false,
+    "adjudication_date": "2026-11-14",
+    "independent_human_double_review": false
+  },
+  {
+    "source_id": "Crossformer: Transformer Utilizing Cross-Dimension Dependency for Multivariate Time Series Forecasting",
+    "title": "Crossformer: Transformer Utilizing Cross-Dimension Dependency for Multivariate Time Series Forecasting",
+    "models": [
+      "Crossformer"
+    ],
+    "current_Top10_system_source": false,
+    "decision": "incluido",
+    "role": "comparador_mecanismo_historico",
+    "rationale": "Original completo y resultado documentados; se conserva como comparador arquitectónico disponible, sin incorporarlo al Top10 vigente ni excluirlo por no ocupar un puesto.",
+    "source_url": "https://openreview.net/forum?id=vSVLM2j9eie",
+    "source_version": "ICLR 2023 conference PDF",
+    "evidence_pointers": [
+      "references/literature_e2/completion_20261106/architectural_originals_eligibility.csv#model=Crossformer",
+      "references/literature_e2/fulltext_20261105/fulltext_manifest.json#model=Crossformer"
+    ],
+    "evidence_locators": "Fila modelo en metrics.csv y quality_matrix.csv del paquete fulltext_20261105",
+    "source_read_level": "Recibo previo de PDF completo y apéndices; no lectura nueva hoy",
+    "quality": {
+      "baseline_effort": "partial",
+      "benchmark_data_download_validated": "NV",
+      "equal_hpo_budget": "NR",
+      "formal_tests": "NR",
+      "original_paper_numerically_reproduced": "NV",
+      "repetitions": "reported",
+      "scaling": "reported",
+      "seed_ids": "NR",
+      "split": "reported",
+      "train_only_scaler": "reported",
+      "variance_selected_pair": "NR"
+    },
+    "limitations": "Dominio/dataset/horizonte/escala distintos de BTC sigma7; límites de reporte preservados en quality_matrix.csv. No prueba inferioridad por haber sido desplazado del catálogo.",
+    "foundational_2016_exception": false,
+    "direct_E2_effectiveness_established": false,
+    "new_manuscript_reading_claimed": false,
+    "adjudication_date": "2026-11-14",
+    "independent_human_double_review": false
+  }
+]
