@@ -1,83 +1,66 @@
-# 17. Contrato sincronizado de E1, E2 y E3
+# 17. Contrato vigente y relación entre E1, E2 y E3
 
-**Vigencia documental (11/11/2026):** existe selección HPO/NAS registrada y ejecutada para el catálogo actual; las afirmaciones de ausencia de HPO o de falta de registro de selección corresponden a cortes anteriores. El benchmark final, R y su cierre inferencial siguen pendientes. [Registro y alcance actuales (§9)](09_protocolo_registrado.md) · [Calendario (§40)](40_calendario_original.md) · [Corte de resultados (§41)](41_avance_optimizacion_11_origenes.md) · [Auditoría y trabajo paralelo (§42)](42_auditoria_y_trabajo_paralelo.md).
+**Estado vigente del 14/11/2026:** E2 está ejecutado para **16 sistemas y 608 fechas**; R=6 para las trece redes y una trayectoria para cada comparador determinista. Se completaron **81 reproducciones y 18 ablaciones**. Esta página fija el contrato actual y distingue el calendario ejecutado de E2 del antecedente E1 y de las propuestas de E3.
 
-**Actualización editorial del 08/11/2026.** El candidato activo de continuidad es **CNN-1D + LSTM + atención temporal**. Sustituye HAR + red residual, cuyo código y recibos permanecen históricos e inactivos. Esta página no es un preregistro, no registra entrenamiento de mercado ni modifica resultados; la implementación provisional y el smoke se documentan en [§18](18_integracion_sintetica.md).
+## 17.1 Alcance por entregable
 
-## 17.1 Qué aporta cada entregable
+| Entregable | Alcance y estado |
+|---|---|
+| E1 | GRU32, LSTM32 y MLP16, con su benchmark histórico de 608 fechas; mantiene sus resultados propios |
+| E2 | Diez candidatos más tres referencias E1 reajustadas y Persistence/SeasonalNaive/ARIMA; evaluación común y suplementos completados en sus alcances documentados |
+| E3 | Continuidad temática y propuestas históricas; la guía académica específica y sus resultados propios permanecen separados de E2 |
 
-| Entregable | Referencia vigente | Estado y límite |
-|---|---|---|
-| E1 | GRU32, LSTM32 y MLP16, estudio `e1_608_remediation_20261107` | Ejecutado sobre 608 fechas conocidas; comparación histórica exploratoria |
-| E2 | Diez modelos de §15 y candidato 11 CNN-1D + LSTM + atención temporal | Selección editorial; integración, preregistro y benchmark vigentes pendientes |
-| E3 | Continuidad temática elegida con el mismo híbrido | Diseño conceptual; guía académica específica pendiente, sin implementación ni resultados propios |
+El híbrido CNN-1D + LSTM + atención y Ridge quedan como antecedentes opcionales. El híbrido no es un candidato obligatorio activo ni una mejora demostrada del benchmark E2. Los archivos históricos `e1_reference.json` y `current_protocol.json` no se renombran como contrato actual.
 
-La fuente principal es [E1, benchmark de 608 fechas](https://jassan-bit.github.io/DeepLearning_202630/sections/11_reejecucion_608.html). El complemento anterior de 60 fechas y la ejecución original de diez semillas mantienen identidad propia. Los archivos `e1_reference.json` y `current_protocol.json` enlazados por capítulos históricos de E2 no son el contrato vigente: no se renombran ni se sobrescriben.
+## 17.2 Objetivo y disponibilidad causal
 
-## 17.2 Objetivo e información disponible
-
-La serie es **BTCUSDT de Binance Spot, días UTC**. Al comienzo del día t se predice:
+La serie es **BTCUSDT de Binance Spot, días UTC**. Al comienzo del día t se pronostica
 
 $$
 r_t=\log(C_t/C_{t-1}),\quad \bar r_t=\frac{1}{7}\sum_{j=0}^{6}r_{t-j},\quad
 \sigma_7(t)=\sqrt{\frac{1}{7}\sum_{j=0}^{6}(r_{t-j}-\bar r_t)^2}.
 $$
 
-Es desviación **poblacional (`ddof=0`), sin anualización**, no varianza, precio ni volatilidad realizada intradía. Requiere ocho cierres consecutivos. La etiqueta incluye el retorno de t y sólo existe al terminar ese día; el horizonte es un día.
+Es desviación **poblacional (`ddof=0`), sin anualización**. Requiere ocho cierres consecutivos. La etiqueta incluye el retorno de t y sólo existe al terminar el día objetivo; h=1. Las entradas son las siete barras anteriores **[t−7,t)**, ordenadas de antigua a reciente, con cinco canales OHLCV. No se añaden rezagos explícitos del objetivo, canales calendario, sentimiento ni historia mensual.
 
-Las entradas son las siete barras anteriores, **[t−7,t)**, ordenadas de antigua a reciente, con columnas `(open, high, low, close, volume)`. No se añaden rezagos explícitos de σ₇, canales calendario, sentimiento, transacciones o historia mensual. Una barra pasada observada durante evaluación puede entrar en la ventana siguiente; eso no autoriza ajustar pesos con etiquetas de evaluación.
+Una barra pasada observada durante evaluación puede entrar en la ventana siguiente porque está disponible en su origen. Esto no permite ajustar pesos, escaladores o umbrales con etiquetas de evaluación. El soporte causal y la máscara común se documentan en [la admisión de datos](../_static/e2_benchmark_final_20261113/data_admission.json).
 
-## 17.3 Preprocesamiento exacto de E1
+## 17.3 Transformaciones conservadas
 
-D7×5 describe cinco canales **derivados**, no OHLCV crudo:
+1. Cada precio de la ventana se transforma mediante `log(P) − log(C[t−1])`, con el último cierre conocido como ancla.
+2. Se aplica `log1p(V)` al volumen.
+3. Cada canal se estandariza con media y DE poblacional del entrenamiento permitido sobre sus N×7 posiciones; una DE cero se sustituye por 1.
+4. El objetivo se divide por su media positiva de entrenamiento, sin centrar ni usar MinMax; la métrica invierte esa escala.
+5. Los escaladores de cada fold y del ajuste final se estiman exclusivamente en su entrenamiento. Los definitivos quedan congelados durante la evaluación.
 
-1. Para cada ventana, transformar cada precio P mediante `log(P) − log(C[t−1])`, usando el último cierre conocido como ancla común.
-2. Transformar volumen mediante `log1p(V)`.
-3. Estandarizar cada canal con media y DE poblacional del entrenamiento permitido. Los estadísticos usan todas las N×7 posiciones de las ventanas, sin deduplicar días; una DE cero se sustituye por 1.
-4. Escalar el objetivo dividiéndolo por la media positiva de σ₇ del entrenamiento, **sin centrar ni aplicar MinMax**. Invertir esa escala antes de calcular métricas.
-5. Usar escaladores independientes para selección interna y reajuste, ajustados sólo con sus respectivos entrenamientos. Los del ajuste definitivo quedan fijos durante evaluación.
+Se conserva el calendario sin comprimir huecos ni imputar el día incompleto 24/03/2023. Se excluyen las ventanas dependientes de observaciones inválidas mediante las máscaras verificadas. [§1](01_punto_partida.md) desarrolla la formulación; [§10](10_auditoria_datos.md), los controles y sus límites.
 
-Se conserva el calendario, sin comprimir huecos ni imputar el día incompleto 24/03/2023. Se excluyen ventanas dependientes de días inválidos con una máscara común verificable. Fuentes de implementación: [dl_data.py](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/dl_data.py) y [dl_data_v2.py](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/dl_data_v2.py), modalidad `relative_window`.
+## 17.4 Calendario efectivamente ejecutado de E2
 
-## 17.4 Fechas: referencia ejecutada y uso futuro
-
-| Etapa de E1 actual | Condición ejecutada, no nueva ejecución E2/E3 |
+| Etapa | Política ejecutada |
 |---|---|
-| Desarrollo | 2023–2024 |
-| CV | Diez bloques mensuales enero–octubre de 2024; 305 fechas concatenadas por trayectoria |
-| Regla por origen o | Etiquetas de entrenamiento hasta o−8 días; embargo de siete días |
-| Validación interna | Desde o−90 hasta o−8, 83 etiquetas en los cortes completos; entrenamiento interno hasta o−98 |
-| Piloto E1 | 01/11–30/12/2024, 60 fechas, pesos fijos; entrenamiento hasta 24/10/2024 |
-| Ajuste final E1 | Origen 01/01/2025; 709 etiquetas hasta 24/12/2024; 25–31/12 excluidos de etiquetas de entrenamiento |
-| Selección interna final | 619 etiquetas hasta 25/09/2024 y validación 03/10–24/12/2024, 83 etiquetas; reajuste desde cero |
-| Evaluación principal | **01/01/2025–31/08/2026: 608 fechas**, pesos y escaladores fijos, sin refit con etiquetas 2025–2026 |
+| Selección interna | Tres orígenes de desarrollo: enero, julio y octubre de 2024; seis configuraciones por red y embargo causal |
+| Ajuste final común | Etiquetas y transformaciones de entrenamiento permitidas hasta **31/10/2024** |
+| Calibración | **53 fechas**, separadas del entrenamiento final y posteriores al embargo; cuantiles conservados por predictor |
+| Congelación | **81 predictores**, con pesos, escaladores y calibradores, antes de puntuar esta campaña |
+| Evaluación | **01/01/2025–31/08/2026**, las mismas **608 fechas** de E1; política de pesos fijos y ventanas de entrada actualizadas causalmente |
+| Repeticiones neuronales | **271801–271806**, seis por cada una de las trece redes |
 
-Los índices forward chaining proceden de `timeseries-cv`; no se sustituye por partición aleatoria. En CV, el RMSE se calcula sobre las 305 fechas concatenadas de cada trayectoria antes de promediar semillas; no es una media no ponderada de RMSE mensuales.
+El [protocolo ejecutado de §48](48_protocolo_reducido.md), la [congelación](../_static/e2_benchmark_final_20261113/final_freeze.json) y la [A2 medida](../_static/e2_benchmark_final_20261113/benchmark_A2.csv) son las referencias actuales. Los diez orígenes mensuales de reajuste de planes anteriores no se describen como la política final aplicada.
 
-El híbrido y las diez redes deberán comprobar exactamente sus máscaras, fechas comunes y disponibilidad causal antes de compararse. Esta sincronización toma la cohorte de 608 fechas como **referencia de comparabilidad**, no declara una evaluación nueva ni congelada. Las 608 fechas ya se conocen; reutilizarlas seguirá siendo exploratorio. La reserva complementaria 01/09–30/10/2026 también fue evaluada y no recupera independencia. Un estudio confirmatorio necesitaría un periodo no utilizado para selección y una decisión registrada previa, aún pendiente.
+## 17.5 Métricas y referencias
 
-## 17.5 Referencias, métricas y límites de inferencia
+La primaria es la **media de las RMSE individuales entre semillas**, sobre fechas comunes en escala original. No es la RMSE de un ensamble. Las referencias neuronales son GRU32, LSTM32 y MLP16, reajustadas con su propia selección de validación E2; sus resultados anteriores de E1 no rellenan A2. Los tres comparadores son deterministas y no se duplican para simular incertidumbre entre semillas.
 
-**GRU32 es el baseline neuronal elegido por CV**, no el ganador frente a persistencia en evaluación. E1 usa GRU32 c03 (LR 0,003, dropout 0,1; 3.777 parámetros), LSTM32 c02 (0,003, 0; 5.025) y MLP16 c03 (0,003, 0,1; 593). Permanecen referencias separadas, no nuevas posiciones del catálogo E2.
+El margen práctico heredado es **δ=0,00025772842664981106** y no se recalcula con una nueva RMSE. La familia primaria comprende veinte pares frente a GRU32 y Persistence. [§56](56_inferencia_estabilidad_final.md) conserva el análisis original y su refinamiento a **20.000 remuestreos**, con los veinte p Holm iguales a 1. Las semillas y R de las antiguas fases E1 siguen perteneciendo a aquellos experimentos.
 
-La métrica primaria es **media entre semillas de las RMSE individuales**, en unidades originales sobre fechas comunes, no RMSE de un ensemble ni raíz de MSE agregado. Secundarias: MAE, MSE, R², MAPE y MASE. MAPE usa y>0 y declara cobertura; MASE se escala con cambios absolutos entre etiquetas consecutivas elegibles de entrenamiento. Persistencia σ₇(t−1) es una referencia determinista, no múltiples réplicas independientes.
+## 17.6 Límites de independencia y reproducción
 
-Los [resultados cerrados de E1](https://jassan-bit.github.io/DeepLearning_202630/sections/05_benchmark.html) permanecen intactos. Persistencia tuvo menor RMSE que las tres redes en esa ejecución; el R² histórico ≈0,854 no pertenece a los nuevos pesos. No se traslada ninguna métrica al híbrido.
+Las 608 fechas ya eran conocidas desde E1. La reserva complementaria de septiembre–octubre de 2026 también había sido evaluada; ninguna se vuelve virgen por cambiar modelos. La comparación E2 es retrospectiva. La congelación y la reproducción numérica de [§55](55_reproduccion_ablaciones.md) acreditan trazabilidad, sin recuperar cegamiento ni una nueva confirmación prospectiva.
 
-El margen documentado es **δ=0,00025772842664981106**. Su procedencia histórica no se recalcula usando la nueva CV. **R=309 y las semillas 18101–18409 pertenecen exclusivamente a la fase definitiva de las tres redes de E1, dimensionada con su piloto y sus hipótesis. El piloto usó diez semillas por red, 17101–17110.** No acreditan potencia para once modelos, atención, nuevos pares o inferencia temporal. E2/E3 necesitan hipótesis, multiplicidad, HPO, piloto y dimensionamiento propios antes de entrenar; no se heredan p-valores ni intervalos.
+No se definió previamente δg y el piloto tuvo potencia insuficiente para su efecto planificado. Esas desviaciones permanecen en el [Apéndice B actual](61_reproduccion_consolidada.md). Las comprobaciones aritméticas de la entrega se ejecutan con el comando de [§8](08_reproducibilidad.md), sin volver a entrenar ni generar nuevas predicciones.
 
-## 17.6 Diseño del candidato e implementación provisional
 
-D7×5 relativo → CNN-1D causal → LSTM unidireccional que conserva siete estados → atención temporal sobre esos estados observados → contexto → cabeza escalar para σ₇.
+## Archivo de la versión anterior
 
-La causalidad de la CNN se define sobre el tensor ya transformado. `relative_window` ancla todos los pasos al cierre C[t−1], por lo que no se afirma invariancia causal de cada prefijo sobre OHLCV crudo; sí disponibilidad completa de la ventana en el origen de pronóstico.
-
-La atención puede combinar los siete estados porque todos pertenecen al pasado disponible en el origen. No puede atender al día objetivo ni a futuros orígenes, mezclar muestras o estimar escaladores con evaluación. Sus pesos no son explicaciones causales por sí solos.
-
-Las recetas provisionales de §18 ya fijan estructura y pasos sintéticos. Su elección definitiva de kernels, anchos, capas, regularización, atención, enlace, optimizador, presupuesto y selección para mercado sigue abierta. No se presenta esta composición como novedosa, receta literal del curso o superioridad demostrada. Las ablaciones propuestas —CNN sola, LSTM sola y CNN–LSTM sin atención— son controles del candidato, no modelos añadidos tácitamente al catálogo. Deben definirse antes de evaluar.
-
-## 17.7 Estado verificable
-
-Esta sección conserva el contrato de referencia; la implementación nueva se documenta aparte en §18. Los cuatro prototipos compactos de E2 y el corrector HAR anterior conservan sus pruebas y limitaciones; **esas pruebas no validan el nuevo híbrido**. La implementación provisional y sus pruebas específicas ya están disponibles en [§18](18_integracion_sintetica.md). El preregistro, entrenamiento de mercado, evaluación y resultados del benchmark siguen pendientes. La guía de E3 también sigue pendiente.
-
-El [contrato estructurado y las huellas de fuentes](../_static/books_alignment_20261108.json) tienen copias idénticas en los tres libros. Las huellas permiten comprobar preservación de fuentes y resultados sin publicar datos originales adicionales.
+La {download}`versión exacta anterior a esta consolidación <../_static/e2_delivery_reproduction_20261114/archived_chapters/17_contrato_sincronizado.md>` se conserva con sus estados y fechas históricos. El [manifiesto de archivo](../_static/e2_delivery_reproduction_20261114/chapter_archive_manifest.json) fija su commit y SHA256. Esos antecedentes no sustituyen el protocolo ejecutado de [§48](48_protocolo_reducido.md) ni su Apéndice B actual de [§61](61_reproduccion_consolidada.md).

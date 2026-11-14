@@ -1,0 +1,80 @@
+{
+  "validated_at_utc": "2026-11-14T11:18:22.004294+00:00",
+  "test": "Four scripts run from another working directory in relocated publication layout without env override; source inputs referenced read-only via per-directory symlinks",
+  "publication_relative_path": "references/literature_e2/delivery_closure_20261114_v2/citation_score",
+  "environment_override_runs": [
+    {
+      "script": "build_citation_audit.py",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "script": "contextual_p/build_contextual_p.py",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "script": "contextual_p/build_preferred_intrapaper_scenario.py",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "script": "build_conditional_score_scenarios.py",
+      "exit_code": 0,
+      "stderr": ""
+    }
+  ],
+  "ancestor_detection_runs": [
+    {
+      "script": "build_citation_audit.py",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "script": "contextual_p/build_contextual_p.py",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "script": "contextual_p/build_preferred_intrapaper_scenario.py",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "script": "build_conditional_score_scenarios.py",
+      "exit_code": 0,
+      "stderr": ""
+    }
+  ],
+  "root_ancestor_detection_all4": true,
+  "out_remains_each_script_parent": true,
+  "all15_numeric_and_source_artifacts_byte_identical": true,
+  "original_output_data_unchanged": true,
+  "invalid_environment_override_rejected_before_ancestor_fallback": true,
+  "tampered_P9_CSV_rejected_by_generation_receipt": true,
+  "P9_rule_receipt_and_pool_integrity_checked": true,
+  "network_used": false,
+  "stable_artifact_sha256": {
+    "external_observations.json": "ff286bf32ec3d54136ebbba88d3efa269695314db1cb65fdda66101b37006387",
+    "component_coverage_by_scenario.csv": "06f2e95c1896b428ac40f43620746ad9673e85f43feb1d90a79e100e11f4921b",
+    "prior_contextual_sensitivity_retained.csv": "69dfe09700dd41f8bbc59b46f8c9508089997ae6ea3f32736866b2443673c667",
+    "current10_C_status_v2.csv": "ef6b2820db610b541eeb117fdcce684a8cf10a6e510c2e3a3747b2352bbaab23",
+    "local_export_identity_search.csv": "8bd5f555753e480345d122d92b21abdbef1bcbe9e5947dc2443abb7f2f94911b",
+    "conditional_score_by_scenario.csv": "87c200cc223cd8c8b3a9db5361aa3ec73e4dbcb55d1ff7f3898f1065bfe927d7",
+    "contextual_p/preferred_intrapaper_selection_audit.csv": "d3a2ccf712bc579e2ab2943f3443ad61024010af0d9bb3cc83cbee5e7e2af608",
+    "contextual_p/preferred_intrapaper_scenario_rule.json": "98cdf423e7c74d3c38e7d5c4d80dae6d117c188ad0a2cdb206a64905a3fa907a",
+    "contextual_p/source_local_performance_pools.csv": "e53d1e60bcc45dd9fc7938de04be8673c2e48de3f3b0bc1e4d867eba9a2d2071",
+    "contextual_p/current_model_contextual_P_candidates.csv": "26a3f43785565c776a09d7490d787ffd1cb47991e8195dfea37d5456943c17c4",
+    "contextual_p/current10_P_adjudication_v2.csv": "e3185f3fb13688e65848243e18293cf79746cb644cc46c1839b8f1cb08171e01",
+    "contextual_p/inception_ensemble_boundary.json": "7f41e93381ea54f0bf929229a50472a021b74021100d099da8d1704702a6d8e1",
+    "contextual_p/preferred_intrapaper_scenario.csv": "6857a8e72db740acae595966f20aa76a3992683e1e3edb420e856baa7b265bdc",
+    "contextual_p/preferred_intrapaper_SAE_metric_sensitivity.csv": "040103679720ab91c7c013bdda6b711dbfe548da83e6d36c35ee7ff62e68d0a7",
+    "contextual_p/preferred_intrapaper_rule.json": "98cdf423e7c74d3c38e7d5c4d80dae6d117c188ad0a2cdb206a64905a3fa907a"
+  },
+  "script_sha256": {
+    "build_citation_audit.py": "f26591f23a6618dc82594d8bd961a3e76629c33affc8e7b410eb82da96211417",
+    "contextual_p/build_contextual_p.py": "8bcdc691444d3e683792b91d14e38bb3467128fbd7dfca82b5a799a94ae542e4",
+    "contextual_p/build_preferred_intrapaper_scenario.py": "78abe2b0d15bd68fa085f7915c5d2308c92e656f1852842ecbe0de789c6af2c7",
+    "build_conditional_score_scenarios.py": "78462cb8ee4f7baac7d55b1ff6e63bf5d4619dd0d7e7fc25bb845bca6d92555e"
+  }
+}

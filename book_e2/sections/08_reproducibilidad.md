@@ -1,126 +1,56 @@
 (e2-reproducibilidad)=
-# 8. Reproducibilidad, ética y comunicación científica
+# 8. Reproducibilidad de la entrega vigente
 
-**Auditoría F2a posterior, 13/11/2026:** [§49](49_diagnosticos_f2a.md) incluye la entrada inmutable, código CPU, versiones y artefactos para reproducir los diagnósticos sobre pronósticos existentes. Se verificaron las 81 RMSE originales con diferencia máxima de 5,204170427930421×10⁻¹⁸. Esta reproducción aritmética y estadística no sustituye la reproducción independiente del entrenamiento completo.
+**Estado documental del 14/11/2026:** la tabla principal compara **16 sistemas sobre 608 fechas**. La reproducción registrada de sus **81 predictores** se completó en un checkout remoto y un entorno Python nuevos, con discrepancia máxima absoluta de predicción **0** en calibración y prueba. También se completaron **18 ablaciones**. Los recibos y sus límites se presentan en [§55](55_reproduccion_ablaciones.md). El Apéndice B vigente está en [§61](61_reproduccion_consolidada.md), con estados completos, parciales, no aplicables e incumplimientos identificados.
 
-**Cierre observado al 13/11/2026, 11:58:36 de Bogotá:** el benchmark original ya está completado para **16 sistemas y 608 fechas**. Sus [métricas A2](../_static/e2_benchmark_final_20261113/benchmark_A2.csv), [análisis e incertidumbre](../_static/e2_benchmark_final_20261113/benchmark_analysis.json), [congelación de los 81 predictores](../_static/e2_benchmark_final_20261113/final_freeze.json) y [fuentes verificadas](../_static/e2_benchmark_final_20261113/source_evidence.json) tienen hashes en el [manifiesto de la publicación](../_static/e2_benchmark_final_20261113/manifest.json). El código de salida fue 0 y el respaldo persistente es GitHub. La evidencia actual de método y resultados está en [§48](48_protocolo_reducido.md) y [§6](06_benchmark_final.md).
+## 8.1 Punto de entrada de la entrega
 
-La ejecución final observó **Python 3.12.12, PyTorch 2.8.0+cu126, CUDA 12.6 y NVIDIA A100-SXM4-80GB**, con FP32, algoritmos deterministas, AMP desactivado y TF32 desactivado. El motor científico conserva el commit [`1e8745497b48`](https://github.com/jassan-bit/DeepLearning_202630/commit/1e8745497b484518f766b6da5c19be8362d9add7); las transiciones y adaptadores de adquisición, recibo ARIMA y respaldo se identifican por separado en las fuentes de la publicación. No se presume identidad numérica entre hardware o versiones diferentes.
+Desde la raíz del repositorio, con Python 3.12 o posterior:
 
-**Reproducción independiente ejecutada, cierre del 13/11/2026 a las 22:42:55 de Bogotá:** se completaron **81/81 reajustes de reproducción** —78 neuronales y tres comparadores— en un checkout y un entorno Python separados. El resumen del productor registra `reproduction_passed=true`, sin fallos de reproducción ni trabajos pendientes. La discrepancia máxima absoluta de predicción es **0** tanto en calibración como en las 608 fechas de prueba; las 78 redes conservaron los tensores bit a bit y los tres comparadores sus parámetros exactos. [§55](55_reproduccion_ablaciones.md) presenta las discrepancias medidas, los criterios de comparación y los recibos verificados. También se completaron **18/18 ablaciones entrenadas** del autoencoder, con seis semillas por variante. Se conservan la A2 original, sus predictores y sus decisiones de selección. El límite acumulado vigente es de **84 horas**, con el ancla y los cargos de las 80 horas anteriores conservados. El diario final registra **80,2561 horas cargadas**, saldo de **3 h 44 min 38 s** y ninguna reserva abierta; estos valores proceden del cierre del diario, posterior al resumen de entrenamiento.
+```bash
+python scripts/audit_e2_delivery.py --require-supplements --output work/e2_delivery_audit.json
+```
 
-La auditoría aritmética de §49 y esta reproducción del entrenamiento tienen alcances distintos. El periodo evaluado ya era conocido en E1: repetir el ajuste no crea una prueba prospectiva ni recupera cegamiento. El cierre de cómputo tampoco aprueba automáticamente todo el Apéndice B. La [matriz actual de obligaciones](38_cumplimiento_guia.md) conserva los requisitos metodológicos abiertos. Los comandos P0/OOF y la tabla §8.4 que siguen son antecedentes históricos; no son instrucciones para repetir la ejecución final.
+Este comando funciona **sin red, GPU ni paquetes externos**. Verifica los manifiestos y archivos publicados, reconstruye las 81 RMSE a partir de los pronósticos congelados y las 16 medias de A2, valida calendario/semillas, comprueba los informes de 81 reproducciones y 18 ablaciones y el refinamiento de los veinte contrastes a 20.000 remuestreos. El informe registra el entorno de esta ejecución y sus discrepancias.
 
-**Corte histórico de planificación (12/11/2026):** la selección HPO/NAS ejecutada parcialmente corresponde al plan histórico de catorce redes. El catálogo obligatorio vigente es de **16 sistemas**, con las identidades de [§43](43_catalogo_obligatorio.md), las arquitecturas de [§44](44_arquitecturas_publicadas.md) y el protocolo registrado de [§45](45_enmienda_protocolo.md). Esos registros históricos no cierran el benchmark vigente ni acreditan las cuatro recetas restauradas. R y el cierre inferencial siguen pendientes. [Corte verificable de resultados (§41)](41_avance_optimizacion_11_origenes.md).
+El comando ejecuta una auditoría aritmética y de integridad. **No vuelve a entrenar ni a generar pronósticos, no repite los sorteos bootstrap y no deserializa pesos.** La repetición de los 81 ajustes y las comparaciones tensoriales ya fueron ejecutadas por los workers A100 y están acreditadas separadamente en §55. La auditoría no declara aprobados los requisitos metodológicos pendientes.
 
-La tabla histórica de §8.4 conserva su ámbito. La auditoría actual añade [las 21 filas del Apéndice B](../_static/guide_audit_20261111_181b9e5/appendix_B.csv), sin considerar aprobados sus pendientes. El comando P0 no reproduce por sí solo los 16 sistemas obligatorios vigentes; los 18 sistemas pertenecían al diseño anterior.
+## 8.2 Entorno y fuentes científicas
 
-**Corte histórico al 11/11/2026:** La guía exige reproducción integral en entorno limpio y Apéndice B completado. La compilación del libro acredita construcción y enlaces, no reproducción del benchmark. El contenedor es opcional en E2 (p. 41). La lista vigente de artefactos y condiciones de cierre está en §38. [Matriz de exigencias y evidencia](38_cumplimiento_guia.md) · [Enmienda de calendario](37_ajuste_guia.md).
-
-
-La guía completa exige un entorno fijado, semillas/configuraciones recuperables y reproducción independiente de la tabla principal (PDF pp40–41); su lista de comprobación está en el Apéndice B (p63). Esta sección distingue el **catálogo obligatorio vigente de 16 sistemas** y el protocolo ya registrado en §§43–45 de la evidencia histórica conservada. El híbrido adicional y Ridge son opcionales/históricos; las enmiendas registradas no acreditan ejecución integral. El procedimiento P0/OOF de desarrollo está ejecutado: los recibos verifican 220 trayectorias y 440 ajustes cerrados; los resultados se presentan en la [sección 9](09_protocolo_registrado.md).
-
-## 8.1 Fuente registrada y recibos de ejecución
-
-La fuente experimental de P0 se fijó en el commit [`599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0`](https://github.com/jassan-bit/DeepLearning_202630/commit/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0). El [recibo de registro](../_static/remediation_preflight/registration.json), fechado **06/11/2026, 14:52:32 UTC**, vincula plan, código, dos fuentes de desarrollo y archivos de los autores mediante hashes. Registra cero ajustes de datos previos **en ese directorio de salida**; no afirma que nunca existieran experimentos de E1 ni que su test vuelva a ser desconocido.
-
-Se conserva un checkout separado de la fuente registrada y las salidas experimentales quedan fuera del repositorio: checkpoints, curvas, cierres, logs y predicciones no sobrescriben resultados de E1. Las mejoras documentales posteriores al registro no cambian los bytes con los que se inició P0. Los JSON de diseño conservan sus contadores iniciales: el estado observado se acredita con recibos de ejecución, no editando un plan cerrado.
-
-El [recibo de la auditoría de soporte](../_static/remediation_preflight/data_support_audit.json) se generó antes del registro, a las **14:52:31 UTC**. Comprueba los once calendarios de desarrollo; no es un certificado completo de los modelos futuros. El [protocolo y estado de P0](09_protocolo_registrado.md) y la [auditoría de datos](10_auditoria_datos.md) explican esos alcances.
-
-## 8.2 Entorno observado y aleatoriedad
-
-El [recibo de hardware](../_static/remediation_preflight/hardware_receipt.json) se tomó a las **14:37:37 UTC**, antes de los ajustes. Son datos del entorno, sin confundirlos con costes medidos por modelo.
-
-| Elemento | Evidencia del entorno P0 |
+| Etapa | Entorno o fuente identificada |
 |---|---|
-| Sistema | Debian GNU/Linux13, versión13.6; kernel6.18.57, x86_64 |
-| Python | 3.12.14 |
-| Framework y paquetes principales registrados | PyTorch2.15.0+cpu, NumPy2.5.4, pandas3.1.0, einops0.8.1, reformer-pytorch1.4.4 |
-| Dispositivo | CPU; modelo reportado AMD EPYC9V74 80-Core Processor |
-| Recursos efectivos | Cinco CPU lógicas visibles; cuota cgroup400000/100000, equivalente a cuatro CPU, sin atribuir ochenta núcleos disponibles al proceso |
-| Paralelismo de trabajo | Un thread numérico por ajuste; máximo dos procesos concurrentes |
-| Memoria | Límite cgroup34.359.738.368bytes, 32GiB; no es memoria pico medida de una red |
-| Dependencias fijadas | `requirements-e2-remediation.lock.txt`, que incluye `requirements-paper-guide.lock.txt` |
+| Ajuste final y reproducción neuronal | Python **3.12.12**, Torch **2.8.0+cu126**, CUDA **12.6**, NVIDIA **A100-SXM4-80GB** |
+| Política registrada | FP32, algoritmos deterministas; AMP y TF32 desactivados; semillas explícitas |
+| Motor científico | [`1e8745497b484518f766b6da5c19be8362d9add7`](https://github.com/jassan-bit/DeepLearning_202630/tree/1e8745497b484518f766b6da5c19be8362d9add7) |
+| Resultados complementarios cerrados | [`d604ede6bf0978e14a1b1d7bafaae6250fb8ed07`](https://github.com/jassan-bit/DeepLearning_202630/tree/d604ede6bf0978e14a1b1d7bafaae6250fb8ed07) |
+| Reproducción registrada | Nuevo checkout y venv sin paquetes del sistema; [recibo del entorno](../_static/e2_reproduction_ablations_20261113/historical_clean_runtime.json) |
+| Persistencia | **GitHub**, con inventarios y recibos por intento; sin Google Drive |
 
-Los entornos se identifican por etapa. El archivo del entorno EDA fija statsmodels0.14.6; el archivo de remediación fija statsmodels0.15.0. Cada reproducción de las pruebas sintéticas de §7 debe identificar la versión utilizada; aprobarlas no equivale a una ejecución ARIMA sobre Bitcoin. El piloto P0 histórico ajustó únicamente sus cuatro recetas registradas; no aporta ejecuciones de los modelos incorporados al catálogo vigente.
+No se promete igualdad numérica entre hardware o versiones distintos. Los recibos acreditan la reproducción efectivamente observada, condicionada a esas versiones y a la misma cronología. El [manifiesto de resultados](../_static/e2_reproduction_ablations_20261113/manifest.json) y la [procedencia por ajuste](../_static/e2_reproduction_ablations_20261113/source_evidence.json) enlazan las tablas con los resultados productores.
 
-Las semillas P0 son **660101–660105**, emparejadas entre TimeMixer, iTransformer, PatchTST y GRU-c03. El driver fija `random`, NumPy y Torch en cada ajuste, usa un generador explícito para el orden de minibatches y activa `torch.use_deterministic_algorithms(True)`. El recibo inicial indica `deterministic_algorithms=false` **al registrar**, antes de llamar a esa configuración: se conservan ambos hechos en sus etapas correspondientes. Las semillas de refit y de los demás procedimientos tienen registros propios; ninguna repetición del cronómetro cuenta como nueva observación de mercado. No se promete identidad numérica entre hardware o versiones distintos sin una reproducción medida.
+## 8.3 Reconstrucción y análisis de pronósticos guardados
 
-## 8.3 Comandos de reproducción del procedimiento disponible
+Los [insumos congelados públicos](../_static/e2_final_audit_inputs_20261114/manifest.json) permiten repetir cálculos sin descargar precios nuevos. [§56](56_inferencia_estabilidad_final.md) incluye el comando completo para recalcular los veinte contrastes con 20.000 réplicas y la fluctuación Giacomini–Rossi. [§57](57_errores_techo.md) incluye el comando de la taxonomía y las referencias de dificultad. Sus resultados son posteriores y no reemplazan los originales ni modifican recetas o calibradores.
 
-Los siguientes comandos reproducen exclusivamente el **P0/OOF histórico**. No ejecutan el catálogo vigente ni constituyen instrucciones para continuar el plan sustituido. Se parte del repositorio clonado, de Python3.12 y de una ruta nueva de salida. Los dos CSV diarios de desarrollo están versionados en la fuente registrada; los hashes exigidos por el plan detectan modificaciones. No es necesario descargar precios nuevos para ese piloto.
+La [tabla A2](../_static/e2_benchmark_final_20261113/benchmark_A2.csv) conserva su SHA256 `879e2ce52709657a06bc6c009f0cd553423f2eaa0bbdf16dc7f5844dfec9fcc1`. El auditor de entrega comprueba ese digest antes de reconstruir sus métricas. Las métricas son medias de RMSE individuales, no la RMSE de promediar pronósticos.
 
-Crear un checkout y un entorno separados permite conservar E1 y la ejecución original:
+## 8.4 Reproducción del entrenamiento y presupuesto
 
-```bash
-git worktree add --detach ../e2-repro-registered 599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0
-cd ../e2-repro-registered
-python3.12 -m venv ../e2-repro-env
-../e2-repro-env/bin/python -m pip install -r requirements-e2-remediation.lock.txt
-```
+La ejecución original y los 81 reajustes de reproducción están cerrados. El límite autorizado fue **84 horas acumuladas**, conservando todos los cargos previos; el diario final contiene **351 eventos**, **80,2561 horas cargadas** y ninguna reserva abierta. Es contabilidad de tiempo de campaña, no GPU activa, energía o dinero. El [balance cerrado](../_static/e2_reproduction_ablations_20261113/budget_final.json) conserva sus hashes.
 
-Las dos fuentes oficiales se recuperan en sus commits fijados; el runner verifica los archivos concretos contra el plan antes de usarlos:
+Las instrucciones antiguas P0/OOF y sus comandos `--stage all` se archivan al final de esta página; corresponden a otros modelos y otro periodo. No se presentan como un comando para reproducir el benchmark actual ni se propone relanzar el controlador cerrado. Un replay futuro del entrenamiento requeriría una salida independiente y autorización presupuestaria propia, conservando los resultados anteriores.
 
-```bash
-git clone https://github.com/kwuking/TimeMixer.git ../e2-author-TimeMixer
-git -C ../e2-author-TimeMixer checkout --detach e24610583b36fdd8c76cc17a8df4e65759a5f460
-git clone https://github.com/thuml/Time-Series-Library.git ../e2-author-controls
-git -C ../e2-author-controls checkout --detach 4e938a1767106324dd753b2a44832bf870a0252e
-```
+## 8.5 Límites de la reproducción
 
-La validación documental no entrena. El preflight añade controles de los adaptadores con entradas sintéticas y una auditoría de desarrollo sin ajustes de modelos:
+La guía acepta reproducción por otra persona **o en un entorno limpio**. Los 81 reajustes acreditan la segunda vía; no crean un test nuevo. El periodo 2025–2026 ya se conocía desde E1. El margen δg previo, la potencia objetivo y otras condiciones del Apéndice B no quedan aprobados por una discrepancia numérica cero. La calibración y los análisis estadísticos requieren sus propios supuestos y evidencias.
+
+El programa de auditoría se comprueba con pruebas de manipulación de hashes, calendarios, semillas, estimando y número de remuestreos:
 
 ```bash
-../e2-repro-env/bin/python scripts/e2_protocol_plan.py validate
-../e2-repro-env/bin/python scripts/execute_e2_development_pilot.py --stage preflight --source-root ../e2-author-TimeMixer --control-source-root ../e2-author-controls --output-dir ../e2-repro-output --workers 2
+python -m unittest tests.test_audit_e2_delivery -v
 ```
 
-El flujo disponible de una sola invocación registra esa nueva reproducción, ajusta las trayectorias programadas y puntúa desarrollo **después de sus cierres**; posteriormente analiza las predicciones guardadas:
 
-```bash
-../e2-repro-env/bin/python scripts/execute_e2_development_pilot.py --stage all --source-root ../e2-author-TimeMixer --control-source-root ../e2-author-controls --output-dir ../e2-repro-output --workers 2
-```
+## Archivo de la versión anterior
 
-La salida debe estar fuera del repositorio. El registro rechaza intentos anteriores sin registro y cambios en entradas cerradas; no se reutiliza un directorio para ocultar una ejecución fallida. El flujo no acepta precios de evaluación posteriores a 2024 y no cambia las recetas con P0. Este comando acredita exclusivamente el procedimiento P0 de desarrollo. La reproducción posterior de los **81 predictores de la tabla principal** y sus discrepancias medidas se documentan en [§55](55_reproduccion_ablaciones.md); un build del libro o una prueba sintética no son esa evidencia.
-
-### 8.3.1 Implementación archivada y requisitos de aquel corte
-
-La [descarga de implementación archivada](../_static/completion_download/completion_bundle.zip), su [diseño](../_static/completion_protocol/design.json), su [enmienda](../_static/completion_protocol/analysis_additions.json) y su [registro](../_static/completion_preflight/registration.json) conservan la procedencia del trabajo previo. Esos archivos y `scripts/run_e2_final_benchmark.py` **no son el ejecutor ni el registro del catálogo vigente**. Se mantienen sin alterar para que sus bytes sigan siendo verificables.
-
-El [recibo parcial del 06/11/2026, 19:00:35 UTC](../_static/completion_preflight/execution_progress.json) acredita **doce trayectorias y veinticuatro ajustes cerrados de TSMixer** bajo el registro anterior. Es una instantánea histórica de HPO incompleto, no un proceso cuya actividad actual esté demostrada, un resultado final ni una ejecución del nuevo catálogo. Los recibos sintéticos tampoco se convierten en resultados de mercado.
-
-**Plan histórico previo al catálogo vigente:** la enmienda entonces propuesta debía identificar fuentes y adaptaciones de los diez modelos, la receta CNN-1D + LSTM + atención temporal, controles, dependencias, presupuesto, selección temporal, semillas, dimensionamiento y orden de cierre. MLP, LSTM y GRU de E1 siguen siendo referencias separadas. No se transfieren automáticamente sus recetas o métricas ni las del P0 a la comparación nueva.
-
-Cada nueva ejecución requerirá fuente identificable, entorno verificable, datos e índices con hashes y una salida propia. Deben conservarse curvas, tiempos, estados de cierre y procedencia, incluidos intentos fallidos. Un build del libro, un prototipo o una prueba sintética no acredita HPO, calibración o evaluación de mercado. El número de repeticiones y el almacenamiento se planificarán antes de evaluar; no se cambia R después de observar resultados para ajustar el experimento a los recursos disponibles.
-
-## 8.4 Lista histórica de comprobación frente al Apéndice B
-
-**Ámbito histórico de P0 y del catálogo sustituido.** Las filas siguientes conservan el estado de aquella planificación; sus pendientes no describen el cierre actual. Para el catálogo vigente se deben consultar la matriz de [§38](38_cumplimiento_guia.md), los recibos de [§55](55_reproduccion_ablaciones.md) y la distinción entre reproducción numérica aprobada y requisitos metodológicos todavía parciales.
-
-| Ítem de p63 | Estado verificable |
-|---|---|
-| Catálogo del corte histórico | Diez modelos de literatura/adaptaciones y CNN-1D + LSTM + atención temporal como candidato 11, sin superioridad demostrada; sustituido por los 16 sistemas obligatorios de §43 |
-| Registro antes de los nuevos ajustes | Nueva enmienda pendiente; los recibos anteriores son históricos |
-| Datos, índices y particiones | Procedencia heredada identificada; auditoría específica de los nuevos soportes pendiente |
-| Selección y ajuste causal | Reglas metodológicas descritas; implementación común del catálogo vigente por validar |
-| Presupuesto, configuraciones y R | Pendientes de definir y dimensionar; no se heredan del catálogo sustituido |
-| Referencias E1 | MLP, LSTM y GRU separadas del catálogo; recetas y cohortes comparables por identificar |
-| Software, hardware y determinismo | Evidencia P0 conservada; cada ejecución nueva necesita sus propios recibos |
-| Resultados individuales y agregados | P0 ejecutado e instantánea parcial de HPO histórico enlazados; sin resultados finales del catálogo vigente |
-| Hipótesis, multiplicidad, efectos e IC | Nuevas familias y decisiones pendientes de registrar |
-| Robustez, interpretabilidad e incertidumbre | Métodos y límites descritos; validación del nuevo diseño pendiente |
-| Evaluación desconocida | Los periodos heredados ya se conocen y no recuperan independencia por cambiar los modelos |
-| Réplica del paper guía | Evidencia TimeMixer/ETTh1 en §5, separada de Bitcoin |
-| Reproducción independiente de tabla principal | Pendiente; ninguna discrepancia final inventada |
-| Reproducción de un comando | Disponible para el P0 histórico; no acreditada para el catálogo vigente |
-
-## 8.5 Ética, licencias y comunicación
-
-Se mantiene el uso académico y no comercial y la procedencia de Binance Vision descritos en §1, con sus términos conservados en E1. El código de los autores conserva sus licencias y commits identificados; usar su implementación no significa reutilizar pesos preentrenados ni reproducir todas las condiciones originales. P0 inicializa sus redes, con una adaptación escalar explícita a σ₇; el resultado externo de ETTh1 no se presenta como rendimiento Bitcoin.
-
-Las velas no contienen identificadores de personas, y no se intenta reconstruir identidades de operadores. El mercado BTCUSDT de un exchange no representa otras criptomonedas, exchanges o cotizaciones: las diferencias de error por volatilidad y periodo se comunicarán con tamaños e incertidumbre. Las consecuencias de errores de pronóstico no se traducen automáticamente en rentabilidad, reducción de riesgo o recomendación de inversión.
-
-Las tablas y figuras deben identificar unidades, muestra, escala, fuente y alcance; los IC marginales se distinguen de límites simultáneos. No se presenta cero como sustituto de una medición pendiente ni un promedio sin dispersión como prueba de superioridad. Las afirmaciones bibliográficas y DOI se conservan trazables; indexación o editorial no sustituyen comprobar un original.
-
-**Archivo histórico:** [implementación y enmienda anteriores](../_static/completion_download/completion_bundle.zip), [paquete unificado de protocolo, código y evidencias](../_static/remediation_download/Remediacion_E2_protocolo_codigo_evidencias.zip), [registro](../_static/remediation_preflight/registration.json), [soporte de datos](../_static/remediation_preflight/data_support_audit.json) y [entorno/hardware](../_static/remediation_preflight/hardware_receipt.json).
+La {download}`versión exacta anterior a esta consolidación <../_static/e2_delivery_reproduction_20261114/archived_chapters/08_reproducibilidad.md>` se conserva con sus estados y fechas históricos. El [manifiesto de archivo](../_static/e2_delivery_reproduction_20261114/chapter_archive_manifest.json) fija su commit y SHA256. Esos antecedentes no sustituyen el protocolo ejecutado de [§48](48_protocolo_reducido.md) ni su Apéndice B actual de [§61](61_reproduccion_consolidada.md).

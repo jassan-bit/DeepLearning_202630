@@ -1,0 +1,39 @@
+{
+  "generated_at_utc": "2026-11-14T11:18:20.510570+00:00",
+  "scope": "read-only metadata reconciliation; new output artifacts only",
+  "input_paths_sha256": {
+    "references/literature_e2/scopus_20261105/records.csv": "8afb0aabd03850733285bbc8a2ebdb3af7e69608b430f5ef2810d2ecfc56b82d",
+    "references/literature_e2/scopus_20261105/combined_records.csv": "4c3e9e4cab834c9c1146dc57f83de0a772f3c558cab476af525ccea618a47c70",
+    "references/literature_e2/wos_20261105/records.csv": "260cf835e511a7c343b5adc14ca591d65d5a8734554f33dee40c10ed27045ba5",
+    "references/literature_e2/citation_access_20261114/citation_coverage.csv": "9be971ff527c201db1063440bb755459a0423e222e2c099d63895ff7b716e163",
+    "references/literature_e2/final_audit_20261113/current10_score_component_audit.csv": "413bed09503298e0884f6657cf068fef1292ae7255e3e060ac6de68f6108b09b",
+    "references/literature_e2/scopus_20261105/source_manifest.json": "359c5fb849705262aab6dd65466f8c6596faed15faddc6a45bc98cc5e9af81b9",
+    "references/literature_e2/wos_20261105/source_manifest.json": "dd7161cc09037f5ff2bc5def54abdc18611d2a535d65930e87c79de1e2b8303d"
+  },
+  "corpus_sizes": {
+    "Scopus_received_export_derivative": 7499,
+    "Scopus_WoS_combined_derivative": 7833,
+    "WoS_received_export_derivative": 1298
+  },
+  "ten_models_distinct_studies": 9,
+  "known_C_models": 6,
+  "known_C_studies": 6,
+  "unresolved_C_models": [
+    "FCN-1D",
+    "ResNet-1D",
+    "Inception-1D",
+    "LSTM-autoencoder con predictor"
+  ],
+  "unresolved_C_studies": [
+    "10.1038/s41598-019-55320-6",
+    "10.48550/arXiv.1611.06455",
+    "10.48550/arXiv.1909.04939"
+  ],
+  "missing_imputed_zero": false,
+  "new_uniform_provider_snapshot_obtained": false,
+  "counts_mixed_across_providers_or_snapshots": false,
+  "OpenAlex_previous_failures_retried": false,
+  "normalized_C_formula_preserved": "clip(Scopus count/(2026-first_publication_year+1)/487,0,1)",
+  "normalizer_scope": "fixed reference from prior received cohort; not global maximum and not re-estimated from new publisher observations",
+  "local_search_limits": "Searches received public export derivatives. Raw native source exports are not present in this repository; absence is not database-wide absence."
+}

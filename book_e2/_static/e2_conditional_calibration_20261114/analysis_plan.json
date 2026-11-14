@@ -1,0 +1,123 @@
+{
+  "version": "e2-conditional-calibration-v1",
+  "analysis_status": "retrospective_supplement_after_test_exposure",
+  "source_parent": "6629d5bc183c6cbae8a77cc287d341d2ba882eb1",
+  "input_sha256": "65ae74b547a6073b2c286dea8039a2e7a1b1f6063b1d9ac0eb760c9ce727d187",
+  "development_sha256": "20b96374a659eb87dadfa68aa3d6b6b5fb6bea5b10eebe6f2c186ad69861844a",
+  "original_policy": {
+    "name": "original_frozen",
+    "coverage": 0.9,
+    "residual_calibration_n": 53,
+    "rank": 49,
+    "lower_clip": 0,
+    "unchanged": true
+  },
+  "new_policies": [
+    {
+      "name": "rolling53_fixed_alpha",
+      "target_alpha": 0.1,
+      "window_residuals": 53,
+      "quantile": "ceil((n+1)*(1-alpha)) order statistic; rank>n => +infinity; alpha<=0 => full; alpha>=1 => empty",
+      "weighting": "uniform"
+    },
+    {
+      "name": "ACI53_gamma005",
+      "target_alpha": 0.1,
+      "initial_alpha": 0.1,
+      "gamma": 0.005,
+      "window_residuals": 53,
+      "update": "alpha_next=alpha_current+gamma*(target_alpha-miscoverage_after_observation)",
+      "alpha_clipped": false,
+      "quantile": "same finite-sample order statistic as original, with full/empty extensions",
+      "source": "Gibbs and Candes2021 equation2; gamma from section2.1; theorem4.1 aggregate-frequency only"
+    }
+  ],
+  "causality": {
+    "prediction_at_date_t_uses": "only calibration residuals and residuals dated before t",
+    "outcome_feedback": "observe y_t after issuing interval_t; update only for t+1",
+    "initial_latest_score_date": "2024-12-30",
+    "missing_2024_12_31_score": "not invented; first2025intervaluses53availablecalibrationresiduals",
+    "point_forecasts_unchanged": true
+  },
+  "evaluation": {
+    "models": 16,
+    "frozen_predictors": 81,
+    "dates": 608,
+    "horizon_days": 1,
+    "model_coverage_estimand": "pooled individual seed/date hit fraction conditional on membership; optimization seeds remain fixed",
+    "methods_compared": 3,
+    "choose_method_from_test": false,
+    "top3_already_observed": [
+      "LSTM-autoencoder con predictor",
+      "ARIMA",
+      "GRU32"
+    ],
+    "metrics": [
+      "coverage",
+      "mean_interval_length_with_infinities_preserved",
+      "interval_score_90",
+      "pinball05_lower",
+      "pinball95_upper",
+      "full_and_empty_interval_counts"
+    ]
+  },
+  "groups": {
+    "global": true,
+    "prediction_range": [
+      "low",
+      "middle",
+      "high"
+    ],
+    "prediction_thresholds": "per frozen predictor Q25/Q75 of its53calibration point predictions; fixed before test supplement",
+    "lagged_volatility_range": [
+      "low",
+      "middle",
+      "high"
+    ],
+    "lag_thresholds": "Q25/Q75 finite development sigma7 2023-2024; previous calendar day observed by origin",
+    "quarters": "all seven inherited evaluation quarters,2026Q3partial",
+    "realized_target_range": "separate descriptive diagnostic only; not a subgroup observable at prediction origin"
+  },
+  "inference": {
+    "draws": 10000,
+    "block_days": 14,
+    "sensitivity_blocks": [
+      7,
+      28
+    ],
+    "bootstrap_seed": 2026111411,
+    "unit": "joint calendar blocks across all predictors and methods, holding realized online interval paths fixed; quarter intervals use blocks within each contiguous quarter",
+    "interval_type": "marginal percentile95, no simultaneous claim",
+    "zero_denominator": "report undefined replicate count; no silent dropping or guaranteed nominal coverage",
+    "nulls": [
+      "conditional coverage equals0.9",
+      "conditional coverage at least0.9"
+    ],
+    "p_values": "calendar-moment Bartlett HAC14 normal approximation, not exact; minimum20 calendar days with membership and nonzero HAC variance",
+    "multiplicity": "one Holm family across2tests x3policies x16models x14primarygroups,1344opportunities; nonestimablep=1forfamilyaccounting,notreportedassignificant"
+  },
+  "nonfinite_sets": {
+    "full_set": "[0,+infinity), width and interval score infinite; never omit to make mean width finite",
+    "empty_set": "empty, hitfalse, interval score nonfinite; flag and do not replace with zero width",
+    "plotting": "nonfinite counts explicit; finite-only summaries labelled conditional"
+  },
+  "guardrails": {
+    "new_predictive_model_fits": 0,
+    "new_predictive_model_inference": false,
+    "original_A2_changed": false,
+    "original_calibrator_changed": false,
+    "new_hyperparameter_search": false,
+    "new_blind_test_claimed": false,
+    "a_priori_delta_g_claimed": false,
+    "finite_sample_conditional_coverage_claimed": false,
+    "ACI_is_exact_replication_of_full_original_paper_experiment": false
+  },
+  "sources": [
+    {
+      "citation": "Gibbs and Candes2021 Adaptive Conformal Inference Under Distribution Shift",
+      "url": "https://arxiv.org/html/2106.00170v3",
+      "locators": "section2 equation2; section2.1 gamma0.005; section4.1 Lemma4.1 Proposition4.1",
+      "scope": "ACI feedback wrapper, not GARCH or full experimental replication"
+    }
+  ]
+}

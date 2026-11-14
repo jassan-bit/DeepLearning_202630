@@ -1,0 +1,39 @@
+# Síntesis crítica de las decisiones focales
+
+La evidencia aplicada disponible apoya que redes recurrentes, convoluciones, atención y redes híbridas se han evaluado para distintos constructos de volatilidad de BTC/cripto. No apoya una superioridad universal de DL, una escala de errores común ni una selección retrospectiva del Top10 como si estuviera preregistrada.
+
+## Inclusiones aplicadas: 11 fuentes de volatilidad derivada de retornos
+
+| Fuente | Objetivo y rol comprobados | Uso admisible y límite material |
+|---|---|---|
+| E2-0025; Özgür; DOI `10.30798/makuiibf.1530528` | Retorno logarítmico diario al cuadrado de BTC/ETH. BPNN de dos capas y DBN-DNN reciben pronósticos GARCH. | Evidencia híbrida, no red autónoma. DBN-DNN tanh RMSE 0.0013300; el ganador cambia con la métrica. La consistencia RMSE/R² y el momento de las entradas GARCH requieren auditoría. |
+| E2-0253; DOI `10.1186/s40854-025-00881-x` | Varianza realizada de retornos de cinco minutos; comparación HAR/ARMA/LSTM además de conectividad cripto. | La comparación predictiva es pertinente. El promedio HAR 0.876 / ARMA 0.896 / LSTM 1.153 de pérdidas heterogéneas **no es RMSE**. |
+| E2-0867; Akbiyik; DOI `10.1145/3539597.3570387` | Raíz de suma de cuadrados de 96 retornos de quince minutos. LSTM/GRU/TCN, Twitter, 144 días; test 48. | La versión arXiv v2 reporta LSTM RMSE 2.37±0.19, TCN 2.58±0.07 y AR-RV 2.78, con 20 ejecuciones. No es error en escala E2 ni prueba de que TCN gane toda métrica. |
+| E2-0285; Herremans/Low; DOI `10.1109/access.2025.3584243` | Desviación histórica anualizada transformada y clasificación de picos; final IEEE con LSTM/Transformer/Synthesizer. | La ficha del **final** reporta SynthesizerFD RMSE 0.103 / F1 0.451; LSTM F1 0.164 y Transformer 0.273. Las cifras SSRN 2022 RMSE 0.101 / F1 0.463 pertenecen a otra versión y no se trasladan. F1 alto no significa menor RMSE. |
+| E2-0671/S8; Miura; DOI `10.1007/978-3-030-22796-8_18` | RV de tres horas de BTC; MLP de cuatro capas, CNN, LSTM y GRU evaluadas separadamente. | El original tiene recibo SHA256 y localizadores pp. 168–171. La CNN genérica no acredita Conv1D, causalidad o kernels específicos. La falta de receta exacta limita reproducción, no esta inclusión narrativa. |
+| E2-0139; DOI `10.1016/j.mlwa.2023.100465` | Desviación poblacional de logretornos de treinta días, 27 criptoactivos, DFFNN/LSTM autónomas y combinaciones GARCH. | Permite describir otra aplicación, su rejilla y resultados; normalización train-only no explicitada. Las diferencias no significativas no establecen equivalencia. |
+| E2-0284; DOI `10.1016/j.irfa.2023.102914` | Desviación de retornos de treinta minutos sobre ventanas1/7/30 días; BTC/ETH/LTC/XRP; LSTM autónoma. | La tabla 7 reporta BTC diario LSTM RMSE 0.014, según su propia escala. Una ventana de siete días con retornos intradía no equivale a sigma7 de retornos diarios. |
+| E2-0011; DOI `10.1016/j.intfin.2024.102064` | Varianza realizada BTC con retornos diez minutos y preaveraging; LSTM independiente y CNN-LSTM. | Tabla 6 ofrece errores para h1/7/14/30/60. Sin semillas documentadas ni validación independiente inequívoca no se certifica bajo sesgo ni receta óptima. |
+| E2-0113/E1OA-R02; Dudek; DOI `10.1016/j.asoc.2023.111132` | RV diaria de 288 retornos cinco minutos al cuadrado y semanal; ventana móvil de 23 meses. | Dentro del mismo estudio BTC, MSE mostrado×10000: MLP 0.186 / HAR 0.191 / LSTM 0.207; MAE mostrado×100: HAR 0.102 / MLP 0.103 / LSTM 0.114. LSTM no domina a los comparadores simples. No mezclar esos multiplicadores. |
+| E2-0109/E1F-M01; DOI `10.1007/s10614-023-10373-8` | Varianza intrahoraria de retornos cinco minutos en cripto/carteras; LSTM y MLP autónomas además del híbrido. | Diez ejecuciones por configuración/ventana se describen en la ficha previa. El resultado de cartera no se convierte en celda BTC individual; la receta final LSTM no se reconstruye por conjetura. |
+| E2-0238/E1N138; Tang et al.; DOI `10.1007/s10614-023-10392-5` | RV BTC como suma de retornos porcentuales cinco minutos al cuadrado; PSO-GRU/GRU/LSTM/HAR-RV; original 23 páginas. | Se admite la aplicación aunque la sensibilidad estricta E1 excluyera la receta incompleta. La búsqueda PSO, el scaler y la selección de variables no tienen límites de validación claros; inconsistencias MSE/RMSE impiden avalar magnitudes o superioridad. |
+
+## Dos constructos distintos retenidos explícitamente
+
+**E2-0064**, DOI `10.1080/1351847x.2025.2553053`, pronostica el índice BitVol implícito en opciones. Su tenor 30 días no es el horizonte de pronóstico: se evalúa un día o el promedio de los cinco siguientes. Tabla 3: LSTM RMSE 3.13 frente TGARCH 5.83; la comparación DM de cinco días p = 0.053 no es significativa al 5 %. Se incluye como contexto aplicado de volatilidad implícita y no se combina con resultados de volatilidad realizada.
+
+**E2-0593**, DOI `10.1007/s42521-026-00229-9`, usa desviación condicional implícita en GARCH. La ficha primaria E1 detalla §3.2 ecuaciones 3–5 y una LSTM 64/32 en §3.5. La extracción E2 inicial dejaba ambigua su construcción; la ficha más específica permite ubicarlo en el estrato condicional, sin inventar tablas numéricas pendientes. La inclusión no certifica ejecución sin fuga.
+
+## Dos contextos con elegibilidad aplicada pendiente
+
+**E2-0059**, DOI `10.3390/risks10120237`, documenta híbridos GARCH-LSTM/GRU/BiLSTM y resultados, pero conserva una fórmula intradía frente a datos de cierre diario, diferencias287/288 en test y tablas no conciliadas. Se retiene para explicar mecanismos y problemas de reporte; no se cuenta entre los 13 incluidos aplicados ni se estima su efecto. Tener texto no resuelve el constructo.
+
+**E2-0289/E1N075**, DOI `10.1109/ojcs.2026.3651226`, tiene un manuscrito aceptado completo ya leído en E1:18 páginas, tablas y apéndices. Sus proxies Garman–Klass/Parkinson/Rogers–Satchell no se mapean a cada experimento, y las cabezas 1/5/30 min no concilian la tabla que añade 15 min. El texto contiene errores entre porcentajes narrativos y tablas. Se retiene como contexto SSM multiescala/atención y comparadores; la elegibilidad de su efecto de volatilidad permanece pendiente. El código de otro trabajo CryptoMamba 2025 de precios no le pertenece.
+
+## Exclusiones y acceso incompleto
+
+Las tres exclusiones por material primario son distintas y trazables. **E2-0012**, DOI `10.3390/app10144768`, ofrece un comparador ANN/HONN de una capa oculta y se conserva como antecedente no profundo. **E2-0173**, DOI `10.1007/s40822-023-00232-0`, pronostica el logretorno BTC-USD-RET de su ecuación 14, aunque el título diga volatilidad. **E2-0042**, DOI `10.1186/s43093-023-00200-9`, no establece en las secciones evaluadas una etiqueta de dispersión ni el rol de una arquitectura DL NNETAR/GMDH; se conserva como contexto, sin afirmar ausencia absoluta en el artículo. Ninguna exclusión exige R5, un código público o RMSE mejor que GARCH.
+
+Cuatro objetivos claramente fotovoltaicos/eólicos/tráfico quedan fuera de la población aplicada cripto por sus registros individuales. Los ocho sin informe completo acreditado conservan su estado de acceso: TSMixer-RV, TimesNet-RV, *Can transformers transform financial forecasting?*, *Deep learning in predicting cryptocurrency volatility*, el modelo de error multiplicativo LSTM, CEEMDAN-RF-LSTM, stacking-volatilidad/VaR y ARCH-LSTM. Para ARCH-LSTM sí existen secciones indexadas y código de autor, que no se tratan como cero evidencia ni como original completo. El CSV conserva la razón de cada uno.
+
+Estas fuentes, y los 13 originales de mecanismo examinados aparte, permiten una discusión específica de transferibilidad, controles simples, definiciones de target y riesgos de implementación. No convierten el conjunto en una revisión sistemática completa ni identifican el rendimiento comparable que falta en la selección retrospectiva de diez sistemas.

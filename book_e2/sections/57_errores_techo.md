@@ -1,5 +1,7 @@
 # 57. Taxonomía de errores y referencias de predictibilidad
 
+**Actualización del 14/11/2026, Bogotá:** Una nueva referencia de ensemble aprende sus pesos sólo en calibración: RMSE puntual 0,00368953 y γempírico 0,28757, con incertidumbre amplia y sin rechazos tras Holm. Se conserva el resultado negativo del ensemble uniforme de este capítulo. [Detalle](63_ensamble_calibracion.md).
+
 Este complemento se calculó después de conocer el test y sus resultados originales. Las reglas se conservaron antes de generar sus etiquetas automáticas. No es un prerregistro del experimento original ni una revisión humana. Sólo utiliza pronósticos guardados y la volatilidad de desarrollo 2023–2024: no hubo entrenamiento, inferencia de modelos ni ajuste de pesos.
 
 Las [reglas versionadas](https://github.com/jassan-bit/DeepLearning_202630/blob/4361275cbc52e2f6362349557b471cda110bbefc/experiments/e2_error_ceiling_final_audit_20261114/analysis_plan.json) se fijaron el 13/11 a las 23:19:49 de Bogotá, antes del etiquetado. El protocolo local se exportó el 13/11 a las 23:23:42 de Bogotá. Exportación congelada SHA-256: 65ae74b547a6073b2c286dea8039a2e7a1b1f6063b1d9ac0eb760c9ce727d187.

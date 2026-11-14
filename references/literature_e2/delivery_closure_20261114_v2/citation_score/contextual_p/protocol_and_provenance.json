@@ -1,0 +1,41 @@
+{
+  "version": "e2.P_source_local_posthoc.v2",
+  "created_at_utc": "2026-11-14T11:18:20.602181+00:00",
+  "status": "posthoc_descriptive_proposal_not_original_selection_protocol",
+  "original_P_unchanged": true,
+  "original_catalogue_membership_unchanged": true,
+  "original_score_unchanged": true,
+  "final_test_A2_used": false,
+  "formula": "P_contextual_source_local=(max_pool_metric-metric)/(max_pool_metric-min_pool_metric)",
+  "domains": "Each pool fixes source/table/dataset/task/metric and the listed comparison set; do not compare across pool IDs.",
+  "sigma7_identity_required": false,
+  "interpretation": "Comparable external datasets can inform architectural literature context. Neither BTC effectiveness nor a universal Top10 rank follows.",
+  "pooling_rules": [
+    "Separate classification and forecasting",
+    "Separate RMSE, MAE, SMAPE, MPCE and MSE",
+    "Separate original results from another source's reproduction",
+    "Do not merge different lookbacks, source versions, selected/unaltered settings or baseline pools",
+    "A source-local zero means observed worst in its pool; an absent value remains null"
+  ],
+  "source_review_scope": "New reads of the identified official HTML tables and captions only; existing iTransformer PDF full-row extraction reused. No new complete-paper or human review claimed.",
+  "covered_current_models": [
+    "FCN-1D",
+    "LSTM-autoencoder con predictor",
+    "PatchTST",
+    "ResNet-1D",
+    "TSMixer",
+    "TiDE",
+    "TimeMixer",
+    "TimesNet",
+    "iTransformer"
+  ],
+  "current_models_with_contextual_candidates": 9,
+  "source_pool_metric_rows": 89,
+  "current_candidate_rows": 27,
+  "input_sha256": {
+    "references/literature_e2/fulltext_20261105/models.json": "5ea1cc30fdfc8cc5cbbbc9665a32fd2a556418a72d607c4519379b9dae1045be",
+    "references/literature_e2/final_audit_20261113/current10_score_component_audit.csv": "413bed09503298e0884f6657cf068fef1292ae7255e3e060ac6de68f6108b09b",
+    "references/literature_e2/final_audit_20261113/posthoc_contextual_score_protocol.json": "ee7178f9899fe7207a6cb4908fb9dda36d1170505b9464c82762986e9d67fa01",
+    "references/literature_e2/final_audit_20261113/contextual_performance_comparability.csv": "c6b63c19ac3f85bfc528ebea2aeab3c734cf6f8752ab39a09aed5b58b41c5702"
+  }
+}

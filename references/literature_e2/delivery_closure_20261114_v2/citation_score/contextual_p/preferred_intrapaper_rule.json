@@ -1,0 +1,54 @@
+{
+  "scenario_id": "P9_intrapaper_source_local_posthoc_v2",
+  "rule_fixed_at_utc": "2026-11-14T11:11:24.456569+00:00",
+  "status": "retrospective_scenario_rule_fixed_before_this_selection_generation_not_preregistration",
+  "prior_data_visibility": "Source-local values and alternatives were already available. This is neither blinded nor a prospective preregistration.",
+  "formula": "P_scenario=(pool_max_metric-model_metric)/(pool_max_metric-pool_min_metric)",
+  "normalization_scope": "All comparator rows in the selected source/table/metric pool, including the focal model; do not normalize only current Top10 models.",
+  "classification_rule": "FCN and ResNet: published aggregate MPCE over UCR44 from Wang Table I, all 11 comparison candidates.",
+  "SAE_rule": "RMSE, Beijing PM2.5, Table 2, all four configurations. Keep MAE and SMAPE as explicit sensitivity, not the selected scenario.",
+  "forecast_rule": {
+    "eligibility": "MSE, ETTh1, H96, L96, reported unified setting; source-local pools only.",
+    "primary_order": "Descending number of published comparison candidates in the eligible source/table pool.",
+    "tie_break": "Ascending lower-case DOI of the source study, without using model performance values.",
+    "source_doi": {
+      "itransformer": "10.48550/arxiv.2310.06625",
+      "timemixer": "10.48550/arxiv.2405.14616"
+    },
+    "final_tie_break": "If source DOI and candidate count tie, ascending numeric table number; no such unresolved tie in this scenario.",
+    "cross_source_calibration_claimed": false
+  },
+  "selected_pool_by_model": {
+    "FCN-1D": "wang_UCR44_TableI_MPCE_11",
+    "ResNet-1D": "wang_UCR44_TableI_MPCE_11",
+    "LSTM-autoencoder con predictor": "sae_Beijing_Table2_4_RMSE",
+    "TimesNet": "itransformer_ETTh1_H96_L96_Table10_11_MSE",
+    "TiDE": "itransformer_ETTh1_H96_L96_Table10_11_MSE",
+    "PatchTST": "itransformer_ETTh1_H96_L96_Table10_11_MSE",
+    "iTransformer": "itransformer_ETTh1_H96_L96_Table10_11_MSE",
+    "TimeMixer": "timemixer_ETTh1_H96_L96_Table13_11_MSE",
+    "TSMixer": "timemixer_ETTh1_H96_L96_Table23_4_MSE"
+  },
+  "omitted_model": {
+    "model": "Inception-1D",
+    "reason": "No verified single-network numeric comparison; do not inherit InceptionTime(5)."
+  },
+  "Table23_L96_assessment": {
+    "status": "reported_unified_setting_linkage_verified_not_independently_reproduced",
+    "source_url": "https://arxiv.org/html/2405.14616v1",
+    "evidence_chain": [
+      "Section 4 Unified experiment settings separates unified input-aligned experiments from searched results.",
+      "Section 4.1 Table 2 caption fixes input length 96 for all unified long-term experiments and points to full Table 13.",
+      "Appendix G states additional baselines reproduced under both the unified and searched settings; Table 23 separates these columns.",
+      "Use only Unified Hyperparameter columns; the TimeMixer shared ETTh1/H96 row matches Table 13."
+    ],
+    "limitation": "Table 23 does not repeat L96 in every row. L96 follows the explicitly named unified setting; exact reproduced implementation and total HPO effort are unverified."
+  },
+  "P_original_unchanged": true,
+  "P_contextual_global_unchanged": true,
+  "previous_P6_unchanged": true,
+  "catalogue_selection_cause": false,
+  "final_test_A2_used": false,
+  "controlled_global_ranking_claimed": false,
+  "input_sha256": "e53d1e60bcc45dd9fc7938de04be8673c2e48de3f3b0bc1e4d867eba9a2d2071"
+}

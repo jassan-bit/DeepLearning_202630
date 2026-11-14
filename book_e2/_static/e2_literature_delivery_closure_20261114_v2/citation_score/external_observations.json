@@ -1,0 +1,99 @@
+{
+  "audit_date_utc": "2026-11-14",
+  "scope": "Minimal identity and citation-access observations from official sources; no full text or raw proprietary export redistributed",
+  "used_in_existing_C_or_new_normalized_C": false,
+  "identity_evidence": [
+    {
+      "study_id": "10.48550/arXiv.1611.06455",
+      "models": ["FCN-1D", "ResNet-1D"],
+      "arxiv_first_submission_year": 2016,
+      "editorial_doi": "10.1109/IJCNN.2017.7966039",
+      "editorial_venue_year": 2017,
+      "official_arxiv_url": "https://arxiv.org/abs/1611.06455",
+      "official_editorial_identity_source": "https://ieeexplore.ieee.org/abstract/document/7966039/footnotes",
+      "editorial_identity_observation": "Official IEEE search result matches title, IJCNN2017 and DOI; main document URL presents a JavaScript robot-verification challenge. No count recovered and no challenge bypass attempted.",
+      "version_policy": "Same title/authors link a preprint and editorial version for lookup. No counts merged, summed, or imported; first-publication year remains2016 in the existing protocol."
+    },
+    {
+      "study_id": "10.48550/arXiv.1909.04939",
+      "models": ["Inception-1D"],
+      "arxiv_first_submission_year": 2019,
+      "editorial_doi": "10.1007/s10618-020-00710-y",
+      "editorial_venue_year": 2020,
+      "official_arxiv_url": "https://arxiv.org/abs/1909.04939",
+      "official_editorial_identity_source": "https://link.springer.com/article/10.1007/s10618-020-00710-y",
+      "editorial_identity_observation": "arXiv explicitly links the related editorial DOI. Springer reports the matching title/authors and publication7September2020.",
+      "version_policy": "Explicit related-version linkage allows searching either identifier; it does not authorize summing version counts."
+    },
+    {
+      "study_id": "10.1038/s41598-019-55320-6",
+      "models": ["LSTM-autoencoder con predictor"],
+      "editorial_doi": "10.1038/s41598-019-55320-6",
+      "editorial_venue_year": 2019,
+      "official_editorial_identity_source": "https://www.nature.com/articles/s41598-019-55320-6",
+      "editorial_identity_observation": "Official publisher search result matches Sagheer/Kotb, ScientificReports9:19038,13December2019 and the exact DOI. Direct open redirected to an inaccessible Nature identity endpoint."
+    }
+  ],
+  "citation_count_observations_not_a_uniform_snapshot": [
+    {
+      "study_id": "10.48550/arXiv.1909.04939",
+      "count": 1914,
+      "display_source": "SpringerNature article landing page",
+      "underlying_citation_provider": "Dimensions, as defined on the separate official metrics page",
+      "url": "https://link.springer.com/article/10.1007/s10618-020-00710-y",
+      "retrieval_medium": "web text retrieval",
+      "tool_reported_crawl": "today",
+      "provider_snapshot_time": null,
+      "eligible_for_C": false,
+      "exclusion_reason": "Not the received Scopus snapshot; no complete same-provider same-date cohort and no provider snapshot timestamp."
+    },
+    {
+      "study_id": "10.48550/arXiv.1909.04939",
+      "count": 1807,
+      "display_source": "SpringerNature article metrics page",
+      "underlying_citation_provider": "Dimensions",
+      "url": "https://link.springer.com/article/10.1007/s10618-020-00710-y/metrics",
+      "retrieval_medium": "web text retrieval",
+      "tool_reported_crawl": "3weeksago",
+      "page_reported_last_update_utc": "2026-10-19T16:58:04Z",
+      "eligible_for_C": false,
+      "exclusion_reason": "Explicitly older timestamp and different displayed count from the article landing page; not a coherent2026-11-14snapshot."
+    },
+    {
+      "study_id": "10.1038/s41598-019-55320-6",
+      "count": 326,
+      "display_source": "Nature official publisher search result",
+      "underlying_citation_provider": null,
+      "url": "https://www.nature.com/articles/s41598-019-55320-6",
+      "retrieval_medium": "search-index text from the official publisher page; direct page fetch failed",
+      "tool_reported_crawl": "lastmonth",
+      "provider_snapshot_time": null,
+      "eligible_for_C": false,
+      "exclusion_reason": "Cached official-page search observation, not a direct current provider receipt; provider/cut not verified for this count and incompatible with received Scopus snapshot."
+    }
+  ],
+  "new_independent_provider_attempt": {
+    "provider": "Dimensions",
+    "official_endpoint_documentation": "https://platform.digital-science.com/api-reference/dimensions-metrics",
+    "endpoint": "https://metrics-api.dimensions.ai/doi/10.1038/s41598-019-55320-6",
+    "request_receipt": "dimensions_probe_receipt.json",
+    "result": "URLError: Tunnel connection failed:403Forbidden",
+    "additional_web_checks": [
+      {
+        "url": "https://metrics-api.dimensions.ai/doi/10.1038/s41598-019-55320-6",
+        "result": "not accessible via web tool"
+      },
+      {
+        "url": "https://metrics-api.dimensions.ai/doi/10.48550/arXiv.2210.02186",
+        "result": "not accessible via web tool"
+      }
+    ],
+    "nine_study_batch_executed": false,
+    "reason_batch_not_executed": "Stopped after the independent provider probe failed; no route/proxy change or access-control workaround.",
+    "new_uniform_snapshot_obtained": false
+  },
+  "prior_blocked_routes": {
+    "OpenAlex": "Nine previous officialAPIproxy403failures preserved; no repeat or workaround attempted here.",
+    "SemanticScholar": "Previous officialAPIwebaccess failure preserved; no retry or workaround attempted here."
+  }
+}
