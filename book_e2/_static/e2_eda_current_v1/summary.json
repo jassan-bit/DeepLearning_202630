@@ -1,0 +1,115 @@
+{
+  "version": "e2-eda-current-profiles-v1",
+  "analysis_status": "posthoc_descriptive_current_executed_partition_no_retuning",
+  "input_sha256": {
+    "results/eda_development/daily_market_development.csv": "bf6bb5160af924aef6a15c3684aeae932df3017e8639888bb7e91ce787900171",
+    "results/eda_development/daily_volatility_development.csv": "20b96374a659eb87dadfa68aa3d6b6b5fb6bea5b10eebe6f2c186ad69861844a",
+    "book_e2/_static/e2_final_audit_inputs_20261114/e2_f2a_input.json": "65ae74b547a6073b2c286dea8039a2e7a1b1f6063b1d9ac0eb760c9ce727d187",
+    "experiments/e2_reduced_protocol_20261112/protocol.json": "867cf6837158c1353a1aa86ad9c51fc6fc260948ffe02dce8e779d3c329fb1cc",
+    "book/_static/eda_dataset_context_20261105/distribution_by_period.csv": "60dd1a4fb48f3239752988115985e6cdb14d22f194ecf713de5344b54375ab7c"
+  },
+  "script_sha256": "7d2a438689dfea2bd15ce4b6e4a974e3042fce09823cb7ca763d49a56e3f969c",
+  "software": {
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "scipy": "1.16.3",
+    "matplotlib": "3.10.8"
+  },
+  "access": {
+    "development_csv_read": true,
+    "test_cached_targets_read": true,
+    "saved_predictions_used_for_statistics": false,
+    "predictive_rescoring": false,
+    "raw_archives_opened": 0,
+    "new_model_fits": 0,
+    "new_inference_calls": 0,
+    "test_ohlcv_payload_read": false,
+    "p_values_computed": 0
+  },
+  "target": {
+    "definition": "Population standard deviation(ddof0) of seven daily log returns ending on the outcome UTC day",
+    "units": "raw log-return units, no percent scaling or annualization",
+    "input_history": "Seven complete prior UTC OHLCV bars; no target lag added to neural inputs"
+  },
+  "methods": {
+    "mean": "arithmetic",
+    "sd": "population ddof0",
+    "skew": "scipy.stats.skew bias=False",
+    "excess_kurtosis": "scipy.stats.kurtosis fisher=True bias=False",
+    "quantiles": "numpy linear:0.01,0.05,0.25,0.50,0.75,0.95,0.99",
+    "cdf_ks": "Supremum absolute empirical CDF difference; distance only, no test function or p-value",
+    "wasserstein": "First Wasserstein distance, divided by population SD of corresponding training cohort only",
+    "reference_policy": "Each internal validation uses its own phase training; final calibration and test use final655training. No scale fitted using calibration or test.",
+    "ecdf": "Raw sigma7, three final cohorts; SVG Date omitted and stable svg.hashsalt"
+  },
+  "cohort_checks": {
+    "calendar_preserved": true,
+    "development_invalid_bar_dates": [
+      "2023-03-24"
+    ],
+    "development_target_reconstruction_max_absolute_difference": 9.71445146547012e-17,
+    "train_mask": "D7_target: finite nonnegative Y, seven valid prior OHLCV bars and eight valid target-support bars t-7..t",
+    "validation_calibration_mask": "common: D7_target and quality-valid target at lags1,7,14,28; chronological dates retained",
+    "test_mask": "Existing pinned cache common boolean mask,608of608. Test OHLCV support is inherited from source admission, not independently reconstructed here.",
+    "training_counts": [
+      253,
+      435,
+      527,
+      655
+    ],
+    "internal_validation_counts": [
+      83,
+      83,
+      83
+    ],
+    "internal_validation_total": 249,
+    "calibration_dates": 53,
+    "calibration_identical_across_predictors": 81,
+    "calibration_matches_development": true,
+    "calibration_max_absolute_difference_from_development": 9.71445146547012e-17,
+    "test_calendar_dates": 608,
+    "test_common_mask_true": 608,
+    "profile_rows": 9
+  },
+  "partition_roles": {
+    "internal_validation": "HPO selection outcomes; all249 also enter expanded final training. These roles are not independent disjoint samples.",
+    "training_label_end": "2024-10-31",
+    "embargo_bridge": [
+      "2024-11-01",
+      "2024-11-07"
+    ],
+    "calibration": [
+      "2024-11-08",
+      "2024-12-30"
+    ],
+    "causal_bridge_no_refit": [
+      "2024-12-31"
+    ],
+    "test": [
+      "2025-01-01",
+      "2026-08-31"
+    ]
+  },
+  "inherited_annual_context": {
+    "output": "inherited_annual_profiles.csv",
+    "byte_identical_source": "book/_static/eda_dataset_context_20261105/distribution_by_period.csv",
+    "scope": "Existing E1 aggregate profiles for2023,2024,2025(n365),2026JanuaryAugust(n243)",
+    "ohlcv_alignment": "Same-day daily observations, retrospective. They are not inputs available at the start of that same outcome day.",
+    "distance_reference": "Observed development through2024-12-03, distinct from current final-training cutoff2024-10-31",
+    "current_test_35_component_input_profile": false,
+    "not_a_current_four_partition_covariate_comparison": true
+  },
+  "limits": [
+    "One shared BTCUSDT chronology, overlapping sigma7 targets and nested training sets; no independence claim or p-values.",
+    "A marginal distribution distance does not establish causal drift, predictive utility or a model ranking.",
+    "The608dates were already known from E1; no blindness or new prospective confirmation is recovered.",
+    "No hyperparameter, architecture, transform, threshold or evaluation period is chosen using these profiles.",
+    "Current test OHLCV and35input components are absent from this analysis; inherited annual same-day aggregates cannot replace them.",
+    "The old60day SeptemberOctober2026phaseIIreserve is outside the current608evaluation and is not used here."
+  ],
+  "output_sha256": {
+    "target_profiles.csv": "d24612c50586bf9b065a543054aabaf42bb529b9a012c3794be9ea0d2540ffea",
+    "target_ecdf.svg": "0ce34df5f758b6c52b17b12e5d59f6e20410f694a532aa0febec6902b8fb7f78",
+    "inherited_annual_profiles.csv": "60dd1a4fb48f3239752988115985e6cdb14d22f194ecf713de5344b54375ab7c"
+  }
+}
