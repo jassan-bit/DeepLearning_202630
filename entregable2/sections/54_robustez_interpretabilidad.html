@@ -65,7 +65,7 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="7. Ruta metodológica: series de tiempo y controles causales" href="07_ruta_temporal.html" />
+    <link rel="next" title="55. Reproducción numérica y ablaciones completadas" href="55_reproduccion_ablaciones.html" />
     <link rel="prev" title="53. Cierre de requisitos y experimentos complementarios" href="53_cierre_requisitos.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
@@ -221,6 +221,7 @@
 <li class="toctree-l1"><a class="reference internal" href="52_sintesis_literatura.html">52. Síntesis verificable de literatura y selección vigente</a></li>
 <li class="toctree-l1"><a class="reference internal" href="53_cierre_requisitos.html">53. Cierre de requisitos y experimentos complementarios</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">54. Robustez e interpretabilidad: resultados reales de los predictores congelados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="55_reproduccion_ablaciones.html">55. Reproducción numérica y ablaciones completadas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta metodológica: series de tiempo y controles causales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, ética y comunicación científica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09_protocolo_registrado.html">9. Registro de selección, cierre pendiente y trazabilidad</a></li>
@@ -428,7 +429,7 @@
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>e9df7b0f89370f807d6387574d8195161353b8d5fe4da40e99b60d9a2c1587bd
 </pre></div>
 </div>
-<p>La <a class="reference download internal" download="" href="../_downloads/2f3b5340b252463ff4a0dbac69a456bb/source_evidence.json"><span class="xref download myst">procedencia y verificación de fuentes</span></a> y el <a class="reference download internal" download="" href="../_downloads/1a9d0a4a909eb36c48a3f0eb3f8a519b/status.json"><span class="xref download myst">estado de ejecución</span></a> distinguen los diagnósticos realizados del entrenamiento pendiente. El entorno medido fue <strong>NVIDIA A100-SXM4-80GB, Python 3.12.12 y Torch 2.8.0+cu126</strong>, en FP32, sin AMP ni TF32. Los tiempos individuales suman <strong>2.358,53 segundos</strong> y el agregado informa <strong>3.441,86 segundos</strong> de invocación; son alcances distintos que incluyen gestión y respaldos entre predictores. Ninguno sustituye el diario presupuestario acumulado.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/2f3b5340b252463ff4a0dbac69a456bb/source_evidence.json"><span class="xref download myst">procedencia y verificación de fuentes</span></a> y el <a class="reference download internal" download="" href="../_downloads/1a9d0a4a909eb36c48a3f0eb3f8a519b/status.json"><span class="xref download myst">estado de ejecución</span></a> conservan el corte en que terminaron los diagnósticos; el cierre posterior del entrenamiento complementario está en <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a>. El entorno medido fue <strong>NVIDIA A100-SXM4-80GB, Python 3.12.12 y Torch 2.8.0+cu126</strong>, en FP32, sin AMP ni TF32. Los tiempos individuales suman <strong>2.358,53 segundos</strong> y el agregado informa <strong>3.441,86 segundos</strong> de invocación; son alcances distintos que incluyen gestión y respaldos entre predictores. Ninguno sustituye el diario presupuestario acumulado.</p>
 </section>
 <section id="que-se-perturbo">
 <h2>Qué se perturbó<a class="headerlink" href="#que-se-perturbo" title="Link to this heading">#</a></h2>
@@ -635,7 +636,8 @@
 </div>
 <p><img alt="Latencia de forward GPU en las trece redes" src="../_images/inference_latency.svg" /></p>
 <p>El <a class="reference download internal" download="" href="../_downloads/4a2e3fdcb5bed843a2453eca99dc979f/inference_profiles_by_model.csv"><span class="xref download myst">perfil completo por sistema</span></a> conserva los trece modelos. La cantidad de parámetros no determina por sí sola la latencia: TimeMixer tiene menos parámetros que PatchTST, pero tarda más en esta medición. Los picos de memoria informados corresponden al forward después del calentamiento; incluyen espacios de trabajo y distinguen memoria asignada de reservada por el allocator. No son el pico de entrenamiento ni el consumo completo del proceso. <strong>FLOPs y energía permanecen sin medir</strong>. ARIMA no tiene un perfil GPU comparable en este agregado.</p>
-<p>Este capítulo documenta inferencia y diagnósticos realmente completados. <strong>La preparación posterior del entorno limpio falló aproximadamente a los trece segundos, antes de admitir nuevos ajustes.</strong> Los cargos se conservan y el diagnóstico del fallo depende de los registros de esa ejecución. No se han completado ni se atribuyen aquí las <strong>81 reproducciones ni las 18 ablaciones con entrenamiento</strong>. Las oclusiones son pruebas de respuesta de pesos existentes, distintas de esas ablaciones pendientes.</p>
+<p>Este capítulo documenta los 79 diagnósticos completados sobre predictores congelados. <strong>El cierre del 13/11/2026 a las 22:42:55 de Bogotá, documentado en <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a>, ya acredita 81/81 reproducciones y 18/18 ablaciones entrenadas</strong>, con criterio de reproducción aprobado y las tres comparaciones del autoencoder. Los 99 ajustes son el plan complementario del proyecto, no un número exigido literalmente por la guía.</p>
+<p>El fallo inicial de preparación de aproximadamente trece segundos y sus cargos se conservan como antecedentes en <a class="reference internal" href="53_cierre_requisitos.html"><span class="std std-doc">§53</span></a>; ese corte fue superado mediante la recuperación registrada. Las oclusiones aquí descritas siguen siendo pruebas de respuesta de pesos existentes. Las ablaciones de §55 vuelven a entrenar las variantes y constituyen una evidencia experimental distinta. Ninguna de las dos etapas modifica la A2 original o recupera una prueba prospectiva desconocida.</p>
 </section>
 </section>
 
@@ -679,11 +681,11 @@
       </div>
     </a>
     <a class="right-next"
-       href="07_ruta_temporal.html"
+       href="55_reproduccion_ablaciones.html"
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">7. Ruta metodológica: series de tiempo y controles causales</p>
+        <p class="prev-next-title">55. Reproducción numérica y ablaciones completadas</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
