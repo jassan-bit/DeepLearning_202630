@@ -1,0 +1,107 @@
+{
+  "study_id": "E2-0247",
+  "doi": "10.1016/j.future.2024.04.043",
+  "title": "Estimation of realized volatility of cryptocurrencies using CEEMDAN-RF-LSTM",
+  "review_date_utc": "2026-11-14",
+  "decision": "pendiente_original_no_recuperado",
+  "narrative_eligibility": "pendiente",
+  "decision_reason": "La búsqueda focal adicional no recuperó el cuerpo editorial ni un manuscrito de autor. Los registros disponibles son compatibles con un candidato aplicado de DL a volatilidad cripto, pero no permiten adjudicar el target, el diseño temporal ni las comparaciones numéricas. Se mantiene pendiente, sin exclusión por diferencias frente a sigma7D7.",
+  "narrative_stratum_if_verified": "volatilidad_realizada_cripto_hibrido_descomposicion_RF_LSTM",
+  "new_original_reading_claimed": false,
+  "review_scope": "Búsqueda de original, comprobación de disponibilidad editorial y en sitios de autores/institución; no lectura focal ni completa del cuerpo del artículo.",
+  "primary_version_identified": null,
+  "primary_fulltext_url": null,
+  "population": null,
+  "data_provider": null,
+  "sample_dates": null,
+  "sample_size": null,
+  "observation_frequency": null,
+  "target_proxy": null,
+  "target_formula": null,
+  "target_scale": null,
+  "forecast_horizons": null,
+  "architecture": null,
+  "features": null,
+  "train_validation_test_split": null,
+  "rolling_or_expanding_evaluation": null,
+  "metrics": null,
+  "comparators": null,
+  "comparative_tables_and_values": null,
+  "hpo_algorithm": null,
+  "hpo_search_space_and_budget": null,
+  "random_seeds": null,
+  "code_url": null,
+  "benchmark_fairness": null,
+  "leakage_assessment": null,
+  "numerical_pooling_permitted": false,
+  "direct_effectiveness_for_sigma7D7_established": false,
+  "partial_record_only": {
+    "assets_named_in_editorial_abstract": ["BTC", "ETH", "BNB"],
+    "method_named_in_editorial_record": "CEEMDAN + RF + LSTM; la introducción visible al buscador alude a optimización bayesiana, pero no se transcribe como extracción de cuerpo original.",
+    "not_used_as_primary_evidence": true
+  },
+  "access_attempts": [
+    {
+      "url": "https://www.sciencedirect.com/science/article/pii/S0167739X24001729",
+      "locator": "Página editorial; apertura directa",
+      "outcome": "403 Forbidden. El resultado del buscador contiene abstract, introducción y section snippets; se rechaza como sustituto del cuerpo necesario."
+    },
+    {
+      "url": "https://www.sciencedirect.com/science/article/pii/S0167739X24001729/pdfft?isDTMRedir=true&download=true",
+      "locator": "Endpoint PDF editorial",
+      "outcome": "403 Forbidden"
+    },
+    {
+      "url": "https://api.elsevier.com/content/article/pii/S0167739X24001729?httpAccept=text/xml",
+      "locator": "Endpoint API editorial",
+      "outcome": "No accesible con la herramienta web; no se obtuvo texto."
+    },
+    {
+      "url": "https://sites.google.com/view/hai-dong/index/publications",
+      "locator": "Selected Journal Articles; entrada FGCS 158 (2024), pp.219–229; línea web 60",
+      "outcome": "Sitio del coautor accesible. La entrada sólo enlaza a ScienceDirect; no ofrece preprint, a diferencia de otras entradas que sí están marcadas Preprint."
+    },
+    {
+      "url": "https://titan.csit.rmit.edu.au/~e13322/hai_dong/publications.html",
+      "locator": "Publicaciones del coautor, copia en RMIT",
+      "outcome": "Entrada detectada por búsqueda; apertura directa agotó tiempo."
+    },
+    {
+      "url": "https://www.rmit.edu.au/about/schools-colleges/computing-technologies/research/greencryptolab/publications",
+      "locator": "Entrada DOI 10.1016/j.future.2024.04.043; líneas web 171–173",
+      "outcome": "Lista institucional accesible; no incluye enlace a manuscrito ni PDF para esta entrada."
+    },
+    {
+      "url": "https://researchrepository.rmit.edu.au/discovery/search?query=any,contains,Estimation%20of%20realized%20volatility%20of%20cryptocurrencies&vid=61RMIT_INST:RMITU",
+      "locator": "Búsqueda por título del repositorio RMIT",
+      "outcome": "No accesible con la herramienta. Búsquedas del título y método restringidas a researchrepository.rmit.edu.au y research-repository.rmit.edu.au no localizaron original."
+    },
+    {
+      "url": "https://jsj.mju.edu.cn/2025/0228/c6122a195736/page.htm",
+      "locator": "Página institucional del coautor Xu Yang; entrada bibliográfica del artículo detectada por búsqueda",
+      "outcome": "Apertura directa agotó tiempo; resultado de búsqueda no proporcionó manuscrito."
+    },
+    {
+      "url": "https://www.researchgate.net/publication/380007272_Estimation_of_realized_volatility_of_cryptocurrencies_using_CEEMDAN-RF-LSTM",
+      "locator": "Bloque de acceso, líneas web 33–54",
+      "outcome": "Indica que no hay full text disponible y propone solicitarlo al autor. No se envió petición ni mensaje."
+    },
+    {
+      "url": "https://dblp.org/rec/journals/fgcs/WangHCYYDY24.html",
+      "locator": "Details and statistics, líneas web 133–139",
+      "outcome": "Clasifica acceso closed; metadatos, no original."
+    }
+  ],
+  "search_queries": [
+    "\"CEEMDAN-RF-LSTM\" filetype:pdf",
+    "\"CEEMDAN-RF-LSTM\" \"Huiqing\"",
+    "\"10.1016/j.future.2024.04.043\" repository",
+    "\"CEEMDAN-RF-LSTM\" site:arxiv.org",
+    "\"CEEMDAN-RF-LSTM\" site:rmit.edu.au filetype:pdf",
+    "\"CEEMDAN-RF-LSTM\" site:researchrepository.rmit.edu.au",
+    "\"CEEMDAN-RF-LSTM\" site:research-repository.rmit.edu.au",
+    "\"Estimation of realized volatility of cryptocurrencies\" \"pdf\" -site:sciencedirect.com -site:researchgate.net -site:ablesci.com"
+  ],
+  "remaining_real_requirement": "Obtener versión editorial o manuscrito de autor identificado y leer como mínimo métodos, definición de RV, datos y resultados comparativos. Sólo entonces puede cambiar la elegibilidad aplicada y extraerse valores. Una ficha de acceso adicional no cierra ese requisito.",
+  "copyright_handling": "Sin citas textuales del cuerpo y sin depósito de fuentes extensas. Todos los contenidos son resúmenes/paráfrasis."
+}

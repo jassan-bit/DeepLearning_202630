@@ -1,0 +1,205 @@
+{
+  "audit_date": "2026-11-14",
+  "review_type": "AI-assisted primary-source assessment; no independent human double review",
+  "repo_modified": false,
+  "context_read": [
+    "book_e2/sections/62_cierre_literatura_focal.md",
+    "references/literature_e2/delivery_closure_20261114_v2/eligibility/applied_target_decisions.json"
+  ],
+  "rules": {
+    "absent_or_unverified_values": null,
+    "numerical_pooling_permitted": false,
+    "direct_E2_effectiveness_established": false,
+    "architectural_sources_replaced": false,
+    "verbatim_quotations_words": 0
+  },
+  "studies": [
+    {
+      "study_id": "E2-0345",
+      "doi": "10.3390/jrfm19090688",
+      "title": "ARCH–LSTM Structural Equivalence with Hybrid Student-t Likelihood Loss for Financial Volatility Forecasting",
+      "previous_decision": "no_recuperado; secciones indexadas y código parcial",
+      "decision": "incluido",
+      "applied_eligibility": "incluido",
+      "adjudicated_source_role": "aplicada_volatilidad_retornos",
+      "narrative_stratum": "varianza_condicional_diaria_proxy_retorno_centrado_cuadrado",
+      "decision_reason": "Nueva lectura continua del cuerpo editorial HTML verifica BTC/ETH, target epsilon², LSTM recurrente y evaluación un paso. Admisible como evidencia aplicada narrativa; no acredita sigma7 ni dominancia general.",
+      "access": {
+        "status": "editorial_HTML_body_continuously_accessible",
+        "new_primary_sections_read": true,
+        "new_manuscript_reading_claimed": true,
+        "assessed_primary_sections_available": true,
+        "all_tables_completely_read": false,
+        "tables_read_as_complete_numeric_rows": [6, 7],
+        "table_8_numeric_cells_recovered": false,
+        "original_file_materialized": false,
+        "original_file_sha256": null,
+        "source_url": "https://www.mdpi.com/1911-8074/19/9/688",
+        "source_version": "Current publisher HTML, publication 2026-09-04; version-history endpoint returned 429",
+        "license": "CC BY, stated by publisher",
+        "read_sections": ["2.2", "2.3", "3.1", "3.2", "3.3", "4.1–4.7", "5.1–5.4", "6", "Data Availability"],
+        "locators": [
+          "§2.2 equations (1)–(5), HTML lines 220–265",
+          "§2.3 equations (6)–(8), HTML lines 270–301",
+          "§3.1 HTML lines 303–319",
+          "§3.2–3.3 HTML lines 320–338",
+          "§4.3/Table 7 HTML lines 357–418",
+          "§4.4 HTML lines 426–434",
+          "§4.6–4.7 HTML lines 450–487",
+          "§5.4.1–5.4.5 HTML lines 516–529"
+        ]
+      },
+      "data": {
+        "provider_reported": "Yahoo Finance",
+        "frequency": "daily closing prices / daily log returns",
+        "crypto_assets": ["BTC-USD", "ETH-USD"],
+        "other_assets": ["DJIA", "S&P 500", "Gold", "Oil"],
+        "crypto_samples_reported": [
+          {"asset": "BTC-USD", "start": "2013-04-28", "n_reported": 4304},
+          {"asset": "ETH-USD", "start": "2015-08-07", "n_reported": 3155}
+        ],
+        "common_end_reported": "2026-06-30",
+        "other_series_start_reported": "2015-06-01",
+        "other_series_n_reported_approximate": 2786,
+        "data_snapshot_verified": false
+      },
+      "target": {
+        "construct": "conditional variance, scored against squared centered daily returns",
+        "formula": "r_t = ln(P_t/P_{t-1}); epsilon_t = r_t - mu_hat_train; y_t = epsilon_t²; forecast sigma_hat_t² from lagged epsilon²",
+        "training_loss": "L=(1-lambda)*mean[(sigma_hat_t²-epsilon_t²)²]+lambda*mean[0.5*ln(sigma_hat_t²)+(nu+1)/2*ln(1+epsilon_t²/(nu*sigma_hat_t²))], as printed in equations (6)–(8)",
+        "scale": "variance in squared decimal daily log-return units; figures use logarithmic axes",
+        "annualization": null,
+        "normalization_or_scaler_fit_scope": null,
+        "forecast_horizon": "one step ahead / one day",
+        "information_window_primary_reported": 1,
+        "horizon_locator": "§5.4.2, HTML lines 519–521",
+        "equivalent_to_sigma7": false
+      },
+      "architecture": {
+        "proposed": "one recurrent LSTM layer; final hidden state; dropout; dense positive variance output with softplus; dense batch normalization stated",
+        "proposed_selected_units": null,
+        "units_reporting_conflict": "§2.3 says one cell; same section offers tuner widths 16/32/64/128. The fitted width is not resolved by these passages.",
+        "independent_neural_comparators": ["LSTM-SSE", "TCN", "Transformer"],
+        "hybrid_neural_comparators": ["CNN-LSTM", "LSTM-Attention", "SVR-GARCH", "NN-GARCH"],
+        "other_comparators": ["ARCH(1)", "GARCH(1,1)", "EGARCH", "GJR-GARCH", "FIGARCH", "MSGARCH", "HAR", "constant unconditional variance"],
+        "standalone_GRU_verified": false,
+        "source_role_limit": "Applied study supports its own LSTM/TCN/Transformer experiment; does not replace foundational architecture sources of the E2 catalogue."
+      },
+      "split_and_training": {
+        "train_test": "chronological 80/20; no shuffle",
+        "validation": "taken from end of training segment",
+        "validation_size": null,
+        "cv": "five-fold TimeSeriesSplit stated in §2.3",
+        "refit_frequency": null,
+        "optimizer": "Adam; cosine learning-rate decay; gradient clipping 1.0",
+        "maximum_epochs": 1000,
+        "early_stopping_patience_final_runs": 20,
+        "batch_size_final_runs": 32,
+        "seeds_final_runs_per_asset": 10,
+        "seed_values": null,
+        "seed_count_for_every_comparator": null,
+        "weight_initialization": "Glorot uniform stated",
+        "software_reported": {"Python": "3.11.6", "TensorFlow": "2.17.0", "NumPy": "1.26.4"},
+        "hpo_method": "Keras Tuner named; exact search algorithm/trial budget not resolved",
+        "hpo_trial_budget": null,
+        "hpo_space": {
+          "lstm_units": [16, 32, 64, 128],
+          "nu": [3, 4, 5, 6, 7, 8],
+          "dropout": [0.0, 0.1, 0.2, 0.3],
+          "lambda": [0.1, 0.3, 0.5, 0.7, 0.9],
+          "batch_size": [32, 64, 128],
+          "initial_learning_rate_range": [0.0001, 0.01],
+          "minimum_learning_rate": 0.000001
+        },
+        "cost_scope": "§3.3 describes final ten-seed runs under fixed configuration, excluding a separate HPO phase; not an equal total search-cost comparison."
+      },
+      "reported_results": {
+        "source": "Table 7, complete rows read in editorial HTML",
+        "metric": "percent change of OOS loss relative to GARCH(1,1); negative is lower loss",
+        "absolute_MSE_MAE": null,
+        "crypto_rows": [
+          {"model": "LSTM-SSE-t-Student", "BTC_MSE_pct": -2.88, "BTC_MAE_pct": 4.82, "ETH_MSE_pct": -6.31, "ETH_MAE_pct": -7.92},
+          {"model": "LSTM-SSE", "BTC_MSE_pct": -4.24, "BTC_MAE_pct": -2.60, "ETH_MSE_pct": -4.55, "ETH_MAE_pct": -8.31},
+          {"model": "CNN-LSTM", "BTC_MSE_pct": -6.57, "BTC_MAE_pct": -6.18, "ETH_MSE_pct": -3.64, "ETH_MAE_pct": -6.12},
+          {"model": "TCN", "BTC_MSE_pct": -0.50, "BTC_MAE_pct": -3.53, "ETH_MSE_pct": -3.10, "ETH_MAE_pct": -14.79},
+          {"model": "Transformer", "BTC_MSE_pct": -4.14, "BTC_MAE_pct": 1.75, "ETH_MSE_pct": -4.55, "ETH_MAE_pct": -17.48}
+        ],
+        "interpretation": "Metric dependence is material: proposed model improves BTC MSE but worsens BTC MAE versus GARCH. No universal neural-family winner.",
+        "sensitivity": "§4.6.2 ARCH-restricted experiment: best activated likelihood worsens BTC QLIKE 1.5%, improves ETH 4.1%. This is a separate experiment and not a general effect of the unrestricted proposed model.",
+        "tests": "DM on QLIKE with Newey–West HAC and within-market Holm–Bonferroni; TOST margin ±2% QLIKE; Kupiec/Christoffersen VaR and Acerbi–Szekely ES tests",
+        "individual_DM_corrected_p_values": null,
+        "test_interpretation_limit": "§4.4/§5.2 describe mostly non-significant differences versus strong GARCH and DL rivals. §4.3/§5.2 report a BTC advantage for CNN-LSTM. QLIKE DM markers must not be represented as separate MSE/MAE significance tests.",
+        "risk_backtest_summary": "§4.7: adequate reported crypto/equity tail coverage; Gold and Oil failures constrain generality. No comparative VaR/ES superiority test against all baselines."
+      },
+      "code": {
+        "publisher_link": "https://github.com/Nataliaprins/arch-lstm-hybrid",
+        "new_code_reproduction": false,
+        "historical_commit_verified_in_prior_receipt": "9c8aef3506b1e676f181c5af5b1db7f1834212fb",
+        "prior_receipt": "references/literature_e1/internet_closure_20261106/part_d/reviews.json#E1X002",
+        "current_release_to_article_identity_verified": false,
+        "historical_code_note": "Prior static review verifies separate TCN/LSTM builders; its log-variance output differs from the current prose's softplus variance output. Reconciliation remains unverified."
+      },
+      "leakage_and_fairness": {
+        "positive_reporting": "chronology, tail validation, no shuffle and training-only centering explicitly stated",
+        "leakage_free_independently_verified": false,
+        "equal_HPO_budget_independently_verified": false,
+        "equal_seed_budget_independently_verified": false,
+        "purging_or_embargo": null,
+        "limits": [
+          "Best out-of-sample lambda sensitivity is exploratory; do not treat it as an untouched confirmatory test or independent HPO result.",
+          "Fitted width, validation fraction, comparator seed budgets, refit schedule and scaler scope remain unresolved.",
+          "The body and Table 6 caption alternate epsilon², |epsilon|, and variance rather than standard deviation in residual standardization; retain formula/reporting uncertainty.",
+          "Equation (3) uses nu-2 whereas (8) uses nu in the Student-t scale; claimed exact likelihood equivalence is not independently validated.",
+          "Equation (5) lacks the recurring GARCH intercept omega; an initial condition alone does not establish the stated exact equivalence. This is reviewer mathematical analysis, not a replication result.",
+          "Data counts, provider snapshot and claimed common endpoint have not been reconciled against an archived dataset."
+        ]
+      },
+      "remaining_requirement": "Eligibility and narrative results can be closed. Exact reproducibility and full numerical DM/table audit remain open; no sigma7 comparison or pooling."
+    },
+    {
+      "study_id": "doi:10.1016/j.eswa.2024.124851",
+      "doi": "10.1016/j.eswa.2024.124851",
+      "title": "Charting new avenues in financial forecasting with TimesNet: The impact of intraperiod and interperiod variations on realized volatility prediction",
+      "previous_decision": "no_recuperado; población por confirmar",
+      "decision": "excluido",
+      "applied_eligibility": "excluido",
+      "adjudicated_source_role": "contexto_aplicado_otra_poblacion",
+      "narrative_stratum": "volatilidad_realizada_acciones",
+      "decision_reason": "Editorial §2 specifies 80 S&P100 equities. Exclude the crypto applied core; retain financial context. Formula and complete methods remain pending.",
+      "access": {
+        "status": "publisher_indexed_introduction_and_section_snippets_only",
+        "new_primary_sections_read": true,
+        "new_manuscript_reading_claimed": false,
+        "assessed_primary_sections_available": true,
+        "original_file_materialized": false,
+        "original_file_sha256": null,
+        "source_url": "https://www.sciencedirect.com/science/article/pii/S0957417424017184",
+        "source_version": "Publisher 2024 article; indexed partial sections, not full report",
+        "locators": ["Introduction", "§2 Research in a nutshell", "§5.1.1 Error measurements, references Table 1"],
+        "full_original_recovery_pending": true
+      },
+      "data": {"population": "80 S&P100 stocks", "frequency": "daily", "start": "2007-07-01", "end": "2021-06-30", "provider": null},
+      "target": {"construct": "stock realized volatility", "formula": null, "scale": null, "forecast_horizon": null, "annualization": null, "equivalent_to_sigma7": false},
+      "architecture": {"reported_family": "TimesNet CNN", "applied_layers_and_widths": null, "replaces_architecture_source": false},
+      "split": null,
+      "metrics": ["RMSE", "MAE", "MAPE", "QLIKE"],
+      "reported_results": {"numeric_values": null, "publisher_narrative": "§5.1.1: second RMSE, first QLIKE; third MAE (tie HAR), third MAPE. No overall superiority established."},
+      "HPO": null,
+      "seeds": null,
+      "statistical_tests": null,
+      "leakage_or_equal_budget_verified": null,
+      "code": {"url": "https://github.com/hugogobato/TimesNet-for-Stock-Realized-Volatility-Prediction", "README_reopened": true, "reproduced": false},
+      "candidate_preprint": {"doi": "10.2139/ssrn.4660025", "title": "TimesNet for Realized Volatility Prediction", "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4660025", "accepted_version_identity_verified": false, "used_for_final_formula_or_numeric_results": false},
+      "remaining_requirement": "Obtain final/accepted full methods for formula, horizon and design. Population exclusion is already supported by publisher; do not substitute preprint metrics."
+    }
+  ],
+  "retrieval_attempts": [
+    {"target": "ARCH-LSTM", "route": "MDPI HTML", "outcome": "continuous body text and complete Tables 6–7 read"},
+    {"target": "ARCH-LSTM", "route": "MDPI PDF link", "outcome": "web tool unsupported application/octet-stream; shell tunnel 403"},
+    {"target": "ARCH-LSTM", "route": "MDPI XML and mdpi-res guessed PDF", "outcome": "not accessible"},
+    {"target": "ARCH-LSTM", "route": "version notes", "outcome": "429"},
+    {"target": "TimesNet", "route": "DOI, ScienceDirect full and abstract pages", "outcome": "direct opens 403; indexed editorial Introduction and §§2/4/5/6 snippets retrieved"},
+    {"target": "TimesNet", "route": "author GitHub and raw README", "outcome": "README identity read; folder/API inaccessible"},
+    {"target": "TimesNet", "route": "exact title PDF, institutional repository, arXiv/SSRN searches", "outcome": "candidate 2023 preprint identified; no accepted-version identity or final full body recovered"}
+  ]
+}

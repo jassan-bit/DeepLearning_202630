@@ -1,0 +1,127 @@
+{
+  "review_date": "2026-11-14",
+  "reviewer": "AI-assisted focused review; no independent human double review",
+  "scope": "Two DOI targets from §62; repository unchanged; no originals redistributed",
+  "rules": {
+    "screening_can_use_positive_population_evidence": true,
+    "abstract_or_indexed_fragment_is_not_fulltext_reading": true,
+    "direct_E2_effectiveness_established": false,
+    "numerical_pooling_permitted": false,
+    "target_difference_alone_excludes_crypto_narrative": false,
+    "verbatim_quotation_words": 0
+  },
+  "studies": [
+    {
+      "doi": "10.1016/j.jfds.2024.100143",
+      "title": "Time-mixing and feature-mixing modelling for realized volatility forecast: Evidence from TSMixer model",
+      "outcome": "exclude_applied_crypto_keep_mechanism",
+      "stage": "screening_title_abstract_primary_fragment",
+      "reason": "Población financiera convencional: acciones, índices, divisas y materias primas; no población cripto.",
+      "population_certainty": "alta: resumen editorial y fragmento positivo §4.1 identifican acciones",
+      "source_url": "https://doi.org/10.1016/j.jfds.2024.100143",
+      "indexed_source_url": "https://doi.org/10.1016%2Fj.jfds.2024.100143",
+      "publisher_url": "https://www.sciencedirect.com/science/article/pii/S240591882400028X",
+      "source_version": "Editorial, Journal of Finance and Data Science 10 (2024),100143; identidad verificada, cuerpo no recuperado",
+      "primary_body_read": false,
+      "access_status": "partial_publisher_indexed_sections_and_author_code",
+      "primary_manuscript_extraction_confirmed": null,
+      "indexed_partial_extraction": {
+        "locators": ["Abstract", "§3/Fig.1", "§4.1", "§4.3", "§4.6", "§5.1.1/Table1", "Appendices B–C/Tables13–19", "Data and code availability"],
+        "data": "80 acciones S&P100; 2007-07-01/2021-06-30;3409 observaciones por acción",
+        "frequency": "diaria; retornos intradía5min",
+        "proxy": "RV_t=sum_i(log(P_ti/P_t,i-1)^2); sigma_t=sqrt(RV_t)",
+        "target_scale_confirmed": null,
+        "annualization": null,
+        "horizon_days_confirmed_from_manuscript": null,
+        "model": "TSMixer; §3 remite explícitamente a S.-A.Chen2023; relación arquitectónica respaldada parcialmente, identidad de implementación sin asumir",
+        "comparators": ["GARCH", "HAR", "LSTM", "TFT", "NBEATSx", "NHITS", "TimesNet"],
+        "split": "70/30; sensibilidad80/20",
+        "metrics": ["RMSE", "MAE", "QLIKE", "MAPE"],
+        "table_results_confirmed": null,
+        "hpo": "40 configuraciones; validación28.5% del entrenamiento;20 ensayos de semillas; benchmarks heredados",
+        "seeds": "20 en sensibilidad; tabla19:89102543",
+        "tests": ["DM", "Dynamic MCS", "t", "F"],
+        "leakage_audit_complete": false,
+        "hpo_fairness_confirmed": null
+      },
+      "code_evidence": {
+        "role": "original author implementation; cannot substitute for manuscript results",
+        "repository": "https://github.com/hugogobato/TSMixer-for-Realized-Volatility",
+        "commit": "423451a5fb082c5a981c4807ca1aafd90a9d7e38",
+        "read_url": "https://github.com/hugogobato/TSMixer-for-Realized-Volatility/blob/423451a5fb082c5a981c4807ca1aafd90a9d7e38/Empirical%20Experiments/Robustness%20Test%202/TSMixer%20(Robustness%20Test%202).ipynb",
+        "blob_sha": "bbda2321a080ed87566ce409c3f163028708858c",
+        "locators": "Notebook cells numbered from zero:3,5,6,7",
+        "observations": {
+          "cell5": "DataLoader uses SP100_vol (original).xlsx; chronological indices train_end=floor(.7n)-5,val_end=floor(.7n)+5; restricted training starts at floor(.5*train_end). StandardScaler fit only on train_df, then applied to validation/test.",
+          "cell6": "Batch32; input21; forecast1;2 residual mixing blocks; width220;dropout.7;Adam.0005;MSE;168 fixed epochs. Validation and early-stopping callback commented out. Seed89102543 is set after model construction.",
+          "cell7": "Inverse-transforms predictions before pooled asset/time RMSE,MAE,MAPE,QLIKE. QLIKE uses y/pred-log(y/pred)-1. No new execution performed."
+        },
+        "audit_limits": [
+          "Restricted-training robustness notebook only; no claim of exhaustive code audit or manuscript correspondence.",
+          "Setting the seed after constructing model weights does not establish reproducible weight initialization.",
+          "Train-only scaling is supported in this notebook; absence of other leakage is unestablished.",
+          "Fixed168 epochs does not reproduce active early stopping; provenance of selected duration requires manuscript/protocol reconciliation."
+        ]
+      },
+      "access_attempts": [
+        {"url":"https://doi.org/10.1016/j.jfds.2024.100143","result":"redirect to inaccessible linkinghub"},
+        {"url":"https://www.sciencedirect.com/science/article/pii/S240591882400028X","result":"403"},
+        {"url":"https://www.sciencedirect.com/science/article/pii/S240591882400028X/pdfft","result":"403"},
+        {"url":"https://api.elsevier.com/content/article/pii/S240591882400028X","result":"inaccessible"},
+        {"url":"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4713756","result":"403; preprint identified, not read"}
+      ],
+      "evidence_receipts": ["turn105538search2","turn914582search0","turn960194search0","turn512550search0","GitHub fetch: notebook blob bbda2321a080ed87566ce409c3f163028708858c"],
+      "residual_requirement": "Original manuscript access needed for confirmed target scale, horizon, numerical results and complete protocol audit; crypto-population screening resolved."
+    },
+    {
+      "doi": "10.1108/cfri-01-2024-0032",
+      "title": "Can transformers transform financial forecasting?",
+      "outcome": "exclude_applied_crypto_keep_mechanism",
+      "stage": "screening_title_abstract_primary_fragment",
+      "reason": "El resumen identifica pronóstico de volatilidad realizada de acciones; población no cripto.",
+      "population_certainty": "alta: resumen distingue explícitamente80acciones",
+      "source_url": "https://doi.org/10.1108/CFRI-01-2024-0032",
+      "source_version": "Registro editorial China Finance Review International,2024; cuerpo editorial no recuperado",
+      "primary_body_read": false,
+      "access_status": "partial_abstract_reproduced_in_institutional_catalogue",
+      "abstract_source_url": "https://publinova.nl/product/can-transformers-transform-financial-forecasting-1",
+      "abstract_locator": "Descripción:Purpose,Design/methodology/approach; palabras claveS&P100",
+      "primary_manuscript_extraction_confirmed": null,
+      "abstract_partial_extraction": {
+        "population": "80acciones;S&P100",
+        "objective": "Pronóstico de volatilidad realizada bursátil",
+        "data_source": null,
+        "date_range": null,
+        "frequency": null,
+        "proxy_formula": null,
+        "scale": null,
+        "horizon": null,
+        "models": ["TFT","Informer","Autoformer","PatchTST"],
+        "comparators": ["HAR","NBEATSx","NHITS","TimesNet"],
+        "split": null,
+        "metrics": null,
+        "table_results": null,
+        "hpo": null,
+        "seeds": null,
+        "code": null,
+        "tests": "Anuncia4pruebas estadísticas y3robustez; nombres sin establecer",
+        "leakage": null,
+        "comparison_fairness": null
+      },
+      "preprint_identified_not_read": {
+        "doi":"10.2139/ssrn.4718033",
+        "url":"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4718033",
+        "note":"VersiónSSRNelectronic journal identificada; no sustituye por equivalencia los resultados editoriales. CopiaCourseHero no aceptada como original/acceptedverificado."
+      },
+      "access_attempts": [
+        {"url":"https://doi.org/10.1108/CFRI-01-2024-0032","result":"inaccessible"},
+        {"url":"https://www.emerald.com/insight/content/doi/10.1108/CFRI-01-2024-0032/full/html","result":"inaccessible"},
+        {"url":"https://www.emerald.com/insight/content/doi/10.1108/CFRI-01-2024-0032/full/pdf","result":"inaccessible"},
+        {"url":"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4718033","result":"inaccessible"},
+        {"url":"https://papers.ssrn.com/sol3/Delivery.cfm?abstractid=4718033","result":"inaccessible"}
+      ],
+      "evidence_receipts": ["turn429644search0","turn506387search3","turn784719search0"],
+      "residual_requirement": "Acceso editorial o accepted autor con versión explícita para extracción/protocolo; elegibilidad cripto resuelta por población positiva en resumen."
+    }
+  ]
+}

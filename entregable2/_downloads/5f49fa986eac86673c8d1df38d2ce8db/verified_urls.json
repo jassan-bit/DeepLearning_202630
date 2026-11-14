@@ -1,0 +1,66 @@
+{
+  "checked_date": "2026-11-14",
+  "input": "/workspace/outputs/e2-current-nine-quality-20261114/current_nine_quality.csv",
+  "input_sha256": "c67f8e5cb61b15905d7977ccfe963660a81e41a2600cb69aecf9c1d80ec1a777",
+  "denominator": "nine independent studies; ten model systems",
+  "public_dataset_release_identified": 9,
+  "dataset_availability_proportion": "9/9 =100%",
+  "public_author_code_repository_identified_in_prior_matrix": 9,
+  "code_availability_proportion": "9/9 =100%",
+  "new_code_audit": false,
+  "new_full_article_reads_claimed": false,
+  "downloads_or_training_runs": 0,
+  "exact_data_snapshot_or_preprocessing_verified": false,
+  "urls": [
+    {
+      "id": "UCR2015",
+      "url": "https://www.cs.ucr.edu/~eamonn/time_series_data/",
+      "checked_date": "2026-11-14",
+      "status": "public_release_identified",
+      "evidence": "Official legacy 2015 archive page: download link, public briefing/password instructions, Adiac row 390 train/391 test/length176.",
+      "access_url": "https://www.cs.ucr.edu/~eamonn/time_series_data/UCR_TS_Archive_2015.zip",
+      "binary_downloaded": false,
+      "binary_probe": "link resolves as application/zip; web reader cannot render zip",
+      "limits": "Legacy collection discontinued in favour of 2018; exact experiment bytes and preprocessing not compared."
+    },
+    {
+      "id": "UCR2018",
+      "url": "https://www.cs.ucr.edu/~eamonn/time_series_data_2018/",
+      "checked_date": "2026-11-14",
+      "status": "public_release_identified",
+      "evidence": "Official Fall2018 archive page exposes archive and briefing/password download instructions.",
+      "binary_downloaded": false,
+      "limits": "Later release verified separately; not substituted for UCR44/UCR85 source cohorts."
+    },
+    {
+      "id": "UCR85_history",
+      "url": "https://timeseriesclassification.com/results.php",
+      "checked_date": "2026-11-14",
+      "status": "public_release_identified",
+      "evidence": "Official archive collaborators identify 85 datasets as the 2015 collection; link to data lists and archive.",
+      "binary_downloaded": false,
+      "limits": "Version-cohort mapping, not bitwise equality or recovery of all original folds."
+    },
+    {
+      "id": "UCI381",
+      "url": "https://archive.ics.uci.edu/dataset/381/beijing+pm2+5+data",
+      "checked_date": "2026-11-14",
+      "status": "public_release_identified",
+      "evidence": "Official UCI listing, dataset DOI10.24432/C5JS49, PRSA_data_2010.1.1-2014.12.31.csv, download1.9MB, 43824 hourly records, CC BY4.0.",
+      "binary_downloaded": false,
+      "limits": "SAE paper reports43800 prepared observations; public raw release does not validate its preprocessing."
+    },
+    {
+      "id": "ETTh1",
+      "url": "https://github.com/zhouhaoyi/ETDataset/blob/main/ETT-small/ETTh1.csv",
+      "checked_date": "2026-11-14",
+      "status": "public_release_identified",
+      "evidence": "Dataset authors public repository exposes ETTh1.csv file metadata2.47MB and Raw/download controls. README identifies hourly h1 and six load variables plus oil temperature.",
+      "access_url": "https://raw.githubusercontent.com/zhouhaoyi/ETDataset/main/ETT-small/ETTh1.csv",
+      "documentation_url": "https://github.com/zhouhaoyi/ETDataset",
+      "binary_downloaded": false,
+      "limits": "Current public main file; original experiment data commit/hash not identified; transformed windows and splits not reproduced."
+    }
+  ],
+  "rule": "Identified accessible official public release, paired with existing primary study-dataset receipt; not successful download, preprocessing equality or reproducibility."
+}

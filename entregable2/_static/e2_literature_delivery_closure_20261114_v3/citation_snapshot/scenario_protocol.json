@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-14",
+  "status": "retrospective_documentary_extension_after_source_values_available",
+  "weights": {
+    "C": 0.15,
+    "U": 0.15,
+    "P": 0.25,
+    "A": 0.25,
+    "F": 0.2
+  },
+  "C_formula": "clip(Scopus_count/(2026-earliest_study_year+1)/487,0,1)",
+  "C_snapshot": "All nine studies from the same newly supplied Scopus CSV; ten model rows because Wang is shared.",
+  "C_earliest_year_policy": "First known study release, including pinned arXiv identity; not automatically the editorial issue year. Same calendar-age and fixed487 reference policy as preserved scores.",
+  "earliest_years_by_model": {
+    "FCN-1D": 2016,
+    "ResNet-1D": 2016,
+    "Inception-1D": 2019,
+    "LSTM-autoencoder con predictor": 2019,
+    "TimesNet": 2022,
+    "TSMixer": 2023,
+    "TiDE": 2023,
+    "TimeMixer": 2024,
+    "PatchTST": 2022,
+    "iTransformer": 2023
+  },
+  "P9_rule_preserved": "delivery_closure_20261114_v2/citation_score/contextual_p/preferred_intrapaper_scenario_rule.json",
+  "P10_extension": "Only Inception P is added from exact author numeric results; all five individual runs averaged equally per each of128datasets, distinct from ensemble probability averaging; source-local two-variant pool.",
+  "P10_formula": "(maxloss-singleloss)/(maxloss-minloss)",
+  "P10_is_MPCE": false,
+  "P10_is_printed_paper_table_number": false,
+  "cross_source_utility_equivalence_verified": false,
+  "equal_compute_or_HPO_verified": false,
+  "original_P_or_C_overwritten": false,
+  "catalogue_selected_by_this_new_score": false,
+  "missing_values": "Bounds in[0,1], never imputedzero. Equal bounds mean complete arithmetic, not a confidence interval.",
+  "global_PRISMA_closed": false,
+  "global_optimal_Top10_selection_claimed": false,
+  "new_model_fits": 0,
+  "coverage": [
+    {
+      "scenario": "uniform_Scopus_20261114_P9_preserved",
+      "known_components": 49,
+      "total_components": 50,
+      "complete_scores": 9
+    },
+    {
+      "scenario": "uniform_Scopus_20261114_P10_author_artifact",
+      "known_components": 50,
+      "total_components": 50,
+      "complete_scores": 10
+    }
+  ]
+}
