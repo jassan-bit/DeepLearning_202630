@@ -16,6 +16,8 @@
 
 **Cierre documental del 14/11:** [calibración temporal y cobertura condicional (§60)](sections/60_calibracion_temporal_condicional.md) · [entrega reproducible y Apéndice B actual (§61)](sections/61_reproduccion_consolidada.md) · [elegibilidad focal y P contextual (§62)](sections/62_cierre_literatura_focal.md) · [referencia empírica de ensemble (§63)](sections/63_ensamble_calibracion.md). La cobertura global se acerca al 90 % con ACI, aunque persiste infracobertura en rangos altos. El ensemble proporciona una referencia puntual más baja, con diferencias no concluyentes tras Holm.
 
+**Actualización bibliográfica del 14/11:** [§62](sections/62_cierre_literatura_focal.md) publica citas uniformes para nueve fuentes, un nuevo escenario documental de **50/50 componentes**, matrices de calidad y disponibilidad de datos/código identificada en **9/9 estudios**. La elegibilidad focal queda en **14 incluidos, diez excluidos del núcleo aplicado cripto, cuatro originales pendientes y dos constructos pendientes**. Se conservan el puntaje anterior y el límite retrospectivo; el PRISMA global sigue abierto.
+
 ## Resumen
 
 Se estudia el pronóstico diario de volatilidad de Bitcoin usando siete días de OHLCV, horizonte de un día y objetivo σ₇ poblacional de retornos de Close, sin anualización. Se comparan diez candidatos de cuatro familias, tres referencias neuronales de E1 y tres comparadores estadísticos. La selección reducida utiliza seis configuraciones y tres orígenes internos por red; cada receta neuronal final tiene seis semillas. Los 16 sistemas comparten 608 fechas de evaluación conocidas desde E1.

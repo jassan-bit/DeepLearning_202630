@@ -1,0 +1,7 @@
+Revisión focal del original de autor **arXiv:1909.04939v3**, fechado 5 diciembre 2020 e identificado en su portada como versión de autor del DOI 10.1007/s10618-020-00710-y: [PDF original](https://arxiv.org/pdf/1909.04939v3), [HTML](https://arxiv.org/html/1909.04939v3). La editorial ofrece preview de suscripción: [registro editorial](https://link.springer.com/article/10.1007/s10618-020-00710-y).
+
+No se encontró cifra exacta publicada para una sola red que permita calcular P con un pool comparable. En §5, p.10 del manuscrito (PDF p9, líneas web 399–400), la denominación sin sufijo significa cinco redes. Fig.11 y texto de §5, p.13 (PDF p12, líneas 508–519), sí distinguen InceptionTime(1), pero ofrecen diagrama de rangos, sin accuracy o rango medio numérico exacto para esa variante. No se digitizó el gráfico.
+
+La única tabla localizada es Tabla1, §6.4, p.19 (PDF p18, líneas 789–809): compara tamaños de filtro y grupos de datasets, sin variante de una red. No hay Tabla2 ni apéndice en v3. §4, p.9 (PDF p8, líneas 372–378), remite al [repositorio de autores](https://github.com/hfawaz/InceptionTime) para código y modelos. El artículo no proporciona otro enlace de datos numéricos para Fig.11. La revisión del repositorio se realiza aparte.
+
+Dictamen: `P_single_original = null` mientras no se verifiquen resultados exactos de autor para la variante individual y comparadores en el mismo pool, métrica y datasets. No reemplazar con cifras del ensemble de cinco.

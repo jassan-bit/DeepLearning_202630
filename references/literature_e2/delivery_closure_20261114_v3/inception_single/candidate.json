@@ -1,0 +1,142 @@
+{
+  "review_date": "2026-11-14",
+  "doi": "10.1007/s10618-020-00710-y",
+  "original_version": "arXiv:1909.04939v3 (2020-12-05)",
+  "review_scope": "New focused manuscript check §3.2/§4/§5/Fig11 plus complete reads of author CSVs and relevant README/code; no model training",
+  "dictum": "Exact author-published single-network results exist; a contextual candidate is calculable from a paired UCR2018/128 source-local two-variant pool. The current fixed P9 rule does not define this new aggregation/pool, so do not silently overwrite it.",
+  "P_existing_rule": null,
+  "candidate": {
+    "model": "Inception-1D / single Inception network",
+    "estimand": "Mean error of a single trained network, estimated by equal averaging of all five individual runs; no averaging of predicted class probabilities",
+    "task": "Time series classification",
+    "archive": "UCRArchive_2018",
+    "datasets": 128,
+    "metric": "Mean classification error (1-accuracy), equal weight per dataset and per individual run",
+    "metric_is_MPCE": false,
+    "split_evidence": "Author files label the same UCRArchive_2018 and exact same 128 dataset names. Original §§4/6.6 use archive-provided train/test splits. Exact membership/checksums for the 128 saved runs are not in the CSV and were not reproduced.",
+    "pool": "All two distinct reported model variants in the author UCR128 raw results: single-network repeated estimate; default InceptionTime ensemble(5). All 128 datasets, no performance-selected subset or best run.",
+    "pool_models": 2,
+    "single_mean_error": 0.1639239119738714,
+    "ensemble5_mean_error": 0.15640568597945456,
+    "formula": "(maxloss-singleloss)/(maxloss-minloss)",
+    "P": 0,
+    "calculation_type": "New deterministic arithmetic from exact author CSV cells, not a number printed in the article",
+    "no_graph_digitization": true,
+    "no_ensemble_performance_attributed_to_single": true,
+    "no_market_models_run": true
+  },
+  "raw_checks": {
+    "single_rows": 640,
+    "unique_datasets_single": 128,
+    "iterations": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "rows_per_dataset": 5,
+    "ensemble_rows": 128,
+    "unique_datasets_ensemble": 128,
+    "dataset_name_set_equal": true,
+    "missing_or_duplicate_dataset_iteration_cells": 0,
+    "single_classifier_column": "inception",
+    "ensemble_classifier_column": "InceptionTime",
+    "archives_both": "UCRArchive_2018"
+  },
+  "single_error_per_iteration": [
+    0.162051619265978,
+    0.16295509057706875,
+    0.16492149246043078,
+    0.16269589077062901,
+    0.16699546679525046
+  ],
+  "sources": [
+    {
+      "path": "results-inception-128.csv",
+      "git_blob_sha": "5a468cb27e73dedd60aa000d7ca4e5973bb139a0",
+      "url": "https://github.com/hfawaz/InceptionTime/blob/952d115e83fb3a66d75c5858c702f8dd5eeb18b7/results-inception-128.csv"
+    },
+    {
+      "path": "results-InceptionTime-128.csv",
+      "git_blob_sha": "bada8d2434e6ea6d308a3b98b44edc1f7cd3b0ef",
+      "url": "https://github.com/hfawaz/InceptionTime/blob/952d115e83fb3a66d75c5858c702f8dd5eeb18b7/results-InceptionTime-128.csv"
+    },
+    {
+      "path": "results-InceptionTime-85.csv",
+      "git_blob_sha": "128fb18878d283eb33058cd1e94304988907763b",
+      "url": "https://github.com/hfawaz/InceptionTime/blob/952d115e83fb3a66d75c5858c702f8dd5eeb18b7/results-InceptionTime-85.csv"
+    },
+    {
+      "path": "main.py",
+      "git_blob_sha": "6eb99bab832c578c04fee8897c0fd5482a5659ed",
+      "url": "https://github.com/hfawaz/InceptionTime/blob/952d115e83fb3a66d75c5858c702f8dd5eeb18b7/main.py"
+    },
+    {
+      "path": "utils/utils.py",
+      "git_blob_sha": "15bb6f1b3913f3c8b20aad1361085e5aa4c40358",
+      "url": "https://github.com/hfawaz/InceptionTime/blob/952d115e83fb3a66d75c5858c702f8dd5eeb18b7/utils/utils.py"
+    }
+  ],
+  "readme_evidence": {
+    "url": "https://github.com/hfawaz/InceptionTime/blob/952d115e83fb3a66d75c5858c702f8dd5eeb18b7/README.md#L45",
+    "locators": "Results lines45–55: ensemble128 link at50; explicitly identifies individual-five-runs file at55."
+  },
+  "original_evidence": [
+    {
+      "url": "https://arxiv.org/html/1909.04939v3#S3.SS2",
+      "locator": "§3.2, equation1; web lines131–136",
+      "finding": "Default InceptionTime averages predicted class probabilities of five networks. This differs from averaging the test accuracies of individual networks."
+    },
+    {
+      "url": "https://arxiv.org/html/1909.04939v3#S5",
+      "locator": "§5, Figure11; web lines182–184",
+      "finding": "InceptionTime(1) is single network; no exact single accuracy/MPCE numeric table supplied."
+    },
+    {
+      "url": "https://arxiv.org/html/1909.04939v3#S6.SS6",
+      "locator": "§6.6; web lines263–268",
+      "finding": "Archive supplies train/test split; authors acknowledge possible benchmark overfitting."
+    }
+  ],
+  "csv_85_check": "1020 rows, 85 datasets ×12 classifier labels. Every label is default or hyperparameter-variant ensemble(5); none identifies single network. Cannot fill single UCR85/MPCE from that CSV.",
+  "versioning": {
+    "frozen_repo_commit": "952d115e83fb3a66d75c5858c702f8dd5eeb18b7",
+    "single128_file_latest_change": "03489a5dc9735af9bacefd7e8c07997838aa7655 (2019-11-05T08:10:11Z; bug fix)",
+    "source_commits_precede_final_paper": true
+  },
+  "limitations": [
+    "Two-model pool yields only endpoint scores 0 and1; no global calibration or claim of state-of-the-art.",
+    "Only single versus ensemble on author raw128 result pool; cannot reconstruct full Figure11 six-ensemble pool from the exposed CSVs.",
+    "Result is classification context, not cryptocurrency volatility or E2 forecasting effectiveness.",
+    "CSV does not contain class counts needed for MPCE; do not call mean classification error MPCE.",
+    "Same named archive and dataset set plus archive-split description establish source-local reported comparison; exact test-instance identity or equal compute/HPO are not independently verified.",
+    "Mean across five single-network scores estimates repeat performance; it is not the accuracy of one fixed fitted model or the ensemble(5).",
+    "P=0 here means the larger mean loss among these two variants; it is not evidence of low absolute effectiveness."
+  ],
+  "recommended_integration": "Publish as explicit retrospective P10/UCR128 raw-author-results extension, freeze this two-variant pool and loss definition, retain P9/P_original unchanged. If current rule is required verbatim with no extension, keep P null.",
+  "repo_mutated": false,
+  "source_file_sha256": {
+    "results-inception-128.csv": "d73725a7620bbbb2477d613099d2ddcfc46a29ae18d9f0cbfd12299fcce160ab",
+    "results-InceptionTime-128.csv": "b6fcde15dc6f8310fef9343f73079719b690260eaa8260e5dbe21fe736e789bd"
+  },
+  "publication_title": "InceptionTime: Finding AlexNet for Time Series Classification",
+  "raw_data_preservation": "Original author CSV bytes preserved and independently matched against returned Git blob SHA (git-object SHA1); original column values/order/newline retained.",
+  "sota_pool_check": {
+    "url": "https://github.com/hfawaz/dl-4-tsc/blob/master/results/results-ucr-128.csv",
+    "git_blob_sha": "da5dcf1d274d49027985436fba8e9b6d44e835b4",
+    "rows": 5120,
+    "classifiers": [
+      "resnet",
+      "fcn",
+      "cnn",
+      "mlp",
+      "mcdcnn",
+      "twiesn",
+      "tlenet",
+      "encoder"
+    ],
+    "used": false,
+    "reason": "Same archive name and128 datasets, but identity of preprocessing/splits of historical runs not proven. dl-4-tsc utils/utils.py current lines74–99 and130–159 normalizes each series; exposed InceptionTime loader has no UCR2018 branch. No cross-repository merge."
+  }
+}

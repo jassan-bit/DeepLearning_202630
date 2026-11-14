@@ -1,0 +1,239 @@
+{
+  "reviewed_at_utc": "2026-11-14T14:19:44.640923+00:00",
+  "reviewer": "AI-assisted focal reviewer; no independent human double review",
+  "scope": "Dos objetivos pendientes en §62; recuperación y lectura focal hasta donde hubo acceso legal abierto. No entrenamiento.",
+  "repository_read_only": true,
+  "inputs": [
+    "/workspace/e2-guide-closure-20261113/book_e2/sections/62_cierre_literatura_focal.md",
+    "/workspace/e2-guide-closure-20261113/references/literature_e2/delivery_closure_20261114_v2/eligibility/applied_target_decisions.json"
+  ],
+  "closed_inclusions": 0,
+  "closed_exclusions": 0,
+  "pending_retained": 2,
+  "studies": [
+    {
+      "study_id": "E2-0014",
+      "doi": "10.1016/j.physa.2022.127158",
+      "title": "Deep learning in predicting cryptocurrency volatility",
+      "recommended_decision": "no_recuperado",
+      "applied_eligibility": "pendiente",
+      "decision_reason": "Se revisaron tres registros institucionales y la página oficial de una autora: dos depósitos editoriales declaran acceso restringido y el tercero no contiene archivo. La editorial devolvió HTTP 403. No se recuperó manuscrito abierto o aceptado verificable; el resumen no resuelve proxy, profundidad ni evaluación.",
+      "narrative_stratum": "candidato_cripto_DL_volatilidad_no_adjudicado",
+      "assessed_primary_sections_available": false,
+      "new_manuscript_reading_claimed": false,
+      "full_text_retrieved": false,
+      "source_version": null,
+      "primary_sections_actually_read": [],
+      "pages_or_tables_actually_read": [],
+      "extracted_from_primary_body": {
+        "population": null,
+        "dataset_source": null,
+        "sample_dates": null,
+        "sample_size": null,
+        "sampling_frequency": null,
+        "target_proxy": null,
+        "target_formula": null,
+        "target_scale": null,
+        "forecast_horizon": null,
+        "architecture_details": null,
+        "input_features_and_history": null,
+        "split": null,
+        "preprocessing_fit_scope": null,
+        "metrics": null,
+        "numeric_results_and_comparators": null,
+        "hpo": null,
+        "seeds": null,
+        "code": null,
+        "leakage_assessment": null,
+        "comparator_fairness_assessment": null
+      },
+      "abstract_only_context": {
+        "evidence_level": "resumen institucional leído; no cuerpo primario",
+        "population": [
+          "Bitcoin",
+          "Ripple",
+          "Ethereum"
+        ],
+        "model_family": "Red recurrente Jordan; comparadores SETAR y red autorregresiva no lineal mencionados en resumen",
+        "results": "El resumen atribuye ventaja predictiva a Jordan; sin cifras primarias verificadas",
+        "cannot_establish": [
+          "Definición y escala de volatilidad",
+          "Arquitectura profunda elegible",
+          "Split y protocolo comparador"
+        ]
+      },
+      "source_access_audit": [
+        {
+          "url": "https://www.iris.unina.it/handle/11588/877420",
+          "access_result": "Registro institucional abierto; archivo editorial con acceso reservado a usuarios autorizados",
+          "version_label": "editorial, según registro; cuerpo no obtenido",
+          "locator": "Ficha: resumen y bloque de archivos, líneas de navegación 24-27 y 46-49",
+          "read_scope": "Se leyó ficha y resumen; cero páginas del artículo"
+        },
+        {
+          "url": "https://iris.uniroma1.it/handle/11573/1628787",
+          "access_result": "Registro institucional abierto; PDF reservado a gestores del archivo",
+          "version_label": "editorial, según registro; cuerpo no obtenido",
+          "locator": "Ficha: resumen y bloque de archivos, líneas de navegación 33-36 y 62-79",
+          "read_scope": "Se leyó ficha y resumen; cero páginas del artículo"
+        },
+        {
+          "url": "https://www.iris.unisa.it/handle/11386/4780240",
+          "access_result": "Registro institucional abierto sin archivo adjunto",
+          "version_label": null,
+          "locator": "Bloque de archivos, líneas de navegación 27-29",
+          "read_scope": "Se leyó registro; no hay original"
+        },
+        {
+          "url": "https://corsidilaurea.uniroma1.it/it/lecturer/e826411c7ce2e07b4d92a839cd2ed3c490f5abc4d025a5423d22c423",
+          "access_result": "Página oficial de D’Amato; referencia de 2022 enlaza únicamente DOI",
+          "version_label": null,
+          "locator": "Curriculum, publicaciones 2022, líneas de navegación 121-122",
+          "read_scope": "Referencia de publicación y destino de enlace; no manuscrito"
+        },
+        {
+          "url": "https://www.sciencedirect.com/science/article/abs/pii/S0378437122001704",
+          "access_result": "Apertura web: HTTP 403; buscador devuelve preview indexado",
+          "version_label": "ficha editorial 2022; cuerpo no verificado",
+          "locator": null,
+          "read_scope": "Ninguna sección primaria leída"
+        },
+        {
+          "url": "https://www.researchgate.net/publication/361771203_Deep_learning_in_predicting_cryptocurrency_volatility",
+          "access_result": "Resultado indexado informa que no hay texto completo y ofrece solicitud a autores",
+          "version_label": null,
+          "locator": null,
+          "read_scope": "Resultado de descubrimiento, no original"
+        },
+        {
+          "url": "https://www.scribd.com/document/948757753/1-s2-0-S0378437122001704-main",
+          "access_result": "Copia subida a tercero descubierta; procedencia/autorización no verificadas",
+          "version_label": null,
+          "locator": null,
+          "read_scope": "No usada como evidencia primaria ni para adjudicar"
+        }
+      ],
+      "numerical_pooling_permitted": false,
+      "direct_E2_effectiveness_established": false,
+      "reporting_and_bias_limits": [
+        "No se pudo examinar el cuerpo primario. No se califican HPO, semillas, código o riesgo de fuga como ausentes: permanecen no establecidos.",
+        "La diferencia respecto de sigma7/D7 no sería criterio de exclusión narrativa. Aquí la barrera es el acceso y la verificación del constructo y experimento."
+      ],
+      "next_evidence_needed": [
+        "Original editorial accesible legalmente o manuscrito aceptado depositado por autores.",
+        "Definición del proxy y arquitectura, secciones de datos/métodos y tablas de comparación, con versión y localizadores."
+      ]
+    },
+    {
+      "study_id": "E2-0045",
+      "doi": "10.1016/j.physa.2021.126613",
+      "title": "Framework based on multiplicative error and residual analysis to forecast bitcoin intraday-volatility",
+      "recommended_decision": "no_recuperado",
+      "applied_eligibility": "pendiente",
+      "decision_reason": "La editorial devolvió HTTP 403 y RePEc confirma acceso al cuerpo mediante suscripción. Búsquedas por título/DOI/autores y en depósitos USM/CRIS no localizaron manuscrito abierto verificable; el buscador halló extractos de secciones, que no se aceptaron como lectura del original.",
+      "narrative_stratum": "candidato_cripto_DL_volatilidad_no_adjudicado",
+      "assessed_primary_sections_available": false,
+      "new_manuscript_reading_claimed": false,
+      "full_text_retrieved": false,
+      "source_version": null,
+      "primary_sections_actually_read": [],
+      "pages_or_tables_actually_read": [],
+      "extracted_from_primary_body": {
+        "population": null,
+        "dataset_source": null,
+        "sample_dates": null,
+        "sample_size": null,
+        "sampling_frequency": null,
+        "target_proxy": null,
+        "target_formula": null,
+        "target_scale": null,
+        "forecast_horizon": null,
+        "architecture_details": null,
+        "input_features_and_history": null,
+        "split": null,
+        "preprocessing_fit_scope": null,
+        "metrics": null,
+        "numeric_results_and_comparators": null,
+        "hpo": null,
+        "seeds": null,
+        "code": null,
+        "leakage_assessment": null,
+        "comparator_fairness_assessment": null
+      },
+      "abstract_only_context": {
+        "evidence_level": "resumen republicado en RePEc leído; previews editoriales indexados solo como pista",
+        "population": [
+          "Bitcoin"
+        ],
+        "model_family": "LSTM para errores multiplicativos en un esquema de residuos",
+        "metric_named_in_abstract": "MSE",
+        "results": "El resumen afirma mejor precisión; sin valores ni comparación primaria verificable",
+        "unverified_editorial_preview_leads": [
+          "Un extracto indexado menciona AMEM como modelo base y uso de sus errores históricos para LSTM.",
+          "Otro extracto indexado menciona septiembre de 2015 a agosto de 2019 y 1461 días. Estos datos no se incorporan a extracción primaria."
+        ]
+      },
+      "source_access_audit": [
+        {
+          "url": "https://www.sciencedirect.com/science/article/pii/S0378437121008724",
+          "access_result": "Apertura web: HTTP 403; ficha indexada ofrece compra/acceso institucional",
+          "version_label": "ficha editorial Physica A 589, 2022; cuerpo no verificado",
+          "locator": null,
+          "read_scope": "Cero páginas y tablas del artículo"
+        },
+        {
+          "url": "https://www.sciencedirect.com/science/article/abs/pii/S0378437121008724",
+          "access_result": "Apertura web: HTTP 403; buscador expone extractos incompletos",
+          "version_label": null,
+          "locator": "Previews indexados de Proposed framework y Results and discussion; sin páginas/tablas",
+          "read_scope": "No se acreditan como secciones leídas; fueron pistas de recuperación"
+        },
+        {
+          "url": "https://ideas.repec.org/a/eee/phsmap/v589y2022ics0378437121008724.html",
+          "access_result": "Registro abierto con resumen; aviso de cuerpo para suscriptores de ScienceDirect",
+          "version_label": null,
+          "locator": "Abstract y Download full text from publisher, líneas de navegación 12-28",
+          "read_scope": "Se leyó resumen y aviso de acceso; cero páginas del artículo"
+        },
+        {
+          "url": "https://repositorio.usm.cl",
+          "access_result": "Homepage HTTP 403; búsqueda de título/autores vía buscador sin candidato correspondiente",
+          "version_label": null,
+          "locator": null,
+          "read_scope": "No original localizado; no se afirma búsqueda exhaustiva del catálogo"
+        },
+        {
+          "url": "https://repositorio.usm.cl/search?query=Tapia%20Sebastian",
+          "access_result": "Ruta de búsqueda no accesible por herramienta",
+          "version_label": null,
+          "locator": null,
+          "read_scope": "No resultados de catálogo verificados"
+        },
+        {
+          "url": "https://cris.usm.cl",
+          "access_result": "Consultas web restringidas a dominio por título y autores sin manuscrito correspondiente",
+          "version_label": null,
+          "locator": null,
+          "read_scope": "Búsqueda externa de descubrimiento; no búsqueda exhaustiva de catálogo"
+        },
+        {
+          "url": "https://api.elsevier.com/content/article/pii/S0378437121008724",
+          "access_result": "Endpoint no accesible por herramienta",
+          "version_label": null,
+          "locator": null,
+          "read_scope": "Ninguno"
+        }
+      ],
+      "numerical_pooling_permitted": false,
+      "direct_E2_effectiveness_established": false,
+      "reporting_and_bias_limits": [
+        "No se pudo examinar el cuerpo primario. No se califican HPO, semillas, código o riesgo de fuga como ausentes: permanecen no establecidos.",
+        "La diferencia respecto de sigma7/D7 no sería criterio de exclusión narrativa. Aquí la barrera es el acceso y la verificación del constructo y experimento."
+      ],
+      "next_evidence_needed": [
+        "Original editorial accesible legalmente o manuscrito aceptado depositado por autores.",
+        "Definición del proxy y arquitectura, secciones de datos/métodos y tablas de comparación, con versión y localizadores."
+      ]
+    }
+  ]
+}

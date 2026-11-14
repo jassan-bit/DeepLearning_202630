@@ -1,0 +1,67 @@
+{
+  "catalog_dois_only_in_groups": [],
+  "catalog_dois_only_in_nodes": [],
+  "catalog_unique_dois_in_groups": 8132,
+  "catalog_unique_dois_in_nodes": 8132,
+  "comparison_status_counts": {
+    "doi_match": 817,
+    "doi_unseen_no_title_candidate": 221,
+    "doi_unseen_with_title_candidate": 9,
+    "no_doi_no_title_candidate": 15,
+    "no_doi_with_title_candidate": 42
+  },
+  "doi_match_rows": 817,
+  "doi_normalization": "Trim; remove leading http(s)://[dx.]doi.org/ or doi:; trim; Unicode casefold. No suffix punctuation correction.",
+  "incoming_doi_duplicate_groups": {},
+  "incoming_doi_present_rows": 1047,
+  "incoming_eid_duplicate_groups": {},
+  "incoming_eid_present_rows": 1104,
+  "incoming_missing_doi_rows": 57,
+  "incoming_normalized_title_duplicate_groups": {
+    "10th international symposium on integrated uncertainty in knowledge modelling and decision making, iukm 2023": 2,
+    "cryptocurrency price prediction using machine learning": 2,
+    "cryptocurrency trading: a comprehensive survey": 2,
+    "enhancing cryptocurrency price prediction using hybrid regression and rnn models": 2
+  },
+  "incoming_rows": 1104,
+  "incoming_unique_dois": 1047,
+  "incoming_unique_eids": 1104,
+  "input_files": [
+    {
+      "path": "/workspace/attachments/6e81a805-1d7a-4ed4-af4a-6077bd0ad04e/export_b93b2bae-2696-49cc-ae91-a4e4a8593990_2026-11-14T140618.516834071.csv",
+      "rows": 1104,
+      "sha256": "ef9650c38364f5f0a3b75e592719fda2689a0f83544bce16386ddceb7e70eb4b"
+    },
+    {
+      "path": "/workspace/e2-guide-closure-20261113/references/literature_e2/final_audit_20261113/source_nodes.csv",
+      "rows": 9934,
+      "sha256": "a4bc60fbb1c2fe4fbd1e204403fcab65764bd0757bb9b6e393ce24b2483e0f01"
+    },
+    {
+      "path": "/workspace/e2-guide-closure-20261113/references/literature_e2/final_audit_20261113/reconciled_groups.csv",
+      "rows": 9565,
+      "sha256": "969b7d77199ef5f3ea9825ec90d95ed13cc0f9e0904bf1dcca494f738fbe18dd"
+    }
+  ],
+  "limits": [
+    "New DOI means absent from these two local catalog CSVs, not a new study, new publication, or eligible study.",
+    "Exact normalized title agreement provides a candidate only; no records were merged.",
+    "Different editions, conference containers, preprints, or publications may share a title; differing DOI or multiple groups require manual identity review.",
+    "Conservative title matching can miss differences in punctuation, wording, subtitles, transliteration, accents or word order; no fuzzy or semantic matching used.",
+    "No DOI registry checks, full-text review, abstract screening, network requests or source metadata corrections performed.",
+    "No dedicated EID comparison was used because these catalog files lack a dedicated EID column; incoming EID is retained as provenance.",
+    "Source eligibility and screening columns are not interpreted or copied into the comparison outputs."
+  ],
+  "new_doi_rows_relative_to_catalog": 230,
+  "new_doi_title_candidates_with_different_prior_doi_records": [
+    975
+  ],
+  "record_number_definition": "1-based logical data record, excluding CSV header; not physical line number.",
+  "scope": "Identifier and conservative title comparison only; no eligibility decisions or automatic merges.",
+  "title_candidate_evidence_rows": 113,
+  "title_candidate_rows_with_incoming_doi": 9,
+  "title_candidate_rows_with_multiple_prior_groups": 3,
+  "title_candidate_rows_without_doi_match": 51,
+  "title_candidate_rows_without_incoming_doi": 42,
+  "title_normalization": "Unicode NFKC, Unicode casefold, collapse whitespace; preserve punctuation, words and word order. Exact equality only."
+}
