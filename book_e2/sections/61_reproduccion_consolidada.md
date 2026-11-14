@@ -63,3 +63,22 @@ python -m unittest tests.test_audit_e2_delivery -v
 ```
 
 Las pruebas comprueban que el auditor rechace archivos manipulados, escapes de ruta, calendarios alterados, semillas duplicadas, pronósticos no finitos, sustitución de RMSE individual por RMSE de ensamble y refinamientos con menos sorteos. El [manifiesto de este complemento](../_static/e2_delivery_reproduction_20261114/manifest.json) identifica su código, pruebas, tablas e informe.
+
+
+## Descargas históricas conservadas
+
+La consolidación mantiene disponibles estas trece URLs de descarga anteriores, con los mismos bytes. Son antecedentes fechados y no sustituyen los resultados vigentes.
+
+- {download}`remediation_pilot_results/power.json <../_static/remediation_pilot_results/power.json>`
+- {download}`remediation_error_results/error_summary.json <../_static/remediation_error_results/error_summary.json>`
+- {download}`remediation_pilot_results/provenance.json <../_static/remediation_pilot_results/provenance.json>`
+- {download}`completion_preflight/execution_incident.json <../_static/completion_preflight/execution_incident.json>`
+- {download}`remediation_pilot_results/seed_metrics.csv <../_static/remediation_pilot_results/seed_metrics.csv>`
+- {download}`books_alignment_20261108.json <../_static/books_alignment_20261108.json>`
+- {download}`completion_protocol/candidate_registry.json <../_static/completion_protocol/candidate_registry.json>`
+- {download}`remediation_error_results/analysis_receipt.json <../_static/remediation_error_results/analysis_receipt.json>`
+- {download}`remediation_preflight/hardware_receipt.json <../_static/remediation_preflight/hardware_receipt.json>`
+- {download}`remediation_pilot_results/gap.csv <../_static/remediation_pilot_results/gap.csv>`
+- {download}`completion_protocol/hpo.json <../_static/completion_protocol/hpo.json>`
+- {download}`completion_protocol/design.json <../_static/completion_protocol/design.json>`
+- {download}`remediation_error_results/training_taxonomy.json <../_static/remediation_error_results/training_taxonomy.json>`
