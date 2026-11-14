@@ -85,9 +85,9 @@ Las líneas discontinuas son el crítico original sin ajuste; las decisiones vá
 
 ## Qué permiten las brechas guardadas y qué sigue sin acreditarse
 
-**No existió un margen δg de sobreajuste definido antes del análisis.** Este requisito no puede cumplirse retrospectivamente cambiando el nombre de un umbral. Se publican únicamente las brechas descriptivas entre el riesgo de entrenamiento guardado y las 53 fechas de calibración de cada predictor final: $g=RMSE_{calibración}-RMSE_{train}$. El entrenamiento se evaluó al finalizar la época con su tamaño de lote configurado; las predicciones de calibración se guardaron con lote 1. Además de esa diferencia numérica posible, los periodos son distintos. La calibración no se presenta como una nueva validación independiente.
+**δg sí estaba registrado antes de esta campaña**, con valor **0,00025772842664981106** en `599a29f` y con contraste de tolerancia en `ef2be289`. La afirmación anterior de ausencia se corrige mediante el [linaje registrado de δg](../_static/e2_point1_review_v1/margin_lineage.json). La definición del margen y la prueba de su cumplimiento por cada modelo son evidencias distintas. Se publican únicamente las brechas descriptivas entre el riesgo de entrenamiento guardado y las 53 fechas de calibración de cada predictor final: $g=RMSE_{calibración}-RMSE_{train}$. El entrenamiento se evaluó al finalizar la época con su tamaño de lote configurado; las predicciones de calibración se guardaron con lote 1. Además de esa diferencia numérica posible, los periodos son distintos. La calibración no se presenta como una nueva validación independiente.
 
-La [sensibilidad de tolerancias](../_static/e2_temporal_final_audit_20261114/gap_tolerance_sensitivity_descriptive.csv) muestra los márgenes ilustrativos δ, 2δ, 5δ y 10δ sin seleccionar uno como criterio confirmatorio. La tabla muestra cómo cambia el número de semillas con brecha inferior al margen; no es una prueba de no inferioridad ni permite declarar la ausencia de sobreajuste.
+La [sensibilidad de tolerancias](../_static/e2_temporal_final_audit_20261114/gap_tolerance_sensitivity_descriptive.csv) conserva sus columnas originales δ, 2δ, 5δ y 10δ. El primer umbral coincide numéricamente con el δg ya registrado; la tabla no ejecuta por sí sola su contraste formal. La tabla muestra cómo cambia el número de semillas con brecha inferior al margen; no es una prueba de no inferioridad ni permite declarar la ausencia de sobreajuste.
 
 | Modelo | Brecha media | Semillas g < δ | g < 2δ | g < 5δ | g < 10δ |
 |---|---:|---:|---:|---:|---:|
@@ -109,7 +109,7 @@ Las [78 brechas por semilla y sus tamaños de lote](../_static/e2_temporal_final
 
 ## Alcance final de la evidencia
 
-Este cierre corrige el número de remuestreos y añade una implementación auditada de fluctuación relativa, además de sensibilidad explícita de las brechas. **El calendario de prueba seguía siendo conocido desde E1 y δg seguía sin definición previa.** La reproducción exacta, las correcciones múltiples y estos diagnósticos fortalecen la trazabilidad del resultado retrospectivo; no crean un nuevo periodo ciego ni satisfacen por sí solos las cuatro condiciones conjuntas de adecuación de la guía.
+Este cierre corrige el número de remuestreos y añade una implementación auditada de fluctuación relativa, además de sensibilidad explícita de las brechas. **Se conserva el calendario heredado de E1 y se reconoce el registro previo de δg; su cumplimiento formal para el catálogo actual no queda establecido por estos diagnósticos.** La reproducción exacta, las correcciones múltiples y estos diagnósticos fortalecen la trazabilidad del resultado retrospectivo; no crean un nuevo periodo ciego ni satisfacen por sí solos las cuatro condiciones conjuntas de adecuación de la guía.
 
 Los [resultados resumidos](../_static/e2_temporal_final_audit_20261114/summary.json) y el [manifiesto SHA256](../_static/e2_temporal_final_audit_20261114/manifest.json) documentan los insumos y las fuentes. La publicación original de 4.999 sorteos permanece disponible como registro histórico; este capítulo es su refinamiento computacional separado y fechado.
 

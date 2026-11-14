@@ -1,0 +1,74 @@
+{
+  "version": "e2-point1-margin-lineage-v1",
+  "scope": "Documentary adjudication after the completed campaign; original registrations, stored analyses and predictions remain unchanged.",
+  "delta": 0.00025772842664981106,
+  "delta_g": 0.00025772842664981106,
+  "units": "absolute original daily population sigma7 RMSE",
+  "E1_origin": {
+    "repository_path": "experiments/gru_lstm_tcn_planned_20261105/design.json",
+    "locator": "academic absolute margin: 5 percent of the initial GRU D7 CV RMSE",
+    "delta_is_not_automatically_delta_g": true
+  },
+  "explicit_delta_g_registration": {
+    "commit": "599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0",
+    "committed_at_utc": "2026-11-06T14:51:20Z",
+    "repository_path": "experiments/e2_remediation_20261106/preregistration.json",
+    "json_pointer": "/generalization_gap",
+    "sha256_current_exact_file_bytes": "b8c84979fccec4fc282810e489d2d666f7f0562d587403e04bf3c2e923073cb3",
+    "definition": "validation RMSE minus inference-mode training RMSE; operational tolerance explicitly set equal to inherited delta"
+  },
+  "direction_and_family_registration": {
+    "commit": "ef2be289903517e9d6f3b70bd72981990d58479a",
+    "committed_at_utc": "2026-11-06T18:54:20Z",
+    "repository_path": "experiments/e2_completion_20261106/analysis_additions.json",
+    "json_pointer": "/additional_exploratory_families/generalization_gap",
+    "sha256_current_exact_file_bytes": "1dc6c3eb0a3e4deb9321044a481583515d04155762a376ad6b35e575f9f55f9d",
+    "within_tolerance_null": "gap >= delta_g",
+    "within_tolerance_alternative": "gap < delta_g",
+    "old_family_size": 20,
+    "old_family_alpha": 0.005,
+    "old_multiplicity": "Holm",
+    "no_automatic_transfer_of_old_family_or_results_to_current_catalogue": true
+  },
+  "registered_predictor_scope": {
+    "name": "SecondaryA53",
+    "training_label_end": "2024-10-31",
+    "evaluation_start": "2024-11-08",
+    "evaluation_end": "2024-12-30",
+    "excluded_scope": "The old analysis explicitly excluded the primary fit through 2024-12-24."
+  },
+  "current_campaign": {
+    "protocol": "experiments/e2_reduced_protocol_20261112/protocol.json",
+    "sha256_exact_file_bytes": "867cf6837158c1353a1aa86ad9c51fc6fc260948ffe02dce8e779d3c329fb1cc",
+    "catalogue_systems": 16,
+    "training_label_end": "2024-10-31",
+    "calibration_start": "2024-11-08",
+    "calibration_end": "2024-12-30",
+    "explicit_withdrawal_of_numeric_margin_found": false,
+    "documentary_continuity_was_incomplete": true
+  },
+  "adjudication": "The numerical margin existed before the current campaign. Claims of historical absence are corrected. Formal absence of overfitting for the current predictors is not established by registration alone.",
+  "existing_analysis_null_fields": "Stored delta_g=null fields describe inputs/outputs of those historical diagnostic programs; they are not proof that no earlier registration existed. They are preserved byte for byte.",
+  "current_gap_limits": [
+    "Different risk evaluation modes and periods require comparable train/validation support.",
+    "The 78 aggregate saved train risks are not dated training predictions suitable for a newly claimed temporal noninferiority test.",
+    "The 53-date interval-calibration set is not silently relabelled as independent model-selection validation."
+  ],
+  "inherited_test": {
+    "guide_locator": "printed page 2: inherit E1 metric, delta, independence unit and partition; printed page 63 B18: fixed model and thresholds per execution",
+    "required_continuity_accepted": true,
+    "evaluation_start": "2025-01-01",
+    "evaluation_end": "2026-08-31",
+    "calendar_days": 608,
+    "freeze_evidence": "book_e2/_static/e2_benchmark_final_20261113/final_freeze.json",
+    "data_admission_evidence": "book_e2/_static/e2_benchmark_final_20261113/data_admission.json",
+    "admission_sha256": "1d430f16a4d363055800fb4ec62cc4a7bc9062a131e3a792324b8440e5cebd9c",
+    "source_receipt_no_refit_or_retuning_after_access": true,
+    "not_a_new_unseen_independent_confirmation": true,
+    "no_automatic_failure_from_inheriting_partition": true
+  },
+  "new_training": false,
+  "new_model_inference": false,
+  "new_hypothesis_test_results": false,
+  "frozen_A2_sha256": "879e2ce52709657a06bc6c009f0cd553423f2eaa0bbdf16dc7f5844dfec9fcc1"
+}

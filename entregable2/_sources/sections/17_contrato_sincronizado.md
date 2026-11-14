@@ -60,7 +60,7 @@ El margen práctico heredado es **δ=0,00025772842664981106** y no se recalcula 
 
 Las 608 fechas ya eran conocidas desde E1. La reserva complementaria de septiembre–octubre de 2026 también había sido evaluada; ninguna se vuelve virgen por cambiar modelos. La comparación E2 es retrospectiva. La congelación y la reproducción numérica de [§55](55_reproduccion_ablaciones.md) acreditan trazabilidad, sin recuperar cegamiento ni una nueva confirmación prospectiva.
 
-No se definió previamente δg y el piloto tuvo potencia insuficiente para su efecto planificado. Esas desviaciones permanecen en el [Apéndice B actual](61_reproduccion_consolidada.md). Las comprobaciones aritméticas de la entrega se ejecutan con el comando de [§8](08_reproducibilidad.md), sin volver a entrenar ni generar nuevas predicciones.
+δg ya estaba registrado antes de esta campaña, según el [linaje registrado de δg](../_static/e2_point1_review_v1/margin_lineage.json). Sigue pendiente acreditar su prueba formal para estos predictores; el piloto tuvo potencia insuficiente para su efecto planificado y reporta MDE y restricción de recursos. Estos alcances permanecen en el [Apéndice B actual](61_reproduccion_consolidada.md). Las comprobaciones aritméticas de la entrega se ejecutan con el comando de [§8](08_reproducibilidad.md), sin volver a entrenar ni generar nuevas predicciones.
 
 
 ## Archivo de la versión anterior

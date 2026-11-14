@@ -43,7 +43,7 @@ Este número expresa la fracción puntual del margen Persistence–ensemble que 
 
 La incertidumbre del cociente es grande: el intervalo percentil de su valor algebraico es **[−1,49210;2,37128]** con bloques de 14 días. Sólo 6.588 de 10.000 réplicas conservan el orden `ensemble < SAE < Persistence`. Se conservaron todas las réplicas algebraicamente definidas, incluidas las que cambian el orden o el signo del denominador; no se truncó el intervalo a [0,1] ni se condicionó silenciosamente a los resultados favorables. Por ello no se interpreta este intervalo como una fracción poblacional estable ni se concluye que quede exactamente 28,8 % de margen real.
 
-El ensemble uniforme de [§57](57_errores_techo.md) permanece como resultado anterior negativo, con otra identidad. Esta construcción de pesos es nueva y tiene su protocolo propio; no se elige retrospectivamente entre ambas para declarar un techo demostrado. Se mantienen el calendario conocido desde E1, la ausencia de δg previo y la incertidumbre sobre generalización futura.
+El ensemble uniforme de [§57](57_errores_techo.md) permanece como resultado anterior negativo, con otra identidad. Esta construcción de pesos es nueva y tiene su protocolo propio; no se elige retrospectivamente entre ambas para declarar un techo demostrado. Se mantienen el calendario conocido desde E1, la prueba formal pendiente respecto al δg registrado y la incertidumbre sobre generalización futura.
 
 ## Artefactos y reproducción
 

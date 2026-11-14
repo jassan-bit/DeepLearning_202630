@@ -469,7 +469,7 @@
 </div>
 <p>No requiere red, GPU, NumPy o Torch. Verifica los archivos vinculados a los nueve manifiestos base y los tres suplementos actuales, inventariados en el informe, los hashes de la entrada y A2, el calendario continuo, las máscaras y semillas; reconstruye las <strong>81 RMSE individuales</strong> y las <strong>16 medias A2</strong>. La discrepancia máxima observada fue <strong>2,6020852139652106×10⁻¹⁸</strong>. También comprueba los informes y vínculos de <strong>81 reproducciones+18 ablaciones</strong>, el estado contable cerrado y los veinte contrastes refinados a <strong>20.000 sorteos</strong>.</p>
 <p><strong>El comando no vuelve a entrenar, generar pronósticos, ejecutar el bootstrap o deserializar pesos.</strong> Reconstruye aritmética y comprueba informes vinculados. La repetición de los 81 ajustes y sus comparaciones tensoriales fue ejecutada previamente en el entorno A100 limpio, con sus propios recibos en <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a>. No se declara un nuevo experimento ni una aprobación metodológica automática.</p>
-<p><a class="reference download internal" download="" href="../_downloads/eca0703c606c87ab8f1af8e7d3c69ea6/delivery_audit.json"><span class="xref download myst">Informe de la auditoría CPU</span></a> · <a class="reference download internal" download="" href="../_downloads/3cb6b9bc2131d853fa488b97d5975b09/tests.log"><span class="xref download myst">Ocho pruebas de integridad/estimando</span></a> · <a class="reference download internal" download="" href="../_downloads/cac7284ad8d55789acf572f2dabf8acc/appendix_B_current.csv"><span class="xref download myst">Apéndice B actual, CSV</span></a> · <a class="reference download internal" download="" href="../_downloads/0f4717ac89cdeb56fb2de3256d9b95d7/appendix_B_current.json"><span class="xref download myst">Apéndice B actual, JSON</span></a>.</p>
+<p><a class="reference download internal" download="" href="../_downloads/eca0703c606c87ab8f1af8e7d3c69ea6/delivery_audit.json"><span class="xref download myst">Informe de la auditoría CPU</span></a> · <a class="reference download internal" download="" href="../_downloads/3cb6b9bc2131d853fa488b97d5975b09/tests.log"><span class="xref download myst">Ocho pruebas de integridad/estimando</span></a> · <a class="reference download internal" download="" href="../_downloads/4cb8d50a93603ae654e28c490b3364d5/appendix_B_clarified.csv"><span class="xref download myst">Apéndice B actual, CSV</span></a> · <a class="reference download internal" download="" href="../_downloads/885aab622bb7353628082f124d92eb45/appendix_B_clarified.json"><span class="xref download myst">Apéndice B actual, JSON</span></a>.</p>
 </section>
 <section id="lista-de-comprobacion-actual">
 <h2>Lista de comprobación actual<a class="headerlink" href="#lista-de-comprobacion-actual" title="Link to this heading">#</a></h2>
@@ -485,8 +485,8 @@
 <tbody>
 <tr class="row-even"><td><p>B01</p></td>
 <td><p>Preregistro fechado y versionado antes del primer entrenamiento.</p></td>
-<td><p><strong>parcial</strong>. Existen registros y enmiendas fechados antes de los ajustes afectados; el periodo de prueba ya se conocía en E1 y varios suplementos son posteriores. No se reconstruye un preregistro global previo al primer contacto con los datos. <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">evidencia1</span></a> · <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">evidencia2</span></a></p></td>
-<td><p>Conservar cronología real; no puede recuperarse una prueba virgen retrospectivamente.</p></td>
+<td><p><strong>parcial</strong>. Se conservan registros y enmiendas anteriores a las fases afectadas, incluido el registro de δg del 6 de noviembre. Los suplementos posteriores mantienen hipótesis y fechas propias; la partición heredada de E1 es la exigida por la guía. <a class="reference download internal" download="" href="../_downloads/f88411ff7ee06304afe925ed446df154/margin_lineage.json"><span class="xref download myst">Linaje y alcance</span></a>.</p></td>
+<td><p>La auditoría de la cronología completa de todas las decisiones sigue acotada; no se atribuye a los suplementos posteriores un registro anterior ni se exige por la mera herencia otro test.</p></td>
 </tr>
 <tr class="row-odd"><td><p>B02</p></td>
 <td><p>Hash del dataset y del conjunto de prueba registrados.</p></td>
@@ -535,8 +535,8 @@
 </tr>
 <tr class="row-even"><td><p>B11</p></td>
 <td><p>Pruebas de las Tablas A, B y C reportadas con p exactos, ajustados, IC y tamaños de efecto.</p></td>
-<td><p><strong>parcial</strong>. Existen pruebas de ajuste, calibración, diferencias, GR y 20.000 remuestreos de la misma familia primaria. No hubo δg previo ni prueba confirmatoria válida de no inferioridad train–validación. <a class="reference internal" href="49_diagnosticos_f2a.html"><span class="std std-doc">evidencia1</span></a> · <a class="reference internal" href="56_inferencia_estabilidad_final.html"><span class="std std-doc">evidencia2</span></a></p></td>
-<td><p>Las brechas y tolerancias posteriores son descriptivas; no acreditan ausencia de sobreajuste.</p></td>
+<td><p><strong>parcial</strong>. Existen pruebas de ajuste, calibración, diferencias, GR y 20.000 remuestreos de la familia primaria. δg sí estaba registrado; falta acreditar su prueba formal comparable train–validación para el catálogo actual. <a class="reference download internal" download="" href="../_downloads/f88411ff7ee06304afe925ed446df154/margin_lineage.json"><span class="xref download myst">Linaje y alcance</span></a>.</p></td>
+<td><p>El registro del margen no demuestra su cumplimiento; los riesgos agregados y las comparaciones de periodos distintos conservan sus límites.</p></td>
 </tr>
 <tr class="row-odd"><td><p>B12</p></td>
 <td><p>Familias de comparaciones y corrección múltiple declaradas a priori.</p></td>
@@ -570,8 +570,8 @@
 </tr>
 <tr class="row-odd"><td><p>B18</p></td>
 <td><p>Un solo acceso al conjunto de prueba por ejecución, con modelo y umbrales ya fijados.</p></td>
-<td><p><strong>no cumple</strong>. La campaña congeló modelos y umbrales antes de su scoring, pero el periodo ya había sido evaluado en E1 y recibió análisis posteriores. No es una prueba nueva ciega de E2. <a class="reference internal" href="17_contrato_sincronizado.html"><span class="std std-doc">evidencia1</span></a> · <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">evidencia2</span></a></p></td>
-<td><p>Límite retrospectivo irreparable para ese calendario; no implica por sí solo prueba de retuning con test.</p></td>
+<td><p><strong>completo</strong>. Para el scoring de esta campaña E2, los 81 predictores, escaladores, calibradores y reglas se congelaron antes de la admisión final; el recibo registra ausencia de refit o retuning tras el acceso. La partición se hereda de E1 conforme a la guía. <a class="reference download internal" download="" href="../_downloads/f88411ff7ee06304afe925ed446df154/margin_lineage.json"><span class="xref download myst">Linaje y alcance</span></a>.</p></td>
+<td><p>Cumplimiento acotado al ciclo congelado de E2. El calendario ya conocido no es una nueva confirmación independiente; no acredita por sí solo toda la auditoría de fuga de B03.</p></td>
 </tr>
 <tr class="row-even"><td><p>B19</p></td>
 <td><p>Replicación parcial del paper guía con criterio de éxito definido a priori y limitación identificada.</p></td>
@@ -594,7 +594,7 @@
 </section>
 <section id="condiciones-que-no-puede-borrar-esta-consolidacion">
 <h2>Condiciones que no puede borrar esta consolidación<a class="headerlink" href="#condiciones-que-no-puede-borrar-esta-consolidacion" title="Link to this heading">#</a></h2>
-<p>El test ya conocido desde E1 conserva su carácter retrospectivo; δg no se definió previamente; el piloto no alcanzó la potencia objetivo y el proxy empírico de ensemble conserva una distancia altamente incierta, sin identificar riesgo Bayes. Los <strong>20.000 sorteos de la misma familia primaria</strong> sí mejoran la resolución actual y se conservan junto al cálculo original. <a class="reference internal" href="56_inferencia_estabilidad_final.html"><span class="std std-doc">§56</span></a> mantiene separada esa corrección numérica de los requisitos prospectivos.</p>
+<p>El test ya conocido desde E1 conserva su carácter retrospectivo; δg tenía registro previo, pero su prueba formal actual sigue pendiente; el piloto no alcanzó la potencia objetivo y el proxy empírico de ensemble conserva una distancia altamente incierta, sin identificar riesgo Bayes. Los <strong>20.000 sorteos de la misma familia primaria</strong> sí mejoran la resolución actual y se conservan junto al cálculo original. <a class="reference internal" href="56_inferencia_estabilidad_final.html"><span class="std std-doc">§56</span></a> mantiene separada esa corrección numérica de los requisitos prospectivos.</p>
 <p>La revisión sistemática y la puntuación bibliográfica son requisitos adicionales, aunque no constituyan una fila propia del Apéndice B. El <a class="reference internal" href="62_cierre_literatura_focal.html"><span class="std std-doc">estado bibliográfico vigente (§62)</span></a> publica el flujo recibido reconciliado, 42 estudios aplicados y sus límites de cobertura, acceso y comparabilidad. La reproducción numérica y esa revisión son evidencias distintas.</p>
 </section>
 <section id="navegacion-y-archivos-historicos">
@@ -627,6 +627,7 @@
 <li><p><a class="reference download internal" download="" href="../_downloads/fafb54c83e7b4ddf755b336b98d117f7/design.json"><code class="xref download docutils literal notranslate"><span class="pre">completion_protocol/design.json</span></code></a></p></li>
 <li><p><a class="reference download internal" download="" href="../_downloads/fddfbfab1c56524cb85ad93918e2a7ba/training_taxonomy.json"><code class="xref download docutils literal notranslate"><span class="pre">remediation_error_results/training_taxonomy.json</span></code></a></p></li>
 </ul>
+<p>Los cortes anteriores del Apéndice B se conservan como antecedentes, sin sustituir sus bytes: <a class="reference download internal" download="" href="../_downloads/cac7284ad8d55789acf572f2dabf8acc/appendix_B_current.csv"><code class="xref download docutils literal notranslate"><span class="pre">CSV</span> <span class="pre">histórico</span></code></a> y <a class="reference download internal" download="" href="../_downloads/0f4717ac89cdeb56fb2de3256d9b95d7/appendix_B_current.json"><code class="xref download docutils literal notranslate"><span class="pre">JSON</span> <span class="pre">histórico</span></code></a>.</p>
 </section>
 </section>
 
