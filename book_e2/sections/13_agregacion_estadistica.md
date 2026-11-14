@@ -25,7 +25,7 @@ Las [ablaciones](55_reproduccion_ablaciones.md) usan 10.000 remuestreos y Holm3,
 
 El piloto de cinco pares de semillas estimó potencia **0,123** para el efecto planificado con R=6, frente al objetivo 0,80. Su alcance se limita a dos representantes y 53 fechas de desarrollo. No se amplían repeticiones después de observar la prueba para buscar un resultado favorable.
 
-No hubo un margen de sobreajuste δg definido previamente. Las 78 brechas guardadas y las tolerancias ilustrativas de [§56](56_inferencia_estabilidad_final.md) son descriptivas; no acreditan no inferioridad train–validación. La calibración no se presenta como una nueva validación independiente. Menor RMSE observada, ausencia de rechazo y compatibilidad numérica de una réplica son conclusiones diferentes.
+El margen de sobreajuste **δg sí estaba definido previamente**; su [linaje registrado de δg](../_static/e2_point1_review_v1/margin_lineage.json) conserva el valor y el alcance de las familias anteriores. Las 78 brechas guardadas y las tolerancias ilustrativas de [§56](56_inferencia_estabilidad_final.md) son descriptivas; no acreditan no inferioridad train–validación. La calibración no se presenta como una nueva validación independiente. Menor RMSE observada, ausencia de rechazo y compatibilidad numérica de una réplica son conclusiones diferentes.
 
 
 ## Archivo de la versión anterior

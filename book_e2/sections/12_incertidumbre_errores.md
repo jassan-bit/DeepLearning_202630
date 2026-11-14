@@ -29,7 +29,7 @@ Se calculó entropía ordinal como referencia de complejidad. El ensemble unifor
 
 El nuevo [proxy empírico de §63](63_ensamble_calibracion.md) ajusta una combinación convexa sólo con los 53 pronósticos de calibración guardados, sin reentrenar las redes. Su RMSE puntual es 0,00368953 y γ del proxy 0,28757; el IC algebraico [−1,49210; 2,37128] y el orden favorable en 6.588/10.000 remuestreos muestran que no es una referencia estable. No se estima riesgo Bayes ni se cambia A2.
 
-El alcance de las referencias anteriores está documentado en [§57](57_errores_techo.md). El [Apéndice B actual](61_reproduccion_consolidada.md) mantiene este requisito parcial, junto con el margen δg previo ausente y las limitaciones de calibración temporal.
+El alcance de las referencias anteriores está documentado en [§57](57_errores_techo.md). El [Apéndice B actual](61_reproduccion_consolidada.md) mantiene este requisito parcial, junto con la aplicación formal pendiente del margen δg previamente registrado y las limitaciones de calibración temporal.
 
 
 ## Archivo de la versión anterior

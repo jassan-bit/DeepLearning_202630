@@ -43,7 +43,7 @@ Las instrucciones antiguas P0/OOF y sus comandos `--stage all` se archivan al fi
 
 ## 8.5 Límites de la reproducción
 
-La guía acepta reproducción por otra persona **o en un entorno limpio**. Los 81 reajustes acreditan la segunda vía; no crean un test nuevo. El periodo 2025–2026 ya se conocía desde E1. El margen δg previo, la potencia objetivo y otras condiciones del Apéndice B no quedan aprobados por una discrepancia numérica cero. La calibración y los análisis estadísticos requieren sus propios supuestos y evidencias.
+La guía acepta reproducción por otra persona **o en un entorno limpio**. Los 81 reajustes acreditan la segunda vía; no crean un test nuevo. El periodo 2025–2026 ya se conocía desde E1. La prueba formal respecto al δg heredado, la potencia objetivo y otras condiciones del Apéndice B requieren evidencia propia; la discrepancia numérica cero no las demuestra. La calibración y los análisis estadísticos requieren sus propios supuestos y evidencias.
 
 El programa de auditoría se comprueba con pruebas de manipulación de hashes, calendarios, semillas, estimando y número de remuestreos:
 

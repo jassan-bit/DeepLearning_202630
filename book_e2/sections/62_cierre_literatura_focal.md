@@ -148,7 +148,7 @@ La matriz focal conservada tiene otro denominador: **17 estudios incluidos narra
 | Objetivos heterogéneos: varianza intradía, desviación a treinta días, volatilidad implícita y condicional | σ7 no anualizada, D7×5, h=1 y las mismas 608 fechas | No permite combinar métricas externas en un solo efecto |
 | Folds, HPO, activos y nuevas inicializaciones se reportan con alcances distintos | Separar selección, seis semillas finales y evidencia temporal pareada | Potencia condicional del piloto ≈12,3 %, inferior al 80 % objetivo |
 | Alcance del escalado/interpolación y esfuerzo de comparadores incompletamente establecido | Transformaciones de entrenamiento, calendario, embargo y artefactos conservados | El reporte de terceros no demuestra fuga; igual número de pruebas no garantiza igual coste |
-| El ganador cambia con pérdida, target y versión | Comparadores simples, resultados adversos, Holm e inferencia temporal con 20.000 réplicas | Test conocido desde E1 y δg no definido previamente |
+| El ganador cambia con pérdida, target y versión | Comparadores simples, resultados adversos, Holm e inferencia temporal con 20.000 réplicas | Calendario heredado conocido y prueba formal de δg pendiente |
 
 La afirmación de gap es refutable y acotada: **en las nueve fuentes que sustentan el catálogo no se identificó una evaluación conjunta de esos mecanismos para σ7 de Bitcoin, h=1 y siete días OHLCV, bajo un presupuesto común e inferencia temporal pareada**. Encontrar en cualquiera de esas nueve fuentes un experimento que cumpla ese contrato obliga a corregirla. La síntesis aplicada respalda la necesidad de comparar contratos, no una afirmación de ausencia global ni superioridad de E2. La contribución observada es un contraste retrospectivo auditable.
 
@@ -180,7 +180,7 @@ python scripts/verify_e2_prisma_bundle.py references/literature_e2/prisma_receiv
 
 La recuperación de material privado es reproducible con `scripts/restore_e2_literature_materials.py`; la agregación de dictámenes usa `scripts/build_e2_prisma_bundle.py`. La clasificación semántica está registrada como revisión asistida por IA, no como resultado de reglas deterministas ni doble revisión humana. Los cuerpos de las fuentes no se distribuyen en el repositorio público.
 
-Permanecen **374 registros Scopus mostrados pero no recibidos** y la correspondencia incompleta entre consultas, totales y rangos WoS. Son desviaciones de cobertura documentadas. Una recuperación posterior produciría otra versión del flujo; no se modifica el corte histórico para fingir exhaustividad. Tampoco cambian el test conocido, δg previo ausente o la potencia insuficiente del benchmark. La recuperación bibliográfica no ejecutó nuevos ajustes de mercado ni alteró A2.
+Permanecen **374 registros Scopus mostrados pero no recibidos** y la correspondencia incompleta entre consultas, totales y rangos WoS. Son desviaciones de cobertura documentadas. Una recuperación posterior produciría otra versión del flujo; no se modifica el corte histórico para fingir exhaustividad. Tampoco cambian el alcance retrospectivo del calendario heredado, la prueba formal pendiente de δg o la limitación de potencia del benchmark. La recuperación bibliográfica no ejecutó nuevos ajustes de mercado ni alteró A2.
 
 ## Antecedentes conservados
 

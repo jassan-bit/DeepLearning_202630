@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "checklist_version": "e2-point1-literal-v1",
+  "review_date_utc": "2026-11-14",
+  "guide_scope": "Section1,pages2-3; inherited-contract statement on page2",
+  "status": "documentary_definition_reconciled_execution_limits_retained",
+  "scope_limits": [
+    "Esta lista verifica definición y evidencia del punto1, no cumplimiento total de la guía.",
+    "No acredita ejecución de RQ2/RQ3 bajo la aclaración posterior.",
+    "Reconocer delta_g previo no certifica ausencia de sobreajuste del catálogo.",
+    "No se añaden estudios al corpus PRISMA9559/42."
+  ],
+  "requirements": [
+    {
+      "id": "P1.01",
+      "requirement": "Formulación matemática: X, Y, H, L y riesgo esperado/empírico",
+      "status": "documented",
+      "evidence": "book_e2/sections/01_punto_partida.md#contrato-vigente-y-procedencia-historica",
+      "note": "Definición D7x5, sigma7, MSE y media de RMSE por trayectoria; calendario heredado y alcance retrospectivo declarados.",
+      "chapter_section": "1.1.1–1.1.3"
+    },
+    {
+      "id": "P1.02",
+      "requirement": "Tipo de tarea admitido",
+      "status": "documented",
+      "evidence": "book_e2/sections/01_punto_partida.md#tipo-de-tarea-y-relevancia",
+      "note": "F2a, series de tiempo; diagnóstico y resolución de ruta referenciados.",
+      "chapter_section": "1.1.4"
+    },
+    {
+      "id": "P1.03",
+      "requirement": "Relevancia científica/aplicada con al menos tres referencias",
+      "status": "documented",
+      "evidence": "book_e2/references.bib",
+      "note": "Miura (2019), Guo (2018), Akbiyik (2023); uso contextual, sin equivalencia automática de datasets.",
+      "chapter_section": "1.1.4"
+    },
+    {
+      "id": "P1.04",
+      "requirement": "Métrica primaria, secundarias y margen delta a priori heredados y justificados",
+      "status": "documented_inherited",
+      "evidence": "book_e2/sections/01_punto_partida.md#metricas-margen-y-unidad-de-independencia",
+      "note": "Delta académico5 % del error CV histórico, sin recalcularlo con resultados E2 ni atribuir cronología anterior a la real. A2 publica MAE, sMAPE y R²; sMAPE no se reetiqueta como MAPE ni acredita las demás secundarias.",
+      "chapter_section": "1.1.5"
+    },
+    {
+      "id": "P1.05",
+      "requirement": "Unidad de independencia que condiciona split, bootstrap y pruebas",
+      "status": "documented",
+      "evidence": "book_e2/sections/01_punto_partida.md#metricas-margen-y-unidad-de-independencia",
+      "note": "Una serie de mercado; fechas solapadas dependientes y semillas condicionadas al calendario.",
+      "chapter_section": "1.1.5"
+    },
+    {
+      "id": "P1.06",
+      "requirement": "Al menos tres RQ claras, contrastables, no triviales",
+      "status": "documented",
+      "evidence": "book_e2/sections/01_punto_partida.md#preguntas-de-investigacion-e-hipotesis",
+      "note": "RQ1 ganancia, RQ2 erosión de ventaja, RQ3 error y latencia.",
+      "chapter_section": "1.2"
+    },
+    {
+      "id": "P1.07",
+      "requirement": "H0/H1, prueba, alpha, efecto mínimo y decisión para cada RQ",
+      "status": "documented_with_later_secondary_clarification",
+      "evidence": "book_e2/_static/e2_point1_review_v1/rq_specification.json",
+      "note": "RQ1 sin cambios. RQ2/RQ3 especificadas posteriormente; α nominal 0,05 e Holm para diez contrastes si se comunican diez candidatos. No se inventan resultados.",
+      "chapter_section": "1.2.1–1.2.4"
+    },
+    {
+      "id": "P1.08",
+      "requirement": "Clasificación confirmatoria o exploratoria por RQ",
+      "status": "documented",
+      "evidence": "book_e2/sections/01_punto_partida.md#multiplicidad-y-criterio-de-decision-comun",
+      "note": "RQ1 reglas primarias registradas sobre calendario retrospectivo; RQ2/RQ3 exploratorias con precisión documental posterior.",
+      "chapter_section": "1.2.4"
+    },
+    {
+      "id": "P1.09",
+      "requirement": "Selección dataset:relevancia, tamaño, calidad, uso previo Q1",
+      "status": "documented_contextual_Q1_support",
+      "evidence": "book_e2/_static/e2_point1_review_v1/q1_context_evidence.json",
+      "note": "Goutte (2023) emplea Binance; SCImago/SJR, Finance, 2023, Q1, SJR 1,903. Contexto externo fuera de9.559/42; no identidad de snapshot.",
+      "chapter_section": "1.3.1"
+    },
+    {
+      "id": "P1.10",
+      "requirement": "Licencia, procedencia, ética y privacidad",
+      "status": "documented",
+      "evidence": "book_e2/_static/e2_point1_review_v1/dataset_card_current.json",
+      "note": "Términos Vision 1.0, CC BY-NC-SA 4.0 con excepciones/condiciones; reconsulta idéntica; velas sin identificadores personales.",
+      "chapter_section": "1.3.2"
+    },
+    {
+      "id": "P1.11",
+      "requirement": "Limitaciones, representatividad y sesgos de recolección",
+      "status": "documented",
+      "evidence": "book_e2/sections/01_punto_partida.md#representatividad-sesgos-y-particion-publica",
+      "note": "Único activo/exchange, USDT, supervivencia, cambios de régimen y cobertura histórica.",
+      "chapter_section": "1.3.3"
+    },
+    {
+      "id": "P1.12",
+      "requirement": "Justificación de usar/no usar partición oficial pública",
+      "status": "documented",
+      "evidence": "book_e2/sections/01_punto_partida.md#representatividad-sesgos-y-particion-publica",
+      "note": "No split ML oficial identificado; evaluación E1 heredada y tres folds internos anteriores.",
+      "chapter_section": "1.3.3"
+    },
+    {
+      "id": "P1.13",
+      "requirement": "Data Card:tamaño, estructura y tipo",
+      "status": "documented_current_metadata",
+      "evidence": "book_e2/_static/e2_point1_review_v1/dataset_card_current.json",
+      "note": "75 ZIP, 2.014.480 filas, 12 campos; fuente de un minuto y entrada diaria 7×5;20 ZIP / 608 fechas admitidos para evaluación actual.",
+      "chapter_section": "1.4"
+    },
+    {
+      "id": "P1.14",
+      "requirement": "Objetivo y etiquetado, incluido ruido y acuerdo",
+      "status": "documented",
+      "evidence": "book_e2/_static/e2_point1_review_v1/dataset_card_current.json",
+      "note": "Cálculo determinista, ddof=0, sin anualizar; ruido del proxy reconocido, anotadores no aplican.",
+      "chapter_section": "1.4"
+    },
+    {
+      "id": "P1.15",
+      "requirement": "Versión y hash/checksum trazable",
+      "status": "documented_current_and_historical",
+      "evidence": "book_e2/_static/e2_point1_review_v1/dataset_card_current.json",
+      "note": "Ficha estable v1, commit E1, manifiesto SHA256 y hashes individuales; ficha anterior conserva bytes.",
+      "chapter_section": "1.4"
+    },
+    {
+      "id": "P1.16",
+      "requirement": "Recolección, periodo, cobertura geográfica/poblacional, filtros",
+      "status": "documented",
+      "evidence": "book_e2/_static/e2_point1_review_v1/dataset_card_current.json",
+      "note": "Adquisición E1 fechada;2023-01-01..2026-10-30;mercado electrónico único, UTC, filtros causales y sin imputación.",
+      "chapter_section": "1.4"
+    },
+    {
+      "id": "P1.17",
+      "requirement": "Herencia de métrica, delta, independencia y partición de E1",
+      "status": "documented_retrospective_scope",
+      "evidence": "book_e2/sections/17_contrato_sincronizado.md",
+      "note": "608 fechas heredadas, exposición previa y congelación actual declaradas; no se exige inventar otra reserva ni se recupera cegamiento.",
+      "chapter_section": "1.1.1"
+    }
+  ]
+}

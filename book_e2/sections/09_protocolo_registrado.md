@@ -26,7 +26,7 @@ Los diagnósticos F2a, DM/MCS, robustez, explicaciones, ablaciones y taxonomía 
 
 El piloto midió cinco semillas pareadas de iTransformer y GRU32. Con R=6 y el efecto planificado, su potencia condicional estimada fue **0,123**, inferior a 0,80. Se conservó R=6 por recursos y se declaró la limitación; no se amplió R tras ver el test para buscar significación. El [informe de potencia y MDE](../_static/e2_benchmark_final_20261113/pilot_power_MDE.json) conserva supuestos y alcance.
 
-La prueba ya era conocida desde E1. La congelación actual no recupera cegamiento prospectivo; tampoco existe un margen de sobreajuste δg previo que pueda reconstruirse a posteriori. El [Apéndice B actual](61_reproduccion_consolidada.md) registra estas limitaciones como tales. No se transforma un corte fechado ni una justificación posterior en una decisión anterior.
+La partición se hereda de E1 conforme a la guía. La congelación anterior al scoring de E2 acredita el orden de esta campaña; el calendario conserva su condición histórica conocida. **δg=0,00025772842664981106 sí estaba registrado en el commit `599a29f` del 6 de noviembre**, antes de la campaña actual, y la ampliación `ef2be289` definió la dirección de la prueba de tolerancia. El [linaje registrado de δg](../_static/e2_point1_review_v1/margin_lineage.json) distingue ese antecedente de la prueba formal aún no acreditada para los modelos actuales. El [Apéndice B actual](61_reproduccion_consolidada.md) recoge esta aclaración sin alterar los registros ni los análisis guardados.
 
 ## 9.4 Cierre y trazabilidad
 

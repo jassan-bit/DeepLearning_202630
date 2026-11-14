@@ -2,7 +2,7 @@
 
 > **Ubicación:** complemento del [capítulo 12](12_incertidumbre_errores.md). Identificador documental anterior: **§60**; [ver concordancia](concordancia_guia.md).
 
-Este suplemento ejecuta **dos políticas de intervalos adaptadas al paso del tiempo** sobre los 81 predictores ya guardados. No se reentrenan ni se vuelven a ejecutar los modelos. La A2, sus pronósticos puntuales y los calibradores originales permanecen intactos. El plan se publicó antes del cálculo en el [commit `8d9cc8c`](https://github.com/jassan-bit/DeepLearning_202630/commit/8d9cc8c3397242a07378fb1a678196dab36744da). Es un análisis posterior sobre el test ya conocido desde E1; no recupera un periodo ciego ni el margen δg previo ausente.
+Este suplemento ejecuta **dos políticas de intervalos adaptadas al paso del tiempo** sobre los 81 predictores ya guardados. No se reentrenan ni se vuelven a ejecutar los modelos. La A2, sus pronósticos puntuales y los calibradores originales permanecen intactos. El plan se publicó antes del cálculo en el [commit `8d9cc8c`](https://github.com/jassan-bit/DeepLearning_202630/commit/8d9cc8c3397242a07378fb1a678196dab36744da). Es un análisis posterior sobre el test ya conocido desde E1; conserva el alcance retrospectivo y no sustituye la prueba formal del δg previamente registrado.
 
 **Resultado principal:** las políticas móviles acercan las coberturas globales al 90 % nominal y modifican la longitud de los intervalos. La cobertura por rango sigue siendo desigual. Una frecuencia global cercana al 90 % no certifica calibración condicional ni ausencia de sobreajuste. No se elige una política ganadora con estos resultados.
 
@@ -123,7 +123,7 @@ python scripts/plot_e2_conditional_calibration.py \
   --folder work/conditional_calibration_repeat
 ```
 
-La evidencia permite acreditar **una adaptación temporal realmente ejecutada y evaluación por rangos/subgrupos**, con resultados adversos conservados. No demuestra cobertura condicional garantizada, ruido irreducible identificado, ausencia de sobreajuste o validez prospectiva. Los requisitos de δg previo y test desconocido mantienen los límites documentados en [§56](56_inferencia_estabilidad_final.md).
+La evidencia permite acreditar **una adaptación temporal realmente ejecutada y evaluación por rangos/subgrupos**, con resultados adversos conservados. No demuestra cobertura condicional garantizada, ruido irreducible identificado, ausencia de sobreajuste o validez prospectiva. La aplicación formal del δg heredado y el alcance retrospectivo mantienen los límites documentados en [§56](56_inferencia_estabilidad_final.md).
 
 | Archivo | Contenido |
 |---|---|

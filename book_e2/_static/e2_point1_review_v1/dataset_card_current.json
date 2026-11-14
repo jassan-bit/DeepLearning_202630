@@ -1,0 +1,729 @@
+{
+  "schema_version": 2,
+  "card_version": "e2-btcusdt-d7-current-v1",
+  "review_date_utc": "2026-11-14",
+  "status": "reviewed_current_metadata",
+  "title": "Data Card vigente de E2: Binance Spot BTCUSDT D7; evaluación histórica de 608 fechas",
+  "artifact_scope": {
+    "kind": "dataset_provenance_and_experiment_metadata",
+    "contains_raw_or_derived_market_values": false,
+    "creates_new_price_snapshot": false,
+    "description": "Ficha de metadatos y procedencia: describe la fuente heredada y su uso experimental efectivo. No distribuye ZIP, OHLCV, etiquetas ni predicciones."
+  },
+  "historical_record": {
+    "path": "book_e2/_static/dataset_card.json",
+    "sha256": "88edbdfe1f94c4838dde3a986f6c7d5b81cdf3d17ee825231e370797fcf7b2a6",
+    "role": "Instantánea histórica conservada sin sobrescribir; sus estados de ejecución no describen el cierre vigente.",
+    "historical_manifest_unchanged": true,
+    "current_metadata_repository_path": "book_e2/_static/e2_point1_review_v1/dataset_card_current.json"
+  },
+  "provenance": {
+    "provider": "Binance Vision / Binance Spot",
+    "symbol": "BTCUSDT",
+    "base_asset": "BTC",
+    "quote_asset": "USDT",
+    "segment": "Spot",
+    "source_catalogue": "https://data.binance.vision/",
+    "provider_repository": "https://github.com/binance/binance-public-data",
+    "provider_schema": "https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md#klinecandlestick-data",
+    "inherited_source_commit_e1": "94a4b0324e93361e8928d708fdfeb50110e3686f",
+    "acquisition_started_at_utc": "2026-11-02T14:47:23.801891+00:00",
+    "acquisition_finished_at_utc": "2026-11-02T14:47:45.969611+00:00",
+    "inherited_manifest": {
+      "repository_path": "book_e2/_static/dataset_manifest_e1.json",
+      "sha256": "af723bcca2caffcbe44ae5243e2863bbcdcd39ae8cd42df491af0a2857926bb2",
+      "hash_kind": "SHA-256 of exact file bytes",
+      "scope": "Adquisición heredada completa de E1, no un hash de todos los precios concatenados"
+    },
+    "new_calendar_market_observations_added": false,
+    "historical_evaluation_archives_admitted_in_current_execution": 20,
+    "current_execution_payload_access_note": "La admisión ejecutada registra calidad de 20 ZIP ya identificados en la adquisición E1; se distingue de adquirir fechas nuevas."
+  },
+  "source_inventory": {
+    "start_inclusive_utc": "2023-01-01",
+    "end_inclusive_utc": "2026-10-30",
+    "calendar_days": 1399,
+    "verified_archives": 75,
+    "compressed_bytes": 97442605,
+    "raw_csv_rows": 2014480,
+    "raw_columns": 12,
+    "expected_calendar_minutes": 2014560,
+    "count_scope": "Inventario heredado completo, incluido el periodo complementario que no se abrió para puntuar el benchmark vigente."
+  },
+  "schema": {
+    "source_frequency": "1 minute",
+    "source_format": "CSV de 12 columnas dentro de ZIP oficiales",
+    "columns": [
+      {
+        "position_1_based": 1,
+        "name": "open_time",
+        "type": "integer timestamp",
+        "unit": "ms antes de 2025; us desde 2025",
+        "meaning": "Inicio de la vela"
+      },
+      {
+        "position_1_based": 2,
+        "name": "open",
+        "type": "numeric",
+        "unit": "USDT por BTC",
+        "meaning": "Precio de apertura"
+      },
+      {
+        "position_1_based": 3,
+        "name": "high",
+        "type": "numeric",
+        "unit": "USDT por BTC",
+        "meaning": "Precio máximo"
+      },
+      {
+        "position_1_based": 4,
+        "name": "low",
+        "type": "numeric",
+        "unit": "USDT por BTC",
+        "meaning": "Precio mínimo"
+      },
+      {
+        "position_1_based": 5,
+        "name": "close",
+        "type": "numeric",
+        "unit": "USDT por BTC",
+        "meaning": "Precio de cierre"
+      },
+      {
+        "position_1_based": 6,
+        "name": "volume",
+        "type": "numeric",
+        "unit": "BTC",
+        "meaning": "Volumen del activo base"
+      },
+      {
+        "position_1_based": 7,
+        "name": "close_time",
+        "type": "integer timestamp",
+        "unit": "ms antes de 2025; us desde 2025",
+        "meaning": "Cierre de la vela"
+      },
+      {
+        "position_1_based": 8,
+        "name": "quote_volume",
+        "type": "numeric",
+        "unit": "USDT",
+        "meaning": "Volumen del activo cotizado"
+      },
+      {
+        "position_1_based": 9,
+        "name": "trades",
+        "type": "integer",
+        "unit": "count",
+        "meaning": "Número de operaciones"
+      },
+      {
+        "position_1_based": 10,
+        "name": "taker_base",
+        "type": "numeric",
+        "unit": "BTC",
+        "meaning": "Volumen comprador taker del activo base"
+      },
+      {
+        "position_1_based": 11,
+        "name": "taker_quote",
+        "type": "numeric",
+        "unit": "USDT",
+        "meaning": "Volumen comprador taker del activo cotizado"
+      },
+      {
+        "position_1_based": 12,
+        "name": "ignore",
+        "type": "source field",
+        "unit": "No utilizado",
+        "meaning": "Campo del proveedor ignorado por el modelo"
+      }
+    ],
+    "model_frequency": "1 day",
+    "calendar_timezone": "UTC",
+    "model_features": [
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume"
+    ],
+    "input_shape_per_example": [
+      7,
+      5
+    ],
+    "output_shape_per_example": [
+      1
+    ],
+    "daily_aggregation": {
+      "open": "Primera apertura",
+      "high": "Máximo de máximos",
+      "low": "Mínimo de mínimos",
+      "close": "Último cierre",
+      "volume": "Suma de volúmenes"
+    },
+    "eligible_daily_bar": "1440 minutos válidos del mismo día UTC; conservar posiciones de días incompletos como ausentes",
+    "timestamp_unit_policy": "Verificar por archivo: ms en la fuente anterior a 2025 y us en los veinte ZIP admitidos de 2025–agosto de 2026; normalizar a UTC antes de agregar."
+  },
+  "target": {
+    "annotation": "Determinista, sin anotación humana",
+    "target": "Desviación estándar poblacional de siete retornos logarítmicos diarios consecutivos",
+    "formula": "r_d=ln(P_d/P_(d-1)); y_d=sqrt((1/7)*sum_(i=0)^6 (r_(d-i)-mean(r_d,...,r_(d-6)))^2)",
+    "ddof": 0,
+    "return_count": 7,
+    "required_consecutive_closes": 8,
+    "annualized": false,
+    "multiplied_by_100": false,
+    "forecast_horizon_days": 1,
+    "input_history_days": 7,
+    "input_support": "[outcome_day-7,outcome_day)",
+    "target_lags_added": false,
+    "label_available": "Al concluir el día de resultado; el último retorno todavía no está disponible al emitir el pronóstico",
+    "loss": "MSE",
+    "noise": [
+      "Proxy de dispersión de retornos observados; no medición sin error de volatilidad latente",
+      "Incertidumbre por ventana finita, calidad del proveedor y microestructura",
+      "Etiquetas consecutivas comparten seis retornos; no siete días enteramente futuros"
+    ],
+    "noise_magnitude_measured": false,
+    "inter_annotator_agreement": "No aplica: no hay anotación humana",
+    "primary_metric": "Media entre semillas de las RMSE individuales en escala original; no RMSE de un ensamble."
+  },
+  "representation": {
+    "variant": "relative_window",
+    "ohlc": "Logaritmos relativos al último cierre observable de la ventana",
+    "volume": "log1p(volume)",
+    "learned_scaling": "Solo entrenamiento admisible; escalas X y media positiva de Y",
+    "metrics": "Después de invertir la escala del objetivo"
+  },
+  "partition_current_experiment": {
+    "calendar_timezone": "UTC",
+    "random_shuffle": false,
+    "development": {
+      "start": "2023-01-01",
+      "end_inclusive": "2024-12-31",
+      "calendar_days": 731,
+      "complete_daily_OHLCV_days": 730,
+      "population_sigma7_valid_labels_by_year": {
+        "2023": 350,
+        "2024": 366
+      },
+      "incomplete_daily_bar_utc": "2023-03-24",
+      "role": "Desarrollo, incluida calibración y puentes con sus usos restringidos."
+    },
+    "hpo": {
+      "folds": [
+        {
+          "fold_origin": "2024-01-01",
+          "inner_train_label_end": "2023-09-25",
+          "inner_validation_start": "2023-10-03",
+          "inner_validation_end": "2023-12-24",
+          "embargo_days": 7,
+          "validation_calendar_days": 83,
+          "role": "internal_HPO_validation_not_final_test"
+        },
+        {
+          "fold_origin": "2024-07-01",
+          "inner_train_label_end": "2024-03-25",
+          "inner_validation_start": "2024-04-02",
+          "inner_validation_end": "2024-06-23",
+          "embargo_days": 7,
+          "validation_calendar_days": 83,
+          "role": "internal_HPO_validation_not_final_test"
+        },
+        {
+          "fold_origin": "2024-10-01",
+          "inner_train_label_end": "2024-06-25",
+          "inner_validation_start": "2024-07-03",
+          "inner_validation_end": "2024-09-23",
+          "embargo_days": 7,
+          "validation_calendar_days": 83,
+          "role": "internal_HPO_validation_not_final_test"
+        }
+      ],
+      "selection_scope": "one_global_recipe_per_model_for_post_HPO_final_cohort",
+      "validation_count_per_fold": 83,
+      "concatenated_validation_count": 249,
+      "configurations_per_neural_system": 6,
+      "seed_ids": [
+        271201
+      ]
+    },
+    "final_training": {
+      "training_label_end_inclusive": "2024-10-31",
+      "applies_to_all_16_systems": true,
+      "supervised_example_count": null,
+      "count_note": "No se hereda el recuento 709 de E1; confirmar recuentos de entrenamiento de los artefactos definitivos antes de añadirlos."
+    },
+    "embargo_bridge": {
+      "start": "2024-11-01",
+      "end_inclusive": "2024-11-07",
+      "calendar_days": 7
+    },
+    "calibration": {
+      "start": "2024-11-08",
+      "end_inclusive": "2024-12-30",
+      "calendar_days": 53,
+      "refit_or_hpo_allowed": false,
+      "dependence": "overlapping sigma7 targets; no iid/exchangeability or exact coverage guarantee"
+    },
+    "causal_bridge": {
+      "dates": [
+        "2024-12-31"
+      ],
+      "role": "Observaciones causales para ventanas y estado de comparadores; sin refit ni recalibración."
+    },
+    "evaluation": {
+      "start": "2025-01-01",
+      "end_inclusive": "2026-08-31",
+      "calendar_days": 608,
+      "common_eligible_supervised_dates": 608,
+      "excluded_dates": [],
+      "common_support_receipt_sha256": "c1939e2cdbbafeeee0323b00941d7c146616d1c768600811997ca027ad9d6368",
+      "support_hash_kind": "Hash canónico registrado de fechas, columnas y máscara; no hash del archivo data_admission.json",
+      "known_historical_e1_period": true,
+      "previous_exposure_disclosed": true,
+      "new_unseen_test": false,
+      "independent_prospective_confirmation": false,
+      "blindness_recovered": false,
+      "weights_scalers_calibrators_and_analysis_frozen_before_current_scoring": true,
+      "retuning_after_access": false,
+      "causal_input_windows_updated_during_evaluation": true
+    },
+    "complementary_period": {
+      "start": "2026-09-01",
+      "end_inclusive": "2026-10-30",
+      "calendar_days": 60,
+      "role": "Antecedente histórico E1, fuera del puntaje del benchmark vigente",
+      "opened_by_current_e2_scoring": false
+    }
+  },
+  "quality": {
+    "historical_full_inventory": {
+      "missing_minutes": 80,
+      "invalid_close_time_rows": 1,
+      "affected_development_day_utc": "2023-03-24",
+      "interpretation": "80 filas ausentes y una fila presente con close_time no estándar; son 81 posiciones no elegibles, sin inflar el recuento bruto."
+    },
+    "evaluation_admission": {
+      "archives": 20,
+      "raw_csv_rows": 875520,
+      "expected_minutes": 875520,
+      "complete_days": 608,
+      "missing_minutes": 0,
+      "invalid_minutes": 0,
+      "invalid_close_time_minutes": 0,
+      "timestamp_unit": "us",
+      "excluded_daily_bars_utc": [],
+      "daily_market_serialized_sha256": "9563ef557e180f34ee37dce3b1480c38aaefd7063df21c031644973310e28deb"
+    },
+    "cleaning_policy": "Conservar brutos y calendario. Excluir días incompletos y ventanas/etiquetas dependientes de datos inválidos. Sin imputación, interpolación ni compresión del calendario. Aplicar embargo causal y máscara común.",
+    "archive_metadata": [
+      {
+        "archive": "BTCUSDT-1m-2025-01.zip",
+        "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-01.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-01.zip.CHECKSUM",
+        "sha256": "8d028b2f91aad57d6b693d44449c93f9c4b7044f55f298c8a3ac40ab676dafac",
+        "bytes": 2222830,
+        "csv_rows": 44640,
+        "relative_path": "BTCUSDT/1m/monthly/BTCUSDT-1m-2025-01.zip",
+        "timestamp_unit": "us",
+        "complete_days": 31,
+        "excluded_days_utc": []
+      },
+      {
+        "archive": "BTCUSDT-1m-2025-02.zip",
+        "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-02.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-02.zip.CHECKSUM",
+        "sha256": "26b3795072983a66bdbe8327e0d5e71069bdd5ca831d4da3850ba68ef7a991ef",
+        "bytes": 1993970,
+        "csv_rows": 40320,
+        "relative_path": "BTCUSDT/1m/monthly/BTCUSDT-1m-2025-02.zip",
+        "timestamp_unit": "us",
+        "complete_days": 28,
+        "excluded_days_utc": []
+      },
+      {
+        "archive": "BTCUSDT-1m-2025-03.zip",
+        "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-03.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-03.zip.CHECKSUM",
+        "sha256": "e333601b6c721434f3cdd6670ffde2371bef7946572864c49ba6431a690ab1ca",
+        "bytes": 2215591,
+        "csv_rows": 44640,
+        "relative_path": "BTCUSDT/1m/monthly/BTCUSDT-1m-2025-03.zip",
+        "timestamp_unit": "us",
+        "complete_days": 31,
+        "excluded_days_utc": []
+      },
+      {
+        "archive": "BTCUSDT-1m-2025-04.zip",
+        "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-04.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-04.zip.CHECKSUM",
+        "sha256": "4103d48887f9f5ec04144b190314ec31db9e3094674e5d53a3436b338854848f",
+        "bytes": 2120466,
+        "csv_rows": 43200,
+        "relative_path": "BTCUSDT/1m/monthly/BTCUSDT-1m-2025-04.zip",
+        "timestamp_unit": "us",
+        "complete_days": 30,
+        "excluded_days_utc": []
+      },
+      {
+        "archive": "BTCUSDT-1m-2025-05.zip",
+        "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-05.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-05.zip.CHECKSUM",
+        "sha256": "7f95bf97e3ccfbb55cd002f124a54dc1726ced7cfd54e6fd200e59845ca95d5c",
+        "bytes": 2184868,
+        "csv_rows": 44640,
+        "relative_path": "BTCUSDT/1m/monthly/BTCUSDT-1m-2025-05.zip",
+        "timestamp_unit": "us",
+        "complete_days": 31,
+        "excluded_days_utc": []
+      },
+      {
+        "archive": "BTCUSDT-1m-2025-06.zip",
+        "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-06.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-06.zip.CHECKSUM",
+        "sha256": "f95f6169e253d38fb321c87984c827878634250cdcc3ff84fc3507f036bcabbd",
+        "bytes": 2074513,
+        "csv_rows": 43200,
+        "relative_path": "BTCUSDT/1m/monthly/BTCUSDT-1m-2025-06.zip",
+        "timestamp_unit": "us",
+        "complete_days": 30,
+        "excluded_days_utc": []
+      },
+      {
+        "archive": "BTCUSDT-1m-2025-07.zip",
+        "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-07.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-07.zip.CHECKSUM",
+        "sha256": "3377e023fe252418cfaf46c9e23b3f0d1e56fb2fd89b4191fc66262b947a0ee2",
+        "bytes": 2136490,
+        "csv_rows": 44640,
+        "relative_path": "BTCUSDT/1m/monthly/BTCUSDT-1m-2025-07.zip",
+        "timestamp_unit": "us",
+        "complete_days": 31,
+        "excluded_days_utc": []
+      },
+      {
+        "archive": "BTCUSDT-1m-2025-08.zip",
+        "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-08.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-08.zip.CHECKSUM",
+        "sha256": "11da1c7db8949cbdcbb757531756eda55f2a3d663cfac671c5d1a8a87911318f",
+        "bytes": 2150048,
+        "csv_rows": 44640,
+        "relative_path": "BTCUSDT/1m/monthly/BTCUSDT-1m-2025-08.zip",
+        "timestamp_unit": "us",
+        "complete_days": 31,
+        "excluded_days_utc": []
+      },
+      {
+        "archive": "BTCUSDT-1m-2025-09.zip",
+        "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-09.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-09.zip.CHECKSUM",
+        "sha256": "52bb4a4a52afbcc0af77e3eb92c114bf810982ca63bf02f8fe15062e59c5f44b",
+        "bytes": 2045189,
+        "csv_rows": 43200,
+        "relative_path": "BTCUSDT/1m/monthly/BTCUSDT-1m-2025-09.zip",
+        "timestamp_unit": "us",
+        "complete_days": 30,
+        "excluded_days_utc": []
+      },
+      {
+        "archive": "BTCUSDT-1m-2025-10.zip",
+        "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-10.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-10.zip.CHECKSUM",
+        "sha256": "985d878cacbfdde85c9e0da2e8830ab913fe01bfdcde6e488563d8194df11f6b",
+        "bytes": 2216628,
+        "csv_rows": 44640,
+        "relative_path": "BTCUSDT/1m/monthly/BTCUSDT-1m-2025-10.zip",
+        "timestamp_unit": "us",
+        "complete_days": 31,
+        "excluded_days_utc": []
+      },
+      {
+        "archive": "BTCUSDT-1m-2025-11.zip",
+        "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-11.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-11.zip.CHECKSUM",
+        "sha256": "c54159d1216ab07f040a96d6678748e8746ac4200cba373fb6b758f2cdd1e5e5",
+        "bytes": 2165376,
+        "csv_rows": 43200,
+        "relative_path": "BTCUSDT/1m/monthly/BTCUSDT-1m-2025-11.zip",
+        "timestamp_unit": "us",
+        "complete_days": 30,
+        "excluded_days_utc": []
+      },
+      {
+        "archive": "BTCUSDT-1m-2025-12.zip",
+        "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-12.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-12.zip.CHECKSUM",
+        "sha256": "7b47647352b01356dcd678a1438efb8baac03ed798785ed2179d428aab0cca9b",
+        "bytes": 2154846,
+        "csv_rows": 44640,
+        "relative_path": "BTCUSDT/1m/monthly/BTCUSDT-1m-2025-12.zip",
+        "timestamp_unit": "us",
+        "complete_days": 31,
+        "excluded_days_utc": []
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-01.zip",
+        "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-01.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-01.zip.CHECKSUM",
+        "sha256": "d28b369da32a6ea84ba0af517b1847ab67b2fcc1e0e111c1b24d56ae07240cb9",
+        "bytes": 2127988,
+        "csv_rows": 44640,
+        "relative_path": "BTCUSDT/1m/monthly/BTCUSDT-1m-2026-01.zip",
+        "timestamp_unit": "us",
+        "complete_days": 31,
+        "excluded_days_utc": []
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-02.zip",
+        "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-02.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-02.zip.CHECKSUM",
+        "sha256": "cee2e913ed07e02834e2387c65ca430fe3576f620588bad8a02229238f385407",
+        "bytes": 2021779,
+        "csv_rows": 40320,
+        "relative_path": "BTCUSDT/1m/monthly/BTCUSDT-1m-2026-02.zip",
+        "timestamp_unit": "us",
+        "complete_days": 28,
+        "excluded_days_utc": []
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-03.zip",
+        "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-03.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-03.zip.CHECKSUM",
+        "sha256": "a2c1e689d39aa7877e218f436f15162e9a4436778a377d32e9d9b81b081381cd",
+        "bytes": 2213444,
+        "csv_rows": 44640,
+        "relative_path": "BTCUSDT/1m/monthly/BTCUSDT-1m-2026-03.zip",
+        "timestamp_unit": "us",
+        "complete_days": 31,
+        "excluded_days_utc": []
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-04.zip",
+        "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-04.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-04.zip.CHECKSUM",
+        "sha256": "318afd4f5acfbcfbb40fbe727a77eee8e9e7b54d8941589c78a32283d90b4a01",
+        "bytes": 2088776,
+        "csv_rows": 43200,
+        "relative_path": "BTCUSDT/1m/monthly/BTCUSDT-1m-2026-04.zip",
+        "timestamp_unit": "us",
+        "complete_days": 30,
+        "excluded_days_utc": []
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-05.zip",
+        "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-05.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-05.zip.CHECKSUM",
+        "sha256": "62983d93c35e26ec6c29116c629e443b7ddfe3d301aca83331ff58112199d8d0",
+        "bytes": 2120776,
+        "csv_rows": 44640,
+        "relative_path": "BTCUSDT/1m/monthly/BTCUSDT-1m-2026-05.zip",
+        "timestamp_unit": "us",
+        "complete_days": 31,
+        "excluded_days_utc": []
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-06.zip",
+        "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-06.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-06.zip.CHECKSUM",
+        "sha256": "c8e1d5e70b766dd2312fc9cd7085785bb25708e27e75c21a5a5aaba61a6d07f5",
+        "bytes": 2092027,
+        "csv_rows": 43200,
+        "relative_path": "BTCUSDT/1m/monthly/BTCUSDT-1m-2026-06.zip",
+        "timestamp_unit": "us",
+        "complete_days": 30,
+        "excluded_days_utc": []
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-07.zip",
+        "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-07.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-07.zip.CHECKSUM",
+        "sha256": "3ef15c84353da48e1c7c5fd99b9751cb036bf8986ed47f7cd1be63359c0d4f6b",
+        "bytes": 2112275,
+        "csv_rows": 44640,
+        "relative_path": "BTCUSDT/1m/monthly/BTCUSDT-1m-2026-07.zip",
+        "timestamp_unit": "us",
+        "complete_days": 31,
+        "excluded_days_utc": []
+      },
+      {
+        "archive": "BTCUSDT-1m-2026-08.zip",
+        "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-08.zip",
+        "checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-08.zip.CHECKSUM",
+        "sha256": "acab442e02745177063031d402929703ae983715010064b40cf811c4beb843d4",
+        "bytes": 2084946,
+        "csv_rows": 44640,
+        "relative_path": "BTCUSDT/1m/monthly/BTCUSDT-1m-2026-08.zip",
+        "timestamp_unit": "us",
+        "complete_days": 31,
+        "excluded_days_utc": []
+      }
+    ],
+    "current_review_raw_archives_opened": 0,
+    "current_review_market_values_decoded": false,
+    "validation_limit": "Esta revisión contrasta metadatos, recibos y hashes de archivos locales; no reejecuta agregación de ZIP ni puntúa modelos."
+  },
+  "experimental_metadata": {
+    "scope": "Ejecución E2 vigente, no propiedad de los datos ni número de mercados independientes.",
+    "protocol_id": "e2-reduced-delivery-v1",
+    "protocol_sha256_exact_bytes": "867cf6837158c1353a1aa86ad9c51fc6fc260948ffe02dce8e779d3c329fb1cc",
+    "systems": [
+      "FCN-1D",
+      "ResNet-1D",
+      "Inception-1D",
+      "LSTM-autoencoder con predictor",
+      "TimesNet",
+      "TSMixer",
+      "TiDE",
+      "TimeMixer",
+      "PatchTST",
+      "iTransformer",
+      "MLP16",
+      "LSTM32",
+      "GRU32",
+      "Persistence",
+      "SeasonalNaive",
+      "ARIMA"
+    ],
+    "system_count": 16,
+    "neural_system_count": 13,
+    "neural_seed_ids": [
+      271801,
+      271802,
+      271803,
+      271804,
+      271805,
+      271806
+    ],
+    "neural_seed_predictors": 78,
+    "deterministic_predictors": 3,
+    "total_frozen_predictors": 81,
+    "physical_artifacts_verified_by_execution": 245,
+    "score_status": "completed",
+    "completed_at_utc": "2026-11-13T16:50:56.751273+00:00",
+    "freeze_sha256_canonical_from_receipt": "7d8de5d3b589de235f9c2a35a67210e79c63daf13160451c68f8108999fe1242",
+    "freeze_sha256_exact_file_bytes": "c0e9e2589dca9fa03b341bb72f87d8b541d33b4721715622daeae4438dbd60b4",
+    "historical_P0": {
+      "role": "Antecedente separado de desarrollo; no tamaño del benchmark vigente",
+      "trajectories": 220,
+      "fits": 440
+    },
+    "predictive_metrics_reported_in_A2": [
+      "RMSE",
+      "MAE",
+      "sMAPE",
+      "R2_mean"
+    ],
+    "inherited_secondary_metrics": [
+      "MAE",
+      "MSE",
+      "R2",
+      "MAPE",
+      "MASE"
+    ],
+    "secondary_metric_reporting_limit": "sMAPE is distinct from inherited MAPE. The A2 sMAPE column does not establish that MAPE, MSE or MASE were computed in that table."
+  },
+  "independence": {
+    "observational_unit": "Origen temporal diario con su ventana OHLCV y etiqueta futura",
+    "market_unit": "Una serie BTCUSDT de Binance Spot",
+    "independent_market_count": 1,
+    "conditional_randomization_unit": "Semilla de inicialización y orden de entrenamiento, pareada entre recetas y condicionada al mismo calendario",
+    "dependent_observations": "Fechas y etiquetas móviles solapadas; meses/folds y semillas no son mercados independientes",
+    "generalization": "Los intervalos entre semillas describen variabilidad de entrenamiento condicionada al calendario; no generalización a otros activos o exchanges"
+  },
+  "license": {
+    "provider_terms_name": "Binance Vision Dataset Terms",
+    "provider_terms_version": "1.0",
+    "provider_terms_last_updated": "2026-08-26",
+    "source_url": "https://raw.githubusercontent.com/binance/binance-public-data/master/TERMS_AND_CONDITIONS.md",
+    "inherited_snapshot_review_date": "2026-11-03",
+    "inherited_snapshot_sha256": "99c4921dbe023cd68c1a447775707d621453cc78aec6ac0bfe2e6c06a5114ee0",
+    "live_reverification": {
+      "review_date_utc": "2026-11-14",
+      "http_response_date": "Sat, 14 Nov 2026 22:22:34 GMT",
+      "http_status": 200,
+      "bytes": 9807,
+      "sha256": "99c4921dbe023cd68c1a447775707d621453cc78aec6ac0bfe2e6c06a5114ee0",
+      "identical_to_inherited_snapshot": true,
+      "observed_scope": "Texto completo de Vision Dataset Terms leído; no auditoría exhaustiva de términos generales Binance ni de posibles designaciones específicas de cada objeto."
+    },
+    "grant_stated_in_section_3_1": "CC BY-NC-SA 4.0 salvo designación específica del proveedor",
+    "additional_terms": "Los términos Vision complementan los términos generales Binance (§1.2); incluyen uso de derivados (§2.4) y atribución/licencia idéntica de obras derivadas redistribuidas (§4.5).",
+    "use_scope": "Benchmark académico y no comercial; mantener atribución a Binance Vision.",
+    "public_access_equals_unrestricted_redistribution": false,
+    "this_card_distributes_price_data": false,
+    "code_license_is_separate": true
+  },
+  "limitations": [
+    "Un mercado y una serie; resultados no equivalen a validación en otras criptomonedas o exchanges",
+    "Cobertura histórica limitada y cambios de régimen; no muestreo aleatorio de todos los mercados",
+    "USDT y USD no son cotizaciones automáticamente equivalentes",
+    "OHLCV diario no representa toda la información intradiaria, noticias ni libro de órdenes",
+    "La reserva heredada ya se observó: no es test nuevo desconocido de E2",
+    "Las 608 fechas y las etiquetas móviles no son 608 mercados independientes; las seis semillas tampoco multiplican las unidades de calendario.",
+    "La congelación anterior al acceso E2 actual mejora trazabilidad, pero no deshace la exposición histórica E1."
+  ],
+  "official_benchmark": {
+    "binance_official_train_validation_test_split_for_this_task": null,
+    "same_exact_version_and_target_in_reviewed_papers_verified": false,
+    "policy": "Se mantiene el protocolo propio de E1; no se atribuye al proveedor una partición oficial ni se equiparan sin prueba los datasets de la literatura"
+  },
+  "evidence": [
+    {
+      "repository_path": "book_e2/_static/e2_benchmark_final_20261113/data_admission.json",
+      "sha256": "1d430f16a4d363055800fb4ec62cc4a7bc9062a131e3a792324b8440e5cebd9c",
+      "hash_kind": "SHA-256 of exact file bytes",
+      "scope": "Admisión actual, máscara común y calidad por veinte archivos"
+    },
+    {
+      "repository_path": "book_e2/_static/e2_benchmark_final_20261113/final_freeze.json",
+      "sha256": "c0e9e2589dca9fa03b341bb72f87d8b541d33b4721715622daeae4438dbd60b4",
+      "hash_kind": "SHA-256 of exact file bytes",
+      "scope": "Identidad de dieciséis sistemas y 81 predictores congelados"
+    },
+    {
+      "repository_path": "experiments/e2_reduced_protocol_20261112/protocol.json",
+      "sha256": "867cf6837158c1353a1aa86ad9c51fc6fc260948ffe02dce8e779d3c329fb1cc",
+      "hash_kind": "SHA-256 of exact file bytes",
+      "scope": "HPO reducido, entrenamiento, calibración y calendario vigentes"
+    },
+    {
+      "repository_path": "book_e2/_static/e2_benchmark_final_20261113/source_evidence.json",
+      "sha256": "362a680ea9a66a27e34233195ba93f34a2c39c017a4744acf94cda6021b2cceb",
+      "hash_kind": "SHA-256 of exact file bytes",
+      "scope": "Cierre de ejecución y procedencia de artefactos científicos"
+    },
+    {
+      "repository_path": "data/manifests/test_raw_reserve_20250101_20260831.json",
+      "sha256": "d2eb4e84fff85ee957e6b02890cead3cec37fd593ec2a8db487dbe137d2d3a10",
+      "hash_kind": "SHA-256 of exact file bytes",
+      "scope": "Identidad de veinte ZIP del periodo 608 fechas"
+    },
+    {
+      "repository_path": "references/data_source/TERMS_AND_CONDITIONS.md",
+      "sha256": "99c4921dbe023cd68c1a447775707d621453cc78aec6ac0bfe2e6c06a5114ee0",
+      "hash_kind": "SHA-256 of exact file bytes",
+      "scope": "Texto de términos heredado, idéntico al oficial verificado en esta revisión"
+    },
+    {
+      "repository_path": "references/data_source/terms_snapshot.json",
+      "sha256": "e1f9b801799b5ccdb293e98945ca0fae942d74f3d14eb018ca88aba4d74029b5",
+      "hash_kind": "SHA-256 of exact file bytes",
+      "scope": "Registro de revisión de términos E1, fechado sin retroactividad"
+    }
+  ],
+  "source_selection_q1": {
+    "summary_es": "Goutte et al. (2023) emplearon datos horarios de Bitcoin de Binance mediante API. Finance Research Letters fue Q1 en Finance según SCImago/SJR 2023, con SJR 1,903. El respaldo acredita uso académico de la fuente, sin identidad con el snapshot ni el objetivo sigma7 de E2; es contexto externo, fuera de los 42 estudios aplicados.",
+    "citation_key": "goutte2023_binance_context",
+    "repository_path": "book_e2/_static/e2_point1_review_v1/q1_context_evidence.json",
+    "sha256_exact_bytes": "d0ebc05f05a2da323b98185afe1d98107fcf079920954f0fcf02ee30a1746cb7",
+    "claim_scope": "Contextual data-source support; outside PRISMA9559/42; not exact snapshot or target equivalence"
+  },
+  "review_scope": {
+    "kind": "Metadata reconciliation without training or new inference",
+    "historical_data_card_unchanged": true,
+    "new_market_values_or_predictions_distributed": false,
+    "current_metadata_does_not_claim_independent_prospective_confirmation": true
+  }
+}

@@ -1,6 +1,6 @@
 # 1. Definición del Problema, Preguntas de Investigación y Dataset
 
-**Estado de ejecución al 13/11/2026:** el [benchmark reducido](06_benchmark_final.md) está completado para dieciséis sistemas y 608 fechas, con seis semillas por red. [§48](48_protocolo_reducido.md) documenta las recetas y el protocolo ejecutados; [§49](49_diagnosticos_f2a.md) contiene los diagnósticos posteriores. La arquitectura vigente de TiDE es **TIDE-D7-PUBLISHED-R0-v2**, acreditada antes de sus ajustes; las variantes NAS anteriores mantienen otra identidad.
+El [benchmark reducido](06_benchmark_final.md) está completado para dieciséis sistemas y 608 fechas, con seis semillas por red. [§48](48_protocolo_reducido.md) documenta las recetas y el protocolo ejecutados; [§49](49_diagnosticos_f2a.md) contiene los diagnósticos posteriores. La arquitectura vigente de TiDE es **TIDE-D7-PUBLISHED-R0-v2**, acreditada antes de sus ajustes; las variantes NAS anteriores mantienen otra identidad.
 
 **Antecedente de planificación del 12/11/2026:** ese corte fue sustituido por la ejecución documentada en [§48](48_protocolo_reducido.md). Su texto exacto se conserva en el archivo enlazado al final; no describe trabajos finales pendientes.
 
@@ -13,35 +13,36 @@ Esta sección desarrolla las páginas 2–3 de la guía completa de 65 páginas.
 (e2-contrato-heredado)=
 ### 1.1.1 Contrato vigente y procedencia histórica
 
-**La especificación vigente se sincroniza con el E1 principal de 608 fechas, no con la reserva complementaria de 60 días.** Véase [§17](17_contrato_sincronizado.md): representación relativa, escalado de entrenamiento, referencias MLP/LSTM/GRU y límites de evaluación conocida. Las tablas siguientes documentan únicamente la procedencia del registro previo y no fijan el calendario de nuevas ejecuciones.
+**La evaluación vigente conserva las 608 fechas del E1 principal, del 01/01/2025 al 31/08/2026.** Véase [§17](17_contrato_sincronizado.md): representación relativa, escalado de entrenamiento, referencias MLP/LSTM/GRU y límites de evaluación conocida. Las tablas siguientes describen el contrato y el calendario efectivamente ejecutados en E2.
 
-El contrato histórico utilizado por E2 procede de la **fase II D7** del [Entregable 1, commit `94a4b03`](https://github.com/jassan-bit/DeepLearning_202630/tree/94a4b0324e93361e8928d708fdfeb50110e3686f). El [contrato descargable histórico](../_static/e1_reference.json) identifica esa procedencia. Las recetas y resultados de ese registro conservan su identidad; no definen la nueva selección de modelos ni se reasignan a las referencias actuales MLP, LSTM y GRU de E1.
+El [Entregable 1, commit `94a4b03`](https://github.com/jassan-bit/DeepLearning_202630/tree/94a4b0324e93361e8928d708fdfeb50110e3686f) y el [contrato descargable histórico](../_static/e1_reference.json) conservan la procedencia D7, incluidas sus fases y la reserva complementaria de 60 días ya evaluada en E1. Esa reserva no se abrió para puntuar el benchmark vigente. Las recetas y resultados históricos conservan su identidad; la selección y los reajustes actuales son los documentados en [§48](48_protocolo_reducido.md).
 
 | Elemento heredado | Definición conservada en E2 |
 |---|---|
 | Problema | Volatilidad histórica de Bitcoin, BTCUSDT en Binance Spot; formulación heredada inicialmente denominada regresión temporal, con ruta E2 resuelta como F2a, series de tiempo |
 | Entrada | D=7 días de cinco canales OHLCV; horizonte h=1 día |
 | Objetivo | σ₇ poblacional de siete retornos logarítmicos diarios de Close, sin anualización |
-| Referencias de E1 | MLP16, LSTM32 y GRU32, fuera del Top 10 e incluidas en los dieciséis sistemas; receta y calendario común definidos en §43–§45 |
+| Referencias de E1 | MLP16, LSTM32 y GRU32, fuera del Top 10 e incluidas en los dieciséis sistemas; selección propia y reajuste común ejecutados en §48 |
 | Métrica primaria | Media entre semillas de la RMSE de cada trayectoria sobre las fechas elegibles comunes, en escala original |
 | Margen absoluto | δ = **0,00025772842664981106** unidades de volatilidad diaria |
 | Unidad de independencia | Una serie BTCUSDT de un proveedor; las fechas y etiquetas solapadas tienen dependencia temporal |
-| Partición | Calendario de fase II descrito abajo; no se reasignan sus periodos |
+| Partición | Desarrollo en 2023–2024 y evaluación heredada de 608 fechas en 2025–agosto de 2026; sin incorporar etiquetas de evaluación al ajuste |
 
 Las recetas del experimento de origen se consultan en el [diseño versionado de fase II](https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/experiments/gru_lstm_tcn_planned_20261105/design.json). Se conserva su trazabilidad sin reproducir aquí una segunda selección de modelos.
 
-El siguiente calendario describe la procedencia histórica de los datos. La [enmienda registrada de §45](45_enmienda_protocolo.md) identifica el uso actual de cada periodo y de cada referencia sin retrofechar decisiones.
+El calendario de [§48](48_protocolo_reducido.md) concreta la selección y las subparticiones de desarrollo. La [enmienda registrada de §45](45_enmienda_protocolo.md) y el contrato histórico preservan los diseños anteriores sin presentarlos como el procedimiento ejecutado.
 
-| Función | Periodo UTC y regla heredada |
+| Función | Periodo UTC y regla ejecutada |
 |---|---|
-| Historia inicial | 01/01–31/12/2023 |
-| Optimización | Enero–octubre de 2024: diez bloques mensuales forward chaining comunes, con índices de `timeseries-cv` de DidierRLopes y Filipe R. Ramos, embargo D=7 y validación interna de 90 días |
-| Piloto de fase II | 01/11–30/12/2024: 60 fechas de desarrollo |
-| Ajuste final | Desarrollo permitido de 2023–2024; origen de cierre 01/01/2025 y etiquetas de entrenamiento hasta el 24/12/2024 por embargo |
-| Reserva de fase II | 01/09–30/10/2026: 60 fechas, **ya evaluadas en E1** |
-| Archivo de fase I | 01/01/2025–31/08/2026: 608 fechas previamente evaluadas; conserva su condición de antecedente conocido |
+| Desarrollo | 01/01/2023–31/12/2024, con usos restringidos por cada etapa |
+| Optimización | Tres folds internos con orígenes 01/01, 01/07 y 01/10/2024; 83 fechas de validación por fold, 249 concatenadas; seis configuraciones y una semilla HPO por red; embargo de siete días |
+| Ajuste final | Pesos y transformaciones ajustados con etiquetas admisibles hasta el **31/10/2024**, para los dieciséis sistemas |
+| Puente de embargo | 01–07/11/2024 |
+| Calibración y piloto | **08/11–30/12/2024, 53 fechas**; recetas congeladas y sin nuevo HPO |
+| Puente causal | 31/12/2024, sólo entradas históricas y estado admisible de comparadores; sin reajuste ni recalibración |
+| Evaluación heredada | **01/01/2025–31/08/2026, 608 fechas comunes**; pesos, transformaciones y calibradores congelados antes del scoring de esta campaña |
 
-El embargo excluye resultados de entrenamiento demasiado próximos al origen según la regla D=7; no elimina siete días aleatorios ni cambia los periodos anteriores. Los metadatos conservan los detalles y las exclusiones. No se asigna una semilla a la partición cronológica determinista.
+El embargo excluye etiquetas de entrenamiento demasiado próximas al origen según la regla D=7. Los metadatos conservan fechas, máscaras y exclusiones; no se asigna una semilla a la partición cronológica determinista. Las fechas de evaluación ya eran conocidas desde E1: la congelación de esta campaña acredita trazabilidad y separación de etapas, sin convertir el periodo heredado en una confirmación prospectiva nueva.
 
 ### 1.1.2 Entradas, salida y disponibilidad causal
 
@@ -87,7 +88,7 @@ $$
 \widehat\mu_m=\frac{1}{R}\sum_{s=1}^{R}\sqrt{\widehat R_{\mathcal T}(f_{m,s})}.
 $$
 
-$\widehat\mu_m$ es la métrica primaria. No se reemplaza por la RMSE de un ensamble ni por la raíz de la media de todos los errores mezclando semillas. La dependencia y el cambio de distribución impiden tratar el riesgo empírico histórico como una estimación iid de cualquier mercado futuro. La guía pide prueba sellada; **los periodos heredados ya conocidos no cumplen esa condición para una confirmación nueva de E2**.
+$\widehat\mu_m$ es la métrica primaria. No se reemplaza por la RMSE de un ensamble ni por la raíz de la media de todos los errores mezclando semillas. La dependencia y el cambio de distribución impiden tratar el riesgo empírico histórico como una estimación iid de cualquier mercado futuro. La guía exige heredar la partición de E1: se conservan esas fechas y su exposición previa, junto con la [congelación anterior al scoring actual](../_static/e2_benchmark_final_20261113/final_freeze.json) y la [máscara común](../_static/e2_benchmark_final_20261113/data_admission.json). El alcance de la comparación es retrospectivo.
 
 ### 1.1.4 Tipo de tarea y relevancia
 
@@ -101,7 +102,9 @@ Estos antecedentes motivan investigar memoria temporal, covariables y generaliza
 
 La primaria es RMSE; las secundarias heredadas son MAE, MSE, R², MAPE y MASE. MAPE se define solo donde el objetivo sea positivo y se reportará su cobertura; no se añadirá un épsilon arbitrario. MASE usa el denominador histórico ingenuo de lag 1 sobre pares de días consecutivos elegibles de entrenamiento; no se calcula comprimiendo huecos ni usando test para escalar.
 
-El margen absoluto heredado procede de $0,05\times0,005154568532996221$, RMSE CV de la GRU/D7 de fase I. **No se recalcula como el 5 % de una nueva RMSE.** Se conserva aparte la regla relativa académica de E1 frente a GRU y persistencia; no se confunde una reducción porcentual con δ absoluto. Su origen y fecha están documentados: heredar el margen no lo vuelve una decisión previa a los resultados históricos iniciales.
+La [A2 ejecutada](../_static/e2_benchmark_final_20261113/benchmark_A2.csv) publica MAE, **sMAPE** y R² junto con RMSE. sMAPE es una métrica simétrica distinta de MAPE: esa columna no acredita el cálculo de MAPE, MSE o MASE en A2 ni cambia la métrica primaria heredada.
+
+El margen absoluto heredado procede de $0,05\times0,005154568532996221$, RMSE CV de la GRU/D7 de fase I. Es una tolerancia académica operacional equivalente al 5 % de ese error de referencia, sin utilidad financiera demostrada. **No se recalcula como el 5 % de una nueva RMSE.** Se conserva aparte la regla relativa académica de E1 frente a GRU y persistencia; no se confunde una reducción porcentual con δ absoluto. Su origen y fecha están documentados: heredar el margen no lo vuelve una decisión previa a los resultados históricos iniciales.
 
 Hay **una única serie de mercado** ($N_{\text{series}}=1$). Las semillas describen variabilidad del entrenamiento condicionada a los datos; no son nuevas series independientes. Las etiquetas σ₇ comparten retornos y las ventanas comparten observaciones. La comparación debe emparejar fechas y distinguir variación entre semillas de incertidumbre temporal. El remuestreo por bloques evita suponer independencia diaria, pero su diseño y sensibilidad requieren justificación en desarrollo. Ningún número de semillas de E1 o del P0 histórico acredita potencia para las nuevas comparaciones. El procedimiento vigente de [§48](48_protocolo_reducido.md) completó el piloto y fijó R=6 por recursos; su potencia condicional estimada fue 0,123, inferior al objetivo de 0,80.
 
@@ -121,7 +124,7 @@ $$
 
 El efecto mínimo es δ en unidades originales de volatilidad. §45 registra un contraste unilateral pareado respecto a δ mediante bootstrap temporal por bloques, con las mismas fechas remuestreadas para ambos modelos y la variabilidad entre trayectorias tratada separadamente. La distribución nula se centra en la frontera $g_m=\delta$; no basta probar una diferencia contra cero. La alternativa registrada para planificar potencia es $2\delta$; no se promete potencia de detección en la frontera de la hipótesis nula ni potencia ya demostrada.
 
-La decisión requerirá un contraste ajustado y un límite de incertidumbre compatibles con el margen δ y con el control de multiplicidad que se registre. Se reportarán efecto absoluto, reducción relativa, intervalos y p-valores ajustados y sin ajustar. Una ganancia puntual superior a δ, por sí sola, no prueba mejora práctica con incertidumbre controlada.
+La decisión registrada usa el contraste unilateral respecto a δ y Holm sobre veinte comparaciones, con nivel familiar 0,05; efecto e incertidumbre se interpretan respecto al mismo margen. [§56](56_inferencia_estabilidad_final.md) conserva el cálculo original y su refinamiento posterior a 20.000 remuestreos, sin modificar la familia. Una ganancia puntual superior a δ, por sí sola, no prueba mejora práctica con incertidumbre controlada.
 
 ### 1.2.2 RQ2 · Deterioro de la ventaja en alta volatilidad
 
@@ -135,7 +138,9 @@ $$
 H_{0,m}:d_m\le\delta,\qquad H_{1,m}:d_m>\delta.
 $$
 
-El efecto mínimo es una erosión absoluta δ de la ventaja. Se requiere bootstrap temporal pareado sobre el calendario común, conservando las etiquetas de régimen y recalculando las métricas dentro de cada estrato. La alternativa para dimensionar este contraste sigue pendiente; su frontera es δ. Se reportarán cantidades de fechas y bloques útiles por estrato; si son insuficientes, el resultado será no estimable o inconcluso. Rechazar indica deterioro relevante; **no rechazar no demuestra robustez ni equivalencia**.
+El efecto mínimo es una erosión absoluta δ de la ventaja. El contraste es un bootstrap temporal pareado de $d_m$, conservando las etiquetas causales de régimen y recalculando la RMSE de cada trayectoria dentro de cada estrato antes de promediar entre semillas. La referencia secundaria se fija en GRU32. La distribución nula se centra en $d_m=\delta$; no se prueba sólo una diferencia contra cero. Se reportan fechas y bloques útiles por estrato; si el soporte no permite estimar la incertidumbre, se declara no estimable o inconcluso. Rechazar indica deterioro relevante; **no rechazar no demuestra robustez ni equivalencia**.
+
+**Aclaración documental posterior:** el nivel nominal es 0,05 para un contraste individual identificado de antemano. Si se comunican los diez candidatos, se aplica Holm a sus diez p-valores de RQ2 y se decide con p ajustado ≤0,05. Esta precisión y la especificación descargable de §1.2.4 no se atribuyen a la ejecución pasada. No se declara un resultado RQ2 ni potencia específica demostrada.
 
 ### 1.2.3 RQ3 · Mejora conjunta de error y coste
 
@@ -148,9 +153,11 @@ H_{0,m}:(g_m\le\delta)\ \text{o}\ (c_m\ge0),\qquad
 H_{1,m}:(g_m>\delta)\ \text{y}\ (c_m<0).
 $$
 
-La afirmación conjunta requiere una prueba de intersección-unión: ambas condiciones deben quedar respaldadas; el p-valor conjunto será el máximo de los dos p-valores unilaterales válidos. El margen de error sigue siendo δ; el umbral de coste es cero, sin inventar una tolerancia financiera. Su dimensionamiento específico no está cerrado; no se inventa un ahorro observado ni se transfiere a RQ3 la potencia planificada para RQ1. Se reportará también la magnitud e intervalo del ahorro para valorar su importancia operativa.
+La afirmación conjunta requiere una prueba de intersección-unión frente a GRU32: $p_{\mathrm{IUT}}=\max(p_{\mathrm{gain}},p_{\mathrm{cost}})$. El primer componente contrasta $g_m>\delta$ mediante bootstrap temporal pareado; el segundo contrasta $c_m<0$ mediante bootstrap de diferencias de medias de latencia por bloques pareados, centrado bajo la frontera $c_m=0$. El margen de error sigue siendo δ; cero es el umbral direccional de coste, sin tolerancia económica demostrada. Se reportan magnitud e intervalo del ahorro, además del p-valor conjunto.
 
-La latencia debe medirse con entradas de desarrollo o sintéticas, sin volver a puntuar test para medir tiempos. Se deben documentar hardware, precisión, batch, calentamiento, bloques y orden intercalado de cada medición. El híbrido opcional conserva sus propios controles si se analiza. Las repeticiones del cronómetro no aumentan el tamaño muestral de la evaluación predictiva.
+La latencia requiere observaciones crudas comparables con entradas de desarrollo o sintéticas, mismo hardware, precisión y batch, calentamiento, sincronización, bloques de sesión pareados y orden intercalado documentados. Se conserva el emparejamiento entre candidato y GRU32 y la agregación de sus seis predictores; las repeticiones del cronómetro no crean mercados independientes. Los perfiles agregados de coste disponibles no acreditan ese contraste ni la IUT.
+
+**Aclaración documental posterior:** el nivel nominal de la IUT individual es 0,05 y exige que ambos componentes sean válidos y ≤0,05. Si se comunican los diez candidatos, se aplica Holm a sus diez p-valores IUT y se decide con p ajustado ≤0,05. Esta regla no se atribuye al pasado. Falta la ejecución inferencial conjunta con costes crudos comparables; no se declara resuelta RQ3 ni se le transfiere la potencia de RQ1.
 
 ### 1.2.4 Multiplicidad y criterio de decisión común
 
@@ -158,7 +165,15 @@ La familia primaria vigente contiene veinte comparaciones del Top 10 frente a GR
 
 RQ2 y RQ3 conservan alcance exploratorio. Si se comunica el contraste conjunto de RQ3, se obtiene primero el p-valor de intersección-unión y se declara su multiplicidad y sus límites; no se incorpora silenciosamente al ajuste primario. Los IC marginales del 95 % se distinguen de los límites simultáneos. Las pruebas de equivalencia, calibración, robustez y diagnóstico necesitan su propio alcance; no quedan cubiertas automáticamente por el ajuste de las preguntas principales.
 
-El margen absoluto δ se mantiene como referencia metodológica; no existió una tolerancia δg de brecha train–validación previa y las alternativas posteriores se reportan únicamente como sensibilidad descriptiva en [§56](56_inferencia_estabilidad_final.md). El [P0 histórico de §9](09_protocolo_registrado.md) completó 220 trayectorias y 440 ajustes de desarrollo, pero no selecciona ni dimensiona el catálogo vigente. Aunque se controle multiplicidad, reutilizar un test conocido mantiene el alcance exploratorio.
+| Pregunta y alcance | Prueba, efecto y criterio de decisión |
+|---|---|
+| RQ1 · análisis primario registrado; evaluación retrospectiva | Bootstrap temporal unilateral de $g_m>\delta$, veinte contrastes frente a GRU32 y Persistence; Holm, α familiar 0,05. Reglas y resultados en §48/§56, sin cambios por esta aclaración. |
+| RQ2 · exploratoria; aclaración documental posterior | Bootstrap temporal unilateral de $d_m>\delta$ frente a GRU32. α nominal 0,05 por contraste; para los diez candidatos, Holm dentro de RQ2 y p ajustado ≤0,05. La falta de estimación o de rechazo no prueba robustez. |
+| RQ3 · exploratoria; aclaración documental posterior | IUT de $g_m>\delta$ y $c_m<0$ frente a GRU32; máximo de los dos p-valores válidos. α nominal 0,05 por IUT; para los diez candidatos, Holm dentro de RQ3 y p ajustado ≤0,05. Sin costes crudos comparables no se emite decisión conjunta. |
+
+La [especificación focal en JSON](../_static/e2_point1_review_v1/rq_specification.json) fija los detalles de remuestreo y requisitos de datos de estas aclaraciones. Su estado es documental, sin nueva ejecución ni resultados RQ2/RQ3. La potencia específica de ambas preguntas no está demostrada.
+
+El margen absoluto δ conserva su valor y finalidad. **δg sí existía en el registro del 6 de noviembre**, commit [`599a29f`](https://github.com/jassan-bit/DeepLearning_202630/blob/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0/experiments/e2_remediation_20261106/preregistration.json): el campo `generalization_gap` fijó δg=δ para la brecha RMSE de validación menos entrenamiento en modo inferencia, con unidades y justificación. Reconocer ese linaje no demuestra ausencia de sobreajuste de los diez candidatos ni convierte las sensibilidades posteriores de [§56](56_inferencia_estabilidad_final.md) en aquella prueba ejecutada. El [P0 histórico de §9](09_protocolo_registrado.md) completó 220 trayectorias y 440 ajustes de desarrollo, pero no selecciona ni dimensiona el catálogo vigente. El registro y el control de multiplicidad no recuperan el cegamiento histórico.
 
 ## 1.3 Justificación del dataset
 
@@ -168,15 +183,17 @@ Se conserva **Binance Spot BTCUSDT**, obtenido de [Binance Public Data](https://
 
 El snapshot inventariado contiene **75 ZIP, 97.442.605 bytes comprimidos y 2.014.480 filas de doce campos**, entre el 01/01/2023 y el 30/10/2026. Los 1.399 días del calendario corresponden a 2.014.560 minutos esperados. Se detectaron **80 minutos ausentes** y una anomalía adicional de `close_time` el 24/03/2023. Por ello, ese día no es elegible para OHLCV diario completo; no se imputa ni se elimina el hueco del calendario.
 
-El desarrollo 2023–2024 tiene 731 días de calendario y 730 días OHLCV completos. En 2023 hay 350 etiquetas σ₇ válidas; en 2024, 366. Las pérdidas adicionales de ventanas dependen de D, el objetivo y el embargo: los conteos de filas brutas, días y ejemplos supervisados son distintos. El ajuste final D7 de E1 utilizó 709 ejemplos elegibles; no se atribuye ese número a futuras configuraciones de E2.
+El desarrollo 2023–2024 tiene 731 días de calendario y 730 días OHLCV completos. En 2023 hay 350 etiquetas σ₇ válidas; en 2024, 366. Las pérdidas adicionales de ventanas dependen de D, el objetivo y el embargo: los conteos de filas brutas, días y ejemplos supervisados son distintos. El ajuste final D7 de E1 utilizó 709 ejemplos elegibles; ese recuento no se reasigna al ajuste E2 hasta octubre de 2024. La evaluación actual admite veinte ZIP, 875.520 minutos y **608 fechas supervisadas comunes**, sin días excluidos en esa cohorte.
 
-La literatura citada respalda el problema y distintas fuentes informativas. **El uso previo de esta fuente o dataset en literatura Q1 requiere aún una referencia verificable y el cuartil de su año.** El criterio de la guía no exige que un artículo haya utilizado exactamente nuestro snapshot, sus fechas o hashes; esa identidad no se confunde con el respaldo de la fuente. La matriz de estudios de E2 mantiene pendiente esta comprobación, sin usar la reputación de una editorial como sustituto de evidencia.
+Como respaldo de la fuente, Goutte y colaboradores utilizaron datos horarios de Bitcoin de Binance y describieron el acceso mediante API {cite:p}`goutte2023_binance_context`. *Finance Research Letters* fue Q1 en Finance según SCImago/SJR de 2023, con SJR 1,903. Este antecedente acredita uso académico de Binance; su tarea de negociación y periodo 2017–2022 no equivalen al objetivo σ₇ ni al snapshot de E2.
+
+La [evidencia focal de fuente y cuartil](../_static/e2_point1_review_v1/q1_context_evidence.json) conserva DOI, localizadores editoriales y fila histórica del índice; no afirma cuartil JCR ni lectura íntegra del PDF. La comprobación por DOI y título normalizado no encontró coincidencias en los 9.559 grupos recibidos. Se incorpora como **contexto externo de la fuente**, sin añadirlo a los 42 estudios aplicados ni modificar PRISMA. El requisito de uso previo de la fuente en Q1 no exige identidad exacta de fechas, etiquetas o hashes.
 
 ### 1.3.2 Procedencia, licencia, ética y privacidad
 
 Los archivos originales y sus checksums se descargan del proveedor; el [manifiesto descargable](../_static/dataset_manifest_e1.json) identifica cada objeto y su integridad. Las [instrucciones y scripts de adquisición de E1](https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/data/README.md) permiten reconstruir la fuente sin incorporar precios individuales a este capítulo.
 
-La copia de términos revisada en E1 el 03/11/2026 corresponde a **Vision Dataset Terms v1.0, actualizados el 26/08/2026**: establece CC BY-NC-SA 4.0 salvo designación específica y condiciones adicionales. Véanse el [texto conservado](https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/book/_static/data_source/TERMS_AND_CONDITIONS.md) y su [registro de procedencia](https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/book/_static/data_source/terms_snapshot.json). No se presenta como una licencia MIT de los datos ni se retrofecha su consulta.
+La copia de términos revisada en E1 el 03/11/2026 corresponde a **Vision Dataset Terms v1.0, actualizados el 26/08/2026**: establece CC BY-NC-SA 4.0 salvo designación específica y condiciones adicionales. Véanse el [texto conservado](https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/book/_static/data_source/TERMS_AND_CONDITIONS.md) y su [registro de procedencia](https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/book/_static/data_source/terms_snapshot.json). La ficha vigente registra una nueva consulta del texto oficial con SHA-256 idéntico al conservado. No se presenta como una licencia MIT de los datos ni se retrofecha la revisión.
 
 El uso es académico y no comercial. Las velas agregadas no incluyen identificadores personales; no se intentará identificar operadores. La ausencia de datos personales no elimina sesgos del mercado ni convierte los resultados en asesoría financiera. Se mantienen la atribución y la separación entre licencia de datos y código.
 
@@ -184,17 +201,17 @@ El uso es académico y no comercial. Las velas agregadas no incluyen identificad
 
 La población observada es un único par, exchange y periodo. BTCUSDT no representa otras criptomonedas, otros proveedores ni cotizaciones en moneda fiduciaria; USDT añade exposición a una stablecoin. La selección de un activo superviviente, los cambios de régimen, las interrupciones del proveedor y la cobertura histórica limitan la generalización. El volumen refleja negociación de ese mercado, sin medir todo el mercado mundial.
 
-No se ha identificado una **partición oficial de machine learning para este snapshot** en la fuente utilizada. Los archivos mensuales y diarios del proveedor son una organización de descarga, no folds de evaluación. Se conserva la partición temporal de E1 y su forward chaining para respetar disponibilidad causal y comparabilidad. Los periodos conocidos se documentan como tales; no se barajan fechas ni se crean nuevos grupos independientes artificiales.
+No se ha identificado una **partición oficial de machine learning para este snapshot** en la fuente utilizada. Los archivos mensuales y diarios del proveedor son una organización de descarga, no folds de evaluación. Se conserva la evaluación temporal de E1 y la selección E2 usa tres folds internos anteriores a ella para respetar disponibilidad causal y comparabilidad. Los periodos conocidos se documentan como tales; no se barajan fechas ni se crean nuevos grupos independientes artificiales.
 
 ## 1.4 Descripción técnica · Data Card
 
-Descargar la [Data Card en JSON](../_static/dataset_card.json), el [contrato heredado](../_static/e1_reference.json) y el [manifiesto de archivos](../_static/dataset_manifest_e1.json).
+Descargar la [Data Card vigente en JSON](../_static/e2_point1_review_v1/dataset_card_current.json), el [contrato heredado](../_static/e1_reference.json) y el [manifiesto de archivos](../_static/dataset_manifest_e1.json). La [Data Card histórica](../_static/dataset_card.json) conserva sus bytes y estados anteriores; no describe el cierre de ejecución actual.
 
 | Campo | Descripción verificable |
 |---|---|
 | Identificador | Snapshot E1 de Binance Spot BTCUSDT, velas de un minuto, 01/01/2023–30/10/2026 |
-| Fuente y recolección | Objetos históricos mensuales/diarios de Binance Vision; adquisición y hashes registrados en el manifiesto heredado, sin afirmar una adquisición nueva de E2 |
-| Versión | Commit E1 `94a4b0324e93361e8928d708fdfeb50110e3686f` y manifiesto SHA-256 `af723bcca2caffcbe44ae5243e2863bbcdcd39ae8cd42df491af0a2857926bb2` |
+| Fuente y recolección | Objetos históricos mensuales/diarios de Binance Vision; adquisición E1 entre 02/11/2026 14:47:23 y 14:47:45 UTC; veinte ZIP del periodo heredado admitidos para el scoring actual, sin añadir fechas nuevas |
+| Versión | Ficha `e2-btcusdt-d7-current-v1`; fuente E1 `94a4b0324e93361e8928d708fdfeb50110e3686f` y manifiesto SHA-256 `af723bcca2caffcbe44ae5243e2863bbcdcd39ae8cd42df491af0a2857926bb2` |
 | Estructura bruta | 75 ZIP; 2.014.480 filas; doce campos de kline |
 | Esquema | Timestamps de apertura/cierre; OHLC, volumen, volumen cotizado, número de operaciones, volúmenes taker base/cotizado y campo ignore |
 | Tipos | Timestamps normalizados a UTC, conteo de operaciones entero y magnitudes numéricas; la unidad temporal original se verifica por archivo antes de convertir |
@@ -206,7 +223,8 @@ Descargar la [Data Card en JSON](../_static/dataset_card.json), el [contrato her
 | Filtros | Validación de timestamps y velas, agregación de días completos, retornos sobre días consecutivos, exclusión de ventanas afectadas por huecos y embargo heredado; sin imputación |
 | Calidad conocida | 80 minutos ausentes y una anomalía adicional de cierre el 24/03/2023; un día diario incompleto |
 | Desarrollo | 2023–2024: 731 días de calendario, 730 OHLCV completos; etiquetas σ₇ válidas 350 en 2023 y 366 en 2024 |
-| Evaluación heredada | Reserva fase II 01/09–30/10/2026, 60 fechas ya evaluadas; fase I 2025–agosto de 2026 también conocida |
+| Selección, ajuste y calibración | Tres folds HPO, 249 fechas de validación concatenadas; ajuste final con etiquetas hasta 31/10/2024 y calibración 08/11–30/12/2024, 53 fechas |
+| Evaluación heredada | **01/01/2025–31/08/2026, 608 fechas comunes** y 81 predictores congelados; periodo conocido desde E1. La reserva complementaria de 60 fechas es un antecedente fuera de este scoring |
 | Licencia | Términos Vision conservados en E1, CC BY-NC-SA 4.0 con condiciones y excepciones indicadas por la fuente |
 | Límites de uso | Benchmark académico de una sola serie; sin afirmación de utilidad financiera ni generalización a otras criptomonedas |
 
@@ -218,13 +236,13 @@ El hash anterior identifica **el archivo manifiesto**; no es un único checksum 
 |---|---|
 | Formulación matemática, tarea, métricas, δ y unidad | Documentados con la herencia de E1 |
 | Relevancia con al menos tres referencias | Tres referencias de contexto citadas; no sustituyen la revisión sistemática |
-| Tres RQ, hipótesis, efecto y reglas | RQ1 ejecutada con veinte contrastes; refinamiento B=20.000 de §56. RQ2/RQ3 exploratorias; potencia piloto insuficiente y declarada |
-| Justificación y Data Card | Documentadas con procedencia, versión, hashes, calidad y límites |
-| Uso previo de la fuente/dataset en Q1 | Pendiente de referencia y cuartil por año; no exige identidad exacta del snapshot |
+| Tres RQ, hipótesis, efecto y reglas | RQ1 ejecutada con veinte contrastes; refinamiento B=20.000 de §56. RQ2/RQ3 exploratorias, con α y decisiones explicitados como aclaración documental posterior, sin resultados inferenciales nuevos; potencia piloto insuficiente y declarada |
+| Justificación y Data Card | Ficha vigente con procedencia, versión, hashes, calendario ejecutado, calidad y límites; ficha histórica conservada |
+| Uso previo de la fuente/dataset en Q1 | Goutte et al. (2023), Binance identificado y SCImago/SJR Finance 2023 Q1; contexto externo, sin cambiar PRISMA 9.559/42 |
 | Catálogo y protocolo | Dieciséis sistemas evaluados; cuerpos actuales adjudicados, incluida TiDE publicada r=0; protocolo ejecutado en §48 |
-| Prueba desconocida y confirmación nueva | No disponibles en los periodos heredados ya evaluados |
+| Partición y alcance de la prueba | Se conservan las 608 fechas exigidas por la herencia E1, su exposición previa y la congelación de esta campaña; alcance retrospectivo |
 
-La [revisión bibliográfica de §3](03_literatura.md) distingue las fuentes de los modelos, su adaptación a regresión de σ₇ y la evidencia aplicada a criptomonedas. Una arquitectura publicada o un original leído no acreditan su funcionamiento en este dataset. La comprobación de uso de la fuente en Q1 y el cierre bibliográfico se mantienen separados de la ejecución del nuevo benchmark.
+La [lista literal de requisitos del punto 1](../_static/e2_point1_review_v1/point1_checklist.json) enlaza cada campo con su evidencia y distingue definición documental de ejecución inferencial. La [revisión bibliográfica de §3](03_literatura.md) conserva el corpus aplicado y sus denominadores. El respaldo contextual de Binance no añade una inclusión a ese corpus ni acredita la eficacia de una arquitectura en este dataset.
 
 
 ## Archivo de la versión anterior

@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "specification_version": "e2-point1-rq-clarification-v1",
+  "documented_at_utc_date": "2026-11-14",
+  "status": "documentary_clarification_after_existing_scoring_not_executed",
+  "scope": {
+    "primary_RQ1_unchanged": true,
+    "new_training": false,
+    "new_predictive_scoring": false,
+    "new_statistical_analysis": false,
+    "RQ2_RQ3_rules_added_now_are_not_historical_preregistration": true,
+    "current_evaluation": "Retrospective E1-inherited calendar2025-01-01..2026-08-31,608 common dates",
+    "no_recovered_historical_blinding": true,
+    "sources": [
+      "book_e2/sections/01_punto_partida.md",
+      "experiments/e2_reduced_protocol_20261112/protocol.json",
+      "experiments/e2_remediation_20261106/preregistration.json"
+    ]
+  },
+  "common_estimand": {
+    "input": "D7x5 OHLCV, seven prior UTC daily bars",
+    "target": "population sigma7,ddof0,seven logreturns,eight closes,h1,no annualization",
+    "delta": 0.00025772842664981106,
+    "units": "original daily sigma7 RMSE",
+    "metric": "Arithmetic mean of individual-trajectory RMSE; never RMSE of ensemble mean",
+    "secondary_reference": "GRU32",
+    "secondary_candidates": [
+      "FCN-1D",
+      "ResNet-1D",
+      "Inception-1D",
+      "LSTM-autoencoder con predictor",
+      "TimesNet",
+      "TSMixer",
+      "TiDE",
+      "TimeMixer",
+      "PatchTST",
+      "iTransformer"
+    ],
+    "seed_ids": [
+      271801,
+      271802,
+      271803,
+      271804,
+      271805,
+      271806
+    ],
+    "independence": "One market series. Seeds are training variability conditional on the same calendar; timer repeats do not create market replicates."
+  },
+  "RQ1": {
+    "role": "registered_primary_analysis_on_retrospective_calendar_unchanged",
+    "hypotheses": {
+      "null": "g_m<=delta",
+      "alternative": "g_m>delta"
+    },
+    "gain": "reference_mean_individual_RMSE-candidate_mean_individual_RMSE",
+    "family": "10 candidates against GRU32 and Persistence;20 contrasts",
+    "alpha_family": 0.05,
+    "multiplicity": "Holm20",
+    "test": "Registered paired circular-block temporal bootstrap centered at gain=delta; paired seed/calendar resampling as in the original engine",
+    "original_bootstrap_replicates": 4999,
+    "later_refinement_replicates": 20000,
+    "result_pointer": "book_e2/sections/56_inferencia_estabilidad_final.md",
+    "this_clarification_changes_RQ1": false
+  },
+  "secondary_temporal_bootstrap_clarification": {
+    "status": "specification_only_added_after_scoring",
+    "procedure": "Paired moving-block bootstrap on the full ordered common calendar, retaining all candidate/reference trajectories and regime labels for each sampled date.",
+    "primary_block_days": 14,
+    "diagnostic_sensitivity_block_days": [
+      7,
+      28
+    ],
+    "replicates": 20000,
+    "boundary_centering": "For statistic T with null frontier b, each null replicate is b+(T_star-T_observed).",
+    "one_sided_greater_p": "(1+count(T_null_star>=T_observed))/(B_valid+1)",
+    "seed_treatment": "Recalculate each fixed trajectory metric per resample, then average equally over six trajectories. Calendar inference is conditional on these trained trajectories; any seed resampling must be reported separately.",
+    "validity_reporting": [
+      "Number of dates and usable blocks in each regime",
+      "Number of valid replicates and reason for every invalid or non-estimable case",
+      "Block-length sensitivity, descriptive only unless a separate family is declared"
+    ],
+    "non_estimable_policy": "If a stratum or paired support cannot estimate the contrast uncertainty, report non-estimable or inconclusive; never replace with zero.",
+    "no_claim_of_demonstrated_power": true
+  },
+  "RQ2": {
+    "role": "exploratory_documentary_clarification_after_scoring",
+    "question": "Does a candidate advantage over GRU32 deteriorate by more than delta in high-volatility days known at issue time?",
+    "regime": "A_t=1[sigma7(t-1)>q75_2023]",
+    "q75_2023": 0.024247163097617024,
+    "threshold_fit_labels": 350,
+    "threshold_source": "E1 training profile2023; frozen historical value, not chosen on evaluation",
+    "estimand": "d_m=g_m_normal-g_m_high, with each regime gain computed as reference mean individual RMSE minus candidate mean individual RMSE",
+    "hypotheses": {
+      "null": "d_m<=delta",
+      "alternative": "d_m>delta"
+    },
+    "minimum_effect_of_interest": 0.00025772842664981106,
+    "test": "Paired temporal bootstrap of d_m, centered at d_m=delta; retain causal regime labels and recompute per-trajectory regime RMSE on each resample.",
+    "alpha_nominal_per_contrast": 0.05,
+    "single_contrast_decision": "For a single contrast identified before its analysis, reject only for a valid one-sided p<=0.05; declare effect and interval.",
+    "ten_candidate_decision": "When communicating all10 candidates, apply Holm to the10 RQ2 p-values as its own family at0.05; reject for adjusted p<=0.05.",
+    "reference_selection": "GRU32 fixed in this later specification; not chosen from secondary results",
+    "execution_status": "No result is asserted under this later specification",
+    "interpretation": "Rejection supports relevant erosion; non-rejection does not establish robustness or equivalence.",
+    "power_status": "RQ2-specific planning alternative/power not demonstrated"
+  },
+  "RQ3": {
+    "role": "exploratory_documentary_clarification_after_scoring",
+    "question": "Does a candidate improve RMSE by more than delta while reducing mean inference latency versus GRU32?",
+    "estimands": {
+      "gain": "g_m=reference_mean_individual_RMSE-candidate_mean_individual_RMSE",
+      "cost": "c_m=candidate_mean_latency_per_window-reference_mean_latency_per_window"
+    },
+    "hypotheses": {
+      "null": "(g_m<=delta) OR (c_m>=0)",
+      "alternative": "(g_m>delta) AND (c_m<0)"
+    },
+    "minimum_effects_of_interest": {
+      "gain": 0.00025772842664981106,
+      "cost": 0,
+      "cost_margin_interpretation": "Directional strict reduction; no demonstrated economic or operational tolerance"
+    },
+    "gain_component": "Valid one-sided paired temporal bootstrap centered at gain=delta, under the secondary temporal specification",
+    "cost_component": {
+      "test": "One-sided paired-block bootstrap of mean latency differences centered at c_m=0",
+      "raw_data_required": true,
+      "required_fields": [
+        "candidate_and_reference_identity",
+        "individual_latency_per_window",
+        "paired_session_block_id",
+        "seed_or_predictor_identity",
+        "hardware_device",
+        "precision",
+        "batch_size",
+        "warmup",
+        "synchronization",
+        "interleaved_order",
+        "input_shape_and_source"
+      ],
+      "comparison_policy": "Use development or synthetic inputs; identical hardware, precision,batch and input support. Preserve paired session blocks and aggregate each system equally over its six predictors. Synchronize asynchronous GPU measurements.",
+      "resampling_unit": "Whole paired measurement-session block; retain candidate/reference measurements and seed mapping within each block",
+      "replicates": 20000,
+      "null_replicate": "c_null_star=0+(c_star-c_observed)",
+      "one_sided_lower_p": "(1+count(c_null_star<=c_observed))/(B_valid+1)",
+      "aggregate_profiles_are_sufficient": false,
+      "readiness_gate": "No cost p-value or IUT decision without comparable raw paired observations and estimable block uncertainty"
+    },
+    "joint_p": "max(p_gain,p_cost), only when both component p-values are valid",
+    "alpha_nominal_per_IUT": 0.05,
+    "single_contrast_decision": "Both valid components must be<=0.05, equivalently p_IUT<=0.05, for one identified candidate.",
+    "ten_candidate_decision": "First form10 valid candidate IUT p-values, then apply Holm10 within RQ3 at0.05; reject for adjusted p_IUT<=0.05. Do not reuse the RQ1 Holm family or present component p-values as a third independent test.",
+    "execution_status": "Joint inferential test remains unexecuted under this specification; existing aggregate cost profiles do not resolve it.",
+    "power_status": "No RQ3-specific demonstrated power; RQ1 pilot power cannot be transferred"
+  },
+  "reporting_limits": [
+    "Nominal p-values for an individual contrast must not be used to claim that any of10 candidates succeeds without the declared within-RQ adjustment.",
+    "RQ2 and RQ3 remain separate exploratory families, with no claim of global confirmatory FWER across them.",
+    "Report unadjusted and adjusted p-values, original-unit effects and uncertainty, test assumptions and non-estimable cases.",
+    "The existence of this document is not evidence of performed tests or recovered preregistration."
+  ]
+}
