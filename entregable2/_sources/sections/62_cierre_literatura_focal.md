@@ -106,6 +106,7 @@ Para la prioridad global se publica la [tabla completa con límites algebraicos]
 
 La [justificación individual del catálogo](../_static/e2_literature_closure_final/selection/catalogue_selection_rationale.csv) identifica mecanismo, fuente, código y transferencia preliminar a D7, con cuatro familias y diez sistemas. Las [exclusiones históricas identificadas](../_static/e2_literature_closure_final/selection/named_exclusions_preserved.csv) conservan su motivo y citas conocidas, sin atribuir inferioridad demostrada a los omitidos. **El alcance defendible es una selección documental por mecanismos y diversidad con análisis de desempeño estratificado; no una afirmación de Top 10 óptimo global.**
 
+(e2-lit-inception-single)=
 ### Desempeño de una red Inception, separado del ensemble
 
 Se verificaron los [resultados numéricos del autor](https://github.com/hfawaz/InceptionTime/tree/952d115e83fb3a66d75c5858c702f8dd5eeb18b7): el archivo de redes individuales contiene **640 filas, 128 datasets UCR2018 × cinco ejecuciones**, y el del ensemble de cinco redes contiene 128 filas para los mismos nombres. El promedio uniforme del error de cada ejecución individual es **0,1639239119738714**; el error medio del ensemble es **0,1564056859794546**. Promediar errores de redes individuales no combina sus predicciones.
@@ -169,6 +170,7 @@ La exportación aplicada de **1.104 EID únicos** mantiene su propio [recibo](..
 **Queda cerrado el flujo del corpus recibido, con límites de cobertura y acceso explícitos.** No se afirma cobertura completa de las búsquedas nativas, ni elegibilidad conocida para los inaccesibles. Las incertidumbres científicas tras leer una fuente se mantienen como conocimiento no identificado, sin simular otra tarea resuelta o exigir repetir el mismo PDF. Los cortes focales anteriores y su [flujo histórico](../_static/e2_literature_closure_final/flow.json) conservan sus valores originales.
 
 (auditoria-y-tarea-de-recuperacion-restante)=
+(e2-lit-coverage-audit)=
 ## Auditoría y límites de cobertura
 
 El [manifiesto del flujo recibido](https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/main/references/literature_e2/prisma_received_v1/manifest.json) liga los insumos y derivados por SHA. Los comandos verifican el denominador, la cobertura individual, los dos alias, la selección de versión para los 42 estudios, los doce campos de calidad, la separación de acceso/evidencia y la ausencia de pendientes operativos:

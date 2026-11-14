@@ -598,7 +598,7 @@
 <figure class="align-default" id="fig-e2-quality-cost-pareto">
 <img alt="Dos gráficos del RMSE A2 frente al tiempo final medio por semilla y frente al número de parámetros. La frontera observada se destaca en naranja." src="../_images/quality_cost_pareto.svg" />
 <figcaption>
-<p><span class="caption-number">Figura 2 </span><span class="caption-text">Compromisos descriptivos entre error y coste. El eje temporal incluye evaluación y checkpoints. Los predictores deterministas carecen de medidas de recursos comparables y quedan fuera de ambas fronteras.</span><a class="headerlink" href="#fig-e2-quality-cost-pareto" title="Link to this image">#</a></p>
+<p><span class="caption-number">Figura 3 </span><span class="caption-text">Compromisos descriptivos entre error y coste. El eje temporal incluye evaluación y checkpoints. Los predictores deterministas carecen de medidas de recursos comparables y quedan fuera de ambas fronteras.</span><a class="headerlink" href="#fig-e2-quality-cost-pareto" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Se minimizan simultáneamente RMSE y coste. Un modelo domina a otro si no empeora ninguna coordenada y mejora al menos una. Con tiempo final medio por semilla, la frontera observada contiene <strong>LSTM32, MLP16, GRU32 y SAE</strong>. Con parámetros, contiene <strong>MLP16, GRU32 y SAE</strong>. SAE obtiene el menor RMSE puntual; MLP16 emplea menos parámetros y GRU32 ofrece un compromiso intermedio. LSTM32 entra en la frontera temporal por su menor tiempo observado, pero GRU32 lo domina en error y parámetros.</p>

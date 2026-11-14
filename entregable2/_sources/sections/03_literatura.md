@@ -1,148 +1,14 @@
 # 3. Revisión Sistemática del Estado del Arte
 
-**Estado vigente en [§62](62_cierre_literatura_focal.md):** el flujo del corpus recibido está reconciliado: **9.559 grupos cribados y 42 estudios aplicados únicos**, con doce dimensiones de extracción y disposiciones de acceso explícitas. Los puntajes de los diez sistemas son calculables dentro de sus escenarios; la comparabilidad global permanece condicionada. **Esta página conserva el corte histórico y sus derivados**; sus estados parciales se interpretan en ese corte, sin sustituir el registro vigente.
+**Lectura vigente.** La revisión amplía E1 y sustenta el catálogo de **diez modelos, cuatro familias y nueve fuentes arquitectónicas**; FCN y ResNet comparten estudio. El flujo del **corpus recibido** está reconciliado: **9.559 grupos cribados, 42 estudios aplicados únicos, 120 evaluaciones primarias focales o reutilizadas y cero pendientes operativos**. Hay 174 informes no recuperados y límites de cobertura de las búsquedas. El [expediente de elegibilidad y selección](62_cierre_literatura_focal.md) contiene los dictámenes detallados; este capítulo los ordena conforme a §§3.1–3.4 de la guía.
 
-**Catálogo vigente (13/11/2026):** [dieciséis sistemas obligatorios (§43)](43_catalogo_obligatorio.md): diez modelos del Top 10, tres referencias E1 y Persistence, SeasonalNaive y ARIMA. El híbrido CNN-1D + LSTM + atención temporal y Ridge son antecedentes opcionales. [§44](44_arquitecturas_publicadas.md) y su actualización de [§48](48_protocolo_reducido.md) documentan los diez cuerpos publicados, incluido **TIDE-D7-PUBLISHED-R0-v2**. Las recetas NAS anteriores conservan su identidad histórica. El [benchmark común](06_benchmark_final.md) ya tiene resultados propios; los conteos bibliográficos siguientes conservan sus cortes y alcances documentales.
-
-**Síntesis vigente del 13/11/2026:** [§52](52_sintesis_literatura.md) reconcilia el Top 10 actual con **nueve estudios primarios**, agrega lectura verificable de las fuentes de FCN/ResNet, Inception y LSTM-SAE, y publica extracción, puntajes de soporte con sensibilidad y una brecha refutable. Distingue esa cohorte de los diez originales históricos completos. Las tres consultas transversales nativas intentadas fallaron y conservan conteos desconocidos; la elegibilidad global sigue sin determinar.
-
-## Actualización del 08/11/2026: búsquedas nativas y evidencia para la revisión
-
-Esta ronda complementa el expediente del 05–06/11 sin reemplazarlo. **Una exportación nueva no corrige automáticamente una búsqueda anterior incompleta.** Los 374 registros no recibidos del universo Scopus histórico de 7.874 siguen siendo una limitación de aquella consulta mientras no se concilien sus identificadores y alcance. Del mismo modo, los resultados de IEEE y arXiv de esta ronda no deben añadirse directamente a los 7.833 grupos históricos: primero se necesita deduplicación entre rondas y adjudicación de versiones de un mismo estudio.
-
-### Recepción, deduplicación y cribado de esta ronda
-
-| Fuente y alcance | Ocurrencias recibidas | Estado verificable |
-|---|---:|---|
-| WoS, nuevo TXT | 340 | 340 registros PT–ER y cierre EF; años exportados dentro de 2019–2026 |
-| Scopus, nuevo CSV | 828 | 808 con año 2019–2026; la cadena exacta y la cobertura nativa no quedan acreditadas por el CSV |
-| IEEE Xplore, nuevo CSV | 466 | 457 con año 2019–2026; no equivale a una lectura completa de los artículos |
-| Total de las tres exportaciones | **1.634** | **1.078 grupos** tras retirar 556 ocurrencias redundantes |
-
-Se fusionan DOI normalizados exactos y, cuando no hay DOI conflictivos, título normalizado más año exacto. Se conservan **un conflicto de título/año con DOI diferentes**, 50 registros representantes sin DOI (49 grupos sin DOI en ninguna de sus fuentes) y cinco grupos con años discordantes entre fuentes. No se fusionan versiones por similitud difusa ni se han validado todos los DOI con sus editoriales. Los [metadatos por grupo](../_static/literature_native_20261108/native/cribado_metadatos.csv), el [grafo de enlaces](../_static/literature_native_20261108/native/relaciones_duplicados.csv) y el [resumen](../_static/literature_native_20261108/native/resumen.json) permiten auditar el resultado.
-
-De **1.605 ocurrencias con año 2019–2026** resultan **1.054 grupos en ventana**. La clasificación es triaje conservador por título/resumen, con **21 correcciones focalizadas del asistente**, no lectura individual exhaustiva ni doble cribado humano:
-
-| Disposición provisional | Grupos | Qué significa |
-|---|---:|---|
-| Prioridad principal | 59 | Bitcoin, posible objetivo volatilidad y redes; verificar objetivo, profundidad, papel del modelo y protocolo |
-| Secundarios transferibles | 520 | Otros mercados, híbridos o mecanismos; no evidencia directa homogénea de σ₇ |
-| Inciertos conservados | 138 | Información insuficiente; también actas agregadas que requieren localizar artículos individuales |
-| Exclusiones propuestas por precio | 337 | Propuestas revisables, no exclusiones finales; auditar posibles falsos negativos |
-| Fuera de ventana nominal | 24 | Comprobar fecha efectiva o justificar papel fundacional |
-| Total | **1.078** | Los **717 conservados en ventana** no son estudios incluidos definitivamente |
-
-Las señales pueden describir antecedentes y no la variable predicha. Las correcciones focalizadas detectaron confusiones entre precio, retorno, VaR/ES y volatilidad. No se convierte una pasada automática en una revisión sistemática cerrada; todas las exclusiones propuestas y los ambiguos requieren adjudicación antes de cerrar el flujo. El {download}`procedimiento y sus límites <../_static/literature_native_20261108/native/LEEME.md>` y las [correcciones](../_static/literature_native_20261108/native/ajustes_revision.json) quedan publicados sin resúmenes completos.
-
-### Primer corte conservado: 59 prioritarios y auditoría de 42 exclusiones propuestas
-
-Después del triaje inicial se revisaron individualmente los títulos y resúmenes de los **59 prioritarios**, mediante lectura asistida por IA. La disposición provisional es **40 candidatos para recuperar/evaluar texto completo, 17 inciertos conservados y dos antecedentes secundarios**. **No son 40 estudios incluidos ni 59 textos completos leídos.** No se verificaron externamente DOI, fechas, editoriales o resultados en esta fase, y no se acredita doble revisión humana ni κ de Cohen.
-
-Se auditaron **42 de las 337 exclusiones propuestas**: una muestra aleatoria sin reemplazo de 30 (semilla `20261108`) más los 15 títulos con `volatility|variance|fluctuation|risk`; tres ya estaban en la muestra, por lo que se añadieron doce. Se mantienen preliminarmente **40 fuera del núcleo directo BTC–volatilidad** y se rescatan **E2-0807 como secundario** y **E2-0993 como incierto**. Algunos registros fuera del núcleo pueden seguir siendo antecedentes metodológicos. No se convierten esos dos rescates en inclusiones definitivas.
-
-En ese primer corte quedaban **295 exclusiones sin revisión individual**, revisadas después en el segundo corte descrito a continuación. La muestra combina azar y selección dirigida: no se extrapola su proporción de rescates como tasa de error global, ni se interpreta como prueba de ausencia de falsos negativos. La categoría automática de precio necesita revisión, no ejecución como descarte definitivo. La auditoría no confirma un nuevo estudio de pronóstico individual de volatilidad BTC; tampoco demuestra que no exista entre los pendientes.
-
-El [registro agregado](../_static/literature_review_progress_20261108/summary.json), el [método de auditoría](../_static/literature_review_progress_20261108/method.json) y el [manifiesto](../_static/literature_review_progress_20261108/manifest.json) conservan conteos, huellas y límites sin publicar resúmenes originales ni evidencias textuales privadas. El ledger del triaje inicial y los denominadores 1.634/1.078 permanecen intactos: este suplemento describe una fase posterior, no una reescritura de sus decisiones.
-
-**Alertas para la siguiente lectura, no hechos confirmados:** distinguir redes que predicen precio de GARCH que estima volatilidad; verificar ecuación del objetivo, BTC individual frente a cartera/índice y profundidad real de ANN/MLP. La posible relación entre E2-0265 y E2-0487 requiere autores, datos y textos completos antes de fusionarlos. Las fechas/copyright discordantes y una fecha narrativa imposible se deben contrastar, sin corregirlas por conjetura ni usarlas como acusación de falsedad. Las [alertas estructuradas](../_static/literature_review_progress_20261108/alerts.json) conservan estas preguntas.
-
-Esta revisión no cambia los **983 registros arXiv pendientes**, no concilia todavía las rondas y no cierra la revisión global. Los [próximos pasos](../_static/literature_review_progress_20261108/next_phases.json) son un plan editorial, no una enmienda experimental registrada.
-
-### Segundo corte: lectura de las 295 exclusiones restantes
-
-Se completó la lectura individual asistida por IA de las **295 exclusiones propuestas que faltaban**: **184 fuera del núcleo directo, 98 secundarios transferibles, 12 inciertos conservados y un candidato directo a texto completo**. La etiqueta técnica de exclusión abarca otros objetivos o dominios, no solo precio. Los 111 conservados para alguna función no son 111 estudios incluidos de volatilidad.
-
-La cobertura de lectura de este conjunto alcanza **337/337** al sumar las 42 auditorías previas. Esto no significa revisar íntegramente los 1.078 grupos ni cerrar la revisión global. Los 42 anteriores se evaluaron frente al núcleo directo; su utilidad secundaria no se reclasificó con el criterio posterior. Por ello, **no se suman las categorías de ambas rondas como una clasificación homogénea ni se estima una tasa general de error**. El [registro agregado de seguimiento](../_static/literature_screening_followup_20261108/summary.json) conserva ambos cortes sin alterar los ledgers históricos.
-
-**E2-0449** ([DOI](https://doi.org/10.1109/GIET65294.2025.11234750)) se rescata porque su resumen declara precio y volatilidad Bitcoin con redes bayesianas. Es un falso negativo de la regla inicial a nivel de título/resumen, **no una inclusión confirmada**: faltan proxy, profundidad, horizonte y evaluación temporal en el original. **E2-0538** ([DOI](https://doi.org/10.1109/DeCon67170.2025.11447794)) queda incierto prioritario: la descripción de precio/volatilidad con Attention-LSTM no confirma Bitcoin individual. No se confunden incertidumbre del precio, clasificación de regímenes o volatilidad de una cartera con el objetivo E2.
-
-### Primer corte de recuperación de los 40 candidatos iniciales
-
-Se examinaron **12 de los 40 candidatos directos del primer corte**: **cinco textos completos revisados en sus secciones metodológicas y empíricas**, **siete con material parcial o no recuperado** y **28 todavía sin búsqueda individual**. La selección fue dirigida, no representativa. El rescate posterior E2-0449 está fuera de esta cohorte de 40 y no se incorpora retroactivamente a su denominador. No se reprodujo código ni se decidió elegibilidad final.
-
-Las [cinco síntesis con fuentes y localizadores](../_static/literature_screening_followup_20261108/source_reviews.json) separan objetivos y resultados:
-
-| Estudio | Evidencia localizada | Consecuencia para E2 |
-|---|---|---|
-| E2-0012 · [híbridos neuronales Bitcoin](https://doi.org/10.3390/app10144768) | PDF pp. 6, 8–10, 13; tablas 3/9. HONN híbrida RMSE 0,022231812 frente GJR 0,022782066 | Objetivo de cinco días futuros y redes poco profundas; no equivalencia con σ₇ ni elegibilidad DL automática |
-| E2-0025 · [redes profundas y volatilidad cripto](https://dergipark.org.tr/en/download/article-file/4132956) | Páginas impresas 550,553–555; tablas 3/4. DBN-DNN tanh RMSE 0,0013300 frente ARMA-GARCH 0,0013604; BPNN sigmoid destaca en MAE | Proxy retorno diario al cuadrado; ganador dependiente de métrica |
-| E2-0059 · [GARCH híbrido con redes](https://doi.org/10.3390/risks10120237) | PDF pp. 11–14; tablas 3/6/7. A 21 días, tabla 6: HMAE triple-GRU 0,24004 frente triple-LSTM 2 0,26580 | No copiar una conclusión universal favorable a LSTM; reconciliar inconsistencias de tablas, objetivo y conteo de test |
-| E2-0253 · [predicción y conectividad cripto](https://link.springer.com/article/10.1186/s40854-025-00881-x) | Ecuación 1 y texto asociado a tabla 4: HAR 0,876, ARMA 0,896, LSTM 1,153 son promedios de pérdidas heterogéneas | **No son RMSE**; celdas individuales aún no recuperadas. No convertir ese promedio en superioridad universal |
-| E2-0867 · [TCN y Twitter](https://arxiv.org/pdf/2110.14317) | PDF pp. 3, 5–6, ecuación 2 y tabla 2: RMSE TCN 2,58±0,07; LSTM 2,37±0,19 | Volatilidad diaria desde 96 retornos intradía de 15 min, 20 ejecuciones y 48 días de test; no equivale a σ₇ D7×5 |
-
-**No comparar errores numéricos entre estas filas:** cambian proxy, escala, horizonte, datos y protocolo. Las discordancias internas detectadas se conservan como preguntas de verificación, sin corregir por inferencia. Las cifras son resultados publicados, no ajustes nuevos de E2.
-
-En los siete accesos incompletos, **NV significa no verificado/no recuperado**, nunca que el artículo no reporta el dato. Un error técnico, una vista previa o un pasaje indexado no cuentan como texto completo ni demuestran que no exista copia legal. Permanecen pendientes su recuperación, la búsqueda de los 28 y la adjudicación metodológica de los candidatos ya leídos. El [plan de próximos pasos actualizado](../_static/literature_screening_followup_20261108/next_phases.json) sigue siendo editorial, no un preregistro. Los originales, resúmenes y evidencias textuales privadas no se publican.
-
-### Segundo corte de recuperación: versiones separadas
-
-Una segunda tanda examinó **diez candidatos adicionales**: **dos textos editoriales completos, un preprint completo cuya versión editorial sigue pendiente y siete accesos parciales/no recuperados**. El acumulado de la cohorte original es **22/40 examinados = seis textos editoriales completos + dos preprints completos + catorce accesos parciales**, con **18 candidatos aún sin búsqueda individual**. Estos son estados de recuperación y lectura dirigida asistida por IA, no inclusión definitiva, doble revisión humana ni reproducción. E2-0449 permanece fuera de esta cohorte. **Corrección de versiones:** E2-0867 también procede de arXiv v2 y su equivalencia editorial sigue pendiente. Por ello se corrige el agregado privado de siete editoriales y un preprint a seis editoriales y dos preprints, conservando ocho textos completos. El [nuevo registro agregado](../_static/literature_recovery_second_20261108/summary.json) conserva los cortes anteriores.
-
-- **E2-0064:** el [PDF editorial en Cardiff](https://orca.cardiff.ac.uk/id/eprint/181110/5/Can%20machine%20learning%20models%20better%20volatility%20forecasting%20%20A%20combined%20method.pdf) estudia **BitVol, volatilidad implícita con tenor de 30 días**, con pronósticos a un día y promedio de cinco días. No es volatilidad realizada ni un pronóstico a 30 días. Tabla 3: LSTM RMSE 3,13 frente TGARCH 5,83 a un día. Tabla 5: la comparación DM a cinco días frente TGARCH tiene **p=0,053, no significativa al 5 %** (pp. impresas 9, 11–13, 15). Quedan por auditar interpolación, construcción temporal y discordancia de conteos de días.
-- **E2-0285:** se leyó el [preprint SSRN de 2022 enlazado por la autora](https://www.dorienherremans.com/sites/default/files/SSRN-id4247684.pdf), **no se verificó equivalencia con IEEE 2025** ([DOI editorial](https://doi.org/10.1109/ACCESS.2025.3584243)). Tabla 3 del preprint, p. impresa 26 (página 27 del archivo): Synthesizer FD obtiene F1 0,463 y RMSE 0,101; LSTM F1 0,171 y RMSE 0,095. **Mejor clasificación de picos no implica menor error de pronóstico.** El objetivo usa una transformación de dispersión anualizada y los picos también condicionan al retorno positivo; ventana y discordancia 46/60 picos requieren aclaración. Estas cifras no se atribuyen a la versión editorial.
-- **E2-0593:** el [texto editorial abierto](https://link.springer.com/article/10.1007/s42521-026-00229-9) compara redes, GARCH e híbridos por régimen. El HTML editorial sustenta la comparación por regímenes; **no se reproducen cifras exactas de sus tablas**, cuya extracción no pudo contrastarse independientemente. No se presupone superioridad universal ni significación a partir de diferencias numéricas. La descripción del proxy difiere entre las secciones 3.2 y 4.1; su construcción exacta y la inicialización rolling quedan abiertas.
-
-Las [tres síntesis verificables](../_static/literature_recovery_second_20261108/source_reviews.json) registran versión, localizador y límites. No se comparan cifras absolutas entre estudios ni se convierten fragmentos indexados de los siete accesos incompletos en resultados experimentales comprobados. El [plan actualizado](../_static/literature_recovery_second_20261108/next_phases.json) prioriza recuperar catorce parciales, buscar los dieciocho restantes y cotejar ambos preprints con sus versiones editoriales; no altera el protocolo experimental ni inicia entrenamiento.
-
-### Complemento arXiv: extracción completa de consultas explícitas
-
-La recuperación por API del **08/11/2026, 18:45:29 UTC** utilizó campos `all:`, sin filtro de fechas y con orden de envío descendente. El [manifiesto de consultas](../_static/literature_native_20261108/arxiv/query_manifest.json) conserva las cadenas completas, URLs paginadas y hashes de las respuestas privadas.
-
-| Consulta | Resultados API | Recuperados |
-|---|---:|---:|
-| Bitcoin AND volatility | 181 | 181 |
-| Bitcoin/cryptocurrency/cryptocurrencies AND volatility/variance | 391 | 391 |
-| Volatility/variance AND diez nombres de familias de la propuesta | 605 | 605 |
-| Volatility AND HAR AND neural/residual/hybrid | 22 | 22 |
-| Apariciones antes de unir consultas | **1.199** | **1.199** |
-
-La unión contiene **1.004 identificadores arXiv**, con **195 repeticiones entre consultas**; se verificó que la consulta Bitcoin es subconjunto de la consulta cripto. Se publican [metadatos](../_static/literature_native_20261108/arxiv/records.csv), [pertenencia por consulta](../_static/literature_native_20261108/arxiv/query_membership.csv) y [estado de cribado](../_static/literature_native_20261108/arxiv/screening_initial.csv): **21 etiquetas iniciales y 983 pendientes**, sin decisiones finales de inclusión. El término `variance` y las familias generales recuperan falsos positivos no financieros; extraer todo no significa haberlo revisado todo. Las búsquedas HTML auxiliares se excluyen de este denominador por inconsistencias en la interpretación de operadores booleanos.
-
-Estos 1.004 IDs **no se suman** a los 1.078 grupos de las exportaciones ni a los 7.833 históricos. La conciliación DOI/preprint/publicación entre las tres rondas permanece abierta. Los preprints no se presentan automáticamente como artículos revisados por pares o revistas de un cuartil determinado.
-
-La [lista pública cerrada y sus hashes](../_static/literature_native_20261108/manifest.json) fija los derivados de esta ronda. El {download}`expediente reproducible <../_static/literature_native_20261108/README.md>` separa validación de metadatos públicos, recuperación de fuentes y triaje privado; ninguno de esos procedimientos ejecuta modelos.
-
-### Evidencia aplicada que cambia la lectura de los candidatos
-
-[Volatility Forecasting in Global Financial Markets Using TimeMixer (arXiv:2410.09062)](https://arxiv.org/abs/2410.09062) incluye **BTCUSD 2014–2023** en la tabla 4, además de otras criptomonedas y mercados. Su sección de datos define volatilidad como desviación estándar móvil de **21 días** de log-retornos, anualizada por √252. Por tanto, aporta evidencia aplicada a Bitcoin, pero **no evalúa el objetivo σ₇ de E2**, no es volatilidad realizada intradía y sus errores no pueden compararse numéricamente con los del entregable. La identidad de la arquitectura tampoco sustituye comprobar la partición, el horizonte, las entradas y la variante concreta.
-
-[HARNet (arXiv:2205.07719)](https://arxiv.org/abs/2205.07719) documenta una red de convoluciones causales dilatadas inicializada para reproducir un HAR ajustado. El estudio trabaja con volatilidad realizada de índices bursátiles; sirve como antecedente de una estructura neuronal guiada por HAR, no como validación directa de σ₇ en Bitcoin ni como evidencia del nuevo candidato CNN-1D + LSTM + atención temporal.
-
-[Signal Simplification Is Not Predictive Simplification (arXiv:2610.03019)](https://arxiv.org/abs/2610.03019) examina **HAR-style + LSTM residual** en cinco activos estadounidenses. Informa que el híbrido empeora el MSE medio frente a HAR-style (0,3594 frente a 0,3049), mientras la LSTM sola obtiene 0,2649. Estas cifras son resultados del artículo, no de E2. Este antecedente corresponde a la hipótesis HAR residual retirada; se conserva como lectura histórica y no respalda ni refuta el nuevo candidato CNN-1D + LSTM + atención temporal.
-
-### Cuatro altas y una hipótesis adicional, sin transferir evidencia histórica
-
-Las [fichas actualizadas de la propuesta](15_revision_modelos.md) identifican fuentes para **FCN-1D y ResNet-1D** ([Wang et al.](https://arxiv.org/abs/1611.06455)) y **Inception-1D** ([InceptionTime](https://arxiv.org/abs/1909.04939)). Esas fuentes estudian clasificación temporal: justifican mecanismos, no su eficacia en regresión de volatilidad. Adaptar la cabeza, los kernels y el entrenamiento a D7×5 debe quedar registrado y probado.
-
-La arquitectura exacta del **LSTM-autoencoder con predictor** permanece abierta. La [ficha ampliada](16_fichas_nuevas.md) incorpora Sagheer y Kotb (2019): preentrenamiento autoencoder seguido de ajuste supervisado. No acredita una pérdida conjunta ni evidencia Bitcoin; tampoco se equipara un VAE con LSTM o un detector de anomalías con el encoder–decoder propuesto. Tampoco se heredan lecturas, métricas, puntuaciones, licencias o código de los modelos retirados.
-
-### Qué queda cerrado y qué no
-
-La evidencia nueva permite corregir el contexto aplicado de TimeMixer, documentar fuentes arquitectónicas de las cuatro altas con distinto grado de correspondencia y conservar antecedentes de mecanismos híbridos distintos; no constituye verificación bibliográfica de la receta CNN-1D + LSTM + atención temporal exacta. **No cierra el Top 10 por ranking, una revisión PRISMA global, los cuartiles por año, el autoencoder exacto ni la superioridad del modelo 11.** El cribado asistido y la lectura dirigida se presentan con sus denominadores y límites; no se atribuyen a dos revisores humanos independientes.
-
-La integración bibliográfica no entrena modelos, no modifica el registro experimental, no introduce resultados de mercado nuevos y no recupera el cegamiento del test conocido. El catálogo registrado y sus recibos permanecen separados de la propuesta editorial del 08/11.
-
-## Expediente histórico del 05–06/11/2026
-
-Las cifras y estados siguientes corresponden a ese corte. Se conservan para reconstruir sus decisiones; las afirmaciones de acceso pendiente se interpretan a la fecha del corte, no como negación de los materiales recibidos posteriormente.
-
-**Resultado bibliográfico:** selección provisional de **diez modelos de Deep Learning para pronosticar la volatilidad de Bitcoin**, con exportaciones de **WoS y Scopus**, lectura de **diez originales completos —215 páginas físicas—** y código de autores identificado por commit y hash. La ampliación del **06/11/2026** añade un cribado local por reglas de los **7.833 grupos recibidos**, con decisión provisional y motivo por registro; no cierra la elegibilidad global por texto completo.
-
-Las fichas, el flujo inicial y los contadores bibliográficos del **05/11/2026** se conservan como evidencia histórica. La [sección 5](05_paper_guia.md) documenta después la réplica externa de TimeMixer y el piloto de tres modelos en ETTh1. En la etapa actual se implementaron adaptadores D7 para el piloto P0 de desarrollo, cuya ejecución completó 220 trayectorias y 440 ajustes bajo el [protocolo registrado](09_protocolo_registrado.md); esto todavía no acredita el benchmark final, la búsqueda HPO ni la potencia del procedimiento definitivo.
-
-**Estado de la revisión:** recepción, deduplicación, extracción de diez originales y primera pasada por reglas sobre todos los grupos recibidos completadas. Permanecen abiertos la cobertura de las consultas, la validación editorial de las decisiones provisionales, la elegibilidad por texto completo, los siete cuerpos aplicados de apoyo y los cuartiles por año. También se ejecutaron tres consultas **locales** sobre los registros recibidos; siguen pendientes sus búsquedas nativas WoS/Scopus y los originales de los mecanismos de origen. No se presenta un PRISMA global cerrado.
-
-El catálogo de §15 documenta la propuesta de aquel corte. El alcance obligatorio posterior se fija en [§43](43_catalogo_obligatorio.md), las identidades arquitectónicas en [§44](44_arquitecturas_publicadas.md) y el calendario común en la [enmienda registrada de §45](45_enmienda_protocolo.md).
-
-Los protocolos anteriores conservan su valor histórico; sus conteos y recetas no definen la selección vigente.
+El {download}`índice de evidencias vigente <../_static/e2_literature_current_v1/README.md>`, la [lista de cotejo de 41 requisitos](../_static/e2_literature_current_v1/guide_checklist.csv), la [trazabilidad requisito–evidencia](../_static/e2_literature_current_v1/decision_traceability.csv) y el [manifiesto](../_static/e2_literature_current_v1/manifest.json) permiten revisar el alcance. Los resultados externos se mantienen separados del [benchmark E2 completado](06_benchmark_final.md): dieciséis sistemas, 81 predictores congelados y 608 fechas comunes. Esta consolidación documental no cambia sus resultados ni atribuye retrospectivamente a los puntajes bibliográficos la selección experimental anterior.
 
 ## 3.1 Estrategia de búsqueda y trazabilidad
 
 ### 3.1.1 Cadenas aportadas y procedencia
 
-El usuario ejecutó búsquedas manuales y aportó tres exportaciones nativas WoS de texto plano, con registro completo y referencias citadas. También proporcionó estas dos cadenas:
-
-**Q1 · Aplicación: criptomonedas y volatilidad.**
+Las cadenas originales se recuperaron del historial de GitHub y de los recibos; no faltan por volver a solicitarlas. Se conservan operadores y campos exactos. **Q1 · Aplicación, WoS:**
 
 ```text
 TS=((bitcoin OR ethereum OR cryptocurrenc* OR cryptoasset*)
@@ -151,7 +17,7 @@ AND ("deep learning" OR "neural network*" OR transformer*
 OR LSTM OR GRU OR CNN OR TCN))
 ```
 
-**Q2 · Familias y mecanismos candidatos.**
+**Q2 · Familias y mecanismos, WoS:**
 
 ```text
 TS=(("time series" OR forecasting OR "temporal prediction")
@@ -160,154 +26,253 @@ OR Crossformer OR TimesNet OR MICN OR Mamba
 OR "structured state space"))
 ```
 
-Se conservan como dos consultas, no como una cadena unida mediante una coma. Q2 es la consulta efectivamente aportada: **Informer y Autoformer se identificaron en la evidencia examinada y se ampliaron mediante fuentes de autores; no se atribuye a esa Q2 una búsqueda nominal que no contiene.**
+Son dos consultas distintas. Q2 no contiene Informer ni Autoformer; sus fuentes dirigidas no se presentan como resultados de una búsqueda nominal inexistente. El [ledger de consultas originales](../_static/e2_literature_closure_final/search_history/git_query_history_ledger.csv) enlaza cadena, plataforma, commit, archivo, filtros conocidos y cobertura. El manifiesto [WoS](../_static/literature_wos/source_manifest.json), el de [Scopus](../_static/literature_scopus/source_manifest.json) y el de [arXiv](../_static/literature_native_20261108/arxiv/query_manifest.json) conservan hashes y paginación disponible.
 
-| Archivo recibido | Registros completos PT–ER | Evidencia disponible |
-|---|---:|---|
-| `savedrecs.txt` | 302 | Cantidad coincidente con la captura WoS de 302 resultados |
-| `savedrecs (1).txt` | 500 | Lote exportado; rango global no confirmado |
-| `savedrecs (2).txt` | 500 | Lote exportado; rango global no confirmado |
-| Total de ocurrencias recibidas | **1.302** | No equivale al universo global desconocido de las dos consultas |
+**Fechas y filtros.** La fecha de recepción o de un commit no equivale a la ejecución de una búsqueda. Los WoS iniciales tienen `DA=2026-11-06`, sin hora ni zona; los lotes de 302/500/500 registros no identifican inequívocamente su consulta y rango de exportación. Para Scopus se documentan 7.500 recibidos frente a 7.874 mostrados, pero el CSV no contiene todos los filtros nativos. La ventana principal es **2019–2026**, con excepciones fundacionales justificadas —Wang 2016—; las exportaciones contienen años fuera de esa ventana y no se las describe como si ya estuvieran íntegramente filtradas. Cada estudio conserva fecha nominal, versión leída y rol.
 
-Los TXT no incorporan la cadena ni el rango global de exportación. La asociación archivo–consulta se mantiene como inferencia pendiente de confirmación; no impide analizar los registros como un conjunto recibido. Los originales se preservan fuera de los archivos públicos. Se publican metadatos bibliográficos derivados, identificadores, conteos y hashes, sin reproducir el conjunto de abstracts, referencias, emails o direcciones.
-
-**Fechas:** el campo WoS `DA` indica **2026-11-06**, sin hora ni zona. La recepción administrativa se registra como **2026-11-05, America/Bogota**. No se convierte el campo DA en una fecha/hora de ejecución de la consulta que el archivo no proporciona. El [manifiesto de procedencia](../_static/literature_wos/source_manifest.json) conserva las identidades de los tres archivos.
+Las cuatro consultas complementarias arXiv del 08/11 se ejecutaron por API a las 18:45:29 UTC, sin filtro de fecha y con paginación registrada: Bitcoin/volatilidad; cripto/volatilidad o varianza; volatilidad/varianza y familias; HAR/volatilidad y redes. El manifiesto enlazado conserva las expresiones completas, no sólo estas descripciones. Las tres cadenas transversales de §3.1.5 tienen otro recibo y denominador.
 
 ### 3.1.2 Bases, periodo y cobertura
 
-| Fuente | Estado verificable de esta etapa |
-|---|---|
-| Web of Science | Tres exportaciones nativas: 1.302 ocurrencias y 1.298 grupos bibliográficos; total global y rangos de Q2 no confirmados |
-| Scopus | CSV nativo con **7.500 registros de 7.874 mostrados** en título/resumen/palabras clave: 95,25 % recibido y **374 no recibidos**. Los 2.845 resultados de la captura anterior en Keywords corresponden a otra cobertura y no se suman |
-| IEEE Xplore y arXiv | Capturas de páginas de búsqueda sin exportación de resultados. Los PDF recuperados directamente de arXiv/OpenReview son originales leídos, sin acreditarlos como una búsqueda sistemática adicional |
-| GitHub de autores | Diez backbones con código, revisiones y hashes verificados; fuente primaria de implementación, sin contarlo como base bibliográfica adicional |
+Se recibieron exportaciones nativas de **WoS y Scopus**; IEEE Xplore aporta una ronda adicional y arXiv es complemento. GitHub de autores se usa para código/artefactos, no se cuenta como otra base bibliográfica. Las consultas y recuperaciones dirigidas se distinguen de una descarga completa de resultados.
 
-La guía exige al menos dos bases y permite arXiv como complemento. **Se recibieron exportaciones nativas de dos bases: WoS y Scopus.** La cobertura parcial no se convierte en exhaustividad. El [manifiesto Scopus](../_static/literature_scopus/source_manifest.json) conserva hash, nombre y procedencia; el [resumen combinado](../_static/literature_scopus/summary.json) permite comprobar las cuentas. Los intentos del asistente a plataformas académicas fueron bloqueados por la red; las exportaciones nativas proceden del trabajo manual del usuario.
+| Ronda recibida | Ocurrencias | Duplicados dentro de ronda | Grupos de la ronda | Alcance de cobertura |
+|---|---:|---:|---:|---|
+| WoS + Scopus iniciales | 8.802 | 969 | 7.833 | Scopus: 7.500/7.874; WoS: lotes 302/500/500, totales y rangos globales incompletos |
+| WoS + Scopus + IEEE posterior | 1.634 | 556 | 1.078 | 340/828/466 ocurrencias; conserva sus consultas y filtros conocidos, sin imputar los ausentes |
+| arXiv complementario | 1.199 | 195 | 1.004 | Cuatro consultas: 181/391/605/22 apariciones; extracción API registrada |
+| Antes de conciliar rondas | **11.635** | **1.720** | **9.915** | Los grupos de diferentes rondas todavía pueden repetir un estudio |
+| Enlaces entre rondas | — | **356** | **9.559** | Unión bibliográfica recibida, no universo completo de las bases |
 
-El reenvío de Scopus del **06/11/2026** tiene el mismo SHA-256 que la exportación anterior, `387f673a2146902ce12888ab3d662c095abc33d2cf5b54a168e9e2a12099f7de`. No añade registros ni se suma como otra búsqueda: permanecen los **374 no recibidos**. Los [recibos de la ampliación](../_static/literature_remediation/provenance.json) conservan las huellas de sus entradas y derivados.
+Los reenvíos con el mismo SHA no se suman como búsquedas nuevas. Las rondas dirigidas de 1.104 registros Scopus aplicados y de nueve fuentes actuales aportan material por identidad; no se añaden sin deduplicación a los 9.559 ni se consideran recuperación de los 374 ausentes. Los seis grupos exclusivamente dirigidos quedan fuera del denominador recibido. [Conciliación por ronda](../_static/e2_literature_final_audit_20261114/rounds.csv) y [enlaces conservados](../_static/e2_literature_final_audit_20261114/cross_round_link_ledger.csv).
 
-El periodo principal propuesto es **2019–2026**, con trabajos fundacionales anteriores justificados por separado. Las exportaciones WoS recibidas contienen años nominales **2006–2027**, por lo que no se afirma que ya estén filtradas a ese intervalo. Sobre los 1.298 grupos bibliográficos WoS deduplicados:
-
-- 1.222 tienen año nominal 2019–2026.
-- 26 tienen año nominal fuera del intervalo y *Early Access* 2019–2026: requieren verificar la fecha efectiva, sin descartarlos solo por el volumen de 2027.
-- 49 quedan fuera de la ventana y requieren justificación fundacional o exclusión.
-- Uno no tiene la ventana de publicación confirmada con los campos disponibles.
-
-Scopus contiene años nominales 1997–2027, incluidos 112 registros de 2027 sin fecha explícita de Early Access: deben verificarse antes de declararlos elegibles. No se traslada automáticamente a Scopus la fecha de publicación anticipada disponible en WoS. La cadena completa y los filtros efectivos del CSV no están embebidos en el archivo; se conserva la consulta aportada y la captura, sin inventar filtros o rangos. No se extrapolan frecuencias de estas exportaciones parciales a toda la literatura.
+La cobertura histórica permanece limitada por **374 resultados Scopus mostrados pero no recibidos** y por totales/rangos WoS incompletos. Son límites de cobertura, no exclusiones científicas. El flujo del material recibido se cierra con disposiciones explícitas; no se afirma exhaustividad global ni se exige inventar un total nativo desconocido.
 
 ### 3.1.3 Inclusión, exclusión y evaluación de calidad
 
-Se distinguen **volatilidad de criptomonedas**, **volatilidad financiera de otros activos** y **mecanismos transferibles de otros dominios**. «Volatilidad» como contexto de un artículo de precios, trading o clasificación no acredita una red que pronostique nuestra variable continua σ₇.
-
-| Criterio | Regla de revisión |
+| Criterio | Regla aplicada y límite |
 |---|---|
-| Relevancia | Identificar la variable realmente pronosticada y el papel del modelo; separar aplicación directa y transferencia |
-| Deep Learning | Mecanismo profundo identificable; modelos lineales o ajustes de hiperparámetros de una misma base no completan automáticamente los diez cupos |
-| Reproducibilidad | Verificar código primario o detalles suficientes; código público y adaptación implementada son estados distintos |
-| Métricas | Registrar datos, horizonte, unidades, ubicación de la evidencia y dispersión; no comparar RMSE de escalas distintas |
-| Calidad editorial | Conservar revista/congreso e índice WoS del registro. Cuartil e impacto requieren fuente y año específicos; permanecen no verificados |
-| Riesgo metodológico | Auditar partición, fuga, repeticiones y equidad del ajuste en el original; si solo se examinó el resumen, usar **no verificado**, no «no reportado» |
-| Versiones | Agrupar preprint/publicación cuando su identidad esté verificada y conservar la versión realmente leída; un preprint no se atribuye al cuerpo editorial sin verificar equivalencia |
+| Relevancia | Verificar la variable realmente predicha y el papel de la red. Precio, retorno, trading o incertidumbre predictiva no equivalen automáticamente a pronóstico de dispersión. |
+| Rol en la revisión | Separar núcleo aplicado cripto, contexto financiero de otros mercados y fuentes de mecanismos transferibles. Diferir de σ₇ no excluye por sí solo un antecedente. |
+| Deep Learning | Identificar arquitectura y profundidad/rol neuronal en la evidencia primaria; una mención en título o bibliografía no basta. |
+| Datos y métricas | Registrar población, proxy, escala, frecuencia, horizonte, lookback, partición y versión. No combinar errores de tareas distintas como un efecto común. |
+| Reproducibilidad | Distinguir datos/código públicos identificados, snapshot exacto, detalles suficientes y reproducción numérica ejecutada. |
+| Calidad editorial | Conservar revista/congreso, identificadores y año de la fuente. Q1 es preferido, no requisito universal de los congresos; el cuartil exige fuente y año propios. No se deduce Q1 de un DOI, de estar en Scopus ni de ser citado. |
+| Riesgo metodológico | Examinar fuga, ámbito de escalado, repeticiones, semillas, pruebas y esfuerzo de comparadores. NR significa no reportado en el alcance revisado; NV, no verificado. Ninguno demuestra fuga o cero repeticiones. |
+| Identidades y versiones | Enlazar preprint/publicación sólo con evidencia de identidad; conservar fórmulas y resultados de la versión leída. Los contenedores de actas no son otro estudio empírico. |
 
-No se calculó κ de Cohen: no hay dos revisores humanos independientes acreditados. La curación es editorial asistida por agentes, con verificaciones de identificadores y código; no se presenta como doble revisión humana.
+El cribado y las adjudicaciones fueron **asistidos por IA**; no hay dos revisores humanos independientes acreditados y **κ de Cohen no aplica como resultado disponible**. Cada dictamen distingue título, resumen y examen de secciones primarias. «Evaluación primaria» no significa lectura íntegra de cada PDF.
+
+La [extracción aplicada](https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/main/references/literature_e2/prisma_received_v1/quality_applied_studies.csv) tiene **504 filas: 42 estudios × doce dimensiones fijas** —objetivo, horizonte, modelos, datos, partición, fuga, repeticiones, HPO, métricas, pruebas, código y equidad—, con versión preferida, valores, localizadores y estado de verificación. La [extracción de los diez sistemas](../_static/e2_literature_closure_20261113/current10_extraction.csv) complementa arquitectura, adaptación, familia, código autoral y eficiencia fuente. Sus denominadores son diferentes.
+
+Para las **nueve fuentes arquitectónicas actuales**, la [matriz de calidad vigente](../_static/e2_literature_delivery_closure_20261114_v3/quality/current_nine_quality.csv) registra:
+
+| Condición de reporte | Estado en nueve estudios |
+|---|---|
+| Partición | Ocho reportada; una NR |
+| Escalado ajustado sólo con entrenamiento | Dos reportado; seis NR; una NV |
+| Repeticiones del resultado examinado | Cuatro reportadas; tres NR; una parcial; una NV |
+| Identificadores de semillas | Una fuente reporta; ocho NR |
+| Igual presupuesto HPO entre comparadores | Nueve NR |
+| Fuentes públicas de datos / repositorios de autor | **9/9 y 9/9 identificados**, sin acreditar por ello réplica o snapshots exactos |
+
+La evaluación de sesgo se apoya en ese reporte y sus localizadores; no traduce campos NR/NV en acusaciones de fuga o desigualdad demostrada. Los resultados favorables y adversos se conservan.
 
 ### 3.1.4 Flujo de recepción y deduplicación
 
-**8.802 ocurrencias recibidas → 7.833 grupos bibliográficos.** WoS aporta 1.302 ocurrencias, 1.300 UT únicos y 1.298 grupos; Scopus aporta 7.500 EID únicos y 7.499 grupos después de unir un DOI duplicado. Entre bases se enlazan 964 grupos: 960 por DOI y cuatro por título/año/revista cuando falta DOI. Se conservan 334 grupos exclusivos de WoS y 6.535 de Scopus. Las **969 duplicaciones** son cuatro internas WoS, una interna Scopus y 964 enlaces entre bases.
+```{figure} ../_static/e2_prisma_received_v1/prisma_received.svg
+:alt: Flujo reconciliado del corpus recibido: 9559 grupos cribados y 42 estudios aplicados únicos.
+:width: 100%
 
-La [tabla de deduplicación](../_static/literature_wos/deduplication.csv) mantiene cada decisión. Los [registros derivados](../_static/literature_wos/records.csv) conservan procedencia por archivo y posición. El [resumen de importación](../_static/literature_wos/summary.json) diferencia ocurrencias, UT, grupos, años y datos ausentes.
+Flujo tipo PRISMA del corpus recibido, con unidades y destinos diferenciados.
+```
 
-Los [enlaces entre bases](../_static/literature_scopus/cross_database_links.csv) y los [7.833 grupos](../_static/literature_scopus/combined_records.csv) mantienen los identificadores originales. Las citas WoS TC y Scopus Cited by permanecen separadas; no se suman.
+| Etapa / unidad | Resultado |
+|---|---:|
+| Ocurrencias − duplicados internos − reducciones entre rondas | **11.635 − 1.720 − 356 = 9.559 grupos** |
+| Grupos cribados, exactamente una disposición por grupo | **9.559/9.559** |
+| Resúmenes auténticos almacenados y enlazados | **8.939** |
+| Grupos con resumen íntegro leído o lectura previa reutilizada en el cribado | **2.197** |
+| Exclusiones del núcleo por título, resumen o metadatos | **7.084** |
+| Candidatos contextuales en otra función / retenidos para comprobación documental | **2.178 / 297** |
+| Informes no recuperados / contenedores enlazados | **174 / 2** |
+| Grupos con evidencia primaria / evaluaciones primarias focales o reutilizadas | **121 / 120** |
+| Grupos con inclusión aplicada / estudios aplicados únicos | **44 / 42** |
+| Pendientes operativos del flujo recibido | **0** |
 
-![Flujo histórico de recepción y revisión dirigida del 05/11/2026](../_static/literature_selection/receipt_flow.png)
+Los 121 grupos con evidencia primaria se distribuyen en 44 inclusiones aplicadas, 34 exclusiones tras secciones primarias, 41 contextos y dos informes con criterio DL no resuelto. Una evaluación puede reutilizarse para grupos del mismo estudio; 44 grupos no son 44 estudios independientes. Los **174 informes no recuperados** tienen intentos documentados y elegibilidad desconocida, sin contarse como exclusiones científicas. Los dos contextos con incertidumbre tras la lectura no requieren repetir un PDF idéntico para simular un cierre.
 
-Este flujo conserva el tramo histórico de identificación y depuración. La recuperación dirigida permitió **leer diez originales arquitectónicos completos**, incluidos apéndices y referencias; sus [recibos PDF](../_static/literature_fulltext/fulltext_manifest.json) fijan versión, tamaño, SHA-256 y páginas físicas. La ampliación siguiente agrega el cribado local, sin acreditar todavía **elegibilidad global por texto completo**. Los diez originales no se presentan como el total de estudios incluidos de una revisión global. Hay además ocho registros WoS de apoyo aplicado; hay fuentes de apoyo compartidas y solapamiento con originales arquitectónicos. No son dieciocho estudios independientes.
-
-La detección automática produjo pistas de cribado, no comparadores independientes acreditados. Por ejemplo, TiDE debe distinguirse del término inglés *tide* —marea—; aparecer en un abstract o una referencia no demuestra que el modelo fuera evaluado como comparador autónomo.
-
-#### Ampliación del 06/11/2026: cribado local de los 7.833 grupos
-
-Se aplicó el [protocolo reproducible de primera pasada](../_static/literature_remediation/protocol.json) al título y a los resúmenes privados asociados a cada grupo. Se priorizan volatilidad cripto, volatilidad financiera y mecanismos transferibles; los originales y apoyos ya identificados se conservan para revisión. El [registro completo](../_static/literature_remediation/screening_ledger.csv) documenta cada identificador, procedencia, términos detectados, huella del resumen, regla, motivo y estado. No publica los resúmenes completos.
-
-| Decisión de primera pasada | Grupos | Interpretación |
-|---|---:|---|
-| Exclusión provisional por título/resumen | **4.323** | Recomendación automática con motivo; requiere validación editorial |
-| Retención para recuperación o evaluación del texto completo | **2.436** | Candidato retenido, todavía no estudio incluido |
-| Revisión manual pendiente | **1.074** | Objetivo, mecanismo, homónimo o papel del estudio ambiguos |
-| Total procesado | **7.833** | Un registro por grupo recibido, sin omisiones ni duplicaciones |
-
-La [cola priorizada](../_static/literature_remediation/priority_queue.csv) reúne **3.510 grupos**, incluidos los ambiguos; la [cola financiera](../_static/literature_remediation/financial_priority_queue.csv) contiene **602**. El [conteo de motivos](../_static/literature_remediation/reason_counts.csv), el [resumen](../_static/literature_remediation/summary.json) y el [estado PRISMA](../_static/literature_remediation/prisma_status.json) reconcilian estas cantidades. Las recomendaciones automáticas no son exclusiones finales validadas ni el total de estudios elegibles. La cantidad de incluidos de la revisión sistemática permanece **sin determinar**, no se sustituye por cero.
-
-Se realizó además una [lectura editorial asistida de 17 resúmenes prioritarios](../_static/literature_remediation/editorial_title_abstract_checks.json): **diez** declaran pronóstico de volatilidad, **seis** estudian precio, retorno o trading y **uno** presenta una definición ambigua entre retorno y volatilidad. Los seis trabajos cripto de esta comprobación en esta comprobación se conservaron como contexto de otro objetivo; no se suman como respaldo directo de σ₇. Las diez declaraciones de volatilidad también requieren comprobar definición, arquitectura y protocolo en el cuerpo del artículo. No se acredita lectura completa de estos 17 textos, dos revisores humanos independientes ni κ de Cohen.
+El [ledger individual](https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/main/references/literature_e2/prisma_received_v1/received_groups_9559.csv), el [flujo estructurado](../_static/e2_prisma_received_v1/received_flow.json), el [recibo de cierre](../_static/e2_prisma_received_v1/completion_receipt.json), los [dictámenes compactos](https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/main/references/literature_e2/prisma_received_v1/full_reports_compact.jsonl) y los [intentos de recuperación](https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/main/references/literature_e2/prisma_received_v1/retrieval_attempts.csv) permiten reconstruir los destinos. Las 396 lecturas y las colas de recuperación de cortes anteriores permanecen en el archivo histórico; no son el estado vigente.
 
 ### 3.1.5 Búsqueda transversal de mecanismos
 
-Se conservan las tres cadenas propuestas para búsquedas nativas. El **06/11/2026** se ejecutaron conjunciones locales de mecanismo, modalidad de origen y transferencia/adaptación sobre los **7.833 grupos ya recibidos**. El [registro de consultas locales](../_static/literature_remediation/local_transversal_searches.json) especifica las expresiones, las variantes regex efectivamente utilizadas y su alcance; no equivale al campo TS ni a una nueva consulta global de la base.
+La guía requiere tres cadenas que combinen mecanismo, modalidad de origen y transferencia/adaptación. Las tres siguientes se ejecutaron contra la API nativa arXiv, sin filtro de fecha y con `start=0,max_results=10`:
 
 ```text
-TS=(("vision transformer" OR "self-attention")
-AND ("computer vision" OR image*) AND (transfer* OR adapt*))
+all:"residual network" AND all:vision AND (all:transfer OR all:adaptation)
+all:attention AND all:"image patches" AND (all:transfer OR all:adaptation)
+all:"LSTM autoencoder" AND all:industrial AND (all:transfer OR all:adaptation)
 ```
 
-```text
-TS=(("MLP-Mixer" OR "token mixing" OR "channel mixing")
-AND (vision OR image*) AND (transfer* OR adapt*))
-```
+| Consulta | Ejecución nativa, UTC del 13/11/2026 | Total nativo | Ocurrencias recuperadas |
+|---|---|---:|---:|
+| Residuales / visión | 19:29:26 | 106 | 10 |
+| Atención / parches de imagen | 19:29:30 | 78 | 10 |
+| LSTM-autoencoder / industria | 19:29:33 | 3 | 3 |
 
-```text
-TS=(("selective state space" OR Mamba)
-AND (language OR speech OR audio) AND (transfer* OR adapt*))
-```
+El [recibo verificado](../_static/e2_native_transverse_20261113/source_summary.json), la [tabla de consultas](../_static/e2_native_transverse_20261113/query_counts.csv) y su [manifiesto](../_static/e2_native_transverse_20261113/manifest.json) sustituyen el estado «intento fallido» para esta recuperación posterior. El intento previo bloqueado a las 18:52:37 conserva sus nulos históricos. **187 es suma de totales nativos y 23 es suma de ocurrencias recuperadas; ninguno es un número de estudios únicos incluidos.** La ronda no está íntegramente recuperada, deduplicada y adjudicada, y no se suma al flujo de 9.559 grupos.
 
-| Consulta local | Grupos coincidentes |
-|---|---:|
-| Atención / visión | **15** |
-| Mezcla de tokens o canales / visión | **3** |
-| Estado selectivo / lenguaje, voz o audio | **90** |
-| Unión sin duplicar grupos | **102** |
+La [tabla de mecanismos candidatos](../_static/e2_literature_closure_20261113/transverse_mechanisms.csv) registra aplicación de origen, fuente primaria, propiedad transferible, puente al catálogo y límite D7:
 
-Los [resultados locales por identificador](../_static/literature_remediation/local_transversal_hits.csv) permiten seguir cada coincidencia. Hay solapamiento entre consultas; 15 + 3 + 90 no representa 108 estudios independientes. Se ejecutaron **cero nuevas consultas nativas** en esta ampliación. La cobertura heredada, seleccionada por otras consultas, impide interpretar la ausencia de un resultado local como ausencia en WoS/Scopus.
+| Mecanismo / origen | Fuente primaria y puente | Propiedad y valoración preliminar de transferencia |
+|---|---|---|
+| Convolución, residuales y pooling / visión | [Long et al.](https://arxiv.org/abs/1411.4038), [He et al.](https://arxiv.org/abs/1512.03385) → Wang | Localidad y optimización residual; padding y campo receptivo deben respetar los siete días observados. |
+| Ramas multiescala / visión | [Szegedy et al.](https://arxiv.org/abs/1602.07261) → InceptionTime | Filtros paralelos; kernels 40/20/10 exceden D7 y no aportan historia adicional. |
+| Tokens de segmentos / visión | [ViT](https://arxiv.org/abs/2010.11929), [Swin](https://arxiv.org/abs/2103.14030) → PatchTST/Crossformer | Segmentar observaciones para atención; adaptar geometría sin inventar días ni intercambiar ejes temporal/variables. |
+| Mezcla de posiciones y canales / visión | [MLP-Mixer](https://arxiv.org/abs/2105.01601) → TSMixer | Separar mezcla temporal y de covariables; el contexto corto no hereda ventajas de secuencias largas. |
 
-La búsqueda transversal aporta antecedentes, no un catálogo adicional de modelos. Recuperar código o detectar un mecanismo no sustituye leer y verificar sus fuentes.
+La tabla alimenta la selección del modelo original de E3 sin comprometerla. Identificar referencias de origen no acredita lectura íntegra de todas ellas ni eficacia transferida. Las tres consultas **locales** anteriores de atención/visión, mezcla/visión y estado selectivo/lenguaje —15/3/90 coincidencias; unión 102— conservan otro alcance y no se presentan como búsquedas nativas adicionales.
 
 ### 3.1.6 Verificación acotada del material disponible
 
-La [evaluación posterior de admisibilidad](../_static/literature_completion/architectural_originals_eligibility.csv) aplica criterios explícitos a los **diez originales completos** ya extraídos: identidad, ventana de publicación, mecanismo profundo, par de métricas localizable, código primario y límites de transferencia. Los **diez archivos principales de autores se cotejaron nuevamente con sus hashes**. Los estudios resultan admisibles como fuentes de mecanismos de pronóstico de otros dominios, con las limitaciones de calidad ya documentadas. Esto no cierra el universo sistemático, no prueba efectividad en Bitcoin ni certifica las recetas finales D7.
+Los cuatro originales aportados después de los primeros cortes ya tienen dictamen: **Framework AMEM–LSTM, Stacking y CEEMDAN–RF–LSTM incluidos narrativamente; Jordan fuera del núcleo DL y conservado como comparador neuronal**. El [cierre focal](../_static/e2_literature_closure_final/flow.json) mantiene su denominador de treinta objetivos: 17 incluidos, once excluidos y dos contextos de efecto no identificable. Sus cero accesos/revisiones pendientes no equivalen a ausencia de incertidumbre científica. Este corte focal no reemplaza las 42 inclusiones del flujo recibido.
 
-Se [revalidaron las identidades y rutas de los 17 resúmenes](../_static/literature_completion/financial_abstract_routes_17.csv): diez se retienen para verificar volatilidad en texto completo, seis no acreditan el objetivo de volatilidad por describir precio/retorno/trading, y uno requiere resolver su definición matemática. Es una comprobación acotada de los mismos resúmenes, no diecisiete cuerpos nuevos leídos ni revisores humanos independientes.
-
-La [tabla reproducible de intervalos de 29 modelos/familias](../_static/literature_completion/candidate_score_intervals_29.csv) y su [regla de puntuación](../_static/literature_completion/score_protocol.json) conservan nulos/vacíos los componentes desconocidos. Se verifican dos identidades originales adicionales en la exportación recibida: **MICN**, con 597 citas Scopus, y **CryptoMamba-SSM de volatilidad**, con tres. Este último es distinto de CryptoMamba de precio. Identidad y citas no acreditan cuerpo, código o adaptación; no se produce un ranking final ni se sustituyen modelos solo por menciones o antigüedad.
-
-El trazado histórico de mecanismos se conserva en los artefactos de auditoría; no amplía la selección actual ni acredita ejecución del catálogo vigente.
-
-La [cola de fuente de datos](../_static/literature_completion/dataset_source_candidates.csv) distingue ocho coincidencias de Binance: **cinco son Binance Coin** y tres no bastan para identificar el exchange o proveedor. Ninguna se usa como prueba de uso de datos Binance ni de Q1. El cuartil y el año requieren evidencia propia; no se exige que una referencia haya utilizado exactamente nuestro snapshot.
-
-La [recuperación adicional de cuerpos](../_static/literature_completion/recovery_scope.json) revisó **40 PDF privados, 35 documentos únicos**, y [cotejó siete cuerpos heredados de E1](../_static/literature_completion/inherited_E1_body_reverification.json). Esos siete no son los siete apoyos nuevos de E2: [siguen sin recuperarse sus cuerpos y los de once candidatos financieros prioritarios](../_static/literature_completion/applied_fulltext_recovery_status.json). Se recuperó la copia fijada del manuscrito heredado S2 y se verificó su identidad anterior; no se cuenta como un estudio E2 nuevo. Los [README de dos repositorios aplicados](../_static/literature_completion/applied_author_repository_context.json), de 230 y 246 bytes, identifican artículos/código y no sustituyen los manuscritos. Dos coincidencias aparentes de DOI se resolvieron como una referencia en otro artículo y una bibliografía del proyecto. Esta recuperación acotada no acredita indisponibilidad global, exclusiones por texto completo ni nuevos resultados de esos estudios.
-
-El [resumen y alcance de esta ampliación](../_static/literature_completion/summary.json), sus [hashes](../_static/literature_completion/provenance.json) y los [insumos externos pendientes](../_static/literature_completion/manual_inputs_required.json) separan estas verificaciones del PRISMA global aún abierto. Los recibos históricos no se reescriben: la admisibilidad de una subcohorte preseleccionada no cambia automáticamente el contador de elegibilidad formal de toda la revisión.
-
-El [registro de condiciones de cierre](../_static/literature_completion/closure_checklist.json) fija los productos faltantes: completar cobertura Scopus y confirmar historia WoS, adjudicar decisiones y cuerpos con motivos por etapa, ejecutar las búsquedas transversales nativas, cerrar los componentes verificables de selección y documentar calidad por año. Los estudios incluidos y elegibles globales permanecen **sin determinar**, no en cero. El código o los resultados futuros del benchmark no resolverán por sí solos estos pendientes bibliográficos.
+Los originales y resúmenes completos permanecen fuera de la redistribución pública. Se publican metadatos, hashes, localizadores y síntesis propias breves. Los PDF iniciales, las exportaciones y sus reenvíos se verifican por identidad; un bloqueo de acceso no demuestra ausencia de un resultado o de Deep Learning. Los dos contextos —Zahid y CryptoMamba-SSM— conservan [acceso y revisión adjudicados](../_static/e2_literature_closure_final/constructs/current_delivery_state.csv), con constructo/efecto no identificado y sin aportar un efecto al núcleo aplicado.
 
 ## 3.2 Catálogo vigente para Bitcoin
 
-El Top 10 vigente conserva estos diez nombres; la identidad de sus cuerpos y adaptaciones se consulta en [§44](44_arquitecturas_publicadas.md). Esta lista no es un ranking de resultados:
+Se seleccionan **exactamente diez modelos** por mecanismos, diversidad y código identificado, con desempeño examinado únicamente en estratos comparables. No se afirma que sean los diez mejores del universo global. La [justificación individual](../_static/e2_literature_closure_final/selection/catalogue_selection_rationale.csv) conserva la función de cada candidato:
 
-1. **FCN-1D**.
-2. **ResNet-1D**.
-3. **Inception-1D**.
-4. **LSTM-autoencoder con predictor**.
-5. **TimesNet**.
-6. **TSMixer**.
-7. **TiDE**.
-8. **TimeMixer**.
-9. **PatchTST**.
-10. **iTransformer**.
+| Familia | Sistemas y función representativa |
+|---|---|
+| Convolucional, **4** | **FCN-1D:** convolución simple/GAP; **ResNet-1D:** profundidad residual; **Inception-1D:** ramas multiescala; **TimesNet:** periodización y variación 2D. |
+| Recurrente/autoencoder, **1** | **LSTM-autoencoder con predictor:** reconstrucción, transferencia y ajuste supervisado. |
+| MLP/mezcla, **3** | **TSMixer:** mezcla temporal y de variables; **TiDE:** encoder–decoder denso residual; **TimeMixer:** descomposición y mezcla multiescala. |
+| Atención, **2** | **PatchTST:** tokens de parches temporales; **iTransformer:** tokens de variables. |
 
-MLP16, LSTM32 y GRU32, más Persistence, SeasonalNaive y ARIMA, completan los **dieciséis sistemas obligatorios**. **CNN-1D + LSTM + atención temporal** conserva su ficha como candidato adicional opcional, sin superioridad demostrada; Ridge también queda fuera del alcance obligatorio. La [sección 15](15_revision_modelos.md) conserva la propuesta histórica. No hay resultados del benchmark completo que permitan ordenar los modelos vigentes por desempeño.
+Se verifica la diversidad mínima de **cuatro familias**, no cuatro nombres de una misma familia. Además del Top 10, **MLP16, LSTM32 y GRU32** conservan las referencias de E1; **ARIMA** aporta el comparador no profundo y **Persistence/SeasonalNaive** los pronósticos ingenuos. Completan **dieciséis sistemas**, evaluados en la misma cohorte. Ridge y CNN–LSTM–atención no se añaden silenciosamente al catálogo obligatorio.
+
+### Puntaje explícito, escenarios y comparabilidad
+
+La [tabla completa de componentes](../_static/e2_literature_delivery_closure_20261114_v3/citation_snapshot/conditional_scores.csv) conserva los cinco criterios:
+
+$$
+S=100(0{,}15C+0{,}15U+0{,}25P+0{,}25A+0{,}20F).
+$$
+
+- **C:** citas Scopus por año desde la primera versión conocida, divididas por la referencia fija 487 y recortadas a [0,1]; las nueve fuentes actuales proceden del mismo CSV de citas, sin sumar versiones.
+- **U:** recencia, $\operatorname{clip}((año-2019)/7,0,1)$.
+- **P:** desempeño publicado, normalizado sólo dentro de un pool/estrato explícito. Una escala local no identifica mérito global entre tareas.
+- **A:** disponibilidad de implementación de autor con identidad fijada; no equivale a una réplica.
+- **F:** representatividad, $1/n_{familia}$, calculada sobre el catálogo de cuatro familias.
+
+El [protocolo del escenario documental](../_static/e2_literature_delivery_closure_20261114_v3/citation_snapshot/scenario_protocol.json) permite **50/50 componentes calculables** mediante utilidades locales; el escenario anterior de 49/50 se conserva. Los resultados de una red Inception individual se separan del ensemble y la sensibilidad de SAE conserva el cambio de ganador por métrica. La aritmética no hace equivalentes clasificación UCR, PM2.5 y ETTh1.
+
+El tratamiento estricto usa **tarea, dataset, horizonte, lookback, métrica y fuente/tabla**. [Puntajes por estrato](../_static/e2_literature_closure_final/selection/stratified_scores.csv), [cobertura](../_static/e2_literature_closure_final/selection/stratum_coverage.csv) y [tabla principal](../_static/e2_literature_closure_final/selection/tabla_principal.csv) conservan todos los comparadores de cada pool. En ETTh1/H96/L96 no existe una única tabla con los seis modelos de forecasting; PatchTST cambia de 0,414 a 0,460 entre fuentes. SAE-L25 queda sin un pool no degenerado al separar comparadores L30. No se imputa P=0 en un estrato sin identificación.
+
+Cuando **P global no está identificado**, el puntaje es $S_{global}\in[B,B+25]$, con $B=100(0{,}15C+0{,}15U+0{,}25A+0{,}20F)$. Los diez candidatos admiten rangos **1–10** y no hay dominancia robusta con los pesos originales. Son límites algebraicos, no intervalos de confianza. Se conserva la [sensibilidad de pesos](../_static/e2_literature_closure_final/selection/robust_global_P_bounds.csv), sin elegir el peso favorable. La selección defendible es documental y diversa; la comparabilidad global permanece como límite.
+
+La siguiente tabla reproduce todos los componentes identificados y los límites del puntaje global del expediente. P permanece explícitamente no identificado; los escenarios locales completos y sus estratos están disponibles en los CSV enlazados.
+
+| Sistema | C | U | A | F | P global | S global, límites algebraicos |
+|---|---:|---:|---:|---:|---|---:|
+| FCN-1D | 0,4196 | 0,0000 | 1,0000 | 0,2500 | No identificado [0;1] | [36,29; 61,29] |
+| ResNet-1D | 0,4196 | 0,0000 | 1,0000 | 0,2500 | No identificado [0;1] | [36,29; 61,29] |
+| Inception-1D | 0,4520 | 0,0000 | 1,0000 | 0,2500 | No identificado [0;1] | [36,78; 61,78] |
+| LSTM-autoencoder con predictor | 0,0824 | 0,0000 | 1,0000 | 1,0000 | No identificado [0;1] | [46,24; 71,24] |
+| TimesNet | 0,7745 | 0,4286 | 1,0000 | 0,2500 | No identificado [0;1] | [48,05; 73,05] |
+| TSMixer | 0,1268 | 0,5714 | 1,0000 | 0,3333 | No identificado [0;1] | [42,14; 67,14] |
+| TiDE | 0,1268 | 0,5714 | 1,0000 | 0,3333 | No identificado [0;1] | [42,14; 67,14] |
+| TimeMixer | 0,4237 | 0,7143 | 1,0000 | 0,3333 | No identificado [0;1] | [48,74; 73,74] |
+| PatchTST | 1,0000 | 0,4286 | 1,0000 | 0,5000 | No identificado [0;1] | [56,43; 81,43] |
+| iTransformer | 0,7074 | 0,5714 | 1,0000 | 0,5000 | No identificado [0;1] | [54,18; 79,18] |
+
+La guía §3.2 exige puntaje explícito y reproducible; **no exige un preregistro bibliográfico**. Se declara la cronología posterior del cálculo sin atribuirle haber causado la selección autorizada anteriormente. El puntaje no usa A2 ni cambia la elección de modelos por resultados del test.
+
+### Fuentes conocidas fuera del catálogo
+
+La [tabla de exclusiones nominales](../_static/e2_literature_closure_final/selection/named_exclusions_preserved.csv) conserva **Informer, Autoformer, Crossformer y S-Mamba**. Su motivo es el alcance de diez sistemas y la cobertura de mecanismos/familias; no inferioridad experimental demostrada. Crossformer tiene 1.675 citas y S-Mamba 313 en el corte conocido; las de Informer/Autoformer permanecen desconocidas, no cero. La cobertura disponible no acredita un censo global de todos los modelos más citados excluidos. Se conservan sus fuentes y sus antecedentes sin trasladar puntuaciones a los modelos que los sustituyeron.
 
 ## 3.3 Fuentes y adaptación de los modelos vigentes
 
-Las [fichas de FCN-1D, ResNet-1D, Inception-1D y LSTM-autoencoder con predictor](16_fichas_nuevas.md) separan arquitectura original, evidencia de otras tareas y adaptación a regresión. Las siguientes seis fichas conservan información de las fuentes y decisiones previas útiles. Sus descripciones de implementaciones pertenecen al corte bibliográfico indicado; la restauración posterior de SAE, TimesNet, TimeMixer y PatchTST se documenta en [§44](44_arquitecturas_publicadas.md). **No certifican la ejecución de esas recetas nuevas ni transfieren a ellas resultados del diseño anterior.**
+Las diez fichas siguientes separan **fuente original**, **adaptación D7×5** y **evidencia ejecutada de E2**. Las referencias académicas completas están en [la bibliografía](referencias.md); cuando un DOI es de arXiv se declara como identificador de preprint, sin convertirlo en DOI editorial. Las fichas enlazan diagramas, formulación, innovación, datos, métricas y calidad. El [registro de extracción](../_static/e2_literature_closure_20261113/current10_extraction.csv) conserva versiones, hashes/localizadores, arquitectura y código de autores.
+
+**Arquitectura definida y §14.** Los diez cuerpos publicados y sus adaptaciones están fijados en [§44](44_arquitecturas_publicadas.md) y en la enmienda ejecutada de [§48](48_protocolo_reducido.md), incluida **TIDE-D7-PUBLISHED-R0-v2**. No se aplica una NAS de mil arquitecturas a una receta con cuerpo publicado definido. Las variantes históricas propias y sus búsquedas conservan otra identidad. Los parámetros, tiempos y FLOPs propios de E2 se presentan por separado en §3.4; los NR/NV de un paper no significan que esos costes sigan sin documentar en E2.
+
+### FCN-1D · fuente y adaptación
+
+**Referencia y aporte.** Wang, Z., Yan, W. y Oates, T., *Time Series Classification from Scratch with Deep Neural Networks: A Strong Baseline*, preprint v4 de 2016, DOI [10.48550/arXiv.1611.06455](https://doi.org/10.48550/arXiv.1611.06455), fuente compartida con ResNet {cite:p}`e2_wang_fcn_resnet`. La identidad editorial IJCNN 2017 no se confunde con el DOI arXiv. Fig. 1/§II.B: tres convoluciones, canales 128/256/128, kernels 8/5/3, BN/ReLU y GAP; aporta una referencia temporal sin recurrencia ni atención.
+
+```text
+X[B,7,5] → Conv(128,8) → Conv(256,5) → Conv(128,3)
+         → GAP temporal → cabeza escalar positiva σ₇
+            (BN/ReLU en los bloques)
+```
+
+$$
+h^{(j)}=\operatorname{ReLU}(\operatorname{BN}(\operatorname{Conv}_j(h^{(j-1)}))),\qquad z_c=L^{-1}\sum_s h^{(3)}_{s,c},\qquad \widehat\sigma_7=\operatorname{Softplus}(w^\top z+b).
+$$
+
+**Evidencia original.** Clasificación univariante UCR44, particiones originales. Tabla I, fila Adiac: error **0,143**, frente a **0,174** de ResNet; no es RMSE ni MPCE agregado. Selección por menor pérdida de entrenamiento; repeticiones y dispersión de esa condición NR. Los tests entre datasets del artículo no son incertidumbre entre semillas del resultado Adiac. La ficha {ref}`FCN ampliada <e2-lit-fcn>` conserva código, fórmulas de coste y limitaciones.
+
+**Adaptación ejecutada y crítica.** El cuerpo Conv2D con dimensión singleton se portó a Conv1D, con padding declarado y salida de regresión; no se incorporan días anteriores a D7. GAP puede perder posición y los kernels exceden el contexto, sin que ello pruebe fracaso en BTC. El coste derivado de convolución por pasada es $O(BL\sum_j k_j C_{j-1}C_j)$; parámetros/FLOPs/tiempo de la condición original no quedaron verificados en esta extracción. Su código público no acredita igualdad de HPO frente a comparadores importados. La evaluación E2 ya se ejecutó bajo la receta registrada.
+
+### ResNet-1D · fuente y adaptación
+
+**Referencia y aporte.** Misma fuente Wang {cite:p}`e2_wang_fcn_resnet`, §II.C/fig. 1(c). Son **dos sistemas y un estudio**. Tres bloques residuales con canales 64/128/128, convoluciones 8/5/3, proyecciones y GAP aportan una comparación de profundidad/optimización frente a FCN.
+
+```text
+X[B,7,5] → Bloque residual(64) → Bloque residual(128)
+         → Bloque residual(128) → GAP → cabeza σ₇
+```
+
+$$
+h_{out}=\operatorname{ReLU}(F(h_{in})+P(h_{in})),\qquad \widehat\sigma_7=\operatorname{Softplus}(w^\top\operatorname{GAP}(h)+b).
+$$
+
+**Evidencia original.** Error Adiac **0,174**, frente a FCN **0,143**, en la misma tabla I. Las métricas de clasificación no acreditan desempeño de volatilidad. Partición, selección y límites de repeticiones/HPO son los del estudio compartido. La {ref}`ficha detallada <e2-lit-resnet>` especifica las nueve convoluciones y las proyecciones.
+
+**Adaptación ejecutada y crítica.** Conserva el cuerpo residual publicado y una cabeza escalar positiva. Las conexiones cortas facilitan optimización, sin garantizar generalización; BN y mayor profundidad pueden ser sensibles a batches pequeños y regímenes. Coste derivado $O(BL\sum_{j=1}^{9}k_jC_{j-1}C_j)$ más proyecciones; coste original por modelo no verificado en la ficha. Los recuentos y fases de E2 sí se conservan en §3.4.
+
+### Inception-1D · fuente y adaptación
+
+**Referencia y aporte.** Ismail Fawaz, H. et al. (2020), *InceptionTime: Finding AlexNet for Time Series Classification*, *Data Mining and Knowledge Discovery* 34, 1936–1962, DOI [10.1007/s10618-020-00710-y](https://doi.org/10.1007/s10618-020-00710-y) {cite:p}`e2_inceptiontime`. Ramas convolucionales multiescala, bottleneck, max-pool, residuales y GAP permiten contrastar diferentes escalas. E2 utiliza **una red individual**, no el ensemble original de cinco.
+
+```text
+h → bottleneck → {Conv10 | Conv20 | Conv40} ┐
+h → MaxPool3 → Conv1×1                    ├→ concat → BN/ReLU
+                                           (seis módulos, residuales)
+                                  → GAP → cabeza σ₇ de una red
+```
+
+$$
+I(h)=\operatorname{ReLU}\!\left(\operatorname{BN}\!\left[\operatorname{concat}(C_{10}(B(h)),C_{20}(B(h)),C_{40}(B(h)),C_1(\operatorname{MaxPool}(h)))\right]\right).
+$$
+
+**Evidencia externa separada.** En los [artefactos numéricos de autores UCR2018/128](../_static/e2_literature_delivery_closure_20261114_v3/inception_single/recomputed.json), el error medio de redes individuales es **0,1639239119738714** y el del ensemble de cinco **0,1564056859794546**. El primero promedia cinco ajustes por dataset y luego 128 datasets: no combina sus predicciones, no es MPCE ni RMSE y no es una tabla impresa del artículo. Las comparaciones del ensemble UCR85 se mantienen en la {ref}`ficha fuente <e2-lit-inception>`, sin atribuir su significación a la red individual.
+
+**Adaptación ejecutada y crítica.** Se conserva un cuerpo de seis módulos y cabeza positiva, con geometría/padding D7 registrados. Los kernels largos no agregan historia observada. Por módulo, una derivación de productos convolucionales es $O(BL[Mb+bf(10+20+40)+Mf])$ cuando hay bottleneck, con canales M, ancho b y f filtros por rama; pooling, BN, residuales y cabeza añaden operaciones. El ensemble cambia presupuesto y objeto comparado; no se hereda su mejora como resultado de E2 ni se inventa dispersión comparable entre las tareas.
+
+### LSTM-autoencoder con predictor · fuente y adaptación
+
+**Referencia y aporte.** Sagheer, A. y Kotb, M. (2019), *Unsupervised Pre-training of a Deep LSTM-based Stacked Autoencoder for Multivariate Time Series Forecasting Problems*, *Scientific Reports* 9, 19038, DOI [10.1038/s41598-019-55320-6](https://doi.org/10.1038/s41598-019-55320-6) {cite:p}`e2_lstm_sae`. Su innovación es preentrenar representaciones recurrentes por reconstrucción y transferirlas al predictor supervisado; **no es una pérdida conjunta de reconstrucción/pronóstico**.
+
+```text
+Train admisible → AE1: encoder25/decoder → reconstrucción
+                → AE2: encoder26/decoder → reconstrucción
+                → transferencia de encoders → predictor supervisado σ₇
+```
+
+$$
+\theta_{AE}^{*}=\arg\min_{\theta}\sum_t\|X_t-D_{\theta}(E_{\theta}(X_t))\|_F^2,\qquad
+\theta_{pred}^{*}=\arg\min_{\theta}\sum_t\left(Y_t-g_{\theta}(E_{\theta}(X_t))\right)^2.
+$$
+
+La segunda fase se inicializa con los encoders preentrenados; las dos capas de preentrenamiento y la supervisión tienen recibos separados. La mecánica LSTM satisface $c_s=f_s\odot c_{s-1}+i_s\odot\widetilde c_s$, $h_s=o_s\odot\tanh(c_s)$. La identidad ejecutada **SAE-D7-PUBLISHED-v1** fija dos encoders 25/26 y dropout 0,3, documentados en [§44](44_arquitecturas_publicadas.md); la propuesta conjunta antigua se conserva únicamente como antecedente.
+
+**Evidencia original.** Tabla 2, Beijing PM2.5, LSTM-SAE de dos capas y lookback **25**: **RMSE 24,041; MAE 12,060; SMAPE 9,864**. DLSTM de dos capas tiene RMSE **23,750**, menor; el ganador depende de métrica. Los comparadores con L30 constituyen otro estrato. Los conteos 30.660/4.380/8.760 no reconstruyen por sí solos la cronología. No se acredita incertidumbre de esa fila ni igualdad de presupuesto HPO. La {ref}`ficha histórica <e2-lit-sae>` conserva el otro caso de bicicletas y la distinción fuente/propuesta.
+
+**Coste y límites.** Una capa recurrente cuesta por pasada $O(BL(Cd+d^2))$, más decoder/cabeza y las tres fases de ajuste; no es un recuento completo de FLOPs. Reconstruir ventanas de test durante preentrenamiento sería acceso indebido: todas las fases usan el entrenamiento admisible. Su reconstrucción no garantiza una representación útil para pronosticar σ₇. Datos/código públicos identificados no resuelven la licencia específica de cada componente ni equivalen a reproducir el paper.
 
 ### TimesNet · fuente y adaptación
 
@@ -327,23 +292,23 @@ $$
 p_i=\lfloor L/f_i\rfloor,\quad Z=\sum_i a_i\operatorname{Reshape}_{p_i}^{-1}(\operatorname{Conv2D}_i(\operatorname{Reshape}_{p_i}(X))).
 $$
 
-**Resultado publicado rastreable:** ETTh1 multivariante; variante **TimesNet con Inception compartido**; contexto L=96, horizonte H=96; **MSE 0.384 y MAE 0.402**, misma fila de la tabla 13, **página PDF 21**. Escala: Series Stationarization declarada; scaler global y unidades exactas de estas métricas no reportados. Son resultados externos, no una corrida de Bitcoin ni un ranking comparable entre estos diez artículos.
+**Resultado publicado rastreable:** ETTh1 multivariante; variante **TimesNet con Inception compartido**; contexto L=96, horizonte H=96; **MSE 0.384 y MAE 0.402**, misma fila de la tabla 13, **página PDF 21**. Escala: Series Stationarization declarada; scaler global y unidades exactas de estas métricas no reportados. Son resultados externos, no una corrida de Bitcoin ni un ranking comparable entre las fuentes del catálogo.
 
 **Calidad y reproducibilidad:** Declara tres repeticiones; la dispersión de esta fila H96 no está reportada. Series Stationarization es una normalización interna y no acredita por sí sola un scaler global ajustado sólo en entrenamiento. Los controles compartidos de entrada/salida no demuestran igual presupuesto HPO.
 
-Estado para la fila seleccionada: repeticiones: reported; semillas: NR; dispersión de esta fila: NR; scaler train-only: NR; prueba formal: NR; igual presupuesto HPO: NR. `NR` significa no reportado en el PDF para ese alcance; `NV` significa no verificado y `partial`, evidencia parcial. El detalle y los localizadores están en la [matriz metodológica](../_static/literature_fulltext/quality_matrix.csv).
+Reporte vigente del resultado examinado: repeticiones **reported**, semillas **NR**, scaler sólo train **NR** e igual presupuesto HPO **NR**. NR significa no reportado y NV no verificado en el alcance de la fuente. Los localizadores del corte original se conservan en la [matriz metodológica histórica](../_static/literature_fulltext/quality_matrix.csv); prevalece la [matriz vigente de nueve estudios](../_static/e2_literature_delivery_closure_20261114_v3/quality/current_nine_quality.csv) para su cobertura actual.
 
 **Respaldo aplicado adicional:** [Charting new avenues in financial forecasting with TimesNet: The impact of intraperiod and interperiod variations on realized volatility prediction](https://doi.org/10.1016/j.eswa.2024.124851), `WOS:001283528600001`. Alcance: Volatilidad realizada de acciones. Sus 14 citas corresponden a ese estudio representativo, no automáticamente al original arquitectónico. El registro de apoyo procede de resumen/metadatos.
 
-**Adaptación propuesta:** Transformar la historia a representaciones de variación 2D; limitar frecuencias al soporte D7.
+**Adaptación ejecutada:** cuerpo publicado para historia D7 y una posición de salida; periodización/mezcla 2D conservadas, inferencia batch=1 y política de fuente declarada en §44/§48.
 
-**Complejidad:** Estimación propia O(L d log L) para FFT más O(Σᵢ Aᵢ kᵢ² d_in d_out) para convoluciones 2D sobre rejillas con relleno. No se ha medido el coste numérico. El número de parámetros y FLOPs de la configuración ETTh1 seleccionada no está reportado; los tiempos/memorias de otras condiciones se conservan en la [matriz de eficiencia](../_static/literature_fulltext/efficiency_matrix.csv), sin trasladarlos a D7 ni a Bitcoin.
+**Complejidad:** Estimación propia O(L d log L) para FFT más O(Σᵢ Aᵢ kᵢ² d_in d_out) para convoluciones 2D sobre rejillas con relleno. Esta expresión es analítica; los costes propios medidos de E2 se separan en §3.4. El número de parámetros y FLOPs de la configuración ETTh1 seleccionada no está reportado; los tiempos/memorias de otras condiciones se conservan en la [matriz de eficiencia](../_static/literature_fulltext/efficiency_matrix.csv), sin trasladarlos a D7 ni a Bitcoin.
 
 **Limitación técnica:** El README original deriva la implementación a Time-Series-Library: se conservan ambos repositorios. Periodos inferidos por FFT fuera del soporte observado no prueban memoria de largo plazo.
 
-La ecuación 1 del artículo usa techo para el periodo y el código examinado usa división entera (piso); la fórmula anterior describe ese código. FFT_for_Period promedia amplitudes sobre el batch. Para no compartir información entre orígenes temporales, la adaptación propuesta debe seleccionar periodos por ventana o inferir con batch=1, excluir explícitamente la frecuencia cero y limitar k≤⌊L_eff/2⌋. Son controles propuestos, aún no ejecutados.
+La ecuación 1 del artículo usa techo para el periodo y el código examinado usa división entera (piso); la fórmula anterior describe ese código. FFT_for_Period promedia amplitudes sobre el batch. La receta ejecutada conserva el selector y las mezclas publicados, excluye la frecuencia cero e infiere con batch=1, con top_k limitado al soporte registrado. No se presenta la selección individual por ventana como una modificación adoptada: §44 documenta el cuerpo exacto y sus verificaciones.
 
-**Alcance histórico de ejecución:** la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La integración y evaluación de esta adaptación en el catálogo vigente siguen pendientes; la evidencia histórica conserva su alcance propio. La [réplica externa de TimeMixer y el piloto de tres modelos en ETTh1](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html) pertenecen a la etapa posterior del capítulo 5.
+**Estado de ejecución:** la receta D7 de este sistema ya tiene selección, seis ajustes finales y resultados de mercado en [§6](06_benchmark_final.md), con identidad y política en [§48](48_protocolo_reducido.md). Las reproducciones y las verificaciones propias se documentan en [§55](55_reproduccion_ablaciones.md). La revisión original de noviembre se conserva como procedencia bibliográfica; la [réplica externa y el piloto ETTh1](05_paper_guia.md) pertenecen a otro experimento y no sustituyen esos resultados.
 
 
 ### TSMixer · fuente y adaptación
@@ -364,21 +329,21 @@ $$
 T=X+\mathcal M_t(\mathcal N(X)^\top)^\top,\qquad Z=T+\mathcal M_c(\mathcal N(T)).
 $$
 
-**Resultado publicado rastreable:** ETTh1 multivariante; variante **TSMixer básico multivariante**; contexto L=512, horizonte H=96; **MSE 0.361 y MAE 0.392**, misma fila de la tabla 3, **página PDF 10**. Escala: estandarización global por covariable y RevIN; se evalúa sin invertir la escala global, cuyo ajuste train-only no se explicita. Son resultados externos, no una corrida de Bitcoin ni un ranking comparable entre estos diez artículos.
+**Resultado publicado rastreable:** ETTh1 multivariante; variante **TSMixer básico multivariante**; contexto L=512, horizonte H=96; **MSE 0.361 y MAE 0.392**, misma fila de la tabla 3, **página PDF 10**. Escala: estandarización global por covariable y RevIN; se evalúa sin invertir la escala global, cuyo ajuste train-only no se explicita. Son resultados externos, no una corrida de Bitcoin ni un ranking comparable entre las fuentes del catálogo.
 
 **Calidad y reproducibilidad:** La fila LTSF seleccionada no declara repeticiones ni dispersión. Las cinco semillas y media±DE de M5 pertenecen a otra tarea. El PDF declara estandarización global y RevIN, pero no explicita el ajuste del scaler sólo en entrenamiento; parte de los comparadores se importa de otro artículo.
 
-Estado para la fila seleccionada: repeticiones: NR; semillas: NR; dispersión de esta fila: NR; scaler train-only: NR; prueba formal: NR; igual presupuesto HPO: NR. `NR` significa no reportado en el PDF para ese alcance; `NV` significa no verificado y `partial`, evidencia parcial. El detalle y los localizadores están en la [matriz metodológica](../_static/literature_fulltext/quality_matrix.csv).
+Reporte vigente del resultado examinado: repeticiones **NR**, semillas **NR**, scaler sólo train **NR** e igual presupuesto HPO **NR**. NR significa no reportado y NV no verificado en el alcance de la fuente. Los localizadores del corte original se conservan en la [matriz metodológica histórica](../_static/literature_fulltext/quality_matrix.csv); prevalece la [matriz vigente de nueve estudios](../_static/e2_literature_delivery_closure_20261114_v3/quality/current_nine_quality.csv) para su cobertura actual.
 
 **Respaldo aplicado adicional:** [Time-mixing and feature-mixing modelling for realized volatility forecast: Evidence from TSMixer model](https://doi.org/10.1016/j.jfds.2024.100143), `WOS:001491684900001`. Alcance: Volatilidad realizada de acciones. Sus 9 citas corresponden a ese estudio representativo, no automáticamente al original arquitectónico. El registro de apoyo procede de resumen/metadatos.
 
-**Adaptación propuesta:** Mezclar días y variables con MLP residuales; lectura escalar para σ7.
+**Adaptación ejecutada:** mezcla temporal y de variables mediante el cuerpo Google/Chen fijado, seguida de la cabeza escalar de σ₇; las capas y la receta están registradas en §44/§48.
 
 **Complejidad:** Estimación estructural propia por bloque O(C L² + L C F), más la proyección; L=7 y C=5. No es un recuento medido de FLOPs. El número de parámetros y FLOPs de la configuración ETTh1 seleccionada no está reportado; los tiempos/memorias de otras condiciones se conservan en la [matriz de eficiencia](../_static/literature_fulltext/efficiency_matrix.csv), sin trasladarlos a D7 ni a Bitcoin.
 
-**Limitación técnica:** La fuente elegida es Google/Chen All-MLP TSMixer, distinta de variantes IBM con nombre parecido. Las capas y la receta del adaptador aún deben fijarse antes de entrenarlo.
+**Limitación técnica:** La fuente elegida es Google/Chen All-MLP TSMixer, distinta de variantes IBM con nombre parecido. Las capas y la receta ejecutadas están fijadas; compartir el nombre TSMixer no permite sustituir ese cuerpo por el de KDD.
 
-**Alcance histórico de ejecución:** la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La integración y evaluación de esta adaptación en el catálogo vigente siguen pendientes; la evidencia histórica conserva su alcance propio. La [réplica externa de TimeMixer y el piloto de tres modelos en ETTh1](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html) pertenecen a la etapa posterior del capítulo 5.
+**Estado de ejecución:** la receta D7 de este sistema ya tiene selección, seis ajustes finales y resultados de mercado en [§6](06_benchmark_final.md), con identidad y política en [§48](48_protocolo_reducido.md). Las reproducciones y las verificaciones propias se documentan en [§55](55_reproduccion_ablaciones.md). La revisión original de noviembre se conserva como procedencia bibliográfica; la [réplica externa y el piloto ETTh1](05_paper_guia.md) pertenecen a otro experimento y no sustituyen esos resultados.
 
 
 ### TiDE · fuente y adaptación
@@ -399,23 +364,23 @@ $$
 z=\operatorname{Enc}(\operatorname{vec}(X)),\qquad r=\operatorname{Dec}(z),\qquad \widehat y=g_\sigma(r).
 $$
 
-**Resultado publicado rastreable:** ETTh1 multivariante; variante **TiDE completo, RevIN activado, todos los residuales; tabla 2 con configuración de tabla 8**; contexto L=720, horizonte H=96; **MSE 0.375 y MAE 0.398**, misma fila de la tabla 2, **página PDF 8**. Escala: estandarización con media/DE del periodo de entrenamiento y RevIN activado para ETTh1. Son resultados externos, no una corrida de Bitcoin ni un ranking comparable entre estos diez artículos.
+**Resultado publicado rastreable:** ETTh1 multivariante; variante **TiDE completo, RevIN activado, todos los residuales; tabla 2 con configuración de tabla 8**; contexto L=720, horizonte H=96; **MSE 0.375 y MAE 0.398**, misma fila de la tabla 2, **página PDF 8**. Escala: estandarización con media/DE del periodo de entrenamiento y RevIN activado para ETTh1. Son resultados externos, no una corrida de Bitcoin ni un ranking comparable entre las fuentes del catálogo.
 
 **Calidad y reproducibilidad:** Declara cinco ejecuciones independientes. La tabla 5 (PDF p.19) proporciona errores estándar para ETTh1/H96: MSE 0.0003 y MAE 0.0002; no son desviaciones estándar. La normalización con media/DE del periodo de entrenamiento está explícita. Los presupuestos HPO de todos los comparadores no se igualan documentalmente.
 
-Estado para la fila seleccionada: repeticiones: reported; semillas: NR; dispersión de esta fila: reported; scaler train-only: reported; prueba formal: NR; igual presupuesto HPO: NR. `NR` significa no reportado en el PDF para ese alcance; `NV` significa no verificado y `partial`, evidencia parcial. El detalle y los localizadores están en la [matriz metodológica](../_static/literature_fulltext/quality_matrix.csv).
+Reporte vigente del resultado examinado: repeticiones **reported**, semillas **NR**, scaler sólo train **reported** e igual presupuesto HPO **NR**. NR significa no reportado y NV no verificado en el alcance de la fuente. Los localizadores del corte original se conservan en la [matriz metodológica histórica](../_static/literature_fulltext/quality_matrix.csv); prevalece la [matriz vigente de nueve estudios](../_static/e2_literature_delivery_closure_20261114_v3/quality/current_nine_quality.csv) para su cobertura actual.
 
 **Respaldo aplicado adicional:** [A Deep Learning Method for Photovoltaic Power Generation Forecasting Based on a Time-Series Dense Encoder](https://doi.org/10.3390/en18102434), `WOS:001495953000001`. Alcance: Pronóstico en otro dominio. Sus 13 citas corresponden a ese estudio representativo, no automáticamente al original arquitectónico. El registro de apoyo procede de resumen/metadatos.
 
-**Adaptación propuesta:** Codificar las covariables históricas con bloques densos; decoder escalar sin covariables futuras.
+**Adaptación ejecutada:** **TIDE-D7-PUBLISHED-R0-v2**, cuerpo denso residual publicado con r=0 y cabeza σ₇. La rama temporal inactiva y la ausencia de covariables futuras están documentadas, junto con la paridad funcional; no se atribuyen sus resultados a la variante NAS anterior.
 
-**Complejidad:** Estimación propia Σℓ O(dℓ dℓ₊₁) sobre capas densas, más proyecciones de variables. Los anchos no están fijados; no se infieren parámetros ni FLOPs numéricos. El número de parámetros y FLOPs de la configuración ETTh1 seleccionada no está reportado; los tiempos/memorias de otras condiciones se conservan en la [matriz de eficiencia](../_static/literature_fulltext/efficiency_matrix.csv), sin trasladarlos a D7 ni a Bitcoin.
+**Complejidad:** Estimación propia Σℓ O(dℓ dℓ₊₁) sobre capas densas, más proyecciones de variables. Los anchos de la receta E2 están fijados y sus costes se presentan en §3.4; no se infieren los costes de la condición original a partir de esa adaptación. El número de parámetros y FLOPs de la configuración ETTh1 seleccionada no está reportado; los tiempos/memorias de otras condiciones se conservan en la [matriz de eficiencia](../_static/literature_fulltext/efficiency_matrix.csv), sin trasladarlos a D7 ni a Bitcoin.
 
-**Limitación técnica:** La interfaz original no se ejecuta sin cambios bajo el contrato heredado. La cabeza/skip escalar y retirar historia del objetivo deben declararse como adaptaciones.
+**Limitación técnica:** la interfaz escalar y la información D7×5 se declaran como adaptación; no se añade historia del objetivo ni covariables futuras. La rama r=0 no aporta información temporal dinámica, aun cuando el grafo publicado se conserve.
 
-La formulación original incorpora historia del objetivo y covariables futuras; la versión covariate-only bajo el contrato vigente es una adaptación explícita que necesita validación, no una reproducción idéntica.
+La formulación original incorpora historia del objetivo y covariables futuras. La receta ejecutada bajo el contrato D7 tiene comprobaciones funcionales y resultados propios; éstos no equivalen a repetir la configuración ETTh1 del paper.
 
-**Alcance histórico de ejecución:** la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La integración y evaluación de esta adaptación en el catálogo vigente siguen pendientes; la evidencia histórica conserva su alcance propio. La [réplica externa de TimeMixer y el piloto de tres modelos en ETTh1](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html) pertenecen a la etapa posterior del capítulo 5.
+**Estado de ejecución:** la receta D7 de este sistema ya tiene selección, seis ajustes finales y resultados de mercado en [§6](06_benchmark_final.md), con identidad y política en [§48](48_protocolo_reducido.md). Las reproducciones y las verificaciones propias se documentan en [§55](55_reproduccion_ablaciones.md). La revisión original de noviembre se conserva como procedencia bibliográfica; la [réplica externa y el piloto ETTh1](05_paper_guia.md) pertenecen a otro experimento y no sustituyen esos resultados.
 
 
 ### TimeMixer · fuente y adaptación
@@ -436,21 +401,21 @@ $$
 X_s=\operatorname{Down}_s(X),\quad (S_s,T_s)=\operatorname{Decomp}(X_s),\quad \widehat y=g_\sigma(\{\operatorname{Mix}_s(S_s,T_s)\}_s).
 $$
 
-**Resultado publicado rastreable:** ETTh1 multivariante; variante **TimeMixer unificado, M=3 y cuatro escalas 96/48/24/12**; contexto L=96, horizonte H=96; **MSE 0.375 y MAE 0.400**, misma fila de la tabla 13, **página PDF 17**. Escala: escala/unidades exactas de las métricas no reportadas en el PDF. Son resultados externos, no una corrida de Bitcoin ni un ranking comparable entre estos diez artículos.
+**Resultado publicado rastreable:** ETTh1 multivariante; variante **TimeMixer unificado, M=3 y cuatro escalas 96/48/24/12**; contexto L=96, horizonte H=96; **MSE 0.375 y MAE 0.400**, misma fila de la tabla 13, **página PDF 17**. Escala: escala/unidades exactas de las métricas no reportadas en el PDF. Son resultados externos, no una corrida de Bitcoin ni un ranking comparable entre las fuentes del catálogo.
 
 **Calidad y reproducibilidad:** Declara tres repeticiones. La media±DE de la tabla 9 corresponde al promedio de cuatro horizontes, no a esta fila H96. Sus afirmaciones de IC/significancia no incluyen prueba identificada, p-valores ni extremos reproducibles. La configuración unificada alinea contexto, batch y épocas, sin demostrar igual presupuesto de búsqueda.
 
-Estado para la fila seleccionada: repeticiones: reported; semillas: NR; dispersión de esta fila: NR; scaler train-only: NR; prueba formal: partial; igual presupuesto HPO: NR. `NR` significa no reportado en el PDF para ese alcance; `NV` significa no verificado y `partial`, evidencia parcial. El detalle y los localizadores están en la [matriz metodológica](../_static/literature_fulltext/quality_matrix.csv).
+Reporte vigente del resultado examinado: repeticiones **reported**, semillas **NR**, scaler sólo train **NR** e igual presupuesto HPO **NR**. NR significa no reportado y NV no verificado en el alcance de la fuente. Los localizadores del corte original se conservan en la [matriz metodológica histórica](../_static/literature_fulltext/quality_matrix.csv); prevalece la [matriz vigente de nueve estudios](../_static/e2_literature_delivery_closure_20261114_v3/quality/current_nine_quality.csv) para su cobertura actual.
 
 **Respaldo aplicado adicional:** [Adaptive multi-scale short term wind power forecasting framework based on TimeMixer and Mix-of-Experts](https://doi.org/10.1016/j.epsr.2025.112196), `WOS:001569047800001`. Alcance: Comparador en otro dominio. Sus 11 citas corresponden a ese estudio representativo, no automáticamente al original arquitectónico. El registro de apoyo procede de resumen/metadatos.
 
-**Adaptación propuesta:** Combinar escalas temporales compatibles con siete días; no agregar entradas externas.
+**Adaptación ejecutada:** preset corto M4 del autor con cuatro PDM, anchos 32/32 y M=1, historia 7/3, sin entradas externas; no se traslada la geometría de cuatro escalas ETTh1 a D7.
 
 **Complejidad:** Estimación propia O(Σₛ C Lₛ² + costes de FFN de variables), sumando las escalas. No es una medición de FLOPs. El número de parámetros y FLOPs de la configuración ETTh1 seleccionada no está reportado; los tiempos/memorias de otras condiciones se conservan en la [matriz de eficiencia](../_static/literature_fulltext/efficiency_matrix.csv), sin trasladarlos a D7 ni a Bitcoin.
 
 **Limitación técnica:** Las escalas y longitudes predeterminadas para historias de 96/336 pasos no sirven automáticamente para D7. No se añaden variables futuras ni se invierte la escala OHLCV como si el objetivo fuera una de sus columnas.
 
-**Alcance histórico de ejecución:** la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La integración y evaluación de esta adaptación en el catálogo vigente siguen pendientes; la evidencia histórica conserva su alcance propio. La [réplica externa de TimeMixer y el piloto de tres modelos en ETTh1](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html) pertenecen a la etapa posterior del capítulo 5.
+**Estado de ejecución:** la receta D7 de este sistema ya tiene selección, seis ajustes finales y resultados de mercado en [§6](06_benchmark_final.md), con identidad y política en [§48](48_protocolo_reducido.md). Las reproducciones y las verificaciones propias se documentan en [§55](55_reproduccion_ablaciones.md). La revisión original de noviembre se conserva como procedencia bibliográfica; la [réplica externa y el piloto ETTh1](05_paper_guia.md) pertenecen a otro experimento y no sustituyen esos resultados.
 
 
 ### PatchTST · fuente y adaptación
@@ -471,21 +436,21 @@ $$
 P_c=\operatorname{Patch}(X_{:,c}),\quad Z_c=\operatorname{Encoder}(P_cW_p+E),\quad \widehat y=g_\sigma(Z_1,\ldots,Z_5).
 $$
 
-**Resultado publicado rastreable:** ETTh1 multivariante; variante **PatchTST/64 supervisado, parche 16 y salto 8**; contexto L=512, horizonte H=96; **MSE 0.370 y MAE 0.400**, misma fila de la tabla 3, **página PDF 7**. Escala: normalización de instancia declarada; scaler global y unidades exactas de las métricas no reportados. Son resultados externos, no una corrida de Bitcoin ni un ranking comparable entre estos diez artículos.
+**Resultado publicado rastreable:** ETTh1 multivariante; variante **PatchTST/64 supervisado, parche 16 y salto 8**; contexto L=512, horizonte H=96; **MSE 0.370 y MAE 0.400**, misma fila de la tabla 3, **página PDF 7**. Escala: normalización de instancia declarada; scaler global y unidades exactas de las métricas no reportados. Son resultados externos, no una corrida de Bitcoin ni un ranking comparable entre las fuentes del catálogo.
 
 **Calidad y reproducibilidad:** La tabla principal usa semilla 2021. La robustez con cinco semillas 2019–2023 y media±DE se estudia para la variante /42; no se atribuye su dispersión a /64. La normalización de instancia está descrita, pero el scaler global y su población de ajuste no quedan explícitos en el PDF.
 
-Estado para la fila seleccionada: repeticiones: reported; semillas: reported; dispersión de esta fila: NR; scaler train-only: NR; prueba formal: NR; igual presupuesto HPO: NR. `NR` significa no reportado en el PDF para ese alcance; `NV` significa no verificado y `partial`, evidencia parcial. El detalle y los localizadores están en la [matriz metodológica](../_static/literature_fulltext/quality_matrix.csv).
+Reporte vigente del resultado examinado: repeticiones **reported**, semillas **reported**, scaler sólo train **NR** e igual presupuesto HPO **NR**. NR significa no reportado y NV no verificado en el alcance de la fuente. Los localizadores del corte original se conservan en la [matriz metodológica histórica](../_static/literature_fulltext/quality_matrix.csv); prevalece la [matriz vigente de nueve estudios](../_static/e2_literature_delivery_closure_20261114_v3/quality/current_nine_quality.csv) para su cobertura actual.
 
 **Respaldo aplicado adicional:** [Can transformers transform financial forecasting?](https://doi.org/10.1108/CFRI-01-2024-0032), `WOS:001250609400001`. Alcance: Volatilidad realizada de acciones. Sus 23 citas corresponden a ese estudio representativo, no automáticamente al original arquitectónico. El registro de apoyo procede de resumen/metadatos.
 
-**Adaptación propuesta:** Usar parches cortos y fusionar representaciones de los cinco canales en un objetivo.
+**Adaptación ejecutada:** backbone oficial, parches P3/S2, padding final con el último observado y cabeza de σ₇ sobre los cinco canales, antes de desnormalizar covariables; no es el preset largo P16/S8.
 
 **Complejidad:** Estimación propia O(C P² d + C P d²), con P parches. Reducir tokens puede ahorrar atención, pero con L=7 no demuestra una ventaja. El número de parámetros y FLOPs de la configuración ETTh1 seleccionada no está reportado; los tiempos/memorias de otras condiciones se conservan en la [matriz de eficiencia](../_static/literature_fulltext/efficiency_matrix.csv), sin trasladarlos a D7 ni a Bitcoin.
 
-**Limitación técnica:** Los parches predeterminados de 16/32 pasos exceden D7. Una nueva cabeza que combine canales es una adaptación que debe declararse y validarse.
+**Limitación técnica:** Los parches predeterminados de 16/32 pasos exceden D7. La cabeza y la geometría cortas están declaradas y verificadas; ese cambio sigue limitando la equivalencia con el experimento original.
 
-**Alcance histórico de ejecución:** la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La integración y evaluación de esta adaptación en el catálogo vigente siguen pendientes; la evidencia histórica conserva su alcance propio. La [réplica externa de TimeMixer y el piloto de tres modelos en ETTh1](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html) pertenecen a la etapa posterior del capítulo 5.
+**Estado de ejecución:** la receta D7 de este sistema ya tiene selección, seis ajustes finales y resultados de mercado en [§6](06_benchmark_final.md), con identidad y política en [§48](48_protocolo_reducido.md). Las reproducciones y las verificaciones propias se documentan en [§55](55_reproduccion_ablaciones.md). La revisión original de noviembre se conserva como procedencia bibliográfica; la [réplica externa y el piloto ETTh1](05_paper_guia.md) pertenecen a otro experimento y no sustituyen esos resultados.
 
 
 ### iTransformer · fuente y adaptación
@@ -506,27 +471,186 @@ $$
 H^{(0)}=X^\top W_e,\qquad H^{(\ell+1)}=\operatorname{Encoder}(H^{(\ell)}),\qquad \widehat y=g_\sigma(H).
 $$
 
-**Resultado publicado rastreable:** ETTh1 multivariante; variante **iTransformer completo, columna original Ours**; contexto L=96, horizonte H=96; **MSE 0.386 y MAE 0.405**, misma fila de la tabla 10, **página PDF 23**. Escala: preprocesamiento del benchmark remitido a TimesNet; no son errores de precio bruto ni de Bitcoin. Son resultados externos, no una corrida de Bitcoin ni un ranking comparable entre estos diez artículos.
+**Resultado publicado rastreable:** ETTh1 multivariante; variante **iTransformer completo, columna original Ours**; contexto L=96, horizonte H=96; **MSE 0.386 y MAE 0.405**, misma fila de la tabla 10, **página PDF 23**. Escala: preprocesamiento del benchmark remitido a TimesNet; no son errores de precio bruto ni de Bitcoin. Son resultados externos, no una corrida de Bitcoin ni un ranking comparable entre las fuentes del catálogo.
 
 **Calidad y reproducibilidad:** El análisis de robustez incluye cinco semillas en otros datasets; su tabla 5 no contiene ETTh1 y no acredita incertidumbre de esta fila. La atención entre variables tiene coste cuadrático en el número de variables, no en el número de fechas. Un contexto común no prueba igualdad de presupuesto HPO.
 
-Estado para la fila seleccionada: repeticiones: NV; semillas: NR; dispersión de esta fila: NR; scaler train-only: NR; prueba formal: NR; igual presupuesto HPO: NR. `NR` significa no reportado en el PDF para ese alcance; `NV` significa no verificado y `partial`, evidencia parcial. El detalle y los localizadores están en la [matriz metodológica](../_static/literature_fulltext/quality_matrix.csv).
+Reporte vigente del resultado examinado: repeticiones **NV**, semillas **NR**, scaler sólo train **NR** e igual presupuesto HPO **NR**. NR significa no reportado y NV no verificado en el alcance de la fuente. Los localizadores del corte original se conservan en la [matriz metodológica histórica](../_static/literature_fulltext/quality_matrix.csv); prevalece la [matriz vigente de nueve estudios](../_static/e2_literature_delivery_closure_20261114_v3/quality/current_nine_quality.csv) para su cobertura actual.
 
 **Respaldo aplicado adicional:** [Short-term freeway traffic speed multistep prediction using an iTransformer model](https://doi.org/10.1016/j.physa.2024.130185), `WOS:001352915400001`. Alcance: Pronóstico en otro dominio. Sus 35 citas corresponden a ese estudio representativo, no automáticamente al original arquitectónico. El registro de apoyo procede de resumen/metadatos.
 
-**Adaptación propuesta:** Atender entre tokens de variables, cada uno con siete observaciones; lectura escalar de covariables.
+**Adaptación ejecutada:** encoder oficial entre tokens de variables, cada uno con siete observaciones, y lectura escalar documentada antes de desnormalización por canal.
 
 **Complejidad:** Estimación propia O(C L d + C² d + C d²) para embedding/bloque: atención entre C variables, no entre L fechas. El número de parámetros y FLOPs de la configuración ETTh1 seleccionada no está reportado; los tiempos/memorias de otras condiciones se conservan en la [matriz de eficiencia](../_static/literature_fulltext/efficiency_matrix.csv), sin trasladarlos a D7 ni a Bitcoin.
 
 **Limitación técnica:** La ventaja asintótica depende del eje de atención y no acredita una mejora para sólo cinco variables. La lectura escalar debe preceder a cualquier desnormalización por canal.
 
-**Alcance histórico de ejecución:** la revisión bibliográfica del 2026-11-05 no ajustó modelos ni efectuó reproducciones numéricas. La integración y evaluación de esta adaptación en el catálogo vigente siguen pendientes; la evidencia histórica conserva su alcance propio. La [réplica externa de TimeMixer y el piloto de tres modelos en ETTh1](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html) pertenecen a la etapa posterior del capítulo 5.
+**Estado de ejecución:** la receta D7 de este sistema ya tiene selección, seis ajustes finales y resultados de mercado en [§6](06_benchmark_final.md), con identidad y política en [§48](48_protocolo_reducido.md). Las reproducciones y las verificaciones propias se documentan en [§55](55_reproduccion_ablaciones.md). La revisión original de noviembre se conserva como procedencia bibliográfica; la [réplica externa y el piloto ETTh1](05_paper_guia.md) pertenecen a otro experimento y no sustituyen esos resultados.
 
 
-## 3.4 Comparación crítica y cierre pendiente
+## 3.4 Comparación crítica y brecha de investigación
 
-Los errores de fuentes distintas no son comparables sin igualar objetivo, escala, frecuencia, horizonte y partición. Los resultados de clasificación, precios, energía o ETTh1 no acreditan superioridad en volatilidad Bitcoin. La comparación vigente deberá medir calidad predictiva, coste real, incertidumbre, robustez y límites de cada soporte de información.
+### Matriz comparativa de mecanismos y evidencia externa
 
-Los corpus y recibos bibliográficos enlazados en esta sección permanecen intactos. Las puntuaciones históricas de selección no se recalculan ni se presentan como ranking de los modelos actuales. La revisión global permanece abierta: faltan recuperación y adjudicación de textos, conciliación de versiones y búsquedas, verificación de calidad por año y cierre de las recetas experimentales.
+La matriz conserva el problema y las condiciones de cada fuente. Los errores **no se ordenan entre filas**: cambian tarea, unidades, historia y evaluación. Se conecta cada resultado con la ficha de §3.3, su extracción y sus localizadores.
 
-La [síntesis de §52](52_sintesis_literatura.md) añade una tabla completa de soporte del catálogo vigente, con cinco criterios declarados después de su autorización, intervalos para evidencia desconocida y cuatro sensibilidades de pesos. No identifica un ranking único ni afirma que los pesos causaran la selección anterior. Su extracción separa resultados externos, cobertura metodológica y evidencia experimental propia de §5; la matriz de brecha permite refutar la afirmación dentro de los nueve estudios examinados.
+| Sistema / familia | Problema y datos fuente | Resultado externo localizado | Fortaleza que motiva el contraste | Limitación y sesgo de reporte |
+|---|---|---|---|---|
+| FCN-1D / convolucional | Clasificación UCR44, Adiac | Error 0,143; Wang, tabla I | Convolución simple y GAP sin recurrencia/atención | Selección por pérdida train; HPO equivalente y dispersión NR. No es RMSE de BTC. |
+| ResNet-1D / convolucional | Misma fuente y Adiac | Error 0,174; Wang, tabla I | Optimización y profundidad residual | Dos sistemas no son dos estudios; no superioridad universal sobre FCN. |
+| Inception-1D / convolucional | UCR2018/128, artefacto de autores | Error individual medio 0,1639239; ensemble 0,1564057 | Ramas con escalas diferentes | Promedio de errores individuales no es ensemble. Coste/splits exactos de esa comparación no verificados. |
+| LSTM-autoencoder / recurrente-AE | PM2.5 Beijing, L25 | RMSE 24,041; MAE 12,060; tabla 2 | Reconstrucción y transferencia de representación | DLSTM mejora RMSE; otros comparadores L30 no forman el mismo estrato. |
+| TimesNet / convolucional | ETTh1, L96/H96 | MSE 0,384; MAE 0,402; tabla 13 | Variación intra/interperiodo mediante 2D | Dispersión H96 y scaler global train-only NR; batch y selector importan en D7. |
+| TSMixer / MLP | ETTh1, L512/H96 | MSE 0,361; MAE 0,392; tabla 3 | Mezcla temporal/canales paralelizable | Repeticiones de M5 no se transfieren a esta fila LTSF; comparadores importados. |
+| TiDE / MLP | ETTh1, L720/H96 | MSE 0,375; MAE 0,398; tabla 2 | Encoder–decoder denso residual con covariables | SE de MSE 0,0003 no es DE; interfaz informativa distinta de D7×5. |
+| TimeMixer / MLP | ETTh1, L96/H96, unificado | MSE 0,375; MAE 0,400; tabla 13 | Descomposición y mezcla multiescala | DE agregada de horizontes no es DE H96; ventajas largas no se presuponen en D7. |
+| PatchTST / atención | ETTh1, L512/H96, /64 | MSE 0,370; MAE 0,400; tabla 3 | Menos tokens temporales mediante parches | Dispersión /42 no se atribuye a /64; P16/S8 no cabe en D7 sin adaptación. |
+| iTransformer / atención | ETTh1, L96/H96 | MSE 0,386; MAE 0,405; tabla 10 | Atención entre variables, no entre fechas | Robustez de otros datasets no acredita incertidumbre ETTh1; mismo contexto no demuestra igual HPO. |
+
+La [matriz de eficiencia original](../_static/literature_fulltext/efficiency_matrix.csv) conserva parámetros, FLOPs, fórmulas, tiempo/memoria y sus localizadores **cuando la fuente los reporta para la condición examinada**. Los valores NR/NV no se rellenan con costes de otra tarea ni con las mediciones de E2. Las estimaciones asintóticas de las diez fichas son derivaciones propias de bloques, no un perfil completo de kernels.
+
+### Parámetros, operaciones y tiempo de las recetas E2
+
+Estos son **resultados propios ya guardados**, distintos del coste de los papers. Las [fases finales medidas](../_static/e2_efficiency_closure_20261113/model_efficiency.csv) y la [auditoría de FLOPs de núcleo](../_static/e2_flops_final_audit_20261114/flops_by_model.csv) se leen junto con [§51](51_eficiencia_costes.md) y [§58](58_flops_predictores.md). Se muestran en el orden del catálogo.
+
+| Sistema | Parámetros registrados | FLOPs de núcleo por forward B1/D7×5 | Segundos medios de fases finales por semilla |
+|---|---:|---:|---:|
+| FCN-1D | 268929 | 3741952 | 22,28 |
+| ResNet-1D | 522955 | 7265920 | 49,72 |
+| Inception-1D | 490561 | 6837632 | 52,09 |
+| LSTM-autoencoder con predictor | 8739 | 116308 | 157,08 |
+| TimesNet | 1173099 | 56242762 | 271,95 |
+| TSMixer | 35044 | 433110 | 37,92 |
+| TiDE | 163384 | 1622816 | 33,62 |
+| TimeMixer | 9447 | 960650 | 142,72 |
+| PatchTST | 16388 | 632330 | 76,38 |
+| iTransformer | 795403 | 7936020 | 53,01 |
+
+Los tiempos corresponden a seis semillas en A100 y a las fases efectivamente ejecutadas; SAE suma dos preentrenamientos y supervisión. No incluyen selección completa, adquisición o restauración, ni establecen el tiempo necesario bajo idéntico número de pasos. Los FLOPs cuentan productos densos y convoluciones con **2 FLOPs/MAC**, B1, modo evaluación y arquitectura congelada reconstruida con pesos frescos/sin mercado. Excluyen FFT, activaciones, normalización, pooling, operaciones escalares y movimiento de memoria: no son FLOPs totales de todos los kernels ni una predicción de latencia/GPU. La prueba sintética no carga ni vuelve a puntuar los checkpoints. El [alcance exacto](../_static/e2_flops_final_audit_20261114/flops_audit.json) y el [Pareto de calidad/coste](../_static/e2_efficiency_closure_20261113/quality_cost_pareto.svg) evitan confundir conteo estructural, tiempo y coste monetario.
+
+### Tendencias, reproducibilidad y juicio crítico
+
+**Transformers y modelos más simples.** Los seis estudios de forecasting no establecen una superioridad universal de atención: hay MLP y convoluciones competitivos bajo sus propios paneles, y las reproducciones entre papers no son un único experimento con HPO igualado. En D7×5 cambian el número de tokens, los campos receptivos y la relación parámetros/ejemplos; el contexto largo del paper no se hereda por el nombre del modelo.
+
+**Preentrenamiento e híbridos.** SAE aporta preentrenamiento por reconstrucción, no un modelo fundacional universal ni una pérdida conjunta original. Los estudios aplicados distinguen GARCH/HAR con componentes neuronales, varianza realizada, volatilidad implícita, sentimiento y señales entre mercados. Su papel se conserva sin equipararlos a diez predictores autónomos de σ₇. Por ejemplo, TimeMixer ya tiene evidencia aplicada BTCUSD con volatilidad de 21 días anualizada: impide afirmar que no existe aplicación a Bitcoin, pero no demuestra el contrato σ₇ de E2. Los resultados adversos de híbridos y los cambios de ganador por métrica/versiones son parte de la síntesis.
+
+**Proporción reproducible y alcance.** En la cohorte de **nueve fuentes que sustentan los diez sistemas**, hay **9/9 datasets públicos identificados y 9/9 repositorios de autor fijados**. La [tabla por fuente](../_static/e2_literature_delivery_closure_20261114_v3/quality/current_nine_data_access.csv) y su [verificación oficial](../_static/e2_literature_delivery_closure_20261114_v3/quality/verified_urls.json) sustentan esos denominadores. No acreditan bytes exactos de los splits, datos preparados, licencias homogéneas ni réplica integral. UCI declara 43.824 observaciones y el estudio SAE prepara 43.800; UCR44, UCR85 y UCR2018/128 son cohortes diferentes. No se extiende ese 100 % a los 42 estudios aplicados ni a los 9.559 grupos.
+
+La extracción de 42 estudios separa condiciones y versiones; una fuente puede aportar varias ventanas sin aportar nuevas semillas. Las limitaciones de repeticiones, escalado y HPO de §3.1.3 explican por qué E2 publica calendario, transformaciones, semillas y comparación pareada, sin demostrar que los terceros hayan cometido fuga. La [matriz de calidad aplicada](https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/main/references/literature_e2/prisma_received_v1/quality_applied_studies.csv) no se convierte en un metaanálisis de métricas heterogéneas.
+
+### Gap concreto, refutable y conectado con las RQ
+
+**En las nueve fuentes primarias que sustentan el catálogo vigente no se identificó una evaluación conjunta de esos mecanismos para pronosticar σ₇ no anualizada de Bitcoin, h=1, usando exclusivamente siete días OHLCV, con presupuesto común e inferencia temporal pareada.** La [matriz de refutación](../_static/e2_literature_closure_20261113/gap_falsification_matrix.csv) enlaza fuente, tarea, datos y localizador. Encontrar en cualquiera de esas nueve fuentes un experimento que cumpla el contrato obliga a corregir la afirmación. La revisión aplicada más amplia aporta contexto y heterogeneidad; no amplía esa ausencia a toda la literatura.
+
+La brecha conduce a las [RQ del punto 1](01_punto_partida.md): **RQ1**, ganancia de RMSE superior al δ heredado frente a GRU32/Persistence; **RQ2**, erosión de esa ventaja por régimen; **RQ3**, mejora conjunta de calidad y coste. Sus reglas vigentes y el carácter posterior no ejecutado de las aclaraciones secundarias están en el [registro de RQ](../_static/e2_point1_review_v1/rq_specification.json). Esta revisión no modifica δ, no proclama resultados bajo pruebas no ejecutadas ni atribuye una hipótesis nueva al preregistro histórico.
+
+El [benchmark observado](06_benchmark_final.md), las [comparaciones posteriores](50_comparaciones_f2a.md), la [inferencia refinada](56_inferencia_estabilidad_final.md) y la [eficiencia](51_eficiencia_costes.md) ofrecen un contraste retrospectivo auditable, sin superioridad práctica confirmada tras Holm. La partición de E1 se hereda conforme a la guía, con exposición previa declarada. La evidencia publicada no recupera una confirmación prospectiva nueva ni elimina la limitación de potencia del piloto. La selección del modelo original de E3 permanece como una decisión posterior apoyada en estos mecanismos y resultados.
+
+### Qué queda acreditado y qué conserva un límite
+
+| Requisito | Estado vigente |
+|---|---|
+| Estrategia y trazabilidad | Cadenas, fuentes, versiones, fechas y filtros conocidos documentados; WoS/Scopus nativos, IEEE y arXiv complementarios. |
+| Flujo recibido y extracción | 9.559 disposiciones, 42 estudios aplicados, 504 celdas de calidad y cero pendientes operativos. |
+| Lectura y acceso | Cuatro originales y dos contextos adjudicados; 174 informes no recuperados siguen con elegibilidad desconocida. |
+| Selección de diez y diversidad | Diez sistemas, nueve estudios arquitectónicos, cuatro familias y seis comparadores adicionales; argumentos y scores reproducibles con alcance condicional. |
+| Análisis individual y comparación | Diez fichas, diagramas/formulación, métricas/localizadores, límites de reporte y costes externos separados de los propios de E2. |
+| Cobertura y prioridad global | Persisten 374 Scopus ausentes, totales/rangos WoS incompletos y P global no identificado; no se afirma exhaustividad ni Top 10 óptimo mundial. |
+| Búsqueda transversal | Tres consultas nativas ejecutadas y cuatro mecanismos documentados; recuperación parcial de resultados, sin unión/cribado completo de aquella ronda. |
+| Gap y RQ | Brecha falsable dentro de nueve fuentes, conectada con RQ1–RQ3 y sin superioridad inferida por ausencia de literatura. |
+
+## Antecedentes y reproducción documental
+
+La {download}`versión exacta anterior del capítulo 3 <../_static/e2_literature_current_v1/03_literatura_before_update.md>` conserva los cortes de noviembre, sus tablas y sus estados de acceso/implementación originales. Se retienen también el {download}`procedimiento de la ronda nativa anterior <../_static/literature_native_20261108/native/LEEME.md>` y el {download}`expediente reproducible de esa ronda <../_static/literature_native_20261108/README.md>`, con sus URL y bytes. Los registros inmutables no se reescriben como si sus tareas hubieran estado resueltas en aquel corte.
+
+:::{dropdown} Figura histórica de identificación y lectura dirigida
+![Flujo original del 05/11: recepción y diez originales dirigidos; antecedente distinto del PRISMA recibido vigente](../_static/literature_selection/receipt_flow.png)
+:::
+
+:::{dropdown} Descargas históricas conservadas
+Estos derivados corresponden a los cortes archivados. Sus estados y cifras se interpretan con la versión anterior; no sustituyen las evidencias vigentes descritas arriba. Se mantienen sus rutas y bytes.
+
+- {download}`literature_completion/applied_author_repository_context.json <../_static/literature_completion/applied_author_repository_context.json>`
+- {download}`literature_completion/applied_fulltext_recovery_status.json <../_static/literature_completion/applied_fulltext_recovery_status.json>`
+- {download}`literature_completion/architectural_originals_eligibility.csv <../_static/literature_completion/architectural_originals_eligibility.csv>`
+- {download}`literature_completion/candidate_score_intervals_29.csv <../_static/literature_completion/candidate_score_intervals_29.csv>`
+- {download}`literature_completion/closure_checklist.json <../_static/literature_completion/closure_checklist.json>`
+- {download}`literature_completion/dataset_source_candidates.csv <../_static/literature_completion/dataset_source_candidates.csv>`
+- {download}`literature_completion/financial_abstract_routes_17.csv <../_static/literature_completion/financial_abstract_routes_17.csv>`
+- {download}`literature_completion/inherited_E1_body_reverification.json <../_static/literature_completion/inherited_E1_body_reverification.json>`
+- {download}`literature_completion/manual_inputs_required.json <../_static/literature_completion/manual_inputs_required.json>`
+- {download}`literature_completion/provenance.json <../_static/literature_completion/provenance.json>`
+- {download}`literature_completion/recovery_scope.json <../_static/literature_completion/recovery_scope.json>`
+- {download}`literature_completion/score_protocol.json <../_static/literature_completion/score_protocol.json>`
+- {download}`literature_completion/summary.json <../_static/literature_completion/summary.json>`
+- {download}`literature_fulltext/efficiency_matrix.csv <../_static/literature_fulltext/efficiency_matrix.csv>`
+- {download}`literature_fulltext/fulltext_manifest.json <../_static/literature_fulltext/fulltext_manifest.json>`
+- {download}`literature_fulltext/quality_matrix.csv <../_static/literature_fulltext/quality_matrix.csv>`
+- {download}`literature_native_20261108/arxiv/query_manifest.json <../_static/literature_native_20261108/arxiv/query_manifest.json>`
+- {download}`literature_native_20261108/arxiv/query_membership.csv <../_static/literature_native_20261108/arxiv/query_membership.csv>`
+- {download}`literature_native_20261108/arxiv/records.csv <../_static/literature_native_20261108/arxiv/records.csv>`
+- {download}`literature_native_20261108/arxiv/screening_initial.csv <../_static/literature_native_20261108/arxiv/screening_initial.csv>`
+- {download}`literature_native_20261108/manifest.json <../_static/literature_native_20261108/manifest.json>`
+- {download}`literature_native_20261108/native/ajustes_revision.json <../_static/literature_native_20261108/native/ajustes_revision.json>`
+- {download}`literature_native_20261108/native/cribado_metadatos.csv <../_static/literature_native_20261108/native/cribado_metadatos.csv>`
+- {download}`literature_native_20261108/native/relaciones_duplicados.csv <../_static/literature_native_20261108/native/relaciones_duplicados.csv>`
+- {download}`literature_native_20261108/native/resumen.json <../_static/literature_native_20261108/native/resumen.json>`
+- {download}`literature_recovery_second_20261108/next_phases.json <../_static/literature_recovery_second_20261108/next_phases.json>`
+- {download}`literature_recovery_second_20261108/source_reviews.json <../_static/literature_recovery_second_20261108/source_reviews.json>`
+- {download}`literature_recovery_second_20261108/summary.json <../_static/literature_recovery_second_20261108/summary.json>`
+- {download}`literature_remediation/editorial_title_abstract_checks.json <../_static/literature_remediation/editorial_title_abstract_checks.json>`
+- {download}`literature_remediation/financial_priority_queue.csv <../_static/literature_remediation/financial_priority_queue.csv>`
+- {download}`literature_remediation/local_transversal_hits.csv <../_static/literature_remediation/local_transversal_hits.csv>`
+- {download}`literature_remediation/local_transversal_searches.json <../_static/literature_remediation/local_transversal_searches.json>`
+- {download}`literature_remediation/priority_queue.csv <../_static/literature_remediation/priority_queue.csv>`
+- {download}`literature_remediation/prisma_status.json <../_static/literature_remediation/prisma_status.json>`
+- {download}`literature_remediation/protocol.json <../_static/literature_remediation/protocol.json>`
+- {download}`literature_remediation/provenance.json <../_static/literature_remediation/provenance.json>`
+- {download}`literature_remediation/reason_counts.csv <../_static/literature_remediation/reason_counts.csv>`
+- {download}`literature_remediation/screening_ledger.csv <../_static/literature_remediation/screening_ledger.csv>`
+- {download}`literature_remediation/summary.json <../_static/literature_remediation/summary.json>`
+- {download}`literature_review_progress_20261108/alerts.json <../_static/literature_review_progress_20261108/alerts.json>`
+- {download}`literature_review_progress_20261108/manifest.json <../_static/literature_review_progress_20261108/manifest.json>`
+- {download}`literature_review_progress_20261108/method.json <../_static/literature_review_progress_20261108/method.json>`
+- {download}`literature_review_progress_20261108/next_phases.json <../_static/literature_review_progress_20261108/next_phases.json>`
+- {download}`literature_review_progress_20261108/summary.json <../_static/literature_review_progress_20261108/summary.json>`
+- {download}`literature_scopus/combined_records.csv <../_static/literature_scopus/combined_records.csv>`
+- {download}`literature_scopus/cross_database_links.csv <../_static/literature_scopus/cross_database_links.csv>`
+- {download}`literature_scopus/source_manifest.json <../_static/literature_scopus/source_manifest.json>`
+- {download}`literature_scopus/summary.json <../_static/literature_scopus/summary.json>`
+- {download}`literature_screening_followup_20261108/next_phases.json <../_static/literature_screening_followup_20261108/next_phases.json>`
+- {download}`literature_screening_followup_20261108/source_reviews.json <../_static/literature_screening_followup_20261108/source_reviews.json>`
+- {download}`literature_screening_followup_20261108/summary.json <../_static/literature_screening_followup_20261108/summary.json>`
+- {download}`literature_wos/deduplication.csv <../_static/literature_wos/deduplication.csv>`
+- {download}`literature_wos/records.csv <../_static/literature_wos/records.csv>`
+- {download}`literature_wos/source_manifest.json <../_static/literature_wos/source_manifest.json>`
+- {download}`literature_wos/summary.json <../_static/literature_wos/summary.json>`
+:::
+
+Los [dictámenes vigentes](62_cierre_literatura_focal.md), la [síntesis de fuentes](52_sintesis_literatura.md) y la [auditoría de conciliación histórica](59_auditoria_literatura_final.md) conservan sus funciones distintas. Los comandos siguientes verifican los paquetes existentes; no ejecutan modelos de mercado:
+
+```bash
+python scripts/audit_e2_literature_final_closure.py
+python scripts/audit_e2_prisma_material_recovery.py
+python scripts/verify_e2_prisma_bundle.py references/literature_e2/prisma_received_v1
+```
+
+La verificación focal usa 30 objetivos/17 inclusiones; la del flujo recibido usa 9.559 grupos/42 estudios. Un `global_PRISMA_closed=false` del primer corte no contradice la conciliación posterior del corpus recibido: sigue sin afirmarse cobertura completa del universo nativo. Los cuerpos originales y las notas extensas privadas no se redistribuyen. Esta actualización editorial no ejecuta nuevas consultas, entrenamientos o scoring de mercado.
+
+
+<!-- Compatibilidad de los fragmentos del capítulo histórico. -->
+<span id="actualizacion-del-08-11-2026-busquedas-nativas-y-evidencia-para-la-revision"></span>
+<span id="recepcion-deduplicacion-y-cribado-de-esta-ronda"></span>
+<span id="primer-corte-conservado-59-prioritarios-y-auditoria-de-42-exclusiones-propuestas"></span>
+<span id="segundo-corte-lectura-de-las-295-exclusiones-restantes"></span>
+<span id="primer-corte-de-recuperacion-de-los-40-candidatos-iniciales"></span>
+<span id="segundo-corte-de-recuperacion-versiones-separadas"></span>
+<span id="complemento-arxiv-extraccion-completa-de-consultas-explicitas"></span>
+<span id="evidencia-aplicada-que-cambia-la-lectura-de-los-candidatos"></span>
+<span id="cuatro-altas-y-una-hipotesis-adicional-sin-transferir-evidencia-historica"></span>
+<span id="que-queda-cerrado-y-que-no"></span>
+<span id="expediente-historico-del-0506-11-2026"></span>
+<span id="ampliacion-del-06-11-2026-cribado-local-de-los-7-833-grupos"></span>
+<span id="comparacion-critica-y-cierre-pendiente"></span>
+
+Estos enlaces antiguos remiten a los antecedentes conservados en la descarga del capítulo, no a tareas vigentes sin ejecutar.
