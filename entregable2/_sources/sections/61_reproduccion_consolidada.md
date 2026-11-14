@@ -48,7 +48,7 @@ No requiere red, GPU, NumPy o Torch. Verifica los archivos vinculados a los nuev
 
 El test ya conocido desde E1 conserva su carácter retrospectivo; δg no se definió previamente; el piloto no alcanzó la potencia objetivo y el proxy empírico de ensemble conserva una distancia altamente incierta, sin identificar riesgo Bayes. Los **20.000 sorteos de la misma familia primaria** sí mejoran la resolución actual y se conservan junto al cálculo original. [§56](56_inferencia_estabilidad_final.md) mantiene separada esa corrección numérica de los requisitos prospectivos.
 
-La revisión sistemática y la puntuación bibliográfica son requisitos adicionales, aunque no constituyan una fila propia del Apéndice B. El estado de elegibilidad global y sus componentes desconocidos se documenta en [§59](59_auditoria_literatura_final.md); completar la reproducción no completa esa revisión.
+La revisión sistemática y la puntuación bibliográfica son requisitos adicionales, aunque no constituyan una fila propia del Apéndice B. El [estado bibliográfico vigente (§62)](62_cierre_literatura_focal.md) publica el flujo recibido reconciliado, 42 estudios aplicados y sus límites de cobertura, acceso y comparabilidad. La reproducción numérica y esa revisión son evidencias distintas.
 
 ## Navegación y archivos históricos
 

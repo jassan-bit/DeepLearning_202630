@@ -1,6 +1,50 @@
 # 62. Elegibilidad, selección documental y brecha sustentada
 
-**Estado documental vigente.** Los cuatro originales antes pendientes de acceso ya fueron revisados. El corte focal de **30 objetivos** queda en **17 inclusiones narrativas, once exclusiones del núcleo aplicado DL y dos contextos metodológicos con efectos no identificados**. Hay **cero originales y cero revisiones documentales focales pendientes**. La comparación se presenta por estratos y el historial original de consultas se recuperó de GitHub. **El flujo PRISMA global continúa incompleto por cobertura y cribado; no se lo sustituye por el flujo focal.**
+**Estado documental vigente.** El **flujo tipo PRISMA del corpus recibido queda reconciliado**: los **9.559 grupos** tienen cribado y disposición final, con **42 estudios aplicados únicos**, **120 evaluaciones primarias focales o reutilizadas** y **cero pendientes operativos**. Se documentan **174 registros cuyo informe no se recuperó**, con elegibilidad desconocida. La cobertura de las búsquedas históricas permanece limitada: faltan 374 registros Scopus mostrados y no se conocen todos los totales/rangos de WoS. El cierre del flujo recibido no acredita exhaustividad de las bases.
+
+## Flujo del corpus recibido
+
+La unidad inicial es el **grupo bibliográfico recibido**. El cribado individual asistido por IA distingue título, resumen íntegro y reutilización de una lectura con hash coincidente. Se conservaron las propuestas previas y se añadieron las adjudicaciones finales con su nivel de evidencia. No hubo doble revisión humana independiente ni se calcula κ. El protocolo es retrospectivo y la recuperación bibliográfica no causó la selección experimental anterior.
+
+```{figure} ../_static/e2_prisma_received_v1/prisma_received.svg
+:alt: Flujo reconciliado de 9559 grupos recibidos: cribado, recuperación, evaluación primaria e inclusión de 42 estudios únicos.
+:width: 100%
+
+Flujo del material recibido. Los alias conservan los registros y evitan duplicar estudios; los contenedores no aportan otro efecto ni una exclusión científica.
+```
+
+| Etapa y unidad | Resultado verificable |
+|---|---:|
+| Ocurrencias recibidas | 11.635 |
+| Duplicados dentro de las rondas / reducciones entre rondas | 1.720 / 356 |
+| Grupos cribados, una disposición por grupo | **9.559 / 9.559** |
+| Resúmenes auténticos almacenados y enlazados | **8.939** |
+| Grupos con resumen íntegro leído o lectura previa reutilizada durante el cribado | **2.197** |
+| Exclusiones del núcleo por título, resumen o metadatos, incluidas las adjudicaciones tardías | 7.084 |
+| Candidatos contextuales conservados en otra función | 2.178 |
+| Grupos retenidos para comprobación documental | 297 |
+| Registros cuyo informe no se recuperó / contenedores vinculados | **174 / 2** |
+| Grupos con evidencia primaria / evaluaciones primarias focales o reutilizadas | **121 / 120** |
+| Grupos con inclusión aplicada / estudios aplicados únicos | **44 / 42** |
+| Pendientes operativos del flujo recibido | **0** |
+
+Los **121 grupos con evidencia primaria** se distribuyen en 44 con inclusión aplicada, 34 excluidos tras secciones primarias, 41 contextos y dos informes con criterio DL no resuelto. Una evaluación reutilizable sustenta dos grupos del mismo estudio; preprint y publicación también pueden ser dos informes de un único estudio. Por eso no se intercambian los denominadores. «Evaluación primaria» significa examen de secciones localizadas de métodos/resultados o evidencia primaria previa conservada; no afirma lectura íntegra de todos los PDF.
+
+El [registro individual de 9.559 grupos](https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/main/references/literature_e2/prisma_received_v1/received_groups_9559.csv), el [flujo estructurado](https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/main/references/literature_e2/prisma_received_v1/received_flow.json), las [decisiones de reporte](https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/main/references/literature_e2/prisma_received_v1/full_reports_compact.jsonl) y los [intentos de recuperación](https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/main/references/literature_e2/prisma_received_v1/retrieval_attempts.csv) permiten reconstruir los destinos. Los **174 no recuperados** tienen intentos documentados; no se contabilizan como exclusiones científicas ni como elegibles. Los dos informes recuperados cuya profundidad/rol DL no se pudo acreditar conservan incertidumbre científica y quedan fuera del núcleo aplicado; la operación documental está cerrada.
+
+La [matriz aplicada](https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/main/references/literature_e2/prisma_received_v1/quality_applied_studies.csv) contiene **504 filas, doce dimensiones para 42 estudios**, con una versión preferida por estudio. La [matriz general de dictámenes](https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/main/references/literature_e2/prisma_received_v1/quality_12_dimensions.csv) tiene otro denominador: incluye acceso, contextos y exclusiones. «No verificado en las secciones examinadas» no demuestra ausencia global, cero ejecuciones o fuga. Las notas extensas y los cuerpos de artículos/resúmenes quedan fuera del paquete público; se distribuyen metadatos, hashes, localizadores y síntesis propias breves.
+
+### Identidades y fronteras verificadas
+
+Los [vínculos documentales](https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/main/references/literature_e2/prisma_received_v1/identity_links.csv) enlazan Crypto-Winter con su DOI y el preprint Synthesizer con su publicación editorial. Para este último se prefiere la versión final de 2025, manteniendo separadas las fórmulas y métricas del preprint de 2022. No se importan resultados de una versión como si fueran de otra. Dos volúmenes de actas se vinculan a sus artículos; no se cuentan como estudios empíricos adicionales.
+
+Las adjudicaciones distinguen criterios excluyentes positivos de incertidumbre. El trabajo de sentimiento e IGARCH conserva un lugar contextual: su ecuación tiene orden temporal, pero las secciones evaluadas muestran estimación y significación de la varianza; no acreditan evaluación empírica del pronóstico de dispersión. El híbrido de sentimiento neuronal con HAR/ML que sí evalúa pronósticos de RV permanece incluido. Por ejemplo, una red que predice precio no acredita un pronóstico de dispersión por mencionar mercados volátiles. Una arquitectura SDE neuronal puede ser estructuralmente un SSM aunque sus cabezas tengan una sola capa oculta: su exclusión aquí se apoya en el objetivo evaluado —factores de precios, simulación y cobertura—, no en negar ese carácter neuronal. El [historial de adjudicaciones](https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/main/references/literature_e2/prisma_received_v1/report_adjudication_history.json) conserva esas correcciones.
+
+### Síntesis que añade la revisión del corpus
+
+La ampliación muestra contratos distintos: desviación realizada, varianza, índices/carteras, proxies de rango y componentes DL que extraen sentimiento para un predictor final econométrico. Esas funciones se identifican por fuente y no equivalen a un predictor autónomo sobre las cinco variables OHLCV de E2.
+
+Crypto-Winter informa diez semillas agregadas y un objetivo intradía; EMGNN utiliza QML-RV y señales entre mercados. Son antecedentes relevantes para repeticiones y transferencia. La extracción distingue semillas, ventanas y configuraciones: miles de variantes experimentales no acreditan por sí mismas miles de inicializaciones independientes. La comparación externa conserva objetivo, escala, horizonte, población y versión; no se realiza pooling numérico con A2 ni se transforma el número de fuentes en superioridad de E2.
 
 ## Qué requisito se resuelve y qué evidencia lo acredita
 
@@ -10,9 +54,9 @@
 | Tabla explícita C/U/P/A/F | **Escenarios documentales conservados y comparación estratificada**; el mérito global no está identificado | [Veinte filas de los dos escenarios](../_static/e2_literature_delivery_closure_20261114_v3/citation_snapshot/conditional_scores.csv) y [fórmulas](../_static/e2_literature_delivery_closure_20261114_v3/citation_snapshot/scenario_protocol.json) |
 | Extracción y calidad de las fuentes del catálogo | **9 estudios / 10 sistemas**, con campos conocidos, NR y NV identificados | [Matriz vigente](../_static/e2_literature_delivery_closure_20261114_v3/quality/current_nine_quality.csv), [puente estudio–sistema](../_static/e2_literature_delivery_closure_20261114_v3/quality/model_study_bridge.csv) y disponibilidad abajo |
 | Disponibilidad pública identificada | **Datos 9/9 y código de autor 9/9**; no equivale a reproducción | [Evidencia por estudio](../_static/e2_literature_delivery_closure_20261114_v3/quality/current_nine_data_access.csv) y [verificación oficial](../_static/e2_literature_delivery_closure_20261114_v3/quality/verified_urls.json) |
-| Extracción y calidad aplicada | **17 inclusiones narrativas**, con doce dimensiones y localizadores por estudio | [Matriz normalizada de diecisiete estudios](../_static/e2_literature_closure_final/quality/quality_extraction_matrix_17.csv) |
+| Extracción y calidad aplicada | **42 estudios únicos y doce dimensiones**; el corte focal anterior conserva 17 | [Matriz aplicada vigente](https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/main/references/literature_e2/prisma_received_v1/quality_applied_studies.csv) y [matriz focal conservada](../_static/e2_literature_closure_final/quality/quality_extraction_matrix_17.csv) |
 | Elegibilidad focal de treinta objetivos | **17 incluidos, once excluidos y dos contextos adjudicados**; cero revisiones o accesos pendientes | [Registro completo](../_static/e2_literature_closure_final/eligibility.csv) y [flujo focal](../_static/e2_literature_closure_final/flow.json) |
-| PRISMA de todo el universo histórico | **Abierto**: las decisiones focales no sustituyen el cribado y elegibilidad globales | [Conciliación histórica (§59)](59_auditoria_literatura_final.md) |
+| PRISMA del corpus recibido | **Reconciliado**, 9.559 disposiciones y cero pendientes operativos; cobertura histórica limitada | [Flujo vigente](https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/main/references/literature_e2/prisma_received_v1/received_flow.json) y [conciliación histórica (§59)](59_auditoria_literatura_final.md) |
 
 ## Citas y puntuación reproducible de los diez sistemas
 
@@ -95,7 +139,7 @@ La matriz de las **nueve fuentes actuales** valora el reporte de cada condición
 
 Una comprobación adicional de fuentes oficiales identifica publicación pública del dataset para **9/9 estudios** y repositorio de autor fijado para **9/9**. Wang se enlaza a UCR44 dentro del legado 2015; Inception al UCR85, y su nuevo escenario numérico a UCR2018/128 por separado. SAE se enlaza a UCI Beijing PM2.5; los seis estudios de pronóstico restantes a ETTh1. La disponibilidad identificada no verifica el snapshot, los datos preparados, sus splits o reproducción. Por ejemplo, UCI publica 43.824 observaciones y SAE informa 43.800 preparadas. [Evidencia y límites por fuente](../_static/e2_literature_delivery_closure_20261114_v3/quality/current_nine_data_access.csv).
 
-La matriz aplicada tiene otro denominador: **17 estudios incluidos narrativamente**, de los cuales **siete declaran conteos de ejecuciones o inicializaciones**, con alcances distintos. No se atribuye ausencia de repeticiones a los otros diez. La {download}`síntesis ampliada <../_static/e2_literature_closure_final/quality/synthesis17.md>` conecta observaciones concretas con decisiones de E2:
+La matriz focal conservada tiene otro denominador: **17 estudios incluidos narrativamente**, de los cuales **siete declaran conteos de ejecuciones o inicializaciones**, con alcances distintos. No se atribuye ausencia de repeticiones a los otros diez. La {download}`síntesis ampliada <../_static/e2_literature_closure_final/quality/synthesis17.md>` conecta observaciones concretas con decisiones de E2:
 
 | Brecha observada en las fuentes examinadas | Respuesta verificable de E2 | Límite que permanece |
 |---|---|---|
@@ -112,23 +156,29 @@ La afirmación de gap es refutable y acotada: **en las nueve fuentes que sustent
 
 El expediente inicial ya decía que los originales se mantenían **fuera de los archivos públicos**, que la correspondencia consulta–lote/rangos no estaba confirmada y que faltaban **374 registros de Scopus**. La recuperación de la historia y de 52 referencias remotas confirma ese antecedente; la hora de commit no se convierte en hora de ejecución de consulta. La {download}`cadena de evidencia histórica <../_static/e2_literature_closure_final/search_history/GIT_HISTORY.md>` y el inventario de paquetes distinguen lo encontrado de las copias privadas no recuperadas.
 
-El corpus histórico contiene **11.635 ocurrencias recibidas − 1.720 duplicados internos − 356 enlaces entre rondas = 9.559 grupos recibidos**, no estudios incluidos. Se dispone localmente de resumen enlazado por DOI/EID para **824 de esos grupos**; **8.735** sólo tienen metadatos actualmente enlazados. Los recibos de 396 lecturas históricas no acreditan decisión individual final sobre todos ellos. Faltan los originales privados o un combinado equivalente con resúmenes/identificadores para reconstruir ese trabajo íntegro. La falta de cobertura no se registra como exclusión científica.
+El corpus histórico mantiene **11.635 ocurrencias recibidas − 1.720 duplicados internos − 356 enlaces entre rondas = 9.559 grupos recibidos**. Los seis grupos exclusivamente dirigidos se conservan aparte. Los cuatro originales iniciales aportados se identificaron por sus hashes: Scopus de 7.500 registros y los WoS de 302, 500 y 500. También coincide el WoS enfocado de 340. Los WoS adicionales se usan como material enlazable por identidad; no se les atribuyen consultas históricas no verificadas.
 
-La nueva exportación aplicada de **1.104 EID únicos** conserva su propio [recibo](../_static/e2_literature_delivery_closure_20261114_v3/identification/receipt.json) y [metadatos](../_static/e2_literature_delivery_closure_20261114_v3/identification/records.csv): 1.047 DOI distintos y 57 sin DOI. Frente al catálogo local, 817 DOI coinciden y 230 están ausentes; los candidatos de título no se fusionan automáticamente. Esta ronda no demuestra recuperar los 374 registros históricos ni convertir 1.104 recibidos en 1.104 cribados.
+La restauración obtiene **8.396 grupos con resumen auténtico**: se excluyeron del conteo de disponibilidad 20 celdas que sólo decían «sin resumen». A continuación se recuperaron 530 resúmenes arXiv y trece enfocados, disjuntos de la base: **8.939 grupos con cuerpo de resumen enlazado**. La lectura efectiva durante el cribado fue de 2.197 grupos, declarada separadamente. El [recibo de restauración](https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/main/references/literature_e2/prisma_material_recovery_v1/input_receipt.json) y la [auditoría](https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/main/references/literature_e2/prisma_received_v1/audit.json) permiten comprobarlo.
 
-**El flujo focal está adjudicado; PRISMA global permanece incompleto.** El [flujo estructurado](../_static/e2_literature_closure_final/flow.json) deja nulos los elegibles/incluidos globales y diferencia cero pendientes de lectura en los treinta objetivos de la falta de cobertura y cribado del universo. No se redefine a posteriori el universo global como sólo treinta estudios.
+El ZIP histórico aportado contiene derivados públicos y matrices; no incorpora los originales privados con resúmenes ni recupera por sí mismo las exportaciones enfocadas Scopus828/IEEE466. La recuperación pública posterior y los intentos sobre los 31 registros sin resumen disponible tienen disposiciones terminales dentro del flujo. La ausencia de un resumen o el bloqueo de un editor no se convierte en ausencia de DL.
 
-## Auditoría y tarea de recuperación restante
+La exportación aplicada de **1.104 EID únicos** mantiene su propio [recibo](../_static/e2_literature_delivery_closure_20261114_v3/identification/receipt.json) y [metadatos](../_static/e2_literature_delivery_closure_20261114_v3/identification/records.csv): 1.047 DOI distintos y 57 sin DOI. Sus coincidencias aportan material para los grupos históricos, conservando sus identificadores. Esta ronda no sustituye el universo recibido ni demuestra recuperar los 374 registros históricos ausentes.
 
-El [manifiesto de cierre focal](../_static/e2_literature_closure_final/manifest.json) y el comando verifican identidades, hashes, 17 inclusiones/once exclusiones/dos contextos, matriz de calidad, cálculos estratificados y preservación de los resultados:
+**Queda cerrado el flujo del corpus recibido, con límites de cobertura y acceso explícitos.** No se afirma cobertura completa de las búsquedas nativas, ni elegibilidad conocida para los inaccesibles. Las incertidumbres científicas tras leer una fuente se mantienen como conocimiento no identificado, sin simular otra tarea resuelta o exigir repetir el mismo PDF. Los cortes focales anteriores y su [flujo histórico](../_static/e2_literature_closure_final/flow.json) conservan sus valores originales.
+
+(auditoria-y-tarea-de-recuperacion-restante)=
+## Auditoría y límites de cobertura
+
+El [manifiesto del flujo recibido](https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/main/references/literature_e2/prisma_received_v1/manifest.json) liga los insumos y derivados por SHA. Los comandos verifican el denominador, la cobertura individual, los dos alias, la selección de versión para los 42 estudios, los doce campos de calidad, la separación de acceso/evidencia y la ausencia de pendientes operativos:
 
 ```bash
-python scripts/audit_e2_literature_final_closure.py
+python scripts/audit_e2_prisma_material_recovery.py
+python scripts/verify_e2_prisma_bundle.py references/literature_e2/prisma_received_v1
 ```
 
-La tarea pendiente para el **flujo global** es recuperar el combinado privado con resúmenes y decisiones, o sus exportaciones originales, y completar la reconciliación/cribado/elegibilidad de ese universo. El manifiesto inicial identifica el Scopus `export_dcb22fe7-ce2a-4457-ab38-2a1021da5766_2026-11-06T011951.464806988.csv` y los WoS `savedrecs.txt`, `savedrecs (1).txt`, `savedrecs (2).txt`; el [inventario](../_static/e2_literature_closure_final/search_history/expected_private_source_inventory.json) conserva tamaños y SHA256. No se exige repetir las cadenas recuperadas ni volver a aportar los cuatro originales ya revisados.
+La recuperación de material privado es reproducible con `scripts/restore_e2_literature_materials.py`; la agregación de dictámenes usa `scripts/build_e2_prisma_bundle.py`. La clasificación semántica está registrada como revisión asistida por IA, no como resultado de reglas deterministas ni doble revisión humana. Los cuerpos de las fuentes no se distribuyen en el repositorio público.
 
-No se declaran tareas documentales pendientes para los dos contextos con efecto no identificado. Las limitaciones científicas y de transferencia se mantienen; resolverlas requeriría nueva evidencia, no cambiarles el nombre o la fecha. La revisión es asistida por IA, sin doble revisión humana independiente. No hubo ajuste ni evaluación de modelos de mercado.
+Permanecen **374 registros Scopus mostrados pero no recibidos** y la correspondencia incompleta entre consultas, totales y rangos WoS. Son desviaciones de cobertura documentadas. Una recuperación posterior produciría otra versión del flujo; no se modifica el corte histórico para fingir exhaustividad. Tampoco cambian el test conocido, δg previo ausente o la potencia insuficiente del benchmark. La recuperación bibliográfica no ejecutó nuevos ajustes de mercado ni alteró A2.
 
 ## Antecedentes conservados
 
@@ -163,3 +213,8 @@ Las descargas anteriores mantienen sus URL y bytes. Sus estados y escenarios cor
 - {download}`quality_extraction_matrix_14.csv · v3 <../_static/e2_literature_delivery_closure_20261114_v3/quality/quality_extraction_matrix_14.csv>`
 - {download}`synthesis_updated.md · v3 <../_static/e2_literature_delivery_closure_20261114_v3/quality/synthesis_updated.md>`
 - {download}`verified_urls.json · v3 <../_static/e2_literature_delivery_closure_20261114_v3/quality/verified_urls.json>`
+
+### Descargas históricas adicionales
+
+- {download}`manifest.json · corte conservado <../_static/e2_literature_closure_final/manifest.json>`
+- {download}`expected_private_source_inventory.json · corte conservado <../_static/e2_literature_closure_final/search_history/expected_private_source_inventory.json>`
